@@ -1,56 +1,38 @@
-import asyncio
+import threading
+import os
+from flask import Flask
+from telegram.ext import ApplicationBuilder, CommandHandler, MessageHandler, filters, CallbackQueryHandler
 
-from aiogram import Bot, Dispatcher, types, F
-from aiogram.filters import Command
-from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
+from handlers.start import start
+from handlers.buttons import button_handler
+from speaking.handler import handle_voice, start as speak_start
 
-from config import BOT_TOKEN
-from speaking.handler import start as speak_start, handle as speak_handle
+# ===== Flask сервер (чтобы Render не падал) =====
+app = Flask(__name__)
 
-bot = Bot(token=BOT_TOKEN)
-dp = Dispatcher()
+@app.route("/")
+def home():
+    return "Bot is running!"
 
+def run_web():
+    port = int(os.environ.get("PORT", 10000))
+    app.run(host="0.0.0.0", port=port)
 
-def main_menu():
-    return InlineKeyboardMarkup(inline_keyboard=[
-        [InlineKeyboardButton(text="🎮 Игры", callback_data="games")],
-        [InlineKeyboardButton(text="📝 ОГЭ / ЕГЭ", callback_data="exam")],
-        [InlineKeyboardButton(text="🎙 Speaking", callback_data="speak")]
-    ])
+# ===== Telegram бот =====
+def run_bot():
+    import os
+    TOKEN = os.getenv("TELEGRAM_TOKEN")
 
+    app_bot = ApplicationBuilder().token(TOKEN).build()
 
-@dp.message(Command("start"))
-async def start(message: types.Message):
-    await message.answer(
-        """Hello! 👋 Я твой персональный учитель английского 🇬🇧
+    app_bot.add_handler(CommandHandler("start", start))
+    app_bot.add_handler(CallbackQueryHandler(button_handler))
+    app_bot.add_handler(MessageHandler(filters.VOICE, handle_voice))
 
-Я помогу тебе в практике языка и разговоре!
+    print("Бот запущен...")
+    app_bot.run_polling()
 
-👇 Выбери режим:""",
-        reply_markup=main_menu()
-    )
-
-
-@dp.callback_query()
-async def callbacks(call: types.CallbackQuery):
-    if call.data == "speak":
-        await speak_start(call.message)
-
-    elif call.data == "games":
-        await call.message.answer("🎮 Скоро")
-
-    elif call.data == "exam":
-        await call.message.answer("📝 Скоро")
-
-
-@dp.message(F.voice)
-async def voice_handler(message: types.Message):
-    await speak_handle(message)
-
-
-async def main():
-    await dp.start_polling(bot)
-
-
+# ===== Запуск =====
 if __name__ == "__main__":
-    asyncio.run(main())
+    threading.Thread(target=run_web).start()
+    run_bot()

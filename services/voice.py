@@ -17,4 +17,11 @@ async def tts(text: str) -> bytes:
 
     async with aiohttp.ClientSession() as session:
         async with session.post(url, json=data, headers=headers) as resp:
+            print("ELEVEN STATUS:", resp.status)
+
+            if resp.status != 200:
+                error = await resp.text()
+                print("ELEVEN ERROR:", error)
+                return None
+
             return await resp.read()
