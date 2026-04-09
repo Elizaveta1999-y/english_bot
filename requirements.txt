@@ -1,3 +1,4 @@
-aiogram
+python-telegram-bot==20.7
 openai
-python-dotenv
+requests
+flask==3.0.0
