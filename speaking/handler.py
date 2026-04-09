@@ -20,6 +20,11 @@ async def handle(message: types.Message):
     text = "Hello"
 
     reply = await ask_gpt(text)
+
     audio = await tts(reply)
+
+    if not audio:
+        await message.answer("❌ Ошибка озвучки")
+        return
 
     await message.answer_voice(audio)
