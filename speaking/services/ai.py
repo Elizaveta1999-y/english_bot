@@ -1,16 +1,19 @@
-import openai
 import os
+from openai import OpenAI
 
-openai.api_key = os.getenv("OPENAI_API_KEY")
-
+client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 async def ask_gpt(text: str) -> str:
-    response = openai.ChatCompletion.create(
-        model="gpt-4o-mini",
-        messages=[
-            {"role": "system", "content": "Ты дружелюбный преподаватель английского. Отвечай кратко и просто."},
-            {"role": "user", "content": text}
-        ]
-    )
+    try:
+        response = client.chat.completions.create(
+            model="gpt-4o-mini",
+            messages=[
+                {"role": "system", "content": "Ты дружелюбный преподаватель английского."},
+                {"role": "user", "content": text}
+            ]
+        )
 
-    return response.choices[0].message["content"]
+        return response.choices[0].message.content
+
+    except Exception as e:
+        return f"❌ Ошибка OpenAI: {e}"
