@@ -1,4 +1,1 @@
-python-telegram-bot==20.7
-openai
-requests
-flask==3.0.0
+aiogram
