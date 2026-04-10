@@ -7,7 +7,7 @@ from aiogram.filters import Command
 
 from handlers.start import start
 
-TOKEN = "ТВОЙ_ТОКЕН_БОТА"
+TOKEN = "8652892060:AAGnlfueIW4WVenereDZjRjV3E0dOuHu8vg"
 
 logging.basicConfig(level=logging.INFO)
 
