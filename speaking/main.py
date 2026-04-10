@@ -1,38 +1,27 @@
-import threading
-import os
-from flask import Flask
-from telegram.ext import ApplicationBuilder, CommandHandler, MessageHandler, filters, CallbackQueryHandler
+import asyncio
+import logging
+
+from aiogram import Bot, Dispatcher
+from aiogram.types import Message
+from aiogram.filters import Command
 
 from handlers.start import start
-from handlers.buttons import button_handler
-from speaking.handler import handle_voice, start as speak_start
 
-# ===== Flask сервер (чтобы Render не падал) =====
-app = Flask(__name__)
+TOKEN = "ТВОЙ_ТОКЕН_БОТА"
 
-@app.route("/")
-def home():
-    return "Bot is running!"
+logging.basicConfig(level=logging.INFO)
 
-def run_web():
-    port = int(os.environ.get("PORT", 10000))
-    app.run(host="0.0.0.0", port=port)
+bot = Bot(token=TOKEN)
+dp = Dispatcher()
 
-# ===== Telegram бот =====
-def run_bot():
-    import os
-    TOKEN = os.getenv("TELEGRAM_TOKEN")
+# команда /start
+@dp.message(Command("start"))
+async def cmd_start(message: Message):
+    await start(message)
 
-    app_bot = ApplicationBuilder().token(TOKEN).build()
-
-    app_bot.add_handler(CommandHandler("start", start))
-    app_bot.add_handler(CallbackQueryHandler(button_handler))
-    app_bot.add_handler(MessageHandler(filters.VOICE, handle_voice))
-
+async def main():
     print("Бот запущен...")
-    app_bot.run_polling()
+    await dp.start_polling(bot)
 
-# ===== Запуск =====
 if __name__ == "__main__":
-    threading.Thread(target=run_web).start()
-    run_bot()
+    asyncio.run(main())
