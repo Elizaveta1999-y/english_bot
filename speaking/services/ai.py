@@ -1,19 +1,29 @@
 import os
-from openai import OpenAI
+import requests
 
-client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+TOGETHER_API_KEY = os.getenv("TOGETHER_API_KEY")
 
-async def ask_gpt(text: str) -> str:
+async def ask_ai(text: str) -> str:
     try:
-        response = client.chat.completions.create(
-            model="gpt-4o-mini",
-            messages=[
-                {"role": "system", "content": "Ты дружелюбный преподаватель английского."},
+        url = "https://api.together.xyz/v1/chat/completions"
+
+        headers = {
+            "Authorization": f"Bearer {TOGETHER_API_KEY}",
+            "Content-Type": "application/json"
+        }
+
+        data = {
+            "model": "meta-llama/Llama-3.1-8B-Instruct-Turbo",
+            "messages": [
+                {"role": "system", "content": "Ты дружелюбный преподаватель английского. Отвечай просто и кратко."},
                 {"role": "user", "content": text}
             ]
-        )
+        }
 
-        return response.choices[0].message.content
+        response = requests.post(url, headers=headers, json=data)
+        result = response.json()
 
-    except Exception as e:
-        return f"❌ Ошибка OpenAI: {e}"
+        return result["choices"][0]["message"]["content"]
+
+    except Exception:
+        return "Давай попробуем ещё раз 😊"

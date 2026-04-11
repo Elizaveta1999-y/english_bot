@@ -1,7 +1,10 @@
-import os
-from aiogram.types import Message
+import requests
+from aiogram.types import Message, FSInputFile
+
 from .start import speaking_users
-from services.ai import ask_gpt
+from services.ai import ask_ai
+from services.tts import text_to_speech
+
 
 async def handle_voice(message: Message):
     user_id = message.from_user.id
@@ -11,13 +14,10 @@ async def handle_voice(message: Message):
 
     await message.answer("🎧 Слушаю...")
 
-    # скачиваем файл
     file = await message.bot.get_file(message.voice.file_id)
     file_path = file.file_path
 
     file_url = f"https://api.telegram.org/file/bot{message.bot.token}/{file_path}"
-
-    import requests
     audio = requests.get(file_url)
 
     with open("voice.ogg", "wb") as f:
@@ -25,9 +25,13 @@ async def handle_voice(message: Message):
 
     await message.answer("🧠 Думаю...")
 
-    # 👉 пока заглушка вместо распознавания
-    text = "Hello"  # ПОКА ТЕСТ
+    # пока тестовый текст
+    user_text = "Hello"
 
-    ai_answer = await ask_gpt(text)
+    ai_answer = await ask_ai(user_text)
 
-    await message.answer(f"🤖 {ai_answer}")
+    audio_file = text_to_speech(ai_answer)
+
+    voice = FSInputFile(audio_file)
+
+    await message.answer_voice(voice)

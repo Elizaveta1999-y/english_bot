@@ -1,4 +1,2 @@
 aiogram
-flask
 requests
-openai
