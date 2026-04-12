@@ -1,8 +1,14 @@
+from aiogram import Router, F
 from aiogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
+from aiogram.filters import CommandStart
+
+router = Router()
 
 # храним пользователей в режиме speaking
 speaking_users = set()
 
+
+@router.message(CommandStart())
 async def start(message: Message):
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(text="🎮 Игры", callback_data="games")],
@@ -22,7 +28,8 @@ async def start(message: Message):
     await message.answer(text, reply_markup=keyboard)
 
 
-# 🔥 ОБРАБОТКА КНОПКИ
+# 🔥 ОБРАБОТКА КНОПОК
+@router.callback_query(F.data.in_(["games", "exam", "speaking"]))
 async def handle_buttons(call: CallbackQuery):
     user_id = call.from_user.id
 
@@ -35,3 +42,5 @@ async def handle_buttons(call: CallbackQuery):
 
     elif call.data == "exam":
         await call.message.answer("📝 Экзамен скоро тут")
+
+    await call.answer()
