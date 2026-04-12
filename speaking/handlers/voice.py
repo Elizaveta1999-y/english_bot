@@ -12,7 +12,6 @@ router = Router()
 async def handle_voice(message: Message):
     user_id = message.from_user.id
 
-    # реагируем только если пользователь в speaking режиме
     if user_id not in speaking_users:
         return
 
