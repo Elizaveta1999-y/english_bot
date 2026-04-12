@@ -11,13 +11,13 @@ TOKEN = "8652892060:AAGnlfueIW4WVenereDZjRjV3E0dOuHu8vg"
 bot = Bot(token=TOKEN)
 dp = Dispatcher()
 
-# команды
+# ✅ /start
 dp.message.register(start, Command("start"))
 
-# кнопки
+# ✅ кнопки
 dp.callback_query.register(handle_buttons)
 
-# голос
+# ✅ голос
 dp.message.register(handle_voice)
 
 
