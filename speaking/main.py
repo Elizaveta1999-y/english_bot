@@ -5,13 +5,12 @@ import socketserver
 
 from aiogram import Bot, Dispatcher
 
-from speaking.handlers.start import router as start_router
-from speaking.handlers.voice import router as voice_router
+from handlers.start import router as start_router
+from handlers.voice import router as voice_router
 
 BOT_TOKEN = "8652892060:AAGnlfueIW4WVenereDZjRjV3E0dOuHu8vg"
 
 
-# 🔥 Обман Render (открываем порт)
 def start_dummy_server():
     PORT = 10000
     Handler = http.server.SimpleHTTPRequestHandler
