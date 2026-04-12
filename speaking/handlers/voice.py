@@ -2,8 +2,8 @@ from aiogram import Router, F
 from aiogram.types import Message
 
 from handlers.start import speaking_users
-from speaking.services.ai import ask_ai
-from speaking.services.tts import text_to_speech
+from services.ai import ask_ai
+from services.tts import text_to_speech
 
 router = Router()
 
@@ -12,7 +12,7 @@ router = Router()
 async def handle_voice(message: Message):
     user_id = message.from_user.id
 
-    # ❗ реагируем только если пользователь в speaking режиме
+    # реагируем только если пользователь в speaking режиме
     if user_id not in speaking_users:
         return
 
