@@ -1,30 +1,35 @@
 import asyncio
+import threading
+import http.server
+import socketserver
+
 from aiogram import Bot, Dispatcher
-from aiogram.types import Message, CallbackQuery
-from aiogram.filters import Command
 
-from handlers.start import start, handle_buttons
-from handlers.voice import handle_voice
+from speaking.handlers.start import router as start_router
+from speaking.handlers.voice import router as voice_router
 
-TOKEN = "8652892060:AAGnlfueIW4WVenereDZjRjV3E0dOuHu8vg"
+BOT_TOKEN = "YOUR_BOT_TOKEN"
 
-bot = Bot(token=TOKEN)
-dp = Dispatcher()
 
-# ✅ /start
-dp.message.register(start, Command("start"))
+# 🔥 Обман Render (открываем порт)
+def start_dummy_server():
+    PORT = 10000
+    Handler = http.server.SimpleHTTPRequestHandler
 
-# ✅ кнопки
-dp.callback_query.register(handle_buttons)
-
-# ✅ голос
-dp.message.register(handle_voice)
+    with socketserver.TCPServer(("", PORT), Handler) as httpd:
+        httpd.serve_forever()
 
 
 async def main():
-    print("Бот запущен 🚀")
+    bot = Bot(token=BOT_TOKEN)
+    dp = Dispatcher()
+
+    dp.include_router(start_router)
+    dp.include_router(voice_router)
+
     await dp.start_polling(bot)
 
 
 if __name__ == "__main__":
+    threading.Thread(target=start_dummy_server).start()
     asyncio.run(main())
