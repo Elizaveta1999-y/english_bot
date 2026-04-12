@@ -1,9 +1,9 @@
 from aiogram import Router, F
 from aiogram.types import Message
 
-from speaking.handlers.start import speaking_users
-from speaking.services.ai import ask_ai
-from speaking.services.tts import text_to_speech
+from handlers.start import speaking_users
+from services.ai import ask_ai
+from services.tts import text_to_speech
 
 router = Router()
 
