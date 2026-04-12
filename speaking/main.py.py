@@ -2,17 +2,11 @@ import asyncio
 import threading
 import http.server
 import socketserver
-import sys
-import os
-
-# 🔥 ДОБАВЛЯЕМ КОРЕНЬ ПРОЕКТА В PATH (ЭТО КЛЮЧ)
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-sys.path.append(BASE_DIR)
 
 from aiogram import Bot, Dispatcher
 
-from handlers.start import router as start_router
-from handlers.voice import router as voice_router
+from speaking.handlers.start import router as start_router
+from speaking.handlers.voice import router as voice_router
 
 BOT_TOKEN = "8652892060:AAGnlfueIW4WVenereDZjRjV3E0dOuHu8vg"
 
