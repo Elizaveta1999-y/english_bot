@@ -22,32 +22,29 @@ async def start_handler(message: Message):
     )
 
     await message.answer(
-        "Hello! 👋 Я твой персональный учитель английского 🇬🇧\n\n"
-        "Выбери режим:",
+        "Hello! 👋 Я твой персональный учитель английского 🇬🇧\n\nВыбери режим:",
         reply_markup=keyboard
     )
 
 
-# 🔹 Нажатие на Speaking
+# 🔹 Speaking
 @router.message(lambda message: message.text == "🎤 Speaking")
 async def speaking_mode(message: Message):
     user_id = message.from_user.id
 
-    # Включаем режим speaking
     set_user_state(user_id, {"mode": "speaking"})
 
     voice = await text_to_voice("""
 Hello! I am Voice AI, your personal English tutor.
-I'm here to help you practice speaking English, improve your grammar, and expand your vocabulary.
-We'll communicate using our voices!
+I'm here to help you practice speaking English.
 What should I call you?
 """)
 
     await message.answer_voice(voice)
 
 
-# 🔹 Блок текста в speaking режиме
-@router.message()
+# ❗ ВАЖНО: ловим ТОЛЬКО текст
+@router.message(lambda message: message.text is not None)
 async def block_text(message: Message):
     user_id = message.from_user.id
     state = get_user_state(user_id)
