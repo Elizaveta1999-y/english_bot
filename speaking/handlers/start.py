@@ -3,13 +3,12 @@ from aiogram.types import Message
 from aiogram.filters import Command
 from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
 
-from services.tts import text_to_voice
-from services.storage import set_user_state, get_user_state
+from speaking.services.tts import text_to_voice
+from speaking.services.storage import set_user_state, get_user_state
 
 router = Router()
 
 
-# 🔹 /start
 @router.message(Command("start"))
 async def start_handler(message: Message):
     keyboard = ReplyKeyboardMarkup(
@@ -27,7 +26,6 @@ async def start_handler(message: Message):
     )
 
 
-# 🔹 Speaking
 @router.message(lambda message: message.text == "🎤 Speaking")
 async def speaking_mode(message: Message):
     user_id = message.from_user.id
@@ -43,7 +41,6 @@ What should I call you?
     await message.answer_voice(voice)
 
 
-# ❗ ВАЖНО: ловим ТОЛЬКО текст
 @router.message(lambda message: message.text is not None)
 async def block_text(message: Message):
     user_id = message.from_user.id
