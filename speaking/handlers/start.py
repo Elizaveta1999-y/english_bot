@@ -1,46 +1,56 @@
-from aiogram import Router, F
-from aiogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
-from aiogram.filters import CommandStart
+from aiogram import Router
+from aiogram.types import Message
+from aiogram.filters import Command
+from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
+
+from services.tts import text_to_voice
+from services.storage import set_user_state, get_user_state
 
 router = Router()
 
-# храним пользователей в режиме speaking
-speaking_users = set()
 
-
-@router.message(CommandStart())
-async def start(message: Message):
-    keyboard = InlineKeyboardMarkup(inline_keyboard=[
-        [InlineKeyboardButton(text="🎮 Игры", callback_data="games")],
-        [InlineKeyboardButton(text="📝 ОГЭ / ЕГЭ", callback_data="exam")],
-        [InlineKeyboardButton(text="🎤 Speaking", callback_data="speaking")]
-    ])
-
-    text = (
-        "Hello!👋 Я твой персональный учитель английского 🇬🇧\n\n"
-        "Я помогу тебе:\n"
-        "— прокачать разговорный английский\n"
-        "— подготовиться к экзаменам\n"
-        "— играть и учить слова\n\n"
-        "👇 Выбери режим:"
+# 🔹 /start
+@router.message(Command("start"))
+async def start_handler(message: Message):
+    keyboard = ReplyKeyboardMarkup(
+        keyboard=[
+            [KeyboardButton(text="🎮 Игры")],
+            [KeyboardButton(text="📝 ОГЭ / ЕГЭ")],
+            [KeyboardButton(text="🎤 Speaking")]
+        ],
+        resize_keyboard=True
     )
 
-    await message.answer(text, reply_markup=keyboard)
+    await message.answer(
+        "Hello! 👋 Я твой персональный учитель английского 🇬🇧\n\n"
+        "Выбери режим:",
+        reply_markup=keyboard
+    )
 
 
-# 🔥 ОБРАБОТКА КНОПОК
-@router.callback_query(F.data.in_(["games", "exam", "speaking"]))
-async def handle_buttons(call: CallbackQuery):
-    user_id = call.from_user.id
+# 🔹 Нажатие на Speaking
+@router.message(lambda message: message.text == "🎤 Speaking")
+async def speaking_mode(message: Message):
+    user_id = message.from_user.id
 
-    if call.data == "speaking":
-        speaking_users.add(user_id)
-        await call.message.answer("🎤 Режим speaking включен. Отправь голос!")
+    # Включаем режим speaking
+    set_user_state(user_id, {"mode": "speaking"})
 
-    elif call.data == "games":
-        await call.message.answer("🎮 Игры скоро тут")
+    voice = await text_to_voice("""
+Hello! I am Voice AI, your personal English tutor.
+I'm here to help you practice speaking English, improve your grammar, and expand your vocabulary.
+We'll communicate using our voices!
+What should I call you?
+""")
 
-    elif call.data == "exam":
-        await call.message.answer("📝 Экзамен скоро тут")
+    await message.answer_voice(voice)
 
-    await call.answer()
+
+# 🔹 Блок текста в speaking режиме
+@router.message()
+async def block_text(message: Message):
+    user_id = message.from_user.id
+    state = get_user_state(user_id)
+
+    if state.get("mode") == "speaking":
+        await message.answer("Пожалуйста, отправь голосовое сообщение 🎤")
