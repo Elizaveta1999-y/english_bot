@@ -1,77 +1,58 @@
-import requests
 import os
+import aiohttp
+from openai import OpenAI
 
-TOGETHER_API_KEY = os.getenv("TOGETHER_API_KEY")
-OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
-
-
-SYSTEM_PROMPT = """
-You are a friendly English tutor.
-Always correct mistakes and ask questions.
-"""
+client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 
-def transcribe_audio(audio_url: str):
-    print("DOWNLOADING AUDIO:", audio_url)
+async def download_file(url: str, path: str):
+    async with aiohttp.ClientSession() as session:
+        async with session.get(url) as resp:
+            data = await resp.read()
+            with open(path, "wb") as f:
+                f.write(data)
 
-    audio_file = requests.get(audio_url)
 
-    print("SENDING TO WHISPER...")
-
-    response = requests.post(
-        "https://api.openai.com/v1/audio/transcriptions",
-        headers={
-            "Authorization": f"Bearer {OPENAI_API_KEY}"
-        },
-        files={
-            "file": ("voice.ogg", audio_file.content)
-        },
-        data={
-            "model": "gpt-4o-mini-transcribe"
-        }
-    )
-
-    print("STATUS:", response.status_code)
-    print("RESPONSE:", response.text)
-
+async def transcribe_audio(file_url: str) -> str:
     try:
-        return response.json().get("text", "")
-    except:
-        return ""
+        file_path = "voice.ogg"
 
+        # скачиваем файл
+        await download_file(file_url, file_path)
 
-async def process_voice_message(audio_url, mode, user_name=None):
-    try:
-        user_text = transcribe_audio(audio_url)
+        # отправляем в openai
+        with open(file_path, "rb") as audio_file:
+            transcript = client.audio.transcriptions.create(
+                model="gpt-4o-mini-transcribe",
+                file=audio_file
+            )
 
-        print("USER SAID:", user_text)
-
-        if not user_text:
-            return "I didn't catch that. Can you repeat?"
-
-        if mode == "name":
-            return user_text.strip()
-
-        response = requests.post(
-            "https://api.together.xyz/v1/chat/completions",
-            headers={
-                "Authorization": f"Bearer {TOGETHER_API_KEY}",
-                "Content-Type": "application/json"
-            },
-            json={
-                "model": "meta-llama/Llama-3-8b-chat-hf",
-                "messages": [
-                    {"role": "system", "content": SYSTEM_PROMPT},
-                    {"role": "user", "content": user_text}
-                ],
-                "max_tokens": 120
-            }
-        )
-
-        print("AI RESPONSE:", response.text)
-
-        return response.json()["choices"][0]["message"]["content"]
+        return transcript.text
 
     except Exception as e:
-        print("ERROR:", str(e))
+        print("WHISPER ERROR:", e)
+        return None
+
+
+async def ask_ai(text: str) -> str:
+    try:
+        response = client.chat.completions.create(
+            model="gpt-4o-mini",
+            messages=[
+                {
+                    "role": "system",
+                    "content": """You are a friendly English teacher.
+Correct mistakes, explain briefly, and keep conversation going."""
+                },
+                {
+                    "role": "user",
+                    "content": text
+                }
+            ]
+        )
+
+        return response.choices[0].message.content
+
+    except Exception as e:
+        print("GPT ERROR:", e)
         return "Something went wrong"
