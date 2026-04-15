@@ -1,26 +1,23 @@
-import requests
-from aiogram.types import BufferedInputFile
+from openai import OpenAI
+import tempfile
 
-ELEVEN_API_KEY = "sk_53212826bca9fe63366bb0b1c73fe4e965e3f95fc77eba16"
-VOICE_ID = "IigRH4ZsY7dfxk9VRn2r"
+client = OpenAI()
 
 
 async def text_to_voice(text: str):
-    url = f"https://api.elevenlabs.io/v1/text-to-speech/{VOICE_ID}"
+    try:
+        response = client.audio.speech.create(
+            model="gpt-4o-mini-tts",
+            voice="alloy",
+            input=text
+        )
 
-    response = requests.post(
-        url,
-        headers={
-            "xi-api-key": ELEVEN_API_KEY,
-            "Content-Type": "application/json"
-        },
-        json={
-            "text": text,
-            "model_id": "eleven_multilingual_v2"
-        }
-    )
+        temp_file = tempfile.NamedTemporaryFile(delete=False, suffix=".mp3")
+        temp_file.write(response.content)
+        temp_file.close()
 
-    audio_bytes = response.content
+        return open(temp_file.name, "rb")
 
-    # ❗ ВАЖНО: оборачиваем в файл
-    return BufferedInputFile(audio_bytes, filename="voice.mp3")
+    except Exception as e:
+        print("TTS ERROR:", e)
+        return None
