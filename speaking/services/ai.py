@@ -11,18 +11,24 @@ async def process_voice_message(text: str) -> str:
             messages=[
                 {
                     "role": "system",
-                    "content": "You are a friendly English tutor. Keep responses short and simple."
+                    "content": (
+                        "You are an English tutor.\n"
+                        "1. If the user made a mistake — correct it.\n"
+                        "2. Explain briefly.\n"
+                        "3. Ask a follow-up question.\n"
+                        "Keep it short and simple."
+                    )
                 },
                 {
                     "role": "user",
                     "content": text
                 }
             ],
-            max_tokens=100
+            max_tokens=150
         )
 
         return response.choices[0].message.content
 
     except Exception as e:
         print("AI ERROR:", e)
-        return "Something went wrong"
+        return "I didn't understand. Try again."
