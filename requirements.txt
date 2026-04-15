@@ -2,3 +2,4 @@ aiogram==3.7.0
 aiohttp
 openai
 python-dotenv
+pydantic==2.7.1
