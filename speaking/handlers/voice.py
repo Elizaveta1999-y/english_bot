@@ -1,33 +1,46 @@
 from aiogram import Router, F
 from aiogram.types import Message
+import requests
+import os
+
 from speaking.services.ai import process_voice_message
-from speaking.services.tts import text_to_voice
 
 router = Router()
 
 
 @router.message(F.voice)
 async def handle_voice(message: Message):
-    user_id = message.from_user.id
+    try:
+        print("🔥 VOICE HANDLER TRIGGERED")
 
-    # 📥 получаем файл
-    file = await message.bot.get_file(message.voice.file_id)
+        bot = message.bot
 
-    # 🔗 получаем ссылку
-    file_url = f"https://api.telegram.org/file/bot{message.bot.token}/{file.file_path}"
+        file_id = message.voice.file_id
+        print("📁 FILE ID:", file_id)
 
-    print("VOICE FILE URL:", file_url)
+        file = await bot.get_file(file_id)
+        file_path = file.file_path
+        print("📁 FILE PATH:", file_path)
 
-    # 🤖 отправляем в AI
-    ai_text = await process_voice_message(
-        audio_url=file_url,
-        mode="speaking",
-        user_name="User"
-    )
+        file_url = f"https://api.telegram.org/file/bot{os.getenv('BOT_TOKEN')}/{file_path}"
+        print("🌐 FILE URL:", file_url)
 
-    print("AI TEXT:", ai_text)
+        # скачиваем аудио
+        response = requests.get(file_url)
+        with open("voice.ogg", "wb") as f:
+            f.write(response.content)
 
-    # 🔊 озвучка
-    voice = await text_to_voice(ai_text)
+        print("✅ AUDIO DOWNLOADED")
 
-    await message.answer_voice(voice)
+        # пока без whisper — тестим текстом
+        fake_text = "hello"
+        print("🧠 FAKE TEXT:", fake_text)
+
+        ai_response = await process_voice_message(fake_text)
+        print("🤖 AI RESPONSE:", ai_response)
+
+        await message.answer(ai_response)
+
+    except Exception as e:
+        print("❌ ERROR:", e)
+        await message.answer("Error happened")
