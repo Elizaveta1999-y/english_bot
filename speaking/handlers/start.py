@@ -1,5 +1,6 @@
-from aiogram import Router
+from aiogram import Router, F
 from aiogram.types import Message, ReplyKeyboardMarkup, KeyboardButton
+from aiogram.filters import Command
 
 router = Router()
 
@@ -15,7 +16,8 @@ def get_main_keyboard():
     )
 
 
-@router.message(commands=["start"])
+# ✅ ПРАВИЛЬНО ДЛЯ AIROGRAM 3
+@router.message(Command("start"))
 async def start_handler(message: Message):
     await message.answer(
         "Hello! 👋 Я твой персональный учитель английского 🇬🇧\n\nВыбери режим:",
@@ -23,8 +25,7 @@ async def start_handler(message: Message):
     )
 
 
-# 👇 ВОТ ЭТО САМОЕ ВАЖНОЕ
-
+# обработка кнопок
 @router.message()
 async def handle_menu(message: Message):
     text = message.text
