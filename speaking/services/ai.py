@@ -1,58 +1,57 @@
 import os
-import aiohttp
 from openai import OpenAI
 
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 
-async def download_file(url: str, path: str):
-    async with aiohttp.ClientSession() as session:
-        async with session.get(url) as resp:
-            data = await resp.read()
-            with open(path, "wb") as f:
-                f.write(data)
-
-
-async def transcribe_audio(file_url: str) -> str:
+async def speech_to_text(file_path: str) -> str:
     try:
-        file_path = "voice.ogg"
-
-        # скачиваем файл
-        await download_file(file_url, file_path)
-
-        # отправляем в openai
         with open(file_path, "rb") as audio_file:
             transcript = client.audio.transcriptions.create(
                 model="gpt-4o-mini-transcribe",
                 file=audio_file
             )
 
-        return transcript.text
+        text = transcript.text
+        print("TRANSCRIPT:", text)
+
+        if not text:
+            return ""
+
+        return text
 
     except Exception as e:
         print("WHISPER ERROR:", e)
-        return None
+        return ""
 
 
-async def ask_ai(text: str) -> str:
+async def generate_answer(user_text: str) -> str:
     try:
+        print("USER SAID:", user_text)
+
         response = client.chat.completions.create(
             model="gpt-4o-mini",
             messages=[
                 {
                     "role": "system",
-                    "content": """You are a friendly English teacher.
-Correct mistakes, explain briefly, and keep conversation going."""
+                    "content": (
+                        "You are a friendly English tutor. "
+                        "Help the user practice English. "
+                        "Correct mistakes gently and continue the conversation."
+                    )
                 },
                 {
                     "role": "user",
-                    "content": text
+                    "content": user_text
                 }
             ]
         )
 
-        return response.choices[0].message.content
+        reply = response.choices[0].message.content
+        print("AI RESPONSE:", reply)
+
+        return reply
 
     except Exception as e:
-        print("GPT ERROR:", e)
+        print("OPENAI ERROR:", e)
         return "Something went wrong"
