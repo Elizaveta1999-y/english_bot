@@ -24,11 +24,10 @@ async def handle_voice(message: Message):
             await message.answer_voice(error_voice)
         return
 
-    # Шаг 1: ожидание имени
+    # Шаг 1: ожидание имени (только при первом голосовом после команды Speaking)
     if user_state.get("waiting_for_name"):
         set_user_name(user_id, user_text.strip())
         user_state["waiting_for_name"] = False
-        # Сразу переводим в активный режим, без выбора темы
         set_user_mode(user_id, "speaking_active")
         set_user_state(user_id, user_state)
 
@@ -38,11 +37,12 @@ async def handle_voice(message: Message):
             await message.answer_voice(voice_file)
         return
 
-    # Шаг 2: активный диалог (уже не спрашиваем тему)
+    # Шаг 2: активный диалог (без выбора темы)
     if user_state.get("mode") == "speaking_active":
         ai_response = await process_voice_message(user_id, user_text)
         voice_file = await text_to_voice(ai_response)
         if voice_file:
             await message.answer_voice(voice_file)
         else:
+            # fallback на текст, если голос не сгенерировался
             await message.answer(ai_response)
