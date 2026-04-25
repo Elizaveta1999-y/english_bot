@@ -7,3 +7,4 @@ requests==2.32.3
 SpeechRecognition==3.10.0
 pydub==0.25.1
 elevenlabs==0.2.4
+httpx==0.24.0
