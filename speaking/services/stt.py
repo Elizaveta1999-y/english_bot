@@ -1,37 +1,43 @@
-import speech_recognition as sr
 import tempfile
 import os
-from pydub import AudioSegment
+from faster_whisper import WhisperModel
+
+# Модель загружается один раз при первом вызове (кэшируется)
+_model = None
+
+def get_model():
+    global _model
+    if _model is None:
+        # Используем small модель (хороший баланс скорость/качество)
+        _model = WhisperModel("small", device="cpu", compute_type="int8")
+    return _model
 
 async def voice_to_text(file_bytes: bytes) -> str:
-    """Конвертирует аудио в текст через бесплатный Google Speech Recognition."""
-    temp_ogg_path = None
-    temp_wav_path = None
+    """Распознаёт речь через faster-whisper (локально, бесплатно, высокое качество)"""
+    temp_audio = None
     try:
-        with tempfile.NamedTemporaryFile(delete=False, suffix=".ogg") as tmp_ogg:
-            tmp_ogg.write(file_bytes)
-            temp_ogg_path = tmp_ogg.name
+        # Сохраняем во временный файл
+        with tempfile.NamedTemporaryFile(delete=False, suffix=".ogg") as tmp:
+            tmp.write(file_bytes)
+            temp_audio = tmp.name
 
-        temp_wav_path = tempfile.mktemp(suffix=".wav")
-        audio = AudioSegment.from_ogg(temp_ogg_path)
-        audio.export(temp_wav_path, format="wav")
+        # Конвертируем ogg в wav (Whisper лучше работает с wav)
+        from pydub import AudioSegment
+        temp_wav = tempfile.mktemp(suffix=".wav")
+        audio = AudioSegment.from_ogg(temp_audio)
+        audio.export(temp_wav, format="wav")
 
-        recognizer = sr.Recognizer()
-        with sr.AudioFile(temp_wav_path) as source:
-            audio_data = recognizer.record(source)
+        # Распознаём
+        model = get_model()
+        segments, _ = model.transcribe(temp_wav, language="en", beam_size=5)
+        text = " ".join(segment.text for segment in segments)
 
-        text = recognizer.recognize_google(audio_data, language="en-US")
+        # Очистка
+        os.unlink(temp_audio)
+        os.unlink(temp_wav)
 
-        if temp_ogg_path and os.path.exists(temp_ogg_path):
-            os.unlink(temp_ogg_path)
-        if temp_wav_path and os.path.exists(temp_wav_path):
-            os.unlink(temp_wav_path)
+        return text.strip()
 
-        return text
-
-    except sr.UnknownValueError:
-        print("STT ERROR: could not understand")
-        return ""
     except Exception as e:
         print(f"STT ERROR: {e}")
         return ""
