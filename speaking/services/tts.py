@@ -1,23 +1,18 @@
-from openai import OpenAI
+from elevenlabs import generate, set_api_key
+from config import ELEVENLABS_API_KEY, ELEVENLABS_VOICE_ID
 import tempfile
 
-client = OpenAI()
+set_api_key(ELEVENLABS_API_KEY)
 
-
-async def text_to_voice(text: str):
+async def text_to_voice(text: str) -> bytes:
+    """Генерирует голос через ElevenLabs и возвращает MP3 в виде байтов"""
     try:
-        response = client.audio.speech.create(
-            model="gpt-4o-mini-tts",
-            voice="alloy",
-            input=text
+        audio_bytes = generate(
+            text=text,
+            voice=ELEVENLABS_VOICE_ID,
+            model="eleven_monolingual_v1"
         )
-
-        temp_file = tempfile.NamedTemporaryFile(delete=False, suffix=".mp3")
-        temp_file.write(response.content)
-        temp_file.close()
-
-        return open(temp_file.name, "rb")
-
+        return audio_bytes
     except Exception as e:
         print("TTS ERROR:", e)
         return None

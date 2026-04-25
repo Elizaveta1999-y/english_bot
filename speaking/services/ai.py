@@ -1,34 +1,38 @@
-from openai import OpenAI
-import os
+from services.deepseek import chat
+from data.users import get_user_state, get_user_history, add_to_history
+from speaking.services.history import build_history_prompt
 
-client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+async def process_voice_message(user_id: int, user_text: str) -> str:
+    """Главная функция: принимает текст от пользователя, возвращает ответ бота с исправлениями"""
+    
+    user_state = get_user_state(user_id)
+    name = user_state.get("name", "Student")
+    level = user_state.get("level", "B1")  # по умолчанию средний
+    
+    # Получаем историю диалога
+    history_str = build_history_prompt(user_id)
+    
+    system_prompt = f"""You are a friendly English teacher. Student name: {name}. Level: {level} (A1=beginner, C1=advanced).
+    
+Your task:
+- Correct the student's mistakes in a clear format: 
+  **Mistake** → **Correction** → **Short explanation** → **Follow-up question**
+- Keep your response concise (max 3 sentences for explanation, then the question).
+- Speak simply for A1/A2, naturally for B1/B2, and include advanced phrases for C1.
+- Always end with a question to continue conversation.
 
+Example of format:
+Mistake: "I go to park yesterday" → Correction: "I went to the park yesterday" → Explanation: Past simple for finished time (yesterday) → Question: What did you do at the park?
 
-async def process_voice_message(text: str) -> str:
-    try:
-        response = client.chat.completions.create(
-            model="gpt-4o-mini",
-            messages=[
-                {
-                    "role": "system",
-                    "content": (
-                        "You are an English tutor.\n"
-                        "1. If the user made a mistake — correct it.\n"
-                        "2. Explain briefly.\n"
-                        "3. Ask a follow-up question.\n"
-                        "Keep it short and simple."
-                    )
-                },
-                {
-                    "role": "user",
-                    "content": text
-                }
-            ],
-            max_tokens=150
-        )
-
-        return response.choices[0].message.content
-
-    except Exception as e:
-        print("AI ERROR:", e)
-        return "I didn't understand. Try again."
+Now respond to the student."""
+    
+    user_prompt = f"Student said: {user_text}\n\n{history_str}\n\nTeacher's response (with correction format):"
+    
+    # Экономия: max_tokens = 200 (убираем длинные речи)
+    ai_response = chat(user_prompt, system_message=system_prompt, max_tokens=200, temperature=0.7)
+    
+    # Сохраняем в историю
+    add_to_history(user_id, "user", user_text)
+    add_to_history(user_id, "assistant", ai_response)
+    
+    return ai_response

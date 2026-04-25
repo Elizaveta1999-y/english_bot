@@ -1,8 +1,9 @@
 import os
 
 BOT_TOKEN = os.getenv("BOT_TOKEN")
-OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
-
+DEEPSEEK_API_KEY = os.getenv("DEEPSEEK_API_KEY")
 ELEVENLABS_API_KEY = os.getenv("ELEVENLABS_API_KEY")
+ELEVENLABS_VOICE_ID = os.getenv("ELEVENLABS_VOICE_ID", "21m00Tcm4TlvDq8ikWAM")
 
-ELEVENLABS_VOICE_ID = os.getenv("IigRH4ZsY7dfxk9VRn2r")
+# Для бесплатного периода
+TRIAL_DAYS = 3
