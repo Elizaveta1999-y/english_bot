@@ -1,7 +1,5 @@
 from aiogram import Router, F
 from aiogram.types import Message
-import tempfile
-import os
 from speaking.services.stt import voice_to_text
 from speaking.services.ai import process_voice_message
 from speaking.services.tts import text_to_voice
@@ -30,40 +28,21 @@ async def handle_voice(message: Message):
     if user_state.get("waiting_for_name"):
         set_user_name(user_id, user_text.strip())
         user_state["waiting_for_name"] = False
-        user_state["waiting_for_topic"] = True
+        # Сразу переводим в активный режим, без выбора темы
+        set_user_mode(user_id, "speaking_active")
         set_user_state(user_id, user_state)
 
-        voice_msg = f"Nice to meet you, {user_text}! Please choose a topic: travel, hobbies, or family?"
+        voice_msg = f"Nice to meet you, {user_text}! Let's practice English. Just speak naturally about anything. I'll correct your mistakes and we'll have a conversation. What would you like to talk about?"
         voice_file = await text_to_voice(voice_msg)
         if voice_file:
             await message.answer_voice(voice_file)
         return
 
-    # Шаг 2: ожидание выбора темы
-    if user_state.get("waiting_for_topic"):
-        topic = user_text.lower()
-        if topic in ["travel", "hobbies", "family"]:
-            user_state["waiting_for_topic"] = False
-            set_user_mode(user_id, "speaking_active")
-            set_user_state(user_id, user_state)
-
-            voice_msg = f"Great choice! Let's talk about {topic}. Where do you like to go on vacation?"
-            voice_file = await text_to_voice(voice_msg)
-            if voice_file:
-                await message.answer_voice(voice_file)
-        else:
-            voice_msg = "Please choose one: travel, hobbies, or family."
-            voice_file = await text_to_voice(voice_msg)
-            if voice_file:
-                await message.answer_voice(voice_file)
-        return
-
-    # Шаг 3: активный диалог
+    # Шаг 2: активный диалог (уже не спрашиваем тему)
     if user_state.get("mode") == "speaking_active":
         ai_response = await process_voice_message(user_id, user_text)
         voice_file = await text_to_voice(ai_response)
         if voice_file:
             await message.answer_voice(voice_file)
         else:
-            # fallback на текст, если голос не сгенерировался
             await message.answer(ai_response)
