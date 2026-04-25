@@ -4,7 +4,7 @@ from aiogram import Bot, Dispatcher
 from aiogram.types import BotCommand
 from aiohttp import web
 
-# Убедитесь, что импортируете правильные роутеры
+# Импортируем роутеры из папки speaking/handlers
 from speaking.handlers.start import router as start_router
 from speaking.handlers.voice import router as voice_router
 
@@ -33,11 +33,9 @@ async def start_web_server():
 # === ЗАПУСК ====
 async def main():
     await start_web_server()
-
     await bot.set_my_commands([
         BotCommand(command="start", description="Start bot"),
     ])
-
     await dp.start_polling(bot)
 
 if __name__ == "__main__":
