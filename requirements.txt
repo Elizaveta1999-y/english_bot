@@ -3,7 +3,6 @@ aiohttp==3.9.5
 python-dotenv==1.0.1
 pydantic==2.7.1
 requests==2.32.3
-SpeechRecognition==3.10.0
 pydub==0.25.1
 elevenlabs==0.2.4
-faster-whisper==0.10.0
+faster-whisper==1.0.3

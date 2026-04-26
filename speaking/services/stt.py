@@ -2,42 +2,48 @@ import tempfile
 import os
 from faster_whisper import WhisperModel
 
-# Модель загружается один раз при первом вызове (кэшируется)
-_model = None
+# Модель будет загружена один раз при первом запросе и сохранится в памяти
+model = None
 
 def get_model():
-    global _model
-    if _model is None:
-        # Используем small модель (хороший баланс скорость/качество)
-        _model = WhisperModel("small", device="cpu", compute_type="int8")
-    return _model
+    global model
+    if model is None:
+        # Используем small модель, так как она оптимальна по скорости и размеру
+        # compute_type="int8" позволяет ускорить работу на CPU
+        print("Loading Faster-Whisper model (small)...")
+        model = WhisperModel("small", device="cpu", compute_type="int8")
+        print("Model loaded.")
+    return model
 
 async def voice_to_text(file_bytes: bytes) -> str:
-    """Распознаёт речь через faster-whisper (локально, бесплатно, высокое качество)"""
-    temp_audio = None
+    """
+    Распознает речь из аудиофайла с помощью faster-whisper.
+    """
+    temp_path = None
     try:
-        # Сохраняем во временный файл
+        # Сохраняем голосовое сообщение во временный файл
         with tempfile.NamedTemporaryFile(delete=False, suffix=".ogg") as tmp:
             tmp.write(file_bytes)
-            temp_audio = tmp.name
+            temp_path = tmp.name
 
-        # Конвертируем ogg в wav (Whisper лучше работает с wav)
-        from pydub import AudioSegment
-        temp_wav = tempfile.mktemp(suffix=".wav")
-        audio = AudioSegment.from_ogg(temp_audio)
-        audio.export(temp_wav, format="wav")
+        # Модель faster-whisper отлично работает с OGG, конвертация не требуется
+        asr_model = get_model()
+        segments, info = asr_model.transcribe(temp_path, beam_size=5, language="en")
 
-        # Распознаём
-        model = get_model()
-        segments, _ = model.transcribe(temp_wav, language="en", beam_size=5)
-        text = " ".join(segment.text for segment in segments)
+        # Собираем распознанный текст из фрагментов
+        transcribed_text = " ".join(segment.text for segment in segments)
 
-        # Очистка
-        os.unlink(temp_audio)
-        os.unlink(temp_wav)
+        if not transcribed_text:
+            print("STT: No text recognized.")
+            return ""
 
-        return text.strip()
+        print(f"STT Recognized: {transcribed_text}")
+        return transcribed_text
 
     except Exception as e:
         print(f"STT ERROR: {e}")
         return ""
+    finally:
+        # Удаляем временный файл в любом случае
+        if temp_path and os.path.exists(temp_path):
+            os.unlink(temp_path)
