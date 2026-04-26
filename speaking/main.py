@@ -12,26 +12,33 @@ dp = Dispatcher()
 dp.include_router(start_router)
 dp.include_router(voice_router)
 
+# Простой фиктивный веб-сервер для health checks
 async def health_check(request):
     return web.Response(text="OK")
 
-async def main():
-    # Запускаем минимальный веб-сервер для health check (в той же event loop)
+async def run_web_server():
     app = web.Application()
     app.router.add_get("/", health_check)
+    app.router.add_get("/health", health_check)
     port = int(os.environ.get("PORT", 10000))
     runner = web.AppRunner(app)
     await runner.setup()
     site = web.TCPSite(runner, "0.0.0.0", port)
     await site.start()
-    print(f"Health check server on port {port}")
+    print(f"Fake web server running on port {port} for health checks")
+    # Бесконечно ждём, чтобы сервер не завершался
+    await asyncio.Event().wait()
 
+async def main():
+    # Запускаем веб-сервер в фоне
+    asyncio.create_task(run_web_server())
+    # Даем серверу время запуститься
+    await asyncio.sleep(1)
     # Устанавливаем команды бота
     await bot.set_my_commands([
         BotCommand(command="start", description="Start bot"),
     ])
-
-    # Запускаем polling (без дополнительных фоновых задач)
+    # Запускаем polling (основная работа бота)
     await dp.start_polling(bot)
 
 if __name__ == "__main__":
