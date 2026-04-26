@@ -1,5 +1,6 @@
 import asyncio
 import os
+import threading
 from aiogram import Bot, Dispatcher
 from aiogram.types import BotCommand
 from aiohttp import web
@@ -16,28 +17,27 @@ dp.include_router(voice_router)
 async def health_check(request):
     return web.Response(text="OK")
 
-async def run_web_server():
+def run_web_server():
+    """Запускает веб-сервер в отдельном потоке."""
     app = web.Application()
     app.router.add_get("/", health_check)
     app.router.add_get("/health", health_check)
     port = int(os.environ.get("PORT", 10000))
-    runner = web.AppRunner(app)
-    await runner.setup()
-    site = web.TCPSite(runner, "0.0.0.0", port)
-    await site.start()
-    print(f"Fake web server running on port {port} for health checks")
-    # Бесконечно ждём, чтобы сервер не завершался
-    await asyncio.Event().wait()
+    web.run_app(app, host='0.0.0.0', port=port)
 
 async def main():
-    # Запускаем веб-сервер в фоне
-    asyncio.create_task(run_web_server())
+    # Запускаем веб-сервер в отдельном потоке, чтобы не блокировать asyncio
+    thread = threading.Thread(target=run_web_server, daemon=True)
+    thread.start()
+    
     # Даем серверу время запуститься
     await asyncio.sleep(1)
+    
     # Устанавливаем команды бота
     await bot.set_my_commands([
         BotCommand(command="start", description="Start bot"),
     ])
+    
     # Запускаем polling (основная работа бота)
     await dp.start_polling(bot)
 
