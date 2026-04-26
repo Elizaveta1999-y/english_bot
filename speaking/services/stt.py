@@ -1,49 +1,38 @@
+import speech_recognition as sr
 import tempfile
 import os
-from faster_whisper import WhisperModel
-
-# Модель будет загружена один раз при первом запросе и сохранится в памяти
-model = None
-
-def get_model():
-    global model
-    if model is None:
-        # Используем small модель, так как она оптимальна по скорости и размеру
-        # compute_type="int8" позволяет ускорить работу на CPU
-        print("Loading Faster-Whisper model (small)...")
-        model = WhisperModel("small", device="cpu", compute_type="int8")
-        print("Model loaded.")
-    return model
+from pydub import AudioSegment
 
 async def voice_to_text(file_bytes: bytes) -> str:
-    """
-    Распознает речь из аудиофайла с помощью faster-whisper.
-    """
-    temp_path = None
+    """Распознаёт речь через Google Speech Recognition (бесплатно)"""
+    temp_ogg = None
+    temp_wav = None
     try:
-        # Сохраняем голосовое сообщение во временный файл
-        with tempfile.NamedTemporaryFile(delete=False, suffix=".ogg") as tmp:
-            tmp.write(file_bytes)
-            temp_path = tmp.name
+        with tempfile.NamedTemporaryFile(delete=False, suffix=".ogg") as f:
+            f.write(file_bytes)
+            temp_ogg = f.name
 
-        # Модель faster-whisper отлично работает с OGG, конвертация не требуется
-        asr_model = get_model()
-        segments, info = asr_model.transcribe(temp_path, beam_size=5, language="en")
+        temp_wav = tempfile.mktemp(suffix=".wav")
+        audio = AudioSegment.from_ogg(temp_ogg)
+        audio.export(temp_wav, format="wav")
 
-        # Собираем распознанный текст из фрагментов
-        transcribed_text = " ".join(segment.text for segment in segments)
+        recognizer = sr.Recognizer()
+        with sr.AudioFile(temp_wav) as source:
+            recognizer.adjust_for_ambient_noise(source, duration=0.3)
+            audio_data = recognizer.record(source)
 
-        if not transcribed_text:
-            print("STT: No text recognized.")
-            return ""
-
-        print(f"STT Recognized: {transcribed_text}")
-        return transcribed_text
-
+        text = recognizer.recognize_google(audio_data, language="en-US")
+        
+        # Очистка от возможного мусора
+        import re
+        text = re.sub(r'\b(download free|the internet|stuff|really weird|free the book)\b', '', text, flags=re.IGNORECASE)
+        text = ' '.join(text.split())
+        
+        os.unlink(temp_ogg)
+        os.unlink(temp_wav)
+        return text.strip()
+    except sr.UnknownValueError:
+        return ""
     except Exception as e:
         print(f"STT ERROR: {e}")
         return ""
-    finally:
-        # Удаляем временный файл в любом случае
-        if temp_path and os.path.exists(temp_path):
-            os.unlink(temp_path)

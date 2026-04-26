@@ -16,10 +16,9 @@ dp.include_router(start_router)
 dp.include_router(voice_router)
 
 WEBHOOK_PATH = "/webhook"
-WEBHOOK_URL = None  # будет установлен при запуске
+WEBHOOK_URL = None
 
 async def handle_webhook(request):
-    """Обработка входящих обновлений от Telegram"""
     try:
         data = await request.json()
         update = Update(**data)
@@ -30,23 +29,15 @@ async def handle_webhook(request):
         return web.Response(status=500)
 
 async def on_startup(app):
-    """При запуске веб-сервера устанавливаем вебхук"""
     global WEBHOOK_URL
-    # Определяем публичный URL приложения
-    port = int(os.environ.get("PORT", 10000))
-    # Render предоставляет внешний URL в переменной RENDER_EXTERNAL_URL
     external_url = os.environ.get("RENDER_EXTERNAL_URL")
     if not external_url:
-        # fallback: строим из имени сервиса (может не работать)
         external_url = f"https://{os.environ.get('RENDER_SERVICE_NAME', 'localhost')}.onrender.com"
     WEBHOOK_URL = f"{external_url}{WEBHOOK_PATH}"
-    
-    # Устанавливаем вебхук
     await bot.set_webhook(WEBHOOK_URL)
     logging.info(f"Webhook set to {WEBHOOK_URL}")
 
 async def on_shutdown(app):
-    """При остановке удаляем вебхук"""
     await bot.delete_webhook()
     logging.info("Webhook removed")
 
@@ -57,7 +48,6 @@ def main():
     app.on_shutdown.append(on_shutdown)
     
     port = int(os.environ.get("PORT", 10000))
-    logging.info(f"Starting web server on port {port}")
     web.run_app(app, host='0.0.0.0', port=port)
 
 if __name__ == "__main__":
