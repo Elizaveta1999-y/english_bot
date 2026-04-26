@@ -14,8 +14,11 @@ async def handle_voice(message: Message):
 
     file = await message.bot.get_file(message.voice.file_id)
     file_bytes = await message.bot.download_file(file.file_path)
+    
+    # Распознаём речь
     user_text = await voice_to_text(file_bytes.read())
-
+    
+    # Если распознавание не дало результата
     if not user_text:
         error_voice = await text_to_voice("Sorry, I couldn't understand. Could you say that again?")
         if error_voice:
@@ -42,4 +45,5 @@ async def handle_voice(message: Message):
         if voice_file:
             await message.answer_voice(voice_file)
         else:
+            # fallback на текст, если TTS не сработал
             await message.answer(ai_response)
