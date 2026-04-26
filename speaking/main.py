@@ -1,10 +1,8 @@
 import asyncio
 import os
+import socket
 from aiogram import Bot, Dispatcher
 from aiogram.types import BotCommand
-from threading import Thread
-from http.server import HTTPServer, BaseHTTPRequestHandler
-
 from speaking.handlers.start import router as start_router
 from speaking.handlers.voice import router as voice_router
 
@@ -14,30 +12,29 @@ dp = Dispatcher()
 dp.include_router(start_router)
 dp.include_router(voice_router)
 
-class HealthCheckHandler(BaseHTTPRequestHandler):
-    def do_GET(self):
-        self.send_response(200)
-        self.end_headers()
-        self.wfile.write(b"Bot is running")
-    def log_message(self, format, *args):
-        pass  # suppress logs
-
-def run_web_server():
+async def fake_health_check():
+    """Запускает простой TCP-сервер, который ничего не делает, но держит порт открытым."""
     port = int(os.environ.get("PORT", 10000))
-    server = HTTPServer(("0.0.0.0", port), HealthCheckHandler)
-    server.serve_forever()
+    loop = asyncio.get_event_loop()
+    server = await loop.create_server(lambda: HealthCheckHandler(), host='0.0.0.0', port=port)
+    print(f"Fake health check server listening on port {port}")
+    await server.serve_forever()
+
+class HealthCheckHandler(asyncio.Protocol):
+    def connection_made(self, transport):
+        transport.write(b"HTTP/1.1 200 OK\r\nContent-Length: 2\r\n\r\nOK")
+        transport.close()
 
 async def main():
-    # Запускаем HTTP-сервер для health check в отдельном потоке
-    thread = Thread(target=run_web_server, daemon=True)
-    thread.start()
-    # Даём серверу время запуститься
-    await asyncio.sleep(0.5)
+    # Запускаем фальшивый health check в фоне
+    asyncio.create_task(fake_health_check())
+    # Даём время на запуск
+    await asyncio.sleep(1)
     # Устанавливаем команды бота
     await bot.set_my_commands([
         BotCommand(command="start", description="Start bot"),
     ])
-    # Запускаем polling (основной процесс)
+    # Запускаем polling – единственный вызов getUpdates
     await dp.start_polling(bot)
 
 if __name__ == "__main__":
