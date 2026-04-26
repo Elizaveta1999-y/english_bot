@@ -17,7 +17,6 @@ async def handle_voice(message: Message):
     
     user_text = await voice_to_text(file_bytes.read())
     
-    # Если распознавание не дало результата
     if not user_text:
         error_voice = await text_to_voice("Sorry, I couldn't understand. Could you say that again?")
         if error_voice:
@@ -26,9 +25,8 @@ async def handle_voice(message: Message):
 
     # Этап 1: ожидание имени
     if user_state.get("waiting_for_name"):
-        # Очищаем от мусора, оставляем только возможное имя (первые 20 символов)
-        raw_name = user_text.strip()
-        name = raw_name.split()[0][:20]
+        # Берём первое слово как имя
+        name = user_text.strip().split()[0][:20]
         set_user_name(user_id, name)
         user_state["waiting_for_name"] = False
         set_user_mode(user_id, "speaking_active")

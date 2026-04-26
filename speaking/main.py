@@ -12,11 +12,11 @@ dp = Dispatcher()
 dp.include_router(start_router)
 dp.include_router(voice_router)
 
-# Простой health check для Render (чтобы не убивал процесс)
 async def health_check(request):
     return web.Response(text="OK")
 
-async def start_health_server():
+async def main():
+    # Запускаем минимальный веб-сервер для health check (в той же event loop)
     app = web.Application()
     app.router.add_get("/", health_check)
     port = int(os.environ.get("PORT", 10000))
@@ -24,18 +24,14 @@ async def start_health_server():
     await runner.setup()
     site = web.TCPSite(runner, "0.0.0.0", port)
     await site.start()
-    print(f"Health server on port {port}")
+    print(f"Health check server on port {port}")
 
-async def main():
-    # Запускаем health-сервер в фоне
-    asyncio.create_task(start_health_server())
-    # Ждём немного
-    await asyncio.sleep(1)
-    # Устанавливаем команды
+    # Устанавливаем команды бота
     await bot.set_my_commands([
         BotCommand(command="start", description="Start bot"),
     ])
-    # Запускаем polling (только один экземпляр)
+
+    # Запускаем polling (без дополнительных фоновых задач)
     await dp.start_polling(bot)
 
 if __name__ == "__main__":
