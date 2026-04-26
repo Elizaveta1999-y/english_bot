@@ -1,10 +1,13 @@
 import asyncio
 import os
-import socket
-from aiogram import Bot, Dispatcher
-from aiogram.types import BotCommand
+import logging
+from aiohttp import web
+from aiogram import Bot, Dispatcher, types
+from aiogram.types import Update
 from speaking.handlers.start import router as start_router
 from speaking.handlers.voice import router as voice_router
+
+logging.basicConfig(level=logging.INFO)
 
 BOT_TOKEN = os.getenv("BOT_TOKEN")
 bot = Bot(token=BOT_TOKEN)
@@ -12,30 +15,50 @@ dp = Dispatcher()
 dp.include_router(start_router)
 dp.include_router(voice_router)
 
-async def fake_health_check():
-    """Запускает простой TCP-сервер, который ничего не делает, но держит порт открытым."""
+WEBHOOK_PATH = "/webhook"
+WEBHOOK_URL = None  # будет установлен при запуске
+
+async def handle_webhook(request):
+    """Обработка входящих обновлений от Telegram"""
+    try:
+        data = await request.json()
+        update = Update(**data)
+        await dp.feed_update(bot, update)
+        return web.Response(status=200)
+    except Exception as e:
+        logging.error(f"Webhook error: {e}")
+        return web.Response(status=500)
+
+async def on_startup(app):
+    """При запуске веб-сервера устанавливаем вебхук"""
+    global WEBHOOK_URL
+    # Определяем публичный URL приложения
     port = int(os.environ.get("PORT", 10000))
-    loop = asyncio.get_event_loop()
-    server = await loop.create_server(lambda: HealthCheckHandler(), host='0.0.0.0', port=port)
-    print(f"Fake health check server listening on port {port}")
-    await server.serve_forever()
+    # Render предоставляет внешний URL в переменной RENDER_EXTERNAL_URL
+    external_url = os.environ.get("RENDER_EXTERNAL_URL")
+    if not external_url:
+        # fallback: строим из имени сервиса (может не работать)
+        external_url = f"https://{os.environ.get('RENDER_SERVICE_NAME', 'localhost')}.onrender.com"
+    WEBHOOK_URL = f"{external_url}{WEBHOOK_PATH}"
+    
+    # Устанавливаем вебхук
+    await bot.set_webhook(WEBHOOK_URL)
+    logging.info(f"Webhook set to {WEBHOOK_URL}")
 
-class HealthCheckHandler(asyncio.Protocol):
-    def connection_made(self, transport):
-        transport.write(b"HTTP/1.1 200 OK\r\nContent-Length: 2\r\n\r\nOK")
-        transport.close()
+async def on_shutdown(app):
+    """При остановке удаляем вебхук"""
+    await bot.delete_webhook()
+    logging.info("Webhook removed")
 
-async def main():
-    # Запускаем фальшивый health check в фоне
-    asyncio.create_task(fake_health_check())
-    # Даём время на запуск
-    await asyncio.sleep(1)
-    # Устанавливаем команды бота
-    await bot.set_my_commands([
-        BotCommand(command="start", description="Start bot"),
-    ])
-    # Запускаем polling – единственный вызов getUpdates
-    await dp.start_polling(bot)
+def main():
+    app = web.Application()
+    app.router.add_post(WEBHOOK_PATH, handle_webhook)
+    app.on_startup.append(on_startup)
+    app.on_shutdown.append(on_shutdown)
+    
+    port = int(os.environ.get("PORT", 10000))
+    logging.info(f"Starting web server on port {port}")
+    web.run_app(app, host='0.0.0.0', port=port)
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    main()
