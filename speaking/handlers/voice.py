@@ -22,6 +22,8 @@ async def handle_voice(message: Message):
         await message.answer("Sorry, I couldn't understand. Please try again.")
         return
 
+    print(f"Recognized: {user_text}")
+
     if user_state.get("waiting_for_name"):
         name = user_text.strip().split()[0][:20]
         set_user_name(user_id, name)
@@ -32,7 +34,6 @@ async def handle_voice(message: Message):
         voice_msg = f"Nice to meet you, {name}! Let's practice English. Just speak naturally. I'll correct your mistakes. Go ahead, say something!"
         voice_path = await text_to_voice(voice_msg)
         if voice_path:
-            # ✅ Исправлено: используем FSInputFile
             audio = FSInputFile(voice_path)
             await message.answer_voice(audio)
             os.unlink(voice_path)
@@ -40,9 +41,9 @@ async def handle_voice(message: Message):
 
     if user_state.get("mode") == "speaking_active":
         ai_response = await process_voice_message(user_id, user_text)
+        print(f"AI response: {ai_response}")
         voice_path = await text_to_voice(ai_response)
         if voice_path:
-            # ✅ Исправлено: используем FSInputFile
             audio = FSInputFile(voice_path)
             await message.answer_voice(audio)
             os.unlink(voice_path)

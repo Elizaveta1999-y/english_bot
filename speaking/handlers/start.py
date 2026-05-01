@@ -1,3 +1,4 @@
+import os
 from aiogram import Router, F
 from aiogram.types import Message, ReplyKeyboardMarkup, KeyboardButton, ReplyKeyboardRemove, FSInputFile
 from aiogram.filters import Command
@@ -23,7 +24,7 @@ async def start_handler(message: Message):
 @router.message(F.text == "🎤 Speaking")
 async def speaking_command(message: Message):
     user_id = message.from_user.id
-    user_state = set_user_state(user_id, {"waiting_for_name": True, "mode": "speaking_name"})
+    set_user_state(user_id, {"waiting_for_name": True, "mode": "speaking_name"})
 
     await message.answer(
         "🎤 Voice mode activated!\n\n"
@@ -37,7 +38,6 @@ async def speaking_command(message: Message):
     voice_path = await text_to_voice(voice_greeting)
     
     if voice_path:
-        # ✅ Исправлено: используем FSInputFile
         audio = FSInputFile(voice_path)
         await message.answer_voice(audio)
         os.unlink(voice_path)
