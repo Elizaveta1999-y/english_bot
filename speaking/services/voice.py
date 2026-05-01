@@ -1,69 +1,46 @@
 from aiogram import Router, F
 from aiogram.types import Message
-import requests
-import os
-
-from openai import OpenAI
+from speaking.services.stt import voice_to_text
 from speaking.services.ai import process_voice_message
+from speaking.services.tts import text_to_voice
+from data.users import set_user_name, set_user_mode, get_user_state, set_user_state
 
 router = Router()
 
-client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
-
-
 @router.message(F.voice)
 async def handle_voice(message: Message):
-    try:
-        bot = message.bot
+    user_id = message.from_user.id
+    user_state = get_user_state(user_id)
 
-        # 1. Получаем файл
-        file_id = message.voice.file_id
-        file = await bot.get_file(file_id)
-        file_path = file.file_path
+    file = await message.bot.get_file(message.voice.file_id)
+    file_bytes = await message.bot.download_file(file.file_path)
+    
+    user_text = await voice_to_text(file_bytes.read())
+    
+    if not user_text:
+        error_voice = await text_to_voice("Sorry, I couldn't understand. Could you say that again?")
+        if error_voice:
+            await message.answer_voice(error_voice)
+        return
 
-        file_url = f"https://api.telegram.org/file/bot{os.getenv('BOT_TOKEN')}/{file_path}"
+    if user_state.get("waiting_for_name"):
+        raw_name = user_text.strip()
+        name = raw_name.split()[0][:20]
+        set_user_name(user_id, name)
+        user_state["waiting_for_name"] = False
+        set_user_mode(user_id, "speaking_active")
+        set_user_state(user_id, user_state)
 
-        # 2. Скачиваем аудио
-        response = requests.get(file_url)
-        with open("voice.ogg", "wb") as f:
-            f.write(response.content)
+        voice_msg = f"Nice to meet you, {name}! Let's practice English. Just speak naturally. I'll correct your mistakes. Go ahead, say something!"
+        voice_file = await text_to_voice(voice_msg)
+        if voice_file:
+            await message.answer_voice(voice_file)
+        return
 
-        print("✅ AUDIO DOWNLOADED")
-
-        # 3. Whisper
-        with open("voice.ogg", "rb") as audio_file:
-            transcript = client.audio.transcriptions.create(
-                model="gpt-4o-mini-transcribe",
-                file=audio_file
-            )
-
-        user_text = transcript.text
-        print("🧠 USER SAID:", user_text)
-
-        # 4. GPT
-        ai_response = await process_voice_message(user_text)
-        print("🤖 AI:", ai_response)
-
-        # 5. Отправляем текст сразу (чтобы пользователь не ждал)
-        await message.answer(f"🗣 You said: {user_text}\n\n🤖 {ai_response}")
-
-        # 6. Генерация голоса (БЕЗ стриминга)
-        speech_file_path = "response.mp3"
-
-        speech = client.audio.speech.create(
-            model="gpt-4o-mini-tts",
-            voice="alloy",
-            input=ai_response
-        )
-
-        with open(speech_file_path, "wb") as f:
-            f.write(speech.content)
-
-        print("🔊 VOICE GENERATED")
-
-        # 7. Отправка голосового
-        await message.answer_voice(open(speech_file_path, "rb"))
-
-    except Exception as e:
-        print("❌ ERROR:", e)
-        await message.answer("Something went wrong")
+    if user_state.get("mode") == "speaking_active":
+        ai_response = await process_voice_message(user_id, user_text)
+        voice_file = await text_to_voice(ai_response)
+        if voice_file:
+            await message.answer_voice(voice_file)
+        else:
+            await message.answer(ai_response)

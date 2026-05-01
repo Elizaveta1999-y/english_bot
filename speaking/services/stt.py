@@ -7,17 +7,14 @@ import urllib.request
 import zipfile
 from vosk import Model, KaldiRecognizer
 
-# Глобальная переменная для модели
 _model = None
 
 def download_vosk_model():
-    """Скачивает и распаковывает Vosk модель (small english) в папку models."""
     model_dir = "models"
     model_name = "vosk-model-small-en-us-0.15"
     model_path = os.path.join(model_dir, model_name)
     
     if os.path.exists(model_path):
-        print(f"Model already exists at {model_path}")
         return model_path
     
     os.makedirs(model_dir, exist_ok=True)
@@ -45,16 +42,13 @@ def get_model():
     return _model
 
 async def voice_to_text(file_bytes: bytes) -> str:
-    """Распознаёт речь через Vosk (бесплатно, офлайн)."""
     temp_ogg = None
     temp_wav = None
     try:
-        # Сохраняем входной OGG файл
         with tempfile.NamedTemporaryFile(delete=False, suffix=".ogg") as f:
             f.write(file_bytes)
             temp_ogg = f.name
         
-        # Конвертируем в WAV (16 kHz, mono, PCM)
         temp_wav = tempfile.mktemp(suffix=".wav")
         cmd = [
             "ffmpeg", "-i", temp_ogg, 
@@ -65,7 +59,6 @@ async def voice_to_text(file_bytes: bytes) -> str:
         ]
         subprocess.run(cmd, check=True, capture_output=True)
         
-        # Распознаём с помощью Vosk
         model = get_model()
         wf = wave.open(temp_wav, "rb")
         rec = KaldiRecognizer(model, wf.getframerate())
@@ -81,14 +74,12 @@ async def voice_to_text(file_bytes: bytes) -> str:
                 if 'text' in res and res['text']:
                     texts.append(res['text'])
         
-        # Финальный результат
         final = json.loads(rec.FinalResult())
         if 'text' in final and final['text']:
             texts.append(final['text'])
         
         wf.close()
         
-        # Очистка
         os.unlink(temp_ogg)
         os.unlink(temp_wav)
         
