@@ -1,5 +1,7 @@
 import asyncio
 import os
+import fcntl
+import sys
 from aiogram import Bot, Dispatcher
 from aiogram.types import BotCommand
 from speaking.handlers.start import router as start_router
@@ -11,7 +13,22 @@ dp = Dispatcher()
 dp.include_router(start_router)
 dp.include_router(voice_router)
 
+LOCK_FILE = "/tmp/bot.pid"
+
+def acquire_lock():
+    try:
+        lock_fd = open(LOCK_FILE, 'w')
+        fcntl.flock(lock_fd, fcntl.LOCK_EX | fcntl.LOCK_NB)
+        lock_fd.write(str(os.getpid()))
+        lock_fd.flush()
+        print(f"Lock acquired, PID: {os.getpid()}")
+        return lock_fd
+    except (IOError, OSError):
+        print("Another instance is running. Exiting.")
+        sys.exit(0)
+
 async def main():
+    lock_fd = acquire_lock()
     await bot.set_my_commands([
         BotCommand(command="start", description="Start bot"),
     ])
