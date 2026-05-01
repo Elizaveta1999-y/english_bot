@@ -1,3 +1,4 @@
+import os
 from aiogram import Router, F
 from aiogram.types import Message
 from speaking.services.stt import voice_to_text
@@ -18,14 +19,10 @@ async def handle_voice(message: Message):
     user_text = await voice_to_text(file_bytes.read())
     
     if not user_text:
-        error_voice = await text_to_voice("Sorry, I couldn't understand. Could you say that again?")
-        if error_voice:
-            await message.answer_voice(error_voice)
+        await message.answer("Sorry, I couldn't understand. Please try again.")
         return
 
-    # Этап 1: ожидание имени
     if user_state.get("waiting_for_name"):
-        # Берём первое слово как имя
         name = user_text.strip().split()[0][:20]
         set_user_name(user_id, name)
         user_state["waiting_for_name"] = False
@@ -33,16 +30,19 @@ async def handle_voice(message: Message):
         set_user_state(user_id, user_state)
 
         voice_msg = f"Nice to meet you, {name}! Let's practice English. Just speak naturally. I'll correct your mistakes. Go ahead, say something!"
-        voice_file = await text_to_voice(voice_msg)
-        if voice_file:
-            await message.answer_voice(voice_file)
+        voice_path = await text_to_voice(voice_msg)
+        if voice_path:
+            with open(voice_path, 'rb') as audio:
+                await message.answer_voice(audio)
+            os.unlink(voice_path)
         return
 
-    # Этап 2: активный диалог
     if user_state.get("mode") == "speaking_active":
         ai_response = await process_voice_message(user_id, user_text)
-        voice_file = await text_to_voice(ai_response)
-        if voice_file:
-            await message.answer_voice(voice_file)
+        voice_path = await text_to_voice(ai_response)
+        if voice_path:
+            with open(voice_path, 'rb') as audio:
+                await message.answer_voice(audio)
+            os.unlink(voice_path)
         else:
             await message.answer(ai_response)
