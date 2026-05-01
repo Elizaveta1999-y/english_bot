@@ -1,4 +1,4 @@
-from elevenlabs import generate, set_api_key, voices
+from elevenlabs import generate, set_api_key
 from config import ELEVENLABS_API_KEY, ELEVENLABS_VOICE_ID
 import tempfile
 
