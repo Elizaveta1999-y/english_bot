@@ -21,10 +21,10 @@ def acquire_lock():
         fcntl.flock(lock_fd, fcntl.LOCK_EX | fcntl.LOCK_NB)
         lock_fd.write(str(os.getpid()))
         lock_fd.flush()
-        print(f"Lock acquired, PID: {os.getpid()}")
+        print(f"✅ Lock acquired, PID: {os.getpid()}")
         return lock_fd
     except (IOError, OSError):
-        print("Another instance is running. Exiting.")
+        print("❌ Another instance is running. Exiting.")
         sys.exit(0)
 
 async def main():
@@ -32,6 +32,7 @@ async def main():
     await bot.set_my_commands([
         BotCommand(command="start", description="Start bot"),
     ])
+    print("🚀 Bot started polling...")
     await dp.start_polling(bot)
 
 if __name__ == "__main__":
