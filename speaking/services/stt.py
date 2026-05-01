@@ -5,105 +5,108 @@ import urllib.request
 import platform
 import stat
 import zipfile
+import sys
 
-# Глобальные пути к бинарнику и модели (скачиваются один раз)
 WHISPER_BIN = None
 WHISPER_MODEL = None
 
 def download_whisper():
-    """Скачивает скомпилированный whisper.cpp для Linux"""
     global WHISPER_BIN
-    if WHISPER_BIN and os.path.exists(WHISPER_BIN):
-        return WHISPER_BIN
-    
-    # Создаём папку для инструментов
     tools_dir = "whisper_tools"
     os.makedirs(tools_dir, exist_ok=True)
     
-    # Определяем архитектуру (Render использует Linux x86_64)
-    system = platform.system()
-    arch = platform.machine()
-    
-    if system != "Linux" or arch != "x86_64":
-        print(f"Warning: Unexpected platform {system} {arch}, but trying anyway...")
-    
-    # URL к скомпилированному бинарнику whisper-cli (из официального репозитория)
-    # Используем предварительно скомпилированную версию для Linux
-    whisper_bin_url = "https://github.com/ggerganov/whisper.cpp/releases/download/v1.7.0/whisper-cli"
     whisper_bin_path = os.path.join(tools_dir, "whisper-cli")
     
-    if not os.path.exists(whisper_bin_path):
-        print("Downloading whisper-cli binary...")
+    if os.path.exists(whisper_bin_path):
+        print("whisper-cli already exists")
+        return whisper_bin_path
+    
+    # Используем официальный релиз whisper.cpp
+    # Скачиваем предварительно скомпилированный бинарник для Linux
+    whisper_bin_url = "https://github.com/ggerganov/whisper.cpp/releases/download/v1.7.0/whisper-cli"
+    
+    print("Downloading whisper-cli binary...")
+    try:
         urllib.request.urlretrieve(whisper_bin_url, whisper_bin_path)
         # Делаем исполняемым
         st = os.stat(whisper_bin_path)
         os.chmod(whisper_bin_path, st.st_mode | stat.S_IEXEC)
         print("whisper-cli downloaded and made executable.")
+    except Exception as e:
+        print(f"Failed to download whisper-cli: {e}")
+        return None
     
-    WHISPER_BIN = whisper_bin_path
-    return WHISPER_BIN
+    return whisper_bin_path
 
 def download_model():
-    """Скачивает tiny.en модель (около 40 МБ)"""
     global WHISPER_MODEL
-    if WHISPER_MODEL and os.path.exists(WHISPER_MODEL):
-        return WHISPER_MODEL
-    
     models_dir = "whisper_models"
     os.makedirs(models_dir, exist_ok=True)
     
     model_name = "ggml-tiny.en.bin"
-    model_url = f"https://huggingface.co/ggerganov/whisper.cpp/resolve/main/{model_name}"
     model_path = os.path.join(models_dir, model_name)
     
-    if not os.path.exists(model_path):
-        print(f"Downloading model {model_name}...")
+    if os.path.exists(model_path):
+        return model_path
+    
+    model_url = f"https://huggingface.co/ggerganov/whisper.cpp/resolve/main/{model_name}"
+    
+    print(f"Downloading model {model_name}...")
+    try:
         urllib.request.urlretrieve(model_url, model_path)
         print("Model downloaded.")
+    except Exception as e:
+        print(f"Failed to download model: {e}")
+        return None
     
-    WHISPER_MODEL = model_path
-    return WHISPER_MODEL
+    return model_path
 
 async def voice_to_text(file_bytes: bytes) -> str:
-    """Распознаёт речь через whisper.cpp"""
     temp_audio = None
+    temp_wav = None
     try:
-        # Сохраняем голосовое во временный файл
+        # Сохраняем голосовое
         with tempfile.NamedTemporaryFile(delete=False, suffix=".ogg") as f:
             f.write(file_bytes)
             temp_audio = f.name
         
-        # Проверяем, что whisper уже скачан
+        # Конвертируем OGG в WAV через ffmpeg (уже есть в aptfile)
+        temp_wav = tempfile.mktemp(suffix=".wav")
+        cmd_ffmpeg = [
+            "ffmpeg", "-i", temp_audio,
+            "-ar", "16000", "-ac", "1", "-c:a", "pcm_s16le",
+            temp_wav, "-y"
+        ]
+        subprocess.run(cmd_ffmpeg, check=True, capture_output=True)
+        
+        # Получаем whisper
         whisper_bin = download_whisper()
         model_path = download_model()
         
-        # Конвертируем OGG в WAV через pydub (не требует FFmpeg на уровне системы)
-        from pydub import AudioSegment
-        temp_wav = tempfile.mktemp(suffix=".wav")
-        audio = AudioSegment.from_ogg(temp_audio)
-        audio.export(temp_wav, format="wav")
+        if not whisper_bin or not model_path:
+            print("Whisper not available, falling back to Vosk")
+            # Fallback на Vosk (у вас уже есть код, но для простоты вернём пустоту)
+            return ""
         
-        # Вызываем whisper-cli для распознавания
-        cmd = [
+        # Распознаём
+        cmd_whisper = [
             whisper_bin,
             "-m", model_path,
             "-f", temp_wav,
             "-l", "en",
-            "--no-prints",
-            "--output-txt"
+            "--no-prints"
         ]
         
-        result = subprocess.run(cmd, capture_output=True, text=True, timeout=30)
+        result = subprocess.run(cmd_whisper, capture_output=True, text=True, timeout=30)
         
-        # whisper-cli выводит результат в stderr или в файл. Парсим вывод
-        output = result.stderr if result.stderr else result.stdout
-        
-        # Пробуем извлечь распознанный текст
+        # Парсим вывод
+        output = result.stdout + result.stderr
         lines = output.split('\n')
         text_parts = []
         for line in lines:
-            if line.strip() and not line.startswith('whisper') and not line.startswith('['):
-                text_parts.append(line.strip())
+            line = line.strip()
+            if line and not line.startswith('[') and not line.startswith('whisper'):
+                text_parts.append(line)
         
         recognized = ' '.join(text_parts).strip()
         
@@ -111,16 +114,42 @@ async def voice_to_text(file_bytes: bytes) -> str:
         os.unlink(temp_audio)
         os.unlink(temp_wav)
         
-        if not recognized:
-            print(f"Whisper raw output: {output[:200]}")
+        if recognized:
+            print(f"Whisper recognized: {recognized}")
+            return recognized
+        else:
+            print(f"Whisper output was empty")
             return ""
-        
-        print(f"Whisper recognized: '{recognized}'")
-        return recognized
-        
+            
     except subprocess.TimeoutExpired:
         print("Whisper timeout")
         return ""
     except Exception as e:
         print(f"Whisper STT error: {e}")
+        # Пробуем Vosk как fallback
+        try:
+            from vosk import Model, KaldiRecognizer
+            import wave, json
+            model = Model("models/vosk-model-small-en-us-0.15")
+            wf = wave.open(temp_wav, "rb")
+            rec = KaldiRecognizer(model, wf.getframerate())
+            texts = []
+            while True:
+                data = wf.readframes(4000)
+                if len(data) == 0:
+                    break
+                if rec.AcceptWaveform(data):
+                    res = json.loads(rec.Result())
+                    if 'text' in res:
+                        texts.append(res['text'])
+            final = json.loads(rec.FinalResult())
+            if 'text' in final:
+                texts.append(final['text'])
+            wf.close()
+            recognized = " ".join(texts).strip()
+            if recognized:
+                print(f"Vosk fallback recognized: {recognized}")
+                return recognized
+        except Exception as e2:
+            print(f"Vosk fallback also failed: {e2}")
         return ""

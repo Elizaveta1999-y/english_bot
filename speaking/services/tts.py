@@ -1,37 +1,20 @@
-import requests
+from elevenlabs import generate, set_api_key, voices
 from config import ELEVENLABS_API_KEY, ELEVENLABS_VOICE_ID
 import tempfile
-import os
+
+set_api_key(ELEVENLABS_API_KEY)
 
 async def text_to_voice(text: str):
-    """Генерирует голос через ElevenLabs API (прямой вызов)"""
     try:
-        url = f"https://api.elevenlabs.io/v1/text-to-speech/{ELEVENLABS_VOICE_ID}"
-        headers = {
-            "Accept": "audio/mpeg",
-            "Content-Type": "application/json",
-            "xi-api-key": ELEVENLABS_API_KEY
-        }
-        data = {
-            "text": text,
-            "model_id": "eleven_monolingual_v1",
-            "voice_settings": {
-                "stability": 0.5,
-                "similarity_boost": 0.5
-            }
-        }
-        response = requests.post(url, json=data, headers=headers)
-        
-        if response.status_code == 200:
-            with tempfile.NamedTemporaryFile(delete=False, suffix=".mp3") as tmp:
-                tmp.write(response.content)
-                tmp_path = tmp.name
-            
-            from aiogram.types import FSInputFile
-            return FSInputFile(tmp_path)
-        else:
-            print(f"TTS API ERROR: {response.status_code} - {response.text}")
-            return None
+        audio_bytes = generate(
+            text=text,
+            voice=ELEVENLABS_VOICE_ID,
+            model="eleven_monolingual_v1"
+        )
+        with tempfile.NamedTemporaryFile(delete=False, suffix=".mp3") as tmp:
+            tmp.write(audio_bytes)
+            tmp_path = tmp.name
+        return tmp_path
     except Exception as e:
-        print(f"TTS ERROR: {e}")
+        print(f"ElevenLabs TTS error: {e}")
         return None
