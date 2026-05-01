@@ -1,6 +1,6 @@
 import os
 from aiogram import Router, F
-from aiogram.types import Message
+from aiogram.types import Message, FSInputFile
 from speaking.services.stt import voice_to_text
 from speaking.services.ai import process_voice_message
 from speaking.services.tts import text_to_voice
@@ -32,8 +32,9 @@ async def handle_voice(message: Message):
         voice_msg = f"Nice to meet you, {name}! Let's practice English. Just speak naturally. I'll correct your mistakes. Go ahead, say something!"
         voice_path = await text_to_voice(voice_msg)
         if voice_path:
-            with open(voice_path, 'rb') as audio:
-                await message.answer_voice(audio)
+            # ✅ Исправлено: используем FSInputFile
+            audio = FSInputFile(voice_path)
+            await message.answer_voice(audio)
             os.unlink(voice_path)
         return
 
@@ -41,8 +42,9 @@ async def handle_voice(message: Message):
         ai_response = await process_voice_message(user_id, user_text)
         voice_path = await text_to_voice(ai_response)
         if voice_path:
-            with open(voice_path, 'rb') as audio:
-                await message.answer_voice(audio)
+            # ✅ Исправлено: используем FSInputFile
+            audio = FSInputFile(voice_path)
+            await message.answer_voice(audio)
             os.unlink(voice_path)
         else:
             await message.answer(ai_response)
