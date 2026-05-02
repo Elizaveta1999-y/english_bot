@@ -1,22 +1,39 @@
-import asyncio
 import os
-from aiogram import Bot, Dispatcher
-from aiogram.types import BotCommand
-from speaking.handlers.start import router as start_router
-from speaking.handlers.voice import router as voice_router
+import logging
+from flask import Flask, request
+from aiogram import Bot, Dispatcher, types
+from aiogram.types import Update
+
+logging.basicConfig(level=logging.INFO)
 
 BOT_TOKEN = os.getenv("BOT_TOKEN")
 bot = Bot(token=BOT_TOKEN)
 dp = Dispatcher()
-dp.include_router(start_router)
-dp.include_router(voice_router)
+app = Flask(__name__)
 
-async def main():
-    print("🚀 Starting bot in Background Worker mode (polling)...")
-    await bot.set_my_commands([
-        BotCommand(command="start", description="Start bot"),
-    ])
-    await dp.start_polling(bot)
+# Временно — простой ответ на любое сообщение
+@dp.message()
+async def echo(message: types.Message):
+    await message.answer("I received your message! Bot is working.")
 
-if __name__ == "__main__":
-    asyncio.run(main())
+WEBHOOK_PATH = f"/webhook/{BOT_TOKEN}"
+WEBHOOK_URL = f"https://{os.environ.get('RENDER_EXTERNAL_URL')}{WEBHOOK_PATH}"
+
+@app.route(WEBHOOK_PATH, methods=['POST'])
+async def webhook():
+    update = types.Update(**request.get_json())
+    await dp.feed_update(bot, update)
+    return "OK", 200
+
+@app.route("/")
+def index():
+    return "Bot is running!", 200
+
+async def on_startup():
+    await bot.set_webhook(WEBHOOK_URL)
+    print(f"Webhook set to {WEBHOOK_URL}")
+
+@app.before_first_request
+def setup():
+    import asyncio
+    asyncio.run(on_startup())
