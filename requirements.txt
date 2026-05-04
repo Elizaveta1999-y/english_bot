@@ -3,4 +3,4 @@ flask==3.0.0
 gunicorn==21.2.0
 requests==2.32.3
 pydub==0.25.1
-vosk==0.3.45
+elevenlabs==0.2.4
