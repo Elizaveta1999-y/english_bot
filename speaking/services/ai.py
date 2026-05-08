@@ -1,12 +1,14 @@
 from services.deepseek import chat
 
 async def process_voice_message(user_id: int, user_text: str) -> str:
-    print(f"DEBUG: process_voice_message called with: {user_text}")
-    # Простой запрос к DeepSeek
-    response = chat(
-        prompt=f"The student said: {user_text}. Respond naturally in 2-3 sentences.",
-        max_tokens=300,
-        temperature=0.7
-    )
-    print(f"DEBUG: DeepSeek response: {response}")
+    print(f"[AI] Processing message: {user_text}")
+    # Максимально простой запрос без системных сообщений
+    prompt = f"""You are a friendly English teacher. The student said: "{user_text}"
+
+Reply in 2-3 sentences. Correct any grammar mistakes. End with a question about the same topic.
+
+Your response:"""
+    
+    response = chat(prompt, max_tokens=300, temperature=0.7)
+    print(f"[AI] Response: {response}")
     return response
