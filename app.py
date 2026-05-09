@@ -33,7 +33,7 @@ app = web.Application()
 app.router.add_post(WEBHOOK_PATH, handle_webhook)
 app.router.add_get("/", health)
 
-async def on_startup():
+async def on_startup(app):  # <-- добавили аргумент app
     external_url = os.environ.get("RENDER_EXTERNAL_URL")
     if not external_url:
         external_url = "https://english-bot-d1pd.onrender.com"
