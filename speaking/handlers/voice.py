@@ -13,49 +13,59 @@ async def handle_voice(message: Message):
     user_id = message.from_user.id
     user_state = get_user_state(user_id)
 
-    print(f"1. Got voice from user {user_id}")
-
     file = await message.bot.get_file(message.voice.file_id)
     file_bytes = await message.bot.download_file(file.file_path)
     
-    print("2. Downloaded voice file")
-    
     user_text = await voice_to_text(file_bytes.read())
-    print(f"3. Recognized text: '{user_text}'")
+    print(f"Recognized: {user_text}")
     
     if not user_text:
-        print("4. No text recognized, sending error")
         await message.answer("Sorry, I couldn't understand. Please try again.")
         return
 
+    # Ожидание имени
     if user_state.get("waiting_for_name"):
-        print("5. Waiting for name, processing name")
-        name = user_text.strip().split()[0][:20]
+        # Пытаемся извлечь имя (обычно первое слово или фраза "my name is X")
+        import re
+        name_match = re.search(r"(?:my name is|i am|i'm|call me)\s+([A-Za-z]+)", user_text, re.IGNORECASE)
+        if name_match:
+            name = name_match.group(1)
+        else:
+            # Берём первое слово как имя
+            name = user_text.strip().split()[0][:20]
+        
         set_user_name(user_id, name)
         user_state["waiting_for_name"] = False
         set_user_mode(user_id, "speaking_active")
         set_user_state(user_id, user_state)
-        
-        response_text = f"Nice to meet you, {name}! Let's practice English. Just speak naturally. I'll correct your mistakes. Go ahead!"
-        print(f"6. Generated name response: {response_text[:50]}...")
-        voice_path = await text_to_voice(response_text)
-        if voice_path:
-            await message.answer_voice(FSInputFile(voice_path))
-            os.unlink(voice_path)
-        return
 
+        # Убираем имя из текста, чтобы оставшаяся часть была сообщением для диалога
+        remaining_text = re.sub(r"(?:my name is|i am|i'm|call me)\s+[A-Za-z]+", "", user_text, flags=re.IGNORECASE).strip()
+        if remaining_text:
+            # Если пользователь сразу сказал что-то после имени, обрабатываем это как тему
+            ai_response = await process_voice_message(user_id, remaining_text)
+            voice_path = await text_to_voice(ai_response)
+            if voice_path:
+                await message.answer_voice(FSInputFile(voice_path))
+                os.unlink(voice_path)
+            return
+        else:
+            # Если только имя, отправляем стандартное приветствие
+            welcome_msg = f"Nice to meet you, {name}! Please tell me something about yourself — your hobby, a book you're reading, or anything you'd like to practice."
+            voice_path = await text_to_voice(welcome_msg)
+            if voice_path:
+                await message.answer_voice(FSInputFile(voice_path))
+                os.unlink(voice_path)
+            return
+
+    # Активный диалог
     if user_state.get("mode") == "speaking_active":
-        print("7. Calling process_voice_message...")
         ai_response = await process_voice_message(user_id, user_text)
-        print(f"8. AI response: {ai_response[:100]}...")
         voice_path = await text_to_voice(ai_response)
         if voice_path:
-            print("9. Sending voice response")
             await message.answer_voice(FSInputFile(voice_path))
             os.unlink(voice_path)
         else:
-            print("9b. Sending text response (TTS failed)")
             await message.answer(ai_response)
     else:
-        print("10. No active mode, sending fallback")
-        await message.answer("Please press the '🎤 Speaking' button first!")
+        await message.answer("Please press '🎤 Speaking' button first.")
