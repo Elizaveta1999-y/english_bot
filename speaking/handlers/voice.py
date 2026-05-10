@@ -5,7 +5,7 @@ from aiogram.types import Message, FSInputFile
 from speaking.services.stt import voice_to_text
 from speaking.services.ai import process_voice_message
 from speaking.services.tts import text_to_voice
-from data.users import set_user_mode, get_user_state, set_user_state
+from data.users import set_user_mode, get_user_state, set_user_state, set_user_name
 from services.deepseek import chat
 
 router = Router()
