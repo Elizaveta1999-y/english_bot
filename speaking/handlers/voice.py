@@ -1,5 +1,6 @@
 import os
 import asyncio
+import re
 from aiogram import Router, F
 from aiogram.types import Message, FSInputFile
 from speaking.services.stt import voice_to_text
@@ -30,22 +31,12 @@ async def handle_voice(message: Message):
         set_user_state(user_id, user_state)
 
     # Пытаемся извлечь имя из сообщения, если есть
-    import re
     name_match = re.search(r"(?:my name is|i am|i'm|call me)\s+([A-Za-z]+)", user_text, re.IGNORECASE)
     if name_match:
         name = name_match.group(1)
-        from data.users import set_user_name
         set_user_name(user_id, name)
         # Убираем фразу с именем из текста для AI
         user_text = re.sub(r"(?:my name is|i am|i'm|call me)\s+[A-Za-z]+", "", user_text, flags=re.IGNORECASE).strip()
-        if not user_text:
-            # Если сказали только имя, просим продолжить
-            response_text = f"Nice to meet you, {name}! Tell me something about yourself — your hobby, a book you're reading, or anything you'd like to practice."
-            voice_path = await text_to_voice(response_text)
-            if voice_path:
-                await message.answer_voice(FSInputFile(voice_path))
-                os.unlink(voice_path)
-            return
 
     # Отправляем запрос в AI
     ai_response = await process_voice_message(user_id, user_text)
@@ -55,7 +46,7 @@ async def handle_voice(message: Message):
         os.unlink(voice_path)
     last_bot_response[user_id] = ai_response
 
-# Обработчики кнопок перевода (оставляем как есть)
+# Обработчики кнопок перевода
 @router.message(F.text == "🇷🇺 Перевод")
 async def translate_response(message: Message):
     user_id = message.from_user.id
