@@ -7,7 +7,6 @@ from speaking.services.tts import text_to_voice
 
 router = Router()
 
-# --- Главная клавиатура с тремя кнопками ---
 main_keyboard = ReplyKeyboardMarkup(
     keyboard=[
         [KeyboardButton(text="🎤 Speaking")],
@@ -28,16 +27,16 @@ async def start_handler(message: Message):
 @router.message(F.text == "🎤 Speaking")
 async def speaking_mode(message: Message):
     user_id = message.from_user.id
-    set_user_state(user_id, {"waiting_for_name": True, "mode": "speaking_name"})
-
+    set_user_state(user_id, {"mode": "speaking_active"})
     await message.answer(
-        "🎤 Voice mode activated!\n\nPlease say your name.",
-        reply_markup=ReplyKeyboardRemove()  # убираем клавиатуру на время голосового общения
+        "🎤 Voice mode activated!\n\n"
+        "Just send a voice message in English. I'll correct your mistakes and respond.\n\n"
+        "You can tell me your name (e.g., 'My name is Anna') or just start with any topic — books, travel, food, whatever.\n\n"
+        "Let's begin! 🗣️",
+        reply_markup=ReplyKeyboardRemove()
     )
-
-    voice_greeting = "Hello! I am your voice AI English tutor. What should I call you?"
+    voice_greeting = "Hello! I am your voice AI English tutor. Just send a voice message and we'll start practicing."
     voice_path = await text_to_voice(voice_greeting)
     if voice_path:
-        from aiogram.types import FSInputFile
         await message.answer_voice(FSInputFile(voice_path))
         os.unlink(voice_path)
