@@ -1,7 +1,7 @@
 import os
 import re
 import asyncio
-from aiogram import Router, F
+from aiogram import Router, F, Bot
 from aiogram.types import Message, BufferedInputFile, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
 from speaking.services.stt import voice_to_text
 from speaking.services.ai import process_voice_message
@@ -10,7 +10,8 @@ from data.users import set_user_mode, get_user_state, set_user_state, set_user_n
 from services.deepseek import chat
 
 router = Router()
-last_bot_response = {}
+# Хранилище ответов: для каждого пользователя храним текст, перевод и ID голосового сообщения бота
+last_bot_response = {}  # {user_id: {"text": str, "translation": str, "voice_message_id": int}}
 
 @router.message(F.voice)
 async def handle_voice(message: Message):
@@ -49,14 +50,14 @@ async def handle_voice(message: Message):
                 with open(voice_path, 'rb') as f:
                     audio_bytes = f.read()
                 keyboard = InlineKeyboardMarkup(inline_keyboard=[
-                    [InlineKeyboardButton(text="📝 Текст", callback_data=f"show_original_{user_id}")]
+                    [InlineKeyboardButton(text="🔊 Tekcrt", callback_data=f"show_original_{user_id}")]
                 ])
-                await message.answer_voice(BufferedInputFile(audio_bytes, filename='response.mp3'), reply_markup=keyboard)
+                sent_voice = await message.answer_voice(BufferedInputFile(audio_bytes, filename='response.mp3'), reply_markup=keyboard)
                 os.unlink(voice_path)
             history.append({"role": "assistant", "text": response_text})
             user_state["history"] = history
             set_user_state(user_id, user_state)
-            last_bot_response[user_id] = {"text": response_text, "translation": None}
+            last_bot_response[user_id] = {"text": response_text, "translation": None, "voice_message_id": sent_voice.message_id}
             return
 
     ai_response = await process_voice_message(user_id, user_text)
@@ -65,15 +66,15 @@ async def handle_voice(message: Message):
         with open(voice_path, 'rb') as f:
             audio_bytes = f.read()
         keyboard = InlineKeyboardMarkup(inline_keyboard=[
-            [InlineKeyboardButton(text="📝 Текст", callback_data=f"show_original_{user_id}")]
+            [InlineKeyboardButton(text="🔊 Tekcrt", callback_data=f"show_original_{user_id}")]
         ])
-        await message.answer_voice(BufferedInputFile(audio_bytes, filename='response.mp3'), reply_markup=keyboard)
+        sent_voice = await message.answer_voice(BufferedInputFile(audio_bytes, filename='response.mp3'), reply_markup=keyboard)
         os.unlink(voice_path)
 
     history.append({"role": "assistant", "text": ai_response})
     user_state["history"] = history
     set_user_state(user_id, user_state)
-    last_bot_response[user_id] = {"text": ai_response, "translation": None}
+    last_bot_response[user_id] = {"text": ai_response, "translation": None, "voice_message_id": sent_voice.message_id}
 
 @router.callback_query(lambda c: c.data.startswith("show_original_"))
 async def show_original(callback: CallbackQuery):
@@ -82,11 +83,19 @@ async def show_original(callback: CallbackQuery):
     if not data or not data.get("text"):
         await callback.answer("No text available.", show_alert=True)
         return
+
     original = data["text"]
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(text="🌐 Перевести", callback_data=f"translate_{user_id}")]
     ])
-    await callback.message.answer(f"📝 Original (English):\n\n{original}", reply_markup=keyboard)
+
+    # Отправляем текстовое сообщение в ответ на исходное голосовое сообщение бота
+    await callback.bot.send_message(
+        chat_id=callback.message.chat.id,
+        text=f"📝 Original (English):\n\n{original}",
+        reply_markup=keyboard,
+        reply_to_message_id=data["voice_message_id"]  # Ответ на голосовое сообщение бота
+    )
     await callback.answer()
 
 @router.callback_query(lambda c: c.data.startswith("translate_"))
@@ -102,6 +111,7 @@ async def translate_text(callback: CallbackQuery):
         translation = chat(f"Translate the following English text to Russian. Output only the translation, no extras.\n\n{data['text']}", max_tokens=300, temperature=0.3)
         data["translation"] = translation
         last_bot_response[user_id] = data
+    # Отправляем перевод в ответ на сообщение пользователя, а не в отдельный поток
     await callback.message.answer(f"🇷🇺 Translation:\n\n{translation}")
     await callback.answer()
 
