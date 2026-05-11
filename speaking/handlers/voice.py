@@ -10,8 +10,7 @@ from data.users import set_user_mode, get_user_state, set_user_state, set_user_n
 from services.deepseek import chat
 
 router = Router()
-# Храним последние ответы для каждого пользователя (оригинал и перевод)
-last_bot_response = {}  # {user_id: {"text": str, "translation": str}}
+last_bot_response = {}
 
 @router.message(F.voice)
 async def handle_voice(message: Message):
@@ -49,7 +48,6 @@ async def handle_voice(message: Message):
             if voice_path:
                 with open(voice_path, 'rb') as f:
                     audio_bytes = f.read()
-                # Кнопка "Текст" для этого голосового
                 keyboard = InlineKeyboardMarkup(inline_keyboard=[
                     [InlineKeyboardButton(text="📝 Текст", callback_data=f"show_original_{user_id}")]
                 ])
@@ -58,7 +56,6 @@ async def handle_voice(message: Message):
             history.append({"role": "assistant", "text": response_text})
             user_state["history"] = history
             set_user_state(user_id, user_state)
-            # Сохраняем ответ для кнопок
             last_bot_response[user_id] = {"text": response_text, "translation": None}
             return
 
@@ -67,7 +64,6 @@ async def handle_voice(message: Message):
     if voice_path:
         with open(voice_path, 'rb') as f:
             audio_bytes = f.read()
-        # Отправляем голосовое с inline-кнопкой "Текст"
         keyboard = InlineKeyboardMarkup(inline_keyboard=[
             [InlineKeyboardButton(text="📝 Текст", callback_data=f"show_original_{user_id}")]
         ])
@@ -79,49 +75,44 @@ async def handle_voice(message: Message):
     set_user_state(user_id, user_state)
     last_bot_response[user_id] = {"text": ai_response, "translation": None}
 
-# Обработчик кнопки "Текст"
 @router.callback_query(lambda c: c.data.startswith("show_original_"))
 async def show_original(callback: CallbackQuery):
     user_id = int(callback.data.split("_")[2])
     data = last_bot_response.get(user_id)
     if not data or not data.get("text"):
-        await callback.answer("Нет текста для отображения.", show_alert=True)
+        await callback.answer("No text available.", show_alert=True)
         return
     original = data["text"]
-    # Отправляем оригинальный текст с кнопкой "Перевести"
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(text="🌐 Перевести", callback_data=f"translate_{user_id}")]
     ])
-    await callback.message.answer(f"📝 Оригинал (англ.):\n\n{original}", reply_markup=keyboard)
+    await callback.message.answer(f"📝 Original (English):\n\n{original}", reply_markup=keyboard)
     await callback.answer()
 
-# Обработчик кнопки "Перевести"
 @router.callback_query(lambda c: c.data.startswith("translate_"))
 async def translate_text(callback: CallbackQuery):
     user_id = int(callback.data.split("_")[1])
     data = last_bot_response.get(user_id)
     if not data or not data.get("text"):
-        await callback.answer("Нет текста для перевода.", show_alert=True)
+        await callback.answer("No text to translate.", show_alert=True)
         return
-    # Если перевод уже есть в кэше, используем его
     if data.get("translation"):
         translation = data["translation"]
     else:
         translation = chat(f"Translate the following English text to Russian. Output only the translation, no extras.\n\n{data['text']}", max_tokens=300, temperature=0.3)
         data["translation"] = translation
         last_bot_response[user_id] = data
-    await callback.message.answer(f"🇷🇺 Перевод:\n\n{translation}")
+    await callback.message.answer(f"🇷🇺 Translation:\n\n{translation}")
     await callback.answer()
 
-# Обработка текстовых сообщений (вне режима или просьба использовать голос)
 @router.message(F.text)
 async def text_fallback(message: Message):
     user_id = message.from_user.id
     user_state = get_user_state(user_id)
     if user_state.get("mode") == "speaking_active":
         await message.answer(
-            "📝 Пожалуйста, используйте голосовые сообщения, чтобы я мог помочь с произношением 🎤\n"
-            "Просто нажмите на значок микрофона и говорите по-английски."
+            "📝 Please use voice messages so I can help with pronunciation 🎤\n"
+            "Just tap the microphone and speak in English."
         )
     else:
-        await message.answer("Нажмите кнопку '🎤 Speaking', чтобы начать голосовой урок.")
+        await message.answer("Press '🎤 Speaking' button to start a voice lesson.")

@@ -7,7 +7,6 @@ from speaking.services.tts import text_to_voice
 
 router = Router()
 
-# Только одна кнопка для активации режима
 main_keyboard = ReplyKeyboardMarkup(
     keyboard=[[KeyboardButton(text="🎤 Speaking")]],
     resize_keyboard=True
@@ -28,11 +27,9 @@ async def speaking_mode(message: Message):
     user_id = message.from_user.id
     set_user_state(user_id, {"mode": "speaking_active", "history": []})
     await message.answer(
-        "🎤 Voice mode activated!\n\nJust send a voice message. I'll correct your English.\n\n"
-        "After my voice response, a button '📝 Текст' will appear – tap it to see the original text and then translate it.\n\nLet's begin! 🗣️",
-        reply_markup=main_keyboard  # оставляем клавиатуру с одной кнопкой
+        "🎤 Voice mode activated!\n\nSend a voice message. After my voice response, tap '📝 Текст' to see the original and translate it.\n\nLet's begin! 🗣️",
+        reply_markup=main_keyboard
     )
-    # Голосовое приветствие (опционально)
     voice_greeting = "Hello! I am your voice AI English tutor. Just send a voice message and we'll start."
     voice_path = await text_to_voice(voice_greeting)
     if voice_path:
