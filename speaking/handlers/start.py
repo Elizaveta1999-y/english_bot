@@ -29,12 +29,16 @@ async def speaking_mode(message: Message):
     user_id = message.from_user.id
     set_user_state(user_id, {"mode": "speaking_active"})
     await message.answer(
-        "🎤 Voice mode activated!\n\nJust send a voice message in English. I'll correct your mistakes and respond.",
+        "🎤 Voice mode activated!\n\n"
+        "Just send a voice message in English. I'll correct your mistakes and respond.\n\n"
+        "You can tell me your name (e.g., 'My name is Anna') or just start with any topic — books, travel, food, whatever.\n\n"
+        "Let's begin! 🗣️",
         reply_markup=ReplyKeyboardRemove()
     )
     voice_greeting = "Hello! I am your voice AI English tutor. Just send a voice message and we'll start practicing."
     voice_path = await text_to_voice(voice_greeting)
     if voice_path:
-        with open(voice_path, 'rb') as audio:
-            await message.answer_voice(audio, filename='greeting.mp3')
+        # Отправляем голосовое без FSInputFile, через open
+        with open(voice_path, 'rb') as audio_file:
+            await message.answer_voice(audio_file, filename='response.mp3')
         os.unlink(voice_path)
