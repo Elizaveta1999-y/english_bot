@@ -2,7 +2,7 @@ import os
 import asyncio
 import re
 from aiogram import Router, F
-from aiogram.types import Message
+from aiogram.types import Message, BufferedInputFile
 from speaking.services.stt import voice_to_text
 from speaking.services.ai import process_voice_message
 from speaking.services.tts import text_to_voice
@@ -35,19 +35,21 @@ async def handle_voice(message: Message):
         set_user_name(user_id, name)
         user_text = re.sub(r"(?:my name is|i am|i'm|call me)\s+[A-Za-z]+", "", user_text, flags=re.IGNORECASE).strip()
         if not user_text:
-            response_text = f"Nice to meet you, {name}! Tell me something about yourself - your hobby, a book you're reading, or anything you'd like to practice."
+            response_text = f"Nice to meet you, {name}! Tell me something about yourself."
             voice_path = await text_to_voice(response_text)
             if voice_path:
-                with open(voice_path, 'rb') as audio_file:
-                    await message.answer_voice(audio_file, filename='response.mp3')
+                with open(voice_path, 'rb') as f:
+                    audio_data = f.read()
+                await message.answer_voice(BufferedInputFile(audio_data, filename='response.mp3'))
                 os.unlink(voice_path)
             return
 
     ai_response = await process_voice_message(user_id, user_text)
     voice_path = await text_to_voice(ai_response)
     if voice_path:
-        with open(voice_path, 'rb') as audio_file:
-            await message.answer_voice(audio_file, filename='response.mp3')
+        with open(voice_path, 'rb') as f:
+            audio_data = f.read()
+        await message.answer_voice(BufferedInputFile(audio_data, filename='response.mp3'))
         os.unlink(voice_path)
     last_bot_response[user_id] = ai_response
 
