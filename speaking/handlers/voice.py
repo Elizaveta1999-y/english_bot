@@ -6,8 +6,12 @@ from speaking.services.stt import voice_to_text
 from speaking.services.ai import process_voice_message
 from speaking.services.tts import text_to_voice
 from data.users import set_user_mode, get_user_state, set_user_state, set_user_name
+from services.deepseek import chat
 
 router = Router()
+
+# Словарь для хранения последнего ответа бота (текст) для каждого пользователя
+last_bot_response = {}
 
 @router.message(F.voice)
 async def handle_voice(message: Message):
@@ -19,7 +23,7 @@ async def handle_voice(message: Message):
     user_text = await voice_to_text(file_bytes.read())
 
     if not user_text:
-        await message.answer("Sorry, I couldn't understand. Please try again.")
+        await message.answer("Sorry, I didn't catch that. Could you repeat?")
         return
 
     if user_state.get("mode") != "speaking_active":
@@ -39,6 +43,7 @@ async def handle_voice(message: Message):
                     audio_bytes = f.read()
                 await message.answer_voice(BufferedInputFile(audio_bytes, filename='response.mp3'))
                 os.unlink(voice_path)
+                last_bot_response[user_id] = response_text
             return
 
     ai_response = await process_voice_message(user_id, user_text)
@@ -48,18 +53,40 @@ async def handle_voice(message: Message):
             audio_bytes = f.read()
         await message.answer_voice(BufferedInputFile(audio_bytes, filename='response.mp3'))
         os.unlink(voice_path)
+        last_bot_response[user_id] = ai_response
 
-# Обработка текстовых сообщений в режиме speaking (если пользователь пишет вместо голоса)
+# --- Обработчики кнопок перевода ---
+@router.message(F.text == "🇷🇺 Перевод")
+async def translate_message(message: Message):
+    user_id = message.from_user.id
+    original = last_bot_response.get(user_id)
+    if not original:
+        await message.answer("Нет сохранённого сообщения для перевода. Сначала пообщайтесь с ботом.")
+        return
+    # Вызываем DeepSeek для перевода на русский
+    translation = chat(f"Translate the following English text to Russian. Output ONLY the translation, no extra text:\n\n{original}", max_tokens=500, temperature=0.3)
+    await message.answer(f"🇷🇺 Перевод:\n\n{translation}")
+
+@router.message(F.text == "🇺🇸 Original")
+async def original_message(message: Message):
+    user_id = message.from_user.id
+    original = last_bot_response.get(user_id)
+    if not original:
+        await message.answer("No saved message. Please talk to the bot first.")
+        return
+    await message.answer(f"🇺🇸 Original (American English):\n\n{original}")
+
+# (Исправление для русскоязычной кнопки, если название другое)
+# Если используете "🇷🇺 Translate", измените соответственно.
+
 @router.message(F.text)
 async def text_fallback(message: Message):
     user_id = message.from_user.id
     user_state = get_user_state(user_id)
     if user_state.get("mode") == "speaking_active":
         await message.answer(
-            "📝 Please use voice messages so I can help you with pronunciation and speaking skills. 🎤\n"
-            "Just hold the microphone button and speak in English."
+            "📝 Please use voice messages so I can help with pronunciation 🎤\n"
+            "Just tap the microphone and speak in American English."
         )
     else:
-        await message.answer(
-            "Press the '🎤 Speaking' button to start a voice lesson."
-        )
+        await message.answer("Press the '🎤 Speaking' button to start.")

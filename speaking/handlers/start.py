@@ -1,14 +1,18 @@
 import os
 from aiogram import Router, F
-from aiogram.types import Message, ReplyKeyboardMarkup, KeyboardButton, ReplyKeyboardRemove, BufferedInputFile
+from aiogram.types import Message, ReplyKeyboardMarkup, KeyboardButton, BufferedInputFile
 from aiogram.filters import Command
 from data.users import set_user_state
 from speaking.services.tts import text_to_voice
 
 router = Router()
 
+# Клавиатура с кнопками перевода
 main_keyboard = ReplyKeyboardMarkup(
-    keyboard=[[KeyboardButton(text="🎤 Speaking")]],
+    keyboard=[
+        [KeyboardButton(text="🎤 Speaking")],
+        [KeyboardButton(text="🇷🇺 Перевод"), KeyboardButton(text="🇺🇸 Original")]
+    ],
     resize_keyboard=True
 )
 
@@ -17,7 +21,7 @@ async def start_handler(message: Message):
     user_id = message.from_user.id
     set_user_state(user_id, {})
     await message.answer(
-        "Hello! 🤖\n\nI'm your personal English tutor.",
+        "Hello! 🤖\n\nI'm your personal American English tutor.\n\nPress '🎤 Speaking' to start.",
         reply_markup=main_keyboard
     )
 
@@ -26,13 +30,13 @@ async def speaking_mode(message: Message):
     user_id = message.from_user.id
     set_user_state(user_id, {"mode": "speaking_active"})
     await message.answer(
-        "🎤 Voice mode activated!\n\nJust send a voice message in English. I'll correct your mistakes and respond.\n\nLet's begin! 🗣️",
-        reply_markup=ReplyKeyboardRemove()
+        "🎤 Voice mode activated!\n\nSend a voice message in American English. I'll correct your mistakes.\n\nLet's begin! 🗣️",
+        reply_markup=main_keyboard  # не убираем клавиатуру
     )
-    voice_greeting = "Hello! I am your voice AI English tutor. Just send a voice message and we'll start practicing."
+    voice_greeting = "Hello! I am your voice AI American English tutor. Just send a voice message and we'll start."
     voice_path = await text_to_voice(voice_greeting)
     if voice_path:
         with open(voice_path, 'rb') as f:
             audio_bytes = f.read()
-        await message.answer_voice(BufferedInputFile(audio_bytes, filename='response.mp3'))
+        await message.answer_voice(BufferedInputFile(audio_bytes, filename='greeting.mp3'))
         os.unlink(voice_path)
