@@ -5,7 +5,7 @@ from aiogram.types import BotCommand
 from speaking.handlers.start import router as start_router
 from speaking.handlers.voice import router as voice_router
 
-BOT_TOKEN = os.getenv("BOT_TOKEN")
+BOT_TOKEN = os.getenv("8365546463:AAFc8osHubwb2QcYD7Vp77RiD5vHRp32_b8")
 bot = Bot(token=BOT_TOKEN)
 dp = Dispatcher()
 dp.include_router(start_router)
