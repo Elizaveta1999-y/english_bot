@@ -5,7 +5,7 @@ from aiogram.types import BotCommand
 from speaking.handlers.start import router as start_router
 from speaking.handlers.voice import router as voice_router
 
-BOT_TOKEN = os.getenv("8365546463:AAFc8osHubwb2QcYD7Vp77RiD5vHRp32_b8")
+BOT_TOKEN = os.getenv("BOT_TOKEN")  # <-- Здесь должно быть имя переменной, а не её значение
 bot = Bot(token=BOT_TOKEN)
 dp = Dispatcher()
 dp.include_router(start_router)
@@ -15,6 +15,7 @@ async def main():
     await bot.set_my_commands([
         BotCommand(command="start", description="Start bot"),
     ])
+    print("🚀 Bot started in polling mode")
     await dp.start_polling(bot)
 
 if __name__ == "__main__":
