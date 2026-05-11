@@ -8,10 +8,7 @@ from speaking.services.tts import text_to_voice
 router = Router()
 
 main_keyboard = ReplyKeyboardMarkup(
-    keyboard=[
-        [KeyboardButton(text="🎤 Speaking")],
-        [KeyboardButton(text="🇷🇺 Перевод"), KeyboardButton(text="🇬🇧 Оригинал")]
-    ],
+    keyboard=[[KeyboardButton(text="🎤 Speaking")]],
     resize_keyboard=True
 )
 
@@ -31,14 +28,12 @@ async def speaking_mode(message: Message):
     await message.answer(
         "🎤 Voice mode activated!\n\n"
         "Just send a voice message in English. I'll correct your mistakes and respond.\n\n"
-        "You can tell me your name (e.g., 'My name is Anna') or just start with any topic — books, travel, food, whatever.\n\n"
         "Let's begin! 🗣️",
         reply_markup=ReplyKeyboardRemove()
     )
     voice_greeting = "Hello! I am your voice AI English tutor. Just send a voice message and we'll start practicing."
     voice_path = await text_to_voice(voice_greeting)
     if voice_path:
-        # Отправляем голосовое без FSInputFile, через open
         with open(voice_path, 'rb') as audio_file:
             await message.answer_voice(audio_file, filename='response.mp3')
         os.unlink(voice_path)
