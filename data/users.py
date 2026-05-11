@@ -1,3 +1,7 @@
+# data/users.py
+# Простое хранилище в памяти (MVP)
+# Позже заменим на Redis или БД
+
 users = {}
 
 def get_user_state(user_id: int):
@@ -25,11 +29,13 @@ def get_user_history(user_id: int):
     if user_id not in users:
         users[user_id] = {}
     if "history" not in users[user_id]:
-        users[user_id]["history"] = []
+        users[user_id]["history"] = []  # каждый элемент: {"role": "user/assistant", "text": "..."}
     return users[user_id]["history"]
 
-def add_to_history(user_id: int, role: str, content: str, max_length: int = 10):
+def add_to_history(user_id: int, role: str, text: str, max_length: int = 10):
+    """Добавляет сообщение в историю."""
     history = get_user_history(user_id)
-    history.append({"role": role, "content": content})
+    history.append({"role": role, "text": text})
+    # оставляем только последние max_length сообщений
     if len(history) > max_length:
         history.pop(0)
