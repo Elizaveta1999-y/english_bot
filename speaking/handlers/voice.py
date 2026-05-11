@@ -1,5 +1,4 @@
 import os
-import asyncio
 import re
 from aiogram import Router, F
 from aiogram.types import Message, BufferedInputFile
@@ -7,10 +6,8 @@ from speaking.services.stt import voice_to_text
 from speaking.services.ai import process_voice_message
 from speaking.services.tts import text_to_voice
 from data.users import set_user_mode, get_user_state, set_user_state, set_user_name
-from services.deepseek import chat
 
 router = Router()
-last_bot_response = {}
 
 @router.message(F.voice)
 async def handle_voice(message: Message):
@@ -39,8 +36,8 @@ async def handle_voice(message: Message):
             voice_path = await text_to_voice(response_text)
             if voice_path:
                 with open(voice_path, 'rb') as f:
-                    audio_data = f.read()
-                await message.answer_voice(BufferedInputFile(audio_data, filename='response.mp3'))
+                    audio_bytes = f.read()
+                await message.answer_voice(BufferedInputFile(audio_bytes, filename='response.mp3'))
                 os.unlink(voice_path)
             return
 
@@ -48,26 +45,6 @@ async def handle_voice(message: Message):
     voice_path = await text_to_voice(ai_response)
     if voice_path:
         with open(voice_path, 'rb') as f:
-            audio_data = f.read()
-        await message.answer_voice(BufferedInputFile(audio_data, filename='response.mp3'))
+            audio_bytes = f.read()
+        await message.answer_voice(BufferedInputFile(audio_bytes, filename='response.mp3'))
         os.unlink(voice_path)
-    last_bot_response[user_id] = ai_response
-
-@router.message(F.text == "🇷🇺 Перевод")
-async def translate_response(message: Message):
-    user_id = message.from_user.id
-    original = last_bot_response.get(user_id)
-    if not original:
-        await message.answer("Нет сохранённого ответа для перевода. Сначала поговорите с ботом.")
-        return
-    translation = chat(f"Translate to Russian. Output ONLY translation:\n\n{original}", max_tokens=500, temperature=0.3)
-    await message.answer(f"🇷🇺 Перевод:\n\n{translation}")
-
-@router.message(F.text == "🇬🇧 Оригинал")
-async def original_response(message: Message):
-    user_id = message.from_user.id
-    original = last_bot_response.get(user_id)
-    if not original:
-        await message.answer("Нет сохранённого ответа.")
-        return
-    await message.answer(f"🇬🇧 Оригинал:\n\n{original}")
