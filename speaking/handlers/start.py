@@ -7,11 +7,12 @@ from speaking.services.tts import text_to_voice
 
 router = Router()
 
-# Клавиатура с кнопками перевода
+# Клавиатура с 4 кнопками
 main_keyboard = ReplyKeyboardMarkup(
     keyboard=[
         [KeyboardButton(text="🎤 Speaking")],
-        [KeyboardButton(text="🇷🇺 Перевод"), KeyboardButton(text="🇺🇸 Original")]
+        [KeyboardButton(text="🇺🇸 Original"), KeyboardButton(text="🇷🇺 Перевод")],
+        [KeyboardButton(text="📊 Я всё! Фидбек")]
     ],
     resize_keyboard=True
 )
@@ -21,19 +22,21 @@ async def start_handler(message: Message):
     user_id = message.from_user.id
     set_user_state(user_id, {})
     await message.answer(
-        "Hello! 🤖\n\nI'm your personal American English tutor.\n\nPress '🎤 Speaking' to start.",
+        "Hello! 🤖\n\nI'm your American English tutor.",
         reply_markup=main_keyboard
     )
 
 @router.message(F.text == "🎤 Speaking")
 async def speaking_mode(message: Message):
     user_id = message.from_user.id
-    set_user_state(user_id, {"mode": "speaking_active"})
+    set_user_state(user_id, {"mode": "speaking_active", "history": []})
+    # Оставляем клавиатуру, не убираем
     await message.answer(
-        "🎤 Voice mode activated!\n\nSend a voice message in American English. I'll correct your mistakes.\n\nLet's begin! 🗣️",
-        reply_markup=main_keyboard  # не убираем клавиатуру
+        "🎤 Voice mode activated!\n\nJust send a voice message. I'll correct your English.\n\nLet's begin! 🗣️",
+        reply_markup=main_keyboard
     )
-    voice_greeting = "Hello! I am your voice AI American English tutor. Just send a voice message and we'll start."
+    # Голосовое приветствие (опционально, но код оставим)
+    voice_greeting = "Hello! I am your voice AI English tutor. Just send a voice message and we'll start."
     voice_path = await text_to_voice(voice_greeting)
     if voice_path:
         with open(voice_path, 'rb') as f:
