@@ -10,7 +10,7 @@ from data.users import set_user_mode, get_user_state, set_user_state, set_user_n
 from services.deepseek import chat
 
 router = Router()
-last_bot_response = {}  # для кнопок перевода
+last_bot_response = {}
 
 @router.message(F.voice)
 async def handle_voice(message: Message):
@@ -29,16 +29,13 @@ async def handle_voice(message: Message):
         set_user_mode(user_id, "speaking_active")
         set_user_state(user_id, user_state)
 
-    # Сохраняем сообщение пользователя в историю
     history = user_state.get("history", [])
     history.append({"role": "user", "text": user_text})
-    # Ограничим историю 20 последними сообщениями
     if len(history) > 20:
         history = history[-20:]
     user_state["history"] = history
     set_user_state(user_id, user_state)
 
-    # Извлечение имени (если есть)
     name_match = re.search(r"(?:my name is|i am|i'm|call me)\s+([A-Za-z]+)", user_text, re.IGNORECASE)
     if name_match:
         name = name_match.group(1)
@@ -52,7 +49,6 @@ async def handle_voice(message: Message):
                     audio_bytes = f.read()
                 await message.answer_voice(BufferedInputFile(audio_bytes, filename='response.mp3'))
                 os.unlink(voice_path)
-            # Сохраним ответ бота в историю
             history.append({"role": "assistant", "text": response_text})
             user_state["history"] = history
             set_user_state(user_id, user_state)
@@ -66,7 +62,6 @@ async def handle_voice(message: Message):
         await message.answer_voice(BufferedInputFile(audio_bytes, filename='response.mp3'))
         os.unlink(voice_path)
 
-    # Сохраняем ответ бота в историю и для перевода
     history.append({"role": "assistant", "text": ai_response})
     user_state["history"] = history
     set_user_state(user_id, user_state)
@@ -97,41 +92,40 @@ async def send_feedback(message: Message):
     user_state = get_user_state(user_id)
     history = user_state.get("history", [])
     if len(history) < 2:
-        await message.answer("You haven't had a conversation yet. Send some voice messages first.")
+        await message.answer("Вы ещё не общались. Отправьте несколько голосовых сообщений.")
         return
 
-    # Формируем историю диалога для анализа
-    conversation = "\n".join([f"{'Student' if h['role']=='user' else 'Teacher'}: {h['text']}" for h in history[-10:]])
-    prompt = f"""You are an experienced American English teacher. Analyze the following conversation and provide feedback.
+    conversation = "\n".join([f"{'Student' if h['role']=='user' else 'Teacher'}: {h.get('text', h.get('content', ''))}" for h in history[-10:]])
+    
+    prompt = f"""You are an experienced American English teacher. Analyze the following conversation and provide feedback **in Russian language**.
 
 Conversation:
 {conversation}
 
-Please provide a response in the following format (text only, no voice):
+Please provide a response in Russian, following this format (text only, no voice):
 
-1. **Mistakes & Corrections**: List the main grammar/vocabulary mistakes made by the student. For each, give a correction and a simple rule.
+1. **Ошибки и исправления**: Перечислите основные грамматические/лексические ошибки ученика. Для каждой ошибки дайте исправление и краткое правило.
 
-2. **Recommendations for Improvement**: Suggest 2-3 practical tips to improve pronunciation, fluency, or grammar.
+2. **Рекомендации по улучшению**: Предложите 2-3 практических совета для улучшения произношения, беглости или грамматики.
 
-3. **Vocabulary Builder**: Extract 5-8 useful words/phrases from the conversation. For each, give:
-   - Original word/phrase (English)
-   - Translation to Russian
-   - Example sentence from the conversation or a new example.
+3. **Словарик для изучения**: Выберите 5-8 полезных слов/фраз из диалога. Для каждого дайте:
+   - Оригинал (английский)
+   - Перевод на русский
+   - Пример предложения (из диалога или новый)
 
-Write in a friendly, encouraging tone. Keep it concise but helpful."""
+Пишите дружелюбно, поддерживающе. Будьте краткими, но полезными."""
 
     feedback = chat(prompt, max_tokens=1200, temperature=0.5)
-    await message.answer(f"📊 Feedback for you:\n\n{feedback}")
+    await message.answer(f"📊 Ваш фидбек:\n\n{feedback}")
 
-# Обработка других текстовых сообщений (если пользователь пишет вне режима или ошибка)
 @router.message(F.text)
 async def text_fallback(message: Message):
     user_id = message.from_user.id
     user_state = get_user_state(user_id)
     if user_state.get("mode") == "speaking_active":
         await message.answer(
-            "📝 Please use voice messages so I can help with pronunciation 🎤\n"
-            "Just tap the microphone and speak in English."
+            "📝 Пожалуйста, используйте голосовые сообщения, чтобы я мог помочь с произношением 🎤\n"
+            "Просто нажмите на значок микрофона и говорите по-английски."
         )
     else:
-        await message.answer("Press the '🎤 Speaking' button to start a voice lesson.")
+        await message.answer("Нажмите кнопку '🎤 Speaking', чтобы начать голосовой урок.")
