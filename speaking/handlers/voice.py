@@ -10,7 +10,8 @@ from data.users import set_user_mode, get_user_state, set_user_state, set_user_n
 from services.deepseek import chat
 
 router = Router()
-last_bot_response = {}  # user_id -> {"text": eng_text, "message_id": ...}
+# Храним последние ответы для каждого пользователя (оригинал и перевод)
+last_bot_response = {}  # {user_id: {"text": str, "translation": str}}
 
 @router.message(F.voice)
 async def handle_voice(message: Message):
@@ -29,7 +30,6 @@ async def handle_voice(message: Message):
         set_user_mode(user_id, "speaking_active")
         set_user_state(user_id, user_state)
 
-    # Сохраняем историю (уже есть в вашем коде)
     history = user_state.get("history", [])
     history.append({"role": "user", "text": user_text})
     if len(history) > 20:
@@ -37,7 +37,7 @@ async def handle_voice(message: Message):
     user_state["history"] = history
     set_user_state(user_id, user_state)
 
-    # Извлечение имени (как было)
+    # Извлечение имени
     name_match = re.search(r"(?:my name is|i am|i'm|call me)\s+([A-Za-z]+)", user_text, re.IGNORECASE)
     if name_match:
         name = name_match.group(1)
@@ -49,19 +49,17 @@ async def handle_voice(message: Message):
             if voice_path:
                 with open(voice_path, 'rb') as f:
                     audio_bytes = f.read()
-                await message.answer_voice(BufferedInputFile(audio_bytes, filename='response.mp3'))
+                # Кнопка "Текст" для этого голосового
+                keyboard = InlineKeyboardMarkup(inline_keyboard=[
+                    [InlineKeyboardButton(text="📝 Текст", callback_data=f"show_original_{user_id}")]
+                ])
+                await message.answer_voice(BufferedInputFile(audio_bytes, filename='response.mp3'), reply_markup=keyboard)
                 os.unlink(voice_path)
-            # Отправляем текст с кнопками
-            keyboard = InlineKeyboardMarkup(inline_keyboard=[
-                [InlineKeyboardButton(text="📄 Текст", callback_data=f"show_text_{user_id}"),
-                 InlineKeyboardButton(text="🇷🇺 Перевести", callback_data=f"translate_{user_id}")]
-            ])
-            await message.answer(response_text, reply_markup=keyboard)
-            # Сохраняем в историю
             history.append({"role": "assistant", "text": response_text})
             user_state["history"] = history
             set_user_state(user_id, user_state)
-            last_bot_response[user_id] = {"text": response_text, "message_id": None}
+            # Сохраняем ответ для кнопок
+            last_bot_response[user_id] = {"text": response_text, "translation": None}
             return
 
     ai_response = await process_voice_message(user_id, user_text)
@@ -69,47 +67,53 @@ async def handle_voice(message: Message):
     if voice_path:
         with open(voice_path, 'rb') as f:
             audio_bytes = f.read()
-        await message.answer_voice(BufferedInputFile(audio_bytes, filename='response.mp3'))
+        # Отправляем голосовое с inline-кнопкой "Текст"
+        keyboard = InlineKeyboardMarkup(inline_keyboard=[
+            [InlineKeyboardButton(text="📝 Текст", callback_data=f"show_original_{user_id}")]
+        ])
+        await message.answer_voice(BufferedInputFile(audio_bytes, filename='response.mp3'), reply_markup=keyboard)
         os.unlink(voice_path)
 
-    # Отправляем текстовую версию ответа с инлайн-кнопками
-    keyboard = InlineKeyboardMarkup(inline_keyboard=[
-        [InlineKeyboardButton(text="📄 Текст", callback_data=f"show_text_{user_id}"),
-         InlineKeyboardButton(text="🇷🇺 Перевести", callback_data=f"translate_{user_id}")]
-    ])
-    sent_msg = await message.answer(ai_response, reply_markup=keyboard)
-    
-    # Сохраняем ответ и ID сообщения (чтобы потом обновлять кнопки, если нужно)
-    last_bot_response[user_id] = {"text": ai_response, "message_id": sent_msg.message_id}
-    
-    # Сохраняем в историю
     history.append({"role": "assistant", "text": ai_response})
     user_state["history"] = history
     set_user_state(user_id, user_state)
+    last_bot_response[user_id] = {"text": ai_response, "translation": None}
 
-@router.callback_query(lambda c: c.data.startswith("show_text_"))
-async def show_text_callback(callback: CallbackQuery):
-    user_id = int(callback.data.split("_")[2])
-    data = last_bot_response.get(user_id)
-    if data and data.get("text"):
-        await callback.message.answer(f"📄 Текст ответа:\n\n{data['text']}")
-    else:
-        await callback.message.answer("Нет сохранённого текста. Отправьте новое голосовое сообщение.")
-    await callback.answer()
-
-@router.callback_query(lambda c: c.data.startswith("translate_"))
-async def translate_callback(callback: CallbackQuery):
+# Обработчик кнопки "Текст"
+@router.callback_query(lambda c: c.data.startswith("show_original_"))
+async def show_original(callback: CallbackQuery):
     user_id = int(callback.data.split("_")[2])
     data = last_bot_response.get(user_id)
     if not data or not data.get("text"):
-        await callback.message.answer("Нет сообщения для перевода. Отправьте голосовое.")
-        await callback.answer()
+        await callback.answer("Нет текста для отображения.", show_alert=True)
         return
-    translation = chat(f"Translate the following English text to Russian. Output only the translation, no extras.\n\n{data['text']}", max_tokens=500, temperature=0.3)
+    original = data["text"]
+    # Отправляем оригинальный текст с кнопкой "Перевести"
+    keyboard = InlineKeyboardMarkup(inline_keyboard=[
+        [InlineKeyboardButton(text="🌐 Перевести", callback_data=f"translate_{user_id}")]
+    ])
+    await callback.message.answer(f"📝 Оригинал (англ.):\n\n{original}", reply_markup=keyboard)
+    await callback.answer()
+
+# Обработчик кнопки "Перевести"
+@router.callback_query(lambda c: c.data.startswith("translate_"))
+async def translate_text(callback: CallbackQuery):
+    user_id = int(callback.data.split("_")[1])
+    data = last_bot_response.get(user_id)
+    if not data or not data.get("text"):
+        await callback.answer("Нет текста для перевода.", show_alert=True)
+        return
+    # Если перевод уже есть в кэше, используем его
+    if data.get("translation"):
+        translation = data["translation"]
+    else:
+        translation = chat(f"Translate the following English text to Russian. Output only the translation, no extras.\n\n{data['text']}", max_tokens=300, temperature=0.3)
+        data["translation"] = translation
+        last_bot_response[user_id] = data
     await callback.message.answer(f"🇷🇺 Перевод:\n\n{translation}")
     await callback.answer()
 
-# Обработка текстовых сообщений вне режима (как было)
+# Обработка текстовых сообщений (вне режима или просьба использовать голос)
 @router.message(F.text)
 async def text_fallback(message: Message):
     user_id = message.from_user.id
