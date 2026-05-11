@@ -48,3 +48,18 @@ async def handle_voice(message: Message):
             audio_bytes = f.read()
         await message.answer_voice(BufferedInputFile(audio_bytes, filename='response.mp3'))
         os.unlink(voice_path)
+
+# Обработка текстовых сообщений в режиме speaking (если пользователь пишет вместо голоса)
+@router.message(F.text)
+async def text_fallback(message: Message):
+    user_id = message.from_user.id
+    user_state = get_user_state(user_id)
+    if user_state.get("mode") == "speaking_active":
+        await message.answer(
+            "📝 Please use voice messages so I can help you with pronunciation and speaking skills. 🎤\n"
+            "Just hold the microphone button and speak in English."
+        )
+    else:
+        await message.answer(
+            "Press the '🎤 Speaking' button to start a voice lesson."
+        )
