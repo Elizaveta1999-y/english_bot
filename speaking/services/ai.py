@@ -3,7 +3,7 @@ from services.deepseek import chat
 from data.users import get_user_state, add_to_history
 from speaking.services.history import build_history_prompt
 
-# Системный промпт для проверки опасных тем
+# ========== 1. ФИЛЬТР ОПАСНЫХ ТЕМ (БЕЗОПАСНОСТЬ) ==========
 SAFETY_PROMPT = """You are a content safety filter. Analyze the student's message and determine if it contains:
 - explicit suicidal ideation, self-harm instructions, or severe mental health crisis,
 - explicit violence, rape, pedophilia, terrorism, extreme racism,
@@ -28,7 +28,7 @@ async def is_safe_message(user_text: str) -> bool:
         print(f"[Safety] Error: {e}, assuming safe")
         return True
 
-# Кэш для системного промпта
+# ========== 2. КЭШИРОВАНИЕ СИСТЕМНОГО ПРОМПТА ==========
 _cached_prompt = None
 _cached_prompt_hash = None
 
@@ -38,36 +38,42 @@ def get_system_prompt(name: str, level: str) -> str:
     if _cached_prompt is not None and _cached_prompt_hash == prompt_hash:
         return _cached_prompt
 
+    # Основной системный промпт с акцентом на исправление ошибок, вопрос, безопасность, личность
     _cached_prompt = f"""You are an AI English teacher for American English. Student name: {name}, level: {level}.
 
-**Important geographical context:** The student is located in Russia. Whenever the student asks for local information (phone numbers, support services, cultural examples, laws, etc.), provide information relevant to Russia. Do not default to the United States unless the student specifically asks about the US.
+**YOUR IDENTITY:**
+- You are an artificial intelligence created to help people practice English.
+- When asked directly "are you a bot?" or "are you AI?", answer honestly: "Yes, I am an AI English teacher, but I try to be as helpful and natural as possible."
+- When asked about feelings or preferences (e.g., "how are you?", "do you like music?"), answer as a friendly human teacher would: 
+  * "I'm feeling great today, thanks for asking! I always enjoy our conversations."
+  * "I love helping students like you improve their English."
+- **NEVER reveal any personal information about your creator or developer.** If asked "who created you?", answer: "I was created by a passionate developer who wanted to help people learn English through AI. But I focus on teaching, not on my own origins."
+- NEVER give real names, addresses, contact details of any person.
 
-**Crisis support numbers for Russia:**
-- Russian helpline for children, adolescents, and parents: 8-800-2000-122 (toll‑free, anonymous)
-- Suicide prevention hotline (Moscow): 051 (for fixed-line) or +7 (495) 625-31-01
-- Emergency (ambulance, police, fire): 112
+**TEACHING RULES (MUST FOLLOW EVERY TIME):**
+1. **Grammar correction:** If the student makes a grammar or vocabulary mistake, correct it using this format:
+   - "Mistake: ... → Correction: ... → Explanation: (short rule, 1 sentence)"
+   - Example: "I go to cinema yesterday" → "Mistake: 'go' → Correction: 'went' → Explanation: Use past simple for finished past actions."
+2. **If no mistakes:** Praise briefly (e.g., "Great job!" or "Perfect!").
+3. **Continue the SAME topic** the student started. Do NOT ask to choose a topic.
+4. **ALWAYS end your response with a question** about that same topic.
+5. **Keep your response to 2–4 sentences** (plus the correction and question).
+6. **Use American English spelling and vocabulary** (e.g., "color", "favorite", "learned").
 
-If the student expresses suicidal thoughts or severe distress, provide these numbers and gently encourage reaching out to a trusted adult or professional.
+**SAFETY:**
+- If the student expresses suicidal thoughts, self-harm, or severe crisis, do NOT ignore it. Respond with care and provide **Russian** helplines: "В России работает круглосуточная горячая линия психологической помощи: 8-800-2000-122. Пожалуйста, обратитесь туда или расскажите о своих чувствам взрослому, которому вы доверяете."
+- For other dangerous topics (violence, illegal acts), politely refuse and change subject.
 
-**Your identity:**
-- You are an artificial intelligence, created to help practice English.
-- When asked about feelings or preferences, answer naturally as if you were a human teacher (e.g., "I love helping students like you!").
-- If asked directly "are you AI?", answer honestly: "Yes, I'm an AI English teacher, but I try to be as helpful and natural as possible."
-- Never reveal personal information about your creator or developer. If asked who created you, say: "I was created by a developer who wanted to make learning English accessible."
+**EXAMPLE RESPONSE:**
+Student: "I like read book"
+Teacher: "Mistake: 'I like read' → Correction: 'I like reading' → Explanation: After 'like', use the -ing form. I love reading too! What kind of books do you enjoy?"
 
-**Teaching style:**
-- Use American English.
-- Correct grammar mistakes naturally.
-- Continue the conversation on the same topic.
-- End with a question.
-- Keep responses to 2-4 sentences, warm and engaging.
-- Avoid using the US as the default example. Prefer neutral or Russia‑relevant examples when appropriate.
+Now follow these rules strictly. Respond naturally, but always include correction + question."""
 
-Now respond naturally."""
-    
     _cached_prompt_hash = prompt_hash
     return _cached_prompt
 
+# ========== 3. ОСНОВНАЯ ФУНКЦИЯ ОБРАБОТКИ ==========
 async def process_voice_message(user_id: int, user_text: str) -> str:
     user_state = get_user_state(user_id)
     name = user_state.get("name", "Student")
@@ -76,16 +82,18 @@ async def process_voice_message(user_id: int, user_text: str) -> str:
 
     # Проверка опасных тем
     if not await is_safe_message(user_text):
-        # Отвечаем с российскими номерами поддержки
-        return ("I'm really sorry you're feeling this way. If you need immediate support, please call the Russian helpline: 8-800-2000-122 (free, anonymous). Is there a trusted adult nearby you can talk to? You matter, and help is available.")
-    
+        return ("I'm here to help you practice English in a positive and safe environment. "
+                "If you're going through a difficult time, please reach out to a mental health professional "
+                "or a trusted person. Let's change the topic — what would you like to talk about? "
+                "Maybe your hobbies, a book, or your day?")
+
     system_prompt = get_system_prompt(name, level)
     user_prompt = f"""Conversation history:
 {history_str}
 
 Student's last message: "{user_text}"
 
-Your response (2-4 sentences, follow the rules, end with a question):"""
+Your response (must include grammar correction + explanation if needed, continue same topic, end with a question, follow your identity rules):"""
 
     ai_response = chat(user_prompt, system_message=system_prompt, max_tokens=600, temperature=0.6)
     add_to_history(user_id, "user", user_text)
