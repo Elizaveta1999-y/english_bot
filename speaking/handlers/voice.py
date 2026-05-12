@@ -14,10 +14,9 @@ from services.deepseek import chat
 
 logger = logging.getLogger(__name__)
 router = Router()
-last_bot_response = {}  # {user_id: {"text": str, "translation": str, "audio_message_id": int}}
+last_bot_response = {}
 
 def convert_to_opus(mp3_path: str) -> str:
-    """Конвертирует MP3 в OGG (кодек OPUS) для правильного отображения Telegram как голосового сообщения."""
     ogg_path = tempfile.mktemp(suffix=".ogg")
     cmd = [
         "ffmpeg", "-i", mp3_path,
@@ -75,7 +74,6 @@ async def handle_voice(message: Message):
     set_user_state(user_id, user_state)
 
 async def _send_voice_message(message: Message, text: str, user_id: int):
-    """Генерирует аудио (OGG OPUS) и отправляет как голосовое сообщение с пустой подписью и кнопкой 'Текст'."""
     mp3_path = await text_to_voice(text)
     if not mp3_path:
         await message.answer(text)
@@ -87,6 +85,7 @@ async def _send_voice_message(message: Message, text: str, user_id: int):
     os.unlink(mp3_path)
     os.unlink(ogg_path)
 
+    # Кнопка "Текст" (показывает оригинал)
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(text="📝 Текст", callback_data=f"show_text_{user_id}")]
     ])
@@ -110,8 +109,12 @@ async def show_text(callback: CallbackQuery):
         return
 
     original = data["text"]
+    # Две кнопки: Перевести и Скрыть
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
-        [InlineKeyboardButton(text="🌐 Перевести", callback_data=f"translate_{user_id}")]
+        [
+            InlineKeyboardButton(text="🌐 Перевести", callback_data=f"translate_{user_id}"),
+            InlineKeyboardButton(text="❌ Скрыть", callback_data=f"hide_{user_id}")
+        ]
     ])
     await callback.bot.edit_message_caption(
         chat_id=callback.message.chat.id,
@@ -162,7 +165,10 @@ async def revert_to_original(callback: CallbackQuery):
         return
 
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
-        [InlineKeyboardButton(text="🌐 Перевести", callback_data=f"translate_{user_id}")]
+        [
+            InlineKeyboardButton(text="🌐 Перевести", callback_data=f"translate_{user_id}"),
+            InlineKeyboardButton(text="❌ Скрыть", callback_data=f"hide_{user_id}")
+        ]
     ])
     await callback.bot.edit_message_caption(
         chat_id=callback.message.chat.id,
@@ -174,14 +180,13 @@ async def revert_to_original(callback: CallbackQuery):
 
 @router.callback_query(lambda c: c.data.startswith("hide_"))
 async def hide_message(callback: CallbackQuery):
-    """Скрывает перевод/оригинал, возвращая только голосовое с кнопкой 'Текст'."""
     user_id = int(callback.data.split("_")[1])
     data = last_bot_response.get(user_id)
     if not data or not data.get("audio_message_id"):
         await callback.answer("No message to hide.", show_alert=True)
         return
 
-    # Возвращаем пустую подпись и кнопку "Текст"
+    # Возвращаем пустую подпись и одну кнопку "Текст"
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(text="📝 Текст", callback_data=f"show_text_{user_id}")]
     ])
@@ -191,7 +196,7 @@ async def hide_message(callback: CallbackQuery):
         caption="",
         reply_markup=keyboard
     )
-    # Сбросим сохранённый перевод, чтобы при повторном "Текст" показывался оригинал
+    # Сбрасываем перевод, чтобы при следующем "Текст" снова был оригинал
     data["translation"] = None
     last_bot_response[user_id] = data
     await callback.answer()
