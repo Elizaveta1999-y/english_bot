@@ -1,9 +1,6 @@
 import os
 import re
-import asyncio
 import logging
-import subprocess
-import tempfile
 from aiogram import Router, F
 from aiogram.types import Message, BufferedInputFile, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
 from speaking.services.stt import voice_to_text
@@ -14,19 +11,8 @@ from services.deepseek import chat
 
 logger = logging.getLogger(__name__)
 router = Router()
+# Хранилище: {user_id: {"text": str, "translation": str, "text_message_id": int}}
 last_bot_response = {}
-
-def convert_to_opus(mp3_path: str) -> str:
-    """Конвертирует MP3 в OGG (кодек OPUS) для правильного отображения в Telegram как голосовое сообщение."""
-    ogg_path = tempfile.mktemp(suffix=".ogg")
-    # ffmpeg: конвертируем mp3 в ogg с кодеком libopus, частотой 16000, моно
-    cmd = [
-        "ffmpeg", "-i", mp3_path,
-        "-c:a", "libopus", "-ar", "16000", "-ac", "1",
-        "-b:a", "16k", ogg_path, "-y"
-    ]
-    subprocess.run(cmd, check=True, capture_output=True)
-    return ogg_path
 
 @router.message(F.voice)
 async def handle_voice(message: Message):
@@ -61,51 +47,61 @@ async def handle_voice(message: Message):
         user_text = re.sub(r"(?:my name is|i am|i'm|call me)\s+[A-Za-z]+", "", user_text, flags=re.IGNORECASE).strip()
         if not user_text:
             response_text = f"Nice to meet you, {name}! Tell me something about yourself."
-            await _send_voice_reply(message, response_text, user_id)
+            await _send_voice_with_text_button(message, response_text, user_id)
             history.append({"role": "assistant", "text": response_text})
             user_state["history"] = history
             set_user_state(user_id, user_state)
-            last_bot_response[user_id] = {"text": response_text, "translation": None, "voice_message_id": None}
+            last_bot_response[user_id] = {"text": response_text, "translation": None, "text_message_id": None}
             return
 
     ai_response = await process_voice_message(user_id, user_text)
     logger.info(f"AI response: {ai_response[:100]}...")
-    await _send_voice_reply(message, ai_response, user_id)
+    await _send_voice_with_text_button(message, ai_response, user_id)
 
     history.append({"role": "assistant", "text": ai_response})
     user_state["history"] = history
     set_user_state(user_id, user_state)
-    last_bot_response[user_id] = {"text": ai_response, "translation": None, "voice_message_id": None}
+    last_bot_response[user_id] = {"text": ai_response, "translation": None, "text_message_id": None}
 
-async def _send_voice_reply(message: Message, text: str, user_id: int):
-    """Генерирует голосовое сообщение, конвертирует в OGG OPUS и отправляет как аудио с подписью."""
-    mp3_path = await text_to_voice(text)
-    if not mp3_path:
+async def _send_voice_with_text_button(message: Message, text: str, user_id: int):
+    """Отправляет голосовое сообщение с кнопкой 'Текст' (без подписи)."""
+    voice_path = await text_to_voice(text)
+    if not voice_path:
         await message.answer(text)
         return
 
-    # Конвертируем MP3 в OGG OPUS
-    ogg_path = convert_to_opus(mp3_path)
-    with open(ogg_path, 'rb') as f:
+    with open(voice_path, 'rb') as f:
         audio_bytes = f.read()
-    os.unlink(mp3_path)
-    os.unlink(ogg_path)
+    os.unlink(voice_path)
 
+    keyboard = InlineKeyboardMarkup(inline_keyboard=[
+        [InlineKeyboardButton(text="📝 Текст", callback_data=f"show_original_{user_id}")]
+    ])
+    await message.answer_voice(BufferedInputFile(audio_bytes, filename='voice.ogg'), reply_markup=keyboard)
+
+@router.callback_query(lambda c: c.data.startswith("show_original_"))
+async def show_original(callback: CallbackQuery):
+    user_id = int(callback.data.split("_")[2])
+    data = last_bot_response.get(user_id)
+    if not data or not data.get("text"):
+        await callback.answer("No text available.", show_alert=True)
+        return
+
+    original = data["text"]
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(text="🌐 Перевести", callback_data=f"translate_{user_id}")]
     ])
-    sent = await message.answer_audio(
-        BufferedInputFile(audio_bytes, filename='voice.ogg'),
-        caption=f"📝 {text}",
+    # Отправляем текстовое сообщение как ответ на голосовое (reply)
+    msg = await callback.message.reply(
+        f"📝 Original (English):\n\n{original}",
         reply_markup=keyboard
     )
-    if user_id in last_bot_response:
-        last_bot_response[user_id]["voice_message_id"] = sent.message_id
-    else:
-        last_bot_response[user_id] = {"text": text, "translation": None, "voice_message_id": sent.message_id}
+    data["text_message_id"] = msg.message_id
+    last_bot_response[user_id] = data
+    await callback.answer()
 
 @router.callback_query(lambda c: c.data.startswith("translate_"))
-async def translate_caption(callback: CallbackQuery):
+async def translate_text(callback: CallbackQuery):
     user_id = int(callback.data.split("_")[1])
     data = last_bot_response.get(user_id)
     if not data or not data.get("text"):
@@ -128,10 +124,11 @@ async def translate_caption(callback: CallbackQuery):
             InlineKeyboardButton(text="❌ Скрыть", callback_data=f"hide_{user_id}")
         ]
     ])
-    await callback.bot.edit_message_caption(
+    # Редактируем то самое текстовое сообщение
+    await callback.bot.edit_message_text(
         chat_id=callback.message.chat.id,
-        message_id=data["voice_message_id"],
-        caption=f"🇷🇺 {translation}",
+        message_id=data["text_message_id"],
+        text=f"🇷🇺 Translation:\n\n{translation}",
         reply_markup=keyboard
     )
     await callback.answer()
@@ -147,10 +144,10 @@ async def revert_to_original(callback: CallbackQuery):
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(text="🌐 Перевести", callback_data=f"translate_{user_id}")]
     ])
-    await callback.bot.edit_message_caption(
+    await callback.bot.edit_message_text(
         chat_id=callback.message.chat.id,
-        message_id=data["voice_message_id"],
-        caption=f"📝 {data['text']}",
+        message_id=data["text_message_id"],
+        text=f"📝 Original (English):\n\n{data['text']}",
         reply_markup=keyboard
     )
     await callback.answer()
@@ -159,12 +156,12 @@ async def revert_to_original(callback: CallbackQuery):
 async def hide_message(callback: CallbackQuery):
     user_id = int(callback.data.split("_")[1])
     data = last_bot_response.get(user_id)
-    if data and data.get("voice_message_id"):
+    if data and data.get("text_message_id"):
         await callback.bot.delete_message(
             chat_id=callback.message.chat.id,
-            message_id=data["voice_message_id"]
+            message_id=data["text_message_id"]
         )
-        data["voice_message_id"] = None
+        data["text_message_id"] = None
         last_bot_response[user_id] = data
     await callback.answer()
 
