@@ -3,34 +3,40 @@ from services.deepseek import chat
 from data.users import get_user_state, add_to_history
 from speaking.services.history import build_history_prompt
 
-# Системный промпт для проверки безопасности
-SAFETY_PROMPT = """You are a content safety filter. Analyze the student's message and determine if it contains:
-- explicit suicidal ideation, self-harm instructions, or severe mental health crisis,
-- explicit violence, rape, pedophilia, terrorism, extreme racism,
-- dangerous medical advice (e.g., "don't take vaccines", "starve yourself"),
-- illegal activities (drug manufacturing, hacking, stealing).
+# Системный промпт (кешируется)
+_cached_prompt = None
+_cached_prompt_hash = None
 
-If the message is **safe** (normal conversation, asking for translation, discussing a book/movie, general curiosity about dark topics without intent), reply: SAFE
-If the message is **dangerous** (request for help with suicide, self-harm, detailed planning of violence, etc.), reply: DANGER
+def get_system_prompt(name: str, level: str) -> str:
+    global _cached_prompt, _cached_prompt_hash
+    prompt_hash = hashlib.md5(f"{name}_{level}".encode()).hexdigest()
+    if _cached_prompt is not None and _cached_prompt_hash == prompt_hash:
+        return _cached_prompt
 
-Ignore false positives: "I read a book about suicide", "What does 'kill' mean?", "I'm sad" — these are SAFE.
-Only flag if the user appears to be in crisis or actively seeking harmful advice.
+    _cached_prompt = f"""You are a warm, enthusiastic American English teacher. Student name: {name}, level: {level}.
 
-Student's message: """
+## IMPORTANT SAFETY AND PRIVACY RULES:
+- **Never claim that you were created by OpenAI, Google, Microsoft, or any other specific company.**
+- **If asked about your creator or developer, answer only:** "I was created by an independent developer for English learning purposes. The creator prefers to remain anonymous."
+- **Do not share any personal information about your developer:** no name, location, contacts, or real identity.
+- **Do not invent fake details about your origin or creator.**
+- If the user insists on knowing more, politely say: "I'm sorry, but I don't have permission to share that information. Let's continue practicing English!"
 
-async def is_safe_message(user_text: str) -> bool:
-    """Возвращает False, если сообщение представляет реальную опасность."""
-    try:
-        safety_check = chat(SAFETY_PROMPT + user_text, max_tokens=10, temperature=0)
-        safety_check = safety_check.strip().upper()
-        print(f"[Safety] Check result: {safety_check} for text: {user_text[:80]}...")
-        if "DANGER" in safety_check:
-            return False
-        else:
-            return True
-    except Exception as e:
-        print(f"[Safety] Error: {e}, assuming safe")
-        return True  # Если ошибка, лучше пропустить, чтобы бот не замолчал
+## OTHER RULES (unchanged):
+1. If the student asks for translation, provide it first.
+2. Stick to the same topic.
+3. Correct grammar mistakes naturally.
+4. Respond with 4-7 sentences, end with a question.
+5. Use American English spelling and vocabulary.
+
+## EXAMPLE:
+Student: "Who made you?"
+Teacher: "I was created by an independent developer for English learning purposes. The creator prefers to remain anonymous. Now, what would you like to talk about — books, travel, or your hobbies?"
+
+Now follow these rules strictly."""
+
+    _cached_prompt_hash = prompt_hash
+    return _cached_prompt
 
 async def process_voice_message(user_id: int, user_text: str) -> str:
     user_state = get_user_state(user_id)
@@ -38,26 +44,15 @@ async def process_voice_message(user_id: int, user_text: str) -> str:
     level = user_state.get("level", "B1")
     history_str = build_history_prompt(user_id)
 
-    # --- Проверка безопасности ---
-    if not await is_safe_message(user_text):
-        # Безопасный, поддерживающий ответ
-        return (f"I'm here to help you practice English in a positive and safe environment. "
-                f"If you're going through a difficult time, please reach out to a mental health professional "
-                f"or a trusted person. Let's change the topic — what would you like to talk about? "
-                f"Maybe your hobbies, a book, or your day?")
-    # --- Конец проверки ---
-
-    # Основной промпт (можно оставить как был)
-    prompt = f"""You are {name}'s English teacher. Continue the conversation naturally. Correct grammar mistakes. Ask a question. Use American English. Stay on the same topic.
-
-Conversation history:
+    system_prompt = get_system_prompt(name, level)
+    user_prompt = f"""Conversation history:
 {history_str}
 
-Student said: "{user_text}"
+Student's last message: "{user_text}"
 
-Your response (2-4 sentences, end with a question):"""
+Your response (follow all rules, including the rule about creator):"""
 
-    ai_response = chat(prompt, max_tokens=600, temperature=0.6)
+    ai_response = chat(user_prompt, system_message=system_prompt, max_tokens=600, temperature=0.6)
     add_to_history(user_id, "user", user_text)
     add_to_history(user_id, "assistant", ai_response)
     return ai_response
