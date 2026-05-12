@@ -1,4 +1,4 @@
-import os
+ import os
 import re
 import asyncio
 import logging
@@ -81,24 +81,20 @@ async def _send_voice_message(message: Message, text: str, user_id: int):
         await message.answer(text)
         return
 
-    # Конвертируем MP3 в OGG OPUS
     ogg_path = convert_to_opus(mp3_path)
     with open(ogg_path, 'rb') as f:
         audio_bytes = f.read()
     os.unlink(mp3_path)
     os.unlink(ogg_path)
 
-    # Кнопка "Текст" – при нажатии покажет подпись
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(text="📝 Текст", callback_data=f"show_text_{user_id}")]
     ])
-    # Отправляем аудио с ПУСТОЙ подписью (caption) – текст не виден
     sent = await message.answer_audio(
         BufferedInputFile(audio_bytes, filename='voice.ogg'),
         caption="",
         reply_markup=keyboard
     )
-    # Сохраняем информацию о сообщении
     last_bot_response[user_id] = {
         "text": text,
         "translation": None,
@@ -107,7 +103,6 @@ async def _send_voice_message(message: Message, text: str, user_id: int):
 
 @router.callback_query(lambda c: c.data.startswith("show_text_"))
 async def show_text(callback: CallbackQuery):
-    """Показывает оригинальный текст под аудиосообщением и заменяет кнопку на 'Перевести'."""
     user_id = int(callback.data.split("_")[2])
     data = last_bot_response.get(user_id)
     if not data or not data.get("text"):
@@ -118,7 +113,6 @@ async def show_text(callback: CallbackQuery):
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(text="🌐 Перевести", callback_data=f"translate_{user_id}")]
     ])
-    # Редактируем подпись (caption) того же сообщения
     await callback.bot.edit_message_caption(
         chat_id=callback.message.chat.id,
         message_id=data["audio_message_id"],
@@ -129,7 +123,6 @@ async def show_text(callback: CallbackQuery):
 
 @router.callback_query(lambda c: c.data.startswith("translate_"))
 async def translate_caption(callback: CallbackQuery):
-    """Заменяет подпись на русский перевод и меняет кнопки."""
     user_id = int(callback.data.split("_")[1])
     data = last_bot_response.get(user_id)
     if not data or not data.get("text"):
@@ -162,7 +155,6 @@ async def translate_caption(callback: CallbackQuery):
 
 @router.callback_query(lambda c: c.data.startswith("original_"))
 async def revert_to_original(callback: CallbackQuery):
-    """Возвращает оригинальный английский текст в caption."""
     user_id = int(callback.data.split("_")[1])
     data = last_bot_response.get(user_id)
     if not data or not data.get("text"):
@@ -182,16 +174,25 @@ async def revert_to_original(callback: CallbackQuery):
 
 @router.callback_query(lambda c: c.data.startswith("hide_"))
 async def hide_message(callback: CallbackQuery):
-    """Удаляет аудиосообщение."""
+    """Скрывает перевод/оригинал: очищает caption и возвращает кнопку 'Текст'."""
     user_id = int(callback.data.split("_")[1])
     data = last_bot_response.get(user_id)
-    if data and data.get("audio_message_id"):
-        await callback.bot.delete_message(
-            chat_id=callback.message.chat.id,
-            message_id=data["audio_message_id"]
-        )
-        # Удаляем запись о сообщении
-        del last_bot_response[user_id]
+    if not data or not data.get("audio_message_id"):
+        await callback.answer("No message to hide.", show_alert=True)
+        return
+
+    # Возвращаем пустую подпись и кнопку "Текст"
+    keyboard = InlineKeyboardMarkup(inline_keyboard=[
+        [InlineKeyboardButton(text="📝 Текст", callback_data=f"show_text_{user_id}")]
+    ])
+    await callback.bot.edit_message_caption(
+        chat_id=callback.message.chat.id,
+        message_id=data["audio_message_id"],
+        caption="",
+        reply_markup=keyboard
+    )
+    # Сбрасываем перевод, чтобы при повторном нажатии "Текст" показался оригинал
+    data["translation"] = None
     await callback.answer()
 
 @router.message(F.text)
