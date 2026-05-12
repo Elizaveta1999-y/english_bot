@@ -1,4 +1,4 @@
- import os
+import os
 import re
 import asyncio
 import logging
@@ -174,7 +174,7 @@ async def revert_to_original(callback: CallbackQuery):
 
 @router.callback_query(lambda c: c.data.startswith("hide_"))
 async def hide_message(callback: CallbackQuery):
-    """Скрывает перевод/оригинал: очищает caption и возвращает кнопку 'Текст'."""
+    """Скрывает перевод/оригинал, возвращая только голосовое с кнопкой 'Текст'."""
     user_id = int(callback.data.split("_")[1])
     data = last_bot_response.get(user_id)
     if not data or not data.get("audio_message_id"):
@@ -191,8 +191,9 @@ async def hide_message(callback: CallbackQuery):
         caption="",
         reply_markup=keyboard
     )
-    # Сбрасываем перевод, чтобы при повторном нажатии "Текст" показался оригинал
+    # Сбросим сохранённый перевод, чтобы при повторном "Текст" показывался оригинал
     data["translation"] = None
+    last_bot_response[user_id] = data
     await callback.answer()
 
 @router.message(F.text)
