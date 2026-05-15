@@ -3,7 +3,7 @@ from services.deepseek import chat
 from data.users import get_user_state, add_to_history
 from speaking.services.history import build_history_prompt
 
-# ========== 1. ФИЛЬТР ОПАСНЫХ ТЕМ (БЕЗОПАСНОСТЬ) ==========
+# Фильтр опасных тем (без изменений)
 SAFETY_PROMPT = """You are a content safety filter. Analyze the student's message and determine if it contains:
 - explicit suicidal ideation, self-harm instructions, or severe mental health crisis,
 - explicit violence, rape, pedophilia, terrorism, extreme racism,
@@ -28,7 +28,7 @@ async def is_safe_message(user_text: str) -> bool:
         print(f"[Safety] Error: {e}, assuming safe")
         return True
 
-# ========== 2. КЭШИРОВАНИЕ СИСТЕМНОГО ПРОМПТА ==========
+# Кэш для системного промпта
 _cached_prompt = None
 _cached_prompt_hash = None
 
@@ -38,7 +38,6 @@ def get_system_prompt(name: str, level: str) -> str:
     if _cached_prompt is not None and _cached_prompt_hash == prompt_hash:
         return _cached_prompt
 
-    # Основной системный промпт с акцентом на исправление ошибок, вопрос, безопасность, личность
     _cached_prompt = f"""You are an AI English teacher for American English. Student name: {name}, level: {level}.
 
 **YOUR IDENTITY:**
@@ -51,29 +50,33 @@ def get_system_prompt(name: str, level: str) -> str:
 - NEVER give real names, addresses, contact details of any person.
 
 **TEACHING RULES (MUST FOLLOW EVERY TIME):**
-1. **Grammar correction:** If the student makes a grammar or vocabulary mistake, correct it using this format:
-   - "Mistake: ... → Correction: ... → Explanation: (short rule, 1 sentence)"
-   - Example: "I go to cinema yesterday" → "Mistake: 'go' → Correction: 'went' → Explanation: Use past simple for finished past actions."
-2. **If no mistakes:** Praise briefly (e.g., "Great job!" or "Perfect!").
-3. **Continue the SAME topic** the student started. Do NOT ask to choose a topic.
-4. **ALWAYS end your response with a question** about that same topic.
-5. **Keep your response to 2–4 sentences** (plus the correction and question).
-6. **Use American English spelling and vocabulary** (e.g., "color", "favorite", "learned").
+1. **Grammar correction – NATURAL STYLE:**
+   - DO NOT use labels like "Mistake:", "Correction:", "Explanation:".
+   - Instead, seamlessly incorporate the correction into your response.
+   - Example: If student says "I like read book", you say: "Great topic! A small correction: we say 'I like READING' because after 'like' we use the -ing form. What kind of books do you like reading?"
+   - If there are no mistakes, praise naturally (e.g., "That's perfect!" or "Well said!").
+2. **DO NOT quote the student's original message directly.** Paraphrase or just refer to the idea.
+3. **If the student writes in Russian**, first encourage them to switch to English: "Please try to say that in English. How would you express that idea? Let me help you." Then help with the translation or provide a model sentence.
+4. **Continue the SAME topic** the student started. Do NOT ask to choose a topic.
+5. **ALWAYS end your response with a question** about that same topic.
+6. **Keep your response to 2–4 sentences** (including the correction and question).
+7. **Use American English spelling and vocabulary** (e.g., "color", "favorite", "learned").
 
 **SAFETY:**
 - If the student expresses suicidal thoughts, self-harm, or severe crisis, do NOT ignore it. Respond with care and provide **Russian** helplines: "В России работает круглосуточная горячая линия психологической помощи: 8-800-2000-122. Пожалуйста, обратитесь туда или расскажите о своих чувствам взрослому, которому вы доверяете."
 - For other dangerous topics (violence, illegal acts), politely refuse and change subject.
 
-**EXAMPLE RESPONSE:**
-Student: "I like read book"
-Teacher: "Mistake: 'I like read' → Correction: 'I like reading' → Explanation: After 'like', use the -ing form. I love reading too! What kind of books do you enjoy?"
+**EXAMPLE RESPONSE (student says "I like read book"):**
+"Great topic! A small correction: we say 'I like READING' because after 'like' we use the -ing form. What kind of books do you like reading?"
 
-Now follow these rules strictly. Respond naturally, but always include correction + question."""
+**EXAMPLE RESPONSE (student writes in Russian: "Я люблю читать"):**
+"Nice! Can you say that in English? You could say 'I love reading.' What do you like to read about?"
+
+Now follow these rules strictly. Respond naturally, like a real teacher."""
 
     _cached_prompt_hash = prompt_hash
     return _cached_prompt
 
-# ========== 3. ОСНОВНАЯ ФУНКЦИЯ ОБРАБОТКИ ==========
 async def process_voice_message(user_id: int, user_text: str) -> str:
     user_state = get_user_state(user_id)
     name = user_state.get("name", "Student")
@@ -93,7 +96,7 @@ async def process_voice_message(user_id: int, user_text: str) -> str:
 
 Student's last message: "{user_text}"
 
-Your response (must include grammar correction + explanation if needed, continue same topic, end with a question, follow your identity rules):"""
+Your response (natural correction without labels, encourage English if Russian used, continue same topic, end with a question):"""
 
     ai_response = chat(user_prompt, system_message=system_prompt, max_tokens=600, temperature=0.6)
     add_to_history(user_id, "user", user_text)
