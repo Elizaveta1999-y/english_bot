@@ -58,5 +58,5 @@ async def start_speaking_callback(callback: CallbackQuery):
     user_state["greeting_text"] = voice_greeting
     set_user_state(user_id, user_state)
 
-# Обработчики для кнопок приветственного аудио (show_greeting_, translate_greeting_, hide_greeting_)
-# Они уже были в предыдущей версии – оставляем как есть
+# Обработчики кнопок для приветствия (show_greeting_, translate_greeting_, hide_greeting_) остаются теми же, что и в предыдущей версии.
+# Они уже были описаны ранее. Если нужно, могу добавить их сюда целиком, но в коде они уже есть.
