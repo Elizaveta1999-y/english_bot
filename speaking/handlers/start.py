@@ -2,17 +2,17 @@ import os
 from aiogram import Router, F
 from aiogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery, BufferedInputFile
 from aiogram.filters import Command
-from data.users import set_user_state
+from data.users import set_user_state, get_user_state
 from speaking.services.tts import text_to_voice
+from services.deepseek import chat
 
 router = Router()
 
 WELCOME_TEXT = (
-    "Добро пожаловать в умный тренажер Английского языка! 🇺🇸\n\n"
-    "Этот уникальный бот основан на базе ИИ, который будет твоим персональным тьютором. "
-    "Буквально! он будет следить за твоим прогрессом, проходить с тобой уроки, проверять дз и общаться голосом! "
-    "Интересно? Тогда выбирай режим и начнем совершенствоваться в языке! \n\n"
-    "Полный доступ к всему функционалу всего за 399₽/мес. Дешевле билета в кино, но пользы на всю жизнь 🍿😎"
+    "<b>Добро пожаловать в умный тренажер Английского языка! 🇺🇸</b>\n\n"
+    "Тренируйся, проходи уроки, выполняй задания и общайся голосом со своим персональным AI-тьютором! 🧠\n"
+    "Выбирай режим и начнем совершенствоваться в языке! \n\n"
+    "Полный доступ к всему функционалу всего за <b>399 руб./мес</b>. Дешевле билета в кино, но пользы на всю жизнь 🍿😎"
 )
 
 @router.message(Command("start"))
@@ -22,7 +22,7 @@ async def start_handler(message: Message):
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(text="🎤 Speaking", callback_data="start_speaking")]
     ])
-    await message.answer(WELCOME_TEXT, reply_markup=keyboard)
+    await message.answer(WELCOME_TEXT, reply_markup=keyboard, parse_mode="HTML")
 
 @router.callback_query(lambda c: c.data == "start_speaking")
 async def start_speaking_callback(callback: CallbackQuery):
@@ -30,11 +30,12 @@ async def start_speaking_callback(callback: CallbackQuery):
     set_user_state(user_id, {"mode": "speaking_active", "history": []})
     await callback.answer()
     await callback.message.answer(
-        "🎤 Голосовой режим активирован!\n\n"
+        "🎤 <b>Голосовой режим активирован!</b>\n\n"
         "Просто отправь голосовое сообщение, и я помогу с произношением и грамматикой.\n"
         "После моего ответа под аудио появится кнопка «Текст» – нажми её, чтобы увидеть текст и перевести.\n"
         "Когда закончишь, можешь запросить фидбек.\n\n"
-        "Говори развёрнуто – так эффективнее для изучения! 🗣️"
+        "<i>Говори развёрнуто – так эффективнее для изучения! 🗣️</i>",
+        parse_mode="HTML"
     )
     # Отправляем приветственное голосовое с кнопкой "Текст"
     voice_greeting = "Hello! I am your AI English teacher. Send a voice message and we'll start practicing. Speak clearly!"
@@ -44,7 +45,7 @@ async def start_speaking_callback(callback: CallbackQuery):
     with open(voice_path, 'rb') as f:
         audio_bytes = f.read()
     os.unlink(voice_path)
-    
+
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(text="📝 Текст", callback_data=f"show_greeting_{user_id}")]
     ])
@@ -53,9 +54,7 @@ async def start_speaking_callback(callback: CallbackQuery):
         caption="",
         reply_markup=keyboard
     )
-    # Сохраним ID аудио и текст для последующего редактирования
-    # Используем глобальный словарь, но для простоты сохраним в data.users
-    user_state = set_user_state(user_id, {})
+    user_state = get_user_state(user_id)
     user_state["greeting_audio_id"] = sent_audio.message_id
     user_state["greeting_text"] = voice_greeting
     set_user_state(user_id, user_state)
@@ -63,7 +62,7 @@ async def start_speaking_callback(callback: CallbackQuery):
 @router.callback_query(lambda c: c.data.startswith("show_greeting_"))
 async def show_greeting_text(callback: CallbackQuery):
     user_id = int(callback.data.split("_")[2])
-    user_state = get_user_state(user_id)  # нужно импортировать get_user_state
+    user_state = get_user_state(user_id)
     if "greeting_text" not in user_state:
         await callback.answer("No text available", show_alert=True)
         return
@@ -87,8 +86,6 @@ async def translate_greeting(callback: CallbackQuery):
     if not original:
         await callback.answer("No text", show_alert=True)
         return
-    # Переводим через DeepSeek
-    from services.deepseek import chat
     translation = chat(f"Translate to Russian: {original}", max_tokens=200, temperature=0.3)
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
         [
