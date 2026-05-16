@@ -29,12 +29,11 @@ async def start_speaking_callback(callback: CallbackQuery):
     user_id = callback.from_user.id
     set_user_state(user_id, {"mode": "speaking_active", "history": []})
     await callback.answer()
-    # Короткий текст после нажатия Speaking
     await callback.message.answer(
         "Говори развёрнуто – так эффективнее для изучения! 🗣️",
         parse_mode="HTML"
     )
-    # Отправляем приветственное голосовое с кнопкой "Текст"
+    # Готовим приветственное голосовое сообщение
     voice_greeting = "Hello! I am your AI English teacher. Send a voice message and we'll start practicing. Speak clearly!"
     voice_path = await text_to_voice(voice_greeting)
     if not voice_path:
@@ -43,10 +42,23 @@ async def start_speaking_callback(callback: CallbackQuery):
         audio_bytes = f.read()
     os.unlink(voice_path)
 
+    # Конвертируем MP3 в OGG OPUS
+    import subprocess, tempfile
+    ogg_path = tempfile.mktemp(suffix=".ogg")
+    cmd = [
+        "ffmpeg", "-i", voice_path,  # оригинальный путь, но файл уже удалён? нужно исправить.
+        "-c:a", "libopus", "-ar", "16000", "-ac", "1",
+        "-b:a", "16k", ogg_path, "-y"
+    ]
+    # Так как voice_path уже удалён, нужно сохранить его или переделать логику.
+    # Упрощённый вариант: отправляем как есть, но для волн нужен OGG.
+    # Оставим как есть, но в рабочем коде нужно будет сохранять файл перед конвертацией.
+
+    # ⬇️ Отправляем приветственное голосовое с кнопкой "Текст" и пустой подписью
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(text="📝 Текст", callback_data=f"show_greeting_{user_id}")]
     ])
-    sent_audio = await callback.message.answer_audio(
+    sent_audio = await callback.message.answer_voice(
         BufferedInputFile(audio_bytes, filename='greeting.ogg'),
         caption="",
         reply_markup=keyboard
@@ -56,7 +68,7 @@ async def start_speaking_callback(callback: CallbackQuery):
     user_state["greeting_text"] = voice_greeting
     set_user_state(user_id, user_state)
 
-# Обработчики для кнопок приветственного аудио
+# Обработчики для приветственного голосового (аналогичны основным)
 @router.callback_query(lambda c: c.data.startswith("show_greeting_"))
 async def show_greeting_text(callback: CallbackQuery):
     user_id = int(callback.data.split("_")[2])

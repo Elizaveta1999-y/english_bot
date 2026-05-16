@@ -17,6 +17,7 @@ router = Router()
 last_bot_response = {}
 
 def convert_to_opus(mp3_path: str) -> str:
+    """Конвертирует MP3 в OGG (кодек OPUS) для правильного отображения Telegram как голосового сообщения."""
     ogg_path = tempfile.mktemp(suffix=".ogg")
     cmd = [
         "ffmpeg", "-i", mp3_path,
@@ -74,6 +75,7 @@ async def handle_voice(message: Message):
     set_user_state(user_id, user_state)
 
 async def _send_voice_message(message: Message, text: str, user_id: int):
+    """Генерирует аудио (OGG OPUS) и отправляет как голосовое сообщение с подписью и кнопкой."""
     # Показываем индикатор "записывает голосовое сообщение"
     await message.bot.send_chat_action(chat_id=message.chat.id, action="record_voice")
 
@@ -88,20 +90,24 @@ async def _send_voice_message(message: Message, text: str, user_id: int):
     os.unlink(mp3_path)
     os.unlink(ogg_path)
 
+    # Кнопка "Текст" (показывает оригинал)
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(text="📝 Текст", callback_data=f"show_text_{user_id}")]
     ])
-    sent = await message.answer_audio(
+
+    # ⬇️ Изменение здесь: отправляем как голосовое сообщение с caption
+    sent = await message.answer_voice(
         BufferedInputFile(audio_bytes, filename='voice.ogg'),
-        caption="",
+        caption="",  # Отправляем с пустой подписью, которую потом будем менять
         reply_markup=keyboard
     )
     last_bot_response[user_id] = {
         "text": text,
         "translation": None,
-        "audio_message_id": sent.message_id
+        "voice_message_id": sent.message_id  # Сохраняем ID сообщения
     }
 
+# --- Обработчики inline-кнопок (без изменений) ---
 @router.callback_query(lambda c: c.data.startswith("show_text_"))
 async def show_text(callback: CallbackQuery):
     user_id = int(callback.data.split("_")[2])
@@ -119,7 +125,7 @@ async def show_text(callback: CallbackQuery):
     ])
     await callback.bot.edit_message_caption(
         chat_id=callback.message.chat.id,
-        message_id=data["audio_message_id"],
+        message_id=data["voice_message_id"],
         caption=f"📝 {original}",
         reply_markup=keyboard
     )
@@ -151,7 +157,7 @@ async def translate_caption(callback: CallbackQuery):
     ])
     await callback.bot.edit_message_caption(
         chat_id=callback.message.chat.id,
-        message_id=data["audio_message_id"],
+        message_id=data["voice_message_id"],
         caption=f"🇷🇺 {translation}",
         reply_markup=keyboard
     )
@@ -173,7 +179,7 @@ async def revert_to_original(callback: CallbackQuery):
     ])
     await callback.bot.edit_message_caption(
         chat_id=callback.message.chat.id,
-        message_id=data["audio_message_id"],
+        message_id=data["voice_message_id"],
         caption=f"📝 {data['text']}",
         reply_markup=keyboard
     )
@@ -183,7 +189,7 @@ async def revert_to_original(callback: CallbackQuery):
 async def hide_message(callback: CallbackQuery):
     user_id = int(callback.data.split("_")[1])
     data = last_bot_response.get(user_id)
-    if not data or not data.get("audio_message_id"):
+    if not data or not data.get("voice_message_id"):
         await callback.answer("No message to hide.", show_alert=True)
         return
 
@@ -192,7 +198,7 @@ async def hide_message(callback: CallbackQuery):
     ])
     await callback.bot.edit_message_caption(
         chat_id=callback.message.chat.id,
-        message_id=data["audio_message_id"],
+        message_id=data["voice_message_id"],
         caption="",
         reply_markup=keyboard
     )
