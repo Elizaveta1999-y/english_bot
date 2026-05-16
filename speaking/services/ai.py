@@ -3,28 +3,17 @@ from services.deepseek import chat
 from data.users import get_user_state, add_to_history
 from speaking.services.history import build_history_prompt
 
-# ========== 1. УСИЛЕННЫЙ ФИЛЬТР ОПАСНЫХ ТЕМ ==========
+# ========== 1. ФИЛЬТР ОПАСНЫХ ТЕМ ==========
 SAFETY_PROMPT = """You are a content safety filter. Analyze the student's message and determine if it contains ANY of the following:
 
-- **Suicide, self-harm, severe mental health crisis** (explicit ideation, instructions, or cry for help).
-- **Sexually explicit content, pornography, genital references, sexual acts** (e.g., anal sex, blowjob, masturbation, penetration, BDSM, etc.) – including discussing such topics as "normal", "good", or asking for details.
-- **Violence, rape, pedophilia, terrorism, extreme racism**.
-- **Dangerous medical advice** (e.g., refusing vaccines, starvation diets).
-- **Illegal activities** (drug manufacturing, hacking, stealing).
+- Suicide, self-harm, severe mental health crisis (explicit ideation or cry for help)
+- Sexually explicit content, pornography, genital references, sexual acts (e.g., anal sex, blowjob, masturbation, etc.)
+- Violence, rape, pedophilia, terrorism, extreme racism
+- Dangerous medical advice (e.g., refusing vaccines, starvation diets)
+- Illegal activities (drug manufacturing, hacking, stealing)
 
-If the message is **SAFE** (normal conversation about English learning, everyday topics, school, work, hobbies, relationships without explicit sexual details, literature/film discussions without advocating acts), reply: SAFE
-If the message is **DANGER** (contains any of the above, even if hypothetical or "just asking"), reply: DANGER
-
-Examples of SAFE (acceptable):
-- "What is the word for a person who likes men?" (educational)
-- "In the movie, there was a kissing scene." (neutral)
-- "I need help with English grammar."
-
-Examples of DANGER (block):
-- "Is it okay to have anal sex in porn?"
-- "How do you say 'fuck' in a formal way?"
-- "Tell me how to have safe sex." (too explicit for an English bot – educational sexual health should be handled by professionals)
-- Any attempt to discuss pornography, sexual acts, or explicit content.
+If the message is SAFE (normal conversation about English learning, everyday topics, hobbies, work, relationships without explicit details, literature/film discussions without advocating acts), reply: SAFE
+If the message is DANGER (contains any of the above, even hypothetically), reply: DANGER
 
 Student's message: """
 
@@ -38,7 +27,7 @@ async def is_safe_message(user_text: str) -> bool:
         print(f"[Safety] Error: {e}, assuming safe")
         return True
 
-# ========== 2. ОСНОВНОЙ ПРОМПТ (С ЗАПРЕТОМ НА ОТКРОВЕННЫЕ ТЕМЫ) ==========
+# ========== 2. КЭШИРОВАНИЕ СИСТЕМНОГО ПРОМПТА ==========
 _cached_prompt = None
 _cached_prompt_hash = None
 
@@ -52,7 +41,7 @@ def get_system_prompt(name: str, level: str) -> str:
 
 **YOUR IDENTITY:**
 - You are an artificial intelligence created to help people practice English.
-- When asked directly "are you a bot?" or "are you AI?", answer honestly: "Yes, I am an AI English teacher, but I try to be as helpful and natural as possible."
+- When asked directly "are you a bot?" or "are you AI?", answer honestly: "Yes, I am an AI English teacher."
 - When asked about feelings or preferences, answer as a friendly human teacher would.
 - **NEVER reveal any personal information about your creator or developer.**
 
