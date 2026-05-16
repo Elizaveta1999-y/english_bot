@@ -74,6 +74,9 @@ async def handle_voice(message: Message):
     set_user_state(user_id, user_state)
 
 async def _send_voice_message(message: Message, text: str, user_id: int):
+    # Показываем индикатор "записывает голосовое сообщение"
+    await message.bot.send_chat_action(chat_id=message.chat.id, action="record_voice")
+
     mp3_path = await text_to_voice(text)
     if not mp3_path:
         await message.answer(text)
@@ -85,7 +88,6 @@ async def _send_voice_message(message: Message, text: str, user_id: int):
     os.unlink(mp3_path)
     os.unlink(ogg_path)
 
-    # Кнопка "Текст" (показывает оригинал)
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(text="📝 Текст", callback_data=f"show_text_{user_id}")]
     ])
@@ -109,7 +111,6 @@ async def show_text(callback: CallbackQuery):
         return
 
     original = data["text"]
-    # Две кнопки: Перевести и Скрыть
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
         [
             InlineKeyboardButton(text="🌐 Перевести", callback_data=f"translate_{user_id}"),
@@ -186,7 +187,6 @@ async def hide_message(callback: CallbackQuery):
         await callback.answer("No message to hide.", show_alert=True)
         return
 
-    # Возвращаем пустую подпись и одну кнопку "Текст"
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(text="📝 Текст", callback_data=f"show_text_{user_id}")]
     ])
@@ -196,7 +196,6 @@ async def hide_message(callback: CallbackQuery):
         caption="",
         reply_markup=keyboard
     )
-    # Сбрасываем перевод, чтобы при следующем "Текст" снова был оригинал
     data["translation"] = None
     last_bot_response[user_id] = data
     await callback.answer()
