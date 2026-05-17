@@ -3,7 +3,6 @@ from services.deepseek import chat
 from data.users import get_user_state, add_to_history
 from speaking.services.history import build_history_prompt
 
-# ========== 1. ФИЛЬТР ОПАСНЫХ ТЕМ ==========
 SAFETY_PROMPT = """You are a content safety filter. Analyze the student's message and determine if it contains ANY of the following:
 
 - Suicide, self-harm, severe mental health crisis (explicit ideation or cry for help)
@@ -12,8 +11,8 @@ SAFETY_PROMPT = """You are a content safety filter. Analyze the student's messag
 - Dangerous medical advice (e.g., refusing vaccines, starvation diets)
 - Illegal activities (drug manufacturing, hacking, stealing)
 
-If the message is SAFE (normal conversation about English learning, everyday topics, hobbies, work, relationships without explicit details, literature/film discussions without advocating acts), reply: SAFE
-If the message is DANGER (contains any of the above, even hypothetically), reply: DANGER
+If SAFE, reply: SAFE
+If DANGER, reply: DANGER
 
 Student's message: """
 
@@ -21,13 +20,12 @@ async def is_safe_message(user_text: str) -> bool:
     try:
         safety_check = chat(SAFETY_PROMPT + user_text, max_tokens=10, temperature=0)
         safety_check = safety_check.strip().upper()
-        print(f"[Safety] Check result: {safety_check} for text: {user_text[:80]}...")
+        print(f"[Safety] Check result: {safety_check}")
         return "DANGER" not in safety_check
     except Exception as e:
-        print(f"[Safety] Error: {e}, assuming safe")
+        print(f"[Safety] Error: {e}")
         return True
 
-# ========== 2. КЭШИРОВАНИЕ СИСТЕМНОГО ПРОМПТА ==========
 _cached_prompt = None
 _cached_prompt_hash = None
 
@@ -59,12 +57,11 @@ def get_system_prompt(name: str, level: str) -> str:
 
 Example:
 Student: "I like read book"
-Teacher: "Mistake: 'I like read' → Correction: 'I like reading' → Explanation: After 'like', use -ing form. I love reading too! What kind of books do you enjoy?""
+Teacher: "Mistake: 'I like read' → Correction: 'I like reading' → Explanation: After 'like', use -ing form. I love reading too! What kind of books do you enjoy?"""
 
     _cached_prompt_hash = prompt_hash
     return _cached_prompt
 
-# ========== 3. ОСНОВНАЯ ФУНКЦИЯ ==========
 async def process_voice_message(user_id: int, user_text: str) -> str:
     user_state = get_user_state(user_id)
     name = user_state.get("name", "Student")
