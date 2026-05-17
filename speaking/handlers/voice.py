@@ -203,40 +203,29 @@ async def hide_message(callback: CallbackQuery):
 # --- Обработчики REPLY-кнопок (клавиатура внизу) ---
 @router.message(F.text == "📊 Я всё! Фидбек")
 async def feedback_button(message: Message):
+    # Показываем индикатор "печатает"
+    await message.bot.send_chat_action(chat_id=message.chat.id, action="typing")
+
     user_id = message.from_user.id
     user_state = get_user_state(user_id)
     history = user_state.get("history", [])
     if len(history) < 2:
         await message.answer("Вы ещё не общались. Отправьте несколько голосовых сообщений.")
         return
-    conversation = "\n".join([f"{'Student' if h['role']=='user' else 'Teacher'}: {h['text']}" for h in history[-10:]])
-    prompt = f"""You are an experienced American English teacher. Analyze the following conversation and provide feedback **in Russian language**.
 
-Conversation:
-{conversation}
-
-Please provide a response in Russian, following this format (text only, no voice):
-
-1. **Ошибки и исправления**: Перечислите основные ошибки ученика. Для каждой дайте исправление и краткое правило.
-
-2. **Рекомендации по улучшению**: 2-3 практических совета.
-
-3. **Словарик для изучения**: 5-8 полезных слов/фраз из диалога. Для каждого: оригинал, перевод, пример предложения.
-
-Пишите дружелюбно, поддерживающе."""
-    feedback = chat(prompt, max_tokens=1200, temperature=0.5)
-    await message.answer(f"📊 Ваш фидбек:\n\n{feedback}")
+    # Формируем короткий фидбек через отдельный вызов chat (промпт в ai.py)
+    from speaking.services.ai import generate_feedback
+    feedback = await generate_feedback(history)
+    await message.answer(feedback, parse_mode="HTML")
 
 @router.message(F.text == "🏠 Главное меню")
 async def main_menu_button(message: Message):
     user_id = message.from_user.id
-    set_user_state(user_id, {"mode": None, "history": []})  # сбрасываем режим
-    # Убираем reply-клавиатуру
+    set_user_state(user_id, {"mode": None, "history": []})
     await message.answer(
         "🔚 Голосовой режим завершён. Чтобы начать снова, нажмите /start и выберите Speaking.",
         reply_markup=ReplyKeyboardRemove()
     )
-    # Можно также показать главное меню (инлайн-кнопку Speaking) – но проще оставить так
 
 @router.message(F.text)
 async def text_fallback(message: Message):
