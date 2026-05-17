@@ -12,14 +12,6 @@ def set_user_name(user_id: int, name: str):
         users[user_id] = {}
     users[user_id]["name"] = name
 
-def set_user_level(user_id: int, level: str):
-    if user_id not in users:
-        users[user_id] = {}
-    users[user_id]["level"] = level
-
-def get_user_level(user_id: int) -> str:
-    return users.get(user_id, {}).get("level", None)
-
 def set_user_mode(user_id: int, mode: str):
     if user_id not in users:
         users[user_id] = {}

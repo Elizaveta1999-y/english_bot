@@ -2,7 +2,7 @@ import os
 from aiogram import Router, F
 from aiogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery, BufferedInputFile, ReplyKeyboardMarkup, KeyboardButton
 from aiogram.filters import Command
-from data.users import set_user_state, set_user_level, get_user_level
+from data.users import set_user_state
 from speaking.services.tts import text_to_voice
 
 router = Router()
@@ -26,52 +26,21 @@ async def start_handler(message: Message):
 @router.callback_query(lambda c: c.data == "start_speaking")
 async def start_speaking_callback(callback: CallbackQuery):
     user_id = callback.from_user.id
-    existing_level = get_user_level(user_id)
-    if existing_level:
-        await activate_speaking_mode(callback.message, user_id, existing_level)
-    else:
-        level_keyboard = InlineKeyboardMarkup(inline_keyboard=[
-            [
-                InlineKeyboardButton(text="A0 (Beginner)", callback_data="level_A0"),
-                InlineKeyboardButton(text="A1 (Elementary)", callback_data="level_A1"),
-                InlineKeyboardButton(text="A2 (Pre‑Intermediate)", callback_data="level_A2")
-            ],
-            [
-                InlineKeyboardButton(text="B1 (Intermediate)", callback_data="level_B1"),
-                InlineKeyboardButton(text="B2 (Upper‑Intermediate)", callback_data="level_B2"),
-                InlineKeyboardButton(text="C1 (Advanced)", callback_data="level_C1")
-            ]
-        ])
-        await callback.message.answer(
-            "🗣️ <b>Выберите ваш уровень английского</b>\n\n"
-            "Бот будет подстраивать сложность речи под ваш выбор.\n"
-            "Уровень можно изменить в любой момент в настройках.",
-            reply_markup=level_keyboard,
-            parse_mode="HTML"
-        )
-        await callback.answer()
+    await activate_speaking_mode(callback.message, user_id)
 
-@router.callback_query(lambda c: c.data.startswith("level_"))
-async def level_chosen(callback: CallbackQuery):
-    user_id = callback.from_user.id
-    level_code = callback.data.split("_")[1]
-    set_user_level(user_id, level_code)
-    await callback.answer(f"Выбран уровень {level_code}")
-    await activate_speaking_mode(callback.message, user_id, level_code)
-
-async def activate_speaking_mode(message: Message, user_id: int, level: str):
+async def activate_speaking_mode(message: Message, user_id: int):
     """Активирует голосовой режим: очищает историю, отправляет приветственное аудио и показывает reply-клавиатуру."""
     set_user_state(user_id, {"mode": "speaking_active", "history": []})
-    # Reply-клавиатура с кнопками (две + кнопка выхода)
+    # Reply-клавиатура с двумя кнопками
     keyboard = ReplyKeyboardMarkup(
         keyboard=[
-            [KeyboardButton(text="📊 Я всё! Фидбек"), KeyboardButton(text="⚙️ Сменить уровень")],
-            [KeyboardButton(text="🔙 Завершить урок")]
+            [KeyboardButton(text="📊 Я всё! Фидбек")],
+            [KeyboardButton(text="🏠 Главное меню")]
         ],
         resize_keyboard=True
     )
     await message.answer(
-        f"🎤 <b>Голосовой режим активирован!</b> (Уровень: {level})\n\n"
+        f"🎤 <b>Голосовой режим активирован!</b>\n\n"
         "Говори развёрнуто – так эффективнее для изучения! 🗣️",
         reply_markup=keyboard,
         parse_mode="HTML"
@@ -98,4 +67,4 @@ async def activate_speaking_mode(message: Message, user_id: int, level: str):
     set_user_state(user_id, user_state)
 
 # Обработчики для приветственного аудио (show_greeting_, translate_greeting_, hide_greeting_)
-# они должны быть здесь, но для краткости я не копирую (они уже были в предыдущей версии)
+# они уже были в предыдущей версии – их нужно оставить (не удалять)
