@@ -7,7 +7,7 @@ import tempfile
 from aiogram import Router, F
 from aiogram.types import Message, BufferedInputFile, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery, ReplyKeyboardMarkup, KeyboardButton, ReplyKeyboardRemove
 from speaking.services.stt import voice_to_text
-from speaking.services.ai import process_voice_message
+from speaking.services.ai import process_voice_message, get_short_feedback
 from speaking.services.tts import text_to_voice
 from data.users import set_user_mode, get_user_state, set_user_state, set_user_name
 from services.deepseek import chat
@@ -101,7 +101,6 @@ async def _send_voice_message(message: Message, text: str, user_id: int):
         "audio_message_id": sent.message_id
     }
 
-# --- Обработчики инлайн-кнопок (Текст, Перевести, Оригинал, Скрыть) ---
 @router.callback_query(lambda c: c.data.startswith("show_text_"))
 async def show_text(callback: CallbackQuery):
     user_id = int(callback.data.split("_")[2])
@@ -111,6 +110,11 @@ async def show_text(callback: CallbackQuery):
         return
 
     original = data["text"]
+    current_caption = callback.message.caption or ""
+    if current_caption == f"📝 {original}":
+        await callback.answer("Text already shown", show_alert=False)
+        return
+
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
         [
             InlineKeyboardButton(text="🌐 Перевести", callback_data=f"translate_{user_id}"),
@@ -143,6 +147,11 @@ async def translate_caption(callback: CallbackQuery):
         data["translation"] = translation
         last_bot_response[user_id] = data
 
+    current_caption = callback.message.caption or ""
+    if current_caption == f"🇷🇺 {translation}":
+        await callback.answer("Translation already shown", show_alert=False)
+        return
+
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
         [
             InlineKeyboardButton(text="🇺🇸 Оригинал", callback_data=f"original_{user_id}"),
@@ -163,6 +172,11 @@ async def revert_to_original(callback: CallbackQuery):
     data = last_bot_response.get(user_id)
     if not data or not data.get("text"):
         await callback.answer("No original text.", show_alert=True)
+        return
+
+    current_caption = callback.message.caption or ""
+    if current_caption == f"📝 {data['text']}":
+        await callback.answer("Already showing original", show_alert=False)
         return
 
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
@@ -187,6 +201,11 @@ async def hide_message(callback: CallbackQuery):
         await callback.answer("No message to hide.", show_alert=True)
         return
 
+    current_caption = callback.message.caption or ""
+    if current_caption == "":
+        await callback.answer("Already hidden", show_alert=False)
+        return
+
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(text="📝 Текст", callback_data=f"show_text_{user_id}")]
     ])
@@ -200,22 +219,19 @@ async def hide_message(callback: CallbackQuery):
     last_bot_response[user_id] = data
     await callback.answer()
 
-# --- Обработчики REPLY-кнопок (клавиатура внизу) ---
 @router.message(F.text == "📊 Я всё! Фидбек")
 async def feedback_button(message: Message):
-    # Показываем индикатор "печатает"
+    # Индикатор "печатает"
     await message.bot.send_chat_action(chat_id=message.chat.id, action="typing")
-
     user_id = message.from_user.id
     user_state = get_user_state(user_id)
     history = user_state.get("history", [])
     if len(history) < 2:
         await message.answer("Вы ещё не общались. Отправьте несколько голосовых сообщений.")
         return
-
-    # Формируем короткий фидбек через отдельный вызов chat (промпт в ai.py)
-    from speaking.services.ai import generate_feedback
-    feedback = await generate_feedback(history)
+    conversation = "\n".join([f"{'Student' if h['role']=='user' else 'Teacher'}: {h['text']}" for h in history[-10:]])
+    # Используем функцию из ai.py
+    feedback = await get_short_feedback(conversation)
     await message.answer(feedback, parse_mode="HTML")
 
 @router.message(F.text == "🏠 Главное меню")
