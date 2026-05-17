@@ -5,7 +5,7 @@ import logging
 import subprocess
 import tempfile
 from aiogram import Router, F
-from aiogram.types import Message, BufferedInputFile, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
+from aiogram.types import Message, BufferedInputFile, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery, ReplyKeyboardRemove
 from speaking.services.stt import voice_to_text
 from speaking.services.ai import process_voice_message
 from speaking.services.tts import text_to_voice
@@ -87,15 +87,14 @@ async def _send_voice_message(message: Message, text: str, user_id: int):
     os.unlink(mp3_path)
     os.unlink(ogg_path)
 
-    # Клавиатура с двумя кнопками: "Текст" и "Настройки"
-    keyboard = InlineKeyboardMarkup(inline_keyboard=[
-        [InlineKeyboardButton(text="📝 Текст", callback_data=f"show_text_{user_id}")],
-        [InlineKeyboardButton(text="⚙️ Настройки", callback_data=f"settings_{user_id}")]
+    # Инлайн-клавиатура для управления текстом под аудио
+    inline_keyboard = InlineKeyboardMarkup(inline_keyboard=[
+        [InlineKeyboardButton(text="📝 Текст", callback_data=f"show_text_{user_id}")]
     ])
     sent = await message.answer_audio(
         BufferedInputFile(audio_bytes, filename='voice.ogg'),
         caption="",
-        reply_markup=keyboard
+        reply_markup=inline_keyboard
     )
     last_bot_response[user_id] = {
         "text": text,
@@ -103,6 +102,7 @@ async def _send_voice_message(message: Message, text: str, user_id: int):
         "audio_message_id": sent.message_id
     }
 
+# --- Обработчики инлайн-кнопок (Текст, Перевести, Оригинал, Скрыть) ---
 @router.callback_query(lambda c: c.data.startswith("show_text_"))
 async def show_text(callback: CallbackQuery):
     user_id = int(callback.data.split("_")[2])
@@ -201,9 +201,37 @@ async def hide_message(callback: CallbackQuery):
     last_bot_response[user_id] = data
     await callback.answer()
 
-@router.callback_query(lambda c: c.data.startswith("settings_"))
-async def open_settings(callback: CallbackQuery):
-    user_id = int(callback.data.split("_")[1])
+# --- Обработчики REPLY-кнопок (клавиатура внизу) ---
+@router.message(F.text == "📊 Я всё! Фидбек")
+async def feedback_button(message: Message):
+    user_id = message.from_user.id
+    user_state = get_user_state(user_id)
+    history = user_state.get("history", [])
+    if len(history) < 2:
+        await message.answer("Вы ещё не общались. Отправьте несколько голосовых сообщений.")
+        return
+    # Сборка диалога для анализа
+    conversation = "\n".join([f"{'Student' if h['role']=='user' else 'Teacher'}: {h['text']}" for h in history[-10:]])
+    prompt = f"""You are an experienced American English teacher. Analyze the following conversation and provide feedback **in Russian language**.
+
+Conversation:
+{conversation}
+
+Please provide a response in Russian, following this format (text only, no voice):
+
+1. **Ошибки и исправления**: Перечислите основные ошибки ученика. Для каждой дайте исправление и краткое правило.
+
+2. **Рекомендации по улучшению**: 2-3 практических совета.
+
+3. **Словарик для изучения**: 5-8 полезных слов/фраз из диалога. Для каждого: оригинал, перевод, пример предложения.
+
+Пишите дружелюбно, поддерживающе."""
+    feedback = chat(prompt, max_tokens=1200, temperature=0.5)
+    await message.answer(f"📊 Ваш фидбек:\n\n{feedback}")
+
+@router.message(F.text == "⚙️ Сменить уровень")
+async def change_level_button(message: Message):
+    user_id = message.from_user.id
     level_keyboard = InlineKeyboardMarkup(inline_keyboard=[
         [
             InlineKeyboardButton(text="A0", callback_data=f"change_level_{user_id}_A0"),
@@ -216,24 +244,42 @@ async def open_settings(callback: CallbackQuery):
             InlineKeyboardButton(text="C1", callback_data=f"change_level_{user_id}_C1")
         ]
     ])
-    await callback.message.answer(
+    await message.answer(
         "🔄 <b>Выберите новый уровень английского</b>\n\n"
         "Текущий уровень можно изменить в любой момент.",
         reply_markup=level_keyboard,
         parse_mode="HTML"
     )
-    await callback.answer()
 
 @router.callback_query(lambda c: c.data.startswith("change_level_"))
-async def change_level(callback: CallbackQuery):
+async def change_level_callback(callback: CallbackQuery):
     parts = callback.data.split("_")
     user_id = int(parts[2])
     new_level = parts[3]
     set_user_level(user_id, new_level)
     await callback.answer(f"Уровень изменён на {new_level}")
+    # Обновляем reply-клавиатуру (оставляем ту же)
+    keyboard = ReplyKeyboardMarkup(
+        keyboard=[
+            [KeyboardButton(text="📊 Я всё! Фидбек"), KeyboardButton(text="⚙️ Сменить уровень")],
+            [KeyboardButton(text="🔙 Завершить урок")]
+        ],
+        resize_keyboard=True
+    )
     await callback.message.answer(
-        f"✅ Уровень изменён на <b>{new_level}</b>. Теперь я буду подстраивать сложность речи под этот уровень.",
+        f"✅ Уровень изменён на <b>{new_level}</b>. Теперь я буду подстраивать сложность речи.",
+        reply_markup=keyboard,
         parse_mode="HTML"
+    )
+
+@router.message(F.text == "🔙 Завершить урок")
+async def finish_lesson(message: Message):
+    user_id = message.from_user.id
+    set_user_state(user_id, {"mode": None, "history": []})  # сбрасываем режим
+    # Убираем reply-клавиатуру
+    await message.answer(
+        "🔚 Голосовой режим завершён. Чтобы начать снова, нажмите /start и выберите Speaking.",
+        reply_markup=ReplyKeyboardRemove()
     )
 
 @router.message(F.text)
@@ -242,8 +288,8 @@ async def text_fallback(message: Message):
     user_state = get_user_state(user_id)
     if user_state.get("mode") == "speaking_active":
         await message.answer(
-            "📝 Please use voice messages so I can help with pronunciation 🎤\n"
-            "Just tap the microphone and speak in English."
+            "📝 Пожалуйста, используйте голосовые сообщения для практики произношения 🎤\n"
+            "Просто нажмите на значок микрофона и говорите по-английски."
         )
     else:
-        await message.answer("Press '🎤 Speaking' button to start a voice lesson.")
+        await message.answer("Нажмите кнопку '🎤 Speaking' в главном меню, чтобы начать урок.")

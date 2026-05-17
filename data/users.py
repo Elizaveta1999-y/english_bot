@@ -18,7 +18,7 @@ def set_user_level(user_id: int, level: str):
     users[user_id]["level"] = level
 
 def get_user_level(user_id: int) -> str:
-    return users.get(user_id, {}).get("level", None)  # None если ещё не выбран
+    return users.get(user_id, {}).get("level", None)
 
 def set_user_mode(user_id: int, mode: str):
     if user_id not in users:
