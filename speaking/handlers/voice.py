@@ -9,7 +9,7 @@ from aiogram.types import Message, BufferedInputFile, InlineKeyboardMarkup, Inli
 from speaking.services.stt import voice_to_text
 from speaking.services.ai import process_voice_message
 from speaking.services.tts import text_to_voice
-from data.users import set_user_mode, get_user_state, set_user_state, set_user_name
+from data.users import set_user_mode, get_user_state, set_user_state, set_user_name, set_user_level, get_user_level
 from services.deepseek import chat
 
 logger = logging.getLogger(__name__)
@@ -17,7 +17,6 @@ router = Router()
 last_bot_response = {}
 
 def convert_to_opus(mp3_path: str) -> str:
-    """Конвертирует MP3 в OGG (кодек OPUS) для правильного отображения Telegram как голосового сообщения."""
     ogg_path = tempfile.mktemp(suffix=".ogg")
     cmd = [
         "ffmpeg", "-i", mp3_path,
@@ -75,8 +74,6 @@ async def handle_voice(message: Message):
     set_user_state(user_id, user_state)
 
 async def _send_voice_message(message: Message, text: str, user_id: int):
-    """Генерирует аудио (OGG OPUS) и отправляет как голосовое сообщение с подписью и кнопкой."""
-    # Показываем индикатор "записывает голосовое сообщение"
     await message.bot.send_chat_action(chat_id=message.chat.id, action="record_voice")
 
     mp3_path = await text_to_voice(text)
@@ -90,24 +87,22 @@ async def _send_voice_message(message: Message, text: str, user_id: int):
     os.unlink(mp3_path)
     os.unlink(ogg_path)
 
-    # Кнопка "Текст" (показывает оригинал)
+    # Клавиатура с двумя кнопками: "Текст" и "Настройки"
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
-        [InlineKeyboardButton(text="📝 Текст", callback_data=f"show_text_{user_id}")]
+        [InlineKeyboardButton(text="📝 Текст", callback_data=f"show_text_{user_id}")],
+        [InlineKeyboardButton(text="⚙️ Настройки", callback_data=f"settings_{user_id}")]
     ])
-
-    # ⬇️ Изменение здесь: отправляем как голосовое сообщение с caption
-    sent = await message.answer_voice(
+    sent = await message.answer_audio(
         BufferedInputFile(audio_bytes, filename='voice.ogg'),
-        caption="",  # Отправляем с пустой подписью, которую потом будем менять
+        caption="",
         reply_markup=keyboard
     )
     last_bot_response[user_id] = {
         "text": text,
         "translation": None,
-        "voice_message_id": sent.message_id  # Сохраняем ID сообщения
+        "audio_message_id": sent.message_id
     }
 
-# --- Обработчики inline-кнопок (без изменений) ---
 @router.callback_query(lambda c: c.data.startswith("show_text_"))
 async def show_text(callback: CallbackQuery):
     user_id = int(callback.data.split("_")[2])
@@ -125,7 +120,7 @@ async def show_text(callback: CallbackQuery):
     ])
     await callback.bot.edit_message_caption(
         chat_id=callback.message.chat.id,
-        message_id=data["voice_message_id"],
+        message_id=data["audio_message_id"],
         caption=f"📝 {original}",
         reply_markup=keyboard
     )
@@ -157,7 +152,7 @@ async def translate_caption(callback: CallbackQuery):
     ])
     await callback.bot.edit_message_caption(
         chat_id=callback.message.chat.id,
-        message_id=data["voice_message_id"],
+        message_id=data["audio_message_id"],
         caption=f"🇷🇺 {translation}",
         reply_markup=keyboard
     )
@@ -179,7 +174,7 @@ async def revert_to_original(callback: CallbackQuery):
     ])
     await callback.bot.edit_message_caption(
         chat_id=callback.message.chat.id,
-        message_id=data["voice_message_id"],
+        message_id=data["audio_message_id"],
         caption=f"📝 {data['text']}",
         reply_markup=keyboard
     )
@@ -189,7 +184,7 @@ async def revert_to_original(callback: CallbackQuery):
 async def hide_message(callback: CallbackQuery):
     user_id = int(callback.data.split("_")[1])
     data = last_bot_response.get(user_id)
-    if not data or not data.get("voice_message_id"):
+    if not data or not data.get("audio_message_id"):
         await callback.answer("No message to hide.", show_alert=True)
         return
 
@@ -198,13 +193,48 @@ async def hide_message(callback: CallbackQuery):
     ])
     await callback.bot.edit_message_caption(
         chat_id=callback.message.chat.id,
-        message_id=data["voice_message_id"],
+        message_id=data["audio_message_id"],
         caption="",
         reply_markup=keyboard
     )
     data["translation"] = None
     last_bot_response[user_id] = data
     await callback.answer()
+
+@router.callback_query(lambda c: c.data.startswith("settings_"))
+async def open_settings(callback: CallbackQuery):
+    user_id = int(callback.data.split("_")[1])
+    level_keyboard = InlineKeyboardMarkup(inline_keyboard=[
+        [
+            InlineKeyboardButton(text="A0", callback_data=f"change_level_{user_id}_A0"),
+            InlineKeyboardButton(text="A1", callback_data=f"change_level_{user_id}_A1"),
+            InlineKeyboardButton(text="A2", callback_data=f"change_level_{user_id}_A2")
+        ],
+        [
+            InlineKeyboardButton(text="B1", callback_data=f"change_level_{user_id}_B1"),
+            InlineKeyboardButton(text="B2", callback_data=f"change_level_{user_id}_B2"),
+            InlineKeyboardButton(text="C1", callback_data=f"change_level_{user_id}_C1")
+        ]
+    ])
+    await callback.message.answer(
+        "🔄 <b>Выберите новый уровень английского</b>\n\n"
+        "Текущий уровень можно изменить в любой момент.",
+        reply_markup=level_keyboard,
+        parse_mode="HTML"
+    )
+    await callback.answer()
+
+@router.callback_query(lambda c: c.data.startswith("change_level_"))
+async def change_level(callback: CallbackQuery):
+    parts = callback.data.split("_")
+    user_id = int(parts[2])
+    new_level = parts[3]
+    set_user_level(user_id, new_level)
+    await callback.answer(f"Уровень изменён на {new_level}")
+    await callback.message.answer(
+        f"✅ Уровень изменён на <b>{new_level}</b>. Теперь я буду подстраивать сложность речи под этот уровень.",
+        parse_mode="HTML"
+    )
 
 @router.message(F.text)
 async def text_fallback(message: Message):
