@@ -84,7 +84,7 @@ Conversation:
 
 Follow this format exactly (use emojis and bold text via HTML):
 
-<b>📝 Ошибки и исправления</b>
+"<b>📝 Ошибки и исправления</b>"
 - <i>Ошибка:</i> → <i>Исправление</i> (краткое правило в скобках)  (не более 3–4 пунктов)
 
 <b>💡 Рекомендации</b>
