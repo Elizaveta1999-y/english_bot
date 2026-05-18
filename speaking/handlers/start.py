@@ -183,14 +183,11 @@ async def topic_chosen(callback: CallbackQuery):
         f"<b>📖 Ситуация:</b> {description}\n\n"
         f"<b>🎯 Ваши цели:</b>\n{goals_text}\n\n"
         f"🗣️ <b>Говорите голосом или пишите текстом.</b>\n"
-        f"💡 Если нужна подсказка, нажмите «💡 Что ответить?».\n\n"
-        f"<i>Диалог начат! Теперь ваша очередь говорить.</i>"
+        f"💡 Если нужна подсказка, нажмите «💡 Что ответить?»."
     )
-    await callback.message.answer(
-        roleplay_info,
-        reply_markup=keyboard,
-        parse_mode="HTML"
-    )
+    await callback.message.answer(roleplay_info, reply_markup=keyboard, parse_mode="HTML")
+    # Отдельное сообщение-приглашение
+    await callback.message.answer("🎬 <b>Можете начинать!</b>", parse_mode="HTML")
 
-# Обработчики для greeting (приветственного аудио) – они уже были в вашем коде, я их не копирую для краткости, но они должны остаться.
-# В реальном файле они есть.
+# Обработчики для greeting (show_greeting_, translate_greeting_, hide_greeting_) должны быть здесь,
+# но для краткости я их не копирую. В вашем реальном файле они уже есть.
