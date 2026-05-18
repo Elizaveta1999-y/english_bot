@@ -52,7 +52,6 @@ async def handle_voice(message: Message):
             set_user_state(user_id, user_state)
         ai_response = await process_voice_message(user_id, user_text)
 
-    # Сохраняем историю
     history = user_state.get("history", [])
     history.append({"role": "user", "text": user_text})
     history.append({"role": "assistant", "text": ai_response})
@@ -61,13 +60,10 @@ async def handle_voice(message: Message):
     user_state["history"] = history
     set_user_state(user_id, user_state)
 
-    # Отправляем голосовой ответ
     await _send_voice_message(message, ai_response, user_id)
 
 async def _send_voice_message(message: Message, text: str, user_id: int):
-    """Отправляет голосовое сообщение с кнопкой 'Текст'."""
     await message.bot.send_chat_action(chat_id=message.chat.id, action="record_voice")
-
     mp3_path = await text_to_voice(text)
     if not mp3_path:
         await _send_text_message_with_buttons(message, text, user_id)
@@ -94,7 +90,6 @@ async def _send_voice_message(message: Message, text: str, user_id: int):
     }
 
 async def _send_text_message_with_buttons(message: Message, text: str, user_id: int):
-    """Отправляет текстовое сообщение с кнопкой 'Перевести' (для ролевого режима или fallback)."""
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(text="🌐 Перевести", callback_data=f"translate_text_{user_id}")]
     ])
@@ -105,7 +100,7 @@ async def _send_text_message_with_buttons(message: Message, text: str, user_id: 
         "message_id": sent.message_id
     }
 
-# --- Обработчики инлайн-кнопок для голосовых сообщений ---
+# --- Голосовые обработчики (без изменений) ---
 @router.callback_query(lambda c: c.data.startswith("show_text_"))
 async def show_text(callback: CallbackQuery):
     user_id = int(callback.data.split("_")[2])
@@ -113,7 +108,6 @@ async def show_text(callback: CallbackQuery):
     if not data or not data.get("text"):
         await callback.answer("No text available.", show_alert=True)
         return
-
     original = data["text"]
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
         [
@@ -129,7 +123,6 @@ async def show_text(callback: CallbackQuery):
     )
     await callback.answer()
 
-# ВНИМАНИЕ: условие теперь точное: только "translate_" и не "translate_text_"
 @router.callback_query(lambda c: c.data.startswith("translate_") and not c.data.startswith("translate_text_"))
 async def translate_caption(callback: CallbackQuery):
     user_id = int(callback.data.split("_")[1])
@@ -137,7 +130,6 @@ async def translate_caption(callback: CallbackQuery):
     if not data or not data.get("text"):
         await callback.answer("No text to translate.", show_alert=True)
         return
-
     if data.get("translation"):
         translation = data["translation"]
     else:
@@ -147,7 +139,6 @@ async def translate_caption(callback: CallbackQuery):
         )
         data["translation"] = translation
         last_bot_response[user_id] = data
-
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
         [
             InlineKeyboardButton(text="🇺🇸 Оригинал", callback_data=f"original_{user_id}"),
@@ -169,7 +160,6 @@ async def revert_to_original(callback: CallbackQuery):
     if not data or not data.get("text"):
         await callback.answer("No original text.", show_alert=True)
         return
-
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
         [
             InlineKeyboardButton(text="🌐 Перевести", callback_data=f"translate_{user_id}"),
@@ -191,7 +181,6 @@ async def hide_message(callback: CallbackQuery):
     if not data or not data.get("audio_message_id"):
         await callback.answer("No message to hide.", show_alert=True)
         return
-
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(text="📝 Текст", callback_data=f"show_text_{user_id}")]
     ])
@@ -205,7 +194,7 @@ async def hide_message(callback: CallbackQuery):
     last_bot_response[user_id] = data
     await callback.answer()
 
-# --- Обработчики инлайн-кнопок для текстовых сообщений (ролевой режим) ---
+# --- Текстовые обработчики (ролевой режим) – кнопка Скрыть теперь НЕ УДАЛЯЕТ сообщение, а возвращает оригинал ---
 @router.callback_query(lambda c: c.data.startswith("translate_text_"))
 async def translate_text_callback(callback: CallbackQuery):
     user_id = int(callback.data.split("_")[2])
@@ -213,7 +202,6 @@ async def translate_text_callback(callback: CallbackQuery):
     if not data or not data.get("text"):
         await callback.answer("No text to translate.", show_alert=True)
         return
-
     if data.get("translation"):
         translation = data["translation"]
     else:
@@ -223,7 +211,6 @@ async def translate_text_callback(callback: CallbackQuery):
         )
         data["translation"] = translation
         last_text_response[user_id] = data
-
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
         [
             InlineKeyboardButton(text="🇺🇸 Оригинал", callback_data=f"original_text_{user_id}"),
@@ -245,7 +232,6 @@ async def original_text_callback(callback: CallbackQuery):
     if not data or not data.get("text"):
         await callback.answer("No original text.", show_alert=True)
         return
-
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(text="🌐 Перевести", callback_data=f"translate_text_{user_id}")]
     ])
@@ -259,21 +245,27 @@ async def original_text_callback(callback: CallbackQuery):
 
 @router.callback_query(lambda c: c.data.startswith("hide_text_"))
 async def hide_text_callback(callback: CallbackQuery):
+    """Скрывает перевод, возвращая исходный текст и кнопку 'Перевести' (не удаляет сообщение)."""
     user_id = int(callback.data.split("_")[2])
     data = last_text_response.get(user_id)
     if not data or not data.get("message_id"):
         await callback.answer("No message to hide.", show_alert=True)
         return
-
-    await callback.bot.delete_message(
+    keyboard = InlineKeyboardMarkup(inline_keyboard=[
+        [InlineKeyboardButton(text="🌐 Перевести", callback_data=f"translate_text_{user_id}")]
+    ])
+    await callback.bot.edit_message_text(
         chat_id=callback.message.chat.id,
-        message_id=data["message_id"]
+        message_id=data["message_id"],
+        text=data["text"],
+        reply_markup=keyboard
     )
-    if user_id in last_text_response:
-        del last_text_response[user_id]
+    # Сбрасываем перевод, но оставляем запись
+    data["translation"] = None
+    last_text_response[user_id] = data
     await callback.answer()
 
-# --- Обработчики REPLY-кнопок ---
+# --- REPLY-кнопки (без изменений) ---
 @router.message(F.text == "💡 Что ответить?")
 async def hint_button(message: Message):
     user_id = message.from_user.id

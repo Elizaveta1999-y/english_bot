@@ -3,7 +3,7 @@ from services.deepseek import chat
 from data.users import get_user_state, add_to_history
 from speaking.services.history import build_history_prompt
 
-# ========== 1. ФИЛЬТР БЕЗОПАСНОСТИ ==========
+# ========== ФИЛЬТР БЕЗОПАСНОСТИ (без изменений) ==========
 SAFETY_PROMPT = """You are a strict content safety filter. Analyze the student's message and reply with ONLY "SAFE" or "DANGER".
 
 Mark as DANGER if the message contains ANY of the following:
@@ -27,7 +27,7 @@ async def is_safe_message(user_text: str) -> bool:
         print(f"[Safety] Error: {e}")
         return True
 
-# ========== 2. ОСНОВНОЙ ПРОМПТ (ДЛЯ ОБЫЧНОГО SPEAKING) ==========
+# ========== ОСНОВНОЙ ПРОМПТ ДЛЯ SPEAKING (без изменений) ==========
 _cached_prompt = None
 _cached_prompt_hash = None
 
@@ -64,32 +64,33 @@ Teacher: "Great! You can say 'I like reading' – after 'like', we use the -ing 
     _cached_prompt_hash = prompt_hash
     return _cached_prompt
 
-# ========== 3. ПРОМПТ ДЛЯ РОЛЕВОЙ ИГРЫ ==========
+# ========== УСИЛЕННЫЙ ПРОМПТ ДЛЯ РОЛЕВОЙ ИГРЫ (НЕ ОТКЛОНЯТЬСЯ) ==========
 def get_roleplay_prompt(name: str, topic: str) -> str:
     return f"""You are a participant in an English roleplay. Student name: {name}. Topic: {topic}.
 
-**YOUR ROLE:**
-- Stay in character according to the scenario.
+**YOUR ROLE (STRICT – NEVER BREAK):**
+- You MUST stay in character according to the scenario. Do not leave the role under any circumstances.
+- If the student tries to change the topic (e.g., starts talking about their friend, hobbies, or unrelated things), you MUST politely ignore that and steer the conversation back to the original scenario.
+- Example: If the scenario is "doctor appointment" and the student says "I have a friend who also has headaches", you respond: "I understand, but let's focus on your own health. When did your headaches start? Please describe your symptoms."
+- Your goal is to keep the roleplay realistic and on‑track.
+
+**RESPONSE RULES:**
 - Respond naturally, as a real person would in that situation.
-- Do not break character.
 - Keep responses fairly short (1–3 sentences).
 - Do not correct the student's grammar unless the mistake completely breaks understanding.
 - Use American English.
+- End with a question or prompt to continue the dialogue.
 
 **SAFETY:**
 - Do not discuss off‑topic or inappropriate content.
 
-**STYLE:**
-- Warm, polite, and realistic.
-- End with a question or prompt to continue the dialogue.
+**EXAMPLE (topic: "Визит к врачу"):**
+Student: "I want to talk about my friend."
+You: "I'm your doctor. Let's focus on your health. What exactly brings you here today? Please describe your symptoms."
 
-Example (topic: "Restaurant order"):
-Student: "I want a burger."
-You: "Certainly! Would you like fries with that? And what would you like to drink?"
+Now respond as your character. Stay in role."""
 
-Now respond as your character."""
-
-# ========== 4. ОСНОВНЫЕ ФУНКЦИИ ==========
+# ========== ОСНОВНЫЕ ФУНКЦИИ ==========
 async def process_voice_message(user_id: int, user_text: str) -> str:
     user_state = get_user_state(user_id)
     name = user_state.get("name", "Student")
@@ -112,12 +113,10 @@ Your response (correct mistakes naturally, continue the same topic, end with a q
     return ai_response
 
 async def process_roleplay_message(user_id: int, user_text: str) -> str:
-    """Обработка сообщений в ролевом режиме."""
     user_state = get_user_state(user_id)
     name = user_state.get("name", "Student")
     topic = user_state.get("roleplay_topic", "general")
     history = user_state.get("history", [])
-    # Построим историю для ролевой игры (последние 10 сообщений)
     history_str = "\n".join([f"{'User' if h['role']=='user' else 'Bot'}: {h['text']}" for h in history[-10:]])
 
     if not await is_safe_message(user_text):
@@ -129,7 +128,7 @@ async def process_roleplay_message(user_id: int, user_text: str) -> str:
 
 Student's message: "{user_text}"
 
-Your response (stay in character, natural, end with a prompt):"""
+Your response (stay in character, do not change topic, natural, end with a prompt):"""
 
     ai_response = chat(user_prompt, system_message=system_prompt, max_tokens=400, temperature=0.8)
     add_to_history(user_id, "user", user_text)
