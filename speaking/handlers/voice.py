@@ -7,7 +7,7 @@ import tempfile
 from aiogram import Router, F
 from aiogram.types import Message, BufferedInputFile, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery, ReplyKeyboardMarkup, KeyboardButton, ReplyKeyboardRemove
 from speaking.services.stt import voice_to_text
-from speaking.services.ai import process_voice_message, process_roleplay_message
+from speaking.services.ai import process_voice_message, process_roleplay_message, generate_roleplay_feedback
 from speaking.services.tts import text_to_voice
 from data.users import set_user_mode, get_user_state, set_user_state, set_user_name
 from services.deepseek import chat
@@ -89,7 +89,6 @@ async def _send_voice_message(message: Message, text: str, user_id: int):
     }
 
 async def _send_text_message_with_buttons(message: Message, text: str, user_id: int):
-    """Отправляет текстовое сообщение с кнопкой 'Перевести' (без кнопки скрытия)."""
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(text="🌐 Перевести", callback_data=f"translate_text_{user_id}")]
     ])
@@ -211,7 +210,6 @@ async def translate_text_callback(callback: CallbackQuery):
         )
         data["translation"] = translation
         last_text_response[user_id] = data
-    # После перевода показываем только кнопку "Оригинал" (без скрытия)
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(text="🇺🇸 Оригинал", callback_data=f"original_text_{user_id}")]
     ])
@@ -241,7 +239,7 @@ async def original_text_callback(callback: CallbackQuery):
     )
     await callback.answer()
 
-# --- REPLY-кнопки (без изменений) ---
+# --- REPLY-кнопки ---
 @router.message(F.text == "💡 Что ответить?")
 async def hint_button(message: Message):
     user_id = message.from_user.id
@@ -272,6 +270,7 @@ async def main_menu_button(message: Message):
         reply_markup=ReplyKeyboardRemove()
     )
 
+# --- Фидбек для обычного Speaking (оставляем как есть) ---
 @router.message(F.text == "📊 Я всё! Фидбек")
 async def feedback_button(message: Message):
     user_id = message.from_user.id
@@ -295,6 +294,58 @@ async def feedback_button(message: Message):
 <b>📚 Словарик</b> (5 слов/фраз: слово — перевод (пример))"""
     feedback = chat(prompt, max_tokens=600, temperature=0.5)
     await message.answer(f"📊 <b>Ваш фидбек</b>:\n\n{feedback}", parse_mode="HTML")
+
+# --- Фидбек для ролевого режима ---
+@router.message(F.text == "📊 Завершить диалог")
+async def finish_roleplay(message: Message):
+    user_id = message.from_user.id
+    user_state = get_user_state(user_id)
+    if user_state.get("mode") != "roleplay_active":
+        await message.answer("Эта кнопка доступна только в ролевой игре.")
+        return
+    history = user_state.get("history", [])
+    if len(history) < 2:
+        await message.answer("Диалог ещё не начался. Сначала отправьте несколько сообщений.")
+        return
+    # Генерируем фидбек
+    await message.bot.send_chat_action(chat_id=message.chat.id, action="typing")
+    conversation = "\n".join([f"{'User' if h['role']=='user' else 'Bot'}: {h['text']}" for h in history[-20:]])
+    topic = user_state.get("roleplay_topic", "ролевая игра")
+    category = user_state.get("roleplay_category", "custom")
+    if category == "custom":
+        custom_scenario = user_state.get("custom_scenario", "")
+        feedback = await generate_roleplay_feedback(conversation, topic, custom_scenario=custom_scenario)
+    else:
+        # Находим цели темы из словаря TOPICS (если не кастомная)
+        # Для простоты передадим topic, а в ai.py уже логика
+        feedback = await generate_roleplay_feedback(conversation, topic)
+    # Отправляем фидбек
+    await message.answer(f"📊 <b>Анализ диалога</b>\n\n{feedback}", parse_mode="HTML")
+    # Спрашиваем, хочет ли пользователь продолжить или выйти
+    keyboard = InlineKeyboardMarkup(inline_keyboard=[
+        [InlineKeyboardButton(text="🔁 Продолжить диалог", callback_data="continue_roleplay")],
+        [InlineKeyboardButton(text="🏠 Выйти в меню", callback_data="exit_to_menu")]
+    ])
+    await message.answer("Желаете продолжить ролевую игру или завершить?", reply_markup=keyboard)
+
+@router.callback_query(lambda c: c.data == "continue_roleplay")
+async def continue_roleplay(callback: CallbackQuery):
+    await callback.message.delete()
+    await callback.answer("Продолжаем. Отправляйте следующие сообщения.")
+
+@router.callback_query(lambda c: c.data == "exit_to_menu")
+async def exit_to_menu(callback: CallbackQuery):
+    user_id = callback.from_user.id
+    set_user_state(user_id, {"mode": None, "history": []})
+    if user_id in last_bot_response:
+        del last_bot_response[user_id]
+    if user_id in last_text_response:
+        del last_text_response[user_id]
+    await callback.message.answer(
+        "🔚 Режим завершён. Чтобы начать снова, нажмите /start и выберите Speaking или RolePlay.",
+        reply_markup=ReplyKeyboardRemove()
+    )
+    await callback.answer()
 
 @router.message(F.text)
 async def text_fallback(message: Message):

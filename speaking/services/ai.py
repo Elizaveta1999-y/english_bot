@@ -27,7 +27,7 @@ async def is_safe_message(user_text: str) -> bool:
         print(f"[Safety] Error: {e}")
         return True
 
-# ========== ОСНОВНОЙ ПРОМПТ ДЛЯ SPEAKING (без изменений) ==========
+# ========== ОСНОВНОЙ ПРОМПТ ДЛЯ SPEAKING ==========
 _cached_prompt = None
 _cached_prompt_hash = None
 
@@ -64,33 +64,36 @@ Teacher: "Great! You can say 'I like reading' – after 'like', we use the -ing 
     _cached_prompt_hash = prompt_hash
     return _cached_prompt
 
-# ========== УСИЛЕННЫЙ ПРОМПТ ДЛЯ РОЛЕВОЙ ИГРЫ (НЕ ОТКЛОНЯТЬСЯ) ==========
-def get_roleplay_prompt(name: str, topic: str) -> str:
-    return f"""You are a participant in an English roleplay. Student name: {name}. Topic: {topic}.
+# ========== ПРОМПТ ДЛЯ РОЛЕВОЙ ИГРЫ (усиленный) ==========
+def get_roleplay_prompt(name: str, topic: str, custom_scenario: str = None) -> str:
+    if custom_scenario:
+        return f"""You are a participant in an English roleplay. Student name: {name}.
+
+**CUSTOM SCENARIO:**
+{custom_scenario}
 
 **YOUR ROLE (STRICT – NEVER BREAK):**
-- You MUST stay in character according to the scenario. Do not leave the role under any circumstances.
-- If the student tries to change the topic (e.g., starts talking about their friend, hobbies, or unrelated things), you MUST politely ignore that and steer the conversation back to the original scenario.
-- Example: If the scenario is "doctor appointment" and the student says "I have a friend who also has headaches", you respond: "I understand, but let's focus on your own health. When did your headaches start? Please describe your symptoms."
-- Your goal is to keep the roleplay realistic and on‑track.
-
-**RESPONSE RULES:**
-- Respond naturally, as a real person would in that situation.
+- You MUST stay in character according to the scenario described above.
+- If the student tries to change the topic, politely ignore and steer back to the scenario.
 - Keep responses fairly short (1–3 sentences).
-- Do not correct the student's grammar unless the mistake completely breaks understanding.
 - Use American English.
-- End with a question or prompt to continue the dialogue.
+- End with a question or prompt to continue.
 
 **SAFETY:**
-- Do not discuss off‑topic or inappropriate content.
+- Do not discuss off‑topic or inappropriate content."""
+    else:
+        return f"""You are a participant in an English roleplay. Student name: {name}. Topic: {topic}.
 
-**EXAMPLE (topic: "Визит к врачу"):**
-Student: "I want to talk about my friend."
-You: "I'm your doctor. Let's focus on your health. What exactly brings you here today? Please describe your symptoms."
+**YOUR ROLE (STRICT – NEVER BREAK):**
+- You MUST stay in character according to the scenario.
+- If the student tries to change the topic, politely ignore and steer back.
+- Keep responses fairly short (1–3 sentences).
+- Use American English.
+- End with a question or prompt.
 
-Now respond as your character. Stay in role."""
+**SAFETY:**
+- Do not discuss off‑topic or inappropriate content."""
 
-# ========== ОСНОВНЫЕ ФУНКЦИИ ==========
 async def process_voice_message(user_id: int, user_text: str) -> str:
     user_state = get_user_state(user_id)
     name = user_state.get("name", "Student")
@@ -116,21 +119,59 @@ async def process_roleplay_message(user_id: int, user_text: str) -> str:
     user_state = get_user_state(user_id)
     name = user_state.get("name", "Student")
     topic = user_state.get("roleplay_topic", "general")
+    custom_scenario = user_state.get("custom_scenario", None)
     history = user_state.get("history", [])
     history_str = "\n".join([f"{'User' if h['role']=='user' else 'Bot'}: {h['text']}" for h in history[-10:]])
 
     if not await is_safe_message(user_text):
         return "Let's keep the roleplay appropriate. Please continue with the scenario."
 
-    system_prompt = get_roleplay_prompt(name, topic)
+    system_prompt = get_roleplay_prompt(name, topic, custom_scenario)
     user_prompt = f"""Roleplay history:
 {history_str}
 
 Student's message: "{user_text}"
 
-Your response (stay in character, do not change topic, natural, end with a prompt):"""
+Your response (stay in character, natural, end with a prompt):"""
 
     ai_response = chat(user_prompt, system_message=system_prompt, max_tokens=400, temperature=0.8)
     add_to_history(user_id, "user", user_text)
     add_to_history(user_id, "assistant", ai_response)
     return ai_response
+
+# ========== ФУНКЦИЯ ДЛЯ ГЕНЕРАЦИИ ФИДБЕКА ПО РОЛЕВОМУ ДИАЛОГУ ==========
+async def generate_roleplay_feedback(conversation: str, topic: str, custom_scenario: str = None) -> str:
+    if custom_scenario:
+        prompt = f"""Ты опытный преподаватель английского. Проанализируй диалог в ролевой игре.
+
+Сценарий (пользовательский): {custom_scenario}
+
+Диалог:
+{conversation}
+
+Дай подробный фидбек на русском языке по следующей структуре:
+
+<b>1. Общее впечатление</b> (коротко, 1-2 предложения)
+<b>2. Грамматические и лексические ошибки</b> (перечисли 3-5 наиболее значимых, дай исправления и краткие пояснения)
+<b>3. Успешные моменты</b> (что получилось хорошо – 2-3 пункта)
+<b>4. Рекомендации по улучшению</b> (2-3 совета)
+<b>5. Словарик полезных фраз из диалога</b> (5-7 выражений с переводом)
+
+Будь дружелюбным и конструктивным."""
+    else:
+        prompt = f"""Ты опытный преподаватель английского. Проанализируй диалог в ролевой игре на тему «{topic}».
+
+Диалог:
+{conversation}
+
+Дай подробный фидбек на русском языке по следующей структуре:
+
+<b>1. Общее впечатление</b> (коротко)
+<b>2. Грамматические и лексические ошибки</b> (3-5, с исправлениями и пояснениями)
+<b>3. Успешные моменты</b> (2-3 пункта)
+<b>4. Рекомендации по улучшению</b> (2-3 совета)
+<b>5. Словарик полезных фраз</b> (5-7 выражений с переводом)
+
+Будь дружелюбным и конструктивным."""
+    feedback = chat(prompt, max_tokens=1200, temperature=0.5)
+    return feedback
