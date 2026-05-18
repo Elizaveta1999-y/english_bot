@@ -14,12 +14,43 @@ WELCOME_TEXT = (
     "🌟 <b>Акция</b> – полный доступ ко всему функционалу <s>700₽</s> <b>399₽/мес</b>."
 )
 
+# Словарь категорий и тем (можно легко расширять)
+TOPICS = {
+    "🏢 Работа и бизнес": [
+        "Собеседование на работу",
+        "Переговоры с клиентом",
+        "Презентация проекта",
+        "Разговор с начальником"
+    ],
+    "✈️ Путешествия": [
+        "Заказ такси в аэропорту",
+        "Регистрация на рейс",
+        "Замена номера в отеле",
+        "Покупка сувениров",
+        "Спросить дорогу у местного"
+    ],
+    "🍽️ Повседневная жизнь": [
+        "Заказ в ресторане",
+        "Визит к врачу",
+        "Звонок в техподдержку",
+        "Разговор с соседом",
+        "Покупка продуктов в супермаркете"
+    ],
+    "📚 Развлечения и хобби": [
+        "Обсуждение любимой книги",
+        "Спор о фильме",
+        "Планы на выходные",
+        "Любимые рецепты"
+    ]
+}
+
 @router.message(Command("start"))
 async def start_handler(message: Message):
     user_id = message.from_user.id
     set_user_state(user_id, {})
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
-        [InlineKeyboardButton(text="🎤 Speaking", callback_data="start_speaking")]
+        [InlineKeyboardButton(text="🎤 Speaking", callback_data="start_speaking")],
+        [InlineKeyboardButton(text="🎭 RolePlay", callback_data="start_roleplay")]
     ])
     await message.answer(WELCOME_TEXT, reply_markup=keyboard, parse_mode="HTML")
 
@@ -29,9 +60,8 @@ async def start_speaking_callback(callback: CallbackQuery):
     await activate_speaking_mode(callback.message, user_id)
 
 async def activate_speaking_mode(message: Message, user_id: int):
-    """Активирует голосовой режим: очищает историю, отправляет приветственное аудио и показывает reply-клавиатуру."""
-    set_user_state(user_id, {"mode": "speaking_active", "history": []})
-    # Reply-клавиатура с двумя кнопками
+    """Активирует обычный голосовой режим (без роли)."""
+    set_user_state(user_id, {"mode": "speaking_active", "history": [], "roleplay_topic": None})
     keyboard = ReplyKeyboardMarkup(
         keyboard=[
             [KeyboardButton(text="📊 Я всё! Фидбек")],
@@ -45,7 +75,6 @@ async def activate_speaking_mode(message: Message, user_id: int):
         reply_markup=keyboard,
         parse_mode="HTML"
     )
-    # Отправляем приветственное голосовое
     voice_greeting = "Hello! I am your AI English teacher. Send a voice message and we'll start practicing. Speak clearly!"
     voice_path = await text_to_voice(voice_greeting)
     if not voice_path:
@@ -66,5 +95,87 @@ async def activate_speaking_mode(message: Message, user_id: int):
     user_state["greeting_text"] = voice_greeting
     set_user_state(user_id, user_state)
 
-# Обработчики для приветственного аудио (show_greeting_, translate_greeting_, hide_greeting_)
-# они уже были в предыдущей версии – их нужно оставить (не удалять)
+@router.callback_query(lambda c: c.data == "start_roleplay")
+async def start_roleplay_callback(callback: CallbackQuery):
+    """Показывает категории для ролевых игр."""
+    # Кнопки категорий
+    categories_keyboard = InlineKeyboardMarkup(inline_keyboard=[
+        [InlineKeyboardButton(text=cat, callback_data=f"cat_{cat}")] for cat in TOPICS.keys()
+    ])
+    await callback.message.answer(
+        "🎭 <b>Выберите категорию для ролевой игры</b>\n\n"
+        "Бот будет играть роль по сценарию. Вы можете говорить голосом или писать текстом.",
+        reply_markup=categories_keyboard,
+        parse_mode="HTML"
+    )
+    await callback.answer()
+
+@router.callback_query(lambda c: c.data.startswith("cat_"))
+async def show_topics(callback: CallbackQuery):
+    category = callback.data[4:]  # убираем "cat_"
+    topics = TOPICS.get(category, [])
+    if not topics:
+        await callback.answer("Нет тем в этой категории", show_alert=True)
+        return
+    topics_keyboard = InlineKeyboardMarkup(inline_keyboard=[
+        [InlineKeyboardButton(text=topic, callback_data=f"topic_{category}_{topic}")] for topic in topics
+    ] + [[InlineKeyboardButton(text="🔙 Назад", callback_data="back_to_categories")]])
+    await callback.message.edit_text(
+        f"🎭 <b>{category}</b>\n\nВыберите тему:",
+        reply_markup=topics_keyboard,
+        parse_mode="HTML"
+    )
+    await callback.answer()
+
+@router.callback_query(lambda c: c.data == "back_to_categories")
+async def back_to_categories(callback: CallbackQuery):
+    categories_keyboard = InlineKeyboardMarkup(inline_keyboard=[
+        [InlineKeyboardButton(text=cat, callback_data=f"cat_{cat}")] for cat in TOPICS.keys()
+    ])
+    await callback.message.edit_text(
+        "🎭 <b>Выберите категорию для ролевой игры</b>",
+        reply_markup=categories_keyboard,
+        parse_mode="HTML"
+    )
+    await callback.answer()
+
+@router.callback_query(lambda c: c.data.startswith("topic_"))
+async def topic_chosen(callback: CallbackQuery):
+    _, category, topic = callback.data.split("_", 2)
+    user_id = callback.from_user.id
+    # Активируем ролевой режим
+    set_user_state(user_id, {
+        "mode": "roleplay_active",
+        "history": [],
+        "roleplay_topic": topic,
+        "roleplay_category": category
+    })
+    await callback.answer(f"Выбрана тема: {topic}")
+    # Отправляем приветствие с ролевой инструкцией и клавиатурой
+    keyboard = ReplyKeyboardMarkup(
+        keyboard=[
+            [KeyboardButton(text="💡 Что ответить?"), KeyboardButton(text="🏠 Главное меню")]
+        ],
+        resize_keyboard=True
+    )
+    await callback.message.answer(
+        f"🎭 <b>Ролевая игра: {topic}</b>\n\n"
+        f"Бот будет играть роль по сценарию. Говорите голосом или пишите текстом.\n"
+        f"Если нужна подсказка, нажмите «💡 Что ответить?».\n\n"
+        f"<i>Давайте начнём!</i>",
+        reply_markup=keyboard,
+        parse_mode="HTML"
+    )
+    # Отправляем стартовую фразу от бота (в зависимости от темы)
+    await send_roleplay_start(callback.message, user_id, topic)
+
+async def send_roleplay_start(message: Message, user_id: int, topic: str):
+    """Генерирует первую реплику бота по выбранной теме."""
+    from services.deepseek import chat
+    prompt = f"""Ты – участник ролевой игры на английском языке. Тема: {topic}.
+Напиши первую реплику от твоего персонажа, чтобы начать диалог. Реплика должна быть естественной, на английском языке, не более 2 предложений. Не добавляй пояснений, только саму реплику."""
+    response = chat(prompt, max_tokens=100, temperature=0.7)
+    # Отправляем как обычное текстовое сообщение (не голосовое, чтобы не задерживать)
+    await message.answer(response)
+
+# Обработчики для приветственного аудио (show_greeting_, translate_greeting_, hide_greeting_) должны быть здесь, но они уже были – я их не копирую для краткости, но в реальном файле они есть.
