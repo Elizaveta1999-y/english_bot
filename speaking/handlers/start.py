@@ -15,29 +15,36 @@ WELCOME_TEXT = (
     "🌟 <b>Акция</b> – полный доступ ко всему функционалу <s>700₽</s> <b>399₽/мес</b>."
 )
 
-# Словарь категорий и тем (можно легко расширять)
+# Словарь категорий и тем (с идентификаторами)
+CATEGORIES = [
+    ("🏢 Работа и бизнес", "work"),
+    ("✈️ Путешествия", "travel"),
+    ("🍽️ Повседневная жизнь", "daily"),
+    ("📚 Развлечения и хобби", "hobby")
+]
+
 TOPICS = {
-    "🏢 Работа и бизнес": [
+    "work": [
         "Собеседование на работу",
         "Переговоры с клиентом",
         "Презентация проекта",
         "Разговор с начальником"
     ],
-    "✈️ Путешествия": [
+    "travel": [
         "Заказ такси в аэропорту",
         "Регистрация на рейс",
         "Замена номера в отеле",
         "Покупка сувениров",
         "Спросить дорогу у местного"
     ],
-    "🍽️ Повседневная жизнь": [
+    "daily": [
         "Заказ в ресторане",
         "Визит к врачу",
         "Звонок в техподдержку",
         "Разговор с соседом",
         "Покупка продуктов в супермаркете"
     ],
-    "📚 Развлечения и хобби": [
+    "hobby": [
         "Обсуждение любимой книги",
         "Спор о фильме",
         "Планы на выходные",
@@ -100,7 +107,7 @@ async def activate_speaking_mode(message: Message, user_id: int):
 async def start_roleplay_callback(callback: CallbackQuery):
     """Показывает категории для ролевых игр."""
     categories_keyboard = InlineKeyboardMarkup(inline_keyboard=[
-        [InlineKeyboardButton(text=cat, callback_data=f"cat_{cat}")] for cat in TOPICS.keys()
+        [InlineKeyboardButton(text=cat[0], callback_data=f"cat_{cat[1]}")] for cat in CATEGORIES
     ])
     await callback.message.answer(
         "🎭 <b>Выберите категорию для ролевой игры</b>\n\n"
@@ -112,16 +119,21 @@ async def start_roleplay_callback(callback: CallbackQuery):
 
 @router.callback_query(lambda c: c.data.startswith("cat_"))
 async def show_topics(callback: CallbackQuery):
-    category = callback.data[4:]  # убираем "cat_"
-    topics = TOPICS.get(category, [])
+    cat_id = callback.data[4:]  # убираем "cat_"
+    topics = TOPICS.get(cat_id, [])
     if not topics:
         await callback.answer("Нет тем в этой категории", show_alert=True)
         return
-    topics_keyboard = InlineKeyboardMarkup(inline_keyboard=[
-        [InlineKeyboardButton(text=topic, callback_data=f"topic_{category}_{topic}")] for topic in topics
-    ] + [[InlineKeyboardButton(text="🔙 Назад", callback_data="back_to_categories")]])
+    # Строим кнопки с topic_id (индекс)
+    buttons = []
+    for idx, topic_name in enumerate(topics):
+        buttons.append([InlineKeyboardButton(text=topic_name, callback_data=f"topic_{cat_id}_{idx}")])
+    buttons.append([InlineKeyboardButton(text="🔙 Назад", callback_data="back_to_categories")])
+    topics_keyboard = InlineKeyboardMarkup(inline_keyboard=buttons)
+    # Получаем отображаемое название категории
+    cat_display = next((c[0] for c in CATEGORIES if c[1] == cat_id), cat_id)
     await callback.message.edit_text(
-        f"🎭 <b>{category}</b>\n\nВыберите тему:",
+        f"🎭 <b>{cat_display}</b>\n\nВыберите тему:",
         reply_markup=topics_keyboard,
         parse_mode="HTML"
     )
@@ -130,7 +142,7 @@ async def show_topics(callback: CallbackQuery):
 @router.callback_query(lambda c: c.data == "back_to_categories")
 async def back_to_categories(callback: CallbackQuery):
     categories_keyboard = InlineKeyboardMarkup(inline_keyboard=[
-        [InlineKeyboardButton(text=cat, callback_data=f"cat_{cat}")] for cat in TOPICS.keys()
+        [InlineKeyboardButton(text=cat[0], callback_data=f"cat_{cat[1]}")] for cat in CATEGORIES
     ])
     await callback.message.edit_text(
         "🎭 <b>Выберите категорию для ролевой игры</b>",
@@ -141,17 +153,21 @@ async def back_to_categories(callback: CallbackQuery):
 
 @router.callback_query(lambda c: c.data.startswith("topic_"))
 async def topic_chosen(callback: CallbackQuery):
-    _, category, topic = callback.data.split("_", 2)
+    _, cat_id, idx_str = callback.data.split("_")
+    idx = int(idx_str)
+    topics = TOPICS.get(cat_id, [])
+    if idx >= len(topics):
+        await callback.answer("Тема не найдена", show_alert=True)
+        return
+    topic = topics[idx]
     user_id = callback.from_user.id
-    # Активируем ролевой режим
     set_user_state(user_id, {
         "mode": "roleplay_active",
         "history": [],
         "roleplay_topic": topic,
-        "roleplay_category": category
+        "roleplay_category": cat_id
     })
     await callback.answer(f"Выбрана тема: {topic}")
-    # Отправляем приветствие с ролевой инструкцией и клавиатурой
     keyboard = ReplyKeyboardMarkup(
         keyboard=[
             [KeyboardButton(text="💡 Что ответить?"), KeyboardButton(text="🏠 Главное меню")]
@@ -166,7 +182,6 @@ async def topic_chosen(callback: CallbackQuery):
         reply_markup=keyboard,
         parse_mode="HTML"
     )
-    # Отправляем стартовую фразу от бота (в зависимости от темы)
     await send_roleplay_start(callback.message, user_id, topic)
 
 async def send_roleplay_start(message: Message, user_id: int, topic: str):
@@ -177,7 +192,7 @@ async def send_roleplay_start(message: Message, user_id: int, topic: str):
     response = chat(prompt, max_tokens=100, temperature=0.7)
     await message.answer(response)
 
-# Обработчики для кнопок приветственного аудио (greeting)
+# --- Обработчики для кнопок приветственного аудио (greeting) ---
 @router.callback_query(lambda c: c.data.startswith("show_greeting_"))
 async def show_greeting_text(callback: CallbackQuery):
     user_id = int(callback.data.split("_")[2])
