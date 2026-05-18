@@ -4,6 +4,7 @@ from aiogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, C
 from aiogram.filters import Command
 from data.users import set_user_state
 from speaking.services.tts import text_to_voice
+from speaking.services.ai import chat
 
 router = Router()
 
@@ -11,7 +12,7 @@ WELCOME_TEXT = (
     "<b>Добро пожаловать в умный тренажер Английского языка! 🇺🇸</b>\n\n"
     "Проходи уроки, выполняй задания и общайся голосом со своим персональным AI-тьютором! 🧠\n"
     "Выбирай режим и начни совершенствоваться в языке!\n\n"
-    "🌟 <b>Акция</b> – полный доступ ко всему функционалу <s>700₽</s> <b>399₽/мес</b>."
+    "🌟 <b>Акция</b> – полный доступ ко всему функционалу <s>700₽</b> <b>399₽/мес</b>."
 )
 
 # Словарь категорий и тем (можно легко расширять)
@@ -98,7 +99,6 @@ async def activate_speaking_mode(message: Message, user_id: int):
 @router.callback_query(lambda c: c.data == "start_roleplay")
 async def start_roleplay_callback(callback: CallbackQuery):
     """Показывает категории для ролевых игр."""
-    # Кнопки категорий
     categories_keyboard = InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(text=cat, callback_data=f"cat_{cat}")] for cat in TOPICS.keys()
     ])
@@ -175,7 +175,62 @@ async def send_roleplay_start(message: Message, user_id: int, topic: str):
     prompt = f"""Ты – участник ролевой игры на английском языке. Тема: {topic}.
 Напиши первую реплику от твоего персонажа, чтобы начать диалог. Реплика должна быть естественной, на английском языке, не более 2 предложений. Не добавляй пояснений, только саму реплику."""
     response = chat(prompt, max_tokens=100, temperature=0.7)
-    # Отправляем как обычное текстовое сообщение (не голосовое, чтобы не задерживать)
     await message.answer(response)
 
-# Обработчики для приветственного аудио (show_greeting_, translate_greeting_, hide_greeting_) должны быть здесь, но они уже были – я их не копирую для краткости, но в реальном файле они есть.
+# Обработчики для кнопок приветственного аудио (greeting)
+@router.callback_query(lambda c: c.data.startswith("show_greeting_"))
+async def show_greeting_text(callback: CallbackQuery):
+    user_id = int(callback.data.split("_")[2])
+    user_state = get_user_state(user_id)
+    if "greeting_text" not in user_state:
+        await callback.answer("No text available", show_alert=True)
+        return
+    original = user_state["greeting_text"]
+    keyboard = InlineKeyboardMarkup(inline_keyboard=[
+        [InlineKeyboardButton(text="🌐 Перевести", callback_data=f"translate_greeting_{user_id}")]
+    ])
+    await callback.bot.edit_message_caption(
+        chat_id=callback.message.chat.id,
+        message_id=user_state["greeting_audio_id"],
+        caption=f"📝 {original}",
+        reply_markup=keyboard
+    )
+    await callback.answer()
+
+@router.callback_query(lambda c: c.data.startswith("translate_greeting_"))
+async def translate_greeting(callback: CallbackQuery):
+    user_id = int(callback.data.split("_")[2])
+    user_state = get_user_state(user_id)
+    original = user_state.get("greeting_text")
+    if not original:
+        await callback.answer("No text", show_alert=True)
+        return
+    translation = chat(f"Translate to Russian: {original}", max_tokens=200, temperature=0.3)
+    keyboard = InlineKeyboardMarkup(inline_keyboard=[
+        [
+            InlineKeyboardButton(text="🇺🇸 Оригинал", callback_data=f"show_greeting_{user_id}"),
+            InlineKeyboardButton(text="❌ Скрыть", callback_data=f"hide_greeting_{user_id}")
+        ]
+    ])
+    await callback.bot.edit_message_caption(
+        chat_id=callback.message.chat.id,
+        message_id=user_state["greeting_audio_id"],
+        caption=f"🇷🇺 {translation}",
+        reply_markup=keyboard
+    )
+    await callback.answer()
+
+@router.callback_query(lambda c: c.data.startswith("hide_greeting_"))
+async def hide_greeting(callback: CallbackQuery):
+    user_id = int(callback.data.split("_")[2])
+    user_state = get_user_state(user_id)
+    keyboard = InlineKeyboardMarkup(inline_keyboard=[
+        [InlineKeyboardButton(text="📝 Текст", callback_data=f"show_greeting_{user_id}")]
+    ])
+    await callback.bot.edit_message_caption(
+        chat_id=callback.message.chat.id,
+        message_id=user_state["greeting_audio_id"],
+        caption="",
+        reply_markup=keyboard
+    )
+    await callback.answer()

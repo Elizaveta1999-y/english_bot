@@ -3,6 +3,7 @@ from services.deepseek import chat
 from data.users import get_user_state, add_to_history
 from speaking.services.history import build_history_prompt
 
+# ========== 1. ФИЛЬТР БЕЗОПАСНОСТИ ==========
 SAFETY_PROMPT = """You are a strict content safety filter. Analyze the student's message and reply with ONLY "SAFE" or "DANGER".
 
 Mark as DANGER if the message contains ANY of the following:
@@ -26,6 +27,7 @@ async def is_safe_message(user_text: str) -> bool:
         print(f"[Safety] Error: {e}")
         return True
 
+# ========== 2. ОСНОВНОЙ ПРОМПТ (ДЛЯ ОБЫЧНОГО SPEAKING) ==========
 _cached_prompt = None
 _cached_prompt_hash = None
 
@@ -57,13 +59,13 @@ def get_system_prompt(name: str) -> str:
 
 **EXAMPLE:**
 Student: "I like read book"
-Teacher: "Great! You can say 'I like reading' – after 'like', we use the -ing form. What kind of books do you enjoy?""
+Teacher: "Great! You can say 'I like reading' – after 'like', we use the -ing form. What kind of books do you enjoy?"""
 
     _cached_prompt_hash = prompt_hash
     return _cached_prompt
 
+# ========== 3. ПРОМПТ ДЛЯ РОЛЕВОЙ ИГРЫ ==========
 def get_roleplay_prompt(name: str, topic: str) -> str:
-    """Возвращает промпт для ролевой игры."""
     return f"""You are a participant in an English roleplay. Student name: {name}. Topic: {topic}.
 
 **YOUR ROLE:**
@@ -87,6 +89,7 @@ You: "Certainly! Would you like fries with that? And what would you like to drin
 
 Now respond as your character."""
 
+# ========== 4. ОСНОВНЫЕ ФУНКЦИИ ==========
 async def process_voice_message(user_id: int, user_text: str) -> str:
     user_state = get_user_state(user_id)
     name = user_state.get("name", "Student")

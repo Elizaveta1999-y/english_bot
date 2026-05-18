@@ -43,15 +43,14 @@ async def handle_voice(message: Message):
 
     mode = user_state.get("mode")
     if mode == "roleplay_active":
-        # Ролевой режим
         ai_response = await process_roleplay_message(user_id, user_text)
     else:
-        # Обычный Speaking
         if mode != "speaking_active":
             set_user_mode(user_id, "speaking_active")
             set_user_state(user_id, user_state)
         ai_response = await process_voice_message(user_id, user_text)
 
+    # Сохраняем историю
     history = user_state.get("history", [])
     history.append({"role": "user", "text": user_text})
     history.append({"role": "assistant", "text": ai_response})
@@ -91,8 +90,104 @@ async def _send_voice_message(message: Message, text: str, user_id: int):
         "audio_message_id": sent.message_id
     }
 
-# --- Обработчики инлайн-кнопок (Текст, Перевести, Оригинал, Скрыть) ---
-# ... (они точно такие же, как в предыдущей версии, я их не повторяю для краткости)
+# --- Обработчики инлайн-кнопок для основного режима (Текст, Перевести, Оригинал, Скрыть) ---
+@router.callback_query(lambda c: c.data.startswith("show_text_"))
+async def show_text(callback: CallbackQuery):
+    user_id = int(callback.data.split("_")[2])
+    data = last_bot_response.get(user_id)
+    if not data or not data.get("text"):
+        await callback.answer("No text available.", show_alert=True)
+        return
+
+    original = data["text"]
+    keyboard = InlineKeyboardMarkup(inline_keyboard=[
+        [
+            InlineKeyboardButton(text="🌐 Перевести", callback_data=f"translate_{user_id}"),
+            InlineKeyboardButton(text="❌ Скрыть", callback_data=f"hide_{user_id}")
+        ]
+    ])
+    await callback.bot.edit_message_caption(
+        chat_id=callback.message.chat.id,
+        message_id=data["audio_message_id"],
+        caption=f"📝 {original}",
+        reply_markup=keyboard
+    )
+    await callback.answer()
+
+@router.callback_query(lambda c: c.data.startswith("translate_"))
+async def translate_caption(callback: CallbackQuery):
+    user_id = int(callback.data.split("_")[1])
+    data = last_bot_response.get(user_id)
+    if not data or not data.get("text"):
+        await callback.answer("No text to translate.", show_alert=True)
+        return
+
+    if data.get("translation"):
+        translation = data["translation"]
+    else:
+        translation = chat(
+            f"Translate the following English text to Russian. Output only the translation, no extras.\n\n{data['text']}",
+            max_tokens=300, temperature=0.3
+        )
+        data["translation"] = translation
+        last_bot_response[user_id] = data
+
+    keyboard = InlineKeyboardMarkup(inline_keyboard=[
+        [
+            InlineKeyboardButton(text="🇺🇸 Оригинал", callback_data=f"original_{user_id}"),
+            InlineKeyboardButton(text="❌ Скрыть", callback_data=f"hide_{user_id}")
+        ]
+    ])
+    await callback.bot.edit_message_caption(
+        chat_id=callback.message.chat.id,
+        message_id=data["audio_message_id"],
+        caption=f"🇷🇺 {translation}",
+        reply_markup=keyboard
+    )
+    await callback.answer()
+
+@router.callback_query(lambda c: c.data.startswith("original_"))
+async def revert_to_original(callback: CallbackQuery):
+    user_id = int(callback.data.split("_")[1])
+    data = last_bot_response.get(user_id)
+    if not data or not data.get("text"):
+        await callback.answer("No original text.", show_alert=True)
+        return
+
+    keyboard = InlineKeyboardMarkup(inline_keyboard=[
+        [
+            InlineKeyboardButton(text="🌐 Перевести", callback_data=f"translate_{user_id}"),
+            InlineKeyboardButton(text="❌ Скрыть", callback_data=f"hide_{user_id}")
+        ]
+    ])
+    await callback.bot.edit_message_caption(
+        chat_id=callback.message.chat.id,
+        message_id=data["audio_message_id"],
+        caption=f"📝 {data['text']}",
+        reply_markup=keyboard
+    )
+    await callback.answer()
+
+@router.callback_query(lambda c: c.data.startswith("hide_"))
+async def hide_message(callback: CallbackQuery):
+    user_id = int(callback.data.split("_")[1])
+    data = last_bot_response.get(user_id)
+    if not data or not data.get("audio_message_id"):
+        await callback.answer("No message to hide.", show_alert=True)
+        return
+
+    keyboard = InlineKeyboardMarkup(inline_keyboard=[
+        [InlineKeyboardButton(text="📝 Текст", callback_data=f"show_text_{user_id}")]
+    ])
+    await callback.bot.edit_message_caption(
+        chat_id=callback.message.chat.id,
+        message_id=data["audio_message_id"],
+        caption="",
+        reply_markup=keyboard
+    )
+    data["translation"] = None
+    last_bot_response[user_id] = data
+    await callback.answer()
 
 # --- Обработчик кнопки "Что ответить?" ---
 @router.message(F.text == "💡 Что ответить?")
@@ -104,7 +199,6 @@ async def hint_button(message: Message):
     if not topic:
         await message.answer("Эта кнопка доступна только в режиме ролевой игры.")
         return
-    # Берём последние 5 сообщений для контекста
     context = "\n".join([f"{'User' if h['role']=='user' else 'Bot'}: {h['text']}" for h in history[-5:]])
     prompt = f"""Ты – участник ролевой игры (тема: {topic}). Пользователь не знает, что ответить. Дай 2–3 коротких варианта ответа (по-английски), подходящих по контексту. Контекст диалога:
 {context}
@@ -126,7 +220,7 @@ async def main_menu_button(message: Message):
         reply_markup=ReplyKeyboardRemove()
     )
 
-# --- Обработчик фидбека (только для обычного Speaking, не для RolePlay) ---
+# --- Обработчик фидбека (только для обычного Speaking) ---
 @router.message(F.text == "📊 Я всё! Фидбек")
 async def feedback_button(message: Message):
     user_id = message.from_user.id
@@ -157,13 +251,12 @@ async def text_fallback(message: Message):
     user_state = get_user_state(user_id)
     mode = user_state.get("mode")
     if mode in ("speaking_active", "roleplay_active"):
-        # Если пользователь пишет текст в активном режиме (не голосом), обрабатываем как обычный текст
+        # Если пользователь пишет текст в активном режиме, обрабатываем как обычный текст
         user_text = message.text
         if mode == "roleplay_active":
             ai_response = await process_roleplay_message(user_id, user_text)
         else:
             ai_response = await process_voice_message(user_id, user_text)
-        # Сохраняем историю
         history = user_state.get("history", [])
         history.append({"role": "user", "text": user_text})
         history.append({"role": "assistant", "text": ai_response})
@@ -171,7 +264,6 @@ async def text_fallback(message: Message):
             history = history[-20:]
         user_state["history"] = history
         set_user_state(user_id, user_state)
-        # Отправляем текстовый ответ (не голосовой)
         await message.answer(ai_response)
     else:
         await message.answer("Нажмите /start и выберите Speaking или RolePlay, чтобы начать общение.")
