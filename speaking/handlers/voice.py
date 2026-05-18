@@ -16,7 +16,6 @@ logger = logging.getLogger(__name__)
 router = Router()
 last_bot_response = {}           # для голосовых сообщений (audio)
 last_text_response = {}          # для текстовых сообщений в ролевом режиме
-# структура: {user_id: {"text": str, "translation": str, "message_id": int}}
 
 def convert_to_opus(mp3_path: str) -> str:
     ogg_path = tempfile.mktemp(suffix=".ogg")
@@ -90,6 +89,7 @@ async def _send_voice_message(message: Message, text: str, user_id: int):
     }
 
 async def _send_text_message_with_buttons(message: Message, text: str, user_id: int):
+    """Отправляет текстовое сообщение с кнопкой 'Перевести' (без кнопки скрытия)."""
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(text="🌐 Перевести", callback_data=f"translate_text_{user_id}")]
     ])
@@ -194,7 +194,7 @@ async def hide_message(callback: CallbackQuery):
     last_bot_response[user_id] = data
     await callback.answer()
 
-# --- Текстовые обработчики (ролевой режим) – кнопка Скрыть теперь НЕ УДАЛЯЕТ сообщение, а возвращает оригинал ---
+# --- Текстовые обработчики (ролевой режим) – без кнопки скрытия ---
 @router.callback_query(lambda c: c.data.startswith("translate_text_"))
 async def translate_text_callback(callback: CallbackQuery):
     user_id = int(callback.data.split("_")[2])
@@ -211,11 +211,9 @@ async def translate_text_callback(callback: CallbackQuery):
         )
         data["translation"] = translation
         last_text_response[user_id] = data
+    # После перевода показываем только кнопку "Оригинал" (без скрытия)
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
-        [
-            InlineKeyboardButton(text="🇺🇸 Оригинал", callback_data=f"original_text_{user_id}"),
-            InlineKeyboardButton(text="❌ Скрыть", callback_data=f"hide_text_{user_id}")
-        ]
+        [InlineKeyboardButton(text="🇺🇸 Оригинал", callback_data=f"original_text_{user_id}")]
     ])
     await callback.bot.edit_message_text(
         chat_id=callback.message.chat.id,
@@ -241,28 +239,6 @@ async def original_text_callback(callback: CallbackQuery):
         text=data["text"],
         reply_markup=keyboard
     )
-    await callback.answer()
-
-@router.callback_query(lambda c: c.data.startswith("hide_text_"))
-async def hide_text_callback(callback: CallbackQuery):
-    """Скрывает перевод, возвращая исходный текст и кнопку 'Перевести' (не удаляет сообщение)."""
-    user_id = int(callback.data.split("_")[2])
-    data = last_text_response.get(user_id)
-    if not data or not data.get("message_id"):
-        await callback.answer("No message to hide.", show_alert=True)
-        return
-    keyboard = InlineKeyboardMarkup(inline_keyboard=[
-        [InlineKeyboardButton(text="🌐 Перевести", callback_data=f"translate_text_{user_id}")]
-    ])
-    await callback.bot.edit_message_text(
-        chat_id=callback.message.chat.id,
-        message_id=data["message_id"],
-        text=data["text"],
-        reply_markup=keyboard
-    )
-    # Сбрасываем перевод, но оставляем запись
-    data["translation"] = None
-    last_text_response[user_id] = data
     await callback.answer()
 
 # --- REPLY-кнопки (без изменений) ---
