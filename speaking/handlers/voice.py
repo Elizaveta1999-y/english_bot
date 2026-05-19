@@ -4,5 +4,5 @@ from aiogram.types import Message
 router = Router()
 
 @router.message(F.text)
-async def echo(message: Message):
+async def echo_text(message: Message):
     await message.answer(f"Echo: {message.text}")
