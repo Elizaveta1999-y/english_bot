@@ -1,8 +1,7 @@
-from aiogram import Router, F
-from aiogram.types import Message
+from aiogram import Router, types
 
 router = Router()
 
 @router.message()
-async def catch_all(message: Message):
-    await message.answer(f"Получено: {message.text if message.text else 'голосовое сообщение'}")
+async def echo(message: types.Message):
+    await message.answer(f"Echo: {message.text}")
