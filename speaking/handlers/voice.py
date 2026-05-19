@@ -99,147 +99,7 @@ async def _send_text_message_with_buttons(message: Message, text: str, user_id: 
         "message_id": sent.message_id
     }
 
-# --- Голосовые обработчики (инлайн) ---
-@router.callback_query(lambda c: c.data.startswith("show_text_"))
-async def show_text(callback: CallbackQuery):
-    user_id = int(callback.data.split("_")[2])
-    data = last_bot_response.get(user_id)
-    if not data or not data.get("text"):
-        await callback.answer("No text available.", show_alert=True)
-        return
-    original = data["text"]
-    keyboard = InlineKeyboardMarkup(inline_keyboard=[
-        [
-            InlineKeyboardButton(text="🌐 Перевести", callback_data=f"translate_{user_id}"),
-            InlineKeyboardButton(text="❌ Скрыть", callback_data=f"hide_{user_id}")
-        ]
-    ])
-    await callback.bot.edit_message_caption(
-        chat_id=callback.message.chat.id,
-        message_id=data["audio_message_id"],
-        caption=f"📝 {original}",
-        reply_markup=keyboard
-    )
-    await callback.answer()
-
-@router.callback_query(lambda c: c.data.startswith("translate_") and not c.data.startswith("translate_text_"))
-async def translate_caption(callback: CallbackQuery):
-    user_id = int(callback.data.split("_")[1])
-    data = last_bot_response.get(user_id)
-    if not data or not data.get("text"):
-        await callback.answer("No text to translate.", show_alert=True)
-        return
-    if data.get("translation"):
-        translation = data["translation"]
-    else:
-        translation = chat(
-            f"Translate the following English text to Russian. Output only the translation, no extras.\n\n{data['text']}",
-            max_tokens=300, temperature=0.3
-        )
-        data["translation"] = translation
-        last_bot_response[user_id] = data
-    keyboard = InlineKeyboardMarkup(inline_keyboard=[
-        [
-            InlineKeyboardButton(text="🇺🇸 Оригинал", callback_data=f"original_{user_id}"),
-            InlineKeyboardButton(text="❌ Скрыть", callback_data=f"hide_{user_id}")
-        ]
-    ])
-    await callback.bot.edit_message_caption(
-        chat_id=callback.message.chat.id,
-        message_id=data["audio_message_id"],
-        caption=f"🇷🇺 {translation}",
-        reply_markup=keyboard
-    )
-    await callback.answer()
-
-@router.callback_query(lambda c: c.data.startswith("original_") and not c.data.startswith("original_text_"))
-async def revert_to_original(callback: CallbackQuery):
-    user_id = int(callback.data.split("_")[1])
-    data = last_bot_response.get(user_id)
-    if not data or not data.get("text"):
-        await callback.answer("No original text.", show_alert=True)
-        return
-    keyboard = InlineKeyboardMarkup(inline_keyboard=[
-        [
-            InlineKeyboardButton(text="🌐 Перевести", callback_data=f"translate_{user_id}"),
-            InlineKeyboardButton(text="❌ Скрыть", callback_data=f"hide_{user_id}")
-        ]
-    ])
-    await callback.bot.edit_message_caption(
-        chat_id=callback.message.chat.id,
-        message_id=data["audio_message_id"],
-        caption=f"📝 {data['text']}",
-        reply_markup=keyboard
-    )
-    await callback.answer()
-
-@router.callback_query(lambda c: c.data.startswith("hide_") and not c.data.startswith("hide_text_"))
-async def hide_message(callback: CallbackQuery):
-    user_id = int(callback.data.split("_")[1])
-    data = last_bot_response.get(user_id)
-    if not data or not data.get("audio_message_id"):
-        await callback.answer("No message to hide.", show_alert=True)
-        return
-    keyboard = InlineKeyboardMarkup(inline_keyboard=[
-        [InlineKeyboardButton(text="📝 Текст", callback_data=f"show_text_{user_id}")]
-    ])
-    await callback.bot.edit_message_caption(
-        chat_id=callback.message.chat.id,
-        message_id=data["audio_message_id"],
-        caption="",
-        reply_markup=keyboard
-    )
-    data["translation"] = None
-    last_bot_response[user_id] = data
-    await callback.answer()
-
-# --- Текстовые обработчики для ролевого режима ---
-@router.callback_query(lambda c: c.data.startswith("translate_text_"))
-async def translate_text_callback(callback: CallbackQuery):
-    user_id = int(callback.data.split("_")[2])
-    data = last_text_response.get(user_id)
-    if not data or not data.get("text"):
-        await callback.answer("No text to translate.", show_alert=True)
-        return
-    if data.get("translation"):
-        translation = data["translation"]
-    else:
-        translation = chat(
-            f"Translate the following English text to Russian. Output only the translation, no extras.\n\n{data['text']}",
-            max_tokens=300, temperature=0.3
-        )
-        data["translation"] = translation
-        last_text_response[user_id] = data
-    keyboard = InlineKeyboardMarkup(inline_keyboard=[
-        [InlineKeyboardButton(text="🇺🇸 Оригинал", callback_data=f"original_text_{user_id}")]
-    ])
-    await callback.bot.edit_message_text(
-        chat_id=callback.message.chat.id,
-        message_id=data["message_id"],
-        text=f"🇷🇺 {translation}",
-        reply_markup=keyboard
-    )
-    await callback.answer()
-
-@router.callback_query(lambda c: c.data.startswith("original_text_"))
-async def original_text_callback(callback: CallbackQuery):
-    user_id = int(callback.data.split("_")[2])
-    data = last_text_response.get(user_id)
-    if not data or not data.get("text"):
-        await callback.answer("No original text.", show_alert=True)
-        return
-    keyboard = InlineKeyboardMarkup(inline_keyboard=[
-        [InlineKeyboardButton(text="🌐 Перевести", callback_data=f"translate_text_{user_id}")]
-    ])
-    await callback.bot.edit_message_text(
-        chat_id=callback.message.chat.id,
-        message_id=data["message_id"],
-        text=data["text"],
-        reply_markup=keyboard
-    )
-    await callback.answer()
-
-# --- Кнопки reply-клавиатуры ---
+# --- ОБРАБОТЧИКИ КНОПОК (ТОЧНЫЕ СОВПАДЕНИЯ) ---
 @router.message(F.text == "💡 Что ответить?")
 async def hint_button(message: Message):
     user_id = message.from_user.id
@@ -337,6 +197,134 @@ async def feedback_button(message: Message):
 <b>📚 Словарик</b> (5 слов/фраз: слово — перевод (пример))"""
     feedback = chat(prompt, max_tokens=600, temperature=0.5)
     await message.answer(f"📊 <b>Ваш фидбек</b>:\n\n{feedback}", parse_mode="HTML")
+
+# --- Обработчики для инлайн-кнопок голосовых сообщений (show_text, translate, original, hide) ---
+@router.callback_query(lambda c: c.data.startswith("show_text_"))
+async def show_text(callback: CallbackQuery):
+    user_id = int(callback.data.split("_")[2])
+    data = last_bot_response.get(user_id)
+    if not data or not data.get("text"):
+        await callback.answer("No text available.", show_alert=True)
+        return
+    original = data["text"]
+    keyboard = InlineKeyboardMarkup(inline_keyboard=[
+        [InlineKeyboardButton(text="🌐 Перевести", callback_data=f"translate_{user_id}"),
+         InlineKeyboardButton(text="❌ Скрыть", callback_data=f"hide_{user_id}")]
+    ])
+    await callback.bot.edit_message_caption(
+        chat_id=callback.message.chat.id,
+        message_id=data["audio_message_id"],
+        caption=f"📝 {original}",
+        reply_markup=keyboard
+    )
+    await callback.answer()
+
+@router.callback_query(lambda c: c.data.startswith("translate_") and not c.data.startswith("translate_text_"))
+async def translate_caption(callback: CallbackQuery):
+    user_id = int(callback.data.split("_")[1])
+    data = last_bot_response.get(user_id)
+    if not data or not data.get("text"):
+        await callback.answer("No text to translate.", show_alert=True)
+        return
+    if data.get("translation"):
+        translation = data["translation"]
+    else:
+        translation = chat(f"Translate the following English text to Russian. Output only the translation, no extras.\n\n{data['text']}", max_tokens=300, temperature=0.3)
+        data["translation"] = translation
+        last_bot_response[user_id] = data
+    keyboard = InlineKeyboardMarkup(inline_keyboard=[
+        [InlineKeyboardButton(text="🇺🇸 Оригинал", callback_data=f"original_{user_id}"),
+         InlineKeyboardButton(text="❌ Скрыть", callback_data=f"hide_{user_id}")]
+    ])
+    await callback.bot.edit_message_caption(
+        chat_id=callback.message.chat.id,
+        message_id=data["audio_message_id"],
+        caption=f"🇷🇺 {translation}",
+        reply_markup=keyboard
+    )
+    await callback.answer()
+
+@router.callback_query(lambda c: c.data.startswith("original_") and not c.data.startswith("original_text_"))
+async def revert_to_original(callback: CallbackQuery):
+    user_id = int(callback.data.split("_")[1])
+    data = last_bot_response.get(user_id)
+    if not data or not data.get("text"):
+        await callback.answer("No original text.", show_alert=True)
+        return
+    keyboard = InlineKeyboardMarkup(inline_keyboard=[
+        [InlineKeyboardButton(text="🌐 Перевести", callback_data=f"translate_{user_id}"),
+         InlineKeyboardButton(text="❌ Скрыть", callback_data=f"hide_{user_id}")]
+    ])
+    await callback.bot.edit_message_caption(
+        chat_id=callback.message.chat.id,
+        message_id=data["audio_message_id"],
+        caption=f"📝 {data['text']}",
+        reply_markup=keyboard
+    )
+    await callback.answer()
+
+@router.callback_query(lambda c: c.data.startswith("hide_") and not c.data.startswith("hide_text_"))
+async def hide_message(callback: CallbackQuery):
+    user_id = int(callback.data.split("_")[1])
+    data = last_bot_response.get(user_id)
+    if not data or not data.get("audio_message_id"):
+        await callback.answer("No message to hide.", show_alert=True)
+        return
+    keyboard = InlineKeyboardMarkup(inline_keyboard=[
+        [InlineKeyboardButton(text="📝 Текст", callback_data=f"show_text_{user_id}")]
+    ])
+    await callback.bot.edit_message_caption(
+        chat_id=callback.message.chat.id,
+        message_id=data["audio_message_id"],
+        caption="",
+        reply_markup=keyboard
+    )
+    data["translation"] = None
+    last_bot_response[user_id] = data
+    await callback.answer()
+
+# --- Обработчики для текстовых сообщений (ролевой режим) ---
+@router.callback_query(lambda c: c.data.startswith("translate_text_"))
+async def translate_text_callback(callback: CallbackQuery):
+    user_id = int(callback.data.split("_")[2])
+    data = last_text_response.get(user_id)
+    if not data or not data.get("text"):
+        await callback.answer("No text to translate.", show_alert=True)
+        return
+    if data.get("translation"):
+        translation = data["translation"]
+    else:
+        translation = chat(f"Translate the following English text to Russian. Output only the translation, no extras.\n\n{data['text']}", max_tokens=300, temperature=0.3)
+        data["translation"] = translation
+        last_text_response[user_id] = data
+    keyboard = InlineKeyboardMarkup(inline_keyboard=[
+        [InlineKeyboardButton(text="🇺🇸 Оригинал", callback_data=f"original_text_{user_id}")]
+    ])
+    await callback.bot.edit_message_text(
+        chat_id=callback.message.chat.id,
+        message_id=data["message_id"],
+        text=f"🇷🇺 {translation}",
+        reply_markup=keyboard
+    )
+    await callback.answer()
+
+@router.callback_query(lambda c: c.data.startswith("original_text_"))
+async def original_text_callback(callback: CallbackQuery):
+    user_id = int(callback.data.split("_")[2])
+    data = last_text_response.get(user_id)
+    if not data or not data.get("text"):
+        await callback.answer("No original text.", show_alert=True)
+        return
+    keyboard = InlineKeyboardMarkup(inline_keyboard=[
+        [InlineKeyboardButton(text="🌐 Перевести", callback_data=f"translate_text_{user_id}")]
+    ])
+    await callback.bot.edit_message_text(
+        chat_id=callback.message.chat.id,
+        message_id=data["message_id"],
+        text=data["text"],
+        reply_markup=keyboard
+    )
+    await callback.answer()
 
 @router.message(F.text)
 async def text_fallback(message: Message):
