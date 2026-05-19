@@ -99,10 +99,10 @@ async def _send_text_message_with_buttons(message: Message, text: str, user_id: 
         "message_id": sent.message_id
     }
 
-# ---------- ОБРАБОТЧИКИ КНОПОК (с отладкой) ----------
+# ========== ОБРАБОТЧИКИ КНОПОК (с принтами для диагностики) ==========
 @router.message(F.text == "💡 Что ответить?")
 async def hint_button(message: Message):
-    print(f"DEBUG: hint_button triggered with text: {message.text}")
+    print(f"DEBUG: hint_button triggered, text={message.text}")
     user_id = message.from_user.id
     user_state = get_user_state(user_id)
     topic = user_state.get("roleplay_topic")
@@ -120,7 +120,7 @@ async def hint_button(message: Message):
 
 @router.message(F.text == "🏠 Главное меню")
 async def main_menu_button(message: Message):
-    print(f"DEBUG: main_menu_button triggered with text: {message.text}")
+    print(f"DEBUG: main_menu_button triggered, text={message.text}")
     user_id = message.from_user.id
     set_user_state(user_id, {"mode": None, "history": []})
     if user_id in last_bot_response:
@@ -134,7 +134,7 @@ async def main_menu_button(message: Message):
 
 @router.message(F.text == "📊 Завершить диалог")
 async def finish_roleplay(message: Message):
-    print(f"DEBUG: finish_roleplay triggered with text: {message.text}")
+    print(f"DEBUG: finish_roleplay button triggered, text={message.text}")
     user_id = message.from_user.id
     user_state = get_user_state(user_id)
     if user_state.get("mode") != "roleplay_active":
@@ -160,28 +160,9 @@ async def finish_roleplay(message: Message):
     ])
     await message.answer("Желаете продолжить ролевую игру или завершить?", reply_markup=keyboard)
 
-@router.callback_query(lambda c: c.data == "continue_roleplay")
-async def continue_roleplay(callback: CallbackQuery):
-    await callback.message.delete()
-    await callback.answer("Продолжаем. Отправляйте следующие сообщения.")
-
-@router.callback_query(lambda c: c.data == "exit_to_menu")
-async def exit_to_menu(callback: CallbackQuery):
-    user_id = callback.from_user.id
-    set_user_state(user_id, {"mode": None, "history": []})
-    if user_id in last_bot_response:
-        del last_bot_response[user_id]
-    if user_id in last_text_response:
-        del last_text_response[user_id]
-    await callback.message.answer(
-        "🔚 Режим завершён. Чтобы начать снова, нажмите /start и выберите Speaking или RolePlay.",
-        reply_markup=ReplyKeyboardRemove()
-    )
-    await callback.answer()
-
 @router.message(F.text == "📊 Я всё! Фидбек")
 async def feedback_button(message: Message):
-    print(f"DEBUG: feedback_button triggered with text: {message.text}")
+    print(f"DEBUG: feedback_button triggered, text={message.text}")
     user_id = message.from_user.id
     user_state = get_user_state(user_id)
     if user_state.get("mode") != "speaking_active":
@@ -202,7 +183,32 @@ async def feedback_button(message: Message):
     feedback = chat(prompt, max_tokens=600, temperature=0.5)
     await message.answer(f"📊 <b>Ваш фидбек</b>:\n\n{feedback}", parse_mode="HTML")
 
-# ---------- Обработчики инлайн-кнопок (голосовых сообщений) ----------
+# ========== ОБЩИЙ ОБРАБОТЧИК ТЕКСТА (должен быть ПОСЛЕ всех специфичных) ==========
+@router.message(F.text)
+async def text_fallback(message: Message):
+    print(f"DEBUG: text_fallback (general) received: {message.text}")
+    user_id = message.from_user.id
+    user_state = get_user_state(user_id)
+    mode = user_state.get("mode")
+    if mode in ("speaking_active", "roleplay_active"):
+        user_text = message.text
+        if mode == "roleplay_active":
+            ai_response = await process_roleplay_message(user_id, user_text)
+            await _send_text_message_with_buttons(message, ai_response, user_id)
+        else:
+            ai_response = await process_voice_message(user_id, user_text)
+            await _send_voice_message(message, ai_response, user_id)
+        history = user_state.get("history", [])
+        history.append({"role": "user", "text": user_text})
+        history.append({"role": "assistant", "text": ai_response})
+        if len(history) > 20:
+            history = history[-20:]
+        user_state["history"] = history
+        set_user_state(user_id, user_state)
+    else:
+        await message.answer("Нажмите /start и выберите Speaking или RolePlay, чтобы начать общение.")
+
+# ========== ОСТАЛЬНЫЕ ОБРАБОТЧИКИ (inline кнопки для перевода и т.д.) ==========
 @router.callback_query(lambda c: c.data.startswith("show_text_"))
 async def show_text(callback: CallbackQuery):
     user_id = int(callback.data.split("_")[2])
@@ -212,8 +218,10 @@ async def show_text(callback: CallbackQuery):
         return
     original = data["text"]
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
-        [InlineKeyboardButton(text="🌐 Перевести", callback_data=f"translate_{user_id}"),
-         InlineKeyboardButton(text="❌ Скрыть", callback_data=f"hide_{user_id}")]
+        [
+            InlineKeyboardButton(text="🌐 Перевести", callback_data=f"translate_{user_id}"),
+            InlineKeyboardButton(text="❌ Скрыть", callback_data=f"hide_{user_id}")
+        ]
     ])
     await callback.bot.edit_message_caption(
         chat_id=callback.message.chat.id,
@@ -237,8 +245,10 @@ async def translate_caption(callback: CallbackQuery):
         data["translation"] = translation
         last_bot_response[user_id] = data
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
-        [InlineKeyboardButton(text="🇺🇸 Оригинал", callback_data=f"original_{user_id}"),
-         InlineKeyboardButton(text="❌ Скрыть", callback_data=f"hide_{user_id}")]
+        [
+            InlineKeyboardButton(text="🇺🇸 Оригинал", callback_data=f"original_{user_id}"),
+            InlineKeyboardButton(text="❌ Скрыть", callback_data=f"hide_{user_id}")
+        ]
     ])
     await callback.bot.edit_message_caption(
         chat_id=callback.message.chat.id,
@@ -256,8 +266,10 @@ async def revert_to_original(callback: CallbackQuery):
         await callback.answer("No original text.", show_alert=True)
         return
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
-        [InlineKeyboardButton(text="🌐 Перевести", callback_data=f"translate_{user_id}"),
-         InlineKeyboardButton(text="❌ Скрыть", callback_data=f"hide_{user_id}")]
+        [
+            InlineKeyboardButton(text="🌐 Перевести", callback_data=f"translate_{user_id}"),
+            InlineKeyboardButton(text="❌ Скрыть", callback_data=f"hide_{user_id}")
+        ]
     ])
     await callback.bot.edit_message_caption(
         chat_id=callback.message.chat.id,
@@ -287,7 +299,6 @@ async def hide_message(callback: CallbackQuery):
     last_bot_response[user_id] = data
     await callback.answer()
 
-# ---------- Обработчики для текстовых сообщений в ролевом режиме (с inline-кнопками) ----------
 @router.callback_query(lambda c: c.data.startswith("translate_text_"))
 async def translate_text_callback(callback: CallbackQuery):
     user_id = int(callback.data.split("_")[2])
@@ -329,28 +340,3 @@ async def original_text_callback(callback: CallbackQuery):
         reply_markup=keyboard
     )
     await callback.answer()
-
-# ---------- ОБЩИЙ ОБРАБОТЧИК ДЛЯ ТЕКСТОВЫХ СООБЩЕНИЙ (должен быть последним) ----------
-@router.message(F.text)
-async def text_fallback(message: Message):
-    user_id = message.from_user.id
-    user_state = get_user_state(user_id)
-    mode = user_state.get("mode")
-    print(f"DEBUG: text_fallback received: '{message.text}', mode={mode}")
-    if mode in ("speaking_active", "roleplay_active"):
-        user_text = message.text
-        if mode == "roleplay_active":
-            ai_response = await process_roleplay_message(user_id, user_text)
-            await _send_text_message_with_buttons(message, ai_response, user_id)
-        else:
-            ai_response = await process_voice_message(user_id, user_text)
-            await _send_voice_message(message, ai_response, user_id)
-        history = user_state.get("history", [])
-        history.append({"role": "user", "text": user_text})
-        history.append({"role": "assistant", "text": ai_response})
-        if len(history) > 20:
-            history = history[-20:]
-        user_state["history"] = history
-        set_user_state(user_id, user_state)
-    else:
-        await message.answer("Нажмите /start и выберите Speaking или RolePlay, чтобы начать общение.")
