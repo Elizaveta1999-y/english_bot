@@ -23,7 +23,6 @@ def webhook():
     try:
         data = request.get_json()
         update = Update(**data)
-        # Запускаем асинхронную обработку в синхронном контексте
         import asyncio
         asyncio.run(dp.feed_update(bot, update))
         return "OK", 200
@@ -35,9 +34,12 @@ def webhook():
 def index():
     return "Bot is running", 200
 
-# Установка вебхука при старте (выполнится один раз)
+# Установка вебхука при старте
 def set_webhook():
-    webhook_url = f"https://{os.environ.get('RENDER_EXTERNAL_URL', 'english-bot-wdfa.onrender.com')}{WEBHOOK_PATH}"
+    external_url = os.environ.get('RENDER_EXTERNAL_URL')
+    if not external_url:
+        external_url = "https://english-bot-of29.onrender.com"  # замените на ваш URL
+    webhook_url = f"{external_url}{WEBHOOK_PATH}"
     try:
         import asyncio
         asyncio.run(bot.set_webhook(webhook_url))
