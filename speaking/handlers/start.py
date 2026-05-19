@@ -2,7 +2,7 @@ import os
 from aiogram import Router, F
 from aiogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery, BufferedInputFile, ReplyKeyboardMarkup, KeyboardButton
 from aiogram.filters import Command
-from data.users import set_user_state
+from data.users import set_user_state, get_user_state
 from speaking.services.tts import text_to_voice
 from speaking.services.ai import chat
 
@@ -15,7 +15,7 @@ WELCOME_TEXT = (
     "🌟 <b>Акция</b> – полный доступ ко всему функционалу <s>700₽</s> <b>399₽/мес</b>."
 )
 
-# ========== РАСШИРЕННЫЕ КАТЕГОРИИ И ТЕМЫ (более 40 сценариев) ==========
+# ========== РАСШИРЕННЫЕ КАТЕГОРИИ И ТЕМЫ ==========
 CATEGORIES = [
     ("🏢 Работа и бизнес", "work"),
     ("✈️ Путешествия", "travel"),
@@ -155,27 +155,24 @@ async def custom_scenario_start(callback: CallbackQuery):
         "Напишите ваш сценарий:",
         parse_mode="HTML"
     )
-    # Устанавливаем временное состояние ожидания сценария
     user_id = callback.from_user.id
     user_state = get_user_state(user_id)
     user_state["awaiting_custom_scenario"] = True
     set_user_state(user_id, user_state)
     await callback.answer()
 
-@router.message(F.text & (lambda m: get_user_state(m.from_user.id).get("awaiting_custom_scenario")))
+# ИСПРАВЛЕННЫЙ ОБРАБОТЧИК КАСТОМНОГО СЦЕНАРИЯ (без ошибки &)
+@router.message(F.text)
 async def process_custom_scenario(message: Message):
     user_id = message.from_user.id
     user_state = get_user_state(user_id)
     if not user_state.get("awaiting_custom_scenario"):
         return
-    # Сброс флага
     user_state["awaiting_custom_scenario"] = False
     set_user_state(user_id, user_state)
 
     scenario_text = message.text
-    # Генерируем имя темы (первые 30 символов)
     topic = scenario_text[:50] + ("..." if len(scenario_text) > 50 else "")
-    # Сохраняем кастомный сценарий в состояние
     set_user_state(user_id, {
         "mode": "roleplay_active",
         "history": [],
@@ -201,7 +198,6 @@ async def process_custom_scenario(message: Message):
     )
     await message.answer("🎬 <b>Можете начинать!</b>", parse_mode="HTML")
 
-# ---------- Остальные функции (show_topics, back_to_categories, topic_chosen) без изменений ----------
 @router.callback_query(lambda c: c.data.startswith("cat_"))
 async def show_topics(callback: CallbackQuery):
     cat_id = callback.data[4:]
@@ -274,5 +270,5 @@ async def topic_chosen(callback: CallbackQuery):
     await callback.message.edit_text(roleplay_info, parse_mode="HTML")
     await callback.message.answer("🎬 <b>Можете начинать!</b>", reply_markup=keyboard, parse_mode="HTML")
 
-# Обработчики для greeting (приветственного аудио) – они должны быть здесь, но для краткости не копируются.
-# В реальном файле они уже есть (show_greeting_, translate_greeting_, hide_greeting_).
+# Обработчики для greeting (приветственного аудио) – должны быть здесь, но для краткости не копируются.
+# В вашем реальном файле они уже есть (show_greeting_, translate_greeting_, hide_greeting_).
