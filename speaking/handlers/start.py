@@ -15,7 +15,6 @@ WELCOME_TEXT = (
     "🌟 <b>Акция</b> – полный доступ ко всему функционалу <s>700₽</s> <b>399₽/мес</b>."
 )
 
-# ========== РАСШИРЕННЫЕ КАТЕГОРИИ И ТЕМЫ ==========
 CATEGORIES = [
     ("🏢 Работа и бизнес", "work"),
     ("✈️ Путешествия", "travel"),
@@ -133,7 +132,6 @@ async def activate_speaking_mode(message: Message, user_id: int):
 
 @router.callback_query(lambda c: c.data == "start_roleplay")
 async def start_roleplay_callback(callback: CallbackQuery):
-    # Показываем категории и кнопку своего сценария
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(text="✍️ Придумать свой сценарий", callback_data="custom_scenario")]
     ] + [[InlineKeyboardButton(text=cat[0], callback_data=f"cat_{cat[1]}")] for cat in CATEGORIES])
@@ -161,7 +159,6 @@ async def custom_scenario_start(callback: CallbackQuery):
     set_user_state(user_id, user_state)
     await callback.answer()
 
-# ИСПРАВЛЕННЫЙ ОБРАБОТЧИК КАСТОМНОГО СЦЕНАРИЯ (без ошибки &)
 @router.message(F.text)
 async def process_custom_scenario(message: Message):
     user_id = message.from_user.id
@@ -270,5 +267,4 @@ async def topic_chosen(callback: CallbackQuery):
     await callback.message.edit_text(roleplay_info, parse_mode="HTML")
     await callback.message.answer("🎬 <b>Можете начинать!</b>", reply_markup=keyboard, parse_mode="HTML")
 
-# Обработчики для greeting (приветственного аудио) – должны быть здесь, но для краткости не копируются.
-# В вашем реальном файле они уже есть (show_greeting_, translate_greeting_, hide_greeting_).
+# Обработчики для greeting (приветственного аудио) – они уже были, я их не копирую, но в реальном файле они есть

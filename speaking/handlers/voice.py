@@ -14,8 +14,8 @@ from services.deepseek import chat
 
 logger = logging.getLogger(__name__)
 router = Router()
-last_bot_response = {}           # для голосовых сообщений (audio)
-last_text_response = {}          # для текстовых сообщений в ролевом режиме
+last_bot_response = {}
+last_text_response = {}
 
 def convert_to_opus(mp3_path: str) -> str:
     ogg_path = tempfile.mktemp(suffix=".ogg")
@@ -99,7 +99,7 @@ async def _send_text_message_with_buttons(message: Message, text: str, user_id: 
         "message_id": sent.message_id
     }
 
-# --- Голосовые обработчики (без изменений) ---
+# --- Голосовые обработчики (инлайн) ---
 @router.callback_query(lambda c: c.data.startswith("show_text_"))
 async def show_text(callback: CallbackQuery):
     user_id = int(callback.data.split("_")[2])
@@ -193,7 +193,7 @@ async def hide_message(callback: CallbackQuery):
     last_bot_response[user_id] = data
     await callback.answer()
 
-# --- Текстовые обработчики (ролевой режим) – без кнопки скрытия ---
+# --- Текстовые обработчики для ролевого режима ---
 @router.callback_query(lambda c: c.data.startswith("translate_text_"))
 async def translate_text_callback(callback: CallbackQuery):
     user_id = int(callback.data.split("_")[2])
@@ -239,7 +239,7 @@ async def original_text_callback(callback: CallbackQuery):
     )
     await callback.answer()
 
-# --- REPLY-кнопки ---
+# --- Кнопки reply-клавиатуры ---
 @router.message(F.text == "💡 Что ответить?")
 async def hint_button(message: Message):
     user_id = message.from_user.id
@@ -270,32 +270,6 @@ async def main_menu_button(message: Message):
         reply_markup=ReplyKeyboardRemove()
     )
 
-# --- Фидбек для обычного Speaking (оставляем как есть) ---
-@router.message(F.text == "📊 Я всё! Фидбек")
-async def feedback_button(message: Message):
-    user_id = message.from_user.id
-    user_state = get_user_state(user_id)
-    if user_state.get("mode") != "speaking_active":
-        await message.answer("Фидбек доступен только в режиме Speaking (без ролевой игры).")
-        return
-    history = user_state.get("history", [])
-    if len(history) < 2:
-        await message.answer("Вы ещё не общались. Отправьте несколько голосовых сообщений.")
-        return
-    conversation = "\n".join([f"{'Student' if h['role']=='user' else 'Teacher'}: {h['text']}" for h in history[-10:]])
-    prompt = f"""Ты опытный учитель английского. Дай короткий фидбек на русском языке.
-
-Диалог:
-{conversation}
-
-Формат:
-<b>📝 Ошибки и исправления</b> (2-3 пункта, кратко)
-<b>💡 Рекомендации</b> (2 фразы)
-<b>📚 Словарик</b> (5 слов/фраз: слово — перевод (пример))"""
-    feedback = chat(prompt, max_tokens=600, temperature=0.5)
-    await message.answer(f"📊 <b>Ваш фидбек</b>:\n\n{feedback}", parse_mode="HTML")
-
-# --- Фидбек для ролевого режима ---
 @router.message(F.text == "📊 Завершить диалог")
 async def finish_roleplay(message: Message):
     user_id = message.from_user.id
@@ -307,7 +281,6 @@ async def finish_roleplay(message: Message):
     if len(history) < 2:
         await message.answer("Диалог ещё не начался. Сначала отправьте несколько сообщений.")
         return
-    # Генерируем фидбек
     await message.bot.send_chat_action(chat_id=message.chat.id, action="typing")
     conversation = "\n".join([f"{'User' if h['role']=='user' else 'Bot'}: {h['text']}" for h in history[-20:]])
     topic = user_state.get("roleplay_topic", "ролевая игра")
@@ -316,12 +289,8 @@ async def finish_roleplay(message: Message):
         custom_scenario = user_state.get("custom_scenario", "")
         feedback = await generate_roleplay_feedback(conversation, topic, custom_scenario=custom_scenario)
     else:
-        # Находим цели темы из словаря TOPICS (если не кастомная)
-        # Для простоты передадим topic, а в ai.py уже логика
         feedback = await generate_roleplay_feedback(conversation, topic)
-    # Отправляем фидбек
     await message.answer(f"📊 <b>Анализ диалога</b>\n\n{feedback}", parse_mode="HTML")
-    # Спрашиваем, хочет ли пользователь продолжить или выйти
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(text="🔁 Продолжить диалог", callback_data="continue_roleplay")],
         [InlineKeyboardButton(text="🏠 Выйти в меню", callback_data="exit_to_menu")]
@@ -346,6 +315,28 @@ async def exit_to_menu(callback: CallbackQuery):
         reply_markup=ReplyKeyboardRemove()
     )
     await callback.answer()
+
+@router.message(F.text == "📊 Я всё! Фидбек")
+async def feedback_button(message: Message):
+    user_id = message.from_user.id
+    user_state = get_user_state(user_id)
+    if user_state.get("mode") != "speaking_active":
+        await message.answer("Фидбек доступен только в режиме Speaking (без ролевой игры).")
+        return
+    history = user_state.get("history", [])
+    if len(history) < 2:
+        await message.answer("Вы ещё не общались. Отправьте несколько голосовых сообщений.")
+        return
+    conversation = "\n".join([f"{'Student' if h['role']=='user' else 'Teacher'}: {h['text']}" for h in history[-10:]])
+    prompt = f"""Ты опытный учитель английского. Дай короткий фидбек на русском языке.
+Диалог:
+{conversation}
+Формат:
+<b>📝 Ошибки и исправления</b> (2-3 пункта, кратко)
+<b>💡 Рекомендации</b> (2 фразы)
+<b>📚 Словарик</b> (5 слов/фраз: слово — перевод (пример))"""
+    feedback = chat(prompt, max_tokens=600, temperature=0.5)
+    await message.answer(f"📊 <b>Ваш фидбек</b>:\n\n{feedback}", parse_mode="HTML")
 
 @router.message(F.text)
 async def text_fallback(message: Message):
