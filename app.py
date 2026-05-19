@@ -12,10 +12,18 @@ bot = Bot(token=BOT_TOKEN)
 dp = Dispatcher()
 dp.include_router(start_router)
 
-# Прямой обработчик всех сообщений (включая текст и callback_query)
+# Прямой обработчик всех сообщений (голосовых и текстовых)
 @dp.message()
-async def catch_all_messages(message: types.Message):
-    await message.answer(f"🔥 Прямой обработчик: {message.text}")
+async def catch_all(message: types.Message):
+    if message.voice:
+        await message.answer("Получено голосовое сообщение (обработка временно отключена)")
+    else:
+        await message.answer(f"✅ Отладочный ответ: {message.text}")
+
+# Обработчик голосовых (на всякий случай)
+@dp.message(lambda m: m.voice)
+async def voice_fallback(message: types.Message):
+    await message.answer("Голосовые сообщения временно не обрабатываются, но мы получили ваш файл.")
 
 WEBHOOK_PATH = "/webhook"
 
