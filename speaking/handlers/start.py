@@ -253,4 +253,4 @@ async def topic_chosen(callback: CallbackQuery):
     await callback.message.edit_text(roleplay_info, parse_mode="HTML")
     await callback.message.answer("🎬 <b>Можете начинать!</b>", reply_markup=keyboard, parse_mode="HTML")
 
-# Обработчики для greeting (show_greeting_, translate_greeting_, hide_greeting_) – в вашем файле они уже есть.
+# Обработчики для greeting (show_greeting_, translate_greeting_, hide_greeting_) должны быть, но для краткости опущены. Они есть в предыдущих версиях.

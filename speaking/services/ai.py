@@ -3,7 +3,6 @@ from services.deepseek import chat
 from data.users import get_user_state, add_to_history
 from speaking.services.history import build_history_prompt
 
-# ========== ФИЛЬТР БЕЗОПАСНОСТИ (без изменений) ==========
 SAFETY_PROMPT = """You are a strict content safety filter. Analyze the student's message and reply with ONLY "SAFE" or "DANGER".
 
 Mark as DANGER if the message contains ANY of the following:
@@ -27,7 +26,6 @@ async def is_safe_message(user_text: str) -> bool:
         print(f"[Safety] Error: {e}")
         return True
 
-# ========== ОСНОВНОЙ ПРОМПТ ДЛЯ SPEAKING ==========
 _cached_prompt = None
 _cached_prompt_hash = None
 
@@ -64,7 +62,6 @@ Teacher: "Great! You can say 'I like reading' – after 'like', we use the -ing 
     _cached_prompt_hash = prompt_hash
     return _cached_prompt
 
-# ========== ПРОМПТ ДЛЯ РОЛЕВОЙ ИГРЫ (усиленный) ==========
 def get_roleplay_prompt(name: str, topic: str, custom_scenario: str = None) -> str:
     if custom_scenario:
         return f"""You are a participant in an English roleplay. Student name: {name}.
@@ -139,7 +136,6 @@ Your response (stay in character, natural, end with a prompt):"""
     add_to_history(user_id, "assistant", ai_response)
     return ai_response
 
-# ========== ФУНКЦИЯ ДЛЯ ГЕНЕРАЦИИ ФИДБЕКА ПО РОЛЕВОМУ ДИАЛОГУ ==========
 async def generate_roleplay_feedback(conversation: str, topic: str, custom_scenario: str = None) -> str:
     if custom_scenario:
         prompt = f"""Ты опытный преподаватель английского. Проанализируй диалог в ролевой игре.
@@ -151,27 +147,19 @@ async def generate_roleplay_feedback(conversation: str, topic: str, custom_scena
 
 Дай подробный фидбек на русском языке по следующей структуре:
 
-<b>1. Общее впечатление</b> (коротко, 1-2 предложения)
-<b>2. Грамматические и лексические ошибки</b> (перечисли 3-5 наиболее значимых, дай исправления и краткие пояснения)
-<b>3. Успешные моменты</b> (что получилось хорошо – 2-3 пункта)
-<b>4. Рекомендации по улучшению</b> (2-3 совета)
-<b>5. Словарик полезных фраз из диалога</b> (5-7 выражений с переводом)
+<b>1. Общее впечатление</b> (коротко)
+<b>2. Грамматические и лексические ошибки</b> (3-5, с исправлениями)
+<b>3. Успешные моменты</b> (2-3)
+<b>4. Рекомендации по улучшению</b> (2-3)
+<b>5. Словарик полезных фраз</b> (5-7 выражений с переводом)
 
-Будь дружелюбным и конструктивным."""
+Будь дружелюбным."""
     else:
         prompt = f"""Ты опытный преподаватель английского. Проанализируй диалог в ролевой игре на тему «{topic}».
 
 Диалог:
 {conversation}
 
-Дай подробный фидбек на русском языке по следующей структуре:
-
-<b>1. Общее впечатление</b> (коротко)
-<b>2. Грамматические и лексические ошибки</b> (3-5, с исправлениями и пояснениями)
-<b>3. Успешные моменты</b> (2-3 пункта)
-<b>4. Рекомендации по улучшению</b> (2-3 совета)
-<b>5. Словарик полезных фраз</b> (5-7 выражений с переводом)
-
-Будь дружелюбным и конструктивным."""
+Дай подробный фидбек на русском языке по структуре выше."""
     feedback = chat(prompt, max_tokens=1200, temperature=0.5)
     return feedback
