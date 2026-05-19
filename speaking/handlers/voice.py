@@ -99,8 +99,10 @@ async def _send_text_message_with_buttons(message: Message, text: str, user_id: 
         "message_id": sent.message_id
     }
 
+# ---------- ОБРАБОТЧИКИ КНОПОК (с отладкой) ----------
 @router.message(F.text == "💡 Что ответить?")
 async def hint_button(message: Message):
+    print(f"DEBUG: hint_button triggered with text: {message.text}")
     user_id = message.from_user.id
     user_state = get_user_state(user_id)
     topic = user_state.get("roleplay_topic")
@@ -118,6 +120,7 @@ async def hint_button(message: Message):
 
 @router.message(F.text == "🏠 Главное меню")
 async def main_menu_button(message: Message):
+    print(f"DEBUG: main_menu_button triggered with text: {message.text}")
     user_id = message.from_user.id
     set_user_state(user_id, {"mode": None, "history": []})
     if user_id in last_bot_response:
@@ -131,6 +134,7 @@ async def main_menu_button(message: Message):
 
 @router.message(F.text == "📊 Завершить диалог")
 async def finish_roleplay(message: Message):
+    print(f"DEBUG: finish_roleplay triggered with text: {message.text}")
     user_id = message.from_user.id
     user_state = get_user_state(user_id)
     if user_state.get("mode") != "roleplay_active":
@@ -177,6 +181,7 @@ async def exit_to_menu(callback: CallbackQuery):
 
 @router.message(F.text == "📊 Я всё! Фидбек")
 async def feedback_button(message: Message):
+    print(f"DEBUG: feedback_button triggered with text: {message.text}")
     user_id = message.from_user.id
     user_state = get_user_state(user_id)
     if user_state.get("mode") != "speaking_active":
@@ -197,6 +202,7 @@ async def feedback_button(message: Message):
     feedback = chat(prompt, max_tokens=600, temperature=0.5)
     await message.answer(f"📊 <b>Ваш фидбек</b>:\n\n{feedback}", parse_mode="HTML")
 
+# ---------- Обработчики инлайн-кнопок (голосовых сообщений) ----------
 @router.callback_query(lambda c: c.data.startswith("show_text_"))
 async def show_text(callback: CallbackQuery):
     user_id = int(callback.data.split("_")[2])
@@ -281,6 +287,7 @@ async def hide_message(callback: CallbackQuery):
     last_bot_response[user_id] = data
     await callback.answer()
 
+# ---------- Обработчики для текстовых сообщений в ролевом режиме (с inline-кнопками) ----------
 @router.callback_query(lambda c: c.data.startswith("translate_text_"))
 async def translate_text_callback(callback: CallbackQuery):
     user_id = int(callback.data.split("_")[2])
@@ -323,11 +330,13 @@ async def original_text_callback(callback: CallbackQuery):
     )
     await callback.answer()
 
+# ---------- ОБЩИЙ ОБРАБОТЧИК ДЛЯ ТЕКСТОВЫХ СООБЩЕНИЙ (должен быть последним) ----------
 @router.message(F.text)
 async def text_fallback(message: Message):
     user_id = message.from_user.id
     user_state = get_user_state(user_id)
     mode = user_state.get("mode")
+    print(f"DEBUG: text_fallback received: '{message.text}', mode={mode}")
     if mode in ("speaking_active", "roleplay_active"):
         user_text = message.text
         if mode == "roleplay_active":
