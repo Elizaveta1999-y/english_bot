@@ -1,42 +1,48 @@
 import os
 import logging
 from aiohttp import web
-from aiogram import Bot, Dispatcher
-from aiogram.webhook.aiohttp_server import SimpleRequestHandler, setup_application
+from aiogram import Bot, Dispatcher, types
+from aiogram.types import Update
 from speaking.handlers.start import router as start_router
 from speaking.handlers.voice import router as voice_router
 
 logging.basicConfig(level=logging.INFO)
 
 BOT_TOKEN = os.getenv("BOT_TOKEN")
-WEBHOOK_PATH = "/webhook"
-WEBHOOK_SECRET = "my-secret-key"  # можете заменить на любой секрет
-
 bot = Bot(token=BOT_TOKEN)
 dp = Dispatcher()
 dp.include_router(start_router)
 dp.include_router(voice_router)
 
-# ИСПРАВЛЕНО: on_startup принимает аргумент app
-async def on_startup(app: web.Application):
-    external_url = os.getenv("RENDER_EXTERNAL_URL")
-    if not external_url:
-        external_url = "https://english-bot-of29.onrender.com"  # замените на ваш URL
-    webhook_url = f"{external_url}{WEBHOOK_PATH}"
-    await bot.set_webhook(webhook_url, secret_token=WEBHOOK_SECRET)
-    logging.info(f"Webhook set to {webhook_url}")
+WEBHOOK_PATH = "/webhook"
 
-dp.startup.register(on_startup)
+async def handle_webhook(request):
+    try:
+        data = await request.json()
+        logging.info(f"Webhook received data: {data}")
+        update = Update(**data)
+        await dp.feed_update(bot, update)
+        return web.Response(text="OK", status=200)
+    except Exception as e:
+        logging.error(f"Webhook error: {e}")
+        return web.Response(text="Error", status=500)
+
+async def health(request):
+    return web.Response(text="Bot is running", status=200)
 
 app = web.Application()
-webhook_requests_handler = SimpleRequestHandler(
-    dispatcher=dp,
-    bot=bot,
-    secret_token=WEBHOOK_SECRET,
-)
-webhook_requests_handler.register(app, path=WEBHOOK_PATH)
+app.router.add_post(WEBHOOK_PATH, handle_webhook)
+app.router.add_get("/", health)
 
-setup_application(app, dp, bot=bot)
+async def on_startup(app):
+    external_url = os.environ.get('RENDER_EXTERNAL_URL')
+    if not external_url:
+        external_url = "https://english-bot-of29.onrender.com"
+    webhook_url = f"{external_url}{WEBHOOK_PATH}"
+    await bot.set_webhook(webhook_url)
+    logging.info(f"Webhook set to {webhook_url}")
+
+app.on_startup.append(on_startup)
 
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 10000))
