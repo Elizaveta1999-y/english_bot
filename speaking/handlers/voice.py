@@ -99,7 +99,6 @@ async def _send_text_message_with_buttons(message: Message, text: str, user_id: 
         "message_id": sent.message_id
     }
 
-# --- ОБРАБОТЧИКИ КНОПОК (ТОЧНЫЕ СОВПАДЕНИЯ) ---
 @router.message(F.text == "💡 Что ответить?")
 async def hint_button(message: Message):
     user_id = message.from_user.id
@@ -198,7 +197,6 @@ async def feedback_button(message: Message):
     feedback = chat(prompt, max_tokens=600, temperature=0.5)
     await message.answer(f"📊 <b>Ваш фидбек</b>:\n\n{feedback}", parse_mode="HTML")
 
-# --- Обработчики для инлайн-кнопок голосовых сообщений (show_text, translate, original, hide) ---
 @router.callback_query(lambda c: c.data.startswith("show_text_"))
 async def show_text(callback: CallbackQuery):
     user_id = int(callback.data.split("_")[2])
@@ -283,7 +281,6 @@ async def hide_message(callback: CallbackQuery):
     last_bot_response[user_id] = data
     await callback.answer()
 
-# --- Обработчики для текстовых сообщений (ролевой режим) ---
 @router.callback_query(lambda c: c.data.startswith("translate_text_"))
 async def translate_text_callback(callback: CallbackQuery):
     user_id = int(callback.data.split("_")[2])

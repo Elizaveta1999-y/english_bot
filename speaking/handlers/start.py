@@ -15,7 +15,6 @@ WELCOME_TEXT = (
     "🌟 <b>Акция</b> – полный доступ ко всему функционалу <s>700₽</s> <b>399₽/мес</b>."
 )
 
-# ========== КАТЕГОРИИ И ТЕМЫ (ПОЛНЫЙ СПИСОК) ==========
 CATEGORIES = [
     ("🏢 Работа и бизнес", "work"),
     ("✈️ Путешествия", "travel"),
@@ -122,7 +121,7 @@ async def start_roleplay_callback(callback: CallbackQuery):
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(text="✍️ Придумать свой сценарий", callback_data="custom_scenario")]
     ] + [[InlineKeyboardButton(text=cat[0], callback_data=f"cat_{cat[1]}")] for cat in CATEGORIES])
-    await callback.message.edit_text(
+    await callback.message.answer(
         "🎭 <b>Выберите категорию</b> или создайте свой сценарий.\n\n"
         "Бот будет играть роль по сценарию. Вы можете говорить голосом или писать текстом.",
         reply_markup=keyboard,
@@ -132,7 +131,7 @@ async def start_roleplay_callback(callback: CallbackQuery):
 
 @router.callback_query(lambda c: c.data == "custom_scenario")
 async def custom_scenario_start(callback: CallbackQuery):
-    await callback.message.edit_text(
+    await callback.message.answer(
         "✍️ <b>Придумайте свой сценарий</b>\n\n"
         "Опишите ситуацию и роль бота одним сообщением.\n"
         "Пример:\n"
@@ -254,4 +253,4 @@ async def topic_chosen(callback: CallbackQuery):
     await callback.message.edit_text(roleplay_info, parse_mode="HTML")
     await callback.message.answer("🎬 <b>Можете начинать!</b>", reply_markup=keyboard, parse_mode="HTML")
 
-# Обработчики для greeting – они должны быть, но для краткости не копирую, в реальном файле они есть.
+# Обработчики для greeting (show_greeting_, translate_greeting_, hide_greeting_) – в вашем файле они уже есть.
