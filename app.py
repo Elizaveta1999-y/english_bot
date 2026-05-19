@@ -1,6 +1,6 @@
 import os
 import logging
-from flask import Flask, request
+from aiohttp import web
 from aiogram import Bot, Dispatcher, types
 from aiogram.types import Update
 from speaking.handlers.start import router as start_router
@@ -14,37 +14,36 @@ dp = Dispatcher()
 dp.include_router(start_router)
 dp.include_router(voice_router)
 
-app = Flask(__name__)
-
 WEBHOOK_PATH = "/webhook"
 
-@app.route(WEBHOOK_PATH, methods=['POST'])
-def webhook():
+async def handle_webhook(request):
     try:
-        data = request.get_json()
+        data = await request.json()
         update = Update(**data)
-        import asyncio
-        asyncio.run(dp.feed_update(bot, update))
-        return "OK", 200
+        await dp.feed_update(bot, update)
+        return web.Response(text="OK", status=200)
     except Exception as e:
         logging.error(f"Webhook error: {e}")
-        return "Error", 500
+        return web.Response(text="Error", status=500)
 
-@app.route("/")
-def index():
-    return "Bot is running", 200
+async def health(request):
+    return web.Response(text="Bot is running", status=200)
 
-# Установка вебхука при старте
-def set_webhook():
+app = web.Application()
+app.router.add_post(WEBHOOK_PATH, handle_webhook)
+app.router.add_get("/", health)
+
+async def on_startup():
     external_url = os.environ.get('RENDER_EXTERNAL_URL')
     if not external_url:
-        external_url = "https://english-bot-of29.onrender.com"  # замените на ваш URL
+        # Замените на ваш реальный URL, если переменная не подхватится
+        external_url = "https://english-bot-of29.onrender.com"
     webhook_url = f"{external_url}{WEBHOOK_PATH}"
-    try:
-        import asyncio
-        asyncio.run(bot.set_webhook(webhook_url))
-        logging.info(f"Webhook set to {webhook_url}")
-    except Exception as e:
-        logging.error(f"Failed to set webhook: {e}")
+    await bot.set_webhook(webhook_url)
+    logging.info(f"Webhook set to {webhook_url}")
 
-set_webhook()
+app.on_startup.append(on_startup)
+
+if __name__ == "__main__":
+    port = int(os.environ.get('PORT', 10000))
+    web.run_app(app, host='0.0.0.0', port=port)
