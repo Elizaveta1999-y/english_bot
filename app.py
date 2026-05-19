@@ -12,10 +12,10 @@ bot = Bot(token=BOT_TOKEN)
 dp = Dispatcher()
 dp.include_router(start_router)
 
-# Прямой обработчик всех сообщений (временный)
+# ВРЕМЕННЫЙ ОБРАБОТЧИК ВСЕХ СООБЩЕНИЙ (включая текст и кнопки)
 @dp.message()
 async def catch_all(message: types.Message):
-    await message.answer(f"✅ Отладочный ответ: {message.text}")
+    await message.answer(f"✅ Получено: {message.text}")
 
 WEBHOOK_PATH = "/webhook"
 
@@ -40,7 +40,7 @@ app.router.add_get("/", health)
 async def on_startup(app):
     external_url = os.environ.get('RENDER_EXTERNAL_URL')
     if not external_url:
-        external_url = "https://english-bot-of29.onrender.com"
+        external_url = "https://english-bot-of29.onrender.com"  # замените на ваш реальный URL
     webhook_url = f"{external_url}{WEBHOOK_PATH}"
     await bot.set_webhook(webhook_url)
     logging.info(f"Webhook set to {webhook_url}")
