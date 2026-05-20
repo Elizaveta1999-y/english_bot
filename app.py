@@ -233,11 +233,11 @@ async def hint_button(message: Message):
         return
     context = "\n".join([f"{'User' if h['role']=='user' else 'Bot'}: {h['text']}" for h in history[-5:]])
     prompt = f"Ты – участник ролевой игры (тема: {topic}). Пользователь не знает, что ответить. Дай 2–3 коротких варианта ответа (по-английски). Контекст:\n{context}\nОтветь только вариантами."
-    # Перед ответом показываем "печатает"
     await message.bot.send_chat_action(chat_id=message.chat.id, action="typing")
     hints = chat(prompt, max_tokens=200, temperature=0.7)
     await message.answer(f"💡 Варианты ответа:\n{hints}", parse_mode="HTML")
 
+# ---------- ЗАВЕРШИТЬ ДИАЛОГ (РОЛЕВАЯ ИГРА) ----------
 @dp.message(F.text == "📊 Завершить диалог")
 async def finish_roleplay(message: Message):
     user_id = message.from_user.id
@@ -251,12 +251,17 @@ async def finish_roleplay(message: Message):
         return
     conversation = "\n".join([f"{'User' if h['role']=='user' else 'Bot'}: {h['text']}" for h in history[-20:]])
     topic = user_state.get("roleplay_topic", "ролевая игра")
-    # Показываем индикатор печати
     await message.bot.send_chat_action(chat_id=message.chat.id, action="typing")
-    feedback = await generate_roleplay_feedback(conversation, topic)
-    # Укорачиваем и форматируем фидбек (если он длинный, обрезаем)
-    if len(feedback) > 1200:
-        feedback = feedback[:1200] + "..."
+    prompt = (
+        f"Ты опытный преподаватель английского. Дан диалог в ролевой игре на тему '{topic}'. "
+        "Дай КОРОТКИЙ фидбек (не более 5 предложений) на русском языке. "
+        "Используй HTML-теги: <b>жирный</b>, <i>курсив</i>, <blockquote>цитата</blockquote>. "
+        "Добавь смайлики. Не пиши лишнего. Опиши главную ошибку и дай совет.\n\n"
+        f"Диалог:\n{conversation}"
+    )
+    feedback = chat(prompt, max_tokens=400, temperature=0.5)
+    if len(feedback) > 1000:
+        feedback = feedback[:1000] + "..."
     await message.answer(f"📊 Анализ диалога:\n\n{feedback}", parse_mode="HTML")
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(text="🔁 Продолжить диалог", callback_data="continue_roleplay")],
@@ -296,7 +301,6 @@ async def handle_voice(message: Message):
             set_user_mode(user_id, "speaking_active")
         ai_response = await process_voice_message(user_id, user_text)
 
-    # история
     history = user_state.get("history", [])
     history.append({"role": "user", "text": user_text})
     history.append({"role": "assistant", "text": ai_response})
@@ -305,7 +309,6 @@ async def handle_voice(message: Message):
     user_state["history"] = history
     set_user_state(user_id, user_state)
 
-    # ответ голосом
     voice_path = await text_to_voice(ai_response)
     if voice_path:
         ogg_path = convert_to_opus(voice_path)
@@ -428,17 +431,15 @@ async def feedback_button(message: Message):
         return
     conversation = "\n".join([f"{'Student' if h['role']=='user' else 'Teacher'}: {h['text']}" for h in history[-10:]])
     prompt = (
-        "Ты опытный учитель английского. Дай короткий фидбек на русском языке (максимум 5-7 предложений). "
-        "Используй смайлики, жирный шрифт и цитаты (через символ >) для форматирования. "
-        "Структурируй: 1-2 предложения о главной ошибке, 1-2 предложения о том, что получилось хорошо, и 1 фразу совет. "
+        "Ты опытный учитель английского. Дай КОРОТКИЙ фидбек (не более 5 предложений) на русском языке. "
+        "Используй HTML-теги: <b>жирный</b>, <i>курсив</i>, <blockquote>цитата</blockquote>. "
+        "Добавь смайлики. Не пиши лишних пояснений. Структура: сначала главная ошибка, потом что хорошо, потом совет.\n\n"
         f"Диалог:\n{conversation}"
     )
-    # Перед отправкой фидбека показываем "печатает"
     await message.bot.send_chat_action(chat_id=message.chat.id, action="typing")
-    feedback = chat(prompt, max_tokens=600, temperature=0.5)
-    # Если фидбек получился длиннее, обрезаем
-    if len(feedback) > 1200:
-        feedback = feedback[:1200] + "..."
+    feedback = chat(prompt, max_tokens=400, temperature=0.5)
+    if len(feedback) > 1000:
+        feedback = feedback[:1000] + "..."
     await message.answer(f"📊 Ваш фидбек:\n\n{feedback}", parse_mode="HTML")
 
 # ---------- КНОПКА ГЛАВНОЕ МЕНЮ ----------
@@ -459,14 +460,12 @@ async def text_fallback(message: Message):
     user_state = get_user_state(user_id)
     mode = user_state.get("mode")
     if mode in ("speaking_active", "roleplay_active"):
-        # Показываем индикатор печати
         await message.bot.send_chat_action(chat_id=message.chat.id, action="typing")
         if mode == "roleplay_active":
             ai_response = await process_roleplay_message(user_id, message.text)
         else:
             ai_response = await process_voice_message(user_id, message.text)
         await message.answer(ai_response)
-        # сохраняем историю
         history = user_state.get("history", [])
         history.append({"role": "user", "text": message.text})
         history.append({"role": "assistant", "text": ai_response})
