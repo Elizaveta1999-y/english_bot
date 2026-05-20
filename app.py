@@ -35,7 +35,52 @@ def convert_to_opus(mp3_path: str) -> str:
 last_bot_response = {}
 last_text_response = {}
 
-# ========== ОСНОВНЫЕ ОБРАБОТЧИКИ ==========
+# ========== ДАННЫЕ ДЛЯ РОЛЕВОЙ ИГРЫ ==========
+CATEGORIES = [
+    ("🏢 Работа и бизнес", "work"),
+    ("✈️ Путешествия", "travel"),
+    ("🍽️ Повседневная жизнь", "daily"),
+    ("📚 Развлечения и хобби", "hobby"),
+    ("👨‍⚕️ Здоровье", "health"),
+    ("🏠 Дом и семья", "family"),
+    ("📱 Технологии", "tech")
+]
+
+TOPICS = {
+    "work": [
+        {"name": "Собеседование на работу", "description": "Вы проходите собеседование на работу.", "goals": ["Опишите опыт работы.", "Расскажите о навыках.", "Объясните, почему вы подходите."]},
+        {"name": "Переговоры с клиентом", "description": "Деловые переговоры с клиентом.", "goals": ["Представьте предложение.", "Ответьте на возражения.", "Договоритесь об условиях."]},
+        {"name": "Разговор с начальником", "description": "Обсуждаете с начальником повышение или отпуск.", "goals": ["Сформулируйте просьбу.", "Аргументируйте.", "Предложите компромисс."]}
+    ],
+    "travel": [
+        {"name": "Заказ такси в аэропорту", "description": "Вы звоните в службу такси.", "goals": ["Назовите адрес.", "Укажите время.", "Уточните стоимость."]},
+        {"name": "Регистрация на рейс", "description": "Вы в аэропорту, регистрируетесь на рейс.", "goals": ["Предъявите паспорт.", "Сдайте багаж.", "Попросите место у окна."]},
+        {"name": "Покупка сувениров", "description": "Вы на рынке, покупаете сувениры.", "goals": ["Спросите цену.", "Поторгуйтесь.", "Оплатите."]}
+    ],
+    "daily": [
+        {"name": "Заказ в ресторане", "description": "Вы в ресторане, делаете заказ.", "goals": ["Попросите меню.", "Сделайте заказ.", "Попросите счёт."]},
+        {"name": "Визит к врачу", "description": "Вы на приёме у врача.", "goals": ["Опишите симптомы.", "Ответьте на вопросы.", "Уточните лечение."]},
+        {"name": "Звонок в техподдержку", "description": "У вас проблема с интернетом.", "goals": ["Опишите проблему.", "Ответьте на вопросы.", "Следуйте инструкциям."]}
+    ],
+    "hobby": [
+        {"name": "Обсуждение любимой книги", "description": "Обсуждаете с другом книгу.", "goals": ["Назовите книгу.", "Расскажите, что понравилось.", "Спросите мнение."]},
+        {"name": "Планы на выходные", "description": "Договариваетесь о встрече.", "goals": ["Предложите идеи.", "Обсудите время.", "Подтвердите."]}
+    ],
+    "health": [
+        {"name": "Запись к врачу по телефону", "description": "Звоните в поликлинику.", "goals": ["Назовите данные.", "Опишите симптомы.", "Выберите время."]},
+        {"name": "Разговор с фармацевтом", "description": "В аптеке покупаете лекарство.", "goals": ["Опишите симптомы.", "Спросите о препарате.", "Уточните дозировку."]}
+    ],
+    "family": [
+        {"name": "Разговор с родителями", "description": "Звоните родителям.", "goals": ["Поздоровайтесь.", "Расскажите новости.", "Спросите о здоровье."]},
+        {"name": "Планы с детьми", "description": "Обсуждаете выходные с супругом.", "goals": ["Предложите варианты.", "Согласуйте время.", "Распределите обязанности."]}
+    ],
+    "tech": [
+        {"name": "Настройка устройства", "description": "Звоните в поддержку.", "goals": ["Назовите модель.", "Опишите проблему.", "Следуйте инструкциям."]},
+        {"name": "Обсуждение софта", "description": "С коллегой обсуждаете программы.", "goals": ["Назовите программы.", "Сравните функции.", "Выберите лучшую."]}
+    ]
+}
+
+# ========== ОБРАБОТЧИКИ ==========
 @dp.message(Command("start"))
 async def start_handler(message: Message):
     user_id = message.from_user.id
@@ -53,6 +98,7 @@ async def start_handler(message: Message):
         parse_mode="HTML"
     )
 
+# ---------- SPEAKING ----------
 @dp.callback_query(lambda c: c.data == "start_speaking")
 async def start_speaking(callback: CallbackQuery):
     user_id = callback.from_user.id
@@ -70,6 +116,139 @@ async def start_speaking(callback: CallbackQuery):
     )
     await callback.answer()
 
+# ---------- РОЛЕВАЯ ИГРА ----------
+@dp.callback_query(lambda c: c.data == "start_roleplay")
+async def start_roleplay(callback: CallbackQuery):
+    keyboard = InlineKeyboardMarkup(inline_keyboard=[
+        [InlineKeyboardButton(text="✍️ Придумать свой сценарий", callback_data="custom_scenario")]
+    ] + [[InlineKeyboardButton(text=cat[0], callback_data=f"cat_{cat[1]}")] for cat in CATEGORIES])
+    await callback.message.edit_text(
+        "🎭 Выберите категорию или создайте свой сценарий.\n\nБот будет играть роль по сценарию. Вы можете говорить голосом или писать текстом.",
+        reply_markup=keyboard,
+        parse_mode="HTML"
+    )
+    await callback.answer()
+
+@dp.callback_query(lambda c: c.data.startswith("cat_"))
+async def show_topics(callback: CallbackQuery):
+    cat_id = callback.data[4:]
+    topics_list = TOPICS.get(cat_id, [])
+    if not topics_list:
+        await callback.answer("Нет тем в этой категории", show_alert=True)
+        return
+    buttons = []
+    for idx, topic_info in enumerate(topics_list):
+        buttons.append([InlineKeyboardButton(text=topic_info["name"], callback_data=f"topic_{cat_id}_{idx}")])
+    buttons.append([InlineKeyboardButton(text="🔙 Назад", callback_data="back_to_categories")])
+    topics_keyboard = InlineKeyboardMarkup(inline_keyboard=buttons)
+    cat_display = next((c[0] for c in CATEGORIES if c[1] == cat_id), cat_id)
+    await callback.message.edit_text(
+        f"🎭 {cat_display}\n\nВыберите тему:",
+        reply_markup=topics_keyboard,
+        parse_mode="HTML"
+    )
+    await callback.answer()
+
+@dp.callback_query(lambda c: c.data == "back_to_categories")
+async def back_to_categories(callback: CallbackQuery):
+    keyboard = InlineKeyboardMarkup(inline_keyboard=[
+        [InlineKeyboardButton(text="✍️ Придумать свой сценарий", callback_data="custom_scenario")]
+    ] + [[InlineKeyboardButton(text=cat[0], callback_data=f"cat_{cat[1]}")] for cat in CATEGORIES])
+    await callback.message.edit_text(
+        "🎭 Выберите категорию или создайте свой сценарий.\n\nБот будет играть роль по сценарию. Вы можете говорить голосом или писать текстом.",
+        reply_markup=keyboard,
+        parse_mode="HTML"
+    )
+    await callback.answer()
+
+@dp.callback_query(lambda c: c.data.startswith("topic_"))
+async def topic_chosen(callback: CallbackQuery):
+    _, cat_id, idx_str = callback.data.split("_")
+    idx = int(idx_str)
+    topics_list = TOPICS.get(cat_id, [])
+    if idx >= len(topics_list):
+        await callback.answer("Тема не найдена", show_alert=True)
+        return
+    topic_info = topics_list[idx]
+    topic = topic_info["name"]
+    description = topic_info["description"]
+    goals = topic_info["goals"]
+    user_id = callback.from_user.id
+    set_user_state(user_id, {
+        "mode": "roleplay_active",
+        "history": [],
+        "roleplay_topic": topic,
+        "roleplay_category": cat_id
+    })
+    await callback.answer(f"Выбрана тема: {topic}")
+    keyboard = ReplyKeyboardMarkup(
+        keyboard=[
+            [KeyboardButton(text="💡 Что ответить?"), KeyboardButton(text="🏠 Главное меню")],
+            [KeyboardButton(text="📊 Завершить диалог")]
+        ],
+        resize_keyboard=True
+    )
+    goals_text = "\n".join([f"{i+1}) {goal}" for i, goal in enumerate(goals)])
+    roleplay_info = (
+        f"🎭 Ролевая игра: {topic}\n\n"
+        f"📖 Ситуация: {description}\n\n"
+        f"🎯 Ваши цели:\n{goals_text}\n\n"
+        f"🗣️ Говорите голосом или пишите текстом.\n"
+        f"💡 Если нужна подсказка, нажмите «💡 Что ответить?».\n"
+        f"Когда закончите, нажмите «📊 Завершить диалог» для анализа."
+    )
+    await callback.message.edit_text(roleplay_info, parse_mode="HTML")
+    await callback.message.answer("🎬 Можете начинать!", reply_markup=keyboard)
+
+# ---------- КНОПКИ РОЛЕВОЙ ИГРЫ (ЧТО ОТВЕТИТЬ? И ЗАВЕРШИТЬ) ----------
+@dp.message(F.text == "💡 Что ответить?")
+async def hint_button(message: Message):
+    user_id = message.from_user.id
+    user_state = get_user_state(user_id)
+    topic = user_state.get("roleplay_topic")
+    history = user_state.get("history", [])
+    if not topic:
+        await message.answer("Эта кнопка доступна только в режиме ролевой игры.")
+        return
+    context = "\n".join([f"{'User' if h['role']=='user' else 'Bot'}: {h['text']}" for h in history[-5:]])
+    prompt = f"Ты – участник ролевой игры (тема: {topic}). Пользователь не знает, что ответить. Дай 2–3 коротких варианта ответа (по-английски). Контекст:\n{context}\nОтветь только вариантами."
+    hints = chat(prompt, max_tokens=200, temperature=0.7)
+    await message.answer(f"💡 Варианты ответа:\n{hints}", parse_mode="HTML")
+
+@dp.message(F.text == "📊 Завершить диалог")
+async def finish_roleplay(message: Message):
+    user_id = message.from_user.id
+    user_state = get_user_state(user_id)
+    if user_state.get("mode") != "roleplay_active":
+        await message.answer("Эта кнопка доступна только в ролевой игре.")
+        return
+    history = user_state.get("history", [])
+    if len(history) < 2:
+        await message.answer("Диалог ещё не начался. Сначала отправьте несколько сообщений.")
+        return
+    conversation = "\n".join([f"{'User' if h['role']=='user' else 'Bot'}: {h['text']}" for h in history[-20:]])
+    topic = user_state.get("roleplay_topic", "ролевая игра")
+    feedback = await generate_roleplay_feedback(conversation, topic)
+    await message.answer(f"📊 Анализ диалога:\n\n{feedback}", parse_mode="HTML")
+    keyboard = InlineKeyboardMarkup(inline_keyboard=[
+        [InlineKeyboardButton(text="🔁 Продолжить диалог", callback_data="continue_roleplay")],
+        [InlineKeyboardButton(text="🏠 Выйти в меню", callback_data="exit_to_menu")]
+    ])
+    await message.answer("Желаете продолжить ролевую игру или завершить?", reply_markup=keyboard)
+
+@dp.callback_query(lambda c: c.data == "continue_roleplay")
+async def continue_roleplay(callback: CallbackQuery):
+    await callback.message.delete()
+    await callback.answer("Продолжаем. Отправляйте следующие сообщения.")
+
+@dp.callback_query(lambda c: c.data == "exit_to_menu")
+async def exit_to_menu(callback: CallbackQuery):
+    user_id = callback.from_user.id
+    set_user_state(user_id, {"mode": None, "history": []})
+    await callback.message.answer("Режим завершён. Нажмите /start для выбора режима.", reply_markup=ReplyKeyboardRemove())
+    await callback.answer()
+
+# ---------- ОБРАБОТКА ГОЛОСОВЫХ СООБЩЕНИЙ ----------
 @dp.message(F.voice)
 async def handle_voice(message: Message):
     user_id = message.from_user.id
@@ -89,7 +268,7 @@ async def handle_voice(message: Message):
             set_user_mode(user_id, "speaking_active")
         ai_response = await process_voice_message(user_id, user_text)
 
-    # Сохраняем историю
+    # история
     history = user_state.get("history", [])
     history.append({"role": "user", "text": user_text})
     history.append({"role": "assistant", "text": ai_response})
@@ -98,7 +277,7 @@ async def handle_voice(message: Message):
     user_state["history"] = history
     set_user_state(user_id, user_state)
 
-    # Отправляем голосовой ответ
+    # ответ голосом
     voice_path = await text_to_voice(ai_response)
     if voice_path:
         ogg_path = convert_to_opus(voice_path)
@@ -122,7 +301,7 @@ async def handle_voice(message: Message):
     else:
         await message.answer(ai_response)
 
-# ========== ОБРАБОТЧИКИ ДЛЯ ГОЛОСОВЫХ КНОПОК (ПЕРЕВОД И Т.Д.) ==========
+# ---------- КНОПКИ ПОД ГОЛОСОВЫМИ СООБЩЕНИЯМИ (ПЕРЕВОД И Т.Д.) ----------
 @dp.callback_query(lambda c: c.data.startswith("show_text_"))
 async def show_text(callback: CallbackQuery):
     user_id = int(callback.data.split("_")[2])
@@ -132,10 +311,8 @@ async def show_text(callback: CallbackQuery):
         return
     original = data["text"]
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
-        [
-            InlineKeyboardButton(text="🌐 Перевести", callback_data=f"translate_{user_id}"),
-            InlineKeyboardButton(text="❌ Скрыть", callback_data=f"hide_{user_id}")
-        ]
+        [InlineKeyboardButton(text="🌐 Перевести", callback_data=f"translate_{user_id}"),
+         InlineKeyboardButton(text="❌ Скрыть", callback_data=f"hide_{user_id}")]
     ])
     await callback.bot.edit_message_caption(
         chat_id=callback.message.chat.id,
@@ -159,10 +336,8 @@ async def translate_caption(callback: CallbackQuery):
         data["translation"] = translation
         last_bot_response[user_id] = data
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
-        [
-            InlineKeyboardButton(text="🇺🇸 Оригинал", callback_data=f"original_{user_id}"),
-            InlineKeyboardButton(text="❌ Скрыть", callback_data=f"hide_{user_id}")
-        ]
+        [InlineKeyboardButton(text="🇺🇸 Оригинал", callback_data=f"original_{user_id}"),
+         InlineKeyboardButton(text="❌ Скрыть", callback_data=f"hide_{user_id}")]
     ])
     await callback.bot.edit_message_caption(
         chat_id=callback.message.chat.id,
@@ -180,10 +355,8 @@ async def revert_to_original(callback: CallbackQuery):
         await callback.answer("Нет оригинала.", show_alert=True)
         return
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
-        [
-            InlineKeyboardButton(text="🌐 Перевести", callback_data=f"translate_{user_id}"),
-            InlineKeyboardButton(text="❌ Скрыть", callback_data=f"hide_{user_id}")
-        ]
+        [InlineKeyboardButton(text="🌐 Перевести", callback_data=f"translate_{user_id}"),
+         InlineKeyboardButton(text="❌ Скрыть", callback_data=f"hide_{user_id}")]
     ])
     await callback.bot.edit_message_caption(
         chat_id=callback.message.chat.id,
@@ -213,7 +386,7 @@ async def hide_message(callback: CallbackQuery):
     last_bot_response[user_id] = data
     await callback.answer()
 
-# ========== ОБРАБОТЧИКИ КНОПОК РЕЖИМА SPEAKING ==========
+# ---------- КНОПКА ФИДБЕК ДЛЯ SPEAKING ----------
 @dp.message(F.text == "📊 Я всё! Фидбек")
 async def feedback_button(message: Message):
     user_id = message.from_user.id
@@ -230,6 +403,7 @@ async def feedback_button(message: Message):
     feedback = chat(prompt, max_tokens=600, temperature=0.5)
     await message.answer(f"📊 Ваш фидбек:\n\n{feedback}", parse_mode="HTML")
 
+# ---------- КНОПКА ГЛАВНОЕ МЕНЮ (ОБЩАЯ) ----------
 @dp.message(F.text == "🏠 Главное меню")
 async def main_menu_button(message: Message):
     user_id = message.from_user.id
@@ -240,7 +414,7 @@ async def main_menu_button(message: Message):
         del last_text_response[user_id]
     await message.answer("Режим завершён. Нажмите /start для выбора режима.", reply_markup=ReplyKeyboardRemove())
 
-# ========== ОБРАБОТЧИК ДЛЯ ВСЕХ ОСТАЛЬНЫХ ТЕКСТОВЫХ СООБЩЕНИЙ ==========
+# ---------- ОБРАБОТКА ЛЮБЫХ ДРУГИХ ТЕКСТОВЫХ СООБЩЕНИЙ ----------
 @dp.message()
 async def text_fallback(message: Message):
     user_id = message.from_user.id
@@ -252,6 +426,7 @@ async def text_fallback(message: Message):
         else:
             ai_response = await process_voice_message(user_id, message.text)
         await message.answer(ai_response)
+        # сохраняем историю
         history = user_state.get("history", [])
         history.append({"role": "user", "text": message.text})
         history.append({"role": "assistant", "text": ai_response})
@@ -262,7 +437,7 @@ async def text_fallback(message: Message):
     else:
         await message.answer("Нажмите /start и выберите Speaking или RolePlay.")
 
-# ========== НАСТРОЙКА ВЕБХУКА ==========
+# ---------- ВЕБХУК ----------
 WEBHOOK_PATH = "/webhook"
 WEBHOOK_SECRET = "my-secret-key"
 
@@ -286,7 +461,7 @@ app.router.add_get("/", health)
 async def on_startup(app):
     external_url = os.environ.get('RENDER_EXTERNAL_URL')
     if not external_url:
-        external_url = "https://english-bot-of29.onrender.com"
+        external_url = "https://english-bot-of29.onrender.com"  # замените на ваш URL
     webhook_url = f"{external_url}{WEBHOOK_PATH}"
     await bot.set_webhook(webhook_url, secret_token=WEBHOOK_SECRET)
     logger.info(f"Webhook set to {webhook_url}")
