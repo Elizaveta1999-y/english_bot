@@ -5,7 +5,7 @@ import logging
 import subprocess
 import tempfile
 from aiohttp import web
-from aiogram import Bot, Dispatcher, types
+from aiogram import Bot, Dispatcher, types, F
 from aiogram.types import Update, Message, BufferedInputFile, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery, ReplyKeyboardMarkup, KeyboardButton, ReplyKeyboardRemove
 from aiogram.filters import Command
 from speaking.services.stt import voice_to_text
@@ -252,7 +252,6 @@ async def text_fallback(message: Message):
         else:
             ai_response = await process_voice_message(user_id, message.text)
         await message.answer(ai_response)
-        # сохраняем историю
         history = user_state.get("history", [])
         history.append({"role": "user", "text": message.text})
         history.append({"role": "assistant", "text": ai_response})
