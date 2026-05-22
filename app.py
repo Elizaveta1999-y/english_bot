@@ -32,8 +32,8 @@ def convert_to_opus(mp3_path: str) -> str:
     subprocess.run(cmd, check=True, capture_output=True)
     return ogg_path
 
-last_bot_response = {}
-last_text_response = {}
+last_bot_response = {}      # для голосовых сообщений
+last_text_response = {}      # для текстовых сообщений
 
 # ========== ПОЛНЫЙ СПИСОК КАТЕГОРИЙ И ТЕМ (40+ СЦЕНАРИЕВ) ==========
 CATEGORIES = [
@@ -237,7 +237,6 @@ async def hint_button(message: Message):
     hints = chat(prompt, max_tokens=200, temperature=0.7)
     await message.answer(f"💡 Варианты ответа:\n{hints}", parse_mode="HTML")
 
-# ---------- ЗАВЕРШИТЬ ДИАЛОГ (РОЛЕВАЯ ИГРА) ----------
 @dp.message(F.text == "📊 Завершить диалог")
 async def finish_roleplay(message: Message):
     user_id = message.from_user.id
@@ -332,7 +331,7 @@ async def handle_voice(message: Message):
     else:
         await message.answer(ai_response)
 
-# ---------- КНОПКИ ПОД ГОЛОСОВЫМИ ----------
+# ---------- КНОПКИ ПОД ГОЛОСОВЫМИ СООБЩЕНИЯМИ ----------
 @dp.callback_query(lambda c: c.data.startswith("show_text_"))
 async def show_text(callback: CallbackQuery):
     user_id = int(callback.data.split("_")[2])
@@ -370,6 +369,7 @@ async def translate_caption(callback: CallbackQuery):
         [InlineKeyboardButton(text="🇺🇸 Оригинал", callback_data=f"original_{user_id}"),
          InlineKeyboardButton(text="❌ Скрыть", callback_data=f"hide_{user_id}")]
     ])
+    # Убираем лишний текст, оставляем только перевод с эмодзи
     await callback.bot.edit_message_caption(
         chat_id=callback.message.chat.id,
         message_id=data["audio_message_id"],
@@ -415,6 +415,78 @@ async def hide_message(callback: CallbackQuery):
     )
     data["translation"] = None
     last_bot_response[user_id] = data
+    await callback.answer()
+
+# ---------- ТЕКСТОВЫЕ СООБЩЕНИЯ БОТА С КНОПКОЙ ПЕРЕВОДА ----------
+async def send_text_with_translate_buttons(message: Message, text: str, user_id: int):
+    """Отправляет текстовое сообщение с кнопкой "Перевести" (для любых текстовых ответов)."""
+    keyboard = InlineKeyboardMarkup(inline_keyboard=[
+        [InlineKeyboardButton(text="🌐 Перевести", callback_data=f"translate_text_{user_id}")]
+    ])
+    sent = await message.answer(text, reply_markup=keyboard)
+    last_text_response[user_id] = {
+        "text": text,
+        "translation": None,
+        "message_id": sent.message_id
+    }
+
+# ---------- ОБРАБОТЧИКИ ДЛЯ ТЕКСТОВЫХ КНОПОК ПЕРЕВОДА ----------
+@dp.callback_query(lambda c: c.data.startswith("translate_text_"))
+async def translate_text_callback(callback: CallbackQuery):
+    user_id = int(callback.data.split("_")[2])
+    data = last_text_response.get(user_id)
+    if not data or not data.get("text"):
+        await callback.answer("Нет текста для перевода.", show_alert=True)
+        return
+    if data.get("translation"):
+        translation = data["translation"]
+    else:
+        translation = chat(f"Переведи на русский: {data['text']}", max_tokens=300, temperature=0.3)
+        data["translation"] = translation
+        last_text_response[user_id] = data
+    keyboard = InlineKeyboardMarkup(inline_keyboard=[
+        [InlineKeyboardButton(text="🇺🇸 Оригинал", callback_data=f"original_text_{user_id}"),
+         InlineKeyboardButton(text="❌ Скрыть", callback_data=f"hide_text_{user_id}")]
+    ])
+    await callback.bot.edit_message_text(
+        chat_id=callback.message.chat.id,
+        message_id=data["message_id"],
+        text=f"🇷🇺 {translation}",
+        reply_markup=keyboard
+    )
+    await callback.answer()
+
+@dp.callback_query(lambda c: c.data.startswith("original_text_"))
+async def original_text_callback(callback: CallbackQuery):
+    user_id = int(callback.data.split("_")[2])
+    data = last_text_response.get(user_id)
+    if not data or not data.get("text"):
+        await callback.answer("Нет оригинала.", show_alert=True)
+        return
+    keyboard = InlineKeyboardMarkup(inline_keyboard=[
+        [InlineKeyboardButton(text="🌐 Перевести", callback_data=f"translate_text_{user_id}")]
+    ])
+    await callback.bot.edit_message_text(
+        chat_id=callback.message.chat.id,
+        message_id=data["message_id"],
+        text=data["text"],
+        reply_markup=keyboard
+    )
+    await callback.answer()
+
+@dp.callback_query(lambda c: c.data.startswith("hide_text_"))
+async def hide_text_callback(callback: CallbackQuery):
+    user_id = int(callback.data.split("_")[2])
+    data = last_text_response.get(user_id)
+    if not data or not data.get("message_id"):
+        await callback.answer("Нет сообщения.", show_alert=True)
+        return
+    await callback.bot.delete_message(
+        chat_id=callback.message.chat.id,
+        message_id=data["message_id"]
+    )
+    if user_id in last_text_response:
+        del last_text_response[user_id]
     await callback.answer()
 
 # ---------- КНОПКА ФИДБЕК ДЛЯ SPEAKING ----------
@@ -465,7 +537,9 @@ async def text_fallback(message: Message):
             ai_response = await process_roleplay_message(user_id, message.text)
         else:
             ai_response = await process_voice_message(user_id, message.text)
-        await message.answer(ai_response)
+        # Отправляем текстовый ответ с кнопкой перевода
+        await send_text_with_translate_buttons(message, ai_response, user_id)
+        # сохраняем историю
         history = user_state.get("history", [])
         history.append({"role": "user", "text": message.text})
         history.append({"role": "assistant", "text": ai_response})
