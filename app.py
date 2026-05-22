@@ -308,7 +308,6 @@ async def handle_voice(message: Message):
     user_state["history"] = history
     set_user_state(user_id, user_state)
 
-    # Индикатор "записывает голосовое сообщение"
     await message.bot.send_chat_action(chat_id=message.chat.id, action="record_voice")
     voice_path = await text_to_voice(ai_response)
     if voice_path:
@@ -396,6 +395,8 @@ async def revert_to_original(callback: CallbackQuery):
         caption=f"📝 {data['text']}",
         reply_markup=keyboard
     )
+    data["translation"] = None
+    last_bot_response[user_id] = data
     await callback.answer()
 
 @dp.callback_query(lambda c: c.data.startswith("hide_") and not c.data.startswith("hide_text_"))
@@ -405,15 +406,14 @@ async def hide_message(callback: CallbackQuery):
     if not data or not data.get("audio_message_id"):
         await callback.answer("Нет сообщения.", show_alert=True)
         return
-    # Возвращаем оригинальный текст и кнопку "Перевести" (не удаляем)
+    # Очищаем caption и показываем только кнопку "Текст" (скрываем текст, не удаляем аудио)
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
-        [InlineKeyboardButton(text="🌐 Перевести", callback_data=f"translate_{user_id}"),
-         InlineKeyboardButton(text="❌ Скрыть", callback_data=f"hide_{user_id}")]
+        [InlineKeyboardButton(text="📝 Текст", callback_data=f"show_text_{user_id}")]
     ])
     await callback.bot.edit_message_caption(
         chat_id=callback.message.chat.id,
         message_id=data["audio_message_id"],
-        caption=f"📝 {data['text']}",
+        caption="",
         reply_markup=keyboard
     )
     data["translation"] = None
@@ -422,7 +422,7 @@ async def hide_message(callback: CallbackQuery):
 
 # ---------- ТЕКСТОВЫЕ СООБЩЕНИЯ БОТА С КНОПКОЙ ПЕРЕВОДА ----------
 async def send_text_with_translate_buttons(message: Message, text: str, user_id: int):
-    """Отправляет текстовое сообщение с кнопкой "Перевести" (для любых текстовых ответов)."""
+    """Отправляет текстовое сообщение с кнопкой "Перевести" (без кнопки "Скрыть")."""
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(text="🌐 Перевести", callback_data=f"translate_text_{user_id}")]
     ])
@@ -447,9 +447,9 @@ async def translate_text_callback(callback: CallbackQuery):
         translation = chat(f"Переведи на русский: {data['text']}", max_tokens=300, temperature=0.3)
         data["translation"] = translation
         last_text_response[user_id] = data
+    # Только кнопка "Оригинал" (без "Скрыть")
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
-        [InlineKeyboardButton(text="🇺🇸 Оригинал", callback_data=f"original_text_{user_id}"),
-         InlineKeyboardButton(text="❌ Скрыть", callback_data=f"hide_text_{user_id}")]
+        [InlineKeyboardButton(text="🇺🇸 Оригинал", callback_data=f"original_text_{user_id}")]
     ])
     await callback.bot.edit_message_text(
         chat_id=callback.message.chat.id,
@@ -466,25 +466,6 @@ async def original_text_callback(callback: CallbackQuery):
     if not data or not data.get("text"):
         await callback.answer("Нет оригинала.", show_alert=True)
         return
-    keyboard = InlineKeyboardMarkup(inline_keyboard=[
-        [InlineKeyboardButton(text="🌐 Перевести", callback_data=f"translate_text_{user_id}")]
-    ])
-    await callback.bot.edit_message_text(
-        chat_id=callback.message.chat.id,
-        message_id=data["message_id"],
-        text=data["text"],
-        reply_markup=keyboard
-    )
-    await callback.answer()
-
-@dp.callback_query(lambda c: c.data.startswith("hide_text_"))
-async def hide_text_callback(callback: CallbackQuery):
-    user_id = int(callback.data.split("_")[2])
-    data = last_text_response.get(user_id)
-    if not data or not data.get("message_id"):
-        await callback.answer("Нет сообщения.", show_alert=True)
-        return
-    # Возвращаем оригинальный текст и кнопку "Перевести" (не удаляем)
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(text="🌐 Перевести", callback_data=f"translate_text_{user_id}")]
     ])
@@ -581,7 +562,7 @@ app.router.add_get("/", health)
 async def on_startup(app):
     external_url = os.environ.get('RENDER_EXTERNAL_URL')
     if not external_url:
-        external_url = "https://english-bot-of29.onrender.com"
+        external_url = "https://english-bot-of29.onrender.com"  # замените на ваш URL
     webhook_url = f"{external_url}{WEBHOOK_PATH}"
     await bot.set_webhook(webhook_url, secret_token=WEBHOOK_SECRET)
     logger.info(f"Webhook set to {webhook_url}")
