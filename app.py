@@ -308,6 +308,8 @@ async def handle_voice(message: Message):
     user_state["history"] = history
     set_user_state(user_id, user_state)
 
+    # Индикатор "записывает голосовое сообщение"
+    await message.bot.send_chat_action(chat_id=message.chat.id, action="record_voice")
     voice_path = await text_to_voice(ai_response)
     if voice_path:
         ogg_path = convert_to_opus(voice_path)
@@ -369,7 +371,6 @@ async def translate_caption(callback: CallbackQuery):
         [InlineKeyboardButton(text="🇺🇸 Оригинал", callback_data=f"original_{user_id}"),
          InlineKeyboardButton(text="❌ Скрыть", callback_data=f"hide_{user_id}")]
     ])
-    # Убираем лишний текст, оставляем только перевод с эмодзи
     await callback.bot.edit_message_caption(
         chat_id=callback.message.chat.id,
         message_id=data["audio_message_id"],
@@ -404,13 +405,15 @@ async def hide_message(callback: CallbackQuery):
     if not data or not data.get("audio_message_id"):
         await callback.answer("Нет сообщения.", show_alert=True)
         return
+    # Возвращаем оригинальный текст и кнопку "Перевести" (не удаляем)
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
-        [InlineKeyboardButton(text="📝 Текст", callback_data=f"show_text_{user_id}")]
+        [InlineKeyboardButton(text="🌐 Перевести", callback_data=f"translate_{user_id}"),
+         InlineKeyboardButton(text="❌ Скрыть", callback_data=f"hide_{user_id}")]
     ])
     await callback.bot.edit_message_caption(
         chat_id=callback.message.chat.id,
         message_id=data["audio_message_id"],
-        caption="",
+        caption=f"📝 {data['text']}",
         reply_markup=keyboard
     )
     data["translation"] = None
@@ -481,12 +484,18 @@ async def hide_text_callback(callback: CallbackQuery):
     if not data or not data.get("message_id"):
         await callback.answer("Нет сообщения.", show_alert=True)
         return
-    await callback.bot.delete_message(
+    # Возвращаем оригинальный текст и кнопку "Перевести" (не удаляем)
+    keyboard = InlineKeyboardMarkup(inline_keyboard=[
+        [InlineKeyboardButton(text="🌐 Перевести", callback_data=f"translate_text_{user_id}")]
+    ])
+    await callback.bot.edit_message_text(
         chat_id=callback.message.chat.id,
-        message_id=data["message_id"]
+        message_id=data["message_id"],
+        text=data["text"],
+        reply_markup=keyboard
     )
-    if user_id in last_text_response:
-        del last_text_response[user_id]
+    data["translation"] = None
+    last_text_response[user_id] = data
     await callback.answer()
 
 # ---------- КНОПКА ФИДБЕК ДЛЯ SPEAKING ----------
@@ -537,9 +546,7 @@ async def text_fallback(message: Message):
             ai_response = await process_roleplay_message(user_id, message.text)
         else:
             ai_response = await process_voice_message(user_id, message.text)
-        # Отправляем текстовый ответ с кнопкой перевода
         await send_text_with_translate_buttons(message, ai_response, user_id)
-        # сохраняем историю
         history = user_state.get("history", [])
         history.append({"role": "user", "text": message.text})
         history.append({"role": "assistant", "text": ai_response})
@@ -574,7 +581,7 @@ app.router.add_get("/", health)
 async def on_startup(app):
     external_url = os.environ.get('RENDER_EXTERNAL_URL')
     if not external_url:
-        external_url = "https://english-bot-of29.onrender.com"  # замените на ваш URL
+        external_url = "https://english-bot-of29.onrender.com"
     webhook_url = f"{external_url}{WEBHOOK_PATH}"
     await bot.set_webhook(webhook_url, secret_token=WEBHOOK_SECRET)
     logger.info(f"Webhook set to {webhook_url}")
