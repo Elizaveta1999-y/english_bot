@@ -237,13 +237,46 @@ async def custom_scenario_start(callback: CallbackQuery):
     set_user_state(user_id, user_state)
     await callback.answer()
 
+@dp.message(F.text)
+async def process_custom_scenario(message: Message):
+    user_id = message.from_user.id
+    user_state = get_user_state(user_id)
+    if not user_state.get("awaiting_custom_scenario"):
+        return
+    user_state["awaiting_custom_scenario"] = False
+    scenario_text = message.text
+    topic = scenario_text[:50] + ("..." if len(scenario_text) > 50 else "")
+    set_user_state(user_id, {
+        "mode": "roleplay_active",
+        "history": [],
+        "roleplay_topic": topic,
+        "roleplay_category": "custom",
+        "custom_scenario": scenario_text
+    })
+    keyboard = ReplyKeyboardMarkup(
+        keyboard=[
+            [KeyboardButton(text="💡 Что ответить?"), KeyboardButton(text="🏠 Главное меню")],
+            [KeyboardButton(text="📊 Завершить диалог")]
+        ],
+        resize_keyboard=True
+    )
+    await message.answer(
+        f"🎭 Ролевая игра: {topic}\n\n"
+        f"<b>Ваш сценарий:</b> {scenario_text}\n\n"
+        f"🗣️ Говорите голосом или пишите текстом.\n"
+        f"💡 Если нужна подсказка, нажмите «💡 Что ответить?».\n"
+        f"Когда закончите, нажмите «📊 Завершить диалог» для анализа.",
+        reply_markup=keyboard,
+        parse_mode="HTML"
+    )
+    await message.answer("🎬 Можете начинать!", parse_mode="HTML")
+
 # ---------- КНОПКИ РОЛЕВОЙ ИГРЫ ----------
 @dp.message(F.text == "💡 Что ответить?")
 async def hint_button(message: Message):
     user_id = message.from_user.id
     user_state = get_user_state(user_id)
     mode = user_state.get("mode")
-    print(f"DEBUG hint_button: mode={mode}")
     if mode != "roleplay_active":
         await message.answer("Эта кнопка доступна только в режиме ролевой игры.")
         return
@@ -267,26 +300,49 @@ async def finish_roleplay(message: Message):
     if mode != "roleplay_active":
         await message.answer("Эта кнопка доступна только в ролевой игре.")
         return
+    
     history = user_state.get("history", [])
-    if len(history) < 2:
-        await message.answer("Диалог ещё не начался.")
+    # Фильтруем историю: убираем пустые и слишком короткие сообщения
+    meaningful = []
+    for h in history:
+        text = h.get("text", "").strip()
+        if len(text) < 2:
+            continue
+        meaningful.append(h)
+    
+    user_msgs = [h for h in meaningful if h.get("role") == "user"]
+    bot_msgs = [h for h in meaningful if h.get("role") == "assistant"]
+    
+    if len(user_msgs) < 2 or len(bot_msgs) < 2:
+        await message.answer(
+            "📭 Вы ещё не общались по сценарию. Отправьте несколько сообщений (хотя бы 2-3), чтобы получить фидбек.\n"
+            "Начните диалог, следуя предложенному сценарию."
+        )
         return
-    conversation = "\n".join([f"{'User' if h['role']=='user' else 'Bot'}: {h['text']}" for h in history[-20:]])
+    
+    conversation = "\n".join([f"{'User' if h['role']=='user' else 'Bot'}: {h['text']}" for h in meaningful[-20:]])
     topic = user_state.get("roleplay_topic", "ролевая игра")
+    
     await message.bot.send_chat_action(chat_id=message.chat.id, action="typing")
+    
     prompt = (
-        f"Ты опытный преподаватель. Дай короткий фидбек (не более 5 предложений) на русском. "
-        f"Используй HTML-теги и смайлики. Диалог на тему '{topic}':\n{conversation}"
+        f"Ты опытный преподаватель английского. Проанализируй диалог в ролевой игре на тему '{topic}'. "
+        "Дай КОРОТКИЙ фидбек (nie более 5 предложений) na русском языке. "
+        "Не пиши 'фидбек для вас как для преподавателя' – ты обращаешься прямо к ученику. "
+        "Используй HTML-теги: <b>жирный</b>, <i>курсив</i>, <blockquote>цитата</blockquote>. "
+        "Добавь смайлики. Опиши главную ошибку, что получилось хорошо, и дай один совет.\n\n"
+        f"Диалог:\n{conversation}"
     )
     feedback = chat(prompt, max_tokens=400, temperature=0.5)
     if len(feedback) > 1000:
         feedback = feedback[:1000] + "..."
     await message.answer(f"📊 Анализ диалога:\n\n{feedback}", parse_mode="HTML")
+    
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
-        [InlineKeyboardButton(text="🔁 Продолжить", callback_data="continue_roleplay")],
+        [InlineKeyboardButton(text="🔁 Продолжить диалог", callback_data="continue_roleplay")],
         [InlineKeyboardButton(text="🏠 Выйти в меню", callback_data="exit_to_menu")]
     ])
-    await message.answer("Желаете продолжить или завершить?", reply_markup=keyboard)
+    await message.answer("Желаете продолжить ролевую игру или завершить?", reply_markup=keyboard)
 
 @dp.callback_query(lambda c: c.data == "continue_roleplay")
 async def continue_roleplay(callback: CallbackQuery):
@@ -312,11 +368,11 @@ async def feedback_button(message: Message):
         return
     history = user_state.get("history", [])
     if len(history) < 2:
-        await message.answer("Ещё нет диалога.")
+        await message.answer("Вы ещё не общались. Отправьте несколько голосовых сообщений.")
         return
     conversation = "\n".join([f"{'Student' if h['role']=='user' else 'Teacher'}: {h['text']}" for h in history[-10:]])
     prompt = (
-        "Ты учитель английского. Дай короткий фидбек (до 5 предложений) на русском, с HTML и смайликами. "
+        "Ты учитель английского. Дай короткий фидбек (до 5 предложений) na русском, с HTML и смайликами. "
         "Опиши главную ошибку, что хорошо, дай совет.\n\n"
         f"Диалог:\n{conversation}"
     )
@@ -531,7 +587,7 @@ async def original_text_callback(callback: CallbackQuery):
     last_text_response[user_id] = data
     await callback.answer()
 
-# ---------- ОБРАБОТКА ТЕКСТОВЫХ СООБЩЕНИЙ ОТ ПОЛЬЗОВАТЕЛЯ (ВСЕ ОСТАЛЬНЫЕ) ----------
+# ---------- ОБРАБОТКА ТЕКСТОВЫХ СООБЩЕНИЙ ОТ ПОЛЬЗОВАТЕЛЯ ----------
 @dp.message()
 async def text_fallback(message: Message):
     user_id = message.from_user.id
@@ -554,9 +610,6 @@ async def text_fallback(message: Message):
         set_user_state(user_id, user_state)
     else:
         await message.answer("Нажмите /start и выберите Speaking или RolePlay.")
-
-# ---------- ОБРАБОТКА ПОЛЬЗОВАТЕЛЬСКИХ ТЕКСТОВЫХ СООБЩЕНИЙ (ОСТАЛЬНЫЕ) ----------
-# (дубликат удален, так как уже есть text_fallback)
 
 # ---------- ВЕБХУК ----------
 WEBHOOK_PATH = "/webhook"
