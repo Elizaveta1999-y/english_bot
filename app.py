@@ -195,6 +195,7 @@ async def topic_chosen(callback: CallbackQuery):
     description = topic_info["description"]
     goals = topic_info["goals"]
     user_id = callback.from_user.id
+    # Устанавливаем режим ролевой игры
     set_user_state(user_id, {
         "mode": "roleplay_active",
         "history": [],
@@ -202,6 +203,7 @@ async def topic_chosen(callback: CallbackQuery):
         "roleplay_category": cat_id
     })
     await callback.answer(f"Выбрана тема: {topic}")
+    # Клавиатура для ролевой игры
     keyboard = ReplyKeyboardMarkup(
         keyboard=[
             [KeyboardButton(text="💡 Что ответить?"), KeyboardButton(text="🏠 Главное меню")],
@@ -221,15 +223,70 @@ async def topic_chosen(callback: CallbackQuery):
     await callback.message.edit_text(roleplay_info, parse_mode="HTML")
     await callback.message.answer("🎬 Можете начинать!", reply_markup=keyboard)
 
+@dp.callback_query(lambda c: c.data == "custom_scenario")
+async def custom_scenario_start(callback: CallbackQuery):
+    await callback.message.edit_text(
+        "✍️ <b>Придумайте свой сценарий</b>\n\n"
+        "Опишите ситуацию и роль бота одним сообщением.\n"
+        "Пример:\n"
+        "<i>Ты продавец в книжном магазине. Я покупатель, ищу книгу по фантастике. Ты предлагаешь новинки и помогаешь выбрать.</i>\n\n"
+        "Напишите ваш сценарий:",
+        parse_mode="HTML"
+    )
+    user_id = callback.from_user.id
+    user_state = get_user_state(user_id)
+    user_state["awaiting_custom_scenario"] = True
+    set_user_state(user_id, user_state)
+    await callback.answer()
+
+@dp.message(F.text)
+async def process_custom_scenario(message: Message):
+    user_id = message.from_user.id
+    user_state = get_user_state(user_id)
+    if not user_state.get("awaiting_custom_scenario"):
+        return
+    user_state["awaiting_custom_scenario"] = False
+    scenario_text = message.text
+    topic = scenario_text[:50] + ("..." if len(scenario_text) > 50 else "")
+    set_user_state(user_id, {
+        "mode": "roleplay_active",
+        "history": [],
+        "roleplay_topic": topic,
+        "roleplay_category": "custom",
+        "custom_scenario": scenario_text
+    })
+    keyboard = ReplyKeyboardMarkup(
+        keyboard=[
+            [KeyboardButton(text="💡 Что ответить?"), KeyboardButton(text="🏠 Главное меню")],
+            [KeyboardButton(text="📊 Завершить диалог")]
+        ],
+        resize_keyboard=True
+    )
+    await message.answer(
+        f"🎭 Ролевая игра: {topic}\n\n"
+        f"<b>Ваш сценарий:</b> {scenario_text}\n\n"
+        f"🗣️ Говорите голосом или пишите текстом.\n"
+        f"💡 Если нужна подсказка, нажмите «💡 Что ответить?».\n"
+        f"Когда закончите, нажмите «📊 Завершить диалог» для анализа.",
+        reply_markup=keyboard,
+        parse_mode="HTML"
+    )
+    await message.answer("🎬 Можете начинать!", parse_mode="HTML")
+
 # ---------- КНОПКИ РОЛЕВОЙ ИГРЫ ----------
 @dp.message(F.text == "💡 Что ответить?")
 async def hint_button(message: Message):
     user_id = message.from_user.id
     user_state = get_user_state(user_id)
+    mode = user_state.get("mode")
+    print(f"DEBUG: hint_button, mode={mode}")
+    if mode != "roleplay_active":
+        await message.answer("Эта кнопка доступна только в режиме ролевой игры.")
+        return
     topic = user_state.get("roleplay_topic")
     history = user_state.get("history", [])
     if not topic:
-        await message.answer("Эта кнопка доступна только в режиме ролевой игры.")
+        await message.answer("Сначала выберите тему ролевой игры через меню RolePlay.")
         return
     context = "\n".join([f"{'User' if h['role']=='user' else 'Bot'}: {h['text']}" for h in history[-5:]])
     prompt = f"Ты – участник ролевой игры (тема: {topic}). Пользователь не знает, что ответить. Дай 2–3 коротких варианта ответа (по-английски). Контекст:\n{context}\nОтветь только вариантами."
@@ -241,7 +298,9 @@ async def hint_button(message: Message):
 async def finish_roleplay(message: Message):
     user_id = message.from_user.id
     user_state = get_user_state(user_id)
-    if user_state.get("mode") != "roleplay_active":
+    mode = user_state.get("mode")
+    print(f"DEBUG: finish_roleplay, mode={mode}")
+    if mode != "roleplay_active":
         await message.answer("Эта кнопка доступна только в ролевой игре.")
         return
     history = user_state.get("history", [])
@@ -406,7 +465,6 @@ async def hide_message(callback: CallbackQuery):
     if not data or not data.get("audio_message_id"):
         await callback.answer("Нет сообщения.", show_alert=True)
         return
-    # Очищаем caption и показываем только кнопку "Текст" (скрываем текст, не удаляем аудио)
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(text="📝 Текст", callback_data=f"show_text_{user_id}")]
     ])
@@ -447,7 +505,6 @@ async def translate_text_callback(callback: CallbackQuery):
         translation = chat(f"Переведи на русский: {data['text']}", max_tokens=300, temperature=0.3)
         data["translation"] = translation
         last_text_response[user_id] = data
-    # Только кнопка "Оригинал" (без "Скрыть")
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(text="🇺🇸 Оригинал", callback_data=f"original_text_{user_id}")]
     ])
@@ -521,6 +578,7 @@ async def text_fallback(message: Message):
     user_id = message.from_user.id
     user_state = get_user_state(user_id)
     mode = user_state.get("mode")
+    print(f"DEBUG: text_fallback, mode={mode}, text={message.text}")
     if mode in ("speaking_active", "roleplay_active"):
         await message.bot.send_chat_action(chat_id=message.chat.id, action="typing")
         if mode == "roleplay_active":
