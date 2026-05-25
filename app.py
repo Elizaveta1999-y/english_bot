@@ -302,7 +302,6 @@ async def finish_roleplay(message: Message):
         return
     
     history = user_state.get("history", [])
-    # Фильтруем историю: убираем пустые и слишком короткие сообщения
     meaningful = []
     for h in history:
         text = h.get("text", "").strip()
@@ -327,9 +326,10 @@ async def finish_roleplay(message: Message):
     
     prompt = (
         f"Ты опытный преподаватель английского. Проанализируй диалог в ролевой игре на тему '{topic}'. "
-        "Дай КОРОТКИЙ фидбек (nie более 5 предложений) na русском языке. "
+        "Дай КОРОТКИЙ фидбек (не более 5 предложений) на русском языке. "
         "Не пиши 'фидбек для вас как для преподавателя' – ты обращаешься прямо к ученику. "
-        "Используй HTML-теги: <b>жирный</b>, <i>курсив</i>, <blockquote>цитата</blockquote>. "
+        "Используй ТОЛЬКО эти HTML-теги: <b>жирный</b>, <i>курсив</i>. "
+        "НЕ используй теги <p>, <blockquote>, <h1>, <ul>, <li> и другие. "
         "Добавь смайлики. Опиши главную ошибку, что получилось хорошо, и дай один совет.\n\n"
         f"Диалог:\n{conversation}"
     )
@@ -372,8 +372,9 @@ async def feedback_button(message: Message):
         return
     conversation = "\n".join([f"{'Student' if h['role']=='user' else 'Teacher'}: {h['text']}" for h in history[-10:]])
     prompt = (
-        "Ты учитель английского. Дай короткий фидбек (до 5 предложений) na русском, с HTML и смайликами. "
-        "Опиши главную ошибку, что хорошо, дай совет.\n\n"
+        "Ты учитель английского. Дай короткий фидбек (до 5 предложений) на русском языке. "
+        "Используй ТОЛЬКО HTML-теги <b>жирный</b> и <i>курсив</i>. НЕ используй <p>, <blockquote> и другие. "
+        "Добавь смайлики. Опиши главную ошибку, что хорошо, дай совет.\n\n"
         f"Диалог:\n{conversation}"
     )
     await message.bot.send_chat_action(chat_id=message.chat.id, action="typing")
