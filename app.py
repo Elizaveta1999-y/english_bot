@@ -11,7 +11,7 @@ from aiogram.filters import Command
 from speaking.services.stt import voice_to_text
 from speaking.services.ai import process_voice_message, process_roleplay_message, generate_roleplay_feedback
 from speaking.services.tts import text_to_voice
-from data.users import set_user_state, get_user_state, set_user_name, set_user_mode, add_to_history, get_user_history
+from data.users import set_user_state, get_user_state, set_user_name, set_user_mode, add_to_history
 from services.deepseek import chat
 
 logging.basicConfig(level=logging.INFO)
@@ -32,8 +32,8 @@ def convert_to_opus(mp3_path: str) -> str:
     subprocess.run(cmd, check=True, capture_output=True)
     return ogg_path
 
-last_bot_response = {}      # для голосовых сообщений
-last_text_response = {}      # для текстовых сообщений
+last_bot_response = {}
+last_text_response = {}
 
 # ========== ПОЛНЫЙ СПИСОК КАТЕГОРИЙ И ТЕМ (40+ СЦЕНАРИЕВ) ==========
 CATEGORIES = [
@@ -48,56 +48,56 @@ CATEGORIES = [
 
 TOPICS = {
     "work": [
-        {"name": "Собеседование на работу", "description": "Вы проходите собеседование на работу. Вам нужно представить свои навыки, опыт и мотивацию.", "goals": ["Опишите свой предыдущий опыт работы.", "Расскажите о навыках, подходящих для этой должности.", "Объясните, почему вы хотите получить эту работу."]},
-        {"name": "Переговоры с клиентом", "description": "Вы участвуете в деловых переговорах с потенциальным клиентом.", "goals": ["Представьте свою компанию и предложение.", "Ответьте на возражения клиента.", "Договоритесь о выгодных условиях."]},
-        {"name": "Презентация проекта", "description": "Вы проводите презентацию своего проекта перед руководством.", "goals": ["Кратко опишите суть проекта.", "Перечислите преимущества.", "Ответьте на вопросы слушателей."]},
-        {"name": "Разговор с начальником", "description": "Вы обсуждаете с начальником свою работу, просите повышение или отпуск.", "goals": ["Чётко сформулируйте просьбу.", "Аргументируйте, почему вы её заслуживаете.", "Предложите компромисс."]},
-        {"name": "Ежедневный планер", "description": "Вы обсуждаете с коллегой план задач на день.", "goals": ["Перечислите ключевые задачи.", "Уточните приоритеты.", "Согласуйте дедлайны."]},
-        {"name": "Оценка производительности", "description": "У вас ежегодный обзор с руководителем.", "goals": ["Оцените свои достижения за год.", "Укажите зоны для роста.", "Поставьте цели на следующий период."]}
+        {"name": "Собеседование на работу", "description": "Вы проходите собеседование на работу.", "goals": ["Опишите опыт работы.", "Расскажите о навыках.", "Объясните, почему вы подходите."]},
+        {"name": "Переговоры с клиентом", "description": "Деловые переговоры с клиентом.", "goals": ["Представьте предложение.", "Ответьте на возражения.", "Договоритесь об условиях."]},
+        {"name": "Презентация проекта", "description": "Вы проводите презентацию проекта.", "goals": ["Опишите суть.", "Перечислите преимущества.", "Ответьте на вопросы."]},
+        {"name": "Разговор с начальником", "description": "Обсуждаете повышение или отпуск.", "goals": ["Сформулируйте просьбу.", "Аргументируйте.", "Предложите компромисс."]},
+        {"name": "Ежедневный планер", "description": "План задач на день.", "goals": ["Перечислите задачи.", "Уточните приоритеты.", "Согласуйте дедлайны."]},
+        {"name": "Оценка производительности", "description": "Ежегодный обзор.", "goals": ["Оцените достижения.", "Укажите зоны роста.", "Поставьте цели."]}
     ],
     "travel": [
-        {"name": "Заказ такси в аэропорту", "description": "Вы звоните в службу такси, чтобы заказать машину до аэропорта.", "goals": ["Назовите точный адрес подачи.", "Укажите время и количество пассажиров.", "Уточните стоимость и способ оплаты."]},
-        {"name": "Регистрация на рейс", "description": "Вы находитесь в аэропорту и проходите регистрацию на рейс.", "goals": ["Предъявите паспорт и билет.", "Сдайте багаж.", "Попросите место у окна."]},
-        {"name": "Замена номера в отеле", "description": "Вам не подходит номер (шумно, не работает кондиционер).", "goals": ["Объясните причину недовольства.", "Попросите другой номер.", "Уточните возможность доплаты."]},
-        {"name": "Покупка сувениров", "description": "Вы на рынке и хотите купить сувениры.", "goals": ["Спросите цену.", "Поторгуйтесь.", "Оплатите и попросите чек."]},
-        {"name": "Спросить дорогу у местного", "description": "Вы заблудились в незнакомом городе.", "goals": ["Поздоровайтесь и извинитесь.", "Назовите пункт назначения.", "Уточните, как лучше дойти."]},
-        {"name": "Бронирование отеля онлайн", "description": "Вы звоните в отель, чтобы забронировать номер.", "goals": ["Назовите даты и тип номера.", "Уточните цену и включён ли завтрак.", "Спросите про отмену бронирования."]},
-        {"name": "Потеря багажа", "description": "Вы в аэропорту заявляете о потере багажа.", "goals": ["Опишите чемодан (цвет, размер).", "Сообщите номер рейса.", "Уточните, как отслеживать статус поиска."]}
+        {"name": "Заказ такси в аэропорту", "description": "Звоните в службу такси.", "goals": ["Назовите адрес.", "Укажите время.", "Уточните стоимость."]},
+        {"name": "Регистрация на рейс", "description": "Вы в аэропорту.", "goals": ["Предъявите паспорт.", "Сдайте багаж.", "Попросите место у окна."]},
+        {"name": "Замена номера в отеле", "description": "Вам не подходит номер.", "goals": ["Объясните причину.", "Попросите другой номер.", "Уточните доплату."]},
+        {"name": "Покупка сувениров", "description": "Вы на рынке.", "goals": ["Спросите цену.", "Поторгуйтесь.", "Оплатите."]},
+        {"name": "Спросить дорогу у местного", "description": "Вы заблудились.", "goals": ["Поздоровайтесь.", "Назовите пункт назначения.", "Уточните путь."]},
+        {"name": "Бронирование отеля онлайн", "description": "Звоните в отель.", "goals": ["Назовите даты.", "Уточните цену.", "Спросите про отмену."]},
+        {"name": "Потеря багажа", "description": "В аэропорту.", "goals": ["Опишите чемодан.", "Сообщите номер рейса.", "Уточните статус."]}
     ],
     "daily": [
-        {"name": "Заказ в ресторане", "description": "Вы в ресторане, делаете заказ.", "goals": ["Попросите меню.", "Сделайте заказ (учтите аллергии).", "Попросите счёт."]},
-        {"name": "Визит к врачу", "description": "Вы на приёме у врача.", "goals": ["Опишите симптомы.", "Ответьте на вопросы.", "Уточните диагноз и лечение."]},
-        {"name": "Звонок в техподдержку", "description": "У вас проблема с интернетом или компьютером.", "goals": ["Опишите проблему.", "Ответьте на вопросы оператора.", "Следуйте инструкциям."]},
-        {"name": "Разговор с соседом", "description": "Вы встретили соседа в лифте или во дворе.", "goals": ["Поздоровайтесь и спросите, как дела.", "Поддержите беседу (погода, новости).", "Вежливо попрощайтесь."]},
-        {"name": "Покупка продуктов в супермаркете", "description": "Вы в супермаркете, выбираете продукты.", "goals": ["Спросите, где нужный отдел.", "Уточните цену и срок годности.", "Оплатите на кассе."]},
-        {"name": "Запись в спортзал", "description": "Вы звоните в фитнес-клуб, чтобы записаться.", "goals": ["Спросите про абонементы и цены.", "Уточните расписание групповых занятий.", "Запишитесь на пробную тренировку."]},
-        {"name": "Ремонт техники", "description": "Вы сдаёте сломанный телефон в ремонт.", "goals": ["Опишите неисправность.", "Спросите стоимость диагностики и срок.", "Оставьте контактные данные."]}
+        {"name": "Заказ в ресторане", "description": "Вы в ресторане.", "goals": ["Попросите меню.", "Сделайте заказ.", "Попросите счёт."]},
+        {"name": "Визит к врачу", "description": "На приёме у врача.", "goals": ["Опишите симптомы.", "Ответьте на вопросы.", "Уточните лечение."]},
+        {"name": "Звонок в техподдержку", "description": "Проблема с интернетом.", "goals": ["Опишите проблему.", "Ответьте на вопросы.", "Следуйте инструкциям."]},
+        {"name": "Разговор с соседом", "description": "Встретили соседа.", "goals": ["Поздоровайтесь.", "Поддержите беседу.", "Вежливо попрощайтесь."]},
+        {"name": "Покупка продуктов в супермаркете", "description": "Вы в супермаркете.", "goals": ["Спросите отдел.", "Уточните цену.", "Оплатите на кассе."]},
+        {"name": "Запись в спортзал", "description": "Звоните в фитнес-клуб.", "goals": ["Спросите абонементы.", "Уточните расписание.", "Запишитесь на пробную."]},
+        {"name": "Ремонт техники", "description": "Сдаёте телефон в ремонт.", "goals": ["Опишите неисправность.", "Спросите стоимость.", "Оставьте контакты."]}
     ],
     "hobby": [
-        {"name": "Обсуждение любимой книги", "description": "Вы обсуждаете с другом любимую книгу.", "goals": ["Назовите книгу и автора.", "Расскажите, что понравилось.", "Спросите, что читает собеседник."]},
-        {"name": "Спор о фильме", "description": "Вы спорите с другом о фильме.", "goals": ["Изложите сюжет.", "Назовите, что понравилось/не понравилось.", "Спросите мнение оппонента."]},
-        {"name": "Планы на выходные", "description": "Вы обсуждаете с другом планы на выходные.", "goals": ["Предложите идеи.", "Обсудите время и место.", "Подтвердите договорённости."]},
-        {"name": "Любимые рецепты", "description": "Вы делитесь любимым рецептом с другом.", "goals": ["Назовите блюдо и ингредиенты.", "Опишите процесс.", "Дайте совет."]},
-        {"name": "Совет по видеоигре", "description": "Вы просите у друга совета по видеоигре.", "goals": ["Назовите игру и свой уровень.", "Спросите про сложные моменты.", "Попросите подсказку."]},
-        {"name": "Обсуждение музыки", "description": "Вы обсуждаете любимую группу или концерт.", "goals": ["Назовите исполнителя.", "Расскажите, почему он вам нравится.", "Спросите, какую музыку слушает собеседник."]}
+        {"name": "Обсуждение любимой книги", "description": "Обсуждаете книгу.", "goals": ["Назовите книгу.", "Расскажите о впечатлениях.", "Спросите мнение."]},
+        {"name": "Спор о фильме", "description": "Спорите о фильме.", "goals": ["Изложите сюжет.", "Назовите плюсы/минусы.", "Спросите мнение."]},
+        {"name": "Планы на выходные", "description": "Договариваетесь о встрече.", "goals": ["Предложите идеи.", "Обсудите время.", "Подтвердите."]},
+        {"name": "Любимые рецепты", "description": "Делитесь рецептом.", "goals": ["Назовите блюдо.", "Опишите процесс.", "Дайте совет."]},
+        {"name": "Совет по видеоигре", "description": "Просите совета.", "goals": ["Назовите игру.", "Спросите сложные моменты.", "Попросите подсказку."]},
+        {"name": "Обсуждение музыки", "description": "Обсуждаете музыку.", "goals": ["Назовите исполнителя.", "Расскажите, почему нравится.", "Спросите о вкусах."]}
     ],
     "health": [
-        {"name": "Запись к врачу по телефону", "description": "Вы звоните в поликлинику, чтобы записаться к врачу.", "goals": ["Назовите свои данные и полис.", "Опишите причину визита.", "Выберите время."]},
-        {"name": "Разговор с фармацевтом в аптеке", "description": "Вы хотите купить лекарство.", "goals": ["Опишите симптомы.", "Спросите, какое лекарство подойдёт.", "Уточните дозировку и побочные эффекты."]},
-        {"name": "Скорая помощь", "description": "Вы звоните в скорую помощь.", "goals": ["Чётко назовите адрес.", "Опишите, что случилось.", "Ответьте на вопросы диспетчера."]},
-        {"name": "Разговор с психологом", "description": "Вы на сессии с психологом.", "goals": ["Расскажите, что вас беспокоит.", "Ответьте на уточняющие вопросы.", "Попросите совет."]}
+        {"name": "Запись к врачу по телефону", "description": "Звоните в поликлинику.", "goals": ["Назовите данные.", "Опишите симптомы.", "Выберите время."]},
+        {"name": "Разговор с фармацевтом", "description": "В аптеке.", "goals": ["Опишите симптомы.", "Спросите о лекарстве.", "Уточните дозировку."]},
+        {"name": "Скорая помощь", "description": "Звоните в скорую.", "goals": ["Назовите адрес.", "Опишите происшествие.", "Ответьте на вопросы."]},
+        {"name": "Разговор с психологом", "description": "На сессии.", "goals": ["Расскажите о проблеме.", "Ответьте на вопросы.", "Попросите совет."]}
     ],
     "family": [
-        {"name": "Разговор с родителями", "description": "Вы звоните родителям, чтобы обсудить семейные дела.", "goals": ["Поздоровайтесь и спросите о здоровье.", "Расскажите о своих новостях.", "Попросите совета по семейному вопросу."]},
-        {"name": "Планы с детьми", "description": "Вы обсуждаете с супругом/ой планы с детьми на выходные.", "goals": ["Предложите варианты.", "Согласуйте время и бюджет.", "Распределите обязанности."]},
-        {"name": "Семейный ужин", "description": "Вы готовите ужин и обсуждаете его с членом семьи.", "goals": ["Спросите, что бы они хотели на ужин.", "Обсудите, кто что готовит.", "Договоритесь о времени."]},
-        {"name": "Помощь с домашним заданием", "description": "Вы помогаете ребёнку с домашним заданием по английскому.", "goals": ["Объясните правило.", "Задайте наводящие вопросы.", "Похвалите за успехи."]}
+        {"name": "Разговор с родителями", "description": "Звоните родителям.", "goals": ["Поздоровайтесь.", "Расскажите новости.", "Спросите о здоровье."]},
+        {"name": "Планы с детьми", "description": "Обсуждаете выходные.", "goals": ["Предложите варианты.", "Согласуйте время.", "Распределите обязанности."]},
+        {"name": "Семейный ужин", "description": "Готовите ужин.", "goals": ["Спросите пожелания.", "Обсудите блюда.", "Договоритесь о времени."]},
+        {"name": "Помощь с домашним заданием", "description": "Помогаете ребёнку.", "goals": ["Объясните правило.", "Задайте наводящие вопросы.", "Похвалите."]}
     ],
     "tech": [
-        {"name": "Настройка нового устройства", "description": "Вы звоните в поддержку, чтобы настроить новое устройство.", "goals": ["Назовите модель устройства.", "Опишите проблему при настройке.", "Следуйте инструкциям оператора."]},
-        {"name": "Обсуждение софта с коллегой", "description": "Вы обсуждаете с коллегой преимущества разных программ.", "goals": ["Назовите программы.", "Сравните их функции.", "Придите к общему решению."]},
-        {"name": "Заказ детали для компьютера", "description": "Вы звоните в магазин, чтобы заказать запчасть.", "goals": ["Назовите модель детали.", "Уточните наличие и цену.", "Оформите заказ."]},
-        {"name": "Консультация по кибербезопасности", "description": "Вы консультируетесь со специалистом по защите данных.", "goals": ["Опишите, какую угрозу вы подозреваете.", "Спросите, как защитить свои данные.", "Запишите рекомендации."]}
+        {"name": "Настройка нового устройства", "description": "Звоните в поддержку.", "goals": ["Назовите модель.", "Опишите проблему.", "Следуйте инструкциям."]},
+        {"name": "Обсуждение софта с коллегой", "description": "Сравниваете программы.", "goals": ["Назовите программы.", "Сравните функции.", "Придите к решению."]},
+        {"name": "Заказ детали для компьютера", "description": "Звоните в магазин.", "goals": ["Назовите деталь.", "Уточните наличие.", "Оформите заказ."]},
+        {"name": "Консультация по кибербезопасности", "description": "Консультируетесь.", "goals": ["Опишите угрозу.", "Спросите о защите.", "Запишите рекомендации."]}
     ]
 }
 
@@ -144,7 +144,7 @@ async def start_roleplay(callback: CallbackQuery):
         [InlineKeyboardButton(text="✍️ Придумать свой сценарий", callback_data="custom_scenario")]
     ] + [[InlineKeyboardButton(text=cat[0], callback_data=f"cat_{cat[1]}")] for cat in CATEGORIES])
     await callback.message.edit_text(
-        "🎭 Выберите категорию или создайте свой сценарий.\n\nБот будет играть роль по сценарию. Вы можете говорить голосом или писать текстом.",
+        "🎭 Выберите категорию или создайте свой сценарий.\n\nБот будет играть роль по сценарию.",
         reply_markup=keyboard,
         parse_mode="HTML"
     )
@@ -155,7 +155,7 @@ async def show_topics(callback: CallbackQuery):
     cat_id = callback.data[4:]
     topics_list = TOPICS.get(cat_id, [])
     if not topics_list:
-        await callback.answer("Нет тем в этой категории", show_alert=True)
+        await callback.answer("Нет тем", show_alert=True)
         return
     buttons = []
     for idx, topic_info in enumerate(topics_list):
@@ -176,7 +176,7 @@ async def back_to_categories(callback: CallbackQuery):
         [InlineKeyboardButton(text="✍️ Придумать свой сценарий", callback_data="custom_scenario")]
     ] + [[InlineKeyboardButton(text=cat[0], callback_data=f"cat_{cat[1]}")] for cat in CATEGORIES])
     await callback.message.edit_text(
-        "🎭 Выберите категорию или создайте свой сценарий.\n\nБот будет играть роль по сценарию. Вы можете говорить голосом или писать текстом.",
+        "🎭 Выберите категорию или создайте свой сценарий.",
         reply_markup=keyboard,
         parse_mode="HTML"
     )
@@ -195,7 +195,6 @@ async def topic_chosen(callback: CallbackQuery):
     description = topic_info["description"]
     goals = topic_info["goals"]
     user_id = callback.from_user.id
-    # Устанавливаем режим ролевой игры
     set_user_state(user_id, {
         "mode": "roleplay_active",
         "history": [],
@@ -203,7 +202,6 @@ async def topic_chosen(callback: CallbackQuery):
         "roleplay_category": cat_id
     })
     await callback.answer(f"Выбрана тема: {topic}")
-    # Клавиатура для ролевой игры
     keyboard = ReplyKeyboardMarkup(
         keyboard=[
             [KeyboardButton(text="💡 Что ответить?"), KeyboardButton(text="🏠 Главное меню")],
@@ -229,7 +227,7 @@ async def custom_scenario_start(callback: CallbackQuery):
         "✍️ <b>Придумайте свой сценарий</b>\n\n"
         "Опишите ситуацию и роль бота одним сообщением.\n"
         "Пример:\n"
-        "<i>Ты продавец в книжном магазине. Я покупатель, ищу книгу по фантастике. Ты предлагаешь новинки и помогаешь выбрать.</i>\n\n"
+        "<i>Ты продавец в книжном магазине. Я покупатель, ищу книгу по фантастике.</i>\n\n"
         "Напишите ваш сценарий:",
         parse_mode="HTML"
     )
@@ -239,54 +237,20 @@ async def custom_scenario_start(callback: CallbackQuery):
     set_user_state(user_id, user_state)
     await callback.answer()
 
-@dp.message(F.text)
-async def process_custom_scenario(message: Message):
-    user_id = message.from_user.id
-    user_state = get_user_state(user_id)
-    if not user_state.get("awaiting_custom_scenario"):
-        return
-    user_state["awaiting_custom_scenario"] = False
-    scenario_text = message.text
-    topic = scenario_text[:50] + ("..." if len(scenario_text) > 50 else "")
-    set_user_state(user_id, {
-        "mode": "roleplay_active",
-        "history": [],
-        "roleplay_topic": topic,
-        "roleplay_category": "custom",
-        "custom_scenario": scenario_text
-    })
-    keyboard = ReplyKeyboardMarkup(
-        keyboard=[
-            [KeyboardButton(text="💡 Что ответить?"), KeyboardButton(text="🏠 Главное меню")],
-            [KeyboardButton(text="📊 Завершить диалог")]
-        ],
-        resize_keyboard=True
-    )
-    await message.answer(
-        f"🎭 Ролевая игра: {topic}\n\n"
-        f"<b>Ваш сценарий:</b> {scenario_text}\n\n"
-        f"🗣️ Говорите голосом или пишите текстом.\n"
-        f"💡 Если нужна подсказка, нажмите «💡 Что ответить?».\n"
-        f"Когда закончите, нажмите «📊 Завершить диалог» для анализа.",
-        reply_markup=keyboard,
-        parse_mode="HTML"
-    )
-    await message.answer("🎬 Можете начинать!", parse_mode="HTML")
-
 # ---------- КНОПКИ РОЛЕВОЙ ИГРЫ ----------
 @dp.message(F.text == "💡 Что ответить?")
 async def hint_button(message: Message):
     user_id = message.from_user.id
     user_state = get_user_state(user_id)
     mode = user_state.get("mode")
-    print(f"DEBUG: hint_button, mode={mode}")
+    print(f"DEBUG hint_button: mode={mode}")
     if mode != "roleplay_active":
         await message.answer("Эта кнопка доступна только в режиме ролевой игры.")
         return
     topic = user_state.get("roleplay_topic")
     history = user_state.get("history", [])
     if not topic:
-        await message.answer("Сначала выберите тему ролевой игры через меню RolePlay.")
+        await message.answer("Сначала выберите тему.")
         return
     context = "\n".join([f"{'User' if h['role']=='user' else 'Bot'}: {h['text']}" for h in history[-5:]])
     prompt = f"Ты – участник ролевой игры (тема: {topic}). Пользователь не знает, что ответить. Дай 2–3 коротких варианта ответа (по-английски). Контекст:\n{context}\nОтветь только вариантами."
@@ -299,38 +263,35 @@ async def finish_roleplay(message: Message):
     user_id = message.from_user.id
     user_state = get_user_state(user_id)
     mode = user_state.get("mode")
-    print(f"DEBUG: finish_roleplay, mode={mode}")
+    print(f"DEBUG finish_roleplay: mode={mode}")
     if mode != "roleplay_active":
         await message.answer("Эта кнопка доступна только в ролевой игре.")
         return
     history = user_state.get("history", [])
     if len(history) < 2:
-        await message.answer("Диалог ещё не начался. Сначала отправьте несколько сообщений.")
+        await message.answer("Диалог ещё не начался.")
         return
     conversation = "\n".join([f"{'User' if h['role']=='user' else 'Bot'}: {h['text']}" for h in history[-20:]])
     topic = user_state.get("roleplay_topic", "ролевая игра")
     await message.bot.send_chat_action(chat_id=message.chat.id, action="typing")
     prompt = (
-        f"Ты опытный преподаватель английского. Дан диалог в ролевой игре на тему '{topic}'. "
-        "Дай КОРОТКИЙ фидбек (не более 5 предложений) на русском языке. "
-        "Используй HTML-теги: <b>жирный</b>, <i>курсив</i>, <blockquote>цитата</blockquote>. "
-        "Добавь смайлики. Не пиши лишнего. Опиши главную ошибку и дай совет.\n\n"
-        f"Диалог:\n{conversation}"
+        f"Ты опытный преподаватель. Дай короткий фидбек (не более 5 предложений) на русском. "
+        f"Используй HTML-теги и смайлики. Диалог на тему '{topic}':\n{conversation}"
     )
     feedback = chat(prompt, max_tokens=400, temperature=0.5)
     if len(feedback) > 1000:
         feedback = feedback[:1000] + "..."
     await message.answer(f"📊 Анализ диалога:\n\n{feedback}", parse_mode="HTML")
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
-        [InlineKeyboardButton(text="🔁 Продолжить диалог", callback_data="continue_roleplay")],
+        [InlineKeyboardButton(text="🔁 Продолжить", callback_data="continue_roleplay")],
         [InlineKeyboardButton(text="🏠 Выйти в меню", callback_data="exit_to_menu")]
     ])
-    await message.answer("Желаете продолжить ролевую игру или завершить?", reply_markup=keyboard)
+    await message.answer("Желаете продолжить или завершить?", reply_markup=keyboard)
 
 @dp.callback_query(lambda c: c.data == "continue_roleplay")
 async def continue_roleplay(callback: CallbackQuery):
     await callback.message.delete()
-    await callback.answer("Продолжаем. Отправляйте следующие сообщения.")
+    await callback.answer("Продолжаем.")
 
 @dp.callback_query(lambda c: c.data == "exit_to_menu")
 async def exit_to_menu(callback: CallbackQuery):
@@ -338,6 +299,42 @@ async def exit_to_menu(callback: CallbackQuery):
     set_user_state(user_id, {"mode": None, "history": []})
     await callback.message.answer("Режим завершён. Нажмите /start для выбора режима.", reply_markup=ReplyKeyboardRemove())
     await callback.answer()
+
+# ---------- КНОПКИ SPEAKING ----------
+@dp.message(F.text == "📊 Я всё! Фидбек")
+async def feedback_button(message: Message):
+    user_id = message.from_user.id
+    user_state = get_user_state(user_id)
+    mode = user_state.get("mode")
+    print(f"DEBUG feedback_button: mode={mode}")
+    if mode != "speaking_active":
+        await message.answer("Фидбек доступен только в режиме Speaking.")
+        return
+    history = user_state.get("history", [])
+    if len(history) < 2:
+        await message.answer("Ещё нет диалога.")
+        return
+    conversation = "\n".join([f"{'Student' if h['role']=='user' else 'Teacher'}: {h['text']}" for h in history[-10:]])
+    prompt = (
+        "Ты учитель английского. Дай короткий фидбек (до 5 предложений) на русском, с HTML и смайликами. "
+        "Опиши главную ошибку, что хорошо, дай совет.\n\n"
+        f"Диалог:\n{conversation}"
+    )
+    await message.bot.send_chat_action(chat_id=message.chat.id, action="typing")
+    feedback = chat(prompt, max_tokens=400, temperature=0.5)
+    if len(feedback) > 1000:
+        feedback = feedback[:1000] + "..."
+    await message.answer(f"📊 Ваш фидбек:\n\n{feedback}", parse_mode="HTML")
+
+@dp.message(F.text == "🏠 Главное меню")
+async def main_menu_button(message: Message):
+    user_id = message.from_user.id
+    set_user_state(user_id, {"mode": None, "history": []})
+    if user_id in last_bot_response:
+        del last_bot_response[user_id]
+    if user_id in last_text_response:
+        del last_text_response[user_id]
+    await message.answer("Режим завершён. Нажмите /start для выбора режима.", reply_markup=ReplyKeyboardRemove())
 
 # ---------- ОБРАБОТКА ГОЛОСОВЫХ СООБЩЕНИЙ ----------
 @dp.message(F.voice)
@@ -391,7 +388,7 @@ async def handle_voice(message: Message):
     else:
         await message.answer(ai_response)
 
-# ---------- КНОПКИ ПОД ГОЛОСОВЫМИ СООБЩЕНИЯМИ ----------
+# ---------- КНОПКИ ПОД ГОЛОСОВЫМИ ----------
 @dp.callback_query(lambda c: c.data.startswith("show_text_"))
 async def show_text(callback: CallbackQuery):
     user_id = int(callback.data.split("_")[2])
@@ -417,7 +414,7 @@ async def translate_caption(callback: CallbackQuery):
     user_id = int(callback.data.split("_")[1])
     data = last_bot_response.get(user_id)
     if not data or not data.get("text"):
-        await callback.answer("Нет текста для перевода.", show_alert=True)
+        await callback.answer("Нет текста.", show_alert=True)
         return
     if data.get("translation"):
         translation = data["translation"]
@@ -478,9 +475,8 @@ async def hide_message(callback: CallbackQuery):
     last_bot_response[user_id] = data
     await callback.answer()
 
-# ---------- ТЕКСТОВЫЕ СООБЩЕНИЯ БОТА С КНОПКОЙ ПЕРЕВОДА ----------
+# ---------- ТЕКСТОВЫЕ СООБЩЕНИЯ БОТА ----------
 async def send_text_with_translate_buttons(message: Message, text: str, user_id: int):
-    """Отправляет текстовое сообщение с кнопкой "Перевести" (без кнопки "Скрыть")."""
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(text="🌐 Перевести", callback_data=f"translate_text_{user_id}")]
     ])
@@ -491,13 +487,12 @@ async def send_text_with_translate_buttons(message: Message, text: str, user_id:
         "message_id": sent.message_id
     }
 
-# ---------- ОБРАБОТЧИКИ ДЛЯ ТЕКСТОВЫХ КНОПОК ПЕРЕВОДА ----------
 @dp.callback_query(lambda c: c.data.startswith("translate_text_"))
 async def translate_text_callback(callback: CallbackQuery):
     user_id = int(callback.data.split("_")[2])
     data = last_text_response.get(user_id)
     if not data or not data.get("text"):
-        await callback.answer("Нет текста для перевода.", show_alert=True)
+        await callback.answer("Нет текста.", show_alert=True)
         return
     if data.get("translation"):
         translation = data["translation"]
@@ -536,49 +531,13 @@ async def original_text_callback(callback: CallbackQuery):
     last_text_response[user_id] = data
     await callback.answer()
 
-# ---------- КНОПКА ФИДБЕК ДЛЯ SPEAKING ----------
-@dp.message(F.text == "📊 Я всё! Фидбек")
-async def feedback_button(message: Message):
-    user_id = message.from_user.id
-    user_state = get_user_state(user_id)
-    if user_state.get("mode") != "speaking_active":
-        await message.answer("Фидбек доступен только в режиме Speaking.")
-        return
-    history = user_state.get("history", [])
-    if len(history) < 2:
-        await message.answer("Вы ещё не общались. Отправьте несколько голосовых сообщений.")
-        return
-    conversation = "\n".join([f"{'Student' if h['role']=='user' else 'Teacher'}: {h['text']}" for h in history[-10:]])
-    prompt = (
-        "Ты опытный учитель английского. Дай КОРОТКИЙ фидбек (не более 5 предложений) на русском языке. "
-        "Используй HTML-теги: <b>жирный</b>, <i>курсив</i>, <blockquote>цитата</blockquote>. "
-        "Добавь смайлики. Не пиши лишних пояснений. Структура: сначала главная ошибка, потом что хорошо, потом совет.\n\n"
-        f"Диалог:\n{conversation}"
-    )
-    await message.bot.send_chat_action(chat_id=message.chat.id, action="typing")
-    feedback = chat(prompt, max_tokens=400, temperature=0.5)
-    if len(feedback) > 1000:
-        feedback = feedback[:1000] + "..."
-    await message.answer(f"📊 Ваш фидбек:\n\n{feedback}", parse_mode="HTML")
-
-# ---------- КНОПКА ГЛАВНОЕ МЕНЮ ----------
-@dp.message(F.text == "🏠 Главное меню")
-async def main_menu_button(message: Message):
-    user_id = message.from_user.id
-    set_user_state(user_id, {"mode": None, "history": []})
-    if user_id in last_bot_response:
-        del last_bot_response[user_id]
-    if user_id in last_text_response:
-        del last_text_response[user_id]
-    await message.answer("Режим завершён. Нажмите /start для выбора режима.", reply_markup=ReplyKeyboardRemove())
-
-# ---------- ОБРАБОТКА ВСЕХ ОСТАЛЬНЫХ ТЕКСТОВЫХ СООБЩЕНИЙ ----------
+# ---------- ОБРАБОТКА ТЕКСТОВЫХ СООБЩЕНИЙ ОТ ПОЛЬЗОВАТЕЛЯ (ВСЕ ОСТАЛЬНЫЕ) ----------
 @dp.message()
 async def text_fallback(message: Message):
     user_id = message.from_user.id
     user_state = get_user_state(user_id)
     mode = user_state.get("mode")
-    print(f"DEBUG: text_fallback, mode={mode}, text={message.text}")
+    print(f"DEBUG text_fallback: mode={mode}, text={message.text}")
     if mode in ("speaking_active", "roleplay_active"):
         await message.bot.send_chat_action(chat_id=message.chat.id, action="typing")
         if mode == "roleplay_active":
@@ -595,6 +554,9 @@ async def text_fallback(message: Message):
         set_user_state(user_id, user_state)
     else:
         await message.answer("Нажмите /start и выберите Speaking или RolePlay.")
+
+# ---------- ОБРАБОТКА ПОЛЬЗОВАТЕЛЬСКИХ ТЕКСТОВЫХ СООБЩЕНИЙ (ОСТАЛЬНЫЕ) ----------
+# (дубликат удален, так как уже есть text_fallback)
 
 # ---------- ВЕБХУК ----------
 WEBHOOK_PATH = "/webhook"
@@ -620,7 +582,7 @@ app.router.add_get("/", health)
 async def on_startup(app):
     external_url = os.environ.get('RENDER_EXTERNAL_URL')
     if not external_url:
-        external_url = "https://english-bot-of29.onrender.com"  # замените на ваш URL
+        external_url = "https://english-bot-of29.onrender.com"
     webhook_url = f"{external_url}{WEBHOOK_PATH}"
     await bot.set_webhook(webhook_url, secret_token=WEBHOOK_SECRET)
     logger.info(f"Webhook set to {webhook_url}")
