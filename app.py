@@ -257,6 +257,7 @@ async def hint_button(message: Message):
     hints = chat(prompt, max_tokens=200, temperature=0.7)
     await message.answer(f"💡 Варианты ответа:\n{hints}", parse_mode="HTML")
 
+# ---------- ЗАВЕРШИТЬ ДИАЛОГ С УСИЛЕННОЙ ПРОВЕРКОЙ ----------
 @dp.message(F.text == "📊 Завершить диалог")
 async def finish_roleplay(message: Message):
     user_id = message.from_user.id
@@ -266,19 +267,35 @@ async def finish_roleplay(message: Message):
     if mode != "roleplay_active":
         await message.answer("Эта кнопка доступна только в ролевой игре.")
         return
+    
     history = user_state.get("history", [])
-    meaningful = [h for h in history if len(h.get("text", "").strip()) >= 2]
+    # Фильтруем осмысленные сообщения
+    meaningful = []
+    for h in history:
+        text = h.get("text", "").strip()
+        if len(text) < 2:
+            continue
+        # Для пользователя: пропускаем сообщения, не содержащие ни одной буквы (только цифры/символы)
+        if h.get("role") == "user":
+            if not any(c.isalpha() for c in text):
+                continue
+        meaningful.append(h)
+    
     user_msgs = [h for h in meaningful if h.get("role") == "user"]
     bot_msgs = [h for h in meaningful if h.get("role") == "assistant"]
-    if len(user_msgs) < 2 or len(bot_msgs) < 2:
+    
+    # Требуем минимум 3 сообщения от пользователя и 3 от бота
+    if len(user_msgs) < 3 or len(bot_msgs) < 3:
         await message.answer(
-            "📭 Вы ещё не общались по сценарию. Отправьте несколько сообщений (хотя бы 2-3), чтобы получить фидбек.\n"
-            "Начните диалог, следуя предложенному сценарию."
+            "📭 Вы ещё не общались по сценарию. Отправьте хотя бы 3-4 сообщения (не считая простых переспросов), чтобы получить фидбек.\n"
+            "Пожалуйста, продолжите диалог по сценарию."
         )
         return
+    
     conversation = "\n".join([f"{'User' if h['role']=='user' else 'Bot'}: {h['text']}" for h in meaningful[-20:]])
     topic = user_state.get("roleplay_topic", "ролевая игра")
     await message.bot.send_chat_action(chat_id=message.chat.id, action="typing")
+    
     prompt = (
         f"Ты опытный преподаватель английского. Проанализируй диалог в ролевой игре на тему '{topic}'. "
         "Дай КОРОТКИЙ фидбек (не более 5 предложений) на русском языке. "
@@ -292,6 +309,7 @@ async def finish_roleplay(message: Message):
     if len(feedback) > 1000:
         feedback = feedback[:1000] + "..."
     await message.answer(f"📊 Анализ диалога:\n\n{feedback}", parse_mode="HTML")
+    
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(text="🔁 Продолжить диалог", callback_data="continue_roleplay")],
         [InlineKeyboardButton(text="🏠 Выйти в меню", callback_data="exit_to_menu")]
