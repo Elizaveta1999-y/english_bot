@@ -1,5 +1,4 @@
 import os
-import re
 import asyncio
 import logging
 import subprocess
@@ -35,13 +34,12 @@ def convert_to_opus(mp3_path: str) -> str:
 last_bot_response = {}
 last_text_response = {}
 
-# Список фраз, которые не считаются полноценными сообщениями пользователя
+# Список служебных сообщений, которые не считаются полноценными сообщениями пользователя
 USER_SERVICE_PHRASES = [
     "💡 Что ответить?", "📊 Завершить диалог", "🏠 Главное меню", "📊 Я всё! Фидбек"
 ]
 
 def is_user_message_countable(text: str) -> bool:
-    """Проверяет, засчитывается ли текстовое сообщение пользователя в счётчик (3 сообщения)."""
     text = text.strip()
     if not text:
         return False
@@ -51,7 +49,7 @@ def is_user_message_countable(text: str) -> bool:
         return False
     return True
 
-# ========== КАТЕГОРИИ И ТЕМЫ ==========
+# ========== КАТЕГОРИИ И ТЕМЫ (полный список) ==========
 CATEGORIES = [
     ("🏢 Работа и бизнес", "work"),
     ("✈️ Путешествия", "travel"),
@@ -151,7 +149,7 @@ async def start_speaking(callback: CallbackQuery):
         "🎤 Голосовой режим активирован!\n\nГовори развёрнуто – так эффективнее для изучения! 🗣️",
         reply_markup=keyboard
     )
-    await callback.answer()
+    await callback.answer()  # обязательно отвечаем на callback
 
 # ---------- РОЛЕВАЯ ИГРА ----------
 @dp.callback_query(lambda c: c.data == "start_roleplay")
@@ -273,7 +271,7 @@ async def hint_button(message: Message):
     hints = chat(prompt, max_tokens=200, temperature=0.7)
     await message.answer(f"💡 Варианты ответа:\n{hints}", parse_mode="HTML")
 
-# ---------- ЗАВЕРШИТЬ ДИАЛОГ (ФИДБЕК) ----------
+# ---------- ЗАВЕРШИТЬ ДИАЛОГ (ФИДБЕК) – АСИНХРОННО ----------
 @dp.message(F.text == "📊 Завершить диалог")
 async def finish_roleplay(message: Message):
     user_id = message.from_user.id
@@ -284,18 +282,19 @@ async def finish_roleplay(message: Message):
         return
     
     history = user_state.get("history", [])
-    # Считаем только сообщения пользователя, которые не являются служебными кнопками
     user_messages = [h for h in history if h.get("role") == "user" and is_user_message_countable(h.get("text", ""))]
     
-    user_count = len(user_messages)
-    if user_count < 3:
-        needed = 3 - user_count
+    if len(user_messages) < 3:
+        needed = 3 - len(user_messages)
         await message.answer(
             f"📭 Вы ещё не общались по сценарию. Отправьте ещё {needed} сообщения (нужно минимум 3). Пожалуйста, продолжите диалог по сценарию."
         )
         return
     
-    # Все сообщения (и пользователя, и бота) для контекста
+    # Отправляем сообщение о начале генерации фидбека
+    processing_msg = await message.answer("🔄 Генерирую анализ диалога... Подождите немного.")
+    
+    # Асинхронно генерируем фидбек (чтобы не блокировать callback)
     conversation = "\n".join([f"{'User' if h['role']=='user' else 'Bot'}: {h['text']}" for h in history[-20:]])
     topic = user_state.get("roleplay_topic", "ролевая игра")
     await message.bot.send_chat_action(chat_id=message.chat.id, action="typing")
@@ -312,7 +311,9 @@ async def finish_roleplay(message: Message):
     feedback = chat(prompt, max_tokens=400, temperature=0.5)
     if len(feedback) > 1000:
         feedback = feedback[:1000] + "..."
-    await message.answer(f"📊 Анализ диалога:\n\n{feedback}", parse_mode="HTML")
+    
+    # Редактируем сообщение "Генерирую анализ..."
+    await processing_msg.edit_text(f"📊 Анализ диалога:\n\n{feedback}", parse_mode="HTML")
     
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(text="🔁 Продолжить диалог", callback_data="continue_roleplay")],
@@ -387,7 +388,6 @@ async def handle_voice(message: Message):
             set_user_mode(user_id, "speaking_active")
         ai_response = await process_voice_message(user_id, user_text)
 
-    # Добавляем в историю (голосовые сообщения всегда засчитываются, если не пустые)
     if user_text.strip():
         history = user_state.get("history", [])
         history.append({"role": "user", "text": user_text})
@@ -427,7 +427,6 @@ async def text_fallback(message: Message):
     user_id = message.from_user.id
     user_state = get_user_state(user_id)
     
-    # Кастомный сценарий
     if user_state.get("awaiting_custom_scenario"):
         user_state["awaiting_custom_scenario"] = False
         scenario_text = message.text
@@ -460,11 +459,8 @@ async def text_fallback(message: Message):
 
     mode = user_state.get("mode")
     if mode in ("speaking_active", "roleplay_active"):
-        # Не засчитываем служебные сообщения как часть диалога
         if not is_user_message_countable(message.text):
-            # Если это кнопка, просто игнорируем, не отвечаем
             return
-        
         await message.bot.send_chat_action(chat_id=message.chat.id, action="typing")
         if mode == "roleplay_active":
             ai_response = await process_roleplay_message(user_id, message.text)
@@ -480,7 +476,6 @@ async def text_fallback(message: Message):
             "translation": None,
             "message_id": sent.message_id
         }
-        # Добавляем в историю
         history = user_state.get("history", [])
         history.append({"role": "user", "text": message.text})
         history.append({"role": "assistant", "text": ai_response})
