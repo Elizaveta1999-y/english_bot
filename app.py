@@ -34,7 +34,6 @@ def convert_to_opus(mp3_path: str) -> str:
 last_bot_response = {}
 last_text_response = {}
 
-# Список служебных сообщений, которые не считаются полноценными сообщениями пользователя
 USER_SERVICE_PHRASES = [
     "💡 Что ответить?", "📊 Завершить диалог", "🏠 Главное меню", "📊 Я всё! Фидбек"
 ]
@@ -49,7 +48,7 @@ def is_user_message_countable(text: str) -> bool:
         return False
     return True
 
-# ========== КАТЕГОРИИ И ТЕМЫ (полный список) ==========
+# ========== КАТЕГОРИИ И ТЕМЫ ==========
 CATEGORIES = [
     ("🏢 Работа и бизнес", "work"),
     ("✈️ Путешествия", "travel"),
@@ -133,7 +132,6 @@ async def start_handler(message: Message):
         parse_mode="HTML"
     )
 
-# ---------- SPEAKING ----------
 @dp.callback_query(lambda c: c.data == "start_speaking")
 async def start_speaking(callback: CallbackQuery):
     user_id = callback.from_user.id
@@ -149,9 +147,8 @@ async def start_speaking(callback: CallbackQuery):
         "🎤 Голосовой режим активирован!\n\nГовори развёрнуто – так эффективнее для изучения! 🗣️",
         reply_markup=keyboard
     )
-    await callback.answer()  # обязательно отвечаем на callback
+    await callback.answer()
 
-# ---------- РОЛЕВАЯ ИГРА ----------
 @dp.callback_query(lambda c: c.data == "start_roleplay")
 async def start_roleplay(callback: CallbackQuery):
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
@@ -251,7 +248,6 @@ async def custom_scenario_start(callback: CallbackQuery):
     set_user_state(user_id, user_state)
     await callback.answer()
 
-# ---------- КНОПКИ РОЛЕВОЙ ИГРЫ ----------
 @dp.message(F.text == "💡 Что ответить?")
 async def hint_button(message: Message):
     user_id = message.from_user.id
@@ -271,7 +267,6 @@ async def hint_button(message: Message):
     hints = chat(prompt, max_tokens=200, temperature=0.7)
     await message.answer(f"💡 Варианты ответа:\n{hints}", parse_mode="HTML")
 
-# ---------- ЗАВЕРШИТЬ ДИАЛОГ (ФИДБЕК) – АСИНХРОННО ----------
 @dp.message(F.text == "📊 Завершить диалог")
 async def finish_roleplay(message: Message):
     user_id = message.from_user.id
@@ -291,28 +286,27 @@ async def finish_roleplay(message: Message):
         )
         return
     
-    # Отправляем сообщение о начале генерации фидбека
     processing_msg = await message.answer("🔄 Генерирую анализ диалога... Подождите немного.")
     
-    # Асинхронно генерируем фидбек (чтобы не блокировать callback)
     conversation = "\n".join([f"{'User' if h['role']=='user' else 'Bot'}: {h['text']}" for h in history[-20:]])
     topic = user_state.get("roleplay_topic", "ролевая игра")
     await message.bot.send_chat_action(chat_id=message.chat.id, action="typing")
     
+    # Улучшенный промпт для фидбека с разбором ошибок
     prompt = (
         f"Ты опытный преподаватель английского. Проанализируй диалог в ролевой игре на тему '{topic}'. "
-        "Дай КОРОТКИЙ фидбек (не более 5 предложений) на русском языке. "
-        "Не пиши 'фидбек для вас как для преподавателя' – ты обращаешься прямо к ученику. "
-        "Используй ТОЛЬКО HTML-теги: <b>жирный</b>, <i>курсив</i>. "
-        "НЕ используй <p>, <blockquote>, <h1>, <ul>, <li>. "
-        "Добавь смайлики. Опиши главную ошибку, что получилось хорошо, и дай один совет.\n\n"
+        "Дай фидбек на русском языке, не более 7-8 предложений. "
+        "Сначала коротко похвали ученика (1 предложение). "
+        "Затем перечисли конкретные грамматические и лексические ошибки (2-3 примера). "
+        "Для каждой ошибки напиши: что было неправильно, как правильно, краткое пояснение (1 фраза). "
+        "После этого дай один общий совет (1 предложение). "
+        "Не пиши 'фидбек для вас как для преподавателя'. Используй HTML-теги <b> и <i>. Добавь смайлики.\n\n"
         f"Диалог:\n{conversation}"
     )
-    feedback = chat(prompt, max_tokens=400, temperature=0.5)
-    if len(feedback) > 1000:
-        feedback = feedback[:1000] + "..."
+    feedback = chat(prompt, max_tokens=600, temperature=0.5)
+    if len(feedback) > 1200:
+        feedback = feedback[:1200] + "..."
     
-    # Редактируем сообщение "Генерирую анализ..."
     await processing_msg.edit_text(f"📊 Анализ диалога:\n\n{feedback}", parse_mode="HTML")
     
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
@@ -348,12 +342,12 @@ async def feedback_button(message: Message):
     conversation = "\n".join([f"{'Student' if h['role']=='user' else 'Teacher'}: {h['text']}" for h in history[-10:]])
     prompt = (
         "Ты учитель английского. Дай короткий фидбек (до 5 предложений) на русском языке. "
-        "Используй ТОЛЬКО HTML-теги <b>жирный</b> и <i>курсив</i>. "
-        "НЕ используй <p>, <blockquote>. Добавь смайлики. Опиши главную ошибку, что хорошо, дай совет.\n\n"
+        "Сначала похвали, потом перечисли основные ошибки (с исправлениями), дай совет. "
+        "Используй HTML-теги <b> и <i>. Добавь смайлики.\n\n"
         f"Диалог:\n{conversation}"
     )
     await message.bot.send_chat_action(chat_id=message.chat.id, action="typing")
-    feedback = chat(prompt, max_tokens=400, temperature=0.5)
+    feedback = chat(prompt, max_tokens=500, temperature=0.5)
     if len(feedback) > 1000:
         feedback = feedback[:1000] + "..."
     await message.answer(f"📊 Ваш фидбек:\n\n{feedback}", parse_mode="HTML")
@@ -368,7 +362,6 @@ async def main_menu_button(message: Message):
         del last_text_response[user_id]
     await message.answer("Режим завершён. Нажмите /start для выбора режима.", reply_markup=ReplyKeyboardRemove())
 
-# ---------- ГОЛОСОВЫЕ СООБЩЕНИЯ ----------
 @dp.message(F.voice)
 async def handle_voice(message: Message):
     user_id = message.from_user.id
@@ -421,7 +414,6 @@ async def handle_voice(message: Message):
     else:
         await message.answer(ai_response)
 
-# ---------- ОБРАБОТЧИК ВСЕХ ТЕКСТОВЫХ СООБЩЕНИЙ ----------
 @dp.message(F.text)
 async def text_fallback(message: Message):
     user_id = message.from_user.id
@@ -486,7 +478,7 @@ async def text_fallback(message: Message):
     else:
         await message.answer("Нажмите /start и выберите Speaking или RolePlay.")
 
-# ---------- ОБРАБОТЧИКИ ДЛЯ КНОПОК ПЕРЕВОДА ----------
+# ---------- ОБРАБОТЧИКИ КНОПОК ПЕРЕВОДА ----------
 @dp.callback_query(lambda c: c.data.startswith("show_text_"))
 async def show_text(callback: CallbackQuery):
     user_id = int(callback.data.split("_")[2])
