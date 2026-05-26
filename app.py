@@ -35,27 +35,19 @@ def convert_to_opus(mp3_path: str) -> str:
 last_bot_response = {}
 last_text_response = {}
 
-# ========== ФИЛЬТР ОСМЫСЛЕННЫХ СООБЩЕНИЙ ==========
-def is_meaningful_message(msg: dict) -> bool:
-    """Проверяет, является ли сообщение осмысленным (не служебным, не пустым, длина >= 2, есть буквы)."""
-    text = msg.get("text", "").strip()
-    if len(text) < 2:
+# Список фраз, которые не считаются полноценными сообщениями пользователя
+USER_SERVICE_PHRASES = [
+    "💡 Что ответить?", "📊 Завершить диалог", "🏠 Главное меню", "📊 Я всё! Фидбек"
+]
+
+def is_user_message_countable(text: str) -> bool:
+    """Проверяет, засчитывается ли текстовое сообщение пользователя в счётчик (3 сообщения)."""
+    text = text.strip()
+    if not text:
         return False
-    if not any(c.isalpha() for c in text):
+    if text in USER_SERVICE_PHRASES:
         return False
-    service_phrases = [
-        "можете начинать", "вы ещё не общались", "пожалуйста, продолжите",
-        "желаете продолжить", "продолжить диалог", "выйти в меню",
-        "главное меню", "режим завершён", "эта кнопка доступна только",
-        "нажмите /start", "выберите категорию", "выберите тему",
-        "ваши цели", "говорите голосом", "если нужна подсказка", "когда закончите"
-    ]
-    lower_text = text.lower()
-    for phrase in service_phrases:
-        if phrase in lower_text:
-            return False
-    # Также отфильтровываем сообщения, которые являются копией служебных фраз бота
-    if text in ["Можете начинать!", "Можете начинать", "Завершить диалог", "Перевести", "Оригинал"]:
+    if text.startswith('/'):
         return False
     return True
 
@@ -275,7 +267,7 @@ async def hint_button(message: Message):
     if not topic:
         await message.answer("Сначала выберите тему.")
         return
-    context = "\n".join([f"{'User' if h['role']=='user' else 'Bot'}: {h['text']}" for h in history[-5:] if is_meaningful_message(h)])
+    context = "\n".join([f"{'User' if h['role']=='user' else 'Bot'}: {h['text']}" for h in history[-5:]])
     prompt = f"Ты – участник ролевой игры (тема: {topic}). Пользователь не знает, что ответить. Дай 2–3 коротких варианта ответа (по-английски). Контекст:\n{context}\nОтветь только вариантами."
     await message.bot.send_chat_action(chat_id=message.chat.id, action="typing")
     hints = chat(prompt, max_tokens=200, temperature=0.7)
@@ -292,21 +284,19 @@ async def finish_roleplay(message: Message):
         return
     
     history = user_state.get("history", [])
-    # Фильтруем осмысленные сообщения пользователя
-    user_msgs = [h for h in history if h.get("role") == "user" and is_meaningful_message(h)]
+    # Считаем только сообщения пользователя, которые не являются служебными кнопками
+    user_messages = [h for h in history if h.get("role") == "user" and is_user_message_countable(h.get("text", ""))]
     
-    # Требуем минимум 3 сообщения от пользователя
-    if len(user_msgs) < 3:
-        needed = 3 - len(user_msgs)
+    user_count = len(user_messages)
+    if user_count < 3:
+        needed = 3 - user_count
         await message.answer(
-            f"📭 Вы ещё не общались по сценарию. Отправьте ещё {needed} осмысленных сообщения (хотя бы 3), чтобы получить фидбек.\n"
-            "Пожалуйста, продолжите диалог по сценарию."
+            f"📭 Вы ещё не общались по сценарию. Отправьте ещё {needed} сообщения (нужно минимум 3). Пожалуйста, продолжите диалог по сценарию."
         )
         return
     
-    # Все осмысленные сообщения (и пользователя, и бота) для контекста
-    meaningful_all = [h for h in history if is_meaningful_message(h)]
-    conversation = "\n".join([f"{'User' if h['role']=='user' else 'Bot'}: {h['text']}" for h in meaningful_all[-20:]])
+    # Все сообщения (и пользователя, и бота) для контекста
+    conversation = "\n".join([f"{'User' if h['role']=='user' else 'Bot'}: {h['text']}" for h in history[-20:]])
     topic = user_state.get("roleplay_topic", "ролевая игра")
     await message.bot.send_chat_action(chat_id=message.chat.id, action="typing")
     
@@ -397,8 +387,8 @@ async def handle_voice(message: Message):
             set_user_mode(user_id, "speaking_active")
         ai_response = await process_voice_message(user_id, user_text)
 
-    # Добавляем в историю, если сообщение осмысленное
-    if is_meaningful_message({"text": user_text, "role": "user"}):
+    # Добавляем в историю (голосовые сообщения всегда засчитываются, если не пустые)
+    if user_text.strip():
         history = user_state.get("history", [])
         history.append({"role": "user", "text": user_text})
         history.append({"role": "assistant", "text": ai_response})
@@ -470,9 +460,9 @@ async def text_fallback(message: Message):
 
     mode = user_state.get("mode")
     if mode in ("speaking_active", "roleplay_active"):
-        # Не обрабатываем бессмысленные сообщения как часть диалога
-        if not is_meaningful_message({"text": message.text, "role": "user"}):
-            await message.answer("Пожалуйста, напишите осмысленное предложение на английском по теме сценария.")
+        # Не засчитываем служебные сообщения как часть диалога
+        if not is_user_message_countable(message.text):
+            # Если это кнопка, просто игнорируем, не отвечаем
             return
         
         await message.bot.send_chat_action(chat_id=message.chat.id, action="typing")
@@ -490,6 +480,7 @@ async def text_fallback(message: Message):
             "translation": None,
             "message_id": sent.message_id
         }
+        # Добавляем в историю
         history = user_state.get("history", [])
         history.append({"role": "user", "text": message.text})
         history.append({"role": "assistant", "text": ai_response})
