@@ -35,7 +35,7 @@ def convert_to_opus(mp3_path: str) -> str:
 last_bot_response = {}
 last_text_response = {}
 
-# ========== КАТЕГОРИИ И ТЕМЫ (полный список) ==========
+# ========== КАТЕГОРИИ И ТЕМЫ ==========
 CATEGORIES = [
     ("🏢 Работа и бизнес", "work"),
     ("✈️ Путешествия", "travel"),
@@ -101,6 +101,24 @@ TOPICS = {
     ]
 }
 
+# ---------- ВСПОМОГАТЕЛЬНАЯ ФУНКЦИЯ ДЛЯ ФИЛЬТРАЦИИ ИСТОРИИ ----------
+def is_meaningful_message(msg: dict) -> bool:
+    """Проверяет, является ли сообщение осмысленным (не служебным и не пустым)."""
+    text = msg.get("text", "").strip()
+    if len(text) < 2:
+        return False
+    # Служебные фразы бота, которые не считаются ответом по сценарию
+    service_phrases = [
+        "Можете начинать", "Вы ещё не общались", "Пожалуйста, продолжите",
+        "Желаете продолжить", "Продолжить диалог", "Выйти в меню",
+        "Главное меню", "Режим завершён", "Эта кнопка доступна только",
+        "Нажмите /start", "Выберите категорию", "Выберите тему"
+    ]
+    for phrase in service_phrases:
+        if phrase.lower() in text.lower():
+            return False
+    return True
+
 # ========== ОБРАБОТЧИКИ ==========
 @dp.message(Command("start"))
 async def start_handler(message: Message):
@@ -119,7 +137,7 @@ async def start_handler(message: Message):
         parse_mode="HTML"
     )
 
-# ---------- CALLBACK-ЗАПРОСЫ (режимы и ролевая игра) ----------
+# ---------- SPEAKING ----------
 @dp.callback_query(lambda c: c.data == "start_speaking")
 async def start_speaking(callback: CallbackQuery):
     user_id = callback.from_user.id
@@ -137,6 +155,7 @@ async def start_speaking(callback: CallbackQuery):
     )
     await callback.answer()
 
+# ---------- РОЛЕВАЯ ИГРА ----------
 @dp.callback_query(lambda c: c.data == "start_roleplay")
 async def start_roleplay(callback: CallbackQuery):
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
@@ -194,6 +213,7 @@ async def topic_chosen(callback: CallbackQuery):
     description = topic_info["description"]
     goals = topic_info["goals"]
     user_id = callback.from_user.id
+    # Очищаем историю
     set_user_state(user_id, {
         "mode": "roleplay_active",
         "history": [],
@@ -236,13 +256,12 @@ async def custom_scenario_start(callback: CallbackQuery):
     set_user_state(user_id, user_state)
     await callback.answer()
 
-# ---------- ТОЧНЫЕ ТЕКСТОВЫЕ КНОПКИ ----------
+# ---------- КНОПКИ РОЛЕВОЙ ИГРЫ ----------
 @dp.message(F.text == "💡 Что ответить?")
 async def hint_button(message: Message):
     user_id = message.from_user.id
     user_state = get_user_state(user_id)
     mode = user_state.get("mode")
-    print(f"DEBUG hint_button: mode={mode}")
     if mode != "roleplay_active":
         await message.answer("Эта кнопка доступна только в режиме ролевой игры.")
         return
@@ -251,13 +270,12 @@ async def hint_button(message: Message):
     if not topic:
         await message.answer("Сначала выберите тему.")
         return
-    context = "\n".join([f"{'User' if h['role']=='user' else 'Bot'}: {h['text']}" for h in history[-5:]])
+    context = "\n".join([f"{'User' if h['role']=='user' else 'Bot'}: {h['text']}" for h in history[-5:] if is_meaningful_message(h)])
     prompt = f"Ты – участник ролевой игры (тема: {topic}). Пользователь не знает, что ответить. Дай 2–3 коротких варианта ответа (по-английски). Контекст:\n{context}\nОтветь только вариантами."
     await message.bot.send_chat_action(chat_id=message.chat.id, action="typing")
     hints = chat(prompt, max_tokens=200, temperature=0.7)
     await message.answer(f"💡 Варианты ответа:\n{hints}", parse_mode="HTML")
 
-# ---------- ЗАВЕРШИТЬ ДИАЛОГ С УСИЛЕННОЙ ПРОВЕРКОЙ ----------
 @dp.message(F.text == "📊 Завершить диалог")
 async def finish_roleplay(message: Message):
     user_id = message.from_user.id
@@ -269,25 +287,18 @@ async def finish_roleplay(message: Message):
         return
     
     history = user_state.get("history", [])
-    # Фильтруем осмысленные сообщения
-    meaningful = []
-    for h in history:
-        text = h.get("text", "").strip()
-        if len(text) < 2:
-            continue
-        # Для пользователя: пропускаем сообщения, не содержащие ни одной буквы (только цифры/символы)
-        if h.get("role") == "user":
-            if not any(c.isalpha() for c in text):
-                continue
-        meaningful.append(h)
+    # Фильтруем осмысленные сообщения (не служебные)
+    meaningful = [h for h in history if is_meaningful_message(h)]
     
     user_msgs = [h for h in meaningful if h.get("role") == "user"]
     bot_msgs = [h for h in meaningful if h.get("role") == "assistant"]
     
     # Требуем минимум 3 сообщения от пользователя и 3 от бота
     if len(user_msgs) < 3 or len(bot_msgs) < 3:
+        needed_user = 3 - len(user_msgs)
+        needed_bot = 3 - len(bot_msgs)
         await message.answer(
-            "📭 Вы ещё не общались по сценарию. Отправьте хотя бы 3-4 сообщения (не считая простых переспросов), чтобы получить фидбек.\n"
+            f"📭 Вы ещё не общались по сценарию. Отправьте ещё {max(needed_user, needed_bot)} сообщений (хотя бы 3-4 осмысленных реплики), чтобы получить фидбек.\n"
             "Пожалуйста, продолжите диалог по сценарию."
         )
         return
@@ -333,7 +344,6 @@ async def feedback_button(message: Message):
     user_id = message.from_user.id
     user_state = get_user_state(user_id)
     mode = user_state.get("mode")
-    print(f"DEBUG feedback_button: mode={mode}")
     if mode != "speaking_active":
         await message.answer("Фидбек доступен только в режиме Speaking.")
         return
@@ -384,13 +394,15 @@ async def handle_voice(message: Message):
             set_user_mode(user_id, "speaking_active")
         ai_response = await process_voice_message(user_id, user_text)
 
-    history = user_state.get("history", [])
-    history.append({"role": "user", "text": user_text})
-    history.append({"role": "assistant", "text": ai_response})
-    if len(history) > 20:
-        history = history[-20:]
-    user_state["history"] = history
-    set_user_state(user_id, user_state)
+    # Добавляем в историю только если это осмысленный ответ
+    if is_meaningful_message({"text": user_text, "role": "user"}):
+        history = user_state.get("history", [])
+        history.append({"role": "user", "text": user_text})
+        history.append({"role": "assistant", "text": ai_response})
+        if len(history) > 20:
+            history = history[-20:]
+        user_state["history"] = history
+        set_user_state(user_id, user_state)
 
     await message.bot.send_chat_action(chat_id=message.chat.id, action="record_voice")
     voice_path = await text_to_voice(ai_response)
@@ -416,13 +428,13 @@ async def handle_voice(message: Message):
     else:
         await message.answer(ai_response)
 
-# ---------- ОБРАБОТЧИК ВСЕХ ТЕКСТОВЫХ СООБЩЕНИЙ (включая кастомный сценарий) ----------
+# ---------- ОБРАБОТЧИК ВСЕХ ТЕКСТОВЫХ СООБЩЕНИЙ ----------
 @dp.message(F.text)
 async def text_fallback(message: Message):
     user_id = message.from_user.id
     user_state = get_user_state(user_id)
     
-    # Проверяем, ожидаем ли мы кастомный сценарий
+    # Кастомный сценарий
     if user_state.get("awaiting_custom_scenario"):
         user_state["awaiting_custom_scenario"] = False
         scenario_text = message.text
@@ -453,15 +465,20 @@ async def text_fallback(message: Message):
         await message.answer("🎬 Можете начинать!", parse_mode="HTML")
         return
 
-    # Обычная обработка текста в активных режимах
     mode = user_state.get("mode")
-    print(f"DEBUG text_fallback: mode={mode}, text={message.text}")
     if mode in ("speaking_active", "roleplay_active"):
+        # Не обрабатываем служебные сообщения как часть диалога
+        if not is_meaningful_message({"text": message.text, "role": "user"}):
+            # Если это короткая бессмысленная фраза, напомним пользователю
+            await message.answer("Пожалуйста, напишите осмысленное предложение на английском по теме сценария.")
+            return
+        
         await message.bot.send_chat_action(chat_id=message.chat.id, action="typing")
         if mode == "roleplay_active":
             ai_response = await process_roleplay_message(user_id, message.text)
         else:
             ai_response = await process_voice_message(user_id, message.text)
+        
         keyboard = InlineKeyboardMarkup(inline_keyboard=[
             [InlineKeyboardButton(text="🌐 Перевести", callback_data=f"translate_text_{user_id}")]
         ])
@@ -471,6 +488,7 @@ async def text_fallback(message: Message):
             "translation": None,
             "message_id": sent.message_id
         }
+        # Добавляем в историю
         history = user_state.get("history", [])
         history.append({"role": "user", "text": message.text})
         history.append({"role": "assistant", "text": ai_response})
@@ -481,7 +499,7 @@ async def text_fallback(message: Message):
     else:
         await message.answer("Нажмите /start и выберите Speaking или RolePlay.")
 
-# ---------- ОБРАБОТЧИКИ ДЛЯ КНОПОК ПЕРЕВОДА (ГОЛОСОВЫЕ И ТЕКСТОВЫЕ) ----------
+# ---------- ОБРАБОТЧИКИ ДЛЯ КНОПОК ПЕРЕВОДА ----------
 @dp.callback_query(lambda c: c.data.startswith("show_text_"))
 async def show_text(callback: CallbackQuery):
     user_id = int(callback.data.split("_")[2])
