@@ -35,6 +35,25 @@ def convert_to_opus(mp3_path: str) -> str:
 last_bot_response = {}
 last_text_response = {}
 
+# ========== ФИЛЬТР ОСМЫСЛЕННЫХ СООБЩЕНИЙ ==========
+def is_meaningful_message(msg: dict) -> bool:
+    """Проверяет, является ли сообщение осмысленным (не служебным, не пустым, длина >= 3, есть буквы)."""
+    text = msg.get("text", "").strip()
+    if len(text) < 3:
+        return False
+    if not any(c.isalpha() for c in text):
+        return False
+    service_phrases = [
+        "Можете начинать", "Вы ещё не общались", "Пожалуйста, продолжите",
+        "Желаете продолжить", "Продолжить диалог", "Выйти в меню",
+        "Главное меню", "Режим завершён", "Эта кнопка доступна только",
+        "Нажмите /start", "Выберите категорию", "Выберите тему"
+    ]
+    for phrase in service_phrases:
+        if phrase.lower() in text.lower():
+            return False
+    return True
+
 # ========== КАТЕГОРИИ И ТЕМЫ ==========
 CATEGORIES = [
     ("🏢 Работа и бизнес", "work"),
@@ -100,24 +119,6 @@ TOPICS = {
         {"name": "Консультация по кибербезопасности", "description": "Консультируетесь.", "goals": ["Опишите угрозу.", "Спросите о защите.", "Запишите рекомендации."]}
     ]
 }
-
-# ---------- ВСПОМОГАТЕЛЬНАЯ ФУНКЦИЯ ДЛЯ ФИЛЬТРАЦИИ ИСТОРИИ ----------
-def is_meaningful_message(msg: dict) -> bool:
-    """Проверяет, является ли сообщение осмысленным (не служебным и не пустым)."""
-    text = msg.get("text", "").strip()
-    if len(text) < 2:
-        return False
-    # Служебные фразы бота, которые не считаются ответом по сценарию
-    service_phrases = [
-        "Можете начинать", "Вы ещё не общались", "Пожалуйста, продолжите",
-        "Желаете продолжить", "Продолжить диалог", "Выйти в меню",
-        "Главное меню", "Режим завершён", "Эта кнопка доступна только",
-        "Нажмите /start", "Выберите категорию", "Выберите тему"
-    ]
-    for phrase in service_phrases:
-        if phrase.lower() in text.lower():
-            return False
-    return True
 
 # ========== ОБРАБОТЧИКИ ==========
 @dp.message(Command("start"))
@@ -213,7 +214,6 @@ async def topic_chosen(callback: CallbackQuery):
     description = topic_info["description"]
     goals = topic_info["goals"]
     user_id = callback.from_user.id
-    # Очищаем историю
     set_user_state(user_id, {
         "mode": "roleplay_active",
         "history": [],
@@ -276,34 +276,32 @@ async def hint_button(message: Message):
     hints = chat(prompt, max_tokens=200, temperature=0.7)
     await message.answer(f"💡 Варианты ответа:\n{hints}", parse_mode="HTML")
 
+# ---------- ЗАВЕРШИТЬ ДИАЛОГ (ФИДБЕК) ----------
 @dp.message(F.text == "📊 Завершить диалог")
 async def finish_roleplay(message: Message):
     user_id = message.from_user.id
     user_state = get_user_state(user_id)
     mode = user_state.get("mode")
-    print(f"DEBUG finish_roleplay: mode={mode}")
     if mode != "roleplay_active":
         await message.answer("Эта кнопка доступна только в ролевой игре.")
         return
     
     history = user_state.get("history", [])
-    # Фильтруем осмысленные сообщения (не служебные)
-    meaningful = [h for h in history if is_meaningful_message(h)]
+    # Фильтруем осмысленные сообщения пользователя
+    user_msgs = [h for h in history if h.get("role") == "user" and is_meaningful_message(h)]
     
-    user_msgs = [h for h in meaningful if h.get("role") == "user"]
-    bot_msgs = [h for h in meaningful if h.get("role") == "assistant"]
-    
-    # Требуем минимум 3 сообщения от пользователя и 3 от бота
-    if len(user_msgs) < 3 or len(bot_msgs) < 3:
-        needed_user = 3 - len(user_msgs)
-        needed_bot = 3 - len(bot_msgs)
+    # Требуем минимум 3 сообщения от пользователя
+    if len(user_msgs) < 3:
+        needed = 3 - len(user_msgs)
         await message.answer(
-            f"📭 Вы ещё не общались по сценарию. Отправьте ещё {max(needed_user, needed_bot)} сообщений (хотя бы 3-4 осмысленных реплики), чтобы получить фидбек.\n"
+            f"📭 Вы ещё не общались по сценарию. Отправьте ещё {needed} осмысленных сообщения (хотя бы 3), чтобы получить фидбек.\n"
             "Пожалуйста, продолжите диалог по сценарию."
         )
         return
     
-    conversation = "\n".join([f"{'User' if h['role']=='user' else 'Bot'}: {h['text']}" for h in meaningful[-20:]])
+    # Все осмысленные сообщения (и пользователя, и бота) для контекста
+    meaningful_all = [h for h in history if is_meaningful_message(h)]
+    conversation = "\n".join([f"{'User' if h['role']=='user' else 'Bot'}: {h['text']}" for h in meaningful_all[-20:]])
     topic = user_state.get("roleplay_topic", "ролевая игра")
     await message.bot.send_chat_action(chat_id=message.chat.id, action="typing")
     
@@ -394,7 +392,7 @@ async def handle_voice(message: Message):
             set_user_mode(user_id, "speaking_active")
         ai_response = await process_voice_message(user_id, user_text)
 
-    # Добавляем в историю только если это осмысленный ответ
+    # Добавляем в историю, если сообщение осмысленное
     if is_meaningful_message({"text": user_text, "role": "user"}):
         history = user_state.get("history", [])
         history.append({"role": "user", "text": user_text})
@@ -467,9 +465,8 @@ async def text_fallback(message: Message):
 
     mode = user_state.get("mode")
     if mode in ("speaking_active", "roleplay_active"):
-        # Не обрабатываем служебные сообщения как часть диалога
+        # Не обрабатываем бессмысленные сообщения как часть диалога
         if not is_meaningful_message({"text": message.text, "role": "user"}):
-            # Если это короткая бессмысленная фраза, напомним пользователю
             await message.answer("Пожалуйста, напишите осмысленное предложение на английском по теме сценария.")
             return
         
@@ -488,7 +485,6 @@ async def text_fallback(message: Message):
             "translation": None,
             "message_id": sent.message_id
         }
-        # Добавляем в историю
         history = user_state.get("history", [])
         history.append({"role": "user", "text": message.text})
         history.append({"role": "assistant", "text": ai_response})
@@ -499,7 +495,7 @@ async def text_fallback(message: Message):
     else:
         await message.answer("Нажмите /start и выберите Speaking или RolePlay.")
 
-# ---------- ОБРАБОТЧИКИ ДЛЯ КНОПОК ПЕРЕВОДА ----------
+# ---------- ОБРАБОТЧИКИ ДЛЯ КНОПОК ПЕРЕВОДА (ГОЛОСОВЫЕ И ТЕКСТОВЫЕ) ----------
 @dp.callback_query(lambda c: c.data.startswith("show_text_"))
 async def show_text(callback: CallbackQuery):
     user_id = int(callback.data.split("_")[2])
