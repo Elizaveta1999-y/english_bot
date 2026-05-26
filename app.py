@@ -292,7 +292,6 @@ async def finish_roleplay(message: Message):
     topic = user_state.get("roleplay_topic", "ролевая игра")
     await message.bot.send_chat_action(chat_id=message.chat.id, action="typing")
     
-    # Улучшенный промпт для фидбека с разбором ошибок
     prompt = (
         f"Ты опытный преподаватель английского. Проанализируй диалог в ролевой игре на тему '{topic}'. "
         "Дай фидбек на русском языке, не более 7-8 предложений. "
@@ -478,7 +477,7 @@ async def text_fallback(message: Message):
     else:
         await message.answer("Нажмите /start и выберите Speaking или RolePlay.")
 
-# ---------- ОБРАБОТЧИКИ КНОПОК ПЕРЕВОДА ----------
+# ---------- ОБРАБОТЧИКИ ДЛЯ КНОПОК ПЕРЕВОДА (ИСПРАВЛЕННЫЕ) ----------
 @dp.callback_query(lambda c: c.data.startswith("show_text_"))
 async def show_text(callback: CallbackQuery):
     user_id = int(callback.data.split("_")[2])
@@ -509,7 +508,9 @@ async def translate_caption(callback: CallbackQuery):
     if data.get("translation"):
         translation = data["translation"]
     else:
-        translation = chat(f"Переведи на русский: {data['text']}", max_tokens=300, temperature=0.3)
+        prompt = f"Translate the following English text to Russian. Output ONLY the translation, no extra words, no explanations, no quotes, no asterisks. Just the translation.\n\n{data['text']}"
+        translation = chat(prompt, max_tokens=300, temperature=0.3)
+        translation = translation.strip('*"\'')
         data["translation"] = translation
         last_bot_response[user_id] = data
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
@@ -575,7 +576,9 @@ async def translate_text_callback(callback: CallbackQuery):
     if data.get("translation"):
         translation = data["translation"]
     else:
-        translation = chat(f"Переведи на русский: {data['text']}", max_tokens=300, temperature=0.3)
+        prompt = f"Translate the following English text to Russian. Output ONLY the translation, no extra words, no explanations, no quotes, no asterisks. Just the translation.\n\n{data['text']}"
+        translation = chat(prompt, max_tokens=300, temperature=0.3)
+        translation = translation.strip('*"\'')
         data["translation"] = translation
         last_text_response[user_id] = data
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
