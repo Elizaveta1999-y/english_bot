@@ -225,9 +225,9 @@ async def topic_chosen(callback: CallbackQuery):
         f"🎭 Ролевая игра: {topic}\n\n"
         f"📖 Ситуация: {description}\n\n"
         f"🎯 Ваши цели:\n{goals_text}\n\n"
-        f"🗣️ Говорите голосом или пишите текстом.\n"
-        f"💡 Если нужна подсказка, нажмите «💡 Что ответить?».\n"
-        f"Когда закончите, нажмите «📊 Завершить диалог» для анализа."
+        f" Говорите голосом или пишите текстом.\n"
+        f" Если нужна подсказка, нажмите «💡 Что ответить?».\n"
+        f" Когда посчитаете, что цель достигнута, нажмите «📊 Завершить диалог» для анализа."
     )
     await callback.message.edit_text(roleplay_info, parse_mode="HTML")
     await callback.message.answer("🎬 Можете начинать!", reply_markup=keyboard)
