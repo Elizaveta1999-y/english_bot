@@ -165,20 +165,20 @@ async def process_custom_scenario(message: Message):
     if not user_state.get("awaiting_custom_scenario"):
         return
     user_state["awaiting_custom_scenario"] = False
+    
     scenario_text = message.text
-
-    # === ПРОВЕРКА БЕЗОПАСНОСТИ СЦЕНАРИЯ ===
+    
+    # === ПРОВЕРКА БЕЗОПАСНОСТИ ===
+    from speaking.services.ai import is_safe_message
     if not await is_safe_message(scenario_text):
         await message.answer(
-            "❌ <b>Ваш сценарий содержит неприемлемые темы</b> (секс, насилие, суицид и т.п.).\n\n"
-            "Пожалуйста, придумайте другой сценарий для ролевой игры. "
-            "Например, обыграйте ситуацию в кафе, аэропорту, на собеседовании или с книжным магазином.",
+            "❌ Ваш сценарий содержит неприемлемые темы. Пожалуйста, создайте другой сценарий."
+            "Например, обыграйте ситуацию в кафе, аэропорту, на собеседовании или с книжным магазином",
             parse_mode="HTML"
         )
         set_user_state(user_id, user_state)
         return
-    # =================================
-
+    
     topic = scenario_text[:50] + ("..." if len(scenario_text) > 50 else "")
     set_user_state(user_id, {
         "mode": "roleplay_active",
