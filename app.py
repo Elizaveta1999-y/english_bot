@@ -3,7 +3,7 @@ import logging
 from aiohttp import web
 from aiogram import Bot, Dispatcher
 from aiogram.webhook.aiohttp_server import SimpleRequestHandler, setup_application
-from handlers import start, speaking, roleplay, common, voice
+from handlers import start, speaking, roleplay, voice, common
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -15,12 +15,11 @@ WEBHOOK_SECRET = "my-secret-key"
 bot = Bot(token=BOT_TOKEN)
 dp = Dispatcher()
 
-# Подключаем роутеры в правильном порядке
 dp.include_router(start.router)
 dp.include_router(speaking.router)
 dp.include_router(roleplay.router)
 dp.include_router(voice.router)
-dp.include_router(common.router)
+dp.include_router(common.router)   # общий обработчик должен быть последним
 
 async def on_startup():
     external_url = os.environ.get('RENDER_EXTERNAL_URL')
