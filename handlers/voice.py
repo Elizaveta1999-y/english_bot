@@ -60,7 +60,6 @@ async def handle_voice(message: Message):
     else:
         await message.answer(ai_response)
 
-# ---------- ОБРАБОТЧИКИ КНОПОК ПОД ГОЛОСОВЫМИ (с использованием router) ----------
 @router.callback_query(lambda c: c.data.startswith("show_text_"))
 async def show_text(callback: CallbackQuery):
     user_id = int(callback.data.split("_")[2])
@@ -120,7 +119,7 @@ async def hide_message(callback: CallbackQuery):
     if not data or not data.get("audio_message_id"):
         await callback.answer("Нет сообщения.", show_alert=True)
         return
-    # Очищаем caption, но не удаляем сообщение
+    # Скрываем текст, оставляем только кнопку "Текст"
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(text="📝 Текст", callback_data=f"show_text_{user_id}")]
     ])
@@ -129,7 +128,6 @@ async def hide_message(callback: CallbackQuery):
     last_bot_response[user_id] = data
     await callback.answer()
 
-# ---------- ОБРАБОТЧИКИ ТЕКСТОВОГО ПЕРЕВОДА ----------
 @router.callback_query(lambda c: c.data.startswith("translate_text_"))
 async def translate_text_callback(callback: CallbackQuery):
     user_id = int(callback.data.split("_")[2])

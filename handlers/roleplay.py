@@ -1,4 +1,3 @@
-import os
 import re
 from aiogram import Router, F
 from aiogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery, ReplyKeyboardMarkup, KeyboardButton, ReplyKeyboardRemove
@@ -101,6 +100,89 @@ async def custom_scenario_start(callback: CallbackQuery):
     set_user_state(user_id, user_state)
     await callback.answer()
 
+@router.message(F.text)
+async def process_custom_scenario(message: Message):
+    user_id = message.from_user.id
+    user_state = get_user_state(user_id)
+    if not user_state.get("awaiting_custom_scenario"):
+        return
+    user_state["awaiting_custom_scenario"] = False
+    scenario_text = message.text.strip()
+    if len(scenario_text.split()) < 3:
+        await message.answer("❌ <b>Сценарий слишком короткий</b>. Опишите подробнее (минимум 3 слова).", parse_mode="HTML")
+        user_state["awaiting_custom_scenario"] = True
+        set_user_state(user_id, user_state)
+        return
+    # ----- ФИЛЬТР БЕЗОПАСНОСТИ -----
+    if not await is_safe_message(scenario_text):
+        keyboard = InlineKeyboardMarkup(inline_keyboard=[
+            [InlineKeyboardButton(text="🔄 Попробовать снова", callback_data="retry_custom_scenario")],
+            [InlineKeyboardButton(text="🔙 Назад в меню", callback_data="back_to_categories_from_scenario")]
+        ])
+        await message.answer(
+            "❌ <b>Ваш сценарий содержит неприемлемые темы</b> (секс, насилие, суицид и т.п.).\n\n"
+            "Пожалуйста, придумайте другой сценарий для ролевой игры.",
+            reply_markup=keyboard, parse_mode="HTML"
+        )
+        set_user_state(user_id, user_state)
+        return
+    # ------------------------------
+    topic = scenario_text[:50] + ("..." if len(scenario_text) > 50 else "")
+    set_user_state(user_id, {
+        "mode": "roleplay_active",
+        "history": [],
+        "roleplay_topic": topic,
+        "roleplay_category": "custom",
+        "custom_scenario": scenario_text
+    })
+    keyboard = ReplyKeyboardMarkup(
+        keyboard=[
+            [KeyboardButton(text="💡 Что ответить?"), KeyboardButton(text="🏠 Главное меню")],
+            [KeyboardButton(text="📊 Завершить диалог")]
+        ],
+        resize_keyboard=True
+    )
+    await message.answer(
+        f"🎭 <b>Ролевая игра: {topic}</b>\n\n"
+        f"<b>Ваш сценарий:</b> {scenario_text}\n\n"
+        f"🗣️ <b>Говорите голосом или пишите текстом.</b>\n"
+        f"💡 Если нужна подсказка, нажмите «💡 Что ответить?».\n"
+        f"Когда закончите, нажмите «📊 Завершить диалог» для анализа.",
+        reply_markup=keyboard, parse_mode="HTML"
+    )
+    await message.answer("🎬 <b>Можете начинать!</b>", parse_mode="HTML")
+
+@router.callback_query(lambda c: c.data == "retry_custom_scenario")
+async def retry_custom_scenario(callback: CallbackQuery):
+    user_id = callback.from_user.id
+    user_state = get_user_state(user_id)
+    user_state["awaiting_custom_scenario"] = True
+    set_user_state(user_id, user_state)
+    await callback.message.answer(
+        "✍️ <b>Придумайте свой сценарий</b>\n\n"
+        "Опишите ситуацию и роль бота одним сообщением.\n"
+        "Пример:\n"
+        "<i>Ты продавец в книжном магазине. Я покупатель, ищу книгу по фантастике.</i>\n\n"
+        "Напишите ваш сценарий:",
+        parse_mode="HTML"
+    )
+    await callback.answer()
+
+@router.callback_query(lambda c: c.data == "back_to_categories_from_scenario")
+async def back_to_categories_from_scenario(callback: CallbackQuery):
+    user_id = callback.from_user.id
+    user_state = get_user_state(user_id)
+    user_state["awaiting_custom_scenario"] = False
+    set_user_state(user_id, user_state)
+    keyboard = InlineKeyboardMarkup(inline_keyboard=[
+        [InlineKeyboardButton(text="✍️ Придумать свой сценарий", callback_data="custom_scenario")]
+    ] + [[InlineKeyboardButton(text=cat[0], callback_data=f"cat_{cat[1]}")] for cat in CATEGORIES])
+    await callback.message.answer(
+        "🎭 <b>Выберите категорию</b> или создайте свой сценарий.",
+        reply_markup=keyboard, parse_mode="HTML"
+    )
+    await callback.answer()
+
 @router.callback_query(lambda c: c.data.startswith("cat_"))
 async def show_topics(callback: CallbackQuery):
     cat_id = callback.data[4:]
@@ -164,91 +246,7 @@ async def topic_chosen(callback: CallbackQuery):
     await callback.message.edit_text(roleplay_info, parse_mode="HTML")
     await callback.message.answer("🎬 <b>Можете начинать!</b>", reply_markup=keyboard, parse_mode="HTML")
 
-# ========== ОБРАБОТЧИК КАСТОМНЫХ СЦЕНАРИЕВ (с фильтром) ==========
-@router.message(F.text)
-async def process_custom_scenario(message: Message):
-    user_id = message.from_user.id
-    user_state = get_user_state(user_id)
-    if not user_state.get("awaiting_custom_scenario"):
-        return
-    user_state["awaiting_custom_scenario"] = False
-    scenario_text = message.text.strip()
-    if len(scenario_text.split()) < 3:
-        await message.answer("❌ <b>Сценарий слишком короткий</b>. Опишите подробнее (минимум 3 слова).", parse_mode="HTML")
-        user_state["awaiting_custom_scenario"] = True
-        set_user_state(user_id, user_state)
-        return
-    # --- ФИЛЬТР БЕЗОПАСНОСТИ ---
-    if not await is_safe_message(scenario_text):
-        keyboard = InlineKeyboardMarkup(inline_keyboard=[
-            [InlineKeyboardButton(text="🔄 Попробовать снова", callback_data="retry_custom_scenario")],
-            [InlineKeyboardButton(text="🔙 Назад в меню", callback_data="back_to_categories_from_scenario")]
-        ])
-        await message.answer(
-            "❌ <b>Ваш сценарий содержит неприемлемые темы</b> (секс, насилие, суицид и т.п.).\n\n"
-            "Пожалуйста, придумайте другой сценарий для ролевой игры.",
-            reply_markup=keyboard, parse_mode="HTML"
-        )
-        set_user_state(user_id, user_state)
-        return
-    # --------------------------
-    topic = scenario_text[:50] + ("..." if len(scenario_text) > 50 else "")
-    set_user_state(user_id, {
-        "mode": "roleplay_active",
-        "history": [],
-        "roleplay_topic": topic,
-        "roleplay_category": "custom",
-        "custom_scenario": scenario_text
-    })
-    keyboard = ReplyKeyboardMarkup(
-        keyboard=[
-            [KeyboardButton(text="💡 Что ответить?"), KeyboardButton(text="🏠 Главное меню")],
-            [KeyboardButton(text="📊 Завершить диалог")]
-        ],
-        resize_keyboard=True
-    )
-    await message.answer(
-        f"🎭 <b>Ролевая игра: {topic}</b>\n\n"
-        f"<b>Ваш сценарий:</b> {scenario_text}\n\n"
-        f"🗣️ <b>Говорите голосом или пишите текстом.</b>\n"
-        f"💡 Если нужна подсказка, нажмите «💡 Что ответить?».\n"
-        f"Когда закончите, нажмите «📊 Завершить диалог» для анализа.",
-        reply_markup=keyboard, parse_mode="HTML"
-    )
-    await message.answer("🎬 <b>Можете начинать!</b>", parse_mode="HTML")
-
-@router.callback_query(lambda c: c.data == "retry_custom_scenario")
-async def retry_custom_scenario(callback: CallbackQuery):
-    user_id = callback.from_user.id
-    user_state = get_user_state(user_id)
-    user_state["awaiting_custom_scenario"] = True
-    set_user_state(user_id, user_state)
-    await callback.message.answer(
-        "✍️ <b>Придумайте свой сценарий</b>\n\n"
-        "Опишите ситуацию и роль бота одним сообщением.\n"
-        "Пример:\n"
-        "<i>Ты продавец в книжном магазине. Я покупатель, ищу книгу по фантастике.</i>\n\n"
-        "Напишите ваш сценарий:",
-        parse_mode="HTML"
-    )
-    await callback.answer()
-
-@router.callback_query(lambda c: c.data == "back_to_categories_from_scenario")
-async def back_to_categories_from_scenario(callback: CallbackQuery):
-    user_id = callback.from_user.id
-    user_state = get_user_state(user_id)
-    user_state["awaiting_custom_scenario"] = False
-    set_user_state(user_id, user_state)
-    keyboard = InlineKeyboardMarkup(inline_keyboard=[
-        [InlineKeyboardButton(text="✍️ Придумать свой сценарий", callback_data="custom_scenario")]
-    ] + [[InlineKeyboardButton(text=cat[0], callback_data=f"cat_{cat[1]}")] for cat in CATEGORIES])
-    await callback.message.answer(
-        "🎭 <b>Выберите категорию</b> или создайте свой сценарий.",
-        reply_markup=keyboard, parse_mode="HTML"
-    )
-    await callback.answer()
-
-# ========== КНОПКИ РОЛЕВОЙ ИГРЫ ==========
+# ---------- КНОПКИ РОЛЕВОЙ ИГРЫ ----------
 @router.message(F.text == "💡 Что ответить?")
 async def hint_button(message: Message):
     user_id = message.from_user.id
