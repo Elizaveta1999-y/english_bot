@@ -3,24 +3,23 @@ import logging
 from aiohttp import web
 from aiogram import Bot, Dispatcher
 from aiogram.webhook.aiohttp_server import SimpleRequestHandler, setup_application
-from handlers import start, speaking, roleplay, common, voice
+from handlers import start, speaking, roleplay, common, voice, lessons  # добавлен lessons
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 BOT_TOKEN = os.getenv("BOT_TOKEN")
-if not BOT_TOKEN:
-    raise ValueError("BOT_TOKEN is not set")
-
 WEBHOOK_PATH = "/webhook"
 WEBHOOK_SECRET = "my-secret-key"
 
 bot = Bot(token=BOT_TOKEN)
 dp = Dispatcher()
 
+# Подключаем роутеры (порядок: start, speaking, roleplay, lessons, voice, common)
 dp.include_router(start.router)
 dp.include_router(speaking.router)
 dp.include_router(roleplay.router)
+dp.include_router(lessons.router)      # новый
 dp.include_router(voice.router)
 dp.include_router(common.router)
 
