@@ -102,6 +102,7 @@ async def custom_scenario_start(callback: CallbackQuery):
 
 @router.message(F.text)
 async def process_custom_scenario(message: Message):
+    print(f"[DEBUG] process_custom_scenario: {message.text}")
     user_id = message.from_user.id
     user_state = get_user_state(user_id)
     if not user_state.get("awaiting_custom_scenario"):
@@ -311,19 +312,23 @@ async def exit_to_menu(callback: CallbackQuery):
 # ---------- НОВЫЙ ОБРАБОТЧИК ТЕКСТА ДЛЯ АКТИВНОЙ РОЛЕВОЙ ИГРЫ ----------
 @router.message(F.text)
 async def text_in_roleplay(message: Message):
+    print(f"[DEBUG] text_in_roleplay: {message.text}")
     user_id = message.from_user.id
     user_state = get_user_state(user_id)
     
     if user_state.get("awaiting_custom_scenario"):
+        print("[DEBUG] awaiting_custom_scenario=True, return")
         return
     if message.text in ["💡 Что ответить?", "📊 Завершить диалог", "🏠 Главное меню"]:
+        print("[DEBUG] button text, return")
         return
     
     mode = user_state.get("mode")
+    print(f"[DEBUG] mode={mode}")
     if mode == "roleplay_active":
         await message.bot.send_chat_action(chat_id=message.chat.id, action="typing")
         ai_response = await process_roleplay_message(user_id, message.text)
-        
+        print(f"[DEBUG] ai_response: {ai_response[:100]}")
         keyboard = InlineKeyboardMarkup(inline_keyboard=[
             [InlineKeyboardButton(text="🌐 Перевести", callback_data=f"translate_text_{user_id}")]
         ])
