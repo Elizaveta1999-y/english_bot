@@ -21,6 +21,7 @@ def convert_to_opus(mp3_path: str) -> str:
 
 @router.message(F.voice)
 async def handle_voice(message: Message):
+
     user_id = message.from_user.id
     user_state = get_user_state(user_id)
 
