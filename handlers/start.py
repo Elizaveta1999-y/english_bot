@@ -12,13 +12,23 @@ WELCOME_TEXT = (
     "🌟 <b>Акция</b> – полный доступ ко всему функционалу <b>399₽/мес</b>."
 )
 
+def get_main_menu_keyboard():
+    return InlineKeyboardMarkup(inline_keyboard=[
+        [InlineKeyboardButton(text="🎤 Speaking", callback_data="start_speaking"),
+         InlineKeyboardButton(text="🎭 RolePlay", callback_data="start_roleplay")],
+        [InlineKeyboardButton(text="📚 Lessons", callback_data="start_lessons")]
+    ])
+
+async def show_main_menu(message: Message, edit: bool = False):
+    """Показывает главное меню в указанном сообщении (новое или редактирование)"""
+    keyboard = get_main_menu_keyboard()
+    if edit:
+        await message.edit_text(WELCOME_TEXT, reply_markup=keyboard, parse_mode="HTML")
+    else:
+        await message.answer(WELCOME_TEXT, reply_markup=keyboard, parse_mode="HTML")
+
 @router.message(Command("start"))
 async def start_handler(message: Message):
     user_id = message.from_user.id
     set_user_state(user_id, {})
-    keyboard = InlineKeyboardMarkup(inline_keyboard=[
-        [InlineKeyboardButton(text="🎤 Speaking", callback_data="start_speaking"),
-         InlineKeyboardButton(text="🎭 RolePlay", callback_data="start_roleplay")],  # в одной строке
-        [InlineKeyboardButton(text="📚 Lessons", callback_data="start_lessons")]
-    ])
-    await message.answer(WELCOME_TEXT, reply_markup=keyboard, parse_mode="HTML")
+    await show_main_menu(message, edit=False)
