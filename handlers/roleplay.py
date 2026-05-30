@@ -3,7 +3,7 @@ from aiogram import Router, F
 from aiogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery, ReplyKeyboardMarkup, KeyboardButton, ReplyKeyboardRemove
 from data.users import set_user_state, get_user_state
 from services.deepseek import chat
-from speaking.services.ai import is_safe_message
+from speaking.services.ai import is_safe_message, process_roleplay_message
 
 router = Router()
 
@@ -309,3 +309,35 @@ async def exit_to_menu(callback: CallbackQuery):
     set_user_state(user_id, {"mode": None, "history": []})
     await callback.message.answer("Режим завершён. Нажмите /start для выбора режима.", reply_markup=ReplyKeyboardRemove())
     await callback.answer()
+
+# ---------- НОВЫЙ ОБРАБОТЧИК ТЕКСТА ДЛЯ АКТИВНОЙ РОЛЕВОЙ ИГРЫ ----------
+@router.message(F.text)
+async def text_in_roleplay(message: Message):
+    user_id = message.from_user.id
+    user_state = get_user_state(user_id)
+    
+    if user_state.get("awaiting_custom_scenario"):
+        return
+    if message.text in ["💡 Что ответить?", "📊 Завершить диалог", "🏠 Главное меню"]:
+        return
+    
+    mode = user_state.get("mode")
+    if mode == "roleplay_active":
+        await message.bot.send_chat_action(chat_id=message.chat.id, action="typing")
+        ai_response = await process_roleplay_message(user_id, message.text)
+        
+        keyboard = InlineKeyboardMarkup(inline_keyboard=[
+            [InlineKeyboardButton(text="🌐 Перевести", callback_data=f"translate_text_{user_id}")]
+        ])
+        sent = await message.answer(ai_response, reply_markup=keyboard)
+        
+        from handlers.voice import last_text_response as global_last_text_response
+        global_last_text_response[user_id] = {"text": ai_response, "translation": None, "message_id": sent.message_id}
+        
+        history = user_state.get("history", [])
+        history.append({"role": "user", "text": message.text})
+        history.append({"role": "assistant", "text": ai_response})
+        if len(history) > 20:
+            history = history[-20:]
+        user_state["history"] = history
+        set_user_state(user_id, user_state)

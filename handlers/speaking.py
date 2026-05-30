@@ -2,7 +2,7 @@ from aiogram import Router, F, types
 from aiogram.types import Message, ReplyKeyboardMarkup, KeyboardButton, CallbackQuery, InlineKeyboardMarkup, InlineKeyboardButton
 from data.users import set_user_state, get_user_state, add_to_history
 from services.deepseek import chat
-from speaking.services.ai import process_voice_message, process_roleplay_message
+from speaking.services.ai import process_voice_message
 
 router = Router()
 last_text_response = {}
@@ -48,31 +48,29 @@ async def feedback_button(message: Message):
         feedback = feedback[:1000] + "..."
     await message.answer(f"📊 <b>Ваш фидбек</b>:\n\n{feedback}", parse_mode="HTML")
 
-# Общий обработчик текста для режимов Speaking и RolePlay (не для кастомных сценариев)
 @router.message(F.text)
-async def text_in_speaking_or_roleplay(message: Message):
+async def text_in_speaking(message: Message):
     user_id = message.from_user.id
     user_state = get_user_state(user_id)
     mode = user_state.get("mode")
-    # Если ожидаем кастомный сценарий – не обрабатываем здесь (этот случай уже в roleplay.py)
+    
     if user_state.get("awaiting_custom_scenario"):
         return
-    # Служебные кнопки – пропускаем, они обрабатываются в других хендлерах
     if message.text in ["📊 Я всё! Фидбек", "🏠 Главное меню", "💡 Что ответить?", "📊 Завершить диалог"]:
         return
-    if mode in ("speaking_active", "roleplay_active"):
+    
+    if mode == "speaking_active":
         await message.bot.send_chat_action(chat_id=message.chat.id, action="typing")
-        if mode == "roleplay_active":
-            ai_response = await process_roleplay_message(user_id, message.text)
-        else:
-            ai_response = await process_voice_message(user_id, message.text)
+        ai_response = await process_voice_message(user_id, message.text)
+        
         keyboard = InlineKeyboardMarkup(inline_keyboard=[
             [InlineKeyboardButton(text="🌐 Перевести", callback_data=f"translate_text_{user_id}")]
         ])
         sent = await message.answer(ai_response, reply_markup=keyboard)
-        # Сохраняем в last_text_response для кнопки перевода
+        
         from handlers.voice import last_text_response as global_last_text_response
         global_last_text_response[user_id] = {"text": ai_response, "translation": None, "message_id": sent.message_id}
+        
         history = user_state.get("history", [])
         history.append({"role": "user", "text": message.text})
         history.append({"role": "assistant", "text": ai_response})
