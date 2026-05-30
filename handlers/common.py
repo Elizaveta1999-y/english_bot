@@ -1,6 +1,6 @@
 from aiogram import Router, F
-from aiogram.types import Message
-from data.users import set_user_state, get_user_state
+from aiogram.types import Message, ReplyKeyboardRemove
+from data.users import set_user_state
 
 router = Router()
 

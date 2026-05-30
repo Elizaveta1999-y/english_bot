@@ -21,7 +21,6 @@ def convert_to_opus(mp3_path: str) -> str:
 
 @router.message(F.voice)
 async def handle_voice(message: Message):
-
     user_id = message.from_user.id
     user_state = get_user_state(user_id)
 
@@ -40,28 +39,31 @@ async def handle_voice(message: Message):
             set_user_mode(user_id, "speaking_active")
         ai_response = await process_voice_message(user_id, user_text)
 
-    if user_text.strip():
-        history = user_state.get("history", [])
-        history.append({"role": "user", "text": user_text})
-        history.append({"role": "assistant", "text": ai_response})
-        if len(history) > 20:
-            history = history[-20:]
-        user_state["history"] = history
-        set_user_state(user_id, user_state)
+    history = user_state.get("history", [])
+    history.append({"role": "user", "text": user_text})
+    history.append({"role": "assistant", "text": ai_response})
+    if len(history) > 20:
+        history = history[-20:]
+    user_state["history"] = history
+    set_user_state(user_id, user_state)
 
     await message.bot.send_chat_action(chat_id=message.chat.id, action="record_voice")
     voice_path = await text_to_voice(ai_response)
-    if voice_path:
-        ogg_path = convert_to_opus(voice_path)
-        with open(ogg_path, 'rb') as f:
-            audio_bytes = f.read()
-        inline_keyboard = InlineKeyboardMarkup(inline_keyboard=[
-            [InlineKeyboardButton(text="📝 Текст", callback_data=f"show_text_{user_id}")]
-        ])
-        sent = await message.answer_audio(BufferedInputFile(audio_bytes, filename='voice.ogg'), caption="", reply_markup=inline_keyboard)
-        last_bot_response[user_id] = {"text": ai_response, "translation": None, "audio_message_id": sent.message_id}
-        os.unlink(voice_path)
-        os.unlink(ogg_path)
+    if voice_path and os.path.exists(voice_path):
+        try:
+            ogg_path = convert_to_opus(voice_path)
+            with open(ogg_path, 'rb') as f:
+                audio_bytes = f.read()
+            inline_keyboard = InlineKeyboardMarkup(inline_keyboard=[
+                [InlineKeyboardButton(text="📝 Текст", callback_data=f"show_text_{user_id}")]
+            ])
+            sent = await message.answer_audio(BufferedInputFile(audio_bytes, filename='voice.ogg'), caption="", reply_markup=inline_keyboard)
+            last_bot_response[user_id] = {"text": ai_response, "translation": None, "audio_message_id": sent.message_id}
+            os.unlink(voice_path)
+            os.unlink(ogg_path)
+        except Exception as e:
+            print(f"Audio sending error: {e}")
+            await message.answer(ai_response)
     else:
         await message.answer(ai_response)
 
