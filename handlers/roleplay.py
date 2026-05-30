@@ -100,57 +100,6 @@ async def custom_scenario_start(callback: CallbackQuery):
     set_user_state(user_id, user_state)
     await callback.answer()
 
-@router.message(F.text)
-async def process_custom_scenario(message: Message):
-    print(f"[DEBUG] process_custom_scenario: {message.text}")
-    user_id = message.from_user.id
-    user_state = get_user_state(user_id)
-    if not user_state.get("awaiting_custom_scenario"):
-        return
-    user_state["awaiting_custom_scenario"] = False
-    scenario_text = message.text.strip()
-    if len(scenario_text.split()) < 3:
-        await message.answer("❌ <b>Сценарий слишком короткий</b>. Опишите подробнее (минимум 3 слова).", parse_mode="HTML")
-        user_state["awaiting_custom_scenario"] = True
-        set_user_state(user_id, user_state)
-        return
-    if not await is_safe_message(scenario_text):
-        keyboard = InlineKeyboardMarkup(inline_keyboard=[
-            [InlineKeyboardButton(text="🔄 Попробовать снова", callback_data="retry_custom_scenario")],
-            [InlineKeyboardButton(text="🔙 Назад в меню", callback_data="back_to_categories_from_scenario")]
-        ])
-        await message.answer(
-            "❌ <b>Ваш сценарий содержит неприемлемые темы</b> (секс, насилие, суицид и т.п.).\n\n"
-            "Пожалуйста, придумайте другой сценарий для ролевой игры.",
-            reply_markup=keyboard, parse_mode="HTML"
-        )
-        set_user_state(user_id, user_state)
-        return
-    topic = scenario_text[:50] + ("..." if len(scenario_text) > 50 else "")
-    set_user_state(user_id, {
-        "mode": "roleplay_active",
-        "history": [],
-        "roleplay_topic": topic,
-        "roleplay_category": "custom",
-        "custom_scenario": scenario_text
-    })
-    keyboard = ReplyKeyboardMarkup(
-        keyboard=[
-            [KeyboardButton(text="💡 Что ответить?"), KeyboardButton(text="🏠 Главное меню")],
-            [KeyboardButton(text="📊 Завершить диалог")]
-        ],
-        resize_keyboard=True
-    )
-    await message.answer(
-        f"🎭 <b>Ролевая игра: {topic}</b>\n\n"
-        f"<b>Ваш сценарий:</b> {scenario_text}\n\n"
-        f"🗣️ <b>Говорите голосом или пишите текстом.</b>\n"
-        f"💡 Если нужна подсказка, нажмите «💡 Что ответить?».\n"
-        f"Когда закончите, нажмите «📊 Завершить диалог» для анализа.",
-        reply_markup=keyboard, parse_mode="HTML"
-    )
-    await message.answer("🎬 <b>Можете начинать!</b>", parse_mode="HTML")
-
 @router.callback_query(lambda c: c.data == "retry_custom_scenario")
 async def retry_custom_scenario(callback: CallbackQuery):
     user_id = callback.from_user.id
@@ -309,38 +258,85 @@ async def exit_to_menu(callback: CallbackQuery):
     await callback.message.answer("Режим завершён. Нажмите /start для выбора режима.", reply_markup=ReplyKeyboardRemove())
     await callback.answer()
 
-# ---------- НОВЫЙ ОБРАБОТЧИК ТЕКСТА ДЛЯ АКТИВНОЙ РОЛЕВОЙ ИГРЫ ----------
+# ---------- ЕДИНЫЙ ОБРАБОТЧИК ТЕКСТА ДЛЯ ВСЕХ РЕЖИМОВ ROLEPLAY ----------
+# Он срабатывает, если сообщение не ушло в speaking и не является служебной кнопкой.
 @router.message(F.text)
-async def text_in_roleplay(message: Message):
-    print(f"[DEBUG] text_in_roleplay: {message.text}")
+async def roleplay_text_handler(message: Message):
     user_id = message.from_user.id
     user_state = get_user_state(user_id)
     
+    # 1. Обработка кастомного сценария
     if user_state.get("awaiting_custom_scenario"):
-        print("[DEBUG] awaiting_custom_scenario=True, return")
-        return
-    if message.text in ["💡 Что ответить?", "📊 Завершить диалог", "🏠 Главное меню"]:
-        print("[DEBUG] button text, return")
+        user_state["awaiting_custom_scenario"] = False
+        scenario_text = message.text.strip()
+        if len(scenario_text.split()) < 3:
+            await message.answer("❌ <b>Сценарий слишком короткий</b>. Опишите подробнее (минимум 3 слова).", parse_mode="HTML")
+            user_state["awaiting_custom_scenario"] = True
+            set_user_state(user_id, user_state)
+            return
+        if not await is_safe_message(scenario_text):
+            keyboard = InlineKeyboardMarkup(inline_keyboard=[
+                [InlineKeyboardButton(text="🔄 Попробовать снова", callback_data="retry_custom_scenario")],
+                [InlineKeyboardButton(text="🔙 Назад в меню", callback_data="back_to_categories_from_scenario")]
+            ])
+            await message.answer(
+                "❌ <b>Ваш сценарий содержит неприемлемые темы</b> (секс, насилие, суицид и т.п.).\n\n"
+                "Пожалуйста, придумайте другой сценарий для ролевой игры.",
+                reply_markup=keyboard, parse_mode="HTML"
+            )
+            set_user_state(user_id, user_state)
+            return
+        topic = scenario_text[:50] + ("..." if len(scenario_text) > 50 else "")
+        set_user_state(user_id, {
+            "mode": "roleplay_active",
+            "history": [],
+            "roleplay_topic": topic,
+            "roleplay_category": "custom",
+            "custom_scenario": scenario_text
+        })
+        keyboard = ReplyKeyboardMarkup(
+            keyboard=[
+                [KeyboardButton(text="💡 Что ответить?"), KeyboardButton(text="🏠 Главное меню")],
+                [KeyboardButton(text="📊 Завершить диалог")]
+            ],
+            resize_keyboard=True
+        )
+        await message.answer(
+            f"🎭 <b>Ролевая игра: {topic}</b>\n\n"
+            f"<b>Ваш сценарий:</b> {scenario_text}\n\n"
+            f"🗣️ <b>Говорите голосом или пишите текстом.</b>\n"
+            f"💡 Если нужна подсказка, нажмите «💡 Что ответить?».\n"
+            f"Когда закончите, нажмите «📊 Завершить диалог» для анализа.",
+            reply_markup=keyboard, parse_mode="HTML"
+        )
+        await message.answer("🎬 <b>Можете начинать!</b>", parse_mode="HTML")
         return
     
+    # 2. Если не кастомный сценарий, проверяем активный режим ролевой игры
     mode = user_state.get("mode")
-    print(f"[DEBUG] mode={mode}")
-    if mode == "roleplay_active":
-        await message.bot.send_chat_action(chat_id=message.chat.id, action="typing")
-        ai_response = await process_roleplay_message(user_id, message.text)
-        print(f"[DEBUG] ai_response: {ai_response[:100]}")
-        keyboard = InlineKeyboardMarkup(inline_keyboard=[
-            [InlineKeyboardButton(text="🌐 Перевести", callback_data=f"translate_text_{user_id}")]
-        ])
-        sent = await message.answer(ai_response, reply_markup=keyboard)
-        
-        from handlers.voice import last_text_response as global_last_text_response
-        global_last_text_response[user_id] = {"text": ai_response, "translation": None, "message_id": sent.message_id}
-        
-        history = user_state.get("history", [])
-        history.append({"role": "user", "text": message.text})
-        history.append({"role": "assistant", "text": ai_response})
-        if len(history) > 20:
-            history = history[-20:]
-        user_state["history"] = history
-        set_user_state(user_id, user_state)
+    if mode != "roleplay_active":
+        return  # не трогаем сообщения для других режимов
+    
+    # Пропускаем служебные кнопки (они уже обработаны выше)
+    if message.text in ["💡 Что ответить?", "📊 Завершить диалог", "🏠 Главное меню"]:
+        return
+    
+    # 3. Обработка обычного сообщения в ролевой игре
+    await message.bot.send_chat_action(chat_id=message.chat.id, action="typing")
+    ai_response = await process_roleplay_message(user_id, message.text)
+    
+    keyboard = InlineKeyboardMarkup(inline_keyboard=[
+        [InlineKeyboardButton(text="🌐 Перевести", callback_data=f"translate_text_{user_id}")]
+    ])
+    sent = await message.answer(ai_response, reply_markup=keyboard)
+    
+    from handlers.voice import last_text_response as global_last_text_response
+    global_last_text_response[user_id] = {"text": ai_response, "translation": None, "message_id": sent.message_id}
+    
+    history = user_state.get("history", [])
+    history.append({"role": "user", "text": message.text})
+    history.append({"role": "assistant", "text": ai_response})
+    if len(history) > 20:
+        history = history[-20:]
+    user_state["history"] = history
+    set_user_state(user_id, user_state)
