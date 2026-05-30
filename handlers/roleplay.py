@@ -3,11 +3,11 @@ from aiogram import Router, F
 from aiogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery, ReplyKeyboardMarkup, KeyboardButton, ReplyKeyboardRemove
 from data.users import set_user_state, get_user_state
 from services.deepseek import chat
-from speaking.services.ai import is_safe_message, process_roleplay_message
+from speaking.services.ai import is_safe_message, process_roleplay_message, process_voice_message
 
 router = Router()
 
-# ========== КАТЕГОРИИ И ТЕМЫ ==========
+# ========== КАТЕГОРИИ И ТЕМЫ (сокращённо, вставьте свои полные) ==========
 CATEGORIES = [
     ("🏢 Работа и бизнес", "work"),
     ("✈️ Путешествия", "travel"),
@@ -18,61 +18,9 @@ CATEGORIES = [
     ("📱 Технологии", "tech")
 ]
 
-TOPICS = {
-    "work": [
-        {"name": "Собеседование на работу", "description": "Вы проходите собеседование на работу.", "goals": ["Опишите опыт работы.", "Расскажите о навыках.", "Объясните, почему вы подходите."]},
-        {"name": "Переговоры с клиентом", "description": "Деловые переговоры с клиентом.", "goals": ["Представьте предложение.", "Ответьте на возражения.", "Договоритесь об условиях."]},
-        {"name": "Презентация проекта", "description": "Вы проводите презентацию проекта.", "goals": ["Опишите суть.", "Перечислите преимущества.", "Ответьте на вопросы."]},
-        {"name": "Разговор с начальником", "description": "Обсуждаете повышение или отпуск.", "goals": ["Сформулируйте просьбу.", "Аргументируйте.", "Предложите компромисс."]},
-        {"name": "Ежедневный планер", "description": "План задач на день.", "goals": ["Перечислите задачи.", "Уточните приоритеты.", "Согласуйте дедлайны."]},
-        {"name": "Оценка производительности", "description": "Ежегодный обзор.", "goals": ["Оцените достижения.", "Укажите зоны роста.", "Поставьте цели."]}
-    ],
-    "travel": [
-        {"name": "Заказ такси в аэропорту", "description": "Звоните в службу такси.", "goals": ["Назовите адрес.", "Укажите время.", "Уточните стоимость."]},
-        {"name": "Регистрация на рейс", "description": "Вы в аэропорту.", "goals": ["Предъявите паспорт.", "Сдайте багаж.", "Попросите место у окна."]},
-        {"name": "Замена номера в отеле", "description": "Вам не подходит номер.", "goals": ["Объясните причину.", "Попросите другой номер.", "Уточните доплату."]},
-        {"name": "Покупка сувениров", "description": "Вы на рынке.", "goals": ["Спросите цену.", "Поторгуйтесь.", "Оплатите."]},
-        {"name": "Спросить дорогу у местного", "description": "Вы заблудились.", "goals": ["Поздоровайтесь.", "Назовите пункт назначения.", "Уточните путь."]},
-        {"name": "Бронирование отеля онлайн", "description": "Звоните в отель.", "goals": ["Назовите даты.", "Уточните цену.", "Спросите про отмену."]},
-        {"name": "Потеря багажа", "description": "В аэропорту.", "goals": ["Опишите чемодан.", "Сообщите номер рейса.", "Уточните статус."]}
-    ],
-    "daily": [
-        {"name": "Заказ в ресторане", "description": "Вы в ресторане.", "goals": ["Попросите меню.", "Сделайте заказ.", "Попросите счёт."]},
-        {"name": "Визит к врачу", "description": "На приёме у врача.", "goals": ["Опишите симптомы.", "Ответьте на вопросы.", "Уточните лечение."]},
-        {"name": "Звонок в техподдержку", "description": "Проблема с интернетом.", "goals": ["Опишите проблему.", "Ответьте на вопросы.", "Следуйте инструкциям."]},
-        {"name": "Разговор с соседом", "description": "Встретили соседа.", "goals": ["Поздоровайтесь.", "Поддержите беседу.", "Вежливо попрощайтесь."]},
-        {"name": "Покупка продуктов в супермаркете", "description": "Вы в супермаркете.", "goals": ["Спросите отдел.", "Уточните цену.", "Оплатите на кассе."]},
-        {"name": "Запись в спортзал", "description": "Звоните в фитнес-клуб.", "goals": ["Спросите абонементы.", "Уточните расписание.", "Запишитесь на пробную."]},
-        {"name": "Ремонт техники", "description": "Сдаёте телефон в ремонт.", "goals": ["Опишите неисправность.", "Спросите стоимость.", "Оставьте контакты."]}
-    ],
-    "hobby": [
-        {"name": "Обсуждение любимой книги", "description": "Обсуждаете книгу.", "goals": ["Назовите книгу.", "Расскажите о впечатлениях.", "Спросите мнение."]},
-        {"name": "Спор о фильме", "description": "Спорите о фильме.", "goals": ["Изложите сюжет.", "Назовите плюсы/минусы.", "Спросите мнение."]},
-        {"name": "Планы на выходные", "description": "Договариваетесь о встрече.", "goals": ["Предложите идеи.", "Обсудите время.", "Подтвердите."]},
-        {"name": "Любимые рецепты", "description": "Делитесь рецептом.", "goals": ["Назовите блюдо.", "Опишите процесс.", "Дайте совет."]},
-        {"name": "Совет по видеоигре", "description": "Просите совета.", "goals": ["Назовите игру.", "Спросите сложные моменты.", "Попросите подсказку."]},
-        {"name": "Обсуждение музыки", "description": "Обсуждаете музыку.", "goals": ["Назовите исполнителя.", "Расскажите, почему нравится.", "Спросите о вкусах."]}
-    ],
-    "health": [
-        {"name": "Запись к врачу по телефону", "description": "Звоните в поликлинику.", "goals": ["Назовите данные.", "Опишите симптомы.", "Выберите время."]},
-        {"name": "Разговор с фармацевтом", "description": "В аптеке.", "goals": ["Опишите симптомы.", "Спросите о лекарстве.", "Уточните дозировку."]},
-        {"name": "Скорая помощь", "description": "Звоните в скорую.", "goals": ["Назовите адрес.", "Опишите происшествие.", "Ответьте на вопросы."]},
-        {"name": "Разговор с психологом", "description": "На сессии.", "goals": ["Расскажите о проблеме.", "Ответьте на вопросы.", "Попросите совет."]}
-    ],
-    "family": [
-        {"name": "Разговор с родителями", "description": "Звоните родителям.", "goals": ["Поздоровайтесь.", "Расскажите новости.", "Спросите о здоровье."]},
-        {"name": "Планы с детьми", "description": "Обсуждаете выходные.", "goals": ["Предложите варианты.", "Согласуйте время.", "Распределите обязанности."]},
-        {"name": "Семейный ужин", "description": "Готовите ужин.", "goals": ["Спросите пожелания.", "Обсудите блюда.", "Договоритесь о времени."]}
-    ],
-    "tech": [
-        {"name": "Настройка нового устройства", "description": "Звоните в поддержку.", "goals": ["Назовите модель.", "Опишите проблему.", "Следуйте инструкциям."]},
-        {"name": "Обсуждение софта с коллегой", "description": "Сравниваете программы.", "goals": ["Назовите программы.", "Сравните функции.", "Придите к решению."]},
-        {"name": "Заказ детали для компьютера", "description": "Звоните в магазин.", "goals": ["Назовите деталь.", "Уточните наличие.", "Оформите заказ."]},
-        {"name": "Консультация по кибербезопасности", "description": "Консультируетесь.", "goals": ["Опишите угрозу.", "Спросите о защите.", "Запишите рекомендации."]}
-    ]
-}
+TOPICS = { ... }  # ← вставьте сюда ваш полный словарь TOPICS из предыдущего сообщения
 
-# ========== ОБРАБОТЧИКИ ==========
+# ========== ОБРАБОТЧИКИ КНОПОК И КАТЕГОРИЙ (без изменений) ==========
 @router.callback_query(lambda c: c.data == "start_roleplay")
 async def start_roleplay(callback: CallbackQuery):
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
@@ -258,14 +206,13 @@ async def exit_to_menu(callback: CallbackQuery):
     await callback.message.answer("Режим завершён. Нажмите /start для выбора режима.", reply_markup=ReplyKeyboardRemove())
     await callback.answer()
 
-# ---------- ЕДИНЫЙ ОБРАБОТЧИК ТЕКСТА ДЛЯ ВСЕХ РЕЖИМОВ ROLEPLAY ----------
-# Он срабатывает, если сообщение не ушло в speaking и не является служебной кнопкой.
+# ---------- ЕДИНЫЙ ОБРАБОТЧИК ТЕКСТА ДЛЯ ВСЕХ РЕЖИМОВ ----------
 @router.message(F.text)
-async def roleplay_text_handler(message: Message):
+async def universal_text_handler(message: Message):
     user_id = message.from_user.id
     user_state = get_user_state(user_id)
     
-    # 1. Обработка кастомного сценария
+    # 1. Обработка кастомного сценария (ожидание ввода)
     if user_state.get("awaiting_custom_scenario"):
         user_state["awaiting_custom_scenario"] = False
         scenario_text = message.text.strip()
@@ -312,31 +259,49 @@ async def roleplay_text_handler(message: Message):
         await message.answer("🎬 <b>Можете начинать!</b>", parse_mode="HTML")
         return
     
-    # 2. Если не кастомный сценарий, проверяем активный режим ролевой игры
-    mode = user_state.get("mode")
-    if mode != "roleplay_active":
-        return  # не трогаем сообщения для других режимов
-    
-    # Пропускаем служебные кнопки (они уже обработаны выше)
-    if message.text in ["💡 Что ответить?", "📊 Завершить диалог", "🏠 Главное меню"]:
+    # 2. Пропускаем служебные кнопки (они обработаны выше)
+    if message.text in ["💡 Что ответить?", "📊 Завершить диалог", "🏠 Главное меню", "📊 Я всё! Фидбек"]:
         return
     
-    # 3. Обработка обычного сообщения в ролевой игре
-    await message.bot.send_chat_action(chat_id=message.chat.id, action="typing")
-    ai_response = await process_roleplay_message(user_id, message.text)
+    mode = user_state.get("mode")
     
-    keyboard = InlineKeyboardMarkup(inline_keyboard=[
-        [InlineKeyboardButton(text="🌐 Перевести", callback_data=f"translate_text_{user_id}")]
-    ])
-    sent = await message.answer(ai_response, reply_markup=keyboard)
+    # 3. Режим Speaking (текстовый ввод)
+    if mode == "speaking_active":
+        await message.bot.send_chat_action(chat_id=message.chat.id, action="typing")
+        ai_response = await process_voice_message(user_id, message.text)
+        keyboard = InlineKeyboardMarkup(inline_keyboard=[
+            [InlineKeyboardButton(text="🌐 Перевести", callback_data=f"translate_text_{user_id}")]
+        ])
+        sent = await message.answer(ai_response, reply_markup=keyboard)
+        from handlers.voice import last_text_response as global_last_text_response
+        global_last_text_response[user_id] = {"text": ai_response, "translation": None, "message_id": sent.message_id}
+        history = user_state.get("history", [])
+        history.append({"role": "user", "text": message.text})
+        history.append({"role": "assistant", "text": ai_response})
+        if len(history) > 20:
+            history = history[-20:]
+        user_state["history"] = history
+        set_user_state(user_id, user_state)
+        return
     
-    from handlers.voice import last_text_response as global_last_text_response
-    global_last_text_response[user_id] = {"text": ai_response, "translation": None, "message_id": sent.message_id}
+    # 4. Режим RolePlay (текстовый ввод)
+    if mode == "roleplay_active":
+        await message.bot.send_chat_action(chat_id=message.chat.id, action="typing")
+        ai_response = await process_roleplay_message(user_id, message.text)
+        keyboard = InlineKeyboardMarkup(inline_keyboard=[
+            [InlineKeyboardButton(text="🌐 Перевести", callback_data=f"translate_text_{user_id}")]
+        ])
+        sent = await message.answer(ai_response, reply_markup=keyboard)
+        from handlers.voice import last_text_response as global_last_text_response
+        global_last_text_response[user_id] = {"text": ai_response, "translation": None, "message_id": sent.message_id}
+        history = user_state.get("history", [])
+        history.append({"role": "user", "text": message.text})
+        history.append({"role": "assistant", "text": ai_response})
+        if len(history) > 20:
+            history = history[-20:]
+        user_state["history"] = history
+        set_user_state(user_id, user_state)
+        return
     
-    history = user_state.get("history", [])
-    history.append({"role": "user", "text": message.text})
-    history.append({"role": "assistant", "text": ai_response})
-    if len(history) > 20:
-        history = history[-20:]
-    user_state["history"] = history
-    set_user_state(user_id, user_state)
+    # 5. Если режим не установлен – можно проигнорировать или ответить
+    # await message.answer("Сначала выберите режим: /start")
