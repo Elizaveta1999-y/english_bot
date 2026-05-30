@@ -311,8 +311,8 @@ async def universal_text_handler(message: Message):
         await message.answer("🎬 <b>Можете начинать!</b>", parse_mode="HTML")
         return
     
-    # 2. Пропускаем служебные кнопки (они обработаны выше)
-    if message.text in ["💡 Что ответить?", "📊 Завершить диалог", "🏠 Главное меню", "📊 Я всё! Фидбек"]:
+    # 2. Пропускаем служебные кнопки, но НЕ пропускаем "Главное меню"
+    if message.text in ["💡 Что ответить?", "📊 Завершить диалог", "📊 Я всё! Фидбек"]:
         return
     
     mode = user_state.get("mode")

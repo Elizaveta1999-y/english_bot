@@ -23,12 +23,14 @@ def convert_to_opus(mp3_path: str) -> str:
 async def handle_voice(message: Message):
     user_id = message.from_user.id
     user_state = get_user_state(user_id)
+
     file = await message.bot.get_file(message.voice.file_id)
     file_bytes = await message.bot.download_file(file.file_path)
     user_text = await voice_to_text(file_bytes.read())
     if not user_text:
         await message.answer("Не понял, повторите.")
         return
+
     mode = user_state.get("mode")
     if mode == "roleplay_active":
         ai_response = await process_roleplay_message(user_id, user_text)
@@ -36,6 +38,7 @@ async def handle_voice(message: Message):
         if mode != "speaking_active":
             set_user_mode(user_id, "speaking_active")
         ai_response = await process_voice_message(user_id, user_text)
+
     if user_text.strip():
         history = user_state.get("history", [])
         history.append({"role": "user", "text": user_text})
@@ -44,6 +47,7 @@ async def handle_voice(message: Message):
             history = history[-20:]
         user_state["history"] = history
         set_user_state(user_id, user_state)
+
     await message.bot.send_chat_action(chat_id=message.chat.id, action="record_voice")
     voice_path = await text_to_voice(ai_response)
     if voice_path:
