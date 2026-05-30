@@ -9,32 +9,34 @@ LEVELS_ROW1 = [("A1 (Beginner)", "A1"), ("A2 (Elementary)", "A2")]
 LEVELS_ROW2 = [("B1 (Intermediate)", "B1"), ("B2 (Upper Intermediate)", "B2")]
 LEVELS_SINGLE = [("C1 (Advanced)", "C1")]
 
-# Список тематических уроков (20+ тем)
+# Список тематических уроков (без эмодзи)
 THEMATIC_TOPICS = [
-    "📖 Present Simple vs Continuous",
-    "📖 Past Simple vs Present Perfect",
-    "📖 Модальные глаголы (can/could/must)",
-    "📖 Conditionals (0,1,2 типа)",
-    "📖 Пассивный залог",
-    "📖 Предлоги времени и места",
-    "📖 Фразовые глаголы (основные)",
-    "📖 Артикли a/an/the",
-    "📖 Степени сравнения прилагательных",
-    "📖 Косвенная речь",
-    "📖 Герундий и инфинитив",
-    "📖 Сложные союзы (although/despite)",
-    "📖 Лексика: путешествия",
-    "📖 Лексика: деловая переписка",
-    "📖 Лексика: семья и друзья",
-    "📖 Идиомы (10 популярных)",
-    "📖 Неправильные глаголы (тренажёр)",
-    "📖 Числительные и даты",
-    "📖 Вопросительные предложения (tag questions)",
-    "📖 Условные предложения 3 типа (wish/if only)"
+    "Present Simple vs Continuous",
+    "Past Simple vs Present Perfect",
+    "Модальные глаголы (can/could/must)",
+    "Conditionals (0,1,2 типа)",
+    "Пассивный залог",
+    "Предлоги времени и места",
+    "Фразовые глаголы (основные)",
+    "Артикли a/an/the",
+    "Степени сравнения прилагательных",
+    "Косвенная речь",
+    "Герундий и инфинитив",
+    "Сложные союзы (although/despite)",
+    "Лексика: путешествия",
+    "Лексика: деловая переписка",
+    "Лексика: семья и друзья",
+    "Идиомы (10 популярных)",
+    "Неправильные глаголы (тренажёр)",
+    "Числительные и даты",
+    "Вопросительные предложения (tag questions)",
+    "Условные предложения 3 типа (wish/if only)"
 ]
 
-# Константы для пагинации
-TOPICS_PER_PAGE = 12
+TOPICS_PER_PAGE = 5  # количество тем на одной странице
+
+# Хранилище текущей страницы для каждого пользователя (можно сохранять в state, но для простоты используем словарь)
+user_page = {}
 
 @router.callback_query(lambda c: c.data == "start_lessons")
 async def lessons_menu(callback: CallbackQuery):
@@ -48,13 +50,13 @@ async def lessons_menu(callback: CallbackQuery):
         [InlineKeyboardButton(text=name, callback_data=f"level_{code}") for name, code in LEVELS_ROW1],
         [InlineKeyboardButton(text=name, callback_data=f"level_{code}") for name, code in LEVELS_ROW2],
         [InlineKeyboardButton(text=name, callback_data=f"level_{code}") for name, code in LEVELS_SINGLE],
-        [InlineKeyboardButton(text="📚 Тематические уроки", callback_data="thematic_menu")],
-        [InlineKeyboardButton(text="📊 Моё обучение", callback_data="my_learning")],
-        [InlineKeyboardButton(text="📝 Пройти тест (уровень)", callback_data="placement_test")],
-        [InlineKeyboardButton(text="🔙 Назад в главное меню", callback_data="back_to_main")]
+        [InlineKeyboardButton(text="Тематические уроки", callback_data="thematic_menu")],
+        [InlineKeyboardButton(text="Моё обучение", callback_data="my_learning")],
+        [InlineKeyboardButton(text="Пройти тест (уровень)", callback_data="placement_test")],
+        [InlineKeyboardButton(text="Назад в главное меню", callback_data="back_to_main")]
     ])
     await callback.message.edit_text(
-        "📚 <b>Режим уроков</b>\n\n"
+        "📚 Режим уроков\n\n"
         "Выберите свой уровень, чтобы начать системное обучение.\n"
         "Или откройте «Тематические уроки» для быстрого разбора конкретных тем.\n"
         "«Моё обучение» — ваш прогресс и план на неделю.",
@@ -70,11 +72,11 @@ async def level_chosen(callback: CallbackQuery):
     all_levels = LEVELS_ROW1 + LEVELS_ROW2 + LEVELS_SINGLE
     level_name = next((name for name, code in all_levels if code == level_code), level_code)
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
-        [InlineKeyboardButton(text="🔙 Назад к выбору уровня", callback_data="start_lessons")],
-        [InlineKeyboardButton(text="🏠 Главное меню", callback_data="back_to_main")]
+        [InlineKeyboardButton(text="Назад к выбору уровня", callback_data="start_lessons")],
+        [InlineKeyboardButton(text="Главное меню", callback_data="back_to_main")]
     ])
     await callback.message.edit_text(
-        f"📖 <b>Уровень {level_name}</b>\n\n"
+        f"📖 Уровень {level_name}\n\n"
         "🚧 Режим в разработке.\n"
         "Скоро здесь появится полная программа обучения: грамматика, лексика, чтение, письмо, говорение.\n"
         "Вы сможете отслеживать прогресс и получать задания ИИ.",
@@ -83,30 +85,76 @@ async def level_chosen(callback: CallbackQuery):
     )
     await callback.answer()
 
-# ---------- Тематические уроки (исправлено: индексы вместо текста) ----------
+# ---------- Тематические уроки с пагинацией ----------
+def get_thematic_keyboard(page: int, total_pages: int) -> InlineKeyboardMarkup:
+    """Формирует клавиатуру для страницы тематических уроков"""
+    start_idx = (page - 1) * TOPICS_PER_PAGE
+    end_idx = start_idx + TOPICS_PER_PAGE
+    page_topics = THEMATIC_TOPICS[start_idx:end_idx]
+
+    buttons = []
+    for idx, topic in enumerate(page_topics, start=start_idx):
+        buttons.append([InlineKeyboardButton(text=topic, callback_data=f"thematic_{idx}")])
+
+    # Панель навигации
+    nav_buttons = []
+    if page > 1:
+        nav_buttons.append(InlineKeyboardButton(text="◀", callback_data="thematic_prev"))
+    nav_buttons.append(InlineKeyboardButton(text=f"{page}/{total_pages}", callback_data="thematic_none"))
+    if page < total_pages:
+        nav_buttons.append(InlineKeyboardButton(text="▶", callback_data="thematic_next"))
+    buttons.append(nav_buttons)
+
+    # Кнопка возврата
+    buttons.append([InlineKeyboardButton(text="К выбору тем", callback_data="start_lessons")])
+
+    return InlineKeyboardMarkup(inline_keyboard=buttons)
+
 @router.callback_query(lambda c: c.data == "thematic_menu")
 async def thematic_lessons_menu(callback: CallbackQuery):
-    # Показываем первые TOPICS_PER_PAGE тем
-    buttons = []
-    for idx, topic in enumerate(THEMATIC_TOPICS[:TOPICS_PER_PAGE]):
-        buttons.append([InlineKeyboardButton(text=topic, callback_data=f"thematic_{idx}")])
-    if len(THEMATIC_TOPICS) > TOPICS_PER_PAGE:
-        buttons.append([InlineKeyboardButton(text="📂 Показать ещё", callback_data="thematic_more")])
-    buttons.append([InlineKeyboardButton(text="🔙 Назад", callback_data="start_lessons")])
-    keyboard = InlineKeyboardMarkup(inline_keyboard=buttons)
+    user_id = callback.from_user.id
+    total_pages = (len(THEMATIC_TOPICS) + TOPICS_PER_PAGE - 1) // TOPICS_PER_PAGE
+    user_page[user_id] = 1  # сброс на первую страницу
+    keyboard = get_thematic_keyboard(1, total_pages)
     await callback.message.edit_text(
-        "📚 <b>Тематические уроки</b>\n\n"
-        "Выберите тему для самостоятельного изучения.\n"
-        "Каждый урок включает короткую теорию и практическое задание с проверкой ИИ.\n"
-        "Прогресс по тематическим урокам не сохраняется (можно проходить в любом порядке).",
+        "Тематические уроки\n\nВыберите тему для изучения:",
         reply_markup=keyboard,
         parse_mode="HTML"
     )
     await callback.answer()
 
-@router.callback_query(lambda c: c.data.startswith("thematic_") and c.data != "thematic_menu" and c.data != "thematic_more")
+@router.callback_query(lambda c: c.data == "thematic_next")
+async def thematic_next_page(callback: CallbackQuery):
+    user_id = callback.from_user.id
+    total_pages = (len(THEMATIC_TOPICS) + TOPICS_PER_PAGE - 1) // TOPICS_PER_PAGE
+    current = user_page.get(user_id, 1)
+    if current < total_pages:
+        user_page[user_id] = current + 1
+        keyboard = get_thematic_keyboard(current + 1, total_pages)
+        await callback.message.edit_text(
+            "Тематические уроки\n\nВыберите тему для изучения:",
+            reply_markup=keyboard,
+            parse_mode="HTML"
+        )
+    await callback.answer()
+
+@router.callback_query(lambda c: c.data == "thematic_prev")
+async def thematic_prev_page(callback: CallbackQuery):
+    user_id = callback.from_user.id
+    total_pages = (len(THEMATIC_TOPICS) + TOPICS_PER_PAGE - 1) // TOPICS_PER_PAGE
+    current = user_page.get(user_id, 1)
+    if current > 1:
+        user_page[user_id] = current - 1
+        keyboard = get_thematic_keyboard(current - 1, total_pages)
+        await callback.message.edit_text(
+            "Тематические уроки\n\nВыберите тему для изучения:",
+            reply_markup=keyboard,
+            parse_mode="HTML"
+        )
+    await callback.answer()
+
+@router.callback_query(lambda c: c.data.startswith("thematic_") and c.data not in ("thematic_menu", "thematic_next", "thematic_prev", "thematic_none"))
 async def thematic_topic_chosen(callback: CallbackQuery):
-    # Получаем индекс темы из callback_data
     idx_str = callback.data.split("_")[1]
     try:
         idx = int(idx_str)
@@ -120,32 +168,15 @@ async def thematic_topic_chosen(callback: CallbackQuery):
         return
 
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
-        [InlineKeyboardButton(text="📝 Начать практику", callback_data=f"practice_thematic_{idx}")],
-        [InlineKeyboardButton(text="🔙 Назад к темам", callback_data="thematic_menu")],
-        [InlineKeyboardButton(text="🏠 Главное меню", callback_data="back_to_main")]
+        [InlineKeyboardButton(text="Начать практику", callback_data=f"practice_thematic_{idx}")],
+        [InlineKeyboardButton(text="Назад к темам", callback_data="thematic_menu")],
+        [InlineKeyboardButton(text="Главное меню", callback_data="back_to_main")]
     ])
     await callback.message.edit_text(
-        f"📖 <b>{topic}</b>\n\n"
+        f"📖 {topic}\n\n"
         "🚧 Урок в разработке.\n"
         "Скоро здесь будет краткая теория и интерактивное задание.\n\n"
         "Пока вы можете вернуться назад.",
-        reply_markup=keyboard,
-        parse_mode="HTML"
-    )
-    await callback.answer()
-
-@router.callback_query(lambda c: c.data == "thematic_more")
-async def thematic_more(callback: CallbackQuery):
-    # В реальности нужно хранить страницу. Для простоты покажем оставшиеся темы (начиная с TOPICS_PER_PAGE)
-    remaining = THEMATIC_TOPICS[TOPICS_PER_PAGE:]
-    buttons = []
-    for idx, topic in enumerate(remaining, start=TOPICS_PER_PAGE):
-        buttons.append([InlineKeyboardButton(text=topic, callback_data=f"thematic_{idx}")])
-    buttons.append([InlineKeyboardButton(text="🔙 Назад", callback_data="thematic_menu")])
-    keyboard = InlineKeyboardMarkup(inline_keyboard=buttons)
-    await callback.message.edit_text(
-        "📚 <b>Тематические уроки (продолжение)</b>\n\n"
-        "Выберите тему:",
         reply_markup=keyboard,
         parse_mode="HTML"
     )
@@ -163,8 +194,8 @@ async def my_learning_menu(callback: CallbackQuery):
     total_wrong = lessons_data.get("total_wrong", 0)
 
     progress_text = (
-        f"📊 <b>Ваш прогресс</b>\n\n"
-        f"🎯 Уровень: <b>{level}</b>\n"
+        f"📊 Ваш прогресс\n\n"
+        f"🎯 Уровень: {level}\n"
         f"✅ Выполнено тем: {len(completed_topics)}\n"
         f"📈 Правильных ответов: {total_correct}\n"
         f"❌ Ошибок: {total_wrong}\n"
@@ -174,10 +205,10 @@ async def my_learning_menu(callback: CallbackQuery):
         progress_text += f"📊 Точность: {percent}%\n"
 
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
-        [InlineKeyboardButton(text="⏩ Продолжить обучение", callback_data="continue_learning")],
-        [InlineKeyboardButton(text="📅 План недели", callback_data="weekly_plan")],
-        [InlineKeyboardButton(text="🔄 Сменить уровень", callback_data="start_lessons")],
-        [InlineKeyboardButton(text="🔙 Назад", callback_data="start_lessons")]
+        [InlineKeyboardButton(text="Продолжить обучение", callback_data="continue_learning")],
+        [InlineKeyboardButton(text="План недели", callback_data="weekly_plan")],
+        [InlineKeyboardButton(text="Сменить уровень", callback_data="start_lessons")],
+        [InlineKeyboardButton(text="Назад", callback_data="start_lessons")]
     ])
     await callback.message.edit_text(
         progress_text,
@@ -193,12 +224,12 @@ async def continue_learning(callback: CallbackQuery):
     lessons_data = user_state.get("lessons", {})
     current_topic = lessons_data.get("current_topic", "не начато")
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
-        [InlineKeyboardButton(text="🔙 Назад к прогрессу", callback_data="my_learning")],
-        [InlineKeyboardButton(text="🏠 Главное меню", callback_data="back_to_main")]
+        [InlineKeyboardButton(text="Назад к прогрессу", callback_data="my_learning")],
+        [InlineKeyboardButton(text="Главное меню", callback_data="back_to_main")]
     ])
     await callback.message.edit_text(
         f"🚧 Режим продолжения обучения в разработке.\n\n"
-        f"Ваша последняя тема: <b>{current_topic}</b>\n"
+        f"Ваша последняя тема: {current_topic}\n"
         f"Как только система будет готова, вы сможете продолжить ровно с этого места.",
         reply_markup=keyboard,
         parse_mode="HTML"
@@ -219,11 +250,11 @@ async def weekly_plan_menu(callback: CallbackQuery):
     plan_buttons = []
     for idx, day in enumerate(default_plan):
         plan_buttons.append([InlineKeyboardButton(text=day, callback_data=f"edit_plan_{idx}")])
-    plan_buttons.append([InlineKeyboardButton(text="➕ Добавить тему", callback_data="add_plan_item")])
-    plan_buttons.append([InlineKeyboardButton(text="🔙 Назад", callback_data="my_learning")])
+    plan_buttons.append([InlineKeyboardButton(text="Добавить тему", callback_data="add_plan_item")])
+    plan_buttons.append([InlineKeyboardButton(text="Назад", callback_data="my_learning")])
     keyboard = InlineKeyboardMarkup(inline_keyboard=plan_buttons)
     await callback.message.edit_text(
-        "📅 <b>Ваш план недели</b>\n\n"
+        "План недели\n\n"
         "Ниже показаны темы для изучения. Вы можете:\n"
         "• Нажать на тему, чтобы изменить её\n"
         "• Добавить новую тему\n"
@@ -234,7 +265,6 @@ async def weekly_plan_menu(callback: CallbackQuery):
     )
     await callback.answer()
 
-# Заглушки для редактирования плана
 @router.callback_query(lambda c: c.data.startswith("edit_plan_"))
 async def edit_plan_item(callback: CallbackQuery):
     await callback.answer("Редактирование плана в разработке", show_alert=True)
@@ -247,11 +277,11 @@ async def add_plan_item(callback: CallbackQuery):
 @router.callback_query(lambda c: c.data == "placement_test")
 async def placement_test(callback: CallbackQuery):
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
-        [InlineKeyboardButton(text="🔙 Назад", callback_data="start_lessons")],
-        [InlineKeyboardButton(text="🏠 Главное меню", callback_data="back_to_main")]
+        [InlineKeyboardButton(text="Назад", callback_data="start_lessons")],
+        [InlineKeyboardButton(text="Главное меню", callback_data="back_to_main")]
     ])
     await callback.message.edit_text(
-        "📝 <b>Тест на определение уровня</b>\n\n"
+        "Тест на определение уровня\n\n"
         "🚧 В разработке.\n"
         "Скоро здесь будет 15 вопросов, которые определят ваш точный уровень (от A1 до C1).",
         reply_markup=keyboard,
