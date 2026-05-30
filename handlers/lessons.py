@@ -4,12 +4,12 @@ from data.users import get_user_state, set_user_state
 
 router = Router()
 
-# Список уровней с группами для компактного отображения
+# Уровни
 LEVELS_ROW1 = [("A1 (Beginner)", "A1"), ("A2 (Elementary)", "A2")]
 LEVELS_ROW2 = [("B1 (Intermediate)", "B1"), ("B2 (Upper Intermediate)", "B2")]
 LEVELS_SINGLE = [("C1 (Advanced)", "C1")]
 
-# Список тематических уроков (20+ тем для старта, позже добавим практику)
+# Список тематических уроков (20+ тем)
 THEMATIC_TOPICS = [
     "📖 Present Simple vs Continuous",
     "📖 Past Simple vs Present Perfect",
@@ -33,9 +33,11 @@ THEMATIC_TOPICS = [
     "📖 Условные предложения 3 типа (wish/if only)"
 ]
 
+# Константы для пагинации
+TOPICS_PER_PAGE = 12
+
 @router.callback_query(lambda c: c.data == "start_lessons")
 async def lessons_menu(callback: CallbackQuery):
-    """Главное меню уроков: выбор уровня, тематические уроки, моё обучение, тест"""
     user_id = callback.from_user.id
     user_state = get_user_state(user_id)
     if "lessons" not in user_state:
@@ -43,11 +45,9 @@ async def lessons_menu(callback: CallbackQuery):
     set_user_state(user_id, user_state)
 
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
-        # Уровни в две строки: A1/A2 вместе, B1/B2 вместе, C1 отдельно
         [InlineKeyboardButton(text=name, callback_data=f"level_{code}") for name, code in LEVELS_ROW1],
         [InlineKeyboardButton(text=name, callback_data=f"level_{code}") for name, code in LEVELS_ROW2],
         [InlineKeyboardButton(text=name, callback_data=f"level_{code}") for name, code in LEVELS_SINGLE],
-        # Дополнительные кнопки
         [InlineKeyboardButton(text="📚 Тематические уроки", callback_data="thematic_menu")],
         [InlineKeyboardButton(text="📊 Моё обучение", callback_data="my_learning")],
         [InlineKeyboardButton(text="📝 Пройти тест (уровень)", callback_data="placement_test")],
@@ -66,9 +66,7 @@ async def lessons_menu(callback: CallbackQuery):
 # ---------- Уровни ----------
 @router.callback_query(lambda c: c.data.startswith("level_"))
 async def level_chosen(callback: CallbackQuery):
-    """Выбор уровня – заглушка (позже здесь будет запуск программы уровня)"""
     level_code = callback.data.split("_")[1]
-    # Найдём название уровня
     all_levels = LEVELS_ROW1 + LEVELS_ROW2 + LEVELS_SINGLE
     level_name = next((name for name, code in all_levels if code == level_code), level_code)
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
@@ -85,15 +83,14 @@ async def level_chosen(callback: CallbackQuery):
     )
     await callback.answer()
 
-# ---------- Тематические уроки ----------
+# ---------- Тематические уроки (исправлено: индексы вместо текста) ----------
 @router.callback_query(lambda c: c.data == "thematic_menu")
 async def thematic_lessons_menu(callback: CallbackQuery):
-    """Список тематических уроков (без уровней)"""
+    # Показываем первые TOPICS_PER_PAGE тем
     buttons = []
-    for topic in THEMATIC_TOPICS[:12]:  # первые 12 в одной странице, остальные можно постранично или скроллом
-        buttons.append([InlineKeyboardButton(text=topic, callback_data=f"thematic_{topic[:30]}")])
-    # Добавим кнопку "Загрузить ещё" для остальных
-    if len(THEMATIC_TOPICS) > 12:
+    for idx, topic in enumerate(THEMATIC_TOPICS[:TOPICS_PER_PAGE]):
+        buttons.append([InlineKeyboardButton(text=topic, callback_data=f"thematic_{idx}")])
+    if len(THEMATIC_TOPICS) > TOPICS_PER_PAGE:
         buttons.append([InlineKeyboardButton(text="📂 Показать ещё", callback_data="thematic_more")])
     buttons.append([InlineKeyboardButton(text="🔙 Назад", callback_data="start_lessons")])
     keyboard = InlineKeyboardMarkup(inline_keyboard=buttons)
@@ -107,12 +104,23 @@ async def thematic_lessons_menu(callback: CallbackQuery):
     )
     await callback.answer()
 
-@router.callback_query(lambda c: c.data.startswith("thematic_"))
+@router.callback_query(lambda c: c.data.startswith("thematic_") and c.data != "thematic_menu" and c.data != "thematic_more")
 async def thematic_topic_chosen(callback: CallbackQuery):
-    """Выбор конкретной темы – заглушка (позже генерация задания)"""
-    topic = callback.data.split("_", 1)[1]
+    # Получаем индекс темы из callback_data
+    idx_str = callback.data.split("_")[1]
+    try:
+        idx = int(idx_str)
+        if 0 <= idx < len(THEMATIC_TOPICS):
+            topic = THEMATIC_TOPICS[idx]
+        else:
+            await callback.answer("Тема не найдена", show_alert=True)
+            return
+    except ValueError:
+        await callback.answer("Ошибка выбора темы", show_alert=True)
+        return
+
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
-        [InlineKeyboardButton(text="📝 Начать практику", callback_data=f"practice_thematic_{topic}")],
+        [InlineKeyboardButton(text="📝 Начать практику", callback_data=f"practice_thematic_{idx}")],
         [InlineKeyboardButton(text="🔙 Назад к темам", callback_data="thematic_menu")],
         [InlineKeyboardButton(text="🏠 Главное меню", callback_data="back_to_main")]
     ])
@@ -128,12 +136,11 @@ async def thematic_topic_chosen(callback: CallbackQuery):
 
 @router.callback_query(lambda c: c.data == "thematic_more")
 async def thematic_more(callback: CallbackQuery):
-    """Показать оставшиеся темы"""
-    # В реальности нужно хранить страницу, для простоты покажем вторую страницу
-    remaining = THEMATIC_TOPICS[12:]
+    # В реальности нужно хранить страницу. Для простоты покажем оставшиеся темы (начиная с TOPICS_PER_PAGE)
+    remaining = THEMATIC_TOPICS[TOPICS_PER_PAGE:]
     buttons = []
-    for topic in remaining:
-        buttons.append([InlineKeyboardButton(text=topic, callback_data=f"thematic_{topic[:30]}")])
+    for idx, topic in enumerate(remaining, start=TOPICS_PER_PAGE):
+        buttons.append([InlineKeyboardButton(text=topic, callback_data=f"thematic_{idx}")])
     buttons.append([InlineKeyboardButton(text="🔙 Назад", callback_data="thematic_menu")])
     keyboard = InlineKeyboardMarkup(inline_keyboard=buttons)
     await callback.message.edit_text(
@@ -144,10 +151,9 @@ async def thematic_more(callback: CallbackQuery):
     )
     await callback.answer()
 
-# ---------- Моё обучение (прогресс + план недели) ----------
+# ---------- Моё обучение ----------
 @router.callback_query(lambda c: c.data == "my_learning")
 async def my_learning_menu(callback: CallbackQuery):
-    """Показывает прогресс пользователя и предлагает план недели"""
     user_id = callback.from_user.id
     user_state = get_user_state(user_id)
     lessons_data = user_state.get("lessons", {})
@@ -182,7 +188,6 @@ async def my_learning_menu(callback: CallbackQuery):
 
 @router.callback_query(lambda c: c.data == "continue_learning")
 async def continue_learning(callback: CallbackQuery):
-    """Заглушка – продолжит урок с последней темы"""
     user_id = callback.from_user.id
     user_state = get_user_state(user_id)
     lessons_data = user_state.get("lessons", {})
@@ -202,8 +207,6 @@ async def continue_learning(callback: CallbackQuery):
 
 @router.callback_query(lambda c: c.data == "weekly_plan")
 async def weekly_plan_menu(callback: CallbackQuery):
-    """План недели – пользователь может редактировать"""
-    # Пример плана по умолчанию (для A1/A2)
     default_plan = [
         "Пн: Present Simple (утверждение)",
         "Вт: Present Simple (отрицание и вопросы)",
@@ -213,10 +216,9 @@ async def weekly_plan_menu(callback: CallbackQuery):
         "Сб: Повторение недели + тест",
         "Вс: Выходной / свободная практика"
     ]
-    # Для каждого дня сделаем кнопку "✏️ изменить" (пока заглушка)
     plan_buttons = []
-    for day in default_plan:
-        plan_buttons.append([InlineKeyboardButton(text=day, callback_data=f"edit_plan_{day[:10]}")])
+    for idx, day in enumerate(default_plan):
+        plan_buttons.append([InlineKeyboardButton(text=day, callback_data=f"edit_plan_{idx}")])
     plan_buttons.append([InlineKeyboardButton(text="➕ Добавить тему", callback_data="add_plan_item")])
     plan_buttons.append([InlineKeyboardButton(text="🔙 Назад", callback_data="my_learning")])
     keyboard = InlineKeyboardMarkup(inline_keyboard=plan_buttons)
@@ -232,7 +234,7 @@ async def weekly_plan_menu(callback: CallbackQuery):
     )
     await callback.answer()
 
-# Заглушки для редактирования плана (можно реализовать позже через FSM)
+# Заглушки для редактирования плана
 @router.callback_query(lambda c: c.data.startswith("edit_plan_"))
 async def edit_plan_item(callback: CallbackQuery):
     await callback.answer("Редактирование плана в разработке", show_alert=True)
@@ -241,10 +243,9 @@ async def edit_plan_item(callback: CallbackQuery):
 async def add_plan_item(callback: CallbackQuery):
     await callback.answer("Добавление темы в план в разработке", show_alert=True)
 
-# ---------- Тест на определение уровня ----------
+# ---------- Тест ----------
 @router.callback_query(lambda c: c.data == "placement_test")
 async def placement_test(callback: CallbackQuery):
-    """Заглушка теста"""
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(text="🔙 Назад", callback_data="start_lessons")],
         [InlineKeyboardButton(text="🏠 Главное меню", callback_data="back_to_main")]
@@ -261,6 +262,6 @@ async def placement_test(callback: CallbackQuery):
 # ---------- Назад в главное меню ----------
 @router.callback_query(lambda c: c.data == "back_to_main")
 async def back_to_main(callback: CallbackQuery):
-    from handlers.start import show_main_menu  # импортируем функцию, которую создадим ниже
+    from handlers.start import show_main_menu
     await show_main_menu(callback.message, edit=True)
     await callback.answer()
