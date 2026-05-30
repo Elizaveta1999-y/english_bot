@@ -17,8 +17,8 @@ async def start_handler(message: Message):
     user_id = message.from_user.id
     set_user_state(user_id, {})
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
-        [InlineKeyboardButton(text="🎤 Speaking", callback_data="start_speaking")],
-        [InlineKeyboardButton(text="🎭 RolePlay", callback_data="start_roleplay")],
-        [InlineKeyboardButton(text="📚 Lessons", callback_data="start_lessons")]  # новая кнопка
+        [InlineKeyboardButton(text="🎤 Speaking", callback_data="start_speaking"),
+         InlineKeyboardButton(text="🎭 RolePlay", callback_data="start_roleplay")],  # в одной строке
+        [InlineKeyboardButton(text="📚 Lessons", callback_data="start_lessons")]
     ])
     await message.answer(WELCOME_TEXT, reply_markup=keyboard, parse_mode="HTML")
