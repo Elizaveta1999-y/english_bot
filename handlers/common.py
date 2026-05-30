@@ -9,4 +9,5 @@ async def main_menu_button(message: Message):
     user_id = message.from_user.id
     set_user_state(user_id, {"mode": None, "history": []})
     from handlers.start import start_handler
+
     await start_handler(message)
