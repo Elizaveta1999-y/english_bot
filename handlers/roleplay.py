@@ -8,7 +8,6 @@ from handlers.lesson_utils import check_answer
 
 router = Router()
 
-# ========== КАТЕГОРИИ И ТЕМЫ (полные) ==========
 CATEGORIES = [
     ("🏢 Работа и бизнес", "work"),
     ("✈️ Путешествия", "travel"),
@@ -73,7 +72,6 @@ TOPICS = {
     ]
 }
 
-# ========== ОБРАБОТЧИКИ ==========
 @router.callback_query(lambda c: c.data == "start_roleplay")
 async def start_roleplay(callback: CallbackQuery):
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
@@ -195,7 +193,6 @@ async def topic_chosen(callback: CallbackQuery):
     await callback.message.edit_text(roleplay_info, parse_mode="HTML")
     await callback.message.answer("🎬 <b>Можете начинать!</b>", reply_markup=keyboard, parse_mode="HTML")
 
-# ---------- КНОПКИ РОЛЕВОЙ ИГРЫ ----------
 @router.message(F.text == "💡 Что ответить?")
 async def hint_button(message: Message):
     user_id = message.from_user.id
@@ -259,7 +256,7 @@ async def exit_to_menu(callback: CallbackQuery):
     await callback.message.answer("Режим завершён. Нажмите /start для выбора режима.", reply_markup=ReplyKeyboardRemove())
     await callback.answer()
 
-# ---------- УНИВЕРСАЛЬНЫЙ ОБРАБОТЧИК ТЕКСТА (включая уроки) ----------
+# ========== УНИВЕРСАЛЬНЫЙ ОБРАБОТЧИК ТЕКСТА ==========
 @router.message(F.text)
 async def universal_text_handler(message: Message):
     user_id = message.from_user.id
@@ -312,11 +309,36 @@ async def universal_text_handler(message: Message):
         await message.answer("🎬 <b>Можете начинать!</b>", parse_mode="HTML")
         return
 
-    # 2. Пропускаем служебные кнопки (но не главное меню)
+    # 2. Пропускаем служебные кнопки
     if message.text in ["💡 Что ответить?", "📊 Завершить диалог", "📊 Я всё! Фидбек"]:
         return
 
-    # 3. Режим урока (тематический урок)
+    # 3. ОБРАБОТКА ВОПРОСОВ ПО УРОКАМ
+    if user_state.get("lesson_qa", {}).get("active"):
+        qa_data = user_state["lesson_qa"]
+        topic_key = qa_data.get("topic_key")
+        topic_title = qa_data.get("topic_title", "этой теме")
+        user_question = message.text.strip()
+        
+        prompt = f"""
+Ты преподаватель английского. Студент задал вопрос по теме "{topic_title}".
+Вопрос: {user_question}
+
+Если вопрос относится к теме (грамматика, лексика, правила), дай понятный, развёрнутый ответ на русском языке. Приведи 1-2 примера из жизни.
+Если вопрос НЕ относится к теме, мягко скажи: "Извините, этот вопрос не совсем по теме {topic_title}. Давайте лучше разберём что-то из материала урока. Что именно вам непонятно?".
+
+Ответ должен быть дружелюбным, не больше 5-6 предложений.
+"""
+        answer = chat(prompt, max_tokens=500, temperature=0.5)
+        
+        keyboard = InlineKeyboardMarkup(inline_keyboard=[
+            [InlineKeyboardButton(text="✅ Всё понятно!", callback_data=f"lesson_understand_{topic_key}")],
+            [InlineKeyboardButton(text="🔄 Объяснить по-другому", callback_data=f"lesson_reask_{topic_key}")]
+        ])
+        await message.answer(answer, reply_markup=keyboard)
+        return
+
+    # 4. Режим урока (тематический урок) – заглушка
     if user_state.get("lesson_mode") == "thematic" and user_state.get("lesson_step") == "awaiting_answer":
         task = user_state.get("lesson_task")
         if not task:
@@ -333,7 +355,7 @@ async def universal_text_handler(message: Message):
         set_user_state(user_id, user_state)
         return
 
-    # 4. Режим Speaking
+    # 5. Режим Speaking
     mode = user_state.get("mode")
     if mode == "speaking_active":
         await message.bot.send_chat_action(chat_id=message.chat.id, action="typing")
@@ -353,7 +375,7 @@ async def universal_text_handler(message: Message):
         set_user_state(user_id, user_state)
         return
 
-    # 5. Режим RolePlay
+    # 6. Режим RolePlay
     if mode == "roleplay_active":
         await message.bot.send_chat_action(chat_id=message.chat.id, action="typing")
         ai_response = await process_roleplay_message(user_id, message.text)

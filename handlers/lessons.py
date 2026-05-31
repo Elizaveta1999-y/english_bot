@@ -1,16 +1,13 @@
+# handlers/lessons.py
+import os
 from aiogram import Router, F
-from aiogram.types import CallbackQuery, InlineKeyboardMarkup, InlineKeyboardButton, Message
+from aiogram.types import CallbackQuery, InlineKeyboardMarkup, InlineKeyboardButton, InputMediaPhoto, FSInputFile
 from data.users import get_user_state, set_user_state
-from handlers.lesson_utils import generate_task, check_answer
+from data.lesson_data import LESSON_CONTENT
+from services.deepseek import chat
 
 router = Router()
 
-# Уровни
-LEVELS_ROW1 = [("A1 (Beginner)", "A1"), ("A2 (Elementary)", "A2")]
-LEVELS_ROW2 = [("B1 (Intermediate)", "B1"), ("B2 (Upper Intermediate)", "B2")]
-LEVELS_SINGLE = [("C1 (Advanced)", "C1")]
-
-# Список тематических уроков (без эмодзи)
 THEMATIC_TOPICS = [
     "Present Simple vs Continuous",
     "Past Simple vs Present Perfect",
@@ -34,10 +31,25 @@ THEMATIC_TOPICS = [
     "Условные предложения 3 типа (wish/if only)"
 ]
 
-TOPICS_PER_PAGE = 5
 user_page = {}
 
-# ---------- Главное меню уроков ----------
+def get_thematic_keyboard(page: int, total_pages: int) -> InlineKeyboardMarkup:
+    start_idx = (page - 1) * 5
+    end_idx = start_idx + 5
+    page_topics = THEMATIC_TOPICS[start_idx:end_idx]
+    buttons = []
+    for idx, topic in enumerate(page_topics, start=start_idx):
+        buttons.append([InlineKeyboardButton(text=topic, callback_data=f"thematic_{idx}")])
+    nav_buttons = []
+    if page > 1:
+        nav_buttons.append(InlineKeyboardButton(text="◀", callback_data="thematic_prev"))
+    nav_buttons.append(InlineKeyboardButton(text=f"{page}/{total_pages}", callback_data="thematic_none"))
+    if page < total_pages:
+        nav_buttons.append(InlineKeyboardButton(text="▶", callback_data="thematic_next"))
+    buttons.append(nav_buttons)
+    buttons.append([InlineKeyboardButton(text="🔙 Назад", callback_data="start_lessons")])
+    return InlineKeyboardMarkup(inline_keyboard=buttons)
+
 @router.callback_query(lambda c: c.data == "start_lessons")
 async def lessons_menu(callback: CallbackQuery):
     user_id = callback.from_user.id
@@ -47,9 +59,11 @@ async def lessons_menu(callback: CallbackQuery):
     set_user_state(user_id, user_state)
 
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
-        [InlineKeyboardButton(text=name, callback_data=f"level_{code}") for name, code in LEVELS_ROW1],
-        [InlineKeyboardButton(text=name, callback_data=f"level_{code}") for name, code in LEVELS_ROW2],
-        [InlineKeyboardButton(text=name, callback_data=f"level_{code}") for name, code in LEVELS_SINGLE],
+        [InlineKeyboardButton(text="A1 (Beginner)", callback_data="level_A1"),
+         InlineKeyboardButton(text="A2 (Elementary)", callback_data="level_A2")],
+        [InlineKeyboardButton(text="B1 (Intermediate)", callback_data="level_B1"),
+         InlineKeyboardButton(text="B2 (Upper Intermediate)", callback_data="level_B2")],
+        [InlineKeyboardButton(text="C1 (Advanced)", callback_data="level_C1")],
         [InlineKeyboardButton(text="📚 Тематические уроки", callback_data="thematic_menu")],
         [InlineKeyboardButton(text="📊 Моё обучение", callback_data="my_learning")],
         [InlineKeyboardButton(text="📝 Пройти тест (уровень)", callback_data="placement_test")],
@@ -65,54 +79,14 @@ async def lessons_menu(callback: CallbackQuery):
     )
     await callback.answer()
 
-# ---------- Уровни ----------
-@router.callback_query(lambda c: c.data.startswith("level_"))
-async def level_chosen(callback: CallbackQuery):
-    level_code = callback.data.split("_")[1]
-    all_levels = LEVELS_ROW1 + LEVELS_ROW2 + LEVELS_SINGLE
-    level_name = next((name for name, code in all_levels if code == level_code), level_code)
-    keyboard = InlineKeyboardMarkup(inline_keyboard=[
-        [InlineKeyboardButton(text="🔙 Назад к выбору уровня", callback_data="start_lessons")],
-        [InlineKeyboardButton(text="🏠 Главное меню", callback_data="back_to_main")]
-    ])
-    await callback.message.edit_text(
-        f"📖 Уровень {level_name}\n\n"
-        "🚧 Режим в разработке.\n"
-        "Скоро здесь появится полная программа обучения: грамматика, лексика, чтение, письмо, говорение.\n"
-        "Вы сможете отслеживать прогресс и получать задания ИИ.",
-        reply_markup=keyboard,
-        parse_mode="HTML"
-    )
-    await callback.answer()
-
-# ---------- Тематические уроки с пагинацией ----------
-def get_thematic_keyboard(page: int, total_pages: int) -> InlineKeyboardMarkup:
-    start_idx = (page - 1) * TOPICS_PER_PAGE
-    end_idx = start_idx + TOPICS_PER_PAGE
-    page_topics = THEMATIC_TOPICS[start_idx:end_idx]
-
-    buttons = []
-    for idx, topic in enumerate(page_topics, start=start_idx):
-        buttons.append([InlineKeyboardButton(text=topic, callback_data=f"thematic_{idx}")])
-
-    nav_buttons = []
-    if page > 1:
-        nav_buttons.append(InlineKeyboardButton(text="◀", callback_data="thematic_prev"))
-    nav_buttons.append(InlineKeyboardButton(text=f"{page}/{total_pages}", callback_data="thematic_none"))
-    if page < total_pages:
-        nav_buttons.append(InlineKeyboardButton(text="▶", callback_data="thematic_next"))
-    buttons.append(nav_buttons)
-    buttons.append([InlineKeyboardButton(text="К выбору тем", callback_data="start_lessons")])
-    return InlineKeyboardMarkup(inline_keyboard=buttons)
-
 @router.callback_query(lambda c: c.data == "thematic_menu")
 async def thematic_lessons_menu(callback: CallbackQuery):
     user_id = callback.from_user.id
-    total_pages = (len(THEMATIC_TOPICS) + TOPICS_PER_PAGE - 1) // TOPICS_PER_PAGE
+    total_pages = (len(THEMATIC_TOPICS) + 4) // 5
     user_page[user_id] = 1
     keyboard = get_thematic_keyboard(1, total_pages)
     await callback.message.edit_text(
-        "Тематические уроки\n\nВыберите тему для изучения:",
+        "📚 Тематические уроки\n\nВыберите тему для изучения:",
         reply_markup=keyboard,
         parse_mode="HTML"
     )
@@ -121,13 +95,13 @@ async def thematic_lessons_menu(callback: CallbackQuery):
 @router.callback_query(lambda c: c.data == "thematic_next")
 async def thematic_next_page(callback: CallbackQuery):
     user_id = callback.from_user.id
-    total_pages = (len(THEMATIC_TOPICS) + TOPICS_PER_PAGE - 1) // TOPICS_PER_PAGE
+    total_pages = (len(THEMATIC_TOPICS) + 4) // 5
     current = user_page.get(user_id, 1)
     if current < total_pages:
         user_page[user_id] = current + 1
         keyboard = get_thematic_keyboard(current + 1, total_pages)
         await callback.message.edit_text(
-            "Тематические уроки\n\nВыберите тему для изучения:",
+            "📚 Тематические уроки\n\nВыберите тему для изучения:",
             reply_markup=keyboard,
             parse_mode="HTML"
         )
@@ -136,150 +110,188 @@ async def thematic_next_page(callback: CallbackQuery):
 @router.callback_query(lambda c: c.data == "thematic_prev")
 async def thematic_prev_page(callback: CallbackQuery):
     user_id = callback.from_user.id
-    total_pages = (len(THEMATIC_TOPICS) + TOPICS_PER_PAGE - 1) // TOPICS_PER_PAGE
+    total_pages = (len(THEMATIC_TOPICS) + 4) // 5
     current = user_page.get(user_id, 1)
     if current > 1:
         user_page[user_id] = current - 1
         keyboard = get_thematic_keyboard(current - 1, total_pages)
         await callback.message.edit_text(
-            "Тематические уроки\n\nВыберите тему для изучения:",
+            "📚 Тематические уроки\n\nВыберите тему для изучения:",
             reply_markup=keyboard,
             parse_mode="HTML"
         )
     await callback.answer()
 
 @router.callback_query(lambda c: c.data.startswith("thematic_") and c.data not in ("thematic_menu", "thematic_next", "thematic_prev", "thematic_none"))
-async def thematic_topic_chosen(callback: CallbackQuery):
-    idx_str = callback.data.split("_")[1]
-    try:
-        idx = int(idx_str)
-        topic = THEMATIC_TOPICS[idx]
-    except:
-        await callback.answer("Тема не найдена", show_alert=True)
+async def show_thematic_lesson(callback: CallbackQuery):
+    idx = int(callback.data.split("_")[1])
+    topic_name = THEMATIC_TOPICS[idx]
+    key = topic_name.lower().replace(" ", "_").replace("(", "").replace(")", "").replace("?", "")
+    content = LESSON_CONTENT.get(key)
+    if not content:
+        keyboard = InlineKeyboardMarkup(inline_keyboard=[
+            [InlineKeyboardButton(text="🔙 Назад к темам", callback_data="thematic_menu")],
+            [InlineKeyboardButton(text="🏠 Главное меню", callback_data="back_to_main")]
+        ])
+        await callback.message.edit_text(
+            f"📖 {topic_name}\n\n🚧 Урок в разработке. Скоро здесь будет теория и изображения.",
+            reply_markup=keyboard,
+            parse_mode="HTML"
+        )
+        await callback.answer()
         return
 
     user_id = callback.from_user.id
     user_state = get_user_state(user_id)
-    user_state["lesson_mode"] = "thematic"
-    user_state["lesson_topic"] = topic
-    user_state["lesson_step"] = "awaiting_start"
+    user_state["current_lesson"] = {
+        "topic": topic_name,
+        "key": key,
+        "content": content
+    }
     set_user_state(user_id, user_state)
 
+    await callback.message.edit_text(content["theory"], parse_mode="HTML")
+
+    if content.get("images"):
+        media_group = []
+        for img_path in content["images"]:
+            full_path = os.path.join("static", "lessons", img_path)
+            if os.path.exists(full_path):
+                media_group.append(InputMediaPhoto(media=FSInputFile(full_path)))
+        if media_group:
+            await callback.message.answer_media_group(media_group)
+
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
-        [InlineKeyboardButton(text="📝 Начать практику", callback_data=f"start_practice_{idx}")],
+        [InlineKeyboardButton(text="❓ Частые вопросы", callback_data=f"lesson_faq_{key}")],
+        [InlineKeyboardButton(text="🤔 Задать вопрос", callback_data=f"lesson_ask_{key}")],
+        [InlineKeyboardButton(text="📝 Начать практику", callback_data=f"lesson_practice_{key}")],
         [InlineKeyboardButton(text="🔙 Назад к темам", callback_data="thematic_menu")],
         [InlineKeyboardButton(text="🏠 Главное меню", callback_data="back_to_main")]
     ])
+    await callback.message.answer("Выберите действие:", reply_markup=keyboard)
+    await callback.answer()
+
+@router.callback_query(lambda c: c.data.startswith("lesson_faq_"))
+async def lesson_faq(callback: CallbackQuery):
+    key = callback.data.split("_")[2]
+    content = LESSON_CONTENT.get(key)
+    if not content or not content.get("faq"):
+        await callback.answer("FAQ не найдены", show_alert=True)
+        return
+    faq_text = "<b>❓ Часто задаваемые вопросы:</b>\n\n"
+    for i, item in enumerate(content["faq"], 1):
+        faq_text += f"<b>{i}. {item['question']}</b>\n{item['answer']}\n\n"
+    keyboard = InlineKeyboardMarkup(inline_keyboard=[
+        [InlineKeyboardButton(text="🔙 Назад к уроку", callback_data=f"back_to_lesson_{key}")],
+        [InlineKeyboardButton(text="🏠 Главное меню", callback_data="back_to_main")]
+    ])
+    await callback.message.edit_text(faq_text, reply_markup=keyboard, parse_mode="HTML")
+    await callback.answer()
+
+@router.callback_query(lambda c: c.data.startswith("lesson_ask_"))
+async def lesson_ask_start(callback: CallbackQuery):
+    key = callback.data.split("_")[2]
+    user_id = callback.from_user.id
+    user_state = get_user_state(user_id)
+    user_state["lesson_qa"] = {
+        "active": True,
+        "topic_key": key,
+        "topic_title": LESSON_CONTENT.get(key, {}).get("title", "этой теме")
+    }
+    set_user_state(user_id, user_state)
     await callback.message.edit_text(
-        f"📖 {topic}\n\n"
-        "Краткая теория:\n"
-        "Present Simple – для регулярных действий, фактов, расписаний.\n"
-        "Present Continuous – для действий прямо сейчас, временных ситуаций, планов на ближайшее будущее.\n\n"
-        "Нажмите «Начать практику» для выполнения задания.",
+        "🤔 Задайте ваш вопрос по теме. Я постараюсь объяснить максимально просто, с примерами из жизни.\n\n"
+        "Если вопрос не по теме, я мягко верну вас к материалу.\n\n"
+        "Напишите свой вопрос текстом.",
+        parse_mode="HTML"
+    )
+    await callback.answer()
+
+@router.callback_query(lambda c: c.data.startswith("lesson_practice_"))
+async def lesson_practice(callback: CallbackQuery):
+    key = callback.data.split("_")[2]
+    await callback.message.edit_text(
+        "📝 Практика в разработке. Скоро здесь будут интерактивные задания.\n\n"
+        "Пока вы можете вернуться к теории или задать вопрос.",
+        reply_markup=InlineKeyboardMarkup(inline_keyboard=[
+            [InlineKeyboardButton(text="🔙 Назад к уроку", callback_data=f"back_to_lesson_{key}")],
+            [InlineKeyboardButton(text="🏠 Главное меню", callback_data="back_to_main")]
+        ]),
+        parse_mode="HTML"
+    )
+    await callback.answer()
+
+@router.callback_query(lambda c: c.data.startswith("back_to_lesson_"))
+async def back_to_lesson(callback: CallbackQuery):
+    key = callback.data.split("_")[3]
+    content = LESSON_CONTENT.get(key)
+    if not content:
+        await callback.message.edit_text("Урок не найден", reply_markup=InlineKeyboardMarkup(inline_keyboard=[
+            [InlineKeyboardButton(text="🔙 Назад к темам", callback_data="thematic_menu")]
+        ]))
+        await callback.answer()
+        return
+    await callback.message.edit_text(content["theory"], parse_mode="HTML")
+    keyboard = InlineKeyboardMarkup(inline_keyboard=[
+        [InlineKeyboardButton(text="❓ Частые вопросы", callback_data=f"lesson_faq_{key}")],
+        [InlineKeyboardButton(text="🤔 Задать вопрос", callback_data=f"lesson_ask_{key}")],
+        [InlineKeyboardButton(text="📝 Начать практику", callback_data=f"lesson_practice_{key}")],
+        [InlineKeyboardButton(text="🔙 Назад к темам", callback_data="thematic_menu")],
+        [InlineKeyboardButton(text="🏠 Главное меню", callback_data="back_to_main")]
+    ])
+    await callback.message.answer("Выберите действие:", reply_markup=keyboard)
+    await callback.answer()
+
+@router.callback_query(lambda c: c.data.startswith("lesson_understand_"))
+async def lesson_understand(callback: CallbackQuery):
+    key = callback.data.split("_")[2]
+    await callback.message.edit_text(
+        "✨ Прекрасно! Тогда предлагаю попрактиковаться, чтобы закрепить материал.",
+        reply_markup=InlineKeyboardMarkup(inline_keyboard=[
+            [InlineKeyboardButton(text="📝 Начать практику", callback_data=f"lesson_practice_{key}")],
+            [InlineKeyboardButton(text="🔙 Назад к уроку", callback_data=f"back_to_lesson_{key}")]
+        ]),
+        parse_mode="HTML"
+    )
+    user_id = callback.from_user.id
+    user_state = get_user_state(user_id)
+    if "lesson_qa" in user_state:
+        del user_state["lesson_qa"]
+    set_user_state(user_id, user_state)
+    await callback.answer()
+
+@router.callback_query(lambda c: c.data.startswith("lesson_reask_"))
+async def lesson_reask(callback: CallbackQuery):
+    key = callback.data.split("_")[2]
+    user_id = callback.from_user.id
+    user_state = get_user_state(user_id)
+    user_state["lesson_qa"] = {
+        "active": True,
+        "topic_key": key,
+        "topic_title": LESSON_CONTENT.get(key, {}).get("title", "этой теме")
+    }
+    set_user_state(user_id, user_state)
+    await callback.message.edit_text(
+        "🤔 Попробуйте задать вопрос иначе, или уточните, что именно осталось непонятным.\n\nНапишите ваш вопрос:",
+        parse_mode="HTML"
+    )
+    await callback.answer()
+
+@router.callback_query(lambda c: c.data.startswith("level_"))
+async def level_chosen(callback: CallbackQuery):
+    level_code = callback.data.split("_")[1]
+    level_name = {"A1":"A1 (Beginner)","A2":"A2 (Elementary)","B1":"B1 (Intermediate)","B2":"B2 (Upper Intermediate)","C1":"C1 (Advanced)"}.get(level_code, level_code)
+    keyboard = InlineKeyboardMarkup(inline_keyboard=[
+        [InlineKeyboardButton(text="🔙 Назад к выбору уровня", callback_data="start_lessons")],
+        [InlineKeyboardButton(text="🏠 Главное меню", callback_data="back_to_main")]
+    ])
+    await callback.message.edit_text(
+        f"📖 Уровень {level_name}\n\n🚧 Режим в разработке.",
         reply_markup=keyboard,
         parse_mode="HTML"
     )
     await callback.answer()
 
-@router.callback_query(lambda c: c.data.startswith("start_practice_"))
-async def start_thematic_lesson(callback: CallbackQuery):
-    idx = int(callback.data.split("_")[2])
-    topic = THEMATIC_TOPICS[idx]
-    user_id = callback.from_user.id
-    user_state = get_user_state(user_id)
-    user_state["lesson_mode"] = "thematic"
-    user_state["lesson_topic"] = topic
-    user_state["lesson_step"] = "generating_task"
-    set_user_state(user_id, user_state)
-
-    await callback.message.edit_text("🔄 Генерирую задание, подождите...")
-    task = await generate_task(topic)
-    user_state["lesson_task"] = task
-    user_state["lesson_step"] = "awaiting_answer"
-    set_user_state(user_id, user_state)
-
-    keyboard = InlineKeyboardMarkup(inline_keyboard=[
-        [InlineKeyboardButton(text="✏️ Ответить текстом", callback_data="answer_text")],
-        [InlineKeyboardButton(text="🎤 Ответить голосом", callback_data="answer_voice")],
-        [InlineKeyboardButton(text="❌ Завершить урок", callback_data="exit_lesson")]
-    ])
-    await callback.message.edit_text(
-        f"📖 Тема: {topic}\n\n"
-        f"📝 Задание:\n{task['task_text']}\n\n"
-        "Напишите ваш ответ (или отправьте голосовое сообщение).\n"
-        "Используйте кнопки ниже:",
-        reply_markup=keyboard,
-        parse_mode="HTML"
-    )
-    await callback.answer()
-
-# ---------- Обработчики ответов в уроке ----------
-@router.callback_query(lambda c: c.data == "answer_text")
-async def answer_text_prompt(callback: CallbackQuery):
-    await callback.message.answer("✍️ Напишите ваш ответ текстом:")
-    await callback.answer()
-
-@router.callback_query(lambda c: c.data == "answer_voice")
-async def answer_voice_prompt(callback: CallbackQuery):
-    await callback.message.answer("🎤 Отправьте голосовое сообщение с вашим ответом:")
-    await callback.answer()
-
-@router.callback_query(lambda c: c.data == "exit_lesson")
-async def exit_lesson(callback: CallbackQuery):
-    user_id = callback.from_user.id
-    user_state = get_user_state(user_id)
-    user_state["lesson_mode"] = None
-    user_state["lesson_step"] = None
-    set_user_state(user_id, user_state)
-    await callback.message.edit_text("Урок завершён. Возвращаюсь к темам...")
-    await thematic_lessons_menu(callback)
-
-@router.callback_query(lambda c: c.data == "retry_lesson")
-async def retry_lesson(callback: CallbackQuery):
-    user_id = callback.from_user.id
-    user_state = get_user_state(user_id)
-    task = user_state.get("lesson_task")
-    if not task:
-        await callback.answer("Ошибка, начните урок заново", show_alert=True)
-        return
-    user_state["lesson_step"] = "awaiting_answer"
-    set_user_state(user_id, user_state)
-    keyboard = InlineKeyboardMarkup(inline_keyboard=[
-        [InlineKeyboardButton(text="✏️ Ответить текстом", callback_data="answer_text")],
-        [InlineKeyboardButton(text="🎤 Ответить голосом", callback_data="answer_voice")],
-        [InlineKeyboardButton(text="❌ Завершить", callback_data="exit_lesson")]
-    ])
-    await callback.message.edit_text(
-        f"📝 Повторное задание:\n\n{task['task_text']}\n\nНапишите или скажите ваш ответ:",
-        reply_markup=keyboard
-    )
-    await callback.answer()
-
-@router.callback_query(lambda c: c.data == "next_task")
-async def next_task(callback: CallbackQuery):
-    user_id = callback.from_user.id
-    user_state = get_user_state(user_id)
-    topic = user_state.get("lesson_topic")
-    if not topic:
-        await callback.answer("Тема не найдена", show_alert=True)
-        return
-    await callback.message.edit_text("🔄 Генерирую новое задание...")
-    task = await generate_task(topic)
-    user_state["lesson_task"] = task
-    user_state["lesson_step"] = "awaiting_answer"
-    set_user_state(user_id, user_state)
-    keyboard = InlineKeyboardMarkup(inline_keyboard=[
-        [InlineKeyboardButton(text="✏️ Ответить текстом", callback_data="answer_text")],
-        [InlineKeyboardButton(text="🎤 Ответить голосом", callback_data="answer_voice")],
-        [InlineKeyboardButton(text="❌ Завершить", callback_data="exit_lesson")]
-    ])
-    await callback.message.edit_text(
-        f"📖 Тема: {topic}\n\n📝 Новое задание:\n{task['task_text']}\n\nНапишите или скажите ответ:",
-        reply_markup=keyboard
-    )
-    await callback.answer()
-
-# ---------- Моё обучение ----------
 @router.callback_query(lambda c: c.data == "my_learning")
 async def my_learning_menu(callback: CallbackQuery):
     user_id = callback.from_user.id
@@ -290,13 +302,7 @@ async def my_learning_menu(callback: CallbackQuery):
     total_correct = lessons_data.get("total_correct", 0)
     total_wrong = lessons_data.get("total_wrong", 0)
 
-    progress_text = (
-        f"📊 Ваш прогресс\n\n"
-        f"🎯 Уровень: {level}\n"
-        f"✅ Выполнено тем: {len(completed_topics)}\n"
-        f"📈 Правильных ответов: {total_correct}\n"
-        f"❌ Ошибок: {total_wrong}\n"
-    )
+    progress_text = f"📊 Ваш прогресс\n\n🎯 Уровень: {level}\n✅ Выполнено тем: {len(completed_topics)}\n📈 Правильных ответов: {total_correct}\n❌ Ошибок: {total_wrong}\n"
     if total_correct + total_wrong > 0:
         percent = round(total_correct / (total_correct + total_wrong) * 100)
         progress_text += f"📊 Точность: {percent}%\n"
@@ -307,86 +313,31 @@ async def my_learning_menu(callback: CallbackQuery):
         [InlineKeyboardButton(text="🔄 Сменить уровень", callback_data="start_lessons")],
         [InlineKeyboardButton(text="🔙 Назад", callback_data="start_lessons")]
     ])
-    await callback.message.edit_text(
-        progress_text,
-        reply_markup=keyboard,
-        parse_mode="HTML"
-    )
+    await callback.message.edit_text(progress_text, reply_markup=keyboard, parse_mode="HTML")
     await callback.answer()
 
 @router.callback_query(lambda c: c.data == "continue_learning")
 async def continue_learning(callback: CallbackQuery):
-    user_id = callback.from_user.id
-    user_state = get_user_state(user_id)
-    lessons_data = user_state.get("lessons", {})
-    current_topic = lessons_data.get("current_topic", "не начато")
-    keyboard = InlineKeyboardMarkup(inline_keyboard=[
-        [InlineKeyboardButton(text="🔙 Назад к прогрессу", callback_data="my_learning")],
-        [InlineKeyboardButton(text="🏠 Главное меню", callback_data="back_to_main")]
-    ])
-    await callback.message.edit_text(
-        f"🚧 Режим продолжения обучения в разработке.\n\n"
-        f"Ваша последняя тема: {current_topic}\n"
-        f"Как только система будет готова, вы сможете продолжить ровно с этого места.",
-        reply_markup=keyboard,
-        parse_mode="HTML"
-    )
+    await callback.message.edit_text("🚧 Режим продолжения обучения в разработке.", reply_markup=InlineKeyboardMarkup(inline_keyboard=[
+        [InlineKeyboardButton(text="🔙 Назад", callback_data="my_learning")]
+    ]))
     await callback.answer()
 
 @router.callback_query(lambda c: c.data == "weekly_plan")
 async def weekly_plan_menu(callback: CallbackQuery):
-    default_plan = [
-        "Пн: Present Simple (утверждение)",
-        "Вт: Present Simple (отрицание и вопросы)",
-        "Ср: Лексика: ежедневная рутина",
-        "Чт: Past Simple (правильные глаголы)",
-        "Пт: Past Simple (неправильные глаголы)",
-        "Сб: Повторение недели + тест",
-        "Вс: Выходной / свободная практика"
-    ]
-    plan_buttons = []
-    for idx, day in enumerate(default_plan):
-        plan_buttons.append([InlineKeyboardButton(text=day, callback_data=f"edit_plan_{idx}")])
-    plan_buttons.append([InlineKeyboardButton(text="➕ Добавить тему", callback_data="add_plan_item")])
-    plan_buttons.append([InlineKeyboardButton(text="🔙 Назад", callback_data="my_learning")])
-    keyboard = InlineKeyboardMarkup(inline_keyboard=plan_buttons)
-    await callback.message.edit_text(
-        "📅 План недели\n\n"
-        "Ниже показаны темы для изучения. Вы можете:\n"
-        "• Нажать на тему, чтобы изменить её\n"
-        "• Добавить новую тему\n"
-        "• Позже – удалять лишнее\n\n"
-        "После утверждения плана бот будет ежедневно напоминать и присылать задания.",
-        reply_markup=keyboard,
-        parse_mode="HTML"
-    )
+    await callback.message.edit_text("📅 План недели в разработке.", reply_markup=InlineKeyboardMarkup(inline_keyboard=[
+        [InlineKeyboardButton(text="🔙 Назад", callback_data="my_learning")]
+    ]))
     await callback.answer()
 
-@router.callback_query(lambda c: c.data.startswith("edit_plan_"))
-async def edit_plan_item(callback: CallbackQuery):
-    await callback.answer("Редактирование плана в разработке", show_alert=True)
-
-@router.callback_query(lambda c: c.data == "add_plan_item")
-async def add_plan_item(callback: CallbackQuery):
-    await callback.answer("Добавление темы в план в разработке", show_alert=True)
-
-# ---------- Тест ----------
 @router.callback_query(lambda c: c.data == "placement_test")
 async def placement_test(callback: CallbackQuery):
-    keyboard = InlineKeyboardMarkup(inline_keyboard=[
+    await callback.message.edit_text("📝 Тест на определение уровня в разработке.", reply_markup=InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(text="🔙 Назад", callback_data="start_lessons")],
         [InlineKeyboardButton(text="🏠 Главное меню", callback_data="back_to_main")]
-    ])
-    await callback.message.edit_text(
-        "📝 Тест на определение уровня\n\n"
-        "🚧 В разработке.\n"
-        "Скоро здесь будет 15 вопросов, которые определят ваш точный уровень (от A1 до C1).",
-        reply_markup=keyboard,
-        parse_mode="HTML"
-    )
+    ]))
     await callback.answer()
 
-# ---------- Назад в главное меню ----------
 @router.callback_query(lambda c: c.data == "back_to_main")
 async def back_to_main(callback: CallbackQuery):
     from handlers.start import show_main_menu
