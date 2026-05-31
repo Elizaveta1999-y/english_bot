@@ -1,13 +1,14 @@
 import re
 from aiogram import Router, F
 from aiogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery, ReplyKeyboardMarkup, KeyboardButton, ReplyKeyboardRemove
-from data.users import set_user_state, get_user_state
+from data.users import get_user_state, set_user_state
 from services.deepseek import chat
 from speaking.services.ai import is_safe_message, process_roleplay_message, process_voice_message
+from handlers.lesson_utils import check_answer
 
 router = Router()
 
-# ========== КАТЕГОРИИ И ТЕМЫ ==========
+# ========== КАТЕГОРИИ И ТЕМЫ (полные) ==========
 CATEGORIES = [
     ("🏢 Работа и бизнес", "work"),
     ("✈️ Путешествия", "travel"),
@@ -258,13 +259,13 @@ async def exit_to_menu(callback: CallbackQuery):
     await callback.message.answer("Режим завершён. Нажмите /start для выбора режима.", reply_markup=ReplyKeyboardRemove())
     await callback.answer()
 
-# ---------- ЕДИНЫЙ ОБРАБОТЧИК ТЕКСТА ДЛЯ ВСЕХ РЕЖИМОВ ----------
+# ---------- УНИВЕРСАЛЬНЫЙ ОБРАБОТЧИК ТЕКСТА (включая уроки) ----------
 @router.message(F.text)
 async def universal_text_handler(message: Message):
     user_id = message.from_user.id
     user_state = get_user_state(user_id)
-    
-    # 1. Обработка кастомного сценария (ожидание ввода)
+
+    # 1. Обработка кастомного сценария
     if user_state.get("awaiting_custom_scenario"):
         user_state["awaiting_custom_scenario"] = False
         scenario_text = message.text.strip()
@@ -310,14 +311,30 @@ async def universal_text_handler(message: Message):
         )
         await message.answer("🎬 <b>Можете начинать!</b>", parse_mode="HTML")
         return
-    
-    # 2. Пропускаем служебные кнопки, но НЕ пропускаем "Главное меню"
+
+    # 2. Пропускаем служебные кнопки (но не главное меню)
     if message.text in ["💡 Что ответить?", "📊 Завершить диалог", "📊 Я всё! Фидбек"]:
         return
-    
+
+    # 3. Режим урока (тематический урок)
+    if user_state.get("lesson_mode") == "thematic" and user_state.get("lesson_step") == "awaiting_answer":
+        task = user_state.get("lesson_task")
+        if not task:
+            await message.answer("Ошибка: задание не найдено. Начните урок заново.")
+            return
+        feedback = await check_answer(message.text, task)
+        keyboard = InlineKeyboardMarkup(inline_keyboard=[
+            [InlineKeyboardButton(text="🔄 Попробовать ещё раз", callback_data="retry_lesson")],
+            [InlineKeyboardButton(text="📝 Следующее задание", callback_data="next_task")],
+            [InlineKeyboardButton(text="❌ Завершить", callback_data="exit_lesson")]
+        ])
+        await message.answer(f"📊 Результат:\n\n{feedback}", reply_markup=keyboard)
+        user_state["lesson_step"] = "feedback_shown"
+        set_user_state(user_id, user_state)
+        return
+
+    # 4. Режим Speaking
     mode = user_state.get("mode")
-    
-    # 3. Режим Speaking (текстовый ввод)
     if mode == "speaking_active":
         await message.bot.send_chat_action(chat_id=message.chat.id, action="typing")
         ai_response = await process_voice_message(user_id, message.text)
@@ -335,8 +352,8 @@ async def universal_text_handler(message: Message):
         user_state["history"] = history
         set_user_state(user_id, user_state)
         return
-    
-    # 4. Режим RolePlay (текстовый ввод)
+
+    # 5. Режим RolePlay
     if mode == "roleplay_active":
         await message.bot.send_chat_action(chat_id=message.chat.id, action="typing")
         ai_response = await process_roleplay_message(user_id, message.text)

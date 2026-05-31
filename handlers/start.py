@@ -20,7 +20,6 @@ def get_main_menu_keyboard():
     ])
 
 async def show_main_menu(message: Message, edit: bool = False):
-    """Показывает главное меню в указанном сообщении (новое или редактирование)"""
     keyboard = get_main_menu_keyboard()
     if edit:
         await message.edit_text(WELCOME_TEXT, reply_markup=keyboard, parse_mode="HTML")

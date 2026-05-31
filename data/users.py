@@ -3,7 +3,7 @@ users = {}
 
 def get_user_state(user_id: int):
     if user_id not in users:
-        users[user_id] = {}  # всегда возвращаем словарь, а не set
+        users[user_id] = {}
     return users[user_id]
 
 def set_user_state(user_id: int, data: dict):

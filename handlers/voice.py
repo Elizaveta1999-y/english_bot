@@ -1,6 +1,7 @@
 import os
 import tempfile
 import subprocess
+import logging
 from aiogram import Router, F
 from aiogram.types import Message, BufferedInputFile, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
 from speaking.services.stt import voice_to_text
@@ -9,6 +10,7 @@ from speaking.services.tts import text_to_voice
 from data.users import get_user_state, set_user_state, set_user_mode
 from services.deepseek import chat
 
+logger = logging.getLogger(__name__)
 router = Router()
 last_bot_response = {}
 last_text_response = {}
@@ -30,6 +32,22 @@ async def handle_voice(message: Message):
     if not user_text:
         await message.answer("Не понял, повторите.")
         return
+
+    # Режим урока (голосовой ответ)
+    if user_state.get("lesson_mode") == "thematic" and user_state.get("lesson_step") == "awaiting_answer":
+        from handlers.lesson_utils import check_answer
+        task = user_state.get("lesson_task")
+        if task:
+            feedback = await check_answer(user_text, task)
+            keyboard = InlineKeyboardMarkup(inline_keyboard=[
+                [InlineKeyboardButton(text="🔄 Попробовать ещё раз", callback_data="retry_lesson")],
+                [InlineKeyboardButton(text="📝 Следующее задание", callback_data="next_task")],
+                [InlineKeyboardButton(text="❌ Завершить", callback_data="exit_lesson")]
+            ])
+            await message.answer(f"📊 Результат:\n\n{feedback}", reply_markup=keyboard)
+            user_state["lesson_step"] = "feedback_shown"
+            set_user_state(user_id, user_state)
+            return
 
     mode = user_state.get("mode")
     if mode == "roleplay_active":
@@ -54,19 +72,25 @@ async def handle_voice(message: Message):
             ogg_path = convert_to_opus(voice_path)
             with open(ogg_path, 'rb') as f:
                 audio_bytes = f.read()
-            inline_keyboard = InlineKeyboardMarkup(inline_keyboard=[
+            keyboard = InlineKeyboardMarkup(inline_keyboard=[
                 [InlineKeyboardButton(text="📝 Текст", callback_data=f"show_text_{user_id}")]
             ])
-            sent = await message.answer_audio(BufferedInputFile(audio_bytes, filename='voice.ogg'), caption="", reply_markup=inline_keyboard)
+            sent = await message.answer_audio(BufferedInputFile(audio_bytes, filename="voice.ogg"), caption="", reply_markup=keyboard)
             last_bot_response[user_id] = {"text": ai_response, "translation": None, "audio_message_id": sent.message_id}
             os.unlink(voice_path)
             os.unlink(ogg_path)
+            return
         except Exception as e:
-            print(f"Audio sending error: {e}")
-            await message.answer(ai_response)
+            logger.error(f"Audio sending error: {e}")
     else:
-        await message.answer(ai_response)
+        logger.warning("TTS returned None, sending text")
+    keyboard = InlineKeyboardMarkup(inline_keyboard=[
+        [InlineKeyboardButton(text="🌐 Перевести", callback_data=f"translate_text_{user_id}")]
+    ])
+    sent = await message.answer(ai_response, reply_markup=keyboard)
+    last_text_response[user_id] = {"text": ai_response, "translation": None, "message_id": sent.message_id}
 
+# ---------- Обработчики кнопок для аудиосообщений (показать текст, перевод, скрыть) ----------
 @router.callback_query(lambda c: c.data.startswith("show_text_"))
 async def show_text(callback: CallbackQuery):
     user_id = int(callback.data.split("_")[2])
