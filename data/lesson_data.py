@@ -64,14 +64,20 @@ LESSON_CONTENT = {
                 "text": """
 <b>🔍 Слова-подсказки (маркеры времени)</b>
 
-| Present Simple | Present Continuous |
-|----------------|--------------------|
-| always (всегда) | now (сейчас) |
-| usually (обычно) | at the moment (в данный момент) |
-| often (часто) | Listen! (Послушай!) |
-| every day (каждый день) | Look! (Посмотри!) |
-| sometimes (иногда) | these days (в эти дни) |
-| never (никогда) |  |
+<b>Present Simple:</b>
+• always (всегда)
+• usually (обычно)
+• often (часто)
+• every day (каждый день)
+• sometimes (иногда)
+• never (никогда)
+
+<b>Present Continuous:</b>
+• now (сейчас)
+• at the moment (в данный момент)
+• Listen! (Послушай!)
+• Look! (Посмотри!)
+• these days (в эти дни)
 """,
                 "image": "present_simple_vs_continuous/markers.jpg"
             },
