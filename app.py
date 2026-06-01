@@ -18,7 +18,7 @@ WEBHOOK_SECRET = "my-secret-key"
 bot = Bot(token=BOT_TOKEN)
 dp = Dispatcher()
 
-# Подключаем роутеры
+# Подключаем все роутеры (порядок важен)
 dp.include_router(start.router)
 dp.include_router(speaking.router)
 dp.include_router(roleplay.router)
