@@ -1,7 +1,7 @@
 # handlers/lessons.py
 import os
 from aiogram import Router, F
-from aiogram.types import CallbackQuery, InlineKeyboardMarkup, InlineKeyboardButton, InputMediaPhoto, FSInputFile
+from aiogram.types import CallbackQuery, InlineKeyboardMarkup, InlineKeyboardButton, InputMediaPhoto, FSInputFile, Message
 from data.users import get_user_state, set_user_state
 from data.lesson_data import LESSON_CONTENT
 from services.deepseek import chat
@@ -143,32 +143,113 @@ async def show_thematic_lesson(callback: CallbackQuery):
 
     user_id = callback.from_user.id
     user_state = get_user_state(user_id)
+    # Сохраняем информацию об уроке и начинаем с первой страницы
     user_state["current_lesson"] = {
         "topic": topic_name,
         "key": key,
-        "content": content
+        "content": content,
+        "page": 0  # индекс текущей страницы (0-based)
     }
     set_user_state(user_id, user_state)
 
-    await callback.message.edit_text(content["theory"], parse_mode="HTML")
+    # Показываем первую страницу
+    await show_lesson_page(callback.message, user_id, edit=True)
+    await callback.answer()
 
-    if content.get("images"):
-        media_group = []
-        for img_path in content["images"]:
-            full_path = os.path.join("static", "lessons", img_path)
-            if os.path.exists(full_path):
-                media_group.append(InputMediaPhoto(media=FSInputFile(full_path)))
-        if media_group:
-            await callback.message.answer_media_group(media_group)
+async def show_lesson_page(message: Message, user_id: int, edit: bool = True):
+    """Отображает текущую страницу урока (с изображением)"""
+    user_state = get_user_state(user_id)
+    lesson = user_state.get("current_lesson")
+    if not lesson:
+        return
+    key = lesson["key"]
+    content = lesson["content"]
+    page_idx = lesson.get("page", 0)
+    pages = content["pages"]
+    total_pages = len(pages)
+    if page_idx >= total_pages:
+        page_idx = total_pages - 1
+    page = pages[page_idx]
+
+    # Формируем текст: заголовок + содержимое страницы
+    text = f"<b>📖 {lesson['topic']}</b>\n\n{page['text']}"
+    # Клавиатура с навигацией и дополнительными кнопками
+    nav_buttons = []
+    if page_idx > 0:
+        nav_buttons.append(InlineKeyboardButton(text="◀ Назад", callback_data="lesson_prev_page"))
+    nav_buttons.append(InlineKeyboardButton(text=f"{page_idx+1}/{total_pages}", callback_data="lesson_none"))
+    if page_idx < total_pages - 1:
+        nav_buttons.append(InlineKeyboardButton(text="Далее ▶", callback_data="lesson_next_page"))
 
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
+        nav_buttons,
         [InlineKeyboardButton(text="❓ Частые вопросы", callback_data=f"lesson_faq_{key}")],
         [InlineKeyboardButton(text="🤔 Задать вопрос", callback_data=f"lesson_ask_{key}")],
         [InlineKeyboardButton(text="📝 Начать практику", callback_data=f"lesson_practice_{key}")],
         [InlineKeyboardButton(text="🔙 Назад к темам", callback_data="thematic_menu")],
         [InlineKeyboardButton(text="🏠 Главное меню", callback_data="back_to_main")]
     ])
-    await callback.message.answer("Выберите действие:", reply_markup=keyboard)
+
+    if edit:
+        # Если у страницы есть изображение, отправляем его вместе с текстом (фото+подпись)
+        if page.get("image") and os.path.exists(os.path.join("static", "lessons", page["image"])):
+            # Отправляем новое сообщение с фото, а предыдущее удаляем или редактируем?
+            # Лучше редактировать текст, а фото отправлять отдельно? Но тогда фото останется.
+            # Чтобы фото менялось, проще отправить новое сообщение с фото и удалить старое.
+            # Однако для сохранения чистоты интерфейса используем edit + отдельное фото? Нет.
+            # В Telegram нельзя редактировать сообщение, чтобы добавить фото.
+            # Поэтому при переходе на новую страницу будем удалять старое сообщение и отправлять новое с фото.
+            # Но проще: для страниц без фото – редактируем, для страниц с фото – отправляем новое.
+            # Я предлагаю: всегда отправлять новое сообщение (с фото, если есть) и удалять предыдущее.
+            await message.delete()
+            if os.path.exists(os.path.join("static", "lessons", page["image"])):
+                photo = FSInputFile(os.path.join("static", "lessons", page["image"]))
+                await message.answer_photo(photo, caption=text, reply_markup=keyboard, parse_mode="HTML")
+            else:
+                await message.answer(text, reply_markup=keyboard, parse_mode="HTML")
+        else:
+            # Редактируем текст
+            await message.edit_text(text, reply_markup=keyboard, parse_mode="HTML")
+    else:
+        if page.get("image") and os.path.exists(os.path.join("static", "lessons", page["image"])):
+            photo = FSInputFile(os.path.join("static", "lessons", page["image"]))
+            await message.answer_photo(photo, caption=text, reply_markup=keyboard, parse_mode="HTML")
+        else:
+            await message.answer(text, reply_markup=keyboard, parse_mode="HTML")
+
+@router.callback_query(lambda c: c.data == "lesson_next_page")
+async def lesson_next_page(callback: CallbackQuery):
+    user_id = callback.from_user.id
+    user_state = get_user_state(user_id)
+    lesson = user_state.get("current_lesson")
+    if not lesson:
+        await callback.answer("Урок не найден", show_alert=True)
+        return
+    pages = lesson["content"]["pages"]
+    current = lesson.get("page", 0)
+    if current + 1 < len(pages):
+        lesson["page"] = current + 1
+        set_user_state(user_id, user_state)
+        await show_lesson_page(callback.message, user_id, edit=True)
+    else:
+        await callback.answer("Это последняя страница", show_alert=True)
+    await callback.answer()
+
+@router.callback_query(lambda c: c.data == "lesson_prev_page")
+async def lesson_prev_page(callback: CallbackQuery):
+    user_id = callback.from_user.id
+    user_state = get_user_state(user_id)
+    lesson = user_state.get("current_lesson")
+    if not lesson:
+        await callback.answer("Урок не найден", show_alert=True)
+        return
+    current = lesson.get("page", 0)
+    if current > 0:
+        lesson["page"] = current - 1
+        set_user_state(user_id, user_state)
+        await show_lesson_page(callback.message, user_id, edit=True)
+    else:
+        await callback.answer("Это первая страница", show_alert=True)
     await callback.answer()
 
 @router.callback_query(lambda c: c.data.startswith("lesson_faq_"))
@@ -224,22 +305,25 @@ async def lesson_practice(callback: CallbackQuery):
 @router.callback_query(lambda c: c.data.startswith("back_to_lesson_"))
 async def back_to_lesson(callback: CallbackQuery):
     key = callback.data.split("_")[3]
-    content = LESSON_CONTENT.get(key)
-    if not content:
-        await callback.message.edit_text("Урок не найден", reply_markup=InlineKeyboardMarkup(inline_keyboard=[
-            [InlineKeyboardButton(text="🔙 Назад к темам", callback_data="thematic_menu")]
-        ]))
-        await callback.answer()
-        return
-    await callback.message.edit_text(content["theory"], parse_mode="HTML")
-    keyboard = InlineKeyboardMarkup(inline_keyboard=[
-        [InlineKeyboardButton(text="❓ Частые вопросы", callback_data=f"lesson_faq_{key}")],
-        [InlineKeyboardButton(text="🤔 Задать вопрос", callback_data=f"lesson_ask_{key}")],
-        [InlineKeyboardButton(text="📝 Начать практику", callback_data=f"lesson_practice_{key}")],
-        [InlineKeyboardButton(text="🔙 Назад к темам", callback_data="thematic_menu")],
-        [InlineKeyboardButton(text="🏠 Главное меню", callback_data="back_to_main")]
-    ])
-    await callback.message.answer("Выберите действие:", reply_markup=keyboard)
+    user_id = callback.from_user.id
+    user_state = get_user_state(user_id)
+    # Восстанавливаем урок с сохранённой страницей
+    if "current_lesson" not in user_state or user_state["current_lesson"].get("key") != key:
+        # Если нет, создаём заново
+        topic_name = next((t for t in THEMATIC_TOPICS if t.lower().replace(" ", "_").replace("(", "").replace(")", "").replace("?", "") == key), None)
+        if not topic_name:
+            await callback.message.edit_text("Урок не найден")
+            await callback.answer()
+            return
+        content = LESSON_CONTENT.get(key)
+        user_state["current_lesson"] = {
+            "topic": topic_name,
+            "key": key,
+            "content": content,
+            "page": 0
+        }
+        set_user_state(user_id, user_state)
+    await show_lesson_page(callback.message, user_id, edit=True)
     await callback.answer()
 
 @router.callback_query(lambda c: c.data.startswith("lesson_understand_"))
