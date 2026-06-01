@@ -5,10 +5,12 @@ from aiogram.types import CallbackQuery, InlineKeyboardMarkup, InlineKeyboardBut
 from data.users import get_user_state, set_user_state
 from data.lesson_data import LESSON_CONTENT
 from services.deepseek import chat
+from speaking.services.tts import text_to_voice
 
 router = Router()
 
 THEMATIC_TOPICS = [
+    "Алфавит и произношение",
     "Present Simple vs Continuous",
     "Past Simple vs Present Perfect",
     "Модальные глаголы (can/could/must)",
@@ -134,7 +136,7 @@ async def show_thematic_lesson(callback: CallbackQuery):
             [InlineKeyboardButton(text="🏠 Главное меню", callback_data="back_to_main")]
         ])
         await callback.message.edit_text(
-            f"📖 {topic_name}\n\n🚧 Урок в разработке. Скоро здесь будет теория и изображения.",
+            f"📖 {topic_name}\n\n🚧 Урок в разработке. Скоро здесь будет теория.",
             reply_markup=keyboard,
             parse_mode="HTML"
         )
@@ -143,21 +145,18 @@ async def show_thematic_lesson(callback: CallbackQuery):
 
     user_id = callback.from_user.id
     user_state = get_user_state(user_id)
-    # Сохраняем информацию об уроке и начинаем с первой страницы
     user_state["current_lesson"] = {
         "topic": topic_name,
         "key": key,
         "content": content,
-        "page": 0  # индекс текущей страницы (0-based)
+        "page": 0
     }
     set_user_state(user_id, user_state)
 
-    # Показываем первую страницу
     await show_lesson_page(callback.message, user_id, edit=True)
     await callback.answer()
 
 async def show_lesson_page(message: Message, user_id: int, edit: bool = True):
-    """Отображает текущую страницу урока (с изображением)"""
     user_state = get_user_state(user_id)
     lesson = user_state.get("current_lesson")
     if not lesson:
@@ -171,9 +170,9 @@ async def show_lesson_page(message: Message, user_id: int, edit: bool = True):
         page_idx = total_pages - 1
     page = pages[page_idx]
 
-    # Формируем текст: заголовок + содержимое страницы
     text = f"<b>📖 {lesson['topic']}</b>\n\n{page['text']}"
-    # Клавиатура с навигацией и дополнительными кнопками
+
+    # Навигационные кнопки
     nav_buttons = []
     if page_idx > 0:
         nav_buttons.append(InlineKeyboardButton(text="◀ Назад", callback_data="lesson_prev_page"))
@@ -181,41 +180,30 @@ async def show_lesson_page(message: Message, user_id: int, edit: bool = True):
     if page_idx < total_pages - 1:
         nav_buttons.append(InlineKeyboardButton(text="Далее ▶", callback_data="lesson_next_page"))
 
-    keyboard = InlineKeyboardMarkup(inline_keyboard=[
-        nav_buttons,
+    # Кнопки управления уроком
+    lesson_buttons = [
         [InlineKeyboardButton(text="❓ Частые вопросы", callback_data=f"lesson_faq_{key}")],
         [InlineKeyboardButton(text="🤔 Задать вопрос", callback_data=f"lesson_ask_{key}")],
         [InlineKeyboardButton(text="📝 Начать практику", callback_data=f"lesson_practice_{key}")],
         [InlineKeyboardButton(text="🔙 Назад к темам", callback_data="thematic_menu")],
         [InlineKeyboardButton(text="🏠 Главное меню", callback_data="back_to_main")]
-    ])
+    ]
+
+    # Если на этой странице есть голосовые кнопки (алфавит)
+    if page.get("has_audio_buttons"):
+        letters = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']
+        audio_rows = []
+        for i in range(0, len(letters), 7):
+            row = [InlineKeyboardButton(text=letter, callback_data=f"pronounce_{key}_{letter}") for letter in letters[i:i+7]]
+            audio_rows.append(row)
+        keyboard = InlineKeyboardMarkup(inline_keyboard=audio_rows + [nav_buttons] + lesson_buttons)
+    else:
+        keyboard = InlineKeyboardMarkup(inline_keyboard=[nav_buttons] + lesson_buttons)
 
     if edit:
-        # Если у страницы есть изображение, отправляем его вместе с текстом (фото+подпись)
-        if page.get("image") and os.path.exists(os.path.join("static", "lessons", page["image"])):
-            # Отправляем новое сообщение с фото, а предыдущее удаляем или редактируем?
-            # Лучше редактировать текст, а фото отправлять отдельно? Но тогда фото останется.
-            # Чтобы фото менялось, проще отправить новое сообщение с фото и удалить старое.
-            # Однако для сохранения чистоты интерфейса используем edit + отдельное фото? Нет.
-            # В Telegram нельзя редактировать сообщение, чтобы добавить фото.
-            # Поэтому при переходе на новую страницу будем удалять старое сообщение и отправлять новое с фото.
-            # Но проще: для страниц без фото – редактируем, для страниц с фото – отправляем новое.
-            # Я предлагаю: всегда отправлять новое сообщение (с фото, если есть) и удалять предыдущее.
-            await message.delete()
-            if os.path.exists(os.path.join("static", "lessons", page["image"])):
-                photo = FSInputFile(os.path.join("static", "lessons", page["image"]))
-                await message.answer_photo(photo, caption=text, reply_markup=keyboard, parse_mode="HTML")
-            else:
-                await message.answer(text, reply_markup=keyboard, parse_mode="HTML")
-        else:
-            # Редактируем текст
-            await message.edit_text(text, reply_markup=keyboard, parse_mode="HTML")
+        await message.edit_text(text, reply_markup=keyboard, parse_mode="HTML")
     else:
-        if page.get("image") and os.path.exists(os.path.join("static", "lessons", page["image"])):
-            photo = FSInputFile(os.path.join("static", "lessons", page["image"]))
-            await message.answer_photo(photo, caption=text, reply_markup=keyboard, parse_mode="HTML")
-        else:
-            await message.answer(text, reply_markup=keyboard, parse_mode="HTML")
+        await message.answer(text, reply_markup=keyboard, parse_mode="HTML")
 
 @router.callback_query(lambda c: c.data == "lesson_next_page")
 async def lesson_next_page(callback: CallbackQuery):
@@ -307,9 +295,7 @@ async def back_to_lesson(callback: CallbackQuery):
     key = callback.data.split("_")[3]
     user_id = callback.from_user.id
     user_state = get_user_state(user_id)
-    # Восстанавливаем урок с сохранённой страницей
     if "current_lesson" not in user_state or user_state["current_lesson"].get("key") != key:
-        # Если нет, создаём заново
         topic_name = next((t for t in THEMATIC_TOPICS if t.lower().replace(" ", "_").replace("(", "").replace(")", "").replace("?", "") == key), None)
         if not topic_name:
             await callback.message.edit_text("Урок не найден")
@@ -361,6 +347,98 @@ async def lesson_reask(callback: CallbackQuery):
     )
     await callback.answer()
 
+# ========== ГЕНЕРАЦИЯ АУДИО ДЛЯ БУКВ (ElevenLabs + кэширование) ==========
+# Создаём папку для кэша, если её нет
+CACHE_DIR = "cached_audio/alphabet"
+os.makedirs(CACHE_DIR, exist_ok=True)
+
+# Словарь для преобразования буквы в произносимый текст
+LETTER_PRONUNCIATION = {
+    'A': 'A — эй, как в слове Apple',
+    'B': 'B — би, как в слове Boy',
+    'C': 'C — си, как в слове Cat',
+    'D': 'D — ди, как в слове Dog',
+    'E': 'E — и, как в слове Egg',
+    'F': 'F — эф, как в слове Fish',
+    'G': 'G — джи, как в слове Girl',
+    'H': 'H — эйч, как в слове Hat',
+    'I': 'I — ай, как в слове Ice',
+    'J': 'J — джей, как в слове Juice',
+    'K': 'K — кей, как в слове Kite',
+    'L': 'L — эл, как в слове Lion',
+    'M': 'M — эм, как в слове Mother',
+    'N': 'N — эн, как в слове Night',
+    'O': 'O — оу, как в слове Orange',
+    'P': 'P — пи, как в слове Pen',
+    'Q': 'Q — кью, как в слове Queen',
+    'R': 'R — ар, как в слове Red',
+    'S': 'S — эс, как в слове Sun',
+    'T': 'T — ти, как в слове Tea',
+    'U': 'U — ю, как в слове Umbrella',
+    'V': 'V — ви, как в слове Violin',
+    'W': 'W — дабл-ю, как в слове Window',
+    'X': 'X — экс, как в слове X-ray',
+    'Y': 'Y — уай, как в слове Yellow',
+    'Z': 'Z — зед, как в слове Zebra'
+}
+
+@router.callback_query(lambda c: c.data.startswith("pronounce_"))
+async def pronounce_letter(callback: CallbackQuery):
+    parts = callback.data.split("_")
+    lesson_key = parts[1]   # например "alphabet"
+    letter = parts[2]       # "A"
+
+    # Путь для кэшированного файла
+    cached_path = os.path.join(CACHE_DIR, f"{letter}.mp3")
+
+    # Если файл уже сгенерирован – отправляем его
+    if os.path.exists(cached_path):
+        voice = FSInputFile(cached_path)
+        reply_keyboard = InlineKeyboardMarkup(inline_keyboard=[
+            [InlineKeyboardButton(text="🔁 Ещё раз", callback_data=f"pronounce_{lesson_key}_{letter}")],
+            [InlineKeyboardButton(text="🔙 Назад к алфавиту", callback_data=f"back_to_alphabet_{lesson_key}")]
+        ])
+        await callback.message.answer_voice(voice, caption=f"🔊 {letter}", reply_markup=reply_keyboard)
+        await callback.answer()
+        return
+
+    # Если файла нет – генерируем через ElevenLabs
+    await callback.message.answer("🔊 Генерирую произношение... Подождите секунду.")
+    text_to_speak = LETTER_PRONUNCIATION.get(letter, f"{letter}")
+    audio_path = await text_to_voice(text_to_speak)   # возвращает путь к временному mp3
+
+    if audio_path and os.path.exists(audio_path):
+        # Сохраняем в кэш
+        import shutil
+        shutil.copy(audio_path, cached_path)
+        # Отправляем пользователю
+        voice = FSInputFile(cached_path)
+        reply_keyboard = InlineKeyboardMarkup(inline_keyboard=[
+            [InlineKeyboardButton(text="🔁 Ещё раз", callback_data=f"pronounce_{lesson_key}_{letter}")],
+            [InlineKeyboardButton(text="🔙 Назад к алфавиту", callback_data=f"back_to_alphabet_{lesson_key}")]
+        ])
+        await callback.message.answer_voice(voice, caption=f"🔊 {letter}", reply_markup=reply_keyboard)
+        # Удаляем временный файл, оставляя кэш
+        os.unlink(audio_path)
+    else:
+        await callback.message.answer("❌ Не удалось сгенерировать произношение. Попробуйте позже.")
+    await callback.answer()
+
+@router.callback_query(lambda c: c.data.startswith("back_to_alphabet_"))
+async def back_to_alphabet(callback: CallbackQuery):
+    lesson_key = callback.data.split("_")[3]
+    user_id = callback.from_user.id
+    user_state = get_user_state(user_id)
+    if user_state.get("current_lesson", {}).get("key") == lesson_key:
+        lesson = user_state["current_lesson"]
+        lesson["page"] = 0
+        set_user_state(user_id, user_state)
+        await show_lesson_page(callback.message, user_id, edit=True)
+    else:
+        await callback.message.answer("Урок не найден, вернитесь в меню тем.")
+    await callback.answer()
+
+# ========== УРОВНИ, ПРОГРЕСС, ТЕСТ (ЗАГЛУШКИ) ==========
 @router.callback_query(lambda c: c.data.startswith("level_"))
 async def level_chosen(callback: CallbackQuery):
     level_code = callback.data.split("_")[1]
