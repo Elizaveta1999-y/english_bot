@@ -1,7 +1,7 @@
 # handlers/lessons.py
 import os
 from aiogram import Router, F
-from aiogram.types import CallbackQuery, InlineKeyboardMarkup, InlineKeyboardButton, InputMediaPhoto, FSInputFile, Message
+from aiogram.types import CallbackQuery, InlineKeyboardMarkup, InlineKeyboardButton, FSInputFile, Message
 from data.users import get_user_state, set_user_state
 from data.lesson_data import LESSON_CONTENT
 from services.deepseek import chat
@@ -87,6 +87,10 @@ async def thematic_lessons_menu(callback: CallbackQuery):
     total_pages = (len(THEMATIC_TOPICS) + 4) // 5
     user_page[user_id] = 1
     keyboard = get_thematic_keyboard(1, total_pages)
+    # Проверка, чтобы не редактировать одно и то же сообщение
+    if callback.message.text == "📚 Тематические уроки\n\nВыберите тему для изучения:" and callback.message.reply_markup == keyboard:
+        await callback.answer("Вы уже в меню тем")
+        return
     await callback.message.edit_text(
         "📚 Тематические уроки\n\nВыберите тему для изучения:",
         reply_markup=keyboard,
@@ -172,7 +176,6 @@ async def show_lesson_page(message: Message, user_id: int, edit: bool = True):
 
     text = f"<b>📖 {lesson['topic']}</b>\n\n{page['text']}"
 
-    # Навигационные кнопки
     nav_buttons = []
     if page_idx > 0:
         nav_buttons.append(InlineKeyboardButton(text="◀ Назад", callback_data="lesson_prev_page"))
@@ -180,7 +183,6 @@ async def show_lesson_page(message: Message, user_id: int, edit: bool = True):
     if page_idx < total_pages - 1:
         nav_buttons.append(InlineKeyboardButton(text="Далее ▶", callback_data="lesson_next_page"))
 
-    # Кнопки управления уроком
     lesson_buttons = [
         [InlineKeyboardButton(text="❓ Частые вопросы", callback_data=f"lesson_faq_{key}")],
         [InlineKeyboardButton(text="🤔 Задать вопрос", callback_data=f"lesson_ask_{key}")],
@@ -189,7 +191,6 @@ async def show_lesson_page(message: Message, user_id: int, edit: bool = True):
         [InlineKeyboardButton(text="🏠 Главное меню", callback_data="back_to_main")]
     ]
 
-    # Если на этой странице есть голосовые кнопки (алфавит)
     if page.get("has_audio_buttons"):
         letters = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']
         audio_rows = []
@@ -201,6 +202,9 @@ async def show_lesson_page(message: Message, user_id: int, edit: bool = True):
         keyboard = InlineKeyboardMarkup(inline_keyboard=[nav_buttons] + lesson_buttons)
 
     if edit:
+        # Проверяем, не совпадает ли новое сообщение со старым
+        if message.text == text and message.reply_markup == keyboard:
+            return
         await message.edit_text(text, reply_markup=keyboard, parse_mode="HTML")
     else:
         await message.answer(text, reply_markup=keyboard, parse_mode="HTML")
@@ -347,12 +351,10 @@ async def lesson_reask(callback: CallbackQuery):
     )
     await callback.answer()
 
-# ========== ГЕНЕРАЦИЯ АУДИО ДЛЯ БУКВ (ElevenLabs + кэширование) ==========
-# Создаём папку для кэша, если её нет
+# ---------- ГЕНЕРАЦИЯ АУДИО ДЛЯ БУКВ (ElevenLabs + кэширование) ----------
 CACHE_DIR = "cached_audio/alphabet"
 os.makedirs(CACHE_DIR, exist_ok=True)
 
-# Словарь для преобразования буквы в произносимый текст
 LETTER_PRONUNCIATION = {
     'A': 'A — эй, как в слове Apple',
     'B': 'B — би, как в слове Boy',
@@ -385,13 +387,11 @@ LETTER_PRONUNCIATION = {
 @router.callback_query(lambda c: c.data.startswith("pronounce_"))
 async def pronounce_letter(callback: CallbackQuery):
     parts = callback.data.split("_")
-    lesson_key = parts[1]   # например "alphabet"
-    letter = parts[2]       # "A"
+    lesson_key = parts[1]
+    letter = parts[2]
 
-    # Путь для кэшированного файла
     cached_path = os.path.join(CACHE_DIR, f"{letter}.mp3")
 
-    # Если файл уже сгенерирован – отправляем его
     if os.path.exists(cached_path):
         voice = FSInputFile(cached_path)
         reply_keyboard = InlineKeyboardMarkup(inline_keyboard=[
@@ -402,23 +402,19 @@ async def pronounce_letter(callback: CallbackQuery):
         await callback.answer()
         return
 
-    # Если файла нет – генерируем через ElevenLabs
     await callback.message.answer("🔊 Генерирую произношение... Подождите секунду.")
     text_to_speak = LETTER_PRONUNCIATION.get(letter, f"{letter}")
-    audio_path = await text_to_voice(text_to_speak)   # возвращает путь к временному mp3
+    audio_path = await text_to_voice(text_to_speak)
 
     if audio_path and os.path.exists(audio_path):
-        # Сохраняем в кэш
         import shutil
         shutil.copy(audio_path, cached_path)
-        # Отправляем пользователю
         voice = FSInputFile(cached_path)
         reply_keyboard = InlineKeyboardMarkup(inline_keyboard=[
             [InlineKeyboardButton(text="🔁 Ещё раз", callback_data=f"pronounce_{lesson_key}_{letter}")],
             [InlineKeyboardButton(text="🔙 Назад к алфавиту", callback_data=f"back_to_alphabet_{lesson_key}")]
         ])
         await callback.message.answer_voice(voice, caption=f"🔊 {letter}", reply_markup=reply_keyboard)
-        # Удаляем временный файл, оставляя кэш
         os.unlink(audio_path)
     else:
         await callback.message.answer("❌ Не удалось сгенерировать произношение. Попробуйте позже.")
@@ -438,7 +434,7 @@ async def back_to_alphabet(callback: CallbackQuery):
         await callback.message.answer("Урок не найден, вернитесь в меню тем.")
     await callback.answer()
 
-# ========== УРОВНИ, ПРОГРЕСС, ТЕСТ (ЗАГЛУШКИ) ==========
+# ---------- УРОВНИ, ПРОГРЕСС, ТЕСТ ----------
 @router.callback_query(lambda c: c.data.startswith("level_"))
 async def level_chosen(callback: CallbackQuery):
     level_code = callback.data.split("_")[1]
