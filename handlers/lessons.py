@@ -35,12 +35,21 @@ THEMATIC_TOPICS = [
 
 # ========== УРОВНЕВЫЕ УРОКИ A1 ==========
 LEVEL_A1_TOPICS = [
-    "alphabet"   # ключ из LESSON_CONTENT
+    "alphabet",
+    "numbers_1_20",
+    "to_be_positive",
+    "to_be_negative_question",
+    "countries_nationalities",
+    "pronouns"
 ]
 
-# Можно добавить отображаемые названия
 LEVEL_A1_NAMES = {
-    "alphabet": "🔤 Алфавит и произношение"
+    "alphabet": "🔤 Алфавит и произношение",
+    "numbers_1_20": "🔢 Числа и счёт (1-20)",
+    "to_be_positive": "✅ Глагол to be (утверждение)",
+    "to_be_negative_question": "❓ Глагол to be (отрицание и вопрос)",
+    "countries_nationalities": "🌍 Страны и национальности",
+    "pronouns": "📌 Личные и притяжательные местоимения"
 }
 
 # ========== ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ ==========
@@ -64,12 +73,10 @@ def get_thematic_keyboard(page: int, total_pages: int) -> InlineKeyboardMarkup:
     return InlineKeyboardMarkup(inline_keyboard=buttons)
 
 def get_level_lessons_keyboard(level: str) -> InlineKeyboardMarkup:
-    """Возвращает клавиатуру со списком уроков для уровня"""
     if level == "A1":
         topics = LEVEL_A1_TOPICS
         names = LEVEL_A1_NAMES
     else:
-        # Для других уровней пока заглушка
         topics = []
         names = {}
     buttons = []
@@ -81,7 +88,6 @@ def get_level_lessons_keyboard(level: str) -> InlineKeyboardMarkup:
     return InlineKeyboardMarkup(inline_keyboard=buttons)
 
 async def show_lesson_page(message: Message, user_id: int, edit: bool = True):
-    """Отображает текущую страницу урока (из current_lesson)"""
     user_state = get_user_state(user_id)
     lesson = user_state.get("current_lesson")
     if not lesson:
@@ -112,7 +118,7 @@ async def show_lesson_page(message: Message, user_id: int, edit: bool = True):
         [InlineKeyboardButton(text="🏠 Главное меню", callback_data="back_to_main")]
     ]
 
-    if page.get("has_audio_buttons"):
+    if page.get("has_audio_buttons") and key == "alphabet":
         letters = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']
         audio_rows = []
         for i in range(0, len(letters), 7):
@@ -162,7 +168,7 @@ async def lessons_menu(callback: CallbackQuery):
 # ========== УРОВНЕВЫЕ УРОКИ ==========
 @router.callback_query(lambda c: c.data.startswith("level_A") or c.data.startswith("level_B") or c.data.startswith("level_C"))
 async def level_chosen(callback: CallbackQuery):
-    level = callback.data.split("_")[1]  # A1, A2, ...
+    level = callback.data.split("_")[1]
     if level == "A1":
         keyboard = get_level_lessons_keyboard("A1")
         await callback.message.edit_text(
@@ -171,7 +177,6 @@ async def level_chosen(callback: CallbackQuery):
             parse_mode="HTML"
         )
     else:
-        # Заглушка для других уровней
         keyboard = InlineKeyboardMarkup(inline_keyboard=[
             [InlineKeyboardButton(text="🔙 Назад к выбору уровня", callback_data="start_lessons")],
             [InlineKeyboardButton(text="🏠 Главное меню", callback_data="back_to_main")]
@@ -186,8 +191,8 @@ async def level_chosen(callback: CallbackQuery):
 @router.callback_query(lambda c: c.data.startswith("level_lesson_"))
 async def level_lesson_chosen(callback: CallbackQuery):
     parts = callback.data.split("_")
-    level = parts[2]   # A1
-    lesson_key = parts[3]  # alphabet
+    level = parts[2]
+    lesson_key = parts[3]
     content = LESSON_CONTENT.get(lesson_key)
     if not content:
         await callback.answer("Урок не найден", show_alert=True)
@@ -211,11 +216,9 @@ async def back_to_level(callback: CallbackQuery):
     level = callback.data.split("_")[3]
     user_id = callback.from_user.id
     user_state = get_user_state(user_id)
-    # Очищаем текущий урок
     if "current_lesson" in user_state:
         del user_state["current_lesson"]
     set_user_state(user_id, user_state)
-    # Показываем список уроков уровня
     if level == "A1":
         keyboard = get_level_lessons_keyboard("A1")
         await callback.message.edit_text(
@@ -405,29 +408,33 @@ async def back_to_lesson(callback: CallbackQuery):
     user_id = callback.from_user.id
     user_state = get_user_state(user_id)
     if "current_lesson" not in user_state or user_state["current_lesson"].get("key") != key:
-        # Пытаемся восстановить урок
+        # Восстанавливаем урок из A1 или тематических
         topic_name = None
-        # сначала проверим в тематических
-        for t in THEMATIC_TOPICS:
-            if t.lower().replace(" ", "_").replace("(", "").replace(")", "").replace("?", "") == key:
-                topic_name = t
+        for t in LEVEL_A1_TOPICS:
+            if t == key:
+                topic_name = LEVEL_A1_NAMES.get(t, t)
                 break
         if not topic_name:
-            # проверим в A1
-            for k in LEVEL_A1_TOPICS:
-                if k == key:
-                    topic_name = LEVEL_A1_NAMES.get(k, k)
+            for t in THEMATIC_TOPICS:
+                tkey = t.lower().replace(" ", "_").replace("(", "").replace(")", "").replace("?", "")
+                if tkey == key:
+                    topic_name = t
                     break
         if not topic_name:
             await callback.message.edit_text("Урок не найден")
             await callback.answer()
             return
         content = LESSON_CONTENT.get(key)
+        if not content:
+            await callback.message.edit_text("Контент урока отсутствует")
+            await callback.answer()
+            return
         user_state["current_lesson"] = {
             "topic": topic_name,
             "key": key,
             "content": content,
-            "page": 0
+            "page": 0,
+            "level": "A1" if key in LEVEL_A1_TOPICS else "thematic"
         }
         set_user_state(user_id, user_state)
     await show_lesson_page(callback.message, user_id, edit=True)
