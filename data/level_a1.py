@@ -1622,7 +1622,7 @@ I – my, you – your, he – his, she – her, it – its, we – our, they �
             {"question": "Чем отличается must от have to?", "answer": "Must – личное чувство долга (я сам хочу). Have to – вынужденность (обстоятельства заставляют). Например: I must call my mom (я хочу позвонить). I have to work (меня заставляют)."}
         ]
     },
-        "ordinalNumbers": {
+            "ordinalNumbers": {
         "title": "Порядковые числительные (какой по счёту?)",
         "pages": [
             {
@@ -1721,7 +1721,7 @@ I – my, you – your, he – his, she – her, it – its, we – our, they �
         ],
         "faq": [
             {"question": "Как правильно произносить -th?", "answer": "Звук [θ] – кончик языка между зубами. Тренируйтесь на слове «think». Для чисел 4th, 5th, 6th – [θ] или [t] в быстрой речи, но лучше учить правильное произношение."},
-            {"question": "Как сказать 100th, 1000th?", "answer": "100th – hundredth, 1000th – thousandth. Обратите внимание: one hundredth – сотая часть, но в порядковых hundredth без 'one' означает сотый.")
+            {"question": "Как сказать 100th, 1000th?", "answer": "100th – hundredth, 1000th – thousandth. Обратите внимание: one hundredth – сотая часть, но в порядковых hundredth без 'one' означает сотый."}
         ]
     },
         "adverbsFrequency": {
