@@ -1,13 +1,15 @@
-print("DEBUG: lessons.py imported")
-print("Keys in LESSON_CONTENT:", list(LESSON_CONTENT.keys()))
 # handlers/lessons.py
 import os
 from aiogram import Router, F
 from aiogram.types import CallbackQuery, InlineKeyboardMarkup, InlineKeyboardButton, FSInputFile, Message
 from data.users import get_user_state, set_user_state
-from data.lesson_data import LESSON_CONTENT
+from data.lesson_data import LESSON_CONTENT  # важно: импорт ДО print
 from services.deepseek import chat
 from speaking.services.tts import text_to_voice
+
+# Отладочные выводы (будут видны в логах Render)
+print("DEBUG: lessons.py imported")
+print("Keys in LESSON_CONTENT:", list(LESSON_CONTENT.keys()))
 
 router = Router()
 
