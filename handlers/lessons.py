@@ -40,7 +40,13 @@ LEVEL_A1_TOPICS = [
     "tobepositive",
     "tobenegaquestion",
     "countries",
-    "pronouns"
+    "pronouns",
+    "plural",
+    "question_words",
+    "there_is_are",
+    "prepositions_place",
+    "adjectives",
+    "present_simple"
 ]
 
 LEVEL_A1_NAMES = {
@@ -49,10 +55,16 @@ LEVEL_A1_NAMES = {
     "tobepositive": "✅ Глагол to be (утверждение)",
     "tobenegaquestion": "❓ Глагол to be (отрицание и вопрос)",
     "countries": "🌍 Страны и национальности",
-    "pronouns": "📌 Личные и притяжательные местоимения"
+    "pronouns": "📌 Личные и притяжательные местоимения",
+    "plural": "📚 Множественное число существительных",
+    "question_words": "❓ Вопросительные слова (What, Where, Who, How, Why)",
+    "there_is_are": "🏠 Конструкция there is / there are",
+    "prepositions_place": "📍 Предлоги места",
+    "adjectives": "🎨 Прилагательные (цвета, размеры, описания)",
+    "present_simple": "⏰ Present Simple (настоящее простое время)"
 }
 
-# ========== ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ ==========
+# ========== ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ (без изменений) ==========
 user_page = {}
 
 def get_thematic_keyboard(page: int, total_pages: int) -> InlineKeyboardMarkup:

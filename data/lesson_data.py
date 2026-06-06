@@ -1,6 +1,7 @@
 # data/lesson_data.py
 
 LESSON_CONTENT = {
+    # ========== УРОКИ A1 (первые 6) ==========
     "alphabet": {
         "title": "Алфавит и произношение",
         "pages": [
@@ -587,6 +588,513 @@ Z [зед] – Zebra (зебра)
             {
                 "question": "Почему нет отдельного слова для 'свой'?",
                 "answer": "В английском для этого используют притяжательное местоимение, соответствующее подлежащему. He loves his dog – Он любит свою собаку."
+            }
+        ]
+    },
+
+    # ========== НОВЫЕ УРОКИ A1 (6 штук) ==========
+
+    "plural": {
+        "title": "Множественное число существительных",
+        "pages": [
+            {
+                "title": "Основное правило +s",
+                "text": """
+<b>📚 Тема: Множественное число существительных</b>
+
+В английском языке, чтобы сказать «один предмет» – используется единственное число, «два и более» – множественное.
+
+<b>Основное правило: добавляем окончание -s</b>
+• a cat → two cats (кот → коты)
+• a dog → three dogs (собака → собаки)
+• a pen → pens (ручка → ручки)
+• a book → books (книга → книги)
+
+<blockquote>💡 Обратите внимание: неопределённый артикль a/an исчезает во множественном числе.</blockquote>
+""",
+                "image": None,
+                "has_audio_buttons": False
+            },
+            {
+                "title": "Окончание -es (после шипящих)",
+                "text": """
+<b>📌 Если слово оканчивается на -s, -ss, -sh, -ch, -x, -z – добавляем -es</b>
+
+Примеры:
+• a bus → buses (автобус → автобусы)
+• a glass → glasses (стакан → стаканы)
+• a dish → dishes (тарелка → тарелки)
+• a watch → watches (часы → часы, мн. число)
+• a box → boxes (коробка → коробки)
+• a quiz → quizzes (викторина → викторины)
+
+<blockquote>Произносится -es как [ɪz] (дополнительный слог).</blockquote>
+""",
+                "image": None,
+                "has_audio_buttons": False
+            },
+            {
+                "title": "Слова, оканчивающиеся на -y",
+                "text": """
+<b>📌 Если слово заканчивается на согласную + y → y меняется на i и добавляется -es</b>
+
+• a baby → babies (ребёнок → дети)
+• a city → cities (город → города)
+• a lady → ladies (леди → леди, мн.ч.)
+• a party → parties (вечеринка → вечеринки)
+
+<b>Если перед y стоит гласная (a, e, i, o, u) → просто добавляем -s</b>
+• a boy → boys (мальчик → мальчики)
+• a day → days (день → дни)
+• a key → keys (ключ → ключи)
+
+<blockquote>Исключение: a play → plays (пьеса → пьесы), также по правилу.</blockquote>
+""",
+                "image": None,
+                "has_audio_buttons": False
+            },
+            {
+                "title": "Исключения (irregular plurals)",
+                "text": """
+<b>⚠️ Некоторые слова образуют множественное число не по правилам. Их нужно запомнить:</b>
+
+• a man → men (мужчина → мужчины)
+• a woman → women (женщина → женщины)
+• a child → children (ребёнок → дети)
+• a tooth → teeth (зуб → зубы)
+• a foot → feet (ступня → ступни)
+• a goose → geese (гусь → гуси)
+• a mouse → mice (мышь → мыши)
+• a person → people (человек → люди)
+
+<b>Слова, которые не меняются:</b>
+• a fish → fish (рыба → рыбы)
+• a sheep → sheep (овца → овцы)
+• a deer → deer (олень → олени)
+
+<blockquote>Совет: учите исключения вместе с основным словом.</blockquote>
+""",
+                "image": None,
+                "has_audio_buttons": False
+            }
+        ],
+        "faq": [
+            {
+                "question": "Как произносится -s в конце слова?",
+                "answer": "После глухих согласных (p, t, k, f) – [s]; после звонких (b, d, g, v, l, m, n, r) – [z]; после -s, -ss, -sh, -ch, -x, -z – [ɪz]."
+            },
+            {
+                "question": "Почему не 'childs', а 'children'?",
+                "answer": "Это древняя форма множественного числа, сохранившаяся в английском. Такие слова нужно просто заучивать."
+            }
+        ]
+    },
+    "question_words": {
+        "title": "Вопросительные слова (What, Where, Who, How, Why)",
+        "pages": [
+            {
+                "title": "What и Where",
+                "text": """
+<b>❓ Вопросительные слова – основа любых вопросов</b>
+
+<b>What? – Что? Какой?</b>
+Используется, чтобы спросить о предмете, действии или информации.
+• What is your name? (Как тебя зовут? – букв. «Что твоё имя?»)
+• What time is it? (Который час?)
+• What colour is your car? (Какого цвета твоя машина?)
+
+<b>Where? – Где? Куда? Откуда?</b>
+• Where are you from? (Откуда ты?)
+• Where is my phone? (Где мой телефон?)
+• Where do you live? (Где ты живёшь?)
+
+<blockquote>Обратите внимание: после вопросительных слов часто следует глагол to be или вспомогательный глагол (do/does).</blockquote>
+""",
+                "image": None,
+                "has_audio_buttons": False
+            },
+            {
+                "title": "Who и How",
+                "text": """
+<b>Who? – Кто?</b>
+• Who is she? (Кто она?)
+• Who are those people? (Кто эти люди?)
+• Who is your teacher? (Кто твой учитель?)
+
+<b>How? – Как? Каким образом?</b>
+• How are you? (Как дела? – букв. «Как ты?»)
+• How old are you? (Сколько тебе лет? – «Как старый ты?»)
+• How much is it? (Сколько это стоит? – для неисчисляемых)
+• How many apples do you have? (Сколько яблок у тебя? – для исчисляемых)
+
+<blockquote>How + прилагательное: how big (насколько большой), how far (как далеко).</blockquote>
+""",
+                "image": None,
+                "has_audio_buttons": False
+            },
+            {
+                "title": "Why и другие",
+                "text": """
+<b>Why? – Почему?</b>
+• Why are you late? (Почему ты опоздал?)
+• Why is she crying? (Почему она плачет?)
+Ответ часто начинается с because (потому что).
+
+<b>When? – Когда?</b>
+• When is your birthday? (Когда твой день рождения?)
+• When do you get up? (Когда ты встаёшь?)
+
+<b>Which? – Который? Какой именно?</b>
+• Which book do you like? (Какую книгу ты любишь? – из нескольких).
+
+<b>Whose? – Чей?</b>
+• Whose bag is this? (Чья это сумка?)
+
+<blockquote>Совет: задавайте себе вопросы по картинкам или окружающим предметам, чтобы запомнить.</blockquote>
+""",
+                "image": None,
+                "has_audio_buttons": False
+            }
+        ],
+        "faq": [
+            {
+                "question": "В чём разница между how much и how many?",
+                "answer": "How much – для неисчисляемых существительных (water, money, time). How many – для исчисляемых (apples, people, days)."
+            },
+            {
+                "question": "Можно ли начать вопрос с глагола без вопросительного слова?",
+                "answer": "Да, это общий вопрос (ответ да/нет). Например: Are you a student? Но вопросительные слова дают конкретную информацию."
+            }
+        ]
+    },
+    "there_is_are": {
+        "title": "There is / There are",
+        "pages": [
+            {
+                "title": "Утверждение",
+                "text": """
+<b>📚 Конструкция there is / there are – «имеется, есть, находится»</b>
+
+Используется, чтобы сказать о существовании или местонахождении предмета.
+
+<b>There is + существительное в единственном числе</b>
+• There is a book on the table. (На столе есть книга.)
+• There is a cat in the garden. (В саду есть кот.)
+
+<b>There are + существительное во множественном числе</b>
+• There are two chairs in the room. (В комнате два стула.)
+• There are many people at the party. (На вечеринке много людей.)
+
+<blockquote>На русский часто переводится без глагола: «На столе книга».</blockquote>
+""",
+                "image": None,
+                "has_audio_buttons": False
+            },
+            {
+                "title": "Отрицание и вопрос",
+                "text": """
+<b>🚫 Отрицание: добавляем not после is или are</b>
+• There is not (isn't) a pen here. (Здесь нет ручки.)
+• There are not (aren't) any dogs in the house. (В доме нет собак.)
+
+Слово any часто используется в отрицаниях и вопросах вместо a/an.
+
+<b>❓ Вопрос: переносим is/are в начало</b>
+• Is there a bank near here? (Здесь рядом есть банк?)
+• Are there any eggs in the fridge? (В холодильнике есть яйца?)
+
+<b>Краткие ответы:</b>
+• Yes, there is. / No, there isn't.
+• Yes, there are. / No, there aren't.
+""",
+                "image": None,
+                "has_audio_buttons": False
+            },
+            {
+                "title": "Примеры и советы",
+                "text": """
+<b>📖 Живые примеры:</b>
+• There is a beautiful park in my city. (В моём городе есть красивый парк.)
+• There are three bedrooms in our house. (В нашем доме три спальни.)
+• Is there a supermarket nearby? (Рядом есть супермаркет?)
+• There aren't any apples left. (Яблок не осталось.)
+
+<b>🧠 Запомните:</b>
+• there is / there are не указывают точное место (оно добавляется предлогами: in, on, at).
+• В разговорной речи часто сокращают: there's (ед.ч.) – даже для множественного числа, но это неграмотно.
+• Для перечисления нескольких предметов: there is + первый предмет (даже если их много, но первый в ед.ч.). Однако лучше всегда использовать there are для мн.ч.
+
+<blockquote>Упражнение: опишите свою комнату, используя there is / there are.</blockquote>
+""",
+                "image": None,
+                "has_audio_buttons": False
+            }
+        ],
+        "faq": [
+            {
+                "question": "Можно ли сказать there have?",
+                "answer": "Нет, конструкция there is/are – единственная для выражения наличия. Have используется для принадлежности: I have a car."
+            },
+            {
+                "question": "Когда пишем there's (сокращение)?",
+                "answer": "Только для единственного числа: there's a cat. Неправильно: there's two cats – правильно: there are two cats."
+            }
+        ]
+    },
+    "prepositions_place": {
+        "title": "Предлоги места (in, on, under, behind, next to, between)",
+        "pages": [
+            {
+                "title": "Базовые предлоги",
+                "text": """
+<b>📍 Предлоги места показывают, где находится предмет</b>
+
+<b>In – внутри (в)</b>
+• in the box (в коробке)
+• in the room (в комнате)
+• in London (в Лондоне)
+
+<b>On – на поверхности (на)</b>
+• on the table (на столе)
+• on the wall (на стене)
+• on the floor (на полу)
+
+<b>Under – под</b>
+• under the bed (под кроватью)
+• under the chair (под стулом)
+
+<b>Behind – за</b>
+• behind the door (за дверью)
+• behind the house (за домом)
+""",
+                "image": None,
+                "has_audio_buttons": False
+            },
+            {
+                "title": "Next to, between, opposite",
+                "text": """
+<b>Next to / beside – рядом с</b>
+• The bank is next to the post office. (Банк рядом с почтой.)
+
+<b>Between – между (двумя объектами)</b>
+• The supermarket is between the school and the park. (Супермаркет между школой и парком.)
+
+<b>Opposite – напротив</b>
+• The cinema is opposite the hotel. (Кинотеатр напротив отеля.)
+
+<b>In front of – перед</b>
+• There is a car in front of the building. (Перед зданием машина.)
+
+<blockquote>Предлоги часто используются с глаголом to be или there is/are.</blockquote>
+""",
+                "image": None,
+                "has_audio_buttons": False
+            },
+            {
+                "title": "Примеры и картинка в уме",
+                "text": """
+<b>📖 Примеры предложений:</b>
+• My phone is on the sofa. (Мой телефон на диване.)
+• The keys are under the mat. (Ключи под ковриком.)
+• She is sitting next to me. (Она сидит рядом со мной.)
+• The park is between the library and the school. (Парк между библиотекой и школой.)
+
+<b>🧠 Как запомнить:</b>
+Представьте свою комнату и мысленно расставляйте предметы, проговаривая предлоги.
+
+<b>Вопросы с предлогами:</b>
+• Where is the cat? – It is under the table.
+• Where are my glasses? – They are on the shelf.
+
+<blockquote>Упражнение: опишите, где находятся предметы на вашем рабочем столе.</blockquote>
+""",
+                "image": None,
+                "has_audio_buttons": False
+            }
+        ],
+        "faq": [
+            {
+                "question": "В чём разница между next to и beside?",
+                "answer": "Они почти одинаковы. Beside чуть более формальный, next to – разговорный."
+            },
+            {
+                "question": "Можно ли использовать предлоги с there is/are?",
+                "answer": "Да, например: There is a cat under the chair. Это очень распространённая конструкция."
+            }
+        ]
+    },
+    "adjectives": {
+        "title": "Прилагательные (цвета, размеры, описания)",
+        "pages": [
+            {
+                "title": "Что такое прилагательное",
+                "text": """
+<b>🎨 Прилагательные описывают предметы: цвет, размер, форму, качество.</b>
+
+В английском прилагательное <b>не изменяется</b> по родам, числам и падежам. Оно всегда стоит в одной форме.
+
+<b>Порядок слов: прилагательное + существительное</b>
+• a red apple (красное яблоко)
+• a big house (большой дом)
+• interesting books (интересные книги)
+
+<b>Самые употребительные прилагательные:</b>
+→ цвета: red, blue, green, yellow, black, white, orange, pink, purple, brown, grey
+→ размеры: big, small, long, short, tall, high, low
+→ чувства: happy, sad, tired, hungry, thirsty, cold, hot
+→ оценка: good, bad, nice, beautiful, ugly, easy, difficult
+""",
+                "image": None,
+                "has_audio_buttons": False
+            },
+            {
+                "title": "Порядок нескольких прилагательных",
+                "text": """
+<b>📌 Если перед существительным несколько прилагательных, они идут в определённом порядке:</b>
+
+<b>Мнение → размер → возраст → форма → цвет → происхождение → материал → назначение</b>
+
+На практике для A1 достаточно 2-3 прилагательных:
+• a nice big house (хороший большой дом)
+• a small red car (маленькая красная машина)
+• an old wooden table (старый деревянный стол)
+
+<blockquote>Не стоит перегружать предложение более чем двумя-тремя прилагательными.</blockquote>
+
+<b>Исключение: прилагательные после глагола to be</b>
+• The house is big. (Дом большой.)
+• The car is red. (Машина красная.)
+• She is happy. (Она счастлива.)
+В этом случае порядок не важен.
+""",
+                "image": None,
+                "has_audio_buttons": False
+            },
+            {
+                "title": "Степени сравнения (база)",
+                "text": """
+<b>📈 Сравнительная степень – чтобы сравнить два предмета</b>
+Для коротких прилагательных (1-2 слога) добавляем -er
+• big → bigger (больше)
+• small → smaller (меньше)
+• fast → faster (быстрее)
+
+Для длинных (3+ слогов) используем more + прилагательное
+• beautiful → more beautiful (красивее)
+• expensive → more expensive (дороже)
+
+<b>Превосходная степень – самый/самая</b>
+• the biggest (самый большой)
+• the most beautiful (самый красивый)
+
+<blockquote>Исключения (запомнить): good → better → the best; bad → worse → the worst.</blockquote>
+
+<b>Примеры:</b>
+• My house is bigger than yours. (Мой дом больше твоего.)
+• She is the best student. (Она лучшая студентка.)
+""",
+                "image": None,
+                "has_audio_buttons": False
+            }
+        ],
+        "faq": [
+            {
+                "question": "Как понять, когда добавлять -er, а когда more?",
+                "answer": "Односложные и двусложные, оканчивающиеся на -y, -er, -le, -ow: -er (smaller, happier). Остальные – more (more interesting)."
+            },
+            {
+                "question": "Всегда ли прилагательное стоит перед существительным?",
+                "answer": "Да, кроме случаев с глаголом to be: She is nice. Артикль (a/an/the) ставится перед прилагательным: a nice girl."
+            }
+        ]
+    },
+    "present_simple": {
+        "title": "Present Simple (кроме to be)",
+        "pages": [
+            {
+                "title": "Утверждение и спряжение",
+                "text": """
+<b>📚 Present Simple – настоящее простое время</b>
+Описывает:
+• регулярные действия (I go to school every day.)
+• факты (The sun rises in the east.)
+• привычки (She drinks tea in the morning.)
+
+<b>Как образуется:</b>
+• I / You / We / They + глагол (без изменений)
+• He / She / It + глагол + -s (или -es)
+
+<b>Примеры:</b>
+• I work in an office. (Я работаю в офисе.)
+• You speak English well. (Ты хорошо говоришь по-английски.)
+• He works at a hospital. (Он работает в больнице.)
+• She plays tennis every Sunday. (Она играет в теннис каждое воскресенье.)
+• It rains a lot in autumn. (Осенью часто идут дожди.)
+• We live in Russia. (Мы живём в России.)
+• They like pizza. (Они любят пиццу.)
+""",
+                "image": None,
+                "has_audio_buttons": False
+            },
+            {
+                "title": "Отрицание и вопросы",
+                "text": """
+<b>🚫 Отрицание: do not (don't) / does not (doesn't) + глагол (без -s)</b>
+• I don't like coffee. (Я не люблю кофе.)
+• She doesn't eat meat. (Она не ест мясо.)
+• They don't live here. (Они не живут здесь.)
+
+<b>❓ Вопрос: Do / Does + подлежащее + глагол (без -s)?</b>
+• Do you speak English? (Ты говоришь по-английски?)
+• Does she work on Sundays? (Она работает по воскресеньям?)
+• Do they have a car? (У них есть машина?)
+
+<b>Краткие ответы:</b>
+• Yes, I do. / No, I don't.
+• Yes, she does. / No, she doesn't.
+• Yes, they do. / No, they don't.
+
+<blockquote>Важно: в вопросах и отрицаниях окончание -s у глагола исчезает и переходит на do/does.</blockquote>
+""",
+                "image": None,
+                "has_audio_buttons": False
+            },
+            {
+                "title": "Маркеры времени и примеры",
+                "text": """
+<b>🔖 Слова-спутники Present Simple:</b>
+• always (всегда)
+• usually (обычно)
+• often (часто)
+• sometimes (иногда)
+• never (никогда)
+• every day / week / month (каждый день / неделю / месяц)
+• on Mondays (по понедельникам)
+
+<b>📖 Примеры в контексте:</b>
+• I always get up at 7 am. (Я всегда встаю в 7 утра.)
+• She often visits her grandmother. (Она часто навещает бабушку.)
+• They never eat fast food. (Они никогда не едят фастфуд.)
+• He goes to the gym every Tuesday. (Он ходит в спортзал каждый вторник.)
+
+<b>⚠️ Глагол to be в Present Simple не использует do/does.</b>
+• He is a doctor. (Неверно: He does be a doctor)
+• Is he a doctor? (Вопрос: глагол to be выносится в начало)
+
+<blockquote>Совет: учите вместе с маркерами времени – они помогают выбрать правильное время.</blockquote>
+""",
+                "image": None,
+                "has_audio_buttons": False
+            }
+        ],
+        "faq": [
+            {
+                "question": "Почему окончание -s в he/she/it, а у глагола to be – is?",
+                "answer": "Это исключение: to be имеет собственные формы. Остальные глаголы ведут себя по правилу."
+            },
+            {
+                "question": "Как спросить о привычке?",
+                "answer": "Используйте do/does + частотное наречие: Do you often play football? Does she usually come on time?"
             }
         ]
     }
