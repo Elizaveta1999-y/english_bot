@@ -3,11 +3,8 @@ import os
 from aiogram import Router, F
 from aiogram.types import CallbackQuery, InlineKeyboardMarkup, InlineKeyboardButton, FSInputFile, Message
 from data.users import get_user_state, set_user_state
-from data.level_a1 import LEVEL_A1_CONTENT   # уроки уровня A1
-# from data.level_a2 import LEVEL_A2_CONTENT  # добавите позже
-# from data.level_b1 import LEVEL_B1_CONTENT
-# from data.level_b2 import LEVEL_B2_CONTENT
-# from data.level_c1 import LEVEL_C1_CONTENT
+from data.level_a1 import LEVEL_A1_CONTENT
+from data.level_a2 import LEVEL_A2_CONTENT
 from services.deepseek import chat
 from speaking.services.tts import text_to_voice
 
@@ -16,8 +13,7 @@ router = Router()
 # Собираем все уроки в один словарь
 LESSON_CONTENT = {}
 LESSON_CONTENT.update(LEVEL_A1_CONTENT)
-# LESSON_CONTENT.update(LEVEL_A2_CONTENT)  # раскомментируете позже
-# ...
+LESSON_CONTENT.update(LEVEL_A2_CONTENT)
 
 # ==================== ТЕМАТИЧЕСКИЕ УРОКИ ====================
 THEMATIC_TOPICS = [
@@ -43,8 +39,8 @@ THEMATIC_TOPICS = [
     "Условные предложения 3 типа (wish/if only)"
 ]
 
-# ==================== УРОВНЕВЫЕ УРОКИ A1 (разбиты на 3 модуля) ====================
-MODULES = {
+# ==================== МОДУЛИ A1 ====================
+MODULES_A1 = {
     "1": {
         "name": "📘 Модуль 1: Основы и знакомство",
         "lessons": [
@@ -72,9 +68,37 @@ MODULES = {
     }
 }
 
+# ==================== МОДУЛИ A2 ====================
+MODULES_A2 = {
+    "1": {
+        "name": "📘 Модуль 1: Грамматика (повторение и углубление)",
+        "lessons": [
+            "presimplevscont_advanced", "pastsimple_review", "pastcontinuous",
+            "usedto", "presentperfect_simple", "presentperfect_continuous",
+            "presentperfect_vs_pastsimple", "future_forms", "conditionals_0_1",
+            "modalverbs_advanced"
+        ]
+    },
+    # Модуль 2 и 3 добавятся позже, пока можно оставить пустыми
+    "2": {
+        "name": "📙 Модуль 2: Лексика и сравнения (в разработке)",
+        "lessons": []
+    },
+    "3": {
+        "name": "📗 Модуль 3: Тематическая лексика (в разработке)",
+        "lessons": []
+    }
+}
+
+# Словарь всех модулей по уровням
+ALL_MODULES = {
+    "A1": MODULES_A1,
+    "A2": MODULES_A2,
+}
+
 # Карта ключ -> название (для отображения в кнопках)
 LESSON_NAMES = {
-    # Модуль 1
+    # A1
     "alphabet": "🔤 Алфавит и произношение",
     "numbers120": "🔢 Числа 1‑20",
     "tobepositive": "✅ Глагол to be (утверждение)",
@@ -87,7 +111,6 @@ LESSON_NAMES = {
     "prepositionsplace": "📍 Предлоги места",
     "adjectives": "🎨 Прилагательные (цвета, размеры, описания)",
     "presentsimple": "⏰ Present Simple",
-    # Модуль 2
     "prescont": "⚡ Present Continuous",
     "presimplevscont": "🔄 Present Simple vs Continuous",
     "tobePast": "📆 Глагол to be в прошедшем (was/were)",
@@ -99,7 +122,6 @@ LESSON_NAMES = {
     "ordinalNumbers": "🥇 Порядковые числительные",
     "adverbsFrequency": "📊 Наречия частотности",
     "prepositionsTime": "⏰ Предлоги времени (at, in, on)",
-    # Модуль 3
     "foodVocabulary": "🍎 Еда и напитки",
     "countableUncountable": "🔢 Исчисляемые / неисчисляемые существительные",
     "clothesVocabulary": "👕 Одежда",
@@ -113,7 +135,18 @@ LESSON_NAMES = {
     "hobbyVocabulary": "🎨 Хобби и свободное время",
     "holidayVocabulary": "✈️ Отпуск и путешествия",
     "shoppingVocabulary": "🛒 Покупки",
-    "bodyVocabulary": "🦵 Тело человека"
+    "bodyVocabulary": "🦵 Тело человека",
+    # A2
+    "presimplevscont_advanced": "📘 Present Simple vs Continuous (углублённо)",
+    "pastsimple_review": "📖 Past Simple (повторение)",
+    "pastcontinuous": "⏳ Past Continuous",
+    "usedto": "🕰️ Конструкция used to",
+    "presentperfect_simple": "✅ Present Perfect Simple",
+    "presentperfect_continuous": "🔄 Present Perfect Continuous",
+    "presentperfect_vs_pastsimple": "⚖️ Present Perfect vs Past Simple",
+    "future_forms": "🔮 Будущее время (will, going to, Present Continuous)",
+    "conditionals_0_1": "🔁 Условные предложения 0 и 1 типа",
+    "modalverbs_advanced": "🎯 Модальные глаголы (could, might, should, have to, must)"
 }
 
 # Пагинация для тематических уроков
@@ -138,15 +171,19 @@ def get_thematic_keyboard(page: int, total_pages: int) -> InlineKeyboardMarkup:
     return InlineKeyboardMarkup(inline_keyboard=buttons)
 
 def get_modules_keyboard(level: str) -> InlineKeyboardMarkup:
+    modules = ALL_MODULES.get(level, {})
     buttons = []
-    for mod_id, mod_data in MODULES.items():
-        buttons.append([InlineKeyboardButton(text=mod_data["name"], callback_data=f"module_{level}_{mod_id}")])
+    for mod_id, mod_data in modules.items():
+        # показываем только непустые модули
+        if mod_data["lessons"]:
+            buttons.append([InlineKeyboardButton(text=mod_data["name"], callback_data=f"module_{level}_{mod_id}")])
     buttons.append([InlineKeyboardButton(text="🔙 Назад к уровням", callback_data="start_lessons")])
     buttons.append([InlineKeyboardButton(text="🏠 Главное меню", callback_data="back_to_main")])
     return InlineKeyboardMarkup(inline_keyboard=buttons)
 
 def get_module_lessons_keyboard(level: str, module_id: str) -> InlineKeyboardMarkup:
-    lessons = MODULES.get(module_id, {}).get("lessons", [])
+    modules = ALL_MODULES.get(level, {})
+    lessons = modules.get(module_id, {}).get("lessons", [])
     buttons = []
     for key in lessons:
         name = LESSON_NAMES.get(key, key)
@@ -235,10 +272,10 @@ async def lessons_menu(callback: CallbackQuery):
 @router.callback_query(lambda c: c.data.startswith("level_"))
 async def level_chosen(callback: CallbackQuery):
     level = callback.data.split("_")[1]
-    if level == "A1":
-        keyboard = get_modules_keyboard("A1")
+    if level in ALL_MODULES:
+        keyboard = get_modules_keyboard(level)
         await callback.message.edit_text(
-            f"📖 Уровень {level} (Beginner)\n\nВыберите модуль:",
+            f"📖 Уровень {level}\n\nВыберите модуль:",
             reply_markup=keyboard,
             parse_mode="HTML"
         )
@@ -263,7 +300,7 @@ async def module_chosen(callback: CallbackQuery):
     level = parts[1]
     module_id = parts[2]
     keyboard = get_module_lessons_keyboard(level, module_id)
-    module_name = MODULES.get(module_id, {}).get("name", "Модуль")
+    module_name = ALL_MODULES.get(level, {}).get(module_id, {}).get("name", "Модуль")
     await callback.message.edit_text(
         f"📘 {module_name}\n\nВыберите урок:",
         reply_markup=keyboard,
@@ -271,7 +308,6 @@ async def module_chosen(callback: CallbackQuery):
     )
     await callback.answer()
 
-# ИСПРАВЛЕННЫЙ ОБРАБОТЧИК: исключаем навигационные кнопки
 @router.callback_query(lambda c: c.data.startswith("lesson_") and not any(c.data.startswith(x) for x in ("lesson_next_page", "lesson_prev_page", "lesson_none", "lesson_faq_", "lesson_ask_", "lesson_practice_", "lesson_understand_", "lesson_reask_")))
 async def lesson_chosen(callback: CallbackQuery):
     raw = callback.data[7:]  # убираем "lesson_"
@@ -327,7 +363,7 @@ async def back_to_module(callback: CallbackQuery):
     module_id = parts[0]
     level = parts[1]
     keyboard = get_module_lessons_keyboard(level, module_id)
-    module_name = MODULES.get(module_id, {}).get("name", "Модуль")
+    module_name = ALL_MODULES.get(level, {}).get(module_id, {}).get("name", "Модуль")
     await callback.message.edit_text(
         f"📘 {module_name}\n\nВыберите урок:",
         reply_markup=keyboard,
@@ -340,7 +376,7 @@ async def back_to_modules(callback: CallbackQuery):
     level = callback.data.split("_")[3]
     keyboard = get_modules_keyboard(level)
     await callback.message.edit_text(
-        f"📖 Уровень {level} (Beginner)\n\nВыберите модуль:",
+        f"📖 Уровень {level}\n\nВыберите модуль:",
         reply_markup=keyboard,
         parse_mode="HTML"
     )
@@ -445,18 +481,26 @@ async def back_to_lesson(callback: CallbackQuery):
             await callback.message.edit_text("Урок не найден")
             await callback.answer()
             return
-        module_id = None
-        for mid, mod in MODULES.items():
-            if key in mod["lessons"]:
-                module_id = mid
+        # Пытаемся определить уровень и модуль (по первому попавшемуся)
+        level = None
+        module_id = "1"
+        for lvl, modules in ALL_MODULES.items():
+            for mid, mod in modules.items():
+                if key in mod["lessons"]:
+                    level = lvl
+                    module_id = mid
+                    break
+            if level:
                 break
+        if not level:
+            level = "A1"
         user_state["current_lesson"] = {
             "topic": topic_name,
             "key": key,
             "content": content,
             "page": 0,
-            "level": "A1",
-            "module_id": module_id or "1"
+            "level": level,
+            "module_id": module_id
         }
         set_user_state(user_id, user_state)
     await show_lesson_page(callback.message, user_id, edit=True)
@@ -586,7 +630,7 @@ async def back_to_alphabet(callback: CallbackQuery):
         await callback.message.answer("Урок не найден, вернитесь в меню тем.")
     await callback.answer()
 
-# ==================== ТЕМАТИЧЕСКИЕ УРОКИ (пагинация) ====================
+# ==================== ТЕМАТИЧЕСКИЕ УРОКИ ====================
 @router.callback_query(lambda c: c.data == "thematic_menu")
 async def thematic_lessons_menu(callback: CallbackQuery):
     user_id = callback.from_user.id
