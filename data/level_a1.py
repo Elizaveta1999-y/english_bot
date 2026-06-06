@@ -1622,20 +1622,298 @@ I – my, you – your, he – his, she – her, it – its, we – our, they �
             {"question": "Чем отличается must от have to?", "answer": "Must – личное чувство долга (я сам хочу). Have to – вынужденность (обстоятельства заставляют). Например: I must call my mom (я хочу позвонить). I have to work (меня заставляют)."}
         ]
     },
-    "ordinalNumbers": {
-        "title": "🥇 Порядковые числительные",
-        "pages": [{"title": "1-10", "text": "1st first, 2nd second, 3rd third, 4th fourth, 5th fifth, 6th sixth, 7th seventh, 8th eighth, 9th ninth, 10th tenth"}],
-        "faq": [{"question": "Как сказать дату?", "answer": "The fifth of May."}]
+        "ordinalNumbers": {
+        "title": "Порядковые числительные (какой по счёту?)",
+        "pages": [
+            {
+                "title": "Что такое порядковые числительные",
+                "text": """
+<b>🥇 Порядковые числительные отвечают на вопрос «который?»</b>
+
+Они обозначают место предмета в ряду: первый, второй, десятый, двадцать первый.
+
+В русском мы говорим: первый день, вторая неделя, третье место.
+В английском к числу добавляются окончания: 1st, 2nd, 3rd, 4th и т.д.
+
+<blockquote>Не путайте с количественными числительными (one, two, three – сколько?).</blockquote>
+"""
+            },
+            {
+                "title": "Числа 1–20",
+                "text": """
+<b>📌 Порядковые числительные от 1 до 20:</b>
+
+• 1st – first (первый)
+• 2nd – second (второй)
+• 3rd – third (третий)
+• 4th – fourth (четвёртый)
+• 5th – fifth (пятый)
+• 6th – sixth (шестой)
+• 7th – seventh (седьмой)
+• 8th – eighth (восьмой)
+• 9th – ninth (девятый)
+• 10th – tenth (десятый)
+• 11th – eleventh (одиннадцатый)
+• 12th – twelfth (двенадцатый)
+• 13th – thirteenth (тринадцатый)
+• 14th – fourteenth (четырнадцатый)
+• 15th – fifteenth (пятнадцатый)
+• 16th – sixteenth (шестнадцатый)
+• 17th – seventeenth (семнадцатый)
+• 18th – eighteenth (восемнадцатый)
+• 19th – nineteenth (девятнадцатый)
+• 20th – twentieth (двадцатый)
+
+<blockquote>Обратите внимание на исключения: first, second, third, fifth, eighth, ninth, twelfth.</blockquote>
+"""
+            },
+            {
+                "title": "Как образуются десятки и составные",
+                "text": """
+<b>📌 Десятки (20, 30, 40…):</b>
+
+Обычно меняем окончание -y на -ieth:
+• twenty → twentieth (двадцатый)
+• thirty → thirtieth (тридцатый)
+• forty → fortieth (сороковой – без буквы 'u')
+• fifty → fiftieth (пятидесятый)
+• sixty → sixtieth (шестидесятый)
+• seventy → seventieth (семидесятый)
+• eighty → eightieth (восьмидесятый)
+• ninety → ninetieth (девяностый)
+
+<b>📌 Составные числительные (21, 45, 83…):</b>
+
+Пишем десятки + единицы через дефис, причём единицы стоят в порядковой форме.
+• 21st – twenty‑first (двадцать первый)
+• 32nd – thirty‑second (тридцать второй)
+• 45th – forty‑fifth (сорок пятый)
+• 73rd – seventy‑third (семьдесят третий)
+• 99th – ninety‑ninth (девяносто девятый)
+
+<blockquote>Только последнее слово меняется на порядковое, остальные остаются количественными.</blockquote>
+"""
+            },
+            {
+                "title": "Примеры и советы",
+                "text": """
+<b>📖 Примеры в реальной жизни:</b>
+
+• My birthday is on June 10th. (Мой день рождения – десятого июня.)
+• She came first in the race. (Она пришла первой в забеге.)
+• This is the third time I've told you. (Это третий раз, когда я тебе говорю.)
+• He lives on the 15th floor. (Он живёт на 15-м этаже.)
+• Today is my 25th birthday. (Сегодня моё 25-летие.)
+
+<b>📆 Особое правило для дат:</b>
+• Мы говорим: the first of May (первое мая) или May first (американский вариант).
+• В разговоре обычно используют первый вариант: I was born on the 5th of July.
+
+<b>💡 Советы для запоминания:</b>
+1. Выучите первые три исключения: first, second, third – они встречаются чаще всего.
+2. Для остальных чисел помните правило: most numbers add -th, but five, eight, nine, twelve change.
+3. Тренируйтесь называть дни рождения друзей на английском: My friend's birthday is on March 12th.
+4. Обратите внимание на разницу между количественными и порядковыми в предложении: I have two cats (сколько?) vs. The second cat is black (который?).
+
+<blockquote>Повторяйте порядковые числительные каждый день, называя даты и места в очереди.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Как правильно произносить -th?", "answer": "Звук [θ] – кончик языка между зубами. Тренируйтесь на слове «think». Для чисел 4th, 5th, 6th – [θ] или [t] в быстрой речи, но лучше учить правильное произношение."},
+            {"question": "Как сказать 100th, 1000th?", "answer": "100th – hundredth, 1000th – thousandth. Обратите внимание: one hundredth – сотая часть, но в порядковых hundredth без 'one' означает сотый.")
+        ]
     },
-    "adverbsFrequency": {
-        "title": "📊 Наречия частотности",
-        "pages": [{"title": "Список", "text": "always, usually, often, sometimes, rarely, never"}],
-        "faq": [{"question": "Место в предложении?", "answer": "Перед глаголом, после to be."}]
+        "adverbsFrequency": {
+        "title": "Наречия частотности (как часто?)",
+        "pages": [
+            {
+                "title": "Что такое наречия частотности",
+                "text": """
+<b>📊 Наречия частотности показывают, как часто происходит действие.</b>
+
+Они отвечают на вопрос: «как часто?», «сколько раз?».
+В русском это: всегда, часто, иногда, редко, никогда.
+
+<blockquote>Эти слова помогают точнее описать привычки и рутину.</blockquote>
+"""
+            },
+            {
+                "title": "Список наречий с процентами",
+                "text": """
+<b>📌 Основные наречия частотности от 100% до 0%:</b>
+
+• always – всегда (100%)
+• usually – обычно (90%)
+• often – часто (70%)
+• sometimes – иногда (50%)
+• occasionally – время от времени (30%)
+• rarely – редко (10%)
+• never – никогда (0%)
+
+<b>Примеры:</b>
+• I always brush my teeth in the morning. (Я всегда чищу зубы утром.)
+• She usually drinks coffee at breakfast. (Она обычно пьёт кофе на завтрак.)
+• They often go to the cinema. (Они часто ходят в кино.)
+• He sometimes eats fast food. (Он иногда ест фастфуд.)
+• We rarely watch TV. (Мы редко смотрим телевизор.)
+• I never smoke. (Я никогда не курю.)
+
+<blockquote>Проценты приблизительные, но помогают понять разницу.</blockquote>
+"""
+            },
+            {
+                "title": "Место в предложении",
+                "text": """
+<b>📌 Правила порядка слов:</b>
+
+1. Наречие ставится <b>перед</b> основным глаголом (кроме глагола to be):
+   • I often play football. (Я часто играю в футбол.)
+   • She usually gets up at 7. (Она обычно встаёт в 7.)
+   • They never eat meat. (Они никогда не едят мясо.)
+
+2. С глаголом to be наречие ставится <b>после</b> него:
+   • I am always happy. (Я всегда счастлив.)
+   • She is never late. (Она никогда не опаздывает.)
+   • They are often tired. (Они часто уставшие.)
+
+3. В вопросах наречие ставится после подлежащего:
+   • Do you often go to the gym? (Ты часто ходишь в спортзал?)
+   • Is he always late? (Он всегда опаздывает?)
+
+<blockquote>Исключение: sometimes может стоять в начале или конце предложения для акцента.</blockquote>
+"""
+            },
+            {
+                "title": "Примеры и советы",
+                "text": """
+<b>📖 Живые примеры в контексте:</b>
+
+• I always make my bed in the morning. (Я всегда заправляю постель утром.)
+• My mother usually cooks dinner. (Моя мама обычно готовит ужин.)
+• We often go for a walk after work. (Мы часто гуляем после работы.)
+• It sometimes rains in summer. (Летом иногда идёт дождь.)
+• He rarely eats junk food. (Он редко ест вредную пищу.)
+• I never forget your birthday. (Я никогда не забываю твой день рождения.)
+
+<b>💡 Советы для запоминания:</b>
+1. Запомните порядок слов: for normal verbs – adverb before verb; for to be – adverb after verb.
+2. Составляйте предложения о своих привычках, используя always, usually, sometimes, never.
+3. Сравнивайте: I often drink tea but I never drink coffee.
+4. Обратите внимание, что sometimes может стоять и в конце: I go to the cinema sometimes.
+
+<blockquote>Используйте наречия частотности, чтобы описать свой типичный день.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "В чём разница между sometimes и occasionally?", "answer": "Sometimes – иногда (50%), occasionally – время от времени (30%), реже, чем sometimes."},
+            {"question": "Можно ли сказать «I go always»?", "answer": "Нет, всегда сначала наречие, потом глагол: I always go. Исключение – глагол to be: I am always happy."}
+        ]
     },
-    "prepositionsTime": {
-        "title": "⏰ Предлоги времени (at, in, on)",
-        "pages": [{"title": "Правила", "text": "at 5 o'clock, on Monday, in July"}],
-        "faq": [{"question": "Почему at night?", "answer": "Устойчивое выражение."}]
+        "prepositionsTime": {
+        "title": "Предлоги времени (at, in, on)",
+        "pages": [
+            {
+                "title": "Общее правило",
+                "text": """
+<b>⏰ Предлоги времени помогают указать, когда происходит действие.</b>
+
+В английском для времени используются три основных предлога: at, in, on.
+
+<blockquote>Запомните основное правило: at – точное время, on – дни и даты, in – месяцы, годы, части дня.</blockquote>
+"""
+            },
+            {
+                "title": "At – для точного времени и коротких периодов",
+                "text": """
+<b>📌 Предлог at используется:</b>
+
+1. С точным временем:
+   • at 5 o'clock (в 5 часов)
+   • at 10:30 (в 10:30)
+   • at noon (в полдень)
+   • at midnight (в полночь)
+
+2. С короткими периодами:
+   • at the weekend (на выходных – британский вариант)
+   • at night (ночью)
+   • at the moment (в данный момент)
+   • at the same time (в то же время)
+
+<b>Примеры:</b>
+• I wake up at 7 am. (Я просыпаюсь в 7 утра.)
+• Let's meet at noon. (Давай встретимся в полдень.)
+• He works at night. (Он работает ночью.)
+"""
+            },
+            {
+                "title": "On – для дней и дат",
+                "text": """
+<b>📌 Предлог on используется:</b>
+
+1. С днями недели:
+   • on Monday (в понедельник)
+   • on Friday (в пятницу)
+
+2. С конкретными датами:
+   • on May 5th (пятого мая)
+   • on my birthday (в мой день рождения)
+
+3. С частями дня, если они уточняются:
+   • on Monday morning (в понедельник утром)
+   • on the evening of June 10th (вечером десятого июня)
+
+<b>Примеры:</b>
+• I have a meeting on Monday. (У меня встреча в понедельник.)
+• She was born on July 15th. (Она родилась 15 июля.)
+• We'll leave on Friday afternoon. (Мы уедем в пятницу днём.)
+
+<blockquote>В американском английском часто говорят «on the weekend» вместо «at the weekend».</blockquote>
+"""
+            },
+            {
+                "title": "In – для месяцев, годов и частей дня",
+                "text": """
+<b>📌 Предлог in используется:</b>
+
+1. С месяцами и годами:
+   • in July (в июле)
+   • in 2025 (в 2025 году)
+
+2. С частями дня (без уточнения):
+   • in the morning (утром)
+   • in the afternoon (днём)
+   • in the evening (вечером)
+
+3. С периодами:
+   • in summer (летом)
+   • in the 20th century (в XX веке)
+
+<b>Примеры:</b>
+• I was born in August. (Я родился в августе.)
+• We'll travel in 2026. (Мы поедем путешествовать в 2026 году.)
+• I study in the morning. (Я занимаюсь утром.)
+
+<b>⚠️ Исключения (устойчивые выражения):</b>
+• at night (ночью) – НЕ in the night
+• at the weekend (на выходных)
+• on time (вовремя)
+• in time (своевременно, загодя)
+
+<b>💡 Советы для запоминания:</b>
+1. Выучите аббревиатуру: A‑T‑O‑N – At (точное время), On (дни), (в месяцах).
+2. Составляйте предложения о своём расписании: I wake up at 7, I have breakfast at 8, I work on weekdays, I relax in the evening.
+3. Обратите внимание на разницу: at 5 o'clock (точное время) vs. in the evening (часть дня).
+
+<blockquote>Повторяйте предлоги в контексте: at night, on Monday, in July.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Почему at night, но in the evening?", "answer": "Это исторически сложившиеся выражения. Просто запомните: at night (ночью), in the evening (вечером)."},
+            {"question": "Как сказать 'в 8 часов утра'?", "answer": "at 8 am (или at 8 in the morning – допустимо, но чаще просто at 8 am)."}
+        ]
     },
     "foodVocabulary": {
         "title": "🍎 Еда и напитки",
