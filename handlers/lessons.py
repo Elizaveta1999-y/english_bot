@@ -9,7 +9,6 @@ from speaking.services.tts import text_to_voice
 
 router = Router()
 
-# ========== ТЕМАТИЧЕСКИЕ УРОКИ (список) ==========
 THEMATIC_TOPICS = [
     "Present Simple vs Continuous",
     "Past Simple vs Present Perfect",
@@ -33,7 +32,6 @@ THEMATIC_TOPICS = [
     "Условные предложения 3 типа (wish/if only)"
 ]
 
-# ========== УРОВНЕВЫЕ УРОКИ A1 ==========
 LEVEL_A1_TOPICS = [
     "alphabet",
     "numbers120",
@@ -64,7 +62,6 @@ LEVEL_A1_NAMES = {
     "present_simple": "⏰ Present Simple (настоящее простое время)"
 }
 
-# ========== ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ (без изменений) ==========
 user_page = {}
 
 def get_thematic_keyboard(page: int, total_pages: int) -> InlineKeyboardMarkup:
@@ -94,7 +91,7 @@ def get_level_lessons_keyboard(level: str) -> InlineKeyboardMarkup:
     buttons = []
     for key in topics:
         display_name = names.get(key, key)
-        buttons.append([InlineKeyboardButton(text=display_name, callback_data=f"level_lesson_{level}_{key}")])
+        buttons.append([InlineKeyboardButton(text=display_name, callback_data=f"level_lesson_{level}|{key}")])
     buttons.append([InlineKeyboardButton(text="🔙 Назад к уровням", callback_data="start_lessons")])
     buttons.append([InlineKeyboardButton(text="🏠 Главное меню", callback_data="back_to_main")])
     return InlineKeyboardMarkup(inline_keyboard=buttons)
@@ -147,7 +144,6 @@ async def show_lesson_page(message: Message, user_id: int, edit: bool = True):
     else:
         await message.answer(text, reply_markup=keyboard, parse_mode="HTML")
 
-# ========== ГЛАВНОЕ МЕНЮ УРОКОВ ==========
 @router.callback_query(lambda c: c.data == "start_lessons")
 async def lessons_menu(callback: CallbackQuery):
     user_id = callback.from_user.id
@@ -177,7 +173,6 @@ async def lessons_menu(callback: CallbackQuery):
     )
     await callback.answer()
 
-# ========== УРОВНЕВЫЕ УРОКИ ==========
 @router.callback_query(lambda c: c.data.startswith("level_A") or c.data.startswith("level_B") or c.data.startswith("level_C"))
 async def level_chosen(callback: CallbackQuery):
     level = callback.data.split("_")[1]
@@ -202,9 +197,13 @@ async def level_chosen(callback: CallbackQuery):
 
 @router.callback_query(lambda c: c.data.startswith("level_lesson_"))
 async def level_lesson_chosen(callback: CallbackQuery):
-    parts = callback.data.split("_")
-    level = parts[2]
-    lesson_key = parts[3]
+    parts = callback.data.split("|")
+    if len(parts) != 2:
+        await callback.answer("Ошибка: неверный формат данных", show_alert=True)
+        return
+    prefix = parts[0]
+    lesson_key = parts[1]
+    level = prefix.split("_")[2]
     content = LESSON_CONTENT.get(lesson_key)
     if not content:
         await callback.answer("Урок не найден", show_alert=True)
@@ -248,7 +247,6 @@ async def back_to_level(callback: CallbackQuery):
         )
     await callback.answer()
 
-# ========== ТЕМАТИЧЕСКИЕ УРОКИ (пагинация) ==========
 @router.callback_query(lambda c: c.data == "thematic_menu")
 async def thematic_lessons_menu(callback: CallbackQuery):
     user_id = callback.from_user.id
@@ -327,7 +325,6 @@ async def show_thematic_lesson(callback: CallbackQuery):
     await show_lesson_page(callback.message, user_id, edit=True)
     await callback.answer()
 
-# ========== НАВИГАЦИЯ ПО СТРАНИЦАМ УРОКА ==========
 @router.callback_query(lambda c: c.data == "lesson_next_page")
 async def lesson_next_page(callback: CallbackQuery):
     user_id = callback.from_user.id
@@ -363,7 +360,6 @@ async def lesson_prev_page(callback: CallbackQuery):
         await callback.answer("Это первая страница", show_alert=True)
     await callback.answer()
 
-# ========== FAQ, ВОПРОСЫ, ПРАКТИКА (общие) ==========
 @router.callback_query(lambda c: c.data.startswith("lesson_faq_"))
 async def lesson_faq(callback: CallbackQuery):
     key = callback.data.split("_")[2]
@@ -420,7 +416,6 @@ async def back_to_lesson(callback: CallbackQuery):
     user_id = callback.from_user.id
     user_state = get_user_state(user_id)
     if "current_lesson" not in user_state or user_state["current_lesson"].get("key") != key:
-        # Восстанавливаем урок из A1 или тематических
         topic_name = None
         for t in LEVEL_A1_TOPICS:
             if t == key:
@@ -487,7 +482,6 @@ async def lesson_reask(callback: CallbackQuery):
     )
     await callback.answer()
 
-# ========== АУДИО ДЛЯ БУКВ (ElevenLabs + кэш) ==========
 CACHE_DIR = "cached_audio/alphabet"
 os.makedirs(CACHE_DIR, exist_ok=True)
 
@@ -569,7 +563,6 @@ async def back_to_alphabet(callback: CallbackQuery):
         await callback.message.answer("Урок не найден, вернитесь в меню тем.")
     await callback.answer()
 
-# ========== МОЁ ОБУЧЕНИЕ, ТЕСТ, ПРОЧЕЕ ==========
 @router.callback_query(lambda c: c.data == "my_learning")
 async def my_learning_menu(callback: CallbackQuery):
     user_id = callback.from_user.id
@@ -595,7 +588,95 @@ async def my_learning_menu(callback: CallbackQuery):
     await callback.answer()
 
 @router.callback_query(lambda c: c.data == "continue_learning")
-async def continue_learning(callback: CallbackQuery):
+async def continue_learning как в слове Orange',
+    'P': 'P — пи, как в слове Pen',
+    'Q': 'Q — кью, как в слове Queen',
+    'R': 'R — ар, как в слове Red',
+    'S': 'S — эс, как в слове Sun',
+    'T': 'T — ти, как в слове Tea',
+    'U': 'U — ю, как в слове Umbrella',
+    'V': 'V — ви, как в слове Violin',
+    'W': 'W — дабл-ю, как в слове Window',
+    'X': 'X — экс, как в слове X-ray',
+    'Y': 'Y — уай, как в слове Yellow',
+    'Z': 'Z — зед, как в слове Zebra'
+}
+
+@router.callback_query(lambda c: c.data.startswith("pronounce_"))
+async def pronounce_letter(callback: CallbackQuery):
+    parts = callback.data.split("_")
+    lesson_key = parts[1]
+    letter = parts[2]
+
+    cached_path = os.path.join(CACHE_DIR, f"{letter}.mp3")
+    if os.path.exists(cached_path):
+        voice = FSInputFile(cached_path)
+        reply_keyboard = InlineKeyboardMarkup(inline_keyboard=[
+            [InlineKeyboardButton(text="🔁 Ещё раз", callback_data=f"pronounce_{lesson_key}_{letter}")],
+            [InlineKeyboardButton(text="🔙 Назад к алфавиту", callback_data=f"back_to_alphabet_{lesson_key}")]
+        ])
+        await callback.message.answer_voice(voice, caption=f"🔊 {letter}", reply_markup=reply_keyboard)
+        await callback.answer()
+        return
+
+    await callback.message.answer("🔊 Генерирую произношение... Подождите секунду.")
+    text_to_speak = LETTER_PRONUNCIATION.get(letter, f"{letter}")
+    audio_path = await text_to_voice(text_to_speak)
+
+    if audio_path and os.path.exists(audio_path):
+        import shutil
+        shutil.copy(audio_path, cached_path)
+        voice = FSInputFile(cached_path)
+        reply_keyboard = InlineKeyboardMarkup(inline_keyboard=[
+            [InlineKeyboardButton(text="🔁 Ещё раз", callback_data=f"pronounce_{lesson_key}_{letter}")],
+            [InlineKeyboardButton(text="🔙 Назад к алфавиту", callback_data=f"back_to_alphabet_{lesson_key}")]
+        ])
+        await callback.message.answer_voice(voice, caption=f"🔊 {letter}", reply_markup=reply_keyboard)
+        os.unlink(audio_path)
+    else:
+        await callback.message.answer("❌ Не удалось сгенерировать произношение. Попробуйте позже.")
+    await callback.answer()
+
+@router.callback_query(lambda c: c.data.startswith("back_to_alphabet_"))
+async def back_to_alphabet(callback: CallbackQuery):
+    lesson_key = callback.data.split("_")[3]
+    user_id = callback.from_user.id
+    user_state = get_user_state(user_id)
+    if user_state.get("current_lesson", {}).get("key") == lesson_key:
+        lesson = user_state["current_lesson"]
+        lesson["page"] = 0
+        set_user_state(user_id, user_state)
+        await show_lesson_page(callback.message, user_id, edit=True)
+    else:
+        await callback.message.answer("Урок не найден, вернитесь в меню тем.")
+    await callback.answer()
+
+@router.callback_query(lambda c: c.data == "my_learning")
+async def my_learning_menu(callback: CallbackQuery):
+    user_id = callback.from_user.id
+    user_state = get_user_state(user_id)
+    lessons_data = user_state.get("lessons", {})
+    level = lessons_data.get("level", "не выбран")
+    completed_topics = lessons_data.get("completed_topics", [])
+    total_correct = lessons_data.get("total_correct", 0)
+    total_wrong = lessons_data.get("total_wrong", 0)
+
+    progress_text = f"📊 Ваш прогресс\n\n🎯 Уровень: {level}\n✅ Выполнено тем: {len(completed_topics)}\n📈 Правильных ответов: {total_correct}\n❌ Ошибок: {total_wrong}\n"
+    if total_correct + total_wrong > 0:
+        percent = round(total_correct / (total_correct + total_wrong) * 100)
+        progress_text += f"📊 Точность: {percent}%\n"
+
+    keyboard = InlineKeyboardMarkup(inline_keyboard=[
+        [InlineKeyboardButton(text="⏩ Продолжить обучение", callback_data="continue_learning")],
+        [InlineKeyboardButton(text="📅 План недели", callback_data="weekly_plan")],
+        [InlineKeyboardButton(text="🔄 Сменить уровень", callback_data="start_lessons")],
+        [InlineKeyboardButton(text="🔙 Назад", callback_data="start_lessons")]
+    ])
+    await callback.message.edit_text(progress_text, reply_markup=keyboard, parse_mode="HTML")
+    await callback.answer()
+
+@router.callback_query(lambda c: c.data == "continue_learning")
+async(callback: CallbackQuery):
     await callback.message.edit_text("🚧 Режим продолжения обучения в разработке.", reply_markup=InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(text="🔙 Назад", callback_data="my_learning")]
     ]))
