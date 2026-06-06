@@ -1241,10 +1241,43 @@ I – my, you – your, he – his, she – her, it – its, we – our, they �
             {"question": "Как быстро определить, какое время нужно?", "answer": "Задайте себе вопрос: действие происходит прямо сейчас или это общая истина / привычка?"}
         ]
     },
-    "tobePast": {
-        "title": "📆 to be в прошедшем (was/were)",
-        "pages": [{"title": "Формы", "text": "I/he/she/it – was; you/we/they – were"}],
-        "faq": [{"question": "Разница was/were?", "answer": "Was – ед.ч., were – мн.ч. и you."}]
+        "tobePast": {
+        "title": "Глагол to be в прошедшем (was/were)",
+        "pages": [
+            {
+                "title": "Формы",
+                "text": """
+<b>📆 Прошедшее время глагола to be:</b>
+
+• I/he/she/it – was (был, была, было)
+• you/we/they – were (были)
+
+<b>Примеры:</b>
+• I was at home. (Я был дома.)
+• She was happy. (Она была счастлива.)
+• They were tired. (Они были уставшими.)
+"""
+            },
+            {
+                "title": "Отрицание и вопрос",
+                "text": """
+<b>🚫 Отрицание:</b> was not (wasn't), were not (weren't)
+• He wasn't late. (Он не опоздал.)
+• We weren't ready. (Мы не были готовы.)
+
+<b>❓ Вопрос:</b> Was/Were + подлежащее?
+• Was he a doctor? (Он был врачом?)
+• Were you tired? (Ты устал?)
+
+<b>Краткие ответы:</b>
+• Yes, I was. / No, I wasn't.
+• Yes, they were. / No, they weren't.
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Разница was/were?", "answer": "Was для единственного числа (кроме you), were для множественного и you."}
+        ]
     },
     "pastSimpleRegular": {
         "title": "✔️ Past Simple (правильные глаголы)",
