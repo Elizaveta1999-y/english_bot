@@ -1207,10 +1207,39 @@ I – my, you – your, he – his, she – her, it – its, we – our, they �
             {"question": "Можно ли сказать I am living in London для постоянного места жительства?", "answer": "Нет, для постоянного места жительства используйте Present Simple: I live in London. Present Continuous показывает временную ситуацию."}
         ]
     },
-    "presimplevscont": {
-        "title": "🔄 Present Simple vs Continuous",
-        "pages": [{"title": "Разница", "text": "Simple – регулярно, Continuous – сейчас"}],
-        "faq": [{"question": "Как не путать?", "answer": "Смотри на маркеры."}]
+        "presimplevscont": {
+        "title": "Present Simple vs Present Continuous",
+        "pages": [
+            {
+                "title": "Разница",
+                "text": """
+<b>🔄 Сравнение двух времён:</b>
+
+• <b>Present Simple</b> – регулярные действия, факты, расписание.
+• <b>Present Continuous</b> – прямо сейчас, временно, планы.
+
+<b>Примеры:</b>
+• I work every day. (рутина – Simple)
+• I am working now. (сейчас – Continuous)
+• She speaks French. (факт – Simple)
+• She is speaking French right now. (действие в момент речи – Continuous)
+"""
+            },
+            {
+                "title": "Как не путать",
+                "text": """
+<b>🔍 Смотрите на маркеры:</b>
+
+• always, usually, every day, on Mondays → Simple
+• now, at the moment, today, this week → Continuous
+
+<blockquote>Запомните: Simple – постоянство, привычки. Continuous – процесс, временность.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Как быстро определить, какое время нужно?", "answer": "Задайте себе вопрос: действие происходит прямо сейчас или это общая истина / привычка?"}
+        ]
     },
     "tobePast": {
         "title": "📆 to be в прошедшем (was/were)",
