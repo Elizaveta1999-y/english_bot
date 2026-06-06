@@ -2256,20 +2256,219 @@ I – my, you – your, he – his, she – her, it – its, we – our, they �
             {"question": "В чём разница между 'it's rainy' и 'it's raining'?", "answer": "It's rainy – состояние (дождливый день), it's raining – действие прямо сейчас (идёт дождь)."}
         ]
     },
-    "dailyRoutine": {
-        "title": "⏳ Режим дня",
-        "pages": [{"title": "Глаголы", "text": "wake up, get up, brush teeth, have a shower, get dressed, have breakfast, go to school/work, have lunch, do homework, watch TV, have dinner, go to bed"}],
-        "faq": [{"question": "Как спросить о времени?", "answer": "What time do you wake up?"}]
+        "dailyRoutine": {
+        "title": "Режим дня (Daily Routine)",
+        "pages": [
+            {
+                "title": "Глаголы для описания дня",
+                "text": """
+<b>⏳ Основные действия в течение дня:</b>
+
+• wake up – просыпаться
+• get up – вставать (с кровати)
+• brush teeth – чистить зубы
+• have a shower – принимать душ
+• get dressed – одеваться
+• have breakfast – завтракать
+• go to school / work – идти в школу / на работу
+• study – учиться
+• work – работать
+• have lunch – обедать
+• do homework – делать домашнее задание
+• watch TV – смотреть телевизор
+• have dinner – ужинать
+• go to bed – ложиться спать
+
+<blockquote>Многие глаголы можно использовать в Present Simple для описания ежедневной рутины.</blockquote>
+"""
+            },
+            {
+                "title": "Пример рассказа о своём дне",
+                "text": """
+<b>📖 Пример текста (настоящее время):</b>
+
+I wake up at 7 o'clock every morning. I get up and brush my teeth. Then I have a shower and get dressed. I have breakfast at 7:30. I usually eat cereal or toast. I go to work at 8. I work from 9 to 5. I have lunch at 1. After work, I come home at 6. I have dinner at 7. Then I watch TV or read a book. I go to bed at 11.
+
+<b>Перевод:</b>
+Я просыпаюсь в 7 часов каждое утро. Я встаю и чищу зубы. Затем принимаю душ и одеваюсь. Я завтракаю в 7:30. Обычно я ем хлопья или тост. Я иду на работу в 8. Я работаю с 9 до 5. Я обедаю в час. После работы я прихожу домой в 6. Я ужинаю в 7. Потом я смотрю телевизор или читаю книгу. Я ложусь спать в 11.
+
+<blockquote>Попробуйте написать похожий рассказ о своём типичном дне.</blockquote>
+"""
+            },
+            {
+                "title": "Вопросы о распорядке дня",
+                "text": """
+<b>❓ Как спросить о режиме дня:</b>
+
+• What time do you wake up? – Во сколько ты просыпаешься?
+• What do you usually have for breakfast? – Что ты обычно ешь на завтрак?
+• How do you get to work? – Как ты добираешься до работы?
+• What do you do in the evening? – Что ты делаешь вечером?
+• When do you go to bed? – Когда ты ложишься спать?
+
+<b>💡 Советы:</b>
+1. Используйте наречия частотности: I usually wake up at 7, but sometimes I sleep in on weekends.
+2. Соединяйте действия с помощью then, after that, before, later: I have breakfast, then I go to work.
+3. Практикуйтесь в парах: задавайте вопросы другу и отвечайте.
+
+<blockquote>Рассказ о распорядке дня – одна из самых частых тем в разговоре.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Как сказать 'я принимаю душ'?", "answer": "I have a shower (или I take a shower – американский вариант)."},
+            {"question": "Разница между 'go to work' и 'go to the work'?", "answer": "Go to work – идти на работу (на службу), артикль не нужен."}
+        ]
     },
-    "familyVocabulary": {
-        "title": "👪 Семья",
-        "pages": [{"title": "Члены семьи", "text": "mother, father, parents, sister, brother, son, daughter, grandmother, grandfather, grandparents, aunt, uncle, cousin, niece, nephew, wife, husband"}],
-        "faq": [{"question": "Как отличить niece от nephew?", "answer": "Niece – племянница, nephew – племянник."}]
+        "familyVocabulary": {
+        "title": "Лексика: семья",
+        "pages": [
+            {
+                "title": "Члены семьи",
+                "text": """
+<b>👪 Основные члены семьи:</b>
+
+• mother – мама
+• father – папа
+• parents – родители
+• sister – сестра
+• brother – брат
+• son – сын
+• daughter – дочь
+• grandmother – бабушка
+• grandfather – дедушка
+• grandparents – бабушка и дедушка
+• aunt – тётя
+• uncle – дядя
+• cousin – двоюродный брат / сестра
+• niece – племянница
+• nephew – племянник
+• wife – жена
+• husband – муж
+
+<blockquote>Слова с grand- (grandmother, grandfather) могут быть с маминой или папиной стороны.</blockquote>
+"""
+            },
+            {
+                "title": "Примеры предложений",
+                "text": """
+<b>📖 Рассказ о семье:</b>
+
+I have a big family. My mother's name is Anna. She is a teacher. My father's name is John. He is a doctor. I have one sister and two brothers. My sister's name is Kate. She is 25. My grandmother lives with us. She is 70. I love my family.
+
+<b>Перевод:</b>
+У меня большая семья. Мою маму зовут Анна. Она учительница. Моего папу зовут Джон. Он врач. У меня есть одна сестра и два брата. Мою сестру зовут Кейт. Ей 25. Моя бабушка живёт с нами. Ей 70. Я люблю свою семью.
+
+<b>Притяжательный падеж:</b>
+• My mother's name – имя моей матери (апостроф + s)
+• My parents' car – машина моих родителей (апостроф после s)
+
+<blockquote>Притяжательный падеж для людей: John's car, my sister's phone.</blockquote>
+"""
+            },
+            {
+                "title": "Вопросы о семье и советы",
+                "text": """
+<b>❓ Как спросить о семье:</b>
+
+• Do you have any brothers or sisters? – У тебя есть братья или сёстры?
+• What does your father do? – Кем работает твой отец?
+• How old is your mother? – Сколько лет твоей маме?
+• Do you live with your grandparents? – Ты живёшь с бабушкой и дедушкой?
+
+<b>💡 Советы:</b>
+1. Нарисуйте своё генеалогическое дерево и подпишите всех на английском.
+2. Запомните разницу между niece (племянница) и nephew (племянник).
+3. Для двоюродных братьев/сестёр используйте cousin без указания пола (можно уточнить male cousin / female cousin).
+4. Расскажите о своей семье друзьям – это частая тема для знакомства.
+
+<blockquote>Учите слова вместе с притяжательными местоимениями: my mother, your father, his sister.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Как сказать 'сводный брат'?", "answer": "Stepbrother (сын отчима или мачехи)."}
+        ]
     },
-    "houseVocabulary": {
-        "title": "🏠 Дом и комната",
-        "pages": [{"title": "Комнаты", "text": "living room, bedroom, kitchen, bathroom, dining room, hall, study, garage, garden, balcony"}, {"title": "Мебель", "text": "bed, sofa, table, chair, cupboard, wardrobe, desk, shelf, lamp, curtain, carpet, mirror, fridge, cooker, sink, bath, shower, toilet"}],
-        "faq": [{"question": "Ванная: bathroom или restroom?", "answer": "Bathroom – в доме, restroom – в общественных местах."}]
+        "houseVocabulary": {
+        "title": "Лексика: дом и комната",
+        "pages": [
+            {
+                "title": "Комнаты в доме",
+                "text": """
+<b>🏠 Комнаты (rooms):</b>
+
+• living room – гостиная
+• bedroom – спальня
+• kitchen – кухня
+• bathroom – ванная
+• dining room – столовая
+• hall – коридор, прихожая
+• study – кабинет
+• garage – гараж
+• garden – сад
+• balcony – балкон
+
+<b>Примеры:</b>
+• We watch TV in the living room. (Мы смотрим телевизор в гостиной.)
+• I sleep in the bedroom. (Я сплю в спальне.)
+• My mother cooks in the kitchen. (Моя мама готовит на кухне.)
+
+<blockquote>В британском английском «bathroom» – это комната с ванной, а туалет часто называют «toilet».</blockquote>
+"""
+            },
+            {
+                "title": "Мебель и предметы интерьера",
+                "text": """
+<b>🛋️ Мебель (furniture):</b>
+
+• bed – кровать
+• sofa – диван
+• table – стол
+• chair – стул
+• cupboard – шкаф (кухонный или для посуды)
+• wardrobe – платяной шкаф
+• desk – письменный стол
+• shelf – полка
+• lamp – лампа
+• curtain – штора
+• carpet – ковёр
+• mirror – зеркало
+
+<b>Техника и бытовые предметы:</b>
+• fridge – холодильник
+• cooker – плита
+• sink – раковина
+• bath – ванна
+• shower – душ
+• toilet – туалет
+
+<blockquote>Предлоги места: The book is on the shelf. The cat is under the table.</blockquote>
+"""
+            },
+            {
+                "title": "Описание комнаты",
+                "text": """
+<b>📖 Пример описания комнаты:</b>
+
+My bedroom is small but cozy. There is a bed in the corner. Next to the bed, there is a bedside table with a lamp. There is a wardrobe on the left. On the wall, there is a beautiful picture. The window is opposite the bed. There are blue curtains on the window. I have a desk with a chair near the window. I like my room.
+
+<b>Перевод:</b>
+Моя спальня маленькая, но уютная. В углу стоит кровать. Рядом с кроватью – тумбочка с лампой. Слева стоит шкаф. На стене висит красивая картина. Окно напротив кровати. На окне синие шторы. У меня есть письменный стол со стулом возле окна. Мне нравится моя комната.
+
+<b>💡 Советы:</b>
+1. Опишите свою комнату, используя there is / there are и предлоги места.
+2. Выучите названия самых нужных предметов: bed, chair, table, lamp, fridge, cooker.
+3. Для тренировки нарисуйте план дома и подпишите все комнаты на английском.
+
+<blockquote>Умение описать дом поможет при бронировании отеля или разговоре о жилье.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "В чём разница между 'bathroom' и 'restroom'?", "answer": "Bathroom – в доме (ванная комната), restroom – в общественном месте (туалет)."},
+            {"question": "Как сказать 'балкон'?", "answer": "Balcony."}
+        ]
     },
     "townVocabulary": {
         "title": "🏙️ Город",
