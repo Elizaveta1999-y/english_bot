@@ -140,14 +140,12 @@ def get_module_lessons_keyboard(level: str, module_id: str) -> InlineKeyboardMar
     buttons = []
     for key in lessons:
         name = LESSON_NAMES.get(key, key)
-        # Используем | как разделитель, чтобы избежать проблем с подчёркиваниями в ключах
         buttons.append([InlineKeyboardButton(text=name, callback_data=f"lesson_{level}|{module_id}|{key}")])
     buttons.append([InlineKeyboardButton(text="🔙 Назад к модулям", callback_data=f"back_to_modules_{level}")])
     buttons.append([InlineKeyboardButton(text="🏠 Главное меню", callback_data="back_to_main")])
     return InlineKeyboardMarkup(inline_keyboard=buttons)
 
 async def show_lesson_page(message: Message, user_id: int, edit: bool = True):
-    """Отображает текущую страницу урока (из current_lesson)"""
     user_state = get_user_state(user_id)
     lesson = user_state.get("current_lesson")
     if not lesson:
@@ -163,7 +161,6 @@ async def show_lesson_page(message: Message, user_id: int, edit: bool = True):
 
     text = f"<b>📖 {lesson['topic']}</b>\n\n{page['text']}"
 
-    # Навигация по страницам
     nav_buttons = []
     if page_idx > 0:
         nav_buttons.append(InlineKeyboardButton(text="◀ Назад", callback_data="lesson_prev_page"))
@@ -171,7 +168,6 @@ async def show_lesson_page(message: Message, user_id: int, edit: bool = True):
     if page_idx < total_pages - 1:
         nav_buttons.append(InlineKeyboardButton(text="Далее ▶", callback_data="lesson_next_page"))
 
-    # Постоянные кнопки урока
     lesson_buttons = [
         [InlineKeyboardButton(text="❓ Частые вопросы", callback_data=f"lesson_faq_{key}")],
         [InlineKeyboardButton(text="🤔 Задать вопрос", callback_data=f"lesson_ask_{key}")],
@@ -180,7 +176,6 @@ async def show_lesson_page(message: Message, user_id: int, edit: bool = True):
         [InlineKeyboardButton(text="🏠 Главное меню", callback_data="back_to_main")]
     ]
 
-    # Специальные аудио-кнопки для алфавита
     if page.get("has_audio_buttons") and key == "alphabet":
         letters = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']
         audio_rows = []
@@ -268,9 +263,7 @@ async def module_chosen(callback: CallbackQuery):
 
 @router.callback_query(lambda c: c.data.startswith("lesson_"))
 async def lesson_chosen(callback: CallbackQuery):
-    # Убираем префикс "lesson_"
-    raw = callback.data[7:]  # после "lesson_"
-    # raw имеет формат: "A1|1|alphabet" или "A1_1_alphabet"
+    raw = callback.data[7:]  # убираем "lesson_"
     if "|" in raw:
         parts = raw.split("|")
         if len(parts) != 3:
@@ -312,7 +305,6 @@ async def lesson_chosen(callback: CallbackQuery):
 
 @router.callback_query(lambda c: c.data.startswith("back_to_module_"))
 async def back_to_module(callback: CallbackQuery):
-    # формат: back_to_module_1|A1
     raw = callback.data[15:]  # убираем "back_to_module_"
     if "|" not in raw:
         await callback.answer("Ошибка формата", show_alert=True)
