@@ -2732,24 +2732,410 @@ Go straight for two blocks, then turn left. The pharmacy is on the right, opposi
             {"question": "Как спросить о профессии вежливо?", "answer": "What do you do for a living? или What is your occupation?"}
         ]
     },
-    "hobbyVocabulary": {
-        "title": "🎨 Хобби",
-        "pages": [{"title": "Хобби", "text": "reading, writing, drawing, painting, photography, cooking, baking, gardening, hiking, camping, fishing, swimming, running, cycling, playing football, playing chess, listening to music, watching films, playing video games, travelling"}],
-        "faq": [{"question": "Как спросить о хобби?", "answer": "What do you like doing in your free time?"}]
+        "hobbyVocabulary": {
+        "title": "Лексика: хобби и свободное время",
+        "pages": [
+            {
+                "title": "Виды хобби",
+                "text": """
+<b>🎨 Популярные хобби (hobbies):</b>
+
+• reading – чтение
+• writing – писательство
+• drawing – рисование
+• painting – живопись
+• photography – фотография
+• cooking – приготовление еды
+• baking – выпечка
+• gardening – садоводство
+• hiking – пеший туризм
+• camping – кемпинг
+• fishing – рыбалка
+• swimming – плавание
+• running – бег
+• cycling – велоспорт
+• playing football – играть в футбол
+• playing chess – играть в шахматы
+• listening to music – слушать музыку
+• watching films – смотреть фильмы
+• playing video games – играть в видеоигры
+• travelling – путешествовать
+
+<blockquote>Многие хобби образуются от глаголов с окончанием -ing: reading, swimming, travelling.</blockquote>
+"""
+            },
+            {
+                "title": "Как говорить о хобби",
+                "text": """
+<b>📌 Полезные фразы и конструкции:</b>
+
+• I like + V‑ing (мне нравится...)
+  • I like reading books. (Мне нравится читать книги.)
+  • I like playing tennis. (Мне нравится играть в теннис.)
+
+• I enjoy + V‑ing (я наслаждаюсь, получаю удовольствие)
+  • I enjoy cooking for my friends. (Мне нравится готовить для друзей.)
+
+• I am interested in + существительное / V‑ing (я интересуюсь)
+  • I am interested in photography. (Я интересуюсь фотографией.)
+  • I am interested in learning languages. (Я интересуюсь изучением языков.)
+
+• My hobby is + V‑ing (моё хобби – это)
+  • My hobby is playing the guitar. (Моё хобби – игра на гитаре.)
+
+<blockquote>Обратите внимание: после like, enjoy, be interested in идёт глагол с окончанием -ing.</blockquote>
+"""
+            },
+            {
+                "title": "Примеры и вопросы",
+                "text": """
+<b>📖 Примеры предложений:</b>
+
+• In my free time, I usually watch films or listen to music. (В свободное время я обычно смотрю фильмы или слушаю музыку.)
+• He loves playing video games. (Он обожает играть в видеоигры.)
+• We often go hiking at the weekend. (Мы часто ходим в походы на выходных.)
+• She started painting two years ago. (Она начала рисовать два года назад.)
+
+<b>❓ Как спросить о хобби:</b>
+
+• What do you like doing in your free time? – Что ты любишь делать в свободное время?
+• What are your hobbies? – Какие у тебя хобби?
+• Do you play any sports? – Ты занимаешься каким‑нибудь спортом?
+• How often do you go to the cinema? – Как часто ты ходишь в кино?
+
+<b>Ответы:</b>
+• I often play football with my friends. – Я часто играю в футбол с друзьями.
+• I go to the gym three times a week. – Я хожу в спортзал три раза в неделю.
+
+<blockquote>Разговор о хобби – отличный способ найти общие интересы.</blockquote>
+"""
+            },
+            {
+                "title": "Советы по запоминанию",
+                "text": """
+<b>💡 Советы:</b>
+
+1. Сгруппируйте хобби по активностям: indoor (reading, drawing) и outdoor (hiking, cycling).
+2. Составьте список своих хобби и напишите о них 3-5 предложений.
+3. Используйте приложения вроде Meetup, чтобы читать описания групп по интересам на английском.
+4. Спросите друга о его хобби и расскажите о своём – практикуйте диалоги.
+5. Запомните конструкцию: I like + V‑ing – она подходит для большинства случаев.
+
+<blockquote>Зная лексику хобби, вы сможете поддержать разговор на любую тему.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Разница между like и enjoy?", "answer": "Like – общее «нравится», enjoy – «получаю удовольствие, наслаждаюсь», чуть более эмоционально."}
+        ]
     },
-    "holidayVocabulary": {
-        "title": "✈️ Отпуск",
-        "pages": [{"title": "Слова", "text": "travel, trip, journey, holiday, vacation, tourist, guide, hotel, hostel, campsite, luggage, suitcase, ticket, passport, visa, flight, airport, train, bus, car, ship, cruise, beach, mountain, lake, forest"}],
-        "faq": [{"question": "Разница travel/trip/journey?", "answer": "Travel – путешествие вообще, trip – поездка туда‑обратно, journey – путь в одну сторону."}]
+        "holidayVocabulary": {
+        "title": "Лексика: отпуск и путешествия",
+        "pages": [
+            {
+                "title": "Основные слова",
+                "text": """
+<b>✈️ Путешествия (travel):</b>
+
+• travel – путешествие (вообще)
+• trip – поездка (туда‑обратно)
+• journey – путь, поездка (в одну сторону)
+• holiday – отпуск, каникулы
+• vacation – отпуск (американский вариант)
+• tourist – турист
+• guide – гид
+• hotel – отель
+• hostel – хостел
+• campsite – кемпинг
+• luggage – багаж
+• suitcase – чемодан
+• ticket – билет
+• passport – паспорт
+• visa – виза
+• flight – авиарейс
+• airport – аэропорт
+• train – поезд
+• bus – автобус
+• car – машина
+• ship – корабль
+• cruise – круиз
+• beach – пляж
+• mountain – гора
+• lake – озеро
+• forest – лес
+
+<blockquote>Разница travel / trip / journey: travel – общее понятие, trip – поездка туда‑обратно, journey – путь в одну сторону.</blockquote>
+"""
+            },
+            {
+                "title": "Глаголы для путешествий",
+                "text": """
+<b>🗺️ Глаголы, связанные с поездками:</b>
+
+• go on holiday – отправиться в отпуск
+• book a hotel – забронировать отель
+• pack a suitcase – упаковать чемодан
+• catch a flight – успеть на рейс
+• stay in a hotel – остановиться в отеле
+• visit a museum – посетить музей
+• take photos – делать фотографии
+• swim in the sea – купаться в море
+• climb a mountain – взбираться на гору
+
+<b>Примеры:</b>
+• We are going on holiday to Spain. (Мы едем в отпуск в Испанию.)
+• I booked a hotel near the beach. (Я забронировал отель рядом с пляжем.)
+• Don't forget to pack your suitcase. (Не забудь упаковать чемодан.)
+• We took many photos during the trip. (Мы сделали много фотографий во время поездки.)
+
+<blockquote>Перед поездкой полезно выучить фразы для аэропорта и отеля.</blockquote>
+"""
+            },
+            {
+                "title": "Полезные фразы для путешественников",
+                "text": """
+<b>🗣️ Фразы в аэропорту и отеле:</b>
+
+• What time does the flight depart? – Во сколько вылетает рейс?
+• Where can I check in? – Где можно зарегистрироваться?
+• How much luggage can I take? – Сколько багажа я могу взять?
+• I have a reservation. – У меня есть бронь.
+• Is breakfast included? – Завтрак включён?
+• Can I have a late check‑out? – Можно поздний выезд?
+
+<b>Пример диалога (отель):</b>
+– Good evening, I have a reservation under the name Smith.
+– Yes, Mr Smith. You have a double room for two nights.
+– Is breakfast included?
+– Yes, from 7 to 10 am in the restaurant.
+– Perfect. Can I have a late check‑out tomorrow?
+– Of course, until 1 pm.
+
+<blockquote>Эти фразы пригодятся в поездках и помогут чувствовать себя увереннее.</blockquote>
+"""
+            },
+            {
+                "title": "Советы по запоминанию",
+                "text": """
+<b>💡 Советы:</b>
+
+1. Создайте список вещей, которые вы берёте в поездку, на английском.
+2. Разыграйте диалог бронирования отеля с другом.
+3. Смотрите видео о путешествиях на YouTube на английском (например, «Travel vlog»).
+4. Выучите разницу между travel, trip и journey – это частая тема в тестах.
+5. При планировании отпуска пишите заметки на английском: I want to visit the Eiffel Tower.
+
+<blockquote>Лексика путешествий откроет вам мир – вы сможете общаться в любой стране.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Чем отличаются 'holiday' и 'vacation'?", "answer": "Holiday – британский вариант, vacation – американский. В британском 'holiday' также означает праздник."}
+        ]
     },
-    "shoppingVocabulary": {
-        "title": "🛒 Покупки",
-        "pages": [{"title": "Фразы", "text": "How much is it? Can I try it on? I'll take it. Can I pay by card?"}, {"title": "Магазины", "text": "supermarket, department store, clothes shop, shoe shop, bookshop, pharmacy, bakery, butcher's, greengrocer's, electronics shop"}],
-        "faq": [{"question": "Скидка – discount или sale?", "answer": "Discount – скидка, sale – распродажа."}]
+        "shoppingVocabulary": {
+        "title": "Лексика: покупки",
+        "pages": [
+            {
+                "title": "Магазины и товары",
+                "text": """
+<b>🛒 Типы магазинов (shops):</b>
+
+• supermarket – супермаркет
+• department store – универмаг
+• clothes shop – магазин одежды
+• shoe shop – обувной магазин
+• bookshop – книжный магазин
+• pharmacy – аптека
+• bakery – пекарня
+• butcher's – мясной магазин
+• greengrocer's – овощной магазин
+• electronics shop – магазин электроники
+
+<b>Основные товары:</b>
+• food – еда
+• clothes – одежда
+• shoes – обувь
+• books – книги
+• medicine – лекарства
+• cosmetics – косметика
+
+<blockquote>В английском часто говорят: I'm going to the supermarket (определённый артикль).</blockquote>
+"""
+            },
+            {
+                "title": "Полезные фразы в магазине",
+                "text": """
+<b>🗣️ Фразы покупателя:</b>
+
+• How much is it? – Сколько это стоит?
+• How much does it cost? – Сколько это стоит?
+• Can I try it on? – Можно примерить?
+• Do you have this in a different colour / size? – У вас есть это другого цвета / размера?
+• I'll take it. – Я возьму это.
+• Can I pay by card? – Можно заплатить картой?
+• Here's the money. – Вот деньги.
+• Could I have a receipt? – Можно чек?
+
+<b>Пример диалога:</b>
+– Excuse me, how much is this T‑shirt?
+– It's $25.
+– Do you have it in a smaller size?
+– Yes, here you are. Try it on in the fitting room.
+– Thanks. I'll take it. Can I pay by card?
+– Of course.
+
+<blockquote>Всегда проверяйте размер и цвет перед покупкой.</blockquote>
+"""
+            },
+            {
+                "title": "Цены и оплата",
+                "text": """
+<b>💰 Как спросить и ответить о цене:</b>
+
+• How much are these shoes? – Сколько стоят эти туфли?
+• They are $50. – Они 50 долларов.
+• Is there a discount? – Есть скидка?
+• Is it on sale? – Это на распродаже?
+• Can I have a refund? – Могу я вернуть деньги?
+
+<b>Слова, связанные с деньгами:</b>
+• cash – наличные
+• credit card – кредитная карта
+• debit card – дебетовая карта
+• price – цена
+• cost – стоимость
+• cheap – дешёвый
+• expensive – дорогой
+• affordable – доступный по цене
+
+<b>Примеры:</b>
+• This jacket is too expensive for me. (Эта куртка слишком дорогая для меня.)
+• The supermarket is cheaper than the small shop. (Супермаркет дешевле, чем маленький магазин.)
+
+<blockquote>Сравнивайте цены с помощью cheaper than / more expensive than.</blockquote>
+"""
+            },
+            {
+                "title": "Советы по запоминанию",
+                "text": """
+<b>💡 Советы:</b>
+
+1. Сходите в магазин и попробуйте мысленно описать процесс на английском.
+2. Выучите числительные, связанные с ценами (20 долларов, 50 евро).
+3. Обратите внимание на разницу between 'how much' (для неисчисляемых и цен) и 'how many' (для исчисляемых).
+4. Слушайте объявления в супермаркетах на английском (если есть возможность).
+5. Разыграйте диалог «покупатель – продавец» с другом.
+
+<blockquote>Умение совершать покупки на английском пригодится в любой поездке.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Как сказать 'скидка'?", "answer": "Discount. 'On sale' – на распродаже."}
+        ]
     },
-    "bodyVocabulary": {
-        "title": "🦵 Тело человека",
-        "pages": [{"title": "Части тела", "text": "head, face, hair, eye, ear, nose, mouth, tooth, tongue, neck, shoulder, arm, elbow, hand, finger, chest, back, stomach, hip, leg, knee, foot, toe, skin, bone, muscle"}],
-        "faq": [{"question": "Tooth или teeth?", "answer": "Tooth – зуб (ед.), teeth – зубы (мн.)."}]
+        "bodyVocabulary": {
+        "title": "Лексика: тело человека",
+        "pages": [
+            {
+                "title": "Части тела (верхняя часть)",
+                "text": """
+<b>🦵 Части тела (body parts):</b>
+
+• head – голова
+• face – лицо
+• hair – волосы
+• eye – глаз
+• ear – ухо
+• nose – нос
+• mouth – рот
+• tooth – зуб (teeth – зубы)
+• tongue – язык
+• neck – шея
+• shoulder – плечо
+• arm – рука (от плеча до кисти)
+• elbow – локоть
+• hand – кисть руки
+• finger – палец (на руке)
+• chest – грудь
+• back – спина
+• stomach – живот
+
+<blockquote>Tooth – зуб (ед.ч.), teeth – зубы (мн.ч.) – неправильное существительное.</blockquote>
+"""
+            },
+            {
+                "title": "Нижняя часть тела",
+                "text": """
+<b>🦿 Части тела (низ):</b>
+
+• hip – бедро (тазобедренная область)
+• leg – нога (от бедра до стопы)
+• knee – колено
+• foot – ступня (feet – ступни)
+• toe – палец на ноге
+• skin – кожа
+• bone – кость
+• muscle – мышца
+
+<b>Примеры:</b>
+• I have a pain in my back. (У меня болит спина.)
+• She broke her leg. (Она сломала ногу.)
+• My feet hurt after a long walk. (У меня болят ступни после долгой прогулки.)
+• He has blue eyes and dark hair. (У него голубые глаза и тёмные волосы.)
+
+<blockquote>Для описания внешности часто используют have / has: She has long hair. He has green eyes.</blockquote>
+"""
+            },
+            {
+                "title": "Глаголы, связанные с телом",
+                "text": """
+<b>🏃 Действия с частями тела:</b>
+
+• hurt – болеть
+• ache – болеть (ноющая боль)
+• break – ломать
+• cut – резать, порезать
+• wash – мыть
+• brush – чистить (зубы, волосы)
+• comb – расчёсывать (волосы)
+• shave – бриться
+• exercise – заниматься спортом
+• sleep – спать
+• breathe – дышать
+• eat – есть
+• drink – пить
+• see – видеть
+• hear – слышать
+• smell – нюхать
+• touch – трогать
+
+<b>Примеры:</b>
+• My head aches. (У меня болит голова – более естественно: I have a headache.)
+• Brush your teeth twice a day. (Чисти зубы два раза в день.)
+• I can't hear you. (Я тебя не слышу.)
+
+<blockquote>Для боли в конкретной части тела можно сказать: My leg hurts. / I have a pain in my leg.</blockquote>
+"""
+            },
+            {
+                "title": "Советы по запоминанию",
+                "text": """
+<b>💡 Советы:</b>
+
+1. Учите части тела вместе с притяжательными местоимениями: my head, your hand, his leg.
+2. Используйте песню «Head, Shoulders, Knees and Toes» – она идеально подходит для запоминания.
+3. Нарисуйте человека и подпишите все части тела на английском.
+4. Расскажите, что у вас болит: I have a headache / stomachache / toothache.
+5. Обратите внимание на множественное число: tooth – teeth, foot – feet.
+
+<blockquote>Знание частей тела поможет вам описать самочувствие врачу или в аптеке.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Как сказать 'меня тошнит'?", "answer": "I feel sick. / I'm going to be sick."}
+        ]
     },
 }
