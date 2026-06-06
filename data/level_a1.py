@@ -2470,20 +2470,267 @@ My bedroom is small but cozy. There is a bed in the corner. Next to the bed, the
             {"question": "Как сказать 'балкон'?", "answer": "Balcony."}
         ]
     },
-    "townVocabulary": {
-        "title": "🏙️ Город",
-        "pages": [{"title": "Места", "text": "bank, supermarket, shop, pharmacy, hospital, clinic, school, university, library, cinema, theatre, museum, park, square, bus station, railway station, airport, hotel, restaurant, cafe, post office, police station, fire station"}],
-        "faq": [{"question": "Как спросить дорогу?", "answer": "Excuse me, where is the bank?"}]
+        "townVocabulary": {
+        "title": "Лексика: город (места и здания)",
+        "pages": [
+            {
+                "title": "Городские объекты",
+                "text": """
+<b>🏙️ Основные места в городе:</b>
+
+• bank – банк
+• supermarket – супермаркет
+• shop – магазин
+• pharmacy – аптека
+• hospital – больница
+• clinic – клиника
+• school – школа
+• university – университет
+• library – библиотека
+• cinema – кинотеатр
+• theatre – театр
+• museum – музей
+• park – парк
+• square – площадь
+• bus station – автовокзал
+• railway station – железнодорожный вокзал
+• airport – аэропорт
+• hotel – отель
+• restaurant – ресторан
+• cafe – кафе
+• post office – почта
+• police station – полицейский участок
+• fire station – пожарная станция
+
+<blockquote>В городе часто спрашивают: Excuse me, where is the nearest pharmacy?</blockquote>
+"""
+            },
+            {
+                "title": "Примеры предложений",
+                "text": """
+<b>📖 Примеры использования:</b>
+
+• I need to go to the bank. – Мне нужно в банк.
+• There is a supermarket next to my house. – Рядом с моим домом есть супермаркет.
+• Is there a pharmacy nearby? – Поблизости есть аптека?
+• The library is open from 9 to 6. – Библиотека открыта с 9 до 6.
+• We watched a film at the cinema. – Мы посмотрели фильм в кинотеатре.
+• They work at the hospital. – Они работают в больнице.
+
+<b>Вопросы о маршруте:</b>
+• How do I get to the railway station? – Как пройти к вокзалу?
+• Is there a bus stop near here? – Рядом есть автобусная остановка?
+
+<blockquote>Для указания направления используйте предлоги: next to, opposite, between, on the corner of.</blockquote>
+"""
+            },
+            {
+                "title": "Полезные фразы",
+                "text": """
+<b>🗣️ Как спросить о месте и ответить:</b>
+
+• Excuse me, where is the post office? – Извините, где находится почта?
+• Turn left / right. – Поверните налево / направо.
+• Go straight. – Идите прямо.
+• It's opposite the bank. – Это напротив банка.
+• It's next to the cinema. – Это рядом с кинотеатром.
+• It's on the corner of Main Street and Second Avenue. – Это на углу Мейн-стрит и Второй авеню.
+
+<b>Пример диалога:</b>
+– Excuse me, is there a cafe near here?
+– Yes, there is one on the corner of this street.
+– Thank you very much.
+– You're welcome.
+
+<blockquote>При общении с незнакомыми людьми начинайте с Excuse me и будьте вежливы.</blockquote>
+"""
+            },
+            {
+                "title": "Советы по запоминанию",
+                "text": """
+<b>💡 Как выучить названия мест в городе:</b>
+
+1. Сгруппируйте по категориям: услуги (bank, post office, pharmacy), культура (theatre, museum), транспорт (station, airport).
+2. Нарисуйте карту своего района и подпишите объекты на английском.
+3. Тренируйтесь в воображении: представьте, как идёте от дома до работы, и называйте всё, что видите.
+4. Используйте приложения вроде Google Maps на английском языке.
+5. Разыграйте диалог с другом: один спрашивает дорогу, другой объясняет.
+
+<blockquote>Знание названий городских объектов пригодится в путешествиях и повседневной жизни.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Как сказать 'перекрёсток'?", "answer": "Crossroads или intersection."}
+        ]
     },
-    "directions": {
-        "title": "🗺️ Как спросить дорогу",
-        "pages": [{"title": "Вопросы", "text": "Where is the nearest pharmacy? Can you tell me the way to the museum?"}, {"title": "Ответы", "text": "Go straight. Turn left/right. It's opposite the park."}],
-        "faq": [{"question": "Что значит 'on the corner'?", "answer": "На углу."}]
+        "directions": {
+        "title": "Как спросить и объяснить дорогу",
+        "pages": [
+            {
+                "title": "Вопросы о направлении",
+                "text": """
+<b>🗺️ Наиболее употребительные вопросы:</b>
+
+• Excuse me, how can I get to the station? – Извините, как мне дойти до вокзала?
+• Where is the nearest bank? – Где ближайший банк?
+• Is there a supermarket around here? – Здесь поблизости есть супермаркет?
+• How far is the airport? – Как далеко аэропорт?
+• Which bus goes to the city centre? – Какой автобус идёт в центр города?
+
+<blockquote>Начинайте с Excuse me – это вежливо и привлекает внимание.</blockquote>
+"""
+            },
+            {
+                "title": "Фразы для объяснения дороги",
+                "text": """
+<b>🚶‍♂️ Указания направления:</b>
+
+• Go straight. – Идите прямо.
+• Turn left / right. – Поверните налево / направо.
+• Cross the street. – Перейдите улицу.
+• It's opposite the park. – Это напротив парка.
+• It's next to the bank. – Это рядом с банком.
+• It's on the corner. – Это на углу.
+• It's between the cinema and the library. – Это между кинотеатром и библиотекой.
+• It's behind the post office. – Это за почтой.
+• It's in front of the school. – Это перед школой.
+
+<b>Пример:</b>
+Go straight for two blocks, then turn left. The pharmacy is on the right, opposite the supermarket.
+
+<blockquote>Используйте предлоги места: next to, opposite, between, behind, in front of.</blockquote>
+"""
+            },
+            {
+                "title": "Пример диалога",
+                "text": """
+<b>📖 Диалог: турист и местный житель</b>
+
+– Excuse me, can you tell me the way to the nearest metro station?
+– Sure. Go straight ahead until you see a church. Then turn right. Walk about 100 metres, and you'll see the metro entrance.
+– Is it far from here?
+– No, about five minutes on foot.
+– Thank you so much!
+– You're welcome. Have a nice day!
+
+<b>Перевод:</b>
+– Извините, не подскажете дорогу к ближайшему метро?
+– Конечно. Идите прямо, пока не увидите церковь. Затем поверните направо. Пройдите около 100 метров, и вы увидите вход в метро.
+– Это далеко отсюда?
+– Нет, около пяти минут пешком.
+– Большое спасибо!
+– Пожалуйста. Хорошего дня!
+
+<blockquote>Практикуйте такие диалоги с друзьями – это поможет закрепить лексику.</blockquote>
+"""
+            },
+            {
+                "title": "Советы",
+                "text": """
+<b>💡 Полезные советы:</b>
+
+1. Запомните основные глаголы: go, turn, cross, walk, stop.
+2. Наречия: straight (прямо), left (налево), right (направо), back (назад).
+3. Спрашивайте подтверждение: Is it far? Is it close?
+4. Если не уверены в ответе, можно сказать: Sorry, I'm a stranger here too. (Извините, я тоже здесь не местный.)
+5. Используйте карту на телефоне, но для тренировки старайтесь сначала объяснить словами.
+
+<blockquote>Умение объяснить дорогу – важный навык для путешественника.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Что значит 'on your left' и 'on your right'?", "answer": "Слева от вас / справа от вас."}
+        ]
     },
-    "jobVocabulary": {
-        "title": "💼 Профессии",
-        "pages": [{"title": "Профессии", "text": "doctor, nurse, teacher, student, engineer, driver, waiter, waitress, cook, shop assistant, manager, secretary, cleaner, lawyer, police officer, firefighter, pilot, flight attendant, artist, musician, writer"}],
-        "faq": [{"question": "Как спросить о профессии?", "answer": "What do you do? I am a teacher."}]
+        "jobVocabulary": {
+        "title": "Лексика: профессии",
+        "pages": [
+            {
+                "title": "Список профессий",
+                "text": """
+<b>💼 Распространённые профессии (jobs):</b>
+
+• doctor – врач
+• nurse – медсестра / медбрат
+• teacher – учитель
+• student – студент
+• engineer – инженер
+• driver – водитель
+• waiter / waitress – официант / официантка
+• cook – повар
+• shop assistant – продавец
+• manager – менеджер
+• secretary – секретарь
+• cleaner – уборщик
+• lawyer – юрист
+• police officer – полицейский
+• firefighter – пожарный
+• pilot – пилот
+• flight attendant – стюардесса / стюард
+• artist – художник
+• musician – музыкант
+• writer – писатель
+
+<blockquote>Вопрос о профессии: What do you do? / What is your job?</blockquote>
+"""
+            },
+            {
+                "title": "Как говорить о профессии",
+                "text": """
+<b>📌 Структура предложений:</b>
+
+• I am a teacher. – Я учитель.
+• She works as a nurse. – Она работает медсестрой.
+• He wants to be a pilot. – Он хочет стать пилотом.
+
+<b>Примеры:</b>
+• My father is an engineer. (Мой отец – инженер.)
+• My mother works in a hospital. She is a doctor. (Моя мама работает в больнице. Она врач.)
+• I am a student at university. (Я студент университета.)
+• They are both lawyers. (Они оба юристы.)
+
+<blockquote>Перед профессией используйте a/an: a doctor, an engineer.</blockquote>
+"""
+            },
+            {
+                "title": "Вопросы и диалоги",
+                "text": """
+<b>❓ Как спросить и ответить:</b>
+
+• What do you do for a living? – Чем вы зарабатываете на жизнь?
+• Where do you work? – Где вы работаете?
+• Do you like your job? – Вам нравится ваша работа?
+
+<b>Пример диалога:</b>
+– What do you do, Anna?
+– I am a teacher. I work at a secondary school. And you?
+– I am an engineer. I work for a construction company.
+– That sounds interesting! Do you like it?
+– Yes, I enjoy solving problems.
+
+<blockquote>Будьте готовы рассказать о своей профессии и спросить собеседника.</blockquote>
+"""
+            },
+            {
+                "title": "Советы по запоминанию",
+                "text": """
+<b>💡 Как выучить названия профессий:</b>
+
+1. Свяжите профессию с местом работы: doctor – hospital, teacher – school.
+2. Сгруппируйте по сферам: медицина, образование, транспорт, искусство.
+3. Используйте карточки: с одной стороны профессия, с другой – описание.
+4. Расскажите о профессиях членов семьи: My mother is a nurse, my father is a driver.
+5. Смотрите видео о профессиях на английском (например, сериал «Кухня» на английском).
+
+<blockquote>Знание названий профессий поможет при знакомстве и в деловом общении.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Как спросить о профессии вежливо?", "answer": "What do you do for a living? или What is your occupation?"}
+        ]
     },
     "hobbyVocabulary": {
         "title": "🎨 Хобби",
