@@ -341,147 +341,77 @@ LEVEL_A1_CONTENT = {
             {"question": "Можно ли использовать сокращения в официальном письме?", "answer": "Нет, в официальных документах пишут полные формы (I am, you are, he is…)."}
         ]
     },
-        "tobenegaquestion": {
+            "tobenegaquestion": {
         "title": "Глагол to be (отрицание и вопрос)",
         "pages": [
             {
-                "title": "Как сказать «не» с глаголом to be",
+                "title": "Отрицательная форма (не)",
                 "text": """
-<b>🚫 Отрицательная форма to be</b>
+<b>🚫 Чтобы сказать «не», добавляем частицу not после глагола to be.</b>
 
-Чтобы сказать, что кто‑то или что‑то НЕ является чем‑то, нужно после формы to be добавить частицу <b>not</b>.
+Полные формы:
+• I am not
+• You are not
+• He/She/It is not
+• We are not
+• They are not
 
-<blockquote>В русском языке это соответствует словам «не есть», «не является», «не находится».</blockquote>
+Сокращённые формы (разговорные):
+• I'm not
+• you aren't
+• he/she/it isn't
+• we aren't
+• they aren't
 
-<b>Полные формы (пишутся в документах, книгах):</b><br>
-• I am <b>not</b> → я не являюсь<br>
-• You are <b>not</b> → ты не являешься<br>
-• He is <b>not</b> → он не является<br>
-• She is <b>not</b> → она не является<br>
-• It is <b>not</b> → оно не является<br>
-• We are <b>not</b> → мы не являемся<br>
-• They are <b>not</b> → они не являются
-
-<b>Примеры:</b><br>
-• I am not tired. (Я не устал.)<br>
-• She is not from Spain. (Она не из Испании.)<br>
-• They are not at home. (Они не дома.)
-""",
-                "image": None,
-                "has_audio_buttons": False
+<b>Примеры:</b>
+• I am not hungry. → Я не голоден.
+• She isn't from Spain. → Она не из Испании.
+• They aren't at work. → Они не на работе.
+"""
             },
             {
-                "title": "Сокращённые отрицания (разговорные)",
+                "title": "Вопросительная форма",
                 "text": """
-<b>✂️ Короткие формы – используем в речи и переписке:</b>
+<b>❓ Чтобы задать вопрос, ставим глагол to be перед подлежащим.</b>
 
-• I am not → <b>I'm not</b> (айм нот)<br>
-• You are not → <b>you aren't</b> (ю а:нт)<br>
-• He is not → <b>he isn't</b> (хиз и́нт)<br>
-• She is not → <b>she isn't</b> (шиз и́нт)<br>
-• It is not → <b>it isn't</b> (ит и́нт)<br>
-• We are not → <b>we aren't</b> (уи а:нт)<br>
-• They are not → <b>they aren't</b> (зэй а:нт)
+Схема: <i>To be + подлежащее + остальное?</i>
 
-<blockquote>Обратите внимание: у местоимения I нет сокращённой формы с not – только I'm not.</blockquote>
+<b>Примеры вопросов:</b>
+• Am I late? → Я опоздал?
+• Are you a student? → Ты студент?
+• Is he at home? → Он дома?
+• Is she happy? → Она счастлива?
+• Is it cold? → Холодно?
+• Are we ready? → Мы готовы?
+• Are they from Russia? → Они из России?
 
-<b>Примеры с сокращениями:</b><br>
-• I'm not hungry. (Я не голоден.)<br>
-• He isn't a doctor. (Он не врач.)<br>
-• We aren't ready. (Мы не готовы.)
-""",
-                "image": None,
-                "has_audio_buttons": False
+<blockquote>В русском языке часто используем частицу «ли»: «Дома ли он?».</blockquote>
+"""
             },
             {
-                "title": "Как задать вопрос с to be",
+                "title": "Краткие ответы",
                 "text": """
-<b>❓ Вопросительная форма to be</b>
+<b>✅ Короткие ответы на вопросы с to be</b>
 
-Чтобы задать вопрос, нужно поставить форму to be <b>перед подлежащим</b> (местоимением или существительным).
+Структура: Yes/No + местоимение + to be (без сокращения в утверждении)
 
-<blockquote>Порядок слов: to be → подлежащее → остальное?</blockquote>
+<b>Примеры:</b>
+• Are you a teacher? – Yes, I am. / No, I'm not.
+• Is she at home? – Yes, she is. / No, she isn't.
+• Are they from Italy? – Yes, they are. / No, they aren't.
 
-<b>Схема для всех лиц:</b><br>
-• Am I …?<br>
-• Are you …?<br>
-• Is he / she / it …?<br>
-• Are we …?<br>
-• Are they …?
+<blockquote>⚠️ В кратком утвердительном ответе нельзя писать I'm, you're, he's. Нужно полная форма: I am, you are, he is.</blockquote>
 
-<b>Примеры вопросов и перевод:</b><br>
-• <b>Am I</b> late? (Я опоздал?)<br>
-• <b>Are you</b> a student? (Ты студент?)<br>
-• <b>Is he</b> at home? (Он дома?)<br>
-• <b>Is she</b> happy? (Она счастлива?)<br>
-• <b>Is it</b> cold outside? (На улице холодно?)<br>
-• <b>Are we</b> ready? (Мы готовы?)<br>
-• <b>Are they</b> from Russia? (Они из России?)
+<b>Запомните:</b>
+• Yes, I'm ❌   Yes, I am ✅
+• Yes, he's ❌   Yes, he is ✅
 
-<blockquote>В русском языке часто используется частица «ли»: «Дома ли он?» – Is he at home?</blockquote>
-""",
-                "image": None,
-                "has_audio_buttons": False
-            },
-            {
-                "title": "Краткие ответы на вопросы",
-                "text": """
-<b>✅ Короткие ответы</b>
-
-На вопросы с to be отвечают кратко: Yes / No + местоимение + to be.
-
-<b>Важное правило:</b> в <b>утвердительном</b> кратком ответе <b>нельзя</b> использовать сокращённые формы!<br>
-• Yes, I am. (не I'm)<br>
-• Yes, she is. (не she's)<br>
-• Yes, they are. (не they're)
-
-<b>Отрицательные краткие ответы – можно сокращать:</b><br>
-• No, I'm not.<br>
-• No, she isn't.<br>
-• No, they aren't.
-
-<b>Примеры:</b><br>
-• – Are you a teacher?<br>
-  – <b>Yes, I am.</b> / No, I'm not.<br>
-• – Is she at home?<br>
-  – Yes, she is. / <b>No, she isn't.</b><br>
-• – Are they from Italy?<br>
-  – Yes, they are. / <b>No, they aren't.</b>
-""",
-                "image": None,
-                "has_audio_buttons": False
-            },
-            {
-                "title": "Советы для запоминания",
-                "text": """
-<b>💡 Как быстро выучить отрицания и вопросы to be:</b>
-
-1. **Запомните порядок слов:**<br>
-   • Отрицание: to be + not.<br>
-   • Вопрос: to be + подлежащее + ?.
-
-2. **Потренируйтесь на простых предложениях:**<br>
-   • I am happy → I am not happy → Am I happy?<br>
-   • She is a doctor → She isn't a doctor → Is she a doctor?
-
-3. **Используйте карточки:** на одной стороне утверждение (You are a student), на другой – вопрос и отрицание.
-
-4. **Запомните исключение:** в кратком утвердительном ответе нельзя говорить Yes, I'm – только Yes, I am.
-
-5. **Различайте звучание:**<br>
-   • aren't [a:nt] – длинный гласный<br>
-   • isn't [iznt] – короткий [i]
-
-<blockquote>Через 2–3 дня регулярных упражнений вы будете строить вопросы и отрицания автоматически.</blockquote>
-""",
-                "image": None,
-                "has_audio_buttons": False
+<b>💡 Совет:</b> Тренируйтесь задавать вопросы про окружающие предметы: «Is it a pen? – Yes, it is.».
+"""
             }
         ],
         "faq": [
-            {"question": "Почему в кратком утвердительном ответе нельзя использовать сокращение (Yes, I'm)?", "answer": "Сокращённая форма глагола не может стоять в конце предложения – это грамматическое правило английского языка."},
-            {"question": "В чём разница между isn't и aren't?", "answer": "isn't используется с he, she, it (единственное число); aren't – с you, we, they (множественное число и you)."},
-            {"question": "Как спросить «А ты?» после короткого ответа?", "answer": "Можно добавить 'And you?': – I'm not tired. And you? (А ты?)"}
+            {"question": "Почему нельзя сказать Yes, I'm?", "answer": "Сокращённая форма не может стоять в конце предложения – это правило английской грамматики."}
         ]
     },
         "countries": {
@@ -674,15 +604,160 @@ I – my, you – your, he – his, she – her, it – its, we – our, they �
             {"question": "Почему нет отдельного слова для 'свой'?", "answer": "В английском используют притяжательное местоимение, соответствующее подлежащему: He loves his dog – Он любит свою собаку."}
         ]
     },
-    "plural": {
-        "title": "📚 Множественное число",
-        "pages": [{"title": "+s", "text": "cat → cats"}, {"title": "-es", "text": "box → boxes"}, {"title": "y→ies", "text": "baby → babies"}, {"title": "Исключения", "text": "man → men, child → children"}],
-        "faq": [{"question": "Произношение -s?", "answer": "[s], [z], [ɪz]"}]
+        "plural": {
+        "title": "Множественное число существительных",
+        "pages": [
+            {
+                "title": "Основное правило: +s",
+                "text": """
+<b>📚 Чтобы сказать «два и более», добавляем окончание -s.</b>
+
+• a cat → cats (кот → коты)
+• a dog → dogs (собака → собаки)
+• a pen → pens (ручка → ручки)
+• a book → books (книга → книги)
+
+<blockquote>Неопределённый артикль a/an исчезает во множественном числе.</blockquote>
+"""
+            },
+            {
+                "title": "Окончание -es (после шипящих)",
+                "text": """
+<b>📌 Если слово оканчивается на -s, -ss, -sh, -ch, -x, -z – добавляем -es.</b>
+
+• a bus → buses (автобус → автобусы)
+• a glass → glasses (стакан → стаканы)
+• a dish → dishes (тарелка → тарелки)
+• a watch → watches (часы → часы, мн.ч.)
+• a box → boxes (коробка → коробки)
+• a quiz → quizzes (викторина → викторины)
+
+<blockquote>-es произносится как [ɪz] (добавляется слог).</blockquote>
+"""
+            },
+            {
+                "title": "Слова, оканчивающиеся на -y",
+                "text": """
+<b>📌 Если слово заканчивается на согласную + y → y меняется на i и добавляется -es.</b>
+
+• a baby → babies (ребёнок → дети)
+• a city → cities (город → города)
+• a lady → ladies (леди → леди, мн.ч.)
+• a party → parties (вечеринка → вечеринки)
+
+<b>Если перед y стоит гласная (a, e, i, o, u) → просто добавляем -s.</b>
+• a boy → boys (мальчик → мальчики)
+• a day → days (день → дни)
+• a key → keys (ключ → ключи)
+
+<blockquote>Исключение: a play → plays (пьеса → пьесы).</blockquote>
+"""
+            },
+            {
+                "title": "Исключения (irregular plurals)",
+                "text": """
+<b>⚠️ Некоторые слова образуют множественное число не по правилам. Их нужно запомнить.</b>
+
+• a man → men (мужчина → мужчины)
+• a woman → women (женщина → женщины)
+• a child → children (ребёнок → дети)
+• a tooth → teeth (зуб → зубы)
+• a foot → feet (ступня → ступни)
+• a goose → geese (гусь → гуси)
+• a mouse → mice (мышь → мыши)
+• a person → people (человек → люди)
+
+<b>Слова, которые не меняются:</b>
+• a fish → fish (рыба → рыбы)
+• a sheep → sheep (овца → овцы)
+• a deer → deer (олень → олени)
+
+<b>💡 Совет:</b> Учите исключения вместе с основным словом.
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Как произносится -s в конце слова?", "answer": "[s] после глухих согласных (p, t, k, f); [z] после звонких (b, d, g, v, l, m, n, r); [ɪz] после шипящих (s, ss, sh, ch, x, z)."},
+            {"question": "Почему не 'childs', а 'children'?", "answer": "Это древняя форма множественного числа, сохранившаяся в английском."}
+        ]
     },
-    "questionwords": {
-        "title": "❓ Вопросительные слова",
-        "pages": [{"title": "What / Where", "text": "What? – Что?\nWhere? – Где?"}, {"title": "Who / How", "text": "Who? – Кто?\nHow? – Как?"}],
-        "faq": [{"question": "Разница much/many?", "answer": "Much – неисч., many – исч."}]
+        "questionwords": {
+        "title": "Вопросительные слова",
+        "pages": [
+            {
+                "title": "What и Where",
+                "text": """
+<b>❓ What? – Что? Какой?</b>
+• What is your name? (Как тебя зовут? – букв. «Что твоё имя?»)
+• What time is it? (Который час?)
+• What colour is your car? (Какого цвета твоя машина?)
+
+<b>Where? – Где? Куда? Откуда?</b>
+• Where are you from? (Откуда ты?)
+• Where is my phone? (Где мой телефон?)
+• Where do you live? (Где ты живёшь?)
+
+<blockquote>После вопросительных слов часто следует глагол to be или вспомогательный глагол (do/does).</blockquote>
+"""
+            },
+            {
+                "title": "Who и How",
+                "text": """
+<b>Who? – Кто?</b>
+• Who is she? (Кто она?)
+• Who are those people? (Кто эти люди?)
+• Who is your teacher? (Кто твой учитель?)
+
+<b>How? – Как? Каким образом?</b>
+• How are you? (Как дела? – букв. «Как ты?»)
+• How old are you? (Сколько тебе лет? – «Как старый ты?»)
+• How much is it? (Сколько это стоит? – для неисчисляемых)
+• How many apples do you have? (Сколько яблок у тебя? – для исчисляемых)
+
+<blockquote>How + прилагательное: how big (насколько большой), how far (как далеко).</blockquote>
+"""
+            },
+            {
+                "title": "Why, When, Which, Whose",
+                "text": """
+<b>Why? – Почему?</b>
+• Why are you late? (Почему ты опоздал?)
+• Why is she crying? (Почему она плачет?)
+Ответ часто начинается с because (потому что).
+
+<b>When? – Когда?</b>
+• When is your birthday? (Когда твой день рождения?)
+• When do you get up? (Когда ты встаёшь?)
+
+<b>Which? – Который? Какой именно?</b>
+• Which book do you like? (Какую книгу ты любишь? – из нескольких).
+
+<b>Whose? – Чей?</b>
+• Whose bag is this? (Чья это сумка?)
+
+<b>💡 Совет:</b> Задавайте себе вопросы по картинкам или окружающим предметам, чтобы запомнить.
+"""
+            },
+            {
+                "title": "How much / how many",
+                "text": """
+<b>📌 Разница how much и how many:</b>
+
+• How much – для неисчисляемых существительных (money, water, time)
+• How many – для исчисляемых существительных (apples, people, days)
+
+<b>Примеры:</b>
+• How much water do you drink? (Сколько воды ты пьёшь?)
+• How many apples are on the table? (Сколько яблок на столе?)
+
+<blockquote>Запомните: much + неисчисляемое, many + исчисляемое.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Разница much/many?", "answer": "Much – для неисчисляемых, many – для исчисляемых."},
+            {"question": "Можно ли начать вопрос с глагола без вопросительного слова?", "answer": "Да, это общий вопрос (ответ да/нет). Например: Are you a student? Но вопросительные слова дают конкретную информацию."}
+        ]
     },
     "thereisare": {
         "title": "🏠 Конструкция there is/are",
