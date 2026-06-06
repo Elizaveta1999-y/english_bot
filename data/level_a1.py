@@ -484,15 +484,195 @@ LEVEL_A1_CONTENT = {
             {"question": "Как спросить «А ты?» после короткого ответа?", "answer": "Можно добавить 'And you?': – I'm not tired. And you? (А ты?)"}
         ]
     },
-    "countries": {
-        "title": "🌍 Страны и национальности",
-        "pages": [{"title": "Как спросить", "text": "Where are you from? I'm from Russia. I am Russian."}],
-        "faq": [{"question": "British или Britain?", "answer": "British – прилагательное."}]
+        "countries": {
+        "title": "Страны и национальности",
+        "pages": [
+            {
+                "title": "Как спросить и ответить",
+                "text": """
+<b>🌍 Говорим о странах и национальностях</b>
+
+Вопрос: <i>Where are you from?</i> – Откуда ты?
+Ответ: <i>I'm from + страна.</i> (I'm from Russia.)
+
+Национальность: <i>I am + национальность.</i> (I am Russian.)
+
+<blockquote>Названия национальностей и языков пишутся с большой буквы: Russian, English, Chinese.</blockquote>
+
+Пример диалога:
+• – Where are you from?
+• – I'm from Spain. I am Spanish.
+• – And what language do you speak?
+• – Spanish.
+"""
+            },
+            {
+                "title": "Страны, национальности, языки (часть 1)",
+                "text": """
+<b>📋 Список (часть 1):</b>
+
+• Russia → Russian → Russian
+• the USA → American → English
+• the UK → British → English
+• Germany → German → German
+• France → French → French
+• Italy → Italian → Italian
+• Spain → Spanish → Spanish
+• China → Chinese → Chinese
+• Japan → Japanese → Japanese
+• Brazil → Brazilian → Portuguese
+
+<b>Примеры:</b>
+• I'm from Brazil. I'm Brazilian. I speak Portuguese.
+• She's from Japan. She's Japanese. She speaks Japanese.
+"""
+            },
+            {
+                "title": "Страны, национальности, языки (часть 2)",
+                "text": """
+<b>📋 Продолжение:</b>
+
+• Canada → Canadian → English / French
+• Mexico → Mexican → Spanish
+• India → Indian → Hindi / English
+• Australia → Australian → English
+• Egypt → Egyptian → Arabic
+• Turkey → Turkish → Turkish
+• Poland → Polish → Polish
+• Sweden → Swedish → Swedish
+• South Korea → Korean → Korean
+
+<b>Суффиксы национальностей:</b>
+• -an (American, Mexican, Canadian)
+• -ian (Russian, Brazilian, Egyptian)
+• -ese (Chinese, Japanese)
+• -ish (British, Spanish, Polish)
+• -i (Israeli, Pakistani)
+
+<b>💡 Совет:</b> Учите страну и национальность вместе: Russia – Russian, Spain – Spanish.
+"""
+            },
+            {
+                "title": "Примеры предложений",
+                "text": """
+<b>📖 Живые фразы:</b>
+
+• Tom is from Canada. He is Canadian.
+• Maria is from Mexico. She speaks Spanish.
+• We are from China. We are Chinese.
+• They are from Turkey. They are Turkish.
+• I am from Germany. I am German.
+
+<b>Вопросы для собеседника:</b>
+• What nationality are you? (Какой вы национальности?)
+• Where do you come from? (Откуда вы родом?)
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Почему British, а не Britain?", "answer": "British – прилагательное «британский». Для страны используется the UK или Great Britain."},
+            {"question": "Как правильно: from Russia или from the Russia?", "answer": "Названия стран без 'the' (Russia, France, Brazil), кроме the USA, the UK, the Netherlands."}
+        ]
     },
-    "pronouns": {
-        "title": "📌 Личные и притяжательные местоимения",
-        "pages": [{"title": "Личные", "text": "I, you, he, she, it, we, they."}, {"title": "Притяжательные", "text": "my, your, his, her, its, our, their."}],
-        "faq": [{"question": "Как отличить it's от its?", "answer": "it's = it is."}]
+        "pronouns": {
+        "title": "Личные и притяжательные местоимения",
+        "pages": [
+            {
+                "title": "Личные местоимения (кто?)",
+                "text": """
+<b>👤 Личные местоимения (subject pronouns)</b>
+
+Они отвечают на вопрос «кто?» и являются подлежащим.
+
+• I – я
+• You – ты / вы
+• He – он
+• She – она
+• It – оно (для предметов, животных, явлений)
+• We – мы
+• They – они
+
+<b>Примеры:</b>
+• I am a student.
+• You are my friend.
+• He is a doctor.
+• She loves music.
+• It is raining.
+• We are happy.
+• They are from Spain.
+
+<blockquote>Особое внимание <b>it</b>: используется для погоды, времени, расстояния, а также для неодушевлённых предметов.</blockquote>
+"""
+            },
+            {
+                "title": "Притяжательные местоимения (чей?)",
+                "text": """
+<b>🔑 Притяжательные местоимения (possessive adjectives)</b>
+
+Они отвечают на вопрос «чей?» и всегда ставятся перед существительным.
+
+Соответствие:
+• I → my (мой)
+• You → your (твой, ваш)
+• He → his (его)
+• She → her (её)
+• It → its (его/её – для неодушевлённых)
+• We → our (наш)
+• They → their (их)
+
+<b>Примеры:</b>
+• my book (моя книга)
+• your car (твоя машина)
+• his brother (его брат)
+• her phone (её телефон)
+• its colour (его цвет)
+• our house (наш дом)
+• their parents (их родители)
+
+<blockquote>В английском нет отдельного слова для «свой» – используется местоимение, соответствующее подлежащему: She loves her cat. (Она любит своего кота.)</blockquote>
+"""
+            },
+            {
+                "title": "Частые ошибки",
+                "text": """
+<b>⚠️ Типичные ошибки:</b>
+
+1. <b>it's ≠ its</b>
+   • it's = it is (сокращение) – It's a nice day.
+   • its = принадлежность – The cat ate its food.
+
+2. <b>Лишний артикль</b>
+   • ❌ my the book → ✅ my book
+
+3. <b>Перевод «свой»</b>
+   • «свой» переводится как my, your, his, her, our, their – в зависимости от подлежащего.
+
+4. <b>Забывают глагол to be</b>
+   • ❌ He a doctor. → ✅ He is a doctor.
+
+<b>💡 Совет:</b> Составляйте короткие фразы про ваши вещи: my phone, your bag, his car.
+"""
+            },
+            {
+                "title": "Примеры и запоминалка",
+                "text": """
+<b>📖 Примеры предложений:</b>
+
+• My name is Anna. Your name is John.
+• His car is red, but her car is blue.
+• The dog is eating its food.
+• Our team won the match.
+• Their house is very big.
+
+<b>🎯 Фраза для запоминания:</b>
+I – my, you – your, he – his, she – her, it – its, we – our, they – their.
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Как отличить it's от its?", "answer": "it's = it is. Если можно заменить на 'it is', пишите с апострофом."},
+            {"question": "Почему нет отдельного слова для 'свой'?", "answer": "В английском используют притяжательное местоимение, соответствующее подлежащему: He loves his dog – Он любит свою собаку."}
+        ]
     },
     "plural": {
         "title": "📚 Множественное число",
