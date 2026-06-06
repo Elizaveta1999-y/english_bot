@@ -1375,20 +1375,252 @@ I – my, you – your, he – his, she – her, it – its, we – our, they �
             {"question": "Сколько всего неправильных глаголов?", "answer": "Около 200, но для уровня A1 достаточно 30-40 самых частотных."}
         ]
     },
-    "futureGoingTo": {
-        "title": "🔮 Конструкция going to",
-        "pages": [{"title": "Утверждение", "text": "am/is/are + going to + V"}],
-        "faq": [{"question": "Разница will и going to?", "answer": "Going to – планы и предсказания по фактам."}]
+        "futureGoingTo": {
+        "title": "Конструкция to be going to (планы и предсказания)",
+        "pages": [
+            {
+                "title": "Что такое going to?",
+                "text": """
+<b>🔮 Конструкция to be going to используется для двух целей:</b>
+
+1. Чтобы рассказать о своих <b>планах</b> на будущее.
+2. Чтобы сделать <b>предсказание</b>, основанное на том, что мы видим сейчас.
+
+В русском языке мы часто говорим: «Я собираюсь…», «Мы планируем…», «Сейчас пойдёт дождь (видно по тучам)».
+
+<blockquote>Внимание: в английском для спонтанных решений (я куплю это) используется will, но на уровне A1 достаточно знать going to.</blockquote>
+"""
+            },
+            {
+                "title": "Как образуется утверждение",
+                "text": """
+<b>📌 Схема: am/is/are + going to + глагол</b>
+
+• I am going to study. (Я собираюсь учиться.)
+• You are going to call him. (Ты собираешься ему позвонить.)
+• He is going to travel. (Он собирается путешествовать.)
+• She is going to buy a car. (Она собирается купить машину.)
+• It is going to rain. (Собирается дождь.)
+• We are going to visit Paris. (Мы собираемся посетить Париж.)
+• They are going to stay at home. (Они собираются остаться дома.)
+
+<b>Важно:</b> после going to всегда идёт глагол в начальной форме (без изменений).
+"""
+            },
+            {
+                "title": "Отрицание и вопросы",
+                "text": """
+<b>🚫 Отрицание: am/is/are + not + going to + V</b>
+
+• I am not going to stay. (Я не собираюсь оставаться.)
+• She is not (isn't) going to come. (Она не собирается приходить.)
+• They are not (aren't) going to help. (Они не собираются помогать.)
+
+<b>❓ Вопрос: Am/Is/Are + подлежащее + going to + V?</b>
+
+• Are you going to call him? (Ты собираешься ему позвонить?)
+• Is she going to travel? (Она собирается путешествовать?)
+• Are they going to buy a car? (Они собираются купить машину?)
+
+<b>Краткие ответы:</b>
+• Yes, I am. / No, I'm not.
+• Yes, she is. / No, she isn't.
+"""
+            },
+            {
+                "title": "Примеры и советы",
+                "text": """
+<b>📖 Живые примеры:</b>
+
+• I am going to learn English. (Я собираюсь выучить английский.)
+• We are going to watch a film tonight. (Мы собираемся посмотреть фильм сегодня вечером.)
+• Look at the clouds! It is going to rain. (Посмотри на тучи! Будет дождь.)
+• She is pregnant. She is going to have a baby. (Она беременна. У неё будет ребёнок.)
+
+<b>💡 Советы для запоминания:</b>
+1. Замените «собираюсь» в своей речи на going to: «I am going to cook dinner».
+2. Обращайте внимание на приметы: видите грозу – скажите «It is going to rain».
+3. Не путайте с will: will для спонтанных решений (I'll answer the phone), going to для планов.
+4. Тренируйтесь: каждый вечер составляйте 3 предложения о планах на завтра.
+
+<blockquote>Регулярное использование going to в речи быстро войдёт в привычку.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "В чём разница между will и going to?", "answer": "Going to – для планов и предсказаний по фактам (I am going to study – я запланировал). Will – для спонтанных решений (I'll help you – я помогу прямо сейчас, не планировал)."}
+        ]
     },
-    "modalCan": {
-        "title": "💪 Модальный глагол can",
-        "pages": [{"title": "Формы", "text": "I can, you can, he can ... (без to)"}],
-        "faq": [{"question": "Как спросить разрешение?", "answer": "Can I...?"}]
+        "modalCan": {
+        "title": "Модальный глагол can (уметь, мочь, можно)",
+        "pages": [
+            {
+                "title": "Что такое can?",
+                "text": """
+<b>💪 Can – один из самых важных модальных глаголов.</b>
+
+Он имеет три основных значения:
+1. <b>Способность</b> – я умею / могу (физически, умственно).
+2. <b>Разрешение</b> – мне можно / я могу (просить или давать разрешение).
+3. <b>Просьба</b> – можно мне? (вежливо).
+
+<blockquote>Важно: после can мы НЕ ставим частицу to – сразу глагол: I can swim (не I can to swim).</blockquote>
+"""
+            },
+            {
+                "title": "Формы и спряжение",
+                "text": """
+<b>📌 Can не меняется по лицам и числам:</b>
+
+• I can swim. (Я умею плавать.)
+• You can swim. (Ты умеешь плавать.)
+• He/She/It can swim. (Он/она/оно умеет плавать.)
+• We can swim. (Мы умеем плавать.)
+• They can swim. (Они умеют плавать.)
+
+<b>Отрицание:</b> cannot или can't (сокращение)
+• I cannot swim. / I can't swim. (Я не умею плавать.)
+
+<b>Вопрос:</b> Can + подлежащее + глагол?
+• Can you swim? (Ты умеешь плавать?)
+• Can she dance? (Она умеет танцевать?)
+
+<b>Краткие ответы:</b>
+• Yes, I can. / No, I can't.
+• Yes, she can. / No, she can't.
+"""
+            },
+            {
+                "title": "Значения и примеры",
+                "text": """
+<b>📌 Подробно о каждом значении с примерами:</b>
+
+1️⃣ <b>Способность (умение):</b>
+• He can play the piano very well. (Он очень хорошо играет на пианино.)
+• I can speak three languages. (Я говорю на трёх языках.)
+• My sister can cook delicious food. (Моя сестра умеет вкусно готовить.)
+
+2️⃣ <b>Разрешение (можно):</b>
+• You can go now. (Ты можешь идти – я разрешаю.)
+• Students can use their phones during the break. (Студентам можно пользоваться телефонами на перемене.)
+• Can I open the window? (Можно я открою окно? – просьба разрешения.)
+
+3️⃣ <b>Просьба (вежливая):</b>
+• Can you help me, please? (Ты не мог бы мне помочь?)
+• Can you pass the salt? (Передайте соль, пожалуйста.)
+• Can you repeat that? (Вы не могли бы повторить?)
+
+<blockquote>Для более вежливой просьбы используйте could: Could you help me?</blockquote>
+"""
+            },
+            {
+                "title": "Типичные ошибки и советы",
+                "text": """
+<b>⚠️ Частые ошибки с can:</b>
+
+• ❌ I can to swim. → ✅ I can swim. (Никогда не ставьте to после can.)
+• ❌ He cans swim. → ✅ He can swim. (Can не меняется, не добавляйте -s.)
+• ❌ I don't can swim. → ✅ I can't swim. (Отрицание образуется через cannot/can't, без do.)
+
+<b>💡 Советы для запоминания:</b>
+1. Запомните фразу: «I can, you can, he can – все умеют, без проблем».
+2. Составляйте предложения про свои умения: I can cook. I can drive.
+3. Тренируйтесь просить: Can you open the door? Can you tell me the time?
+4. Слушайте песни, где есть can (например, «Can’t Help Falling in Love»).
+
+<blockquote>После can всегда глагол без to – это железное правило.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "В чём разница между can и could?", "answer": "Could – более вежливая форма для просьб (Could you help me?) и форма прошедшего времени (I could swim when I was 5)."}
+        ]
     },
-    "modalMust": {
-        "title": "🔔 Модальный глагол must",
-        "pages": [{"title": "Формы", "text": "I must, you must, he must ..."}],
-        "faq": [{"question": "Разница must и have to?", "answer": "Must – личное чувство долга."}]
+        "modalMust": {
+        "title": "Модальный глагол must (должен, обязан)",
+        "pages": [
+            {
+                "title": "Что такое must?",
+                "text": """
+<b>🔔 Must – это глагол, который выражает:</b>
+
+1. <b>Обязанность</b> – что‑то нужно сделать, потому что это правило или мой долг.
+2. <b>Настоятельную рекомендацию</b> – что‑то обязательно стоит сделать.
+3. <b>Запрет</b> (в отрицательной форме mustn't) – нельзя, запрещено.
+
+<blockquote>Must – сильный глагол. Он показывает, что действие очень важно.</blockquote>
+"""
+            },
+            {
+                "title": "Формы и спряжение",
+                "text": """
+<b>📌 Must не меняется по лицам и числам:</b>
+
+• I must study. (Я должен учиться.)
+• You must study. (Ты должен учиться.)
+• He/She/It must study. (Он/она/оно должно учиться.)
+• We must study. (Мы должны учиться.)
+• They must study. (Они должны учиться.)
+
+<b>Отрицание:</b> must not или mustn't (сокращение) – выражает ЗАПРЕТ.
+• I must not smoke here. / I mustn't smoke here. (Мне нельзя здесь курить.)
+
+<b>Вопрос:</b> Must + подлежащее + глагол? (употребляется редко, обычно для уточнения обязанности)
+• Must we go now? (Нам действительно нужно идти сейчас?)
+
+<b>Краткие ответы:</b>
+• Yes, you must. / No, you mustn't.
+"""
+            },
+            {
+                "title": "Значения и примеры",
+                "text": """
+<b>📌 Подробно о каждом значении с примерами:</b>
+
+1️⃣ <b>Обязанность (должен):</b>
+• You must wear a seatbelt. (Вы должны пристегнуться – правило безопасности.)
+• I must finish this report by Friday. (Я должен закончить отчёт к пятнице.)
+• Students must arrive on time. (Студенты должны приходить вовремя.)
+
+2️⃣ <b>Настоятельная рекомендация (обязательно стоит):</b>
+• You must see that film. It's amazing! (Ты обязательно должен посмотреть этот фильм.)
+• You must try this cake. It's delicious. (Ты обязательно попробуй этот торт.)
+• You must visit Paris someday. (Тебе обязательно нужно посетить Париж.)
+
+3️⃣ <b>Запрет (mustn't = нельзя):</b>
+• You mustn't smoke in the hospital. (В больнице нельзя курить.)
+• You mustn't touch the wire. It's dangerous. (Не трогай провод – опасно.)
+• You mustn't be late for the exam. (Нельзя опаздывать на экзамен.)
+
+<blockquote>Mustn't – это строгий запрет. Для мягкого «не нужно» используют don't have to.</blockquote>
+"""
+            },
+            {
+                "title": "Разница must и have to, советы",
+                "text": """
+<b>📌 Must vs have to:</b>
+
+• <b>Must</b> – внутреннее чувство долга (я сам считаю, что должен).
+  Пример: I must study. (Я хочу и считаю нужным учиться.)
+
+• <b>Have to</b> – вынужден из‑за обстоятельств (меня заставляют).
+  Пример: I have to work on Sunday. (Меня заставляют – работа такая.)
+
+<blockquote>В утверждениях и вопросах A1 часто используют must, но знать разницу полезно.</blockquote>
+
+<b>💡 Советы для запоминания:</b>
+1. Запомните фразу: «Must – долг, mustn't – нельзя».
+2. Составляйте предложения о правилах: You must stop at a red light.
+3. Для запретов используйте mustn't: You mustn't talk during the lesson.
+4. Не путайте с don't have to (не нужно) – это не запрет, а отсутствие необходимости.
+
+<blockquote>Регулярно повторяйте must и mustn't на примерах из жизни.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Чем отличается must от have to?", "answer": "Must – личное чувство долга (я сам хочу). Have to – вынужденность (обстоятельства заставляют). Например: I must call my mom (я хочу позвонить). I have to work (меня заставляют)."}
+        ]
     },
     "ordinalNumbers": {
         "title": "🥇 Порядковые числительные",
