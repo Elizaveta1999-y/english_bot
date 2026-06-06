@@ -1279,15 +1279,101 @@ I – my, you – your, he – his, she – her, it – its, we – our, they �
             {"question": "Разница was/were?", "answer": "Was для единственного числа (кроме you), were для множественного и you."}
         ]
     },
-    "pastSimpleRegular": {
-        "title": "✔️ Past Simple (правильные глаголы)",
-        "pages": [{"title": "Образование", "text": "V + -ed"}],
-        "faq": [{"question": "Произношение -ed?", "answer": "[t], [d], [ɪd]"}]
+        "pastSimpleRegular": {
+        "title": "Past Simple (правильные глаголы)",
+        "pages": [
+            {
+                "title": "Образование",
+                "text": """
+<b>✔️ Правильные глаголы: добавляем окончание -ed</b>
+
+• work → worked (работал)
+• play → played (играл)
+• watch → watched (смотрел)
+
+<b>Примеры:</b>
+• I worked yesterday. (Я работал вчера.)
+• She played tennis. (Она играла в теннис.)
+"""
+            },
+            {
+                "title": "Произношение -ed",
+                "text": """
+<b>🔊 Три варианта произношения -ed:</b>
+
+• [t] после глухих согласных: worked, watched
+• [d] после звонких: played, loved
+• [ɪd] после t/d: wanted, needed
+
+<blockquote>Запомните: wanted звучит как «уонтид».</blockquote>
+"""
+            },
+            {
+                "title": "Отрицание и вопрос",
+                "text": """
+<b>🚫 Отрицание:</b> did not (didn't) + глагол (без -ed)
+• I didn't work yesterday. (Я не работал вчера.)
+• She didn't play tennis. (Она не играла в теннис.)
+
+<b>❓ Вопрос:</b> Did + подлежащее + глагол?
+• Did you work yesterday? (Ты работал вчера?)
+• Did she play tennis? (Она играла в теннис?)
+
+<b>Краткие ответы:</b>
+• Yes, I did. / No, I didn't.
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Почему wanted произносится как wantid?", "answer": "После t/d добавляется слог [ɪd], чтобы было легче произносить."}
+        ]
     },
-    "pastSimpleIrregular": {
-        "title": "⚠️ Past Simple (неправильные глаголы)",
-        "pages": [{"title": "Основные 10", "text": "go→went, see→saw, have→had, eat→ate, drink→drank, buy→bought, meet→met, read→read, write→wrote, speak→spoke"}],
-        "faq": [{"question": "Как учить?", "answer": "Группируйте по рифме."}]
+        "pastSimpleIrregular": {
+        "title": "Past Simple (неправильные глаголы)",
+        "pages": [
+            {
+                "title": "Основные 10",
+                "text": """
+<b>⚠️ Неправильные глаголы нужно запоминать:</b>
+
+• go → went (идти)
+• see → saw (видеть)
+• have → had (иметь)
+• eat → ate (есть)
+• drink → drank (пить)
+• buy → bought (покупать)
+• meet → met (встречать)
+• read → read (читать – произносится [ред])
+• write → wrote (писать)
+• speak → spoke (говорить)
+
+<b>Примеры:</b>
+• I went to school yesterday. (Я ходил в школу вчера.)
+• She saw a film. (Она посмотрела фильм.)
+• We had lunch at 1. (Мы пообедали в час.)
+"""
+            },
+            {
+                "title": "Как учить",
+                "text": """
+<b>📚 Советы по запоминанию:</b>
+
+1. Группируйте по рифме:
+   • sing – sang – sung
+   • drink – drank – drunk
+   • swim – swam – swum
+
+2. Используйте карточки: одна сторона – инфинитив, другая – past simple.
+
+3. Составляйте короткие предложения с каждым глаголом.
+
+<blockquote>Регулярно повторяйте таблицу неправильных глаголов.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Сколько всего неправильных глаголов?", "answer": "Около 200, но для уровня A1 достаточно 30-40 самых частотных."}
+        ]
     },
     "futureGoingTo": {
         "title": "🔮 Конструкция going to",
