@@ -9,6 +9,7 @@ from speaking.services.tts import text_to_voice
 
 router = Router()
 
+# -------------------- ТЕМАТИЧЕСКИЕ УРОКИ --------------------
 THEMATIC_TOPICS = [
     "Present Simple vs Continuous",
     "Past Simple vs Present Perfect",
@@ -32,36 +33,80 @@ THEMATIC_TOPICS = [
     "Условные предложения 3 типа (wish/if only)"
 ]
 
-LEVEL_A1_TOPICS = [
-    "alphabet",
-    "numbers120",
-    "tobepositive",
-    "tobenegaquestion",
-    "countries",
-    "pronouns",
-    "plural",
-    "question_words",
-    "there_is_are",
-    "prepositions_place",
-    "adjectives",
-    "present_simple"
-]
-
-LEVEL_A1_NAMES = {
-    "alphabet": "🔤 Алфавит и произношение",
-    "numbers120": "🔢 Числа и счёт (1-20)",
-    "tobepositive": "✅ Глагол to be (утверждение)",
-    "tobenegaquestion": "❓ Глагол to be (отрицание и вопрос)",
-    "countries": "🌍 Страны и национальности",
-    "pronouns": "📌 Личные и притяжательные местоимения",
-    "plural": "📚 Множественное число существительных",
-    "question_words": "❓ Вопросительные слова (What, Where, Who, How, Why)",
-    "there_is_are": "🏠 Конструкция there is / there are",
-    "prepositions_place": "📍 Предлоги места",
-    "adjectives": "🎨 Прилагательные (цвета, размеры, описания)",
-    "present_simple": "⏰ Present Simple (настоящее простое время)"
+# -------------------- УРОВНЕВЫЕ УРОКИ A1 (разбиты на 3 модуля) --------------------
+MODULES = {
+    "1": {
+        "name": "📘 Модуль 1: Основы и знакомство",
+        "lessons": [
+            "alphabet", "numbers120", "tobepositive", "tobenegaquestion",
+            "countries", "pronouns", "plural", "questionwords",
+            "thereisare", "prepositionsplace", "adjectives", "presentsimple"
+        ]
+    },
+    "2": {
+        "name": "📙 Модуль 2: Действия и события",
+        "lessons": [
+            "prescont", "presimplevscont", "tobePast", "pastSimpleRegular",
+            "pastSimpleIrregular", "futureGoingTo", "modalCan", "modalMust",
+            "ordinalNumbers", "adverbsFrequency", "prepositionsTime"
+        ]
+    },
+    "3": {
+        "name": "📗 Модуль 3: Мир вокруг нас",
+        "lessons": [
+            "foodVocabulary", "countableUncountable", "clothesVocabulary", "weatherVocabulary",
+            "dailyRoutine", "familyVocabulary", "houseVocabulary", "townVocabulary",
+            "directions", "jobVocabulary", "hobbyVocabulary", "holidayVocabulary",
+            "shoppingVocabulary", "bodyVocabulary"
+        ]
+    }
 }
 
+# Карта ключ -> название
+LESSON_NAMES = {
+    # Модуль 1
+    "alphabet": "🔤 Алфавит",
+    "numbers120": "🔢 Числа 1‑20",
+    "tobepositive": "✅ to be (утверждение)",
+    "tobenegaquestion": "❓ to be (отрицание/вопрос)",
+    "countries": "🌍 Страны и национальности",
+    "pronouns": "📌 Личные и притяжательные местоимения",
+    "plural": "📚 Множественное число",
+    "questionwords": "❓ Вопросительные слова",
+    "thereisare": "🏠 Конструкция there is/are",
+    "prepositionsplace": "📍 Предлоги места",
+    "adjectives": "🎨 Прилагательные",
+    "presentsimple": "⏰ Present Simple",
+    # Модуль 2
+    "prescont": "⚡ Present Continuous",
+    "presimplevscont": "🔄 Present Simple vs Continuous",
+    "tobePast": "📆 to be в прошедшем",
+    "pastSimpleRegular": "✔️ Past Simple (правильные)",
+    "pastSimpleIrregular": "⚠️ Past Simple (неправильные)",
+    "futureGoingTo": "🔮 Конструкция going to",
+    "modalCan": "💪 Модальный глагол can",
+    "modalMust": "🔔 Модальный глагол must",
+    "ordinalNumbers": "🥇 Порядковые числительные",
+    "adverbsFrequency": "📊 Наречия частотности",
+    "prepositionsTime": "⏰ Предлоги времени",
+    # Модуль 3
+    "foodVocabulary": "🍎 Еда и напитки",
+    "countableUncountable": "🔢 Исчисляемые/неисчисляемые",
+    "clothesVocabulary": "👕 Одежда",
+    "weatherVocabulary": "☀️ Погода",
+    "dailyRoutine": "⏳ Режим дня",
+    "familyVocabulary": "👪 Семья",
+    "houseVocabulary": "🏠 Дом и комната",
+    "townVocabulary": "🏙️ Город",
+    "directions": "🗺️ Как спросить дорогу",
+    "jobVocabulary": "💼 Профессии",
+    "hobbyVocabulary": "🎨 Хобби и свободное время",
+    "holidayVocabulary": "✈️ Отпуск и путешествия",
+    "shoppingVocabulary": "🛒 Покупки",
+    "bodyVocabulary": "🦵 Тело человека"
+}
+
+# Пагинация для тематических уроков (как было)
 user_page = {}
 
 def get_thematic_keyboard(page: int, total_pages: int) -> InlineKeyboardMarkup:
@@ -81,18 +126,23 @@ def get_thematic_keyboard(page: int, total_pages: int) -> InlineKeyboardMarkup:
     buttons.append([InlineKeyboardButton(text="🔙 Назад", callback_data="start_lessons")])
     return InlineKeyboardMarkup(inline_keyboard=buttons)
 
-def get_level_lessons_keyboard(level: str) -> InlineKeyboardMarkup:
-    if level == "A1":
-        topics = LEVEL_A1_TOPICS
-        names = LEVEL_A1_NAMES
-    else:
-        topics = []
-        names = {}
+def get_modules_keyboard(level: str) -> InlineKeyboardMarkup:
+    """Показывает список модулей для уровня A1"""
     buttons = []
-    for key in topics:
-        display_name = names.get(key, key)
-        buttons.append([InlineKeyboardButton(text=display_name, callback_data=f"level_lesson_{level}|{key}")])
+    for mod_id, mod_data in MODULES.items():
+        buttons.append([InlineKeyboardButton(text=mod_data["name"], callback_data=f"module_{level}_{mod_id}")])
     buttons.append([InlineKeyboardButton(text="🔙 Назад к уровням", callback_data="start_lessons")])
+    buttons.append([InlineKeyboardButton(text="🏠 Главное меню", callback_data="back_to_main")])
+    return InlineKeyboardMarkup(inline_keyboard=buttons)
+
+def get_module_lessons_keyboard(level: str, module_id: str) -> InlineKeyboardMarkup:
+    """Показывает список уроков внутри модуля"""
+    lessons = MODULES.get(module_id, {}).get("lessons", [])
+    buttons = []
+    for key in lessons:
+        name = LESSON_NAMES.get(key, key)
+        buttons.append([InlineKeyboardButton(text=name, callback_data=f"lesson_{level}_{module_id}_{key}")])
+    buttons.append([InlineKeyboardButton(text="🔙 Назад к модулям", callback_data=f"back_to_modules_{level}")])
     buttons.append([InlineKeyboardButton(text="🏠 Главное меню", callback_data="back_to_main")])
     return InlineKeyboardMarkup(inline_keyboard=buttons)
 
@@ -123,7 +173,7 @@ async def show_lesson_page(message: Message, user_id: int, edit: bool = True):
         [InlineKeyboardButton(text="❓ Частые вопросы", callback_data=f"lesson_faq_{key}")],
         [InlineKeyboardButton(text="🤔 Задать вопрос", callback_data=f"lesson_ask_{key}")],
         [InlineKeyboardButton(text="📝 Начать практику", callback_data=f"lesson_practice_{key}")],
-        [InlineKeyboardButton(text="🔙 Назад к списку уроков", callback_data=f"back_to_level_{lesson.get('level', 'A1')}")],
+        [InlineKeyboardButton(text="🔙 Назад к списку уроков", callback_data=f"back_to_module_{lesson.get('module_id', '1')}_{lesson.get('level', 'A1')}")],
         [InlineKeyboardButton(text="🏠 Главное меню", callback_data="back_to_main")]
     ]
 
@@ -144,6 +194,7 @@ async def show_lesson_page(message: Message, user_id: int, edit: bool = True):
     else:
         await message.answer(text, reply_markup=keyboard, parse_mode="HTML")
 
+# -------------------- ОСНОВНЫЕ ОБРАБОТЧИКИ --------------------
 @router.callback_query(lambda c: c.data == "start_lessons")
 async def lessons_menu(callback: CallbackQuery):
     user_id = callback.from_user.id
@@ -165,21 +216,20 @@ async def lessons_menu(callback: CallbackQuery):
     ])
     await callback.message.edit_text(
         "📚 Режим уроков\n\n"
-        "Выберите свой уровень, чтобы начать системное обучение.\n"
-        "Или откройте «Тематические уроки» для быстрого разбора конкретных тем.\n"
-        "«Моё обучение» — ваш прогресс и план на неделю.",
+        "Выберите уровень, чтобы начать системное обучение.\n"
+        "Или откройте «Тематические уроки» для быстрого разбора конкретных тем.",
         reply_markup=keyboard,
         parse_mode="HTML"
     )
     await callback.answer()
 
-@router.callback_query(lambda c: c.data.startswith("level_A") or c.data.startswith("level_B") or c.data.startswith("level_C"))
+@router.callback_query(lambda c: c.data.startswith("level_"))
 async def level_chosen(callback: CallbackQuery):
     level = callback.data.split("_")[1]
     if level == "A1":
-        keyboard = get_level_lessons_keyboard("A1")
+        keyboard = get_modules_keyboard("A1")
         await callback.message.edit_text(
-            f"📖 Уровень {level} (Beginner)\n\nВыберите урок:",
+            f"📖 Уровень {level} (Beginner)\n\nВыберите модуль:",
             reply_markup=keyboard,
             parse_mode="HTML"
         )
@@ -195,20 +245,31 @@ async def level_chosen(callback: CallbackQuery):
         )
     await callback.answer()
 
-@router.callback_query(lambda c: c.data.startswith("level_lesson_"))
-async def level_lesson_chosen(callback: CallbackQuery):
-    parts = callback.data.split("|")
-    if len(parts) != 2:
-        await callback.answer("Ошибка: неверный формат данных", show_alert=True)
-        return
-    prefix = parts[0]
-    lesson_key = parts[1]
-    level = prefix.split("_")[2]
+@router.callback_query(lambda c: c.data.startswith("module_"))
+async def module_chosen(callback: CallbackQuery):
+    parts = callback.data.split("_")
+    level = parts[1]
+    module_id = parts[2]
+    keyboard = get_module_lessons_keyboard(level, module_id)
+    module_name = MODULES.get(module_id, {}).get("name", "Модуль")
+    await callback.message.edit_text(
+        f"📘 {module_name}\n\nВыберите урок:",
+        reply_markup=keyboard,
+        parse_mode="HTML"
+    )
+    await callback.answer()
+
+@router.callback_query(lambda c: c.data.startswith("lesson_"))
+async def lesson_chosen(callback: CallbackQuery):
+    parts = callback.data.split("_")
+    level = parts[1]
+    module_id = parts[2]
+    lesson_key = parts[3]
     content = LESSON_CONTENT.get(lesson_key)
     if not content:
         await callback.answer("Урок не найден", show_alert=True)
         return
-    topic_name = LEVEL_A1_NAMES.get(lesson_key, lesson_key)
+    topic_name = LESSON_NAMES.get(lesson_key, lesson_key)
     user_id = callback.from_user.id
     user_state = get_user_state(user_id)
     user_state["current_lesson"] = {
@@ -216,115 +277,39 @@ async def level_lesson_chosen(callback: CallbackQuery):
         "key": lesson_key,
         "content": content,
         "page": 0,
-        "level": level
+        "level": level,
+        "module_id": module_id
     }
     set_user_state(user_id, user_state)
     await show_lesson_page(callback.message, user_id, edit=True)
     await callback.answer()
 
-@router.callback_query(lambda c: c.data.startswith("back_to_level_"))
-async def back_to_level(callback: CallbackQuery):
-    level = callback.data.split("_")[3]
-    user_id = callback.from_user.id
-    user_state = get_user_state(user_id)
-    if "current_lesson" in user_state:
-        del user_state["current_lesson"]
-    set_user_state(user_id, user_state)
-    if level == "A1":
-        keyboard = get_level_lessons_keyboard("A1")
-        await callback.message.edit_text(
-            f"📖 Уровень {level} (Beginner)\n\nВыберите урок:",
-            reply_markup=keyboard,
-            parse_mode="HTML"
-        )
-    else:
-        await callback.message.edit_text(
-            f"📖 Уровень {level}\n\n🚧 Режим в разработке.",
-            reply_markup=InlineKeyboardMarkup(inline_keyboard=[
-                [InlineKeyboardButton(text="🔙 Назад к уровням", callback_data="start_lessons")]
-            ]),
-            parse_mode="HTML"
-        )
-    await callback.answer()
-
-@router.callback_query(lambda c: c.data == "thematic_menu")
-async def thematic_lessons_menu(callback: CallbackQuery):
-    user_id = callback.from_user.id
-    total_pages = (len(THEMATIC_TOPICS) + 4) // 5
-    user_page[user_id] = 1
-    keyboard = get_thematic_keyboard(1, total_pages)
-    if callback.message.text == "📚 Тематические уроки\n\nВыберите тему для изучения:" and callback.message.reply_markup == keyboard:
-        await callback.answer("Вы уже в меню тем")
-        return
+@router.callback_query(lambda c: c.data.startswith("back_to_module_"))
+async def back_to_module(callback: CallbackQuery):
+    parts = callback.data.split("_")
+    module_id = parts[3]
+    level = parts[4]
+    keyboard = get_module_lessons_keyboard(level, module_id)
+    module_name = MODULES.get(module_id, {}).get("name", "Модуль")
     await callback.message.edit_text(
-        "📚 Тематические уроки\n\nВыберите тему для изучения:",
+        f"📘 {module_name}\n\nВыберите урок:",
         reply_markup=keyboard,
         parse_mode="HTML"
     )
     await callback.answer()
 
-@router.callback_query(lambda c: c.data == "thematic_next")
-async def thematic_next_page(callback: CallbackQuery):
-    user_id = callback.from_user.id
-    total_pages = (len(THEMATIC_TOPICS) + 4) // 5
-    current = user_page.get(user_id, 1)
-    if current < total_pages:
-        user_page[user_id] = current + 1
-        keyboard = get_thematic_keyboard(current + 1, total_pages)
-        await callback.message.edit_text(
-            "📚 Тематические уроки\n\nВыберите тему для изучения:",
-            reply_markup=keyboard,
-            parse_mode="HTML"
-        )
+@router.callback_query(lambda c: c.data.startswith("back_to_modules_"))
+async def back_to_modules(callback: CallbackQuery):
+    level = callback.data.split("_")[3]
+    keyboard = get_modules_keyboard(level)
+    await callback.message.edit_text(
+        f"📖 Уровень {level} (Beginner)\n\nВыберите модуль:",
+        reply_markup=keyboard,
+        parse_mode="HTML"
+    )
     await callback.answer()
 
-@router.callback_query(lambda c: c.data == "thematic_prev")
-async def thematic_prev_page(callback: CallbackQuery):
-    user_id = callback.from_user.id
-    total_pages = (len(THEMATIC_TOPICS) + 4) // 5
-    current = user_page.get(user_id, 1)
-    if current > 1:
-        user_page[user_id] = current - 1
-        keyboard = get_thematic_keyboard(current - 1, total_pages)
-        await callback.message.edit_text(
-            "📚 Тематические уроки\n\nВыберите тему для изучения:",
-            reply_markup=keyboard,
-            parse_mode="HTML"
-        )
-    await callback.answer()
-
-@router.callback_query(lambda c: c.data.startswith("thematic_") and c.data not in ("thematic_menu", "thematic_next", "thematic_prev", "thematic_none"))
-async def show_thematic_lesson(callback: CallbackQuery):
-    idx = int(callback.data.split("_")[1])
-    topic_name = THEMATIC_TOPICS[idx]
-    key = topic_name.lower().replace(" ", "_").replace("(", "").replace(")", "").replace("?", "")
-    content = LESSON_CONTENT.get(key)
-    if not content:
-        keyboard = InlineKeyboardMarkup(inline_keyboard=[
-            [InlineKeyboardButton(text="🔙 Назад к темам", callback_data="thematic_menu")],
-            [InlineKeyboardButton(text="🏠 Главное меню", callback_data="back_to_main")]
-        ])
-        await callback.message.edit_text(
-            f"📖 {topic_name}\n\n🚧 Урок в разработке. Скоро здесь будет теория.",
-            reply_markup=keyboard,
-            parse_mode="HTML"
-        )
-        await callback.answer()
-        return
-
-    user_id = callback.from_user.id
-    user_state = get_user_state(user_id)
-    user_state["current_lesson"] = {
-        "topic": topic_name,
-        "key": key,
-        "content": content,
-        "page": 0,
-        "source": "thematic"
-    }
-    set_user_state(user_id, user_state)
-    await show_lesson_page(callback.message, user_id, edit=True)
-    await callback.answer()
-
+# -------------------- НАВИГАЦИЯ ПО СТРАНИЦАМ УРОКА --------------------
 @router.callback_query(lambda c: c.data == "lesson_next_page")
 async def lesson_next_page(callback: CallbackQuery):
     user_id = callback.from_user.id
@@ -360,6 +345,7 @@ async def lesson_prev_page(callback: CallbackQuery):
         await callback.answer("Это первая страница", show_alert=True)
     await callback.answer()
 
+# -------------------- FAQ, ВОПРОСЫ, ПРАКТИКА --------------------
 @router.callback_query(lambda c: c.data.startswith("lesson_faq_"))
 async def lesson_faq(callback: CallbackQuery):
     key = callback.data.split("_")[2]
@@ -416,32 +402,26 @@ async def back_to_lesson(callback: CallbackQuery):
     user_id = callback.from_user.id
     user_state = get_user_state(user_id)
     if "current_lesson" not in user_state or user_state["current_lesson"].get("key") != key:
-        topic_name = None
-        for t in LEVEL_A1_TOPICS:
-            if t == key:
-                topic_name = LEVEL_A1_NAMES.get(t, t)
-                break
-        if not topic_name:
-            for t in THEMATIC_TOPICS:
-                tkey = t.lower().replace(" ", "_").replace("(", "").replace(")", "").replace("?", "")
-                if tkey == key:
-                    topic_name = t
-                    break
-        if not topic_name:
+        # Восстанавливаем урок (нужно знать module_id, можно взять из MODULES)
+        topic_name = LESSON_NAMES.get(key, key)
+        content = LESSON_CONTENT.get(key)
+        if not content:
             await callback.message.edit_text("Урок не найден")
             await callback.answer()
             return
-        content = LESSON_CONTENT.get(key)
-        if not content:
-            await callback.message.edit_text("Контент урока отсутствует")
-            await callback.answer()
-            return
+        # Пытаемся определить module_id
+        module_id = None
+        for mid, mod in MODULES.items():
+            if key in mod["lessons"]:
+                module_id = mid
+                break
         user_state["current_lesson"] = {
             "topic": topic_name,
             "key": key,
             "content": content,
             "page": 0,
-            "level": "A1" if key in LEVEL_A1_TOPICS else "thematic"
+            "level": "A1",
+            "module_id": module_id or "1"
         }
         set_user_state(user_id, user_state)
     await show_lesson_page(callback.message, user_id, edit=True)
@@ -482,6 +462,7 @@ async def lesson_reask(callback: CallbackQuery):
     )
     await callback.answer()
 
+# -------------------- АУДИО ДЛЯ БУКВ --------------------
 CACHE_DIR = "cached_audio/alphabet"
 os.makedirs(CACHE_DIR, exist_ok=True)
 
@@ -563,6 +544,83 @@ async def back_to_alphabet(callback: CallbackQuery):
         await callback.message.answer("Урок не найден, вернитесь в меню тем.")
     await callback.answer()
 
+# -------------------- ТЕМАТИЧЕСКИЕ УРОКИ (пагинация) --------------------
+@router.callback_query(lambda c: c.data == "thematic_menu")
+async def thematic_lessons_menu(callback: CallbackQuery):
+    user_id = callback.from_user.id
+    total_pages = (len(THEMATIC_TOPICS) + 4) // 5
+    user_page[user_id] = 1
+    keyboard = get_thematic_keyboard(1, total_pages)
+    await callback.message.edit_text(
+        "📚 Тематические уроки\n\nВыберите тему для изучения:",
+        reply_markup=keyboard,
+        parse_mode="HTML"
+    )
+    await callback.answer()
+
+@router.callback_query(lambda c: c.data == "thematic_next")
+async def thematic_next_page(callback: CallbackQuery):
+    user_id = callback.from_user.id
+    total_pages = (len(THEMATIC_TOPICS) + 4) // 5
+    current = user_page.get(user_id, 1)
+    if current < total_pages:
+        user_page[user_id] = current + 1
+        keyboard = get_thematic_keyboard(current + 1, total_pages)
+        await callback.message.edit_text(
+            "📚 Тематические уроки\n\nВыберите тему для изучения:",
+            reply_markup=keyboard,
+            parse_mode="HTML"
+        )
+    await callback.answer()
+
+@router.callback_query(lambda c: c.data == "thematic_prev")
+async def thematic_prev_page(callback: CallbackQuery):
+    user_id = callback.from_user.id
+    total_pages = (len(THEMATIC_TOPICS) + 4) // 5
+    current = user_page.get(user_id, 1)
+    if current > 1:
+        user_page[user_id] = current - 1
+        keyboard = get_thematic_keyboard(current - 1, total_pages)
+        await callback.message.edit_text(
+            "📚 Тематические уроки\n\nВыберите тему для изучения:",
+            reply_markup=keyboard,
+            parse_mode="HTML"
+        )
+    await callback.answer()
+
+@router.callback_query(lambda c: c.data.startswith("thematic_") and c.data not in ("thematic_menu", "thematic_next", "thematic_prev", "thematic_none"))
+async def show_thematic_lesson(callback: CallbackQuery):
+    idx = int(callback.data.split("_")[1])
+    topic_name = THEMATIC_TOPICS[idx]
+    key = topic_name.lower().replace(" ", "_").replace("(", "").replace(")", "").replace("?", "")
+    content = LESSON_CONTENT.get(key)
+    if not content:
+        keyboard = InlineKeyboardMarkup(inline_keyboard=[
+            [InlineKeyboardButton(text="🔙 Назад к темам", callback_data="thematic_menu")],
+            [InlineKeyboardButton(text="🏠 Главное меню", callback_data="back_to_main")]
+        ])
+        await callback.message.edit_text(
+            f"📖 {topic_name}\n\n🚧 Урок в разработке. Скоро здесь будет теория.",
+            reply_markup=keyboard,
+            parse_mode="HTML"
+        )
+        await callback.answer()
+        return
+
+    user_id = callback.from_user.id
+    user_state = get_user_state(user_id)
+    user_state["current_lesson"] = {
+        "topic": topic_name,
+        "key": key,
+        "content": content,
+        "page": 0,
+        "source": "thematic"
+    }
+    set_user_state(user_id, user_state)
+    await show_lesson_page(callback.message, user_id, edit=True)
+    await callback.answer()
+
+# -------------------- МОЁ ОБУЧЕНИЕ, ТЕСТ --------------------
 @router.callback_query(lambda c: c.data == "my_learning")
 async def my_learning_menu(callback: CallbackQuery):
     user_id = callback.from_user.id

@@ -1,45 +1,43 @@
 # data/lesson_data.py
 
 LESSON_CONTENT = {
-    # ========== УРОКИ A1 (первые 6) ==========
+    # ==================== МОДУЛЬ 1 ====================
     "alphabet": {
         "title": "Алфавит и произношение",
         "pages": [
             {
                 "title": "Знакомство с алфавитом",
                 "text": """
-<b>Тема урока: Английский алфавит и его звуки 🔤</b>
+<b>🔤 Тема: Английский алфавит (26 букв)</b>
 
-<blockquote>Английский алфавит состоит из 26 букв. Некоторые из них читаются совсем не так, как в русском. Давайте разберёмся!</blockquote>
+<blockquote>Произношение букв в алфавите отличается от их звучания в словах.</blockquote>
 
-<b>Все буквы с произношением:</b>
-
-A [эй] – Apple (яблоко)
-B [би] – Boy (мальчик)
-C [си] – Cat (кот)
-D [ди] – Dog (собака)
-E [и] – Egg (яйцо)
-F [эф] – Fish (рыба)
-G [джи] – Girl (девочка)
-H [эйч] – Hat (шляпа)
-I [ай] – Ice (лёд)
-J [джей] – Juice (сок)
-K [кей] – Kite (воздушный змей)
-L [эл] – Lion (лев)
-M [эм] – Mother (мама)
-N [эн] – Night (ночь)
-O [оу] – Orange (апельсин)
-P [пи] – Pen (ручка)
-Q [кью] – Queen (королева)
-R [ар] – Red (красный)
-S [эс] – Sun (солнце)
-T [ти] – Tea (чай)
-U [ю] – Umbrella (зонт)
-V [ви] – Violin (скрипка)
-W [дабл-ю] – Window (окно)
-X [экс] – X-ray (рентген)
-Y [уай] – Yellow (жёлтый)
-Z [зед] – Zebra (зебра)
+<b>A</b> [эй] – Apple<br>
+<b>B</b> [би] – Boy<br>
+<b>C</b> [си] – Cat<br>
+<b>D</b> [ди] – Dog<br>
+<b>E</b> [и] – Egg<br>
+<b>F</b> [эф] – Fish<br>
+<b>G</b> [джи] – Girl<br>
+<b>H</b> [эйч] – Hat<br>
+<b>I</b> [ай] – Ice<br>
+<b>J</b> [джей] – Juice<br>
+<b>K</b> [кей] – Kite<br>
+<b>L</b> [эл] – Lion<br>
+<b>M</b> [эм] – Mother<br>
+<b>N</b> [эн] – Night<br>
+<b>O</b> [оу] – Orange<br>
+<b>P</b> [пи] – Pen<br>
+<b>Q</b> [кью] – Queen<br>
+<b>R</b> [ар] – Red<br>
+<b>S</b> [эс] – Sun<br>
+<b>T</b> [ти] – Tea<br>
+<b>U</b> [ю] – Umbrella<br>
+<b>V</b> [ви] – Violin<br>
+<b>W</b> [дабл‑ю] – Window<br>
+<b>X</b> [экс] – X‑ray<br>
+<b>Y</b> [уай] – Yellow<br>
+<b>Z</b> [зед] – Zebra
 """,
                 "image": None,
                 "has_audio_buttons": True
@@ -49,33 +47,31 @@ Z [зед] – Zebra (зебра)
                 "text": """
 <b>🎵 Гласные (Vowels):</b> A, E, I, O, U (иногда Y)
 
-Остальные 20 букв – согласные.
+Остальные – согласные.
 
-<blockquote>Важно: произношение буквы в алфавите может отличаться от её звучания в слове. Например:</blockquote>
+<blockquote>Произношение буквы в слове может отличаться от её имени в алфавите.</blockquote>
 
-• Буква <b>A</b> в алфавите – [эй], а в слове <b>cat</b> – [э] (как краткий русский «э»).
-• Буква <b>E</b> в алфавите – [и], а в слове <b>bed</b> – [э].
-• Буква <b>I</b> в алфавите – [ай], а в слове <b>sit</b> – [и] (краткий «и»).
-• Буква <b>O</b> в алфавите – [оу], а в слове <b>hot</b> – [о] (краткий «о»).
-• Буква <b>U</b> в алфавите – [ю], а в слове <b>cup</b> – [а] (краткий «а»).
+• <b>A</b> в слове <i>cat</i> – [э]
+• <b>E</b> в слове <i>bed</i> – [э]
+• <b>I</b> в слове <i>sit</i> – [и]
+• <b>O</b> в слове <i>hot</i> – [о]
+• <b>U</b> в слове <i>cup</i> – [а]
 """,
                 "image": None,
                 "has_audio_buttons": False
             },
             {
-                "title": "Буквы, которые путают",
+                "title": "Трудные буквы",
                 "text": """
-<b>⚠️ Трудные буквы</b>
+<b>⚠️ Буквы, которые путают:</b>
 
-Некоторые буквы легко перепутать на слух или при произношении:
+• <b>B [би]</b> и <b>V [ви]</b>
+• <b>G [джи]</b> и <b>J [джей]</b>
+• <b>W [дабл‑ю]</b> – «двойная U»
+• <b>Y [уай]</b> – не [й]
+• <b>N [эн]</b> и <b>M [эм]</b>
 
-• <b>B</b> [би] и <b>V</b> [ви] – в русском языке нет аналога V, старайтесь чётко произносить звук «в».
-• <b>G</b> [джи] и <b>J</b> [джей] – разные звуки, не путайте!
-• <b>W</b> [дабл-ю] – буква называется «двойная U».
-• <b>Y</b> [уай] – не [й] и не [и], именно «уай».
-• <b>N</b> [эн] и <b>M</b> [эм] – следите, чтобы не сливались.
-
-<blockquote>Совет: повторяйте алфавит вслух каждый день по 2-3 минуты. Это быстро войдёт в привычку.</blockquote>
+<blockquote>Совет: повторяйте алфавит вслух 2‑3 минуты в день.</blockquote>
 """,
                 "image": None,
                 "has_audio_buttons": False
@@ -83,1016 +79,579 @@ Z [зед] – Zebra (зебра)
             {
                 "title": "Практика",
                 "text": """
-<b>✏️ Попробуйте сами</b>
-
-1. Произнесите по буквам своё имя.
-   <i>Пример: ANNA – A [эй], N [эн], N [эн], A [эй]</i>
-
-2. Какая ваша любимая буква? Как она звучит?
-
-3. Найдите 3 слова, которые начинаются на любую букву из алфавита.
-
-4. Послушайте песню «ABC Song» – это поможет запомнить порядок букв.
-
-<blockquote>На следующем уроке мы научимся читать простые слова и познакомимся с числами до 20.</blockquote>
+<b>✏️ Задания:</b>
+1. Назовите по буквам своё имя (Anna → A, N, N, A)
+2. Какая ваша любимая буква? Почему?
+3. Напишите 3 слова на каждую из трёх любых букв.
 """,
                 "image": None,
                 "has_audio_buttons": False
             }
         ],
         "faq": [
-            {
-                "question": "Почему буквы читаются не так, как в алфавите?",
-                "answer": "В английском языке произношение буквы в алфавите – это её «имя», а в словах она может передавать другой звук. Это нормально, со временем вы запомните основные правила чтения."
-            },
-            {
-                "question": "Как быстро выучить алфавит?",
-                "answer": "Повторяйте вслух каждый день, используйте песенку ABC, и записывайте буквы по памяти."
-            }
+            {"question": "Почему буквы читаются не так, как в алфавите?", "answer": "Имя буквы и её звук – разные вещи. Звуки выучите позже."}
         ]
     },
     "numbers120": {
-        "title": "Числа и счёт (1-20)",
+        "title": "Числа 1‑20",
         "pages": [
             {
-                "title": "Числа 1-10",
+                "title": "1‑10",
                 "text": """
-<b>📚 Тема: Числа и счёт (1-20)</b>
-
-<b>Числа от 1 до 10 с произношением и примерами:</b>
-
-• 1 – <b>one</b> [уан] – one apple (одно яблоко)
-• 2 – <b>two</b> [ту] – two cats (два кота)
-• 3 – <b>three</b> [сри] – three pens (три ручки) – <i>межзубный звук</i>
-• 4 – <b>four</b> [фо] – four chairs (четыре стула)
-• 5 – <b>five</b> [файв] – five books (пять книг)
-• 6 – <b>six</b> [сикс] – six eggs (шесть яиц)
-• 7 – <b>seven</b> [сэвн] – seven days (семь дней)
-• 8 – <b>eight</b> [эйт] – eight balls (восемь мячей)
-• 9 – <b>nine</b> [найн] – nine stars (девять звёзд)
-• 10 – <b>ten</b> [тэн] – ten fingers (десять пальцев)
-
-<blockquote>💡 Важно: произносите three с межзубным звуком, five – с придыханием в конце, eight – не произносите букву 'g'.</blockquote>
+<b>🔢 Числа 1‑10:</b><br>
+1 one [уан]<br>
+2 two [ту]<br>
+3 three [сри] (межзубный)<br>
+4 four [фо]<br>
+5 five [файв]<br>
+6 six [сикс]<br>
+7 seven [сэвн]<br>
+8 eight [эйт]<br>
+9 nine [найн]<br>
+10 ten [тэн]
 """,
                 "image": None,
                 "has_audio_buttons": False
             },
             {
-                "title": "Числа 11-20",
+                "title": "11‑20",
                 "text": """
-<b>Числа от 11 до 20:</b>
-
-• 11 – <b>eleven</b> [илэвн] – eleven players (одиннадцать игроков)
-• 12 – <b>twelve</b> [твэлв] – twelve months (двенадцать месяцев)
-• 13 – <b>thirteen</b> [сётин] – thirteen candles (тринадцать свечей)
-• 14 – <b>fourteen</b> [фотин] – fourteen days (четырнадцать дней)
-• 15 – <b>fifteen</b> [фифтин] – fifteen minutes (пятнадцать минут)
-• 16 – <b>sixteen</b> [сикстин] – sixteen years (шестнадцать лет)
-• 17 – <b>seventeen</b> [сэвнтин] – seventeen steps (семнадцать шагов)
-• 18 – <b>eighteen</b> [эйтин] – eighteen holes (восемнадцать лунок)
-• 19 – <b>nineteen</b> [найн-тин] – nineteen floors (девятнадцать этажей)
-• 20 – <b>twenty</b> [твэнти] – twenty euros (двадцать евро)
-
-<b>📌 Правила:</b>
-• Числа 13–19 образуются добавлением суффикса <b>-teen</b> (three → thirteen, four → fourteen, и т.д.), но есть исключения: <b>eleven, twelve</b>.
-• Ударение в них падает на последний слог (<b>thirteen</b>).
+<b>11‑20:</b><br>
+11 eleven [илэвн]<br>
+12 twelve [твэлв]<br>
+13 thirteen [сётин]<br>
+14 fourteen [фотин]<br>
+15 fifteen [фифтин]<br>
+16 sixteen [сикстин]<br>
+17 seventeen [сэвнтин]<br>
+18 eighteen [эйтин]<br>
+19 nineteen [найн‑тин]<br>
+20 twenty [твэнти]
 """,
                 "image": None,
                 "has_audio_buttons": False
             },
             {
-                "title": "Особенности и советы",
+                "title": "Правила и советы",
                 "text": """
-<b>🔊 Важные нюансы произношения:</b>
-
-• Числа на <b>-teen</b> произносятся с ударением на последний слог.
-• Числа на <b>-ty</b> (двадцать, тридцать) имеют ударение на первый слог и звучат короче: <b>fourteen</b> / <b>forty</b>.
-• Обратите внимание на разницу: <b>thirteen</b> vs <b>thirty</b>, <b>fourteen</b> vs <b>forty</b> – это важно для понимания на слух.
-
-<b>📖 Правописание:</b>
-• <b>Eighteen</b> – только одна буква 't' (eight + teen → eighteen).
-• <b>Forty</b> пишется без 'u' (не <strike>fourty</strike>).
-
-<blockquote>Совет: каждый день считайте предметы вокруг (кнопки на телефоне, шаги от двери до стола). Это помогает автоматизировать счёт.</blockquote>
+<b>📌 Правила:</b><br>
+• 13‑19 = цифра + teen (но 13,15 – исключения)<br>
+• Ударение на последний слог (thirTEEN)<br>
+• Различайте -teen и -ty (fourTEEN 14 vs FORty 40)<br>
+• Forty пишется без 'u'<br>
+• В eighteen одна буква 't'<br>
 """,
                 "image": None,
                 "has_audio_buttons": False
             }
         ],
         "faq": [
-            {
-                "question": "В чём разница между -teen и -ty?",
-                "answer": "-teen произносится с ударением на окончание и значит 'надцать', -ty – с ударением на первый слог, значит 'десят'. Например, fourteen (14) vs forty (40)."
-            },
-            {
-                "question": "Почему 11 и 12 не похожи на остальные?",
-                "answer": "Это исторические исключения, которые нужно просто запомнить. Они встречаются во многих германских языках."
-            }
+            {"question": "Разница -teen и -ty?", "answer": "-teen – 'надцать', ударение на окончание; -ty – 'десят', ударение на первый слог."}
         ]
     },
     "tobepositive": {
         "title": "Глагол to be (утверждение)",
         "pages": [
             {
-                "title": "Что такое to be",
+                "title": "Формы to be",
                 "text": """
-<b>📚 Глагол to be – «быть, находиться, являться»</b>
+<b>📚 Глагол to be = «быть, находиться»</b><br>
+I → <b>am</b><br>
+You → <b>are</b><br>
+He/She/It → <b>is</b><br>
+We → <b>are</b><br>
+They → <b>are</b><br>
 
-В русском языке мы часто опускаем слово «есть»: «Я студент», «Она дома». В английском <b>без глагола to be нельзя построить предложение</b> без действия.
-
-<b>Формы to be в настоящем времени:</b>
-• I – <b>am</b> (я есть)
-• You – <b>are</b> (ты есть, вы есть)
-• He / She / It – <b>is</b> (он, она, оно есть)
-• We – <b>are</b> (мы есть)
-• They – <b>are</b> (они есть)
-
-<b>Примеры:</b>
-• I am a teacher. (Я – учитель.)
-• You are my friend. (Ты мой друг.)
-• He is happy. (Он счастлив.)
-• She is at home. (Она дома.)
-• It is a cat. (Это кот.)
-• We are students. (Мы студенты.)
-• They are from Russia. (Они из России.)
+<b>Примеры:</b><br>
+I am a student. (Я студент)<br>
+You are my friend.<br>
+He is happy.<br>
+She is at home.<br>
+It is a cat.<br>
+We are from Russia.<br>
+They are teachers.
 """,
                 "image": None,
                 "has_audio_buttons": False
             },
             {
-                "title": "Сокращённые формы",
+                "title": "Сокращения",
                 "text": """
-<b>✂️ Сокращения (короче, разговорные):</b>
-• I am = <b>I'm</b>
-• You are = <b>you're</b>
-• He is = <b>he's</b>
-• She is = <b>she's</b>
-• It is = <b>it's</b>
-• We are = <b>we're</b>
-• They are = <b>they're</b>
+<b>✂️ Короткие формы:</b><br>
+I am → I'm<br>
+You are → you're<br>
+He is → he's<br>
+She is → she's<br>
+It is → it's<br>
+We are → we're<br>
+They are → they're
 
-<b>Примеры с сокращениями:</b>
-• I'm a doctor. (Я врач.)
-• She's from Italy. (Она из Италии.)
-• It's a big house. (Это большой дом.)
-
-<blockquote>⚠️ Внимание: сокращения не используются в официальных документах и в кратких утвердительных ответах (Yes, I am – нельзя сказать Yes, I'm).</blockquote>
+<blockquote>В кратких утвердительных ответах сокращения НЕЛЬЗЯ: Yes, I am (не I'm)</blockquote>
 """,
                 "image": None,
                 "has_audio_buttons": False
             },
             {
-                "title": "Когда используется to be",
+                "title": "Когда использовать",
                 "text": """
-<b>📌 Основные случаи употребления to be:</b>
+<b>📌 Случаи:</b><br>
+1. Профессия: He is a driver.<br>
+2. Место: We are at home.<br>
+3. Состояние: I am tired.<br>
+4. Возраст: She is 25.<br>
+5. Национальность: They are Italian.<br>
+6. Описание: The weather is nice.<br>
 
-1. <b>Профессия или род деятельности:</b>
-   • He is a driver. (Он водитель.)
-
-2. <b>Местонахождение:</b>
-   • We are at home. (Мы дома.)
-
-3. <b>Состояние или чувство:</b>
-   • I am tired. (Я устал.)
-
-4. <b>Возраст:</b>
-   • She is 25 years old. (Ей 25 лет.)
-
-5. <b>Национальность:</b>
-   • They are Italian. (Они итальянцы.)
-
-6. <b>Прилагательные (описание):</b>
-   • The weather is nice. (Погода хорошая.)
-
-<b>📖 Запомните:</b> в английском нельзя сказать «I student» – обязательно нужен глагол: <b>I am a student</b>.
+<b>Запомните:</b> в английском нельзя сказать «I student» – нужен глагол!
 """,
                 "image": None,
                 "has_audio_buttons": False
             }
         ],
         "faq": [
-            {
-                "question": "Почему I am, а не I is?",
-                "answer": "Исторически сложилось: для местоимения I используется особая форма am. Просто запомните."
-            },
-            {
-                "question": "Как перевести предложение без глагола на русский?",
-                "answer": "На русский часто переводится без «есть» или с тире. Например, «She is a doctor» – «Она врач»."
-            }
+            {"question": "Почему I am, а не I is?", "answer": "Историческая форма. Просто запомните."}
         ]
     },
     "tobenegaquestion": {
-        "title": "Глагол to be (отрицание и вопрос)",
+        "title": "to be (отрицание и вопрос)",
         "pages": [
             {
-                "title": "Отрицательная форма",
+                "title": "Отрицание",
                 "text": """
-<b>🚫 Как сказать «не» с to be</b>
+<b>🚫 to be + not</b><br>
+I am not (I'm not)<br>
+You are not (aren't)<br>
+He is not (isn't)<br>
+She is not (isn't)<br>
+It is not (isn't)<br>
+We are not (aren't)<br>
+They are not (aren't)
 
-Просто добавьте частицу <b>not</b> после глагола to be.
-
-<b>Полные формы отрицания:</b>
-• I am <b>not</b>
-• You are <b>not</b>
-• He/She/It is <b>not</b>
-• We are <b>not</b>
-• They are <b>not</b>
-
-<b>Сокращённые формы (разговорные):</b>
-• I'm not (единственное сокращение, где I am и not сливаются)
-• you aren't
-• he/she/it isn't
-• we aren't
-• they aren't
-
-<b>Примеры:</b>
-• I am not hungry. (Я не голоден.)
-• She isn't from Spain. (Она не из Испании.)
-• They aren't at work. (Они не на работе.)
+<b>Примеры:</b><br>
+I am not hungry.<br>
+She isn't from Spain.<br>
+They aren't at work.
 """,
                 "image": None,
                 "has_audio_buttons": False
             },
             {
-                "title": "Вопросительная форма",
+                "title": "Вопрос",
                 "text": """
-<b>❓ Как задать вопрос с to be</b>
+<b>❓ to be + подлежащее + ... ?</b><br>
+Am I late?<br>
+Are you a student?<br>
+Is he at home?<br>
+Is she happy?<br>
+Is it cold?<br>
+Are we ready?<br>
+Are they from Russia?
 
-Поставьте глагол to be <b>перед подлежащим</b> (местоимением или существительным).
-
-<b>Схема:</b> <i>To be + подлежащее + остальное?</i>
-
-<b>Примеры вопросов:</b>
-• <b>Am I</b> late? (Я опоздал?)
-• <b>Are you</b> a student? (Ты студент?)
-• <b>Is he</b> at home? (Он дома?)
-• <b>Is she</b> happy? (Она счастлива?)
-• <b>Is it</b> cold? (Холодно?)
-• <b>Are we</b> ready? (Мы готовы?)
-• <b>Are they</b> from Russia? (Они из России?)
-
-<blockquote>В русском языке мы часто используем частицу «ли» для таких вопросов (например, «Дома ли он?»).</blockquote>
-""",
-                "image": None,
-                "has_audio_buttons": False
-            },
-            {
-                "title": "Краткие ответы",
-                "text": """
-<b>✅ Короткие ответы на вопросы с to be</b>
-
-<b>Структура:</b> Yes/No + местоимение + to be (без сокращения в утверждении)
-
-<b>Примеры:</b>
-• Are you a teacher? – <b>Yes, I am.</b> / No, I'm not.
-• Is she at home? – <b>Yes, she is.</b> / No, she isn't.
-• Are they from Italy? – <b>Yes, they are.</b> / No, they aren't.
-
-<blockquote>⚠️ <b>Важное правило:</b> в кратком <b>утвердительном</b> ответе нельзя писать I'm, You're, He's и т.д. Нужно полная форма (I am, you are, he is). В отрицательных – можно сокращать.</blockquote>
-
-<b>Запомните:</b>
-• Yes, I'm ❌
-• Yes, I am ✅
-• Yes, he's ❌
-• Yes, he is ✅
+<b>Краткие ответы:</b><br>
+Yes, I am. / No, I'm not.<br>
+Yes, she is. / No, she isn't.
 """,
                 "image": None,
                 "has_audio_buttons": False
             }
         ],
         "faq": [
-            {
-                "question": "Почему нельзя сказать Yes, I'm?",
-                "answer": "Потому что сокращённая форма не может стоять в конце предложения – это правило английской грамматики."
-            }
+            {"question": "Почему нельзя Yes, I'm?", "answer": "Сокращение не может стоять в конце предложения."}
         ]
     },
     "countries": {
         "title": "Страны и национальности",
         "pages": [
             {
-                "title": "Как спросить и ответить",
+                "title": "Как спросить",
                 "text": """
-<b>🌍 Учимся говорить о странах и национальностях</b>
+<b>🌍 Where are you from? – Откуда ты?</b><br>
+Ответ: I'm from + страна.<br>
+Национальность: I am + национальность.<br>
 
-<b>Вопрос:</b> <i>Where are you from?</i> – Откуда ты?
-<b>Ответ:</b> <i>I'm from + страна.</i> (I'm from Russia.)
-
-<b>Национальность:</b> <i>I am Russian.</i> / <i>She is Italian.</i>
-
-<blockquote>Важно: названия национальностей и языков в английском пишутся с <b>большой буквы</b> (Russian, English, Chinese).</blockquote>
-
-<b>Пример диалога:</b>
-• – Where are you from?
-• – I'm from Spain. I am Spanish.
-• – And what language do you speak?
-• – Spanish.
+<b>Примеры:</b><br>
+I'm from Russia. I am Russian.<br>
+She's from Italy. She is Italian.<br>
+They're from Brazil. They are Brazilian.
 """,
                 "image": None,
                 "has_audio_buttons": False
             },
             {
-                "title": "Страны, национальности, языки (часть 1)",
+                "title": "Таблица (1)",
                 "text": """
-<b>📋 Список (часть 1):</b>
-
-→ Russia → Russian → Russian
-→ the USA → American → English
-→ the UK → British → English
-→ Germany → German → German
-→ France → French → French
-→ Italy → Italian → Italian
-→ Spain → Spanish → Spanish
-→ China → Chinese → Chinese
-→ Japan → Japanese → Japanese
-→ Brazil → Brazilian → Portuguese
-
-<b>Примеры:</b>
-• I'm from Brazil. I'm Brazilian. I speak Portuguese.
-• She's from Japan. She's Japanese. She speaks Japanese.
+<b>Страна → национальность → язык:</b><br>
+Russia → Russian → Russian<br>
+the USA → American → English<br>
+the UK → British → English<br>
+Germany → German → German<br>
+France → French → French<br>
+Italy → Italian → Italian<br>
+Spain → Spanish → Spanish<br>
+China → Chinese → Chinese<br>
+Japan → Japanese → Japanese<br>
+Brazil → Brazilian → Portuguese
 """,
                 "image": None,
                 "has_audio_buttons": False
             },
             {
-                "title": "Страны, национальности, языки (часть 2)",
+                "title": "Таблица (2)",
                 "text": """
-<b>📋 Продолжение списка:</b>
+Canada → Canadian → English/French<br>
+Mexico → Mexican → Spanish<br>
+India → Indian → Hindi/English<br>
+Australia → Australian → English<br>
+Egypt → Egyptian → Arabic<br>
+Turkey → Turkish → Turkish<br>
+Poland → Polish → Polish<br>
+Sweden → Swedish → Swedish<br>
+South Korea → Korean → Korean
 
-→ Canada → Canadian → English / French
-→ Mexico → Mexican → Spanish
-→ India → Indian → Hindi / English
-→ Australia → Australian → English
-→ Egypt → Egyptian → Arabic
-→ Turkey → Turkish → Turkish
-→ Poland → Polish → Polish
-→ Sweden → Swedish → Swedish
-→ South Korea → Korean → Korean
-
-<b>📌 Суффиксы национальностей:</b>
-• -an (American, Mexican, Canadian)
-• -ian (Russian, Brazilian, Egyptian)
-• -ese (Chinese, Japanese)
-• -ish (British, Spanish, Polish)
-• -i (Israeli, Pakistani)
+<b>Суффиксы:</b> -an, -ian, -ese, -ish, -i
 """,
                 "image": None,
                 "has_audio_buttons": False
             },
             {
-                "title": "Примеры предложений",
+                "title": "Примеры",
                 "text": """
-<b>📖 Живые примеры использования:</b>
-
-• <b>Tom is from Canada. He is Canadian.</b>
-• <b>Maria is from Mexico. She speaks Spanish.</b>
-• <b>We are from China. We are Chinese.</b>
-• <b>They are from Turkey. They are Turkish.</b>
-• <b>I am from Germany. I am German.</b>
-
-<b>Вопросы для собеседника:</b>
-• <i>What nationality are you?</i> (Какой вы национальности?)
-• <i>Where do you come from?</i> (Откуда вы родом?)
-
-<blockquote>Совет: учите страну и национальность вместе – Russia / Russian, Spain / Spanish.</blockquote>
+<b>📖 Живые фразы:</b><br>
+Tom is from Canada. He is Canadian.<br>
+Maria is from Mexico. She speaks Spanish.<br>
+We are from China. We are Chinese.<br>
+They are from Turkey. They are Turkish.
 """,
                 "image": None,
                 "has_audio_buttons": False
             }
         ],
         "faq": [
-            {
-                "question": "Почему British, а не Britain?",
-                "answer": "British – это прилагательное «британский». Для страны используется the UK или Great Britain."
-            },
-            {
-                "question": "Как правильно: from Russia или from the Russia?",
-                "answer": "Названия стран без 'the' (Russia, France, Brazil), кроме the USA, the UK, the Netherlands."
-            }
+            {"question": "Почему British, а не Britain?", "answer": "British – прилагательное; страна – the UK."}
         ]
     },
     "pronouns": {
         "title": "Личные и притяжательные местоимения",
         "pages": [
             {
-                "title": "Личные местоимения (кто?)",
+                "title": "Личные (кто?)",
                 "text": """
-<b>👤 Личные местоимения (subject pronouns)</b>
+<b>👤 Личные местоимения (subject):</b><br>
+I – я<br>
+You – ты/вы<br>
+He – он<br>
+She – она<br>
+It – оно<br>
+We – мы<br>
+They – они
 
-Они отвечают на вопрос <b>«кто?»</b> и являются <b>подлежащим</b> в предложении.
-
-<b>Таблица:</b>
-• I – я
-• You – ты / вы
-• He – он
-• She – она
-• It – оно (для предметов, животных, явлений)
-• We – мы
-• They – они
-
-<b>Примеры в предложениях:</b>
-• <b>I</b> am a student.
-• <b>You</b> are my friend.
-• <b>He</b> is a doctor.
-• <b>She</b> loves music.
-• <b>It</b> is raining.
-• <b>We</b> are happy.
-• <b>They</b> are from Spain.
-
-<blockquote>Особое внимание <b>it</b>: используется для погоды, времени, расстояния, а также для неодушевлённых предметов.</blockquote>
+<b>Примеры:</b><br>
+I am a student.<br>
+You are my friend.<br>
+He is a doctor.<br>
+She loves music.<br>
+It is raining.<br>
+We are happy.<br>
+They are from Spain.
 """,
                 "image": None,
                 "has_audio_buttons": False
             },
             {
-                "title": "Притяжательные местоимения (чей?)",
+                "title": "Притяжательные (чей?)",
                 "text": """
-<b>🔑 Притяжательные местоимения (possessive adjectives)</b>
+<b>🔑 Притяжательные (possessive adjectives):</b><br>
+I → my (мой)<br>
+You → your (твой)<br>
+He → his (его)<br>
+She → her (её)<br>
+It → its (его/её)<br>
+We → our (наш)<br>
+They → their (их)
 
-Они отвечают на вопрос <b>«чей?»</b> и всегда ставятся <b>перед существительным</b>.
-
-<b>Соответствие личных и притяжательных местоимений:</b>
-• I → <b>my</b> (мой)
-• You → <b>your</b> (твой, ваш)
-• He → <b>his</b> (его)
-• She → <b>her</b> (её)
-• It → <b>its</b> (его/её – для неодушевлённых)
-• We → <b>our</b> (наш)
-• They → <b>their</b> (их)
-
-<b>Примеры словосочетаний:</b>
-• <b>my</b> book (моя книга)
-• <b>your</b> car (твоя машина)
-• <b>his</b> brother (его брат)
-• <b>her</b> phone (её телефон)
-• <b>its</b> colour (его цвет)
-• <b>our</b> house (наш дом)
-• <b>their</b> parents (их родители)
-
-<blockquote>В английском нет отдельного слова для «свой» – используется местоимение, соответствующее подлежащему: She loves <b>her</b> cat. (Она любит своего кота.)</blockquote>
+<b>Всегда перед существительным:</b><br>
+my book, your car, his brother, her phone, its colour, our house, their parents
 """,
                 "image": None,
                 "has_audio_buttons": False
             },
             {
-                "title": "Частые ошибки",
+                "title": "Ошибки",
                 "text": """
-<b>⚠️ Типичные ошибки с местоимениями</b>
-
-1. <b>Путаница it's и its</b>
-   • it's = it is (сокращение) – <i>It's a nice day.</i>
-   • its = его/её (принадлежность) – <i>The cat ate its food.</i>
-
-2. <b>Лишний артикль</b>
-   • ❌ my <strike>the</strike> book
-   • ✅ my book
-
-3. <b>Неправильный выбор при переводе «свой»</b>
-   • ❌ He loves <strike>his</strike> cat. (Здесь his верно, если кот его)
-   • ❌ I love <strike>his</strike> cat. (Я люблю <b>своего</b> кота? Нет, если кот мой, то my)
-
-   <i>Правило: «свой» переводится как my, your, his, her, our, their – в зависимости от подлежащего.</i>
-
-4. <b>Забывают 's в he/she/it</b>
-   • ❌ He a doctor.
-   • ✅ He is a doctor.
-""",
-                "image": None,
-                "has_audio_buttons": False
-            },
-            {
-                "title": "Примеры и запоминалка",
-                "text": """
-<b>📖 Примеры предложений с притяжательными местоимениями</b>
-
-• <b>My</b> name is Anna. <b>Your</b> name is John.
-• <b>His</b> car is red, but <b>her</b> car is blue.
-• The dog is eating <b>its</b> food.
-• <b>Our</b> team won the match.
-• <b>Their</b> house is very big.
-
-<b>🎯 Фраза для запоминания пар (личное → притяжательное):</b>
-<i>I – my, you – your, he – his, she – her, it – its, we – our, they – their.</i>
-
-<blockquote>Совет: составляйте короткие фразы про ваши вещи, семью, друзей, чтобы автоматизировать использование местоимений.</blockquote>
+<b>⚠️ Частые ошибки:</b><br>
+1. it's (it is) ≠ its (принадлежность)<br>
+2. my the book → my book (артикль не нужен)<br>
+3. «свой» переводится по подлежащему: She loves her cat.
 """,
                 "image": None,
                 "has_audio_buttons": False
             }
         ],
         "faq": [
-            {
-                "question": "Как отличить it's от its?",
-                "answer": "it's – это сокращение от it is или it has. Если можно заменить на 'it is', то пишите с апострофом. Its – без апострофа, означает принадлежность."
-            },
-            {
-                "question": "Почему нет отдельного слова для 'свой'?",
-                "answer": "В английском для этого используют притяжательное местоимение, соответствующее подлежащему. He loves his dog – Он любит свою собаку."
-            }
+            {"question": "Как отличить it's от its?", "answer": "it's = it is. Если можно заменить – пишите с апострофом."}
         ]
     },
     "plural": {
-        "title": "Множественное число существительных",
+        "title": "Множественное число",
         "pages": [
-            {
-                "title": "Основное правило +s",
-                "text": """
-<b>📚 Тема: Множественное число существительных</b>
-
-В английском языке, чтобы сказать «один предмет» – используется единственное число, «два и более» – множественное.
-
-<b>Основное правило: добавляем окончание -s</b>
-• a cat → two cats (кот → коты)
-• a dog → three dogs (собака → собаки)
-• a pen → pens (ручка → ручки)
-• a book → books (книга → книги)
-
-<blockquote>💡 Обратите внимание: неопределённый артикль a/an исчезает во множественном числе.</blockquote>
-""",
-                "image": None,
-                "has_audio_buttons": False
-            },
-            {
-                "title": "Окончание -es (после шипящих)",
-                "text": """
-<b>📌 Если слово оканчивается на -s, -ss, -sh, -ch, -x, -z – добавляем -es</b>
-
-Примеры:
-• a bus → buses (автобус → автобусы)
-• a glass → glasses (стакан → стаканы)
-• a dish → dishes (тарелка → тарелки)
-• a watch → watches (часы → часы, мн. число)
-• a box → boxes (коробка → коробки)
-• a quiz → quizzes (викторина → викторины)
-
-<blockquote>Произносится -es как [ɪz] (дополнительный слог).</blockquote>
-""",
-                "image": None,
-                "has_audio_buttons": False
-            },
-            {
-                "title": "Слова, оканчивающиеся на -y",
-                "text": """
-<b>📌 Если слово заканчивается на согласную + y → y меняется на i и добавляется -es</b>
-
-• a baby → babies (ребёнок → дети)
-• a city → cities (город → города)
-• a lady → ladies (леди → леди, мн.ч.)
-• a party → parties (вечеринка → вечеринки)
-
-<b>Если перед y стоит гласная (a, e, i, o, u) → просто добавляем -s</b>
-• a boy → boys (мальчик → мальчики)
-• a day → days (день → дни)
-• a key → keys (ключ → ключи)
-
-<blockquote>Исключение: a play → plays (пьеса → пьесы), также по правилу.</blockquote>
-""",
-                "image": None,
-                "has_audio_buttons": False
-            },
-            {
-                "title": "Исключения (irregular plurals)",
-                "text": """
-<b>⚠️ Некоторые слова образуют множественное число не по правилам. Их нужно запомнить:</b>
-
-• a man → men (мужчина → мужчины)
-• a woman → women (женщина → женщины)
-• a child → children (ребёнок → дети)
-• a tooth → teeth (зуб → зубы)
-• a foot → feet (ступня → ступни)
-• a goose → geese (гусь → гуси)
-• a mouse → mice (мышь → мыши)
-• a person → people (человек → люди)
-
-<b>Слова, которые не меняются:</b>
-• a fish → fish (рыба → рыбы)
-• a sheep → sheep (овца → овцы)
-• a deer → deer (олень → олени)
-
-<blockquote>Совет: учите исключения вместе с основным словом.</blockquote>
-""",
-                "image": None,
-                "has_audio_buttons": False
-            }
+            {"title": "Правило +s", "text": "a cat → cats, a dog → dogs, a pen → pens"},
+            {"title": "Окончание -es", "text": "bus → buses, box → boxes, watch → watches (после sh, ch, s, ss, x, z)"},
+            {"title": "Y → I + es", "text": "baby → babies, city → cities (согласная + y), но boy → boys (гласная + y)"},
+            {"title": "Исключения", "text": "man → men, woman → women, child → children, tooth → teeth, foot → feet, person → people, fish → fish, sheep → sheep"}
         ],
-        "faq": [
-            {
-                "question": "Как произносится -s в конце слова?",
-                "answer": "После глухих согласных (p, t, k, f) – [s]; после звонких (b, d, g, v, l, m, n, r) – [z]; после -s, -ss, -sh, -ch, -x, -z – [ɪz]."
-            },
-            {
-                "question": "Почему не 'childs', а 'children'?",
-                "answer": "Это древняя форма множественного числа, сохранившаяся в английском. Такие слова нужно просто заучивать."
-            }
-        ]
+        "faq": [{"question": "Произношение -s?", "answer": "[s] после глухих, [z] после звонких, [ɪz] после шипящих."}]
     },
-    "question_words": {
-        "title": "Вопросительные слова (What, Where, Who, How, Why)",
+    "questionwords": {
+        "title": "Вопросительные слова",
         "pages": [
-            {
-                "title": "What и Where",
-                "text": """
-<b>❓ Вопросительные слова – основа любых вопросов</b>
-
-<b>What? – Что? Какой?</b>
-Используется, чтобы спросить о предмете, действии или информации.
-• What is your name? (Как тебя зовут? – букв. «Что твоё имя?»)
-• What time is it? (Который час?)
-• What colour is your car? (Какого цвета твоя машина?)
-
-<b>Where? – Где? Куда? Откуда?</b>
-• Where are you from? (Откуда ты?)
-• Where is my phone? (Где мой телефон?)
-• Where do you live? (Где ты живёшь?)
-
-<blockquote>Обратите внимание: после вопросительных слов часто следует глагол to be или вспомогательный глагол (do/does).</blockquote>
-""",
-                "image": None,
-                "has_audio_buttons": False
-            },
-            {
-                "title": "Who и How",
-                "text": """
-<b>Who? – Кто?</b>
-• Who is she? (Кто она?)
-• Who are those people? (Кто эти люди?)
-• Who is your teacher? (Кто твой учитель?)
-
-<b>How? – Как? Каким образом?</b>
-• How are you? (Как дела? – букв. «Как ты?»)
-• How old are you? (Сколько тебе лет? – «Как старый ты?»)
-• How much is it? (Сколько это стоит? – для неисчисляемых)
-• How many apples do you have? (Сколько яблок у тебя? – для исчисляемых)
-
-<blockquote>How + прилагательное: how big (насколько большой), how far (как далеко).</blockquote>
-""",
-                "image": None,
-                "has_audio_buttons": False
-            },
-            {
-                "title": "Why и другие",
-                "text": """
-<b>Why? – Почему?</b>
-• Why are you late? (Почему ты опоздал?)
-• Why is she crying? (Почему она плачет?)
-Ответ часто начинается с because (потому что).
-
-<b>When? – Когда?</b>
-• When is your birthday? (Когда твой день рождения?)
-• When do you get up? (Когда ты встаёшь?)
-
-<b>Which? – Который? Какой именно?</b>
-• Which book do you like? (Какую книгу ты любишь? – из нескольких).
-
-<b>Whose? – Чей?</b>
-• Whose bag is this? (Чья это сумка?)
-
-<blockquote>Совет: задавайте себе вопросы по картинкам или окружающим предметам, чтобы запомнить.</blockquote>
-""",
-                "image": None,
-                "has_audio_buttons": False
-            }
+            {"title": "What / Where", "text": "What? – Что? Какой?\nWhat is your name?\nWhere? – Где? Куда?\nWhere are you from?"},
+            {"title": "Who / How", "text": "Who? – Кто?\nWho is she?\nHow? – Как?\nHow are you? How old are you?"},
+            {"title": "Why / When / Which / Whose", "text": "Why? – Почему?\nWhen? – Когда?\nWhich? – Который?\nWhose? – Чей?"},
+            {"title": "How much / how many", "text": "How much – для неисчисляемых (money, water)\nHow many – для исчисляемых (apples, people)"}
         ],
-        "faq": [
-            {
-                "question": "В чём разница между how much и how many?",
-                "answer": "How much – для неисчисляемых существительных (water, money, time). How many – для исчисляемых (apples, people, days)."
-            },
-            {
-                "question": "Можно ли начать вопрос с глагола без вопросительного слова?",
-                "answer": "Да, это общий вопрос (ответ да/нет). Например: Are you a student? Но вопросительные слова дают конкретную информацию."
-            }
-        ]
+        "faq": [{"question": "Разница much/many?", "answer": "Much – неисчисляемые, many – исчисляемые."}]
     },
-    "there_is_are": {
+    "thereisare": {
         "title": "There is / There are",
         "pages": [
-            {
-                "title": "Утверждение",
-                "text": """
-<b>📚 Конструкция there is / there are – «имеется, есть, находится»</b>
-
-Используется, чтобы сказать о существовании или местонахождении предмета.
-
-<b>There is + существительное в единственном числе</b>
-• There is a book on the table. (На столе есть книга.)
-• There is a cat in the garden. (В саду есть кот.)
-
-<b>There are + существительное во множественном числе</b>
-• There are two chairs in the room. (В комнате два стула.)
-• There are many people at the party. (На вечеринке много людей.)
-
-<blockquote>На русский часто переводится без глагола: «На столе книга».</blockquote>
-""",
-                "image": None,
-                "has_audio_buttons": False
-            },
-            {
-                "title": "Отрицание и вопрос",
-                "text": """
-<b>🚫 Отрицание: добавляем not после is или are</b>
-• There is not (isn't) a pen here. (Здесь нет ручки.)
-• There are not (aren't) any dogs in the house. (В доме нет собак.)
-
-Слово any часто используется в отрицаниях и вопросах вместо a/an.
-
-<b>❓ Вопрос: переносим is/are в начало</b>
-• Is there a bank near here? (Здесь рядом есть банк?)
-• Are there any eggs in the fridge? (В холодильнике есть яйца?)
-
-<b>Краткие ответы:</b>
-• Yes, there is. / No, there isn't.
-• Yes, there are. / No, there aren't.
-""",
-                "image": None,
-                "has_audio_buttons": False
-            },
-            {
-                "title": "Примеры и советы",
-                "text": """
-<b>📖 Живые примеры:</b>
-• There is a beautiful park in my city. (В моём городе есть красивый парк.)
-• There are three bedrooms in our house. (В нашем доме три спальни.)
-• Is there a supermarket nearby? (Рядом есть супермаркет?)
-• There aren't any apples left. (Яблок не осталось.)
-
-<b>🧠 Запомните:</b>
-• there is / there are не указывают точное место (оно добавляется предлогами: in, on, at).
-• В разговорной речи часто сокращают: there's (ед.ч.) – даже для множественного числа, но это неграмотно.
-• Для перечисления нескольких предметов: there is + первый предмет (даже если их много, но первый в ед.ч.). Однако лучше всегда использовать there are для мн.ч.
-
-<blockquote>Упражнение: опишите свою комнату, используя there is / there are.</blockquote>
-""",
-                "image": None,
-                "has_audio_buttons": False
-            }
+            {"title": "Утверждение", "text": "There is a book on the table.\nThere are two chairs."},
+            {"title": "Отрицание и вопрос", "text": "There isn't a pen.\nIs there a bank?"},
+            {"title": "Примеры", "text": "There is a park near my house.\nThere are many people at the party."}
         ],
-        "faq": [
-            {
-                "question": "Можно ли сказать there have?",
-                "answer": "Нет, конструкция there is/are – единственная для выражения наличия. Have используется для принадлежности: I have a car."
-            },
-            {
-                "question": "Когда пишем there's (сокращение)?",
-                "answer": "Только для единственного числа: there's a cat. Неправильно: there's two cats – правильно: there are two cats."
-            }
-        ]
+        "faq": [{"question": "Можно ли there have?", "answer": "Нет, только there is/are."}]
     },
-    "prepositions_place": {
-        "title": "Предлоги места (in, on, under, behind, next to, between)",
+    "prepositionsplace": {
+        "title": "Предлоги места",
         "pages": [
-            {
-                "title": "Базовые предлоги",
-                "text": """
-<b>📍 Предлоги места показывают, где находится предмет</b>
-
-<b>In – внутри (в)</b>
-• in the box (в коробке)
-• in the room (в комнате)
-• in London (в Лондоне)
-
-<b>On – на поверхности (на)</b>
-• on the table (на столе)
-• on the wall (на стене)
-• on the floor (на полу)
-
-<b>Under – под</b>
-• under the bed (под кроватью)
-• under the chair (под стулом)
-
-<b>Behind – за</b>
-• behind the door (за дверью)
-• behind the house (за домом)
-""",
-                "image": None,
-                "has_audio_buttons": False
-            },
-            {
-                "title": "Next to, between, opposite",
-                "text": """
-<b>Next to / beside – рядом с</b>
-• The bank is next to the post office. (Банк рядом с почтой.)
-
-<b>Between – между (двумя объектами)</b>
-• The supermarket is between the school and the park. (Супермаркет между школой и парком.)
-
-<b>Opposite – напротив</b>
-• The cinema is opposite the hotel. (Кинотеатр напротив отеля.)
-
-<b>In front of – перед</b>
-• There is a car in front of the building. (Перед зданием машина.)
-
-<blockquote>Предлоги часто используются с глаголом to be или there is/are.</blockquote>
-""",
-                "image": None,
-                "has_audio_buttons": False
-            },
-            {
-                "title": "Примеры и картинка в уме",
-                "text": """
-<b>📖 Примеры предложений:</b>
-• My phone is on the sofa. (Мой телефон на диване.)
-• The keys are under the mat. (Ключи под ковриком.)
-• She is sitting next to me. (Она сидит рядом со мной.)
-• The park is between the library and the school. (Парк между библиотекой и школой.)
-
-<b>🧠 Как запомнить:</b>
-Представьте свою комнату и мысленно расставляйте предметы, проговаривая предлоги.
-
-<b>Вопросы с предлогами:</b>
-• Where is the cat? – It is under the table.
-• Where are my glasses? – They are on the shelf.
-
-<blockquote>Упражнение: опишите, где находятся предметы на вашем рабочем столе.</blockquote>
-""",
-                "image": None,
-                "has_audio_buttons": False
-            }
+            {"title": "Базовые", "text": "in (в), on (на), under (под), behind (за), next to (рядом), between (между), opposite (напротив)"},
+            {"title": "Примеры", "text": "The cat is under the table.\nThe bank is next to the post office.\nThe park is between the school and the hospital."}
         ],
-        "faq": [
-            {
-                "question": "В чём разница между next to и beside?",
-                "answer": "Они почти одинаковы. Beside чуть более формальный, next to – разговорный."
-            },
-            {
-                "question": "Можно ли использовать предлоги с there is/are?",
-                "answer": "Да, например: There is a cat under the chair. Это очень распространённая конструкция."
-            }
-        ]
+        "faq": [{"question": "Разница next to / beside?", "answer": "Одинаковы, beside формальнее."}]
     },
     "adjectives": {
-        "title": "Прилагательные (цвета, размеры, описания)",
+        "title": "Прилагательные",
         "pages": [
-            {
-                "title": "Что такое прилагательное",
-                "text": """
-<b>🎨 Прилагательные описывают предметы: цвет, размер, форму, качество.</b>
-
-В английском прилагательное <b>не изменяется</b> по родам, числам и падежам. Оно всегда стоит в одной форме.
-
-<b>Порядок слов: прилагательное + существительное</b>
-• a red apple (красное яблоко)
-• a big house (большой дом)
-• interesting books (интересные книги)
-
-<b>Самые употребительные прилагательные:</b>
-→ цвета: red, blue, green, yellow, black, white, orange, pink, purple, brown, grey
-→ размеры: big, small, long, short, tall, high, low
-→ чувства: happy, sad, tired, hungry, thirsty, cold, hot
-→ оценка: good, bad, nice, beautiful, ugly, easy, difficult
-""",
-                "image": None,
-                "has_audio_buttons": False
-            },
-            {
-                "title": "Порядок нескольких прилагательных",
-                "text": """
-<b>📌 Если перед существительным несколько прилагательных, они идут в определённом порядке:</b>
-
-<b>Мнение → размер → возраст → форма → цвет → происхождение → материал → назначение</b>
-
-На практике для A1 достаточно 2-3 прилагательных:
-• a nice big house (хороший большой дом)
-• a small red car (маленькая красная машина)
-• an old wooden table (старый деревянный стол)
-
-<blockquote>Не стоит перегружать предложение более чем двумя-тремя прилагательными.</blockquote>
-
-<b>Исключение: прилагательные после глагола to be</b>
-• The house is big. (Дом большой.)
-• The car is red. (Машина красная.)
-• She is happy. (Она счастлива.)
-В этом случае порядок не важен.
-""",
-                "image": None,
-                "has_audio_buttons": False
-            },
-            {
-                "title": "Степени сравнения (база)",
-                "text": """
-<b>📈 Сравнительная степень – чтобы сравнить два предмета</b>
-Для коротких прилагательных (1-2 слога) добавляем -er
-• big → bigger (больше)
-• small → smaller (меньше)
-• fast → faster (быстрее)
-
-Для длинных (3+ слогов) используем more + прилагательное
-• beautiful → more beautiful (красивее)
-• expensive → more expensive (дороже)
-
-<b>Превосходная степень – самый/самая</b>
-• the biggest (самый большой)
-• the most beautiful (самый красивый)
-
-<blockquote>Исключения (запомнить): good → better → the best; bad → worse → the worst.</blockquote>
-
-<b>Примеры:</b>
-• My house is bigger than yours. (Мой дом больше твоего.)
-• She is the best student. (Она лучшая студентка.)
-""",
-                "image": None,
-                "has_audio_buttons": False
-            }
+            {"title": "Описание", "text": "red, blue, big, small, happy, sad, good, bad, nice, beautiful, easy, difficult"},
+            {"title": "Порядок", "text": "a nice big house (мнение → размер → цвет). После глагола to be: The house is big."},
+            {"title": "Сравнение", "text": "big → bigger → the biggest (короткие); beautiful → more beautiful → the most beautiful (длинные). Исключения: good → better → best, bad → worse → worst."}
         ],
-        "faq": [
-            {
-                "question": "Как понять, когда добавлять -er, а когда more?",
-                "answer": "Односложные и двусложные, оканчивающиеся на -y, -er, -le, -ow: -er (smaller, happier). Остальные – more (more interesting)."
-            },
-            {
-                "question": "Всегда ли прилагательное стоит перед существительным?",
-                "answer": "Да, кроме случаев с глаголом to be: She is nice. Артикль (a/an/the) ставится перед прилагательным: a nice girl."
-            }
-        ]
+        "faq": [{"question": "Как выбрать -er или more?", "answer": "Односложные и двусложные на -y, -er, -le, -ow: -er. Остальные: more."}]
     },
-    "present_simple": {
-        "title": "Present Simple (кроме to be)",
+    "presentsimple": {
+        "title": "Present Simple",
         "pages": [
-            {
-                "title": "Утверждение и спряжение",
-                "text": """
-<b>📚 Present Simple – настоящее простое время</b>
-Описывает:
-• регулярные действия (I go to school every day.)
-• факты (The sun rises in the east.)
-• привычки (She drinks tea in the morning.)
-
-<b>Как образуется:</b>
-• I / You / We / They + глагол (без изменений)
-• He / She / It + глагол + -s (или -es)
-
-<b>Примеры:</b>
-• I work in an office. (Я работаю в офисе.)
-• You speak English well. (Ты хорошо говоришь по-английски.)
-• He works at a hospital. (Он работает в больнице.)
-• She plays tennis every Sunday. (Она играет в теннис каждое воскресенье.)
-• It rains a lot in autumn. (Осенью часто идут дожди.)
-• We live in Russia. (Мы живём в России.)
-• They like pizza. (Они любят пиццу.)
-""",
-                "image": None,
-                "has_audio_buttons": False
-            },
-            {
-                "title": "Отрицание и вопросы",
-                "text": """
-<b>🚫 Отрицание: do not (don't) / does not (doesn't) + глагол (без -s)</b>
-• I don't like coffee. (Я не люблю кофе.)
-• She doesn't eat meat. (Она не ест мясо.)
-• They don't live here. (Они не живут здесь.)
-
-<b>❓ Вопрос: Do / Does + подлежащее + глагол (без -s)?</b>
-• Do you speak English? (Ты говоришь по-английски?)
-• Does she work on Sundays? (Она работает по воскресеньям?)
-• Do they have a car? (У них есть машина?)
-
-<b>Краткие ответы:</b>
-• Yes, I do. / No, I don't.
-• Yes, she does. / No, she doesn't.
-• Yes, they do. / No, they don't.
-
-<blockquote>Важно: в вопросах и отрицаниях окончание -s у глагола исчезает и переходит на do/does.</blockquote>
-""",
-                "image": None,
-                "has_audio_buttons": False
-            },
-            {
-                "title": "Маркеры времени и примеры",
-                "text": """
-<b>🔖 Слова-спутники Present Simple:</b>
-• always (всегда)
-• usually (обычно)
-• often (часто)
-• sometimes (иногда)
-• never (никогда)
-• every day / week / month (каждый день / неделю / месяц)
-• on Mondays (по понедельникам)
-
-<b>📖 Примеры в контексте:</b>
-• I always get up at 7 am. (Я всегда встаю в 7 утра.)
-• She often visits her grandmother. (Она часто навещает бабушку.)
-• They never eat fast food. (Они никогда не едят фастфуд.)
-• He goes to the gym every Tuesday. (Он ходит в спортзал каждый вторник.)
-
-<b>⚠️ Глагол to be в Present Simple не использует do/does.</b>
-• He is a doctor. (Неверно: He does be a doctor)
-• Is he a doctor? (Вопрос: глагол to be выносится в начало)
-
-<blockquote>Совет: учите вместе с маркерами времени – они помогают выбрать правильное время.</blockquote>
-""",
-                "image": None,
-                "has_audio_buttons": False
-            }
+            {"title": "Утверждение", "text": "I/You/We/They + V\nHe/She/It + V‑s\nI work. He works."},
+            {"title": "Отрицание и вопрос", "text": "Don't/Doesn't + V\nDo/Does + подлежащее + V?\nI don't like coffee.\nDoes she speak English?"},
+            {"title": "Маркеры", "text": "always, usually, often, sometimes, never, every day, on Mondays"}
         ],
-        "faq": [
-            {
-                "question": "Почему окончание -s в he/she/it, а у глагола to be – is?",
-                "answer": "Это исключение: to be имеет собственные формы. Остальные глаголы ведут себя по правилу."
-            },
-            {
-                "question": "Как спросить о привычке?",
-                "answer": "Используйте do/does + частотное наречие: Do you often play football? Does she usually come on time?"
-            }
-        ]
+        "faq": [{"question": "Почему -s у глагола, а не у to be?", "answer": "To be – исключение. Остальные глаголы работают по правилу."}]
+    },
+    # ==================== МОДУЛЬ 1 (уроки 1–12 уже даны) ====================
+
+# ==================== МОДУЛЬ 2 ====================
+    "prescont": {
+        "title": "Present Continuous (действие сейчас)",
+        "pages": [
+            {"title": "Образование", "text": "am/is/are + V‑ing\nI am playing. She is reading. They are eating."},
+            {"title": "Отрицание и вопрос", "text": "I am not sleeping. Are you listening? Yes, I am. / No, I'm not."},
+            {"title": "Когда использовать", "text": "1. Действие прямо сейчас: Look! It is raining.\n2. Временная ситуация: I am living in London this month.\n3. План на ближайшее будущее: I am meeting my friend tomorrow."},
+            {"title": "Маркеры", "text": "now, at the moment, today, this week, Listen!, Look!"}
+        ],
+        "faq": [{"question": "Глаголы, не употребляющиеся в Continuous?", "answer": "want, know, understand, like, love, hate, see, hear – чувства, мысли, восприятие."}]
+    },
+    "presimplevscont": {
+        "title": "Present Simple vs Present Continuous",
+        "pages": [
+            {"title": "Разница", "text": "Simple – регулярные действия, факты, расписание.\nContinuous – прямо сейчас, временно, планы."},
+            {"title": "Примеры", "text": "I work every day. (рутина)\nI am working now. (сейчас)\nShe speaks French. (факт)\nShe is speaking French right now."}
+        ],
+        "faq": [{"question": "Как не путать?", "answer": "Смотрите на маркеры: always, usually, every day -> Simple; now, at the moment -> Continuous."}]
+    },
+    "tobePast": {
+        "title": "Глагол to be в прошедшем времени (was/were)",
+        "pages": [
+            {"title": "Формы", "text": "I/he/she/it – was\nyou/we/they – were\nI was at home. They were happy."},
+            {"title": "Отрицание и вопрос", "text": "was not (wasn't), were not (weren't)\nWas he a doctor? Were you tired?"}
+        ],
+        "faq": [{"question": "Разница was/were?", "answer": "Was для единственного числа (кроме you), were для множественного и you."}]
+    },
+    "pastSimpleRegular": {
+        "title": "Past Simple (правильные глаголы)",
+        "pages": [
+            {"title": "Образование", "text": "V + -ed\nwork → worked, play → played, watch → watched"},
+            {"title": "Произношение -ed", "text": "[t] после глухих: worked\n[d] после звонких: played\n[ɪd] после t/d: wanted, needed"},
+            {"title": "Отрицание и вопрос", "text": "did not (didn't) + V\nDid you work yesterday? Yes, I did. / No, I didn't."}
+        ],
+        "faq": [{"question": "Почему wanted произносится как wantid?", "answer": "После t/d добавляется слог [ɪd]."}]
+    },
+    "pastSimpleIrregular": {
+        "title": "Past Simple (неправильные глаголы)",
+        "pages": [
+            {"title": "Основные 10", "text": "go → went, see → saw, have → had, eat → ate, drink → drank, buy → bought, meet → met, read → read, write → wrote, speak → spoke"},
+            {"title": "Примеры", "text": "I went to school yesterday. She saw a film. We had lunch at 1."}
+        ],
+        "faq": [{"question": "Как учить?", "answer": "Группируйте по рифме: sing‑sang‑sung, drink‑drank‑drunk."}]
+    },
+    "futureGoingTo": {
+        "title": "Конструкция to be going to (планы)",
+        "pages": [
+            {"title": "Утверждение", "text": "am/is/are + going to + V\nI am going to study. She is going to travel."},
+            {"title": "Отрицание и вопрос", "text": "I am not going to stay. Are you going to call him?"},
+            {"title": "Когда использовать", "text": "1. Планы: We are going to visit Paris.\n2. Предсказания по фактам: Look at those clouds! It is going to rain."}
+        ],
+        "faq": [{"question": "Разница will и going to?", "answer": "Going to – планы и предсказания по фактам; will – спонтанные решения."}]
+    },
+    "modalCan": {
+        "title": "Модальный глагол can (уметь, мочь)",
+        "pages": [
+            {"title": "Формы", "text": "I can swim. She can dance. (без to)\nОтрицание: cannot / can't\nВопрос: Can you help me?"},
+            {"title": "Значения", "text": "1. Способность: He can play piano.\n2. Разрешение: You can go now.\n3. Просьба: Can I open the window?"}
+        ],
+        "faq": [{"question": "Как спросить разрешение?", "answer": "Can I...? / Could I...? (вежливее)"}]
+    },
+    "modalMust": {
+        "title": "Модальный глагол must (должен)",
+        "pages": [
+            {"title": "Формы", "text": "I must study. (без to)\nОтрицание: must not / mustn't\nВопрос: Must we go now?"},
+            {"title": "Значения", "text": "1. Обязанность: You must wear a seatbelt.\n2. Настоятельная рекомендация: You must see that film.\n3. Запрет (mustn't): You mustn't smoke here."}
+        ],
+        "faq": [{"question": "Разница must и have to?", "answer": "Must – личное чувство долга; have to – вынужден из-за обстоятельств."}]
+    },
+    "ordinalNumbers": {
+        "title": "Порядковые числительные",
+        "pages": [
+            {"title": "1‑10", "text": "1st first, 2nd second, 3rd third, 4th fourth, 5th fifth, 6th sixth, 7th seventh, 8th eighth, 9th ninth, 10th tenth"},
+            {"title": "Правила", "text": "Обычно +th (four→fourth), исключения: one→first, two→second, three→third, five→fifth, eight→eighth, nine→ninth, twelve→twelfth."}
+        ],
+        "faq": [{"question": "Как сказать дату?", "answer": "The fifth of May или May fifth."}]
+    },
+    "adverbsFrequency": {
+        "title": "Наречия частотности",
+        "pages": [
+            {"title": "Список", "text": "always (100%), usually, often, sometimes, rarely, never (0%)"},
+            {"title": "Место в предложении", "text": "Перед основным глаголом: I often play tennis.\nПосле to be: She is always late."}
+        ],
+        "faq": [{"question": "Разница sometimes/usually?", "answer": "Sometimes – иногда (30-40%), usually – обычно (80-90%)."}]
+    },
+    "prepositionsTime": {
+        "title": "Предлоги времени (at, in, on)",
+        "pages": [
+            {"title": "Правила", "text": "at + время (at 5 o'clock)\non + день недели/дата (on Monday, on May 5th)\nin + месяц/год/часть дня (in July, in 2025, in the morning)"},
+            {"title": "Исключения", "text": "at night, at the weekend, in the morning/afternoon/evening, on time, at the moment."}
+        ],
+        "faq": [{"question": "Почему at night, но in the evening?", "answer": "Устойчивые выражения, нужно запомнить."}]
+    },
+    "foodVocabulary": {
+        "title": "Лексика: еда и напитки",
+        "pages": [
+            {"title": "Продукты", "text": "fruit, vegetables, meat, fish, bread, rice, pasta, eggs, milk, cheese, butter, sugar, salt, oil, juice, water, coffee, tea"},
+            {"title": "Приёмы пищи", "text": "breakfast, lunch, dinner, snack, dessert"},
+            {"title": "Глаголы", "text": "eat, drink, cook, bake, fry, boil, cut, mix, taste, enjoy"}
+        ],
+        "faq": [{"question": "Исчисляемые/неисчисляемые?", "answer": "Неисчисляемые: milk, water, sugar, rice, bread. Исчисляемые: apple, egg, banana, carrot."}]
+    },
+    "countableUncountable": {
+        "title": "Исчисляемые и неисчисляемые существительные",
+        "pages": [
+            {"title": "Исчисляемые", "text": "Можно посчитать: an apple, two apples. Используют a/an, many, few."},
+            {"title": "Неисчисляемые", "text": "Нельзя посчитать: water, milk, sugar. Используют some, much, little."},
+            {"title": "Слова-помощники", "text": "some (утверждение), any (отрицание/вопрос), a lot of (много), how much/many (сколько)."}
+        ],
+        "faq": [{"question": "Как спросить количество?", "answer": "How many apples? How much water?"}]
+    },
+    "clothesVocabulary": {
+        "title": "Лексика: одежда",
+        "pages": [
+            {"title": "Виды", "text": "shirt, T‑shirt, blouse, sweater, jacket, coat, trousers, jeans, shorts, skirt, dress, socks, shoes, boots, trainers, hat, cap, scarf, gloves"},
+            {"title": "Глаголы", "text": "wear, put on, take off, buy, try on, fit, suit"}
+        ],
+        "faq": [{"question": "Обувь: shoe или shoes?", "answer": "Обычно во множественном: shoes, boots. 'A shoe' – одна туфля."}]
+    },
+    "weatherVocabulary": {
+        "title": "Лексика: погода",
+        "pages": [
+            {"title": "Прилагательные", "text": "sunny, rainy, cloudy, snowy, windy, foggy, hot, warm, cool, cold"},
+            {"title": "Глаголы и выражения", "text": "It is + прилагательное: It is sunny.\nIt is + V‑ing: It is raining.\nThere is + существительное: There is fog."}
+        ],
+        "faq": [{"question": "Как спросить о погоде?", "answer": "What's the weather like today? / How is the weather?"}]
+    },
+    "dailyRoutine": {
+        "title": "Режим дня",
+        "pages": [
+            {"title": "Глаголы", "text": "wake up, get up, brush teeth, have a shower, get dressed, have breakfast, go to school/work, have lunch, do homework, watch TV, have dinner, go to bed"},
+            {"title": "Пример рассказа", "text": "I wake up at 7. I have breakfast at 7:30. I go to work at 8. I have lunch at 1. I come home at 6. I have dinner at 7. I go to bed at 11."}
+        ],
+        "faq": [{"question": "Как спросить о времени действий?", "answer": "What time do you wake up? / When do you go to work?"}]
+    },
+    "familyVocabulary": {
+        "title": "Лексика: семья",
+        "pages": [
+            {"title": "Члены семьи", "text": "mother, father, parents, sister, brother, son, daughter, grandmother, grandfather, grandparents, aunt, uncle, cousin, niece, nephew, wife, husband"},
+            {"title": "Пример", "text": "My family: mother Anna, father John, sister Kate, brother Tom. I have two cousins."}
+        ],
+        "faq": [{"question": "Как отличить niece от nephew?", "answer": "Niece – племянница, nephew – племянник."}]
+    },
+    "houseVocabulary": {
+        "title": "Лексика: дом и комната",
+        "pages": [
+            {"title": "Комнаты", "text": "living room, bedroom, kitchen, bathroom, dining room, hall, study, garage, garden, balcony"},
+            {"title": "Мебель", "text": "bed, sofa, table, chair, cupboard, wardrobe, desk, shelf, lamp, curtain, carpet, mirror, fridge, cooker, sink, bath, shower, toilet"}
+        ],
+        "faq": [{"question": "Ванная: bathroom или restroom?", "answer": "Bathroom – в доме, restroom – в общественных местах."}]
+    },
+    "townVocabulary": {
+        "title": "Лексика: город",
+        "pages": [
+            {"title": "Места", "text": "bank, supermarket, shop, pharmacy, hospital, clinic, school, university, library, cinema, theatre, museum, park, square, bus station, railway station, airport, hotel, restaurant, cafe, post office, police station, fire station"}
+        ],
+        "faq": [{"question": "Как спросить дорогу?", "answer": "Excuse me, where is the bank? / How can I get to the station?"}]
+    },
+    "directions": {
+        "title": "Как спросить и объяснить дорогу",
+        "pages": [
+            {"title": "Вопросы", "text": "Where is the nearest pharmacy?\nCan you tell me the way to the museum?\nHow far is the station?"},
+            {"title": "Ответы", "text": "Go straight. Turn left/right. Cross the street. It's opposite the park. It's next to the bank. It's on the corner."}
+        ],
+        "faq": [{"question": "Что значит 'on the corner'?", "answer": "На углу."}]
+    },
+    "jobVocabulary": {
+        "title": "Лексика: профессии",
+        "pages": [
+            {"title": "Профессии", "text": "doctor, nurse, teacher, student, engineer, driver, waiter, waitress, cook, shop assistant, manager, secretary, cleaner, lawyer, police officer, firefighter, pilot, flight attendant, artist, musician, writer"}
+        ],
+        "faq": [{"question": "Как сказать 'кем вы работаете'?", "answer": "What do you do? I am a teacher."}]
+    },
+    "hobbyVocabulary": {
+        "title": "Лексика: хобби и свободное время",
+        "pages": [
+            {"title": "Хобби", "text": "reading, writing, drawing, painting, photography, cooking, baking, gardening, hiking, camping, fishing, swimming, running, cycling, playing football, playing chess, listening to music, watching films, playing video games, travelling"},
+            {"title": "Глаголы", "text": "I like + V‑ing. I enjoy reading. I am interested in art."}
+        ],
+        "faq": [{"question": "Как спросить о хобби?", "answer": "What do you like doing in your free time?"}]
+    },
+    "holidayVocabulary": {
+        "title": "Лексика: отпуск и путешествия",
+        "pages": [
+            {"title": "Слова", "text": "travel, trip, journey, holiday, vacation, tourist, guide, hotel, hostel, campsite, luggage, suitcase, ticket, passport, visa, flight, airport, train, bus, car, ship, cruise, beach, mountain, lake, forest"},
+            {"title": "Глаголы", "text": "go on holiday, book a hotel, pack a suitcase, catch a flight, stay in a hotel, visit a museum, take photos, swim in the sea, climb a mountain"}
+        ],
+        "faq": [{"question": "Разница travel/trip/journey?", "answer": "Travel – путешествие вообще, trip – поездка (туда-обратно), journey – путь в одну сторону."}]
+    },
+    "shoppingVocabulary": {
+        "title": "Лексика: покупки",
+        "pages": [
+            {"title": "Фразы", "text": "How much is it? How much does it cost? Can I try it on? Do you have this in a different colour/size? I'll take it. Can I pay by card? Here's the money."},
+            {"title": "Магазины", "text": "supermarket, department store, clothes shop, shoe shop, bookshop, pharmacy, bakery, butcher's, greengrocer's, electronics shop"}
+        ],
+        "faq": [{"question": "Скидка – discount или sale?", "answer": "Discount – скидка, sale – распродажа."}]
+    },
+    "bodyVocabulary": {
+        "title": "Лексика: тело человека",
+        "pages": [
+            {"title": "Части тела", "text": "head, face, hair, eye, ear, nose, mouth, tooth, tongue, neck, shoulder, arm, elbow, hand, finger, chest, back, stomach, hip, leg, knee, foot, toe, skin, bone, muscle"},
+            {"title": "Глаголы", "text": "hurt, ache, break, cut, wash, brush, comb, shave, exercise, sleep, breathe, eat, drink, see, hear, smell, touch"}
+        ],
+        "faq": [{"question": "Tooth или teeth?", "answer": "Tooth – зуб (ед.), teeth – зубы (мн.)."}]
     }
+}
 }
