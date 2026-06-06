@@ -1,3 +1,5 @@
+print("DEBUG: lessons.py imported")
+print("Keys in LESSON_CONTENT:", list(LESSON_CONTENT.keys()))
 # handlers/lessons.py
 import os
 from aiogram import Router, F
