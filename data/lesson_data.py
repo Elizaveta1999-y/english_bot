@@ -654,4 +654,3 @@ my book, your car, his brother, her phone, its colour, our house, their parents
         "faq": [{"question": "Tooth или teeth?", "answer": "Tooth – зуб (ед.), teeth – зубы (мн.)."}]
     }
 }
-}
