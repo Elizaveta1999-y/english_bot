@@ -3,11 +3,21 @@ import os
 from aiogram import Router, F
 from aiogram.types import CallbackQuery, InlineKeyboardMarkup, InlineKeyboardButton, FSInputFile, Message
 from data.users import get_user_state, set_user_state
-from data.lesson_data import LESSON_CONTENT
+from data.level_a1 import LEVEL_A1_CONTENT   # уроки уровня A1
+# from data.level_a2 import LEVEL_A2_CONTENT  # добавите позже
+# from data.level_b1 import LEVEL_B1_CONTENT
+# from data.level_b2 import LEVEL_B2_CONTENT
+# from data.level_c1 import LEVEL_C1_CONTENT
 from services.deepseek import chat
 from speaking.services.tts import text_to_voice
 
 router = Router()
+
+# Собираем все уроки в один словарь
+LESSON_CONTENT = {}
+LESSON_CONTENT.update(LEVEL_A1_CONTENT)
+# LESSON_CONTENT.update(LEVEL_A2_CONTENT)  # раскомментируете позже
+# ...
 
 # ==================== ТЕМАТИЧЕСКИЕ УРОКИ ====================
 THEMATIC_TOPICS = [
@@ -33,7 +43,7 @@ THEMATIC_TOPICS = [
     "Условные предложения 3 типа (wish/if only)"
 ]
 
-# ==================== УРОВНЕВЫЕ УРОКИ A1 (3 модуля, 36 уроков) ====================
+# ==================== УРОВНЕВЫЕ УРОКИ A1 (разбиты на 3 модуля) ====================
 MODULES = {
     "1": {
         "name": "📘 Модуль 1: Основы и знакомство",
@@ -261,7 +271,8 @@ async def module_chosen(callback: CallbackQuery):
     )
     await callback.answer()
 
-@router.callback_query(lambda c: c.data.startswith("lesson_"))
+# ИСПРАВЛЕННЫЙ ОБРАБОТЧИК: исключаем навигационные кнопки
+@router.callback_query(lambda c: c.data.startswith("lesson_") and not any(c.data.startswith(x) for x in ("lesson_next_page", "lesson_prev_page", "lesson_none", "lesson_faq_", "lesson_ask_", "lesson_practice_", "lesson_understand_", "lesson_reask_")))
 async def lesson_chosen(callback: CallbackQuery):
     raw = callback.data[7:]  # убираем "lesson_"
     if "|" in raw:
