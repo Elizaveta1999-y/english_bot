@@ -1915,25 +1915,346 @@ I – my, you – your, he – his, she – her, it – its, we – our, they �
             {"question": "Как сказать 'в 8 часов утра'?", "answer": "at 8 am (или at 8 in the morning – допустимо, но чаще просто at 8 am)."}
         ]
     },
-    "foodVocabulary": {
-        "title": "🍎 Еда и напитки",
-        "pages": [{"title": "Продукты", "text": "fruit, vegetables, meat, fish, bread, rice, pasta, eggs, milk, cheese, butter, sugar, salt, oil, juice, water, coffee, tea"}],
-        "faq": [{"question": "Исчисляемые/неисчисляемые?", "answer": "Milk, water – неисч.; apple – исч."}]
+        "foodVocabulary": {
+        "title": "Лексика: еда и напитки",
+        "pages": [
+            {
+                "title": "Основные продукты",
+                "text": """
+<b>🍎 Продукты питания (food):</b>
+
+• fruit – фрукты
+• vegetables – овощи
+• meat – мясо
+• fish – рыба
+• bread – хлеб
+• rice – рис
+• pasta – макароны
+• eggs – яйца
+• milk – молоко
+• cheese – сыр
+• butter – масло (сливочное)
+• sugar – сахар
+• salt – соль
+• oil – масло (растительное)
+• juice – сок
+• water – вода
+• coffee – кофе
+• tea – чай
+
+<blockquote>Многие продукты относятся к неисчисляемым: milk, water, sugar, rice, bread. С ними нельзя сказать «a» – только «some» или ничего.</blockquote>
+"""
+            },
+            {
+                "title": "Приёмы пищи и типы блюд",
+                "text": """
+<b>🍽️ Приёмы пищи (meals):</b>
+
+• breakfast – завтрак
+• lunch – обед
+• dinner – ужин
+• snack – перекус
+• dessert – десерт
+
+<b>Примеры предложений:</b>
+• I have breakfast at 8 am. (Я завтракаю в 8 утра.)
+• What do you usually eat for lunch? (Что ты обычно ешь на обед?)
+• We had dinner at a nice restaurant. (Мы поужинали в хорошем ресторане.)
+
+<b>🍰 Типы блюд:</b>
+• soup – суп
+• salad – салат
+• sandwich – бутерброд
+• pizza – пицца
+• burger – бургер
+• pasta – паста
+• rice dish – блюдо из риса
+• main course – основное блюдо
+• side dish – гарнир
+• dessert – десерт
+
+<blockquote>Для заказа в ресторане: I'd like a salad as a starter, then the fish as a main course.</blockquote>
+"""
+            },
+            {
+                "title": "Глаголы, связанные с едой",
+                "text": """
+<b>🍳 Глаголы для приготовления и действий с едой:</b>
+
+• eat – есть
+• drink – пить
+• cook – готовить (еду)
+• bake – запекать, печь
+• fry – жарить
+• boil – варить
+• cut – резать
+• mix – смешивать
+• taste – пробовать на вкус
+• enjoy – наслаждаться
+
+<b>Примеры:</b>
+• I love to cook Italian food. (Я обожаю готовить итальянскую еду.)
+• She bakes delicious cakes. (Она печёт вкусные торты.)
+• Can you cut the bread, please? (Можешь нарезать хлеб, пожалуйста?)
+• This soup tastes fantastic! (Этот суп великолепен на вкус!)
+
+<b>💡 Советы для запоминания:</b>
+1. Создайте список любимых продуктов и учите их вместе с артиклями (an apple, a banana).
+2. Практикуйтесь в описании своего завтрака: I usually eat cereal with milk, and I drink orange juice.
+3. Различайте исчисляемые (apple – apples) и неисчисляемые (milk – не может быть во множественном числе).
+"""
+            },
+            {
+                "title": "Полезные фразы в кафе / ресторане",
+                "text": """
+<b>📖 Полезные фразы в кафе или ресторане:</b>
+
+• I'd like a coffee, please. – Я бы хотел кофе, пожалуйста.
+• What do you recommend? – Что вы рекомендуете?
+• Can I have the bill, please? – Можно счёт, пожалуйста?
+• I'm vegetarian. – Я вегетарианец.
+• Is there any gluten‑free food? – Здесь есть безглютеновая еда?
+• The food is delicious. – Еда восхитительна.
+• Could I have some water? – Мне можно немного воды?
+
+<b>Пример мини-диалога:</b>
+– Good evening, what would you like to order?
+– I'd like the chicken salad and a glass of orange juice.
+– OK, anything else?
+– No, thanks.
+– Enjoy your meal!
+
+<blockquote>Научитесь заказывать еду на английском – это пригодится в путешествиях.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Как спросить, есть ли в блюде аллергены?", "answer": "Excuse me, does this dish contain nuts / milk / eggs?"},
+            {"question": "В чём разница между dinner и supper?", "answer": "Dinner – основной вечерний приём пищи (часто ужин), supper – более лёгкий ужин поздно вечером."}
+        ]
     },
     "countableUncountable": {
         "title": "🔢 Исчисляемые / неисчисляемые",
         "pages": [{"title": "Исчисляемые", "text": "a/an, many, few"}, {"title": "Неисчисляемые", "text": "some, much, little"}],
         "faq": [{"question": "Как спросить количество?", "answer": "How many apples? How much water?"}]
     },
-    "clothesVocabulary": {
-        "title": "👕 Одежда",
-        "pages": [{"title": "Виды", "text": "shirt, T‑shirt, blouse, sweater, jacket, coat, trousers, jeans, shorts, skirt, dress, socks, shoes, boots, trainers, hat, cap, scarf, gloves"}],
-        "faq": [{"question": "Обувь: shoe или shoes?", "answer": "Обычно во множественном."}]
+        "clothesVocabulary": {
+        "title": "Лексика: одежда",
+        "pages": [
+            {
+                "title": "Основные предметы одежды",
+                "text": """
+<b>👕 Названия одежды (clothes):</b>
+
+• shirt – рубашка
+• T‑shirt – футболка
+• blouse – блузка
+• sweater – свитер
+• jacket – куртка
+• coat – пальто
+• trousers – брюки (всегда во множественном числе)
+• jeans – джинсы (всегда во множественном числе)
+• shorts – шорты
+• skirt – юбка
+• dress – платье
+• socks – носки
+• shoes – туфли/обувь
+• boots – ботинки
+• trainers – кроссовки
+• hat – шляпа
+• cap – кепка
+• scarf – шарф
+• gloves – перчатки
+
+<blockquote>Многие предметы одежды используют во множественном числе: trousers, jeans, shorts, glasses, tights.</blockquote>
+"""
+            },
+            {
+                "title": "Глаголы с одеждой",
+                "text": """
+<b>🧥 Глаголы, связанные с одеждой:</b>
+
+• wear – носить (быть одетым в что‑то)
+• put on – надевать (действие)
+• take off – снимать
+• buy – покупать
+• try on – примерять
+• fit – подходить по размеру
+• suit – идти, быть к лицу
+
+<b>Примеры:</b>
+• I wear a suit to work. (Я ношу костюм на работу.)
+• Put on your jacket, it's cold outside. (Надень куртку, на улице холодно.)
+• Can I try on these shoes? (Можно примерить эти туфли?)
+• This dress fits me perfectly. (Это платье идеально на мне сидит.)
+• Blue colour suits you well. (Синий цвет тебе идёт.)
+
+<blockquote>«Fits» – о размере, «suits» – о стиле, цвете.</blockquote>
+"""
+            },
+            {
+                "title": "Размеры и примерка",
+                "text": """
+<b>📏 Размеры одежды:</b>
+
+• small (S) – маленький
+• medium (M) – средний
+• large (L) – большой
+• extra large (XL) – очень большой
+
+<b>Обувные размеры:</b>
+• 36 – size 3 (UK) / size 5 (US women)
+• 40 – size 7 (UK) / size 9 (US men)
+
+<b>Полезные фразы в магазине:</b>
+• Do you have this in a larger/smaller size? – У вас есть это на размер больше/меньше?
+• Can I try it on? – Можно примерить?
+• Where is the fitting room? – Где примерочная?
+• How much is this? – Сколько это стоит?
+• I'll take it. – Я возьму это.
+• Do you accept credit cards? – Вы принимаете кредитные карты?
+
+<b>Пример диалога:</b>
+– Excuse me, where are the fitting rooms?
+– They're over there, on the left.
+– Thanks. This shirt is a bit tight. Do you have a larger size?
+– Yes, I'll check. Here you are, size L.
+– Thanks, I'll take it.
+
+<blockquote>Перед покупкой всегда проверяйте размер: Can I try it on? – вежливо и практично.</blockquote>
+"""
+            },
+            {
+                "title": "Советы по запоминанию лексики",
+                "text": """
+<b>💡 Как быстро выучить названия одежды:</b>
+
+1. Сортируйте одежду по типам: верхняя одежда, обувь, аксессуары.
+2. Опишите, во что вы одеты сегодня: I'm wearing a white T‑shirt, blue jeans, and black trainers.
+3. Составьте список того, что нужно купить: I need to buy a coat, two pairs of socks, and a scarf.
+4. Используйте карточки с картинками (можно нарисовать или найти в интернете).
+5. Запомните, что trousers, jeans, shorts всегда звучат во множественном числе, даже если это одна вещь.
+
+<blockquote>Повторяйте слова каждый день, одеваясь или разбирая гардероб.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Почему trousers во множественном числе?", "answer": "Это историческая особенность – предмет, состоящий из двух частей (штанины), часто используется во множественном числе. В современном английском так говорят о многих вещах: jeans, pants (амер.), shorts, tights, glasses."}
+        ]
     },
-    "weatherVocabulary": {
-        "title": "☀️ Погода",
-        "pages": [{"title": "Прилагательные", "text": "sunny, rainy, cloudy, snowy, windy, foggy, hot, warm, cool, cold"}],
-        "faq": [{"question": "Как спросить о погоде?", "answer": "What's the weather like?"}]
+        "weatherVocabulary": {
+        "title": "Лексика: погода",
+        "pages": [
+            {
+                "title": "Прилагательные для описания погоды",
+                "text": """
+<b>☀️ Прилагательные (weather adjectives):</b>
+
+• sunny – солнечно
+• rainy – дождливо
+• cloudy – облачно
+• snowy – снежно
+• windy – ветрено
+• foggy – туманно
+• hot – жарко
+• warm – тепло
+• cool – прохладно
+• cold – холодно
+• freezing – морозно
+
+<b>Использование с it is:</b>
+• It is sunny today. (Сегодня солнечно.)
+• It is cold outside. (На улице холодно.)
+
+<blockquote>В английском о погоде говорят «It is + прилагательное».</blockquote>
+"""
+            },
+            {
+                "title": "Глаголы и выражения о погоде",
+                "text": """
+<b>🎈 Глаголы для описания погодных явлений:</b>
+
+• rain – идти (о дожде)
+• snow – идти (о снеге)
+• shine – светить (о солнце)
+• blow – дуть (о ветре)
+
+<b>Использование:</b>
+• It is raining. (Идёт дождь.)
+• It is snowing. (Идёт снег.)
+• The sun is shining. (Солнце светит.)
+• The wind is blowing. (Ветер дует.)
+
+<b>Существительные:</b>
+• rain – дождь
+• snow – снег
+• wind – ветер
+• cloud – облако
+• fog – туман
+
+<b>Выражение с there is:</b>
+• There is fog. (Туман.)
+• There are clouds. (Облака.)
+
+<blockquote>Выбор между it is + прилагательное и it is + глагол-ing зависит от того, описываете ли вы состояние (sunny) или действие (raining).</blockquote>
+"""
+            },
+            {
+                "title": "Как спросить о погоде и ответить",
+                "text": """
+<b>❓ Вопросы о погоде:</b>
+
+• What's the weather like today? – Какая сегодня погода?
+• How is the weather? – Как погода?
+• Is it going to rain? – Будет дождь?
+• What's the temperature? – Какая температура?
+
+<b>✅ Ответы:</b>
+• It's sunny and warm. – Солнечно и тепло.
+• It's cold and rainy. – Холодно и дождливо.
+• The temperature is 15 degrees. – Температура 15 градусов.
+• It's raining hard. – Идёт сильный дождь.
+• It's snowing heavily. – Идёт сильный снег.
+
+<b>Пример диалога:</b>
+– Hi, what's the weather like in London?
+– It's cloudy and a bit cold, about 10 degrees.
+– Oh, I'll bring a jacket then.
+– Yes, and an umbrella – it might rain.
+
+<blockquote>Перед поездкой всегда смотрите прогноз погоды на английском – полезная практика.</blockquote>
+"""
+            },
+            {
+                "title": "Сезоны и советы",
+                "text": """
+<b>📅 Времена года (seasons):</b>
+
+• spring – весна
+• summer – лето
+• autumn – осень (fall – американский вариант)
+• winter – зима
+
+<b>Примеры:</b>
+• In spring, it is often rainy but flowers bloom. (Весной часто дождливо, но цветут цветы.)
+• Summer is hot and sunny. (Лето жаркое и солнечное.)
+• Autumn is cool and windy. (Осенью прохладно и ветрено.)
+• Winter is cold and snowy. (Зимой холодно и снежно.)
+
+<b>💡 Советы по изучению темы «Погода»:</b>
+1. Каждое утро спрашивайте себя: What's the weather like today? и отвечайте на английском.
+2. Смотрите прогноз погоды на BBC Weather или AccuWeather на английском.
+3. Выучите несколько идиом: It's raining cats and dogs (льет как из ведра), Every cloud has a silver lining (нет худа без добра).
+4. Практикуйтесь в описании погоды в разных городах: In Moscow it's cold, in London it's foggy, in Madrid it's sunny.
+
+<blockquote>Погода – отличная тема для small talk с носителями языка.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "В чём разница между 'it's rainy' и 'it's raining'?", "answer": "It's rainy – состояние (дождливый день), it's raining – действие прямо сейчас (идёт дождь)."}
+        ]
     },
     "dailyRoutine": {
         "title": "⏳ Режим дня",
