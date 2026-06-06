@@ -199,8 +199,7 @@ Z [зед] – Zebra (зебра)
 
 В русском языке мы часто опускаем слово «есть»: «Я студент», «Она дома». В английском <b>без глагола to be нельзя построить предложение</b> без действия.
 
-<b>Таблица форм to be в настоящем времени:</b>
-
+<b>Формы to be в настоящем времени:</b>
 • I – <b>am</b> (я есть)
 • You – <b>are</b> (ты есть, вы есть)
 • He / She / It – <b>is</b> (он, она, оно есть)
@@ -223,7 +222,6 @@ Z [зед] – Zebra (зебра)
                 "title": "Сокращённые формы",
                 "text": """
 <b>✂️ Сокращения (короче, разговорные):</b>
-
 • I am = <b>I'm</b>
 • You are = <b>you're</b>
 • He is = <b>he's</b>
@@ -393,22 +391,20 @@ Z [зед] – Zebra (зебра)
                 "has_audio_buttons": False
             },
             {
-                "title": "Таблица (часть 1)",
+                "title": "Страны, национальности, языки (часть 1)",
                 "text": """
-<b>📋 Список стран, национальностей и языков:</b>
+<b>📋 Список (часть 1):</b>
 
-| Страна | Национальность | Язык |
-|--------|----------------|------|
-| Russia | Russian | Russian |
-| the USA | American | English |
-| the UK | British | English |
-| Germany | German | German |
-| France | French | French |
-| Italy | Italian | Italian |
-| Spain | Spanish | Spanish |
-| China | Chinese | Chinese |
-| Japan | Japanese | Japanese |
-| Brazil | Brazilian | Portuguese |
+→ Russia → Russian → Russian
+→ the USA → American → English
+→ the UK → British → English
+→ Germany → German → German
+→ France → French → French
+→ Italy → Italian → Italian
+→ Spain → Spanish → Spanish
+→ China → Chinese → Chinese
+→ Japan → Japanese → Japanese
+→ Brazil → Brazilian → Portuguese
 
 <b>Примеры:</b>
 • I'm from Brazil. I'm Brazilian. I speak Portuguese.
@@ -418,21 +414,19 @@ Z [зед] – Zebra (зебра)
                 "has_audio_buttons": False
             },
             {
-                "title": "Таблица (часть 2)",
+                "title": "Страны, национальности, языки (часть 2)",
                 "text": """
-<b>Продолжение таблицы:</b>
+<b>📋 Продолжение списка:</b>
 
-| Страна | Национальность | Язык |
-|--------|----------------|------|
-| Canada | Canadian | English / French |
-| Mexico | Mexican | Spanish |
-| India | Indian | Hindi / English |
-| Australia | Australian | English |
-| Egypt | Egyptian | Arabic |
-| Turkey | Turkish | Turkish |
-| Poland | Polish | Polish |
-| Sweden | Swedish | Swedish |
-| South Korea | Korean | Korean |
+→ Canada → Canadian → English / French
+→ Mexico → Mexican → Spanish
+→ India → Indian → Hindi / English
+→ Australia → Australian → English
+→ Egypt → Egyptian → Arabic
+→ Turkey → Turkish → Turkish
+→ Poland → Polish → Polish
+→ Sweden → Swedish → Swedish
+→ South Korea → Korean → Korean
 
 <b>📌 Суффиксы национальностей:</b>
 • -an (American, Mexican, Canadian)
@@ -516,7 +510,7 @@ Z [зед] – Zebra (зебра)
 
 Они отвечают на вопрос <b>«чей?»</b> и всегда ставятся <b>перед существительным</b>.
 
-<b>Таблица соответствия:</b>
+<b>Соответствие личных и притяжательных местоимений:</b>
 • I → <b>my</b> (мой)
 • You → <b>your</b> (твой, ваш)
 • He → <b>his</b> (его)
@@ -553,7 +547,7 @@ Z [зед] – Zebra (зебра)
    • ✅ my book
 
 3. <b>Неправильный выбор при переводе «свой»</b>
-   • ❌ He loves <strike>his</strike> cat. (Он любит своего кота – здесь his верно)
+   • ❌ He loves <strike>his</strike> cat. (Здесь his верно, если кот его)
    • ❌ I love <strike>his</strike> cat. (Я люблю <b>своего</b> кота? Нет, если кот мой, то my)
 
    <i>Правило: «свой» переводится как my, your, his, her, our, their – в зависимости от подлежащего.</i>
