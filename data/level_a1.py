@@ -759,20 +759,212 @@ I – my, you – your, he – his, she – her, it – its, we – our, they �
             {"question": "Можно ли начать вопрос с глагола без вопросительного слова?", "answer": "Да, это общий вопрос (ответ да/нет). Например: Are you a student? Но вопросительные слова дают конкретную информацию."}
         ]
     },
-    "thereisare": {
-        "title": "🏠 Конструкция there is/are",
-        "pages": [{"title": "Утверждение", "text": "There is a book. There are two chairs."}],
-        "faq": [{"question": "Можно ли there have?", "answer": "Нет."}]
+        "thereisare": {
+        "title": "Конструкция there is / there are",
+        "pages": [
+            {
+                "title": "Утверждение",
+                "text": """
+<b>📚 Конструкция there is / there are = «имеется, есть, находится»</b>
+
+Используется, чтобы сказать о существовании или местонахождении предмета.
+
+<b>There is + существительное в единственном числе</b>
+• There is a book on the table. (На столе есть книга.)
+• There is a cat in the garden. (В саду есть кот.)
+
+<b>There are + существительное во множественном числе</b>
+• There are two chairs in the room. (В комнате два стула.)
+• There are many people at the party. (На вечеринке много людей.)
+
+<blockquote>На русский часто переводится без глагола: «На столе книга».</blockquote>
+"""
+            },
+            {
+                "title": "Отрицание и вопрос",
+                "text": """
+<b>🚫 Отрицание: добавляем not после is или are</b>
+• There is not (isn't) a pen here. (Здесь нет ручки.)
+• There are not (aren't) any dogs in the house. (В доме нет собак.)
+
+Слово any часто используется в отрицаниях и вопросах вместо a/an.
+
+<b>❓ Вопрос: переносим is/are в начало</b>
+• Is there a bank near here? (Здесь рядом есть банк?)
+• Are there any eggs in the fridge? (В холодильнике есть яйца?)
+
+<b>Краткие ответы:</b>
+• Yes, there is. / No, there isn't.
+• Yes, there are. / No, there aren't.
+"""
+            },
+            {
+                "title": "Примеры и советы",
+                "text": """
+<b>📖 Живые примеры:</b>
+• There is a beautiful park in my city. (В моём городе есть красивый парк.)
+• There are three bedrooms in our house. (В нашем доме три спальни.)
+• Is there a supermarket nearby? (Рядом есть супермаркет?)
+• There aren't any apples left. (Яблок не осталось.)
+
+<b>🧠 Запомните:</b>
+• there is / there are не указывают точное место – оно добавляется предлогами (in, on, at).
+• В разговорной речи часто сокращают there's для единственного числа, но для множественного лучше использовать there are.
+• Для перечисления нескольких предметов: there is + первый предмет (даже если их много, но первый в единственном числе).
+
+<b>💡 Совет:</b> Опишите свою комнату, используя there is / there are.
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Можно ли сказать there have?", "answer": "Нет, конструкция there is/are – единственная для выражения наличия. Have используется для принадлежности: I have a car."},
+            {"question": "Когда пишут there's (сокращение)?", "answer": "Только для единственного числа: there's a cat. Неправильно: there's two cats – правильно: there are two cats."}
+        ]
     },
-    "prepositionsplace": {
-        "title": "📍 Предлоги места",
-        "pages": [{"title": "Базовые", "text": "in, on, under, behind, next to, between, opposite"}],
-        "faq": [{"question": "Разница next to / beside?", "answer": "Одинаковы."}]
+        "prepositionsplace": {
+        "title": "Предлоги места",
+        "pages": [
+            {
+                "title": "Базовые предлоги",
+                "text": """
+<b>📍 Предлоги места показывают, где находится предмет.</b>
+
+<b>In – внутри (в)</b>
+• in the box (в коробке)
+• in the room (в комнате)
+• in London (в Лондоне)
+
+<b>On – на поверхности (на)</b>
+• on the table (на столе)
+• on the wall (на стене)
+• on the floor (на полу)
+
+<b>Under – под</b>
+• under the bed (под кроватью)
+• under the chair (под стулом)
+
+<b>Behind – за</b>
+• behind the door (за дверью)
+• behind the house (за домом)
+"""
+            },
+            {
+                "title": "Next to, between, opposite",
+                "text": """
+<b>Next to / beside – рядом с</b>
+• The bank is next to the post office. (Банк рядом с почтой.)
+
+<b>Between – между (двумя объектами)</b>
+• The supermarket is between the school and the park. (Супермаркет между школой и парком.)
+
+<b>Opposite – напротив</b>
+• The cinema is opposite the hotel. (Кинотеатр напротив отеля.)
+
+<b>In front of – перед</b>
+• There is a car in front of the building. (Перед зданием машина.)
+
+<blockquote>Предлоги часто используются с глаголом to be или there is/are.</blockquote>
+"""
+            },
+            {
+                "title": "Примеры и советы",
+                "text": """
+<b>📖 Примеры предложений:</b>
+• My phone is on the sofa. (Мой телефон на диване.)
+• The keys are under the mat. (Ключи под ковриком.)
+• She is sitting next to me. (Она сидит рядом со мной.)
+• The park is between the library and the school. (Парк между библиотекой и школой.)
+
+<b>🧠 Как запомнить:</b>
+Представьте свою комнату и мысленно расставляйте предметы, проговаривая предлоги.
+
+<b>Вопросы с предлогами:</b>
+• Where is the cat? – It is under the table.
+• Where are my glasses? – They are on the shelf.
+
+<b>💡 Совет:</b> Опишите, где находятся предметы на вашем рабочем столе, используя предлоги.
+"""
+            }
+        ],
+        "faq": [
+            {"question": "В чём разница между next to и beside?", "answer": "Они почти одинаковы. Beside чуть более формальный, next to – разговорный."},
+            {"question": "Можно ли использовать предлоги с there is/are?", "answer": "Да, например: There is a cat under the chair. Это очень распространённая конструкция."}
+        ]
     },
-    "adjectives": {
-        "title": "🎨 Прилагательные",
-        "pages": [{"title": "Описание", "text": "red, big, happy, good, nice"}],
-        "faq": [{"question": "Порядок прилагательных?", "answer": "Мнение → размер → цвет."}]
+        "adjectives": {
+        "title": "Прилагательные",
+        "pages": [
+            {
+                "title": "Что такое прилагательное",
+                "text": """
+<b>🎨 Прилагательные описывают предметы: цвет, размер, форму, качество.</b>
+
+В английском прилагательное <b>не изменяется</b> по родам, числам и падежам. Оно всегда стоит в одной форме.
+
+<b>Порядок слов: прилагательное + существительное</b>
+• a red apple (красное яблоко)
+• a big house (большой дом)
+• interesting books (интересные книги)
+
+<b>Самые употребительные прилагательные:</b>
+→ цвета: red, blue, green, yellow, black, white, orange, pink, purple, brown, grey
+→ размеры: big, small, long, short, tall, high, low
+→ чувства: happy, sad, tired, hungry, thirsty, cold, hot
+→ оценка: good, bad, nice, beautiful, ugly, easy, difficult
+"""
+            },
+            {
+                "title": "Порядок нескольких прилагательных",
+                "text": """
+<b>📌 Если перед существительным несколько прилагательных, они идут в определённом порядке:</b>
+
+<b>Мнение → размер → возраст → форма → цвет → происхождение → материал → назначение</b>
+
+На практике для A1 достаточно 2-3 прилагательных:
+• a nice big house (хороший большой дом)
+• a small red car (маленькая красная машина)
+• an old wooden table (старый деревянный стол)
+
+<blockquote>Не стоит перегружать предложение более чем двумя-тремя прилагательными.</blockquote>
+
+<b>Исключение: прилагательные после глагола to be</b>
+• The house is big. (Дом большой.)
+• The car is red. (Машина красная.)
+• She is happy. (Она счастлива.)
+В этом случае порядок не важен.
+"""
+            },
+            {
+                "title": "Степени сравнения (база)",
+                "text": """
+<b>📈 Сравнительная степень – чтобы сравнить два предмета</b>
+Для коротких прилагательных (1-2 слога) добавляем -er
+• big → bigger (больше)
+• small → smaller (меньше)
+• fast → faster (быстрее)
+
+Для длинных (3+ слогов) используем more + прилагательное
+• beautiful → more beautiful (красивее)
+• expensive → more expensive (дороже)
+
+<b>Превосходная степень – самый/самая</b>
+• the biggest (самый большой)
+• the most beautiful (самый красивый)
+
+<blockquote>Исключения (запомнить): good → better → the best; bad → worse → the worst.</blockquote>
+
+<b>Примеры:</b>
+• My house is bigger than yours. (Мой дом больше твоего.)
+• She is the best student. (Она лучшая студентка.)
+
+<b>💡 Совет:</b> Сравнивайте окружающие предметы: your bag is bigger than mine.
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Как понять, когда добавлять -er, а когда more?", "answer": "Односложные и двусложные, оканчивающиеся на -y, -er, -le, -ow: -er (smaller, happier). Остальные – more (more interesting)."},
+            {"question": "Всегда ли прилагательное стоит перед существительным?", "answer": "Да, кроме случаев с глаголом to be: She is nice. Артикль (a/an/the) ставится перед прилагательным: a nice girl."}
+        ]
     },
     "presentsimple": {
         "title": "⏰ Present Simple",
