@@ -356,10 +356,148 @@ LEVEL_A1_CONTENT = {
             {"question": "Можно ли использовать сокращения в официальном письме?", "answer": "Нет, в официальных документах пишут полные формы (I am, you are, he is…)."}
         ]
     },
-    "tobenegaquestion": {
-        "title": "❓ Глагол to be (отрицание и вопрос)",
-        "pages": [{"title": "Отрицание", "text": "I am not, you are not (aren't), he is not (isn't)...\nВопрос: Am I late? Are you a student?"}],
-        "faq": [{"question": "Почему нельзя Yes, I'm?", "answer": "Сокращение не может стоять в конце."}]
+        "tobenegaquestion": {
+        "title": "Глагол to be (отрицание и вопрос)",
+        "pages": [
+            {
+                "title": "Как сказать «не» с глаголом to be",
+                "text": """
+<b>🚫 Отрицательная форма to be</b>
+
+Чтобы сказать, что кто‑то или что‑то НЕ является чем‑то, нужно после формы to be добавить частицу <b>not</b>.
+
+<blockquote>В русском языке это соответствует словам «не есть», «не является», «не находится».</blockquote>
+
+<b>Полные формы (пишутся в документах, книгах):</b><br>
+• I am <b>not</b> → я не являюсь<br>
+• You are <b>not</b> → ты не являешься<br>
+• He is <b>not</b> → он не является<br>
+• She is <b>not</b> → она не является<br>
+• It is <b>not</b> → оно не является<br>
+• We are <b>not</b> → мы не являемся<br>
+• They are <b>not</b> → они не являются
+
+<b>Примеры:</b><br>
+• I am not tired. (Я не устал.)<br>
+• She is not from Spain. (Она не из Испании.)<br>
+• They are not at home. (Они не дома.)
+""",
+                "image": None,
+                "has_audio_buttons": False
+            },
+            {
+                "title": "Сокращённые отрицания (разговорные)",
+                "text": """
+<b>✂️ Короткие формы – используем в речи и переписке:</b>
+
+• I am not → <b>I'm not</b> (айм нот)<br>
+• You are not → <b>you aren't</b> (ю а:нт)<br>
+• He is not → <b>he isn't</b> (хиз и́нт)<br>
+• She is not → <b>she isn't</b> (шиз и́нт)<br>
+• It is not → <b>it isn't</b> (ит и́нт)<br>
+• We are not → <b>we aren't</b> (уи а:нт)<br>
+• They are not → <b>they aren't</b> (зэй а:нт)
+
+<blockquote>Обратите внимание: у местоимения I нет сокращённой формы с not – только I'm not.</blockquote>
+
+<b>Примеры с сокращениями:</b><br>
+• I'm not hungry. (Я не голоден.)<br>
+• He isn't a doctor. (Он не врач.)<br>
+• We aren't ready. (Мы не готовы.)
+""",
+                "image": None,
+                "has_audio_buttons": False
+            },
+            {
+                "title": "Как задать вопрос с to be",
+                "text": """
+<b>❓ Вопросительная форма to be</b>
+
+Чтобы задать вопрос, нужно поставить форму to be <b>перед подлежащим</b> (местоимением или существительным).
+
+<blockquote>Порядок слов: to be → подлежащее → остальное?</blockquote>
+
+<b>Схема для всех лиц:</b><br>
+• Am I …?<br>
+• Are you …?<br>
+• Is he / she / it …?<br>
+• Are we …?<br>
+• Are they …?
+
+<b>Примеры вопросов и перевод:</b><br>
+• <b>Am I</b> late? (Я опоздал?)<br>
+• <b>Are you</b> a student? (Ты студент?)<br>
+• <b>Is he</b> at home? (Он дома?)<br>
+• <b>Is she</b> happy? (Она счастлива?)<br>
+• <b>Is it</b> cold outside? (На улице холодно?)<br>
+• <b>Are we</b> ready? (Мы готовы?)<br>
+• <b>Are they</b> from Russia? (Они из России?)
+
+<blockquote>В русском языке часто используется частица «ли»: «Дома ли он?» – Is he at home?</blockquote>
+""",
+                "image": None,
+                "has_audio_buttons": False
+            },
+            {
+                "title": "Краткие ответы на вопросы",
+                "text": """
+<b>✅ Короткие ответы</b>
+
+На вопросы с to be отвечают кратко: Yes / No + местоимение + to be.
+
+<b>Важное правило:</b> в <b>утвердительном</b> кратком ответе <b>нельзя</b> использовать сокращённые формы!<br>
+• Yes, I am. (не I'm)<br>
+• Yes, she is. (не she's)<br>
+• Yes, they are. (не they're)
+
+<b>Отрицательные краткие ответы – можно сокращать:</b><br>
+• No, I'm not.<br>
+• No, she isn't.<br>
+• No, they aren't.
+
+<b>Примеры:</b><br>
+• – Are you a teacher?<br>
+  – <b>Yes, I am.</b> / No, I'm not.<br>
+• – Is she at home?<br>
+  – Yes, she is. / <b>No, she isn't.</b><br>
+• – Are they from Italy?<br>
+  – Yes, they are. / <b>No, they aren't.</b>
+""",
+                "image": None,
+                "has_audio_buttons": False
+            },
+            {
+                "title": "Советы для запоминания",
+                "text": """
+<b>💡 Как быстро выучить отрицания и вопросы to be:</b>
+
+1. **Запомните порядок слов:**<br>
+   • Отрицание: to be + not.<br>
+   • Вопрос: to be + подлежащее + ?.
+
+2. **Потренируйтесь на простых предложениях:**<br>
+   • I am happy → I am not happy → Am I happy?<br>
+   • She is a doctor → She isn't a doctor → Is she a doctor?
+
+3. **Используйте карточки:** на одной стороне утверждение (You are a student), на другой – вопрос и отрицание.
+
+4. **Запомните исключение:** в кратком утвердительном ответе нельзя говорить Yes, I'm – только Yes, I am.
+
+5. **Различайте звучание:**<br>
+   • aren't [a:nt] – длинный гласный<br>
+   • isn't [iznt] – короткий [i]
+
+<blockquote>Через 2–3 дня регулярных упражнений вы будете строить вопросы и отрицания автоматически.</blockquote>
+""",
+                "image": None,
+                "has_audio_buttons": False
+            }
+        ],
+        "faq": [
+            {"question": "Почему в кратком утвердительном ответе нельзя использовать сокращение (Yes, I'm)?", "answer": "Сокращённая форма глагола не может стоять в конце предложения – это грамматическое правило английского языка."},
+            {"question": "В чём разница между isn't и aren't?", "answer": "isn't используется с he, she, it (единственное число); aren't – с you, we, they (множественное число и you)."},
+            {"question": "Как спросить «А ты?» после короткого ответа?", "answer": "Можно добавить 'And you?': – I'm not tired. And you? (А ты?)"}
+        ]
     },
     "countries": {
         "title": "🌍 Страны и национальности",
