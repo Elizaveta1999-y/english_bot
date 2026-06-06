@@ -12,32 +12,32 @@ LESSON_CONTENT = {
 
 <blockquote>Произношение букв в алфавите отличается от их звучания в словах.</blockquote>
 
-<b>A</b> [эй] – Apple<br>
-<b>B</b> [би] – Boy<br>
-<b>C</b> [си] – Cat<br>
-<b>D</b> [ди] – Dog<br>
-<b>E</b> [и] – Egg<br>
-<b>F</b> [эф] – Fish<br>
-<b>G</b> [джи] – Girl<br>
-<b>H</b> [эйч] – Hat<br>
-<b>I</b> [ай] – Ice<br>
-<b>J</b> [джей] – Juice<br>
-<b>K</b> [кей] – Kite<br>
-<b>L</b> [эл] – Lion<br>
-<b>M</b> [эм] – Mother<br>
-<b>N</b> [эн] – Night<br>
-<b>O</b> [оу] – Orange<br>
-<b>P</b> [пи] – Pen<br>
-<b>Q</b> [кью] – Queen<br>
-<b>R</b> [ар] – Red<br>
-<b>S</b> [эс] – Sun<br>
-<b>T</b> [ти] – Tea<br>
-<b>U</b> [ю] – Umbrella<br>
-<b>V</b> [ви] – Violin<br>
-<b>W</b> [дабл‑ю] – Window<br>
-<b>X</b> [экс] – X‑ray<br>
-<b>Y</b> [уай] – Yellow<br>
-<b>Z</b> [зед] – Zebra
+<b>A</b> [эй] – ||Apple||
+<b>B</b> [би] – ||Boy||
+<b>C</b> [си] – ||Cat||
+<b>D</b> [ди] – ||Dog||
+<b>E</b> [и] – ||Egg||
+<b>F</b> [эф] – ||Fish||
+<b>G</b> [джи] – ||Girl||
+<b>H</b> [эйч] – ||Hat||
+<b>I</b> [ай] – ||Ice||
+<b>J</b> [джей] – ||Juice||
+<b>K</b> [кей] – ||Kite||
+<b>L</b> [эл] – ||Lion||
+<b>M</b> [эм] – ||Mother||
+<b>N</b> [эн] – ||Night||
+<b>O</b> [оу] – ||Orange||
+<b>P</b> [пи] – ||Pen||
+<b>Q</b> [кью] – ||Queen||
+<b>R</b> [ар] – ||Red||
+<b>S</b> [эс] – ||Sun||
+<b>T</b> [ти] – ||Tea||
+<b>U</b> [ю] – ||Umbrella||
+<b>V</b> [ви] – ||Violin||
+<b>W</b> [дабл‑ю] – ||Window||
+<b>X</b> [экс] – ||X‑ray||
+<b>Y</b> [уай] – ||Yellow||
+<b>Z</b> [зед] – ||Zebra||
 """,
                 "image": None,
                 "has_audio_buttons": True
@@ -51,11 +51,11 @@ LESSON_CONTENT = {
 
 <blockquote>Произношение буквы в слове может отличаться от её имени в алфавите.</blockquote>
 
-• <b>A</b> в слове <i>cat</i> – [э]
-• <b>E</b> в слове <i>bed</i> – [э]
-• <b>I</b> в слове <i>sit</i> – [и]
-• <b>O</b> в слове <i>hot</i> – [о]
-• <b>U</b> в слове <i>cup</i> – [а]
+• Буква <b>A</b> в слове ||cat|| – [э]
+• Буква <b>E</b> в слове ||bed|| – [э]
+• Буква <b>I</b> в слове ||sit|| – [и]
+• Буква <b>O</b> в слове ||hot|| – [о]
+• Буква <b>U</b> в слове ||cup|| – [а]
 """,
                 "image": None,
                 "has_audio_buttons": False
@@ -65,11 +65,11 @@ LESSON_CONTENT = {
                 "text": """
 <b>⚠️ Буквы, которые путают:</b>
 
-• <b>B [би]</b> и <b>V [ви]</b>
-• <b>G [джи]</b> и <b>J [джей]</b>
-• <b>W [дабл‑ю]</b> – «двойная U»
-• <b>Y [уай]</b> – не [й]
-• <b>N [эн]</b> и <b>M [эм]</b>
+• <b>B</b> [би] и <b>V</b> [ви]
+• <b>G</b> [джи] и <b>J</b> [джей]
+• <b>W</b> [дабл‑ю] – «двойная U»
+• <b>Y</b> [уай] – не [й]
+• <b>N</b> [эн] и <b>M</b> [эм]
 
 <blockquote>Совет: повторяйте алфавит вслух 2‑3 минуты в день.</blockquote>
 """,
@@ -77,327 +77,190 @@ LESSON_CONTENT = {
                 "has_audio_buttons": False
             },
             {
-                "title": "Практика",
+                "title": "Советы для запоминания",
                 "text": """
-<b>✏️ Задания:</b>
-1. Назовите по буквам своё имя (Anna → A, N, N, A)
-2. Какая ваша любимая буква? Почему?
-3. Напишите 3 слова на каждую из трёх любых букв.
+<b>💡 Как быстро выучить алфавит:</b>
+
+1. Пойте песенку «ABC Song» – она поможет запомнить порядок букв.
+2. Распечатайте алфавит и повесьте на видное место.
+3. Каждый день называйте 5 букв и придумывайте слова, которые с них начинаются.
+4. Используйте карточки: на одной стороне буква, на другой – картинка и слово.
+5. Слушайте произношение букв в аудиозаписях и повторяйте вслух.
+
+<blockquote>Через неделю ежедневных повторений вы будете знать алфавит наизусть.</blockquote>
 """,
                 "image": None,
                 "has_audio_buttons": False
             }
         ],
         "faq": [
-            {"question": "Почему буквы читаются не так, как в алфавите?", "answer": "Имя буквы и её звук – разные вещи. Звуки выучите позже."}
+            {"question": "Почему буквы читаются не так, как в алфавите?", "answer": "Имя буквы и её звук – разные вещи. Звуки выучите позже, когда начнёте читать слова."}
         ]
     },
+
     "numbers120": {
-        "title": "Числа 1‑20",
+        "title": "Числа и счёт (1‑20)",
         "pages": [
             {
-                "title": "1‑10",
+                "title": "Числа 1‑5",
                 "text": """
-<b>🔢 Числа 1‑10:</b><br>
-1 one [уан]<br>
-2 two [ту]<br>
-3 three [сри] (межзубный)<br>
-4 four [фо]<br>
-5 five [файв]<br>
-6 six [сикс]<br>
-7 seven [сэвн]<br>
-8 eight [эйт]<br>
-9 nine [найн]<br>
-10 ten [тэн]
+<b>🔢 Числа 1‑5: запоминаем с примерами</b>
+
+• <b>1 – one</b> [уан]  
+  Пример: ||one apple|| (одно яблоко)
+
+• <b>2 – two</b> [ту]  
+  Пример: ||two cats|| (два кота)
+
+• <b>3 – three</b> [сри]  
+  <i>Обратите внимание на межзубный звук – язык между зубами.</i>  
+  Пример: ||three pens|| (три ручки)
+
+• <b>4 – four</b> [фо]  
+  Пример: ||four chairs|| (четыре стула)
+
+• <b>5 – five</b> [файв]  
+  Пример: ||five books|| (пять книг)
+
+<blockquote>Совет: произносите <b>three</b> с межзубным звуком, а в <b>five</b> – чётко слышите [в] на конце.</blockquote>
 """,
                 "image": None,
                 "has_audio_buttons": False
             },
             {
-                "title": "11‑20",
+                "title": "Числа 6‑10",
                 "text": """
-<b>11‑20:</b><br>
-11 eleven [илэвн]<br>
-12 twelve [твэлв]<br>
-13 thirteen [сётин]<br>
-14 fourteen [фотин]<br>
-15 fifteen [фифтин]<br>
-16 sixteen [сикстин]<br>
-17 seventeen [сэвнтин]<br>
-18 eighteen [эйтин]<br>
-19 nineteen [найн‑тин]<br>
-20 twenty [твэнти]
+<b>🔢 Числа 6‑10:</b>
+
+• <b>6 – six</b> [сикс]  
+  Пример: ||six eggs|| (шесть яиц)
+
+• <b>7 – seven</b> [сэвн]  
+  Пример: ||seven days|| (семь дней)
+
+• <b>8 – eight</b> [эйт]  
+  <i>Буква 'g' не произносится!</i>  
+  Пример: ||eight balls|| (восемь мячей)
+
+• <b>9 – nine</b> [найн]  
+  Пример: ||nine stars|| (девять звёзд)
+
+• <b>10 – ten</b> [тэн]  
+  Пример: ||ten fingers|| (десять пальцев)
+
+<blockquote>Запомните: <b>eight</b> пишется с 'eigh', а произносится как [эйт].</blockquote>
 """,
                 "image": None,
                 "has_audio_buttons": False
             },
             {
-                "title": "Правила и советы",
+                "title": "Числа 11‑15 (исключения)",
                 "text": """
-<b>📌 Правила:</b><br>
-• 13‑19 = цифра + teen (но 13,15 – исключения)<br>
-• Ударение на последний слог (thirTEEN)<br>
-• Различайте -teen и -ty (fourTEEN 14 vs FORty 40)<br>
-• Forty пишется без 'u'<br>
-• В eighteen одна буква 't'<br>
+<b>🔢 Числа 11‑15:</b>
+
+• <b>11 – eleven</b> [илэвн]  
+  Пример: ||eleven players|| (одиннадцать игроков)
+
+• <b>12 – twelve</b> [твэлв]  
+  Пример: ||twelve months|| (двенадцать месяцев)
+
+• <b>13 – thirteen</b> [сётин]  
+  Пример: ||thirteen candles|| (тринадцать свечей)
+
+• <b>14 – fourteen</b> [фотин]  
+  Пример: ||fourteen days|| (четырнадцать дней)
+
+• <b>15 – fifteen</b> [фифтин]  
+  Пример: ||fifteen minutes|| (пятнадцать минут)
+
+<blockquote>Числа 13‑19 образуются добавлением суффикса <b>‑teen</b>, но 11 и 12 – исключения, их нужно запомнить.</blockquote>
+""",
+                "image": None,
+                "has_audio_buttons": False
+            },
+            {
+                "title": "Числа 16‑20 и советы",
+                "text": """
+<b>🔢 Числа 16‑20:</b>
+
+• <b>16 – sixteen</b> [сикстин]  
+  Пример: ||sixteen years|| (шестнадцать лет)
+
+• <b>17 – seventeen</b> [сэвнтин]  
+  Пример: ||seventeen steps|| (семнадцать шагов)
+
+• <b>18 – eighteen</b> [эйтин]  
+  <i>Внимание: только одна буква 't' (eight + teen = eighteen)</i>  
+  Пример: ||eighteen holes|| (восемнадцать лунок)
+
+• <b>19 – nineteen</b> [найн-тин]  
+  Пример: ||nineteen floors|| (девятнадцать этажей)
+
+• <b>20 – twenty</b> [твэнти]  
+  Пример: ||twenty euros|| (двадцать евро)
+
+<b>💡 Советы для запоминания:</b>
+
+1. Считайте всё, что видите: шаги, кнопки, книги на полке.
+2. Обратите внимание на ударение: в числах на <b>-teen</b> ударение падает на последний слог (thir<b>TEEN</b>).
+3. Не путайте <b>‑teen</b> (‑надцать) и <b>‑ty</b> (‑десят). Например: <b>fourteen</b> (14) vs <b>forty</b> (40).
+4. Запомните написание <b>forty</b> (без буквы 'u').
+
+<blockquote>Регулярно называйте числа вслух – это поможет автоматизировать счёт.</blockquote>
 """,
                 "image": None,
                 "has_audio_buttons": False
             }
         ],
         "faq": [
-            {"question": "Разница -teen и -ty?", "answer": "-teen – 'надцать', ударение на окончание; -ty – 'десят', ударение на первый слог."}
+            {"question": "В чём разница между -teen и -ty?", "answer": "-teen означает '‑надцать' (13‑19), произносится с ударением на окончание. -ty означает '‑десят' (20,30,40…), ударение на первый слог. Например: fourteen (14) vs forty (40)."},
+            {"question": "Почему 11 и 12 не похожи на остальные?", "answer": "Это исторические исключения, которые нужно просто запомнить. Они встречаются во многих европейских языках."}
         ]
     },
+
+    # Остальные уроки пока оставляем как есть (будут переработаны позже)
     "tobepositive": {
         "title": "Глагол to be (утверждение)",
         "pages": [
-            {
-                "title": "Формы to be",
-                "text": """
-<b>📚 Глагол to be = «быть, находиться»</b><br>
-I → <b>am</b><br>
-You → <b>are</b><br>
-He/She/It → <b>is</b><br>
-We → <b>are</b><br>
-They → <b>are</b><br>
-
-<b>Примеры:</b><br>
-I am a student. (Я студент)<br>
-You are my friend.<br>
-He is happy.<br>
-She is at home.<br>
-It is a cat.<br>
-We are from Russia.<br>
-They are teachers.
-""",
-                "image": None,
-                "has_audio_buttons": False
-            },
-            {
-                "title": "Сокращения",
-                "text": """
-<b>✂️ Короткие формы:</b><br>
-I am → I'm<br>
-You are → you're<br>
-He is → he's<br>
-She is → she's<br>
-It is → it's<br>
-We are → we're<br>
-They are → they're
-
-<blockquote>В кратких утвердительных ответах сокращения НЕЛЬЗЯ: Yes, I am (не I'm)</blockquote>
-""",
-                "image": None,
-                "has_audio_buttons": False
-            },
-            {
-                "title": "Когда использовать",
-                "text": """
-<b>📌 Случаи:</b><br>
-1. Профессия: He is a driver.<br>
-2. Место: We are at home.<br>
-3. Состояние: I am tired.<br>
-4. Возраст: She is 25.<br>
-5. Национальность: They are Italian.<br>
-6. Описание: The weather is nice.<br>
-
-<b>Запомните:</b> в английском нельзя сказать «I student» – нужен глагол!
-""",
-                "image": None,
-                "has_audio_buttons": False
-            }
+            {"title": "Формы to be", "text": "I am, you are, he/she/it is, we are, they are.\nПримеры: I am a student. You are my friend. He is happy."},
+            {"title": "Сокращения", "text": "I'm, you're, he's, she's, it's, we're, they're.\nВ кратких ответах нельзя использовать сокращения: Yes, I am (не I'm)."},
+            {"title": "Когда использовать", "text": "Профессия, место, состояние, возраст, национальность, описание.\nHe is a driver. We are at home. She is 25. They are Italian."}
         ],
-        "faq": [
-            {"question": "Почему I am, а не I is?", "answer": "Историческая форма. Просто запомните."}
-        ]
+        "faq": [{"question": "Почему I am?", "answer": "Историческая форма. Просто запомните."}]
     },
     "tobenegaquestion": {
         "title": "to be (отрицание и вопрос)",
         "pages": [
-            {
-                "title": "Отрицание",
-                "text": """
-<b>🚫 to be + not</b><br>
-I am not (I'm not)<br>
-You are not (aren't)<br>
-He is not (isn't)<br>
-She is not (isn't)<br>
-It is not (isn't)<br>
-We are not (aren't)<br>
-They are not (aren't)
-
-<b>Примеры:</b><br>
-I am not hungry.<br>
-She isn't from Spain.<br>
-They aren't at work.
-""",
-                "image": None,
-                "has_audio_buttons": False
-            },
-            {
-                "title": "Вопрос",
-                "text": """
-<b>❓ to be + подлежащее + ... ?</b><br>
-Am I late?<br>
-Are you a student?<br>
-Is he at home?<br>
-Is she happy?<br>
-Is it cold?<br>
-Are we ready?<br>
-Are they from Russia?
-
-<b>Краткие ответы:</b><br>
-Yes, I am. / No, I'm not.<br>
-Yes, she is. / No, she isn't.
-""",
-                "image": None,
-                "has_audio_buttons": False
-            }
+            {"title": "Отрицание", "text": "I am not (I'm not), you are not (aren't), he is not (isn't), we are not (aren't), they are not (aren't).\nI am not hungry. She isn't from Spain."},
+            {"title": "Вопрос", "text": "Am I late? Are you a student? Is he at home? Is she happy? Are we ready?\nКраткие ответы: Yes, I am. / No, I'm not."}
         ],
-        "faq": [
-            {"question": "Почему нельзя Yes, I'm?", "answer": "Сокращение не может стоять в конце предложения."}
-        ]
+        "faq": [{"question": "Почему нельзя Yes, I'm?", "answer": "Сокращение не может стоять в конце предложения."}]
     },
     "countries": {
         "title": "Страны и национальности",
         "pages": [
-            {
-                "title": "Как спросить",
-                "text": """
-<b>🌍 Where are you from? – Откуда ты?</b><br>
-Ответ: I'm from + страна.<br>
-Национальность: I am + национальность.<br>
-
-<b>Примеры:</b><br>
-I'm from Russia. I am Russian.<br>
-She's from Italy. She is Italian.<br>
-They're from Brazil. They are Brazilian.
-""",
-                "image": None,
-                "has_audio_buttons": False
-            },
-            {
-                "title": "Таблица (1)",
-                "text": """
-<b>Страна → национальность → язык:</b><br>
-Russia → Russian → Russian<br>
-the USA → American → English<br>
-the UK → British → English<br>
-Germany → German → German<br>
-France → French → French<br>
-Italy → Italian → Italian<br>
-Spain → Spanish → Spanish<br>
-China → Chinese → Chinese<br>
-Japan → Japanese → Japanese<br>
-Brazil → Brazilian → Portuguese
-""",
-                "image": None,
-                "has_audio_buttons": False
-            },
-            {
-                "title": "Таблица (2)",
-                "text": """
-Canada → Canadian → English/French<br>
-Mexico → Mexican → Spanish<br>
-India → Indian → Hindi/English<br>
-Australia → Australian → English<br>
-Egypt → Egyptian → Arabic<br>
-Turkey → Turkish → Turkish<br>
-Poland → Polish → Polish<br>
-Sweden → Swedish → Swedish<br>
-South Korea → Korean → Korean
-
-<b>Суффиксы:</b> -an, -ian, -ese, -ish, -i
-""",
-                "image": None,
-                "has_audio_buttons": False
-            },
-            {
-                "title": "Примеры",
-                "text": """
-<b>📖 Живые фразы:</b><br>
-Tom is from Canada. He is Canadian.<br>
-Maria is from Mexico. She speaks Spanish.<br>
-We are from China. We are Chinese.<br>
-They are from Turkey. They are Turkish.
-""",
-                "image": None,
-                "has_audio_buttons": False
-            }
+            {"title": "Как спросить", "text": "Where are you from? I'm from Russia. I am Russian."},
+            {"title": "Таблица", "text": "Russia → Russian, the USA → American, the UK → British, Germany → German, France → French, Italy → Italian, Spain → Spanish, China → Chinese, Japan → Japanese, Brazil → Brazilian"},
+            {"title": "Суффиксы", "text": "-an, -ian, -ese, -ish, -i."}
         ],
-        "faq": [
-            {"question": "Почему British, а не Britain?", "answer": "British – прилагательное; страна – the UK."}
-        ]
+        "faq": [{"question": "British или Britain?", "answer": "British – прилагательное, Britain – страна (но обычно используют the UK)."}]
     },
     "pronouns": {
         "title": "Личные и притяжательные местоимения",
         "pages": [
-            {
-                "title": "Личные (кто?)",
-                "text": """
-<b>👤 Личные местоимения (subject):</b><br>
-I – я<br>
-You – ты/вы<br>
-He – он<br>
-She – она<br>
-It – оно<br>
-We – мы<br>
-They – они
-
-<b>Примеры:</b><br>
-I am a student.<br>
-You are my friend.<br>
-He is a doctor.<br>
-She loves music.<br>
-It is raining.<br>
-We are happy.<br>
-They are from Spain.
-""",
-                "image": None,
-                "has_audio_buttons": False
-            },
-            {
-                "title": "Притяжательные (чей?)",
-                "text": """
-<b>🔑 Притяжательные (possessive adjectives):</b><br>
-I → my (мой)<br>
-You → your (твой)<br>
-He → his (его)<br>
-She → her (её)<br>
-It → its (его/её)<br>
-We → our (наш)<br>
-They → their (их)
-
-<b>Всегда перед существительным:</b><br>
-my book, your car, his brother, her phone, its colour, our house, their parents
-""",
-                "image": None,
-                "has_audio_buttons": False
-            },
-            {
-                "title": "Ошибки",
-                "text": """
-<b>⚠️ Частые ошибки:</b><br>
-1. it's (it is) ≠ its (принадлежность)<br>
-2. my the book → my book (артикль не нужен)<br>
-3. «свой» переводится по подлежащему: She loves her cat.
-""",
-                "image": None,
-                "has_audio_buttons": False
-            }
+            {"title": "Личные", "text": "I, you, he, she, it, we, they.\nI am a student. She loves music."},
+            {"title": "Притяжательные", "text": "my, your, his, her, its, our, their.\nmy book, your car, his brother, her phone."},
+            {"title": "Ошибки", "text": "it's (it is) ≠ its (принадлежность). Нельзя my the book – только my book."}
         ],
-        "faq": [
-            {"question": "Как отличить it's от its?", "answer": "it's = it is. Если можно заменить – пишите с апострофом."}
-        ]
+        "faq": [{"question": "Как отличить it's от its?", "answer": "Если можно заменить на 'it is', пишите с апострофом."}]
     },
     "plural": {
         "title": "Множественное число",
         "pages": [
-            {"title": "Правило +s", "text": "a cat → cats, a dog → dogs, a pen → pens"},
-            {"title": "Окончание -es", "text": "bus → buses, box → boxes, watch → watches (после sh, ch, s, ss, x, z)"},
-            {"title": "Y → I + es", "text": "baby → babies, city → cities (согласная + y), но boy → boys (гласная + y)"},
-            {"title": "Исключения", "text": "man → men, woman → women, child → children, tooth → teeth, foot → feet, person → people, fish → fish, sheep → sheep"}
+            {"title": "+s", "text": "cat → cats, dog → dogs, pen → pens."},
+            {"title": "-es", "text": "bus → buses, box → boxes, watch → watches, dish → dishes."},
+            {"title": "y → ies", "text": "baby → babies, city → cities. Но: boy → boys (гласная + y)."},
+            {"title": "Исключения", "text": "man → men, woman → women, child → children, tooth → teeth, foot → feet, person → people, fish → fish, sheep → sheep."}
         ],
         "faq": [{"question": "Произношение -s?", "answer": "[s] после глухих, [z] после звонких, [ɪz] после шипящих."}]
     },
@@ -407,7 +270,7 @@ my book, your car, his brother, her phone, its colour, our house, their parents
             {"title": "What / Where", "text": "What? – Что? Какой?\nWhat is your name?\nWhere? – Где? Куда?\nWhere are you from?"},
             {"title": "Who / How", "text": "Who? – Кто?\nWho is she?\nHow? – Как?\nHow are you? How old are you?"},
             {"title": "Why / When / Which / Whose", "text": "Why? – Почему?\nWhen? – Когда?\nWhich? – Который?\nWhose? – Чей?"},
-            {"title": "How much / how many", "text": "How much – для неисчисляемых (money, water)\nHow many – для исчисляемых (apples, people)"}
+            {"title": "How much / many", "text": "How much – для неисчисляемых (money, water)\nHow many – для исчисляемых (apples, people)"}
         ],
         "faq": [{"question": "Разница much/many?", "answer": "Much – неисчисляемые, many – исчисляемые."}]
     },
@@ -433,7 +296,7 @@ my book, your car, his brother, her phone, its colour, our house, their parents
         "pages": [
             {"title": "Описание", "text": "red, blue, big, small, happy, sad, good, bad, nice, beautiful, easy, difficult"},
             {"title": "Порядок", "text": "a nice big house (мнение → размер → цвет). После глагола to be: The house is big."},
-            {"title": "Сравнение", "text": "big → bigger → the biggest (короткие); beautiful → more beautiful → the most beautiful (длинные). Исключения: good → better → best, bad → worse → worst."}
+            {"title": "Сравнение", "text": "big → bigger → the biggest (короткие); beautiful → more beautiful → the most beautiful (длинные).\nИсключения: good → better → best, bad → worse → worst."}
         ],
         "faq": [{"question": "Как выбрать -er или more?", "answer": "Односложные и двусложные на -y, -er, -le, -ow: -er. Остальные: more."}]
     },
@@ -446,21 +309,19 @@ my book, your car, his brother, her phone, its colour, our house, their parents
         ],
         "faq": [{"question": "Почему -s у глагола, а не у to be?", "answer": "To be – исключение. Остальные глаголы работают по правилу."}]
     },
-    # ==================== МОДУЛЬ 1 (уроки 1–12 уже даны) ====================
 
-# ==================== МОДУЛЬ 2 ====================
+    # ==================== МОДУЛЬ 2 ====================
     "prescont": {
-        "title": "Present Continuous (действие сейчас)",
+        "title": "Present Continuous",
         "pages": [
             {"title": "Образование", "text": "am/is/are + V‑ing\nI am playing. She is reading. They are eating."},
             {"title": "Отрицание и вопрос", "text": "I am not sleeping. Are you listening? Yes, I am. / No, I'm not."},
-            {"title": "Когда использовать", "text": "1. Действие прямо сейчас: Look! It is raining.\n2. Временная ситуация: I am living in London this month.\n3. План на ближайшее будущее: I am meeting my friend tomorrow."},
-            {"title": "Маркеры", "text": "now, at the moment, today, this week, Listen!, Look!"}
+            {"title": "Когда использовать", "text": "1. Действие прямо сейчас: Look! It is raining.\n2. Временная ситуация: I am living in London this month.\n3. План на будущее: I am meeting my friend tomorrow."}
         ],
         "faq": [{"question": "Глаголы, не употребляющиеся в Continuous?", "answer": "want, know, understand, like, love, hate, see, hear – чувства, мысли, восприятие."}]
     },
     "presimplevscont": {
-        "title": "Present Simple vs Present Continuous",
+        "title": "Present Simple vs Continuous",
         "pages": [
             {"title": "Разница", "text": "Simple – регулярные действия, факты, расписание.\nContinuous – прямо сейчас, временно, планы."},
             {"title": "Примеры", "text": "I work every day. (рутина)\nI am working now. (сейчас)\nShe speaks French. (факт)\nShe is speaking French right now."}
@@ -468,7 +329,7 @@ my book, your car, his brother, her phone, its colour, our house, their parents
         "faq": [{"question": "Как не путать?", "answer": "Смотрите на маркеры: always, usually, every day -> Simple; now, at the moment -> Continuous."}]
     },
     "tobePast": {
-        "title": "Глагол to be в прошедшем времени (was/were)",
+        "title": "to be в прошедшем (was/were)",
         "pages": [
             {"title": "Формы", "text": "I/he/she/it – was\nyou/we/they – were\nI was at home. They were happy."},
             {"title": "Отрицание и вопрос", "text": "was not (wasn't), were not (weren't)\nWas he a doctor? Were you tired?"}
@@ -493,7 +354,7 @@ my book, your car, his brother, her phone, its colour, our house, their parents
         "faq": [{"question": "Как учить?", "answer": "Группируйте по рифме: sing‑sang‑sung, drink‑drank‑drunk."}]
     },
     "futureGoingTo": {
-        "title": "Конструкция to be going to (планы)",
+        "title": "Конструкция going to",
         "pages": [
             {"title": "Утверждение", "text": "am/is/are + going to + V\nI am going to study. She is going to travel."},
             {"title": "Отрицание и вопрос", "text": "I am not going to stay. Are you going to call him?"},
@@ -502,7 +363,7 @@ my book, your car, his brother, her phone, its colour, our house, their parents
         "faq": [{"question": "Разница will и going to?", "answer": "Going to – планы и предсказания по фактам; will – спонтанные решения."}]
     },
     "modalCan": {
-        "title": "Модальный глагол can (уметь, мочь)",
+        "title": "Модальный глагол can",
         "pages": [
             {"title": "Формы", "text": "I can swim. She can dance. (без to)\nОтрицание: cannot / can't\nВопрос: Can you help me?"},
             {"title": "Значения", "text": "1. Способность: He can play piano.\n2. Разрешение: You can go now.\n3. Просьба: Can I open the window?"}
@@ -510,7 +371,7 @@ my book, your car, his brother, her phone, its colour, our house, their parents
         "faq": [{"question": "Как спросить разрешение?", "answer": "Can I...? / Could I...? (вежливее)"}]
     },
     "modalMust": {
-        "title": "Модальный глагол must (должен)",
+        "title": "Модальный глагол must",
         "pages": [
             {"title": "Формы", "text": "I must study. (без to)\nОтрицание: must not / mustn't\nВопрос: Must we go now?"},
             {"title": "Значения", "text": "1. Обязанность: You must wear a seatbelt.\n2. Настоятельная рекомендация: You must see that film.\n3. Запрет (mustn't): You mustn't smoke here."}
@@ -542,7 +403,7 @@ my book, your car, his brother, her phone, its colour, our house, their parents
         "faq": [{"question": "Почему at night, но in the evening?", "answer": "Устойчивые выражения, нужно запомнить."}]
     },
     "foodVocabulary": {
-        "title": "Лексика: еда и напитки",
+        "title": "Лексика: еда",
         "pages": [
             {"title": "Продукты", "text": "fruit, vegetables, meat, fish, bread, rice, pasta, eggs, milk, cheese, butter, sugar, salt, oil, juice, water, coffee, tea"},
             {"title": "Приёмы пищи", "text": "breakfast, lunch, dinner, snack, dessert"},
@@ -551,7 +412,7 @@ my book, your car, his brother, her phone, its colour, our house, their parents
         "faq": [{"question": "Исчисляемые/неисчисляемые?", "answer": "Неисчисляемые: milk, water, sugar, rice, bread. Исчисляемые: apple, egg, banana, carrot."}]
     },
     "countableUncountable": {
-        "title": "Исчисляемые и неисчисляемые существительные",
+        "title": "Исчисляемые / неисчисляемые",
         "pages": [
             {"title": "Исчисляемые", "text": "Можно посчитать: an apple, two apples. Используют a/an, many, few."},
             {"title": "Неисчисляемые", "text": "Нельзя посчитать: water, milk, sugar. Используют some, much, little."},
@@ -571,7 +432,7 @@ my book, your car, his brother, her phone, its colour, our house, their parents
         "title": "Лексика: погода",
         "pages": [
             {"title": "Прилагательные", "text": "sunny, rainy, cloudy, snowy, windy, foggy, hot, warm, cool, cold"},
-            {"title": "Глаголы и выражения", "text": "It is + прилагательное: It is sunny.\nIt is + V‑ing: It is raining.\nThere is + существительное: There is fog."}
+            {"title": "Глаголы", "text": "It is + прилагательное: It is sunny.\nIt is + V‑ing: It is raining.\nThere is + существительное: There is fog."}
         ],
         "faq": [{"question": "Как спросить о погоде?", "answer": "What's the weather like today? / How is the weather?"}]
     },
@@ -579,9 +440,9 @@ my book, your car, his brother, her phone, its colour, our house, their parents
         "title": "Режим дня",
         "pages": [
             {"title": "Глаголы", "text": "wake up, get up, brush teeth, have a shower, get dressed, have breakfast, go to school/work, have lunch, do homework, watch TV, have dinner, go to bed"},
-            {"title": "Пример рассказа", "text": "I wake up at 7. I have breakfast at 7:30. I go to work at 8. I have lunch at 1. I come home at 6. I have dinner at 7. I go to bed at 11."}
+            {"title": "Пример", "text": "I wake up at 7. I have breakfast at 7:30. I go to work at 8. I have lunch at 1. I come home at 6. I have dinner at 7. I go to bed at 11."}
         ],
-        "faq": [{"question": "Как спросить о времени действий?", "answer": "What time do you wake up? / When do you go to work?"}]
+        "faq": [{"question": "Как спросить о времени?", "answer": "What time do you wake up? / When do you go to work?"}]
     },
     "familyVocabulary": {
         "title": "Лексика: семья",
@@ -592,7 +453,7 @@ my book, your car, his brother, her phone, its colour, our house, their parents
         "faq": [{"question": "Как отличить niece от nephew?", "answer": "Niece – племянница, nephew – племянник."}]
     },
     "houseVocabulary": {
-        "title": "Лексика: дом и комната",
+        "title": "Лексика: дом",
         "pages": [
             {"title": "Комнаты", "text": "living room, bedroom, kitchen, bathroom, dining room, hall, study, garage, garden, balcony"},
             {"title": "Мебель", "text": "bed, sofa, table, chair, cupboard, wardrobe, desk, shelf, lamp, curtain, carpet, mirror, fridge, cooker, sink, bath, shower, toilet"}
@@ -607,7 +468,7 @@ my book, your car, his brother, her phone, its colour, our house, their parents
         "faq": [{"question": "Как спросить дорогу?", "answer": "Excuse me, where is the bank? / How can I get to the station?"}]
     },
     "directions": {
-        "title": "Как спросить и объяснить дорогу",
+        "title": "Как спросить дорогу",
         "pages": [
             {"title": "Вопросы", "text": "Where is the nearest pharmacy?\nCan you tell me the way to the museum?\nHow far is the station?"},
             {"title": "Ответы", "text": "Go straight. Turn left/right. Cross the street. It's opposite the park. It's next to the bank. It's on the corner."}
@@ -619,10 +480,10 @@ my book, your car, his brother, her phone, its colour, our house, their parents
         "pages": [
             {"title": "Профессии", "text": "doctor, nurse, teacher, student, engineer, driver, waiter, waitress, cook, shop assistant, manager, secretary, cleaner, lawyer, police officer, firefighter, pilot, flight attendant, artist, musician, writer"}
         ],
-        "faq": [{"question": "Как сказать 'кем вы работаете'?", "answer": "What do you do? I am a teacher."}]
+        "faq": [{"question": "Как спросить о профессии?", "answer": "What do you do? I am a teacher."}]
     },
     "hobbyVocabulary": {
-        "title": "Лексика: хобби и свободное время",
+        "title": "Лексика: хобби",
         "pages": [
             {"title": "Хобби", "text": "reading, writing, drawing, painting, photography, cooking, baking, gardening, hiking, camping, fishing, swimming, running, cycling, playing football, playing chess, listening to music, watching films, playing video games, travelling"},
             {"title": "Глаголы", "text": "I like + V‑ing. I enjoy reading. I am interested in art."}
@@ -630,12 +491,12 @@ my book, your car, his brother, her phone, its colour, our house, their parents
         "faq": [{"question": "Как спросить о хобби?", "answer": "What do you like doing in your free time?"}]
     },
     "holidayVocabulary": {
-        "title": "Лексика: отпуск и путешествия",
+        "title": "Лексика: отпуск",
         "pages": [
             {"title": "Слова", "text": "travel, trip, journey, holiday, vacation, tourist, guide, hotel, hostel, campsite, luggage, suitcase, ticket, passport, visa, flight, airport, train, bus, car, ship, cruise, beach, mountain, lake, forest"},
             {"title": "Глаголы", "text": "go on holiday, book a hotel, pack a suitcase, catch a flight, stay in a hotel, visit a museum, take photos, swim in the sea, climb a mountain"}
         ],
-        "faq": [{"question": "Разница travel/trip/journey?", "answer": "Travel – путешествие вообще, trip – поездка (туда-обратно), journey – путь в одну сторону."}]
+        "faq": [{"question": "Разница travel/trip/journey?", "answer": "Travel – путешествие вообще, trip – поездка туда‑обратно, journey – путь в одну сторону."}]
     },
     "shoppingVocabulary": {
         "title": "Лексика: покупки",
@@ -646,7 +507,7 @@ my book, your car, his brother, her phone, its colour, our house, their parents
         "faq": [{"question": "Скидка – discount или sale?", "answer": "Discount – скидка, sale – распродажа."}]
     },
     "bodyVocabulary": {
-        "title": "Лексика: тело человека",
+        "title": "Лексика: тело",
         "pages": [
             {"title": "Части тела", "text": "head, face, hair, eye, ear, nose, mouth, tooth, tongue, neck, shoulder, arm, elbow, hand, finger, chest, back, stomach, hip, leg, knee, foot, toe, skin, bone, muscle"},
             {"title": "Глаголы", "text": "hurt, ache, break, cut, wash, brush, comb, shave, exercise, sleep, breathe, eat, drink, see, hear, smell, touch"}
