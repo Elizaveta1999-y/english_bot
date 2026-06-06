@@ -110,7 +110,7 @@ Z [зед] – Zebra (зебра)
             }
         ]
     },
-    "numbers_1_20": {
+    "numbers120": {
         "title": "Числа и счёт (1-20)",
         "pages": [
             {
@@ -189,7 +189,7 @@ Z [зед] – Zebra (зебра)
             }
         ]
     },
-    "to_be_positive": {
+    "tobepositive": {
         "title": "Глагол to be (утверждение)",
         "pages": [
             {
@@ -280,7 +280,7 @@ Z [зед] – Zebra (зебра)
             }
         ]
     },
-    "to_be_negative_question": {
+    "tobenegaquestion": {
         "title": "Глагол to be (отрицание и вопрос)",
         "pages": [
             {
@@ -366,7 +366,7 @@ Z [зед] – Zebra (зебра)
             }
         ]
     },
-    "countries_nationalities": {
+    "countries": {
         "title": "Страны и национальности",
         "pages": [
             {

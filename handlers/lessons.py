@@ -3,13 +3,9 @@ import os
 from aiogram import Router, F
 from aiogram.types import CallbackQuery, InlineKeyboardMarkup, InlineKeyboardButton, FSInputFile, Message
 from data.users import get_user_state, set_user_state
-from data.lesson_data import LESSON_CONTENT  # важно: импорт ДО print
+from data.lesson_data import LESSON_CONTENT
 from services.deepseek import chat
 from speaking.services.tts import text_to_voice
-
-# Отладочные выводы (будут видны в логах Render)
-print("DEBUG: lessons.py imported")
-print("Keys in LESSON_CONTENT:", list(LESSON_CONTENT.keys()))
 
 router = Router()
 
@@ -40,19 +36,19 @@ THEMATIC_TOPICS = [
 # ========== УРОВНЕВЫЕ УРОКИ A1 ==========
 LEVEL_A1_TOPICS = [
     "alphabet",
-    "numbers_1_20",
-    "to_be_positive",
-    "to_be_negative_question",
-    "countries_nationalities",
+    "numbers120",
+    "tobepositive",
+    "tobenegaquestion",
+    "countries",
     "pronouns"
 ]
 
 LEVEL_A1_NAMES = {
     "alphabet": "🔤 Алфавит и произношение",
-    "numbers_1_20": "🔢 Числа и счёт (1-20)",
-    "to_be_positive": "✅ Глагол to be (утверждение)",
-    "to_be_negative_question": "❓ Глагол to be (отрицание и вопрос)",
-    "countries_nationalities": "🌍 Страны и национальности",
+    "numbers120": "🔢 Числа и счёт (1-20)",
+    "tobepositive": "✅ Глагол to be (утверждение)",
+    "tobenegaquestion": "❓ Глагол to be (отрицание и вопрос)",
+    "countries": "🌍 Страны и национальности",
     "pronouns": "📌 Личные и притяжательные местоимения"
 }
 
