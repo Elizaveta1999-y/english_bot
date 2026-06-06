@@ -966,15 +966,246 @@ I – my, you – your, he – his, she – her, it – its, we – our, they �
             {"question": "Всегда ли прилагательное стоит перед существительным?", "answer": "Да, кроме случаев с глаголом to be: She is nice. Артикль (a/an/the) ставится перед прилагательным: a nice girl."}
         ]
     },
-    "presentsimple": {
-        "title": "⏰ Present Simple",
-        "pages": [{"title": "Утверждение", "text": "I work. He works."}, {"title": "Отрицание", "text": "I don't work. She doesn't work."}],
-        "faq": [{"question": "Почему -s у глагола?", "answer": "Глагол to be – исключение."}]
+        "presentsimple": {
+        "title": "Present Simple (настоящее простое время)",
+        "pages": [
+            {
+                "title": "Утверждение и спряжение",
+                "text": """
+<b>📚 Present Simple – настоящее простое время</b>
+
+Описывает:
+• регулярные действия (I go to school every day.)
+• факты (The sun rises in the east.)
+• привычки (She drinks tea in the morning.)
+
+<b>Как образуется:</b>
+• I / You / We / They + глагол (без изменений)
+• He / She / It + глагол + -s (или -es)
+
+<b>Примеры:</b>
+• I work in an office. (Я работаю в офисе.)
+• You speak English well. (Ты хорошо говоришь по-английски.)
+• He works at a hospital. (Он работает в больнице.)
+• She plays tennis every Sunday. (Она играет в теннис каждое воскресенье.)
+• It rains a lot in autumn. (Осенью часто идут дожди.)
+• We live in Russia. (Мы живём в России.)
+• They like pizza. (Они любят пиццу.)
+"""
+            },
+            {
+                "title": "Отрицание и вопросы",
+                "text": """
+<b>🚫 Отрицание: do not (don't) / does not (doesn't) + глагол (без -s)</b>
+• I don't like coffee. (Я не люблю кофе.)
+• She doesn't eat meat. (Она не ест мясо.)
+• They don't live here. (Они не живут здесь.)
+
+<b>❓ Вопрос: Do / Does + подлежащее + глагол (без -s)?</b>
+• Do you speak English? (Ты говоришь по-английски?)
+• Does she work on Sundays? (Она работает по воскресеньям?)
+• Do they have a car? (У них есть машина?)
+
+<b>Краткие ответы:</b>
+• Yes, I do. / No, I don't.
+• Yes, she does. / No, she doesn't.
+• Yes, they do. / No, they don't.
+
+<blockquote>Важно: в вопросах и отрицаниях окончание -s у глагола исчезает и переходит на do/does.</blockquote>
+"""
+            },
+            {
+                "title": "Маркеры времени и примеры",
+                "text": """
+<b>🔖 Слова-спутники Present Simple:</b>
+• always (всегда)
+• usually (обычно)
+• often (часто)
+• sometimes (иногда)
+• never (никогда)
+• every day / week / month (каждый день / неделю / месяц)
+• on Mondays (по понедельникам)
+
+<b>📖 Примеры в контексте:</b>
+• I always get up at 7 am. (Я всегда встаю в 7 утра.)
+• She often visits her grandmother. (Она часто навещает бабушку.)
+• They never eat fast food. (Они никогда не едят фастфуд.)
+• He goes to the gym every Tuesday. (Он ходит в спортзал каждый вторник.)
+
+<b>⚠️ Глагол to be в Present Simple не использует do/does.</b>
+• He is a doctor. (Неверно: He does be a doctor)
+• Is he a doctor? (Вопрос: глагол to be выносится в начало)
+
+<b>💡 Совет:</b> Учите маркеры времени вместе с правилами – они помогают выбрать правильное время.
+"""
+            },
+            {
+                "title": "Сравнение с to be",
+                "text": """
+<b>📌 Важное отличие от глагола to be:</b>
+
+Для обычных глаголов (work, play, eat) в вопросах и отрицаниях нужны do/does, а для to be – нет.
+
+<b>Сравните:</b>
+• I am a student. → Am I a student? (to be выносится в начало)
+• I work here. → Do I work here? (нужен do)
+
+• She is happy. → Is she happy?
+• She plays tennis. → Does she play tennis?
+
+<blockquote>Не путайте: после does глагол возвращается в начальную форму (без -s).</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Почему окончание -s в he/she/it, а у глагола to be – is?", "answer": "Это исключение: to be имеет собственные формы. Остальные глаголы ведут себя по правилу."},
+            {"question": "Как спросить о привычке?", "answer": "Используйте do/does + наречие частотности: Do you often play football? Does she usually come on time?"}
+        ]
     },
-    "prescont": {
-        "title": "⚡ Present Continuous",
-        "pages": [{"title": "Образование", "text": "am/is/are + V‑ing"}],
-        "faq": [{"question": "Глаголы не в Continuous?", "answer": "want, know, like, love, hate"}]
+            "prescont": {
+        "title": "Present Continuous (действие прямо сейчас)",
+        "pages": [
+            {
+                "title": "Что такое Present Continuous?",
+                "text": """
+<b>⚡ Present Continuous – время, которое показывает действие в процессе, прямо сейчас.</b>
+
+Представьте, что вы смотрите на человека и видите, что он что-то делает в эту самую секунду. Для этого используется Present Continuous.
+
+<blockquote>В русском языке мы часто говорим: «Я сейчас читаю», «Он спит». В английском для этого нужно специальное время – Present Continuous.</blockquote>
+
+<b>Как узнать Present Continuous?</b>
+• Действие происходит в момент речи (сейчас).
+• Действие временное (не постоянное).
+• Есть слова-маркеры: now, at the moment, today, this week.
+
+<b>Примеры:</b>
+• I am reading a book now. (Я сейчас читаю книгу.)
+• She is sleeping at the moment. (Она сейчас спит.)
+• They are working today. (Они работают сегодня.)
+"""
+            },
+            {
+                "title": "Как образуется Present Continuous",
+                "text": """
+<b>📐 Формула: am/is/are + глагол с окончанием -ing</b>
+
+Три шага:
+1. Берём нужную форму глагола to be (am, is, are).
+2. Берём смысловой глагол (например, play, read, eat).
+3. Добавляем к нему окончание -ing.
+
+<b>Таблица спряжения для глагола to work (работать):</b>
+• I am working (я работаю)
+• You are working (ты работаешь)
+• He is working (он работает)
+• She is working (она работает)
+• It is working (оно работает)
+• We are working (мы работаем)
+• They are working (они работают)
+
+<b>Примеры:</b>
+• I am writing a letter. (Я пишу письмо.)
+• He is drinking coffee. (Он пьёт кофе.)
+• We are watching TV. (Мы смотрим телевизор.)
+"""
+            },
+            {
+                "title": "Отрицание и вопросы",
+                "text": """
+<b>🚫 Отрицание: am/is/are + not + V‑ing</b>
+
+Просто добавляем частицу not после глагола to be.
+
+• I am not sleeping. (Я не сплю.)
+• She is not (isn't) working. (Она не работает.)
+• They are not (aren't) eating. (Они не едят.)
+
+<b>❓ Вопрос: Am/Is/Are + подлежащее + V‑ing?</b>
+
+Ставим глагол to be в начало предложения.
+
+• Am I late? (Я опаздываю?)
+• Are you listening? (Ты слушаешь?)
+• Is he coming? (Он идёт?)
+• Are they playing? (Они играют?)
+
+<b>Краткие ответы:</b>
+• Yes, I am. / No, I'm not.
+• Yes, she is. / No, she isn't.
+• Yes, they are. / No, they aren't.
+
+<blockquote>Запомните: в кратком утвердительном ответе нельзя использовать сокращение: Yes, I am (не I'm).</blockquote>
+"""
+            },
+            {
+                "title": "Когда использовать Present Continuous (три случая)",
+                "text": """
+<b>📌 Случай 1: Действие происходит прямо сейчас, в момент речи.</b>
+• Look! It is raining. (Посмотри! Идёт дождь.)
+• Listen! The baby is crying. (Послушай! Ребёнок плачет.)
+• Where is Tom? – He is taking a shower. (Он принимает душ.)
+
+<b>📌 Случай 2: Временная ситуация (не постоянная).</b>
+• I am living in London this month. (В этом месяце я живу в Лондоне – временно.)
+• She is working at a cafe until she finds a better job. (Она работает в кафе, пока не найдёт лучшую работу.)
+
+<b>📌 Случай 3: План на ближайшее будущее (особенно с глаголами движения).</b>
+• I am meeting my friend tomorrow. (Я встречаюсь с другом завтра.)
+• They are leaving on Sunday. (Они уезжают в воскресенье.)
+• We are going to the cinema tonight. (Мы идём в кино сегодня вечером.)
+
+<blockquote>В этом значении Present Continuous очень близок к конструкции going to.</blockquote>
+"""
+            },
+            {
+                "title": "Слова-маркеры и глаголы, которые не употребляются в Continuous",
+                "text": """
+<b>🔖 Слова-маркеры Present Continuous:</b>
+• now (сейчас)
+• at the moment (в данный момент)
+• today (сегодня)
+• this week / month / year (на этой неделе / в этом месяце / в этом году)
+• Listen! (Послушай!)
+• Look! (Посмотри!)
+
+<b>⚠️ Глаголы, которые НЕЛЬЗЯ использовать в Continuous:</b>
+Они выражают чувства, мысли, восприятие, обладание. Их называют <i>stative verbs</i> (глаголы состояния).
+
+• want (хотеть)
+• know (знать)
+• understand (понимать)
+• like / love (нравиться / любить)
+• hate (ненавидеть)
+• see (видеть)
+• hear (слышать)
+• smell (пахнуть)
+• taste (иметь вкус)
+• believe (верить)
+• remember (помнить)
+• belong (принадлежать)
+• have (в значении «иметь»)
+
+<b>Примеры ошибок:</b>
+❌ I am wanting a new phone.
+✅ I want a new phone.
+
+❌ She is knowing the answer.
+✅ She knows the answer.
+
+❌ They are having a car.
+✅ They have a car.
+
+<blockquote>Запомните: эти глаголы всегда используются в Present Simple, даже если речь идёт о текущем моменте.</blockquote>
+
+<b>💡 Совет:</b> Чтобы потренироваться, описывайте, что происходит вокруг вас прямо сейчас: «The sun is shining. A bird is singing. I am sitting on the sofa.»
+"""
+            }
+        ],
+        "faq": [
+            {"question": "В чём разница между I work и I am working?", "answer": "I work – вообще, обычно (Present Simple). I am working – сейчас, в данный момент (Present Continuous)."},
+            {"question": "Можно ли сказать I am living in London для постоянного места жительства?", "answer": "Нет, для постоянного места жительства используйте Present Simple: I live in London. Present Continuous показывает временную ситуацию."}
+        ]
     },
     "presimplevscont": {
         "title": "🔄 Present Simple vs Continuous",
