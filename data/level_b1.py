@@ -488,20 +488,221 @@ LEVEL_B1_CONTENT = {
             {"question": "В чём разница между 'I will meet you at 5' и 'I will be meeting you at 5'?", "answer": "Will meet – просто обещание/договорённость. Will be meeting – акцент на том, что в 5 часов я уже буду в процессе встречи."}
         ]
     },
-    "future_perfect": {
+        "future_perfect": {
         "title": "Future Perfect (will have done)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Образование",
+                "text": """
+<b>🔮 Future Perfect – действие, которое будет завершено к определённому моменту в будущем.</b>
+
+<b>Формула:</b> will have + V3 (третья форма глагола)
+
+• By next year, I will have graduated from university. (К следующему году я закончу университет.)
+• She will have finished the report by 5 pm. (Она закончит отчёт к 5 вечера.)
+• They will have built the new bridge by 2027. (Они построят новый мост к 2027 году.)
+
+<blockquote>Future Perfect всегда используется с указанием времени, к которому действие будет завершено: by + дата/время, by the time, before, until.</blockquote>
+"""
+            },
+            {
+                "title": "Когда используется Future Perfect",
+                "text": """
+<b>📌 Основные случаи:</b>
+
+1. <b>Действие, которое завершится до определённого момента в будущем</b>
+   • By the time we arrive, the film will have started. (К тому времени, как мы приедем, фильм уже начнётся.)
+   • He will have saved enough money by the end of the year. (К концу года он накопит достаточно денег.)
+
+2. <b>Предположение о том, что действие уже завершено к определённому моменту</b>
+   • Don't worry, they will have received the letter by now. (Не волнуйся, они уже получили письмо к этому времени.)
+   • By the age of 30, I think I will have bought a house. (К 30 годам я думаю, что куплю дом.)
+
+<blockquote>Часто используется с выражениями: by the time, by then, before, until.</blockquote>
+"""
+            },
+            {
+                "title": "Отрицание и вопросы",
+                "text": """
+<b>🚫 Отрицание:</b> won't have + V3
+
+• I won't have finished my homework by 8 pm. (Я не закончу домашнюю работу к 8 вечера.)
+• They won't have left before we arrive. (Они не уедут до нашего приезда.)
+
+<b>❓ Вопрос:</b> Will + подлежащее + have + V3?
+
+• Will you have completed the project by Friday? (Ты завершишь проект к пятнице?)
+• Will she have arrived before the meeting starts? (Она прибудет до начала встречи?)
+
+<b>Краткие ответы:</b>
+• Yes, I will. / No, I won't.
+
+<blockquote>Future Perfect в вопросах обычно звучит вежливо и предварительно.</blockquote>
+"""
+            },
+            {
+                "title": "Сравнение с другими будущими формами",
+                "text": """
+<b>📊 Сравнение:</b>
+
+• <b>Future Continuous</b> – процесс в момент в будущем (At 6 pm, I will be working.)
+• <b>Future Perfect</b> – завершённое действие к моменту (By 6 pm, I will have worked 8 hours.)
+
+<b>⚠️ Типичные ошибки:</b>
+• ❌ I will have finish.  ✅ I will have finished.
+• ❌ By next week, I will finish. (без завершённости)  ✅ By next week, I will have finished.
+• ❌ Will you have been leaving? (неправильно)  ✅ Will you have left?
+
+<b>💡 Совет:</b> Если в предложении есть by + время (by Friday, by 2026) и речь о завершении действия, смело используйте Future Perfect. Для описания процесса в будущем – Future Continuous.
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Можно ли использовать Future Perfect с 'by the time' в прошедшем?", "answer": "Нет, by the time вводит будущее время. Для прошлого используйте Past Perfect: By the time we arrived, they had left."}
+        ]
     },
-    "future_in_the_past": {
+        "future_in_the_past": {
         "title": "Future in the Past (would do, was going to)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Что такое Future in the Past?",
+                "text": """
+<b>📅 Future in the Past – способ говорить о будущем с точки зрения прошлого.</b>
+
+Используется в косвенной речи и в рассказах о прошлом, когда мы говорим о том, что должно было случиться потом.
+
+• He said he would call me later. (Он сказал, что позвонит мне позже – с точки зрения прошлого.)
+• I was going to buy a new car, but then I changed my mind. (Я собирался купить новую машину, но потом передумал – действие не произошло.)
+
+<blockquote>Две основные формы: would + V (как будущее в прошлом) и was/were going to + V (для намерений, которые не сбылись).</blockquote>
+"""
+            },
+            {
+                "title": "Конструкция would – для косвенной речи и обещаний",
+                "text": """
+<b>📌 would + V – будущее с точки зрения прошлого (часто в косвенной речи).</b>
+
+• She promised that she would come to the party. (Она пообещала, что придёт на вечеринку.)
+• I knew that the train would be late. (Я знал, что поезд опоздает.)
+• He thought he would win the competition. (Он думал, что выиграет соревнование.)
+
+<b>Важно:</b> would не используется для действий, которые действительно произошли, а только для будущих с точки зрения прошлого.
+
+<blockquote>Отрицание: wouldn't. He said he wouldn't be late.</blockquote>
+"""
+            },
+            {
+                "title": "Конструкция was/were going to – для ненаступивших планов",
+                "text": """
+<b>📌 was/were going to + V – планы или намерения, которые не осуществились.</b>
+
+• I was going to call you, but I forgot. (Я собирался тебе позвонить, но забыл.)
+• They were going to travel to Spain, but they had to cancel. (Они собирались поехать в Испанию, но пришлось отменить.)
+• She was going to study law, but then she became a teacher. (Она собиралась изучать право, но потом стала учителем.)
+
+<blockquote>Эта форма показывает, что действие планировалось, но не произошло. Если действие произошло, используйте Past Simple: I was going to call, and I did – странно, лучше I called.</blockquote>
+"""
+            },
+            {
+                "title": "Сравнение и примеры",
+                "text": """
+<b>📊 Сравнение:</b>
+
+• <b>would</b> – в косвенной речи, обещания, прогнозы (необязательно нереализованные)
+  • He promised he would help. (Он помог или нет – неважно, только обещал)
+
+• <b>was/were going to</b> – планы, которые изменились или не сбылись
+  • I was going to go to the party, but I was too tired. (Я не пошёл)
+
+<b>⚠️ Типичные ошибки:</b>
+• ❌ He said he will call. (в косвенной речи)  ✅ He said he would call.
+• ❌ I was going to call and I did. (лучше I called)
+• ❌ I was going to be there, but I came. (противоречие)  ✅ I was going to be there, but I didn't come.
+
+<b>💡 Совет:</b> Если вы рассказываете о прошлых планах, которые не осуществились, используйте was/were going to. Если просто пересказываете чьи-то слова о будущем – would.
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Можно ли использовать 'would' для повторяющихся действий в прошлом?", "answer": "Да, но это другое значение: When I was young, I would play outside every day. Здесь would – привычка в прошлом (как used to). Не путайте с будущим в прошлом."}
+        ]
     },
-    "time_clauses": {
+        "time_clauses": {
         "title": "Придаточные времени (when, as soon as, until, before, after)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Что такое придаточные времени?",
+                "text": """
+<b>⏰ Придаточные времени указывают, когда произойдёт действие главного предложения.</b>
+
+Они вводятся союзами: when, while, as soon as, until, before, after, whenever.
+
+<b>Важное правило:</b> в придаточных времени (после этих союзов) мы НЕ используем будущее время (will). Вместо этого используется Present Simple или Present Perfect.
+
+• I will call you when I arrive. (НЕ when I will arrive)
+• Please wait until I come back. (НЕ until I will come)
+• After he finishes work, he will go home. (НЕ after he will finish)
+
+<blockquote>Будущее время (will) ставится только в главной части предложения.</blockquote>
+"""
+            },
+            {
+                "title": "Союзы времени и их оттенки",
+                "text": """
+<b>📌 Значение каждого союза:</b>
+
+• <b>when</b> – когда (однократное событие или повторяющееся)
+  • When you see him, tell him the news. (Когда увидишь его, передай новости.)
+
+• <b>as soon as</b> – как только
+  • As soon as I get home, I'll call you. (Как только я приду домой, я позвоню.)
+
+• <b>until / till</b> – до тех пор, пока (не)
+  • Wait here until I come back. (Жди здесь, пока я не вернусь.)
+
+• <b>before</b> – перед тем, как
+  • Please turn off the lights before you leave. (Пожалуйста, выключи свет перед уходом.)
+
+• <b>after</b> – после того, как
+  • After she arrives, we can start the meeting. (После того как она придёт, мы можем начать встречу.)
+
+• <b>while</b> – в то время как (длительное действие)
+  • While you were sleeping, I was working. (Пока ты спал, я работал.)
+
+<blockquote>С while часто используют Continuous: While I was cooking, he was reading.</blockquote>
+"""
+            },
+            {
+                "title": "Present Perfect в придаточных времени",
+                "text": """
+<b>📌 В придаточных времени можно использовать Present Perfect, чтобы показать завершённость действия к моменту главного.</b>
+
+• I will give you a call after I have finished my work. (Я позвоню тебе после того, как закончу работу.)
+• You can go home when you have finished the task. (Ты можешь идти домой, когда завершишь задачу.)
+
+<blockquote>Present Perfect подчёркивает, что действие в придаточной части должно быть полностью завершено до действия в главной.</blockquote>
+"""
+            },
+            {
+                "title": "Типичные ошибки и советы",
+                "text": """
+<b>⚠️ Частые ошибки:</b>
+• ❌ I will call you when I will arrive.  ✅ I will call you when I arrive.
+• ❌ Before he will come, we will eat.  ✅ Before he comes, we will eat.
+• ❌ As soon as I will finish, I'll call.  ✅ As soon as I finish, I'll call.
+
+<b>💡 Советы:</b>
+• Запомните: will никогда не ставится после when, as soon as, until, before, after, while.
+• Если нужно подчеркнуть завершённость действия в придаточной части, используйте Present Perfect (after I have finished).
+• Тренируйтесь: составляйте предложения о планах на завтра, используя придаточные времени.
+
+<blockquote>Придаточные времени – обязательная тема для любого экзамена.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Можно ли использовать will в придаточных времени, если это не будущее время, а волеизъявление?", "answer": "Да, в очень редких случаях: If you will wait here, I'll call the doctor. Но это исключение, не рекомендуемое для общего употребления."}
+        ]
     },
 
     # ==================== МОДУЛЬ 2: Модальные глаголы (углубление) ====================
