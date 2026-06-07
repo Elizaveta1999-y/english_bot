@@ -2896,15 +2896,215 @@ am / is / are + V3 (третья форма глагола / с окончани
             {"question": "В чём разница между 'weather' и 'climate'?", "answer": "Weather – погода сейчас или в ближайшее время (сегодня дождь). Climate – климат, многолетний режим погоды (в Англии умеренный климат)."}
         ]
     },
-    "feelings_emotions": {
+        "feelings_emotions": {
         "title": "Лексика: чувства и эмоции",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке. Скоро здесь появится теория."}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Положительные эмоции",
+                "text": """
+<b>😊 Положительные чувства:</b>
+
+• happy – счастливый  
+• joyful – радостный  
+• excited – взволнованный, в предвкушении  
+• pleased – довольный  
+• proud – гордый  
+• calm – спокойный  
+• relaxed – расслабленный  
+• confident – уверенный  
+• hopeful – полный надежды  
+• grateful – благодарный  
+• content – довольный (спокойно, без восторга)  
+• delighted – восхищённый  
+• thrilled – очень рад, взволнован  
+• cheerful – жизнерадостный  
+
+<b>Примеры:</b>
+• I'm happy to see you. (Я рад тебя видеть.)  
+• She was excited about her trip. (Она была взволнована поездкой.)  
+• He felt proud of his achievement. (Он гордился своим достижением.)  
+
+<blockquote>Для усиления используйте very, extremely, so: I'm so excited!</blockquote>
+"""
+            },
+            {
+                "title": "Отрицательные эмоции",
+                "text": """
+<b>😞 Отрицательные чувства:</b>
+
+• sad – грустный  
+• angry – злой  
+• annoyed – раздражённый  
+• frustrated – разочарованный, обескураженный  
+• worried – обеспокоенный  
+• scared / frightened – испуганный  
+• nervous – нервничающий  
+• disappointed – разочарованный  
+• jealous – ревнивый, завистливый  
+• lonely – одинокий  
+• bored – скучающий  
+• upset – расстроенный  
+• embarrassed – смущённый  
+
+<b>Примеры:</b>
+• She was sad when her cat died. (Она грустила, когда умер её кот.)  
+• I'm angry because he lied to me. (Я зол, потому что он солгал мне.)  
+• Don't be scared, it's just a spider. (Не бойся, это просто паук.)  
+
+<blockquote>Для выражения сильной эмоции используйте very, terribly, extremely.</blockquote>
+"""
+            },
+            {
+                "title": "Глаголы и конструкции для выражения эмоций",
+                "text": """
+<b>🗣️ Выражение эмоций:</b>
+
+• to feel + прилагательное – чувствовать себя  
+  • I feel tired. (Я чувствую усталость.)  
+  • How do you feel? (Как ты себя чувствуешь?)
+
+• to be + прилагательное – быть (состояние)  
+  • He is happy. (Он счастлив.)  
+  • They are disappointed. (Они разочарованы.)
+
+• to get + прилагательное – становиться  
+  • I get nervous before exams. (Я нервничаю перед экзаменами.)  
+  • She gets angry easily. (Она легко злится.)
+
+• to make + дополнение + прилагательное – вызывать чувство  
+  • This film makes me sad. (Этот фильм меня печалит.)  
+  • Your joke made her laugh. (Твоя шутка рассмешила её.)
+
+<blockquote>Обратите внимание на предлоги: excited about, worried about, proud of, angry with, disappointed with/in.</blockquote>
+"""
+            },
+            {
+                "title": "Примеры и советы",
+                "text": """
+<b>📖 Примеры в контексте:</b>
+• She felt nervous before the interview, but after it she was relieved. (Она нервничала перед собеседованием, но после него облегчённо вздохнула.)  
+• I'm really excited about my new job. (Я очень рад своей новой работе.)  
+• Why are you so annoyed? – I've been waiting for an hour. (Почему ты такой раздражённый? – Я жду уже час.)
+
+<b>💡 Советы:</b>
+• Используйте прилагательные для описания своего состояния.  
+• Тренируйтесь отвечать на вопрос «How are you?» не только «I'm fine», но и «I'm excited!», «I'm a bit tired», «I feel great».  
+• Смотрите фильмы и обращайте внимание, как герои выражают эмоции.  
+• Ведите дневник настроения на английском.
+
+<blockquote>Умение говорить о чувствах делает общение более живым и искренним.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "В чём разница между 'bored' и 'boring'?", "answer": "Bored – скучающий (о человеке), boring – скучный (о предмете, событии)."}
+        ]
     },
-    "relationships_communication": {
+        "relationships_communication": {
         "title": "Лексика: отношения и общение",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке. Скоро здесь появится теория."}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Типы отношений",
+                "text": """
+<b>👥 Люди в нашей жизни:</b>
+
+• friend – друг  
+• best friend – лучший друг  
+• close friend – близкий друг  
+• acquaintance – знакомый  
+• colleague / coworker – коллега  
+• neighbour – сосед  
+• roommate – сосед по комнате  
+• partner – партнёр (в жизни или бизнесе)  
+• spouse – супруг / супруга  
+• relative – родственник  
+• classmate – одноклассник / однокурсник  
+
+<b>Этапы отношений:</b>
+• to get to know someone – узнавать кого-то  
+• to become friends – подружиться  
+• to fall in love – влюбиться  
+• to date – встречаться (с кем-то)  
+• to get married – пожениться  
+• to break up – расстаться  
+• to get divorced – развестись
+
+<blockquote>Осторожно: to fall in love – сильное чувство, to like – симпатия.</blockquote>
+"""
+            },
+            {
+                "title": "Общение и коммуникация",
+                "text": """
+<b>🗣️ Способы общения и глаголы:</b>
+
+• talk – разговаривать  
+• speak – говорить (на языке, с кем-то)  
+• chat – болтать (неформально)  
+• discuss – обсуждать  
+• argue – спорить, ссориться  
+• apologize – извиняться  
+• promise – обещать  
+• explain – объяснять  
+• suggest – предлагать  
+• complain – жаловаться  
+
+<b>Фразы для разных ситуаций:</b>
+• Nice to meet you. – Приятно познакомиться.  
+• How's it going? – Как дела? (неформально)  
+• Long time no see. – Давно не виделись.  
+• Keep in touch. – Оставайся на связи.  
+• I'm sorry, I didn't mean to hurt you. – Извини, я не хотел тебя обидеть.  
+• Let's agree to disagree. – Давай останемся каждый при своём мнении.
+
+<blockquote>Умение начинать и поддерживать разговор – ключевой навык.</blockquote>
+"""
+            },
+            {
+                "title": "Ссоры и примирение",
+                "text": """
+<b>⚔️ Конфликты и их разрешение:</b>
+
+• misunderstand – неправильно понять  
+• offend – обидеть  
+• blame – винить  
+• forgive – прощать  
+• apologise – извиняться  
+• make up – помириться  
+• ignore – игнорировать  
+• betray – предать  
+
+<b>Примеры фраз:</b>
+• I think there's been a misunderstanding. (Думаю, произошло недоразумение.)  
+• I didn't mean to offend you. (Я не хотел тебя обидеть.)  
+• Please forgive me. It won't happen again. (Пожалуйста, прости меня. Это больше не повторится.)  
+• Let's forget about it and move on. (Давай забудем об этом и пойдём дальше.)  
+• Why are you ignoring me? (Почему ты меня игнорируешь?)
+
+<blockquote>В конфликте важно сохранять уважение и спокойствие.</blockquote>
+"""
+            },
+            {
+                "title": "Советы и практика",
+                "text": """
+<b>💡 Советы:</b>
+• Разыгрывайте диалоги с другом: знакомство, ссора, примирение.  
+• Смотрите фильмы и сериалы на английском и обращайте внимание на то, как герои общаются.  
+• Записывайте новые фразы в блокнот и составляйте с ними предложения.  
+• Практикуйтесь в написании коротких сообщений друзьям на английском.  
+
+<b>Пример письма другу:</b>
+Hi Anna,  
+Long time no see! How are you? I really miss our talks. Let's meet up this weekend. I'm free on Saturday afternoon. What do you say?  
+Best,  
+John
+
+<blockquote>Хорошие отношения строятся на честном и открытом общении.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "В чём разница между 'say', 'tell', 'speak', 'talk'?", "answer": "Say – сказать (что-то). Tell – рассказать (кому-то). Speak – говорить на языке или с кем-то официально. Talk – разговаривать (неформально)."}
+        ]
     },
     "news_current_events": {
         "title": "Лексика: новости и текущие события",
