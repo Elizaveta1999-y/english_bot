@@ -82,8 +82,8 @@ MODULES_A2 = {
     "2": {
         "name": "📙 Модуль 2: Лексика и сравнения",
         "lessons": [
-            "comparatives_advanced", "adverbs_manner", "as_as_structures"
-            # Сюда добавятся следующие уроки модуля 2
+            "comparatives_advanced", "adverbs_manner", "as_as_structures",
+            "appearance_personality", "feelings_emotions"
         ]
     },
     "3": {
@@ -92,13 +92,12 @@ MODULES_A2 = {
     }
 }
 
-# Словарь всех модулей по уровням
 ALL_MODULES = {
     "A1": MODULES_A1,
     "A2": MODULES_A2,
 }
 
-# Карта ключ -> название (для отображения в кнопках)
+# ==================== НАЗВАНИЯ ВСЕХ УРОКОВ (A1 и A2) ====================
 LESSON_NAMES = {
     # A1
     "alphabet": "🔤 Алфавит и произношение",
@@ -153,6 +152,8 @@ LESSON_NAMES = {
     "comparatives_advanced": "📈 Степени сравнения прилагательных (углубление)",
     "adverbs_manner": "🎯 Наречия образа действия",
     "as_as_structures": "⚖️ Сравнительные конструкции as…as, less…than",
+    "appearance_personality": "👤 Внешность и характер",
+    "feelings_emotions": "😊 Чувства и эмоции",
 }
 
 # Пагинация для тематических уроков
@@ -180,7 +181,6 @@ def get_modules_keyboard(level: str) -> InlineKeyboardMarkup:
     modules = ALL_MODULES.get(level, {})
     buttons = []
     for mod_id, mod_data in modules.items():
-        # показываем только непустые модули
         if mod_data["lessons"]:
             buttons.append([InlineKeyboardButton(text=mod_data["name"], callback_data=f"module_{level}_{mod_id}")])
     buttons.append([InlineKeyboardButton(text="🔙 Назад к уровням", callback_data="start_lessons")])
@@ -487,7 +487,6 @@ async def back_to_lesson(callback: CallbackQuery):
             await callback.message.edit_text("Урок не найден")
             await callback.answer()
             return
-        # Пытаемся определить уровень и модуль (по первому попавшемуся)
         level = None
         module_id = "1"
         for lvl, modules in ALL_MODULES.items():
