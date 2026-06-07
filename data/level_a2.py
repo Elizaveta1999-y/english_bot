@@ -2274,15 +2274,217 @@ am / is / are + V3 (третья форма глагола / с окончани
     },
 
     # ==================== МОДУЛЬ 6: Лексика по темам A2 ====================
-    "work_career": {
+        "work_career": {
         "title": "Лексика: работа и карьера",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке. Скоро здесь появится теория."}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Названия профессий (повторение и новые)",
+                "text": """
+<b>💼 Распространённые профессии:</b>
+
+• accountant – бухгалтер  
+• architect – архитектор  
+• consultant – консультант  
+• designer – дизайнер  
+• developer – разработчик  
+• electrician – электрик  
+• engineer – инженер  
+• journalist – журналист  
+• lawyer – юрист  
+• manager – менеджер  
+• nurse – медсестра / медбрат  
+• pharmacist – фармацевт  
+• plumber – сантехник  
+• programmer – программист  
+• salesperson – продавец  
+• scientist – учёный  
+• software engineer – инженер-программист  
+• teacher – учитель  
+• technician – техник  
+• translator – переводчик
+
+<blockquote>Вопрос о профессии: What do you do? / What's your job?</blockquote>
+"""
+            },
+            {
+                "title": "Связанные понятия (рабочее место, должность, зарплата)",
+                "text": """
+<b>🏢 Рабочее место и должность:</b>
+
+• company – компания  
+• office – офис  
+• factory – завод  
+• remote work – удалённая работа  
+• full-time – полный рабочий день  
+• part-time – неполный рабочий день  
+• shift – смена (night shift – ночная смена)  
+• salary – зарплата (обычно оклад)  
+• wage – заработная плата (почасовая)  
+• bonus – премия  
+• promotion – повышение  
+• experience – опыт  
+• CV (resume) – резюме  
+• interview – собеседование  
+• colleague – коллега  
+• boss – начальник  
+• employee – сотрудник  
+• employer – работодатель
+
+<blockquote>Типичные вопросы: How long have you worked there? Do you like your job? What's your salary?</blockquote>
+"""
+            },
+            {
+                "title": "Глаголы и фразы для работы",
+                "text": """
+<b>🔧 Действия на работе и полезные фразы:</b>
+
+• apply for a job – подавать заявление на работу  
+• get a job – получить работу  
+• work for + компания – работать в компании  
+• work as + профессия – работать кем-либо  
+• be in charge of – отвечать за  
+• deal with – иметь дело с  
+• earn money – зарабатывать деньги  
+• fire / dismiss – уволить  
+• quit / resign – уволиться  
+• retire – выходить на пенсию
+
+<b>Примеры:</b>
+• I work for a large IT company. (Я работаю в крупной IT-компании.)  
+• She works as a nurse. (Она работает медсестрой.)  
+• He is in charge of marketing. (Он отвечает за маркетинг.)  
+• They earn a good salary. (Они зарабатывают хорошую зарплату.)
+
+<blockquote>Работа – одна из самых частых тем для small talk.</blockquote>
+"""
+            },
+            {
+                "title": "Диалог и советы",
+                "text": """
+<b>🗣️ Пример диалога:</b>
+– What do you do for a living?  
+– I work as a software engineer at a startup. I'm responsible for developing mobile apps. And you?  
+– I'm a nurse at the city hospital. I work shifts, but I enjoy helping people.  
+– That sounds rewarding! Do you earn enough?  
+– The salary is decent, but I'm hoping for a promotion next year.
+
+<b>💡 Советы:</b>
+• Учите профессии вместе с местом работы (doctor – hospital, teacher – school).  
+• Составьте 5 предложений о своей идеальной работе.  
+• Используйте фразы для описания обязанностей: I'm responsible for…, I deal with…  
+• Практикуйтесь в диалогах о работе с друзьями.
+
+<blockquote>Знание лексики о работе поможет на собеседовании и в деловом общении.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "В чём разница между 'job' и 'work'?", "answer": "Job – конкретная должность, работа (a firefighter job). Work – труд, работа как процесс или место (I'm going to work)."}
+        ]
     },
-    "travel_transport": {
+        "travel_transport": {
         "title": "Лексика: путешествия и транспорт (углубление)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке. Скоро здесь появится теория."}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Виды транспорта",
+                "text": """
+<b>🚗 Транспорт (transport):</b>
+
+• car – машина  
+• bus – автобус  
+• coach – междугородний автобус  
+• train – поезд  
+• tram – трамвай  
+• metro / underground / subway – метро  
+• taxi – такси  
+• plane – самолёт  
+• ship – корабль  
+• ferry – паром  
+• cruise ship – круизное судно  
+• bicycle – велосипед  
+• motorbike – мотоцикл
+
+<b>Связанные глаголы:</b>
+• drive – водить (машину)  
+• ride – ехать (на велосипеде, мотоцикле, лошади)  
+• take – пользоваться (take a bus, take a taxi)  
+• catch – успеть на (catch a train, catch a flight)  
+• miss – опоздать на (miss the bus)  
+• board – сесть на (board a plane)
+
+<blockquote>Запомните: by + transport (by car, by train, by plane) – способ передвижения.</blockquote>
+"""
+            },
+            {
+                "title": "В аэропорту и на вокзале",
+                "text": """
+<b>✈️ В аэропорту (at the airport):</b>
+
+• terminal – терминал  
+• check-in – регистрация  
+• boarding pass – посадочный талон  
+• gate – выход на посадку  
+• departure – вылет  
+• arrival – прилёт  
+• luggage / baggage – багаж  
+• carry-on – ручная кладь  
+• passport control – паспортный контроль  
+• security check – досмотр  
+• delay – задержка  
+• cancelled – отменён
+
+<b>🚉 На вокзале (at the station):</b>
+• platform – платформа  
+• ticket office – билетная касса  
+• timetable – расписание  
+• single ticket – билет в один конец  
+• return ticket – билет туда и обратно  
+• first class – первый класс  
+• second class – второй класс
+
+<blockquote>Эти слова пригодятся в путешествиях по стране и за рубежом.</blockquote>
+"""
+            },
+            {
+                "title": "Полезные фразы для путешествий",
+                "text": """
+<b>🗣️ Как спросить и ответить:</b>
+
+• How can I get to the city centre? (Как добраться до центра города?)  
+• Which platform does the train leave from? (С какой платформы отправляется поезд?)  
+• Is there a direct flight to Paris? (Есть прямой рейс до Парижа?)  
+• I'd like a window seat, please. (Я бы хотел место у окна.)  
+• How much is a ticket? (Сколько стоит билет?)  
+• Does this bus go to the airport? (Этот автобус идёт в аэропорт?)  
+• Where can I rent a car? (Где можно арендовать машину?)
+
+<b>Пример диалога:</b>
+– Excuse me, how do I get to the railway station?  
+– Take bus number 12 and get off at the third stop.  
+– Does it take long?  
+– About 15 minutes.  
+– Thanks a lot!
+
+<blockquote>Эти фразы помогут вам чувствовать себя уверенно в любой поездке.</blockquote>
+"""
+            },
+            {
+                "title": "Советы по запоминанию",
+                "text": """
+<b>💡 Советы:</b>
+• Группируйте лексику по темам: транспорт, аэропорт, вокзал, гостиница.  
+• Используйте карты Google на английском языке для тренировки.  
+• Представьте, что вы путешествуете, и опишите свой маршрут.  
+• Смотрите видео о путешествиях на YouTube с английскими субтитрами.  
+• Практикуйтесь в диалогах: разыграйте сцену покупки билета или регистрации в аэропорту.
+
+<blockquote>Путешествия – отличный повод использовать английский в реальной жизни.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Разница между 'journey', 'trip' и 'travel'?", "answer": "Journey – путь (от точки А до Б). Trip – поездка (туда и обратно). Travel – путешествие (общее понятие)."}
+        ]
     },
     "food_restaurant": {
         "title": "Лексика: еда и ресторан (заказ блюд, описание вкусов)",
