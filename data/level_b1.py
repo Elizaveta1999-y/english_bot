@@ -2,20 +2,260 @@
 
 LEVEL_B1_CONTENT = {
     # ==================== МОДУЛЬ 1: Времена и аспекты (углубление) ====================
-    "present_tenses_review": {
+        "present_tenses_review": {
         "title": "Present Tenses (Simple, Continuous, Perfect) – повторение",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Present Simple",
+                "text": """
+<b>📚 Present Simple – факты, привычки, расписания.</b>
+
+<b>Формула:</b> V / V‑s (he/she/it)
+• I work. He works.
+
+<b>Отрицание:</b> don't / doesn't + V
+• I don't like coffee. She doesn't smoke.
+
+<b>Вопрос:</b> Do/Does + подлежащее + V?
+• Do you speak English? Does he live here?
+
+<b>Когда используется:</b>
+• регулярные действия (I go to the gym every Monday)
+• факты (The sun rises in the east)
+• расписания (The train leaves at 6 pm)
+
+<blockquote>Слова-маркеры: always, usually, often, sometimes, never, every day, on Mondays.</blockquote>
+"""
+            },
+            {
+                "title": "Present Continuous",
+                "text": """
+<b>⏳ Present Continuous – действие прямо сейчас, временная ситуация, планы.</b>
+
+<b>Формула:</b> am/is/are + V‑ing
+• I am reading. She is sleeping. They are working.
+
+<b>Отрицание:</b> am/is/are + not + V‑ing
+• I'm not listening. She isn't sleeping.
+
+<b>Вопрос:</b> Am/Is/Are + подлежащее + V‑ing?
+• Are you working? Is she coming?
+
+<b>Когда используется:</b>
+• действие сейчас (Look! It is raining)
+• временная ситуация (I am living with my parents this month)
+• план на будущее (We are meeting friends tonight)
+
+<blockquote>Слова-маркеры: now, at the moment, today, this week, Look!, Listen!</blockquote>
+"""
+            },
+            {
+                "title": "Present Perfect Simple",
+                "text": """
+<b>✅ Present Perfect Simple – результат, опыт, изменения, for/since.</b>
+
+<b>Формула:</b> have/has + V3 (третья форма)
+• I have finished. She has visited Paris.
+
+<b>Отрицание:</b> haven't / hasn't + V3
+• I haven't seen him. She hasn't called.
+
+<b>Вопрос:</b> Have/Has + подлежащее + V3?
+• Have you ever been to London? Has she arrived?
+
+<b>Когда используется:</b>
+• результат важен сейчас (I have lost my keys)
+• опыт (I have never tried sushi)
+• изменения (You have grown)
+• действие с for/since (I have lived here for 5 years)
+
+<blockquote>Слова-маркеры: already, yet, ever, never, just, for, since, recently.</blockquote>
+"""
+            },
+            {
+                "title": "Сравнение и типичные ошибки",
+                "text": """
+<b>📊 Сравнение:</b>
+• Simple: I work every day. (регулярность)
+• Continuous: I am working now. (прямо сейчас)
+• Perfect: I have worked here for 5 years. (результат, продолжительность)
+
+<b>⚠️ Типичные ошибки:</b>
+• ❌ I am knowing the answer.  ✅ I know the answer. (know – глагол состояния)
+• ❌ I have seen him yesterday.  ✅ I saw him yesterday.
+• ❌ She is wanting to leave.  ✅ She wants to leave.
+
+<b>💡 Совет:</b> Для B1 важно различать оттенки: Simple – для общего, Continuous – для процесса, Perfect – для связи с настоящим.
+"""
+            }
+        ],
+        "faq": [
+            {"question": "В чём разница между Present Perfect и Past Simple?", "answer": "Present Perfect – результат важен сейчас, Past Simple – действие завершено в прошлом с указанием времени."}
+        ]
     },
-    "past_tenses_review": {
+        "past_tenses_review": {
         "title": "Past Tenses (Simple, Continuous, Perfect) – повторение",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Past Simple",
+                "text": """
+<b>📆 Past Simple – завершённое действие в прошлом.</b>
+
+<b>Формула:</b> V2 (вторая форма) или V + -ed
+• I worked. She went. They saw.
+
+<b>Отрицание:</b> didn't + V
+• I didn't work. She didn't go.
+
+<b>Вопрос:</b> Did + подлежащее + V?
+• Did you work? Did she go?
+
+<b>Когда используется:</b>
+• действия, завершённые в прошлом (I saw him yesterday)
+• последовательность действий (I came home, had dinner, watched TV)
+
+<blockquote>Слова-маркеры: yesterday, last week, in 2010, two days ago, when I was a child.</blockquote>
+"""
+            },
+            {
+                "title": "Past Continuous",
+                "text": """
+<b>⏳ Past Continuous – действие в процессе в прошлом, фон.</b>
+
+<b>Формула:</b> was/were + V‑ing
+• I was reading. She was sleeping. They were working.
+
+<b>Отрицание:</b> was/were + not + V‑ing
+• I wasn't sleeping. They weren't working.
+
+<b>Вопрос:</b> Was/Were + подлежащее + V‑ing?
+• Were you sleeping? Was she reading?
+
+<b>Когда используется:</b>
+• действие в конкретный момент в прошлом (At 5 pm, I was working)
+• фоновое действие, прерванное другим (I was walking home when it started to rain)
+• два параллельных действия (While I was cooking, he was watching TV)
+
+<blockquote>Слова-маркеры: while, when, at 5 pm yesterday, all evening.</blockquote>
+"""
+            },
+            {
+                "title": "Past Perfect",
+                "text": """
+<b>⏪ Past Perfect – действие, которое произошло до другого действия в прошлом.</b>
+
+<b>Формула:</b> had + V3
+• I had finished before he arrived.
+• She had already eaten when I came.
+
+<b>Отрицание:</b> hadn't + V3
+• I hadn't seen him before that day.
+
+<b>Вопрос:</b> Had + подлежащее + V3?
+• Had you ever been to Paris before that trip?
+
+<b>Когда используется:</b>
+• показать последовательность: сначала одно, потом другое (When I arrived, the train had already left)
+• для объяснения причины (I was tired because I hadn't slept well)
+
+<blockquote>Часто используется с already, just, never, ever, by the time, before, after.</blockquote>
+"""
+            },
+            {
+                "title": "Сравнение и типичные ошибки",
+                "text": """
+<b>📊 Сравнение:</b>
+• Past Simple: I finished work at 6. (просто факт)
+• Past Continuous: I was working at 5. (процесс)
+• Past Perfect: I had finished work by 6. (завершено до 6)
+
+<b>⚠️ Типичные ошибки:</b>
+• ❌ I was finishing my homework at 8. (если закончил)  ✅ I finished my homework at 8.
+• ❌ When I came, she already left.  ✅ When I came, she had already left.
+• ❌ While I cooked, the phone rang.  ✅ While I was cooking, the phone rang.
+
+<b>💡 Совет:</b> Past Perfect нужен для чёткой хронологии двух событий в прошлом. Не злоупотребляйте им, если порядок ясен из контекста.
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Всегда ли нужен Past Perfect, если есть before/after?", "answer": "Нет, after и before уже показывают порядок: After she finished, she left (можно и After she had finished)."}
+        ]
     },
-    "present_perfect_continuous": {
+        "present_perfect_continuous": {
         "title": "Present Perfect Continuous (углубление)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Образование",
+                "text": """
+<b>🔄 Present Perfect Continuous: have/has + been + V‑ing</b>
+
+• I have been waiting for an hour. (Я жду уже час.)
+• She has been working here since 2020. (Она работает здесь с 2020.)
+• They have been studying all day. (Они учатся весь день.)
+
+<blockquote>Подчёркивает длительность, процесс, а не результат.</blockquote>
+"""
+            },
+            {
+                "title": "Когда использовать",
+                "text": """
+<b>📌 Основные случаи:</b>
+
+1. <b>Действие началось в прошлом и продолжается до сих пор (акцент на длительности)</b>
+   • I have been reading this book for two weeks. (Я читаю эту книгу уже две недели – и ещё не закончил.)
+
+2. <b>Действие закончилось недавно, и результат виден сейчас</b>
+   • You are sweating. Have you been running? (Ты вспотел. Ты бегал?)
+   • Her eyes are red. She has been crying. (У неё красные глаза. Она плакала.)
+
+3. <b>Подчеркнуть усилия, усталость, повторение</b>
+   • I have been trying to call you all morning. (Я пытался дозвониться до тебя всё утро.)
+   • He has been smoking for 10 years. (Он курит 10 лет – акцент на процессе, возможно, он ещё курит.)
+
+<blockquote>Слова-маркеры: for, since, all day, all week, lately, recently.</blockquote>
+"""
+            },
+            {
+                "title": "Сравнение с Present Perfect Simple",
+                "text": """
+<b>📊 Present Perfect Simple vs Continuous:</b>
+
+• <b>Simple (have done)</b> – результат, количество раз, завершённость.
+  • I have painted the room. (результат: комната покрашена)
+  • I have read this book twice. (сколько раз)
+
+• <b>Continuous (have been doing)</b> – процесс, длительность, временные усилия.
+  • I have been painting the room. (процесс, возможно, не закончил)
+  • I have been reading this book all week. (подчёркиваю время)
+
+<b>С глаголами состояния (know, like, have – в значении «иметь») Continuous не используется:</b>
+  • ❌ I have been knowing him for years.  ✅ I have known him for years.
+
+<blockquote>С глаголами live, work, wait, study можно использовать оба варианта, но смысл немного разный.</blockquote>
+"""
+            },
+            {
+                "title": "Типичные ошибки и советы",
+                "text": """
+<b>⚠️ Частые ошибки:</b>
+• ❌ I have been knowing him.  ✅ I have known him.
+• ❌ She has been finishing her work. (если закончила)  ✅ She has finished her work.
+• ❌ I am working here for 2 years.  ✅ I have been working here for 2 years.
+
+<b>💡 Советы:</b>
+• Используйте Continuous для действий, которые могут продолжаться, и для подчёркивания усталости, усилий.
+• Используйте Simple для результата, количества раз, и с глаголами состояния.
+• Тренируйтесь: How long have you been learning English? – I have been learning for 3 years.
+• В вопросах с How long чаще используют Continuous: How long have you been waiting?
+
+<blockquote>Разница тонкая, но практика поможет чувствовать её интуитивно.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Можно ли использовать Present Perfect Continuous с for/since для глаголов состояния?", "answer": "Нет, для глаголов состояния (like, know, be, have) используйте Simple: I have known him for ages."}
+        ]
     },
     "past_perfect": {
         "title": "Past Perfect (had done)",
