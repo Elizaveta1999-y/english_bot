@@ -2128,15 +2128,149 @@ am / is / are + V3 (третья форма глагола / с окончани
             {"question": "Как понять, когда to является предлогом, а не частью инфинитива?", "answer": "Если после to можно поставить существительное или местоимение (I look forward to [this weekend]), то это предлог, после него герундий. Если после to следует глагол (I want to go), то это инфинитив."}
         ]
     },
-    "prepositions_time_place_advanced": {
+        "prepositions_time_place_advanced": {
         "title": "Предлоги времени и места (повторение и углубление)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке. Скоро здесь появится теория."}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Повторение: at, in, on (время)",
+                "text": """
+<b>⏰ Предлоги времени – краткое повторение:</b>
+
+• <b>at</b> – точное время, короткие периоды (at 5 o'clock, at noon, at night, at the weekend)  
+• <b>on</b> – дни и даты (on Monday, on May 5th, on my birthday)  
+• <b>in</b> – месяцы, годы, части дня (in July, in 2025, in the morning)
+
+<b>Примеры:</b>
+• I wake up at 7 am. (Я просыпаюсь в 7 утра.)  
+• She was born on June 10th. (Она родилась 10 июня.)  
+• We'll travel in summer. (Мы поедем летом.)
+
+<blockquote>Исключения: at night, on time, in time, at the moment.</blockquote>
+"""
+            },
+            {
+                "title": "Повторение: at, in, on (место)",
+                "text": """
+<b>📍 Предлоги места – повторение:</b>
+
+• <b>at</b> – точка, конкретное место (at home, at the station, at the door)  
+• <b>in</b> – внутри, в пространстве (in the room, in the city, in the water)  
+• <b>on</b> – на поверхности (on the table, on the wall, on the floor)
+
+<b>Примеры:</b>
+• I'm waiting at the bus stop. (Я жду на автобусной остановке.)  
+• She lives in London. (Она живёт в Лондоне.)  
+• The book is on the shelf. (Книга на полке.)
+
+<blockquote>В больших географических объектах используем in (in Russia, in Europe), в адресах – at (at 10 Downing Street).</blockquote>
+"""
+            },
+            {
+                "title": "Углубление: сложные случаи (by, until, during, for, since)",
+                "text": """
+<b>🔍 Дополнительные предлоги времени:</b>
+
+• <b>by</b> – к определённому сроку (к) – I'll finish by 5 pm. (Я закончу к 5 вечера.)  
+• <b>until / till</b> – до (продолжение действия) – I'll wait until 6 pm. (Я буду ждать до 6.)  
+• <b>during</b> – в течение (во время) – During the film, he slept. (Во время фильма он спал.)  
+• <b>for</b> – в течение (длительность) – I've lived here for 5 years. (Я живу здесь 5 лет.)  
+• <b>since</b> – с (отправная точка) – I've worked here since 2020. (Я работаю здесь с 2020.)
+
+<blockquote>For и since часто используются с Present Perfect.</blockquote>
+"""
+            },
+            {
+                "title": "Типичные ошибки и советы",
+                "text": """
+<b>⚠️ Частые ошибки:</b>
+• ❌ I'll meet you in Monday.  ✅ I'll meet you on Monday.  
+• ❌ She arrived in the airport.  ✅ She arrived at the airport.  
+• ❌ I've been waiting since 2 hours.  ✅ I've been waiting for 2 hours. (since + точка, for + период)  
+• ❌ He slept during two hours.  ✅ He slept for two hours. (during – внутри события, for – длительность)
+
+<b>💡 Советы:</b>
+• Для дней недели и дат – on; для времени – at; для месяцев и годов – in.  
+• Для улиц используйте on (on Oxford Street), для точного адреса – at.  
+• Запомните: since + момент в прошлом (since Monday, since 2010); for + промежуток (for two days, for a long time).  
+• Практикуйтесь: рассказывайте о своём расписании и планах, используя предлоги.
+
+<blockquote>Регулярное использование предлогов в речи автоматизирует выбор правильного варианта.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "В чём разница между 'in time' и 'on time'?", "answer": "On time – вовремя, точно по расписанию. In time – загодя, с запасом времени."}
+        ]
     },
-    "relative_clauses": {
+        "relative_clauses": {
         "title": "Определительные придаточные (who, which, that)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке. Скоро здесь появится теория."}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Что такое определительные придаточные?",
+                "text": """
+<b>🔗 Определительные придаточные предложения уточняют, о каком предмете или человеке идёт речь.</b>
+
+Они начинаются с относительных местоимений: who (для людей), which (для предметов/животных), that (для людей и предметов).
+
+• The man who called you is my brother. (Человек, который тебе позвонил, – мой брат.)  
+• The book which I bought is interesting. (Книга, которую я купил, интересная.)  
+• The car that is parked outside is mine. (Машина, которая припаркована снаружи, – моя.)
+
+<blockquote>Определительные придаточные делают речь более информативной и связной.</blockquote>
+"""
+            },
+            {
+                "title": "Who, which, that – правила выбора",
+                "text": """
+<b>📌 Выбор относительного местоимения:</b>
+
+• <b>who</b> – только для людей (в роли подлежащего или дополнения)  
+  • The girl who sings is my sister. (Девушка, которая поёт, – моя сестра.)
+
+• <b>which</b> – для предметов, животных, абстрактных понятий  
+  • The dog which barks loudly is annoying. (Собака, которая громко лает, раздражает.)
+
+• <b>that</b> – для людей и предметов (более разговорный вариант)  
+  • The movie that we saw was great. (Фильм, который мы посмотрели, был отличным.)
+
+<blockquote>В неформальной речи that часто заменяет who и which.</blockquote>
+"""
+            },
+            {
+                "title": "Опущение относительного местоимения",
+                "text": """
+<b>📌 Относительное местоимение можно опустить, если оно является объектом в придаточной части.</b>
+
+• The book (that) I bought is interesting. – that можно опустить, потому что it is the object of 'bought'.  
+• The man (who) you met yesterday is my boss. – who можно опустить, потому что you met him.
+
+<b>Нельзя опускать, если местоимение – подлежащее:</b>
+• The man who called you is my brother. (who нельзя опустить, потому что он подлежащее – he called you.)
+
+<blockquote>Опущение делает речь более естественной и быстрой.</blockquote>
+"""
+            },
+            {
+                "title": "Типичные ошибки и советы",
+                "text": """
+<b>⚠️ Частые ошибки:</b>
+• ❌ The person which called me is my friend.  ✅ The person who called me is my friend.  
+• ❌ This is the book who I like.  ✅ This is the book which I like.  
+• ❌ The boy he is my brother.  ✅ The boy who is my brother.
+
+<b>💡 Советы:</b>
+• Для людей используйте who, для предметов – which, для любого – that.  
+• Проверьте, можно ли опустить местоимение: попробуйте убрать слово – если смысл остаётся ясен, можно опустить.  
+• Тренируйтесь: соединяйте два простых предложения в одно с придаточным определительным.  
+• Запомните, что which вводит необязательную информацию (в английском есть ещё non-defining clauses, но для A2 не обязательно).
+
+<blockquote>Освоив придаточные, вы сможете строить сложные, красивые предложения.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "В чём разница между 'who' и 'whom'?", "answer": "Whom – объектный падеж (кого, кому). В разговорной английской речи его почти не используют, заменяя на who. Для A2 достаточно знать, что он существует."}
+        ]
     },
 
     # ==================== МОДУЛЬ 6: Лексика по темам A2 ====================
