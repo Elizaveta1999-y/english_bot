@@ -594,20 +594,252 @@ Was/Were + подлежащее + V‑ing?
             {"question": "Можно ли использовать Present Perfect Continuous с глаголами состояния?", "answer": "Обычно нет. С глаголами like, know, be, have (в значении обладать) лучше использовать Simple. Но с некоторыми глаголами состояния (live, work, wait) можно использовать Continuous."}
         ]
     },
-    "presentperfect_vs_pastsimple": {
-        "title": "Заглушка",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "presentperfect_vs_pastsimple": {
+        "title": "Present Perfect vs Past Simple (сравнение)",
+        "pages": [
+            {
+                "title": "Ключевое различие",
+                "text": """
+<b>⚖️ Главное отличие – связь с настоящим.</b>
+
+• <b>Past Simple</b> – действие завершено в прошлом, и время обычно указано.
+• <b>Present Perfect</b> – действие связано с настоящим (результат, опыт, продолжающееся действие).
+
+<blockquote>Если вы можете сказать «когда?» (yesterday, last week, in 1990) – используйте Past Simple.</blockquote>
+"""
+            },
+            {
+                "title": "Сравнение на примерах",
+                "text": """
+<b>📌 Past Simple (конкретное время):</b>
+• I saw that film <b>yesterday</b>. (Я видел этот фильм вчера.)
+• She lived in Paris <b>for two years</b> (сейчас не живёт).
+• He called me <b>an hour ago</b>.
+
+<b>📌 Present Perfect (связь с настоящим):</b>
+• I have seen that film. (Я видел этот фильм – я знаю, о чём он.)
+• She has lived in Paris for two years. (Она живёт в Париже два года – всё ещё живёт.)
+• He has just called me. (Он только что позвонил – результат важен сейчас.)
+
+<blockquote>Обратите внимание на for: в Past Simple – действие закончено, в Present Perfect – продолжается.</blockquote>
+"""
+            },
+            {
+                "title": "Слова-маркеры",
+                "text": """
+<b>🔖 Какие слова подсказывают время:</b>
+
+• <b>Past Simple:</b> yesterday, last week/month/year, in 2020, two days ago, when I was a child, then, at that moment.
+
+• <b>Present Perfect:</b> already, yet, just, ever, never, so far, recently, lately, today, this week, this month (если период ещё не закончился), for, since.
+
+<b>Примеры:</b>
+• I haven't seen her <b>today</b>. (Present Perfect – день ещё не закончился.)
+• I didn't see her <b>yesterday</b>. (Past Simple – день закончился.)
+
+<blockquote>Today, this week, this month могут использоваться с обоими временами, но смысл разный.</blockquote>
+"""
+            },
+            {
+                "title": "Советы и типичные ошибки",
+                "text": """
+<b>⚠️ Частые ошибки и как их избежать:</b>
+
+1. <b>Указано конкретное время – Present Perfect ошибочно.</b>
+   • ❌ I have seen him yesterday.  ✅ I saw him yesterday.
+
+2. <b>Результат важен сейчас – ошибочно Past Simple.</b>
+   • ❌ I lost my keys. (без контекста) – лучше: I have lost my keys. (результат – не могу найти)
+
+3. <b>Путаница с for и since.</b>
+   • For + период (for two years)
+   • Since + точка отсчёта (since 2020, since Monday)
+
+<b>💡 Совет:</b> Задайте себе вопрос: «Действие закончилось или всё ещё актуально? Могу ли я добавить точное время?» Если да – Past Simple, если нет – Present Perfect.
+
+<blockquote>Практикуйтесь на своём опыте: I have visited three countries. I visited Japan in 2019.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Как сказать 'я никогда не был в Лондоне'?", "answer": "I have never been to London."}
+        ]
     },
-    "future_forms": {
-        "title": "Заглушка",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "future_forms": {
+        "title": "Будущее время (will, going to, Present Continuous)",
+        "pages": [
+            {
+                "title": "Will – спонтанные решения, предсказания",
+                "text": """
+<b>🔮 Will используется для:</b>
+
+1. <b>Спонтанных решений (принял решение в момент речи)</b>
+   • The phone is ringing. I'll answer it. (Я отвечу – решил сейчас.)
+   • It's cold. I'll close the window. (Я закрою окно – решил только что.)
+
+2. <b>Предсказаний (что может случиться в будущем)</b>
+   • I think it will rain tomorrow. (Думаю, завтра будет дождь.)
+   • You will be happy with this decision. (Ты будешь доволен этим решением.)
+
+3. <b>Обещаний, предложений, угроз</b>
+   • I will help you. (Я помогу тебе – обещание.)
+   • I'll never do that again. (Я больше никогда этого не сделаю.)
+
+<b>Формула:</b> will + глагол (без to)
+• I will call you later. (Я позвоню позже.)
+• She will be here soon. (Она скоро будет здесь.)
+
+<blockquote>Отрицание: will not (won't). Вопрос: Will you come?</blockquote>
+"""
+            },
+            {
+                "title": "Going to – планы и предсказания по фактам",
+                "text": """
+<b>🔮 Going to используется для:</b>
+
+1. <b>Планов и намерений (решили заранее)</b>
+   • I am going to study law. (Я собираюсь учиться на юриста – уже решил.)
+   • They are going to buy a new car. (Они собираются купить новую машину.)
+
+2. <b>Предсказаний, основанных на фактах (что‑то вот‑вот произойдёт)</b>
+   • Look at those clouds! It is going to rain. (Посмотри на тучи – сейчас пойдёт дождь.)
+   • The car is going to crash! (Машина сейчас врежется!)
+
+<b>Формула:</b> am/is/are + going to + глагол
+• We are going to visit Paris next summer. (Мы собираемся посетить Париж следующим летом.)
+
+<blockquote>Отрицание: am/is/are + not + going to. Вопрос: Are you going to stay?</blockquote>
+"""
+            },
+            {
+                "title": "Present Continuous – договорённости",
+                "text": """
+<b>📅 Present Continuous для будущего – договорённости и фиксированные планы.</b>
+
+Используется, когда действие уже согласовано с кем‑то (время и место назначены).
+
+<b>Формула:</b> am/is/are + V‑ing + будущее время
+
+<b>Примеры:</b>
+• I am meeting my friend at 6 pm. (Я встречаюсь с другом в 6 вечера – мы договорились.)
+• She is flying to London tomorrow. (Она завтра летит в Лондон – билеты куплены.)
+• We are having dinner with colleagues tonight. (Мы ужинаем с коллегами сегодня вечером.)
+
+<blockquote>Часто используются маркеры: tomorrow, tonight, next week, on Monday.</blockquote>
+"""
+            },
+            {
+                "title": "Сравнение и советы",
+                "text": """
+<b>📊 Сравнение трёх способов:</b>
+
+• <b>Will</b> – спонтанные решения, предсказания, обещания.
+• <b>Going to</b> – планы, намерения, предсказания по фактам.
+• <b>Present Continuous</b> – договорённости (точно согласовано).
+
+<b>Примеры с одним контекстом:</b>
+• (звонит телефон) I'll answer it. (will – спонтанно)
+• I am going to answer the phone. (going to – намеревался, но звучит странно)
+• I am answering the phone at 3 pm. (Present Continuous – запланировано)
+
+<b>⚠️ Типичные ошибки:</b>
+• ❌ I am going to call you yesterday. (нельзя с past)
+• ❌ I will to help. (без to)
+
+<b>💡 Совет:</b> Для большинства разговоров о будущем можно использовать will и going to. Present Continuous для будущего – более точный вариант.
+
+<blockquote>Практика: каждый вечер планируйте завтрашний день, используя going to.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Как спросить о планах на выходные?", "answer": "What are you going to do this weekend? или What are you doing this weekend? (более естественно с Present Continuous для договорённостей)."}
+        ]
     },
-    "conditionals_0_1": {
-        "title": "Заглушка",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "conditionals_0_1": {
+        "title": "Условные предложения (0 и 1 тип)",
+        "pages": [
+            {
+                "title": "Нулевой тип (факты, всегда истинные)",
+                "text": """
+<b>🔁 Zero Conditional – для ситуаций, которые всегда верны.</b>
+
+<b>Формула:</b> If + Present Simple, Present Simple
+
+<b>Значение:</b> если происходит А, всегда происходит Б (научные факты, законы природы, привычки).
+
+<b>Примеры:</b>
+• If you heat ice, it melts. (Если нагреть лёд, он тает.)
+• If I am late, my father gets angry. (Если я опаздываю, мой отец злится.)
+• Water boils if you heat it to 100°C. (Вода кипит, если нагреть её до 100°C.)
+
+<blockquote>В нулевом типе можно заменить if на when: When you heat ice, it melts.</blockquote>
+"""
+            },
+            {
+                "title": "Первый тип (реальные условия в будущем)",
+                "text": """
+<b>✅ First Conditional – для реальных, возможных ситуаций в будущем.</b>
+
+<b>Формула:</b> If + Present Simple, will + V (или can, may, must)
+
+<b>Значение:</b> если произойдёт А (вероятно), то произойдёт Б.
+
+<b>Примеры:</b>
+• If it rains, we will stay at home. (Если пойдёт дождь, мы останемся дома.)
+• If you study hard, you will pass the exam. (Если будешь усердно учиться, сдашь экзамен.)
+• She will be happy if you call her. (Она будет счастлива, если ты позвонишь ей.)
+• If you are tired, you can take a break. (Если устал, можешь отдохнуть.)
+
+<blockquote>В первой части (if) – Present Simple, во второй – will + глагол (или can, may, must).</blockquote>
+"""
+            },
+            {
+                "title": "Порядок частей и запятая",
+                "text": """
+<b>📌 Порядок не имеет значения, но запятая нужна только если if стоит первым.</b>
+
+• If you study, you will pass. (запятая есть)
+• You will pass if you study. (запятой нет)
+
+<b>Примеры:</b>
+• We will go to the park if the weather is nice.
+• If the weather is nice, we will go to the park.
+
+<b>⚠️ Важно:</b> в части с if никогда не используем will (даже если речь о будущем).
+
+• ❌ If you will come, I will be happy.
+• ✅ If you come, I will be happy.
+
+<blockquote>Это одно из самых важных правил – will не ставится после if.</blockquote>
+"""
+            },
+            {
+                "title": "Примеры и советы",
+                "text": """
+<b>📖 Примеры Zero и First Conditional:</b>
+
+Zero (факты):
+• If you drop a glass, it breaks. (Если уронить стакан, он разбивается.)
+• If people eat too much, they gain weight.
+
+First (реальные ситуации):
+• If I have time, I will help you.
+• If you don't hurry, you will miss the bus.
+• What will you do if you lose your job?
+
+<b>💡 Советы:</b>
+• Нулевой тип – для универсальных истин, первый – для личных планов и прогнозов.
+• Учите типы вместе с союзами: unless (если не) = if not.
+  • I will go unless it rains. (Я пойду, если не будет дождя.)
+
+<blockquote>Тренируйтесь: придумайте 3 нулевых условия (факты) и 3 первых (личные планы).</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Можно ли в first conditional вместо will использовать can, might, should?", "answer": "Да, если нужно выразить возможность: If you finish early, you can leave. Если неуверенность: If she calls, I might come."}
+        ]
     },
     "modalverbs_advanced": {
         "title": "Заглушка",
