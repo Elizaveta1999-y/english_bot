@@ -3106,14 +3106,213 @@ John
             {"question": "В чём разница между 'say', 'tell', 'speak', 'talk'?", "answer": "Say – сказать (что-то). Tell – рассказать (кому-то). Speak – говорить на языке или с кем-то официально. Talk – разговаривать (неформально)."}
         ]
     },
-    "news_current_events": {
+        "news_current_events": {
         "title": "Лексика: новости и текущие события",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке. Скоро здесь появится теория."}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Типы новостей и источники",
+                "text": """
+<b>📰 Виды новостей (types of news):</b>
+
+• breaking news – срочная новость  
+• local news – местные новости  
+• international news – международные новости  
+• politics – политика  
+• economy – экономика  
+• business – бизнес  
+• science – наука  
+• technology – технологии  
+• culture – культура  
+• sports – спорт  
+• weather – погода  
+• entertainment – развлечения  
+
+<b>Источники новостей (sources):</b>
+• newspaper – газета  
+• magazine – журнал  
+• TV channel – телеканал  
+• radio station – радиостанция  
+• website – веб-сайт  
+• social media – социальные сети  
+• news app – новостное приложение  
+
+<blockquote>Как спросить: What's in the news today? (Что сегодня в новостях?)</blockquote>
+"""
+            },
+            {
+                "title": "Ключевые слова для новостей",
+                "text": """
+<b>📌 Часто встречающиеся слова:</b>
+
+• journalist – журналист  
+• reporter – репортёр  
+• correspondent – корреспондент  
+• article – статья  
+• headline – заголовок  
+• interview – интервью  
+• press conference – пресс-конференция  
+• source – источник  
+• witness – свидетель  
+• victim – жертва  
+• accident – авария / происшествие  
+• disaster – бедствие  
+• election – выборы  
+• government – правительство  
+• president – президент  
+• prime minister – премьер-министр  
+• protest – протест  
+• strike – забастовка  
+
+<b>Глаголы:</b>
+• report – сообщать  
+• announce – объявлять  
+• claim – утверждать  
+• deny – отрицать  
+• investigate – расследовать  
+
+<blockquote>Обратите внимание на пассивный залог в новостях: The president was elected yesterday.</blockquote>
+"""
+            },
+            {
+                "title": "Фразы для обсуждения новостей",
+                "text": """
+<b>🗣️ Как говорить о новостях:</b>
+
+• Did you hear about…? (Ты слышал о…?)  
+• Have you seen the news? (Ты видел новости?)  
+• What do you think about…? (Что ты думаешь о…?)  
+• According to the article… (Согласно статье…)  
+• The government announced that… (Правительство объявило, что…)  
+• It's shocking / surprising / sad. (Это шокирует / удивляет / печалит.)  
+• I don't believe it. (Я этому не верю.)  
+• That's fake news. (Это фейковые новости.)
+
+<b>Пример диалога:</b>
+– Did you hear about the earthquake in Turkey?  
+– Yes, it's terrible. Many people lost their homes.  
+– I saw that the government is sending aid.  
+– That's good to hear. I hope they can rebuild quickly.
+
+<blockquote>Обсуждение текущих событий развивает критическое мышление и разговорные навыки.</blockquote>
+"""
+            },
+            {
+                "title": "Советы по запоминанию",
+                "text": """
+<b>💡 Советы:</b>
+• Читайте короткие новости на английском каждый день (BBC News, CNN, The Guardian – есть упрощённые версии).  
+• Выписывайте 5-10 новых слов из каждой статьи.  
+• Смотрите новостные выпуски на YouTube с субтитрами.  
+• Обсуждайте одну новость с другом на английском.  
+• Попробуйте написать краткий пересказ новости (3-5 предложений).
+
+<blockquote>Знание новостной лексики поможет вам понимать устную и письменную речь на продвинутом уровне.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "В чём разница между 'news' и 'information'?", "answer": "News – новости (события, происшествия). Information – информация (факты, данные)."}
+        ]
     },
-    "idioms_phrases": {
+        "idioms_phrases": {
         "title": "Разговорные фразы и идиомы (A2)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке. Скоро здесь появится теория."}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Повседневные разговорные фразы",
+                "text": """
+<b>💬 Короткие фразы для общения:</b>
+
+• How's it going? – Как дела? (неформально)  
+• What's up? – Что нового? / Как жизнь?  
+• Not much. – Ничего особенного.  
+• I see. – Понятно.  
+• No way! – Не может быть!  
+• That's awesome! – Это потрясающе!  
+• Too bad. – Жаль.  
+• What a shame! – Какая жалость!  
+• I'm kidding. – Я шучу.  
+• You're kidding! – Ты шутишь!  
+• Take it easy. – Расслабься. / Легче.  
+• I've got to go. – Мне нужно идти.  
+• See you later. – Увидимся позже.  
+• Take care. – Береги себя.
+
+<blockquote>Эти фразы сделают вашу речь более естественной и живой.</blockquote>
+"""
+            },
+            {
+                "title": "Простые идиомы (часть 1)",
+                "text": """
+<b>🔰 Идиомы для повседневного использования:</b>
+
+• It's a piece of cake. – Проще пареной репы (легко).  
+  • The test was a piece of cake. (Тест был очень лёгким.)  
+
+• It costs an arm and a leg. – Стоит бешеных денег (очень дорого).  
+  • This phone costs an arm and a leg. (Этот телефон стоит целое состояние.)  
+
+• Break a leg! – Ни пуха ни пера! (удачи – обычно перед выступлением)  
+
+• Once in a blue moon. – Очень редко (раз в сто лет).  
+  • I go to the cinema once in a blue moon. (Я хожу в кино очень редко.)  
+
+• Let's call it a day. – На сегодня хватит (заканчиваем работу).  
+
+• Hit the books. – Усердно учиться.  
+  • I need to hit the books before the exam. (Мне нужно серьёзно позаниматься перед экзаменом.)
+
+<blockquote>Идиомы нужно запоминать как целые фразы, не переводя дословно.</blockquote>
+"""
+            },
+            {
+                "title": "Простые идиомы (часть 2)",
+                "text": """
+<b>🔰 Продолжение:</b>
+
+• Spill the beans. – Выдать секрет (разболтать).  
+  • Who spilled the beans about the surprise party? (Кто разболтал о вечеринке-сюрпризе?)  
+
+• Under the weather. – Плохо себя чувствовать (приболеть).  
+  • I'm feeling a bit under the weather today. (Я сегодня немного приболел.)  
+
+• The ball is in your court. – Теперь твоя очередь действовать / решение за тобой.  
+
+• When pigs fly. – Когда рак на горе свистнет (никогда).  
+  • He'll tidy his room when pigs fly. (Он никогда не уберёт свою комнату.)  
+
+• Better late than never. – Лучше поздно, чем никогда.  
+
+• Actions speak louder than words. – Дела говорят громче слов (не по словам судят, а по делам).  
+
+<b>Пример в диалоге:</b>
+– Are you coming to the party?  
+– I'm feeling under the weather, but I'll try.  
+– That's great! Don't spill the beans – it's a surprise for Anna.
+
+<blockquote>Используйте идиомы умеренно, чтобы не перегружать речь.</blockquote>
+"""
+            },
+            {
+                "title": "Советы по запоминанию",
+                "text": """
+<b>💡 Советы:</b>
+• Учите идиомы в контексте – придумывайте свои примеры.  
+• Создайте карточки с идиомой на одной стороне и значением на другой.  
+• Смотрите фильмы и сериалы на английском – идиомы очень часто встречаются.  
+• Начните с 2-3 идиом и постепенно добавляйте новые.  
+• Попробуйте использовать одну новую идиому в разговоре каждый день.
+
+<b>Практика:</b>
+• Напишите три предложения, используя идиомы из этого урока.  
+• Объясните значение идиомы другу по-английски.  
+• Составьте небольшой рассказ, включив в него 2-3 идиомы.
+
+<blockquote>Идиомы делают речь яркой, но требуют осторожности – используйте их, когда уверены в значении.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Нужно ли учить идиомы на уровне A2?", "answer": "Да, самые распространённые – полезны для понимания речи и сдачи экзаменов. Но не перегружайте себя, 10-15 достаточно."}
+        ]
     }
 }
