@@ -1401,20 +1401,251 @@ am / is / are + V3 (третья форма глагола / с окончани
             {"question": "Когда нужно добавлять 'by' в пассив?", "answer": "Только если исполнитель важен. The Mona Lisa was painted by Leonardo da Vinci. (Важно, кем написана.)"}
         ]
     },
-    "reported_speech_statements": {
+        "reported_speech_statements": {
         "title": "Косвенная речь (утверждения)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке. Скоро здесь появится теория."}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Что такое косвенная речь?",
+                "text": """
+<b>🗣️ Косвенная речь – это передача чужих слов без кавычек.</b>
+
+Прямая речь (direct): He said, “I am tired.” (Он сказал: «Я устал».)  
+Косвенная речь (reported): He said (that) he was tired. (Он сказал, что устал.)
+
+<blockquote>В косвенной речи меняются время глагола, местоимения и иногда указатели места/времени.</blockquote>
+"""
+            },
+            {
+                "title": "Правило согласования времён (основное)",
+                "text": """
+<b>📌 Если глагол в главной части в прошедшем времени (said, told, asked), то время в придаточной части сдвигается назад.</b>
+
+• Present Simple → Past Simple  
+  • “I work hard.” → He said he worked hard.
+
+• Present Continuous → Past Continuous  
+  • “I am working.” → He said he was working.
+
+• Past Simple → Past Perfect  
+  • “I saw her.” → He said he had seen her.
+
+• Present Perfect → Past Perfect  
+  • “I have finished.” → He said he had finished.
+
+• will → would, can → could, may → might  
+  • “I will come.” → He said he would come.
+
+<blockquote>Если главная часть в настоящем времени (says), время не меняется.</blockquote>
+"""
+            },
+            {
+                "title": "Изменения местоимений и обстоятельств",
+                "text": """
+<b>📌 При переводе в косвенную речь также меняются:</b>
+
+<b>Местоимения:</b>
+• “I like my job.” → He said he liked his job.
+
+<b>Указатели места и времени:</b>
+• now → then
+• today → that day
+• here → there
+• this / these → that / those
+• yesterday → the day before / the previous day
+• tomorrow → the next day / the following day
+• last week → the week before
+
+<b>Пример:</b>
+• “I will call you tomorrow.” → He said he would call me the next day.
+
+<blockquote>В разговорной речи изменения могут быть менее строгими, но для письма правила важны.</blockquote>
+"""
+            },
+            {
+                "title": "Типичные ошибки и советы",
+                "text": """
+<b>⚠️ Частые ошибки:</b>
+• ❌ He said me that he was tired.  ✅ He told me that he was tired. (say не требует косвенного дополнения без to)
+• ❌ He said that he is tired. (если главная часть в прошлом)  ✅ He said that he was tired.
+• ❌ He told that he was tired.  ✅ He said that he was tired. (told обязательно нужен объект: told me)
+
+<b>💡 Советы:</b>
+• Слово that можно опускать: He said (that) he was tired.
+• Запомните: say + (that) + предложение; tell + кому + (that) + предложение.
+• Тренируйтесь: переведите диалоги из учебника в косвенную речь.
+
+<blockquote>Согласование времён – одна из важнейших тем для экзаменов.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Всегда ли нужно сдвигать время, если главная часть в прошедшем?", "answer": "Да, для экзаменов и формальной речи – обязательно. В неформальной речи иногда оставляют, но рискованно."}
+        ]
     },
-    "reported_speech_questions": {
+        "reported_speech_questions": {
         "title": "Косвенная речь (вопросы)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке. Скоро здесь появится теория."}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Общие вопросы (yes/no)",
+                "text": """
+<b>❓ Общие вопросы в косвенной речи вводятся союзами if или whether.</b>
+
+Прямая речь: He asked, “Do you speak English?”  
+Косвенная речь: He asked if I spoke English. (Он спросил, говорю ли я по-английски.)
+
+<b>Правила:</b>
+• Убираем вспомогательный глагол do/does/did.
+• Ставим прямой порядок слов (подлежащее + сказуемое).
+• Меняем время (как в утверждениях).
+
+<b>Примеры:</b>
+• “Are you tired?” → He asked if I was tired.
+• “Did you see the film?” → He asked if I had seen the film.
+• “Will she come?” → He asked if she would come.
+
+<blockquote>Whether звучит более формально, чем if, и часто используется при выборе.</blockquote>
+"""
+            },
+            {
+                "title": "Специальные вопросы (wh-questions)",
+                "text": """
+<b>🔍 Специальные вопросы в косвенной речи сохраняют вопросительное слово.</b>
+
+Прямая речь: She asked, “Where do you live?”  
+Косвенная речь: She asked where I lived. (Она спросила, где я живу.)
+
+<b>Правила:</b>
+• Вопросительное слово остаётся (what, where, why, when, how).
+• Убираем вспомогательный do/does/did.
+• Прямой порядок слов (подлежащее + глагол).
+• Время меняется по правилу согласования.
+
+<b>Примеры:</b>
+• “What time does the train leave?” → He asked what time the train left.
+• “Why are you crying?” → She asked why I was crying.
+• “How did you do that?” → He asked how I had done that.
+
+<blockquote>В косвенных вопросах не ставится вопросительный знак в конце, так как это уже не вопрос.</blockquote>
+"""
+            },
+            {
+                "title": "Изменения указателей и местоимений",
+                "text": """
+<b>📌 Как и в косвенных утверждениях, меняются местоимения и указатели времени/места.</b>
+
+• “Do you like this book?” → He asked if I liked that book.
+• “Will you be here tomorrow?” → She asked if I would be there the next day.
+• “Why did you come yesterday?” → He asked why I had come the day before.
+
+<blockquote>Помните: порядок слов в косвенном вопросе – прямой, как в утверждении.</blockquote>
+"""
+            },
+            {
+                "title": "Типичные ошибки и советы",
+                "text": """
+<b>⚠️ Частые ошибки:</b>
+• ❌ He asked what time does the train leave.  ✅ He asked what time the train left.
+• ❌ She asked if did I speak English.  ✅ She asked if I spoke English.
+• ❌ He asked where I was going to? (знак вопроса в конце)  ✅ He asked where I was going to. (точка)
+
+<b>💡 Советы:</b>
+• После asked никогда не ставьте that.
+• Если в прямой речи был вспомогательный глагол (do/did), он исчезает.
+• Тренируйтесь: превращайте прямые вопросы в косвенные, обращая внимание на порядок слов.
+
+<blockquote>Освоив косвенные вопросы, вы сможете вежливо переспрашивать и уточнять информацию.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "В чём разница между if и whether в косвенных вопросах?", "answer": "Whether более формален и часто подразумевает альтернативу (whether… or not). If – разговорный вариант."}
+        ]
     },
-    "indirect_questions": {
+        "indirect_questions": {
         "title": "Косвенные вопросы (Could you tell me…, Do you know…)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке. Скоро здесь появится теория."}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Что такое косвенные вопросы?",
+                "text": """
+<b>🤔 Косвенные вопросы – это вежливая форма вопроса, встроенная в другую фразу.</b>
+
+Прямой вопрос: Where is the station?  
+Косвенный вопрос: Could you tell me where the station is? (Не могли бы вы сказать, где находится станция?)
+
+<blockquote>В косвенных вопросах порядок слов – прямой (как в утверждении), а не вопросительный.</blockquote>
+"""
+            },
+            {
+                "title": "Структура и порядок слов",
+                "text": """
+<b>📌 Формула: Вежливое вступление + вопросительное слово + утвердительный порядок слов.</b>
+
+<b>Вежливые вступления:</b>
+• Could you tell me... (Не могли бы вы сказать мне...)
+• Do you know... (Вы знаете...)
+• I wonder... (Интересно...)
+• I'd like to know... (Я хотел бы узнать...)
+• Can you remember... (Вы помните...)
+
+<b>Примеры:</b>
+• What time is it? → Could you tell me what time it is?
+• Why did she leave? → Do you know why she left?
+• Where does he work? → I wonder where he works.
+
+<blockquote>После вступления не нужно менять порядок слов на вопросительный.</blockquote>
+"""
+            },
+            {
+                "title": "Общие вопросы в косвенной форме (if/whether)",
+                "text": """
+<b>❓ Если прямой вопрос – общий (yes/no), в косвенной форме используем if или whether.</b>
+
+Прямой вопрос: Is she coming?  
+Косвенный вопрос: Could you tell me if she is coming? (Не могли бы вы сказать, идёт ли она?)
+
+<b>Примеры:</b>
+• Do you like coffee? → I wonder if you like coffee.
+• Has he arrived? → Do you know whether he has arrived?
+• Will it rain? → Could you tell me if it will rain?
+
+<blockquote>Обратите внимание: время в косвенном вопросе может не меняться, если вступление в настоящем или будущем времени.</blockquote>
+"""
+            },
+            {
+                "title": "Отличие от косвенной речи",
+                "text": """
+<b>📊 Сравните:</b>
+
+• Косвенная речь (передача чужого вопроса): He asked where the station was. (Он спросил, где станция.)
+• Косвенный вопрос (вежливый запрос информации): Could you tell me where the station is? (Не подскажете, где станция?)
+
+<b>Важное различие:</b>
+• В косвенной речи время часто сдвигается (was).
+• В косвенных вопросах время обычно не сдвигается, если вступление в настоящем (is).
+
+<blockquote>Косвенные вопросы – повседневный инструмент вежливого общения.</blockquote>
+"""
+            },
+            {
+                "title": "Типичные ошибки и советы",
+                "text": """
+<b>⚠️ Частые ошибки:</b>
+• ❌ Could you tell me where is the station?  ✅ Could you tell me where the station is?
+• ❌ Do you know what time does the film start?  ✅ Do you know what time the film starts?
+• ❌ I wonder where does she live.  ✅ I wonder where she lives.
+
+<b>💡 Советы:</b>
+• После вежливого вступления всегда используйте прямой порядок слов.
+• Не забывайте вопросительный знак в конце (после всего предложения).
+• Тренируйтесь: перефразируйте прямые вопросы в вежливые косвенные.
+
+<blockquote>Использование косвенных вопросов сделает вашу речь более вежливой и естественной.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Всегда ли в косвенных вопросах нужна инверсия?", "answer": "Нет, инверсия не нужна! После вступления идёт подлежащее, затем глагол."}
+        ]
     },
 
     # ==================== МОДУЛЬ 4: Прилагательные и наречия (углубление) ====================
