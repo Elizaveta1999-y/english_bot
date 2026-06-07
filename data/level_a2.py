@@ -1966,15 +1966,167 @@ am / is / are + V3 (третья форма глагола / с окончани
     },
 
     # ==================== МОДУЛЬ 5: Грамматические конструкции ====================
-    "too_enough": {
-        "title": "Конструкции too / enough",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке. Скоро здесь появится теория."}],
-        "faq": []
+        "too_enough": {
+        "title": "Конструкции too / enough (слишком / достаточно)",
+        "pages": [
+            {
+                "title": "Too – слишком (превышение нормы)",
+                "text": """
+<b>⚖️ Too означает «больше, чем нужно», «чрезмерно», часто с негативным оттенком.</b>
+
+Формула: too + прилагательное / наречие
+
+• This coffee is too hot to drink. (Этот кофе слишком горячий, чтобы пить.)  
+• She drives too fast. (Она водит слишком быстро.)  
+• He is too young to drive. (Он слишком молод, чтобы водить.)
+
+<b>Также может использоваться с существительными:</b>
+• too much + неисчисляемое (too much sugar – слишком много сахара)  
+• too many + исчисляемое (too many people – слишком много людей)
+
+<blockquote>Too часто сопровождается инфинитивом (to do) с результатом: too … to …</blockquote>
+"""
+            },
+            {
+                "title": "Enough – достаточно (норма)",
+                "text": """
+<b>✅ Enough означает «столько, сколько нужно», достаточное количество.</b>
+
+Порядок слов: прилагательное / наречие + enough; существительное + enough
+
+• This coffee is hot enough to drink. (Этот кофе достаточно горячий, чтобы пить.)  
+• She drives carefully enough. (Она водит достаточно осторожно.)  
+• He is old enough to drive. (Он достаточно взрослый, чтобы водить.)  
+• We have enough time. (У нас достаточно времени.)  
+• There are enough chairs. (Достаточно стульев.)
+
+<blockquote>Enough тоже часто сопровождается инфинитивом: … enough to …</blockquote>
+"""
+            },
+            {
+                "title": "Сравнение too и enough",
+                "text": """
+<b>📊 Сравните:</b>
+
+• The water is too cold to swim. (Вода слишком холодная, чтобы плавать – нельзя.)  
+• The water is warm enough to swim. (Вода достаточно тёплая, чтобы плавать – можно.)
+
+• He is too tired to work. (Он слишком устал, чтобы работать.)  
+• He is rested enough to work. (Он достаточно отдохнул, чтобы работать.)
+
+<b>Отрицательная форма not … enough:</b>
+• She is not tall enough to reach the shelf. (Она недостаточно высокая, чтобы достать до полки.)
+
+<blockquote>Too всегда подразумевает проблему, enough – приемлемость.</blockquote>
+"""
+            },
+            {
+                "title": "Типичные ошибки и советы",
+                "text": """
+<b>⚠️ Частые ошибки:</b>
+• ❌ This soup is too much hot.  ✅ This soup is too hot. (too + прилагательное)  
+• ❌ I have too many sugar.  ✅ I have too much sugar. (много – неисчисляемое)  
+• ❌ She is enough tall.  ✅ She is tall enough. (прилагательное + enough)  
+• ❌ We have enough of time.  ✅ We have enough time. (enough time без of)
+
+<b>💡 Советы:</b>
+• Запомните позицию: too + прилагательное; прилагательное + enough.  
+• Для количеств: too much / too many; enough + существительное.  
+• Too часто переводится как «чересчур», enough – «достаточно».  
+• Тренируйтесь: опишите ситуации, где что-то слишком (too) и где достаточно (enough).
+
+<blockquote>Эти конструкции помогут вам жаловаться и хвалить, объяснять причины.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "В чём разница между 'too much' и 'so much'?", "answer": "Too much – слишком много (негатив). So much – так много (нейтрально или восторженно)."}
+        ]
     },
-    "gerund_infinitive": {
+        "gerund_infinitive": {
         "title": "Герундий и инфинитив (like + ing, want + to)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке. Скоро здесь появится теория."}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Что такое герундий и инфинитив?",
+                "text": """
+<b>📝 Герундий (V‑ing) – форма глагола, которая ведёт себя как существительное.</b>
+• I like swimming. (Мне нравится плавание / плавать.) – герундий после like
+
+<b>Инфинитив (to + V) – начальная форма глагола.</b>
+• I want to swim. (Я хочу плавать.) – инфинитив после want
+
+<blockquote>Некоторые глаголы требуют после себя герундий, другие – инфинитив, третьи – оба варианта (иногда с изменением смысла).</blockquote>
+"""
+            },
+            {
+                "title": "Глаголы, после которых нужен герундий (V‑ing)",
+                "text": """
+<b>📌 Список глаголов + герундий (часто это чувства, предпочтения, избегание):</b>
+
+• enjoy (наслаждаться) – I enjoy reading.  
+• finish (заканчивать) – He finished working.  
+• mind (возражать) – Do you mind opening the window?  
+• suggest (предлагать) – She suggested going out.  
+• avoid (избегать) – He avoided meeting her.  
+• practise (практиковать) – They practise speaking English.  
+• consider (рассматривать) – I consider moving abroad.
+
+<b>Также после предлогов всегда герундий:</b>
+• Thank you for helping me. (Спасибо за помощь.)  
+• I'm interested in learning Chinese. (Я заинтересован в изучении китайского.)  
+• What about going to the cinema? (Как насчёт похода в кино?)
+
+<blockquote>Предлог + герундий – очень распространённая конструкция.</blockquote>
+"""
+            },
+            {
+                "title": "Глаголы, после которых нужен инфинитив (to + V)",
+                "text": """
+<b>📌 Список глаголов + инфинитив (обычно выражает намерение, желание, план):</b>
+
+• want (хотеть) – I want to go home.  
+• hope (надеяться) – She hopes to see you.  
+• plan (планировать) – We plan to travel.  
+• decide (решать) – He decided to stay.  
+• promise (обещать) – I promise to help.  
+• offer (предлагать) – She offered to drive.  
+• learn (учиться) – They learned to speak English.  
+• need (нуждаться) – I need to sleep.
+
+<b>Глаголы, после которых можно и то, и другое (но смысл может меняться):</b>
+• like / love / hate / prefer (с герундием – общее предпочтение, с инфинитивом – конкретное действие)  
+  • I like swimming. (вообще)  
+  • I like to swim every morning. (привычка)
+
+• remember / forget / regret (с герундием – действие перед воспоминанием, с инфинитивом – действие после)  
+  • I remember locking the door. (помню, что запер)  
+  • I remembered to lock the door. (не забыл запереть)
+
+<blockquote>С разницей в значении нужно быть внимательным.</blockquote>
+"""
+            },
+            {
+                "title": "Типичные ошибки и советы",
+                "text": """
+<b>⚠️ Частые ошибки:</b>
+• ❌ I enjoy to read.  ✅ I enjoy reading.  
+• ❌ She wants going.  ✅ She wants to go.  
+• ❌ I look forward to see you.  ✅ I look forward to seeing you. (to – предлог, а не часть инфинитива!)  
+• ❌ It's important to learning.  ✅ It's important to learn.
+
+<b>💡 Советы:</b>
+• Заучите списки глаголов – это механическая память.  
+• Герундий часто используется после предлогов (in, on, at, for, of, to).  
+• Инфинитив часто употребляется после прилагательных (it's nice to meet you).  
+• Практикуйтесь: составляйте пары предложений с одним глаголом, меняя форму.
+
+<blockquote>Ошибки в герундии и инфинитиве – одни из самых частых, но практика их исправляет.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Как понять, когда to является предлогом, а не частью инфинитива?", "answer": "Если после to можно поставить существительное или местоимение (I look forward to [this weekend]), то это предлог, после него герундий. Если после to следует глагол (I want to go), то это инфинитив."}
+        ]
     },
     "prepositions_time_place_advanced": {
         "title": "Предлоги времени и места (повторение и углубление)",
