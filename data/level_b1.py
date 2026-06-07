@@ -1337,20 +1337,232 @@ LEVEL_B1_CONTENT = {
     },
 
     # ==================== МОДУЛЬ 4: Герундий и инфинитив (углубление) ====================
-    "gerund_vs_infinitive_advanced": {
+        "gerund_vs_infinitive_advanced": {
         "title": "Герундий и инфинитив: сложные случаи",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Герундий (V‑ing) как существительное",
+                "text": """
+<b>📝 Герундий – форма глагола с -ing, которая ведёт себя как существительное.</b>
+
+• Swimming is good for health. (Плавание полезно для здоровья – подлежащее)
+• I enjoy reading. (Мне нравится чтение – дополнение)
+• She is afraid of flying. (Она боится летать – после предлога)
+
+<blockquote>Герундий часто используется после предлогов (of, in, for, about, without, after, before).</blockquote>
+"""
+            },
+            {
+                "title": "Инфинитив (to + V) – цель, намерение, результат",
+                "text": """
+<b>🎯 Инфинитив выражает цель, намерение, часто после прилагательных и некоторых глаголов.</b>
+
+• I want to learn English. (хочу – намерение)
+• It's important to be on time. (после прилагательного)
+• She called to say hello. (цель)
+
+<blockquote>Инфинитив также используется в конструкциях too/enough: too hot to drink, old enough to drive.</blockquote>
+"""
+            },
+            {
+                "title": "Глаголы, после которых возможны обе формы (с изменением смысла)",
+                "text": """
+<b>🔄 Некоторые глаголы меняют смысл в зависимости от формы.</b>
+
+• <b>remember / forget</b>
+  – remember to do – не забыть сделать (действие после воспоминания)
+  – remember doing – помнить, что делал (действие до воспоминания)
+  • Remember to lock the door. (не забудь запереть дверь)
+  • I remember locking the door. (я помню, что запер дверь)
+
+• <b>stop</b>
+  – stop to do – остановиться, чтобы сделать
+  – stop doing – прекратить делать
+  • He stopped to smoke. (остановился, чтобы покурить)
+  • He stopped smoking. (бросил курить)
+
+• <b>try</b>
+  – try to do – пытаться (сделать)
+  – try doing – попробовать (способ)
+  • I tried to open the window, but it was stuck. (пытался)
+  • Try adding more salt. (попробуй добавить соли)
+
+<blockquote>Эти различия важны для экзаменов и точного понимания.</blockquote>
+"""
+            },
+            {
+                "title": "Типичные ошибки и советы",
+                "text": """
+<b>⚠️ Частые ошибки:</b>
+• ❌ I look forward to hear from you.  ✅ I look forward to hearing from you. (to – предлог, нужен герундий)
+• ❌ It's important listening.  ✅ It's important to listen. (после прилагательного инфинитив)
+• ❌ She suggested to go.  ✅ She suggested going. (suggest + герундий)
+
+<b>💡 Советы:</b>
+• После предлогов всегда герундий.
+• После прилагательных (happy, sad, important, easy) – инфинитив.
+• Выучите глаголы, которые требуют герундий: enjoy, avoid, mind, suggest, finish, practice.
+• Выучите глаголы, которые требуют инфинитив: want, need, hope, decide, promise, plan.
+
+<blockquote>Практика – ключ к запоминанию. Составляйте свои примеры и проверяйте.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Как отличить герундий от причастия настоящего времени?", "answer": "Герундий выполняет функцию существительного (подлежащее, дополнение). Причастие – часть глагольной формы (Continuous) или определения."}
+        ]
     },
-    "verbs_with_both": {
+        "verbs_with_both": {
         "title": "Глаголы, после которых возможен и герундий, и инфинитив (с изменением смысла)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Remember / forget / regret",
+                "text": """
+<b>📌 remember, forget, regret – разные значения с герундием и инфинитивом.</b>
+
+• <b>remember + инфинитив</b> – не забыть сделать (действие в будущем)
+  • Remember to buy milk. (не забудь купить молоко)
+
+• <b>remember + герундий</b> – помнить о действии в прошлом
+  • I remember buying milk yesterday. (помню, что купил молоко вчера)
+
+• <b>forget + инфинитив</b> – забыть сделать (не сделал)
+  • I forgot to lock the door. (я забыл запереть дверь – и не запер)
+
+• <b>forget + герундий</b> – забыть о том, что делал (редко)
+  • I'll never forget meeting you. (никогда не забуду нашу встречу)
+
+• <b>regret + инфинитив</b> – сожалеть о том, что скажешь (сообщить плохую новость)
+  • I regret to inform you that you failed. (с сожалением сообщаю)
+
+• <b>regret + герундий</b> – сожалеть о том, что сделал в прошлом
+  • I regret saying that. (жалею, что сказал это)
+
+<blockquote>Разница в хронологии: инфинитив – действие позже глагола, герундий – действие раньше/одновременно.</blockquote>
+"""
+            },
+            {
+                "title": "Try / mean / go on",
+                "text": """
+<b>📌 try, mean, go on – также меняют смысл.</b>
+
+• <b>try + инфинитив</b> – пытаться (с усилием)
+  • I tried to lift the box, but it was too heavy. (пытался)
+
+• <b>try + герундий</b> – попробовать (эксперимент)
+  • Try adding salt. (попробуй добавить соли)
+
+• <b>mean + инфинитив</b> – намереваться, планировать
+  • I meant to call you. (я собирался позвонить)
+
+• <b>mean + герундий</b> – означать
+  • This means leaving early. (это означает уйти рано)
+
+• <b>go on + инфинитив</b> – перейти к новому действию
+  • He introduced himself and then went on to talk about his plans. (продолжил, перешёл к)
+
+• <b>go on + герундий</b> – продолжать то же действие
+  • He went on talking for hours. (продолжал говорить)
+
+<blockquote>Контекст подсказывает значение.</blockquote>
+"""
+            },
+            {
+                "title": "Stop / can't help / be used to",
+                "text": """
+<b>📌 stop, can't help, be used to – тоже важны.</b>
+
+• <b>stop + инфинитив</b> – остановиться, чтобы сделать
+  • She stopped to rest. (остановилась отдохнуть)
+
+• <b>stop + герундий</b> – прекратить делать
+  • She stopped smoking. (бросила курить)
+
+• <b>can't help + герундий</b> – не могу удержаться от
+  • I can't help laughing. (не могу не смеяться)
+
+• <b>be used to + герундий</b> – привыкнуть к
+  • I am used to getting up early. (я привык рано вставать)
+
+<blockquote>Be used to + V‑ing – привычка. Used to + V – бывало (раньше). Не путайте.</blockquote>
+"""
+            },
+            {
+                "title": "Типичные ошибки и советы",
+                "text": """
+<b>⚠️ Частые ошибки:</b>
+• ❌ I remembered locking the door, but I didn't. (противоречие) – правильно: I remembered to lock the door.
+• ❌ I stopped smoking to have a rest. (если остановился курить) – правильно: I stopped to have a rest.
+• ❌ I'm used to get up early.  ✅ I'm used to getting up early.
+
+<b>💡 Совет:</b>
+• Чтобы запомнить разницу, думайте о времени: инфинитив обычно относится к будущему действию, герундий – к прошлому или одновременному.
+• Практикуйтесь: составляйте пары предложений с одним глаголом, меняя форму.
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Как сказать 'я пытался открыть окно' (но не получилось)?", "answer": "I tried to open the window. (попытка с усилием)"}
+        ]
     },
-    "passive_gerund_infinitive": {
+        "passive_gerund_infinitive": {
         "title": "Пассивный герундий и инфинитив",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Пассивный герундий",
+                "text": """
+<b>📦 Пассивный герундий – когда действие выполняется над подлежащим.</b>
+
+<b>Формула:</b> being + V3 (или having been + V3 для прошлого)
+
+• I don't like being told what to do. (Мне не нравится, когда мне указывают, что делать.)
+• She avoids being seen in public. (Она избегает того, чтобы её видели на людях.)
+• He remembers being taken to the zoo as a child. (Он помнит, как его водили в зоопарк ребёнком.)
+
+<blockquote>Пассивный герундий часто используется после глаголов, требующих герундий (like, avoid, remember, mind).</blockquote>
+"""
+            },
+            {
+                "title": "Пассивный инфинитив",
+                "text": """
+<b>📦 Пассивный инфинитив – to be + V3 (или to have been + V3 для прошлого).</b>
+
+• I want to be invited to the party. (Я хочу, чтобы меня пригласили на вечеринку.)
+• She hopes to be given a promotion. (Она надеется, что ей дадут повышение.)
+• This work needs to be finished by Friday. (Эту работу нужно закончить к пятнице.)
+
+<blockquote>Пассивный инфинитив часто используется после want, hope, expect, need, it's important + to be done.</blockquote>
+"""
+            },
+            {
+                "title": "Перфектные пассивные формы (having been + V3 / to have been + V3)",
+                "text": """
+<b>⏪ Пассив в перфекте – для действий, которые произошли ранее.</b>
+
+• Having been warned about the danger, he didn't go there. (Так как его предупредили об опасности, он не пошёл туда.)
+• She is lucky to have been chosen for the role. (Ей повезло, что её выбрали на роль.)
+
+<blockquote>Эти формы более сложные и используются в основном в письменной речи.</blockquote>
+"""
+            },
+            {
+                "title": "Типичные ошибки и советы",
+                "text": """
+<b>⚠️ Частые ошибки:</b>
+• ❌ I don't like being interrupt.  ✅ I don't like being interrupted.
+• ❌ She wants to invite. (если её должны пригласить)  ✅ She wants to be invited.
+• ❌ I remember being take there.  ✅ I remember being taken there.
+
+<b>💡 Совет:</b>
+• Если действие выполняется над подлежащим, используйте пассивную форму (being или to be + V3).
+• Тренируйтесь: переделайте активные предложения в пассивные с герундием/инфинитивом.
+• Учите готовые фразы: to be done, being done, having been done.
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Когда использовать 'being done' и 'to be done'?", "answer": "Being done – после предлогов и глаголов, требующих герундий (avoid, enjoy, like). To be done – после want, need, hope, it's important."}
+        ]
     },
 
     # ==================== МОДУЛЬ 5: Пассивный залог (углубление) ====================
