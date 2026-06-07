@@ -316,20 +316,283 @@ Was/Were + подлежащее + V‑ing?
             {"question": "Можно ли использовать Past Continuous с глаголами состояния?", "answer": "Обычно нет (как и в Present Continuous). Но в редких случаях можно, если глагол описывает активное действие: I was thinking about you. (Я думал о тебе – процесс)."}
         ]
     },
-    "usedto": {
-        "title": "Заглушка",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "usedto": {
+        "title": "Конструкция used to (раньше, привычки в прошлом)",
+        "pages": [
+            {
+                "title": "Что такое used to?",
+                "text": """
+<b>🕰️ Used to – для действий, которые регулярно происходили в прошлом, но больше не происходят.</b>
+
+В русском языке мы говорим: «раньше я …», «когда‑то я …», «бывало, я …».
+
+• I used to smoke, but now I don't. (Раньше я курил, но сейчас нет.)
+• She used to live in London. (Раньше она жила в Лондоне – сейчас нет.)
+• We used to play football every Sunday. (Мы раньше играли в футбол каждое воскресенье.)
+
+<blockquote>Used to не переводится как «привык», это совсем другой смысл.</blockquote>
+"""
+            },
+            {
+                "title": "Формы и спряжение",
+                "text": """
+<b>📌 Used to не меняется по лицам и числам.</b>
+
+• I / You / He / She / It / We / They used to + глагол
+
+<b>Отрицание:</b> didn't use to + глагол (обратите внимание: use без d)
+• I didn't use to like coffee. (Раньше я не любил кофе.)
+• She didn't use to exercise. (Раньше она не занималась спортом.)
+
+<b>Вопрос:</b> Did + подлежащее + use to + глагол?
+• Did you use to play the guitar? (Ты раньше играл на гитаре?)
+• Where did you use to live? (Где ты раньше жил?)
+
+<b>Краткие ответы:</b>
+• Yes, I did. / No, I didn't.
+
+<blockquote>Обратите внимание: в вопросах и отрицаниях пишем use (без d), потому что did уже показывает прошедшее время.</blockquote>
+"""
+            },
+            {
+                "title": "Когда использовать used to",
+                "text": """
+<b>📌 Used to подходит для:</b>
+
+1. <b>Привычек в прошлом</b>
+   • I used to get up at 6 am. (Раньше я вставал в 6 утра.)
+   • He used to bite his nails. (Он раньше грыз ногти.)
+
+2. <b>Состояний и ситуаций в прошлом</b>
+   • They used to be very rich. (Раньше они были очень богатыми.)
+   • There used to be a cinema here. (Раньше здесь был кинотеатр.)
+
+3. <b>Повторяющихся действий в прошлом</b>
+   • We used to visit our grandparents every summer. (Мы раньше навещали бабушку и дедушку каждое лето.)
+
+<blockquote>Used to не используется для однократных действий в прошлом: I visited Paris once. (НЕ I used to visit Paris once.)</blockquote>
+"""
+            },
+            {
+                "title": "Сравнение с Past Simple и советы",
+                "text": """
+<b>📊 Used to vs Past Simple:</b>
+
+• <b>Past Simple</b> – факт о прошлом (один раз или последовательность).
+  • I went to Paris last year. (Я ездил в Париж в прошлом году – один раз.)
+
+• <b>Used to</b> – подчёркивает регулярность, привычку.
+  • I used to go to Paris every summer. (Раньше я ездил в Париж каждое лето.)
+
+<b>⚠️ Типичные ошибки:</b>
+• ❌ I used to went.  ✅ I used to go.
+• ❌ I use to smoke.  ✅ I used to smoke.
+• ❌ I didn't used to.  ✅ I didn't use to.
+
+<b>💡 Советы:</b>
+• Для описания детства часто используют used to: I used to play with dolls.
+• Если сомневаетесь, можно заменить на «often + Past Simple», но used to звучит естественнее.
+• Тренируйтесь: напишите 3 вещи, которые вы делали в детстве, но больше не делаете.
+
+<blockquote>Used to помогает создать ощущение ностальгии и показать изменения.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "В чём разница между used to и would для прошлых привычек?", "answer": "Would можно использовать для действий, но не для состояний. I would play (можно), но I would be (нельзя). Used to подходит и для действий, и для состояний."}
+        ]
     },
-    "presentperfect_simple": {
-        "title": "Заглушка",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "presentperfect_simple": {
+        "title": "Present Perfect Simple (настоящее совершенное время)",
+        "pages": [
+            {
+                "title": "Образование",
+                "text": """
+<b>✅ Present Perfect Simple образуется с помощью have/has + третья форма глагола (V3).</b>
+
+• I / You / We / They – have + V3
+• He / She / It – has + V3
+
+<b>Правильные глаголы:</b> V3 = V + -ed (как в Past Simple)
+• work → worked, play → played, watch → watched
+
+<b>Неправильные глаголы:</b> нужно запоминать (третья форма)
+• go → gone, see → seen, have → had, eat → eaten, buy → bought
+
+<b>Примеры:</b>
+• I have finished my homework. (Я закончил домашнее задание.)
+• She has visited Paris. (Она посетила Париж.)
+• They have eaten lunch. (Они пообедали.)
+
+<blockquote>Сокращения: I've, you've, he's, she's, it's, we've, they've. (He's может означать he has или he is – по контексту.)</blockquote>
+"""
+            },
+            {
+                "title": "Когда используется Present Perfect Simple",
+                "text": """
+<b>📌 Основные случаи употребления:</b>
+
+1. <b>Результат важен сейчас, время не указано</b>
+   • I have lost my keys. (Я потерял ключи – и сейчас не могу их найти.)
+   • She has bought a new car. (Она купила новую машину – результат: у неё новая машина.)
+
+2. <b>Опыт в жизни (когда‑либо)</b>
+   • Have you ever been to London? (Ты когда‑нибудь был в Лондоне?)
+   • I have never tried sushi. (Я никогда не пробовал суши.)
+
+3. <b>Изменения с течением времени</b>
+   • You have grown since last year. (Ты вырос с прошлого года.)
+   • The weather has become colder. (Погода стала холоднее.)
+
+4. <b>Действие началось в прошлом и продолжается до сих пор (с for/since)</b>
+   • I have lived here for 5 years. (Я живу здесь 5 лет – и всё ещё живу.)
+   • She has worked here since 2018. (Она работает здесь с 2018 года.)
+
+<blockquote>Слова-маркеры: already, yet, ever, never, just, for, since, lately, recently.</blockquote>
+"""
+            },
+            {
+                "title": "Отрицание и вопросы",
+                "text": """
+<b>🚫 Отрицание:</b> have/has + not + V3
+
+• I haven't finished yet. (Я ещё не закончил.)
+• She hasn't called me. (Она мне не позвонила.)
+
+<b>❓ Вопросы:</b> Have/Has + подлежащее + V3?
+
+• Have you ever seen a whale? (Ты когда‑нибудь видел кита?)
+• Has she arrived? (Она приехала?)
+
+<b>Краткие ответы:</b>
+• Yes, I have. / No, I haven't.
+• Yes, she has. / No, she hasn't.
+
+<b>Примеры с already / yet / just:</b>
+• I have already eaten. (Я уже поел.)
+• She hasn't come yet. (Она ещё не пришла.)
+• We have just arrived. (Мы только что приехали.)
+
+<blockquote>Already – в утверждениях, yet – в отрицаниях и вопросах, just – в середине предложения.</blockquote>
+"""
+            },
+            {
+                "title": "Различие с Past Simple и советы",
+                "text": """
+<b>📊 Present Perfect vs Past Simple:</b>
+
+• <b>Present Perfect</b> – результат важен сейчас, время не указано или не важно.
+  • I have seen that film. (Я видел этот фильм – я знаю, о чём он.)
+
+• <b>Past Simple</b> – действие закончилось в прошлом, часто указано время.
+  • I saw that film last week. (Я смотрел этот фильм на прошлой неделе.)
+
+<b>⚠️ Типичные ошибки:</b>
+• ❌ I have seen him yesterday.  ✅ I saw him yesterday. (с конкретным временем – Past Simple)
+• ❌ She didn't finished.  ✅ She hasn't finished.
+• ❌ Have you ever went?  ✅ Have you ever been?
+
+<b>💡 Советы:</b>
+• Учите три формы неправильных глаголов (go – went – gone).
+• Для вопросов с ever начинайте с Have/Has.
+• Не используйте Present Perfect с yesterday, last week, in 2020, two days ago.
+
+<blockquote>Практикуйтесь: расскажите о 3 вещах, которые вы сделали сегодня (I have already had breakfast).</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "В чём разница между 'I have been to London' и 'I have gone to London'?", "answer": "Have been to – был и вернулся. Have gone to – уехал и ещё не вернулся."}
+        ]
     },
-    "presentperfect_continuous": {
-        "title": "Заглушка",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "presentperfect_continuous": {
+        "title": "Present Perfect Continuous (настоящее совершенное длительное время)",
+        "pages": [
+            {
+                "title": "Образование",
+                "text": """
+<b>🔄 Present Perfect Continuous образуется с помощью have/has + been + V‑ing.</b>
+
+• I / You / We / They – have been + V‑ing
+• He / She / It – has been + V‑ing
+
+<b>Примеры:</b>
+• I have been studying for three hours. (Я учусь уже три часа.)
+• She has been working here since 2020. (Она работает здесь с 2020 года.)
+• They have been waiting for a long time. (Они ждут уже долго.)
+
+<blockquote>Время подчёркивает <b>длительность</b> или <b>процесс</b>, а не результат.</blockquote>
+"""
+            },
+            {
+                "title": "Когда используется Present Perfect Continuous",
+                "text": """
+<b>📌 Основные случаи употребления:</b>
+
+1. <b>Действие началось в прошлом и продолжается до сих пор (с акцентом на длительность)</b>
+   • I have been reading this book for two weeks. (Я читаю эту книгу уже две недели – и ещё не закончил.)
+   • It has been raining all day. (Дождь идёт весь день.)
+
+2. <b>Действие закончилось недавно, но результат виден сейчас</b>
+   • You are sweating. Have you been running? (Ты вспотел. Ты бегал?)
+   • Her eyes are red. She has been crying. (У неё красные глаза. Она плакала.)
+
+3. <b>Чтобы подчеркнуть усилия или процесс</b>
+   • I have been trying to call you all morning. (Я пытался дозвониться до тебя всё утро.)
+   • They have been building this house for a year. (Они строят этот дом уже год.)
+
+<blockquote>Слова-маркеры: for, since, all day, all week, lately, recently.</blockquote>
+"""
+            },
+            {
+                "title": "Отрицание и вопросы",
+                "text": """
+<b>🚫 Отрицание:</b> have/has + not + been + V‑ing
+
+• I haven't been sleeping well lately. (В последнее время я плохо сплю.)
+• She hasn't been feeling well since Monday. (Она плохо себя чувствует с понедельника.)
+
+<b>❓ Вопросы:</b> Have/Has + подлежащее + been + V‑ing?
+
+• How long have you been learning English? (Как долго ты учишь английский?)
+• Has it been raining all night? (Дождь шёл всю ночь?)
+
+<b>Краткие ответы:</b>
+• Yes, I have. / No, I haven't.
+• Yes, it has. / No, it hasn't.
+
+<blockquote>Для вопросов о продолжительности используйте How long ...?</blockquote>
+"""
+            },
+            {
+                "title": "Сравнение Present Perfect Simple и Continuous",
+                "text": """
+<b>📊 Present Perfect Simple vs Continuous:</b>
+
+• <b>Simple (have done)</b> – результат важен, действие завершено (или сколько раз).
+  • I have painted the room. (Я покрасил комнату – результат: комната покрашена.)
+  • I have read this book twice. (Я прочитал эту книгу два раза – акцент на количестве.)
+
+• <b>Continuous (have been doing)</b> – процесс, длительность, временные усилия.
+  • I have been painting the room. (Я красил комнату – процесс, возможно, не закончил.)
+  • I have been reading this book all week. (Я читаю эту книгу всю неделю – подчёркиваю время.)
+
+<b>⚠️ Типичные ошибки:</b>
+• ❌ I have been knowing him for years.  ✅ I have known him for years. (know – глагол состояния, не используется в Continuous)
+• ❌ She has been finishing her work. (если закончила)  ✅ She has finished her work.
+
+<b>💡 Советы:</b>
+• Используйте Continuous для действий, которые могут продолжаться, и для подчёркивания усталости, усилий.
+• Используйте Simple для результата, количества раз, и с глаголами состояния.
+• Тренируйтесь: How long have you been learning English? I have been learning for 3 years.
+
+<blockquote>Разница тонкая, но практика поможет вам чувствовать её интуитивно.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Можно ли использовать Present Perfect Continuous с глаголами состояния?", "answer": "Обычно нет. С глаголами like, know, be, have (в значении обладать) лучше использовать Simple. Но с некоторыми глаголами состояния (live, work, wait) можно использовать Continuous."}
+        ]
     },
     "presentperfect_vs_pastsimple": {
         "title": "Заглушка",
