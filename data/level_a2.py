@@ -954,7 +954,405 @@ First (реальные ситуации):
             {"question": "В чём разница между mustn't и don't have to?", "answer": "Mustn't – запрещено (нельзя). Don't have to – не нужно (отсутствие необходимости)."}
         ]
     },
+    "passive_voice": {
+        "title": "Пассивный залог (Passive Voice) – настоящее и прошедшее время",
+        "pages": [
+            {
+                "title": "Что такое пассивный залог?",
+                "text": """
+<b>📚 Пассивный залог используется, когда действие выполняется НАД подлежащим, а не самим подлежащим.</b>
 
+В русском языке: «Книга читается», «Дом построен».
+
+• Актив (активный залог): The cat eats the mouse. (Кошка ест мышь – кошка сама выполняет действие.)
+• Пассив (страдательный залог): The mouse is eaten by the cat. (Мышь съедена кошкой – действие выполняется над мышью.)
+
+<blockquote>Пассивный залог часто используется, когда исполнитель действия не важен, неизвестен или очевиден.</blockquote>
+"""
+            },
+            {
+                "title": "Образование пассивного залога",
+                "text": """
+<b>📌 Формула пассива: be + V3 (третья форма глагола)</b>
+
+<b>Настоящее время (Present Simple Passive):</b> am/is/are + V3
+• The room is cleaned every day. (Комнату убирают каждый день.)
+• These books are written in English. (Эти книги написаны на английском.)
+• I am invited to the party. (Меня приглашают на вечеринку.)
+
+<b>Прошедшее время (Past Simple Passive):</b> was/were + V3
+• The letter was sent yesterday. (Письмо было отправлено вчера.)
+• The windows were broken. (Окна были разбиты.)
+• The film was made in 1990. (Фильм был снят в 1990 году.)
+
+<blockquote>Обратите внимание: глагол to be (am/is/are/was/were) меняется по времени и числу, а смысловой глагол всегда в третьей форме (V3).</blockquote>
+"""
+            },
+            {
+                "title": "Когда использовать пассивный залог",
+                "text": """
+<b>📌 Основные случаи:</b>
+
+1. <b>Исполнитель действия неизвестен или не важен</b>
+   • My phone was stolen. (Мой телефон украли – неизвестно кто.)
+   • The bridge is being repaired. (Мост ремонтируют – кто именно, неважно.)
+
+2. <b>Исполнитель очевиден из контекста</b>
+   • The criminal was arrested. (Преступник был арестован – очевидно, полицией.)
+   • The letter has been posted. (Письмо отправлено – очевидно, на почте.)
+
+3. <b>В научных и официальных текстах (акцент на действии, а не на исполнителе)</b>
+   • The experiment was conducted in 2020. (Эксперимент был проведён в 2020 году.)
+
+4. <b>Чтобы смягчить ответственность или сделать высказывание более вежливым</b>
+   • A mistake was made. (Была допущена ошибка – вместо You made a mistake.)
+
+<blockquote>Если исполнитель важен, используйте by + исполнитель: The cake was made by my mother.</blockquote>
+"""
+            },
+            {
+                "title": "Отрицание и вопросы в пассиве",
+                "text": """
+<b>🚫 Отрицание:</b> be + not + V3
+
+• The room is not cleaned every day. (Комнату убирают не каждый день.)
+• The letter was not sent yesterday. (Письмо не было отправлено вчера.)
+
+<b>❓ Вопросы:</b> be + подлежащее + V3
+
+• Is the room cleaned every day? (Комнату убирают каждый день?)
+• Was the letter sent yesterday? (Письмо было отправлено вчера?)
+
+<b>Краткие ответы:</b>
+• Yes, it is. / No, it isn't.
+• Yes, it was. / No, it wasn't.
+
+<b>Примеры вопросов к подлежащему:</b>
+• Who was invited? (Кто был приглашён?)
+• What is made in China? (Что сделано в Китае?)
+
+<blockquote>В вопросах с who/what, если это подлежащее, порядок слов не меняется: Who was arrested?</blockquote>
+"""
+            },
+            {
+                "title": "Сравнение активного и пассивного залога",
+                "text": """
+<b>📊 Актив vs Пассив:</b>
+
+• <b>Актив:</b> Someone built this house in 1990. (Кто-то построил этот дом в 1990 году – акцент на строителе.)
+• <b>Пассив:</b> This house was built in 1990. (Этот дом был построен в 1990 году – акцент на доме.)
+
+<b>⚠️ Типичные ошибки:</b>
+• ❌ The letter was send.  ✅ The letter was sent.
+• ❌ The room is clean every day. (clean – прилагательное)  ✅ The room is cleaned every day.
+• ❌ The children were took to the park.  ✅ The children were taken to the park.
+
+<b>💡 Советы:</b>
+• Используйте пассив, когда исполнитель очевиден или не важен.
+• Не злоупотребляйте пассивом – актив звучит естественнее в большинстве разговоров.
+• Для образования пассива выучите третью форму неправильных глаголов (V3).
+
+<blockquote>Практика: перепишите новостные заголовки в пассивный залог.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Как отличить пассивный залог от прилагательного с -ed?", "answer": "Пассив: действие (The door was closed – кто-то закрыл). Прилагательное: состояние (The door was closed – дверь была закрыта, никто не закрывал)."}
+        ]
+    },
+    "reported_speech_statements": {
+        "title": "Косвенная речь (утверждения) – Reported Speech (statements)",
+        "pages": [
+            {
+                "title": "Что такое косвенная речь?",
+                "text": """
+<b>🗣️ Косвенная речь – это передача чужих слов без кавычек, с изменением времён и местоимений.</b>
+
+• Прямая речь (direct speech): "I am tired," she said. (Она сказала: «Я устала».)
+• Косвенная речь (reported speech): She said (that) she was tired. (Она сказала, что устала.)
+
+<blockquote>В косвенной речи часто опускают that (но можно и оставить).</blockquote>
+"""
+            },
+            {
+                "title": "Правило согласования времён (Sequence of Tenses)",
+                "text": """
+<b>📌 Если глагол в главной части в прошедшем времени (said, told, asked), то время в придаточной части «сдвигается назад».</b>
+
+<b>Таблица изменений:</b>
+
+• Present Simple → Past Simple
+  • "I work hard." → He said he worked hard.
+
+• Present Continuous → Past Continuous
+  • "I am reading." → She said she was reading.
+
+• Present Perfect → Past Perfect
+  • "I have finished." → He said he had finished.
+
+• Past Simple → Past Perfect
+  • "I saw her." → He said he had seen her.
+
+• will → would
+  • "I will come." → She said she would come.
+
+• can → could
+  • "I can swim." → He said he could swim.
+
+• may → might
+  • "It may rain." → She said it might rain.
+
+<blockquote>Если глагол в главной части в настоящем времени (says, tells), то время в придаточной не меняется.</blockquote>
+"""
+            },
+            {
+                "title": "Изменение местоимений, наречий и указательных слов",
+                "text": """
+<b>🔄 Что ещё меняется в косвенной речи:</b>
+
+• Местоимения:
+  • I → he/she
+  • we → they
+  • you → I/he/she/they (по смыслу)
+  • my → his/her
+  • our → their
+
+• Наречия времени и места:
+  • now → then
+  • today → that day
+  • here → there
+  • this → that
+  • these → those
+  • yesterday → the day before / the previous day
+  • tomorrow → the next day / the following day
+  • ago → before
+
+<b>Примеры:</b>
+• "I'll call you tomorrow," he said. → He said he would call me the next day.
+• "We are here now," they said. → They said they were there then.
+
+<blockquote>Изменения зависят от контекста и точки зрения говорящего.</blockquote>
+"""
+            },
+            {
+                "title": "Примеры и советы",
+                "text": """
+<b>📖 Примеры перевода из прямой речи в косвенную:</b>
+
+• "I like coffee," she said. → She said (that) she liked coffee.
+• "We are watching TV," they said. → They said (that) they were watching TV.
+• "I have seen this film," he said. → He said (that) he had seen that film.
+• "I went to Paris last year," she said. → She said (that) she had gone to Paris the year before.
+
+<b>Глаголы для введения косвенной речи:</b>
+• say – сказать (без дополнения: say + that)
+• tell – сказать кому‑то (tell + дополнение + that)
+  • He told me (that) he was tired.
+
+<b>⚠️ Типичные ошибки:</b>
+• ❌ She said me that she was tired.  ✅ She told me that she was tired. (или She said that she was tired.)
+• ❌ He said that he is tired. (если в главной части прошедшее)  ✅ He said that he was tired.
+
+<b>💡 Советы:</b>
+• Всегда обращайте внимание на время глагола в главной части.
+• Практикуйтесь пересказывать новости, фильмы и разговоры друзей.
+
+<blockquote>Косвенная речь требует внимания к деталям, но с практикой станет привычной.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Когда можно не менять время в косвенной речи?", "answer": "Если говорящий передаёт факт, который всё ещё верен, или если глагол в главной части в настоящем времени."}
+        ]
+    },
+    "reported_speech_questions": {
+        "title": "Косвенная речь (вопросы) – Reported Questions",
+        "pages": [
+            {
+                "title": "Общие вопросы (yes/no questions)",
+                "text": """
+<b>❓ Общие вопросы в косвенной речи: вводятся if или whether, и порядок слов становится прямым.</b>
+
+• Прямой вопрос: "Do you like coffee?" she asked.
+• Косвенный вопрос: She asked if I liked coffee.
+
+<blockquote>If и whether взаимозаменяемы, но whether звучит более формально.</blockquote>
+
+<b>Правила:</b>
+1. Убираем do/does/did (они не нужны в косвенном вопросе).
+2. Меняем порядок слов на прямой (подлежащее + глагол).
+3. Соблюдаем согласование времён.
+
+<b>Примеры:</b>
+• "Are you tired?" he asked. → He asked if I was tired.
+• "Has she arrived?" they asked. → They asked whether she had arrived.
+• "Will you help me?" she asked. → She asked if I would help her.
+
+<blockquote>В косвенных вопросах после if/whether ставится подлежащее, потом глагол – как в утверждении.</blockquote>
+"""
+            },
+            {
+                "title": "Специальные вопросы (wh-questions)",
+                "text": """
+<b>❓ Специальные вопросы (what, where, when, why, how) сохраняют вопросительное слово, но порядок слов прямой.</b>
+
+• Прямой вопрос: "Where do you live?" he asked.
+• Косвенный вопрос: He asked where I lived.
+
+<b>Правила:</b>
+1. Вопросительное слово остаётся.
+2. Убираем вспомогательные do/does/did.
+3. Порядок слов как в утверждении.
+4. Согласование времён.
+
+<b>Примеры:</b>
+• "What time is it?" she asked. → She asked what time it was.
+• "Why did you come late?" he asked. → He asked why I had come late.
+• "How can I get there?" they asked. → They asked how they could get there.
+• "Who is that girl?" he asked. → He asked who that girl was.
+
+<blockquote>Обратите внимание: в косвенных вопросах нет вопросительного знака в конце (потому что это уже не вопрос).</blockquote>
+"""
+            },
+            {
+                "title": "Изменение времён и местоимений (повторение)",
+                "text": """
+<b>🔄 Для вопросов действуют те же правила согласования, что и для утверждений.</b>
+
+• Present → Past
+• Past → Past Perfect
+• Present Perfect → Past Perfect
+• will → would
+• can → could
+
+<b>Примеры:</b>
+• "Do you speak English?" → He asked if I spoke English.
+• "Have you eaten?" → She asked if I had eaten.
+• "Where will you go?" → He asked where I would go.
+
+<b>Изменение местоимений и наречий:</b>
+• "Are you here?" → He asked if I was there.
+• "Did you see this yesterday?" → He asked if I had seen that the day before.
+
+<blockquote>Следите за логикой: who, what, which могут быть подлежащим, и тогда порядок слов не меняется.</blockquote>
+"""
+            },
+            {
+                "title": "Примеры и советы",
+                "text": """
+<b>📖 Примеры перевода вопросов в косвенную речь:</b>
+
+• "Do you like pizza?" → He asked if I liked pizza.
+• "Where are you from?" → She asked where I was from.
+• "What are you doing now?" → He asked what I was doing then.
+• "Have you ever been to London?" → She asked if I had ever been to London.
+• "Will you be here tomorrow?" → He asked if I would be there the next day.
+
+<b>Глаголы для введения косвенных вопросов:</b>
+• ask + (if/whether/wh‑)
+• want to know
+• wonder (более литературно)
+
+<b>⚠️ Типичные ошибки:</b>
+• ❌ He asked me where did I live.  ✅ He asked me where I lived.
+• ❌ She asked if I am ready.  ✅ She asked if I was ready.
+• ❌ They asked what time is it.  ✅ They asked what time it was.
+
+<b>💡 Советы:</b>
+• Тренируйтесь задавать вопросы и сразу пересказывать их от третьего лица.
+• Обращайте внимание на порядок слов – это самая частая ошибка.
+
+<blockquote>Помните: в косвенном вопросе глагол идёт после подлежащего, а не перед ним.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Когда используется whether вместо if?", "answer": "Whether более формальный, также используется перед 'or not' (I asked whether he was coming or not)."}
+        ]
+    },
+    "indirect_questions": {
+        "title": "Косвенные вопросы (Indirect questions) – вежливые вопросы",
+        "pages": [
+            {
+                "title": "Что такое косвенные вопросы?",
+                "text": """
+<b>🤔 Косвенные вопросы – это вежливая форма вопроса, которая начинается с фразы вроде «Не подскажете ли…», «Вы не знаете…».</b>
+
+• Прямой вопрос: What time is it? (Который час? – прямой, иногда звучит резко.)
+• Косвенный вопрос: Could you tell me what time it is? (Не подскажете, который час? – вежливо.)
+
+<blockquote>Косвенные вопросы часто используют в разговоре с незнакомыми людьми, в деловой обстановке.</blockquote>
+"""
+            },
+            {
+                "title": "Структура косвенного вопроса",
+                "text": """
+<b>📌 Формула: Вводная фраза + вопросительное слово (если есть) + утвердительный порядок слов.</b>
+
+<b>Вводные фразы:</b>
+• Could you tell me…? (Не могли бы вы сказать…)
+• Do you know…? (Вы знаете…)
+• I wonder… (Интересно…)
+• I'd like to know… (Мне хотелось бы знать…)
+• Can you remember…? (Вы помните…)
+• Have you any idea…? (Вы имеете представление…)
+
+<b>Примеры:</b>
+• Where is the station? → Could you tell me where the station is?
+• Does she speak French? → Do you know if she speaks French?
+• What time does the train leave? → I wonder what time the train leaves.
+
+<blockquote>Обратите внимание: после вводной фразы идёт утвердительный порядок слов – подлежащее, затем глагол.</blockquote>
+"""
+            },
+            {
+                "title": "Косвенные вопросы без вопросительного слова (yes/no)",
+                "text": """
+<b>📌 Если прямой вопрос не имеет вопросительного слова (общий вопрос), в косвенном используется if / whether.</b>
+
+• Does he like coffee? → Could you tell me if he likes coffee?
+• Is she coming? → Do you know whether she is coming?
+• Have you seen my keys? → I wonder if you have seen my keys.
+
+<b>Важно:</b> порядок слов – утвердительный.
+
+<b>Примеры:</b>
+• Is there a bank near here? → Could you tell me if there is a bank near here?
+• Will it rain tomorrow? → Do you know whether it will rain tomorrow?
+
+<blockquote>Whether более формальный, if – разговорный вариант.</blockquote>
+"""
+            },
+            {
+                "title": "Согласование времён и примеры",
+                "text": """
+<b>📖 Примеры косвенных вопросов с согласованием времён:</b>
+
+• What time did she arrive? → Could you tell me what time she arrived? (прошлое время в косвенном остаётся в прошлом, если действие завершено)
+• Where will they go? → Do you know where they will go? (будущее время сохраняется)
+
+<b>Если вводная фраза в прошедшем времени (asked, wondered), то время сдвигается:</b>
+• "Where does he work?" he asked. → He asked me where he worked.
+• "Are you ready?" she wondered. → She wondered if I was ready.
+
+<b>⚠️ Типичные ошибки:</b>
+• ❌ Could you tell me where is the station?  ✅ Could you tell me where the station is? (неправильный порядок слов)
+• ❌ Do you know what time does it start?  ✅ Do you know what time it starts?
+• ❌ I wonder if does she speak English.  ✅ I wonder if she speaks English.
+
+<b>💡 Советы:</b>
+• Используйте косвенные вопросы, чтобы звучать вежливо в магазинах, гостиницах, на улице.
+• Тренируйтесь перефразировать прямые вопросы в косвенные.
+• Всегда проверяйте порядок слов: после вводной фразы – подлежащее, затем сказуемое.
+
+<blockquote>Косвенные вопросы делают речь более культурной и приятной для собеседника.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Нужно ли менять время в косвенном вопросе, если вводная фраза в настоящем времени?", "answer": "Нет, если вводная фраза в настоящем (Could you tell me, Do you know), время в вопросе не меняется."}
+        ]
+    },
     # ==================== МОДУЛЬ 2 (A2) ====================
     # Будут добавлены позже (сравнения, прилагательные, наречия, пассив, лексика)
 
