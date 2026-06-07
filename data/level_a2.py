@@ -841,10 +841,118 @@ First (реальные ситуации):
             {"question": "Можно ли в first conditional вместо will использовать can, might, should?", "answer": "Да, если нужно выразить возможность: If you finish early, you can leave. Если неуверенность: If she calls, I might come."}
         ]
     },
-    "modalverbs_advanced": {
-        "title": "Заглушка",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "modalverbs_advanced": {
+        "title": "Модальные глаголы (could, might, should, have to, must)",
+        "pages": [
+            {
+                "title": "Could – прошлое умение, вежливая просьба, возможность",
+                "text": """
+<b>💡 Could – многозначный модальный глагол.</b>
+
+1. <b>Прошедшее умение (как can в прошлом)</b>
+   • When I was young, I could run fast. (Когда я был молодым, я мог быстро бегать.)
+   • She could speak French before she moved. (Она могла говорить по-французски до переезда.)
+
+2. <b>Вежливая просьба (более вежливо, чем can)</b>
+   • Could you help me, please? (Не могли бы вы мне помочь?)
+   • Could I open the window? (Можно я открою окно?)
+
+3. <b>Возможность (менее уверенно, чем can)</b>
+   • It could rain later. (Возможно, позже пойдёт дождь – 50% вероятности.)
+   • He could be at work. (Возможно, он на работе.)
+
+<blockquote>Отрицание: could not (couldn't). Вопрос: Could you ...?</blockquote>
+"""
+            },
+            {
+                "title": "Might – малая вероятность, предположение",
+                "text": """
+<b>🤔 Might выражает неуверенность, малую вероятность (30-40%).</b>
+
+• I might go to the party, but I'm not sure. (Возможно, я пойду на вечеринку, но не уверен.)
+• She might be late. (Возможно, она опоздает.)
+• It might rain tomorrow. (Завтра, возможно, будет дождь.)
+
+<blockquote>Might звучит менее уверенно, чем could. Разница: might – 30%, could – 50%, will – 90%.</blockquote>
+
+<b>Форма:</b> might + глагол (без to)
+• They might come. (Они, возможно, придут.)
+• He might not know. (Возможно, он не знает.)
+
+<b>⚠️ Might не имеет прошедшего времени (используется might have done для прошлого).</b>
+"""
+            },
+            {
+                "title": "Should – совет, рекомендация",
+                "text": """
+<b>📌 Should используется для советов, рекомендаций, морального долга.</b>
+
+• You should see a doctor. (Тебе следует сходить к врачу.)
+• We should leave now. (Нам следует уходить сейчас.)
+• People should respect the law. (Люди должны уважать закон.)
+
+<blockquote>Should мягче, чем must. Must – жёсткая обязанность, should – рекомендация.</blockquote>
+
+<b>Форма:</b> should + глагол (без to)
+• You shouldn't smoke. (Тебе не следует курить.)
+• Should I call him? (Стоит ли мне позвонить ему?)
+
+<b>Краткие ответы:</b>
+• Yes, you should. / No, you shouldn't.
+
+<blockquote>Отрицание: shouldn't. Вопрос: Should I ...?</blockquote>
+"""
+            },
+            {
+                "title": "Have to / Must – обязанность (сравнение)",
+                "text": """
+<b>🔔 Must и have to выражают обязанность, но есть оттенки.</b>
+
+• <b>Must</b> – внутренняя обязанность (я сам считаю, что должен), часто для говорящего.
+  • I must finish this report. (Я должен закончить этот отчёт – я так решил.)
+
+• <b>Have to</b> – внешняя обязанность (меня заставляют обстоятельства, правила).
+  • I have to work on Saturday. (Я должен работать в субботу – потому что так требует начальство.)
+
+<blockquote>В отрицании: mustn't – строгий запрет (нельзя), don't have to – отсутствие необходимости (не нужно).</blockquote>
+
+<b>Примеры:</b>
+• You mustn't smoke here. (Здесь нельзя курить – запрет.)
+• You don't have to come if you're busy. (Тебе не нужно приходить, если ты занят – нет необходимости.)
+
+<b>Формы have to:</b>
+• I have to go. (Я должен идти.)
+• She has to work. (Она должна работать.)
+• Do we have to pay? (Нам нужно платить?)
+
+<blockquote>В вопросах и отрицаниях have to использует do/does, как обычный глагол.</blockquote>
+"""
+            },
+            {
+                "title": "Сводная таблица и советы",
+                "text": """
+<b>📊 Краткое сравнение:</b>
+
+• <b>could</b> – мог (в прошлом), вежливая просьба, возможность (50%)
+• <b>might</b> – возможно (30%), неуверенность
+• <b>should</b> – следует (совет)
+• <b>must</b> – должен (жёсткая обязанность, запрет mustn't)
+• <b>have to</b> – вынужден (внешние обстоятельства)
+
+<b>💡 Советы:</b>
+• Для советов начинайте с should: You should try this cake.
+• Для просьб используйте could: Could you pass the salt?
+• Для неуверенности – might: I might come later.
+• Для запретов – mustn't: You mustn't touch the wire.
+• Для отсутствия необходимости – don't have to: You don't have to wear a tie.
+
+<blockquote>Практикуйтесь в разных ситуациях, чтобы почувствовать разницу.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "В чём разница между mustn't и don't have to?", "answer": "Mustn't – запрещено (нельзя). Don't have to – не нужно (отсутствие необходимости)."}
+        ]
     },
 
     # ==================== МОДУЛЬ 2 (A2) ====================
