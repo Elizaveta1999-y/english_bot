@@ -1821,15 +1821,148 @@ am / is / are + V3 (третья форма глагола / с окончани
             {"question": "В чём разница между hard и hardly?", "answer": "Hard – усердно, много (work hard). Hardly – почти не (I hardly know him)."}
         ]
     },
-    "adjectives_order": {
-        "title": "Порядок прилагательных (opinion, size, age, colour…)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке. Скоро здесь появится теория."}],
-        "faq": []
+        "adjectives_order": {
+        "title": "Порядок прилагательных (opinion, size, age, colour...)",
+        "pages": [
+            {
+                "title": "Почему порядок важен?",
+                "text": """
+<b>📚 В английском прилагательные идут в строгом порядке, когда их несколько перед существительным.</b>
+
+В русском мы тоже расставляем их естественно: «красивый большой старый деревянный дом».  
+В английском есть правила, которые нужно запомнить.
+
+<blockquote>Неправильный порядок звучит неестественно даже для носителей.</blockquote>
+"""
+            },
+            {
+                "title": "Правильный порядок (схема)",
+                "text": """
+<b>📌 Стандартный порядок прилагательных:</b>
+
+<b>1. Мнение (opinion)</b> – nice, beautiful, ugly, interesting  
+<b>2. Размер (size)</b> – big, small, huge, tiny  
+<b>3. Возраст (age)</b> – old, young, new, ancient  
+<b>4. Форма (shape)</b> – round, square, flat  
+<b>5. Цвет (colour)</b> – red, blue, green, black  
+<b>6. Происхождение (origin)</b> – Russian, Italian, Chinese  
+<b>7. Материал (material)</b> – wooden, plastic, metal, silk  
+<b>8. Назначение (purpose)</b> – sleeping (bag), cooking (oil)
+
+<blockquote>Не обязательно использовать все 8 категорий – обычно 2-3 прилагательных достаточно.</blockquote>
+"""
+            },
+            {
+                "title": "Примеры и запоминалка",
+                "text": """
+<b>📖 Примеры:</b>
+• a <b>nice big</b> house (хороший большой дом) – мнение + размер  
+• a <b>small old round wooden</b> table (маленький старый круглый деревянный стол) – размер + возраст + форма + материал  
+• a <b>beautiful long red</b> dress (красивое длинное красное платье) – мнение + длина + цвет
+
+<b>Запоминалка (первые буквы):</b>  
+<b>O</b>pinion – <b>S</b>ize – <b>A</b>ge – <b>S</b>hape – <b>C</b>olour – <b>O</b>rigin – <b>M</b>aterial – <b>P</b>urpose  
+Очень Старый Автомобиль С Красной Обивкой Мчится Прочь (неофициально, для запоминания)
+
+<blockquote>Прилагательные после глагола to be не следуют этому порядку: The house is big and nice.</blockquote>
+"""
+            },
+            {
+                "title": "Типичные ошибки и советы",
+                "text": """
+<b>⚠️ Частые ошибки:</b>
+• ❌ a red big car  ✅ a big red car (сначала размер, потом цвет)  
+• ❌ a wooden old table  ✅ an old wooden table (сначала возраст, потом материал)  
+• ❌ a French interesting film  ✅ an interesting French film (сначала мнение, потом происхождение)
+
+<b>💡 Советы:</b>
+• Если сомневаетесь, используйте не больше двух-трёх прилагательных.  
+• Запомните, что мнение (nice, beautiful) всегда идёт первым.  
+• Цвет и происхождение обычно ближе к существительному.  
+• Тренируйтесь: опишите предметы вокруг, соблюдая порядок.
+
+<blockquote>Прилагательные после глаголов (is, are, was, were) не требуют порядка – просто перечисляйте: The dress is long, red and beautiful.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Как запомнить порядок?", "answer": "Используйте аббревиатуру OSASCOMP (Opinion, Size, Age, Shape, Colour, Origin, Material, Purpose) или придумайте свою фразу."}
+        ]
     },
-    "comparative_structures": {
+        "comparative_structures": {
         "title": "Сравнительные конструкции (the more… the more)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке. Скоро здесь появится теория."}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Конструкция the + сравнительная степень, the + сравнительная степень",
+                "text": """
+<b>📊 Эта конструкция означает «чем…, тем…».</b>
+
+• The more you study, the more you know. (Чем больше учишься, тем больше знаешь.)  
+• The faster you run, the sooner you arrive. (Чем быстрее бежишь, тем раньше приедешь.)  
+• The bigger the car, the more expensive it is. (Чем больше машина, тем она дороже.)
+
+<blockquote>Оба прилагательных/наречия стоят в сравнительной степени.</blockquote>
+"""
+            },
+            {
+                "title": "Особые случаи",
+                "text": """
+<b>📌 Если в первой части есть существительное, ставим его между the и прилагательным.</b>
+
+• The more money you have, the more problems appear. (Чем больше денег, тем больше проблем.)  
+• The more people come, the merrier. (Чем больше людей придёт, тем веселее.)
+
+<b>Можно использовать с наречиями:</b>
+• The more carefully you drive, the safer you are. (Чем осторожнее водишь, тем безопаснее.)
+
+<b>Для повторяющихся действий:</b>
+• The more I read, the less I understand. (Чем больше читаю, тем меньше понимаю.)
+
+<blockquote>В разговорной речи первую часть могут опускать, если смысл ясен.</blockquote>
+"""
+            },
+            {
+                "title": "Альтернативные структуры",
+                "text": """
+<b>🔁 Другие полезные сравнительные конструкции:</b>
+
+• <b>twice as…as</b> (в два раза…)  
+  • My house is twice as big as yours. (Мой дом в два раза больше твоего.)  
+  • She is twice as old as her sister. (Она в два раза старше сестры.)
+
+• <b>half as…as</b> (в два раза меньше)  
+  • His bag is half as heavy as mine. (Его сумка в два раза легче моей.)
+
+• <b>the same as</b> (такой же, как)  
+  • This bag is the same size as that one. (Эта сумка такого же размера, как та.)
+
+• <b>less…than</b> (менее, чем)  
+  • This task is less difficult than the previous one. (Это задание менее трудное, чем предыдущее.)
+
+<blockquote>Эти конструкции пригодятся при сравнении количественных характеристик.</blockquote>
+"""
+            },
+            {
+                "title": "Типичные ошибки и советы",
+                "text": """
+<b>⚠️ Частые ошибки:</b>
+• ❌ More you study, more you know.  ✅ The more you study, the more you know.  
+• ❌ The more he gets, the more he want.  ✅ The more he gets, the more he wants.  
+• ❌ She is more clever as me.  ✅ She is cleverer than me.
+
+<b>💡 Советы:</b>
+• Не забывайте артикль the перед каждой сравнительной степенью.  
+• Используйте конструкцию для описания причинно-следственных связей.  
+• Практикуйтесь: придумайте 3 фразы по схеме «чем…, тем…» (The later you go, the less traffic you’ll see).  
+• Для сравнения количества используйте more/fewer с исчисляемыми, more/less с неисчисляемыми.
+
+<blockquote>Освоив эту конструкцию, вы сможете выражать сложные зависимости простыми фразами.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Можно ли использовать эту конструкцию без прилагательного?", "answer": "Да, например: The more, the merrier (Чем больше, тем веселее). Здесь 'the more' подразумевает 'people'."}
+        ]
     },
 
     # ==================== МОДУЛЬ 5: Грамматические конструкции ====================
