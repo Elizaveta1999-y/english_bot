@@ -2,10 +2,104 @@
 
 LEVEL_A2_CONTENT = {
     # ==================== МОДУЛЬ 1: Грамматика (повторение и углубление) ====================
-    "presimplevscont_advanced": {
+        "presimplevscont_advanced": {
         "title": "Present Simple vs Present Continuous (углублённо)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке. Скоро здесь появится теория."}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Повторение: когда что использовать",
+                "text": """
+<b>📚 Present Simple</b> – для регулярных действий, фактов, расписаний, чувств и мыслей.
+• Регулярные действия: I go to the gym every Monday. (Я хожу в спортзал каждый понедельник.)
+• Факты: The Earth goes around the Sun. (Земля вращается вокруг Солнца.)
+• Расписания: The train leaves at 6 pm. (Поезд отправляется в 6 вечера.)
+• Чувства и мысли: I think you are right. (Я думаю, ты прав.)
+
+<b>📚 Present Continuous</b> – для действий прямо сейчас, временных ситуаций, планов на будущее, изменяющихся процессов.
+• Прямо сейчас: She is talking on the phone. (Она разговаривает по телефону.)
+• Временная ситуация: I am living with my parents this month. (В этом месяце я живу с родителями.)
+• План на будущее: We are meeting friends tonight. (Мы встречаемся с друзьями сегодня вечером.)
+• Изменяющийся процесс: The weather is getting colder. (Погода становится холоднее.)
+
+<blockquote>Обратите внимание на слова-маркеры: для Simple – always, usually, never, every day; для Continuous – now, at the moment, today, this week.</blockquote>
+"""
+            },
+            {
+                "title": "Глаголы состояния (stative verbs)",
+                "text": """
+<b>⚠️ Глаголы состояния не употребляются в Continuous, даже если действие происходит прямо сейчас.</b>
+
+Они описывают не действие, а состояние, чувство, мнение, принадлежность.
+
+<b>Категории stative verbs:</b>
+1. Чувства и эмоции: like, love, hate, prefer, want, need, wish.
+   • ❌ I am wanting a coffee.  ✅ I want a coffee. (Я хочу кофе.)
+
+2. Мысли и мнения: think (в значении «полагать»), believe, know, understand, remember, forget.
+   • ❌ I am understanding the lesson.  ✅ I understand the lesson. (Я понимаю урок.)
+
+3. Восприятие: see, hear, smell, taste, feel (когда речь о чувстве, а не действии).
+   • ❌ I am seeing a bird.  ✅ I see a bird. (Я вижу птицу.)
+
+4. Обладание: have (в значении «иметь»), own, belong, possess.
+   • ❌ I am having a car.  ✅ I have a car. (У меня есть машина.)
+
+5. Измерение и стоимость: weigh, cost, measure.
+   • ❌ The bag is weighing 2 kg.  ✅ The bag weighs 2 kg. (Сумка весит 2 кг.)
+
+<blockquote>Исключения: некоторые глаголы могут использоваться в Continuous, если меняют значение.</blockquote>
+"""
+            },
+            {
+                "title": "Глаголы, которые могут быть и в Simple, и в Continuous (с изменением смысла)",
+                "text": """
+<b>🔁 Некоторые глаголы имеют два значения – статичное (Simple) и активное (Continuous).</b>
+
+• <b>think</b>
+  – I think she is nice. (я полагаю) – статика
+  – I am thinking about my vacation. (я размышляю) – действие
+
+• <b>have</b>
+  – I have a car. (я имею) – статика
+  – I am having breakfast. (я завтракаю) – действие
+
+• <b>see</b>
+  – I see the problem. (я понимаю) – статика
+  – I am seeing my doctor tomorrow. (я встречаюсь) – действие
+
+• <b>taste / smell</b>
+  – The soup tastes good. (имеет вкус) – статика
+  – I am tasting the soup. (пробую) – действие
+
+• <b>feel</b>
+  – I feel tired. (чувствую себя) – статика
+  – I am feeling the fabric. (трогаю) – действие
+
+<blockquote>Если глагол описывает процесс – можно ставить в Continuous. Если состояние – только Simple.</blockquote>
+"""
+            },
+            {
+                "title": "Типичные ошибки и советы",
+                "text": """
+<b>⚠️ Типичные ошибки уровня A2:</b>
+• ❌ I am not understanding.  ✅ I don't understand.
+• ❌ She is having a sister.  ✅ She has a sister.
+• ❌ Look! It rains.  ✅ Look! It is raining.
+• ❌ I am knowing the answer.  ✅ I know the answer.
+
+<b>💡 Советы для запоминания:</b>
+• Перед использованием Continuous спросите себя: «Это действие, которое я вижу / делаю прямо сейчас, или это постоянное состояние?»
+• Для глаголов чувств и мыслей почти всегда используйте Simple.
+• Тренируйтесь: описывайте, что происходит сейчас за окном (Continuous) и что происходит обычно (Simple).
+• Обращайте внимание на контекст: если есть маркеры now, at the moment – скорее всего Continuous; если always, every day – Simple.
+
+<blockquote>Практикуйтесь в парах: один говорит действие, другой выбирает время.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Как понять, можно ли поставить глагол в Continuous?", "answer": "Попробуйте заменить глагол на действие. Если можно «снять на видео» – Continuous. Если это факт, мнение или состояние – Simple."},
+            {"question": "Всегда ли 'think' в Continuous означает 'размышлять'?", "answer": "Да, в большинстве случаев. Но есть идиомы: I'm thinking of you (думаю о тебе – тоже процесс)."}
+        ]
     },
     "pastsimple_review": {
         "title": "Past Simple (повторение и детали)",
