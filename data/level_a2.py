@@ -2486,15 +2486,205 @@ am / is / are + V3 (третья форма глагола / с окончани
             {"question": "Разница между 'journey', 'trip' и 'travel'?", "answer": "Journey – путь (от точки А до Б). Trip – поездка (туда и обратно). Travel – путешествие (общее понятие)."}
         ]
     },
-    "food_restaurant": {
+        "food_restaurant": {
         "title": "Лексика: еда и ресторан (заказ блюд, описание вкусов)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке. Скоро здесь появится теория."}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Категории продуктов и блюд",
+                "text": """
+<b>🍽️ Повторение и расширение:</b>
+
+• appetiser / starter – закуска  
+• main course – основное блюдо  
+• dessert – десерт  
+• side dish – гарнир  
+• drink – напиток  
+• soft drink – безалкогольный напиток  
+• alcoholic drink – алкогольный напиток  
+
+<b>Описание вкусов (tastes):</b>
+• sweet – сладкий  
+• salty – солёный  
+• sour – кислый  
+• bitter – горький  
+• spicy – острый  
+• savoury – пикантный (не сладкий)  
+• bland – пресный  
+• rich – наваристый, насыщенный  
+• fresh – свежий  
+• delicious – восхитительный  
+• disgusting – отвратительный
+
+<blockquote>Для восторга: This is delicious! / It tastes amazing!</blockquote>
+"""
+            },
+            {
+                "title": "В ресторане – фразы для заказа",
+                "text": """
+<b>🗣️ Как сделать заказ:</b>
+
+• I'd like… – Я хотел бы… (I'd like the steak, please.)  
+• Can I have… – Можно мне… (Can I have a glass of water?)  
+• What do you recommend? – Что вы рекомендуете?  
+• What's the soup of the day? – Какой сегодня суп?  
+• Is the fish fresh? – Рыба свежая?  
+• I'm vegetarian. – Я вегетарианец.  
+• Does this dish contain nuts? – В этом блюде есть орехи?  
+• I'll have the same. – Я буду то же самое.  
+
+<b>Проблемы:</b>
+• This is not what I ordered. – Это не то, что я заказывал.  
+• The steak is too rare / too well done. – Стейк слишком сырой / слишком прожаренный.  
+• Can I have the bill, please? – Можно счёт, пожалуйста?
+
+<blockquote>В ресторане принято оставлять чаевые (tip) – обычно 10–15% от суммы счета.</blockquote>
+"""
+            },
+            {
+                "title": "Диалог в ресторане",
+                "text": """
+<b>📖 Пример разговора:</b>
+
+– Good evening. Do you have a reservation?  
+– No, we don't. A table for two, please.  
+– Of course. This way, please. Here are the menus.  
+– Thank you. What do you recommend?  
+– The grilled salmon is very popular.  
+– I'll have that, with a side salad.  
+– And for you, sir?  
+– I'd like the steak, medium rare, with fries.  
+– Anything to drink?  
+– A bottle of still water and a glass of red wine.  
+– I'll bring your order soon.  
+
+(После еды)  
+– Was everything all right?  
+– Yes, delicious. Can we have the bill?  
+– Here you are. You can pay by card or cash.  
+– We'll pay by card.
+
+<blockquote>Вежливость очень важна: please, thank you, could I have…</blockquote>
+"""
+            },
+            {
+                "title": "Советы по запоминанию",
+                "text": """
+<b>💡 Советы:</b>
+• Выучите названия популярных блюд в вашей стране и за рубежом.  
+• Запомните разницу между вкусами: sweet, salty, sour, bitter, spicy.  
+• Тренируйтесь заказывать еду в воображении или с другом.  
+• Смотрите кулинарные шоу на английском (MasterChef, Hell's Kitchen).  
+• Обратите внимание на вежливые формы I'd like…, Could I have…
+
+<blockquote>Умение заказать еду – один из самых практичных навыков для путешествий.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Как сказать 'на вынос'?", "answer": "Takeaway (BrE) / takeout (AmE). I'd like this as a takeaway, please."}
+        ]
     },
-    "health_fitness": {
+        "health_fitness": {
         "title": "Лексика: здоровье и фитнес (симптомы, визит к врачу)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке. Скоро здесь появится теория."}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Части тела и симптомы",
+                "text": """
+<b>🩺 Повторение частей тела и добавление симптомов:</b>
+
+• head – голова → headache – головная боль  
+• throat – горло → sore throat – боль в горле  
+• stomach – желудок → stomach ache – боль в животе  
+• back – спина → backache – боль в спине  
+• tooth – зуб → toothache – зубная боль  
+• ear – ухо → earache – боль в ухе  
+
+<b>Общие симптомы (symptoms):</b>
+• fever / high temperature – жар, высокая температура  
+• cough – кашель  
+• runny nose – насморк  
+• nausea – тошнота  
+• dizziness – головокружение  
+• rash – сыпь  
+• allergy – аллергия  
+• to feel dizzy – чувствовать головокружение  
+• to be sick / vomit – тошнить / рвать  
+
+<blockquote>Как сказать: I have a headache. / I feel sick. / My throat hurts.</blockquote>
+"""
+            },
+            {
+                "title": "У врача – полезные фразы",
+                "text": """
+<b>🏥 Диалог с врачом:</b>
+
+• I don't feel well. – Я плохо себя чувствую.  
+• I've got a temperature. – У меня температура.  
+• I've been coughing for two days. – Я кашляю два дня.  
+• It hurts here. – Здесь болит.  
+• I'm allergic to penicillin. – У меня аллергия на пенициллин.  
+• How long will I need to rest? – Как долго мне нужно отдыхать?  
+
+<b>Вопросы врача:</b>
+• What's the matter? / What's wrong? – Что случилось?  
+• How long have you had these symptoms? – Как долго у вас эти симптомы?  
+• Are you taking any medication? – Вы принимаете какие-нибудь лекарства?  
+• Do you have any allergies? – У вас есть аллергия?  
+• I need to take your blood pressure. – Мне нужно измерить ваше давление.  
+• I'll prescribe you some antibiotics. – Я пропишу вам антибиотики.
+
+<blockquote>Запомните: I have a pain in my… – у меня боль в…</blockquote>
+"""
+            },
+            {
+                "title": "Фитнес и здоровый образ жизни",
+                "text": """
+<b>💪 Фитнес и здоровье (fitness & healthy lifestyle):</b>
+
+• exercise – физические упражнения  
+• work out – тренироваться  
+• gym – спортзал  
+• yoga – йога  
+• jogging – бег трусцой  
+• stretching – растяжка  
+• diet – диета (не только для похудения, но и режим питания)  
+• balanced diet – сбалансированное питание  
+• vitamins – витамины  
+• to stay fit – оставаться в форме  
+• to lose weight – похудеть  
+• to gain weight – набрать вес  
+
+<b>Полезные советы:</b>
+• You should exercise at least three times a week. (Тебе следует тренироваться не менее трёх раз в неделю.)  
+• Drink plenty of water. (Пейте много воды.)  
+• Get enough sleep. (Высыпайтесь.)  
+• Avoid junk food. (Избегайте вредной еды.)
+
+<blockquote>Healthy mind in a healthy body – В здоровом теле здоровый дух.</blockquote>
+"""
+            },
+            {
+                "title": "Советы и диалоги",
+                "text": """
+<b>🗣️ Мини-диалог у врача:</b>
+– What seems to be the problem?  
+– I have a terrible headache and a sore throat. I think I have a fever.  
+– Let me check your temperature. Yes, you have a fever. I'll prescribe you some painkillers and throat lozenges. Get plenty of rest and drink warm tea with honey.  
+– Thank you, doctor.  
+
+<b>💡 Советы по запоминанию:</b>
+• Создайте список своих обычных симптомов и выучите их.  
+• Разыграйте визит к врачу с другом.  
+• Используйте приложения для отслеживания здоровья на английском.  
+• Смотрите видео о здоровом образе жизни на YouTube.
+
+<blockquote>Забота о здоровье – глобальная тема, знание лексики поможет и в путешествиях, и в жизни.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Как спросить 'Что с тобой?' о болезни?", "answer": "What's wrong? / What's the matter? / Are you okay?"}
+        ]
     },
     "technology_internet": {
         "title": "Лексика: технологии и интернет",
