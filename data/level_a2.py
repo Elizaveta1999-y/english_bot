@@ -1257,15 +1257,149 @@ Was/Were + подлежащее + V‑ing?
     },
 
     # ==================== МОДУЛЬ 3: Пассивный залог и косвенная речь ====================
-    "passive_present": {
+        "passive_present": {
         "title": "Пассивный залог (настоящее время)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке. Скоро здесь появится теория."}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Что такое пассивный залог?",
+                "text": """
+<b>📦 Пассивный залог – когда действие выполняется над подлежащим, а не подлежащее само выполняет действие.</b>
+
+Актив: Someone cleans this room every day. (Кто-то убирает эту комнату каждый день.)  
+Пассив: This room is cleaned every day. (Эта комната убирается каждый день.)
+
+<blockquote>В пассиве важен результат, а не исполнитель.</blockquote>
+"""
+            },
+            {
+                "title": "Образование в настоящем времени",
+                "text": """
+<b>📌 Формула пассивного залога в настоящем:</b>
+
+am / is / are + V3 (третья форма глагола / с окончанием -ed для правильных)
+
+• The room is cleaned every day. (Комнату убирают каждый день.)
+• The letters are sent by email. (Письма отправляют по электронной почте.)
+• I am paid well. (Мне хорошо платят.)
+
+<blockquote>Если хотите указать исполнителя, используйте by: The cake is made by my mother.</blockquote>
+"""
+            },
+            {
+                "title": "Отрицание и вопросы",
+                "text": """
+<b>🚫 Отрицание:</b> am/is/are + not + V3
+
+• The room is not cleaned every day. (Комнату убирают не каждый день.)
+• These documents are not signed. (Эти документы не подписаны.)
+
+<b>❓ Вопрос:</b> Am/Is/Are + подлежащее + V3?
+
+• Is the room cleaned every day? (Комнату убирают каждый день?)
+• Are the letters sent by email? (Письма отправляют по электронной почте?)
+
+<b>Краткие ответы:</b>
+• Yes, it is. / No, it isn't.
+• Yes, they are. / No, they aren't.
+
+<blockquote>Вопросы в пассиве часто звучат вежливее: Is this seat taken? (Это место занято?)</blockquote>
+"""
+            },
+            {
+                "title": "Когда использовать пассив",
+                "text": """
+<b>📌 Основные случаи:</b>
+1. <b>Исполнитель неизвестен или неважен</b>
+   • The window was broken. (Окно разбито – неважно, кто.)
+   • English is spoken here. (Здесь говорят по-английски.)
+
+2. <b>Исполнитель очевиден из контекста</b>
+   • The murderer has been arrested. (Убийца арестован – полицией.)
+
+3. <b>В официальных и научных текстах</b>
+   • The experiment is conducted every year. (Эксперимент проводится каждый год.)
+
+4. <b>Чтобы сделать высказывание вежливым или избежать обвинения</b>
+   • A mistake was made. (Была допущена ошибка – вместо You made a mistake.)
+
+<blockquote>В разговорной речи актив предпочтительнее, но пассив нужен для экзаменов и письменной речи.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Как перевести пассив на русский?", "answer": "Часто глаголом на -ся (убирается), неопределённо-личным оборотом (убирают) или кратким причастием (убрана)."}
+        ]
     },
-    "passive_past": {
+        "passive_past": {
         "title": "Пассивный залог (прошедшее время)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке. Скоро здесь появится теория."}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Образование в прошедшем времени",
+                "text": """
+<b>📦 Пассив в прошедшем времени: was / were + V3</b>
+
+• The room was cleaned yesterday. (Комнату убрали вчера.)
+• The letters were sent last week. (Письма отправили на прошлой неделе.)
+• The car was repaired. (Машина была отремонтирована.)
+
+<blockquote>Выбор was/were такой же, как в Past Simple глагола to be.</blockquote>
+"""
+            },
+            {
+                "title": "Отрицание и вопросы",
+                "text": """
+<b>🚫 Отрицание:</b> was/were + not + V3
+
+• The room was not (wasn't) cleaned yesterday. (Комнату не убрали вчера.)
+• The letters were not (weren't) sent. (Письма не отправили.)
+
+<b>❓ Вопрос:</b> Was/Were + подлежащее + V3?
+
+• Was the room cleaned yesterday? (Комнату убрали вчера?)
+• Were the letters sent? (Письма отправили?)
+
+<b>Краткие ответы:</b>
+• Yes, it was. / No, it wasn't.
+• Yes, they were. / No, they weren't.
+
+<blockquote>Часто в вопросах уточняют детали: When was the house built? (Когда был построен дом?)</blockquote>
+"""
+            },
+            {
+                "title": "Сравнение настоящего и прошедшего пассива",
+                "text": """
+<b>📊 Примеры параллельно:</b>
+
+Настоящее: The cake is made every Sunday. (Торт готовят каждое воскресенье.)  
+Прошедшее: The cake was made yesterday. (Торт приготовили вчера.)
+
+Настоящее: The emails are checked daily. (Письма проверяют ежедневно.)  
+Прошедшее: The emails were checked this morning. (Письма проверили сегодня утром.)
+
+<blockquote>Время пассива определяется формой глагола to be (is/are – настоящее, was/were – прошедшее).</blockquote>
+"""
+            },
+            {
+                "title": "Типичные ошибки и советы",
+                "text": """
+<b>⚠️ Частые ошибки:</b>
+• ❌ The letter was send yesterday.  ✅ The letter was sent yesterday.
+• ❌ The house was build in 1990.  ✅ The house was built in 1990.
+• ❌ Is the room cleaned yesterday? (неправильное время)  ✅ Was the room cleaned yesterday?
+
+<b>💡 Советы:</b>
+• Для пассива нужно знать третью форму неправильных глаголов (build – built – built).
+• Если в предложении есть указание на время в прошлом (yesterday, last week), используйте was/were.
+• Не путайте актив и пассив: The man repaired the car (актив) vs The car was repaired by the man (пассив).
+• Тренируйтесь: переделывайте предложения из актива в пассив.
+
+<blockquote>Пассив часто используется в новостях и официальных отчётах.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Когда нужно добавлять 'by' в пассив?", "answer": "Только если исполнитель важен. The Mona Lisa was painted by Leonardo da Vinci. (Важно, кем написана.)"}
+        ]
     },
     "reported_speech_statements": {
         "title": "Косвенная речь (утверждения)",
