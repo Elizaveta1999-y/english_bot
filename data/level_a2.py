@@ -2686,15 +2686,215 @@ am / is / are + V3 (третья форма глагола / с окончани
             {"question": "Как спросить 'Что с тобой?' о болезни?", "answer": "What's wrong? / What's the matter? / Are you okay?"}
         ]
     },
-    "technology_internet": {
+        "technology_internet": {
         "title": "Лексика: технологии и интернет",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке. Скоро здесь появится теория."}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Устройства и техника",
+                "text": """
+<b>📱 Гаджеты и устройства (devices):</b>
+
+• smartphone – смартфон  
+• laptop – ноутбук  
+• desktop computer – стационарный компьютер  
+• tablet – планшет  
+• smartwatch – умные часы  
+• e-reader – электронная книга  
+• headphones – наушники  
+• charger – зарядное устройство  
+• power bank – портативный аккумулятор  
+• USB cable – USB-кабель  
+
+<b>Программы и приложения (software & apps):</b>
+• app – приложение  
+• browser – браузер  
+• search engine – поисковая система  
+• social media – социальные сети  
+• website – веб-сайт  
+• webpage – веб-страница  
+• link – ссылка  
+• download – загружать (скачивать)  
+• upload – загружать (на сервер)  
+• update – обновление
+
+<blockquote>Часто используемые глаголы: turn on / off, plug in, connect to Wi-Fi, install an app.</blockquote>
+"""
+            },
+            {
+                "title": "Интернет-активности",
+                "text": """
+<b>🌐 Что мы делаем в интернете:</b>
+
+• surf the internet – сидеть в интернете (серфить)  
+• browse websites – просматривать сайты  
+• send an email – отправить письмо  
+• check messages – проверять сообщения  
+• post a photo – опубликовать фото  
+• share a link – поделиться ссылкой  
+• like / comment – лайкнуть / прокомментировать  
+• follow someone – подписаться на кого-то  
+• unfriend – удалить из друзей (соцсети)  
+• stream a video – смотреть видео онлайн  
+• download a file – скачать файл  
+• upload a file – загрузить файл  
+• video call – видеозвонок  
+• chat online – общаться в чате  
+• online shopping – онлайн-покупки
+
+<b>Проблемы:</b>
+• My internet is slow. – Интернет медленный.  
+• I lost the connection. – Я потерял соединение.  
+• The Wi-Fi signal is weak. – Слабый сигнал Wi-Fi.  
+• I can't log in. – Не могу войти.  
+• I forgot my password. – Я забыл пароль.
+
+<blockquote>Полезные фразы: What's the Wi-Fi password? / Can you send me the link?</blockquote>
+"""
+            },
+            {
+                "title": "Социальные сети и медиа",
+                "text": """
+<b>📷 Популярные соцсети и термины:</b>
+
+• Facebook, Instagram, Twitter, TikTok, LinkedIn, Telegram, WhatsApp, YouTube – названия платформ (не переводятся)  
+• feed – лента новостей  
+• story – история (в Instagram)  
+• post – публикация  
+• direct message (DM) – личное сообщение  
+• hashtag – хештег (#)  
+• trend – тренд  
+• influencer – блогер, влиятельное лицо  
+• follower – подписчик  
+• subscriber – подписчик (на YouTube)  
+• like – лайк  
+• share – поделиться  
+• comment – комментарий  
+• notification – уведомление
+
+<b>Примеры:</b>
+• I spend too much time scrolling through my feed. (Я трачу слишком много времени, листая ленту.)  
+• She has over 10,000 followers on Instagram. (У неё более 10 000 подписчиков в Instagram.)  
+• This video went viral. (Это видео стало вирусным.)
+
+<blockquote>В интернете много сленга, но для A2 достаточно базовых терминов.</blockquote>
+"""
+            },
+            {
+                "title": "Советы по запоминанию",
+                "text": """
+<b>💡 Советы:</b>
+• Переведите настройки телефона и компьютера на английский – это поможет запомнить слова.  
+• Читайте новости технологий на английском (например, TechCrunch, The Verge).  
+• Подпишитесь на англоязычные каналы о гаджетах на YouTube.  
+• При общении в соцсетях старайтесь использовать английский.  
+• Составьте список действий, которые вы делаете в интернете каждый день, и проговорите их на английском.
+
+<blockquote>Технологический английский – один из самых быстрорастущих, и он пригодится в любой сфере.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Как спросить пароль от Wi-Fi?", "answer": "Excuse me, what's the Wi-Fi password?"}
+        ]
     },
-    "environment_weather": {
+        "environment_weather": {
         "title": "Лексика: окружающая среда и погода (углубление)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке. Скоро здесь появится теория."}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Погода – расширенная лексика",
+                "text": """
+<b>☀️ Погодные явления:</b>
+
+• thunderstorm – гроза  
+• lightning – молния  
+• hail – град  
+• freezing rain – ледяной дождь  
+• blizzard – метель, буран  
+• flood – наводнение  
+• drought – засуха  
+• heatwave – волна жары  
+• breeze – лёгкий ветерок  
+• gale – сильный ветер, шторм  
+• shower – кратковременный дождь  
+• downpour – ливень  
+
+<b>Слова для описания погоды:</b>
+• humid – влажный  
+• dry – сухой  
+• foggy – туманный  
+• cloudy – облачный  
+• overcast – пасмурный  
+• clear – ясный  
+• mild – мягкий (о погоде)  
+• chilly – прохладный, свежий  
+• freezing – морозный
+
+<blockquote>Прогноз погоды: It will be cloudy with occasional showers. (Будет облачно с кратковременными дождями.)</blockquote>
+"""
+            },
+            {
+                "title": "Экология и окружающая среда",
+                "text": """
+<b>🌍 Экологические проблемы (environmental issues):</b>
+
+• pollution – загрязнение  
+• air pollution – загрязнение воздуха  
+• water pollution – загрязнение воды  
+• soil pollution – загрязнение почвы  
+• noise pollution – шумовое загрязнение  
+• climate change – изменение климата  
+• global warming – глобальное потепление  
+• greenhouse effect – парниковый эффект  
+• deforestation – вырубка лесов  
+• extinction – вымирание  
+• waste – отходы  
+• plastic waste – пластиковые отходы  
+• recycling – переработка  
+• renewable energy – возобновляемая энергия  
+• solar power – солнечная энергия  
+• wind power – энергия ветра  
+
+<blockquote>Глаголы: pollute (загрязнять), protect (защищать), recycle (перерабатывать), waste (тратить впустую).</blockquote>
+"""
+            },
+            {
+                "title": "Что мы можем сделать?",
+                "text": """
+<b>♻️ Действия для защиты окружающей среды:</b>
+
+• reduce, reuse, recycle – сокращать потребление, использовать повторно, перерабатывать  
+• save water – экономить воду  
+• save electricity – экономить электричество  
+• use public transport – пользоваться общественным транспортом  
+• plant trees – сажать деревья  
+• avoid single-use plastic – избегать одноразового пластика  
+• turn off the lights when not in use – выключать свет, когда не пользуетесь  
+• take shorter showers – принимать более короткий душ  
+
+<b>Примеры предложений:</b>
+• We should recycle more plastic. (Нам следует больше перерабатывать пластик.)  
+• If we don't act now, global warming will get worse. (Если мы не начнём действовать сейчас, глобальное потепление усилится.)  
+• Using reusable bags helps reduce plastic waste. (Использование многоразовых сумок помогает сократить пластиковые отходы.)
+
+<blockquote>Маленькие действия каждого могут изменить будущее планеты.</blockquote>
+"""
+            },
+            {
+                "title": "Советы по запоминанию",
+                "text": """
+<b>💡 Советы:</b>
+• Смотрите прогноз погоды на английском канале (BBC Weather, AccuWeather).  
+• Читайте новости об экологии (например, National Geographic, WWF).  
+• Составьте список из 5 вещей, которые вы лично можете сделать для экологии, и напишите их на английском.  
+• Обсуждайте погоду и экологические проблемы с друзьями на английском – это отличная тема для разговора.
+
+<blockquote>Погода – классический small talk, а экология – важная современная тема.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "В чём разница между 'weather' и 'climate'?", "answer": "Weather – погода сейчас или в ближайшее время (сегодня дождь). Climate – климат, многолетний режим погоды (в Англии умеренный климат)."}
+        ]
     },
     "feelings_emotions": {
         "title": "Лексика: чувства и эмоции",
