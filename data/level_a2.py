@@ -1649,15 +1649,177 @@ am / is / are + V3 (третья форма глагола / с окончани
     },
 
     # ==================== МОДУЛЬ 4: Прилагательные и наречия (углубление) ====================
-    "comparatives_superlatives": {
+        "comparatives_superlatives": {
         "title": "Степени сравнения прилагательных (повторение и as…as)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке. Скоро здесь появится теория."}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Повторение: сравнительная степень",
+                "text": """
+<b>📈 Сравнительная степень – сравнивает два предмета.</b>
+
+• Короткие прилагательные (1-2 слога) + -er  
+  • tall → taller (выше)  
+  • big → bigger (больше – удвоение согласной)  
+  • happy → happier (y → i)
+
+• Длинные прилагательные (3+ слога) + more  
+  • beautiful → more beautiful (красивее)  
+  • expensive → more expensive (дороже)
+
+• Исключения:  
+  • good → better (лучше)  
+  • bad → worse (хуже)  
+  • far → further / farther (дальше)
+
+<blockquote>После сравнительной степени ставим than: He is taller than me.</blockquote>
+"""
+            },
+            {
+                "title": "Повторение: превосходная степень",
+                "text": """
+<b>📌 Превосходная степень – самый/самая.</b>
+
+• Короткие прилагательные: the + -est  
+  • the tallest (самый высокий)  
+  • the biggest (самый большой)  
+  • the happiest (самый счастливый)
+
+• Длинные прилагательные: the most + прилагательное  
+  • the most beautiful (самый красивый)  
+  • the most expensive (самый дорогой)
+
+• Исключения:  
+  • good → the best (лучший)  
+  • bad → the worst (худший)  
+  • far → the furthest / farthest (самый дальний)
+
+<blockquote>Перед превосходной степенью нужен определённый артикль the.</blockquote>
+"""
+            },
+            {
+                "title": "Конструкция as…as (такой же, как)",
+                "text": """
+<b>⚖️ as + прилагательное + as – показывает равенство.</b>
+
+• She is as tall as her brother. (Она такая же высокая, как её брат.)  
+• This book is as interesting as that one. (Эта книга такая же интересная, как та.)  
+• He runs as fast as me. (Он бегает так же быстро, как я.)
+
+<b>Отрицание: not as…as / not so…as</b>
+• This phone is not as expensive as that one. (Этот телефон не такой дорогой, как тот.)  
+• The weather today is not as warm as yesterday. (Сегодня не так тепло, как вчера.)
+
+<blockquote>Для количественных сравнений: as much (неисчисляемые), as many (исчисляемые). I have as much money as you.</blockquote>
+"""
+            },
+            {
+                "title": "Советы и типичные ошибки",
+                "text": """
+<b>⚠️ Частые ошибки:</b>
+• ❌ He is more taller than me.  ✅ He is taller than me.  
+• ❌ This is the most happiest day.  ✅ This is the happiest day.  
+• ❌ She is more clever than him. (можно, но cleverer тоже допустимо)  
+• ❌ I have as many money as you.  ✅ I have as much money as you.
+
+<b>💡 Советы:</b>
+• Не забывайте удваивать согласную в коротких словах: big – bigger – the biggest.  
+• Запомните пары исключений: good – better – best; bad – worse – worst.  
+• Для сравнения количества: much – неисчисляемые (water, money), many – исчисляемые (apples, people).  
+• Практикуйтесь: сравнивайте предметы вокруг (my phone is newer than yours).
+
+<blockquote>Используйте as…as для подчёркивания равенства, than – для неравенства.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Как сказать 'менее красивый'?", "answer": "Less beautiful – менее красивый. Используйте less + прилагательное."}
+        ]
     },
-    "adverbs_manner": {
+        "adverbs_manner": {
         "title": "Наречия образа действия (quickly, carefully)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке. Скоро здесь появится теория."}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Образование наречий",
+                "text": """
+<b>🎯 Наречия образа действия отвечают на вопрос «как?» (how?).</b>
+
+Обычно образуются от прилагательных + -ly:
+• quick → quickly (быстро)  
+• careful → carefully (осторожно)  
+• bad → badly (плохо)  
+• beautiful → beautifully (красиво)
+
+<b>Исключения:</b>
+• good → well (хорошо)  
+• fast → fast (быстро – не меняется)  
+• hard → hard (усердно – не меняется)  
+• early → early (рано – не меняется)  
+• late → late (поздно – не меняется)
+
+<blockquote>Не путайте прилагательное (описывает существительное) и наречие (описывает глагол).</blockquote>
+"""
+            },
+            {
+                "title": "Место наречия в предложении",
+                "text": """
+<b>📌 Обычно наречие стоит после глагола или после дополнения.</b>
+
+• She speaks English well. (Она хорошо говорит по-английски.)  
+• He ran quickly. (Он быстро побежал.)  
+• They worked hard all day. (Они усердно работали весь день.)
+
+<b>Если у глагола есть дополнение, наречие ставится после него:</b>
+• He plays the guitar beautifully. (Он красиво играет на гитаре.)  
+• She wrote a letter carefully. (Она осторожно написала письмо.)
+
+<b>Наречие может быть в начале предложения для акцента:</b>
+• Carefully, he opened the box. (Осторожно он открыл коробку.)
+
+<blockquote>Для глаголов движения (come, go, run) наречие часто сразу после глагола.</blockquote>
+"""
+            },
+            {
+                "title": "Сравнение прилагательного и наречия",
+                "text": """
+<b>📊 Важно различать:</b>
+
+• He is a slow driver. (прилагательное – медленный водитель)  
+• He drives slowly. (наречие – водит медленно)
+
+• She is a good singer. (хорошая певица)  
+• She sings well. (поёт хорошо)
+
+<b>Некоторые слова одинаковы и как прилагательные, и как наречия:</b>
+• fast (быстрый / быстро)  
+• hard (трудный / усердно)  
+• late (поздний / поздно)  
+• early (ранний / рано)
+
+<blockquote>Помните: прилагательное + существительное, глагол + наречие.</blockquote>
+"""
+            },
+            {
+                "title": "Типичные ошибки и советы",
+                "text": """
+<b>⚠️ Частые ошибки:</b>
+• ❌ She sang beautiful.  ✅ She sang beautifully.  
+• ❌ He is a carefully driver.  ✅ He is a careful driver.  
+• ❌ I can do it easy.  ✅ I can do it easily.  
+• ❌ She speaks English good.  ✅ She speaks English well.
+
+<b>💡 Советы:</b>
+• Проверяйте: если слово описывает действие, ставьте -ly (кроме исключений).  
+• Запомните пары: good (adj) – well (adv); quick – quickly; careful – carefully.  
+• Тренируйтесь: описывайте, как вы делаете что-то: I read slowly, I write neatly.  
+• Обратите внимание на разницу между hard (усердно) и hardly (едва).
+
+<blockquote>Наречия делают речь ярче и точнее.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "В чём разница между hard и hardly?", "answer": "Hard – усердно, много (work hard). Hardly – почти не (I hardly know him)."}
+        ]
     },
     "adjectives_order": {
         "title": "Порядок прилагательных (opinion, size, age, colour…)",
