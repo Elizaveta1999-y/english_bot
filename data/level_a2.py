@@ -537,20 +537,252 @@ Was/Were + подлежащее + V‑ing?
             {"question": "Можно ли использовать 'just' с Past Simple?", "answer": "Just в значении 'только что' обычно с Present Perfect (I've just seen him). Но в американском английском допустимо и с Past Simple."}
         ]
     },
-    "usedto": {
-        "title": "Конструкция used to",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке. Скоро здесь появится теория."}],
-        "faq": []
+        "usedto": {
+        "title": "Конструкция used to (привычки в прошлом)",
+        "pages": [
+            {
+                "title": "Что такое used to?",
+                "text": """
+<b>🕰️ Used to – для действий, которые регулярно происходили в прошлом, но больше не происходят.</b>
+
+В русском языке: «раньше я …», «когда‑то я …», «бывало, я …».
+
+• I used to smoke, but now I don't. (Раньше я курил, а теперь нет.)
+• She used to live in London. (Раньше она жила в Лондоне – сейчас нет.)
+• We used to play football every Sunday. (Мы раньше играли в футбол каждое воскресенье.)
+
+<blockquote>Used to не переводится как «привык», это совсем другой смысл.</blockquote>
+"""
+            },
+            {
+                "title": "Формы и спряжение",
+                "text": """
+<b>📌 Used to не меняется по лицам и числам.</b>
+
+• I / You / He / She / It / We / They used to + глагол
+
+<b>Отрицание:</b> didn't use to + глагол (обратите внимание: use без d)
+• I didn't use to like coffee. (Раньше я не любил кофе.)
+• She didn't use to exercise. (Раньше она не занималась спортом.)
+
+<b>Вопрос:</b> Did + подлежащее + use to + глагол?
+• Did you use to play the guitar? (Ты раньше играл на гитаре?)
+• Where did you use to live? (Где ты раньше жил?)
+
+<b>Краткие ответы:</b>
+• Yes, I did. / No, I didn't.
+
+<blockquote>В вопросатах и отрицаниях пишем use (без d), потому что did уже показывает прошедшее время.</blockquote>
+"""
+            },
+            {
+                "title": "Когда использовать used to",
+                "text": """
+<b>📌 Used to подходит для:</b>
+
+1. <b>Привычек в прошлом</b>
+   • I used to get up at 6 am. (Раньше я вставал в 6 утра.)
+   • He used to bite his nails. (Он раньше грыз ногти.)
+
+2. <b>Состояний и ситуаций в прошлом</b>
+   • They used to be very rich. (Раньше они были очень богатыми.)
+   • There used to be a cinema here. (Раньше здесь был кинотеатр.)
+
+3. <b>Повторяющихся действий в прошлом</b>
+   • We used to visit our grandparents every summer. (Мы раньше навещали бабушку и дедушку каждое лето.)
+
+<blockquote>Used to не используется для однократных действий в прошлом: I visited Paris once. (НЕ I used to visit Paris once.)</blockquote>
+"""
+            },
+            {
+                "title": "Сравнение с Past Simple и советы",
+                "text": """
+<b>📊 Used to vs Past Simple:</b>
+• <b>Past Simple</b> – факт о прошлом (один раз или последовательность).
+  • I went to Paris last year. (Я ездил в Париж в прошлом году – один раз.)
+
+• <b>Used to</b> – подчёркивает регулярность, привычку.
+  • I used to go to Paris every summer. (Раньше я ездил в Париж каждое лето.)
+
+<b>⚠️ Типичные ошибки:</b>
+• ❌ I used to went.  ✅ I used to go.
+• ❌ I use to smoke.  ✅ I used to smoke.
+• ❌ I didn't used to.  ✅ I didn't use to.
+
+<b>💡 Советы:</b>
+• Для описания детства часто используют used to: I used to play with dolls.
+• Если сомневаетесь, можно заменить на «often + Past Simple», но used to звучит естественнее.
+• Тренируйтесь: напишите 3 вещи, которые вы делали в детстве, но больше не делаете.
+
+<blockquote>Used to помогает создать ощущение ностальгии и показать изменения.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "В чём разница между used to и would для прошлых привычек?", "answer": "Would можно использовать для действий, но не для состояний. I would play (можно), но I would be (нельзя). Used to подходит и для действий, и для состояний."}
+        ]
     },
-    "future_forms": {
-        "title": "Будущее время (will, going to, Present Continuous)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке. Скоро здесь появится теория."}],
-        "faq": []
+        "future_forms": {
+        "title": "Будущее время: will, going to, Present Continuous",
+        "pages": [
+            {
+                "title": "Will – спонтанные решения и предсказания",
+                "text": """
+<b>🔮 Will используется для:</b>
+
+1. <b>Спонтанных решений</b> (принимается в момент речи)
+   • I'll answer the phone. (Я отвечу на звонок – прямо сейчас.)
+   • I'll have a coffee, please. (Я буду кофе – заказ в кафе.)
+
+2. <b>Предсказаний без доказательств</b> (мнение, надежда)
+   • I think it will rain tomorrow. (Думаю, завтра будет дождь.)
+   • She will probably come. (Она, вероятно, придёт.)
+
+3. <b>Обещаний, предложений, угроз</b>
+   • I'll help you. (Я помогу тебе.)
+   • I'll never do it again. (Я больше никогда этого не сделаю.)
+
+<b>Форма:</b> will + глагол (без to)
+
+<b>Отрицание:</b> will not / won't
+• I won't tell anyone. (Я никому не скажу.)
+
+<b>Вопрос:</b> Will + подлежащее + глагол?
+• Will you come? (Ты придёшь?)
+
+<blockquote>Will не меняется по лицам и числам.</blockquote>
+"""
+            },
+            {
+                "title": "Going to – планы и предсказания по фактам",
+                "text": """
+<b>🔮 Конструкция to be going to используется для:</b>
+
+1. <b>Планов и намерений</b> (решение принято до разговора)
+   • We are going to visit Paris next summer. (Мы собираемся посетить Париж следующим летом.)
+   • I am going to study law. (Я собираюсь изучать право.)
+
+2. <b>Предсказаний, основанных на очевидных фактах</b>
+   • Look at those clouds! It is going to rain. (Посмотри на тучи! Будет дождь.)
+   • She is going to have a baby. (У неё будет ребёнок – видно по животу.)
+
+<b>Форма:</b> am/is/are + going to + глагол
+
+<b>Отрицание:</b> am/is/are + not + going to + V
+• I'm not going to stay. (Я не собираюсь оставаться.)
+
+<b>Вопрос:</b> Am/Is/Are + подлежащее + going to + V?
+• Are you going to call him? (Ты собираешься ему позвонить?)
+
+<blockquote>В разговорной речи going to часто сокращается до gonna, но на письме избегайте.</blockquote>
+"""
+            },
+            {
+                "title": "Present Continuous for future (договорённости)",
+                "text": """
+<b>⏰ Present Continuous для будущего – запланированные действия с указанием времени, места, участников.</b>
+
+Используется для:
+• Договорённостей, личных планов (часто с людьми, временем, местом)
+
+<b>Примеры:</b>
+• I am meeting my friends tonight. (Я встречаюсь с друзьями сегодня вечером.)
+• She is leaving tomorrow at 8 am. (Она уезжает завтра в 8 утра.)
+• We are having dinner with colleagues on Friday. (Мы ужинаем с коллегами в пятницу.)
+
+<blockquote>Обратите внимание: в таких предложениях обязательно есть указание на будущее время (tomorrow, on Friday, tonight) или контекст.</blockquote>
+"""
+            },
+            {
+                "title": "Сравнение и типичные ошибки",
+                "text": """
+<b>📊 Сравнение трёх способов:</b>
+
+• <b>Will</b> – спонтанные решения, предсказания без доказательств, обещания.
+• <b>Going to</b> – планы (уже принятые решения), предсказания по фактам.
+• <b>Present Continuous</b> – договорённости (с указанием времени, места).
+
+<b>Примеры на разницу:</b>
+• – The phone is ringing. – I'll get it. (спонтанное решение – will)
+• – Why are you buying flour? – I'm going to bake a cake. (план – going to)
+• I'm seeing the dentist tomorrow at 3 pm. (договорённость – Present Continuous)
+
+<b>⚠️ Типичные ошибки:</b>
+• ❌ I will going to study.  ✅ I am going to study.
+• ❌ She is will come.  ✅ She will come.
+• ❌ I meet my friend tomorrow. (без контекста)  ✅ I am meeting my friend tomorrow.
+
+<b>💡 Совет:</b> Если вы запланировали и организовали – Present Continuous. Если только намерены – going to. Если решение спонтанное – will.
+
+<blockquote>Практика: скажите, что вы сделаете через 5 минут (will), что запланировали на завтра (going to), и что у вас уже подтверждено на пятницу (Present Continuous).</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "В чём разница между 'going to' и 'will' в предсказаниях?", "answer": "Going to – предсказание на основе фактов (вижу тучи – будет дождь). Will – основано на мнении, надежде (думаю, завтра будет солнечно)."}
+        ]
     },
-    "future_comparison": {
+        "future_comparison": {
         "title": "Сравнение способов выражения будущего",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке. Скоро здесь появится теория."}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Краткая таблица (без таблиц – списком)",
+                "text": """
+<b>📊 Как выбрать правильный способ:</b>
+
+<b>1. Will</b>
+• Спонтанное решение: I'll have a coffee.
+• Предсказание без доказательств: I think it will snow.
+• Обещание: I'll call you.
+• Просьба, предложение: Will you help me?
+
+<b>2. Going to</b>
+• План / намерение: I'm going to learn Chinese.
+• Предсказание по факту: Look! It's going to crash.
+
+<b>3. Present Continuous</b>
+• Договорённость (когда точно известно время, место, участники):
+  I'm meeting Sarah at 6 pm.
+
+<blockquote>Обратите внимание: для будущих событий по расписанию (рейсы, начало фильма) обычно используется Present Simple: The train leaves at 7.</blockquote>
+"""
+            },
+            {
+                "title": "Контекстные примеры",
+                "text": """
+<b>📖 Живые диалоги:</b>
+
+• – The phone is ringing. – I'll get it! (спонтанно – will)
+• – Why are you studying so hard? – I'm going to take an exam. (план – going to)
+• – What are you doing on Saturday? – I'm visiting my parents. (договорённость – Present Continuous)
+• – Look at that boy on the ladder! – Oh no, he's going to fall! (предсказание по факту – going to)
+• – I promise I'll never lie to you again. (обещание – will)
+
+<blockquote>В одном разговоре могут встречаться разные формы в зависимости от оттенка.</blockquote>
+"""
+            },
+            {
+                "title": "Типичные ошибки и советы",
+                "text": """
+<b>⚠️ Частые ошибки:</b>
+• ❌ I will to go.  ✅ I will go.
+• ❌ She is will come.  ✅ She will come.
+• ❌ I am going to school tomorrow. (если просто факт) – допустимо, но лучше I will go to school tomorrow (если спонтанно) или I'm going to school tomorrow (если план).
+• ❌ I'm meeting my friend last week. (неправильное время)  ✅ I met my friend last week.
+
+<b>💡 Советы:</b>
+• Чтобы выбрать между will и going to, спросите себя: «Это решение принято прямо сейчас?» Если да – will. «Я уже думал об этом раньше?» – going to.
+• Для договорённостей всегда Present Continuous.
+• Не используйте will после if (в придаточных условия): If it rains, I'll stay home. (will не ставится после if, только в главной части.)
+• Тренируйтесь: каждое утро планируйте день, используя разные формы.
+
+<blockquote>Помните: в неформальной речи границы стираются, но для экзаменов важно различать.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Можно ли использовать will для запланированных действий?", "answer": "Да, если подчеркнуть не плановость, а факт. Например, 'I will go to London next year' – просто констатация, без подчёркивания подготовки."}
+        ]
     },
 
     # ==================== МОДУЛЬ 2: Модальные глаголы и условные предложения ====================
