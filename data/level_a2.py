@@ -1353,6 +1353,477 @@ First (реальные ситуации):
             {"question": "Нужно ли менять время в косвенном вопросе, если вводная фраза в настоящем времени?", "answer": "Нет, если вводная фраза в настоящем (Could you tell me, Do you know), время в вопросе не меняется."}
         ]
     },
+    "comparatives_advanced": {
+        "title": "Степени сравнения прилагательных (углубление)",
+        "pages": [
+            {
+                "title": "Повторение: сравнительная и превосходная степень",
+                "text": """
+<b>📈 Сравнительная степень (comparative) – сравнивает два предмета.</b>
+• Короткие прилагательные (1-2 слога) + -er
+  • tall → taller (выше)
+  • big → bigger (больше – удвоение согласной)
+  • happy → happier (y → i)
+
+• Длинные прилагательные (3+ слога) + more
+  • beautiful → more beautiful (красивее)
+  • expensive → more expensive (дороже)
+
+<b>📌 Превосходная степень (superlative) – самый/самая.</b>
+• the + -est для коротких (the tallest)
+• the most + длинные (the most beautiful)
+
+<blockquote>Исключения: good → better → best; bad → worse → worst; far → further / farther → furthest / farthest.</blockquote>
+"""
+            },
+            {
+                "title": "Конструкции с as…as и than",
+                "text": """
+<b>⚖️ as + прилагательное + as – такой же, как…</b>
+• She is as tall as her brother. (Она такая же высокая, как её брат.)
+• This book is as interesting as that one. (Эта книга такая же интересная, как та.)
+
+<b>не такой… как: not as…as</b>
+• This film is not as good as the first one. (Этот фильм не такой хороший, как первый.)
+
+<b>than – для сравнительной степени</b>
+• He is taller than me. (Он выше меня.)
+• An elephant is bigger than a horse. (Слон больше лошади.)
+
+<blockquote>В разговорном английском допускается than me, но грамматически правильно than I am.</blockquote>
+"""
+            },
+            {
+                "title": "Усилители и ослабители",
+                "text": """
+<b>📊 Усилители (делают сравнение сильнее):</b>
+• much, far, a lot, even
+  • This car is much faster than that one. (Эта машина намного быстрее той.)
+  • The new stadium is far bigger. (Новый стадион значительно больше.)
+
+<b>📉 Ослабители (делают сравнение мягче):</b>
+• a little, a bit, slightly
+  • Today is a little colder than yesterday. (Сегодня немного холоднее, чем вчера.)
+  • Your answer is slightly better. (Твой ответ немного лучше.)
+
+<b>➡️ the + сравнительная степень, the + сравнительная степень</b>
+• The more you study, the more you know. (Чем больше учишься, тем больше знаешь.)
+• The faster you run, the sooner you arrive. (Чем быстрее бежишь, тем раньше приедешь.)
+
+<blockquote>Практикуйтесь: сравнивайте предметы вокруг (my phone is newer than yours).</blockquote>
+"""
+            },
+            {
+                "title": "Типичные ошибки и советы",
+                "text": """
+<b>⚠️ Частые ошибки:</b>
+• ❌ He is more taller than me.  ✅ He is taller than me.
+• ❌ This is the most happiest day.  ✅ This is the happiest day.
+• ❌ She is more clever than him. (правильно, но cleverer тоже допустимо) – оба варианта возможны.
+
+<b>💡 Советы:</b>
+• Учите прилагательные парами (big – bigger – the biggest).
+• Обратите внимание на удвоение согласной в short, big, hot, thin.
+• В официальном английском после than используйте полную форму (than I / than he), но в речи допустимо than me / than him.
+
+<blockquote>Используйте сравнения, чтобы описывать людей и предметы в своей жизни.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Как сказать 'менее красивый'?", "answer": "Less beautiful – менее красивый. Используйте less + прилагательное."}
+        ]
+    },
+    "adverbs_manner": {
+        "title": "Наречия образа действия (adverbs of manner)",
+        "pages": [
+            {
+                "title": "Как образуются наречия",
+                "text": """
+<b>🎯 Наречия образа действия отвечают на вопрос «как?» (how?)</b>
+
+Обычно образуются от прилагательных + -ly:
+• quick → quickly (быстро)
+• careful → carefully (осторожно)
+• bad → badly (плохо)
+• beautiful → beautifully (красиво)
+
+<b>Исключения:</b>
+• good → well (хорошо)
+• fast → fast (быстро – не меняется)
+• hard → hard (усердно – не меняется)
+• early → early (рано – не меняется)
+• late → late (поздно – не меняется)
+
+<blockquote>Не путайте: adjective + noun (a fast car) vs verb + adverb (he drives fast).</blockquote>
+"""
+            },
+            {
+                "title": "Место наречия в предложении",
+                "text": """
+<b>📌 Обычно наречие стоит после глагола или после дополнения.</b>
+
+• She speaks English well. (Она хорошо говорит по-английски.)
+• He ran quickly. (Он быстро побежал.)
+• They worked hard all day. (Они усердно работали весь день.)
+
+<b>Если глагол с дополнением, наречие ставится после дополнения:</b>
+• He plays the guitar beautifully. (Он красиво играет на гитаре.)
+• She wrote a letter carefully. (Она осторожно написала письмо.)
+
+<b>Наречие может быть в начале предложения для акцента:</b>
+• Carefully, he opened the box. (Осторожно он открыл коробку.)
+
+<blockquote>Для глаголов движения (come, go, run) наречие часто сразу после глагола.</blockquote>
+"""
+            },
+            {
+                "title": "Сравнение: прилагательное vs наречие",
+                "text": """
+<b>📊 Важно различать прилагательное (описывает существительное) и наречие (описывает глагол).</b>
+
+• He is a slow driver. (прилагательное – медленный водитель)
+• He drives slowly. (наречие – водит медленно)
+
+• She is a good singer. (хорошая певица)
+• She sings well. (поёт хорошо)
+
+<b>Некоторые слова одинаковы и как прилагательные, и как наречия:</b>
+• fast (быстрый / быстро)
+• hard (трудный / усердно)
+• late (поздний / поздно)
+• early (ранний / рано)
+
+<blockquote>Помните: прилагательное + существительное, глагол + наречие.</blockquote>
+"""
+            },
+            {
+                "title": "Советы и типичные ошибки",
+                "text": """
+<b>⚠️ Частые ошибки:</b>
+• ❌ She sang beautiful.  ✅ She sang beautifully.
+• ❌ He is a carefully driver.  ✅ He is a careful driver.
+• ❌ I can do it easy.  ✅ I can do it easily.
+
+<b>💡 Советы:</b>
+• Проверяйте: если слово описывает действие, ставьте -ly (кроме исключений).
+• Запомните пары: good (adj) – well (adv); quick – quickly; careful – carefully.
+• Тренируйтесь: опишите, как вы делаете что-то: I read slowly, I write neatly.
+
+<blockquote>Наречия делают речь ярче и точнее.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "В чём разница между hard и hardly?", "answer": "Hard – усердно, много (work hard). Hardly – почти не (I hardly know him)."}
+        ]
+    },
+    "as_as_structures": {
+        "title": "Сравнительные конструкции (as…as, less…than, so…as)",
+        "pages": [
+            {
+                "title": "as + adjective + as – такой же, как",
+                "text": """
+<b>⚖️ Конструкция as…as используется для выражения равенства.</b>
+
+• She is as tall as her sister. (Она такая же высокая, как её сестра.)
+• This film is as interesting as the book. (Фильм такой же интересный, как книга.)
+• He runs as fast as me. (Он бегает так же быстро, как я.)
+
+<b>Отрицание: not as…as или not so…as</b>
+• This phone is not as expensive as that one. (Этот телефон не такой дорогой, как тот.)
+• The weather today is not so warm as yesterday. (Сегодня не так тепло, как вчера.)
+
+<blockquote>В разговорной речи часто используют not as…as, not so…as звучит старомодно.</blockquote>
+"""
+            },
+            {
+                "title": "less + adjective + than – менее, чем",
+                "text": """
+<b>📉 Конструкция less…than выражает меньшую степень.</b>
+
+• This car is less expensive than that one. (Эта машина менее дорогая, чем та.)
+• He is less tall than his brother. (Он менее высокий, чем его брат.)
+• This exercise is less difficult than the previous one. (Это упражнение менее трудное, чем предыдущее.)
+
+<b>Сравните с not as…as:</b>
+• not as expensive as = дешевле или равно
+• less expensive than = строго дешевле
+
+<blockquote>Обычно not as…as более естественно для отрицания равенства, less…than для указания на явную меньшую степень.</blockquote>
+"""
+            },
+            {
+                "title": "as much / many as – так же много, как",
+                "text": """
+<b>🔢 Для количественных сравнений используется as much (с неисчисляемыми) / as many (с исчисляемыми).</b>
+
+• I don't have as much money as you. (У меня нет столько денег, сколько у тебя.)
+• She ate as many apples as her brother. (Она съела столько же яблок, сколько её брат.)
+
+<b>С глаголами:</b>
+• He works as hard as his colleague. (Он работает так же усердно, как его коллега.)
+• They didn't study as much as we expected. (Они учились не так усердно, как мы ожидали.)
+
+<b>as … as possible – как можно…</b>
+• Come as soon as possible. (Приходи как можно скорее.)
+• Speak as clearly as possible. (Говори как можно чётче.)
+
+<blockquote>Эти конструкции очень полезны для повседневной речи.</blockquote>
+"""
+            },
+            {
+                "title": "Примеры и советы",
+                "text": """
+<b>📖 Примеры в контексте:</b>
+• She is not as confident as her friend. (Она не такая уверенная, как её подруга.)
+• This hotel is not as luxurious as the one we stayed in last year. (Этот отель не такой роскошный, как тот, где мы останавливались в прошлом году.)
+• He spends as much time on his hobby as on work. (Он тратит столько же времени на хобби, сколько на работу.)
+• You can take as many books as you want. (Ты можешь взять столько книг, сколько хочешь.)
+
+<b>💡 Советы:</b>
+• Используйте as…as для сравнения, когда предметы равны.
+• Для неравенства – not as…as.
+• Для меньшей степени – less…than (более книжный вариант).
+• Практикуйтесь: сравнивайте цены, рост, скорость.
+
+<blockquote>Освоив as…as, вы добавите точности в свои сравнения.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "В чём разница между 'as tall as' и 'taller than'?", "answer": "As tall as – равный рост; taller than – больше рост."}
+        ]
+    },
+    "appearance_personality": {
+        "title": "Лексика: внешность и характер",
+        "pages": [
+            {
+                "title": "Внешность (appearance)",
+                "text": """
+<b>👤 Описание внешности (physical appearance)</b>
+
+<b>Рост и телосложение (height and build):</b>
+• tall – высокий
+• short – низкий
+• medium height – среднего роста
+• slim – стройный
+• overweight – полный (вежливее: a little overweight)
+• muscular – мускулистый
+• thin – худой (может быть негативным)
+
+<b>Волосы (hair):</b>
+• long / short hair – длинные / короткие волосы
+• curly – вьющиеся
+• straight – прямые
+• wavy – волнистые
+• bald – лысый
+• blonde – светлые волосы
+• brunette – тёмные волосы
+• red hair – рыжие волосы
+
+<b>Глаза (eyes):</b>
+• blue / green / brown / grey eyes – голубые / зелёные / карие / серые глаза
+• big / small eyes – большие / маленькие глаза
+
+<blockquote>Примеры: She is tall and slim with long curly blonde hair. He has blue eyes and a beard.</blockquote>
+"""
+            },
+            {
+                "title": "Характер (personality)",
+                "text": """
+<b>🧠 Положительные черты (positive traits):</b>
+• friendly – дружелюбный
+• kind – добрый
+• honest – честный
+• reliable – надёжный
+• hard‑working – трудолюбивый
+• generous – щедрый
+• patient – терпеливый
+• funny – смешной
+• intelligent – умный
+• confident – уверенный
+
+<b>Нейтральные и отрицательные черты:</b>
+• shy – застенчивый
+• lazy – ленивый
+• selfish – эгоистичный
+• dishonest – нечестный
+• rude – грубый
+• impatient – нетерпеливый
+• moody – с переменчивым настроением
+• jealous – ревнивый
+• stubborn – упрямый
+
+<blockquote>Примеры: He is very friendly and reliable. She can be a bit shy at first.</blockquote>
+"""
+            },
+            {
+                "title": "Глаголы и выражения",
+                "text": """
+<b>🎭 Глаголы для описания внешности и характера:</b>
+• to look like – выглядеть как
+  • What does she look like? (Как она выглядит?)
+  • He looks like his father. (Он похож на отца.)
+
+• to be like – быть каким (о характере)
+  • What is he like? (Что он за человек?)
+  • He is kind and patient. (Он добрый и терпеливый.)
+
+• to wear – носить (одежду, аксессуары)
+  • She wears glasses. (Она носит очки.)
+  • He wears a suit to work. (Он носит костюм на работу.)
+
+• to have – иметь
+  • She has a beard. (У неё борода? Нет, обычно he has a beard – у него борода.)
+  • He has freckles. (У него веснушки.)
+
+<blockquote>Различайте: What is he like? (характер), What does he look like? (внешность).</blockquote>
+"""
+            },
+            {
+                "title": "Примеры и советы",
+                "text": """
+<b>📖 Примеры описаний:</b>
+• My best friend is a tall, slim girl with long brown hair and green eyes. She is very friendly and always ready to help.
+• My father is short and a bit overweight. He is hard‑working but sometimes stubborn.
+• The new colleague is a young man with short dark hair and glasses. He seems shy at first, but actually he is funny and intelligent.
+
+<b>💡 Советы:</b>
+• Не путайте: She has long hair (волосы) vs She is long hair (неправильно).
+• Для описания возраста: young, middle‑aged, elderly.
+• Практикуйтесь: опишите себя, друга или родственника на английском.
+• Задавайте вопросы: What does your brother look like? What is your sister like?
+
+<blockquote>Умение описывать внешность и характер пригодится при знакомстве и в рассказах о людях.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Как спросить о характере человека?", "answer": "What is he/she like?"}
+        ]
+    },
+    "feelings_emotions": {
+        "title": "Лексика: чувства и эмоции",
+        "pages": [
+            {
+                "title": "Положительные эмоции",
+                "text": """
+<b>😊 Положительные чувства:</b>
+• happy – счастливый
+• joyful – радостный
+• excited – взволнованный, в предвкушении
+• pleased – довольный
+• proud – гордый
+• calm – спокойный
+• relaxed – расслабленный
+• confident – уверенный
+• hopeful – полный надежды
+• grateful – благодарный
+
+<b>Примеры:</b>
+• I'm happy to see you. (Я рад тебя видеть.)
+• She was excited about her trip. (Она была взволнована поездкой.)
+• He felt proud of his achievement. (Он гордился своим достижением.)
+
+<blockquote>Для усиления используйте very, extremely, so: I'm so excited!</blockquote>
+"""
+            },
+            {
+                "title": "Отрицательные эмоции",
+                "text": """
+<b>😞 Отрицательные чувства:</b>
+• sad – грустный
+• angry – злой
+• annoyed – раздражённый
+• frustrated – разочарованный, обескураженный
+• worried – обеспокоенный
+• scared / frightened – испуганный
+• nervous – нервничающий
+• disappointed – разочарованный
+• jealous – ревнивый, завистливый
+• lonely – одинокий
+• bored – скучающий
+
+<b>Примеры:</b>
+• She was sad when her cat died. (Она грустила, когда умер её кот.)
+• I'm angry because he lied to me. (Я зол, потому что он солгал мне.)
+• Don't be scared, it's just a spider. (Не бойся, это просто паук.)
+
+<blockquote>Для выражения сильной эмоции используйте very, terribly, extremely.</blockquote>
+"""
+            },
+            {
+                "title": "Глаголы и конструкции",
+                "text": """
+<b>🗣️ Выражение эмоций:</b>
+
+• to feel + прилагательное – чувствовать себя
+  • I feel tired. (Я чувствую усталость.)
+  • How do you feel? (Как ты себя чувствуешь?)
+
+• to be + прилагательное – быть (состояние)
+  • He is happy. (Он счастлив.)
+  • They are disappointed. (Они разочарованы.)
+
+• to get + прилагательное – становиться
+  • I get nervous before exams. (Я нервничаю перед экзаменами.)
+  • She gets angry easily. (Она легко злится.)
+
+• to make + дополнение + прилагательное – вызывать чувство
+  • This film makes me sad. (Этот фильм меня печалит.)
+  • Your joke made her laugh. (Твоя шутка рассмешила её.)
+
+<blockquote>Обратите внимание на предлоги: excited about, worried about, proud of, angry with, disappointed with/in.</blockquote>
+"""
+            },
+            {
+                "title": "Примеры и советы",
+                "text": """
+<b>📖 Примеры в контексте:</b>
+• She felt nervous before the interview, but after it she was relieved. (Она нервничала перед собеседованием, но после него облегчённо вздохнула.)
+• I'm really excited about my new job. (Я очень рад своей новой работе.)
+• Why are you so annoyed? – I've been waiting for an hour. (Почему ты такой раздражённый? – Я жду уже час.)
+
+<b>💡 Советы:</b>
+• Используйте прилагательные для описания своего состояния.
+• Тренируйтесь отвечать на вопрос «How are you?» не только «I'm fine», но и «I'm excited!», «I'm a bit tired», «I feel great».
+• Смотрите фильмы и обращайте внимание, как герои выражают эмоции.
+• Ведите дневник настроения на английском.
+
+<blockquote>Умение говорить о чувствах делает общение более живым и искренним.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "В чём разница между 'bored' и 'boring'?", "answer": "Bored – скучающий (о человеке), boring – скучный (о предмете, событии)."}
+        ]
+    },
+    "comparatives_advanced": {
+        "title": "Заглушка",
+        "pages": [{"title": "В разработке", "text": "Урок появится позже."}],
+        "faq": []
+    },
+    "adverbs_manner": {
+        "title": "Заглушка",
+        "pages": [{"title": "В разработке", "text": "Урок появится позже."}],
+        "faq": []
+    },
+    "as_as_structures": {
+        "title": "Заглушка",
+        "pages": [{"title": "В разработке", "text": "Урок появится позже."}],
+        "faq": []
+    },
+    "appearance_personality": {
+        "title": "Заглушка",
+        "pages": [{"title": "В разработке", "text": "Урок появится позже."}],
+        "faq": []
+    },
+    "feelings_emotions": {
+        "title": "Заглушка",
+        "pages": [{"title": "В разработке", "text": "Урок появится позже."}],
+        "faq": []
+    },
     # ==================== МОДУЛЬ 2 (A2) ====================
     # Будут добавлены позже (сравнения, прилагательные, наречия, пассив, лексика)
 
