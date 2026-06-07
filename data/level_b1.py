@@ -892,15 +892,136 @@ LEVEL_B1_CONTENT = {
             {"question": "Чем отличается 'might not' от 'can't'?", "answer": "Might not – возможно, не (30-40% вероятности). Can't – не может быть (0-5% вероятности)."}
         ]
     },
-    "modal_advice_criticism": {
+        "modal_advice_criticism": {
         "title": "Модальные глаголы: совет, критика (should, ought to, had better)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Should – совет, рекомендация",
+                "text": """
+<b>💡 Should – самый распространённый глагол для совета.</b>
+
+• You should see a doctor. (Тебе следует сходить к врачу.)
+• You shouldn't smoke. (Тебе не следует курить.)
+
+<blockquote>Should мягче, чем must. Must – обязанность, should – рекомендация.</blockquote>
+"""
+            },
+            {
+                "title": "Ought to – формальный синоним should",
+                "text": """
+<b>⚖️ Ought to имеет то же значение, что и should, но звучит более формально.</b>
+
+• You ought to apologize. (Тебе следует извиниться.)
+• She ought to be more careful. (Ей следует быть осторожнее.)
+
+<blockquote>После ought to всегда частица to (в отличие от should). В вопросах и отрицаниях употребляется редко.</blockquote>
+"""
+            },
+            {
+                "title": "Had better – предупреждение (лучше бы, иначе…)",
+                "text": """
+<b>⚠️ Had better выражает предупреждение или настоятельную рекомендацию, часто с угрозой негативных последствий.</b>
+
+• You had better leave now, or you'll miss the train. (Тебе лучше уйти сейчас, иначе опоздаешь на поезд.)
+• I'd better study harder for the exam. (Мне лучше усерднее учиться к экзамену.)
+
+<blockquote>Отрицание: had better not. You'd better not be late. (Лучше тебе не опаздывать.)</blockquote>
+"""
+            },
+            {
+                "title": "Сравнение и типичные ошибки",
+                "text": """
+<b>📊 Сравнение:</b>
+• <b>should</b> – совет (You should rest)
+• <b>ought to</b> – формальный совет (We ought to help)
+• <b>had better</b> – предупреждение, угроза (You'd better stop)
+
+<b>⚠️ Типичные ошибки:</b>
+• ❌ You should to go.  ✅ You should go.
+• ❌ You'd better to go.  ✅ You'd better go.
+• ❌ He had better not to be late.  ✅ He had better not be late.
+
+<b>💡 Совет:</b> В разговорной речи should самый нейтральный. Ought to – для письма. Had better – для сильных предупреждений.
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Можно ли использовать 'had better' в вежливых просьбах?", "answer": "Нет, это звучит как угроза или приказ. Для вежливых просьб используйте 'should' или 'could'."}
+        ]
     },
-    "modal_perfect": {
+        "modal_perfect": {
         "title": "Modal Perfect (must have done, could have done, should have done)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Что такое Modal Perfect?",
+                "text": """
+<b>✅ Modal Perfect – это модальный глагол + have + V3.</b>
+
+Используется для выражения предположений, сожалений, критики о прошлом.
+
+• must have done – должно быть, сделал (уверенное предположение)
+• could have done – мог бы сделать (возможность, не реализованная)
+• might have done – возможно, сделал (менее уверенно)
+• should have done – следовало бы сделать (но не сделал)
+• would have done – сделал бы (при условии)
+
+<blockquote>Modal Perfect всегда относится к прошлому.</blockquote>
+"""
+            },
+            {
+                "title": "Must have done – уверенное предположение о прошлом",
+                "text": """
+<b>🔍 Must have + V3 – выражает уверенность, что действие произошло в прошлом.</b>
+
+• She's not here. She must have left early. (Её нет. Должно быть, она ушла рано.)
+• The ground is wet. It must have rained last night. (Земля мокрая. Должно быть, ночью шёл дождь.)
+
+<blockquote>Отрицание: can't have done (не может быть, что сделал).</blockquote>
+"""
+            },
+            {
+                "title": "Could have done / might have done – возможность, предположение",
+                "text": """
+<b>🎭 Could have done – действие было возможно, но не произошло (или неизвестно). Might have done – менее уверенно.</b>
+
+• He could have taken the train, but he drove instead. (Он мог поехать на поезде, но поехал на машине.)
+• She might have forgotten about the meeting. (Возможно, она забыла о встрече.)
+
+<blockquote>Could have done часто используется для критики упущенных возможностей: You could have told me!</blockquote>
+"""
+            },
+            {
+                "title": "Should have done – сожаление, критика о прошлом",
+                "text": """
+<b>😔 Should have + V3 – выражает, что действие было правильным, но не было выполнено.</b>
+
+• I should have studied harder for the exam. (Мне следовало усерднее учиться к экзамену – но я не учился.)
+• You should have called me. (Тебе следовало позвонить мне.)
+
+<blockquote>Отрицание: shouldn't have done – не следовало бы делать (но сделал).</blockquote>
+"""
+            },
+            {
+                "title": "Сравнение и типичные ошибки",
+                "text": """
+<b>📊 Примеры:</b>
+• <b>must have done</b> – уверен (He must have forgotten)
+• <b>could have done</b> – возможность (She could have won)
+• <b>might have done</b> – предположение (They might have arrived)
+• <b>should have done</b> – сожаление (I should have listened)
+
+<b>⚠️ Типичные ошибки:</b>
+• ❌ He must have to go.  ✅ He must have gone.
+• ❌ I should have went.  ✅ I should have gone.
+• ❌ She could have to help.  ✅ She could have helped.
+
+<b>💡 Совет:</b> Чтобы выразить сожаление о прошлом, используйте should have + V3. Для предположения – must have / might have.
+"""
+            }
+        ],
+        "faq": [
+            {"question": "В чём разница между 'could have done' и 'might have done'?", "answer": "Could have done – была возможность (мог, но не факт, что сделал). Might have done – менее уверенное предположение (возможно, сделал)."}
+        ]
     },
 
     # ==================== МОДУЛЬ 3: Условные предложения и желания ====================
