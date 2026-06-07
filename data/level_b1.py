@@ -2826,29 +2826,489 @@ LEVEL_B1_CONTENT = {
             {"question": "Как сказать 'человек, который любит общаться'?", "answer": "A people person. She is a real people person – она легко находит общий язык с людьми."}
         ]
     },
-    "workplace": {
+        "workplace": {
         "title": "Лексика: рабочая среда",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Типы работы и занятости",
+                "text": """
+<b>💼 Виды занятости:</b>
+
+• full-time job – работа на полную ставку
+• part-time job – работа на неполную ставку
+• temporary job – временная работа
+• permanent job – постоянная работа
+• freelance – фриланс
+• remote work / telecommuting – удалённая работа
+• shift work – посменная работа
+• overtime – сверхурочная работа
+
+<b>Статусы:</b>
+• employee – сотрудник
+• employer – работодатель
+• colleague / coworker – коллега
+• manager – менеджер
+• supervisor – руководитель
+• subordinate – подчинённый
+• intern – стажёр
+• apprentice – ученик (на производстве)
+
+<blockquote>Примеры: I'm looking for a full-time job. She works remotely from home.</blockquote>
+"""
+            },
+            {
+                "title": "Действия на работе",
+                "text": """
+<b>🔧 Глаголы и фразы:</b>
+
+• apply for a job – подавать заявление на работу
+• get hired – быть принятым на работу
+• get fired / be dismissed – быть уволенным
+• quit / resign – уволиться по собственному желанию
+• retire – выходить на пенсию
+• work under someone – работать под чьим-то руководством
+• deal with clients – иметь дело с клиентами
+• meet deadlines – соблюдать сроки
+• take on responsibility – брать на себя ответственность
+• attend a meeting – присутствовать на встрече
+• give a presentation – делать презентацию
+• write a report – писать отчёт
+
+<blockquote>Примеры: He got fired for being late too often. I need to meet the deadline by Friday.</blockquote>
+"""
+            },
+            {
+                "title": "Условия работы и льготы",
+                "text": """
+<b>📋 Условия труда:</b>
+
+• salary – оклад
+• wage – почасовая оплата
+• bonus – премия
+• benefits – льготы (медицинская страховка, оплачиваемый отпуск и т.д.)
+• paid leave – оплачиваемый отпуск
+• sick leave – больничный
+• pension – пенсия
+• training – обучение
+• career development – карьерный рост
+• promotion – повышение
+• evaluation / performance review – оценка работы
+
+<b>Примеры:</b>
+• The salary is good, but the benefits are even better.
+• She received a promotion after working there for two years.
+• We have a performance review every six months.
+
+<blockquote>Fringe benefits – дополнительные льготы (например, служебный автомобиль).</blockquote>
+"""
+            },
+            {
+                "title": "Советы",
+                "text": """
+<b>💡 Советы:</b>
+• Различайте: salary (обычно ежемесячный) vs wage (почасовая).
+• Common interview questions: Why do you want to work here? What are your strengths and weaknesses?
+• Для описания обязанностей используйте I am responsible for..., I deal with..., I'm in charge of...
+• Практикуйтесь: расскажите о своей (или идеальной) работе на английском.
+"""
+            }
+        ],
+        "faq": [
+            {"question": "В чём разница между 'job' и 'work'?", "answer": "Job – конкретная должность (a teaching job). Work – работа как деятельность (I go to work)."}
+        ]
     },
-    "global_issues": {
+        "global_issues": {
         "title": "Лексика: глобальные проблемы",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Экологические проблемы",
+                "text": """
+<b>🌍 Проблемы окружающей среды:</b>
+
+• climate change – изменение климата
+• global warming – глобальное потепление
+• greenhouse effect – парниковый эффект
+• pollution – загрязнение
+  • air pollution – загрязнение воздуха
+  • water pollution – загрязнение воды
+  • soil pollution – загрязнение почвы
+  • noise pollution – шумовое загрязнение
+• deforestation – вырубка лесов
+• extinction – вымирание (видов)
+• loss of biodiversity – потеря биоразнообразия
+• ozone layer depletion – истощение озонового слоя
+
+<blockquote>Примеры: Global warming is causing sea levels to rise. Deforestation in the Amazon continues at an alarming rate.</blockquote>
+"""
+            },
+            {
+                "title": "Социальные и экономические проблемы",
+                "text": """
+<b>👥 Социальные проблемы:</b>
+
+• poverty – бедность
+• hunger / famine – голод
+• homelessness – бездомность
+• inequality – неравенство
+• racism – расизм
+• discrimination – дискриминация
+• gender inequality – гендерное неравенство
+• child labour – детский труд
+• human trafficking – торговля людьми
+• refugee crisis – кризис беженцев
+• war – война
+• terrorism – терроризм
+
+<b>Экономические проблемы:</b>
+• recession – рецессия
+• unemployment – безработица
+• inflation – инфляция
+• national debt – государственный долг
+
+<blockquote>Примеры: Poverty and inequality are major challenges in many developing countries. The refugee crisis requires international cooperation.</blockquote>
+"""
+            },
+            {
+                "title": "Решения и действия",
+                "text": """
+<b>♻️ Что можно сделать:</b>
+
+• reduce, reuse, recycle – сокращать, использовать повторно, перерабатывать
+• renewable energy – возобновляемая энергия (solar power, wind power)
+• sustainable development – устойчивое развитие
+• carbon footprint – углеродный след
+• donate to charity – жертвовать на благотворительность
+• volunteer – работать волонтёром
+• raise awareness – повышать осведомлённость
+• sign a petition – подписать петицию
+• protest – протестовать
+• support NGOs – поддерживать НПО
+
+<blockquote>Примеры: We need to switch to renewable energy sources. You can reduce your carbon footprint by using public transport.</blockquote>
+"""
+            },
+            {
+                "title": "Советы",
+                "text": """
+<b>💡 Советы:</b>
+• Учите устойчивые словосочетания: to combat climate change, to alleviate poverty, to tackle inequality.
+• Глаголы: to cause (вызывать), to affect (воздействовать), to threaten (угрожать), to solve (решать).
+• Обсуждайте глобальные проблемы на английском – это поможет и на экзаменах, и в дискуссиях.
+"""
+            }
+        ],
+        "faq": [
+            {"question": "В чём разница между 'global warming' и 'climate change'?", "answer": "Global warming – повышение средней температуры. Climate change – более широкое понятие, включающее изменение погодных паттернов, уровня моря и т.д."}
+        ]
     },
-    "phrasal_verbs_1": {
+        "phrasal_verbs_1": {
         "title": "Фразовые глаголы (часть 1)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Группа 'get'",
+                "text": """
+<b>🔑 Get – один из самых частотных глаголов с послелогами.</b>
+
+• get up – вставать (с кровати)
+  • I get up at 7 am.
+
+• get along (with) – ладить (с кем-то)
+  • Do you get along with your colleagues?
+
+• get over – оправиться от (болезни, разрыва)
+  • It took me a long time to get over the flu.
+
+• get through – справиться, пройти через
+  • I don't know how I'll get through this difficult time.
+
+• get away – уехать, сбежать
+  • We're planning to get away for the weekend.
+
+• get together – собраться вместе
+  • Let's get together next week.
+
+<blockquote>Примеры: Get up, get dressed, and get going! She finally got over her fear of flying.</blockquote>
+"""
+            },
+            {
+                "title": "Группа 'go'",
+                "text": """
+<b>🏃 Go – движение, изменение состояния.</b>
+
+• go on – продолжаться, происходить
+  • What's going on here?
+
+• go out – выходить (в свет), встречаться с кем-то
+  • They've been going out for two years.
+
+• go off – срабатывать (будильник), портиться (еда)
+  • My alarm went off at 6 am.
+
+• go through – переживать, изучать
+  • She's going through a difficult time.
+
+• go back – возвращаться
+  • I want to go back to my hometown.
+
+• go without – обходиться без
+  • We had to go without electricity for a day.
+
+<blockquote>Примеры: The party went on until midnight. Milk goes off quickly in hot weather.</blockquote>
+"""
+            },
+            {
+                "title": "Группа 'put'",
+                "text": """
+<b>🖊️ Put – размещение, одевание, выражение.</b>
+
+• put on – надевать, включать (музыку)
+  • Put on your coat, it's cold outside.
+
+• put off – откладывать
+  • Don't put off until tomorrow what you can do today.
+
+• put up with – мириться с
+  • I can't put up with his rudeness any longer.
+
+• put out – тушить (огонь), выставлять
+  • Firefighters put out the fire quickly.
+
+• put down – положить, записать
+  • Put down your phone and listen.
+
+• put away – убрать на место
+  • Please put away your toys.
+
+<blockquote>Примеры: She put off her dentist appointment. I can't put up with the noise anymore.</blockquote>
+"""
+            },
+            {
+                "title": "Советы и запоминание",
+                "text": """
+<b>💡 Советы:</b>
+• Фразовые глаголы часто имеют идиоматическое значение (не всегда от глагола).
+• Различайте разделяемые и неразделяемые: turn on the light / turn the light on (разделяемый).
+• С местоимениями разделяемые всегда разделяются: turn it on (не turn on it).
+• Тренируйтесь: составляйте предложения с каждым фразовым глаголом, используя их в контексте.
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Как отличить фразовый глагол от глагола с предлогом?", "answer": "Фразовый глагол меняет значение (get up – вставать), глагол с предлогом – буквальное значение (go up – подниматься)."}
+        ]
     },
-    "phrasal_verbs_2": {
+        "phrasal_verbs_2": {
         "title": "Фразовые глаголы (часть 2)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Группа 'take'",
+                "text": """
+<b>📸 Take – очень продуктивный фразовый глагол.</b>
+
+• take off – взлетать (о самолёте), снимать (одежду)
+  • The plane took off on time.
+
+• take care of – заботиться о
+  • Who will take care of your cat while you're away?
+
+• take after – быть похожим на (родителей)
+  • She takes after her mother.
+
+• take up – начать заниматься (хобби)
+  • I decided to take up yoga.
+
+• take over – взять на себя, захватить
+  • The new CEO will take over next week.
+
+• take part in – участвовать в
+  • He took part in the competition.
+
+<blockquote>Примеры: Please take off your shoes. She takes after her father in looks.</blockquote>
+"""
+            },
+            {
+                "title": "Группа 'turn'",
+                "text": """
+<b>🔄 Turn – поворот, изменение состояния.</b>
+
+• turn on / off – включать / выключать
+  • Please turn off the lights when you leave.
+
+• turn up / down – увеличивать / уменьшать (громкость, температуру)
+  • Could you turn down the music? It's too loud.
+
+• turn into – превращаться в
+  • The caterpillar turned into a butterfly.
+
+• turn out – оказаться (в итоге)
+  • The party turned out to be a lot of fun.
+
+• turn around – разворачиваться, менять ситуацию
+  • The company turned around its fortunes.
+
+• turn away – отворачиваться, не пускать
+  • They turned away dozens of fans.
+
+<blockquote>Примеры: It turned out that he was right all along. She turned down the job offer.</blockquote>
+"""
+            },
+            {
+                "title": "Группа 'bring'",
+                "text": """
+<b>🎁 Bring – приносить, вызывать.</b>
+
+• bring up – воспитывать, поднимать (тему)
+  • He was brought up by his grandparents.
+  • Why did you bring up that topic?
+
+• bring about – вызывать, осуществлять
+  • The new law brought about many changes.
+
+• bring back – вернуть
+  • These photos bring back memories.
+
+• bring in – вводить, приносить доход
+  • They brought in new rules.
+
+• bring out – выпускать (продукт), проявлять
+  • The crisis brought out the best in him.
+
+<blockquote>Примеры: She brought up three children alone. The company brought out a new smartphone.</blockquote>
+"""
+            },
+            {
+                "title": "Советы",
+                "text": """
+<b>💡 Советы:</b>
+• Учите фразовые глаголы в контексте, а не списком.
+• Используйте карточки: с одной стороны глагол, с другой – значение и пример.
+• Обратите внимание, что некоторые фразовые глаголы имеют много значений: take off (взлетать, снимать, уходить).
+• Практикуйтесь: перескажите ситуацию, используя как можно больше фразовых глаголов.
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Можно ли заменить фразовый глагол одним словом?", "answer": "Часто да: postpone = put off, continue = go on, tolerate = put up with. Но фразовые глаголы более разговорные."}
+        ]
     },
-    "word_formation": {
+        "word_formation": {
         "title": "Словообразование (суффиксы, префиксы)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Суффиксы существительных",
+                "text": """
+<b>🔨 Суффиксы, которые превращают глаголы и прилагательные в существительные:</b>
+
+• -tion / -sion (действие, процесс)
+  • educate → education
+  • decide → decision
+
+• -ment (результат действия)
+  • develop → development
+  • agree → agreement
+
+• -ance / -ence (состояние, качество)
+  • appear → appearance
+  • differ → difference
+
+• -er / -or (лицо, производящее действие)
+  • teach → teacher
+  • act → actor
+
+• -ing (герундий)
+  • build → building (здание)
+  • feel → feeling
+
+• -ness (качество)
+  • happy → happiness
+  • kind → kindness
+
+<blockquote>Примеры: His kindness surprised everyone. The government announced a new development plan.</blockquote>
+"""
+            },
+            {
+                "title": "Суффиксы прилагательных",
+                "text": """
+<b>🎨 Образование прилагательных:</b>
+
+• -able / -ible (способный, возможный)
+  • comfort → comfortable
+  • access → accessible
+
+• -ful (полный чего-то)
+  • hope → hopeful
+  • care → careful
+
+• -less (лишённый чего-то)
+  • hope → hopeless
+  • care → careless
+
+• -ive (склонный к)
+  • act → active
+  • create → creative
+
+• -al (относящийся к)
+  • nature → natural
+  • education → educational
+
+• -y (характеризующийся)
+  • cloud → cloudy
+  • sun → sunny
+
+<blockquote>Примеры: The weather is sunny and warm. She is very creative and active.</blockquote>
+"""
+            },
+            {
+                "title": "Префиксы (отрицательные и другие)",
+                "text": """
+<b>🚫 Отрицательные префиксы:</b>
+
+• un‑ (самый распространённый)
+  • happy → unhappy
+  • lucky → unlucky
+
+• in‑ / im‑ / il‑ / ir‑ (перед определёнными буквами)
+  • possible → impossible
+  • legal → illegal
+  • regular → irregular
+  • active → inactive
+
+• dis‑
+  • agree → disagree
+  • appear → disappear
+
+• non‑ (иногда)
+  • profit → non‑profit
+
+<b>Другие префиксы:</b>
+• re‑ (снова)
+  • write → rewrite
+  • build → rebuild
+
+• pre‑ (до)
+  • view → preview
+  • historic → prehistoric
+
+• mis‑ (неправильно)
+  • understand → misunderstand
+  • spell → misspell
+
+<blockquote>Примеры: It's impossible to predict the future. Please rewrite the last sentence.</blockquote>
+"""
+            },
+            {
+                "title": "Советы",
+                "text": """
+<b>💡 Советы:</b>
+• Учите суффиксы и префиксы не изолированно, а через примеры слов.
+• В экзаменах часто требуется преобразовать слово: give → gift (существительное от глагола? но это не по правилу – исключения).
+• Обратите внимание на изменение написания: happy → happiness (y → i), possible → impossible (in‑ → im‑).
+• Практикуйтесь: составьте цепочку: work → worker → working → workable → unworkable.
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Есть ли универсальное правило для выбора отрицательного префикса?", "answer": "Нет, в основном нужно запоминать. un‑ самый частотный, in‑ и im‑ перед p, b, m, il‑ перед l, ir‑ перед r."}
+        ]
     }
 }
