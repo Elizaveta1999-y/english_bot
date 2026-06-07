@@ -1025,15 +1025,139 @@ LEVEL_B1_CONTENT = {
     },
 
     # ==================== МОДУЛЬ 3: Условные предложения и желания ====================
-    "conditionals_2": {
+        "conditionals_2": {
         "title": "Условные предложения 2 типа (If I were…)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Что такое 2 тип?",
+                "text": """
+<b>🔮 Conditional 2 – нереальное или маловероятное условие в настоящем или будущем.</b>
+
+Формула: If + Past Simple, + would + V (глагол без to)
+
+• If I had a million dollars, I would travel the world. (Если бы у меня был миллион долларов, я бы путешествовал по миру – но у меня нет)
+• If she knew the answer, she would tell us. (Если бы она знала ответ, она бы сказала нам – но она не знает)
+• What would you do if you won the lottery? (Что бы ты сделал, если бы выиграл в лотерею?)
+
+<blockquote>2 тип описывает воображаемую ситуацию, противоположную реальности, или маловероятную.</blockquote>
+"""
+            },
+            {
+                "title": "Особенности глагола to be",
+                "text": """
+<b>⚠️ В 2 типе для всех лиц используется were (особенно в формальном английском).</b>
+
+• If I were you, I would accept the offer. (Если бы я был на твоём месте, я бы принял предложение – стандартная формула совета)
+• If she were here, she would help us. (Если бы она была здесь, она бы помогла нам – но её нет)
+
+<blockquote>В разговорной речи допустимо was для I/he/she, но were считается более правильным, особенно в выражении If I were you.</blockquote>
+"""
+            },
+            {
+                "title": "Отрицание и вопросы",
+                "text": """
+<b>🚫 Отрицание в if-части и главной части:</b>
+
+• If I didn't have to work, I would travel more. (Если бы мне не нужно было работать, я бы больше путешествовал.)
+• If he weren't so busy, he would help us. (Если бы он не был таким занятым, он бы помог нам.)
+• I wouldn't do that if I were you. (Я бы не делал этого на твоём месте.)
+
+<b>❓ Вопросы:</b>
+
+• What would you do if you lost your job? (Что бы ты сделал, если бы потерял работу?)
+• Would you be happy if you moved to another country? (Был бы ты счастлив, если бы переехал в другую страну?)
+
+<blockquote>В вопросах would переносится в начало главной части.</blockquote>
+"""
+            },
+            {
+                "title": "Сравнение с 1 типом",
+                "text": """
+<b>📊 1 тип vs 2 тип:</b>
+
+• <b>1 тип</b> (реальное условие): If it rains, I will stay at home. (Если пойдёт дождь, я останусь дома – возможно)
+• <b>2 тип</b> (нереальное условие): If it rained, I would stay at home. (Если бы пошёл дождь, я бы остался дома – но дождя нет или маловероятно)
+
+<b>⚠️ Типичные ошибки:</b>
+• ❌ If I would be rich, I would travel.  ✅ If I were rich, I would travel.
+• ❌ If she knows, she would tell.  ✅ If she knew, she would tell.
+• ❌ I would have gone if I would have known. (это 3 тип, смешивать нельзя) – для прошлого нужен 3 тип.
+
+<b>💡 Совет:</b> 2 тип – для воображаемых ситуаций в настоящем/будущем. Представьте, что вы даёте совет или говорите о несбыточной мечте.
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Почему 'If I were' а не 'If I was'?", "answer": "В сослагательном наклонении для всех лиц используется were. If I was допустимо в разговорной речи, но were грамматически правильнее."}
+        ]
     },
-    "conditionals_3": {
+        "conditionals_3": {
         "title": "Условные предложения 3 типа (If I had known…)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Что такое 3 тип?",
+                "text": """
+<b>⏪ Conditional 3 – нереальное условие в прошлом, сожаление о том, что не произошло.</b>
+
+Формула: If + Past Perfect (had done), + would have + V3
+
+• If I had studied harder, I would have passed the exam. (Если бы я усерднее учился, я бы сдал экзамен – но я не учился, и не сдал)
+• She would have come to the party if she hadn't been sick. (Она бы пришла на вечеринку, если бы не болела – но она болела и не пришла)
+• If they had left earlier, they wouldn't have missed the flight. (Если бы они выехали раньше, они бы не опоздали на рейс)
+
+<blockquote>3 тип используется, когда мы говорим о прошлом, которое нельзя изменить, и выражаем сожаление или критику.</blockquote>
+"""
+            },
+            {
+                "title": "Отрицание и вопросы",
+                "text": """
+<b>🚫 Отрицание в if-части и главной части:</b>
+
+• If I hadn't forgotten the keys, I wouldn't have been locked out. (Если бы я не забыл ключи, я бы не оказался запертым снаружи.)
+• She would have bought the car if she had had enough money. (Она бы купила машину, если бы у неё было достаточно денег – у неё не было)
+
+<b>❓ Вопросы:</b>
+
+• What would you have done if you had seen the accident? (Что бы ты сделал, если бы увидел аварию?)
+• Would you have helped him if he had asked? (Ты бы помог ему, если бы он попросил?)
+
+<blockquote>В вопросах would have переносится в начало главной части.</blockquote>
+"""
+            },
+            {
+                "title": "Сравнение 2 и 3 типа",
+                "text": """
+<b>📊 2 тип (настоящее/будущее) vs 3 тип (прошлое):</b>
+
+• 2 тип: If I were rich, I would buy a yacht. (сейчас, нереально)
+• 3 тип: If I had been rich, I would have bought a yacht. (в прошлом, нереально)
+
+• 2 тип: If she knew the answer, she would tell us. (сейчас не знает)
+• 3 тип: If she had known the answer, she would have told us. (в прошлом не знала)
+
+<blockquote>Не смешивайте: в if-части для прошлого – Past Perfect, в главной – would have done.</blockquote>
+"""
+            },
+            {
+                "title": "Типичные ошибки и советы",
+                "text": """
+<b>⚠️ Частые ошибки:</b>
+• ❌ If I would have known, I would have come.  ✅ If I had known, I would have come.
+• ❌ If she had saw him, she would have told.  ✅ If she had seen him, she would have told.
+• ❌ I would have go if I had time.  ✅ I would have gone if I had had time.
+
+<b>💡 Советы:</b>
+• 3 тип всегда относится к прошлому – ищите слова-подсказки: yesterday, last week, in the past.
+• Если вы жалеете о том, что сделали или не сделали, используйте 3 тип.
+• Тренируйтесь: вспомните 3 ошибки, которые вы совершили, и напишите предложения с сожалением.
+
+<blockquote>3 тип – ключевая тема для выражения сожалений на экзаменах и в жизни.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Можно ли использовать 'would have' в if-части?", "answer": "Нет, никогда. В if-части только Past Perfect (had done). 'Would have' только в главной части."}
+        ]
     },
     "mixed_conditionals": {
         "title": "Смешанные условные предложения",
