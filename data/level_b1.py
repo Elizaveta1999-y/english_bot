@@ -257,20 +257,236 @@ LEVEL_B1_CONTENT = {
             {"question": "Можно ли использовать Present Perfect Continuous с for/since для глаголов состояния?", "answer": "Нет, для глаголов состояния (like, know, be, have) используйте Simple: I have known him for ages."}
         ]
     },
-    "past_perfect": {
+        "past_perfect": {
         "title": "Past Perfect (had done)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Образование",
+                "text": """
+<b>⏪ Past Perfect – действие, которое произошло до другого действия в прошлом.</b>
+
+<b>Формула:</b> had + V3 (третья форма глагола)
+
+• I had finished work before he arrived. (Я закончил работу до того, как он пришёл.)
+• She had already eaten when I called. (Она уже поела, когда я позвонил.)
+• They had left by the time we got there. (Они уже ушли к тому времени, как мы приехали.)
+
+<blockquote>Past Perfect – это «прошлое прошлое»: оно показывает, что одно событие произошло раньше другого в прошлом.</blockquote>
+"""
+            },
+            {
+                "title": "Когда используется Past Perfect",
+                "text": """
+<b>📌 Основные случаи:</b>
+
+1. <b>Показать последовательность двух событий в прошлом</b>
+   • When I arrived, the train had already left. (Когда я приехал, поезд уже ушёл.)
+   • She realized she had lost her keys. (Она поняла, что потеряла ключи.)
+
+2. <b>С already, just, never, ever, for, since</b>
+   • I had never seen such a beautiful place before. (Я никогда раньше не видел такого красивого места.)
+   • He had just finished when the phone rang. (Он только что закончил, когда зазвонил телефон.)
+   • They had lived there for 10 years before they moved. (Они прожили там 10 лет до переезда.)
+
+3. <b>В косвенной речи (после сказанного в прошлом)</b>
+   • He said that he had met her before. (Он сказал, что уже встречал её раньше.)
+
+<blockquote>С before и after Past Perfect не всегда обязателен, так как порядок ясен из союзов, но он добавляет чёткости.</blockquote>
+"""
+            },
+            {
+                "title": "Отрицание и вопросы",
+                "text": """
+<b>🚫 Отрицание:</b> hadn't + V3
+
+• I hadn't finished my homework when he came. (Я не закончил домашнее задание, когда он пришёл.)
+• She hadn't eaten before the party. (Она не ела перед вечеринкой.)
+
+<b>❓ Вопрос:</b> Had + подлежащее + V3?
+
+• Had you ever been to London before that trip? (Ты когда-нибудь был в Лондоне до той поездки?)
+• Had she already left when you called? (Она уже ушла, когда ты позвонил?)
+
+<b>Краткие ответы:</b>
+• Yes, I had. / No, I hadn't.
+
+<blockquote>Past Perfect часто используется в вопросах о жизненном опыте до определённого момента в прошлом.</blockquote>
+"""
+            },
+            {
+                "title": "Сравнение с Past Simple",
+                "text": """
+<b>📊 Past Simple vs Past Perfect:</b>
+
+• <b>Past Simple</b> – простое действие в прошлом, порядок может быть ясен из контекста.
+  • I finished work and then I went home. (закончил, потом пошёл – порядок ясен)
+
+• <b>Past Perfect</b> – подчёркивает, что одно действие завершилось до другого.
+  • When I arrived, he had already left. (он ушёл до моего приезда)
+
+<b>⚠️ Типичные ошибки:</b>
+• ❌ When I came, she already left.  ✅ When I came, she had already left.
+• ❌ I was finishing work before he arrived. (неправильно)  ✅ I had finished work before he arrived.
+
+<b>💡 Совет:</b> Если вы не уверены, нужен ли Past Perfect, спросите себя: «Это действие произошло до другого действия в прошлом?» Если да – используйте Past Perfect.
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Всегда ли нужен Past Perfect с before/after?", "answer": "Нет, before и after сами показывают порядок. Можно сказать и After she finished, she left, и After she had finished, she left. Разница в стиле и акцентах."}
+        ]
     },
-    "past_perfect_continuous": {
+        "past_perfect_continuous": {
         "title": "Past Perfect Continuous",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Образование",
+                "text": """
+<b>⏳ Past Perfect Continuous – действие, которое длилось в прошлом до другого момента в прошлом.</b>
+
+<b>Формула:</b> had been + V‑ing
+
+• I had been waiting for an hour when he finally arrived. (Я прождал час, когда он наконец пришёл.)
+• She had been working there for 5 years before she got promoted. (Она проработала там 5 лет до повышения.)
+• They had been playing football all morning, so they were tired. (Они играли в футбол всё утро, поэтому устали.)
+
+<blockquote>Акцент на длительности и процессе, который происходил до определённого момента в прошлом.</blockquote>
+"""
+            },
+            {
+                "title": "Когда используется Past Perfect Continuous",
+                "text": """
+<b>📌 Основные случаи:</b>
+
+1. <b>Длительное действие, которое происходило до другого действия в прошлом</b>
+   • I had been studying for two hours when my friend called. (Я учился уже два часа, когда позвонил друг.)
+   • The ground was wet because it had been raining all night. (Земля была мокрая, потому что всю ночь шёл дождь.)
+
+2. <b>Чтобы показать причину состояния в прошлом</b>
+   • He was out of breath. He had been running. (Он запыхался. Он бежал.)
+   • She was tired because she had been working hard. (Она устала, потому что усердно работала.)
+
+3. <b>С for, since, all day, all week</b>
+   • They had been living in that house for 10 years before they sold it. (Они прожили в том доме 10 лет до того, как продали его.)
+   • I had been waiting since 8 am, but he didn't come. (Я ждал с 8 утра, но он не пришёл.)
+
+<blockquote>Past Perfect Continuous не используется с глаголами состояния (know, like, have – в значении «иметь»).</blockquote>
+"""
+            },
+            {
+                "title": "Отрицание и вопросы",
+                "text": """
+<b>🚫 Отрицание:</b> hadn't been + V‑ing
+
+• I hadn't been waiting long when he arrived. (Я недолго ждал, когда он пришёл.)
+• She hadn't been sleeping well before she went on holiday. (Она плохо спала перед отпуском.)
+
+<b>❓ Вопрос:</b> Had + подлежащее + been + V‑ing?
+
+• How long had you been studying before the exam? (Как долго ты учился перед экзаменом?)
+• Had they been waiting for a long time? (Они долго ждали?)
+
+<blockquote>В вопросах о длительности Past Perfect Continuous очень естественен: How long had you been living there before you moved?</blockquote>
+"""
+            },
+            {
+                "title": "Сравнение Past Perfect и Past Perfect Continuous",
+                "text": """
+<b>📊 Past Perfect vs Past Perfect Continuous:</b>
+
+• <b>Past Perfect (had done)</b> – результат, завершённость.
+  • I had painted the room before they came. (Я покрасил комнату до их прихода – результат: комната покрашена.)
+
+• <b>Past Perfect Continuous (had been doing)</b> – процесс, длительность.
+  • I had been painting the room for two hours when they came. (Я красил комнату уже два часа, когда они пришли – процесс, может быть, не закончил.)
+
+<b>⚠️ Типичные ошибки:</b>
+• ❌ I had been knowing him for years.  ✅ I had known him for years.
+• ❌ When I arrived, she had been already left.  ✅ When I arrived, she had already left.
+
+<b>💡 Совет:</b> Для длительных процессов, которые привели к результату в прошлом, используйте Past Perfect Continuous. Для факта завершения – Past Perfect.
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Можно ли использовать Past Perfect Continuous с глаголами состояния?", "answer": "Нет, для глаголов состояния (know, like, have – в значении обладания) используйте Past Perfect: I had known him for years."}
+        ]
     },
-    "future_continuous": {
+        "future_continuous": {
         "title": "Future Continuous (will be doing)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Образование",
+                "text": """
+<b>🔮 Future Continuous – действие в процессе в определённый момент в будущем.</b>
+
+<b>Формула:</b> will be + V‑ing
+
+• This time tomorrow, I will be flying to Paris. (Завтра в это время я буду лететь в Париж.)
+• Don't call me at 8 pm – I will be having dinner. (Не звони мне в 8 вечера – я буду ужинать.)
+• At 10 am next Monday, they will be taking an exam. (В 10 утра в следующий понедельник они будут сдавать экзамен.)
+
+<blockquote>Future Continuous описывает действие, которое будет в процессе в какой-то момент или период в будущем.</blockquote>
+"""
+            },
+            {
+                "title": "Когда используется Future Continuous",
+                "text": """
+<b>📌 Основные случаи:</b>
+
+1. <b>Действие в процессе в конкретный момент в будущем</b>
+   • At 9 pm tonight, I will be watching a film. (Сегодня в 9 вечера я буду смотреть фильм.)
+   • This time next week, we will be lying on the beach. (В это время на следующей неделе мы будем лежать на пляже.)
+
+2. <b>Действие, которое будет происходить как естественный ход событий (не запланированное)</b>
+   • Don't worry, I will be thinking about you. (Не волнуйся, я буду думать о тебе.)
+   • The sun will be setting at 6 pm. (Солнце будет заходить в 6 вечера.)
+
+3. <b>Вежливый вопрос о планах (чтобы не звучало как просьба)</b>
+   • Will you be using the printer later? (Ты будешь пользоваться принтером позже?)
+   • Will you be coming to the party? (Ты придёшь на вечеринку? – звучит менее навязчиво, чем Are you coming?)
+
+<blockquote>Future Continuous часто используется для того, чтобы спросить о планах, не оказывая давления.</blockquote>
+"""
+            },
+            {
+                "title": "Отрицание и вопросы",
+                "text": """
+<b>🚫 Отрицание:</b> won't be + V‑ing
+
+• I won't be working tomorrow. (Я не буду работать завтра.)
+• She won't be coming to the meeting. (Она не придёт на встречу.)
+
+<b>❓ Вопрос:</b> Will + подлежащее + be + V‑ing?
+
+• Will you be leaving soon? (Ты скоро уезжаешь?)
+• Will they be arriving on time? (Они прибудут вовремя?)
+
+<blockquote>В вопросах о вежливых планах Future Continuous предпочтительнее, чем will или Present Continuous.</blockquote>
+"""
+            },
+            {
+                "title": "Сравнение с другими формами будущего",
+                "text": """
+<b>📊 Сравнение:</b>
+
+• <b>will</b> – спонтанное решение, предсказание (I'll help you)
+• <b>going to</b> – план (I'm going to study)
+• <b>Present Continuous</b> – договорённость (I'm meeting friends at 7)
+• <b>Future Continuous</b> – процесс в момент в будущем (At 7, I will be meeting friends – подчёркивает, что буду занят в это время)
+
+<b>⚠️ Типичные ошибки:</b>
+• ❌ I will be to go.  ✅ I will be going.
+• ❌ At 5 pm, I will meet him. (можно, но если подчёркиваете процесс, лучше will be meeting)
+• ❌ I will be having a meeting at 3 pm tomorrow. (это нормально – процесс)
+
+<b>💡 Совет:</b> Используйте Future Continuous, чтобы показать, что вы будете заняты чем-то в определённое время. Для простого намерения или плана используйте going to или Present Continuous.
+"""
+            }
+        ],
+        "faq": [
+            {"question": "В чём разница между 'I will meet you at 5' и 'I will be meeting you at 5'?", "answer": "Will meet – просто обещание/договорённость. Will be meeting – акцент на том, что в 5 часов я уже буду в процессе встречи."}
+        ]
     },
     "future_perfect": {
         "title": "Future Perfect (will have done)",
