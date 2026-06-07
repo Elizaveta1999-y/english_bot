@@ -706,20 +706,191 @@ LEVEL_B1_CONTENT = {
     },
 
     # ==================== МОДУЛЬ 2: Модальные глаголы (углубление) ====================
-    "modal_ability": {
+        "modal_ability": {
         "title": "Модальные глаголы: способность (can, could, be able to)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Can – способность в настоящем",
+                "text": """
+<b>💪 Can – самый частотный глагол для выражения умения или способности в настоящем.</b>
+
+• I can swim. (Я умею плавать.)
+• She can speak three languages. (Она говорит на трёх языках.)
+• They can't drive. (Они не умеют водить.)
+
+<blockquote>Can не меняется по лицам и числам, после него всегда инфинитив без to.</blockquote>
+"""
+            },
+            {
+                "title": "Could – способность в прошлом",
+                "text": """
+<b>⏪ Could – умение или способность в прошлом.</b>
+
+• When I was young, I could run fast. (Когда я был молодым, я мог быстро бегать.)
+• She could play the piano when she was five. (Она умела играть на пианино в пять лет.)
+• They couldn't understand the teacher yesterday. (Они не могли понять учителя вчера.)
+
+<blockquote>Could также используется для вежливых просьб и возможности (не только способности).</blockquote>
+"""
+            },
+            {
+                "title": "Be able to – альтернатива can/could",
+                "text": """
+<b>🔄 Be able to можно использовать вместо can/could, особенно в сложных временах.</b>
+
+• I am able to swim. ( = I can swim.)
+• She was able to pass the exam. ( = She could pass the exam – обычно для конкретного события)
+• We will be able to visit you next week. (Мы сможем навестить тебя на следующей неделе – can не имеет будущего времени)
+• I have been able to work from home lately. (В последнее время я могу работать из дома – вместо can)
+
+<blockquote>В настоящем и прошедшем can/could обычно предпочтительнее, но be able to нужно для будущего, перфекта и герундия.</blockquote>
+"""
+            },
+            {
+                "title": "Сравнение и типичные ошибки",
+                "text": """
+<b>📊 Сравнение can, could, be able to:</b>
+
+• <b>can</b> – умение в настоящем (I can swim)
+• <b>could</b> – умение в прошлом (I could swim when I was 5)
+• <b>was/were able to</b> – сумел, смог (конкретное событие в прошлом) – I was able to finish the marathon.
+• <b>will be able to</b> – будущая способность (I will be able to drive next year)
+
+<b>⚠️ Типичные ошибки:</b>
+• ❌ I can to swim.  ✅ I can swim.
+• ❌ She cans play.  ✅ She can play.
+• ❌ I will can go.  ✅ I will be able to go.
+
+<b>💡 Совет:</b> Для простых умений используйте can/could. Для будущего, перфекта и акцента на «смог, несмотря на трудности» – be able to.
+"""
+            }
+        ],
+        "faq": [
+            {"question": "В чём разница между 'could' и 'was able to'?", "answer": "Could – общая способность в прошлом (I could read). Was able to – успешно справился с конкретной задачей (I was able to escape)."}
+        ]
     },
-    "modal_permission_obligation": {
+        "modal_permission_obligation": {
         "title": "Модальные глаголы: разрешение, обязанность (may, might, must, have to, need to)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "May / might – разрешение и вероятность",
+                "text": """
+<b>🎭 May и might для разрешения (формально) и малой вероятности.</b>
+
+• May I come in? (Можно войти? – формальное разрешение)
+• You may leave early today. (Вы можете уйти рано сегодня – разрешение)
+• It may rain later. (Возможно, позже пойдёт дождь – 40‑50%)
+• It might snow tomorrow. (Может быть, завтра снег – 30%)
+
+<blockquote>В разговорной речи для разрешения чаще используют can, но may формальнее.</blockquote>
+"""
+            },
+            {
+                "title": "Must / have to – обязанность",
+                "text": """
+<b>🔔 Must – внутренняя обязанность, have to – внешняя.</b>
+
+• I must call my mom. (Я чувствую, что должен.)
+• I have to wear a uniform at work. (Меня заставляют.)
+
+<blockquote>В вопросах have to звучит естественнее: Do I have to go? (а не Must I go?)</blockquote>
+"""
+            },
+            {
+                "title": "Need to – необходимость",
+                "text": """
+<b>📌 Need to – выражает необходимость, часто как обычный глагол.</b>
+
+• I need to finish this report today. (Мне нужно закончить отчёт сегодня.)
+• Do you need to leave early? (Тебе нужно уйти рано?)
+• You don't need to bring anything. (Тебе не нужно ничего приносить.)
+
+<blockquote>В отрицании don't need to = don't have to (отсутствие необходимости).</blockquote>
+"""
+            },
+            {
+                "title": "Сравнение и типичные ошибки",
+                "text": """
+<b>📊 Сравнение:</b>
+• <b>may</b> – разрешение (формально), вероятность 40‑50%
+• <b>might</b> – малая вероятность 30%
+• <b>must</b> – обязанность (личное чувство)
+• <b>have to</b> – вынужденность
+• <b>need to</b> – необходимость
+
+<b>⚠️ Типичные ошибки:</b>
+• ❌ I must to go.  ✅ I must go.
+• ❌ She has to goes.  ✅ She has to go.
+• ❌ May I to sit here?  ✅ May I sit here?
+
+<b>💡 Совет:</b> Для повседневных разговоров о необходимости используйте have to / need to. Must звучит очень сильно, почти как приказ.
+"""
+            }
+        ],
+        "faq": [
+            {"question": "В чём разница между 'mustn't' и 'don't have to'?", "answer": "Mustn't – запрещено (You mustn't park here). Don't have to – не нужно (You don't have to pay)."}
+        ]
     },
-    "modal_probability": {
+        "modal_probability": {
         "title": "Модальные глаголы: вероятность (must, might, could, can't)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Степени уверенности",
+                "text": """
+<b>📊 Шкала вероятности (от 0% до 100%):</b>
+
+• <b>must</b> – почти уверен (90‑95%) – должно быть
+• <b>will</b> – уверен (90‑100%)
+• <b>should</b> – ожидаемо (70‑80%)
+• <b>could / may</b> – возможно (40‑50%)
+• <b>might</b> – маловероятно (30%)
+• <b>can't / couldn't</b> – не может быть (0‑5%)
+
+<blockquote>Модальные глаголы вероятности используются, когда мы делаем логическое предположение.</blockquote>
+"""
+            },
+            {
+                "title": "Утвердительная вероятность (must, could, may, might)",
+                "text": """
+<b>✅ Примеры:</b>
+
+• She's been working all day. She must be tired. (Она работала весь день. Должно быть, устала – почти уверен)
+• He's not answering. He might be busy. (Он не отвечает. Возможно, он занят – менее уверен)
+• They could be at home, but I'm not sure. (Они могут быть дома, но я не уверен)
+• It may rain later – take an umbrella. (Возможно, позже дождь)
+
+<blockquote>Must не используется для отрицательных предположений: для этого есть can't.</blockquote>
+"""
+            },
+            {
+                "title": "Отрицательная вероятность (can't, couldn't)",
+                "text": """
+<b>🚫 Can't / couldn't – выражают уверенность, что что-то не так.</b>
+
+• He can't be at home. The lights are off. (Не может быть, чтобы он был дома. Свет выключен.)
+• She couldn't have seen me. I was hiding. (Она не могла меня видеть. Я прятался.)
+
+<blockquote>Can't сильнее, чем might not. Might not – возможно, не (50% уверенности).</blockquote>
+"""
+            },
+            {
+                "title": "Типичные ошибки и советы",
+                "text": """
+<b>⚠️ Частые ошибки:</b>
+• ❌ He must be not tired.  ✅ He can't be tired. / He must not be tired (если 'must not' = запрещено, не подходит)
+• ❌ She may to be late.  ✅ She may be late.
+
+<b>💡 Совет:</b>
+• Если вы почти уверены, что что-то верно – must.
+• Если почти уверены, что что-то неверно – can't.
+• Если сомневаетесь – may, might, could.
+• Тренируйтесь: глядя на погоду, делайте предположения: It must be cold – there's ice.
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Чем отличается 'might not' от 'can't'?", "answer": "Might not – возможно, не (30-40% вероятности). Can't – не может быть (0-5% вероятности)."}
+        ]
     },
     "modal_advice_criticism": {
         "title": "Модальные глаголы: совет, критика (should, ought to, had better)",
