@@ -1039,20 +1039,221 @@ Was/Were + подлежащее + V‑ing?
             {"question": "Чем отличается 'mustn't' от 'don't have to'?", "answer": "Mustn't – нельзя (запрещено). Don't have to – не нужно (отсутствие необходимости). Например: You mustn't park here (штраф). You don't have to park here (можешь, но необязательно)."}
         ]
     },
-    "mustnt_vs_dont_have_to": {
+        "mustnt_vs_dont_have_to": {
         "title": "Mustn't vs don't have to (запрет и отсутствие необходимости)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке. Скоро здесь появится теория."}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Mustn't – строгий запрет",
+                "text": """
+<b>🚫 Mustn't означает, что действие запрещено, его нельзя делать.</b>
+
+• You mustn't smoke here. (Здесь нельзя курить – правило, штраф.)
+• You mustn't touch the wire. (Не трогай провод – опасно.)
+• You mustn't be late for the exam. (Нельзя опаздывать на экзамен.)
+
+<blockquote>Mustn't выражает жёсткий запрет, часто основанный на правилах или опасности.</blockquote>
+"""
+            },
+            {
+                "title": "Don't have to – отсутствие необходимости",
+                "text": """
+<b>✅ Don't have to означает, что действие не обязательно, его можно не делать.</b>
+
+• You don't have to pay. (Тебе не нужно платить – бесплатно.)
+• You don't have to come if you're busy. (Тебе не нужно приходить, если ты занят.)
+• I don't have to wake up early tomorrow. (Мне не нужно рано вставать завтра.)
+
+<blockquote>Don't have to не запрет, а свобода выбора.</blockquote>
+"""
+            },
+            {
+                "title": "Сравнение и примеры",
+                "text": """
+<b>📊 Сравнение в одной ситуации:</b>
+
+• You mustn't park here. (Здесь нельзя парковаться – запрещено.)
+• You don't have to park here. (Тебе не нужно парковаться здесь – можешь выбрать другое место.)
+
+<b>Примеры в контексте:</b>
+• In a museum: You mustn't touch the paintings. (запрет)
+• At a party: You don't have to bring a gift. (необязательно)
+• At work: You mustn't use your phone during the meeting. (запрет)
+• At school: You don't have to wear a uniform. (свобода выбора)
+
+<b>⚠️ Типичная ошибка:</b>
+• ❌ You mustn't pay if you don't want. (неправильно, нужно don't have to)
+• ✅ You don't have to pay if you don't want.
+
+<blockquote>Запомните: mustn't = нельзя; don't have to = не нужно.</blockquote>
+"""
+            },
+            {
+                "title": "Советы и практика",
+                "text": """
+<b>💡 Советы:</b>
+• Если хотите сказать, что действие запрещено правилами или опасно – используйте mustn't.
+• Если хотите сказать, что действие необязательно – используйте don't have to.
+• В вопросах для вежливого выяснения необходимости: Do I have to...? (Нужно ли мне...?) – НЕ Must I?
+
+<b>Практика:</b>
+• Составьте три предложения о правилах в вашем городе (mustn't) и три о необязательных вещах (don't have to).
+• Ответьте на вопросы: Do you have to go to work tomorrow? (Нужно?)
+• Спросите друга: What mustn't I do at your place? (Что нельзя делать у тебя дома?)
+
+<blockquote>Разница между запретом и отсутствием необходимости важна для экзаменов и реального общения.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Как сказать 'не обязательно' по-другому?", "answer": "You don't have to / You needn't (более формально, но реже)."}
+        ]
     },
-    "conditionals_0": {
+        "conditionals_0": {
         "title": "Условные предложения 0 типа",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке. Скоро здесь появится теория."}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Что такое 0 тип?",
+                "text": """
+<b>🔁 Conditional 0 (ноль типа) – для фактов, законов природы, общеизвестных истин.</b>
+
+Формула: If + Present Simple, + Present Simple
+
+• If you heat ice, it melts. (Если нагреть лёд, он тает.)
+• If it rains, the ground gets wet. (Если идёт дождь, земля становится мокрой.)
+• If I am late, my father gets angry. (Если я опаздываю, мой отец злится.)
+
+<blockquote>В 0 типе условие всегда выполняется, результат всегда одинаков.</blockquote>
+"""
+            },
+            {
+                "title": "Когда использовать",
+                "text": """
+<b>📌 Основные случаи:</b>
+1. <b>Научные факты и законы природы</b>
+   • If you mix red and yellow, you get orange. (Если смешать красный и жёлтый, получится оранжевый.)
+   • If water reaches 100°C, it boils. (Если вода достигает 100°C, она кипит.)
+
+2. <b>Личные привычки и правила</b>
+   • If I have a headache, I take a pill. (Если у меня болит голова, я принимаю таблетку.)
+   • If my daughter is tired, she goes to bed early. (Если моя дочь устаёт, она рано ложится.)
+
+3. <b>Общеизвестные истины</b>
+   • If you don't eat, you get hungry. (Если не есть, проголодаешься.)
+   • If you study hard, you get good marks. (Если усердно учиться, получаешь хорошие оценки.)
+
+<blockquote>0 тип описывает не конкретную ситуацию, а общее правило.</blockquote>
+"""
+            },
+            {
+                "title": "Порядок частей предложения",
+                "text": """
+<b>📝 If-часть может стоять как в начале, так и в конце.</b>
+
+• If you heat ice, it melts. (Если нагреть лёд, он тает.)
+• It melts if you heat ice. (Он тает, если нагреть лёд.)
+
+<b>Запятая ставится только когда if-часть в начале.</b>
+
+<b>Примеры:</b>
+• If you don't water plants, they die. (Если не поливать растения, они умирают.)
+• Plants die if you don't water them. (Растения умирают, если их не поливать.)
+
+<blockquote>Смысл не меняется.</blockquote>
+"""
+            },
+            {
+                "title": "Типичные ошибки и советы",
+                "text": """
+<b>⚠️ Частые ошибки:</b>
+• ❌ If you will heat ice, it melts.  ✅ If you heat ice, it melts. (Не ставьте will в if-части)
+• ❌ If you heat ice, it will melt. (можно и так, но это уже 1 тип, акцент на результате)
+• В 0 типе оба глагола в Present Simple.
+
+<b>💡 Советы:</b>
+• Если вы описываете закон природы или всегда верное утверждение – 0 тип.
+• Не используйте will в if-части (это ошибка).
+• Тренируйтесь: придумайте 5 универсальных истин (If you eat too much, you gain weight.)
+
+<blockquote>0 тип – самый простой, но путают с 1 типом. Запомните: 0 тип – всегда верно.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Чем отличается 0 тип от 1 типа?", "answer": "0 тип – факты, всегда верно (If you heat ice, it melts). 1 тип – реальное условие в будущем (If you heat ice, it will melt – конкретный кусок льда растает)."}
+        ]
     },
-    "conditionals_1": {
-        "title": "Условные предложения 1 типа",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке. Скоро здесь появится теория."}],
-        "faq": []
+        "conditionals_1": {
+        "title": "Условные предложения 1 типа (реальное условие)",
+        "pages": [
+            {
+                "title": "Что такое 1 тип?",
+                "text": """
+<b>🔮 Conditional 1 – реальное, выполнимое условие в будущем.</b>
+
+Формула: If + Present Simple, + will / can / may + глагол
+
+• If it rains tomorrow, I will stay at home. (Если завтра пойдёт дождь, я останусь дома.)
+• If you study, you will pass the exam. (Если будешь учиться, сдашь экзамен.)
+• If she comes, we can start. (Если она придёт, мы можем начинать.)
+
+<blockquote>Условие относится к будущему, и оно реально может произойти.</blockquote>
+"""
+            },
+            {
+                "title": "Порядок частей и варианты",
+                "text": """
+<b>📝 If-часть может стоять в начале или в конце.</b>
+
+• If you need help, I will help you. (Если нужна помощь, я помогу.)
+• I will help you if you need help. (Я помогу, если нужна помощь.)
+
+<b>В главной части можно использовать:</b>
+• will (обещание, факт): I will call you.
+• can (возможность): You can join us.
+• may (разрешение или вероятность): You may go home early.
+• might (малая вероятность): I might come later.
+
+<b>Примеры:</b>
+• If you hurry, you can catch the bus. (Если поторопишься, можешь успеть на автобус.)
+• If it's sunny, we may go to the beach. (Если будет солнечно, мы, возможно, поедем на пляж.)
+
+<blockquote>В if-части никогда не ставим will, only Present Simple.</blockquote>
+"""
+            },
+            {
+                "title": "Сравнение 0 и 1 типа",
+                "text": """
+<b>📊 Примеры для сравнения:</b>
+
+• 0 тип (всегда верно): If you heat ice, it melts. (Всегда.)
+• 1 тип (конкретный случай): If you heat this ice cube, it will melt. (Этот кубик льда растает, если его нагреть.)
+
+• 0 тип: If you don't eat, you get hungry. (Общее правило.)
+• 1 тип: If you don't eat dinner, you will be hungry tonight. (Конкретный вечер.)
+
+<blockquote>1 тип выражает личное решение или прогноз на будущее, а не закон природы.</blockquote>
+"""
+            },
+            {
+                "title": "Типичные ошибки и советы",
+                "text": """
+<b>⚠️ Частые ошибки:</b>
+• ❌ If you will come, I will be happy.  ✅ If you come, I will be happy.
+• ❌ If he studies, he passes. (Это 0 тип – общее правило; для конкретного случая нужно will pass)
+• ❌ If I will see her, I'll tell her. (неправильно)  ✅ If I see her, I'll tell her.
+
+<b>💡 Советы:</b>
+• Запомните: в if-части всегда Present Simple, даже если речь о будущем.
+• В главной части можно использовать модальные глаголы (can, may, might) для оттенков.
+• Практикуйтесь: напишите 3 реальных плана на выходные, используя 1 тип.
+
+<blockquote>1 тип – самый популярный для повседневных обещаний, предупреждений и планов.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Можно ли в if-части использовать be going to?", "answer": "Не рекомендуется. Хотя иногда встречается, стандартная грамматика требует Present Simple."}
+        ]
     },
 
     # ==================== МОДУЛЬ 3: Пассивный залог и косвенная речь ====================
