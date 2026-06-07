@@ -786,20 +786,258 @@ Was/Were + подлежащее + V‑ing?
     },
 
     # ==================== МОДУЛЬ 2: Модальные глаголы и условные предложения ====================
-    "modal_can_could_may_might": {
+        "modal_can_could_may_might": {
         "title": "Модальные глаголы: can, could, may, might",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке. Скоро здесь появится теория."}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Can – способность, разрешение, просьба",
+                "text": """
+<b>💪 Can – самый частотный модальный глагол.</b>
+
+<b>Значения:</b>
+1. <b>Способность (умение)</b> – I can swim. (Я умею плавать.)
+2. <b>Разрешение (можно)</b> – You can go now. (Ты можешь идти – я разрешаю.)
+3. <b>Просьба (неформальная)</b> – Can you help me? (Ты не мог бы помочь?)
+
+<b>Формы:</b>
+• Утверждение: I can play.
+• Отрицание: cannot / can't (I can't play.)
+• Вопрос: Can you play?
+
+<blockquote>После can всегда глагол без частицы to.</blockquote>
+"""
+            },
+            {
+                "title": "Could – прошедшее умение, вежливая просьба, возможность",
+                "text": """
+<b>💡 Could – более вежливый и менее уверенный, чем can.</b>
+
+<b>Значения:</b>
+1. <b>Прошедшее умение</b> (было умел) – When I was young, I could run fast. (Когда я был молодым, я мог быстро бегать.)
+2. <b>Вежливая просьба</b> – Could you open the door, please? (Не могли бы вы открыть дверь?)
+3. <b>Возможность (50% вероятности)</b> – It could rain later. (Возможно, позже пойдёт дождь.)
+
+<b>Формы:</b>
+• Утверждение: I could help.
+• Отрицание: could not / couldn't (I couldn't come.)
+• Вопрос: Could I call you?
+
+<blockquote>Could также используется как условная форма can.</blockquote>
+"""
+            },
+            {
+                "title": "May и might – разрешение и малая вероятность",
+                "text": """
+<b>🎭 May и might – очень близки по значению, но may чуть более формальный и более вероятный.</b>
+
+<b>May:</b>
+1. <b>Разрешение (формальное)</b> – May I come in? (Можно войти?)
+2. <b>Возможность (40-50%)</b> – I may go to the party. (Возможно, я пойду на вечеринку.)
+
+<b>Might:</b>
+1. <b>Очень малая вероятность (20-30%)</b> – It might snow tomorrow. (Может быть, завтра снег выпадет.)
+2. <b>Неуверенность</b> – She might be late. (Она, возможно, опоздает.)
+
+<b>Формы:</b>
+• May / might + глагол (без to)
+• Отрицание: may not, might not
+• Вопрос: May I...? (Might в вопросах редко)
+
+<blockquote>В разговорной речи might часто используется для вежливого предположения: You might want to see this.</blockquote>
+"""
+            },
+            {
+                "title": "Сравнение и советы",
+                "text": """
+<b>📊 Сравнение вероятности (примерно):</b>
+• will – 90% (уверен)
+• can – 70% (возможно, умею)
+• may – 50% (возможно, разрешение)
+• could – 50% (возможно, вежливо)
+• might – 30% (маловероятно)
+
+<b>Примеры в контексте:</b>
+• It may rain, so take an umbrella. (50/50)
+• It might rain, but I'm not sure. (30/70)
+• Can you swim? (спрашиваю умение)
+• Could you swim when you were 5? (прошлое умение)
+• May I sit here? (вежливо, официально)
+
+<b>⚠️ Типичные ошибки:</b>
+• ❌ I can to swim.  ✅ I can swim.
+• ❌ She cans play.  ✅ She can play.
+• ❌ He mights come.  ✅ He might come.
+
+<b>💡 Совет:</b> Для вежливых просьб используйте could; для формального разрешения – may; для маловероятного предположения – might.
+
+<blockquote>Практика: попросите по-разному (can you, could you, may I) и оцените вероятность событий.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "В чём разница между 'could I' и 'may I'?", "answer": "Could I – вежливая просьба; May I – более формальное разрешение. В повседневной речи чаще используют could."}
+        ]
     },
-    "modal_should_ought": {
+        "modal_should_ought": {
         "title": "Модальные глаголы: should, ought to",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке. Скоро здесь появится теория."}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Should – совет, рекомендация, моральный долг",
+                "text": """
+<b>📌 Should – самый частотный глагол для совета.</b>
+
+<b>Значения:</b>
+1. <b>Совет, рекомендация</b> – You should see a doctor. (Тебе следует сходить к врачу.)
+2. <b>Моральный долг</b> – We should respect the law. (Мы должны уважать закон.)
+3. <b>Ожидание</b> – The train should arrive soon. (Поезд должен прибыть скоро.)
+
+<b>Формы:</b>
+• Утверждение: I should study.
+• Отрицание: should not / shouldn't (You shouldn't smoke.)
+• Вопрос: Should I call him?
+
+<blockquote>Should мягче, чем must. Must – жёсткая обязанность, should – рекомендация.</blockquote>
+"""
+            },
+            {
+                "title": "Ought to – синоним should (чуть формальнее)",
+                "text": """
+<b>⚖️ Ought to имеет то же значение, что и should, но используется реже и звучит более формально.</b>
+
+• You ought to apologize. (Тебе следует извиниться.)
+• She ought to be more careful. (Ей следует быть осторожнее.)
+• They ought to arrive by 6 pm. (Они должны прибыть к 6 вечера.)
+
+<b>Важные отличия от should:</b>
+• После ought to всегда частица to (в отличие от should).
+• В вопросах ought to почти не используется (вместо него should).
+• Отрицание: ought not to / oughtn't to (редко, чаще shouldn't).
+
+<blockquote>В современном английском should предпочтительнее в разговорной речи.</blockquote>
+"""
+            },
+            {
+                "title": "Сравнение should, ought to, must, have to",
+                "text": """
+<b>📊 Сравнение обязанности и совета:</b>
+
+• <b>Must</b> – сильная внутренняя обязанность (I must finish this – я так решил).
+• <b>Have to</b> – вынужден из-за обстоятельств (I have to work – меня заставляют).
+• <b>Should</b> – совет, мягкая рекомендация (You should rest – тебе стоит отдохнуть).
+• <b>Ought to</b> – то же, что should, но формальнее.
+
+<b>Примеры:</b>
+• You must stop at a red light. (правило – обязательно)
+• You should stop smoking. (совет, не обязанность)
+• I have to go to the meeting. (меня заставляют)
+• You ought to see that film. (рекомендация)
+
+<blockquote>Отрицание should not = shouldn't (не следует); must not = mustn't (запрещено).</blockquote>
+"""
+            },
+            {
+                "title": "Типичные ошибки и советы",
+                "text": """
+<b>⚠️ Частые ошибки:</b>
+• ❌ I should to go.  ✅ I should go.
+• ❌ She oughts to come.  ✅ She ought to come.
+• ❌ You must not should go.  ✅ You shouldn't go.
+
+<b>💡 Советы:</b>
+• Для совета другу используйте should (Should I buy this? – Yes, you should.)
+• Для формальных рекомендаций – ought to.
+• Не путайте should (следует) с must (должен).
+• В вопросах всегда should: Should we leave now? (не Ought we to leave?)
+
+<blockquote>Практикуйтесь: дайте совет другу, который плохо себя чувствует, используя should.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Можно ли использовать 'ought to' в вопросах?", "answer": "Формально да, но очень редко. Вместо 'Ought we to go?' лучше 'Should we go?'."}
+        ]
     },
-    "modal_must_have_to": {
+        "modal_must_have_to": {
         "title": "Модальные глаголы: must, have to (обязанность)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке. Скоро здесь появится теория."}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Must – внутренняя обязанность",
+                "text": """
+<b>🔔 Must выражает сильную личную обязанность или необходимость.</b>
+
+<b>Значения:</b>
+1. <b>Обязанность (я сам считаю, что должен)</b> – I must study more. (Я должен больше учиться – я так решил.)
+2. <b>Настоятельная рекомендация</b> – You must see that film. (Ты обязательно должен посмотреть этот фильм.)
+3. <b>Запрет (mustn't)</b> – You mustn't touch the wire. (Не трогай провод – запрещено.)
+
+<b>Формы:</b>
+• Утверждение: I must go.
+• Отрицание: must not / mustn't (строгий запрет)
+• Вопрос: Must we go? (редко, обычно 'Do we have to go?')
+
+<blockquote>Must не имеет прошедшего времени – для прошлого используйте had to.</blockquote>
+"""
+            },
+            {
+                "title": "Have to – внешняя обязанность",
+                "text": """
+<b>📌 Have to выражает необходимость, вызванную внешними обстоятельствами.</b>
+
+• I have to work on Sunday. (Я должен работать в воскресенье – меня заставляют.)
+• She has to wear a uniform. (Она должна носить форму – правило.)
+• We have to be quiet in the library. (Мы должны тихо себя вести в библиотеке – правило.)
+
+<b>Формы:</b>
+• Утверждение: I / You / We / They have to; He / She / It has to.
+• Отрицание: don't / doesn't have to (отсутствие необходимости, НЕ запрет!)
+  • You don't have to come. (Тебе не нужно приходить – нет обязанности.)
+• Вопрос: Do / Does + подлежащее + have to?
+  • Do we have to pay? (Нам нужно платить?)
+
+<blockquote>В разговорной речи have to часто используется вместо must для всех случаев.</blockquote>
+"""
+            },
+            {
+                "title": "Сравнение must, have to, mustn't, don't have to",
+                "text": """
+<b>📊 Ключевые различия:</b>
+
+• <b>Must</b> – личное решение, убеждение (I must lose weight – я сам решил).
+• <b>Have to</b> – внешнее правило или обстоятельство (I have to wear a suit at work – дресс-код).
+• <b>Mustn't</b> – строгий запрет (You mustn't park here – запрещено штрафом).
+• <b>Don't have to</b> – отсутствие необходимости (You don't have to pay – бесплатно).
+
+<b>Примеры:</b>
+• I must call my mom. (я хочу и чувствую долг)
+• I have to call my boss. (меня просят или заставляют)
+• You mustn't smoke here. (запрещено)
+• You don't have to smoke. (можешь, но не обязательно – странный совет, но грамматически верно)
+
+<blockquote>Отрицание mustn't и don't have to – это совершенно разные значения. Не путайте!</blockquote>
+"""
+            },
+            {
+                "title": "Типичные ошибки и советы",
+                "text": """
+<b>⚠️ Частые ошибки:</b>
+• ❌ I must to go.  ✅ I must go.
+• ❌ She musts work.  ✅ She must work.
+• ❌ I don't must go.  ✅ I don't have to go. (отсутствие необходимости)
+• ❌ You mustn't pay if you don't want. (неправильно, нужно don't have to)
+
+<b>💡 Советы:</b>
+• Для запретов всегда mustn't.
+• Для отсутствия необходимости всегда don't / doesn't have to.
+• В вопросах о внешней необходимости используйте have to, а не must (Do we have to go? звучит естественнее Must we go?).
+• В прошедшем времени только had to (и для must, и для have to).
+
+<blockquote>Практика: опишите правила в вашей школе или на работе, используя have to / must / mustn't.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Чем отличается 'mustn't' от 'don't have to'?", "answer": "Mustn't – нельзя (запрещено). Don't have to – не нужно (отсутствие необходимости). Например: You mustn't park here (штраф). You don't have to park here (можешь, но необязательно)."}
+        ]
     },
     "mustnt_vs_dont_have_to": {
         "title": "Mustn't vs don't have to (запрет и отсутствие необходимости)",
