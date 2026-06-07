@@ -5,6 +5,7 @@ from aiogram.types import CallbackQuery, InlineKeyboardMarkup, InlineKeyboardBut
 from data.users import get_user_state, set_user_state
 from data.level_a1 import LEVEL_A1_CONTENT
 from data.level_a2 import LEVEL_A2_CONTENT
+from data.level_b1 import LEVEL_B1_CONTENT
 from services.deepseek import chat
 from speaking.services.tts import text_to_voice
 
@@ -13,6 +14,7 @@ router = Router()
 LESSON_CONTENT = {}
 LESSON_CONTENT.update(LEVEL_A1_CONTENT)
 LESSON_CONTENT.update(LEVEL_A2_CONTENT)
+LESSON_CONTENT.update(LEVEL_B1_CONTENT)
 
 THEMATIC_TOPICS = [
     "Present Simple vs Continuous",
@@ -70,7 +72,18 @@ MODULES_A2 = {
     }
 }
 
-ALL_MODULES = {"A1": MODULES_A1, "A2": MODULES_A2}
+MODULES_B1 = {
+    "1": {"name": "📘 Модуль 1: Времена и аспекты (углубление)", "lessons": ["present_tenses_review", "past_tenses_review", "present_perfect_continuous", "past_perfect", "past_perfect_continuous", "future_continuous", "future_perfect", "future_in_the_past", "time_clauses"]},
+    "2": {"name": "📙 Модуль 2: Модальные глаголы (углубление)", "lessons": ["modal_ability", "modal_permission_obligation", "modal_probability", "modal_advice_criticism", "modal_perfect"]},
+    "3": {"name": "📗 Модуль 3: Условные предложения и желания", "lessons": ["conditionals_2", "conditionals_3", "mixed_conditionals", "wish_if_only", "would_rather_prefer"]},
+    "4": {"name": "📘 Модуль 4: Герундий и инфинитив (углубление)", "lessons": ["gerund_vs_infinitive_advanced", "verbs_with_both", "passive_gerund_infinitive"]},
+    "5": {"name": "📙 Модуль 5: Пассивный залог (углубление)", "lessons": ["passive_all_tenses", "passive_with_modals", "impersonal_passive", "causative_have_get"]},
+    "6": {"name": "📗 Модуль 6: Косвенная речь (углубление)", "lessons": ["reported_speech_advanced", "reported_commands_requests", "reported_questions_advanced", "reporting_verbs"]},
+    "7": {"name": "📘 Модуль 7: Придаточные и связки", "lessons": ["relative_clauses_advanced", "clauses_of_concession", "clauses_of_purpose", "clauses_of_result"]},
+    "8": {"name": "📙 Модуль 8: Лексика B1", "lessons": ["education_learning", "money_finance", "media_advertising", "crime_law", "personality_character", "workplace", "global_issues", "phrasal_verbs_1", "phrasal_verbs_2", "word_formation"]}
+}
+
+ALL_MODULES = {"A1": MODULES_A1, "A2": MODULES_A2, "B1": MODULES_B1}
 
 LESSON_NAMES = {
 # Названия для A1 (вставьте в LESSON_NAMES)
@@ -152,6 +165,58 @@ LESSON_NAMES = {
     "relationships_communication": "👥 Отношения и общение",
     "news_current_events": "📰 Новости и текущие события",
     "idioms_phrases": "💬 Разговорные фразы и идиомы",
+    # B1 модуль 1
+    "present_tenses_review": "📖 Present Tenses (повторение)",
+    "past_tenses_review": "📖 Past Tenses (повторение)",
+    "present_perfect_continuous": "🔄 Present Perfect Continuous (углубление)",
+    "past_perfect": "⏳ Past Perfect",
+    "past_perfect_continuous": "⏳ Past Perfect Continuous",
+    "future_continuous": "🔮 Future Continuous",
+    "future_perfect": "🔮 Future Perfect",
+    "future_in_the_past": "📅 Future in the Past",
+    "time_clauses": "⏰ Придаточные времени",
+    # B1 модуль 2
+    "modal_ability": "💪 Модальные глаголы: способность",
+    "modal_permission_obligation": "⚖️ Модальные глаголы: разрешение, обязанность",
+    "modal_probability": "🎲 Модальные глаголы: вероятность",
+    "modal_advice_criticism": "💡 Модальные глаголы: совет, критика",
+    "modal_perfect": "✅ Modal Perfect",
+    # B1 модуль 3
+    "conditionals_2": "🔁 Условные предложения 2 типа",
+    "conditionals_3": "🔁 Условные предложения 3 типа",
+    "mixed_conditionals": "🔄 Смешанные условные",
+    "wish_if_only": "😔 Конструкции I wish, If only",
+    "would_rather_prefer": "⚖️ Конструкции would rather, prefer",
+    # B1 модуль 4
+    "gerund_vs_infinitive_advanced": "📝 Герундий vs инфинитив (сложные случаи)",
+    "verbs_with_both": "🔄 Глаголы с герундием и инфинитивом (смена смысла)",
+    "passive_gerund_infinitive": "📦 Пассивный герундий и инфинитив",
+    # B1 модуль 5
+    "passive_all_tenses": "📦 Пассивный залог (все времена)",
+    "passive_with_modals": "📦 Пассив с модальными глаголами",
+    "impersonal_passive": "📦 Безличный пассив (It is said that…)",
+    "causative_have_get": "🔧 Конструкция have/get something done",
+    # B1 модуль 6
+    "reported_speech_advanced": "🗣️ Косвенная речь (сложные случаи)",
+    "reported_commands_requests": "🗣️ Косвенная речь: приказы и просьбы",
+    "reported_questions_advanced": "❓ Косвенные вопросы (сложные случаи)",
+    "reporting_verbs": "📢 Глаголы для передачи речи",
+    # B1 модуль 7
+    "relative_clauses_advanced": "🔗 Определительные придаточные (defining/non-defining)",
+    "clauses_of_concession": "🧩 Придаточные уступки (although, despite)",
+    "clauses_of_purpose": "🎯 Придаточные цели (to, in order to, so that)",
+    "clauses_of_result": "💥 Придаточные следствия (so…that, such…that)",
+    # B1 модуль 8
+    "education_learning": "📚 Образование и обучение",
+    "money_finance": "💰 Деньги и финансы",
+    "media_advertising": "📺 Медиа и реклама",
+    "crime_law": "⚖️ Преступления и закон",
+    "personality_character": "🧠 Характер человека (углубление)",
+    "workplace": "💼 Рабочая среда",
+    "global_issues": "🌍 Глобальные проблемы",
+    "phrasal_verbs_1": "🔤 Фразовые глаголы (часть 1)",
+    "phrasal_verbs_2": "🔤 Фразовые глаголы (часть 2)",
+    "word_formation": "🔨 Словообразование",
 }
 
 user_page = {}
