@@ -1566,25 +1566,269 @@ LEVEL_B1_CONTENT = {
     },
 
     # ==================== МОДУЛЬ 5: Пассивный залог (углубление) ====================
-    "passive_all_tenses": {
+        "passive_all_tenses": {
         "title": "Пассивный залог во всех временах",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Образование пассива",
+                "text": """
+<b>📦 Пассивный залог: to be + V3. Время показывает форма глагола to be.</b>
+
+• Present Simple: am/is/are + V3
+  • The room is cleaned every day.
+
+• Present Continuous: am/is/are + being + V3
+  • The house is being painted now.
+
+• Present Perfect: have/has + been + V3
+  • The car has been repaired.
+
+• Past Simple: was/were + V3
+  • The letter was sent yesterday.
+
+• Past Continuous: was/were + being + V3
+  • The road was being repaired when I passed.
+
+• Past Perfect: had + been + V3
+  • The problem had been solved before we arrived.
+
+• Future Simple: will + be + V3
+  • The results will be announced tomorrow.
+
+• Future Perfect: will + have + been + V3
+  • The project will have been finished by next week.
+
+<blockquote>В пассиве важно то, что действие совершается над подлежащим, а не кто его совершает.</blockquote>
+"""
+            },
+            {
+                "title": "Примеры всех времён в пассиве",
+                "text": """
+<b>📖 Примеры:</b>
+
+• Present Simple: English is spoken here.
+• Present Continuous: The film is being shot now.
+• Present Perfect: The tickets have been sold out.
+• Past Simple: The building was constructed in 1990.
+• Past Continuous: The dinner was being prepared when I came.
+• Past Perfect: The mistake had been corrected before the deadline.
+• Future Simple: The invitations will be sent next week.
+• Future Perfect: The work will have been completed by 6 pm.
+
+<blockquote>Отрицание и вопросы образуются как в активе, но с пассивной формой: Is the room cleaned? It hasn't been cleaned yet.</blockquote>
+"""
+            },
+            {
+                "title": "Когда использовать пассив",
+                "text": """
+<b>📌 Основные случаи:</b>
+• Исполнитель неизвестен или неважен (The window was broken.)
+• Исполнитель очевиден (The criminal was arrested.)
+• В официальных, научных текстах (The experiment was conducted.)
+• Чтобы избежать обвинения (A mistake was made – вместо You made a mistake.)
+
+<blockquote>В разговорной речи пассив используется реже, чем актив.</blockquote>
+"""
+            },
+            {
+                "title": "Типичные ошибки и советы",
+                "text": """
+<b>⚠️ Частые ошибки:</b>
+• ❌ The letter was send yesterday.  ✅ The letter was sent yesterday.
+• ❌ The house is being build.  ✅ The house is being built.
+• ❌ The work will been finished.  ✅ The work will be finished.
+
+<b>💡 Совет:</b>
+• Выучите третьи формы неправильных глаголов – они обязательны для пассива.
+• Если сомневаетесь, можно переформулировать в актив: Someone has repaired the car вместо The car has been repaired.
+• Тренируйтесь: переделывайте активные предложения в пассив.
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Всегда ли в пассиве нужен 'by'?", "answer": "Только если исполнитель важен. The Mona Lisa was painted by Leonardo da Vinci."}
+        ]
     },
-    "passive_with_modals": {
+        "passive_with_modals": {
         "title": "Пассивный залог с модальными глаголами",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Формула",
+                "text": """
+<b>📦 Модальный глагол + be + V3 – пассив с модальностью.</b>
+
+• must be done – должно быть сделано
+• can be done – может быть сделано
+• could be done – могло бы быть сделано
+• may / might be done – возможно, будет сделано
+• should be done – следует сделать
+• ought to be done – следует сделать
+
+<blockquote>После модального глагола всегда инфинитив без to, поэтому be (без to).</blockquote>
+"""
+            },
+            {
+                "title": "Примеры",
+                "text": """
+<b>📖 Примеры:</b>
+
+• This work must be finished today. (Эту работу нужно закончить сегодня.)
+• The problem can be solved easily. (Проблему можно легко решить.)
+• The meeting could be postponed. (Встречу могли бы перенести.)
+• The results may be published next week. (Результаты могут быть опубликованы на следующей неделе.)
+• The rules should be followed. (Правила следует соблюдать.)
+
+<blockquote>Для отрицания: can't be done, shouldn't be done, mustn't be done.</blockquote>
+"""
+            },
+            {
+                "title": "Пассив с модальными глаголами в прошедшем",
+                "text": """
+<b>⏪ Пассив в прошедшем с модальными: must have been + V3, could have been + V3 и т.д.</b>
+
+• The letter must have been sent yesterday. (Письмо, должно быть, было отправлено вчера.)
+• The mistake could have been avoided. (Ошибки можно было избежать.)
+• The contract should have been signed last week. (Контракт следовало подписать на прошлой неделе.)
+• The thief might have been caught. (Воp мог быть пойман.)
+
+<blockquote>Это сложная, но полезная конструкция для выражения предположений о прошлом.</blockquote>
+"""
+            },
+            {
+                "title": "Типичные ошибки и советы",
+                "text": """
+<b>⚠️ Частые ошибки:</b>
+• ❌ This must be done by yesterday.  ✅ This must have been done by yesterday.
+• ❌ The work can be do.  ✅ The work can be done.
+• ❌ It should been finished.  ✅ It should be finished / It should have been finished.
+
+<b>💡 Совет:</b>
+• Для настоящего/будущего – must be done, can be done, should be done.
+• Для прошлого – must have been done, could have been done, should have been done.
+• Тренируйтесь: давайте советы в пассиве: This should be done differently.
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Как сказать 'это могло быть сделано лучше'?", "answer": "It could have been done better."}
+        ]
     },
-    "impersonal_passive": {
+        "impersonal_passive": {
         "title": "Безличный пассив (It is said that…, He is said to…)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Что такое безличный пассив?",
+                "text": """
+<b>🗣️ Безличный пассив используется для передачи мнений, слухов, сообщений, когда неважно, кто говорит.</b>
+
+Две конструкции:
+1. It + is/was + said/believed/thought/reported + that + предложение
+2. Подлежащее + is/was + said/believed/thought + to + инфинитив
+
+<blockquote>Часто используется в новостях и официальной речи.</blockquote>
+"""
+            },
+            {
+                "title": "Конструкция It is said that...",
+                "text": """
+<b>📌 It + be + reported/thought/believed/expected/known + that ...</b>
+
+• It is said that the president will resign. (Говорят, президент уйдёт в отставку.)
+• It was reported that the accident caused no injuries. (Сообщалось, что в аварии никто не пострадал.)
+• It is believed that the stolen painting is in Europe. (Полагают, что украденная картина находится в Европе.)
+
+<blockquote>После it можно использовать любой глагол передачи информации: say, report, think, believe, expect, know, consider.</blockquote>
+"""
+            },
+            {
+                "title": "Конструкция He is said to...",
+                "text": """
+<b>📌 Подлежащее + be + said/reported + to + инфинитив (или to have + V3 для прошлого).</b>
+
+• He is said to be very rich. (Говорят, что он очень богат – настоящее)
+• The thief is believed to have escaped. (Считают, что вор сбежал – прошлое)
+• She is expected to arrive at 6 pm. (Ожидается, что она прибудет в 6 вечера.)
+
+<blockquote>Инфинитив to be для настоящего, to have + V3 для прошлого.</blockquote>
+"""
+            },
+            {
+                "title": "Типичные ошибки и советы",
+                "text": """
+<b>⚠️ Частые ошибки:</b>
+• ❌ It is said that he is rich. (верно, но можно короче: He is said to be rich)
+• ❌ He is said that he is rich. (неправильно)  ✅ He is said to be rich.
+• ❌ It is said that the meeting has been cancelled. (верно) – можно и так и так.
+
+<b>💡 Совет:</b>
+• Если подлежащее – человек/предмет, и вы хотите передать слух о нём, используйте He is said to...
+• Если подлежащее – целая ситуация (that...), используйте It is said that...
+• Тренируйтесь: перефразируйте активные предложения в безличный пассив.
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Можно ли использовать безличный пассив с другими временами?", "answer": "Да: It was said that..., He was said to have done... (для прошлого)."}
+        ]
     },
-    "causative_have_get": {
+        "causative_have_get": {
         "title": "Конструкция have/get something done (каузатив)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Что такое каузатив?",
+                "text": """
+<b>🔧 Конструкция have/get something done означает, что кто-то делает что-то для вас (вы нанимаете кого-то).</b>
+
+• I had my hair cut. (Мне подстригли волосы – парикмахер.)
+• She is having her car repaired. (Ей ремонтируют машину.)
+• They will get their house painted. (Им покрасят дом.)
+
+<blockquote>Акцент на том, что вы не сами делаете, а заказываете услугу.</blockquote>
+"""
+            },
+            {
+                "title": "Формы have и get",
+                "text": """
+<b>📌 Формула: have / get + объект + V3</b>
+
+• Have (более формальный) / get (более разговорный) могут использоваться в любом времени.
+
+• Настоящее: I have my car serviced every year. (Я обслуживаю машину каждый год.)
+• Прошедшее: She had her watch repaired yesterday. (Ей починили часы вчера.)
+• Будущее: We will have the garden landscaped. (Мы оформим сад.)
+• Вопрос: Have you had your eyes tested? (Ты проверял зрение?)
+
+<blockquote>Get часто заменяет have в разговорной речи: I got my phone fixed.</blockquote>
+"""
+            },
+            {
+                "title": "Разница с активом",
+                "text": """
+<b>📊 Актив: I cut my hair. (сам подстригся – странно)
+Пассив: My hair was cut. (просто констатация)
+Каузатив: I had my hair cut. (мне подстригли – обычно)
+
+<blockquote>Каузатив подчёркивает, что вы организовали действие, но не выполняли его сами.</blockquote>
+"""
+            },
+            {
+                "title": "Типичные ошибки и советы",
+                "text": """
+<b>⚠️ Частые ошибки:</b>
+• ❌ I had cut my hair. (неправильно, если не сами)  ✅ I had my hair cut.
+• ❌ She got repaired her car.  ✅ She got her car repaired.
+• ❌ He had his car to repair.  ✅ He had his car repaired.
+
+<b>💡 Совет:</b>
+• Используйте каузатив для услуг: стрижка, ремонт, чистка, покраска, строительство.
+• Если вы сами делаете – актив. Если кто-то делает для вас – каузатив.
+• Тренируйтесь: переделайте предложения типа I cleaned my house (сам) → I had my house cleaned (профессионалы).
+"""
+            }
+        ],
+        "faq": [
+            {"question": "В чём разница между 'have something done' и 'get something done'?", "answer": "Get более разговорный и используется чаще в неформальной речи, особенно в просьбах: I need to get my car fixed."}
+        ]
     },
 
     # ==================== МОДУЛЬ 6: Косвенная речь (углубление) ====================
