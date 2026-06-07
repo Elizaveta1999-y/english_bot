@@ -79,10 +79,12 @@ MODULES_A2 = {
             "modalverbs_advanced"
         ]
     },
-    # Модуль 2 и 3 добавятся позже, пока можно оставить пустыми
     "2": {
-        "name": "📙 Модуль 2: Лексика и сравнения (в разработке)",
-        "lessons": []
+        "name": "📙 Модуль 2: Лексика и сравнения",
+        "lessons": [
+            "comparatives_advanced", "adverbs_manner", "as_as_structures"
+            # Сюда добавятся следующие уроки модуля 2
+        ]
     },
     "3": {
         "name": "📗 Модуль 3: Тематическая лексика (в разработке)",
@@ -136,7 +138,7 @@ LESSON_NAMES = {
     "holidayVocabulary": "✈️ Отпуск и путешествия",
     "shoppingVocabulary": "🛒 Покупки",
     "bodyVocabulary": "🦵 Тело человека",
-    # A2
+    # A2 модуль 1
     "presimplevscont_advanced": "📘 Present Simple vs Continuous (углублённо)",
     "pastsimple_review": "📖 Past Simple (повторение)",
     "pastcontinuous": "⏳ Past Continuous",
@@ -146,7 +148,11 @@ LESSON_NAMES = {
     "presentperfect_vs_pastsimple": "⚖️ Present Perfect vs Past Simple",
     "future_forms": "🔮 Будущее время (will, going to, Present Continuous)",
     "conditionals_0_1": "🔁 Условные предложения 0 и 1 типа",
-    "modalverbs_advanced": "🎯 Модальные глаголы (could, might, should, have to, must)"
+    "modalverbs_advanced": "🎯 Модальные глаголы (could, might, should, have to, must)",
+    # A2 модуль 2
+    "comparatives_advanced": "📈 Степени сравнения прилагательных (углубление)",
+    "adverbs_manner": "🎯 Наречия образа действия",
+    "as_as_structures": "⚖️ Сравнительные конструкции as…as, less…than",
 }
 
 # Пагинация для тематических уроков
