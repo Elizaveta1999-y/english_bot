@@ -1159,20 +1159,181 @@ LEVEL_B1_CONTENT = {
             {"question": "Можно ли использовать 'would have' в if-части?", "answer": "Нет, никогда. В if-части только Past Perfect (had done). 'Would have' только в главной части."}
         ]
     },
-    "mixed_conditionals": {
+        "mixed_conditionals": {
         "title": "Смешанные условные предложения",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Что такое смешанные условные?",
+                "text": """
+<b>🔄 Смешанные условные комбинируют 2 и 3 типы.</b>
+
+Они используются, когда условие относится к одному времени, а результат – к другому.
+
+Два основных типа:
+1. Условие в прошлом (3 тип) + результат в настоящем (2 тип)
+2. Условие в настоящем (2 тип) + результат в прошлом (3 тип) – реже.
+
+<blockquote>Смешанные условные выражают сложные временные связи между прошлым и настоящим.</blockquote>
+"""
+            },
+            {
+                "title": "Тип 1: прошлое условие → настоящий результат",
+                "text": """
+<b>⏪ Условие (Past Perfect) → результат (would + V)</b>
+
+• If I had studied medicine, I would be a doctor now. (Если бы я изучал медицину в прошлом, я бы сейчас был врачом – но не изучал, и не врач)
+• If she had taken that job, she would live in London today. (Если бы она приняла ту работу, она бы сейчас жила в Лондоне – но не приняла)
+• They wouldn't be lost if they had followed the map. (Они бы не заблудились, если бы следовали карте – но не следовали, и сейчас они потеряны)
+
+<blockquote>Условие в прошлом (невыполненное) влияет на настоящее.</blockquote>
+"""
+            },
+            {
+                "title": "Тип 2: настоящее условие → прошлый результат (редко)",
+                "text": """
+<b>⏩ Условие (Past Simple) → результат (would have + V3)</b>
+
+• If I weren't afraid of flying, I would have visited you last year. (Если бы я не боялся летать, я бы навестил тебя в прошлом году – но боюсь, и не навестил)
+• If he were more responsible, he wouldn't have lost his keys. (Если бы он был ответственнее, он бы не потерял ключи – но он не ответственный, и потерял)
+
+<blockquote>Постоянное качество (условие в настоящем) повлияло на прошлое действие.</blockquote>
+"""
+            },
+            {
+                "title": "Типичные ошибки и советы",
+                "text": """
+<b>⚠️ Частые ошибки:</b>
+• ❌ If I had studied, I would have been a doctor now. (смешение времени – правильно: would be a doctor now)
+• ❌ If I would be rich, I would have bought a car last year.  ✅ If I were rich, I would have bought a car last year.
+
+<b>💡 Совет:</b>
+• Если результат относится к настоящему, а условие к прошлому – используйте would + V в главной части.
+• Внимательно анализируйте время: сейчас/вообще vs. прошлое.
+• Тренируйтесь: придумайте предложения о ваших прошлых решениях, которые влияют на настоящее.
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Всегда ли нужно использовать смешанные условные?", "answer": "Нет, только когда времена в условии и результате разные. Если оба о прошлом – 3 тип, оба о настоящем – 2 тип."}
+        ]
     },
-    "wish_if_only": {
+        "wish_if_only": {
         "title": "Конструкции I wish, If only (жаль, что…; если бы только…)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Wish о настоящем/будущем",
+                "text": """
+<b>😔 I wish / If only + Past Simple – сожаление о настоящем или будущем.</b>
+
+• I wish I had more free time. (Жаль, что у меня мало свободного времени – на самом деле мало)
+• She wishes she lived closer to work. (Она жалеет, что не живёт ближе к работе)
+• If only it weren't so cold! (Если бы только не было так холодно!)
+
+<blockquote>Глагол to be в этой конструкции чаще имеет форму were для всех лиц: I wish I were taller.</blockquote>
+"""
+            },
+            {
+                "title": "Wish о прошлом",
+                "text": """
+<b>😢 I wish / If only + Past Perfect – сожаление о прошлом.</b>
+
+• I wish I had studied harder at university. (Жаль, что я не усерднее учился в университете – но я не учился)
+• She wishes she hadn't bought that car. (Она жалеет, что не купила ту машину – а она купила)
+• If only I had listened to your advice! (Если бы только я послушал твоего совета!)
+
+<blockquote>Past Perfect подчёркивает, что действие уже произошло (или не произошло) и его нельзя изменить.</blockquote>
+"""
+            },
+            {
+                "title": "Wish + would – для выражения желания, чтобы кто-то изменил поведение",
+                "text": """
+<b>🙏 I wish + would + V – недовольство и желание, чтобы ситуация изменилась.</b>
+
+• I wish you would stop interrupting me. (Я бы хотел, чтобы ты перестал меня перебивать – раздражение)
+• She wishes her neighbours would be quieter. (Она хочет, чтобы её соседи были тише)
+• If only it would stop raining! (Если бы только дождь прекратился!)
+
+<blockquote>В этой конструкции подлежащее в wish и в придаточной части не совпадают. Нельзя сказать I wish I would… (только I wish I could…).</blockquote>
+"""
+            },
+            {
+                "title": "Сравнение и типичные ошибки",
+                "text": """
+<b>📊 Сравнение:</b>
+• <b>wish + Past Simple</b> – сожаление о настоящем (I wish I knew)
+• <b>wish + Past Perfect</b> – сожаление о прошлом (I wish I had known)
+• <b>wish + would</b> – желание, чтобы кто-то изменился (I wish you would stop)
+
+<b>⚠️ Типичные ошибки:</b>
+• ❌ I wish I would be rich.  ✅ I wish I were rich.
+• ❌ She wishes she would have come.  ✅ She wishes she had come.
+• ❌ I wish I can fly.  ✅ I wish I could fly.
+
+<b>💡 Совет:</b> Wish + could – для выражения желания, если не хватает способности: I wish I could speak Chinese.
+"""
+            }
+        ],
+        "faq": [
+            {"question": "В чём разница между 'I wish' и 'If only'?", "answer": "If only более эмоционально, выражает сильное сожаление. Смысл тот же, но If only звучит драматичнее."}
+        ]
     },
-    "would_rather_prefer": {
+        "would_rather_prefer": {
         "title": "Конструкции would rather, prefer (предпочтение)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Would rather – предпочтение (я бы предпочёл)",
+                "text": """
+<b>⚖️ Would rather + V (без to) – выражает предпочтение в конкретной ситуации.</b>
+
+• I would rather stay at home than go out. (Я бы предпочёл остаться дома, чем выходить.)
+• She would rather not talk about it. (Она предпочла бы не говорить об этом.)
+• Would you rather have coffee or tea? (Ты бы предпочёл кофе или чай?)
+
+<blockquote>Would rather можно сокращать: I'd rather, you'd rather.</blockquote>
+"""
+            },
+            {
+                "title": "Would rather + подлежащее + Past Simple – предпочтение за другого",
+                "text": """
+<b>👥 Конструкция, когда мы хотим, чтобы кто-то другой сделал что-то (или не сделал).</b>
+
+• I would rather you didn't smoke in here. (Я бы предпочёл, чтобы ты не курил здесь.)
+• She would rather he arrived on time. (Она бы предпочла, чтобы он пришёл вовремя.)
+• Would you rather I left now? (Ты бы предпочёл, чтобы я ушёл сейчас?)
+
+<blockquote>После would rather + подлежащее используется Past Simple (или Past Perfect для прошлого).</blockquote>
+"""
+            },
+            {
+                "title": "Prefer – общее предпочтение",
+                "text": """
+<b>📌 Prefer to do или prefer + V‑ing – общее предпочтение (не временное).</b>
+
+• I prefer reading to watching TV. (Я предпочитаю чтение просмотру телевизора – вообще)
+• She prefers to travel by train. (Она предпочитает путешествовать на поезде – обычно)
+
+<blockquote>Prefer + существительное / герундий + to + существительное / герундий – для сравнения.</blockquote>
+"""
+            },
+            {
+                "title": "Сравнение и типичные ошибки",
+                "text": """
+<b>📊 Сравнение:</b>
+• <b>I'd rather (do)</b> – конкретная ситуация (I'd rather go now)
+• <b>I prefer (to do / doing)</b> – общее предпочтение (I prefer reading)
+
+<b>⚠️ Типичные ошибки:</b>
+• ❌ I would rather to stay.  ✅ I would rather stay.
+• ❌ I prefer coffee than tea.  ✅ I prefer coffee to tea.
+• ❌ I'd rather you to come.  ✅ I'd rather you came.
+
+<b>💡 Совет:</b> Would rather – для сиюминутного выбора. Prefer – для постоянного вкуса.
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Как сказать 'я бы предпочёл, чтобы вы не курили'?", "answer": "I'd rather you didn't smoke."}
+        ]
     },
 
     # ==================== МОДУЛЬ 4: Герундий и инфинитив (углубление) ====================
