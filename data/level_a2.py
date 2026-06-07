@@ -101,15 +101,207 @@ LEVEL_A2_CONTENT = {
             {"question": "Всегда ли 'think' в Continuous означает 'размышлять'?", "answer": "Да, в большинстве случаев. Но есть идиомы: I'm thinking of you (думаю о тебе – тоже процесс)."}
         ]
     },
-    "pastsimple_review": {
+        "pastsimple_review": {
         "title": "Past Simple (повторение и детали)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке. Скоро здесь появится теория."}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Образование утвердительной формы",
+                "text": """
+<b>📆 Past Simple – для действий, которые завершились в прошлом.</b>
+
+<b>Правильные глаголы:</b> V + -ed
+• work → worked (работал)
+• play → played (играл)
+• watch → watched (смотрел)
+
+<b>Неправильные глаголы:</b> нужно запоминать (вторая форма)
+• go → went (идти)
+• see → saw (видеть)
+• have → had (иметь)
+• eat → ate (есть)
+• buy → bought (покупать)
+
+<b>Примеры:</b>
+• I worked yesterday. (Я работал вчера.)
+• She went to London last year. (Она ездила в Лондон в прошлом году.)
+• We watched a great film on Friday. (Мы посмотрели отличный фильм в пятницу.)
+
+<blockquote>Сигнальные слова: yesterday, last week/month/year, in 2020, two days ago, when I was a child.</blockquote>
+"""
+            },
+            {
+                "title": "Произношение -ed у правильных глаголов",
+                "text": """
+<b>🔊 Три варианта произношения окончания -ed:</b>
+
+1. <b>[t]</b> – после глухих согласных (p, k, f, s, sh, ch, x)
+   • worked [wɜːkt]
+   • watched [wɒtʃt]
+   • laughed [lɑːft]
+
+2. <b>[d]</b> – после звонких согласных и гласных (b, g, v, z, m, n, r, l, все гласные)
+   • played [pleɪd]
+   • loved [lʌvd]
+   • called [kɔːld]
+
+3. <b>[ɪd]</b> – после t, d
+   • wanted [ˈwɒntɪd]
+   • needed [ˈniːdɪd]
+   • started [ˈstɑːtɪd]
+
+<blockquote>Тренируйтесь произносить вслух: worked [t], played [d], wanted [ɪd].</blockquote>
+"""
+            },
+            {
+                "title": "Отрицание и вопросы",
+                "text": """
+<b>🚫 Отрицание в Past Simple:</b>
+
+did not (didn't) + глагол в начальной форме
+
+• I didn't work yesterday. (Я не работал вчера.)
+• She didn't go to London. (Она не ездила в Лондон.)
+• They didn't watch the film. (Они не смотрели фильм.)
+
+<b>❓ Вопросы:</b>
+
+Did + подлежащее + глагол?
+
+• Did you work yesterday? (Ты работал вчера?)
+• Did she go to London? (Она ездила в Лондон?)
+• Did they watch the film? (Они смотрели фильм?)
+
+<b>Краткие ответы:</b>
+• Yes, I did. / No, I didn't.
+• Yes, she did. / No, she didn't.
+
+<blockquote>В вопросах и отрицаниях глагол возвращается в начальную форму (без -ed).</blockquote>
+"""
+            },
+            {
+                "title": "Типичные ошибки и советы",
+                "text": """
+<b>⚠️ Частые ошибки в Past Simple:</b>
+
+1. <b>Забывают про неправильные глаголы</b>
+   • ❌ I goed to school.  ✅ I went to school.
+
+2. <b>Ставят -ed в вопросах / отрицаниях</b>
+   • ❌ Did you worked?  ✅ Did you work?
+
+3. <b>Путают произношение -ed</b> (особенно wanted, needed)
+
+4. <b>Неправильный порядок слов в вопросах</b>
+   • ❌ You did go?  ✅ Did you go?
+
+<b>💡 Советы:</b>
+• Выучите 20-30 самых частотных неправильных глаголов.
+• Для тренировки описывайте, что вы делали вчера: I got up at 7, had breakfast, went to work...
+• Слушайте песни в Past Simple – они помогают запомнить формы.
+
+<blockquote>Повторение – мать учения. Каждый день называйте 5 неправильных глаголов.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Как отличить Past Simple от Present Perfect?", "answer": "Past Simple – действие завершено в прошлом, часто указано время (yesterday, last week). Present Perfect – результат важен сейчас, время не указано или (already, ever, never)."}
+        ]
     },
-    "pastcontinuous": {
-        "title": "Past Continuous (прошедшее длительное)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке. Скоро здесь появится теория."}],
-        "faq": []
+        "pastcontinuous": {
+        "title": "Past Continuous (прошедшее длительное время)",
+        "pages": [
+            {
+                "title": "Образование",
+                "text": """
+<b>⏳ Past Continuous – действие в процессе в определённый момент в прошлом.</b>
+
+<b>Формула:</b> was / were + V‑ing
+
+• I / he / she / it – was
+• you / we / they – were
+
+<b>Примеры:</b>
+• I was reading a book at 7 pm yesterday. (Я читал книгу вчера в 7 вечера.)
+• She was sleeping when I called. (Она спала, когда я позвонил.)
+• They were watching TV all evening. (Они смотрели телевизор весь вечер.)
+
+<blockquote>В Past Continuous действие обычно длилось, не обязательно завершилось.</blockquote>
+"""
+            },
+            {
+                "title": "Когда используется Past Continuous",
+                "text": """
+<b>📌 Основные случаи употребления:</b>
+
+1. <b>Действие в процессе в конкретный момент в прошлом</b>
+   • At 10 am yesterday, I was working. (Вчера в 10 утра я работал.)
+
+2. <b>Два действия одновременно (оба длились)</b>
+   • While I was cooking, my son was playing. (Пока я готовил, мой сын играл.)
+
+3. <b>Фоновое действие прервано другим (Past Simple)</b>
+   • I was walking home when it started to rain. (Я шёл домой, когда начался дождь.)
+   • She was having dinner when the phone rang. (Она ужинала, когда зазвонил телефон.)
+
+4. <b>Для описания атмосферы, обстановки</b>
+   • The sun was shining, birds were singing, and people were smiling. (Солнце светило, птицы пели, люди улыбались.)
+
+<blockquote>Временной фон часто задаётся с помощью while (в то время как) или when (когда).</blockquote>
+"""
+            },
+            {
+                "title": "Отрицание и вопросы",
+                "text": """
+<b>🚫 Отрицание в Past Continuous:</b>
+
+was/were + not + V‑ing
+
+• I was not (wasn't) sleeping. (Я не спал.)
+• They were not (weren't) working. (Они не работали.)
+
+<b>❓ Вопросы:</b>
+
+Was/Were + подлежащее + V‑ing?
+
+• Was she reading at 6 pm? (Она читала в 6 вечера?)
+• Were you watching TV when I called? (Ты смотрел телевизор, когда я позвонил?)
+
+<b>Краткие ответы:</b>
+• Yes, I was. / No, I wasn't.
+• Yes, they were. / No, they weren't.
+
+<b>Примеры:</b>
+• What were you doing yesterday at 5 pm? – I was having coffee.
+• Why was she crying? – Because she was sad.
+
+<blockquote>В вопросах с when и while часто используется Past Simple для короткого действия, а Past Continuous для длительного.</blockquote>
+"""
+            },
+            {
+                "title": "Сравнение Past Continuous и Past Simple",
+                "text": """
+<b>📊 Past Continuous vs Past Simple:</b>
+
+• <b>Past Simple</b> – завершённое действие, факт.
+  • I watched a film last night. (Я посмотрел фильм – закончил.)
+
+• <b>Past Continuous</b> – действие в процессе, фон.
+  • I was watching a film when you called. (Я смотрел фильм – действие не завершено, прервано.)
+
+<b>Типичные ошибки:</b>
+• ❌ While I cooked, the phone rang.  ✅ While I was cooking, the phone rang. (длительное действие должно быть в Continuous)
+
+• ❌ I was finishing my homework at 8. (если закончил)  ✅ I finished my homework at 8.
+
+<b>💡 Совет:</b> Если вы описываете, чем были заняты в определённый момент – используйте Past Continuous. Если просто перечисляете действия по порядку – Past Simple.
+
+<blockquote>Практика: расскажите, что вы делали вчера в 3 часа дня, и что внезапно произошло.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Можно ли использовать Past Continuous с глаголами состояния?", "answer": "Обычно нет (как и в Present Continuous). Но в редких случаях можно, если глагол описывает активное действие: I was thinking about you. (Я думал о тебе – процесс)."}
+        ]
     },
     "pastsimple_vs_pastcontinuous": {
         "title": "Past Simple vs Past Continuous",
