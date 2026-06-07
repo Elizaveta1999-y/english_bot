@@ -1832,25 +1832,304 @@ LEVEL_B1_CONTENT = {
     },
 
     # ==================== МОДУЛЬ 6: Косвенная речь (углубление) ====================
-    "reported_speech_advanced": {
+        "reported_speech_advanced": {
         "title": "Косвенная речь: согласование времён (сложные случаи)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Основные правила сдвига времён",
+                "text": """
+<b>🗣️ Косвенная речь – передача чужих слов без кавычек.</b>
+
+Если глагол в главной части в прошедшем времени (said, told, asked), то время в придаточной сдвигается назад:
+
+• Present Simple → Past Simple  
+  "I work hard." → He said he worked hard.
+
+• Present Continuous → Past Continuous  
+  "I am working." → He said he was working.
+
+• Past Simple → Past Perfect  
+  "I saw her." → He said he had seen her.
+
+• Present Perfect → Past Perfect  
+  "I have finished." → He said he had finished.
+
+• will → would, can → could, may → might  
+  "I will come." → He said he would come.
+
+<blockquote>Если главная часть в настоящем времени (says), время не меняется: He says he is tired.</blockquote>
+"""
+            },
+            {
+                "title": "Исключения (когда время не меняется)",
+                "text": """
+<b>📌 Время может не меняться в следующих случаях:</b>
+
+1. <b>Общеизвестные факты, законы природы</b>
+   • "The Earth goes around the Sun." → He said the Earth goes around the Sun.
+
+2. <b>Действие ещё актуально в момент речи</b>
+   • "I like pizza." → He said he likes pizza. (если он всё ещё любит пиццу)
+
+3. <b>Слова были сказаны и сразу пересказываются</b>
+   • "I'm hungry." → She said she is hungry. (сразу после)
+
+<blockquote>В экзаменах обычно рекомендуют сдвигать время, но в живой речи допустимо не менять, если ситуация не изменилась.</blockquote>
+"""
+            },
+            {
+                "title": "Изменения местоимений и указателей",
+                "text": """
+<b>📌 При переводе в косвенную речь также меняются:</b>
+
+• Местоимения: "I like my job." → He said he liked his job.
+
+• Указатели места и времени:
+  • now → then
+  • today → that day
+  • here → there
+  • this / these → that / those
+  • yesterday → the day before / the previous day
+  • tomorrow → the next day / the following day
+  • last week → the week before
+  • ago → before
+
+• Пример: "I will call you tomorrow." → He said he would call me the next day.
+
+<blockquote>В разговорной речи изменения могут быть менее строгими, но для письменных работ правила важны.</blockquote>
+"""
+            },
+            {
+                "title": "Типичные ошибки и советы",
+                "text": """
+<b>⚠️ Частые ошибки:</b>
+• ❌ He said me that he was tired.  ✅ He told me that he was tired. (say не требует косвенного дополнения без to)
+• ❌ He said that he is tired. (если главная часть в прошлом)  ✅ He said that he was tired.
+• ❌ He told that he was tired.  ✅ He said that he was tired. (told обязательно нужен объект: told me)
+
+<b>💡 Совет:</b>
+• Слово that можно опускать: He said (that) he was tired.
+• Запомните: say + (that) + предложение; tell + кому + (that) + предложение.
+• Тренируйтесь: переведите диалоги из учебника в косвенную речь.
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Всегда ли нужно сдвигать время, если главная часть в прошедшем?", "answer": "Для экзаменов и формальной речи – обязательно. В неформальной речи иногда оставляют, но рискованно."}
+        ]
     },
-    "reported_commands_requests": {
+        "reported_commands_requests": {
         "title": "Косвенная речь: приказы и просьбы (tell someone to do something)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Приказы и просьбы в косвенной речи",
+                "text": """
+<b>🗣️ Для передачи приказов, просьб, инструкций используется инфинитив.</b>
+
+Формула: tell / ask / order + someone + to + V
+
+• "Sit down!" → He told me to sit down. (приказ)
+• "Please open the door." → She asked me to open the door. (просьба)
+• "Don't be late." → He told me not to be late. (отрицание)
+
+<blockquote>Глагол ask вежливее, чем tell. Order – официальный приказ.</blockquote>
+"""
+            },
+            {
+                "title": "Разные глаголы для разных оттенков",
+                "text": """
+<b>📌 Часто используемые глаголы:</b>
+
+• <b>tell</b> – сказать, приказать
+• <b>ask</b> – попросить (вежливо)
+• <b>order</b> – приказать (официально)
+• <b>command</b> – командовать
+• <b>beg</b> – умолять
+• <b>advise</b> – советовать
+• <b>remind</b> – напоминать
+• <b>warn</b> – предупреждать
+
+• "Don't touch the wire!" → He warned me not to touch the wire.
+• "Remember to lock the door." → She reminded me to lock the door.
+
+<blockquote>Выбор глагола зависит от тона и ситуации.</blockquote>
+"""
+            },
+            {
+                "title": "Отрицательная форма",
+                "text": """
+<b>🚫 Отрицание в косвенной речи приказов/просьб: not to + V.</b>
+
+• "Don't be late." → He told me not to be late.
+• "Please don't smoke here." → She asked us not to smoke here.
+
+<blockquote>Обратите внимание, что отрицательная частица ставится перед to.</blockquote>
+"""
+            },
+            {
+                "title": "Типичные ошибки и советы",
+                "text": """
+<b>⚠️ Частые ошибки:</b>
+• ❌ He told me that to sit down.  ✅ He told me to sit down.
+• ❌ She asked that I open the door.  ✅ She asked me to open the door.
+• ❌ He said me to go.  ✅ He told me to go.
+
+<b>💡 Совет:</b>
+• Для просьб используйте ask, для приказов – tell, для официальных приказов – order.
+• Запомните структуру: глагол + someone + to + V.
+• Тренируйтесь: переделайте прямые приказы и просьбы в косвенную речь.
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Как передать 'Don't forget to call me'?", "answer": "He reminded me to call him."}
+        ]
     },
-    "reported_questions_advanced": {
+        "reported_questions_advanced": {
         "title": "Косвенные вопросы (сложные случаи)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Общие вопросы (yes/no) в косвенной речи",
+                "text": """
+<b>❓ Общие вопросы вводятся союзами if или whether.</b>
+
+• "Do you speak English?" → He asked if I spoke English.
+• "Are you tired?" → She asked whether I was tired.
+
+<blockquote>Порядок слов прямой (подлежащее + сказуемое), вспомогательные do/does/did опускаются.</blockquote>
+"""
+            },
+            {
+                "title": "Специальные вопросы (wh-questions)",
+                "text": """
+<b>🔍 Специальные вопросы сохраняют вопросительное слово.</b>
+
+• "Where do you live?" → He asked where I lived.
+• "What time does the train leave?" → She asked what time the train left.
+• "Why did you say that?" → He asked why I had said that.
+
+<blockquote>Вопросительное слово остаётся, затем прямой порядок слов.</blockquote>
+"""
+            },
+            {
+                "title": "Особые случаи: вопросы с who/what в роли подлежащего",
+                "text": """
+<b>📌 Если who/what является подлежащим, порядок слов не меняется.</b>
+
+• "Who broke the window?" → He asked who had broken the window.
+• "What happened?" → She asked what had happened.
+
+<blockquote>Вспомогательный глагол не добавляется, порядок слов такой же, как в утверждении.</blockquote>
+"""
+            },
+            {
+                "title": "Типичные ошибки и советы",
+                "text": """
+<b>⚠️ Частые ошибки:</b>
+• ❌ He asked what time does the train leave.  ✅ He asked what time the train left.
+• ❌ She asked if did I speak English.  ✅ She asked if I spoke English.
+• ❌ He asked where I was going to? (знак вопроса не нужен)  ✅ He asked where I was going to.
+
+<b>💡 Совет:</b>
+• После asked никогда не ставьте that.
+• Порядок слов в косвенном вопросе такой же, как в утверждении.
+• Тренируйтесь: превращайте прямые вопросы в косвенные, обращая внимание на порядок слов и сдвиг времён.
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Когда использовать whether вместо if?", "answer": "Whether более формален, часто когда есть выбор (whether… or not)."}
+        ]
     },
-    "reporting_verbs": {
+        "reporting_verbs": {
         "title": "Глаголы для передачи речи (advise, suggest, promise, warn, etc.)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Глаголы, за которыми следует инфинитив",
+                "text": """
+<b>📌 Некоторые глаголы требуют инфинитив с частицей to.</b>
+
+• <b>agree</b> – соглашаться
+  • "OK, I'll help you." → He agreed to help me.
+
+• <b>offer</b> – предлагать
+  • "I can drive you." → She offered to drive me.
+
+• <b>promise</b> – обещать
+  • "I'll never do it again." → He promised never to do it again.
+
+• <b>refuse</b> – отказываться
+  • "No, I won't go." → He refused to go.
+
+• <b>threaten</b> – угрожать
+  • "I'll call the police." → He threatened to call the police.
+
+<blockquote>Эти глаголы передают намерение, обещание, согласие или отказ.</blockquote>
+"""
+            },
+            {
+                "title": "Глаголы, за которыми следует герундий (‑ing)",
+                "text": """
+<b>📌 Некоторые глаголы требуют герундий.</b>
+
+• <b>admit</b> – признавать
+  • "I stole the money." → He admitted stealing the money.
+
+• <b>deny</b> – отрицать
+  • "I didn't do it." → She denied doing it.
+
+• <b>suggest</b> – предлагать
+  • "Let's go to the cinema." → He suggested going to the cinema.
+
+• <b>recommend</b> – рекомендовать
+  • "You should see a doctor." → She recommended seeing a doctor.
+
+<blockquote>Герундий часто используется для передачи предложений, отрицаний, признаний.</blockquote>
+"""
+            },
+            {
+                "title": "Глаголы с дополнением + инфинитив",
+                "text": """
+<b>📌 Некоторые глаголы требуют косвенное дополнение + инфинитив.</b>
+
+• <b>advise</b> – советовать
+  • "You should rest." → He advised me to rest.
+
+• <b>allow</b> – разрешать
+  • "You can leave early." → She allowed me to leave early.
+
+• <b>ask</b> – просить
+  • "Please help me." → He asked me to help him.
+
+• <b>encourage</b> – поощрять, ободрять
+  • "Try again!" → She encouraged me to try again.
+
+• <b>remind</b> – напоминать
+  • "Don't forget to call." → He reminded me to call.
+
+• <b>warn</b> – предупреждать
+  • "Be careful!" → She warned me to be careful.
+
+<blockquote>В этих конструкциях обязательно указывается, кому адресовано действие.</blockquote>
+"""
+            },
+            {
+                "title": "Типичные ошибки и советы",
+                "text": """
+<b>⚠️ Частые ошибки:</b>
+• ❌ He suggested to go.  ✅ He suggested going.
+• ❌ She admitted to steal.  ✅ She admitted stealing.
+• ❌ He advised me that I rest.  ✅ He advised me to rest.
+
+<b>💡 Совет:</b>
+• Запомните группы глаголов: promise/agree/refuse + to V; admit/deny/suggest + V‑ing; advise/ask/tell + someone + to V.
+• Тренируйтесь: переписывайте прямую речь, используя разные глаголы передачи речи.
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Как передать совет? 'You should see a doctor' → ...", "answer": "He advised me to see a doctor. (или He recommended seeing a doctor.)"}
+        ]
     },
 
     # ==================== МОДУЛЬ 7: Придаточные и связки ====================
