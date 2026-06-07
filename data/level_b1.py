@@ -2373,30 +2373,458 @@ LEVEL_B1_CONTENT = {
     },
 
     # ==================== МОДУЛЬ 8: Лексика B1 ====================
-    "education_learning": {
+        "education_learning": {
         "title": "Лексика: образование и обучение",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Типы учебных заведений",
+                "text": """
+<b>🏫 Образовательные учреждения:</b>
+
+• nursery school – детский сад
+• primary school – начальная школа
+• secondary school – средняя школа
+• high school – старшая школа (США)
+• college – колледж
+• university – университет
+• graduate school – аспирантура
+• language school – языковая школа
+• vocational school – профессиональное училище
+
+<blockquote>В Великобритании public school – частная школа (не путать с государственной).</blockquote>
+"""
+            },
+            {
+                "title": "Люди",
+                "text": """
+<b>👩‍🏫 Участники образовательного процесса:</b>
+
+• pupil – ученик (школа)
+• student – студент
+• classmate – одноклассник
+• teacher – учитель
+• professor – профессор
+• lecturer – лектор
+• tutor – репетитор, тьютор
+• headmaster / headteacher – директор школы
+• dean – декан
+• graduate – выпускник
+• postgraduate – аспирант
+
+<blockquote>University graduate – выпускник университета; high school graduate – выпускник школы.</blockquote>
+"""
+            },
+            {
+                "title": "Предметы и оценки",
+                "text": """
+<b>📚 Школьные предметы:</b>
+• Maths – математика
+• English – английский
+• Science – естествознание
+• History – история
+• Geography – география
+• Biology – биология
+• Chemistry – химия
+• Physics – физика
+• Physical Education (PE) – физкультура
+• Art – искусство
+• Music – музыка
+
+<b>Оценки (grades / marks):</b>
+• A / excellent – отлично
+• B / good – хорошо
+• C / satisfactory – удовлетворительно
+• D / poor – плохо
+• F / fail – неудовлетворительно
+
+<blockquote>Глаголы: to pass an exam (сдать), to fail an exam (провалить), to take an exam (сдавать).</blockquote>
+"""
+            },
+            {
+                "title": "Полезные фразы и советы",
+                "text": """
+<b>🗣️ Фразы для обсуждения учёбы:</b>
+
+• What subject do you major in? – Какой у тебя основной предмет? (в университете)
+• I'm studying for a degree in Economics. – Я получаю степень по экономике.
+• I have a heavy workload this semester. – У меня большая нагрузка в этом семестре.
+• I need to hand in my essay by Friday. – Мне нужно сдать эссе к пятнице.
+• The deadline is next week. – Крайний срок – следующая неделя.
+• I'm thinking of dropping out. – Я подумываю бросить учёбу.
+
+<b>💡 Советы:</b>
+• Запомните разницу между school (школа), college (колледж), university (университет).
+• Учите глаголы: learn (учить, узнавать), study (изучать), teach (преподавать), educate (давать образование).
+"""
+            }
+        ],
+        "faq": [
+            {"question": "В чём разница между 'learn' и 'study'?", "answer": "Learn – выучить, научиться (результат). Study – изучать, заниматься (процесс)."}
+        ]
     },
-    "money_finance": {
+        "money_finance": {
         "title": "Лексика: деньги и финансы",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Деньги и оплата",
+                "text": """
+<b>💰 Основные понятия:</b>
+
+• cash – наличные
+• coin – монета
+• banknote / bill – банкнота
+• credit card – кредитная карта
+• debit card – дебетовая карта
+• cheque – чек
+• currency – валюта
+• exchange rate – обменный курс
+
+<b>Глаголы:</b>
+• pay – платить
+• spend – тратить
+• save – копить, экономить
+• waste – тратить впустую
+• borrow – занимать (у кого-то)
+• lend – давать взаймы
+• owe – быть должным
+• earn – зарабатывать
+• charge – взимать плату
+
+<blockquote>Примеры: I borrowed $10 from my friend. / Can you lend me $10?</blockquote>
+"""
+            },
+            {
+                "title": "Бюджет и расходы",
+                "text": """
+<b>📊 Бюджет:</b>
+
+• income – доход
+• salary – зарплата (обычно помесячно)
+• wage – зарплата (почасовая)
+• bonus – премия
+• tax – налог
+• rent – арендная плата
+• mortgage – ипотека
+• bill – счёт (electricity bill, phone bill)
+• debt – долг
+• loan – кредит, заём
+• interest – процент
+• budget – бюджет
+
+<b>Примеры:</b>
+• I need to pay my rent by the 5th.
+• He has a lot of debt from university.
+• We're trying to save money for a holiday.
+
+<blockquote>To be in debt – быть в долгах; to pay off a debt – выплатить долг.</blockquote>
+"""
+            },
+            {
+                "title": "Покупки и цены",
+                "text": """
+<b>🛒 В магазине:</b>
+
+• price – цена
+• cost – стоимость
+• discount – скидка
+• sale – распродажа
+• receipt – чек
+• refund – возврат денег
+• bargain – выгодная покупка
+• expensive – дорогой
+• cheap – дешёвый
+• affordable – доступный по цене
+
+<b>Примеры:</b>
+• How much does it cost?
+• There's a 20% discount on all shoes.
+• I got this laptop on sale for half price.
+• Can I have a refund? It's faulty.
+
+<blockquote>On sale – на распродаже; for sale – продаётся (в объявлении).</blockquote>
+"""
+            },
+            {
+                "title": "Советы и типичные ошибки",
+                "text": """
+<b>⚠️ Частые ошибки:</b>
+• ❌ I borrowed him money.  ✅ I lent him money. / I borrowed money from him.
+• ❌ How much cost it?  ✅ How much does it cost?
+• ❌ I need to economise money.  ✅ I need to save money / economise (без money).
+
+<b>💡 Советы:</b>
+• Запомните разницу: borrow from (взять у кого-то), lend to (дать кому-то).
+• Earn – зарабатывать, win – выигрывать.
+• Budgeting vocabulary пригодится для повседневных разговоров о финансах.
+"""
+            }
+        ],
+        "faq": [
+            {"question": "В чём разница между 'price' и 'cost'?", "answer": "Price – цена товара (to pay price). Cost – себестоимость или общие затраты (the cost of living)."}
+        ]
     },
-    "media_advertising": {
+        "media_advertising": {
         "title": "Лексика: медиа и реклама",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Типы медиа",
+                "text": """
+<b>📺 Виды средств массовой информации:</b>
+
+• television (TV) – телевидение
+• radio – радио
+• newspaper – газета
+• magazine – журнал
+• the Internet – интернет
+• social media – социальные сети
+• podcast – подкаст
+• blog – блог
+• vlog – видеоблог
+• streaming service – стриминговый сервис
+
+<blockquote>Mass media – средства массовой информации.</blockquote>
+"""
+            },
+            {
+                "title": "Реклама и маркетинг",
+                "text": """
+<b>📢 Реклама:</b>
+
+• advertisement (ad) – реклама
+• commercial – рекламный ролик
+• billboard – рекламный щит
+• poster – плакат
+• slogan – слоган
+• logo – логотип
+• target audience – целевая аудитория
+• brand – бренд
+• product placement – скрытая реклама
+• influencer – блогер, влиятельное лицо
+• sponsor – спонсор
+
+<b>Глаголы:</b>
+• advertise – рекламировать
+• promote – продвигать
+• market – продвигать на рынок
+• launch – запускать (продукт)
+
+<blockquote>Пример: The company launched a new advertising campaign on social media.</blockquote>
+"""
+            },
+            {
+                "title": "Новости и журналистика",
+                "text": """
+<b>📰 Новости:</b>
+
+• journalist – журналист
+• reporter – репортёр
+• editor – редактор
+• anchor – ведущий новостей
+• correspondent – корреспондент
+• headline – заголовок
+• article – статья
+• interview – интервью
+• press conference – пресс-конференция
+• censorship – цензура
+• fake news – фейковые новости
+
+<b>Примеры:</b>
+• The story made the front page of all newspapers.
+• The journalist was accused of bias.
+• Social media can spread fake news quickly.
+
+<blockquote>To break a story – первым опубликовать новость.</blockquote>
+"""
+            },
+            {
+                "title": "Советы",
+                "text": """
+<b>💡 Советы:</b>
+• Различайте: a commercial – телевизионная реклама; an ad – любая реклама.
+• Социальные сети: post (публикация), share (поделиться), like (лайк), follow (подписаться), unfollow (отписаться).
+• Глаголы: to broadcast – транслировать; to publish – публиковать.
+• Тренируйтесь: обсуждайте новости и рекламу, которую вы видите.
+"""
+            }
+        ],
+        "faq": [
+            {"question": "В чём разница между 'advertisement' и 'commercial'?", "answer": "Advertisement – любая реклама (печатная, онлайн). Commercial – только телевизионная или радио-реклама."}
+        ]
     },
-    "crime_law": {
+        "crime_law": {
         "title": "Лексика: преступления и закон",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Преступления и преступники",
+                "text": """
+<b>🚔 Виды преступлений и преступники:</b>
+
+• theft – кража (thief – вор)
+• burglary – кража со взломом (burglar – взломщик)
+• robbery – грабёж (robber – грабитель)
+• shoplifting – кража в магазине (shoplifter – магазинный вор)
+• murder – убийство (murderer – убийца)
+• manslaughter – непредумышленное убийство
+• assault – нападение (assailant – нападающий)
+• fraud – мошенничество (fraudster – мошенник)
+• vandalism – вандализм (vandal – вандал)
+• arson – поджог (arsonist – поджигатель)
+• kidnapping – похищение (kidnapper – похититель)
+• drug trafficking – торговля наркотиками
+• bribery – взяточничество
+
+<blockquote>Различайте: theft – кража (без насилия), robbery – грабёж (с насилием или угрозой).</blockquote>
+"""
+            },
+            {
+                "title": "Правоохранительные органы",
+                "text": """
+<b>👮 Полиция и закон:</b>
+
+• police – полиция
+• police officer / policeman – полицейский
+• detective – детектив
+• judge – судья
+• lawyer – адвокат
+• prosecutor – прокурор
+• defence – защита
+• jury – присяжные
+• witness – свидетель
+• victim – жертва
+• suspect – подозреваемый
+• criminal – преступник
+• prison / jail – тюрьма
+• sentence – приговор
+• fine – штраф
+
+<b>Глаголы:</b>
+• arrest – арестовывать
+• charge – предъявлять обвинение
+• convict – признать виновным
+• acquit – оправдать
+• testify – давать показания
+
+<blockquote>Примеры: He was arrested for theft. The jury found him guilty. She was sentenced to five years in prison.</blockquote>
+"""
+            },
+            {
+                "title": "Фразы и выражения",
+                "text": """
+<b>🗣️ Полезные фразы:</b>
+
+• to break the law – нарушить закон
+• to commit a crime – совершить преступление
+• to be innocent – быть невиновным
+• to be guilty – быть виновным
+• to go to court – идти в суд
+• to serve a sentence – отбывать наказание
+• to be released – быть освобождённым
+• to be under arrest – находиться под арестом
+• to call the police – вызвать полицию
+• to file a complaint – подать жалобу
+
+<blockquote>Beyond reasonable doubt – вне разумных сомнений (стандарт доказательства в уголовном праве).</blockquote>
+"""
+            },
+            {
+                "title": "Советы",
+                "text": """
+<b>💡 Советы:</b>
+• Запомните пары: thief – theft, robber – robbery, burglar – burglary.
+• В английском много устойчивых выражений с crime, law, court.
+• Будьте осторожны: to rob a bank (ограбить банк), to steal money (украсть деньги) – разная структура.
+• Практикуйтесь: описывайте новости о преступлениях, используя новую лексику.
+"""
+            }
+        ],
+        "faq": [
+            {"question": "В чём разница между 'rob' и 'steal'?", "answer": "Rob + место/человек (rob a bank). Steal + предмет (steal money)."}
+        ]
     },
-    "personality_character": {
+        "personality_character": {
         "title": "Лексика: характер человека (углубление)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Положительные черты",
+                "text": """
+<b>😊 Положительные качества:</b>
+
+• ambitious – амбициозный
+• confident – уверенный
+• reliable – надёжный
+• responsible – ответственный
+• hard-working – трудолюбивый
+• diligent – усердный
+• creative – творческий
+• curious – любознательный
+• open-minded – открытый новому
+• generous – щедрый
+• compassionate – сострадательный
+• empathetic – эмпатичный
+• optimistic – оптимистичный
+• cheerful – жизнерадостный
+• witty – остроумный
+
+<blockquote>Примеры: She is ambitious and wants to become a CEO. He is very reliable; you can count on him.</blockquote>
+"""
+            },
+            {
+                "title": "Отрицательные черты",
+                "text": """
+<b>😞 Отрицательные качества:</b>
+
+• arrogant – высокомерный
+• selfish – эгоистичный
+• greedy – жадный
+• dishonest – нечестный
+• unreliable – ненадёжный
+• irresponsible – безответственный
+• lazy – ленивый
+• stubborn – упрямый
+• jealous – ревнивый
+• envious – завистливый
+• pessimistic – пессимистичный
+• moody – с переменчивым настроением
+• aggressive – агрессивный
+• rude – грубый
+• impatient – нетерпеливый
+
+<blockquote>Примеры: His arrogant attitude annoyed everyone. She is so stubborn that she never listens to advice.</blockquote>
+"""
+            },
+            {
+                "title": "Описание человека (полезные фразы)",
+                "text": """
+<b>🗣️ Как описывать характер:</b>
+
+• He is the kind of person who... – Он из тех людей, кто...
+• She tends to be... – Она склонна быть...
+• What's he like? – Что он за человек? (характер)
+• He comes across as... – Он производит впечатление...
+• On the surface, he seems... but actually... – На первый взгляд кажется..., но на самом деле...
+
+<b>Примеры:</b>
+• What's your new boss like? – He's very demanding but fair.
+• She comes across as shy, but she's actually very confident.
+• He's a people person – he loves socialising.
+
+<blockquote>Не путайте: What is he like? (характер) vs What does he look like? (внешность).</blockquote>
+"""
+            },
+            {
+                "title": "Советы",
+                "text": """
+<b>💡 Советы:</b>
+• Учите антонимы: ambitious – unambitious, reliable – unreliable.
+• Используйте наречия для усиления: extremely, incredibly, quite, a bit.
+• Для описания друзей и коллег используйте как положительные, так и отрицательные черты (реалистично).
+• Практикуйтесь: опишите себя и членов семьи на английском.
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Как сказать 'человек, который любит общаться'?", "answer": "A people person. She is a real people person – она легко находит общий язык с людьми."}
+        ]
     },
     "workplace": {
         "title": "Лексика: рабочая среда",
