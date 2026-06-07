@@ -303,20 +303,239 @@ Was/Were + подлежащее + V‑ing?
             {"question": "Можно ли использовать Past Continuous с глаголами состояния?", "answer": "Обычно нет (как и в Present Continuous). Но в редких случаях можно, если глагол описывает активное действие: I was thinking about you. (Я думал о тебе – процесс)."}
         ]
     },
-    "pastsimple_vs_pastcontinuous": {
+        "pastsimple_vs_pastcontinuous": {
         "title": "Past Simple vs Past Continuous",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке. Скоро здесь появится теория."}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Основная разница",
+                "text": """
+<b>⚖️ Past Simple – завершённое действие в прошлом.</b>
+<b>⏳ Past Continuous – длительное действие, процесс в прошлом.</b>
+
+• Past Simple: I watched a film last night. (Я посмотрел фильм – закончил.)
+• Past Continuous: I was watching a film when you called. (Я смотрел фильм – процесс, прерванный звонком.)
+
+<blockquote>Past Simple отвечает на вопрос «что сделал?», Past Continuous – «чем был занят?».</blockquote>
+"""
+            },
+            {
+                "title": "Когда они используются вместе",
+                "text": """
+<b>📌 Совместное употребление: длительное действие (Past Continuous) + короткое действие (Past Simple)</b>
+
+• I was walking home when it started to rain. (Я шёл домой, когда начался дождь.)
+• She was having dinner when the phone rang. (Она ужинала, когда зазвонил телефон.)
+• They were playing football when they saw the accident. (Они играли в футбол, когда увидели аварию.)
+
+<b>Порядок слов:</b>
+• When + короткое действие (Past Simple), + длительное действие (Past Continuous).
+• While + длительное действие (Past Continuous), + короткое действие (Past Simple).
+
+<blockquote>While she was cooking, her husband came home. (Пока она готовила, муж пришёл домой.)</blockquote>
+"""
+            },
+            {
+                "title": "Два одновременных длительных действия",
+                "text": """
+<b>🔁 Если оба действия длились одновременно, оба ставятся в Past Continuous.</b>
+
+• While I was reading, my brother was playing video games. (Пока я читал, мой брат играл в видеоигры.)
+• The sun was shining, and the birds were singing. (Солнце светило, и птицы пели.)
+
+<b>Последовательные действия (одно за другим) – только Past Simple.</b>
+• I woke up, brushed my teeth, and had breakfast. (Я проснулся, почистил зубы и позавтракал.)
+
+<blockquote>Обратите внимание на союзы: when (когда) для прерывания, while (в то время как) для параллельности.</blockquote>
+"""
+            },
+            {
+                "title": "Типичные ошибки и советы",
+                "text": """
+<b>⚠️ Частые ошибки:</b>
+• ❌ While I cooked, the phone rang.  ✅ While I was cooking, the phone rang.
+• ❌ I was finishing my homework at 8. (если закончил)  ✅ I finished my homework at 8.
+• ❌ When I was coming home, I was seeing a friend.  ✅ When I was coming home, I saw a friend.
+
+<b>💡 Советы:</b>
+• Если действие было длительным (можно представить как «фоновый шум») – Past Continuous.
+• Если действие короткое, однократное, или перечисление фактов – Past Simple.
+• Тренируйтесь: описывайте своё вчерашнее утро, чередуя длительные и короткие действия.
+
+<blockquote>Практика: «Вчера в 5 часов я смотрел телевизор (длительное), когда вдруг зазвонил телефон (короткое)».</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Как выбрать между when и while?", "answer": "When обычно с Past Simple, while с Past Continuous. Но when может быть и с Continuous, если акцент на длительности."}
+        ]
     },
-    "presentperfect_simple": {
+        "presentperfect_simple": {
         "title": "Present Perfect Simple",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке. Скоро здесь появится теория."}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Образование",
+                "text": """
+<b>✅ Present Perfect: have/has + V3 (третья форма глагола)</b>
+
+• I / You / We / They – have
+• He / She / It – has
+
+<b>Правильные глаголы:</b> V3 = V + -ed (worked, played)
+<b>Неправильные глаголы:</b> нужно запоминать (gone, seen, had, eaten, bought)
+
+<b>Примеры:</b>
+• I have finished my homework. (Я закончил домашнее задание – результат: сейчас свободен.)
+• She has visited Paris. (Она посетила Париж – опыт, когда – неважно.)
+• They have bought a new car. (Они купили новую машину – результат: у них есть машина.)
+
+<blockquote>Сокращения: I've, you've, he's, she's, it's, we've, they've. (He's может быть he is или he has.)</blockquote>
+"""
+            },
+            {
+                "title": "Когда используется Present Perfect",
+                "text": """
+<b>📌 Основные случаи употребления:</b>
+
+1. <b>Результат важен сейчас, время не указано</b>
+   • I have lost my keys. (Я потерял ключи – результат: сейчас не могу найти.)
+   • She has broken her leg. (Она сломала ногу – результат: сейчас в гипсе.)
+
+2. <b>Опыт в жизни (когда‑либо)</b>
+   • Have you ever been to London? (Ты когда‑нибудь был в Лондоне?)
+   • I have never tried sushi. (Я никогда не пробовал суши.)
+
+3. <b>Изменения с течением времени</b>
+   • You have grown since last year. (Ты вырос с прошлого года.)
+   • The weather has become colder. (Погода стала холоднее.)
+
+4. <b>Действие началось в прошлом и продолжается до сих пор (с for/since)</b>
+   • I have lived here for 5 years. (Я живу здесь 5 лет – и всё ещё живу.)
+   • She has worked here since 2018. (Она работает здесь с 2018 года.)
+
+<blockquote>Слова-маркеры: already, yet, ever, never, just, for, since, lately, recently.</blockquote>
+"""
+            },
+            {
+                "title": "Отрицание и вопросы",
+                "text": """
+<b>🚫 Отрицание:</b> have/has + not + V3
+
+• I haven't finished yet. (Я ещё не закончил.)
+• She hasn't called me. (Она мне не позвонила.)
+
+<b>❓ Вопросы:</b> Have/Has + подлежащее + V3?
+
+• Have you ever seen a whale? (Ты когда‑нибудь видел кита?)
+• Has she arrived? (Она приехала?)
+
+<b>Краткие ответы:</b>
+• Yes, I have. / No, I haven't.
+• Yes, she has. / No, she hasn't.
+
+<b>Примеры с already / yet / just:</b>
+• I have already eaten. (Я уже поел.)
+• She hasn't come yet. (Она ещё не пришла.)
+• We have just arrived. (Мы только что приехали.)
+
+<blockquote>Already – в утверждениях (обычно в середине), yet – в отрицаниях и вопросах (в конце), just – в середине.</blockquote>
+"""
+            },
+            {
+                "title": "Типичные ошибки и советы",
+                "text": """
+<b>⚠️ Частые ошибки с Present Perfect:</b>
+• ❌ I have seen him yesterday.  ✅ I saw him yesterday.
+• ❌ She has went to London.  ✅ She has gone to London.
+• ❌ Have you ever went?  ✅ Have you ever been?
+
+<b>💡 Советы:</b>
+• Учите три формы неправильных глаголов (go – went – gone).
+• Если в предложении есть конкретное время (yesterday, last week, in 2020) – используйте Past Simple.
+• Для вопросов с ever начинайте с Have/Has.
+• Не используйте Present Perfect с yesterday, last week, two days ago.
+
+<blockquote>Практикуйтесь: расскажите о 3 вещах, которые вы сделали сегодня (I have already had breakfast).</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Разница между 'I have been to London' и 'I have gone to London'?", "answer": "Have been to – был и вернулся. Have gone to – уехал и ещё не вернулся."}
+        ]
     },
-    "presentperfect_vs_pastsimple": {
+        "presentperfect_vs_pastsimple": {
         "title": "Present Perfect vs Past Simple",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке. Скоро здесь появится теория."}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Ключевая разница",
+                "text": """
+<b>⚖️ Present Perfect – связь с настоящим. Past Simple – прошлое, не связанное с настоящим.</b>
+
+• I have lost my keys. (результат: сейчас не могу найти)
+• I lost my keys yesterday. (просто факт, без связи с настоящим)
+
+<blockquote>Если есть конкретное указание времени (yesterday, last week, in 2020) – Past Simple.</blockquote>
+"""
+            },
+            {
+                "title": "Сравнение на примерах",
+                "text": """
+<b>📖 Примеры:</b>
+
+• She has visited Paris. (опыт, когда – неважно)
+• She visited Paris in 2019. (указано время)
+
+• I have never tried sushi. (опыт)
+• I didn't try sushi when I was in Japan. (конкретная ситуация в прошлом)
+
+• They have lived here for 10 years. (живут до сих пор)
+• They lived here for 10 years, then moved. (жили, но переехали)
+
+• I have already finished my report. (результат – сейчас я свободен)
+• I finished my report an hour ago. (просто факт)
+
+<blockquote>Обратите внимание: for может использоваться с обоими временами, но смысл разный.</blockquote>
+"""
+            },
+            {
+                "title": "Слова-маркеры",
+                "text": """
+<b>🔖 Для Present Perfect:</b>
+• ever, never, already, yet, just, recently, lately, so far, today, this week (если период не закончен), for, since
+
+<b>🔖 Для Past Simple:</b>
+• yesterday, last week, last month, last year, in 1990, two days ago, when I was a child, at that time
+
+<b>Примеры:</b>
+• I have seen this film before. (до этого – опыт)
+• I saw this film last week. (конкретное время)
+
+• Have you ever eaten snake? (когда‑либо)
+• Did you eat snake in Vietnam? (конкретная поездка)
+
+<blockquote>Today, this week могут быть с Present Perfect, если период ещё не закончился.</blockquote>
+"""
+            },
+            {
+                "title": "Типичные ошибки и советы",
+                "text": """
+<b>⚠️ Частые ошибки:</b>
+• ❌ I have seen him yesterday.  ✅ I saw him yesterday.
+• ❌ She has lived in London in 2010.  ✅ She lived in London in 2010.
+• ❌ Did you ever been to London?  ✅ Have you ever been to London?
+
+<b>💡 Советы:</b>
+• Спросите себя: «Важен ли результат сейчас?» Если да – Present Perfect.
+• «Есть ли точное время?» Если да – Past Simple.
+• Слова-маркеры помогут: ever, never, already – Present Perfect; yesterday, last week – Past Simple.
+• Тренируйтесь: напишите два варианта одного предложения – с Present Perfect и с Past Simple, меняя смысл.
+
+<blockquote>Практика: «Я потерял телефон (сейчас не могу найти)» – Present Perfect. «Я потерял телефон вчера» – Past Simple.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Можно ли использовать 'just' с Past Simple?", "answer": "Just в значении 'только что' обычно с Present Perfect (I've just seen him). Но в американском английском допустимо и с Past Simple."}
+        ]
     },
     "usedto": {
         "title": "Конструкция used to",
