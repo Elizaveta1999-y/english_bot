@@ -2133,25 +2133,243 @@ LEVEL_B1_CONTENT = {
     },
 
     # ==================== МОДУЛЬ 7: Придаточные и связки ====================
-    "relative_clauses_advanced": {
-        "title": "Определительные придаточные (defining vs non-defining)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "relative_clauses_advanced": {
+        "title": "Определительные придаточные (defining vs non‑defining)",
+        "pages": [
+            {
+                "title": "Определительные придаточные (defining)",
+                "text": """
+<b>🔗 Определительные придаточные (defining) – уточняют, о каком именно предмете или человеке речь.</b>
+
+Без них предложение теряет смысл или становится неполным.
+
+• The book that I borrowed is fantastic. (Книга, которую я взял, фантастическая – какая именно книга? Та, которую я взял.)
+• The man who lives next door is a doctor. (Человек, который живёт по соседству, – врач.)
+
+<blockquote>В defining clauses относительное местоимение может быть опущено, если оно является объектом: The book (that) I borrowed... (that можно опустить).</blockquote>
+"""
+            },
+            {
+                "title": "Неопределительные придаточные (non‑defining)",
+                "text": """
+<b>📌 Неопределительные придаточные (non‑defining) – добавляют дополнительную информацию, которая не важна для идентификации существительного.</b>
+
+Они выделяются запятыми, и местоимение (who, which) нельзя опускать.
+
+• My brother, who lives in London, is an engineer. (Мой брат, который живёт в Лондоне, – инженер. У меня только один брат, информация о Лондоне – дополнительная.)
+• The Eiffel Tower, which is in Paris, is famous. (Эйфелева башня, которая находится в Париже, известна.)
+
+<blockquote>В non‑defining clauses нельзя использовать that. Только who (для людей), which (для предметов).</blockquote>
+"""
+            },
+            {
+                "title": "Сравнение и примеры",
+                "text": """
+<b>📊 Сравните:</b>
+
+• Defining: The students who passed the exam will get a certificate. (Только те студенты, которые сдали – их может быть несколько)
+• Non‑defining: The students, who passed the exam, will get a certificate. (Все студенты сдали, и все получат сертификат – дополнительная информация)
+
+• Defining: The car that is parked outside is mine. (Какая машина? Та, что припаркована снаружи)
+• Non‑defining: The car, which is parked outside, is mine. (Машина – единственная, и она припаркована снаружи – просто факт)
+
+<blockquote>Запятые меняют смысл!</blockquote>
+"""
+            },
+            {
+                "title": "Типичные ошибки и советы",
+                "text": """
+<b>⚠️ Частые ошибки:</b>
+• ❌ The book, that I borrowed, is great. (в non‑defining нельзя that)  ✅ The book, which I borrowed, is great.
+• ❌ The man who he lives next door is a doctor. (лишнее he)  ✅ The man who lives next door is a doctor.
+• ❌ My brother that lives in London is a doctor. (если брат один)  ✅ My brother, who lives in London, is a doctor.
+
+<b>💡 Совет:</b>
+• Если уточнение важно для понимания (какой именно предмет?) – defining (без запятых).
+• Если дополнительная информация (можно убрать) – non‑defining (с запятыми).
+• Тренируйтесь: определите, нужны ли запятые в ваших предложениях.
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Как отличить defining от non‑defining?", "answer": "Попробуйте убрать придаточную часть. Если предложение теряет смысл – defining. Если смысл остаётся – non‑defining."}
+        ]
     },
-    "clauses_of_concession": {
+        "clauses_of_concession": {
         "title": "Придаточные уступки (although, even though, despite, in spite of)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Although / even though",
+                "text": """
+<b>🧩 Although / even though – «хотя, несмотря на то что».</b>
+
+После них идёт полное предложение (подлежащее + сказуемое).
+
+• Although it was raining, we went for a walk. (Хотя шёл дождь, мы пошли гулять.)
+• Even though she was tired, she finished her work. (Несмотря на то что она устала, она закончила работу.)
+
+<blockquote>Even though сильнее, чем although, подчёркивает контраст.</blockquote>
+"""
+            },
+            {
+                "title": "Despite / in spite of",
+                "text": """
+<b>📌 Despite / in spite of – «несмотря на».</b>
+
+После них используется существительное, местоимение (‑ing) или фраза с the fact that.
+
+• Despite the rain, we went for a walk. (Несмотря на дождь…)
+• In spite of being tired, she finished her work. (Несмотря на усталость…)
+• Despite the fact that he was late, he didn't apologise. (Несмотря на то что он опоздал…)
+
+<blockquote>После despite / in spite of никогда не ставится глагол в личной форме (только существительное или герундий).</blockquote>
+"""
+            },
+            {
+                "title": "Сравнение",
+                "text": """
+<b>📊 Сравните конструкции:</b>
+
+• <b>Although</b> it was raining, we went out. (союз, целое предложение)
+• <b>Despite</b> the rain, we went out. (предлог, существительное)
+• <b>In spite of</b> the rain, we went out. (предлог, существительное)
+
+• <b>Though</b> (разговорный вариант although) – Though it was cold, I enjoyed the trip.
+
+<blockquote>Despite / in spite of более формальны, but though более разговорный.</blockquote>
+"""
+            },
+            {
+                "title": "Типичные ошибки и советы",
+                "text": """
+<b>⚠️ Частые ошибки:</b>
+• ❌ Despite it was raining...  ✅ Despite the rain... / Despite the fact that it was raining...
+• ❌ Although the rain...  ✅ Although it was raining...
+• ❌ In spite of he was late...  ✅ In spite of being late / In spite of the fact that he was late.
+
+<b>💡 Совет:</b>
+• Если хотите использовать глагол (был дождь), ставьте although / even though.
+• Если хотите использовать существительное (дождь), ставьте despite / in spite of.
+• Тренируйтесь: переписывайте предложения разными способами.
+"""
+            }
+        ],
+        "faq": [
+            {"question": "В чём разница между 'though' и 'although'?", "answer": "Они почти одинаковы, though чаще в конце предложения: It was raining, though we went out."}
+        ]
     },
-    "clauses_of_purpose": {
+        "clauses_of_purpose": {
         "title": "Придаточные цели (to, in order to, so that)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Инфинитив цели (to / in order to / so as to)",
+                "text": """
+<b>🎯 Инфинитив цели отвечает на вопрос «зачем?», «с какой целью?».</b>
+
+• I went to the supermarket to buy milk. (Я пошёл в супермаркет, чтобы купить молоко.)
+• She is saving money to buy a car. (Она копит деньги, чтобы купить машину.)
+• He spoke loudly so as to be heard. (Он говорил громко, чтобы его услышали.)
+
+<blockquote>In order to / so as to – более формальные варианты.</blockquote>
+"""
+            },
+            {
+                "title": "So that + can / could / will – для выражения цели с подлежащим и глаголом",
+                "text": """
+<b>📌 So that – используется, когда в цели есть подлежащее (которое может отличаться от подлежащего главного предложения).</b>
+
+• I gave him my number so that he could call me. (Я дал ему свой номер, чтобы он мог позвонить мне.)
+• We are leaving early so that we won't be late. (Мы уезжаем рано, чтобы не опоздать.)
+
+<blockquote>После so that часто используются модальные глаголы can, could, will, would, may.</blockquote>
+"""
+            },
+            {
+                "title": "Отрицательная цель",
+                "text": """
+<b>🚫 Отрицательная цель – чтобы не…</b>
+
+• Инфинитив: I closed the window not to let the cold air in. (Я закрыл окно, чтобы холодный воздух не проникал.)
+• So that + won't / wouldn't: I closed the window so that the cold air wouldn't come in.
+
+<blockquote>For + -ing также может выражать цель (This button is for turning off the machine).</blockquote>
+"""
+            },
+            {
+                "title": "Типичные ошибки и советы",
+                "text": """
+<b>⚠️ Частые ошибки:</b>
+• ❌ I went to shop for buying milk. (неправильно)  ✅ I went to the shop to buy milk.
+• ❌ So that to buy milk.  ✅ So that I could buy milk / to buy milk.
+
+<b>💡 Совет:</b>
+• Если цель относится к тому же подлежащему, используйте инфинитив (to + V).
+• Если у цели другое подлежащее, используйте so that + can/could.
+• Тренируйтесь: объясните, зачем вы что-то делаете, используя разные конструкции.
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Можно ли использовать 'for' для выражения цели?", "answer": "Да, в конструкции for + V‑ing: This tool is for cutting wood. Но не для глаголов действия: I went for buying (неправильно)."}
+        ]
     },
-    "clauses_of_result": {
+        "clauses_of_result": {
         "title": "Придаточные следствия (so…that, such…that)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Конструкция so + прилагательное / наречие + that",
+                "text": """
+<b>💥 Придаточные следствия показывают результат действия или качества.</b>
+
+• The coffee was so hot that I couldn't drink it. (Кофе был настолько горячим, что я не мог его пить.)
+• He ran so fast that he won the race. (Он бежал так быстро, что выиграл гонку.)
+• She spoke so quietly that nobody heard her. (Она говорила так тихо, что никто её не слышал.)
+
+<blockquote>So + прилагательное / наречие + that – результат чрезмерной степени качества.</blockquote>
+"""
+            },
+            {
+                "title": "Конструкция such + (a/an) + прилагательное + существительное + that",
+                "text": """
+<b>📌 Such + существительное (часто с прилагательным) + that.</b>
+
+• It was such a hot day that we stayed indoors. (Был настолько жаркий день, что мы остались в помещении.)
+• They are such nice people that everyone likes them. (Они настолько милые люди, что всем нравятся.)
+• She made such a delicious cake that I ate two slices. (Она испекла такой вкусный торт, что я съел два куска.)
+
+<blockquote>Перед существительным в единственном числе нужен артикль a/an.</blockquote>
+"""
+            },
+            {
+                "title": "Варианты с many / much / few / little",
+                "text": """
+<b>🔢 So many / so much / so few / so little + that.</b>
+
+• There were so many people that we couldn't get in. (Было так много людей, что мы не могли войти.)
+• He has so much money that he doesn't know what to do with it. (У него так много денег, что он не знает, что с ними делать.)
+• She made so few mistakes that she got an A. (Она сделала так мало ошибок, что получила пятёрку.)
+
+<blockquote>В этих случаях используется so (не such).</blockquote>
+"""
+            },
+            {
+                "title": "Типичные ошибки и советы",
+                "text": """
+<b>⚠️ Частые ошибки:</b>
+• ❌ It was so hot weather that...  ✅ It was such hot weather that... (weather – существительное)
+• ❌ He is such clever that...  ✅ He is so clever that... (clever – прилагательное, без существительного)
+• ❌ There were so much people. (people – исчисляемое)  ✅ There were so many people.
+
+<b>💡 Совет:</b>
+• So + прилагательное / наречие (без существительного)
+• Such + (прилагательное) + существительное
+• Тренируйтесь: описывайте ситуации с результатами (It was so cold that...)
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Можно ли опустить that?", "answer": "Да, в разговорной речи часто опускают: It was so hot I couldn't sleep."}
+        ]
     },
 
     # ==================== МОДУЛЬ 8: Лексика B1 ====================
