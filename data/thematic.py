@@ -1295,10 +1295,105 @@ I have a big family. My mother's name is Anna. She is a teacher. My father's nam
             {"question": "Нужно ли учить идиомы?", "answer": "Да, самые распространённые полезны для понимания речи и сдачи экзаменов. 10-15 достаточно для уровня A2-B1."}
         ]
     },
-    "irregular_verbs": {
+        "irregular_verbs": {
         "title": "Неправильные глаголы (тренажёр)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Топ-10 неправильных глаголов",
+                "text": """
+<b>⚠️ Неправильные глаголы нужно запоминать (три формы).</b>
+
+1. go – went – gone (идти)
+2. see – saw – seen (видеть)
+3. have – had – had (иметь)
+4. eat – ate – eaten (есть)
+5. drink – drank – drunk (пить)
+6. buy – bought – bought (покупать)
+7. meet – met – met (встречать)
+8. read – read – read (читать – произносится [ред])
+9. write – wrote – written (писать)
+10. speak – spoke – spoken (говорить)
+
+<b>Примеры в Past Simple:</b>
+• I went to school yesterday. (Я ходил в школу вчера.)
+• She saw a film. (Она посмотрела фильм.)
+• We had lunch at 1. (Мы пообедали в час.)
+
+<blockquote>Первая форма – инфинитив, вторая – Past Simple, третья – причастие (для Present Perfect и пассива).</blockquote>
+"""
+            },
+            {
+                "title": "Как учить неправильные глаголы",
+                "text": """
+<b>📚 Советы по запоминанию:</b>
+
+1. Группируйте по рифме:
+   • sing – sang – sung
+   • drink – drank – drunk
+   • swim – swam – swum
+
+2. Группируйте по совпадению форм:
+   • put – put – put
+   • cut – cut – cut
+   • set – set – set
+
+3. Группируйте по окончаниям:
+   • bring – brought – brought
+   • buy – bought – bought
+   • think – thought – thought
+
+<blockquote>Регулярно повторяйте таблицу неправильных глаголов.</blockquote>
+"""
+            },
+            {
+                "title": "Следующие 10 глаголов",
+                "text": """
+<b>📌 Ещё 10 частотных глаголов:</b>
+
+11. do – did – done (делать)
+12. say – said – said (говорить)
+13. get – got – got (получать)
+14. make – made – made (делать, изготавливать)
+15. know – knew – known (знать)
+16. think – thought – thought (думать)
+17. take – took – taken (брать)
+18. come – came – come (приходить)
+19. see – saw – seen (видеть)
+20. find – found – found (находить)
+
+<b>Примеры:</b>
+• I did my homework. (Я сделал домашнюю работу.)
+• She said hello. (Она поздоровалась.)
+• He got a present. (Он получил подарок.)
+
+<blockquote>Учите по 5-10 глаголов в день и повторяйте старые.</blockquote>
+"""
+            },
+            {
+                "title": "Тренажёр (проверьте себя)",
+                "text": """
+<b>✏️ Заполните пропуски (ответы ниже):</b>
+
+1. Yesterday I (go) ______ to the park.
+2. She has (eat) ______ already.
+3. They (buy) ______ a new car last week.
+4. I have never (see) ______ such a beautiful view.
+5. He (write) ______ a letter to his friend.
+
+<b>✅ Ответы:</b>
+1. went
+2. eaten
+3. bought
+4. seen
+5. wrote
+
+<blockquote>Повторяйте вслух и пишите формы – это улучшает запоминание.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Сколько всего неправильных глаголов?", "answer": "Около 200, но для уровня A2 достаточно 30-40 самых частотных."}
+        ]
     },
         "numbers_and_dates": {
         "title": "Числительные и даты",
