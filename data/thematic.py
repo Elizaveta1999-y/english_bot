@@ -1121,25 +1121,258 @@ THEMATIC_CONTENT = {
             {"question": "Как закончить письмо, если не знаешь имени адресата?", "answer": "Yours faithfully (если начали с Dear Sir or Madam)."}
         ]
     },
-    "family_vocabulary": {
+        "family_vocabulary": {
         "title": "Лексика: семья и друзья",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Члены семьи",
+                "text": """
+<b>👪 Основные члены семьи:</b>
+
+• mother – мама
+• father – папа
+• parents – родители
+• sister – сестра
+• brother – брат
+• son – сын
+• daughter – дочь
+• grandmother – бабушка
+• grandfather – дедушка
+• grandparents – бабушка и дедушка
+• aunt – тётя
+• uncle – дядя
+• cousin – двоюродный брат / сестра
+• niece – племянница
+• nephew – племянник
+• wife – жена
+• husband – муж
+
+<blockquote>Слова с grand- (grandmother, grandfather) могут быть с маминой или папиной стороны.</blockquote>
+"""
+            },
+            {
+                "title": "Друзья и отношения",
+                "text": """
+<b>👥 Люди в нашей жизни:</b>
+
+• friend – друг
+• best friend – лучший друг
+• close friend – близкий друг
+• acquaintance – знакомый
+• colleague / coworker – коллега
+• neighbour – сосед
+• roommate – сосед по комнате
+• partner – партнёр (в жизни или бизнесе)
+• spouse – супруг / супруга
+• relative – родственник
+• classmate – одноклассник / однокурсник
+
+<b>Этапы отношений:</b>
+• to get to know someone – узнавать кого-то
+• to become friends – подружиться
+• to fall in love – влюбиться
+• to date – встречаться (с кем-то)
+• to get married – пожениться
+• to break up – расстаться
+• to get divorced – развестись
+
+<blockquote>Осторожно: to fall in love – сильное чувство, to like – симпатия.</blockquote>
+"""
+            },
+            {
+                "title": "Примеры предложений",
+                "text": """
+<b>📖 Рассказ о семье:</b>
+
+I have a big family. My mother's name is Anna. She is a teacher. My father's name is John. He is a doctor. I have one sister and two brothers. My sister's name is Kate. She is 25. My grandmother lives with us. She is 70. I love my family.
+
+<b>Притяжательный падеж:</b>
+• My mother's name – имя моей матери (апостроф + s)
+• My parents' car – машина моих родителей (апостроф после s)
+
+<blockquote>Притяжательный падеж для людей: John's car, my sister's phone.</blockquote>
+"""
+            },
+            {
+                "title": "Советы",
+                "text": """
+<b>💡 Как выучить лексику о семье и друзьях:</b>
+• Нарисуйте своё генеалогическое дерево и подпишите всех на английском.
+• Запомните разницу между niece (племянница) и nephew (племянник).
+• Для двоюродных братьев/сестёр используйте cousin без указания пола.
+• Расскажите о своей семье друзьям – это частая тема для знакомства.
+
+<blockquote>Учите слова вместе с притяжательными местоимениями: my mother, your father, his sister.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Как сказать 'сводный брат'?", "answer": "Stepbrother (сын отчима или мачехи)."}
+        ]
     },
-    "idioms_10_popular": {
+        "idioms_10_popular": {
         "title": "Идиомы (10 популярных)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Идиомы о ситуациях",
+                "text": """
+<b>🔁 Самые употребительные идиомы:</b>
+
+• <b>It's a piece of cake.</b> – Проще пареной репы (легко).
+  • The test was a piece of cake. (Тест был очень лёгким.)
+
+• <b>It costs an arm and a leg.</b> – Стоит бешеных денег (очень дорого).
+  • This phone costs an arm and a leg. (Этот телефон стоит целое состояние.)
+
+• <b>Break a leg!</b> – Ни пуха ни пера! (удачи – перед выступлением)
+
+• <b>Once in a blue moon.</b> – Очень редко (раз в сто лет).
+  • I go to the cinema once in a blue moon. (Я хожу в кино очень редко.)
+
+• <b>Let's call it a day.</b> – На сегодня хватит (заканчиваем работу).
+
+<blockquote>Идиомы нужно запоминать как целые фразы, не переводя дословно.</blockquote>
+"""
+            },
+            {
+                "title": "Идиомы о поведении",
+                "text": """
+<b>💡 Продолжение:</b>
+
+• <b>Hit the books.</b> – Усердно учиться.
+  • I need to hit the books before the exam. (Мне нужно серьёзно позаниматься перед экзаменом.)
+
+• <b>Spill the beans.</b> – Выдать секрет (разболтать).
+  • Who spilled the beans about the surprise party? (Кто разболтал о вечеринке-сюрпризе?)
+
+• <b>Under the weather.</b> – Плохо себя чувствовать (приболеть).
+  • I'm feeling a bit under the weather today. (Я сегодня немного приболел.)
+
+• <b>The ball is in your court.</b> – Теперь твоя очередь действовать / решение за тобой.
+
+• <b>When pigs fly.</b> – Когда рак на горе свистнет (никогда).
+  • He'll tidy his room when pigs fly. (Он никогда не уберёт свою комнату.)
+
+• <b>Better late than never.</b> – Лучше поздно, чем никогда.
+
+<blockquote>Используйте идиомы умеренно, чтобы не перегружать речь.</blockquote>
+"""
+            },
+            {
+                "title": "Как использовать идиомы",
+                "text": """
+<b>📖 Пример в диалоге:</b>
+– Are you coming to the party?
+– I'm feeling under the weather, but I'll try.
+– That's great! Don't spill the beans – it's a surprise for Anna.
+
+<b>💡 Советы:</b>
+• Учите идиомы в контексте, придумывайте свои примеры.
+• Создайте карточки с идиомой на одной стороне и значением на другой.
+• Смотрите фильмы и сериалы на английском – идиомы очень часто встречаются.
+• Начните с 2-3 идиом и постепенно добавляйте новые.
+• Попробуйте использовать одну новую идиому в разговоре каждый день.
+
+<blockquote>Идиомы делают речь яркой, но требуют осторожности – используйте их, когда уверены в значении.</blockquote>
+"""
+            },
+            {
+                "title": "Практика",
+                "text": """
+<b>✏️ Упражнение:</b>
+Напишите три предложения, используя идиомы из этого урока.
+
+<b>Примеры:</b>
+1. The exam was a piece of cake.
+2. I'm feeling under the weather, so I'll stay home.
+3. Let's call it a day and continue tomorrow.
+
+<blockquote>Практикуйтесь ежедневно, и идиомы войдут в вашу активную речь.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Нужно ли учить идиомы?", "answer": "Да, самые распространённые полезны для понимания речи и сдачи экзаменов. 10-15 достаточно для уровня A2-B1."}
+        ]
     },
     "irregular_verbs": {
         "title": "Неправильные глаголы (тренажёр)",
         "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
         "faq": []
     },
-    "numbers_and_dates": {
+        "numbers_and_dates": {
         "title": "Числительные и даты",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Количественные числительные (1-20)",
+                "text": """
+<b>🔢 Числа 1-20:</b>
+
+1 one, 2 two, 3 three, 4 four, 5 five
+6 six, 7 seven, 8 eight, 9 nine, 10 ten
+11 eleven, 12 twelve, 13 thirteen, 14 fourteen, 15 fifteen
+16 sixteen, 17 seventeen, 18 eighteen, 19 nineteen, 20 twenty
+
+<blockquote>Числа 13-19 образуются добавлением -teen, но 11 и 12 – исключения.</blockquote>
+"""
+            },
+            {
+                "title": "Десятки и сотни",
+                "text": """
+<b>🔢 Десятки (tens):</b>
+20 twenty, 30 thirty, 40 forty, 50 fifty
+60 sixty, 70 seventy, 80 eighty, 90 ninety, 100 one hundred
+
+<b>Составные числа:</b>
+• 21 – twenty-one, 35 – thirty-five, 99 – ninety-nine
+
+<b>Порядковые числительные (ordinal numbers):</b>
+1st first, 2nd second, 3rd third, 4th fourth, 5th fifth
+6th sixth, 7th seventh, 8th eighth, 9th ninth, 10th tenth
+20th twentieth, 21st twenty-first, 22nd twenty-second
+
+<blockquote>Порядковые используются для дат и позиции в списке.</blockquote>
+"""
+            },
+            {
+                "title": "Даты (dates)",
+                "text": """
+<b>📅 Как сказать дату:</b>
+
+• Британский вариант: the + порядковое + of + месяц
+  • 5th May – the fifth of May
+  • 1st January – the first of January
+
+• Американский вариант: месяц + порядковое
+  • May 5th, January 1st
+
+<b>Годы (years):</b>
+• 1998 – nineteen ninety-eight
+• 2010 – twenty ten
+• 2024 – twenty twenty-four
+• 1900 – nineteen hundred
+• 2000 – two thousand
+
+<blockquote>В британском варианте обязательно 'the' и 'of', в американском – нет.</blockquote>
+"""
+            },
+            {
+                "title": "Советы",
+                "text": """
+<b>💡 Советы по запоминанию:</b>
+
+• Считайте всё, что видите: шаги, книги, кнопки.
+• Не путайте -teen (‑надцать) и -ty (‑десят): fourteen (14) vs forty (40).
+• Запомните написание forty (без буквы 'u').
+• Тренируйтесь называть даты: свой день рождения, праздники, исторические события.
+
+<blockquote>Регулярно называйте числа вслух – это поможет автоматизировать счёт.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Как сказать 0 на английском?", "answer": "Zero (в науке), oh (в телефонных номерах), nil (в спорте)."}
+        ]
     },
     "tag_questions": {
         "title": "Вопросительные предложения (tag questions)",
