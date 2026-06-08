@@ -6,6 +6,7 @@ from data.users import get_user_state, set_user_state
 from data.level_a1 import LEVEL_A1_CONTENT
 from data.level_a2 import LEVEL_A2_CONTENT
 from data.level_b1 import LEVEL_B1_CONTENT
+from data.level_b2 import LEVEL_B2_CONTENT
 from services.deepseek import chat
 from speaking.services.tts import text_to_voice
 
@@ -15,6 +16,7 @@ LESSON_CONTENT = {}
 LESSON_CONTENT.update(LEVEL_A1_CONTENT)
 LESSON_CONTENT.update(LEVEL_A2_CONTENT)
 LESSON_CONTENT.update(LEVEL_B1_CONTENT)
+LESSON_CONTENT.update(LEVEL_B2_CONTENT)
 
 THEMATIC_TOPICS = [
     "Present Simple vs Continuous",
@@ -83,7 +85,18 @@ MODULES_B1 = {
     "8": {"name": "📙 Модуль 8: Лексика B1", "lessons": ["education_learning", "money_finance", "media_advertising", "crime_law", "personality_character", "workplace", "global_issues", "phrasal_verbs_1", "phrasal_verbs_2", "word_formation"]}
 }
 
-ALL_MODULES = {"A1": MODULES_A1, "A2": MODULES_A2, "B1": MODULES_B1}
+MODULES_B2 = {
+    "1": {"name": "📘 Модуль 1: Сложные времена и аспекты", "lessons": ["narrative_tenses", "future_continuous_perfect", "future_perfect_continuous", "present_perfect_simple_continuous_review", "past_perfect_continuous_advanced", "time_clauses_advanced"]},
+    "2": {"name": "📙 Модуль 2: Модальные глаголы (продвинутый)", "lessons": ["modal_perfect_advanced", "modal_passive", "modal_expressions_ability", "modal_expressions_necessity", "modal_expressions_criticism"]},
+    "3": {"name": "📗 Модуль 3: Условные предложения (продвинутые)", "lessons": ["conditionals_mixed", "conditionals_alternatives", "conditionals_inversion", "wish_if_only_advanced", "would_rather_would_sooner"]},
+    "4": {"name": "📘 Модуль 4: Инфинитив и герундий (продвинутые)", "lessons": ["infinitive_gerund_advanced", "perfect_infinitive_gerund", "passive_infinitive_gerund", "verbs_of_perception", "causative_advanced"]},
+    "5": {"name": "📙 Модуль 5: Пассивный залог (продвинутый)", "lessons": ["passive_reporting_verbs", "passive_with_prepositions", "impersonal_passive_advanced", "causative_passive"]},
+    "6": {"name": "📗 Модуль 6: Косвенная речь (продвинутая)", "lessons": ["reported_speech_advanced_2", "reported_speech_mix", "reporting_verbs_advanced", "reporting_verbs_patterns"]},
+    "7": {"name": "📘 Модуль 7: Придаточные и связки (продвинутые)", "lessons": ["relative_clauses_reduced", "cleft_sentences", "inversion_negative", "inversion_emphatic", "conjunctions_advanced"]},
+    "8": {"name": "📙 Модуль 8: Лексика B2", "lessons": ["work_career_b2", "education_b2", "health_medicine", "environment_b2", "science_technology", "media_communication", "crime_punishment", "politics_government", "economy_business", "phrasal_verbs_b2", "phrasal_verbs_b2_2", "idioms_b2"]}
+}
+
+ALL_MODULES = {"A1": MODULES_A1, "A2": MODULES_A2, "B1": MODULES_B1, "B2": MODULES_B2}
 
 LESSON_NAMES = {
 # Названия для A1 (вставьте в LESSON_NAMES)
@@ -217,6 +230,60 @@ LESSON_NAMES = {
     "phrasal_verbs_1": "🔤 Фразовые глаголы (часть 1)",
     "phrasal_verbs_2": "🔤 Фразовые глаголы (часть 2)",
     "word_formation": "🔨 Словообразование",
+    # B2 модуль 1
+    "narrative_tenses": "📖 Narrative Tenses (Past Tenses in Stories)",
+    "future_continuous_perfect": "🔮 Future Continuous vs Future Perfect (повторение)",
+    "future_perfect_continuous": "⏳ Future Perfect Continuous",
+    "present_perfect_simple_continuous_review": "🔄 Present Perfect Simple vs Continuous (сравнение)",
+    "past_perfect_continuous_advanced": "⏪ Past Perfect Continuous (сложные случаи)",
+    "time_clauses_advanced": "⏰ Придаточные времени (as long as, once, by the time)",
+    # B2 модуль 2
+    "modal_perfect_advanced": "✅ Modal Perfect (must have done, could have done)",
+    "modal_passive": "📦 Пассив с модальными глаголами",
+    "modal_expressions_ability": "💪 Выражение способности (manage to, succeed in)",
+    "modal_expressions_necessity": "⚖️ Выражение необходимости (needn't have done)",
+    "modal_expressions_criticism": "😔 Выражение критики и сожаления",
+    # B2 модуль 3
+    "conditionals_mixed": "🔄 Смешанные условные",
+    "conditionals_alternatives": "🔁 Альтернативы if (unless, provided that)",
+    "conditionals_inversion": "🔄 Инверсия в условных (Had I known...)",
+    "wish_if_only_advanced": "😟 I wish / If only (продвинутые)",
+    "would_rather_would_sooner": "⚖️ would rather / would sooner",
+    # B2 модуль 4
+    "infinitive_gerund_advanced": "📝 Инфинитив и герундий (сложные глаголы)",
+    "perfect_infinitive_gerund": "⏪ Перфектный инфинитив и герундий",
+    "passive_infinitive_gerund": "📦 Пассивный инфинитив и герундий",
+    "verbs_of_perception": "👀 Глаголы восприятия (see, hear, watch)",
+    "causative_advanced": "🔧 Каузатив (have/get something done, have someone do)",
+    # B2 модуль 5
+    "passive_reporting_verbs": "🗣️ Пассив с глаголами передачи информации",
+    "passive_with_prepositions": "📍 Пассив с предлогами (was laughed at)",
+    "impersonal_passive_advanced": "📰 Безличный пассив (It is said that...)",
+    "causative_passive": "🔨 Каузативный пассив (have/get something done)",
+    # B2 модуль 6
+    "reported_speech_advanced_2": "🗣️ Косвенная речь (сложные случаи)",
+    "reported_speech_mix": "🔄 Смешение времён в косвенной речи",
+    "reporting_verbs_advanced": "📢 Глаголы передачи речи (advise, accuse, boast)",
+    "reporting_verbs_patterns": "📋 Паттерны глаголов передачи речи",
+    # B2 модуль 7
+    "relative_clauses_reduced": "✂️ Сокращённые определительные придаточные",
+    "cleft_sentences": "🔍 Расщеплённые предложения (It was... that...)",
+    "inversion_negative": "🔄 Инверсия после отрицательных наречий",
+    "inversion_emphatic": "❗ Инверсия для эмфазы (Only then, Little did he know)",
+    "conjunctions_advanced": "🔗 Союзы и связки (however, nevertheless, whereas)",
+    # B2 модуль 8
+    "work_career_b2": "💼 Работа и карьера (B2)",
+    "education_b2": "🎓 Образование (B2)",
+    "health_medicine": "🏥 Здоровье и медицина",
+    "environment_b2": "🌍 Окружающая среда (B2)",
+    "science_technology": "🔬 Наука и технологии",
+    "media_communication": "📺 Медиа и коммуникация",
+    "crime_punishment": "⚖️ Преступления и наказания",
+    "politics_government": "🏛️ Политика и правительство",
+    "economy_business": "📊 Экономика и бизнес",
+    "phrasal_verbs_b2": "🔤 Фразовые глаголы B2 (часть 1)",
+    "phrasal_verbs_b2_2": "🔤 Фразовые глаголы B2 (часть 2)",
+    "idioms_b2": "💬 Идиомы и устойчивые выражения B2",
 }
 
 user_page = {}
