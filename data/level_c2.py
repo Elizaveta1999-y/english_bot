@@ -2554,7 +2554,7 @@ Please accept my apologies for my tardiness. My vehicle suffered a mechanical fa
             {"question": "Обязательно ли всегда использовать все четыре элемента (claim, evidence, warrant, impact)?", "answer": "В кратких выступлениях можно объединять warrant и impact, но в академических работах рекомендуется полнота."}
         ]
     },
-        "persuasive_language": {
+            "persuasive_language": {
         "title": "Язык убеждения и риторические приёмы",
         "pages": [
             {
@@ -2608,50 +2608,30 @@ Please accept my apologies for my tardiness. My vehicle suffered a mechanical fa
                 "text": """
 <b>📖 Пример (тема: сокращение пластиковых отходов):</b>
 
-*Is it acceptable that our oceans are filled with plastic? Absolutely not. We need a complete ban on single‑use plastics. Without such a ban, marine life will continue to die, our beaches will be polluted, and our health will be at risk. Some argue that a ban would hurt businesses, but this argument ignores the long‑term cost of environmental damage. Therefore, we must act but this argument ignores the long‑term cost of environmental damage. Therefore, we must act now.*
+*Is it acceptable that our oceans are filled with plastic? Absolutely not. We need a complete ban on single‑use plastics. Without such a ban, marine life will continue to die, our beaches will be polluted, and our health will be at risk. Some argue that a ban would hurt businesses, but this argument ignores the long‑term cost of environmental damage. Therefore, we must act now.*
 
-<blockquote>Здесь использованы риторический вопрос now.*
-
-<blockquote>Здесь использованы риторический, boosting вопрос, boosting (absolutely not, must), триада (marine (absolutely not, must), триада (marine life, life, beaches, health) и контраргумент.</blockquote>
+<blockquote>Здесь использованы риторический вопрос, boosting (absolutely not, must), триада (marine life, beaches, health) и контраргумент.</blockquote>
 """
             },
             {
                 "title": "Советы",
                 "text": """
-<b>💡 Как развить beaches, health) и контраргумент.</blockquote>
-"""
-            },
-            {
-                "title": "Советы",
-                "text": """
-<b>💡 Как развить навык убе навык убеждения:</b>
-
-• Анализируйте речи известных ораторов (Martin Luther King, Winstonждения:</b>
+<b>💡 Как развить навык убеждения:</b>
 
 • Анализируйте речи известных ораторов (Martin Luther King, Winston Churchill, Barack Obama).
-• Пишите корот Churchill, Barack Obama).
 • Пишите короткие убедительные тексты на разные темы.
-•кие убедительные тексты на разные Практикуйтесь в устной речи: убе темы.
 • Практикуйтесь в устной речи: убедите друга изменить мнение.
-• Изучайте риторические приёмы и старайтесь использовать их осдите друга изменить мнение.
 • Изучайте риторические приёмы и старайтесь использовать их осознанно.
 
-<blockquote>Убеждение – это искусство,ознанно.
-
-<blockquote>Убеждение – это искусство, которое сочетает логику, эмоции которое сочетает логику, эмоции и стиль.</blockquote>
+<blockquote>Убеждение – это искусство, которое сочетает логику, эмоции и стиль.</blockquote>
 """
             }
         ],
         "faq": [
-            и стиль.</blockquote>
-"""
-            }
-        ],
-        "faq": [
-            {"question": "Можно ли использовать эмоциональную лексику в академическом эссе?", "answer": "Осторож {"question": "Можно ли использовать эмоциональную лексику в академическом эссе?", "answer": "Осторожно. Вно. В научных работах лучше избегать чрезмерной эмоциональности, но в эссе-рассужд научных работах лучше избегать чрезмерной эмоциональности, но в эссе-рассуждении (opinion essay) она допустима."ении (opinion essay) она допустима."}
+            {"question": "Можно ли использовать эмоциональную лексику в академическом эссе?", "answer": "Осторожно. В научных работах лучше избегать чрезмерной эмоциональности, но в эссе-рассуждении (opinion essay) она допустима."}
         ]
     },
-        "counterargument_cliches": {
+       "counterargument_cliches": {
         "title": "Клише для контраргументации и опровержения",
         "pages": [
             {
