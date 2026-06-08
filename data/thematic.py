@@ -269,15 +269,146 @@ THEMATIC_CONTENT = {
             {"question": "Как спросить разрешение вежливо?", "answer": "Could I...? или May I...? (более формально)"}
         ]
     },
-    "conditionals_0_1_2": {
+        "conditionals_0_1_2": {
         "title": "Conditionals (0,1,2 типа)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "0 тип – факты и законы природы",
+                "text": """
+<b>🔁 Conditional 0 – для общеизвестных истин, всегда верных утверждений.</b>
+
+Формула: If + Present Simple, + Present Simple
+
+• If you heat ice, it melts. (Если нагреть лёд, он тает.)
+• If it rains, the ground gets wet. (Если идёт дождь, земля становится мокрой.)
+• If you don't eat, you get hungry. (Если не есть, проголодаешься.)
+
+<blockquote>В 0 типе условие всегда выполняется, результат всегда одинаков.</blockquote>
+"""
+            },
+            {
+                "title": "1 тип – реальное условие в будущем",
+                "text": """
+<b>🔮 Conditional 1 – реальное, выполнимое условие в будущем.</b>
+
+Формула: If + Present Simple, + will (can / may / might) + V
+
+• If it rains tomorrow, I will stay at home. (Если завтра пойдёт дождь, я останусь дома.)
+• If you study, you will pass the exam. (Если будешь учиться, сдашь экзамен.)
+• If she comes, we can start. (Если она придёт, мы можем начинать.)
+
+<blockquote>В if-части никогда не ставится will.</blockquote>
+"""
+            },
+            {
+                "title": "2 тип – нереальное или маловероятное условие",
+                "text": """
+<b>🎭 Conditional 2 – нереальная или маловероятная ситуация в настоящем/будущем.</b>
+
+Формула: If + Past Simple, + would + V
+
+• If I had a million dollars, I would travel the world. (Если бы у меня был миллион долларов, я бы путешествовал – но у меня нет)
+• If she knew the answer, she would tell us. (Если бы она знала ответ, она бы сказала – но она не знает)
+• If I were you, I would accept the offer. (Если бы я был на твоём месте, я бы принял предложение)
+
+<blockquote>В 2 типе для всех лиц используется were (особенно в выражении If I were you).</blockquote>
+"""
+            },
+            {
+                "title": "Сравнение и типичные ошибки",
+                "text": """
+<b>📊 Сравнение типов:</b>
+• 0 тип: If you heat ice, it melts. (всегда верно)
+• 1 тип: If it rains, I will stay at home. (реально возможно)
+• 2 тип: If it rained, I would stay at home. (нереально / маловероятно)
+
+<b>⚠️ Частые ошибки:</b>
+• ❌ If you will heat ice, it melts.  ✅ If you heat ice, it melts.
+• ❌ If I would be rich, I would travel.  ✅ If I were rich, I would travel.
+• ❌ If she knows, she would tell.  ✅ If she knew, she would tell.
+
+<b>💡 Совет:</b>
+• Для фактов – 0 тип.
+• Для реальных планов – 1 тип.
+• Для воображаемых ситуаций – 2 тип.
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Можно ли использовать 1 тип с 'might'?", "answer": "Да: If you hurry, you might catch the bus. (возможно, успеешь)"},
+            {"question": "Почему 'If I were', а не 'If I was'?", "answer": "В сослагательном наклонении для всех лиц используется were."}
+        ]
     },
-    "passive_voice": {
+        "passive_voice": {
         "title": "Пассивный залог",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Что такое пассивный залог?",
+                "text": """
+<b>📦 Пассивный залог – когда действие выполняется над подлежащим, а не подлежащее само выполняет действие.</b>
+
+Актив: Someone cleans this room every day. (Кто-то убирает эту комнату каждый день.)
+Пассив: This room is cleaned every day. (Эта комната убирается каждый день.)
+
+<blockquote>В пассиве важен результат, а не исполнитель.</blockquote>
+"""
+            },
+            {
+                "title": "Образование в настоящем и прошедшем времени",
+                "text": """
+<b>📌 Формула пассива: to be + V3 (третья форма / -ed)</b>
+
+• Настоящее (Present Simple): am/is/are + V3
+  • The room is cleaned every day.
+  • The letters are sent by email.
+
+• Прошедшее (Past Simple): was/were + V3
+  • The room was cleaned yesterday.
+  • The letters were sent last week.
+
+<blockquote>Время показывает форма глагола to be.</blockquote>
+"""
+            },
+            {
+                "title": "Отрицание, вопросы и указание исполнителя",
+                "text": """
+<b>🚫 Отрицание:</b> am/is/are/was/were + not + V3
+• The room is not cleaned every day.
+• The letters were not sent.
+
+<b>❓ Вопрос:</b> Am/Is/Are/Was/Were + подлежащее + V3?
+• Is the room cleaned every day?
+• Were the letters sent?
+
+<b>👤 Исполнитель (by):</b>
+• The cake was made by my mother. (Торт был приготовлен моей мамой.)
+
+<blockquote>Исполнитель указывается только если он важен.</blockquote>
+"""
+            },
+            {
+                "title": "Когда использовать пассив",
+                "text": """
+<b>📌 Основные случаи:</b>
+1. Исполнитель неизвестен или неважен (The window was broken.)
+2. Исполнитель очевиден из контекста (The criminal was arrested.)
+3. В официальных, научных текстах (The experiment was conducted.)
+4. Чтобы избежать обвинения (A mistake was made – вместо You made a mistake.)
+
+<b>⚠️ Типичные ошибки:</b>
+• ❌ The letter was send yesterday.  ✅ The letter was sent yesterday.
+• ❌ The house is being build.  ✅ The house is being built.
+
+<b>💡 Совет:</b>
+• В разговорной речи пассив используется реже, чем актив.
+• Если хотите подчеркнуть исполнителя, используйте актив.
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Всегда ли в пассиве нужен 'by'?", "answer": "Нет, только если исполнитель важен (The Mona Lisa was painted by Leonardo da Vinci)."},
+            {"question": "Как перевести пассив на русский?", "answer": "Часто глаголом на -ся (убирается) или неопределённо-личным оборотом (убирают)."}
+        ]
     },
     "prepositions_of_time_place": {
         "title": "Предлоги времени и места",
