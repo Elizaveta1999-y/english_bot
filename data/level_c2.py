@@ -2651,14 +2651,183 @@ Please accept my apologies for my tardiness. My vehicle suffered a mechanical fa
             {"question": "Можно ли использовать эмоциональную лексику в академическом эссе?", "answer": "Осторож {"question": "Можно ли использовать эмоциональную лексику в академическом эссе?", "answer": "Осторожно. Вно. В научных работах лучше избегать чрезмерной эмоциональности, но в эссе-рассужд научных работах лучше избегать чрезмерной эмоциональности, но в эссе-рассуждении (opinion essay) она допустима."ении (opinion essay) она допустима."}
         ]
     },
-    "counterargument_cliches": {
+        "counterargument_cliches": {
         "title": "Клише для контраргументации и опровержения",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Зачем нужны клише для контраргументации?",
+                "text": """
+<b>🔄 Контраргументация – важная часть убеждения. Готовые фразы помогают быстро и чётко опровергать оппонента.</b>
+
+Использование таких клише показывает гибкость мышления и знание риторических приёмов.
+
+<blockquote>Контраргумент часто начинается с признания точки зрения оппонента, а затем её опровержения.</blockquote>
+"""
+            },
+            {
+                "title": "Клише для признания аргумента оппонента",
+                "text": """
+<b>📌 Вежливое признание:</b>
+
+• *It is true that...* (Верно, что...)
+• *Admittedly, ...* (Надо признать, что...)
+• *Some people argue that...* (Некоторые утверждают, что...)
+• *It is often said that...* (Часто говорят, что...)
+• *On the surface, it seems that...* (На первый взгляд кажется, что...)
+• *Opponents of this view claim that...* (Противники этой точки зрения заявляют, что...)
+
+<blockquote>Признание делает вашу речь сбалансированной и повышает доверие.</blockquote>
+"""
+            },
+            {
+                "title": "Клише для опровержения",
+                "text": """
+<b>📌 Способы опровергнуть:</b>
+
+• *However, this argument ignores the fact that...* (Однако этот аргумент игнорирует тот факт, что...)
+• *Nevertheless, it is important to remember that...* (Тем не менее, важно помнить, что...)
+• *While there is some truth to this, it fails to consider...* (Хотя здесь есть доля истины, это не учитывает...)
+• *This reasoning is flawed because...* (Эта логика ошибочна, потому что...)
+• *Even if we accept that, ...* (Даже если признать это, ...)
+• *Not only that, but also...* (Мало того, ...)
+
+<blockquote>Сильные слова: flawed, insufficient, misleading, oversimplification, fallacy.</blockquote>
+"""
+            },
+            {
+                "title": "Клише для перехода обратно к своему тезису",
+                "text": """
+<b>📌 Возвращение к основной линии:</b>
+
+• *Therefore, the original argument still stands.* (Следовательно, первоначальный аргумент остаётся в силе.)
+• *Thus, it is clear that...* (Таким образом, ясно, что...)
+• *In light of this, we must conclude that...* (В свете этого мы должны заключить, что...)
+• *Ultimately, the benefits outweigh the drawbacks.* (В конечном счёте, преимущества перевешивают недостатки.)
+• *Having said that, we should focus on...* (Тем не менее, мы должны сосредоточиться на...)
+
+<blockquote>После контраргумента важно вернуться к своей позиции, чтобы не потерять нить.</blockquote>
+"""
+            },
+            {
+                "title": "Примеры целостных контраргументов",
+                "text": """
+<b>📖 Примеры:</b>
+
+• *Some argue that raising taxes will hurt the economy. Admittedly, this could have short‑term effects. However, the long‑term benefits of funding education and healthcare far outweigh these risks.*
+
+• *It is often said that social media brings people together. While this may be true in some cases, it fails to account for the negative impact on mental health and real‑world relationships.*
+
+• *Opponents claim that renewable energy is too expensive. Even if that were true, we cannot ignore the catastrophic cost of climate change.*
+
+<blockquote>Хороший контраргумент сбалансирован, логичен и укрепляет вашу позицию.</blockquote>
+"""
+            },
+            {
+                "title": "Советы",
+                "text": """
+<b>💡 Как эффективно использовать контраргументы:</b>
+
+• Всегда признавайте сильную сторону оппонента – это делает ваше опровержение более убедительным.
+• Не переходите на личности (ad hominem) – это ослабляет аргумент.
+• Тренируйтесь: возьмите любую дискуссионную тему и напишите контраргумент на чужой тезис.
+
+<blockquote>Контраргументация – это не агрессия, а демонстрация глубины анализа.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Нужно ли использовать контраргументы в эссе IELTS?", "answer": "Да, в эссе с аргументацией (opinion essay, discussion essay) контраргумент повышает балл за структуру и критическое мышление."}
+        ]
     },
-    "topic_based_debates": {
+        "topic_based_debates": {
         "title": "Тематические дебаты (экология, политика, этика, технологии)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Типичные темы для дебатов на C2",
+                "text": """
+<b>🌍 Часто встречающиеся темы:</b>
+
+• <b>Экология:</b> climate change, renewable energy, plastic ban, meat consumption
+• <b>Политика:</b> universal basic income, gun control, immigration, voting age
+• <b>Этика:</b> animal testing, euthanasia, surrogacy, genetic engineering
+• <b>Технологии:</b> AI regulation, social media censorship, privacy vs security, automation and jobs
+• <b>Образование:</b> free university, homework, online learning, school uniforms
+
+<blockquote>На экзаменах CPE и IELTS часто предлагаются именно такие темы для эссе и устных выступлений.</blockquote>
+"""
+            },
+            {
+                "title": "Полезная лексика для дебатов по экологии",
+                "text": """
+<b>🌱 Ключевые слова и фразы:</b>
+
+• *carbon footprint* – углеродный след
+• *renewable energy sources* – возобновляемые источники энергии
+• *sustainable development* – устойчивое развитие
+• *single‑use plastics* – одноразовый пластик
+• *to reduce emissions* – сократить выбросы
+• *to combat climate change* – бороться с изменением климата
+• *environmental degradation* – ухудшение состояния окружающей среды
+
+<b>Пример аргумента:</b>
+*Investing in renewable energy is crucial to reduce our carbon footprint. Solar and wind power are becoming increasingly affordable, and they create jobs. While some argue that fossil fuels are still necessary for economic growth, this short‑term view ignores the catastrophic consequences of climate change.*
+
+<blockquote>Используйте специфическую лексику, чтобы звучать экспертом.</blockquote>
+"""
+            },
+            {
+                "title": "Лексика для дебатов по политике и этике",
+                "text": """
+<b>🏛️ Политика и этика:</b>
+
+• *social justice* – социальная справедливость
+• *individual freedom* – личная свобода
+• *common good* – общее благо
+• *human rights* – права человека
+• *ethical dilemma* – этическая дилема
+• *to strike a balance between* – найти баланс между
+• *to be a slippery slope* – быть скользкой дорожкой
+
+<b>Пример аргумента (против смертной казни):</b>
+*The death penalty violates the fundamental human right to life. Moreover, there is always a risk of executing an innocent person. Although proponents argue that it serves as a deterrent, studies have shown that it does not reduce crime rates.*
+
+<blockquote>Для этических тем важны ссылки на ценности (rights, justice, freedom).</blockquote>
+"""
+            },
+            {
+                "title": "Лексика для дебатов по технологиям",
+                "text": """
+<b>🤖 Технологии и цифровое общество:</b>
+
+• *artificial intelligence (AI)* – искусственный интеллект
+• *data privacy* – конфиденциальность данных
+• *surveillance* – слежка
+• *algorithmic bias* – алгоритмическая предвзятость
+• *job displacement* – сокращение рабочих мест
+• *digital divide* – цифровое неравенство
+
+<b>Пример аргумента (о регулировании соцсетей):</b>
+*Social media platforms should be regulated to prevent the spread of misinformation. Unchecked, they can influence elections and undermine democracy. Critics claim that regulation would violate free speech, but the right to accurate information must take precedence.*
+
+<blockquote>Технологические дебаты часто пересекаются с этикой и политикой.</blockquote>
+"""
+            },
+            {
+                "title": "Советы",
+                "text": """
+<b>💡 Как подготовиться к дебатам на конкретную тему:</b>
+
+• Соберите факты, статистику и примеры по теме (1-2 убедительных факта).
+• Продумайте и основной аргумент, и возможный контраргумент.
+• Выучите ключевую лексику по теме.
+• Практикуйтесь в парах: назначьте одну сторону, другую – и обменивайтесь аргументами.
+
+<blockquote>Настоящее мастерство дебатов приходит с практикой и знанием фактов.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Нужно ли знать статистику наизусть?", "answer": "На экзаменах достаточно общих ссылок (Studies show that...). Для реальных дебатов полезны цифры, но они не обязательны."}
+        ]
     }
 }
