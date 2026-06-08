@@ -8,6 +8,7 @@ from data.level_a2 import LEVEL_A2_CONTENT
 from data.level_b1 import LEVEL_B1_CONTENT
 from data.level_b2 import LEVEL_B2_CONTENT
 from data.level_c1 import LEVEL_C1_CONTENT
+from data.level_c2 import LEVEL_C2_CONTENT
 from services.deepseek import chat
 from speaking.services.tts import text_to_voice
 
@@ -19,6 +20,7 @@ LESSON_CONTENT.update(LEVEL_A2_CONTENT)
 LESSON_CONTENT.update(LEVEL_B1_CONTENT)
 LESSON_CONTENT.update(LEVEL_B2_CONTENT)
 LESSON_CONTENT.update(LEVEL_C1_CONTENT)
+LESSON_CONTENT.update(LEVEL_C2_CONTENT)
 
 THEMATIC_TOPICS = [
     "Present Simple vs Continuous",
@@ -109,7 +111,18 @@ MODULES_C1 = {
     "8": {"name": "📙 Модуль 8: Лексика C1", "lessons": ["academic_writing", "idioms_c1", "phrasal_verbs_c1", "phrasal_verbs_c1_2", "collocations_c1", "word_formation_c1", "formal_informal_language", "business_english_c1"]}
 }
 
-ALL_MODULES = {"A1": MODULES_A1, "A2": MODULES_A2, "B1": MODULES_B1, "B2": MODULES_B2, "C1": MODULES_C1}
+MODULES_C2 = {
+    "1": {"name": "📘 Модуль 1: Регистры и стилистика", "lessons": ["formal_vs_informal_advanced", "analyzing_text_style", "register_switching", "irony_sarcasm_understatement"]},
+    "2": {"name": "📙 Модуль 2: Углублённые идиомы и фразовые глаголы", "lessons": ["idioms_c2_1", "idioms_c2_2", "phrasal_verbs_c2_1", "phrasal_verbs_c2_2"]},
+    "3": {"name": "📗 Модуль 3: Коллокации и словообразование", "lessons": ["collocations_c2", "word_formation_c2", "root_words", "false_friends"]},
+    "4": {"name": "📘 Модуль 4: Эмфатические и риторические конструкции", "lessons": ["cleft_sentences_emphatic", "inversion_emphatic_c2", "negative_inversion_c2", "ellipsis_substitution"]},
+    "5": {"name": "📙 Модуль 5: Выражение неуверенности, предположения, уступки", "lessons": ["hedging_c2", "concession_clauses", "modal_expressions_guessing", "future_past_modals"]},
+    "6": {"name": "📗 Модуль 6: Речевые клише и дискурсивные маркеры", "lessons": ["discourse_markers", "fillers_hesitation", "speaking_cliches", "transitions_advanced"]},
+    "7": {"name": "📘 Модуль 7: Анализ ошибок и выбор между похожими словами", "lessons": ["confusing_words", "common_mistakes_c2", "synonyms_nuances", "advanced_prepositions"]},
+    "8": {"name": "📙 Модуль 8: Дебаты и аргументация", "lessons": ["debate_structures", "persuasive_language", "counterargument_cliches", "topic_based_debates"]}
+}
+
+ALL_MODULES = {"A1": MODULES_A1, "A2": MODULES_A2, "B1": MODULES_B1, "B2": MODULES_B2, "C1": MODULES_C1, "C2": MODULES_C2}
 
 LESSON_NAMES = {
 # Названия для A1 (вставьте в LESSON_NAMES)
@@ -347,6 +360,46 @@ LESSON_NAMES = {
     "word_formation_c1": "🔨 Словообразование C1",
     "formal_informal_language": "🎭 Формальный и неформальный английский",
     "business_english_c1": "💼 Деловой английский C1",
+    # C2 модуль 1
+    "formal_vs_informal_advanced": "🎭 Формальный vs неформальный (углублённо)",
+    "analyzing_text_style": "📊 Анализ стиля текста",
+    "register_switching": "🔄 Переключение регистров",
+    "irony_sarcasm_understatement": "🎭 Ирония, сарказм, преуменьшение",
+    # C2 модуль 2
+    "idioms_c2_1": "💬 Идиомы C2 (ч.1)",
+    "idioms_c2_2": "💬 Идиомы C2 (ч.2)",
+    "phrasal_verbs_c2_1": "🔤 Фразовые глаголы C2 (ч.1)",
+    "phrasal_verbs_c2_2": "🔤 Фразовые глаголы C2 (ч.2)",
+    # C2 модуль 3
+    "collocations_c2": "🔗 Коллокации C2",
+    "word_formation_c2": "🔨 Словообразование C2",
+    "root_words": "🌱 Латинские и греческие корни",
+    "false_friends": "⚠️ Ложные друзья переводчика (C2)",
+    # C2 модуль 4
+    "cleft_sentences_emphatic": "🔍 Расщеплённые предложения (эмфаза)",
+    "inversion_emphatic_c2": "🔄 Инверсия для эмфазы",
+    "negative_inversion_c2": "🔄 Инверсия после отрицательных наречий",
+    "ellipsis_substitution": "✂️ Эллипсис и замена",
+    # C2 модуль 5
+    "hedging_c2": "🤔 Выражение неуверенности (hedging)",
+    "concession_clauses": "🧩 Придаточные уступки",
+    "modal_expressions_guessing": "🎲 Модальные глаголы для предположений",
+    "future_past_modals": "⏳ Модальные глаголы для будущего и прошлого",
+    # C2 модуль 6
+    "discourse_markers": "🔗 Дискурсивные маркеры",
+    "fillers_hesitation": "🗣️ Заполнители пауз и хезитации",
+    "speaking_cliches": "💬 Разговорные клише",
+    "transitions_advanced": "📝 Продвинутые переходы",
+    # C2 модуль 7
+    "confusing_words": "❓ Часто путаемые слова",
+    "common_mistakes_c2": "⚠️ Типичные ошибки C2",
+    "synonyms_nuances": "🎨 Оттенки синонимов",
+    "advanced_prepositions": "📍 Продвинутые предлоги",
+    # C2 модуль 8
+    "debate_structures": "⚖️ Структура дебатов",
+    "persuasive_language": "🗣️ Язык убеждения",
+    "counterargument_cliches": "🔄 Клише для контраргументации",
+    "topic_based_debates": "🌍 Тематические дебаты",
 }
 
 user_page = {}
