@@ -206,20 +206,204 @@ It was a dark night. The wind was blowing (Past Continuous – фон). I had be
             {"question": "Можно ли использовать Future Perfect Continuous с глаголами состояния?", "answer": "Обычно нет. Вместо этого используйте Future Perfect: By 2025, I will have known him for 10 years."}
         ]
     },
-    "present_perfect_simple_continuous_review": {
+        "present_perfect_simple_continuous_review": {
         "title": "Present Perfect Simple vs Continuous (сравнение, оттенки)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Основные различия",
+                "text": """
+<b>✅ Present Perfect Simple (have/has done) – результат, завершённость, количество раз.</b>
+• I have painted the room. (результат: комната покрашена)
+• I have read this book twice. (сколько раз)
+
+<b>🔄 Present Perfect Continuous (have/has been doing) – процесс, длительность, временные усилия.</b>
+• I have been painting the room. (процесс, возможно, не закончил)
+• I have been reading this book all week. (подчёркиваю время)
+
+<blockquote>Выбор зависит от того, что важнее: результат или процесс.</blockquote>
+"""
+            },
+            {
+                "title": "С глаголами, которые могут выражать и процесс, и результат",
+                "text": """
+<b>📌 Некоторые глаголы можно использовать в обеих формах с разным оттенком.</b>
+
+• <b>work / live / study / wait</b>
+  • I have lived here for 5 years. (факт)
+  • I have been living here for 5 years. (акцент на длительности, более эмоционально)
+
+• <b>learn / teach / try</b>
+  • I have learned 10 new words today. (результат)
+  • I have been learning English for 3 years. (процесс)
+
+<blockquote>В разговорной речи часто используют Simple, но Continuous добавляет живости.</blockquote>
+"""
+            },
+            {
+                "title": "Глаголы, которые не употребляются в Continuous",
+                "text": """
+<b>⚠️ Глаголы состояния (stative verbs) – только Simple.</b>
+
+• know, like, love, hate, believe, understand, belong, own, seem, appear, want, need, prefer
+
+• ❌ I have been knowing him for years.  ✅ I have known him for years.
+• ❌ She has been wanting to go.  ✅ She has wanted to go.
+
+<blockquote>Исключение: некоторые глаголы состояния в разговорной речи могут использоваться в Continuous для эмоционального эффекта (I'm loving it – рекламный слоган, допустимо в неформальной речи).</blockquote>
+"""
+            },
+            {
+                "title": "Сравнение на примерах и советы",
+                "text": """
+<b>📖 Примеры:</b>
+• I have written 5 emails this morning. (результат: 5 писем отправлено)
+• I have been writing emails all morning. (процесс: всё утро писал)
+
+• She has cooked dinner. (результат: ужин готов)
+• She has been cooking since 5 pm. (процесс: готовит с 5 вечера)
+
+<b>💡 Совет:</b>
+• Если важен результат (сколько, какой), используйте Simple.
+• Если важно, сколько времени заняло действие, или подчёркиваете усталость/усилие – Continuous.
+• Тренируйтесь: отвечайте на вопрос "What have you done today?" (результат) и "What have you been doing today?" (процесс).
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Всегда ли 'I have lived' и 'I have been living' взаимозаменяемы?", "answer": "Часто да, но с акцентом: Simple – факт, Continuous – подчёркивание длительности и временности."}
+        ]
     },
-    "past_perfect_continuous_advanced": {
+        "past_perfect_continuous_advanced": {
         "title": "Past Perfect Continuous (повторение и сложные случаи)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Образование и базовое значение",
+                "text": """
+<b>⏳ Past Perfect Continuous (had been doing) – действие, которое длилось в прошлом до другого действия в прошлом.</b>
+
+• I had been waiting for an hour when he finally arrived. (Я прождал час, когда он наконец пришёл.)
+• She had been working there for 5 years before she got promoted. (Она проработала там 5 лет до повышения.)
+
+<blockquote>Акцент на длительности и причине (результат был виден в прошлом).</blockquote>
+"""
+            },
+            {
+                "title": "Сравнение с Past Perfect Simple",
+                "text": """
+<b>📊 Past Perfect Simple (had done) vs Past Perfect Continuous (had been doing):</b>
+
+• <b>Past Perfect Simple</b> – завершённое действие до момента в прошлом, результат.
+  • When I arrived, she had already left. (результат: её уже не было)
+
+• <b>Past Perfect Continuous</b> – длительное действие, которое происходило до момента.
+  • She was tired because she had been working all day. (причина: весь день работала)
+
+<blockquote>Как и в настоящем времени, разница в акценте: результат vs процесс/длительность.</blockquote>
+"""
+            },
+            {
+                "title": "С глаголами состояния и действия",
+                "text": """
+<b>📌 Past Perfect Continuous не используется с глаголами состояния.</b>
+
+• ❌ I had been knowing him for 5 years.  ✅ I had known him for 5 years.
+• ❌ She had been being happy. (бессмысленно)  ✅ She had been happy.
+
+<blockquote>Для глаголов, которые могут выражать и состояние, и действие, выбор зависит от смысла.</blockquote>
+"""
+            },
+            {
+                "title": "Сложные случаи и советы",
+                "text": """
+<b>🔍 Когда Past Perfect Continuous незаменим:</b>
+
+• Чтобы показать причину состояния в прошлом:
+  • He was out of breath. He had been running. (Он запыхался. Он бежал.)
+
+• Чтобы подчеркнуть длительность:
+  • They had been trying to open the door for 20 minutes before they realised it was locked. (Они пытались открыть дверь 20 минут, прежде чем поняли, что она заперта.)
+
+<b>⚠️ Типичные ошибки:</b>
+• ❌ She had been finishing her work by 5 pm. (если закончила)  ✅ She had finished her work by 5 pm.
+• ❌ I had been knowing him.  ✅ I had known him.
+
+<b>💡 Совет:</b> Используйте Past Perfect Continuous, когда хотите показать, что действие длилось и привело к какому-то результату в прошлом.
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Можно ли использовать Past Perfect Continuous с 'for' или 'since'?", "answer": "Да, часто: I had been waiting for two hours."}
+        ]
     },
-    "time_clauses_advanced": {
+        "time_clauses_advanced": {
         "title": "Придаточные времени (as long as, as soon as, once, by the time, etc.)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Повторение: базовые союзы",
+                "text": """
+<b>⏰ Придаточные времени: правило – в придаточной части НЕ используется будущее время (will).</b>
+
+Базовые союзы: when, while, as soon as, until, before, after.
+
+• I will call you when I arrive. (НЕ when I will arrive)
+• Please wait until I come back. (НЕ until I will come)
+
+<blockquote>Вместо will в придаточной части используем Present Simple, Present Perfect или Past Simple.</blockquote>
+"""
+            },
+            {
+                "title": "Сложные союзы: as long as, as soon as, once, by the time",
+                "text": """
+<b>📌 as long as – до тех пор, пока (при условии, что).</b>
+• You can stay as long as you want. (Можешь оставаться, сколько хочешь.)
+
+<b>as soon as – как только.</b>
+• I'll let you know as soon as I hear anything. (Я сообщу, как только услышу что-нибудь.)
+
+<b>once – когда-нибудь, как только (часто с перфектом).</b>
+• Once you have finished, you can leave. (Как только закончишь, можешь уходить.)
+
+<b>by the time – к тому времени, как.</b>
+• By the time you arrive, we will have finished dinner. (К твоему приезду мы уже закончим ужин.)
+
+<blockquote>В by the time главная часть часто в Future Perfect.</blockquote>
+"""
+            },
+            {
+                "title": "Союзы с оттенком условия: as long as, provided that, on condition that",
+                "text": """
+<b>⚠️ Некоторые союзы времени могут выражать условие.</b>
+
+• <b>as long as</b> (при условии, что) – может быть и временным, и условным.
+  • I'll help you as long as you pay me. (Я помогу тебе при условии, что ты заплатишь.)
+
+• <b>provided that / providing that</b> – при условии, что (формально)
+  • You can go out provided that you come back by 10. (Можешь выйти при условии, что вернёшься к 10.)
+
+• <b>on condition that</b> – при условии, что (формально)
+  • They agreed to help on condition that we pay later. (Они согласились помочь при условии, что мы заплатим позже.)
+
+<blockquote>В этих конструкциях тоже не используется will в придаточной части.</blockquote>
+"""
+            },
+            {
+                "title": "Типичные ошибки и советы",
+                "text": """
+<b>⚠️ Частые ошибки:</b>
+• ❌ As soon as I will arrive, I'll call.  ✅ As soon as I arrive, I'll call.
+• ❌ By the time you will come, I will have left.  ✅ By the time you come, I will have left.
+• ❌ Once you will finish, you can go.  ✅ Once you finish / have finished, you can go.
+
+<b>💡 Совет:</b>
+• Запомните: will никогда не ставится после as soon as, once, by the time, as long as, until, before, after.
+• Если нужен акцент на завершённости, используйте Present Perfect в придаточной части (once you have finished).
+• Тренируйтесь: составляйте предложения о планах на будущее, используя разные союзы.
+"""
+            }
+        ],
+        "faq": [
+            {"question": "В чём разница между 'as soon as' и 'once'?", "answer": "As soon as сразу после события, once – как только (может быть чуть более формальным, часто с перфектом)."}
+        ]
     },
 
     # ==================== МОДУЛЬ 2: Модальные глаголы (продвинутый уровень) ====================
