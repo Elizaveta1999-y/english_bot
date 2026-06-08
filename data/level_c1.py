@@ -555,15 +555,122 @@ It was a dark night. The wind was blowing (Past Continuous – фон). I had be
             {"question": "Как сказать 'это могло быть сделано лучше' в пассиве?", "answer": "It could have been done better."}
         ]
     },
-    "modal_expressions_necessity_adv": {
+        "modal_expressions_necessity_adv": {
         "title": "Выражение необходимости (need, needn't, didn't need to, needn't have done)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Need как обычный глагол и как модальный",
+                "text": """
+<b>📌 Need может быть как обычным глаголом (требует to), так и модальным (без to).</b>
+
+• Обычный глагол: I need to go. (Мне нужно идти)
+• Модальный: I needn't go. (Мне не нужно идти)
+
+<blockquote>Модальный need используется только в отрицании и вопросах, редко – в утверждениях (в старомодном стиле).</blockquote>
+"""
+            },
+            {
+                "title": "Needn't / don't need to – отсутствие необходимости",
+                "text": """
+<b>🚫 Отрицание: needn't (модальный) или don't need to (обычный) – «не нужно».</b>
+
+• You needn't worry. (Тебе не нужно волноваться – модальный, формально)
+• You don't need to worry. (То же, разговорный вариант)
+
+<blockquote>Оба варианта правильны, но в разговорной речи don't need to частотнее.</blockquote>
+"""
+            },
+            {
+                "title": "Needn't have done vs didn't need to",
+                "text": """
+<b>📌 Разница между needn't have done (сделал что-то ненужное) и didn't need to (не было необходимости, и действие не выполнялось).</b>
+
+• <b>needn't have done</b> – действие было выполнено, но оно было ненужным (сожаление о потраченных усилиях)
+  • I needn't have cooked so much; nobody was hungry. (Мне не нужно было готовить так много – но я приготовил)
+
+• <b>didn't need to</b> – в действии не было необходимости, и оно не было выполнено (или могло быть, но неважно)
+  • I didn't need to cook because we ate out. (Мне не нужно было готовить – я и не готовил)
+
+<blockquote>Needn't have done подразумевает, что действие уже совершено и было излишним.</blockquote>
+"""
+            },
+            {
+                "title": "Типичные ошибки и советы",
+                "text": """
+<b>⚠️ Частые ошибки:</b>
+• ❌ I needn't have to go.  ✅ I needn't go. / I don't need to go.
+• ❌ She needn't have done it? (вопрос с needn't – редок)  ✅ Did she need to do it? / Need she have done it? (formal)
+
+<b>💡 Совет:</b>
+• Для настоящего отсутствия необходимости: don't need to / needn't.
+• Для прошлого: если действие не сделано – didn't need to; если сделано зря – needn't have done.
+• Тренируйтесь: описывайте ситуации, когда вы что-то сделали зря (needn't have done) или не делали, потому что не нужно было (didn't need to).
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Как спросить 'нужно ли мне идти?' с need?", "answer": "Do I need to go? (разговорный) / Need I go? (формальный, редко)."}
+        ]
     },
-    "modal_expressions_criticism_adv": {
+        "modal_expressions_criticism_adv": {
         "title": "Выражение критики и сожаления (should have done, could have done, might have done)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Should have done – основная форма критики",
+                "text": """
+<b>😔 Should have done – сожаление о том, что действие не было выполнено, или упрёк.</b>
+
+• I should have studied harder. (Мне следовало усерднее учиться – но не учился)
+• You should have told me the truth. (Тебе следовало сказать мне правду)
+
+<blockquote>Shouldn't have done – сожаление о том, что действие было выполнено (не следовало делать).</blockquote>
+"""
+            },
+            {
+                "title": "Could have done – упрёк в упущенной возможности",
+                "text": """
+<b>📌 Could have done – указывает на то, что у человека была возможность, но он ею не воспользовался.</b>
+
+• You could have helped me. (Ты мог бы мне помочь – но не помог)
+• He could have won the race if he had tried harder. (Он мог бы выиграть гонку, если бы постарался)
+
+<blockquote>В отличие от should have, could have не выражает моральной оценки, а только констатирует неиспользованную возможность.</blockquote>
+"""
+            },
+            {
+                "title": "Might have done – очень слабая возможность (менее критично)",
+                "text": """
+<b>📌 Might have done реже используется для критики; чаще – для предположения.</b>
+
+• You might have told me you were coming! (Ты мог бы сказать, что придёшь! – мягкий упрёк)
+• He might have considered our feelings. (Он мог бы учесть наши чувства – слабее, чем should)
+
+<blockquote>Для сильной критики предпочтительнее should have done.</blockquote>
+"""
+            },
+            {
+                "title": "Сравнение и типичные ошибки",
+                "text": """
+<b>📊 Сравнение оттенков:</b>
+• <b>You should have called me.</b> (Тебе следовало позвонить – моральный долг)
+• <b>You could have called me.</b> (Ты мог бы позвонить – была возможность)
+• <b>You might have called me.</b> (Ты мог бы позвонить – очень мягко, почти не упрёк)
+
+<b>⚠️ Частые ошибки:</b>
+• ❌ I must have studied. (не для критики)  ✅ I should have studied.
+• ❌ She could have been more careful. (верно, это критика)
+• ❌ They might have done it. (скорее предположение, чем критика)
+
+<b>💡 Совет:</b>
+• Для критики того, что кто-то не выполнил свой долг – should have done.
+• Для указания на упущенную выгоду – could have done.
+• Для мягкого упрёка – might have done (редко).
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Можно ли использовать 'could have' для сожаления о своих действиях?", "answer": "Да, для сожаления о том, что вы не использовали возможность: I could have become a doctor, but I chose a different path."}
+        ]
     },
 
     # ==================== МОДУЛЬ 3: Условные предложения (C1) ====================
