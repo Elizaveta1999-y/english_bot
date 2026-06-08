@@ -1169,15 +1169,127 @@ It was a dark night. The wind was blowing (Past Continuous – фон). I had be
             {"question": "Когда использовать 'being done' и 'to be done'?", "answer": "Being done – после предлогов и глаголов, требующих герундий. To be done – после want, need, hope, it's important."}
         ]
     },
-    "verbs_of_perception_advanced": {
+        "verbs_of_perception_advanced": {
         "title": "Глаголы восприятия (see, hear, watch) + object + V‑ing / infinitive – сложные нюансы",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Повторение базового правила",
+                "text": """
+<b>👀 Глаголы восприятия: see, hear, watch, notice, feel, smell, listen to, observe.</b>
+
+После них можно использовать:
+• объект + V‑ing (часть действия, процесс)
+• объект + инфинитив без to (всё действие от начала до конца)
+
+<blockquote>Выбор зависит от того, видим ли мы часть действия или всё действие.</blockquote>
+"""
+            },
+            {
+                "title": "Нюансы: различия в значении",
+                "text": """
+<b>📌 V‑ing – акцент на процессе (действие длится).</b>
+• I saw him crossing the street. (Я видел, как он переходил улицу – процесс, возможно, не завершил)
+
+<b>📌 Инфинитив без to – акцент на завершённости.</b>
+• I saw him cross the street and then disappear. (Я видел, как он перешёл улицу и исчез – всё действие)
+
+<blockquote>В некоторых контекстах разница может быть незначительной, но для C1 важно различать.</blockquote>
+"""
+            },
+            {
+                "title": "Пассивная конструкция",
+                "text": """
+<b>📦 В пассиве после глаголов восприятия используется инфинитив с частицей to.</b>
+
+• He was seen to enter the building. (Видели, как он вошёл в здание – пассив)
+• She was heard to say that she was leaving. (Слышали, как она сказала, что уходит)
+
+<blockquote>В пассиве инфинитив с to, даже если в активе был без to.</blockquote>
+"""
+            },
+            {
+                "title": "Советы и типичные ошибки",
+                "text": """
+<b>⚠️ Частые ошибки:</b>
+• ❌ I saw him to cross the street.  ✅ I saw him cross the street. / I saw him crossing the street.
+• ❌ She was heard say that.  ✅ She was heard to say that.
+• ❌ I watched him to leave.  ✅ I watched him leave / leaving.
+
+<b>💡 Совет:</b>
+• Если вы хотите подчеркнуть процесс (он шёл, переходил) – используйте V‑ing.
+• Если вы хотите сказать, что увидели всё действие целиком (он перешёл и ушёл) – инфинитив без to.
+• Тренируйтесь: описывайте сцены, чередуя обе формы.
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Всегда ли 'see' и 'watch' взаимозаменяемы?", "answer": "See – случайно увидеть, watch – наблюдать намеренно. She saw a bird (случайно). She watched the bird (наблюдала)."}
+        ]
     },
-    "causative_advanced_c1": {
+        "causative_advanced_c1": {
         "title": "Каузатив (have/get something done, have someone do, get someone to do) – углубление",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Повторение основных форм",
+                "text": """
+<b>🔧 Каузатив: have / get + объект + V3 – действие выполняется кем-то другим.</b>
+
+• I had my hair cut. (Мне подстригли волосы – парикмахер)
+• She got her car repaired. (Ей отремонтировали машину)
+
+<b>Активный каузатив:</b>
+• have + someone + V (без to) – поручить, заставить
+• get + someone + to + V – уговорить, убедить
+
+<blockquote>Выбор между have и get зависит от формальности и смысла.</blockquote>
+"""
+            },
+            {
+                "title": "Сложные случаи: have something done в разных временах",
+                "text": """
+<b>📌 Каузатив можно использовать в любом времени, с модальными глаголами, герундием, инфинитивом.</b>
+
+• I'll have the roof repaired next week. (будущее)
+• I'm having my house painted at the moment. (настоящее длительное)
+• I've had my phone fixed. (перфект)
+• You should have your eyes tested. (модальный)
+• I need to have my car serviced. (инфинитив)
+• Having your passport stolen is a nightmare. (герундий)
+
+<blockquote>Каузатив очень гибок и часто используется для выражения услуг.</blockquote>
+"""
+            },
+            {
+                "title": "Различия между have something done, have someone do, get someone to do",
+                "text": """
+<b>📊 Сравните:</b>
+
+• <b>I had my car washed.</b> (мне помыли машину – услуга, неважно кто)
+• <b>I had my assistant wash the car.</b> (я поручил ассистенту – важно, что он)
+• <b>I got my brother to wash the car.</b> (я уговорил брата – потребовались усилия)
+
+<blockquote>Get someone to do более разговорный и подразумевает личную просьбу или убеждение.</blockquote>
+"""
+            },
+            {
+                "title": "Типичные ошибки и советы",
+                "text": """
+<b>⚠️ Частые ошибки:</b>
+• ❌ I had my hair to cut.  ✅ I had my hair cut.
+• ❌ She got her car to repair.  ✅ She got her car repaired.
+• ❌ I had my friend to help.  ✅ I had my friend help.
+
+<b>💡 Совет:</b>
+• Для услуг используйте have/get + объект + V3.
+• Для поручения или приказа (формально) – have + someone + V (без to).
+• Для просьбы, убеждения (разговорно) – get + someone + to + V.
+• Тренируйтесь: опишите, что вам сделали в этом году (стрижка, ремонт, уборка), используя каузатив.
+"""
+            }
+        ],
+        "faq": [
+            {"question": "В чём разница между 'have something done' и 'get something done' в настоящем времени?", "answer": "Get более разговорный, have чуть более формальный. I'm having my car repaired / I'm getting my car repaired – почти одинаково."}
+        ]
     },
 
     # ==================== МОДУЛЬ 5: Пассивный залог (C1) ====================
