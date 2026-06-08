@@ -1076,20 +1076,221 @@ It was a dark night. The wind was blowing (Past Continuous – фон). I had be
     },
 
     # ==================== МОДУЛЬ 4: Инфинитив и герундий (продвинутые) ====================
-    "infinitive_gerund_advanced": {
+        "infinitive_gerund_advanced": {
         "title": "Инфинитив и герундий (сложные глаголы и конструкции)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Глаголы, требующие герундий (углубление)",
+                "text": """
+<b>📝 К уже известным (enjoy, avoid, mind, suggest, finish) добавляются:</b>
+
+• <b>admit</b> – признавать
+  • He admitted stealing the money. (Он признался, что украл деньги.)
+
+• <b>deny</b> – отрицать
+  • She denied breaking the vase. (Она отрицала, что разбила вазу.)
+
+• <b>consider</b> – рассматривать, обдумывать
+  • We are considering moving to Canada. (Мы рассматриваем переезд в Канаду.)
+
+• <b>postpone</b> – откладывать
+  • They postponed making a decision. (Они отложили принятие решения.)
+
+• <b>recall</b> – вспоминать
+  • I don't recall seeing him there. (Я не припоминаю, чтобы видел его там.)
+
+• <b>resent</b> – возмущаться
+  • She resents being treated like a child. (Она возмущается, что с ней обращаются как с ребёнком.)
+
+<blockquote>Эти глаголы часто встречаются в письменной речи и на экзаменах.</blockquote>
+"""
+            },
+            {
+                "title": "Глаголы, требующие инфинитив (углубление)",
+                "text": """
+<b>🎯 К уже известным (want, need, hope, decide, promise) добавляются:</b>
+
+• <b>afford</b> – позволить себе
+  • We can't afford to buy a new car. (Мы не можем позволить себе купить новую машину.)
+
+• <b>arrange</b> – договариваться
+  • They arranged to meet at 6 pm. (Они договорились встретиться в 6 вечера.)
+
+• <b>claim</b> – утверждать
+  • He claims to have seen a UFO. (Он утверждает, что видел НЛО.)
+
+• <b>pretend</b> – притворяться
+  • She pretended not to notice me. (Она сделала вид, что не заметила меня.)
+
+• <b>tend</b> – иметь тенденцию
+  • Prices tend to rise in spring. (Цены имеют тенденцию расти весной.)
+
+• <b>threaten</b> – угрожать
+  • He threatened to call the police. (Он угрожал вызвать полицию.)
+
+<blockquote>Инфинитив часто выражает намерение, цель, результат.</blockquote>
+"""
+            },
+            {
+                "title": "Глаголы, после которых можно и то, и другое (с изменением смысла)",
+                "text": """
+<b>🔄 Повторение и углубление:</b>
+
+• <b>remember / forget / regret</b> (разница во времени)
+• <b>stop / go on / try</b> (разница в значении)
+• <b>like / love / hate / prefer</b> (герундий – общее предпочтение, инфинитив – конкретное действие)
+
+<b>Дополнительные примеры:</b>
+• <b>need</b>
+  • The car needs washing. (нуждается в мойке – герундий)
+  • I need to wash the car. (я должен помыть – инфинитив)
+
+• <b>allow / permit / recommend</b>
+  • They don't allow smoking here. (не разрешают курить – герундий)
+  • They don't allow us to smoke here. (не разрешают нам – инфинитив с дополнением)
+
+<blockquote>После allow / permit / recommend + дополнение + to V.</blockquote>
+"""
+            },
+            {
+                "title": "Советы и типичные ошибки",
+                "text": """
+<b>⚠️ Частые ошибки:</b>
+• ❌ She admitted to steal.  ✅ She admitted stealing.
+• ❌ He pretended not seeing me.  ✅ He pretended not to see me.
+• ❌ The car needs to wash.  ✅ The car needs washing / to be washed.
+
+<b>💡 Совет:</b>
+• Запоминайте глаголы списками, но лучше – в контексте.
+• Обратите внимание на конструкции с дополнением: want someone to do, allow someone to do.
+• Практикуйтесь: составляйте предложения с новыми глаголами, используя правильную форму.
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Как выбрать между герундием и инфинитивом после 'need'?", "answer": "Need + V‑ing (пассивный смысл) = The car needs washing. Need + to + V (активный) = I need to wash the car."}
+        ]
     },
-    "perfect_infinitive_gerund": {
+        "perfect_infinitive_gerund": {
         "title": "Перфектный инфинитив и герундий (to have done, having done)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Перфектный инфинитив (to have + V3)",
+                "text": """
+<b>⏪ Перфектный инфинитив используется, когда действие инфинитива предшествует действию главного глагола.</b>
+
+• He seems to have lost weight. (Кажется, он похудел – потерял вес до того, как кажется)
+• She claims to have seen a ghost. (Она утверждает, что видела привидение – видела раньше)
+• I'm sorry to have kept you waiting. (Извините, что заставил вас ждать)
+
+<blockquote>После глаголов seem, appear, pretend, claim, happen, be sorry, be glad, be happy может использоваться перфектный инфинитив.</blockquote>
+"""
+            },
+            {
+                "title": "Перфектный герундий (having + V3)",
+                "text": """
+<b>📌 Перфектный герундий подчёркивает, что действие герундия произошло раньше действия главного глагола.</b>
+
+• He was accused of having stolen the money. (Его обвинили в краже денег – кража до обвинения)
+• She admitted having made a mistake. (Она призналась, что сделала ошибку)
+• They regretted having spent so much money. (Они пожалели, что потратили так много денег)
+
+<blockquote>Часто используется после глаголов, требующих герундий: admit, deny, regret, remember, forget.</blockquote>
+"""
+            },
+            {
+                "title": "Разница между простой и перфектной формой",
+                "text": """
+<b>📊 Сравнение:</b>
+
+• He admitted stealing the money. (обычный герундий – порядок ясен из контекста)
+• He admitted having stolen the money. (перфектный герундий – акцент на предшествовании, более формально)
+
+• She remembered locking the door. (помнит, что заперла)
+• She remembered having locked the door. (то же, но формальнее)
+
+<blockquote>В разговорной речи перфектные формы часто заменяются простыми, если порядок действий ясен.</blockquote>
+"""
+            },
+            {
+                "title": "Советы и типичные ошибки",
+                "text": """
+<b>⚠️ Частые ошибки:</b>
+• ❌ She claims to have saw him.  ✅ She claims to have seen him.
+• ❌ He admitted to have stolen.  ✅ He admitted having stolen / He admitted stealing.
+• ❌ Having been seen is rare. (пассивный перфектный герундий – правильно, но сложно)
+
+<b>💡 Совет:</b>
+• Используйте перфектный инфинитив после seem, appear, claim, pretend.
+• Используйте перфектный герундий для акцента на предшествовании в формальной речи.
+• Тренируйтесь: перефразируйте предложения, используя перфектные формы.
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Всегда ли нужен перфектный инфинитив после 'seem'?", "answer": "He seems to be tired (сейчас), He seems to have been tired (в прошлом). Выбор зависит от времени."}
+        ]
     },
-    "passive_infinitive_gerund": {
+        "passive_infinitive_gerund": {
         "title": "Пассивный инфинитив и герундий (to be done, being done, having been done)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Пассивный инфинитив (to be + V3)",
+                "text": """
+<b>📦 Пассивный инфинитив: to be + V3 (настоящий пассив) или to have been + V3 (перфектный пассив).</b>
+
+• I hope to be invited to the party. (Надеюсь, меня пригласят.)
+• She expects to be given a promotion. (Она ожидает, что ей дадут повышение.)
+• The work needs to be finished by Friday. (Работу нужно закончить к пятнице.)
+
+<blockquote>Пассивный инфинитив часто используется после want, hope, expect, need, it's important + to be done.</blockquote>
+"""
+            },
+            {
+                "title": "Пассивный герундий (being + V3, having been + V3)",
+                "text": """
+<b>📌 Пассивный герундий: being + V3 (настоящий пассив) или having been + V3 (перфектный пассив).</b>
+
+• I don't like being told what to do. (Мне не нравится, когда мне указывают.)
+• She avoids being seen in public. (Она избегает того, чтобы её видели на людях.)
+• He remembers being taken to the zoo as a child. (Он помнит, как его водили в зоопарк ребёнком.)
+• After having been warned, he didn't go there. (После того как его предупредили, он не пошёл туда.)
+
+<blockquote>Пассивный герундий часто после предлогов и глаголов, требующих герундий.</blockquote>
+"""
+            },
+            {
+                "title": "Сравнение активных и пассивных форм",
+                "text": """
+<b>📊 Сравните:</b>
+
+• Активный инфинитив: I want to help. (я хочу помогать)
+• Пассивный инфинитив: I want to be helped. (я хочу, чтобы мне помогли)
+
+• Активный герундий: I like helping. (мне нравится помогать)
+• Пассивный герундий: I like being helped. (мне нравится, когда помогают мне)
+
+<blockquote>Пассивный залог меняет смысл: объект становится субъектом.</blockquote>
+"""
+            },
+            {
+                "title": "Типичные ошибки и советы",
+                "text": """
+<b>⚠️ Частые ошибки:</b>
+• ❌ I hope to invite. (если меня должны пригласить)  ✅ I hope to be invited.
+• ❌ She avoids to be seen.  ✅ She avoids being seen.
+• ❌ The car needs to be wash.  ✅ The car needs to be washed.
+
+<b>💡 Совет:</b>
+• Если действие выполняется над подлежащим, используйте пассивную форму (to be done, being done).
+• Тренируйтесь: переделайте активные предложения в пассивные с герундием и инфинитивом.
+• Запомните: after, before, without, instead of + being done.
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Когда использовать 'being done' и 'to be done'?", "answer": "Being done – после предлогов и глаголов, требующих герундий. To be done – после want, need, hope, it's important."}
+        ]
     },
     "verbs_of_perception": {
         "title": "Глаголы восприятия (see, hear, watch + object + V‑ing / infinitive without to)",
