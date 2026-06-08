@@ -631,15 +631,139 @@ It was a dark night. The wind was blowing (Past Continuous – фон). I had be
             {"question": "В чём разница между 'could' и 'was able to'?", "answer": "Could – общая способность в прошлом (I could read). Was able to – успешно справился с конкретной задачей (I was able to escape)."}
         ]
     },
-    "modal_expressions_necessity": {
+        "modal_expressions_necessity": {
         "title": "Выражение необходимости (need to, don't need to, needn't have done, didn't need to)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Need to – необходимость в настоящем/будущем",
+                "text": """
+<b>📌 Need to + V – выражает необходимость (как обычный глагол).</b>
+
+• I need to finish this report today. (Мне нужно закончить отчёт сегодня.)
+• You don't need to bring anything. (Тебе не нужно ничего приносить – отсутствие необходимости.)
+• Do I need to book in advance? (Мне нужно бронировать заранее?)
+
+<blockquote>Need to можно спрягать: needs to, needed to, will need to.</blockquote>
+"""
+            },
+            {
+                "title": "Needn't + V – отсутствие необходимости (модальный вариант)",
+                "text": """
+<b>⚖️ Needn't + V (без to) – выражает, что что-то не нужно делать, но эта форма менее распространена в современном английском.</b>
+
+• You needn't worry. I'll take care of it. (Тебе не нужно волноваться. Я позабочусь об этом.)
+• She needn't come if she's busy. (Ей не нужно приходить, если она занята.)
+
+<blockquote>В разговорной речи чаще используют don't need to, needn't звучит старомодно или формально.</blockquote>
+"""
+            },
+            {
+                "title": "Needn't have done – зря сделал (ненужное действие в прошлом)",
+                "text": """
+<b>😅 Needn't have done – действие было выполнено, но в нём не было необходимости.</b>
+
+• I needn't have bought so much food; nobody was hungry. (Мне не нужно было покупать столько еды; никто не был голоден – но я купил.)
+• You needn't have hurried; the meeting was delayed. (Тебе не нужно было спешить; встречу отложили.)
+
+<blockquote>Употребляется, когда мы знаем, что действие уже произошло, но оно оказалось лишним.</blockquote>
+"""
+            },
+            {
+                "title": "Didn't need to – не нужно было (и не делал)",
+                "text": """
+<b>✅ Didn't need to + V – действие не было необходимым, и оно не было выполнено (или неважно, выполнено ли).</b>
+
+• I didn't need to buy bread because we already had some. (Мне не нужно было покупать хлеб, потому что у нас уже был – и я не купил.)
+• She didn't need to work yesterday; it was a holiday. (Ей не нужно было работать вчера; был выходной – и она не работала.)
+
+<blockquote>В отличие от needn't have done, здесь акцент на том, что необходимости не было, и действие обычно не совершалось.</blockquote>
+"""
+            },
+            {
+                "title": "Сравнение и советы",
+                "text": """
+<b>📊 Сравнение:</b>
+• I didn't need to buy milk. (не было необходимости – и я не купил)
+• I needn't have bought milk. (я купил, но это было зря)
+
+<b>⚠️ Типичные ошибки:</b>
+• ❌ I needn't to go.  ✅ I needn't go. / I don't need to go.
+• ❌ She didn't need have done.  ✅ She needn't have done.
+• ❌ I needn't have went.  ✅ I needn't have gone.
+
+<b>💡 Совет:</b>
+• Если действие не было сделано, используйте didn't need to.
+• Если действие было сделано, но оказалось ненужным – needn't have done.
+• Для настоящего/будущего – don't need to / needn't (но needn't реже).
+"""
+            }
+        ],
+        "faq": [
+            {"question": "В чём разница между 'needn't have done' и 'didn't need to'?", "answer": "Needn't have done – действие выполнено, но было бесполезно. Didn't need to – необходимости не было, и действие обычно не выполнено."}
+        ]
     },
-    "modal_expressions_criticism": {
+        "modal_expressions_criticism": {
         "title": "Выражение критики и сожаления (should have done, could have done, might have done)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Should have done – критика, сожаление (самый частотный)",
+                "text": """
+<b>😔 Should have done – выражает, что действие было правильным, но не было выполнено (или наоборот, было выполнено, но не следовало).</b>
+
+• I should have studied harder. (Мне следовало учиться усерднее – но я не учился.)
+• You should have called me. (Тебе следовало позвонить мне.)
+• She shouldn't have said that. (Ей не следовало этого говорить – но она сказала.)
+
+<blockquote>Should have done – классическая форма сожаления и упрёка.</blockquote>
+"""
+            },
+            {
+                "title": "Could have done – упрёк за упущенную возможность",
+                "text": """
+<b>💪 Could have done – выражает, что у человека была возможность сделать что-то, но он не сделал (часто критикуется).</b>
+
+• You could have told me you were coming! (Ты мог бы сказать мне, что приезжаешь! – раздражение)
+• He could have helped us, but he didn't. (Он мог бы помочь нам, но не помог.)
+• We could have won the match if we had tried harder. (Мы могли бы выиграть матч, если бы старались больше.)
+
+<blockquote>Could have done звучит как упрёк, но менее жёстко, чем should have done.</blockquote>
+"""
+            },
+            {
+                "title": "Might have done – вежливая критика, предположение",
+                "text": """
+<b>🎭 Might have done – выражает, что действие было возможно, но не произошло (более вежливо и мягко, чем could have).</b>
+
+• You might have told me you were going to be late. (Мог бы сказать мне, что опоздаешь – мягкий упрёк.)
+• She might have asked for permission first. (Она могла бы спросить разрешения сначала.)
+
+<blockquote>Might have done часто используется, чтобы сделать критику менее агрессивной.</blockquote>
+"""
+            },
+            {
+                "title": "Сравнение и типичные ошибки",
+                "text": """
+<b>📊 Сравнение:</b>
+• <b>should have done</b> – сильное сожаление/упрёк (You should have called)
+• <b>could have done</b> – упрёк за упущенную возможность (You could have helped)
+• <b>might have done</b> – мягкий упрёк (You might have warned me)
+
+<b>⚠️ Частые ошибки:</b>
+• ❌ I should have went.  ✅ I should have gone.
+• ❌ She could have to help.  ✅ She could have helped.
+• ❌ They might have be there.  ✅ They might have been there.
+
+<b>💡 Совет:</b>
+• Для сильного сожаления о своих действиях – should have.
+• Для критики других за упущенные возможности – could have.
+• Для мягкой, вежливой критики – might have.
+• Практикуйтесь: вспомните ситуации, в которых вы или другие могли поступить иначе, и опишите их.
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Можно ли использовать 'would have done' для критики?", "answer": "Would have done обычно не используется для критики, только в условных предложениях (If you had asked, I would have helped)."}
+        ]
     },
 
     # ==================== МОДУЛЬ 3: Условные предложения (продвинутые) ====================
