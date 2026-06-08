@@ -410,20 +410,247 @@ THEMATIC_CONTENT = {
             {"question": "Как перевести пассив на русский?", "answer": "Часто глаголом на -ся (убирается) или неопределённо-личным оборотом (убирают)."}
         ]
     },
-    "prepositions_of_time_place": {
+        "prepositions_time_place": {
         "title": "Предлоги времени и места",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Предлоги времени (at, in, on)",
+                "text": """
+<b>⏰ At – для точного времени и коротких периодов.</b>
+• at 5 o'clock, at noon, at midnight
+• at night, at the weekend, at the moment
+
+<b>📅 On – для дней и дат.</b>
+• on Monday, on May 5th, on my birthday
+• on Monday morning, on the evening of June 10th
+
+<b>📆 In – для месяцев, годов, частей дня.</b>
+• in July, in 2025, in the morning
+• in summer, in the 20th century
+
+<blockquote>Исключения: at night, at the weekend, in the morning/afternoon/evening.</blockquote>
+"""
+            },
+            {
+                "title": "Предлоги места (at, in, on)",
+                "text": """
+<b>📍 At – для точки, конкретного места.</b>
+• at home, at the station, at the door
+• at 10 Downing Street (адрес)
+
+<b>🏠 In – внутри, в пространстве.</b>
+• in the room, in the city, in the water
+• in Russia, in Europe (географические объекты)
+
+<b>📌 On – на поверхности.</b>
+• on the table, on the wall, on the floor
+• on Oxford Street (на улице)
+
+<blockquote>Сравните: in the hospital (внутри), at the hospital (рядом или в здании как точке).</blockquote>
+"""
+            },
+            {
+                "title": "Другие важные предлоги",
+                "text": """
+<b>🔹 For / since – для времени (в Present Perfect).</b>
+• for + период (for two hours, for 5 years)
+• since + момент (since Monday, since 2010)
+
+<b>🔹 By – к определённому сроку.</b>
+• I'll finish by 5 pm. (Я закончу к 5 вечера.)
+
+<b>🔹 Until / till – до (продолжение действия).</b>
+• I'll wait until 6 pm. (Я буду ждать до 6.)
+
+<b>🔹 During – в течение (во время).</b>
+• During the film, he slept. (Во время фильма он спал.)
+
+<blockquote>For и since часто путают. Запомните: since + точка (с какого момента), for + отрезок.</blockquote>
+"""
+            },
+            {
+                "title": "Типичные ошибки и советы",
+                "text": """
+<b>⚠️ Частые ошибки:</b>
+• ❌ I'll meet you in Monday.  ✅ I'll meet you on Monday.
+• ❌ She arrived in the airport.  ✅ She arrived at the airport.
+• ❌ I've been waiting since 2 hours.  ✅ I've been waiting for 2 hours.
+
+<b>💡 Советы:</b>
+• Для дней недели и дат – on; для времени – at; для месяцев и годов – in.
+• Для точного адреса – at; для улицы – on; для города/страны – in.
+• Запомните: since + момент, for + период.
+
+<blockquote>Повторяйте предлоги в контексте: at night, on Monday, in July.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "В чём разница между 'in time' и 'on time'?", "answer": "On time – вовремя (точно по расписанию). In time – загодя, с запасом времени."},
+            {"question": "Как сказать 'в 8 часов утра'?", "answer": "at 8 am (или at 8 in the morning)."}
+        ]
     },
-    "phrasal_verbs_basic": {
+        "phrasal_verbs_basic": {
         "title": "Фразовые глаголы (основные)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Группа 'get'",
+                "text": """
+<b>🔑 Get – один из самых частотных глаголов.</b>
+
+• get up – вставать (с кровати)
+  • I get up at 7 am.
+
+• get along (with) – ладить (с кем-то)
+  • Do you get along with your colleagues?
+
+• get over – оправиться от (болезни, разрыва)
+  • It took me a long time to get over the flu.
+
+• get through – справиться, дозвониться
+  • I finally got through to customer service.
+
+• get away – уехать, сбежать
+  • We're planning to get away for the weekend.
+
+<blockquote>Примеры: Get up, get dressed, and get going! She finally got over her fear of flying.</blockquote>
+"""
+            },
+            {
+                "title": "Группа 'go'",
+                "text": """
+<b>🏃 Go – движение, изменение состояния.</b>
+
+• go on – продолжаться, происходить
+  • What's going on here?
+
+• go out – выходить (в свет), встречаться с кем-то
+  • They've been going out for two years.
+
+• go off – срабатывать (будильник), портиться (еда)
+  • My alarm went off at 6 am.
+
+• go through – переживать, изучать
+  • She's going through a difficult time.
+
+• go back – возвращаться
+  • I want to go back to my hometown.
+
+<blockquote>Примеры: The party went on until midnight. Milk goes off quickly in hot weather.</blockquote>
+"""
+            },
+            {
+                "title": "Группа 'put'",
+                "text": """
+<b>🖊️ Put – размещение, одевание, выражение.</b>
+
+• put on – надевать, включать (музыку)
+  • Put on your coat, it's cold outside.
+
+• put off – откладывать
+  • Don't put off until tomorrow what you can do today.
+
+• put up with – мириться с
+  • I can't put up with his rudeness any longer.
+
+• put out – тушить (огонь), выставлять
+  • Firefighters put out the fire quickly.
+
+• put down – положить, записать
+  • Put down your phone and listen.
+
+<blockquote>Примеры: She put off her dentist appointment. I can't put up with the noise anymore.</blockquote>
+"""
+            },
+            {
+                "title": "Советы по запоминанию",
+                "text": """
+<b>💡 Как учить фразовые глаголы:</b>
+• Учите их в контексте, придумывайте свои примеры.
+• Различайте разделяемые и неразделяемые: turn on the light / turn the light on (разделяемый).
+• С местоимениями разделяемые всегда разделяются: turn it on (не turn on it).
+• Практикуйтесь: составляйте предложения с каждым фразовым глаголом.
+
+<blockquote>Фразовые глаголы делают речь более естественной и живой.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Как отличить фразовый глагол от глагола с предлогом?", "answer": "Фразовый глагол меняет значение (get up – вставать), глагол с предлогом – буквальное значение (go up – подниматься)."}
+        ]
     },
-    "articles_a_an_the": {
+        "articles_a_an_the": {
         "title": "Артикли a/an/the",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Неопределённый артикль a/an",
+                "text": """
+<b>📌 A/an используется, когда говорим о предмете впервые или о любом из класса.</b>
+
+• a – перед согласным звуком (a cat, a house, a university – звук [j])
+• an – перед гласным звуком (an apple, an hour – h не произносится)
+
+• I saw a dog. (какую-то собаку, впервые)
+• I need a pen. (любую ручку)
+
+<blockquote>Неопределённый артикль не используется во множественном числе и с неисчисляемыми существительными.</blockquote>
+"""
+            },
+            {
+                "title": "Определённый артикль the",
+                "text": """
+<b>📌 The используется, когда речь идёт о конкретном предмете, уже известном собеседнику.</b>
+
+• The dog that bit me. (та самая собака, которая укусила)
+• The sun is shining. (солнце – единственное)
+• The capital of France is Paris. (столица – единственная)
+
+<b>Когда the не нужен (нулевой артикль):</b>
+• С именами собственными: John, Russia, London
+• С неисчисляемыми в общем смысле: Water is important. (вода вообще)
+• Со словами school, hospital, prison, bed, work, church в значении деятельности: I'm at work. (на работе)
+
+<blockquote>The также используется с уникальными предметами (the moon, the sky) и с прилагательными в превосходной степени (the best).</blockquote>
+"""
+            },
+            {
+                "title": "Сложные случаи",
+                "text": """
+<b>📖 Примеры на разницу:</b>
+
+• I love music. (музыка вообще – без артикля)
+• The music in this film is beautiful. (конкретная музыка – the)
+
+• She goes to school. (учится – без артикля)
+• I went to the school to see the headmaster. (в здание школы – the)
+
+• He is in hospital. (лечится – без артикля)
+• I work in the hospital. (в здании – the)
+
+<blockquote>С географическими названиями: без артикля – названия стран (Russia), городов (Moscow), улиц (Oxford Street). С артиклем – океаны, реки, моря (the Atlantic), пустыни (the Sahara), группы островов (the Bahamas).</blockquote>
+"""
+            },
+            {
+                "title": "Типичные ошибки и советы",
+                "text": """
+<b>⚠️ Частые ошибки:</b>
+• ❌ I have a apple.  ✅ I have an apple.
+• ❌ She is the doctor. (если просто профессия)  ✅ She is a doctor.
+• ❌ The life is beautiful. (жизнь вообще)  ✅ Life is beautiful.
+
+<b>💡 Советы:</b>
+• Вводите предмет с a/an, затем используйте the.
+• Запомните устойчивые выражения: at the weekend, in the morning, go to bed, at home.
+• Практикуйтесь: опишите свою комнату, используя артикли.
+
+<blockquote>Артикли – одна из самых сложных тем для русскоговорящих, но с практикой вы научитесь чувствовать их.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Почему 'an hour', но 'a university'?", "answer": "Обращайте внимание на первый звук, а не на букву. Hour начинается с гласного звука [а], university – с согласного [j]."},
+            {"question": "Как сказать 'я люблю собак' (вообще)?", "answer": "I love dogs. (без артикля)"}
+        ]
     },
     "comparatives_superlatives": {
         "title": "Степени сравнения прилагательных",
