@@ -742,15 +742,154 @@ Please accept my apologies for my tardiness. My vehicle suffered a mechanical fa
     },
 
     # ==================== МОДУЛЬ 3: Коллокации и словообразование ====================
-    "collocations_c2": {
+        "collocations_c2": {
         "title": "Коллокации C2 (неочевидные сочетания)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Что такое неочевидные коллокации?",
+                "text": """
+<b>🔗 Коллокации – естественные сочетания слов, которые не всегда можно предугадать из правил.</b>
+
+На уровне C2 важно выучить нестандартные сочетания, которые часто встречаются в академическом и деловом английском.
+
+• <b>to make a concession</b> – идти на уступку (не do)
+• <b>to pose a threat</b> – представлять угрозу (не create)
+• <b>to lend credence to</b> – придавать правдоподобие
+• <b>to broach a subject</b> – затронуть тему
+• <b>to harbour a grudge</b> – затаить обиду
+• <b>to strike a compromise</b> – достичь компромисса
+
+<blockquote>Ошибки в коллокациях выдают даже очень продвинутых учащихся.</blockquote>
+"""
+            },
+            {
+                "title": "Глагольные коллокации C2",
+                "text": """
+<b>📌 Продвинутые глагольные сочетания:</b>
+
+• <b>to exercise caution</b> – проявлять осторожность
+• <b>to voice concern</b> – выражать обеспокоенность
+• <b>to reach a consensus</b> – достичь консенсуса
+• <b>to garner support</b> – заручиться поддержкой
+• <b>to take a stance</b> – занять позицию
+• <b>to cast doubt on</b> – подвергать сомнению
+• <b>to draw a conclusion</b> – сделать вывод
+• <b>to meet a deadline</b> – соблюдать срок
+• <b>to submit a proposal</b> – подать предложение
+• <b>to refute an argument</b> – опровергнуть аргумент
+
+<blockquote>Эти коллокации незаменимы для эссе и деловой переписки.</blockquote>
+"""
+            },
+            {
+                "title": "Прилагательные + существительные (C2)",
+                "text": """
+<b>🎨 Качественные сочетания:</b>
+
+• <b>a stark contrast</b> – резкий контраст
+• <b>a fleeting glance</b> – мимолётный взгляд
+• <b>a golden opportunity</b> – уникальная возможность
+• <b>a heated debate</b> – жаркие дебаты
+• <b>a staunch supporter</b> – верный сторонник
+• <b>a negligible effect</b> – незначительный эффект
+• <b>a profound impact</b> – глубокое влияние
+• <b>a subtle difference</b> – тонкое различие
+• <b>a sweeping statement</b> – категоричное заявление
+• <b>a vicious circle</b> – замкнутый круг
+
+<blockquote>Употребление правильных прилагательных делает речь более точной и богатой.</blockquote>
+"""
+            },
+            {
+                "title": "Советы",
+                "text": """
+<b>💡 Как запоминать коллокации:</b>
+
+• Читайте много аутентичных текстов (The Economist, The Guardian, научные статьи).
+• Ведите тетрадь коллокаций, группируя их по глаголам или существительным.
+• Используйте онлайн-словари коллокаций (OZDIC, JustTheWord).
+• Тренируйтесь: переписывайте предложения, заменяя нейтральные слова на коллокации C2.
+• На экзаменах (CPE, IELTS) правильно подобранные коллокации значительно повышают балл.
+
+<blockquote>Коллокации – это мост между средним и продвинутым уровнем.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Как отличить правильную коллокацию от неправильной?", "answer": "Правильная коллокация встречается в аутентичных текстах и звучит естественно. Если сомневаетесь, проверьте в корпусе (например, Google Books Ngram)."}
+        ]
     },
-    "word_formation_c2": {
+        "word_formation_c2": {
         "title": "Словообразование C2 (редкие суффиксы, префиксы, сложные слова)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Редкие суффиксы",
+                "text": """
+<b>🔨 Суффиксы, которые редко встречаются на низких уровнях:</b>
+
+• <b>-hood</b> (статус, состояние): childhood, brotherhood, likelihood
+• <b>-dom</b> (царство, состояние): freedom, kingdom, wisdom
+• <b>-th</b> (качество от прилагательных): strength (strong), width (wide), depth (deep)
+• <b>-tude</b> (состояние): gratitude, solitude, fortitude
+• <b>-ment</b> (действие/результат): advancement, commitment, endorsement
+• <b>-ance/-ence</b> (качество/действие): reliance, resilience, indulgence
+
+<blockquote>Эти суффиксы часто используются для образования абстрактных существительных.</blockquote>
+"""
+            },
+            {
+                "title": "Префиксы с уточнённым значением",
+                "text": """
+<b>🎯 Префиксы для оттенков смысла:</b>
+
+• <b>pre-</b> (до): prearrange, preconception, premeditated
+• <b>post-</b> (после): postwar, postgraduate, postpone (здесь post- + pone)
+• <b>inter-</b> (между): interact, international, interlude
+• <b>intra-</b> (внутри): intranet, intramural, intravenous
+• <b>sub-</b> (под): subconscious, submerge, subordinate
+• <b>super-</b> (над, сверх): supermarket, supernatural, supermodel
+• <b>ultra-</b> (ультра-, сверх-): ultrasound, ultramodern, ultra-rich
+
+<blockquote>Понимание этих префиксов помогает догадываться о значении незнакомых слов.</blockquote>
+"""
+            },
+            {
+                "title": "Сложные слова (compound adjectives)",
+                "text": """
+<b>✂️ Сложные прилагательные, часто встречающиеся в C2:</b>
+
+• <b>well‑</b> + V3: well‑known, well‑educated, well‑behaved
+• <b>badly‑</b> + V3: badly‑damaged, badly‑organised
+• <b>long‑</b> + V3: long‑awaited, long‑forgotten
+• <b>ever‑</b> + V3: ever‑changing, ever‑present
+• <b>quick‑</b> / <b>slow‑</b> + V‑ing: quick‑thinking, slow‑moving
+• <b>heart‑</b> / <b>mind‑</b> + V3: heart‑broken, mind‑blowing
+
+<b>Примеры в предложениях:</b>
+• *She is a well‑respected journalist.* (Она – уважаемый журналист.)
+• *The long‑awaited sequel finally arrived.* (Долгожданное продолжение наконец вышло.)
+• *It was a mind‑blowing experience.* (Это был умопомрачительный опыт.)
+
+<blockquote>Сложные прилагательные часто используются в эссе и художественной литературе.</blockquote>
+"""
+            },
+            {
+                "title": "Советы",
+                "text": """
+<b>💡 Как развить навык словообразования:</b>
+
+• При чтении обращайте внимание на структуру незнакомых слов, выделяйте корень, суффикс, префикс.
+• Ведите список продуктивных суффиксов и префиксов с примерами.
+• Тренируйтесь: возьмите корень (например, 'dict') и образуйте все возможные производные (dictate, dictation, dictator, dictatorial).
+• В части Word formation экзамена CPE (Certificate of Proficiency) это ключевое умение.
+
+<blockquote>Словообразование позволяет активно расширять словарный запас, не заучивая тысячи слов.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Как запомнить все суффиксы?", "answer": "Не пытайтесь выучить списком. Изучайте их в контексте слов, которые вы уже знаете. Постепенно вы начнёте узнавать суффиксы автоматически."}
+        ]
     },
     "root_words": {
         "title": "Латинские и греческие корни (для догадки о значении слов)",
