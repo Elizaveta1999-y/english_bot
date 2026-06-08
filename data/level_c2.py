@@ -1757,15 +1757,195 @@ Please accept my apologies for my tardiness. My vehicle suffered a mechanical fa
     },
 
     # ==================== МОДУЛЬ 6: Речевые клише и дискурсивные маркеры ====================
-    "discourse_markers": {
+        "discourse_markers": {
         "title": "Дискурсивные маркеры (However, Nevertheless, In addition, Consequently, etc.)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Что такое дискурсивные маркеры?",
+                "text": """
+<b>🔗 Дискурсивные маркеры – слова и фразы, которые связывают части текста, указывают на логические отношения между предложениями.</b>
+
+Они помогают структурировать речь и письмо, делая их более связными и логичными. На уровне C2 важно уметь использовать широкий спектр маркеров.
+
+<blockquote>Маркеры не меняют смысл предложения, а лишь показывают связь с предыдущим контекстом.</blockquote>
+"""
+            },
+            {
+                "title": "Маркеры противопоставления",
+                "text": """
+<b>⚖️ Однако / тем не менее / тогда как:</b>
+
+• <b>however</b> – однако (вводное слово, выделяется запятой)
+  • *The task was difficult. However, we managed to finish on time.*
+
+• <b>nevertheless / nonetheless</b> – тем не менее (более формально)
+  • *The weather was terrible. Nevertheless, they continued the climb.*
+
+• <b>whereas</b> – тогда как (сравнивает два контрастных факта)
+  • *Some people love coffee, whereas others prefer tea.*
+
+• <b>in contrast</b> – в отличие от (сравнение)
+  • *In contrast to her brother, she is very outgoing.*
+
+• <b>on the other hand</b> – с другой стороны (для представления альтернативной точки зрения)
+  • *On the one hand, the job pays well. On the other hand, it's very stressful.*
+
+<blockquote>Эти маркеры незаменимы в эссе и дебатах.</blockquote>
+"""
+            },
+            {
+                "title": "Маркеры добавления и усиления",
+                "text": """
+<b>➕ Более того / кроме того:</b>
+
+• <b>moreover / furthermore</b> – более того (формально, для добавления аргумента)
+  • *The new policy is unpopular. Moreover, it may be illegal.*
+
+• <b>in addition</b> – в добавок
+  • *In addition, we need to consider the budget.*
+
+• <b>besides</b> – кроме того (разговорный)
+  • *I don't want to go. Besides, it's too late.*
+
+• <b>what is more</b> – что более важно
+  • *The restaurant is expensive. What is more, the food is mediocre.*
+
+<blockquote>Используйте для наращивания аргументации в эссе.</blockquote>
+"""
+            },
+            {
+                "title": "Маркеры следствия и причины",
+                "text": """
+<b>🔹 Следовательно / поэтому / в результате:</b>
+
+• <b>consequently / therefore / thus</b> – следовательно (формально)
+  • *He didn't study. Consequently, he failed the exam.*
+
+• <b>as a result</b> – в результате
+  • *The company lost money. As a result, many workers were laid off.*
+
+• <b>so</b> – поэтому (разговорный)
+  • *It was raining, so we stayed home.*
+
+• <b>for this reason</b> – по этой причине
+  • *The roads were icy; for this reason, schools were closed.*
+
+<blockquote>Эти связки показывают причинно-следственные связи.</blockquote>
+"""
+            },
+            {
+                "title": "Маркеры для заключения и перефразирования",
+                "text": """
+<b>📌 В заключение / иными словами:</b>
+
+• <b>in conclusion / to sum up</b> – в заключение
+  • *In conclusion, the evidence supports our theory.*
+
+• <b>in summary</b> – подводя итог
+  • *In summary, we need to increase our budget.*
+
+• <b>in other words</b> – иными словами (перефразирование)
+  • *He's late. In other words, we have to start without him.*
+
+• <b>that is to say</b> – то есть (уточнение)
+  • *He's a polyglot; that is to say, he speaks several languages.*
+
+<blockquote>Эти маркеры делают текст чётким и логически завершённым.</blockquote>
+"""
+            },
+            {
+                "title": "Советы и типичные ошибки",
+                "text": """
+<b>⚠️ Частые ошибки:</b>
+• ❌ However he is tired, he keeps working. (неправильно)  ✅ He is tired. However, he keeps working.
+• ❌ I studied hard, consequently I passed. (запятая должна быть после consequently)  ✅ I studied hard; consequently, I passed.
+• ❌ In addition of being expensive...  ✅ In addition to being expensive...
+
+<b>💡 Совет:</b>
+• В письменной речи ставьте запятую после however, nevertheless, therefore, consequently, moreover.
+• Не начинайте каждое предложение с маркера – это выглядит неестественно.
+• Практикуйтесь: пишите небольшие абзацы, используя разные маркеры.
+
+<blockquote>Дискурсивные маркеры – это скелет любого хорошо структурированного текста.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Можно ли использовать 'however' в начале предложения?", "answer": "Да, это стандартная практика. Однако в академическом письме ставьте точку с запятой перед however, если он связывает два предложения: It was raining; however, we went out."}
+        ]
     },
-    "fillers_hesitation": {
+        "fillers_hesitation": {
         "title": "Заполнители пауз и хезитации (Well, You see, I mean, Sort of, Kind of)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Что такое заполнители пауз?",
+                "text": """
+<b>🗣️ Заполнители пауз – слова и звуки (well, you know, actually, sort of, like), которые дают говорящему время подумать.</b>
+
+Они делают речь более естественной и разговорной. На уровне C2 важно уметь использовать их, не переусердствуя.
+
+<blockquote>Слишком много заполнителей – признак неуверенности; полное их отсутствие делает речь роботизированной.</blockquote>
+"""
+            },
+            {
+                "title": "Самые частые заполнители",
+                "text": """
+<b>📌 Основные заполнители и их оттенки:</b>
+
+• <b>well</b> – универсальный заполнитель, часто в начале ответа
+  • *Well, I'm not sure about that.*
+
+• <b>you know</b> – «понимаешь», подразумевает, что слушающий разделяет ваш опыт
+  • *It was, you know, a bit disappointing.*
+
+• <b>I mean</b> – «в смысле», уточнение или исправление
+  • *He's nice – I mean, sometimes he's a bit grumpy.*
+
+• <b>actually</b> – «вообще-то», смягчение или поправка
+  • *Actually, I think you're right.*
+
+• <b>sort of / kind of</b> – «вроде, как бы», выражение приблизительности
+  • *I'm kind of tired.* (я как бы устал)
+
+• <b>like</b> – молодёжное, часто переиспользуемое (можно злоупотреблять)
+  • *It was, like, really amazing.*
+
+<blockquote>В формальной речи старайтесь избегать like и избыточных заполнителей.</blockquote>
+"""
+            },
+            {
+                "title": "Как использовать, не раздражая собеседника",
+                "text": """
+<b>🎯 Правила употребления:</b>
+
+• Используйте заполнители, когда нужно выиграть время для обдумывания ответа.
+• Не начинайте каждое предложение с well или actually.
+• В презентациях и интервью старайтесь минимизировать заполнители, заменив их паузой или чётким переходом.
+
+<b>Примеры естественного использования:</b>
+• *Well, let me think... I think we should go with the first option.*
+• *I mean, it's not that I don't like him, but he can be annoying.*
+• *She's sort of shy, but she's very kind.*
+
+<blockquote>На экзаменах (IELTS Speaking) небольшое количество заполнителей не снижает балл, но их избыток считается недостатком беглости.</blockquote>
+"""
+            },
+            {
+                "title": "Советы",
+                "text": """
+<b>💡 Как тренировать использование заполнителей:</b>
+
+• Слушайте подкасты и интервью, обращая внимание на то, как носители используют заполнители.
+• Записывайте себя на диктофон и анализируйте, не слишком ли часто вы используете well или like.
+• Практикуйтесь отвечать на неожиданные вопросы, используя well, actually, you know для пауз.
+
+<blockquote>Заполнители – это не ошибка, а часть естественной речи. Главное – знать меру.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Допустимо ли использовать 'like' в IELTS Speaking?", "answer": "Очень редко. Лучше заменить на sort of / kind of или просто сделать паузу."}
+        ]
     },
     "speaking_cliches": {
         "title": "Разговорные клише для беглой речи (That being said, Having said that, Come to think of it)",
