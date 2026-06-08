@@ -2121,15 +2121,137 @@ It was a dark night. The wind was blowing (Past Continuous – фон). I had be
             {"question": "Можно ли использовать инверсию с другими отрицательными наречиями?", "answer": "Да: never, rarely, seldom, little, at no time, under no circumstances: Never have I seen such a sight."}
         ]
     },
-    "inversion_emphatic_advanced": {
+        "inversion_emphatic_advanced": {
         "title": "Инверсия для эмфазы (Only after, Only then, Little did he know, So... that, Such... that)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Инверсия с only (в начале предложения)",
+                "text": """
+<b>📌 Инверсия используется после only + обстоятельство времени/условия для усиления.</b>
+
+• Only after the film started did I realise I had seen it before. (Только после начала фильма я понял, что уже видел его.)
+• Only when you apologise will I forgive you. (Только когда извинишься, я прощу.)
+• Only then did he understand his mistake. (Только тогда он понял свою ошибку.)
+
+<blockquote>После only + выражение времени/условия ставим вспомогательный глагол, затем подлежащее.</blockquote>
+"""
+            },
+            {
+                "title": "Инверсия с little (редко, почти никогда)",
+                "text": """
+<b>🔍 Little в начале предложения означает «почти не, совсем не» и требует инверсии.</b>
+
+• Little did he know that his life was about to change. (Он понятия не имел, что его жизнь вот-вот изменится.)
+• Little did they suspect that the police were waiting. (Они ни о чём не подозревали, что полиция ждала.)
+
+<blockquote>Эта конструкция очень формальная и встречается в литературе.</blockquote>
+"""
+            },
+            {
+                "title": "Инверсия с so / such (для усиления)",
+                "text": """
+<b>📌 So + прилагательное / such + существительное в начале предложения вызывают инверсию.</b>
+
+• So beautiful was the view that we stopped to take photos. (Вид был настолько красивым, что мы остановились фотографировать.)
+• Such was his anger that he couldn't speak. (Таким был его гнев, что он не мог говорить.)
+
+<blockquote>Сравните обычный порядок: The view was so beautiful that... vs So beautiful was the view that...</blockquote>
+"""
+            },
+            {
+                "title": "Советы и типичные ошибки",
+                "text": """
+<b>⚠️ Частые ошибки:</b>
+• ❌ Only after I finished, I realised.  ✅ Only after I finished did I realise.
+• ❌ Little he knew.  ✅ Little did he know.
+• ❌ So beautiful the view was that...  ✅ So beautiful was the view that...
+
+<b>💡 Совет:</b>
+• Используйте инверсию с only для придания веса условию.
+• Не злоупотребляйте: в разговорной речи эти конструкции неестественны.
+• Тренируйтесь: переписывайте обычные предложения в эмфатическую инверсию.
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Всегда ли нужна инверсия после only?", "answer": "Только если only стоит в начале предложения и относится ко всему предложению (не к подлежащему). Only John can help (инверсии нет)."}
+        ]
     },
-    "conjunctions_advanced_c1": {
+        "conjunctions_advanced_c1": {
         "title": "Союзы и связки (however, moreover, nevertheless, whereas, in contrast, consequently) – C1",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Союзы противопоставления",
+                "text": """
+<b>⚖️ Однако / тем не менее / тогда как:</b>
+
+• <b>however</b> – однако (вводное слово, выделяется запятой)
+  • The task was difficult. However, we managed to finish on time.
+
+• <b>nevertheless / nonetheless</b> – тем не менее (более формально)
+  • The weather was terrible. Nevertheless, they continued the climb.
+
+• <b>whereas</b> – тогда как (сравнивает два контрастных факта)
+  • Some people love coffee, whereas others prefer tea.
+
+• <b>in contrast</b> – в отличие от (сравнение)
+  • In contrast to her brother, she is very outgoing.
+
+<blockquote>Эти союзы используются для соединения контрастных идей.</blockquote>
+"""
+            },
+            {
+                "title": "Союзы добавления и усиления",
+                "text": """
+<b>➕ Более того / кроме того:</b>
+
+• <b>moreover / furthermore</b> – более того (формально, для добавления аргумента)
+  • The new policy is unpopular. Moreover, it may be illegal.
+
+• <b>in addition</b> – в добавок
+  • In addition, we need to consider the budget.
+
+• <b>besides</b> – кроме того (разговорный)
+  • I don't want to go. Besides, it's too late.
+
+<blockquote>Используйте для наращивания аргументации в эссе.</blockquote>
+"""
+            },
+            {
+                "title": "Союзы следствия и причины",
+                "text": """
+<b>🔹 Следовательно / поэтому / в результате:</b>
+
+• <b>consequently / therefore / thus</b> – следовательно (формально)
+  • He didn't study. Consequently, he failed the exam.
+
+• <b>as a result</b> – в результате
+  • The company lost money. As a result, many workers were laid off.
+
+• <b>so</b> – поэтому (разговорный)
+  • It was raining, so we stayed home.
+
+<blockquote>Эти связки показывают причинно-следственные связи.</blockquote>
+"""
+            },
+            {
+                "title": "Советы и типичные ошибки",
+                "text": """
+<b>⚠️ Частые ошибки:</b>
+• ❌ However he is tired, he keeps working. (неправильно)  ✅ He is tired. However, he keeps working.
+• ❌ Whereas she is tall, her sister is short.  ✅ She is tall, whereas her sister is short.
+• ❌ I studied hard, consequently I passed. (запятая должна быть после consequently)  ✅ I studied hard; consequently, I passed.
+
+<b>💡 Совет:</b>
+• В письменной речи ставьте запятую после however, nevertheless, therefore, consequently, moreover.
+• Для сравнения используйте whereas в середине предложения.
+• Практикуйтесь: пишите небольшие абзацы, используя новые связки.
+"""
+            }
+        ],
+        "faq": [
+            {"question": "В чём разница между 'however' и 'nevertheless'?", "answer": "Они почти одинаковы, nevertheless более формальный."}
+        ]
     },
 
     # ==================== МОДУЛЬ 8: Лексика C1 ====================
