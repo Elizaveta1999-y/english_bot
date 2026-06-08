@@ -652,20 +652,247 @@ THEMATIC_CONTENT = {
             {"question": "Как сказать 'я люблю собак' (вообще)?", "answer": "I love dogs. (без артикля)"}
         ]
     },
-    "comparatives_superlatives": {
+        "comparatives_superlatives": {
         "title": "Степени сравнения прилагательных",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Сравнительная степень (comparative)",
+                "text": """
+<b>📈 Сравнительная степень – сравнивает два предмета.</b>
+
+• Короткие прилагательные (1-2 слога) + -er
+  • tall → taller (выше)
+  • big → bigger (удвоение согласной)
+  • happy → happier (y → i)
+
+• Длинные прилагательные (3+ слога) + more
+  • beautiful → more beautiful (красивее)
+  • expensive → more expensive (дороже)
+
+• Исключения:
+  • good → better (лучше)
+  • bad → worse (хуже)
+  • far → further / farther (дальше)
+
+<blockquote>После сравнительной степени ставим than: He is taller than me.</blockquote>
+"""
+            },
+            {
+                "title": "Превосходная степень (superlative)",
+                "text": """
+<b>📌 Превосходная степень – самый/самая.</b>
+
+• Короткие прилагательные: the + -est
+  • the tallest (самый высокий)
+  • the biggest (самый большой)
+  • the happiest (самый счастливый)
+
+• Длинные прилагательные: the most + прилагательное
+  • the most beautiful (самый красивый)
+  • the most expensive (самый дорогой)
+
+• Исключения:
+  • good → the best (лучший)
+  • bad → the worst (худший)
+  • far → the furthest / farthest (самый дальний)
+
+<blockquote>Перед превосходной степенью нужен определённый артикль the.</blockquote>
+"""
+            },
+            {
+                "title": "Конструкция as…as (такой же, как)",
+                "text": """
+<b>⚖️ as + прилагательное + as – показывает равенство.</b>
+
+• She is as tall as her brother. (Она такая же высокая, как её брат.)
+• This book is as interesting as that one. (Эта книга такая же интересная, как та.)
+• He runs as fast as me. (Он бегает так же быстро, как я.)
+
+<b>Отрицание: not as…as / not so…as</b>
+• This phone is not as expensive as that one. (Этот телефон не такой дорогой, как тот.)
+• The weather today is not as warm as yesterday. (Сегодня не так тепло, как вчера.)
+
+<blockquote>Для количественных сравнений: as much (неисчисляемые), as many (исчисляемые).</blockquote>
+"""
+            },
+            {
+                "title": "Типичные ошибки и советы",
+                "text": """
+<b>⚠️ Частые ошибки:</b>
+• ❌ He is more taller than me.  ✅ He is taller than me.
+• ❌ This is the most happiest day.  ✅ This is the happiest day.
+• ❌ She is more clever than him. (можно, но cleverer тоже допустимо)
+
+<b>💡 Советы:</b>
+• Не забывайте удваивать согласную в short, big, hot, thin.
+• Запомните пары исключений: good – better – best; bad – worse – worst.
+• Для сравнения количества: much – неисчисляемые (water, money), many – исчисляемые (apples, people).
+
+<blockquote>Используйте as…as для подчёркивания равенства, than – для неравенства.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Как сказать 'менее красивый'?", "answer": "Less beautiful – менее красивый. Используйте less + прилагательное."},
+            {"question": "Как выбрать -er или more?", "answer": "Односложные и двусложные на -y, -er, -le, -ow: -er. Остальные: more."}
+        ]
     },
-    "reported_speech": {
+        "reported_speech": {
         "title": "Косвенная речь",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Что такое косвенная речь?",
+                "text": """
+<b>🗣️ Косвенная речь – передача чужих слов без кавычек.</b>
+
+Прямая речь (direct): He said, “I am tired.” (Он сказал: «Я устал».)  
+Косвенная речь (reported): He said (that) he was tired. (Он сказал, что устал.)
+
+<blockquote>В косвенной речи меняются время глагола, местоимения и иногда указатели места/времени.</blockquote>
+"""
+            },
+            {
+                "title": "Правило согласования времён",
+                "text": """
+<b>📌 Если глагол в главной части в прошедшем времени (said, told, asked), то время в придаточной части сдвигается назад.</b>
+
+• Present Simple → Past Simple
+  • “I work hard.” → He said he worked hard.
+
+• Present Continuous → Past Continuous
+  • “I am working.” → He said he was working.
+
+• Past Simple → Past Perfect
+  • “I saw her.” → He said he had seen her.
+
+• Present Perfect → Past Perfect
+  • “I have finished.” → He said he had finished.
+
+• will → would, can → could, may → might
+  • “I will come.” → He said he would come.
+
+<blockquote>Если главная часть в настоящем времени (says), время не меняется.</blockquote>
+"""
+            },
+            {
+                "title": "Изменения местоимений и указателей",
+                "text": """
+<b>📌 При переводе в косвенную речь меняются:</b>
+
+• Местоимения: “I like my job.” → He said he liked his job.
+
+• Указатели места и времени:
+  • now → then
+  • today → that day
+  • here → there
+  • yesterday → the day before / the previous day
+  • tomorrow → the next day / the following day
+  • last week → the week before
+
+• Пример: “I will call you tomorrow.” → He said he would call me the next day.
+
+<blockquote>В разговорной речи изменения могут быть менее строгими, но для письма правила важны.</blockquote>
+"""
+            },
+            {
+                "title": "Типичные ошибки и советы",
+                "text": """
+<b>⚠️ Частые ошибки:</b>
+• ❌ He said me that he was tired.  ✅ He told me that he was tired.
+• ❌ He said that he is tired. (если главная часть в прошлом)  ✅ He said that he was tired.
+• ❌ He told that he was tired.  ✅ He said that he was tired. (told обязательно нужен объект: told me)
+
+<b>💡 Советы:</b>
+• Слово that можно опускать: He said (that) he was tired.
+• Запомните: say + (that) + предложение; tell + кому + (that) + предложение.
+• Тренируйтесь: переводите диалоги из учебника в косвенную речь.
+
+<blockquote>Согласование времён – одна из важнейших тем для экзаменов.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Всегда ли нужно сдвигать время, если главная часть в прошедшем?", "answer": "Да, для экзаменов и формальной речи – обязательно. В неформальной речи иногда оставляют, но рискованно."}
+        ]
     },
-    "gerund_vs_infinitive": {
+        "gerund_infinitive": {
         "title": "Герундий и инфинитив",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Что такое герундий и инфинитив?",
+                "text": """
+<b>📝 Герундий (V‑ing) – форма глагола, которая ведёт себя как существительное.</b>
+• I like swimming. (Мне нравится плавание / плавать.) – герундий после like
+
+<b>🎯 Инфинитив (to + V) – начальная форма глагола.</b>
+• I want to swim. (Я хочу плавать.) – инфинитив после want
+
+<blockquote>Некоторые глаголы требуют после себя герундий, другие – инфинитив, третьи – оба варианта (иногда с изменением смысла).</blockquote>
+"""
+            },
+            {
+                "title": "Глаголы, после которых нужен герундий",
+                "text": """
+<b>📌 Список глаголов + герундий:</b>
+
+• enjoy – наслаждаться (I enjoy reading)
+• finish – заканчивать (He finished working)
+• mind – возражать (Do you mind opening the window?)
+• suggest – предлагать (She suggested going out)
+• avoid – избегать (He avoided meeting her)
+• practise – практиковать (They practise speaking English)
+• consider – рассматривать (I consider moving abroad)
+
+<b>Также после предлогов всегда герундий:</b>
+• Thank you for helping me.
+• I'm interested in learning Chinese.
+• What about going to the cinema?
+
+<blockquote>Предлог + герундий – очень распространённая конструкция.</blockquote>
+"""
+            },
+            {
+                "title": "Глаголы, после которых нужен инфинитив",
+                "text": """
+<b>📌 Список глаголов + инфинитив:</b>
+
+• want – хотеть (I want to go home)
+• hope – надеяться (She hopes to see you)
+• plan – планировать (We plan to travel)
+• decide – решать (He decided to stay)
+• promise – обещать (I promise to help)
+• offer – предлагать (She offered to drive)
+• learn – учиться (They learned to speak English)
+• need – нуждаться (I need to sleep)
+
+<b>Глаголы, после которых можно и то, и другое (с изменением смысла):</b>
+• like / love / hate / prefer – с герундием (общее предпочтение), с инфинитивом (конкретное действие)
+• remember / forget / regret – разница во времени
+
+<blockquote>С разницей в значении нужно быть внимательным.</blockquote>
+"""
+            },
+            {
+                "title": "Типичные ошибки и советы",
+                "text": """
+<b>⚠️ Частые ошибки:</b>
+• ❌ I enjoy to read.  ✅ I enjoy reading.
+• ❌ She wants going.  ✅ She wants to go.
+• ❌ I look forward to see you.  ✅ I look forward to seeing you. (to – предлог, а не часть инфинитива!)
+
+<b>💡 Советы:</b>
+• Заучите списки глаголов – это механическая память.
+• Герундий часто используется после предлогов (in, on, at, for, of, to).
+• Инфинитив часто употребляется после прилагательных (it's nice to meet you).
+• Практикуйтесь: составляйте пары предложений с одним глаголом, меняя форму.
+
+<blockquote>Ошибки в герундии и инфинитиве – одни из самых частых, но практика их исправляет.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Как понять, когда to является предлогом, а не частью инфинитива?", "answer": "Если после to можно поставить существительное или местоимение (I look forward to [this weekend]), то это предлог, после него герундий. Если после to следует глагол (I want to go), то это инфинитив."}
+        ]
     },
     "conjunctions_although_despite": {
         "title": "Сложные союзы (although/despite)",
