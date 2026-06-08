@@ -338,15 +338,202 @@ Please accept my apologies for my tardiness. My vehicle suffered a mechanical fa
     },
 
     # ==================== МОДУЛЬ 2: Углублённые идиомы и фразовые глаголы ====================
-    "idioms_c2_1": {
+        "idioms_c2_1": {
         "title": "Идиомы C2 (часть 1)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Идиомы для описания поведения",
+                "text": """
+<b>🎭 Продвинутые идиомы о поведении людей:</b>
+
+• <b>to bend over backwards</b> – из кожи вон лезть, стараться изо всех сил
+  • *She bent over backwards to help him.* (Она из кожи вон лезла, чтобы помочь ему.)
+
+• <b>to get your act together</b> – взять себя в руки, организоваться
+  • *You need to get your act together if you want to pass the exam.* (Тебе нужно взять себя в руки, если хочешь сдать экзамен.)
+
+• <b>to go the extra mile</b> – приложить дополнительные усилия
+  • *He always goes the extra mile for his clients.* (Он всегда прилагает дополнительные усилия для своих клиентов.)
+
+• <b>to pull your weight</b> – вносить свою лепту, работать наравне с другими
+  • *If you don't pull your weight, the team will fail.* (Если ты не будешь работать наравне с другими, команда провалится.)
+
+• <b>to sit on the fence</b> – быть нерешительным, занимать нейтральную позицию
+  • *Decide already – you can't sit on the fence forever.* (Решай уже – ты не можешь вечно быть нерешительным.)
+
+• <b>to take a stand</b> – занять твёрдую позицию
+  • *It's time to take a stand against injustice.* (Время занять твёрдую позицию против несправедливости.)
+
+<blockquote>Эти идиомы помогут вам описывать поведение в деловом и повседневном контексте.</blockquote>
+"""
+            },
+            {
+                "title": "Идиомы о коммуникации",
+                "text": """
+<b>🗣️ Идиомы, связанные с разговором:</b>
+
+• <b>to beat around the bush</b> – ходить вокруг да около
+  • *Stop beating around the bush and tell me the truth.* (Перестань ходить вокруг да около и скажи правду.)
+
+• <b>to get straight to the point</b> – перейти сразу к делу
+  • *Let's get straight to the point – we need more money.* (Давайте сразу к делу – нам нужно больше денег.)
+
+• <b>to read between the lines</b> – читать между строк
+  • *If you read between the lines, you'll see he's not happy.* (Если читать между строк, видно, что он не счастлив.)
+
+• <b>to put in a nutshell</b> – изложить кратко, в двух словах
+  • *To put it in a nutshell, we lost the contract.* (Короче говоря, мы потеряли контракт.)
+
+• <b>to talk at cross purposes</b> – говорить о разном, не понимать друг друга
+  • *I think we're talking at cross purposes – let's start again.* (Думаю, мы говорим о разном – давай начнём заново.)
+
+• <b>to call a spade a spade</b> – называть вещи своими именами
+  • *I like him because he calls a spade a spade.* (Он мне нравится, потому что называет вещи своими именами.)
+
+<blockquote>Используйте эти идиомы, чтобы сделать речь более выразительной и естественной.</blockquote>
+"""
+            },
+            {
+                "title": "Идиомы о деньгах и успехе",
+                "text": """
+<b>💰 Деньги, карьера, успех:</b>
+
+• <b>to make ends meet</b> – сводить концы с концами
+  • *With three jobs, he barely makes ends meet.* (С тремя работами он едва сводит концы с концами.)
+
+• <b>to be in the black / in the red</b> – быть в плюсе / в минусе
+  • *After a good year, the company is in the black.* (После удачного года компания в плюсе.)
+
+• <b>to cost an arm and a leg</b> – стоить бешеных денег
+  • *The new roof cost an arm and a leg.* (Новая крыша стоила бешеных денег.)
+
+• <b>to pay through the nose</b> – платить втридорога
+  • *We paid through the nose for those tickets.* (Мы заплатили втридорога за эти билеты.)
+
+• <b>to be rolling in money</b> – купаться в деньгах
+  • *He's not just rich; he's rolling in money.* (Он не просто богат – он купается в деньгах.)
+
+• <b>to hit the jackpot</b> – сорвать джекпот, крупно повезти
+  • *They hit the jackpot with that investment.* (Им крупно повезло с теми инвестициями.)
+
+<blockquote>Эти идиомы очень частотны в бизнес-контексте и повседневных разговорах о деньгах.</blockquote>
+"""
+            },
+            {
+                "title": "Советы",
+                "text": """
+<b>💡 Как учить идиомы C2:</b>
+
+• Учите их в контексте, придумывайте свои примеры.
+• Группируйте по темам (поведение, деньги, коммуникация, эмоции).
+• Используйте приложения (Anki, Quizlet) с карточками.
+• Слушайте подкасты и смотрите сериалы (например, «Suits», «The Crown») – там много идиом.
+
+<blockquote>На уровне C2 знание идиом – обязательный элемент беглой речи.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Сколько идиом нужно знать для C2?", "answer": "Около 300-500 наиболее употребительных. Но качество важнее количества: вы должны уметь использовать их естественно."}
+        ]
     },
-    "idioms_c2_2": {
+        "idioms_c2_2": {
         "title": "Идиомы C2 (часть 2)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Идиомы о ситуациях",
+                "text": """
+<b>🔁 Идиомы для описания обстоятельств и ситуаций:</b>
+
+• <b>to be in the same boat</b> – быть в одной лодке, в одинаковом положении
+  • *We're all in the same boat – nobody has any money.* (Мы все в одной лодке – ни у кого нет денег.)
+
+• <b>to be a double‑edged sword</b> – палка о двух концах
+  • *Social media is a double‑edged sword.* (Социальные сети – палка о двух концах.)
+
+• <b>to get out of hand</b> – выйти из-под контроля
+  • *The party got out of hand and the police were called.* (Вечеринка вышла из-под контроля, вызвали полицию.)
+
+• <b>to be on thin ice</b> – быть в опасном положении, ходить по тонкому льду
+  • *If you're late again, you'll be on thin ice.* (Если опоздаешь ещё раз, будешь ходить по тонкому льду.)
+
+• <b>to be in hot water</b> – быть в неприятной ситуации
+  • *He's in hot water with his boss.* (У него неприятности с начальником.)
+
+• <b>to be a blessing in disguise</b> – нечто, что кажется плохим, но оборачивается добром
+  • *Losing that job was a blessing in disguise.* (Потеря той работы оказалась благословением.)
+
+<blockquote>Эти идиомы пригодятся для описания жизненных ситуаций и событий.</blockquote>
+"""
+            },
+            {
+                "title": "Идиомы о времени",
+                "text": """
+<b>⏰ Идиомы, связанные со временем:</b>
+
+• <b>to call it a day</b> – закончить работу на сегодня
+  • *It's late – let's call it a day.* (Уже поздно – давай закончим на сегодня.)
+
+• <b>to be time‑consuming</b> – отнимать много времени
+  • *Writing a thesis is very time‑consuming.* (Написание диссертации отнимает много времени.)
+
+• <b>to be pressed for time</b> – торопиться, не хватать времени
+  • *I'm pressed for time – can we make it quick?* (Я тороплюсь – можно побыстрее?)
+
+• <b>to be ahead of time / behind schedule</b> – опережать время / отставать от графика
+  • *We're ahead of time, so we can relax.* (Мы опережаем график, так что можем расслабиться.)
+
+• <b>to kill time</b> – убивать время
+  • *I was just killing time before the meeting.* (Я просто убивал время до встречи.)
+
+• <b>to make up for lost time</b> – навёрстывать упущенное время
+  • *After the pandemic, we need to make up for lost time.* (После пандемии нам нужно навёрстывать упущенное.)
+
+<blockquote>В деловом английском эти идиомы очень частотны.</blockquote>
+"""
+            },
+            {
+                "title": "Идиомы с частями тела (продвинутые)",
+                "text": """
+<b>🦵 Идиомы с частями тела (C2):</b>
+
+• <b>to keep your chin up</b> – держать голову высоко, не унывать
+  • *Keep your chin up – things will get better.* (Не унывай – всё наладится.)
+
+• <b>to give someone the cold shoulder</b> – игнорировать, демонстративно не замечать
+  • *She gave me the cold shoulder after the argument.* (Она игнорировала меня после ссоры.)
+
+• <b>to pull someone's leg</b> – разыгрывать, шутить
+  • *I'm just pulling your leg – I didn't mean it.* (Я просто шучу – я не серьёзно.)
+
+• <b>to play it by ear</b> – действовать по обстоятельствам
+  • *We don't have a plan – let's play it by ear.* (У нас нет плана – будем действовать по обстоятельствам.)
+
+• <b>to keep an eye on someone/something</b> – присматривать
+  • *Can you keep an eye on my bag?* (Можешь присмотреть за моей сумкой?)
+
+• <b>to see eye to eye</b> – сходиться во мнениях
+  • *We don't see eye to eye on politics.* (У нас разные взгляды на политику.)
+
+<blockquote>Эти идиомы часто встречаются в разговорной речи и фильмах.</blockquote>
+"""
+            },
+            {
+                "title": "Советы",
+                "text": """
+<b>💡 Как запоминать идиомы:</b>
+• Используйте метод интервального повторения.
+• Составляйте истории, включая несколько идиом.
+• Объясняйте значение идиомы другу на английском.
+• Смотрите видео с носителями и выписывайте идиомы в контексте.
+
+<blockquote>Постепенно вы начнёте использовать идиомы автоматически, и ваша речь зазвучит по-настоящему бегло.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Можно ли использовать идиомы в письменной части экзамена?", "answer": "Да, но умеренно. Одна-две идиомы в эссе поднимут балл за лексику, но перебор будет выглядеть неестественно."}
+        ]
     },
     "phrasal_verbs_c2_1": {
         "title": "Фразовые глаголы C2 (часть 1)",
