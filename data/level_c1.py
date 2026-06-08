@@ -246,15 +246,124 @@ LEVEL_C1_CONTENT = {
             {"question": "Как сказать 'я учу английский 5 лет' – I've learned или I've been learning?", "answer": "Оба варианта возможны. I've learned может подразумевать результат (я выучил), I've been learning – процесс. Для просто констатации факта I've learned допустимо, но чаще используют I've been learning."}
         ]
     },
-    "narrative_tenses_advanced": {
+        "narrative_tenses_advanced": {
         "title": "Narrative Tenses (Past Simple, Continuous, Perfect, Perfect Continuous) – углублённо",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Роль каждого времени в рассказе",
+                "text": """
+<b>📖 В рассказах используются все четыре прошедших времени для создания динамики.</b>
+
+• <b>Past Simple</b> – основная линия, последовательные события.
+• <b>Past Continuous</b> – фон, атмосфера, длительное действие.
+• <b>Past Perfect</b> – событие, которое произошло раньше другого.
+• <b>Past Perfect Continuous</b> – длительное действие, которое происходило до другого действия.
+
+<blockquote>Грамотное чередование делает рассказ живым и выразительным.</blockquote>
+"""
+            },
+            {
+                "title": "Пример использования всех времён",
+                "text": """
+<b>📖 Пример рассказа:</b>
+
+It was a dark night. The wind was blowing (Past Continuous – фон). I had been walking (Past Perfect Continuous) for two hours when I finally saw (Past Simple – событие) a light in the distance. I had never been (Past Perfect – предыдущий опыт) so happy before. I ran (Past Simple) towards the light and found a small cottage.
+
+<blockquote>Каждое время выполняет свою функцию, и их комбинация создаёт глубину.</blockquote>
+"""
+            },
+            {
+                "title": "Сложные случаи: когда Past Perfect не обязателен",
+                "text": """
+<b>📌 Past Perfect можно опустить, если порядок действий ясен из контекста или союзов (before, after).</b>
+
+• After he (had) finished work, he went home. (оба варианта допустимы, but Past Perfect подчёркивает завершённость)
+• When I came, she (had) already left. (Past Perfect предпочтительнее, чтобы показать, что она ушла до моего прихода)
+
+<blockquote>В разговорной речи Past Perfect часто заменяют на Past Simple, если порядок действий очевиден.</blockquote>
+"""
+            },
+            {
+                "title": "Типичные ошибки и советы",
+                "text": """
+<b>⚠️ Частые ошибки:</b>
+• ❌ I was finishing my homework at 8. (если закончил)  ✅ I finished my homework at 8.
+• ❌ While I cooked, the phone rang.  ✅ While I was cooking, the phone rang.
+• ❌ When I came, she left. (непонятно, что раньше)  ✅ When I came, she had left.
+
+<b>💡 Совет:</b>
+• Используйте Past Continuous для описания обстановки и фона.
+• Используйте Past Perfect для чёткого указания, какое действие произошло раньше.
+• Не злоупотребляйте Past Perfect, если порядок понятен без него.
+• Тренируйтесь: пересказывайте фильмы и книги, обращая внимание на времена.
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Можно ли в одном рассказе использовать Past Perfect и Past Perfect Continuous?", "answer": "Да, если одно действие было длительным, а другое завершённым: I had been waiting for an hour when the train finally arrived. (Past Perfect Continuous + Past Simple)"}
+        ]
     },
-    "time_clauses_advanced_c1": {
-        "title": "Придаточные времени (so long as, as long as, once, provided that) – C1",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "time_clauses_advanced_c1": {
+        "title": "Придаточные времени (so long as, as long as, once, provided that, on condition that)",
+        "pages": [
+            {
+                "title": "Повторение правила (будущее время не используется)",
+                "text": """
+<b>⏰ В придаточных времени после союзов НЕ используется will. Вместо этого – Present Simple, Present Perfect или Past Simple.</b>
+
+• I will call you as soon as I arrive. (НЕ as soon as I will arrive)
+• Please wait until I come back.
+
+<blockquote>Это правило действует для всех союзов времени, включая продвинутые.</blockquote>
+"""
+            },
+            {
+                "title": "Союзы с оттенком условия: as long as, so long as, provided that, on condition that",
+                "text": """
+<b>📌 Эти союзы можно считать как временными, так и условными.</b>
+
+• <b>as long as / so long as</b> – до тех пор, пока (при условии, что)
+  • You can stay here as long as you keep quiet. (Можешь оставаться здесь, пока будешь тихо – или при условии, что будешь тихо)
+  • The project will succeed as long as everyone does their part.
+
+• <b>provided that / providing that</b> – при условии, что (более формально)
+  • You can borrow my car provided that you return it by 10.
+
+• <b>on condition that</b> – при условии, что (ещё формальнее)
+  • The money was lent on condition that it would be repaid in a month.
+
+<blockquote>В этих конструкциях тоже не используется will в придаточной части.</blockquote>
+"""
+            },
+            {
+                "title": "Once – как только (акцент на завершённости)",
+                "text": """
+<b>📌 Once – как только, после того как (часто с Present Perfect для подчёркивания завершённости).</b>
+
+• Once you have finished your homework, you can watch TV. (Как только закончишь домашнее задание, можешь смотреть телевизор.)
+• I'll call you once I get there. (Позвоню, как только доберусь.)
+
+<blockquote>Once более формальный, чем as soon as.</blockquote>
+"""
+            },
+            {
+                "title": "Типичные ошибки и советы",
+                "text": """
+<b>⚠️ Частые ошибки:</b>
+• ❌ You can stay here as long as you will be quiet.  ✅ as long as you are quiet.
+• ❌ Provided that you will help, I'll do it.  ✅ Provided that you help, I'll do it.
+• ❌ Once I will finish, I'll call you.  ✅ Once I finish / have finished, I'll call you.
+
+<b>💡 Совет:</b>
+• Запомните, что после as long as, provided that, on condition that, once никогда не ставится will.
+• Если нужно подчеркнуть завершённость, используйте Present Perfect в придаточной части (once you have finished).
+• Тренируйтесь: составляйте предложения о своих планах, используя эти союзы.
+"""
+            }
+        ],
+        "faq": [
+            {"question": "В чём разница между 'as long as' и 'provided that'?", "answer": "Они почти одинаковы, provided that более формален и часто используется в договорах."}
+        ]
     },
 
     # ==================== МОДУЛЬ 2: Модальные глаголы (C1) ====================
