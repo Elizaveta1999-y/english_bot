@@ -1947,15 +1947,190 @@ Please accept my apologies for my tardiness. My vehicle suffered a mechanical fa
             {"question": "Допустимо ли использовать 'like' в IELTS Speaking?", "answer": "Очень редко. Лучше заменить на sort of / kind of или просто сделать паузу."}
         ]
     },
-    "speaking_cliches": {
+        "speaking_cliches": {
         "title": "Разговорные клише для беглой речи (That being said, Having said that, Come to think of it)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Что такое разговорные клише?",
+                "text": """
+<b>💬 Разговорные клише – готовые фразы, которые носители используют регулярно для связи идей, выражения мнения, перехода между темами.</b>
+
+Их употребление делает речь более естественной и беглой. На уровне C2 вы должны узнавать и использовать такие фразы.
+
+<blockquote>Клише не являются штампами в плохом смысле; это строительные блоки беглой речи.</blockquote>
+"""
+            },
+            {
+                "title": "Клише для уступки и контраста",
+                "text": """
+<b>🔁 Клише для смягчения или противопоставления:</b>
+
+• <b>That being said / Having said that</b> – тем не менее, с другой стороны (после того как что-то сказали)
+  • *The hotel is expensive. That being said, it's very luxurious.* (Отель дорогой. Тем не менее, он очень роскошный.)
+
+• <b>At the same time</b> – в то же время (противопоставление)
+  • *I enjoy my job. At the same time, I'd like more free time.*
+
+• <b>On the flip side</b> – с другой стороны (неформально)
+  • *The car is cheap. On the flip side, it's not very reliable.*
+
+<blockquote>Используйте эти фразы, чтобы смягчить критику или представить контраргумент.</blockquote>
+"""
+            },
+            {
+                "title": "Клише для добавления мыслей и уточнения",
+                "text": """
+<b>💡 Ввод новых идей и уточнений:</b>
+
+• <b>Come to think of it</b> – если подумать, кстати
+  • *Come to think of it, I haven't seen her today.* (Кстати, я не видел её сегодня.)
+
+• <b>I mean</b> – в смысле (уточнение)
+  • *He's nice – I mean, he can be a bit moody sometimes.*
+
+• <b>You see</b> – понимаешь (при объяснении)
+  • *You see, the problem is that we don't have enough money.*
+
+• <b>What I mean is</b> – я хочу сказать (перефразирование)
+  • *What I mean is that we need to change our approach.*
+
+<blockquote>Эти клише помогают уточнить мысль и избежать недопонимания.</blockquote>
+"""
+            },
+            {
+                "title": "Клише для согласия, удивления и хезитации",
+                "text": """
+<b>🗣️ Реакции и переходы:</b>
+
+• <b>Tell me about it!</b> – расскажи мне! (выражение согласия с жалобой)
+  • *– The traffic is terrible. – Tell me about it!*
+
+• <b>You're telling me!</b> – то же, что tell me about it
+• <b>I know, right?</b> – я знаю, да? (неформальное согласие)
+• <b>Go on / Go ahead</b> – продолжай, давай
+
+• <b>Long story short</b> – короче говоря
+  • *Long story short, we missed the flight.*
+
+• <b>To make a long story short</b> – то же, немного формальнее
+
+<blockquote>Эти короткие фразы делают диалог более живым и эмоциональным.</blockquote>
+"""
+            },
+            {
+                "title": "Советы",
+                "text": """
+<b>💡 Как интегрировать клише в речь:</b>
+• Слушайте подкасты и интервью с носителями, выписывайте фразы, которые они часто повторяют.
+• Практикуйтесь в диалогах, намеренно используя одно-два клише.
+• Не злоупотребляйте: в слишком формальных ситуациях лучше избегать таких фраз.
+
+<blockquote>Разговорные клише – это ключ к тому, чтобы звучать как носитель, а не как учебник.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Подходят ли эти клише для письменных эссе?", "answer": "Некоторые (That being said, Having said that) допустимы в эссе, но остальные лучше оставить для устной речи."}
+        ]
     },
-    "transitions_advanced": {
+        "transitions_advanced": {
         "title": "Продвинутые переходы между частями речи (transition words for C2)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Зачем нужны продвинутые переходы?",
+                "text": """
+<b>🔗 Продвинутые переходы делают текст более связным и помогают читателю следить за логикой изложения.</b>
+
+В отличие от базовых (firstly, secondly, finally), продвинутые переходы используются реже и придают тексту стилистическое разнообразие.
+
+<blockquote>В эссе CPE и академических работах использование таких переходов повышает балл за структуру и связность.</blockquote>
+"""
+            },
+            {
+                "title": "Переходы для последовательности и времени",
+                "text": """
+<b>⏳ Последовательность и хронология:</b>
+
+• <b>subsequently</b> – впоследствии (более формально, чем then)
+  • *He resigned, and subsequently, the company went bankrupt.*
+
+• <b>thereafter</b> – после этого (очень формально)
+  • *The agreement was signed; thereafter, relations improved.*
+
+• <b>prior to</b> – до (вместо before)
+  • *Prior to the meeting, we reviewed the documents.*
+
+• <b>subsequently / consequently</b> – не путать: subsequently – затем (последовательность), consequently – следовательно (причина)
+
+• <b>in the meantime / meanwhile</b> – тем временем
+  • *The doctor will arrive soon. In the meantime, keep calm.*
+
+<blockquote>Эти переходы помогают избежать повторения then и after that.</blockquote>
+"""
+            },
+            {
+                "title": "Переходы для сравнения и контраста (продвинутые)",
+                "text": """
+<b>⚖️ Сравнение и противопоставление:</b>
+
+• <b>likewise / similarly</b> – аналогично, подобно
+  • *The first chapter is difficult; likewise, the second is challenging.*
+
+• <b>conversely</b> – наоборот (для противоположных утверждений)
+  • *Some people love city life; conversely, others prefer the countryside.*
+
+• <b>on the contrary</b> – напротив (опровержение предыдущего утверждения)
+  • *He wasn't lazy. On the contrary, he worked very hard.*
+
+• <b>in the same vein</b> – в том же духе (продолжение мысли)
+  • *Her first novel was a success; in the same vein, the second was also acclaimed.*
+
+<blockquote>Различайте conversely (противопоставление) и on the contrary (опровержение).</blockquote>
+"""
+            },
+            {
+                "title": "Переходы для причины, следствия и уступки (продвинутые)",
+                "text": """
+<b>🔍 Причина, следствие, уступка:</b>
+
+• <b>owing to / due to</b> – из-за, благодаря (формальные предлоги)
+  • *Owing to bad weather, the flight was cancelled.*
+
+• <b>as a consequence</b> – как следствие
+  • *He missed the train; as a consequence, he was late.*
+
+• <b>for this reason</b> – по этой причине
+  • *The roads were icy; for this reason, schools closed.*
+
+• <b>notwithstanding</b> – несмотря на (очень формально, часто после существительного)
+  • *The weather notwithstanding, we went for a walk.*
+
+• <b>in spite of the fact that</b> – несмотря на то что
+  • *In spite of the fact that he was tired, he kept working.*
+
+<blockquote>Notwithstanding – редкое, но очень сильное слово для C2.</blockquote>
+"""
+            },
+            {
+                "title": "Советы",
+                "text": """
+<b>💡 Как использовать продвинутые переходы:</b>
+
+• Не злоупотребляйте: вставка слишком многих формальных переходов делает текст тяжеловесным.
+• Заменяйте простые переходы (so → consequently, then → subsequently) при редактировании эссе.
+• Читайте академические статьи и обращайте внимание на используемые переходы.
+
+<b>⚠️ Частые ошибки:</b>
+• ❌ I was tired, consequently I went to bed. (без точки с запятой)  ✅ I was tired; consequently, I went to bed.
+• ❌ She is beautiful. On the contrary, she is kind. (on the contrary здесь не подходит)  ✅ On the contrary, she is not beautiful. / She is beautiful. In addition, she is kind.
+
+<blockquote>Продвинутые переходы – это инструмент для безупречного академического письма.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Можно ли использовать 'notwithstanding' в начале предложения?", "answer": "Да, но это очень формально: Notwithstanding the difficulties, we succeeded."}
+        ]
     },
 
     # ==================== МОДУЛЬ 7: Анализ ошибок и выбор между похожими словами ====================
