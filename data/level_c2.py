@@ -1428,15 +1428,170 @@ Please accept my apologies for my tardiness. My vehicle suffered a mechanical fa
     },
 
     # ==================== МОДУЛЬ 5: Выражение неуверенности, предположения, уступки ====================
-    "hedging_c2": {
+        "hedging_c2": {
         "title": "Выражение неуверенности, смягчение утверждений (hedging)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Что такое hedging?",
+                "text": """
+<b>🤔 Hedging – использование языковых средств для смягчения категоричности утверждения, выражения неуверенности или вежливости.</b>
+
+В академическом и деловом английском избегают абсолютных утверждений (It is certain that...). Вместо этого используют модальные глаголы, наречия, глаголы и вводные конструкции.
+
+• *It is likely that the economy will recover.* (Вероятно, экономика восстановится.)
+• *The results may indicate a correlation.* (Результаты могут указывать на корреляцию.)
+
+<blockquote>Hedging – ключевой навык для научных статей, презентаций и вежливого общения.</blockquote>
+"""
+            },
+            {
+                "title": "Модальные глаголы для смягчения",
+                "text": """
+<b>📌 Модальные глаголы выражают вероятность, а не абсолютную уверенность.</b>
+
+• <b>may / might / could</b> – возможно (наименее уверенно)
+  • *The new treatment might be effective.* (Новое лечение может быть эффективным.)
+
+• <b>can / could</b> – иногда возможно
+  • *This approach can lead to errors.* (Этот подход может приводить к ошибкам.)
+
+• <b>would</b> – в вежливых предположениях
+  • *It would seem that we have a problem.* (Похоже, у нас проблема.)
+
+<blockquote>В академических текстах избегают must (слишком уверенно) и will (категорично).</blockquote>
+"""
+            },
+            {
+                "title": "Лексические средства hedging",
+                "text": """
+<b>📌 Наречия, прилагательные, глаголы и вводные фразы:</b>
+
+• <b>Наречия:</b> probably, possibly, perhaps, apparently, arguably, seemingly
+  • *The project is arguably the most important of the decade.* (Этот проект, возможно, самый важный за десятилетие.)
+
+• <b>Прилагательные:</b> likely, unlikely, possible, probable
+  • *It is unlikely that the situation will improve.* (Маловероятно, что ситуация улучшится.)
+
+• <b>Глаголы:</b> seem, appear, suggest, indicate, tend to, tend to be
+  • *The data seem to support this hypothesis.* (Данные, по-видимому, подтверждают эту гипотезу.)
+
+• <b>Вводные фразы:</b> It is believed that..., There is evidence that..., According to...
+  • *According to the report, the economy is growing.* (Согласно отчёту, экономика растёт.)
+
+<blockquote>Использование таких слов делает утверждения менее категоричными и более научными.</blockquote>
+"""
+            },
+            {
+                "title": "Советы и примеры",
+                "text": """
+<b>📖 Примеры категоричных и смягчённых утверждений:</b>
+
+• Категорично: *This drug cures cancer.* (Это лекарство лечит рак.)
+• Смягчённо: *This drug may be effective against certain types of cancer.* (Это лекарство может быть эффективно против некоторых видов рака.)
+
+• Категорично: *The theory is wrong.* (Теория неверна.)
+• Смягчённо: *The theory appears to have some limitations.* (Теория, по-видимому, имеет некоторые ограничения.)
+
+<b>💡 Совет:</b>
+• В эссе IELTS и CPE hedging обязателен для получения высокого балла (Academic Writing).
+• Тренируйтесь: переписывайте категоричные утверждения в смягчённой форме.
+• Обратите внимание, что чрезмерное использование hedging делает текст неуверенным; нужен баланс.
+
+<blockquote>Hedging – это искусство выражать сомнение и осторожность, не теряя убедительности.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Можно ли использовать hedging в устной речи?", "answer": "Да, особенно в деловых презентациях и дискуссиях, чтобы звучать вежливо и не категорично."}
+        ]
     },
-    "concession_clauses": {
-        "title": "Придаточные уступки (although, even though, albeit, despite)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "concession_clauses": {
+        "title": "Придаточные уступки (although, even though, albeit, despite, in spite of)",
+        "pages": [
+            {
+                "title": "Повторение и углубление",
+                "text": """
+<b>🧩 Придаточные уступки показывают контраст между двумя частями предложения.</b>
+
+Основные союзы:
+• <b>although / even though</b> – хотя, несмотря на то что (полное предложение)
+• <b>albeit</b> – хотя и, но (формальный, с прилагательным/причастием)
+• <b>despite / in spite of</b> – несмотря на (существительное или герундий)
+
+<blockquote>На уровне C2 важно различать оттенки этих конструкций и использовать их для сложной аргументации.</blockquote>
+"""
+            },
+            {
+                "title": "Although / even though / though",
+                "text": """
+<b>📌 Although / even though + полное предложение (подлежащее + сказуемое).</b>
+
+• *Although it was raining, we went for a walk.* (Хотя шёл дождь, мы пошли гулять.)
+• *Even though he was tired, he finished the marathon.* (Несмотря на то что устал, он закончил марафон.)
+
+<blockquote>Though – разговорный вариант, может стоять в конце предложения: It was raining, though we went out.</blockquote>
+
+• *Though it was late, she continued working.* (Хотя было поздно, она продолжала работать.)
+• *He accepted the job, even though the salary was low.* (Он принял работу, хотя зарплата была низкой.)
+"""
+            },
+            {
+                "title": "Albeit – формальный союз",
+                "text": """
+<b>📌 Albeit означает 'хотя и', 'но' и используется только с прилагательными, наречиями, причастиями или существительными без глагола.</b>
+
+• *The journey was enjoyable, albeit tiring.* (Путешествие было приятным, хотя и утомительным.)
+• *He accepted the position, albeit reluctantly.* (Он принял должность, хотя и неохотно.)
+
+<blockquote>Albeit никогда не используется с полным предложением (с глаголом).</blockquote>
+
+• *The solution was simple, albeit effective.* (Решение было простым, хотя и эффективным.)
+• *They arrived late, albeit with a good reason.* (Они опоздали, хотя и с уважительной причиной.)
+"""
+            },
+            {
+                "title": "Despite / in spite of + существительное / герундий",
+                "text": """
+<b>📌 Despite / in spite of + существительное или герундий (V‑ing).</b>
+
+• *Despite the rain, we went out.* (Несмотря на дождь, мы вышли.)
+• *In spite of being tired, she finished the report.* (Несмотря на усталость, она закончила отчёт.)
+
+<blockquote>In spite of – чуть более формальный вариант.</blockquote>
+
+• *Despite having little experience, he got the job.* (Несмотря на небольшой опыт, он получил работу.)
+• *In spite of the fact that it was expensive, we bought it.* (Несмотря на то что это было дорого, мы купили.)
+
+<blockquote>Для полного предложения можно использовать 'despite the fact that'.</blockquote>
+"""
+            },
+            {
+                "title": "Сравнение и типичные ошибки",
+                "text": """
+<b>📊 Сравните:</b>
+
+• *Although it rained, we went out.* (союз + предложение)
+• *Despite the rain, we went out.* (предлог + существительное)
+• *It rained, yet we went out.* (союз yet)
+• *We went out; however, it rained.* (наречие however)
+
+<b>⚠️ Частые ошибки:</b>
+• ❌ Despite it rained...  ✅ Despite the rain / Despite the fact that it rained.
+• ❌ Although the rain...  ✅ Although it rained...
+• ❌ In spite of that he was tired...  ✅ In spite of being tired / In spite of the fact that he was tired.
+
+<b>💡 Совет:</b>
+• Если хотите использовать глагол (был дождь), ставьте although / even though.
+• Если хотите использовать существительное (дождь), ставьте despite / in spite of.
+• Albeit используйте только для краткого уточнения (прилагательным или наречием).
+
+<blockquote>Правильное использование этих конструкций – признак высокого уровня владения языком.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "В чём разница между 'although' и 'even though'?", "answer": "Even though более сильный, подчёркивает контраст. Although – нейтральный."}
+        ]
     },
     "modal_expressions_guessing": {
         "title": "Модальные глаголы для предположений (must, can't, could, might – углубление)",
