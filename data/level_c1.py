@@ -1293,25 +1293,293 @@ It was a dark night. The wind was blowing (Past Continuous – фон). I had be
     },
 
     # ==================== МОДУЛЬ 5: Пассивный залог (C1) ====================
-    "passive_reporting_verbs_advanced": {
+        "passive_reporting_verbs_advanced": {
         "title": "Пассив с глаголами передачи информации (He is said to have been...) – сложные времена",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Две конструкции: безличный пассив и пассив с подлежащим",
+                "text": """
+<b>🗣️ Глаголы передачи информации (say, believe, think, report, know, expect, consider, claim) в пассиве.</b>
+
+Две конструкции:
+1. It + is/was + said/believed + that + предложение
+2. Подлежащее + is/was + said/believed + to + инфинитив (to have + V3 для прошлого)
+
+<blockquote>Обе конструкции равнозначны, но вторая более экономна.</blockquote>
+"""
+            },
+            {
+                "title": "It is said that... – безличный пассив",
+                "text": """
+<b>📌 It is/was + глагол + that... – универсальная конструкция.</b>
+
+• It is said that the president will resign. (Говорят, президент уйдёт в отставку.)
+• It was reported that the accident caused no injuries. (Сообщалось, что в аварии никто не пострадал.)
+• It is believed that the stolen painting is in Europe. (Полагают, что украденная картина находится в Европе.)
+
+<blockquote>Эта конструкция подходит для любого времени и любой информации.</blockquote>
+"""
+            },
+            {
+                "title": "He is said to... – пассив с подлежащим и инфинитивом",
+                "text": """
+<b>📌 Подлежащее + is/was + глагол + to + инфинитив (или to have + V3 для прошлого).</b>
+
+• He is said to be very rich. (Говорят, что он очень богат – настоящее)
+• The thief is believed to have escaped. (Считают, что вор сбежал – прошлое)
+• She is expected to arrive at 6 pm. (Ожидается, что она прибудет в 6 вечера.)
+
+<blockquote>Инфинитив to be для настоящего, to have + V3 для прошлого.</blockquote>
+"""
+            },
+            {
+                "title": "Выбор времени инфинитива",
+                "text": """
+<b>📊 Сравнение времён:</b>
+
+• <b>to be + V3</b> – пассивный инфинитив (действие происходит одновременно или позже)
+  • The company is reported to be losing money. (Сообщают, что компания теряет деньги)
+
+• <b>to have + V3</b> – перфектный инфинитив (действие произошло раньше)
+  • The company is reported to have lost millions last year. (Сообщают, что компания потеряла миллионы в прошлом году)
+
+<blockquote>Временная разница важна для точности.</blockquote>
+"""
+            },
+            {
+                "title": "Типичные ошибки и советы",
+                "text": """
+<b>⚠️ Частые ошибки:</b>
+• ❌ It is said that he is being rich.  ✅ He is said to be rich.
+• ❌ He is said that he is rich.  ✅ He is said to be rich.
+• ❌ It is said that the meeting has been cancelled. (верно, но можно короче: The meeting is said to have been cancelled)
+
+<b>💡 Совет:</b>
+• Если подлежащее – человек/предмет, и вы хотите передать слух о нём, используйте He is said to...
+• Если подлежащее – целая ситуация (that...), используйте It is said that...
+• Тренируйтесь: перефразируйте активные предложения в пассив с глаголами передачи информации.
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Можно ли использовать безличный пассив с другими глаголами?", "answer": "Да: It is assumed that..., It is claimed that..., It is understood that... и т.д."}
+        ]
     },
-    "passive_with_prepositions_adv": {
+        "passive_with_prepositions_adv": {
         "title": "Пассив с предлогами (He was laughed at, This bed was slept in) – редкие случаи",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Что такое пассив с предлогами?",
+                "text": """
+<b>📍 В английском некоторые глаголы требуют предлог (look at, listen to, wait for, laugh at, pay for).</b>
+
+В пассиве предлог сохраняется после глагола, даже если его некому применить.
+
+• They laughed at him. → He was laughed at. (Над ним смеялись.)
+• Someone slept in this bed. → This bed was slept in. (В этой кровати спали.)
+• They sent for the doctor. → The doctor was sent for. (За доктором послали.)
+
+<blockquote>Предлог остаётся при глаголе, как в активном предложении.</blockquote>
+"""
+            },
+            {
+                "title": "Список распространённых глаголов с предлогами",
+                "text": """
+<b>📌 Глаголы, часто используемые в пассиве с предлогами:</b>
+
+• look at – He was looked at strangely.
+• listen to – The music was listened to by everyone.
+• laugh at – She doesn't like being laughed at.
+• wait for – The results are being waited for.
+• pay for – The meal was paid for by my friend.
+• talk about – The issue is being talked about.
+• rely on – She can be relied on.
+• insist on – His decision was insisted on.
+• refer to – This point was referred to earlier.
+• approve of – The plan was approved of.
+
+<blockquote>В разговорной речи предлог часто переносится в конец, но в формальной может оставаться перед дополнением.</blockquote>
+"""
+            },
+            {
+                "title": "Пассив с фразовыми глаголами",
+                "text": """
+<b>🔤 Фразовые глаголы (глагол + наречие) также сохраняют частицу в пассиве.</b>
+
+• turn down – The offer was turned down.
+• put off – The meeting was put off.
+• take care of – The children are taken care of.
+• look after – The dog is looked after by a neighbour.
+• give up – Smoking should be given up.
+
+<blockquote>Обратите внимание, что частица (down, off, of, after, up) остаётся после глагола.</blockquote>
+"""
+            },
+            {
+                "title": "Типичные ошибки и советы",
+                "text": """
+<b>⚠️ Частые ошибки:</b>
+• ❌ He was laughed.  ✅ He was laughed at.
+• ❌ This bed was slept.  ✅ This bed was slept in.
+• ❌ The music was listened.  ✅ The music was listened to.
+
+<b>💡 Совет:</b>
+• Всегда проверяйте, требует ли глагол предлог в активном залоге. Если да, то в пассиве предлог остаётся.
+• Запомните: предлог стоит в конце пассивной фразы (после глагола).
+• Тренируйтесь: переделывайте активные предложения с глаголами + предлог в пассив.
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Можно ли в пассиве с предлогом убрать предлог?", "answer": "Нет, предлог обязателен, иначе смысл теряется."}
+        ]
     },
-    "impersonal_passive_advanced_c1": {
+        "impersonal_passive_advanced_c1": {
         "title": "Безличный пассив (It is said that..., He is said to be...) – все времена и конструкции",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Повторение и новые глаголы",
+                "text": """
+<b>📰 Безличный пассив: It + be + глагол (в пассиве) + that... используется для передачи мнений, слухов, сообщений.</b>
+
+Кроме say, believe, think, report, know, expect, consider, можно использовать:
+• assume – предполагать
+• claim – утверждать
+• estimate – оценивать
+• fear – опасаться
+• hope – надеяться
+• suppose – предполагать
+• understand – понимать (известно)
+
+• It is assumed that the meeting will be cancelled. (Предполагается, что встреча будет отменена.)
+• It is feared that the situation may get worse. (Опасаются, что ситуация может ухудшиться.)
+• It is estimated that over 10,000 people attended. (По оценкам, присутствовало более 10 000 человек.)
+
+<blockquote>Эта конструкция очень распространена в новостях и научных статьях.</blockquote>
+"""
+            },
+            {
+                "title": "Времена в безличном пассиве",
+                "text": """
+<b>📌 Безличный пассив может использоваться в разных временах.</b>
+
+• Present: It is said that... (говорят)
+• Past: It was said that... (говорили)
+• Future: It will be said that... (будут говорить)
+• Present Perfect: It has been said that... (говорили/сказано)
+
+• It was reported that the minister had resigned. (Сообщалось, что министр ушёл в отставку – прошлое)
+• It will be announced that the school is closing. (Будет объявлено, что школа закрывается)
+
+<blockquote>Время глагола be показывает, когда произошло действие сообщения.</blockquote>
+"""
+            },
+            {
+                "title": "Сложные случаи с глаголами восприятия и состояния",
+                "text": """
+<b>🔍 Некоторые глаголы реже используются в безличном пассиве, но возможны.</b>
+
+• It is felt that more research is needed. (Считается, что нужно больше исследований.)
+• It is understood that the parties have reached an agreement. (Известно, что стороны достигли соглашения.)
+• It is hoped that the ceasefire will hold. (Надеются, что перемирие будет соблюдаться.)
+
+<blockquote>В формальной речи безличный пассив незаменим.</blockquote>
+"""
+            },
+            {
+                "title": "Типичные ошибки и советы",
+                "text": """
+<b>⚠️ Частые ошибки:</b>
+• ❌ It is said he is rich. (опущено that) – допустимо в разговорной речи, но формально нужен that.
+• ❌ It is said that he is being rich. (неправильное время)  ✅ It is said that he is rich.
+• ❌ It is said that he has been rich. (редко) – обычно to have been: He is said to have been rich.
+
+<b>💡 Совет:</b>
+• Используйте безличный пассив, чтобы дистанцироваться от источника информации или сделать высказывание более объективным.
+• Для краткости можно использовать He is said to be... вместо It is said that he is...
+• Тренируйтесь: превращайте активные предложения (People say that...) в безличный пассив.
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Всегда ли нужен 'that' после безличного пассива?", "answer": "В формальной письменной речи – да. В разговорной допустимо опускать."}
+        ]
     },
-    "causative_passive_advanced": {
-        "title": "Каузативный пассив (have/get something done) – все времена и оттенки",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "causative_passive_advanced": {
+        "title": "Каузативный пассив (have/get something done) – углубление",
+        "pages": [
+            {
+                "title": "Основная структура и времена",
+                "text": """
+<b>🔧 Каузатив have/get something done – действие выполняется кем-то другим для вас.</b>
+
+• have / get + объект + V3
+
+• I had my car serviced. (Мне обслужили машину.)
+• She got her nails done. (Ей сделали маникюр.)
+• We need to have the roof repaired. (Нам нужно починить крышу.)
+
+<blockquote>Акцент на том, что вы организовали действие, но не выполняли его сами.</blockquote>
+"""
+            },
+            {
+                "title": "Все времена каузативного пассива",
+                "text": """
+<b>📌 Каузатив можно использовать в любом времени.</b>
+
+• Present Simple: I have my car serviced every year. (Мне обслуживают машину каждый год.)
+• Past Simple: She had her hair cut yesterday. (Ей подстригли волосы вчера.)
+• Future Simple: We will have the house painted next month. (Нам покрасят дом в следующем месяце.)
+• Present Continuous: I'm having my phone repaired now. (Мне сейчас ремонтируют телефон.)
+• Present Perfect: They have had their kitchen renovated. (Им отремонтировали кухню.)
+• Modal: You should have your eyes tested. (Тебе следует проверить зрение.)
+• Gerund: Having your passport stolen is a nightmare. (То, что у вас украли паспорт – кошмар.)
+
+<blockquote>Время показывает, когда произошла услуга.</blockquote>
+"""
+            },
+            {
+                "title": "Отрицание и вопросы",
+                "text": """
+<b>🚫 Отрицание:</b> I didn't have my car washed. (Мне не помыли машину.)
+<b>❓ Вопрос:</b> Have you had your eyes tested? (Ты проверял зрение?)
+
+• You should get your watch fixed. (Тебе следует починить часы.)
+• I need to have my computer looked at. (Мне нужно, чтобы посмотрели мой компьютер.)
+
+<blockquote>В вопросах и отрицаниях образуется как в любом времени.</blockquote>
+"""
+            },
+            {
+                "title": "Сравнение с активом и пассивом",
+                "text": """
+<b>📊 Сравните:</b>
+
+• Актив: I washed my car. (сам помыл)
+• Пассив: My car was washed. (просто констатация, кто-то помыл, но не обязательно для меня)
+• Каузатив: I had my car washed. (мне помыли – я организовал)
+
+<blockquote>Каузатив показывает, что действие было выполнено по вашей просьбе или за ваш счёт.</blockquote>
+"""
+            },
+            {
+                "title": "Типичные ошибки и советы",
+                "text": """
+<b>⚠️ Частые ошибки:</b>
+• ❌ I had my car to wash.  ✅ I had my car washed.
+• ❌ She got her hair to cut.  ✅ She got her hair cut.
+• ❌ I had my friend to help. (это другая конструкция: have someone do something – без to)
+
+<b>💡 Совет:</b>
+• Для услуг используйте have/get + объект + V3.
+• Не путайте с have someone do (поручить кому-то) – там инфинитив без to и без страдательного смысла.
+• Тренируйтесь: опишите, что вам сделали в этом году (стрижка, ремонт, уборка), используando каузатив.
+"""
+            }
+        ],
+        "faq": [
+            {"question": "В чём разница между 'have something done' и 'get something done'?", "answer": "Get более разговорный, часто используется в просьбах: I need to get my phone fixed. Have чуть более формальный."}
+        ]
     },
 
     # ==================== МОДУЛЬ 6: Косвенная речь (C1) ====================
