@@ -894,20 +894,232 @@ THEMATIC_CONTENT = {
             {"question": "Как понять, когда to является предлогом, а не частью инфинитива?", "answer": "Если после to можно поставить существительное или местоимение (I look forward to [this weekend]), то это предлог, после него герундий. Если после to следует глагол (I want to go), то это инфинитив."}
         ]
     },
-    "conjunctions_although_despite": {
+        "conjunctions_although_despite": {
         "title": "Сложные союзы (although/despite)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Although / even though",
+                "text": """
+<b>🧩 Although / even though – «хотя, несмотря на то что».</b>
+
+После них идёт полное предложение (подлежащее + сказуемое).
+
+• Although it was raining, we went for a walk. (Хотя шёл дождь, мы пошли гулять.)
+• Even though she was tired, she finished her work. (Несмотря на то что устала, она закончила работу.)
+
+<blockquote>Even though сильнее, чем although, подчёркивает контраст.</blockquote>
+"""
+            },
+            {
+                "title": "Despite / in spite of",
+                "text": """
+<b>📌 Despite / in spite of – «несмотря на».</b>
+
+После них используется существительное, местоимение (‑ing) или фраза с the fact that.
+
+• Despite the rain, we went for a walk. (Несмотря на дождь…)
+• In spite of being tired, she finished her work. (Несмотря на усталость…)
+• Despite the fact that he was late, he didn't apologise. (Несмотря на то что он опоздал…)
+
+<blockquote>После despite / in spite of никогда не ставится глагол в личной форме (только существительное или герундий).</blockquote>
+"""
+            },
+            {
+                "title": "Сравнение конструкций",
+                "text": """
+<b>📊 Сравните:</b>
+
+• Although it was raining, we went out. (союз + предложение)
+• Despite the rain, we went out. (предлог + существительное)
+• In spite of the rain, we went out. (предлог + существительное)
+
+• Though (разговорный вариант although) – Though it was cold, I enjoyed the trip.
+
+<blockquote>Despite / in spite of более формальны, but though более разговорный.</blockquote>
+"""
+            },
+            {
+                "title": "Типичные ошибки и советы",
+                "text": """
+<b>⚠️ Частые ошибки:</b>
+• ❌ Despite it was raining...  ✅ Despite the rain... / Despite the fact that it was raining...
+• ❌ Although the rain...  ✅ Although it was raining...
+• ❌ In spite of he was late...  ✅ In spite of being late / In spite of the fact that he was late.
+
+<b>💡 Совет:</b>
+• Если хотите использовать глагол (был дождь), ставьте although / even though.
+• Если хотите использовать существительное (дождь), ставьте despite / in spite of.
+• Тренируйтесь: переписывайте предложения разными способами.
+
+<blockquote>Освоив эти союзы, вы сможете выражать контраст в любом стиле.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "В чём разница между 'though' и 'although'?", "answer": "Они почти одинаковы, though чаще в конце предложения: It was raining, though we went out."}
+        ]
     },
-    "travel_vocabulary": {
+        "travel_vocabulary": {
         "title": "Лексика: путешествия",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Транспорт и передвижение",
+                "text": """
+<b>🚗 Транспорт (transport):</b>
+• car, bus, coach, train, tram, metro, taxi, plane, ship, ferry, bicycle, motorbike
+
+<b>Глаголы:</b>
+• drive – водить (машину)
+• ride – ехать (на велосипеде, мотоцикле)
+• take – пользоваться (take a bus, take a taxi)
+• catch – успеть на (catch a train, catch a flight)
+• miss – опоздать на (miss the bus)
+• board – сесть на (board a plane)
+
+<blockquote>Запомните: by + transport (by car, by train, by plane) – способ передвижения.</blockquote>
+"""
+            },
+            {
+                "title": "В аэропорту и на вокзале",
+                "text": """
+<b>✈️ В аэропорту (at the airport):</b>
+• terminal – терминал
+• check-in – регистрация
+• boarding pass – посадочный талон
+• gate – выход на посадку
+• departure – вылет
+• arrival – прилёт
+• luggage / baggage – багаж
+• carry-on – ручная кладь
+• passport control – паспортный контроль
+• security check – досмотр
+• delay – задержка
+• cancelled – отменён
+
+<b>🚉 На вокзале (at the station):</b>
+• platform – платформа
+• ticket office – билетная касса
+• timetable – расписание
+• single ticket – билет в один конец
+• return ticket – билет туда и обратно
+• first class – первый класс
+• second class – второй класс
+
+<blockquote>Эти слова пригодятся в путешествиях по стране и за рубежом.</blockquote>
+"""
+            },
+            {
+                "title": "Полезные фразы для путешествий",
+                "text": """
+<b>🗣️ Как спросить и ответить:</b>
+• How can I get to the city centre? (Как добраться до центра города?)
+• Which platform does the train leave from? (С какой платформы отправляется поезд?)
+• Is there a direct flight to Paris? (Есть прямой рейс до Парижа?)
+• I'd like a window seat, please. (Я бы хотел место у окна.)
+• How much is a ticket? (Сколько стоит билет?)
+• Does this bus go to the airport? (Этот автобус идёт в аэропорт?)
+• Where can I rent a car? (Где можно арендовать машину?)
+
+<b>Пример диалога:</b>
+– Excuse me, how do I get to the railway station?
+– Take bus number 12 and get off at the third stop.
+– Does it take long?
+– About 15 minutes.
+– Thanks a lot!
+
+<blockquote>Эти фразы помогут вам чувствовать себя уверенно в любой поездке.</blockquote>
+"""
+            },
+            {
+                "title": "Советы",
+                "text": """
+<b>💡 Советы:</b>
+• Группируйте лексику по темам: транспорт, аэропорт, вокзал, гостиница.
+• Используйте карты Google на английском языке для тренировки.
+• Представьте, что вы путешествуете, и опишите свой маршрут.
+• Смотрите видео о путешествиях на YouTube с английскими субтитрами.
+• Практикуйтесь в диалогах: разыграйте сцену покупки билета или регистрации в аэропорту.
+
+<blockquote>Путешествия – отличный повод использовать английский в реальной жизни.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Разница между 'journey', 'trip' и 'travel'?", "answer": "Journey – путь (от точки А до Б). Trip – поездка (туда и обратно). Travel – путешествие (общее понятие)."}
+        ]
     },
-    "business_vocabulary": {
+        "business_vocabulary": {
         "title": "Лексика: деловая переписка",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Структура делового письма",
+                "text": """
+<b>📧 Структура делового письма (email):</b>
+
+• Subject line – тема письма
+• Salutation – обращение (Dear Mr Smith, Dear Sir or Madam)
+• Opening – начало (I am writing to...)
+• Body – основная часть (факты, просьбы, предложения)
+• Closing – завершение (I look forward to hearing from you)
+• Signature – подпись (Yours sincerely, Best regards)
+
+<blockquote>В деловой переписке важны вежливость и лаконичность.</blockquote>
+"""
+            },
+            {
+                "title": "Полезные фразы для писем",
+                "text": """
+<b>📌 Полезные фразы:</b>
+
+• I am writing to enquire about... (запрос)
+• Could you please provide... (просьба)
+• Thank you for your prompt response. (благодарность)
+• Please find attached... (вложение)
+• I am afraid that... (к сожалению, ...)
+• I would like to draw your attention to... (обратить внимание)
+• We look forward to your reply. (ждём ответа)
+
+<blockquote>Не используйте сокращения (don't, it's) в официальных письмах.</blockquote>
+"""
+            },
+            {
+                "title": "Фразы для начала и завершения",
+                "text": """
+<b>📌 Как начать письмо:</b>
+• I am writing to inform you that...
+• With reference to your email dated...
+• Further to our conversation...
+
+<b>📌 Как закончить письмо:</b>
+• I look forward to hearing from you.
+• Please do not hesitate to contact me.
+• Should you have any questions, please let me know.
+
+<b>Подпись:</b>
+• Yours sincerely – если вы знаете имя адресата (Dear Mr Smith)
+• Yours faithfully – если имя неизвестно (Dear Sir or Madam)
+• Best regards / Kind regards – менее формально
+
+<blockquote>Правильное завершение письма – важная часть этикета.</blockquote>
+"""
+            },
+            {
+                "title": "Советы",
+                "text": """
+<b>💡 Советы для деловой переписки:</b>
+• Будьте кратки, но вежливы.
+• Проверяйте грамматику и орфографию.
+• Используйте формальный регистр, избегайте разговорных фраз.
+• Читайте образцы писем на английском.
+• Практикуйтесь: напишите письмо о запросе информации или жалобе.
+
+<blockquote>Умение писать деловые письма – важный навык для работы и учёбы.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Как закончить письмо, если не знаешь имени адресата?", "answer": "Yours faithfully (если начали с Dear Sir or Madam)."}
+        ]
     },
     "family_vocabulary": {
         "title": "Лексика: семья и друзья",
