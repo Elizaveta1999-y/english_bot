@@ -1904,20 +1904,222 @@ It was a dark night. The wind was blowing (Past Continuous – фон). I had be
     },
 
     # ==================== МОДУЛЬ 7: Придаточные и связки (C1) ====================
-    "relative_clauses_reduced_c1": {
+        "relative_clauses_reduced_c1": {
         "title": "Сокращённые определительные придаточные (the man sitting there; the book written by) – C1",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Повторение и углубление",
+                "text": """
+<b>✂️ Определительные придаточные можно сократить, опустив who/which/that и глагол to be.</b>
+
+Активный залог:
+• The man who is sitting there is my uncle. → The man sitting there is my uncle.
+• The girl who works in the cafe is friendly. → The girl working in the cafe is friendly.
+
+Пассивный залог:
+• The book that was written by Tolkien is famous. → The book written by Tolkien is famous.
+• The car which was parked outside has been stolen. → The car parked outside has been stolen.
+
+<blockquote>Сокращённые придаточные делают речь более лаконичной и формальной.</blockquote>
+"""
+            },
+            {
+                "title": "Сокращение в активном залоге (V‑ing)",
+                "text": """
+<b>📌 Для активного залога: опускаем who/which/that и меняем глагол на V‑ing.</b>
+
+• The man who lives next door is a doctor. → The man living next door is a doctor.
+• The students who study hard will pass. → The students studying hard will pass.
+• I saw a bird which was flying over the house. → I saw a bird flying over the house.
+
+<blockquote>Это работает только для длительных или повторяющихся действий.</blockquote>
+"""
+            },
+            {
+                "title": "Сокращение в пассивном залоге (V3)",
+                "text": """
+<b>📌 Для пассивного залога: опускаем who/which/that и глагол to be, оставляя V3.</b>
+
+• The car that was damaged in the accident is being repaired. → The car damaged in the accident is being repaired.
+• The letters which were sent yesterday have arrived. → The letters sent yesterday have arrived.
+• The book that is recommended by teachers is excellent. → The book recommended by teachers is excellent.
+
+<blockquote>Пассивное сокращение очень распространено в письменной речи.</blockquote>
+"""
+            },
+            {
+                "title": "Сокращение с предлогами",
+                "text": """
+<b>📌 Предлог сохраняется в сокращённой форме.</b>
+
+• The chair that I am sitting on is broken. → The chair I am sitting on is broken. (опускаем that, оставляем предлог)
+• The colleague with whom I work is nice. → The colleague I work with is nice.
+
+<blockquote>В неформальной речи предлог часто переносится в конец предложения.</blockquote>
+"""
+            },
+            {
+                "title": "Советы и типичные ошибки",
+                "text": """
+<b>⚠️ Частые ошибки:</b>
+• ❌ The man sat there is my uncle. (неправильно)  ✅ The man sitting there...
+• ❌ The book written by Tolkien is famous. (верно, это пассив)
+• ❌ The girl works in the cafe is friendly. (нужно either who works или working)
+
+<b>💡 Совет:</b>
+• Если глагол в активном залоге, заменяйте его на V‑ing.
+• Если глагол в пассиве, оставляйте V3.
+• Не пытайтесь сокращать, если действие однократное в прошлом (The man who called you – нельзя сократить).
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Всегда ли можно сократить придаточное?", "answer": "Нет, только если глагол в придаточной части передаёт длительное или повторяющееся действие (или пассив)."}
+        ]
     },
-    "cleft_sentences_advanced": {
+        "cleft_sentences_advanced": {
         "title": "Расщеплённые предложения (It was... that..., What... is...) – все типы",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Что такое расщеплённые предложения?",
+                "text": """
+<b>🔍 Расщеплённые предложения (cleft sentences) используются для выделения определённой части предложения (логического ударения).</b>
+
+Они делят (расщепляют) одно предложение на две части.
+
+• It was John that saw the accident. (Именно Джон увидел аварию – выделяем John)
+• What I need is a good rest. (Что мне нужно, так это хороший отдых – выделяем rest)
+
+<blockquote>Часто используются в письменной речи для акцента.</blockquote>
+"""
+            },
+            {
+                "title": "It-расщепление (It is/was + выделяемый элемент + that/who...)",
+                "text": """
+<b>📌 It + be + выделяемое + that/who...</b>
+
+• John saw the accident. → It was John who saw the accident. (именно Джон)
+• I met your brother yesterday. → It was yesterday that I met your brother. (именно вчера)
+• They need more time. → It is more time that they need. (именно больше времени)
+
+<blockquote>Если выделяется человек, можно использовать who; для предметов и обстоятельств – that.</blockquote>
+"""
+            },
+            {
+                "title": "What-расщепление (What + подлежащее + глагол + be + выделяемое)",
+                "text": """
+<b>📌 What... + be + выделяемое – выделяет действие или предмет.</b>
+
+• I need a good rest. → What I need is a good rest.
+• He gave me a book. → What he gave me was a book.
+• She loves chocolate. → What she loves is chocolate.
+
+<blockquote>What-расщепление часто используется для выделения дополнения.</blockquote>
+"""
+            },
+            {
+                "title": "All-расщепление и другие варианты",
+                "text": """
+<b>🔹 All (the only) + that... + be + выделяемое – для выделения единственной вещи.</b>
+
+• I just want to sleep. → All I want is to sleep.
+• The only thing I need is your love. → All I need is your love.
+
+<b>🔹 Where / when / why-расщепление:</b>
+• That's where I was born. (вот где я родился)
+• That's the reason why I left. (вот почему я ушёл)
+
+<blockquote>Эти конструкции делают речь более эмоциональной и выразительной.</blockquote>
+"""
+            },
+            {
+                "title": "Советы и типичные ошибки",
+                "text": """
+<b>⚠️ Частые ошибки:</b>
+• ❌ It was John who he saw the accident. (лишнее he)  ✅ It was John who saw the accident.
+• ❌ What I need is a rest. (верно)
+• ❌ It was yesterday that I have met him. (неправильное время)  ✅ It was yesterday that I met him.
+
+<b>💡 Совет:</b>
+• Используйте расщеплённые предложения, когда хотите подчеркнуть определённую информацию.
+• В разговорной речи они звучат неестественно, если их использовать слишком часто.
+• Тренируйтесь: перепишите обычные предложения, выделяя разные элементы.
+"""
+            }
+        ],
+        "faq": [
+            {"question": "В чём разница между 'It is' и 'What is' в расщеплении?", "answer": "It is выделяет любой элемент (человек, время, место, предмет). What выделяет действие или объект."}
+        ]
     },
-    "inversion_negative_advanced": {
+        "inversion_negative_advanced": {
         "title": "Инверсия после отрицательных наречий (Not only... but also, No sooner... than, Hardly... when)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Что такое инверсия с отрицательными наречиями?",
+                "text": """
+<b>🔄 Инверсия – изменение порядка слов (глагол перед подлежащим).</b>
+
+После отрицательных наречий и выражений в начале предложения используется инверсия для эмфазы. Это очень формальный стиль.
+
+• Not only did he arrive late, but he also forgot the gift. (Он не только опоздал, но и забыл подарок.)
+• No sooner had I left than it started to rain. (Не успел я уйти, как пошёл дождь.)
+• Hardly had we started when the fire alarm went off. (Едва мы начали, как сработала пожарная сигнализация.)
+
+<blockquote>Инверсия придаёт драматизм и используется в литературе и академической речи.</blockquote>
+"""
+            },
+            {
+                "title": "Not only... but also",
+                "text": """
+<b>📌 Not only + вспомогательный глагол + подлежащее + V, but also...</b>
+
+• She is not only intelligent but also beautiful. → Not only is she intelligent, but she is also beautiful.
+• They not only lost the match but also injured their best player. → Not only did they lose the match, but they also injured their best player.
+
+<blockquote>Если в первой части уже есть вспомогательный глагол, он переносится вперёд. Если нет, добавляется do/does/did.</blockquote>
+"""
+            },
+            {
+                "title": "No sooner... than",
+                "text": """
+<b>📌 No sooner + had + подлежащее + V3, than + подлежащее + V (Past Simple).</b>
+
+• No sooner had I arrived than the phone rang. (Не успел я прийти, как зазвонил телефон.)
+• No sooner had she closed the door than someone knocked. (Не успела она закрыть дверь, как кто-то постучал.)
+
+<blockquote>No sooner всегда требует Past Perfect (had done) в первой части и Past Simple во второй. Than – не then!</blockquote>
+"""
+            },
+            {
+                "title": "Hardly / Scarcely... when",
+                "text": """
+<b>📌 Hardly / Scarcely + had + подлежащее + V3, when + подлежащее + V (Past Simple).</b>
+
+• Hardly had we sat down when the film started. (Едва мы сели, как начался фильм.)
+• Scarcely had he entered the room when the lights went out. (Едва он вошёл в комнату, как погас свет.)
+
+<blockquote>Hardly / Scarcely имеют то же значение, что и no sooner. They very formal.</blockquote>
+"""
+            },
+            {
+                "title": "Советы и типичные ошибки",
+                "text": """
+<b>⚠️ Частые ошибки:</b>
+• ❌ Not only he arrived late, but also...  ✅ Not only did he arrive late...
+• ❌ No sooner I had left than...  ✅ No sooner had I left than...
+• ❌ Hardly had we started than it rained. (should be 'when')  ✅ Hardly had we started when it rained.
+
+<b>💡 Совет:</b>
+• Используйте инверсию только в очень формальных ситуациях или на экзаменах.
+• Запомните: после No sooner ставим had + подлежащее, после than – Past Simple.
+• После Not only вспомогательный глагол идёт перед подлежащим.
+• Тренируйтесь: переписывайте обычные предложения в инвертированную форму.
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Можно ли использовать инверсию с другими отрицательными наречиями?", "answer": "Да: never, rarely, seldom, little, at no time, under no circumstances: Never have I seen such a sight."}
+        ]
     },
     "inversion_emphatic_advanced": {
         "title": "Инверсия для эмфазы (Only after, Only then, Little did he know, So... that, Such... that)",
