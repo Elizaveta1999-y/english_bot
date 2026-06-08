@@ -2,10 +2,105 @@
 
 LEVEL_C2_CONTENT = {
     # ==================== МОДУЛЬ 1: Регистры и стилистика ====================
-    "formal_vs_informal_advanced": {
+        "formal_vs_informal_advanced": {
         "title": "Formal vs Informal: регистры и стилистика",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Что такое регистр?",
+                "text": """
+<b>🎭 Регистр – это стиль языка, который зависит от ситуации, адресата и цели общения.</b>
+
+Выделяют три основных регистра:
+• <b>Формальный (formal)</b> – официальные документы, академические статьи, деловая переписка, презентации.
+• <b>Нейтральный (neutral)</b> – большинство новостей, учебников, разговоров с незнакомыми.
+• <b>Неформальный (informal)</b> – разговоры с друзьями, личные письма, соцсети, блоги.
+
+<blockquote>На уровне C2 важно уметь переключаться между регистрами и понимать, когда какой уместен.</blockquote>
+"""
+            },
+            {
+                "title": "Лексические различия",
+                "text": """
+<b>📌 Замена слов (informal → formal):</b>
+
+• ask → request / enquire
+• buy → purchase
+• get → receive / obtain
+• need → require
+• help → assist
+• start → commence
+• check → verify
+• give → provide
+• talk → converse
+• so → therefore / thus
+• about → approximately
+• enough → sufficient
+• also → in addition / furthermore
+• but → however / nevertheless
+• because → due to / owing to / as
+• show → demonstrate / illustrate
+• tell → inform
+
+<blockquote>В формальном стиле избегаются фразовые глаголы (put off → postpone, find out → discover).</blockquote>
+"""
+            },
+            {
+                "title": "Грамматические различия",
+                "text": """
+<b>📌 Грамматика формального стиля:</b>
+
+• <b>Пассивный залог</b> – используется чаще, чем в разговорной речи.
+  • Informal: They built this bridge in 1990.
+  • Formal: This bridge was built in 1990.
+
+• <b>Безличные конструкции</b> – It is believed that..., It was reported that...
+  • Informal: People think he is rich.
+  • Formal: He is believed to be rich.
+
+• <b>Инверсия</b> – для усиления (Only then did he realise...)
+
+• <b>Отсутствие сокращений</b> – do not (не don't), cannot (не can't), it is (не it's).
+
+• <b>Сложные предложения</b> – причастные обороты, инфинитивные конструкции.
+  • Having finished the report, he submitted it. (вместо After he finished...)
+
+<blockquote>В формальном тексте предложения длиннее, сложнее и точнее.</blockquote>
+"""
+            },
+            {
+                "title": "Практические примеры",
+                "text": """
+<b>📖 Одно и то же содержание в разных регистрах:</b>
+
+<b>Неформально:</b>
+I'm sorry I'm late. My car broke down, so I had to call a taxi.
+
+<b>Нейтрально:</b>
+I apologise for my delay. My car experienced a breakdown, and consequently I had to call a taxi.
+
+<b>Формально:</b>
+Please accept my apologies for my tardiness. My vehicle suffered a mechanical failure; as a result, I was obliged to summon a taxi.
+
+<blockquote>Чем выше регистр, тем более официальной становится лексика и сложнее грамматика.</blockquote>
+"""
+            },
+            {
+                "title": "Советы и упражнения",
+                "text": """
+<b>💡 Как развивать навык переключения регистров:</b>
+
+1. Берите нейтральный текст (например, новость) и переписывайте его в формальном стиле.
+2. Переводите формальные письма в неформальные (другу).
+3. Обращайте внимание на регистр в разных источниках (блог vs научная статья).
+4. Для экзаменов (IELTS, CAE, CPE) важно выбирать правильный регистр в письменной части.
+
+<blockquote>Умение менять регистр – признак высокого уровня владения языком.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Всегда ли нужно использовать формальный стиль в эссе IELTS?", "answer": "Да, академическое эссе требует нейтрального или формального стиля. Неформальный недопустим."}
+        ]
     },
     "analyzing_text_style": {
         "title": "Анализ стиля текста (news, academic, fiction, blog)",
