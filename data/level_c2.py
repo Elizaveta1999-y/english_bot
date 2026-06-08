@@ -1593,15 +1593,167 @@ Please accept my apologies for my tardiness. My vehicle suffered a mechanical fa
             {"question": "В чём разница между 'although' и 'even though'?", "answer": "Even though более сильный, подчёркивает контраст. Although – нейтральный."}
         ]
     },
-    "modal_expressions_guessing": {
+        "modal_expressions_guessing": {
         "title": "Модальные глаголы для предположений (must, can't, could, might – углубление)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Степени уверенности (повторение)",
+                "text": """
+<b>📊 Шкала вероятности для предположений о настоящем:</b>
+
+• <b>must</b> – почти уверен (90‑95%) – должно быть
+  • *She's been working all day. She must be tired.*
+
+• <b>may</b> – возможно (50‑60%) – может быть
+  • *He may be at home.*
+
+• <b>might / could</b> – возможно (30‑50%) – менее уверенно
+  • *They might be stuck in traffic.*
+
+• <b>can't / couldn't</b> – не может быть (0‑5%) – уверенность, что не так
+  • *It can't be true.*
+
+<blockquote>Выбор модального глагола зависит от уверенности говорящего в предположении.</blockquote>
+"""
+            },
+            {
+                "title": "Предположения о настоящем: активный и пассивный залог",
+                "text": """
+<b>📌 Структура для настоящего: модальный глагол + V (базовая форма) или модальный + be + V3 (пассив).</b>
+
+• *He must be at work.* (актив)
+• *The document must be signed by the manager.* (пассив)
+
+• *They might be waiting for us.* (актив)
+• *The package might be delivered today.* (пассив)
+
+<blockquote>Пассивный залог с модальными глаголами часто используется в официальной речи.</blockquote>
+
+• *She can't be serious.* (Не может быть, что она серьёзно.)
+• *The meeting could be postponed.* (Встречу, возможно, перенесут.)
+"""
+            },
+            {
+                "title": "Предположения о прошлом (Modal Perfect)",
+                "text": """
+<b>📌 Структура для прошлого: модальный глагол + have + V3 (актив) или модальный + have been + V3 (пассив).</b>
+
+• *She must have forgotten about the meeting.* (Должно быть, забыла – я уверен)
+• *He might have left his phone at home.* (Возможно, оставил дома – менее уверен)
+• *They can't have seen us; we were hiding.* (Не могут быть, что видели)
+
+• *The letter must have been sent yesterday.* (Письмо, должно быть, было отправлено вчера – пассив)
+• *The mistake could have been avoided.* (Ошибки можно было избежать)
+
+<blockquote>Для прошлого также действует шкала уверенности, но с have + V3.</blockquote>
+"""
+            },
+            {
+                "title": "Нюансы: might have vs could have в предположениях",
+                "text": """
+<b>📌 Might have done vs could have done в значении предположения:</b>
+
+• <b>Might have</b> – меньшая уверенность (30‑40%), часто для нереализованных возможностей.
+  • *She might have taken the earlier train.* (Возможно, она уехала более ранним поездом.)
+
+• <b>Could have</b> – может выражать предположение с 50% вероятности, но также и упущенную возможность.
+  • *He could have missed the bus.* (Возможно, он опоздал на автобус – или 'мог бы опоздать' в зависимости от контекста)
+
+<blockquote>В предположениях разница часто стилистическая; в экзаменах можно использовать оба.</blockquote>
+
+<b>⚠️ Типичные ошибки:</b>
+• ❌ She must have to go.  ✅ She must have gone.
+• ❌ He might has arrived.  ✅ He might have arrived.
+• ❌ They can't have to be late.  ✅ They can't be late / They can't have been late.
+
+<b>💡 Совет:</b>
+• Для уверенного предположения о прошлом – must have done.
+• Для сильной уверенности, что действие не произошло – can't have done.
+• Для неуверенного – might have / could have.
+"""
+            }
+        ],
+        "faq": [
+            {"question": "В чём разница между 'might have done' и 'could have done' в предположениях?", "answer": "Might have done – менее вероятно; could have done – было возможно, но часто не реализовалось. В предположениях они почти взаимозаменяемы."}
+        ]
     },
-    "future_past_modals": {
+        "future_past_modals": {
         "title": "Модальные глаголы для предположений о будущем и прошлом (will have done, might have been)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Предположения о будущем",
+                "text": """
+<b>📌 Для предположений о будущем используются will, may, might, could.</b>
+
+• <b>will</b> – уверен (80‑90%)
+  • *Don't worry, you will pass the exam.* (Не волнуйся, ты сдашь экзамен.)
+
+• <b>may / might / could</b> – возможность (30‑60%)
+  • *We may go to the cinema tonight.* (Мы, возможно, пойдём в кино.)
+  • *She might be late.* (Она может опоздать.)
+  • *It could rain later.* (Позже может пойти дождь.)
+
+<blockquote>Will часто используется для предсказаний, основанных на мнении; may / might – для неуверенности.</blockquote>
+"""
+            },
+            {
+                "title": "Future Perfect и Future Perfect Continuous для предположений",
+                "text": """
+<b>📌 Future Perfect (will have done) – предположение о том, что действие уже будет завершено к определённому моменту.</b>
+
+• *By next year, she will have graduated.* (К следующему году она уже закончит учёбу.)
+
+<b>Future Perfect Continuous (will have been doing) – предположение о длительности к моменту.</b>
+
+• *By December, I will have been working here for 5 years.* (К декабрю я проработаю здесь 5 лет – скорее констатация, чем предположение)
+
+<blockquote>В предположениях о будущем модальные глаголы могут сочетаться с перфектными формами для уточнения.</blockquote>
+"""
+            },
+            {
+                "title": "Модальные глаголы для предположений о прошлом (повторение и углубление)",
+                "text": """
+<b>📌 Для прошлого: must have done, may have done, might have done, could have done, can't have done.</b>
+
+• *He looks tired. He must have worked late.* (Должно быть, работал допоздна)
+• *They may have already left.* (Возможно, уже уехали)
+• *She can't have seen us.* (Не может быть, что видела нас)
+
+<blockquote>Разница между may have и might have – might slightly less probable.</blockquote>
+
+<b>Примеры с пассивом:</b>
+• *The window must have been broken by the storm.* (Окно, должно быть, разбило бурей.)
+• *The invitation might have been sent to the wrong address.* (Приглашение, возможно, отправили не по адресу.)
+"""
+            },
+            {
+                "title": "Сравнение и типичные ошибки",
+                "text": """
+<b>📊 Сравнение времён:</b>
+
+• Настоящее: *He must be rich.* (должно быть, богат)
+• Прошлое: *He must have been rich.* (должно быть, был богат)
+• Будущее: *He will be rich.* (будет богат – уверенность, не предположение)
+
+• Настоящее: *She may be at home.*
+• Прошлое: *She may have been at home.*
+• Будущее: *She may come tomorrow.*
+
+<b>⚠️ Частые ошибки:</b>
+• ❌ He must be have been tired.  ✅ He must have been tired.
+• ❌ They can have left. (неправильно)  ✅ They may have left / could have left.
+• ❌ She might had arrived.  ✅ She might have arrived.
+
+<b>💡 Совет:</b>
+• Для предположений о прошлом всегда используйте have + V3 (never просто V).
+• Для будущего используйте will, may, might, could + V (без to).
+• Пассив: модальный + be + V3 (настоящее/будущее); модальный + have been + V3 (прошлое).
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Можно ли использовать 'will have' для предположения о прошлом?", "answer": "Нет, will have относится только к будущему завершённому действию. Для прошлого – must have, may have, might have, could have, can't have."}
+        ]
     },
 
     # ==================== МОДУЛЬ 6: Речевые клише и дискурсивные маркеры ====================
