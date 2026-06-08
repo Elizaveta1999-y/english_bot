@@ -674,20 +674,182 @@ It was a dark night. The wind was blowing (Past Continuous – фон). I had be
     },
 
     # ==================== МОДУЛЬ 3: Условные предложения (C1) ====================
-    "conditionals_mixed_advanced": {
+        "conditionals_mixed_advanced": {
         "title": "Смешанные условные (сложные случаи)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Повторение двух основных типов",
+                "text": """
+<b>🔄 Смешанные условные комбинируют 2 и 3 типы.</b>
+
+1. <b>Прошлое условие → настоящий результат</b> (3 тип + 2 тип)
+   • If I had studied medicine, I would be a doctor now. (Если бы я изучал медицину в прошлом, я бы сейчас был врачом)
+
+2. <b>Настоящее условие → прошлый результат</b> (2 тип + 3 тип) – реже
+   • If I weren't afraid of flying, I would have visited you last year. (Если бы я не боялся летать, я бы навестил тебя в прошлом году)
+
+<blockquote>Смешанные условные позволяют выражать сложные временные связи.</blockquote>
+"""
+            },
+            {
+                "title": "Сложные случаи: длительное состояние в прошлом влияет на настоящее",
+                "text": """
+<b>📌 Если условие относится ко всему отрезку времени в прошлом, а результат – к настоящему.</b>
+
+• If you hadn't been so lazy when you were young, you would have a better job now. (Если бы ты не был таким ленивым в молодости, у тебя была бы сейчас лучшая работа)
+• If she had been paying attention, she wouldn't be lost now. (Если бы она была внимательна, она бы сейчас не заблудилась)
+
+<blockquote>В условии может использоваться Past Perfect Continuous для подчёркивания длительности.</blockquote>
+"""
+            },
+            {
+                "title": "Настоящее качество → прошлое действие (очень редкий тип)",
+                "text": """
+<b>📌 Тип: If + Past Simple (2 тип), + would have + V3 (3 тип).</b>
+
+• If he were more responsible, he wouldn't have lost his keys. (Если бы он был ответственнее, он бы не потерял ключи – потерял из-за безответственности)
+• If I weren't so shy, I would have asked her out. (Если бы я не был таким стеснительным, я бы пригласил её куда-нибудь)
+
+<blockquote>Употребляется, когда постоянное качество в настоящем привело к конкретному последствию в прошлом.</blockquote>
+"""
+            },
+            {
+                "title": "Типичные ошибки и советы",
+                "text": """
+<b>⚠️ Частые ошибки:</b>
+• ❌ If I had studied, I would have been a doctor now. (смешение времён)  ✅ If I had studied, I would be a doctor now.
+• ❌ If I would be rich, I would have bought a car.  ✅ If I were rich, I would have bought a car.
+
+<b>💡 Совет:</b>
+• Если результат относится к настоящему, а условие к прошлому – используйте would + V в главной части.
+• Если условие относится к настоящему (постоянное качество), а результат к прошлому – would have + V3 в главной.
+• Тренируйтесь: придумывайте предложения о том, как ваши прошлые решения влияют на настоящее.
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Можно ли использовать смешанные условные в формальной речи?", "answer": "Да, они вполне уместны в письменной речи, особенно в академических текстах."}
+        ]
     },
-    "conditionals_alternatives_advanced": {
-        "title": "Альтернативы if: unless, provided that, as long as, on condition that",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "conditionals_alternatives_advanced": {
+        "title": "Альтернативы if (unless, provided that, as long as, on condition that)",
+        "pages": [
+            {
+                "title": "Unless – если не",
+                "text": """
+<b>🔁 Unless = if not (если не).</b>
+
+• You won't pass the exam unless you study. (Ты не сдашь экзамен, если не будешь учиться.)
+• Unless it rains, we'll have a picnic. (Если не пойдёт дождь, у нас будет пикник.)
+
+<blockquote>Отрицание в придаточной части после unless не используется (нельзя unless you don't study).</blockquote>
+"""
+            },
+            {
+                "title": "Provided that / as long as – при условии, что",
+                "text": """
+<b>✅ Provided that / as long as – при условии, что (выражают чёткое условие).</b>
+
+• You can borrow my car provided that you bring it back by 10. (Ты можешь взять мою машину при условии, что вернёшь её к 10.)
+• I'll help you as long as you promise to work hard. (Я помогу тебе при условии, что ты пообещаешь усердно работать.)
+
+<blockquote>Эти союзы более формальны, чем if, и часто используются в договорах и инструкциях.</blockquote>
+"""
+            },
+            {
+                "title": "On condition that – очень формальная альтернатива",
+                "text": """
+<b>📌 On condition that – при условии, что (самый формальный вариант).</b>
+
+• The money was lent on condition that it would be repaid in a month. (Деньги были одолжены при условии, что они будут возвращены через месяц.)
+• He agreed to help on condition that we paid him in advance. (Он согласился помочь при условии, что мы заплатим ему авансом.)
+
+<blockquote>После on condition that в придаточной части может использоваться would (в отличие от других союзов).</blockquote>
+"""
+            },
+            {
+                "title": "Советы и типичные ошибки",
+                "text": """
+<b>⚠️ Частые ошибки:</b>
+• ❌ Unless you don't hurry, you'll be late.  ✅ Unless you hurry, you'll be late.
+• ❌ Provided that you will come, I'll wait.  ✅ Provided that you come, I'll wait.
+• ❌ He agreed on condition that we pay in advance. (можно, но would pay тоже правильно)
+
+<b>💡 Совет:</b>
+• Используйте альтернативы if, чтобы разнообразить речь и звучать более формально.
+• Запомните, что после unless, provided that, as long as, on condition that не ставится will (кроме on condition that + would в некоторых случаях).
+"""
+            }
+        ],
+        "faq": [
+            {"question": "В чём разница между 'as long as' и 'provided that'?", "answer": "Они взаимозаменяемы, but 'provided that' чуть более формален."}
+        ]
     },
-    "conditionals_inversion_advanced": {
+        "conditionals_inversion_advanced": {
         "title": "Инверсия в условных (Had I known, Were I to go, Should you need...)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Что такое инверсия в условных?",
+                "text": """
+<b>🔄 Инверсия – опущение if и перенос вспомогательного глагола в начало. Очень формальный стиль.</b>
+
+• If I had known, I would have come. → Had I known, I would have come. (3 тип)
+• If I were rich, I would travel. → Were I rich, I would travel. (2 тип)
+
+<blockquote>Инверсия используется редко, но встречается в литературе и официальных документах.</blockquote>
+"""
+            },
+            {
+                "title": "Инверсия в 3 типе (Had + подлежащее + V3)",
+                "text": """
+<b>⏪ 3 тип: Had + подлежащее + V3, + would have + V3.</b>
+
+• If she had studied, she would have passed. → Had she studied, she would have passed.
+• If they had left earlier, they wouldn't have missed the train. → Had they left earlier, they wouldn't have missed the train.
+
+<blockquote>Отрицательная форма: Had I not studied... (не Had I hadn't studied).</blockquote>
+"""
+            },
+            {
+                "title": "Инверсия во 2 типе (Were + подлежащее + to V / Were + подлежащее + прилагательное)",
+                "text": """
+<b>📌 2 тип: Were + подлежащее + to + V (или were + подлежащее + прилагательное).</b>
+
+• If I were rich, I would buy a yacht. → Were I rich, I would buy a yacht.
+• If he were to come, we would be happy. → Were he to come, we would be happy.
+
+<blockquote>Для глагола to be используется were для всех лиц (Were I..., Were she...).</blockquote>
+"""
+            },
+            {
+                "title": "Инверсия в 1 типе (Should you need...)",
+                "text": """
+<b>📌 1 тип: Should + подлежащее + V, + will (или would в вежливых просьбах).</b>
+
+• If you need any help, call me. → Should you need any help, call me.
+• If you should see him, tell him the news. → Should you see him, tell him the news.
+
+<blockquote>Инверсия в 1 типе звучит очень формально и часто используется в инструкциях и официальных письмах.</blockquote>
+"""
+            },
+            {
+                "title": "Типичные ошибки и советы",
+                "text": """
+<b>⚠️ Частые ошибки:</b>
+• ❌ Had I would known, I would have come.  ✅ Had I known, I would have come.
+• ❌ Were I would be rich, I would travel.  ✅ Were I rich, I would travel.
+• ❌ Should you will need help, call me.  ✅ Should you need help, call me.
+
+<b>💡 Совет:</b>
+• Инверсия делает речь очень формальной. Используйте её на экзаменах и в письмах, но в разговоре лучше избегать.
+• Тренируйтесь: перепишите обычные условные предложения в инвертированную форму.
+• Запомните: отрицательная форма ставится после подлежащего: Had I not known...
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Можно ли использовать инверсию в 1 типе с will?", "answer": "Нет, после should в if-части не используется will. Should you see him, tell him – правильно."}
+        ]
     },
     "wish_if_only_advanced_c1": {
         "title": "I wish / If only (сожаление, критика, воображаемые ситуации) – C1",
