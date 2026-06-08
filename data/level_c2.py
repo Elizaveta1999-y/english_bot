@@ -1269,15 +1269,162 @@ Please accept my apologies for my tardiness. My vehicle suffered a mechanical fa
             {"question": "Всегда ли нужна инверсия после only?", "answer": "Только если only стоит в начале предложения и относится ко всему предложению (не к подлежащему). Only John can help (инверсии нет)."}
         ]
     },
-    "negative_inversion_c2": {
+        "negative_inversion_c2": {
         "title": "Инверсия после отрицательных наречий (Not only, No sooner, Hardly, Never)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Not only... but also",
+                "text": """
+<b>📌 Not only + вспомогательный глагол + подлежащее + V, but also...</b>
+
+• She is not only intelligent but also beautiful. → Not only is she intelligent, but she is also beautiful.
+• They not only lost the match but also injured their best player. → Not only did they lose the match, but they also injured their best player.
+
+<blockquote>Если в первой части уже есть вспомогательный глагол, он переносится вперёд. Если нет, добавляется do/does/did.</blockquote>
+
+<b>Дополнительные примеры:</b>
+• *Not only did he refuse to help, but he also laughed at me.* (Мало того что он отказался помогать, он ещё и смеялся надо мной.)
+• *Not only is she a talented musician, but she is also an excellent painter.* (Она не только талантливый музыкант, но и отличный художник.)
+"""
+            },
+            {
+                "title": "No sooner... than",
+                "text": """
+<b>📌 No sooner + had + подлежащее + V3, than + подлежащее + V (Past Simple).</b>
+
+• No sooner had I arrived than the phone rang. (Не успел я прийти, как зазвонил телефон.)
+• No sooner had she closed the door than someone knocked. (Не успела она закрыть дверь, как кто-то постучал.)
+
+<blockquote>No sooner всегда требует Past Perfect (had done) в первой части и Past Simple во второй. Than – не then!</blockquote>
+
+• *No sooner had he sat down than the meeting started.* (Не успел он сесть, как началась встреча.)
+• *No sooner had we left than it began to snow.* (Не успели мы уйти, как пошёл снег.)
+"""
+            },
+            {
+                "title": "Hardly / Scarcely... when",
+                "text": """
+<b>📌 Hardly / Scarcely + had + подлежащее + V3, when + подлежащее + V (Past Simple).</b>
+
+• Hardly had we sat down when the film started. (Едва мы сели, как начался фильм.)
+• Scarcely had he entered the room when the lights went out. (Едва он вошёл в комнату, как погас свет.)
+
+<blockquote>Hardly / Scarcely имеют то же значение, что и no sooner. They very formal.</blockquote>
+
+• *Hardly had she started her speech when the microphone stopped working.* (Едва она начала речь, как перестал работать микрофон.)
+• *Scarcely had I closed the door when I heard a strange noise.* (Едва я закрыл дверь, как услышал странный шум.)
+"""
+            },
+            {
+                "title": "Never, Rarely, Seldom, Little (в начале предложения)",
+                "text": """
+<b>📌 Отрицательные наречия в начале предложения требуют инверсии.</b>
+
+• Never have I seen such a beautiful sunset. (Никогда я не видел такого красивого заката.)
+• Rarely does he arrive on time. (Редко он приходит вовремя.)
+• Seldom do we have such good weather. (Редко у нас бывает такая хорошая погода.)
+• Little did they know what was coming. (Они понятия не имели, что их ждёт.)
+
+<blockquote>Эти конструкции очень формальны и чаще встречаются в литературе.</blockquote>
+
+• *Never again will I trust him.* (Никогда больше я не буду ему доверять.)
+• *Rarely have I encountered such ignorance.* (Редко я сталкивался с таким невежеством.)
+"""
+            },
+            {
+                "title": "Советы и типичные ошибки",
+                "text": """
+<b>⚠️ Частые ошибки:</b>
+• ❌ Not only he arrived late, but also...  ✅ Not only did he arrive late...
+• ❌ No sooner I had left than...  ✅ No sooner had I left than...
+• ❌ Hardly had we started than it rained. (should be 'when')  ✅ Hardly had we started when it rained.
+
+<b>💡 Совет:</b>
+• Используйте инверсию только в очень формальных ситуациях или на экзаменах.
+• Запомните: после No sooner ставим had + подлежащее, после than – Past Simple.
+• После Not Only вспомогательный глагол идёт перед подлежащим.
+• Тренируйтесь: переписывайте обычные предложения в инвертированную форму.
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Можно ли использовать инверсию с другими отрицательными наречиями?", "answer": "Да: never, rarely, seldom, little, at no time, under no circumstances, in no way: Under no circumstances should you open this door."}
+        ]
     },
-    "ellipsis_substitution": {
+        "ellipsis_substitution": {
         "title": "Эллипсис и замена (опущение слов, использование one/so/do)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Что такое эллипсис?",
+                "text": """
+<b>✂️ Эллипсис – опущение слов, которые легко восстанавливаются из контекста.</b>
+
+Используется, чтобы избежать повторения и сделать речь более естественной и динамичной.
+
+• *He can speak French, and she can too.* (вместо ... and she can speak French too)
+• *I wanted to go, but I wasn't able to.* (вместо ... I wasn't able to go)
+
+<blockquote>На уровне C2 эллипсис – признак беглой и естественной речи.</blockquote>
+"""
+            },
+            {
+                "title": "Замена с 'one / ones'",
+                "text": """
+<b>📌 One / ones заменяют ранее упомянутое существительное, чтобы избежать повторения.</b>
+
+• *I need a new phone. This one is too old.* (Эта – в значении this phone)
+• *Which dress do you like? – I like the blue one.* (синее платье)
+
+• *These apples are fresher than the ones in the basket.* (чем те, что в корзине)
+• *I prefer classical music to modern one. – неправильно (music неисчисляемое)*  ✅ ... to modern music.
+
+<blockquote>One / ones нельзя использовать с неисчисляемыми существительными (information, advice, music).</blockquote>
+"""
+            },
+            {
+                "title": "Замена с 'so' и 'not'",
+                "text": """
+<b>📌 So / not заменяют целые придаточные после глаголов think, believe, hope, expect, guess, be afraid, suppose, etc.</b>
+
+• *– Is he coming? – I hope so.* (вместо I hope he is coming)
+• *– Will it rain? – I think not.* (или I don't think so)
+
+• *– Do you think she'll accept? – I suppose so.*
+• *– They won't win. – I hope not.* (надеюсь, что нет)
+
+<blockquote>После be afraid и guess чаще используется so: I'm afraid so, I guess so.</blockquote>
+"""
+            },
+            {
+                "title": "Замена с 'do', 'does', 'did' (пропуск глагола)",
+                "text": """
+<b>📌 Do / does / did заменяют смысловой глагол, чтобы избежать повторения.</b>
+
+• *She sings better than he does.* (чем он поёт)
+• *I like coffee, and so does she.* (и она тоже)
+• *He didn't come, but his brother did.* (пришёл)
+
+• *I don't enjoy parties, but my wife does.*
+• *She works harder than I do.*
+
+<blockquote>So + вспомогательный глагол + подлежащее – согласие: I love jazz. – So do I.</blockquote>
+"""
+            },
+            {
+                "title": "Советы",
+                "text": """
+<b>💡 Как развить навык эллипсиса:</b>
+• Обращайте внимание на опущение слов в диалогах из фильмов и книг.
+• Практикуйтесь в перефразировании, избегая повторений.
+• На экзаменах (CPE, CAE) эллипсис не является обязательным, но его использование повышает балл за стиль.
+
+<blockquote>Эллипсис делает речь более живой и естественной, но его избыток может привести к неясности.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Всегда ли нужно использовать 'so' после 'think'?", "answer": "В положительных ответах – I think so (думаю, да). В отрицательных – I don't think so (думаю, нет) или I think not (менее распространено)."}
+        ]
     },
 
     # ==================== МОДУЛЬ 5: Выражение неуверенности, предположения, уступки ====================
