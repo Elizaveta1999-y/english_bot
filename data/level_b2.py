@@ -2736,25 +2736,389 @@ It was a dark night. The wind was blowing (Past Continuous – фон). I had be
             {"question": "В чём разница между 'global warming' и 'climate change'?", "answer": "Global warming – повышение температуры. Climate change – более широкое понятие, включающее изменение погодных паттернов, уровня моря и т.д."}
         ]
     },
-    "science_technology": {
+        "science_technology": {
         "title": "Лексика: наука и технологии",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Научные дисциплины и учёные",
+                "text": """
+<b>🔬 Науки (sciences):</b>
+
+• physics – физика
+• chemistry – химия
+• biology – биология
+• astronomy – астрономия
+• geology – геология
+• genetics – генетика
+• neuroscience – нейробиология
+• psychology – психология
+• computer science – информатика
+• engineering – инженерия
+
+<b>Учёные:</b>
+• physicist – физик
+• chemist – химик
+• biologist – биолог
+• astronomer – астроном
+• geologist – геолог
+• geneticist – генетик
+• neuroscientist – нейробиолог
+• psychologist – психолог
+• computer scientist – специалист по информатике
+• engineer – инженер
+
+<blockquote>Примеры: She is a research biologist. He studied computer science at university.</blockquote>
+"""
+            },
+            {
+                "title": "Технологии и устройства",
+                "text": """
+<b>📱 Современные технологии:</b>
+
+• artificial intelligence (AI) – искусственный интеллект
+• machine learning – машинное обучение
+• big data – большие данные
+• cloud computing – облачные вычисления
+• blockchain – блокчейн
+• virtual reality (VR) – виртуальная реальность
+• augmented reality (AR) – дополненная реальность
+• Internet of Things (IoT) – интернет вещей
+• drone – дрон
+• robot – робот
+• smartphone – смартфон
+• wearable device – носимое устройство
+
+<b>Глаголы:</b>
+• innovate – внедрять новшества
+• develop – разрабатывать
+• launch – запускать
+• upgrade – модернизировать
+• debug – отлаживать
+
+<blockquote>Примеры: AI is transforming many industries. They developed a new app for language learning.</blockquote>
+"""
+            },
+            {
+                "title": "Научные открытия и инновации",
+                "text": """
+<b>💡 Ключевые термины:</b>
+
+• breakthrough – прорыв
+• discovery – открытие
+• invention – изобретение
+• research – исследование
+• experiment – эксперимент
+• laboratory – лаборатория
+• data – данные
+• hypothesis – гипотеза
+• theory – теория
+• evidence – доказательство
+• peer review – рецензирование
+
+<b>Глаголы:</b>
+• discover – открыть
+• invent – изобрести
+• conduct research – проводить исследование
+• prove – доказывать
+• disprove – опровергать
+
+<blockquote>Примеры: The discovery of penicillin was a breakthrough. They conducted an experiment to test the hypothesis.</blockquote>
+"""
+            },
+            {
+                "title": "Советы",
+                "text": """
+<b>💡 Советы:</b>
+• Различайте discovery (открытие того, что уже существовало) и invention (изобретение нового).
+• Для описания технологического прогресса используйте to advance, to evolve, to revolutionise.
+• Тренируйтесь: читайте научно-популярные статьи на английском.
+"""
+            }
+        ],
+        "faq": [
+            {"question": "В чём разница между 'research' и 'experiment'?", "answer": "Research – исследование (в целом), experiment – эксперимент (конкретная процедура)."}
+        ]
     },
-    "media_communication": {
-        "title": "Лексика: медиа и коммуникация",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "media_communication": {
+        "title": "Лексика: медиа и коммуникация (продвинутая)",
+        "pages": [
+            {
+                "title": "Типы медиа и платформы",
+                "text": """
+<b>📺 Виды медиа:</b>
+
+• broadcast media – телевидение и радио
+• print media – печатные СМИ
+• digital media – цифровые медиа
+• social media – социальные сети
+• news outlets – информационные каналы
+• press – пресса
+• tabloid – таблоид
+• broadsheet – качественная газета
+• online platform – онлайн-платформа
+• streaming service – стриминговый сервис
+• podcast – подкаст
+• blog – блог
+• vlog – видеоблог
+
+<blockquote>Примеры: The story was all over social media. She runs a popular blog about travel.</blockquote>
+"""
+            },
+            {
+                "title": "Журналистика и репортаж",
+                "text": """
+<b>📰 Профессии и процессы:</b>
+
+• journalist – журналист
+• reporter – репортёр
+• correspondent – корреспондент
+• editor – редактор
+• anchor – ведущий новостей
+• columnist – обозреватель
+• photographer – фотограф
+• paparazzi – папарацци
+
+<b>Действия:</b>
+• cover a story – освещать событие
+• break a story – первым опубликовать новость
+• interview – брать интервью
+• fact-check – проверять факты
+• censor – цензурировать
+
+<blockquote>Примеры: The correspondent was sent to cover the election. They broke the story about the scandal.</blockquote>
+"""
+            },
+            {
+                "title": "Влияние медиа и термины",
+                "text": """
+<b>📊 Медиа-эффекты и критика:</b>
+
+• bias – предвзятость
+• fake news – фейковые новости
+• misinformation – дезинформация
+• disinformation – намеренная дезинформация
+• propaganda – пропаганда
+• clickbait – кликбейт (сенсационные заголовки)
+• sensationalism – сенсационность
+• media literacy – медиаграмотность
+• public opinion – общественное мнение
+• echo chamber – информационный пузырь
+
+<b>Глаголы:</b>
+• influence – влиять
+• manipulate – манипулировать
+• persuade – убеждать
+• mislead – вводить в заблуждение
+
+<blockquote>Примеры: Fake news spread quickly on social media. Media literacy helps people identify bias.</blockquote>
+"""
+            },
+            {
+                "title": "Советы",
+                "text": """
+<b>💡 Советы:</b>
+• Различайте misinformation (непреднамеренная) и disinformation (умышленная).
+• Для описания влияния СМИ используйте to shape public opinion, to set the agenda.
+• Тренируйтесь: обсуждайте новости, используя медийную лексику.
+"""
+            }
+        ],
+        "faq": [
+            {"question": "В чём разница между 'tabloid' и 'broadsheet'?", "answer": "Tabloid – газета меньшего формата, часто с сенсационными новостями. Broadsheet – полноформатная газета, обычно более серьёзная."}
+        ]
     },
-    "crime_punishment": {
+        "crime_punishment": {
         "title": "Лексика: преступления и наказания (продвинутая)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Виды преступлений (углубление)",
+                "text": """
+<b>🚔 Дополнительные виды преступлений:</b>
+
+• fraud – мошенничество
+• embezzlement – присвоение средств
+• bribery – взяточничество
+• corruption – коррупция
+• money laundering – отмывание денег
+• forgery – подделка документов
+• hacking – взлом (компьютерный)
+• cybercrime – киберпреступность
+• arson – поджог
+• vandalism – вандализм
+• drug trafficking – торговля наркотиками
+• human trafficking – торговля людьми
+• stalking – преследование
+• hit‑and‑run – наезд со скрытием
+
+<blockquote>Примеры: The executive was charged with embezzlement. Cybercrime is on the rise.</blockquote>
+"""
+            },
+            {
+                "title": "Юридические термины и судопроизводство",
+                "text": """
+<b>⚖️ Суд и правосудие:</b>
+
+• court – суд
+• judge – судья
+• jury – присяжные
+• prosecutor – прокурор
+• defence attorney – адвокат защиты
+• defendant – обвиняемый
+• plaintiff – истец
+• witness – свидетель
+• evidence – улика
+• testimony – показания
+• verdict – вердикт
+• sentence – приговор
+• appeal – апелляция
+• acquittal – оправдание
+• conviction – признание виновным
+
+<b>Глаголы:</b>
+• charge – предъявить обвинение
+• convict – признать виновным
+• acquit – оправдать
+• sentence – приговорить
+• appeal – подавать апелляцию
+
+<blockquote>Примеры: The defendant was found guilty. The judge sentenced him to ten years in prison.</blockquote>
+"""
+            },
+            {
+                "title": "Наказания и исправительные учреждения",
+                "text": """
+<b>⛓️ Виды наказаний:</b>
+
+• prison / jail – тюрьма
+• fine – штраф
+• community service – общественные работы
+• probation – условный срок
+• house arrest – домашний арест
+• death penalty – смертная казнь
+• life sentence – пожизненное заключение
+• suspended sentence – условное наказание
+
+<b>Глаголы:</b>
+• imprison – заключать в тюрьму
+• fine – штрафовать
+• release – освобождать
+• parole – условно-досрочное освобождение
+
+<blockquote>Примеры: He was sentenced to community service. She was released on parole after five years.</blockquote>
+"""
+            },
+            {
+                "title": "Советы",
+                "text": """
+<b>💡 Советы:</b>
+• Различайте to rob (ограбить, место) и to steal (украсть, предмет).
+• Запомните пары: thief – theft, robber – robbery, burglar – burglary.
+• Тренируйтесь: читайте новости о преступлениях на английском.
+"""
+            }
+        ],
+        "faq": [
+            {"question": "В чём разница между 'jail' и 'prison'?", "answer": "Jail обычно местное исправительное учреждение для краткосрочного заключения, prison – для длительного."}
+        ]
     },
-    "politics_government": {
+        "politics_government": {
         "title": "Лексика: политика и правительство",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Формы правления и институты",
+                "text": """
+<b>🏛️ Политические системы:</b>
+
+• democracy – демократия
+• republic – республика
+• monarchy – монархия
+• dictatorship – диктатура
+• authoritarian regime – авторитарный режим
+• federal state – федеративное государство
+• unitary state – унитарное государство
+
+<b>Органы власти:</b>
+• government – правительство
+• parliament – парламент
+• congress – конгресс (США)
+• senate – сенат
+• house of representatives – палата представителей
+• supreme court – верховный суд
+• cabinet – кабинет министров
+
+<blockquote>Примеры: The UK is a constitutional monarchy. The bill was passed by parliament.</blockquote>
+"""
+            },
+            {
+                "title": "Политические деятели и выборы",
+                "text": """
+<b>👥 Кто есть кто:</b>
+
+• president – президент
+• prime minister – премьер-министр
+• minister – министр
+• MP (Member of Parliament) – член парламента
+• senator – сенатор
+• mayor – мэр
+• governor – губернатор
+• ambassador – посол
+• diplomat – дипломат
+
+<b>Выборы:</b>
+• election – выборы
+• vote – голосование
+• ballot – бюллетень
+• campaign – кампания
+• candidate – кандидат
+• constituency – избирательный округ
+• polling station – избирательный участок
+• turnout – явка избирателей
+• majority – большинство
+
+<blockquote>Примеры: The prime minister called a snap election. The candidate won by a narrow majority.</blockquote>
+"""
+            },
+            {
+                "title": "Политические процессы и термины",
+                "text": """
+<b>📜 Ключевые понятия:</b>
+
+• policy – политика (курс)
+• legislation – законодательство
+• bill – законопроект
+• act – закон
+• constitution – конституция
+• amendment – поправка
+• veto – вето
+• referendum – референдум
+• coalition – коалиция
+• opposition – оппозиция
+• corruption – коррупция
+
+<b>Глаголы:</b>
+• govern – управлять
+• legislate – издавать законы
+• veto – наложить вето
+• ratify – ратифицировать
+• campaign – проводить кампанию
+• lobby – лоббировать
+
+<blockquote>Примеры: The president vetoed the bill. The new legislation was ratified by parliament.</blockquote>
+"""
+            },
+            {
+                "title": "Советы",
+                "text": """
+<b>💡 Советы:</b>
+• Различайте politics (политика как деятельность) и policy (конкретный курс).
+• Для описания правительства используйте to be in power, to come to power, to step down.
+• Тренируйтесь: читайте новости о политике на английском.
+"""
+            }
+        ],
+        "faq": [
+            {"question": "В чём разница между 'government' и 'parliament'?", "answer": "Government – правительство (исполнительная власть). Parliament – парламент (законодательная власть)."}
+        ]
     },
     "economy_business": {
         "title": "Лексика: экономика и бизнес",
