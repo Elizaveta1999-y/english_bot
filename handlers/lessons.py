@@ -496,6 +496,7 @@ async def lessons_menu(callback: CallbackQuery):
         [InlineKeyboardButton(text="A1 (Beginner)", callback_data="level_A1"), InlineKeyboardButton(text="A2 (Elementary)", callback_data="level_A2")],
         [InlineKeyboardButton(text="B1 (Intermediate)", callback_data="level_B1"), InlineKeyboardButton(text="B2 (Upper Intermediate)", callback_data="level_B2")],
         [InlineKeyboardButton(text="C1 (Advanced)", callback_data="level_C1")],
+[InlineKeyboardButton(text="C2 (Proficiency)", callback_data="level_C2")],
         [InlineKeyboardButton(text="📚 Тематические уроки", callback_data="thematic_menu")],
         [InlineKeyboardButton(text="📊 Моё обучение", callback_data="my_learning")],
         [InlineKeyboardButton(text="📝 Пройти тест (уровень)", callback_data="placement_test")],
