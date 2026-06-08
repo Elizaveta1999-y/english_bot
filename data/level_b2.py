@@ -407,20 +407,229 @@ It was a dark night. The wind was blowing (Past Continuous – фон). I had be
     },
 
     # ==================== МОДУЛЬ 2: Модальные глаголы (продвинутый уровень) ====================
-    "modal_perfect_advanced": {
+        "modal_perfect_advanced": {
         "title": "Modal Perfect (must have done, could have done, might have done, should have done)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Что такое Modal Perfect?",
+                "text": """
+<b>✅ Modal Perfect – модальный глагол + have + V3 (третья форма).</b>
+
+Используется для выражения предположений, сожалений, критики о прошлом.
+
+• must have done – должно быть, сделал (уверенное предположение)
+• could have done – мог бы сделать (возможность, не реализованная)
+• might have done – возможно, сделал (менее уверенно)
+• may have done – возможно, сделал (чуть более вероятно, чем might)
+• should have done – следовало бы сделать (но не сделал)
+• would have done – сделал бы (при условии, обычно в 3 типе)
+• can't have done / couldn't have done – не может быть, что сделал
+
+<blockquote>Modal Perfect всегда относится к прошлому и часто выражает сожаление, критику или предположение.</blockquote>
+"""
+            },
+            {
+                "title": "Must have done / can't have done – уверенность",
+                "text": """
+<b>📌 Must have done – я почти уверен, что действие произошло.</b>
+• She's not here. She must have left early. (Её нет. Должно быть, она ушла рано.)
+• The ground is wet. It must have rained last night. (Земля мокрая. Должно быть, ночью шёл дождь.)
+
+<b>🚫 Can't have done / couldn't have done – я уверен, что действие не произошло.</b>
+• He can't have taken the car; the keys are here. (Не может быть, чтобы он взял машину – ключи здесь.)
+• She couldn't have seen me; I was hiding. (Она не могла меня видеть – я прятался.)
+
+<blockquote>Must have / can't have – сильные предположения.</blockquote>
+"""
+            },
+            {
+                "title": "Could have done / might have done / may have done – возможность",
+                "text": """
+<b>🎭 Could have done – действие было возможно, но не произошло (или неизвестно).</b>
+• He could have taken the train, but he drove instead. (Он мог поехать на поезде, но поехал на машине.)
+• You could have told me! (Ты мог бы мне сказать! – упрёк)
+
+<b>🌗 Might have done / may have done – предположение (менее уверенно).</b>
+• She might have forgotten about the meeting. (Возможно, она забыла о встрече.)
+• They may have already left. (Возможно, они уже уехали.)
+
+<blockquote>Might имеет меньшую вероятность, чем may. В разговорной речи разница почти стёрлась.</blockquote>
+"""
+            },
+            {
+                "title": "Should have done / would have done – сожаление и критика",
+                "text": """
+<b>😔 Should have done – сожаление о том, что не сделал (или упрёк).</b>
+• I should have studied harder for the exam. (Мне следовало усерднее учиться к экзамену – но я не учился.)
+• You should have called me. (Тебе следовало позвонить мне.)
+
+<b>⏪ Would have done – действие, которое произошло бы при условии (в 3 типе).</b>
+• If I had known, I would have helped. (Если бы я знал, я бы помог.)
+
+<blockquote>Отрицание: shouldn't have done – не следовало бы делать (но сделал).</blockquote>
+"""
+            },
+            {
+                "title": "Сравнение и советы",
+                "text": """
+<b>📊 Примеры:</b>
+• must have done – уверен (He must have forgotten)
+• could have done – возможность, упрёк (You could have helped)
+• might have done – предположение (They might have arrived)
+• should have done – сожаление (I should have listened)
+
+<b>⚠️ Типичные ошибки:</b>
+• ❌ He must have to go.  ✅ He must have gone.
+• ❌ I should have went.  ✅ I should have gone.
+• ❌ She could have to help.  ✅ She could have helped.
+
+<b>💡 Совет:</b>
+• Выражая сожаление о прошлом, используйте should have + V3.
+• Выражая предположение с почти полной уверенностью – must have.
+• Для критики упущенной возможности – could have.
+"""
+            }
+        ],
+        "faq": [
+            {"question": "В чём разница между 'could have done' и 'might have done'?", "answer": "Could have done – была возможность (мог, но не факт, что сделал). Might have done – менее уверенное предположение (возможно, сделал)."}
+        ]
     },
-    "modal_passive": {
+        "modal_passive": {
         "title": "Пассив с модальными глаголами (must be done, could have been done)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Образование",
+                "text": """
+<b>📦 Пассив с модальными глаголами в настоящем/будущем:</b>
+• модальный глагол (can, could, may, might, must, should) + be + V3
+
+• This work must be finished today. (Эту работу нужно закончить сегодня.)
+• The problem can be solved easily. (Проблему можно легко решить.)
+• The meeting could be postponed. (Встречу могли бы перенести.)
+
+<blockquote>После модального глагола всегда be (не to be), так как модальные требуют инфинитив без to.</blockquote>
+"""
+            },
+            {
+                "title": "Пассив с модальными глаголами в прошедшем",
+                "text": """
+<b>⏪ Пассив с модальными в прошедшем (Modal Perfect Passive):</b>
+• модальный глагол + have been + V3
+
+• The letter must have been sent yesterday. (Письмо, должно быть, было отправлено вчера.)
+• The mistake could have been avoided. (Ошибки можно было избежать.)
+• The contract should have been signed last week. (Контракт следовало подписать на прошлой неделе.)
+
+<blockquote>Это сочетание модального перфекта и пассива – сложно, но важно для экзаменов.</blockquote>
+"""
+            },
+            {
+                "title": "Примеры всех модальных глаголов в пассиве",
+                "text": """
+<b>📖 Примеры:</b>
+
+• can be done – может быть сделано
+• could be done – могло бы быть сделано
+• may be done – может быть сделано (возможно)
+• might be done – возможно, будет сделано
+• must be done – должно быть сделано
+• should be done – следует сделать
+• ought to be done – следует сделать
+
+<b>В прошедшем:</b>
+• can't have been done – не может быть, что было сделано
+• could have been done – могло быть сделано
+• might have been done – возможно, было сделано
+• must have been done – должно быть, было сделано
+• should have been done – следовало бы сделать
+
+<blockquote>Выбор модального глагола зависит от оттенка (обязанность, возможность, вероятность).</blockquote>
+"""
+            },
+            {
+                "title": "Типичные ошибки и советы",
+                "text": """
+<b>⚠️ Частые ошибки:</b>
+• ❌ This must be done by yesterday.  ✅ This must have been done by yesterday.
+• ❌ The work can be do.  ✅ The work can be done.
+• ❌ It should been finished.  ✅ It should be finished / It should have been finished.
+
+<b>💡 Совет:</b>
+• Для настоящего/будущего – must be done, can be done, should be done.
+• Для прошлого – must have been done, could have been done, should have been done.
+• Практикуйтесь: переделывайте активные предложения с модальными глаголами в пассив.
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Как сказать 'это могло быть сделано лучше'?", "answer": "It could have been done better."}
+        ]
     },
-    "modal_expressions_ability": {
+        "modal_expressions_ability": {
         "title": "Выражение способности (can, could, be able to, manage to, succeed in)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Can / could / be able to – базовые формы",
+                "text": """
+<b>💪 Can – способность в настоящем.</b>
+• I can swim. (Я умею плавать.)
+• She can speak three languages. (Она говорит на трёх языках.)
+
+<b>⏪ Could – способность в прошлом (общая).</b>
+• When I was young, I could run fast. (Когда я был молодым, я мог быстро бегать.)
+
+<b>🔁 Be able to – альтернатива can/could, нужна для будущего и перфекта.</b>
+• I will be able to drive next year. (Я смогу водить в следующем году.)
+• She has been able to work from home lately. (В последнее время она может работать из дома.)
+
+<blockquote>В настоящем и прошедшем can/could предпочтительнее, but be able to звучит более формально.</blockquote>
+"""
+            },
+            {
+                "title": "Manage to – суметь (преодолев трудности)",
+                "text": """
+<b>🎯 Manage to + V – суметь сделать что-то, несмотря на трудности.</b>
+
+• He managed to pass the exam even though it was very difficult. (Ему удалось сдать экзамен, хотя он был очень трудным.)
+• We managed to find a parking spot after searching for an hour. (Нам удалось найти место для парковки после часа поисков.)
+
+<blockquote>В отличие от could, manage to подчёркивает, что действие было успешно завершено (часто после усилий).</blockquote>
+"""
+            },
+            {
+                "title": "Succeed in – преуспеть в (более формальный вариант)",
+                "text": """
+<b>🏆 Succeed in + V‑ing – преуспеть в чём-то, достичь цели.</b>
+
+• She succeeded in convincing the board. (Ей удалось убедить совет директоров.)
+• They succeeded in climbing the mountain. (Они успешно взошли на гору.)
+
+<blockquote>Succeed in более формален, чем manage to, и часто используется в письменной речи.</blockquote>
+"""
+            },
+            {
+                "title": "Сравнение и типичные ошибки",
+                "text": """
+<b>📊 Сравнение:</b>
+• I could open the door. (я мог открыть дверь – была способность, но неизвестно, открыл ли)
+• I managed to open the door. (мне удалось открыть дверь – успешно)
+• I succeeded in opening the door. (я успешно открыл дверь – формально)
+
+<b>⚠️ Частые ошибки:</b>
+• ❌ I could to open.  ✅ I could open.
+• ❌ She managed open.  ✅ She managed to open.
+• ❌ They succeeded to win.  ✅ They succeeded in winning.
+
+<b>💡 Совет:</b>
+• Если вы хотите подчеркнуть, что действие было успешным, несмотря на трудности, используйте manage to.
+• Для формальных ситуаций – succeed in.
+• Для общей способности – can / could / be able to.
+"""
+            }
+        ],
+        "faq": [
+            {"question": "В чём разница между 'could' и 'was able to'?", "answer": "Could – общая способность в прошлом (I could read). Was able to – успешно справился с конкретной задачей (I was able to escape)."}
+        ]
     },
     "modal_expressions_necessity": {
         "title": "Выражение необходимости (need to, don't need to, needn't have done, didn't need to)",
