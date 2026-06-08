@@ -2,10 +2,78 @@
 
 LEVEL_C1_CONTENT = {
     # ==================== МОДУЛЬ 1: Сложные времена и аспекты (C1) ====================
-    "future_perfect_continuous_advanced": {
+        "future_perfect_continuous_advanced": {
         "title": "Future Perfect Continuous (will have been doing) – углубление",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Повторение образования",
+                "text": """
+<b>⏳ Future Perfect Continuous – действие, которое будет длиться до определённого момента в будущем.</b>
+
+<b>Формула:</b> will have been + V‑ing
+
+• By December, I will have been working here for 5 years. (К декабрю я проработаю здесь 5 лет.)
+• At 6 pm, she will have been waiting for two hours. (В 6 часов она будет ждать уже два часа.)
+
+<blockquote>Акцент на длительности и процессе, а не на результате.</blockquote>
+"""
+            },
+            {
+                "title": "Углубление: акцент на причине и следствии",
+                "text": """
+<b>📌 Future Perfect Continuous часто используется, чтобы показать, что действие станет причиной будущего состояния.</b>
+
+• He will be tired because he will have been working all day. (Он устанет, потому что будет работать весь день – причина)
+• The roads will be slippery because it will have been snowing all night. (Дороги будут скользкими, потому что всю ночь будет идти снег)
+
+<blockquote>Таким образом, подчёркивается связь между длительным действием и его результатом.</blockquote>
+"""
+            },
+            {
+                "title": "Сравнение с Future Perfect Simple",
+                "text": """
+<b>📊 Future Perfect Simple (will have done) vs Future Perfect Continuous (will have been doing):</b>
+
+• <b>Simple</b> – результат, количество раз, завершённость.
+  • By 8 pm, I will have finished my homework. (К 8 вечера я закончу домашнее задание – результат)
+
+• <b>Continuous</b> – процесс, длительность.
+  • By 8 pm, I will have been doing my homework for three hours. (К 8 вечера я буду делать домашнее задание уже три часа – процесс)
+
+<blockquote>Выбор зависит от того, что важнее: результат или процесс.</blockquote>
+"""
+            },
+            {
+                "title": "Отрицание и вопросы",
+                "text": """
+<b>🚫 Отрицание:</b> won't have been + V‑ing
+
+• By next week, I won't have been studying for very long. (К следующей неделе я буду учиться не очень долго.)
+
+<b>❓ Вопрос:</b> Will + подлежащее + have been + V‑ing?
+
+• How long will you have been working here by the end of the year? (Как долго вы проработаете здесь к концу года?)
+
+<blockquote>В вопросах Future Perfect Continuous звучит формально и часто используется для уточнения длительности.</blockquote>
+"""
+            },
+            {
+                "title": "Советы и типичные ошибки",
+                "text": """
+<b>⚠️ Частые ошибки:</b>
+• ❌ By next year, I will have been work here.  ✅ I will have been working here.
+• ❌ She will have been knowing him. (нельзя с глаголами состояния)  ✅ She will have known him.
+
+<b>💡 Совет:</b>
+• Используйте Future Perfect Continuous, чтобы подчеркнуть, как долго что-то будет длиться к определённому моменту.
+• Не используйте это время с глаголами состояния (know, like, be, have – в значении обладания).
+• Тренируйтесь: составляйте предложения о своих планах, используя by... и for... + будет длиться.
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Можно ли использовать Future Perfect Continuous в пассиве?", "answer": "Теоретически да, но крайне редко и очень громоздко: The house will have been being built for two years by next month. На практике лучше переформулировать."}
+        ]
     },
     "future_in_the_past_advanced": {
         "title": "Future in the Past (would do, was going to) – сложные случаи",
