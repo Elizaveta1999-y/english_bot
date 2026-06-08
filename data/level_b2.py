@@ -1292,15 +1292,139 @@ It was a dark night. The wind was blowing (Past Continuous – фон). I had be
             {"question": "Когда использовать 'being done' и 'to be done'?", "answer": "Being done – после предлогов и глаголов, требующих герундий. To be done – после want, need, hope, it's important."}
         ]
     },
-    "verbs_of_perception": {
+        "verbs_of_perception": {
         "title": "Глаголы восприятия (see, hear, watch + object + V‑ing / infinitive without to)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Разница между V‑ing и инфинитивом без to",
+                "text": """
+<b>👀 Глаголы восприятия: see, hear, watch, notice, feel, smell, listen to, observe.</b>
+
+После них можно использовать:
+• объект + V‑ing (часть действия, процесс)
+• объект + инфинитив без to (всё действие целиком)
+
+<blockquote>Выбор зависит от того, видим ли мы часть действия или всё действие.</blockquote>
+"""
+            },
+            {
+                "title": "V‑ing – часть действия (незавершённое действие)",
+                "text": """
+<b>📌 Используйте V‑ing, когда вы видите или слышите процесс, часть действия.</b>
+
+• I saw him crossing the street. (Я видел, как он переходил улицу – процесс, возможно, не завершил)
+• She heard someone playing the piano. (Она слышала, как кто-то играл на пианино – процесс)
+• We watched the children playing in the park. (Мы наблюдали, как дети играли в парке)
+
+<blockquote>V‑ing подчёркивает, что действие длилось, было в процессе.</blockquote>
+"""
+            },
+            {
+                "title": "Инфинитив без to – всё действие (завершённое действие)",
+                "text": """
+<b>✅ Используйте инфинитив без to, когда вы видите или слышите всё действие от начала до конца.</b>
+
+• I saw him cross the street and then disappear. (Я видел, как он перешёл улицу и исчез – всё действие)
+• She heard someone play a beautiful piece. (Она услышала, как кто-то сыграл красивую пьесу – от начала до конца)
+• We watched the children play a game of football. (Мы наблюдали, как дети сыграли в футбол – завершённая игра)
+
+<blockquote>Инфинитив часто используется с краткими, завершёнными действиями.</blockquote>
+"""
+            },
+            {
+                "title": "Пассивная конструкция (be seen / heard to do something)",
+                "text": """
+<b>📦 В пассиве после глаголов восприятия используется инфинитив с частицей to.</b>
+
+• He was seen to enter the building. (Видели, как он вошёл в здание – пассив)
+• She was heard to say that she was leaving. (Слышали, как она сказала, что уходит)
+
+<blockquote>В пассиве инфинитив с to, даже если в активе был без to.</blockquote>
+"""
+            },
+            {
+                "title": "Советы и типичные ошибки",
+                "text": """
+<b>⚠️ Частые ошибки:</b>
+• ❌ I saw him to cross the street.  ✅ I saw him cross the street. / I saw him crossing the street.
+• ❌ She was heard say that.  ✅ She was heard to say that.
+• ❌ I watched him to leave.  ✅ I watched him leave / leaving.
+
+<b>💡 Совет:</b>
+• Если вы хотите подчеркнуть процесс (он шёл, переходил) – используйте V‑ing.
+• Если вы хотите сказать, что увидели всё действие целиком (он перешёл и ушёл) – инфинитив без to.
+• Тренируйтесь: описывайте сцену, чередуя обе формы.
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Всегда ли 'see' и 'watch' взаимозаменяемы?", "answer": "See – случайно увидеть, watch – наблюдать намеренно. She saw a bird (случайно). She watched the bird (наблюдала)."}
+        ]
     },
-    "causative_advanced": {
+        "causative_advanced": {
         "title": "Каузатив (have/get something done, have someone do something, get someone to do something)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Have / get something done – услуга (для себя)",
+                "text": """
+<b>🔧 Каузатив с объектом: have / get + объект + V3 – действие выполняется кем-то другим.</b>
+
+• I had my hair cut. (Мне подстригли волосы – парикмахер)
+• She is having her car repaired. (Ей ремонтируют машину)
+• They got their house painted. (Им покрасили дом)
+
+<blockquote>Get менее формален, чем have. Have более британский, get – американский.</blockquote>
+"""
+            },
+            {
+                "title": "Have someone do something – заставить, поручить (активный каузатив)",
+                "text": """
+<b>📌 Have + someone + V (без to) – поручить кому-то сделать что-то (или заставить).</b>
+
+• I will have my assistant call you. (Я поручу своему помощнику позвонить вам.)
+• She had her son wash the car. (Она заставила сына помыть машину.)
+• They had a friend repair the roof. (Они попросили друга починить крышу.)
+
+<blockquote>После have идёт дополнение, затем инфинитив без to.</blockquote>
+"""
+            },
+            {
+                "title": "Get someone to do something – уговорить, попросить (активный каузатив)",
+                "text": """
+<b>📌 Get + someone + to + V – уговорить, попросить, убедить кого-то сделать что-то.</b>
+
+• I got my brother to help me with the project. (Я уговорил брата помочь мне с проектом.)
+• She finally got her husband to fix the sink. (Она наконец уговорила мужа починить раковину.)
+• Can you get him to stop calling me? (Ты можешь попросить его перестать мне звонить?)
+
+<blockquote>В отличие от have, get требует частицу to. Get звучит более активно и требует усилий.</blockquote>
+"""
+            },
+            {
+                "title": "Сравнение и типичные ошибки",
+                "text": """
+<b>📊 Сравните:</b>
+
+• <b>Have something done</b> – услуга (I had my hair cut)
+• <b>Have someone do</b> – поручить, заставить (I had my assistant call)
+• <b>Get someone to do</b> – уговорить (I got my brother to help)
+
+<b>⚠️ Частые ошибки:</b>
+• ❌ I had my hair to cut.  ✅ I had my hair cut.
+• ❌ She got her car to repair.  ✅ She got her car repaired.
+• ❌ I had my friend to help.  ✅ I had my friend help.
+
+<b>💡 Совет:</b>
+• Для услуг используйте have/get + объект + V3.
+• Для просьбы или поручения – have + someone + V (без to).
+• Для уговоров, убеждения – get + someone + to + V.
+• Тренируйтесь: переделайте активные предложения в каузативные.
+"""
+            }
+        ],
+        "faq": [
+            {"question": "В чём разница между 'have someone do' и 'get someone to do'?", "answer": "Have – просто поручение (часто формальное). Get – уговорить, убедить (требует усилий)."}
+        ]
     },
 
     # ==================== МОДУЛЬ 5: Пассивный залог (продвинутый) ====================
