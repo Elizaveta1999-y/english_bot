@@ -2255,25 +2255,354 @@ It was a dark night. The wind was blowing (Past Continuous – фон). I had be
     },
 
     # ==================== МОДУЛЬ 8: Лексика C1 ====================
-    "academic_writing": {
+        "academic_writing": {
         "title": "Академическая письменная речь (связки, клише, структура эссе)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Структура эссе",
+                "text": """
+<b>📝 Структура академического эссе:</b>
+
+• <b>Introduction</b> – введение (тезис, обзор аргументов)
+• <b>Body paragraphs</b> – основная часть (каждый абзац – одна идея)
+• <b>Conclusion</b> – заключение (повторение тезиса, выводы)
+
+<blockquote>Академический стиль требует формальности, точности и избегания разговорных выражений.</blockquote>
+"""
+            },
+            {
+                "title": "Связки для введения аргументов",
+                "text": """
+<b>🔗 Полезные фразы для структурирования:</b>
+
+• <b>Firstly, / First of all,</b> – во-первых
+• <b>Secondly, / In addition, / Moreover,</b> – во-вторых, кроме того
+• <b>Furthermore, / What is more,</b> – более того
+• <b>Finally, / Lastly,</b> – наконец
+
+• <b>On the one hand, ... on the other hand,</b> – с одной стороны... с другой стороны
+• <b>However, / Nevertheless, / Nonetheless,</b> – однако, тем не менее
+• <b>In contrast, / By contrast,</b> – в отличие от
+• <b>Whereas, / While,</b> – тогда как
+
+<blockquote>Эти связки делают текст логичным и лёгким для восприятия.</blockquote>
+"""
+            },
+            {
+                "title": "Клише для выражения мнения и ссылок",
+                "text": """
+<b>📌 Формальные выражения:</b>
+
+• <b>It is widely believed that...</b> – широко распространено мнение, что...
+• <b>There is no doubt that...</b> – несомненно, что...
+• <b>It can be argued that...</b> – можно утверждать, что...
+• <b>According to...</b> – согласно (источнику)
+• <b>As stated by...</b> – как утверждается...
+• <b>In the view of...</b> – по мнению...
+• <b>This suggests that...</b> – это предполагает, что...
+• <b>This leads to the conclusion that...</b> – это приводит к выводу, что...
+
+<blockquote>Используйте эти фразы, чтобы представить мнения и ссылки на источники.</blockquote>
+"""
+            },
+            {
+                "title": "Советы по академическому стилю",
+                "text": """
+<b>💡 Важные советы:</b>
+
+• Избегайте сокращений (don't → do not, it's → it is)
+• Не используйте разговорные слова (stuff → things, a lot of → many)
+• Пишите в пассивном залоге, когда исполнитель неважен (The experiment was conducted...)
+• Используйте специфическую лексику (analyze, evaluate, discuss, examine)
+• Не задавайте риторических вопросов
+• Проверяйте согласование времён
+
+<blockquote>Академический английский требует практики, но он открывает двери в университеты и науку.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Можно ли использовать 'I think' в академическом эссе?", "answer": "Лучше избегать; используйте безличные конструкции: It is believed that... / There is evidence that..."}
+        ]
     },
-    "idioms_c1": {
-        "title": "Идиомы C1 (продвинутые выражения, фразы, устойчивые сочетания)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "idioms_c1": {
+        "title": "Идиомы C1 (продвинутые выражения)",
+        "pages": [
+            {
+                "title": "Идиомы для описания ситуаций",
+                "text": """
+<b>🔁 Продвинутые идиомы:</b>
+
+• <b>to beat around the bush</b> – ходить вокруг да около
+  • Stop beating around the bush and tell me the truth.
+
+• <b>to bite the bullet</b> – решиться на неприятное, стиснуть зубы
+  • I don't want to, but I'll have to bite the bullet and see the dentist.
+
+• <b>to burn the midnight oil</b> – работать допоздна
+  • We burned the midnight oil to finish the project.
+
+• <b>to go the extra mile</b> – приложить дополнительные усилия
+  • She always goes the extra mile to help her colleagues.
+
+• <b>to hit the nail on the head</b> – попасть в точку
+  • You hit the nail on the head with that comment.
+
+<blockquote>Эти идиомы пригодятся в разговорной речи и письменных работах.</blockquote>
+"""
+            },
+            {
+                "title": "Идиомы для описания людей",
+                "text": """
+<b>👥 Характеристика людей:</b>
+
+• <b>a fish out of water</b> – человек не в своей тарелке
+• <b>a dark horse</b> – тёмная лошадка (человек со скрытыми талантами)
+• <b>the apple of someone's eye</b> – зеница ока, любимец
+  • His daughter is the apple of his eye.
+
+• <b>to have a heart of gold</b> – иметь золотое сердце
+• <b>to be as cool as a cucumber</b> – хладнокровный, спокойный
+
+<blockquote>Используйте идиомы, чтобы сделать описание людей более ярким.</blockquote>
+"""
+            },
+            {
+                "title": "Идиомы о деньгах и работе",
+                "text": """
+<b>💰 Деньги и работа:</b>
+
+• <b>to be worth its weight in gold</b> – быть на вес золота
+  • This advice is worth its weight in gold.
+
+• <b>to cost an arm and a leg</b> – стоить бешеных денег
+  • The car repairs cost an arm and a leg.
+
+• <b>to make ends meet</b> – сводить концы с концами
+  • With two jobs, she barely makes ends meet.
+
+• <b>to bring home the bacon</b> – добывать хлеб насущный, зарабатывать
+  • He's the one who brings home the bacon.
+
+• <b>to get a foot in the door</b> – получить первый шанс, войти в индустрию
+  • This internship will help me get a foot in the door.
+
+<blockquote>Эти идиомы полезны для деловой тематики и повседневных разговоров.</blockquote>
+"""
+            },
+            {
+                "title": "Советы по использованию",
+                "text": """
+<b>💡 Советы:</b>
+• Учите идиомы в контексте, придумывайте свои примеры.
+• Не используйте слишком много в одном тексте – они теряют силу.
+• Слушайте подкасты и смотрите фильмы, чтобы запоминать идиомы в речи.
+• На экзаменах идиомы повышают балл за лексику.
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Сколько идиом нужно знать для C1?", "answer": "Около 100-150 наиболее употребительных. Но качество важнее количества."}
+        ]
     },
-    "phrasal_verbs_c1": {
+        "phrasal_verbs_c1": {
         "title": "Фразовые глаголы C1 (часть 1)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Группа 'come' (продвинутые)",
+                "text": """
+<b>🔑 Come – новые значения для C1.</b>
+
+• <b>come across</b> – производить впечатление
+  • She comes across as very confident. (кажется)
+  • I came across an old friend. (наткнулся)
+
+• <b>come down with</b> – заболеть
+  • I think I'm coming down with a cold.
+
+• <b>come up with</b> – придумать
+  • She came up with a brilliant idea.
+
+• <b>come off</b> – удаваться, отвалиться
+  • The event came off well. (удался)
+  • The handle came off. (оторвалась)
+
+• <b>come about</b> – случиться
+  • How did this situation come about?
+
+• <b>come in for</b> – подвергаться (критике)
+  • The government came in for a lot of criticism.
+
+<blockquote>Продвинутые значения часто идиоматичны.</blockquote>
+"""
+            },
+            {
+                "title": "Группа 'get' (продвинутые)",
+                "text": """
+<b>🔄 Get – новые значения.</b>
+
+• <b>get across</b> – донести (мысль)
+  • He didn't get his point across.
+
+• <b>get at</b> – подразумевать
+  • What are you getting at? (что ты имеешь в виду)
+
+• <b>get away with</b> – избежать наказания
+  • He thought he could get away with cheating.
+
+• <b>get over</b> – оправиться от
+  • I can't get over how much you've grown.
+
+• <b>get through</b> – справиться, дозвониться
+  • I finally got through to customer service.
+
+• <b>get round to</b> – собраться сделать (найти время)
+  • I'll get round to it eventually.
+
+<blockquote>Эти фразовые глаголы очень частотны в разговорной речи.</blockquote>
+"""
+            },
+            {
+                "title": "Группа 'go' (продвинутые)",
+                "text": """
+<b>🏃 Go – новые значения.</b>
+
+• <b>go off</b> – срабатывать (будильник), портиться (еда)
+  • My alarm went off at 6 am.
+  • The milk went off.
+
+• <b>go through</b> – переживать, просматривать
+  • She's going through a difficult time.
+  • Let's go through the documents.
+
+• <b>go without</b> – обходиться без
+  • We had to go without electricity for a day.
+
+• <b>go for</b> – выбрать, попытаться достичь
+  • I think I'll go for the chicken.
+  • He's going for the gold medal.
+
+• <b>go under</b> – обанкротиться
+  • Many small businesses went under during the crisis.
+
+<blockquote>Многие фразовые глаголы с go имеют идиоматическое значение.</blockquote>
+"""
+            },
+            {
+                "title": "Советы и запоминание",
+                "text": """
+<b>💡 Советы:</b>
+• Учите фразовые глаголы в контексте, с примерами.
+• Многие имеют несколько значений – сосредоточьтесь на самых частотных.
+• Используйте карточки и приложения (Anki, Quizlet).
+• Практикуйтесь в речи: заменяйте обычные глаголы на фразовые.
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Как отличить 'get through' от 'go through'?", "answer": "Get through – преодолеть или дозвониться; go through – пережить или просмотреть."}
+        ]
     },
-    "phrasal_verbs_c1_2": {
+        "phrasal_verbs_c1_2": {
         "title": "Фразовые глаголы C1 (часть 2)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Группа 'put' (продвинутые)",
+                "text": """
+<b>🖊️ Put – новые значения.</b>
+
+• <b>put forward</b> – предлагать (идею)
+  • He put forward a new plan.
+
+• <b>put off</b> – откладывать
+  • Never put off until tomorrow what you can do today.
+
+• <b>put through</b> – соединить по телефону; подвергать испытанию
+  • Could you put me through to the manager?
+  • She was put through a lot of stress.
+
+• <b>put up with</b> – мириться с
+  • I can't put up with his rudeness.
+
+• <b>put on</b> – надевать, включать, притворяться
+  • Put on your coat.
+  • He put on an act. (притворялся)
+
+• <b>put down</b> – положить, записать, подавлять
+  • Put down your phone.
+  • Put down what I say.
+  • The revolt was put down.
+
+<blockquote>Эти фразовые глаголы полезны как в разговорной, так и в письменной речи.</blockquote>
+"""
+            },
+            {
+                "title": "Группа 'turn' (продвинутые)",
+                "text": """
+<b>🔄 Turn – изменения состояния.</b>
+
+• <b>turn down</b> – отвергать, уменьшать (громкость)
+  • She turned down the job offer.
+  • Turn down the volume.
+
+• <b>turn out</b> – оказаться (в итоге)
+  • The party turned out to be great.
+
+• <b>turn into</b> – превращаться в
+  • The caterpillar turned into a butterfly.
+
+• <b>turn up</b> – появляться, увеличивать
+  • He turned up late again.
+  • Turn up the music.
+
+• <b>turn away</b> – отказывать, отворачиваться
+  • They turned away dozens of fans.
+  • Don't turn away from those in need.
+
+<blockquote>С помощью turn можно описать множество изменений.</blockquote>
+"""
+            },
+            {
+                "title": "Группа 'take' (продвинутые)",
+                "text": """
+<b>📸 Take – расширяем значения.</b>
+
+• <b>take up</b> – начать заниматься, занимать (место/время)
+  • She took up yoga.
+  • The table takes up too much space.
+
+• <b>take after</b> – быть похожим на (родителей)
+  • She takes after her mother.
+
+• <b>take in</b> – впускать, вбирать, обманывать
+  • I was taken in by his story. (обманули)
+
+• <b>take on</b> – брать на себя, нанимать
+  • She took on too much responsibility.
+  • The company took on new staff.
+
+• <b>take over</b> – захватить, принять управление
+  • The new CEO will take over next week.
+
+• <b>take to</b> – пристраститься к
+  • He took to swimming like a duck to water.
+
+<blockquote>Take – один из самых продуктивных глаголов для фразовых значений.</blockquote>
+"""
+            },
+            {
+                "title": "Советы",
+                "text": """
+<b>💡 Советы:</b>
+• Обращайте внимание на разделяемость: turn the music down / turn down the music (разделяемый), turn up (неразделяемый, если без объекта).
+• С местоимениями разделяемые всегда разделяются: turn it down (не turn down it).
+• Практикуйтесь: составляйте предложения с каждым фразовым глаголом в разных контекстах.
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Как сказать 'он отказался от предложения'?", "answer": "He turned down the offer."}
+        ]
     },
     "collocations_c1": {
         "title": "Коллокации C1 (устойчивые сочетания слов)",
