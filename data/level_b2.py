@@ -2388,25 +2388,353 @@ It was a dark night. The wind was blowing (Past Continuous – фон). I had be
     },
 
     # ==================== МОДУЛЬ 8: Лексика B2 ====================
-    "work_career_b2": {
+        "work_career_b2": {
         "title": "Лексика: работа и карьера (продвинутая)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Типы занятости и условия работы",
+                "text": """
+<b>💼 Продвинутые термины:</b>
+
+• permanent position – постоянная должность
+• temporary contract – временный контракт
+• freelance – фриланс
+• remote work / telecommuting – удалённая работа
+• flexible hours – гибкий график
+• shift work – посменная работа
+• overtime – сверхурочная работа
+• workload – нагрузка
+• career path – карьерная траектория
+• promotion – повышение
+• redundancy – увольнение по сокращению штата
+• resignation – увольнение по собственному желанию
+• dismissal – увольнение (за провинность)
+
+<blockquote>Примеры: She was made redundant after the merger. He is seeking a career path in finance.</blockquote>
+"""
+            },
+            {
+                "title": "Должности и обязанности",
+                "text": """
+<b>📌 Названия должностей и зон ответственности:</b>
+
+• entry-level position – начальная позиция
+• senior manager – старший менеджер
+• executive – руководитель
+• CEO (Chief Executive Officer) – генеральный директор
+• HR (Human Resources) – отдел кадров
+• line manager – непосредственный руководитель
+• subordinate – подчинённый
+• intern – стажёр
+• apprentice – ученик
+
+<b>Обязанности:</b>
+• to be in charge of – отвечать за
+• to be responsible for – быть ответственным за
+• to delegate – делегировать
+• to supervise – руководить
+• to collaborate – сотрудничать
+• to meet deadlines – соблюдать сроки
+
+<blockquote>Пример: As a project manager, I am in charge of coordinating the team.</blockquote>
+"""
+            },
+            {
+                "title": "Достижения и проблемы",
+                "text": """
+<b>🏆 Успехи и трудности на работе:</b>
+
+• achievement – достижение
+• goal / target – цель
+• to exceed expectations – превзойти ожидания
+• to achieve a target – достичь цели
+• to get a bonus – получить премию
+• to be under pressure – быть под давлением
+• to handle stress – справляться со стрессом
+• to deal with complaints – иметь дело с жалобами
+• to resolve conflict – разрешать конфликт
+• to miss a deadline – не уложиться в срок
+
+<blockquote>Примеры: She was promoted after achieving all her targets. He struggles to handle pressure.</blockquote>
+"""
+            },
+            {
+                "title": "Советы",
+                "text": """
+<b>💡 Советы:</b>
+• Для описания обязанностей используйте I am responsible for..., I deal with..., I'm in charge of...
+• Для карьерных целей: I aim to become..., I am working towards...
+• Тренируйтесь: составьте своё CV или описание идеальной работы на английском.
+"""
+            }
+        ],
+        "faq": [
+            {"question": "В чём разница между 'resign' и 'quit'?", "answer": "Resign – официально уволиться. Quit – разговорный вариант."}
+        ]
     },
-    "education_b2": {
+        "education_b2": {
         "title": "Лексика: образование (продвинутая)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Типы учебных заведений и ступени",
+                "text": """
+<b>🎓 Образовательные учреждения:</b>
+
+• nursery / kindergarten – детский сад
+• primary school – начальная школа
+• secondary school – средняя школа
+• high school – старшая школа (США)
+• college – колледж
+• university – университет
+• graduate school – аспирантура
+• vocational school – профессиональное училище
+
+<b>Ступени образования:</b>
+• bachelor's degree – степень бакалавра
+• master's degree – степень магистра
+• PhD / doctorate – докторская степень
+• diploma – диплом
+• certificate – сертификат
+
+<blockquote>Примеры: She holds a master's degree in economics. He is pursuing a PhD in chemistry.</blockquote>
+"""
+            },
+            {
+                "title": "Люди и роли",
+                "text": """
+<b>👩‍🎓 Участники образовательного процесса:</b>
+
+• undergraduate – студент (бакалавриата)
+• postgraduate – аспирант, магистрант
+• lecturer – лектор
+• professor – профессор
+• supervisor – научный руководитель
+• tutor – репетитор, тьютор
+• dean – декан
+• principal / headteacher – директор школы
+
+<blockquote>Различайте: lecturer читает лекции, professor – более высокое звание.</blockquote>
+"""
+            },
+            {
+                "title": "Оценки и экзамены",
+                "text": """
+<b>📚 Академическая успеваемость:</b>
+
+• assessment – оценивание
+• coursework – курсовая работа
+• dissertation – диссертация (магистерская)
+• thesis – диссертация (PhD)
+• exam / examination – экзамен
+• test – тест
+• grade – оценка
+• pass – сдать
+• fail – провалить
+• retake – пересдача
+• plagiarism – плагиат
+• deadline – крайний срок
+
+<b>Глаголы:</b>
+• enrol – зачисляться
+• attend – посещать
+• submit – сдавать (работу)
+• graduate – заканчивать (учебное заведение)
+• drop out – бросить учёбу
+
+<blockquote>Примеры: The deadline for submitting your essay is Friday. He dropped out of university in his second year.</blockquote>
+"""
+            },
+            {
+                "title": "Советы",
+                "text": """
+<b>💡 Советы:</b>
+• Для описания образования используйте to study at (university), to major in (specialise in).
+• Различайте to learn (учить, узнавать) и to study (изучать, заниматься).
+• Тренируйтесь: расскажите о своём образовании на английском.
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Разница между 'college' и 'university' в США и Великобритании?", "answer": "В США college часто относится к бакалавриату, university – к университету в целом. В Великобритании college может быть частью университета или отдельным учебным заведением."}
+        ]
     },
-    "health_medicine": {
+        "health_medicine": {
         "title": "Лексика: здоровье и медицина",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Симптомы и болезни",
+                "text": """
+<b>🩺 Распространённые симптомы (symptoms):</b>
+
+• fever / high temperature – жар
+• cough – кашель
+• sore throat – боль в горле
+• headache – головная боль
+• backache – боль в спине
+• stomach ache – боль в животе
+• nausea – тошнота
+• dizziness – головокружение
+• rash – сыпь
+• allergy – аллергия
+
+<b>Болезни и состояния:</b>
+• flu – грипп
+• cold – простуда
+• infection – инфекция
+• virus – вирус
+• chronic disease – хроническое заболевание
+• injury – травма
+• fracture – перелом
+• sprain – растяжение
+
+<blockquote>Примеры: I have a splitting headache. She suffers from a chronic back problem.</blockquote>
+"""
+            },
+            {
+                "title": "Медицинские профессии и учреждения",
+                "text": """
+<b>🏥 Кто лечит:</b>
+
+• GP (general practitioner) – терапевт
+• specialist – специалист
+• surgeon – хирург
+• cardiologist – кардиолог
+• dermatologist – дерматолог
+• paediatrician – педиатр
+• psychiatrist – психиатр
+• psychologist – психолог
+• dentist – стоматолог
+• pharmacist – фармацевт
+• paramedic – фельдшер скорой
+
+<b>Места:</b>
+• surgery (BrE) / doctor's office (AmE) – кабинет врача
+• hospital – больница
+• A&E (Accident & Emergency) – приёмное отделение
+• pharmacy – аптека
+
+<blockquote>Примеры: You need to see a specialist. The paramedic arrived within minutes.</blockquote>
+"""
+            },
+            {
+                "title": "Лечение и лекарства",
+                "text": """
+<b>💊 Как лечат:</b>
+
+• prescription – рецепт
+• over‑the‑counter (OTC) – без рецепта
+• antibiotics – антибиотики
+• painkillers – обезболивающие
+• ointment – мазь
+• plaster – пластырь
+• bandage – бинт
+• surgery – хирургическая операция
+• therapy – терапия
+• physical therapy – физиотерапия
+• vaccination – вакцинация
+
+<b>Глаголы:</b>
+• prescribe – выписывать лекарство
+• treat – лечить
+• cure – вылечить
+• recover – выздоравливать
+• operate on – оперировать
+
+<blockquote>Примеры: The doctor prescribed antibiotics. She is recovering from surgery.</blockquote>
+"""
+            },
+            {
+                "title": "Советы",
+                "text": """
+<b>💡 Советы:</b>
+• Различайте to cure (вылечить болезнь) и to heal (зажить, о ране).
+• Фраза I'm allergic to penicillin – аллергия на пенициллин.
+• Тренируйтесь: разыграйте диалог с врачом, используя новую лексику.
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Как сказать 'у меня болит голова'?", "answer": "I have a headache. (не I have a head pain)"}
+        ]
     },
-    "environment_b2": {
+        "environment_b2": {
         "title": "Лексика: окружающая среда (продвинутая)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Экологические проблемы",
+                "text": """
+<b>🌍 Глобальные экологические вызовы:</b>
+
+• climate change – изменение климата
+• global warming – глобальное потепление
+• greenhouse effect – парниковый эффект
+• carbon footprint – углеродный след
+• carbon emissions – выбросы углерода
+• deforestation – вырубка лесов
+• biodiversity loss – потеря биоразнообразия
+• extinction – вымирание
+• pollution – загрязнение (air, water, soil, noise)
+• waste – отходы
+• landfill – свалка
+• plastic pollution – пластиковое загрязнение
+• ozone layer depletion – истощение озонового слоя
+
+<blockquote>Примеры: Carbon emissions must be reduced. Deforestation is destroying the Amazon.</blockquote>
+"""
+            },
+            {
+                "title": "Возобновляемая энергия и устойчивое развитие",
+                "text": """
+<b>♻️ Решения и альтернативы:</b>
+
+• renewable energy – возобновляемая энергия
+• solar power – солнечная энергия
+• wind power – энергия ветра
+• hydroelectric power – гидроэлектроэнергия
+• geothermal energy – геотермальная энергия
+• biomass – биомасса
+• sustainable development – устойчивое развитие
+• circular economy – циркулярная экономика
+• recycling – переработка
+• upcycling – креативное повторное использование
+• conservation – сохранение природы
+• eco‑friendly – экологичный
+• organic – органический
+
+<blockquote>Примеры: Many countries are investing in renewable energy. We should buy eco‑friendly products.</blockquote>
+"""
+            },
+            {
+                "title": "Действия и ответственность",
+                "text": """
+<b>🌱 Что может сделать каждый:</b>
+
+• reduce, reuse, recycle – сокращать, использовать повторно, перерабатывать
+• save energy – экономить энергию
+• save water – экономить воду
+• use public transport – пользоваться общественным транспортом
+• avoid single‑use plastic – избегать одноразового пластика
+• plant trees – сажать деревья
+• support green initiatives – поддерживать зелёные инициативы
+• sign petitions – подписывать петиции
+• donate to environmental NGOs – жертвовать экологическим НПО
+
+<blockquote>Примеры: We should switch to LED bulbs to save energy. I always take my own bag to avoid plastic waste.</blockquote>
+"""
+            },
+            {
+                "title": "Советы",
+                "text": """
+<b>💡 Советы:</b>
+• Учите устойчивые словосочетания: to combat climate change, to reduce emissions, to protect biodiversity.
+• В эссе используйте связки: consequently, therefore, as a result, however.
+• Тренируйтесь: напишите короткое эссе о проблемах окружающей среды.
+"""
+            }
+        ],
+        "faq": [
+            {"question": "В чём разница между 'global warming' и 'climate change'?", "answer": "Global warming – повышение температуры. Climate change – более широкое понятие, включающее изменение погодных паттернов, уровня моря и т.д."}
+        ]
     },
     "science_technology": {
         "title": "Лексика: наука и технологии",
