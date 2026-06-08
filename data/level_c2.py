@@ -2286,15 +2286,184 @@ Please accept my apologies for my tardiness. My vehicle suffered a mechanical fa
             {"question": "Как быстро запомнить правильные предлоги?", "answer": "Заучивайте глаголы вместе с предлогами как единое целое (depend on, listen to). Список самых частотных ошибок можно повесить на видное место."}
         ]
     },
-    "synonyms_nuances": {
+        "synonyms_nuances": {
         "title": "Оттенки синонимов (talk/speak, start/begin, finish/complete)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Talk vs Speak",
+                "text": """
+<b>🗣️ Talk / speak – оба означают 'говорить', но есть стилистические и грамматические различия.</b>
+
+• <b>talk</b> – неформальный, часто подразумевает беседу (двустороннюю).
+  • *We talked for hours.* (Мы разговаривали часами.)
+
+• <b>speak</b> – более формальный, может означать монолог или способность говорить на языке.
+  • *He spoke at the conference.* (Он выступал на конференции.)
+  • *She speaks three languages.* (Она говорит на трёх языках.)
+
+<blockquote>Speak to/with – можно использовать оба; talk to/with – аналогично.</blockquote>
+
+<b>Важное различие:</b>
+• *Speak to* может означать 'сделать замечание' (I'll speak to him about his behaviour.)
+• *Talk to* чаще просто разговор.
+"""
+            },
+            {
+                "title": "Start vs Begin",
+                "text": """
+<b>🚀 Start / begin – очень близкие синонимы, но start более разговорный.</b>
+
+• *start* – часто используется для физических действий, механизмов.
+  • *The car won't start.* (Машина не заводится.)
+  • *He started running.* (Он начал бежать.)
+
+• *begin* – чуть более формальный, для абстрактных понятий.
+  • *The concert begins at 8.* (Концерт начинается в 8.)
+  • *Let's begin the meeting.* (Давайте начнём встречу.)
+
+<blockquote>Во многих контекстах они взаимозаменяемы, но start подходит для неформальной речи и физических действий.</blockquote>
+"""
+            },
+            {
+                "title": "Finish vs Complete",
+                "text": """
+<b>✅ Finish / complete – оба означают 'закончить', но complete более формален.</b>
+
+• *finish* – часто для повседневных действий, приёмов пищи, работы.
+  • *I finished my homework.* (Я закончил домашнюю работу.)
+  • *Have you finished eating?* (Ты закончил есть?)
+
+• *complete* – более формальный, часто для проектов, списков, документов.
+  • *She completed the project on time.* (Она завершила проект вовремя.)
+  • *Please complete the form.* (Пожалуйста, заполните форму.)
+
+<blockquote>После complete может идти существительное, а после finish – герундий (finish doing).</blockquote>
+"""
+            },
+            {
+                "title": "Другие важные пары синонимов",
+                "text": """
+<b>📌 Дополнительные пары:</b>
+
+• <b>big / large</b> – big разговорный, large формальный (для размеров)
+• <b>small / little</b> – little может выражать эмоции (a little girl), small – просто размер
+• <b>gather / collect</b> – gather собираться (о людях), collect коллекционировать или забирать
+• <b>buy / purchase</b> – buy разговорный, purchase формальный
+• <b>get / receive</b> – get универсальный (получить), receive более формальный (получить письмо, награду)
+
+<b>Примеры:</b>
+• *I need to buy milk* (но не purchase milk – слишком формально для молока).
+• *We gathered in the hall* (собрались). *I collect stamps.* (коллекционирую)
+• *He received an award.* (получил награду – формально)
+
+<blockquote>Знание оттенков синонимов показывает глубокое владение языком.</blockquote>
+"""
+            },
+            {
+                "title": "Советы",
+                "text": """
+<b>💡 Как развить чутьё на синонимы:</b>
+• Читайте много – в разных контекстах вы почувствуете разницу.
+• Используйте толковые словари и словари синонимов (например, Oxford Collocations Dictionary).
+• Составляйте свои примеры, где замена синонима меняет оттенок.
+
+<blockquote>Не все синонимы взаимозаменяемы – контекст решает всё.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Как сказать 'начать новую работу' – start или begin?", "answer": "Оба возможны, но *start a new job* звучит естественнее. *Begin a new job* формальнее."}
+        ]
     },
-    "advanced_prepositions": {
+        "advanced_prepositions": {
         "title": "Продвинутые предлоги (prepositions in idioms and fixed phrases)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Предлоги в устойчивых выражениях (часть 1)",
+                "text": """
+<b>📍 Продвинутые предлоги – часто встречаются в идиоматических выражениях, и их нужно запоминать как единое целое.</b>
+
+• <b>in response to</b> – в ответ на
+  • *In response to your letter...* (В ответ на ваше письмо...)
+
+• <b>with regard to / regarding</b> – относительно
+  • *With regard to your inquiry...* (Относительно вашего запроса...)
+
+• <b>on behalf of</b> – от имени
+  • *I'm calling on behalf of my boss.* (Я звоню от имени начальника.)
+
+• <b>in spite of</b> – несмотря на (≠ despite, но похоже)
+  • *In spite of the rain, we went out.*
+
+• <b>by means of</b> – посредством, с помощью
+  • *They communicated by means of sign language.* (Они общались посредством жестов.)
+
+<blockquote>Эти фразы очень формальны и часто встречаются в деловой переписке.</blockquote>
+"""
+            },
+            {
+                "title": "Предлоги в идиомах (часть 2)",
+                "text": """
+<b>📌 Ещё несколько устойчивых сочетаний:</b>
+
+• <b>in terms of</b> – с точки зрения, что касается
+  • *In terms of price, the first option is better.* (Что касается цены, первый вариант лучше.)
+
+• <b>on the verge of</b> – на грани
+  • *The company was on the verge of bankruptcy.* (Компания была на грани банкротства.)
+
+• <b>at the expense of</b> – за счёт (в ущерб)
+  • *He achieved success at the expense of his health.* (Он достиг успеха ценой своего здоровья.)
+
+• <b>in light of / in the light of</b> – в свете (учитывая)
+  • *In light of recent events, we've decided to cancel the trip.* (В свете недавних событий мы решили отменить поездку.)
+
+• <b>with respect to</b> – относительно (формальный синоним regarding)
+  • *With respect to your request, we will consider it.* (Относительно вашего запроса мы его рассмотрим.)
+
+<blockquote>Эти фразы помогут вам писать деловые письма и эссе на высоком уровне.</blockquote>
+"""
+            },
+            {
+                "title": "Предлоги в глагольных конструкциях (продвинутые)",
+                "text": """
+<b>🔧 Глаголы, которые часто путают с предлогами:</b>
+
+• <b>to refrain from</b> – воздерживаться от
+  • *Please refrain from smoking.* (Пожалуйста, воздержитесь от курения.)
+
+• <b>to protest against</b> – протестовать против (но в американском английском protest без against)
+• <b>to prevent someone from doing</b> – предотвратить, не дать сделать
+  • *The rain prevented us from going out.* (Дождь помешал нам выйти.)
+
+• <b>to prohibit someone from doing</b> – запрещать кому-либо делать
+  • *The rules prohibit you from entering.* (Правила запрещают вам входить.)
+
+• <b>to differ from</b> – отличаться от (о вещах)
+  • *This differs from the original.* (Это отличается от оригинала.)
+
+• <b>to differ with</b> – не соглашаться с (о людях)
+  • *I differ with you on that point.* (Я не согласен с вами в этом вопросе.)
+
+<blockquote>Различия между похожими предлогами могут быть очень тонкими.</blockquote>
+"""
+            },
+            {
+                "title": "Советы",
+                "text": """
+<b>💡 Как учить продвинутые предлоги:</b>
+• Учите предлоги в контексте устойчивых фраз (in terms of, on behalf of).
+• Составляйте свои примеры, используя каждую фразу.
+• Проверяйте себя: закройте предлог и пытайтесь вспомнить его.
+• Читайте качественную прессу (The Economist, The Guardian) – там много таких фраз.
+
+<blockquote>Ошибки в предлогах выдают неносителя даже на C2.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Как сказать 'от имени' – on behalf of или in behalf of?", "answer": "On behalf of – от имени (действуя как представитель). In behalf of (американский вариант) – в интересах, ради."}
+        ]
     },
 
     # ==================== МОДУЛЬ 8: Дебаты и аргументация ====================
