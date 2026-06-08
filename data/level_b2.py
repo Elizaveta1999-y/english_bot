@@ -3120,24 +3120,396 @@ It was a dark night. The wind was blowing (Past Continuous – фон). I had be
             {"question": "В чём разница между 'government' и 'parliament'?", "answer": "Government – правительство (исполнительная власть). Parliament – парламент (законодательная власть)."}
         ]
     },
-    "economy_business": {
+        "economy_business": {
         "title": "Лексика: экономика и бизнес",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Макроэкономические понятия",
+                "text": """
+<b>📊 Основные экономические термины:</b>
+
+• economy – экономика
+• GDP (Gross Domestic Product) – ВВП
+• inflation – инфляция
+• deflation – дефляция
+• recession – рецессия
+• depression – депрессия
+• unemployment – безработица
+• interest rate – процентная ставка
+• exchange rate – обменный курс
+• stock market – фондовый рынок
+• bond – облигация
+• share / stock – акция
+• dividend – дивиденд
+• fiscal policy – фискальная политика
+• monetary policy – монетарная политика
+
+<blockquote>Примеры: The economy is growing at 2% per year. The central bank raised interest rates.</blockquote>
+"""
+            },
+            {
+                "title": "Бизнес и управление",
+                "text": """
+<b>🏢 Корпоративные термины:</b>
+
+• company – компания
+• corporation – корпорация
+• enterprise – предприятие
+• startup – стартап
+• SME (small and medium enterprise) – МСП
+• multinational – транснациональная корпорация
+• stakeholder – заинтересованная сторона
+• shareholder – акционер
+• board of directors – совет директоров
+• CEO (Chief Executive Officer) – генеральный директор
+• management – менеджмент
+• strategy – стратегия
+• brand – бренд
+• market share – доля рынка
+• supply chain – цепочка поставок
+
+<b>Глаголы:</b>
+• manage – управлять
+• invest – инвестировать
+• profit – получать прибыль
+• expand – расширяться
+• downsize – сокращать персонал
+
+<blockquote>Примеры: The startup attracted significant investment. The board of directors approved the merger.</blockquote>
+"""
+            },
+            {
+                "title": "Финансы и торговля",
+                "text": """
+<b>💰 Финансовые операции:</b>
+
+• revenue – выручка
+• profit – прибыль
+• loss – убыток
+• assets – активы
+• liabilities – обязательства
+• equity – собственный капитал
+• cash flow – денежный поток
+• budget – бюджет
+• forecast – прогноз
+• loan – кредит
+• mortgage – ипотека
+• credit – кредит (доверие)
+• debt – долг
+• interest – проценты
+
+<b>Торговля:</b>
+• import – импорт
+• export – экспорт
+• tariff – пошлина
+• trade deficit – дефицит торгового баланса
+• trade surplus – профицит
+
+<blockquote>Примеры: The company reported record profits. The trade deficit widened last year.</blockquote>
+"""
+            },
+            {
+                "title": "Советы",
+                "text": """
+<b>💡 Советы:</b>
+• Различайте revenue (общий доход) и profit (прибыль после вычета расходов).
+• Глаголы: to go bankrupt, to go into liquidation, to merge, to acquire.
+• Тренируйтесь: читайте деловые новости (Financial Times, Economist).
+"""
+            }
+        ],
+        "faq": [
+            {"question": "В чём разница между 'recession' и 'depression'?", "answer": "Recession – снижение ВВП два квартала подряд. Depression – более глубокий и продолжительный спад."}
+        ]
     },
-    "phrasal_verbs_b2": {
+        "phrasal_verbs_b2": {
         "title": "Фразовые глаголы B2 (часть 1)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Группа 'come'",
+                "text": """
+<b>🔑 Come – один из самых частотных.</b>
+
+• come across – наткнуться, произвести впечатление
+  • I came across an old photo. (наткнулся)
+  • He comes across as arrogant. (кажется)
+
+• come up with – придумать
+  • She came up with a brilliant idea.
+
+• come down with – заболеть
+  • I think I'm coming down with the flu.
+
+• come out – выходить (о книге, фильме), становиться известным
+  • The new album will come out next month.
+
+• come off – отвалиться, удаваться
+  • The handle came off. (оторвалась)
+  • The performance came off well. (удалась)
+
+• come about – случиться
+  • How did this situation come about?
+
+<blockquote>Примеры: I came across your profile online. She came up with a solution.</blockquote>
+"""
+            },
+            {
+                "title": "Группа 'get' (продолжение)",
+                "text": """
+<b>🔄 Get – новые значения для B2.</b>
+
+• get through – справиться, дозвониться
+  • I finally got through to customer service. (дозвонился)
+  • How will we get through the winter? (пережить)
+
+• get over – оправиться от (болезни, разрыва)
+  • It took me a long time to get over the breakup.
+
+• get across – донести (мысль)
+  • He didn't get his point across. (не смог объяснить)
+
+• get away with – избежать наказания
+  • He thought he could get away with cheating.
+
+• get at – подразумевать
+  • What are you getting at? (что ты имеешь в виду)
+
+<blockquote>Примеры: I can't get over how much you've grown. What are you getting at?</blockquote>
+"""
+            },
+            {
+                "title": "Группа 'put' (продолжение)",
+                "text": """
+<b>🖊️ Put – полезные фразовые глаголы.</b>
+
+• put up with – мириться с
+  • I can't put up with his rudeness.
+
+• put off – откладывать
+  • Never put off until tomorrow what you can do today.
+
+• put forward – предлагать (идею)
+  • He put forward a new plan.
+
+• put on – включать, надевать, притворяться
+  • Put on your coat. (надевать)
+  • He put on an act. (притворялся)
+
+• put out – тушить, неудобствовать
+  • Firefighters put out the fire. (тушить)
+  • Would you be put out if I left early? (неудобно)
+
+• put through – соединить по телефону, подвергать (испытанию)
+  • Could you put me through to the manager?
+  • She was put through a lot of stress.
+
+<blockquote>Примеры: She put forward a convincing argument. I'm sorry to put you out.</blockquote>
+"""
+            },
+            {
+                "title": "Советы",
+                "text": """
+<b>💡 Советы:</b>
+• Учите фразовые глаголы в контексте, с примерами.
+• Многие имеют идиоматическое значение – не пытайтесь переводить буквально.
+• Используйте их в речи и письме, но помните, что они более разговорные.
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Как отличить 'get over' от 'get through'?", "answer": "Get over – преодолеть эмоциональное или физическое состояние. Get through – преодолеть трудный период, дозвониться."}
+        ]
     },
-    "phrasal_verbs_b2_2": {
+        "phrasal_verbs_b2_2": {
         "title": "Фразовые глаголы B2 (часть 2)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Группа 'take' (продолжение)",
+                "text": """
+<b>📸 Take – расширяем значения.</b>
+
+• take up – начать заниматься, занимать (место/время)
+  • She took up yoga. (начала)
+  • The table takes up too much space. (занимает)
+
+• take off – взлетать, снимать, уходить
+  • The plane took off. (взлетел)
+  • Take off your shoes. (сними)
+  • He took off without saying goodbye. (убежал)
+
+• take after – быть похожим на (родителей)
+  • She takes after her mother.
+
+• take in – впускать, вбирать, обманывать
+  • Take in the washing. (внести в дом)
+  • I was taken in by his story. (обманули)
+
+• take on – брать на себя, нанимать
+  • She took on too much responsibility. (взяла)
+  • The company took on new staff. (наняла)
+
+• take over – захватить, принять управление
+  • The new CEO will take over next week.
+
+<blockquote>Примеры: Don't take on more than you can handle. He was taken in by the scam.</blockquote>
+"""
+            },
+            {
+                "title": "Группа 'turn'",
+                "text": """
+<b>🔄 Turn – изменения состояния.</b>
+
+• turn out – оказаться (в итоге)
+  • The party turned out to be great. (оказалась)
+
+• turn down – отвергать, уменьшать
+  • She turned down the job offer. (отклонила)
+  • Turn down the volume. (уменьши)
+
+• turn into – превращаться в
+  • The caterpillar turned into a butterfly.
+
+• turn up – появляться, увеличивать
+  • He turned up late again. (появился)
+  • Turn up the music. (сделай громче)
+
+• turn away – отказывать, отворачиваться
+  • They turned away dozens of fans. (не пустили)
+  • Don't turn away from those in need.
+
+<blockquote>Примеры: It turned out that he was lying. She turned down the invitation.</blockquote>
+"""
+            },
+            {
+                "title": "Группа 'bring'",
+                "text": """
+<b>🎁 Bring – вызывать, приносить.</b>
+
+• bring up – воспитывать, поднимать (тему)
+  • He was brought up by his grandparents. (воспитан)
+  • Why did you bring up that subject? (поднял)
+
+• bring about – вызывать, осуществлять
+  • The new law brought about many changes.
+
+• bring back – вернуть, воскресить
+  • These photos bring back memories.
+
+• bring in – вводить, приносить доход
+  • They brought in new rules. (ввели)
+  • The job brings in $50,000 a year. (приносит доход)
+
+• bring out – выпускать (продукт), проявлять
+  • The company brought out a new model. (выпустила)
+  • The crisis brought out the best in him. (проявила)
+
+<blockquote>Примеры: She brought up three children alone. The crisis brought out the worst in people.</blockquote>
+"""
+            },
+            {
+                "title": "Советы",
+                "text": """
+<b>💡 Советы:</b>
+• Обращайте внимание на разделяемость: turn the music down / turn down the music (разделяемый), turn up (неразделяемый, если без объекта).
+• С местоимениями разделяемые всегда разделяются: turn it down (не turn down it).
+• Практикуйтесь: составляйте предложения с каждым фразовым глаголом.
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Как сказать 'он отказался от предложения'?", "answer": "He turned down the offer."}
+        ]
     },
-    "idioms_b2": {
+        "idioms_b2": {
         "title": "Идиомы и устойчивые выражения B2",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Идиомы с частями тела",
+                "text": """
+<b>🦵 Идиомы:</b>
+
+• keep an eye on – присматривать за
+  • Can you keep an eye on my bag?
+
+• turn a blind eye – закрывать глаза (намеренно не замечать)
+  • The teacher turned a blind eye to cheating.
+
+• pull someone's leg – разыгрывать, шутить
+  • I'm just pulling your leg. (шучу)
+
+• cost an arm and a leg – стоить бешеных денег
+  • The repair cost an arm and a leg.
+
+• give someone the cold shoulder – игнорировать
+  • She gave me the cold shoulder after the argument.
+
+• play it by ear – действовать по обстоятельствам
+  • We don't have a plan; let's play it by ear.
+
+<blockquote>Примеры: I'll keep an eye on the soup. Don't pull my leg!</blockquote>
+"""
+            },
+            {
+                "title": "Идиомы для описания ситуаций",
+                "text": """
+<b>🔁 Полезные идиомы:</b>
+
+• hit the nail on the head – попасть в точку
+  • You hit the nail on the head with that comment.
+
+• get the hang of it – освоить, понять
+  • It took me a while, but I got the hang of it.
+
+• be on the same page – иметь одинаковое мнение
+  • We need to be on the same page before the meeting.
+
+• go the extra mile – сделать больше, чем ожидается
+  • She always goes the extra mile to help.
+
+• see eye to eye – соглашаться
+  • We don't see eye to eye on politics.
+
+• a piece of cake – легкотня
+  • The exam was a piece of cake.
+
+<blockquote>Примеры: You've finally got the hang of driving. Let's see eye to eye on this issue.</blockquote>
+"""
+            },
+            {
+                "title": "Идиомы о времени и деньгах",
+                "text": """
+<b>⏰ Время и деньги:</b>
+
+• better late than never – лучше поздно, чем никогда
+• time flies – время летит
+  • Time flies when you're having fun.
+
+• once in a blue moon – очень редко
+  • I eat fast food once in a blue moon.
+
+• a waste of time – пустая трата времени
+• break the bank – разорить, стоить слишком дорого
+  • Buying a new car won't break the bank.
+
+• money doesn't grow on trees – деньги не растут на деревьях
+
+• burn a hole in your pocket – деньги жгут карман (хочется потратить)
+
+<blockquote>Примеры: I go to the cinema once in a blue moon. This vacation won't break the bank.</blockquote>
+"""
+            },
+            {
+                "title": "Советы",
+                "text": """
+<b>💡 Советы:</b>
+• Учите идиомы в контексте, придумывайте свои примеры.
+• Не используйте слишком много в одном тексте – они теряют силу.
+• Слушайте подкасты и смотрите фильмы, чтобы запоминать идиомы в речи.
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Нужно ли учить много идиом для B2?", "answer": "Достаточно 30-40 самых распространённых. Они помогают в разговоре и чтении."}
+        ]
     }
 }
