@@ -2467,15 +2467,189 @@ Please accept my apologies for my tardiness. My vehicle suffered a mechanical fa
     },
 
     # ==================== МОДУЛЬ 8: Дебаты и аргументация ====================
-    "debate_structures": {
+        "debate_structures": {
         "title": "Структура аргументов и контраргументов в дебатах",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Основные элементы аргументации",
+                "text": """
+<b>⚖️ В любом дебате структура аргумента обычно включает:</b>
+
+1. <b>Claim</b> – утверждение (что вы доказываете)
+2. <b>Evidence</b> – доказательство (факты, данные, примеры)
+3. <b>Warrant</b> – обоснование (почему доказательство подтверждает утверждение)
+4. <b>Impact</b> – значение (почему это важно)
+
+<blockquote>Эта структура используется в академических эссе и формальных дебатах.</blockquote>
+
+<b>Пример:</b>
+• Claim: Social media harms teenagers.
+• Evidence: Studies show that heavy social media use correlates with higher rates of anxiety.
+• Warrant: Since anxiety affects academic performance and well-being, this is a serious problem.
+• Impact: Therefore, regulations should be introduced to limit teenagers' screen time.
+"""
+            },
+            {
+                "title": "Структура контраргумента",
+                "text": """
+<b>🔁 Как строить контраргумент:</b>
+
+1. <b>Acknowledge</b> – признать, что оппонент прав в чём-то (чтобы быть вежливым)
+2. <b>Refute</b> – опровергнуть логику или доказательства
+3. <b>Provide counter‑evidence</b> – дать свои доказательства
+4. <b>Reinforce your claim</b> – вернуться к своему тезису
+
+<b>Пример:</b>
+• Acknowledge: It's true that social media helps teenagers stay connected.
+• Refute: However, the negative impact on mental health outweighs this benefit.
+• Counter‑evidence: Studies show that even moderate use increases FOMO and depression.
+• Reinforce: Therefore, limiting usage is still justified.
+
+<blockquote>Контраргумент показывает глубину анализа и повышает убедительность.</blockquote>
+"""
+            },
+            {
+                "title": "Клише для введения аргументов и контраргументов",
+                "text": """
+<b>🗣️ Полезные фразы для дебатов:</b>
+
+• <b>Introducing a point:</b> Firstly, / To begin with, / It is widely accepted that...
+• <b>Adding a point:</b> Moreover, / Furthermore, / In addition, / Another key point is...
+• <b>Introducing a counter‑argument:</b> However, / On the other hand, / Critics argue that...
+• <b>Refuting:</b> Nevertheless, / Despite this, / That argument fails to consider... / This is flawed because...
+• <b>Concluding:</b> In conclusion, / To sum up, / Therefore, / Thus, / Consequently,...
+
+<blockquote>Эти клише помогут структурировать речь в дебатах и эссе.</blockquote>
+"""
+            },
+            {
+                "title": "Пример краткой дебатной речи",
+                "text": """
+<b>📖 Пример (тема: Should university be free?)</b>
+
+*To begin with, free university education would reduce social inequality. Many talented students cannot afford tuition, which limits social mobility. Moreover, countries like Germany have successfully implemented free tuition without harming quality.*
+
+*On the other hand, opponents argue that free education would lead to overcrowded universities and lower standards. However, this argument fails to consider that selective admission based on merit can maintain quality. Furthermore, the long‑term economic benefits of a well‑educated workforce outweigh the short‑term costs.*
+
+*In conclusion, free university education is a worthwhile investment in the future.*
+
+<blockquote>Такая структура делает речь убедительной и логичной.</blockquote>
+"""
+            },
+            {
+                "title": "Советы",
+                "text": """
+<b>💡 Как развить навык дебатов:</b>
+
+• Практикуйтесь в парах: один приводит аргумент, другой контраргумент.
+• Смотрите дебаты на YouTube (Oxford Union, Cambridge Union).
+• Пишите эссе, строго следуя структуре claim–evidence–warrant–impact.
+• Изучайте логические ошибки (straw man, ad hominem), чтобы их избегать.
+
+<blockquote>Структурированная аргументация – ключ к убеждению аудитории.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Обязательно ли всегда использовать все четыре элемента (claim, evidence, warrant, impact)?", "answer": "В кратких выступлениях можно объединять warrant и impact, но в академических работах рекомендуется полнота."}
+        ]
     },
-    "persuasive_language": {
+        "persuasive_language": {
         "title": "Язык убеждения и риторические приёмы",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Что такое язык убеждения?",
+                "text": """
+<b>🗣️ Язык убеждения – использование лексических и риторических средств, чтобы повлиять на мнение аудитории.</b>
+
+На уровне C2 важно не только логически обосновывать свою позицию, но и использовать выразительные средства для усиления воздействия.
+
+<blockquote>Риторика – искусство убеждения, известное со времён античности.</blockquote>
+"""
+            },
+            {
+                "title": "Риторические приёмы (триада, повторение, риторические вопросы)",
+                "text": """
+<b>📌 Эффективные приёмы:</b>
+
+• <b>Rule of three (триада)</b> – три параллельных элемента для усиления.
+  • *We need more jobs, more investment, and more opportunity.* (Нам нужно больше рабочих мест, больше инвестиций и больше возможностей.)
+
+• <b>Anaphora (повторение в начале предложений)</b>
+  • *We will fight them on the beaches, we will fight them on the landing grounds, we will fight them in the fields.* (Черчилль)
+
+• <b>Rhetorical questions (риторические вопросы)</b> – вопрос, не требующий ответа, чтобы подтолкнуть слушателя к согласию.
+  • *Is that the kind of future we want for our children?*
+
+• <b>Emotive language (эмоциональная лексика)</b>
+  • *This cruel and heartless policy must be stopped.*
+
+<blockquote>Эти приёмы делают речь запоминающейся и эмоциональной.</blockquote>
+"""
+            },
+            {
+                "title": "Лексика убеждения (modality, hedging, boosting)",
+                "text": """
+<b>📌 Слова, усиливающие или смягчающие утверждение:</b>
+
+• <b>Boosting (усиление)</b> – definitely, absolutely, undoubtedly, certainly.
+  • *This is undoubtedly the best solution.*
+
+• <b>Hedging (смягчение)</b> – perhaps, maybe, might, possibly, it seems that.
+  • *Perhaps there is another explanation.*
+
+• <b>Modality (модальные глаголы для выражения уверенности)</b> – must, will, should, may, might.
+
+<blockquote>Умелое сочетание boosting и hedging создаёт убедительный, но не агрессивный тон.</blockquote>
+"""
+            },
+            {
+                "title": "Пример убедительной речи",
+                "text": """
+<b>📖 Пример (тема: сокращение пластиковых отходов):</b>
+
+*Is it acceptable that our oceans are filled with plastic? Absolutely not. We need a complete ban on single‑use plastics. Without such a ban, marine life will continue to die, our beaches will be polluted, and our health will be at risk. Some argue that a ban would hurt businesses, but this argument ignores the long‑term cost of environmental damage. Therefore, we must act but this argument ignores the long‑term cost of environmental damage. Therefore, we must act now.*
+
+<blockquote>Здесь использованы риторический вопрос now.*
+
+<blockquote>Здесь использованы риторический, boosting вопрос, boosting (absolutely not, must), триада (marine (absolutely not, must), триада (marine life, life, beaches, health) и контраргумент.</blockquote>
+"""
+            },
+            {
+                "title": "Советы",
+                "text": """
+<b>💡 Как развить beaches, health) и контраргумент.</blockquote>
+"""
+            },
+            {
+                "title": "Советы",
+                "text": """
+<b>💡 Как развить навык убе навык убеждения:</b>
+
+• Анализируйте речи известных ораторов (Martin Luther King, Winstonждения:</b>
+
+• Анализируйте речи известных ораторов (Martin Luther King, Winston Churchill, Barack Obama).
+• Пишите корот Churchill, Barack Obama).
+• Пишите короткие убедительные тексты на разные темы.
+•кие убедительные тексты на разные Практикуйтесь в устной речи: убе темы.
+• Практикуйтесь в устной речи: убедите друга изменить мнение.
+• Изучайте риторические приёмы и старайтесь использовать их осдите друга изменить мнение.
+• Изучайте риторические приёмы и старайтесь использовать их осознанно.
+
+<blockquote>Убеждение – это искусство,ознанно.
+
+<blockquote>Убеждение – это искусство, которое сочетает логику, эмоции которое сочетает логику, эмоции и стиль.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            и стиль.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Можно ли использовать эмоциональную лексику в академическом эссе?", "answer": "Осторож {"question": "Можно ли использовать эмоциональную лексику в академическом эссе?", "answer": "Осторожно. Вно. В научных работах лучше избегать чрезмерной эмоциональности, но в эссе-рассужд научных работах лучше избегать чрезмерной эмоциональности, но в эссе-рассуждении (opinion essay) она допустима."ении (opinion essay) она допустима."}
+        ]
     },
     "counterargument_cliches": {
         "title": "Клише для контраргументации и опровержения",
