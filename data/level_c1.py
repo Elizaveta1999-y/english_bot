@@ -75,20 +75,176 @@ LEVEL_C1_CONTENT = {
             {"question": "Можно ли использовать Future Perfect Continuous в пассиве?", "answer": "Теоретически да, но крайне редко и очень громоздко: The house will have been being built for two years by next month. На практике лучше переформулировать."}
         ]
     },
-    "future_in_the_past_advanced": {
+        "future_in_the_past_advanced": {
         "title": "Future in the Past (would do, was going to) – сложные случаи",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Повторение двух основных форм",
+                "text": """
+<b>📅 Future in the Past – способ говорить о будущем с точки зрения прошлого.</b>
+
+• <b>would + V</b> – будущее с точки зрения прошлого (часто в косвенной речи)
+  • He said he would call me later. (Он сказал, что позвонит мне позже.)
+
+• <b>was/were going to + V</b> – планы, которые не осуществились
+  • I was going to call you, but I forgot. (Я собирался тебе позвонить, но забыл.)
+
+<blockquote>Разница: would – просто передача слов; going to – подчёркивает, что план был, но не сбылся.</blockquote>
+"""
+            },
+            {
+                "title": "Углубление: контекстные оттенки",
+                "text": """
+<b>🔍 Уточнение: would может выражать повторяющееся действие в прошлом (как used to).</b>
+
+• When I was a child, I would visit my grandmother every weekend. (Я обычно навещал бабушку – привычка)
+
+<blockquote>Чтобы не путать, обращайте внимание на контекст: если есть указание на время в прошлом и нет косвенной речи – это привычка.</blockquote>
+
+<b>📌 Was/were to + V – очень формальный вариант (должен был, собирался по плану).</b>
+• The meeting was to take place at 3 pm, but it was cancelled. (Встреча должна была состояться в 3, но её отменили.)
+
+<blockquote>Эта конструкция редко встречается в разговорной речи, но часто в новостях и официальных документах.</blockquote>
+"""
+            },
+            {
+                "title": "Сравнение и типичные ошибки",
+                "text": """
+<b>📊 Примеры:</b>
+• I thought you would come. (Я думал, ты придёшь – передача мысли)
+• I was going to come, but I got stuck in traffic. (Я собирался прийти, но застрял в пробке – не сбылось)
+• The president was to visit the region. (Президент должен был посетить регион – формально)
+
+<b>⚠️ Частые ошибки:</b>
+• ❌ I would have come, but I was busy. (would have – это 3 тип, не future in the past)  ✅ I was going to come, but I was busy.
+• ❌ He said he will call. (косвенная речь требует would)  ✅ He said he would call.
+
+<b>💡 Совет:</b>
+• Для передачи чужих слов о будущем – would.
+• Для ненаступивших планов – was/were going to.
+• Для описания повторяющихся действий в прошлом – would (как used to).
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Можно ли использовать 'would' для будущего в прошлом, если действие всё же произошло?", "answer": "Да, would просто передаёт обещание или прогноз, неважно, сбылось ли оно. Для акцента на нереализованности лучше going to."}
+        ]
     },
-    "past_perfect_continuous_advanced2": {
+        "past_perfect_continuous_advanced2": {
         "title": "Past Perfect Continuous – сложные случаи с for/since",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Повторение и акцент на длительности",
+                "text": """
+<b>⏪ Past Perfect Continuous: had been + V‑ing – действие, которое длилось до другого действия в прошлом.</b>
+
+• I had been waiting for an hour when he finally arrived. (Я прождал час, когда он наконец пришёл.)
+• She had been working there for 5 years before she got promoted. (Она проработала там 5 лет до повышения.)
+
+<blockquote>Акцент на длительности и причине (результат был виден в прошлом).</blockquote>
+"""
+            },
+            {
+                "title": "Сложные случаи с for/since в Past Perfect Continuous",
+                "text": """
+<b>📌 Использование for (период) и since (отправная точка) с Past Perfect Continuous.</b>
+
+• He had been living in London for ten years before he moved to Paris. (Он прожил в Лондоне десять лет до переезда в Париж.)
+• They had been married since 2010 when they decided to divorce. (Они были женаты с 2010 года, когда решили развестись.)
+
+<blockquote>Past Perfect Continuous подчёркивает, что действие продолжалось вплоть до определённого момента в прошлом.</blockquote>
+"""
+            },
+            {
+                "title": "Сравнение с Past Perfect Simple",
+                "text": """
+<b>📊 Past Perfect Simple vs Continuous:</b>
+
+• <b>Simple (had done)</b> – факт завершённости, результат.
+  • When I arrived, she had already left. (результат: её уже не было)
+
+• <b>Continuous (had been doing)</b> – процесс, длительность, причина.
+  • She was tired because she had been working all day. (причина: весь день работала)
+
+<blockquote>С глаголами, которые могут выражать и действие, и состояние, выбор зависит от смысла.</blockquote>
+"""
+            },
+            {
+                "title": "Типичные ошибки и советы",
+                "text": """
+<b>⚠️ Частые ошибки:</b>
+• ❌ I had been knowing him for years. (know – глагол состояния)  ✅ I had known him for years.
+• ❌ She had been being happy. (бессмысленно)  ✅ She had been happy.
+
+<b>💡 Совет:</b>
+• Past Perfect Continuous не используется с глаголами состояния (know, like, be, have – в значении обладания).
+• Если нужно подчеркнуть, как долго что-то длилось до момента в прошлом, используйте Continuous.
+• Для простого факта завершённости – Simple.
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Обязательно ли использовать Past Perfect Continuous с for/since, если действие продолжалось?", "answer": "Не обязательно, но Continuous подчёркивает длительность и часто предпочтительнее."}
+        ]
     },
-    "present_perfect_continuous_advanced": {
+        "present_perfect_continuous_advanced": {
         "title": "Present Perfect Continuous – акцент на результате и длительности",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Повторение образования и базовых значений",
+                "text": """
+<b>🔄 Present Perfect Continuous: have/has been + V‑ing – действие, начавшееся в прошлом и продолжающееся до сих пор (или только что завершившееся с видимым результатом).</b>
+
+• I have been waiting for an hour. (Я жду уже час – продолжается)
+• She has been crying; her eyes are red. (Она плакала – результат виден)
+
+<blockquote>Акцент на процессе, длительности или результате в настоящем.</blockquote>
+"""
+            },
+            {
+                "title": "Углубление: разница между Simple и Continuous",
+                "text": """
+<b>📊 Сравнение Present Perfect Simple и Continuous – оттенки для C1:</b>
+
+• <b>Simple (have done)</b> – результат, количество раз, постоянство.
+  • I have painted the room. (результат: комната покрашена)
+  • I have read this book twice. (сколько раз)
+
+• <b>Continuous (have been doing)</b> – процесс, длительность, временные усилия.
+  • I have been painting the room. (процесс, возможно, не закончил)
+  • I have been reading this book all week. (подчёркиваю время)
+
+<blockquote>С глаголами live, work, wait, study можно использовать обе формы, но оттенок разный: Simple – факт, Continuous – акцент на длительности.</blockquote>
+"""
+            },
+            {
+                "title": "Сложные случаи с for и since",
+                "text": """
+<b>📌 Present Perfect Continuous с for (период) и since (отправная точка) – подчёркивает длительность.</b>
+
+• I have been learning English for 5 years. (учу уже 5 лет – процесс)
+• She has been working here since 2018. (работает с 2018 года)
+
+<blockquote>Present Perfect Simple с for/since тоже возможен, но тогда акцент на факте, а не на процессе: I have lived here for 5 years.</blockquote>
+"""
+            },
+            {
+                "title": "Типичные ошибки и советы",
+                "text": """
+<b>⚠️ Частые ошибки:</b>
+• ❌ I have been knowing him for ages. (know – глагол состояния)  ✅ I have known him for ages.
+• ❌ She has been wanting to go.  ✅ She has wanted to go.
+
+<b>💡 Совет:</b>
+• Если вы хотите подчеркнуть, сколько времени вы тратите на действие, и оно всё ещё происходит – Continuous.
+• Если важен результат, количество раз или с глаголами состояния – Simple.
+• Тренируйтесь: отвечайте на вопрос "What have you been doing today?" (процесс) и "What have you done today?" (результат).
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Как сказать 'я учу английский 5 лет' – I've learned или I've been learning?", "answer": "Оба варианта возможны. I've learned может подразумевать результат (я выучил), I've been learning – процесс. Для просто констатации факта I've learned допустимо, но чаще используют I've been learning."}
+        ]
     },
     "narrative_tenses_advanced": {
         "title": "Narrative Tenses (Past Simple, Continuous, Perfect, Perfect Continuous) – углублённо",
