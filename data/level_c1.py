@@ -2604,24 +2604,305 @@ It was a dark night. The wind was blowing (Past Continuous – фон). I had be
             {"question": "Как сказать 'он отказался от предложения'?", "answer": "He turned down the offer."}
         ]
     },
-    "collocations_c1": {
+        "collocations_c1": {
         "title": "Коллокации C1 (устойчивые сочетания слов)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Что такое коллокации?",
+                "text": """
+<b>🔗 Коллокации – естественные сочетания слов, которые часто встречаются вместе.</b>
+
+Их нельзя переводить дословно, нужно запоминать как единое целое.
+
+• <b>make a decision</b> – принять решение (не do)
+• <b>take a break</b> – сделать перерыв (не make)
+• <b>heavy rain</b> – сильный дождь (не strong rain)
+• <b>strong coffee</b> – крепкий кофе (не heavy)
+
+<blockquote>Использование правильных коллокаций делает речь естественной и беглой.</blockquote>
+"""
+            },
+            {
+                "title": "Глагольные коллокации",
+                "text": """
+<b>📌 Частые глагольные сочетания:</b>
+
+• <b>make</b> – make an effort, make a mistake, make progress, make a promise, make a choice
+• <b>do</b> – do your best, do harm, do business, do a favour, do research
+• <b>take</b> – take responsibility, take care, take a chance, take advantage, take part
+• <b>have</b> – have a conversation, have a problem, have a feeling, have a look, have an opportunity
+• <b>give</b> – give advice, give permission, give a chance, give an example, give a speech
+
+<blockquote>Ошибки в коллокациях (например, make a photo вместо take a photo) выдают не носителя.</blockquote>
+"""
+            },
+            {
+                "title": "Предложные коллокации",
+                "text": """
+<b>📌 Прилагательные + предлоги:</b>
+
+• interested in – заинтересован в
+• proud of – горд собой
+• good at – хорош в (чем-то)
+• bad at – плох в
+• responsible for – ответственный за
+• similar to – похожи на
+• different from – отличаться от
+• aware of – осознавать
+• capable of – способен на
+
+<b>Глаголы + предлоги:</b>
+• depend on – зависеть от
+• belong to – принадлежать
+• consist of – состоять из
+• complain about – жаловаться на
+• apologise for – извиняться за
+• wait for – ждать
+• ask for – просить
+
+<blockquote>Учите коллокации вместе с предлогами, чтобы избегать ошибок.</blockquote>
+"""
+            },
+            {
+                "title": "Советы и практика",
+                "text": """
+<b>💡 Советы:</b>
+• Читайте много текстов на английском (новости, статьи, книги) – так коллокации запоминаются естественно.
+• Используйте словари коллокаций (например, OZDIC).
+• Ведите тетрадь, выписывая сочетания, которые встречаются.
+• Тренируйтесь: замените словосочетания на более естественные: strong rain → heavy rain.
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Почему нельзя сказать 'make a photo'?", "answer": "Потому что в английском устоялось take a photo (сделать фото). Такие сочетания нужно просто запомнить."}
+        ]
     },
-    "word_formation_c1": {
+        "word_formation_c1": {
         "title": "Словообразование (суффиксы, префиксы, сложные слова) – C1",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Суффиксы существительных (повторение и углубление)",
+                "text": """
+<b>🔨 Продуктивные суффиксы:</b>
+
+• -tion / -sion: educate → education, decide → decision
+• -ment: develop → development, agree → agreement
+• -ance / -ence: appear → appearance, differ → difference
+• -er / -or: teach → teacher, act → actor
+• -ing: build → building, feel → feeling
+• -ness: happy → happiness, kind → kindness
+• -ity: active → activity, possible → possibility
+• -ship: friend → friendship, leader → leadership
+
+<blockquote>Помните об изменениях на письме: happy → happiness (y→i), possible → possibility (le→il).</blockquote>
+"""
+            },
+            {
+                "title": "Суффиксы прилагательных (углубление)",
+                "text": """
+<b>🎨 Образование прилагательных:</b>
+
+• -able / -ible: comfort → comfortable, access → accessible
+• -ful: hope → hopeful, care → careful
+• -less: hope → hopeless, care → careless
+• -ive: act → active, create → creative
+• -al: nature → natural, education → educational
+• -y: cloud → cloudy, sun → sunny
+• -ic: hero → heroic, atom → atomic
+• -ous: danger → dangerous, fame → famous
+
+<blockquote>Приставки un-, in-, im-, il-, ir-, dis-, non- образуют антонимы.</blockquote>
+"""
+            },
+            {
+                "title": "Сложные слова (compound words)",
+                "text": """
+<b>📌 Сложные слова образуются из двух основ:</b>
+
+• <b>существительное + существительное</b>: bus stop, bedroom, website
+• <b>прилагательное + существительное</b>: blackboard, greenhouse, dry cleaning
+• <b>глагол + существительное</b>: swimming pool, washing machine
+• <b>глагол + наречие</b>: breakdown, check-in, lookout
+
+<b>Сложные прилагательные:</b>
+• world-famous, ice-cold, high-speed, well-known
+
+<blockquote>Некоторые сложные слова пишутся слитно, другие через дефис, третьи раздельно. Проверяйте в словаре.</blockquote>
+"""
+            },
+            {
+                "title": "Советы и упражнения",
+                "text": """
+<b>💡 Советы:</b>
+• Изучайте словообразовательные цепочки: courage → courageous → courageously → discourage.
+• В экзаменах часто требуется преобразовать слово в правильную часть речи.
+• Тренируйтесь: возьмите корень и образуйте все возможные производные (friend → friendly, friendship, unfriendly, friendliness).
+• Используйте приставки для изменения значения (possible → impossible, honest → dishonest).
+
+<blockquote>Словообразование позволяет значительно расширить словарный запас без заучивания тысяч отдельных слов.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Как запомнить все суффиксы?", "answer": "Изучайте их в контексте конкретных слов, а не изолированно. Чем больше примеров, тем легче."}
+        ]
     },
-    "formal_informal_language": {
+        "formal_informal_language": {
         "title": "Формальный и неформальный английский (стилистические различия)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Общие различия",
+                "text": """
+<b>🎭 Формальный vs неформальный стиль:</b>
+
+• <b>Формальный</b> – используется в официальных документах, академической среде, деловой переписке.
+• <b>Неформальный</b> – в разговоре, личных письмах, соцсетях.
+
+<blockquote>Выбор стиля зависит от ситуации и адресата.</blockquote>
+"""
+            },
+            {
+                "title": "Лексические различия",
+                "text": """
+<b>📌 Примеры замен:</b>
+
+• ask → request
+• buy → purchase
+• get → receive / obtain
+• need → require
+• help → assist
+• start → commence
+• check → verify
+• give → provide
+• talk → converse
+• so → therefore / thus
+
+• children → offspring (реже)
+• about → approximately
+• enough → sufficient
+• also → in addition / furthermore
+
+<blockquote>В формальном стиле предпочтительны латинские и греческие корни (come from Latin or Greek).</blockquote>
+"""
+            },
+            {
+                "title": "Грамматические различия",
+                "text": """
+<b>📌 Синтаксис и грамматика:</b>
+
+• <b>Сокращения:</b> don't → do not, it's → it is, can't → cannot
+• <b>Пассивный залог</b> чаще в формальном (The experiment was conducted...)
+• <b>Безличные конструкции:</b> It is believed that... (вместо I think)
+• <b>Сложные предложения:</b> с причастными оборотами (Having finished...)
+• <b>Избегание фразовых глаголов</b> (postpone вместо put off)
+• <b>Вопросительные обороты:</b> Could you please...? (вежливо)
+
+<blockquote>Формальный стиль более сложный и структурированный.</blockquote>
+"""
+            },
+            {
+                "title": "Примеры и советы",
+                "text": """
+<b>📖 Примеры одного смысла в разных стилях:</b>
+
+• Неформально: Sorry I'm late. The car broke down, so I had to call a taxi.
+• Формально: I apologise for my delay. The vehicle experienced a mechanical failure, consequently, I was obliged to summon a taxi.
+
+<b>💡 Совет:</b>
+• Учитесь переключаться между стилями. Это важно для экзаменов и работы.
+• Читайте тексты разных жанров (эссе, письма, новости, блоги), чтобы чувствовать разницу.
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Нужно ли всегда использовать формальный стиль на экзамене?", "answer": "В эссе и письмах – да. В устной части – уместен нейтральный или неформальный (в зависимости от задания)."}
+        ]
     },
-    "business_english_c1": {
+        "business_english_c1": {
         "title": "Деловой английский C1 (переговоры, презентации, письма)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Деловая переписка (email)",
+                "text": """
+<b>📧 Структура делового письма:</b>
+
+• Subject line – тема
+• Salutation – обращение (Dear Mr Smith, Dear Sir or Madam)
+• Opening – начало (I am writing to...)
+• Body – основная часть (факты, просьбы, предложения)
+• Closing – завершение (I look forward to hearing from you)
+• Signature – подпись (Yours sincerely, Best regards)
+
+<b>Полезные фразы:</b>
+• I am writing to enquire about... (запрос)
+• Could you please provide... (просьба)
+• Thank you for your prompt response. (благодарность)
+• Please find attached... (вложение)
+
+<blockquote>В деловой переписке важны вежливость и лаконичность.</blockquote>
+"""
+            },
+            {
+                "title": "Переговоры и встречи",
+                "text": """
+<b>🤝 Язык переговоров:</b>
+
+• Let's get down to business. – Давайте перейдём к делу.
+• I'd like to raise a few points. – Я хотел бы поднять несколько вопросов.
+• We are open to negotiation. – Мы открыты к переговорам.
+• Could we reach a compromise? – Можем ли мы достичь компромисса?
+• I see your point, but... – Я понимаю вашу точку зрения, но...
+• That's not acceptable. – Это неприемлемо.
+• Let's put it in writing. – Давайте зафиксируем это на бумаге.
+
+<b>Полезные глаголы:</b>
+• propose – предлагать
+• negotiate – вести переговоры
+• agree – соглашаться
+• decline – отклонять
+• compromise – искать компромисс
+
+<blockquote>В переговорах важны клише и умение смягчать возражения.</blockquote>
+"""
+            },
+            {
+                "title": "Презентации и доклады",
+                "text": """
+<b>📊 Как начать презентацию:</b>
+
+• Good morning/afternoon, everyone. I'm pleased to be here today to talk about...
+• My presentation will cover three main points: first..., second..., third...
+• Let's start with the first slide.
+
+<b>Переход между частями:</b>
+• That brings me to my next point...
+• Now, let's look at...
+• I'd like to draw your attention to...
+
+<b>Завершение:</b>
+• To sum up, we've seen that...
+• In conclusion, I'd like to emphasise...
+• Thank you for your attention. Are there any questions?
+
+<blockquote>Хорошая презентация – это чёткая структура и спокойная речь.</blockquote>
+"""
+            },
+            {
+                "title": "Советы",
+                "text": """
+<b>💡 Советы для делового английского:</b>
+• Учите стандартные фразы для каждой ситуации (письма, переговоры, презентации).
+• Слушайте бизнес-подкасты (BBC Business Daily, HBR IdeaCast).
+• Читайте деловые новости (Financial Times, The Economist).
+• Практикуйтесь в ролевых играх: проводите виртуальные переговоры или пишите письма.
+
+<blockquote>Деловой английский открывает карьерные возможности в международных компаниях.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Как закончить письмо, если не знаешь имени адресата?", "answer": "Yours faithfully (если начали с Dear Sir or Madam)."}
+        ]
     }
 }
