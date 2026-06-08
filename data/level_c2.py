@@ -2134,15 +2134,157 @@ Please accept my apologies for my tardiness. My vehicle suffered a mechanical fa
     },
 
     # ==================== МОДУЛЬ 7: Анализ ошибок и выбор между похожими словами ====================
-    "confusing_words": {
+        "confusing_words": {
         "title": "Часто путаемые слова (affect/effect, principal/principle, imply/infer)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Affect vs Effect",
+                "text": """
+<b>🔹 Affect (глагол) – влиять, воздействовать.</b>
+• *The weather affected our plans.* (Погода повлияла на наши планы.)
+
+<b>🔹 Effect (существительное) – результат, эффект.</b>
+• *The effect of the medicine was immediate.* (Эффект лекарства был мгновенным.)
+
+<blockquote>Запоминалка: Affect = Action (действие), Effect = End result (конечный результат).</blockquote>
+
+<b>Редкое исключение:</b> effect может быть глаголом (to effect change – осуществить изменения), но на C2 это знать полезно.
+"""
+            },
+            {
+                "title": "Principal vs Principle",
+                "text": """
+<b>🔹 Principal – главный, основной; директор школы; основная сумма (долга).</b>
+• *The principal reason for the delay was the storm.* (Главная причина задержки – шторм.)
+• *The school principal announced a holiday.* (Директор школы объявил выходной.)
+
+<b>🔹 Principle – принцип, правило, убеждение.</b>
+• *He is a man of high moral principles.* (Он человек с высокими моральными принципами.)
+• *We refuse to pay on principle.* (Мы отказываемся платить из принципа.)
+
+<blockquote>Запоминалка: The principal (директор) is your pal (друг). Principle – правило.</blockquote>
+"""
+            },
+            {
+                "title": "Imply vs Infer",
+                "text": """
+<b>🔹 Imply (глагол) – подразумевать, намекать (говорящий).</b>
+• *His tone implied that he was angry.* (Его тон подразумевал, что он зол.)
+
+<b>🔹 Infer (глагол) – делать вывод, заключать (слушающий).</b>
+• *From his tone, I inferred that he was angry.* (Из его тона я сделал вывод, что он зол.)
+
+<blockquote>Imply – отправитель сообщения; infer – получатель.</blockquote>
+"""
+            },
+            {
+                "title": "Другие частые пары",
+                "text": """
+<b>📌 Дополнительные пары:</b>
+
+• <b>complement vs compliment</b>
+  • complement – дополнять (The wine complements the cheese.)
+  • compliment – делать комплимент (She complimented his cooking.)
+
+• <b>ensure vs insure</b>
+  • ensure – гарантировать (Ensure the door is locked.)
+  • insure – страховать (Insure your car.)
+
+• <b>stationary vs stationery</b>
+  • stationary – неподвижный (Remain stationary.)
+  • stationery – канцелярские товары (paper, pens, etc.)
+
+• <b>desert vs dessert</b>
+  • desert – пустыня; оставлять (desert a friend)
+  • dessert – десерт (sweet course)
+
+<blockquote>Эти пары часто встречаются в текстах и вызывают ошибки даже у продвинутых учеников.</blockquote>
+"""
+            },
+            {
+                "title": "Советы",
+                "text": """
+<b>💡 Как запомнить:</b>
+• Составьте карточки с каждой парой и примером.
+• Пишите предложения, используя оба слова в контексте.
+• Проверяйте себя в тестах.
+• На экзаменах (CPE) такие пары могут появляться в заданиях на лексику.
+
+<blockquote>Маленькая разница в буквах может полностью изменить смысл.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Можно ли использовать 'effect' как глагол?", "answer": "Да, но очень формально: to effect changes (осуществить изменения). Редко, но на C2 знать стоит."}
+        ]
     },
-    "common_mistakes_c2": {
+        "common_mistakes_c2": {
         "title": "Типичные ошибки продвинутых учащихся (prepositions, agreement, style)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Ошибки с предлогами",
+                "text": """
+<b>📍 Распространённые ошибки в предлогах у русскоязычных:</b>
+
+• ❌ *depend from*  ✅ *depend on*
+• ❌ *explain me*  ✅ *explain to me*
+• ❌ *listen music*  ✅ *listen to music*
+• ❌ *wait somebody*  ✅ *wait for somebody*
+• ❌ *congratulate for*  ✅ *congratulate on*
+• ❌ *accuse for*  ✅ *accuse of*
+• ❌ *insist on* (правильно, но часто путают с *insist in* – нет)
+• ❌ *discuss about*  ✅ *discuss* (без about)
+
+<blockquote>Ошибки в предлогах – одна из самых заметных черт неносителя даже на высоком уровне.</blockquote>
+"""
+            },
+            {
+                "title": "Согласование времён и последовательности",
+                "text": """
+<b>⚠️ Ошибки в согласовании времён в сложных предложениях:</b>
+
+• ❌ *If I would have known, I would have come.* (в условных)  ✅ *If I had known, I would have come.*
+• ❌ *I wish I would be taller.*  ✅ *I wish I were taller.*
+• ❌ *It's time you would go.*  ✅ *It's time you went.* (конструкция It's time + Past Simple)
+
+• ❌ *He suggested me to go.*  ✅ *He suggested that I go / He suggested going.*
+• ❌ *She insisted him to stay.*  ✅ *She insisted that he stay.* (сослагательное наклонение)
+
+<blockquote>Эти ошибки часто остаются даже у очень продвинутых учеников.</blockquote>
+"""
+            },
+            {
+                "title": "Стилистические ошибки",
+                "text": """
+<b>📝 Регистр и стиль:</b>
+
+• ❌ Использование сокращений в академическом письме: *don't, it's* (лучше do not, it is)
+• ❌ Фразовые глаголы вместо односложных в формальных текстах: *put off → postpone, find out → discover*
+• ❌ Слишком частое использование *very* (заменяйте на extremely, highly, exceptionally)
+• ❌ Начало предложения с *And, But, So* в формальных текстах (заменяйте на Moreover, However, Therefore)
+
+• ❌ Двойное отрицание: *I didn't see nobody*  ✅ *I saw nobody / I didn't see anybody.*
+
+<blockquote>Ошибки стиля заметны на экзаменах и в деловой переписке.</blockquote>
+"""
+            },
+            {
+                "title": "Советы",
+                "text": """
+<b>💡 Как избавиться от типичных ошибок:</b>
+
+• Заведите список своих частых ошибок и регулярно его пересматривайте.
+• После написания текста проверяйте его на наличие этих ошибок.
+• Читайте много качественных текстов (The Economist, The Guardian) – так вы начнёте чувствовать правильные конструкции.
+• Используйте грамматические справочники для проверки сомнительных случаев.
+
+<blockquote>Даже носители иногда ошибаются, но знание частых ошибок помогает их избегать.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Как быстро запомнить правильные предлоги?", "answer": "Заучивайте глаголы вместе с предлогами как единое целое (depend on, listen to). Список самых частотных ошибок можно повесить на видное место."}
+        ]
     },
     "synonyms_nuances": {
         "title": "Оттенки синонимов (talk/speak, start/begin, finish/complete)",
