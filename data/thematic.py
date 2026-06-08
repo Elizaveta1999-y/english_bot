@@ -1374,14 +1374,179 @@ I have a big family. My mother's name is Anna. She is a teacher. My father's nam
             {"question": "Как сказать 0 на английском?", "answer": "Zero (в науке), oh (в телефонных номерах), nil (в спорте)."}
         ]
     },
-    "tag_questions": {
+        "tag_questions": {
         "title": "Вопросительные предложения (tag questions)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Что такое tag questions?",
+                "text": """
+<b>❓ Tag questions (разделительные вопросы) – короткий вопрос в конце предложения для подтверждения информации.</b>
+
+• You are a student, aren't you? (Ты студент, не так ли?)
+• She likes coffee, doesn't she? (Она любит кофе, правда?)
+• It's cold today, isn't it? (Сегодня холодно, да?)
+
+<blockquote>Tag question переводится как «не так ли?», «правда?», «да?».</blockquote>
+"""
+            },
+            {
+                "title": "Правило образования",
+                "text": """
+<b>📌 Если основное предложение утвердительное, то tag – отрицательный. Если отрицательное, то tag – утвердительный.</b>
+
+• Утверждение + отрицательный tag:
+  • She is nice, isn't she?
+  • You like pizza, don't you?
+
+• Отрицание + утвердительный tag:
+  • She isn't nice, is she?
+  • You don't like pizza, do you?
+
+<b>Глагол to be:</b>
+• He is here, isn't he?
+• They aren't ready, are they?
+
+<blockquote>Tag состоит из вспомогательного глагола (do, be, have) или модального глагола и местоимения.</blockquote>
+"""
+            },
+            {
+                "title": "Особые случаи",
+                "text": """
+<b>⚠️ Важные исключения:</b>
+
+• I am right, aren't I? (Не amn't I, а aren't I – правильная форма)
+
+• Let's go, shall we? (Пойдём, хорошо?)
+• Open the door, will you? (Открой дверь, хорошо? – вежливая просьба)
+• Don't be late, will you? (Не опаздывай, ладно?)
+
+• There is a problem, isn't there?
+• There are many people, aren't there?
+
+<blockquote>С отрицательными словами (never, no, nothing, nobody) tag будет утвердительным.</blockquote>
+"""
+            },
+            {
+                "title": "Интонация",
+                "text": """
+<b>🎭 Интонация в tag questions меняет смысл:</b>
+
+• Если вы уверены в ответе и просто хотите подтверждения, интонация падает в конце (как в утверждении).
+  • It's a nice day, isn't it? ↘
+
+• Если вы не уверены и действительно спрашиваете, интонация повышается (как в вопросе).
+  • You don't know him, do you? ↗
+
+<b>Ответы на tag questions:</b>
+• You like coffee, don't you? – Yes, I do. (Если вы любите кофе)
+• You don't like coffee, do you? – No, I don't. (Если не любите)
+
+<blockquote>Осторожно: в русском мы часто отвечаем «Да, не люблю», что путает. По английским правилам ответ должен соответствовать факту, а не вопросу.</blockquote>
+"""
+            },
+            {
+                "title": "Типичные ошибки",
+                "text": """
+<b>⚠️ Частые ошибки:</b>
+• ❌ You are a student, aren't you? (верно)
+• ❌ I am right, amn't I?  ✅ I am right, aren't I?
+• ❌ Let's go, will we?  ✅ Let's go, shall we?
+• ❌ He never comes late, does he? (верно – утвердительный tag)
+
+<b>💡 Совет:</b>
+• Тренируйтесь: преобразуйте утверждения в tag questions.
+• Запомните исключения: aren't I?, shall we?, will you?.
+
+<blockquote>Tag questions очень распространены в разговорной речи, поэтому важно их освоить.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Как ответить на 'You don't like coffee, do you?', если я не люблю кофе?", "answer": "No, I don't. (Правильно: нет, не люблю)."}
+        ]
     },
-    "conditionals_type_3": {
+        "conditionals_type_3": {
         "title": "Условные предложения 3 типа (wish/if only)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Условные предложения 3 типа",
+                "text": """
+<b>⏪ Conditional 3 – нереальное условие в прошлом, сожаление о том, что не произошло.</b>
+
+Формула: If + Past Perfect (had done), + would have + V3
+
+• If I had studied harder, I would have passed the exam. (Если бы я усерднее учился, я бы сдал экзамен – но не учился, и не сдал)
+• She would have come to the party if she hadn't been sick. (Она бы пришла на вечеринку, если бы не болела)
+• If they had left earlier, they wouldn't have missed the flight. (Если бы они выехали раньше, они бы не опоздали на рейс)
+
+<blockquote>3 тип используется для выражения сожаления о прошлом.</blockquote>
+"""
+            },
+            {
+                "title": "Отрицание и вопросы",
+                "text": """
+<b>🚫 Отрицание в if-части и главной части:</b>
+
+• If I hadn't forgotten the keys, I wouldn't have been locked out. (Если бы я не забыл ключи, я бы не оказался запертым.)
+• She would have bought the car if she had had enough money. (Она бы купила машину, если бы у неё было достаточно денег – но не было)
+
+<b>❓ Вопросы:</b>
+
+• What would you have done if you had seen the accident? (Что бы ты сделал, если бы увидел аварию?)
+• Would you have helped him if he had asked? (Ты бы помог ему, если бы он попросил?)
+
+<blockquote>В вопросах would have переносится в начало главной части.</blockquote>
+"""
+            },
+            {
+                "title": "Сравнение 2 и 3 типа",
+                "text": """
+<b>📊 2 тип (настоящее/будущее) vs 3 тип (прошлое):</b>
+
+• 2 тип: If I were rich, I would buy a yacht. (сейчас, нереально)
+• 3 тип: If I had been rich, I would have bought a yacht. (в прошлом, нереально)
+
+• 2 тип: If she knew the answer, she would tell us. (сейчас не знает)
+• 3 тип: If she had known the answer, she would have told us. (в прошлом не знала)
+
+<blockquote>Не смешивайте: в if-части для прошлого – Past Perfect, в главной – would have done.</blockquote>
+"""
+            },
+            {
+                "title": "Конструкции I wish / If only (сожаление о прошлом)",
+                "text": """
+<b>😢 I wish / If only + Past Perfect – сожаление о том, что уже произошло (или не произошло) в прошлом.</b>
+
+• I wish I had studied harder at university. (Жаль, что я не усерднее учился в университете – не учился.)
+• She wishes she hadn't bought that car. (Она жалеет, что купила ту машину – купила.)
+• If only I had listened to your advice! (Если бы только я послушал твоего совета!)
+
+<blockquote>Past Perfect подчёркивает, что действие уже совершилось и его нельзя изменить.</blockquote>
+
+<b>Wish + would – для критики или желания перемен (не для себя).</b>
+• I wish you would stop interrupting me. (Я бы хотел, чтобы ты перестал меня перебивать.)
+"""
+            },
+            {
+                "title": "Типичные ошибки и советы",
+                "text": """
+<b>⚠️ Частые ошибки:</b>
+• ❌ If I would have known, I would have come.  ✅ If I had known, I would have come.
+• ❌ If she had saw him, she would have told.  ✅ If she had seen him, she would have told.
+• ❌ I wish I would have known.  ✅ I wish I had known.
+
+<b>💡 Совет:</b>
+• 3 тип всегда относится к прошлому – ищите слова-подсказки: yesterday, last week, in the past.
+• Если вы жалеете о том, что сделали или не сделали, используйте 3 тип.
+• Тренируйтесь: вспомните 3 ошибки, которые вы совершили, и напишите предложения с сожалением.
+
+<blockquote>3 тип и wish о прошлом – ключевая тема для выражения сожалений на экзаменах и в жизни.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Можно ли использовать 'would have' в if-части?", "answer": "Нет, никогда. В if-части только Past Perfect (had done). 'Would have' только в главной части."},
+            {"question": "В чём разница между 'I wish I had done' и 'I wish I would have done'?", "answer": "Правильно только 'I wish I had done'. 'Would have' после wish не используется (кроме wish + would для других лиц)."}
+        ]
     }
 }
