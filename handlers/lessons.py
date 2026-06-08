@@ -7,6 +7,7 @@ from data.level_a1 import LEVEL_A1_CONTENT
 from data.level_a2 import LEVEL_A2_CONTENT
 from data.level_b1 import LEVEL_B1_CONTENT
 from data.level_b2 import LEVEL_B2_CONTENT
+from data.level_c1 import LEVEL_C1_CONTENT
 from services.deepseek import chat
 from speaking.services.tts import text_to_voice
 
@@ -17,6 +18,7 @@ LESSON_CONTENT.update(LEVEL_A1_CONTENT)
 LESSON_CONTENT.update(LEVEL_A2_CONTENT)
 LESSON_CONTENT.update(LEVEL_B1_CONTENT)
 LESSON_CONTENT.update(LEVEL_B2_CONTENT)
+LESSON_CONTENT.update(LEVEL_C1_CONTENT)
 
 THEMATIC_TOPICS = [
     "Present Simple vs Continuous",
@@ -96,7 +98,18 @@ MODULES_B2 = {
     "8": {"name": "📙 Модуль 8: Лексика B2", "lessons": ["work_career_b2", "education_b2", "health_medicine", "environment_b2", "science_technology", "media_communication", "crime_punishment", "politics_government", "economy_business", "phrasal_verbs_b2", "phrasal_verbs_b2_2", "idioms_b2"]}
 }
 
-ALL_MODULES = {"A1": MODULES_A1, "A2": MODULES_A2, "B1": MODULES_B1, "B2": MODULES_B2}
+MODULES_C1 = {
+    "1": {"name": "📘 Модуль 1: Сложные времена и аспекты (C1)", "lessons": ["future_perfect_continuous_advanced", "future_in_the_past_advanced", "past_perfect_continuous_advanced2", "present_perfect_continuous_advanced", "narrative_tenses_advanced", "time_clauses_advanced_c1"]},
+    "2": {"name": "📙 Модуль 2: Модальные глаголы (C1)", "lessons": ["modal_verbs_advanced_c1", "modal_perfect_advanced_c1", "modal_passive_advanced_c1", "modal_expressions_necessity_adv", "modal_expressions_criticism_adv"]},
+    "3": {"name": "📗 Модуль 3: Условные предложения (C1)", "lessons": ["conditionals_mixed_advanced", "conditionals_alternatives_advanced", "conditionals_inversion_advanced", "wish_if_only_advanced_c1", "would_rather_prefer_advanced"]},
+    "4": {"name": "📘 Модуль 4: Инфинитив и герундий (C1)", "lessons": ["infinitive_gerund_advanced_c1", "perfect_infinitive_gerund_adv", "passive_infinitive_gerund_adv", "verbs_of_perception_advanced", "causative_advanced_c1"]},
+    "5": {"name": "📙 Модуль 5: Пассивный залог (C1)", "lessons": ["passive_reporting_verbs_advanced", "passive_with_prepositions_adv", "impersonal_passive_advanced_c1", "causative_passive_advanced"]},
+    "6": {"name": "📗 Модуль 6: Косвенная речь (C1)", "lessons": ["reported_speech_advanced_c1", "reported_speech_mix_advanced", "reporting_verbs_advanced_c1", "reporting_verbs_patterns_c1"]},
+    "7": {"name": "📘 Модуль 7: Придаточные и связки (C1)", "lessons": ["relative_clauses_reduced_c1", "cleft_sentences_advanced", "inversion_negative_advanced", "inversion_emphatic_advanced", "conjunctions_advanced_c1"]},
+    "8": {"name": "📙 Модуль 8: Лексика C1", "lessons": ["academic_writing", "idioms_c1", "phrasal_verbs_c1", "phrasal_verbs_c1_2", "collocations_c1", "word_formation_c1", "formal_informal_language", "business_english_c1"]}
+}
+
+ALL_MODULES = {"A1": MODULES_A1, "A2": MODULES_A2, "B1": MODULES_B1, "B2": MODULES_B2, "C1": MODULES_C1}
 
 LESSON_NAMES = {
 # Названия для A1 (вставьте в LESSON_NAMES)
@@ -284,6 +297,56 @@ LESSON_NAMES = {
     "phrasal_verbs_b2": "🔤 Фразовые глаголы B2 (часть 1)",
     "phrasal_verbs_b2_2": "🔤 Фразовые глаголы B2 (часть 2)",
     "idioms_b2": "💬 Идиомы и устойчивые выражения B2",
+    # C1 модуль 1
+    "future_perfect_continuous_advanced": "⏳ Future Perfect Continuous (углубление)",
+    "future_in_the_past_advanced": "📅 Future in the Past (сложные случаи)",
+    "past_perfect_continuous_advanced2": "⏪ Past Perfect Continuous (for/since)",
+    "present_perfect_continuous_advanced": "🔄 Present Perfect Continuous (результат/длительность)",
+    "narrative_tenses_advanced": "📖 Narrative Tenses (углублённо)",
+    "time_clauses_advanced_c1": "⏰ Придаточные времени (so long as, once)",
+    # C1 модуль 2
+    "modal_verbs_advanced_c1": "🎯 Модальные глаголы (вероятность)",
+    "modal_perfect_advanced_c1": "✅ Modal Perfect (сложные случаи)",
+    "modal_passive_advanced_c1": "📦 Пассив с модальными (углубление)",
+    "modal_expressions_necessity_adv": "⚖️ Выражение необходимости (need, needn't)",
+    "modal_expressions_criticism_adv": "😔 Критика и сожаление (should have done)",
+    # C1 модуль 3
+    "conditionals_mixed_advanced": "🔄 Смешанные условные (сложные)",
+    "conditionals_alternatives_advanced": "🔁 Альтернативы if (provided, as long as)",
+    "conditionals_inversion_advanced": "🔄 Инверсия в условных (Had I known)",
+    "wish_if_only_advanced_c1": "😟 I wish / If only (C1)",
+    "would_rather_prefer_advanced": "⚖️ would rather / prefer (оттенки)",
+    # C1 модуль 4
+    "infinitive_gerund_advanced_c1": "📝 Инфинитив и герундий (сложные)",
+    "perfect_infinitive_gerund_adv": "⏪ Перфектный инфинитив/герундий",
+    "passive_infinitive_gerund_adv": "📦 Пассивный инфинитив/герундий",
+    "verbs_of_perception_advanced": "👀 Глаголы восприятия (нюансы)",
+    "causative_advanced_c1": "🔧 Каузатив (углубление)",
+    # C1 модуль 5
+    "passive_reporting_verbs_advanced": "🗣️ Пассив с глаголами передачи информации",
+    "passive_with_prepositions_adv": "📍 Пассив с предлогами (редкие случаи)",
+    "impersonal_passive_advanced_c1": "📰 Безличный пассив (все времена)",
+    "causative_passive_advanced": "🔨 Каузативный пассив (углубление)",
+    # C1 модуль 6
+    "reported_speech_advanced_c1": "🗣️ Косвенная речь (сложные случаи)",
+    "reported_speech_mix_advanced": "🔄 Косвенная речь (актуальность)",
+    "reporting_verbs_advanced_c1": "📢 Глаголы передачи речи (все паттерны)",
+    "reporting_verbs_patterns_c1": "📋 Паттерны глаголов передачи речи",
+    # C1 модуль 7
+    "relative_clauses_reduced_c1": "✂️ Сокращённые определительные придаточные",
+    "cleft_sentences_advanced": "🔍 Расщеплённые предложения (все типы)",
+    "inversion_negative_advanced": "🔄 Инверсия после отрицательных наречий",
+    "inversion_emphatic_advanced": "❗ Инверсия для эмфазы",
+    "conjunctions_advanced_c1": "🔗 Союзы и связки (C1)",
+    # C1 модуль 8
+    "academic_writing": "📝 Академическая письменная речь",
+    "idioms_c1": "💬 Идиомы C1",
+    "phrasal_verbs_c1": "🔤 Фразовые глаголы C1 (ч.1)",
+    "phrasal_verbs_c1_2": "🔤 Фразовые глаголы C1 (ч.2)",
+    "collocations_c1": "🔗 Коллокации C1",
+    "word_formation_c1": "🔨 Словообразование C1",
+    "formal_informal_language": "🎭 Формальный и неформальный английский",
+    "business_english_c1": "💼 Деловой английский C1",
 }
 
 user_page = {}
