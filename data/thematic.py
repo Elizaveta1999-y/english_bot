@@ -104,15 +104,170 @@ THEMATIC_CONTENT = {
             {"question": "Всегда ли нужно использовать Continuous с now?", "answer": "Обычно да, но в некоторых контекстах (например, научных) возможно и Simple. На экзаменах лучше использовать Continuous."}
         ]
     },
-    "past_simple_vs_present_perfect": {
+        "past_simple_vs_present_perfect": {
         "title": "Past Simple vs Present Perfect",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Ключевая разница",
+                "text": """
+<b>⚖️ Past Simple – действие завершено в прошлом, часто указано время.</b>
+• I saw him yesterday. (Я видел его вчера.)
+• She lived in Paris for 5 years, then moved. (Она жила в Париже 5 лет, потом переехала – жизнь в прошлом)
+
+<b>✅ Present Perfect – результат важен сейчас, время не указано или не важно.</b>
+• I have lost my keys. (Я потерял ключи – результат: сейчас не могу найти)
+• She has visited Paris. (Она была в Париже – опыт, когда – неважно)
+
+<blockquote>Если есть конкретное время (yesterday, last week, in 2020) – Past Simple. Если нет – Present Perfect.</blockquote>
+"""
+            },
+            {
+                "title": "Сравнение на примерах",
+                "text": """
+<b>📖 Примеры:</b>
+
+• Past Simple: I saw that film last week. (конкретное время)
+  Present Perfect: I have seen that film. (опыт, когда – неважно)
+
+• Past Simple: He lived in London for 10 years. (больше не живёт)
+  Present Perfect: He has lived in London for 10 years. (всё ещё живёт)
+
+• Past Simple: She finished her homework at 6 pm. (закончила в 6)
+  Present Perfect: She has already finished her homework. (результат: сейчас свободна)
+
+• Past Simple: Did you ever go to Japan? (в прошлом, но не уточняется когда – допустимо)
+  Present Perfect: Have you ever been to Japan? (опыт в жизни – правильный вариант)
+
+<blockquote>С ever, never, already, yet, just используйте Present Perfect.</blockquote>
+"""
+            },
+            {
+                "title": "Слова-маркеры",
+                "text": """
+<b>🔖 Маркеры Past Simple:</b>
+• yesterday, last week, last month, last year
+• in 2010, two days ago, when I was a child
+• at that time, in the past
+
+<b>🔖 Маркеры Present Perfect:</b>
+• ever, never, already, yet, just, recently, lately
+• so far, up to now, today, this week (если период не закончен)
+• for (с указанием продолжительности, когда действие продолжается)
+• since (с указанием отправной точки)
+
+<b>Примеры:</b>
+• I have never tried sushi. (никогда – опыт)
+• She has already finished. (уже – результат)
+• We haven't seen him yet. (ещё не – отрицание)
+• They have just arrived. (только что)
+
+<blockquote>For и since могут использоваться с обоими временами, но смысл разный.</blockquote>
+"""
+            },
+            {
+                "title": "Типичные ошибки и советы",
+                "text": """
+<b>⚠️ Частые ошибки:</b>
+• ❌ I have seen him yesterday.  ✅ I saw him yesterday.
+• ❌ She has lived in London in 2010.  ✅ She lived in London in 2010.
+• ❌ Did you ever been to London?  ✅ Have you ever been to London?
+
+<b>💡 Советы:</b>
+• Если есть точное время (yesterday, last week, in 2010) – Past Simple.
+• Если важно действие само по себе, а не когда – Present Perfect.
+• С ever, never, already, yet, just всегда Present Perfect.
+• Тренируйтесь: расскажите о 3 вещах, которые вы сделали сегодня (Present Perfect) и 3 вещах, которые вы сделали вчера (Past Simple).
+
+<blockquote>Разница тонкая, но важная. С практикой вы начнёте чувствовать её автоматически.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Как сказать 'я никогда не был в Лондоне'?", "answer": "I have never been to London. (Present Perfect)"},
+            {"question": "Можно ли сказать 'I have seen him last week' в разговорной речи?", "answer": "Нет, это грубая ошибка. Только I saw him last week."}
+        ]
     },
-    "modal_verbs_can_could_must": {
+        "modal_verbs_can_could_must": {
         "title": "Модальные глаголы (can/could/must)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Can – способность, разрешение, просьба",
+                "text": """
+<b>💪 Can – выражает умение, возможность, разрешение.</b>
+
+• Способность (умею): I can swim. (Я умею плавать.)
+• Разрешение (можно): You can go now. (Ты можешь идти.)
+• Просьба (неформальная): Can you help me? (Ты можешь мне помочь?)
+
+<b>Формы:</b>
+• Утверждение: I can play.
+• Отрицание: cannot / can't (I can't play.)
+• Вопрос: Can you play?
+
+<blockquote>После can всегда глагол без частицы to. Can не меняется по лицам.</blockquote>
+"""
+            },
+            {
+                "title": "Could – прошлое умение, вежливая просьба, возможность",
+                "text": """
+<b>💡 Could – более вежливый и менее уверенный, чем can.</b>
+
+• Прошедшее умение: When I was young, I could run fast. (Когда я был молодым, я мог быстро бегать.)
+• Вежливая просьба: Could you open the door, please? (Не могли бы вы открыть дверь?)
+• Возможность (50% вероятности): It could rain later. (Возможно, позже пойдёт дождь.)
+
+<b>Формы:</b>
+• Утверждение: I could help.
+• Отрицание: could not / couldn't (I couldn't come.)
+• Вопрос: Could I call you?
+
+<blockquote>Could также используется как условная форма can (в вежливых просьбах и предположениях).</blockquote>
+"""
+            },
+            {
+                "title": "Must – обязанность, настоятельная рекомендация, запрет",
+                "text": """
+<b>🔔 Must – выражает сильную обязанность или необходимость.</b>
+
+• Обязанность (я сам считаю, что должен): I must finish this report. (Я должен закончить этот отчёт.)
+• Настоятельная рекомендация: You must see that film. It's amazing! (Ты обязательно должен посмотреть этот фильм.)
+• Запрет (mustn't): You mustn't smoke here. (Здесь нельзя курить.)
+
+<b>Формы:</b>
+• Утверждение: I must go.
+• Отрицание: must not / mustn't (строгий запрет)
+• Вопрос: Must we go? (редко, обычно Do we have to go?)
+
+<blockquote>Must не имеет прошедшего времени – для прошлого используйте had to.</blockquote>
+"""
+            },
+            {
+                "title": "Сравнение и типичные ошибки",
+                "text": """
+<b>📊 Сравнение:</b>
+• can – умею, могу (I can swim)
+• could – мог (в прошлом), вежливая просьба (Could you...)
+• must – должен, обязан (I must study)
+
+<b>⚠️ Частые ошибки:</b>
+• ❌ I can to swim.  ✅ I can swim.
+• ❌ She cans play.  ✅ She can play.
+• ❌ I must to go.  ✅ I must go.
+• ❌ You don't must go. (неправильно)  ✅ You mustn't go. / You don't have to go.
+
+<b>💡 Советы:</b>
+• После can, could, must всегда инфинитив без to.
+• Для запретов – mustn't.
+• Для отсутствия необходимости – don't have to (это не mustn't).
+
+<blockquote>Запомните: mustn't = нельзя (запрещено), don't have to = не нужно (нет необходимости).</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "В чём разница между must и have to?", "answer": "Must – внутреннее чувство долга (я сам считаю). Have to – внешняя необходимость (меня заставляют)."},
+            {"question": "Как спросить разрешение вежливо?", "answer": "Could I...? или May I...? (более формально)"}
+        ]
     },
     "conditionals_0_1_2": {
         "title": "Conditionals (0,1,2 типа)",
