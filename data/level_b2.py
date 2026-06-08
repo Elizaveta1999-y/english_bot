@@ -1716,25 +1716,324 @@ It was a dark night. The wind was blowing (Past Continuous – фон). I had be
     },
 
     # ==================== МОДУЛЬ 6: Косвенная речь (продвинутая) ====================
-    "reported_speech_advanced_2": {
+        "reported_speech_advanced_2": {
         "title": "Косвенная речь (сложные случаи, разные глаголы)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Когда время не меняется (повторение и углубление)",
+                "text": """
+<b>📌 Время может не меняться в следующих случаях:</b>
+
+1. <b>Общеизвестные факты, законы природы</b>
+   • "The Earth goes around the Sun." → He said the Earth goes around the Sun.
+
+2. <b>Действие ещё актуально в момент речи</b>
+   • "I like pizza." → He said he likes pizza. (если он всё ещё любит пиццу)
+
+3. <b>Слова были сказаны и сразу пересказываются</b>
+   • "I'm hungry." → She said she is hungry. (сразу после)
+
+4. <b>С глаголами в настоящем времени в главной части</b>
+   • He says he is tired. (says, не said)
+
+<blockquote>На экзаменах рекомендуют сдвигать время, но в живой речи допустимо не менять, если ситуация не изменилась.</blockquote>
+"""
+            },
+            {
+                "title": "Модальные глаголы в косвенной речи",
+                "text": """
+<b>⚠️ Модальные глаголы тоже могут меняться.</b>
+
+• can → could
+  • "I can swim." → He said he could swim.
+
+• may → might
+  • "I may come." → He said he might come.
+
+• must (вероятность) → must (иногда меняется на had to)
+  • "It must be late." → He said it must be late. / He said it had to be late.
+
+• must (обязанность) → had to
+  • "I must go." → He said he had to go.
+
+• will → would
+  • "I will help." → He said he would help.
+
+• shall → should / would
+  • "I shall call." → He said he would call.
+
+<blockquote>Модальные глаголы could, might, should, would, ought to не меняются.</blockquote>
+"""
+            },
+            {
+                "title": "Изменения указателей времени и места",
+                "text": """
+<b>📌 Дополнительные изменения (кроме now → then, today → that day, here → there):</b>
+
+• this week → that week
+• last month → the previous month / the month before
+• next year → the following year / the next year
+• a year ago → a year before
+
+• "I'll see you next week." → He said he would see me the following week.
+• "I bought this car last month." → He said he had bought that car the previous month.
+
+<blockquote>В разговорной речи изменения могут быть менее строгими, но для письма правила важны.</blockquote>
+"""
+            },
+            {
+                "title": "Советы и типичные ошибки",
+                "text": """
+<b>⚠️ Частые ошибки:</b>
+• ❌ He said me that he was tired.  ✅ He told me that he was tired.
+• ❌ He said that he is tired. (если главная часть в прошлом)  ✅ He said that he was tired.
+• ❌ She told that she was happy.  ✅ She said that she was happy. / She told me that she was happy.
+
+<b>💡 Совет:</b>
+• Слово that можно опускать: He said (that) he was tired.
+• Запомните: say + (that) + предложение; tell + кому + (that) + предложение.
+• Для передачи приказов и просьб используйте tell + someone + to do.
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Всегда ли нужно сдвигать 'must' в косвенной речи?", "answer": "Вероятностное must часто не меняется (He must be tired → He said he must be tired). Обязательное must обычно меняется на had to."}
+        ]
     },
-    "reported_speech_mix": {
+        "reported_speech_mix": {
         "title": "Смешение времён в косвенной речи (если ситуация актуальна)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Когда можно не сдвигать время?",
+                "text": """
+<b>🔄 В косвенной речи время можно не сдвигать, если действие всё ещё актуально в момент пересказа.</b>
+
+• "I am tired." (сейчас) → He said he is tired. (он всё ещё устал)
+• "The train leaves at 6." (расписание) → He said the train leaves at 6. (расписание не изменилось)
+• "She works in London." (всё ещё работает) → He said she works in London.
+
+<blockquote>Это правило особенно важно для экзаменов: если ситуация не изменилась, можно оставить Present.</blockquote>
+"""
+            },
+            {
+                "title": "Примеры смешения времён",
+                "text": """
+<b>📖 Примеры:</b>
+
+• "I'm waiting for my friend." (друг ещё не пришёл) → He said he is waiting for his friend.
+• "I have never been to Paris." (опыт) → She said she has never been to Paris.
+• "The Earth is round." (вечный факт) → He said the Earth is round.
+
+<blockquote>В этих случаях Past Simple не требуется, так как информация верна в настоящем.</blockquote>
+"""
+            },
+            {
+                "title": "Когда сдвиг времени обязателен",
+                "text": """
+<b>📌 Сдвиг времени обязателен, если:</b>
+
+• Информация устарела или неактуальна
+  • "I'm happy." (тогда, но сейчас не счастлив) → He said he was happy.
+
+• Есть прямое указание на прошлое
+  • "I saw her yesterday." → He said he had seen her the day before.
+
+• Ситуация изменилась
+  • "I live in London." (раньше жил, но переехал) → He said he had lived in London.
+
+<blockquote>В сомнительных случаях безопаснее сдвигать время.</blockquote>
+"""
+            },
+            {
+                "title": "Советы и типичные ошибки",
+                "text": """
+<b>⚠️ Частые ошибки:</b>
+• ❌ He said he is tired, but he's full of energy. (противоречие) – нужно было was tired.
+• ❌ She said she has seen him yesterday. (неправильно)  ✅ She said she had seen him the day before.
+
+<b>💡 Совет:</b>
+• Спросите себя: «Это утверждение всё ещё верно?» Если да, можно не сдвигать время.
+• Если вы пересказываете слова спустя долгое время, вероятно, нужно сдвигать.
+• Тренируйтесь: пересказывайте диалоги из фильмов, обращая внимание на актуальность информации.
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Всегда ли нужно сдвигать 'I like'?", "answer": "Если человек всё ещё любит, можно не сдвигать. Но на экзаменах для уверенности лучше сдвигать."}
+        ]
     },
-    "reporting_verbs_advanced": {
+        "reporting_verbs_advanced": {
         "title": "Глаголы передачи речи (advise, encourage, warn, accuse, boast, deny, admit, suggest)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Глаголы + дополнение + инфинитив",
+                "text": """
+<b>📌 Эти глаголы требуют косвенное дополнение + to + V.</b>
+
+• <b>advise</b> – советовать
+  • "You should see a doctor." → He advised me to see a doctor.
+
+• <b>encourage</b> – ободрять
+  • "Keep trying!" → She encouraged me to keep trying.
+
+• <b>warn</b> – предупреждать
+  • "Be careful!" → He warned me to be careful.
+
+• <b>invite</b> – приглашать
+  • "Come to my party." → She invited me to come to her party.
+
+• <b>remind</b> – напоминать
+  • "Don't forget to call." → He reminded me to call.
+
+• <b>persuade</b> – убеждать
+  • "You should join us." → She persuaded me to join them.
+
+<blockquote>В этих конструкциях обязательно указывается, кому адресовано действие.</blockquote>
+"""
+            },
+            {
+                "title": "Глаголы + герундий",
+                "text": """
+<b>📌 Некоторые глаголы требуют герундий (-ing) после себя.</b>
+
+• <b>admit</b> – признавать
+  • "I stole the money." → He admitted stealing the money.
+
+• <b>deny</b> – отрицать
+  • "I didn't break it." → She denied breaking it.
+
+• <b>suggest</b> – предлагать
+  • "Let's go to the cinema." → He suggested going to the cinema.
+
+• <b>recommend</b> – рекомендовать
+  • "You should see this film." → She recommended seeing this film.
+
+• <b>boast</b> – хвастаться
+  • "I speak five languages." → He boasted about speaking five languages. (часто с about)
+
+• <b>insist on</b> – настаивать на
+  • "You must come." → She insisted on coming.
+
+<blockquote>Некоторые глаголы могут использоваться с предлогом + герундий.</blockquote>
+"""
+            },
+            {
+                "title": "Глаголы + that (сослагательное наклонение)",
+                "text": """
+<b>📌 Некоторые глаголы выражают предложение, требование, рекомендацию и требуют сослагательного наклонения (should + V или базовая форма).</b>
+
+• <b>suggest</b> – предлагать (без дополнения)
+  • "We should leave early." → He suggested that we (should) leave early.
+
+• <b>recommend</b> – рекомендовать
+  • "You should rest." → She recommended that I (should) rest.
+
+• <b>insist</b> – настаивать
+  • "He must pay." → He insisted that he (should) pay.
+
+• <b>demand</b> – требовать
+  • "You must leave." → They demanded that we (should) leave.
+
+<blockquote>В американском английском часто опускают should: He suggested that we leave early.</blockquote>
+"""
+            },
+            {
+                "title": "Советы и типичные ошибки",
+                "text": """
+<b>⚠️ Частые ошибки:</b>
+• ❌ He advised me that I rest.  ✅ He advised me to rest.
+• ❌ She suggested to go.  ✅ She suggested going.
+• ❌ He denied to steal.  ✅ He denied stealing.
+
+<b>💡 Совет:</b>
+• Запомните три основные группы:
+  • advise/encourage/warn + someone + to do
+  • admit/deny/suggest + doing
+  • suggest/recommend/insist + that + (should) do
+• Тренируйтесь: переписывайте прямую речь, используя разные глаголы передачи речи.
+"""
+            }
+        ],
+        "faq": [
+            {"question": "В чём разница между 'suggest doing' и 'suggest that someone do'?", "answer": "Suggest + V‑ing (предложить действие вообще). Suggest that someone do (предложить кому-то сделать)."}
+        ]
     },
-    "reporting_verbs_patterns": {
+        "reporting_verbs_patterns": {
         "title": "Паттерны глаголов передачи речи (verb + -ing, verb + that, verb + to infinitive)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке"}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Общая классификация",
+                "text": """
+<b>📋 Три основных паттерна:</b>
+
+1. <b>Глагол + to + инфинитив</b> (с дополнением или без)
+   • agree, offer, promise, refuse, threaten, decide, hope, plan, want, would like
+
+2. <b>Глагол + дополнение + to + инфинитив</b>
+   • advise, allow, ask, encourage, invite, order, persuade, remind, tell, warn
+
+3. <b>Глагол + -ing (герундий)</b>
+   • admit, deny, suggest, recommend, consider, avoid, enjoy, finish, mind, practise
+
+<blockquote>Есть также глаголы, которые требуют that (часто с should или сослагательным наклонением).</blockquote>
+"""
+            },
+            {
+                "title": "Глаголы, допускающие несколько паттернов (с изменением смысла)",
+                "text": """
+<b>🔄 Некоторые глаголы могут использоваться в разных конструкциях с разным смыслом.</b>
+
+• <b>remember / forget / regret</b>
+  • + to do (не забыть сделать, сожалеть о предстоящем)
+  • + doing (помнить о сделанном, сожалеть о прошлом)
+
+• <b>mean</b>
+  • + to do (намереваться)
+  • + doing (означать)
+
+• <b>try</b>
+  • + to do (пытаться)
+  • + doing (попробовать способ)
+
+• <b>stop</b>
+  • + to do (остановиться, чтобы сделать)
+  • + doing (прекратить делать)
+
+<blockquote>Эти различия важны для точной передачи смысла.</blockquote>
+"""
+            },
+            {
+                "title": "Глаголы, требующие that (сослагательное наклонение)",
+                "text": """
+<b>📌 Глаголы, после которых используется that + подлежащее + (should) + V (базовая форма).</b>
+
+• suggest, recommend, propose, insist, demand, request, require, advise (с дополнением)
+
+• He suggested that we (should) arrive early.
+• The doctor recommended that he (should) stop smoking.
+• They demanded that the company (should) apologize.
+
+<blockquote>В американском английском should часто опускается, остаётся только базовая форма глагола.</blockquote>
+"""
+            },
+            {
+                "title": "Советы и типичные ошибки",
+                "text": """
+<b>⚠️ Частые ошибки:</b>
+• ❌ I suggested him to go.  ✅ I suggested that he (should) go. / I suggested going.
+• ❌ He demanded me to leave.  ✅ He demanded that I (should) leave.
+• ❌ She recommended me to rest.  ✅ She recommended that I rest. / She advised me to rest.
+
+<b>💡 Совет:</b>
+• Запоминайте глаголы вместе с их паттерном.
+• Используйте списки, но лучше практиковаться в контексте.
+• Тренируйтесь: перефразируйте предложения, используя разные глаголы передачи речи.
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Как запомнить все паттерны?", "answer": "Группируйте глаголы по смыслу: чувства/мысли (think, believe) + that; желания/попытки (want, try) + to V; завершённые действия (admit, deny) + V‑ing."}
+        ]
     },
 
     # ==================== МОДУЛЬ 7: Придаточные и связки (продвинутые) ====================
