@@ -1770,15 +1770,140 @@ THEMATIC_NEW_CONTENT = {
             {"question": "Как спросить 'нужно ли мне идти?' с need?", "answer": "Do I need to go? (разговорный) / Need I go? (формальный, редко)."}
         ]
     },
-    "modal_expressions_criticism": {
+        "modal_expressions_criticism": {
         "title": "Выражение критики и сожаления (should have done, could have done, might have done)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке. Скоро здесь появится теория."}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Should have done – основная форма критики",
+                "text": """
+<b>😔 Should have done – сожаление о том, что действие не было выполнено, или упрёк.</b>
+
+• I should have studied harder. (Мне следовало усерднее учиться – но не учился)
+• You should have told me the truth. (Тебе следовало сказать мне правду)
+
+<blockquote>Shouldn't have done – сожаление о том, что действие было выполнено (не следовало делать).</blockquote>
+"""
+            },
+            {
+                "title": "Could have done – упрёк в упущенной возможности",
+                "text": """
+<b>📌 Could have done – указывает на то, что у человека была возможность, но он ею не воспользовался.</b>
+
+• You could have helped me. (Ты мог бы мне помочь – но не помог)
+• He could have won the race if he had tried harder. (Он мог бы выиграть гонку, если бы постарался)
+
+<blockquote>В отличие от should have, could have не выражает моральной оценки, а только констатирует неиспользованную возможность.</blockquote>
+"""
+            },
+            {
+                "title": "Might have done – очень слабая возможность (менее критично)",
+                "text": """
+<b>📌 Might have done реже используется для критики; чаще – для предположения.</b>
+
+• You might have told me you were coming! (Ты мог бы сказать, что придёшь! – мягкий упрёк)
+• He might have considered our feelings. (Он мог бы учесть наши чувства – слабее, чем should)
+
+<blockquote>Для сильной критики предпочтительнее should have done.</blockquote>
+"""
+            },
+            {
+                "title": "Сравнение оттенков",
+                "text": """
+<b>📊 Сравнение оттенков:</b>
+• <b>You should have called me.</b> (Тебе следовало позвонить – моральный долг)
+• <b>You could have called me.</b> (Ты мог бы позвонить – была возможность)
+• <b>You might have called me.</b> (Ты мог бы позвонить – очень мягко, почти не упрёк)
+
+<b>⚠️ Типичные ошибки:</b>
+• ❌ I must have studied. (не для критики)  ✅ I should have studied.
+• ❌ She could have been more careful. (верно, это критика)
+• ❌ They might have done it. (скорее предположение, чем критика)
+
+<b>💡 Совет:</b>
+• Для критики того, что кто-то не выполнил свой долг – should have done.
+• Для указания на упущенную выгоду – could have done.
+• Для мягкого упрёка – might have done (редко).
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Можно ли использовать 'could have' для сожаления о своих действиях?", "answer": "Да, для сожаления о том, что вы не использовали возможность: I could have become a doctor, but I chose a different path."}
+        ]
     },
-    "modal_verbs_ability": {
+        "modal_verbs_ability": {
         "title": "Способность (can, could, be able to, manage to, succeed in)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке. Скоро здесь появится теория."}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Can / could – базовая способность",
+                "text": """
+<b>💪 Can – способность в настоящем.</b>
+• I can swim. (Я умею плавать.)
+• She can speak three languages. (Она говорит на трёх языках.)
+
+<b>⏪ Could – способность в прошлом (общая).</b>
+• When I was young, I could run fast. (Когда я был молодым, я мог быстро бегать.)
+
+<blockquote>Для отрицания: cannot / can't, could not / couldn't.</blockquote>
+"""
+            },
+            {
+                "title": "Be able to – альтернатива can/could",
+                "text": """
+<b>🔁 Be able to можно использовать вместо can/could, особенно в сложных временах.</b>
+
+• I am able to swim. ( = I can swim.)
+• She was able to pass the exam. ( = She could pass the exam – обычно для конкретного события)
+• We will be able to visit you next week. (Мы сможем навестить тебя на следующей неделе – can не имеет будущего времени)
+• I have been able to work from home lately. (В последнее время я могу работать из дома – вместо can)
+
+<blockquote>В настоящем и прошедшем can/could обычно предпочтительнее, но be able to нужно для будущего, перфекта и герундия.</blockquote>
+"""
+            },
+            {
+                "title": "Manage to – суметь (преодолев трудности)",
+                "text": """
+<b>🎯 Manage to + V – суметь сделать что-то, несмотря на трудности.</b>
+
+• He managed to pass the exam even though it was very difficult. (Ему удалось сдать экзамен, хотя он был очень трудным.)
+• We managed to find a parking spot after searching for an hour. (Нам удалось найти место для парковки после часа поисков.)
+
+<blockquote>В отличие от could, manage to подчёркивает, что действие было успешно завершено (часто после усилий).</blockquote>
+"""
+            },
+            {
+                "title": "Succeed in – преуспеть в",
+                "text": """
+<b>🏆 Succeed in + V‑ing – преуспеть в чём-то, достичь цели (более формальный вариант).</b>
+
+• She succeeded in convincing the board. (Ей удалось убедить совет директоров.)
+• They succeeded in climbing the mountain. (Они успешно взошли на гору.)
+
+<blockquote>Succeed in более формален, чем manage to, и часто используется в письменной речи.</blockquote>
+"""
+            },
+            {
+                "title": "Сравнение и типичные ошибки",
+                "text": """
+<b>📊 Сравнение:</b>
+• I could open the door. (я мог открыть дверь – была способность, но неизвестно, открыл ли)
+• I managed to open the door. (мне удалось открыть дверь – успешно)
+• I succeeded in opening the door. (я успешно открыл дверь – формально)
+
+<b>⚠️ Частые ошибки:</b>
+• ❌ I could to open.  ✅ I could open.
+• ❌ She managed open.  ✅ She managed to open.
+• ❌ They succeeded to win.  ✅ They succeeded in winning.
+
+<b>💡 Совет:</b>
+• Если вы хотите подчеркнуть, что действие было успешным, несмотря на трудности, используйте manage to.
+• Для формальных ситуаций – succeed in.
+• Для общей способности – can / could / be able to.
+"""
+            }
+        ],
+        "faq": [
+            {"question": "В чём разница между 'could' и 'was able to'?", "answer": "Could – общая способность в прошлом (I could read). Was able to – успешно справился с конкретной задачей (I was able to escape)."}
+        ]
     },
 
     # ==================== СРАВНЕНИЯ И СТРУКТУРЫ ====================
