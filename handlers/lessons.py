@@ -904,6 +904,7 @@ async def show_thematic_lesson(callback: CallbackQuery):
     topic_name = THEMATIC_TOPICS[idx]
     key = topic_name.lower().replace(" ", "_").replace("(", "").replace(")", "").replace("?", "")
     content = LESSON_CONTENT.get(key)
+print(f"DEBUG: key={key}, found={content is not None}")
     if not content:
         keyboard = InlineKeyboardMarkup(inline_keyboard=[
             [InlineKeyboardButton(text="🔙 Назад к темам", callback_data="thematic_menu")],
