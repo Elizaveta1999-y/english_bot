@@ -71,6 +71,53 @@ THEMATIC_TOPICS = [
 
 ]
 
+THEMATIC_TOPICS_RU = [
+    "Инверсия после отрицательных наречий",
+    "Инверсия для эмфазы",
+    "Расщеплённые предложения",
+    "Эллипсис и замена",
+    "Смешанные условные предложения",
+    "Условные предложения без if",
+    "Modal Perfect (углубление)",
+    "Пассив с модальными глаголами",
+    "Future Perfect Continuous",
+    "Future in the Past (сложные случаи)",
+    "Герундий и инфинитив – сложные глаголы",
+    "Перфектный герундий и инфинитив",
+    "Пассивный герундий и инфинитив",
+    "Косвенная речь – сложные случаи",
+    "Глаголы передачи речи",
+    "Косвенные вопросы (продвинутые)",
+    "Пассив с глаголами передачи информации",
+    "Пассив с предлогами",
+    "Безличный пассив",
+    "Сокращённые определительные придаточные",
+    "Придаточные уступки (сложные нюансы)",
+    "Придаточные цели",
+    "Придаточные следствия",
+    "Выражение необходимости",
+    "Выражение критики и сожаления",
+    "Способность (can, could, be able to, manage to, succeed in)",
+    "Конструкции сравнения as...as, not so...as, than, less...than",
+    "Конструкция the more... the more",
+    "Конструкции too / enough",
+    "Разговорные клише",
+    "Дискурсивные маркеры",
+    "Заполнители пауз",
+    "Словообразование (продвинутое)",
+    "Латинские и греческие корни",
+    "Ложные друзья переводчика",
+    "Часто путаемые слова",
+    "Фразовые глаголы C1-C2 (часть 1)",
+    "Фразовые глаголы C1-C2 (часть 2)",
+    "Идиомы C1",
+    "Идиомы C2",
+    "Пунктуация в английском",
+    "Формальный и неформальный английский",
+    "Hedging (смягчение утверждений)",
+    "Риторические приёмы"
+]
+
 MODULES_A1 = {
     "1": {"name": "📘 Модуль 1: Основы и знакомство", "lessons": ["alphabet", "numbers120", "tobepositive", "tobenegaquestion", "countries", "pronouns", "plural", "questionwords", "thereisare", "prepositionsplace", "adjectives", "presentsimple"]},
     "2": {"name": "📙 Модуль 2: Действия и события", "lessons": ["prescont", "presimplevscont", "tobePast", "pastSimpleRegular", "pastSimpleIrregular", "futureGoingTo", "modalCan", "modalMust", "ordinalNumbers", "adverbsFrequency", "prepositionsTime"]},
@@ -433,10 +480,11 @@ user_page = {}
 def get_thematic_keyboard(page: int, total_pages: int) -> InlineKeyboardMarkup:
     start_idx = (page - 1) * 5
     end_idx = start_idx + 5
-    page_topics = THEMATIC_TOPICS[start_idx:end_idx]
+    page_topics_en = THEMATIC_TOPICS[start_idx:end_idx]
+    page_topics_ru = THEMATIC_TOPICS_RU[start_idx:end_idx]
     buttons = []
-    for idx, topic in enumerate(page_topics, start=start_idx):
-        buttons.append([InlineKeyboardButton(text=topic, callback_data=f"thematic_{idx}")])
+    for idx, (topic_en, topic_ru) in enumerate(zip(page_topics_en, page_topics_ru), start=start_idx):
+        buttons.append([InlineKeyboardButton(text=topic_ru, callback_data=f"thematic_{idx}")])
     nav_buttons = []
     if page > 1:
         nav_buttons.append(InlineKeyboardButton(text="◀", callback_data="thematic_prev"))
