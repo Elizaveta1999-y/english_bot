@@ -273,10 +273,80 @@ THEMATIC_NEW_CONTENT = {
             {"question": "В чём разница между 'It is' и 'What is' в расщеплении?", "answer": "It is выделяет любой элемент (человек, время, место, предмет). What выделяет действие или объект."}
         ]
     },
-    "ellipsis_substitution": {
+        "ellipsis_substitution": {
         "title": "Эллипсис и замена (опущение слов, one/so/do)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке. Скоро здесь появится теория."}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Что такое эллипсис?",
+                "text": """
+<b>✂️ Эллипсис – опущение слов, которые легко восстанавливаются из контекста.</b>
+
+Используется, чтобы избежать повторения и сделать речь более естественной и динамичной.
+
+• *He can speak French, and she can too.* (вместо ... and she can speak French too)
+• *I wanted to go, but I wasn't able to.* (вместо ... I wasn't able to go)
+
+<blockquote>На уровне C1-C2 эллипсис – признак беглой и естественной речи.</blockquote>
+"""
+            },
+            {
+                "title": "Замена с 'one / ones'",
+                "text": """
+<b>📌 One / ones заменяют ранее упомянутое существительное, чтобы избежать повторения.</b>
+
+• *I need a new phone. This one is too old.* (Эта – в значении this phone)
+• *Which dress do you like? – I like the blue one.* (синее платье)
+
+• *These apples are fresher than the ones in the basket.* (чем те, что в корзине)
+• *I prefer classical music to modern one. – неправильно (music неисчисляемое)*  ✅ ... to modern music.
+
+<blockquote>One / ones нельзя использовать с неисчисляемыми существительными (information, advice, music).</blockquote>
+"""
+            },
+            {
+                "title": "Замена с 'so' и 'not'",
+                "text": """
+<b>📌 So / not заменяют целые придаточные после глаголов think, believe, hope, expect, guess, be afraid, suppose, etc.</b>
+
+• *– Is he coming? – I hope so.* (вместо I hope he is coming)
+• *– Will it rain? – I think not.* (или I don't think so)
+
+• *– Do you think she'll accept? – I suppose so.*
+• *– They won't win. – I hope not.* (надеюсь, что нет)
+
+<blockquote>После be afraid и guess чаще используется so: I'm afraid so, I guess so.</blockquote>
+"""
+            },
+            {
+                "title": "Замена с 'do', 'does', 'did' (пропуск глагола)",
+                "text": """
+<b>📌 Do / does / did заменяют смысловой глагол, чтобы избежать повторения.</b>
+
+• *She sings better than he does.* (чем он поёт)
+• *I like coffee, and so does she.* (и она тоже)
+• *He didn't come, but his brother did.* (пришёл)
+
+• *I don't enjoy parties, but my wife does.*
+• *She works harder than I do.*
+
+<blockquote>So + вспомогательный глагол + подлежащее – согласие: I love jazz. – So do I.</blockquote>
+"""
+            },
+            {
+                "title": "Советы",
+                "text": """
+<b>💡 Как развить навык эллипсиса:</b>
+• Обращайте внимание на опущение слов в диалогах из фильмов и книг.
+• Практикуйтесь в перефразировании, избегая повторений.
+• На экзаменах (CPE, CAE) эллипсис не является обязательным, но его использование повышает балл за стиль.
+
+<blockquote>Эллипсис делает речь более живой и естественной, но его избыток может привести к неясности.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Всегда ли нужно использовать 'so' после 'think'?", "answer": "В положительных ответах – I think so (думаю, да). В отрицательных – I don't think so (думаю, нет) или I think not (менее распространено)."}
+        ]
     },
     "advanced_conditionals_mixed": {
         "title": "Смешанные условные предложения (Past → Present, Present → Past)",
