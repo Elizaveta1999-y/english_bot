@@ -3002,15 +3002,242 @@ THEMATIC_NEW_CONTENT = {
     },
 
     # ==================== ИДИОМЫ (БОЛЬШЕ 10) ====================
-    "idioms_advanced_1": {
+        "idioms_advanced_1": {
         "title": "Идиомы C1 (30 популярных идиом)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке. Скоро здесь появится теория."}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Идиомы для описания ситуаций (часть 1)",
+                "text": """
+<b>🔁 Продвинутые идиомы для C1:</b>
+
+• <b>to beat around the bush</b> – ходить вокруг да около
+  • Stop beating around the bush and tell me the truth.
+
+• <b>to bite the bullet</b> – решиться на неприятное, стиснуть зубы
+  • I don't want to, but I'll have to bite the bullet and see the dentist.
+
+• <b>to burn the midnight oil</b> – работать допоздна
+  • We burned the midnight oil to finish the project.
+
+• <b>to go the extra mile</b> – приложить дополнительные усилия
+  • She always goes the extra mile to help her colleagues.
+
+• <b>to hit the nail on the head</b> – попасть в точку
+  • You hit the nail on the head with that comment.
+
+<blockquote>Эти идиомы пригодятся в разговорной речи и письменных работах.</blockquote>
+"""
+            },
+            {
+                "title": "Идиомы для описания ситуаций (часть 2)",
+                "text": """
+<b>🔁 Продолжение:</b>
+
+• <b>to be in the same boat</b> – быть в одной лодке
+  • We're all in the same boat – nobody has any money.
+
+• <b>to be a double‑edged sword</b> – палка о двух концах
+  • Social media is a double‑edged sword.
+
+• <b>to get out of hand</b> – выйти из-под контроля
+  • The party got out of hand and the police were called.
+
+• <b>to be on thin ice</b> – быть в опасном положении
+  • If you're late again, you'll be on thin ice.
+
+• <b>to be in hot water</b> – быть в неприятной ситуации
+  • He's in hot water with his boss.
+
+• <b>to be a blessing in disguise</b> – нечто, что кажется плохим, но оборачивается добром
+  • Losing that job was a blessing in disguise.
+
+<blockquote>Эти идиомы пригодятся для описания жизненных ситуаций и событий.</blockquote>
+"""
+            },
+            {
+                "title": "Идиомы для описания людей",
+                "text": """
+<b>👥 Характеристика людей:</b>
+
+• <b>a fish out of water</b> – человек не в своей тарелке
+• <b>a dark horse</b> – тёмная лошадка (человек со скрытыми талантами)
+• <b>the apple of someone's eye</b> – зеница ока, любимец
+  • His daughter is the apple of his eye.
+
+• <b>to have a heart of gold</b> – иметь золотое сердце
+• <b>to be as cool as a cucumber</b> – хладнокровный, спокойный
+• <b>to be a pain in the neck</b> – быть занозой (надоедливым)
+  • Her constant complaining is a pain in the neck.
+
+<blockquote>Используйте идиомы, чтобы сделать описание людей более ярким.</blockquote>
+"""
+            },
+            {
+                "title": "Идиомы о деньгах и работе",
+                "text": """
+<b>💰 Деньги и работа:</b>
+
+• <b>to be worth its weight in gold</b> – быть на вес золота
+  • This advice is worth its weight in gold.
+
+• <b>to cost an arm and a leg</b> – стоить бешеных денег
+  • The car repairs cost an arm and a leg.
+
+• <b>to make ends meet</b> – сводить концы с концами
+  • With two jobs, she barely makes ends meet.
+
+• <b>to bring home the bacon</b> – добывать хлеб насущный
+  • He's the one who brings home the bacon.
+
+• <b>to get a foot in the door</b> – получить первый шанс
+  • This internship will help me get a foot in the door.
+
+• <b>to go the extra mile</b> – приложить дополнительные усилия (уже было, но важно)
+
+<blockquote>Эти идиомы полезны для деловой тематики и повседневных разговоров.</blockquote>
+"""
+            },
+            {
+                "title": "Советы",
+                "text": """
+<b>💡 Как учить идиомы C1:</b>
+• Учите их в контексте, придумывайте свои примеры.
+• Группируйте по темам (ситуации, люди, деньги, работа).
+• Используйте карточки и приложения (Anki, Quizlet).
+• Слушайте подкасты и смотрите фильмы, чтобы запоминать идиомы в речи.
+• На экзаменах идиомы повышают балл за лексику.
+
+<blockquote>Идиомы делают речь яркой, но требуют осторожности – используйте их, когда уверены в значении.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Сколько идиом нужно знать для C1?", "answer": "Около 100-150 наиболее употребительных. Но качество важнее количества."}
+        ]
     },
-    "idioms_advanced_2": {
+        "idioms_advanced_2": {
         "title": "Идиомы C2 (редкие и выразительные)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке. Скоро здесь появится теория."}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Идиомы о поведении и характере (C2)",
+                "text": """
+<b>🎭 Продвинутые идиомы для C2:</b>
+
+• <b>to bend over backwards</b> – из кожи вон лезть
+  • She bent over backwards to help him.
+
+• <b>to get your act together</b> – взять себя в руки
+  • You need to get your act together if you want to pass the exam.
+
+• <b>to pull your weight</b> – вносить свою лепту
+  • If you don't pull your weight, the team will fail.
+
+• <b>to sit on the fence</b> – быть нерешительным
+  • Decide already – you can't sit on the fence forever.
+
+• <b>to take a stand</b> – занять твёрдую позицию
+  • It's time to take a stand against injustice.
+
+• <b>to call a spade a spade</b> – называть вещи своими именами
+  • I like him because he calls a spade a spade.
+
+<blockquote>Эти идиомы подходят для описания поведения и принятия решений.</blockquote>
+"""
+            },
+            {
+                "title": "Идиомы о коммуникации (C2)",
+                "text": """
+<b>🗣️ Идиомы для общения:</b>
+
+• <b>to read between the lines</b> – читать между строк
+  • If you read between the lines, you'll see he's not happy.
+
+• <b>to put in a nutshell</b> – изложить кратко
+  • To put it in a nutshell, we lost the contract.
+
+• <b>to talk at cross purposes</b> – говорить о разном
+  • I think we're talking at cross purposes – let's start again.
+
+• <b>to get straight to the point</b> – перейти сразу к делу
+  • Let's get straight to the point – we need more money.
+
+• <b>to beat a dead horse</b> – заниматься бесполезным делом
+  • You're beating a dead horse – he'll never agree.
+
+• <b>to play devil's advocate</b> – выступать против для проверки идеи
+  • Let me play devil's advocate for a moment.
+
+<blockquote>Эти идиомы помогут вам обсуждать сложные темы и вести дебаты.</blockquote>
+"""
+            },
+            {
+                "title": "Идиомы об эмоциях и состояниях (C2)",
+                "text": """
+<b>😊 Эмоции и ощущения:</b>
+
+• <b>to be over the moon</b> – быть на седьмом небе от счастья
+  • She was over the moon when she got the job.
+
+• <b>to be down in the dumps</b> – быть в подавленном настроении
+  • He's been down in the dumps since his girlfriend left.
+
+• <b>to be on cloud nine</b> – быть на седьмом небе (счастье)
+  • I've been on cloud nine since I got engaged.
+
+• <b>to have a chip on your shoulder</b> – быть обиженным на весь мир
+  • He's always had a chip on his shoulder about his background.
+
+• <b>to keep your chin up</b> – держать голову высоко, не унывать
+  • Keep your chin up – things will get better.
+
+• <b>to be at your wit's end</b> – быть в отчаянии, не знать, что делать
+  • I'm at my wit's end with this noisy neighbour.
+
+<blockquote>Эти идиомы очень выразительны и часто встречаются в литературе.</blockquote>
+"""
+            },
+            {
+                "title": "Идиомы о времени и удаче (C2)",
+                "text": """
+<b>⏰ Время, удача, случай:</b>
+
+• <b>once in a blue moon</b> – очень редко
+  • I go to the cinema once in a blue moon.
+
+• <b>to have a near miss</b> – едва избежать аварии
+  • We had a near miss on the motorway.
+
+• <b>to be in the nick of time</b> – в последнюю минуту
+  • The ambulance arrived in the nick of time.
+
+• <b>to take a turn for the worse</b> – ухудшиться (о ситуации)
+  • The patient took a turn for the worse overnight.
+
+• <b>to be a stroke of luck</b> – везение, удачное стечение обстоятельств
+  • Finding that job was a stroke of luck.
+
+• <b>to be a wild goose chase</b> – бесполезное занятие
+  • The search for the lost keys turned out to be a wild goose chase.
+
+<blockquote>Эти идиомы пригодятся в рассказах о событиях и приключениях.</blockquote>
+"""
+            },
+            {
+                "title": "Советы",
+                "text": """
+<b>💡 Как учить идиомы C2:</b>
+• Учите их в контексте, придумывайте свои примеры.
+• Ведите дневник новых идиом и старайтесь использовать их в речи.
+• Смотрите качественные фильмы и сериалы (The Crown, Downton Abbey) – там много идиом C2.
+• На экзамене CPE (Certificate of Proficiency) знание редких идиом даёт преимущество.
+
+<blockquote>Идиомы C2 – это вершина лексического мастерства. Используйте их умеренно, но метко.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Нужно ли учить так много идиом для C2?", "answer": "Чем больше, тем лучше, но фокусируйтесь на самых употребительных в академическом и деловом контексте."}
+        ]
     },
 
     # ==================== ПУНКТУАЦИЯ И СТИЛЬ ====================
