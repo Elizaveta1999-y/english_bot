@@ -755,15 +755,158 @@ THEMATIC_NEW_CONTENT = {
     },
 
     # ==================== ГЕРУНДИЙ И ИНФИНИТИВ (УГЛУБЛЕНИЕ) ====================
-    "gerund_vs_infinitive_advanced": {
+        "gerund_vs_infinitive_advanced": {
         "title": "Герундий и инфинитив – сложные глаголы (remember, forget, regret, try, mean)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке. Скоро здесь появится теория."}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Группа remember / forget / regret",
+                "text": """
+<b>📌 remember / forget / regret – разные значения с герундием и инфинитивом.</b>
+
+• <b>remember + инфинитив</b> – не забыть сделать (действие в будущем)
+  • Remember to buy milk. (не забудь купить молоко)
+
+• <b>remember + герундий</b> – помнить о действии в прошлом
+  • I remember buying milk yesterday. (помню, что купил молоко вчера)
+
+• <b>forget + инфинитив</b> – забыть сделать (не сделал)
+  • I forgot to lock the door. (я забыл запереть дверь – и не запер)
+
+• <b>forget + герундий</b> – забыть о том, что делал (редко)
+  • I'll never forget meeting you. (никогда не забуду нашу встречу)
+
+• <b>regret + инфинитив</b> – сожалеть о том, что скажешь (сообщить плохую новость)
+  • I regret to inform you that you failed. (с сожалением сообщаю)
+
+• <b>regret + герундий</b> – сожалеть о том, что сделал в прошлом
+  • I regret saying that. (жалею, что сказал это)
+
+<blockquote>Разница в хронологии: инфинитив – действие позже глагола, герундий – действие раньше/одновременно.</blockquote>
+"""
+            },
+            {
+                "title": "Группа try / mean / go on",
+                "text": """
+<b>📌 try, mean, go on – также меняют смысл.</b>
+
+• <b>try + инфинитив</b> – пытаться (с усилием)
+  • I tried to lift the box, but it was too heavy. (пытался)
+
+• <b>try + герундий</b> – попробовать (эксперимент)
+  • Try adding salt. (попробуй добавить соли)
+
+• <b>mean + инфинитив</b> – намереваться, планировать
+  • I meant to call you. (я собирался позвонить)
+
+• <b>mean + герундий</b> – означать
+  • This means leaving early. (это означает уйти рано)
+
+• <b>go on + инфинитив</b> – перейти к новому действию
+  • He introduced himself and then went on to talk about his plans. (продолжил, перешёл к)
+
+• <b>go on + герундий</b> – продолжать то же действие
+  • He went on talking for hours. (продолжал говорить)
+
+<blockquote>Контекст подсказывает значение.</blockquote>
+"""
+            },
+            {
+                "title": "Группа stop / can't help / be used to",
+                "text": """
+<b>📌 stop, can't help, be used to – тоже важны.</b>
+
+• <b>stop + инфинитив</b> – остановиться, чтобы сделать
+  • She stopped to rest. (остановилась отдохнуть)
+
+• <b>stop + герундий</b> – прекратить делать
+  • She stopped smoking. (бросила курить)
+
+• <b>can't help + герундий</b> – не могу удержаться от
+  • I can't help laughing. (не могу не смеяться)
+
+• <b>be used to + герундий</b> – привыкнуть к
+  • I am used to getting up early. (я привык рано вставать)
+
+<blockquote>Be used to + V‑ing – привычка. Used to + V – бывало (раньше). Не путайте.</blockquote>
+"""
+            },
+            {
+                "title": "Типичные ошибки и советы",
+                "text": """
+<b>⚠️ Частые ошибки:</b>
+• ❌ I remembered locking the door, but I didn't. (противоречие) – правильно: I remembered to lock the door.
+• ❌ I stopped smoking to have a rest. (если остановился курить) – правильно: I stopped to have a rest.
+• ❌ I'm used to get up early.  ✅ I'm used to getting up early.
+
+<b>💡 Совет:</b>
+• Чтобы запомнить разницу, думайте о времени: инфинитив обычно относится к будущему действию, герундий – к прошлому или одновременному.
+• Практикуйтесь: составляйте пары предложений с одним глаголом, меняя форму.
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Как сказать 'я пытался открыть окно' (но не получилось)?", "answer": "I tried to open the window. (попытка с усилием)"}
+        ]
     },
-    "perfect_gerund_infinitive": {
+        "perfect_gerund_infinitive": {
         "title": "Перфектный герундий и инфинитив (having done, to have done)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке. Скоро здесь появится теория."}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Перфектный инфинитив (to have + V3)",
+                "text": """
+<b>⏪ Перфектный инфинитив используется, когда действие инфинитива предшествует действию главного глагола.</b>
+
+• He seems to have lost weight. (Кажется, он похудел – потерял вес до того, как кажется)
+• She claims to have seen a ghost. (Она утверждает, что видела привидение – видела раньше)
+• I'm sorry to have kept you waiting. (Извините, что заставил вас ждать)
+
+<blockquote>После глаголов seem, appear, pretend, claim, happen, be sorry, be glad, be happy может использоваться перфектный инфинитив.</blockquote>
+"""
+            },
+            {
+                "title": "Перфектный герундий (having + V3)",
+                "text": """
+<b>📌 Перфектный герундий подчёркивает, что действие герундия произошло раньше действия главного глагола.</b>
+
+• He was accused of having stolen the money. (Его обвинили в краже денег – кража до обвинения)
+• She admitted having made a mistake. (Она призналась, что сделала ошибку)
+• They regretted having spent so much money. (Они пожалели, что потратили так много денег)
+
+<blockquote>Часто используется после глаголов, требующих герундий: admit, deny, regret, remember, forget.</blockquote>
+"""
+            },
+            {
+                "title": "Разница между простой и перфектной формой",
+                "text": """
+<b>📊 Сравнение:</b>
+
+• He admitted stealing the money. (обычный герундий – порядок ясен из контекста)
+• He admitted having stolen the money. (перфектный герундий – акцент на предшествовании, более формально)
+
+• She remembered locking the door. (помнит, что заперла)
+• She remembered having locked the door. (то же, но формальнее)
+
+<blockquote>В разговорной речи перфектные формы часто заменяются простыми, если порядок действий ясен.</blockquote>
+"""
+            },
+            {
+                "title": "Типичные ошибки и советы",
+                "text": """
+<b>⚠️ Частые ошибки:</b>
+• ❌ She claims to have saw him.  ✅ She claims to have seen him.
+• ❌ He admitted to have stolen.  ✅ He admitted having stolen / He admitted stealing.
+• ❌ Having been seen is rare. (пассивный перфектный герундий – правильно, но сложно)
+
+<b>💡 Совет:</b>
+• Используйте перфектный инфинитив после seem, appear, claim, pretend.
+• Используйте перфектный герундий для акцента на предшествовании в формальной речи.
+• Тренируйтесь: перефразируйте предложения, используя перфектные формы.
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Всегда ли нужен перфектный инфинитив после 'seem'?", "answer": "He seems to be tired (сейчас), He seems to have been tired (в прошлом). Выбор зависит от времени."}
+        ]
     },
     "passive_gerund_infinitive": {
         "title": "Пассивный герундий и инфинитив (being done, to be done, having been done)",
