@@ -908,17 +908,152 @@ THEMATIC_NEW_CONTENT = {
             {"question": "Всегда ли нужен перфектный инфинитив после 'seem'?", "answer": "He seems to be tired (сейчас), He seems to have been tired (в прошлом). Выбор зависит от времени."}
         ]
     },
-    "passive_gerund_infinitive": {
+        "passive_gerund_infinitive": {
         "title": "Пассивный герундий и инфинитив (being done, to be done, having been done)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке. Скоро здесь появится теория."}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Пассивный инфинитив (to be + V3)",
+                "text": """
+<b>📦 Пассивный инфинитив: to be + V3 (настоящий пассив) или to have been + V3 (перфектный пассив).</b>
+
+• I hope to be invited to the party. (Надеюсь, меня пригласят.)
+• She expects to be given a promotion. (Она ожидает, что ей дадут повышение.)
+• The work needs to be finished by Friday. (Работу нужно закончить к пятнице.)
+
+<blockquote>Пассивный инфинитив часто используется после want, hope, expect, need, it's important + to be done.</blockquote>
+"""
+            },
+            {
+                "title": "Пассивный герундий (being + V3, having been + V3)",
+                "text": """
+<b>📌 Пассивный герундий: being + V3 (настоящий пассив) или having been + V3 (перфектный пассив).</b>
+
+• I don't like being told what to do. (Мне не нравится, когда мне указывают.)
+• She avoids being seen in public. (Она избегает того, чтобы её видели на людях.)
+• He remembers being taken to the zoo as a child. (Он помнит, как его водили в зоопарк ребёнком.)
+• After having been warned, he didn't go there. (После того как его предупредили, он не пошёл туда.)
+
+<blockquote>Пассивный герундий часто после предлогов и глаголов, требующих герундий.</blockquote>
+"""
+            },
+            {
+                "title": "Сравнение активных и пассивных форм",
+                "text": """
+<b>📊 Сравните:</b>
+
+• Активный инфинитив: I want to help. (я хочу помогать)
+• Пассивный инфинитив: I want to be helped. (я хочу, чтобы мне помогли)
+
+• Активный герундий: I like helping. (мне нравится помогать)
+• Пассивный герундий: I like being helped. (мне нравится, когда помогают мне)
+
+<blockquote>Пассивный залог меняет смысл: объект становится субъектом.</blockquote>
+"""
+            },
+            {
+                "title": "Типичные ошибки и советы",
+                "text": """
+<b>⚠️ Частые ошибки:</b>
+• ❌ I hope to invite. (если меня должны пригласить)  ✅ I hope to be invited.
+• ❌ She avoids to be seen.  ✅ She avoids being seen.
+• ❌ The car needs to be wash.  ✅ The car needs to be washed.
+
+<b>💡 Совет:</b>
+• Если действие выполняется над подлежащим, используйте пассивную форму (to be done, being done).
+• Тренируйтесь: переделайте активные предложения в пассивные с герундием и инфинитивом.
+• Запомните: after, before, without, instead of + being done.
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Когда использовать 'being done' и 'to be done'?", "answer": "Being done – после предлогов и глаголов, требующих герундий. To be done – после want, need, hope, it's important."}
+        ]
     },
 
     # ==================== КОСВЕННАЯ РЕЧЬ (УГЛУБЛЕНИЕ) ====================
-    "reported_speech_advanced": {
+        "reported_speech_advanced": {
         "title": "Косвенная речь – сложные случаи (смешение времён, разные глаголы)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке. Скоро здесь появится теория."}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Когда время не меняется",
+                "text": """
+<b>📌 Время может не меняться в следующих случаях:</b>
+
+1. <b>Общеизвестные факты, законы природы</b>
+   • "The Earth goes around the Sun." → He said the Earth goes around the Sun.
+
+2. <b>Действие ещё актуально в момент речи</b>
+   • "I like pizza." → He said he likes pizza. (если он всё ещё любит пиццу)
+
+3. <b>Слова были сказаны и сразу пересказываются</b>
+   • "I'm hungry." → She said she is hungry. (сразу после)
+
+4. <b>С глаголами в настоящем времени в главной части</b>
+   • He says he is tired. (says, не said)
+
+<blockquote>На экзаменах рекомендуют сдвигать время, но в живой речи допустимо не менять, если ситуация не изменилась.</blockquote>
+"""
+            },
+            {
+                "title": "Модальные глаголы в косвенной речи",
+                "text": """
+<b>⚠️ Модальные глаголы тоже могут меняться.</b>
+
+• can → could
+  • "I can swim." → He said he could swim.
+
+• may → might
+  • "I may come." → He said he might come.
+
+• must (вероятность) → must (иногда меняется на had to)
+  • "It must be late." → He said it must be late. / He said it had to be late.
+
+• must (обязанность) → had to
+  • "I must go." → He said he had to go.
+
+• will → would
+  • "I will help." → He said he would help.
+
+• shall → should / would
+  • "I shall call." → He said he would call.
+
+<blockquote>Модальные глаголы could, might, should, would, ought to не меняются.</blockquote>
+"""
+            },
+            {
+                "title": "Изменения указателей времени и места",
+                "text": """
+<b>📌 Дополнительные изменения (кроме now → then, today → that day, here → there):</b>
+
+• this week → that week
+• last month → the previous month / the month before
+• next year → the following year / the next year
+• a year ago → a year before
+
+• "I'll see you next week." → He said he would see me the following week.
+• "I bought this car last month." → He said he had bought that car the previous month.
+
+<blockquote>В разговорной речи изменения могут быть менее строгими, но для письма правила важны.</blockquote>
+"""
+            },
+            {
+                "title": "Советы и типичные ошибки",
+                "text": """
+<b>⚠️ Частые ошибки:</b>
+• ❌ He said me that he was tired.  ✅ He told me that he was tired.
+• ❌ He said that he is tired. (если главная часть в прошлом)  ✅ He said that he was tired.
+• ❌ She told that she was happy.  ✅ She said that she was happy. / She told me that she was happy.
+
+<b>💡 Совет:</b>
+• Слово that можно опускать: He said (that) he was tired.
+• Запомните: say + (that) + предложение; tell + кому + (that) + предложение.
+• Для передачи приказов и просьб используйте tell + someone + to do.
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Всегда ли нужно сдвигать 'must' в косвенной речи?", "answer": "Вероятностное must часто не меняется (He must be tired → He said he must be tired). Обязательное must обычно меняется на had to."}
+        ]
     },
     "reporting_verbs_patterns": {
         "title": "Глаголы передачи речи (advise, warn, accuse, boast, deny, admit, suggest)",
