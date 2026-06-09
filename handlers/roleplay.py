@@ -262,6 +262,8 @@ async def universal_text_handler(message: Message):
     user_id = message.from_user.id
     user_state = get_user_state(user_id)
 
+    print(f"[DEBUG] universal_text_handler: text={message.text}, lesson_qa_active={user_state.get('lesson_qa', {}).get('active')}")
+
     # 1. Обработка кастомного сценария
     if user_state.get("awaiting_custom_scenario"):
         user_state["awaiting_custom_scenario"] = False
