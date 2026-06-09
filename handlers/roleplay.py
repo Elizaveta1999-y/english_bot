@@ -314,28 +314,9 @@ async def universal_text_handler(message: Message):
         return
 
     # 3. ОБРАБОТКА ВОПРОСОВ ПО УРОКАМ
-    if user_state.get("lesson_qa", {}).get("active"):
-        qa_data = user_state["lesson_qa"]
-        topic_key = qa_data.get("topic_key")
-        topic_title = qa_data.get("topic_title", "этой теме")
-        user_question = message.text.strip()
-        
-        prompt = f"""
-Ты преподаватель английского. Студент задал вопрос по теме "{topic_title}".
-Вопрос: {user_question}
-
-Если вопрос относится к теме (грамматика, лексика, правила), дай понятный, развёрнутый ответ на русском языке. Приведи 1-2 примера из жизни.
-Если вопрос НЕ относится к теме, мягко скажи: "Извините, этот вопрос не совсем по теме {topic_title}. Давайте лучше разберём что-то из материала урока. Что именно вам непонятно?".
-
-Ответ должен быть дружелюбным, не больше 5-6 предложений.
-"""
-        answer = chat(prompt, max_tokens=500, temperature=0.5)
-        
-        keyboard = InlineKeyboardMarkup(inline_keyboard=[
-            [InlineKeyboardButton(text="✅ Всё понятно!", callback_data=f"lesson_understand_{topic_key}")],
-            [InlineKeyboardButton(text="🔄 Объяснить по-другому", callback_data=f"lesson_reask_{topic_key}")]
-        ])
-        await message.answer(answer, reply_markup=keyboard)
+        if user_state.get("lesson_qa", {}).get("active"):
+        from handlers.lessons import process_lesson_question
+        await process_lesson_question(user_id, message.text, message.bot, message.chat.id)
         return
 
     # 4. Режим урока (тематический урок) – заглушка

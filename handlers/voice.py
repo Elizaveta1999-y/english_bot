@@ -33,6 +33,12 @@ async def handle_voice(message: Message):
         await message.answer("Не понял, повторите.")
         return
 
+    # ========== ЕСЛИ АКТИВЕН РЕЖИМ ВОПРОСОВ ПО УРОКУ ==========
+    if user_state.get("lesson_qa", {}).get("active"):
+        from handlers.lessons import process_lesson_question
+        await process_lesson_question(user_id, user_text, message.bot, message.chat.id)
+        return
+
     # Режим урока (голосовой ответ)
     if user_state.get("lesson_mode") == "thematic" and user_state.get("lesson_step") == "awaiting_answer":
         from handlers.lesson_utils import check_answer
