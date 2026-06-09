@@ -2059,17 +2059,178 @@ THEMATIC_NEW_CONTENT = {
             {"question": "Можно ли использовать эту конструкцию без прилагательного?", "answer": "Да, например: The more, the merrier (Чем больше, тем веселее). Здесь 'the more' подразумевает 'people'."}
         ]
     },
-    "too_enough": {
+        "too_enough": {
         "title": "Конструкции too / enough (слишком / достаточно)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке. Скоро здесь появится теория."}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Too – слишком (превышение нормы)",
+                "text": """
+<b>⚖️ Too означает «больше, чем нужно», «чрезмерно», часто с негативным оттенком.</b>
+
+Формула: too + прилагательное / наречие
+
+• This coffee is too hot to drink. (Этот кофе слишком горячий, чтобы пить.)
+• She drives too fast. (Она водит слишком быстро.)
+• He is too young to drive. (Он слишком молод, чтобы водить.)
+
+<b>Также может использоваться с существительными:</b>
+• too much + неисчисляемое (too much sugar – слишком много сахара)
+• too many + исчисляемое (too many people – слишком много людей)
+
+<blockquote>Too часто сопровождается инфинитивом (to do) с результатом: too … to …</blockquote>
+"""
+            },
+            {
+                "title": "Enough – достаточно (норма)",
+                "text": """
+<b>✅ Enough означает «столько, сколько нужно», достаточное количество.</b>
+
+Порядок слов: прилагательное / наречие + enough; существительное + enough
+
+• This coffee is hot enough to drink. (Этот кофе достаточно горячий, чтобы пить.)
+• She drives carefully enough. (Она водит достаточно осторожно.)
+• He is old enough to drive. (Он достаточно взрослый, чтобы водить.)
+• We have enough time. (У нас достаточно времени.)
+• There are enough chairs. (Достаточно стульев.)
+
+<blockquote>Enough тоже часто сопровождается инфинитивом: … enough to …</blockquote>
+"""
+            },
+            {
+                "title": "Сравнение too и enough",
+                "text": """
+<b>📊 Сравните:</b>
+
+• The water is too cold to swim. (Вода слишком холодная, чтобы плавать – нельзя.)
+• The water is warm enough to swim. (Вода достаточно тёплая, чтобы плавать – можно.)
+
+• He is too tired to work. (Он слишком устал, чтобы работать.)
+• He is rested enough to work. (Он достаточно отдохнул, чтобы работать.)
+
+<b>Отрицательная форма not … enough:</b>
+• She is not tall enough to reach the shelf. (Она недостаточно высокая, чтобы достать до полки.)
+
+<blockquote>Too всегда подразумевает проблему, enough – приемлемость.</blockquote>
+"""
+            },
+            {
+                "title": "Типичные ошибки и советы",
+                "text": """
+<b>⚠️ Частые ошибки:</b>
+• ❌ This soup is too much hot.  ✅ This soup is too hot. (too + прилагательное)
+• ❌ I have too many sugar.  ✅ I have too much sugar. (много – неисчисляемое)
+• ❌ She is enough tall.  ✅ She is tall enough. (прилагательное + enough)
+• ❌ We have enough of time.  ✅ We have enough time. (enough time без of)
+
+<b>💡 Совет:</b>
+• Запомните позицию: too + прилагательное; прилагательное + enough.
+• Для количеств: too much / too many; enough + существительное.
+• Too часто переводится как «чересчур», enough – «достаточно».
+• Тренируйтесь: опишите ситуации, где что-то слишком (too) и где достаточно (enough).
+"""
+            }
+        ],
+        "faq": [
+            {"question": "В чём разница между 'too much' и 'so much'?", "answer": "Too much – слишком много (негатив). So much – так много (нейтрально или восторженно)."}
+        ]
     },
 
     # ==================== РАЗГОВОРНЫЕ ФРАЗЫ И КЛИШЕ ====================
-    "speaking_cliches": {
+        "speaking_cliches": {
         "title": "Разговорные клише (That being said, Having said that, Come to think of it, Long story short)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке. Скоро здесь появится теория."}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Клише для уступки и контраста",
+                "text": """
+<b>🔁 Клише для смягчения или противопоставления:</b>
+
+• <b>That being said / Having said that</b> – тем не менее, с другой стороны (после того как что-то сказали)
+  • The hotel is expensive. That being said, it's very luxurious. (Отель дорогой. Тем не менее, он очень роскошный.)
+
+• <b>At the same time</b> – в то же время (противопоставление)
+  • I enjoy my job. At the same time, I'd like more free time.
+
+• <b>On the flip side</b> – с другой стороны (неформально)
+  • The car is cheap. On the flip side, it's not very reliable.
+
+<blockquote>Используйте эти фразы, чтобы смягчить критику или представить контраргумент.</blockquote>
+"""
+            },
+            {
+                "title": "Клише для добавления мыслей и уточнения",
+                "text": """
+<b>💡 Ввод новых идей и уточнений:</b>
+
+• <b>Come to think of it</b> – если подумать, кстати
+  • Come to think of it, I haven't seen her today. (Кстати, я не видел её сегодня.)
+
+• <b>I mean</b> – в смысле (уточнение)
+  • He's nice – I mean, he can be a bit moody sometimes.
+
+• <b>You see</b> – понимаешь (при объяснении)
+  • You see, the problem is that we don't have enough money.
+
+• <b>What I mean is</b> – я хочу сказать (перефразирование)
+  • What I mean is that we need to change our approach.
+
+<blockquote>Эти клише помогают уточнить мысль и избежать недопонимания.</blockquote>
+"""
+            },
+            {
+                "title": "Клише для согласия, удивления и хезитации",
+                "text": """
+<b>🗣️ Реакции и переходы:</b>
+
+• <b>Tell me about it!</b> – расскажи мне! (выражение согласия с жалобой)
+  • – The traffic is terrible. – Tell me about it!
+
+• <b>You're telling me!</b> – то же, что tell me about it
+• <b>I know, right?</b> – я знаю, да? (неформальное согласие)
+• <b>Go on / Go ahead</b> – продолжай, давай
+
+• <b>Long story short</b> – короче говоря
+  • Long story short, we missed the flight.
+
+• <b>To make a long story short</b> – то же, немного формальнее
+
+<blockquote>Эти короткие фразы делают диалог более живым и эмоциональным.</blockquote>
+"""
+            },
+            {
+                "title": "Клише для перехода к сути",
+                "text": """
+<b>📌 Фразы для подведения итога или перехода:</b>
+
+• <b>The bottom line is...</b> – суть в том, что...
+  • The bottom line is we need to increase sales.
+
+• <b>To cut a long story short</b> – короче говоря
+  • To cut a long story short, they got married.
+
+• <b>In a nutshell</b> – в двух словах
+  • In a nutshell, the project failed.
+
+• <b>Anyway</b> – в любом случае (для смены темы)
+  • Anyway, let's move on to the next point.
+
+<blockquote>Эти клише помогут вам структурировать устную речь и эссе.</blockquote>
+"""
+            },
+            {
+                "title": "Советы",
+                "text": """
+<b>💡 Как интегрировать клише в речь:</b>
+• Слушайте подкасты и интервью с носителями, выписывайте фразы, которые они часто повторяют.
+• Практикуйтесь в диалогах, намеренно используя одно-два клише.
+• Не злоупотребляйте: в слишком формальных ситуациях лучше избегать таких фраз.
+
+<blockquote>Разговорные клише – это ключ к тому, чтобы звучать как носитель, а не как учебник.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Подходят ли эти клише для письменных эссе?", "answer": "Некоторые (That being said, Having said that) допустимы в эссе, но остальные лучше оставить для устной речи."}
+        ]
     },
     "discourse_markers": {
         "title": "Дискурсивные маркеры (however, moreover, nevertheless, consequently, in contrast)",
