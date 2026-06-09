@@ -2,7 +2,7 @@
 
 THEMATIC_NEW_CONTENT = {
     # ==================== ПРОДВИНУТАЯ ГРАММАТИКА ====================
-        "inversion_after_negative": {
+        "inversion_after_negative_adverbs": {
         "title": "Инверсия после отрицательных наречий (Never, Rarely, Not only, No sooner)",
         "pages": [
             {
@@ -273,7 +273,7 @@ THEMATIC_NEW_CONTENT = {
             {"question": "В чём разница между 'It is' и 'What is' в расщеплении?", "answer": "It is выделяет любой элемент (человек, время, место, предмет). What выделяет действие или объект."}
         ]
     },
-        "ellipsis_substitution": {
+        "ellipsis_and_substitution": {
         "title": "Эллипсис и замена (опущение слов, one/so/do)",
         "pages": [
             {
@@ -554,7 +554,7 @@ THEMATIC_NEW_CONTENT = {
             {"question": "В чём разница между 'could have done' и 'might have done'?", "answer": "Could have done – была возможность (мог, но не факт, что сделал). Might have done – менее уверенное предположение (возможно, сделал)."}
         ]
     },
-        "modal_passive_advanced": {
+        "passive_with_modal_verbs": {
         "title": "Пассив с модальными глаголами (must be done, could have been done)",
         "pages": [
             {
@@ -848,7 +848,7 @@ THEMATIC_NEW_CONTENT = {
             {"question": "Как сказать 'я пытался открыть окно' (но не получилось)?", "answer": "I tried to open the window. (попытка с усилием)"}
         ]
     },
-        "perfect_gerund_infinitive": {
+        "perfect_gerund_and_infinitive": {
         "title": "Перфектный герундий и инфинитив (having done, to have done)",
         "pages": [
             {
@@ -908,7 +908,7 @@ THEMATIC_NEW_CONTENT = {
             {"question": "Всегда ли нужен перфектный инфинитив после 'seem'?", "answer": "He seems to be tired (сейчас), He seems to have been tired (в прошлом). Выбор зависит от времени."}
         ]
     },
-        "passive_gerund_infinitive": {
+        "passive_gerund_and_infinitive": {
         "title": "Пассивный герундий и инфинитив (being done, to be done, having been done)",
         "pages": [
             {
@@ -1221,7 +1221,7 @@ THEMATIC_NEW_CONTENT = {
     },
 
     # ==================== ПАССИВНЫЙ ЗАЛОГ (УГЛУБЛЕНИЕ) ====================
-        "passive_reporting_verbs": {
+        "passive_with_reporting_verbs": {
         "title": "Пассив с глаголами передачи информации (It is said that..., He is said to be...)",
         "pages": [
             {
@@ -1438,7 +1438,7 @@ THEMATIC_NEW_CONTENT = {
     },
 
     # ==================== ПРИДАТОЧНЫЕ И СВЯЗКИ (ПРОДВИНУТЫЕ) ====================
-        "relative_clauses_reduced": {
+        "reduced_relative_clauses": {
         "title": "Сокращённые определительные придаточные (the man sitting there, the book written by)",
         "pages": [
             {
@@ -1713,7 +1713,7 @@ THEMATIC_NEW_CONTENT = {
     },
 
     # ==================== МОДАЛЬНЫЕ ГЛАГОЛЫ (ОТТЕНКИ) ====================
-        "modal_expressions_necessity": {
+        "expressing_necessity": {
         "title": "Выражение необходимости (need, needn't, didn't need to, needn't have done)",
         "pages": [
             {
@@ -1770,7 +1770,7 @@ THEMATIC_NEW_CONTENT = {
             {"question": "Как спросить 'нужно ли мне идти?' с need?", "answer": "Do I need to go? (разговорный) / Need I go? (формальный, редко)."}
         ]
     },
-        "modal_expressions_criticism": {
+        "expressing_criticism_and_regret": {
         "title": "Выражение критики и сожаления (should have done, could have done, might have done)",
         "pages": [
             {
@@ -1830,7 +1830,7 @@ THEMATIC_NEW_CONTENT = {
             {"question": "Можно ли использовать 'could have' для сожаления о своих действиях?", "answer": "Да, для сожаления о том, что вы не использовали возможность: I could have become a doctor, but I chose a different path."}
         ]
     },
-        "modal_verbs_ability": {
+        "ability_expressions": {
         "title": "Способность (can, could, be able to, manage to, succeed in)",
         "pages": [
             {
@@ -2503,7 +2503,7 @@ THEMATIC_NEW_CONTENT = {
             {"question": "Как запомнить все суффиксы?", "answer": "Не пытайтесь выучить списком. Изучайте их в контексте слов, которые вы уже знаете. Постепенно вы начнёте узнавать суффиксы автоматически."}
         ]
     },
-        "root_words": {
+        "latin_and_greek_roots": {
         "title": "Латинские и греческие корни (как догадываться о значении слов)",
         "pages": [
             {
@@ -2607,7 +2607,7 @@ THEMATIC_NEW_CONTENT = {
             {"question": "Сколько корней нужно знать для C1-C2?", "answer": "Около 100-150 самых употребительных. Остальные можно вывести логически или узнать по мере чтения."}
         ]
     },
-        "false_friends": {
+        "false_friends_advanced": {
         "title": "Ложные друзья переводчика (продвинутые)",
         "pages": [
             {
@@ -2795,7 +2795,7 @@ THEMATIC_NEW_CONTENT = {
     },
 
     # ==================== ФРАЗОВЫЕ ГЛАГОЛЫ (ПРОДВИНУТЫЕ) ====================
-        "phrasal_verbs_advanced_1": {
+        "phrasal_verbs_c1_c2_part_1": {
         "title": "Фразовые глаголы C1-C2 (часть 1)",
         "pages": [
             {
@@ -2893,7 +2893,7 @@ THEMATIC_NEW_CONTENT = {
             {"question": "Можно ли заменить фразовый глагол односложным словом?", "answer": "Часто да (postpone = put off), но фразовые глаголы звучат более разговорно и естественно в неформальной речи."}
         ]
     },
-        "phrasal_verbs_advanced_2": {
+        "phrasal_verbs_c1_c2_part_2": {
         "title": "Фразовые глаголы C1-C2 (часть 2)",
         "pages": [
             {
