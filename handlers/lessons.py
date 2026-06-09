@@ -9,7 +9,7 @@ from data.level_b1 import LEVEL_B1_CONTENT
 from data.level_b2 import LEVEL_B2_CONTENT
 from data.level_c1 import LEVEL_C1_CONTENT
 from data.level_c2 import LEVEL_C2_CONTENT
-from data.thematic import THEMATIC_CONTENT
+from data.thematic import THEMATIC_LESSONS_CONTENT   
 from services.deepseek import chat
 from speaking.services.tts import text_to_voice
 
@@ -22,8 +22,7 @@ LESSON_CONTENT.update(LEVEL_B1_CONTENT)
 LESSON_CONTENT.update(LEVEL_B2_CONTENT)
 LESSON_CONTENT.update(LEVEL_C1_CONTENT)
 LESSON_CONTENT.update(LEVEL_C2_CONTENT)
-LESSON_CONTENT.update(THEMATIC_CONTENT)
-
+LESSON_CONTENT.update(THEMATIC_LESSONS_CONTENT)
 THEMATIC_TOPICS = [
     "Present Simple vs Continuous",
     "Past Simple vs Present Perfect",
