@@ -69,6 +69,7 @@ THEMATIC_TOPICS = [
     "Formal informal register",
     "Hedging",
     "Rhetorical devices"
+
 ]
 
 MODULES_A1 = {
