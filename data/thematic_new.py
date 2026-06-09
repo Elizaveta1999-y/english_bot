@@ -348,15 +348,130 @@ THEMATIC_NEW_CONTENT = {
             {"question": "Всегда ли нужно использовать 'so' после 'think'?", "answer": "В положительных ответах – I think so (думаю, да). В отрицательных – I don't think so (думаю, нет) или I think not (менее распространено)."}
         ]
     },
-    "advanced_conditionals_mixed": {
+        "advanced_conditionals_mixed": {
         "title": "Смешанные условные предложения (Past → Present, Present → Past)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке. Скоро здесь появится теория."}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Что такое смешанные условные?",
+                "text": """
+<b>🔄 Смешанные условные комбинируют 2 и 3 типы.</b>
+
+Они используются, когда условие относится к одному времени, а результат – к другому.
+
+Два основных типа:
+1. Условие в прошлом (3 тип) + результат в настоящем (2 тип)
+2. Условие в настоящем (2 тип) + результат в прошлом (3 тип) – реже.
+
+<blockquote>Смешанные условные выражают сложные временные связи между прошлым и настоящим.</blockquote>
+"""
+            },
+            {
+                "title": "Тип 1: прошлое условие → настоящий результат",
+                "text": """
+<b>⏪ Условие (Past Perfect) → результат (would + V)</b>
+
+• If I had studied medicine, I would be a doctor now. (Если бы я изучал медицину в прошлом, я бы сейчас был врачом – но не изучал, и не врач)
+• If she had taken that job, she would live in London today. (Если бы она приняла ту работу, она бы сейчас жила в Лондоне)
+• They wouldn't be lost if they had followed the map. (Они бы не заблудились, если бы следовали карте)
+
+<blockquote>Условие в прошлом (невыполненное) влияет на настоящее.</blockquote>
+"""
+            },
+            {
+                "title": "Тип 2: настоящее условие → прошлый результат",
+                "text": """
+<b>⏩ Условие (Past Simple) → результат (would have + V3)</b>
+
+• If I weren't afraid of flying, I would have visited you last year. (Если бы я не боялся летать, я бы навестил тебя в прошлом году – но боюсь, и не навестил)
+• If he were more responsible, he wouldn't have lost his keys. (Если бы он был ответственнее, он бы не потерял ключи)
+
+<blockquote>Постоянное качество (условие в настоящем) повлияло на прошлое действие.</blockquote>
+"""
+            },
+            {
+                "title": "Типичные ошибки и советы",
+                "text": """
+<b>⚠️ Частые ошибки:</b>
+• ❌ If I had studied, I would have been a doctor now. (смешение времён)  ✅ If I had studied, I would be a doctor now.
+• ❌ If I would be rich, I would have bought a car.  ✅ If I were rich, I would have bought a car.
+
+<b>💡 Совет:</b>
+• Если результат относится к настоящему, а условие к прошлому – используйте would + V в главной части.
+• Если условие относится к настоящему (постоянное качество), а результат к прошлому – would have + V3.
+• Тренируйтесь: придумывайте предложения о том, как ваши прошлые решения влияют на настоящее.
+
+<blockquote>Смешанные условные позволяют точно выразить связь между прошлым и настоящим.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Всегда ли нужно использовать смешанные условные?", "answer": "Нет, только когда времена в условии и результате разные. Если оба о прошлом – 3 тип, оба о настоящем – 2 тип."}
+        ]
     },
-    "conditionals_without_if": {
+        "conditionals_without_if": {
         "title": "Условные предложения без if (otherwise, provided, as long as, on condition)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке. Скоро здесь появится теория."}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Unless – если не",
+                "text": """
+<b>🔁 Unless = if not (если не).</b>
+
+• You won't pass the exam unless you study. (Ты не сдашь экзамен, если не будешь учиться.)
+• Unless it rains, we'll have a picnic. (Если не пойдёт дождь, у нас будет пикник.)
+
+<blockquote>Отрицание в придаточной части после unless не используется (нельзя unless you don't study).</blockquote>
+"""
+            },
+            {
+                "title": "Provided that / as long as – при условии, что",
+                "text": """
+<b>✅ Provided that / as long as – при условии, что (выражают чёткое условие).</b>
+
+• You can borrow my car provided that you bring it back by 10. (Ты можешь взять мою машину при условии, что вернёшь её к 10.)
+• I'll help you as long as you promise to work hard. (Я помогу тебе при условии, что ты пообещаешь усердно работать.)
+
+<blockquote>Эти союзы более формальны, чем if, и часто используются в договорах и инструкциях.</blockquote>
+"""
+            },
+            {
+                "title": "On condition that – очень формальная альтернатива",
+                "text": """
+<b>📌 On condition that – при условии, что (самый формальный вариант).</b>
+
+• The money was lent on condition that it would be repaid in a month. (Деньги были одолжены при условии, что они будут возвращены через месяц.)
+• He agreed to help on condition that we paid him in advance. (Он согласился помочь при условии, что мы заплатим ему авансом.)
+
+<blockquote>После on condition that в придаточной части может использоваться would (в отличие от других союзов).</blockquote>
+"""
+            },
+            {
+                "title": "Otherwise – иначе",
+                "text": """
+<b>⚠️ Otherwise – иначе, в противном случае (может заменять отрицательное условие).</b>
+
+• You should leave now; otherwise, you'll miss the train. (Тебе нужно уходить сейчас; иначе опоздаешь на поезд.)
+• Wear a coat; otherwise, you'll catch a cold. (Надень пальто; иначе простудишься.)
+
+<blockquote>Otherwise соединяет два предложения, часто после точки с запятой.</blockquote>
+"""
+            },
+            {
+                "title": "Типичные ошибки и советы",
+                "text": """
+<b>⚠️ Частые ошибки:</b>
+• ❌ Unless you don't hurry, you'll be late.  ✅ Unless you hurry, you'll be late.
+• ❌ Provided that you will come, I'll wait.  ✅ Provided that you come, I'll wait.
+• ❌ He agreed on condition that we pay in advance. (можно, но would pay тоже правильно)
+
+<b>💡 Совет:</b>
+• Используйте альтернативы if, чтобы разнообразить речь и звучать более формально.
+• Запомните, что после unless, provided that, as long as, on condition that не ставится will (кроме on condition that + would в некоторых случаях).
+"""
+            }
+        ],
+        "faq": [
+            {"question": "В чём разница между 'as long as' и 'provided that'?", "answer": "Они взаимозаменяемы, but 'provided that' чуть более формален."}
+        ]
     },
     "modal_perfect_advanced": {
         "title": "Modal Perfect (must have done, could have done, should have done) – углубление",
