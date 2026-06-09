@@ -914,7 +914,8 @@ async def show_thematic_lesson(callback: CallbackQuery):
                 break
     
     if not content:
-        await callback.answer("Урок не найден (ошибка ключа)", show_alert=True)
+        # Вместо "Урок не найден" показываем сам ключ
+        await callback.answer(f"Ключ не найден: {key}", show_alert=True)
         return
 
     user_id = callback.from_user.id
@@ -928,7 +929,6 @@ async def show_thematic_lesson(callback: CallbackQuery):
     }
     set_user_state(user_id, user_state)
     
-    # Отправляем новое сообщение вместо редактирования
     await callback.message.answer(f"📖 {topic_name}\n\n{content['pages'][0]['text']}", parse_mode="HTML")
     await callback.answer()
 # ==================== МОЁ ОБУЧЕНИЕ, ТЕСТ ====================
