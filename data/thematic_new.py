@@ -101,10 +101,84 @@ THEMATIC_NEW_CONTENT = {
             {"question": "В чем разница между 'no sooner... than' и 'hardly... when'?", "answer": "Они взаимозаменяемы, но 'no sooner' требует 'than', а 'hardly' требует 'when'."}
         ]
     },
-    "inversion_for_emphasis": {
+        "inversion_for_emphasis": {
         "title": "Инверсия для эмфазы (Only after, So beautiful, Little did he know)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке. Скоро здесь появится теория."}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Инверсия с only (в начале предложения)",
+                "text": """
+<b>📌 Инверсия используется после only + обстоятельство времени/условия для усиления.</b>
+
+• Only after the film started did I realise I had seen it before. (Только после начала фильма я понял, что уже видел его.)
+• Only when you apologise will I forgive you. (Только когда извинишься, я прощу.)
+• Only then did he understand his mistake. (Только тогда он понял свою ошибку.)
+
+<blockquote>После only + выражение времени/условия ставим вспомогательный глагол, затем подлежащее.</blockquote>
+
+<b>Дополнительные примеры:</b>
+• Only by working hard will you succeed. (Только упорно работая, вы добьётесь успеха.)
+• Only after I left did I realise how much I loved her. (Только после ухода я понял, как сильно люблю её.)
+• Only once did I see her cry. (Только один раз я видел, как она плакала.)
+
+<blockquote>Если only стоит перед подлежащим и не относится ко всему предложению, инверсии нет: Only John can help. (Только Джон может помочь.)</blockquote>
+"""
+            },
+            {
+                "title": "Инверсия с so / such (для усиления)",
+                "text": """
+<b>📌 So + прилагательное / such + существительное в начале предложения вызывают инверсию.</b>
+
+• So beautiful was the view that we stopped to take photos. (Вид был настолько красивым, что мы остановились фотографировать.)
+• Such was his anger that he couldn't speak. (Таким был его гнев, что он не мог говорить.)
+
+<blockquote>Сравните обычный порядок: The view was so beautiful that... vs So beautiful was the view that...</blockquote>
+
+• So rapidly did she speak that I could hardly understand. (Она говорила так быстро, что я едва понимал.)
+• Such was the force of the explosion that windows broke. (Такова была сила взрыва, что выбило окна.)
+• So loud was the music that we had to leave. (Музыка была настолько громкой, что нам пришлось уйти.)
+
+<blockquote>Эти конструкции очень формальны и встречаются в литературе и академическом письме.</blockquote>
+"""
+            },
+            {
+                "title": "Инверсия с little (редко, почти никогда)",
+                "text": """
+<b>🔍 Little в начале предложения означает «почти не, совсем не» и требует инверсии.</b>
+
+• Little did he know that his life was about to change. (Он понятия не имел, что его жизнь вот-вот изменится.)
+• Little did they suspect that the police were waiting. (Они ни о чём не подозревали, что полиция ждала.)
+
+<blockquote>Эта конструкция очень формальная и встречается в литературе.</blockquote>
+
+• Little did I realise what was in store for me. (Я и не подозревал, что меня ждёт.)
+• Little does she care about the consequences. (Ей мало дела до последствий.)
+• Little did we expect that the project would fail. (Мы никак не ожидали, что проект провалится.)
+
+<blockquote>Little здесь не означает «маленький», а является наречием со значением «почти никак».</blockquote>
+"""
+            },
+            {
+                "title": "Советы и типичные ошибки",
+                "text": """
+<b>⚠️ Частые ошибки:</b>
+• ❌ Only after I finished, I realised.  ✅ Only after I finished did I realise.
+• ❌ Little he knew.  ✅ Little did he know.
+• ❌ So beautiful the view was that...  ✅ So beautiful was the view that...
+
+<b>💡 Совет:</b>
+• Используйте инверсию с only для придания веса условию.
+• Не злоупотребляйте: в разговорной речи эти конструкции неестественны.
+• Тренируйтесь: переписывайте обычные предложения в эмфатическую инверсию.
+• Запомните, что после so + прилагательное идёт вспомогательный глагол, затем подлежащее.
+
+<blockquote>На экзаменах (CPE, CAE) инверсия для эмфазы повышает балл за стиль.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Всегда ли нужна инверсия после only?", "answer": "Только если only стоит в начале предложения и относится ко всему предложению (не к подлежащему). Only John can help (инверсии нет)."},
+            {"question": "Как сказать 'настолько холодно, что ...' с инверсией?", "answer": "So cold was it that we stayed indoors."}
+        ]
     },
     "cleft_sentences": {
         "title": "Расщеплённые предложения (It was... that..., What... is...)",
