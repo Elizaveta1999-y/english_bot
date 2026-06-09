@@ -16,9 +16,6 @@ from speaking.services.tts import text_to_voice
 router = Router()
 
 # ========== ОБЩАЯ ФУНКЦИЯ ДЛЯ ОБРАБОТКИ ВОПРОСОВ ПО УРОКАМ ==========
-print(f"[DEBUG] lesson_question answer: {answer[:100]}...")
-await bot.send_message(chat_id=chat_id, text=answer, reply_markup=keyboard)
-print("[DEBUG] message sent")
 
 LESSON_CONTENT = {}
 LESSON_CONTENT.update(LEVEL_A1_CONTENT)
