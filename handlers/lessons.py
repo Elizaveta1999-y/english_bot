@@ -903,19 +903,18 @@ async def show_thematic_lesson(callback: CallbackQuery):
     idx = int(callback.data.split("_")[1])
     topic_name = THEMATIC_TOPICS[idx]
     key = topic_name.lower().replace(" ", "_").replace("(", "").replace(")", "").replace("?", "")
+    
     content = LESSON_CONTENT.get(key)
-print(f"DEBUG: key={key}, found={content is not None}")
     if not content:
-        keyboard = InlineKeyboardMarkup(inline_keyboard=[
-            [InlineKeyboardButton(text="🔙 Назад к темам", callback_data="thematic_menu")],
-            [InlineKeyboardButton(text="🏠 Главное меню", callback_data="back_to_main")]
-        ])
-        await callback.message.edit_text(
-            f"📖 {topic_name}\n\n🚧 Урок в разработке. Скоро здесь будет теория.",
-            reply_markup=keyboard,
-            parse_mode="HTML"
-        )
-        await callback.answer()
+        # fallback: ищем любой ключ, который начинается с основной части
+        main_part = topic_name.split("(")[0].strip().lower().replace(" ", "_")
+        for k in LESSON_CONTENT.keys():
+            if k.startswith(main_part):
+                content = LESSON_CONTENT.get(k)
+                break
+    
+    if not content:
+        await callback.answer("Урок не найден (ошибка ключа)", show_alert=True)
         return
 
     user_id = callback.from_user.id
@@ -928,9 +927,10 @@ print(f"DEBUG: key={key}, found={content is not None}")
         "source": "thematic"
     }
     set_user_state(user_id, user_state)
-    await show_lesson_page(callback.message, user_id, edit=True)
+    
+    # Отправляем новое сообщение вместо редактирования
+    await callback.message.answer(f"📖 {topic_name}\n\n{content['pages'][0]['text']}", parse_mode="HTML")
     await callback.answer()
-
 # ==================== МОЁ ОБУЧЕНИЕ, ТЕСТ ====================
 @router.callback_query(lambda c: c.data == "my_learning")
 async def my_learning_menu(callback: CallbackQuery):
