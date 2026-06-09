@@ -2404,15 +2404,208 @@ THEMATIC_NEW_CONTENT = {
     },
 
     # ==================== СЛОВООБРАЗОВАНИЕ И ЛОЖНЫЕ ДРУЗЬЯ ====================
-    "word_formation_advanced": {
+        "word_formation_advanced": {
         "title": "Словообразование (суффиксы, префиксы, сложные слова) – продвинутое",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке. Скоро здесь появится теория."}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Суффиксы существительных (углубление)",
+                "text": """
+<b>🔨 Продуктивные суффиксы для C1-C2:</b>
+
+• -tion / -sion: educate → education, decide → decision
+• -ment: develop → development, agree → agreement
+• -ance / -ence: appear → appearance, differ → difference
+• -er / -or: teach → teacher, act → actor
+• -ing: build → building, feel → feeling
+• -ness: happy → happiness, kind → kindness
+• -ity: active → activity, possible → possibility
+• -ship: friend → friendship, leader → leadership
+• -hood: child → childhood, neighbour → neighbourhood
+• -dom: free → freedom, king → kingdom
+
+<blockquote>Помните об изменениях на письме: happy → happiness (y→i), possible → possibility (le→il).</blockquote>
+"""
+            },
+            {
+                "title": "Суффиксы прилагательных (углубление)",
+                "text": """
+<b>🎨 Образование прилагательных:</b>
+
+• -able / -ible: comfort → comfortable, access → accessible
+• -ful: hope → hopeful, care → careful
+• -less: hope → hopeless, care → careless
+• -ive: act → active, create → creative
+• -al: nature → natural, education → educational
+• -y: cloud → cloudy, sun → sunny
+• -ic: hero → heroic, atom → atomic
+• -ous: danger → dangerous, fame → famous
+• -ish: child → childish, fool → foolish
+• -ly (от существительных): friend → friendly, day → daily
+
+<blockquote>Приставки un-, in-, im-, il-, ir-, dis-, non- образуют антонимы.</blockquote>
+"""
+            },
+            {
+                "title": "Префиксы с оттенками значения",
+                "text": """
+<b>🎯 Префиксы для уточнения смысла:</b>
+
+• pre- (до): prearrange, preconception, premeditated
+• post- (после): postwar, postgraduate, postpone
+• inter- (между): interact, international, interlude
+• intra- (внутри): intranet, intramural, intravenous
+• sub- (под): subconscious, submerge, subordinate
+• super- (над, сверх): supermarket, supernatural, supermodel
+• ultra- (ультра-, сверх-): ultrasound, ultramodern
+• over- (слишком, чрезмерно): overeat, overwork, overestimate
+• under- (недостаточно): undercooked, underestimate, underpaid
+
+<blockquote>Понимание этих префиксов помогает догадываться о значении незнакомых слов.</blockquote>
+"""
+            },
+            {
+                "title": "Сложные слова (compound adjectives)",
+                "text": """
+<b>✂️ Сложные прилагательные, часто встречающиеся на C1-C2:</b>
+
+• well‑ + V3: well‑known, well‑educated, well‑behaved
+• badly‑ + V3: badly‑damaged, badly‑organised
+• long‑ + V3: long‑awaited, long‑forgotten
+• ever‑ + V3: ever‑changing, ever‑present
+• quick‑ / slow‑ + V‑ing: quick‑thinking, slow‑moving
+• heart‑ / mind‑ + V3: heart‑broken, mind‑blowing
+• eye‑ / mouth‑ + V3: eye‑catching, mouth‑watering
+
+<b>Примеры в предложениях:</b>
+• She is a well‑respected journalist. (Она – уважаемый журналист.)
+• The long‑awaited sequel finally arrived. (Долгожданное продолжение наконец вышло.)
+• It was a mind‑blowing experience. (Это был умопомрачительный опыт.)
+• The dish was mouth‑watering. (Блюдо было аппетитным.)
+
+<blockquote>Сложные прилагательные часто используются в эссе и художественной литературе.</blockquote>
+"""
+            },
+            {
+                "title": "Советы",
+                "text": """
+<b>💡 Как развить навык словообразования:</b>
+
+• При чтении обращайте внимание на структуру незнакомых слов, выделяйте корень, суффикс, префикс.
+• Ведите список продуктивных суффиксов и префиксов с примерами.
+• Тренируйтесь: возьмите корень (например, 'dict') и образуйте все возможные производные (dictate, dictation, dictator, dictatorial).
+• В части Word formation экзаменов CPE, CAE это ключевое умение.
+
+<blockquote>Словообразование позволяет активно расширять словарный запас, не заучивая тысячи слов.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Как запомнить все суффиксы?", "answer": "Не пытайтесь выучить списком. Изучайте их в контексте слов, которые вы уже знаете. Постепенно вы начнёте узнавать суффиксы автоматически."}
+        ]
     },
-    "root_words": {
+        "root_words": {
         "title": "Латинские и греческие корни (как догадываться о значении слов)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке. Скоро здесь появится теория."}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Зачем знать корни?",
+                "text": """
+<b>🌱 Знание латинских и греческих корней позволяет догадываться о значении незнакомых слов.</b>
+
+Большинство сложных английских слов образованы от латинских и греческих корней. Понимая их, вы сможете понимать новые слова даже без словаря.
+
+<blockquote>Этот навык особенно полезен для экзаменов CPE, GRE, GMAT и академического чтения.</blockquote>
+"""
+            },
+            {
+                "title": "Корни, связанные с 'видеть' и 'знать'",
+                "text": """
+<b>👁️ Корни зрения и знания:</b>
+
+• <b>spec / spect</b> – смотреть (Latin)
+  • inspect (внутрь смотреть → осматривать)
+  • spectator (зритель)
+  • retrospect (взгляд назад)
+
+• <b>vid / vis</b> – видеть (Latin)
+  • video, vision, visible, evidence, provide
+
+• <b>sci</b> – знать (Latin)
+  • science, conscience, conscious, omniscient (всезнающий)
+
+• <b>cogn / gn</b> – знать, узнавать (Latin)
+  • recognise, cognitive, incognito, diagnosis
+
+<blockquote>Зная эти корни, вы легко поймёте слова inspection, supervision, preview, evident, scientific, agnostic.</blockquote>
+"""
+            },
+            {
+                "title": "Корни 'письма' и 'голоса'",
+                "text": """
+<b>✍️ Корни, связанные с письмом и речью:</b>
+
+• <b>scrib / script</b> – писать (Latin)
+  • describe, prescribe, manuscript, inscription, subscribe
+
+• <b>graph</b> – писать, рисовать (Greek)
+  • autograph, biography, photograph, graphite, paragraph
+
+• <b>dict</b> – говорить (Latin)
+  • dictate, predict, dictionary, verdict, contradict
+
+• <b>voc / vok</b> – голос, звать (Latin)
+  • vocal, vocabulary, invoke, evoke, provocative
+
+• <b>log / logue</b> – слово, речь, мысль (Greek)
+  • dialogue, monologue, logic, apology, analogue
+
+<blockquote>Эти корни встречаются в тысячах английских слов, включая научные и технические термины.</blockquote>
+"""
+            },
+            {
+                "title": "Корни 'движения' и 'чувства'",
+                "text": """
+<b>🏃 Корни движения:</b>
+
+• <b>mov / mot / mob</b> – двигать (Latin)
+  • move, motion, motor, mobile, emotion (отодвигать)
+
+• <b>ced / cess</b> – идти, уступать (Latin)
+  • proceed, succeed, process, recession, concession
+
+• <b>port</b> – нести (Latin)
+  • transport, portable, porter, import, report
+
+• <b>ven / vent</b> – приходить (Latin)
+  • prevent, invent, intervene, venue, adventure
+
+<b>❤️ Корни чувств:</b>
+
+• <b>path / pass</b> – чувство, страдание (Greek)
+  • sympathy, empathy, pathetic, apathy, passionate
+
+• <b>senti / sens</b> – чувствовать (Latin)
+  • sense, sensitive, sentiment, consent, resent
+
+<blockquote>Понимание этих корней значительно расширяет словарный запас и улучшает понимание текста.</blockquote>
+"""
+            },
+            {
+                "title": "Советы",
+                "text": """
+<b>💡 Как использовать знание корней:</b>
+
+• Когда встречаете новое слово, разберите его на корни (например, "benevolent" – bene (хорошо) + vol (хотеть) → доброжелательный).
+• Составьте карточки с корнем и его значением, добавляя по 2-3 примера.
+• Читайте научные статьи и обращайте внимание на сложные слова, анализируя их структуру.
+• На экзаменах это поможет догадаться о значении незнакомого слова в контексте.
+
+<blockquote>Знание корней превращает запоминание слов из механического в логическое.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Сколько корней нужно знать для C1-C2?", "answer": "Около 100-150 самых употребительных. Остальные можно вывести логически или узнать по мере чтения."}
+        ]
     },
     "false_friends": {
         "title": "Ложные друзья переводчика (продвинутые)",
