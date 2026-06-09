@@ -1511,15 +1511,136 @@ THEMATIC_NEW_CONTENT = {
             {"question": "Всегда ли можно сократить придаточное?", "answer": "Нет, только если глагол в придаточной части передаёт длительное или повторяющееся действие (или пассив)."}
         ]
     },
-    "clauses_of_concession_advanced": {
+        "clauses_of_concession_advanced": {
         "title": "Придаточные уступки (although, even though, albeit, despite, in spite of) – сложные нюансы",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке. Скоро здесь появится теория."}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Although / even though / though",
+                "text": """
+<b>🧩 Although / even though / though – «хотя, несмотря на то что».</b>
+
+После них идёт полное предложение (подлежащее + сказуемое).
+
+• Although it was raining, we went for a walk. (Хотя шёл дождь, мы пошли гулять.)
+• Even though she was tired, she finished her work. (Несмотря на то что устала, она закончила работу.)
+• Though it was late, she continued working. (Хотя было поздно, она продолжала работать.)
+
+<blockquote>Even though сильнее, чем although, подчёркивает контраст. Though – разговорный вариант, может стоять в конце.</blockquote>
+"""
+            },
+            {
+                "title": "Albeit – очень формальный союз",
+                "text": """
+<b>📌 Albeit означает «хотя и», «но» и используется только с прилагательными, наречиями, причастиями или существительными без глагола.</b>
+
+• The journey was enjoyable, albeit tiring. (Путешествие было приятным, хотя и утомительным.)
+• He accepted the position, albeit reluctantly. (Он принял должность, хотя и неохотно.)
+
+<blockquote>Albeit никогда не используется с полным предложением (с глаголом).</blockquote>
+
+• The solution was simple, albeit effective. (Решение было простым, хотя и эффективным.)
+• They arrived late, albeit with a good reason. (Они опоздали, хотя и с уважительной причиной.)
+"""
+            },
+            {
+                "title": "Despite / in spite of",
+                "text": """
+<b>📌 Despite / in spite of – «несмотря на» (предлоги, за ними существительное или герундий).</b>
+
+• Despite the rain, we went out. (Несмотря на дождь, мы вышли.)
+• In spite of being tired, she finished the report. (Несмотря на усталость, она закончила отчёт.)
+
+<blockquote>Для полного предложения можно использовать 'despite the fact that'.</blockquote>
+
+• Despite having little experience, he got the job. (Несмотря на небольшой опыт, он получил работу.)
+• In spite of the fact that it was expensive, we bought it. (Несмотря на то что это было дорого, мы купили.)
+"""
+            },
+            {
+                "title": "Сравнение и типичные ошибки",
+                "text": """
+<b>📊 Сравните:</b>
+
+• Although it rained, we went out. (союз + предложение)
+• Despite the rain, we went out. (предлог + существительное)
+• It rained, yet we went out. (союз yet)
+• We went out; however, it rained. (наречие however)
+
+<b>⚠️ Частые ошибки:</b>
+• ❌ Despite it rained...  ✅ Despite the rain / Despite the fact that it rained.
+• ❌ Although the rain...  ✅ Although it rained...
+• ❌ In spite of that he was tired...  ✅ In spite of being tired / In spite of the fact that he was tired.
+
+<b>💡 Совет:</b>
+• Если хотите использовать глагол (был дождь), ставьте although / even though.
+• Если хотите использовать существительное (дождь), ставьте despite / in spite of.
+• Albeit используйте только для краткого уточнения (прилагательным или наречием).
+"""
+            }
+        ],
+        "faq": [
+            {"question": "В чём разница между 'although' и 'even though'?", "answer": "Even though более сильный, подчёркивает контраст. Although – нейтральный."}
+        ]
     },
-    "clauses_of_purpose_advanced": {
+        "clauses_of_purpose_advanced": {
         "title": "Придаточные цели (to, in order to, so that, for fear that)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке. Скоро здесь появится теория."}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Инфинитив цели (to / in order to / so as to)",
+                "text": """
+<b>🎯 Инфинитив цели отвечает на вопрос «зачем?», «с какой целью?».</b>
+
+• I went to the supermarket to buy milk. (Я пошёл в супермаркет, чтобы купить молоко.)
+• She is saving money to buy a car. (Она копит деньги, чтобы купить машину.)
+• He spoke loudly so as to be heard. (Он говорил громко, чтобы его услышали.)
+
+<blockquote>In order to / so as to – более формальные варианты.</blockquote>
+"""
+            },
+            {
+                "title": "So that + can / could / will – для выражения цели с подлежащим",
+                "text": """
+<b>📌 So that – используется, когда в цели есть подлежащее (которое может отличаться от подлежащего главного предложения).</b>
+
+• I gave him my number so that he could call me. (Я дал ему свой номер, чтобы он мог позвонить мне.)
+• We are leaving early so that we won't be late. (Мы уезжаем рано, чтобы не опоздать.)
+
+<blockquote>После so that часто используются модальные глаголы can, could, will, would, may.</blockquote>
+"""
+            },
+            {
+                "title": "Отрицательная цель (чтобы не …)",
+                "text": """
+<b>🚫 Выражение цели с отрицанием:</b>
+
+• Инфинитив: I closed the window not to let the cold air in. (Я закрыл окно, чтобы холодный воздух не проникал.)
+• So that + won't / wouldn't: I closed the window so that the cold air wouldn't come in.
+
+<b>For fear that / lest – очень формальные варианты («чтобы не», «как бы не»).</b>
+• He took an umbrella for fear that it might rain. (Он взял зонт, чтобы не промокнуть (как бы не пошёл дождь).)
+• She spoke quietly lest anyone hear her. (Она говорила тихо, чтобы никто не услышал.)
+
+<blockquote>Lest требует сослагательного наклонения (bare infinitive).</blockquote>
+"""
+            },
+            {
+                "title": "Типичные ошибки и советы",
+                "text": """
+<b>⚠️ Частые ошибки:</b>
+• ❌ I went to shop for buying milk. (неправильно)  ✅ I went to the shop to buy milk.
+• ❌ So that to buy milk.  ✅ So that I could buy milk / to buy milk.
+
+<b>💡 Совет:</b>
+• Если цель относится к тому же подлежащему, используйте инфинитив (to + V).
+• Если у цели другое подлежащее, используйте so that + can/could.
+• For fear that и lest – для очень формальных текстов.
+• Тренируйтесь: объясните, зачем вы что-то делаете, используя разные конструкции.
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Можно ли использовать 'for' для выражения цели?", "answer": "Да, в конструкции for + V‑ing: This tool is for cutting wood. Но не для глаголов действия: I went for buying (неправильно)."}
+        ]
     },
     "clauses_of_result_advanced": {
         "title": "Придаточные следствия (so...that, such...that) – углубление",
