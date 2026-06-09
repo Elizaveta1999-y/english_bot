@@ -1221,15 +1221,146 @@ THEMATIC_NEW_CONTENT = {
     },
 
     # ==================== ПАССИВНЫЙ ЗАЛОГ (УГЛУБЛЕНИЕ) ====================
-    "passive_reporting_verbs": {
+        "passive_reporting_verbs": {
         "title": "Пассив с глаголами передачи информации (It is said that..., He is said to be...)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке. Скоро здесь появится теория."}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Две конструкции",
+                "text": """
+<b>🗣️ Глаголы передачи информации (say, believe, think, report, know, expect, consider, claim) в пассиве.</b>
+
+Две конструкции:
+1. It + is/was + said/believed + that + предложение (безличный пассив)
+2. Подлежащее + is/was + said/believed + to + инфинитив (пассив с подлежащим)
+
+<blockquote>Обе конструкции равнозначны, но вторая более экономна.</blockquote>
+"""
+            },
+            {
+                "title": "It is said that... – безличный пассив",
+                "text": """
+<b>📌 It is/was + глагол + that... – универсальная конструкция.</b>
+
+• It is said that the president will resign. (Говорят, президент уйдёт в отставку.)
+• It was reported that the accident caused no injuries. (Сообщалось, что в аварии никто не пострадал.)
+• It is believed that the stolen painting is in Europe. (Полагают, что украденная картина находится в Европе.)
+
+<blockquote>Эта конструкция подходит для любого времени и любой информации.</blockquote>
+"""
+            },
+            {
+                "title": "He is said to... – пассив с подлежащим",
+                "text": """
+<b>📌 Подлежащее + is/was + глагол + to + инфинитив (или to have + V3 для прошлого).</b>
+
+• He is said to be very rich. (Говорят, что он очень богат – настоящее)
+• The thief is believed to have escaped. (Считают, что вор сбежал – прошлое)
+• She is expected to arrive at 6 pm. (Ожидается, что она прибудет в 6 вечера.)
+
+<blockquote>Инфинитив to be для настоящего, to have + V3 для прошлого.</blockquote>
+"""
+            },
+            {
+                "title": "Выбор времени инфинитива",
+                "text": """
+<b>📊 Сравнение времён:</b>
+
+• <b>to be + V3</b> – пассивный инфинитив (действие происходит одновременно или позже)
+  • The company is reported to be losing money. (Сообщают, что компания теряет деньги)
+
+• <b>to have + V3</b> – перфектный инфинитив (действие произошло раньше)
+  • The company is reported to have lost millions last year. (Сообщают, что компания потеряла миллионы в прошлом году)
+
+<blockquote>Временная разница важна для точности.</blockquote>
+"""
+            },
+            {
+                "title": "Типичные ошибки и советы",
+                "text": """
+<b>⚠️ Частые ошибки:</b>
+• ❌ It is said that he is being rich.  ✅ He is said to be rich.
+• ❌ He is said that he is rich.  ✅ He is said to be rich.
+• ❌ It is said that the meeting has been cancelled. (верно, но можно короче: The meeting is said to have been cancelled)
+
+<b>💡 Совет:</b>
+• Если подлежащее – человек/предмет, и вы хотите передать слух о нём, используйте He is said to...
+• Если подлежащее – целая ситуация (that...), используйте It is said that...
+• Тренируйтесь: перефразируйте активные предложения в пассив с глаголами передачи информации.
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Можно ли использовать безличный пассив с другими глаголами?", "answer": "Да: It is assumed that..., It is claimed that..., It is understood that... и т.д."}
+        ]
     },
-    "passive_with_prepositions": {
+        "passive_with_prepositions": {
         "title": "Пассив с предлогами (He was laughed at, This bed was slept in)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке. Скоро здесь появится теория."}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Что такое пассив с предлогами?",
+                "text": """
+<b>📍 В английском некоторые глаголы требуют предлог (look at, listen to, wait for, laugh at, pay for).</b>
+
+В пассиве предлог сохраняется после глагола, даже если его некому применить.
+
+• They laughed at him. → He was laughed at. (Над ним смеялись.)
+• Someone slept in this bed. → This bed was slept in. (В этой кровати спали.)
+• They sent for the doctor. → The doctor was sent for. (За доктором послали.)
+
+<blockquote>Предлог остаётся при глаголе, как в активном предложении.</blockquote>
+"""
+            },
+            {
+                "title": "Список распространённых глаголов с предлогами",
+                "text": """
+<b>📌 Глаголы, часто используемые в пассиве с предлогами:</b>
+
+• look at – He was looked at strangely.
+• listen to – The music was listened to by everyone.
+• laugh at – She doesn't like being laughed at.
+• wait for – The results are being waited for.
+• pay for – The meal was paid for by my friend.
+• talk about – The issue is being talked about.
+• rely on – She can be relied on.
+• insist on – His decision was insisted on.
+• refer to – This point was referred to earlier.
+• approve of – The plan was approved of.
+
+<blockquote>В разговорной речи предлог часто переносится в конец, но в формальной может оставаться перед дополнением.</blockquote>
+"""
+            },
+            {
+                "title": "Пассив с фразовыми глаголами",
+                "text": """
+<b>🔤 Фразовые глаголы (глагол + наречие) также сохраняют частицу в пассиве.</b>
+
+• turn down – The offer was turned down.
+• put off – The meeting was put off.
+• take care of – The children are taken care of.
+• look after – The dog is looked after by a neighbour.
+• give up – Smoking should be given up.
+
+<blockquote>Обратите внимание, что частица (down, off, of, after, up) остаётся после глагола.</blockquote>
+"""
+            },
+            {
+                "title": "Типичные ошибки и советы",
+                "text": """
+<b>⚠️ Частые ошибки:</b>
+• ❌ He was laughed.  ✅ He was laughed at.
+• ❌ This bed was slept.  ✅ This bed was slept in.
+• ❌ The music was listened.  ✅ The music was listened to.
+
+<b>💡 Совет:</b>
+• Всегда проверяйте, требует ли глагол предлог в активном залоге. Если да, то в пассиве предлог остаётся.
+• Запомните: предлог стоит в конце пассивной фразы (после глагола).
+• Тренируйтесь: переделывайте активные предложения с глаголами + предлог в пассив.
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Можно ли в пассиве с предлогом убрать предлог?", "answer": "Нет, предлог обязателен, иначе смысл теряется."}
+        ]
     },
     "impersonal_passive": {
         "title": "Безличный пассив (It is believed that..., It was reported that...) – все времена",
