@@ -1055,15 +1055,169 @@ THEMATIC_NEW_CONTENT = {
             {"question": "Всегда ли нужно сдвигать 'must' в косвенной речи?", "answer": "Вероятностное must часто не меняется (He must be tired → He said he must be tired). Обязательное must обычно меняется на had to."}
         ]
     },
-    "reporting_verbs_patterns": {
+        "reporting_verbs_patterns": {
         "title": "Глаголы передачи речи (advise, warn, accuse, boast, deny, admit, suggest)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке. Скоро здесь появится теория."}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Глаголы + дополнение + инфинитив",
+                "text": """
+<b>📌 Эти глаголы требуют косвенное дополнение + to + V.</b>
+
+• <b>advise</b> – советовать
+  • "You should see a doctor." → He advised me to see a doctor.
+
+• <b>encourage</b> – ободрять
+  • "Keep trying!" → She encouraged me to keep trying.
+
+• <b>warn</b> – предупреждать
+  • "Be careful!" → He warned me to be careful.
+
+• <b>invite</b> – приглашать
+  • "Come to my party." → She invited me to come to her party.
+
+• <b>remind</b> – напоминать
+  • "Don't forget to call." → He reminded me to call.
+
+• <b>persuade</b> – убеждать
+  • "You should join us." → She persuaded me to join them.
+
+<blockquote>В этих конструкциях обязательно указывается, кому адресовано действие.</blockquote>
+"""
+            },
+            {
+                "title": "Глаголы + герундий",
+                "text": """
+<b>📌 Некоторые глаголы требуют герундий (-ing) после себя.</b>
+
+• <b>admit</b> – признавать
+  • "I stole the money." → He admitted stealing the money.
+
+• <b>deny</b> – отрицать
+  • "I didn't break it." → She denied breaking it.
+
+• <b>suggest</b> – предлагать
+  • "Let's go to the cinema." → He suggested going to the cinema.
+
+• <b>recommend</b> – рекомендовать
+  • "You should see this film." → She recommended seeing this film.
+
+• <b>boast</b> – хвастаться
+  • "I speak five languages." → He boasted about speaking five languages. (часто с about)
+
+• <b>insist on</b> – настаивать на
+  • "You must come." → She insisted on coming.
+
+<blockquote>Некоторые глаголы могут использоваться с предлогом + герундий.</blockquote>
+"""
+            },
+            {
+                "title": "Глаголы + that (сослагательное наклонение)",
+                "text": """
+<b>📌 Некоторые глаголы выражают предложение, требование, рекомендацию и требуют сослагательного наклонения (should + V или базовая форма).</b>
+
+• <b>suggest</b> – предлагать (без дополнения)
+  • "We should leave early." → He suggested that we (should) leave early.
+
+• <b>recommend</b> – рекомендовать
+  • "You should rest." → She recommended that I (should) rest.
+
+• <b>insist</b> – настаивать
+  • "He must pay." → He insisted that he (should) pay.
+
+• <b>demand</b> – требовать
+  • "You must leave." → They demanded that we (should) leave.
+
+<blockquote>В американском английском часто опускают should: He suggested that we leave early.</blockquote>
+"""
+            },
+            {
+                "title": "Типичные ошибки и советы",
+                "text": """
+<b>⚠️ Частые ошибки:</b>
+• ❌ He advised me that I rest.  ✅ He advised me to rest.
+• ❌ She suggested to go.  ✅ She suggested going.
+• ❌ He denied to steal.  ✅ He denied stealing.
+
+<b>💡 Совет:</b>
+• Запомните три основные группы:
+  • advise/encourage/warn + someone + to do
+  • admit/deny/suggest + doing
+  • suggest/recommend/insist + that + (should) do
+• Тренируйтесь: переписывайте прямую речь, используя разные глаголы передачи речи.
+"""
+            }
+        ],
+        "faq": [
+            {"question": "В чём разница между 'suggest doing' и 'suggest that someone do'?", "answer": "Suggest + V‑ing (предложить действие вообще). Suggest that someone do (предложить кому-то сделать)."}
+        ]
     },
-    "reported_questions_advanced": {
+        "reported_questions_advanced": {
         "title": "Косвенные вопросы – продвинутые (сложные конструкции)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке. Скоро здесь появится теория."}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Общие вопросы (yes/no) в косвенной речи",
+                "text": """
+<b>❓ Общие вопросы вводятся союзами if или whether.</b>
+
+• "Do you speak English?" → He asked if I spoke English.
+• "Are you tired?" → She asked whether I was tired.
+
+<blockquote>Порядок слов прямой (подлежащее + сказуемое), вспомогательные do/does/did опускаются.</blockquote>
+"""
+            },
+            {
+                "title": "Специальные вопросы (wh-questions)",
+                "text": """
+<b>🔍 Специальные вопросы сохраняют вопросительное слово.</b>
+
+• "Where do you live?" → He asked where I lived.
+• "What time does the train leave?" → She asked what time the train left.
+• "Why did you say that?" → He asked why I had said that.
+
+<blockquote>Вопросительное слово остаётся, затем прямой порядок слов.</blockquote>
+"""
+            },
+            {
+                "title": "Особые случаи: вопросы с who/what в роли подлежащего",
+                "text": """
+<b>📌 Если who/what является подлежащим, порядок слов не меняется.</b>
+
+• "Who broke the window?" → He asked who had broken the window.
+• "What happened?" → She asked what had happened.
+
+<blockquote>Вспомогательный глагол не добавляется, порядок слов такой же, как в утверждении.</blockquote>
+"""
+            },
+            {
+                "title": "Сложные случаи: косвенные вопросы с вводными фразами",
+                "text": """
+<b>📌 Косвенные вопросы с вводными фразами (Could you tell me..., Do you know..., I wonder...).</b>
+
+• "Where is the station?" → Could you tell me where the station is?
+• "What time does the film start?" → Do you know what time the film starts?
+• "Has she arrived?" → I wonder whether she has arrived.
+
+<blockquote>В этих конструкциях порядок слов прямой, знак вопроса ставится только в конце всего предложения.</blockquote>
+"""
+            },
+            {
+                "title": "Советы и типичные ошибки",
+                "text": """
+<b>⚠️ Частые ошибки:</b>
+• ❌ He asked what time does the train leave.  ✅ He asked what time the train left.
+• ❌ She asked if did I speak English.  ✅ She asked if I spoke English.
+• ❌ He asked where I was going to? (знак вопроса не нужен)  ✅ He asked where I was going to.
+
+<b>💡 Совет:</b>
+• После asked никогда не ставьте that.
+• Порядок слов в косвенном вопросе такой же, как в утверждении.
+• Тренируйтесь: превращайте прямые вопросы в косвенные, обращая внимание на порядок слов и сдвиг времён.
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Когда использовать whether вместо if?", "answer": "Whether более формален, часто когда есть выбор (whether… or not)."}
+        ]
     },
 
     # ==================== ПАССИВНЫЙ ЗАЛОГ (УГЛУБЛЕНИЕ) ====================
