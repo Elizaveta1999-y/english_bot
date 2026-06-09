@@ -548,7 +548,6 @@ async def show_lesson_page(message: Message, user_id: int, edit: bool = True):
         back_text = "🔙 Назад к списку уроков"
 
     lesson_buttons = [
-        [InlineKeyboardButton(text="❓ Частые вопросы", callback_data=f"lesson_faq_{key}")],
         [InlineKeyboardButton(text="🤔 Задать вопрос", callback_data=f"lesson_ask_{key}")],
         [InlineKeyboardButton(text="📝 Начать практику", callback_data=f"lesson_practice_{key}")],
         [InlineKeyboardButton(text=back_text, callback_data=back_callback)],
