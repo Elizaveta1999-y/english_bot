@@ -3241,15 +3241,180 @@ THEMATIC_NEW_CONTENT = {
     },
 
     # ==================== ПУНКТУАЦИЯ И СТИЛЬ ====================
-    "punctuation": {
+        "punctuation": {
         "title": "Пунктуация в английском (запятые, точки с запятой, двоеточия, апострофы)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке. Скоро здесь появится теория."}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Запятая (comma)",
+                "text": """
+<b>📌 Запятая – самый частый знак препинания, но его легко перепутать.</b>
+
+• <b>Перечисление</b>: I bought apples, oranges, bananas and grapes. (перед and запятая не обязательна)
+
+• <b>После вводных слов и фраз</b>: However, I disagree. / In fact, she was right.
+
+• <b>В сложносочинённых предложениях (перед and, but, or, so, for, nor, yet)</b>: I wanted to go, but I was too tired.
+
+• <b>После придаточной части в начале предложения</b>: If it rains, we'll stay home.
+
+• <b>Для выделения определительных придаточных (non‑defining)</b>: My brother, who lives in London, is a doctor. (запятые нужны)
+
+<blockquote>В английском запятая не ставится перед that (неправильно: I think, that he is right).</blockquote>
+"""
+            },
+            {
+                "title": "Точка с запятой (semicolon)",
+                "text": """
+<b>📌 Точка с запятой связывает два самостоятельных предложения без союза.</b>
+
+• It was raining; we stayed indoors.
+
+• Также используется перед however, therefore, nevertheless, consequently, etc.:
+  • It was late; however, we continued working.
+
+<blockquote>Точка с запятой – признак формального и литературного стиля.</blockquote>
+"""
+            },
+            {
+                "title": "Двоеточие (colon) и тире (dash)",
+                "text": """
+<b>📌 Двоеточие вводит пояснение, список или цитату.</b>
+
+• She had one goal: to win.
+• You need the following: paper, pen, and a ruler.
+
+<b>📌 Тире (em dash) – более эмоциональный вариант, чем двоеточие или скобки.</b>
+
+• He was – how can I put it? – a bit strange.
+• She finally arrived – two hours late.
+
+<blockquote>В академическом письме избегайте тире; используйте двоеточие или точку с запятой.</blockquote>
+"""
+            },
+            {
+                "title": "Апостроф (apostrophe)",
+                "text": """
+<b>📌 Апостроф используется для:</b>
+
+• Притяжательного падежа (John's car, the students' books)
+• Сокращений (don't, it's, you're, they're)
+
+<b>⚠️ Частые ошибки:</b>
+• ❌ It's tail is long. (здесь it's = it is)  ✅ Its tail is long.
+• ❌ The student's are here.  ✅ The students are here. (множественное число, а не притяжательность)
+
+<blockquote>Its – принадлежность; it's – сокращение от it is или it has.</blockquote>
+"""
+            },
+            {
+                "title": "Советы",
+                "text": """
+<b>💡 Как улучшить пунктуацию:</b>
+• Читайте много качественных текстов (The Economist, The Guardian) – обратите внимание на их пунктуацию.
+• Используйте проверку грамматики (Grammarly, LanguageTool).
+• Помните, что в английском нет кавычек-ёлочек (« »), только двойные (" ") или одинарные (' ').
+• На экзаменах (IELTS, CAE, CPE) правильная пунктуация влияет на балл за coherence.
+
+<blockquote>Пунктуация – это музыка письменной речи. Она делает текст понятным и ритмичным.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Ставится ли запятая перед 'and' в перечислении?", "answer": "В британском английском обычно нет, в американском иногда да. Главное – быть последовательным."}
+        ]
     },
-    "formal_informal_register": {
+        "formal_informal_register": {
         "title": "Формальный и неформальный английский (регистры, стилистические различия)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке. Скоро здесь появится теория."}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Общие различия",
+                "text": """
+<b>🎭 Формальный vs неформальный стиль:</b>
+
+• <b>Формальный</b> – используется в официальных документов, академической среде, деловой переписке.
+• <b>Неформальный</b> – в разговоре, личных письмах, соцсетях.
+
+<blockquote>Выбор стиля зависит от ситуации и адресата.</blockquote>
+"""
+            },
+            {
+                "title": "Лексические различия",
+                "text": """
+<b>📌 Примеры замен:</b>
+
+• ask → request
+• buy → purchase
+• get → receive / obtain
+• need → require
+• help → assist
+• start → commence
+• check → verify
+• give → provide
+• talk → converse
+• so → therefore / thus
+• about → approximately
+• enough → sufficient
+• also → in addition / furthermore
+• but → however / nevertheless
+• because → due to / owing to / as
+• show → demonstrate / illustrate
+• tell → inform
+
+<blockquote>В формальном стиле избегаются фразовые глаголы (put off → postpone, find out → discover).</blockquote>
+"""
+            },
+            {
+                "title": "Грамматические различия",
+                "text": """
+<b>📌 Грамматика формального стиля:</b>
+
+• <b>Пассивный залог</b> – используется чаще, чем в разговорной речи.
+  • Informal: They built this bridge in 1990.
+  • Formal: This bridge was built in 1990.
+
+• <b>Безличные конструкции</b> – It is believed that..., It was reported that...
+  • Informal: People think he is rich.
+  • Formal: He is believed to be rich.
+
+• <b>Инверсия</b> – для усиления (Only then did he realise...)
+
+• <b>Отсутствие сокращений</b> – do not (не don't), cannot (не can't), it is (не it's).
+
+• <b>Сложные предложения</b> – причастные обороты, инфинитивные конструкции.
+  • Having finished the report, he submitted it. (вместо After he finished...)
+
+<blockquote>В формальном тексте предложения длиннее, сложнее и точнее.</blockquote>
+"""
+            },
+            {
+                "title": "Примеры и советы",
+                "text": """
+<b>📖 Одно и то же содержание в разных регистрах:</b>
+
+<b>Неформально:</b>
+I'm sorry I'm late. My car broke down, so I had to call a taxi.
+
+<b>Нейтрально:</b>
+I apologise for my delay. My car experienced a breakdown, and consequently I had to call a taxi.
+
+<b>Формально:</b>
+Please accept my apologies for my tardiness. My vehicle suffered a mechanical failure; as a result, I was obliged to summon a taxi.
+
+<blockquote>Чем выше регистр, тем более официальной становится лексика и сложнее грамматика.</blockquote>
+
+<b>💡 Как развить навык переключения регистров:</b>
+• Берите нейтральный текст (например, новость) и переписывайте его в формальном стиле.
+• Переводите формальные письма в неформальные (другу).
+• Обращайте внимание на регистр в разных источниках (блог vs научная статья).
+• Для экзаменов (IELTS, CAE, CPE) важно выбирать правильный регистр в письменной части.
+
+<blockquote>Умение менять регистр – признак высокого уровня владения языком.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Всегда ли нужно использовать формальный стиль в эссе IELTS?", "answer": "Да, академическое эссе требует нейтрального или формального стиля. Неформальный недопустим."}
+        ]
     },
     "hedging": {
         "title": "Hedging (смягчение утверждений: may, might, possibly, arguably)",
