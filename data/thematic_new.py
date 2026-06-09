@@ -2795,15 +2795,210 @@ THEMATIC_NEW_CONTENT = {
     },
 
     # ==================== ФРАЗОВЫЕ ГЛАГОЛЫ (ПРОДВИНУТЫЕ) ====================
-    "phrasal_verbs_advanced_1": {
+        "phrasal_verbs_advanced_1": {
         "title": "Фразовые глаголы C1-C2 (часть 1)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке. Скоро здесь появится теория."}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Группа 'come' (C1-C2)",
+                "text": """
+<b>🔑 Come – редкие и продвинутые значения.</b>
+
+• <b>come across as</b> – производить впечатление, казаться
+  • He comes across as arrogant, but he's actually shy. (Он кажется высокомерным, но на самом деле застенчив.)
+
+• <b>come down to</b> – сводиться к (основной причине)
+  • The problem comes down to a lack of funding. (Проблема сводится к нехватке финансирования.)
+
+• <b>come in for</b> – подвергаться (критике, нападкам)
+  • The government came in for a lot of criticism. (Правительство подверглось сильной критике.)
+
+• <b>come off</b> – удаваться, получаться (о плане, мероприятии)
+  • The party came off really well. (Вечеринка удалась.)
+
+• <b>come out with</b> – заявить, выдать (что-то неожиданное)
+  • He came out with a ridiculous suggestion. (Он выдал нелепое предложение.)
+
+• <b>come up against</b> – столкнуться с (препятствием)
+  • We came up against a lot of opposition. (Мы столкнулись с большим сопротивлением.)
+
+<blockquote>Эти фразовые глаголы помогут вам звучать как носитель в сложных дискуссиях.</blockquote>
+"""
+            },
+            {
+                "title": "Группа 'get' (C1-C2)",
+                "text": """
+<b>🔄 Get – продвинутые конструкции.</b>
+
+• <b>get across</b> – донести (мысль, идею)
+  • He struggled to get his point across. (Ему было трудно донести свою мысль.)
+
+• <b>get at</b> – подразумевать, намекать
+  • What exactly are you getting at? (Что именно ты имеешь в виду?)
+
+• <b>get away with</b> – избежать наказания
+  • He thought he could get away with lying. (Он думал, что ему сойдёт с рук ложь.)
+
+• <b>get back to</b> – вернуться к (теме, вопросу)
+  • Let's get back to the main point. (Давайте вернёмся к главному вопросу.)
+
+• <b>get down to</b> – приступить к (серьёзной работе)
+  • It's time to get down to business. (Пора приступить к делу.)
+
+• <b>get through to</b> – дозвониться, достучаться (до человека)
+  • I can't get through to him – he won't listen. (Не могу до него достучаться – он не слушает.)
+
+<blockquote>Эти глаголы незаменимы для выражения сложных коммуникативных нюансов.</blockquote>
+"""
+            },
+            {
+                "title": "Группа 'go' (C1-C2)",
+                "text": """
+<b>🏃 Go – малочастотные значения.</b>
+
+• <b>go under</b> – обанкротиться, потерпеть крах
+  • Many small businesses went under during the crisis. (Многие малые предприятия обанкротились во время кризиса.)
+
+• <b>go without</b> – обходиться без
+  • We had to go without electricity for two days. (Нам пришлось обходиться без электричества два дня.)
+
+• <b>go through with</b> – довести до конца (несмотря на трудности)
+  • She decided to go through with the wedding. (Она решила довести свадьбу до конца.)
+
+• <b>go over</b> – просмотреть, повторить
+  • Let's go over the report one more time. (Давайте ещё раз просмотрим отчёт.)
+
+• <b>go off</b> – срабатывать (будильник, взрывчатка)
+  • The alarm went off at 6 am. (Будильник сработал в 6 утра.)
+
+• <b>go by</b> – руководствоваться (правилом)
+  • We have to go by the rules. (Мы должны руководствоваться правилами.)
+
+<blockquote>Знание этих значений пригодится в деловой и повседневной речи.</blockquote>
+"""
+            },
+            {
+                "title": "Советы",
+                "text": """
+<b>💡 Как учить продвинутые фразовые глаголы:</b>
+• Изучайте их в контексте, не пытайтесь выучить списком.
+• Используйте их в своей речи и письме – только так они запомнятся.
+• Обращайте внимание на разделяемость: get something across, но get across something (тоже возможно, но стилистически различается).
+• Тренируйтесь перефразировать обычные глаголы фразовыми.
+
+<blockquote>Фразовые глаголы C1-C2 делают речь более динамичной и естественной.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Можно ли заменить фразовый глагол односложным словом?", "answer": "Часто да (postpone = put off), но фразовые глаголы звучат более разговорно и естественно в неформальной речи."}
+        ]
     },
-    "phrasal_verbs_advanced_2": {
+        "phrasal_verbs_advanced_2": {
         "title": "Фразовые глаголы C1-C2 (часть 2)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке. Скоро здесь появится теория."}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Группа 'put' (C1-C2)",
+                "text": """
+<b>🖊️ Put – редкие идиоматические значения.</b>
+
+• <b>put forward</b> – предлагать (идею, кандидата)
+  • He put forward a convincing argument. (Он выдвинул убедительный аргумент.)
+
+• <b>put down</b> – подавлять (восстание), записывать, унижать
+  • The uprising was put down by the army. (Восстание было подавлено армией.)
+  • Put down your name here. (Запишите своё имя здесь.)
+  • He's always putting her down. (Он постоянно её унижает.)
+
+• <b>put through</b> – соединить по телефону, подвергать испытанию
+  • Could you put me through to the manager? (Можете соединить меня с менеджером?)
+  • She was put through a lot of stress. (Она подверглась большому стрессу.)
+
+• <b>put up to</b> – подбить на что-то (обычно плохое)
+  • His friends put him up to it. (Друзья подбили его на это.)
+
+• <b>put up with</b> – мириться с
+  • I can't put up with this noise any longer. (Я больше не могу терпеть этот шум.)
+
+• <b>put in</b> – вкладывать (усилия, время)
+  • She put in a lot of effort. (Она вложила много усилий.)
+
+<blockquote>Эти фразовые глаголы часто встречаются в литературе и официальных документах.</blockquote>
+"""
+            },
+            {
+                "title": "Группа 'take' (C1-C2)",
+                "text": """
+<b>📸 Take – сложные значения.</b>
+
+• <b>take after</b> – быть похожим на (родителя)
+  • She takes after her mother. (Она похожа на свою мать.)
+
+• <b>take in</b> – впускать, вбирать, обманывать
+  • We took in a stray cat. (Мы приютили бездомного кота.)
+  • I was completely taken in by his story. (Я был полностью обманут его историей.)
+
+• <b>take on</b> – брать на себя (обязанности), нанимать
+  • She took on too much responsibility. (Она взяла на себя слишком много обязанностей.)
+  • The company is taking on new staff. (Компания нанимает новых сотрудников.)
+
+• <b>take over</b> – захватить, принять управление
+  • The new CEO will take over next week. (Новый гендиректор вступит в должность на следующей неделе.)
+
+• <b>take to</b> – пристраститься к, полюбить
+  • He took to swimming like a duck to water. (Он быстро полюбил плавание.)
+
+• <b>take up</b> – начать заниматься (хобби), занимать (место/время)
+  • She took up painting. (Она начала заниматься живописью.)
+  • The sofa takes up too much space. (Диван занимает слишком много места.)
+
+<blockquote>Take – один из самых продуктивных глаголов для фразовых значений.</blockquote>
+"""
+            },
+            {
+                "title": "Группа 'turn' (C1-C2)",
+                "text": """
+<b>🔄 Turn – сложные обороты.</b>
+
+• <b>turn down</b> – отвергать, уменьшать (громкость)
+  • She turned down the job offer. (Она отклонила предложение о работе.)
+  • Turn down the volume. (Убавь громкость.)
+
+• <b>turn out</b> – оказаться (в итоге)
+  • The party turned out to be great. (Вечеринка оказалась отличной.)
+
+• <b>turn into</b> – превращаться в
+  • The caterpillar turned into a butterfly. (Гусеница превратилась в бабочку.)
+
+• <b>turn up</b> – появляться, увеличивать
+  • He turned up late again. (Он снова появился поздно.)
+  • Turn up the music. (Сделай музыку громче.)
+
+• <b>turn away</b> – отказывать, отворачиваться
+  • They turned away dozens of fans. (Они отказали десяткам фанатов.)
+  • Don't turn away from those in need. (Не отворачивайся от нуждающихся.)
+
+• <b>turn on/off</b> – включать/выключать (и в переносном смысле)
+  • The music turns me on. (Эта музыка меня заводит – разговорно, не для экзаменов.)
+
+<blockquote>Turn – незаменим для описания изменений состояний.</blockquote>
+"""
+            },
+            {
+                "title": "Советы",
+                "text": """
+<b>💡 Как практиковать фразовые глаголы C1-C2:</b>
+• Читайте качественную литературу (Джордж Оруэлл, Ивлин Во) – там много фразовых глаголов.
+• Пишите эссе и старайтесь использовать изученные фразовые глаголы.
+• Смотрите фильмы на английском с субтитрами, выписывайте фразовые глаголы.
+• Тренируйтесь в речи: заменяйте односложные глаголы (postpone → put off) в разных контекстах.
+
+<blockquote>Постоянная практика – ключ к автоматическому использованию фразовых глаголов.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Как отличить разделяемые фразовые глаголы от неразделяемых?", "answer": "Разделяемые можно разрывать объектом (turn the music down / turn down the music). Неразделяемые всегда вместе (look after the child – нельзя look the child after)."}
+        ]
     },
 
     # ==================== ИДИОМЫ (БОЛЬШЕ 10) ====================
