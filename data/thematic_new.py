@@ -1907,15 +1907,157 @@ THEMATIC_NEW_CONTENT = {
     },
 
     # ==================== СРАВНЕНИЯ И СТРУКТУРЫ ====================
-    "comparative_structures_as_as": {
+        "comparative_structures_as_as": {
         "title": "Конструкции сравнения as...as, not so...as, than, less...than",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке. Скоро здесь появится теория."}],
-        "faq": []
+        "pages": [
+            {
+                "title": "as + прилагательное + as – такой же, как",
+                "text": """
+<b>⚖️ Конструкция as…as используется для выражения равенства.</b>
+
+• She is as tall as her sister. (Она такая же высокая, как её сестра.)
+• This film is as interesting as the book. (Фильм такой же интересный, как книга.)
+• He runs as fast as me. (Он бегает так же быстро, как я.)
+
+<b>Отрицание: not as…as или not so…as</b>
+• This phone is not as expensive as that one. (Этот телефон не такой дорогой, как тот.)
+• The weather today is not so warm as yesterday. (Сегодня не так тепло, как вчера.)
+
+<blockquote>В разговорной речи часто используют not as…as, not so…as звучит старомодно.</blockquote>
+"""
+            },
+            {
+                "title": "less + adjective + than – менее, чем",
+                "text": """
+<b>📉 Конструкция less…than выражает меньшую степень.</b>
+
+• This car is less expensive than that one. (Эта машина менее дорогая, чем та.)
+• He is less tall than his brother. (Он менее высокий, чем его брат.)
+• This exercise is less difficult than the previous one. (Это упражнение менее трудное, чем предыдущее.)
+
+<b>Сравните с not as…as:</b>
+• not as expensive as = дешевле или равно
+• less expensive than = строго дешевле
+
+<blockquote>Обычно not as…as более естественно для отрицания равенства, less…than для указания на явную меньшую степень.</blockquote>
+"""
+            },
+            {
+                "title": "as much / many as – так же много, как",
+                "text": """
+<b>🔢 Для количественных сравнений используется as much (с неисчисляемыми) / as many (с исчисляемыми).</b>
+
+• I don't have as much money as you. (У меня нет столько денег, сколько у тебя.)
+• She ate as many apples as her brother. (Она съела столько же яблок, сколько её брат.)
+
+<b>С глаголами:</b>
+• He works as hard as his colleague. (Он работает так же усердно, как его коллега.)
+• They didn't study as much as we expected. (Они учились не так усердно, как мы ожидали.)
+
+<b>as … as possible – как можно…</b>
+• Come as soon as possible. (Приходи как можно скорее.)
+• Speak as clearly as possible. (Говори как можно чётче.)
+
+<blockquote>Эти конструкции очень полезны для повседневной речи.</blockquote>
+"""
+            },
+            {
+                "title": "Сравнение с than",
+                "text": """
+<b>📌 Сравнительная степень с than для явного неравенства.</b>
+
+• He is taller than me. (Он выше меня.)
+• This book is more interesting than that one. (Эта книга интереснее той.)
+• She speaks more fluently than her brother. (Она говорит более бегло, чем её брат.)
+
+<blockquote>После than можно использовать и именительный, и объектный падеж (than me / than I am). Объектный падеж более разговорный.</blockquote>
+"""
+            },
+            {
+                "title": "Типичные ошибки и советы",
+                "text": """
+<b>⚠️ Частые ошибки:</b>
+• ❌ He is as taller as me.  ✅ He is as tall as me.
+• ❌ She is more taller than him.  ✅ She is taller than him.
+• ❌ I have as many money as you.  ✅ I have as much money as you.
+
+<b>💡 Совет:</b>
+• Для равенства – as…as.
+• Для неравенства – than (сравнительная степень).
+• Для меньшей степени – less…than (более книжный вариант).
+• Практикуйтесь: сравнивайте цены, рост, скорость.
+"""
+            }
+        ],
+        "faq": [
+            {"question": "В чём разница между 'as tall as' и 'taller than'?", "answer": "As tall as – равный рост; taller than – больше рост."}
+        ]
     },
-    "the_more_the_more": {
+        "the_more_the_more": {
         "title": "Конструкция the more... the more (чем..., тем...)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке. Скоро здесь появится теория."}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Основная структура",
+                "text": """
+<b>📊 Конструкция the + сравнительная степень, the + сравнительная степень означает «чем…, тем…».</b>
+
+• The more you study, the more you know. (Чем больше учишься, тем больше знаешь.)
+• The faster you run, the sooner you arrive. (Чем быстрее бежишь, тем раньше приедешь.)
+• The bigger the car, the more expensive it is. (Чем больше машина, тем она дороже.)
+
+<blockquote>Оба прилагательных/наречия стоят в сравнительной степени.</blockquote>
+"""
+            },
+            {
+                "title": "Особые случаи",
+                "text": """
+<b>📌 Если в первой части есть существительное, ставим его между the и прилагательным.</b>
+
+• The more money you have, the more problems appear. (Чем больше денег, тем больше проблем.)
+• The more people come, the merrier. (Чем больше людей придёт, тем веселее.)
+
+<b>Можно использовать с наречиями:</b>
+• The more carefully you drive, the safer you are. (Чем осторожнее водишь, тем безопаснее.)
+
+<b>Для повторяющихся действий:</b>
+• The more I read, the less I understand. (Чем больше читаю, тем меньше понимаю.)
+
+<blockquote>В разговорной речи первую часть могут опускать, если смысл ясен.</blockquote>
+"""
+            },
+            {
+                "title": "Варианты с существительными",
+                "text": """
+<b>📌 Если сравнивается количество, используйте the more / the less + существительное.</b>
+
+• The more time you spend, the better the result. (Чем больше времени тратишь, тем лучше результат.)
+• The less sugar you eat, the healthier you are. (Чем меньше сахара ешь, тем здоровее.)
+
+<b>Для парных действий:</b>
+• The sooner, the better. (Чем скорее, тем лучше.)
+• The more, the merrier. (Чем больше, тем веселее.)
+
+<blockquote>Эти короткие формы очень частотны в разговорной речи.</blockquote>
+"""
+            },
+            {
+                "title": "Типичные ошибки и советы",
+                "text": """
+<b>⚠️ Частые ошибки:</b>
+• ❌ More you study, more you know.  ✅ The more you study, the more you know.
+• ❌ The more he gets, the more he want.  ✅ The more he gets, the more he wants.
+• ❌ She is more clever as me.  ✅ She is cleverer than me.
+
+<b>💡 Совет:</b>
+• Не забывайте артикль the перед каждой сравнительной степенью.
+• Используйте конструкцию для описания причинно-следственных связей.
+• Практикуйтесь: придумайте 3 фразы по схеме «чем…, тем…» (The later you go, the less traffic you'll see).
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Можно ли использовать эту конструкцию без прилагательного?", "answer": "Да, например: The more, the merrier (Чем больше, тем веселее). Здесь 'the more' подразумевает 'people'."}
+        ]
     },
     "too_enough": {
         "title": "Конструкции too / enough (слишком / достаточно)",
