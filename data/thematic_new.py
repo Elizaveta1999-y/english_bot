@@ -1642,17 +1642,133 @@ THEMATIC_NEW_CONTENT = {
             {"question": "Можно ли использовать 'for' для выражения цели?", "answer": "Да, в конструкции for + V‑ing: This tool is for cutting wood. Но не для глаголов действия: I went for buying (неправильно)."}
         ]
     },
-    "clauses_of_result_advanced": {
+        "clauses_of_result_advanced": {
         "title": "Придаточные следствия (so...that, such...that) – углубление",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке. Скоро здесь появится теория."}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Конструкция so + прилагательное / наречие + that",
+                "text": """
+<b>💥 Придаточные следствия показывают результат действия или качества.</b>
+
+• The coffee was so hot that I couldn't drink it. (Кофе был настолько горячим, что я не мог его пить.)
+• He ran so fast that he won the race. (Он бежал так быстро, что выиграл гонку.)
+• She spoke so quietly that nobody heard her. (Она говорила так тихо, что никто её не слышал.)
+
+<blockquote>So + прилагательное / наречие + that – результат чрезмерной степени качества.</blockquote>
+"""
+            },
+            {
+                "title": "Конструкция such + (a/an) + прилагательное + существительное + that",
+                "text": """
+<b>📌 Such + существительное (часто с прилагательным) + that.</b>
+
+• It was such a hot day that we stayed indoors. (Был настолько жаркий день, что мы остались в помещении.)
+• They are such nice people that everyone likes them. (Они настолько милые люди, что всем нравятся.)
+• She made such a delicious cake that I ate two slices. (Она испекла такой вкусный торт, что я съел два куска.)
+
+<blockquote>Перед существительным в единственном числе нужен артикль a/an.</blockquote>
+"""
+            },
+            {
+                "title": "Варианты с many / much / few / little",
+                "text": """
+<b>🔢 So many / so much / so few / so little + that.</b>
+
+• There were so many people that we couldn't get in. (Было так много людей, что мы не могли войти.)
+• He has so much money that he doesn't know what to do with it. (У него так много денег, что он не знает, что с ними делать.)
+• She made so few mistakes that she got an A. (Она сделала так мало ошибок, что получила пятёрку.)
+
+<blockquote>В этих случаях используется so (не such).</blockquote>
+"""
+            },
+            {
+                "title": "Углубление: эмфаза с таким образом",
+                "text": """
+<b>📌 Инверсия для усиления:</b>
+
+• So beautiful was the view that we stopped to take photos. (Вид был настолько красивым, что мы остановились фотографировать.)
+• Such was his anger that he couldn't speak. (Таким был его гнев, что он не мог говорить.)
+
+<blockquote>Инверсия делает предложение более драматичным и литературным.</blockquote>
+"""
+            },
+            {
+                "title": "Типичные ошибки и советы",
+                "text": """
+<b>⚠️ Частые ошибки:</b>
+• ❌ It was so hot weather that...  ✅ It was such hot weather that... (weather – существительное)
+• ❌ He is such clever that...  ✅ He is so clever that... (clever – прилагательное, без существительного)
+• ❌ There were so much people. (people – исчисляемое)  ✅ There were so many people.
+
+<b>💡 Совет:</b>
+• So + прилагательное / наречие (без существительного)
+• Such + (прилагательное) + существительное
+• Тренируйтесь: описывайте ситуации с результатами (It was so cold that...)
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Можно ли опустить that?", "answer": "Да, в разговорной речи часто опускают: It was so hot I couldn't sleep."}
+        ]
     },
 
     # ==================== МОДАЛЬНЫЕ ГЛАГОЛЫ (ОТТЕНКИ) ====================
-    "modal_expressions_necessity": {
+        "modal_expressions_necessity": {
         "title": "Выражение необходимости (need, needn't, didn't need to, needn't have done)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке. Скоро здесь появится теория."}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Need как обычный глагол и как модальный",
+                "text": """
+<b>📌 Need может быть как обычным глаголом (требует to), так и модальным (без to).</b>
+
+• Обычный глагол: I need to go. (Мне нужно идти)
+• Модальный: I needn't go. (Мне не нужно идти)
+
+<blockquote>Модальный need используется только в отрицании и вопросах, редко – в утверждениях (в старомодном стиле).</blockquote>
+"""
+            },
+            {
+                "title": "Needn't / don't need to – отсутствие необходимости",
+                "text": """
+<b>🚫 Отрицание: needn't (модальный) или don't need to (обычный) – «не нужно».</b>
+
+• You needn't worry. (Тебе не нужно волноваться – модальный, формально)
+• You don't need to worry. (То же, разговорный вариант)
+
+<blockquote>Оба варианта правильны, но в разговорной речи don't need to частотнее.</blockquote>
+"""
+            },
+            {
+                "title": "Needn't have done vs didn't need to",
+                "text": """
+<b>📌 Разница между needn't have done (сделал что-то ненужное) и didn't need to (не было необходимости, и действие не выполнялось).</b>
+
+• <b>needn't have done</b> – действие было выполнено, но оно было ненужным (сожаление о потраченных усилиях)
+  • I needn't have cooked so much; nobody was hungry. (Мне не нужно было готовить так много – но я приготовил)
+
+• <b>didn't need to</b> – в действии не было необходимости, и оно не было выполнено (или могло быть, но неважно)
+  • I didn't need to cook because we ate out. (Мне не нужно было готовить – я и не готовил)
+
+<blockquote>Needn't have done подразумевает, что действие уже совершено и было излишним.</blockquote>
+"""
+            },
+            {
+                "title": "Типичные ошибки и советы",
+                "text": """
+<b>⚠️ Частые ошибки:</b>
+• ❌ I needn't have to go.  ✅ I needn't go. / I don't need to go.
+• ❌ She needn't have done it? (вопрос с needn't – редок)  ✅ Did she need to do it? / Need she have done it? (formal)
+
+<b>💡 Совет:</b>
+• Для настоящего отсутствия необходимости: don't need to / needn't.
+• Для прошлого: если действие не сделано – didn't need to; если сделано зря – needn't have done.
+• Тренируйтесь: описывайте ситуации, когда вы что-то сделали зря (needn't have done) или не делали, потому что не нужно было (didn't need to).
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Как спросить 'нужно ли мне идти?' с need?", "answer": "Do I need to go? (разговорный) / Need I go? (формальный, редко)."}
+        ]
     },
     "modal_expressions_criticism": {
         "title": "Выражение критики и сожаления (should have done, could have done, might have done)",
