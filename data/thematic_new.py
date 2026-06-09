@@ -473,15 +473,157 @@ THEMATIC_NEW_CONTENT = {
             {"question": "В чём разница между 'as long as' и 'provided that'?", "answer": "Они взаимозаменяемы, but 'provided that' чуть более формален."}
         ]
     },
-    "modal_perfect_advanced": {
+        "modal_perfect_advanced": {
         "title": "Modal Perfect (must have done, could have done, should have done) – углубление",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке. Скоро здесь появится теория."}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Что такое Modal Perfect?",
+                "text": """
+<b>✅ Modal Perfect – модальный глагол + have + V3 (третья форма).</b>
+
+Используется для выражения предположений, сожалений, критики о прошлом.
+
+• must have done – должно быть, сделал (уверенное предположение)
+• could have done – мог бы сделать (возможность, не реализованная)
+• might have done – возможно, сделал (менее уверенно)
+• may have done – возможно, сделал (чуть более вероятно, чем might)
+• should have done – следовало бы сделать (но не сделал)
+• would have done – сделал бы (при условии, обычно в 3 типе)
+• can't have done / couldn't have done – не может быть, что сделал
+
+<blockquote>Modal Perfect всегда относится к прошлому и часто выражает сожаление, критику или предположение.</blockquote>
+"""
+            },
+            {
+                "title": "Must have done / can't have done – уверенность",
+                "text": """
+<b>📌 Must have done – я почти уверен, что действие произошло.</b>
+• She's not here. She must have left early. (Её нет. Должно быть, она ушла рано.)
+• The ground is wet. It must have rained last night. (Земля мокрая. Должно быть, ночью шёл дождь.)
+
+<b>🚫 Can't have done / couldn't have done – я уверен, что действие не произошло.</b>
+• He can't have taken the car; the keys are here. (Не может быть, чтобы он взял машину – ключи здесь.)
+• She couldn't have seen me; I was hiding. (Она не могла меня видеть – я прятался.)
+
+<blockquote>Must have / can't have – сильные предположения.</blockquote>
+"""
+            },
+            {
+                "title": "Could have done / might have done / may have done – возможность",
+                "text": """
+<b>🎭 Could have done – действие было возможно, но не произошло (или неизвестно).</b>
+• He could have taken the train, but he drove instead. (Он мог поехать на поезде, но поехал на машине.)
+• You could have told me! (Ты мог бы мне сказать! – упрёк)
+
+<b>🌗 Might have done / may have done – предположение (менее уверенно).</b>
+• She might have forgotten about the meeting. (Возможно, она забыла о встрече.)
+• They may have already left. (Возможно, они уже уехали.)
+
+<blockquote>Might имеет меньшую вероятность, чем may. В разговорной речи разница почти стёрлась.</blockquote>
+"""
+            },
+            {
+                "title": "Should have done / would have done – сожаление и критика",
+                "text": """
+<b>😔 Should have done – сожаление о том, что не сделал (или упрёк).</b>
+• I should have studied harder for the exam. (Мне следовало усерднее учиться к экзамену – но я не учился.)
+• You should have called me. (Тебе следовало позвонить мне.)
+
+<b>⏪ Would have done – действие, которое произошло бы при условии (в 3 типе).</b>
+• If I had known, I would have helped. (Если бы я знал, я бы помог.)
+
+<blockquote>Отрицание: shouldn't have done – не следовало бы делать (но сделал).</blockquote>
+"""
+            },
+            {
+                "title": "Типичные ошибки и советы",
+                "text": """
+<b>⚠️ Частые ошибки:</b>
+• ❌ He must have to go.  ✅ He must have gone.
+• ❌ I should have went.  ✅ I should have gone.
+• ❌ She could have to help.  ✅ She could have helped.
+
+<b>💡 Совет:</b>
+• Выражая сожаление о прошлом, используйте should have + V3.
+• Выражая предположение с почти полной уверенностью – must have.
+• Для критики упущенной возможности – could have.
+"""
+            }
+        ],
+        "faq": [
+            {"question": "В чём разница между 'could have done' и 'might have done'?", "answer": "Could have done – была возможность (мог, но не факт, что сделал). Might have done – менее уверенное предположение (возможно, сделал)."}
+        ]
     },
-    "modal_passive_advanced": {
+        "modal_passive_advanced": {
         "title": "Пассив с модальными глаголами (must be done, could have been done)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке. Скоро здесь появится теория."}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Образование",
+                "text": """
+<b>📦 Пассив с модальными глаголами в настоящем/будущем:</b>
+• модальный глагол (can, could, may, might, must, should) + be + V3
+
+• This work must be finished today. (Эту работу нужно закончить сегодня.)
+• The problem can be solved easily. (Проблему можно легко решить.)
+• The meeting could be postponed. (Встречу могли бы перенести.)
+
+<blockquote>После модального глагола всегда be (не to be), так как модальные требуют инфинитив без to.</blockquote>
+"""
+            },
+            {
+                "title": "Пассив с модальными глаголами в прошедшем (Modal Perfect Passive)",
+                "text": """
+<b>⏪ Пассив с модальными в прошедшем:</b>
+• модальный глагол + have been + V3
+
+• The letter must have been sent yesterday. (Письмо, должно быть, было отправлено вчера.)
+• The mistake could have been avoided. (Ошибки можно было избежать.)
+• The contract should have been signed last week. (Контракт следовало подписать на прошлой неделе.)
+
+<blockquote>Это сочетание модального перфекта и пассива – сложно, но важно для экзаменов.</blockquote>
+"""
+            },
+            {
+                "title": "Примеры всех модальных глаголов в пассиве",
+                "text": """
+<b>📖 Примеры:</b>
+
+• can be done – может быть сделано
+• could be done – могло бы быть сделано
+• may be done – может быть сделано (возможно)
+• might be done – возможно, будет сделано
+• must be done – должно быть сделано
+• should be done – следует сделать
+• ought to be done – следует сделать
+
+<b>В прошедшем:</b>
+• can't have been done – не может быть, что было сделано
+• could have been done – могло быть сделано
+• might have been done – возможно, было сделано
+• must have been done – должно быть, было сделано
+• should have been done – следовало бы сделать
+
+<blockquote>Выбор модального глагола зависит от оттенка (обязанность, возможность, вероятность).</blockquote>
+"""
+            },
+            {
+                "title": "Типичные ошибки и советы",
+                "text": """
+<b>⚠️ Частые ошибки:</b>
+• ❌ This must be done by yesterday.  ✅ This must have been done by yesterday.
+• ❌ The work can be do.  ✅ The work can be done.
+• ❌ It should been finished.  ✅ It should be finished / It should have been finished.
+
+<b>💡 Совет:</b>
+• Для настоящего/будущего – must be done, can be done, should be done.
+• Для прошлого – must have been done, could have been done, should have been done.
+• Тренируйтесь: переделывайте активные предложения с модальными глаголами в пассив.
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Как сказать 'это могло быть сделано лучше' в пассиве?", "answer": "It could have been done better."}
+        ]
     },
     "future_perfect_continuous": {
         "title": "Future Perfect Continuous (will have been doing)",
