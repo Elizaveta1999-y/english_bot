@@ -24,7 +24,6 @@ LESSON_CONTENT.update(LEVEL_C1_CONTENT)
 LESSON_CONTENT.update(LEVEL_C2_CONTENT)
 LESSON_CONTENT.update(THEMATIC_NEW_CONTENT)
 THEMATIC_TOPICS = [
-    THEMATIC_TOPICS = [
     "Inversion after negative adverbs",
     "Inversion for emphasis",
     "Cleft sentences",
