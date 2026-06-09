@@ -481,20 +481,32 @@ async def show_lesson_page(message: Message, user_id: int, edit: bool = True):
     if page_idx >= total_pages:
         page_idx = total_pages - 1
     page = pages[page_idx]
+
     text = f"<b>📖 {lesson['topic']}</b>\n\n{page['text']}"
+
     nav_buttons = []
     if page_idx > 0:
         nav_buttons.append(InlineKeyboardButton(text="◀ Назад", callback_data="lesson_prev_page"))
     nav_buttons.append(InlineKeyboardButton(text=f"{page_idx+1}/{total_pages}", callback_data="lesson_none"))
     if page_idx < total_pages - 1:
         nav_buttons.append(InlineKeyboardButton(text="Далее ▶", callback_data="lesson_next_page"))
+
+    # Определяем кнопку возврата: для тематических уроков – в меню тем, для уровневых – в модуль
+    if lesson.get("source") == "thematic":
+        back_callback = "thematic_menu"
+        back_text = "🔙 Назад к темам"
+    else:
+        back_callback = f"back_to_module_{lesson.get('module_id', '1')}|{lesson.get('level', 'A1')}"
+        back_text = "🔙 Назад к списку уроков"
+
     lesson_buttons = [
         [InlineKeyboardButton(text="❓ Частые вопросы", callback_data=f"lesson_faq_{key}")],
         [InlineKeyboardButton(text="🤔 Задать вопрос", callback_data=f"lesson_ask_{key}")],
         [InlineKeyboardButton(text="📝 Начать практику", callback_data=f"lesson_practice_{key}")],
-        [InlineKeyboardButton(text="🔙 Назад к списку уроков", callback_data=f"back_to_module_{lesson.get('module_id', '1')}|{lesson.get('level', 'A1')}")],
+        [InlineKeyboardButton(text=back_text, callback_data=back_callback)],
         [InlineKeyboardButton(text="🏠 Главное меню", callback_data="back_to_main")]
     ]
+
     if page.get("has_audio_buttons") and key == "alphabet":
         letters = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']
         audio_rows = []
@@ -504,6 +516,7 @@ async def show_lesson_page(message: Message, user_id: int, edit: bool = True):
         keyboard = InlineKeyboardMarkup(inline_keyboard=audio_rows + [nav_buttons] + lesson_buttons)
     else:
         keyboard = InlineKeyboardMarkup(inline_keyboard=[nav_buttons] + lesson_buttons)
+
     if edit:
         if message.text == text and message.reply_markup == keyboard:
             return
@@ -907,7 +920,7 @@ async def show_thematic_lesson(callback: CallbackQuery):
     
     content = LESSON_CONTENT.get(key)
     if not content:
-        # fallback: ищем любой ключ, который начинается с основной части
+        # fallback
         main_part = topic_name.split("(")[0].strip().lower().replace(" ", "_")
         for k in LESSON_CONTENT.keys():
             if k.startswith(main_part):
@@ -915,7 +928,6 @@ async def show_thematic_lesson(callback: CallbackQuery):
                 break
     
     if not content:
-        # Вместо "Урок не найден" показываем сам ключ
         await callback.answer(f"Ключ не найден: {key}", show_alert=True)
         return
 
@@ -926,11 +938,11 @@ async def show_thematic_lesson(callback: CallbackQuery):
         "key": key,
         "content": content,
         "page": 0,
-        "source": "thematic"
+        "source": "thematic"   # важно для определения, что это тематический урок
     }
     set_user_state(user_id, user_state)
-    
-    await callback.message.answer(f"📖 {topic_name}\n\n{content['pages'][0]['text']}", parse_mode="HTML")
+    # Вызываем show_lesson_page с edit=True (редактируем текущее сообщение меню)
+    await show_lesson_page(callback.message, user_id, edit=True)
     await callback.answer()
 # ==================== МОЁ ОБУЧЕНИЕ, ТЕСТ ====================
 @router.callback_query(lambda c: c.data == "my_learning")
