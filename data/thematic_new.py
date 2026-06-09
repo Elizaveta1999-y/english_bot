@@ -1362,17 +1362,154 @@ THEMATIC_NEW_CONTENT = {
             {"question": "Можно ли в пассиве с предлогом убрать предлог?", "answer": "Нет, предлог обязателен, иначе смысл теряется."}
         ]
     },
-    "impersonal_passive": {
+        "impersonal_passive": {
         "title": "Безличный пассив (It is believed that..., It was reported that...) – все времена",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке. Скоро здесь появится теория."}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Что такое безличный пассив?",
+                "text": """
+<b>🗣️ Безличный пассив используется для передачи мнений, слухов, сообщений, когда неважно, кто говорит.</b>
+
+Две конструкции:
+1. It + is/was + said/believed/thought/reported + that + предложение
+2. Подлежащее + is/was + said/believed/thought + to + инфинитив
+
+<blockquote>Часто используется в новостях и официальной речи.</blockquote>
+"""
+            },
+            {
+                "title": "Конструкция It is said that...",
+                "text": """
+<b>📌 It + be + reported/thought/believed/expected/known + that ...</b>
+
+• It is said that the president will resign. (Говорят, президент уйдёт в отставку.)
+• It was reported that the accident caused no injuries. (Сообщалось, что в аварии никто не пострадал.)
+• It is believed that the stolen painting is in Europe. (Полагают, что украденная картина находится в Европе.)
+
+<blockquote>После it можно использовать любой глагол передачи информации: say, report, think, believe, expect, know, consider.</blockquote>
+"""
+            },
+            {
+                "title": "Конструкция He is said to...",
+                "text": """
+<b>📌 Подлежащее + be + said/reported + to + инфинитив (или to have + V3 для прошлого).</b>
+
+• He is said to be very rich. (Говорят, что он очень богат – настоящее)
+• The thief is believed to have escaped. (Считают, что вор сбежал – прошлое)
+• She is expected to arrive at 6 pm. (Ожидается, что она прибудет в 6 вечера.)
+
+<blockquote>Инфинитив to be для настоящего, to have + V3 для прошлого.</blockquote>
+"""
+            },
+            {
+                "title": "Времена в безличном пассиве",
+                "text": """
+<b>📌 Безличный пассив может использоваться в разных временах.</b>
+
+• Present: It is said that... (говорят)
+• Past: It was said that... (говорили)
+• Future: It will be said that... (будут говорить)
+• Present Perfect: It has been said that... (говорили/сказано)
+
+• It was reported that the minister had resigned. (Сообщалось, что министр ушёл в отставку – прошлое)
+• It will be announced that the school is closing. (Будет объявлено, что школа закрывается)
+
+<blockquote>Время глагола be показывает, когда произошло действие сообщения.</blockquote>
+"""
+            },
+            {
+                "title": "Типичные ошибки и советы",
+                "text": """
+<b>⚠️ Частые ошибки:</b>
+• ❌ It is said he is rich. (опущено that) – допустимо в разговорной речи, но формально нужен that.
+• ❌ It is said that he is being rich. (неправильное время)  ✅ It is said that he is rich.
+• ❌ It is said that he has been rich. (редко) – обычно to have been: He is said to have been rich.
+
+<b>💡 Совет:</b>
+• Используйте безличный пассив, чтобы дистанцироваться от источника информации или сделать высказывание более объективным.
+• Для краткости можно использовать He is said to be... вместо It is said that he is...
+• Тренируйтесь: превращайте активные предложения (People say that...) в безличный пассив.
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Всегда ли нужен 'that' после безличного пассива?", "answer": "В формальной письменной речи – да. В разговорной допустимо опускать."}
+        ]
     },
 
     # ==================== ПРИДАТОЧНЫЕ И СВЯЗКИ (ПРОДВИНУТЫЕ) ====================
-    "relative_clauses_reduced": {
+        "relative_clauses_reduced": {
         "title": "Сокращённые определительные придаточные (the man sitting there, the book written by)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке. Скоро здесь появится теория."}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Что такое сокращённые придаточные?",
+                "text": """
+<b>✂️ Определительные придаточные (who, which, that) можно сократить, опустив местоимение и глагол to be (если он есть).</b>
+
+Активный залог:
+• The man who is sitting there is my uncle. → The man sitting there is my uncle.
+• The girl who works in the cafe is friendly. → The girl working in the cafe is friendly.
+
+Пассивный залог:
+• The book that was written by Tolkien is famous. → The book written by Tolkien is famous.
+• The car which was parked outside has been stolen. → The car parked outside has been stolen.
+
+<blockquote>Сокращённые придаточные делают речь более лаконичной и формальной.</blockquote>
+"""
+            },
+            {
+                "title": "Сокращение в активном залоге (V‑ing)",
+                "text": """
+<b>📌 Для активного залога: опускаем who/which/that и меняем глагол на V‑ing.</b>
+
+• The man who lives next door is a doctor. → The man living next door is a doctor.
+• The students who study hard will pass. → The students studying hard will pass.
+• I saw a bird which was flying over the house. → I saw a bird flying over the house.
+
+<blockquote>Это работает только для длительных или повторяющихся действий. Для однократных действий в прошлом сокращение не всегда возможно.</blockquote>
+"""
+            },
+            {
+                "title": "Сокращение в пассивном залоге (V3)",
+                "text": """
+<b>📌 Для пассивного залога: опускаем who/which/that и глагол to be, оставляя V3.</b>
+
+• The car that was damaged in the accident is being repaired. → The car damaged in the accident is being repaired.
+• The letters which were sent yesterday have arrived. → The letters sent yesterday have arrived.
+• The book that is recommended by teachers is excellent. → The book recommended by teachers is excellent.
+
+<blockquote>Пассивное сокращение очень распространено в письменной речи.</blockquote>
+"""
+            },
+            {
+                "title": "Сокращение с предлогами",
+                "text": """
+<b>📌 Предлог сохраняется в сокращённой форме.</b>
+
+• The chair that I am sitting on is broken. → The chair I am sitting on is broken. (опускаем that, оставляем предлог)
+• The colleague with whom I work is nice. → The colleague I work with is nice.
+
+<blockquote>В неформальной речи предлог часто переносится в конец предложения.</blockquote>
+"""
+            },
+            {
+                "title": "Советы и типичные ошибки",
+                "text": """
+<b>⚠️ Частые ошибки:</b>
+• ❌ The man sat there is my uncle. (неправильно)  ✅ The man sitting there...
+• ❌ The book written by Tolkien is famous. (верно, это пассив)
+• ❌ The girl works in the cafe is friendly. (нужно either who works или working)
+
+<b>💡 Совет:</b>
+• Если глагол в активном залоге, заменяйте его на V‑ing.
+• Если глагол в пассиве, оставляйте V3.
+• Не пытайтесь сокращать, если действие однократное в прошлом (The man who called you – нельзя сократить).
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Всегда ли можно сократить придаточное?", "answer": "Нет, только если глагол в придаточной части передаёт длительное или повторяющееся действие (или пассив)."}
+        ]
     },
     "clauses_of_concession_advanced": {
         "title": "Придаточные уступки (although, even though, albeit, despite, in spite of) – сложные нюансы",
