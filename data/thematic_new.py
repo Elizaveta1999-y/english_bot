@@ -2,10 +2,104 @@
 
 THEMATIC_NEW_CONTENT = {
     # ==================== ПРОДВИНУТАЯ ГРАММАТИКА ====================
-    "inversion_after_negative": {
+        "inversion_after_negative": {
         "title": "Инверсия после отрицательных наречий (Never, Rarely, Not only, No sooner)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке. Скоро здесь появится теория."}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Что такое инверсия?",
+                "text": """
+<b>🔄 Инверсия – изменение порядка слов (вспомогательный глагол перед подлежащим) для придания формальности или эмфазы.</b>
+
+После отрицательных наречий и выражений в начале предложения используется инверсия. Это очень формальный стиль, часто в литературе и академической речи.
+
+• Never have I seen such a beautiful sunset. (Никогда я не видел такого красивого заката.)
+• Rarely does he arrive on time. (Редко он приходит вовремя.)
+• Not only did she pass the exam, but she also got the highest score. (Мало того что она сдала экзамен, она ещё и получила высший балл.)
+• No sooner had I arrived than the phone rang. (Не успел я прийти, как зазвонил телефон.)
+
+<blockquote>Инверсия придаёт драматизм и используется в литературе, официальной речи и на экзаменах высокого уровня.</blockquote>
+"""
+            },
+            {
+                "title": "Never, Rarely, Seldom, Little",
+                "text": """
+<b>📌 Never, rarely, seldom, little (означают «почти никогда, едва, совсем не») требуют инверсии.</b>
+
+• Never have I felt so embarrassed. (Никогда я не чувствовал себя таким смущённым.)
+• Rarely does he speak to strangers. (Редко он разговаривает с незнакомцами.)
+• Seldom do we have such good weather. (Редко у нас бывает такая хорошая погода.)
+• Little did they know what was coming. (Они понятия не имели, что их ждёт.)
+
+<blockquote>В разговорной речи эти конструкции звучат неестественно, но в письменной – очень эффектно.</blockquote>
+
+<b>Структура:</b>
+• Отрицательное наречие + вспомогательный глагол + подлежащее + основной глагол.
+• Если основное предложение не содержит вспомогательного глагола, добавляется do/does/did.
+
+• Never have I seen (вместо I have never seen)
+• Rarely does he come (вместо he rarely comes)
+• Little did they suspect (вместо they little suspected)
+"""
+            },
+            {
+                "title": "Not only... but also",
+                "text": """
+<b>📌 Not only + вспомогательный глагол + подлежащее + V, but also...</b>
+
+• She is not only intelligent but also beautiful. → Not only is she intelligent, but she is also beautiful.
+• They not only lost the match but also injured their best player. → Not only did they lose the match, but they also injured their best player.
+
+<blockquote>Если в первой части уже есть вспомогательный глагол, он переносится вперёд. Если нет, добавляется do/does/did.</blockquote>
+
+<b>Дополнительные примеры:</b>
+• Not only did he refuse to help, but he also laughed at me. (Мало того что он отказался помогать, он ещё и смеялся надо мной.)
+• Not only is she a talented musician, but she is also an excellent painter. (Она не только талантливый музыкант, но и отличный художник.)
+
+<blockquote>Not only может стоять и в середине предложения (без инверсии), но в начале с инверсией – более сильный стиль.</blockquote>
+"""
+            },
+            {
+                "title": "No sooner... than",
+                "text": """
+<b>📌 No sooner + had + подлежащее + V3, than + подлежащее + V (Past Simple).</b>
+
+• No sooner had I arrived than the phone rang. (Не успел я прийти, как зазвонил телефон.)
+• No sooner had she closed the door than someone knocked. (Не успела она закрыть дверь, как кто-то постучал.)
+
+<blockquote>No sooner всегда требует Past Perfect (had done) в первой части и Past Simple во второй. Than – не then!</blockquote>
+
+• No sooner had he sat down than the meeting started. (Не успел он сесть, как началась встреча.)
+• No sooner had we left than it began to snow. (Не успели мы уйти, как пошёл снег.)
+
+<b>Альтернатива: Hardly / Scarcely... when</b>
+• Hardly had we started when the alarm went off. (Едва мы начали, как сработала сигнализация.)
+• Scarcely had he entered the room when the lights went out. (Едва он вошёл в комнату, как погас свет.)
+
+<blockquote>Разница между no sooner... than и hardly... when только в союзах (than vs when), значение одинаковое.</blockquote>
+"""
+            },
+            {
+                "title": "Типичные ошибки и советы",
+                "text": """
+<b>⚠️ Частые ошибки:</b>
+• ❌ Not only he arrived late, but also he forgot the gift.  ✅ Not only did he arrive late, but he also forgot the gift.
+• ❌ No sooner I had left than it started to rain.  ✅ No sooner had I left than it started to rain.
+• ❌ Hardly had we started than it rained. (should be 'when')  ✅ Hardly had we started when it rained.
+
+<b>💡 Совет:</b>
+• Используйте инверсию только в очень формальных ситуациях или на экзаменах (CPE, CAE).
+• Запомните: после No sooner ставим had + подлежащее, после than – Past Simple.
+• После Never, Rarely, Seldom, Little ставим вспомогательный глагол (do/does/did/have/has/had).
+• Тренируйтесь: переписывайте обычные предложения в инвертированную форму.
+
+<blockquote>На экзаменах инверсия оценивается как признак высокого уровня владения языком.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Можно ли использовать инверсию с другими отрицательными наречиями?", "answer": "Да: never, rarely, seldom, little, at no time, under no circumstances, in no way, on no account. Пример: Under no circumstances should you open this door."},
+            {"question": "В чем разница между 'no sooner... than' и 'hardly... when'?", "answer": "Они взаимозаменяемы, но 'no sooner' требует 'than', а 'hardly' требует 'when'."}
+        ]
     },
     "inversion_for_emphasis": {
         "title": "Инверсия для эмфазы (Only after, So beautiful, Little did he know)",
