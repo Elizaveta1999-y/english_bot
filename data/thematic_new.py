@@ -625,15 +625,133 @@ THEMATIC_NEW_CONTENT = {
             {"question": "Как сказать 'это могло быть сделано лучше' в пассиве?", "answer": "It could have been done better."}
         ]
     },
-    "future_perfect_continuous": {
+        "future_perfect_continuous": {
         "title": "Future Perfect Continuous (will have been doing)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке. Скоро здесь появится теория."}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Образование и базовое значение",
+                "text": """
+<b>⏳ Future Perfect Continuous – действие, которое будет длиться до определённого момента в будущем.</b>
+
+<b>Формула:</b> will have been + V‑ing
+
+• By December, I will have been working here for 5 years. (К декабрю я проработаю здесь 5 лет.)
+• At 6 pm, she will have been waiting for two hours. (В 6 часов она будет ждать уже два часа.)
+
+<blockquote>Акцент на длительности и процессе, а не на результате.</blockquote>
+"""
+            },
+            {
+                "title": "Углубление: акцент на причине и следствии",
+                "text": """
+<b>📌 Future Perfect Continuous часто используется, чтобы показать, что действие станет причиной будущего состояния.</b>
+
+• He will be tired because he will have been working all day. (Он устанет, потому что будет работать весь день – причина)
+• The roads will be slippery because it will have been snowing all night. (Дороги будут скользкими, потому что всю ночь будет идти снег)
+
+<blockquote>Таким образом, подчёркивается связь между длительным действием и его результатом.</blockquote>
+"""
+            },
+            {
+                "title": "Сравнение с Future Perfect Simple",
+                "text": """
+<b>📊 Future Perfect Simple (will have done) vs Future Perfect Continuous (will have been doing):</b>
+
+• <b>Simple</b> – результат, количество раз, завершённость.
+  • By 8 pm, I will have finished my homework. (К 8 вечера я закончу домашнее задание – результат)
+
+• <b>Continuous</b> – процесс, длительность.
+  • By 8 pm, I will have been doing my homework for three hours. (К 8 вечера я буду делать домашнее задание уже три часа – процесс)
+
+<blockquote>Выбор зависит от того, что важнее: результат или процесс.</blockquote>
+"""
+            },
+            {
+                "title": "Отрицание и вопросы",
+                "text": """
+<b>🚫 Отрицание:</b> won't have been + V‑ing
+
+• By next week, I won't have been studying for very long. (К следующей неделе я буду учиться не очень долго.)
+
+<b>❓ Вопрос:</b> Will + подлежащее + have been + V‑ing?
+
+• How long will you have been working here by the end of the year? (Как долго вы проработаете здесь к концу года?)
+
+<blockquote>В вопросах Future Perfect Continuous звучит формально и часто используется для уточнения длительности.</blockquote>
+"""
+            },
+            {
+                "title": "Советы и типичные ошибки",
+                "text": """
+<b>⚠️ Частые ошибки:</b>
+• ❌ By next year, I will have been work here.  ✅ I will have been working here.
+• ❌ She will have been knowing him. (нельзя с глаголами состояния)  ✅ She will have known him.
+
+<b>💡 Совет:</b>
+• Используйте Future Perfect Continuous, чтобы подчеркнуть, как долго что-то будет длиться к определённому моменту.
+• Не используйте это время с глаголами состояния (know, like, be, have – в значении обладания).
+• Тренируйтесь: составляйте предложения о своих планах, используя by... и for... + будет длиться.
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Можно ли использовать Future Perfect Continuous в пассиве?", "answer": "Теоретически да, но крайне редко и очень громоздко: The house will have been being built for two years by next month. На практике лучше переформулировать."}
+        ]
     },
-    "future_in_the_past": {
+        "future_in_the_past": {
         "title": "Future in the Past (would do, was going to) – сложные случаи",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке. Скоро здесь появится теория."}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Повторение двух основных форм",
+                "text": """
+<b>📅 Future in the Past – способ говорить о будущем с точки зрения прошлого.</b>
+
+• <b>would + V</b> – будущее с точки зрения прошлого (часто в косвенной речи)
+  • He said he would call me later. (Он сказал, что позвонит мне позже.)
+
+• <b>was/were going to + V</b> – планы, которые не осуществились
+  • I was going to call you, but I forgot. (Я собирался тебе позвонить, но забыл.)
+
+<blockquote>Разница: would – просто передача слов; going to – подчёркивает, что план был, но не сбылся.</blockquote>
+"""
+            },
+            {
+                "title": "Углубление: контекстные оттенки",
+                "text": """
+<b>🔍 Уточнение: would может выражать повторяющееся действие в прошлом (как used to).</b>
+
+• When I was a child, I would visit my grandmother every weekend. (Я обычно навещал бабушку – привычка)
+
+<blockquote>Чтобы не путать, обращайте внимание на контекст: если есть указание на время в прошлом и нет косвенной речи – это привычка.</blockquote>
+
+<b>📌 Was/were to + V – очень формальный вариант (должен был, собирался по плану).</b>
+• The meeting was to take place at 3 pm, but it was cancelled. (Встреча должна была состояться в 3, но её отменили.)
+
+<blockquote>Эта конструкция редко встречается в разговорной речи, но часто в новостях и официальных документах.</blockquote>
+"""
+            },
+            {
+                "title": "Сравнение и типичные ошибки",
+                "text": """
+<b>📊 Примеры:</b>
+• I thought you would come. (Я думал, ты придёшь – передача мысли)
+• I was going to come, but I got stuck in traffic. (Я собирался прийти, но застрял в пробке – не сбылось)
+• The president was to visit the region. (Президент должен был посетить регион – формально)
+
+<b>⚠️ Частые ошибки:</b>
+• ❌ I would have come, but I was busy. (would have – это 3 тип, не future in the past)  ✅ I was going to come, but I was busy.
+• ❌ He said he will call. (косвенная речь требует would)  ✅ He said he would call.
+
+<b>💡 Совет:</b>
+• Для передачи чужих слов о будущем – would.
+• Для ненаступивших планов – was/were going to.
+• Для описания повторяющихся действий в прошлом – would (как used to).
+"""
+            }
+        ],
+        "faq": [
+            {"question": "Можно ли использовать 'would' для будущего в прошлом, если действие всё же произошло?", "answer": "Да, would просто передаёт обещание или прогноз, неважно, сбылось ли оно. Для акцента на нереализованности лучше going to."}
+        ]
     },
 
     # ==================== ГЕРУНДИЙ И ИНФИНИТИВ (УГЛУБЛЕНИЕ) ====================
