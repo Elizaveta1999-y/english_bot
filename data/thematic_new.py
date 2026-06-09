@@ -180,10 +180,98 @@ THEMATIC_NEW_CONTENT = {
             {"question": "Как сказать 'настолько холодно, что ...' с инверсией?", "answer": "So cold was it that we stayed indoors."}
         ]
     },
-    "cleft_sentences": {
+        "cleft_sentences": {
         "title": "Расщеплённые предложения (It was... that..., What... is...)",
-        "pages": [{"title": "Заглушка", "text": "Урок в разработке. Скоро здесь появится теория."}],
-        "faq": []
+        "pages": [
+            {
+                "title": "Что такое расщеплённые предложения?",
+                "text": """
+<b>🔍 Расщеплённые предложения (cleft sentences) используются для выделения определённой части предложения (логического ударения).</b>
+
+Они делят (расщепляют) одно предложение на две части.
+
+• It was John that saw the accident. (Именно Джон увидел аварию – выделяем John)
+• What I need is a good rest. (Что мне нужно, так это хороший отдых – выделяем rest)
+
+<blockquote>Часто используются в письменной речи для акцента и в разговоре для эмоционального выделения.</blockquote>
+"""
+            },
+            {
+                "title": "It-расщепление (It is/was + выделяемый элемент + that/who...)",
+                "text": """
+<b>📌 It + be + выделяемое + that/who...</b>
+
+• John saw the accident. → It was John who saw the accident. (именно Джон)
+• I met your brother yesterday. → It was yesterday that I met your brother. (именно вчера)
+• They need more time. → It is more time that they need. (именно больше времени)
+
+<blockquote>Если выделяется человек, можно использовать who; для предметов и обстоятельств – that.</blockquote>
+
+<b>Дополнительные примеры:</b>
+• It was because of the weather that we cancelled the picnic. (Именно из-за погоды мы отменили пикник.)
+• It was in Paris that they first met. (Именно в Париже они впервые встретились.)
+• It wasn't me who broke the vase. (Не я разбил вазу.)
+
+<blockquote>Отрицание также возможно: It wasn't John who did it.</blockquote>
+"""
+            },
+            {
+                "title": "What-расщепление (What + подлежащее + глагол + be + выделяемое)",
+                "text": """
+<b>📌 What... + be + выделяемое – выделяет действие или предмет.</b>
+
+• I need a good rest. → What I need is a good rest.
+• He gave me a book. → What he gave me was a book.
+• She loves chocolate. → What she loves is chocolate.
+
+<b>Другие варианты:</b>
+• What we need now is a miracle. (Что нам сейчас нужно, так это чудо.)
+• What happened was that the car broke down. (Случилось то, что машина сломалась.)
+• What I like most is your honesty. (Что мне больше всего нравится, так это твоя честность.)
+
+<blockquote>What-расщепление часто используется для выделения дополнения.</blockquote>
+"""
+            },
+            {
+                "title": "All-расщепление и другие варианты",
+                "text": """
+<b>🔹 All (the only) + that... + be + выделяемое – для выделения единственной вещи.</b>
+
+• I just want to sleep. → All I want is to sleep.
+• The only thing I need is your love. → All I need is your love.
+
+<b>🔹 Where / when / why-расщепление:</b>
+• That's where I was born. (вот где я родился)
+• That's the reason why I left. (вот почему я ушёл)
+• 2010 was the year when we got married. (2010 год – когда мы поженились)
+
+<b>🔹 There-расщепление:</b>
+• There was a man who called. (Был один человек, который позвонил.)
+• There came a moment when I realised the truth. (Наступил момент, когда я осознал правду.)
+
+<blockquote>Эти конструкции делают речь более эмоциональной и выразительной.</blockquote>
+"""
+            },
+            {
+                "title": "Советы и типичные ошибки",
+                "text": """
+<b>⚠️ Частые ошибки:</b>
+• ❌ It was John who he saw the accident. (лишнее he)  ✅ It was John who saw the accident.
+• ❌ What I need is a rest. (верно)
+• ❌ It was yesterday that I have met him. (неправильное время)  ✅ It was yesterday that I met him.
+
+<b>💡 Совет:</b>
+• Используйте расщеплённые предложения, когда хотите подчеркнуть определённую информацию.
+• В разговорной речи они звучат неестественно, если их использовать слишком часто.
+• Тренируйтесь: перепишите обычные предложения, выделяя разные элементы.
+
+<blockquote>Расщеплённые предложения – важный инструмент для сдачи экзаменов CAE/CPE и академического письма.</blockquote>
+"""
+            }
+        ],
+        "faq": [
+            {"question": "В чём разница между 'It is' и 'What is' в расщеплении?", "answer": "It is выделяет любой элемент (человек, время, место, предмет). What выделяет действие или объект."}
+        ]
     },
     "ellipsis_substitution": {
         "title": "Эллипсис и замена (опущение слов, one/so/do)",
