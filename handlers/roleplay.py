@@ -315,9 +315,9 @@ async def universal_text_handler(message: Message):
 
     # 3. ОБРАБОТКА ВОПРОСОВ ПО УРОКАМ
         if user_state.get("lesson_qa", {}).get("active"):
-        from handlers.lessons import process_lesson_question
-        await process_lesson_question(user_id, message.text, message.bot, message.chat.id)
-        return
+            from handlers.lessons import process_lesson_question
+            await process_lesson_question(user_id, message.text, message.bot, message.chat.id)
+            return
 
     # 4. Режим урока (тематический урок) – заглушка
     if user_state.get("lesson_mode") == "thematic" and user_state.get("lesson_step") == "awaiting_answer":
