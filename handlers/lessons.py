@@ -66,6 +66,13 @@ async def process_lesson_question(user_id: int, user_question: str, bot, chat_id
 4. Если вопрос лишь частично относится к теме, сначала уточни:
    "Ваш вопрос касается темы '{topic_title}'? Если да, пожалуйста, задайте его конкретнее."
 
+5. Ты НИКОГДА не проверяешь ответы ученика. Ты НЕ даёшь заданий. Ты НЕ просишь продолжить фразу. Ты НЕ оцениваешь правильность написанного. Твоя задача — ТОЛЬКО объяснять теорию и отвечать на вопросы по теме.
+
+6. Если ученик написал что-то похожее на ответ на упражнение (например, предложение с пропуском, перевод слова), ты должен ответить:
+   "Извините, я здесь только для объяснений. Если у вас есть вопрос по теме '{topic_title}', пожалуйста, задайте его."
+
+7. НЕ используй слова «проверю», «составьте», «продолжите», «напишите». Ты не проверяешь, ты объясняешь.
+
 Ответ должен быть дружелюбным.
 """
         answer = chat(prompt, max_tokens=400, temperature=0.5)
@@ -795,11 +802,10 @@ async def lesson_faq(callback: CallbackQuery):
 
 @router.callback_query(lambda c: c.data.startswith("lesson_ask_"))
 async def lesson_ask_start(callback: CallbackQuery):
-    key = callback.data.split("_")[2]
-    user_id = callback.from_user.id
-    user_state = get_user_state(user_id)
-    current_lesson = user_state.get("current_lesson", {})
-    topic_title = current_lesson.get("topic", "этой теме")  # берём из текущего урока
+    # ... существующий код ...
+    user_state["lesson_mode"] = None          # сбрасываем режим практики
+    user_state["lesson_step"] = None
+    user_state["lesson_task"] = None
     user_state["lesson_qa"] = {
         "active": True,
         "topic_key": key,
@@ -830,27 +836,22 @@ async def lesson_practice(callback: CallbackQuery):
 
 @router.callback_query(lambda c: c.data.startswith("back_to_lesson_"))
 async def back_to_lesson(callback: CallbackQuery):
-    key = callback.data.split("_")[3]
     user_id = callback.from_user.id
     user_state = get_user_state(user_id)
     
-    # Сначала пробуем использовать сохранённый current_lesson
-    current = user_state.get("current_lesson")
-    if current and current.get("key") == key:
-        # Всё совпадает, просто показываем урок
+    # Берём current_lesson из состояния
+    lesson = user_state.get("current_lesson")
+    if lesson:
+        # Показываем страницу урока
         await show_lesson_page(callback.message, user_id, edit=True)
         await callback.answer()
         return
     
-    # Если нет current_lesson или ключ не совпадает, пытаемся восстановить урок по key
-    topic_name = LESSON_NAMES.get(key, key)
-    content = LESSON_CONTENT.get(key)
-    if not content:
-        # Если урок всё равно не найден — уходим в меню уроков
-        await callback.message.edit_text("Урок не найден. Возвращаемся в меню.")
-        from handlers.start import show_main_menu
-        await show_main_menu(callback.message, edit=True)
-        await callback.answer()
+    # Если почему-то current_lesson нет, отправляем в меню уроков
+    await callback.message.edit_text("Урок не найден. Возвращаемся к списку уроков.")
+    from handlers.start import show_main_menu
+    await show_main_menu(callback.message, edit=True)
+    await callback.answer()
         return
     
     # Находим уровень и модуль (как было в старом коде)
