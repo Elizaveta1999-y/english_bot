@@ -802,16 +802,25 @@ async def lesson_faq(callback: CallbackQuery):
 
 @router.callback_query(lambda c: c.data.startswith("lesson_ask_"))
 async def lesson_ask_start(callback: CallbackQuery):
-    # ... существующий код ...
-    user_state["lesson_mode"] = None          # сбрасываем режим практики
+    key = callback.data.split("_")[2]
+    user_id = callback.from_user.id
+    user_state = get_user_state(user_id)          # <-- ОБЯЗАТЕЛЬНО добавить эту строку
+    
+    current_lesson = user_state.get("current_lesson", {})
+    topic_title = current_lesson.get("topic", "этой теме")
+    
+    # Сбрасываем режим практики (если был)
+    user_state["lesson_mode"] = None
     user_state["lesson_step"] = None
     user_state["lesson_task"] = None
+    
     user_state["lesson_qa"] = {
         "active": True,
         "topic_key": key,
         "topic_title": topic_title
     }
     set_user_state(user_id, user_state)
+    
     await callback.message.edit_text(
         "🤔 Задайте ваш вопрос по теме. Я постараюсь объяснить максимально просто, с примерами из жизни.\n\n"
         "Если вопрос не по теме, я мягко верну вас к материалу.\n\n"
