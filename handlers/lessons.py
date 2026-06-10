@@ -852,7 +852,7 @@ async def back_to_lesson(callback: CallbackQuery):
     from handlers.start import show_main_menu
     await show_main_menu(callback.message, edit=True)
     await callback.answer()
-        return
+    return
     
     # Находим уровень и модуль (как было в старом коде)
     level = None
