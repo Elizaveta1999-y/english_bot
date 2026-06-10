@@ -49,22 +49,26 @@ async def process_lesson_question(user_id: int, user_question: str, bot, chat_id
         page_hint = f" (сейчас пользователь на странице {page_num})" if page_num else ""
 
         prompt = f"""
-Ты преподаватель английского. Ученик изучает тему "{topic_title}"{page_hint}.
+Ты преподаватель английского. Ученик изучает тему "{topic_title}".
 Вопрос: {user_question}
 
 {history_text}
 
-ПРАВИЛА (строго соблюдай):
-1. Если вопрос НЕ относится к теме "{topic_title}" (например, про другое время, другую грамматику, или вообще не про английский), ты ДОЛЖЕН ответить ТОЛЬКО:
-   "Извините, этот вопрос выходит за рамки темы '{topic_title}'. Давайте разберём что-то из этого урока. Что именно вам непонятно?"
+ПРАВИЛА:
+1. Если вопрос НЕ относится к теме "{topic_title}" (например, про другое время, другую грамматику, или вообще не про английский), вежливо ответь:
+   "Извините, я помогаю только с темой '{topic_title}'. Какой у вас вопрос по этой теме?"
+   (не объясняй ничего лишнего, просто попроси задать вопрос по теме)
 
-2. Если вопрос относится к теме, дай понятный, развёрнутый ответ на русском языке. Приведи 1-2 примера из жизни.
-3. Если вопрос касается материала, который находится на другой странице урока, добавь в конце: "Больше примеров и объяснений вы найдёте на странице X этого урока."
-4. Не уходи в другие темы. Отвечай строго по теме "{topic_title}".
+2. Если вопрос относится к теме, дай КРАТКИЙ ответ (3-4 предложения) на русском языке. Можешь добавить пример из жизни.
 
-Ответ должен быть дружелюбным, не больше 5-7 предложений.
+3. Не добавляй лишних пояснений и приветствий. Ответ должен быть максимально коротким.
+
+4. Если вопрос лишь частично относится к теме, сначала уточни:
+   "Ваш вопрос касается темы '{topic_title}'? Если да, пожалуйста, задайте его конкретнее."
+
+Ответ должен быть дружелюбным.
 """
-        answer = chat(prompt, max_tokens=600, temperature=0.5)
+        answer = chat(prompt, max_tokens=400, temperature=0.5)
 
         # Сохраняем историю
         question_history.append(f"Вопрос: {user_question}\nОтвет: {answer}")
@@ -794,10 +798,12 @@ async def lesson_ask_start(callback: CallbackQuery):
     key = callback.data.split("_")[2]
     user_id = callback.from_user.id
     user_state = get_user_state(user_id)
+    current_lesson = user_state.get("current_lesson", {})
+    topic_title = current_lesson.get("topic", "этой теме")  # берём из текущего урока
     user_state["lesson_qa"] = {
         "active": True,
         "topic_key": key,
-        "topic_title": LESSON_CONTENT.get(key, {}).get("title", "этой теме")
+        "topic_title": topic_title
     }
     set_user_state(user_id, user_state)
     await callback.message.edit_text(
@@ -827,34 +833,49 @@ async def back_to_lesson(callback: CallbackQuery):
     key = callback.data.split("_")[3]
     user_id = callback.from_user.id
     user_state = get_user_state(user_id)
-    if "current_lesson" not in user_state or user_state["current_lesson"].get("key") != key:
-        topic_name = LESSON_NAMES.get(key, key)
-        content = LESSON_CONTENT.get(key)
-        if not content:
-            await callback.message.edit_text("Урок не найден")
-            await callback.answer()
-            return
-        level = None
-        module_id = "1"
-        for lvl, modules in ALL_MODULES.items():
-            for mid, mod in modules.items():
-                if key in mod["lessons"]:
-                    level = lvl
-                    module_id = mid
-                    break
-            if level:
+    
+    # Сначала пробуем использовать сохранённый current_lesson
+    current = user_state.get("current_lesson")
+    if current and current.get("key") == key:
+        # Всё совпадает, просто показываем урок
+        await show_lesson_page(callback.message, user_id, edit=True)
+        await callback.answer()
+        return
+    
+    # Если нет current_lesson или ключ не совпадает, пытаемся восстановить урок по key
+    topic_name = LESSON_NAMES.get(key, key)
+    content = LESSON_CONTENT.get(key)
+    if not content:
+        # Если урок всё равно не найден — уходим в меню уроков
+        await callback.message.edit_text("Урок не найден. Возвращаемся в меню.")
+        from handlers.start import show_main_menu
+        await show_main_menu(callback.message, edit=True)
+        await callback.answer()
+        return
+    
+    # Находим уровень и модуль (как было в старом коде)
+    level = None
+    module_id = "1"
+    for lvl, modules in ALL_MODULES.items():
+        for mid, mod in modules.items():
+            if key in mod["lessons"]:
+                level = lvl
+                module_id = mid
                 break
-        if not level:
-            level = "A1"
-        user_state["current_lesson"] = {
-            "topic": topic_name,
-            "key": key,
-            "content": content,
-            "page": 0,
-            "level": level,
-            "module_id": module_id
-        }
-        set_user_state(user_id, user_state)
+        if level:
+            break
+    if not level:
+        level = "A1"
+    
+    user_state["current_lesson"] = {
+        "topic": topic_name,
+        "key": key,
+        "content": content,
+        "page": 0,
+        "level": level,
+        "module_id": module_id
+    }
+    set_user_state(user_id, user_state)
     await show_lesson_page(callback.message, user_id, edit=True)
     await callback.answer()
 
