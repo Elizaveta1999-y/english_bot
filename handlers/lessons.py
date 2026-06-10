@@ -17,6 +17,72 @@ router = Router()
 
 # ========== ОБЩАЯ ФУНКЦИЯ ДЛЯ ОБРАБОТКИ ВОПРОСОВ ПО УРОКАМ ==========
 
+# ========== ОБЩАЯ ФУНКЦИЯ ДЛЯ ОБРАБОТКИ ВОПРОСОВ ПО УРОКАМ ==========
+async def process_lesson_question(user_id: int, user_question: str, bot, chat_id: int) -> str:
+    """
+    Обрабатывает вопрос по уроку, возвращает ответ и отправляет кнопки.
+    Возвращает ответ (для возможного использования в voice).
+    """
+    from data.users import get_user_state, set_user_state
+    from services.deepseek import chat
+    from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
+
+    user_state = get_user_state(user_id)
+    qa_data = user_state.get("lesson_qa", {})
+    if not qa_data.get("active"):
+        return None
+
+    topic_key = qa_data.get("topic_key")
+    topic_title = qa_data.get("topic_title", "этой теме")
+
+    # Проверка на "бред"
+    if len(user_question) < 3 or user_question.count(user_question[0]) > len(user_question) * 0.7:
+        answer = "❓ Пожалуйста, сформулируйте вопрос понятнее. Я помогу разобраться с темой."
+    else:
+        # Получаем историю вопросов
+        question_history = qa_data.get("history", [])
+        history_text = ""
+        if question_history:
+            history_text = "Предыдущие вопросы и ответы:\n" + "\n".join(question_history[-3:]) + "\n\n"
+
+        # Номер страницы
+        page_num = user_state.get("current_lesson", {}).get("page", 0) + 1
+        page_hint = f" (сейчас пользователь на странице {page_num})" if page_num else ""
+
+        prompt = f"""
+Ты преподаватель английского. Ученик изучает тему "{topic_title}"{page_hint}.
+Вопрос: {user_question}
+
+{history_text}
+
+ПРАВИЛА (строго соблюдай):
+1. Если вопрос НЕ относится к теме "{topic_title}" (например, про другое время, другую грамматику, или вообще не про английский), ты ДОЛЖЕН ответить ТОЛЬКО:
+   "Извините, этот вопрос выходит за рамки темы '{topic_title}'. Давайте разберём что-то из этого урока. Что именно вам непонятно?"
+
+2. Если вопрос относится к теме, дай понятный, развёрнутый ответ на русском языке. Приведи 1-2 примера из жизни.
+3. Если вопрос касается материала, который находится на другой странице урока, добавь в конце: "Больше примеров и объяснений вы найдёте на странице X этого урока."
+4. Не уходи в другие темы. Отвечай строго по теме "{topic_title}".
+
+Ответ должен быть дружелюбным, не больше 5-7 предложений.
+"""
+        answer = chat(prompt, max_tokens=600, temperature=0.5)
+
+        # Сохраняем историю
+        question_history.append(f"Вопрос: {user_question}\nОтвет: {answer}")
+        if len(question_history) > 3:
+            question_history.pop(0)
+        user_state["lesson_qa"]["history"] = question_history
+        set_user_state(user_id, user_state)
+
+    # Кнопки
+    keyboard = InlineKeyboardMarkup(inline_keyboard=[
+        [InlineKeyboardButton(text="✅ Всё понятно", callback_data=f"lesson_understand_{topic_key}")],
+        [InlineKeyboardButton(text="🔄 Объяснить по-другому", callback_data=f"lesson_reask_{topic_key}")],
+        [InlineKeyboardButton(text="🔙 Назад к уроку", callback_data=f"back_to_lesson_{topic_key}")]
+    ])
+    await bot.send_message(chat_id=chat_id, text=answer, reply_markup=keyboard)
+    return answer
+
 LESSON_CONTENT = {}
 LESSON_CONTENT.update(LEVEL_A1_CONTENT)
 LESSON_CONTENT.update(LEVEL_A2_CONTENT)
