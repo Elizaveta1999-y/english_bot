@@ -460,6 +460,580 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
         "question": "В чём разница между 'as soon as' и 'once'?",
         "answer": "As soon as сразу после события, once – как только (может быть чуть более формальным, часто с перфектом)."
       }
+    ],
+    "practice_tasks": [
+      {
+        "type": "fill_blank",
+        "text": "I will call you ___ I arrive at the airport.",
+        "correct": "as soon as",
+        "hint": "Сразу по прибытии",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "___ you finish your homework, you can watch TV.",
+        "correct": "Once",
+        "hint": "Как только",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She will stay here ___ you need her.",
+        "correct": "as long as",
+        "hint": "Пока ты нуждаешься",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "___ the time he arrives, dinner will be ready.",
+        "correct": "By",
+        "hint": "К тому времени, как",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "We won't leave ___ the rain stops.",
+        "correct": "until",
+        "hint": "До тех пор, пока",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "___ I saw him, I knew he was lying.",
+        "correct": "The moment",
+        "hint": "В тот момент, когда",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "Please wait here ___ I come back.",
+        "correct": "until",
+        "hint": "Пока я не вернусь",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "___ she graduates, she will look for a job.",
+        "correct": "After",
+        "hint": "После того как",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He always reads a book ___ he goes to sleep.",
+        "correct": "before",
+        "hint": "Перед тем как",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "___ you promise to be careful, you can borrow my car.",
+        "correct": "As long as",
+        "hint": "При условии, что",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "___ the movie started, I realized I had seen it before.",
+        "correct": "When",
+        "hint": "Когда",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "I will finish the project ___ the deadline.",
+        "correct": "by",
+        "hint": "К дедлайну",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "___ he had left, she started crying.",
+        "correct": "After",
+        "hint": "После того как",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "We will go hiking ___ the weather clears up.",
+        "correct": "once",
+        "hint": "Как только",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "___ you are ready, we can start the meeting.",
+        "correct": "Whenever",
+        "hint": "Когда бы ни",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She won't speak to him ___ he apologizes.",
+        "correct": "until",
+        "hint": "Пока не извинится",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "___ the bell rings, the students leave the classroom.",
+        "correct": "As soon as",
+        "hint": "Как только",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "I had already eaten ___ she arrived.",
+        "correct": "by the time",
+        "hint": "К тому времени, как",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "___ you call me, I will be there.",
+        "correct": "If",
+        "hint": "Если (условие)",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He will keep working ___ he finishes the task.",
+        "correct": "until",
+        "hint": "Пока не закончит",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "___ I was walking home, it started to rain.",
+        "correct": "While",
+        "hint": "Пока я шёл",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "___ you have any questions, feel free to ask.",
+        "correct": "Whenever",
+        "hint": "Когда бы ни",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She will call you ___ she gets the news.",
+        "correct": "as soon as",
+        "hint": "Как только",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "___ the time we got there, the store had closed.",
+        "correct": "By",
+        "hint": "К тому времени",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "___ he was young, he lived in London.",
+        "correct": "When",
+        "hint": "Когда он был молод",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "I'll wait ___ you finish your coffee.",
+        "correct": "until",
+        "hint": "Пока ты не допьёшь",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "___ you sign the contract, we can proceed.",
+        "correct": "Once",
+        "hint": "Как только",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "___ he arrives, we will have lunch.",
+        "correct": "After",
+        "hint": "После того как",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She always listens to music ___ she works.",
+        "correct": "while",
+        "hint": "Пока работает",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "___ you are happy, I am happy.",
+        "correct": "As long as",
+        "hint": "Пока ты счастлив",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "___ I had locked the door, I remembered the keys were inside.",
+        "correct": "After",
+        "hint": "После того как запер",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "She won't forgive him ___ he proves his sincerity.",
+        "correct": "until",
+        "hint": "Пока не докажет",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "___ the concert ended, the crowd cheered for five minutes.",
+        "correct": "Once",
+        "hint": "Как только концерт закончился",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "___ the time you read this, I will have already left.",
+        "correct": "By",
+        "hint": "К тому времени, как ты прочитаешь",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "___ you agree to the terms, we cannot proceed.",
+        "correct": "Unless",
+        "hint": "Если вы не согласитесь",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "___ he had finished his speech, the audience applauded.",
+        "correct": "As soon as",
+        "hint": "Как только закончил",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "___ you need me, I will be right here.",
+        "correct": "Whenever",
+        "hint": "Когда бы ни",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "___ the storm passes, we can go outside.",
+        "correct": "After",
+        "hint": "После того как шторм пройдёт",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "___ I was about to leave, the phone rang.",
+        "correct": "Just as",
+        "hint": "Как раз когда",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "___ you promise to return it, you can borrow my book.",
+        "correct": "As long as",
+        "hint": "При условии, что пообещаешь",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "I will call you ___ I get home.",
+        "correct": "as soon as",
+        "hint": "immediately after",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "___ you finish your homework, you can watch TV.",
+        "correct": "Once",
+        "hint": "after",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She will stay here ___ you need her.",
+        "correct": "as long as",
+        "hint": "during the time that",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "___ the time we arrived, the movie had already started.",
+        "correct": "By",
+        "hint": "before a specific time",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "You can borrow my car ___ you promise to drive carefully.",
+        "correct": "as long as",
+        "hint": "on condition that",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "___ he had finished his speech, everyone applauded.",
+        "correct": "As soon as",
+        "hint": "right after",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "We will start the meeting ___ everyone arrives.",
+        "correct": "once",
+        "hint": "when",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "___ the time you read this, I will be in Paris.",
+        "correct": "By",
+        "hint": "before",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "I will support you ___ you are honest with me.",
+        "correct": "as long as",
+        "hint": "provided that",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "___ she saw the cake, she smiled.",
+        "correct": "As soon as",
+        "hint": "the moment",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "___ the alarm rings, get out of bed.",
+        "correct": "Once",
+        "hint": "when",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He will be fine ___ he takes his medicine.",
+        "correct": "as long as",
+        "hint": "if",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "___ the time we reached the station, the train had left.",
+        "correct": "By",
+        "hint": "before that moment",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "___ you agree to the terms, please sign here.",
+        "correct": "Once",
+        "hint": "after",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "I will tell you the secret ___ you promise not to tell anyone.",
+        "correct": "as long as",
+        "hint": "on condition",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "___ the sun sets, we will light the campfire.",
+        "correct": "As soon as",
+        "hint": "immediately after",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "___ the time you graduate, you will have learned a lot.",
+        "correct": "By",
+        "hint": "before that time",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "You can go out ___ you finish your chores.",
+        "correct": "once",
+        "hint": "when",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "I will love you ___ you love me.",
+        "correct": "as long as",
+        "hint": "while",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "___ he entered the room, everyone stood up.",
+        "correct": "As soon as",
+        "hint": "the moment",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "___ the time the police arrived, the thief had escaped.",
+        "correct": "By",
+        "hint": "before",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "___ you press this button, the machine will start.",
+        "correct": "Once",
+        "hint": "after",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "We can stay here ___ you want.",
+        "correct": "as long as",
+        "hint": "for the duration",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "___ I opened the door, the cat ran out.",
+        "correct": "As soon as",
+        "hint": "immediately when",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "___ the time you wake up, breakfast will be ready.",
+        "correct": "By",
+        "hint": "before",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "___ you pass the test, you will get a certificate.",
+        "correct": "Once",
+        "hint": "when",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "I will help you ___ you help me in return.",
+        "correct": "as long as",
+        "hint": "if",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "___ she heard the news, she started crying.",
+        "correct": "As soon as",
+        "hint": "the moment",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "___ the time we finish, it will be dark outside.",
+        "correct": "By",
+        "hint": "before that time",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "___ you decide, let me know.",
+        "correct": "Once",
+        "hint": "after",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "___ the time he retires, he will have worked for 40 years.",
+        "correct": "By",
+        "hint": "before",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "___ you promise to be careful, I will lend you my laptop.",
+        "correct": "As long as",
+        "hint": "on condition",
+        "star": True
+      },
+      {
+        "type": "reorder",
+        "text": "finish / as soon as / I / call / will / you / I",
+        "correct": "I will call you as soon as I finish",
+        "hint": "immediately after finishing",
+        "star": True
+      },
+      {
+        "type": "reorder",
+        "text": "the time / by / arrived / had / we / left / she",
+        "correct": "By the time we arrived, she had left",
+        "hint": "before our arrival",
+        "star": True
+      },
+      {
+        "type": "translation",
+        "text": "Как только он придет, мы начнем ужинать.",
+        "correct": "As soon as he comes, we will start dinner.",
+        "hint": "use 'as soon as'",
+        "star": True
+      },
+      {
+        "type": "translation",
+        "text": "К тому времени, как ты вернешься, я уже уйду.",
+        "correct": "By the time you come back, I will have already left.",
+        "hint": "use 'by the time' and future perfect",
+        "star": True
+      },
+      {
+        "type": "choice",
+        "text": "___ you finish your work, you can leave.",
+        "correct": "Once",
+        "hint": "after",
+        "star": True,
+        "options": [
+          "Until",
+          "Once",
+          "While",
+          "Since"
+        ]
+      },
+      {
+        "type": "choice",
+        "text": "I will stay ___ you need me.",
+        "correct": "as long as",
+        "hint": "during the time",
+        "star": True,
+        "options": [
+          "until",
+          "as long as",
+          "by the time",
+          "once"
+        ]
+      },
+      {
+        "type": "open",
+        "text": "Write a sentence using 'by the time' about finishing a project.",
+        "correct": "By the time the deadline arrives, I will have finished the project.",
+        "hint": "use future perfect",
+        "star": True
+      },
+      {
+        "type": "open",
+        "text": "Write a sentence using 'as long as' about a promise.",
+        "correct": "I will keep your secret as long as you keep mine.",
+        "hint": "condition",
+        "star": True
+      }
     ]
   },
   "modal_perfect_advanced": {
@@ -544,6 +1118,288 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
       {
         "question": "В чём разница между 'could' и 'was able to'?",
         "answer": "Could – общая способность в прошлом (I could read). Was able to – успешно справился с конкретной задачей (I was able to escape)."
+      }
+    ],
+    "practice_tasks": [
+      {
+        "type": "fill_blank",
+        "text": "She ___ speak three languages fluently when she was only five.",
+        "correct": "could",
+        "hint": "Прошедшее время, общая способность",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "I ___ finish the report before the deadline yesterday.",
+        "correct": "managed to",
+        "hint": "Удалось с трудом",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He ___ pass the exam after studying all night.",
+        "correct": "was able to",
+        "hint": "Способность в конкретной ситуации",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "___ you swim when you were six?",
+        "correct": "Could",
+        "hint": "Вопрос о способности в прошлом",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "I'm sure he will ___ to solve this problem.",
+        "correct": "be able",
+        "hint": "Будущее время",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "They ___ in finding a solution after hours of discussion.",
+        "correct": "succeeded",
+        "hint": "Добились успеха в чем-то",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She ___ to open the door, but it was stuck.",
+        "correct": "wasn't able",
+        "hint": "Отрицание в прошлом",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "I ___ hear you very well. Could you speak louder?",
+        "correct": "can't",
+        "hint": "Настоящее время, отсутствие способности",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He ___ to escape from the burning building.",
+        "correct": "managed",
+        "hint": "Удалось сделать что-то сложное",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "We ___ to convince him to join the team.",
+        "correct": "succeeded",
+        "hint": "Успешно завершили действие",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "___ you help me with this heavy box?",
+        "correct": "Can",
+        "hint": "Просьба в настоящем",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "I ___ to call you yesterday, but my phone was dead.",
+        "correct": "wasn't able",
+        "hint": "Отсутствие возможности",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She ___ to finish the marathon despite the injury.",
+        "correct": "managed",
+        "hint": "Преодоление трудности",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "They ___ to get the project approved.",
+        "correct": "succeeded in",
+        "hint": "Добились успеха в",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He ___ play the piano beautifully when he was young.",
+        "correct": "could",
+        "hint": "Умение в прошлом",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "I ___ to attend the meeting tomorrow.",
+        "correct": "will be able",
+        "hint": "Будущая возможность",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She ___ to finish the book in one day.",
+        "correct": "was able",
+        "hint": "Конкретная ситуация в прошлом",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "___ you speak English?",
+        "correct": "Can",
+        "hint": "Вопрос о способности",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He ___ to win the competition after months of training.",
+        "correct": "managed",
+        "hint": "Успешное достижение цели",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "I ___ to understand the lecture because it was too complex.",
+        "correct": "couldn't",
+        "hint": "Отрицание в прошлом",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "We ___ to find the lost keys in the garden.",
+        "correct": "succeeded in",
+        "hint": "Успех в поиске",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She ___ to travel abroad when she was a child.",
+        "correct": "could",
+        "hint": "Общая способность в прошлом",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "I ___ to finish the task on time.",
+        "correct": "was able",
+        "hint": "Конкретная ситуация",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He ___ to fix the car by himself.",
+        "correct": "managed",
+        "hint": "Справился самостоятельно",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "They ___ to persuade the client.",
+        "correct": "succeeded in",
+        "hint": "Успешно убедили",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "___ you see the stars clearly last night?",
+        "correct": "Could",
+        "hint": "Вопрос о возможности в прошлом",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "I ___ to come to the party, but I was sick.",
+        "correct": "wasn't able",
+        "hint": "Отсутствие возможности",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She ___ to solve the puzzle in five minutes.",
+        "correct": "managed",
+        "hint": "Быстрое выполнение",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He ___ to become a successful writer.",
+        "correct": "succeeded in",
+        "hint": "Достижение цели",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "I ___ to call you later.",
+        "correct": "will be able",
+        "hint": "Будущее",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She ___ to climb the mountain despite the bad weather.",
+        "correct": "managed",
+        "hint": "Преодоление препятствий",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "By next year, I ___ to speak English fluently.",
+        "correct": "will be able",
+        "hint": "Будущая способность после усилий",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "He ___ to negotiate a better deal for the company.",
+        "correct": "succeeded in",
+        "hint": "Успешные переговоры",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "I ___ to finish the project even though I had little time.",
+        "correct": "managed",
+        "hint": "Успех при ограничениях",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "She ___ to learn the entire poem by heart in one hour.",
+        "correct": "was able",
+        "hint": "Конкретное достижение",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "They ___ to launch the product before the competitor.",
+        "correct": "succeeded in",
+        "hint": "Опережение конкурентов",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "He ___ to survive in the wilderness for a week.",
+        "correct": "managed",
+        "hint": "Выживание в сложных условиях",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "I ___ to understand the complex theory after reading it twice.",
+        "correct": "was able",
+        "hint": "Понимание после усилий",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "She ___ to get a scholarship to study abroad.",
+        "correct": "succeeded in",
+        "hint": "Достижение важной цели",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "He ___ to catch the last train by running as fast as he could.",
+        "correct": "managed",
+        "hint": "Успех в последний момент",
+        "star": True
       }
     ]
   },
@@ -660,6 +1516,348 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
       {
         "question": "В чём разница между 'as long as' и 'provided that'?",
         "answer": "Они взаимозаменяемы, but 'provided that' чуть более формален."
+      }
+    ],
+    "practice_tasks": [
+      {
+        "type": "fill_blank",
+        "text": "You can go out ___ you finish your homework.",
+        "correct": "provided that",
+        "hint": "условие выполнения",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "I’ll help you ___ you promise to be careful.",
+        "correct": "as long as",
+        "hint": "при условии",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "We won’t go to the beach ___ it stops raining.",
+        "correct": "unless",
+        "hint": "если не",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "You should study hard; ___, you might fail the exam.",
+        "correct": "otherwise",
+        "hint": "иначе",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "___ it rains, we will still have the picnic.",
+        "correct": "Even if",
+        "hint": "даже если",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She will lend you the money ___ you pay her back next week.",
+        "correct": "provided that",
+        "hint": "при условии",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "You can stay up late ___ you don’t make noise.",
+        "correct": "as long as",
+        "hint": "пока",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "I won’t call you ___ there is an emergency.",
+        "correct": "unless",
+        "hint": "если не",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "Hurry up; ___, we’ll miss the train.",
+        "correct": "otherwise",
+        "hint": "иначе",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "___ he apologizes, she won’t forgive him.",
+        "correct": "Even if",
+        "hint": "даже если",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "You can borrow my car ___ you drive carefully.",
+        "correct": "as long as",
+        "hint": "при условии",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The project will succeed ___ everyone contributes.",
+        "correct": "provided that",
+        "hint": "если",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "I’ll go with you ___ you insist.",
+        "correct": "even if",
+        "hint": "даже если",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "We’ll be late ___ we leave now.",
+        "correct": "unless",
+        "hint": "если не",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "Finish your work; ___, you can’t watch TV.",
+        "correct": "otherwise",
+        "hint": "иначе",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "___ you study, you might not pass.",
+        "correct": "Unless",
+        "hint": "если не",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "I’ll trust you ___ you tell me the truth.",
+        "correct": "as long as",
+        "hint": "пока",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She will come ___ she is invited.",
+        "correct": "provided that",
+        "hint": "при условии",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He won’t change his mind ___ you prove him wrong.",
+        "correct": "unless",
+        "hint": "если не",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "Take an umbrella; ___, you’ll get wet.",
+        "correct": "otherwise",
+        "hint": "иначе",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "___ you are tired, you should finish the race.",
+        "correct": "Even if",
+        "hint": "даже если",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "You can use my phone ___ you pay for the call.",
+        "correct": "provided that",
+        "hint": "при условии",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "I’ll wait for you ___ you are late.",
+        "correct": "even if",
+        "hint": "даже если",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "We’ll have a picnic ___ the weather is bad.",
+        "correct": "unless",
+        "hint": "если не",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "Save your work; ___, you might lose it.",
+        "correct": "otherwise",
+        "hint": "иначе",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "___ you help me, I’ll finish on time.",
+        "correct": "As long as",
+        "hint": "при условии",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She’ll agree ___ you ask politely.",
+        "correct": "provided that",
+        "hint": "если",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "I won’t go ___ you come with me.",
+        "correct": "unless",
+        "hint": "если не",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "Be quiet; ___, you’ll wake the baby.",
+        "correct": "otherwise",
+        "hint": "иначе",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "___ it’s expensive, I’ll buy it.",
+        "correct": "Even if",
+        "hint": "даже если",
+        "star": False
+      },
+      {
+        "type": "choice",
+        "text": "You can go to the party ___ you come home by 10.",
+        "correct": "as long as",
+        "hint": "при условии",
+        "star": True,
+        "options": [
+          "as long as",
+          "unless",
+          "otherwise",
+          "even if"
+        ]
+      },
+      {
+        "type": "choice",
+        "text": "___ you try, you might not succeed.",
+        "correct": "Even if",
+        "hint": "даже если",
+        "star": True,
+        "options": [
+          "Provided that",
+          "Unless",
+          "Otherwise",
+          "Even if"
+        ]
+      },
+      {
+        "type": "choice",
+        "text": "I’ll call you ___ there’s a problem.",
+        "correct": "unless",
+        "hint": "если не",
+        "star": True,
+        "options": [
+          "provided that",
+          "as long as",
+          "unless",
+          "otherwise"
+        ]
+      },
+      {
+        "type": "choice",
+        "text": "Study hard; ___, you’ll regret it.",
+        "correct": "otherwise",
+        "hint": "иначе",
+        "star": True,
+        "options": [
+          "provided that",
+          "as long as",
+          "unless",
+          "otherwise"
+        ]
+      },
+      {
+        "type": "choice",
+        "text": "You can stay ___ you behave.",
+        "correct": "as long as",
+        "hint": "при условии",
+        "star": True,
+        "options": [
+          "unless",
+          "otherwise",
+          "as long as",
+          "even if"
+        ]
+      },
+      {
+        "type": "choice",
+        "text": "___ he is late, we’ll start without him.",
+        "correct": "Even if",
+        "hint": "даже если",
+        "star": True,
+        "options": [
+          "Provided that",
+          "Unless",
+          "Otherwise",
+          "Even if"
+        ]
+      },
+      {
+        "type": "choice",
+        "text": "I’ll help you ___ you ask nicely.",
+        "correct": "provided that",
+        "hint": "при условии",
+        "star": True,
+        "options": [
+          "provided that",
+          "unless",
+          "otherwise",
+          "even if"
+        ]
+      },
+      {
+        "type": "choice",
+        "text": "We won’t go ___ it stops snowing.",
+        "correct": "unless",
+        "hint": "если не",
+        "star": True,
+        "options": [
+          "provided that",
+          "as long as",
+          "unless",
+          "otherwise"
+        ]
+      },
+      {
+        "type": "choice",
+        "text": "Finish your dinner; ___, no dessert.",
+        "correct": "otherwise",
+        "hint": "иначе",
+        "star": True,
+        "options": [
+          "provided that",
+          "as long as",
+          "unless",
+          "otherwise"
+        ]
+      },
+      {
+        "type": "choice",
+        "text": "___ you are busy, I’ll wait.",
+        "correct": "Even if",
+        "hint": "даже если",
+        "star": True,
+        "options": [
+          "Provided that",
+          "Unless",
+          "Otherwise",
+          "Even if"
+        ]
       }
     ]
   },
@@ -1050,6 +2248,288 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
       {
         "question": "Как выбрать между герундием и инфинитивом после 'need'?",
         "answer": "Need + V‑ing (пассивный смысл) = The car needs washing. Need + to + V (активный) = I need to wash the car."
+      }
+    ],
+    "practice_tasks": [
+      {
+        "type": "fill_blank",
+        "text": "She admitted ___ (steal) the money.",
+        "correct": "stealing",
+        "hint": "После admit используется герундий",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He offered ___ (help) me with the project.",
+        "correct": "to help",
+        "hint": "После offer используется инфинитив",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "I can't help ___ (laugh) at his jokes.",
+        "correct": "laughing",
+        "hint": "Фраза can't help требует герундий",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "They decided ___ (not/go) to the party.",
+        "correct": "not to go",
+        "hint": "Отрицание с инфинитивом: not + to + verb",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She risked ___ (lose) her job by speaking out.",
+        "correct": "losing",
+        "hint": "После risk используется герундий",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "We need ___ (finish) this report by Friday.",
+        "correct": "to finish",
+        "hint": "После need обычно инфинитив",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He stopped ___ (smoke) last year.",
+        "correct": "smoking",
+        "hint": "Stop + герундий означает прекратить действие",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "I remember ___ (lock) the door this morning.",
+        "correct": "locking",
+        "hint": "Remember + герундий — вспоминать о прошлом действии",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She tried ___ (open) the window but it was stuck.",
+        "correct": "to open",
+        "hint": "Try + инфинитив — попытка сделать что-то",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "They avoid ___ (travel) during rush hour.",
+        "correct": "traveling",
+        "hint": "После avoid используется герундий",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He pretended ___ (be) asleep.",
+        "correct": "to be",
+        "hint": "После pretend используется инфинитив",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "I don't mind ___ (wait) for you.",
+        "correct": "waiting",
+        "hint": "После mind используется герундий",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She suggested ___ (go) to the cinema.",
+        "correct": "going",
+        "hint": "После suggest используется герундий",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He refused ___ (pay) the bill.",
+        "correct": "to pay",
+        "hint": "После refuse используется инфинитив",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "I enjoy ___ (read) books in my free time.",
+        "correct": "reading",
+        "hint": "После enjoy используется герундий",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "They hope ___ (win) the competition.",
+        "correct": "to win",
+        "hint": "После hope используется инфинитив",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She kept ___ (talk) during the movie.",
+        "correct": "talking",
+        "hint": "После keep используется герундий",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He promised ___ (call) me later.",
+        "correct": "to call",
+        "hint": "После promise используется инфинитив",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "I can't stand ___ (wait) in long lines.",
+        "correct": "waiting",
+        "hint": "Фраза can't stand требует герундий",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She learned ___ (speak) French fluently.",
+        "correct": "to speak",
+        "hint": "После learn используется инфинитив",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He considered ___ (move) to another city.",
+        "correct": "moving",
+        "hint": "После consider используется герундий",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "I forgot ___ (buy) milk on my way home.",
+        "correct": "to buy",
+        "hint": "Forget + инфинитив — забыть сделать что-то",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She regrets ___ (not/study) harder for the exam.",
+        "correct": "not studying",
+        "hint": "Regret + герундий — сожалеть о прошлом",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He went on ___ (talk) for hours.",
+        "correct": "talking",
+        "hint": "Go on + герундий — продолжать действие",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "I look forward to ___ (hear) from you.",
+        "correct": "hearing",
+        "hint": "Фраза look forward to требует герундий",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She is used to ___ (get) up early.",
+        "correct": "getting",
+        "hint": "Фраза be used to требует герундий",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He apologized for ___ (be) late.",
+        "correct": "being",
+        "hint": "После предлога for используется герундий",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "I'm interested in ___ (learn) Spanish.",
+        "correct": "learning",
+        "hint": "После предлога in используется герундий",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She succeeded in ___ (pass) the test.",
+        "correct": "passing",
+        "hint": "Фраза succeed in требует герундий",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He insisted on ___ (pay) for dinner.",
+        "correct": "paying",
+        "hint": "Фраза insist on требует герундий",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "It's no use ___ (cry) over spilt milk.",
+        "correct": "crying",
+        "hint": "Конструкция It's no use + герундий",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "She was seen ___ (enter) the building.",
+        "correct": "to enter",
+        "hint": "Пассивная конструкция: be seen + to + infinitive",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "He had his car ___ (repair) yesterday.",
+        "correct": "repaired",
+        "hint": "Конструкция have something done (past participle)",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "I would rather ___ (stay) home tonight.",
+        "correct": "stay",
+        "hint": "После would rather используется bare infinitive",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "She is too tired ___ (go) out.",
+        "correct": "to go",
+        "hint": "Конструкция too + adjective + to + infinitive",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "The problem is worth ___ (discuss).",
+        "correct": "discussing",
+        "hint": "Конструкция be worth + герундий",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "He was made ___ (apologize) by his boss.",
+        "correct": "to apologize",
+        "hint": "Пассив: be made + to + infinitive",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "I can't help but ___ (admire) her courage.",
+        "correct": "admire",
+        "hint": "Фраза can't help but + bare infinitive",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "She is looking forward to ___ (meet) him again.",
+        "correct": "meeting",
+        "hint": "Фраза look forward to + герундий",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "He regrets not ___ (take) the opportunity.",
+        "correct": "having taken",
+        "hint": "Perfect gerund для прошлого действия",
+        "star": True
       }
     ]
   },
@@ -2338,6 +3818,288 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
       {
         "question": "В чём разница между 'have someone do' и 'get someone to do'?",
         "answer": "Have – просто поручение (часто формальное). Get – уговорить, убедить (требует усилий)."
+      }
+    ],
+    "practice_tasks": [
+      {
+        "type": "fill_blank",
+        "text": "I need to ___ my hair cut before the interview.",
+        "correct": "have",
+        "hint": "Use 'have' for arranging a service.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She ___ her car washed every week.",
+        "correct": "gets",
+        "hint": "Use 'get' in present simple for routine.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "We ___ the plumber fix the leak yesterday.",
+        "correct": "had",
+        "hint": "Past tense of 'have someone do something'.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He ___ his assistant to book the tickets.",
+        "correct": "got",
+        "hint": "Use 'get someone to do something' in past.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "They are going to ___ their house painted next month.",
+        "correct": "have",
+        "hint": "Future arrangement with 'have something done'.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "I ___ my phone repaired last week.",
+        "correct": "had",
+        "hint": "Past of 'have something done'.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "Can you ___ someone to carry these boxes?",
+        "correct": "get",
+        "hint": "Use 'get someone to do something' for request.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She ___ her nails done every Friday.",
+        "correct": "has",
+        "hint": "Present simple third person of 'have something done'.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "We ___ the documents signed by the manager tomorrow.",
+        "correct": "will have",
+        "hint": "Future simple of 'have something done'.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He ___ his brother to drive him to the airport.",
+        "correct": "got",
+        "hint": "Past of 'get someone to do something'.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "I must ___ my eyes tested this year.",
+        "correct": "have",
+        "hint": "Use 'have' after modal verb.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She ___ her hair cut short last summer.",
+        "correct": "had",
+        "hint": "Past of 'have something done'.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "They ___ the roof repaired after the storm.",
+        "correct": "got",
+        "hint": "Past of 'get something done'.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "I need to ___ the mechanic check the brakes.",
+        "correct": "have",
+        "hint": "Use 'have someone do something'.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He ___ his suit cleaned for the wedding.",
+        "correct": "had",
+        "hint": "Past of 'have something done'.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "We ___ the teacher to explain the lesson again.",
+        "correct": "got",
+        "hint": "Past of 'get someone to do something'.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She ___ her makeup done by a professional.",
+        "correct": "has",
+        "hint": "Present simple third person of 'have something done'.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "I ___ my watch fixed last month.",
+        "correct": "had",
+        "hint": "Past of 'have something done'.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "Can you ___ the kids to clean their room?",
+        "correct": "get",
+        "hint": "Use 'get someone to do something' for persuasion.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "They ___ their garden designed by a landscaper.",
+        "correct": "had",
+        "hint": "Past of 'have something done'.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She ___ her assistant to make coffee every morning.",
+        "correct": "has",
+        "hint": "Present simple of 'have someone do something'.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "We ___ the pizza delivered an hour ago.",
+        "correct": "had",
+        "hint": "Past of 'have something done'.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He ___ his teeth whitened before the party.",
+        "correct": "got",
+        "hint": "Past of 'get something done'.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "I ___ my neighbor to feed the cat while I'm away.",
+        "correct": "will get",
+        "hint": "Future of 'get someone to do something'.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She ___ her dress altered for the gala.",
+        "correct": "had",
+        "hint": "Past of 'have something done'.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "They ___ the windows cleaned every month.",
+        "correct": "have",
+        "hint": "Present simple of 'have something done'.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He ___ his friend to lend him some money.",
+        "correct": "got",
+        "hint": "Past of 'get someone to do something'.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "I need to ___ my passport renewed.",
+        "correct": "have",
+        "hint": "Use 'have something done' for official process.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She ___ her picture taken for the ID card.",
+        "correct": "had",
+        "hint": "Past of 'have something done'.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "We ___ the mechanic to fix the car last night.",
+        "correct": "got",
+        "hint": "Past of 'get someone to do something'.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He ___ his essay proofread by a tutor.",
+        "correct": "had",
+        "hint": "Past of 'have something done'.",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "She ___ her hair dyed blonde next week.",
+        "correct": "is having",
+        "hint": "Present continuous for arranged future.",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "They ___ the house renovated before they moved in.",
+        "correct": "had had",
+        "hint": "Past perfect of 'have something done'.",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "I ___ my laptop repaired twice this year.",
+        "correct": "have had",
+        "hint": "Present perfect of 'have something done'.",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "He ___ his car serviced every six months.",
+        "correct": "has",
+        "hint": "Use 'have something done' in present simple.",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "We ___ the report finished by Friday.",
+        "correct": "must have",
+        "hint": "Modal + 'have something done'.",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "She ___ her nails done when I called her.",
+        "correct": "was having",
+        "hint": "Past continuous of 'have something done'.",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "I ___ my bags packed by the porter.",
+        "correct": "had",
+        "hint": "Past of 'have something done' with agent.",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "They ___ the project completed by the deadline.",
+        "correct": "got",
+        "hint": "Past of 'get something done' with emphasis on completion.",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "He ___ his suit pressed before the meeting.",
+        "correct": "had had",
+        "hint": "Past perfect of 'have something done' for earlier action.",
+        "star": True
       }
     ]
   },
@@ -3769,6 +5531,318 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
         "question": "Как запомнить все паттерны?",
         "answer": "Группируйте глаголы по смыслу: чувства/мысли (think, believe) + that; желания/попытки (want, try) + to V; завершённые действия (admit, deny) + V‑ing."
       }
+    ],
+    "practice_tasks": [
+      {
+        "type": "fill_blank",
+        "text": "She denied ___ (steal) the money.",
+        "correct": "stealing",
+        "hint": "После deny используется verb + -ing",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He admitted ___ (break) the window.",
+        "correct": "breaking",
+        "hint": "После admit используется verb + -ing",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "They suggested ___ (go) to the cinema.",
+        "correct": "going",
+        "hint": "После suggest используется verb + -ing",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She promised ___ (help) us with the project.",
+        "correct": "to help",
+        "hint": "После promise используется verb + to infinitive",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He offered ___ (drive) me to the airport.",
+        "correct": "to drive",
+        "hint": "После offer используется verb + to infinitive",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "They agreed ___ (meet) at the station.",
+        "correct": "to meet",
+        "hint": "После agree используется verb + to infinitive",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She complained ___ (have) too much work.",
+        "correct": "about having",
+        "hint": "После complain используется verb + about + -ing",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He insisted ___ (pay) for the dinner.",
+        "correct": "on paying",
+        "hint": "После insist используется verb + on + -ing",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "They apologized ___ (be) late.",
+        "correct": "for being",
+        "hint": "После apologize используется verb + for + -ing",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She warned him ___ (not touch) the wire.",
+        "correct": "not to touch",
+        "hint": "После warn используется verb + to infinitive (отрицание: not to)",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He advised me ___ (see) a doctor.",
+        "correct": "to see",
+        "hint": "После advise используется verb + to infinitive",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "They recommended ___ (book) in advance.",
+        "correct": "booking",
+        "hint": "После recommend используется verb + -ing",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She denied ___ (see) him before.",
+        "correct": "seeing",
+        "hint": "После deny используется verb + -ing",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He admitted ___ (make) a mistake.",
+        "correct": "making",
+        "hint": "После admit используется verb + -ing",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "They suggested ___ (try) a different approach.",
+        "correct": "trying",
+        "hint": "После suggest используется verb + -ing",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She promised ___ (call) me later.",
+        "correct": "to call",
+        "hint": "После promise используется verb + to infinitive",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He offered ___ (carry) the bags.",
+        "correct": "to carry",
+        "hint": "После offer используется verb + to infinitive",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "They agreed ___ (share) the costs.",
+        "correct": "to share",
+        "hint": "После agree используется verb + to infinitive",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She complained ___ (not get) enough sleep.",
+        "correct": "about not getting",
+        "hint": "После complain используется verb + about + -ing",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He insisted ___ (come) with us.",
+        "correct": "on coming",
+        "hint": "После insist используется verb + on + -ing",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "They apologized ___ (disturb) us.",
+        "correct": "for disturbing",
+        "hint": "После apologize используется verb + for + -ing",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She warned him ___ (not go) there alone.",
+        "correct": "not to go",
+        "hint": "После warn используется verb + to infinitive (отрицание: not to)",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He advised her ___ (take) an umbrella.",
+        "correct": "to take",
+        "hint": "После advise используется verb + to infinitive",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "They recommended ___ (visit) the museum.",
+        "correct": "visiting",
+        "hint": "После recommend используется verb + -ing",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She denied ___ (break) the vase.",
+        "correct": "breaking",
+        "hint": "После deny используется verb + -ing",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He admitted ___ (cheat) on the test.",
+        "correct": "cheating",
+        "hint": "После admit используется verb + -ing",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "They suggested ___ (take) a break.",
+        "correct": "taking",
+        "hint": "После suggest используется verb + -ing",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She promised ___ (send) the documents.",
+        "correct": "to send",
+        "hint": "После promise используется verb + to infinitive",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He offered ___ (cook) dinner.",
+        "correct": "to cook",
+        "hint": "После offer используется verb + to infinitive",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "They agreed ___ (start) early.",
+        "correct": "to start",
+        "hint": "После agree используется verb + to infinitive",
+        "star": False
+      },
+      {
+        "type": "choice",
+        "text": "She ___ that she was tired.",
+        "correct": "said",
+        "hint": "После say используется that",
+        "options": [
+          "said",
+          "told",
+          "suggested"
+        ],
+        "star": True
+      },
+      {
+        "type": "choice",
+        "text": "He ___ me to wait.",
+        "correct": "told",
+        "hint": "После tell используется объект + to infinitive",
+        "options": [
+          "said",
+          "told",
+          "offered"
+        ],
+        "star": True
+      },
+      {
+        "type": "choice",
+        "text": "They ___ that the meeting was cancelled.",
+        "correct": "announced",
+        "hint": "После announce используется that",
+        "options": [
+          "announced",
+          "offered",
+          "denied"
+        ],
+        "star": True
+      },
+      {
+        "type": "choice",
+        "text": "She ___ that she would help.",
+        "correct": "promised",
+        "hint": "После promise может быть that",
+        "options": [
+          "promised",
+          "admitted",
+          "suggested"
+        ],
+        "star": True
+      },
+      {
+        "type": "choice",
+        "text": "He ___ that he had made a mistake.",
+        "correct": "admitted",
+        "hint": "После admit может быть that",
+        "options": [
+          "admitted",
+          "offered",
+          "warned"
+        ],
+        "star": True
+      },
+      {
+        "type": "choice",
+        "text": "They ___ that the plan was risky.",
+        "correct": "warned",
+        "hint": "После warn может быть that",
+        "options": [
+          "warned",
+          "suggested",
+          "denied"
+        ],
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "She ___ (say) that she was happy.",
+        "correct": "said",
+        "hint": "say + that",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "He ___ (tell) us that he was leaving.",
+        "correct": "told",
+        "hint": "tell + объект + that",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "They ___ (announce) that the flight was delayed.",
+        "correct": "announced",
+        "hint": "announce + that",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "She ___ (explain) that she was busy.",
+        "correct": "explained",
+        "hint": "explain + that",
+        "star": True
+      }
     ]
   },
   "relative_clauses_reduced": {
@@ -3915,6 +5989,300 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
       {
         "question": "В чём разница между 'however' и 'nevertheless'?",
         "answer": "Они почти одинаковы, nevertheless более формальный."
+      }
+    ],
+    "practice_tasks": [
+      {
+        "type": "fill_blank",
+        "text": "The weather was terrible; ______, we decided to go for a walk.",
+        "correct": "nevertheless",
+        "hint": "despite that",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He is very rich; ______, he is not happy.",
+        "correct": "however",
+        "hint": "but",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She loves classical music; ______, her brother prefers rock.",
+        "correct": "whereas",
+        "hint": "in contrast to",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The company expanded rapidly; ______, profits increased significantly.",
+        "correct": "consequently",
+        "hint": "as a result",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The first plan was cheap; ______, the second was more efficient.",
+        "correct": "in contrast",
+        "hint": "on the other hand",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The project was difficult; ______, we completed it on time.",
+        "correct": "nevertheless",
+        "hint": "still",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He didn't study; ______, he failed the exam.",
+        "correct": "consequently",
+        "hint": "therefore",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The north is cold; ______, the south is warm.",
+        "correct": "whereas",
+        "hint": "while",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She is talented; ______, she is also very hardworking.",
+        "correct": "moreover",
+        "hint": "in addition",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The car is old; ______, it runs perfectly.",
+        "correct": "nevertheless",
+        "hint": "yet",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He was late; ______, he missed the beginning of the movie.",
+        "correct": "consequently",
+        "hint": "so",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "Some people love cats; ______, others prefer dogs.",
+        "correct": "whereas",
+        "hint": "but on the other hand",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The hotel was expensive; ______, it had a great view.",
+        "correct": "however",
+        "hint": "nevertheless",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He is a great leader; ______, he is also a good friend.",
+        "correct": "moreover",
+        "hint": "furthermore",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The city is noisy; ______, the countryside is peaceful.",
+        "correct": "in contrast",
+        "hint": "by comparison",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She forgot her keys; ______, she couldn't enter the house.",
+        "correct": "consequently",
+        "hint": "as a result",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The task was challenging; ______, we enjoyed it.",
+        "correct": "nevertheless",
+        "hint": "even so",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He is outgoing; ______, his sister is shy.",
+        "correct": "whereas",
+        "hint": "in contrast",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The food was delicious; ______, the service was poor.",
+        "correct": "however",
+        "hint": "but",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The plan was risky; ______, it succeeded.",
+        "correct": "nevertheless",
+        "hint": "nonetheless",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He studied hard; ______, he got a scholarship.",
+        "correct": "consequently",
+        "hint": "therefore",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The first option is fast; ______, the second is cheap.",
+        "correct": "in contrast",
+        "hint": "on the other hand",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She is a doctor; ______, her husband is a teacher.",
+        "correct": "whereas",
+        "hint": "while",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The movie was boring; ______, we left early.",
+        "correct": "consequently",
+        "hint": "so",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He is very smart; ______, he lacks common sense.",
+        "correct": "however",
+        "hint": "nevertheless",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The house is small; ______, it is cozy.",
+        "correct": "nevertheless",
+        "hint": "yet",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She speaks three languages; ______, she is learning a fourth.",
+        "correct": "moreover",
+        "hint": "in addition",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "Winter is cold; ______, summer is hot.",
+        "correct": "whereas",
+        "hint": "in contrast",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He didn't wear a coat; ______, he caught a cold.",
+        "correct": "consequently",
+        "hint": "as a result",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The theory is complex; ______, it is fascinating.",
+        "correct": "nevertheless",
+        "hint": "still",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The economy grew; ______, unemployment fell.",
+        "correct": "consequently",
+        "hint": "therefore",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "Some animals are active at night; ______, others are active during the day.",
+        "correct": "whereas",
+        "hint": "while",
+        "star": True
+      },
+      {
+        "type": "choice",
+        "text": "He is very rich; ______, he lives modestly.",
+        "correct": "nevertheless",
+        "hint": "despite his wealth",
+        "options": [
+          "moreover",
+          "nevertheless",
+          "consequently",
+          "whereas"
+        ],
+        "star": True
+      },
+      {
+        "type": "choice",
+        "text": "The north is cold; ______, the south is warm.",
+        "correct": "whereas",
+        "hint": "in contrast",
+        "options": [
+          "however",
+          "moreover",
+          "whereas",
+          "consequently"
+        ],
+        "star": True
+      },
+      {
+        "type": "reorder",
+        "text": "Расположите слова в правильном порядке: / however / , / tired / was / he / , / continued / he / working",
+        "correct": "He was tired; however, he continued working.",
+        "hint": "but he kept working",
+        "star": True
+      },
+      {
+        "type": "reorder",
+        "text": "Расположите слова в правильном порядке: / consequently / , / rain / heavy / the / , / canceled / was / game / the",
+        "correct": "The rain was heavy; consequently, the game was canceled.",
+        "hint": "as a result",
+        "star": True
+      },
+      {
+        "type": "translation",
+        "text": "Переведите: Она умна; более того, она трудолюбива.",
+        "correct": "She is smart; moreover, she is hardworking.",
+        "hint": "in addition",
+        "star": True
+      },
+      {
+        "type": "translation",
+        "text": "Переведите: Он опоздал; следовательно, он пропустил автобус.",
+        "correct": "He was late; consequently, he missed the bus.",
+        "hint": "therefore",
+        "star": True
+      },
+      {
+        "type": "open",
+        "text": "Составьте предложение, используя 'nevertheless' и слова 'rain, walk'.",
+        "correct": "It was raining; nevertheless, we went for a walk.",
+        "hint": "despite the rain",
+        "star": True
+      },
+      {
+        "type": "open",
+        "text": "Составьте предложение, используя 'in contrast' и слова 'city, village'.",
+        "correct": "The city is noisy; in contrast, the village is quiet.",
+        "hint": "compare two places",
+        "star": True
       }
     ]
   },
@@ -4587,6 +6955,288 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
       {
         "question": "В чём разница между 'global warming' и 'climate change'?",
         "answer": "Global warming – повышение температуры. Climate change – более широкое понятие, включающее изменение погодных паттернов, уровня моря и т.д."
+      }
+    ],
+    "practice_tasks": [
+      {
+        "type": "fill_blank",
+        "text": "The government has implemented new policies to reduce the carbon ______.",
+        "correct": "footprint",
+        "hint": "мера воздействия на климат",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "Deforestation leads to habitat ______ for many species.",
+        "correct": "loss",
+        "hint": "утрата",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "Renewable energy sources like solar and wind power help to ______ greenhouse gas emissions.",
+        "correct": "mitigate",
+        "hint": "смягчать, уменьшать",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The ______ of the rainforest is critical for global biodiversity.",
+        "correct": "preservation",
+        "hint": "сохранение",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "Ocean ______ is caused by the absorption of excess CO2 from the atmosphere.",
+        "correct": "acidification",
+        "hint": "закисление",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "Many companies are trying to achieve ______ by balancing their emissions with carbon offsets.",
+        "correct": "carbon neutrality",
+        "hint": "углеродная нейтральность",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The ______ effect is intensified by the burning of fossil fuels.",
+        "correct": "greenhouse",
+        "hint": "парниковый",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "Plastic waste often ends up in ______, harming marine life.",
+        "correct": "ocean gyres",
+        "hint": "океанические круговороты",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "______ farming practices can help restore soil health and reduce erosion.",
+        "correct": "Regenerative",
+        "hint": "восстановительное (земледелие)",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The concept of a ______ economy aims to eliminate waste and keep resources in use.",
+        "correct": "circular",
+        "hint": "циркулярная, замкнутая",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "Air ______ in urban areas can lead to respiratory problems.",
+        "correct": "pollution",
+        "hint": "загрязнение",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "______ species often outcompete native flora and fauna.",
+        "correct": "Invasive",
+        "hint": "инвазивные, чужеродные",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The ______ of natural resources must be managed sustainably.",
+        "correct": "exploitation",
+        "hint": "эксплуатация, использование",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "A ______ is a person who advocates for the protection of the environment.",
+        "correct": "environmentalist",
+        "hint": "эколог-активист",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The melting of polar ice caps contributes to sea-level ______.",
+        "correct": "rise",
+        "hint": "повышение",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "______ energy is derived from sources that are naturally replenished.",
+        "correct": "Renewable",
+        "hint": "возобновляемая",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The ______ of a species can have cascading effects on the entire ecosystem.",
+        "correct": "extinction",
+        "hint": "вымирание",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "______ refers to the variety of life in the world or in a particular habitat.",
+        "correct": "Biodiversity",
+        "hint": "биоразнообразие",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The ______ layer protects us from harmful ultraviolet radiation.",
+        "correct": "ozone",
+        "hint": "озоновый",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "______ waste, such as batteries and electronics, requires special disposal.",
+        "correct": "Hazardous",
+        "hint": "опасные (отходы)",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "______ is the process of converting waste materials into new materials and objects.",
+        "correct": "Recycling",
+        "hint": "переработка",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The ______ of forests helps to regulate the climate and water cycles.",
+        "correct": "conservation",
+        "hint": "сохранение, охрана",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "______ fuels like coal and oil are major contributors to air pollution.",
+        "correct": "Fossil",
+        "hint": "ископаемое (топливо)",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "______ is the gradual increase in the earth's average temperature.",
+        "correct": "Global warming",
+        "hint": "глобальное потепление",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "A ______ is a community of interacting organisms and their physical environment.",
+        "correct": "ecosystem",
+        "hint": "экосистема",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "______ is the contamination of the environment by harmful substances.",
+        "correct": "Pollution",
+        "hint": "загрязнение",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The ______ of waste in landfills produces methane, a potent greenhouse gas.",
+        "correct": "decomposition",
+        "hint": "разложение",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "______ is the practice of using resources in a way that does not deplete them.",
+        "correct": "Sustainability",
+        "hint": "устойчивость",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "______ is the clearing of forests on a large scale.",
+        "correct": "Deforestation",
+        "hint": "вырубка лесов",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "______ refers to the protection of natural resources for future generations.",
+        "correct": "Stewardship",
+        "hint": "ответственное управление",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The ______ of the Amazon is a major global concern.",
+        "correct": "deforestation",
+        "hint": "вырубка лесов",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "______ is the process by which fertile land becomes desert.",
+        "correct": "Desertification",
+        "hint": "опустынивание",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "______ is the introduction of harmful materials into the environment.",
+        "correct": "Contamination",
+        "hint": "загрязнение (более широкий термин)",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "The ______ of the Arctic ice sheet is accelerating.",
+        "correct": "melting",
+        "hint": "таяние",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "______ is the use of living organisms to clean up environmental pollution.",
+        "correct": "Bioremediation",
+        "hint": "биоремедиация",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "The ______ of the ozone layer is a success story of international cooperation.",
+        "correct": "recovery",
+        "hint": "восстановление",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "______ is the practice of planting trees to restore forested areas.",
+        "correct": "Reforestation",
+        "hint": "лесовосстановление",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "______ is the study of the interactions between organisms and their environment.",
+        "correct": "Ecology",
+        "hint": "экология (наука)",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "The ______ of the Everglades is a complex environmental issue.",
+        "correct": "restoration",
+        "hint": "восстановление",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "______ is the process of capturing and storing carbon dioxide to reduce emissions.",
+        "correct": "Carbon sequestration",
+        "hint": "секвестрация углерода",
+        "star": True
       }
     ]
   },
@@ -6519,6 +9169,288 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
       {
         "question": "Нужно ли учить много идиом для B2?",
         "answer": "Достаточно 30-40 самых распространённых. Они помогают в разговоре и чтении."
+      }
+    ],
+    "practice_tasks": [
+      {
+        "type": "fill_blank",
+        "text": "He decided to ___ the bullet and tell her the truth.",
+        "correct": "bite",
+        "hint": "endure something painful",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She was ___ over the moon when she got the job.",
+        "correct": "over the moon",
+        "hint": "extremely happy",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "We need to ___ the ball rolling on this project.",
+        "correct": "get",
+        "hint": "start something",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He's always ___ the pot calling the kettle black.",
+        "correct": "the pot calling the kettle black",
+        "hint": "criticizing someone for a fault you have",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "I'll ___ it a day and finish tomorrow.",
+        "correct": "call",
+        "hint": "stop working for the day",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She let the cat out of the ___ about the surprise party.",
+        "correct": "bag",
+        "hint": "reveal a secret",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He's been under the ___ lately with all the deadlines.",
+        "correct": "weather",
+        "hint": "feeling ill or stressed",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "We must face the ___ and accept the loss.",
+        "correct": "music",
+        "hint": "confront consequences",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She's a ___ of all trades, but master of none.",
+        "correct": "jack",
+        "hint": "person with many skills",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "Don't count your chickens before they ___ .",
+        "correct": "hatch",
+        "hint": "don't assume success too early",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He's been ___ the fence about which university to choose.",
+        "correct": "sitting on",
+        "hint": "undecided",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She went out on a ___ and invested in the startup.",
+        "correct": "limb",
+        "hint": "take a risk",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "We need to cut to the ___ and discuss the main issue.",
+        "correct": "chase",
+        "hint": "get to the point",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He's always ___ the devil's advocate in debates.",
+        "correct": "playing",
+        "hint": "argue an opposing view",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She's been ___ the grapevine about the merger.",
+        "correct": "hearing through",
+        "hint": "hearing rumors",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "It's not rocket ___ ; just follow the instructions.",
+        "correct": "science",
+        "hint": "not complicated",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He pulled a fast ___ on me and changed the deal.",
+        "correct": "one",
+        "hint": "trick someone",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She's been burning the ___ at both ends to finish the report.",
+        "correct": "candle",
+        "hint": "working too hard",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "We'll cross that ___ when we come to it.",
+        "correct": "bridge",
+        "hint": "deal with problem later",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He's got a ___ in his bonnet about recycling.",
+        "correct": "bee",
+        "hint": "obsession with an idea",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She's the ___ of the ball at every party.",
+        "correct": "life",
+        "hint": "most lively person",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "We need to get our ___ together and plan this.",
+        "correct": "ducks in a row",
+        "hint": "get organized",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He's been ___ the blues since his dog died.",
+        "critical": "singing the blues",
+        "hint": "feeling sad",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She's always ___ the green-eyed monster.",
+        "correct": "green with envy",
+        "hint": "jealous",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "Don't throw the baby out with the ___ water.",
+        "correct": "bath",
+        "hint": "discard something valuable with trash",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He's been ___ the dog and pony show for the investors.",
+        "correct": "putting on",
+        "hint": "a flashy presentation",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She's a ___ of sunshine on a rainy day.",
+        "correct": "ray",
+        "hint": "a cheerful person",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "We need to take the ___ by the horns.",
+        "correct": "bull",
+        "hint": "confront a problem directly",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He's been ___ the line between honesty and diplomacy.",
+        "correct": "walking a fine",
+        "hint": "balancing two things",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She's been ___ the hatchet with her old rival.",
+        "correct": "burying",
+        "hint": "making peace",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "It's a ___ of cake to fix this bug.",
+        "correct": "piece",
+        "hint": "very easy",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "He's been ___ the elephant in the room all evening.",
+        "correct": "ignoring",
+        "hint": "avoiding an obvious problem",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "She's the ___ that stirs the drink in our team.",
+        "correct": "straw",
+        "hint": "key person",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "We need to ___ the ground running on Monday.",
+        "correct": "hit",
+        "hint": "start quickly and energetically",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "He's been ___ the ropes of the new system.",
+        "correct": "learning",
+        "hint": "learning the basics",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "She's always ___ the silver lining in every cloud.",
+        "correct": "looking for",
+        "hint": "finding something positive",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "We'll have to ___ the bullet and raise prices.",
+        "correct": "bite",
+        "hint": "accept something unpleasant",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "He's been ___ the cat's pajamas since his promotion.",
+        "correct": "thinking he's",
+        "hint": "thinking he's great",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "She's a ___ in the rough; she needs training.",
+        "correct": "diamond",
+        "hint": "someone with hidden potential",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "We need to ___ the ship before it sinks.",
+        "correct": "abandon",
+        "hint": "leave a failing situation",
+        "star": True
       }
     ]
   }
