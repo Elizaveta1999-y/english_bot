@@ -5,6 +5,7 @@ from data.users import get_user_state, set_user_state
 from services.deepseek import chat
 from speaking.services.ai import is_safe_message, process_roleplay_message, process_voice_message
 from handlers.lesson_utils import check_answer
+from handlers.lessons import show_practice_task
 
 router = Router()
 
@@ -264,6 +265,27 @@ async def universal_text_handler(message: Message):
 
     print(f"[DEBUG] universal_text_handler: text={message.text}, lesson_qa_active={user_state.get('lesson_qa', {}).get('active')}")
 
+    # 0. Обработка ответов в режиме практики
+    if user_state.get("practice_lesson_key"):
+        from handlers.lessons import show_practice_task
+        lesson_key = user_state["practice_lesson_key"]
+        practice = user_state.get("practice", {}).get(lesson_key)
+        if practice:
+            idx = practice["session_index"]
+            if idx < len(practice["current_session"]):
+                task = practice["tasks"][practice["current_session"][idx]]
+                user_answer = message.text.strip()
+                correct = task.get("correct", "").lower().strip()
+                if user_answer.lower().strip() == correct:
+                    practice["session_correct"] += 1
+                    practice["completed"][practice["current_session"][idx]] = True
+                    await message.answer("✅ Правильно!")
+                else:
+                    await message.answer(f"❌ Неправильно. Правильный ответ: {correct}")
+                practice["session_index"] += 1
+                set_user_state(user_id, user_state)
+                await show_practice_task(message, user_id, edit=False)
+                return
     # 1. Обработка кастомного сценария
     if user_state.get("awaiting_custom_scenario"):
         user_state["awaiting_custom_scenario"] = False

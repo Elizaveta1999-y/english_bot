@@ -9,6 +9,7 @@ from speaking.services.ai import process_voice_message, process_roleplay_message
 from speaking.services.tts import text_to_voice
 from data.users import get_user_state, set_user_state, set_user_mode
 from services.deepseek import chat
+from handlers.lessons import show_practice_task
 
 logger = logging.getLogger(__name__)
 router = Router()
@@ -32,6 +33,28 @@ async def handle_voice(message: Message):
     if not user_text:
         await message.answer("Не понял, повторите.")
         return
+
+    # ========== РЕЖИМ ПРАКТИКИ (ГОЛОС) ==========
+    if user_state.get("practice_lesson_key"):
+        from handlers.lessons import show_practice_task
+        lesson_key = user_state["practice_lesson_key"]
+        practice = user_state.get("practice", {}).get(lesson_key)
+        if practice:
+            idx = practice["session_index"]
+            if idx < len(practice["current_session"]):
+                task = practice["tasks"][practice["current_session"][idx]]
+                user_answer = user_text.strip()
+                correct = task.get("correct", "").lower().strip()
+                if user_answer.lower().strip() == correct:
+                    practice["session_correct"] += 1
+                    practice["completed"][practice["current_session"][idx]] = True
+                    await message.answer("✅ Правильно!")
+                else:
+                    await message.answer(f"❌ Неправильно. Правильный ответ: {correct}")
+                practice["session_index"] += 1
+                set_user_state(user_id, user_state)
+                await show_practice_task(message, user_id, edit=False)
+                return
 
     # ========== ЕСЛИ АКТИВЕН РЕЖИМ ВОПРОСОВ ПО УРОКУ ==========
     if user_state.get("lesson_qa", {}).get("active"):
