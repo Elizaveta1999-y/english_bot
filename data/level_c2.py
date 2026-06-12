@@ -1,2813 +1,7501 @@
-# data/level_c2.py
-
-LEVEL_C2_CONTENT = {
-    # ==================== МОДУЛЬ 1: Регистры и стилистика ====================
-        "formal_vs_informal_advanced": {
-        "title": "Formal vs Informal: регистры и стилистика",
-        "pages": [
-            {
-                "title": "Что такое регистр?",
-                "text": """
-<b>🎭 Регистр – это стиль языка, который зависит от ситуации, адресата и цели общения.</b>
-
-Выделяют три основных регистра:
-• <b>Формальный (formal)</b> – официальные документы, академические статьи, деловая переписка, презентации.
-• <b>Нейтральный (neutral)</b> – большинство новостей, учебников, разговоров с незнакомыми.
-• <b>Неформальный (informal)</b> – разговоры с друзьями, личные письма, соцсети, блоги.
-
-<blockquote>На уровне C2 важно уметь переключаться между регистрами и понимать, когда какой уместен.</blockquote>
-"""
-            },
-            {
-                "title": "Лексические различия",
-                "text": """
-<b>📌 Замена слов (informal → formal):</b>
-
-• ask → request / enquire
-• buy → purchase
-• get → receive / obtain
-• need → require
-• help → assist
-• start → commence
-• check → verify
-• give → provide
-• talk → converse
-• so → therefore / thus
-• about → approximately
-• enough → sufficient
-• also → in addition / furthermore
-• but → however / nevertheless
-• because → due to / owing to / as
-• show → demonstrate / illustrate
-• tell → inform
-
-<blockquote>В формальном стиле избегаются фразовые глаголы (put off → postpone, find out → discover).</blockquote>
-"""
-            },
-            {
-                "title": "Грамматические различия",
-                "text": """
-<b>📌 Грамматика формального стиля:</b>
-
-• <b>Пассивный залог</b> – используется чаще, чем в разговорной речи.
-  • Informal: They built this bridge in 1990.
-  • Formal: This bridge was built in 1990.
-
-• <b>Безличные конструкции</b> – It is believed that..., It was reported that...
-  • Informal: People think he is rich.
-  • Formal: He is believed to be rich.
-
-• <b>Инверсия</b> – для усиления (Only then did he realise...)
-
-• <b>Отсутствие сокращений</b> – do not (не don't), cannot (не can't), it is (не it's).
-
-• <b>Сложные предложения</b> – причастные обороты, инфинитивные конструкции.
-  • Having finished the report, he submitted it. (вместо After he finished...)
-
-<blockquote>В формальном тексте предложения длиннее, сложнее и точнее.</blockquote>
-"""
-            },
-            {
-                "title": "Практические примеры",
-                "text": """
-<b>📖 Одно и то же содержание в разных регистрах:</b>
-
-<b>Неформально:</b>
-I'm sorry I'm late. My car broke down, so I had to call a taxi.
-
-<b>Нейтрально:</b>
-I apologise for my delay. My car experienced a breakdown, and consequently I had to call a taxi.
-
-<b>Формально:</b>
-Please accept my apologies for my tardiness. My vehicle suffered a mechanical failure; as a result, I was obliged to summon a taxi.
-
-<blockquote>Чем выше регистр, тем более официальной становится лексика и сложнее грамматика.</blockquote>
-"""
-            },
-            {
-                "title": "Советы и упражнения",
-                "text": """
-<b>💡 Как развивать навык переключения регистров:</b>
-
-1. Берите нейтральный текст (например, новость) и переписывайте его в формальном стиле.
-2. Переводите формальные письма в неформальные (другу).
-3. Обращайте внимание на регистр в разных источниках (блог vs научная статья).
-4. Для экзаменов (IELTS, CAE, CPE) важно выбирать правильный регистр в письменной части.
-
-<blockquote>Умение менять регистр – признак высокого уровня владения языком.</blockquote>
-"""
-            }
-        ],
-        "faq": [
-            {"question": "Всегда ли нужно использовать формальный стиль в эссе IELTS?", "answer": "Да, академическое эссе требует нейтрального или формального стиля. Неформальный недопустим."}
+LEVEL_C2_CONTENT = LEVEL_C2_CONTENT = {
+  "formal_vs_informal_advanced": {
+    "title": "Formal vs Informal: регистры и стилистика",
+    "pages": [
+      {
+        "title": "Что такое регистр?",
+        "text": "\n<b>🎭 Регистр – это стиль языка, который зависит от ситуации, адресата и цели общения.</b>\n\nВыделяют три основных регистра:\n• <b>Формальный (formal)</b> – официальные документы, академические статьи, деловая переписка, презентации.\n• <b>Нейтральный (neutral)</b> – большинство новостей, учебников, разговоров с незнакомыми.\n• <b>Неформальный (informal)</b> – разговоры с друзьями, личные письма, соцсети, блоги.\n\n<blockquote>На уровне C2 важно уметь переключаться между регистрами и понимать, когда какой уместен.</blockquote>\n"
+      },
+      {
+        "title": "Лексические различия",
+        "text": "\n<b>📌 Замена слов (informal → formal):</b>\n\n• ask → request / enquire\n• buy → purchase\n• get → receive / obtain\n• need → require\n• help → assist\n• start → commence\n• check → verify\n• give → provide\n• talk → converse\n• so → therefore / thus\n• about → approximately\n• enough → sufficient\n• also → in addition / furthermore\n• but → however / nevertheless\n• because → due to / owing to / as\n• show → demonstrate / illustrate\n• tell → inform\n\n<blockquote>В формальном стиле избегаются фразовые глаголы (put off → postpone, find out → discover).</blockquote>\n"
+      },
+      {
+        "title": "Грамматические различия",
+        "text": "\n<b>📌 Грамматика формального стиля:</b>\n\n• <b>Пассивный залог</b> – используется чаще, чем в разговорной речи.\n  • Informal: They built this bridge in 1990.\n  • Formal: This bridge was built in 1990.\n\n• <b>Безличные конструкции</b> – It is believed that..., It was reported that...\n  • Informal: People think he is rich.\n  • Formal: He is believed to be rich.\n\n• <b>Инверсия</b> – для усиления (Only then did he realise...)\n\n• <b>Отсутствие сокращений</b> – do not (не don't), cannot (не can't), it is (не it's).\n\n• <b>Сложные предложения</b> – причастные обороты, инфинитивные конструкции.\n  • Having finished the report, he submitted it. (вместо After he finished...)\n\n<blockquote>В формальном тексте предложения длиннее, сложнее и точнее.</blockquote>\n"
+      },
+      {
+        "title": "Практические примеры",
+        "text": "\n<b>📖 Одно и то же содержание в разных регистрах:</b>\n\n<b>Неформально:</b>\nI'm sorry I'm late. My car broke down, so I had to call a taxi.\n\n<b>Нейтрально:</b>\nI apologise for my delay. My car experienced a breakdown, and consequently I had to call a taxi.\n\n<b>Формально:</b>\nPlease accept my apologies for my tardiness. My vehicle suffered a mechanical failure; as a result, I was obliged to summon a taxi.\n\n<blockquote>Чем выше регистр, тем более официальной становится лексика и сложнее грамматика.</blockquote>\n"
+      },
+      {
+        "title": "Советы и упражнения",
+        "text": "\n<b>💡 Как развивать навык переключения регистров:</b>\n\n1. Берите нейтральный текст (например, новость) и переписывайте его в формальном стиле.\n2. Переводите формальные письма в неформальные (другу).\n3. Обращайте внимание на регистр в разных источниках (блог vs научная статья).\n4. Для экзаменов (IELTS, CAE, CPE) важно выбирать правильный регистр в письменной части.\n\n<blockquote>Умение менять регистр – признак высокого уровня владения языком.</blockquote>\n"
+      }
+    ],
+    "faq": [
+      {
+        "question": "Всегда ли нужно использовать формальный стиль в эссе IELTS?",
+        "answer": "Да, академическое эссе требует нейтрального или формального стиля. Неформальный недопустим."
+      }
+    ]
+  },
+  "analyzing_text_style": {
+    "title": "Анализ стиля текста (news, academic, fiction, blog)",
+    "pages": [
+      {
+        "title": "Почему важно анализировать стиль?",
+        "text": "\n<b>📊 Каждый тип текста имеет свои стилистические особенности.</b>\n\nУмение распознавать стиль помогает:\n• понимать авторский замысел\n• выбирать правильный регистр для своего письма\n• адаптироваться к разным жанрам на экзаменах\n\n<blockquote>На уровне C2 вы должны не только понимать текст, но и анализировать его стиль.</blockquote>\n"
+      },
+      {
+        "title": "Новостной стиль (news)",
+        "text": "\n<b>📰 Особенности новостных текстов:</b>\n\n• Заголовки в настоящем времени (President resigns, Parliament passes law)\n• Краткие предложения, часто без глагола (In dramatic move)\n• Пассивный залог для фокуса на событии (The building was destroyed)\n• Прямая речь и ссылки на источники (According to witnesses...)\n• Официальный, нейтральный регистр, избегание эмоциональной окраски.\n\n<b>Пример:</b>\n*The government has announced a new economic stimulus package. According to the finance minister, the measures are designed to boost consumer spending. The opposition, however, has criticised the plan as insufficient.*\n\n<blockquote>Новости стремятся к объективности, но могут содержать скрытые оценки.</blockquote>\n"
+      },
+      {
+        "title": "Академический стиль (academic)",
+        "text": "\n<b>🎓 Особенности академических текстов:</b>\n\n• Сложные предложения с придаточными и вводными конструкциями\n• Пассивный залог (The experiment was conducted)\n• Безличные конструкции (It is believed that, It can be argued)\n• Формальная лексика, избегание разговорных выражений и фразовых глаголов\n• Точность, объективность, ссылки на источники\n\n<b>Пример:</b>\n*It is widely accepted that climate change poses a significant threat to global ecosystems. This paper examines the correlation between carbon emissions and rising sea levels. The findings suggest that immediate intervention is required to mitigate the effects.*\n\n<blockquote>Академический стиль требует строгой логики и аргументации.</blockquote>\n"
+      },
+      {
+        "title": "Художественный стиль (fiction)",
+        "text": "\n<b>📖 Особенности художественных текстов:</b>\n\n• Метафоры, эпитеты, сравнения, образные выражения\n• Разнообразие времен (narrative tenses)\n• Прямая речь и внутренние монологи\n• Эмоциональная окраска, субъективность\n• Инверсия, эллипсис, неполные предложения (для имитации речи)\n\n<b>Пример:</b>\n*The wind howled through the empty streets. He had been walking for hours, his thoughts swirling like autumn leaves. Where was she? He whispered into the darkness.*\n\n<blockquote>Художественный стиль использует богатство языка для создания атмосферы.</blockquote>\n"
+      },
+      {
+        "title": "Блоги и интернет-тексты (blog)",
+        "text": "\n<b>💻 Особенности блогов:</b>\n\n• Разговорный регистр, часто неформальный\n• Использование сокращений (don't, you're, it's)\n• Первое лицо (I think, I believe, in my opinion)\n• Обращение к читателю (you, dear reader)\n• Риторические вопросы, восклицания\n• Короткие абзацы, маркированные списки\n\n<b>Пример:</b>\n*I can't believe it! I finally managed to bake the perfect sourdough bread. You won't believe how easy it is – just follow these steps. Let me know if you try it!*\n\n<blockquote>Блоги ближе к устной речи и часто содержат личные оценки.</blockquote>\n"
+      },
+      {
+        "title": "Советы",
+        "text": "\n<b>💡 Как тренировать анализ стиля:</b>\n• Читайте тексты разных жанров и обращайте внимание на лексику и синтаксис.\n• Определите регистр (formal / neutral / informal) и стилевые маркеры.\n• Переписывайте отрывки из одного стиля в другой (например, новость → блог).\n• На экзаменах (CAE, CPE) часто требуется определять стиль письменного текста.\n"
+      }
+    ],
+    "faq": [
+      {
+        "question": "Как отличить новостной стиль от академического?",
+        "answer": "Новости – короткие предложения, нейтральный регистр, часто пассив. Академический – длинные сложные предложения, специальная лексика, формальный регистр."
+      }
+    ]
+  },
+  "register_switching": {
+    "title": "Переключение между регистрами (formal ↔ neutral ↔ informal)",
+    "pages": [
+      {
+        "title": "Зачем переключать регистр?",
+        "text": "\n<b>🔄 Умение переключаться между регистрами – ключевой навык C2.</b>\n\nВы должны уметь:\n• написать формальное письмо начальнику\n• поговорить с друзьями в неформальном стиле\n• представить доклад в нейтрально-формальном регистре\n\n<blockquote>Неправильный выбор регистра может привести к недопониманию или показаться неуважительным.</blockquote>\n"
+      },
+      {
+        "title": "Пример переключения (одно содержание)",
+        "text": "\n<b>📖 Пример: информация о задержке поставки.</b>\n\n<b>Формальный (начальнику/клиенту):</b>\n*We regret to inform you that the delivery will be delayed due to unforeseen logistical issues. We are working diligently to resolve the matter and will provide an update within 24 hours.*\n\n<b>Нейтральный (коллеге по работе):</b>\n*The delivery is going to be late because of some logistical problems. We're trying to fix it and will let you know as soon as possible.*\n\n<b>Неформальный (другу):</b>\n*Bad news – the delivery is going to be late. Something went wrong with logistics. We're on it, will keep you posted!*\n\n<blockquote>Выбор регистра зависит от отношений с адресатом.</blockquote>\n"
+      },
+      {
+        "title": "Переключение в устной речи",
+        "text": "\n<b>🗣️ Устное переключение:</b>\n\n• С незнакомыми людьми – нейтральный или формальный, вежливые формы.\n• С начальником – формальный, уважительный.\n• С друзьями и семьёй – неформальный, допустимы сленг и сокращения.\n\n<b>Пример в диалоге:</b>\n– Excuse me, could you tell me where the post office is? (formal)\n– Sure, it's just around the corner. (neutral)\n– Thanks a lot, mate. (informal – зависит от контекста)\n\n<blockquote>В устной речи переход может быть более плавным, но важно чувствовать границы.</blockquote>\n"
+      },
+      {
+        "title": "Как избегать ошибок",
+        "text": "\n<b>⚠️ Типичные ошибки при переключении:</b>\n\n• Слишком формальный язык с друзьями звучит неестественно.\n• Неформальные выражения в официальном письме могут быть неуместны.\n• Сокращения (I'm, don't, can't) недопустимы в формальном стиле.\n\n<b>💡 Совет:</b>\n• Представьте, с кем вы говорите или кому пишете, и выбирайте регистр соответственно.\n• Читайте образцы писем и диалогов в разных регистрах.\n• Тренируйтесь переписывать один и тот же текст в три регистра (formal, neutral, informal).\n"
+      }
+    ],
+    "faq": [
+      {
+        "question": "Можно ли использовать формальный регистр с друзьями в шутку?",
+        "answer": "Да, иногда это делается для юмора, но нужно быть уверенным, что вас поймут правильно."
+      }
+    ]
+  },
+  "irony_sarcasm_understatement": {
+    "title": "Ирония, сарказм, преуменьшение (стилистические фигуры)",
+    "pages": [
+      {
+        "title": "Что такое ирония?",
+        "text": "\n<b>🎭 Ирония – высказывание, в котором истинный смысл противоположен буквальному.</b>\n\nИспользуется для юмора, критики или создания драматического эффекта.\n\n• *What lovely weather!* (когда идёт дождь)\n• *He's a brilliant driver.* (после того, как он врезался в столб)\n\n<blockquote>Ирония требует от слушающего понимания контекста и интонации.</blockquote>\n"
+      },
+      {
+        "title": "Сарказм – злая ирония",
+        "text": "\n<b>😏 Сарказм – это ирония, направленная на высмеивание или оскорбление.</b>\n\n• *You're so helpful!* (когда кто-то только мешает)\n• *I'll definitely miss your advice.* (когда совет был бесполезен)\n\n<blockquote>Сарказм более агрессивен и часто используется в комедии и повседневных конфликтах.</blockquote>\n"
+      },
+      {
+        "title": "Преуменьшение (understatement)",
+        "text": "\n<b>📉 Преуменьшение – намеренное смягчение истинного положения дел.</b>\n\nЧасто используется в британском английском для создания эффекта сдержанности или юмора.\n\n• *It's a bit chilly.* (при температуре -20°C)\n• *He's not very happy.* (о человеке, который в ярости)\n• *I think we have a slight problem.* (когда проблема катастрофическая)\n\n<blockquote>Understatement – важная черта британского чувства юмора.</blockquote>\n"
+      },
+      {
+        "title": "Примеры и советы",
+        "text": "\n<b>📖 Примеры использования:</b>\n\n• В литературе: Austen, Wilde, Twain широко использовали иронию.\n• В разговоре: *Thanks for the help!* (когда не помогли) – сарказм.\n\n<b>⚠️ Осторожно:</b>\n• Ирония и сарказм могут быть неправильно поняты в мультикультурной среде.\n• Преуменьшение требует знания культурного контекста.\n\n<b>💡 Как развить:</b>\n• Смотрите британские комедийные сериалы (Blackadder, Yes Minister, The Office).\n• Читайте сатирические статьи (The Onion, Private Eye).\n• Практикуйтесь: скажите \"That's great\" в ситуации, когда всё плохо, и посмотрите на реакцию.\n"
+      }
+    ],
+    "faq": [
+      {
+        "question": "В чём разница между иронией и сарказмом?",
+        "answer": "Ирония – общий термин (противоположный смысл). Сарказм – язвительная, часто агрессивная ирония, направленная на конкретного человека."
+      }
+    ]
+  },
+  "idioms_c2_1": {
+    "title": "Идиомы C2 (часть 1)",
+    "pages": [
+      {
+        "title": "Идиомы для описания поведения",
+        "text": "\n<b>🎭 Продвинутые идиомы о поведении людей:</b>\n\n• <b>to bend over backwards</b> – из кожи вон лезть, стараться изо всех сил\n  • *She bent over backwards to help him.* (Она из кожи вон лезла, чтобы помочь ему.)\n\n• <b>to get your act together</b> – взять себя в руки, организоваться\n  • *You need to get your act together if you want to pass the exam.* (Тебе нужно взять себя в руки, если хочешь сдать экзамен.)\n\n• <b>to go the extra mile</b> – приложить дополнительные усилия\n  • *He always goes the extra mile for his clients.* (Он всегда прилагает дополнительные усилия для своих клиентов.)\n\n• <b>to pull your weight</b> – вносить свою лепту, работать наравне с другими\n  • *If you don't pull your weight, the team will fail.* (Если ты не будешь работать наравне с другими, команда провалится.)\n\n• <b>to sit on the fence</b> – быть нерешительным, занимать нейтральную позицию\n  • *Decide already – you can't sit on the fence forever.* (Решай уже – ты не можешь вечно быть нерешительным.)\n\n• <b>to take a stand</b> – занять твёрдую позицию\n  • *It's time to take a stand against injustice.* (Время занять твёрдую позицию против несправедливости.)\n\n<blockquote>Эти идиомы помогут вам описывать поведение в деловом и повседневном контексте.</blockquote>\n"
+      },
+      {
+        "title": "Идиомы о коммуникации",
+        "text": "\n<b>🗣️ Идиомы, связанные с разговором:</b>\n\n• <b>to beat around the bush</b> – ходить вокруг да около\n  • *Stop beating around the bush and tell me the truth.* (Перестань ходить вокруг да около и скажи правду.)\n\n• <b>to get straight to the point</b> – перейти сразу к делу\n  • *Let's get straight to the point – we need more money.* (Давайте сразу к делу – нам нужно больше денег.)\n\n• <b>to read between the lines</b> – читать между строк\n  • *If you read between the lines, you'll see he's not happy.* (Если читать между строк, видно, что он не счастлив.)\n\n• <b>to put in a nutshell</b> – изложить кратко, в двух словах\n  • *To put it in a nutshell, we lost the contract.* (Короче говоря, мы потеряли контракт.)\n\n• <b>to talk at cross purposes</b> – говорить о разном, не понимать друг друга\n  • *I think we're talking at cross purposes – let's start again.* (Думаю, мы говорим о разном – давай начнём заново.)\n\n• <b>to call a spade a spade</b> – называть вещи своими именами\n  • *I like him because he calls a spade a spade.* (Он мне нравится, потому что называет вещи своими именами.)\n\n<blockquote>Используйте эти идиомы, чтобы сделать речь более выразительной и естественной.</blockquote>\n"
+      },
+      {
+        "title": "Идиомы о деньгах и успехе",
+        "text": "\n<b>💰 Деньги, карьера, успех:</b>\n\n• <b>to make ends meet</b> – сводить концы с концами\n  • *With three jobs, he barely makes ends meet.* (С тремя работами он едва сводит концы с концами.)\n\n• <b>to be in the black / in the red</b> – быть в плюсе / в минусе\n  • *After a good year, the company is in the black.* (После удачного года компания в плюсе.)\n\n• <b>to cost an arm and a leg</b> – стоить бешеных денег\n  • *The new roof cost an arm and a leg.* (Новая крыша стоила бешеных денег.)\n\n• <b>to pay through the nose</b> – платить втридорога\n  • *We paid through the nose for those tickets.* (Мы заплатили втридорога за эти билеты.)\n\n• <b>to be rolling in money</b> – купаться в деньгах\n  • *He's not just rich; he's rolling in money.* (Он не просто богат – он купается в деньгах.)\n\n• <b>to hit the jackpot</b> – сорвать джекпот, крупно повезти\n  • *They hit the jackpot with that investment.* (Им крупно повезло с теми инвестициями.)\n\n<blockquote>Эти идиомы очень частотны в бизнес-контексте и повседневных разговорах о деньгах.</blockquote>\n"
+      },
+      {
+        "title": "Советы",
+        "text": "\n<b>💡 Как учить идиомы C2:</b>\n\n• Учите их в контексте, придумывайте свои примеры.\n• Группируйте по темам (поведение, деньги, коммуникация, эмоции).\n• Используйте приложения (Anki, Quizlet) с карточками.\n• Слушайте подкасты и смотрите сериалы (например, «Suits», «The Crown») – там много идиом.\n\n<blockquote>На уровне C2 знание идиом – обязательный элемент беглой речи.</blockquote>\n"
+      }
+    ],
+    "faq": [
+      {
+        "question": "Сколько идиом нужно знать для C2?",
+        "answer": "Около 300-500 наиболее употребительных. Но качество важнее количества: вы должны уметь использовать их естественно."
+      }
+    ],
+    "practice_tasks": [
+      {
+        "type": "fill_blank",
+        "text": "After years of rivalry, they finally decided to ______ the hatchet.",
+        "correct": "bury",
+        "hint": "прекратить ссору",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The new policy will ______ the line between public and private sectors.",
+        "correct": "blur",
+        "hint": "стирать границу",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She always knows how to ______ the right buttons to get what she wants.",
+        "correct": "push",
+        "hint": "давить на нужные точки",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "His speech was so powerful that it ______ a chord with the audience.",
+        "correct": "struck",
+        "hint": "задеть за живое",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "We need to ______ the bullet and tell him the truth.",
+        "correct": "bite",
+        "hint": "собраться с духом",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The negotiations reached a ______ point when both sides refused to compromise.",
+        "correct": "sticking",
+        "hint": "тупик",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He tends to ______ the boat by asking controversial questions.",
+        "correct": "rock",
+        "hint": "раскачивать лодку (создавать проблемы)",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "Don't ______ the issue; it's not that serious.",
+        "correct": "blow out of proportion",
+        "hint": "раздувать проблему",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She managed to ______ the storm and come out stronger.",
+        "correct": "weather",
+        "hint": "пережить бурю",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The project was ______ in the bud due to lack of funding.",
+        "correct": "nipped",
+        "hint": "пресечь в зародыше",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He's always trying to ______ the system to get ahead.",
+        "correct": "game",
+        "hint": "обманывать систему",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The CEO decided to ______ the company's image after the scandal.",
+        "correct": "rebrand",
+        "hint": "ребрендинг",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "We must ______ the line between work and personal life.",
+        "correct": "draw",
+        "hint": "провести черту",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "His explanation was full of ______ and didn't make sense.",
+        "correct": "holes",
+        "hint": "дыры (в логике)",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She had to ______ the music and face the consequences.",
+        "correct": "face",
+        "hint": "встретить музыку (принять последствия)",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The plan was ______ from the start; it never had a chance.",
+        "correct": "doomed",
+        "hint": "обречённый",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He's always trying to ______ the line between genius and madness.",
+        "correct": "walk",
+        "hint": "балансировать на грани",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The new evidence turned the case ______ its head.",
+        "correct": "on",
+        "hint": "перевернуть с ног на голову",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "Don't ______ the boat; everything is fine as it is.",
+        "correct": "rock",
+        "hint": "раскачивать лодку",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She was ______ between two options and couldn't decide.",
+        "correct": "torn",
+        "hint": "разрываться между",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The company needs to ______ up its game to stay competitive.",
+        "correct": "step",
+        "hint": "повысить уровень",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "His speech was a ______ in the dark; no one understood it.",
+        "correct": "shot",
+        "hint": "выстрел в темноте",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "We need to ______ the issue before it escalates.",
+        "correct": "address",
+        "hint": "решать проблему",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The project is still in its ______ stages.",
+        "correct": "infancy",
+        "hint": "в зачаточном состоянии",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He's always trying to ______ the system for personal gain.",
+        "correct": "game",
+        "hint": "играть с системой",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The meeting was a ______ of time; nothing was achieved.",
+        "correct": "waste",
+        "hint": "пустая трата времени",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She had to ______ the pain and keep working.",
+        "correct": "bear",
+        "hint": "терпеть боль",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The new policy will ______ a line between acceptable and unacceptable behavior.",
+        "correct": "draw",
+        "hint": "провести границу",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He's always trying to ______ the truth.",
+        "correct": "bury",
+        "hint": "скрывать правду",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The situation is ______; we need to act quickly.",
+        "correct": "critical",
+        "hint": "критический",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She had to ______ the music and admit her mistake.",
+        "correct": "face",
+        "hint": "признать ошибку",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "The project was ______ in the bud due to budget cuts.",
+        "correct": "nipped",
+        "hint": "пресечено в зародыше",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "He's always trying to ______ the system to avoid taxes.",
+        "correct": "game",
+        "hint": "обойти систему",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "The new evidence turned the case ______ its head.",
+        "correct": "on",
+        "hint": "перевернуло дело",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "She was ______ between two loyalties.",
+        "correct": "torn",
+        "hint": "разрывалась между",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "The company needs to ______ up its game to survive.",
+        "correct": "step",
+        "hint": "повысить планку",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "His speech was a ______ in the dark; no one understood it.",
+        "correct": "shot",
+        "hint": "выстрел наугад",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "We need to ______ the issue before it becomes a crisis.",
+        "correct": "address",
+        "hint": "заняться проблемой",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "The project is still in its ______ stages.",
+        "correct": "infancy",
+        "hint": "начальная стадия",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "He's always trying to ______ the truth, but it always comes out.",
+        "correct": "bury",
+        "hint": "скрыть правду",
+        "star": True
+      }
+    ]
+  },
+  "idioms_c2_2": {
+    "title": "Идиомы C2 (часть 2)",
+    "pages": [
+      {
+        "title": "Идиомы о ситуациях",
+        "text": "\n<b>🔁 Идиомы для описания обстоятельств и ситуаций:</b>\n\n• <b>to be in the same boat</b> – быть в одной лодке, в одинаковом положении\n  • *We're all in the same boat – nobody has any money.* (Мы все в одной лодке – ни у кого нет денег.)\n\n• <b>to be a double‑edged sword</b> – палка о двух концах\n  • *Social media is a double‑edged sword.* (Социальные сети – палка о двух концах.)\n\n• <b>to get out of hand</b> – выйти из-под контроля\n  • *The party got out of hand and the police were called.* (Вечеринка вышла из-под контроля, вызвали полицию.)\n\n• <b>to be on thin ice</b> – быть в опасном положении, ходить по тонкому льду\n  • *If you're late again, you'll be on thin ice.* (Если опоздаешь ещё раз, будешь ходить по тонкому льду.)\n\n• <b>to be in hot water</b> – быть в неприятной ситуации\n  • *He's in hot water with his boss.* (У него неприятности с начальником.)\n\n• <b>to be a blessing in disguise</b> – нечто, что кажется плохим, но оборачивается добром\n  • *Losing that job was a blessing in disguise.* (Потеря той работы оказалась благословением.)\n\n<blockquote>Эти идиомы пригодятся для описания жизненных ситуаций и событий.</blockquote>\n"
+      },
+      {
+        "title": "Идиомы о времени",
+        "text": "\n<b>⏰ Идиомы, связанные со временем:</b>\n\n• <b>to call it a day</b> – закончить работу на сегодня\n  • *It's late – let's call it a day.* (Уже поздно – давай закончим на сегодня.)\n\n• <b>to be time‑consuming</b> – отнимать много времени\n  • *Writing a thesis is very time‑consuming.* (Написание диссертации отнимает много времени.)\n\n• <b>to be pressed for time</b> – торопиться, не хватать времени\n  • *I'm pressed for time – can we make it quick?* (Я тороплюсь – можно побыстрее?)\n\n• <b>to be ahead of time / behind schedule</b> – опережать время / отставать от графика\n  • *We're ahead of time, so we can relax.* (Мы опережаем график, так что можем расслабиться.)\n\n• <b>to kill time</b> – убивать время\n  • *I was just killing time before the meeting.* (Я просто убивал время до встречи.)\n\n• <b>to make up for lost time</b> – навёрстывать упущенное время\n  • *After the pandemic, we need to make up for lost time.* (После пандемии нам нужно навёрстывать упущенное.)\n\n<blockquote>В деловом английском эти идиомы очень частотны.</blockquote>\n"
+      },
+      {
+        "title": "Идиомы с частями тела (продвинутые)",
+        "text": "\n<b>🦵 Идиомы с частями тела (C2):</b>\n\n• <b>to keep your chin up</b> – держать голову высоко, не унывать\n  • *Keep your chin up – things will get better.* (Не унывай – всё наладится.)\n\n• <b>to give someone the cold shoulder</b> – игнорировать, демонстративно не замечать\n  • *She gave me the cold shoulder after the argument.* (Она игнорировала меня после ссоры.)\n\n• <b>to pull someone's leg</b> – разыгрывать, шутить\n  • *I'm just pulling your leg – I didn't mean it.* (Я просто шучу – я не серьёзно.)\n\n• <b>to play it by ear</b> – действовать по обстоятельствам\n  • *We don't have a plan – let's play it by ear.* (У нас нет плана – будем действовать по обстоятельствам.)\n\n• <b>to keep an eye on someone/something</b> – присматривать\n  • *Can you keep an eye on my bag?* (Можешь присмотреть за моей сумкой?)\n\n• <b>to see eye to eye</b> – сходиться во мнениях\n  • *We don't see eye to eye on politics.* (У нас разные взгляды на политику.)\n\n<blockquote>Эти идиомы часто встречаются в разговорной речи и фильмах.</blockquote>\n"
+      },
+      {
+        "title": "Советы",
+        "text": "\n<b>💡 Как запоминать идиомы:</b>\n• Используйте метод интервального повторения.\n• Составляйте истории, включая несколько идиом.\n• Объясняйте значение идиомы другу на английском.\n• Смотрите видео с носителями и выписывайте идиомы в контексте.\n\n<blockquote>Постепенно вы начнёте использовать идиомы автоматически, и ваша речь зазвучит по-настоящему бегло.</blockquote>\n"
+      }
+    ],
+    "faq": [
+      {
+        "question": "Можно ли использовать идиомы в письменной части экзамена?",
+        "answer": "Да, но умеренно. Одна-две идиомы в эссе поднимут балл за лексику, но перебор будет выглядеть неестественно."
+      }
+    ],
+    "practice_tasks": [
+      {
+        "type": "fill_blank",
+        "text": "After years of rivalry, they finally decided to ___ the hatchet.",
+        "correct": "bury",
+        "hint": "Прекратить ссору",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "Her speech was so moving that it brought the house ___.",
+        "correct": "down",
+        "hint": "Вызвать бурные аплодисменты",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He’s always ___ the pot about their past mistakes.",
+        "correct": "stirring",
+        "hint": "Напоминать о неприятном",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "We need to ___ the ground running on this project.",
+        "correct": "hit",
+        "hint": "Начать энергично",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "Don’t ___ the boat; everything is fine as it is.",
+        "correct": "rock",
+        "hint": "Не создавай проблем",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The new policy is just a ___ in the dark.",
+        "correct": "shot",
+        "hint": "Попытка наугад",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He tends to ___ the line when it comes to safety.",
+        "correct": "toe",
+        "hint": "Соблюдать правила",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She’s been ___ the blues since her dog died.",
+        "correct": "singing",
+        "hint": "Жаловаться на судьбу",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "They decided to ___ the bullet and sell the house.",
+        "correct": "bite",
+        "hint": "Смириться с неизбежным",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "His explanation was full of ___ and whistles.",
+        "correct": "bells",
+        "hint": "Излишние детали",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "You need to ___ your socks up if you want to pass.",
+        "correct": "pull",
+        "hint": "Постараться больше",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The deal fell through because they couldn’t ___ the mustard.",
+        "correct": "cut",
+        "hint": "Соответствовать ожиданиям",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He’s always ___ the air about his achievements.",
+        "correct": "beating",
+        "hint": "Хвастаться",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "We must ___ the line between work and play.",
+        "correct": "draw",
+        "hint": "Провести границу",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She’s been ___ the grapevine about the merger.",
+        "correct": "hearing",
+        "hint": "Узнавать слухи",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "Don’t ___ the issue; we need a decision now.",
+        "correct": "duck",
+        "hint": "Избегать темы",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He’s always ___ the limelight.",
+        "correct": "stealing",
+        "hint": "Привлекать внимание",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The project is still ___ the drawing board.",
+        "correct": "on",
+        "hint": "На стадии планирования",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She managed to ___ the odds and win the race.",
+        "correct": "beat",
+        "hint": "Преодолеть трудности",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He’s been ___ the fence on this issue for weeks.",
+        "correct": "sitting",
+        "hint": "Колебаться",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "They’re trying to ___ the market with their new product.",
+        "correct": "corner",
+        "hint": "Захватить рынок",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She always ___ the truth to avoid conflict.",
+        "correct": "bends",
+        "hint": "Искажать правду",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "His speech was just ___ the surface.",
+        "correct": "scratching",
+        "hint": "Поверхностно",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "We need to ___ the net wider to find candidates.",
+        "correct": "cast",
+        "hint": "Расширить поиск",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He’s always ___ the rules to suit himself.",
+        "correct": "bending",
+        "hint": "Нарушать правила",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The company is ___ the black this quarter.",
+        "correct": "in",
+        "hint": "Быть прибыльным",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She’s been ___ the red since she lost her job.",
+        "correct": "in",
+        "hint": "Быть в долгах",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "They ___ the deal with a handshake.",
+        "correct": "sealed",
+        "hint": "Закрепить сделку",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He’s always ___ the bandwagon.",
+        "correct": "jumping",
+        "hint": "Присоединяться к большинству",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "Don’t ___ the cart before the horse.",
+        "correct": "put",
+        "hint": "Не торопи события",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She’s been ___ the ropes since her first day.",
+        "correct": "learning",
+        "hint": "Осваивать основы",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "He managed to ___ the bull by the horns.",
+        "correct": "take",
+        "hint": "Взяться за дело смело",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "The new law is a ___ in the ointment.",
+        "correct": "fly",
+        "hint": "Помеха",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "She’s always ___ the devil’s advocate.",
+        "correct": "playing",
+        "hint": "Спорить для дискуссии",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "We need to ___ the issue in the bud.",
+        "correct": "nip",
+        "hint": "Пресечь на корню",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "He’s been ___ the grass for a promotion.",
+        "correct": "greener",
+        "hint": "Искать лучшее",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "She’s always ___ the apple of discord.",
+        "correct": "throwing",
+        "hint": "Сеять раздор",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "The plan is still ___ the air.",
+        "correct": "up in",
+        "hint": "Неопределенный",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "He’s been ___ the sword of Damocles.",
+        "correct": "under",
+        "hint": "Под постоянной угрозой",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "She managed to ___ the Gordian knot.",
+        "correct": "cut",
+        "hint": "Решить сложную проблему",
+        "star": True
+      }
+    ]
+  },
+  "phrasal_verbs_c2_1": {
+    "title": "Фразовые глаголы C2 (часть 1)",
+    "pages": [
+      {
+        "title": "Группа 'come' (C2)",
+        "text": "\n<b>🔑 Come – редкие и продвинутые значения.</b>\n\n• <b>come across as</b> – производить впечатление, казаться\n  • *He comes across as arrogant, but he's actually shy.* (Он кажется высокомерным, но на самом деле застенчив.)\n\n• <b>come down to</b> – сводиться к (основной причине)\n  • *The problem comes down to a lack of funding.* (Проблема сводится к нехватке финансирования.)\n\n• <b>come in for</b> – подвергаться (критике, нападкам)\n  • *The government came in for a lot of criticism.* (Правительство подверглось сильной критике.)\n\n• <b>come off</b> – удаваться, получаться (о плане, мероприятии)\n  • *The party came off really well.* (Вечеринка удалась.)\n\n• <b>come out with</b> – заявить, выдать (что-то неожиданное)\n  • *He came out with a ridiculous suggestion.* (Он выдал нелепое предложение.)\n\n• <b>come up against</b> – столкнуться с (препятствием)\n  • *We came up against a lot of opposition.* (Мы столкнулись с большим сопротивлением.)\n\n<blockquote>Эти фразовые глаголы помогут вам звучать как носитель в сложных дискуссиях.</blockquote>\n"
+      },
+      {
+        "title": "Группа 'get' (C2)",
+        "text": "\n<b>🔄 Get – продвинутые конструкции.</b>\n\n• <b>get across</b> – донести (мысль, идею)\n  • *He struggled to get his point across.* (Ему было трудно донести свою мысль.)\n\n• <b>get at</b> – подразумевать, намекать\n  • *What exactly are you getting at?* (Что именно ты имеешь в виду?)\n\n• <b>get away with</b> – избежать наказания\n  • *He thought he could get away with lying.* (Он думал, что ему сойдёт с рук ложь.)\n\n• <b>get back to</b> – вернуться к (теме, вопросу)\n  • *Let's get back to the main point.* (Давайте вернёмся к главному вопросу.)\n\n• <b>get down to</b> – приступить к (серьёзной работе)\n  • *It's time to get down to business.* (Пора приступить к делу.)\n\n• <b>get through to</b> – дозвониться, достучаться (до человека)\n  • *I can't get through to him – he won't listen.* (Не могу до него достучаться – он не слушает.)\n\n<blockquote>Эти глаголы незаменимы для выражения сложных коммуникативных нюансов.</blockquote>\n"
+      },
+      {
+        "title": "Группа 'go' (C2)",
+        "text": "\n<b>🏃 Go – малочастотные значения.</b>\n\n• <b>go under</b> – обанкротиться, потерпеть крах\n  • *Many small businesses went under during the crisis.* (Многие малые предприятия обанкротились во время кризиса.)\n\n• <b>go without</b> – обходиться без\n  • *We had to go without electricity for two days.* (Нам пришлось обходиться без электричества два дня.)\n\n• <b>go through with</b> – довести до конца (несмотря на трудности)\n  • *She decided to go through with the wedding.* (Она решила довести свадьбу до конца.)\n\n• <b>go over</b> – просмотреть, повторить\n  • *Let's go over the report one more time.* (Давайте ещё раз просмотрим отчёт.)\n\n• <b>go off</b> – срабатывать (будильник, взрывчатка)\n  • *The alarm went off at 6 am.* (Будильник сработал в 6 утра.)\n\n• <b>go by</b> – руководствоваться (правилом)\n  • *We have to go by the rules.* (Мы должны руководствоваться правилами.)\n\n<blockquote>Знание этих значений пригодится в деловой и повседневной речи.</blockquote>\n"
+      },
+      {
+        "title": "Советы",
+        "text": "\n<b>💡 Как учить продвинутые фразовые глаголы:</b>\n• Изучайте их в контексте, не пытайтесь выучить списком.\n• Используйте их в своей речи и письме – только так они запомнятся.\n• Обращайте внимание на разделяемость: get something across, но get across something (тоже возможно, но стилистически различается).\n• Тренируйтесь перефразировать обычные глаголы фразовыми.\n\n<blockquote>Фразовые глаголы C2 делают речь более динамичной и естественной.</blockquote>\n"
+      }
+    ],
+    "faq": [
+      {
+        "question": "Можно ли заменить фразовый глагол односложным словом?",
+        "answer": "Часто да (postpone = put off), но фразовые глаголы звучат более разговорно и естественно в неформальной речи."
+      }
+    ],
+    "practice_tasks": [
+      {
+        "type": "fill_blank",
+        "text": "He managed to ___ ___ the complex negotiations without any major issues.",
+        "correct": "see through",
+        "hint": "завершить, довести до конца",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The scandal forced the CEO to ___ ___ from his position.",
+        "correct": "step down",
+        "hint": "уйти в отставку",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She couldn't ___ ___ the truth any longer.",
+        "correct": "shy away from",
+        "hint": "избегать, уклоняться",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The company plans to ___ ___ a new marketing strategy next month.",
+        "correct": "roll out",
+        "hint": "внедрять, запускать",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He tried to ___ ___ his involvement in the crime.",
+        "correct": "cover up",
+        "hint": "скрывать",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The government had to ___ ___ the new policy due to public outcry.",
+        "correct": "back down",
+        "hint": "отступить, уступить",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She managed to ___ ___ a deal with the investors.",
+        "correct": "pull off",
+        "hint": "осуществить (нечто трудное)",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The project ___ ___ after the funding was cut.",
+        "correct": "fell through",
+        "hint": "провалиться, сорваться",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He always ___ ___ his responsibilities when things get tough.",
+        "correct": "shirks off",
+        "hint": "уклоняться от обязанностей",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The detective managed to ___ ___ the truth from the suspect.",
+        "correct": "wring out",
+        "hint": "вытягивать (информацию)",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "They decided to ___ ___ the old building and build a new one.",
+        "correct": "pull down",
+        "hint": "сносить",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The negotiations ___ ___ after hours of discussion.",
+        "correct": "broke down",
+        "hint": "прерваться, потерпеть неудачу",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She had to ___ ___ her pride and ask for help.",
+        "correct": "swallow up",
+        "hint": "подавить (гордость)",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The company is trying to ___ ___ new markets in Asia.",
+        "correct": "break into",
+        "hint": "проникнуть на рынок",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He always ___ ___ his colleagues when they make mistakes.",
+        "correct": "picks on",
+        "hint": "придираться",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The scandal ___ ___ after the leaked emails were published.",
+        "correct": "blew up",
+        "hint": "разразиться, раздуться",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She managed to ___ ___ all the obstacles in her career.",
+        "correct": "surmount over",
+        "hint": "преодолеть",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The government plans to ___ ___ the tax system next year.",
+        "correct": "overhaul",
+        "hint": "пересмотреть, реформировать",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He tried to ___ ___ the issue by changing the subject.",
+        "correct": "gloss over",
+        "hint": "замалчивать, сглаживать",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The team had to ___ ___ a lot of criticism after the defeat.",
+        "correct": "weather through",
+        "hint": "выдержать, пережить",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She ___ ___ her father's business after he retired.",
+        "correct": "took over",
+        "hint": "взять на себя управление",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The police are trying to ___ ___ the cause of the accident.",
+        "correct": "get to the bottom of",
+        "hint": "докопаться до сути",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He always ___ ___ his problems instead of facing them.",
+        "correct": "runs away from",
+        "hint": "убегать от",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The company had to ___ ___ its workforce due to financial difficulties.",
+        "correct": "lay off",
+        "hint": "увольнять",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She managed to ___ ___ a solution to the complex problem.",
+        "correct": "come up with",
+        "hint": "придумать",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The negotiations ___ ___ after both sides refused to compromise.",
+        "correct": "fell apart",
+        "hint": "развалиться",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He tried to ___ ___ his anger during the meeting.",
+        "correct": "hold back",
+        "hint": "сдерживать",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The new policy was ___ ___ to great controversy.",
+        "correct": "met with",
+        "hint": "встречено (с реакцией)",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She had to ___ ___ her fears and give the speech.",
+        "correct": "overcome",
+        "hint": "преодолеть",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The project ___ ___ after the main investor withdrew.",
+        "correct": "collapsed",
+        "hint": "рухнул",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The detective managed to ___ ___ the suspect's alibi.",
+        "correct": "pick apart",
+        "hint": "разобрать по косточкам",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "She had to ___ ___ her emotions to stay professional.",
+        "correct": "compartmentalize",
+        "hint": "разделять (эмоции)",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "The company plans to ___ ___ its operations in Europe.",
+        "correct": "scale up",
+        "hint": "расширять масштаб",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "He tried to ___ ___ the committee's decision.",
+        "correct": "railroad through",
+        "hint": "протащить (решение) силой",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "The government had to ___ ___ the crisis with careful diplomacy.",
+        "correct": "navigate through",
+        "hint": "пройти через (кризис)",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "She managed to ___ ___ the complex legal system.",
+        "correct": "maneuver through",
+        "hint": "лавировать в",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "The scandal ___ ___ the entire organization.",
+        "correct": "rocked",
+        "hint": "потряс",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "He always ___ ___ the blame onto others.",
+        "correct": "shifts off",
+        "hint": "перекладывать (вину)",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "The company had to ___ ___ its strategy after the market changed.",
+        "correct": "pivot",
+        "hint": "повернуть, изменить курс",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "She managed to ___ ___ the truth from the encrypted data.",
+        "correct": "extract",
+        "hint": "извлечь",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "After years of neglect, the government finally decided to _____ the old industrial district.",
+        "correct": "do up",
+        "hint": "ремонтировать, реставрировать",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She tried to _____ her anger, but it was obvious she was furious.",
+        "correct": "hold back",
+        "hint": "сдерживать (эмоции)",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The negotiations completely _____ because neither side would compromise.",
+        "correct": "broke down",
+        "hint": "срываться, прекращаться",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He managed to _____ a convincing excuse for being late.",
+        "correct": "come up with",
+        "hint": "придумать",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The company had to _____ several employees due to the recession.",
+        "correct": "lay off",
+        "hint": "увольнять",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She couldn't _____ the meaning of the complex poem.",
+        "correct": "figure out",
+        "hint": "понять, разобраться",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The police are _____ the cause of the accident.",
+        "correct": "looking into",
+        "hint": "расследовать",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He _____ his father in both appearance and character.",
+        "correct": "takes after",
+        "hint": "быть похожим на (родственника)",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The plan _____ to be more complicated than we thought.",
+        "correct": "turned out",
+        "hint": "оказываться",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She _____ a lot of money from her grandmother's will.",
+        "correct": "came into",
+        "hint": "унаследовать",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The meeting was _____ until next week.",
+        "correct": "put off",
+        "hint": "откладывать",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He couldn't _____ the pressure and resigned.",
+        "correct": "stand up to",
+        "hint": "выдерживать, противостоять",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The scandal _____ a public outcry.",
+        "correct": "gave rise to",
+        "hint": "вызывать, порождать",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She _____ her notes before the exam.",
+        "correct": "went over",
+        "hint": "повторять, просматривать",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The project _____ due to lack of funding.",
+        "correct": "fell through",
+        "hint": "провалиться, сорваться",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He _____ a new hobby to cope with stress.",
+        "correct": "took up",
+        "hint": "начать заниматься (хобби)",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The evidence _____ his alibi.",
+        "correct": "bore out",
+        "hint": "подтверждать",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She _____ the offer without hesitation.",
+        "correct": "jumped at",
+        "hint": "ухватиться за (предложение)",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The teacher _____ the students for their hard work.",
+        "correct": "singled out",
+        "hint": "выделять (кого-то)",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The old traditions have _____ over the centuries.",
+        "correct": "died out",
+        "hint": "исчезнуть, вымереть",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He _____ his success to his mentor.",
+        "correct": "owes",
+        "hint": "быть обязанным (кому-то)",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The company is _____ new markets in Asia.",
+        "correct": "breaking into",
+        "hint": "внедряться, проникать (на рынок)",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She _____ a deep sigh of relief.",
+        "correct": "let out",
+        "hint": "издавать (звук, вздох)",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The negotiations _____ a deadlock.",
+        "correct": "reached",
+        "hint": "достигать (тупика)",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He _____ the problem from a different angle.",
+        "correct": "approached",
+        "hint": "подходить к (проблеме)",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The plan _____ in chaos.",
+        "correct": "ended up",
+        "hint": "закончиться (чем-то)",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She _____ her old car for a new model.",
+        "correct": "traded in",
+        "hint": "сдать в зачет (при покупке нового)",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The scandal _____ his political career.",
+        "correct": "wrecked",
+        "hint": "разрушить (карьеру)",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He _____ the details of the contract.",
+        "correct": "spelled out",
+        "hint": "разъяснять подробно",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The company _____ its workforce by 20%.",
+        "correct": "cut back",
+        "hint": "сокращать (штат)",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She _____ the truth from her parents.",
+        "correct": "concealed",
+        "hint": "скрывать (правду)",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The project _____ to be a success.",
+        "correct": "proved",
+        "hint": "оказаться (успешным)",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "He _____ the implications of his actions.",
+        "correct": "failed to grasp",
+        "hint": "не понять (последствий)",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "The government _____ the new policy gradually.",
+        "correct": "phased in",
+        "hint": "вводить поэтапно",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "She _____ the challenge with determination.",
+        "correct": "rose to",
+        "hint": "оказаться на высоте (в сложной ситуации)",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "The company _____ its competitors by innovation.",
+        "correct": "outstripped",
+        "hint": "превзойти (конкурентов)",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "He _____ the offer, realizing it was a scam.",
+        "correct": "steered clear of",
+        "hint": "держаться подальше от",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "The scandal _____ the government's credibility.",
+        "correct": "undermined",
+        "hint": "подрывать (доверие)",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "She _____ the complex theory in simple terms.",
+        "correct": "boiled down",
+        "hint": "сводить (к сути)",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "The negotiations _____ a breakthrough.",
+        "correct": "culminated in",
+        "hint": "завершиться (прорывом)",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "He _____ the criticism and improved his work.",
+        "correct": "took on board",
+        "hint": "принять к сведению",
+        "star": True
+      }
+    ]
+  },
+  "phrasal_verbs_c2_2": {
+    "title": "Фразовые глаголы C2 (часть 2)",
+    "pages": [
+      {
+        "title": "Группа 'put' (C2)",
+        "text": "\n<b>🖊️ Put – редкие идиоматические значения.</b>\n\n• <b>put forward</b> – предлагать (идею, кандидата)\n  • *He put forward a convincing argument.* (Он выдвинул убедительный аргумент.)\n\n• <b>put down</b> – подавлять (восстание), записывать, унижать\n  • *The uprising was put down by the army.* (Восстание было подавлено армией.)\n  • *Put down your name here.* (Запишите своё имя здесь.)\n  • *He's always putting her down.* (Он постоянно её унижает.)\n\n• <b>put through</b> – соединить по телефону, подвергать испытанию\n  • *Could you put me through to the manager?* (Можете соединить меня с менеджером?)\n  • *She was put through a lot of stress.* (Она подверглась большому стрессу.)\n\n• <b>put up to</b> – подбить на что-то (обычно плохое)\n  • *His friends put him up to it.* (Друзья подбили его на это.)\n\n• <b>put up with</b> – мириться с\n  • *I can't put up with this noise any longer.* (Я больше не могу терпеть этот шум.)\n\n• <b>put in</b> – вкладывать (усилия, время)\n  • *She put in a lot of effort.* (Она вложила много усилий.)\n\n<blockquote>Эти фразовые глаголы часто встречаются в литературе и официальных документах.</blockquote>\n"
+      },
+      {
+        "title": "Группа 'take' (C2)",
+        "text": "\n<b>📸 Take – сложные значения.</b>\n\n• <b>take after</b> – быть похожим на (родителя)\n  • *She takes after her mother.* (Она похожа на свою мать.)\n\n• <b>take in</b> – впускать, вбирать, обманывать\n  • *We took in a stray cat.* (Мы приютили бездомного кота.)\n  • *I was completely taken in by his story.* (Я был полностью обманут его историей.)\n\n• <b>take on</b> – брать на себя (обязанности), нанимать\n  • *She took on too much responsibility.* (Она взяла на себя слишком много обязанностей.)\n  • *The company is taking on new staff.* (Компания нанимает новых сотрудников.)\n\n• <b>take over</b> – захватить, принять управление\n  • *The new CEO will take over next week.* (Новый гендиректор вступит в должность на следующей неделе.)\n\n• <b>take to</b> – пристраститься к, полюбить\n  • *He took to swimming like a duck to water.* (Он быстро полюбил плавание.)\n\n• <b>take up</b> – начать заниматься (хобби), занимать (место/время)\n  • *She took up painting.* (Она начала заниматься живописью.)\n  • *The sofa takes up too much space.* (Диван занимает слишком много места.)\n\n<blockquote>Take – один из самых продуктивных глаголов для фразовых значений.</blockquote>\n"
+      },
+      {
+        "title": "Группа 'turn' (C2)",
+        "text": "\n<b>🔄 Turn – сложные обороты.</b>\n\n• <b>turn down</b> – отвергать, уменьшать (громкость)\n  • *She turned down the job offer.* (Она отклонила предложение о работе.)\n  • *Turn down the volume.* (Убавь громкость.)\n\n• <b>turn out</b> – оказаться (в итоге)\n  • *The party turned out to be great.* (Вечеринка оказалась отличной.)\n\n• <b>turn into</b> – превращаться в\n  • *The caterpillar turned into a butterfly.* (Гусеница превратилась в бабочку.)\n\n• <b>turn up</b> – появляться, увеличивать\n  • *He turned up late again.* (Он снова появился поздно.)\n  • *Turn up the music.* (Сделай музыку громче.)\n\n• <b>turn away</b> – отказывать, отворачиваться\n  • *They turned away dozens of fans.* (Они отказали десяткам фанатов.)\n  • *Don't turn away from those in need.* (Не отворачивайся от нуждающихся.)\n\n• <b>turn on/off</b> – включать/выключать (и в переносном смысле)\n  • *The music turns me on.* (Эта музыка меня заводит – разговорно, не для экзаменов.)\n\n<blockquote>Turn – незаменим для описания изменений состояний.</blockquote>\n"
+      },
+      {
+        "title": "Советы",
+        "text": "\n<b>💡 Как практиковать фразовые глаголы C2:</b>\n• Читайте качественную литературу (Джордж Оруэлл, Ивлин Во) – там много фразовых глаголов.\n• Пишите эссе и старайтесь использовать изученные фразовые глаголы.\n• Смотрите фильмы на английском с субтитрами, выписывайте фразовые глаголы.\n• Тренируйтесь в речи: заменяйте односложные глаголы (postpone → put off) в разных контекстах.\n\n<blockquote>Постоянная практика – ключ к автоматическому использованию фразовых глаголов.</blockquote>\n"
+      }
+    ],
+    "faq": [
+      {
+        "question": "Как отличить разделяемые фразовые глаголы от неразделяемых?",
+        "answer": "Разделяемые можно разрывать объектом (turn the music down / turn down the music). Неразделяемые всегда вместе (look after the child – нельзя look the child after)."
+      }
+    ],
+    "practice_tasks": [
+      {
+        "type": "fill_blank",
+        "text": "After years of decline, the company managed to ___ ___ its former glory.",
+        "correct": "bounce back",
+        "hint": "Вернуться в прежнее состояние после неудачи",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The government had to ___ ___ to the pressure from the opposition.",
+        "correct": "bow down",
+        "hint": "Уступить, подчиниться",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She tried to ___ ___ her anger, but eventually exploded.",
+        "correct": "hold back",
+        "hint": "Сдерживать (эмоции)",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The negotiations ___ ___ after both sides refused to compromise.",
+        "correct": "broke down",
+        "hint": "Провалились, прекратились",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He ___ ___ a brilliant idea for the marketing campaign.",
+        "correct": "came up with",
+        "hint": "Придумать",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The scandal forced the CEO to ___ ___ from his position.",
+        "correct": "step down",
+        "hint": "Уйти в отставку",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "We need to ___ ___ the main issues before the deadline.",
+        "correct": "zero in on",
+        "hint": "Сосредоточиться на",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The project ___ ___ due to lack of funding.",
+        "correct": "fell through",
+        "hint": "Провалился, не состоялся",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She ___ ___ the opportunity to study abroad without hesitation.",
+        "correct": "jumped at",
+        "hint": "Ухватиться за (возможность)",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The detective managed to ___ ___ the truth behind the lies.",
+        "correct": "get at",
+        "hint": "Докопаться до сути",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He tried to ___ ___ his lack of experience with enthusiasm.",
+        "correct": "make up for",
+        "hint": "Компенсировать",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The company had to ___ ___ several employees due to the crisis.",
+        "correct": "lay off",
+        "hint": "Уволить (сократить)",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She ___ ___ her notes before the exam.",
+        "correct": "brushed up on",
+        "hint": "Освежить в памяти",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The plan ___ ___ when the main investor withdrew.",
+        "correct": "fell apart",
+        "hint": "Развалился",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He couldn't ___ ___ the pressure and quit.",
+        "correct": "stand up to",
+        "hint": "Выдержать, противостоять",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The teacher ___ ___ the students for their hard work.",
+        "correct": "singled out",
+        "hint": "Выделить (отметить)",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "They ___ ___ the old building and built a new one.",
+        "correct": "pulled down",
+        "hint": "Снесли",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The speaker ___ ___ the importance of teamwork.",
+        "correct": "dwelt on",
+        "hint": "Подробно остановился на",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She ___ ___ her colleagues by arriving late every day.",
+        "correct": "let down",
+        "hint": "Подвела",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The negotiations ___ ___ a deadlock.",
+        "correct": "ended in",
+        "hint": "Закончились (чем-то)",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He ___ ___ his father in both appearance and character.",
+        "correct": "takes after",
+        "hint": "Похож на (родителя)",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The company ___ ___ a new product line last month.",
+        "correct": "rolled out",
+        "hint": "Запустила (продукт)",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She ___ ___ her speech to fit the time limit.",
+        "correct": "cut down",
+        "hint": "Сократила",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The police are ___ ___ the cause of the accident.",
+        "correct": "looking into",
+        "hint": "Расследуют",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He ___ ___ his success to hard work and luck.",
+        "correct": "owed",
+        "hint": "Был обязан",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The meeting was ___ ___ until next week.",
+        "correct": "put off",
+        "hint": "Отложено",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She ___ ___ a lot of money on her new car.",
+        "correct": "shelled out",
+        "hint": "Выложила (деньги)",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The truth finally ___ ___ after years of denial.",
+        "correct": "came out",
+        "hint": "Всплыла, выяснилась",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He ___ ___ his rivals in the final round.",
+        "correct": "edged out",
+        "hint": "Обогнал, вытеснил",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The company ___ ___ the competition by offering lower prices.",
+        "correct": "undercut",
+        "hint": "Сбил цены (конкурентов)",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She ___ ___ the entire argument in just two sentences.",
+        "correct": "summed up",
+        "hint": "Резюмировала",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "The politician tried to ___ ___ the scandal by changing the subject.",
+        "correct": "gloss over",
+        "hint": "Сгладить, замять",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "He ___ ___ his inheritance in less than a year.",
+        "correct": "blew through",
+        "hint": "Растратил (быстро)",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "The committee ___ ___ the proposal after hours of debate.",
+        "correct": "voted down",
+        "hint": "Отклонила (голосованием)",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "She ___ ___ the problem from every angle before deciding.",
+        "correct": "looked at",
+        "hint": "Рассмотрела (всесторонне)",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "The new policy ___ ___ a lot of criticism from the public.",
+        "correct": "drew on",
+        "hint": "Навлекла, вызвала",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "He ___ ___ his opponent's argument with ease.",
+        "correct": "tore apart",
+        "hint": "Разгромил (аргумент)",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "The company ___ ___ its operations in Asia.",
+        "correct": "phased out",
+        "hint": "Постепенно свернула",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "She ___ ___ the offer, knowing it was too good to be True.",
+        "correct": "passed on",
+        "hint": "Отказалась от",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "The evidence ___ ___ a completely different story.",
+        "correct": "pointed to",
+        "hint": "Указывала на",
+        "star": True
+      }
+    ]
+  },
+  "collocations_c2": {
+    "title": "Коллокации C2 (неочевидные сочетания)",
+    "pages": [
+      {
+        "title": "Что такое неочевидные коллокации?",
+        "text": "\n<b>🔗 Коллокации – естественные сочетания слов, которые не всегда можно предугадать из правил.</b>\n\nНа уровне C2 важно выучить нестандартные сочетания, которые часто встречаются в академическом и деловом английском.\n\n• <b>to make a concession</b> – идти на уступку (не do)\n• <b>to pose a threat</b> – представлять угрозу (не create)\n• <b>to lend credence to</b> – придавать правдоподобие\n• <b>to broach a subject</b> – затронуть тему\n• <b>to harbour a grudge</b> – затаить обиду\n• <b>to strike a compromise</b> – достичь компромисса\n\n<blockquote>Ошибки в коллокациях выдают даже очень продвинутых учащихся.</blockquote>\n"
+      },
+      {
+        "title": "Глагольные коллокации C2",
+        "text": "\n<b>📌 Продвинутые глагольные сочетания:</b>\n\n• <b>to exercise caution</b> – проявлять осторожность\n• <b>to voice concern</b> – выражать обеспокоенность\n• <b>to reach a consensus</b> – достичь консенсуса\n• <b>to garner support</b> – заручиться поддержкой\n• <b>to take a stance</b> – занять позицию\n• <b>to cast doubt on</b> – подвергать сомнению\n• <b>to draw a conclusion</b> – сделать вывод\n• <b>to meet a deadline</b> – соблюдать срок\n• <b>to submit a proposal</b> – подать предложение\n• <b>to refute an argument</b> – опровергнуть аргумент\n\n<blockquote>Эти коллокации незаменимы для эссе и деловой переписки.</blockquote>\n"
+      },
+      {
+        "title": "Прилагательные + существительные (C2)",
+        "text": "\n<b>🎨 Качественные сочетания:</b>\n\n• <b>a stark contrast</b> – резкий контраст\n• <b>a fleeting glance</b> – мимолётный взгляд\n• <b>a golden opportunity</b> – уникальная возможность\n• <b>a heated debate</b> – жаркие дебаты\n• <b>a staunch supporter</b> – верный сторонник\n• <b>a negligible effect</b> – незначительный эффект\n• <b>a profound impact</b> – глубокое влияние\n• <b>a subtle difference</b> – тонкое различие\n• <b>a sweeping statement</b> – категоричное заявление\n• <b>a vicious circle</b> – замкнутый круг\n\n<blockquote>Употребление правильных прилагательных делает речь более точной и богатой.</blockquote>\n"
+      },
+      {
+        "title": "Советы",
+        "text": "\n<b>💡 Как запоминать коллокации:</b>\n\n• Читайте много аутентичных текстов (The Economist, The Guardian, научные статьи).\n• Ведите тетрадь коллокаций, группируя их по глаголам или существительным.\n• Используйте онлайн-словари коллокаций (OZDIC, JustTheWord).\n• Тренируйтесь: переписывайте предложения, заменяя нейтральные слова на коллокации C2.\n• На экзаменах (CPE, IELTS) правильно подобранные коллокации значительно повышают балл.\n\n<blockquote>Коллокации – это мост между средним и продвинутым уровнем.</blockquote>\n"
+      }
+    ],
+    "faq": [
+      {
+        "question": "Как отличить правильную коллокацию от неправильной?",
+        "answer": "Правильная коллокация встречается в аутентичных текстах и звучит естественно. Если сомневаетесь, проверьте в корпусе (например, Google Books Ngram)."
+      }
+    ],
+    "practice_tasks": [
+      {
+        "type": "fill_blank",
+        "text": "The two countries decided to ___ a truce after decades of conflict.",
+        "correct": "broker",
+        "hint": "to arrange or negotiate a peace agreement",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "Her speech managed to ___ a chord with the audience.",
+        "correct": "strike",
+        "hint": "to evoke an emotional response",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The company had to ___ a loss of millions due to the scandal.",
+        "correct": "sustain",
+        "hint": "to suffer or experience a financial loss",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He tried to ___ the issue, but it was too controversial.",
+        "correct": "sidestep",
+        "hint": "to avoid dealing with a problem directly",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The evidence will ___ the case against the defendant.",
+        "correct": "bolster",
+        "hint": "to support or strengthen an argument",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "They decided to ___ the project due to lack of funding.",
+        "correct": "scrap",
+        "hint": "to abandon or cancel a plan",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The new policy will ___ a precedent for future negotiations.",
+        "correct": "set",
+        "hint": "to establish a standard or example",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She managed to ___ a living from her small online business.",
+        "correct": "eke out",
+        "hint": "to barely earn enough to survive",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The journalist refused to ___ the source of the leak.",
+        "correct": "disclose",
+        "hint": "to reveal confidential information",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "His remarks ___ a storm of controversy.",
+        "correct": "sparked",
+        "hint": "to cause a sudden strong reaction",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The company will ___ a dividend to its shareholders next month.",
+        "correct": "declare",
+        "hint": "to officially announce a payment",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She had to ___ a heavy price for her mistakes.",
+        "correct": "pay",
+        "hint": "to suffer consequences",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The government aims to ___ the gap between rich and poor.",
+        "correct": "bridge",
+        "hint": "to reduce differences",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He managed to ___ a fortune in the tech industry.",
+        "correct": "amass",
+        "hint": "to accumulate wealth",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The diplomat tried to ___ the tension between the parties.",
+        "correct": "defuse",
+        "hint": "to reduce hostility or danger",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The report will ___ light on the causes of the accident.",
+        "correct": "shed",
+        "hint": "to clarify or explain",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "They had to ___ the meeting due to a scheduling conflict.",
+        "correct": "adjourn",
+        "hint": "to postpone a formal meeting",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The artist's work ___ the boundaries of traditional painting.",
+        "correct": "pushes",
+        "hint": "to challenge limits",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She managed to ___ a promise from him before he left.",
+        "correct": "extract",
+        "hint": "to obtain something with difficulty",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The new evidence could ___ the entire theory.",
+        "correct": "overturn",
+        "hint": "to reverse or invalidate",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He tried to ___ the blame onto his colleague.",
+        "correct": "shift",
+        "hint": "to transfer responsibility",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The company will ___ a new product line next spring.",
+        "correct": "launch",
+        "hint": "to introduce to the market",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The negotiations ___ a critical juncture.",
+        "correct": "reached",
+        "hint": "to arrive at a decisive point",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She had to ___ her ambition for the sake of her family.",
+        "correct": "curb",
+        "hint": "to restrain or limit",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The policy will ___ the risk of future crises.",
+        "correct": "mitigate",
+        "hint": "to make less severe",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He managed to ___ a reputation for honesty.",
+        "correct": "earn",
+        "hint": "to gain through effort",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The two sides agreed to ___ a joint statement.",
+        "correct": "issue",
+        "hint": "to publish or release officially",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The scandal could ___ the government's credibility.",
+        "correct": "undermine",
+        "hint": "to weaken gradually",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She had to ___ the news to her parents carefully.",
+        "correct": "break",
+        "hint": "to reveal bad news",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The team managed to ___ a narrow victory in the final minutes.",
+        "correct": "clinch",
+        "hint": "to secure a win decisively",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The diplomat's speech ___ a new era of cooperation.",
+        "correct": "ushered in",
+        "hint": "to mark the beginning of a period",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "He had to ___ the full extent of the damage.",
+        "correct": "fathom",
+        "hint": "to understand something deep or complex",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "The company will ___ the market with its new technology.",
+        "correct": "saturate",
+        "hint": "to fill completely",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "She managed to ___ the truth from the tangled evidence.",
+        "correct": "discern",
+        "hint": "to perceive with difficulty",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "The proposal ___ a lot of opposition from the board.",
+        "correct": "met with",
+        "hint": "to encounter a reaction",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "He tried to ___ the situation by making a joke.",
+        "correct": "defuse",
+        "hint": "to make less tense",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "The evidence will ___ the hypothesis beyond doubt.",
+        "correct": "corroborate",
+        "hint": "to confirm with supporting proof",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "The two leaders ___ a historic agreement yesterday.",
+        "correct": "signed off on",
+        "hint": "to formally approve",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "She had to ___ her pride and ask for help.",
+        "correct": "swallow",
+        "hint": "to suppress a strong emotion",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "The project will ___ the company's resources.",
+        "correct": "strain",
+        "hint": "to put under pressure",
+        "star": True
+      }
+    ]
+  },
+  "word_formation_c2": {
+    "title": "Словообразование C2 (редкие суффиксы, префиксы, сложные слова)",
+    "pages": [
+      {
+        "title": "Редкие суффиксы",
+        "text": "\n<b>🔨 Суффиксы, которые редко встречаются на низких уровнях:</b>\n\n• <b>-hood</b> (статус, состояние): childhood, brotherhood, likelihood\n• <b>-dom</b> (царство, состояние): freedom, kingdom, wisdom\n• <b>-th</b> (качество от прилагательных): strength (strong), width (wide), depth (deep)\n• <b>-tude</b> (состояние): gratitude, solitude, fortitude\n• <b>-ment</b> (действие/результат): advancement, commitment, endorsement\n• <b>-ance/-ence</b> (качество/действие): reliance, resilience, indulgence\n\n<blockquote>Эти суффиксы часто используются для образования абстрактных существительных.</blockquote>\n"
+      },
+      {
+        "title": "Префиксы с уточнённым значением",
+        "text": "\n<b>🎯 Префиксы для оттенков смысла:</b>\n\n• <b>pre-</b> (до): prearrange, preconception, premeditated\n• <b>post-</b> (после): postwar, postgraduate, postpone (здесь post- + pone)\n• <b>inter-</b> (между): interact, international, interlude\n• <b>intra-</b> (внутри): intranet, intramural, intravenous\n• <b>sub-</b> (под): subconscious, submerge, subordinate\n• <b>super-</b> (над, сверх): supermarket, supernatural, supermodel\n• <b>ultra-</b> (ультра-, сверх-): ultrasound, ultramodern, ultra-rich\n\n<blockquote>Понимание этих префиксов помогает догадываться о значении незнакомых слов.</blockquote>\n"
+      },
+      {
+        "title": "Сложные слова (compound adjectives)",
+        "text": "\n<b>✂️ Сложные прилагательные, часто встречающиеся в C2:</b>\n\n• <b>well‑</b> + V3: well‑known, well‑educated, well‑behaved\n• <b>badly‑</b> + V3: badly‑damaged, badly‑organised\n• <b>long‑</b> + V3: long‑awaited, long‑forgotten\n• <b>ever‑</b> + V3: ever‑changing, ever‑present\n• <b>quick‑</b> / <b>slow‑</b> + V‑ing: quick‑thinking, slow‑moving\n• <b>heart‑</b> / <b>mind‑</b> + V3: heart‑broken, mind‑blowing\n\n<b>Примеры в предложениях:</b>\n• *She is a well‑respected journalist.* (Она – уважаемый журналист.)\n• *The long‑awaited sequel finally arrived.* (Долгожданное продолжение наконец вышло.)\n• *It was a mind‑blowing experience.* (Это был умопомрачительный опыт.)\n\n<blockquote>Сложные прилагательные часто используются в эссе и художественной литературе.</blockquote>\n"
+      },
+      {
+        "title": "Советы",
+        "text": "\n<b>💡 Как развить навык словообразования:</b>\n\n• При чтении обращайте внимание на структуру незнакомых слов, выделяйте корень, суффикс, префикс.\n• Ведите список продуктивных суффиксов и префиксов с примерами.\n• Тренируйтесь: возьмите корень (например, 'dict') и образуйте все возможные производные (dictate, dictation, dictator, dictatorial).\n• В части Word formation экзамена CPE (Certificate of Proficiency) это ключевое умение.\n\n<blockquote>Словообразование позволяет активно расширять словарный запас, не заучивая тысячи слов.</blockquote>\n"
+      }
+    ],
+    "faq": [
+      {
+        "question": "Как запомнить все суффиксы?",
+        "answer": "Не пытайтесь выучить списком. Изучайте их в контексте слов, которые вы уже знаете. Постепенно вы начнёте узнавать суффиксы автоматически."
+      }
+    ]
+  },
+  "root_words": {
+    "title": "Латинские и греческие корни (для догадки о значении слов)",
+    "pages": [
+      {
+        "title": "Зачем знать корни?",
+        "text": "\n<b>🌱 Знание латинских и греческих корней позволяет догадываться о значении незнакомых слов.</b>\n\nБольшинство сложных английских слов образованы от латинских и греческих корней. Понимая их, вы сможете понимать новые слова даже без словаря.\n\n<blockquote>Этот навык особенно полезен для экзаменов CPE, GRE, GMAT и академического чтения.</blockquote>\n"
+      },
+      {
+        "title": "Корни, связанные с 'видеть' и 'знать'",
+        "text": "\n<b>👁️ Корни зрения и знания:</b>\n\n• <b>spec / spect</b> – смотреть (Latin)\n  • inspect (внутрь смотреть → осматривать)\n  • spectator (зритель)\n  • retrospect (взгляд назад)\n\n• <b>vid / vis</b> – видеть (Latin)\n  • video, vision, visible, evidence, provide\n\n• <b>sci</b> – знать (Latin)\n  • science, conscience, conscious, omniscient (всезнающий)\n\n• <b>cogn / gn</b> – знать, узнавать (Latin)\n  • recognise, cognitive, incognito, diagnosis\n\n<blockquote>Зная эти корни, вы легко поймёте слова inspection, supervision, preview, evident, scientific, agnostic.</blockquote>\n"
+      },
+      {
+        "title": "Корни 'письма' и 'голоса'",
+        "text": "\n<b>✍️ Корни, связанные с письмом и речью:</b>\n\n• <b>scrib / script</b> – писать (Latin)\n  • describe, prescribe, manuscript, inscription, subscribe\n\n• <b>graph</b> – писать, рисовать (Greek)\n  • autograph, biography, photograph, graphite, paragraph\n\n• <b>dict</b> – говорить (Latin)\n  • dictate, predict, dictionary, verdict, contradict\n\n• <b>voc / vok</b> – голос, звать (Latin)\n  • vocal, vocabulary, invoke, evoke, provocative\n\n• <b>log / logue</b> – слово, речь, мысль (Greek)\n  • dialogue, monologue, logic, apology, analogue\n\n<blockquote>Эти корни встречаются в тысячах английских слов, включая научные и технические термины.</blockquote>\n"
+      },
+      {
+        "title": "Корни 'движения' и 'чувства'",
+        "text": "\n<b>🏃 Корни движения:</b>\n\n• <b>mov / mot / mob</b> – двигать (Latin)\n  • move, motion, motor, mobile, emotion (отодвигать)\n\n• <b>ced / cess</b> – идти, уступать (Latin)\n  • proceed, succeed, process, recession, concession\n\n• <b>port</b> – нести (Latin)\n  • transport, portable, porter, import, report\n\n• <b>ven / vent</b> – приходить (Latin)\n  • prevent, invent, intervene, venue, adventure\n\n<b>❤️ Корни чувств:</b>\n\n• <b>path / pass</b> – чувство, страдание (Greek)\n  • sympathy, empathy, pathetic, apathy, passionate\n\n• <b>senti / sens</b> – чувствовать (Latin)\n  • sense, sensitive, sentiment, consent, resent\n\n<blockquote>Понимание этих корней значительно расширяет словарный запас и улучшает понимание текста.</blockquote>\n"
+      },
+      {
+        "title": "Советы",
+        "text": "\n<b>💡 Как использовать знание корней:</b>\n\n• Когда встречаете новое слово, разберите его на корни (например, \"benevolent\" – bene (хорошо) + vol (хотеть) → доброжелательный).\n• Составьте карточки с корнем и его значением, добавляя по 2-3 примера.\n• Читайте научные статьи и обращайте внимание на сложные слова, анализируя их структуру.\n• На экзаменах это поможет догадаться о значении незнакомого слова в контексте.\n\n<blockquote>Знание корней превращает запоминание слов из механического в логическое.</blockquote>\n"
+      }
+    ],
+    "faq": [
+      {
+        "question": "Сколько корней нужно знать для C2?",
+        "answer": "Около 100-150 самых употребительных. Остальные можно вывести логически или узнать по мере чтения."
+      }
+    ]
+  },
+  "False_friends": {
+    "title": "Ложные друзья переводчика (продвинутые)",
+    "pages": [
+      {
+        "title": "Что такое ложные друзья?",
+        "text": "\n<b>⚠️ Ложные друзья – слова, которые похожи на русские, но имеют другое значение.</b>\n\nОшибки в таких словах – одна из самых характерных проблем для русскоязычных учащихся на высоких уровнях.\n\n• <b>magazine</b> – журнал (не магазин)\n• <b>gymnasium</b> – спортзал (не гимназия)\n• <b>lunatic</b> – сумасшедший (не лунатик)\n• <b>brilliant</b> – блестящий (не бриллиант)\n• <b>chef</b> – шеф-повар (не шеф)\n\n<blockquote>На уровне C2 знание ложных друзей критически важно для точного понимания и устной речи.</blockquote>\n"
+      },
+      {
+        "title": "Самые коварные ложные друзья (часть 1)",
+        "text": "\n<b>📌 Часто встречающиеся:</b>\n\n• <b>accurate</b> – точный (не аккуратный)\n• <b>actual</b> – фактический, настоящий (не актуальный)\n• <b>advocate</b> – защитник, адвокат (не авантюрист)\n• <b>aggressive</b> – агрессивный, напористый (не аграрный)\n• <b>anecdote</b> – забавная история (не анекдот в смысле шутки)\n• <b>audience</b> – публика, зрители (не аудиенция)\n• <b>balcony</b> – балкон (не бельэтаж)\n• <b>clay</b> – глина (не клей)\n• <b>conductor</b> – дирижёр, кондуктор (не кондуктор в автобусе – скорее bus driver)\n• <b>control</b> – контроль (не справочное бюро)\n• <b>data</b> – данные (не дата)\n• <b>decent</b> – приличный (не децентный)\n\n<blockquote>Запомните эти пары, чтобы избегать досадных ошибок.</blockquote>\n"
+      },
+      {
+        "title": "Самые коварные ложные друзья (часть 2)",
+        "text": "\n<b>📌 Продолжение:</b>\n\n• <b>eventually</b> – в конце концов (не возможно)\n• <b>fabric</b> – ткань (не фабрика)\n• <b>genial</b> – добрый, дружелюбный (не гениальный)\n• <b>intelligent</b> – умный (не интеллигентный)\n• <b>list</b> – список (не лист)\n• <b>lunatic</b> – сумасшедший (не лунатик – sleepwalker)\n• <b>magazine</b> – журнал (не магазин – shop)\n• <b>mayor</b> – мэр (не майор – major)\n• <b>novel</b> – роман (не новелла – short story)\n• <b>partisan</b> – сторонник (не партизан – guerrilla)\n• <b>patron</b> – постоянный клиент (не патрон – boss)\n• <b>principal</b> – директор школы, главный (не принцип – principle)\n\n<blockquote>Особенно опасны слова, которые пишутся почти одинаково, но имеют разное значение.</blockquote>\n"
+      },
+      {
+        "title": "Примеры в контексте",
+        "text": "\n<b>📖 Предложения для закрепления:</b>\n\n• *The data are accurate.* (Данные точные, не аккуратные)\n• *He is a decent person.* (Он приличный человек)\n• *She eventually agreed.* (В конце концов она согласилась)\n• *The fabric is soft.* (Ткань мягкая)\n• *The audience applauded.* (Публика аплодировала)\n• *He is the principal of the school.* (Он директор школы)\n\n<b>⚠️ Типичные ошибки:</b>\n• ❌ *I need to buy a magazine.* (не магазин) – *I need to go to a shop.*\n• ❌ *He is very intelligent.* (не интеллигентный) – *He is a cultured person.* для «интеллигентный»\n\n<blockquote>Ошибки в ложных друзьях могут полностью изменить смысл фразы.</blockquote>\n"
+      },
+      {
+        "title": "Советы",
+        "text": "\n<b>💡 Как запомнить ложных друзей:</b>\n\n• Составьте таблицу из двух столбцов: ложный друг → правильное значение.\n• Составляйте предложения с каждым словом в правильном значении.\n• Используйте карточки: на одной стороне слово, на другой – перевод и пример.\n• Читайте тексты на английском, обращая внимание на контекст таких слов.\n\n<blockquote>Повторение и практика – единственный способ избавиться от интерференции родного языка.</blockquote>\n"
+      }
+    ],
+    "faq": [
+      {
+        "question": "Сколько ложных друзей нужно знать для C2?",
+        "answer": "Около 100-200 самых частотных. Большинство из них вы увидите в тестах и реальном общении."
+      }
+    ]
+  },
+  "cleft_sentences_emphatic": {
+    "title": "Расщеплённые предложения (все типы, эмфаза)",
+    "pages": [
+      {
+        "title": "Что такое расщеплённые предложения?",
+        "text": "\n<b>🔍 Расщеплённые предложения (cleft sentences) используются для выделения определённой части предложения (логического ударения).</b>\n\nОни делят (расщепляют) одно предложение на две части.\n\n• It was John that saw the accident. (Именно Джон увидел аварию – выделяем John)\n• What I need is a good rest. (Что мне нужно, так это хороший отдых – выделяем rest)\n\n<blockquote>Часто используются в письменной речи для акцента и в разговоре для эмоционального выделения.</blockquote>\n"
+      },
+      {
+        "title": "It-расщепление (It is/was + выделяемый элемент + that/who...)",
+        "text": "\n<b>📌 It + be + выделяемое + that/who...</b>\n\n• John saw the accident. → It was John who saw the accident. (именно Джон)\n• I met your brother yesterday. → It was yesterday that I met your brother. (именно вчера)\n• They need more time. → It is more time that they need. (именно больше времени)\n\n<blockquote>Если выделяется человек, можно использовать who; для предметов и обстоятельств – that.</blockquote>\n\n<b>Дополнительные примеры:</b>\n• *It was because of the weather that we cancelled the picnic.* (Именно из-за погоды мы отменили пикник.)\n• *It was in Paris that they first met.* (Именно в Париже они впервые встретились.)\n• *It wasn't me who broke the vase.* (Не я разбил вазу.)\n\n<blockquote>Отрицание также возможно: It wasn't John who did it.</blockquote>\n"
+      },
+      {
+        "title": "What-расщепление (What + подлежащее + глагол + be + выделяемое)",
+        "text": "\n<b>📌 What... + be + выделяемое – выделяет действие или предмет.</b>\n\n• I need a good rest. → What I need is a good rest.\n• He gave me a book. → What he gave me was a book.\n• She loves chocolate. → What she loves is chocolate.\n\n<b>Другие варианты:</b>\n• *What we need now is a miracle.* (Что нам сейчас нужно, так это чудо.)\n• *What happened was that the car broke down.* (Случилось то, что машина сломалась.)\n\n<blockquote>What-расщепление часто используется для выделения дополнения.</blockquote>\n"
+      },
+      {
+        "title": "All-расщепление и другие варианты",
+        "text": "\n<b>🔹 All (the only) + that... + be + выделяемое – для выделения единственной вещи.</b>\n\n• I just want to sleep. → All I want is to sleep.\n• The only thing I need is your love. → All I need is your love.\n\n<b>🔹 Where / when / why-расщепление:</b>\n• That's where I was born. (вот где я родился)\n• That's the reason why I left. (вот почему я ушёл)\n• 2010 was the year when we got married. (2010 год – когда мы поженились)\n\n<b>🔹 There-расщепление:</b>\n• *There was a man who called.* (Был один человек, который позвонил.)\n• *There came a moment when I realised the truth.* (Наступил момент, когда я осознал правду.)\n\n<blockquote>Эти конструкции делают речь более эмоциональной и выразительной.</blockquote>\n"
+      },
+      {
+        "title": "Советы и типичные ошибки",
+        "text": "\n<b>⚠️ Частые ошибки:</b>\n• ❌ It was John who he saw the accident. (лишнее he)  ✅ It was John who saw the accident.\n• ❌ What I need is a rest. (верно)\n• ❌ It was yesterday that I have met him. (неправильное время)  ✅ It was yesterday that I met him.\n\n<b>💡 Совет:</b>\n• Используйте расщеплённые предложения, когда хотите подчеркнуть определённую информацию.\n• В разговорной речи они звучат неестественно, если их использовать слишком часто.\n• Тренируйтесь: перепишите обычные предложения, выделяя разные элементы.\n\n<blockquote>Расщеплённые предложения – важный инструмент для сдачи экзаменов CAE/CPE и академического письма.</blockquote>\n"
+      }
+    ],
+    "faq": [
+      {
+        "question": "В чём разница между 'It is' и 'What is' в расщеплении?",
+        "answer": "It is выделяет любой элемент (человек, время, место, предмет). What выделяет действие или объект."
+      }
+    ],
+    "practice_tasks": [
+      {
+        "type": "fill_blank",
+        "text": "___ was John who broke the window.",
+        "correct": "It",
+        "hint": "Используй 'It' для начала расщеплённого предложения.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "It is the manager ___ makes the final decision.",
+        "correct": "who",
+        "hint": "Относительное местоимение для человека.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "It was ___ I saw at the party, not Mary.",
+        "correct": "her",
+        "hint": "Объектный падеж местоимения.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "What I need ___ a good rest.",
+        "correct": "is",
+        "hint": "Глагол-связка в единственном числе.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "It is the book ___ changed my life.",
+        "correct": "that",
+        "hint": "Относительное местоимение для предмета.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "What ___ really annoys me is his laziness.",
+        "correct": "that",
+        "hint": "Начинает придаточное предложение после 'What'.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "It was ___ he said that surprised everyone.",
+        "correct": "what",
+        "hint": "Вопросительное слово в роли союза.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The reason ___ he left is unknown.",
+        "correct": "why",
+        "hint": "Союз для указания причины.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "It was in Paris ___ they first met.",
+        "correct": "that",
+        "hint": "Союз для выделения места.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "What I want ___ you to be happy.",
+        "correct": "is",
+        "hint": "Глагол-связка.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "It is not the money ___ matters, but the principle.",
+        "correct": "that",
+        "hint": "Союз для выделения отрицания.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The person ___ called you is my brother.",
+        "correct": "who",
+        "hint": "Относительное местоимение для человека.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "It was ___ that she forgot her keys.",
+        "correct": "yesterday",
+        "hint": "Выделение времени.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "What he does ___ always surprising.",
+        "correct": "is",
+        "hint": "Глагол-связка.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "It is I ___ am responsible.",
+        "correct": "who",
+        "hint": "Относительное местоимение после 'I'.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The thing ___ I love most is reading.",
+        "correct": "that",
+        "hint": "Союз для предмета.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "It was ___ the noise that he couldn't sleep.",
+        "correct": "because of",
+        "hint": "Выделение причины.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "What she said ___ completely True.",
+        "correct": "was",
+        "hint": "Глагол-связка в прошедшем времени.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "It is the children ___ need our help.",
+        "correct": "who",
+        "hint": "Относительное местоимение для людей.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The reason ___ I'm late is traffic.",
+        "correct": "why",
+        "hint": "Союз для причины.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "It was ___ that we saw at the museum.",
+        "correct": "the painting",
+        "hint": "Выделение объекта.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "What I don't understand ___ his behavior.",
+        "correct": "is",
+        "hint": "Глагол-связка.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "It is not what you say, but ___ you do.",
+        "correct": "what",
+        "hint": "Противопоставление с 'what'.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The place ___ we met was a café.",
+        "correct": "where",
+        "hint": "Союз для места.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "It was ___ who told me the news.",
+        "correct": "she",
+        "hint": "Именительный падеж местоимения.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "What matters most ___ your health.",
+        "correct": "is",
+        "hint": "Глагол-связка.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "It was the car ___ was stolen.",
+        "correct": "that",
+        "hint": "Относительное местоимение для предмета.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The time ___ we leave is 5 pm.",
+        "correct": "when",
+        "hint": "Союз для времени.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "It is ___ who should apologize.",
+        "correct": "you",
+        "hint": "Местоимение в именительном падеже.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "What I saw ___ a strange light.",
+        "correct": "was",
+        "hint": "Глагол-связка в прошедшем времени.",
+        "star": False
+      },
+      {
+        "type": "choice",
+        "text": "___ was Tom who won the prize.",
+        "correct": "It",
+        "hint": "Начало расщеплённого предложения.",
+        "star": True,
+        "options": [
+          "It",
+          "That",
+          "This",
+          "He"
         ]
-    },
-        "analyzing_text_style": {
-        "title": "Анализ стиля текста (news, academic, fiction, blog)",
-        "pages": [
-            {
-                "title": "Почему важно анализировать стиль?",
-                "text": """
-<b>📊 Каждый тип текста имеет свои стилистические особенности.</b>
-
-Умение распознавать стиль помогает:
-• понимать авторский замысел
-• выбирать правильный регистр для своего письма
-• адаптироваться к разным жанрам на экзаменах
-
-<blockquote>На уровне C2 вы должны не только понимать текст, но и анализировать его стиль.</blockquote>
-"""
-            },
-            {
-                "title": "Новостной стиль (news)",
-                "text": """
-<b>📰 Особенности новостных текстов:</b>
-
-• Заголовки в настоящем времени (President resigns, Parliament passes law)
-• Краткие предложения, часто без глагола (In dramatic move)
-• Пассивный залог для фокуса на событии (The building was destroyed)
-• Прямая речь и ссылки на источники (According to witnesses...)
-• Официальный, нейтральный регистр, избегание эмоциональной окраски.
-
-<b>Пример:</b>
-*The government has announced a new economic stimulus package. According to the finance minister, the measures are designed to boost consumer spending. The opposition, however, has criticised the plan as insufficient.*
-
-<blockquote>Новости стремятся к объективности, но могут содержать скрытые оценки.</blockquote>
-"""
-            },
-            {
-                "title": "Академический стиль (academic)",
-                "text": """
-<b>🎓 Особенности академических текстов:</b>
-
-• Сложные предложения с придаточными и вводными конструкциями
-• Пассивный залог (The experiment was conducted)
-• Безличные конструкции (It is believed that, It can be argued)
-• Формальная лексика, избегание разговорных выражений и фразовых глаголов
-• Точность, объективность, ссылки на источники
-
-<b>Пример:</b>
-*It is widely accepted that climate change poses a significant threat to global ecosystems. This paper examines the correlation between carbon emissions and rising sea levels. The findings suggest that immediate intervention is required to mitigate the effects.*
-
-<blockquote>Академический стиль требует строгой логики и аргументации.</blockquote>
-"""
-            },
-            {
-                "title": "Художественный стиль (fiction)",
-                "text": """
-<b>📖 Особенности художественных текстов:</b>
-
-• Метафоры, эпитеты, сравнения, образные выражения
-• Разнообразие времен (narrative tenses)
-• Прямая речь и внутренние монологи
-• Эмоциональная окраска, субъективность
-• Инверсия, эллипсис, неполные предложения (для имитации речи)
-
-<b>Пример:</b>
-*The wind howled through the empty streets. He had been walking for hours, his thoughts swirling like autumn leaves. Where was she? He whispered into the darkness.*
-
-<blockquote>Художественный стиль использует богатство языка для создания атмосферы.</blockquote>
-"""
-            },
-            {
-                "title": "Блоги и интернет-тексты (blog)",
-                "text": """
-<b>💻 Особенности блогов:</b>
-
-• Разговорный регистр, часто неформальный
-• Использование сокращений (don't, you're, it's)
-• Первое лицо (I think, I believe, in my opinion)
-• Обращение к читателю (you, dear reader)
-• Риторические вопросы, восклицания
-• Короткие абзацы, маркированные списки
-
-<b>Пример:</b>
-*I can't believe it! I finally managed to bake the perfect sourdough bread. You won't believe how easy it is – just follow these steps. Let me know if you try it!*
-
-<blockquote>Блоги ближе к устной речи и часто содержат личные оценки.</blockquote>
-"""
-            },
-            {
-                "title": "Советы",
-                "text": """
-<b>💡 Как тренировать анализ стиля:</b>
-• Читайте тексты разных жанров и обращайте внимание на лексику и синтаксис.
-• Определите регистр (formal / neutral / informal) и стилевые маркеры.
-• Переписывайте отрывки из одного стиля в другой (например, новость → блог).
-• На экзаменах (CAE, CPE) часто требуется определять стиль письменного текста.
-"""
-            }
-        ],
-        "faq": [
-            {"question": "Как отличить новостной стиль от академического?", "answer": "Новости – короткие предложения, нейтральный регистр, часто пассив. Академический – длинные сложные предложения, специальная лексика, формальный регистр."}
+      },
+      {
+        "type": "choice",
+        "text": "What I need ___ a vacation.",
+        "correct": "is",
+        "hint": "Глагол-связка.",
+        "star": True,
+        "options": [
+          "are",
+          "is",
+          "were",
+          "be"
         ]
-    },
-        "register_switching": {
-        "title": "Переключение между регистрами (formal ↔ neutral ↔ informal)",
-        "pages": [
-            {
-                "title": "Зачем переключать регистр?",
-                "text": """
-<b>🔄 Умение переключаться между регистрами – ключевой навык C2.</b>
-
-Вы должны уметь:
-• написать формальное письмо начальнику
-• поговорить с друзьями в неформальном стиле
-• представить доклад в нейтрально-формальном регистре
-
-<blockquote>Неправильный выбор регистра может привести к недопониманию или показаться неуважительным.</blockquote>
-"""
-            },
-            {
-                "title": "Пример переключения (одно содержание)",
-                "text": """
-<b>📖 Пример: информация о задержке поставки.</b>
-
-<b>Формальный (начальнику/клиенту):</b>
-*We regret to inform you that the delivery will be delayed due to unforeseen logistical issues. We are working diligently to resolve the matter and will provide an update within 24 hours.*
-
-<b>Нейтральный (коллеге по работе):</b>
-*The delivery is going to be late because of some logistical problems. We're trying to fix it and will let you know as soon as possible.*
-
-<b>Неформальный (другу):</b>
-*Bad news – the delivery is going to be late. Something went wrong with logistics. We're on it, will keep you posted!*
-
-<blockquote>Выбор регистра зависит от отношений с адресатом.</blockquote>
-"""
-            },
-            {
-                "title": "Переключение в устной речи",
-                "text": """
-<b>🗣️ Устное переключение:</b>
-
-• С незнакомыми людьми – нейтральный или формальный, вежливые формы.
-• С начальником – формальный, уважительный.
-• С друзьями и семьёй – неформальный, допустимы сленг и сокращения.
-
-<b>Пример в диалоге:</b>
-– Excuse me, could you tell me where the post office is? (formal)
-– Sure, it's just around the corner. (neutral)
-– Thanks a lot, mate. (informal – зависит от контекста)
-
-<blockquote>В устной речи переход может быть более плавным, но важно чувствовать границы.</blockquote>
-"""
-            },
-            {
-                "title": "Как избегать ошибок",
-                "text": """
-<b>⚠️ Типичные ошибки при переключении:</b>
-
-• Слишком формальный язык с друзьями звучит неестественно.
-• Неформальные выражения в официальном письме могут быть неуместны.
-• Сокращения (I'm, don't, can't) недопустимы в формальном стиле.
-
-<b>💡 Совет:</b>
-• Представьте, с кем вы говорите или кому пишете, и выбирайте регистр соответственно.
-• Читайте образцы писем и диалогов в разных регистрах.
-• Тренируйтесь переписывать один и тот же текст в три регистра (formal, neutral, informal).
-"""
-            }
-        ],
-        "faq": [
-            {"question": "Можно ли использовать формальный регистр с друзьями в шутку?", "answer": "Да, иногда это делается для юмора, но нужно быть уверенным, что вас поймут правильно."}
+      },
+      {
+        "type": "choice",
+        "text": "It was ___ that she spoke to.",
+        "correct": "him",
+        "hint": "Объектный падеж.",
+        "star": True,
+        "options": [
+          "he",
+          "him",
+          "his",
+          "himself"
         ]
-    },
-        "irony_sarcasm_understatement": {
-        "title": "Ирония, сарказм, преуменьшение (стилистические фигуры)",
-        "pages": [
-            {
-                "title": "Что такое ирония?",
-                "text": """
-<b>🎭 Ирония – высказывание, в котором истинный смысл противоположен буквальному.</b>
-
-Используется для юмора, критики или создания драматического эффекта.
-
-• *What lovely weather!* (когда идёт дождь)
-• *He's a brilliant driver.* (после того, как он врезался в столб)
-
-<blockquote>Ирония требует от слушающего понимания контекста и интонации.</blockquote>
-"""
-            },
-            {
-                "title": "Сарказм – злая ирония",
-                "text": """
-<b>😏 Сарказм – это ирония, направленная на высмеивание или оскорбление.</b>
-
-• *You're so helpful!* (когда кто-то только мешает)
-• *I'll definitely miss your advice.* (когда совет был бесполезен)
-
-<blockquote>Сарказм более агрессивен и часто используется в комедии и повседневных конфликтах.</blockquote>
-"""
-            },
-            {
-                "title": "Преуменьшение (understatement)",
-                "text": """
-<b>📉 Преуменьшение – намеренное смягчение истинного положения дел.</b>
-
-Часто используется в британском английском для создания эффекта сдержанности или юмора.
-
-• *It's a bit chilly.* (при температуре -20°C)
-• *He's not very happy.* (о человеке, который в ярости)
-• *I think we have a slight problem.* (когда проблема катастрофическая)
-
-<blockquote>Understatement – важная черта британского чувства юмора.</blockquote>
-"""
-            },
-            {
-                "title": "Примеры и советы",
-                "text": """
-<b>📖 Примеры использования:</b>
-
-• В литературе: Austen, Wilde, Twain широко использовали иронию.
-• В разговоре: *Thanks for the help!* (когда не помогли) – сарказм.
-
-<b>⚠️ Осторожно:</b>
-• Ирония и сарказм могут быть неправильно поняты в мультикультурной среде.
-• Преуменьшение требует знания культурного контекста.
-
-<b>💡 Как развить:</b>
-• Смотрите британские комедийные сериалы (Blackadder, Yes Minister, The Office).
-• Читайте сатирические статьи (The Onion, Private Eye).
-• Практикуйтесь: скажите "That's great" в ситуации, когда всё плохо, и посмотрите на реакцию.
-"""
-            }
-        ],
-        "faq": [
-            {"question": "В чём разница между иронией и сарказмом?", "answer": "Ирония – общий термин (противоположный смысл). Сарказм – язвительная, часто агрессивная ирония, направленная на конкретного человека."}
+      },
+      {
+        "type": "choice",
+        "text": "The reason ___ he came is a secret.",
+        "correct": "why",
+        "hint": "Союз для причины.",
+        "star": True,
+        "options": [
+          "why",
+          "that",
+          "which",
+          "what"
         ]
-    },
-
-    # ==================== МОДУЛЬ 2: Углублённые идиомы и фразовые глаголы ====================
-        "idioms_c2_1": {
-        "title": "Идиомы C2 (часть 1)",
-        "pages": [
-            {
-                "title": "Идиомы для описания поведения",
-                "text": """
-<b>🎭 Продвинутые идиомы о поведении людей:</b>
-
-• <b>to bend over backwards</b> – из кожи вон лезть, стараться изо всех сил
-  • *She bent over backwards to help him.* (Она из кожи вон лезла, чтобы помочь ему.)
-
-• <b>to get your act together</b> – взять себя в руки, организоваться
-  • *You need to get your act together if you want to pass the exam.* (Тебе нужно взять себя в руки, если хочешь сдать экзамен.)
-
-• <b>to go the extra mile</b> – приложить дополнительные усилия
-  • *He always goes the extra mile for his clients.* (Он всегда прилагает дополнительные усилия для своих клиентов.)
-
-• <b>to pull your weight</b> – вносить свою лепту, работать наравне с другими
-  • *If you don't pull your weight, the team will fail.* (Если ты не будешь работать наравне с другими, команда провалится.)
-
-• <b>to sit on the fence</b> – быть нерешительным, занимать нейтральную позицию
-  • *Decide already – you can't sit on the fence forever.* (Решай уже – ты не можешь вечно быть нерешительным.)
-
-• <b>to take a stand</b> – занять твёрдую позицию
-  • *It's time to take a stand against injustice.* (Время занять твёрдую позицию против несправедливости.)
-
-<blockquote>Эти идиомы помогут вам описывать поведение в деловом и повседневном контексте.</blockquote>
-"""
-            },
-            {
-                "title": "Идиомы о коммуникации",
-                "text": """
-<b>🗣️ Идиомы, связанные с разговором:</b>
-
-• <b>to beat around the bush</b> – ходить вокруг да около
-  • *Stop beating around the bush and tell me the truth.* (Перестань ходить вокруг да около и скажи правду.)
-
-• <b>to get straight to the point</b> – перейти сразу к делу
-  • *Let's get straight to the point – we need more money.* (Давайте сразу к делу – нам нужно больше денег.)
-
-• <b>to read between the lines</b> – читать между строк
-  • *If you read between the lines, you'll see he's not happy.* (Если читать между строк, видно, что он не счастлив.)
-
-• <b>to put in a nutshell</b> – изложить кратко, в двух словах
-  • *To put it in a nutshell, we lost the contract.* (Короче говоря, мы потеряли контракт.)
-
-• <b>to talk at cross purposes</b> – говорить о разном, не понимать друг друга
-  • *I think we're talking at cross purposes – let's start again.* (Думаю, мы говорим о разном – давай начнём заново.)
-
-• <b>to call a spade a spade</b> – называть вещи своими именами
-  • *I like him because he calls a spade a spade.* (Он мне нравится, потому что называет вещи своими именами.)
-
-<blockquote>Используйте эти идиомы, чтобы сделать речь более выразительной и естественной.</blockquote>
-"""
-            },
-            {
-                "title": "Идиомы о деньгах и успехе",
-                "text": """
-<b>💰 Деньги, карьера, успех:</b>
-
-• <b>to make ends meet</b> – сводить концы с концами
-  • *With three jobs, he barely makes ends meet.* (С тремя работами он едва сводит концы с концами.)
-
-• <b>to be in the black / in the red</b> – быть в плюсе / в минусе
-  • *After a good year, the company is in the black.* (После удачного года компания в плюсе.)
-
-• <b>to cost an arm and a leg</b> – стоить бешеных денег
-  • *The new roof cost an arm and a leg.* (Новая крыша стоила бешеных денег.)
-
-• <b>to pay through the nose</b> – платить втридорога
-  • *We paid through the nose for those tickets.* (Мы заплатили втридорога за эти билеты.)
-
-• <b>to be rolling in money</b> – купаться в деньгах
-  • *He's not just rich; he's rolling in money.* (Он не просто богат – он купается в деньгах.)
-
-• <b>to hit the jackpot</b> – сорвать джекпот, крупно повезти
-  • *They hit the jackpot with that investment.* (Им крупно повезло с теми инвестициями.)
-
-<blockquote>Эти идиомы очень частотны в бизнес-контексте и повседневных разговорах о деньгах.</blockquote>
-"""
-            },
-            {
-                "title": "Советы",
-                "text": """
-<b>💡 Как учить идиомы C2:</b>
-
-• Учите их в контексте, придумывайте свои примеры.
-• Группируйте по темам (поведение, деньги, коммуникация, эмоции).
-• Используйте приложения (Anki, Quizlet) с карточками.
-• Слушайте подкасты и смотрите сериалы (например, «Suits», «The Crown») – там много идиом.
-
-<blockquote>На уровне C2 знание идиом – обязательный элемент беглой речи.</blockquote>
-"""
-            }
-        ],
-        "faq": [
-            {"question": "Сколько идиом нужно знать для C2?", "answer": "Около 300-500 наиболее употребительных. Но качество важнее количества: вы должны уметь использовать их естественно."}
+      },
+      {
+        "type": "choice",
+        "text": "It is not the money ___ counts.",
+        "correct": "that",
+        "hint": "Союз для предмета.",
+        "star": True,
+        "options": [
+          "what",
+          "that",
+          "which",
+          "who"
         ]
-    },
-        "idioms_c2_2": {
-        "title": "Идиомы C2 (часть 2)",
-        "pages": [
-            {
-                "title": "Идиомы о ситуациях",
-                "text": """
-<b>🔁 Идиомы для описания обстоятельств и ситуаций:</b>
-
-• <b>to be in the same boat</b> – быть в одной лодке, в одинаковом положении
-  • *We're all in the same boat – nobody has any money.* (Мы все в одной лодке – ни у кого нет денег.)
-
-• <b>to be a double‑edged sword</b> – палка о двух концах
-  • *Social media is a double‑edged sword.* (Социальные сети – палка о двух концах.)
-
-• <b>to get out of hand</b> – выйти из-под контроля
-  • *The party got out of hand and the police were called.* (Вечеринка вышла из-под контроля, вызвали полицию.)
-
-• <b>to be on thin ice</b> – быть в опасном положении, ходить по тонкому льду
-  • *If you're late again, you'll be on thin ice.* (Если опоздаешь ещё раз, будешь ходить по тонкому льду.)
-
-• <b>to be in hot water</b> – быть в неприятной ситуации
-  • *He's in hot water with his boss.* (У него неприятности с начальником.)
-
-• <b>to be a blessing in disguise</b> – нечто, что кажется плохим, но оборачивается добром
-  • *Losing that job was a blessing in disguise.* (Потеря той работы оказалась благословением.)
-
-<blockquote>Эти идиомы пригодятся для описания жизненных ситуаций и событий.</blockquote>
-"""
-            },
-            {
-                "title": "Идиомы о времени",
-                "text": """
-<b>⏰ Идиомы, связанные со временем:</b>
-
-• <b>to call it a day</b> – закончить работу на сегодня
-  • *It's late – let's call it a day.* (Уже поздно – давай закончим на сегодня.)
-
-• <b>to be time‑consuming</b> – отнимать много времени
-  • *Writing a thesis is very time‑consuming.* (Написание диссертации отнимает много времени.)
-
-• <b>to be pressed for time</b> – торопиться, не хватать времени
-  • *I'm pressed for time – can we make it quick?* (Я тороплюсь – можно побыстрее?)
-
-• <b>to be ahead of time / behind schedule</b> – опережать время / отставать от графика
-  • *We're ahead of time, so we can relax.* (Мы опережаем график, так что можем расслабиться.)
-
-• <b>to kill time</b> – убивать время
-  • *I was just killing time before the meeting.* (Я просто убивал время до встречи.)
-
-• <b>to make up for lost time</b> – навёрстывать упущенное время
-  • *After the pandemic, we need to make up for lost time.* (После пандемии нам нужно навёрстывать упущенное.)
-
-<blockquote>В деловом английском эти идиомы очень частотны.</blockquote>
-"""
-            },
-            {
-                "title": "Идиомы с частями тела (продвинутые)",
-                "text": """
-<b>🦵 Идиомы с частями тела (C2):</b>
-
-• <b>to keep your chin up</b> – держать голову высоко, не унывать
-  • *Keep your chin up – things will get better.* (Не унывай – всё наладится.)
-
-• <b>to give someone the cold shoulder</b> – игнорировать, демонстративно не замечать
-  • *She gave me the cold shoulder after the argument.* (Она игнорировала меня после ссоры.)
-
-• <b>to pull someone's leg</b> – разыгрывать, шутить
-  • *I'm just pulling your leg – I didn't mean it.* (Я просто шучу – я не серьёзно.)
-
-• <b>to play it by ear</b> – действовать по обстоятельствам
-  • *We don't have a plan – let's play it by ear.* (У нас нет плана – будем действовать по обстоятельствам.)
-
-• <b>to keep an eye on someone/something</b> – присматривать
-  • *Can you keep an eye on my bag?* (Можешь присмотреть за моей сумкой?)
-
-• <b>to see eye to eye</b> – сходиться во мнениях
-  • *We don't see eye to eye on politics.* (У нас разные взгляды на политику.)
-
-<blockquote>Эти идиомы часто встречаются в разговорной речи и фильмах.</blockquote>
-"""
-            },
-            {
-                "title": "Советы",
-                "text": """
-<b>💡 Как запоминать идиомы:</b>
-• Используйте метод интервального повторения.
-• Составляйте истории, включая несколько идиом.
-• Объясняйте значение идиомы другу на английском.
-• Смотрите видео с носителями и выписывайте идиомы в контексте.
-
-<blockquote>Постепенно вы начнёте использовать идиомы автоматически, и ваша речь зазвучит по-настоящему бегло.</blockquote>
-"""
-            }
-        ],
-        "faq": [
-            {"question": "Можно ли использовать идиомы в письменной части экзамена?", "answer": "Да, но умеренно. Одна-две идиомы в эссе поднимут балл за лексику, но перебор будет выглядеть неестественно."}
+      },
+      {
+        "type": "choice",
+        "text": "What she wants ___ a new job.",
+        "correct": "is",
+        "hint": "Глагол-связка.",
+        "star": True,
+        "options": [
+          "are",
+          "is",
+          "were",
+          "have"
         ]
-    },
-        "phrasal_verbs_c2_1": {
-        "title": "Фразовые глаголы C2 (часть 1)",
-        "pages": [
-            {
-                "title": "Группа 'come' (C2)",
-                "text": """
-<b>🔑 Come – редкие и продвинутые значения.</b>
-
-• <b>come across as</b> – производить впечатление, казаться
-  • *He comes across as arrogant, but he's actually shy.* (Он кажется высокомерным, но на самом деле застенчив.)
-
-• <b>come down to</b> – сводиться к (основной причине)
-  • *The problem comes down to a lack of funding.* (Проблема сводится к нехватке финансирования.)
-
-• <b>come in for</b> – подвергаться (критике, нападкам)
-  • *The government came in for a lot of criticism.* (Правительство подверглось сильной критике.)
-
-• <b>come off</b> – удаваться, получаться (о плане, мероприятии)
-  • *The party came off really well.* (Вечеринка удалась.)
-
-• <b>come out with</b> – заявить, выдать (что-то неожиданное)
-  • *He came out with a ridiculous suggestion.* (Он выдал нелепое предложение.)
-
-• <b>come up against</b> – столкнуться с (препятствием)
-  • *We came up against a lot of opposition.* (Мы столкнулись с большим сопротивлением.)
-
-<blockquote>Эти фразовые глаголы помогут вам звучать как носитель в сложных дискуссиях.</blockquote>
-"""
-            },
-            {
-                "title": "Группа 'get' (C2)",
-                "text": """
-<b>🔄 Get – продвинутые конструкции.</b>
-
-• <b>get across</b> – донести (мысль, идею)
-  • *He struggled to get his point across.* (Ему было трудно донести свою мысль.)
-
-• <b>get at</b> – подразумевать, намекать
-  • *What exactly are you getting at?* (Что именно ты имеешь в виду?)
-
-• <b>get away with</b> – избежать наказания
-  • *He thought he could get away with lying.* (Он думал, что ему сойдёт с рук ложь.)
-
-• <b>get back to</b> – вернуться к (теме, вопросу)
-  • *Let's get back to the main point.* (Давайте вернёмся к главному вопросу.)
-
-• <b>get down to</b> – приступить к (серьёзной работе)
-  • *It's time to get down to business.* (Пора приступить к делу.)
-
-• <b>get through to</b> – дозвониться, достучаться (до человека)
-  • *I can't get through to him – he won't listen.* (Не могу до него достучаться – он не слушает.)
-
-<blockquote>Эти глаголы незаменимы для выражения сложных коммуникативных нюансов.</blockquote>
-"""
-            },
-            {
-                "title": "Группа 'go' (C2)",
-                "text": """
-<b>🏃 Go – малочастотные значения.</b>
-
-• <b>go under</b> – обанкротиться, потерпеть крах
-  • *Many small businesses went under during the crisis.* (Многие малые предприятия обанкротились во время кризиса.)
-
-• <b>go without</b> – обходиться без
-  • *We had to go without electricity for two days.* (Нам пришлось обходиться без электричества два дня.)
-
-• <b>go through with</b> – довести до конца (несмотря на трудности)
-  • *She decided to go through with the wedding.* (Она решила довести свадьбу до конца.)
-
-• <b>go over</b> – просмотреть, повторить
-  • *Let's go over the report one more time.* (Давайте ещё раз просмотрим отчёт.)
-
-• <b>go off</b> – срабатывать (будильник, взрывчатка)
-  • *The alarm went off at 6 am.* (Будильник сработал в 6 утра.)
-
-• <b>go by</b> – руководствоваться (правилом)
-  • *We have to go by the rules.* (Мы должны руководствоваться правилами.)
-
-<blockquote>Знание этих значений пригодится в деловой и повседневной речи.</blockquote>
-"""
-            },
-            {
-                "title": "Советы",
-                "text": """
-<b>💡 Как учить продвинутые фразовые глаголы:</b>
-• Изучайте их в контексте, не пытайтесь выучить списком.
-• Используйте их в своей речи и письме – только так они запомнятся.
-• Обращайте внимание на разделяемость: get something across, но get across something (тоже возможно, но стилистически различается).
-• Тренируйтесь перефразировать обычные глаголы фразовыми.
-
-<blockquote>Фразовые глаголы C2 делают речь более динамичной и естественной.</blockquote>
-"""
-            }
-        ],
-        "faq": [
-            {"question": "Можно ли заменить фразовый глагол односложным словом?", "answer": "Часто да (postpone = put off), но фразовые глаголы звучат более разговорно и естественно в неформальной речи."}
+      },
+      {
+        "type": "choice",
+        "text": "It was ___ who called you.",
+        "correct": "I",
+        "hint": "Именительный падеж.",
+        "star": True,
+        "options": [
+          "me",
+          "I",
+          "my",
+          "mine"
         ]
-    },
-        "phrasal_verbs_c2_2": {
-        "title": "Фразовые глаголы C2 (часть 2)",
-        "pages": [
-            {
-                "title": "Группа 'put' (C2)",
-                "text": """
-<b>🖊️ Put – редкие идиоматические значения.</b>
-
-• <b>put forward</b> – предлагать (идею, кандидата)
-  • *He put forward a convincing argument.* (Он выдвинул убедительный аргумент.)
-
-• <b>put down</b> – подавлять (восстание), записывать, унижать
-  • *The uprising was put down by the army.* (Восстание было подавлено армией.)
-  • *Put down your name here.* (Запишите своё имя здесь.)
-  • *He's always putting her down.* (Он постоянно её унижает.)
-
-• <b>put through</b> – соединить по телефону, подвергать испытанию
-  • *Could you put me through to the manager?* (Можете соединить меня с менеджером?)
-  • *She was put through a lot of stress.* (Она подверглась большому стрессу.)
-
-• <b>put up to</b> – подбить на что-то (обычно плохое)
-  • *His friends put him up to it.* (Друзья подбили его на это.)
-
-• <b>put up with</b> – мириться с
-  • *I can't put up with this noise any longer.* (Я больше не могу терпеть этот шум.)
-
-• <b>put in</b> – вкладывать (усилия, время)
-  • *She put in a lot of effort.* (Она вложила много усилий.)
-
-<blockquote>Эти фразовые глаголы часто встречаются в литературе и официальных документах.</blockquote>
-"""
-            },
-            {
-                "title": "Группа 'take' (C2)",
-                "text": """
-<b>📸 Take – сложные значения.</b>
-
-• <b>take after</b> – быть похожим на (родителя)
-  • *She takes after her mother.* (Она похожа на свою мать.)
-
-• <b>take in</b> – впускать, вбирать, обманывать
-  • *We took in a stray cat.* (Мы приютили бездомного кота.)
-  • *I was completely taken in by his story.* (Я был полностью обманут его историей.)
-
-• <b>take on</b> – брать на себя (обязанности), нанимать
-  • *She took on too much responsibility.* (Она взяла на себя слишком много обязанностей.)
-  • *The company is taking on new staff.* (Компания нанимает новых сотрудников.)
-
-• <b>take over</b> – захватить, принять управление
-  • *The new CEO will take over next week.* (Новый гендиректор вступит в должность на следующей неделе.)
-
-• <b>take to</b> – пристраститься к, полюбить
-  • *He took to swimming like a duck to water.* (Он быстро полюбил плавание.)
-
-• <b>take up</b> – начать заниматься (хобби), занимать (место/время)
-  • *She took up painting.* (Она начала заниматься живописью.)
-  • *The sofa takes up too much space.* (Диван занимает слишком много места.)
-
-<blockquote>Take – один из самых продуктивных глаголов для фразовых значений.</blockquote>
-"""
-            },
-            {
-                "title": "Группа 'turn' (C2)",
-                "text": """
-<b>🔄 Turn – сложные обороты.</b>
-
-• <b>turn down</b> – отвергать, уменьшать (громкость)
-  • *She turned down the job offer.* (Она отклонила предложение о работе.)
-  • *Turn down the volume.* (Убавь громкость.)
-
-• <b>turn out</b> – оказаться (в итоге)
-  • *The party turned out to be great.* (Вечеринка оказалась отличной.)
-
-• <b>turn into</b> – превращаться в
-  • *The caterpillar turned into a butterfly.* (Гусеница превратилась в бабочку.)
-
-• <b>turn up</b> – появляться, увеличивать
-  • *He turned up late again.* (Он снова появился поздно.)
-  • *Turn up the music.* (Сделай музыку громче.)
-
-• <b>turn away</b> – отказывать, отворачиваться
-  • *They turned away dozens of fans.* (Они отказали десяткам фанатов.)
-  • *Don't turn away from those in need.* (Не отворачивайся от нуждающихся.)
-
-• <b>turn on/off</b> – включать/выключать (и в переносном смысле)
-  • *The music turns me on.* (Эта музыка меня заводит – разговорно, не для экзаменов.)
-
-<blockquote>Turn – незаменим для описания изменений состояний.</blockquote>
-"""
-            },
-            {
-                "title": "Советы",
-                "text": """
-<b>💡 Как практиковать фразовые глаголы C2:</b>
-• Читайте качественную литературу (Джордж Оруэлл, Ивлин Во) – там много фразовых глаголов.
-• Пишите эссе и старайтесь использовать изученные фразовые глаголы.
-• Смотрите фильмы на английском с субтитрами, выписывайте фразовые глаголы.
-• Тренируйтесь в речи: заменяйте односложные глаголы (postpone → put off) в разных контекстах.
-
-<blockquote>Постоянная практика – ключ к автоматическому использованию фразовых глаголов.</blockquote>
-"""
-            }
-        ],
-        "faq": [
-            {"question": "Как отличить разделяемые фразовые глаголы от неразделяемых?", "answer": "Разделяемые можно разрывать объектом (turn the music down / turn down the music). Неразделяемые всегда вместе (look after the child – нельзя look the child after)."}
+      },
+      {
+        "type": "choice",
+        "text": "The place ___ we stayed was lovely.",
+        "correct": "where",
+        "hint": "Союз для места.",
+        "star": True,
+        "options": [
+          "where",
+          "that",
+          "which",
+          "when"
         ]
-    },
-
-    # ==================== МОДУЛЬ 3: Коллокации и словообразование ====================
-        "collocations_c2": {
-        "title": "Коллокации C2 (неочевидные сочетания)",
-        "pages": [
-            {
-                "title": "Что такое неочевидные коллокации?",
-                "text": """
-<b>🔗 Коллокации – естественные сочетания слов, которые не всегда можно предугадать из правил.</b>
-
-На уровне C2 важно выучить нестандартные сочетания, которые часто встречаются в академическом и деловом английском.
-
-• <b>to make a concession</b> – идти на уступку (не do)
-• <b>to pose a threat</b> – представлять угрозу (не create)
-• <b>to lend credence to</b> – придавать правдоподобие
-• <b>to broach a subject</b> – затронуть тему
-• <b>to harbour a grudge</b> – затаить обиду
-• <b>to strike a compromise</b> – достичь компромисса
-
-<blockquote>Ошибки в коллокациях выдают даже очень продвинутых учащихся.</blockquote>
-"""
-            },
-            {
-                "title": "Глагольные коллокации C2",
-                "text": """
-<b>📌 Продвинутые глагольные сочетания:</b>
-
-• <b>to exercise caution</b> – проявлять осторожность
-• <b>to voice concern</b> – выражать обеспокоенность
-• <b>to reach a consensus</b> – достичь консенсуса
-• <b>to garner support</b> – заручиться поддержкой
-• <b>to take a stance</b> – занять позицию
-• <b>to cast doubt on</b> – подвергать сомнению
-• <b>to draw a conclusion</b> – сделать вывод
-• <b>to meet a deadline</b> – соблюдать срок
-• <b>to submit a proposal</b> – подать предложение
-• <b>to refute an argument</b> – опровергнуть аргумент
-
-<blockquote>Эти коллокации незаменимы для эссе и деловой переписки.</blockquote>
-"""
-            },
-            {
-                "title": "Прилагательные + существительные (C2)",
-                "text": """
-<b>🎨 Качественные сочетания:</b>
-
-• <b>a stark contrast</b> – резкий контраст
-• <b>a fleeting glance</b> – мимолётный взгляд
-• <b>a golden opportunity</b> – уникальная возможность
-• <b>a heated debate</b> – жаркие дебаты
-• <b>a staunch supporter</b> – верный сторонник
-• <b>a negligible effect</b> – незначительный эффект
-• <b>a profound impact</b> – глубокое влияние
-• <b>a subtle difference</b> – тонкое различие
-• <b>a sweeping statement</b> – категоричное заявление
-• <b>a vicious circle</b> – замкнутый круг
-
-<blockquote>Употребление правильных прилагательных делает речь более точной и богатой.</blockquote>
-"""
-            },
-            {
-                "title": "Советы",
-                "text": """
-<b>💡 Как запоминать коллокации:</b>
-
-• Читайте много аутентичных текстов (The Economist, The Guardian, научные статьи).
-• Ведите тетрадь коллокаций, группируя их по глаголам или существительным.
-• Используйте онлайн-словари коллокаций (OZDIC, JustTheWord).
-• Тренируйтесь: переписывайте предложения, заменяя нейтральные слова на коллокации C2.
-• На экзаменах (CPE, IELTS) правильно подобранные коллокации значительно повышают балл.
-
-<blockquote>Коллокации – это мост между средним и продвинутым уровнем.</blockquote>
-"""
-            }
-        ],
-        "faq": [
-            {"question": "Как отличить правильную коллокацию от неправильной?", "answer": "Правильная коллокация встречается в аутентичных текстах и звучит естественно. Если сомневаетесь, проверьте в корпусе (например, Google Books Ngram)."}
+      },
+      {
+        "type": "choice",
+        "text": "It is the teacher ___ helps us.",
+        "correct": "who",
+        "hint": "Относительное местоимение для человека.",
+        "star": True,
+        "options": [
+          "who",
+          "which",
+          "what",
+          "whom"
         ]
-    },
-        "word_formation_c2": {
-        "title": "Словообразование C2 (редкие суффиксы, префиксы, сложные слова)",
-        "pages": [
-            {
-                "title": "Редкие суффиксы",
-                "text": """
-<b>🔨 Суффиксы, которые редко встречаются на низких уровнях:</b>
-
-• <b>-hood</b> (статус, состояние): childhood, brotherhood, likelihood
-• <b>-dom</b> (царство, состояние): freedom, kingdom, wisdom
-• <b>-th</b> (качество от прилагательных): strength (strong), width (wide), depth (deep)
-• <b>-tude</b> (состояние): gratitude, solitude, fortitude
-• <b>-ment</b> (действие/результат): advancement, commitment, endorsement
-• <b>-ance/-ence</b> (качество/действие): reliance, resilience, indulgence
-
-<blockquote>Эти суффиксы часто используются для образования абстрактных существительных.</blockquote>
-"""
-            },
-            {
-                "title": "Префиксы с уточнённым значением",
-                "text": """
-<b>🎯 Префиксы для оттенков смысла:</b>
-
-• <b>pre-</b> (до): prearrange, preconception, premeditated
-• <b>post-</b> (после): postwar, postgraduate, postpone (здесь post- + pone)
-• <b>inter-</b> (между): interact, international, interlude
-• <b>intra-</b> (внутри): intranet, intramural, intravenous
-• <b>sub-</b> (под): subconscious, submerge, subordinate
-• <b>super-</b> (над, сверх): supermarket, supernatural, supermodel
-• <b>ultra-</b> (ультра-, сверх-): ultrasound, ultramodern, ultra-rich
-
-<blockquote>Понимание этих префиксов помогает догадываться о значении незнакомых слов.</blockquote>
-"""
-            },
-            {
-                "title": "Сложные слова (compound adjectives)",
-                "text": """
-<b>✂️ Сложные прилагательные, часто встречающиеся в C2:</b>
-
-• <b>well‑</b> + V3: well‑known, well‑educated, well‑behaved
-• <b>badly‑</b> + V3: badly‑damaged, badly‑organised
-• <b>long‑</b> + V3: long‑awaited, long‑forgotten
-• <b>ever‑</b> + V3: ever‑changing, ever‑present
-• <b>quick‑</b> / <b>slow‑</b> + V‑ing: quick‑thinking, slow‑moving
-• <b>heart‑</b> / <b>mind‑</b> + V3: heart‑broken, mind‑blowing
-
-<b>Примеры в предложениях:</b>
-• *She is a well‑respected journalist.* (Она – уважаемый журналист.)
-• *The long‑awaited sequel finally arrived.* (Долгожданное продолжение наконец вышло.)
-• *It was a mind‑blowing experience.* (Это был умопомрачительный опыт.)
-
-<blockquote>Сложные прилагательные часто используются в эссе и художественной литературе.</blockquote>
-"""
-            },
-            {
-                "title": "Советы",
-                "text": """
-<b>💡 Как развить навык словообразования:</b>
-
-• При чтении обращайте внимание на структуру незнакомых слов, выделяйте корень, суффикс, префикс.
-• Ведите список продуктивных суффиксов и префиксов с примерами.
-• Тренируйтесь: возьмите корень (например, 'dict') и образуйте все возможные производные (dictate, dictation, dictator, dictatorial).
-• В части Word formation экзамена CPE (Certificate of Proficiency) это ключевое умение.
-
-<blockquote>Словообразование позволяет активно расширять словарный запас, не заучивая тысячи слов.</blockquote>
-"""
-            }
-        ],
-        "faq": [
-            {"question": "Как запомнить все суффиксы?", "answer": "Не пытайтесь выучить списком. Изучайте их в контексте слов, которые вы уже знаете. Постепенно вы начнёте узнавать суффиксы автоматически."}
+      },
+      {
+        "type": "choice",
+        "text": "What I remember ___ her smile.",
+        "correct": "is",
+        "hint": "Глагол-связка.",
+        "star": True,
+        "options": [
+          "are",
+          "is",
+          "were",
+          "am"
         ]
-    },
-        "root_words": {
-        "title": "Латинские и греческие корни (для догадки о значении слов)",
-        "pages": [
-            {
-                "title": "Зачем знать корни?",
-                "text": """
-<b>🌱 Знание латинских и греческих корней позволяет догадываться о значении незнакомых слов.</b>
-
-Большинство сложных английских слов образованы от латинских и греческих корней. Понимая их, вы сможете понимать новые слова даже без словаря.
-
-<blockquote>Этот навык особенно полезен для экзаменов CPE, GRE, GMAT и академического чтения.</blockquote>
-"""
-            },
-            {
-                "title": "Корни, связанные с 'видеть' и 'знать'",
-                "text": """
-<b>👁️ Корни зрения и знания:</b>
-
-• <b>spec / spect</b> – смотреть (Latin)
-  • inspect (внутрь смотреть → осматривать)
-  • spectator (зритель)
-  • retrospect (взгляд назад)
-
-• <b>vid / vis</b> – видеть (Latin)
-  • video, vision, visible, evidence, provide
-
-• <b>sci</b> – знать (Latin)
-  • science, conscience, conscious, omniscient (всезнающий)
-
-• <b>cogn / gn</b> – знать, узнавать (Latin)
-  • recognise, cognitive, incognito, diagnosis
-
-<blockquote>Зная эти корни, вы легко поймёте слова inspection, supervision, preview, evident, scientific, agnostic.</blockquote>
-"""
-            },
-            {
-                "title": "Корни 'письма' и 'голоса'",
-                "text": """
-<b>✍️ Корни, связанные с письмом и речью:</b>
-
-• <b>scrib / script</b> – писать (Latin)
-  • describe, prescribe, manuscript, inscription, subscribe
-
-• <b>graph</b> – писать, рисовать (Greek)
-  • autograph, biography, photograph, graphite, paragraph
-
-• <b>dict</b> – говорить (Latin)
-  • dictate, predict, dictionary, verdict, contradict
-
-• <b>voc / vok</b> – голос, звать (Latin)
-  • vocal, vocabulary, invoke, evoke, provocative
-
-• <b>log / logue</b> – слово, речь, мысль (Greek)
-  • dialogue, monologue, logic, apology, analogue
-
-<blockquote>Эти корни встречаются в тысячах английских слов, включая научные и технические термины.</blockquote>
-"""
-            },
-            {
-                "title": "Корни 'движения' и 'чувства'",
-                "text": """
-<b>🏃 Корни движения:</b>
-
-• <b>mov / mot / mob</b> – двигать (Latin)
-  • move, motion, motor, mobile, emotion (отодвигать)
-
-• <b>ced / cess</b> – идти, уступать (Latin)
-  • proceed, succeed, process, recession, concession
-
-• <b>port</b> – нести (Latin)
-  • transport, portable, porter, import, report
-
-• <b>ven / vent</b> – приходить (Latin)
-  • prevent, invent, intervene, venue, adventure
-
-<b>❤️ Корни чувств:</b>
-
-• <b>path / pass</b> – чувство, страдание (Greek)
-  • sympathy, empathy, pathetic, apathy, passionate
-
-• <b>senti / sens</b> – чувствовать (Latin)
-  • sense, sensitive, sentiment, consent, resent
-
-<blockquote>Понимание этих корней значительно расширяет словарный запас и улучшает понимание текста.</blockquote>
-"""
-            },
-            {
-                "title": "Советы",
-                "text": """
-<b>💡 Как использовать знание корней:</b>
-
-• Когда встречаете новое слово, разберите его на корни (например, "benevolent" – bene (хорошо) + vol (хотеть) → доброжелательный).
-• Составьте карточки с корнем и его значением, добавляя по 2-3 примера.
-• Читайте научные статьи и обращайте внимание на сложные слова, анализируя их структуру.
-• На экзаменах это поможет догадаться о значении незнакомого слова в контексте.
-
-<blockquote>Знание корней превращает запоминание слов из механического в логическое.</blockquote>
-"""
-            }
-        ],
-        "faq": [
-            {"question": "Сколько корней нужно знать для C2?", "answer": "Около 100-150 самых употребительных. Остальные можно вывести логически или узнать по мере чтения."}
+      }
+    ]
+  },
+  "inversion_emphatic_c2": {
+    "title": "Инверсия для эмфазы (Only, Little, So, Such, Nor)",
+    "pages": [
+      {
+        "title": "Инверсия с only (в начале предложения)",
+        "text": "\n<b>📌 Инверсия используется после only + обстоятельство времени/условия для усиления.</b>\n\n• Only after the film started did I realise I had seen it before. (Только после начала фильма я понял, что уже видел его.)\n• Only when you apologise will I forgive you. (Только когда извинишься, я прощу.)\n• Only then did he understand his mistake. (Только тогда он понял свою ошибку.)\n\n<blockquote>После only + выражение времени/условия ставим вспомогательный глагол, затем подлежащее.</blockquote>\n\n<b>Дополнительные примеры:</b>\n• *Only by working hard will you succeed.* (Только упорно работая, вы добьётесь успеха.)\n• *Only after I left did I realise how much I loved her.* (Только после ухода я понял, как сильно люблю её.)\n"
+      },
+      {
+        "title": "Инверсия с little (редко, почти никогда)",
+        "text": "\n<b>🔍 Little в начале предложения означает «почти не, совсем не» и требует инверсии.</b>\n\n• Little did he know that his life was about to change. (Он понятия не имел, что его жизнь вот-вот изменится.)\n• Little did they suspect that the police were waiting. (Они ни о чём не подозревали, что полиция ждала.)\n\n<blockquote>Эта конструкция очень формальная и встречается в литературе.</blockquote>\n\n• *Little did I realise what was in store for me.* (Я и не подозревал, что меня ждёт.)\n• *Little does she care about the consequences.* (Ей мало дела до последствий.)\n"
+      },
+      {
+        "title": "Инверсия с so / such (для усиления)",
+        "text": "\n<b>📌 So + прилагательное / such + существительное в начале предложения вызывают инверсию.</b>\n\n• So beautiful was the view that we stopped to take photos. (Вид был настолько красивым, что мы остановились фотографировать.)\n• Such was his anger that he couldn't speak. (Таким был его гнев, что он не мог говорить.)\n\n<blockquote>Сравните обычный порядок: The view was so beautiful that... vs So beautiful was the view that...</blockquote>\n\n• *So rapidly did she speak that I could hardly understand.* (Она говорила так быстро, что я едва понимал.)\n• *Such was the force of the explosion that windows broke.* (Такова была сила взрыва, что выбило окна.)\n"
+      },
+      {
+        "title": "Инверсия с nor / neither",
+        "text": "\n<b>🔄 Nor / neither в начале предложения для выражения отрицательного согласия.</b>\n\n• He didn't show up, nor did he call. (Он не пришёл и даже не позвонил.)\n• I can't swim, neither can my brother. (Я не умею плавать, и мой брат тоже.)\n\n<blockquote>Вместо nor может использоваться neither, но nor более книжное.</blockquote>\n\n• *She didn't apologise, nor did she explain.* (Она не извинилась и даже не объяснила.)\n• *I have never been there, nor do I wish to go.* (Я никогда там не был, и не хочу ехать.)\n"
+      },
+      {
+        "title": "Советы и типичные ошибки",
+        "text": "\n<b>⚠️ Частые ошибки:</b>\n• ❌ Only after I finished, I realised.  ✅ Only after I finished did I realise.\n• ❌ Little he knew.  ✅ Little did he know.\n• ❌ So beautiful the view was that...  ✅ So beautiful was the view that...\n\n<b>💡 Совет:</b>\n• Используйте инверсию с only для придания веса условию.\n• Не злоупотребляйте: в разговорной речи эти конструкции неестественны.\n• Тренируйтесь: переписывайте обычные предложения в эмфатическую инверсию.\n\n<blockquote>На экзаменах (CPE, CAE) инверсия оценивается как признак высокого уровня владения языком.</blockquote>\n"
+      }
+    ],
+    "faq": [
+      {
+        "question": "Всегда ли нужна инверсия после only?",
+        "answer": "Только если only стоит в начале предложения и относится ко всему предложению (не к подлежащему). Only John can help (инверсии нет)."
+      }
+    ]
+  },
+  "negative_inversion_c2": {
+    "title": "Инверсия после отрицательных наречий (Not only, No sooner, Hardly, Never)",
+    "pages": [
+      {
+        "title": "Not only... but also",
+        "text": "\n<b>📌 Not only + вспомогательный глагол + подлежащее + V, but also...</b>\n\n• She is not only intelligent but also beautiful. → Not only is she intelligent, but she is also beautiful.\n• They not only lost the match but also injured their best player. → Not only did they lose the match, but they also injured their best player.\n\n<blockquote>Если в первой части уже есть вспомогательный глагол, он переносится вперёд. Если нет, добавляется do/does/did.</blockquote>\n\n<b>Дополнительные примеры:</b>\n• *Not only did he refuse to help, but he also laughed at me.* (Мало того что он отказался помогать, он ещё и смеялся надо мной.)\n• *Not only is she a talented musician, but she is also an excellent painter.* (Она не только талантливый музыкант, но и отличный художник.)\n"
+      },
+      {
+        "title": "No sooner... than",
+        "text": "\n<b>📌 No sooner + had + подлежащее + V3, than + подлежащее + V (Past Simple).</b>\n\n• No sooner had I arrived than the phone rang. (Не успел я прийти, как зазвонил телефон.)\n• No sooner had she closed the door than someone knocked. (Не успела она закрыть дверь, как кто-то постучал.)\n\n<blockquote>No sooner всегда требует Past Perfect (had done) в первой части и Past Simple во второй. Than – не then!</blockquote>\n\n• *No sooner had he sat down than the meeting started.* (Не успел он сесть, как началась встреча.)\n• *No sooner had we left than it began to snow.* (Не успели мы уйти, как пошёл снег.)\n"
+      },
+      {
+        "title": "Hardly / Scarcely... when",
+        "text": "\n<b>📌 Hardly / Scarcely + had + подлежащее + V3, when + подлежащее + V (Past Simple).</b>\n\n• Hardly had we sat down when the film started. (Едва мы сели, как начался фильм.)\n• Scarcely had he entered the room when the lights went out. (Едва он вошёл в комнату, как погас свет.)\n\n<blockquote>Hardly / Scarcely имеют то же значение, что и no sooner. They very formal.</blockquote>\n\n• *Hardly had she started her speech when the microphone stopped working.* (Едва она начала речь, как перестал работать микрофон.)\n• *Scarcely had I closed the door when I heard a strange noise.* (Едва я закрыл дверь, как услышал странный шум.)\n"
+      },
+      {
+        "title": "Never, Rarely, Seldom, Little (в начале предложения)",
+        "text": "\n<b>📌 Отрицательные наречия в начале предложения требуют инверсии.</b>\n\n• Never have I seen such a beautiful sunset. (Никогда я не видел такого красивого заката.)\n• Rarely does he arrive on time. (Редко он приходит вовремя.)\n• Seldom do we have such good weather. (Редко у нас бывает такая хорошая погода.)\n• Little did they know what was coming. (Они понятия не имели, что их ждёт.)\n\n<blockquote>Эти конструкции очень формальны и чаще встречаются в литературе.</blockquote>\n\n• *Never again will I trust him.* (Никогда больше я не буду ему доверять.)\n• *Rarely have I encountered such ignorance.* (Редко я сталкивался с таким невежеством.)\n"
+      },
+      {
+        "title": "Советы и типичные ошибки",
+        "text": "\n<b>⚠️ Частые ошибки:</b>\n• ❌ Not only he arrived late, but also...  ✅ Not only did he arrive late...\n• ❌ No sooner I had left than...  ✅ No sooner had I left than...\n• ❌ Hardly had we started than it rained. (should be 'when')  ✅ Hardly had we started when it rained.\n\n<b>💡 Совет:</b>\n• Используйте инверсию только в очень формальных ситуациях или на экзаменах.\n• Запомните: после No sooner ставим had + подлежащее, после than – Past Simple.\n• После Not Only вспомогательный глагол идёт перед подлежащим.\n• Тренируйтесь: переписывайте обычные предложения в инвертированную форму.\n"
+      }
+    ],
+    "faq": [
+      {
+        "question": "Можно ли использовать инверсию с другими отрицательными наречиями?",
+        "answer": "Да: never, rarely, seldom, little, at no time, under no circumstances, in no way: Under no circumstances should you open this door."
+      }
+    ],
+    "practice_tasks": [
+      {
+        "type": "fill_blank",
+        "text": "Not only ___ she finish the report, but she also presented it flawlessly.",
+        "correct": "did",
+        "hint": "Инверсия после Not only требует вспомогательного глагола.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "No sooner ___ we arrived than the storm began.",
+        "correct": "had",
+        "hint": "No sooner требует Past Perfect с инверсией.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "Hardly ___ he entered the room when the phone rang.",
+        "correct": "had",
+        "hint": "Hardly...when использует Past Perfect.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "Never ___ I seen such a beautiful sunset.",
+        "correct": "have",
+        "hint": "Never в начале предложения требует инверсии.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "Not only ___ they win the match, but they also broke a record.",
+        "correct": "did",
+        "hint": "Инверсия с did для прошедшего времени.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "No sooner ___ the movie started than the fire alarm went off.",
+        "correct": "had",
+        "hint": "Past Perfect после No sooner.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "Hardly ___ I finished my homework when my friend called.",
+        "correct": "had",
+        "hint": "Инверсия с had после Hardly.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "Never ___ she travel alone before.",
+        "correct": "had",
+        "hint": "Never с Past Perfect.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "Not only ___ he speak English, but he also knows French.",
+        "correct": "does",
+        "hint": "Present Simple требует does.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "No sooner ___ the bell ring than the students left.",
+        "correct": "did",
+        "hint": "No sooner с Past Simple.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "Hardly ___ we sat down when the waiter came.",
+        "correct": "had",
+        "hint": "Инверсия после Hardly.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "Never ___ I forget your kindness.",
+        "correct": "will",
+        "hint": "Future с инверсией после Never.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "Not only ___ the company grow, but it also expanded overseas.",
+        "correct": "did",
+        "hint": "Прошедшее время с did.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "No sooner ___ the rain stop than the sun came out.",
+        "correct": "had",
+        "hint": "Past Perfect после No sooner.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "Hardly ___ she opened the door when she saw the surprise.",
+        "correct": "had",
+        "hint": "Hardly...when с Past Perfect.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "Never ___ I met such a talented musician.",
+        "correct": "have",
+        "hint": "Present Perfect с инверсией.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "Not only ___ the team score, but they also won the championship.",
+        "correct": "did",
+        "hint": "Инверсия с did.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "No sooner ___ the plane land than the passengers cheered.",
+        "correct": "had",
+        "hint": "Past Perfect после No sooner.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "Hardly ___ the concert begin when the lights went out.",
+        "correct": "had",
+        "hint": "Инверсия с had.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "Never ___ I thought I would see this day.",
+        "correct": "had",
+        "hint": "Past Perfect после Never.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "Not only ___ she sing beautifully, but she also dances.",
+        "correct": "does",
+        "hint": "Present Simple с does.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "No sooner ___ the game end than the crowd erupted.",
+        "correct": "did",
+        "hint": "No sooner с Past Simple.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "Hardly ___ I closed my eyes when the alarm rang.",
+        "correct": "had",
+        "hint": "Hardly...when с Past Perfect.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "Never ___ they offer such a low price before.",
+        "correct": "had",
+        "hint": "Never с Past Perfect.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "Not only ___ the book interesting, but it was also informative.",
+        "correct": "was",
+        "hint": "Инверсия с was для прилагательных.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "No sooner ___ the teacher enter than the class became quiet.",
+        "correct": "had",
+        "hint": "Past Perfect после No sooner.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "Hardly ___ we finish dinner when the guests arrived.",
+        "correct": "had",
+        "hint": "Инверсия после Hardly.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "Never ___ I see such a mess in my life.",
+        "correct": "have",
+        "hint": "Present Perfect с инверсией.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "Not only ___ the company fail, but it also went bankrupt.",
+        "correct": "did",
+        "hint": "Прошедшее время с did.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "No sooner ___ the sun rise than the birds started singing.",
+        "correct": "had",
+        "hint": "Past Perfect после No sooner.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "Not only ___ he finish the marathon, but he also set a personal record.",
+        "correct": "did",
+        "hint": "Инверсия с did для прошедшего времени.",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "Hardly ___ the announcement made when the crowd started cheering.",
+        "correct": "had been",
+        "hint": "Пассивный залог с инверсией после Hardly.",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "Never ___ I encountered such a complex problem before.",
+        "correct": "had",
+        "hint": "Past Perfect с инверсией после Never.",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "No sooner ___ the negotiations begun than a compromise was reached.",
+        "correct": "had",
+        "hint": "Past Perfect после No sooner.",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "Not only ___ the artist create a masterpiece, but he also inspired others.",
+        "correct": "did",
+        "hint": "Инверсия с did.",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "Hardly ___ we recovered from the shock when another crisis hit.",
+        "correct": "had",
+        "hint": "Инверсия после Hardly с Past Perfect.",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "Never ___ she be held accountable for her actions.",
+        "correct": "will",
+        "hint": "Future с инверсией после Never.",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "No sooner ___ the experiment concluded than the results were published.",
+        "correct": "had been",
+        "hint": "Пассивный залог с No sooner.",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "Not only ___ the proposal rejected, but it was also criticized harshly.",
+        "correct": "was",
+        "hint": "Пассивный залог с инверсией.",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "Hardly ___ the truth revealed when the scandal broke out.",
+        "correct": "had been",
+        "hint": "Пассивный залог с Hardly.",
+        "star": True
+      }
+    ]
+  },
+  "ellipsis_substitution": {
+    "title": "Эллипсис и замена (опущение слов, использование one/so/do)",
+    "pages": [
+      {
+        "title": "Что такое эллипсис?",
+        "text": "\n<b>✂️ Эллипсис – опущение слов, которые легко восстанавливаются из контекста.</b>\n\nИспользуется, чтобы избежать повторения и сделать речь более естественной и динамичной.\n\n• *He can speak French, and she can too.* (вместо ... and she can speak French too)\n• *I wanted to go, but I wasn't able to.* (вместо ... I wasn't able to go)\n\n<blockquote>На уровне C2 эллипсис – признак беглой и естественной речи.</blockquote>\n"
+      },
+      {
+        "title": "Замена с 'one / ones'",
+        "text": "\n<b>📌 One / ones заменяют ранее упомянутое существительное, чтобы избежать повторения.</b>\n\n• *I need a new phone. This one is too old.* (Эта – в значении this phone)\n• *Which dress do you like? – I like the blue one.* (синее платье)\n\n• *These apples are fresher than the ones in the basket.* (чем те, что в корзине)\n• *I prefer classical music to modern one. – неправильно (music неисчисляемое)*  ✅ ... to modern music.\n\n<blockquote>One / ones нельзя использовать с неисчисляемыми существительными (information, advice, music).</blockquote>\n"
+      },
+      {
+        "title": "Замена с 'so' и 'not'",
+        "text": "\n<b>📌 So / not заменяют целые придаточные после глаголов think, believe, hope, expect, guess, be afraid, suppose, etc.</b>\n\n• *– Is he coming? – I hope so.* (вместо I hope he is coming)\n• *– Will it rain? – I think not.* (или I don't think so)\n\n• *– Do you think she'll accept? – I suppose so.*\n• *– They won't win. – I hope not.* (надеюсь, что нет)\n\n<blockquote>После be afraid и guess чаще используется so: I'm afraid so, I guess so.</blockquote>\n"
+      },
+      {
+        "title": "Замена с 'do', 'does', 'did' (пропуск глагола)",
+        "text": "\n<b>📌 Do / does / did заменяют смысловой глагол, чтобы избежать повторения.</b>\n\n• *She sings better than he does.* (чем он поёт)\n• *I like coffee, and so does she.* (и она тоже)\n• *He didn't come, but his brother did.* (пришёл)\n\n• *I don't enjoy parties, but my wife does.*\n• *She works harder than I do.*\n\n<blockquote>So + вспомогательный глагол + подлежащее – согласие: I love jazz. – So do I.</blockquote>\n"
+      },
+      {
+        "title": "Советы",
+        "text": "\n<b>💡 Как развить навык эллипсиса:</b>\n• Обращайте внимание на опущение слов в диалогах из фильмов и книг.\n• Практикуйтесь в перефразировании, избегая повторений.\n• На экзаменах (CPE, CAE) эллипсис не является обязательным, но его использование повышает балл за стиль.\n\n<blockquote>Эллипсис делает речь более живой и естественной, но его избыток может привести к неясности.</blockquote>\n"
+      }
+    ],
+    "faq": [
+      {
+        "question": "Всегда ли нужно использовать 'so' после 'think'?",
+        "answer": "В положительных ответах – I think so (думаю, да). В отрицательных – I don't think so (думаю, нет) или I think not (менее распространено)."
+      }
+    ]
+  },
+  "hedging_c2": {
+    "title": "Выражение неуверенности, смягчение утверждений (hedging)",
+    "pages": [
+      {
+        "title": "Что такое hedging?",
+        "text": "\n<b>🤔 Hedging – использование языковых средств для смягчения категоричности утверждения, выражения неуверенности или вежливости.</b>\n\nВ академическом и деловом английском избегают абсолютных утверждений (It is certain that...). Вместо этого используют модальные глаголы, наречия, глаголы и вводные конструкции.\n\n• *It is likely that the economy will recover.* (Вероятно, экономика восстановится.)\n• *The results may indicate a correlation.* (Результаты могут указывать на корреляцию.)\n\n<blockquote>Hedging – ключевой навык для научных статей, презентаций и вежливого общения.</blockquote>\n"
+      },
+      {
+        "title": "Модальные глаголы для смягчения",
+        "text": "\n<b>📌 Модальные глаголы выражают вероятность, а не абсолютную уверенность.</b>\n\n• <b>may / might / could</b> – возможно (наименее уверенно)\n  • *The new treatment might be effective.* (Новое лечение может быть эффективным.)\n\n• <b>can / could</b> – иногда возможно\n  • *This approach can lead to errors.* (Этот подход может приводить к ошибкам.)\n\n• <b>would</b> – в вежливых предположениях\n  • *It would seem that we have a problem.* (Похоже, у нас проблема.)\n\n<blockquote>В академических текстах избегают must (слишком уверенно) и will (категорично).</blockquote>\n"
+      },
+      {
+        "title": "Лексические средства hedging",
+        "text": "\n<b>📌 Наречия, прилагательные, глаголы и вводные фразы:</b>\n\n• <b>Наречия:</b> probably, possibly, perhaps, apparently, arguably, seemingly\n  • *The project is arguably the most important of the decade.* (Этот проект, возможно, самый важный за десятилетие.)\n\n• <b>Прилагательные:</b> likely, unlikely, possible, probable\n  • *It is unlikely that the situation will improve.* (Маловероятно, что ситуация улучшится.)\n\n• <b>Глаголы:</b> seem, appear, suggest, indicate, tend to, tend to be\n  • *The data seem to support this hypothesis.* (Данные, по-видимому, подтверждают эту гипотезу.)\n\n• <b>Вводные фразы:</b> It is believed that..., There is evidence that..., According to...\n  • *According to the report, the economy is growing.* (Согласно отчёту, экономика растёт.)\n\n<blockquote>Использование таких слов делает утверждения менее категоричными и более научными.</blockquote>\n"
+      },
+      {
+        "title": "Советы и примеры",
+        "text": "\n<b>📖 Примеры категоричных и смягчённых утверждений:</b>\n\n• Категорично: *This drug cures cancer.* (Это лекарство лечит рак.)\n• Смягчённо: *This drug may be effective against certain types of cancer.* (Это лекарство может быть эффективно против некоторых видов рака.)\n\n• Категорично: *The theory is wrong.* (Теория неверна.)\n• Смягчённо: *The theory appears to have some limitations.* (Теория, по-видимому, имеет некоторые ограничения.)\n\n<b>💡 Совет:</b>\n• В эссе IELTS и CPE hedging обязателен для получения высокого балла (Academic Writing).\n• Тренируйтесь: переписывайте категоричные утверждения в смягчённой форме.\n• Обратите внимание, что чрезмерное использование hedging делает текст неуверенным; нужен баланс.\n\n<blockquote>Hedging – это искусство выражать сомнение и осторожность, не теряя убедительности.</blockquote>\n"
+      }
+    ],
+    "faq": [
+      {
+        "question": "Можно ли использовать hedging в устной речи?",
+        "answer": "Да, особенно в деловых презентациях и дискуссиях, чтобы звучать вежливо и не категорично."
+      }
+    ],
+    "practice_tasks": [
+      {
+        "type": "fill_blank",
+        "text": "It's ______ that the experiment will yield conclusive results.",
+        "correct": "unlikely",
+        "hint": "Выражает малую вероятность",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "This appears to be ______ the most plausible explanation.",
+        "correct": "by far",
+        "hint": "Усиливает степень, но смягчает категоричность",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The data ______ suggest a correlation, but not causation.",
+        "correct": "seem to",
+        "hint": "Глагол для выражения неуверенности",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "There is a ______ possibility that the project will be delayed.",
+        "correct": "slight",
+        "hint": "Прилагательное для малой степени",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "______, the hypothesis has not been fully tested.",
+        "correct": "Apparently",
+        "hint": "Наречие для смягчения утверждения",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The results are ______ consistent with our predictions.",
+        "correct": "broadly",
+        "hint": "Наречие для обобщения",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "It could be ______ that the model is oversimplified.",
+        "correct": "argued",
+        "hint": "Пассивный залог для дистанцирования",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "______, the policy has had mixed effects.",
+        "correct": "To some extent",
+        "hint": "Фраза для ограничения утверждения",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "This is ______ the most challenging aspect of the problem.",
+        "correct": "arguably",
+        "hint": "Наречие для выражения спорности",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The evidence is ______ at best.",
+        "correct": "circumstantial",
+        "hint": "Прилагательное для слабой доказательности",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "It is ______ to assume that all variables are controlled.",
+        "correct": "difficult",
+        "hint": "Прилагательное для выражения сложности",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "______, the findings are preliminary.",
+        "correct": "It should be noted that",
+        "hint": "Вводная фраза для оговорки",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The theory ______ to be revised.",
+        "correct": "may need",
+        "hint": "Модальный глагол + need",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "There is ______ evidence to support this claim.",
+        "correct": "insufficient",
+        "hint": "Отрицательное прилагательное",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The approach ______ be considered innovative.",
+        "correct": "might",
+        "hint": "Модальный глагол для слабой уверенности",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "______, the situation is more complex.",
+        "correct": "In fact",
+        "hint": "Вводная фраза для уточнения",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "This is ______ a matter of interpretation.",
+        "correct": "largely",
+        "hint": "Наречие для ограничения",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The results ______ from previous studies.",
+        "correct": "differ somewhat",
+        "hint": "Глагол с наречием для смягчения",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "It is ______ whether the method is reliable.",
+        "correct": "questionable",
+        "hint": "Прилагательное для сомнения",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "______, the trend is upward.",
+        "correct": "Generally speaking",
+        "hint": "Фраза для обобщения",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The correlation is ______ weak.",
+        "correct": "relatively",
+        "hint": "Наречие для относительности",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "One ______ suggest that the sample is biased.",
+        "correct": "might",
+        "hint": "Модальный глагол для вежливого предположения",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "______, the analysis is incomplete.",
+        "correct": "Strictly speaking",
+        "hint": "Фраза для точного ограничения",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The implications are ______ clear.",
+        "correct": "not entirely",
+        "hint": "Отрицание с наречием",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "It is ______ that further research is needed.",
+        "correct": "evident",
+        "hint": "Прилагательное для очевидности, но смягчённой",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "______, the model has limitations.",
+        "correct": "Admittedly",
+        "hint": "Наречие для признания",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The data ______ be interpreted with caution.",
+        "correct": "should",
+        "hint": "Модальный глагол для рекомендации",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "There is a ______ chance of error.",
+        "correct": "reasonable",
+        "hint": "Прилагательное для умеренной оценки",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "______, the argument is flawed.",
+        "correct": "In my view",
+        "hint": "Фраза для субъективности",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The findings are ______ to interpretation.",
+        "correct": "open",
+        "hint": "Прилагательное для неопределённости",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "It is ______ that the system will fail under stress.",
+        "correct": "not inconceivable",
+        "hint": "Двойное отрицание для слабой возможности",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "The evidence ______ points to a different conclusion.",
+        "correct": "tends to",
+        "hint": "Глагол для тенденции, а не категоричности",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "______, the methodology is sound, but there are caveats.",
+        "correct": "For the most part",
+        "hint": "Фраза для частичного согласия",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "It would be ______ to assume that the process is linear.",
+        "correct": "premature",
+        "hint": "Прилагательное для преждевременности вывода",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "The results are ______ with the hypothesis, but not proof.",
+        "correct": "consistent",
+        "hint": "Прилагательное для согласованности без подтверждения",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "______, the policy has been effective, though not uniformly.",
+        "correct": "On the whole",
+        "hint": "Фраза для общего вывода с оговоркой",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "One cannot ______ conclude that the drug is safe.",
+        "correct": "automatically",
+        "hint": "Наречие для отрицания автоматизма",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "The correlation is ______, but further testing is required.",
+        "correct": "suggestive",
+        "hint": "Прилагательное для намёка, а не доказательства",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "______, the approach is viable, but it has drawbacks.",
+        "correct": "In principle",
+        "hint": "Фраза для теоретического согласия",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "It is ______ to claim that the solution is perfect.",
+        "correct": "an overstatement",
+        "hint": "Существительное для преувеличения",
+        "star": True
+      }
+    ]
+  },
+  "concession_clauses": {
+    "title": "Придаточные уступки (although, even though, albeit, despite, in spite of)",
+    "pages": [
+      {
+        "title": "Повторение и углубление",
+        "text": "\n<b>🧩 Придаточные уступки показывают контраст между двумя частями предложения.</b>\n\nОсновные союзы:\n• <b>although / even though</b> – хотя, несмотря на то что (полное предложение)\n• <b>albeit</b> – хотя и, но (формальный, с прилагательным/причастием)\n• <b>despite / in spite of</b> – несмотря на (существительное или герундий)\n\n<blockquote>На уровне C2 важно различать оттенки этих конструкций и использовать их для сложной аргументации.</blockquote>\n"
+      },
+      {
+        "title": "Although / even though / though",
+        "text": "\n<b>📌 Although / even though + полное предложение (подлежащее + сказуемое).</b>\n\n• *Although it was raining, we went for a walk.* (Хотя шёл дождь, мы пошли гулять.)\n• *Even though he was tired, he finished the marathon.* (Несмотря на то что устал, он закончил марафон.)\n\n<blockquote>Though – разговорный вариант, может стоять в конце предложения: It was raining, though we went out.</blockquote>\n\n• *Though it was late, she continued working.* (Хотя было поздно, она продолжала работать.)\n• *He accepted the job, even though the salary was low.* (Он принял работу, хотя зарплата была низкой.)\n"
+      },
+      {
+        "title": "Albeit – формальный союз",
+        "text": "\n<b>📌 Albeit означает 'хотя и', 'но' и используется только с прилагательными, наречиями, причастиями или существительными без глагола.</b>\n\n• *The journey was enjoyable, albeit tiring.* (Путешествие было приятным, хотя и утомительным.)\n• *He accepted the position, albeit reluctantly.* (Он принял должность, хотя и неохотно.)\n\n<blockquote>Albeit никогда не используется с полным предложением (с глаголом).</blockquote>\n\n• *The solution was simple, albeit effective.* (Решение было простым, хотя и эффективным.)\n• *They arrived late, albeit with a good reason.* (Они опоздали, хотя и с уважительной причиной.)\n"
+      },
+      {
+        "title": "Despite / in spite of + существительное / герундий",
+        "text": "\n<b>📌 Despite / in spite of + существительное или герундий (V‑ing).</b>\n\n• *Despite the rain, we went out.* (Несмотря на дождь, мы вышли.)\n• *In spite of being tired, she finished the report.* (Несмотря на усталость, она закончила отчёт.)\n\n<blockquote>In spite of – чуть более формальный вариант.</blockquote>\n\n• *Despite having little experience, he got the job.* (Несмотря на небольшой опыт, он получил работу.)\n• *In spite of the fact that it was expensive, we bought it.* (Несмотря на то что это было дорого, мы купили.)\n\n<blockquote>Для полного предложения можно использовать 'despite the fact that'.</blockquote>\n"
+      },
+      {
+        "title": "Сравнение и типичные ошибки",
+        "text": "\n<b>📊 Сравните:</b>\n\n• *Although it rained, we went out.* (союз + предложение)\n• *Despite the rain, we went out.* (предлог + существительное)\n• *It rained, yet we went out.* (союз yet)\n• *We went out; however, it rained.* (наречие however)\n\n<b>⚠️ Частые ошибки:</b>\n• ❌ Despite it rained...  ✅ Despite the rain / Despite the fact that it rained.\n• ❌ Although the rain...  ✅ Although it rained...\n• ❌ In spite of that he was tired...  ✅ In spite of being tired / In spite of the fact that he was tired.\n\n<b>💡 Совет:</b>\n• Если хотите использовать глагол (был дождь), ставьте although / even though.\n• Если хотите использовать существительное (дождь), ставьте despite / in spite of.\n• Albeit используйте только для краткого уточнения (прилагательным или наречием).\n\n<blockquote>Правильное использование этих конструкций – признак высокого уровня владения языком.</blockquote>\n"
+      }
+    ],
+    "faq": [
+      {
+        "question": "В чём разница между 'although' и 'even though'?",
+        "answer": "Even though более сильный, подчёркивает контраст. Although – нейтральный."
+      }
+    ],
+    "practice_tasks": [
+      {
+        "type": "fill_blank",
+        "text": "______ it was raining, we went for a walk.",
+        "correct": "Although",
+        "hint": "используется для противопоставления",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He passed the exam ______ he hadn't studied much.",
+        "correct": "even though",
+        "hint": "более сильное уступительное значение",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "______ the bad weather, the flight departed on time.",
+        "correct": "Despite",
+        "hint": "после этого слова используется существительное или герундий",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She finished the race ______ being injured.",
+        "correct": "in spite of",
+        "hint": "синоним despite",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "______ he is rich, he is not happy.",
+        "correct": "Although",
+        "hint": "в начале предложения",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "They continued working ______ the noise.",
+        "correct": "despite",
+        "hint": "после него идет существительное",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "______ it was late, she stayed up to finish her book.",
+        "correct": "Even though",
+        "hint": "усиление уступки",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "We enjoyed the picnic ______ the cold wind.",
+        "correct": "in spite of",
+        "hint": "фразовый предлог",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "______ his efforts, he failed the test.",
+        "correct": "Despite",
+        "hint": "перед существительным",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "______ being tired, she went to the gym.",
+        "correct": "Although",
+        "hint": "после него идет придаточное предложение",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He accepted the job, ______ the low salary.",
+        "correct": "albeit",
+        "hint": "формальное слово, часто перед прилагательным или фразой",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "______ the rain, the match continued.",
+        "correct": "In spite of",
+        "hint": "синоним despite",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She sang beautifully, ______ having a sore throat.",
+        "correct": "even though",
+        "hint": "перед герундием",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "______ he was warned, he invested all his money.",
+        "correct": "Although",
+        "hint": "противопоставление действий",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "______ the difficulties, they succeeded.",
+        "correct": "Despite",
+        "hint": "после него может идти существительное",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He is a good leader, ______ his young age.",
+        "correct": "albeit",
+        "hint": "формальный стиль",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "______ the fact that she was late, she was calm.",
+        "correct": "Despite",
+        "hint": "часто используется с 'the fact that'",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "______ it was expensive, he bought the car.",
+        "correct": "Even though",
+        "hint": "усилительное уступительное",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "______ his injury, he played the game.",
+        "correct": "In spite of",
+        "hint": "фразовый предлог",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "______ the heat, they worked in the garden.",
+        "correct": "Despite",
+        "hint": "противопоставление",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She loves him, ______ his faults.",
+        "correct": "albeit",
+        "hint": "часто перед существительным во множественном числе",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "______ he was sick, he went to work.",
+        "correct": "Although",
+        "hint": "стандартное уступительное",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "______ the storm, the ship arrived safely.",
+        "correct": "In spite of",
+        "hint": "синоним despite",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "______ being a beginner, she played well.",
+        "correct": "Even though",
+        "hint": "перед герундием",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "______ his wealth, he is generous.",
+        "correct": "Despite",
+        "hint": "противопоставление",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "______ the noise, the baby slept.",
+        "correct": "In spite of",
+        "hint": "фразовый предлог",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "______ she studied hard, she failed.",
+        "correct": "Although",
+        "hint": "уступительное придаточное",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "______ the delay, we caught the train.",
+        "correct": "Despite",
+        "hint": "перед существительным",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He is a nice person, ______ his temper.",
+        "correct": "albeit",
+        "hint": "формальное уступительное",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "______ the warning, he drove too fast.",
+        "correct": "Even though",
+        "hint": "усиление",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "______ being very tired, she continued working.",
+        "correct": "Although",
+        "hint": "в начале предложения с герундием",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "He managed to finish the project ______ the tight deadline and lack of resources.",
+        "correct": "despite",
+        "hint": "после него идут два существительных",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "______ the fact that the company was losing money, they hired new staff.",
+        "correct": "In spite of",
+        "hint": "фразовый предлог с 'the fact that'",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "She is a skilled negotiator, ______ her limited experience.",
+        "correct": "albeit",
+        "hint": "формальное слово, часто перед прилагательным",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "______ he had all the advantages, he did not succeed.",
+        "correct": "Even though",
+        "hint": "усилительное уступительное с полным предложением",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "______ the heavy rain and strong wind, the hikers reached the summit.",
+        "correct": "Despite",
+        "hint": "перед двумя существительными",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "______ being a complete beginner, she won the chess tournament.",
+        "correct": "In spite of",
+        "hint": "фразовый предлог с герундием",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "He remained calm ______ the chaotic situation and the angry crowd.",
+        "correct": "despite",
+        "hint": "после него идут два существительных с прилагательными",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "______ the evidence was clear, the jury could not reach a verdict.",
+        "correct": "Although",
+        "hint": "стандартное уступительное с придаточным",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "The plan was implemented successfully, ______ its complexity and high cost.",
+        "correct": "albeit",
+        "hint": "формальное уступительное перед двумя существительными",
+        "star": True
+      }
+    ]
+  },
+  "modal_expressions_guessing": {
+    "title": "Модальные глаголы для предположений (must, can't, could, might – углубление)",
+    "pages": [
+      {
+        "title": "Степени уверенности (повторение)",
+        "text": "\n<b>📊 Шкала вероятности для предположений о настоящем:</b>\n\n• <b>must</b> – почти уверен (90‑95%) – должно быть\n  • *She's been working all day. She must be tired.*\n\n• <b>may</b> – возможно (50‑60%) – может быть\n  • *He may be at home.*\n\n• <b>might / could</b> – возможно (30‑50%) – менее уверенно\n  • *They might be stuck in traffic.*\n\n• <b>can't / couldn't</b> – не может быть (0‑5%) – уверенность, что не так\n  • *It can't be True.*\n\n<blockquote>Выбор модального глагола зависит от уверенности говорящего в предположении.</blockquote>\n"
+      },
+      {
+        "title": "Предположения о настоящем: активный и пассивный залог",
+        "text": "\n<b>📌 Структура для настоящего: модальный глагол + V (базовая форма) или модальный + be + V3 (пассив).</b>\n\n• *He must be at work.* (актив)\n• *The document must be signed by the manager.* (пассив)\n\n• *They might be waiting for us.* (актив)\n• *The package might be delivered today.* (пассив)\n\n<blockquote>Пассивный залог с модальными глаголами часто используется в официальной речи.</blockquote>\n\n• *She can't be serious.* (Не может быть, что она серьёзно.)\n• *The meeting could be postponed.* (Встречу, возможно, перенесут.)\n"
+      },
+      {
+        "title": "Предположения о прошлом (Modal Perfect)",
+        "text": "\n<b>📌 Структура для прошлого: модальный глагол + have + V3 (актив) или модальный + have been + V3 (пассив).</b>\n\n• *She must have forgotten about the meeting.* (Должно быть, забыла – я уверен)\n• *He might have left his phone at home.* (Возможно, оставил дома – менее уверен)\n• *They can't have seen us; we were hiding.* (Не могут быть, что видели)\n\n• *The letter must have been sent yesterday.* (Письмо, должно быть, было отправлено вчера – пассив)\n• *The mistake could have been avoided.* (Ошибки можно было избежать)\n\n<blockquote>Для прошлого также действует шкала уверенности, но с have + V3.</blockquote>\n"
+      },
+      {
+        "title": "Нюансы: might have vs could have в предположениях",
+        "text": "\n<b>📌 Might have done vs could have done в значении предположения:</b>\n\n• <b>Might have</b> – меньшая уверенность (30‑40%), часто для нереализованных возможностей.\n  • *She might have taken the earlier train.* (Возможно, она уехала более ранним поездом.)\n\n• <b>Could have</b> – может выражать предположение с 50% вероятности, но также и упущенную возможность.\n  • *He could have missed the bus.* (Возможно, он опоздал на автобус – или 'мог бы опоздать' в зависимости от контекста)\n\n<blockquote>В предположениях разница часто стилистическая; в экзаменах можно использовать оба.</blockquote>\n\n<b>⚠️ Типичные ошибки:</b>\n• ❌ She must have to go.  ✅ She must have gone.\n• ❌ He might has arrived.  ✅ He might have arrived.\n• ❌ They can't have to be late.  ✅ They can't be late / They can't have been late.\n\n<b>💡 Совет:</b>\n• Для уверенного предположения о прошлом – must have done.\n• Для сильной уверенности, что действие не произошло – can't have done.\n• Для неуверенного – might have / could have.\n"
+      }
+    ],
+    "faq": [
+      {
+        "question": "В чём разница между 'might have done' и 'could have done' в предположениях?",
+        "answer": "Might have done – менее вероятно; could have done – было возможно, но часто не реализовалось. В предположениях они почти взаимозаменяемы."
+      }
+    ]
+  },
+  "future_past_modals": {
+    "title": "Модальные глаголы для предположений о будущем и прошлом (will have done, might have been)",
+    "pages": [
+      {
+        "title": "Предположения о будущем",
+        "text": "\n<b>📌 Для предположений о будущем используются will, may, might, could.</b>\n\n• <b>will</b> – уверен (80‑90%)\n  • *Don't worry, you will pass the exam.* (Не волнуйся, ты сдашь экзамен.)\n\n• <b>may / might / could</b> – возможность (30‑60%)\n  • *We may go to the cinema tonight.* (Мы, возможно, пойдём в кино.)\n  • *She might be late.* (Она может опоздать.)\n  • *It could rain later.* (Позже может пойти дождь.)\n\n<blockquote>Will часто используется для предсказаний, основанных на мнении; may / might – для неуверенности.</blockquote>\n"
+      },
+      {
+        "title": "Future Perfect и Future Perfect Continuous для предположений",
+        "text": "\n<b>📌 Future Perfect (will have done) – предположение о том, что действие уже будет завершено к определённому моменту.</b>\n\n• *By next year, she will have graduated.* (К следующему году она уже закончит учёбу.)\n\n<b>Future Perfect Continuous (will have been doing) – предположение о длительности к моменту.</b>\n\n• *By December, I will have been working here for 5 years.* (К декабрю я проработаю здесь 5 лет – скорее констатация, чем предположение)\n\n<blockquote>В предположениях о будущем модальные глаголы могут сочетаться с перфектными формами для уточнения.</blockquote>\n"
+      },
+      {
+        "title": "Модальные глаголы для предположений о прошлом (повторение и углубление)",
+        "text": "\n<b>📌 Для прошлого: must have done, may have done, might have done, could have done, can't have done.</b>\n\n• *He looks tired. He must have worked late.* (Должно быть, работал допоздна)\n• *They may have already left.* (Возможно, уже уехали)\n• *She can't have seen us.* (Не может быть, что видела нас)\n\n<blockquote>Разница между may have и might have – might slightly less probable.</blockquote>\n\n<b>Примеры с пассивом:</b>\n• *The window must have been broken by the storm.* (Окно, должно быть, разбило бурей.)\n• *The invitation might have been sent to the wrong address.* (Приглашение, возможно, отправили не по адресу.)\n"
+      },
+      {
+        "title": "Сравнение и типичные ошибки",
+        "text": "\n<b>📊 Сравнение времён:</b>\n\n• Настоящее: *He must be rich.* (должно быть, богат)\n• Прошлое: *He must have been rich.* (должно быть, был богат)\n• Будущее: *He will be rich.* (будет богат – уверенность, не предположение)\n\n• Настоящее: *She may be at home.*\n• Прошлое: *She may have been at home.*\n• Будущее: *She may come tomorrow.*\n\n<b>⚠️ Частые ошибки:</b>\n• ❌ He must be have been tired.  ✅ He must have been tired.\n• ❌ They can have left. (неправильно)  ✅ They may have left / could have left.\n• ❌ She might had arrived.  ✅ She might have arrived.\n\n<b>💡 Совет:</b>\n• Для предположений о прошлом всегда используйте have + V3 (never просто V).\n• Для будущего используйте will, may, might, could + V (без to).\n• Пассив: модальный + be + V3 (настоящее/будущее); модальный + have been + V3 (прошлое).\n"
+      }
+    ],
+    "faq": [
+      {
+        "question": "Можно ли использовать 'will have' для предположения о прошлом?",
+        "answer": "Нет, will have относится только к будущему завершённому действию. Для прошлого – must have, may have, might have, could have, can't have."
+      }
+    ]
+  },
+  "discourse_markers": {
+    "title": "Дискурсивные маркеры (However, Nevertheless, In addition, Consequently, etc.)",
+    "pages": [
+      {
+        "title": "Что такое дискурсивные маркеры?",
+        "text": "\n<b>🔗 Дискурсивные маркеры – слова и фразы, которые связывают части текста, указывают на логические отношения между предложениями.</b>\n\nОни помогают структурировать речь и письмо, делая их более связными и логичными. На уровне C2 важно уметь использовать широкий спектр маркеров.\n\n<blockquote>Маркеры не меняют смысл предложения, а лишь показывают связь с предыдущим контекстом.</blockquote>\n"
+      },
+      {
+        "title": "Маркеры противопоставления",
+        "text": "\n<b>⚖️ Однако / тем не менее / тогда как:</b>\n\n• <b>however</b> – однако (вводное слово, выделяется запятой)\n  • *The task was difficult. However, we managed to finish on time.*\n\n• <b>nevertheless / nonetheless</b> – тем не менее (более формально)\n  • *The weather was terrible. Nevertheless, they continued the climb.*\n\n• <b>whereas</b> – тогда как (сравнивает два контрастных факта)\n  • *Some people love coffee, whereas others prefer tea.*\n\n• <b>in contrast</b> – в отличие от (сравнение)\n  • *In contrast to her brother, she is very outgoing.*\n\n• <b>on the other hand</b> – с другой стороны (для представления альтернативной точки зрения)\n  • *On the one hand, the job pays well. On the other hand, it's very stressful.*\n\n<blockquote>Эти маркеры незаменимы в эссе и дебатах.</blockquote>\n"
+      },
+      {
+        "title": "Маркеры добавления и усиления",
+        "text": "\n<b>➕ Более того / кроме того:</b>\n\n• <b>moreover / furthermore</b> – более того (формально, для добавления аргумента)\n  • *The new policy is unpopular. Moreover, it may be illegal.*\n\n• <b>in addition</b> – в добавок\n  • *In addition, we need to consider the budget.*\n\n• <b>besides</b> – кроме того (разговорный)\n  • *I don't want to go. Besides, it's too late.*\n\n• <b>what is more</b> – что более важно\n  • *The restaurant is expensive. What is more, the food is mediocre.*\n\n<blockquote>Используйте для наращивания аргументации в эссе.</blockquote>\n"
+      },
+      {
+        "title": "Маркеры следствия и причины",
+        "text": "\n<b>🔹 Следовательно / поэтому / в результате:</b>\n\n• <b>consequently / therefore / thus</b> – следовательно (формально)\n  • *He didn't study. Consequently, he failed the exam.*\n\n• <b>as a result</b> – в результате\n  • *The company lost money. As a result, many workers were laid off.*\n\n• <b>so</b> – поэтому (разговорный)\n  • *It was raining, so we stayed home.*\n\n• <b>for this reason</b> – по этой причине\n  • *The roads were icy; for this reason, schools were closed.*\n\n<blockquote>Эти связки показывают причинно-следственные связи.</blockquote>\n"
+      },
+      {
+        "title": "Маркеры для заключения и перефразирования",
+        "text": "\n<b>📌 В заключение / иными словами:</b>\n\n• <b>in conclusion / to sum up</b> – в заключение\n  • *In conclusion, the evidence supports our theory.*\n\n• <b>in summary</b> – подводя итог\n  • *In summary, we need to increase our budget.*\n\n• <b>in other words</b> – иными словами (перефразирование)\n  • *He's late. In other words, we have to start without him.*\n\n• <b>that is to say</b> – то есть (уточнение)\n  • *He's a polyglot; that is to say, he speaks several languages.*\n\n<blockquote>Эти маркеры делают текст чётким и логически завершённым.</blockquote>\n"
+      },
+      {
+        "title": "Советы и типичные ошибки",
+        "text": "\n<b>⚠️ Частые ошибки:</b>\n• ❌ However he is tired, he keeps working. (неправильно)  ✅ He is tired. However, he keeps working.\n• ❌ I studied hard, consequently I passed. (запятая должна быть после consequently)  ✅ I studied hard; consequently, I passed.\n• ❌ In addition of being expensive...  ✅ In addition to being expensive...\n\n<b>💡 Совет:</b>\n• В письменной речи ставьте запятую после however, nevertheless, therefore, consequently, moreover.\n• Не начинайте каждое предложение с маркера – это выглядит неестественно.\n• Практикуйтесь: пишите небольшие абзацы, используя разные маркеры.\n\n<blockquote>Дискурсивные маркеры – это скелет любого хорошо структурированного текста.</blockquote>\n"
+      }
+    ],
+    "faq": [
+      {
+        "question": "Можно ли использовать 'however' в начале предложения?",
+        "answer": "Да, это стандартная практика. Однако в академическом письме ставьте точку с запятой перед however, если он связывает два предложения: It was raining; however, we went out."
+      }
+    ],
+    "practice_tasks": [
+      {
+        "type": "fill_blank",
+        "text": "He was tired. ______, he continued working.",
+        "correct": "Nevertheless",
+        "hint": "Синоним 'however'",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She studied hard. ______, she passed the exam easily.",
+        "correct": "Consequently",
+        "hint": "Указывает на результат",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The weather was bad. ______, we decided to stay home.",
+        "correct": "Therefore",
+        "hint": "Означает 'поэтому'",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "I like coffee. ______, I prefer tea in the evening.",
+        "correct": "However",
+        "hint": "Противопоставление",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "We need milk, eggs, and bread. ______, we should buy some fruit.",
+        "correct": "In addition",
+        "hint": "Добавление информации",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He forgot his keys. ______, he couldn't enter the house.",
+        "correct": "As a result",
+        "hint": "Следствие",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The project was difficult. ______, we finished it on time.",
+        "correct": "Nevertheless",
+        "hint": "Вопреки трудностям",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She is very talented. ______, she is also very humble.",
+        "correct": "Moreover",
+        "hint": "Дополнительный аргумент",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The car broke down. ______, we were late for the meeting.",
+        "correct": "Consequently",
+        "hint": "Логическое завершение",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "I don't like spicy food. ______, I enjoyed the curry.",
+        "correct": "However",
+        "hint": "Неожиданный поворот",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He is a good leader. ______, he listens to his team.",
+        "correct": "Furthermore",
+        "hint": "Усиление предыдущей мысли",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The flight was delayed. ______, we missed our connection.",
+        "correct": "Therefore",
+        "hint": "Причина-следствие",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She didn't study. ______, she failed the test.",
+        "correct": "As a consequence",
+        "hint": "Негативный результат",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The hotel was expensive. ______, the service was excellent.",
+        "correct": "Nevertheless",
+        "hint": "Компенсация недостатка",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "We have to finish this report. ______, we need to prepare for the presentation.",
+        "correct": "In addition",
+        "hint": "Перечисление задач",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He is very rich. ______, he is not happy.",
+        "correct": "However",
+        "hint": "Контраст",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The company expanded. ______, they hired more staff.",
+        "correct": "Consequently",
+        "hint": "Результат роста",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "I love reading. ______, I spend hours in the library.",
+        "correct": "Therefore",
+        "hint": "Объяснение привычки",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The food was cold. ______, we ate it anyway.",
+        "correct": "Nevertheless",
+        "hint": "Вопреки обстоятельствам",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She speaks three languages. ______, she is learning a fourth.",
+        "correct": "Moreover",
+        "hint": "Дополнение к навыкам",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The traffic was heavy. ______, we arrived on time.",
+        "correct": "However",
+        "hint": "Несмотря на помехи",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He didn't apologize. ______, she was still angry.",
+        "correct": "Consequently",
+        "hint": "Эмоциональный результат",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "We need more time. ______, we need more resources.",
+        "correct": "In addition",
+        "hint": "Список потребностей",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The movie was boring. ______, we left early.",
+        "correct": "Therefore",
+        "hint": "Решение проблемы",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She is very kind. ______, she is always ready to help.",
+        "correct": "Furthermore",
+        "hint": "Подтверждение качества",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The test was hard. ______, everyone passed.",
+        "correct": "Nevertheless",
+        "hint": "Удивление результатом",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He missed the bus. ______, he was late for work.",
+        "correct": "As a result",
+        "hint": "Цепочка событий",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "I enjoy swimming. ______, I go to the pool every week.",
+        "correct": "Consequently",
+        "hint": "Регулярное действие",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The plan was risky. ______, it succeeded.",
+        "correct": "However",
+        "hint": "Неожиданный успех",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She is a great singer. ______, she writes her own songs.",
+        "correct": "Moreover",
+        "hint": "Талант и творчество",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The economy is improving. ______, unemployment is falling.",
+        "correct": "Consequently",
+        "hint": "Экономическая логика",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "He was warned about the risks. ______, he invested all his money.",
+        "correct": "Nevertheless",
+        "hint": "Игнорирование предупреждений",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "The experiment failed. ______, the team learned valuable lessons.",
+        "correct": "However",
+        "hint": "Позитивный взгляд на неудачу",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "She is an expert in her field. ______, she is a great mentor.",
+        "correct": "Furthermore",
+        "hint": "Сочетание знаний и наставничества",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "The company lost money. ______, they had to lay off staff.",
+        "correct": "Therefore",
+        "hint": "Вынужденная мера",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "He trained every day. ______, he won the championship.",
+        "correct": "Consequently",
+        "hint": "Закономерный итог",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "The software is user-friendly. ______, it is very powerful.",
+        "correct": "Moreover",
+        "hint": "Простота и функциональность",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "The negotiations were tough. ______, a deal was reached.",
+        "correct": "Nevertheless",
+        "hint": "Преодоление трудностей",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "The river flooded. ______, many homes were destroyed.",
+        "correct": "As a consequence",
+        "hint": "Катастрофический результат",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "She is very busy. ______, she always finds time for her family.",
+        "correct": "However",
+        "hint": "Баланс между работой и семьей",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "He was tired; ______, he continued working.",
+        "correct": "nevertheless",
+        "hint": "Used to show contrast despite the previous statement.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She studied hard; ______, she passed the exam.",
+        "correct": "consequently",
+        "hint": "Indicates a result or effect.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The weather was bad. ______, we decided to stay home.",
+        "correct": "Therefore",
+        "hint": "Shows logical conclusion.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "I like coffee; ______, I prefer tea in the morning.",
+        "correct": "however",
+        "hint": "Introduces a contrasting idea.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He is very rich; ______, he is not happy.",
+        "correct": "nevertheless",
+        "hint": "Similar to 'however', but more formal.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "We need to buy milk, bread, and eggs. ______, we should get some fruit.",
+        "correct": "In addition",
+        "hint": "Adds extra information.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The company lost money; ______, it had to close.",
+        "correct": "consequently",
+        "hint": "Shows a direct result.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She is not only smart; ______, she is very kind.",
+        "correct": "furthermore",
+        "hint": "Adds emphasis to an additional point.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He forgot his keys; ______, he couldn't enter the house.",
+        "correct": "as a result",
+        "hint": "Phrase meaning 'because of that'.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The project was difficult; ______, we completed it on time.",
+        "correct": "nevertheless",
+        "hint": "Shows persistence despite difficulty.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "I love traveling; ______, I rarely have time for it.",
+        "correct": "however",
+        "hint": "Contrasts desire with reality.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The car broke down; ______, we missed the flight.",
+        "correct": "consequently",
+        "hint": "Cause and effect.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He is very talented; ______, he works extremely hard.",
+        "correct": "furthermore",
+        "hint": "Adds a supporting point.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The food was expensive; ______, it was delicious.",
+        "correct": "nevertheless",
+        "hint": "Contrasts cost with quality.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She didn't study; ______, she failed the test.",
+        "correct": "therefore",
+        "hint": "Logical consequence.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "We have a meeting at 10; ______, we need to prepare the report.",
+        "correct": "thus",
+        "hint": "Formal word for 'therefore'.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He is very funny; ______, he is also very serious when needed.",
+        "correct": "however",
+        "hint": "Shows a dual nature.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The team practiced hard; ______, they won the championship.",
+        "correct": "consequently",
+        "hint": "Result of effort.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "I don't like this song; ______, my sister loves it.",
+        "correct": "however",
+        "hint": "Contrasting opinions.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He is very busy; ______, he always helps his friends.",
+        "correct": "nevertheless",
+        "hint": "Despite being busy.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The movie was boring; ______, we left early.",
+        "correct": "therefore",
+        "hint": "Reason for leaving.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She speaks three languages; ______, she is learning a fourth.",
+        "correct": "in addition",
+        "hint": "Adding more information.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The road was icy; ______, we drove very slowly.",
+        "correct": "consequently",
+        "hint": "Result of dangerous conditions.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He is not very tall; ______, he is an excellent basketball player.",
+        "correct": "nevertheless",
+        "hint": "Contrasts height with skill.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The test was easy; ______, everyone passed.",
+        "correct": "therefore",
+        "hint": "Simple cause and effect.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "I need to finish this report; ______, I can't go to the party.",
+        "correct": "thus",
+        "hint": "Formal consequence.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He is very generous; ______, he donates to charity every month.",
+        "correct": "furthermore",
+        "hint": "Adds an example of generosity.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The hotel was noisy; ______, we asked for a different room.",
+        "correct": "consequently",
+        "hint": "Result of discomfort.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She is very shy; ______, she gave a great speech.",
+        "correct": "nevertheless",
+        "hint": "Contrasts shyness with performance.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The sun was shining; ______, we went to the beach.",
+        "correct": "therefore",
+        "hint": "Logical decision based on weather.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He is very experienced; ______, he made a few mistakes.",
+        "correct": "nevertheless",
+        "hint": "Unexpected contrast despite experience.",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "The economy is improving; ______, unemployment is still high.",
+        "correct": "however",
+        "hint": "Contrasts general improvement with a specific problem.",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "She studied medicine; ______, she became a doctor.",
+        "correct": "consequently",
+        "hint": "Direct career path result.",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "The plan was risky; ______, it succeeded beyond expectations.",
+        "correct": "nevertheless",
+        "hint": "Contrasts risk with success.",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "He is not only a great teacher; ______, he is a published author.",
+        "correct": "furthermore",
+        "hint": "Adds a significant achievement.",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "The data was incomplete; ______, we could not draw any conclusions.",
+        "correct": "therefore",
+        "hint": "Logical impossibility due to lack of data.",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "She was late; ______, she missed the beginning of the movie.",
+        "correct": "consequently",
+        "hint": "Time-related result.",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "The instructions were unclear; ______, many people made mistakes.",
+        "correct": "as a result",
+        "hint": "Phrase indicating outcome of confusion.",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "He is very wealthy; ______, he lives a simple life.",
+        "correct": "nevertheless",
+        "hint": "Contrasts wealth with lifestyle.",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "The company expanded rapidly; ______, it had to hire more staff.",
+        "correct": "consequently",
+        "hint": "Result of growth.",
+        "star": True
+      }
+    ]
+  },
+  "fillers_hesitation": {
+    "title": "Заполнители пауз и хезитации (Well, You see, I mean, Sort of, Kind of)",
+    "pages": [
+      {
+        "title": "Что такое заполнители пауз?",
+        "text": "\n<b>🗣️ Заполнители пауз – слова и звуки (well, you know, actually, sort of, like), которые дают говорящему время подумать.</b>\n\nОни делают речь более естественной и разговорной. На уровне C2 важно уметь использовать их, не переусердствуя.\n\n<blockquote>Слишком много заполнителей – признак неуверенности; полное их отсутствие делает речь роботизированной.</blockquote>\n"
+      },
+      {
+        "title": "Самые частые заполнители",
+        "text": "\n<b>📌 Основные заполнители и их оттенки:</b>\n\n• <b>well</b> – универсальный заполнитель, часто в начале ответа\n  • *Well, I'm not sure about that.*\n\n• <b>you know</b> – «понимаешь», подразумевает, что слушающий разделяет ваш опыт\n  • *It was, you know, a bit disappointing.*\n\n• <b>I mean</b> – «в смысле», уточнение или исправление\n  • *He's nice – I mean, sometimes he's a bit grumpy.*\n\n• <b>actually</b> – «вообще-то», смягчение или поправка\n  • *Actually, I think you're right.*\n\n• <b>sort of / kind of</b> – «вроде, как бы», выражение приблизительности\n  • *I'm kind of tired.* (я как бы устал)\n\n• <b>like</b> – молодёжное, часто переиспользуемое (можно злоупотреблять)\n  • *It was, like, really amazing.*\n\n<blockquote>В формальной речи старайтесь избегать like и избыточных заполнителей.</blockquote>\n"
+      },
+      {
+        "title": "Как использовать, не раздражая собеседника",
+        "text": "\n<b>🎯 Правила употребления:</b>\n\n• Используйте заполнители, когда нужно выиграть время для обдумывания ответа.\n• Не начинайте каждое предложение с well или actually.\n• В презентациях и интервью старайтесь минимизировать заполнители, заменив их паузой или чётким переходом.\n\n<b>Примеры естественного использования:</b>\n• *Well, let me think... I think we should go with the first option.*\n• *I mean, it's not that I don't like him, but he can be annoying.*\n• *She's sort of shy, but she's very kind.*\n\n<blockquote>На экзаменах (IELTS Speaking) небольшое количество заполнителей не снижает балл, но их избыток считается недостатком беглости.</blockquote>\n"
+      },
+      {
+        "title": "Советы",
+        "text": "\n<b>💡 Как тренировать использование заполнителей:</b>\n\n• Слушайте подкасты и интервью, обращая внимание на то, как носители используют заполнители.\n• Записывайте себя на диктофон и анализируйте, не слишком ли часто вы используете well или like.\n• Практикуйтесь отвечать на неожиданные вопросы, используя well, actually, you know для пауз.\n\n<blockquote>Заполнители – это не ошибка, а часть естественной речи. Главное – знать меру.</blockquote>\n"
+      }
+    ],
+    "faq": [
+      {
+        "question": "Допустимо ли использовать 'like' в IELTS Speaking?",
+        "answer": "Очень редко. Лучше заменить на sort of / kind of или просто сделать паузу."
+      }
+    ],
+    "practice_tasks": [
+      {
+        "type": "fill_blank",
+        "text": "___ , I think we should start the meeting now.",
+        "correct": "Well",
+        "hint": "Используется для начала высказывания",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She is ___ tired after the long journey.",
+        "correct": "kind of",
+        "hint": "Означает 'вроде как'",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "___ , it's not that simple.",
+        "correct": "You see",
+        "hint": "Объяснение причины",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He's ___ a genius, but not really.",
+        "correct": "sort of",
+        "hint": "Смягчение утверждения",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "___ , what I'm trying to say is...",
+        "correct": "I mean",
+        "hint": "Уточнение мысли",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "___ , let me think about it.",
+        "correct": "Well",
+        "hint": "Пауза для размышления",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "It's ___ like a dream come True.",
+        "correct": "kind of",
+        "hint": "Приблизительное сравнение",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "___ , I didn't expect that.",
+        "correct": "Well",
+        "hint": "Выражение удивления",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He's ___ upset about the news.",
+        "correct": "sort of",
+        "hint": "Неполная степень",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "___ , the problem is more complex.",
+        "correct": "You see",
+        "hint": "Введение объяснения",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "___ , could you repeat that?",
+        "correct": "I mean",
+        "hint": "Вежливая просьба",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "This is ___ unusual.",
+        "correct": "kind of",
+        "hint": "Смягчение оценки",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "___ , I suppose you're right.",
+        "correct": "Well",
+        "hint": "Неуверенное согласие",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "___ , it's like this...",
+        "correct": "You see",
+        "hint": "Начало истории",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "I ___ like that movie.",
+        "correct": "sort of",
+        "hint": "Неполное впечатление",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "___ , I'm not sure about that.",
+        "correct": "Well",
+        "hint": "Сомнение",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "___ , he's my brother, actually.",
+        "correct": "I mean",
+        "hint": "Исправление информации",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "It's ___ cold outside.",
+        "correct": "kind of",
+        "hint": "Приблизительная температура",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "___ , the thing is...",
+        "correct": "You see",
+        "hint": "Введение ключевого момента",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "___ , maybe we should wait.",
+        "correct": "Well",
+        "hint": "Предложение",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He's ___ a friend of mine.",
+        "correct": "sort of",
+        "hint": "Не совсем точное описание",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "___ , that's not what I meant.",
+        "correct": "I mean",
+        "hint": "Поправка",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "___ , let's see...",
+        "correct": "Well",
+        "hint": "Пауза для обдумывания",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "___ , it's complicated.",
+        "correct": "You see",
+        "hint": "Объяснение сложности",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "I ___ understand your point.",
+        "correct": "kind of",
+        "hint": "Частичное понимание",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "___ , I guess we'll go.",
+        "correct": "Well",
+        "hint": "Неохотное согласие",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "___ , he's not that bad.",
+        "correct": "I mean",
+        "hint": "Смягчение критики",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "It's ___ a tradition.",
+        "correct": "sort of",
+        "hint": "Неформальное описание",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "___ , I have to go now.",
+        "correct": "Well",
+        "hint": "Завершение разговора",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "___ , the answer is no.",
+        "correct": "You see",
+        "hint": "Прямое объяснение",
+        "star": False
+      },
+      {
+        "type": "choice",
+        "text": "___ , I don't know what to say.",
+        "correct": "Well",
+        "hint": "Заполнитель для паузы",
+        "star": True,
+        "options": [
+          "Well",
+          "Sort of",
+          "I mean",
+          "Kind of"
         ]
-    },
-        "false_friends": {
-        "title": "Ложные друзья переводчика (продвинутые)",
-        "pages": [
-            {
-                "title": "Что такое ложные друзья?",
-                "text": """
-<b>⚠️ Ложные друзья – слова, которые похожи на русские, но имеют другое значение.</b>
-
-Ошибки в таких словах – одна из самых характерных проблем для русскоязычных учащихся на высоких уровнях.
-
-• <b>magazine</b> – журнал (не магазин)
-• <b>gymnasium</b> – спортзал (не гимназия)
-• <b>lunatic</b> – сумасшедший (не лунатик)
-• <b>brilliant</b> – блестящий (не бриллиант)
-• <b>chef</b> – шеф-повар (не шеф)
-
-<blockquote>На уровне C2 знание ложных друзей критически важно для точного понимания и устной речи.</blockquote>
-"""
-            },
-            {
-                "title": "Самые коварные ложные друзья (часть 1)",
-                "text": """
-<b>📌 Часто встречающиеся:</b>
-
-• <b>accurate</b> – точный (не аккуратный)
-• <b>actual</b> – фактический, настоящий (не актуальный)
-• <b>advocate</b> – защитник, адвокат (не авантюрист)
-• <b>aggressive</b> – агрессивный, напористый (не аграрный)
-• <b>anecdote</b> – забавная история (не анекдот в смысле шутки)
-• <b>audience</b> – публика, зрители (не аудиенция)
-• <b>balcony</b> – балкон (не бельэтаж)
-• <b>clay</b> – глина (не клей)
-• <b>conductor</b> – дирижёр, кондуктор (не кондуктор в автобусе – скорее bus driver)
-• <b>control</b> – контроль (не справочное бюро)
-• <b>data</b> – данные (не дата)
-• <b>decent</b> – приличный (не децентный)
-
-<blockquote>Запомните эти пары, чтобы избегать досадных ошибок.</blockquote>
-"""
-            },
-            {
-                "title": "Самые коварные ложные друзья (часть 2)",
-                "text": """
-<b>📌 Продолжение:</b>
-
-• <b>eventually</b> – в конце концов (не возможно)
-• <b>fabric</b> – ткань (не фабрика)
-• <b>genial</b> – добрый, дружелюбный (не гениальный)
-• <b>intelligent</b> – умный (не интеллигентный)
-• <b>list</b> – список (не лист)
-• <b>lunatic</b> – сумасшедший (не лунатик – sleepwalker)
-• <b>magazine</b> – журнал (не магазин – shop)
-• <b>mayor</b> – мэр (не майор – major)
-• <b>novel</b> – роман (не новелла – short story)
-• <b>partisan</b> – сторонник (не партизан – guerrilla)
-• <b>patron</b> – постоянный клиент (не патрон – boss)
-• <b>principal</b> – директор школы, главный (не принцип – principle)
-
-<blockquote>Особенно опасны слова, которые пишутся почти одинаково, но имеют разное значение.</blockquote>
-"""
-            },
-            {
-                "title": "Примеры в контексте",
-                "text": """
-<b>📖 Предложения для закрепления:</b>
-
-• *The data are accurate.* (Данные точные, не аккуратные)
-• *He is a decent person.* (Он приличный человек)
-• *She eventually agreed.* (В конце концов она согласилась)
-• *The fabric is soft.* (Ткань мягкая)
-• *The audience applauded.* (Публика аплодировала)
-• *He is the principal of the school.* (Он директор школы)
-
-<b>⚠️ Типичные ошибки:</b>
-• ❌ *I need to buy a magazine.* (не магазин) – *I need to go to a shop.*
-• ❌ *He is very intelligent.* (не интеллигентный) – *He is a cultured person.* для «интеллигентный»
-
-<blockquote>Ошибки в ложных друзьях могут полностью изменить смысл фразы.</blockquote>
-"""
-            },
-            {
-                "title": "Советы",
-                "text": """
-<b>💡 Как запомнить ложных друзей:</b>
-
-• Составьте таблицу из двух столбцов: ложный друг → правильное значение.
-• Составляйте предложения с каждым словом в правильном значении.
-• Используйте карточки: на одной стороне слово, на другой – перевод и пример.
-• Читайте тексты на английском, обращая внимание на контекст таких слов.
-
-<blockquote>Повторение и практика – единственный способ избавиться от интерференции родного языка.</blockquote>
-"""
-            }
-        ],
-        "faq": [
-            {"question": "Сколько ложных друзей нужно знать для C2?", "answer": "Около 100-200 самых частотных. Большинство из них вы увидите в тестах и реальном общении."}
+      },
+      {
+        "type": "choice",
+        "text": "She's ___ pretty, but not stunning.",
+        "correct": "kind of",
+        "hint": "Смягчение",
+        "star": True,
+        "options": [
+          "well",
+          "you see",
+          "kind of",
+          "I mean"
         ]
-    },
-
-    # ==================== МОДУЛЬ 4: Эмфатические и риторические конструкции ====================
-        "cleft_sentences_emphatic": {
-        "title": "Расщеплённые предложения (все типы, эмфаза)",
-        "pages": [
-            {
-                "title": "Что такое расщеплённые предложения?",
-                "text": """
-<b>🔍 Расщеплённые предложения (cleft sentences) используются для выделения определённой части предложения (логического ударения).</b>
-
-Они делят (расщепляют) одно предложение на две части.
-
-• It was John that saw the accident. (Именно Джон увидел аварию – выделяем John)
-• What I need is a good rest. (Что мне нужно, так это хороший отдых – выделяем rest)
-
-<blockquote>Часто используются в письменной речи для акцента и в разговоре для эмоционального выделения.</blockquote>
-"""
-            },
-            {
-                "title": "It-расщепление (It is/was + выделяемый элемент + that/who...)",
-                "text": """
-<b>📌 It + be + выделяемое + that/who...</b>
-
-• John saw the accident. → It was John who saw the accident. (именно Джон)
-• I met your brother yesterday. → It was yesterday that I met your brother. (именно вчера)
-• They need more time. → It is more time that they need. (именно больше времени)
-
-<blockquote>Если выделяется человек, можно использовать who; для предметов и обстоятельств – that.</blockquote>
-
-<b>Дополнительные примеры:</b>
-• *It was because of the weather that we cancelled the picnic.* (Именно из-за погоды мы отменили пикник.)
-• *It was in Paris that they first met.* (Именно в Париже они впервые встретились.)
-• *It wasn't me who broke the vase.* (Не я разбил вазу.)
-
-<blockquote>Отрицание также возможно: It wasn't John who did it.</blockquote>
-"""
-            },
-            {
-                "title": "What-расщепление (What + подлежащее + глагол + be + выделяемое)",
-                "text": """
-<b>📌 What... + be + выделяемое – выделяет действие или предмет.</b>
-
-• I need a good rest. → What I need is a good rest.
-• He gave me a book. → What he gave me was a book.
-• She loves chocolate. → What she loves is chocolate.
-
-<b>Другие варианты:</b>
-• *What we need now is a miracle.* (Что нам сейчас нужно, так это чудо.)
-• *What happened was that the car broke down.* (Случилось то, что машина сломалась.)
-
-<blockquote>What-расщепление часто используется для выделения дополнения.</blockquote>
-"""
-            },
-            {
-                "title": "All-расщепление и другие варианты",
-                "text": """
-<b>🔹 All (the only) + that... + be + выделяемое – для выделения единственной вещи.</b>
-
-• I just want to sleep. → All I want is to sleep.
-• The only thing I need is your love. → All I need is your love.
-
-<b>🔹 Where / when / why-расщепление:</b>
-• That's where I was born. (вот где я родился)
-• That's the reason why I left. (вот почему я ушёл)
-• 2010 was the year when we got married. (2010 год – когда мы поженились)
-
-<b>🔹 There-расщепление:</b>
-• *There was a man who called.* (Был один человек, который позвонил.)
-• *There came a moment when I realised the truth.* (Наступил момент, когда я осознал правду.)
-
-<blockquote>Эти конструкции делают речь более эмоциональной и выразительной.</blockquote>
-"""
-            },
-            {
-                "title": "Советы и типичные ошибки",
-                "text": """
-<b>⚠️ Частые ошибки:</b>
-• ❌ It was John who he saw the accident. (лишнее he)  ✅ It was John who saw the accident.
-• ❌ What I need is a rest. (верно)
-• ❌ It was yesterday that I have met him. (неправильное время)  ✅ It was yesterday that I met him.
-
-<b>💡 Совет:</b>
-• Используйте расщеплённые предложения, когда хотите подчеркнуть определённую информацию.
-• В разговорной речи они звучат неестественно, если их использовать слишком часто.
-• Тренируйтесь: перепишите обычные предложения, выделяя разные элементы.
-
-<blockquote>Расщеплённые предложения – важный инструмент для сдачи экзаменов CAE/CPE и академического письма.</blockquote>
-"""
-            }
-        ],
-        "faq": [
-            {"question": "В чём разница между 'It is' и 'What is' в расщеплении?", "answer": "It is выделяет любой элемент (человек, время, место, предмет). What выделяет действие или объект."}
+      },
+      {
+        "type": "choice",
+        "text": "___ , the reason is simple.",
+        "correct": "You see",
+        "hint": "Введение объяснения",
+        "star": True,
+        "options": [
+          "Well",
+          "You see",
+          "Sort of",
+          "Kind of"
         ]
-    },
-        "inversion_emphatic_c2": {
-        "title": "Инверсия для эмфазы (Only, Little, So, Such, Nor)",
-        "pages": [
-            {
-                "title": "Инверсия с only (в начале предложения)",
-                "text": """
-<b>📌 Инверсия используется после only + обстоятельство времени/условия для усиления.</b>
-
-• Only after the film started did I realise I had seen it before. (Только после начала фильма я понял, что уже видел его.)
-• Only when you apologise will I forgive you. (Только когда извинишься, я прощу.)
-• Only then did he understand his mistake. (Только тогда он понял свою ошибку.)
-
-<blockquote>После only + выражение времени/условия ставим вспомогательный глагол, затем подлежащее.</blockquote>
-
-<b>Дополнительные примеры:</b>
-• *Only by working hard will you succeed.* (Только упорно работая, вы добьётесь успеха.)
-• *Only after I left did I realise how much I loved her.* (Только после ухода я понял, как сильно люблю её.)
-"""
-            },
-            {
-                "title": "Инверсия с little (редко, почти никогда)",
-                "text": """
-<b>🔍 Little в начале предложения означает «почти не, совсем не» и требует инверсии.</b>
-
-• Little did he know that his life was about to change. (Он понятия не имел, что его жизнь вот-вот изменится.)
-• Little did they suspect that the police were waiting. (Они ни о чём не подозревали, что полиция ждала.)
-
-<blockquote>Эта конструкция очень формальная и встречается в литературе.</blockquote>
-
-• *Little did I realise what was in store for me.* (Я и не подозревал, что меня ждёт.)
-• *Little does she care about the consequences.* (Ей мало дела до последствий.)
-"""
-            },
-            {
-                "title": "Инверсия с so / such (для усиления)",
-                "text": """
-<b>📌 So + прилагательное / such + существительное в начале предложения вызывают инверсию.</b>
-
-• So beautiful was the view that we stopped to take photos. (Вид был настолько красивым, что мы остановились фотографировать.)
-• Such was his anger that he couldn't speak. (Таким был его гнев, что он не мог говорить.)
-
-<blockquote>Сравните обычный порядок: The view was so beautiful that... vs So beautiful was the view that...</blockquote>
-
-• *So rapidly did she speak that I could hardly understand.* (Она говорила так быстро, что я едва понимал.)
-• *Such was the force of the explosion that windows broke.* (Такова была сила взрыва, что выбило окна.)
-"""
-            },
-            {
-                "title": "Инверсия с nor / neither",
-                "text": """
-<b>🔄 Nor / neither в начале предложения для выражения отрицательного согласия.</b>
-
-• He didn't show up, nor did he call. (Он не пришёл и даже не позвонил.)
-• I can't swim, neither can my brother. (Я не умею плавать, и мой брат тоже.)
-
-<blockquote>Вместо nor может использоваться neither, но nor более книжное.</blockquote>
-
-• *She didn't apologise, nor did she explain.* (Она не извинилась и даже не объяснила.)
-• *I have never been there, nor do I wish to go.* (Я никогда там не был, и не хочу ехать.)
-"""
-            },
-            {
-                "title": "Советы и типичные ошибки",
-                "text": """
-<b>⚠️ Частые ошибки:</b>
-• ❌ Only after I finished, I realised.  ✅ Only after I finished did I realise.
-• ❌ Little he knew.  ✅ Little did he know.
-• ❌ So beautiful the view was that...  ✅ So beautiful was the view that...
-
-<b>💡 Совет:</b>
-• Используйте инверсию с only для придания веса условию.
-• Не злоупотребляйте: в разговорной речи эти конструкции неестественны.
-• Тренируйтесь: переписывайте обычные предложения в эмфатическую инверсию.
-
-<blockquote>На экзаменах (CPE, CAE) инверсия оценивается как признак высокого уровня владения языком.</blockquote>
-"""
-            }
-        ],
-        "faq": [
-            {"question": "Всегда ли нужна инверсия после only?", "answer": "Только если only стоит в начале предложения и относится ко всему предложению (не к подлежащему). Only John can help (инверсии нет)."}
+      },
+      {
+        "type": "choice",
+        "text": "He's ___ a doctor, but not really practicing.",
+        "correct": "sort of",
+        "hint": "Неполное соответствие",
+        "star": True,
+        "options": [
+          "well",
+          "I mean",
+          "sort of",
+          "you see"
         ]
-    },
-        "negative_inversion_c2": {
-        "title": "Инверсия после отрицательных наречий (Not only, No sooner, Hardly, Never)",
-        "pages": [
-            {
-                "title": "Not only... but also",
-                "text": """
-<b>📌 Not only + вспомогательный глагол + подлежащее + V, but also...</b>
-
-• She is not only intelligent but also beautiful. → Not only is she intelligent, but she is also beautiful.
-• They not only lost the match but also injured their best player. → Not only did they lose the match, but they also injured their best player.
-
-<blockquote>Если в первой части уже есть вспомогательный глагол, он переносится вперёд. Если нет, добавляется do/does/did.</blockquote>
-
-<b>Дополнительные примеры:</b>
-• *Not only did he refuse to help, but he also laughed at me.* (Мало того что он отказался помогать, он ещё и смеялся надо мной.)
-• *Not only is she a talented musician, but she is also an excellent painter.* (Она не только талантливый музыкант, но и отличный художник.)
-"""
-            },
-            {
-                "title": "No sooner... than",
-                "text": """
-<b>📌 No sooner + had + подлежащее + V3, than + подлежащее + V (Past Simple).</b>
-
-• No sooner had I arrived than the phone rang. (Не успел я прийти, как зазвонил телефон.)
-• No sooner had she closed the door than someone knocked. (Не успела она закрыть дверь, как кто-то постучал.)
-
-<blockquote>No sooner всегда требует Past Perfect (had done) в первой части и Past Simple во второй. Than – не then!</blockquote>
-
-• *No sooner had he sat down than the meeting started.* (Не успел он сесть, как началась встреча.)
-• *No sooner had we left than it began to snow.* (Не успели мы уйти, как пошёл снег.)
-"""
-            },
-            {
-                "title": "Hardly / Scarcely... when",
-                "text": """
-<b>📌 Hardly / Scarcely + had + подлежащее + V3, when + подлежащее + V (Past Simple).</b>
-
-• Hardly had we sat down when the film started. (Едва мы сели, как начался фильм.)
-• Scarcely had he entered the room when the lights went out. (Едва он вошёл в комнату, как погас свет.)
-
-<blockquote>Hardly / Scarcely имеют то же значение, что и no sooner. They very formal.</blockquote>
-
-• *Hardly had she started her speech when the microphone stopped working.* (Едва она начала речь, как перестал работать микрофон.)
-• *Scarcely had I closed the door when I heard a strange noise.* (Едва я закрыл дверь, как услышал странный шум.)
-"""
-            },
-            {
-                "title": "Never, Rarely, Seldom, Little (в начале предложения)",
-                "text": """
-<b>📌 Отрицательные наречия в начале предложения требуют инверсии.</b>
-
-• Never have I seen such a beautiful sunset. (Никогда я не видел такого красивого заката.)
-• Rarely does he arrive on time. (Редко он приходит вовремя.)
-• Seldom do we have such good weather. (Редко у нас бывает такая хорошая погода.)
-• Little did they know what was coming. (Они понятия не имели, что их ждёт.)
-
-<blockquote>Эти конструкции очень формальны и чаще встречаются в литературе.</blockquote>
-
-• *Never again will I trust him.* (Никогда больше я не буду ему доверять.)
-• *Rarely have I encountered such ignorance.* (Редко я сталкивался с таким невежеством.)
-"""
-            },
-            {
-                "title": "Советы и типичные ошибки",
-                "text": """
-<b>⚠️ Частые ошибки:</b>
-• ❌ Not only he arrived late, but also...  ✅ Not only did he arrive late...
-• ❌ No sooner I had left than...  ✅ No sooner had I left than...
-• ❌ Hardly had we started than it rained. (should be 'when')  ✅ Hardly had we started when it rained.
-
-<b>💡 Совет:</b>
-• Используйте инверсию только в очень формальных ситуациях или на экзаменах.
-• Запомните: после No sooner ставим had + подлежащее, после than – Past Simple.
-• После Not Only вспомогательный глагол идёт перед подлежащим.
-• Тренируйтесь: переписывайте обычные предложения в инвертированную форму.
-"""
-            }
-        ],
-        "faq": [
-            {"question": "Можно ли использовать инверсию с другими отрицательными наречиями?", "answer": "Да: never, rarely, seldom, little, at no time, under no circumstances, in no way: Under no circumstances should you open this door."}
+      },
+      {
+        "type": "choice",
+        "text": "___ , let me explain.",
+        "correct": "I mean",
+        "hint": "Уточнение",
+        "star": True,
+        "options": [
+          "Well",
+          "Sort of",
+          "Kind of",
+          "I mean"
         ]
-    },
-        "ellipsis_substitution": {
-        "title": "Эллипсис и замена (опущение слов, использование one/so/do)",
-        "pages": [
-            {
-                "title": "Что такое эллипсис?",
-                "text": """
-<b>✂️ Эллипсис – опущение слов, которые легко восстанавливаются из контекста.</b>
-
-Используется, чтобы избежать повторения и сделать речь более естественной и динамичной.
-
-• *He can speak French, and she can too.* (вместо ... and she can speak French too)
-• *I wanted to go, but I wasn't able to.* (вместо ... I wasn't able to go)
-
-<blockquote>На уровне C2 эллипсис – признак беглой и естественной речи.</blockquote>
-"""
-            },
-            {
-                "title": "Замена с 'one / ones'",
-                "text": """
-<b>📌 One / ones заменяют ранее упомянутое существительное, чтобы избежать повторения.</b>
-
-• *I need a new phone. This one is too old.* (Эта – в значении this phone)
-• *Which dress do you like? – I like the blue one.* (синее платье)
-
-• *These apples are fresher than the ones in the basket.* (чем те, что в корзине)
-• *I prefer classical music to modern one. – неправильно (music неисчисляемое)*  ✅ ... to modern music.
-
-<blockquote>One / ones нельзя использовать с неисчисляемыми существительными (information, advice, music).</blockquote>
-"""
-            },
-            {
-                "title": "Замена с 'so' и 'not'",
-                "text": """
-<b>📌 So / not заменяют целые придаточные после глаголов think, believe, hope, expect, guess, be afraid, suppose, etc.</b>
-
-• *– Is he coming? – I hope so.* (вместо I hope he is coming)
-• *– Will it rain? – I think not.* (или I don't think so)
-
-• *– Do you think she'll accept? – I suppose so.*
-• *– They won't win. – I hope not.* (надеюсь, что нет)
-
-<blockquote>После be afraid и guess чаще используется so: I'm afraid so, I guess so.</blockquote>
-"""
-            },
-            {
-                "title": "Замена с 'do', 'does', 'did' (пропуск глагола)",
-                "text": """
-<b>📌 Do / does / did заменяют смысловой глагол, чтобы избежать повторения.</b>
-
-• *She sings better than he does.* (чем он поёт)
-• *I like coffee, and so does she.* (и она тоже)
-• *He didn't come, but his brother did.* (пришёл)
-
-• *I don't enjoy parties, but my wife does.*
-• *She works harder than I do.*
-
-<blockquote>So + вспомогательный глагол + подлежащее – согласие: I love jazz. – So do I.</blockquote>
-"""
-            },
-            {
-                "title": "Советы",
-                "text": """
-<b>💡 Как развить навык эллипсиса:</b>
-• Обращайте внимание на опущение слов в диалогах из фильмов и книг.
-• Практикуйтесь в перефразировании, избегая повторений.
-• На экзаменах (CPE, CAE) эллипсис не является обязательным, но его использование повышает балл за стиль.
-
-<blockquote>Эллипсис делает речь более живой и естественной, но его избыток может привести к неясности.</blockquote>
-"""
-            }
-        ],
-        "faq": [
-            {"question": "Всегда ли нужно использовать 'so' после 'think'?", "answer": "В положительных ответах – I think so (думаю, да). В отрицательных – I don't think so (думаю, нет) или I think not (менее распространено)."}
+      },
+      {
+        "type": "reorder",
+        "text": "Расположите в правильном порядке: see / you / , / it's / not / easy",
+        "correct": "You see, it's not easy",
+        "hint": "Фраза с 'you see'",
+        "star": True
+      },
+      {
+        "type": "reorder",
+        "text": "Расположите в правильном порядке: mean / I / , / that's / wrong",
+        "correct": "I mean, that's wrong",
+        "hint": "Фраза с 'I mean'",
+        "star": True
+      },
+      {
+        "type": "translation",
+        "text": "Переведите: Ну, я не уверен.",
+        "correct": "Well, I'm not sure.",
+        "hint": "Начинается с 'Well'",
+        "star": True
+      },
+      {
+        "type": "translation",
+        "text": "Переведите: Он вроде как умный.",
+        "correct": "He's kind of smart.",
+        "hint": "Используйте 'kind of'",
+        "star": True
+      },
+      {
+        "type": "open",
+        "text": "Используйте 'sort of' в предложении о погоде.",
+        "correct": "It's sort of rainy today.",
+        "hint": "Пример с погодой",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "___ , I think we should leave now.",
+        "correct": "Well",
+        "hint": "Используется для начала фразы или паузы",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "It's ___ difficult to explain.",
+        "correct": "kind of",
+        "hint": "Означает 'вроде как' или 'отчасти'",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "___ , I didn't mean to upset you.",
+        "correct": "You see",
+        "hint": "Объяснение или оправдание",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He is ___ shy around new people.",
+        "correct": "sort of",
+        "hint": "Смягчает утверждение",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "___ , it's not that simple.",
+        "correct": "I mean",
+        "hint": "Уточнение или переформулировка",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "___ , I guess we could try again.",
+        "correct": "Well",
+        "hint": "Пауза перед решением",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "It's ___ like a tradition.",
+        "correct": "sort of",
+        "hint": "Приблизительное сравнение",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "___ , the thing is, I forgot my keys.",
+        "correct": "You see",
+        "hint": "Введение в объяснение",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "I'm ___ tired, but I can go.",
+        "correct": "kind of",
+        "hint": "Смягчение состояния",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "___ , what I'm trying to say is...",
+        "correct": "I mean",
+        "hint": "Поправка или уточнение",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "___ , maybe we should ask for help.",
+        "correct": "Well",
+        "hint": "Колебание перед предложением",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She is ___ upset about the news.",
+        "correct": "sort of",
+        "hint": "Частичное состояние",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "___ , I wasn't really listening.",
+        "correct": "You see",
+        "hint": "Признание",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "This is ___ weird, don't you think?",
+        "correct": "kind of",
+        "hint": "Субъективная оценка",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "___ , let me explain it again.",
+        "correct": "I mean",
+        "hint": "Повторное объяснение",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "___ , I suppose you're right.",
+        "correct": "Well",
+        "hint": "Согласие с колебанием",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He's ___ a genius, actually.",
+        "correct": "sort of",
+        "hint": "Неполное утверждение",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "___ , I have to be honest with you.",
+        "correct": "You see",
+        "hint": "Откровенное вступление",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "I ___ like that movie.",
+        "correct": "kind of",
+        "hint": "Умеренное отношение",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "___ , it's not what you think.",
+        "correct": "I mean",
+        "hint": "Опровержение",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "___ , that's a good question.",
+        "correct": "Well",
+        "hint": "Пауза для обдумывания",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "It's ___ like a dream.",
+        "correct": "sort of",
+        "hint": "Приблизительное описание",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "___ , I was just about to call you.",
+        "correct": "You see",
+        "hint": "Объяснение ситуации",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "I'm ___ hungry, but not starving.",
+        "correct": "kind of",
+        "hint": "Умеренный голод",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "___ , that's not exactly True.",
+        "correct": "I mean",
+        "hint": "Уточнение факта",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "___ , let's see what happens.",
+        "correct": "Well",
+        "hint": "Неуверенность в будущем",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He is ___ strange today.",
+        "correct": "sort of",
+        "hint": "Необычное поведение",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "___ , the problem is time.",
+        "correct": "You see",
+        "hint": "Выделение проблемы",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "It's ___ cold outside.",
+        "correct": "kind of",
+        "hint": "Умеренная температура",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "___ , I didn't say that.",
+        "correct": "I mean",
+        "hint": "Отрицание",
+        "star": False
+      },
+      {
+        "type": "choice",
+        "text": "___ , I think we should go now.",
+        "correct": "Well",
+        "hint": "Выберите заполнитель паузы",
+        "star": True,
+        "options": [
+          "Well",
+          "Sort of",
+          "I mean",
+          "You see"
         ]
-    },
-
-    # ==================== МОДУЛЬ 5: Выражение неуверенности, предположения, уступки ====================
-        "hedging_c2": {
-        "title": "Выражение неуверенности, смягчение утверждений (hedging)",
-        "pages": [
-            {
-                "title": "Что такое hedging?",
-                "text": """
-<b>🤔 Hedging – использование языковых средств для смягчения категоричности утверждения, выражения неуверенности или вежливости.</b>
-
-В академическом и деловом английском избегают абсолютных утверждений (It is certain that...). Вместо этого используют модальные глаголы, наречия, глаголы и вводные конструкции.
-
-• *It is likely that the economy will recover.* (Вероятно, экономика восстановится.)
-• *The results may indicate a correlation.* (Результаты могут указывать на корреляцию.)
-
-<blockquote>Hedging – ключевой навык для научных статей, презентаций и вежливого общения.</blockquote>
-"""
-            },
-            {
-                "title": "Модальные глаголы для смягчения",
-                "text": """
-<b>📌 Модальные глаголы выражают вероятность, а не абсолютную уверенность.</b>
-
-• <b>may / might / could</b> – возможно (наименее уверенно)
-  • *The new treatment might be effective.* (Новое лечение может быть эффективным.)
-
-• <b>can / could</b> – иногда возможно
-  • *This approach can lead to errors.* (Этот подход может приводить к ошибкам.)
-
-• <b>would</b> – в вежливых предположениях
-  • *It would seem that we have a problem.* (Похоже, у нас проблема.)
-
-<blockquote>В академических текстах избегают must (слишком уверенно) и will (категорично).</blockquote>
-"""
-            },
-            {
-                "title": "Лексические средства hedging",
-                "text": """
-<b>📌 Наречия, прилагательные, глаголы и вводные фразы:</b>
-
-• <b>Наречия:</b> probably, possibly, perhaps, apparently, arguably, seemingly
-  • *The project is arguably the most important of the decade.* (Этот проект, возможно, самый важный за десятилетие.)
-
-• <b>Прилагательные:</b> likely, unlikely, possible, probable
-  • *It is unlikely that the situation will improve.* (Маловероятно, что ситуация улучшится.)
-
-• <b>Глаголы:</b> seem, appear, suggest, indicate, tend to, tend to be
-  • *The data seem to support this hypothesis.* (Данные, по-видимому, подтверждают эту гипотезу.)
-
-• <b>Вводные фразы:</b> It is believed that..., There is evidence that..., According to...
-  • *According to the report, the economy is growing.* (Согласно отчёту, экономика растёт.)
-
-<blockquote>Использование таких слов делает утверждения менее категоричными и более научными.</blockquote>
-"""
-            },
-            {
-                "title": "Советы и примеры",
-                "text": """
-<b>📖 Примеры категоричных и смягчённых утверждений:</b>
-
-• Категорично: *This drug cures cancer.* (Это лекарство лечит рак.)
-• Смягчённо: *This drug may be effective against certain types of cancer.* (Это лекарство может быть эффективно против некоторых видов рака.)
-
-• Категорично: *The theory is wrong.* (Теория неверна.)
-• Смягчённо: *The theory appears to have some limitations.* (Теория, по-видимому, имеет некоторые ограничения.)
-
-<b>💡 Совет:</b>
-• В эссе IELTS и CPE hedging обязателен для получения высокого балла (Academic Writing).
-• Тренируйтесь: переписывайте категоричные утверждения в смягчённой форме.
-• Обратите внимание, что чрезмерное использование hedging делает текст неуверенным; нужен баланс.
-
-<blockquote>Hedging – это искусство выражать сомнение и осторожность, не теряя убедительности.</blockquote>
-"""
-            }
-        ],
-        "faq": [
-            {"question": "Можно ли использовать hedging в устной речи?", "answer": "Да, особенно в деловых презентациях и дискуссиях, чтобы звучать вежливо и не категорично."}
+      },
+      {
+        "type": "choice",
+        "text": "It's ___ difficult to understand.",
+        "correct": "kind of",
+        "hint": "Выберите смягчающее слово",
+        "star": True,
+        "options": [
+          "kind of",
+          "Well",
+          "You see",
+          "I mean"
         ]
-    },
-        "concession_clauses": {
-        "title": "Придаточные уступки (although, even though, albeit, despite, in spite of)",
-        "pages": [
-            {
-                "title": "Повторение и углубление",
-                "text": """
-<b>🧩 Придаточные уступки показывают контраст между двумя частями предложения.</b>
-
-Основные союзы:
-• <b>although / even though</b> – хотя, несмотря на то что (полное предложение)
-• <b>albeit</b> – хотя и, но (формальный, с прилагательным/причастием)
-• <b>despite / in spite of</b> – несмотря на (существительное или герундий)
-
-<blockquote>На уровне C2 важно различать оттенки этих конструкций и использовать их для сложной аргументации.</blockquote>
-"""
-            },
-            {
-                "title": "Although / even though / though",
-                "text": """
-<b>📌 Although / even though + полное предложение (подлежащее + сказуемое).</b>
-
-• *Although it was raining, we went for a walk.* (Хотя шёл дождь, мы пошли гулять.)
-• *Even though he was tired, he finished the marathon.* (Несмотря на то что устал, он закончил марафон.)
-
-<blockquote>Though – разговорный вариант, может стоять в конце предложения: It was raining, though we went out.</blockquote>
-
-• *Though it was late, she continued working.* (Хотя было поздно, она продолжала работать.)
-• *He accepted the job, even though the salary was low.* (Он принял работу, хотя зарплата была низкой.)
-"""
-            },
-            {
-                "title": "Albeit – формальный союз",
-                "text": """
-<b>📌 Albeit означает 'хотя и', 'но' и используется только с прилагательными, наречиями, причастиями или существительными без глагола.</b>
-
-• *The journey was enjoyable, albeit tiring.* (Путешествие было приятным, хотя и утомительным.)
-• *He accepted the position, albeit reluctantly.* (Он принял должность, хотя и неохотно.)
-
-<blockquote>Albeit никогда не используется с полным предложением (с глаголом).</blockquote>
-
-• *The solution was simple, albeit effective.* (Решение было простым, хотя и эффективным.)
-• *They arrived late, albeit with a good reason.* (Они опоздали, хотя и с уважительной причиной.)
-"""
-            },
-            {
-                "title": "Despite / in spite of + существительное / герундий",
-                "text": """
-<b>📌 Despite / in spite of + существительное или герундий (V‑ing).</b>
-
-• *Despite the rain, we went out.* (Несмотря на дождь, мы вышли.)
-• *In spite of being tired, she finished the report.* (Несмотря на усталость, она закончила отчёт.)
-
-<blockquote>In spite of – чуть более формальный вариант.</blockquote>
-
-• *Despite having little experience, he got the job.* (Несмотря на небольшой опыт, он получил работу.)
-• *In spite of the fact that it was expensive, we bought it.* (Несмотря на то что это было дорого, мы купили.)
-
-<blockquote>Для полного предложения можно использовать 'despite the fact that'.</blockquote>
-"""
-            },
-            {
-                "title": "Сравнение и типичные ошибки",
-                "text": """
-<b>📊 Сравните:</b>
-
-• *Although it rained, we went out.* (союз + предложение)
-• *Despite the rain, we went out.* (предлог + существительное)
-• *It rained, yet we went out.* (союз yet)
-• *We went out; however, it rained.* (наречие however)
-
-<b>⚠️ Частые ошибки:</b>
-• ❌ Despite it rained...  ✅ Despite the rain / Despite the fact that it rained.
-• ❌ Although the rain...  ✅ Although it rained...
-• ❌ In spite of that he was tired...  ✅ In spite of being tired / In spite of the fact that he was tired.
-
-<b>💡 Совет:</b>
-• Если хотите использовать глагол (был дождь), ставьте although / even though.
-• Если хотите использовать существительное (дождь), ставьте despite / in spite of.
-• Albeit используйте только для краткого уточнения (прилагательным или наречием).
-
-<blockquote>Правильное использование этих конструкций – признак высокого уровня владения языком.</blockquote>
-"""
-            }
-        ],
-        "faq": [
-            {"question": "В чём разница между 'although' и 'even though'?", "answer": "Even though более сильный, подчёркивает контраст. Although – нейтральный."}
+      },
+      {
+        "type": "choice",
+        "text": "___ , I was late because of traffic.",
+        "correct": "You see",
+        "hint": "Выберите объяснительный заполнитель",
+        "star": True,
+        "options": [
+          "You see",
+          "Sort of",
+          "Well",
+          "Kind of"
         ]
-    },
-        "modal_expressions_guessing": {
-        "title": "Модальные глаголы для предположений (must, can't, could, might – углубление)",
-        "pages": [
-            {
-                "title": "Степени уверенности (повторение)",
-                "text": """
-<b>📊 Шкала вероятности для предположений о настоящем:</b>
-
-• <b>must</b> – почти уверен (90‑95%) – должно быть
-  • *She's been working all day. She must be tired.*
-
-• <b>may</b> – возможно (50‑60%) – может быть
-  • *He may be at home.*
-
-• <b>might / could</b> – возможно (30‑50%) – менее уверенно
-  • *They might be stuck in traffic.*
-
-• <b>can't / couldn't</b> – не может быть (0‑5%) – уверенность, что не так
-  • *It can't be true.*
-
-<blockquote>Выбор модального глагола зависит от уверенности говорящего в предположении.</blockquote>
-"""
-            },
-            {
-                "title": "Предположения о настоящем: активный и пассивный залог",
-                "text": """
-<b>📌 Структура для настоящего: модальный глагол + V (базовая форма) или модальный + be + V3 (пассив).</b>
-
-• *He must be at work.* (актив)
-• *The document must be signed by the manager.* (пассив)
-
-• *They might be waiting for us.* (актив)
-• *The package might be delivered today.* (пассив)
-
-<blockquote>Пассивный залог с модальными глаголами часто используется в официальной речи.</blockquote>
-
-• *She can't be serious.* (Не может быть, что она серьёзно.)
-• *The meeting could be postponed.* (Встречу, возможно, перенесут.)
-"""
-            },
-            {
-                "title": "Предположения о прошлом (Modal Perfect)",
-                "text": """
-<b>📌 Структура для прошлого: модальный глагол + have + V3 (актив) или модальный + have been + V3 (пассив).</b>
-
-• *She must have forgotten about the meeting.* (Должно быть, забыла – я уверен)
-• *He might have left his phone at home.* (Возможно, оставил дома – менее уверен)
-• *They can't have seen us; we were hiding.* (Не могут быть, что видели)
-
-• *The letter must have been sent yesterday.* (Письмо, должно быть, было отправлено вчера – пассив)
-• *The mistake could have been avoided.* (Ошибки можно было избежать)
-
-<blockquote>Для прошлого также действует шкала уверенности, но с have + V3.</blockquote>
-"""
-            },
-            {
-                "title": "Нюансы: might have vs could have в предположениях",
-                "text": """
-<b>📌 Might have done vs could have done в значении предположения:</b>
-
-• <b>Might have</b> – меньшая уверенность (30‑40%), часто для нереализованных возможностей.
-  • *She might have taken the earlier train.* (Возможно, она уехала более ранним поездом.)
-
-• <b>Could have</b> – может выражать предположение с 50% вероятности, но также и упущенную возможность.
-  • *He could have missed the bus.* (Возможно, он опоздал на автобус – или 'мог бы опоздать' в зависимости от контекста)
-
-<blockquote>В предположениях разница часто стилистическая; в экзаменах можно использовать оба.</blockquote>
-
-<b>⚠️ Типичные ошибки:</b>
-• ❌ She must have to go.  ✅ She must have gone.
-• ❌ He might has arrived.  ✅ He might have arrived.
-• ❌ They can't have to be late.  ✅ They can't be late / They can't have been late.
-
-<b>💡 Совет:</b>
-• Для уверенного предположения о прошлом – must have done.
-• Для сильной уверенности, что действие не произошло – can't have done.
-• Для неуверенного – might have / could have.
-"""
-            }
-        ],
-        "faq": [
-            {"question": "В чём разница между 'might have done' и 'could have done' в предположениях?", "answer": "Might have done – менее вероятно; could have done – было возможно, но часто не реализовалось. В предположениях они почти взаимозаменяемы."}
+      },
+      {
+        "type": "choice",
+        "text": "He is ___ tired after work.",
+        "correct": "sort of",
+        "hint": "Выберите частичное состояние",
+        "star": True,
+        "options": [
+          "sort of",
+          "I mean",
+          "Well",
+          "You see"
         ]
-    },
-        "future_past_modals": {
-        "title": "Модальные глаголы для предположений о будущем и прошлом (will have done, might have been)",
-        "pages": [
-            {
-                "title": "Предположения о будущем",
-                "text": """
-<b>📌 Для предположений о будущем используются will, may, might, could.</b>
-
-• <b>will</b> – уверен (80‑90%)
-  • *Don't worry, you will pass the exam.* (Не волнуйся, ты сдашь экзамен.)
-
-• <b>may / might / could</b> – возможность (30‑60%)
-  • *We may go to the cinema tonight.* (Мы, возможно, пойдём в кино.)
-  • *She might be late.* (Она может опоздать.)
-  • *It could rain later.* (Позже может пойти дождь.)
-
-<blockquote>Will часто используется для предсказаний, основанных на мнении; may / might – для неуверенности.</blockquote>
-"""
-            },
-            {
-                "title": "Future Perfect и Future Perfect Continuous для предположений",
-                "text": """
-<b>📌 Future Perfect (will have done) – предположение о том, что действие уже будет завершено к определённому моменту.</b>
-
-• *By next year, she will have graduated.* (К следующему году она уже закончит учёбу.)
-
-<b>Future Perfect Continuous (will have been doing) – предположение о длительности к моменту.</b>
-
-• *By December, I will have been working here for 5 years.* (К декабрю я проработаю здесь 5 лет – скорее констатация, чем предположение)
-
-<blockquote>В предположениях о будущем модальные глаголы могут сочетаться с перфектными формами для уточнения.</blockquote>
-"""
-            },
-            {
-                "title": "Модальные глаголы для предположений о прошлом (повторение и углубление)",
-                "text": """
-<b>📌 Для прошлого: must have done, may have done, might have done, could have done, can't have done.</b>
-
-• *He looks tired. He must have worked late.* (Должно быть, работал допоздна)
-• *They may have already left.* (Возможно, уже уехали)
-• *She can't have seen us.* (Не может быть, что видела нас)
-
-<blockquote>Разница между may have и might have – might slightly less probable.</blockquote>
-
-<b>Примеры с пассивом:</b>
-• *The window must have been broken by the storm.* (Окно, должно быть, разбило бурей.)
-• *The invitation might have been sent to the wrong address.* (Приглашение, возможно, отправили не по адресу.)
-"""
-            },
-            {
-                "title": "Сравнение и типичные ошибки",
-                "text": """
-<b>📊 Сравнение времён:</b>
-
-• Настоящее: *He must be rich.* (должно быть, богат)
-• Прошлое: *He must have been rich.* (должно быть, был богат)
-• Будущее: *He will be rich.* (будет богат – уверенность, не предположение)
-
-• Настоящее: *She may be at home.*
-• Прошлое: *She may have been at home.*
-• Будущее: *She may come tomorrow.*
-
-<b>⚠️ Частые ошибки:</b>
-• ❌ He must be have been tired.  ✅ He must have been tired.
-• ❌ They can have left. (неправильно)  ✅ They may have left / could have left.
-• ❌ She might had arrived.  ✅ She might have arrived.
-
-<b>💡 Совет:</b>
-• Для предположений о прошлом всегда используйте have + V3 (never просто V).
-• Для будущего используйте will, may, might, could + V (без to).
-• Пассив: модальный + be + V3 (настоящее/будущее); модальный + have been + V3 (прошлое).
-"""
-            }
-        ],
-        "faq": [
-            {"question": "Можно ли использовать 'will have' для предположения о прошлом?", "answer": "Нет, will have относится только к будущему завершённому действию. Для прошлого – must have, may have, might have, could have, can't have."}
+      },
+      {
+        "type": "choice",
+        "text": "___ , what I meant was different.",
+        "correct": "I mean",
+        "hint": "Выберите уточняющий заполнитель",
+        "star": True,
+        "options": [
+          "I mean",
+          "Kind of",
+          "Sort of",
+          "Well"
         ]
-    },
-
-    # ==================== МОДУЛЬ 6: Речевые клише и дискурсивные маркеры ====================
-        "discourse_markers": {
-        "title": "Дискурсивные маркеры (However, Nevertheless, In addition, Consequently, etc.)",
-        "pages": [
-            {
-                "title": "Что такое дискурсивные маркеры?",
-                "text": """
-<b>🔗 Дискурсивные маркеры – слова и фразы, которые связывают части текста, указывают на логические отношения между предложениями.</b>
-
-Они помогают структурировать речь и письмо, делая их более связными и логичными. На уровне C2 важно уметь использовать широкий спектр маркеров.
-
-<blockquote>Маркеры не меняют смысл предложения, а лишь показывают связь с предыдущим контекстом.</blockquote>
-"""
-            },
-            {
-                "title": "Маркеры противопоставления",
-                "text": """
-<b>⚖️ Однако / тем не менее / тогда как:</b>
-
-• <b>however</b> – однако (вводное слово, выделяется запятой)
-  • *The task was difficult. However, we managed to finish on time.*
-
-• <b>nevertheless / nonetheless</b> – тем не менее (более формально)
-  • *The weather was terrible. Nevertheless, they continued the climb.*
-
-• <b>whereas</b> – тогда как (сравнивает два контрастных факта)
-  • *Some people love coffee, whereas others prefer tea.*
-
-• <b>in contrast</b> – в отличие от (сравнение)
-  • *In contrast to her brother, she is very outgoing.*
-
-• <b>on the other hand</b> – с другой стороны (для представления альтернативной точки зрения)
-  • *On the one hand, the job pays well. On the other hand, it's very stressful.*
-
-<blockquote>Эти маркеры незаменимы в эссе и дебатах.</blockquote>
-"""
-            },
-            {
-                "title": "Маркеры добавления и усиления",
-                "text": """
-<b>➕ Более того / кроме того:</b>
-
-• <b>moreover / furthermore</b> – более того (формально, для добавления аргумента)
-  • *The new policy is unpopular. Moreover, it may be illegal.*
-
-• <b>in addition</b> – в добавок
-  • *In addition, we need to consider the budget.*
-
-• <b>besides</b> – кроме того (разговорный)
-  • *I don't want to go. Besides, it's too late.*
-
-• <b>what is more</b> – что более важно
-  • *The restaurant is expensive. What is more, the food is mediocre.*
-
-<blockquote>Используйте для наращивания аргументации в эссе.</blockquote>
-"""
-            },
-            {
-                "title": "Маркеры следствия и причины",
-                "text": """
-<b>🔹 Следовательно / поэтому / в результате:</b>
-
-• <b>consequently / therefore / thus</b> – следовательно (формально)
-  • *He didn't study. Consequently, he failed the exam.*
-
-• <b>as a result</b> – в результате
-  • *The company lost money. As a result, many workers were laid off.*
-
-• <b>so</b> – поэтому (разговорный)
-  • *It was raining, so we stayed home.*
-
-• <b>for this reason</b> – по этой причине
-  • *The roads were icy; for this reason, schools were closed.*
-
-<blockquote>Эти связки показывают причинно-следственные связи.</blockquote>
-"""
-            },
-            {
-                "title": "Маркеры для заключения и перефразирования",
-                "text": """
-<b>📌 В заключение / иными словами:</b>
-
-• <b>in conclusion / to sum up</b> – в заключение
-  • *In conclusion, the evidence supports our theory.*
-
-• <b>in summary</b> – подводя итог
-  • *In summary, we need to increase our budget.*
-
-• <b>in other words</b> – иными словами (перефразирование)
-  • *He's late. In other words, we have to start without him.*
-
-• <b>that is to say</b> – то есть (уточнение)
-  • *He's a polyglot; that is to say, he speaks several languages.*
-
-<blockquote>Эти маркеры делают текст чётким и логически завершённым.</blockquote>
-"""
-            },
-            {
-                "title": "Советы и типичные ошибки",
-                "text": """
-<b>⚠️ Частые ошибки:</b>
-• ❌ However he is tired, he keeps working. (неправильно)  ✅ He is tired. However, he keeps working.
-• ❌ I studied hard, consequently I passed. (запятая должна быть после consequently)  ✅ I studied hard; consequently, I passed.
-• ❌ In addition of being expensive...  ✅ In addition to being expensive...
-
-<b>💡 Совет:</b>
-• В письменной речи ставьте запятую после however, nevertheless, therefore, consequently, moreover.
-• Не начинайте каждое предложение с маркера – это выглядит неестественно.
-• Практикуйтесь: пишите небольшие абзацы, используя разные маркеры.
-
-<blockquote>Дискурсивные маркеры – это скелет любого хорошо структурированного текста.</blockquote>
-"""
-            }
-        ],
-        "faq": [
-            {"question": "Можно ли использовать 'however' в начале предложения?", "answer": "Да, это стандартная практика. Однако в академическом письме ставьте точку с запятой перед however, если он связывает два предложения: It was raining; however, we went out."}
+      },
+      {
+        "type": "reorder",
+        "text": "Расположите слова: well / go / let's / now",
+        "correct": "Well, let's go now.",
+        "hint": "Начните с заполнителя",
+        "star": True
+      },
+      {
+        "type": "reorder",
+        "text": "Расположите слова: see / you / it's / late",
+        "correct": "You see, it's late.",
+        "hint": "Объяснительная фраза",
+        "star": True
+      },
+      {
+        "type": "translation",
+        "text": "Переведите: 'Ну, я вроде как устал.'",
+        "correct": "Well, I'm kind of tired.",
+        "hint": "Используйте Well и kind of",
+        "star": True
+      },
+      {
+        "type": "translation",
+        "text": "Переведите: 'Понимаешь, это вроде как сложно.'",
+        "correct": "You see, it's sort of difficult.",
+        "hint": "Используйте You see и sort of",
+        "star": True
+      },
+      {
+        "type": "open",
+        "text": "Составьте предложение с 'I mean' и 'sort of'.",
+        "correct": "I mean, it's sort of strange.",
+        "hint": "Объясните что-то необычное",
+        "star": True
+      }
+    ]
+  },
+  "speaking_cliches": {
+    "title": "Разговорные клише для беглой речи (That being said, Having said that, Come to think of it)",
+    "pages": [
+      {
+        "title": "Что такое разговорные клише?",
+        "text": "\n<b>💬 Разговорные клише – готовые фразы, которые носители используют регулярно для связи идей, выражения мнения, перехода между темами.</b>\n\nИх употребление делает речь более естественной и беглой. На уровне C2 вы должны узнавать и использовать такие фразы.\n\n<blockquote>Клише не являются штампами в плохом смысле; это строительные блоки беглой речи.</blockquote>\n"
+      },
+      {
+        "title": "Клише для уступки и контраста",
+        "text": "\n<b>🔁 Клише для смягчения или противопоставления:</b>\n\n• <b>That being said / Having said that</b> – тем не менее, с другой стороны (после того как что-то сказали)\n  • *The hotel is expensive. That being said, it's very luxurious.* (Отель дорогой. Тем не менее, он очень роскошный.)\n\n• <b>At the same time</b> – в то же время (противопоставление)\n  • *I enjoy my job. At the same time, I'd like more free time.*\n\n• <b>On the flip side</b> – с другой стороны (неформально)\n  • *The car is cheap. On the flip side, it's not very reliable.*\n\n<blockquote>Используйте эти фразы, чтобы смягчить критику или представить контраргумент.</blockquote>\n"
+      },
+      {
+        "title": "Клише для добавления мыслей и уточнения",
+        "text": "\n<b>💡 Ввод новых идей и уточнений:</b>\n\n• <b>Come to think of it</b> – если подумать, кстати\n  • *Come to think of it, I haven't seen her today.* (Кстати, я не видел её сегодня.)\n\n• <b>I mean</b> – в смысле (уточнение)\n  • *He's nice – I mean, he can be a bit moody sometimes.*\n\n• <b>You see</b> – понимаешь (при объяснении)\n  • *You see, the problem is that we don't have enough money.*\n\n• <b>What I mean is</b> – я хочу сказать (перефразирование)\n  • *What I mean is that we need to change our approach.*\n\n<blockquote>Эти клише помогают уточнить мысль и избежать недопонимания.</blockquote>\n"
+      },
+      {
+        "title": "Клише для согласия, удивления и хезитации",
+        "text": "\n<b>🗣️ Реакции и переходы:</b>\n\n• <b>Tell me about it!</b> – расскажи мне! (выражение согласия с жалобой)\n  • *– The traffic is terrible. – Tell me about it!*\n\n• <b>You're telling me!</b> – то же, что tell me about it\n• <b>I know, right?</b> – я знаю, да? (неформальное согласие)\n• <b>Go on / Go ahead</b> – продолжай, давай\n\n• <b>Long story short</b> – короче говоря\n  • *Long story short, we missed the flight.*\n\n• <b>To make a long story short</b> – то же, немного формальнее\n\n<blockquote>Эти короткие фразы делают диалог более живым и эмоциональным.</blockquote>\n"
+      },
+      {
+        "title": "Советы",
+        "text": "\n<b>💡 Как интегрировать клише в речь:</b>\n• Слушайте подкасты и интервью с носителями, выписывайте фразы, которые они часто повторяют.\n• Практикуйтесь в диалогах, намеренно используя одно-два клише.\n• Не злоупотребляйте: в слишком формальных ситуациях лучше избегать таких фраз.\n\n<blockquote>Разговорные клише – это ключ к тому, чтобы звучать как носитель, а не как учебник.</blockquote>\n"
+      }
+    ],
+    "faq": [
+      {
+        "question": "Подходят ли эти клише для письменных эссе?",
+        "answer": "Некоторые (That being said, Having said that) допустимы в эссе, но остальные лучше оставить для устной речи."
+      }
+    ]
+  },
+  "transitions_advanced": {
+    "title": "Продвинутые переходы между частями речи (transition words for C2)",
+    "pages": [
+      {
+        "title": "Зачем нужны продвинутые переходы?",
+        "text": "\n<b>🔗 Продвинутые переходы делают текст более связным и помогают читателю следить за логикой изложения.</b>\n\nВ отличие от базовых (firstly, secondly, finally), продвинутые переходы используются реже и придают тексту стилистическое разнообразие.\n\n<blockquote>В эссе CPE и академических работах использование таких переходов повышает балл за структуру и связность.</blockquote>\n"
+      },
+      {
+        "title": "Переходы для последовательности и времени",
+        "text": "\n<b>⏳ Последовательность и хронология:</b>\n\n• <b>subsequently</b> – впоследствии (более формально, чем then)\n  • *He resigned, and subsequently, the company went bankrupt.*\n\n• <b>thereafter</b> – после этого (очень формально)\n  • *The agreement was signed; thereafter, relations improved.*\n\n• <b>prior to</b> – до (вместо before)\n  • *Prior to the meeting, we reviewed the documents.*\n\n• <b>subsequently / consequently</b> – не путать: subsequently – затем (последовательность), consequently – следовательно (причина)\n\n• <b>in the meantime / meanwhile</b> – тем временем\n  • *The doctor will arrive soon. In the meantime, keep calm.*\n\n<blockquote>Эти переходы помогают избежать повторения then и after that.</blockquote>\n"
+      },
+      {
+        "title": "Переходы для сравнения и контраста (продвинутые)",
+        "text": "\n<b>⚖️ Сравнение и противопоставление:</b>\n\n• <b>likewise / similarly</b> – аналогично, подобно\n  • *The first chapter is difficult; likewise, the second is challenging.*\n\n• <b>conversely</b> – наоборот (для противоположных утверждений)\n  • *Some people love city life; conversely, others prefer the countryside.*\n\n• <b>on the contrary</b> – напротив (опровержение предыдущего утверждения)\n  • *He wasn't lazy. On the contrary, he worked very hard.*\n\n• <b>in the same vein</b> – в том же духе (продолжение мысли)\n  • *Her first novel was a success; in the same vein, the second was also acclaimed.*\n\n<blockquote>Различайте conversely (противопоставление) и on the contrary (опровержение).</blockquote>\n"
+      },
+      {
+        "title": "Переходы для причины, следствия и уступки (продвинутые)",
+        "text": "\n<b>🔍 Причина, следствие, уступка:</b>\n\n• <b>owing to / due to</b> – из-за, благодаря (формальные предлоги)\n  • *Owing to bad weather, the flight was cancelled.*\n\n• <b>as a consequence</b> – как следствие\n  • *He missed the train; as a consequence, he was late.*\n\n• <b>for this reason</b> – по этой причине\n  • *The roads were icy; for this reason, schools closed.*\n\n• <b>notwithstanding</b> – несмотря на (очень формально, часто после существительного)\n  • *The weather notwithstanding, we went for a walk.*\n\n• <b>in spite of the fact that</b> – несмотря на то что\n  • *In spite of the fact that he was tired, he kept working.*\n\n<blockquote>Notwithstanding – редкое, но очень сильное слово для C2.</blockquote>\n"
+      },
+      {
+        "title": "Советы",
+        "text": "\n<b>💡 Как использовать продвинутые переходы:</b>\n\n• Не злоупотребляйте: вставка слишком многих формальных переходов делает текст тяжеловесным.\n• Заменяйте простые переходы (so → consequently, then → subsequently) при редактировании эссе.\n• Читайте академические статьи и обращайте внимание на используемые переходы.\n\n<b>⚠️ Частые ошибки:</b>\n• ❌ I was tired, consequently I went to bed. (без точки с запятой)  ✅ I was tired; consequently, I went to bed.\n• ❌ She is beautiful. On the contrary, she is kind. (on the contrary здесь не подходит)  ✅ On the contrary, she is not beautiful. / She is beautiful. In addition, she is kind.\n\n<blockquote>Продвинутые переходы – это инструмент для безупречного академического письма.</blockquote>\n"
+      }
+    ],
+    "faq": [
+      {
+        "question": "Можно ли использовать 'notwithstanding' в начале предложения?",
+        "answer": "Да, но это очень формально: Notwithstanding the difficulties, we succeeded."
+      }
+    ]
+  },
+  "confusing_words": {
+    "title": "Часто путаемые слова (affect/effect, principal/principle, imply/infer)",
+    "pages": [
+      {
+        "title": "Affect vs Effect",
+        "text": "\n<b>🔹 Affect (глагол) – влиять, воздействовать.</b>\n• *The weather affected our plans.* (Погода повлияла на наши планы.)\n\n<b>🔹 Effect (существительное) – результат, эффект.</b>\n• *The effect of the medicine was immediate.* (Эффект лекарства был мгновенным.)\n\n<blockquote>Запоминалка: Affect = Action (действие), Effect = End result (конечный результат).</blockquote>\n\n<b>Редкое исключение:</b> effect может быть глаголом (to effect change – осуществить изменения), но на C2 это знать полезно.\n"
+      },
+      {
+        "title": "Principal vs Principle",
+        "text": "\n<b>🔹 Principal – главный, основной; директор школы; основная сумма (долга).</b>\n• *The principal reason for the delay was the storm.* (Главная причина задержки – шторм.)\n• *The school principal announced a holiday.* (Директор школы объявил выходной.)\n\n<b>🔹 Principle – принцип, правило, убеждение.</b>\n• *He is a man of high moral principles.* (Он человек с высокими моральными принципами.)\n• *We refuse to pay on principle.* (Мы отказываемся платить из принципа.)\n\n<blockquote>Запоминалка: The principal (директор) is your pal (друг). Principle – правило.</blockquote>\n"
+      },
+      {
+        "title": "Imply vs Infer",
+        "text": "\n<b>🔹 Imply (глагол) – подразумевать, намекать (говорящий).</b>\n• *His tone implied that he was angry.* (Его тон подразумевал, что он зол.)\n\n<b>🔹 Infer (глагол) – делать вывод, заключать (слушающий).</b>\n• *From his tone, I inferred that he was angry.* (Из его тона я сделал вывод, что он зол.)\n\n<blockquote>Imply – отправитель сообщения; infer – получатель.</blockquote>\n"
+      },
+      {
+        "title": "Другие частые пары",
+        "text": "\n<b>📌 Дополнительные пары:</b>\n\n• <b>complement vs compliment</b>\n  • complement – дополнять (The wine complements the cheese.)\n  • compliment – делать комплимент (She complimented his cooking.)\n\n• <b>ensure vs insure</b>\n  • ensure – гарантировать (Ensure the door is locked.)\n  • insure – страховать (Insure your car.)\n\n• <b>stationary vs stationery</b>\n  • stationary – неподвижный (Remain stationary.)\n  • stationery – канцелярские товары (paper, pens, etc.)\n\n• <b>desert vs dessert</b>\n  • desert – пустыня; оставлять (desert a friend)\n  • dessert – десерт (sweet course)\n\n<blockquote>Эти пары часто встречаются в текстах и вызывают ошибки даже у продвинутых учеников.</blockquote>\n"
+      },
+      {
+        "title": "Советы",
+        "text": "\n<b>💡 Как запомнить:</b>\n• Составьте карточки с каждой парой и примером.\n• Пишите предложения, используя оба слова в контексте.\n• Проверяйте себя в тестах.\n• На экзаменах (CPE) такие пары могут появляться в заданиях на лексику.\n\n<blockquote>Маленькая разница в буквах может полностью изменить смысл.</blockquote>\n"
+      }
+    ],
+    "faq": [
+      {
+        "question": "Можно ли использовать 'effect' как глагол?",
+        "answer": "Да, но очень формально: to effect changes (осуществить изменения). Редко, но на C2 знать стоит."
+      }
+    ],
+    "practice_tasks": [
+      {
+        "type": "fill_blank",
+        "text": "The new law will ___ the environment.",
+        "correct": "affect",
+        "hint": "Глагол 'влиять'",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The ___ of the medicine was immediate.",
+        "correct": "effect",
+        "hint": "Существительное 'эффект'",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "Our school ___ is very strict.",
+        "correct": "principal",
+        "hint": "Директор школы",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "Honesty is a key ___ of our company.",
+        "correct": "principle",
+        "hint": "Принцип, правило",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "What are you trying to ___ from my words?",
+        "correct": "infer",
+        "hint": "Делать вывод",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "I didn't mean to ___ that you were wrong.",
+        "correct": "imply",
+        "hint": "Намекать, подразумевать",
+        "star": False
+      },
+      {
+        "type": "choice",
+        "text": "The weather can ___ your mood.",
+        "correct": "affect",
+        "hint": "Глагол 'влиять'",
+        "star": False,
+        "options": [
+          "affect",
+          "effect"
         ]
-    },
-        "fillers_hesitation": {
-        "title": "Заполнители пауз и хезитации (Well, You see, I mean, Sort of, Kind of)",
-        "pages": [
-            {
-                "title": "Что такое заполнители пауз?",
-                "text": """
-<b>🗣️ Заполнители пауз – слова и звуки (well, you know, actually, sort of, like), которые дают говорящему время подумать.</b>
-
-Они делают речь более естественной и разговорной. На уровне C2 важно уметь использовать их, не переусердствуя.
-
-<blockquote>Слишком много заполнителей – признак неуверенности; полное их отсутствие делает речь роботизированной.</blockquote>
-"""
-            },
-            {
-                "title": "Самые частые заполнители",
-                "text": """
-<b>📌 Основные заполнители и их оттенки:</b>
-
-• <b>well</b> – универсальный заполнитель, часто в начале ответа
-  • *Well, I'm not sure about that.*
-
-• <b>you know</b> – «понимаешь», подразумевает, что слушающий разделяет ваш опыт
-  • *It was, you know, a bit disappointing.*
-
-• <b>I mean</b> – «в смысле», уточнение или исправление
-  • *He's nice – I mean, sometimes he's a bit grumpy.*
-
-• <b>actually</b> – «вообще-то», смягчение или поправка
-  • *Actually, I think you're right.*
-
-• <b>sort of / kind of</b> – «вроде, как бы», выражение приблизительности
-  • *I'm kind of tired.* (я как бы устал)
-
-• <b>like</b> – молодёжное, часто переиспользуемое (можно злоупотреблять)
-  • *It was, like, really amazing.*
-
-<blockquote>В формальной речи старайтесь избегать like и избыточных заполнителей.</blockquote>
-"""
-            },
-            {
-                "title": "Как использовать, не раздражая собеседника",
-                "text": """
-<b>🎯 Правила употребления:</b>
-
-• Используйте заполнители, когда нужно выиграть время для обдумывания ответа.
-• Не начинайте каждое предложение с well или actually.
-• В презентациях и интервью старайтесь минимизировать заполнители, заменив их паузой или чётким переходом.
-
-<b>Примеры естественного использования:</b>
-• *Well, let me think... I think we should go with the first option.*
-• *I mean, it's not that I don't like him, but he can be annoying.*
-• *She's sort of shy, but she's very kind.*
-
-<blockquote>На экзаменах (IELTS Speaking) небольшое количество заполнителей не снижает балл, но их избыток считается недостатком беглости.</blockquote>
-"""
-            },
-            {
-                "title": "Советы",
-                "text": """
-<b>💡 Как тренировать использование заполнителей:</b>
-
-• Слушайте подкасты и интервью, обращая внимание на то, как носители используют заполнители.
-• Записывайте себя на диктофон и анализируйте, не слишком ли часто вы используете well или like.
-• Практикуйтесь отвечать на неожиданные вопросы, используя well, actually, you know для пауз.
-
-<blockquote>Заполнители – это не ошибка, а часть естественной речи. Главное – знать меру.</blockquote>
-"""
-            }
-        ],
-        "faq": [
-            {"question": "Допустимо ли использовать 'like' в IELTS Speaking?", "answer": "Очень редко. Лучше заменить на sort of / kind of или просто сделать паузу."}
+      },
+      {
+        "type": "choice",
+        "text": "The special ___ of the movie was amazing.",
+        "correct": "effect",
+        "hint": "Существительное 'эффект'",
+        "star": False,
+        "options": [
+          "affect",
+          "effect"
         ]
-    },
-        "speaking_cliches": {
-        "title": "Разговорные клише для беглой речи (That being said, Having said that, Come to think of it)",
-        "pages": [
-            {
-                "title": "Что такое разговорные клише?",
-                "text": """
-<b>💬 Разговорные клише – готовые фразы, которые носители используют регулярно для связи идей, выражения мнения, перехода между темами.</b>
-
-Их употребление делает речь более естественной и беглой. На уровне C2 вы должны узнавать и использовать такие фразы.
-
-<blockquote>Клише не являются штампами в плохом смысле; это строительные блоки беглой речи.</blockquote>
-"""
-            },
-            {
-                "title": "Клише для уступки и контраста",
-                "text": """
-<b>🔁 Клише для смягчения или противопоставления:</b>
-
-• <b>That being said / Having said that</b> – тем не менее, с другой стороны (после того как что-то сказали)
-  • *The hotel is expensive. That being said, it's very luxurious.* (Отель дорогой. Тем не менее, он очень роскошный.)
-
-• <b>At the same time</b> – в то же время (противопоставление)
-  • *I enjoy my job. At the same time, I'd like more free time.*
-
-• <b>On the flip side</b> – с другой стороны (неформально)
-  • *The car is cheap. On the flip side, it's not very reliable.*
-
-<blockquote>Используйте эти фразы, чтобы смягчить критику или представить контраргумент.</blockquote>
-"""
-            },
-            {
-                "title": "Клише для добавления мыслей и уточнения",
-                "text": """
-<b>💡 Ввод новых идей и уточнений:</b>
-
-• <b>Come to think of it</b> – если подумать, кстати
-  • *Come to think of it, I haven't seen her today.* (Кстати, я не видел её сегодня.)
-
-• <b>I mean</b> – в смысле (уточнение)
-  • *He's nice – I mean, he can be a bit moody sometimes.*
-
-• <b>You see</b> – понимаешь (при объяснении)
-  • *You see, the problem is that we don't have enough money.*
-
-• <b>What I mean is</b> – я хочу сказать (перефразирование)
-  • *What I mean is that we need to change our approach.*
-
-<blockquote>Эти клише помогают уточнить мысль и избежать недопонимания.</blockquote>
-"""
-            },
-            {
-                "title": "Клише для согласия, удивления и хезитации",
-                "text": """
-<b>🗣️ Реакции и переходы:</b>
-
-• <b>Tell me about it!</b> – расскажи мне! (выражение согласия с жалобой)
-  • *– The traffic is terrible. – Tell me about it!*
-
-• <b>You're telling me!</b> – то же, что tell me about it
-• <b>I know, right?</b> – я знаю, да? (неформальное согласие)
-• <b>Go on / Go ahead</b> – продолжай, давай
-
-• <b>Long story short</b> – короче говоря
-  • *Long story short, we missed the flight.*
-
-• <b>To make a long story short</b> – то же, немного формальнее
-
-<blockquote>Эти короткие фразы делают диалог более живым и эмоциональным.</blockquote>
-"""
-            },
-            {
-                "title": "Советы",
-                "text": """
-<b>💡 Как интегрировать клише в речь:</b>
-• Слушайте подкасты и интервью с носителями, выписывайте фразы, которые они часто повторяют.
-• Практикуйтесь в диалогах, намеренно используя одно-два клише.
-• Не злоупотребляйте: в слишком формальных ситуациях лучше избегать таких фраз.
-
-<blockquote>Разговорные клише – это ключ к тому, чтобы звучать как носитель, а не как учебник.</blockquote>
-"""
-            }
-        ],
-        "faq": [
-            {"question": "Подходят ли эти клише для письменных эссе?", "answer": "Некоторые (That being said, Having said that) допустимы в эссе, но остальные лучше оставить для устной речи."}
+      },
+      {
+        "type": "choice",
+        "text": "He is the ___ of the high school.",
+        "correct": "principal",
+        "hint": "Директор",
+        "star": False,
+        "options": [
+          "principal",
+          "principle"
         ]
-    },
-        "transitions_advanced": {
-        "title": "Продвинутые переходы между частями речи (transition words for C2)",
-        "pages": [
-            {
-                "title": "Зачем нужны продвинутые переходы?",
-                "text": """
-<b>🔗 Продвинутые переходы делают текст более связным и помогают читателю следить за логикой изложения.</b>
-
-В отличие от базовых (firstly, secondly, finally), продвинутые переходы используются реже и придают тексту стилистическое разнообразие.
-
-<blockquote>В эссе CPE и академических работах использование таких переходов повышает балл за структуру и связность.</blockquote>
-"""
-            },
-            {
-                "title": "Переходы для последовательности и времени",
-                "text": """
-<b>⏳ Последовательность и хронология:</b>
-
-• <b>subsequently</b> – впоследствии (более формально, чем then)
-  • *He resigned, and subsequently, the company went bankrupt.*
-
-• <b>thereafter</b> – после этого (очень формально)
-  • *The agreement was signed; thereafter, relations improved.*
-
-• <b>prior to</b> – до (вместо before)
-  • *Prior to the meeting, we reviewed the documents.*
-
-• <b>subsequently / consequently</b> – не путать: subsequently – затем (последовательность), consequently – следовательно (причина)
-
-• <b>in the meantime / meanwhile</b> – тем временем
-  • *The doctor will arrive soon. In the meantime, keep calm.*
-
-<blockquote>Эти переходы помогают избежать повторения then и after that.</blockquote>
-"""
-            },
-            {
-                "title": "Переходы для сравнения и контраста (продвинутые)",
-                "text": """
-<b>⚖️ Сравнение и противопоставление:</b>
-
-• <b>likewise / similarly</b> – аналогично, подобно
-  • *The first chapter is difficult; likewise, the second is challenging.*
-
-• <b>conversely</b> – наоборот (для противоположных утверждений)
-  • *Some people love city life; conversely, others prefer the countryside.*
-
-• <b>on the contrary</b> – напротив (опровержение предыдущего утверждения)
-  • *He wasn't lazy. On the contrary, he worked very hard.*
-
-• <b>in the same vein</b> – в том же духе (продолжение мысли)
-  • *Her first novel was a success; in the same vein, the second was also acclaimed.*
-
-<blockquote>Различайте conversely (противопоставление) и on the contrary (опровержение).</blockquote>
-"""
-            },
-            {
-                "title": "Переходы для причины, следствия и уступки (продвинутые)",
-                "text": """
-<b>🔍 Причина, следствие, уступка:</b>
-
-• <b>owing to / due to</b> – из-за, благодаря (формальные предлоги)
-  • *Owing to bad weather, the flight was cancelled.*
-
-• <b>as a consequence</b> – как следствие
-  • *He missed the train; as a consequence, he was late.*
-
-• <b>for this reason</b> – по этой причине
-  • *The roads were icy; for this reason, schools closed.*
-
-• <b>notwithstanding</b> – несмотря на (очень формально, часто после существительного)
-  • *The weather notwithstanding, we went for a walk.*
-
-• <b>in spite of the fact that</b> – несмотря на то что
-  • *In spite of the fact that he was tired, he kept working.*
-
-<blockquote>Notwithstanding – редкое, но очень сильное слово для C2.</blockquote>
-"""
-            },
-            {
-                "title": "Советы",
-                "text": """
-<b>💡 Как использовать продвинутые переходы:</b>
-
-• Не злоупотребляйте: вставка слишком многих формальных переходов делает текст тяжеловесным.
-• Заменяйте простые переходы (so → consequently, then → subsequently) при редактировании эссе.
-• Читайте академические статьи и обращайте внимание на используемые переходы.
-
-<b>⚠️ Частые ошибки:</b>
-• ❌ I was tired, consequently I went to bed. (без точки с запятой)  ✅ I was tired; consequently, I went to bed.
-• ❌ She is beautiful. On the contrary, she is kind. (on the contrary здесь не подходит)  ✅ On the contrary, she is not beautiful. / She is beautiful. In addition, she is kind.
-
-<blockquote>Продвинутые переходы – это инструмент для безупречного академического письма.</blockquote>
-"""
-            }
-        ],
-        "faq": [
-            {"question": "Можно ли использовать 'notwithstanding' в начале предложения?", "answer": "Да, но это очень формально: Notwithstanding the difficulties, we succeeded."}
+      },
+      {
+        "type": "choice",
+        "text": "We must follow the ___ of equality.",
+        "correct": "principle",
+        "hint": "Принцип",
+        "star": False,
+        "options": [
+          "principal",
+          "principle"
         ]
-    },
-
-    # ==================== МОДУЛЬ 7: Анализ ошибок и выбор между похожими словами ====================
-        "confusing_words": {
-        "title": "Часто путаемые слова (affect/effect, principal/principle, imply/infer)",
-        "pages": [
-            {
-                "title": "Affect vs Effect",
-                "text": """
-<b>🔹 Affect (глагол) – влиять, воздействовать.</b>
-• *The weather affected our plans.* (Погода повлияла на наши планы.)
-
-<b>🔹 Effect (существительное) – результат, эффект.</b>
-• *The effect of the medicine was immediate.* (Эффект лекарства был мгновенным.)
-
-<blockquote>Запоминалка: Affect = Action (действие), Effect = End result (конечный результат).</blockquote>
-
-<b>Редкое исключение:</b> effect может быть глаголом (to effect change – осуществить изменения), но на C2 это знать полезно.
-"""
-            },
-            {
-                "title": "Principal vs Principle",
-                "text": """
-<b>🔹 Principal – главный, основной; директор школы; основная сумма (долга).</b>
-• *The principal reason for the delay was the storm.* (Главная причина задержки – шторм.)
-• *The school principal announced a holiday.* (Директор школы объявил выходной.)
-
-<b>🔹 Principle – принцип, правило, убеждение.</b>
-• *He is a man of high moral principles.* (Он человек с высокими моральными принципами.)
-• *We refuse to pay on principle.* (Мы отказываемся платить из принципа.)
-
-<blockquote>Запоминалка: The principal (директор) is your pal (друг). Principle – правило.</blockquote>
-"""
-            },
-            {
-                "title": "Imply vs Infer",
-                "text": """
-<b>🔹 Imply (глагол) – подразумевать, намекать (говорящий).</b>
-• *His tone implied that he was angry.* (Его тон подразумевал, что он зол.)
-
-<b>🔹 Infer (глагол) – делать вывод, заключать (слушающий).</b>
-• *From his tone, I inferred that he was angry.* (Из его тона я сделал вывод, что он зол.)
-
-<blockquote>Imply – отправитель сообщения; infer – получатель.</blockquote>
-"""
-            },
-            {
-                "title": "Другие частые пары",
-                "text": """
-<b>📌 Дополнительные пары:</b>
-
-• <b>complement vs compliment</b>
-  • complement – дополнять (The wine complements the cheese.)
-  • compliment – делать комплимент (She complimented his cooking.)
-
-• <b>ensure vs insure</b>
-  • ensure – гарантировать (Ensure the door is locked.)
-  • insure – страховать (Insure your car.)
-
-• <b>stationary vs stationery</b>
-  • stationary – неподвижный (Remain stationary.)
-  • stationery – канцелярские товары (paper, pens, etc.)
-
-• <b>desert vs dessert</b>
-  • desert – пустыня; оставлять (desert a friend)
-  • dessert – десерт (sweet course)
-
-<blockquote>Эти пары часто встречаются в текстах и вызывают ошибки даже у продвинутых учеников.</blockquote>
-"""
-            },
-            {
-                "title": "Советы",
-                "text": """
-<b>💡 Как запомнить:</b>
-• Составьте карточки с каждой парой и примером.
-• Пишите предложения, используя оба слова в контексте.
-• Проверяйте себя в тестах.
-• На экзаменах (CPE) такие пары могут появляться в заданиях на лексику.
-
-<blockquote>Маленькая разница в буквах может полностью изменить смысл.</blockquote>
-"""
-            }
-        ],
-        "faq": [
-            {"question": "Можно ли использовать 'effect' как глагол?", "answer": "Да, но очень формально: to effect changes (осуществить изменения). Редко, но на C2 знать стоит."}
+      },
+      {
+        "type": "choice",
+        "text": "From his tone, I could ___ he was angry.",
+        "correct": "infer",
+        "hint": "Сделать вывод",
+        "star": False,
+        "options": [
+          "imply",
+          "infer"
         ]
-    },
-        "common_mistakes_c2": {
-        "title": "Типичные ошибки продвинутых учащихся (prepositions, agreement, style)",
-        "pages": [
-            {
-                "title": "Ошибки с предлогами",
-                "text": """
-<b>📍 Распространённые ошибки в предлогах у русскоязычных:</b>
-
-• ❌ *depend from*  ✅ *depend on*
-• ❌ *explain me*  ✅ *explain to me*
-• ❌ *listen music*  ✅ *listen to music*
-• ❌ *wait somebody*  ✅ *wait for somebody*
-• ❌ *congratulate for*  ✅ *congratulate on*
-• ❌ *accuse for*  ✅ *accuse of*
-• ❌ *insist on* (правильно, но часто путают с *insist in* – нет)
-• ❌ *discuss about*  ✅ *discuss* (без about)
-
-<blockquote>Ошибки в предлогах – одна из самых заметных черт неносителя даже на высоком уровне.</blockquote>
-"""
-            },
-            {
-                "title": "Согласование времён и последовательности",
-                "text": """
-<b>⚠️ Ошибки в согласовании времён в сложных предложениях:</b>
-
-• ❌ *If I would have known, I would have come.* (в условных)  ✅ *If I had known, I would have come.*
-• ❌ *I wish I would be taller.*  ✅ *I wish I were taller.*
-• ❌ *It's time you would go.*  ✅ *It's time you went.* (конструкция It's time + Past Simple)
-
-• ❌ *He suggested me to go.*  ✅ *He suggested that I go / He suggested going.*
-• ❌ *She insisted him to stay.*  ✅ *She insisted that he stay.* (сослагательное наклонение)
-
-<blockquote>Эти ошибки часто остаются даже у очень продвинутых учеников.</blockquote>
-"""
-            },
-            {
-                "title": "Стилистические ошибки",
-                "text": """
-<b>📝 Регистр и стиль:</b>
-
-• ❌ Использование сокращений в академическом письме: *don't, it's* (лучше do not, it is)
-• ❌ Фразовые глаголы вместо односложных в формальных текстах: *put off → postpone, find out → discover*
-• ❌ Слишком частое использование *very* (заменяйте на extremely, highly, exceptionally)
-• ❌ Начало предложения с *And, But, So* в формальных текстах (заменяйте на Moreover, However, Therefore)
-
-• ❌ Двойное отрицание: *I didn't see nobody*  ✅ *I saw nobody / I didn't see anybody.*
-
-<blockquote>Ошибки стиля заметны на экзаменах и в деловой переписке.</blockquote>
-"""
-            },
-            {
-                "title": "Советы",
-                "text": """
-<b>💡 Как избавиться от типичных ошибок:</b>
-
-• Заведите список своих частых ошибок и регулярно его пересматривайте.
-• После написания текста проверяйте его на наличие этих ошибок.
-• Читайте много качественных текстов (The Economist, The Guardian) – так вы начнёте чувствовать правильные конструкции.
-• Используйте грамматические справочники для проверки сомнительных случаев.
-
-<blockquote>Даже носители иногда ошибаются, но знание частых ошибок помогает их избегать.</blockquote>
-"""
-            }
-        ],
-        "faq": [
-            {"question": "Как быстро запомнить правильные предлоги?", "answer": "Заучивайте глаголы вместе с предлогами как единое целое (depend on, listen to). Список самых частотных ошибок можно повесить на видное место."}
+      },
+      {
+        "type": "choice",
+        "text": "His silence seemed to ___ guilt.",
+        "correct": "imply",
+        "hint": "Подразумевать",
+        "star": False,
+        "options": [
+          "imply",
+          "infer"
         ]
-    },
-        "synonyms_nuances": {
-        "title": "Оттенки синонимов (talk/speak, start/begin, finish/complete)",
-        "pages": [
-            {
-                "title": "Talk vs Speak",
-                "text": """
-<b>🗣️ Talk / speak – оба означают 'говорить', но есть стилистические и грамматические различия.</b>
-
-• <b>talk</b> – неформальный, часто подразумевает беседу (двустороннюю).
-  • *We talked for hours.* (Мы разговаривали часами.)
-
-• <b>speak</b> – более формальный, может означать монолог или способность говорить на языке.
-  • *He spoke at the conference.* (Он выступал на конференции.)
-  • *She speaks three languages.* (Она говорит на трёх языках.)
-
-<blockquote>Speak to/with – можно использовать оба; talk to/with – аналогично.</blockquote>
-
-<b>Важное различие:</b>
-• *Speak to* может означать 'сделать замечание' (I'll speak to him about his behaviour.)
-• *Talk to* чаще просто разговор.
-"""
-            },
-            {
-                "title": "Start vs Begin",
-                "text": """
-<b>🚀 Start / begin – очень близкие синонимы, но start более разговорный.</b>
-
-• *start* – часто используется для физических действий, механизмов.
-  • *The car won't start.* (Машина не заводится.)
-  • *He started running.* (Он начал бежать.)
-
-• *begin* – чуть более формальный, для абстрактных понятий.
-  • *The concert begins at 8.* (Концерт начинается в 8.)
-  • *Let's begin the meeting.* (Давайте начнём встречу.)
-
-<blockquote>Во многих контекстах они взаимозаменяемы, но start подходит для неформальной речи и физических действий.</blockquote>
-"""
-            },
-            {
-                "title": "Finish vs Complete",
-                "text": """
-<b>✅ Finish / complete – оба означают 'закончить', но complete более формален.</b>
-
-• *finish* – часто для повседневных действий, приёмов пищи, работы.
-  • *I finished my homework.* (Я закончил домашнюю работу.)
-  • *Have you finished eating?* (Ты закончил есть?)
-
-• *complete* – более формальный, часто для проектов, списков, документов.
-  • *She completed the project on time.* (Она завершила проект вовремя.)
-  • *Please complete the form.* (Пожалуйста, заполните форму.)
-
-<blockquote>После complete может идти существительное, а после finish – герундий (finish doing).</blockquote>
-"""
-            },
-            {
-                "title": "Другие важные пары синонимов",
-                "text": """
-<b>📌 Дополнительные пары:</b>
-
-• <b>big / large</b> – big разговорный, large формальный (для размеров)
-• <b>small / little</b> – little может выражать эмоции (a little girl), small – просто размер
-• <b>gather / collect</b> – gather собираться (о людях), collect коллекционировать или забирать
-• <b>buy / purchase</b> – buy разговорный, purchase формальный
-• <b>get / receive</b> – get универсальный (получить), receive более формальный (получить письмо, награду)
-
-<b>Примеры:</b>
-• *I need to buy milk* (но не purchase milk – слишком формально для молока).
-• *We gathered in the hall* (собрались). *I collect stamps.* (коллекционирую)
-• *He received an award.* (получил награду – формально)
-
-<blockquote>Знание оттенков синонимов показывает глубокое владение языком.</blockquote>
-"""
-            },
-            {
-                "title": "Советы",
-                "text": """
-<b>💡 Как развить чутьё на синонимы:</b>
-• Читайте много – в разных контекстах вы почувствуете разницу.
-• Используйте толковые словари и словари синонимов (например, Oxford Collocations Dictionary).
-• Составляйте свои примеры, где замена синонима меняет оттенок.
-
-<blockquote>Не все синонимы взаимозаменяемы – контекст решает всё.</blockquote>
-"""
-            }
-        ],
-        "faq": [
-            {"question": "Как сказать 'начать новую работу' – start или begin?", "answer": "Оба возможны, но *start a new job* звучит естественнее. *Begin a new job* формальнее."}
+      },
+      {
+        "type": "fill_blank",
+        "text": "The new policy will ___ all employees.",
+        "correct": "affect",
+        "hint": "Влиять на",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The ___ of the drug wears off after four hours.",
+        "correct": "effect",
+        "hint": "Действие лекарства",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The ___ gave a speech at the assembly.",
+        "correct": "principal",
+        "hint": "Директор школы",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "It's a matter of ___ , not money.",
+        "correct": "principle",
+        "hint": "Принцип",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "What can we ___ from this data?",
+        "correct": "infer",
+        "hint": "Заключить",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "Are you ___ that I am lying?",
+        "correct": "implying",
+        "hint": "Намекать (Present Continuous)",
+        "star": False
+      },
+      {
+        "type": "choice",
+        "text": "The ___ of the storm was devastating.",
+        "correct": "effect",
+        "hint": "Последствие",
+        "star": False,
+        "options": [
+          "affect",
+          "effect"
         ]
-    },
-        "advanced_prepositions": {
-        "title": "Продвинутые предлоги (prepositions in idioms and fixed phrases)",
-        "pages": [
-            {
-                "title": "Предлоги в устойчивых выражениях (часть 1)",
-                "text": """
-<b>📍 Продвинутые предлоги – часто встречаются в идиоматических выражениях, и их нужно запоминать как единое целое.</b>
-
-• <b>in response to</b> – в ответ на
-  • *In response to your letter...* (В ответ на ваше письмо...)
-
-• <b>with regard to / regarding</b> – относительно
-  • *With regard to your inquiry...* (Относительно вашего запроса...)
-
-• <b>on behalf of</b> – от имени
-  • *I'm calling on behalf of my boss.* (Я звоню от имени начальника.)
-
-• <b>in spite of</b> – несмотря на (≠ despite, но похоже)
-  • *In spite of the rain, we went out.*
-
-• <b>by means of</b> – посредством, с помощью
-  • *They communicated by means of sign language.* (Они общались посредством жестов.)
-
-<blockquote>Эти фразы очень формальны и часто встречаются в деловой переписке.</blockquote>
-"""
-            },
-            {
-                "title": "Предлоги в идиомах (часть 2)",
-                "text": """
-<b>📌 Ещё несколько устойчивых сочетаний:</b>
-
-• <b>in terms of</b> – с точки зрения, что касается
-  • *In terms of price, the first option is better.* (Что касается цены, первый вариант лучше.)
-
-• <b>on the verge of</b> – на грани
-  • *The company was on the verge of bankruptcy.* (Компания была на грани банкротства.)
-
-• <b>at the expense of</b> – за счёт (в ущерб)
-  • *He achieved success at the expense of his health.* (Он достиг успеха ценой своего здоровья.)
-
-• <b>in light of / in the light of</b> – в свете (учитывая)
-  • *In light of recent events, we've decided to cancel the trip.* (В свете недавних событий мы решили отменить поездку.)
-
-• <b>with respect to</b> – относительно (формальный синоним regarding)
-  • *With respect to your request, we will consider it.* (Относительно вашего запроса мы его рассмотрим.)
-
-<blockquote>Эти фразы помогут вам писать деловые письма и эссе на высоком уровне.</blockquote>
-"""
-            },
-            {
-                "title": "Предлоги в глагольных конструкциях (продвинутые)",
-                "text": """
-<b>🔧 Глаголы, которые часто путают с предлогами:</b>
-
-• <b>to refrain from</b> – воздерживаться от
-  • *Please refrain from smoking.* (Пожалуйста, воздержитесь от курения.)
-
-• <b>to protest against</b> – протестовать против (но в американском английском protest без against)
-• <b>to prevent someone from doing</b> – предотвратить, не дать сделать
-  • *The rain prevented us from going out.* (Дождь помешал нам выйти.)
-
-• <b>to prohibit someone from doing</b> – запрещать кому-либо делать
-  • *The rules prohibit you from entering.* (Правила запрещают вам входить.)
-
-• <b>to differ from</b> – отличаться от (о вещах)
-  • *This differs from the original.* (Это отличается от оригинала.)
-
-• <b>to differ with</b> – не соглашаться с (о людях)
-  • *I differ with you on that point.* (Я не согласен с вами в этом вопросе.)
-
-<blockquote>Различия между похожими предлогами могут быть очень тонкими.</blockquote>
-"""
-            },
-            {
-                "title": "Советы",
-                "text": """
-<b>💡 Как учить продвинутые предлоги:</b>
-• Учите предлоги в контексте устойчивых фраз (in terms of, on behalf of).
-• Составляйте свои примеры, используя каждую фразу.
-• Проверяйте себя: закройте предлог и пытайтесь вспомнить его.
-• Читайте качественную прессу (The Economist, The Guardian) – там много таких фраз.
-
-<blockquote>Ошибки в предлогах выдают неносителя даже на C2.</blockquote>
-"""
-            }
-        ],
-        "faq": [
-            {"question": "Как сказать 'от имени' – on behalf of или in behalf of?", "answer": "On behalf of – от имени (действуя как представитель). In behalf of (американский вариант) – в интересах, ради."}
+      },
+      {
+        "type": "choice",
+        "text": "How does stress ___ your health?",
+        "correct": "affect",
+        "hint": "Влиять",
+        "star": False,
+        "options": [
+          "affect",
+          "effect"
         ]
-    },
-
-    # ==================== МОДУЛЬ 8: Дебаты и аргументация ====================
-        "debate_structures": {
-        "title": "Структура аргументов и контраргументов в дебатах",
-        "pages": [
-            {
-                "title": "Основные элементы аргументации",
-                "text": """
-<b>⚖️ В любом дебате структура аргумента обычно включает:</b>
-
-1. <b>Claim</b> – утверждение (что вы доказываете)
-2. <b>Evidence</b> – доказательство (факты, данные, примеры)
-3. <b>Warrant</b> – обоснование (почему доказательство подтверждает утверждение)
-4. <b>Impact</b> – значение (почему это важно)
-
-<blockquote>Эта структура используется в академических эссе и формальных дебатах.</blockquote>
-
-<b>Пример:</b>
-• Claim: Social media harms teenagers.
-• Evidence: Studies show that heavy social media use correlates with higher rates of anxiety.
-• Warrant: Since anxiety affects academic performance and well-being, this is a serious problem.
-• Impact: Therefore, regulations should be introduced to limit teenagers' screen time.
-"""
-            },
-            {
-                "title": "Структура контраргумента",
-                "text": """
-<b>🔁 Как строить контраргумент:</b>
-
-1. <b>Acknowledge</b> – признать, что оппонент прав в чём-то (чтобы быть вежливым)
-2. <b>Refute</b> – опровергнуть логику или доказательства
-3. <b>Provide counter‑evidence</b> – дать свои доказательства
-4. <b>Reinforce your claim</b> – вернуться к своему тезису
-
-<b>Пример:</b>
-• Acknowledge: It's true that social media helps teenagers stay connected.
-• Refute: However, the negative impact on mental health outweighs this benefit.
-• Counter‑evidence: Studies show that even moderate use increases FOMO and depression.
-• Reinforce: Therefore, limiting usage is still justified.
-
-<blockquote>Контраргумент показывает глубину анализа и повышает убедительность.</blockquote>
-"""
-            },
-            {
-                "title": "Клише для введения аргументов и контраргументов",
-                "text": """
-<b>🗣️ Полезные фразы для дебатов:</b>
-
-• <b>Introducing a point:</b> Firstly, / To begin with, / It is widely accepted that...
-• <b>Adding a point:</b> Moreover, / Furthermore, / In addition, / Another key point is...
-• <b>Introducing a counter‑argument:</b> However, / On the other hand, / Critics argue that...
-• <b>Refuting:</b> Nevertheless, / Despite this, / That argument fails to consider... / This is flawed because...
-• <b>Concluding:</b> In conclusion, / To sum up, / Therefore, / Thus, / Consequently,...
-
-<blockquote>Эти клише помогут структурировать речь в дебатах и эссе.</blockquote>
-"""
-            },
-            {
-                "title": "Пример краткой дебатной речи",
-                "text": """
-<b>📖 Пример (тема: Should university be free?)</b>
-
-*To begin with, free university education would reduce social inequality. Many talented students cannot afford tuition, which limits social mobility. Moreover, countries like Germany have successfully implemented free tuition without harming quality.*
-
-*On the other hand, opponents argue that free education would lead to overcrowded universities and lower standards. However, this argument fails to consider that selective admission based on merit can maintain quality. Furthermore, the long‑term economic benefits of a well‑educated workforce outweigh the short‑term costs.*
-
-*In conclusion, free university education is a worthwhile investment in the future.*
-
-<blockquote>Такая структура делает речь убедительной и логичной.</blockquote>
-"""
-            },
-            {
-                "title": "Советы",
-                "text": """
-<b>💡 Как развить навык дебатов:</b>
-
-• Практикуйтесь в парах: один приводит аргумент, другой контраргумент.
-• Смотрите дебаты на YouTube (Oxford Union, Cambridge Union).
-• Пишите эссе, строго следуя структуре claim–evidence–warrant–impact.
-• Изучайте логические ошибки (straw man, ad hominem), чтобы их избегать.
-
-<blockquote>Структурированная аргументация – ключ к убеждению аудитории.</blockquote>
-"""
-            }
-        ],
-        "faq": [
-            {"question": "Обязательно ли всегда использовать все четыре элемента (claim, evidence, warrant, impact)?", "answer": "В кратких выступлениях можно объединять warrant и impact, но в академических работах рекомендуется полнота."}
+      },
+      {
+        "type": "choice",
+        "text": "He acted on ___ , not profit.",
+        "correct": "principle",
+        "hint": "Принцип",
+        "star": False,
+        "options": [
+          "principal",
+          "principle"
         ]
-    },
-            "persuasive_language": {
-        "title": "Язык убеждения и риторические приёмы",
-        "pages": [
-            {
-                "title": "Что такое язык убеждения?",
-                "text": """
-<b>🗣️ Язык убеждения – использование лексических и риторических средств, чтобы повлиять на мнение аудитории.</b>
-
-На уровне C2 важно не только логически обосновывать свою позицию, но и использовать выразительные средства для усиления воздействия.
-
-<blockquote>Риторика – искусство убеждения, известное со времён античности.</blockquote>
-"""
-            },
-            {
-                "title": "Риторические приёмы (триада, повторение, риторические вопросы)",
-                "text": """
-<b>📌 Эффективные приёмы:</b>
-
-• <b>Rule of three (триада)</b> – три параллельных элемента для усиления.
-  • *We need more jobs, more investment, and more opportunity.* (Нам нужно больше рабочих мест, больше инвестиций и больше возможностей.)
-
-• <b>Anaphora (повторение в начале предложений)</b>
-  • *We will fight them on the beaches, we will fight them on the landing grounds, we will fight them in the fields.* (Черчилль)
-
-• <b>Rhetorical questions (риторические вопросы)</b> – вопрос, не требующий ответа, чтобы подтолкнуть слушателя к согласию.
-  • *Is that the kind of future we want for our children?*
-
-• <b>Emotive language (эмоциональная лексика)</b>
-  • *This cruel and heartless policy must be stopped.*
-
-<blockquote>Эти приёмы делают речь запоминающейся и эмоциональной.</blockquote>
-"""
-            },
-            {
-                "title": "Лексика убеждения (modality, hedging, boosting)",
-                "text": """
-<b>📌 Слова, усиливающие или смягчающие утверждение:</b>
-
-• <b>Boosting (усиление)</b> – definitely, absolutely, undoubtedly, certainly.
-  • *This is undoubtedly the best solution.*
-
-• <b>Hedging (смягчение)</b> – perhaps, maybe, might, possibly, it seems that.
-  • *Perhaps there is another explanation.*
-
-• <b>Modality (модальные глаголы для выражения уверенности)</b> – must, will, should, may, might.
-
-<blockquote>Умелое сочетание boosting и hedging создаёт убедительный, но не агрессивный тон.</blockquote>
-"""
-            },
-            {
-                "title": "Пример убедительной речи",
-                "text": """
-<b>📖 Пример (тема: сокращение пластиковых отходов):</b>
-
-*Is it acceptable that our oceans are filled with plastic? Absolutely not. We need a complete ban on single‑use plastics. Without such a ban, marine life will continue to die, our beaches will be polluted, and our health will be at risk. Some argue that a ban would hurt businesses, but this argument ignores the long‑term cost of environmental damage. Therefore, we must act now.*
-
-<blockquote>Здесь использованы риторический вопрос, boosting (absolutely not, must), триада (marine life, beaches, health) и контраргумент.</blockquote>
-"""
-            },
-            {
-                "title": "Советы",
-                "text": """
-<b>💡 Как развить навык убеждения:</b>
-
-• Анализируйте речи известных ораторов (Martin Luther King, Winston Churchill, Barack Obama).
-• Пишите короткие убедительные тексты на разные темы.
-• Практикуйтесь в устной речи: убедите друга изменить мнение.
-• Изучайте риторические приёмы и старайтесь использовать их осознанно.
-
-<blockquote>Убеждение – это искусство, которое сочетает логику, эмоции и стиль.</blockquote>
-"""
-            }
-        ],
-        "faq": [
-            {"question": "Можно ли использовать эмоциональную лексику в академическом эссе?", "answer": "Осторожно. В научных работах лучше избегать чрезмерной эмоциональности, но в эссе-рассуждении (opinion essay) она допустима."}
+      },
+      {
+        "type": "choice",
+        "text": "The ___ reason for his success is hard work.",
+        "correct": "principal",
+        "hint": "Главный",
+        "star": False,
+        "options": [
+          "principal",
+          "principle"
         ]
-    },
-       "counterargument_cliches": {
-        "title": "Клише для контраргументации и опровержения",
-        "pages": [
-            {
-                "title": "Зачем нужны клише для контраргументации?",
-                "text": """
-<b> Контраргументация – важная часть убеждения. Готовые фразы помогают быстро и чётко опровергать оппонента.</b>
-
-Использование таких клише показывает гибкость мышления и знание риторических приёмов.
-
-<blockquote>Контраргумент часто начинается с признания точки зрения оппонента, а затем её опровержения.</blockquote>
-"""
-            },
-            {
-                "title": "Клише для признания аргумента оппонента",
-                "text": """
-<b>📌 Вежливое признание:</b>
-
-• *It is true that...* (Верно, что...)
-• *Admittedly, ...* (Надо признать, что...)
-• *Some people argue that...* (Некоторые утверждают, что...)
-• *It is often said that...* (Часто говорят, что...)
-• *On the surface, it seems that...* (На первый взгляд кажется, что...)
-• *Opponents of this view claim that...* (Противники этой точки зрения заявляют, что...)
-
-<blockquote>Признание делает вашу речь сбалансированной и повышает доверие.</blockquote>
-"""
-            },
-            {
-                "title": "Клише для опровержения",
-                "text": """
-<b>📌 Способы опровергнуть:</b>
-
-• *However, this argument ignores the fact that...* (Однако этот аргумент игнорирует тот факт, что...)
-• *Nevertheless, it is important to remember that...* (Тем не менее, важно помнить, что...)
-• *While there is some truth to this, it fails to consider...* (Хотя здесь есть доля истины, это не учитывает...)
-• *This reasoning is flawed because...* (Эта логика ошибочна, потому что...)
-• *Even if we accept that, ...* (Даже если признать это, ...)
-• *Not only that, but also...* (Мало того, ...)
-
-<blockquote>Сильные слова: flawed, insufficient, misleading, oversimplification, fallacy.</blockquote>
-"""
-            },
-            {
-                "title": "Клише для перехода обратно к своему тезису",
-                "text": """
-<b>📌 Возвращение к основной линии:</b>
-
-• *Therefore, the original argument still stands.* (Следовательно, первоначальный аргумент остаётся в силе.)
-• *Thus, it is clear that...* (Таким образом, ясно, что...)
-• *In light of this, we must conclude that...* (В свете этого мы должны заключить, что...)
-• *Ultimately, the benefits outweigh the drawbacks.* (В конечном счёте, преимущества перевешивают недостатки.)
-• *Having said that, we should focus on...* (Тем не менее, мы должны сосредоточиться на...)
-
-<blockquote>После контраргумента важно вернуться к своей позиции, чтобы не потерять нить.</blockquote>
-"""
-            },
-            {
-                "title": "Примеры целостных контраргументов",
-                "text": """
-<b>📖 Примеры:</b>
-
-• *Some argue that raising taxes will hurt the economy. Admittedly, this could have short‑term effects. However, the long‑term benefits of funding education and healthcare far outweigh these risks.*
-
-• *It is often said that social media brings people together. While this may be true in some cases, it fails to account for the negative impact on mental health and real‑world relationships.*
-
-• *Opponents claim that renewable energy is too expensive. Even if that were true, we cannot ignore the catastrophic cost of climate change.*
-
-<blockquote>Хороший контраргумент сбалансирован, логичен и укрепляет вашу позицию.</blockquote>
-"""
-            },
-            {
-                "title": "Советы",
-                "text": """
-<b>💡 Как эффективно использовать контраргументы:</b>
-
-• Всегда признавайте сильную сторону оппонента – это делает ваше опровержение более убедительным.
-• Не переходите на личности (ad hominem) – это ослабляет аргумент.
-• Тренируйтесь: возьмите любую дискуссионную тему и напишите контраргумент на чужой тезис.
-
-<blockquote>Контраргументация – это не агрессия, а демонстрация глубины анализа.</blockquote>
-"""
-            }
-        ],
-        "faq": [
-            {"question": "Нужно ли использовать контраргументы в эссе IELTS?", "answer": "Да, в эссе с аргументацией (opinion essay, discussion essay) контраргумент повышает балл за структуру и критическое мышление."}
+      },
+      {
+        "type": "choice",
+        "text": "She ___ from his words that he was leaving.",
+        "correct": "inferred",
+        "hint": "Сделала вывод (Past Simple)",
+        "star": False,
+        "options": [
+          "implied",
+          "inferred"
         ]
-    },
-        "topic_based_debates": {
-        "title": "Тематические дебаты (экология, политика, этика, технологии)",
-        "pages": [
-            {
-                "title": "Типичные темы для дебатов на C2",
-                "text": """
-<b>🌍 Часто встречающиеся темы:</b>
-
-• <b>Экология:</b> climate change, renewable energy, plastic ban, meat consumption
-• <b>Политика:</b> universal basic income, gun control, immigration, voting age
-• <b>Этика:</b> animal testing, euthanasia, surrogacy, genetic engineering
-• <b>Технологии:</b> AI regulation, social media censorship, privacy vs security, automation and jobs
-• <b>Образование:</b> free university, homework, online learning, school uniforms
-
-<blockquote>На экзаменах CPE и IELTS часто предлагаются именно такие темы для эссе и устных выступлений.</blockquote>
-"""
-            },
-            {
-                "title": "Полезная лексика для дебатов по экологии",
-                "text": """
-<b>🌱 Ключевые слова и фразы:</b>
-
-• *carbon footprint* – углеродный след
-• *renewable energy sources* – возобновляемые источники энергии
-• *sustainable development* – устойчивое развитие
-• *single‑use plastics* – одноразовый пластик
-• *to reduce emissions* – сократить выбросы
-• *to combat climate change* – бороться с изменением климата
-• *environmental degradation* – ухудшение состояния окружающей среды
-
-<b>Пример аргумента:</b>
-*Investing in renewable energy is crucial to reduce our carbon footprint. Solar and wind power are becoming increasingly affordable, and they create jobs. While some argue that fossil fuels are still necessary for economic growth, this short‑term view ignores the catastrophic consequences of climate change.*
-
-<blockquote>Используйте специфическую лексику, чтобы звучать экспертом.</blockquote>
-"""
-            },
-            {
-                "title": "Лексика для дебатов по политике и этике",
-                "text": """
-<b>🏛️ Политика и этика:</b>
-
-• *social justice* – социальная справедливость
-• *individual freedom* – личная свобода
-• *common good* – общее благо
-• *human rights* – права человека
-• *ethical dilemma* – этическая дилема
-• *to strike a balance between* – найти баланс между
-• *to be a slippery slope* – быть скользкой дорожкой
-
-<b>Пример аргумента (против смертной казни):</b>
-*The death penalty violates the fundamental human right to life. Moreover, there is always a risk of executing an innocent person. Although proponents argue that it serves as a deterrent, studies have shown that it does not reduce crime rates.*
-
-<blockquote>Для этических тем важны ссылки на ценности (rights, justice, freedom).</blockquote>
-"""
-            },
-            {
-                "title": "Лексика для дебатов по технологиям",
-                "text": """
-<b>🤖 Технологии и цифровое общество:</b>
-
-• *artificial intelligence (AI)* – искусственный интеллект
-• *data privacy* – конфиденциальность данных
-• *surveillance* – слежка
-• *algorithmic bias* – алгоритмическая предвзятость
-• *job displacement* – сокращение рабочих мест
-• *digital divide* – цифровое неравенство
-
-<b>Пример аргумента (о регулировании соцсетей):</b>
-*Social media platforms should be regulated to prevent the spread of misinformation. Unchecked, they can influence elections and undermine democracy. Critics claim that regulation would violate free speech, but the right to accurate information must take precedence.*
-
-<blockquote>Технологические дебаты часто пересекаются с этикой и политикой.</blockquote>
-"""
-            },
-            {
-                "title": "Советы",
-                "text": """
-<b>💡 Как подготовиться к дебатам на конкретную тему:</b>
-
-• Соберите факты, статистику и примеры по теме (1-2 убедительных факта).
-• Продумайте и основной аргумент, и возможный контраргумент.
-• Выучите ключевую лексику по теме.
-• Практикуйтесь в парах: назначьте одну сторону, другую – и обменивайтесь аргументами.
-
-<blockquote>Настоящее мастерство дебатов приходит с практикой и знанием фактов.</blockquote>
-"""
-            }
-        ],
-        "faq": [
-            {"question": "Нужно ли знать статистику наизусть?", "answer": "На экзаменах достаточно общих ссылок (Studies show that...). Для реальных дебатов полезны цифры, но они не обязательны."}
+      },
+      {
+        "type": "choice",
+        "text": "He ___ that he knew the answer.",
+        "correct": "implied",
+        "hint": "Намекнул (Past Simple)",
+        "star": False,
+        "options": [
+          "implied",
+          "inferred"
         ]
-    }
+      },
+      {
+        "type": "fill_blank",
+        "text": "The ___ of the medication is long-lasting.",
+        "correct": "effect",
+        "hint": "Эффект",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "Don't let his words ___ your decision.",
+        "correct": "affect",
+        "hint": "Повлиять",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The ___ problem is lack of funding.",
+        "correct": "principal",
+        "hint": "Главный",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He sticks to his ___ no matter what.",
+        "correct": "principles",
+        "hint": "Принципы (мн.ч.)",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "We can ___ from the evidence that he is guilty.",
+        "correct": "infer",
+        "hint": "Сделать вывод",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "What are you ___ by that remark?",
+        "correct": "implying",
+        "hint": "Подразумевать",
+        "star": False
+      },
+      {
+        "type": "choice",
+        "text": "The ___ of the new tax will be felt by everyone.",
+        "correct": "effect",
+        "hint": "Влияние",
+        "star": True,
+        "options": [
+          "affect",
+          "effect"
+        ]
+      },
+      {
+        "type": "choice",
+        "text": "The ___ of the school announced a holiday.",
+        "correct": "principal",
+        "hint": "Директор",
+        "star": True,
+        "options": [
+          "principal",
+          "principle"
+        ]
+      },
+      {
+        "type": "fill_blank",
+        "text": "From the data, we can ___ that sales will rise.",
+        "correct": "infer",
+        "hint": "Заключить",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "His tone ___ that he was not satisfied.",
+        "correct": "implied",
+        "hint": "Намекал",
+        "star": True
+      },
+      {
+        "type": "reorder",
+        "text": "will / the / affect / weather / our / plans",
+        "correct": "The weather will affect our plans.",
+        "hint": "Погода повлияет на планы",
+        "star": True
+      },
+      {
+        "type": "reorder",
+        "text": "principal / the / is / our / very / kind",
+        "correct": "Our principal is very kind.",
+        "hint": "Наш директор очень добрый",
+        "star": True
+      },
+      {
+        "type": "translation",
+        "text": "Этот закон не повлияет на нас.",
+        "correct": "This law will not affect us.",
+        "hint": "affect = влиять",
+        "star": True
+      },
+      {
+        "type": "translation",
+        "text": "Он действует по принципу честности.",
+        "correct": "He acts on the principle of honesty.",
+        "hint": "principle = принцип",
+        "star": True
+      },
+      {
+        "type": "open",
+        "text": "Объясни разницу между imply и infer на примере.",
+        "correct": "Imply means to suggest indirectly; infer means to deduce. Example: She implied she was tired, and I inferred she wanted to leave.",
+        "hint": "Imply - говорящий, infer - слушающий",
+        "star": True
+      },
+      {
+        "type": "open",
+        "text": "Составь предложение с affect (глагол) и effect (существительное).",
+        "correct": "The new rule will affect students, and the effect will be positive.",
+        "hint": "affect - действие, effect - результат",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "The new policy will ___ the entire company.",
+        "correct": "affect",
+        "hint": "глагол — 'влиять'",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "What is the ___ of this medicine?",
+        "correct": "effect",
+        "hint": "существительное — 'эффект'",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The ___ of the school gave a speech.",
+        "correct": "principal",
+        "hint": "директор школы",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "Honesty is a key ___ of our company.",
+        "correct": "principle",
+        "hint": "принцип",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "What are you trying to ___ by saying that?",
+        "correct": "imply",
+        "hint": "глагол — 'намекать'",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "From your tone, I ___ that you are angry.",
+        "correct": "infer",
+        "hint": "глагол — 'делать вывод'",
+        "star": False
+      },
+      {
+        "type": "choice",
+        "text": "The weather can ___ your mood.",
+        "correct": "affect",
+        "hint": "выберите глагол",
+        "options": [
+          "affect",
+          "effect"
+        ],
+        "star": False
+      },
+      {
+        "type": "choice",
+        "text": "This law will come into ___ next month.",
+        "correct": "effect",
+        "hint": "существительное",
+        "options": [
+          "affect",
+          "effect"
+        ],
+        "star": False
+      },
+      {
+        "type": "choice",
+        "text": "She is the ___ dancer in the troupe.",
+        "correct": "principal",
+        "hint": "главный",
+        "options": [
+          "principal",
+          "principle"
+        ],
+        "star": False
+      },
+      {
+        "type": "choice",
+        "text": "He refused to compromise his ___.",
+        "correct": "principles",
+        "hint": "моральные нормы",
+        "options": [
+          "principals",
+          "principles"
+        ],
+        "star": False
+      },
+      {
+        "type": "choice",
+        "text": "What did the author ___ in this paragraph?",
+        "correct": "imply",
+        "hint": "намекать",
+        "options": [
+          "imply",
+          "infer"
+        ],
+        "star": False
+      },
+      {
+        "type": "choice",
+        "text": "From the data we can ___ several trends.",
+        "correct": "infer",
+        "hint": "сделать вывод",
+        "options": [
+          "imply",
+          "infer"
+        ],
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The new regulations will ___ our daily routine.",
+        "correct": "affect",
+        "hint": "повлияют на",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The ___ of the explosion was felt miles away.",
+        "correct": "effect",
+        "hint": "последствие",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "My ___ reason for calling is to invite you.",
+        "correct": "principal",
+        "hint": "главная причина",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He always acts on ___.",
+        "correct": "principle",
+        "hint": "по принципу",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "Are you ___ that I'm lying?",
+        "correct": "implying",
+        "hint": "намекаешь",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "I ___ from your silence that you agree.",
+        "correct": "infer",
+        "hint": "заключаю",
+        "star": False
+      },
+      {
+        "type": "reorder",
+        "text": "will / affect / This / decision / everyone",
+        "correct": "This decision will affect everyone",
+        "hint": "повлияет на всех",
+        "star": False
+      },
+      {
+        "type": "reorder",
+        "text": "effect / side / The / has / no / drug",
+        "correct": "The drug has no side effect",
+        "hint": "побочный эффект",
+        "star": False
+      },
+      {
+        "type": "reorder",
+        "text": "principal / the / is / Our / very strict",
+        "correct": "Our principal is very strict",
+        "hint": "директор строгий",
+        "star": False
+      },
+      {
+        "type": "reorder",
+        "text": "principle / a / He / lives / by / simple",
+        "correct": "He lives by a simple principle",
+        "hint": "живет по принципу",
+        "star": False
+      },
+      {
+        "type": "reorder",
+        "text": "imply / you / What / do ?",
+        "correct": "What do you imply?",
+        "hint": "что ты имеешь в виду?",
+        "star": False
+      },
+      {
+        "type": "reorder",
+        "text": "infer / can / we / this / From / that",
+        "correct": "From this we can infer that",
+        "hint": "мы можем сделать вывод",
+        "star": False
+      },
+      {
+        "type": "translation",
+        "text": "Переведите: Это повлияет на результат.",
+        "correct": "This will affect the result.",
+        "hint": "affect + результат",
+        "star": False
+      },
+      {
+        "type": "translation",
+        "text": "Переведите: У закона есть обратный эффект.",
+        "correct": "The law has a reverse effect.",
+        "hint": "effect — существительное",
+        "star": False
+      },
+      {
+        "type": "translation",
+        "text": "Переведите: Директор школы ушел на пенсию.",
+        "correct": "The principal retired.",
+        "hint": "principal = директор",
+        "star": False
+      },
+      {
+        "type": "translation",
+        "text": "Переведите: Это противоречит моим принципам.",
+        "correct": "This goes against my principles.",
+        "hint": "principles — мн.ч.",
+        "star": False
+      },
+      {
+        "type": "translation",
+        "text": "Переведите: Что вы хотите этим сказать?",
+        "correct": "What are you trying to imply?",
+        "hint": "imply — намекать",
+        "star": False
+      },
+      {
+        "type": "translation",
+        "text": "Переведите: Я делаю вывод, что он виновен.",
+        "correct": "I infer that he is guilty.",
+        "hint": "infer — делать вывод",
+        "star": False
+      },
+      {
+        "type": "choice",
+        "text": "The ___ of the medication is immediate.",
+        "correct": "effect",
+        "hint": "действие лекарства",
+        "options": [
+          "affect",
+          "effect"
+        ],
+        "star": True
+      },
+      {
+        "type": "choice",
+        "text": "His speech ___ the audience deeply.",
+        "correct": "affected",
+        "hint": "тронул аудиторию",
+        "options": [
+          "affected",
+          "effected"
+        ],
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "The ___ of the matter is that we need more time.",
+        "correct": "principle",
+        "hint": "суть дела (устойчивое выражение)",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "She was appointed as the ___ of the college.",
+        "correct": "principal",
+        "hint": "должность руководителя",
+        "star": True
+      },
+      {
+        "type": "open",
+        "text": "Составьте предложение со словом 'imply' в значении 'подразумевать'.",
+        "correct": "His silence implies guilt.",
+        "hint": "imply + that",
+        "star": True
+      },
+      {
+        "type": "open",
+        "text": "Составьте предложение со словом 'infer' в значении 'заключить'.",
+        "correct": "I infer from your words that you are unhappy.",
+        "hint": "infer from",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "The new manager will ___ changes in the department.",
+        "correct": "effect",
+        "hint": "осуществить (глагол 'effect')",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "He is a man of high ___.",
+        "correct": "principles",
+        "hint": "человек принципов",
+        "star": True
+      },
+      {
+        "type": "reorder",
+        "text": "effect / The / change / will / a / positive",
+        "correct": "The change will effect a positive result",
+        "hint": "effect как глагол — 'осуществить'",
+        "star": True
+      },
+      {
+        "type": "reorder",
+        "text": "imply / not / I / did / that / you / are / wrong",
+        "correct": "I did not imply that you are wrong",
+        "hint": "я не подразумевал",
+        "star": True
+      }
+    ]
+  },
+  "common_mistakes_c2": {
+    "title": "Типичные ошибки продвинутых учащихся (prepositions, agreement, style)",
+    "pages": [
+      {
+        "title": "Ошибки с предлогами",
+        "text": "\n<b>📍 Распространённые ошибки в предлогах у русскоязычных:</b>\n\n• ❌ *depend from*  ✅ *depend on*\n• ❌ *explain me*  ✅ *explain to me*\n• ❌ *listen music*  ✅ *listen to music*\n• ❌ *wait somebody*  ✅ *wait for somebody*\n• ❌ *congratulate for*  ✅ *congratulate on*\n• ❌ *accuse for*  ✅ *accuse of*\n• ❌ *insist on* (правильно, но часто путают с *insist in* – нет)\n• ❌ *discuss about*  ✅ *discuss* (без about)\n\n<blockquote>Ошибки в предлогах – одна из самых заметных черт неносителя даже на высоком уровне.</blockquote>\n"
+      },
+      {
+        "title": "Согласование времён и последовательности",
+        "text": "\n<b>⚠️ Ошибки в согласовании времён в сложных предложениях:</b>\n\n• ❌ *If I would have known, I would have come.* (в условных)  ✅ *If I had known, I would have come.*\n• ❌ *I wish I would be taller.*  ✅ *I wish I were taller.*\n• ❌ *It's time you would go.*  ✅ *It's time you went.* (конструкция It's time + Past Simple)\n\n• ❌ *He suggested me to go.*  ✅ *He suggested that I go / He suggested going.*\n• ❌ *She insisted him to stay.*  ✅ *She insisted that he stay.* (сослагательное наклонение)\n\n<blockquote>Эти ошибки часто остаются даже у очень продвинутых учеников.</blockquote>\n"
+      },
+      {
+        "title": "Стилистические ошибки",
+        "text": "\n<b>📝 Регистр и стиль:</b>\n\n• ❌ Использование сокращений в академическом письме: *don't, it's* (лучше do not, it is)\n• ❌ Фразовые глаголы вместо односложных в формальных текстах: *put off → postpone, find out → discover*\n• ❌ Слишком частое использование *very* (заменяйте на extremely, highly, exceptionally)\n• ❌ Начало предложения с *And, But, So* в формальных текстах (заменяйте на Moreover, However, Therefore)\n\n• ❌ Двойное отрицание: *I didn't see nobody*  ✅ *I saw nobody / I didn't see anybody.*\n\n<blockquote>Ошибки стиля заметны на экзаменах и в деловой переписке.</blockquote>\n"
+      },
+      {
+        "title": "Советы",
+        "text": "\n<b>💡 Как избавиться от типичных ошибок:</b>\n\n• Заведите список своих частых ошибок и регулярно его пересматривайте.\n• После написания текста проверяйте его на наличие этих ошибок.\n• Читайте много качественных текстов (The Economist, The Guardian) – так вы начнёте чувствовать правильные конструкции.\n• Используйте грамматические справочники для проверки сомнительных случаев.\n\n<blockquote>Даже носители иногда ошибаются, но знание частых ошибок помогает их избегать.</blockquote>\n"
+      }
+    ],
+    "faq": [
+      {
+        "question": "Как быстро запомнить правильные предлоги?",
+        "answer": "Заучивайте глаголы вместе с предлогами как единое целое (depend on, listen to). Список самых частотных ошибок можно повесить на видное место."
+      }
+    ],
+    "practice_tasks": [
+      {
+        "type": "fill_blank",
+        "text": "She is very good ______ playing the piano.",
+        "correct": "at",
+        "hint": "Good at something",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He was accused ______ stealing the money.",
+        "correct": "of",
+        "hint": "Accused of a crime",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "I'm interested ______ learning Japanese.",
+        "correct": "in",
+        "hint": "Interested in something",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "This depends ______ the weather.",
+        "correct": "on",
+        "hint": "Depends on",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She insisted ______ coming with us.",
+        "correct": "on",
+        "hint": "Insist on doing something",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The company specializes ______ software development.",
+        "correct": "in",
+        "hint": "Specialize in",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He is married ______ a doctor.",
+        "correct": "to",
+        "hint": "Married to someone",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "I prefer coffee ______ tea.",
+        "correct": "to",
+        "hint": "Prefer X to Y",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She apologized ______ being late.",
+        "correct": "for",
+        "hint": "Apologize for something",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He was shocked ______ the news.",
+        "correct": "by",
+        "hint": "Shocked by something",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The book consists ______ ten chapters.",
+        "correct": "of",
+        "hint": "Consists of",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She succeeded ______ passing the exam.",
+        "correct": "in",
+        "hint": "Succeed in doing something",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He is capable ______ doing better work.",
+        "correct": "of",
+        "hint": "Capable of",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "I'm not familiar ______ this author.",
+        "correct": "with",
+        "hint": "Familiar with",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "They are different ______ each other.",
+        "correct": "from",
+        "hint": "Different from",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She is similar ______ her sister.",
+        "correct": "to",
+        "hint": "Similar to",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He is worried ______ his health.",
+        "correct": "about",
+        "hint": "Worried about",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "I'm tired ______ waiting.",
+        "correct": "of",
+        "hint": "Tired of something",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She is proud ______ her achievements.",
+        "correct": "of",
+        "hint": "Proud of",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He is jealous ______ his brother.",
+        "correct": "of",
+        "hint": "Jealous of",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The police are searching ______ the missing child.",
+        "correct": "for",
+        "hint": "Search for",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She applied ______ a job at the bank.",
+        "correct": "for",
+        "hint": "Apply for a job",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He paid ______ the meal.",
+        "correct": "for",
+        "hint": "Pay for something",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "I'm looking forward ______ the weekend.",
+        "correct": "to",
+        "hint": "Look forward to",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She is responsible ______ the project.",
+        "correct": "for",
+        "hint": "Responsible for",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He is not interested ______ politics.",
+        "correct": "in",
+        "hint": "Interested in",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The accident resulted ______ three deaths.",
+        "correct": "in",
+        "hint": "Result in (cause)",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "His illness resulted ______ poor diet.",
+        "correct": "from",
+        "hint": "Result from (be caused by)",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She is very keen ______ photography.",
+        "correct": "on",
+        "hint": "Keen on",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He is hopeless ______ mathematics.",
+        "correct": "at",
+        "hint": "Hopeless at",
+        "star": False
+      },
+      {
+        "type": "choice",
+        "text": "Neither the teacher nor the students ______ satisfied with the result.",
+        "correct": "were",
+        "hint": "Agreement with the nearest noun (students)",
+        "options": [
+          "was",
+          "were",
+          "is",
+          "has been"
+        ],
+        "star": True
+      },
+      {
+        "type": "choice",
+        "text": "The committee ______ made its decision.",
+        "correct": "has",
+        "hint": "Collective noun as a single unit",
+        "options": [
+          "have",
+          "has",
+          "are",
+          "were"
+        ],
+        "star": True
+      },
+      {
+        "type": "choice",
+        "text": "Everyone in the class ______ done their homework.",
+        "correct": "has",
+        "hint": "Everyone is singular",
+        "options": [
+          "have",
+          "has",
+          "are",
+          "were"
+        ],
+        "star": True
+      },
+      {
+        "type": "choice",
+        "text": "A number of issues ______ been raised.",
+        "correct": "have",
+        "hint": "A number of + plural verb",
+        "options": [
+          "has",
+          "have",
+          "is",
+          "was"
+        ],
+        "star": True
+      },
+      {
+        "type": "choice",
+        "text": "The data ______ been analyzed carefully.",
+        "correct": "have",
+        "hint": "Data is plural in formal English",
+        "options": [
+          "has",
+          "have",
+          "is",
+          "was"
+        ],
+        "star": True
+      },
+      {
+        "type": "choice",
+        "text": "She is one of those people who ______ always late.",
+        "correct": "are",
+        "hint": "Who refers to 'people' (plural)",
+        "options": [
+          "is",
+          "are",
+          "was",
+          "has been"
+        ],
+        "star": True
+      },
+      {
+        "type": "choice",
+        "text": "Either the manager or his assistants ______ to attend.",
+        "correct": "are",
+        "hint": "Agreement with nearest noun (assistants)",
+        "options": [
+          "is",
+          "are",
+          "has",
+          "was"
+        ],
+        "star": True
+      },
+      {
+        "type": "choice",
+        "text": "The news ______ very shocking.",
+        "correct": "is",
+        "hint": "News is uncountable (singular)",
+        "options": [
+          "is",
+          "are",
+          "were",
+          "have been"
+        ],
+        "star": True
+      },
+      {
+        "type": "choice",
+        "text": "Twenty dollars ______ too much for that book.",
+        "correct": "is",
+        "hint": "Sum of money as a single unit",
+        "options": [
+          "is",
+          "are",
+          "were",
+          "have been"
+        ],
+        "star": True
+      },
+      {
+        "type": "choice",
+        "text": "The majority of the population ______ in favor of the change.",
+        "correct": "is",
+        "hint": "Population is singular (collective noun as unit)",
+        "options": [
+          "is",
+          "are",
+          "were",
+          "have"
+        ],
+        "star": True
+      }
+    ]
+  },
+  "synonyms_nuances": {
+    "title": "Оттенки синонимов (talk/speak, start/begin, finish/complete)",
+    "pages": [
+      {
+        "title": "Talk vs Speak",
+        "text": "\n<b>🗣️ Talk / speak – оба означают 'говорить', но есть стилистические и грамматические различия.</b>\n\n• <b>talk</b> – неформальный, часто подразумевает беседу (двустороннюю).\n  • *We talked for hours.* (Мы разговаривали часами.)\n\n• <b>speak</b> – более формальный, может означать монолог или способность говорить на языке.\n  • *He spoke at the conference.* (Он выступал на конференции.)\n  • *She speaks three languages.* (Она говорит на трёх языках.)\n\n<blockquote>Speak to/with – можно использовать оба; talk to/with – аналогично.</blockquote>\n\n<b>Важное различие:</b>\n• *Speak to* может означать 'сделать замечание' (I'll speak to him about his behaviour.)\n• *Talk to* чаще просто разговор.\n"
+      },
+      {
+        "title": "Start vs Begin",
+        "text": "\n<b>🚀 Start / begin – очень близкие синонимы, но start более разговорный.</b>\n\n• *start* – часто используется для физических действий, механизмов.\n  • *The car won't start.* (Машина не заводится.)\n  • *He started running.* (Он начал бежать.)\n\n• *begin* – чуть более формальный, для абстрактных понятий.\n  • *The concert begins at 8.* (Концерт начинается в 8.)\n  • *Let's begin the meeting.* (Давайте начнём встречу.)\n\n<blockquote>Во многих контекстах они взаимозаменяемы, но start подходит для неформальной речи и физических действий.</blockquote>\n"
+      },
+      {
+        "title": "Finish vs Complete",
+        "text": "\n<b>✅ Finish / complete – оба означают 'закончить', но complete более формален.</b>\n\n• *finish* – часто для повседневных действий, приёмов пищи, работы.\n  • *I finished my homework.* (Я закончил домашнюю работу.)\n  • *Have you finished eating?* (Ты закончил есть?)\n\n• *complete* – более формальный, часто для проектов, списков, документов.\n  • *She completed the project on time.* (Она завершила проект вовремя.)\n  • *Please complete the form.* (Пожалуйста, заполните форму.)\n\n<blockquote>После complete может идти существительное, а после finish – герундий (finish doing).</blockquote>\n"
+      },
+      {
+        "title": "Другие важные пары синонимов",
+        "text": "\n<b>📌 Дополнительные пары:</b>\n\n• <b>big / large</b> – big разговорный, large формальный (для размеров)\n• <b>small / little</b> – little может выражать эмоции (a little girl), small – просто размер\n• <b>gather / collect</b> – gather собираться (о людях), collect коллекционировать или забирать\n• <b>buy / purchase</b> – buy разговорный, purchase формальный\n• <b>get / receive</b> – get универсальный (получить), receive более формальный (получить письмо, награду)\n\n<b>Примеры:</b>\n• *I need to buy milk* (но не purchase milk – слишком формально для молока).\n• *We gathered in the hall* (собрались). *I collect stamps.* (коллекционирую)\n• *He received an award.* (получил награду – формально)\n\n<blockquote>Знание оттенков синонимов показывает глубокое владение языком.</blockquote>\n"
+      },
+      {
+        "title": "Советы",
+        "text": "\n<b>💡 Как развить чутьё на синонимы:</b>\n• Читайте много – в разных контекстах вы почувствуете разницу.\n• Используйте толковые словари и словари синонимов (например, Oxford Collocations Dictionary).\n• Составляйте свои примеры, где замена синонима меняет оттенок.\n\n<blockquote>Не все синонимы взаимозаменяемы – контекст решает всё.</blockquote>\n"
+      }
+    ],
+    "faq": [
+      {
+        "question": "Как сказать 'начать новую работу' – start или begin?",
+        "answer": "Оба возможны, но *start a new job* звучит естественнее. *Begin a new job* формальнее."
+      }
+    ],
+    "practice_tasks": [
+      {
+        "type": "fill_blank",
+        "text": "They usually ___ about politics for hours.",
+        "correct": "talk",
+        "hint": "Неформальное общение",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The professor will ___ at the conference tomorrow.",
+        "correct": "speak",
+        "hint": "Формальное выступление",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "Let's ___ the meeting at 9 a.m.",
+        "correct": "begin",
+        "hint": "Начать что-то",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She needs to ___ her homework before dinner.",
+        "correct": "finish",
+        "hint": "Завершить рутинное дело",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "They ___ the project ahead of schedule.",
+        "correct": "completed",
+        "hint": "Завершить с результатом",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "I can't ___ to you right now, I'm busy.",
+        "correct": "talk",
+        "hint": "Неформальный разговор",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He ___ three languages fluently.",
+        "correct": "speaks",
+        "hint": "Владение языком",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The concert will ___ at 8 p.m.",
+        "correct": "begin",
+        "hint": "Начало события",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "Have you ___ reading that book?",
+        "correct": "finished",
+        "hint": "Закончить чтение",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The bridge was ___ in 2020.",
+        "correct": "completed",
+        "hint": "Завершение строительства",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "Stop ___ and listen to me!",
+        "correct": "talking",
+        "hint": "Болтовня",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She will ___ about her research at the seminar.",
+        "correct": "speak",
+        "hint": "Научное выступление",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The race will ___ in ten minutes.",
+        "correct": "begin",
+        "hint": "Старт соревнования",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "I need to ___ this report by Friday.",
+        "correct": "finish",
+        "hint": "Завершить работу",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "They ___ the construction last month.",
+        "correct": "completed",
+        "hint": "Завершение крупного дела",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "We can ___ about it later.",
+        "correct": "talk",
+        "hint": "Неформальное обсуждение",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The president will ___ to the nation tonight.",
+        "correct": "speak",
+        "hint": "Официальное обращение",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "Let's ___ the lesson with a song.",
+        "correct": "begin",
+        "hint": "Начать занятие",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She ___ her meal and left.",
+        "correct": "finished",
+        "hint": "Закончить еду",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The task was ___ successfully.",
+        "correct": "completed",
+        "hint": "Успешное завершение",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "They ___ on the phone for an hour.",
+        "correct": "talked",
+        "hint": "Разговор по телефону",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He ___ very fast, I can't understand him.",
+        "correct": "speaks",
+        "hint": "Темп речи",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The film ___ with a car chase.",
+        "correct": "begins",
+        "hint": "Начало фильма",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "I ___ my work at 5 p.m.",
+        "correct": "finished",
+        "hint": "Завершить работу по времени",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The marathon ___ at the city center.",
+        "correct": "completed",
+        "hint": "Завершение маршрута",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "Don't ___ with your mouth full.",
+        "correct": "talk",
+        "hint": "Разговор во время еды",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She ___ to the audience for two hours.",
+        "correct": "spoke",
+        "hint": "Длительное выступление",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The show will ___ at midnight.",
+        "correct": "begin",
+        "hint": "Начало шоу",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He ___ his speech with a joke.",
+        "correct": "finished",
+        "hint": "Завершить речь",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The renovation was ___ in record time.",
+        "correct": "completed",
+        "hint": "Быстрое завершение",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "They ___ quietly in the corner.",
+        "correct": "talked",
+        "hint": "Тихий разговор",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "The CEO will ___ at the annual meeting.",
+        "correct": "speak",
+        "hint": "Официальное выступление руководителя",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "The ceremony will ___ with a prayer.",
+        "correct": "begin",
+        "hint": "Начало церемонии",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "She ___ the marathon in under 3 hours.",
+        "correct": "completed",
+        "hint": "Завершить соревнование с результатом",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "Let's ___ about our plans for the weekend.",
+        "correct": "talk",
+        "hint": "Неформальное планирование",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "He ___ his thesis last year.",
+        "correct": "completed",
+        "hint": "Завершить научную работу",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "The teacher asked us to ___ about our summer.",
+        "correct": "talk",
+        "hint": "Рассказ о себе",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "She ___ the puzzle in ten minutes.",
+        "correct": "finished",
+        "hint": "Завершить головоломку",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "The play ___ with a dramatic scene.",
+        "correct": "begins",
+        "hint": "Начало пьесы",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "They ___ the project despite difficulties.",
+        "correct": "completed",
+        "hint": "Завершить несмотря на трудности",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "Can we ___ about the project later? (talk/speak)",
+        "correct": "talk",
+        "hint": "Более неформальный, подходит для повседневного общения",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She needs to ___ to the manager immediately. (talk/speak)",
+        "correct": "speak",
+        "hint": "Более формальный, часто с to",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "Let's ___ the meeting at 10 a.m. (start/begin)",
+        "correct": "start",
+        "hint": "Более разговорный вариант",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The ceremony will ___ with a speech. (start/begin)",
+        "correct": "begin",
+        "hint": "Формальный, часто для церемоний",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "Have you ___ your homework yet? (finish/complete)",
+        "correct": "finished",
+        "hint": "Обычное завершение задачи",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The project was ___ ahead of schedule. (finish/complete)",
+        "correct": "completed",
+        "hint": "Официальный, подчеркивает полноту",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He ___ to his friend about the trip. (talk/speak)",
+        "correct": "talked",
+        "hint": "Неформальная беседа",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "Please ___ up, I can't hear you. (talk/speak)",
+        "correct": "speak",
+        "hint": "Говорить громко/чётко",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The movie ___ at 7 pm. (start/begin)",
+        "correct": "starts",
+        "hint": "Расписание, разговорный",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The course ___ next Monday. (start/begin)",
+        "correct": "begins",
+        "hint": "Формальное начало курса",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "I need to ___ this report by Friday. (finish/complete)",
+        "correct": "finish",
+        "hint": "Завершить работу",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The form must be ___ in black ink. (finish/complete)",
+        "correct": "completed",
+        "hint": "Заполнить документ",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "They ___ about politics all evening. (talk/speak)",
+        "correct": "talked",
+        "hint": "Обсуждение темы",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He ___ three languages fluently. (talk/speak)",
+        "correct": "speaks",
+        "hint": "Владение языком",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The engine won't ___. (start/begin)",
+        "correct": "start",
+        "hint": "Запуск механизма",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The story ___ with a mysterious letter. (start/begin)",
+        "correct": "begins",
+        "hint": "Начало повествования",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "I'll ___ the job in an hour. (finish/complete)",
+        "correct": "finish",
+        "hint": "Закончить работу",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The bridge was ___ in 2020. (finish/complete)",
+        "correct": "completed",
+        "hint": "Завершение строительства",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "Stop ___ and listen! (talk/speak)",
+        "correct": "talking",
+        "hint": "Болтать",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "May I ___ with you for a moment? (talk/speak)",
+        "correct": "speak",
+        "hint": "Вежливая просьба",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The concert will ___ at 8. (start/begin)",
+        "correct": "start",
+        "hint": "Разговорный вариант",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The lesson ___ with a warm-up. (start/begin)",
+        "correct": "begins",
+        "hint": "Формальное начало урока",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "When does the race ___? (finish/complete)",
+        "correct": "finish",
+        "hint": "Окончание соревнования",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The application must be ___ by tomorrow. (finish/complete)",
+        "correct": "completed",
+        "hint": "Заполнение заявки",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "We need to ___ about the budget. (talk/speak)",
+        "correct": "talk",
+        "hint": "Обсуждение",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She ___ very softly. (talk/speak)",
+        "correct": "speaks",
+        "hint": "Манера речи",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "Let's ___ the game. (start/begin)",
+        "correct": "start",
+        "hint": "Начать игру",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The show will ___ in five minutes. (start/begin)",
+        "correct": "begin",
+        "hint": "Формальное объявление",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "I'll ___ my homework after dinner. (finish/complete)",
+        "correct": "finish",
+        "hint": "Повседневное действие",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The survey was ___ by 200 people. (finish/complete)",
+        "correct": "completed",
+        "hint": "Завершение опроса",
+        "star": False
+      },
+      {
+        "type": "choice",
+        "text": "Choose the correct word: They ___ about the weather.",
+        "correct": "talked",
+        "hint": "Неформальная беседа",
+        "star": True,
+        "options": [
+          "talked",
+          "spoke"
+        ]
+      },
+      {
+        "type": "choice",
+        "text": "Choose the correct word: He ___ to the audience for an hour.",
+        "correct": "spoke",
+        "hint": "Формальная речь перед аудиторией",
+        "star": True,
+        "options": [
+          "talked",
+          "spoke"
+        ]
+      },
+      {
+        "type": "choice",
+        "text": "Choose the correct word: The race will ___ at noon.",
+        "correct": "start",
+        "hint": "Разговорный вариант",
+        "star": True,
+        "options": [
+          "start",
+          "begin"
+        ]
+      },
+      {
+        "type": "choice",
+        "text": "Choose the correct word: The ceremony will ___ with a prayer.",
+        "correct": "begin",
+        "hint": "Формальное начало",
+        "star": True,
+        "options": [
+          "start",
+          "begin"
+        ]
+      },
+      {
+        "type": "choice",
+        "text": "Choose the correct word: I need to ___ this essay.",
+        "correct": "finish",
+        "hint": "Закончить писать",
+        "star": True,
+        "options": [
+          "finish",
+          "complete"
+        ]
+      },
+      {
+        "type": "choice",
+        "text": "Choose the correct word: The task was ___ successfully.",
+        "correct": "completed",
+        "hint": "Официальное завершение",
+        "star": True,
+        "options": [
+          "finished",
+          "completed"
+        ]
+      },
+      {
+        "type": "fill_blank",
+        "text": "She ___ with a strong accent. (talk/speak)",
+        "correct": "speaks",
+        "hint": "Особенность речи",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "We ___ the project last week. (start/begin)",
+        "correct": "started",
+        "hint": "Начали проект",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "The building was ___ in record time. (finish/complete)",
+        "correct": "completed",
+        "hint": "Официально завершено",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "Don't ___ with your mouth full. (talk/speak)",
+        "correct": "talk",
+        "hint": "Разговорный запрет",
+        "star": True
+      }
+    ]
+  },
+  "advanced_prepositions": {
+    "title": "Продвинутые предлоги (prepositions in idioms and fixed phrases)",
+    "pages": [
+      {
+        "title": "Предлоги в устойчивых выражениях (часть 1)",
+        "text": "\n<b>📍 Продвинутые предлоги – часто встречаются в идиоматических выражениях, и их нужно запоминать как единое целое.</b>\n\n• <b>in response to</b> – в ответ на\n  • *In response to your letter...* (В ответ на ваше письмо...)\n\n• <b>with regard to / regarding</b> – относительно\n  • *With regard to your inquiry...* (Относительно вашего запроса...)\n\n• <b>on behalf of</b> – от имени\n  • *I'm calling on behalf of my boss.* (Я звоню от имени начальника.)\n\n• <b>in spite of</b> – несмотря на (≠ despite, но похоже)\n  • *In spite of the rain, we went out.*\n\n• <b>by means of</b> – посредством, с помощью\n  • *They communicated by means of sign language.* (Они общались посредством жестов.)\n\n<blockquote>Эти фразы очень формальны и часто встречаются в деловой переписке.</blockquote>\n"
+      },
+      {
+        "title": "Предлоги в идиомах (часть 2)",
+        "text": "\n<b>📌 Ещё несколько устойчивых сочетаний:</b>\n\n• <b>in terms of</b> – с точки зрения, что касается\n  • *In terms of price, the first option is better.* (Что касается цены, первый вариант лучше.)\n\n• <b>on the verge of</b> – на грани\n  • *The company was on the verge of bankruptcy.* (Компания была на грани банкротства.)\n\n• <b>at the expense of</b> – за счёт (в ущерб)\n  • *He achieved success at the expense of his health.* (Он достиг успеха ценой своего здоровья.)\n\n• <b>in light of / in the light of</b> – в свете (учитывая)\n  • *In light of recent events, we've decided to cancel the trip.* (В свете недавних событий мы решили отменить поездку.)\n\n• <b>with respect to</b> – относительно (формальный синоним regarding)\n  • *With respect to your request, we will consider it.* (Относительно вашего запроса мы его рассмотрим.)\n\n<blockquote>Эти фразы помогут вам писать деловые письма и эссе на высоком уровне.</blockquote>\n"
+      },
+      {
+        "title": "Предлоги в глагольных конструкциях (продвинутые)",
+        "text": "\n<b>🔧 Глаголы, которые часто путают с предлогами:</b>\n\n• <b>to refrain from</b> – воздерживаться от\n  • *Please refrain from smoking.* (Пожалуйста, воздержитесь от курения.)\n\n• <b>to protest against</b> – протестовать против (но в американском английском protest без against)\n• <b>to prevent someone from doing</b> – предотвратить, не дать сделать\n  • *The rain prevented us from going out.* (Дождь помешал нам выйти.)\n\n• <b>to prohibit someone from doing</b> – запрещать кому-либо делать\n  • *The rules prohibit you from entering.* (Правила запрещают вам входить.)\n\n• <b>to differ from</b> – отличаться от (о вещах)\n  • *This differs from the original.* (Это отличается от оригинала.)\n\n• <b>to differ with</b> – не соглашаться с (о людях)\n  • *I differ with you on that point.* (Я не согласен с вами в этом вопросе.)\n\n<blockquote>Различия между похожими предлогами могут быть очень тонкими.</blockquote>\n"
+      },
+      {
+        "title": "Советы",
+        "text": "\n<b>💡 Как учить продвинутые предлоги:</b>\n• Учите предлоги в контексте устойчивых фраз (in terms of, on behalf of).\n• Составляйте свои примеры, используя каждую фразу.\n• Проверяйте себя: закройте предлог и пытайтесь вспомнить его.\n• Читайте качественную прессу (The Economist, The Guardian) – там много таких фраз.\n\n<blockquote>Ошибки в предлогах выдают неносителя даже на C2.</blockquote>\n"
+      }
+    ],
+    "faq": [
+      {
+        "question": "Как сказать 'от имени' – on behalf of или in behalf of?",
+        "answer": "On behalf of – от имени (действуя как представитель). In behalf of (американский вариант) – в интересах, ради."
+      }
+    ],
+    "practice_tasks": [
+      {
+        "type": "fill_blank",
+        "text": "He is very good ___ playing the piano.",
+        "correct": "at",
+        "hint": "Идиома: be good at",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "I'm not interested ___ what he thinks.",
+        "correct": "in",
+        "hint": "Фраза: interested in",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She is afraid ___ spiders.",
+        "correct": "of",
+        "hint": "Фраза: afraid of",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "We need to concentrate ___ this task.",
+        "correct": "on",
+        "hint": "Фраза: concentrate on",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He apologized ___ being late.",
+        "correct": "for",
+        "hint": "Фраза: apologize for",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "This depends ___ the weather.",
+        "correct": "on",
+        "hint": "Фраза: depend on",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She suffers ___ a rare disease.",
+        "correct": "from",
+        "hint": "Фраза: suffer from",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "I'm looking forward ___ the weekend.",
+        "correct": "to",
+        "hint": "Фраза: look forward to",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He insisted ___ paying for dinner.",
+        "correct": "on",
+        "hint": "Фраза: insist on",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She succeeded ___ passing the exam.",
+        "correct": "in",
+        "hint": "Фраза: succeed in",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "They accused him ___ stealing.",
+        "correct": "of",
+        "hint": "Фраза: accuse of",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "I'm tired ___ waiting.",
+        "correct": "of",
+        "hint": "Фраза: be tired of",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She is married ___ a doctor.",
+        "correct": "to",
+        "hint": "Фраза: married to",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He is jealous ___ her success.",
+        "correct": "of",
+        "hint": "Фраза: jealous of",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "We arrived ___ the airport on time.",
+        "correct": "at",
+        "hint": "Фраза: arrive at (место)",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She is very similar ___ her mother.",
+        "correct": "to",
+        "hint": "Фраза: similar to",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He is responsible ___ the project.",
+        "correct": "for",
+        "hint": "Фраза: responsible for",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "I'm not used ___ getting up early.",
+        "correct": "to",
+        "hint": "Фраза: be used to",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She is capable ___ doing it herself.",
+        "correct": "of",
+        "hint": "Фраза: capable of",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He is always late ___ work.",
+        "correct": "for",
+        "hint": "Фраза: late for",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "We are short ___ time.",
+        "correct": "of",
+        "hint": "Фраза: short of",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She is fond ___ classical music.",
+        "correct": "of",
+        "hint": "Фраза: fond of",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He is not very good ___ math.",
+        "correct": "at",
+        "hint": "Фраза: good at",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "I'm sorry ___ the mess.",
+        "correct": "for",
+        "hint": "Фраза: sorry for",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She is proud ___ her children.",
+        "correct": "of",
+        "hint": "Фраза: proud of",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He is interested ___ history.",
+        "correct": "in",
+        "hint": "Фраза: interested in",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "We are excited ___ the trip.",
+        "correct": "about",
+        "hint": "Фраза: excited about",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She is worried ___ her exams.",
+        "correct": "about",
+        "hint": "Фраза: worried about",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He is famous ___ his novels.",
+        "correct": "for",
+        "hint": "Фраза: famous for",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "I'm tired ___ this weather.",
+        "correct": "of",
+        "hint": "Фраза: tired of",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She is keen ___ learning languages.",
+        "correct": "on",
+        "hint": "Фраза: keen on (британский вариант)",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "He is indifferent ___ criticism.",
+        "correct": "to",
+        "hint": "Фраза: indifferent to",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "We are short ___ supplies.",
+        "correct": "of",
+        "hint": "Фраза: short of",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "She is dependent ___ her parents.",
+        "correct": "on",
+        "hint": "Фраза: dependent on",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "He is not aware ___ the risks.",
+        "correct": "of",
+        "hint": "Фраза: aware of",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "I'm fed up ___ this noise.",
+        "correct": "with",
+        "hint": "Фраза: fed up with",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "She is related ___ him by marriage.",
+        "correct": "to",
+        "hint": "Фраза: related to",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "He is committed ___ the cause.",
+        "correct": "to",
+        "hint": "Фраза: committed to",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "We are blessed ___ good health.",
+        "correct": "with",
+        "hint": "Фраза: blessed with",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "She is accustomed ___ luxury.",
+        "correct": "to",
+        "hint": "Фраза: accustomed to",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "She is very good ___ playing the piano.",
+        "correct": "at",
+        "hint": "Устойчивое выражение: be good at",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He is interested ___ learning new languages.",
+        "correct": "in",
+        "hint": "Устойчивое выражение: be interested in",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "I'm tired ___ waiting for the bus.",
+        "correct": "of",
+        "hint": "Устойчивое выражение: be tired of",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She is afraid ___ spiders.",
+        "correct": "of",
+        "hint": "Устойчивое выражение: be afraid of",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He is responsible ___ the project.",
+        "correct": "for",
+        "hint": "Устойчивое выражение: be responsible for",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "We are looking forward ___ the holidays.",
+        "correct": "to",
+        "hint": "Устойчивое выражение: look forward to",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She insisted ___ coming with us.",
+        "correct": "on",
+        "hint": "Устойчивое выражение: insist on",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He is capable ___ doing the job alone.",
+        "correct": "of",
+        "hint": "Устойчивое выражение: be capable of",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "They succeeded ___ solving the problem.",
+        "correct": "in",
+        "hint": "Устойчивое выражение: succeed in",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "I apologize ___ being late.",
+        "correct": "for",
+        "hint": "Устойчивое выражение: apologize for",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She is married ___ a doctor.",
+        "correct": "to",
+        "hint": "Устойчивое выражение: be married to",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He is similar ___ his brother.",
+        "correct": "to",
+        "hint": "Устойчивое выражение: be similar to",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "I'm not familiar ___ this author.",
+        "correct": "with",
+        "hint": "Устойчивое выражение: be familiar with",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She is jealous ___ her sister's success.",
+        "correct": "of",
+        "hint": "Устойчивое выражение: be jealous of",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He is proud ___ his achievements.",
+        "correct": "of",
+        "hint": "Устойчивое выражение: be proud of",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "We are excited ___ the trip.",
+        "correct": "about",
+        "hint": "Устойчивое выражение: be excited about",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She is worried ___ the exam results.",
+        "correct": "about",
+        "hint": "Устойчивое выражение: be worried about",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He is famous ___ his paintings.",
+        "correct": "for",
+        "hint": "Устойчивое выражение: be famous for",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "I'm not used ___ getting up early.",
+        "correct": "to",
+        "hint": "Устойчивое выражение: be used to",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She is fond ___ classical music.",
+        "correct": "of",
+        "hint": "Устойчивое выражение: be fond of",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He is keen ___ playing football.",
+        "correct": "on",
+        "hint": "Устойчивое выражение: be keen on",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "We are short ___ time.",
+        "correct": "of",
+        "hint": "Устойчивое выражение: be short of",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She is satisfied ___ the results.",
+        "correct": "with",
+        "hint": "Устойчивое выражение: be satisfied with",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He is different ___ his peers.",
+        "correct": "from",
+        "hint": "Устойчивое выражение: be different from",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "I'm grateful ___ your help.",
+        "correct": "for",
+        "hint": "Устойчивое выражение: be grateful for",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She is dependent ___ her parents.",
+        "correct": "on",
+        "hint": "Устойчивое выражение: be dependent on",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He is involved ___ the project.",
+        "correct": "in",
+        "hint": "Устойчивое выражение: be involved in",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "We are concerned ___ the environment.",
+        "correct": "about",
+        "hint": "Устойчивое выражение: be concerned about",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She is addicted ___ coffee.",
+        "correct": "to",
+        "hint": "Устойчивое выражение: be addicted to",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He is absent ___ class today.",
+        "correct": "from",
+        "hint": "Устойчивое выражение: be absent from",
+        "star": False
+      },
+      {
+        "type": "choice",
+        "text": "He came up ___ a brilliant idea.",
+        "correct": "with",
+        "hint": "Фразовый глагол: come up with",
+        "star": True,
+        "options": [
+          "with",
+          "to",
+          "on",
+          "for"
+        ]
+      },
+      {
+        "type": "choice",
+        "text": "She ran out ___ money.",
+        "correct": "of",
+        "hint": "Фразовый глагол: run out of",
+        "star": True,
+        "options": [
+          "of",
+          "from",
+          "with",
+          "to"
+        ]
+      },
+      {
+        "type": "choice",
+        "text": "I can't put up ___ his behavior.",
+        "correct": "with",
+        "hint": "Фразовый глагол: put up with",
+        "star": True,
+        "options": [
+          "with",
+          "to",
+          "on",
+          "for"
+        ]
+      },
+      {
+        "type": "choice",
+        "text": "He is looking ___ his lost keys.",
+        "correct": "for",
+        "hint": "Фразовый глагол: look for",
+        "star": True,
+        "options": [
+          "for",
+          "after",
+          "into",
+          "up"
+        ]
+      },
+      {
+        "type": "choice",
+        "text": "She takes ___ her mother.",
+        "correct": "after",
+        "hint": "Фразовый глагол: take after (быть похожим)",
+        "star": True,
+        "options": [
+          "after",
+          "over",
+          "up",
+          "in"
+        ]
+      },
+      {
+        "type": "choice",
+        "text": "We need to cut down ___ expenses.",
+        "correct": "on",
+        "hint": "Фразовый глагол: cut down on",
+        "star": True,
+        "options": [
+          "on",
+          "off",
+          "out",
+          "up"
+        ]
+      },
+      {
+        "type": "choice",
+        "text": "He broke ___ the conversation.",
+        "correct": "into",
+        "hint": "Фразовый глагол: break into (вмешаться)",
+        "star": True,
+        "options": [
+          "into",
+          "down",
+          "up",
+          "off"
+        ]
+      },
+      {
+        "type": "choice",
+        "text": "She is looking forward ___ the weekend.",
+        "correct": "to",
+        "hint": "Фразовый глагол: look forward to",
+        "star": True,
+        "options": [
+          "to",
+          "for",
+          "at",
+          "on"
+        ]
+      },
+      {
+        "type": "choice",
+        "text": "I can't get ___ this cold weather.",
+        "correct": "over",
+        "hint": "Фразовый глагол: get over (оправиться)",
+        "star": True,
+        "options": [
+          "over",
+          "through",
+          "out",
+          "off"
+        ]
+      },
+      {
+        "type": "choice",
+        "text": "He turned ___ the job offer.",
+        "correct": "down",
+        "hint": "Фразовый глагол: turn down (отклонить)",
+        "star": True,
+        "options": [
+          "down",
+          "up",
+          "off",
+          "over"
+        ]
+      }
+    ]
+  },
+  "debate_structures": {
+    "title": "Структура аргументов и контраргументов в дебатах",
+    "pages": [
+      {
+        "title": "Основные элементы аргументации",
+        "text": "\n<b>⚖️ В любом дебате структура аргумента обычно включает:</b>\n\n1. <b>Claim</b> – утверждение (что вы доказываете)\n2. <b>Evidence</b> – доказательство (факты, данные, примеры)\n3. <b>Warrant</b> – обоснование (почему доказательство подтверждает утверждение)\n4. <b>Impact</b> – значение (почему это важно)\n\n<blockquote>Эта структура используется в академических эссе и формальных дебатах.</blockquote>\n\n<b>Пример:</b>\n• Claim: Social media harms teenagers.\n• Evidence: Studies show that heavy social media use correlates with higher rates of anxiety.\n• Warrant: Since anxiety affects academic performance and well-being, this is a serious problem.\n• Impact: Therefore, regulations should be introduced to limit teenagers' screen time.\n"
+      },
+      {
+        "title": "Структура контраргумента",
+        "text": "\n<b>🔁 Как строить контраргумент:</b>\n\n1. <b>Acknowledge</b> – признать, что оппонент прав в чём-то (чтобы быть вежливым)\n2. <b>Refute</b> – опровергнуть логику или доказательства\n3. <b>Provide counter‑evidence</b> – дать свои доказательства\n4. <b>Reinforce your claim</b> – вернуться к своему тезису\n\n<b>Пример:</b>\n• Acknowledge: It's True that social media helps teenagers stay connected.\n• Refute: However, the negative impact on mental health outweighs this benefit.\n• Counter‑evidence: Studies show that even moderate use increases FOMO and depression.\n• Reinforce: Therefore, limiting usage is still justified.\n\n<blockquote>Контраргумент показывает глубину анализа и повышает убедительность.</blockquote>\n"
+      },
+      {
+        "title": "Клише для введения аргументов и контраргументов",
+        "text": "\n<b>🗣️ Полезные фразы для дебатов:</b>\n\n• <b>Introducing a point:</b> Firstly, / To begin with, / It is widely accepted that...\n• <b>Adding a point:</b> Moreover, / Furthermore, / In addition, / Another key point is...\n• <b>Introducing a counter‑argument:</b> However, / On the other hand, / Critics argue that...\n• <b>Refuting:</b> Nevertheless, / Despite this, / That argument fails to consider... / This is flawed because...\n• <b>Concluding:</b> In conclusion, / To sum up, / Therefore, / Thus, / Consequently,...\n\n<blockquote>Эти клише помогут структурировать речь в дебатах и эссе.</blockquote>\n"
+      },
+      {
+        "title": "Пример краткой дебатной речи",
+        "text": "\n<b>📖 Пример (тема: Should university be free?)</b>\n\n*To begin with, free university education would reduce social inequality. Many talented students cannot afford tuition, which limits social mobility. Moreover, countries like Germany have successfully implemented free tuition without harming quality.*\n\n*On the other hand, opponents argue that free education would lead to overcrowded universities and lower standards. However, this argument fails to consider that selective admission based on merit can maintain quality. Furthermore, the long‑term economic benefits of a well‑educated workforce outweigh the short‑term costs.*\n\n*In conclusion, free university education is a worthwhile investment in the future.*\n\n<blockquote>Такая структура делает речь убедительной и логичной.</blockquote>\n"
+      },
+      {
+        "title": "Советы",
+        "text": "\n<b>💡 Как развить навык дебатов:</b>\n\n• Практикуйтесь в парах: один приводит аргумент, другой контраргумент.\n• Смотрите дебаты на YouTube (Oxford Union, Cambridge Union).\n• Пишите эссе, строго следуя структуре claim–evidence–warrant–impact.\n• Изучайте логические ошибки (straw man, ad hominem), чтобы их избегать.\n\n<blockquote>Структурированная аргументация – ключ к убеждению аудитории.</blockquote>\n"
+      }
+    ],
+    "faq": [
+      {
+        "question": "Обязательно ли всегда использовать все четыре элемента (claim, evidence, warrant, impact)?",
+        "answer": "В кратких выступлениях можно объединять warrant и impact, но в академических работах рекомендуется полнота."
+      }
+    ]
+  },
+  "persuasive_language": {
+    "title": "Язык убеждения и риторические приёмы",
+    "pages": [
+      {
+        "title": "Что такое язык убеждения?",
+        "text": "\n<b>🗣️ Язык убеждения – использование лексических и риторических средств, чтобы повлиять на мнение аудитории.</b>\n\nНа уровне C2 важно не только логически обосновывать свою позицию, но и использовать выразительные средства для усиления воздействия.\n\n<blockquote>Риторика – искусство убеждения, известное со времён античности.</blockquote>\n"
+      },
+      {
+        "title": "Риторические приёмы (триада, повторение, риторические вопросы)",
+        "text": "\n<b>📌 Эффективные приёмы:</b>\n\n• <b>Rule of three (триада)</b> – три параллельных элемента для усиления.\n  • *We need more jobs, more investment, and more opportunity.* (Нам нужно больше рабочих мест, больше инвестиций и больше возможностей.)\n\n• <b>Anaphora (повторение в начале предложений)</b>\n  • *We will fight them on the beaches, we will fight them on the landing grounds, we will fight them in the fields.* (Черчилль)\n\n• <b>Rhetorical questions (риторические вопросы)</b> – вопрос, не требующий ответа, чтобы подтолкнуть слушателя к согласию.\n  • *Is that the kind of future we want for our children?*\n\n• <b>Emotive language (эмоциональная лексика)</b>\n  • *This cruel and heartless policy must be stopped.*\n\n<blockquote>Эти приёмы делают речь запоминающейся и эмоциональной.</blockquote>\n"
+      },
+      {
+        "title": "Лексика убеждения (modality, hedging, boosting)",
+        "text": "\n<b>📌 Слова, усиливающие или смягчающие утверждение:</b>\n\n• <b>Boosting (усиление)</b> – definitely, absolutely, undoubtedly, certainly.\n  • *This is undoubtedly the best solution.*\n\n• <b>Hedging (смягчение)</b> – perhaps, maybe, might, possibly, it seems that.\n  • *Perhaps there is another explanation.*\n\n• <b>Modality (модальные глаголы для выражения уверенности)</b> – must, will, should, may, might.\n\n<blockquote>Умелое сочетание boosting и hedging создаёт убедительный, но не агрессивный тон.</blockquote>\n"
+      },
+      {
+        "title": "Пример убедительной речи",
+        "text": "\n<b>📖 Пример (тема: сокращение пластиковых отходов):</b>\n\n*Is it acceptable that our oceans are filled with plastic? Absolutely not. We need a complete ban on single‑use plastics. Without such a ban, marine life will continue to die, our beaches will be polluted, and our health will be at risk. Some argue that a ban would hurt businesses, but this argument ignores the long‑term cost of environmental damage. Therefore, we must act now.*\n\n<blockquote>Здесь использованы риторический вопрос, boosting (absolutely not, must), триада (marine life, beaches, health) и контраргумент.</blockquote>\n"
+      },
+      {
+        "title": "Советы",
+        "text": "\n<b>💡 Как развить навык убеждения:</b>\n\n• Анализируйте речи известных ораторов (Martin Luther King, Winston Churchill, Barack Obama).\n• Пишите короткие убедительные тексты на разные темы.\n• Практикуйтесь в устной речи: убедите друга изменить мнение.\n• Изучайте риторические приёмы и старайтесь использовать их осознанно.\n\n<blockquote>Убеждение – это искусство, которое сочетает логику, эмоции и стиль.</blockquote>\n"
+      }
+    ],
+    "faq": [
+      {
+        "question": "Можно ли использовать эмоциональную лексику в академическом эссе?",
+        "answer": "Осторожно. В научных работах лучше избегать чрезмерной эмоциональности, но в эссе-рассуждении (opinion essay) она допустима."
+      }
+    ]
+  },
+  "counterargument_cliches": {
+    "title": "Клише для контраргументации и опровержения",
+    "pages": [
+      {
+        "title": "Зачем нужны клише для контраргументации?",
+        "text": "\n<b> Контраргументация – важная часть убеждения. Готовые фразы помогают быстро и чётко опровергать оппонента.</b>\n\nИспользование таких клише показывает гибкость мышления и знание риторических приёмов.\n\n<blockquote>Контраргумент часто начинается с признания точки зрения оппонента, а затем её опровержения.</blockquote>\n"
+      },
+      {
+        "title": "Клише для признания аргумента оппонента",
+        "text": "\n<b>📌 Вежливое признание:</b>\n\n• *It is True that...* (Верно, что...)\n• *Admittedly, ...* (Надо признать, что...)\n• *Some people argue that...* (Некоторые утверждают, что...)\n• *It is often said that...* (Часто говорят, что...)\n• *On the surface, it seems that...* (На первый взгляд кажется, что...)\n• *Opponents of this view claim that...* (Противники этой точки зрения заявляют, что...)\n\n<blockquote>Признание делает вашу речь сбалансированной и повышает доверие.</blockquote>\n"
+      },
+      {
+        "title": "Клише для опровержения",
+        "text": "\n<b>📌 Способы опровергнуть:</b>\n\n• *However, this argument ignores the fact that...* (Однако этот аргумент игнорирует тот факт, что...)\n• *Nevertheless, it is important to remember that...* (Тем не менее, важно помнить, что...)\n• *While there is some truth to this, it fails to consider...* (Хотя здесь есть доля истины, это не учитывает...)\n• *This reasoning is flawed because...* (Эта логика ошибочна, потому что...)\n• *Even if we accept that, ...* (Даже если признать это, ...)\n• *Not only that, but also...* (Мало того, ...)\n\n<blockquote>Сильные слова: flawed, insufficient, misleading, oversimplification, fallacy.</blockquote>\n"
+      },
+      {
+        "title": "Клише для перехода обратно к своему тезису",
+        "text": "\n<b>📌 Возвращение к основной линии:</b>\n\n• *Therefore, the original argument still stands.* (Следовательно, первоначальный аргумент остаётся в силе.)\n• *Thus, it is clear that...* (Таким образом, ясно, что...)\n• *In light of this, we must conclude that...* (В свете этого мы должны заключить, что...)\n• *Ultimately, the benefits outweigh the drawbacks.* (В конечном счёте, преимущества перевешивают недостатки.)\n• *Having said that, we should focus on...* (Тем не менее, мы должны сосредоточиться на...)\n\n<blockquote>После контраргумента важно вернуться к своей позиции, чтобы не потерять нить.</blockquote>\n"
+      },
+      {
+        "title": "Примеры целостных контраргументов",
+        "text": "\n<b>📖 Примеры:</b>\n\n• *Some argue that raising taxes will hurt the economy. Admittedly, this could have short‑term effects. However, the long‑term benefits of funding education and healthcare far outweigh these risks.*\n\n• *It is often said that social media brings people together. While this may be True in some cases, it fails to account for the negative impact on mental health and real‑world relationships.*\n\n• *Opponents claim that renewable energy is too expensive. Even if that were True, we cannot ignore the catastrophic cost of climate change.*\n\n<blockquote>Хороший контраргумент сбалансирован, логичен и укрепляет вашу позицию.</blockquote>\n"
+      },
+      {
+        "title": "Советы",
+        "text": "\n<b>💡 Как эффективно использовать контраргументы:</b>\n\n• Всегда признавайте сильную сторону оппонента – это делает ваше опровержение более убедительным.\n• Не переходите на личности (ad hominem) – это ослабляет аргумент.\n• Тренируйтесь: возьмите любую дискуссионную тему и напишите контраргумент на чужой тезис.\n\n<blockquote>Контраргументация – это не агрессия, а демонстрация глубины анализа.</blockquote>\n"
+      }
+    ],
+    "faq": [
+      {
+        "question": "Нужно ли использовать контраргументы в эссе IELTS?",
+        "answer": "Да, в эссе с аргументацией (opinion essay, discussion essay) контраргумент повышает балл за структуру и критическое мышление."
+      }
+    ],
+    "practice_tasks": [
+      {
+        "type": "fill_blank",
+        "text": "You say the plan is perfect, but I beg to ______.",
+        "correct": "differ",
+        "hint": "Фраза для вежливого несогласия.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "That's a valid point; ______, I still think we need more data.",
+        "correct": "however",
+        "hint": "Слово-связка для противопоставления.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "I see what you mean, but I'm ______ to believe otherwise.",
+        "correct": "inclined",
+        "hint": "Склонный к чему-либо.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "______ your argument, the evidence suggests a different conclusion.",
+        "correct": "Despite",
+        "hint": "Предлог, означающий 'несмотря на'.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "While I respect your opinion, I must ______ that the facts are against it.",
+        "correct": "point out",
+        "hint": "Указать на что-то.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "That may be True, but ______ the other hand, we have to consider the risks.",
+        "correct": "on",
+        "hint": "Часть фразы 'с другой стороны'.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "I'm not ______ to say you're wrong, but I have a different perspective.",
+        "correct": "trying",
+        "hint": "Глагол, означающий 'пытаться'.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "______ to popular belief, not all politicians are corrupt.",
+        "correct": "Contrary",
+        "hint": "Вопреки.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "You could argue that, but it's ______ to say the least.",
+        "correct": "debatable",
+        "hint": "Спорно.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "I take your ______, but I think you're missing the bigger picture.",
+        "correct": "point",
+        "hint": "Точка зрения.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "______ as it may seem, I actually agree with your opponent.",
+        "correct": "Strange",
+        "hint": "Странно, но факт.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The ______ remains that we cannot afford this project.",
+        "correct": "fact",
+        "hint": "Факт остаётся фактом.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "You have a good point, but it doesn't ______ the problem.",
+        "correct": "solve",
+        "hint": "Решать проблему.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "I ______ if that's entirely accurate.",
+        "correct": "wonder",
+        "hint": "Сомневаться, задаваться вопросом.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "______ all due respect, I think you're mistaken.",
+        "correct": "With",
+        "hint": "Начало вежливого возражения.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "That's one way of looking at it, but ______ is another.",
+        "correct": "there",
+        "hint": "Есть и другой взгляд.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "I'm afraid I have to ______ with you on that.",
+        "correct": "disagree",
+        "hint": "Не соглашаться.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "______ the surface, this seems like a good idea.",
+        "correct": "Beneath",
+        "hint": "Под поверхностью.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "Not ______, but your logic is flawed.",
+        "correct": "necessarily",
+        "hint": "Не обязательно.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "I see things ______ a different angle.",
+        "correct": "from",
+        "hint": "Предлог, указывающий на точку зрения.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "______ you say is True, but we still have a problem.",
+        "correct": "What",
+        "hint": "Вопросительное слово в начале придаточного.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "Let's not ______ the issue.",
+        "correct": "avoid",
+        "hint": "Избегать.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "I ______ to differ on that point.",
+        "correct": "beg",
+        "hint": "Умолять, но в устойчивом выражении.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "That argument doesn't ______ water.",
+        "correct": "hold",
+        "hint": "Быть состоятельным (держать воду).",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "______ the contrary, I believe we should proceed.",
+        "correct": "On",
+        "hint": "Наоборот.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "I'm not convinced that's the ______ case.",
+        "correct": "best",
+        "hint": "Лучший случай/аргумент.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "There's another ______ to this story.",
+        "correct": "side",
+        "hint": "Сторона.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "You're ______ the point entirely.",
+        "correct": "missing",
+        "hint": "Пропускать, не понимать.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "I ______ that your intentions are good, but the outcome is bad.",
+        "correct": "admit",
+        "hint": "Признавать.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "That's a fair ______, but let's look at the data.",
+        "correct": "comment",
+        "hint": "Комментарий, замечание.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "______ you may be right, I still have my doubts.",
+        "correct": "While",
+        "hint": "Хотя (уступительный союз).",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "I ______ to challenge that assumption.",
+        "correct": "would like",
+        "hint": "Хотел бы.",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "______ is often the case, the simplest explanation is correct.",
+        "correct": "As",
+        "hint": "Как часто бывает.",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "That's a ______ argument, but it ignores the context.",
+        "correct": "valid",
+        "hint": "Обоснованный, действительный.",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "I'm ______ to accept your proposal without further analysis.",
+        "correct": "unwilling",
+        "hint": "Не желающий.",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "______ the risk of sounding rude, I must correct you.",
+        "correct": "At",
+        "hint": "Рискуя (показаться грубым).",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "Your point is well-taken, ______ it does not change my mind.",
+        "correct": "yet",
+        "hint": "Однако, тем не менее.",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "I ______ to see how that follows from your premise.",
+        "correct": "fail",
+        "hint": "Не удаётся (видеть связь).",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "______ the face of it, your argument seems strong.",
+        "correct": "On",
+        "hint": "На первый взгляд.",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "I ______ that your conclusion is premature.",
+        "correct": "contend",
+        "hint": "Утверждать, спорить (формально).",
+        "star": True
+      }
+    ]
+  },
+  "topic_based_debates": {
+    "title": "Тематические дебаты (экология, политика, этика, технологии)",
+    "pages": [
+      {
+        "title": "Типичные темы для дебатов на C2",
+        "text": "\n<b>🌍 Часто встречающиеся темы:</b>\n\n• <b>Экология:</b> climate change, renewable energy, plastic ban, meat consumption\n• <b>Политика:</b> universal basic income, gun control, immigration, voting age\n• <b>Этика:</b> animal testing, euthanasia, surrogacy, genetic engineering\n• <b>Технологии:</b> AI regulation, social media censorship, privacy vs security, automation and jobs\n• <b>Образование:</b> free university, homework, online learning, school uniforms\n\n<blockquote>На экзаменах CPE и IELTS часто предлагаются именно такие темы для эссе и устных выступлений.</blockquote>\n"
+      },
+      {
+        "title": "Полезная лексика для дебатов по экологии",
+        "text": "\n<b>🌱 Ключевые слова и фразы:</b>\n\n• *carbon footprint* – углеродный след\n• *renewable energy sources* – возобновляемые источники энергии\n• *sustainable development* – устойчивое развитие\n• *single‑use plastics* – одноразовый пластик\n• *to reduce emissions* – сократить выбросы\n• *to combat climate change* – бороться с изменением климата\n• *environmental degradation* – ухудшение состояния окружающей среды\n\n<b>Пример аргумента:</b>\n*Investing in renewable energy is crucial to reduce our carbon footprint. Solar and wind power are becoming increasingly affordable, and they create jobs. While some argue that fossil fuels are still necessary for economic growth, this short‑term view ignores the catastrophic consequences of climate change.*\n\n<blockquote>Используйте специфическую лексику, чтобы звучать экспертом.</blockquote>\n"
+      },
+      {
+        "title": "Лексика для дебатов по политике и этике",
+        "text": "\n<b>🏛️ Политика и этика:</b>\n\n• *social justice* – социальная справедливость\n• *individual freedom* – личная свобода\n• *common good* – общее благо\n• *human rights* – права человека\n• *ethical dilemma* – этическая дилема\n• *to strike a balance between* – найти баланс между\n• *to be a slippery slope* – быть скользкой дорожкой\n\n<b>Пример аргумента (против смертной казни):</b>\n*The death penalty violates the fundamental human right to life. Moreover, there is always a risk of executing an innocent person. Although proponents argue that it serves as a deterrent, studies have shown that it does not reduce crime rates.*\n\n<blockquote>Для этических тем важны ссылки на ценности (rights, justice, freedom).</blockquote>\n"
+      },
+      {
+        "title": "Лексика для дебатов по технологиям",
+        "text": "\n<b>🤖 Технологии и цифровое общество:</b>\n\n• *artificial intelligence (AI)* – искусственный интеллект\n• *data privacy* – конфиденциальность данных\n• *surveillance* – слежка\n• *algorithmic bias* – алгоритмическая предвзятость\n• *job displacement* – сокращение рабочих мест\n• *digital divide* – цифровое неравенство\n\n<b>Пример аргумента (о регулировании соцсетей):</b>\n*Social media platforms should be regulated to prevent the spread of misinformation. Unchecked, they can influence elections and undermine democracy. Critics claim that regulation would violate free speech, but the right to accurate information must take precedence.*\n\n<blockquote>Технологические дебаты часто пересекаются с этикой и политикой.</blockquote>\n"
+      },
+      {
+        "title": "Советы",
+        "text": "\n<b>💡 Как подготовиться к дебатам на конкретную тему:</b>\n\n• Соберите факты, статистику и примеры по теме (1-2 убедительных факта).\n• Продумайте и основной аргумент, и возможный контраргумент.\n• Выучите ключевую лексику по теме.\n• Практикуйтесь в парах: назначьте одну сторону, другую – и обменивайтесь аргументами.\n\n<blockquote>Настоящее мастерство дебатов приходит с практикой и знанием фактов.</blockquote>\n"
+      }
+    ],
+    "faq": [
+      {
+        "question": "Нужно ли знать статистику наизусть?",
+        "answer": "На экзаменах достаточно общих ссылок (Studies show that...). Для реальных дебатов полезны цифры, но они не обязательны."
+      }
+    ]
+  }
 }
