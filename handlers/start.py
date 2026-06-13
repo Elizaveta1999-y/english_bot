@@ -9,14 +9,13 @@ WELCOME_TEXT = (
     "<b>Добро пожаловать в умный тренажер Английского языка! 🇺🇸</b>\n\n"
     "Проходи уроки, выполняй задания и общайся голосом со своим персональным AI-тьютором! 🧠\n"
     "Выбирай режим и начни совершенствоваться в языке!\n\n"
-    "🌟 <b>Акция</b> – полный доступ ко всему функционалу <b>399₽/мес</b>."
 )
 
 def get_main_menu_keyboard():
     return InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(text="🎤 Speaking", callback_data="start_speaking"),
          InlineKeyboardButton(text="🎭 RolePlay", callback_data="start_roleplay")],
-        [InlineKeyboardButton(text="📚 Lessons", callback_data="start_lessons")]
+        [InlineKeyboardButton(text="📚 Lessons", callback_data="start_lessons"),
          InlineKeyboardButton(text="🗃️ Words", callback_data="start_words")]
     ])
 
