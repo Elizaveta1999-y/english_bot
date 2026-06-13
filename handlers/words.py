@@ -143,20 +143,27 @@ async def show_word_card(message: Message, user_id: int, edit: bool = True, is_m
     definition = word_obj.get("definition", "")
     example = word_obj.get("example", "")
     collocations = word_obj.get("collocations", "")
-    # Формируем текст карточки (без перевода, чтобы пользователь пытался вспомнить)
+    
+    # Формируем текст карточки
     text = f"<b>{word}</b>"
+    if trans:
+        text += f" — {trans}"
     if part_of_speech:
         text += f" <i>({part_of_speech})</i>"
     text += "\n\n"
     if definition:
-        text += f"📖 <i>{definition}</i>\n\n"
+        text += f"📖 {definition}\n\n"
     if example:
-        text += f"📝 <i>{example}</i>\n"
+        text += f"📝 {example}\n"
+    if collocations:
+        text += f"🔗 {collocations}\n"
+    
     # Кнопки
     cat_key = state.get("current_word_cat", "unknown")
     total = len(word_list)
     word_id = f"{word}_{trans}" if trans else word
     keyboard = get_word_card_keyboard(cat_key, idx, total, word_id, is_my_words)
+    
     if edit:
         await message.edit_text(text, reply_markup=keyboard, parse_mode="HTML")
     else:
