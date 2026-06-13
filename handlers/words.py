@@ -143,7 +143,18 @@ async def show_word_card(message: Message, user_id: int, edit: bool = True, is_m
     definition = word_obj.get("definition", "")
     example = word_obj.get("example", "")
     collocations = word_obj.get("collocations", "")
-    
+
+    # Выделяем изучаемое слово в примере жирным
+    if example:
+        # Ищем слово как отдельное (не часть другого слова) – простой вариант
+        import re
+        pattern = r'\b' + re.escape(word) + r'\b'
+        example_highlighted = re.sub(pattern, f'<b>{word}</b>', example, flags=re.IGNORECASE)
+        if trans:
+            example_highlighted += f" <i>({trans})</i>"
+    else:
+        example_highlighted = ""
+
     # Формируем текст карточки
     text = f"<b>{word}</b>"
     if trans:
@@ -153,17 +164,17 @@ async def show_word_card(message: Message, user_id: int, edit: bool = True, is_m
     text += "\n\n"
     if definition:
         text += f"📖 {definition}\n\n"
-    if example:
-        text += f"📝 {example}\n"
+    if example_highlighted:
+        text += f"📝 {example_highlighted}\n"
     if collocations:
         text += f"🔗 {collocations}\n"
-    
+
     # Кнопки
     cat_key = state.get("current_word_cat", "unknown")
     total = len(word_list)
     word_id = f"{word}_{trans}" if trans else word
     keyboard = get_word_card_keyboard(cat_key, idx, total, word_id, is_my_words)
-    
+
     if edit:
         await message.edit_text(text, reply_markup=keyboard, parse_mode="HTML")
     else:
