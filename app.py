@@ -25,6 +25,7 @@ dp.include_router(roleplay.router)
 dp.include_router(lessons.router)
 dp.include_router(voice.router)
 dp.include_router(common.router)
+dp.include_router(words.router)
 
 async def on_startup():
     external_url = os.environ.get('RENDER_EXTERNAL_URL')
