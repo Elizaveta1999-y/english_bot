@@ -3,7 +3,7 @@ import logging
 from aiohttp import web
 from aiogram import Bot, Dispatcher
 from aiogram.webhook.aiohttp_server import SimpleRequestHandler, setup_application
-from handlers import start, speaking, roleplay, common, voice, lessons
+from handlers import start, speaking, roleplay, common, voice, lessons, words
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
