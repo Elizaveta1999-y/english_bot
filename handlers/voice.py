@@ -95,7 +95,14 @@ async def handle_voice(message: Message):
     set_user_state(user_id, user_state)
 
     await message.bot.send_chat_action(chat_id=message.chat.id, action="record_voice")
-    voice_path = await text_to_voice(ai_response)
+        # Получаем предпочтение голоса из user_state
+    voice_pref = user_state.get("speaking_voice", "woman")
+    # Замените 'YOUR_WOMAN_VOICE_ID' и 'YOUR_MAN_VOICE_ID' на реальные ID из ElevenLabs
+    if voice_pref == "woman":
+        voice_id = "yM93hbw8Qtvdma2wCnJG"
+    else:
+        voice_id = "IigRH4ZsY7dfxk9VRn2r"
+    voice_path = await text_to_voice(ai_response, voice_id=voice_id)
     if voice_path and os.path.exists(voice_path):
         try:
             ogg_path = convert_to_opus(voice_path)

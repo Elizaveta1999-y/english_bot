@@ -6,13 +6,16 @@ from config import ELEVENLABS_API_KEY, ELEVENLABS_VOICE_ID
 
 logger = logging.getLogger(__name__)
 
-async def text_to_voice(text: str):
-    """Генерирует голос через ElevenLabs API с медленной, естественной речью"""
+async def text_to_voice(text: str, voice_id: str = None):
+    """Генерирует голос через ElevenLabs API. Если voice_id не указан, использует из config."""
     if not ELEVENLABS_API_KEY:
         logger.error("ELEVENLABS_API_KEY is not set")
         return None
+    if voice_id is None:
+        from config import ELEVENLABS_VOICE_ID
+        voice_id = ELEVENLABS_VOICE_ID
     try:
-        url = f"https://api.elevenlabs.io/v1/text-to-speech/{ELEVENLABS_VOICE_ID}"
+        url = f"https://api.elevenlabs.io/v1/text-to-speech/{voice_id}"
         headers = {
             "Accept": "audio/mpeg",
             "Content-Type": "application/json",

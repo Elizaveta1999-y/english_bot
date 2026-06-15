@@ -1,14 +1,43 @@
 from aiogram import Router, F
-from aiogram.types import Message, ReplyKeyboardMarkup, KeyboardButton, CallbackQuery
+from aiogram.types import Message, ReplyKeyboardMarkup, KeyboardButton, CallbackQuery, InlineKeyboardMarkup, InlineKeyboardButton
 from data.users import set_user_state, get_user_state
 from services.deepseek import chat
 
 router = Router()
 
+SPEAKING_INTRO_TEXT = (
+    "🎤 <b>Speaking: говори свободно</b>\n\n"
+    "Нажми и общайся на любые темы — как в реальной жизни.\n"
+    "ИИ понимает акцент и естественную речь.\n"
+    "Мгновенная коррекция грамматики, лексики и произношения с понятными объяснениями.\n\n"
+    "🔊 <b>Слушай, говори и получай фидбек в реальном времени.</b>\n\n"
+    "Выберите голос помощника:"
+)
+
 @router.callback_query(lambda c: c.data == "start_speaking")
 async def start_speaking(callback: CallbackQuery):
+    keyboard = InlineKeyboardMarkup(inline_keyboard=[
+        [InlineKeyboardButton(text="👩 Woman Voice", callback_data="speaking_voice_woman"),
+         InlineKeyboardButton(text="👨 Man Voice", callback_data="speaking_voice_man")]
+    ])
+    await callback.message.edit_text(SPEAKING_INTRO_TEXT, reply_markup=keyboard, parse_mode="HTML")
+    await callback.answer()
+
+@router.callback_query(lambda c: c.data.startswith("speaking_voice_"))
+async def select_voice(callback: CallbackQuery):
     user_id = callback.from_user.id
-    set_user_state(user_id, {"mode": "speaking_active", "history": []})
+    voice = callback.data.split("_")[2]  # "woman" или "man"
+    user_state = get_user_state(user_id)
+    user_state["speaking_voice"] = voice
+    user_state["mode"] = "speaking_active"
+    if "history" not in user_state:
+        user_state["history"] = []
+    set_user_state(user_id, user_state)
+
+    # Удаляем сообщение с выбором голоса
+    await callback.message.delete()
+    
+    # Клавиатура для режима
     keyboard = ReplyKeyboardMarkup(
         keyboard=[
             [KeyboardButton(text="📊 Я всё! Фидбек")],
@@ -17,8 +46,9 @@ async def start_speaking(callback: CallbackQuery):
         resize_keyboard=True
     )
     await callback.message.answer(
-        "🎤 <b>Голосовой режим активирован!</b>\n\nГовори развёрнуто – так эффективнее для изучения! 🗣️",
-        reply_markup=keyboard, parse_mode="HTML"
+        "🗣️ <b>Говори развёрнуто – так эффективнее для изучения!</b>",
+        reply_markup=keyboard,
+        parse_mode="HTML"
     )
     await callback.answer()
 
