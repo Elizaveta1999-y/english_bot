@@ -866,8 +866,8 @@ async def show_practice_task(message: Message, user_id: int, edit: bool = True):
     task = practice["tasks"][session[idx]]
     star = " ⭐" if task.get("star") else ""
     text = f"📝 {task['text']}\n\n"
-    text += "Введите все ответы через пробел или запятую.\n\n"
-    progress = f"\n\nЗадание {idx+1} из {len(session)}. Правильных: {practice['session_correct']}"
+    text += "Введите все ответы через пробел или запятую.\n"
+    progress = f"\nЗадание {task_idx+1} из {len(tasks)}. ✅ Правильных: {practice['session_correct']}"
     full_text = text + progress
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(text="💡 Подсказка", callback_data=f"practice_hint_{lesson_key}"),
@@ -1308,10 +1308,8 @@ async def show_practice_task(message: Message, user_id: int, edit: bool = True):
     task = tasks[task_idx]
     star = " ⭐" if task.get("star") else ""
     text = f"📝 {task['text']}\n\n"
-    text += "Введите все ответы через пробел или запятую.\n\n"
-    # Инструкция по вводу
-    
-    progress = f"\n\nЗадание {task_idx+1} из {len(tasks)}. ✅ Правильных: {practice['session_correct']}"
+    text += "Введите все ответы через пробел или запятую.\n"
+    progress = f"\nЗадание {task_idx+1} из {len(tasks)}. ✅ Правильных: {practice['session_correct']}"
     full_text = text + progress
     
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
