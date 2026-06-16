@@ -1306,7 +1306,7 @@ async def show_practice_task(message: Message, user_id: int, edit: bool = True):
     
     task = tasks[task_idx]
     star = " ⭐" if task.get("star") else ""
-    text = f"📝 **Задание {task_idx+1}{star}**\n\n{task['text']}\n\n"
+    text = f"📝 **{task['text']}**\n\n"
     # Инструкция по вводу
     text += "Введите все ответы через пробел или запятую, например: C E H L O Q S U W Y\n\n"
     text += "**Ваш ответ:**"
