@@ -6,25 +6,25 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "title": "Знакомство с алфавитом",
         "text": "\n<b>🔤 Тема: Английский алфавит (26 букв)</b>\n\n<blockquote>Произношение букв в алфавите отличается от их звучания в словах.</blockquote>\n\n<b>A</b> [эй] – Apple (яблоко)\n<b>B</b> [би] – Boy (мальчик)\n<b>C</b> [си] – Cat (кот)\n<b>D</b> [ди] – Dog (собака)\n<b>E</b> [и] – Egg (яйцо)\n<b>F</b> [эф] – Fish (рыба)\n<b>G</b> [джи] – Girl (девочка)\n<b>H</b> [эйч] – Hat (шляпа)\n<b>I</b> [ай] – Ice (лёд)\n<b>J</b> [джей] – Juice (сок)\n<b>K</b> [кей] – Kite (воздушный змей)\n<b>L</b> [эл] – Lion (лев)\n<b>M</b> [эм] – Mother (мама)\n<b>N</b> [эн] – Night (ночь)\n<b>O</b> [оу] – Orange (апельсин)\n<b>P</b> [пи] – Pen (ручка)\n<b>Q</b> [кью] – Queen (королева)\n<b>R</b> [ар] – Red (красный)\n<b>S</b> [эс] – Sun (солнце)\n<b>T</b> [ти] – Tea (чай)\n<b>U</b> [ю] – Umbrella (зонт)\n<b>V</b> [ви] – Violin (скрипка)\n<b>W</b> [дабл‑ю] – Window (окно)\n<b>X</b> [экс] – X‑ray (рентген)\n<b>Y</b> [уай] – Yellow (жёлтый)\n<b>Z</b> [зед] – Zebra (зебра)\n",
         "image": None,
-        "has_audio_buttons": true
+        "has_audio_buttons": True
       },
       {
         "title": "Гласные и согласные",
         "text": "\n<b>🎵 Гласные (Vowels):</b> A, E, I, O, U (иногда Y)\n\nОстальные – согласные.\n\n<blockquote>Произношение буквы в слове может отличаться от её имени в алфавите.</blockquote>\n\n• Буква <b>A</b> в слове cat (кот) – [э]\n• Буква <b>E</b> в слове bed (кровать) – [э]\n• Буква <b>I</b> в слове sit (сидеть) – [и]\n• Буква <b>O</b> в слове hot (горячий) – [о]\n• Буква <b>U</b> в слове cup (чашка) – [а]\n",
         "image": None,
-        "has_audio_buttons": false
+        "has_audio_buttons": False
       },
       {
         "title": "Трудные буквы",
         "text": "\n<b>⚠️ Буквы, которые путают:</b>\n\n• <b>B</b> [би] и <b>V</b> [ви]\n• <b>G</b> [джи] и <b>J</b> [джей]\n• <b>W</b> [дабл‑ю] – «двойная U»\n• <b>Y</b> [уай] – не [й]\n• <b>N</b> [эн] и <b>M</b> [эм]\n\n<blockquote>Совет: повторяйте алфавит вслух 2‑3 минуты в день.</blockquote>\n",
         "image": None,
-        "has_audio_buttons": false
+        "has_audio_buttons": False
       },
       {
         "title": "Советы для запоминания",
         "text": "\n<b>💡 Как быстро выучить алфавит:</b>\n\n1. Пойте песенку «ABC Song» – она поможет запомнить порядок букв.\n2. Распечатайте алфавит и повесьте на видное место.\n3. Каждый день называйте 5 букв и придумывайте слова, которые с них начинаются.\n4. Используйте карточки: на одной стороне буква, на другой – картинка и слово.\n5. Слушайте произношение букв в аудиозаписях и повторяйте вслух.\n\n<blockquote>Через неделю ежедневных повторений вы будете знать алфавит наизусть.</blockquote>\n",
         "image": None,
-        "has_audio_buttons": false
+        "has_audio_buttons": False
       }
     ],
     "faq": [
@@ -33,518 +33,60 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "answer": "Имя буквы и её звук – разные вещи. Звуки выучите позже, когда начнёте читать слова."
       }
     ],
-    "practice_bank": [
-    # ===== Вариант 1 =====
-    [
-        {
-            "type": "complex",
-            "text": "Задание 1. Напишите букву, которая следует за данной в алфавите.\n\nПример: A → B\n\n1. B → __\n2. D → __\n3. G → __\n4. K → __\n5. M → __\n6. P → __\n7. R → __\n8. T → __\n9. V → __\n10. X → __",
-            "subtasks": [
-                {"question": "B → __", "answer": "C", "explanation": "После B идёт C"},
-                {"question": "D → __", "answer": "E", "explanation": "После D идёт E"},
-                {"question": "G → __", "answer": "H", "explanation": "После G идёт H"},
-                {"question": "K → __", "answer": "L", "explanation": "После K идёт L"},
-                {"question": "M → __", "answer": "N", "explanation": "После M идёт N"},
-                {"question": "P → __", "answer": "Q", "explanation": "После P идёт Q"},
-                {"question": "R → __", "answer": "S", "explanation": "После R идёт S"},
-                {"question": "T → __", "answer": "U", "explanation": "После T идёт U"},
-                {"question": "V → __", "answer": "W", "explanation": "После V идёт W"},
-                {"question": "X → __", "answer": "Y", "explanation": "После X идёт Y"}
+            "practice_bank": [
+            # Вариант 1
+            [
+                {
+                    "type": "complex",
+                    "text": "Задание 1. Напишите букву, которая следует за данной в алфавите.\n\nПример: A → B\n\n1. B → __\n2. D → __\n3. G → __\n4. K → __\n5. M → __\n6. P → __\n7. R → __\n8. T → __\n9. V → __\n10. X → __",
+                    "subtasks": [
+                        {"question": "B → __", "answer": "C", "explanation": "После B идёт C"},
+                        {"question": "D → __", "answer": "E", "explanation": "После D идёт E"},
+                        {"question": "G → __", "answer": "H", "explanation": "После G идёт H"},
+                        {"question": "K → __", "answer": "L", "explanation": "После K идёт L"},
+                        {"question": "M → __", "answer": "N", "explanation": "После M идёт N"},
+                        {"question": "P → __", "answer": "Q", "explanation": "После P идёт Q"},
+                        {"question": "R → __", "answer": "S", "explanation": "После R идёт S"},
+                        {"question": "T → __", "answer": "U", "explanation": "После T идёт U"},
+                        {"question": "V → __", "answer": "W", "explanation": "После V идёт W"},
+                        {"question": "X → __", "answer": "Y", "explanation": "После X идёт Y"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Задание 2. Напишите букву, которая стоит перед данной в алфавите.\n\nПример: B → A\n\n1. C → __\n2. F → __\n3. I → __\n4. L → __\n5. O → __\n6. Q → __\n7. S → __\n8. U → __\n9. W → __\n10. Z → __",
+                    "subtasks": [
+                        {"question": "C → __", "answer": "B", "explanation": "Перед C стоит B"},
+                        {"question": "F → __", "answer": "E", "explanation": "Перед F стоит E"},
+                        {"question": "I → __", "answer": "H", "explanation": "Перед I стоит H"},
+                        {"question": "L → __", "answer": "K", "explanation": "Перед L стоит K"},
+                        {"question": "O → __", "answer": "N", "explanation": "Перед O стоит N"},
+                        {"question": "Q → __", "answer": "P", "explanation": "Перед Q стоит P"},
+                        {"question": "S → __", "answer": "R", "explanation": "Перед S стоит R"},
+                        {"question": "U → __", "answer": "T", "explanation": "Перед U стоит T"},
+                        {"question": "W → __", "answer": "V", "explanation": "Перед W стоит V"},
+                        {"question": "Z → __", "answer": "Y", "explanation": "Перед Z стоит Y"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Задание 3. Напишите букву по её произношению (на русском).\n\nПример: [эй] → A\n\n1. [би] → __\n2. [си] → __\n3. [ди] → __\n4. [и] → __\n5. [эф] → __\n6. [джи] → __\n7. [эйч] → __\n8. [ай] → __\n9. [джей] → __\n10. [кей] → __",
+                    "subtasks": [
+                        {"question": "[би] → __", "answer": "B", "explanation": "B произносится как 'би'"},
+                        {"question": "[си] → __", "answer": "C", "explanation": "C произносится как 'си'"},
+                        {"question": "[ди] → __", "answer": "D", "explanation": "D произносится как 'ди'"},
+                        {"question": "[и] → __", "answer": "E", "explanation": "E произносится как 'и'"},
+                        {"question": "[эф] → __", "answer": "F", "explanation": "F произносится как 'эф'"},
+                        {"question": "[джи] → __", "answer": "G", "explanation": "G произносится как 'джи'"},
+                        {"question": "[эйч] → __", "answer": "H", "explanation": "H произносится как 'эйч'"},
+                        {"question": "[ай] → __", "answer": "I", "explanation": "I произносится как 'ай'"},
+                        {"question": "[джей] → __", "answer": "J", "explanation": "J произносится как 'джей'"},
+                        {"question": "[кей] → __", "answer": "K", "explanation": "K произносится как 'кей'"}
+                    ]
+                }
             ]
-        },
-        {
-            "type": "complex",
-            "text": "Задание 2. Напишите букву, которая стоит перед данной в алфавите.\n\nПример: B → A\n\n1. C → __\n2. F → __\n3. I → __\n4. L → __\n5. O → __\n6. Q → __\n7. S → __\n8. U → __\n9. W → __\n10. Z → __",
-            "subtasks": [
-                {"question": "C → __", "answer": "B", "explanation": "Перед C стоит B"},
-                {"question": "F → __", "answer": "E", "explanation": "Перед F стоит E"},
-                {"question": "I → __", "answer": "H", "explanation": "Перед I стоит H"},
-                {"question": "L → __", "answer": "K", "explanation": "Перед L стоит K"},
-                {"question": "O → __", "answer": "N", "explanation": "Перед O стоит N"},
-                {"question": "Q → __", "answer": "P", "explanation": "Перед Q стоит P"},
-                {"question": "S → __", "answer": "R", "explanation": "Перед S стоит R"},
-                {"question": "U → __", "answer": "T", "explanation": "Перед U стоит T"},
-                {"question": "W → __", "answer": "V", "explanation": "Перед W стоит V"},
-                {"question": "Z → __", "answer": "Y", "explanation": "Перед Z стоит Y"}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "Задание 3. Напишите букву по её произношению (на русском).\n\nПример: [эй] → A\n\n1. [би] → __\n2. [си] → __\n3. [ди] → __\n4. [и] → __\n5. [эф] → __\n6. [джи] → __\n7. [эйч] → __\n8. [ай] → __\n9. [джей] → __\n10. [кей] → __",
-            "subtasks": [
-                {"question": "[би] → __", "answer": "B", "explanation": "B произносится как 'би'"},
-                {"question": "[си] → __", "answer": "C", "explanation": "C произносится как 'си'"},
-                {"question": "[ди] → __", "answer": "D", "explanation": "D произносится как 'ди'"},
-                {"question": "[и] → __", "answer": "E", "explanation": "E произносится как 'и'"},
-                {"question": "[эф] → __", "answer": "F", "explanation": "F произносится как 'эф'"},
-                {"question": "[джи] → __", "answer": "G", "explanation": "G произносится как 'джи'"},
-                {"question": "[эйч] → __", "answer": "H", "explanation": "H произносится как 'эйч'"},
-                {"question": "[ай] → __", "answer": "I", "explanation": "I произносится как 'ай'"},
-                {"question": "[джей] → __", "answer": "J", "explanation": "J произносится как 'джей'"},
-                {"question": "[кей] → __", "answer": "K", "explanation": "K произносится как 'кей'"}
-            ]
-        }
-    ],
-    # ===== Вариант 2 =====
-    [
-        {
-            "type": "complex",
-            "text": "Задание 1. Напишите букву, которая следует за данной в алфавите.\n\n1. C → __\n2. E → __\n3. H → __\n4. J → __\n5. N → __\n6. Q → __\n7. S → __\n8. V → __\n9. X → __\n10. Z → __",
-            "subtasks": [
-                {"question": "C → __", "answer": "D", "explanation": "После C идёт D"},
-                {"question": "E → __", "answer": "F", "explanation": "После E идёт F"},
-                {"question": "H → __", "answer": "I", "explanation": "После H идёт I"},
-                {"question": "J → __", "answer": "K", "explanation": "После J идёт K"},
-                {"question": "N → __", "answer": "O", "explanation": "После N идёт O"},
-                {"question": "Q → __", "answer": "R", "explanation": "После Q идёт R"},
-                {"question": "S → __", "answer": "T", "explanation": "После S идёт T"},
-                {"question": "V → __", "answer": "W", "explanation": "После V идёт W"},
-                {"question": "X → __", "answer": "Y", "explanation": "После X идёт Y"},
-                {"question": "Z → __", "answer": "нет буквы", "explanation": "Z — последняя буква, после неё ничего нет"}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "Задание 2. Напишите букву, которая стоит перед данной в алфавите.\n\n1. D → __\n2. G → __\n3. K → __\n4. N → __\n5. P → __\n6. R → __\n7. T → __\n8. W → __\n9. Y → __\n10. A → __",
-            "subtasks": [
-                {"question": "D → __", "answer": "C", "explanation": "Перед D стоит C"},
-                {"question": "G → __", "answer": "F", "explanation": "Перед G стоит F"},
-                {"question": "K → __", "answer": "J", "explanation": "Перед K стоит J"},
-                {"question": "N → __", "answer": "M", "explanation": "Перед N стоит M"},
-                {"question": "P → __", "answer": "O", "explanation": "Перед P стоит O"},
-                {"question": "R → __", "answer": "Q", "explanation": "Перед R стоит Q"},
-                {"question": "T → __", "answer": "S", "explanation": "Перед T стоит S"},
-                {"question": "W → __", "answer": "V", "explanation": "Перед W стоит V"},
-                {"question": "Y → __", "answer": "X", "explanation": "Перед Y стоит X"},
-                {"question": "A → __", "answer": "нет буквы", "explanation": "A — первая буква, перед ней ничего нет"}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "Задание 3. Напишите букву по её произношению (на русском).\n\n1. [эл] → __\n2. [эм] → __\n3. [эн] → __\n4. [оу] → __\n5. [пи] → __\n6. [кью] → __\n7. [ар] → __\n8. [эс] → __\n9. [ти] → __\n10. [ю] → __",
-            "subtasks": [
-                {"question": "[эл] → __", "answer": "L", "explanation": "L произносится как 'эл'"},
-                {"question": "[эм] → __", "answer": "M", "explanation": "M произносится как 'эм'"},
-                {"question": "[эн] → __", "answer": "N", "explanation": "N произносится как 'эн'"},
-                {"question": "[оу] → __", "answer": "O", "explanation": "O произносится как 'оу'"},
-                {"question": "[пи] → __", "answer": "P", "explanation": "P произносится как 'пи'"},
-                {"question": "[кью] → __", "answer": "Q", "explanation": "Q произносится как 'кью'"},
-                {"question": "[ар] → __", "answer": "R", "explanation": "R произносится как 'ар'"},
-                {"question": "[эс] → __", "answer": "S", "explanation": "S произносится как 'эс'"},
-                {"question": "[ти] → __", "answer": "T", "explanation": "T произносится как 'ти'"},
-                {"question": "[ю] → __", "answer": "U", "explanation": "U произносится как 'ю'"}
-            ]
-        }
-    ],
-    # ===== Вариант 3 =====
-    [
-        {
-            "type": "complex",
-            "text": "Задание 1. Напишите букву, которая следует за данной в алфавите.\n\n1. A → __\n2. F → __\n3. I → __\n4. L → __\n5. O → __\n6. R → __\n7. U → __\n8. W → __\n9. Y → __\n10. Z → __",
-            "subtasks": [
-                {"question": "A → __", "answer": "B", "explanation": "После A идёт B"},
-                {"question": "F → __", "answer": "G", "explanation": "После F идёт G"},
-                {"question": "I → __", "answer": "J", "explanation": "После I идёт J"},
-                {"question": "L → __", "answer": "M", "explanation": "После L идёт M"},
-                {"question": "O → __", "answer": "P", "explanation": "После O идёт P"},
-                {"question": "R → __", "answer": "S", "explanation": "После R идёт S"},
-                {"question": "U → __", "answer": "V", "explanation": "После U идёт V"},
-                {"question": "W → __", "answer": "X", "explanation": "После W идёт X"},
-                {"question": "Y → __", "answer": "Z", "explanation": "После Y идёт Z"},
-                {"question": "Z → __", "answer": "нет буквы", "explanation": "Z — последняя буква"}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "Задание 2. Напишите букву, которая стоит перед данной в алфавите.\n\n1. B → __\n2. E → __\n3. H → __\n4. J → __\n5. M → __\n6. Q → __\n7. S → __\n8. V → __\n9. X → __\n10. Z → __",
-            "subtasks": [
-                {"question": "B → __", "answer": "A", "explanation": "Перед B стоит A"},
-                {"question": "E → __", "answer": "D", "explanation": "Перед E стоит D"},
-                {"question": "H → __", "answer": "G", "explanation": "Перед H стоит G"},
-                {"question": "J → __", "answer": "I", "explanation": "Перед J стоит I"},
-                {"question": "M → __", "answer": "L", "explanation": "Перед M стоит L"},
-                {"question": "Q → __", "answer": "P", "explanation": "Перед Q стоит P"},
-                {"question": "S → __", "answer": "R", "explanation": "Перед S стоит R"},
-                {"question": "V → __", "answer": "U", "explanation": "Перед V стоит U"},
-                {"question": "X → __", "answer": "W", "explanation": "Перед X стоит W"},
-                {"question": "Z → __", "answer": "Y", "explanation": "Перед Z стоит Y"}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "Задание 3. Напишите букву по её произношению (на русском).\n\n1. [ви] → __\n2. [дабл-ю] → __\n3. [экс] → __\n4. [уай] → __\n5. [зед] → __\n6. [эй] → __\n7. [би] → __\n8. [си] → __\n9. [ди] → __\n10. [и] → __",
-            "subtasks": [
-                {"question": "[ви] → __", "answer": "V", "explanation": "V произносится как 'ви'"},
-                {"question": "[дабл-ю] → __", "answer": "W", "explanation": "W произносится как 'дабл-ю'"},
-                {"question": "[экс] → __", "answer": "X", "explanation": "X произносится как 'экс'"},
-                {"question": "[уай] → __", "answer": "Y", "explanation": "Y произносится как 'уай'"},
-                {"question": "[зед] → __", "answer": "Z", "explanation": "Z произносится как 'зед'"},
-                {"question": "[эй] → __", "answer": "A", "explanation": "A произносится как 'эй'"},
-                {"question": "[би] → __", "answer": "B", "explanation": "B произносится как 'би'"},
-                {"question": "[си] → __", "answer": "C", "explanation": "C произносится как 'си'"},
-                {"question": "[ди] → __", "answer": "D", "explanation": "D произносится как 'ди'"},
-                {"question": "[и] → __", "answer": "E", "explanation": "E произносится как 'и'"}
-            ]
-        }
-    ],
-    # ===== Вариант 4 =====
-    [
-        {
-            "type": "complex",
-            "text": "Задание 1. Напишите букву, которая следует за данной в алфавите.\n\n1. E → __\n2. G → __\n3. J → __\n4. N → __\n5. P → __\n6. S → __\n7. V → __\n8. X → __\n9. Z → __\n10. A → __",
-            "subtasks": [
-                {"question": "E → __", "answer": "F", "explanation": "После E идёт F"},
-                {"question": "G → __", "answer": "H", "explanation": "После G идёт H"},
-                {"question": "J → __", "answer": "K", "explanation": "После J идёт K"},
-                {"question": "N → __", "answer": "O", "explanation": "После N идёт O"},
-                {"question": "P → __", "answer": "Q", "explanation": "После P идёт Q"},
-                {"question": "S → __", "answer": "T", "explanation": "После S идёт T"},
-                {"question": "V → __", "answer": "W", "explanation": "После V идёт W"},
-                {"question": "X → __", "answer": "Y", "explanation": "После X идёт Y"},
-                {"question": "Z → __", "answer": "нет буквы", "explanation": "Z — последняя буква"},
-                {"question": "A → __", "answer": "B", "explanation": "После A идёт B"}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "Задание 2. Напишите букву, которая стоит перед данной в алфавите.\n\n1. F → __\n2. I → __\n3. L → __\n4. O → __\n5. R → __\n6. U → __\n7. W → __\n8. Y → __\n9. A → __\n10. C → __",
-            "subtasks": [
-                {"question": "F → __", "answer": "E", "explanation": "Перед F стоит E"},
-                {"question": "I → __", "answer": "H", "explanation": "Перед I стоит H"},
-                {"question": "L → __", "answer": "K", "explanation": "Перед L стоит K"},
-                {"question": "O → __", "answer": "N", "explanation": "Перед O стоит N"},
-                {"question": "R → __", "answer": "Q", "explanation": "Перед R стоит Q"},
-                {"question": "U → __", "answer": "T", "explanation": "Перед U стоит T"},
-                {"question": "W → __", "answer": "V", "explanation": "Перед W стоит V"},
-                {"question": "Y → __", "answer": "X", "explanation": "Перед Y стоит X"},
-                {"question": "A → __", "answer": "нет буквы", "explanation": "A — первая буква"},
-                {"question": "C → __", "answer": "B", "explanation": "Перед C стоит B"}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "Задание 3. Напишите букву по её произношению (на русском).\n\n1. [эф] → __\n2. [джи] → __\n3. [эйч] → __\n4. [ай] → __\n5. [джей] → __\n6. [кей] → __\n7. [эл] → __\n8. [эм] → __\n9. [эн] → __\n10. [оу] → __",
-            "subtasks": [
-                {"question": "[эф] → __", "answer": "F", "explanation": "F произносится как 'эф'"},
-                {"question": "[джи] → __", "answer": "G", "explanation": "G произносится как 'джи'"},
-                {"question": "[эйч] → __", "answer": "H", "explanation": "H произносится как 'эйч'"},
-                {"question": "[ай] → __", "answer": "I", "explanation": "I произносится как 'ай'"},
-                {"question": "[джей] → __", "answer": "J", "explanation": "J произносится как 'джей'"},
-                {"question": "[кей] → __", "answer": "K", "explanation": "K произносится как 'кей'"},
-                {"question": "[эл] → __", "answer": "L", "explanation": "L произносится как 'эл'"},
-                {"question": "[эм] → __", "answer": "M", "explanation": "M произносится как 'эм'"},
-                {"question": "[эн] → __", "answer": "N", "explanation": "N произносится как 'эн'"},
-                {"question": "[оу] → __", "answer": "O", "explanation": "O произносится как 'оу'"}
-            ]
-        }
-    ],
-    # ===== Вариант 5 =====
-    [
-        {
-            "type": "complex",
-            "text": "Задание 1. Напишите букву, которая следует за данной в алфавите.\n\n1. B → __\n2. D → __\n3. F → __\n4. H → __\n5. J → __\n6. L → __\n7. N → __\n8. P → __\n9. R → __\n10. T → __",
-            "subtasks": [
-                {"question": "B → __", "answer": "C", "explanation": "После B идёт C"},
-                {"question": "D → __", "answer": "E", "explanation": "После D идёт E"},
-                {"question": "F → __", "answer": "G", "explanation": "После F идёт G"},
-                {"question": "H → __", "answer": "I", "explanation": "После H идёт I"},
-                {"question": "J → __", "answer": "K", "explanation": "После J идёт K"},
-                {"question": "L → __", "answer": "M", "explanation": "После L идёт M"},
-                {"question": "N → __", "answer": "O", "explanation": "После N идёт O"},
-                {"question": "P → __", "answer": "Q", "explanation": "После P идёт Q"},
-                {"question": "R → __", "answer": "S", "explanation": "После R идёт S"},
-                {"question": "T → __", "answer": "U", "explanation": "После T идёт U"}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "Задание 2. Напишите букву, которая стоит перед данной в алфавите.\n\n1. C → __\n2. E → __\n3. G → __\n4. I → __\n5. K → __\n6. M → __\n7. O → __\n8. Q → __\n9. S → __\n10. U → __",
-            "subtasks": [
-                {"question": "C → __", "answer": "B", "explanation": "Перед C стоит B"},
-                {"question": "E → __", "answer": "D", "explanation": "Перед E стоит D"},
-                {"question": "G → __", "answer": "F", "explanation": "Перед G стоит F"},
-                {"question": "I → __", "answer": "H", "explanation": "Перед I стоит H"},
-                {"question": "K → __", "answer": "J", "explanation": "Перед K стоит J"},
-                {"question": "M → __", "answer": "L", "explanation": "Перед M стоит L"},
-                {"question": "O → __", "answer": "N", "explanation": "Перед O стоит N"},
-                {"question": "Q → __", "answer": "P", "explanation": "Перед Q стоит P"},
-                {"question": "S → __", "answer": "R", "explanation": "Перед S стоит R"},
-                {"question": "U → __", "answer": "T", "explanation": "Перед U стоит T"}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "Задание 3. Напишите букву по её произношению (на русском).\n\n1. [пи] → __\n2. [кью] → __\n3. [ар] → __\n4. [эс] → __\n5. [ти] → __\n6. [ю] → __\n7. [ви] → __\n8. [дабл-ю] → __\n9. [экс] → __\n10. [уай] → __",
-            "subtasks": [
-                {"question": "[пи] → __", "answer": "P", "explanation": "P произносится как 'пи'"},
-                {"question": "[кью] → __", "answer": "Q", "explanation": "Q произносится как 'кью'"},
-                {"question": "[ар] → __", "answer": "R", "explanation": "R произносится как 'ар'"},
-                {"question": "[эс] → __", "answer": "S", "explanation": "S произносится как 'эс'"},
-                {"question": "[ти] → __", "answer": "T", "explanation": "T произносится как 'ти'"},
-                {"question": "[ю] → __", "answer": "U", "explanation": "U произносится как 'ю'"},
-                {"question": "[ви] → __", "answer": "V", "explanation": "V произносится как 'ви'"},
-                {"question": "[дабл-ю] → __", "answer": "W", "explanation": "W произносится как 'дабл-ю'"},
-                {"question": "[экс] → __", "answer": "X", "explanation": "X произносится как 'экс'"},
-                {"question": "[уай] → __", "answer": "Y", "explanation": "Y произносится как 'уай'"}
-            ]
-        }
-    ],
-    # ===== Вариант 6 =====
-    [
-        {
-            "type": "complex",
-            "text": "Задание 1. Напишите букву, которая следует за данной в алфавите.\n\n1. C → __\n2. E → __\n3. G → __\n4. I → __\n5. K → __\n6. M → __\n7. O → __\n8. Q → __\n9. S → __\n10. U → __",
-            "subtasks": [
-                {"question": "C → __", "answer": "D", "explanation": "После C идёт D"},
-                {"question": "E → __", "answer": "F", "explanation": "После E идёт F"},
-                {"question": "G → __", "answer": "H", "explanation": "После G идёт H"},
-                {"question": "I → __", "answer": "J", "explanation": "После I идёт J"},
-                {"question": "K → __", "answer": "L", "explanation": "После K идёт L"},
-                {"question": "M → __", "answer": "N", "explanation": "После M идёт N"},
-                {"question": "O → __", "answer": "P", "explanation": "После O идёт P"},
-                {"question": "Q → __", "answer": "R", "explanation": "После Q идёт R"},
-                {"question": "S → __", "answer": "T", "explanation": "После S идёт T"},
-                {"question": "U → __", "answer": "V", "explanation": "После U идёт V"}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "Задание 2. Напишите букву, которая стоит перед данной в алфавите.\n\n1. D → __\n2. F → __\n3. H → __\n4. J → __\n5. L → __\n6. N → __\n7. P → __\n8. R → __\n9. T → __\n10. V → __",
-            "subtasks": [
-                {"question": "D → __", "answer": "C", "explanation": "Перед D стоит C"},
-                {"question": "F → __", "answer": "E", "explanation": "Перед F стоит E"},
-                {"question": "H → __", "answer": "G", "explanation": "Перед H стоит G"},
-                {"question": "J → __", "answer": "I", "explanation": "Перед J стоит I"},
-                {"question": "L → __", "answer": "K", "explanation": "Перед L стоит K"},
-                {"question": "N → __", "answer": "M", "explanation": "Перед N стоит M"},
-                {"question": "P → __", "answer": "O", "explanation": "Перед P стоит O"},
-                {"question": "R → __", "answer": "Q", "explanation": "Перед R стоит Q"},
-                {"question": "T → __", "answer": "S", "explanation": "Перед T стоит S"},
-                {"question": "V → __", "answer": "U", "explanation": "Перед V стоит U"}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "Задание 3. Напишите букву по её произношению (на русском).\n\n1. [зед] → __\n2. [эй] → __\n3. [би] → __\n4. [си] → __\n5. [ди] → __\n6. [и] → __\n7. [эф] → __\n8. [джи] → __\n9. [эйч] → __\n10. [ай] → __",
-            "subtasks": [
-                {"question": "[зед] → __", "answer": "Z", "explanation": "Z произносится как 'зед'"},
-                {"question": "[эй] → __", "answer": "A", "explanation": "A произносится как 'эй'"},
-                {"question": "[би] → __", "answer": "B", "explanation": "B произносится как 'би'"},
-                {"question": "[си] → __", "answer": "C", "explanation": "C произносится как 'си'"},
-                {"question": "[ди] → __", "answer": "D", "explanation": "D произносится как 'ди'"},
-                {"question": "[и] → __", "answer": "E", "explanation": "E произносится как 'и'"},
-                {"question": "[эф] → __", "answer": "F", "explanation": "F произносится как 'эф'"},
-                {"question": "[джи] → __", "answer": "G", "explanation": "G произносится как 'джи'"},
-                {"question": "[эйч] → __", "answer": "H", "explanation": "H произносится как 'эйч'"},
-                {"question": "[ай] → __", "answer": "I", "explanation": "I произносится как 'ай'"}
-            ]
-        }
-    ],
-    # ===== Вариант 7 =====
-    [
-        {
-            "type": "complex",
-            "text": "Задание 1. Напишите букву, которая следует за данной в алфавите.\n\n1. A → __\n2. D → __\n3. G → __\n4. J → __\n5. M → __\n6. P → __\n7. S → __\n8. V → __\n9. Y → __\n10. B → __",
-            "subtasks": [
-                {"question": "A → __", "answer": "B", "explanation": "После A идёт B"},
-                {"question": "D → __", "answer": "E", "explanation": "После D идёт E"},
-                {"question": "G → __", "answer": "H", "explanation": "После G идёт H"},
-                {"question": "J → __", "answer": "K", "explanation": "После J идёт K"},
-                {"question": "M → __", "answer": "N", "explanation": "После M идёт N"},
-                {"question": "P → __", "answer": "Q", "explanation": "После P идёт Q"},
-                {"question": "S → __", "answer": "T", "explanation": "После S идёт T"},
-                {"question": "V → __", "answer": "W", "explanation": "После V идёт W"},
-                {"question": "Y → __", "answer": "Z", "explanation": "После Y идёт Z"},
-                {"question": "B → __", "answer": "C", "explanation": "После B идёт C"}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "Задание 2. Напишите букву, которая стоит перед данной в алфавите.\n\n1. C → __\n2. F → __\n3. I → __\n4. L → __\n5. O → __\n6. R → __\n7. U → __\n8. X → __\n9. Z → __\n10. B → __",
-            "subtasks": [
-                {"question": "C → __", "answer": "B", "explanation": "Перед C стоит B"},
-                {"question": "F → __", "answer": "E", "explanation": "Перед F стоит E"},
-                {"question": "I → __", "answer": "H", "explanation": "Перед I стоит H"},
-                {"question": "L → __", "answer": "K", "explanation": "Перед L стоит K"},
-                {"question": "O → __", "answer": "N", "explanation": "Перед O стоит N"},
-                {"question": "R → __", "answer": "Q", "explanation": "Перед R стоит Q"},
-                {"question": "U → __", "answer": "T", "explanation": "Перед U стоит T"},
-                {"question": "X → __", "answer": "W", "explanation": "Перед X стоит W"},
-                {"question": "Z → __", "answer": "Y", "explanation": "Перед Z стоит Y"},
-                {"question": "B → __", "answer": "A", "explanation": "Перед B стоит A"}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "Задание 3. Напишите букву по её произношению (на русском).\n\n1. [джей] → __\n2. [кей] → __\n3. [эл] → __\n4. [эм] → __\n5. [эн] → __\n6. [оу] → __\n7. [пи] → __\n8. [кью] → __\n9. [ар] → __\n10. [эс] → __",
-            "subtasks": [
-                {"question": "[джей] → __", "answer": "J", "explanation": "J произносится как 'джей'"},
-                {"question": "[кей] → __", "answer": "K", "explanation": "K произносится как 'кей'"},
-                {"question": "[эл] → __", "answer": "L", "explanation": "L произносится как 'эл'"},
-                {"question": "[эм] → __", "answer": "M", "explanation": "M произносится как 'эм'"},
-                {"question": "[эн] → __", "answer": "N", "explanation": "N произносится как 'эн'"},
-                {"question": "[оу] → __", "answer": "O", "explanation": "O произносится как 'оу'"},
-                {"question": "[пи] → __", "answer": "P", "explanation": "P произносится как 'пи'"},
-                {"question": "[кью] → __", "answer": "Q", "explanation": "Q произносится как 'кью'"},
-                {"question": "[ар] → __", "answer": "R", "explanation": "R произносится как 'ар'"},
-                {"question": "[эс] → __", "answer": "S", "explanation": "S произносится как 'эс'"}
-            ]
-        }
-    ],
-    # ===== Вариант 8 =====
-    [
-        {
-            "type": "complex",
-            "text": "Задание 1. Напишите букву, которая следует за данной в алфавите.\n\n1. E → __\n2. H → __\n3. K → __\n4. N → __\n5. Q → __\n6. T → __\n7. W → __\n8. Z → __\n9. C → __\n10. F → __",
-            "subtasks": [
-                {"question": "E → __", "answer": "F", "explanation": "После E идёт F"},
-                {"question": "H → __", "answer": "I", "explanation": "После H идёт I"},
-                {"question": "K → __", "answer": "L", "explanation": "После K идёт L"},
-                {"question": "N → __", "answer": "O", "explanation": "После N идёт O"},
-                {"question": "Q → __", "answer": "R", "explanation": "После Q идёт R"},
-                {"question": "T → __", "answer": "U", "explanation": "После T идёт U"},
-                {"question": "W → __", "answer": "X", "explanation": "После W идёт X"},
-                {"question": "Z → __", "answer": "нет буквы", "explanation": "Z — последняя буква"},
-                {"question": "C → __", "answer": "D", "explanation": "После C идёт D"},
-                {"question": "F → __", "answer": "G", "explanation": "После F идёт G"}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "Задание 2. Напишите букву, которая стоит перед данной в алфавите.\n\n1. G → __\n2. J → __\n3. M → __\n4. P → __\n5. S → __\n6. V → __\n7. Y → __\n8. B → __\n9. E → __\n10. H → __",
-            "subtasks": [
-                {"question": "G → __", "answer": "F", "explanation": "Перед G стоит F"},
-                {"question": "J → __", "answer": "I", "explanation": "Перед J стоит I"},
-                {"question": "M → __", "answer": "L", "explanation": "Перед M стоит L"},
-                {"question": "P → __", "answer": "O", "explanation": "Перед P стоит O"},
-                {"question": "S → __", "answer": "R", "explanation": "Перед S стоит R"},
-                {"question": "V → __", "answer": "U", "explanation": "Перед V стоит U"},
-                {"question": "Y → __", "answer": "X", "explanation": "Перед Y стоит X"},
-                {"question": "B → __", "answer": "A", "explanation": "Перед B стоит A"},
-                {"question": "E → __", "answer": "D", "explanation": "Перед E стоит D"},
-                {"question": "H → __", "answer": "G", "explanation": "Перед H стоит G"}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "Задание 3. Напишите букву по её произношению (на русском).\n\n1. [ти] → __\n2. [ю] → __\n3. [ви] → __\n4. [дабл-ю] → __\n5. [экс] → __\n6. [уай] → __\n7. [зед] → __\n8. [эй] → __\n9. [би] → __\n10. [си] → __",
-            "subtasks": [
-                {"question": "[ти] → __", "answer": "T", "explanation": "T произносится как 'ти'"},
-                {"question": "[ю] → __", "answer": "U", "explanation": "U произносится как 'ю'"},
-                {"question": "[ви] → __", "answer": "V", "explanation": "V произносится как 'ви'"},
-                {"question": "[дабл-ю] → __", "answer": "W", "explanation": "W произносится как 'дабл-ю'"},
-                {"question": "[экс] → __", "answer": "X", "explanation": "X произносится как 'экс'"},
-                {"question": "[уай] → __", "answer": "Y", "explanation": "Y произносится как 'уай'"},
-                {"question": "[зед] → __", "answer": "Z", "explanation": "Z произносится как 'зед'"},
-                {"question": "[эй] → __", "answer": "A", "explanation": "A произносится как 'эй'"},
-                {"question": "[би] → __", "answer": "B", "explanation": "B произносится как 'би'"},
-                {"question": "[си] → __", "answer": "C", "explanation": "C произносится как 'си'"}
-            ]
-        }
-    ],
-    # ===== Вариант 9 =====
-    [
-        {
-            "type": "complex",
-            "text": "Задание 1. Напишите букву, которая следует за данной в алфавите.\n\n1. A → __\n2. C → __\n3. E → __\n4. G → __\n5. I → __\n6. K → __\n7. M → __\n8. O → __\n9. Q → __\n10. S → __",
-            "subtasks": [
-                {"question": "A → __", "answer": "B", "explanation": "После A идёт B"},
-                {"question": "C → __", "answer": "D", "explanation": "После C идёт D"},
-                {"question": "E → __", "answer": "F", "explanation": "После E идёт F"},
-                {"question": "G → __", "answer": "H", "explanation": "После G идёт H"},
-                {"question": "I → __", "answer": "J", "explanation": "После I идёт J"},
-                {"question": "K → __", "answer": "L", "explanation": "После K идёт L"},
-                {"question": "M → __", "answer": "N", "explanation": "После M идёт N"},
-                {"question": "O → __", "answer": "P", "explanation": "После O идёт P"},
-                {"question": "Q → __", "answer": "R", "explanation": "После Q идёт R"},
-                {"question": "S → __", "answer": "T", "explanation": "После S идёт T"}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "Задание 2. Напишите букву, которая стоит перед данной в алфавите.\n\n1. B → __\n2. D → __\n3. F → __\n4. H → __\n5. J → __\n6. L → __\n7. N → __\n8. P → __\n9. R → __\n10. T → __",
-            "subtasks": [
-                {"question": "B → __", "answer": "A", "explanation": "Перед B стоит A"},
-                {"question": "D → __", "answer": "C", "explanation": "Перед D стоит C"},
-                {"question": "F → __", "answer": "E", "explanation": "Перед F стоит E"},
-                {"question": "H → __", "answer": "G", "explanation": "Перед H стоит G"},
-                {"question": "J → __", "answer": "I", "explanation": "Перед J стоит I"},
-                {"question": "L → __", "answer": "K", "explanation": "Перед L стоит K"},
-                {"question": "N → __", "answer": "M", "explanation": "Перед N стоит M"},
-                {"question": "P → __", "answer": "O", "explanation": "Перед P стоит O"},
-                {"question": "R → __", "answer": "Q", "explanation": "Перед R стоит Q"},
-                {"question": "T → __", "answer": "S", "explanation": "Перед T стоит S"}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "Задание 3. Напишите букву по её произношению (на русском).\n\n1. [ди] → __\n2. [и] → __\n3. [эф] → __\n4. [джи] → __\n5. [эйч] → __\n6. [ай] → __\n7. [джей] → __\n8. [кей] → __\n9. [эл] → __\n10. [эм] → __",
-            "subtasks": [
-                {"question": "[ди] → __", "answer": "D", "explanation": "D произносится как 'ди'"},
-                {"question": "[и] → __", "answer": "E", "explanation": "E произносится как 'и'"},
-                {"question": "[эф] → __", "answer": "F", "explanation": "F произносится как 'эф'"},
-                {"question": "[джи] → __", "answer": "G", "explanation": "G произносится как 'джи'"},
-                {"question": "[эйч] → __", "answer": "H", "explanation": "H произносится как 'эйч'"},
-                {"question": "[ай] → __", "answer": "I", "explanation": "I произносится как 'ай'"},
-                {"question": "[джей] → __", "answer": "J", "explanation": "J произносится как 'джей'"},
-                {"question": "[кей] → __", "answer": "K", "explanation": "K произносится как 'кей'"},
-                {"question": "[эл] → __", "answer": "L", "explanation": "L произносится как 'эл'"},
-                {"question": "[эм] → __", "answer": "M", "explanation": "M произносится как 'эм'"}
-            ]
-        }
-    ],
-    # ===== Вариант 10 =====
-    [
-        {
-            "type": "complex",
-            "text": "Задание 1. Напишите букву, которая следует за данной в алфавите.\n\n1. B → __\n2. E → __\n3. H → __\n4. K → __\n5. N → __\n6. Q → __\n7. T → __\n8. W → __\n9. Z → __\n10. D → __",
-            "subtasks": [
-                {"question": "B → __", "answer": "C", "explanation": "После B идёт C"},
-                {"question": "E → __", "answer": "F", "explanation": "После E идёт F"},
-                {"question": "H → __", "answer": "I", "explanation": "После H идёт I"},
-                {"question": "K → __", "answer": "L", "explanation": "После K идёт L"},
-                {"question": "N → __", "answer": "O", "explanation": "После N идёт O"},
-                {"question": "Q → __", "answer": "R", "explanation": "После Q идёт R"},
-                {"question": "T → __", "answer": "U", "explanation": "После T идёт U"},
-                {"question": "W → __", "answer": "X", "explanation": "После W идёт X"},
-                {"question": "Z → __", "answer": "нет буквы", "explanation": "Z — последняя буква"},
-                {"question": "D → __", "answer": "E", "explanation": "После D идёт E"}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "Задание 2. Напишите букву, которая стоит перед данной в алфавите.\n\n1. C → __\n2. F → __\n3. I → __\n4. L → __\n5. O → __\n6. R → __\n7. U → __\n8. X → __\n9. A → __\n10. E → __",
-            "subtasks": [
-                {"question": "C → __", "answer": "B", "explanation": "Перед C стоит B"},
-                {"question": "F → __", "answer": "E", "explanation": "Перед F стоит E"},
-                {"question": "I → __", "answer": "H", "explanation": "Перед I стоит H"},
-                {"question": "L → __", "answer": "K", "explanation": "Перед L стоит K"},
-                {"question": "O → __", "answer": "N", "explanation": "Перед O стоит N"},
-                {"question": "R → __", "answer": "Q", "explanation": "Перед R стоит Q"},
-                {"question": "U → __", "answer": "T", "explanation": "Перед U стоит T"},
-                {"question": "X → __", "answer": "W", "explanation": "Перед X стоит W"},
-                {"question": "A → __", "answer": "нет буквы", "explanation": "A — первая буква"},
-                {"question": "E → __", "answer": "D", "explanation": "Перед E стоит D"}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "Задание 3. Напишите букву по её произношению (на русском).\n\n1. [эн] → __\n2. [оу] → __\n3. [пи] → __\n4. [кью] → __\n5. [ар] → __\n6. [эс] → __\n7. [ти] → __\n8. [ю] → __\n9. [ви] → __\n10. [дабл-ю] → __",
-            "subtasks": [
-                {"question": "[эн] → __", "answer": "N", "explanation": "N произносится как 'эн'"},
-                {"question": "[оу] → __", "answer": "O", "explanation": "O произносится как 'оу'"},
-                {"question": "[пи] → __", "answer": "P", "explanation": "P произносится как 'пи'"},
-                {"question": "[кью] → __", "answer": "Q", "explanation": "Q произносится как 'кью'"},
-                {"question": "[ар] → __", "answer": "R", "explanation": "R произносится как 'ар'"},
-                {"question": "[эс] → __", "answer": "S", "explanation": "S произносится как 'эс'"},
-                {"question": "[ти] → __", "answer": "T", "explanation": "T произносится как 'ти'"},
-                {"question": "[ю] → __", "answer": "U", "explanation": "U произносится как 'ю'"},
-                {"question": "[ви] → __", "answer": "V", "explanation": "V произносится как 'ви'"},
-                {"question": "[дабл-ю] → __", "answer": "W", "explanation": "W произносится как 'дабл-ю'"}
-            ]
-        }
-    ]
-]
+            # Здесь будут остальные 9 вариантов (пока только 1 для теста)
+        ],
   "numbers120": {
     "title": "Числа и счёт (1‑20)",
     "pages": [
@@ -552,25 +94,25 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "title": "Числа 1‑5",
         "text": "\n<b>🔢 Числа 1‑5: запоминаем с примерами</b>\n\n• <b>1 – one</b> [уан]\n  Пример: one apple (одно яблоко)\n\n• <b>2 – two</b> [ту]\n  Пример: two cats (два кота)\n\n• <b>3 – three</b> [сри]\n  <i>Обратите внимание на межзубный звук – язык между зубами.</i>\n  Пример: three pens (три ручки)\n\n• <b>4 – four</b> [фо]\n  Пример: four chairs (четыре стула)\n\n• <b>5 – five</b> [файв]\n  Пример: five books (пять книг)\n\n<blockquote>Совет: произносите <b>three</b> с межзубным звуком, а в <b>five</b> – чётко слышите [в] на конце.</blockquote>\n",
         "image": None,
-        "has_audio_buttons": false
+        "has_audio_buttons": False
       },
       {
         "title": "Числа 6‑10",
         "text": "\n<b>🔢 Числа 6‑10:</b>\n\n• <b>6 – six</b> [сикс]\n  Пример: six eggs (шесть яиц)\n\n• <b>7 – seven</b> [сэвн]\n  Пример: seven days (семь дней)\n\n• <b>8 – eight</b> [эйт]\n  <i>Буква 'g' не произносится!</i>\n  Пример: eight balls (восемь мячей)\n\n• <b>9 – nine</b> [найн]\n  Пример: nine stars (девять звёзд)\n\n• <b>10 – ten</b> [тэн]\n  Пример: ten fingers (десять пальцев)\n\n<blockquote>Запомните: <b>eight</b> пишется с 'eigh', а произносится как [эйт].</blockquote>\n",
         "image": None,
-        "has_audio_buttons": false
+        "has_audio_buttons": False
       },
       {
         "title": "Числа 11‑15 (исключения)",
         "text": "\n<b>🔢 Числа 11‑15:</b>\n\n• <b>11 – eleven</b> [илэвн]\n  Пример: eleven players (одиннадцать игроков)\n\n• <b>12 – twelve</b> [твэлв]\n  Пример: twelve months (двенадцать месяцев)\n\n• <b>13 – thirteen</b> [сётин]\n  Пример: thirteen candles (тринадцать свечей)\n\n• <b>14 – fourteen</b> [фотин]\n  Пример: fourteen days (четырнадцать дней)\n\n• <b>15 – fifteen</b> [фифтин]\n  Пример: fifteen minutes (пятнадцать минут)\n\n<blockquote>Числа 13‑19 образуются добавлением суффикса <b>‑teen</b>, но 11 и 12 – исключения, их нужно запомнить.</blockquote>\n",
         "image": None,
-        "has_audio_buttons": false
+        "has_audio_buttons": False
       },
       {
         "title": "Числа 16‑20 и советы",
         "text": "\n<b>🔢 Числа 16‑20:</b>\n\n• <b>16 – sixteen</b> [сикстин]\n  Пример: sixteen years (шестнадцать лет)\n\n• <b>17 – seventeen</b> [сэвнтин]\n  Пример: seventeen steps (семнадцать шагов)\n\n• <b>18 – eighteen</b> [эйтин]\n  <i>Внимание: только одна буква 't' (eight + teen = eighteen)</i>\n  Пример: eighteen holes (восемнадцать лунок)\n\n• <b>19 – nineteen</b> [найн-тин]\n  Пример: nineteen floors (девятнадцать этажей)\n\n• <b>20 – twenty</b> [твэнти]\n  Пример: twenty euros (двадцать евро)\n\n<b>💡 Советы для запоминания:</b>\n\n1. Считайте всё, что видите: шаги, кнопки, книги на полке.\n2. Обратите внимание на ударение: в числах на <b>-teen</b> ударение падает на последний слог (thir<b>TEEN</b>).\n3. Не путайте <b>‑teen</b> (‑надцать) и <b>‑ty</b> (‑десят). Например: <b>fourteen</b> (14) vs <b>forty</b> (40).\n4. Запомните написание <b>forty</b> (без буквы 'u').\n\n<blockquote>Регулярно называйте числа вслух – это поможет автоматизировать счёт.</blockquote>\n",
         "image": None,
-        "has_audio_buttons": false
+        "has_audio_buttons": False
       }
     ],
     "faq": [
@@ -583,8 +125,96 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "answer": "Это исторические исключения, которые нужно просто запомнить. Они встречаются во многих европейских языках."
       }
     ],
-    "practice_tasks": [],
-        "star": false
+    "practice_tasks": [
+      {
+        "type": "fill_blank",
+        "text": "Five + three = ____",
+        "correct": "eight",
+        "hint": "Это число между 7 и 9",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "There are ____ apples on the table (число 12).",
+        "correct": "twelve",
+        "hint": "Дюжина",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "My brother is ____ years old (число 7).",
+        "correct": "seven",
+        "hint": "Счастливое число",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "____ minus six equals ten.",
+        "correct": "Sixteen",
+        "hint": "16",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "Write the number: 3 + 11 = ____",
+        "correct": "fourteen",
+        "hint": "14",
+        "star": False
+      },
+      {
+        "type": "reorder",
+        "text": "Расположи числа по возрастанию: fifteen, three, nine, one",
+        "correct": "one, three, nine, fifteen",
+        "hint": "Начни с самого маленького",
+        "star": False
+      },
+      {
+        "type": "reorder",
+        "text": "Расположи по убыванию: twenty, twelve, eight, four",
+        "correct": "twenty, twelve, eight, four",
+        "hint": "Начни с самого большого",
+        "star": False
+      },
+      {
+        "type": "translation",
+        "text": "Переведи на английский: 11",
+        "correct": "eleven",
+        "hint": "Одиннадцать",
+        "star": False
+      },
+      {
+        "type": "translation",
+        "text": "Переведи на английский: 18",
+        "correct": "eighteen",
+        "hint": "Восемнадцать",
+        "star": False
+      },
+      {
+        "type": "translation",
+        "text": "Переведи на русский: nineteen",
+        "correct": "девятнадцать",
+        "hint": "19",
+        "star": False
+      },
+      {
+        "type": "translation",
+        "text": "Переведи на русский: six",
+        "correct": "шесть",
+        "hint": "6",
+        "star": False
+      },
+      {
+        "type": "choice",
+        "text": "Как будет 14 по-английски?",
+        "correct": "fourteen",
+        "hint": "Не путай с forty (40)",
+        "options": [
+          "forty",
+          "fourteen",
+          "fourth",
+          "four"
+        ],
+        "star": False
       },
       {
         "type": "choice",
@@ -597,7 +227,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "twente",
           "tventy"
         ],
-        "star": false
+        "star": False
       },
       {
         "type": "choice",
@@ -610,7 +240,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "fifty",
           "five"
         ],
-        "star": false
+        "star": False
       },
       {
         "type": "choice",
@@ -623,7 +253,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "seven",
           "eight"
         ],
-        "star": false
+        "star": False
       },
       {
         "type": "choice",
@@ -636,70 +266,70 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "thirdteen",
           "thirty"
         ],
-        "star": false
+        "star": False
       },
       {
         "type": "open",
         "text": "Назови число, которое стоит между 14 и 16.",
         "correct": "fifteen",
         "hint": "15",
-        "star": false
+        "star": False
       },
       {
         "type": "open",
         "text": "Сколько пальцев на двух руках? Ответ напиши словом.",
         "correct": "ten",
         "hint": "10",
-        "star": false
+        "star": False
       },
       {
         "type": "open",
         "text": "Какое число получается, если к eight прибавить two?",
         "correct": "ten",
         "hint": "8 + 2",
-        "star": false
+        "star": False
       },
       {
         "type": "open",
         "text": "Назови число: 2 + 2 + 2 + 2 (ответ словом).",
         "correct": "eight",
         "hint": "8",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "Сосчитай звёзды: ★★★★★★★★★★ (напиши число словом).",
         "correct": "ten",
         "hint": "10",
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "Twenty minus seven equals ____.",
         "correct": "thirteen",
         "hint": "13",
-        "star": true
+        "star": True
       },
       {
         "type": "reorder",
         "text": "Расположи в правильном порядке: two, twelve, twenty, two hundred",
         "correct": "two, twelve, twenty, two hundred",
         "hint": "2, 12, 20, 200",
-        "star": true
+        "star": True
       },
       {
         "type": "translation",
         "text": "Переведи на английский: 0",
         "correct": "zero",
         "hint": "Ноль",
-        "star": true
+        "star": True
       },
       {
         "type": "translation",
         "text": "Переведи на русский: a dozen",
         "correct": "дюжина (12)",
         "hint": "12",
-        "star": true
+        "star": True
       },
       {
         "type": "choice",
@@ -712,7 +342,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "twenty-one",
           "eight"
         ],
-        "star": true
+        "star": True
       },
       {
         "type": "choice",
@@ -725,112 +355,112 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "twenty-five",
           "ten"
         ],
-        "star": true
+        "star": True
       },
       {
         "type": "open",
         "text": "Если у тебя есть 3 яблока, и ты купил ещё 17, сколько всего? Ответ словом.",
         "correct": "twenty",
         "hint": "20",
-        "star": true
+        "star": True
       },
       {
         "type": "open",
         "text": "Какое число получится, если из twenty вычесть eleven? Ответ словом.",
         "correct": "nine",
         "hint": "9",
-        "star": true
+        "star": True
       },
       {
         "type": "open",
         "text": "Назови число, которое на английском пишется с буквы 'f' и означает 4.",
         "correct": "four",
         "hint": "4",
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "Five plus seven equals ______.",
         "correct": "twelve",
         "hint": "5 + 7 = ?",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "There are ______ apples in the basket. (11)",
         "correct": "eleven",
         "hint": "Число 11",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "My brother is ______ years old. (8)",
         "correct": "eight",
         "hint": "Возраст 8 лет",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "Write the number: sixteen = ______",
         "correct": "16",
         "hint": "Английское слово для 16",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "Three plus nine is ______.",
         "correct": "twelve",
         "hint": "3 + 9 = 12",
-        "star": false
+        "star": False
       },
       {
         "type": "reorder",
         "text": "Расположи числа по возрастанию: 5, 12, 3, 9",
         "correct": "3, 5, 9, 12",
         "hint": "От меньшего к большему",
-        "star": false
+        "star": False
       },
       {
         "type": "reorder",
         "text": "Расположи слова в правильном порядке: fifteen, ten, twenty, one",
         "correct": "one, ten, fifteen, twenty",
         "hint": "По возрастанию",
-        "star": false
+        "star": False
       },
       {
         "type": "reorder",
         "text": "Составь предложение: have / I / pencils / seven",
         "correct": "I have seven pencils",
         "hint": "Порядок слов в английском",
-        "star": false
+        "star": False
       },
       {
         "type": "translation",
         "text": "Переведи на английский: 'четырнадцать'",
         "correct": "fourteen",
         "hint": "Число 14",
-        "star": false
+        "star": False
       },
       {
         "type": "translation",
         "text": "Переведи на русский: 'nineteen'",
         "correct": "девятнадцать",
         "hint": "Число 19",
-        "star": false
+        "star": False
       },
       {
         "type": "translation",
         "text": "Переведи на английский: 'восемнадцать'",
         "correct": "eighteen",
         "hint": "Число 18",
-        "star": false
+        "star": False
       },
       {
         "type": "translation",
         "text": "Переведи на русский: 'twelve'",
         "correct": "двенадцать",
         "hint": "Число 12",
-        "star": false
+        "star": False
       },
       {
         "type": "choice",
@@ -843,7 +473,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "six",
           "ten"
         ],
-        "star": false
+        "star": False
       },
       {
         "type": "choice",
@@ -856,7 +486,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "eighteen",
           "nineteen"
         ],
-        "star": false
+        "star": False
       },
       {
         "type": "choice",
@@ -869,7 +499,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "fifteen",
           "eleven"
         ],
-        "star": false
+        "star": False
       },
       {
         "type": "choice",
@@ -882,77 +512,77 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "2",
           "22"
         ],
-        "star": false
+        "star": False
       },
       {
         "type": "open",
         "text": "Назови число: 7",
         "correct": "seven",
         "hint": "Число 7 по-английски",
-        "star": false
+        "star": False
       },
       {
         "type": "open",
         "text": "Сколько будет 20 - 5? (ответ словом)",
         "correct": "fifteen",
         "hint": "20 - 5 = 15",
-        "star": false
+        "star": False
       },
       {
         "type": "open",
         "text": "Напиши число словами: 1",
         "correct": "one",
         "hint": "Самое маленькое число",
-        "star": false
+        "star": False
       },
       {
         "type": "open",
         "text": "Сосчитай от 1 до 5: one, two, three, four, ...",
         "correct": "five",
         "hint": "Последнее число в этом ряду",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "Twenty minus eight equals ______.",
         "correct": "twelve",
         "hint": "20 - 8 = 12",
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "If you have six candies and get four more, you have ______ candies.",
         "correct": "ten",
         "hint": "6 + 4 = 10",
-        "star": true
+        "star": True
       },
       {
         "type": "reorder",
         "text": "Составь предложение: are / there / students / in / class / nineteen / the",
         "correct": "There are nineteen students in the class",
         "hint": "Начни с There",
-        "star": true
+        "star": True
       },
       {
         "type": "reorder",
         "text": "Расположи числа по убыванию: 18, 7, 20, 11",
         "correct": "20, 18, 11, 7",
         "hint": "От большего к меньшему",
-        "star": true
+        "star": True
       },
       {
         "type": "translation",
         "text": "Переведи на английский: 'У меня есть шестнадцать книг.'",
         "correct": "I have sixteen books",
         "hint": "Используй have",
-        "star": true
+        "star": True
       },
       {
         "type": "translation",
         "text": "Переведи на русский: 'She is thirteen years old.'",
         "correct": "Ей тринадцать лет",
         "hint": "Возраст",
-        "star": true
+        "star": True
       },
       {
         "type": "choice",
@@ -965,7 +595,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "nine",
           "five"
         ],
-        "star": true
+        "star": True
       },
       {
         "type": "choice",
@@ -978,21 +608,21 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "fourteen",
           "eleven"
         ],
-        "star": true
+        "star": True
       },
       {
         "type": "open",
         "text": "Сколько ног у двух собак? (ответ словом)",
         "correct": "eight",
         "hint": "У одной собаки 4 ноги",
-        "star": true
+        "star": True
       },
       {
         "type": "open",
         "text": "Назови число, которое на 5 больше, чем 10",
         "correct": "fifteen",
         "hint": "10 + 5 = 15",
-        "star": true
+        "star": True
       }
     ]
   },
@@ -1003,31 +633,31 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "title": "Что такое to be?",
         "text": "\n<b>📚 Глагол to be – самый важный глагол в английском языке</b>\n\nОн переводится как «быть, находиться, являться». В русском языке мы часто опускаем слово «есть»:\n- Я есть студент. → Я студент.\n- Она есть дома. → Она дома.\n\nВ английском <b>без глагола to be нельзя построить ни одно предложение</b> без действия. Поэтому его нужно выучить первым.\n\n<blockquote>Запомните: в английском нельзя сказать «I student» – обязательно нужно «I am a student».</blockquote>\n",
         "image": None,
-        "has_audio_buttons": false
+        "has_audio_buttons": False
       },
       {
         "title": "Формы to be в настоящем времени",
         "text": "\n<b>📌 Таблица форм (запомните наизусть):</b>\n\n• <b>I</b> (я) → <b>am</b>\n• <b>You</b> (ты, вы) → <b>are</b>\n• <b>He</b> (он), <b>She</b> (она), <b>It</b> (оно) → <b>is</b>\n• <b>We</b> (мы) → <b>are</b>\n• <b>They</b> (они) → <b>are</b>\n\n<b>Примеры с переводом:</b>\n\n• <b>I am</b> a teacher. → Я (есть) учитель.\n• <b>You are</b> my friend. → Ты мой друг.\n• <b>He is</b> happy. → Он счастлив.\n• <b>She is</b> at home. → Она дома.\n• <b>It is</b> a cat. → Это кот.\n• <b>We are</b> students. → Мы студенты.\n• <b>They are</b> from Russia. → Они из России.\n\n<blockquote>Обратите внимание: в русском языке слово «есть» опускается, а в английском – обязательно.</blockquote>\n",
         "image": None,
-        "has_audio_buttons": false
+        "has_audio_buttons": False
       },
       {
         "title": "Сокращённые формы (разговорный английский)",
         "text": "\n<b>✂️ В разговорной речи и в неформальной переписке используют короткие формы:</b>\n\n• I am → <b>I'm</b> (айм)\n• You are → <b>you're</b> (ёр)\n• He is → <b>he's</b> (хиз)\n• She is → <b>she's</b> (шиз)\n• It is → <b>it's</b> (итс)\n• We are → <b>we're</b> (вир)\n• They are → <b>they're</b> (зэа)\n\n<b>Примеры с сокращениями:</b>\n\n• <b>I'm</b> a doctor. → Я врач.\n• <b>She's</b> from Italy. → Она из Италии.\n• <b>It's</b> a big house. → Это большой дом.\n\n<blockquote>⚠️ <b>Важно:</b> в официальных документах и в кратких утвердительных ответах сокращения не используются! Нельзя сказать <b>Yes, I'm</b> – только <b>Yes, I am</b>.</blockquote>\n",
         "image": None,
-        "has_audio_buttons": false
+        "has_audio_buttons": False
       },
       {
         "title": "Когда используется to be",
         "text": "\n<b>📌 Глагол to be нужен в нескольких типичных ситуациях:</b>\n\n1️⃣ <b>Профессия или род деятельности:</b>\n   • He is a driver. (Он водитель.)\n\n2️⃣ <b>Местонахождение:</b>\n   • We are at home. (Мы дома.)\n\n3️⃣ <b>Состояние или чувство:</b>\n   • I am tired. (Я устал.)\n\n4️⃣ <b>Возраст:</b>\n   • She is 25 years old. (Ей 25 лет.)\n\n5️⃣ <b>Национальность:</b>\n   • They are Italian. (Они итальянцы.)\n\n6️⃣ <b>Описание (прилагательные):</b>\n   • The weather is nice. (Погода хорошая.)\n\n<blockquote>Запомните: если предложение не содержит действия (бежать, писать, читать), то почти наверняка нужен глагол to be.</blockquote>\n",
         "image": None,
-        "has_audio_buttons": false
+        "has_audio_buttons": False
       },
       {
         "title": "Советы для запоминания",
         "text": "\n<b>💡 Как быстро выучить и не путать формы to be:</b>\n\n1. Повторяйте таблицу вслух каждый день: I am, you are, he is…\n2. Составляйте короткие предложения про себя: «I am a student», «She is happy».\n3. Обратите внимание на особую форму I am – её нужно просто запомнить.\n4. Проверяйте себя: закройте таблицу и скажите форму для he, they, we и т.д.\n\n<blockquote>Через 3–4 дня регулярного повторения вы будете использовать to be автоматически.</blockquote>\n",
         "image": None,
-        "has_audio_buttons": false
+        "has_audio_buttons": False
       }
     ],
     "faq": [
@@ -1044,8 +674,158 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "answer": "Нет, в официальных документах пишут полные формы (I am, you are, he is…)."
       }
     ],
-    "practice_tasks": [],
-        "star": true
+    "practice_tasks": [
+      {
+        "type": "fill_blank",
+        "text": "I ___ a student.",
+        "correct": "am",
+        "hint": "Для I используем am",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She ___ my friend.",
+        "correct": "is",
+        "hint": "Для she используем is",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "They ___ happy.",
+        "correct": "are",
+        "hint": "Для they используем are",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He ___ a doctor.",
+        "correct": "is",
+        "hint": "Для he используем is",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "We ___ in the park.",
+        "correct": "are",
+        "hint": "Для we используем are",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "It ___ a cat.",
+        "correct": "is",
+        "hint": "Для it используем is",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "You ___ very kind.",
+        "correct": "are",
+        "hint": "Для you используем are",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "I ___ from London.",
+        "correct": "am",
+        "hint": "Для I используем am",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The book ___ on the table.",
+        "correct": "is",
+        "hint": "Для the book (ед.ч.) используем is",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "My parents ___ at home.",
+        "correct": "are",
+        "hint": "Для my parents (мн.ч.) используем are",
+        "star": False
+      },
+      {
+        "type": "reorder",
+        "text": "a / She / teacher / is",
+        "correct": "She is a teacher",
+        "hint": "Порядок: подлежащее + глагол to be + остальное",
+        "star": False
+      },
+      {
+        "type": "reorder",
+        "text": "happy / We / are",
+        "correct": "We are happy",
+        "hint": "Порядок: подлежащее + глагол to be + прилагательное",
+        "star": False
+      },
+      {
+        "type": "reorder",
+        "text": "am / I / student / a",
+        "correct": "I am a student",
+        "hint": "Порядок: подлежащее + глагол to be + артикль + существительное",
+        "star": False
+      },
+      {
+        "type": "reorder",
+        "text": "are / They / friends / good",
+        "correct": "They are good friends",
+        "hint": "Порядок: подлежащее + глагол to be + прилагательное + существительное",
+        "star": False
+      },
+      {
+        "type": "reorder",
+        "text": "is / He / engineer / an",
+        "correct": "He is an engineer",
+        "hint": "Порядок: подлежащее + глагол to be + артикль + существительное",
+        "star": False
+      },
+      {
+        "type": "translation",
+        "text": "Я учитель.",
+        "correct": "I am a teacher",
+        "hint": "Переведите на английский, используя to be",
+        "star": False
+      },
+      {
+        "type": "translation",
+        "text": "Она счастлива.",
+        "correct": "She is happy",
+        "hint": "Переведите на английский, используя to be",
+        "star": False
+      },
+      {
+        "type": "translation",
+        "text": "Мы дома.",
+        "correct": "We are at home",
+        "hint": "Переведите на английский, используя to be",
+        "star": False
+      },
+      {
+        "type": "translation",
+        "text": "Они студенты.",
+        "correct": "They are students",
+        "hint": "Переведите на английский, используя to be",
+        "star": False
+      },
+      {
+        "type": "translation",
+        "text": "Это книга.",
+        "correct": "It is a book",
+        "hint": "Переведите на английский, используя to be",
+        "star": False
+      },
+      {
+        "type": "choice",
+        "text": "He ___ a good boy.",
+        "correct": "is",
+        "hint": "Выберите правильную форму to be",
+        "options": [
+          "am",
+          "is",
+          "are"
+        ],
+        "star": True
       },
       {
         "type": "choice",
@@ -1057,7 +837,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "is",
           "are"
         ],
-        "star": true
+        "star": True
       },
       {
         "type": "choice",
@@ -1069,7 +849,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "is",
           "are"
         ],
-        "star": true
+        "star": True
       },
       {
         "type": "choice",
@@ -1081,7 +861,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "is",
           "are"
         ],
-        "star": true
+        "star": True
       },
       {
         "type": "choice",
@@ -1093,189 +873,189 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "is",
           "are"
         ],
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "The weather ___ nice today.",
         "correct": "is",
         "hint": "Weather — это he/she/it",
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "My sister and I ___ twins.",
         "correct": "are",
         "hint": "My sister and I = we",
-        "star": true
+        "star": True
       },
       {
         "type": "reorder",
         "text": "a / This / car / is / red",
         "correct": "This is a red car",
         "hint": "Порядок: This + is + артикль + прилагательное + существительное",
-        "star": true
+        "star": True
       },
       {
         "type": "translation",
         "text": "Они не врачи, они учителя.",
         "correct": "They are not doctors, they are teachers",
         "hint": "Используйте to be в утверждении и отрицании",
-        "star": true
+        "star": True
       },
       {
         "type": "open",
         "text": "Составьте предложение с to be, используя слова: 'I', 'happy', 'today'.",
         "correct": "I am happy today",
         "hint": "Не забудьте про am",
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "I ___ a student.",
         "correct": "am",
         "hint": "Глагол to be для I",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "She ___ my friend.",
         "correct": "is",
         "hint": "Глагол to be для she",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "They ___ at home.",
         "correct": "are",
         "hint": "Глагол to be для they",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "He ___ a doctor.",
         "correct": "is",
         "hint": "Глагол to be для he",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "We ___ happy.",
         "correct": "are",
         "hint": "Глагол to be для we",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "It ___ a cat.",
         "correct": "is",
         "hint": "Глагол to be для it",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "You ___ very kind.",
         "correct": "are",
         "hint": "Глагол to be для you",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "Tom and Jerry ___ friends.",
         "correct": "are",
         "hint": "Множественное число",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "This ___ my book.",
         "correct": "is",
         "hint": "Единственное число",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "I ___ from London.",
         "correct": "am",
         "hint": "Глагол to be для I",
-        "star": false
+        "star": False
       },
       {
         "type": "reorder",
         "text": "a / She / teacher / is",
         "correct": "She is a teacher",
         "hint": "Порядок: подлежащее + глагол",
-        "star": false
+        "star": False
       },
       {
         "type": "reorder",
         "text": "are / We / students",
         "correct": "We are students",
         "hint": "Порядок: подлежащее + глагол",
-        "star": false
+        "star": False
       },
       {
         "type": "reorder",
         "text": "is / He / doctor / a",
         "correct": "He is a doctor",
         "hint": "Порядок: подлежащее + глагол",
-        "star": false
+        "star": False
       },
       {
         "type": "reorder",
         "text": "They / happy / are",
         "correct": "They are happy",
         "hint": "Порядок: подлежащее + глагол",
-        "star": false
+        "star": False
       },
       {
         "type": "reorder",
         "text": "am / I / tired",
         "correct": "I am tired",
         "hint": "Порядок: подлежащее + глагол",
-        "star": false
+        "star": False
       },
       {
         "type": "translation",
         "text": "Он мой брат.",
         "correct": "He is my brother",
         "hint": "Глагол to be для he",
-        "star": false
+        "star": False
       },
       {
         "type": "translation",
         "text": "Мы в школе.",
         "correct": "We are at school",
         "hint": "Глагол to be для we",
-        "star": false
+        "star": False
       },
       {
         "type": "translation",
         "text": "Я учитель.",
         "correct": "I am a teacher",
         "hint": "Глагол to be для I",
-        "star": false
+        "star": False
       },
       {
         "type": "translation",
         "text": "Они дома.",
         "correct": "They are at home",
         "hint": "Глагол to be для they",
-        "star": false
+        "star": False
       },
       {
         "type": "translation",
         "text": "Это книга.",
         "correct": "It is a book",
         "hint": "Глагол to be для it",
-        "star": false
+        "star": False
       },
       {
         "type": "choice",
         "text": "I ___ a student.",
         "correct": "am",
         "hint": "Выбери правильную форму",
-        "star": true,
+        "star": True,
         "options": [
           "am",
           "is",
@@ -1287,7 +1067,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "She ___ my sister.",
         "correct": "is",
         "hint": "Выбери правильную форму",
-        "star": true,
+        "star": True,
         "options": [
           "am",
           "is",
@@ -1299,7 +1079,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "They ___ happy.",
         "correct": "are",
         "hint": "Выбери правильную форму",
-        "star": true,
+        "star": True,
         "options": [
           "am",
           "is",
@@ -1311,7 +1091,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "We ___ friends.",
         "correct": "are",
         "hint": "Выбери правильную форму",
-        "star": true,
+        "star": True,
         "options": [
           "am",
           "is",
@@ -1323,7 +1103,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "He ___ a doctor.",
         "correct": "is",
         "hint": "Выбери правильную форму",
-        "star": true,
+        "star": True,
         "options": [
           "am",
           "is",
@@ -1335,35 +1115,35 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "The children ___ in the park.",
         "correct": "are",
         "hint": "Множественное число",
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "My mother ___ a nurse.",
         "correct": "is",
         "hint": "Единственное число",
-        "star": true
+        "star": True
       },
       {
         "type": "reorder",
         "text": "is / This / car / a / new",
         "correct": "This is a new car",
         "hint": "Порядок: подлежащее + глагол + артикль",
-        "star": true
+        "star": True
       },
       {
         "type": "translation",
         "text": "Они мои родители.",
         "correct": "They are my parents",
         "hint": "Множественное число",
-        "star": true
+        "star": True
       },
       {
         "type": "open",
         "text": "Составь утверждение с глаголом to be: I / happy",
         "correct": "I am happy",
         "hint": "Используй am",
-        "star": true
+        "star": True
       }
     ]
   },
@@ -1389,14 +1169,96 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "answer": "Сокращённая форма не может стоять в конце предложения – это правило английской грамматики."
       }
     ],
-    "practice_tasks": []
+    "practice_tasks": [
+      {
+        "type": "fill_blank",
+        "text": "She ___ a teacher.",
+        "correct": "is not",
+        "hint": "Отрицание для she",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "___ he your brother?",
+        "correct": "Is",
+        "hint": "Вопрос с he",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "They ___ at home.",
+        "correct": "are not",
+        "hint": "Отрицание для they",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "___ I late?",
+        "correct": "Am",
+        "hint": "Вопрос с I",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "It ___ a cat.",
+        "correct": "is not",
+        "hint": "Отрицание для it",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "___ you happy?",
+        "correct": "Are",
+        "hint": "Вопрос с you",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "We ___ students.",
+        "correct": "are not",
+        "hint": "Отрицание для we",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "___ she your friend?",
+        "correct": "Is",
+        "hint": "Вопрос с she",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "I ___ tired.",
+        "correct": "am not",
+        "hint": "Отрицание для I",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "___ they in the park?",
+        "correct": "Are",
+        "hint": "Вопрос с they",
+        "star": False
+      },
+      {
+        "type": "choice",
+        "text": "He ___ a doctor.",
+        "correct": "is not",
+        "hint": "Выбери правильную форму",
+        "star": False,
+        "options": [
+          "is not",
+          "are not",
+          "am not",
+          "not"
+        ]
       },
       {
         "type": "choice",
         "text": "___ it cold outside?",
         "correct": "Is",
         "hint": "Выбери вопросительное слово",
-        "star": false,
+        "star": False,
         "options": [
           "Is",
           "Are",
@@ -1409,7 +1271,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "We ___ ready.",
         "correct": "are not",
         "hint": "Выбери правильное отрицание",
-        "star": false,
+        "star": False,
         "options": [
           "is not",
           "are not",
@@ -1422,7 +1284,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "___ I your friend?",
         "correct": "Am",
         "hint": "Выбери правильный глагол",
-        "star": false,
+        "star": False,
         "options": [
           "Am",
           "Is",
@@ -1435,7 +1297,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "You ___ a student.",
         "correct": "are not",
         "hint": "Отрицание с you",
-        "star": false,
+        "star": False,
         "options": [
           "is not",
           "are not",
@@ -1448,56 +1310,56 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "Она не дома.",
         "correct": "She is not at home.",
         "hint": "Используй is not",
-        "star": false
+        "star": False
       },
       {
         "type": "translation",
         "text": "Они счастливы?",
         "correct": "Are they happy?",
         "hint": "Начни с Are",
-        "star": false
+        "star": False
       },
       {
         "type": "translation",
         "text": "Я не учитель.",
         "correct": "I am not a teacher.",
         "hint": "Используй am not",
-        "star": false
+        "star": False
       },
       {
         "type": "translation",
         "text": "Это твоя книга?",
         "correct": "Is it your book?",
         "hint": "Вопрос с it",
-        "star": false
+        "star": False
       },
       {
         "type": "translation",
         "text": "Мы не студенты.",
         "correct": "We are not students.",
         "hint": "Используй are not",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "___ I not invited?",
         "correct": "Am",
         "hint": "Вопрос с отрицанием",
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "They ___ not at school, ___ they?",
         "correct": "are, are",
         "hint": "Отрицание и разделительный вопрос",
-        "star": true
+        "star": True
       },
       {
         "type": "choice",
         "text": "___ he not your cousin?",
         "correct": "Is",
         "hint": "Вопрос с отрицанием",
-        "star": true,
+        "star": True,
         "options": [
           "Is",
           "Are",
@@ -1510,7 +1372,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "We ___ not late, ___ we?",
         "correct": "are, are",
         "hint": "Разделительный вопрос",
-        "star": true,
+        "star": True,
         "options": [
           "are, are",
           "is, is",
@@ -1523,91 +1385,91 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "Разве она не твоя сестра?",
         "correct": "Is she not your sister?",
         "hint": "Отрицательный вопрос",
-        "star": true
+        "star": True
       },
       {
         "type": "translation",
         "text": "Они не дома, не так ли?",
         "correct": "They are not at home, are they?",
         "hint": "Разделительный вопрос",
-        "star": true
+        "star": True
       },
       {
         "type": "reorder",
         "text": "not / is / she / here",
         "correct": "She is not here",
         "hint": "Порядок: подлежащее + глагол + not",
-        "star": true
+        "star": True
       },
       {
         "type": "reorder",
         "text": "you / are / not / ready",
         "correct": "You are not ready",
         "hint": "Отрицательное предложение",
-        "star": true
+        "star": True
       },
       {
         "type": "open",
         "text": "Сделай предложение отрицательным: He is a student.",
         "correct": "He is not a student.",
         "hint": "Добавь not после is",
-        "star": true
+        "star": True
       },
       {
         "type": "open",
         "text": "Составь вопрос из слов: she / is / at home",
         "correct": "Is she at home?",
         "hint": "Начни с глагола",
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "She ___ a student. (not)",
         "correct": "is not",
         "hint": "Отрицание с глаголом to be в 3-м лице ед.ч.",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "___ he at home?",
         "correct": "Is",
         "hint": "Вопрос с глаголом to be в 3-м лице ед.ч.",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "They ___ from Spain. (not)",
         "correct": "are not",
         "hint": "Отрицание с глаголом to be во мн.ч.",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "___ you a teacher?",
         "correct": "Are",
         "hint": "Вопрос с глаголом to be во 2-м лице",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "I ___ happy. (not)",
         "correct": "am not",
         "hint": "Отрицание с глаголом to be в 1-м лице ед.ч.",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "___ it cold outside?",
         "correct": "Is",
         "hint": "Вопрос с глаголом to be для неодушевленных предметов",
-        "star": false
+        "star": False
       },
       {
         "type": "choice",
         "text": "We ___ ready for the test.",
         "correct": "are not",
         "hint": "Выберите правильную отрицательную форму",
-        "star": false,
+        "star": False,
         "options": [
           "is not",
           "am not",
@@ -1620,7 +1482,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "___ your brother a doctor?",
         "correct": "Is",
         "hint": "Выберите правильный вопросительный глагол",
-        "star": false,
+        "star": False,
         "options": [
           "Are",
           "Is",
@@ -1633,7 +1495,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "The books ___ on the table. (not)",
         "correct": "are not",
         "hint": "Выберите правильную отрицательную форму для мн.ч.",
-        "star": false,
+        "star": False,
         "options": [
           "is not",
           "am not",
@@ -1646,7 +1508,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "___ I late?",
         "correct": "Am",
         "hint": "Выберите правильный вопросительный глагол для 1-го лица",
-        "star": false,
+        "star": False,
         "options": [
           "Are",
           "Is",
@@ -1659,35 +1521,35 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "She ___ my sister. (not)",
         "correct": "is not",
         "hint": "Отрицание с глаголом to be",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "___ they your friends?",
         "correct": "Are",
         "hint": "Вопрос с глаголом to be во мн.ч.",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "He ___ a good singer. (not)",
         "correct": "is not",
         "hint": "Отрицание с глаголом to be",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "___ this your pen?",
         "correct": "Is",
         "hint": "Вопрос с глаголом to be для ед.ч.",
-        "star": false
+        "star": False
       },
       {
         "type": "choice",
         "text": "I ___ a student. (not)",
         "correct": "am not",
         "hint": "Выберите правильную отрицательную форму",
-        "star": false,
+        "star": False,
         "options": [
           "is not",
           "am not",
@@ -1700,7 +1562,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "___ the children in the garden?",
         "correct": "Are",
         "hint": "Выберите правильный вопросительный глагол",
-        "star": false,
+        "star": False,
         "options": [
           "Is",
           "Are",
@@ -1713,21 +1575,21 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "You ___ right. (not)",
         "correct": "are not",
         "hint": "Отрицание с глаголом to be во 2-м лице",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "___ she from London?",
         "correct": "Is",
         "hint": "Вопрос с глаголом to be",
-        "star": false
+        "star": False
       },
       {
         "type": "choice",
         "text": "It ___ a big city. (not)",
         "correct": "is not",
         "hint": "Выберите правильную отрицательную форму",
-        "star": false,
+        "star": False,
         "options": [
           "is not",
           "am not",
@@ -1740,7 +1602,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "___ we friends?",
         "correct": "Are",
         "hint": "Выберите правильный вопросительный глагол",
-        "star": false,
+        "star": False,
         "options": [
           "Is",
           "Are",
@@ -1753,63 +1615,63 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "They ___ at the party last night. (not)",
         "correct": "were not",
         "hint": "Отрицание с глаголом to be в прошедшем времени",
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "___ she at work yesterday?",
         "correct": "Was",
         "hint": "Вопрос с глаголом to be в прошедшем времени",
-        "star": true
+        "star": True
       },
       {
         "type": "reorder",
         "text": "not / is / he / a / teacher",
         "correct": "He is not a teacher",
         "hint": "Составьте отрицательное предложение",
-        "star": true
+        "star": True
       },
       {
         "type": "reorder",
         "text": "are / you / ? / happy",
         "correct": "Are you happy?",
         "hint": "Составьте вопросительное предложение",
-        "star": true
+        "star": True
       },
       {
         "type": "translation",
         "text": "Они не из России.",
         "correct": "They are not from Russia.",
         "hint": "Переведите отрицательное предложение",
-        "star": true
+        "star": True
       },
       {
         "type": "translation",
         "text": "Ты врач?",
         "correct": "Are you a doctor?",
         "hint": "Переведите вопросительное предложение",
-        "star": true
+        "star": True
       },
       {
         "type": "open",
         "text": "Сделайте предложение отрицательным: 'She is a student.'",
         "correct": "She is not a student.",
         "hint": "Используйте 'not' после глагола",
-        "star": true
+        "star": True
       },
       {
         "type": "open",
         "text": "Сделайте предложение вопросительным: 'They are at home.'",
         "correct": "Are they at home?",
         "hint": "Поменяйте местами глагол и подлежащее",
-        "star": true
+        "star": True
       },
       {
         "type": "choice",
         "text": "___ there any milk in the fridge?",
         "correct": "Is",
         "hint": "Выберите правильный глагол для неисчисляемого существительного",
-        "star": true,
+        "star": True,
         "options": [
           "Is",
           "Are",
@@ -1822,7 +1684,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "The news ___ good. (not)",
         "correct": "is not",
         "hint": "Выберите правильную отрицательную форму (news - ед.ч.)",
-        "star": true,
+        "star": True,
         "options": [
           "is not",
           "are not",
@@ -1862,8 +1724,68 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "answer": "Названия стран без 'the' (Russia, France, Brazil), кроме the USA, the UK, the Netherlands."
       }
     ],
-    "practice_tasks": [],
-        "star": false
+    "practice_tasks": [
+      {
+        "type": "fill_blank",
+        "text": "She is from Japan. She is ___.",
+        "correct": "Japanese",
+        "hint": "Национальность от Japan",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He lives in France. He is ___.",
+        "correct": "French",
+        "hint": "Национальность от France",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "They come from Brazil. They are ___.",
+        "correct": "Brazilian",
+        "hint": "Национальность от Brazil",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "Maria is from Spain. She is ___.",
+        "correct": "Spanish",
+        "hint": "Национальность от Spain",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "I am from Russia. I am ___.",
+        "correct": "Russian",
+        "hint": "Национальность от Russia",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "We are from China. We are ___.",
+        "correct": "Chinese",
+        "hint": "Национальность от China",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He is from Germany. He is ___.",
+        "correct": "German",
+        "hint": "Национальность от Germany",
+        "star": False
+      },
+      {
+        "type": "choice",
+        "text": "What is the nationality of a person from Italy?",
+        "correct": "Italian",
+        "hint": "Страна: Italy",
+        "options": [
+          "Italian",
+          "Italic",
+          "Italish",
+          "Ital"
+        ],
+        "star": False
       },
       {
         "type": "choice",
@@ -1876,7 +1798,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "Canad",
           "Canado"
         ],
-        "star": false
+        "star": False
       },
       {
         "type": "choice",
@@ -1889,84 +1811,84 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "Austral",
           "Austrian"
         ],
-        "star": false
+        "star": False
       },
       {
         "type": "translation",
         "text": "Переведите: Я из Великобритании. Я британец.",
         "correct": "I am from the UK. I am British.",
         "hint": "UK = United Kingdom, British",
-        "star": false
+        "star": False
       },
       {
         "type": "translation",
         "text": "Переведите: Она из Турции. Она турчанка.",
         "correct": "She is from Turkey. She is Turkish.",
         "hint": "Turkey, Turkish",
-        "star": false
+        "star": False
       },
       {
         "type": "translation",
         "text": "Переведите: Они из Мексики. Они мексиканцы.",
         "correct": "They are from Mexico. They are Mexican.",
         "hint": "Mexico, Mexican",
-        "star": false
+        "star": False
       },
       {
         "type": "reorder",
         "text": "Составьте предложение: is / from / He / Japan / .",
         "correct": "He is from Japan.",
         "hint": "Порядок слов: подлежащее + глагол",
-        "star": false
+        "star": False
       },
       {
         "type": "reorder",
         "text": "Составьте предложение: are / They / Brazilian / .",
         "correct": "They are Brazilian.",
         "hint": "Порядок слов: подлежащее + глагол",
-        "star": false
+        "star": False
       },
       {
         "type": "reorder",
         "text": "Составьте предложение: she / Is / from / France / ?",
         "correct": "Is she from France?",
         "hint": "Вопрос с глаголом to be",
-        "star": false
+        "star": False
       },
       {
         "type": "open",
         "text": "Назовите национальность человека из Египта.",
         "correct": "Egyptian",
         "hint": "Страна: Egypt",
-        "star": false
+        "star": False
       },
       {
         "type": "open",
         "text": "Назовите страну для национальности 'Polish'.",
         "correct": "Poland",
         "hint": "Национальность: Polish",
-        "star": false
+        "star": False
       },
       {
         "type": "open",
         "text": "Какой язык является официальным в Бразилии?",
         "correct": "Portuguese",
         "hint": "Не испанский",
-        "star": false
+        "star": False
       },
       {
         "type": "open",
         "text": "Назовите национальность человека из Швеции.",
         "correct": "Swedish",
         "hint": "Страна: Sweden",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "He is from the Netherlands. He is ___.",
         "correct": "Dutch",
         "hint": "Страна: Netherlands",
-        "star": true
+        "star": True
       },
       {
         "type": "choice",
@@ -1979,35 +1901,35 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "Switzer",
           "Switish"
         ],
-        "star": true
+        "star": True
       },
       {
         "type": "translation",
         "text": "Переведите: Они из Греции. Они греки.",
         "correct": "They are from Greece. They are Greek.",
         "hint": "Greece, Greek",
-        "star": true
+        "star": True
       },
       {
         "type": "reorder",
         "text": "Составьте предложение: from / are / Where / they / ?",
         "correct": "Where are they from?",
         "hint": "Вопрос с Where",
-        "star": true
+        "star": True
       },
       {
         "type": "open",
         "text": "Назовите национальность человека из Саудовской Аравии.",
         "correct": "Saudi Arabian",
         "hint": "Страна: Saudi Arabia",
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "She is from South Korea. She is ___.",
         "correct": "South Korean",
         "hint": "Страна: South Korea",
-        "star": true
+        "star": True
       },
       {
         "type": "choice",
@@ -2020,112 +1942,112 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "Chech",
           "Czechian"
         ],
-        "star": true
+        "star": True
       },
       {
         "type": "translation",
         "text": "Переведите: Он из Ирландии. Он ирландец.",
         "correct": "He is from Ireland. He is Irish.",
         "hint": "Ireland, Irish",
-        "star": true
+        "star": True
       },
       {
         "type": "open",
         "text": "Назовите страну для национальности 'Danish'.",
         "correct": "Denmark",
         "hint": "Национальность: Danish",
-        "star": true
+        "star": True
       },
       {
         "type": "reorder",
         "text": "Составьте предложение: not / is / He / American / .",
         "correct": "He is not American.",
         "hint": "Отрицание с is",
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "She is from France. She is ____.",
         "correct": "French",
         "hint": "Национальность от France",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "They live in Japan. They are ____.",
         "correct": "Japanese",
         "hint": "Национальность от Japan",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "He comes from Brazil. He is ____.",
         "correct": "Brazilian",
         "hint": "Национальность от Brazil",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "Maria is from Spain. She speaks ____.",
         "correct": "Spanish",
         "hint": "Язык и национальность",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "This flag is from ____. The people are German.",
         "correct": "Germany",
         "hint": "Страна для German",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "I am from ____. I am American.",
         "correct": "the USA",
         "hint": "Страна для American",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "They are from ____. They are Australian.",
         "correct": "Australia",
         "hint": "Страна для Australian",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "Olga is from Russia. She is ____.",
         "correct": "Russian",
         "hint": "Национальность от Russia",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "He is from China. He is ____.",
         "correct": "Chinese",
         "hint": "Национальность от China",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "We are from Canada. We are ____.",
         "correct": "Canadian",
         "hint": "Национальность от Canada",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "This pizza is from ____. It is Italian.",
         "correct": "Italy",
         "hint": "Страна для Italian",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "Sakura is from ____. She is Japanese.",
         "correct": "Japan",
         "hint": "Страна для Japanese",
-        "star": false
+        "star": False
       },
       {
         "type": "choice",
@@ -2138,7 +2060,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "American",
           "Brazilian"
         ],
-        "star": false
+        "star": False
       },
       {
         "type": "choice",
@@ -2151,7 +2073,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "England",
           "All of the above"
         ],
-        "star": false
+        "star": False
       },
       {
         "type": "choice",
@@ -2164,7 +2086,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "Arabic",
           "African"
         ],
-        "star": false
+        "star": False
       },
       {
         "type": "choice",
@@ -2177,7 +2099,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "European",
           "Francophone"
         ],
-        "star": false
+        "star": False
       },
       {
         "type": "choice",
@@ -2190,42 +2112,42 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "Portuguese",
           "Argentinian"
         ],
-        "star": false
+        "star": False
       },
       {
         "type": "translation",
         "text": "Он из Турции. Он турок.",
         "correct": "He is from Turkey. He is Turkish.",
         "hint": "Turkey / Turkish",
-        "star": false
+        "star": False
       },
       {
         "type": "translation",
         "text": "Они из Кореи. Они корейцы.",
         "correct": "They are from Korea. They are Korean.",
         "hint": "Korea / Korean",
-        "star": false
+        "star": False
       },
       {
         "type": "translation",
         "text": "Мы из Швеции. Мы шведы.",
         "correct": "We are from Sweden. We are Swedish.",
         "hint": "Sweden / Swedish",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "He is from ____. He is Dutch.",
         "correct": "the Netherlands",
         "hint": "Страна для Dutch",
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "She is from ____. She is Swiss.",
         "correct": "Switzerland",
         "hint": "Страна для Swiss",
-        "star": true
+        "star": True
       },
       {
         "type": "choice",
@@ -2238,7 +2160,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "Iceland",
           "England"
         ],
-        "star": true
+        "star": True
       },
       {
         "type": "choice",
@@ -2251,49 +2173,49 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "Saudi Arabian",
           "Arabic"
         ],
-        "star": true
+        "star": True
       },
       {
         "type": "reorder",
         "text": "Составьте предложение: from / is / He / Poland / Polish / . / and",
         "correct": "He is from Poland and Polish.",
         "hint": "Порядок: страна и национальность",
-        "star": true
+        "star": True
       },
       {
         "type": "reorder",
         "text": "Составьте предложение: are / They / from / Greece / Greek / .",
         "correct": "They are from Greece and Greek.",
         "hint": "Порядок: страна и национальность",
-        "star": true
+        "star": True
       },
       {
         "type": "translation",
         "text": "Она из Таиланда. Она тайка.",
         "correct": "She is from Thailand. She is Thai.",
         "hint": "Thailand / Thai",
-        "star": true
+        "star": True
       },
       {
         "type": "translation",
         "text": "Они из Финляндии. Они финны.",
         "correct": "They are from Finland. They are Finnish.",
         "hint": "Finland / Finnish",
-        "star": true
+        "star": True
       },
       {
         "type": "open",
         "text": "Назовите страну и национальность для человека из Дании.",
         "correct": "Denmark, Danish",
         "hint": "Denmark / Danish",
-        "star": true
+        "star": True
       },
       {
         "type": "open",
         "text": "Назовите страну и национальность для человека из Чехии.",
         "correct": "Czech Republic, Czech",
         "hint": "Czech Republic / Czech",
-        "star": true
+        "star": True
       }
     ]
   },
@@ -2327,8 +2249,88 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "answer": "В английском используют притяжательное местоимение, соответствующее подлежащему: He loves his dog – Он любит свою собаку."
       }
     ],
-    "practice_tasks": [],
-        "star": false
+    "practice_tasks": [
+      {
+        "type": "fill_blank",
+        "text": "___ is a student. (He/Him)",
+        "correct": "He",
+        "hint": "Личное местоимение в именительном падеже",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "This is ___ book. (my/mine)",
+        "correct": "my",
+        "hint": "Притяжательное местоимение перед существительным",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "Give ___ the pen. (I/me)",
+        "correct": "me",
+        "hint": "Личное местоимение в объектном падеже",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "That car is ___. (their/theirs)",
+        "correct": "theirs",
+        "hint": "Притяжательное местоимение без существительного",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "___ are going to the park. (We/Us)",
+        "correct": "We",
+        "hint": "Личное местоимение в роли подлежащего",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "I saw ___ yesterday. (she/her)",
+        "correct": "her",
+        "hint": "Личное местоимение после глагола",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "Is this ___ umbrella? (you/your)",
+        "correct": "your",
+        "hint": "Притяжательное местоимение для 'you'",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The dog wagged ___ tail. (its/it's)",
+        "correct": "its",
+        "hint": "Притяжательное местоимение для 'it'",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "___ are my friends. (They/Them)",
+        "correct": "They",
+        "hint": "Личное местоимение множественного числа",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "Please help ___. (we/us)",
+        "correct": "us",
+        "hint": "Объектный падеж для 'we'",
+        "star": False
+      },
+      {
+        "type": "choice",
+        "text": "___ name is Anna.",
+        "correct": "Her",
+        "hint": "Притяжательное местоимение для 'she'",
+        "options": [
+          "Her",
+          "She",
+          "Hers"
+        ],
+        "star": False
       },
       {
         "type": "choice",
@@ -2340,7 +2342,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "him",
           "his"
         ],
-        "star": false
+        "star": False
       },
       {
         "type": "choice",
@@ -2352,7 +2354,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "yours",
           "you"
         ],
-        "star": false
+        "star": False
       },
       {
         "type": "choice",
@@ -2364,7 +2366,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "You",
           "Yours"
         ],
-        "star": false
+        "star": False
       },
       {
         "type": "choice",
@@ -2376,56 +2378,56 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "It",
           "It's"
         ],
-        "star": false
+        "star": False
       },
       {
         "type": "reorder",
         "text": "Составьте предложение: is / this / book / my",
         "correct": "This is my book",
         "hint": "Порядок слов: указательное + глагол + притяжательное + существительное",
-        "star": false
+        "star": False
       },
       {
         "type": "reorder",
         "text": "Составьте предложение: to / going / they / are / school",
         "correct": "They are going to school",
         "hint": "Подлежащее + глагол 'to be' + смысловой глагол",
-        "star": false
+        "star": False
       },
       {
         "type": "reorder",
         "text": "Составьте предложение: gave / her / I / a / flower",
         "correct": "I gave her a flower",
         "hint": "Подлежащее + глагол + косвенное дополнение + прямое дополнение",
-        "star": false
+        "star": False
       },
       {
         "type": "translation",
         "text": "Переведите: Это его машина.",
         "correct": "This is his car",
         "hint": "Притяжательное местоимение 'his'",
-        "star": false
+        "star": False
       },
       {
         "type": "translation",
         "text": "Переведите: Мы любим их.",
         "correct": "We love them",
         "hint": "Объектный падеж 'them'",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "___ is my sister. (She/Her)",
         "correct": "She",
         "hint": "Личное местоимение в начале предложения",
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "These books are ___. (our/ours)",
         "correct": "ours",
         "hint": "Притяжательное местоимение без существительного",
-        "star": true
+        "star": True
       },
       {
         "type": "choice",
@@ -2437,7 +2439,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "Whom",
           "Whose"
         ],
-        "star": true
+        "star": True
       },
       {
         "type": "choice",
@@ -2449,259 +2451,259 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "which",
           "who"
         ],
-        "star": true
+        "star": True
       },
       {
         "type": "reorder",
         "text": "Составьте предложение: mine / is / this / not / pen",
         "correct": "This pen is not mine",
         "hint": "Притяжательное местоимение в конце",
-        "star": true
+        "star": True
       },
       {
         "type": "reorder",
         "text": "Составьте предложение: each / help / should / other / we",
         "correct": "We should help each other",
         "hint": "Возвратное местоимение 'each other'",
-        "star": true
+        "star": True
       },
       {
         "type": "translation",
         "text": "Переведите: Она сделала это сама.",
         "correct": "She did it herself",
         "hint": "Возвратное местоимение 'herself'",
-        "star": true
+        "star": True
       },
       {
         "type": "translation",
         "text": "Переведите: Никто не знает его.",
         "correct": "Nobody knows him",
         "hint": "Отрицательное местоимение + объектный падеж",
-        "star": true
+        "star": True
       },
       {
         "type": "open",
         "text": "Объясните разницу между 'its' и 'it's'.",
         "correct": "Its - притяжательное, it's - сокращение от it is",
         "hint": "Апостроф меняет значение",
-        "star": true
+        "star": True
       },
       {
         "type": "open",
         "text": "Составьте предложение с местоимением 'myself'.",
         "correct": "I hurt myself",
         "hint": "Возвратное местоимение для 'I'",
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "___ is my friend. (he)",
         "correct": "He",
         "hint": "Личное местоимение для мужчины",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "This is ___ book. (I)",
         "correct": "my",
         "hint": "Притяжательное местоимение от 'I'",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "___ are students. (we)",
         "correct": "We",
         "hint": "Личное местоимение для группы, включая говорящего",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "I like ___ car. (she)",
         "correct": "her",
         "hint": "Притяжательное местоимение для 'she'",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "Give ___ the pen. (I)",
         "correct": "me",
         "hint": "Объектное местоимение от 'I'",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "___ name is Tom. (he)",
         "correct": "His",
         "hint": "Притяжательное местоимение для 'he'",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "Please call ___. (they)",
         "correct": "them",
         "hint": "Объектное местоимение от 'they'",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "___ is a cat. (it)",
         "correct": "It",
         "hint": "Личное местоимение для животного или предмета",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "This is ___ house. (they)",
         "correct": "their",
         "hint": "Притяжательное местоимение от 'they'",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "___ are happy. (you)",
         "correct": "You",
         "hint": "Личное местоимение для обращения",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "I see ___. (she)",
         "correct": "her",
         "hint": "Объектное местоимение от 'she'",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "___ dog is big. (we)",
         "correct": "Our",
         "hint": "Притяжательное местоимение от 'we'",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "She gave ___ a gift. (we)",
         "correct": "us",
         "hint": "Объектное местоимение от 'we'",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "___ are teachers. (you, plural)",
         "correct": "You",
         "hint": "Личное местоимение для множественного числа 'ты'",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "___ eyes are blue. (she)",
         "correct": "Her",
         "hint": "Притяжательное местоимение для 'she'",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "I love ___. (you)",
         "correct": "you",
         "hint": "Объектное местоимение от 'you'",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "___ is my sister. (she)",
         "correct": "She",
         "hint": "Личное местоимение для женщины",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "This is ___ pen. (you)",
         "correct": "your",
         "hint": "Притяжательное местоимение от 'you'",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "___ are my parents. (they)",
         "correct": "They",
         "hint": "Личное местоимение для группы людей",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "I saw ___ yesterday. (he)",
         "correct": "him",
         "hint": "Объектное местоимение от 'he'",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "___ idea was great. (we)",
         "correct": "Our",
         "hint": "Притяжательное местоимение от 'we'",
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "Please tell ___ the truth. (I)",
         "correct": "me",
         "hint": "Объектное местоимение от 'I'",
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "___ cat is sleeping. (they)",
         "correct": "Their",
         "hint": "Притяжательное местоимение от 'they'",
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "___ am ready. (I)",
         "correct": "I",
         "hint": "Личное местоимение для себя",
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "She likes ___ dress. (she)",
         "correct": "her",
         "hint": "Притяжательное местоимение от 'she'",
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "___ are my keys. (they)",
         "correct": "They",
         "hint": "Личное местоимение для предметов",
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "I will help ___. (you)",
         "correct": "you",
         "hint": "Объектное местоимение от 'you'",
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "___ house is new. (he)",
         "correct": "His",
         "hint": "Притяжательное местоимение от 'he'",
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "___ is a good student. (she)",
         "correct": "She",
         "hint": "Личное местоимение для женщины",
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "Give ___ the book. (they)",
         "correct": "them",
         "hint": "Объектное местоимение от 'they'",
-        "star": true
+        "star": True
       }
     ]
   },
@@ -2735,9 +2737,179 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "answer": "Это древняя форма множественного числа, сохранившаяся в английском."
       }
     ],
-    "practice_tasks": [],
+    "practice_tasks": [
+      {
+        "type": "fill_blank",
+        "text": "There are three ___ (cat) on the sofa.",
+        "correct": "cats",
+        "hint": "Добавьте -s к существительному",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "I have two ___ (brother) and one sister.",
+        "correct": "brothers",
+        "hint": "Простое множественное число",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She saw many ___ (fox) in the forest.",
+        "correct": "foxes",
+        "hint": "Добавьте -es после -x",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The ___ (child) are playing in the park.",
+        "correct": "children",
+        "hint": "Неправильная форма",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He bought two ___ (watch) yesterday.",
+        "correct": "watches",
+        "hint": "Добавьте -es после -ch",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "There are many ___ (sheep) on the farm.",
+        "correct": "sheep",
+        "hint": "Форма не меняется",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The ___ (man) are working in the garden.",
+        "correct": "men",
+        "hint": "Неправильное множественное число",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "I need two ___ (knife) for the kitchen.",
+        "correct": "knives",
+        "hint": "Замените -f на -ves",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The ___ (baby) are sleeping in their cribs.",
+        "correct": "babies",
+        "hint": "Замените -y на -ies",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "We saw several ___ (deer) in the woods.",
+        "correct": "deer",
+        "hint": "Форма не меняется",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "There are five ___ (piano) in the music room.",
+        "correct": "pianos",
+        "hint": "Просто добавьте -s",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The ___ (woman) are talking loudly.",
+        "correct": "women",
+        "hint": "Неправильная форма",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "I have two ___ (tooth) that hurt.",
+        "correct": "teeth",
+        "hint": "Неправильное множественное число",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The ___ (leaf) fall in autumn.",
+        "correct": "leaves",
+        "hint": "Замените -f на -ves",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She has three ___ (box) of chocolates.",
+        "correct": "boxes",
+        "hint": "Добавьте -es после -x",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The ___ (mouse) are hiding under the bed.",
+        "correct": "mice",
+        "hint": "Неправильная форма",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "There are many ___ (city) in this country.",
+        "correct": "cities",
+        "hint": "Замените -y на -ies",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "I saw two ___ (bus) at the station.",
+        "correct": "buses",
+        "hint": "Добавьте -es",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The ___ (foot) of the table are broken.",
+        "correct": "feet",
+        "hint": "Неправильное множественное число",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He has several ___ (photo) on his wall.",
+        "correct": "photos",
+        "hint": "Просто добавьте -s",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The ___ (goose) are swimming in the lake.",
+        "correct": "geese",
+        "hint": "Неправильная форма",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "There are many ___ (fish) in this aquarium.",
+        "correct": "fish",
+        "hint": "Форма не меняется, но есть вариант fishes для видов",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "The ___ (ox) are pulling the cart.",
+        "correct": "oxen",
+        "hint": "Старая неправильная форма",
+        "star": True
+      },
+      {
+        "type": "choice",
+        "text": "What is the plural of 'cactus'?",
+        "correct": "cacti",
+        "options": [
+          "cactuses",
+          "cacti",
+          "cactus"
+        ],
         "hint": "Слова латинского происхождения",
-        "star": true
+        "star": True
       },
       {
         "type": "choice",
@@ -2749,252 +2921,252 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "phenomenon"
         ],
         "hint": "Греческое происхождение",
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "The ___ (thief) were caught by the police.",
         "correct": "thieves",
         "hint": "Замените -f на -ves",
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "I need two ___ (loaf) of bread.",
         "correct": "loaves",
         "hint": "Замените -f на -ves",
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "The ___ (child) have many ___ (toy).",
         "correct": "children, toys",
         "hint": "Одно неправильное, одно правильное",
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "There are several ___ (species) of birds here.",
         "correct": "species",
         "hint": "Форма не меняется",
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "The ___ (person) in the room are all adults.",
         "correct": "people",
         "hint": "Неправильная форма",
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "There are three ___ (cat) on the sofa.",
         "correct": "cats",
         "hint": "Добавьте -s к существительному",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "I have two ___ (brother).",
         "correct": "brothers",
         "hint": "Добавьте -s",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "She saw many ___ (fox) in the forest.",
         "correct": "foxes",
         "hint": "К существительным, оканчивающимся на -x, добавляется -es",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "The ___ (child) are playing outside.",
         "correct": "children",
         "hint": "Это слово-исключение",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "We need three ___ (box) for the move.",
         "correct": "boxes",
         "hint": "Добавьте -es к словам на -x",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "There are many ___ (leaf) on the ground.",
         "correct": "leaves",
         "hint": "Замените -f на -ves",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "He has two ___ (watch).",
         "correct": "watches",
         "hint": "Добавьте -es к словам на -ch",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "The ___ (man) are working hard.",
         "correct": "men",
         "hint": "Это слово-исключение",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "I bought some ___ (potato) for dinner.",
         "correct": "potatoes",
         "hint": "Добавьте -es к словам на -o",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "There are five ___ (knife) in the drawer.",
         "correct": "knives",
         "hint": "Замените -fe на -ves",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "The ___ (woman) are talking loudly.",
         "correct": "women",
         "hint": "Это слово-исключение",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "We saw two ___ (deer) in the park.",
         "correct": "deer",
         "hint": "Это слово не меняется во множественном числе",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "The ___ (mouse) ran away quickly.",
         "correct": "mice",
         "hint": "Это слово-исключение",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "She has three ___ (baby).",
         "correct": "babies",
         "hint": "Замените -y на -ies",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "There are many ___ (bus) on the street.",
         "correct": "buses",
         "hint": "Добавьте -es к словам на -s",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "I need two ___ (glass) of water.",
         "correct": "glasses",
         "hint": "Добавьте -es к словам на -ss",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "The ___ (foot) of the table are broken.",
         "correct": "feet",
         "hint": "Это слово-исключение",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "He caught three ___ (fish) today.",
         "correct": "fish",
         "hint": "Это слово обычно не меняется",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "There are many ___ (city) in this country.",
         "correct": "cities",
         "hint": "Замените -y на -ies",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "The ___ (tooth) of the comb are sharp.",
         "correct": "teeth",
         "hint": "Это слово-исключение",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "There are several ___ (sheep) in the field.",
         "correct": "sheep",
         "hint": "Это слово не меняется во множественном числе",
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "The ___ (ox) are pulling the cart.",
         "correct": "oxen",
         "hint": "Это слово-исключение, добавляется -en",
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "I saw two ___ (phenomenon) in the sky.",
         "correct": "phenomena",
         "hint": "Это слово греческого происхождения, меняет окончание на -a",
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "The ___ (crisis) in the country are serious.",
         "correct": "crises",
         "hint": "Это слово греческого происхождения, меняет -is на -es",
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "There are many ___ (cactus) in the desert.",
         "correct": "cacti",
         "hint": "Это слово латинского происхождения, меняет -us на -i",
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "The ___ (analysis) were incorrect.",
         "correct": "analyses",
         "hint": "Это слово греческого происхождения, меняет -is на -es",
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "We studied several ___ (thesis) for the exam.",
         "correct": "theses",
         "hint": "Это слово греческого происхождения, меняет -is на -es",
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "The ___ (appendix) of the book are long.",
         "correct": "appendices",
         "hint": "Это слово латинского происхождения, меняет -ix на -ices",
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "There are many ___ (index) in this database.",
         "correct": "indices",
         "hint": "Это слово латинского происхождения, меняет -ex на -ices",
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "The ___ (datum) from the experiment are clear.",
         "correct": "data",
         "hint": "Это слово латинского происхождения, меняет -um на -a",
-        "star": true
+        "star": True
       }
     ]
   },
@@ -3028,14 +3200,96 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "answer": "Да, это общий вопрос (ответ да/нет). Например: Are you a student? Но вопросительные слова дают конкретную информацию."
       }
     ],
-    "practice_tasks": []
+    "practice_tasks": [
+      {
+        "type": "fill_blank",
+        "text": "___ is your favourite colour?",
+        "correct": "What",
+        "hint": "Спрашиваем о предмете или явлении",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "___ are you from?",
+        "correct": "Where",
+        "hint": "Спрашиваем о месте",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "___ old are you?",
+        "correct": "How",
+        "hint": "Спрашиваем о возрасте",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "___ do you go to school?",
+        "correct": "How",
+        "hint": "Спрашиваем о способе передвижения",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "___ is your birthday?",
+        "correct": "When",
+        "hint": "Спрашиваем о времени или дате",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "___ is your best friend?",
+        "correct": "Who",
+        "hint": "Спрашиваем о человеке",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "___ do you like pizza?",
+        "correct": "Why",
+        "hint": "Спрашиваем о причине",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "___ books are on the table?",
+        "correct": "How many",
+        "hint": "Спрашиваем о количестве (исчисляемые)",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "___ milk do you want?",
+        "correct": "How much",
+        "hint": "Спрашиваем о количестве (неисчисляемые)",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "___ is your phone number?",
+        "correct": "What",
+        "hint": "Спрашиваем об информации",
+        "star": False
+      },
+      {
+        "type": "choice",
+        "text": "___ do you usually get up?",
+        "correct": "When",
+        "hint": "Выбери правильное вопросительное слово",
+        "star": False,
+        "options": [
+          "What",
+          "When",
+          "Where",
+          "Why"
+        ]
       },
       {
         "type": "choice",
         "text": "___ is that man over there?",
         "correct": "Who",
         "hint": "Выбери правильное вопросительное слово",
-        "star": false,
+        "star": False,
         "options": [
           "Who",
           "What",
@@ -3048,7 +3302,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "___ did you put my keys?",
         "correct": "Where",
         "hint": "Выбери правильное вопросительное слово",
-        "star": false,
+        "star": False,
         "options": [
           "Where",
           "When",
@@ -3061,7 +3315,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "___ don't you like broccoli?",
         "correct": "Why",
         "hint": "Выбери правильное вопросительное слово",
-        "star": false,
+        "star": False,
         "options": [
           "What",
           "Why",
@@ -3074,7 +3328,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "___ do you spell your name?",
         "correct": "How",
         "hint": "Выбери правильное вопросительное слово",
-        "star": false,
+        "star": False,
         "options": [
           "What",
           "How",
@@ -3087,56 +3341,56 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "you / are / How / old / ?",
         "correct": "How old are you?",
         "hint": "Составь вопрос о возрасте",
-        "star": false
+        "star": False
       },
       {
         "type": "reorder",
         "text": "is / What / name / your / ?",
         "correct": "What is your name?",
         "hint": "Составь вопрос об имени",
-        "star": false
+        "star": False
       },
       {
         "type": "reorder",
         "text": "from / Where / you / are / ?",
         "correct": "Where are you from?",
         "hint": "Составь вопрос о происхождении",
-        "star": false
+        "star": False
       },
       {
         "type": "translation",
         "text": "Как дела?",
         "correct": "How are you?",
         "hint": "Переведи на английский",
-        "star": false
+        "star": False
       },
       {
         "type": "translation",
         "text": "Который час?",
         "correct": "What time is it?",
         "hint": "Переведи на английский",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "___ coat is this? Is it yours?",
         "correct": "Whose",
         "hint": "Спрашиваем о принадлежности",
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "___ one do you prefer, the red or the blue?",
         "correct": "Which",
         "hint": "Выбор из ограниченного количества",
-        "star": true
+        "star": True
       },
       {
         "type": "choice",
         "text": "___ is the weather like today?",
         "correct": "What",
         "hint": "Спрашиваем о характеристике",
-        "star": true,
+        "star": True,
         "options": [
           "What",
           "How",
@@ -3149,7 +3403,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "___ do you call this in English?",
         "correct": "How",
         "hint": "Спрашиваем о способе называния",
-        "star": true,
+        "star": True,
         "options": [
           "What",
           "How",
@@ -3162,119 +3416,119 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "does / mean / What / this word / ?",
         "correct": "What does this word mean?",
         "hint": "Составь вопрос о значении",
-        "star": true
+        "star": True
       },
       {
         "type": "reorder",
         "text": "long / How / take / does it / to get there / ?",
         "correct": "How long does it take to get there?",
         "hint": "Составь вопрос о времени в пути",
-        "star": true
+        "star": True
       },
       {
         "type": "translation",
         "text": "Сколько это стоит?",
         "correct": "How much does it cost?",
         "hint": "Переведи вопрос о цене",
-        "star": true
+        "star": True
       },
       {
         "type": "translation",
         "text": "Как часто ты ходишь в спортзал?",
         "correct": "How often do you go to the gym?",
         "hint": "Переведи вопрос о частоте",
-        "star": true
+        "star": True
       },
       {
         "type": "open",
         "text": "Задай вопрос к подчёркнутому слову: She lives *in London*.",
         "correct": "Where does she live?",
         "hint": "Используй подходящее вопросительное слово",
-        "star": true
+        "star": True
       },
       {
         "type": "open",
         "text": "Задай вопрос к подчёркнутому слову: He bought *a car*.",
         "correct": "What did he buy?",
         "hint": "Используй подходящее вопросительное слово",
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "___ is your name?",
         "correct": "What",
         "hint": "Спрашиваем об имени",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "___ old are you?",
         "correct": "How",
         "hint": "Спрашиваем о возрасте",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "___ do you live?",
         "correct": "Where",
         "hint": "Спрашиваем о месте",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "___ is your birthday?",
         "correct": "When",
         "hint": "Спрашиваем о дате",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "___ is your favourite colour?",
         "correct": "What",
         "hint": "Спрашиваем о предпочтениях",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "___ do you go to school?",
         "correct": "How",
         "hint": "Спрашиваем о способе",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "___ is your best friend?",
         "correct": "Who",
         "hint": "Спрашиваем о человеке",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "___ are you sad?",
         "correct": "Why",
         "hint": "Спрашиваем о причине",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "___ book is this?",
         "correct": "Whose",
         "hint": "Спрашиваем о принадлежности",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "___ do you want for breakfast?",
         "correct": "What",
         "hint": "Спрашиваем о выборе",
-        "star": false
+        "star": False
       },
       {
         "type": "choice",
         "text": "___ do you usually wake up?",
         "correct": "When",
         "hint": "Спрашиваем о времени",
-        "star": false,
+        "star": False,
         "options": [
           "What",
           "When",
@@ -3287,7 +3541,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "___ is your mother?",
         "correct": "Where",
         "hint": "Спрашиваем о местонахождении",
-        "star": false,
+        "star": False,
         "options": [
           "Who",
           "What",
@@ -3300,7 +3554,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "___ did you buy that gift for?",
         "correct": "Who",
         "hint": "Спрашиваем о получателе",
-        "star": false,
+        "star": False,
         "options": [
           "What",
           "When",
@@ -3313,7 +3567,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "___ do you like pizza?",
         "correct": "Why",
         "hint": "Спрашиваем о причине",
-        "star": false,
+        "star": False,
         "options": [
           "How",
           "Why",
@@ -3326,7 +3580,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "___ many apples are there?",
         "correct": "How",
         "hint": "Спрашиваем о количестве",
-        "star": false,
+        "star": False,
         "options": [
           "What",
           "How",
@@ -3339,56 +3593,56 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "you / are / old / How ?",
         "correct": "How old are you?",
         "hint": "Спросите возраст",
-        "star": false
+        "star": False
       },
       {
         "type": "reorder",
         "text": "name / your / What / is ?",
         "correct": "What is your name?",
         "hint": "Спросите имя",
-        "star": false
+        "star": False
       },
       {
         "type": "reorder",
         "text": "live / do / Where / you ?",
         "correct": "Where do you live?",
         "hint": "Спросите место жительства",
-        "star": false
+        "star": False
       },
       {
         "type": "reorder",
         "text": "colour / favourite / your / What / is ?",
         "correct": "What is your favourite colour?",
         "hint": "Спросите любимый цвет",
-        "star": false
+        "star": False
       },
       {
         "type": "translation",
         "text": "Кто твой учитель?",
         "correct": "Who is your teacher?",
         "hint": "Спросите о человеке",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "___ do you prefer, tea or coffee?",
         "correct": "Which",
         "hint": "Выбор из двух",
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "___ time does the train arrive?",
         "correct": "What",
         "hint": "Спрашиваем о времени",
-        "star": true
+        "star": True
       },
       {
         "type": "choice",
         "text": "___ car is parked outside?",
         "correct": "Whose",
         "hint": "Принадлежность",
-        "star": true,
+        "star": True,
         "options": [
           "Who",
           "Whose",
@@ -3401,7 +3655,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "___ do you get to the airport?",
         "correct": "How",
         "hint": "Способ передвижения",
-        "star": true,
+        "star": True,
         "options": [
           "What",
           "When",
@@ -3414,42 +3668,42 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "is / the / What / weather / like ?",
         "correct": "What is the weather like?",
         "hint": "Спросите о погоде",
-        "star": true
+        "star": True
       },
       {
         "type": "reorder",
         "text": "does / this / belong / Whom / to ?",
         "correct": "Whom does this belong to?",
         "hint": "Спросите о владельце",
-        "star": true
+        "star": True
       },
       {
         "type": "translation",
         "text": "Сколько это стоит?",
         "correct": "How much does it cost?",
         "hint": "Спросите цену",
-        "star": true
+        "star": True
       },
       {
         "type": "translation",
         "text": "Как часто ты ходишь в спортзал?",
         "correct": "How often do you go to the gym?",
         "hint": "Спросите частоту",
-        "star": true
+        "star": True
       },
       {
         "type": "open",
         "text": "Задай вопрос к слову 'yesterday' в предложении: I met him yesterday.",
         "correct": "When did you meet him?",
         "hint": "Спросите время",
-        "star": true
+        "star": True
       },
       {
         "type": "open",
         "text": "Задай вопрос к слову 'because' в предложении: She left because she was tired.",
         "correct": "Why did she leave?",
         "hint": "Спросите причину",
-        "star": true
+        "star": True
       }
     ]
   },
@@ -3479,8 +3733,185 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "answer": "Только для единственного числа: there's a cat. Неправильно: there's two cats – правильно: there are two cats."
       }
     ],
-    "practice_tasks": [],
-        "star": true
+    "practice_tasks": [
+      {
+        "type": "fill_blank",
+        "text": "There ___ a book on the table.",
+        "correct": "is",
+        "hint": "Используем is для единственного числа",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "There ___ two cats in the garden.",
+        "correct": "are",
+        "hint": "Используем are для множественного числа",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "There ___ some milk in the fridge.",
+        "correct": "is",
+        "hint": "Milk — неисчисляемое существительное, используется is",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "There ___ many students in the classroom.",
+        "correct": "are",
+        "hint": "Many students — множественное число",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "There ___ a pen and two pencils on the desk.",
+        "correct": "is",
+        "hint": "Первое существительное (a pen) в единственном числе",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "There ___ a lot of water in the bottle.",
+        "correct": "is",
+        "hint": "Water — неисчисляемое",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "There ___ no chairs in the room.",
+        "correct": "are",
+        "hint": "Chairs — множественное число",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "There ___ an apple on the plate.",
+        "correct": "is",
+        "hint": "An apple — единственное число",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "There ___ three windows in the house.",
+        "correct": "are",
+        "hint": "Three windows — множественное число",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "There ___ some sugar in the jar.",
+        "correct": "is",
+        "hint": "Sugar — неисчисляемое",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "There ___ a cat and a dog in the yard.",
+        "correct": "is",
+        "hint": "Первое существительное (a cat) в единственном числе",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "There ___ five apples in the basket.",
+        "correct": "are",
+        "hint": "Five apples — множественное число",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "There ___ no milk in the fridge.",
+        "correct": "is",
+        "hint": "Milk — неисчисляемое",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "There ___ a new student in our class.",
+        "correct": "is",
+        "hint": "A new student — единственное число",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "There ___ many birds in the tree.",
+        "correct": "are",
+        "hint": "Many birds — множественное число",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "There ___ a problem with the car.",
+        "correct": "is",
+        "hint": "A problem — единственное число",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "There ___ some books on the shelf.",
+        "correct": "are",
+        "hint": "Some books — множественное число",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "There ___ a big park near my house.",
+        "correct": "is",
+        "hint": "A big park — единственное число",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "There ___ two cups of tea on the table.",
+        "correct": "are",
+        "hint": "Two cups — множественное число",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "There ___ a lot of people at the party.",
+        "correct": "are",
+        "hint": "People — множественное число",
+        "star": False
+      },
+      {
+        "type": "reorder",
+        "text": "a / there / is / cat / the / in / garden",
+        "correct": "There is a cat in the garden.",
+        "hint": "Начните с There is",
+        "star": True
+      },
+      {
+        "type": "reorder",
+        "text": "are / there / two / dogs / the / in / park",
+        "correct": "There are two dogs in the park.",
+        "hint": "Начните с There are",
+        "star": True
+      },
+      {
+        "type": "translation",
+        "text": "На столе есть книга.",
+        "correct": "There is a book on the table.",
+        "hint": "Используйте there is для единственного числа",
+        "star": True
+      },
+      {
+        "type": "translation",
+        "text": "В комнате три стула.",
+        "correct": "There are three chairs in the room.",
+        "hint": "Используйте there are для множественного числа",
+        "star": True
+      },
+      {
+        "type": "choice",
+        "text": "There ___ a pencil on the desk.",
+        "correct": "is",
+        "hint": "Выберите правильную форму",
+        "options": [
+          "is",
+          "are"
+        ],
+        "star": True
       },
       {
         "type": "choice",
@@ -3491,203 +3922,203 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "is",
           "are"
         ],
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "There ___ a few apples left in the bowl.",
         "correct": "are",
         "hint": "A few apples — множественное число",
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "There ___ a pair of shoes under the bed.",
         "correct": "is",
         "hint": "A pair — единственное число",
-        "star": true
+        "star": True
       },
       {
         "type": "open",
         "text": "Опишите свою комнату, используя there is/there are (3 предложения).",
         "correct": "Пример: There is a bed in my room. There are two chairs. There is a lamp on the desk.",
         "hint": "Используйте is для одного предмета, are для нескольких",
-        "star": true
+        "star": True
       },
       {
         "type": "open",
         "text": "Составьте вопрос с there is/there are о наличии холодильника на кухне.",
         "correct": "Is there a fridge in the kitchen?",
         "hint": "Начните с Is there или Are there",
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "There ___ a book on the table.",
         "correct": "is",
         "hint": "Используй is для единственного числа",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "There ___ many apples in the basket.",
         "correct": "are",
         "hint": "Используй are для множественного числа",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "There ___ a cat and two dogs in the yard.",
         "correct": "is",
         "hint": "Первое существительное в единственном числе",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "There ___ some milk in the glass.",
         "correct": "is",
         "hint": "Milk — неисчисляемое существительное",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "There ___ no students in the classroom.",
         "correct": "are",
         "hint": "Множественное число",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "___ there a park near your house?",
         "correct": "Is",
         "hint": "Вопрос с единственным числом",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "___ there any chairs in the room?",
         "correct": "Are",
         "hint": "Вопрос с множественным числом",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "There ___ not enough time to finish.",
         "correct": "is",
         "hint": "Time — неисчисляемое",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "There ___ a lot of people at the party.",
         "correct": "are",
         "hint": "People — множественное число",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "There ___ a pencil and three pens on the desk.",
         "correct": "is",
         "hint": "Первое существительное в единственном числе",
-        "star": false
+        "star": False
       },
       {
         "type": "reorder",
         "text": "a / there / is / cat / garden / the / in",
         "correct": "There is a cat in the garden.",
         "hint": "Начни с There",
-        "star": false
+        "star": False
       },
       {
         "type": "reorder",
         "text": "are / there / two / windows / room / the / in",
         "correct": "There are two windows in the room.",
         "hint": "Порядок: There are + предметы + место",
-        "star": false
+        "star": False
       },
       {
         "type": "reorder",
         "text": "any / there / are / questions / ?",
         "correct": "Are there any questions?",
         "hint": "Вопрос начинается с Are",
-        "star": false
+        "star": False
       },
       {
         "type": "reorder",
         "text": "no / there / is / water / bottle / the / in",
         "correct": "There is no water in the bottle.",
         "hint": "Отрицание с no",
-        "star": false
+        "star": False
       },
       {
         "type": "reorder",
         "text": "a / there / not / is / chair / here",
         "correct": "There is not a chair here.",
         "hint": "Отрицание с not",
-        "star": false
+        "star": False
       },
       {
         "type": "translation",
         "text": "На столе есть книга.",
         "correct": "There is a book on the table.",
         "hint": "Используй there is",
-        "star": false
+        "star": False
       },
       {
         "type": "translation",
         "text": "В комнате нет стульев.",
         "correct": "There are no chairs in the room.",
         "hint": "Отрицание с no",
-        "star": false
+        "star": False
       },
       {
         "type": "translation",
         "text": "Есть ли молоко в холодильнике?",
         "correct": "Is there any milk in the fridge?",
         "hint": "Вопрос с any",
-        "star": false
+        "star": False
       },
       {
         "type": "translation",
         "text": "В парке много деревьев.",
         "correct": "There are many trees in the park.",
         "hint": "Множественное число",
-        "star": false
+        "star": False
       },
       {
         "type": "translation",
         "text": "В сумке есть ручка.",
         "correct": "There is a pen in the bag.",
         "hint": "Единственное число",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "There ___ a strange noise coming from the attic.",
         "correct": "is",
         "hint": "Noise — исчисляемое, но в единственном числе",
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "There ___ a dozen eggs in the fridge, but some are broken.",
         "correct": "are",
         "hint": "Dozen указывает на множественное число",
-        "star": true
+        "star": True
       },
       {
         "type": "reorder",
         "text": "there / how / many / are / students / class / your / in / ?",
         "correct": "How many students are there in your class?",
         "hint": "Вопрос с how many",
-        "star": true
+        "star": True
       },
       {
         "type": "translation",
         "text": "В этом городе не было ни одного музея десять лет назад.",
         "correct": "There were no museums in this city ten years ago.",
         "hint": "Прошедшее время: there were",
-        "star": true
+        "star": True
       },
       {
         "type": "choice",
@@ -3699,7 +4130,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "are",
           "were"
         ],
-        "star": true
+        "star": True
       },
       {
         "type": "choice",
@@ -3711,28 +4142,28 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "are",
           "was"
         ],
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "There ___ a lot of traffic on the road today.",
         "correct": "is",
         "hint": "Traffic — неисчисляемое",
-        "star": true
+        "star": True
       },
       {
         "type": "translation",
         "text": "На небе ни облачка.",
         "correct": "There is not a cloud in the sky.",
         "hint": "Отрицание с not a",
-        "star": true
+        "star": True
       },
       {
         "type": "reorder",
         "text": "there / seems / to / be / a / problem",
         "correct": "There seems to be a problem.",
         "hint": "Конструкция there seems to be",
-        "star": true
+        "star": True
       },
       {
         "type": "choice",
@@ -3744,7 +4175,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "are",
           "were"
         ],
-        "star": true
+        "star": True
       }
     ]
   },
@@ -3774,14 +4205,425 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "answer": "Да, например: There is a cat under the chair. Это очень распространённая конструкция."
       }
     ],
-    "practice_tasks": []
+    "practice_tasks": [
+      {
+        "type": "fill_blank",
+        "text": "The cat is ___ the table.",
+        "correct": "on",
+        "hint": "Surface contact",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "My phone is ___ my bag.",
+        "correct": "in",
+        "hint": "Inside something",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The school is ___ the bank and the post office.",
+        "correct": "between",
+        "hint": "Two things on each side",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He is sitting ___ me.",
+        "correct": "next to",
+        "hint": "Beside",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The book is ___ the shelf.",
+        "correct": "on",
+        "hint": "Surface",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The mouse ran ___ the chair.",
+        "correct": "under",
+        "hint": "Below",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She is standing ___ the door.",
+        "correct": "in front of",
+        "hint": "Before something",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The picture is ___ the wall.",
+        "correct": "on",
+        "hint": "Attached to vertical surface",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "We walked ___ the park.",
+        "correct": "through",
+        "hint": "From one side to another",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The restaurant is ___ the corner.",
+        "correct": "at",
+        "hint": "Specific point",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The plane flew ___ the clouds.",
+        "correct": "above",
+        "hint": "Higher than",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The cat is hiding ___ the sofa.",
+        "correct": "behind",
+        "hint": "At the back of",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He lives ___ 25 Baker Street.",
+        "correct": "at",
+        "hint": "Address",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "There is a bridge ___ the river.",
+        "correct": "over",
+        "hint": "Above and across",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The pencil is ___ the desk.",
+        "correct": "on",
+        "hint": "Top of",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She is ___ the bus.",
+        "correct": "on",
+        "hint": "Public transport",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The keys are ___ my pocket.",
+        "correct": "in",
+        "hint": "Inside clothing",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The dog jumped ___ the fence.",
+        "correct": "over",
+        "hint": "Across top",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "We met ___ the cinema.",
+        "correct": "at",
+        "hint": "Location/event",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The ball is ___ the box.",
+        "correct": "in",
+        "hint": "Contained",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The cat is ___ the table and the chair.",
+        "correct": "between",
+        "hint": "Two objects",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "The sun is ___ the horizon.",
+        "correct": "below",
+        "hint": "Lower than",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "She sat ___ me during the movie.",
+        "correct": "opposite",
+        "hint": "Facing",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "The path goes ___ the forest.",
+        "correct": "through",
+        "hint": "Inside and out",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "The painting is ___ the fireplace.",
+        "correct": "above",
+        "hint": "Higher position",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "He parked the car ___ the house.",
+        "correct": "in front of",
+        "hint": "Directly before",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "The bird flew ___ the tree.",
+        "correct": "into",
+        "hint": "Entering",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "The cat is ___ the table.",
+        "correct": "under",
+        "hint": "Beneath",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "She is standing ___ the two buildings.",
+        "correct": "between",
+        "hint": "In the middle",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "The river flows ___ the village.",
+        "correct": "through",
+        "hint": "Passing inside",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "The cat is ___ the table.",
+        "correct": "under",
+        "hint": "Прямо под столом",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She put the book ___ the shelf.",
+        "correct": "on",
+        "hint": "На полке",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "There is a bridge ___ the river.",
+        "correct": "over",
+        "hint": "Над рекой",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He lives ___ the third floor.",
+        "correct": "on",
+        "hint": "На этаже",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The school is ___ the corner of the street.",
+        "correct": "at",
+        "hint": "На углу",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "My keys are ___ my bag.",
+        "correct": "in",
+        "hint": "Внутри сумки",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The dog is sleeping ___ the sofa.",
+        "correct": "under",
+        "hint": "Под диваном",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She stood ___ the door.",
+        "correct": "behind",
+        "hint": "Позади двери",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The picture is hanging ___ the wall.",
+        "correct": "on",
+        "hint": "На стене",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "We walked ___ the park.",
+        "correct": "through",
+        "hint": "Сквозь парк",
+        "star": False
+      },
+      {
+        "type": "reorder",
+        "text": "is / the / cat / the / under / table",
+        "correct": "The cat is under the table",
+        "hint": "Кошка под столом",
+        "star": False
+      },
+      {
+        "type": "reorder",
+        "text": "are / keys / the / in / my / bag",
+        "correct": "The keys are in my bag",
+        "hint": "Ключи в сумке",
+        "star": False
+      },
+      {
+        "type": "reorder",
+        "text": "lives / she / on / floor / the / fifth",
+        "correct": "She lives on the fifth floor",
+        "hint": "Она живёт на пятом этаже",
+        "star": False
+      },
+      {
+        "type": "reorder",
+        "text": "book / the / is / the / on / shelf",
+        "correct": "The book is on the shelf",
+        "hint": "Книга на полке",
+        "star": False
+      },
+      {
+        "type": "reorder",
+        "text": "park / near / the / is / the / school",
+        "correct": "The park is near the school",
+        "hint": "Парк рядом со школой",
+        "star": False
+      },
+      {
+        "type": "translation",
+        "text": "Кошка под столом.",
+        "correct": "The cat is under the table.",
+        "hint": "Предлог 'under'",
+        "star": False
+      },
+      {
+        "type": "translation",
+        "text": "Ключи в сумке.",
+        "correct": "The keys are in the bag.",
+        "hint": "Предлог 'in'",
+        "star": False
+      },
+      {
+        "type": "translation",
+        "text": "Она стоит за дверью.",
+        "correct": "She is standing behind the door.",
+        "hint": "Предлог 'behind'",
+        "star": False
+      },
+      {
+        "type": "translation",
+        "text": "Картина висит на стене.",
+        "correct": "The picture is on the wall.",
+        "hint": "Предлог 'on'",
+        "star": False
+      },
+      {
+        "type": "translation",
+        "text": "Мост над рекой.",
+        "correct": "The bridge is over the river.",
+        "hint": "Предлог 'over'",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The restaurant is ___ the cinema and the bank.",
+        "correct": "between",
+        "hint": "Между двумя объектами",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "He put the vase ___ the window.",
+        "correct": "in front of",
+        "hint": "Перед окном",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "The cat jumped ___ the chair.",
+        "correct": "onto",
+        "hint": "На (с движением)",
+        "star": True
+      },
+      {
+        "type": "reorder",
+        "text": "is / the / bank / the / opposite / supermarket",
+        "correct": "The bank is opposite the supermarket",
+        "hint": "Напротив",
+        "star": True
+      },
+      {
+        "type": "reorder",
+        "text": "the / cat / is / hiding / the / behind / curtain",
+        "correct": "The cat is hiding behind the curtain",
+        "hint": "Прячется за шторой",
+        "star": True
+      },
+      {
+        "type": "translation",
+        "text": "Магазин напротив больницы.",
+        "correct": "The shop is opposite the hospital.",
+        "hint": "Предлог 'opposite'",
+        "star": True
+      },
+      {
+        "type": "translation",
+        "text": "Книга лежит между ручкой и тетрадью.",
+        "correct": "The book is between the pen and the notebook.",
+        "hint": "Предлог 'between'",
+        "star": True
+      },
+      {
+        "type": "choice",
+        "text": "The cat is ___ the table.",
+        "correct": "under",
+        "hint": "Выберите правильный предлог",
+        "star": True,
+        "options": [
+          "under",
+          "on",
+          "in",
+          "at"
+        ]
       },
       {
         "type": "choice",
         "text": "She put the vase ___ the window.",
         "correct": "in front of",
         "hint": "Выберите правильный предлог",
-        "star": true,
+        "star": True,
         "options": [
           "behind",
           "in front of",
@@ -3794,7 +4636,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "Describe where your school bag is right now using at least two prepositions of place.",
         "correct": "My school bag is on the chair next to the desk.",
         "hint": "Используйте предлоги, например: on, under, next to, in front of",
-        "star": true
+        "star": True
       }
     ]
   },
@@ -3824,14 +4666,131 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "answer": "Да, кроме случаев с глаголом to be: She is nice. Артикль (a/an/the) ставится перед прилагательным: a nice girl."
       }
     ],
-    "practice_tasks": []
+    "practice_tasks": [
+      {
+        "type": "fill_blank",
+        "text": "The weather is very ___ today. (hot)",
+        "correct": "hot",
+        "hint": "Opposite of cold",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She has a ___ dress. (beautiful)",
+        "correct": "beautiful",
+        "hint": "Synonym of pretty",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "This book is very ___. (interesting)",
+        "correct": "interesting",
+        "hint": "Not boring",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He is a ___ boy. (tall)",
+        "correct": "tall",
+        "hint": "Opposite of short",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The coffee is too ___. (hot)",
+        "correct": "hot",
+        "hint": "High temperature",
+        "star": False
+      },
+      {
+        "type": "reorder",
+        "text": "big / a / dog / is / that",
+        "correct": "That is a big dog.",
+        "hint": "Size comes before noun",
+        "star": False
+      },
+      {
+        "type": "reorder",
+        "text": "old / an / house / it's",
+        "correct": "It's an old house.",
+        "hint": "Article before adjective",
+        "star": False
+      },
+      {
+        "type": "reorder",
+        "text": "very / is / she / happy",
+        "correct": "She is very happy.",
+        "hint": "Adverb before adjective",
+        "star": False
+      },
+      {
+        "type": "reorder",
+        "text": "red / car / a / fast / is",
+        "correct": "A fast car is red.",
+        "hint": "Order: opinion-size-color",
+        "star": False
+      },
+      {
+        "type": "reorder",
+        "text": "are / they / young / and / strong",
+        "correct": "They are young and strong.",
+        "hint": "Connect adjectives with 'and'",
+        "star": False
+      },
+      {
+        "type": "translation",
+        "text": "Translate: красивый цветок",
+        "correct": "beautiful flower",
+        "hint": "Adjective + noun",
+        "star": False
+      },
+      {
+        "type": "translation",
+        "text": "Translate: старый дом",
+        "correct": "old house",
+        "hint": "Opposite of new",
+        "star": False
+      },
+      {
+        "type": "translation",
+        "text": "Translate: счастливый мальчик",
+        "correct": "happy boy",
+        "hint": "Feeling good",
+        "star": False
+      },
+      {
+        "type": "translation",
+        "text": "Translate: высокое здание",
+        "correct": "tall building",
+        "hint": "Not short",
+        "star": False
+      },
+      {
+        "type": "translation",
+        "text": "Translate: холодная вода",
+        "correct": "cold water",
+        "hint": "Low temperature",
+        "star": False
+      },
+      {
+        "type": "choice",
+        "text": "Choose the correct adjective: The elephant is ___.",
+        "correct": "big",
+        "hint": "Large size",
+        "star": False,
+        "options": [
+          "small",
+          "big",
+          "thin",
+          "short"
+        ]
       },
       {
         "type": "choice",
         "text": "Choose the correct adjective: The baby is very ___.",
         "correct": "cute",
         "hint": "Lovely",
-        "star": false,
+        "star": False,
         "options": [
           "angry",
           "cute",
@@ -3844,7 +4803,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "Choose the correct adjective: This math problem is ___.",
         "correct": "difficult",
         "hint": "Not easy",
-        "star": false,
+        "star": False,
         "options": [
           "easy",
           "difficult",
@@ -3857,7 +4816,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "Choose the correct adjective: The soup tastes ___.",
         "correct": "salty",
         "hint": "Like salt",
-        "star": false,
+        "star": False,
         "options": [
           "sweet",
           "salty",
@@ -3870,7 +4829,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "Choose the correct adjective: He feels ___ after the exam.",
         "correct": "tired",
         "hint": "Need rest",
-        "star": false,
+        "star": False,
         "options": [
           "excited",
           "tired",
@@ -3883,70 +4842,70 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "Describe your best friend using three adjectives.",
         "correct": "kind, funny, smart",
         "hint": "Personality words",
-        "star": false
+        "star": False
       },
       {
         "type": "open",
         "text": "Write a sentence with the adjective 'delicious'.",
         "correct": "The pizza is delicious.",
         "hint": "About food",
-        "star": false
+        "star": False
       },
       {
         "type": "open",
         "text": "Write a sentence with the adjective 'noisy'.",
         "correct": "The city is noisy.",
         "hint": "Loud sound",
-        "star": false
+        "star": False
       },
       {
         "type": "open",
         "text": "Write a sentence with the adjective 'soft'.",
         "correct": "The pillow is soft.",
         "hint": "Opposite of hard",
-        "star": false
+        "star": False
       },
       {
         "type": "open",
         "text": "Write a sentence with the adjective 'brave'.",
         "correct": "The firefighter is brave.",
         "hint": "Not afraid",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "This is the ___ (big) cake I've ever seen.",
         "correct": "biggest",
         "hint": "Superlative form",
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "She is ___ (tall) than her brother.",
         "correct": "taller",
         "hint": "Comparative form",
-        "star": true
+        "star": True
       },
       {
         "type": "reorder",
         "text": "most / the / is / she / girl / intelligent",
         "correct": "She is the most intelligent girl.",
         "hint": "Superlative with 'most'",
-        "star": true
+        "star": True
       },
       {
         "type": "translation",
         "text": "Translate: самый высокий мальчик в классе",
         "correct": "the tallest boy in the class",
         "hint": "Superlative + group",
-        "star": true
+        "star": True
       },
       {
         "type": "choice",
         "text": "Choose the correct form: This is ___ movie I know.",
         "correct": "the funniest",
         "hint": "Superlative",
-        "star": true,
+        "star": True,
         "options": [
           "funnier",
           "the funniest",
@@ -3959,7 +4918,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "Choose the correct form: My car is ___ than yours.",
         "correct": "faster",
         "hint": "Comparative",
-        "star": true,
+        "star": True,
         "options": [
           "fast",
           "faster",
@@ -3972,133 +4931,133 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "Compare two animals using adjectives (e.g., elephant vs mouse).",
         "correct": "An elephant is bigger than a mouse.",
         "hint": "Use comparative form",
-        "star": true
+        "star": True
       },
       {
         "type": "open",
         "text": "Write a sentence using 'as...as' with an adjective.",
         "correct": "She is as tall as her mother.",
         "hint": "Equal comparison",
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "The weather is getting ___ (bad).",
         "correct": "worse",
         "hint": "Irregular comparative",
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "This is the ___ (good) day of my life.",
         "correct": "best",
         "hint": "Irregular superlative",
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "The weather is very ___ today. (hot)",
         "correct": "hot",
         "hint": "Temperature",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "She is a ___ woman. (beautiful)",
         "correct": "beautiful",
         "hint": "Appearance",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "This book is very ___. (interesting)",
         "correct": "interesting",
         "hint": "Not boring",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "My dog is ___. (friendly)",
         "correct": "friendly",
         "hint": "Kind",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "The coffee is too ___ to drink. (bitter)",
         "correct": "bitter",
         "hint": "Taste",
-        "star": false
+        "star": False
       },
       {
         "type": "reorder",
         "text": "a / big / red / car",
         "correct": "a big red car",
         "hint": "Opinion-size-color",
-        "star": false
+        "star": False
       },
       {
         "type": "reorder",
         "text": "old / wooden / a / chair",
         "correct": "an old wooden chair",
         "hint": "Age-material",
-        "star": false
+        "star": False
       },
       {
         "type": "reorder",
         "text": "new / my / phone / smart",
         "correct": "my new smart phone",
         "hint": "Possessive comes first",
-        "star": false
+        "star": False
       },
       {
         "type": "reorder",
         "text": "small / two / kittens / black",
         "correct": "two small black kittens",
         "hint": "Number-size-color",
-        "star": false
+        "star": False
       },
       {
         "type": "reorder",
         "text": "French / delicious / some / bread",
         "correct": "some delicious French bread",
         "hint": "Opinion-origin",
-        "star": false
+        "star": False
       },
       {
         "type": "translation",
         "text": "Высокое здание",
         "correct": "tall building",
         "hint": "Height",
-        "star": false
+        "star": False
       },
       {
         "type": "translation",
         "text": "Счастливый ребенок",
         "correct": "happy child",
         "hint": "Emotion",
-        "star": false
+        "star": False
       },
       {
         "type": "translation",
         "text": "Старый друг",
         "correct": "old friend",
         "hint": "Long acquaintance",
-        "star": false
+        "star": False
       },
       {
         "type": "translation",
         "text": "Трудный экзамен",
         "correct": "difficult exam",
         "hint": "Not easy",
-        "star": false
+        "star": False
       },
       {
         "type": "translation",
         "text": "Мягкая подушка",
         "correct": "soft pillow",
         "hint": "Texture",
-        "star": false
+        "star": False
       },
       {
         "type": "choice",
@@ -4111,7 +5070,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "narrow",
           "shallow"
         ],
-        "star": false
+        "star": False
       },
       {
         "type": "choice",
@@ -4124,7 +5083,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "light",
           "heavy"
         ],
-        "star": false
+        "star": False
       },
       {
         "type": "choice",
@@ -4137,7 +5096,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "smooth",
           "sharp"
         ],
-        "star": false
+        "star": False
       },
       {
         "type": "choice",
@@ -4150,56 +5109,56 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "fast",
           "wet"
         ],
-        "star": false
+        "star": False
       },
       {
         "type": "open",
         "text": "Describe your best friend using three adjectives.",
         "correct": "kind, funny, smart",
         "hint": "Any positive traits",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "This is the ___ movie I have ever seen. (bad)",
         "correct": "worst",
         "hint": "Superlative",
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "She is ___ than her sister. (tall)",
         "correct": "taller",
         "hint": "Comparative",
-        "star": true
+        "star": True
       },
       {
         "type": "reorder",
         "text": "most / the / singer / popular / this / is",
         "correct": "this is the most popular singer",
         "hint": "Superlative order",
-        "star": true
+        "star": True
       },
       {
         "type": "reorder",
         "text": "a / than / faster / car / is / bike",
         "correct": "a car is faster than a bike",
         "hint": "Comparative structure",
-        "star": true
+        "star": True
       },
       {
         "type": "translation",
         "text": "Самый умный студент",
         "correct": "the smartest student",
         "hint": "Superlative",
-        "star": true
+        "star": True
       },
       {
         "type": "translation",
         "text": "Менее опасный",
         "correct": "less dangerous",
         "hint": "Comparative with less",
-        "star": true
+        "star": True
       },
       {
         "type": "choice",
@@ -4212,7 +5171,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "most good",
           "better"
         ],
-        "star": true
+        "star": True
       },
       {
         "type": "choice",
@@ -4225,21 +5184,21 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "She is most intelligent than him.",
           "She is intelligent than him."
         ],
-        "star": true
+        "star": True
       },
       {
         "type": "open",
         "text": "Compare a cat and a dog using three comparative adjectives.",
         "correct": "Cats are smaller, quieter, and more independent than dogs.",
         "hint": "Use -er or more",
-        "star": true
+        "star": True
       },
       {
         "type": "open",
         "text": "Write a sentence with the adjective 'unforgettable' in superlative form.",
         "correct": "It was the most unforgettable trip of my life.",
         "hint": "Use 'the most'",
-        "star": true
+        "star": True
       }
     ]
   },
@@ -4273,8 +5232,186 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "answer": "Используйте do/does + наречие частотности: Do you often play football? Does she usually come on time?"
       }
     ],
-    "practice_tasks": [],
-        "star": true
+    "practice_tasks": [
+      {
+        "type": "fill_blank",
+        "text": "She ___ (go) to school every day.",
+        "correct": "goes",
+        "hint": "Добавьте -es к глаголу для he/she/it.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "They ___ (play) football on Sundays.",
+        "correct": "play",
+        "hint": "Для they используйте форму без окончания.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He ___ (watch) TV in the evening.",
+        "correct": "watches",
+        "hint": "После -ch добавьте -es.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "I ___ (like) coffee.",
+        "correct": "like",
+        "hint": "Для I используйте базовую форму.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The cat ___ (sleep) on the sofa.",
+        "correct": "sleeps",
+        "hint": "Добавьте -s для he/she/it.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "We ___ (study) English every Monday.",
+        "correct": "study",
+        "hint": "Для we глагол без окончания.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "My brother ___ (fix) cars.",
+        "correct": "fixes",
+        "hint": "После -x добавьте -es.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "You ___ (read) books every night.",
+        "correct": "read",
+        "hint": "Для you форма глагола без изменений.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "It ___ (rain) a lot in autumn.",
+        "correct": "rains",
+        "hint": "Добавьте -s для it.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The children ___ (play) in the park.",
+        "correct": "play",
+        "hint": "Для множественного числа глагол без окончания.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She ___ (wash) her car every Saturday.",
+        "correct": "washes",
+        "hint": "После -sh добавьте -es.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "Tom and Jerry ___ (run) fast.",
+        "correct": "run",
+        "hint": "Множественное число — без окончания.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "My mother ___ (cook) dinner.",
+        "correct": "cooks",
+        "hint": "Добавьте -s для he/she/it.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "I ___ (do) my homework at 5 pm.",
+        "correct": "do",
+        "hint": "Для I используйте do.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He ___ (go) to the gym twice a week.",
+        "correct": "goes",
+        "hint": "Добавьте -es к go.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "We ___ (have) breakfast at 7 am.",
+        "correct": "have",
+        "hint": "Для we используйте have.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She ___ (teach) math at school.",
+        "correct": "teaches",
+        "hint": "После -ch добавьте -es.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The dog ___ (bark) loudly.",
+        "correct": "barks",
+        "hint": "Добавьте -s для it.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "They ___ (drink) milk every morning.",
+        "correct": "drink",
+        "hint": "Для they без окончания.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "My friend ___ (fly) to London every year.",
+        "correct": "flies",
+        "hint": "Y меняется на ies.",
+        "star": False
+      },
+      {
+        "type": "reorder",
+        "text": "Составьте предложение: goes / to / she / school / every / day",
+        "correct": "She goes to school every day.",
+        "hint": "Начните с подлежащего.",
+        "star": True
+      },
+      {
+        "type": "reorder",
+        "text": "Составьте предложение: play / they / football / on / Sundays",
+        "correct": "They play football on Sundays.",
+        "hint": "Подлежащее + глагол + остальное.",
+        "star": True
+      },
+      {
+        "type": "translation",
+        "text": "Переведите: Он читает книги каждый вечер.",
+        "correct": "He reads books every evening.",
+        "hint": "Не забудьте -s к глаголу.",
+        "star": True
+      },
+      {
+        "type": "translation",
+        "text": "Переведите: Мы не едим мясо по понедельникам.",
+        "correct": "We do not eat meat on Mondays.",
+        "hint": "Используйте do not для отрицания.",
+        "star": True
+      },
+      {
+        "type": "choice",
+        "text": "She ___ to music every day.",
+        "correct": "listens",
+        "hint": "Для he/she/it добавьте -s.",
+        "options": [
+          "listen",
+          "listens",
+          "listening"
+        ],
+        "star": True
       },
       {
         "type": "choice",
@@ -4286,35 +5423,35 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "drink",
           "drinking"
         ],
-        "star": true
+        "star": True
       },
       {
         "type": "open",
         "text": "Напишите утверждение: I (like) apples.",
         "correct": "I like apples.",
         "hint": "Просто используйте like.",
-        "star": true
+        "star": True
       },
       {
         "type": "open",
         "text": "Напишите отрицание: She (work) on Sundays.",
         "correct": "She does not work on Sundays.",
         "hint": "Используйте does not + глагол.",
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "He ___ (study) hard for exams.",
         "correct": "studies",
         "hint": "Y меняется на ies.",
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "I ___ (not / like) cold weather.",
         "correct": "do not like",
         "hint": "Используйте do not для I.",
-        "star": true
+        "star": True
       }
     ]
   },
@@ -4352,14 +5489,166 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "answer": "Нет, для постоянного места жительства используйте Present Simple: I live in London. Present Continuous показывает временную ситуацию."
       }
     ],
-    "practice_tasks": []
+    "practice_tasks": [
+      {
+        "type": "fill_blank",
+        "text": "She ___ (read) a book right now.",
+        "correct": "is reading",
+        "hint": "глагол read в форме Present Continuous",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "They ___ (play) football at the moment.",
+        "correct": "are playing",
+        "hint": "множественное число, глагол play",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "I ___ (write) an email now.",
+        "correct": "am writing",
+        "hint": "я пишу прямо сейчас",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He ___ (watch) TV at the moment.",
+        "correct": "is watching",
+        "hint": "он смотрит телевизор",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "We ___ (have) dinner right now.",
+        "correct": "are having",
+        "hint": "мы ужинаем",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The cat ___ (sleep) on the sofa now.",
+        "correct": "is sleeping",
+        "hint": "кошка спит",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "You ___ (listen) to music at the moment.",
+        "correct": "are listening",
+        "hint": "ты слушаешь музыку",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "My mother ___ (cook) in the kitchen now.",
+        "correct": "is cooking",
+        "hint": "мама готовит",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The children ___ (play) in the garden right now.",
+        "correct": "are playing",
+        "hint": "дети играют",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "I ___ (study) for my exam at the moment.",
+        "correct": "am studying",
+        "hint": "я учусь",
+        "star": False
+      },
+      {
+        "type": "reorder",
+        "text": "Составьте предложение: is / she / a / now / reading / book",
+        "correct": "She is reading a book now.",
+        "hint": "порядок: подлежащее + is + глагол-ing + остальное",
+        "star": False
+      },
+      {
+        "type": "reorder",
+        "text": "Составьте предложение: are / they / football / playing / at the moment",
+        "correct": "They are playing football at the moment.",
+        "hint": "множественное число, are",
+        "star": False
+      },
+      {
+        "type": "reorder",
+        "text": "Составьте предложение: am / I / an / writing / email / now",
+        "correct": "I am writing an email now.",
+        "hint": "я пишу",
+        "star": False
+      },
+      {
+        "type": "reorder",
+        "text": "Составьте предложение: is / he / TV / watching / at the moment",
+        "correct": "He is watching TV at the moment.",
+        "hint": "он смотрит",
+        "star": False
+      },
+      {
+        "type": "reorder",
+        "text": "Составьте предложение: are / we / dinner / having / right now",
+        "correct": "We are having dinner right now.",
+        "hint": "мы ужинаем",
+        "star": False
+      },
+      {
+        "type": "translation",
+        "text": "Переведите: Она сейчас читает книгу.",
+        "correct": "She is reading a book now.",
+        "hint": "Present Continuous",
+        "star": False
+      },
+      {
+        "type": "translation",
+        "text": "Переведите: Они играют в футбол в данный момент.",
+        "correct": "They are playing football at the moment.",
+        "hint": "множественное число",
+        "star": False
+      },
+      {
+        "type": "translation",
+        "text": "Переведите: Я пишу письмо прямо сейчас.",
+        "correct": "I am writing a letter right now.",
+        "hint": "am + глагол-ing",
+        "star": False
+      },
+      {
+        "type": "translation",
+        "text": "Переведите: Он смотрит телевизор сейчас.",
+        "correct": "He is watching TV now.",
+        "hint": "is watching",
+        "star": False
+      },
+      {
+        "type": "translation",
+        "text": "Переведите: Мы ужинаем в данный момент.",
+        "correct": "We are having dinner at the moment.",
+        "hint": "are having",
+        "star": False
+      },
+      {
+        "type": "choice",
+        "text": "She ___ a book right now.",
+        "correct": "is reading",
+        "hint": "выберите правильную форму",
+        "star": True,
+        "options": [
+          "is reading",
+          "reads",
+          "read",
+          "are reading"
+        ]
       },
       {
         "type": "choice",
         "text": "They ___ football at the moment.",
         "correct": "are playing",
         "hint": "множественное число",
-        "star": true,
+        "star": True,
         "options": [
           "is playing",
           "are playing",
@@ -4372,7 +5661,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "I ___ an email now.",
         "correct": "am writing",
         "hint": "я пишу",
-        "star": true,
+        "star": True,
         "options": [
           "am writing",
           "write",
@@ -4385,7 +5674,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "He ___ TV at the moment.",
         "correct": "is watching",
         "hint": "он смотрит",
-        "star": true,
+        "star": True,
         "options": [
           "is watching",
           "watch",
@@ -4398,7 +5687,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "We ___ dinner right now.",
         "correct": "are having",
         "hint": "мы ужинаем",
-        "star": true,
+        "star": True,
         "options": [
           "is having",
           "are having",
@@ -4411,224 +5700,224 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "The dog ___ (bark) at the stranger now.",
         "correct": "is barking",
         "hint": "собака лает",
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "They ___ (build) a new house at the moment.",
         "correct": "are building",
         "hint": "они строят",
-        "star": true
+        "star": True
       },
       {
         "type": "reorder",
         "text": "Составьте предложение: now / the / is / sun / shining",
         "correct": "The sun is shining now.",
         "hint": "солнце светит",
-        "star": true
+        "star": True
       },
       {
         "type": "translation",
         "text": "Переведите: Птицы поют в саду прямо сейчас.",
         "correct": "The birds are singing in the garden right now.",
         "hint": "множественное число, are singing",
-        "star": true
+        "star": True
       },
       {
         "type": "open",
         "text": "Опишите, что вы делаете прямо сейчас (3-4 предложения, Present Continuous).",
         "correct": "Пример: I am sitting at my desk. I am doing my homework. My cat is sleeping next to me.",
         "hint": "используйте am/is/are + глагол-ing",
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "She ___ (read) a book right now.",
         "correct": "is reading",
         "hint": "глагол to be + ing",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "They ___ (play) football at the moment.",
         "correct": "are playing",
         "hint": "множественное число + ing",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "I ___ (write) an email now.",
         "correct": "am writing",
         "hint": "я + am + ing",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "He ___ (watch) TV at the moment.",
         "correct": "is watching",
         "hint": "он + is + ing",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "We ___ (have) dinner right now.",
         "correct": "are having",
         "hint": "мы + are + ing",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "The cat ___ (sleep) on the sofa now.",
         "correct": "is sleeping",
         "hint": "животное одно — is",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "You ___ (listen) to music at the moment.",
         "correct": "are listening",
         "hint": "ты/вы + are",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "My parents ___ (work) in the garden now.",
         "correct": "are working",
         "hint": "родители — they",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "The dog ___ (bark) loudly right now.",
         "correct": "is barking",
         "hint": "собака одна — is",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "I ___ (study) for my exam at the moment.",
         "correct": "am studying",
         "hint": "я + am + ing",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "She ___ (not, dance) now.",
         "correct": "is not dancing",
         "hint": "отрицание: is not + ing",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "They ___ (not, swim) at the moment.",
         "correct": "are not swimming",
         "hint": "отрицание: are not + ing",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "He ___ (not, eat) lunch right now.",
         "correct": "is not eating",
         "hint": "отрицание: is not + ing",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "We ___ (not, travel) now.",
         "correct": "are not travelling",
         "hint": "отрицание: are not + ing",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "I ___ (not, sleep) at the moment.",
         "correct": "am not sleeping",
         "hint": "отрицание: am not + ing",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "___ she ___ (cook) dinner now?",
         "correct": "Is she cooking",
         "hint": "вопрос: Is + подлежащее + ing",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "___ they ___ (run) in the park at the moment?",
         "correct": "Are they running",
         "hint": "вопрос: Are + подлежащее + ing",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "___ he ___ (play) the guitar now?",
         "correct": "Is he playing",
         "hint": "вопрос: Is + he + ing",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "___ you ___ (do) your homework right now?",
         "correct": "Are you doing",
         "hint": "вопрос: Are + you + ing",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "___ it ___ (rain) outside at the moment?",
         "correct": "Is it raining",
         "hint": "вопрос: Is + it + ing",
-        "star": false
+        "star": False
       },
       {
         "type": "reorder",
         "text": "now / is / she / a song / singing",
         "correct": "She is singing a song now",
         "hint": "Порядок: подлежащее + is + ing + дополнение + now",
-        "star": true
+        "star": True
       },
       {
         "type": "reorder",
         "text": "playing / they / are / at the moment / chess",
         "correct": "They are playing chess at the moment",
         "hint": "Порядок: They + are + ing + ...",
-        "star": true
+        "star": True
       },
       {
         "type": "reorder",
         "text": "not / I / am / now / sleeping",
         "correct": "I am not sleeping now",
         "hint": "Отрицание: I + am + not + ing",
-        "star": true
+        "star": True
       },
       {
         "type": "reorder",
         "text": "he / is / what / doing / now?",
         "correct": "What is he doing now?",
         "hint": "Вопрос: What + is + he + ing",
-        "star": true
+        "star": True
       },
       {
         "type": "translation",
         "text": "Она сейчас читает газету.",
         "correct": "She is reading a newspaper now",
         "hint": "Present Continuous для действия прямо сейчас",
-        "star": true
+        "star": True
       },
       {
         "type": "translation",
         "text": "Мы не играем в теннис в данный момент.",
         "correct": "We are not playing tennis at the moment",
         "hint": "Отрицание: are not + ing",
-        "star": true
+        "star": True
       },
       {
         "type": "translation",
         "text": "Что ты сейчас делаешь?",
         "correct": "What are you doing now?",
         "hint": "Вопрос с what",
-        "star": true
+        "star": True
       },
       {
         "type": "choice",
@@ -4641,7 +5930,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "am watching",
           "watch"
         ],
-        "star": true
+        "star": True
       },
       {
         "type": "choice",
@@ -4654,14 +5943,14 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "Does she write",
           "She is writing"
         ],
-        "star": true
+        "star": True
       },
       {
         "type": "open",
         "text": "Опишите, что делает ваш друг прямо сейчас (3 предложения в Present Continuous).",
         "correct": "My friend is reading a book. He is sitting on the sofa. He is drinking coffee.",
         "hint": "Используйте is + ing для каждого действия",
-        "star": true
+        "star": True
       }
     ]
   },
@@ -4683,8 +5972,89 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "answer": "Задайте себе вопрос: действие происходит прямо сейчас или это общая истина / привычка?"
       }
     ],
-    "practice_tasks": [],
-        "star": false
+    "practice_tasks": [
+      {
+        "type": "fill_blank",
+        "text": "She usually ___ (walk) to school.",
+        "correct": "walks",
+        "hint": "Present Simple для регулярных действий",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "Listen! The baby ___ (cry).",
+        "correct": "is crying",
+        "hint": "Present Continuous для действия в момент речи",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "I ___ (not/like) coffee.",
+        "correct": "don't like",
+        "hint": "Present Simple с отрицанием",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "They ___ (play) football right now.",
+        "correct": "are playing",
+        "hint": "Present Continuous с 'right now'",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He ___ (go) to the gym every Monday.",
+        "correct": "goes",
+        "hint": "Present Simple с 'every Monday'",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "Look! It ___ (rain) outside.",
+        "correct": "is raining",
+        "hint": "Present Continuous с 'Look!'",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "We ___ (have) dinner at 7 pm every day.",
+        "correct": "have",
+        "hint": "Present Simple для расписания",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She ___ (read) a book at the moment.",
+        "correct": "is reading",
+        "hint": "Present Continuous с 'at the moment'",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "My parents ___ (work) in a hospital.",
+        "correct": "work",
+        "hint": "Present Simple для фактов",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The cat ___ (sleep) on the sofa now.",
+        "correct": "is sleeping",
+        "hint": "Present Continuous с 'now'",
+        "star": False
+      },
+      {
+        "type": "choice",
+        "text": "I ___ to music every evening.",
+        "correct": "listen",
+        "hint": "Выберите правильную форму",
+        "options": [
+          "listen",
+          "am listening",
+          "listens",
+          "listening"
+        ],
+        "star": False
       },
       {
         "type": "choice",
@@ -4697,7 +6067,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "watches",
           "watching"
         ],
-        "star": false
+        "star": False
       },
       {
         "type": "choice",
@@ -4710,7 +6080,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "have",
           "having"
         ],
-        "star": false
+        "star": False
       },
       {
         "type": "choice",
@@ -4723,7 +6093,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "goes",
           "going"
         ],
-        "star": false
+        "star": False
       },
       {
         "type": "choice",
@@ -4736,56 +6106,56 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "speak",
           "speaking"
         ],
-        "star": false
+        "star": False
       },
       {
         "type": "reorder",
         "text": "she / every / reads / day / books",
         "correct": "She reads books every day.",
         "hint": "Порядок слов в Present Simple",
-        "star": false
+        "star": False
       },
       {
         "type": "reorder",
         "text": "they / now / are / playing / tennis",
         "correct": "They are playing tennis now.",
         "hint": "Порядок слов в Present Continuous",
-        "star": false
+        "star": False
       },
       {
         "type": "reorder",
         "text": "he / does / not / like / pizza",
         "correct": "He does not like pizza.",
         "hint": "Отрицание в Present Simple",
-        "star": false
+        "star": False
       },
       {
         "type": "reorder",
         "text": "i / am / a / writing / letter / at / moment / the",
         "correct": "I am writing a letter at the moment.",
         "hint": "Порядок слов с обстоятельством времени",
-        "star": false
+        "star": False
       },
       {
         "type": "translation",
         "text": "Она сейчас готовит ужин.",
         "correct": "She is cooking dinner now.",
         "hint": "Present Continuous для текущего действия",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "The train ___ (leave) at 6 pm every day.",
         "correct": "leaves",
         "hint": "Расписание поездов (Present Simple)",
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "I ___ (think) about moving to a new city these days.",
         "correct": "am thinking",
         "hint": "Действие в процессе (эти дни)",
-        "star": true
+        "star": True
       },
       {
         "type": "choice",
@@ -4798,7 +6168,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "taste",
           "tasting"
         ],
-        "star": true
+        "star": True
       },
       {
         "type": "choice",
@@ -4811,77 +6181,77 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "have",
           "having"
         ],
-        "star": true
+        "star": True
       },
       {
         "type": "reorder",
         "text": "always / he / is / late / for / class",
         "correct": "He is always late for class.",
         "hint": "Наречие частотности с глаголом 'to be'",
-        "star": true
+        "star": True
       },
       {
         "type": "reorder",
         "text": "why / you / are / laughing / now",
         "correct": "Why are you laughing now?",
         "hint": "Вопрос в Present Continuous",
-        "star": true
+        "star": True
       },
       {
         "type": "translation",
         "text": "Я вижу, что ты сейчас делаешь.",
         "correct": "I see what you are doing now.",
         "hint": "Глагол 'see' в Present Simple, второе действие в Continuous",
-        "star": true
+        "star": True
       },
       {
         "type": "translation",
         "text": "Он обычно пьет чай, но сегодня пьет кофе.",
         "correct": "He usually drinks tea, but today he is drinking coffee.",
         "hint": "Сравнение двух времен",
-        "star": true
+        "star": True
       },
       {
         "type": "open",
         "text": "Опишите свой типичный день (3 предложения) и что вы делаете прямо сейчас (1 предложение).",
         "correct": "I wake up at 7 am. I have breakfast. I go to school. Right now I am doing my homework.",
         "hint": "Используйте оба времени",
-        "star": true
+        "star": True
       },
       {
         "type": "open",
         "text": "Составьте диалог из 4 реплик: один человек спрашивает о хобби, другой отвечает, используя Present Simple и Present Continuous.",
         "correct": "A: What do you do in your free time? B: I usually play guitar. A: Are you playing now? B: Yes, I am learning a new song.",
         "hint": "Чередуйте времена",
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "She usually ___ (walk) to school.",
         "correct": "walks",
         "hint": "Present Simple для регулярных действий",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "Listen! The children ___ (play) in the garden.",
         "correct": "are playing",
         "hint": "Present Continuous для действий, происходящих сейчас",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "I ___ (not/like) coffee.",
         "correct": "don't like",
         "hint": "Отрицание в Present Simple",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "He ___ (read) a book at the moment.",
         "correct": "is reading",
         "hint": "Present Continuous с 'at the moment'",
-        "star": false
+        "star": False
       },
       {
         "type": "choice",
@@ -4894,7 +6264,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "plays",
           "is playing"
         ],
-        "star": false
+        "star": False
       },
       {
         "type": "choice",
@@ -4907,63 +6277,63 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "have",
           "are having"
         ],
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "My parents ___ (work) in a hospital.",
         "correct": "work",
         "hint": "Факт или постоянная работа",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "Look! It ___ (snow) outside.",
         "correct": "is snowing",
         "hint": "Present Continuous для описания того, что видим сейчас",
-        "star": false
+        "star": False
       },
       {
         "type": "reorder",
         "text": "to / every / goes / she / school / day",
         "correct": "She goes to school every day.",
         "hint": "Порядок слов в Present Simple",
-        "star": false
+        "star": False
       },
       {
         "type": "reorder",
         "text": "now / they / are / what / doing ?",
         "correct": "What are they doing now?",
         "hint": "Вопрос в Present Continuous",
-        "star": false
+        "star": False
       },
       {
         "type": "translation",
         "text": "Я сейчас обедаю.",
         "correct": "I am having lunch now.",
         "hint": "Перевод с Present Continuous",
-        "star": false
+        "star": False
       },
       {
         "type": "translation",
         "text": "Он никогда не опаздывает.",
         "correct": "He never arrives late.",
         "hint": "Наречия частотности в Present Simple",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "We ___ (not/watch) TV at the moment.",
         "correct": "are not watching",
         "hint": "Отрицание в Present Continuous",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "___ she ___ (speak) French?",
         "correct": "Does she speak",
         "hint": "Вопрос в Present Simple",
-        "star": false
+        "star": False
       },
       {
         "type": "choice",
@@ -4976,7 +6346,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "leave",
           "are leaving"
         ],
-        "star": false
+        "star": False
       },
       {
         "type": "choice",
@@ -4989,49 +6359,49 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "sleep",
           "are sleeping"
         ],
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "I ___ (think) this is a good idea.",
         "correct": "think",
         "hint": "Глагол состояния (stative verb) в Present Simple",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "She ___ (have) a party next Saturday.",
         "correct": "is having",
         "hint": "Запланированное будущее действие (Present Continuous)",
-        "star": false
+        "star": False
       },
       {
         "type": "reorder",
         "text": "usually / up / gets / he / early",
         "correct": "He usually gets up early.",
         "hint": "Порядок наречий частотности",
-        "star": false
+        "star": False
       },
       {
         "type": "translation",
         "text": "Они сейчас играют в теннис.",
         "correct": "They are playing tennis now.",
         "hint": "Present Continuous",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "Water ___ (boil) at 100 degrees Celsius.",
         "correct": "boils",
         "hint": "Научный факт (Present Simple)",
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "I ___ (see) the doctor tomorrow at 10.",
         "correct": "am seeing",
         "hint": "Личная договоренность (Present Continuous для будущего)",
-        "star": true
+        "star": True
       },
       {
         "type": "choice",
@@ -5044,35 +6414,35 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "taste",
           "are tasting"
         ],
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "Why ___ you ___ (smell) the milk? Is it off?",
         "correct": "are you smelling",
         "hint": "Активное действие (нюхать сейчас)",
-        "star": true
+        "star": True
       },
       {
         "type": "reorder",
         "text": "always / my / is / sister / losing / keys / her",
         "correct": "My sister is always losing her keys.",
         "hint": "Present Continuous для раздражения (always)",
-        "star": true
+        "star": True
       },
       {
         "type": "translation",
         "text": "Он постоянно жалуется!",
         "correct": "He is always complaining!",
         "hint": "Present Continuous с always для выражения недовольства",
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "The match ___ (start) at 8 pm tonight.",
         "correct": "starts",
         "hint": "Расписание (Present Simple для будущего)",
-        "star": true
+        "star": True
       },
       {
         "type": "choice",
@@ -5085,21 +6455,21 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "thought",
           "have thought"
         ],
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "He ___ (have) a lot of money, but he ___ (not/have) a car.",
         "correct": "has, doesn't have",
         "hint": "Глагол have в разных значениях (обладание vs действие)",
-        "star": true
+        "star": True
       },
       {
         "type": "open",
         "text": "Describe your daily routine using Present Simple and what you are doing right now using Present Continuous.",
         "correct": "Пример: I usually wake up at 7 am. Right now, I am answering this question.",
         "hint": "Сочетание двух времен",
-        "star": true
+        "star": True
       }
     ]
   },
@@ -5121,8 +6491,87 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "answer": "Was для единственного числа (кроме you), were для множественного и you."
       }
     ],
-    "practice_tasks": [],
-        "star": false
+    "practice_tasks": [
+      {
+        "type": "fill_blank",
+        "text": "She ___ at home yesterday.",
+        "correct": "was",
+        "hint": "Для единственного числа",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "They ___ in the park last Sunday.",
+        "correct": "were",
+        "hint": "Для множественного числа",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "I ___ very tired after the trip.",
+        "correct": "was",
+        "hint": "Для 'I'",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "We ___ happy to see you.",
+        "correct": "were",
+        "hint": "Для 'we'",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He ___ a good student.",
+        "correct": "was",
+        "hint": "Для 'he'",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The books ___ on the table.",
+        "correct": "were",
+        "hint": "Множественное число",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "It ___ cold yesterday.",
+        "correct": "was",
+        "hint": "Для 'it'",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "You ___ late for the meeting.",
+        "correct": "were",
+        "hint": "Для 'you'",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "My mother ___ a teacher.",
+        "correct": "was",
+        "hint": "Единственное число",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The children ___ in the garden.",
+        "correct": "were",
+        "hint": "Множественное число",
+        "star": False
+      },
+      {
+        "type": "choice",
+        "text": "I ___ at school yesterday.",
+        "correct": "was",
+        "hint": "Выберите правильную форму",
+        "options": [
+          "was",
+          "were"
+        ],
+        "star": False
       },
       {
         "type": "choice",
@@ -5133,7 +6582,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "was",
           "were"
         ],
-        "star": false
+        "star": False
       },
       {
         "type": "choice",
@@ -5144,7 +6593,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "was",
           "were"
         ],
-        "star": false
+        "star": False
       },
       {
         "type": "choice",
@@ -5155,7 +6604,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "was",
           "were"
         ],
-        "star": false
+        "star": False
       },
       {
         "type": "choice",
@@ -5166,70 +6615,70 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "was",
           "were"
         ],
-        "star": false
+        "star": False
       },
       {
         "type": "translation",
         "text": "Они были в парке.",
         "correct": "They were in the park.",
         "hint": "Переведите на английский",
-        "star": false
+        "star": False
       },
       {
         "type": "translation",
         "text": "Я был дома.",
         "correct": "I was at home.",
         "hint": "Переведите на английский",
-        "star": false
+        "star": False
       },
       {
         "type": "translation",
         "text": "Она была счастлива.",
         "correct": "She was happy.",
         "hint": "Переведите на английский",
-        "star": false
+        "star": False
       },
       {
         "type": "translation",
         "text": "Мы были студентами.",
         "correct": "We were students.",
         "hint": "Переведите на английский",
-        "star": false
+        "star": False
       },
       {
         "type": "translation",
         "text": "Он был учителем.",
         "correct": "He was a teacher.",
         "hint": "Переведите на английский",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "___ you at the party last night?",
         "correct": "Were",
         "hint": "Вопрос с 'you'",
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "She ___ not at work yesterday.",
         "correct": "was",
         "hint": "Отрицательная форма",
-        "star": true
+        "star": True
       },
       {
         "type": "reorder",
         "text": "was / she / yesterday / where ?",
         "correct": "Where was she yesterday?",
         "hint": "Составьте вопрос",
-        "star": true
+        "star": True
       },
       {
         "type": "reorder",
         "text": "were / they / not / at home",
         "correct": "They were not at home.",
         "hint": "Составьте предложение",
-        "star": true
+        "star": True
       },
       {
         "type": "choice",
@@ -5240,7 +6689,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "was",
           "were"
         ],
-        "star": true
+        "star": True
       },
       {
         "type": "choice",
@@ -5251,112 +6700,112 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "was",
           "were"
         ],
-        "star": true
+        "star": True
       },
       {
         "type": "translation",
         "text": "Вчера было холодно.",
         "correct": "It was cold yesterday.",
         "hint": "Безличное предложение",
-        "star": true
+        "star": True
       },
       {
         "type": "translation",
         "text": "Где они были вчера?",
         "correct": "Where were they yesterday?",
         "hint": "Вопросительное предложение",
-        "star": true
+        "star": True
       },
       {
         "type": "open",
         "text": "Напишите предложение о себе в прошедшем времени с глаголом was/were.",
         "correct": "I was at the library yesterday.",
         "hint": "Пример: I was...",
-        "star": true
+        "star": True
       },
       {
         "type": "open",
         "text": "Составьте вопрос с was/were о погоде вчера.",
         "correct": "Was it sunny yesterday?",
         "hint": "Пример: Was it...?",
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "I ___ at home yesterday.",
         "correct": "was",
         "hint": "Единственное число, 1-е лицо",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "They ___ in the park last Sunday.",
         "correct": "were",
         "hint": "Множественное число",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "She ___ very happy yesterday.",
         "correct": "was",
         "hint": "Единственное число, 3-е лицо",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "We ___ at school two hours ago.",
         "correct": "were",
         "hint": "Множественное число",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "He ___ a doctor in 2010.",
         "correct": "was",
         "hint": "Единственное число, 3-е лицо",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "The cats ___ on the sofa.",
         "correct": "were",
         "hint": "Множественное число",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "I ___ not tired after the walk.",
         "correct": "was",
         "hint": "Отрицание, единственное число",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "You ___ very kind to me.",
         "correct": "were",
         "hint": "Единственное и множественное число для you",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "It ___ a sunny day.",
         "correct": "was",
         "hint": "Неодушевлённое, единственное число",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "My parents ___ at home last night.",
         "correct": "were",
         "hint": "Множественное число",
-        "star": false
+        "star": False
       },
       {
         "type": "choice",
         "text": "She ___ at the party.",
         "correct": "was",
         "hint": "Выберите правильную форму",
-        "star": false,
+        "star": False,
         "options": [
           "was",
           "were"
@@ -5367,7 +6816,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "We ___ late for the bus.",
         "correct": "were",
         "hint": "Выберите правильную форму",
-        "star": false,
+        "star": False,
         "options": [
           "was",
           "were"
@@ -5378,7 +6827,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "The book ___ on the table.",
         "correct": "was",
         "hint": "Выберите правильную форму",
-        "star": false,
+        "star": False,
         "options": [
           "was",
           "were"
@@ -5389,7 +6838,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "The children ___ in the garden.",
         "correct": "were",
         "hint": "Выберите правильную форму",
-        "star": false,
+        "star": False,
         "options": [
           "was",
           "were"
@@ -5400,7 +6849,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "I ___ very busy yesterday.",
         "correct": "was",
         "hint": "Выберите правильную форму",
-        "star": false,
+        "star": False,
         "options": [
           "was",
           "were"
@@ -5411,63 +6860,63 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "Они были в кино вчера.",
         "correct": "They were at the cinema yesterday.",
         "hint": "Используйте were",
-        "star": false
+        "star": False
       },
       {
         "type": "translation",
         "text": "Я был голоден.",
         "correct": "I was hungry.",
         "hint": "Используйте was",
-        "star": false
+        "star": False
       },
       {
         "type": "translation",
         "text": "Она не была в школе.",
         "correct": "She was not at school.",
         "hint": "Отрицательная форма",
-        "star": false
+        "star": False
       },
       {
         "type": "translation",
         "text": "Мы были друзьями.",
         "correct": "We were friends.",
         "hint": "Используйте were",
-        "star": false
+        "star": False
       },
       {
         "type": "reorder",
         "text": "he / was / at / home",
         "correct": "He was at home.",
         "hint": "Правильный порядок слов",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "___ you at the concert last night?",
         "correct": "Were",
         "hint": "Вопрос с you",
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "There ___ a lot of people in the street.",
         "correct": "were",
         "hint": "Оборот there were",
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "I wish I ___ there with you.",
         "correct": "were",
         "hint": "Сослагательное наклонение (I wish)",
-        "star": true
+        "star": True
       },
       {
         "type": "choice",
         "text": "If I ___ you, I would go.",
         "correct": "were",
         "hint": "Сослагательное наклонение",
-        "star": true,
+        "star": True,
         "options": [
           "was",
           "were"
@@ -5478,35 +6927,35 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "Neither he nor she ___ ready.",
         "correct": "was",
         "hint": "Согласование с ближайшим подлежащим",
-        "star": true
+        "star": True
       },
       {
         "type": "translation",
         "text": "В комнате было два стула.",
         "correct": "There were two chairs in the room.",
         "hint": "Оборот there were",
-        "star": true
+        "star": True
       },
       {
         "type": "reorder",
         "text": "not / they / were / happy",
         "correct": "They were not happy.",
         "hint": "Отрицательное предложение",
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "The news ___ very surprising.",
         "correct": "was",
         "hint": "News — неисчисляемое, единственное число",
-        "star": true
+        "star": True
       },
       {
         "type": "choice",
         "text": "Everyone in the team ___ excited.",
         "correct": "was",
         "hint": "Everyone — единственное число",
-        "star": true,
+        "star": True,
         "options": [
           "was",
           "were"
@@ -5517,7 +6966,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "Составьте вопрос с was/were к предложению: They were at the zoo.",
         "correct": "Were they at the zoo?",
         "hint": "Инверсия подлежащего и глагола",
-        "star": true
+        "star": True
       }
     ]
   },
@@ -5543,14 +6992,96 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "answer": "После t/d добавляется слог [ɪd], чтобы было легче произносить."
       }
     ],
-    "practice_tasks": []
+    "practice_tasks": [
+      {
+        "type": "fill_blank",
+        "text": "She ___ (play) tennis yesterday.",
+        "correct": "played",
+        "hint": "play + ed",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "They ___ (watch) a movie last night.",
+        "correct": "watched",
+        "hint": "watch + ed",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He ___ (study) for the exam.",
+        "correct": "studied",
+        "hint": "y → i + ed",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "I ___ (visit) my grandparents on Sunday.",
+        "correct": "visited",
+        "hint": "visit + ed",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "We ___ (dance) at the party.",
+        "correct": "danced",
+        "hint": "dance + d",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The cat ___ (jump) onto the table.",
+        "correct": "jumped",
+        "hint": "jump + ed",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "You ___ (clean) your room yesterday.",
+        "correct": "cleaned",
+        "hint": "clean + ed",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "My mother ___ (cook) dinner.",
+        "correct": "cooked",
+        "hint": "cook + ed",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "They ___ (talk) on the phone for an hour.",
+        "correct": "talked",
+        "hint": "talk + ed",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He ___ (stop) the car suddenly.",
+        "correct": "stopped",
+        "hint": "double p + ed",
+        "star": False
+      },
+      {
+        "type": "choice",
+        "text": "She ___ her homework last night.",
+        "correct": "finished",
+        "hint": "finish + ed",
+        "star": False,
+        "options": [
+          "finish",
+          "finished",
+          "finishes",
+          "finishing"
+        ]
       },
       {
         "type": "choice",
         "text": "We ___ to the park yesterday.",
         "correct": "walked",
         "hint": "walk + ed",
-        "star": false,
+        "star": False,
         "options": [
           "walk",
           "walked",
@@ -5563,7 +7094,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "He ___ a letter to his friend.",
         "correct": "mailed",
         "hint": "mail + ed",
-        "star": false,
+        "star": False,
         "options": [
           "mail",
           "mailed",
@@ -5576,7 +7107,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "They ___ the game last week.",
         "correct": "started",
         "hint": "start + ed",
-        "star": false,
+        "star": False,
         "options": [
           "start",
           "started",
@@ -5589,7 +7120,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "I ___ my keys this morning.",
         "correct": "dropped",
         "hint": "double p + ed",
-        "star": false,
+        "star": False,
         "options": [
           "drop",
           "dropped",
@@ -5602,56 +7133,56 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "yesterday / played / he / football",
         "correct": "He played football yesterday.",
         "hint": "Порядок: подлежащее + глагол + дополнение + время",
-        "star": false
+        "star": False
       },
       {
         "type": "reorder",
         "text": "watched / they / a film / last night",
         "correct": "They watched a film last night.",
         "hint": "Порядок: подлежащее + глагол + дополнение + время",
-        "star": false
+        "star": False
       },
       {
         "type": "reorder",
         "text": "she / her room / cleaned / in the morning",
         "correct": "She cleaned her room in the morning.",
         "hint": "Порядок: подлежащее + глагол + дополнение + время",
-        "star": false
+        "star": False
       },
       {
         "type": "reorder",
         "text": "we / pizza / ordered / for dinner",
         "correct": "We ordered pizza for dinner.",
         "hint": "Порядок: подлежащее + глагол + дополнение",
-        "star": false
+        "star": False
       },
       {
         "type": "translation",
         "text": "Он вчера слушал музыку.",
         "correct": "He listened to music yesterday.",
         "hint": "listen + ed",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "She ___ (try) to open the door.",
         "correct": "tried",
         "hint": "y → i + ed",
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "They ___ (plan) a trip to London.",
         "correct": "planned",
         "hint": "double n + ed",
-        "star": true
+        "star": True
       },
       {
         "type": "choice",
         "text": "He ___ his car yesterday.",
         "correct": "repaired",
         "hint": "repair + ed",
-        "star": true,
+        "star": True,
         "options": [
           "repair",
           "repaired",
@@ -5664,7 +7195,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "We ___ the flowers in the garden.",
         "correct": "watered",
         "hint": "water + ed",
-        "star": true,
+        "star": True,
         "options": [
           "water",
           "watered",
@@ -5677,252 +7208,252 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "the letter / she / carefully / typed",
         "correct": "She typed the letter carefully.",
         "hint": "Порядок: подлежащее + глагол + дополнение + наречие",
-        "star": true
+        "star": True
       },
       {
         "type": "reorder",
         "text": "last summer / they / in a small village / lived",
         "correct": "They lived in a small village last summer.",
         "hint": "Порядок: подлежащее + глагол + место + время",
-        "star": true
+        "star": True
       },
       {
         "type": "translation",
         "text": "Мы остановились в отеле.",
         "correct": "We stopped at a hotel.",
         "hint": "double p + ed",
-        "star": true
+        "star": True
       },
       {
         "type": "translation",
         "text": "Она изучала французский язык.",
         "correct": "She studied French.",
         "hint": "y → i + ed",
-        "star": true
+        "star": True
       },
       {
         "type": "open",
         "text": "Напиши предложение в Past Simple: I (help) my friend.",
         "correct": "I helped my friend.",
         "hint": "help + ed",
-        "star": true
+        "star": True
       },
       {
         "type": "open",
         "text": "Напиши предложение в Past Simple: They (carry) the boxes.",
         "correct": "They carried the boxes.",
         "hint": "y → i + ed",
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "She ___ (play) tennis yesterday.",
         "correct": "played",
         "hint": "play + ed",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "They ___ (visit) their grandparents last weekend.",
         "correct": "visited",
         "hint": "visit + ed",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "He ___ (study) for the exam all night.",
         "correct": "studied",
         "hint": "y → ied",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "I ___ (watch) a movie last night.",
         "correct": "watched",
         "hint": "watch + ed",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "We ___ (dance) at the party.",
         "correct": "danced",
         "hint": "dance + d",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "The cat ___ (jump) onto the sofa.",
         "correct": "jumped",
         "hint": "jump + ed",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "She ___ (cook) dinner for us.",
         "correct": "cooked",
         "hint": "cook + ed",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "They ___ (clean) the house yesterday.",
         "correct": "cleaned",
         "hint": "clean + ed",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "He ___ (stop) the car suddenly.",
         "correct": "stopped",
         "hint": "stop → pp + ed",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "I ___ (like) the new song.",
         "correct": "liked",
         "hint": "like + d",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "We ___ (plan) a trip to London.",
         "correct": "planned",
         "hint": "plan → nn + ed",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "She ___ (call) her friend yesterday.",
         "correct": "called",
         "hint": "call + ed",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "They ___ (arrive) late to the meeting.",
         "correct": "arrived",
         "hint": "arrive + d",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "He ___ (try) to open the door.",
         "correct": "tried",
         "hint": "y → ied",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "I ___ (help) my mom with the dishes.",
         "correct": "helped",
         "hint": "help + ed",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "We ___ (walk) in the park.",
         "correct": "walked",
         "hint": "walk + ed",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "She ___ (carry) the heavy box.",
         "correct": "carried",
         "hint": "y → ied",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "They ___ (start) the game at 5 pm.",
         "correct": "started",
         "hint": "start + ed",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "He ___ (listen) to music all evening.",
         "correct": "listened",
         "hint": "listen + ed",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "I ___ (finish) my homework quickly.",
         "correct": "finished",
         "hint": "finish + ed",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "She ___ (travel) to Japan last year.",
         "correct": "travelled",
         "hint": "travel → ll + ed (BrE)",
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "They ___ (prefer) tea over coffee.",
         "correct": "preferred",
         "hint": "prefer → rr + ed",
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "He ___ (drop) his phone on the floor.",
         "correct": "dropped",
         "hint": "drop → pp + ed",
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "I ___ (admit) my mistake.",
         "correct": "admitted",
         "hint": "admit → tt + ed",
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "We ___ (hurry) to catch the bus.",
         "correct": "hurried",
         "hint": "y → ied",
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "She ___ (marry) him in 2010.",
         "correct": "married",
         "hint": "y → ied",
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "They ___ (destroy) the old building.",
         "correct": "destroyed",
         "hint": "destroy + ed (y stays)",
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "He ___ (enjoy) the concert a lot.",
         "correct": "enjoyed",
         "hint": "enjoy + ed (y stays)",
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "I ___ (occur) to me later.",
         "correct": "occurred",
         "hint": "occur → rr + ed",
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "We ___ (label) the boxes carefully.",
         "correct": "labelled",
         "hint": "label → ll + ed (BrE)",
-        "star": true
+        "star": True
       }
     ]
   },
@@ -5944,14 +7475,166 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "answer": "Около 200, но для уровня A1 достаточно 30-40 самых частотных."
       }
     ],
-    "practice_tasks": []
+    "practice_tasks": [
+      {
+        "type": "fill_blank",
+        "text": "Yesterday, I ___ (go) to the park.",
+        "correct": "went",
+        "hint": "неправильный глагол go",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She ___ (buy) a new car last week.",
+        "correct": "bought",
+        "hint": "buy -> bought",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "They ___ (see) a movie last night.",
+        "correct": "saw",
+        "hint": "see -> saw",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He ___ (write) a letter to his friend.",
+        "correct": "wrote",
+        "hint": "write -> wrote",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "We ___ (eat) pizza for dinner.",
+        "correct": "ate",
+        "hint": "eat -> ate",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "I ___ (take) my umbrella because it was raining.",
+        "correct": "took",
+        "hint": "take -> took",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She ___ (make) a cake for my birthday.",
+        "correct": "made",
+        "hint": "make -> made",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He ___ (find) a wallet on the street.",
+        "correct": "found",
+        "hint": "find -> found",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "They ___ (drink) coffee this morning.",
+        "correct": "drank",
+        "hint": "drink -> drank",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "I ___ (sleep) very well last night.",
+        "correct": "slept",
+        "hint": "sleep -> slept",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "We ___ (swim) in the lake yesterday.",
+        "correct": "swam",
+        "hint": "swim -> swam",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He ___ (teach) English at school.",
+        "correct": "taught",
+        "hint": "teach -> taught",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She ___ (think) about the problem.",
+        "correct": "thought",
+        "hint": "think -> thought",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "I ___ (lose) my keys yesterday.",
+        "correct": "lost",
+        "hint": "lose -> lost",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "They ___ (fly) to Paris last summer.",
+        "correct": "flew",
+        "hint": "fly -> flew",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He ___ (break) his phone.",
+        "correct": "broke",
+        "hint": "break -> broke",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She ___ (wear) a red dress to the party.",
+        "correct": "wore",
+        "hint": "wear -> wore",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "We ___ (speak) to the manager.",
+        "correct": "spoke",
+        "hint": "speak -> spoke",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "I ___ (begin) my homework at 8 pm.",
+        "correct": "began",
+        "hint": "begin -> began",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "They ___ (sing) a beautiful song.",
+        "correct": "sang",
+        "hint": "sing -> sang",
+        "star": False
+      },
+      {
+        "type": "choice",
+        "text": "I ___ (see) a shooting star last night.",
+        "correct": "saw",
+        "hint": "see в прошедшем",
+        "star": True,
+        "options": [
+          "seen",
+          "saw",
+          "see",
+          "seed"
+        ]
       },
       {
         "type": "choice",
         "text": "She ___ (write) a poem for her mother.",
         "correct": "wrote",
         "hint": "write — неправильный глагол",
-        "star": true,
+        "star": True,
         "options": [
           "writed",
           "wrote",
@@ -5964,7 +7647,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "They ___ (go) to the museum yesterday.",
         "correct": "went",
         "hint": "go -> went",
-        "star": true,
+        "star": True,
         "options": [
           "goed",
           "went",
@@ -5977,7 +7660,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "He ___ (take) the train to work.",
         "correct": "took",
         "hint": "take -> took",
-        "star": true,
+        "star": True,
         "options": [
           "taked",
           "took",
@@ -5990,217 +7673,217 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "Составьте предложение: / yesterday / went / I / to the park",
         "correct": "I went to the park yesterday",
         "hint": "порядок слов в Past Simple",
-        "star": true
+        "star": True
       },
       {
         "type": "reorder",
         "text": "Составьте предложение: / she / a cake / made / for her friend",
         "correct": "She made a cake for her friend",
         "hint": "подлежащее + глагол + дополнение",
-        "star": true
+        "star": True
       },
       {
         "type": "translation",
         "text": "Переведите: Я купил новую книгу.",
         "correct": "I bought a new book",
         "hint": "buy -> bought",
-        "star": true
+        "star": True
       },
       {
         "type": "translation",
         "text": "Переведите: Они пили чай вчера.",
         "correct": "They drank tea yesterday",
         "hint": "drink -> drank",
-        "star": true
+        "star": True
       },
       {
         "type": "open",
         "text": "Напишите 3 предложения о том, что вы делали вчера, используя неправильные глаголы.",
         "correct": "Пример: I went to school. I ate lunch. I saw my friend.",
         "hint": "используйте went, ate, saw, took и т.д.",
-        "star": true
+        "star": True
       },
       {
         "type": "open",
         "text": "Исправьте ошибку: 'He goed to the store yesterday.'",
         "correct": "He went to the store yesterday.",
         "hint": "go — неправильный глагол",
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "Yesterday I ___ (go) to the park.",
         "correct": "went",
         "hint": "go — неправильный глагол, прошедшая форма",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "She ___ (buy) a new dress last week.",
         "correct": "bought",
         "hint": "buy → bought",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "We ___ (see) a great movie last night.",
         "correct": "saw",
         "hint": "see → saw",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "He ___ (take) his umbrella because it was raining.",
         "correct": "took",
         "hint": "take → took",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "They ___ (eat) all the cake at the party.",
         "correct": "ate",
         "hint": "eat → ate",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "I ___ (write) a letter to my grandmother.",
         "correct": "wrote",
         "hint": "write → wrote",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "My brother ___ (break) his favorite toy.",
         "correct": "broke",
         "hint": "break → broke",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "She ___ (sing) a beautiful song at the concert.",
         "correct": "sang",
         "hint": "sing → sang",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "We ___ (drink) coffee in the morning.",
         "correct": "drank",
         "hint": "drink → drank",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "He ___ (swim) in the lake yesterday.",
         "correct": "swam",
         "hint": "swim → swam",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "The children ___ (run) home after school.",
         "correct": "ran",
         "hint": "run → ran",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "I ___ (give) her a present for her birthday.",
         "correct": "gave",
         "hint": "give → gave",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "She ___ (speak) to the manager yesterday.",
         "correct": "spoke",
         "hint": "speak → spoke",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "We ___ (fly) to Paris last summer.",
         "correct": "flew",
         "hint": "fly → flew",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "He ___ (draw) a beautiful picture.",
         "correct": "drew",
         "hint": "draw → drew",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "They ___ (teach) us English last year.",
         "correct": "taught",
         "hint": "teach → taught",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "I ___ (think) about you all day.",
         "correct": "thought",
         "hint": "think → thought",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "She ___ (wear) a red dress to the party.",
         "correct": "wore",
         "hint": "wear → wore",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "We ___ (begin) the lesson at 9 o'clock.",
         "correct": "began",
         "hint": "begin → began",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "He ___ (find) his keys under the sofa.",
         "correct": "found",
         "hint": "find → found",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "She ___ (choose) a red dress for the party.",
         "correct": "chose",
         "hint": "choose → chose",
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "The wind ___ (blow) very hard last night.",
         "correct": "blew",
         "hint": "blow → blew",
-        "star": true
+        "star": True
       },
       {
         "type": "reorder",
         "text": "Составьте предложение: went / she / to the / store",
         "correct": "She went to the store.",
         "hint": "Порядок: подлежащее + глагол в прошедшем времени",
-        "star": true
+        "star": True
       },
       {
         "type": "translation",
         "text": "Переведите: Я купил новую книгу вчера.",
         "correct": "I bought a new book yesterday.",
         "hint": "buy → bought",
-        "star": true
+        "star": True
       },
       {
         "type": "choice",
         "text": "He ___ (drive) to work yesterday.",
         "correct": "drove",
         "hint": "drive → drove",
-        "star": true,
+        "star": True,
         "options": [
           "drived",
           "drove",
@@ -6213,7 +7896,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "We ___ (leave) the house at 8 am.",
         "correct": "left",
         "hint": "leave → left",
-        "star": true,
+        "star": True,
         "options": [
           "leaved",
           "left",
@@ -6226,28 +7909,28 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "She ___ (hide) the gift under the bed.",
         "correct": "hid",
         "hint": "hide → hid",
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "He ___ (throw) the ball to his friend.",
         "correct": "threw",
         "hint": "throw → threw",
-        "star": true
+        "star": True
       },
       {
         "type": "translation",
         "text": "Переведите: Мы видели интересный фильм вчера.",
         "correct": "We saw an interesting movie yesterday.",
         "hint": "see → saw",
-        "star": true
+        "star": True
       },
       {
         "type": "open",
         "text": "Напишите 3 предложения о том, что вы делали вчера, используя неправильные глаголы.",
         "correct": "Пример: I went to the park. I ate a sandwich. I saw my friend.",
         "hint": "Используйте went, ate, saw, bought, etc.",
-        "star": true
+        "star": True
       }
     ]
   },
@@ -6277,9 +7960,410 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "answer": "Going to – для планов и предсказаний по фактам (I am going to study – я запланировал). Will – для спонтанных решений (I'll help you – я помогу прямо сейчас, не планировал)."
       }
     ],
-    "practice_tasks": [],
+    "practice_tasks": [
+      {
+        "type": "fill_blank",
+        "text": "I ___ (visit) my grandmother next weekend.",
+        "correct": "am going to visit",
+        "hint": "Используйте конструкцию to be going to + глагол",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She ___ (buy) a new car tomorrow.",
+        "correct": "is going to buy",
+        "hint": "Не забудьте поставить глагол to be в нужную форму",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "They ___ (have) a party on Saturday.",
+        "correct": "are going to have",
+        "hint": "Для множественного числа используем are",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He ___ (not/come) to the meeting.",
+        "correct": "is not going to come",
+        "hint": "Отрицание: is not going to",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "We ___ (watch) a film tonight.",
+        "correct": "are going to watch",
+        "hint": "Планы на ближайшее будущее",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "It ___ (rain) soon. Look at those clouds!",
+        "correct": "is going to rain",
+        "hint": "Предсказание по признакам",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "You ___ (be) late if you don't hurry.",
+        "correct": "are going to be",
+        "hint": "Предсказание на основе текущей ситуации",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "My parents ___ (travel) to Italy next month.",
+        "correct": "are going to travel",
+        "hint": "Планы на будущее",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "I ___ (not/eat) junk food anymore.",
+        "correct": "am not going to eat",
+        "hint": "Отрицательное намерение",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "___ you ___ (help) me with this task?",
+        "correct": "Are you going to help",
+        "hint": "Вопрос с going to",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She ___ (study) for the exam all evening.",
+        "correct": "is going to study",
+        "hint": "Запланированное действие",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The bus ___ (leave) in five minutes.",
+        "correct": "is going to leave",
+        "hint": "Предсказание по расписанию",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "We ___ (not/stay) at a hotel; we'll camp.",
+        "correct": "are not going to stay",
+        "hint": "Отрицание плана",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "___ they ___ (get) married next year?",
+        "correct": "Are they going to get",
+        "hint": "Вопрос о планах",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "I ___ (call) you later.",
+        "correct": "am going to call",
+        "hint": "Намерение",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He ___ (play) tennis with his friend.",
+        "correct": "is going to play",
+        "hint": "Договорённость",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "Look! The dog ___ (jump) into the pool.",
+        "correct": "is going to jump",
+        "hint": "Предсказание по действию",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "They ___ (build) a new school here.",
+        "correct": "are going to build",
+        "hint": "План строительства",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She ___ (not/sing) at the concert.",
+        "correct": "is not going to sing",
+        "hint": "Отрицание намерения",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "What ___ you ___ (do) this evening?",
+        "correct": "are you going to do",
+        "hint": "Вопрос о планах",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "I ___ (become) a doctor when I grow up.",
+        "correct": "am going to become",
+        "hint": "Долгосрочный план",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "She ___ (not/pass) the test if she doesn't study.",
+        "correct": "is not going to pass",
+        "hint": "Предсказание с условием",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "___ he ___ (propose) to her tonight?",
+        "correct": "Is he going to propose",
+        "hint": "Вопрос-предположение",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "They ___ (move) to a new house next spring.",
+        "correct": "are going to move",
+        "hint": "Конкретный план",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "The sky is dark. It ___ (snow) heavily.",
+        "correct": "is going to snow",
+        "hint": "Предсказание по погоде",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "We ___ (not/finish) this project on time.",
+        "correct": "are not going to finish",
+        "hint": "Отрицательное предсказание",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "I ___ (learn) to play the guitar this summer.",
+        "correct": "am going to learn",
+        "hint": "Летний план",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "She ___ (have) a baby in July.",
+        "correct": "is going to have",
+        "hint": "Ожидаемое событие",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "___ you ___ (tell) him the truth?",
+        "correct": "Are you going to tell",
+        "hint": "Вопрос о намерении",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "They ___ (not/attend) the wedding because of work.",
+        "correct": "are not going to attend",
+        "hint": "Причина отказа",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "I ___ (visit) my grandmother next weekend.",
+        "correct": "am going to visit",
+        "hint": "Используй форму to be + going to + глагол",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She ___ (buy) a new car tomorrow.",
+        "correct": "is going to buy",
+        "hint": "Не забудь про is для she",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "They ___ (not/have) a party on Friday.",
+        "correct": "are not going to have",
+        "hint": "Отрицание: be + not + going to",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "___ you ___ (help) me with this project?",
+        "correct": "Are you going to help",
+        "hint": "Вопрос: be + подлежащее + going to",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He ___ (be) a doctor when he grows up.",
+        "correct": "is going to be",
+        "hint": "Предсказание о будущей профессии",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "Look at those clouds! It ___ (rain).",
+        "correct": "is going to rain",
+        "hint": "Предсказание на основе очевидных признаков",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "We ___ (move) to a new house next month.",
+        "correct": "are going to move",
+        "hint": "План на ближайшее будущее",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "My brother ___ (not/study) abroad this year.",
+        "correct": "is not going to study",
+        "hint": "Отрицание с is",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "___ they ___ (play) football after school?",
+        "correct": "Are they going to play",
+        "hint": "Вопрос с they",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "I ___ (cook) dinner tonight.",
+        "correct": "am going to cook",
+        "hint": "Личный план",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She ___ (not/travel) to Japan next summer.",
+        "correct": "is not going to travel",
+        "hint": "Отрицание с is",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "___ he ___ (finish) his homework before 8 pm?",
+        "correct": "Is he going to finish",
+        "hint": "Вопрос с he",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "We ___ (have) a meeting at 10 o'clock.",
+        "correct": "are going to have",
+        "hint": "Запланированное событие",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The train ___ (arrive) in five minutes.",
+        "correct": "is going to arrive",
+        "hint": "Предсказание по расписанию",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "I ___ (not/eat) junk food anymore.",
+        "correct": "am not going to eat",
+        "hint": "Отрицание с am",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "___ your parents ___ (buy) a new house?",
+        "correct": "Are your parents going to buy",
+        "hint": "Вопрос с множественным числом",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He ___ (start) a new job next week.",
+        "correct": "is going to start",
+        "hint": "План",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "They ___ (build) a new school here.",
+        "correct": "are going to build",
+        "hint": "План сообщества",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She ___ (not/come) to the party.",
+        "correct": "is not going to come",
+        "hint": "Отрицание",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "___ I ___ (see) you tomorrow?",
+        "correct": "Am I going to see",
+        "hint": "Вопрос с I",
+        "star": False
+      },
+      {
+        "type": "reorder",
+        "text": "going / are / to / they / visit / the museum",
+        "correct": "They are going to visit the museum",
+        "hint": "Порядок: подлежащее + be + going to + глагол",
+        "star": True
+      },
+      {
+        "type": "reorder",
+        "text": "not / is / she / going / to / come",
+        "correct": "She is not going to come",
+        "hint": "Отрицание: be + not + going to",
+        "star": True
+      },
+      {
+        "type": "reorder",
+        "text": "you / are / what / going / to / do / tonight?",
+        "correct": "What are you going to do tonight?",
+        "hint": "Вопрос с вопросительным словом",
+        "star": True
+      },
+      {
+        "type": "translation",
+        "text": "Я собираюсь прочитать эту книгу.",
+        "correct": "I am going to read this book",
+        "hint": "Собираться = to be going to",
+        "star": True
+      },
+      {
+        "type": "translation",
+        "text": "Они не собираются играть в футбол.",
+        "correct": "They are not going to play football",
+        "hint": "Отрицание",
+        "star": True
+      },
+      {
+        "type": "translation",
+        "text": "Она собирается стать учителем?",
+        "correct": "Is she going to become a teacher?",
+        "hint": "Вопрос",
+        "star": True
+      },
+      {
+        "type": "choice",
+        "text": "Look at the sky! It ___ snow.",
+        "correct": "is going to",
+        "options": [
+          "is going to",
+          "will",
+          "goes to"
+        ],
         "hint": "Предсказание на основе очевидного",
-        "star": true
+        "star": True
       },
       {
         "type": "choice",
@@ -6291,21 +8375,21 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "go to"
         ],
         "hint": "Запланированное действие",
-        "star": true
+        "star": True
       },
       {
         "type": "open",
         "text": "Напиши предложение о своих планах на завтра, используя to be going to.",
         "correct": "I am going to go to the park tomorrow.",
         "hint": "Любой правильный ответ с конструкцией",
-        "star": true
+        "star": True
       },
       {
         "type": "open",
         "text": "Сделай предсказание о погоде, используя to be going to.",
         "correct": "It is going to be sunny.",
         "hint": "Например: It is going to rain.",
-        "star": true
+        "star": True
       }
     ]
   },
@@ -6335,8 +8419,116 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "answer": "Could – более вежливая форма для просьб (Could you help me?) и форма прошедшего времени (I could swim when I was 5)."
       }
     ],
-    "practice_tasks": [],
-        "star": false
+    "practice_tasks": [
+      {
+        "type": "fill_blank",
+        "text": "She ___ swim very well.",
+        "correct": "can",
+        "hint": "Модальный глагол для умения",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "___ you speak Spanish?",
+        "correct": "Can",
+        "hint": "Вопрос с модальным глаголом",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He ___ play the guitar.",
+        "correct": "can",
+        "hint": "Утверждение с can",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "I ___ ride a bike.",
+        "correct": "can",
+        "hint": "Глагол для способности",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "They ___ come to the party.",
+        "correct": "can",
+        "hint": "Возможность",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "We ___ see the stars at night.",
+        "correct": "can",
+        "hint": "Умение или возможность",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "___ I open the window?",
+        "correct": "Can",
+        "hint": "Разрешение",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "You ___ use my phone.",
+        "correct": "can",
+        "hint": "Разрешение",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She ___ cook Italian food.",
+        "correct": "can",
+        "hint": "Умение",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "___ he drive a car?",
+        "correct": "Can",
+        "hint": "Вопрос о способности",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "I ___ not find my keys.",
+        "correct": "cannot",
+        "hint": "Отрицание с can",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "They ___ not come tomorrow.",
+        "correct": "cannot",
+        "hint": "Отрицание возможности",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "You ___ not smoke here.",
+        "correct": "cannot",
+        "hint": "Запрет",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "We ___ not hear you.",
+        "correct": "cannot",
+        "hint": "Отрицание способности",
+        "star": False
+      },
+      {
+        "type": "choice",
+        "text": "I ___ play tennis.",
+        "correct": "can",
+        "hint": "Выбери правильный модальный глагол",
+        "options": [
+          "can",
+          "am",
+          "is"
+        ],
+        "star": False
       },
       {
         "type": "choice",
@@ -6348,7 +8540,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "Do",
           "Are"
         ],
-        "star": false
+        "star": False
       },
       {
         "type": "choice",
@@ -6360,7 +8552,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "can not",
           "can't"
         ],
-        "star": false
+        "star": False
       },
       {
         "type": "choice",
@@ -6372,56 +8564,56 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "cans",
           "can to"
         ],
-        "star": false
+        "star": False
       },
       {
         "type": "translation",
         "text": "Я умею плавать.",
         "correct": "I can swim.",
         "hint": "Переведи на английский",
-        "star": false
+        "star": False
       },
       {
         "type": "translation",
         "text": "Она не может прийти.",
         "correct": "She cannot come.",
         "hint": "Отрицание",
-        "star": false
+        "star": False
       },
       {
         "type": "reorder",
         "text": "you / Can / help / me?",
         "correct": "Can you help me?",
         "hint": "Составь вопрос",
-        "star": true
+        "star": True
       },
       {
         "type": "reorder",
         "text": "can / He / play / football.",
         "correct": "He can play football.",
         "hint": "Составь утверждение",
-        "star": true
+        "star": True
       },
       {
         "type": "reorder",
         "text": "cannot / They / come / today.",
         "correct": "They cannot come today.",
         "hint": "Составь отрицание",
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "___ I have a glass of water?",
         "correct": "Can",
         "hint": "Вежливая просьба",
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "My cat ___ climb trees.",
         "correct": "can",
         "hint": "Способность животного",
-        "star": true
+        "star": True
       },
       {
         "type": "choice",
@@ -6433,98 +8625,98 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "Must",
           "Should"
         ],
-        "star": true
+        "star": True
       },
       {
         "type": "translation",
         "text": "Можно мне войти?",
         "correct": "Can I come in?",
         "hint": "Переведи просьбу",
-        "star": true
+        "star": True
       },
       {
         "type": "translation",
         "text": "Он умеет играть на пианино.",
         "correct": "He can play the piano.",
         "hint": "Переведи утверждение",
-        "star": true
+        "star": True
       },
       {
         "type": "open",
         "text": "Напиши вопрос с can о способности твоего друга.",
         "correct": "Can my friend dance?",
         "hint": "Любой корректный вопрос",
-        "star": true
+        "star": True
       },
       {
         "type": "open",
         "text": "Напиши отрицательное предложение с can о том, что ты не умеешь.",
         "correct": "I cannot fly.",
         "hint": "Любое корректное отрицание",
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "She ___ swim very well.",
         "correct": "can",
         "hint": "Модальный глагол для умения",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "___ you speak French?",
         "correct": "Can",
         "hint": "Вопрос с can",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "He ___ ride a bike.",
         "correct": "can",
         "hint": "Утверждение с can",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "I ___ play the guitar.",
         "correct": "can",
         "hint": "Умение",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "We ___ go to the park now.",
         "correct": "can",
         "hint": "Разрешение",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "___ I open the window?",
         "correct": "Can",
         "hint": "Вопрос разрешения",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "They ___ come to the party.",
         "correct": "can",
         "hint": "Возможность",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "She ___ cook Italian food.",
         "correct": "can",
         "hint": "Умение",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "___ he drive a car?",
         "correct": "Can",
         "hint": "Вопрос об умении",
-        "star": false
+        "star": False
       },
       {
         "type": "choice",
@@ -6536,7 +8728,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "cans",
           "can to"
         ],
-        "star": false
+        "star": False
       },
       {
         "type": "choice",
@@ -6548,7 +8740,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "can't",
           "cans"
         ],
-        "star": false
+        "star": False
       },
       {
         "type": "choice",
@@ -6560,7 +8752,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "Do",
           "Are"
         ],
-        "star": false
+        "star": False
       },
       {
         "type": "choice",
@@ -6572,7 +8764,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "can't",
           "not can"
         ],
-        "star": false
+        "star": False
       },
       {
         "type": "choice",
@@ -6584,63 +8776,63 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "may",
           "must"
         ],
-        "star": false
+        "star": False
       },
       {
         "type": "reorder",
         "text": "she / swim / can",
         "correct": "She can swim",
         "hint": "Составь предложение с can",
-        "star": false
+        "star": False
       },
       {
         "type": "reorder",
         "text": "you / can / help / me",
         "correct": "Can you help me",
         "hint": "Вопрос с can",
-        "star": false
+        "star": False
       },
       {
         "type": "reorder",
         "text": "he / can't / play / chess",
         "correct": "He can't play chess",
         "hint": "Отрицательное предложение",
-        "star": false
+        "star": False
       },
       {
         "type": "reorder",
         "text": "they / can / sing / well",
         "correct": "They can sing well",
         "hint": "Утверждение",
-        "star": false
+        "star": False
       },
       {
         "type": "reorder",
         "text": "I / can / open / the door",
         "correct": "I can open the door",
         "hint": "Разрешение",
-        "star": false
+        "star": False
       },
       {
         "type": "translation",
         "text": "Я умею плавать.",
         "correct": "I can swim",
         "hint": "Переведи с can",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "She ___ speak three languages.",
         "correct": "can",
         "hint": "Умение",
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "___ we leave now?",
         "correct": "Can",
         "hint": "Вопрос разрешения",
-        "star": true
+        "star": True
       },
       {
         "type": "choice",
@@ -6652,7 +8844,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "can to",
           "cans"
         ],
-        "star": true
+        "star": True
       },
       {
         "type": "choice",
@@ -6664,49 +8856,49 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "Must",
           "Should"
         ],
-        "star": true
+        "star": True
       },
       {
         "type": "reorder",
         "text": "not / she / can / dance",
         "correct": "She can not dance",
         "hint": "Отрицание с can not",
-        "star": true
+        "star": True
       },
       {
         "type": "reorder",
         "text": "can / we / play / outside",
         "correct": "Can we play outside",
         "hint": "Вопрос разрешения",
-        "star": true
+        "star": True
       },
       {
         "type": "translation",
         "text": "Он не может прийти сегодня.",
         "correct": "He can't come today",
         "hint": "Отрицание с can't",
-        "star": true
+        "star": True
       },
       {
         "type": "translation",
         "text": "Можно мне взять книгу?",
         "correct": "Can I take the book",
         "hint": "Вопрос с can",
-        "star": true
+        "star": True
       },
       {
         "type": "open",
         "text": "Напиши предложение о том, что ты умеешь делать.",
         "correct": "I can play the piano",
         "hint": "Используй can",
-        "star": true
+        "star": True
       },
       {
         "type": "open",
         "text": "Спроси, умеет ли твой друг готовить.",
         "correct": "Can you cook",
         "hint": "Вопрос с can",
-        "star": true
+        "star": True
       }
     ]
   },
@@ -6736,14 +8928,60 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "answer": "Must – личное чувство долга (я сам хочу). Have to – вынужденность (обстоятельства заставляют). Например: I must call my mom (я хочу позвонить). I have to work (меня заставляют)."
       }
     ],
-    "practice_tasks": []
+    "practice_tasks": [
+      {
+        "type": "fill_blank",
+        "text": "You ___ finish your homework before playing.",
+        "correct": "must",
+        "hint": "обязан",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She ___ wear a uniform at school.",
+        "correct": "must",
+        "hint": "должна",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "We ___ be quiet in the library.",
+        "correct": "must",
+        "hint": "должны",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He ___ take this medicine every day.",
+        "correct": "must",
+        "hint": "обязан",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "I ___ go to the meeting tomorrow.",
+        "correct": "must",
+        "hint": "должен",
+        "star": False
+      },
+      {
+        "type": "choice",
+        "text": "You ___ stop at the red light.",
+        "correct": "must",
+        "hint": "обязан",
+        "star": False,
+        "options": [
+          "must",
+          "can",
+          "may"
+        ]
       },
       {
         "type": "choice",
         "text": "Students ___ arrive on time.",
         "correct": "must",
         "hint": "должны",
-        "star": false,
+        "star": False,
         "options": [
           "must",
           "might",
@@ -6755,7 +8993,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "We ___ respect our teachers.",
         "correct": "must",
         "hint": "должны",
-        "star": false,
+        "star": False,
         "options": [
           "must",
           "need",
@@ -6767,7 +9005,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "You ___ not smoke here.",
         "correct": "must",
         "hint": "запрещено",
-        "star": false,
+        "star": False,
         "options": [
           "must",
           "can",
@@ -6779,7 +9017,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "I ___ finish this report by 5 pm.",
         "correct": "must",
         "hint": "обязан",
-        "star": false,
+        "star": False,
         "options": [
           "must",
           "may",
@@ -6791,91 +9029,91 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "you / must / your / clean / room",
         "correct": "You must clean your room.",
         "hint": "Ты должен убрать комнату",
-        "star": false
+        "star": False
       },
       {
         "type": "reorder",
         "text": "must / we / now / go",
         "correct": "We must go now.",
         "hint": "Мы должны идти сейчас",
-        "star": false
+        "star": False
       },
       {
         "type": "reorder",
         "text": "must / she / the / door / lock",
         "correct": "She must lock the door.",
         "hint": "Она должна запереть дверь",
-        "star": false
+        "star": False
       },
       {
         "type": "reorder",
         "text": "must / he / his / teeth / brush",
         "correct": "He must brush his teeth.",
         "hint": "Он должен чистить зубы",
-        "star": false
+        "star": False
       },
       {
         "type": "reorder",
         "text": "must / they / the / rules / follow",
         "correct": "They must follow the rules.",
         "hint": "Они должны следовать правилам",
-        "star": false
+        "star": False
       },
       {
         "type": "translation",
         "text": "Ты должен выучить эти слова.",
         "correct": "You must learn these words.",
         "hint": "must + learn",
-        "star": false
+        "star": False
       },
       {
         "type": "translation",
         "text": "Она должна помочь маме.",
         "correct": "She must help her mother.",
         "hint": "must + help",
-        "star": false
+        "star": False
       },
       {
         "type": "translation",
         "text": "Мы должны быть вежливыми.",
         "correct": "We must be polite.",
         "hint": "must + be",
-        "star": false
+        "star": False
       },
       {
         "type": "translation",
         "text": "Он должен носить очки.",
         "correct": "He must wear glasses.",
         "hint": "must + wear",
-        "star": false
+        "star": False
       },
       {
         "type": "translation",
         "text": "Вы должны сдать тест.",
         "correct": "You must pass the test.",
         "hint": "must + pass",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "You ___ not be late for the exam.",
         "correct": "must",
         "hint": "категорически нельзя",
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "The doctor said I ___ take these pills three times a day.",
         "correct": "must",
         "hint": "строгое предписание",
-        "star": true
+        "star": True
       },
       {
         "type": "choice",
         "text": "___ I wear a tie to the party?",
         "correct": "Must",
         "hint": "обязательно ли",
-        "star": true,
+        "star": True,
         "options": [
           "Must",
           "Can",
@@ -6887,7 +9125,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "You ___ see that movie — it's amazing!",
         "correct": "must",
         "hint": "настоятельная рекомендация",
-        "star": true,
+        "star": True,
         "options": [
           "must",
           "might",
@@ -6899,224 +9137,224 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "not / must / you / forget / this",
         "correct": "You must not forget this.",
         "hint": "Ты не должен это забывать",
-        "star": true
+        "star": True
       },
       {
         "type": "reorder",
         "text": "must / everyone / the / law / obey",
         "correct": "Everyone must obey the law.",
         "hint": "Все должны соблюдать закон",
-        "star": true
+        "star": True
       },
       {
         "type": "translation",
         "text": "Пассажиры должны пристегнуть ремни.",
         "correct": "Passengers must fasten their seatbelts.",
         "hint": "must + fasten",
-        "star": true
+        "star": True
       },
       {
         "type": "translation",
         "text": "Ты не должен здесь парковаться.",
         "correct": "You must not park here.",
         "hint": "must not = запрещено",
-        "star": true
+        "star": True
       },
       {
         "type": "open",
         "text": "Скажи по-английски: 'Я должен сделать домашнее задание'.",
         "correct": "I must do my homework.",
         "hint": "must + do",
-        "star": true
+        "star": True
       },
       {
         "type": "open",
         "text": "Скажи по-английски: 'Они должны прийти вовремя'.",
         "correct": "They must come on time.",
         "hint": "must + come",
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "You ___ finish your homework before playing.",
         "correct": "must",
         "hint": "Обязанность",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "Students ___ wear a uniform at this school.",
         "correct": "must",
         "hint": "Правило",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "I ___ go to the dentist tomorrow.",
         "correct": "must",
         "hint": "Необходимость",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "She ___ study hard for the exam.",
         "correct": "must",
         "hint": "Совет с обязательством",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "We ___ be quiet in the library.",
         "correct": "must",
         "hint": "Правило поведения",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "He ___ call his mother every day.",
         "correct": "must",
         "hint": "Обязанность",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "They ___ arrive on time for the meeting.",
         "correct": "must",
         "hint": "Требование",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "You ___ not smoke here.",
         "correct": "must",
         "hint": "Запрет",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "The children ___ do their chores.",
         "correct": "must",
         "hint": "Обязанность",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "I ___ remember to buy milk.",
         "correct": "must",
         "hint": "Необходимость",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "You ___ wear a seatbelt in the car.",
         "correct": "must",
         "hint": "Закон",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "He ___ finish this project by Friday.",
         "correct": "must",
         "hint": "Срочная обязанность",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "She ___ take her medicine every morning.",
         "correct": "must",
         "hint": "Предписание врача",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "We ___ respect our teachers.",
         "correct": "must",
         "hint": "Моральная обязанность",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "You ___ be careful with that knife.",
         "correct": "must",
         "hint": "Предостережение",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "They ___ leave now or they'll miss the bus.",
         "correct": "must",
         "hint": "Срочность",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "I ___ clean my room before guests arrive.",
         "correct": "must",
         "hint": "Необходимость",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "You ___ not touch that wire.",
         "correct": "must",
         "hint": "Запрет, опасность",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "The dog ___ be kept on a leash.",
         "correct": "must",
         "hint": "Правило",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "We ___ help our parents.",
         "correct": "must",
         "hint": "Обязанность",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "You ___ apologize for your mistake.",
         "correct": "must",
         "hint": "Моральный долг",
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "All passengers ___ fasten their seatbelts during takeoff.",
         "correct": "must",
         "hint": "Инструкция безопасности",
-        "star": true
+        "star": True
       },
       {
         "type": "reorder",
         "text": "you / must / homework / your / do",
         "correct": "You must do your homework.",
         "hint": "Порядок слов с must",
-        "star": true
+        "star": True
       },
       {
         "type": "reorder",
         "text": "must / not / we / here / park",
         "correct": "We must not park here.",
         "hint": "Отрицание must",
-        "star": true
+        "star": True
       },
       {
         "type": "translation",
         "text": "Ты должен выключить свет.",
         "correct": "You must turn off the light.",
         "hint": "Перевод с must",
-        "star": true
+        "star": True
       },
       {
         "type": "translation",
         "text": "Мы не должны опаздывать.",
         "correct": "We must not be late.",
         "hint": "Отрицание",
-        "star": true
+        "star": True
       },
       {
         "type": "choice",
@@ -7128,7 +9366,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "can",
           "may"
         ],
-        "star": true
+        "star": True
       },
       {
         "type": "choice",
@@ -7140,21 +9378,21 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "should",
           "might"
         ],
-        "star": true
+        "star": True
       },
       {
         "type": "open",
         "text": "Составьте предложение с must, выражающее правило в школе.",
         "correct": "Students must listen to the teacher.",
         "hint": "Любое разумное правило",
-        "star": true
+        "star": True
       },
       {
         "type": "open",
         "text": "Напишите предложение с must not, выражающее запрет в музее.",
         "correct": "You must not touch the paintings.",
         "hint": "Запрет",
-        "star": true
+        "star": True
       }
     ]
   },
@@ -7188,14 +9426,166 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "answer": "100th – hundredth, 1000th – thousandth. Обратите внимание: one hundredth – сотая часть, но в порядковых hundredth без 'one' означает сотый."
       }
     ],
-    "practice_tasks": []
+    "practice_tasks": [
+      {
+        "type": "fill_blank",
+        "text": "January is the ___ month of the year.",
+        "correct": "first",
+        "hint": "1st",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "December is the ___ month.",
+        "correct": "twelfth",
+        "hint": "12th",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He finished in ___ place.",
+        "correct": "third",
+        "hint": "3rd",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "This is my ___ attempt.",
+        "correct": "second",
+        "hint": "2nd",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She lives on the ___ floor.",
+        "correct": "fifth",
+        "hint": "5th",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "Today is the ___ of March.",
+        "correct": "twenty-first",
+        "hint": "21st",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He was the ___ person to arrive.",
+        "correct": "fourth",
+        "hint": "4th",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "This is the ___ time I've called.",
+        "correct": "ninth",
+        "hint": "9th",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "Her birthday is on the ___ of July.",
+        "correct": "thirtieth",
+        "hint": "30th",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He finished in ___ position.",
+        "correct": "eleventh",
+        "hint": "11th",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "This is the ___ chapter.",
+        "correct": "seventh",
+        "hint": "7th",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She came in ___ in the race.",
+        "correct": "eighth",
+        "hint": "8th",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "It's the ___ day of our trip.",
+        "correct": "tenth",
+        "hint": "10th",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He was the ___ king of that dynasty.",
+        "correct": "sixth",
+        "hint": "6th",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "This is my ___ cup of coffee today.",
+        "correct": "fourth",
+        "hint": "4th",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She is the ___ child in the family.",
+        "correct": "third",
+        "hint": "3rd",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The ___ student in line is Tom.",
+        "correct": "first",
+        "hint": "1st",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "We live on the ___ street.",
+        "correct": "twentieth",
+        "hint": "20th",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "It happened on the ___ of May.",
+        "correct": "fifteenth",
+        "hint": "15th",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "This is the ___ time I've seen this movie.",
+        "correct": "second",
+        "hint": "2nd",
+        "star": False
+      },
+      {
+        "type": "choice",
+        "text": "What is the ordinal number for 13?",
+        "correct": "thirteenth",
+        "hint": "13th",
+        "star": True,
+        "options": [
+          "thirteenth",
+          "thirteen",
+          "thirth",
+          "thirteenths"
+        ]
       },
       {
         "type": "choice",
         "text": "Which is correct: 22nd?",
         "correct": "twenty-second",
         "hint": "22nd",
-        "star": true,
+        "star": True,
         "options": [
           "twenty-second",
           "twenty-two",
@@ -7208,133 +9598,133 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "He was the ___ (100) customer.",
         "correct": "hundredth",
         "hint": "100th",
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "This is the ___ (1000) anniversary.",
         "correct": "thousandth",
         "hint": "1000th",
-        "star": true
+        "star": True
       },
       {
         "type": "reorder",
         "text": "Arrange to make a sentence: floor / on / lives / the / She / tenth",
         "correct": "She lives on the tenth floor.",
         "hint": "10th floor",
-        "star": true
+        "star": True
       },
       {
         "type": "reorder",
         "text": "Arrange to make a sentence: came / He / in / second / race / the",
         "correct": "He came in second in the race.",
         "hint": "2nd place",
-        "star": true
+        "star": True
       },
       {
         "type": "translation",
         "text": "Translate to English: пятый",
         "correct": "fifth",
         "hint": "5th",
-        "star": true
+        "star": True
       },
       {
         "type": "translation",
         "text": "Translate to English: двадцать третий",
         "correct": "twenty-third",
         "hint": "23rd",
-        "star": true
+        "star": True
       },
       {
         "type": "open",
         "text": "Write the ordinal number for 41 in words.",
         "correct": "forty-first",
         "hint": "41st",
-        "star": true
+        "star": True
       },
       {
         "type": "open",
         "text": "Write the ordinal number for 99 in words.",
         "correct": "ninety-ninth",
         "hint": "99th",
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "January is the ___ month of the year.",
         "correct": "first",
         "hint": "1st",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "December is the ___ month.",
         "correct": "twelfth",
         "hint": "12th",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "He finished in ___ place.",
         "correct": "third",
         "hint": "3rd",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "This is my ___ attempt.",
         "correct": "second",
         "hint": "2nd",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "She lives on the ___ floor.",
         "correct": "fifth",
         "hint": "5th",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "Today is the ___ of March.",
         "correct": "twenty-first",
         "hint": "21st",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "He was the ___ to arrive.",
         "correct": "ninth",
         "hint": "9th",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "This is the ___ time I've told you.",
         "correct": "fourth",
         "hint": "4th",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "Her birthday is on the ___ of June.",
         "correct": "eighth",
         "hint": "8th",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "The ___ chapter is the longest.",
         "correct": "seventh",
         "hint": "7th",
-        "star": false
+        "star": False
       },
       {
         "type": "choice",
         "text": "What is the ordinal number for 10?",
         "correct": "tenth",
         "hint": "10th",
-        "star": false,
+        "star": False,
         "options": [
           "ten",
           "tenth",
@@ -7347,7 +9737,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "Which is correct for 22?",
         "correct": "twenty-second",
         "hint": "22nd",
-        "star": false,
+        "star": False,
         "options": [
           "twenty-second",
           "twenty-two",
@@ -7360,7 +9750,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "What is the ordinal for 3?",
         "correct": "third",
         "hint": "3rd",
-        "star": false,
+        "star": False,
         "options": [
           "three",
           "third",
@@ -7373,7 +9763,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "Which is correct for 15?",
         "correct": "fifteenth",
         "hint": "15th",
-        "star": false,
+        "star": False,
         "options": [
           "fifteen",
           "fifteenth",
@@ -7386,7 +9776,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "What is the ordinal for 1?",
         "correct": "first",
         "hint": "1st",
-        "star": false,
+        "star": False,
         "options": [
           "one",
           "first",
@@ -7399,56 +9789,56 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "Put the words in order: / is / He / the / first / arrive / to",
         "correct": "He is the first to arrive",
         "hint": "Порядок слов",
-        "star": false
+        "star": False
       },
       {
         "type": "reorder",
         "text": "Put the words in order: / floor / on / She / lives / the / second",
         "correct": "She lives on the second floor",
         "hint": "Порядок слов",
-        "star": false
+        "star": False
       },
       {
         "type": "reorder",
         "text": "Put the words in order: / my / is / This / third / attempt",
         "correct": "This is my third attempt",
         "hint": "Порядок слов",
-        "star": false
+        "star": False
       },
       {
         "type": "reorder",
         "text": "Put the words in order: / finished / He / place / in / fourth",
         "correct": "He finished in fourth place",
         "hint": "Порядок слов",
-        "star": false
+        "star": False
       },
       {
         "type": "translation",
         "text": "Переведите: пятый",
         "correct": "fifth",
         "hint": "5th",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "The ___ of July is Independence Day in the USA.",
         "correct": "fourth",
         "hint": "4th",
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "He was the ___ person to climb that mountain (100th).",
         "correct": "one hundredth",
         "hint": "100th",
-        "star": true
+        "star": True
       },
       {
         "type": "choice",
         "text": "Which is the correct ordinal for 33?",
         "correct": "thirty-third",
         "hint": "33rd",
-        "star": true,
+        "star": True,
         "options": [
           "thirty-third",
           "thirty-three",
@@ -7461,7 +9851,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "What is the ordinal for 12?",
         "correct": "twelfth",
         "hint": "12th",
-        "star": true,
+        "star": True,
         "options": [
           "twelve",
           "twelfth",
@@ -7474,42 +9864,42 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "Put the words in order: / the / is / December / month / twelfth",
         "correct": "December is the twelfth month",
         "hint": "Порядок слов",
-        "star": true
+        "star": True
       },
       {
         "type": "reorder",
         "text": "Put the words in order: / birthday / is / My / on / the / of / twenty-first / May",
         "correct": "My birthday is on the twenty-first of May",
         "hint": "Порядок слов",
-        "star": true
+        "star": True
       },
       {
         "type": "translation",
         "text": "Переведите: сорок второй",
         "correct": "forty-second",
         "hint": "42nd",
-        "star": true
+        "star": True
       },
       {
         "type": "translation",
         "text": "Переведите: девяносто девятый",
         "correct": "ninety-ninth",
         "hint": "99th",
-        "star": true
+        "star": True
       },
       {
         "type": "open",
         "text": "Напишите порядковое числительное для числа 573.",
         "correct": "five hundred seventy-third",
         "hint": "573rd",
-        "star": true
+        "star": True
       },
       {
         "type": "open",
         "text": "Напишите порядковое числительное для числа 2000.",
         "correct": "two thousandth",
         "hint": "2000th",
-        "star": true
+        "star": True
       }
     ]
   },
@@ -7543,8 +9933,144 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "answer": "Нет, всегда сначала наречие, потом глагол: I always go. Исключение – глагол to be: I am always happy."
       }
     ],
-    "practice_tasks": [],
-        "star": false
+    "practice_tasks": [
+      {
+        "type": "fill_blank",
+        "text": "I _____ (always) drink coffee in the morning.",
+        "correct": "always",
+        "hint": "Наречие ставится перед глаголом",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She _____ (sometimes) goes to the gym.",
+        "correct": "sometimes",
+        "hint": "Наречие частотности",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "They _____ (never) eat meat.",
+        "correct": "never",
+        "hint": "Отрицательное наречие",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He _____ (usually) takes the bus to work.",
+        "correct": "usually",
+        "hint": "Перед смысловым глаголом",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "We _____ (rarely) watch TV.",
+        "correct": "rarely",
+        "hint": "Означает 'редко'",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "My cat _____ (often) sleeps on the sofa.",
+        "correct": "often",
+        "hint": "Часто",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "I _____ (hardly ever) eat fast food.",
+        "correct": "hardly ever",
+        "hint": "Почти никогда",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She _____ (frequently) visits her grandmother.",
+        "correct": "frequently",
+        "hint": "Синоним often",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He _____ (occasionally) goes fishing.",
+        "correct": "occasionally",
+        "hint": "Время от времени",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "They _____ (seldom) go to the cinema.",
+        "correct": "seldom",
+        "hint": "Редко (формально)",
+        "star": False
+      },
+      {
+        "type": "reorder",
+        "text": "always / I / am / happy",
+        "correct": "I am always happy",
+        "hint": "После глагола to be",
+        "star": False
+      },
+      {
+        "type": "reorder",
+        "text": "never / she / is / late",
+        "correct": "She is never late",
+        "hint": "Наречие после am/is/are",
+        "star": False
+      },
+      {
+        "type": "reorder",
+        "text": "sometimes / we / play / tennis",
+        "correct": "We sometimes play tennis",
+        "hint": "Перед смысловым глаголом",
+        "star": False
+      },
+      {
+        "type": "reorder",
+        "text": "usually / he / gets up / early",
+        "correct": "He usually gets up early",
+        "hint": "Перед глаголом",
+        "star": False
+      },
+      {
+        "type": "reorder",
+        "text": "often / they / go / to the park",
+        "correct": "They often go to the park",
+        "hint": "Перед смысловым глаголом",
+        "star": False
+      },
+      {
+        "type": "translation",
+        "text": "Я всегда завтракаю.",
+        "correct": "I always have breakfast.",
+        "hint": "always + глагол",
+        "star": False
+      },
+      {
+        "type": "translation",
+        "text": "Она никогда не опаздывает.",
+        "correct": "She is never late.",
+        "hint": "never после is",
+        "star": False
+      },
+      {
+        "type": "translation",
+        "text": "Мы иногда ходим в кино.",
+        "correct": "We sometimes go to the cinema.",
+        "hint": "sometimes перед глаголом",
+        "star": False
+      },
+      {
+        "type": "choice",
+        "text": "I _____ go to the dentist. (редко)",
+        "correct": "seldom",
+        "hint": "Выберите наречие",
+        "options": [
+          "always",
+          "seldom",
+          "often"
+        ],
+        "star": False
       },
       {
         "type": "choice",
@@ -7556,35 +10082,35 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "never",
           "sometimes"
         ],
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "_____ do you go to the gym? (Как часто)",
         "correct": "How often",
         "hint": "Вопрос о частоте",
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "She _____ (always / be) kind to animals.",
         "correct": "is always",
         "hint": "Наречие после глагола to be",
-        "star": true
+        "star": True
       },
       {
         "type": "reorder",
         "text": "hardly ever / I / eat / sweets",
         "correct": "I hardly ever eat sweets",
         "hint": "Почти никогда",
-        "star": true
+        "star": True
       },
       {
         "type": "translation",
         "text": "Он редко смотрит телевизор, но часто читает.",
         "correct": "He seldom watches TV, but often reads.",
         "hint": "Два наречия в одном предложении",
-        "star": true
+        "star": True
       },
       {
         "type": "choice",
@@ -7596,28 +10122,28 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "hardly ever",
           "usually"
         ],
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "I _____ (not / often) go to parties.",
         "correct": "do not often go",
         "hint": "Отрицание с often",
-        "star": true
+        "star": True
       },
       {
         "type": "reorder",
         "text": "usually / is / the weather / cold / in December",
         "correct": "The weather is usually cold in December",
         "hint": "После is",
-        "star": true
+        "star": True
       },
       {
         "type": "translation",
         "text": "Ты иногда помогаешь родителям? – Да, иногда.",
         "correct": "Do you sometimes help your parents? – Yes, sometimes.",
         "hint": "Вопрос с sometimes",
-        "star": true
+        "star": True
       },
       {
         "type": "choice",
@@ -7629,154 +10155,154 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "often",
           "never"
         ],
-        "star": true
+        "star": True
       },
       {
         "type": "open",
         "text": "Напишите предложение о своей привычке, используя 'usually' и 'always'.",
         "correct": "Пример: I usually drink tea, but I always drink coffee in the morning.",
         "hint": "Используйте оба наречия",
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "I ___ (always) drink coffee in the morning.",
         "correct": "always",
         "hint": "Наречие частотности ставится перед глаголом.",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "She ___ (sometimes) goes to the gym.",
         "correct": "sometimes",
         "hint": "Наречие частотности для 'иногда'.",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "They ___ (never) eat meat.",
         "correct": "never",
         "hint": "Отрицательное наречие частотности.",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "He ___ (usually) walks to school.",
         "correct": "usually",
         "hint": "Наречие со значением 'обычно'.",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "We ___ (often) visit our grandparents.",
         "correct": "often",
         "hint": "Наречие 'часто'.",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "My cat ___ (rarely) sleeps on the sofa.",
         "correct": "rarely",
         "hint": "Наречие 'редко'.",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "I ___ (hardly ever) watch TV.",
         "correct": "hardly ever",
         "hint": "Почти никогда.",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "She ___ (frequently) travels for work.",
         "correct": "frequently",
         "hint": "Синоним 'often'.",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "He ___ (occasionally) eats fast food.",
         "correct": "occasionally",
         "hint": "Время от времени.",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "We ___ (constantly) argue about small things.",
         "correct": "constantly",
         "hint": "Постоянно.",
-        "star": false
+        "star": False
       },
       {
         "type": "reorder",
         "text": "go / I / always / to / park / the",
         "correct": "I always go to the park",
         "hint": "Порядок: подлежащее + наречие + глагол.",
-        "star": false
+        "star": False
       },
       {
         "type": "reorder",
         "text": "never / she / coffee / drinks",
         "correct": "She never drinks coffee",
         "hint": "Наречие перед глаголом.",
-        "star": false
+        "star": False
       },
       {
         "type": "reorder",
         "text": "usually / they / dinner / have / at 7",
         "correct": "They usually have dinner at 7",
         "hint": "Обычное время.",
-        "star": false
+        "star": False
       },
       {
         "type": "reorder",
         "text": "sometimes / he / late / is",
         "correct": "He is sometimes late",
         "hint": "С глаголом 'to be' наречие ставится после.",
-        "star": false
+        "star": False
       },
       {
         "type": "reorder",
         "text": "often / we / movies / watch / on weekends",
         "correct": "We often watch movies on weekends",
         "hint": "Частота действия.",
-        "star": false
+        "star": False
       },
       {
         "type": "translation",
         "text": "Я всегда завтракаю в 8 утра.",
         "correct": "I always have breakfast at 8 am.",
         "hint": "Наречие 'always' перед глаголом.",
-        "star": false
+        "star": False
       },
       {
         "type": "translation",
         "text": "Она никогда не опаздывает.",
         "correct": "She is never late.",
         "hint": "С глаголом 'to be' наречие после.",
-        "star": false
+        "star": False
       },
       {
         "type": "translation",
         "text": "Мы иногда ходим в кино.",
         "correct": "We sometimes go to the cinema.",
         "hint": "Наречие 'sometimes'.",
-        "star": false
+        "star": False
       },
       {
         "type": "translation",
         "text": "Он редко играет в видеоигры.",
         "correct": "He rarely plays video games.",
         "hint": "Наречие 'rarely'.",
-        "star": false
+        "star": False
       },
       {
         "type": "translation",
         "text": "Они обычно обедают вместе.",
         "correct": "They usually have lunch together.",
         "hint": "Наречие 'usually'.",
-        "star": false
+        "star": False
       },
       {
         "type": "choice",
@@ -7788,7 +10314,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "never",
           "sometimes"
         ],
-        "star": true
+        "star": True
       },
       {
         "type": "choice",
@@ -7800,7 +10326,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "often",
           "never"
         ],
-        "star": true
+        "star": True
       },
       {
         "type": "choice",
@@ -7812,7 +10338,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "usually",
           "never"
         ],
-        "star": true
+        "star": True
       },
       {
         "type": "choice",
@@ -7824,7 +10350,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "sometimes",
           "never"
         ],
-        "star": true
+        "star": True
       },
       {
         "type": "choice",
@@ -7836,42 +10362,42 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "hardly ever",
           "often"
         ],
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "I ___ (always/never) forget my keys; I am very careful.",
         "correct": "never",
         "hint": "Я осторожен, поэтому не забываю.",
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "She ___ (often/rarely) calls me; we talk every day.",
         "correct": "often",
         "hint": "Мы говорим каждый день, значит часто.",
-        "star": true
+        "star": True
       },
       {
         "type": "reorder",
         "text": "always / is / happy / she",
         "correct": "She is always happy",
         "hint": "С глаголом 'to be' наречие после.",
-        "star": true
+        "star": True
       },
       {
         "type": "translation",
         "text": "Они постоянно жалуются на погоду.",
         "correct": "They constantly complain about the weather.",
         "hint": "Наречие 'constantly'.",
-        "star": true
+        "star": True
       },
       {
         "type": "translation",
         "text": "Я редко когда пью газировку.",
         "correct": "I rarely drink soda.",
         "hint": "Наречие 'rarely'.",
-        "star": true
+        "star": True
       }
     ]
   },
@@ -7905,8 +10431,88 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "answer": "at 8 am (или at 8 in the morning – допустимо, но чаще просто at 8 am)."
       }
     ],
-    "practice_tasks": [],
-        "star": false
+    "practice_tasks": [
+      {
+        "type": "fill_blank",
+        "text": "I usually wake up ___ 7 o'clock.",
+        "correct": "at",
+        "hint": "Используется для точного времени",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "My birthday is ___ June 5th.",
+        "correct": "on",
+        "hint": "Используется для конкретных дат",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "We go to the park ___ Sundays.",
+        "correct": "on",
+        "hint": "Используется для дней недели",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The meeting is ___ the morning.",
+        "correct": "in",
+        "hint": "Используется для частей дня",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She was born ___ 1990.",
+        "correct": "in",
+        "hint": "Используется для годов",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "I have a dentist appointment ___ 3 PM.",
+        "correct": "at",
+        "hint": "Используется для точного времени",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "They often travel ___ summer.",
+        "correct": "in",
+        "hint": "Используется для сезонов",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The class starts ___ Monday.",
+        "correct": "on",
+        "hint": "Используется для дней недели",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He works ___ night.",
+        "correct": "at",
+        "hint": "Используется для времени суток (ночь)",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "We celebrate Christmas ___ December 25th.",
+        "correct": "on",
+        "hint": "Используется для конкретных дат",
+        "star": False
+      },
+      {
+        "type": "choice",
+        "text": "I will see you ___ the weekend.",
+        "correct": "at",
+        "hint": "Используется для выходных в британском варианте",
+        "options": [
+          "at",
+          "in",
+          "on"
+        ],
+        "star": False
       },
       {
         "type": "choice",
@@ -7918,7 +10524,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "in",
           "on"
         ],
-        "star": false
+        "star": False
       },
       {
         "type": "choice",
@@ -7930,7 +10536,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "in",
           "on"
         ],
-        "star": false
+        "star": False
       },
       {
         "type": "choice",
@@ -7942,7 +10548,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "in",
           "on"
         ],
-        "star": false
+        "star": False
       },
       {
         "type": "choice",
@@ -7954,56 +10560,56 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "in",
           "on"
         ],
-        "star": false
+        "star": False
       },
       {
         "type": "translation",
         "text": "Я встаю в 6 утра.",
         "correct": "I get up at 6 AM.",
         "hint": "Переведите, используя предлог времени",
-        "star": false
+        "star": False
       },
       {
         "type": "translation",
         "text": "Они приедут в понедельник.",
         "correct": "They will arrive on Monday.",
         "hint": "Переведите, используя предлог времени",
-        "star": false
+        "star": False
       },
       {
         "type": "translation",
         "text": "Мы отдыхаем в июле.",
         "correct": "We relax in July.",
         "hint": "Переведите, используя предлог времени",
-        "star": false
+        "star": False
       },
       {
         "type": "reorder",
         "text": "at / I / get up / 7 o'clock",
         "correct": "I get up at 7 o'clock.",
         "hint": "Расставьте слова в правильном порядке",
-        "star": false
+        "star": False
       },
       {
         "type": "reorder",
         "text": "on / She / born / was / March 3rd",
         "correct": "She was born on March 3rd.",
         "hint": "Расставьте слова в правильном порядке",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "The train arrives ___ midnight.",
         "correct": "at",
         "hint": "Используется для точного времени",
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "I always feel sleepy ___ the afternoon.",
         "correct": "in",
         "hint": "Используется для частей дня",
-        "star": true
+        "star": True
       },
       {
         "type": "choice",
@@ -8015,7 +10621,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "in",
           "on"
         ],
-        "star": true
+        "star": True
       },
       {
         "type": "choice",
@@ -8027,196 +10633,196 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "in",
           "on"
         ],
-        "star": true
+        "star": True
       },
       {
         "type": "translation",
         "text": "Она пришла домой в полночь.",
         "correct": "She came home at midnight.",
         "hint": "Переведите, используя предлог времени",
-        "star": true
+        "star": True
       },
       {
         "type": "translation",
         "text": "Мы уезжаем в пятницу утром.",
         "correct": "We leave on Friday morning.",
         "hint": "Переведите, используя предлог времени",
-        "star": true
+        "star": True
       },
       {
         "type": "reorder",
         "text": "in / the / evening / I / read / books",
         "correct": "I read books in the evening.",
         "hint": "Расставьте слова в правильном порядке",
-        "star": true
+        "star": True
       },
       {
         "type": "reorder",
         "text": "at / Easter / we / have / a / party",
         "correct": "We have a party at Easter.",
         "hint": "Расставьте слова в правильном порядке",
-        "star": true
+        "star": True
       },
       {
         "type": "open",
         "text": "Опишите свой распорядок дня, используя at, in, on (3 предложения).",
         "correct": "Пример: I wake up at 7 AM. I have breakfast in the morning. I go to work on weekdays.",
         "hint": "Используйте разные предлоги времени",
-        "star": true
+        "star": True
       },
       {
         "type": "open",
         "text": "Напишите, когда вы празднуете свой день рождения и другие праздники, используя at, in, on.",
         "correct": "Пример: My birthday is on June 15th. We celebrate New Year on December 31st. I get gifts at Christmas.",
         "hint": "Используйте предлоги для дат и праздников",
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "I usually wake up ___ 7:00 AM.",
         "correct": "at",
         "hint": "Используется для точного времени",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "My birthday is ___ June 15th.",
         "correct": "on",
         "hint": "Используется для конкретных дат",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "We go to the park ___ Sundays.",
         "correct": "on",
         "hint": "Используется для дней недели",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "The meeting is ___ 3:30 PM.",
         "correct": "at",
         "hint": "Используется для точного времени",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "She was born ___ 1998.",
         "correct": "in",
         "hint": "Используется для годов",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "I like to read ___ night.",
         "correct": "at",
         "hint": "Используется для времени суток (ночь)",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "The class starts ___ Monday.",
         "correct": "on",
         "hint": "Используется для дней недели",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "They usually travel ___ summer.",
         "correct": "in",
         "hint": "Используется для сезонов",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "I have a doctor's appointment ___ 10:00.",
         "correct": "at",
         "hint": "Используется для точного времени",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "He was born ___ March 3rd.",
         "correct": "on",
         "hint": "Используется для конкретных дат",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "We often go skiing ___ winter.",
         "correct": "in",
         "hint": "Используется для сезонов",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "The party is ___ Friday evening.",
         "correct": "on",
         "hint": "Используется для дней недели с частью дня",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "I wake up ___ the morning.",
         "correct": "in",
         "hint": "Используется для частей дня (утро)",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "She goes to bed ___ midnight.",
         "correct": "at",
         "hint": "Используется для точного времени",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "The movie starts ___ 8:45.",
         "correct": "at",
         "hint": "Используется для точного времени",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "I was born ___ 2005.",
         "correct": "in",
         "hint": "Используется для годов",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "We have a holiday ___ Christmas Day.",
         "correct": "on",
         "hint": "Используется для конкретных праздничных дней",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "He works ___ the afternoon.",
         "correct": "in",
         "hint": "Используется для частей дня (день)",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "The train arrives ___ 6:15.",
         "correct": "at",
         "hint": "Используется для точного времени",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "I visit my grandparents ___ weekends.",
         "correct": "at",
         "hint": "Используется для выходных (в британском варианте)",
-        "star": false
+        "star": False
       },
       {
         "type": "choice",
         "text": "We meet ___ noon.",
         "correct": "at",
         "hint": "Используется для точного времени",
-        "star": true,
+        "star": True,
         "options": [
           "at",
           "in",
@@ -8228,7 +10834,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "She was born ___ a sunny day.",
         "correct": "on",
         "hint": "Используется для описания конкретного дня",
-        "star": true,
+        "star": True,
         "options": [
           "at",
           "in",
@@ -8240,7 +10846,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "I usually go for a walk ___ the evening.",
         "correct": "in",
         "hint": "Используется для частей дня",
-        "star": true,
+        "star": True,
         "options": [
           "at",
           "in",
@@ -8252,7 +10858,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "The concert is ___ July 4th.",
         "correct": "on",
         "hint": "Используется для конкретных дат",
-        "star": true,
+        "star": True,
         "options": [
           "at",
           "in",
@@ -8264,7 +10870,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "He always wakes up ___ 6:30.",
         "correct": "at",
         "hint": "Используется для точного времени",
-        "star": true,
+        "star": True,
         "options": [
           "at",
           "in",
@@ -8276,7 +10882,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "They got married ___ 2010.",
         "correct": "in",
         "hint": "Используется для годов",
-        "star": true,
+        "star": True,
         "options": [
           "at",
           "in",
@@ -8288,7 +10894,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "I have a meeting ___ Wednesday morning.",
         "correct": "on",
         "hint": "Используется для дней недели с частью дня",
-        "star": true,
+        "star": True,
         "options": [
           "at",
           "in",
@@ -8300,7 +10906,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "She likes to sleep ___ night.",
         "correct": "at",
         "hint": "Используется для времени суток (ночь)",
-        "star": true,
+        "star": True,
         "options": [
           "at",
           "in",
@@ -8312,7 +10918,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "We usually have dinner ___ 7:00 PM.",
         "correct": "at",
         "hint": "Используется для точного времени",
-        "star": true,
+        "star": True,
         "options": [
           "at",
           "in",
@@ -8324,7 +10930,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "The flowers bloom ___ spring.",
         "correct": "in",
         "hint": "Используется для сезонов",
-        "star": true,
+        "star": True,
         "options": [
           "at",
           "in",
@@ -8363,14 +10969,75 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "answer": "Dinner – основной вечерний приём пищи (часто ужин), supper – более лёгкий ужин поздно вечером."
       }
     ],
-    "practice_tasks": []
+    "practice_tasks": [
+      {
+        "type": "fill_blank",
+        "text": "I usually eat ___ for breakfast, like eggs and toast.",
+        "correct": "food",
+        "hint": "Общее слово для еды",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "Can I have a glass of ___? I'm very thirsty.",
+        "correct": "water",
+        "hint": "Прозрачная жидкость без вкуса",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She bought some ___ from the bakery for dessert.",
+        "correct": "cake",
+        "hint": "Сладкое блюдо, часто с кремом",
+        "star": False
+      },
+      {
+        "type": "reorder",
+        "text": "a / of / milk / glass / please",
+        "correct": "a glass of milk please",
+        "hint": "Порядок: артикль, емкость, напиток",
+        "star": False
+      },
+      {
+        "type": "reorder",
+        "text": "like / I / coffee / black / drink / to",
+        "correct": "I like to drink black coffee",
+        "hint": "Подлежащее + глагол + инфинитив",
+        "star": False
+      },
+      {
+        "type": "translation",
+        "text": "Я люблю есть фрукты на завтрак.",
+        "correct": "I like to eat fruit for breakfast.",
+        "hint": "Используй like to eat",
+        "star": False
+      },
+      {
+        "type": "translation",
+        "text": "Он пьет чай с сахаром.",
+        "correct": "He drinks tea with sugar.",
+        "hint": "Помни про окончание -s",
+        "star": False
+      },
+      {
+        "type": "choice",
+        "text": "What is a common drink for breakfast in many countries?",
+        "correct": "Orange juice",
+        "hint": "Популярный утренний напиток",
+        "star": False,
+        "options": [
+          "Orange juice",
+          "Beer",
+          "Soda",
+          "Milk shake"
+        ]
       },
       {
         "type": "choice",
         "text": "Which of these is a type of meat?",
         "correct": "Chicken",
         "hint": "Мясо птицы",
-        "star": false,
+        "star": False,
         "options": [
           "Chicken",
           "Apple",
@@ -8383,7 +11050,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "What do you usually put on a sandwich?",
         "correct": "Cheese",
         "hint": "Молочный продукт, часто желтый",
-        "star": false,
+        "star": False,
         "options": [
           "Cheese",
           "Soap",
@@ -8396,63 +11063,63 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "Name three vegetables you can eat in a salad.",
         "correct": "tomato, cucumber, lettuce",
         "hint": "Овощи зеленого и красного цвета",
-        "star": false
+        "star": False
       },
       {
         "type": "open",
         "text": "What is your favorite dessert? Write one sentence.",
         "correct": "My favorite dessert is ice cream.",
         "hint": "Используй 'My favorite dessert is...'",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "We need to buy some ___ for the soup, like carrots and onions.",
         "correct": "vegetables",
         "hint": "Овощи",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "I always add ___ to my tea to make it sweet.",
         "correct": "sugar",
         "hint": "Белый сладкий порошок",
-        "star": false
+        "star": False
       },
       {
         "type": "reorder",
         "text": "some / there / is / in / milk / the / fridge",
         "correct": "there is some milk in the fridge",
         "hint": "Конструкция there is",
-        "star": false
+        "star": False
       },
       {
         "type": "reorder",
         "text": "eat / for / I / lunch / usually / rice",
         "correct": "I usually eat rice for lunch",
         "hint": "Наречие частоты перед глаголом",
-        "star": false
+        "star": False
       },
       {
         "type": "translation",
         "text": "Она не ест мясо, она вегетарианка.",
         "correct": "She doesn't eat meat, she is a vegetarian.",
         "hint": "Отрицание с doesn't",
-        "star": false
+        "star": False
       },
       {
         "type": "translation",
         "text": "На ужин у нас была рыба с картошкой.",
         "correct": "We had fish with potatoes for dinner.",
         "hint": "Прошедшее время: had",
-        "star": false
+        "star": False
       },
       {
         "type": "choice",
         "text": "Which is a dairy product?",
         "correct": "Yogurt",
         "hint": "Молочный продукт",
-        "star": false,
+        "star": False,
         "options": [
           "Yogurt",
           "Bread",
@@ -8465,7 +11132,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "What do you use to cut food?",
         "correct": "Knife",
         "hint": "Инструмент для резки",
-        "star": false,
+        "star": False,
         "options": [
           "Knife",
           "Fork",
@@ -8478,49 +11145,49 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "I prefer ___ chicken to fried chicken because it's healthier.",
         "correct": "grilled",
         "hint": "Приготовленное на гриле",
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "This soup is too ___. I need to add more salt.",
         "correct": "bland",
         "hint": "Безвкусный, пресный",
-        "star": true
+        "star": True
       },
       {
         "type": "reorder",
         "text": "a / of / pinch / add / salt",
         "correct": "add a pinch of salt",
         "hint": "Щепотка соли",
-        "star": true
+        "star": True
       },
       {
         "type": "reorder",
         "text": "is / dish / this / spicy / very",
         "correct": "this dish is very spicy",
         "hint": "Острое блюдо",
-        "star": true
+        "star": True
       },
       {
         "type": "translation",
         "text": "Это блюдо имеет горьковатый привкус.",
         "correct": "This dish has a bitter taste.",
         "hint": "Горький вкус",
-        "star": true
+        "star": True
       },
       {
         "type": "translation",
         "text": "Я не могу есть острую пищу на голодный желудок.",
         "correct": "I can't eat spicy food on an empty stomach.",
         "hint": "На голодный желудок",
-        "star": true
+        "star": True
       },
       {
         "type": "choice",
         "text": "What does 'savory' mean?",
         "correct": "Salty or spicy, not sweet",
         "hint": "Противоположность сладкому",
-        "star": true,
+        "star": True,
         "options": [
           "Salty or spicy, not sweet",
           "Very sweet",
@@ -8533,7 +11200,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "Which word describes food that is easy to chew?",
         "correct": "Tender",
         "hint": "Мягкое, нежное мясо",
-        "star": true,
+        "star": True,
         "options": [
           "Tender",
           "Tough",
@@ -8546,14 +11213,14 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "Describe a food you dislike and explain why in two sentences.",
         "correct": "I dislike liver because it has a strong metallic taste and a strange texture.",
         "hint": "Используй because для объяснения",
-        "star": true
+        "star": True
       },
       {
         "type": "open",
         "text": "What is the difference between 'dessert' and 'desert'? Write one sentence.",
         "correct": "Dessert is a sweet course after a meal, while desert is a dry sandy area.",
         "hint": "Обрати внимание на написание",
-        "star": true
+        "star": True
       }
     ]
   },
@@ -8575,14 +11242,166 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "answer": "How many apples? How much water?"
       }
     ],
-    "practice_tasks": []
+    "practice_tasks": [
+      {
+        "type": "fill_blank",
+        "text": "I need ___ (some/any) information about the course.",
+        "correct": "some",
+        "hint": "Information is uncountable.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "There are ___ (a few/a little) apples on the table.",
+        "correct": "a few",
+        "hint": "Apples are countable.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She doesn't have ___ (much/many) money.",
+        "correct": "much",
+        "hint": "Money is uncountable.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "How ___ (much/many) chairs do we need?",
+        "correct": "many",
+        "hint": "Chairs are countable.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "Can I have ___ (a/an) glass of water?",
+        "correct": "a",
+        "hint": "Glass is countable here.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "There isn't ___ (some/any) milk in the fridge.",
+        "correct": "any",
+        "hint": "Milk is uncountable; negative sentence.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He gave me ___ (a/an) useful advice.",
+        "correct": "a",
+        "hint": "Advice is uncountable, but 'a piece of' is implied.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "We saw ___ (a few/a little) birds in the park.",
+        "correct": "a few",
+        "hint": "Birds are countable.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She has ___ (much/many) experience in teaching.",
+        "correct": "much",
+        "hint": "Experience is uncountable.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "There are ___ (a lot of/much) students in the hall.",
+        "correct": "a lot of",
+        "hint": "Students are countable; 'a lot of' works with both.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "I bought ___ (a/an) furniture for my room.",
+        "correct": "a",
+        "hint": "Furniture is uncountable; use 'a piece of' or omit article.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "How ___ (much/many) luggage did you bring?",
+        "correct": "much",
+        "hint": "Luggage is uncountable.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "There are ___ (a little/a few) eggs in the basket.",
+        "correct": "a few",
+        "hint": "Eggs are countable.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "I have ___ (a/an) news to tell you.",
+        "correct": "a",
+        "hint": "News is uncountable; use 'a piece of' or 'some'.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "We need ___ (some/any) sugar for the cake.",
+        "correct": "some",
+        "hint": "Sugar is uncountable; positive sentence.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He doesn't eat ___ (much/many) bread.",
+        "correct": "much",
+        "hint": "Bread is uncountable.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "There are ___ (a lot of/much) cars on the street.",
+        "correct": "a lot of",
+        "hint": "Cars are countable.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "Can you give me ___ (a/an) advice?",
+        "correct": "a",
+        "hint": "Advice is uncountable; use 'a piece of'.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She has ___ (a little/a few) patience.",
+        "correct": "a little",
+        "hint": "Patience is uncountable.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "There isn't ___ (some/any) cheese in the sandwich.",
+        "correct": "any",
+        "hint": "Cheese is uncountable; negative sentence.",
+        "star": False
+      },
+      {
+        "type": "choice",
+        "text": "Which noun is uncountable?",
+        "correct": "water",
+        "hint": "Water is a substance.",
+        "star": True,
+        "options": [
+          "apple",
+          "water",
+          "book",
+          "chair"
+        ]
       },
       {
         "type": "choice",
         "text": "Choose the correct sentence:",
         "correct": "I need some information.",
         "hint": "Information is uncountable.",
-        "star": true,
+        "star": True,
         "options": [
           "I need an information.",
           "I need some information.",
@@ -8595,7 +11414,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "Which word can be both countable and uncountable?",
         "correct": "paper",
         "hint": "Paper can mean material or a document.",
-        "star": true,
+        "star": True,
         "options": [
           "milk",
           "paper",
@@ -8608,7 +11427,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "Fill in: There ___ (is/are) much homework today.",
         "correct": "is",
         "hint": "Homework is uncountable.",
-        "star": true,
+        "star": True,
         "options": [
           "is",
           "are",
@@ -8621,7 +11440,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "Which quantifier is used with uncountable nouns?",
         "correct": "a little",
         "hint": "A little is for uncountable.",
-        "star": true,
+        "star": True,
         "options": [
           "a few",
           "a little",
@@ -8634,7 +11453,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "Choose the correct sentence:",
         "correct": "She has a lot of luggage.",
         "hint": "Luggage is uncountable.",
-        "star": true,
+        "star": True,
         "options": [
           "She has many luggages.",
           "She has a lot of luggage.",
@@ -8647,7 +11466,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "What is the plural of 'child'?",
         "correct": "children",
         "hint": "Irregular plural.",
-        "star": true,
+        "star": True,
         "options": [
           "childs",
           "children",
@@ -8660,7 +11479,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "Which noun is always countable?",
         "correct": "dog",
         "hint": "Dog is a countable animal.",
-        "star": true,
+        "star": True,
         "options": [
           "dog",
           "water",
@@ -8673,7 +11492,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "Fill in: He doesn't have ___ (some/any) friends.",
         "correct": "any",
         "hint": "Negative sentence with countable plural.",
-        "star": true,
+        "star": True,
         "options": [
           "some",
           "any",
@@ -8686,7 +11505,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "Which sentence is grammatically correct?",
         "correct": "I have a few apples.",
         "hint": "Apples are countable.",
-        "star": true,
+        "star": True,
         "options": [
           "I have a few apple.",
           "I have a few apples.",
@@ -8699,70 +11518,70 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "There isn't ___ milk in the fridge.",
         "correct": "any",
         "hint": "Используется в отрицаниях с неисчисляемыми",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "How ___ apples do you need?",
         "correct": "many",
         "hint": "Исчисляемое существительное",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "I have ___ money in my wallet.",
         "correct": "some",
         "hint": "Утверждение, неисчисляемое",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "She doesn't eat ___ sugar.",
         "correct": "much",
         "hint": "Неисчисляемое в отрицании",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "There are ___ eggs in the basket.",
         "correct": "a few",
         "hint": "Небольшое количество, исчисляемое",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "We need ___ information.",
         "correct": "some",
         "hint": "Неисчисляемое, утверждение",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "He has ___ friends.",
         "correct": "a lot of",
         "hint": "Подходит для обоих типов",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "There is ___ water in the glass.",
         "correct": "a little",
         "hint": "Мало, но достаточно, неисчисляемое",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "Can I have ___ coffee?",
         "correct": "some",
         "hint": "Просьба, неисчисляемое",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "How ___ bread did you buy?",
         "correct": "much",
         "hint": "Неисчисляемое, вопрос",
-        "star": false
+        "star": False
       },
       {
         "type": "choice",
@@ -8774,7 +11593,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "I need much eggs."
         ],
         "hint": "Eggs — исчисляемое",
-        "star": false
+        "star": False
       },
       {
         "type": "choice",
@@ -8786,7 +11605,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "book"
         ],
         "hint": "Совет — абстрактное понятие",
-        "star": false
+        "star": False
       },
       {
         "type": "choice",
@@ -8798,7 +11617,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "a few"
         ],
         "hint": "Snow — неисчисляемое",
-        "star": false
+        "star": False
       },
       {
         "type": "choice",
@@ -8810,7 +11629,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "I want some books."
         ],
         "hint": "Все верны, но rice — неисчисляемое",
-        "star": false
+        "star": False
       },
       {
         "type": "choice",
@@ -8822,56 +11641,56 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "much"
         ],
         "hint": "Отрицание, исчисляемое",
-        "star": false
+        "star": False
       },
       {
         "type": "reorder",
         "text": "milk / there / in / is / the / fridge / any",
         "correct": "Is there any milk in the fridge?",
         "hint": "Вопрос с неисчисляемым",
-        "star": false
+        "star": False
       },
       {
         "type": "reorder",
         "text": "a / have / I / of / lot / friends",
         "correct": "I have a lot of friends.",
         "hint": "Исчисляемое, утверждение",
-        "star": false
+        "star": False
       },
       {
         "type": "reorder",
         "text": "little / very / there / is / water / left",
         "correct": "There is very little water left.",
         "hint": "Почти нет воды",
-        "star": false
+        "star": False
       },
       {
         "type": "translation",
         "text": "У меня мало времени.",
         "correct": "I have little time.",
         "hint": "Little + неисчисляемое",
-        "star": false
+        "star": False
       },
       {
         "type": "translation",
         "text": "Сколько стульев в комнате?",
         "correct": "How many chairs are in the room?",
         "hint": "Many + исчисляемое",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "___ people came to the party.",
         "correct": "A lot of",
         "hint": "Много людей",
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "There is ___ furniture in the house.",
         "correct": "little",
         "hint": "Мало мебели (неисч.)",
-        "star": true
+        "star": True
       },
       {
         "type": "choice",
@@ -8883,7 +11702,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "sand"
         ],
         "hint": "Мясо (неисч.) и птица (исч.)",
-        "star": true
+        "star": True
       },
       {
         "type": "choice",
@@ -8895,49 +11714,49 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "many"
         ],
         "hint": "Advice — неисчисляемое",
-        "star": true
+        "star": True
       },
       {
         "type": "reorder",
         "text": "equipment / need / we / much / don't",
         "correct": "We don't need much equipment.",
         "hint": "Equipment — неисчисляемое",
-        "star": true
+        "star": True
       },
       {
         "type": "reorder",
         "text": "homework / how / you / do / much / have",
         "correct": "How much homework do you have?",
         "hint": "Homework — неисчисляемое",
-        "star": true
+        "star": True
       },
       {
         "type": "translation",
         "text": "У него мало друзей, но много денег.",
         "correct": "He has few friends but a lot of money.",
         "hint": "Few (исч.) / a lot of (неисч.)",
-        "star": true
+        "star": True
       },
       {
         "type": "translation",
         "text": "Мне нужно немного информации.",
         "correct": "I need a little information.",
         "hint": "A little + неисчисляемое",
-        "star": true
+        "star": True
       },
       {
         "type": "open",
         "text": "Make a sentence using 'a few' and 'a little'.",
         "correct": "I have a few books and a little time.",
         "hint": "Одно исчисляемое, другое нет",
-        "star": true
+        "star": True
       },
       {
         "type": "open",
         "text": "Explain the difference between 'few' and 'a few'.",
         "correct": "Few means 'almost none', a few means 'some'.",
         "hint": "Отрицательный и положительный оттенок",
-        "star": true
+        "star": True
       }
     ]
   },
@@ -8967,14 +11786,166 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "answer": "Это историческая особенность – предмет, состоящий из двух частей (штанины), часто используется во множественном числе. В современном английском так говорят о многих вещах: jeans, pants (амер.), shorts, tights, glasses."
       }
     ],
-    "practice_tasks": []
+    "practice_tasks": [
+      {
+        "type": "fill_blank",
+        "text": "She wears a warm ___ in winter.",
+        "correct": "coat",
+        "hint": "Одежда для холода",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He put on a ___ to go to the party.",
+        "correct": "suit",
+        "hint": "Формальный костюм",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "I need a new ___ for the beach.",
+        "correct": "swimsuit",
+        "hint": "Купальник",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "My ___ are too tight.",
+        "correct": "jeans",
+        "hint": "Джинсы",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She bought a silk ___ for the evening.",
+        "correct": "dress",
+        "hint": "Платье",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He wears a ___ around his neck.",
+        "correct": "tie",
+        "hint": "Галстук",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "Put on your ___ before going outside.",
+        "correct": "jacket",
+        "hint": "Куртка",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "These ___ are made of leather.",
+        "correct": "boots",
+        "hint": "Ботинки",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She loves wearing a ___ in summer.",
+        "correct": "skirt",
+        "hint": "Юбка",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He forgot his ___ at home.",
+        "correct": "scarf",
+        "hint": "Шарф",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "I need to buy a new pair of ___.",
+        "correct": "socks",
+        "hint": "Носки",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She wore a beautiful ___ on her head.",
+        "correct": "hat",
+        "hint": "Шляпа",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He put on his ___ and went jogging.",
+        "correct": "shorts",
+        "hint": "Шорты",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "This ___ is made of cotton.",
+        "correct": "shirt",
+        "hint": "Рубашка",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She needs a warm ___ for the trip.",
+        "correct": "sweater",
+        "hint": "Свитер",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He wears a ___ to protect his eyes.",
+        "correct": "cap",
+        "hint": "Кепка",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "These ___ are very comfortable.",
+        "correct": "sneakers",
+        "hint": "Кроссовки",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She put on a ___ over her dress.",
+        "correct": "cardigan",
+        "hint": "Кардиган",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He bought a new ___ for the wedding.",
+        "correct": "blazer",
+        "hint": "Пиджак",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "I need a ___ for the rain.",
+        "correct": "raincoat",
+        "hint": "Плащ",
+        "star": False
+      },
+      {
+        "type": "choice",
+        "text": "What do you wear on your feet?",
+        "correct": "shoes",
+        "hint": "Обувь",
+        "star": True,
+        "options": [
+          "hat",
+          "shoes",
+          "scarf",
+          "gloves"
+        ]
       },
       {
         "type": "choice",
         "text": "Which item is worn around the waist?",
         "correct": "belt",
         "hint": "Ремень",
-        "star": true,
+        "star": True,
         "options": [
           "belt",
           "tie",
@@ -8987,7 +11958,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "What is a type of underwear?",
         "correct": "bra",
         "hint": "Бюстгальтер",
-        "star": true,
+        "star": True,
         "options": [
           "bra",
           "coat",
@@ -9000,7 +11971,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "Which is a formal accessory for men?",
         "correct": "bow tie",
         "hint": "Бабочка",
-        "star": true,
+        "star": True,
         "options": [
           "bow tie",
           "cap",
@@ -9013,7 +11984,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "What do you wear on your hands in winter?",
         "correct": "gloves",
         "hint": "Перчатки",
-        "star": true,
+        "star": True,
         "options": [
           "gloves",
           "socks",
@@ -9026,35 +11997,35 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "Расположите буквы: h i r t s",
         "correct": "shirt",
         "hint": "Рубашка",
-        "star": true
+        "star": True
       },
       {
         "type": "reorder",
         "text": "Расположите буквы: s s e r d",
         "correct": "dress",
         "hint": "Платье",
-        "star": true
+        "star": True
       },
       {
         "type": "translation",
         "text": "Переведите на английский: 'шляпа'",
         "correct": "hat",
         "hint": "Головной убор",
-        "star": true
+        "star": True
       },
       {
         "type": "translation",
         "text": "Переведите на английский: 'перчатки'",
         "correct": "gloves",
         "hint": "Для рук",
-        "star": true
+        "star": True
       },
       {
         "type": "open",
         "text": "Назовите 3 предмета одежды, которые носят зимой.",
         "correct": "coat, scarf, gloves",
         "hint": "Теплая одежда",
-        "star": true
+        "star": True
       }
     ]
   },
@@ -9084,14 +12055,166 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "answer": "It's rainy – состояние (дождливый день), it's raining – действие прямо сейчас (идёт дождь)."
       }
     ],
-    "practice_tasks": []
+    "practice_tasks": [
+      {
+        "type": "fill_blank",
+        "text": "It's very ___ today. Take an umbrella.",
+        "correct": "rainy",
+        "hint": "Осадки",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The ___ is shining brightly.",
+        "correct": "sun",
+        "hint": "Небесное светило",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "There is a strong ___ blowing.",
+        "correct": "wind",
+        "hint": "Движение воздуха",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "Look at the ___! It's going to rain.",
+        "correct": "clouds",
+        "hint": "Скопление водяного пара",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The temperature is below ___.",
+        "correct": "zero",
+        "hint": "Нулевая отметка",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "We had a heavy ___ last night.",
+        "correct": "storm",
+        "hint": "Гроза с ветром",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "It's ___ outside. Wear a coat.",
+        "correct": "cold",
+        "hint": "Низкая температура",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The ___ is very high today.",
+        "correct": "humidity",
+        "hint": "Влажность",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "A ___ is a white or grey mass in the sky.",
+        "correct": "cloud",
+        "hint": "Облако",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "We expect ___ weather tomorrow.",
+        "correct": "sunny",
+        "hint": "Солнечный",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "It's ___ and foggy this morning.",
+        "correct": "misty",
+        "hint": "Туманный",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "A ___ is a violent wind storm.",
+        "correct": "hurricane",
+        "hint": "Ураган",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The ___ forecast says it will rain.",
+        "correct": "weather",
+        "hint": "Прогноз погоды",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "It's ___ outside. I need sunglasses.",
+        "correct": "bright",
+        "hint": "Яркий",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The ___ dropped to 5 degrees.",
+        "correct": "temperature",
+        "hint": "Температура",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "We had a light ___ this morning.",
+        "correct": "breeze",
+        "hint": "Легкий ветерок",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "It's ___ and humid in the summer.",
+        "correct": "hot",
+        "hint": "Жаркий",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "A ___ is a flash of light in a storm.",
+        "correct": "lightning",
+        "hint": "Молния",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The ___ is clear and blue.",
+        "correct": "sky",
+        "hint": "Небо",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "It's ___ today. Let's go skiing.",
+        "correct": "snowy",
+        "hint": "Снежный",
+        "star": False
+      },
+      {
+        "type": "choice",
+        "text": "What does 'drizzle' mean?",
+        "correct": "light rain",
+        "hint": "Мелкий дождь",
+        "star": True,
+        "options": [
+          "heavy rain",
+          "light rain",
+          "snow",
+          "fog"
+        ]
       },
       {
         "type": "choice",
         "text": "Which word describes very hot weather?",
         "correct": "scorching",
         "hint": "Очень жарко",
-        "star": true,
+        "star": True,
         "options": [
           "chilly",
           "scorching",
@@ -9104,7 +12227,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "What is a 'blizzard'?",
         "correct": "a snowstorm with strong wind",
         "hint": "Метель",
-        "star": true,
+        "star": True,
         "options": [
           "a light snow",
           "a rainstorm",
@@ -9117,7 +12240,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "Which word means 'a long period without rain'?",
         "correct": "drought",
         "hint": "Засуха",
-        "star": true,
+        "star": True,
         "options": [
           "flood",
           "drought",
@@ -9130,7 +12253,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "What does 'overcast' mean?",
         "correct": "covered with clouds",
         "hint": "Пасмурный",
-        "star": true,
+        "star": True,
         "options": [
           "sunny",
           "covered with clouds",
@@ -9143,7 +12266,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "Which is a type of severe weather?",
         "correct": "tornado",
         "hint": "Торнадо",
-        "star": true,
+        "star": True,
         "options": [
           "breeze",
           "drizzle",
@@ -9156,7 +12279,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "What does 'muggy' mean?",
         "correct": "warm and humid",
         "hint": "Душный",
-        "star": true,
+        "star": True,
         "options": [
           "cold and dry",
           "warm and humid",
@@ -9169,7 +12292,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "Which word means 'a small amount of rain'?",
         "correct": "sprinkle",
         "hint": "Морось",
-        "star": true,
+        "star": True,
         "options": [
           "downpour",
           "sprinkle",
@@ -9182,7 +12305,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "What is 'hail'?",
         "correct": "balls of ice falling from the sky",
         "hint": "Град",
-        "star": true,
+        "star": True,
         "options": [
           "frozen rain",
           "balls of ice falling from the sky",
@@ -9195,7 +12318,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "Which word describes a gentle wind?",
         "correct": "breeze",
         "hint": "Легкий ветер",
-        "star": true,
+        "star": True,
         "options": [
           "gale",
           "breeze",
@@ -9208,147 +12331,147 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "It is very ___ today. Don't forget your umbrella.",
         "correct": "rainy",
         "hint": "Осадки в виде воды",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "The ___ is shining brightly.",
         "correct": "sun",
         "hint": "Звезда, дающая свет",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "There is a strong ___ blowing.",
         "correct": "wind",
         "hint": "Движение воздуха",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "Look at the ___ in the sky. It might rain.",
         "correct": "clouds",
         "hint": "Скопление водяного пара",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "We had a heavy ___ last night.",
         "correct": "storm",
         "hint": "Сильная непогода с грозой",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "The temperature is below ___ today.",
         "correct": "zero",
         "hint": "Точка замерзания воды",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "It's ___ outside. I can't see anything.",
         "correct": "foggy",
         "hint": "Туман",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "Children love to play in the ___.",
         "correct": "snow",
         "hint": "Белые осадки зимой",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "The weather is ___ and pleasant.",
         "correct": "warm",
         "hint": "Не жарко, но и не холодно",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "A ___ is a violent tropical storm.",
         "correct": "hurricane",
         "hint": "Ураган",
-        "star": false
+        "star": False
       },
       {
         "type": "reorder",
         "text": "is / today / it / cold / very",
         "correct": "It is very cold today.",
         "hint": "Составьте предложение о температуре",
-        "star": false
+        "star": False
       },
       {
         "type": "reorder",
         "text": "raining / it / is / now",
         "correct": "It is raining now.",
         "hint": "Составьте предложение о дожде",
-        "star": false
+        "star": False
       },
       {
         "type": "reorder",
         "text": "forecast / what / the / is / weather",
         "correct": "What is the weather forecast?",
         "hint": "Вопрос о прогнозе",
-        "star": false
+        "star": False
       },
       {
         "type": "reorder",
         "text": "a / there / is / rainbow / after / rain",
         "correct": "There is a rainbow after rain.",
         "hint": "Явление после дождя",
-        "star": false
+        "star": False
       },
       {
         "type": "reorder",
         "text": "hot / it / is / and / sunny",
         "correct": "It is hot and sunny.",
         "hint": "Описание жаркой погоды",
-        "star": false
+        "star": False
       },
       {
         "type": "translation",
         "text": "На улице пасмурно.",
         "correct": "It is cloudy outside.",
         "hint": "Погода без солнца",
-        "star": false
+        "star": False
       },
       {
         "type": "translation",
         "text": "Сегодня ветрено.",
         "correct": "It is windy today.",
         "hint": "Сильный ветер",
-        "star": false
+        "star": False
       },
       {
         "type": "translation",
         "text": "Мне нравится дождливая погода.",
         "correct": "I like rainy weather.",
         "hint": "Выражение предпочтения",
-        "star": false
+        "star": False
       },
       {
         "type": "translation",
         "text": "Какая температура?",
         "correct": "What is the temperature?",
         "hint": "Вопрос о градусах",
-        "star": false
+        "star": False
       },
       {
         "type": "translation",
         "text": "Зимой часто идет снег.",
         "correct": "It often snows in winter.",
         "hint": "Сезонное явление",
-        "star": false
+        "star": False
       },
       {
         "type": "choice",
         "text": "What do you call a very strong wind?",
         "correct": "gale",
         "hint": "Сильный ветер",
-        "star": false,
+        "star": False,
         "options": [
           "breeze",
           "gale",
@@ -9361,7 +12484,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "Which word describes a light rain?",
         "correct": "drizzle",
         "hint": "Мелкий дождь",
-        "star": false,
+        "star": False,
         "options": [
           "downpour",
           "drizzle",
@@ -9374,7 +12497,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "What is frozen rain called?",
         "correct": "hail",
         "hint": "Ледяные шарики с неба",
-        "star": false,
+        "star": False,
         "options": [
           "snow",
           "hail",
@@ -9387,7 +12510,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "What is the opposite of 'clear' sky?",
         "correct": "overcast",
         "hint": "Полностью закрыто облаками",
-        "star": false,
+        "star": False,
         "options": [
           "bright",
           "overcast",
@@ -9400,7 +12523,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "Which season has the hottest weather?",
         "correct": "summer",
         "hint": "Самое жаркое время года",
-        "star": false,
+        "star": False,
         "options": [
           "spring",
           "autumn",
@@ -9413,35 +12536,35 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "After the rain, the air feels ___.",
         "correct": "humid",
         "hint": "Влажный воздух",
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "The ___ dropped to minus five last night.",
         "correct": "temperature",
         "hint": "Показатель тепла",
-        "star": true
+        "star": True
       },
       {
         "type": "reorder",
         "text": "thunder / there / lightning / and / is",
         "correct": "There is thunder and lightning.",
         "hint": "Гроза",
-        "star": true
+        "star": True
       },
       {
         "type": "translation",
         "text": "Прогноз обещает солнечную погоду.",
         "correct": "The forecast promises sunny weather.",
         "hint": "Предсказание погоды",
-        "star": true
+        "star": True
       },
       {
         "type": "choice",
         "text": "What is a 'heatwave'?",
         "correct": "a period of very hot weather",
         "hint": "Длительная жара",
-        "star": true,
+        "star": True,
         "options": [
           "a cold spell",
           "a period of very hot weather",
@@ -9454,28 +12577,28 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "The wind is so strong it feels like a ___.",
         "correct": "hurricane",
         "hint": "Тропический циклон",
-        "star": true
+        "star": True
       },
       {
         "type": "reorder",
         "text": "weather / changeable / the / is / very",
         "correct": "The weather is very changeable.",
         "hint": "Непостоянная погода",
-        "star": true
+        "star": True
       },
       {
         "type": "translation",
         "text": "На побережье часто бывает туман.",
         "correct": "There is often fog on the coast.",
         "hint": "Прибрежная зона",
-        "star": true
+        "star": True
       },
       {
         "type": "choice",
         "text": "What does 'barometer' measure?",
         "correct": "atmospheric pressure",
         "hint": "Прибор для погоды",
-        "star": true,
+        "star": True,
         "options": [
           "wind speed",
           "humidity",
@@ -9488,7 +12611,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "A sudden ___ of cold air is expected tonight.",
         "correct": "blast",
         "hint": "Резкое вторжение холода",
-        "star": true
+        "star": True
       }
     ]
   },
@@ -9518,8 +12641,159 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "answer": "Go to work – идти на работу (на службу), артикль не нужен."
       }
     ],
-    "practice_tasks": [],
-        "star": true
+    "practice_tasks": [
+      {
+        "type": "fill_blank",
+        "text": "I usually ___ up at 7 o'clock.",
+        "correct": "wake",
+        "hint": "Просыпаться",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She ___ her teeth every morning.",
+        "correct": "brushes",
+        "hint": "Чистить зубы",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He ___ breakfast at 8 a.m.",
+        "correct": "has",
+        "hint": "Завтракать",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "We ___ to school at 8:30.",
+        "correct": "go",
+        "hint": "Идти",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "I ___ a shower in the morning.",
+        "correct": "take",
+        "hint": "Принимать душ",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "They ___ dinner at 7 p.m.",
+        "correct": "have",
+        "hint": "Ужинать",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She ___ her homework after school.",
+        "correct": "does",
+        "hint": "Делать домашнее задание",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "I ___ to bed at 10 p.m.",
+        "correct": "go",
+        "hint": "Ложиться спать",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He ___ dressed in the morning.",
+        "correct": "gets",
+        "hint": "Одеваться",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "We ___ lunch at noon.",
+        "correct": "have",
+        "hint": "Обедать",
+        "star": False
+      },
+      {
+        "type": "reorder",
+        "text": "up / wake / I / at / 7 / usually",
+        "correct": "I usually wake up at 7.",
+        "hint": "Расставьте слова в правильном порядке",
+        "star": False
+      },
+      {
+        "type": "reorder",
+        "text": "teeth / brushes / She / her / morning / every",
+        "correct": "She brushes her teeth every morning.",
+        "hint": "Расставьте слова в правильном порядке",
+        "star": False
+      },
+      {
+        "type": "reorder",
+        "text": "go / We / school / to / at / 8:30",
+        "correct": "We go to school at 8:30.",
+        "hint": "Расставьте слова в правильном порядке",
+        "star": False
+      },
+      {
+        "type": "reorder",
+        "text": "dinner / They / have / at / 7 / p.m.",
+        "correct": "They have dinner at 7 p.m.",
+        "hint": "Расставьте слова в правильном порядке",
+        "star": False
+      },
+      {
+        "type": "reorder",
+        "text": "bed / to / goes / She / at / 10 / p.m.",
+        "correct": "She goes to bed at 10 p.m.",
+        "hint": "Расставьте слова в правильном порядке",
+        "star": False
+      },
+      {
+        "type": "translation",
+        "text": "Я просыпаюсь в 7 часов.",
+        "correct": "I wake up at 7 o'clock.",
+        "hint": "Переведите на английский",
+        "star": False
+      },
+      {
+        "type": "translation",
+        "text": "Она чистит зубы каждое утро.",
+        "correct": "She brushes her teeth every morning.",
+        "hint": "Переведите на английский",
+        "star": False
+      },
+      {
+        "type": "translation",
+        "text": "Мы идем в школу в 8:30.",
+        "correct": "We go to school at 8:30.",
+        "hint": "Переведите на английский",
+        "star": False
+      },
+      {
+        "type": "translation",
+        "text": "Он ужинает в 7 вечера.",
+        "correct": "He has dinner at 7 p.m.",
+        "hint": "Переведите на английский",
+        "star": False
+      },
+      {
+        "type": "translation",
+        "text": "Я ложусь спать в 10 часов.",
+        "correct": "I go to bed at 10 o'clock.",
+        "hint": "Переведите на английский",
+        "star": False
+      },
+      {
+        "type": "choice",
+        "text": "I ___ breakfast at 8 a.m.",
+        "correct": "have",
+        "hint": "Выберите правильный глагол",
+        "options": [
+          "have",
+          "has",
+          "do",
+          "make"
+        ],
+        "star": True
       },
       {
         "type": "choice",
@@ -9532,7 +12806,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "brushing",
           "brushed"
         ],
-        "star": true
+        "star": True
       },
       {
         "type": "choice",
@@ -9545,7 +12819,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "going",
           "went"
         ],
-        "star": true
+        "star": True
       },
       {
         "type": "choice",
@@ -9558,7 +12832,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "taking",
           "took"
         ],
-        "star": true
+        "star": True
       },
       {
         "type": "choice",
@@ -9571,42 +12845,42 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "having",
           "had"
         ],
-        "star": true
+        "star": True
       },
       {
         "type": "open",
         "text": "What time do you usually wake up?",
         "correct": "I usually wake up at ...",
         "hint": "Ответьте полным предложением, указав свое время",
-        "star": true
+        "star": True
       },
       {
         "type": "open",
         "text": "What do you do after school?",
         "correct": "I do my homework after school.",
         "hint": "Опишите свой режим дня",
-        "star": true
+        "star": True
       },
       {
         "type": "open",
         "text": "Describe your morning routine in 3 sentences.",
         "correct": "I wake up at 7. I brush my teeth. I have breakfast.",
         "hint": "Используйте Present Simple",
-        "star": true
+        "star": True
       },
       {
         "type": "open",
         "text": "What time do you go to bed?",
         "correct": "I go to bed at 10 p.m.",
         "hint": "Ответьте полным предложением",
-        "star": true
+        "star": True
       },
       {
         "type": "open",
         "text": "Do you have breakfast every day? Why?",
         "correct": "Yes, I have breakfast every day because it is healthy.",
         "hint": "Дайте развернутый ответ",
-        "star": true
+        "star": True
       }
     ]
   },
@@ -9632,14 +12906,166 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "answer": "Stepbrother (сын отчима или мачехи)."
       }
     ],
-    "practice_tasks": []
+    "practice_tasks": [
+      {
+        "type": "fill_blank",
+        "text": "My mother's mother is my ______.",
+        "correct": "grandmother",
+        "hint": "Родственница по материнской линии",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "My father's brother is my ______.",
+        "correct": "uncle",
+        "hint": "Брат отца",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "My sister's daughter is my ______.",
+        "correct": "niece",
+        "hint": "Дочь сестры",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "My brother's son is my ______.",
+        "correct": "nephew",
+        "hint": "Сын брата",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "My mother's sister is my ______.",
+        "correct": "aunt",
+        "hint": "Сестра матери",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "My father's father is my ______.",
+        "correct": "grandfather",
+        "hint": "Отец отца",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "My uncle's children are my ______.",
+        "correct": "cousins",
+        "hint": "Дети дяди или тёти",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "My parents' son is my ______.",
+        "correct": "brother",
+        "hint": "Сын родителей",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "My aunt's husband is my ______.",
+        "correct": "uncle",
+        "hint": "Муж тёти",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "My mother's new husband is my ______.",
+        "correct": "stepfather",
+        "hint": "Отчим",
+        "star": False
+      },
+      {
+        "type": "reorder",
+        "text": "Расположи слова в правильном порядке: mother / my / is / she",
+        "correct": "She is my mother",
+        "hint": "Она моя мать",
+        "star": False
+      },
+      {
+        "type": "reorder",
+        "text": "Расположи слова: brother / has / a / he / younger",
+        "correct": "He has a younger brother",
+        "hint": "У него есть младший брат",
+        "star": False
+      },
+      {
+        "type": "reorder",
+        "text": "Расположи слова: family / big / a / have / we",
+        "correct": "We have a big family",
+        "hint": "У нас большая семья",
+        "star": False
+      },
+      {
+        "type": "reorder",
+        "text": "Расположи слова: is / sister / my / this",
+        "correct": "This is my sister",
+        "hint": "Это моя сестра",
+        "star": False
+      },
+      {
+        "type": "reorder",
+        "text": "Расположи слова: parents / my / love / i",
+        "correct": "I love my parents",
+        "hint": "Я люблю своих родителей",
+        "star": False
+      },
+      {
+        "type": "translation",
+        "text": "Переведи на английский: бабушка",
+        "correct": "grandmother",
+        "hint": "Мать одного из родителей",
+        "star": False
+      },
+      {
+        "type": "translation",
+        "text": "Переведи на английский: двоюродный брат",
+        "correct": "cousin",
+        "hint": "Ребёнок дяди или тёти",
+        "star": False
+      },
+      {
+        "type": "translation",
+        "text": "Переведи на английский: сводная сестра",
+        "correct": "stepsister",
+        "hint": "Сестра от другого брака",
+        "star": False
+      },
+      {
+        "type": "translation",
+        "text": "Переведи на английский: единственный ребёнок",
+        "correct": "only child",
+        "hint": "Ребёнок без братьев и сестёр",
+        "star": False
+      },
+      {
+        "type": "translation",
+        "text": "Переведи на английский: приёмные родители",
+        "correct": "adoptive parents",
+        "hint": "Родители, усыновившие ребёнка",
+        "star": False
+      },
+      {
+        "type": "choice",
+        "text": "What do you call your mother's mother?",
+        "correct": "grandmother",
+        "hint": "Мать матери",
+        "star": False,
+        "options": [
+          "aunt",
+          "grandmother",
+          "cousin",
+          "sister"
+        ]
       },
       {
         "type": "choice",
         "text": "What do you call your father's sister?",
         "correct": "aunt",
         "hint": "Сестра отца",
-        "star": false,
+        "star": False,
         "options": [
           "uncle",
           "aunt",
@@ -9652,7 +13078,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "What do you call your brother's daughter?",
         "correct": "niece",
         "hint": "Дочь брата",
-        "star": false,
+        "star": False,
         "options": [
           "nephew",
           "cousin",
@@ -9665,7 +13091,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "What do you call your parents' parents?",
         "correct": "grandparents",
         "hint": "Бабушка и дедушка",
-        "star": false,
+        "star": False,
         "options": [
           "parents",
           "grandparents",
@@ -9678,7 +13104,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "What do you call your mother's new husband?",
         "correct": "stepfather",
         "hint": "Отчим",
-        "star": false,
+        "star": False,
         "options": [
           "father",
           "stepfather",
@@ -9691,70 +13117,70 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "Опиши свою семью (3-5 предложений на английском).",
         "correct": "Пример: I have a mother, a father and a brother. My family is small but happy.",
         "hint": "Используй слова: mother, father, brother, sister, parents",
-        "star": false
+        "star": False
       },
       {
         "type": "open",
         "text": "Расскажи, кто такие cousins и чем они отличаются от siblings.",
         "correct": "Cousins are children of your aunts and uncles. Siblings are your brothers and sisters.",
         "hint": "Объясни разницу",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "My mother's daughter is my ______.",
         "correct": "sister",
         "hint": "Если я не единственный ребёнок",
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "My brother's wife is my ______.",
         "correct": "sister-in-law",
         "hint": "Невестка",
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "My father's second wife is my ______.",
         "correct": "stepmother",
         "hint": "Мачеха",
-        "star": true
+        "star": True
       },
       {
         "type": "reorder",
         "text": "Расположи слова: is / my / father / stepfather / not / my",
         "correct": "My stepfather is not my father",
         "hint": "Отчим не является родным отцом",
-        "star": true
+        "star": True
       },
       {
         "type": "reorder",
         "text": "Расположи слова: have / two / i / sisters / half",
         "correct": "I have two half-sisters",
         "hint": "У меня две единокровные сестры",
-        "star": true
+        "star": True
       },
       {
         "type": "translation",
         "text": "Переведи на английский: приёмный сын",
         "correct": "adopted son",
         "hint": "Сын, усыновлённый семьёй",
-        "star": true
+        "star": True
       },
       {
         "type": "translation",
         "text": "Переведи на английский: близнецы",
         "correct": "twins",
         "hint": "Двое детей, родившихся одновременно",
-        "star": true
+        "star": True
       },
       {
         "type": "choice",
         "text": "What do you call a child who has no siblings?",
         "correct": "only child",
         "hint": "Единственный ребёнок",
-        "star": true,
+        "star": True,
         "options": [
           "only child",
           "single child",
@@ -9767,7 +13193,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "What is the term for a family with one parent?",
         "correct": "single-parent family",
         "hint": "Неполная семья",
-        "star": true,
+        "star": True,
         "options": [
           "nuclear family",
           "single-parent family",
@@ -9780,126 +13206,126 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "Объясни разницу между half-brother и stepbrother на английском.",
         "correct": "A half-brother shares one biological parent with you. A stepbrother is the son of your stepparent, no blood relation.",
         "hint": "Используй слова: biological, parent, stepparent",
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "My mother's mother is my ______.",
         "correct": "grandmother",
         "hint": "Отца/матери мать",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "My father's brother is my ______.",
         "correct": "uncle",
         "hint": "Брат отца",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "My sister's daughter is my ______.",
         "correct": "niece",
         "hint": "Дочь сестры",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "My brother's son is my ______.",
         "correct": "nephew",
         "hint": "Сын брата",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "My mother's sister is my ______.",
         "correct": "aunt",
         "hint": "Сестра матери",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "My uncle's children are my ______.",
         "correct": "cousins",
         "hint": "Дети дяди/тети",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "My father's father is my ______.",
         "correct": "grandfather",
         "hint": "Отец отца",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "My husband's mother is my ______.",
         "correct": "mother-in-law",
         "hint": "Мать мужа",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "My wife's sister is my ______.",
         "correct": "sister-in-law",
         "hint": "Сестра жены",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "My parents' son is my ______.",
         "correct": "brother",
         "hint": "Сын родителей",
-        "star": false
+        "star": False
       },
       {
         "type": "reorder",
         "text": "Расположи слова: mother, father, sister, brother, grandmother",
         "correct": "grandmother, father, mother, sister, brother",
         "hint": "От старшего к младшему",
-        "star": false
+        "star": False
       },
       {
         "type": "reorder",
         "text": "Расположи слова: uncle, aunt, cousin, nephew, niece",
         "correct": "aunt, uncle, cousin, nephew, niece",
         "hint": "По алфавиту",
-        "star": false
+        "star": False
       },
       {
         "type": "translation",
         "text": "Переведи на английский: 'двоюродный брат'",
         "correct": "cousin",
         "hint": "Мужского пола",
-        "star": false
+        "star": False
       },
       {
         "type": "translation",
         "text": "Переведи на английский: 'свекровь'",
         "correct": "mother-in-law",
         "hint": "Мать супруга",
-        "star": false
+        "star": False
       },
       {
         "type": "translation",
         "text": "Переведи на английский: 'внучка'",
         "correct": "granddaughter",
         "hint": "Дочь ребенка",
-        "star": false
+        "star": False
       },
       {
         "type": "translation",
         "text": "Переведи на английский: 'отчим'",
         "correct": "stepfather",
         "hint": "Неродной отец",
-        "star": false
+        "star": False
       },
       {
         "type": "translation",
         "text": "Переведи на английский: 'единственный ребенок'",
         "correct": "only child",
         "hint": "Без братьев/сестер",
-        "star": false
+        "star": False
       },
       {
         "type": "choice",
@@ -9912,7 +13338,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "brother",
           "grandfather"
         ],
-        "star": false
+        "star": False
       },
       {
         "type": "choice",
@@ -9925,7 +13351,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "sister-in-law",
           "cousin"
         ],
-        "star": false
+        "star": False
       },
       {
         "type": "choice",
@@ -9938,49 +13364,49 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "cousin",
           "uncle"
         ],
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "My father's second wife (not my mother) is my ______.",
         "correct": "stepmother",
         "hint": "Неродная мать",
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "My sister's husband is my ______.",
         "correct": "brother-in-law",
         "hint": "Муж сестры",
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "My grandfather's father is my ______.",
         "correct": "great-grandfather",
         "hint": "Прадед",
-        "star": true
+        "star": True
       },
       {
         "type": "reorder",
         "text": "Расположи по степени родства (ближе к дальше): mother, cousin, grandmother, sister",
         "correct": "mother, sister, grandmother, cousin",
         "hint": "От прямого к боковому",
-        "star": true
+        "star": True
       },
       {
         "type": "translation",
         "text": "Переведи на английский: 'приемный сын'",
         "correct": "adopted son",
         "hint": "Не биологический",
-        "star": true
+        "star": True
       },
       {
         "type": "translation",
         "text": "Переведи на английский: 'близнец'",
         "correct": "twin",
         "hint": "Рожденный вместе",
-        "star": true
+        "star": True
       },
       {
         "type": "choice",
@@ -9993,7 +13419,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "cousin",
           "aunt"
         ],
-        "star": true
+        "star": True
       },
       {
         "type": "choice",
@@ -10006,7 +13432,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "brother",
           "cousin"
         ],
-        "star": true
+        "star": True
       },
       {
         "type": "choice",
@@ -10019,14 +13445,14 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "father-in-law",
           "uncle"
         ],
-        "star": true
+        "star": True
       },
       {
         "type": "open",
         "text": "Опиши свою семью (3-5 предложений), используя слова: mother, father, brother, sister, grandmother.",
         "correct": "Пример: I have a mother, a father, and a younger sister. My grandmother lives with us.",
         "hint": "Используй possessive 's",
-        "star": true
+        "star": True
       }
     ]
   },
@@ -10056,14 +13482,208 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "answer": "Balcony."
       }
     ],
-    "practice_tasks": []
+    "practice_tasks": [
+      {
+        "type": "fill_blank",
+        "text": "The ___ is where you cook food.",
+        "correct": "kitchen",
+        "hint": "Комната для приготовления еды",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "We sleep in the ___.",
+        "correct": "bedroom",
+        "hint": "Комната для сна",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "You take a bath in the ___.",
+        "correct": "bathroom",
+        "hint": "Комната с ванной",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The ___ is the entrance room of a house.",
+        "correct": "hall",
+        "hint": "Прихожая",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "We eat meals in the ___.",
+        "correct": "dining room",
+        "hint": "Комната для обедов",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "A ___ is a room for living and relaxing.",
+        "correct": "living room",
+        "hint": "Гостиная",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "You can store clothes in a ___.",
+        "correct": "wardrobe",
+        "hint": "Шкаф для одежды",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "A ___ is a small table next to the bed.",
+        "correct": "nightstand",
+        "hint": "Прикроватная тумбочка",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "We sit on a ___ in the living room.",
+        "correct": "sofa",
+        "hint": "Мягкая мебель для сидения",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The ___ is the top part of a room.",
+        "correct": "ceiling",
+        "hint": "Потолок",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "You open a ___ to go outside.",
+        "correct": "door",
+        "hint": "Дверь",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "A ___ is a window covering.",
+        "correct": "curtain",
+        "hint": "Штора",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "We put books on a ___.",
+        "correct": "bookshelf",
+        "hint": "Книжная полка",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The ___ is the floor above the ground floor.",
+        "correct": "upstairs",
+        "hint": "Верхний этаж",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "A ___ is a room for storing things.",
+        "correct": "pantry",
+        "hint": "Кладовая",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "We wash dishes in the ___.",
+        "correct": "sink",
+        "hint": "Раковина",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "A ___ is a piece of furniture for sitting.",
+        "correct": "chair",
+        "hint": "Стул",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The ___ is the area around the house.",
+        "correct": "garden",
+        "hint": "Сад",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "You can hang clothes in a ___.",
+        "correct": "closet",
+        "hint": "Гардеробная",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "A ___ is a small room for storing food.",
+        "correct": "cupboard",
+        "hint": "Буфет",
+        "star": False
+      },
+      {
+        "type": "reorder",
+        "text": "living / room / the / is / This",
+        "correct": "This is the living room",
+        "hint": "Это гостиная",
+        "star": True
+      },
+      {
+        "type": "reorder",
+        "text": "bedroom / my / is / This",
+        "correct": "This is my bedroom",
+        "hint": "Это моя спальня",
+        "star": True
+      },
+      {
+        "type": "reorder",
+        "text": "kitchen / the / in / is / She",
+        "correct": "She is in the kitchen",
+        "hint": "Она на кухне",
+        "star": True
+      },
+      {
+        "type": "translation",
+        "text": "Гостиная",
+        "correct": "living room",
+        "hint": "Комната для отдыха",
+        "star": True
+      },
+      {
+        "type": "translation",
+        "text": "Ванная комната",
+        "correct": "bathroom",
+        "hint": "Комната с душем",
+        "star": True
+      },
+      {
+        "type": "translation",
+        "text": "Кухонный стол",
+        "correct": "kitchen table",
+        "hint": "Стол на кухне",
+        "star": True
+      },
+      {
+        "type": "choice",
+        "text": "What is a 'bedroom'?",
+        "correct": "A room for sleeping",
+        "hint": "Комната для сна",
+        "star": True,
+        "options": [
+          "A room for cooking",
+          "A room for sleeping",
+          "A room for bathing",
+          "A room for eating"
+        ]
       },
       {
         "type": "choice",
         "text": "What is a 'sofa'?",
         "correct": "A soft seat for several people",
         "hint": "Мягкое сиденье",
-        "star": true,
+        "star": True,
         "options": [
           "A small table",
           "A soft seat for several people",
@@ -10076,161 +13696,161 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "Describe your ideal bedroom in 3 sentences.",
         "correct": "My ideal bedroom has a big bed and a window. There is a desk for studying. I also have a bookshelf.",
         "hint": "Опишите свою идеальную спальню",
-        "star": true
+        "star": True
       },
       {
         "type": "open",
         "text": "Name 5 things you can find in a kitchen.",
         "correct": "Stove, fridge, sink, table, chair",
         "hint": "Назовите 5 предметов на кухне",
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "The ___ is where you sleep.",
         "correct": "bedroom",
         "hint": "комната для сна",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "We cook food in the ___.",
         "correct": "kitchen",
         "hint": "кухня",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "A ___ is a room where you take a bath.",
         "correct": "bathroom",
         "hint": "ванная",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "You enter the house through the ___.",
         "correct": "door",
         "hint": "дверь",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "The ___ is a room where you eat meals.",
         "correct": "dining room",
         "hint": "столовая",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "A ___ is a piece of furniture for sitting.",
         "correct": "chair",
         "hint": "стул",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "We put books on a ___.",
         "correct": "bookshelf",
         "hint": "книжная полка",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "The ___ is the top part of a room.",
         "correct": "ceiling",
         "hint": "потолок",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "A ___ covers the floor.",
         "correct": "carpet",
         "hint": "ковёр",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "You look out of a ___.",
         "correct": "window",
         "hint": "окно",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "The ___ is the area where you park your car.",
         "correct": "garage",
         "hint": "гараж",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "We hang clothes in the ___.",
         "correct": "wardrobe",
         "hint": "шкаф для одежды",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "A ___ is a small table next to a bed.",
         "correct": "nightstand",
         "hint": "прикроватная тумбочка",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "The ___ is the space under the roof.",
         "correct": "attic",
         "hint": "чердак",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "We wash dishes in the ___.",
         "correct": "sink",
         "hint": "раковина",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "A ___ is a room for storing food.",
         "correct": "pantry",
         "hint": "кладовая",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "The ___ is the area around the house.",
         "correct": "garden",
         "hint": "сад",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "We sit on a ___ in the living room.",
         "correct": "sofa",
         "hint": "диван",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "A ___ is a light on the ceiling.",
         "correct": "lamp",
         "hint": "лампа",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "The ___ is the bottom part of a room.",
         "correct": "floor",
         "hint": "пол",
-        "star": false
+        "star": False
       },
       {
         "type": "choice",
         "text": "What is a 'bedroom'?",
         "correct": "A room for sleeping",
         "hint": "спальня",
-        "star": true,
+        "star": True,
         "options": [
           "A room for cooking",
           "A room for sleeping",
@@ -10243,7 +13863,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "Which room has a toilet and shower?",
         "correct": "bathroom",
         "hint": "ванная",
-        "star": true,
+        "star": True,
         "options": [
           "kitchen",
           "bathroom",
@@ -10256,7 +13876,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "What is a 'curtain'?",
         "correct": "A piece of cloth for a window",
         "hint": "штора",
-        "star": true,
+        "star": True,
         "options": [
           "A piece of furniture",
           "A piece of cloth for a window",
@@ -10269,7 +13889,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "Where do you usually find a 'stove'?",
         "correct": "kitchen",
         "hint": "плита",
-        "star": true,
+        "star": True,
         "options": [
           "bathroom",
           "bedroom",
@@ -10282,7 +13902,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "What is a 'hallway'?",
         "correct": "A long passage in a house",
         "hint": "коридор",
-        "star": true,
+        "star": True,
         "options": [
           "A small room",
           "A long passage in a house",
@@ -10295,35 +13915,35 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "Расположите слова в правильном порядке: room / living / the / is / This",
         "correct": "This is the living room",
         "hint": "Это гостиная",
-        "star": true
+        "star": True
       },
       {
         "type": "reorder",
         "text": "Расположите слова в правильном порядке: a / there / kitchen / in / is / fridge / the",
         "correct": "There is a fridge in the kitchen",
         "hint": "В кухне есть холодильник",
-        "star": true
+        "star": True
       },
       {
         "type": "translation",
         "text": "Переведите на английский: 'книжный шкаф'",
         "correct": "bookcase",
         "hint": "мебель для книг",
-        "star": true
+        "star": True
       },
       {
         "type": "translation",
         "text": "Переведите на английский: 'подвал'",
         "correct": "basement",
         "hint": "нижняя часть дома",
-        "star": true
+        "star": True
       },
       {
         "type": "open",
         "text": "Опишите свою комнату на английском (3-5 предложений), используя слова: bed, desk, window, lamp.",
         "correct": "Пример: My room has a bed and a desk. There is a window with a lamp. I like my room.",
         "hint": "Используйте лексику дома",
-        "star": true
+        "star": True
       }
     ]
   },
@@ -10353,8 +13973,89 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "answer": "Crossroads или intersection."
       }
     ],
-    "practice_tasks": [],
-        "star": false
+    "practice_tasks": [
+      {
+        "type": "fill_blank",
+        "text": "A place where you can borrow books is called a _.",
+        "correct": "library",
+        "hint": "It starts with 'l'",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "You go to a _ to see a doctor when you are sick.",
+        "correct": "hospital",
+        "hint": "It has 8 letters",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "People send letters from the _.",
+        "correct": "post office",
+        "hint": "Two words",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "A _ is a place where you can watch movies on a big screen.",
+        "correct": "cinema",
+        "hint": "Also called a movie theater",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "You can buy fresh bread and cakes at a _.",
+        "correct": "bakery",
+        "hint": "Ends with 'y'",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "A _ is a tall building where people live or work.",
+        "correct": "skyscraper",
+        "hint": "It touches the sky",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "You wait for a bus at a bus _.",
+        "correct": "stop",
+        "hint": "Four letters",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "Children learn subjects like math and English at _.",
+        "correct": "school",
+        "hint": "Starts with 's'",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "A _ is a place where you can buy medicine.",
+        "correct": "pharmacy",
+        "hint": "Also called a drugstore",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "You can see paintings and sculptures in an art _.",
+        "correct": "gallery",
+        "hint": "Seven letters",
+        "star": False
+      },
+      {
+        "type": "choice",
+        "text": "What is a place where trains arrive and depart?",
+        "correct": "train station",
+        "hint": "It has platforms",
+        "options": [
+          "bus station",
+          "train station",
+          "airport",
+          "harbor"
+        ],
+        "star": False
       },
       {
         "type": "choice",
@@ -10367,7 +14068,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "temple",
           "synagogue"
         ],
-        "star": false
+        "star": False
       },
       {
         "type": "choice",
@@ -10380,7 +14081,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "gym",
           "beach"
         ],
-        "star": false
+        "star": False
       },
       {
         "type": "choice",
@@ -10393,7 +14094,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "butcher",
           "mall"
         ],
-        "star": false
+        "star": False
       },
       {
         "type": "choice",
@@ -10406,56 +14107,56 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "hospital",
           "town hall"
         ],
-        "star": false
+        "star": False
       },
       {
         "type": "reorder",
         "text": "library / the / is / Where",
         "correct": "Where is the library",
         "hint": "Question about location",
-        "star": false
+        "star": False
       },
       {
         "type": "reorder",
         "text": "to / I / the / need / go / to / pharmacy",
         "correct": "I need to go to the pharmacy",
         "hint": "Express necessity",
-        "star": false
+        "star": False
       },
       {
         "type": "reorder",
         "text": "is / a / There / near / park / here",
         "correct": "There is a park near here",
         "hint": "Use 'There is'",
-        "star": false
+        "star": False
       },
       {
         "type": "reorder",
         "text": "the / cinema / Let's / to / go",
         "correct": "Let's go to the cinema",
         "hint": "Suggestion",
-        "star": false
+        "star": False
       },
       {
         "type": "translation",
         "text": "Translate: аптека",
         "correct": "pharmacy",
         "hint": "Where you get pills",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "A _ is a place where you can play sports like basketball or tennis.",
         "correct": "sports centre",
         "hint": "Two words, ends with 'centre'",
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "The _ is the building where the mayor works and city council meets.",
         "correct": "town hall",
         "hint": "Government building",
-        "star": true
+        "star": True
       },
       {
         "type": "choice",
@@ -10468,7 +14169,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "greengrocer's",
           "fishmonger's"
         ],
-        "star": true
+        "star": True
       },
       {
         "type": "choice",
@@ -10481,196 +14182,196 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "department store",
           "plaza"
         ],
-        "star": true
+        "star": True
       },
       {
         "type": "reorder",
         "text": "the / opposite / is / The / bank / supermarket",
         "correct": "The supermarket is opposite the bank",
         "hint": "Describing location",
-        "star": true
+        "star": True
       },
       {
         "type": "reorder",
         "text": "there / a / Is / near / here / post office",
         "correct": "Is there a post office near here",
         "hint": "Question about existence",
-        "star": true
+        "star": True
       },
       {
         "type": "translation",
         "text": "Translate: пешеходный переход",
         "correct": "pedestrian crossing",
         "hint": "Where you cross the road safely",
-        "star": true
+        "star": True
       },
       {
         "type": "translation",
         "text": "Translate: автостоянка",
         "correct": "car park",
         "hint": "Place for vehicles",
-        "star": true
+        "star": True
       },
       {
         "type": "open",
         "text": "Describe your favourite place in your town and explain why you like it.",
         "correct": "Any reasonable description of a town place with reasons",
         "hint": "Use words like 'because', 'interesting', 'relaxing'",
-        "star": true
+        "star": True
       },
       {
         "type": "open",
         "text": "Give directions from the library to the train station using at least three landmarks.",
         "correct": "Any logical set of directions with landmarks",
         "hint": "Use 'turn left', 'go straight', 'next to'",
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "I need to go to the ___ to buy some medicine.",
         "correct": "pharmacy",
         "hint": "A place where you get medicine",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "The ___ is where you can borrow books for free.",
         "correct": "library",
         "hint": "A building full of books",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "We watched a movie at the ___ last night.",
         "correct": "cinema",
         "hint": "A place for watching films",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "The ___ is where people go to pray.",
         "correct": "church",
         "hint": "A religious building",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "You can buy fresh fruit and vegetables at the ___.",
         "correct": "market",
         "hint": "An outdoor or indoor place for food shopping",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "The ___ is where trains arrive and depart.",
         "correct": "station",
         "hint": "A place for trains",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "Children learn at a ___.",
         "correct": "school",
         "hint": "A place for education",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "If you need money, go to the ___.",
         "correct": "bank",
         "hint": "A place for financial transactions",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "The ___ has many shops under one roof.",
         "correct": "mall",
         "hint": "A large shopping centre",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "You can see paintings and sculptures at the ___.",
         "correct": "museum",
         "hint": "A place for art and history",
-        "star": false
+        "star": False
       },
       {
         "type": "reorder",
         "text": "the / hospital / is / near / park / the",
         "correct": "The hospital is near the park.",
         "hint": "Put the words in correct order",
-        "star": false
+        "star": False
       },
       {
         "type": "reorder",
         "text": "there / a / is / post office / street / on / this",
         "correct": "There is a post office on this street.",
         "hint": "Start with 'There'",
-        "star": false
+        "star": False
       },
       {
         "type": "reorder",
         "text": "to / how / get / the / do / I / gym / ?",
         "correct": "How do I get to the gym?",
         "hint": "Question about direction",
-        "star": false
+        "star": False
       },
       {
         "type": "reorder",
         "text": "the / is / fire station / where / ?",
         "correct": "Where is the fire station?",
         "hint": "Asking for location",
-        "star": false
+        "star": False
       },
       {
         "type": "reorder",
         "text": "a / there / library / is / near / my / house",
         "correct": "There is a library near my house.",
         "hint": "Describing location",
-        "star": false
+        "star": False
       },
       {
         "type": "translation",
         "text": "аптека",
         "correct": "pharmacy",
         "hint": "A place for medicine",
-        "star": false
+        "star": False
       },
       {
         "type": "translation",
         "text": "вокзал",
         "correct": "train station",
         "hint": "A place where trains stop",
-        "star": false
+        "star": False
       },
       {
         "type": "translation",
         "text": "больница",
         "correct": "hospital",
         "hint": "A place for sick people",
-        "star": false
+        "star": False
       },
       {
         "type": "translation",
         "text": "супермаркет",
         "correct": "supermarket",
         "hint": "A large food store",
-        "star": false
+        "star": False
       },
       {
         "type": "translation",
         "text": "парк",
         "correct": "park",
         "hint": "A green area in the city",
-        "star": false
+        "star": False
       },
       {
         "type": "choice",
         "text": "A place where you can see a doctor is a ___.",
         "correct": "hospital",
         "hint": "Medical facility",
-        "star": false,
+        "star": False,
         "options": [
           "library",
           "hospital",
@@ -10683,7 +14384,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "You can send letters from the ___.",
         "correct": "post office",
         "hint": "Place for mail",
-        "star": false,
+        "star": False,
         "options": [
           "post office",
           "gym",
@@ -10696,7 +14397,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "A ___ is a place for sports and exercise.",
         "correct": "gym",
         "hint": "Fitness place",
-        "star": false,
+        "star": False,
         "options": [
           "gym",
           "church",
@@ -10709,7 +14410,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "The ___ has many different stores.",
         "correct": "shopping centre",
         "hint": "A place with many shops",
-        "star": false,
+        "star": False,
         "options": [
           "shopping centre",
           "library",
@@ -10722,7 +14423,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "A ___ is where planes take off and land.",
         "correct": "airport",
         "hint": "Travel by air",
-        "star": false,
+        "star": False,
         "options": [
           "airport",
           "station",
@@ -10735,35 +14436,35 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "The ___ is where the mayor works.",
         "correct": "town hall",
         "hint": "Government building in a town",
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "We go to the ___ to swim.",
         "correct": "swimming pool",
         "hint": "A place for water sports",
-        "star": true
+        "star": True
       },
       {
         "type": "reorder",
         "text": "the / is / opposite / supermarket / the / police station",
         "correct": "The police station is opposite the supermarket.",
         "hint": "Location relationship",
-        "star": true
+        "star": True
       },
       {
         "type": "translation",
         "text": "пожарная станция",
         "correct": "fire station",
         "hint": "Where firefighters work",
-        "star": true
+        "star": True
       },
       {
         "type": "choice",
         "text": "A ___ is a place where you can park your car.",
         "correct": "car park",
         "hint": "Parking area",
-        "star": true,
+        "star": True,
         "options": [
           "car park",
           "bus stop",
@@ -10776,35 +14477,35 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "Describe your favourite place in your town and explain why you like it.",
         "correct": "Any reasonable description",
         "hint": "Use vocabulary like park, cafe, library",
-        "star": true
+        "star": True
       },
       {
         "type": "open",
         "text": "Write three sentences about what you can do at a museum.",
         "correct": "Any reasonable answer",
         "hint": "Use 'see', 'learn', 'exhibits'",
-        "star": true
+        "star": True
       },
       {
         "type": "open",
         "text": "Imagine you are a tourist. Ask for directions to the nearest hospital.",
         "correct": "Any polite question",
         "hint": "Use 'Excuse me', 'Where is'",
-        "star": true
+        "star": True
       },
       {
         "type": "open",
         "text": "List five places in a city and say what you can do there.",
         "correct": "Any correct list",
         "hint": "Examples: library - read books",
-        "star": true
+        "star": True
       },
       {
         "type": "open",
         "text": "Compare a small town and a big city. Mention three differences.",
         "correct": "Any reasonable comparison",
         "hint": "Use 'more', 'less', 'many'",
-        "star": true
+        "star": True
       }
     ]
   },
@@ -10834,14 +14535,166 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "answer": "Слева от вас / справа от вас."
       }
     ],
-    "practice_tasks": []
+    "practice_tasks": [
+      {
+        "type": "fill_blank",
+        "text": "Excuse me, how do I ___ to the station?",
+        "correct": "get",
+        "hint": "Use a verb meaning 'to reach'",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "Go straight ___ until you see the traffic lights.",
+        "correct": "ahead",
+        "hint": "Means 'forward'",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "Turn ___ at the corner.",
+        "correct": "left",
+        "hint": "Opposite of right",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The museum is ___ the left.",
+        "correct": "on",
+        "hint": "Preposition for side",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "Walk ___ the park.",
+        "correct": "past",
+        "hint": "Means 'beyond'",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "It's ___ the bank and the post office.",
+        "correct": "between",
+        "hint": "In the middle of two things",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "Take the second ___ on your right.",
+        "correct": "turning",
+        "hint": "A place where you turn",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The cinema is ___ the end of the street.",
+        "correct": "at",
+        "hint": "Preposition for a point",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "Go ___ the bridge.",
+        "correct": "over",
+        "hint": "Above something",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The hotel is ___ from the station.",
+        "correct": "opposite",
+        "hint": "Across from",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "___ the street and you'll see it.",
+        "correct": "Cross",
+        "hint": "Go from one side to the other",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "It's not far, it's a five-minute ___ from here.",
+        "correct": "walk",
+        "hint": "A journey on foot",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The supermarket is ___ the corner.",
+        "correct": "around",
+        "hint": "On the other side of the corner",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "Turn right at the ___.",
+        "correct": "crossroads",
+        "hint": "Where two roads cross",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "Go ___ the tunnel.",
+        "correct": "through",
+        "hint": "Enter and exit",
+        "star": False
+      },
+      {
+        "type": "reorder",
+        "text": "Rearrange: straight / go / on / ahead",
+        "correct": "go straight ahead",
+        "hint": "Keep going forward",
+        "star": False
+      },
+      {
+        "type": "reorder",
+        "text": "Rearrange: left / turn / the / at / corner",
+        "correct": "turn left at the corner",
+        "hint": "Direction instruction",
+        "star": False
+      },
+      {
+        "type": "reorder",
+        "text": "Rearrange: is / where / the / please / bank / ?",
+        "correct": "where is the bank please?",
+        "hint": "Polite question",
+        "star": False
+      },
+      {
+        "type": "reorder",
+        "text": "Rearrange: second / take / the / right / on / your",
+        "correct": "take the second on your right",
+        "hint": "Counting turns",
+        "star": False
+      },
+      {
+        "type": "translation",
+        "text": "Как пройти к вокзалу?",
+        "correct": "How do I get to the station?",
+        "hint": "Use 'get to'",
+        "star": False
+      },
+      {
+        "type": "choice",
+        "text": "Choose the correct phrase: 'It's ___ the street.'",
+        "correct": "across",
+        "hint": "From one side to the other",
+        "star": True,
+        "options": [
+          "across",
+          "through",
+          "over",
+          "along"
+        ]
       },
       {
         "type": "choice",
         "text": "Choose the correct preposition: 'The library is ___ the left.'",
         "correct": "on",
         "hint": "Side of the road",
-        "star": true,
+        "star": True,
         "options": [
           "in",
           "on",
@@ -10854,7 +14707,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "What does 'go straight' mean?",
         "correct": "continue without turning",
         "hint": "Simple direction",
-        "star": true,
+        "star": True,
         "options": [
           "turn right",
           "continue without turning",
@@ -10867,189 +14720,189 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "Excuse me, could you tell me the ___ to the hospital?",
         "correct": "way",
         "hint": "Synonym for 'route'",
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "It's just ___ the corner.",
         "correct": "around",
         "hint": "Very close, not far",
-        "star": true
+        "star": True
       },
       {
         "type": "reorder",
         "text": "Rearrange: the / is / opposite / it / station / the",
         "correct": "it is opposite the station",
         "hint": "Across from",
-        "star": true
+        "star": True
       },
       {
         "type": "reorder",
         "text": "Rearrange: how / can / I / to / the / get / airport / ?",
         "correct": "how can I get to the airport?",
         "hint": "Asking for directions",
-        "star": true
+        "star": True
       },
       {
         "type": "translation",
         "text": "Поверните налево у светофора.",
         "correct": "Turn left at the traffic lights.",
         "hint": "Use 'traffic lights'",
-        "star": true
+        "star": True
       },
       {
         "type": "translation",
         "text": "Это в двух кварталах отсюда.",
         "correct": "It's two blocks from here.",
         "hint": "Use 'blocks'",
-        "star": true
+        "star": True
       },
       {
         "type": "open",
         "text": "Write a short dialogue asking for and giving directions to a supermarket.",
         "correct": "Example: 'Excuse me, how do I get to the supermarket?' 'Go straight ahead, then turn left. It's on your right.'",
         "hint": "Use at least 3 direction words",
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "Excuse me, how do I ___ to the train station?",
         "correct": "get",
         "hint": "глагол движения",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "Go straight ___ for two blocks.",
         "correct": "ahead",
         "hint": "прямо вперёд",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "Turn ___ at the traffic lights.",
         "correct": "left",
         "hint": "налево",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "The bank is ___ the corner of Main Street.",
         "correct": "on",
         "hint": "предлог места",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "Walk ___ the park and you will see the museum.",
         "correct": "past",
         "hint": "мимо",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "It's ___ the supermarket, next to the pharmacy.",
         "correct": "opposite",
         "hint": "напротив",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "Take the second ___ on your right.",
         "correct": "turning",
         "hint": "поворот",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "The cinema is at the ___ of the street.",
         "correct": "end",
         "hint": "конец",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "Is it ___ walking distance from here?",
         "correct": "within",
         "hint": "в пределах",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "Go ___ the bridge and then turn left.",
         "correct": "across",
         "hint": "через",
-        "star": false
+        "star": False
       },
       {
         "type": "reorder",
         "text": "the / post office / can / you / tell / me / way / to / ?",
         "correct": "Can you tell me the way to the post office?",
         "hint": "вежливый вопрос",
-        "star": false
+        "star": False
       },
       {
         "type": "reorder",
         "text": "straight / go / on / for / two / miles",
         "correct": "Go straight on for two miles.",
         "hint": "прямое указание",
-        "star": false
+        "star": False
       },
       {
         "type": "reorder",
         "text": "left / turn / the / at / corner",
         "correct": "Turn left at the corner.",
         "hint": "поворот",
-        "star": false
+        "star": False
       },
       {
         "type": "reorder",
         "text": "is / the / hotel / where / please / ?",
         "correct": "Where is the hotel, please?",
         "hint": "вопрос с where",
-        "star": false
+        "star": False
       },
       {
         "type": "reorder",
         "text": "it / from / far / is / here / ?",
         "correct": "Is it far from here?",
         "hint": "вопрос о расстоянии",
-        "star": false
+        "star": False
       },
       {
         "type": "translation",
         "text": "Как пройти к библиотеке?",
         "correct": "How do I get to the library?",
         "hint": "используйте get to",
-        "star": false
+        "star": False
       },
       {
         "type": "translation",
         "text": "Поверните направо у светофора.",
         "correct": "Turn right at the traffic lights.",
         "hint": "traffic lights = светофор",
-        "star": false
+        "star": False
       },
       {
         "type": "translation",
         "text": "Это рядом с аптекой.",
         "correct": "It's near the pharmacy.",
         "hint": "near = рядом",
-        "star": false
+        "star": False
       },
       {
         "type": "translation",
         "text": "Идите прямо до перекрёстка.",
         "correct": "Go straight to the crossroads.",
         "hint": "crossroads = перекрёсток",
-        "star": false
+        "star": False
       },
       {
         "type": "translation",
         "text": "Автобусная остановка напротив парка.",
         "correct": "The bus stop is opposite the park.",
         "hint": "opposite = напротив",
-        "star": false
+        "star": False
       },
       {
         "type": "choice",
@@ -11062,7 +14915,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "at",
           "on"
         ],
-        "star": true
+        "star": True
       },
       {
         "type": "choice",
@@ -11075,7 +14928,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "at",
           "by"
         ],
-        "star": true
+        "star": True
       },
       {
         "type": "choice",
@@ -11088,7 +14941,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "through",
           "over"
         ],
-        "star": true
+        "star": True
       },
       {
         "type": "choice",
@@ -11101,7 +14954,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "at",
           "by"
         ],
-        "star": true
+        "star": True
       },
       {
         "type": "choice",
@@ -11114,42 +14967,42 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "over",
           "along"
         ],
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "Could you ___ me the way to the hospital?",
         "correct": "show",
         "hint": "показать",
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "The restaurant is ___ the bank and the library.",
         "correct": "between",
         "hint": "между",
-        "star": true
+        "star": True
       },
       {
         "type": "reorder",
         "text": "not / it's / far / very / from / here",
         "correct": "It's not very far from here.",
         "hint": "отрицание с not",
-        "star": true
+        "star": True
       },
       {
         "type": "translation",
         "text": "Сколько времени займёт дойти пешком?",
         "correct": "How long does it take to walk?",
         "hint": "how long = сколько времени",
-        "star": true
+        "star": True
       },
       {
         "type": "open",
         "text": "Объясните дорогу от вашего дома до ближайшего магазина (3-4 предложения).",
         "correct": "Go straight on for two blocks. Turn left at the supermarket. The shop is on the right, next to the bakery.",
         "hint": "используйте turn, go straight, next to",
-        "star": true
+        "star": True
       }
     ]
   },
@@ -11179,8 +15032,61 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "answer": "What do you do for a living? или What is your occupation?"
       }
     ],
-    "practice_tasks": [],
-        "star": false
+    "practice_tasks": [
+      {
+        "type": "fill_blank",
+        "text": "A person who designs buildings is an _______.",
+        "correct": "architect",
+        "hint": "Слово начинается с 'a' и заканчивается на 't'.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "A _______ takes care of sick animals.",
+        "correct": "veterinarian",
+        "hint": "Часто называют 'vet'.",
+        "star": False
+      },
+      {
+        "type": "reorder",
+        "text": "Расставьте буквы в правильном порядке: r e h c a e t",
+        "correct": "teacher",
+        "hint": "Эта профессия работает в школе.",
+        "star": False
+      },
+      {
+        "type": "reorder",
+        "text": "Расставьте буквы: r i f e h g i t f r e",
+        "correct": "firefighter",
+        "hint": "Тушит пожары.",
+        "star": False
+      },
+      {
+        "type": "translation",
+        "text": "Переведите на английский: 'повар'",
+        "correct": "cook",
+        "hint": "Готовит еду в ресторане.",
+        "star": False
+      },
+      {
+        "type": "translation",
+        "text": "Переведите на английский: 'медсестра'",
+        "correct": "nurse",
+        "hint": "Работает в больнице.",
+        "star": False
+      },
+      {
+        "type": "choice",
+        "text": "Кто лечит зубы?",
+        "correct": "dentist",
+        "hint": "Стоматолог.",
+        "options": [
+          "dentist",
+          "doctor",
+          "nurse",
+          "surgeon"
+        ],
+        "star": False
       },
       {
         "type": "choice",
@@ -11193,49 +15099,49 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "captain",
           "conductor"
         ],
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "A person who writes articles for a newspaper is a _______.",
         "correct": "journalist",
         "hint": "Слово начинается с 'j'.",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "A _______ fixes cars and other machines.",
         "correct": "mechanic",
         "hint": "Работает в гараже.",
-        "star": false
+        "star": False
       },
       {
         "type": "reorder",
         "text": "Расставьте буквы: l e c t r i c i a n",
         "correct": "electrician",
         "hint": "Работает с электричеством.",
-        "star": false
+        "star": False
       },
       {
         "type": "reorder",
         "text": "Расставьте буквы: u d g e",
         "correct": "judge",
         "hint": "Работает в суде.",
-        "star": false
+        "star": False
       },
       {
         "type": "translation",
         "text": "Переведите на английский: 'программист'",
         "correct": "programmer",
         "hint": "Пишет код.",
-        "star": false
+        "star": False
       },
       {
         "type": "translation",
         "text": "Переведите на английский: 'актёр'",
         "correct": "actor",
         "hint": "Играет в театре или кино.",
-        "star": false
+        "star": False
       },
       {
         "type": "choice",
@@ -11248,7 +15154,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "stylist",
           "tailor"
         ],
-        "star": false
+        "star": False
       },
       {
         "type": "choice",
@@ -11261,56 +15167,56 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "doctor",
           "engineer"
         ],
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "A person who sings songs is a _______.",
         "correct": "singer",
         "hint": "Исполнитель музыки.",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "A _______ delivers letters and packages.",
         "correct": "postman",
         "hint": "Работает на почте.",
-        "star": false
+        "star": False
       },
       {
         "type": "reorder",
         "text": "Расставьте буквы: a w y r e l",
         "correct": "lawyer",
         "hint": "Защищает в суде.",
-        "star": false
+        "star": False
       },
       {
         "type": "reorder",
         "text": "Расставьте буквы: p o l i c e o f f i c e r",
         "correct": "police officer",
         "hint": "Следит за порядком.",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "A person who flies a plane is a _______.",
         "correct": "pilot",
         "hint": "Управляет самолётом.",
-        "star": true
+        "star": True
       },
       {
         "type": "reorder",
         "text": "Расставьте буквы: p h a r m a c i s t",
         "correct": "pharmacist",
         "hint": "Работает в аптеке.",
-        "star": true
+        "star": True
       },
       {
         "type": "translation",
         "text": "Переведите на английский: 'археолог'",
         "correct": "archaeologist",
         "hint": "Изучает древние находки.",
-        "star": true
+        "star": True
       },
       {
         "type": "choice",
@@ -11323,28 +15229,28 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "mechanic",
           "electrician"
         ],
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "A person who studies the stars and planets is an _______.",
         "correct": "astronomer",
         "hint": "Начинается с 'a', заканчивается на 'r'.",
-        "star": true
+        "star": True
       },
       {
         "type": "reorder",
         "text": "Расставьте буквы: p s y c h o l o g i s t",
         "correct": "psychologist",
         "hint": "Изучает поведение и разум.",
-        "star": true
+        "star": True
       },
       {
         "type": "translation",
         "text": "Переведите на английский: 'дипломат'",
         "correct": "diplomat",
         "hint": "Представляет страну за рубежом.",
-        "star": true
+        "star": True
       },
       {
         "type": "choice",
@@ -11357,168 +15263,168 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "composer",
           "director"
         ],
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "A person who investigates crimes is a _______.",
         "correct": "detective",
         "hint": "Детектив или сыщик.",
-        "star": true
+        "star": True
       },
       {
         "type": "reorder",
         "text": "Расставьте буквы: b i o l o g i s t",
         "correct": "biologist",
         "hint": "Изучает живые организмы.",
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "A person who flies a plane is a ____.",
         "correct": "pilot",
         "hint": "It starts with 'p' and ends with 't'.",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "A ____ works in a hospital and helps doctors.",
         "correct": "nurse",
         "hint": "This person wears a uniform and gives medicine.",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "A ____ teaches students at school.",
         "correct": "teacher",
         "hint": "They use a blackboard and books.",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "A ____ builds houses and buildings.",
         "correct": "builder",
         "hint": "They use tools like a hammer.",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "A ____ drives a taxi.",
         "correct": "taxi driver",
         "hint": "Two words, starts with 't'.",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "A ____ cooks food in a restaurant.",
         "correct": "chef",
         "hint": "They wear a tall white hat.",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "A ____ puts out fires.",
         "correct": "firefighter",
         "hint": "They drive a red truck.",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "A ____ works in an office and types letters.",
         "correct": "secretary",
         "hint": "They answer phones and arrange meetings.",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "A ____ fixes cars.",
         "correct": "mechanic",
         "hint": "They work in a garage.",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "A ____ takes photos.",
         "correct": "photographer",
         "hint": "They use a camera.",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "A ____ sells products in a shop.",
         "correct": "shop assistant",
         "hint": "Two words, helps customers.",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "A ____ writes articles for a newspaper.",
         "correct": "journalist",
         "hint": "They interview people.",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "A ____ designs buildings.",
         "correct": "architect",
         "hint": "They draw plans.",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "A ____ acts in movies or plays.",
         "correct": "actor",
         "hint": "They perform on stage.",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "A ____ sings songs.",
         "correct": "singer",
         "hint": "They use their voice.",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "A ____ treats animals.",
         "correct": "vet",
         "hint": "Short word, starts with 'v'.",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "A ____ delivers letters and packages.",
         "correct": "postman",
         "hint": "They wear a uniform and carry a bag.",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "A ____ works on a farm.",
         "correct": "farmer",
         "hint": "They grow crops or raise animals.",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "A ____ defends people in court.",
         "correct": "lawyer",
         "hint": "They wear a suit and argue cases.",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "A ____ flies to space.",
         "correct": "astronaut",
         "hint": "They wear a special suit.",
-        "star": false
+        "star": False
       },
       {
         "type": "choice",
         "text": "Which person puts out fires?",
         "correct": "firefighter",
         "hint": "They use water hoses.",
-        "star": true,
+        "star": True,
         "options": [
           "firefighter",
           "chef",
@@ -11531,7 +15437,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "Who teaches students?",
         "correct": "teacher",
         "hint": "They work in a classroom.",
-        "star": true,
+        "star": True,
         "options": [
           "doctor",
           "teacher",
@@ -11544,7 +15450,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "Who flies a plane?",
         "correct": "pilot",
         "hint": "They sit in the cockpit.",
-        "star": true,
+        "star": True,
         "options": [
           "pilot",
           "nurse",
@@ -11557,7 +15463,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "Who takes photos?",
         "correct": "photographer",
         "hint": "They say 'cheese'.",
-        "star": true,
+        "star": True,
         "options": [
           "photographer",
           "journalist",
@@ -11570,42 +15476,42 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "Rearrange: pilot / a / is / He",
         "correct": "He is a pilot.",
         "hint": "Start with 'He'.",
-        "star": true
+        "star": True
       },
       {
         "type": "reorder",
         "text": "Rearrange: works / She / a / as / nurse",
         "correct": "She works as a nurse.",
         "hint": "Put 'as' after 'works'.",
-        "star": true
+        "star": True
       },
       {
         "type": "translation",
         "text": "Переведите на английский: 'Он врач.'",
         "correct": "He is a doctor.",
         "hint": "Use 'He is a...'",
-        "star": true
+        "star": True
       },
       {
         "type": "translation",
         "text": "Переведите на английский: 'Она учительница.'",
         "correct": "She is a teacher.",
         "hint": "Use 'She is a...'",
-        "star": true
+        "star": True
       },
       {
         "type": "open",
         "text": "What is your dream job? Why?",
         "correct": "My dream job is... because...",
         "hint": "Use 'My dream job is' and give a reason.",
-        "star": true
+        "star": True
       },
       {
         "type": "open",
         "text": "Describe what a firefighter does in three sentences.",
         "correct": "A firefighter puts out fires. They save people. They drive a fire truck.",
         "hint": "Use present simple tense.",
-        "star": true
+        "star": True
       }
     ]
   },
@@ -11635,8 +15541,159 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "answer": "Like – общее «нравится», enjoy – «получаю удовольствие, наслаждаюсь», чуть более эмоционально."
       }
     ],
-    "practice_tasks": [],
-        "star": false
+    "practice_tasks": [
+      {
+        "type": "fill_blank",
+        "text": "I like to ___ (собирать) stamps in my free time.",
+        "correct": "collect",
+        "hint": "глагол для коллекционирования",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She enjoys ___ (рисование) pictures of landscapes.",
+        "correct": "painting",
+        "hint": "герундий от 'paint'",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He often goes ___ (рыбалка) on weekends.",
+        "correct": "fishing",
+        "hint": "вид активного отдыха на воде",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "My brother is very good at ___ (игра на гитаре).",
+        "correct": "playing the guitar",
+        "hint": "музыкальный инструмент",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "They love ___ (путешествия) to new countries.",
+        "correct": "travelling",
+        "hint": "глобальное хобби",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "I spend my evenings ___ (чтение) books.",
+        "correct": "reading",
+        "hint": "тихое занятие с книгой",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She likes ___ (вязание) scarves for her friends.",
+        "correct": "knitting",
+        "hint": "рукоделие с нитками",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He is into ___ (фотография) nature.",
+        "correct": "photography",
+        "hint": "искусство снимков",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "We enjoy ___ (пешие прогулки) in the mountains.",
+        "correct": "hiking",
+        "hint": "активный отдых пешком",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She loves ___ (танцы) salsa.",
+        "correct": "dancing",
+        "hint": "ритмичное движение",
+        "star": False
+      },
+      {
+        "type": "reorder",
+        "text": "like / I / reading / in / free / my / time / .",
+        "correct": "I like reading in my free time.",
+        "hint": "Начни с подлежащего",
+        "star": False
+      },
+      {
+        "type": "reorder",
+        "text": "goes / He / fishing / often / .",
+        "correct": "He often goes fishing.",
+        "hint": "Сначала кто, потом действие",
+        "star": False
+      },
+      {
+        "type": "reorder",
+        "text": "enjoys / She / painting / pictures / .",
+        "correct": "She enjoys painting pictures.",
+        "hint": "После enjoys нужен герундий",
+        "star": False
+      },
+      {
+        "type": "reorder",
+        "text": "brother / My / playing / guitar / is / the / at / good / .",
+        "correct": "My brother is good at playing the guitar.",
+        "hint": "Фраза 'be good at'",
+        "star": False
+      },
+      {
+        "type": "reorder",
+        "text": "love / They / travelling / countries / to / new / .",
+        "correct": "They love travelling to new countries.",
+        "hint": "После love может быть герундий",
+        "star": False
+      },
+      {
+        "type": "translation",
+        "text": "Я люблю слушать музыку в свободное время.",
+        "correct": "I love listening to music in my free time.",
+        "hint": "love + герундий",
+        "star": False
+      },
+      {
+        "type": "translation",
+        "text": "Он увлекается игрой в шахматы.",
+        "correct": "He is into playing chess.",
+        "hint": "be into + герундий",
+        "star": False
+      },
+      {
+        "type": "translation",
+        "text": "Она хорошо готовит.",
+        "correct": "She is good at cooking.",
+        "hint": "be good at",
+        "star": False
+      },
+      {
+        "type": "translation",
+        "text": "Мы ходим в походы каждое лето.",
+        "correct": "We go hiking every summer.",
+        "hint": "go + герундий для активностей",
+        "star": False
+      },
+      {
+        "type": "translation",
+        "text": "Мое хобби — коллекционирование марок.",
+        "correct": "My hobby is collecting stamps.",
+        "hint": "hobby + is + герундий",
+        "star": False
+      },
+      {
+        "type": "choice",
+        "text": "What do you like to do in your ___ time?",
+        "correct": "free",
+        "hint": "синоним 'свободный'",
+        "options": [
+          "busy",
+          "free",
+          "work",
+          "long"
+        ],
+        "star": False
       },
       {
         "type": "choice",
@@ -11649,7 +15706,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "interest",
           "interests"
         ],
-        "star": false
+        "star": False
       },
       {
         "type": "choice",
@@ -11662,7 +15719,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "enjoying",
           "enjoyed"
         ],
-        "star": false
+        "star": False
       },
       {
         "type": "choice",
@@ -11675,7 +15732,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "to swim",
           "swims"
         ],
-        "star": false
+        "star": False
       },
       {
         "type": "choice",
@@ -11688,35 +15745,35 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "reads",
           "to read"
         ],
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "She ___ (занимается) yoga every morning.",
         "correct": "does",
         "hint": "глагол для занятий спортом",
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "I am ___ (увлекаюсь) playing the piano.",
         "correct": "into",
         "hint": "фраза 'be into'",
-        "star": true
+        "star": True
       },
       {
         "type": "reorder",
         "text": "hobby / is / My / collecting / coins / .",
         "correct": "My hobby is collecting coins.",
         "hint": "Сначала 'My hobby'",
-        "star": true
+        "star": True
       },
       {
         "type": "translation",
         "text": "Он не интересуется видеоиграми.",
         "correct": "He is not interested in video games.",
         "hint": "отрицание с 'not'",
-        "star": true
+        "star": True
       },
       {
         "type": "choice",
@@ -11729,28 +15786,28 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "at",
           "for"
         ],
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "They are fond ___ (of/on/in) hiking.",
         "correct": "of",
         "hint": "фраза 'be fond of'",
-        "star": true
+        "star": True
       },
       {
         "type": "translation",
         "text": "Мой дедушка увлекается садоводством.",
         "correct": "My grandfather is keen on gardening.",
         "hint": "be keen on",
-        "star": true
+        "star": True
       },
       {
         "type": "reorder",
         "text": "keen / is / She / on / dancing / .",
         "correct": "She is keen on dancing.",
         "hint": "Фраза 'be keen on'",
-        "star": true
+        "star": True
       },
       {
         "type": "choice",
@@ -11763,14 +15820,14 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "time",
           "fun"
         ],
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "I prefer ___ (готовить) to eating out.",
         "correct": "cooking",
         "hint": "герундий после prefer",
-        "star": true
+        "star": True
       }
     ]
   },
@@ -11800,14 +15857,166 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "answer": "Holiday – британский вариант, vacation – американский. В британском 'holiday' также означает праздник."
       }
     ],
-    "practice_tasks": []
+    "practice_tasks": [
+      {
+        "type": "fill_blank",
+        "text": "We need to ___ our flight tickets online.",
+        "correct": "book",
+        "hint": "забронировать",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She packed her ___ for the beach trip.",
+        "correct": "suitcase",
+        "hint": "чемодан",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The hotel has a beautiful ___ with a pool.",
+        "correct": "terrace",
+        "hint": "терраса",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "Don't forget to bring your ___ for the flight.",
+        "correct": "passport",
+        "hint": "паспорт",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "We went on a guided ___ of the old city.",
+        "correct": "tour",
+        "hint": "экскурсия",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The ___ from the airport to the hotel was very comfortable.",
+        "correct": "transfer",
+        "hint": "трансфер",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "I love to buy ___ as a memory of my trips.",
+        "correct": "souvenirs",
+        "hint": "сувениры",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "Our flight was delayed, so we had a long ___ at the airport.",
+        "correct": "layover",
+        "hint": "пересадка",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The travel agency offers all-___ packages.",
+        "correct": "inclusive",
+        "hint": "включительно",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "We decided to ___ a car for our road trip.",
+        "correct": "rent",
+        "hint": "арендовать",
+        "star": False
+      },
+      {
+        "type": "reorder",
+        "text": "make / to / I / reservation / a / need",
+        "correct": "I need to make a reservation",
+        "hint": "забронировать",
+        "star": False
+      },
+      {
+        "type": "reorder",
+        "text": "the / check / we / hotel / at / in",
+        "correct": "we check in at the hotel",
+        "hint": "заселиться",
+        "star": False
+      },
+      {
+        "type": "reorder",
+        "text": "luggage / lost / my / is",
+        "correct": "my luggage is lost",
+        "hint": "багаж потерян",
+        "star": False
+      },
+      {
+        "type": "reorder",
+        "text": "a / trip / have / great",
+        "correct": "have a great trip",
+        "hint": "хорошей поездки",
+        "star": False
+      },
+      {
+        "type": "reorder",
+        "text": "departure / gate / the / at / wait",
+        "correct": "wait at the departure gate",
+        "hint": "выход на посадку",
+        "star": False
+      },
+      {
+        "type": "translation",
+        "text": "Я хочу забронировать номер в отеле.",
+        "correct": "I want to book a hotel room",
+        "hint": "book a room",
+        "star": False
+      },
+      {
+        "type": "translation",
+        "text": "У них есть багаж?",
+        "correct": "Do they have luggage?",
+        "hint": "luggage",
+        "star": False
+      },
+      {
+        "type": "translation",
+        "text": "Это прямой рейс?",
+        "correct": "Is this a direct flight?",
+        "hint": "direct flight",
+        "star": False
+      },
+      {
+        "type": "translation",
+        "text": "Где находится стойка регистрации?",
+        "correct": "Where is the check-in desk?",
+        "hint": "check-in desk",
+        "star": False
+      },
+      {
+        "type": "translation",
+        "text": "Мы хотим арендовать машину на неделю.",
+        "correct": "We want to rent a car for a week",
+        "hint": "rent a car",
+        "star": False
+      },
+      {
+        "type": "choice",
+        "text": "What is the word for 'чемодан'?",
+        "correct": "suitcase",
+        "hint": "luggage item",
+        "star": False,
+        "options": [
+          "suitcase",
+          "backpack",
+          "wallet",
+          "bag"
+        ]
       },
       {
         "type": "choice",
         "text": "Choose the correct word: 'We had a ___ at the beach resort.'",
         "correct": "vacation",
         "hint": "отпуск",
-        "star": false,
+        "star": False,
         "options": [
           "vacation",
           "meeting",
@@ -11820,7 +16029,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "What does 'departure' mean?",
         "correct": "отправление",
         "hint": "opposite of arrival",
-        "star": false,
+        "star": False,
         "options": [
           "прибытие",
           "отправление",
@@ -11833,7 +16042,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "Which word means 'путеводитель'?",
         "correct": "guidebook",
         "hint": "book for travelers",
-        "star": false,
+        "star": False,
         "options": [
           "guidebook",
           "ticket",
@@ -11846,7 +16055,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "Complete: 'I need to ___ my bags before the flight.'",
         "correct": "check in",
         "hint": "сдать багаж",
-        "star": false,
+        "star": False,
         "options": [
           "check in",
           "check out",
@@ -11859,56 +16068,56 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "Describe your ideal vacation destination in 3-5 sentences.",
         "correct": "Any reasonable description of a holiday place",
         "hint": "Use words like beach, mountains, relax, explore",
-        "star": false
+        "star": False
       },
       {
         "type": "open",
         "text": "What items do you always pack for a trip? List at least 5.",
         "correct": "Any list of travel items (e.g., passport, clothes, charger)",
         "hint": "Think of essentials",
-        "star": false
+        "star": False
       },
       {
         "type": "open",
         "text": "Explain the difference between 'travel' and 'trip' in English.",
         "correct": "Travel is a general activity; trip is a specific journey",
         "hint": "One is a verb/noun, the other is a noun",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "The ___ class seats are very spacious.",
         "correct": "first",
         "hint": "первый класс",
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "We need to apply for a ___ before visiting that country.",
         "correct": "visa",
         "hint": "виза",
-        "star": true
+        "star": True
       },
       {
         "type": "reorder",
         "text": "abroad / going / are / they / study / to",
         "correct": "they are going to study abroad",
         "hint": "учиться за границей",
-        "star": true
+        "star": True
       },
       {
         "type": "translation",
         "text": "Мы столкнулись с задержкой рейса из-за тумана.",
         "correct": "We faced a flight delay due to fog",
         "hint": "flight delay",
-        "star": true
+        "star": True
       },
       {
         "type": "choice",
         "text": "What is 'all-inclusive' in Russian?",
         "correct": "всё включено",
         "hint": "hotel package",
-        "star": true,
+        "star": True,
         "options": [
           "всё включено",
           "полупансион",
@@ -11921,7 +16130,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "Which phrase means 'путешествовать автостопом'?",
         "correct": "hitchhike",
         "hint": "travel by thumb",
-        "star": true,
+        "star": True,
         "options": [
           "hitchhike",
           "backpack",
@@ -11934,196 +16143,196 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "Write a short dialogue between a traveler and a hotel receptionist checking in.",
         "correct": "Any coherent dialogue with check-in phrases",
         "hint": "Use 'reservation', 'room key', 'check-in'",
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "The ___ of the flight is at gate 12.",
         "correct": "boarding",
         "hint": "посадка",
-        "star": true
+        "star": True
       },
       {
         "type": "translation",
         "text": "Они отправились в кругосветное путешествие.",
         "correct": "They went on a round-the-world trip",
         "hint": "round-the-world",
-        "star": true
+        "star": True
       },
       {
         "type": "open",
         "text": "Compare traveling by plane and by train. Give two advantages of each.",
         "correct": "Any reasonable comparison",
         "hint": "Think of speed, cost, scenery",
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "We need to book a ______ for our trip to Paris.",
         "correct": "hotel",
         "hint": "A place to sleep",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "Don't forget to pack your ______ for the beach.",
         "correct": "swimsuit",
         "hint": "Clothes for swimming",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "The ______ from New York to London takes about seven hours.",
         "correct": "flight",
         "hint": "Travel by plane",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "I need to renew my ______ before traveling abroad.",
         "correct": "passport",
         "hint": "Official document for travel",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "We went on a ______ to see the ancient ruins.",
         "correct": "tour",
         "hint": "Guided visit",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "The hotel has a beautiful ______ with a pool.",
         "correct": "view",
         "hint": "What you see from a window",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "I bought some ______ for my family back home.",
         "correct": "souvenirs",
         "hint": "Small gifts from a trip",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "We had a ______ delay because of bad weather.",
         "correct": "flight",
         "hint": "Air travel",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "She packed a ______ to carry her clothes.",
         "correct": "suitcase",
         "hint": "Luggage for clothes",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "The travel ______ helped us plan our itinerary.",
         "correct": "agent",
         "hint": "Person who books trips",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "We stayed at a ______ resort by the sea.",
         "correct": "beach",
         "hint": "Sandy shore",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "I need to check the ______ for my train.",
         "correct": "schedule",
         "hint": "Timetable",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "The ______ was very comfortable during the long flight.",
         "correct": "seat",
         "hint": "Place to sit",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "We rented a ______ to drive around the island.",
         "correct": "car",
         "hint": "Vehicle for roads",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "The hotel offers free ______ to the airport.",
         "correct": "shuttle",
         "hint": "Bus service",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "I love trying local ______ when I travel.",
         "correct": "food",
         "hint": "What you eat",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "We went ______ in the mountains last summer.",
         "correct": "hiking",
         "hint": "Walking in nature",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "The ______ at the hotel was very friendly.",
         "correct": "staff",
         "hint": "Employees",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "I need to exchange some ______ for local money.",
         "correct": "currency",
         "hint": "Money of a country",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "The ______ to the museum is $10.",
         "correct": "entrance fee",
         "hint": "Cost to enter",
-        "star": false
+        "star": False
       },
       {
         "type": "reorder",
         "text": "the / we / to / airport / went / morning / in",
         "correct": "We went to the airport in the morning.",
         "hint": "Start with 'We'",
-        "star": true
+        "star": True
       },
       {
         "type": "reorder",
         "text": "souvenirs / bought / she / some / market / at / the",
         "correct": "She bought some souvenirs at the market.",
         "hint": "Subject + verb",
-        "star": true
+        "star": True
       },
       {
         "type": "translation",
         "text": "Я забронировал номер в отеле на неделю.",
         "correct": "I booked a hotel room for a week.",
         "hint": "Use 'booked'",
-        "star": true
+        "star": True
       },
       {
         "type": "translation",
         "text": "Мы опоздали на рейс из-за пробки.",
         "correct": "We missed the flight because of traffic.",
         "hint": "Use 'missed'",
-        "star": true
+        "star": True
       },
       {
         "type": "choice",
@@ -12136,7 +16345,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "ticket",
           "visa"
         ],
-        "star": true
+        "star": True
       },
       {
         "type": "choice",
@@ -12149,35 +16358,35 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "tour",
           "hike"
         ],
-        "star": true
+        "star": True
       },
       {
         "type": "open",
         "text": "Describe your dream vacation in 3 sentences.",
         "correct": "Example: My dream vacation is a beach holiday in Thailand. I would relax by the sea and eat local food. It would be perfect.",
         "hint": "Use holiday vocabulary",
-        "star": true
+        "star": True
       },
       {
         "type": "open",
         "text": "What three things do you always pack for a trip? Why?",
         "correct": "Example: I always pack a swimsuit, a camera, and a book. The swimsuit is for the beach, the camera for photos, and the book for relaxing.",
         "hint": "Use items from travel",
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "The ______ took us to the hotel from the airport.",
         "correct": "taxi",
         "hint": "Car with driver",
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "We had a wonderful ______ at the five-star hotel.",
         "correct": "stay",
         "hint": "Time spent somewhere",
-        "star": true
+        "star": True
       }
     ]
   },
@@ -12207,14 +16416,166 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "answer": "Discount. 'On sale' – на распродаже."
       }
     ],
-    "practice_tasks": []
+    "practice_tasks": [
+      {
+        "type": "fill_blank",
+        "text": "I need to buy some milk and bread. Let's go to the ______.",
+        "correct": "supermarket",
+        "hint": "магазин продуктов",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The ______ is too high. I can't afford this dress.",
+        "correct": "price",
+        "hint": "цена",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "Can I ______ this shirt? I want to see how it looks.",
+        "correct": "try on",
+        "hint": "примерить",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She paid with her ______ card at the checkout.",
+        "correct": "credit",
+        "hint": "кредитная карта",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "There is a big ______ on electronics this week. Everything is 20% off.",
+        "correct": "sale",
+        "hint": "распродажа",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The ______ gave me my change and a receipt.",
+        "correct": "cashier",
+        "hint": "кассир",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "I need to buy a ______ for my friend's birthday.",
+        "correct": "gift",
+        "hint": "подарок",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "This jacket is too expensive. I'll wait for the ______.",
+        "correct": "discount",
+        "hint": "скидка",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "Let's look at the ______. They have fresh fruit and vegetables.",
+        "correct": "produce section",
+        "hint": "овощной отдел",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "I want to ______ this sweater. It doesn't fit me.",
+        "correct": "return",
+        "hint": "вернуть товар",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The store has a 'buy one, get one ______' promotion.",
+        "correct": "free",
+        "hint": "бесплатно",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "Please put the items in the shopping ______.",
+        "correct": "cart",
+        "hint": "тележка",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "I'm just ______. I don't need any help.",
+        "correct": "browsing",
+        "hint": "просматриваю",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The ______ is at the front of the store.",
+        "correct": "checkout",
+        "hint": "касса",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "This product has a one-year ______.",
+        "correct": "warranty",
+        "hint": "гарантия",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "I need a ______ for this item. I lost the original one.",
+        "correct": "receipt",
+        "hint": "чек",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The ______ is on the second floor, next to the escalator.",
+        "correct": "customer service desk",
+        "hint": "стойка обслуживания",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "We are out of milk. Let's add it to our shopping ______.",
+        "correct": "list",
+        "hint": "список",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "I paid with ______ because I don't like using cards.",
+        "correct": "cash",
+        "hint": "наличные",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The store is having a ______. Everything must go!",
+        "correct": "clearance sale",
+        "hint": "тотальная распродажа",
+        "star": False
+      },
+      {
+        "type": "choice",
+        "text": "What do you call the place where you pay for items in a store?",
+        "correct": "checkout",
+        "hint": "касса",
+        "star": True,
+        "options": [
+          "fitting room",
+          "checkout",
+          "shelf",
+          "entrance"
+        ]
       },
       {
         "type": "choice",
         "text": "If you want to see if clothes fit, you should ______.",
         "correct": "try them on",
         "hint": "примерить",
-        "star": true,
+        "star": True,
         "options": [
           "try them on",
           "take them off",
@@ -12227,7 +16588,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "A ______ is a piece of paper that proves you paid for something.",
         "correct": "receipt",
         "hint": "чек",
-        "star": true,
+        "star": True,
         "options": [
           "warranty",
           "receipt",
@@ -12240,7 +16601,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "Which word means 'a reduction in price'?",
         "correct": "discount",
         "hint": "скидка",
-        "star": true,
+        "star": True,
         "options": [
           "discount",
           "price",
@@ -12253,7 +16614,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "Where do you usually find fresh meat in a supermarket?",
         "correct": "butcher section",
         "hint": "мясной отдел",
-        "star": true,
+        "star": True,
         "options": [
           "dairy section",
           "butcher section",
@@ -12266,35 +16627,35 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "text": "Расположите слова, чтобы получилось предложение: you / Can / help / I / ?",
         "correct": "Can I help you?",
         "hint": "Могу я вам помочь?",
-        "star": true
+        "star": True
       },
       {
         "type": "reorder",
         "text": "Расположите слова: is / on / This / sale / item",
         "correct": "This item is on sale.",
         "hint": "Этот товар по скидке",
-        "star": true
+        "star": True
       },
       {
         "type": "translation",
         "text": "Переведите на английский: 'Я хочу вернуть этот товар'.",
         "correct": "I want to return this item.",
         "hint": "вернуть = return",
-        "star": true
+        "star": True
       },
       {
         "type": "translation",
         "text": "Переведите на английский: 'Сколько это стоит?'",
         "correct": "How much does it cost?",
         "hint": "стоить = cost",
-        "star": true
+        "star": True
       },
       {
         "type": "open",
         "text": "Опишите, что вы делаете, когда идете в супермаркет. Используйте не менее 5 слов из лексики 'покупки'.",
         "correct": "Open answer (example: I take a shopping cart, look at my list, go to the produce section, pay at the checkout, and get a receipt.)",
         "hint": "используйте: cart, list, checkout, receipt, cashier",
-        "star": true
+        "star": True
       }
     ]
   },
@@ -12324,8 +16685,145 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "answer": "I feel sick. / I'm going to be sick."
       }
     ],
-    "practice_tasks": [],
-        "star": false
+    "practice_tasks": [
+      {
+        "type": "fill_blank",
+        "text": "I use my ___ to see.",
+        "correct": "eyes",
+        "hint": "орган зрения",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She broke her ___ and now wears a cast.",
+        "correct": "arm",
+        "hint": "часть тела от плеча до кисти",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He kicked the ball with his ___.",
+        "correct": "foot",
+        "hint": "часть ноги, которой пинают",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "Put your ___ on your head.",
+        "correct": "hand",
+        "hint": "кисть руки",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She has long ___ and can reach the top shelf.",
+        "correct": "arms",
+        "hint": "верхние конечности",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The dentist checked my ___.",
+        "correct": "teeth",
+        "hint": "то, чем мы жуем",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "I hurt my ___ when I fell on the ice.",
+        "correct": "knee",
+        "hint": "сустав на ноге",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "He wears a ring on his ___.",
+        "correct": "finger",
+        "hint": "часть руки, где носят кольца",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "She has a pain in her ___ from running.",
+        "correct": "leg",
+        "hint": "нижняя конечность",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The baby has tiny ___ on his feet.",
+        "correct": "toes",
+        "hint": "пальцы на ногах",
+        "star": False
+      },
+      {
+        "type": "reorder",
+        "text": "Расположи части тела от головы к ногам: foot, head, knee, shoulder",
+        "correct": "head, shoulder, knee, foot",
+        "hint": "голова, плечо, колено, стопа",
+        "star": False
+      },
+      {
+        "type": "reorder",
+        "text": "Составь слово из букв: e, y, e",
+        "correct": "eye",
+        "hint": "орган зрения",
+        "star": False
+      },
+      {
+        "type": "reorder",
+        "text": "Составь слово: a, h, d, n",
+        "correct": "hand",
+        "hint": "кисть руки",
+        "star": False
+      },
+      {
+        "type": "reorder",
+        "text": "Расположи от верхней части к нижней: ear, neck, hip, ankle",
+        "correct": "ear, neck, hip, ankle",
+        "hint": "ухо, шея, бедро, лодыжка",
+        "star": False
+      },
+      {
+        "type": "translation",
+        "text": "Переведи на английский: палец (на руке)",
+        "correct": "finger",
+        "hint": "часть руки",
+        "star": False
+      },
+      {
+        "type": "translation",
+        "text": "Переведи на английский: локоть",
+        "correct": "elbow",
+        "hint": "сустав руки",
+        "star": False
+      },
+      {
+        "type": "translation",
+        "text": "Переведи на русский: shoulder",
+        "correct": "плечо",
+        "hint": "часть тела между шеей и рукой",
+        "star": False
+      },
+      {
+        "type": "translation",
+        "text": "Переведи на русский: chest",
+        "correct": "грудь",
+        "hint": "передняя часть туловища",
+        "star": False
+      },
+      {
+        "type": "choice",
+        "text": "What do you use to smell?",
+        "correct": "nose",
+        "hint": "орган обоняния",
+        "options": [
+          "ear",
+          "nose",
+          "mouth",
+          "eye"
+        ],
+        "star": False
       },
       {
         "type": "choice",
@@ -12338,42 +16836,42 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "head",
           "arm"
         ],
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "The skeleton includes 206 ___.",
         "correct": "bones",
         "hint": "твердые части скелета",
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "The ___ pumps blood throughout the body.",
         "correct": "heart",
         "hint": "главный орган кровообращения",
-        "star": true
+        "star": True
       },
       {
         "type": "reorder",
         "text": "Составь слово: i, r, b, a, n",
         "correct": "brain",
         "hint": "орган в голове, отвечающий за мышление",
-        "star": true
+        "star": True
       },
       {
         "type": "translation",
         "text": "Переведи на английский: запястье",
         "correct": "wrist",
         "hint": "сустав между рукой и кистью",
-        "star": true
+        "star": True
       },
       {
         "type": "translation",
         "text": "Переведи на русский: spine",
         "correct": "позвоночник",
         "hint": "основная кость спины",
-        "star": true
+        "star": True
       },
       {
         "type": "choice",
@@ -12386,7 +16884,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "liver",
           "stomach"
         ],
-        "star": true
+        "star": True
       },
       {
         "type": "choice",
@@ -12399,238 +16897,238 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
           "cartilage",
           "nerves"
         ],
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "The ___ protects the brain.",
         "correct": "skull",
         "hint": "череп",
-        "star": true
+        "star": True
       },
       {
         "type": "open",
         "text": "Назови три части тела, которые есть на лице.",
         "correct": "eye, nose, mouth (or any three correct)",
         "hint": "глаз, нос, рот и т.д.",
-        "star": true
+        "star": True
       },
       {
         "type": "open",
         "text": "Опиши, что делает сердце в теле человека (одно предложение).",
         "correct": "It pumps blood.",
         "hint": "качает кровь",
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "She broke her ___ (рука) while playing tennis.",
         "correct": "arm",
         "hint": "Часть тела от плеча до кисти",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "He has a pain in his ___ (спина) after lifting weights.",
         "correct": "back",
         "hint": "Задняя часть туловища",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "I need to stretch my ___ (нога) before the race.",
         "correct": "leg",
         "hint": "Часть тела от бедра до стопы",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "She touched her ___ (живот) because she felt sick.",
         "correct": "stomach",
         "hint": "Орган пищеварения, также область тела",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "He hurt his ___ (колено) when he fell down.",
         "correct": "knee",
         "hint": "Сустав между бедром и голенью",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "I can't see without my glasses; my ___ (глаза) are weak.",
         "correct": "eyes",
         "hint": "Органы зрения",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "She has a ring on her ___ (палец).",
         "correct": "finger",
         "hint": "Часть руки",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "The dentist checked his ___ (зубы).",
         "correct": "teeth",
         "hint": "Костные образования во рту",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "He hit his ___ (локоть) on the table.",
         "correct": "elbow",
         "hint": "Сустав между плечом и предплечьем",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "She has a tattoo on her ___ (плечо).",
         "correct": "shoulder",
         "hint": "Часть тела между шеей и рукой",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "I have a headache; my ___ (голова) hurts.",
         "correct": "head",
         "hint": "Верхняя часть тела",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "He kicked the ball with his ___ (ступня).",
         "correct": "foot",
         "hint": "Нижняя часть ноги",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "She whispered something in his ___ (ухо).",
         "correct": "ear",
         "hint": "Орган слуха",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "He has a cut on his ___ (подбородок).",
         "correct": "chin",
         "hint": "Нижняя часть лица",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "She has long ___ (волосы) on her head.",
         "correct": "hair",
         "hint": "То, что растет на голове",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "He has a strong ___ (шея).",
         "correct": "neck",
         "hint": "Часть тела, соединяющая голову и туловище",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "She has a bracelet on her ___ (запястье).",
         "correct": "wrist",
         "hint": "Сустав между рукой и кистью",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "He has a scar on his ___ (лоб).",
         "correct": "forehead",
         "hint": "Часть лица над глазами",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "She has a cold; her ___ (нос) is running.",
         "correct": "nose",
         "hint": "Орган обоняния",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "He has a muscle in his ___ (икра).",
         "correct": "calf",
         "hint": "Задняя часть голени",
-        "star": false
+        "star": False
       },
       {
         "type": "fill_blank",
         "text": "The ___ (большой палец) is the shortest but strongest finger.",
         "correct": "thumb",
         "hint": "Первый палец на руке",
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "She has a piercing in her ___ (пупок).",
         "correct": "navel",
         "hint": "Центральная точка живота",
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "He has a tattoo on his ___ (голень).",
         "correct": "shin",
         "hint": "Передняя часть ноги между коленом и лодыжкой",
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "She has a ring on her ___ (мизинец).",
         "correct": "pinky",
         "hint": "Самый маленький палец",
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "He has a pain in his ___ (бедро).",
         "correct": "hip",
         "hint": "Сустав, соединяющий ногу и туловище",
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "She has a bruise on her ___ (ягодица).",
         "correct": "buttock",
         "hint": "Мягкая часть тела, на которой сидят",
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "He has a scar on his ___ (ладонь).",
         "correct": "palm",
         "hint": "Внутренняя сторона кисти",
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "She has a mole on her ___ (лодыжка).",
         "correct": "ankle",
         "hint": "Сустав между стопой и голенью",
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "He has a tattoo on his ___ (предплечье).",
         "correct": "forearm",
         "hint": "Часть руки между локтем и запястьем",
-        "star": true
+        "star": True
       },
       {
         "type": "fill_blank",
         "text": "She has a piercing on her ___ (бровь).",
         "correct": "eyebrow",
         "hint": "Дуга волос над глазом",
-        "star": true
+        "star": True
       }
     ]
   }
