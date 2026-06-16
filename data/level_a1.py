@@ -33,518 +33,518 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "answer": "Имя буквы и её звук – разные вещи. Звуки выучите позже, когда начнёте читать слова."
       }
     ],
-    "practice_bank": [
-    # ===== Вариант 1 =====
-    [
-        {
-            "type": "complex",
-            "text": "Задание 1. Напишите букву, которая следует за данной в алфавите.",
-            "subtasks": [
-                {"question": "B → __", "answer": "C", "explanation": "После B идёт C"},
-                {"question": "D → __", "answer": "E", "explanation": "После D идёт E"},
-                {"question": "G → __", "answer": "H", "explanation": "После G идёт H"},
-                {"question": "K → __", "answer": "L", "explanation": "После K идёт L"},
-                {"question": "M → __", "answer": "N", "explanation": "После M идёт N"},
-                {"question": "P → __", "answer": "Q", "explanation": "После P идёт Q"},
-                {"question": "R → __", "answer": "S", "explanation": "После R идёт S"},
-                {"question": "T → __", "answer": "U", "explanation": "После T идёт U"},
-                {"question": "V → __", "answer": "W", "explanation": "После V идёт W"},
-                {"question": "X → __", "answer": "Y", "explanation": "После X идёт Y"}
+            "practice_bank": [
+            # Вариант 1
+            [
+                {
+                    "type": "complex",
+                    "text": "Задание 1. Напишите букву, которая следует за данной в алфавите.\n\n1. B → __\n2. D → __\n3. G → __\n4. K → __\n5. M → __\n6. P → __\n7. R → __\n8. T → __\n9. V → __\n10. X → __",
+                    "subtasks": [
+                        {"question": "B → __", "answer": "C", "explanation": "После B идёт C"},
+                        {"question": "D → __", "answer": "E", "explanation": "После D идёт E"},
+                        {"question": "G → __", "answer": "H", "explanation": "После G идёт H"},
+                        {"question": "K → __", "answer": "L", "explanation": "После K идёт L"},
+                        {"question": "M → __", "answer": "N", "explanation": "После M идёт N"},
+                        {"question": "P → __", "answer": "Q", "explanation": "После P идёт Q"},
+                        {"question": "R → __", "answer": "S", "explanation": "После R идёт S"},
+                        {"question": "T → __", "answer": "U", "explanation": "После T идёт U"},
+                        {"question": "V → __", "answer": "W", "explanation": "После V идёт W"},
+                        {"question": "X → __", "answer": "Y", "explanation": "После X идёт Y"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Задание 2. Напишите букву, которая стоит перед данной в алфавите.\n\n1. C → __\n2. F → __\n3. I → __\n4. L → __\n5. O → __\n6. Q → __\n7. S → __\n8. U → __\n9. W → __\n10. Z → __",
+                    "subtasks": [
+                        {"question": "C → __", "answer": "B", "explanation": "Перед C стоит B"},
+                        {"question": "F → __", "answer": "E", "explanation": "Перед F стоит E"},
+                        {"question": "I → __", "answer": "H", "explanation": "Перед I стоит H"},
+                        {"question": "L → __", "answer": "K", "explanation": "Перед L стоит K"},
+                        {"question": "O → __", "answer": "N", "explanation": "Перед O стоит N"},
+                        {"question": "Q → __", "answer": "P", "explanation": "Перед Q стоит P"},
+                        {"question": "S → __", "answer": "R", "explanation": "Перед S стоит R"},
+                        {"question": "U → __", "answer": "T", "explanation": "Перед U стоит T"},
+                        {"question": "W → __", "answer": "V", "explanation": "Перед W стоит V"},
+                        {"question": "Z → __", "answer": "Y", "explanation": "Перед Z стоит Y"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Задание 3. Напишите букву по её произношению на русском.\n\n1. [би] → __\n2. [си] → __\n3. [ди] → __\n4. [и] → __\n5. [эф] → __\n6. [джи] → __\n7. [эйч] → __\n8. [ай] → __\n9. [джей] → __\n10. [кей] → __",
+                    "subtasks": [
+                        {"question": "[би] → __", "answer": "B", "explanation": "B произносится как би"},
+                        {"question": "[си] → __", "answer": "C", "explanation": "C произносится как си"},
+                        {"question": "[ди] → __", "answer": "D", "explanation": "D произносится как ди"},
+                        {"question": "[и] → __", "answer": "E", "explanation": "E произносится как и"},
+                        {"question": "[эф] → __", "answer": "F", "explanation": "F произносится как эф"},
+                        {"question": "[джи] → __", "answer": "G", "explanation": "G произносится как джи"},
+                        {"question": "[эйч] → __", "answer": "H", "explanation": "H произносится как эйч"},
+                        {"question": "[ай] → __", "answer": "I", "explanation": "I произносится как ай"},
+                        {"question": "[джей] → __", "answer": "J", "explanation": "J произносится как джей"},
+                        {"question": "[кей] → __", "answer": "K", "explanation": "K произносится как кей"}
+                    ]
+                }
+            ],
+            # Вариант 2
+            [
+                {
+                    "type": "complex",
+                    "text": "Задание 1. Напишите букву, которая следует за данной в алфавите.\n\n1. A → __\n2. C → __\n3. E → __\n4. G → __\n5. I → __\n6. K → __\n7. M → __\n8. O → __\n9. Q → __\n10. S → __",
+                    "subtasks": [
+                        {"question": "A → __", "answer": "B", "explanation": "После A идёт B"},
+                        {"question": "C → __", "answer": "D", "explanation": "После C идёт D"},
+                        {"question": "E → __", "answer": "F", "explanation": "После E идёт F"},
+                        {"question": "G → __", "answer": "H", "explanation": "После G идёт H"},
+                        {"question": "I → __", "answer": "J", "explanation": "После I идёт J"},
+                        {"question": "K → __", "answer": "L", "explanation": "После K идёт L"},
+                        {"question": "M → __", "answer": "N", "explanation": "После M идёт N"},
+                        {"question": "O → __", "answer": "P", "explanation": "После O идёт P"},
+                        {"question": "Q → __", "answer": "R", "explanation": "После Q идёт R"},
+                        {"question": "S → __", "answer": "T", "explanation": "После S идёт T"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Задание 2. Напишите букву, которая стоит перед данной в алфавите.\n\n1. B → __\n2. D → __\n3. F → __\n4. H → __\n5. J → __\n6. L → __\n7. N → __\n8. P → __\n9. R → __\n10. T → __",
+                    "subtasks": [
+                        {"question": "B → __", "answer": "A", "explanation": "Перед B стоит A"},
+                        {"question": "D → __", "answer": "C", "explanation": "Перед D стоит C"},
+                        {"question": "F → __", "answer": "E", "explanation": "Перед F стоит E"},
+                        {"question": "H → __", "answer": "G", "explanation": "Перед H стоит G"},
+                        {"question": "J → __", "answer": "I", "explanation": "Перед J стоит I"},
+                        {"question": "L → __", "answer": "K", "explanation": "Перед L стоит K"},
+                        {"question": "N → __", "answer": "M", "explanation": "Перед N стоит M"},
+                        {"question": "P → __", "answer": "O", "explanation": "Перед P стоит O"},
+                        {"question": "R → __", "answer": "Q", "explanation": "Перед R стоит Q"},
+                        {"question": "T → __", "answer": "S", "explanation": "Перед T стоит S"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Задание 3. Напишите букву по её произношению на русском.\n\n1. [эл] → __\n2. [эм] → __\n3. [эн] → __\n4. [оу] → __\n5. [пи] → __\n6. [кью] → __\n7. [ар] → __\n8. [эс] → __\n9. [ти] → __\n10. [ю] → __",
+                    "subtasks": [
+                        {"question": "[эл] → __", "answer": "L", "explanation": "L произносится как эл"},
+                        {"question": "[эм] → __", "answer": "M", "explanation": "M произносится как эм"},
+                        {"question": "[эн] → __", "answer": "N", "explanation": "N произносится как эн"},
+                        {"question": "[оу] → __", "answer": "O", "explanation": "O произносится как оу"},
+                        {"question": "[пи] → __", "answer": "P", "explanation": "P произносится как пи"},
+                        {"question": "[кью] → __", "answer": "Q", "explanation": "Q произносится как кью"},
+                        {"question": "[ар] → __", "answer": "R", "explanation": "R произносится как ар"},
+                        {"question": "[эс] → __", "answer": "S", "explanation": "S произносится как эс"},
+                        {"question": "[ти] → __", "answer": "T", "explanation": "T произносится как ти"},
+                        {"question": "[ю] → __", "answer": "U", "explanation": "U произносится как ю"}
+                    ]
+                }
+            ],
+            # Вариант 3
+            [
+                {
+                    "type": "complex",
+                    "text": "Задание 1. Напишите букву, которая следует за данной в алфавите.\n\n1. B → __\n2. E → __\n3. H → __\n4. K → __\n5. N → __\n6. Q → __\n7. T → __\n8. W → __\n9. Y → __\n10. A → __",
+                    "subtasks": [
+                        {"question": "B → __", "answer": "C", "explanation": "После B идёт C"},
+                        {"question": "E → __", "answer": "F", "explanation": "После E идёт F"},
+                        {"question": "H → __", "answer": "I", "explanation": "После H идёт I"},
+                        {"question": "K → __", "answer": "L", "explanation": "После K идёт L"},
+                        {"question": "N → __", "answer": "O", "explanation": "После N идёт O"},
+                        {"question": "Q → __", "answer": "R", "explanation": "После Q идёт R"},
+                        {"question": "T → __", "answer": "U", "explanation": "После T идёт U"},
+                        {"question": "W → __", "answer": "X", "explanation": "После W идёт X"},
+                        {"question": "Y → __", "answer": "Z", "explanation": "После Y идёт Z"},
+                        {"question": "A → __", "answer": "B", "explanation": "После A идёт B"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Задание 2. Напишите букву, которая стоит перед данной в алфавите.\n\n1. C → __\n2. F → __\n3. I → __\n4. L → __\n5. O → __\n6. R → __\n7. U → __\n8. X → __\n9. Z → __\n10. B → __",
+                    "subtasks": [
+                        {"question": "C → __", "answer": "B", "explanation": "Перед C стоит B"},
+                        {"question": "F → __", "answer": "E", "explanation": "Перед F стоит E"},
+                        {"question": "I → __", "answer": "H", "explanation": "Перед I стоит H"},
+                        {"question": "L → __", "answer": "K", "explanation": "Перед L стоит K"},
+                        {"question": "O → __", "answer": "N", "explanation": "Перед O стоит N"},
+                        {"question": "R → __", "answer": "Q", "explanation": "Перед R стоит Q"},
+                        {"question": "U → __", "answer": "T", "explanation": "Перед U стоит T"},
+                        {"question": "X → __", "answer": "W", "explanation": "Перед X стоит W"},
+                        {"question": "Z → __", "answer": "Y", "explanation": "Перед Z стоит Y"},
+                        {"question": "B → __", "answer": "A", "explanation": "Перед B стоит A"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Задание 3. Напишите букву по её произношению на русском.\n\n1. [ви] → __\n2. [дабл-ю] → __\n3. [экс] → __\n4. [уай] → __\n5. [зед] → __\n6. [эй] → __\n7. [би] → __\n8. [си] → __\n9. [ди] → __\n10. [и] → __",
+                    "subtasks": [
+                        {"question": "[ви] → __", "answer": "V", "explanation": "V произносится как ви"},
+                        {"question": "[дабл-ю] → __", "answer": "W", "explanation": "W произносится как дабл-ю"},
+                        {"question": "[экс] → __", "answer": "X", "explanation": "X произносится как экс"},
+                        {"question": "[уай] → __", "answer": "Y", "explanation": "Y произносится как уай"},
+                        {"question": "[зед] → __", "answer": "Z", "explanation": "Z произносится как зед"},
+                        {"question": "[эй] → __", "answer": "A", "explanation": "A произносится как эй"},
+                        {"question": "[би] → __", "answer": "B", "explanation": "B произносится как би"},
+                        {"question": "[си] → __", "answer": "C", "explanation": "C произносится как си"},
+                        {"question": "[ди] → __", "answer": "D", "explanation": "D произносится как ди"},
+                        {"question": "[и] → __", "answer": "E", "explanation": "E произносится как и"}
+                    ]
+                }
+            ],
+            # Вариант 4
+            [
+                {
+                    "type": "complex",
+                    "text": "Задание 1. Напишите букву, которая следует за данной в алфавите.\n\n1. C → __\n2. F → __\n3. I → __\n4. L → __\n5. O → __\n6. R → __\n7. U → __\n8. X → __\n9. Z → __\n10. B → __",
+                    "subtasks": [
+                        {"question": "C → __", "answer": "D", "explanation": "После C идёт D"},
+                        {"question": "F → __", "answer": "G", "explanation": "После F идёт G"},
+                        {"question": "I → __", "answer": "J", "explanation": "После I идёт J"},
+                        {"question": "L → __", "answer": "M", "explanation": "После L идёт M"},
+                        {"question": "O → __", "answer": "P", "explanation": "После O идёт P"},
+                        {"question": "R → __", "answer": "S", "explanation": "После R идёт S"},
+                        {"question": "U → __", "answer": "V", "explanation": "После U идёт V"},
+                        {"question": "X → __", "answer": "Y", "explanation": "После X идёт Y"},
+                        {"question": "Z → __", "answer": "нет буквы", "explanation": "Z — последняя буква"},
+                        {"question": "B → __", "answer": "C", "explanation": "После B идёт C"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Задание 2. Напишите букву, которая стоит перед данной в алфавите.\n\n1. D → __\n2. G → __\n3. J → __\n4. M → __\n5. P → __\n6. S → __\n7. V → __\n8. Y → __\n9. A → __\n10. C → __",
+                    "subtasks": [
+                        {"question": "D → __", "answer": "C", "explanation": "Перед D стоит C"},
+                        {"question": "G → __", "answer": "F", "explanation": "Перед G стоит F"},
+                        {"question": "J → __", "answer": "I", "explanation": "Перед J стоит I"},
+                        {"question": "M → __", "answer": "L", "explanation": "Перед M стоит L"},
+                        {"question": "P → __", "answer": "O", "explanation": "Перед P стоит O"},
+                        {"question": "S → __", "answer": "R", "explanation": "Перед S стоит R"},
+                        {"question": "V → __", "answer": "U", "explanation": "Перед V стоит U"},
+                        {"question": "Y → __", "answer": "X", "explanation": "Перед Y стоит X"},
+                        {"question": "A → __", "answer": "нет буквы", "explanation": "A — первая буква"},
+                        {"question": "C → __", "answer": "B", "explanation": "Перед C стоит B"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Задание 3. Напишите букву по её произношению на русском.\n\n1. [джей] → __\n2. [кей] → __\n3. [эл] → __\n4. [эм] → __\n5. [эн] → __\n6. [оу] → __\n7. [пи] → __\n8. [кью] → __\n9. [ар] → __\n10. [эс] → __",
+                    "subtasks": [
+                        {"question": "[джей] → __", "answer": "J", "explanation": "J произносится как джей"},
+                        {"question": "[кей] → __", "answer": "K", "explanation": "K произносится как кей"},
+                        {"question": "[эл] → __", "answer": "L", "explanation": "L произносится как эл"},
+                        {"question": "[эм] → __", "answer": "M", "explanation": "M произносится как эм"},
+                        {"question": "[эн] → __", "answer": "N", "explanation": "N произносится как эн"},
+                        {"question": "[оу] → __", "answer": "O", "explanation": "O произносится как оу"},
+                        {"question": "[пи] → __", "answer": "P", "explanation": "P произносится как пи"},
+                        {"question": "[кью] → __", "answer": "Q", "explanation": "Q произносится как кью"},
+                        {"question": "[ар] → __", "answer": "R", "explanation": "R произносится как ар"},
+                        {"question": "[эс] → __", "answer": "S", "explanation": "S произносится как эс"}
+                    ]
+                }
+            ],
+            # Вариант 5
+            [
+                {
+                    "type": "complex",
+                    "text": "Задание 1. Напишите букву, которая следует за данной в алфавите.\n\n1. A → __\n2. D → __\n3. G → __\n4. J → __\n5. M → __\n6. P → __\n7. S → __\n8. V → __\n9. Y → __\n10. B → __",
+                    "subtasks": [
+                        {"question": "A → __", "answer": "B", "explanation": "После A идёт B"},
+                        {"question": "D → __", "answer": "E", "explanation": "После D идёт E"},
+                        {"question": "G → __", "answer": "H", "explanation": "После G идёт H"},
+                        {"question": "J → __", "answer": "K", "explanation": "После J идёт K"},
+                        {"question": "M → __", "answer": "N", "explanation": "После M идёт N"},
+                        {"question": "P → __", "answer": "Q", "explanation": "После P идёт Q"},
+                        {"question": "S → __", "answer": "T", "explanation": "После S идёт T"},
+                        {"question": "V → __", "answer": "W", "explanation": "После V идёт W"},
+                        {"question": "Y → __", "answer": "Z", "explanation": "После Y идёт Z"},
+                        {"question": "B → __", "answer": "C", "explanation": "После B идёт C"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Задание 2. Напишите букву, которая стоит перед данной в алфавите.\n\n1. C → __\n2. E → __\n3. G → __\n4. I → __\n5. K → __\n6. M → __\n7. O → __\n8. Q → __\n9. S → __\n10. U → __",
+                    "subtasks": [
+                        {"question": "C → __", "answer": "B", "explanation": "Перед C стоит B"},
+                        {"question": "E → __", "answer": "D", "explanation": "Перед E стоит D"},
+                        {"question": "G → __", "answer": "F", "explanation": "Перед G стоит F"},
+                        {"question": "I → __", "answer": "H", "explanation": "Перед I стоит H"},
+                        {"question": "K → __", "answer": "J", "explanation": "Перед K стоит J"},
+                        {"question": "M → __", "answer": "L", "explanation": "Перед M стоит L"},
+                        {"question": "O → __", "answer": "N", "explanation": "Перед O стоит N"},
+                        {"question": "Q → __", "answer": "P", "explanation": "Перед Q стоит P"},
+                        {"question": "S → __", "answer": "R", "explanation": "Перед S стоит R"},
+                        {"question": "U → __", "answer": "T", "explanation": "Перед U стоит T"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Задание 3. Напишите букву по её произношению на русском.\n\n1. [ти] → __\n2. [ю] → __\n3. [ви] → __\n4. [дабл-ю] → __\n5. [экс] → __\n6. [уай] → __\n7. [зед] → __\n8. [эй] → __\n9. [би] → __\n10. [си] → __",
+                    "subtasks": [
+                        {"question": "[ти] → __", "answer": "T", "explanation": "T произносится как ти"},
+                        {"question": "[ю] → __", "answer": "U", "explanation": "U произносится как ю"},
+                        {"question": "[ви] → __", "answer": "V", "explanation": "V произносится как ви"},
+                        {"question": "[дабл-ю] → __", "answer": "W", "explanation": "W произносится как дабл-ю"},
+                        {"question": "[экс] → __", "answer": "X", "explanation": "X произносится как экс"},
+                        {"question": "[уай] → __", "answer": "Y", "explanation": "Y произносится как уай"},
+                        {"question": "[зед] → __", "answer": "Z", "explanation": "Z произносится как зед"},
+                        {"question": "[эй] → __", "answer": "A", "explanation": "A произносится как эй"},
+                        {"question": "[би] → __", "answer": "B", "explanation": "B произносится как би"},
+                        {"question": "[си] → __", "answer": "C", "explanation": "C произносится как си"}
+                    ]
+                }
+            ],
+            # Вариант 6
+            [
+                {
+                    "type": "complex",
+                    "text": "Задание 1. Напишите букву, которая следует за данной в алфавите.\n\n1. B → __\n2. F → __\n3. J → __\n4. N → __\n5. R → __\n6. V → __\n7. Z → __\n8. D → __\n9. H → __\n10. L → __",
+                    "subtasks": [
+                        {"question": "B → __", "answer": "C", "explanation": "После B идёт C"},
+                        {"question": "F → __", "answer": "G", "explanation": "После F идёт G"},
+                        {"question": "J → __", "answer": "K", "explanation": "После J идёт K"},
+                        {"question": "N → __", "answer": "O", "explanation": "После N идёт O"},
+                        {"question": "R → __", "answer": "S", "explanation": "После R идёт S"},
+                        {"question": "V → __", "answer": "W", "explanation": "После V идёт W"},
+                        {"question": "Z → __", "answer": "нет буквы", "explanation": "Z — последняя буква"},
+                        {"question": "D → __", "answer": "E", "explanation": "После D идёт E"},
+                        {"question": "H → __", "answer": "I", "explanation": "После H идёт I"},
+                        {"question": "L → __", "answer": "M", "explanation": "После L идёт M"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Задание 2. Напишите букву, которая стоит перед данной в алфавите.\n\n1. E → __\n2. I → __\n3. M → __\n4. Q → __\n5. U → __\n6. Y → __\n7. C → __\n8. G → __\n9. K → __\n10. O → __",
+                    "subtasks": [
+                        {"question": "E → __", "answer": "D", "explanation": "Перед E стоит D"},
+                        {"question": "I → __", "answer": "H", "explanation": "Перед I стоит H"},
+                        {"question": "M → __", "answer": "L", "explanation": "Перед M стоит L"},
+                        {"question": "Q → __", "answer": "P", "explanation": "Перед Q стоит P"},
+                        {"question": "U → __", "answer": "T", "explanation": "Перед U стоит T"},
+                        {"question": "Y → __", "answer": "X", "explanation": "Перед Y стоит X"},
+                        {"question": "C → __", "answer": "B", "explanation": "Перед C стоит B"},
+                        {"question": "G → __", "answer": "F", "explanation": "Перед G стоит F"},
+                        {"question": "K → __", "answer": "J", "explanation": "Перед K стоит J"},
+                        {"question": "O → __", "answer": "N", "explanation": "Перед O стоит N"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Задание 3. Напишите букву по её произношению на русском.\n\n1. [эф] → __\n2. [джи] → __\n3. [эйч] → __\n4. [ай] → __\n5. [джей] → __\n6. [кей] → __\n7. [эл] → __\n8. [эм] → __\n9. [эн] → __\n10. [оу] → __",
+                    "subtasks": [
+                        {"question": "[эф] → __", "answer": "F", "explanation": "F произносится как эф"},
+                        {"question": "[джи] → __", "answer": "G", "explanation": "G произносится как джи"},
+                        {"question": "[эйч] → __", "answer": "H", "explanation": "H произносится как эйч"},
+                        {"question": "[ай] → __", "answer": "I", "explanation": "I произносится как ай"},
+                        {"question": "[джей] → __", "answer": "J", "explanation": "J произносится как джей"},
+                        {"question": "[кей] → __", "answer": "K", "explanation": "K произносится как кей"},
+                        {"question": "[эл] → __", "answer": "L", "explanation": "L произносится как эл"},
+                        {"question": "[эм] → __", "answer": "M", "explanation": "M произносится как эм"},
+                        {"question": "[эн] → __", "answer": "N", "explanation": "N произносится как эн"},
+                        {"question": "[оу] → __", "answer": "O", "explanation": "O произносится как оу"}
+                    ]
+                }
+            ],
+            # Вариант 7
+            [
+                {
+                    "type": "complex",
+                    "text": "Задание 1. Напишите букву, которая следует за данной в алфавите.\n\n1. C → __\n2. H → __\n3. M → __\n4. R → __\n5. W → __\n6. B → __\n7. G → __\n8. L → __\n9. Q → __\n10. V → __",
+                    "subtasks": [
+                        {"question": "C → __", "answer": "D", "explanation": "После C идёт D"},
+                        {"question": "H → __", "answer": "I", "explanation": "После H идёт I"},
+                        {"question": "M → __", "answer": "N", "explanation": "После M идёт N"},
+                        {"question": "R → __", "answer": "S", "explanation": "После R идёт S"},
+                        {"question": "W → __", "answer": "X", "explanation": "После W идёт X"},
+                        {"question": "B → __", "answer": "C", "explanation": "После B идёт C"},
+                        {"question": "G → __", "answer": "H", "explanation": "После G идёт H"},
+                        {"question": "L → __", "answer": "M", "explanation": "После L идёт M"},
+                        {"question": "Q → __", "answer": "R", "explanation": "После Q идёт R"},
+                        {"question": "V → __", "answer": "W", "explanation": "После V идёт W"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Задание 2. Напишите букву, которая стоит перед данной в алфавите.\n\n1. D → __\n2. J → __\n3. P → __\n4. V → __\n5. B → __\n6. H → __\n7. N → __\n8. T → __\n9. Z → __\n10. F → __",
+                    "subtasks": [
+                        {"question": "D → __", "answer": "C", "explanation": "Перед D стоит C"},
+                        {"question": "J → __", "answer": "I", "explanation": "Перед J стоит I"},
+                        {"question": "P → __", "answer": "O", "explanation": "Перед P стоит O"},
+                        {"question": "V → __", "answer": "U", "explanation": "Перед V стоит U"},
+                        {"question": "B → __", "answer": "A", "explanation": "Перед B стоит A"},
+                        {"question": "H → __", "answer": "G", "explanation": "Перед H стоит G"},
+                        {"question": "N → __", "answer": "M", "explanation": "Перед N стоит M"},
+                        {"question": "T → __", "answer": "S", "explanation": "Перед T стоит S"},
+                        {"question": "Z → __", "answer": "Y", "explanation": "Перед Z стоит Y"},
+                        {"question": "F → __", "answer": "E", "explanation": "Перед F стоит E"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Задание 3. Напишите букву по её произношению на русском.\n\n1. [пи] → __\n2. [кью] → __\n3. [ар] → __\n4. [эс] → __\n5. [ти] → __\n6. [ю] → __\n7. [ви] → __\n8. [дабл-ю] → __\n9. [экс] → __\n10. [уай] → __",
+                    "subtasks": [
+                        {"question": "[пи] → __", "answer": "P", "explanation": "P произносится как пи"},
+                        {"question": "[кью] → __", "answer": "Q", "explanation": "Q произносится как кью"},
+                        {"question": "[ар] → __", "answer": "R", "explanation": "R произносится как ар"},
+                        {"question": "[эс] → __", "answer": "S", "explanation": "S произносится как эс"},
+                        {"question": "[ти] → __", "answer": "T", "explanation": "T произносится как ти"},
+                        {"question": "[ю] → __", "answer": "U", "explanation": "U произносится как ю"},
+                        {"question": "[ви] → __", "answer": "V", "explanation": "V произносится как ви"},
+                        {"question": "[дабл-ю] → __", "answer": "W", "explanation": "W произносится как дабл-ю"},
+                        {"question": "[экс] → __", "answer": "X", "explanation": "X произносится как экс"},
+                        {"question": "[уай] → __", "answer": "Y", "explanation": "Y произносится как уай"}
+                    ]
+                }
+            ],
+            # Вариант 8
+            [
+                {
+                    "type": "complex",
+                    "text": "Задание 1. Напишите букву, которая следует за данной в алфавите.\n\n1. E → __\n2. K → __\n3. Q → __\n4. W → __\n5. A → __\n6. G → __\n7. M → __\n8. S → __\n9. Y → __\n10. D → __",
+                    "subtasks": [
+                        {"question": "E → __", "answer": "F", "explanation": "После E идёт F"},
+                        {"question": "K → __", "answer": "L", "explanation": "После K идёт L"},
+                        {"question": "Q → __", "answer": "R", "explanation": "После Q идёт R"},
+                        {"question": "W → __", "answer": "X", "explanation": "После W идёт X"},
+                        {"question": "A → __", "answer": "B", "explanation": "После A идёт B"},
+                        {"question": "G → __", "answer": "H", "explanation": "После G идёт H"},
+                        {"question": "M → __", "answer": "N", "explanation": "После M идёт N"},
+                        {"question": "S → __", "answer": "T", "explanation": "После S идёт T"},
+                        {"question": "Y → __", "answer": "Z", "explanation": "После Y идёт Z"},
+                        {"question": "D → __", "answer": "E", "explanation": "После D идёт E"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Задание 2. Напишите букву, которая стоит перед данной в алфавите.\n\n1. F → __\n2. L → __\n3. R → __\n4. X → __\n5. C → __\n6. I → __\n7. O → __\n8. U → __\n9. B → __\n10. H → __",
+                    "subtasks": [
+                        {"question": "F → __", "answer": "E", "explanation": "Перед F стоит E"},
+                        {"question": "L → __", "answer": "K", "explanation": "Перед L стоит K"},
+                        {"question": "R → __", "answer": "Q", "explanation": "Перед R стоит Q"},
+                        {"question": "X → __", "answer": "W", "explanation": "Перед X стоит W"},
+                        {"question": "C → __", "answer": "B", "explanation": "Перед C стоит B"},
+                        {"question": "I → __", "answer": "H", "explanation": "Перед I стоит H"},
+                        {"question": "O → __", "answer": "N", "explanation": "Перед O стоит N"},
+                        {"question": "U → __", "answer": "T", "explanation": "Перед U стоит T"},
+                        {"question": "B → __", "answer": "A", "explanation": "Перед B стоит A"},
+                        {"question": "H → __", "answer": "G", "explanation": "Перед H стоит G"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Задание 3. Напишите букву по её произношению на русском.\n\n1. [зед] → __\n2. [эй] → __\n3. [би] → __\n4. [си] → __\n5. [ди] → __\n6. [и] → __\n7. [эф] → __\n8. [джи] → __\n9. [эйч] → __\n10. [ай] → __",
+                    "subtasks": [
+                        {"question": "[зед] → __", "answer": "Z", "explanation": "Z произносится как зед"},
+                        {"question": "[эй] → __", "answer": "A", "explanation": "A произносится как эй"},
+                        {"question": "[би] → __", "answer": "B", "explanation": "B произносится как би"},
+                        {"question": "[си] → __", "answer": "C", "explanation": "C произносится как си"},
+                        {"question": "[ди] → __", "answer": "D", "explanation": "D произносится как ди"},
+                        {"question": "[и] → __", "answer": "E", "explanation": "E произносится как и"},
+                        {"question": "[эф] → __", "answer": "F", "explanation": "F произносится как эф"},
+                        {"question": "[джи] → __", "answer": "G", "explanation": "G произносится как джи"},
+                        {"question": "[эйч] → __", "answer": "H", "explanation": "H произносится как эйч"},
+                        {"question": "[ай] → __", "answer": "I", "explanation": "I произносится как ай"}
+                    ]
+                }
+            ],
+            # Вариант 9
+            [
+                {
+                    "type": "complex",
+                    "text": "Задание 1. Напишите букву, которая следует за данной в алфавите.\n\n1. F → __\n2. L → __\n3. R → __\n4. X → __\n5. C → __\n6. I → __\n7. O → __\n8. U → __\n9. B → __\n10. H → __",
+                    "subtasks": [
+                        {"question": "F → __", "answer": "G", "explanation": "После F идёт G"},
+                        {"question": "L → __", "answer": "M", "explanation": "После L идёт M"},
+                        {"question": "R → __", "answer": "S", "explanation": "После R идёт S"},
+                        {"question": "X → __", "answer": "Y", "explanation": "После X идёт Y"},
+                        {"question": "C → __", "answer": "D", "explanation": "После C идёт D"},
+                        {"question": "I → __", "answer": "J", "explanation": "После I идёт J"},
+                        {"question": "O → __", "answer": "P", "explanation": "После O идёт P"},
+                        {"question": "U → __", "answer": "V", "explanation": "После U идёт V"},
+                        {"question": "B → __", "answer": "C", "explanation": "После B идёт C"},
+                        {"question": "H → __", "answer": "I", "explanation": "После H идёт I"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Задание 2. Напишите букву, которая стоит перед данной в алфавите.\n\n1. G → __\n2. N → __\n3. T → __\n4. Z → __\n5. D → __\n6. J → __\n7. P → __\n8. V → __\n9. B → __\n10. H → __",
+                    "subtasks": [
+                        {"question": "G → __", "answer": "F", "explanation": "Перед G стоит F"},
+                        {"question": "N → __", "answer": "M", "explanation": "Перед N стоит M"},
+                        {"question": "T → __", "answer": "S", "explanation": "Перед T стоит S"},
+                        {"question": "Z → __", "answer": "Y", "explanation": "Перед Z стоит Y"},
+                        {"question": "D → __", "answer": "C", "explanation": "Перед D стоит C"},
+                        {"question": "J → __", "answer": "I", "explanation": "Перед J стоит I"},
+                        {"question": "P → __", "answer": "O", "explanation": "Перед P стоит O"},
+                        {"question": "V → __", "answer": "U", "explanation": "Перед V стоит U"},
+                        {"question": "B → __", "answer": "A", "explanation": "Перед B стоит A"},
+                        {"question": "H → __", "answer": "G", "explanation": "Перед H стоит G"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Задание 3. Напишите букву по её произношению на русском.\n\n1. [джей] → __\n2. [кей] → __\n3. [эл] → __\n4. [эм] → __\n5. [эн] → __\n6. [оу] → __\n7. [пи] → __\n8. [кью] → __\n9. [ар] → __\n10. [эс] → __",
+                    "subtasks": [
+                        {"question": "[джей] → __", "answer": "J", "explanation": "J произносится как джей"},
+                        {"question": "[кей] → __", "answer": "K", "explanation": "K произносится как кей"},
+                        {"question": "[эл] → __", "answer": "L", "explanation": "L произносится как эл"},
+                        {"question": "[эм] → __", "answer": "M", "explanation": "M произносится как эм"},
+                        {"question": "[эн] → __", "answer": "N", "explanation": "N произносится как эн"},
+                        {"question": "[оу] → __", "answer": "O", "explanation": "O произносится как оу"},
+                        {"question": "[пи] → __", "answer": "P", "explanation": "P произносится как пи"},
+                        {"question": "[кью] → __", "answer": "Q", "explanation": "Q произносится как кью"},
+                        {"question": "[ар] → __", "answer": "R", "explanation": "R произносится как ар"},
+                        {"question": "[эс] → __", "answer": "S", "explanation": "S произносится как эс"}
+                    ]
+                }
+            ],
+            # Вариант 10
+            [
+                {
+                    "type": "complex",
+                    "text": "Задание 1. Напишите букву, которая следует за данной в алфавите.\n\n1. A → __\n2. E → __\n3. I → __\n4. M → __\n5. Q → __\n6. U → __\n7. Y → __\n8. C → __\n9. G → __\n10. K → __",
+                    "subtasks": [
+                        {"question": "A → __", "answer": "B", "explanation": "После A идёт B"},
+                        {"question": "E → __", "answer": "F", "explanation": "После E идёт F"},
+                        {"question": "I → __", "answer": "J", "explanation": "После I идёт J"},
+                        {"question": "M → __", "answer": "N", "explanation": "После M идёт N"},
+                        {"question": "Q → __", "answer": "R", "explanation": "После Q идёт R"},
+                        {"question": "U → __", "answer": "V", "explanation": "После U идёт V"},
+                        {"question": "Y → __", "answer": "Z", "explanation": "После Y идёт Z"},
+                        {"question": "C → __", "answer": "D", "explanation": "После C идёт D"},
+                        {"question": "G → __", "answer": "H", "explanation": "После G идёт H"},
+                        {"question": "K → __", "answer": "L", "explanation": "После K идёт L"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Задание 2. Напишите букву, которая стоит перед данной в алфавите.\n\n1. B → __\n2. F → __\n3. J → __\n4. N → __\n5. R → __\n6. V → __\n7. Z → __\n8. D → __\n9. H → __\n10. L → __",
+                    "subtasks": [
+                        {"question": "B → __", "answer": "A", "explanation": "Перед B стоит A"},
+                        {"question": "F → __", "answer": "E", "explanation": "Перед F стоит E"},
+                        {"question": "J → __", "answer": "I", "explanation": "Перед J стоит I"},
+                        {"question": "N → __", "answer": "M", "explanation": "Перед N стоит M"},
+                        {"question": "R → __", "answer": "Q", "explanation": "Перед R стоит Q"},
+                        {"question": "V → __", "answer": "U", "explanation": "Перед V стоит U"},
+                        {"question": "Z → __", "answer": "Y", "explanation": "Перед Z стоит Y"},
+                        {"question": "D → __", "answer": "C", "explanation": "Перед D стоит C"},
+                        {"question": "H → __", "answer": "G", "explanation": "Перед H стоит G"},
+                        {"question": "L → __", "answer": "K", "explanation": "Перед L стоит K"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Задание 3. Напишите букву по её произношению на русском.\n\n1. [ти] → __\n2. [ю] → __\n3. [ви] → __\n4. [дабл-ю] → __\n5. [экс] → __\n6. [уай] → __\n7. [зед] → __\n8. [эй] → __\n9. [би] → __\n10. [си] → __",
+                    "subtasks": [
+                        {"question": "[ти] → __", "answer": "T", "explanation": "T произносится как ти"},
+                        {"question": "[ю] → __", "answer": "U", "explanation": "U произносится как ю"},
+                        {"question": "[ви] → __", "answer": "V", "explanation": "V произносится как ви"},
+                        {"question": "[дабл-ю] → __", "answer": "W", "explanation": "W произносится как дабл-ю"},
+                        {"question": "[экс] → __", "answer": "X", "explanation": "X произносится как экс"},
+                        {"question": "[уай] → __", "answer": "Y", "explanation": "Y произносится как уай"},
+                        {"question": "[зед] → __", "answer": "Z", "explanation": "Z произносится как зед"},
+                        {"question": "[эй] → __", "answer": "A", "explanation": "A произносится как эй"},
+                        {"question": "[би] → __", "answer": "B", "explanation": "B произносится как би"},
+                        {"question": "[си] → __", "answer": "C", "explanation": "C произносится как си"}
+                    ]
+                }
             ]
-        },
-        {
-            "type": "complex",
-            "text": "Задание 2. Напишите букву, которая стоит перед данной в алфавите.\n\nПример: B → A\n\n1. C → __\n2. F → __\n3. I → __\n4. L → __\n5. O → __\n6. Q → __\n7. S → __\n8. U → __\n9. W → __\n10. Z → __",
-            "subtasks": [
-                {"question": "C → __", "answer": "B", "explanation": "Перед C стоит B"},
-                {"question": "F → __", "answer": "E", "explanation": "Перед F стоит E"},
-                {"question": "I → __", "answer": "H", "explanation": "Перед I стоит H"},
-                {"question": "L → __", "answer": "K", "explanation": "Перед L стоит K"},
-                {"question": "O → __", "answer": "N", "explanation": "Перед O стоит N"},
-                {"question": "Q → __", "answer": "P", "explanation": "Перед Q стоит P"},
-                {"question": "S → __", "answer": "R", "explanation": "Перед S стоит R"},
-                {"question": "U → __", "answer": "T", "explanation": "Перед U стоит T"},
-                {"question": "W → __", "answer": "V", "explanation": "Перед W стоит V"},
-                {"question": "Z → __", "answer": "Y", "explanation": "Перед Z стоит Y"}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "Задание 3. Напишите букву по её произношению (на русском).\n\nПример: [эй] → A\n\n1. [би] → __\n2. [си] → __\n3. [ди] → __\n4. [и] → __\n5. [эф] → __\n6. [джи] → __\n7. [эйч] → __\n8. [ай] → __\n9. [джей] → __\n10. [кей] → __",
-            "subtasks": [
-                {"question": "[би] → __", "answer": "B", "explanation": "B произносится как 'би'"},
-                {"question": "[си] → __", "answer": "C", "explanation": "C произносится как 'си'"},
-                {"question": "[ди] → __", "answer": "D", "explanation": "D произносится как 'ди'"},
-                {"question": "[и] → __", "answer": "E", "explanation": "E произносится как 'и'"},
-                {"question": "[эф] → __", "answer": "F", "explanation": "F произносится как 'эф'"},
-                {"question": "[джи] → __", "answer": "G", "explanation": "G произносится как 'джи'"},
-                {"question": "[эйч] → __", "answer": "H", "explanation": "H произносится как 'эйч'"},
-                {"question": "[ай] → __", "answer": "I", "explanation": "I произносится как 'ай'"},
-                {"question": "[джей] → __", "answer": "J", "explanation": "J произносится как 'джей'"},
-                {"question": "[кей] → __", "answer": "K", "explanation": "K произносится как 'кей'"}
-            ]
-        }
-    ],
-    # ===== Вариант 2 =====
-    [
-        {
-            "type": "complex",
-            "text": "Задание 1. Напишите букву, которая следует за данной в алфавите.\n\n1. C → __\n2. E → __\n3. H → __\n4. J → __\n5. N → __\n6. Q → __\n7. S → __\n8. V → __\n9. X → __\n10. Z → __",
-            "subtasks": [
-                {"question": "C → __", "answer": "D", "explanation": "После C идёт D"},
-                {"question": "E → __", "answer": "F", "explanation": "После E идёт F"},
-                {"question": "H → __", "answer": "I", "explanation": "После H идёт I"},
-                {"question": "J → __", "answer": "K", "explanation": "После J идёт K"},
-                {"question": "N → __", "answer": "O", "explanation": "После N идёт O"},
-                {"question": "Q → __", "answer": "R", "explanation": "После Q идёт R"},
-                {"question": "S → __", "answer": "T", "explanation": "После S идёт T"},
-                {"question": "V → __", "answer": "W", "explanation": "После V идёт W"},
-                {"question": "X → __", "answer": "Y", "explanation": "После X идёт Y"},
-                {"question": "Z → __", "answer": "нет буквы", "explanation": "Z — последняя буква, после неё ничего нет"}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "Задание 2. Напишите букву, которая стоит перед данной в алфавите.\n\n1. D → __\n2. G → __\n3. K → __\n4. N → __\n5. P → __\n6. R → __\n7. T → __\n8. W → __\n9. Y → __\n10. A → __",
-            "subtasks": [
-                {"question": "D → __", "answer": "C", "explanation": "Перед D стоит C"},
-                {"question": "G → __", "answer": "F", "explanation": "Перед G стоит F"},
-                {"question": "K → __", "answer": "J", "explanation": "Перед K стоит J"},
-                {"question": "N → __", "answer": "M", "explanation": "Перед N стоит M"},
-                {"question": "P → __", "answer": "O", "explanation": "Перед P стоит O"},
-                {"question": "R → __", "answer": "Q", "explanation": "Перед R стоит Q"},
-                {"question": "T → __", "answer": "S", "explanation": "Перед T стоит S"},
-                {"question": "W → __", "answer": "V", "explanation": "Перед W стоит V"},
-                {"question": "Y → __", "answer": "X", "explanation": "Перед Y стоит X"},
-                {"question": "A → __", "answer": "нет буквы", "explanation": "A — первая буква, перед ней ничего нет"}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "Задание 3. Напишите букву по её произношению (на русском).\n\n1. [эл] → __\n2. [эм] → __\n3. [эн] → __\n4. [оу] → __\n5. [пи] → __\n6. [кью] → __\n7. [ар] → __\n8. [эс] → __\n9. [ти] → __\n10. [ю] → __",
-            "subtasks": [
-                {"question": "[эл] → __", "answer": "L", "explanation": "L произносится как 'эл'"},
-                {"question": "[эм] → __", "answer": "M", "explanation": "M произносится как 'эм'"},
-                {"question": "[эн] → __", "answer": "N", "explanation": "N произносится как 'эн'"},
-                {"question": "[оу] → __", "answer": "O", "explanation": "O произносится как 'оу'"},
-                {"question": "[пи] → __", "answer": "P", "explanation": "P произносится как 'пи'"},
-                {"question": "[кью] → __", "answer": "Q", "explanation": "Q произносится как 'кью'"},
-                {"question": "[ар] → __", "answer": "R", "explanation": "R произносится как 'ар'"},
-                {"question": "[эс] → __", "answer": "S", "explanation": "S произносится как 'эс'"},
-                {"question": "[ти] → __", "answer": "T", "explanation": "T произносится как 'ти'"},
-                {"question": "[ю] → __", "answer": "U", "explanation": "U произносится как 'ю'"}
-            ]
-        }
-    ],
-    # ===== Вариант 3 =====
-    [
-        {
-            "type": "complex",
-            "text": "Задание 1. Напишите букву, которая следует за данной в алфавите.\n\n1. A → __\n2. F → __\n3. I → __\n4. L → __\n5. O → __\n6. R → __\n7. U → __\n8. W → __\n9. Y → __\n10. Z → __",
-            "subtasks": [
-                {"question": "A → __", "answer": "B", "explanation": "После A идёт B"},
-                {"question": "F → __", "answer": "G", "explanation": "После F идёт G"},
-                {"question": "I → __", "answer": "J", "explanation": "После I идёт J"},
-                {"question": "L → __", "answer": "M", "explanation": "После L идёт M"},
-                {"question": "O → __", "answer": "P", "explanation": "После O идёт P"},
-                {"question": "R → __", "answer": "S", "explanation": "После R идёт S"},
-                {"question": "U → __", "answer": "V", "explanation": "После U идёт V"},
-                {"question": "W → __", "answer": "X", "explanation": "После W идёт X"},
-                {"question": "Y → __", "answer": "Z", "explanation": "После Y идёт Z"},
-                {"question": "Z → __", "answer": "нет буквы", "explanation": "Z — последняя буква"}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "Задание 2. Напишите букву, которая стоит перед данной в алфавите.\n\n1. B → __\n2. E → __\n3. H → __\n4. J → __\n5. M → __\n6. Q → __\n7. S → __\n8. V → __\n9. X → __\n10. Z → __",
-            "subtasks": [
-                {"question": "B → __", "answer": "A", "explanation": "Перед B стоит A"},
-                {"question": "E → __", "answer": "D", "explanation": "Перед E стоит D"},
-                {"question": "H → __", "answer": "G", "explanation": "Перед H стоит G"},
-                {"question": "J → __", "answer": "I", "explanation": "Перед J стоит I"},
-                {"question": "M → __", "answer": "L", "explanation": "Перед M стоит L"},
-                {"question": "Q → __", "answer": "P", "explanation": "Перед Q стоит P"},
-                {"question": "S → __", "answer": "R", "explanation": "Перед S стоит R"},
-                {"question": "V → __", "answer": "U", "explanation": "Перед V стоит U"},
-                {"question": "X → __", "answer": "W", "explanation": "Перед X стоит W"},
-                {"question": "Z → __", "answer": "Y", "explanation": "Перед Z стоит Y"}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "Задание 3. Напишите букву по её произношению (на русском).\n\n1. [ви] → __\n2. [дабл-ю] → __\n3. [экс] → __\n4. [уай] → __\n5. [зед] → __\n6. [эй] → __\n7. [би] → __\n8. [си] → __\n9. [ди] → __\n10. [и] → __",
-            "subtasks": [
-                {"question": "[ви] → __", "answer": "V", "explanation": "V произносится как 'ви'"},
-                {"question": "[дабл-ю] → __", "answer": "W", "explanation": "W произносится как 'дабл-ю'"},
-                {"question": "[экс] → __", "answer": "X", "explanation": "X произносится как 'экс'"},
-                {"question": "[уай] → __", "answer": "Y", "explanation": "Y произносится как 'уай'"},
-                {"question": "[зед] → __", "answer": "Z", "explanation": "Z произносится как 'зед'"},
-                {"question": "[эй] → __", "answer": "A", "explanation": "A произносится как 'эй'"},
-                {"question": "[би] → __", "answer": "B", "explanation": "B произносится как 'би'"},
-                {"question": "[си] → __", "answer": "C", "explanation": "C произносится как 'си'"},
-                {"question": "[ди] → __", "answer": "D", "explanation": "D произносится как 'ди'"},
-                {"question": "[и] → __", "answer": "E", "explanation": "E произносится как 'и'"}
-            ]
-        }
-    ],
-    # ===== Вариант 4 =====
-    [
-        {
-            "type": "complex",
-            "text": "Задание 1. Напишите букву, которая следует за данной в алфавите.\n\n1. E → __\n2. G → __\n3. J → __\n4. N → __\n5. P → __\n6. S → __\n7. V → __\n8. X → __\n9. Z → __\n10. A → __",
-            "subtasks": [
-                {"question": "E → __", "answer": "F", "explanation": "После E идёт F"},
-                {"question": "G → __", "answer": "H", "explanation": "После G идёт H"},
-                {"question": "J → __", "answer": "K", "explanation": "После J идёт K"},
-                {"question": "N → __", "answer": "O", "explanation": "После N идёт O"},
-                {"question": "P → __", "answer": "Q", "explanation": "После P идёт Q"},
-                {"question": "S → __", "answer": "T", "explanation": "После S идёт T"},
-                {"question": "V → __", "answer": "W", "explanation": "После V идёт W"},
-                {"question": "X → __", "answer": "Y", "explanation": "После X идёт Y"},
-                {"question": "Z → __", "answer": "нет буквы", "explanation": "Z — последняя буква"},
-                {"question": "A → __", "answer": "B", "explanation": "После A идёт B"}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "Задание 2. Напишите букву, которая стоит перед данной в алфавите.\n\n1. F → __\n2. I → __\n3. L → __\n4. O → __\n5. R → __\n6. U → __\n7. W → __\n8. Y → __\n9. A → __\n10. C → __",
-            "subtasks": [
-                {"question": "F → __", "answer": "E", "explanation": "Перед F стоит E"},
-                {"question": "I → __", "answer": "H", "explanation": "Перед I стоит H"},
-                {"question": "L → __", "answer": "K", "explanation": "Перед L стоит K"},
-                {"question": "O → __", "answer": "N", "explanation": "Перед O стоит N"},
-                {"question": "R → __", "answer": "Q", "explanation": "Перед R стоит Q"},
-                {"question": "U → __", "answer": "T", "explanation": "Перед U стоит T"},
-                {"question": "W → __", "answer": "V", "explanation": "Перед W стоит V"},
-                {"question": "Y → __", "answer": "X", "explanation": "Перед Y стоит X"},
-                {"question": "A → __", "answer": "нет буквы", "explanation": "A — первая буква"},
-                {"question": "C → __", "answer": "B", "explanation": "Перед C стоит B"}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "Задание 3. Напишите букву по её произношению (на русском).\n\n1. [эф] → __\n2. [джи] → __\n3. [эйч] → __\n4. [ай] → __\n5. [джей] → __\n6. [кей] → __\n7. [эл] → __\n8. [эм] → __\n9. [эн] → __\n10. [оу] → __",
-            "subtasks": [
-                {"question": "[эф] → __", "answer": "F", "explanation": "F произносится как 'эф'"},
-                {"question": "[джи] → __", "answer": "G", "explanation": "G произносится как 'джи'"},
-                {"question": "[эйч] → __", "answer": "H", "explanation": "H произносится как 'эйч'"},
-                {"question": "[ай] → __", "answer": "I", "explanation": "I произносится как 'ай'"},
-                {"question": "[джей] → __", "answer": "J", "explanation": "J произносится как 'джей'"},
-                {"question": "[кей] → __", "answer": "K", "explanation": "K произносится как 'кей'"},
-                {"question": "[эл] → __", "answer": "L", "explanation": "L произносится как 'эл'"},
-                {"question": "[эм] → __", "answer": "M", "explanation": "M произносится как 'эм'"},
-                {"question": "[эн] → __", "answer": "N", "explanation": "N произносится как 'эн'"},
-                {"question": "[оу] → __", "answer": "O", "explanation": "O произносится как 'оу'"}
-            ]
-        }
-    ],
-    # ===== Вариант 5 =====
-    [
-        {
-            "type": "complex",
-            "text": "Задание 1. Напишите букву, которая следует за данной в алфавите.\n\n1. B → __\n2. D → __\n3. F → __\n4. H → __\n5. J → __\n6. L → __\n7. N → __\n8. P → __\n9. R → __\n10. T → __",
-            "subtasks": [
-                {"question": "B → __", "answer": "C", "explanation": "После B идёт C"},
-                {"question": "D → __", "answer": "E", "explanation": "После D идёт E"},
-                {"question": "F → __", "answer": "G", "explanation": "После F идёт G"},
-                {"question": "H → __", "answer": "I", "explanation": "После H идёт I"},
-                {"question": "J → __", "answer": "K", "explanation": "После J идёт K"},
-                {"question": "L → __", "answer": "M", "explanation": "После L идёт M"},
-                {"question": "N → __", "answer": "O", "explanation": "После N идёт O"},
-                {"question": "P → __", "answer": "Q", "explanation": "После P идёт Q"},
-                {"question": "R → __", "answer": "S", "explanation": "После R идёт S"},
-                {"question": "T → __", "answer": "U", "explanation": "После T идёт U"}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "Задание 2. Напишите букву, которая стоит перед данной в алфавите.\n\n1. C → __\n2. E → __\n3. G → __\n4. I → __\n5. K → __\n6. M → __\n7. O → __\n8. Q → __\n9. S → __\n10. U → __",
-            "subtasks": [
-                {"question": "C → __", "answer": "B", "explanation": "Перед C стоит B"},
-                {"question": "E → __", "answer": "D", "explanation": "Перед E стоит D"},
-                {"question": "G → __", "answer": "F", "explanation": "Перед G стоит F"},
-                {"question": "I → __", "answer": "H", "explanation": "Перед I стоит H"},
-                {"question": "K → __", "answer": "J", "explanation": "Перед K стоит J"},
-                {"question": "M → __", "answer": "L", "explanation": "Перед M стоит L"},
-                {"question": "O → __", "answer": "N", "explanation": "Перед O стоит N"},
-                {"question": "Q → __", "answer": "P", "explanation": "Перед Q стоит P"},
-                {"question": "S → __", "answer": "R", "explanation": "Перед S стоит R"},
-                {"question": "U → __", "answer": "T", "explanation": "Перед U стоит T"}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "Задание 3. Напишите букву по её произношению (на русском).\n\n1. [пи] → __\n2. [кью] → __\n3. [ар] → __\n4. [эс] → __\n5. [ти] → __\n6. [ю] → __\n7. [ви] → __\n8. [дабл-ю] → __\n9. [экс] → __\n10. [уай] → __",
-            "subtasks": [
-                {"question": "[пи] → __", "answer": "P", "explanation": "P произносится как 'пи'"},
-                {"question": "[кью] → __", "answer": "Q", "explanation": "Q произносится как 'кью'"},
-                {"question": "[ар] → __", "answer": "R", "explanation": "R произносится как 'ар'"},
-                {"question": "[эс] → __", "answer": "S", "explanation": "S произносится как 'эс'"},
-                {"question": "[ти] → __", "answer": "T", "explanation": "T произносится как 'ти'"},
-                {"question": "[ю] → __", "answer": "U", "explanation": "U произносится как 'ю'"},
-                {"question": "[ви] → __", "answer": "V", "explanation": "V произносится как 'ви'"},
-                {"question": "[дабл-ю] → __", "answer": "W", "explanation": "W произносится как 'дабл-ю'"},
-                {"question": "[экс] → __", "answer": "X", "explanation": "X произносится как 'экс'"},
-                {"question": "[уай] → __", "answer": "Y", "explanation": "Y произносится как 'уай'"}
-            ]
-        }
-    ],
-    # ===== Вариант 6 =====
-    [
-        {
-            "type": "complex",
-            "text": "Задание 1. Напишите букву, которая следует за данной в алфавите.\n\n1. C → __\n2. E → __\n3. G → __\n4. I → __\n5. K → __\n6. M → __\n7. O → __\n8. Q → __\n9. S → __\n10. U → __",
-            "subtasks": [
-                {"question": "C → __", "answer": "D", "explanation": "После C идёт D"},
-                {"question": "E → __", "answer": "F", "explanation": "После E идёт F"},
-                {"question": "G → __", "answer": "H", "explanation": "После G идёт H"},
-                {"question": "I → __", "answer": "J", "explanation": "После I идёт J"},
-                {"question": "K → __", "answer": "L", "explanation": "После K идёт L"},
-                {"question": "M → __", "answer": "N", "explanation": "После M идёт N"},
-                {"question": "O → __", "answer": "P", "explanation": "После O идёт P"},
-                {"question": "Q → __", "answer": "R", "explanation": "После Q идёт R"},
-                {"question": "S → __", "answer": "T", "explanation": "После S идёт T"},
-                {"question": "U → __", "answer": "V", "explanation": "После U идёт V"}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "Задание 2. Напишите букву, которая стоит перед данной в алфавите.\n\n1. D → __\n2. F → __\n3. H → __\n4. J → __\n5. L → __\n6. N → __\n7. P → __\n8. R → __\n9. T → __\n10. V → __",
-            "subtasks": [
-                {"question": "D → __", "answer": "C", "explanation": "Перед D стоит C"},
-                {"question": "F → __", "answer": "E", "explanation": "Перед F стоит E"},
-                {"question": "H → __", "answer": "G", "explanation": "Перед H стоит G"},
-                {"question": "J → __", "answer": "I", "explanation": "Перед J стоит I"},
-                {"question": "L → __", "answer": "K", "explanation": "Перед L стоит K"},
-                {"question": "N → __", "answer": "M", "explanation": "Перед N стоит M"},
-                {"question": "P → __", "answer": "O", "explanation": "Перед P стоит O"},
-                {"question": "R → __", "answer": "Q", "explanation": "Перед R стоит Q"},
-                {"question": "T → __", "answer": "S", "explanation": "Перед T стоит S"},
-                {"question": "V → __", "answer": "U", "explanation": "Перед V стоит U"}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "Задание 3. Напишите букву по её произношению (на русском).\n\n1. [зед] → __\n2. [эй] → __\n3. [би] → __\n4. [си] → __\n5. [ди] → __\n6. [и] → __\n7. [эф] → __\n8. [джи] → __\n9. [эйч] → __\n10. [ай] → __",
-            "subtasks": [
-                {"question": "[зед] → __", "answer": "Z", "explanation": "Z произносится как 'зед'"},
-                {"question": "[эй] → __", "answer": "A", "explanation": "A произносится как 'эй'"},
-                {"question": "[би] → __", "answer": "B", "explanation": "B произносится как 'би'"},
-                {"question": "[си] → __", "answer": "C", "explanation": "C произносится как 'си'"},
-                {"question": "[ди] → __", "answer": "D", "explanation": "D произносится как 'ди'"},
-                {"question": "[и] → __", "answer": "E", "explanation": "E произносится как 'и'"},
-                {"question": "[эф] → __", "answer": "F", "explanation": "F произносится как 'эф'"},
-                {"question": "[джи] → __", "answer": "G", "explanation": "G произносится как 'джи'"},
-                {"question": "[эйч] → __", "answer": "H", "explanation": "H произносится как 'эйч'"},
-                {"question": "[ай] → __", "answer": "I", "explanation": "I произносится как 'ай'"}
-            ]
-        }
-    ],
-    # ===== Вариант 7 =====
-    [
-        {
-            "type": "complex",
-            "text": "Задание 1. Напишите букву, которая следует за данной в алфавите.\n\n1. A → __\n2. D → __\n3. G → __\n4. J → __\n5. M → __\n6. P → __\n7. S → __\n8. V → __\n9. Y → __\n10. B → __",
-            "subtasks": [
-                {"question": "A → __", "answer": "B", "explanation": "После A идёт B"},
-                {"question": "D → __", "answer": "E", "explanation": "После D идёт E"},
-                {"question": "G → __", "answer": "H", "explanation": "После G идёт H"},
-                {"question": "J → __", "answer": "K", "explanation": "После J идёт K"},
-                {"question": "M → __", "answer": "N", "explanation": "После M идёт N"},
-                {"question": "P → __", "answer": "Q", "explanation": "После P идёт Q"},
-                {"question": "S → __", "answer": "T", "explanation": "После S идёт T"},
-                {"question": "V → __", "answer": "W", "explanation": "После V идёт W"},
-                {"question": "Y → __", "answer": "Z", "explanation": "После Y идёт Z"},
-                {"question": "B → __", "answer": "C", "explanation": "После B идёт C"}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "Задание 2. Напишите букву, которая стоит перед данной в алфавите.\n\n1. C → __\n2. F → __\n3. I → __\n4. L → __\n5. O → __\n6. R → __\n7. U → __\n8. X → __\n9. Z → __\n10. B → __",
-            "subtasks": [
-                {"question": "C → __", "answer": "B", "explanation": "Перед C стоит B"},
-                {"question": "F → __", "answer": "E", "explanation": "Перед F стоит E"},
-                {"question": "I → __", "answer": "H", "explanation": "Перед I стоит H"},
-                {"question": "L → __", "answer": "K", "explanation": "Перед L стоит K"},
-                {"question": "O → __", "answer": "N", "explanation": "Перед O стоит N"},
-                {"question": "R → __", "answer": "Q", "explanation": "Перед R стоит Q"},
-                {"question": "U → __", "answer": "T", "explanation": "Перед U стоит T"},
-                {"question": "X → __", "answer": "W", "explanation": "Перед X стоит W"},
-                {"question": "Z → __", "answer": "Y", "explanation": "Перед Z стоит Y"},
-                {"question": "B → __", "answer": "A", "explanation": "Перед B стоит A"}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "Задание 3. Напишите букву по её произношению (на русском).\n\n1. [джей] → __\n2. [кей] → __\n3. [эл] → __\n4. [эм] → __\n5. [эн] → __\n6. [оу] → __\n7. [пи] → __\n8. [кью] → __\n9. [ар] → __\n10. [эс] → __",
-            "subtasks": [
-                {"question": "[джей] → __", "answer": "J", "explanation": "J произносится как 'джей'"},
-                {"question": "[кей] → __", "answer": "K", "explanation": "K произносится как 'кей'"},
-                {"question": "[эл] → __", "answer": "L", "explanation": "L произносится как 'эл'"},
-                {"question": "[эм] → __", "answer": "M", "explanation": "M произносится как 'эм'"},
-                {"question": "[эн] → __", "answer": "N", "explanation": "N произносится как 'эн'"},
-                {"question": "[оу] → __", "answer": "O", "explanation": "O произносится как 'оу'"},
-                {"question": "[пи] → __", "answer": "P", "explanation": "P произносится как 'пи'"},
-                {"question": "[кью] → __", "answer": "Q", "explanation": "Q произносится как 'кью'"},
-                {"question": "[ар] → __", "answer": "R", "explanation": "R произносится как 'ар'"},
-                {"question": "[эс] → __", "answer": "S", "explanation": "S произносится как 'эс'"}
-            ]
-        }
-    ],
-    # ===== Вариант 8 =====
-    [
-        {
-            "type": "complex",
-            "text": "Задание 1. Напишите букву, которая следует за данной в алфавите.\n\n1. E → __\n2. H → __\n3. K → __\n4. N → __\n5. Q → __\n6. T → __\n7. W → __\n8. Z → __\n9. C → __\n10. F → __",
-            "subtasks": [
-                {"question": "E → __", "answer": "F", "explanation": "После E идёт F"},
-                {"question": "H → __", "answer": "I", "explanation": "После H идёт I"},
-                {"question": "K → __", "answer": "L", "explanation": "После K идёт L"},
-                {"question": "N → __", "answer": "O", "explanation": "После N идёт O"},
-                {"question": "Q → __", "answer": "R", "explanation": "После Q идёт R"},
-                {"question": "T → __", "answer": "U", "explanation": "После T идёт U"},
-                {"question": "W → __", "answer": "X", "explanation": "После W идёт X"},
-                {"question": "Z → __", "answer": "нет буквы", "explanation": "Z — последняя буква"},
-                {"question": "C → __", "answer": "D", "explanation": "После C идёт D"},
-                {"question": "F → __", "answer": "G", "explanation": "После F идёт G"}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "Задание 2. Напишите букву, которая стоит перед данной в алфавите.\n\n1. G → __\n2. J → __\n3. M → __\n4. P → __\n5. S → __\n6. V → __\n7. Y → __\n8. B → __\n9. E → __\n10. H → __",
-            "subtasks": [
-                {"question": "G → __", "answer": "F", "explanation": "Перед G стоит F"},
-                {"question": "J → __", "answer": "I", "explanation": "Перед J стоит I"},
-                {"question": "M → __", "answer": "L", "explanation": "Перед M стоит L"},
-                {"question": "P → __", "answer": "O", "explanation": "Перед P стоит O"},
-                {"question": "S → __", "answer": "R", "explanation": "Перед S стоит R"},
-                {"question": "V → __", "answer": "U", "explanation": "Перед V стоит U"},
-                {"question": "Y → __", "answer": "X", "explanation": "Перед Y стоит X"},
-                {"question": "B → __", "answer": "A", "explanation": "Перед B стоит A"},
-                {"question": "E → __", "answer": "D", "explanation": "Перед E стоит D"},
-                {"question": "H → __", "answer": "G", "explanation": "Перед H стоит G"}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "Задание 3. Напишите букву по её произношению (на русском).\n\n1. [ти] → __\n2. [ю] → __\n3. [ви] → __\n4. [дабл-ю] → __\n5. [экс] → __\n6. [уай] → __\n7. [зед] → __\n8. [эй] → __\n9. [би] → __\n10. [си] → __",
-            "subtasks": [
-                {"question": "[ти] → __", "answer": "T", "explanation": "T произносится как 'ти'"},
-                {"question": "[ю] → __", "answer": "U", "explanation": "U произносится как 'ю'"},
-                {"question": "[ви] → __", "answer": "V", "explanation": "V произносится как 'ви'"},
-                {"question": "[дабл-ю] → __", "answer": "W", "explanation": "W произносится как 'дабл-ю'"},
-                {"question": "[экс] → __", "answer": "X", "explanation": "X произносится как 'экс'"},
-                {"question": "[уай] → __", "answer": "Y", "explanation": "Y произносится как 'уай'"},
-                {"question": "[зед] → __", "answer": "Z", "explanation": "Z произносится как 'зед'"},
-                {"question": "[эй] → __", "answer": "A", "explanation": "A произносится как 'эй'"},
-                {"question": "[би] → __", "answer": "B", "explanation": "B произносится как 'би'"},
-                {"question": "[си] → __", "answer": "C", "explanation": "C произносится как 'си'"}
-            ]
-        }
-    ],
-    # ===== Вариант 9 =====
-    [
-        {
-            "type": "complex",
-            "text": "Задание 1. Напишите букву, которая следует за данной в алфавите.\n\n1. A → __\n2. C → __\n3. E → __\n4. G → __\n5. I → __\n6. K → __\n7. M → __\n8. O → __\n9. Q → __\n10. S → __",
-            "subtasks": [
-                {"question": "A → __", "answer": "B", "explanation": "После A идёт B"},
-                {"question": "C → __", "answer": "D", "explanation": "После C идёт D"},
-                {"question": "E → __", "answer": "F", "explanation": "После E идёт F"},
-                {"question": "G → __", "answer": "H", "explanation": "После G идёт H"},
-                {"question": "I → __", "answer": "J", "explanation": "После I идёт J"},
-                {"question": "K → __", "answer": "L", "explanation": "После K идёт L"},
-                {"question": "M → __", "answer": "N", "explanation": "После M идёт N"},
-                {"question": "O → __", "answer": "P", "explanation": "После O идёт P"},
-                {"question": "Q → __", "answer": "R", "explanation": "После Q идёт R"},
-                {"question": "S → __", "answer": "T", "explanation": "После S идёт T"}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "Задание 2. Напишите букву, которая стоит перед данной в алфавите.\n\n1. B → __\n2. D → __\n3. F → __\n4. H → __\n5. J → __\n6. L → __\n7. N → __\n8. P → __\n9. R → __\n10. T → __",
-            "subtasks": [
-                {"question": "B → __", "answer": "A", "explanation": "Перед B стоит A"},
-                {"question": "D → __", "answer": "C", "explanation": "Перед D стоит C"},
-                {"question": "F → __", "answer": "E", "explanation": "Перед F стоит E"},
-                {"question": "H → __", "answer": "G", "explanation": "Перед H стоит G"},
-                {"question": "J → __", "answer": "I", "explanation": "Перед J стоит I"},
-                {"question": "L → __", "answer": "K", "explanation": "Перед L стоит K"},
-                {"question": "N → __", "answer": "M", "explanation": "Перед N стоит M"},
-                {"question": "P → __", "answer": "O", "explanation": "Перед P стоит O"},
-                {"question": "R → __", "answer": "Q", "explanation": "Перед R стоит Q"},
-                {"question": "T → __", "answer": "S", "explanation": "Перед T стоит S"}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "Задание 3. Напишите букву по её произношению (на русском).\n\n1. [ди] → __\n2. [и] → __\n3. [эф] → __\n4. [джи] → __\n5. [эйч] → __\n6. [ай] → __\n7. [джей] → __\n8. [кей] → __\n9. [эл] → __\n10. [эм] → __",
-            "subtasks": [
-                {"question": "[ди] → __", "answer": "D", "explanation": "D произносится как 'ди'"},
-                {"question": "[и] → __", "answer": "E", "explanation": "E произносится как 'и'"},
-                {"question": "[эф] → __", "answer": "F", "explanation": "F произносится как 'эф'"},
-                {"question": "[джи] → __", "answer": "G", "explanation": "G произносится как 'джи'"},
-                {"question": "[эйч] → __", "answer": "H", "explanation": "H произносится как 'эйч'"},
-                {"question": "[ай] → __", "answer": "I", "explanation": "I произносится как 'ай'"},
-                {"question": "[джей] → __", "answer": "J", "explanation": "J произносится как 'джей'"},
-                {"question": "[кей] → __", "answer": "K", "explanation": "K произносится как 'кей'"},
-                {"question": "[эл] → __", "answer": "L", "explanation": "L произносится как 'эл'"},
-                {"question": "[эм] → __", "answer": "M", "explanation": "M произносится как 'эм'"}
-            ]
-        }
-    ],
-    # ===== Вариант 10 =====
-    [
-        {
-            "type": "complex",
-            "text": "Задание 1. Напишите букву, которая следует за данной в алфавите.\n\n1. B → __\n2. E → __\n3. H → __\n4. K → __\n5. N → __\n6. Q → __\n7. T → __\n8. W → __\n9. Z → __\n10. D → __",
-            "subtasks": [
-                {"question": "B → __", "answer": "C", "explanation": "После B идёт C"},
-                {"question": "E → __", "answer": "F", "explanation": "После E идёт F"},
-                {"question": "H → __", "answer": "I", "explanation": "После H идёт I"},
-                {"question": "K → __", "answer": "L", "explanation": "После K идёт L"},
-                {"question": "N → __", "answer": "O", "explanation": "После N идёт O"},
-                {"question": "Q → __", "answer": "R", "explanation": "После Q идёт R"},
-                {"question": "T → __", "answer": "U", "explanation": "После T идёт U"},
-                {"question": "W → __", "answer": "X", "explanation": "После W идёт X"},
-                {"question": "Z → __", "answer": "нет буквы", "explanation": "Z — последняя буква"},
-                {"question": "D → __", "answer": "E", "explanation": "После D идёт E"}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "Задание 2. Напишите букву, которая стоит перед данной в алфавите.\n\n1. C → __\n2. F → __\n3. I → __\n4. L → __\n5. O → __\n6. R → __\n7. U → __\n8. X → __\n9. A → __\n10. E → __",
-            "subtasks": [
-                {"question": "C → __", "answer": "B", "explanation": "Перед C стоит B"},
-                {"question": "F → __", "answer": "E", "explanation": "Перед F стоит E"},
-                {"question": "I → __", "answer": "H", "explanation": "Перед I стоит H"},
-                {"question": "L → __", "answer": "K", "explanation": "Перед L стоит K"},
-                {"question": "O → __", "answer": "N", "explanation": "Перед O стоит N"},
-                {"question": "R → __", "answer": "Q", "explanation": "Перед R стоит Q"},
-                {"question": "U → __", "answer": "T", "explanation": "Перед U стоит T"},
-                {"question": "X → __", "answer": "W", "explanation": "Перед X стоит W"},
-                {"question": "A → __", "answer": "нет буквы", "explanation": "A — первая буква"},
-                {"question": "E → __", "answer": "D", "explanation": "Перед E стоит D"}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "Задание 3. Напишите букву по её произношению (на русском).\n\n1. [эн] → __\n2. [оу] → __\n3. [пи] → __\n4. [кью] → __\n5. [ар] → __\n6. [эс] → __\n7. [ти] → __\n8. [ю] → __\n9. [ви] → __\n10. [дабл-ю] → __",
-            "subtasks": [
-                {"question": "[эн] → __", "answer": "N", "explanation": "N произносится как 'эн'"},
-                {"question": "[оу] → __", "answer": "O", "explanation": "O произносится как 'оу'"},
-                {"question": "[пи] → __", "answer": "P", "explanation": "P произносится как 'пи'"},
-                {"question": "[кью] → __", "answer": "Q", "explanation": "Q произносится как 'кью'"},
-                {"question": "[ар] → __", "answer": "R", "explanation": "R произносится как 'ар'"},
-                {"question": "[эс] → __", "answer": "S", "explanation": "S произносится как 'эс'"},
-                {"question": "[ти] → __", "answer": "T", "explanation": "T произносится как 'ти'"},
-                {"question": "[ю] → __", "answer": "U", "explanation": "U произносится как 'ю'"},
-                {"question": "[ви] → __", "answer": "V", "explanation": "V произносится как 'ви'"},
-                {"question": "[дабл-ю] → __", "answer": "W", "explanation": "W произносится как 'дабл-ю'"}
-            ]
-        }
-    ]
-]
+        ]
   },
   "numbers120": {
     "title": "Числа и счёт (1‑20)",
