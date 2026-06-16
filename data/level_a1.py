@@ -17129,6 +17129,6 @@ LEVEL_A1_CONTENT = {
         "correct": "eyebrow",
         "hint": "Дуга волос над глазом",
         "star": True
-]
+}
 }
 }
