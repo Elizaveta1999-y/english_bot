@@ -38,7 +38,7 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
     [
         {
             "type": "complex",
-            "text": "Задание 1. Напишите букву, которая следует за данной в алфавите.,
+            "text": "Задание 1. Напишите букву, которая следует за данной в алфавите.",
             "subtasks": [
                 {"question": "B → __", "answer": "C", "explanation": "После B идёт C"},
                 {"question": "D → __", "answer": "E", "explanation": "После D идёт E"},
