@@ -867,7 +867,6 @@ async def show_practice_task(message: Message, user_id: int, edit: bool = True):
     star = " ⭐" if task.get("star") else ""
     text = f"📝 {task['text']}\n\n"
     text += "Введите все ответы через пробел или запятую.\n\n"
-    text += "Ваш ответ:"
     progress = f"\n\nЗадание {idx+1} из {len(session)}. Правильных: {practice['session_correct']}"
     full_text = text + progress
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
@@ -1310,7 +1309,6 @@ async def show_practice_task(message: Message, user_id: int, edit: bool = True):
     star = " ⭐" if task.get("star") else ""
     text = f"📝 {task['text']}\n\n"
     text += "Введите все ответы через пробел или запятую.\n\n"
-    text += "Ваш ответ:"
     # Инструкция по вводу
     text += "Введите все ответы через пробел или запятую, например: C E H L O Q S U W Y\n\n"
     text += "**Ваш ответ:**"
