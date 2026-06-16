@@ -886,10 +886,11 @@ async def lesson_practice_start(callback: CallbackQuery):
     user_state = get_user_state(user_id)
     current_lesson = user_state.get("current_lesson", {})
     content = current_lesson.get("content")
-    if not content or "practice_tasks" not in content:
+    if not content or "practice_bank" not in content:
         await callback.answer("Для этого урока нет заданий. Сначала сгенерируйте их.", show_alert=True)
         return
-    tasks = content["practice_tasks"]
+    practice_bank = content["practice_bank"]
+tasks = practice_bank[0]  # берём первый вариант (3 задания)
     if "practice" not in user_state:
         user_state["practice"] = {}
     # Берём первые 5 заданий (или 7 для сложных)
