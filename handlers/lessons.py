@@ -1258,8 +1258,20 @@ async def back_to_main(callback: CallbackQuery):
 # ========== ПРАКТИКА ==========
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
+def parse_user_answers(text: str, expected_count: int) -> list:
+    """Разбивает ответы пользователя на список строк (очищает от лишнего)."""
+    # Удаляем лишние пробелы и заменяем запятые на пробелы
+    cleaned = text.replace(',', ' ').strip()
+    # Разбиваем по пробелам
+    parts = cleaned.split()
+    # Если ответ слитный (например, "CEHLOQSUWY") и длина равна expected_count — разбиваем по буквам
+    if len(parts) == 1 and len(parts[0]) == expected_count:
+        return list(parts[0])
+    # Иначе возвращаем то, что получилось (обрезаем до expected_count)
+    return parts[:expected_count]
+
 async def show_practice_task(message: Message, user_id: int, edit: bool = True):
-    from data.users import get_user_state
+    from data.users import get_user_state, set_user_state
     user_state = get_user_state(user_id)
     lesson_key = user_state.get("practice_lesson_key")
     if not lesson_key:
@@ -1268,46 +1280,95 @@ async def show_practice_task(message: Message, user_id: int, edit: bool = True):
     
     practice = user_state.get("practice", {}).get(lesson_key)
     if not practice:
-        await message.answer("Ошибка: нет данных практики")
+        await message.answer("Ошибка данных практики")
         return
     
-    session = practice.get("current_session", [])
-    idx = practice.get("session_index", 0)
-    if idx >= len(session):
-        # завершение
+    task_idx = practice.get("session_index", 0)
+    tasks = practice.get("tasks", [])
+    if task_idx >= len(tasks):
+        # Завершение
         correct = practice.get("session_correct", 0)
-        total = len(session)
+        total = len(tasks)
         percent = int(correct/total*100) if total else 0
         text = f"📊 Практика завершена!\nПравильно: {correct} из {total} ({percent}%)\n\n"
-        if percent >= 80:
-            text += "🎉 Отлично!"
-        else:
-            text += "📚 Повторите тему и попробуйте снова."
+        text += "🎉 Отлично!" if percent >= 80 else "📚 Повторите тему и попробуйте снова."
         keyboard = InlineKeyboardMarkup(inline_keyboard=[
             [InlineKeyboardButton(text="📚 Вернуться к уроку", callback_data=f"back_to_lesson_{lesson_key}")],
-            [InlineKeyboardButton(text="📝 Ещё практика", callback_data=f"lesson_practice_{lesson_key}")],
             [InlineKeyboardButton(text="🏠 Главное меню", callback_data="back_to_main")]
         ])
-        await message.edit_text(text, reply_markup=keyboard) if edit else await message.answer(text, reply_markup=keyboard)
+        if edit:
+            await message.edit_text(text, reply_markup=keyboard)
+        else:
+            await message.answer(text, reply_markup=keyboard)
         user_state["practice_lesson_key"] = None
         set_user_state(user_id, user_state)
         return
     
-    task = practice["tasks"][session[idx]]
+    task = tasks[task_idx]
     star = " ⭐" if task.get("star") else ""
-    text = f"📝 **Задание{star}**\n\n{task['text']}\n\nВаш ответ:"
-    progress = f"\n\nЗадание {idx+1} из {len(session)}. Правильных: {practice['session_correct']}"
+    text = f"📝 **Задание {task_idx+1}{star}**\n\n{task['text']}\n\n"
+    # Инструкция по вводу
+    text += "Введите все ответы через пробел или запятую, например: C E H L O Q S U W Y\n\n"
+    text += "**Ваш ответ:**"
+    
+    progress = f"\n\nЗадание {task_idx+1} из {len(tasks)}. ✅ Правильных: {practice['session_correct']}"
     full_text = text + progress
+    
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(text="💡 Подсказка", callback_data=f"practice_hint_{lesson_key}"),
          InlineKeyboardButton(text="⏩ Пропустить", callback_data=f"practice_skip_{lesson_key}")],
         [InlineKeyboardButton(text="❌ Завершить", callback_data=f"practice_exit_{lesson_key}"),
          InlineKeyboardButton(text="🏠 Главное меню", callback_data="back_to_main")]
     ])
+    
     if edit:
         await message.edit_text(full_text, reply_markup=keyboard, parse_mode="HTML")
     else:
         await message.answer(full_text, reply_markup=keyboard, parse_mode="HTML")
+
+@router.callback_query(lambda c: c.data.startswith("practice_hint_"))
+async def practice_hint(callback: CallbackQuery):
+    lesson_key = callback.data.split("_")[2]
+    user_id = callback.from_user.id
+    user_state = get_user_state(user_id)
+    practice = user_state.get("practice", {}).get(lesson_key)
+    if not practice:
+        await callback.answer("Нет практики")
+        return
+    task_idx = practice.get("session_index", 0)
+    task = practice["tasks"][task_idx]
+    # Показываем первую подсказку (первое пояснение)
+    if task.get("subtasks"):
+        hint = task["subtasks"][0].get("explanation", "Подсказка: проверьте правильность написания")
+    else:
+        hint = "Подсказки нет"
+    await callback.answer(hint, show_alert=True)
+
+@router.callback_query(lambda c: c.data.startswith("practice_skip_"))
+async def practice_skip(callback: CallbackQuery):
+    lesson_key = callback.data.split("_")[2]
+    user_id = callback.from_user.id
+    user_state = get_user_state(user_id)
+    practice = user_state.get("practice", {}).get(lesson_key)
+    if practice and practice.get("skip_count", 0) < 3:
+        practice["skip_count"] += 1
+        practice["session_index"] += 1
+        set_user_state(user_id, user_state)
+        await show_practice_task(callback.message, user_id, edit=True)
+        await callback.answer("Задание пропущено")
+    else:
+        await callback.answer("Лимит пропусков (3) исчерпан", show_alert=True)
+
+@router.callback_query(lambda c: c.data.startswith("practice_exit_"))
+async def practice_exit(callback: CallbackQuery):
+    user_id = callback.from_user.id
+    user_state = get_user_state(user_id)
+    user_state["practice_lesson_key"] = None
+    set_user_state(user_id, user_state)
+    await callback.message.edit_text("Практика прервана. Возвращаюсь к уроку.")
+    from handlers.start import show_main_menu
+    await show_main_menu(callback.message, edit=True)
+    await callback.answer()
 
 @router.callback_query(lambda c: c.data.startswith("lesson_practice_"))
 async def lesson_practice_start(callback: CallbackQuery):
