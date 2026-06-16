@@ -865,7 +865,7 @@ async def show_practice_task(message: Message, user_id: int, edit: bool = True):
         return
     task = practice["tasks"][session[idx]]
     star = " ⭐" if task.get("star") else ""
-    text = f"📝 **Задание{star}**\n\n{task['text']}\n\nВаш ответ:"
+    text = f"📝 **{task['text']}**\n\n"
     progress = f"\n\nЗадание {idx+1} из {len(session)}. Правильных: {practice['session_correct']}"
     full_text = text + progress
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
