@@ -1,4 +1,4 @@
-LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
+LEVEL_A1_CONTENT = {
   "alphabet": {
     "title": "Алфавит и произношение",
     "pages": [
