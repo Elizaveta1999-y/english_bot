@@ -1310,8 +1310,6 @@ async def show_practice_task(message: Message, user_id: int, edit: bool = True):
     text = f"📝 {task['text']}\n\n"
     text += "Введите все ответы через пробел или запятую.\n\n"
     # Инструкция по вводу
-    text += "Введите все ответы через пробел или запятую, например: C E H L O Q S U W Y\n\n"
-    text += "**Ваш ответ:**"
     
     progress = f"\n\nЗадание {task_idx+1} из {len(tasks)}. ✅ Правильных: {practice['session_correct']}"
     full_text = text + progress
