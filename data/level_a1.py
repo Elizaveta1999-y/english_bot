@@ -1,4 +1,4 @@
-LEVEL_A1_CONTENT = {
+LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
   "alphabet": {
     "title": "Алфавит и произношение",
     "pages": [
@@ -33,60 +33,519 @@ LEVEL_A1_CONTENT = {
         "answer": "Имя буквы и её звук – разные вещи. Звуки выучите позже, когда начнёте читать слова."
       }
     ],
-            "practice_bank": [
-            # Вариант 1
-            [
-                {
-                    "type": "complex",
-                    "text": "Задание 1. Напишите букву, которая следует за данной в алфавите.\n\nПример: A → B\n\n1. B → __\n2. D → __\n3. G → __\n4. K → __\n5. M → __\n6. P → __\n7. R → __\n8. T → __\n9. V → __\n10. X → __",
-                    "subtasks": [
-                        {"question": "B → __", "answer": "C", "explanation": "После B идёт C"},
-                        {"question": "D → __", "answer": "E", "explanation": "После D идёт E"},
-                        {"question": "G → __", "answer": "H", "explanation": "После G идёт H"},
-                        {"question": "K → __", "answer": "L", "explanation": "После K идёт L"},
-                        {"question": "M → __", "answer": "N", "explanation": "После M идёт N"},
-                        {"question": "P → __", "answer": "Q", "explanation": "После P идёт Q"},
-                        {"question": "R → __", "answer": "S", "explanation": "После R идёт S"},
-                        {"question": "T → __", "answer": "U", "explanation": "После T идёт U"},
-                        {"question": "V → __", "answer": "W", "explanation": "После V идёт W"},
-                        {"question": "X → __", "answer": "Y", "explanation": "После X идёт Y"}
-                    ]
-                },
-                {
-                    "type": "complex",
-                    "text": "Задание 2. Напишите букву, которая стоит перед данной в алфавите.\n\nПример: B → A\n\n1. C → __\n2. F → __\n3. I → __\n4. L → __\n5. O → __\n6. Q → __\n7. S → __\n8. U → __\n9. W → __\n10. Z → __",
-                    "subtasks": [
-                        {"question": "C → __", "answer": "B", "explanation": "Перед C стоит B"},
-                        {"question": "F → __", "answer": "E", "explanation": "Перед F стоит E"},
-                        {"question": "I → __", "answer": "H", "explanation": "Перед I стоит H"},
-                        {"question": "L → __", "answer": "K", "explanation": "Перед L стоит K"},
-                        {"question": "O → __", "answer": "N", "explanation": "Перед O стоит N"},
-                        {"question": "Q → __", "answer": "P", "explanation": "Перед Q стоит P"},
-                        {"question": "S → __", "answer": "R", "explanation": "Перед S стоит R"},
-                        {"question": "U → __", "answer": "T", "explanation": "Перед U стоит T"},
-                        {"question": "W → __", "answer": "V", "explanation": "Перед W стоит V"},
-                        {"question": "Z → __", "answer": "Y", "explanation": "Перед Z стоит Y"}
-                    ]
-                },
-                {
-                    "type": "complex",
-                    "text": "Задание 3. Напишите букву по её произношению (на русском).\n\nПример: [эй] → A\n\n1. [би] → __\n2. [си] → __\n3. [ди] → __\n4. [и] → __\n5. [эф] → __\n6. [джи] → __\n7. [эйч] → __\n8. [ай] → __\n9. [джей] → __\n10. [кей] → __",
-                    "subtasks": [
-                        {"question": "[би] → __", "answer": "B", "explanation": "B произносится как 'би'"},
-                        {"question": "[си] → __", "answer": "C", "explanation": "C произносится как 'си'"},
-                        {"question": "[ди] → __", "answer": "D", "explanation": "D произносится как 'ди'"},
-                        {"question": "[и] → __", "answer": "E", "explanation": "E произносится как 'и'"},
-                        {"question": "[эф] → __", "answer": "F", "explanation": "F произносится как 'эф'"},
-                        {"question": "[джи] → __", "answer": "G", "explanation": "G произносится как 'джи'"},
-                        {"question": "[эйч] → __", "answer": "H", "explanation": "H произносится как 'эйч'"},
-                        {"question": "[ай] → __", "answer": "I", "explanation": "I произносится как 'ай'"},
-                        {"question": "[джей] → __", "answer": "J", "explanation": "J произносится как 'джей'"},
-                        {"question": "[кей] → __", "answer": "K", "explanation": "K произносится как 'кей'"}
-                    ]
-                }
-            ]
-            # Здесь будут остальные 9 вариантов (пока только 1 для теста)
+    "practice_tasks": [
+      {
+        "type": "fill_blank",
+        "text": "The first letter of the English alphabet is ___.",
+        "correct": "A",
+        "hint": "It's a vowel.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The letter after 'H' is ___.",
+        "correct": "I",
+        "hint": "It sounds like 'eye'.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The last letter of the alphabet is ___.",
+        "correct": "Z",
+        "hint": "It's pronounced 'zed' or 'zee'.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The letter '___' is between 'P' and 'R'.",
+        "correct": "Q",
+        "hint": "It's often followed by 'U'.",
+        "star": False
+      },
+      {
+        "type": "reorder",
+        "text": "Put these letters in alphabetical order: D, A, F, C",
+        "correct": "A, C, D, F",
+        "hint": "Think of the song.",
+        "star": False
+      },
+      {
+        "type": "reorder",
+        "text": "Put these letters in alphabetical order: M, K, O, L",
+        "correct": "K, L, M, O",
+        "hint": "K comes before L.",
+        "star": False
+      },
+      {
+        "type": "translation",
+        "text": "Как произносится буква 'R' по-английски?",
+        "correct": "ar",
+        "hint": "It rhymes with 'car'.",
+        "star": False
+      },
+      {
+        "type": "translation",
+        "text": "Как произносится буква 'W' по-английски?",
+        "correct": "double-u",
+        "hint": "It looks like two 'U's.",
+        "star": False
+      },
+      {
+        "type": "choice",
+        "text": "Which letter sounds like 'bee'?",
+        "correct": "B",
+        "hint": "It's a consonant.",
+        "options": [
+          "B",
+          "D",
+          "P",
+          "T"
         ],
+        "star": False
+      },
+      {
+        "type": "choice",
+        "text": "Which letter is a vowel?",
+        "correct": "E",
+        "hint": "There are 5 main vowels.",
+        "options": [
+          "E",
+          "F",
+          "G",
+          "H"
+        ],
+        "star": False
+      },
+      {
+        "type": "choice",
+        "text": "What sound does the letter 'C' make in 'cat'?",
+        "correct": "/k/",
+        "hint": "It's a hard sound.",
+        "options": [
+          "/s/",
+          "/k/",
+          "/ʃ/",
+          "/tʃ/"
+        ],
+        "star": False
+      },
+      {
+        "type": "choice",
+        "text": "Which letter is pronounced 'eks'?",
+        "correct": "X",
+        "hint": "It's near the end of the alphabet.",
+        "options": [
+          "S",
+          "X",
+          "Z",
+          "C"
+        ],
+        "star": False
+      },
+      {
+        "type": "open",
+        "text": "Write the alphabet from A to G.",
+        "correct": "A B C D E F G",
+        "hint": "Start with A, end with G.",
+        "star": False
+      },
+      {
+        "type": "open",
+        "text": "Write the alphabet from T to Z.",
+        "correct": "T U V W X Y Z",
+        "hint": "T is before U.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The letter '___' is the 13th letter of the alphabet.",
+        "correct": "M",
+        "hint": "It's in the middle.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The letter 'Y' is sometimes a ___.",
+        "correct": "vowel",
+        "hint": "It can be a consonant too.",
+        "star": False
+      },
+      {
+        "type": "reorder",
+        "text": "Put these letters in alphabetical order: X, V, Y, W",
+        "correct": "V, W, X, Y",
+        "hint": "V comes before W.",
+        "star": False
+      },
+      {
+        "type": "translation",
+        "text": "Как произносится буква 'J' по-английски?",
+        "correct": "jay",
+        "hint": "It sounds like the letter 'G' but with a 'dʒ' sound.",
+        "star": False
+      },
+      {
+        "type": "choice",
+        "text": "Which letter is NOT a vowel?",
+        "correct": "K",
+        "hint": "Vowels are A, E, I, O, U.",
+        "options": [
+          "A",
+          "E",
+          "K",
+          "O"
+        ],
+        "star": False
+      },
+      {
+        "type": "open",
+        "text": "Say the alphabet backwards from C to A.",
+        "correct": "C B A",
+        "hint": "Start with C, then B, then A.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The letter '___' has the same pronunciation as the word 'eye'.",
+        "correct": "I",
+        "hint": "It's a pronoun.",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "The 5th letter of the alphabet is ___.",
+        "correct": "E",
+        "hint": "It's the most common letter in English.",
+        "star": True
+      },
+      {
+        "type": "reorder",
+        "text": "Put these letters in alphabetical order: Q, U, R, S",
+        "correct": "Q, R, S, U",
+        "hint": "Q is followed by R.",
+        "star": True
+      },
+      {
+        "type": "translation",
+        "text": "Как произносится буква 'H' в британском английском?",
+        "correct": "aitch",
+        "hint": "The 'h' is silent.",
+        "star": True
+      },
+      {
+        "type": "choice",
+        "text": "Which letter's name contains the sound /i:/?",
+        "correct": "B",
+        "hint": "It's a consonant that sounds like a bee.",
+        "options": [
+          "B",
+          "C",
+          "D",
+          "G"
+        ],
+        "star": True
+      },
+      {
+        "type": "choice",
+        "text": "What is the pronunciation of 'G' in 'giraffe'?",
+        "correct": "/dʒ/",
+        "hint": "It's a soft sound.",
+        "options": [
+          "/g/",
+          "/dʒ/",
+          "/ʒ/",
+          "/d/"
+        ],
+        "star": True
+      },
+      {
+        "type": "open",
+        "text": "Write all the vowels in the English alphabet.",
+        "correct": "A, E, I, O, U",
+        "hint": "Sometimes Y is included.",
+        "star": True
+      },
+      {
+        "type": "open",
+        "text": "Write the alphabet from M to R in reverse order.",
+        "correct": "R Q P O N M",
+        "hint": "Start with R, end with M.",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "The letter '___' is the only letter that is not in any of the 50 US state names.",
+        "correct": "Q",
+        "hint": "It's a rare letter.",
+        "star": True
+      },
+      {
+        "type": "reorder",
+        "text": "Put these letters in alphabetical order: E, I, A, O, U",
+        "correct": "A, E, I, O, U",
+        "hint": "This is the order of vowels.",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "The first letter of the alphabet is ___.",
+        "correct": "A",
+        "hint": "It's a vowel.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The letter after 'M' is ___.",
+        "correct": "N",
+        "hint": "Think of the sequence.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The letter 'Z' is pronounced as /___/ in American English.",
+        "correct": "ziː",
+        "hint": "It rhymes with 'bee'.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The letter 'W' is called 'double-___'.",
+        "correct": "U",
+        "hint": "It looks like two of this vowel.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The last letter of the alphabet is ___.",
+        "correct": "Z",
+        "hint": "It comes after Y.",
+        "star": False
+      },
+      {
+        "type": "reorder",
+        "text": "Put these letters in alphabetical order: D, A, F, C",
+        "correct": "A, C, D, F",
+        "hint": "Start with the smallest letter.",
+        "star": False
+      },
+      {
+        "type": "reorder",
+        "text": "Order the vowels: E, A, I, O, U",
+        "correct": "A, E, I, O, U",
+        "hint": "Standard vowel order.",
+        "star": False
+      },
+      {
+        "type": "reorder",
+        "text": "Arrange these letters: X, S, P, M",
+        "correct": "M, P, S, X",
+        "hint": "Think of their positions.",
+        "star": False
+      },
+      {
+        "type": "translation",
+        "text": "How do you say 'алфавит' in English?",
+        "correct": "alphabet",
+        "hint": "It starts with 'al'.",
+        "star": False
+      },
+      {
+        "type": "translation",
+        "text": "What is the English word for 'произношение'?",
+        "correct": "pronunciation",
+        "hint": "It has 14 letters.",
+        "star": False
+      },
+      {
+        "type": "choice",
+        "text": "Which letter is a vowel?",
+        "correct": "E",
+        "hint": "Vowels are A, E, I, O, U.",
+        "star": False,
+        "options": [
+          "B",
+          "E",
+          "K",
+          "T"
+        ]
+      },
+      {
+        "type": "choice",
+        "text": "How is the letter 'G' pronounced?",
+        "correct": "/dʒiː/",
+        "hint": "Like the start of 'giant'.",
+        "star": False,
+        "options": [
+          "/ɡiː/",
+          "/dʒiː/",
+          "/dʒeɪ/",
+          "/ɡeɪ/"
+        ]
+      },
+      {
+        "type": "choice",
+        "text": "What is the 10th letter of the alphabet?",
+        "correct": "J",
+        "hint": "It comes after I.",
+        "star": False,
+        "options": [
+          "H",
+          "I",
+          "J",
+          "K"
+        ]
+      },
+      {
+        "type": "choice",
+        "text": "Which letter sounds like 'double-you'?",
+        "correct": "W",
+        "hint": "Its name has two syllables.",
+        "star": False,
+        "options": [
+          "V",
+          "W",
+          "Y",
+          "U"
+        ]
+      },
+      {
+        "type": "choice",
+        "text": "The letter 'C' can be pronounced as /s/ in which word?",
+        "correct": "city",
+        "hint": "Think of a soft C.",
+        "star": False,
+        "options": [
+          "cat",
+          "city",
+          "cup",
+          "car"
+        ]
+      },
+      {
+        "type": "open",
+        "text": "Write the English alphabet from A to Z.",
+        "correct": "A B C D E F G H I J K L M N O P Q R S T U V W X Y Z",
+        "hint": "There are 26 letters.",
+        "star": False
+      },
+      {
+        "type": "open",
+        "text": "Spell your name using the English alphabet letters.",
+        "correct": "Any correct spelling",
+        "hint": "Say each letter clearly.",
+        "star": False
+      },
+      {
+        "type": "open",
+        "text": "List all the consonants in the alphabet.",
+        "correct": "B C D F G H J K L M N P Q R S T V W X Y Z",
+        "hint": "Exclude A, E, I, O, U.",
+        "star": False
+      },
+      {
+        "type": "open",
+        "text": "Write the phonetic symbol for the letter 'R'.",
+        "correct": "/ɑːr/",
+        "hint": "It's a rhotic sound.",
+        "star": False
+      },
+      {
+        "type": "open",
+        "text": "Name three letters that are always pronounced the same way.",
+        "correct": "Any three like B, D, M",
+        "hint": "Think of letters with one sound.",
+        "star": False
+      },
+      {
+        "type": "fill_blank",
+        "text": "The letter 'Q' is almost always followed by the letter ___.",
+        "correct": "U",
+        "hint": "Think of 'queen'.",
+        "star": True
+      },
+      {
+        "type": "fill_blank",
+        "text": "The letter 'Y' can be a vowel when it sounds like /iː/ or /aɪ/, as in the word '___'.",
+        "correct": "myth",
+        "hint": "It's a short word with Y as vowel.",
+        "star": True
+      },
+      {
+        "type": "reorder",
+        "text": "Put these in order of their position in the alphabet: R, E, T, U, P",
+        "correct": "E, P, R, T, U",
+        "hint": "Count from A.",
+        "star": True
+      },
+      {
+        "type": "translation",
+        "text": "Translate 'silent letter' into Russian.",
+        "correct": "немая буква",
+        "hint": "It means a letter not pronounced.",
+        "star": True
+      },
+      {
+        "type": "choice",
+        "text": "Which letter has the same pronunciation in British and American English?",
+        "correct": "M",
+        "hint": "It's a simple consonant.",
+        "star": True,
+        "options": [
+          "A",
+          "R",
+          "M",
+          "Z"
+        ]
+      },
+      {
+        "type": "choice",
+        "text": "In the word 'knight', which letter is silent?",
+        "correct": "k",
+        "hint": "Look at the start.",
+        "star": True,
+        "options": [
+          "k",
+          "n",
+          "i",
+          "t"
+        ]
+      },
+      {
+        "type": "choice",
+        "text": "What is the most common letter in English?",
+        "correct": "E",
+        "hint": "It appears in many words.",
+        "star": True,
+        "options": [
+          "A",
+          "E",
+          "S",
+          "T"
+        ]
+      },
+      {
+        "type": "open",
+        "text": "Write a word where the letter 'gh' is silent.",
+        "correct": "Any like 'though', 'night'",
+        "hint": "Think of 'through'.",
+        "star": True
+      },
+      {
+        "type": "open",
+        "text": "Explain the difference between a vowel and a consonant.",
+        "correct": "Vowels are sounds made with open vocal tract; consonants involve obstruction.",
+        "hint": "Think of A, E, I, O, U.",
+        "star": True
+      },
+      {
+        "type": "open",
+        "text": "List all letters that have more than one common pronunciation in English.",
+        "correct": "A, C, E, G, I, O, S, U, X, Y",
+        "hint": "Think of hard/soft sounds.",
+        "star": True
+      }
+    ]
+  },
   "numbers120": {
     "title": "Числа и счёт (1‑20)",
     "pages": [
@@ -17129,6 +17588,7 @@ LEVEL_A1_CONTENT = {
         "correct": "eyebrow",
         "hint": "Дуга волос над глазом",
         "star": True
-}
-]
+      }
+    ]
+  }
 }
