@@ -273,64 +273,66 @@ async def universal_text_handler(message: Message):
 
     print(f"[DEBUG] universal_text_handler: text={message.text}, lesson_qa_active={user_state.get('lesson_qa', {}).get('active')}")
 
-    # 0. Обработка ответов в режиме практики
-        # 0. Обработка ответов в режиме практики
+        # 0. Обработка ответов в режиме практики (текст)
     if user_state.get("practice_lesson_key"):
         from handlers.lessons import show_practice_task, parse_user_answers
         lesson_key = user_state["practice_lesson_key"]
         practice = user_state.get("practice", {}).get(lesson_key)
-        if practice:
-            task_idx = practice.get("session_index", 0)
-            tasks = practice.get("tasks", [])
-            if task_idx >= len(tasks):
-                # Все задания пройдены — завершаем
-                await show_practice_task(message, user_id, edit=False)
-                return
-
-            task = tasks[task_idx]
-            subtasks = task.get("subtasks", [])
-            if not subtasks:
-                await message.answer("Ошибка: нет подзаданий")
-                return
-
-            user_answers = parse_user_answers(message.text.strip(), len(subtasks))
-            while len(user_answers) < len(subtasks):
-                user_answers.append("")
-
-            correct_count = 0
-            wrong_list = []
-            for i, subtask in enumerate(subtasks):
-                user_ans = user_answers[i].strip() if i < len(user_answers) else ""
-                correct = subtask.get("answer", "").strip()
-                if user_ans.lower() == correct.lower():
-                    correct_count += 1
-                else:
-                    wrong_list.append({
-                        "question": subtask.get("question", ""),
-                        "your": user_ans if user_ans else "(пусто)",
-                        "correct": correct
-                    })
-
-            practice["session_correct"] += correct_count
-            practice["session_index"] += 1
-            # Сохраняем всё состояние, а не только practice
-            set_user_state(user_id, user_state)
-
-            # Отправляем результат кратко
-            if not wrong_list:
-                await message.answer(f"✅ Отлично! Все {len(subtasks)} ответов верны!")
-            else:
-                summary = f"❌ Правильно: {correct_count} из {len(subtasks)}\n\n"
-                for w in wrong_list:
-                    summary += f"• {w['question']}\n   Ваш ответ: {w['your']} → правильно: {w['correct']}\n\n"
-                await message.answer(summary)
-
-            # Если все задания выполнены — показываем фидбек, иначе — следующее задание
-            if practice["session_index"] >= len(tasks):
-                await show_practice_task(message, user_id, edit=False)
-            else:
-                await show_practice_task(message, user_id, edit=False)
+        if not practice:
             return
+
+        task_idx = practice.get("session_index", 0)
+        tasks = practice.get("tasks", [])
+        if task_idx >= len(tasks):
+            # Все задания пройдены – завершаем
+            await show_practice_task(message, user_id, edit=False)
+            return
+
+        task = tasks[task_idx]
+        subtasks = task.get("subtasks", [])
+        if not subtasks:
+            await message.answer("Ошибка: нет подзаданий")
+            return
+
+        # Парсим введённые ответы
+        user_answers = parse_user_answers(message.text.strip(), len(subtasks))
+        # Дополняем до нужной длины пустыми строками
+        while len(user_answers) < len(subtasks):
+            user_answers.append("")
+
+        correct_count = 0
+        wrong_list = []
+        for i, subtask in enumerate(subtasks):
+            user_ans = user_answers[i].strip() if i < len(user_answers) else ""
+            correct = subtask.get("answer", "").strip()
+            if user_ans.lower() == correct.lower():
+                correct_count += 1
+            else:
+                wrong_list.append({
+                    "question": subtask.get("question", ""),
+                    "your": user_ans if user_ans else "(пусто)",
+                    "correct": correct
+                })
+
+        # Обновляем прогресс
+        practice["session_correct"] += correct_count
+        practice["session_index"] += 1
+
+        # **Важно: сохраняем всё состояние пользователя, а не только practice**
+        set_user_state(user_id, user_state)
+
+        # Отправляем результат
+        if not wrong_list:
+            await message.answer(f"✅ Отлично! Все {len(subtasks)} ответов верны!")
+        else:
+            summary = f"❌ Правильно: {correct_count} из {len(subtasks)}\n\n"
+            for w in wrong_list:
+                summary += f"• {w['question']}\n   Ваш ответ: {w['your']} → правильно: {w['correct']}\n\n"
+            await message.answer(summary)
+
+        # Показываем следующее задание (или завершение, если все пройдены)
+        await show_practice_task(message, user_id, edit=False)
+        return
     # 1. Обработка кастомного сценария
     if user_state.get("awaiting_custom_scenario"):
         user_state["awaiting_custom_scenario"] = False
