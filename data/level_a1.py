@@ -2776,463 +2776,518 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "answer": "В английском используют притяжательное местоимение, соответствующее подлежащему: He loves his dog – Он любит свою собаку."
       }
     ],
-    "practice_tasks": [
-      {
-        "type": "fill_blank",
-        "text": "___ is a student. (He/Him)",
-        "correct": "He",
-        "hint": "Личное местоимение в именительном падеже",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "This is ___ book. (my/mine)",
-        "correct": "my",
-        "hint": "Притяжательное местоимение перед существительным",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "Give ___ the pen. (I/me)",
-        "correct": "me",
-        "hint": "Личное местоимение в объектном падеже",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "That car is ___. (their/theirs)",
-        "correct": "theirs",
-        "hint": "Притяжательное местоимение без существительного",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "___ are going to the park. (We/Us)",
-        "correct": "We",
-        "hint": "Личное местоимение в роли подлежащего",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "I saw ___ yesterday. (she/her)",
-        "correct": "her",
-        "hint": "Личное местоимение после глагола",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "Is this ___ umbrella? (you/your)",
-        "correct": "your",
-        "hint": "Притяжательное местоимение для 'you'",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The dog wagged ___ tail. (its/it's)",
-        "correct": "its",
-        "hint": "Притяжательное местоимение для 'it'",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "___ are my friends. (They/Them)",
-        "correct": "They",
-        "hint": "Личное местоимение множественного числа",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "Please help ___. (we/us)",
-        "correct": "us",
-        "hint": "Объектный падеж для 'we'",
-        "star": False
-      },
-      {
-        "type": "choice",
-        "text": "___ name is Anna.",
-        "correct": "Her",
-        "hint": "Притяжательное местоимение для 'she'",
-        "options": [
-          "Her",
-          "She",
-          "Hers"
-        ],
-        "star": False
-      },
-      {
-        "type": "choice",
-        "text": "I like ___ very much.",
-        "correct": "him",
-        "hint": "Объектный падеж для 'he'",
-        "options": [
-          "he",
-          "him",
-          "his"
-        ],
-        "star": False
-      },
-      {
-        "type": "choice",
-        "text": "This is not my pen. It's ___.",
-        "correct": "yours",
-        "hint": "Притяжательное местоимение без существительного",
-        "options": [
-          "your",
-          "yours",
-          "you"
-        ],
-        "star": False
-      },
-      {
-        "type": "choice",
-        "text": "___ are late for class.",
-        "correct": "You",
-        "hint": "Личное местоимение для обращения",
-        "options": [
-          "Your",
-          "You",
-          "Yours"
-        ],
-        "star": False
-      },
-      {
-        "type": "choice",
-        "text": "The cat is sleeping. ___ is very cute.",
-        "correct": "It",
-        "hint": "Личное местоимение для животных",
-        "options": [
-          "Its",
-          "It",
-          "It's"
-        ],
-        "star": False
-      },
-      {
-        "type": "reorder",
-        "text": "Составьте предложение: is / this / book / my",
-        "correct": "This is my book",
-        "hint": "Порядок слов: указательное + глагол + притяжательное + существительное",
-        "star": False
-      },
-      {
-        "type": "reorder",
-        "text": "Составьте предложение: to / going / they / are / school",
-        "correct": "They are going to school",
-        "hint": "Подлежащее + глагол 'to be' + смысловой глагол",
-        "star": False
-      },
-      {
-        "type": "reorder",
-        "text": "Составьте предложение: gave / her / I / a / flower",
-        "correct": "I gave her a flower",
-        "hint": "Подлежащее + глагол + косвенное дополнение + прямое дополнение",
-        "star": False
-      },
-      {
-        "type": "translation",
-        "text": "Переведите: Это его машина.",
-        "correct": "This is his car",
-        "hint": "Притяжательное местоимение 'his'",
-        "star": False
-      },
-      {
-        "type": "translation",
-        "text": "Переведите: Мы любим их.",
-        "correct": "We love them",
-        "hint": "Объектный падеж 'them'",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "___ is my sister. (She/Her)",
-        "correct": "She",
-        "hint": "Личное местоимение в начале предложения",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "These books are ___. (our/ours)",
-        "correct": "ours",
-        "hint": "Притяжательное местоимение без существительного",
-        "star": True
-      },
-      {
-        "type": "choice",
-        "text": "___ did you call?",
-        "correct": "Whom",
-        "hint": "Вопрос к объекту действия",
-        "options": [
-          "Who",
-          "Whom",
-          "Whose"
-        ],
-        "star": True
-      },
-      {
-        "type": "choice",
-        "text": "This is ___ I was talking about.",
-        "correct": "what",
-        "hint": "Вопросительное местоимение для предмета",
-        "options": [
-          "what",
-          "which",
-          "who"
-        ],
-        "star": True
-      },
-      {
-        "type": "reorder",
-        "text": "Составьте предложение: mine / is / this / not / pen",
-        "correct": "This pen is not mine",
-        "hint": "Притяжательное местоимение в конце",
-        "star": True
-      },
-      {
-        "type": "reorder",
-        "text": "Составьте предложение: each / help / should / other / we",
-        "correct": "We should help each other",
-        "hint": "Возвратное местоимение 'each other'",
-        "star": True
-      },
-      {
-        "type": "translation",
-        "text": "Переведите: Она сделала это сама.",
-        "correct": "She did it herself",
-        "hint": "Возвратное местоимение 'herself'",
-        "star": True
-      },
-      {
-        "type": "translation",
-        "text": "Переведите: Никто не знает его.",
-        "correct": "Nobody knows him",
-        "hint": "Отрицательное местоимение + объектный падеж",
-        "star": True
-      },
-      {
-        "type": "open",
-        "text": "Объясните разницу между 'its' и 'it's'.",
-        "correct": "Its - притяжательное, it's - сокращение от it is",
-        "hint": "Апостроф меняет значение",
-        "star": True
-      },
-      {
-        "type": "open",
-        "text": "Составьте предложение с местоимением 'myself'.",
-        "correct": "I hurt myself",
-        "hint": "Возвратное местоимение для 'I'",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "___ is my friend. (he)",
-        "correct": "He",
-        "hint": "Личное местоимение для мужчины",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "This is ___ book. (I)",
-        "correct": "my",
-        "hint": "Притяжательное местоимение от 'I'",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "___ are students. (we)",
-        "correct": "We",
-        "hint": "Личное местоимение для группы, включая говорящего",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "I like ___ car. (she)",
-        "correct": "her",
-        "hint": "Притяжательное местоимение для 'she'",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "Give ___ the pen. (I)",
-        "correct": "me",
-        "hint": "Объектное местоимение от 'I'",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "___ name is Tom. (he)",
-        "correct": "His",
-        "hint": "Притяжательное местоимение для 'he'",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "Please call ___. (they)",
-        "correct": "them",
-        "hint": "Объектное местоимение от 'they'",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "___ is a cat. (it)",
-        "correct": "It",
-        "hint": "Личное местоимение для животного или предмета",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "This is ___ house. (they)",
-        "correct": "their",
-        "hint": "Притяжательное местоимение от 'they'",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "___ are happy. (you)",
-        "correct": "You",
-        "hint": "Личное местоимение для обращения",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "I see ___. (she)",
-        "correct": "her",
-        "hint": "Объектное местоимение от 'she'",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "___ dog is big. (we)",
-        "correct": "Our",
-        "hint": "Притяжательное местоимение от 'we'",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She gave ___ a gift. (we)",
-        "correct": "us",
-        "hint": "Объектное местоимение от 'we'",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "___ are teachers. (you, plural)",
-        "correct": "You",
-        "hint": "Личное местоимение для множественного числа 'ты'",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "___ eyes are blue. (she)",
-        "correct": "Her",
-        "hint": "Притяжательное местоимение для 'she'",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "I love ___. (you)",
-        "correct": "you",
-        "hint": "Объектное местоимение от 'you'",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "___ is my sister. (she)",
-        "correct": "She",
-        "hint": "Личное местоимение для женщины",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "This is ___ pen. (you)",
-        "correct": "your",
-        "hint": "Притяжательное местоимение от 'you'",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "___ are my parents. (they)",
-        "correct": "They",
-        "hint": "Личное местоимение для группы людей",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "I saw ___ yesterday. (he)",
-        "correct": "him",
-        "hint": "Объектное местоимение от 'he'",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "___ idea was great. (we)",
-        "correct": "Our",
-        "hint": "Притяжательное местоимение от 'we'",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "Please tell ___ the truth. (I)",
-        "correct": "me",
-        "hint": "Объектное местоимение от 'I'",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "___ cat is sleeping. (they)",
-        "correct": "Their",
-        "hint": "Притяжательное местоимение от 'they'",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "___ am ready. (I)",
-        "correct": "I",
-        "hint": "Личное местоимение для себя",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "She likes ___ dress. (she)",
-        "correct": "her",
-        "hint": "Притяжательное местоимение от 'she'",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "___ are my keys. (they)",
-        "correct": "They",
-        "hint": "Личное местоимение для предметов",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "I will help ___. (you)",
-        "correct": "you",
-        "hint": "Объектное местоимение от 'you'",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "___ house is new. (he)",
-        "correct": "His",
-        "hint": "Притяжательное местоимение от 'he'",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "___ is a good student. (she)",
-        "correct": "She",
-        "hint": "Личное местоимение для женщины",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "Give ___ the book. (they)",
-        "correct": "them",
-        "hint": "Объектное местоимение от 'they'",
-        "star": True
-      }
-    ]
+            "practice_bank": [
+            # Вариант 1
+            [
+                {
+                    "type": "complex",
+                    "text": "Вставьте правильное личное местоимение (I, you, he, she, it, we, they).\n\n1. ___ am a student.\n2. ___ is my friend.\n3. ___ are happy.\n4. ___ is a doctor.\n5. ___ are at home.\n6. ___ is a cat.\n7. ___ are very kind.\n8. ___ is my brother.\n9. ___ are in the garden.\n10. ___ am from Russia.",
+                    "subtasks": [
+                        {"question": "___ am a student.", "answer": "I", "explanation": "I am"},
+                        {"question": "___ is my friend.", "answer": "She", "explanation": "She is (можно He, но по умолчанию She)"},
+                        {"question": "___ are happy.", "answer": "We", "explanation": "We are"},
+                        {"question": "___ is a doctor.", "answer": "He", "explanation": "He is"},
+                        {"question": "___ are at home.", "answer": "They", "explanation": "They are"},
+                        {"question": "___ is a cat.", "answer": "It", "explanation": "It is"},
+                        {"question": "___ are very kind.", "answer": "You", "explanation": "You are"},
+                        {"question": "___ is my brother.", "answer": "He", "explanation": "He is"},
+                        {"question": "___ are in the garden.", "answer": "They", "explanation": "They are (the girls)"},
+                        {"question": "___ am from Russia.", "answer": "I", "explanation": "I am"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Вставьте правильное притяжательное местоимение (my, your, his, her, its, our, their).\n\n1. I have a book. It is ___ book.\n2. You have a pen. It is ___ pen.\n3. He has a dog. It is ___ dog.\n4. She has a cat. It is ___ cat.\n5. It has a bone. It is ___ bone.\n6. We have a house. It is ___ house.\n7. They have a car. It is ___ car.\n8. I have a sister. She is ___ sister.\n9. You have a brother. He is ___ brother.\n10. They have a garden. It is ___ garden.",
+                    "subtasks": [
+                        {"question": "I have a book. It is ___ book.", "answer": "my", "explanation": "I → my"},
+                        {"question": "You have a pen. It is ___ pen.", "answer": "your", "explanation": "You → your"},
+                        {"question": "He has a dog. It is ___ dog.", "answer": "his", "explanation": "He → his"},
+                        {"question": "She has a cat. It is ___ cat.", "answer": "her", "explanation": "She → her"},
+                        {"question": "It has a bone. It is ___ bone.", "answer": "its", "explanation": "It → its"},
+                        {"question": "We have a house. It is ___ house.", "answer": "our", "explanation": "We → our"},
+                        {"question": "They have a car. It is ___ car.", "answer": "their", "explanation": "They → their"},
+                        {"question": "I have a sister. She is ___ sister.", "answer": "my", "explanation": "I → my"},
+                        {"question": "You have a brother. He is ___ brother.", "answer": "your", "explanation": "You → your"},
+                        {"question": "They have a garden. It is ___ garden.", "answer": "their", "explanation": "They → their"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Составьте предложения с притяжательными местоимениями.\n\n1. my / is / book / this\n2. pen / your / is / this\n3. dog / his / is / that\n4. cat / her / is / that\n5. bone / its / is / this\n6. house / our / is / this\n7. car / their / is / that\n8. sister / my / she / is\n9. brother / your / he / is\n10. garden / their / is / this",
+                    "subtasks": [
+                        {"question": "my / is / book / this", "answer": "This is my book.", "explanation": "This is + my + book"},
+                        {"question": "pen / your / is / this", "answer": "This is your pen.", "explanation": "This is + your + pen"},
+                        {"question": "dog / his / is / that", "answer": "That is his dog.", "explanation": "That is + his + dog"},
+                        {"question": "cat / her / is / that", "answer": "That is her cat.", "explanation": "That is + her + cat"},
+                        {"question": "bone / its / is / this", "answer": "This is its bone.", "explanation": "This is + its + bone"},
+                        {"question": "house / our / is / this", "answer": "This is our house.", "explanation": "This is + our + house"},
+                        {"question": "car / their / is / that", "answer": "That is their car.", "explanation": "That is + their + car"},
+                        {"question": "sister / my / she / is", "answer": "She is my sister.", "explanation": "She is + my + sister"},
+                        {"question": "brother / your / he / is", "answer": "He is your brother.", "explanation": "He is + your + brother"},
+                        {"question": "garden / their / is / this", "answer": "This is their garden.", "explanation": "This is + their + garden"}
+                    ]
+                }
+            ],
+            # Вариант 2
+            [
+                {
+                    "type": "complex",
+                    "text": "Вставьте личное местоимение.\n\n1. ___ are a teacher.\n2. ___ is my sister.\n3. ___ am happy.\n4. ___ is a nurse.\n5. ___ are at school.\n6. ___ is a dog.\n7. ___ are very friendly.\n8. ___ is my father.\n9. ___ are in the park.\n10. ___ am from the UK.",
+                    "subtasks": [
+                        {"question": "___ are a teacher.", "answer": "You", "explanation": "You are"},
+                        {"question": "___ is my sister.", "answer": "She", "explanation": "She is"},
+                        {"question": "___ am happy.", "answer": "I", "explanation": "I am"},
+                        {"question": "___ is a nurse.", "answer": "She", "explanation": "She is (можно He)"},
+                        {"question": "___ are at school.", "answer": "They", "explanation": "They are"},
+                        {"question": "___ is a dog.", "answer": "It", "explanation": "It is"},
+                        {"question": "___ are very friendly.", "answer": "You", "explanation": "You are"},
+                        {"question": "___ is my father.", "answer": "He", "explanation": "He is"},
+                        {"question": "___ are in the park.", "answer": "They", "explanation": "They are"},
+                        {"question": "___ am from the UK.", "answer": "I", "explanation": "I am"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Вставьте притяжательное местоимение.\n\n1. I have a car. It is ___ car.\n2. You have a house. It is ___ house.\n3. He has a cat. It is ___ cat.\n4. She has a dog. It is ___ dog.\n5. It has a tail. It is ___ tail.\n6. We have a garden. It is ___ garden.\n7. They have a bike. It is ___ bike.\n8. I have a mother. She is ___ mother.\n9. You have a sister. She is ___ sister.\n10. They have a father. He is ___ father.",
+                    "subtasks": [
+                        {"question": "I have a car. It is ___ car.", "answer": "my", "explanation": "I → my"},
+                        {"question": "You have a house. It is ___ house.", "answer": "your", "explanation": "You → your"},
+                        {"question": "He has a cat. It is ___ cat.", "answer": "his", "explanation": "He → his"},
+                        {"question": "She has a dog. It is ___ dog.", "answer": "her", "explanation": "She → her"},
+                        {"question": "It has a tail. It is ___ tail.", "answer": "its", "explanation": "It → its"},
+                        {"question": "We have a garden. It is ___ garden.", "answer": "our", "explanation": "We → our"},
+                        {"question": "They have a bike. It is ___ bike.", "answer": "their", "explanation": "They → their"},
+                        {"question": "I have a mother. She is ___ mother.", "answer": "my", "explanation": "I → my"},
+                        {"question": "You have a sister. She is ___ sister.", "answer": "your", "explanation": "You → your"},
+                        {"question": "They have a father. He is ___ father.", "answer": "their", "explanation": "They → their"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Составьте предложения.\n\n1. car / is / my / this\n2. house / your / is / this\n3. cat / his / is / that\n4. dog / her / is / that\n5. tail / its / is / this\n6. garden / our / is / this\n7. bike / their / is / that\n8. mother / my / she / is\n9. sister / your / she / is\n10. father / their / he / is",
+                    "subtasks": [
+                        {"question": "car / is / my / this", "answer": "This is my car.", "explanation": "This is my car."},
+                        {"question": "house / your / is / this", "answer": "This is your house.", "explanation": "This is your house."},
+                        {"question": "cat / his / is / that", "answer": "That is his cat.", "explanation": "That is his cat."},
+                        {"question": "dog / her / is / that", "answer": "That is her dog.", "explanation": "That is her dog."},
+                        {"question": "tail / its / is / this", "answer": "This is its tail.", "explanation": "This is its tail."},
+                        {"question": "garden / our / is / this", "answer": "This is our garden.", "explanation": "This is our garden."},
+                        {"question": "bike / their / is / that", "answer": "That is their bike.", "explanation": "That is their bike."},
+                        {"question": "mother / my / she / is", "answer": "She is my mother.", "explanation": "She is my mother."},
+                        {"question": "sister / your / she / is", "answer": "She is your sister.", "explanation": "She is your sister."},
+                        {"question": "father / their / he / is", "answer": "He is their father.", "explanation": "He is their father."}
+                    ]
+                }
+            ],
+            # Вариант 3
+            [
+                {
+                    "type": "complex",
+                    "text": "Вставьте личное местоимение.\n\n1. ___ are students.\n2. ___ is my mother.\n3. ___ am a doctor.\n4. ___ is a teacher.\n5. ___ are in the classroom.\n6. ___ is a bird.\n7. ___ are very clever.\n8. ___ is my uncle.\n9. ___ are in the kitchen.\n10. ___ am from Canada.",
+                    "subtasks": [
+                        {"question": "___ are students.", "answer": "We", "explanation": "We are"},
+                        {"question": "___ is my mother.", "answer": "She", "explanation": "She is"},
+                        {"question": "___ am a doctor.", "answer": "I", "explanation": "I am"},
+                        {"question": "___ is a teacher.", "answer": "He", "explanation": "He is (можно She)"},
+                        {"question": "___ are in the classroom.", "answer": "They", "explanation": "They are"},
+                        {"question": "___ is a bird.", "answer": "It", "explanation": "It is"},
+                        {"question": "___ are very clever.", "answer": "You", "explanation": "You are"},
+                        {"question": "___ is my uncle.", "answer": "He", "explanation": "He is"},
+                        {"question": "___ are in the kitchen.", "answer": "They", "explanation": "They are"},
+                        {"question": "___ am from Canada.", "answer": "I", "explanation": "I am"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Вставьте притяжательное местоимение.\n\n1. I have a dog. It is ___ dog.\n2. You have a computer. It is ___ computer.\n3. He has a bike. It is ___ bike.\n4. She has a phone. It is ___ phone.\n5. It has a collar. It is ___ collar.\n6. We have a classroom. It is ___ classroom.\n7. They have a teacher. He is ___ teacher.\n8. I have a grandmother. She is ___ grandmother.\n9. You have a cousin. He is ___ cousin.\n10. They have a house. It is ___ house.",
+                    "subtasks": [
+                        {"question": "I have a dog. It is ___ dog.", "answer": "my", "explanation": "I → my"},
+                        {"question": "You have a computer. It is ___ computer.", "answer": "your", "explanation": "You → your"},
+                        {"question": "He has a bike. It is ___ bike.", "answer": "his", "explanation": "He → his"},
+                        {"question": "She has a phone. It is ___ phone.", "answer": "her", "explanation": "She → her"},
+                        {"question": "It has a collar. It is ___ collar.", "answer": "its", "explanation": "It → its"},
+                        {"question": "We have a classroom. It is ___ classroom.", "answer": "our", "explanation": "We → our"},
+                        {"question": "They have a teacher. He is ___ teacher.", "answer": "their", "explanation": "They → their"},
+                        {"question": "I have a grandmother. She is ___ grandmother.", "answer": "my", "explanation": "I → my"},
+                        {"question": "You have a cousin. He is ___ cousin.", "answer": "your", "explanation": "You → your"},
+                        {"question": "They have a house. It is ___ house.", "answer": "their", "explanation": "They → their"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Составьте предложения.\n\n1. dog / my / is / this\n2. computer / your / is / this\n3. bike / his / is / that\n4. phone / her / is / that\n5. collar / its / is / this\n6. classroom / our / is / this\n7. teacher / their / is / he\n8. grandmother / my / she / is\n9. cousin / your / he / is\n10. house / their / is / this",
+                    "subtasks": [
+                        {"question": "dog / my / is / this", "answer": "This is my dog.", "explanation": "This is my dog."},
+                        {"question": "computer / your / is / this", "answer": "This is your computer.", "explanation": "This is your computer."},
+                        {"question": "bike / his / is / that", "answer": "That is his bike.", "explanation": "That is his bike."},
+                        {"question": "phone / her / is / that", "answer": "That is her phone.", "explanation": "That is her phone."},
+                        {"question": "collar / its / is / this", "answer": "This is its collar.", "explanation": "This is its collar."},
+                        {"question": "classroom / our / is / this", "answer": "This is our classroom.", "explanation": "This is our classroom."},
+                        {"question": "teacher / their / is / he", "answer": "He is their teacher.", "explanation": "He is their teacher."},
+                        {"question": "grandmother / my / she / is", "answer": "She is my grandmother.", "explanation": "She is my grandmother."},
+                        {"question": "cousin / your / he / is", "answer": "He is your cousin.", "explanation": "He is your cousin."},
+                        {"question": "house / their / is / this", "answer": "This is their house.", "explanation": "This is their house."}
+                    ]
+                }
+            ],
+            # Вариант 4
+            [
+                {
+                    "type": "complex",
+                    "text": "Вставьте личное местоимение.\n\n1. ___ am a writer.\n2. ___ is my aunt.\n3. ___ are musicians.\n4. ___ is a policeman.\n5. ___ are in the shop.\n6. ___ is a tree.\n7. ___ are very beautiful.\n8. ___ is my grandpa.\n9. ___ are in the garden.\n10. ___ am from Australia.",
+                    "subtasks": [
+                        {"question": "___ am a writer.", "answer": "I", "explanation": "I am"},
+                        {"question": "___ is my aunt.", "answer": "She", "explanation": "She is"},
+                        {"question": "___ are musicians.", "answer": "We", "explanation": "We are (можно They)"},
+                        {"question": "___ is a policeman.", "answer": "He", "explanation": "He is"},
+                        {"question": "___ are in the shop.", "answer": "They", "explanation": "They are"},
+                        {"question": "___ is a tree.", "answer": "It", "explanation": "It is"},
+                        {"question": "___ are very beautiful.", "answer": "You", "explanation": "You are (или They)"},
+                        {"question": "___ is my grandpa.", "answer": "He", "explanation": "He is"},
+                        {"question": "___ are in the garden.", "answer": "They", "explanation": "They are"},
+                        {"question": "___ am from Australia.", "answer": "I", "explanation": "I am"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Вставьте притяжательное местоимение.\n\n1. I have a camera. It is ___ camera.\n2. You have a watch. It is ___ watch.\n3. He has a newspaper. It is ___ newspaper.\n4. She has a magazine. It is ___ magazine.\n5. It has a cover. It is ___ cover.\n6. We have a car. It is ___ car.\n7. They have a garage. It is ___ garage.\n8. I have a daughter. She is ___ daughter.\n9. You have a son. He is ___ son.\n10. They have a child. He is ___ child.",
+                    "subtasks": [
+                        {"question": "I have a camera. It is ___ camera.", "answer": "my", "explanation": "I → my"},
+                        {"question": "You have a watch. It is ___ watch.", "answer": "your", "explanation": "You → your"},
+                        {"question": "He has a newspaper. It is ___ newspaper.", "answer": "his", "explanation": "He → his"},
+                        {"question": "She has a magazine. It is ___ magazine.", "answer": "her", "explanation": "She → her"},
+                        {"question": "It has a cover. It is ___ cover.", "answer": "its", "explanation": "It → its"},
+                        {"question": "We have a car. It is ___ car.", "answer": "our", "explanation": "We → our"},
+                        {"question": "They have a garage. It is ___ garage.", "answer": "their", "explanation": "They → their"},
+                        {"question": "I have a daughter. She is ___ daughter.", "answer": "my", "explanation": "I → my"},
+                        {"question": "You have a son. He is ___ son.", "answer": "your", "explanation": "You → your"},
+                        {"question": "They have a child. He is ___ child.", "answer": "their", "explanation": "They → their"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Составьте предложения.\n\n1. camera / my / is / this\n2. watch / your / is / this\n3. newspaper / his / is / that\n4. magazine / her / is / that\n5. cover / its / is / this\n6. car / our / is / this\n7. garage / their / is / that\n8. daughter / my / she / is\n9. son / your / he / is\n10. child / their / he / is",
+                    "subtasks": [
+                        {"question": "camera / my / is / this", "answer": "This is my camera.", "explanation": "This is my camera."},
+                        {"question": "watch / your / is / this", "answer": "This is your watch.", "explanation": "This is your watch."},
+                        {"question": "newspaper / his / is / that", "answer": "That is his newspaper.", "explanation": "That is his newspaper."},
+                        {"question": "magazine / her / is / that", "answer": "That is her magazine.", "explanation": "That is her magazine."},
+                        {"question": "cover / its / is / this", "answer": "This is its cover.", "explanation": "This is its cover."},
+                        {"question": "car / our / is / this", "answer": "This is our car.", "explanation": "This is our car."},
+                        {"question": "garage / their / is / that", "answer": "That is their garage.", "explanation": "That is their garage."},
+                        {"question": "daughter / my / she / is", "answer": "She is my daughter.", "explanation": "She is my daughter."},
+                        {"question": "son / your / he / is", "answer": "He is your son.", "explanation": "He is your son."},
+                        {"question": "child / their / he / is", "answer": "He is their child.", "explanation": "He is their child."}
+                    ]
+                }
+            ],
+            # Вариант 5
+            [
+                {
+                    "type": "complex",
+                    "text": "Вставьте личное местоимение.\n\n1. ___ are engineers.\n2. ___ is my niece.\n3. ___ am a pilot.\n4. ___ is a driver.\n5. ___ are in the library.\n6. ___ is a flower.\n7. ___ are very smart.\n8. ___ is my nephew.\n9. ___ are in the restaurant.\n10. ___ am from New Zealand.",
+                    "subtasks": [
+                        {"question": "___ are engineers.", "answer": "We", "explanation": "We are (или They)"},
+                        {"question": "___ is my niece.", "answer": "She", "explanation": "She is"},
+                        {"question": "___ am a pilot.", "answer": "I", "explanation": "I am"},
+                        {"question": "___ is a driver.", "answer": "He", "explanation": "He is (можно She)"},
+                        {"question": "___ are in the library.", "answer": "They", "explanation": "They are"},
+                        {"question": "___ is a flower.", "answer": "It", "explanation": "It is"},
+                        {"question": "___ are very smart.", "answer": "You", "explanation": "You are"},
+                        {"question": "___ is my nephew.", "answer": "He", "explanation": "He is"},
+                        {"question": "___ are in the restaurant.", "answer": "They", "explanation": "They are"},
+                        {"question": "___ am from New Zealand.", "answer": "I", "explanation": "I am"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Вставьте притяжательное местоимение.\n\n1. I have a guitar. It is ___ guitar.\n2. You have a piano. It is ___ piano.\n3. He has a violin. It is ___ violin.\n4. She has a flute. It is ___ flute.\n5. It has a case. It is ___ case.\n6. We have a bedroom. It is ___ bedroom.\n7. They have a bathroom. It is ___ bathroom.\n8. I have a husband. He is ___ husband.\n9. You have a wife. She is ___ wife.\n10. They have a kitchen. It is ___ kitchen.",
+                    "subtasks": [
+                        {"question": "I have a guitar. It is ___ guitar.", "answer": "my", "explanation": "I → my"},
+                        {"question": "You have a piano. It is ___ piano.", "answer": "your", "explanation": "You → your"},
+                        {"question": "He has a violin. It is ___ violin.", "answer": "his", "explanation": "He → his"},
+                        {"question": "She has a flute. It is ___ flute.", "answer": "her", "explanation": "She → her"},
+                        {"question": "It has a case. It is ___ case.", "answer": "its", "explanation": "It → its"},
+                        {"question": "We have a bedroom. It is ___ bedroom.", "answer": "our", "explanation": "We → our"},
+                        {"question": "They have a bathroom. It is ___ bathroom.", "answer": "their", "explanation": "They → their"},
+                        {"question": "I have a husband. He is ___ husband.", "answer": "my", "explanation": "I → my"},
+                        {"question": "You have a wife. She is ___ wife.", "answer": "your", "explanation": "You → your"},
+                        {"question": "They have a kitchen. It is ___ kitchen.", "answer": "their", "explanation": "They → their"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Составьте предложения.\n\n1. guitar / my / is / this\n2. piano / your / is / this\n3. violin / his / is / that\n4. flute / her / is / that\n5. case / its / is / this\n6. bedroom / our / is / this\n7. bathroom / their / is / that\n8. husband / my / he / is\n9. wife / your / she / is\n10. kitchen / their / is / this",
+                    "subtasks": [
+                        {"question": "guitar / my / is / this", "answer": "This is my guitar.", "explanation": "This is my guitar."},
+                        {"question": "piano / your / is / this", "answer": "This is your piano.", "explanation": "This is your piano."},
+                        {"question": "violin / his / is / that", "answer": "That is his violin.", "explanation": "That is his violin."},
+                        {"question": "flute / her / is / that", "answer": "That is her flute.", "explanation": "That is her flute."},
+                        {"question": "case / its / is / this", "answer": "This is its case.", "explanation": "This is its case."},
+                        {"question": "bedroom / our / is / this", "answer": "This is our bedroom.", "explanation": "This is our bedroom."},
+                        {"question": "bathroom / their / is / that", "answer": "That is their bathroom.", "explanation": "That is their bathroom."},
+                        {"question": "husband / my / he / is", "answer": "He is my husband.", "explanation": "He is my husband."},
+                        {"question": "wife / your / she / is", "answer": "She is your wife.", "explanation": "She is your wife."},
+                        {"question": "kitchen / their / is / this", "answer": "This is their kitchen.", "explanation": "This is their kitchen."}
+                    ]
+                }
+            ],
+            # Вариант 6
+            [
+                {
+                    "type": "complex",
+                    "text": "Вставьте личное местоимение.\n\n1. ___ are scientists.\n2. ___ is my cousin.\n3. ___ am a singer.\n4. ___ is a dancer.\n5. ___ are in the hospital.\n6. ___ is a river.\n7. ___ are very nice.\n8. ___ is my grandfather.\n9. ___ are in the office.\n10. ___ am from Ireland.",
+                    "subtasks": [
+                        {"question": "___ are scientists.", "answer": "We", "explanation": "We are (или They)"},
+                        {"question": "___ is my cousin.", "answer": "She", "explanation": "She is (можно He)"},
+                        {"question": "___ am a singer.", "answer": "I", "explanation": "I am"},
+                        {"question": "___ is a dancer.", "answer": "She", "explanation": "She is (можно He)"},
+                        {"question": "___ are in the hospital.", "answer": "They", "explanation": "They are"},
+                        {"question": "___ is a river.", "answer": "It", "explanation": "It is"},
+                        {"question": "___ are very nice.", "answer": "You", "explanation": "You are"},
+                        {"question": "___ is my grandfather.", "answer": "He", "explanation": "He is"},
+                        {"question": "___ are in the office.", "answer": "They", "explanation": "They are"},
+                        {"question": "___ am from Ireland.", "answer": "I", "explanation": "I am"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Вставьте притяжательное местоимение.\n\n1. I have a bag. It is ___ bag.\n2. You have a hat. It is ___ hat.\n3. He has a coat. It is ___ coat.\n4. She has a dress. It is ___ dress.\n5. It has a strap. It is ___ strap.\n6. We have a living room. It is ___ living room.\n7. They have a dining room. It is ___ dining room.\n8. I have a brother. He is ___ brother.\n9. You have a sister. She is ___ sister.\n10. They have a family. It is ___ family.",
+                    "subtasks": [
+                        {"question": "I have a bag. It is ___ bag.", "answer": "my", "explanation": "I → my"},
+                        {"question": "You have a hat. It is ___ hat.", "answer": "your", "explanation": "You → your"},
+                        {"question": "He has a coat. It is ___ coat.", "answer": "his", "explanation": "He → his"},
+                        {"question": "She has a dress. It is ___ dress.", "answer": "her", "explanation": "She → her"},
+                        {"question": "It has a strap. It is ___ strap.", "answer": "its", "explanation": "It → its"},
+                        {"question": "We have a living room. It is ___ living room.", "answer": "our", "explanation": "We → our"},
+                        {"question": "They have a dining room. It is ___ dining room.", "answer": "their", "explanation": "They → their"},
+                        {"question": "I have a brother. He is ___ brother.", "answer": "my", "explanation": "I → my"},
+                        {"question": "You have a sister. She is ___ sister.", "answer": "your", "explanation": "You → your"},
+                        {"question": "They have a family. It is ___ family.", "answer": "their", "explanation": "They → their"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Составьте предложения.\n\n1. bag / my / is / this\n2. hat / your / is / this\n3. coat / his / is / that\n4. dress / her / is / that\n5. strap / its / is / this\n6. living / room / our / is / this\n7. dining / room / their / is / that\n8. brother / my / he / is\n9. sister / your / she / is\n10. family / their / is / this",
+                    "subtasks": [
+                        {"question": "bag / my / is / this", "answer": "This is my bag.", "explanation": "This is my bag."},
+                        {"question": "hat / your / is / this", "answer": "This is your hat.", "explanation": "This is your hat."},
+                        {"question": "coat / his / is / that", "answer": "That is his coat.", "explanation": "That is his coat."},
+                        {"question": "dress / her / is / that", "answer": "That is her dress.", "explanation": "That is her dress."},
+                        {"question": "strap / its / is / this", "answer": "This is its strap.", "explanation": "This is its strap."},
+                        {"question": "living / room / our / is / this", "answer": "This is our living room.", "explanation": "This is our living room."},
+                        {"question": "dining / room / their / is / that", "answer": "That is their dining room.", "explanation": "That is their dining room."},
+                        {"question": "brother / my / he / is", "answer": "He is my brother.", "explanation": "He is my brother."},
+                        {"question": "sister / your / she / is", "answer": "She is your sister.", "explanation": "She is your sister."},
+                        {"question": "family / their / is / this", "answer": "This is their family.", "explanation": "This is their family."}
+                    ]
+                }
+            ],
+            # Вариант 7
+            [
+                {
+                    "type": "complex",
+                    "text": "Вставьте личное местоимение.\n\n1. ___ are students.\n2. ___ is my friend.\n3. ___ am a chef.\n4. ___ is a waiter.\n5. ___ are in the café.\n6. ___ is a lake.\n7. ___ are very generous.\n8. ___ is my son.\n9. ___ are in the gym.\n10. ___ am from South Africa.",
+                    "subtasks": [
+                        {"question": "___ are students.", "answer": "We", "explanation": "We are (или They)"},
+                        {"question": "___ is my friend.", "answer": "She", "explanation": "She is (можно He)"},
+                        {"question": "___ am a chef.", "answer": "I", "explanation": "I am"},
+                        {"question": "___ is a waiter.", "answer": "He", "explanation": "He is (можно She)"},
+                        {"question": "___ are in the café.", "answer": "They", "explanation": "They are"},
+                        {"question": "___ is a lake.", "answer": "It", "explanation": "It is"},
+                        {"question": "___ are very generous.", "answer": "You", "explanation": "You are"},
+                        {"question": "___ is my son.", "answer": "He", "explanation": "He is"},
+                        {"question": "___ are in the gym.", "answer": "They", "explanation": "They are"},
+                        {"question": "___ am from South Africa.", "answer": "I", "explanation": "I am"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Вставьте притяжательное местоимение.\n\n1. I have a ladder. It is ___ ladder.\n2. You have a shovel. It is ___ shovel.\n3. He has a hammer. It is ___ hammer.\n4. She has a screwdriver. It is ___ screwdriver.\n5. It has a handle. It is ___ handle.\n6. We have a garage. It is ___ garage.\n7. They have a workshop. It is ___ workshop.\n8. I have a father. He is ___ father.\n9. You have a mother. She is ___ mother.\n10. They have a home. It is ___ home.",
+                    "subtasks": [
+                        {"question": "I have a ladder. It is ___ ladder.", "answer": "my", "explanation": "I → my"},
+                        {"question": "You have a shovel. It is ___ shovel.", "answer": "your", "explanation": "You → your"},
+                        {"question": "He has a hammer. It is ___ hammer.", "answer": "his", "explanation": "He → his"},
+                        {"question": "She has a screwdriver. It is ___ screwdriver.", "answer": "her", "explanation": "She → her"},
+                        {"question": "It has a handle. It is ___ handle.", "answer": "its", "explanation": "It → its"},
+                        {"question": "We have a garage. It is ___ garage.", "answer": "our", "explanation": "We → our"},
+                        {"question": "They have a workshop. It is ___ workshop.", "answer": "their", "explanation": "They → their"},
+                        {"question": "I have a father. He is ___ father.", "answer": "my", "explanation": "I → my"},
+                        {"question": "You have a mother. She is ___ mother.", "answer": "your", "explanation": "You → your"},
+                        {"question": "They have a home. It is ___ home.", "answer": "their", "explanation": "They → their"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Составьте предложения.\n\n1. ladder / my / is / this\n2. shovel / your / is / this\n3. hammer / his / is / that\n4. screwdriver / her / is / that\n5. handle / its / is / this\n6. garage / our / is / this\n7. workshop / their / is / that\n8. father / my / he / is\n9. mother / your / she / is\n10. home / their / is / this",
+                    "subtasks": [
+                        {"question": "ladder / my / is / this", "answer": "This is my ladder.", "explanation": "This is my ladder."},
+                        {"question": "shovel / your / is / this", "answer": "This is your shovel.", "explanation": "This is your shovel."},
+                        {"question": "hammer / his / is / that", "answer": "That is his hammer.", "explanation": "That is his hammer."},
+                        {"question": "screwdriver / her / is / that", "answer": "That is her screwdriver.", "explanation": "That is her screwdriver."},
+                        {"question": "handle / its / is / this", "answer": "This is its handle.", "explanation": "This is its handle."},
+                        {"question": "garage / our / is / this", "answer": "This is our garage.", "explanation": "This is our garage."},
+                        {"question": "workshop / their / is / that", "answer": "That is their workshop.", "explanation": "That is their workshop."},
+                        {"question": "father / my / he / is", "answer": "He is my father.", "explanation": "He is my father."},
+                        {"question": "mother / your / she / is", "answer": "She is your mother.", "explanation": "She is your mother."},
+                        {"question": "home / their / is / this", "answer": "This is their home.", "explanation": "This is their home."}
+                    ]
+                }
+            ],
+            # Вариант 8
+            [
+                {
+                    "type": "complex",
+                    "text": "Вставьте личное местоимение.\n\n1. ___ are lawyers.\n2. ___ is my grandmother.\n3. ___ am a musician.\n4. ___ is a photographer.\n5. ___ are in the studio.\n6. ___ is a mountain.\n7. ___ are very curious.\n8. ___ is my grandson.\n9. ___ are in the playground.\n10. ___ am from Poland.",
+                    "subtasks": [
+                        {"question": "___ are lawyers.", "answer": "We", "explanation": "We are (или They)"},
+                        {"question": "___ is my grandmother.", "answer": "She", "explanation": "She is"},
+                        {"question": "___ am a musician.", "answer": "I", "explanation": "I am"},
+                        {"question": "___ is a photographer.", "answer": "He", "explanation": "He is (можно She)"},
+                        {"question": "___ are in the studio.", "answer": "They", "explanation": "They are"},
+                        {"question": "___ is a mountain.", "answer": "It", "explanation": "It is"},
+                        {"question": "___ are very curious.", "answer": "You", "explanation": "You are"},
+                        {"question": "___ is my grandson.", "answer": "He", "explanation": "He is"},
+                        {"question": "___ are in the playground.", "answer": "They", "explanation": "They are"},
+                        {"question": "___ am from Poland.", "answer": "I", "explanation": "I am"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Вставьте притяжательное местоимение.\n\n1. I have a camera. It is ___ camera.\n2. You have a phone. It is ___ phone.\n3. He has a laptop. It is ___ laptop.\n4. She has a tablet. It is ___ tablet.\n5. It has a charger. It is ___ charger.\n6. We have a balcony. It is ___ balcony.\n7. They have a garden. It is ___ garden.\n8. I have a daughter. She is ___ daughter.\n9. You have a son. He is ___ son.\n10. They have a house. It is ___ house.",
+                    "subtasks": [
+                        {"question": "I have a camera. It is ___ camera.", "answer": "my", "explanation": "I → my"},
+                        {"question": "You have a phone. It is ___ phone.", "answer": "your", "explanation": "You → your"},
+                        {"question": "He has a laptop. It is ___ laptop.", "answer": "his", "explanation": "He → his"},
+                        {"question": "She has a tablet. It is ___ tablet.", "answer": "her", "explanation": "She → her"},
+                        {"question": "It has a charger. It is ___ charger.", "answer": "its", "explanation": "It → its"},
+                        {"question": "We have a balcony. It is ___ balcony.", "answer": "our", "explanation": "We → our"},
+                        {"question": "They have a garden. It is ___ garden.", "answer": "their", "explanation": "They → their"},
+                        {"question": "I have a daughter. She is ___ daughter.", "answer": "my", "explanation": "I → my"},
+                        {"question": "You have a son. He is ___ son.", "answer": "your", "explanation": "You → your"},
+                        {"question": "They have a house. It is ___ house.", "answer": "their", "explanation": "They → their"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Составьте предложения.\n\n1. camera / my / is / this\n2. phone / your / is / this\n3. laptop / his / is / that\n4. tablet / her / is / that\n5. charger / its / is / this\n6. balcony / our / is / this\n7. garden / their / is / that\n8. daughter / my / she / is\n9. son / your / he / is\n10. house / their / is / this",
+                    "subtasks": [
+                        {"question": "camera / my / is / this", "answer": "This is my camera.", "explanation": "This is my camera."},
+                        {"question": "phone / your / is / this", "answer": "This is your phone.", "explanation": "This is your phone."},
+                        {"question": "laptop / his / is / that", "answer": "That is his laptop.", "explanation": "That is his laptop."},
+                        {"question": "tablet / her / is / that", "answer": "That is her tablet.", "explanation": "That is her tablet."},
+                        {"question": "charger / its / is / this", "answer": "This is its charger.", "explanation": "This is its charger."},
+                        {"question": "balcony / our / is / this", "answer": "This is our balcony.", "explanation": "This is our balcony."},
+                        {"question": "garden / their / is / that", "answer": "That is their garden.", "explanation": "That is their garden."},
+                        {"question": "daughter / my / she / is", "answer": "She is my daughter.", "explanation": "She is my daughter."},
+                        {"question": "son / your / he / is", "answer": "He is your son.", "explanation": "He is your son."},
+                        {"question": "house / their / is / this", "answer": "This is their house.", "explanation": "This is their house."}
+                    ]
+                }
+            ],
+            # Вариант 9
+            [
+                {
+                    "type": "complex",
+                    "text": "Вставьте личное местоимение.\n\n1. ___ are architects.\n2. ___ is my aunt.\n3. ___ am a scientist.\n4. ___ is a firefighter.\n5. ___ are in the station.\n6. ___ is a book.\n7. ___ are very kind.\n8. ___ is my uncle.\n9. ___ are in the park.\n10. ___ am from Greece.",
+                    "subtasks": [
+                        {"question": "___ are architects.", "answer": "We", "explanation": "We are (или They)"},
+                        {"question": "___ is my aunt.", "answer": "She", "explanation": "She is"},
+                        {"question": "___ am a scientist.", "answer": "I", "explanation": "I am"},
+                        {"question": "___ is a firefighter.", "answer": "He", "explanation": "He is (можно She)"},
+                        {"question": "___ are in the station.", "answer": "They", "explanation": "They are"},
+                        {"question": "___ is a book.", "answer": "It", "explanation": "It is"},
+                        {"question": "___ are very kind.", "answer": "You", "explanation": "You are"},
+                        {"question": "___ is my uncle.", "answer": "He", "explanation": "He is"},
+                        {"question": "___ are in the park.", "answer": "They", "explanation": "They are"},
+                        {"question": "___ am from Greece.", "answer": "I", "explanation": "I am"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Вставьте притяжательное местоимение.\n\n1. I have a ring. It is ___ ring.\n2. You have a necklace. It is ___ necklace.\n3. He has a watch. It is ___ watch.\n4. She has a bracelet. It is ___ bracelet.\n5. It has a clasp. It is ___ clasp.\n6. We have a kitchen. It is ___ kitchen.\n7. They have a bathroom. It is ___ bathroom.\n8. I have a sister. She is ___ sister.\n9. You have a brother. He is ___ brother.\n10. They have a car. It is ___ car.",
+                    "subtasks": [
+                        {"question": "I have a ring. It is ___ ring.", "answer": "my", "explanation": "I → my"},
+                        {"question": "You have a necklace. It is ___ necklace.", "answer": "your", "explanation": "You → your"},
+                        {"question": "He has a watch. It is ___ watch.", "answer": "his", "explanation": "He → his"},
+                        {"question": "She has a bracelet. It is ___ bracelet.", "answer": "her", "explanation": "She → her"},
+                        {"question": "It has a clasp. It is ___ clasp.", "answer": "its", "explanation": "It → its"},
+                        {"question": "We have a kitchen. It is ___ kitchen.", "answer": "our", "explanation": "We → our"},
+                        {"question": "They have a bathroom. It is ___ bathroom.", "answer": "their", "explanation": "They → their"},
+                        {"question": "I have a sister. She is ___ sister.", "answer": "my", "explanation": "I → my"},
+                        {"question": "You have a brother. He is ___ brother.", "answer": "your", "explanation": "You → your"},
+                        {"question": "They have a car. It is ___ car.", "answer": "their", "explanation": "They → their"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Составьте предложения.\n\n1. ring / my / is / this\n2. necklace / your / is / this\n3. watch / his / is / that\n4. bracelet / her / is / that\n5. clasp / its / is / this\n6. kitchen / our / is / this\n7. bathroom / their / is / that\n8. sister / my / she / is\n9. brother / your / he / is\n10. car / their / is / this",
+                    "subtasks": [
+                        {"question": "ring / my / is / this", "answer": "This is my ring.", "explanation": "This is my ring."},
+                        {"question": "necklace / your / is / this", "answer": "This is your necklace.", "explanation": "This is your necklace."},
+                        {"question": "watch / his / is / that", "answer": "That is his watch.", "explanation": "That is his watch."},
+                        {"question": "bracelet / her / is / that", "answer": "That is her bracelet.", "explanation": "That is her bracelet."},
+                        {"question": "clasp / its / is / this", "answer": "This is its clasp.", "explanation": "This is its clasp."},
+                        {"question": "kitchen / our / is / this", "answer": "This is our kitchen.", "explanation": "This is our kitchen."},
+                        {"question": "bathroom / their / is / that", "answer": "That is their bathroom.", "explanation": "That is their bathroom."},
+                        {"question": "sister / my / she / is", "answer": "She is my sister.", "explanation": "She is my sister."},
+                        {"question": "brother / your / he / is", "answer": "He is your brother.", "explanation": "He is your brother."},
+                        {"question": "car / their / is / this", "answer": "This is their car.", "explanation": "This is their car."}
+                    ]
+                }
+            ],
+            # Вариант 10
+            [
+                {
+                    "type": "complex",
+                    "text": "Вставьте личное местоимение.\n\n1. ___ are dentists.\n2. ___ is my niece.\n3. ___ am a gardener.\n4. ___ is a mechanic.\n5. ___ are in the garage.\n6. ___ is a star.\n7. ___ are very helpful.\n8. ___ is my nephew.\n9. ___ are in the mountains.\n10. ___ am from Italy.",
+                    "subtasks": [
+                        {"question": "___ are dentists.", "answer": "We", "explanation": "We are (или They)"},
+                        {"question": "___ is my niece.", "answer": "She", "explanation": "She is"},
+                        {"question": "___ am a gardener.", "answer": "I", "explanation": "I am"},
+                        {"question": "___ is a mechanic.", "answer": "He", "explanation": "He is (можно She)"},
+                        {"question": "___ are in the garage.", "answer": "They", "explanation": "They are"},
+                        {"question": "___ is a star.", "answer": "It", "explanation": "It is"},
+                        {"question": "___ are very helpful.", "answer": "You", "explanation": "You are"},
+                        {"question": "___ is my nephew.", "answer": "He", "explanation": "He is"},
+                        {"question": "___ are in the mountains.", "answer": "They", "explanation": "They are"},
+                        {"question": "___ am from Italy.", "answer": "I", "explanation": "I am"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Вставьте притяжательное местоимение.\n\n1. I have a mirror. It is ___ mirror.\n2. You have a comb. It is ___ comb.\n3. He has a razor. It is ___ razor.\n4. She has a hairdryer. It is ___ hairdryer.\n5. It has a button. It is ___ button.\n6. We have a garden. It is ___ garden.\n7. They have a garage. It is ___ garage.\n8. I have a brother. He is ___ brother.\n9. You have a sister. She is ___ sister.\n10. They have a dog. It is ___ dog.",
+                    "subtasks": [
+                        {"question": "I have a mirror. It is ___ mirror.", "answer": "my", "explanation": "I → my"},
+                        {"question": "You have a comb. It is ___ comb.", "answer": "your", "explanation": "You → your"},
+                        {"question": "He has a razor. It is ___ razor.", "answer": "his", "explanation": "He → his"},
+                        {"question": "She has a hairdryer. It is ___ hairdryer.", "answer": "her", "explanation": "She → her"},
+                        {"question": "It has a button. It is ___ button.", "answer": "its", "explanation": "It → its"},
+                        {"question": "We have a garden. It is ___ garden.", "answer": "our", "explanation": "We → our"},
+                        {"question": "They have a garage. It is ___ garage.", "answer": "their", "explanation": "They → their"},
+                        {"question": "I have a brother. He is ___ brother.", "answer": "my", "explanation": "I → my"},
+                        {"question": "You have a sister. She is ___ sister.", "answer": "your", "explanation": "You → your"},
+                        {"question": "They have a dog. It is ___ dog.", "answer": "their", "explanation": "They → their"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Составьте предложения.\n\n1. mirror / my / is / this\n2. comb / your / is / this\n3. razor / his / is / that\n4. hairdryer / her / is / that\n5. button / its / is / this\n6. garden / our / is / this\n7. garage / their / is / that\n8. brother / my / he / is\n9. sister / your / she / is\n10. dog / their / is / this",
+                    "subtasks": [
+                        {"question": "mirror / my / is / this", "answer": "This is my mirror.", "explanation": "This is my mirror."},
+                        {"question": "comb / your / is / this", "answer": "This is your comb.", "explanation": "This is your comb."},
+                        {"question": "razor / his / is / that", "answer": "That is his razor.", "explanation": "That is his razor."},
+                        {"question": "hairdryer / her / is / that", "answer": "That is her hairdryer.", "explanation": "That is her hairdryer."},
+                        {"question": "button / its / is / this", "answer": "This is its button.", "explanation": "This is its button."},
+                        {"question": "garden / our / is / this", "answer": "This is our garden.", "explanation": "This is our garden."},
+                        {"question": "garage / their / is / that", "answer": "That is their garage.", "explanation": "That is their garage."},
+                        {"question": "brother / my / he / is", "answer": "He is my brother.", "explanation": "He is my brother."},
+                        {"question": "sister / your / she / is", "answer": "She is your sister.", "explanation": "She is your sister."},
+                        {"question": "dog / their / is / this", "answer": "This is their dog.", "explanation": "This is their dog."}
+                    ]
+                }
+            ]
+        ]
   },
   "plural": {
     "title": "Множественное число существительных",
