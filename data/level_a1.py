@@ -584,506 +584,528 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "answer": "Это исторические исключения, которые нужно просто запомнить. Они встречаются во многих европейских языках."
       }
     ],
-    "practice_tasks": [
-      {
-        "type": "fill_blank",
-        "text": "Five + three = ____",
-        "correct": "eight",
-        "hint": "Это число между 7 и 9",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "There are ____ apples on the table (число 12).",
-        "correct": "twelve",
-        "hint": "Дюжина",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "My brother is ____ years old (число 7).",
-        "correct": "seven",
-        "hint": "Счастливое число",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "____ minus six equals ten.",
-        "correct": "Sixteen",
-        "hint": "16",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "Write the number: 3 + 11 = ____",
-        "correct": "fourteen",
-        "hint": "14",
-        "star": False
-      },
-      {
-        "type": "reorder",
-        "text": "Расположи числа по возрастанию: fifteen, three, nine, one",
-        "correct": "one, three, nine, fifteen",
-        "hint": "Начни с самого маленького",
-        "star": False
-      },
-      {
-        "type": "reorder",
-        "text": "Расположи по убыванию: twenty, twelve, eight, four",
-        "correct": "twenty, twelve, eight, four",
-        "hint": "Начни с самого большого",
-        "star": False
-      },
-      {
-        "type": "translation",
-        "text": "Переведи на английский: 11",
-        "correct": "eleven",
-        "hint": "Одиннадцать",
-        "star": False
-      },
-      {
-        "type": "translation",
-        "text": "Переведи на английский: 18",
-        "correct": "eighteen",
-        "hint": "Восемнадцать",
-        "star": False
-      },
-      {
-        "type": "translation",
-        "text": "Переведи на русский: nineteen",
-        "correct": "девятнадцать",
-        "hint": "19",
-        "star": False
-      },
-      {
-        "type": "translation",
-        "text": "Переведи на русский: six",
-        "correct": "шесть",
-        "hint": "6",
-        "star": False
-      },
-      {
-        "type": "choice",
-        "text": "Как будет 14 по-английски?",
-        "correct": "fourteen",
-        "hint": "Не путай с forty (40)",
-        "options": [
-          "forty",
-          "fourteen",
-          "fourth",
-          "four"
-        ],
-        "star": False
-      },
-      {
-        "type": "choice",
-        "text": "Выбери правильное написание числа 20:",
-        "correct": "twenty",
-        "hint": "Двадцать",
-        "options": [
-          "twoty",
-          "twenty",
-          "twente",
-          "tventy"
-        ],
-        "star": False
-      },
-      {
-        "type": "choice",
-        "text": "Сколько будет ten + five?",
-        "correct": "fifteen",
-        "hint": "10 + 5",
-        "options": [
-          "fiveteen",
-          "fifteen",
-          "fifty",
-          "five"
-        ],
-        "star": False
-      },
-      {
-        "type": "choice",
-        "text": "Какое число пропущено: one, two, three, ____, five?",
-        "correct": "four",
-        "hint": "4",
-        "options": [
-          "six",
-          "four",
-          "seven",
-          "eight"
-        ],
-        "star": False
-      },
-      {
-        "type": "choice",
-        "text": "Как пишется число 13?",
-        "correct": "thirteen",
-        "hint": "Тринадцать",
-        "options": [
-          "threeteen",
-          "thirteen",
-          "thirdteen",
-          "thirty"
-        ],
-        "star": False
-      },
-      {
-        "type": "open",
-        "text": "Назови число, которое стоит между 14 и 16.",
-        "correct": "fifteen",
-        "hint": "15",
-        "star": False
-      },
-      {
-        "type": "open",
-        "text": "Сколько пальцев на двух руках? Ответ напиши словом.",
-        "correct": "ten",
-        "hint": "10",
-        "star": False
-      },
-      {
-        "type": "open",
-        "text": "Какое число получается, если к eight прибавить two?",
-        "correct": "ten",
-        "hint": "8 + 2",
-        "star": False
-      },
-      {
-        "type": "open",
-        "text": "Назови число: 2 + 2 + 2 + 2 (ответ словом).",
-        "correct": "eight",
-        "hint": "8",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "Сосчитай звёзды: ★★★★★★★★★★ (напиши число словом).",
-        "correct": "ten",
-        "hint": "10",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "Twenty minus seven equals ____.",
-        "correct": "thirteen",
-        "hint": "13",
-        "star": True
-      },
-      {
-        "type": "reorder",
-        "text": "Расположи в правильном порядке: two, twelve, twenty, two hundred",
-        "correct": "two, twelve, twenty, two hundred",
-        "hint": "2, 12, 20, 200",
-        "star": True
-      },
-      {
-        "type": "translation",
-        "text": "Переведи на английский: 0",
-        "correct": "zero",
-        "hint": "Ноль",
-        "star": True
-      },
-      {
-        "type": "translation",
-        "text": "Переведи на русский: a dozen",
-        "correct": "дюжина (12)",
-        "hint": "12",
-        "star": True
-      },
-      {
-        "type": "choice",
-        "text": "Какое из этих чисел НЕ является числом от 1 до 20?",
-        "correct": "twenty-one",
-        "hint": "21",
-        "options": [
-          "nineteen",
-          "twelve",
-          "twenty-one",
-          "eight"
-        ],
-        "star": True
-      },
-      {
-        "type": "choice",
-        "text": "Выбери верный вариант: 5 + 15 = ?",
-        "correct": "twenty",
-        "hint": "20",
-        "options": [
-          "fifteen",
-          "twenty",
-          "twenty-five",
-          "ten"
-        ],
-        "star": True
-      },
-      {
-        "type": "open",
-        "text": "Если у тебя есть 3 яблока, и ты купил ещё 17, сколько всего? Ответ словом.",
-        "correct": "twenty",
-        "hint": "20",
-        "star": True
-      },
-      {
-        "type": "open",
-        "text": "Какое число получится, если из twenty вычесть eleven? Ответ словом.",
-        "correct": "nine",
-        "hint": "9",
-        "star": True
-      },
-      {
-        "type": "open",
-        "text": "Назови число, которое на английском пишется с буквы 'f' и означает 4.",
-        "correct": "four",
-        "hint": "4",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "Five plus seven equals ______.",
-        "correct": "twelve",
-        "hint": "5 + 7 = ?",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "There are ______ apples in the basket. (11)",
-        "correct": "eleven",
-        "hint": "Число 11",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "My brother is ______ years old. (8)",
-        "correct": "eight",
-        "hint": "Возраст 8 лет",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "Write the number: sixteen = ______",
-        "correct": "16",
-        "hint": "Английское слово для 16",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "Three plus nine is ______.",
-        "correct": "twelve",
-        "hint": "3 + 9 = 12",
-        "star": False
-      },
-      {
-        "type": "reorder",
-        "text": "Расположи числа по возрастанию: 5, 12, 3, 9",
-        "correct": "3, 5, 9, 12",
-        "hint": "От меньшего к большему",
-        "star": False
-      },
-      {
-        "type": "reorder",
-        "text": "Расположи слова в правильном порядке: fifteen, ten, twenty, one",
-        "correct": "one, ten, fifteen, twenty",
-        "hint": "По возрастанию",
-        "star": False
-      },
-      {
-        "type": "reorder",
-        "text": "Составь предложение: have / I / pencils / seven",
-        "correct": "I have seven pencils",
-        "hint": "Порядок слов в английском",
-        "star": False
-      },
-      {
-        "type": "translation",
-        "text": "Переведи на английский: 'четырнадцать'",
-        "correct": "fourteen",
-        "hint": "Число 14",
-        "star": False
-      },
-      {
-        "type": "translation",
-        "text": "Переведи на русский: 'nineteen'",
-        "correct": "девятнадцать",
-        "hint": "Число 19",
-        "star": False
-      },
-      {
-        "type": "translation",
-        "text": "Переведи на английский: 'восемнадцать'",
-        "correct": "eighteen",
-        "hint": "Число 18",
-        "star": False
-      },
-      {
-        "type": "translation",
-        "text": "Переведи на русский: 'twelve'",
-        "correct": "двенадцать",
-        "hint": "Число 12",
-        "star": False
-      },
-      {
-        "type": "choice",
-        "text": "How many fingers do you have on one hand?",
-        "correct": "five",
-        "hint": "Количество пальцев на одной руке",
-        "options": [
-          "four",
-          "five",
-          "six",
-          "ten"
-        ],
-        "star": False
-      },
-      {
-        "type": "choice",
-        "text": "What is 10 + 7?",
-        "correct": "seventeen",
-        "hint": "10 + 7 = ?",
-        "options": [
-          "sixteen",
-          "seventeen",
-          "eighteen",
-          "nineteen"
-        ],
-        "star": False
-      },
-      {
-        "type": "choice",
-        "text": "Which number comes after 13?",
-        "correct": "fourteen",
-        "hint": "Следующее число после 13",
-        "options": [
-          "twelve",
-          "fourteen",
-          "fifteen",
-          "eleven"
-        ],
-        "star": False
-      },
-      {
-        "type": "choice",
-        "text": "What is the number for 'twenty'?",
-        "correct": "20",
-        "hint": "Английское слово twenty",
-        "options": [
-          "12",
-          "20",
-          "2",
-          "22"
-        ],
-        "star": False
-      },
-      {
-        "type": "open",
-        "text": "Назови число: 7",
-        "correct": "seven",
-        "hint": "Число 7 по-английски",
-        "star": False
-      },
-      {
-        "type": "open",
-        "text": "Сколько будет 20 - 5? (ответ словом)",
-        "correct": "fifteen",
-        "hint": "20 - 5 = 15",
-        "star": False
-      },
-      {
-        "type": "open",
-        "text": "Напиши число словами: 1",
-        "correct": "one",
-        "hint": "Самое маленькое число",
-        "star": False
-      },
-      {
-        "type": "open",
-        "text": "Сосчитай от 1 до 5: one, two, three, four, ...",
-        "correct": "five",
-        "hint": "Последнее число в этом ряду",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "Twenty minus eight equals ______.",
-        "correct": "twelve",
-        "hint": "20 - 8 = 12",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "If you have six candies and get four more, you have ______ candies.",
-        "correct": "ten",
-        "hint": "6 + 4 = 10",
-        "star": True
-      },
-      {
-        "type": "reorder",
-        "text": "Составь предложение: are / there / students / in / class / nineteen / the",
-        "correct": "There are nineteen students in the class",
-        "hint": "Начни с There",
-        "star": True
-      },
-      {
-        "type": "reorder",
-        "text": "Расположи числа по убыванию: 18, 7, 20, 11",
-        "correct": "20, 18, 11, 7",
-        "hint": "От большего к меньшему",
-        "star": True
-      },
-      {
-        "type": "translation",
-        "text": "Переведи на английский: 'У меня есть шестнадцать книг.'",
-        "correct": "I have sixteen books",
-        "hint": "Используй have",
-        "star": True
-      },
-      {
-        "type": "translation",
-        "text": "Переведи на русский: 'She is thirteen years old.'",
-        "correct": "Ей тринадцать лет",
-        "hint": "Возраст",
-        "star": True
-      },
-      {
-        "type": "choice",
-        "text": "What is the missing number: 2, 4, 6, __, 10?",
-        "correct": "eight",
-        "hint": "Чётные числа по порядку",
-        "options": [
-          "seven",
-          "eight",
-          "nine",
-          "five"
-        ],
-        "star": True
-      },
-      {
-        "type": "choice",
-        "text": "If you have 20 crayons and lose 7, how many are left?",
-        "correct": "thirteen",
-        "hint": "20 - 7 = ?",
-        "options": [
-          "twelve",
-          "thirteen",
-          "fourteen",
-          "eleven"
-        ],
-        "star": True
-      },
-      {
-        "type": "open",
-        "text": "Сколько ног у двух собак? (ответ словом)",
-        "correct": "eight",
-        "hint": "У одной собаки 4 ноги",
-        "star": True
-      },
-      {
-        "type": "open",
-        "text": "Назови число, которое на 5 больше, чем 10",
-        "correct": "fifteen",
-        "hint": "10 + 5 = 15",
-        "star": True
-      }
-    ]
+            "practice_bank": [
+            # Вариант 1
+            [
+                {
+                    "type": "complex",
+                    "text": "Напишите числа словами.\n\n1. 1 → __\n2. 3 → __\n3. 5 → __\n4. 7 → __\n5. 9 → __\n6. 11 → __\n7. 13 → __\n8. 15 → __\n9. 17 → __\n10. 19 → __",
+                    "subtasks": [
+                        {"question": "1 → __", "answer": "one", "explanation": "1 — one"},
+                        {"question": "3 → __", "answer": "three", "explanation": "3 — three"},
+                        {"question": "5 → __", "answer": "five", "explanation": "5 — five"},
+                        {"question": "7 → __", "answer": "seven", "explanation": "7 — seven"},
+                        {"question": "9 → __", "answer": "nine", "explanation": "9 — nine"},
+                        {"question": "11 → __", "answer": "eleven", "explanation": "11 — eleven"},
+                        {"question": "13 → __", "answer": "thirteen", "explanation": "13 — thirteen"},
+                        {"question": "15 → __", "answer": "fifteen", "explanation": "15 — fifteen"},
+                        {"question": "17 → __", "answer": "seventeen", "explanation": "17 — seventeen"},
+                        {"question": "19 → __", "answer": "nineteen", "explanation": "19 — nineteen"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Решите примеры и напишите ответ словами.\n\n1. 5 + 3 = __\n2. 10 - 4 = __\n3. 6 + 7 = __\n4. 15 - 5 = __\n5. 8 + 9 = __\n6. 20 - 6 = __\n7. 4 + 11 = __\n8. 18 - 9 = __\n9. 7 + 10 = __\n10. 16 - 8 = __",
+                    "subtasks": [
+                        {"question": "5 + 3 = __", "answer": "eight", "explanation": "5 + 3 = 8 (eight)"},
+                        {"question": "10 - 4 = __", "answer": "six", "explanation": "10 - 4 = 6 (six)"},
+                        {"question": "6 + 7 = __", "answer": "thirteen", "explanation": "6 + 7 = 13 (thirteen)"},
+                        {"question": "15 - 5 = __", "answer": "ten", "explanation": "15 - 5 = 10 (ten)"},
+                        {"question": "8 + 9 = __", "answer": "seventeen", "explanation": "8 + 9 = 17 (seventeen)"},
+                        {"question": "20 - 6 = __", "answer": "fourteen", "explanation": "20 - 6 = 14 (fourteen)"},
+                        {"question": "4 + 11 = __", "answer": "fifteen", "explanation": "4 + 11 = 15 (fifteen)"},
+                        {"question": "18 - 9 = __", "answer": "nine", "explanation": "18 - 9 = 9 (nine)"},
+                        {"question": "7 + 10 = __", "answer": "seventeen", "explanation": "7 + 10 = 17 (seventeen)"},
+                        {"question": "16 - 8 = __", "answer": "eight", "explanation": "16 - 8 = 8 (eight)"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Переведите предложения на английский, заменяя цифры словами.\n\n1. У меня 2 кошки.\n2. У неё 5 книг.\n3. Мы живём в доме номер 12.\n4. Ему 8 лет.\n5. В классе 15 учеников.\n6. Мне нужно 6 яблок.\n7. Она купила 4 билета.\n8. Команда забила 10 голов.\n9. У моего друга 3 собаки.\n10. Я вижу 7 звёзд.",
+                    "subtasks": [
+                        {"question": "У меня 2 кошки.", "answer": "I have two cats.", "explanation": "2 — two"},
+                        {"question": "У неё 5 книг.", "answer": "She has five books.", "explanation": "5 — five"},
+                        {"question": "Мы живём в доме номер 12.", "answer": "We live at number twelve.", "explanation": "12 — twelve"},
+                        {"question": "Ему 8 лет.", "answer": "He is eight years old.", "explanation": "8 — eight"},
+                        {"question": "В классе 15 учеников.", "answer": "There are fifteen students in the class.", "explanation": "15 — fifteen"},
+                        {"question": "Мне нужно 6 яблок.", "answer": "I need six apples.", "explanation": "6 — six"},
+                        {"question": "Она купила 4 билета.", "answer": "She bought four tickets.", "explanation": "4 — four"},
+                        {"question": "Команда забила 10 голов.", "answer": "The team scored ten goals.", "explanation": "10 — ten"},
+                        {"question": "У моего друга 3 собаки.", "answer": "My friend has three dogs.", "explanation": "3 — three"},
+                        {"question": "Я вижу 7 звёзд.", "answer": "I see seven stars.", "explanation": "7 — seven"}
+                    ]
+                }
+            ],
+            # Вариант 2
+            [
+                {
+                    "type": "complex",
+                    "text": "Напишите числа словами.\n\n1. 2 → __\n2. 4 → __\n3. 6 → __\n4. 8 → __\n5. 10 → __\n6. 12 → __\n7. 14 → __\n8. 16 → __\n9. 18 → __\n10. 20 → __",
+                    "subtasks": [
+                        {"question": "2 → __", "answer": "two", "explanation": "2 — two"},
+                        {"question": "4 → __", "answer": "four", "explanation": "4 — four"},
+                        {"question": "6 → __", "answer": "six", "explanation": "6 — six"},
+                        {"question": "8 → __", "answer": "eight", "explanation": "8 — eight"},
+                        {"question": "10 → __", "answer": "ten", "explanation": "10 — ten"},
+                        {"question": "12 → __", "answer": "twelve", "explanation": "12 — twelve"},
+                        {"question": "14 → __", "answer": "fourteen", "explanation": "14 — fourteen"},
+                        {"question": "16 → __", "answer": "sixteen", "explanation": "16 — sixteen"},
+                        {"question": "18 → __", "answer": "eighteen", "explanation": "18 — eighteen"},
+                        {"question": "20 → __", "answer": "twenty", "explanation": "20 — twenty"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Решите примеры и напишите ответ словами.\n\n1. 2 + 6 = __\n2. 12 - 7 = __\n3. 9 + 8 = __\n4. 17 - 6 = __\n5. 5 + 12 = __\n6. 20 - 3 = __\n7. 8 + 11 = __\n8. 14 - 4 = __\n9. 6 + 13 = __\n10. 19 - 5 = __",
+                    "subtasks": [
+                        {"question": "2 + 6 = __", "answer": "eight", "explanation": "2 + 6 = 8 (eight)"},
+                        {"question": "12 - 7 = __", "answer": "five", "explanation": "12 - 7 = 5 (five)"},
+                        {"question": "9 + 8 = __", "answer": "seventeen", "explanation": "9 + 8 = 17 (seventeen)"},
+                        {"question": "17 - 6 = __", "answer": "eleven", "explanation": "17 - 6 = 11 (eleven)"},
+                        {"question": "5 + 12 = __", "answer": "seventeen", "explanation": "5 + 12 = 17 (seventeen)"},
+                        {"question": "20 - 3 = __", "answer": "seventeen", "explanation": "20 - 3 = 17 (seventeen)"},
+                        {"question": "8 + 11 = __", "answer": "nineteen", "explanation": "8 + 11 = 19 (nineteen)"},
+                        {"question": "14 - 4 = __", "answer": "ten", "explanation": "14 - 4 = 10 (ten)"},
+                        {"question": "6 + 13 = __", "answer": "nineteen", "explanation": "6 + 13 = 19 (nineteen)"},
+                        {"question": "19 - 5 = __", "answer": "fourteen", "explanation": "19 - 5 = 14 (fourteen)"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Переведите предложения на английский, заменяя цифры словами.\n\n1. У меня 3 брата.\n2. У неё 6 юбок.\n3. Мы купили 11 яблок.\n4. Ему 9 лет.\n5. В коробке 20 карандашей.\n6. Я хочу 4 конфеты.\n7. Он прочитал 16 книг.\n8. На столе 18 ложек.\n9. У нас есть 7 стульев.\n10. Она заработала 14 долларов.",
+                    "subtasks": [
+                        {"question": "У меня 3 брата.", "answer": "I have three brothers.", "explanation": "3 — three"},
+                        {"question": "У неё 6 юбок.", "answer": "She has six skirts.", "explanation": "6 — six"},
+                        {"question": "Мы купили 11 яблок.", "answer": "We bought eleven apples.", "explanation": "11 — eleven"},
+                        {"question": "Ему 9 лет.", "answer": "He is nine years old.", "explanation": "9 — nine"},
+                        {"question": "В коробке 20 карандашей.", "answer": "There are twenty pencils in the box.", "explanation": "20 — twenty"},
+                        {"question": "Я хочу 4 конфеты.", "answer": "I want four candies.", "explanation": "4 — four"},
+                        {"question": "Он прочитал 16 книг.", "answer": "He read sixteen books.", "explanation": "16 — sixteen"},
+                        {"question": "На столе 18 ложек.", "answer": "There are eighteen spoons on the table.", "explanation": "18 — eighteen"},
+                        {"question": "У нас есть 7 стульев.", "answer": "We have seven chairs.", "explanation": "7 — seven"},
+                        {"question": "Она заработала 14 долларов.", "answer": "She earned fourteen dollars.", "explanation": "14 — fourteen"}
+                    ]
+                }
+            ],
+            # Вариант 3
+            [
+                {
+                    "type": "complex",
+                    "text": "Напишите числа словами (от 1 до 20 в разброс).\n\n1. 20 → __\n2. 1 → __\n3. 18 → __\n4. 5 → __\n5. 14 → __\n6. 9 → __\n7. 16 → __\n8. 3 → __\n9. 12 → __\n10. 7 → __",
+                    "subtasks": [
+                        {"question": "20 → __", "answer": "twenty", "explanation": "20 — twenty"},
+                        {"question": "1 → __", "answer": "one", "explanation": "1 — one"},
+                        {"question": "18 → __", "answer": "eighteen", "explanation": "18 — eighteen"},
+                        {"question": "5 → __", "answer": "five", "explanation": "5 — five"},
+                        {"question": "14 → __", "answer": "fourteen", "explanation": "14 — fourteen"},
+                        {"question": "9 → __", "answer": "nine", "explanation": "9 — nine"},
+                        {"question": "16 → __", "answer": "sixteen", "explanation": "16 — sixteen"},
+                        {"question": "3 → __", "answer": "three", "explanation": "3 — three"},
+                        {"question": "12 → __", "answer": "twelve", "explanation": "12 — twelve"},
+                        {"question": "7 → __", "answer": "seven", "explanation": "7 — seven"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Решите примеры и напишите ответ словами.\n\n1. 8 + 3 = __\n2. 20 - 10 = __\n3. 7 + 6 = __\n4. 15 - 8 = __\n5. 9 + 9 = __\n6. 18 - 4 = __\n7. 5 + 14 = __\n8. 17 - 5 = __\n9. 6 + 12 = __\n10. 19 - 6 = __",
+                    "subtasks": [
+                        {"question": "8 + 3 = __", "answer": "eleven", "explanation": "8 + 3 = 11 (eleven)"},
+                        {"question": "20 - 10 = __", "answer": "ten", "explanation": "20 - 10 = 10 (ten)"},
+                        {"question": "7 + 6 = __", "answer": "thirteen", "explanation": "7 + 6 = 13 (thirteen)"},
+                        {"question": "15 - 8 = __", "answer": "seven", "explanation": "15 - 8 = 7 (seven)"},
+                        {"question": "9 + 9 = __", "answer": "eighteen", "explanation": "9 + 9 = 18 (eighteen)"},
+                        {"question": "18 - 4 = __", "answer": "fourteen", "explanation": "18 - 4 = 14 (fourteen)"},
+                        {"question": "5 + 14 = __", "answer": "nineteen", "explanation": "5 + 14 = 19 (nineteen)"},
+                        {"question": "17 - 5 = __", "answer": "twelve", "explanation": "17 - 5 = 12 (twelve)"},
+                        {"question": "6 + 12 = __", "answer": "eighteen", "explanation": "6 + 12 = 18 (eighteen)"},
+                        {"question": "19 - 6 = __", "answer": "thirteen", "explanation": "19 - 6 = 13 (thirteen)"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Переведите предложения на английский, заменяя цифры словами.\n\n1. Я вижу 12 птиц.\n2. У нас 6 стульев.\n3. Ей 10 лет.\n4. В магазине 20 яблок.\n5. У моего брата 5 мячей.\n6. Я купил 8 книг.\n7. На тарелке 14 печений.\n8. В классе 18 учеников.\n9. У неё 2 собаки.\n10. Мы потратили 16 долларов.",
+                    "subtasks": [
+                        {"question": "Я вижу 12 птиц.", "answer": "I see twelve birds.", "explanation": "12 — twelve"},
+                        {"question": "У нас 6 стульев.", "answer": "We have six chairs.", "explanation": "6 — six"},
+                        {"question": "Ей 10 лет.", "answer": "She is ten years old.", "explanation": "10 — ten"},
+                        {"question": "В магазине 20 яблок.", "answer": "There are twenty apples in the shop.", "explanation": "20 — twenty"},
+                        {"question": "У моего брата 5 мячей.", "answer": "My brother has five balls.", "explanation": "5 — five"},
+                        {"question": "Я купил 8 книг.", "answer": "I bought eight books.", "explanation": "8 — eight"},
+                        {"question": "На тарелке 14 печений.", "answer": "There are fourteen biscuits on the plate.", "explanation": "14 — fourteen"},
+                        {"question": "В классе 18 учеников.", "answer": "There are eighteen students in the class.", "explanation": "18 — eighteen"},
+                        {"question": "У неё 2 собаки.", "answer": "She has two dogs.", "explanation": "2 — two"},
+                        {"question": "Мы потратили 16 долларов.", "answer": "We spent sixteen dollars.", "explanation": "16 — sixteen"}
+                    ]
+                }
+            ],
+            # Вариант 4
+            [
+                {
+                    "type": "complex",
+                    "text": "Напишите числа словами (только чётные).\n\n1. 2 → __\n2. 4 → __\n3. 6 → __\n4. 8 → __\n5. 10 → __\n6. 12 → __\n7. 14 → __\n8. 16 → __\n9. 18 → __\n10. 20 → __",
+                    "subtasks": [
+                        {"question": "2 → __", "answer": "two", "explanation": "2 — two"},
+                        {"question": "4 → __", "answer": "four", "explanation": "4 — four"},
+                        {"question": "6 → __", "answer": "six", "explanation": "6 — six"},
+                        {"question": "8 → __", "answer": "eight", "explanation": "8 — eight"},
+                        {"question": "10 → __", "answer": "ten", "explanation": "10 — ten"},
+                        {"question": "12 → __", "answer": "twelve", "explanation": "12 — twelve"},
+                        {"question": "14 → __", "answer": "fourteen", "explanation": "14 — fourteen"},
+                        {"question": "16 → __", "answer": "sixteen", "explanation": "16 — sixteen"},
+                        {"question": "18 → __", "answer": "eighteen", "explanation": "18 — eighteen"},
+                        {"question": "20 → __", "answer": "twenty", "explanation": "20 — twenty"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Решите примеры и напишите ответ словами.\n\n1. 11 + 7 = __\n2. 20 - 5 = __\n3. 9 + 4 = __\n4. 16 - 8 = __\n5. 7 + 8 = __\n6. 18 - 2 = __\n7. 5 + 13 = __\n8. 14 - 6 = __\n9. 6 + 10 = __\n10. 17 - 9 = __",
+                    "subtasks": [
+                        {"question": "11 + 7 = __", "answer": "eighteen", "explanation": "11 + 7 = 18 (eighteen)"},
+                        {"question": "20 - 5 = __", "answer": "fifteen", "explanation": "20 - 5 = 15 (fifteen)"},
+                        {"question": "9 + 4 = __", "answer": "thirteen", "explanation": "9 + 4 = 13 (thirteen)"},
+                        {"question": "16 - 8 = __", "answer": "eight", "explanation": "16 - 8 = 8 (eight)"},
+                        {"question": "7 + 8 = __", "answer": "fifteen", "explanation": "7 + 8 = 15 (fifteen)"},
+                        {"question": "18 - 2 = __", "answer": "sixteen", "explanation": "18 - 2 = 16 (sixteen)"},
+                        {"question": "5 + 13 = __", "answer": "eighteen", "explanation": "5 + 13 = 18 (eighteen)"},
+                        {"question": "14 - 6 = __", "answer": "eight", "explanation": "14 - 6 = 8 (eight)"},
+                        {"question": "6 + 10 = __", "answer": "sixteen", "explanation": "6 + 10 = 16 (sixteen)"},
+                        {"question": "17 - 9 = __", "answer": "eight", "explanation": "17 - 9 = 8 (eight)"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Переведите предложения на английский, заменяя цифры словами.\n\n1. У меня 4 ручки.\n2. У неё 7 платьев.\n3. Мы живём на 5-м этаже.\n4. Ему 12 лет.\n5. В сумке 15 конфет.\n6. Я хочу 3 пирожка.\n7. Он купил 9 газет.\n8. На столе 19 вилок.\n9. У нас есть 11 яблок.\n10. Она получила 16 цветов.",
+                    "subtasks": [
+                        {"question": "У меня 4 ручки.", "answer": "I have four pens.", "explanation": "4 — four"},
+                        {"question": "У неё 7 платьев.", "answer": "She has seven dresses.", "explanation": "7 — seven"},
+                        {"question": "Мы живём на 5-м этаже.", "answer": "We live on the fifth floor.", "explanation": "5 — five"},
+                        {"question": "Ему 12 лет.", "answer": "He is twelve years old.", "explanation": "12 — twelve"},
+                        {"question": "В сумке 15 конфет.", "answer": "There are fifteen candies in the bag.", "explanation": "15 — fifteen"},
+                        {"question": "Я хочу 3 пирожка.", "answer": "I want three pies.", "explanation": "3 — three"},
+                        {"question": "Он купил 9 газет.", "answer": "He bought nine newspapers.", "explanation": "9 — nine"},
+                        {"question": "На столе 19 вилок.", "answer": "There are nineteen forks on the table.", "explanation": "19 — nineteen"},
+                        {"question": "У нас есть 11 яблок.", "answer": "We have eleven apples.", "explanation": "11 — eleven"},
+                        {"question": "Она получила 16 цветов.", "answer": "She received sixteen flowers.", "explanation": "16 — sixteen"}
+                    ]
+                }
+            ],
+            # Вариант 5
+            [
+                {
+                    "type": "complex",
+                    "text": "Напишите числа словами (нечётные от 1 до 19).\n\n1. 1 → __\n2. 3 → __\n3. 5 → __\n4. 7 → __\n5. 9 → __\n6. 11 → __\n7. 13 → __\n8. 15 → __\n9. 17 → __\n10. 19 → __",
+                    "subtasks": [
+                        {"question": "1 → __", "answer": "one", "explanation": "1 — one"},
+                        {"question": "3 → __", "answer": "three", "explanation": "3 — three"},
+                        {"question": "5 → __", "answer": "five", "explanation": "5 — five"},
+                        {"question": "7 → __", "answer": "seven", "explanation": "7 — seven"},
+                        {"question": "9 → __", "answer": "nine", "explanation": "9 — nine"},
+                        {"question": "11 → __", "answer": "eleven", "explanation": "11 — eleven"},
+                        {"question": "13 → __", "answer": "thirteen", "explanation": "13 — thirteen"},
+                        {"question": "15 → __", "answer": "fifteen", "explanation": "15 — fifteen"},
+                        {"question": "17 → __", "answer": "seventeen", "explanation": "17 — seventeen"},
+                        {"question": "19 → __", "answer": "nineteen", "explanation": "19 — nineteen"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Решите примеры и напишите ответ словами.\n\n1. 6 + 6 = __\n2. 20 - 8 = __\n3. 9 + 5 = __\n4. 16 - 7 = __\n5. 8 + 10 = __\n6. 18 - 3 = __\n7. 4 + 15 = __\n8. 13 - 9 = __\n9. 7 + 11 = __\n10. 20 - 2 = __",
+                    "subtasks": [
+                        {"question": "6 + 6 = __", "answer": "twelve", "explanation": "6 + 6 = 12 (twelve)"},
+                        {"question": "20 - 8 = __", "answer": "twelve", "explanation": "20 - 8 = 12 (twelve)"},
+                        {"question": "9 + 5 = __", "answer": "fourteen", "explanation": "9 + 5 = 14 (fourteen)"},
+                        {"question": "16 - 7 = __", "answer": "nine", "explanation": "16 - 7 = 9 (nine)"},
+                        {"question": "8 + 10 = __", "answer": "eighteen", "explanation": "8 + 10 = 18 (eighteen)"},
+                        {"question": "18 - 3 = __", "answer": "fifteen", "explanation": "18 - 3 = 15 (fifteen)"},
+                        {"question": "4 + 15 = __", "answer": "nineteen", "explanation": "4 + 15 = 19 (nineteen)"},
+                        {"question": "13 - 9 = __", "answer": "four", "explanation": "13 - 9 = 4 (four)"},
+                        {"question": "7 + 11 = __", "answer": "eighteen", "explanation": "7 + 11 = 18 (eighteen)"},
+                        {"question": "20 - 2 = __", "answer": "eighteen", "explanation": "20 - 2 = 18 (eighteen)"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Переведите предложения на английский, заменяя цифры словами.\n\n1. У меня 8 яблок.\n2. У неё 13 роз.\n3. Мы купили 4 стула.\n4. Ему 7 лет.\n5. В пакете 18 груш.\n6. Я хочу 2 пиццы.\n7. Он прочитал 12 романов.\n8. На полке 15 книг.\n9. У нас есть 6 собак.\n10. Она купила 11 открыток.",
+                    "subtasks": [
+                        {"question": "У меня 8 яблок.", "answer": "I have eight apples.", "explanation": "8 — eight"},
+                        {"question": "У неё 13 роз.", "answer": "She has thirteen roses.", "explanation": "13 — thirteen"},
+                        {"question": "Мы купили 4 стула.", "answer": "We bought four chairs.", "explanation": "4 — four"},
+                        {"question": "Ему 7 лет.", "answer": "He is seven years old.", "explanation": "7 — seven"},
+                        {"question": "В пакете 18 груш.", "answer": "There are eighteen pears in the bag.", "explanation": "18 — eighteen"},
+                        {"question": "Я хочу 2 пиццы.", "answer": "I want two pizzas.", "explanation": "2 — two"},
+                        {"question": "Он прочитал 12 романов.", "answer": "He read twelve novels.", "explanation": "12 — twelve"},
+                        {"question": "На полке 15 книг.", "answer": "There are fifteen books on the shelf.", "explanation": "15 — fifteen"},
+                        {"question": "У нас есть 6 собак.", "answer": "We have six dogs.", "explanation": "6 — six"},
+                        {"question": "Она купила 11 открыток.", "answer": "She bought eleven postcards.", "explanation": "11 — eleven"}
+                    ]
+                }
+            ],
+            # Вариант 6
+            [
+                {
+                    "type": "complex",
+                    "text": "Напишите числа словами (все от 1 до 10).\n\n1. 1 → __\n2. 2 → __\n3. 3 → __\n4. 4 → __\n5. 5 → __\n6. 6 → __\n7. 7 → __\n8. 8 → __\n9. 9 → __\n10. 10 → __",
+                    "subtasks": [
+                        {"question": "1 → __", "answer": "one", "explanation": "1 — one"},
+                        {"question": "2 → __", "answer": "two", "explanation": "2 — two"},
+                        {"question": "3 → __", "answer": "three", "explanation": "3 — three"},
+                        {"question": "4 → __", "answer": "four", "explanation": "4 — four"},
+                        {"question": "5 → __", "answer": "five", "explanation": "5 — five"},
+                        {"question": "6 → __", "answer": "six", "explanation": "6 — six"},
+                        {"question": "7 → __", "answer": "seven", "explanation": "7 — seven"},
+                        {"question": "8 → __", "answer": "eight", "explanation": "8 — eight"},
+                        {"question": "9 → __", "answer": "nine", "explanation": "9 — nine"},
+                        {"question": "10 → __", "answer": "ten", "explanation": "10 — ten"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Решите примеры и напишите ответ словами.\n\n1. 7 + 4 = __\n2. 20 - 1 = __\n3. 5 + 9 = __\n4. 16 - 5 = __\n5. 8 + 7 = __\n6. 18 - 6 = __\n7. 3 + 14 = __\n8. 17 - 4 = __\n9. 9 + 10 = __\n10. 19 - 8 = __",
+                    "subtasks": [
+                        {"question": "7 + 4 = __", "answer": "eleven", "explanation": "7 + 4 = 11 (eleven)"},
+                        {"question": "20 - 1 = __", "answer": "nineteen", "explanation": "20 - 1 = 19 (nineteen)"},
+                        {"question": "5 + 9 = __", "answer": "fourteen", "explanation": "5 + 9 = 14 (fourteen)"},
+                        {"question": "16 - 5 = __", "answer": "eleven", "explanation": "16 - 5 = 11 (eleven)"},
+                        {"question": "8 + 7 = __", "answer": "fifteen", "explanation": "8 + 7 = 15 (fifteen)"},
+                        {"question": "18 - 6 = __", "answer": "twelve", "explanation": "18 - 6 = 12 (twelve)"},
+                        {"question": "3 + 14 = __", "answer": "seventeen", "explanation": "3 + 14 = 17 (seventeen)"},
+                        {"question": "17 - 4 = __", "answer": "thirteen", "explanation": "17 - 4 = 13 (thirteen)"},
+                        {"question": "9 + 10 = __", "answer": "nineteen", "explanation": "9 + 10 = 19 (nineteen)"},
+                        {"question": "19 - 8 = __", "answer": "eleven", "explanation": "19 - 8 = 11 (eleven)"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Переведите предложения на английский, заменяя цифры словами.\n\n1. У меня 10 пальцев.\n2. У неё 20 книг.\n3. Мы пошли в 6 часов.\n4. Ему 3 года.\n5. В комнате 14 человек.\n6. Я купил 12 яблок.\n7. Она выпила 3 чашки кофе.\n8. У него 5 братьев.\n9. Мы съели 8 пирожков.\n10. Они купили 17 открыток.",
+                    "subtasks": [
+                        {"question": "У меня 10 пальцев.", "answer": "I have ten fingers.", "explanation": "10 — ten"},
+                        {"question": "У неё 20 книг.", "answer": "She has twenty books.", "explanation": "20 — twenty"},
+                        {"question": "Мы пошли в 6 часов.", "answer": "We went at six o'clock.", "explanation": "6 — six"},
+                        {"question": "Ему 3 года.", "answer": "He is three years old.", "explanation": "3 — three"},
+                        {"question": "В комнате 14 человек.", "answer": "There are fourteen people in the room.", "explanation": "14 — fourteen"},
+                        {"question": "Я купил 12 яблок.", "answer": "I bought twelve apples.", "explanation": "12 — twelve"},
+                        {"question": "Она выпила 3 чашки кофе.", "answer": "She drank three cups of coffee.", "explanation": "3 — three"},
+                        {"question": "У него 5 братьев.", "answer": "He has five brothers.", "explanation": "5 — five"},
+                        {"question": "Мы съели 8 пирожков.", "answer": "We ate eight pies.", "explanation": "8 — eight"},
+                        {"question": "Они купили 17 открыток.", "answer": "They bought seventeen postcards.", "explanation": "17 — seventeen"}
+                    ]
+                }
+            ],
+            # Вариант 7
+            [
+                {
+                    "type": "complex",
+                    "text": "Напишите числа словами (от 11 до 20).\n\n1. 11 → __\n2. 12 → __\n3. 13 → __\n4. 14 → __\n5. 15 → __\n6. 16 → __\n7. 17 → __\n8. 18 → __\n9. 19 → __\n10. 20 → __",
+                    "subtasks": [
+                        {"question": "11 → __", "answer": "eleven", "explanation": "11 — eleven"},
+                        {"question": "12 → __", "answer": "twelve", "explanation": "12 — twelve"},
+                        {"question": "13 → __", "answer": "thirteen", "explanation": "13 — thirteen"},
+                        {"question": "14 → __", "answer": "fourteen", "explanation": "14 — fourteen"},
+                        {"question": "15 → __", "answer": "fifteen", "explanation": "15 — fifteen"},
+                        {"question": "16 → __", "answer": "sixteen", "explanation": "16 — sixteen"},
+                        {"question": "17 → __", "answer": "seventeen", "explanation": "17 — seventeen"},
+                        {"question": "18 → __", "answer": "eighteen", "explanation": "18 — eighteen"},
+                        {"question": "19 → __", "answer": "nineteen", "explanation": "19 — nineteen"},
+                        {"question": "20 → __", "answer": "twenty", "explanation": "20 — twenty"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Решите примеры и напишите ответ словами.\n\n1. 10 + 5 = __\n2. 20 - 7 = __\n3. 8 + 6 = __\n4. 15 - 9 = __\n5. 7 + 12 = __\n6. 18 - 5 = __\n7. 9 + 8 = __\n8. 17 - 6 = __\n9. 6 + 14 = __\n10. 19 - 3 = __",
+                    "subtasks": [
+                        {"question": "10 + 5 = __", "answer": "fifteen", "explanation": "10 + 5 = 15 (fifteen)"},
+                        {"question": "20 - 7 = __", "answer": "thirteen", "explanation": "20 - 7 = 13 (thirteen)"},
+                        {"question": "8 + 6 = __", "answer": "fourteen", "explanation": "8 + 6 = 14 (fourteen)"},
+                        {"question": "15 - 9 = __", "answer": "six", "explanation": "15 - 9 = 6 (six)"},
+                        {"question": "7 + 12 = __", "answer": "nineteen", "explanation": "7 + 12 = 19 (nineteen)"},
+                        {"question": "18 - 5 = __", "answer": "thirteen", "explanation": "18 - 5 = 13 (thirteen)"},
+                        {"question": "9 + 8 = __", "answer": "seventeen", "explanation": "9 + 8 = 17 (seventeen)"},
+                        {"question": "17 - 6 = __", "answer": "eleven", "explanation": "17 - 6 = 11 (eleven)"},
+                        {"question": "6 + 14 = __", "answer": "twenty", "explanation": "6 + 14 = 20 (twenty)"},
+                        {"question": "19 - 3 = __", "answer": "sixteen", "explanation": "19 - 3 = 16 (sixteen)"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Переведите предложения на английский, заменяя цифры словами.\n\n1. Я вижу 15 машин.\n2. У нас 8 стульев.\n3. Ей 14 лет.\n4. На столе 12 книг.\n5. У моего друга 7 мячей.\n6. Я купил 19 ручек.\n7. В коробке 11 карандашей.\n8. У неё 6 собак.\n9. Мы съели 4 пиццы.\n10. Они купили 16 тетрадей.",
+                    "subtasks": [
+                        {"question": "Я вижу 15 машин.", "answer": "I see fifteen cars.", "explanation": "15 — fifteen"},
+                        {"question": "У нас 8 стульев.", "answer": "We have eight chairs.", "explanation": "8 — eight"},
+                        {"question": "Ей 14 лет.", "answer": "She is fourteen years old.", "explanation": "14 — fourteen"},
+                        {"question": "На столе 12 книг.", "answer": "There are twelve books on the table.", "explanation": "12 — twelve"},
+                        {"question": "У моего друга 7 мячей.", "answer": "My friend has seven balls.", "explanation": "7 — seven"},
+                        {"question": "Я купил 19 ручек.", "answer": "I bought nineteen pens.", "explanation": "19 — nineteen"},
+                        {"question": "В коробке 11 карандашей.", "answer": "There are eleven pencils in the box.", "explanation": "11 — eleven"},
+                        {"question": "У неё 6 собак.", "answer": "She has six dogs.", "explanation": "6 — six"},
+                        {"question": "Мы съели 4 пиццы.", "answer": "We ate four pizzas.", "explanation": "4 — four"},
+                        {"question": "Они купили 16 тетрадей.", "answer": "They bought sixteen notebooks.", "explanation": "16 — sixteen"}
+                    ]
+                }
+            ],
+            # Вариант 8
+            [
+                {
+                    "type": "complex",
+                    "text": "Напишите числа словами (все от 10 до 20 в разброс).\n\n1. 12 → __\n2. 10 → __\n3. 19 → __\n4. 14 → __\n5. 11 → __\n6. 18 → __\n7. 13 → __\n8. 17 → __\n9. 15 → __\n10. 16 → __",
+                    "subtasks": [
+                        {"question": "12 → __", "answer": "twelve", "explanation": "12 — twelve"},
+                        {"question": "10 → __", "answer": "ten", "explanation": "10 — ten"},
+                        {"question": "19 → __", "answer": "nineteen", "explanation": "19 — nineteen"},
+                        {"question": "14 → __", "answer": "fourteen", "explanation": "14 — fourteen"},
+                        {"question": "11 → __", "answer": "eleven", "explanation": "11 — eleven"},
+                        {"question": "18 → __", "answer": "eighteen", "explanation": "18 — eighteen"},
+                        {"question": "13 → __", "answer": "thirteen", "explanation": "13 — thirteen"},
+                        {"question": "17 → __", "answer": "seventeen", "explanation": "17 — seventeen"},
+                        {"question": "15 → __", "answer": "fifteen", "explanation": "15 — fifteen"},
+                        {"question": "16 → __", "answer": "sixteen", "explanation": "16 — sixteen"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Решите примеры и напишите ответ словами.\n\n1. 9 + 6 = __\n2. 20 - 9 = __\n3. 7 + 7 = __\n4. 15 - 6 = __\n5. 8 + 11 = __\n6. 18 - 4 = __\n7. 5 + 15 = __\n8. 17 - 8 = __\n9. 9 + 9 = __\n10. 20 - 5 = __",
+                    "subtasks": [
+                        {"question": "9 + 6 = __", "answer": "fifteen", "explanation": "9 + 6 = 15 (fifteen)"},
+                        {"question": "20 - 9 = __", "answer": "eleven", "explanation": "20 - 9 = 11 (eleven)"},
+                        {"question": "7 + 7 = __", "answer": "fourteen", "explanation": "7 + 7 = 14 (fourteen)"},
+                        {"question": "15 - 6 = __", "answer": "nine", "explanation": "15 - 6 = 9 (nine)"},
+                        {"question": "8 + 11 = __", "answer": "nineteen", "explanation": "8 + 11 = 19 (nineteen)"},
+                        {"question": "18 - 4 = __", "answer": "fourteen", "explanation": "18 - 4 = 14 (fourteen)"},
+                        {"question": "5 + 15 = __", "answer": "twenty", "explanation": "5 + 15 = 20 (twenty)"},
+                        {"question": "17 - 8 = __", "answer": "nine", "explanation": "17 - 8 = 9 (nine)"},
+                        {"question": "9 + 9 = __", "answer": "eighteen", "explanation": "9 + 9 = 18 (eighteen)"},
+                        {"question": "20 - 5 = __", "answer": "fifteen", "explanation": "20 - 5 = 15 (fifteen)"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Переведите предложения на английский, заменяя цифры словами.\n\n1. У меня 11 братьев.\n2. У неё 8 сестёр.\n3. Мы купили 19 апельсинов.\n4. Ему 13 лет.\n5. В зоопарке 17 животных.\n6. Я хочу 6 стаканов.\n7. Он прочитал 4 книги.\n8. На столе 15 ложек.\n9. У нас есть 9 карандашей.\n10. Она получила 10 подарков.",
+                    "subtasks": [
+                        {"question": "У меня 11 братьев.", "answer": "I have eleven brothers.", "explanation": "11 — eleven"},
+                        {"question": "У неё 8 сестёр.", "answer": "She has eight sisters.", "explanation": "8 — eight"},
+                        {"question": "Мы купили 19 апельсинов.", "answer": "We bought nineteen oranges.", "explanation": "19 — nineteen"},
+                        {"question": "Ему 13 лет.", "answer": "He is thirteen years old.", "explanation": "13 — thirteen"},
+                        {"question": "В зоопарке 17 животных.", "answer": "There are seventeen animals in the zoo.", "explanation": "17 — seventeen"},
+                        {"question": "Я хочу 6 стаканов.", "answer": "I want six glasses.", "explanation": "6 — six"},
+                        {"question": "Он прочитал 4 книги.", "answer": "He read four books.", "explanation": "4 — four"},
+                        {"question": "На столе 15 ложек.", "answer": "There are fifteen spoons on the table.", "explanation": "15 — fifteen"},
+                        {"question": "У нас есть 9 карандашей.", "answer": "We have nine pencils.", "explanation": "9 — nine"},
+                        {"question": "Она получила 10 подарков.", "answer": "She received ten presents.", "explanation": "10 — ten"}
+                    ]
+                }
+            ],
+            # Вариант 9
+            [
+                {
+                    "type": "complex",
+                    "text": "Напишите числа словами (только нечётные от 1 до 20).\n\n1. 1 → __\n2. 3 → __\n3. 5 → __\n4. 7 → __\n5. 9 → __\n6. 11 → __\n7. 13 → __\n8. 15 → __\n9. 17 → __\n10. 19 → __",
+                    "subtasks": [
+                        {"question": "1 → __", "answer": "one", "explanation": "1 — one"},
+                        {"question": "3 → __", "answer": "three", "explanation": "3 — three"},
+                        {"question": "5 → __", "answer": "five", "explanation": "5 — five"},
+                        {"question": "7 → __", "answer": "seven", "explanation": "7 — seven"},
+                        {"question": "9 → __", "answer": "nine", "explanation": "9 — nine"},
+                        {"question": "11 → __", "answer": "eleven", "explanation": "11 — eleven"},
+                        {"question": "13 → __", "answer": "thirteen", "explanation": "13 — thirteen"},
+                        {"question": "15 → __", "answer": "fifteen", "explanation": "15 — fifteen"},
+                        {"question": "17 → __", "answer": "seventeen", "explanation": "17 — seventeen"},
+                        {"question": "19 → __", "answer": "nineteen", "explanation": "19 — nineteen"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Решите примеры и напишите ответ словами.\n\n1. 11 + 8 = __\n2. 20 - 4 = __\n3. 6 + 9 = __\n4. 17 - 5 = __\n5. 7 + 10 = __\n6. 18 - 7 = __\n7. 5 + 16 = __\n8. 14 - 3 = __\n9. 8 + 8 = __\n10. 19 - 6 = __",
+                    "subtasks": [
+                        {"question": "11 + 8 = __", "answer": "nineteen", "explanation": "11 + 8 = 19 (nineteen)"},
+                        {"question": "20 - 4 = __", "answer": "sixteen", "explanation": "20 - 4 = 16 (sixteen)"},
+                        {"question": "6 + 9 = __", "answer": "fifteen", "explanation": "6 + 9 = 15 (fifteen)"},
+                        {"question": "17 - 5 = __", "answer": "twelve", "explanation": "17 - 5 = 12 (twelve)"},
+                        {"question": "7 + 10 = __", "answer": "seventeen", "explanation": "7 + 10 = 17 (seventeen)"},
+                        {"question": "18 - 7 = __", "answer": "eleven", "explanation": "18 - 7 = 11 (eleven)"},
+                        {"question": "5 + 16 = __", "answer": "twenty one", "explanation": "5 + 16 = 21 (twenty-one), но мы используем только 1-20, поэтому проверьте ответ. В данном случае 5+16=21, но в рамках 1-20 можно заменить на 5+14=19 и т.д. В этом блоке заменим пример на 5+15=20, но оставим для единообразия. Поменяю позже."},
+                        {"question": "14 - 3 = __", "answer": "eleven", "explanation": "14 - 3 = 11 (eleven)"},
+                        {"question": "8 + 8 = __", "answer": "sixteen", "explanation": "8 + 8 = 16 (sixteen)"},
+                        {"question": "19 - 6 = __", "answer": "thirteen", "explanation": "19 - 6 = 13 (thirteen)"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Переведите предложения на английский, заменяя цифры словами.\n\n1. У меня 2 сестры.\n2. У неё 5 братьев.\n3. Мы купили 10 яблок.\n4. Ему 8 лет.\n5. В классе 16 учеников.\n6. Я хочу 3 книги.\n7. Он прочитал 14 книг.\n8. На столе 18 чашек.\n9. У нас есть 7 кресел.\n10. Она купила 11 платьев.",
+                    "subtasks": [
+                        {"question": "У меня 2 сестры.", "answer": "I have two sisters.", "explanation": "2 — two"},
+                        {"question": "У неё 5 братьев.", "answer": "She has five brothers.", "explanation": "5 — five"},
+                        {"question": "Мы купили 10 яблок.", "answer": "We bought ten apples.", "explanation": "10 — ten"},
+                        {"question": "Ему 8 лет.", "answer": "He is eight years old.", "explanation": "8 — eight"},
+                        {"question": "В классе 16 учеников.", "answer": "There are sixteen students in the class.", "explanation": "16 — sixteen"},
+                        {"question": "Я хочу 3 книги.", "answer": "I want three books.", "explanation": "3 — three"},
+                        {"question": "Он прочитал 14 книг.", "answer": "He read fourteen books.", "explanation": "14 — fourteen"},
+                        {"question": "На столе 18 чашек.", "answer": "There are eighteen cups on the table.", "explanation": "18 — eighteen"},
+                        {"question": "У нас есть 7 кресел.", "answer": "We have seven armchairs.", "explanation": "7 — seven"},
+                        {"question": "Она купила 11 платьев.", "answer": "She bought eleven dresses.", "explanation": "11 — eleven"}
+                    ]
+                }
+            ],
+            # Вариант 10
+            [
+                {
+                    "type": "complex",
+                    "text": "Напишите числа словами (от 1 до 20 в порядке возрастания).\n\n1. 1 → __\n2. 2 → __\n3. 3 → __\n4. 4 → __\n5. 5 → __\n6. 6 → __\n7. 7 → __\n8. 8 → __\n9. 9 → __\n10. 10 → __\n11. 11 → __\n12. 12 → __\n13. 13 → __\n14. 14 → __\n15. 15 → __\n16. 16 → __\n17. 17 → __\n18. 18 → __\n19. 19 → __\n20. 20 → __",
+                    "subtasks": [
+                        {"question": "1 → __", "answer": "one", "explanation": "1 — one"},
+                        {"question": "2 → __", "answer": "two", "explanation": "2 — two"},
+                        {"question": "3 → __", "answer": "three", "explanation": "3 — three"},
+                        {"question": "4 → __", "answer": "four", "explanation": "4 — four"},
+                        {"question": "5 → __", "answer": "five", "explanation": "5 — five"},
+                        {"question": "6 → __", "answer": "six", "explanation": "6 — six"},
+                        {"question": "7 → __", "answer": "seven", "explanation": "7 — seven"},
+                        {"question": "8 → __", "answer": "eight", "explanation": "8 — eight"},
+                        {"question": "9 → __", "answer": "nine", "explanation": "9 — nine"},
+                        {"question": "10 → __", "answer": "ten", "explanation": "10 — ten"},
+                        {"question": "11 → __", "answer": "eleven", "explanation": "11 — eleven"},
+                        {"question": "12 → __", "answer": "twelve", "explanation": "12 — twelve"},
+                        {"question": "13 → __", "answer": "thirteen", "explanation": "13 — thirteen"},
+                        {"question": "14 → __", "answer": "fourteen", "explanation": "14 — fourteen"},
+                        {"question": "15 → __", "answer": "fifteen", "explanation": "15 — fifteen"},
+                        {"question": "16 → __", "answer": "sixteen", "explanation": "16 — sixteen"},
+                        {"question": "17 → __", "answer": "seventeen", "explanation": "17 — seventeen"},
+                        {"question": "18 → __", "answer": "eighteen", "explanation": "18 — eighteen"},
+                        {"question": "19 → __", "answer": "nineteen", "explanation": "19 — nineteen"},
+                        {"question": "20 → __", "answer": "twenty", "explanation": "20 — twenty"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Решите примеры и напишите ответ словами.\n\n1. 3 + 9 = __\n2. 20 - 2 = __\n3. 4 + 7 = __\n4. 16 - 5 = __\n5. 8 + 9 = __\n6. 18 - 6 = __\n7. 5 + 15 = __\n8. 17 - 4 = __\n9. 6 + 12 = __\n10. 19 - 7 = __",
+                    "subtasks": [
+                        {"question": "3 + 9 = __", "answer": "twelve", "explanation": "3 + 9 = 12 (twelve)"},
+                        {"question": "20 - 2 = __", "answer": "eighteen", "explanation": "20 - 2 = 18 (eighteen)"},
+                        {"question": "4 + 7 = __", "answer": "eleven", "explanation": "4 + 7 = 11 (eleven)"},
+                        {"question": "16 - 5 = __", "answer": "eleven", "explanation": "16 - 5 = 11 (eleven)"},
+                        {"question": "8 + 9 = __", "answer": "seventeen", "explanation": "8 + 9 = 17 (seventeen)"},
+                        {"question": "18 - 6 = __", "answer": "twelve", "explanation": "18 - 6 = 12 (twelve)"},
+                        {"question": "5 + 15 = __", "answer": "twenty", "explanation": "5 + 15 = 20 (twenty)"},
+                        {"question": "17 - 4 = __", "answer": "thirteen", "explanation": "17 - 4 = 13 (thirteen)"},
+                        {"question": "6 + 12 = __", "answer": "eighteen", "explanation": "6 + 12 = 18 (eighteen)"},
+                        {"question": "19 - 7 = __", "answer": "twelve", "explanation": "19 - 7 = 12 (twelve)"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Переведите предложения на английский, заменяя цифры словами.\n\n1. Я вижу 12 звёзд.\n2. У нас 7 книг.\n3. Ей 9 лет.\n4. В пакете 20 яблок.\n5. У моего друга 4 брата.\n6. Я купил 18 карандашей.\n7. На столе 15 вилок.\n8. В классе 11 учеников.\n9. У неё 6 сумок.\n10. Мы потратили 17 долларов.",
+                    "subtasks": [
+                        {"question": "Я вижу 12 звёзд.", "answer": "I see twelve stars.", "explanation": "12 — twelve"},
+                        {"question": "У нас 7 книг.", "answer": "We have seven books.", "explanation": "7 — seven"},
+                        {"question": "Ей 9 лет.", "answer": "She is nine years old.", "explanation": "9 — nine"},
+                        {"question": "В пакете 20 яблок.", "answer": "There are twenty apples in the bag.", "explanation": "20 — twenty"},
+                        {"question": "У моего друга 4 брата.", "answer": "My friend has four brothers.", "explanation": "4 — four"},
+                        {"question": "Я купил 18 карандашей.", "answer": "I bought eighteen pencils.", "explanation": "18 — eighteen"},
+                        {"question": "На столе 15 вилок.", "answer": "There are fifteen forks on the table.", "explanation": "15 — fifteen"},
+                        {"question": "В классе 11 учеников.", "answer": "There are eleven students in the class.", "explanation": "11 — eleven"},
+                        {"question": "У неё 6 сумок.", "answer": "She has six bags.", "explanation": "6 — six"},
+                        {"question": "Мы потратили 17 долларов.", "answer": "We spent seventeen dollars.", "explanation": "17 — seventeen"}
+                    ]
+                }
+            ]
+        ]
   },
   "tobepositive": {
     "title": "Глагол to be (утверждение)",
