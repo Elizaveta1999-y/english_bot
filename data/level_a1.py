@@ -6569,470 +6569,518 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "answer": "Нет, для постоянного места жительства используйте Present Simple: I live in London. Present Continuous показывает временную ситуацию."
       }
     ],
-    "practice_tasks": [
-      {
-        "type": "fill_blank",
-        "text": "She ___ (read) a book right now.",
-        "correct": "is reading",
-        "hint": "глагол read в форме Present Continuous",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "They ___ (play) football at the moment.",
-        "correct": "are playing",
-        "hint": "множественное число, глагол play",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "I ___ (write) an email now.",
-        "correct": "am writing",
-        "hint": "я пишу прямо сейчас",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He ___ (watch) TV at the moment.",
-        "correct": "is watching",
-        "hint": "он смотрит телевизор",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "We ___ (have) dinner right now.",
-        "correct": "are having",
-        "hint": "мы ужинаем",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The cat ___ (sleep) on the sofa now.",
-        "correct": "is sleeping",
-        "hint": "кошка спит",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "You ___ (listen) to music at the moment.",
-        "correct": "are listening",
-        "hint": "ты слушаешь музыку",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "My mother ___ (cook) in the kitchen now.",
-        "correct": "is cooking",
-        "hint": "мама готовит",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The children ___ (play) in the garden right now.",
-        "correct": "are playing",
-        "hint": "дети играют",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "I ___ (study) for my exam at the moment.",
-        "correct": "am studying",
-        "hint": "я учусь",
-        "star": False
-      },
-      {
-        "type": "reorder",
-        "text": "Составьте предложение: is / she / a / now / reading / book",
-        "correct": "She is reading a book now.",
-        "hint": "порядок: подлежащее + is + глагол-ing + остальное",
-        "star": False
-      },
-      {
-        "type": "reorder",
-        "text": "Составьте предложение: are / they / football / playing / at the moment",
-        "correct": "They are playing football at the moment.",
-        "hint": "множественное число, are",
-        "star": False
-      },
-      {
-        "type": "reorder",
-        "text": "Составьте предложение: am / I / an / writing / email / now",
-        "correct": "I am writing an email now.",
-        "hint": "я пишу",
-        "star": False
-      },
-      {
-        "type": "reorder",
-        "text": "Составьте предложение: is / he / TV / watching / at the moment",
-        "correct": "He is watching TV at the moment.",
-        "hint": "он смотрит",
-        "star": False
-      },
-      {
-        "type": "reorder",
-        "text": "Составьте предложение: are / we / dinner / having / right now",
-        "correct": "We are having dinner right now.",
-        "hint": "мы ужинаем",
-        "star": False
-      },
-      {
-        "type": "translation",
-        "text": "Переведите: Она сейчас читает книгу.",
-        "correct": "She is reading a book now.",
-        "hint": "Present Continuous",
-        "star": False
-      },
-      {
-        "type": "translation",
-        "text": "Переведите: Они играют в футбол в данный момент.",
-        "correct": "They are playing football at the moment.",
-        "hint": "множественное число",
-        "star": False
-      },
-      {
-        "type": "translation",
-        "text": "Переведите: Я пишу письмо прямо сейчас.",
-        "correct": "I am writing a letter right now.",
-        "hint": "am + глагол-ing",
-        "star": False
-      },
-      {
-        "type": "translation",
-        "text": "Переведите: Он смотрит телевизор сейчас.",
-        "correct": "He is watching TV now.",
-        "hint": "is watching",
-        "star": False
-      },
-      {
-        "type": "translation",
-        "text": "Переведите: Мы ужинаем в данный момент.",
-        "correct": "We are having dinner at the moment.",
-        "hint": "are having",
-        "star": False
-      },
-      {
-        "type": "choice",
-        "text": "She ___ a book right now.",
-        "correct": "is reading",
-        "hint": "выберите правильную форму",
-        "star": True,
-        "options": [
-          "is reading",
-          "reads",
-          "read",
-          "are reading"
+            "practice_bank": [
+            # Вариант 1
+            [
+                {
+                    "type": "complex",
+                    "text": "Вставьте глагол в правильной форме Present Continuous (am/is/are + V-ing).\n\n1. I ___ (read) a book now.\n2. She ___ (watch) TV at the moment.\n3. They ___ (play) football in the park.\n4. He ___ (sleep) right now.\n5. We ___ (have) dinner now.\n6. It ___ (rain) outside.\n7. You ___ (listen) to music.\n8. My mother ___ (cook) in the kitchen.\n9. The children ___ (study) in their room.\n10. I ___ (write) a letter.",
+                    "subtasks": [
+                        {"question": "I ___ (read) a book now.", "answer": "am reading", "explanation": "I + am + reading"},
+                        {"question": "She ___ (watch) TV at the moment.", "answer": "is watching", "explanation": "she + is + watching"},
+                        {"question": "They ___ (play) football in the park.", "answer": "are playing", "explanation": "they + are + playing"},
+                        {"question": "He ___ (sleep) right now.", "answer": "is sleeping", "explanation": "he + is + sleeping"},
+                        {"question": "We ___ (have) dinner now.", "answer": "are having", "explanation": "we + are + having"},
+                        {"question": "It ___ (rain) outside.", "answer": "is raining", "explanation": "it + is + raining"},
+                        {"question": "You ___ (listen) to music.", "answer": "are listening", "explanation": "you + are + listening"},
+                        {"question": "My mother ___ (cook) in the kitchen.", "answer": "is cooking", "explanation": "mother = she → is cooking"},
+                        {"question": "The children ___ (study) in their room.", "answer": "are studying", "explanation": "children = they → are studying"},
+                        {"question": "I ___ (write) a letter.", "answer": "am writing", "explanation": "I + am + writing"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Переведите предложения на английский (Present Continuous).\n\n1. Я сейчас читаю книгу.\n2. Она смотрит телевизор в данный момент.\n3. Они играют в футбол в парке.\n4. Он сейчас спит.\n5. Мы сейчас ужинаем.\n6. На улице идёт дождь.\n7. Ты слушаешь музыку.\n8. Моя мама готовит на кухне.\n9. Дети занимаются в своей комнате.\n10. Я пишу письмо.",
+                    "subtasks": [
+                        {"question": "Я сейчас читаю книгу.", "answer": "I am reading a book now.", "explanation": "I am reading a book now."},
+                        {"question": "Она смотрит телевизор в данный момент.", "answer": "She is watching TV at the moment.", "explanation": "She is watching TV at the moment."},
+                        {"question": "Они играют в футбол в парке.", "answer": "They are playing football in the park.", "explanation": "They are playing football in the park."},
+                        {"question": "Он сейчас спит.", "answer": "He is sleeping right now.", "explanation": "He is sleeping right now."},
+                        {"question": "Мы сейчас ужинаем.", "answer": "We are having dinner now.", "explanation": "We are having dinner now."},
+                        {"question": "На улице идёт дождь.", "answer": "It is raining outside.", "explanation": "It is raining outside."},
+                        {"question": "Ты слушаешь музыку.", "answer": "You are listening to music.", "explanation": "You are listening to music."},
+                        {"question": "Моя мама готовит на кухне.", "answer": "My mother is cooking in the kitchen.", "explanation": "My mother is cooking in the kitchen."},
+                        {"question": "Дети занимаются в своей комнате.", "answer": "The children are studying in their room.", "explanation": "The children are studying in their room."},
+                        {"question": "Я пишу письмо.", "answer": "I am writing a letter.", "explanation": "I am writing a letter."}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Составьте предложения из слов (Present Continuous).\n\n1. reading / I / book / a / now / am\n2. watching / she / TV / moment / at / is / the\n3. playing / park / in / are / the / they / football\n4. sleeping / now / right / he / is\n5. dinner / having / now / we / are\n6. raining / outside / is / it\n7. listening / you / music / to / are\n8. mother / kitchen / in / cooking / is / my / the\n9. studying / children / room / their / in / are / the\n10. writing / a / letter / am / I",
+                    "subtasks": [
+                        {"question": "reading / I / book / a / now / am", "answer": "I am reading a book now.", "explanation": "I am reading a book now."},
+                        {"question": "watching / she / TV / moment / at / is / the", "answer": "She is watching TV at the moment.", "explanation": "She is watching TV at the moment."},
+                        {"question": "playing / park / in / are / the / they / football", "answer": "They are playing football in the park.", "explanation": "They are playing football in the park."},
+                        {"question": "sleeping / now / right / he / is", "answer": "He is sleeping right now.", "explanation": "He is sleeping right now."},
+                        {"question": "dinner / having / now / we / are", "answer": "We are having dinner now.", "explanation": "We are having dinner now."},
+                        {"question": "raining / outside / is / it", "answer": "It is raining outside.", "explanation": "It is raining outside."},
+                        {"question": "listening / you / music / to / are", "answer": "You are listening to music.", "explanation": "You are listening to music."},
+                        {"question": "mother / kitchen / in / cooking / is / my / the", "answer": "My mother is cooking in the kitchen.", "explanation": "My mother is cooking in the kitchen."},
+                        {"question": "studying / children / room / their / in / are / the", "answer": "The children are studying in their room.", "explanation": "The children are studying in their room."},
+                        {"question": "writing / a / letter / am / I", "answer": "I am writing a letter.", "explanation": "I am writing a letter."}
+                    ]
+                }
+            ],
+            # Вариант 2
+            [
+                {
+                    "type": "complex",
+                    "text": "Вставьте глагол в правильной форме Present Continuous.\n\n1. We ___ (go) to the cinema tonight.\n2. She ___ (study) for her exam.\n3. They ___ (build) a new house.\n4. He ___ (work) on his project.\n5. I ___ (clean) my room.\n6. It ___ (get) dark.\n7. You ___ (drive) too fast.\n8. My sister ___ (paint) a picture.\n9. The birds ___ (sing) in the tree.\n10. I ___ (wait) for the bus.",
+                    "subtasks": [
+                        {"question": "We ___ (go) to the cinema tonight.", "answer": "are going", "explanation": "we + are + going"},
+                        {"question": "She ___ (study) for her exam.", "answer": "is studying", "explanation": "she + is + studying"},
+                        {"question": "They ___ (build) a new house.", "answer": "are building", "explanation": "they + are + building"},
+                        {"question": "He ___ (work) on his project.", "answer": "is working", "explanation": "he + is + working"},
+                        {"question": "I ___ (clean) my room.", "answer": "am cleaning", "explanation": "I + am + cleaning"},
+                        {"question": "It ___ (get) dark.", "answer": "is getting", "explanation": "it + is + getting"},
+                        {"question": "You ___ (drive) too fast.", "answer": "are driving", "explanation": "you + are + driving"},
+                        {"question": "My sister ___ (paint) a picture.", "answer": "is painting", "explanation": "sister = she → is painting"},
+                        {"question": "The birds ___ (sing) in the tree.", "answer": "are singing", "explanation": "birds = they → are singing"},
+                        {"question": "I ___ (wait) for the bus.", "answer": "am waiting", "explanation": "I + am + waiting"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Переведите предложения на английский (Present Continuous).\n\n1. Мы идём в кино сегодня вечером.\n2. Она готовится к экзамену.\n3. Они строят новый дом.\n4. Он работает над своим проектом.\n5. Я убираю свою комнату.\n6. Темнеет.\n7. Ты ведёшь слишком быстро.\n8. Моя сестра рисует картину.\n9. Птицы поют на дереве.\n10. Я жду автобус.",
+                    "subtasks": [
+                        {"question": "Мы идём в кино сегодня вечером.", "answer": "We are going to the cinema tonight.", "explanation": "We are going to the cinema tonight."},
+                        {"question": "Она готовится к экзамену.", "answer": "She is studying for her exam.", "explanation": "She is studying for her exam."},
+                        {"question": "Они строят новый дом.", "answer": "They are building a new house.", "explanation": "They are building a new house."},
+                        {"question": "Он работает над своим проектом.", "answer": "He is working on his project.", "explanation": "He is working on his project."},
+                        {"question": "Я убираю свою комнату.", "answer": "I am cleaning my room.", "explanation": "I am cleaning my room."},
+                        {"question": "Темнеет.", "answer": "It is getting dark.", "explanation": "It is getting dark."},
+                        {"question": "Ты ведёшь слишком быстро.", "answer": "You are driving too fast.", "explanation": "You are driving too fast."},
+                        {"question": "Моя сестра рисует картину.", "answer": "My sister is painting a picture.", "explanation": "My sister is painting a picture."},
+                        {"question": "Птицы поют на дереве.", "answer": "The birds are singing in the tree.", "explanation": "The birds are singing in the tree."},
+                        {"question": "Я жду автобус.", "answer": "I am waiting for the bus.", "explanation": "I am waiting for the bus."}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Составьте предложения из слов (Present Continuous).\n\n1. going / to / cinema / tonight / we / are / the\n2. for / is / studying / exam / she / her\n3. building / house / are / new / a / they\n4. his / working / project / he / on / is\n5. my / cleaning / am / room / I\n6. getting / dark / is / it\n7. driving / fast / too / are / you\n8. painting / a / picture / sister / is / my\n9. singing / tree / birds / the / in / are\n10. waiting / bus / for / I / am / the",
+                    "subtasks": [
+                        {"question": "going / to / cinema / tonight / we / are / the", "answer": "We are going to the cinema tonight.", "explanation": "We are going to the cinema tonight."},
+                        {"question": "for / is / studying / exam / she / her", "answer": "She is studying for her exam.", "explanation": "She is studying for her exam."},
+                        {"question": "building / house / are / new / a / they", "answer": "They are building a new house.", "explanation": "They are building a new house."},
+                        {"question": "his / working / project / he / on / is", "answer": "He is working on his project.", "explanation": "He is working on his project."},
+                        {"question": "my / cleaning / am / room / I", "answer": "I am cleaning my room.", "explanation": "I am cleaning my room."},
+                        {"question": "getting / dark / is / it", "answer": "It is getting dark.", "explanation": "It is getting dark."},
+                        {"question": "driving / fast / too / are / you", "answer": "You are driving too fast.", "explanation": "You are driving too fast."},
+                        {"question": "painting / a / picture / sister / is / my", "answer": "My sister is painting a picture.", "explanation": "My sister is painting a picture."},
+                        {"question": "singing / tree / birds / the / in / are", "answer": "The birds are singing in the tree.", "explanation": "The birds are singing in the tree."},
+                        {"question": "waiting / bus / for / I / am / the", "answer": "I am waiting for the bus.", "explanation": "I am waiting for the bus."}
+                    ]
+                }
+            ],
+            # Вариант 3
+            [
+                {
+                    "type": "complex",
+                    "text": "Вставьте глагол в правильной форме Present Continuous.\n\n1. He ___ (play) the guitar now.\n2. They ___ (run) in the park.\n3. We ___ (learn) English.\n4. She ___ (write) a story.\n5. I ___ (eat) an apple.\n6. It ___ (snow) outside.\n7. You ___ (talk) too much.\n8. My father ___ (repair) the car.\n9. The dog ___ (bark) loudly.\n10. I ___ (feel) happy today.",
+                    "subtasks": [
+                        {"question": "He ___ (play) the guitar now.", "answer": "is playing", "explanation": "he + is + playing"},
+                        {"question": "They ___ (run) in the park.", "answer": "are running", "explanation": "they + are + running"},
+                        {"question": "We ___ (learn) English.", "answer": "are learning", "explanation": "we + are + learning"},
+                        {"question": "She ___ (write) a story.", "answer": "is writing", "explanation": "she + is + writing"},
+                        {"question": "I ___ (eat) an apple.", "answer": "am eating", "explanation": "I + am + eating"},
+                        {"question": "It ___ (snow) outside.", "answer": "is snowing", "explanation": "it + is + snowing"},
+                        {"question": "You ___ (talk) too much.", "answer": "are talking", "explanation": "you + are + talking"},
+                        {"question": "My father ___ (repair) the car.", "answer": "is repairing", "explanation": "father = he → is repairing"},
+                        {"question": "The dog ___ (bark) loudly.", "answer": "is barking", "explanation": "dog = it → is barking"},
+                        {"question": "I ___ (feel) happy today.", "answer": "am feeling", "explanation": "I + am + feeling"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Переведите предложения на английский (Present Continuous).\n\n1. Он сейчас играет на гитаре.\n2. Они бегают в парке.\n3. Мы учим английский.\n4. Она пишет рассказ.\n5. Я ем яблоко.\n6. На улице идёт снег.\n7. Ты слишком много говоришь.\n8. Мой отец ремонтирует машину.\n9. Собака громко лает.\n10. Я чувствую себя счастливым сегодня.",
+                    "subtasks": [
+                        {"question": "Он сейчас играет на гитаре.", "answer": "He is playing the guitar now.", "explanation": "He is playing the guitar now."},
+                        {"question": "Они бегают в парке.", "answer": "They are running in the park.", "explanation": "They are running in the park."},
+                        {"question": "Мы учим английский.", "answer": "We are learning English.", "explanation": "We are learning English."},
+                        {"question": "Она пишет рассказ.", "answer": "She is writing a story.", "explanation": "She is writing a story."},
+                        {"question": "Я ем яблоко.", "answer": "I am eating an apple.", "explanation": "I am eating an apple."},
+                        {"question": "На улице идёт снег.", "answer": "It is snowing outside.", "explanation": "It is snowing outside."},
+                        {"question": "Ты слишком много говоришь.", "answer": "You are talking too much.", "explanation": "You are talking too much."},
+                        {"question": "Мой отец ремонтирует машину.", "answer": "My father is repairing the car.", "explanation": "My father is repairing the car."},
+                        {"question": "Собака громко лает.", "answer": "The dog is barking loudly.", "explanation": "The dog is barking loudly."},
+                        {"question": "Я чувствую себя счастливым сегодня.", "answer": "I am feeling happy today.", "explanation": "I am feeling happy today."}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Составьте предложения из слов (Present Continuous).\n\n1. playing / guitar / he / now / the / is\n2. running / park / are / the / in / they\n3. learning / English / are / we\n4. writing / story / a / is / she\n5. eating / an / apple / am / I\n6. snowing / outside / is / it\n7. talking / too / much / are / you\n8. repairing / car / father / my / is / the\n9. barking / loudly / dog / the / is\n10. feeling / happy / today / am / I",
+                    "subtasks": [
+                        {"question": "playing / guitar / he / now / the / is", "answer": "He is playing the guitar now.", "explanation": "He is playing the guitar now."},
+                        {"question": "running / park / are / the / in / they", "answer": "They are running in the park.", "explanation": "They are running in the park."},
+                        {"question": "learning / English / are / we", "answer": "We are learning English.", "explanation": "We are learning English."},
+                        {"question": "writing / story / a / is / she", "answer": "She is writing a story.", "explanation": "She is writing a story."},
+                        {"question": "eating / an / apple / am / I", "answer": "I am eating an apple.", "explanation": "I am eating an apple."},
+                        {"question": "snowing / outside / is / it", "answer": "It is snowing outside.", "explanation": "It is snowing outside."},
+                        {"question": "talking / too / much / are / you", "answer": "You are talking too much.", "explanation": "You are talking too much."},
+                        {"question": "repairing / car / father / my / is / the", "answer": "My father is repairing the car.", "explanation": "My father is repairing the car."},
+                        {"question": "barking / loudly / dog / the / is", "answer": "The dog is barking loudly.", "explanation": "The dog is barking loudly."},
+                        {"question": "feeling / happy / today / am / I", "answer": "I am feeling happy today.", "explanation": "I am feeling happy today."}
+                    ]
+                }
+            ],
+            # Вариант 4
+            [
+                {
+                    "type": "complex",
+                    "text": "Вставьте глагол в правильной форме Present Continuous.\n\n1. We ___ (plan) a trip to London.\n2. She ___ (wear) a red dress today.\n3. They ___ (discuss) the project.\n4. He ___ (fix) his bike.\n5. I ___ (make) breakfast.\n6. It ___ (become) warmer.\n7. You ___ (use) my phone.\n8. My grandmother ___ (knit) a sweater.\n9. The children ___ (swim) in the pool.\n10. I ___ (think) about you.",
+                    "subtasks": [
+                        {"question": "We ___ (plan) a trip to London.", "answer": "are planning", "explanation": "we + are + planning"},
+                        {"question": "She ___ (wear) a red dress today.", "answer": "is wearing", "explanation": "she + is + wearing"},
+                        {"question": "They ___ (discuss) the project.", "answer": "are discussing", "explanation": "they + are + discussing"},
+                        {"question": "He ___ (fix) his bike.", "answer": "is fixing", "explanation": "he + is + fixing"},
+                        {"question": "I ___ (make) breakfast.", "answer": "am making", "explanation": "I + am + making"},
+                        {"question": "It ___ (become) warmer.", "answer": "is becoming", "explanation": "it + is + becoming"},
+                        {"question": "You ___ (use) my phone.", "answer": "are using", "explanation": "you + are + using"},
+                        {"question": "My grandmother ___ (knit) a sweater.", "answer": "is knitting", "explanation": "grandmother = she → is knitting"},
+                        {"question": "The children ___ (swim) in the pool.", "answer": "are swimming", "explanation": "children = they → are swimming"},
+                        {"question": "I ___ (think) about you.", "answer": "am thinking", "explanation": "I + am + thinking"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Переведите предложения на английский (Present Continuous).\n\n1. Мы планируем поездку в Лондон.\n2. Она сегодня в красном платье.\n3. Они обсуждают проект.\n4. Он чинит свой велосипед.\n5. Я готовлю завтрак.\n6. Становится теплее.\n7. Ты пользуешься моим телефоном.\n8. Моя бабушка вяжет свитер.\n9. Дети плавают в бассейне.\n10. Я думаю о тебе.",
+                    "subtasks": [
+                        {"question": "Мы планируем поездку в Лондон.", "answer": "We are planning a trip to London.", "explanation": "We are planning a trip to London."},
+                        {"question": "Она сегодня в красном платье.", "answer": "She is wearing a red dress today.", "explanation": "She is wearing a red dress today."},
+                        {"question": "Они обсуждают проект.", "answer": "They are discussing the project.", "explanation": "They are discussing the project."},
+                        {"question": "Он чинит свой велосипед.", "answer": "He is fixing his bike.", "explanation": "He is fixing his bike."},
+                        {"question": "Я готовлю завтрак.", "answer": "I am making breakfast.", "explanation": "I am making breakfast."},
+                        {"question": "Становится теплее.", "answer": "It is becoming warmer.", "explanation": "It is becoming warmer."},
+                        {"question": "Ты пользуешься моим телефоном.", "answer": "You are using my phone.", "explanation": "You are using my phone."},
+                        {"question": "Моя бабушка вяжет свитер.", "answer": "My grandmother is knitting a sweater.", "explanation": "My grandmother is knitting a sweater."},
+                        {"question": "Дети плавают в бассейне.", "answer": "The children are swimming in the pool.", "explanation": "The children are swimming in the pool."},
+                        {"question": "Я думаю о тебе.", "answer": "I am thinking about you.", "explanation": "I am thinking about you."}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Составьте предложения из слов (Present Continuous).\n\n1. planning / trip / a / London / we / to / are\n2. wearing / red / a / dress / today / she / is\n3. discussing / project / they / are / the\n4. fixing / bike / he / is / his\n5. making / breakfast / am / I\n6. becoming / warmer / is / it\n7. using / phone / my / are / you\n8. knitting / sweater / a / is / grandmother / my\n9. swimming / pool / children / in / are / the / the\n10. thinking / about / am / I / you",
+                    "subtasks": [
+                        {"question": "planning / trip / a / London / we / to / are", "answer": "We are planning a trip to London.", "explanation": "We are planning a trip to London."},
+                        {"question": "wearing / red / a / dress / today / she / is", "answer": "She is wearing a red dress today.", "explanation": "She is wearing a red dress today."},
+                        {"question": "discussing / project / they / are / the", "answer": "They are discussing the project.", "explanation": "They are discussing the project."},
+                        {"question": "fixing / bike / he / is / his", "answer": "He is fixing his bike.", "explanation": "He is fixing his bike."},
+                        {"question": "making / breakfast / am / I", "answer": "I am making breakfast.", "explanation": "I am making breakfast."},
+                        {"question": "becoming / warmer / is / it", "answer": "It is becoming warmer.", "explanation": "It is becoming warmer."},
+                        {"question": "using / phone / my / are / you", "answer": "You are using my phone.", "explanation": "You are using my phone."},
+                        {"question": "knitting / sweater / a / is / grandmother / my", "answer": "My grandmother is knitting a sweater.", "explanation": "My grandmother is knitting a sweater."},
+                        {"question": "swimming / pool / children / in / are / the / the", "answer": "The children are swimming in the pool.", "explanation": "The children are swimming in the pool."},
+                        {"question": "thinking / about / am / I / you", "answer": "I am thinking about you.", "explanation": "I am thinking about you."}
+                    ]
+                }
+            ],
+            # Вариант 5
+            [
+                {
+                    "type": "complex",
+                    "text": "Вставьте глагол в правильной форме Present Continuous.\n\n1. They ___ (visit) their grandparents today.\n2. She ___ (take) a shower now.\n3. He ___ (read) a newspaper.\n4. We ___ (play) a game.\n5. I ___ (try) to concentrate.\n6. It ___ (get) late.\n7. You ___ (smile) at me.\n8. My uncle ___ (drive) to the city.\n9. The students ___ (take) an exam.\n10. I ___ (look) for my keys.",
+                    "subtasks": [
+                        {"question": "They ___ (visit) their grandparents today.", "answer": "are visiting", "explanation": "they + are + visiting"},
+                        {"question": "She ___ (take) a shower now.", "answer": "is taking", "explanation": "she + is + taking"},
+                        {"question": "He ___ (read) a newspaper.", "answer": "is reading", "explanation": "he + is + reading"},
+                        {"question": "We ___ (play) a game.", "answer": "are playing", "explanation": "we + are + playing"},
+                        {"question": "I ___ (try) to concentrate.", "answer": "am trying", "explanation": "I + am + trying"},
+                        {"question": "It ___ (get) late.", "answer": "is getting", "explanation": "it + is + getting"},
+                        {"question": "You ___ (smile) at me.", "answer": "are smiling", "explanation": "you + are + smiling"},
+                        {"question": "My uncle ___ (drive) to the city.", "answer": "is driving", "explanation": "uncle = he → is driving"},
+                        {"question": "The students ___ (take) an exam.", "answer": "are taking", "explanation": "students = they → are taking"},
+                        {"question": "I ___ (look) for my keys.", "answer": "am looking", "explanation": "I + am + looking"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Переведите предложения на английский (Present Continuous).\n\n1. Они сегодня навещают бабушку и дедушку.\n2. Она сейчас принимает душ.\n3. Он читает газету.\n4. Мы играем в игру.\n5. Я пытаюсь сосредоточиться.\n6. Становится поздно.\n7. Ты улыбаешься мне.\n8. Мой дядя едет в город.\n9. Студенты сдают экзамен.\n10. Я ищу свои ключи.",
+                    "subtasks": [
+                        {"question": "Они сегодня навещают бабушку и дедушку.", "answer": "They are visiting their grandparents today.", "explanation": "They are visiting their grandparents today."},
+                        {"question": "Она сейчас принимает душ.", "answer": "She is taking a shower now.", "explanation": "She is taking a shower now."},
+                        {"question": "Он читает газету.", "answer": "He is reading a newspaper.", "explanation": "He is reading a newspaper."},
+                        {"question": "Мы играем в игру.", "answer": "We are playing a game.", "explanation": "We are playing a game."},
+                        {"question": "Я пытаюсь сосредоточиться.", "answer": "I am trying to concentrate.", "explanation": "I am trying to concentrate."},
+                        {"question": "Становится поздно.", "answer": "It is getting late.", "explanation": "It is getting late."},
+                        {"question": "Ты улыбаешься мне.", "answer": "You are smiling at me.", "explanation": "You are smiling at me."},
+                        {"question": "Мой дядя едет в город.", "answer": "My uncle is driving to the city.", "explanation": "My uncle is driving to the city."},
+                        {"question": "Студенты сдают экзамен.", "answer": "The students are taking an exam.", "explanation": "The students are taking an exam."},
+                        {"question": "Я ищу свои ключи.", "answer": "I am looking for my keys.", "explanation": "I am looking for my keys."}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Составьте предложения из слов (Present Continuous).\n\n1. visiting / grandparents / their / today / are / they\n2. taking / shower / a / now / she / is\n3. reading / a / newspaper / is / he\n4. playing / game / a / are / we\n5. trying / to / concentrate / am / I\n6. getting / late / is / it\n7. smiling / at / me / are / you\n8. driving / city / to / uncle / is / my / the\n9. taking / exam / an / students / are / the\n10. looking / for / keys / my / am / I",
+                    "subtasks": [
+                        {"question": "visiting / grandparents / their / today / are / they", "answer": "They are visiting their grandparents today.", "explanation": "They are visiting their grandparents today."},
+                        {"question": "taking / shower / a / now / she / is", "answer": "She is taking a shower now.", "explanation": "She is taking a shower now."},
+                        {"question": "reading / a / newspaper / is / he", "answer": "He is reading a newspaper.", "explanation": "He is reading a newspaper."},
+                        {"question": "playing / game / a / are / we", "answer": "We are playing a game.", "explanation": "We are playing a game."},
+                        {"question": "trying / to / concentrate / am / I", "answer": "I am trying to concentrate.", "explanation": "I am trying to concentrate."},
+                        {"question": "getting / late / is / it", "answer": "It is getting late.", "explanation": "It is getting late."},
+                        {"question": "smiling / at / me / are / you", "answer": "You are smiling at me.", "explanation": "You are smiling at me."},
+                        {"question": "driving / city / to / uncle / is / my / the", "answer": "My uncle is driving to the city.", "explanation": "My uncle is driving to the city."},
+                        {"question": "taking / exam / an / students / are / the", "answer": "The students are taking an exam.", "explanation": "The students are taking an exam."},
+                        {"question": "looking / for / keys / my / am / I", "answer": "I am looking for my keys.", "explanation": "I am looking for my keys."}
+                    ]
+                }
+            ],
+            # Вариант 6
+            [
+                {
+                    "type": "complex",
+                    "text": "Вставьте глагол в правильной форме Present Continuous.\n\n1. We ___ (watch) a movie right now.\n2. She ___ (sing) a beautiful song.\n3. He ___ (draw) a picture.\n4. They ___ (dance) in the living room.\n5. I ___ (write) an email.\n6. It ___ (happen) again.\n7. You ___ (tell) a lie.\n8. My brother ___ (play) video games.\n9. The baby ___ (sleep) peacefully.\n10. I ___ (miss) you.",
+                    "subtasks": [
+                        {"question": "We ___ (watch) a movie right now.", "answer": "are watching", "explanation": "we + are + watching"},
+                        {"question": "She ___ (sing) a beautiful song.", "answer": "is singing", "explanation": "she + is + singing"},
+                        {"question": "He ___ (draw) a picture.", "answer": "is drawing", "explanation": "he + is + drawing"},
+                        {"question": "They ___ (dance) in the living room.", "answer": "are dancing", "explanation": "they + are + dancing"},
+                        {"question": "I ___ (write) an email.", "answer": "am writing", "explanation": "I + am + writing"},
+                        {"question": "It ___ (happen) again.", "answer": "is happening", "explanation": "it + is + happening"},
+                        {"question": "You ___ (tell) a lie.", "answer": "are telling", "explanation": "you + are + telling"},
+                        {"question": "My brother ___ (play) video games.", "answer": "is playing", "explanation": "brother = he → is playing"},
+                        {"question": "The baby ___ (sleep) peacefully.", "answer": "is sleeping", "explanation": "baby = it → is sleeping"},
+                        {"question": "I ___ (miss) you.", "answer": "am missing", "explanation": "I + am + missing"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Переведите предложения на английский (Present Continuous).\n\n1. Мы смотрим фильм прямо сейчас.\n2. Она поёт красивую песню.\n3. Он рисует картину.\n4. Они танцуют в гостиной.\n5. Я пишу письмо.\n6. Это снова происходит.\n7. Ты говоришь неправду.\n8. Мой брат играет в видеоигры.\n9. Ребёнок мирно спит.\n10. Я скучаю по тебе.",
+                    "subtasks": [
+                        {"question": "Мы смотрим фильм прямо сейчас.", "answer": "We are watching a movie right now.", "explanation": "We are watching a movie right now."},
+                        {"question": "Она поёт красивую песню.", "answer": "She is singing a beautiful song.", "explanation": "She is singing a beautiful song."},
+                        {"question": "Он рисует картину.", "answer": "He is drawing a picture.", "explanation": "He is drawing a picture."},
+                        {"question": "Они танцуют в гостиной.", "answer": "They are dancing in the living room.", "explanation": "They are dancing in the living room."},
+                        {"question": "Я пишу письмо.", "answer": "I am writing an email.", "explanation": "I am writing an email."},
+                        {"question": "Это снова происходит.", "answer": "It is happening again.", "explanation": "It is happening again."},
+                        {"question": "Ты говоришь неправду.", "answer": "You are telling a lie.", "explanation": "You are telling a lie."},
+                        {"question": "Мой брат играет в видеоигры.", "answer": "My brother is playing video games.", "explanation": "My brother is playing video games."},
+                        {"question": "Ребёнок мирно спит.", "answer": "The baby is sleeping peacefully.", "explanation": "The baby is sleeping peacefully."},
+                        {"question": "Я скучаю по тебе.", "answer": "I am missing you.", "explanation": "I am missing you."}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Составьте предложения из слов (Present Continuous).\n\n1. watching / a / movie / right / now / are / we\n2. singing / a / beautiful / song / is / she\n3. drawing / a / picture / is / he\n4. dancing / living / room / in / the / are / they\n5. writing / an / email / am / I\n6. happening / again / is / it\n7. telling / a / lie / are / you\n8. playing / video / games / brother / is / my\n9. baby / peacefully / sleeping / the / is\n10. missing / you / am / I",
+                    "subtasks": [
+                        {"question": "watching / a / movie / right / now / are / we", "answer": "We are watching a movie right now.", "explanation": "We are watching a movie right now."},
+                        {"question": "singing / a / beautiful / song / is / she", "answer": "She is singing a beautiful song.", "explanation": "She is singing a beautiful song."},
+                        {"question": "drawing / a / picture / is / he", "answer": "He is drawing a picture.", "explanation": "He is drawing a picture."},
+                        {"question": "dancing / living / room / in / the / are / they", "answer": "They are dancing in the living room.", "explanation": "They are dancing in the living room."},
+                        {"question": "writing / an / email / am / I", "answer": "I am writing an email.", "explanation": "I am writing an email."},
+                        {"question": "happening / again / is / it", "answer": "It is happening again.", "explanation": "It is happening again."},
+                        {"question": "telling / a / lie / are / you", "answer": "You are telling a lie.", "explanation": "You are telling a lie."},
+                        {"question": "playing / video / games / brother / is / my", "answer": "My brother is playing video games.", "explanation": "My brother is playing video games."},
+                        {"question": "baby / peacefully / sleeping / the / is", "answer": "The baby is sleeping peacefully.", "explanation": "The baby is sleeping peacefully."},
+                        {"question": "missing / you / am / I", "answer": "I am missing you.", "explanation": "I am missing you."}
+                    ]
+                }
+            ],
+            # Вариант 7
+            [
+                {
+                    "type": "complex",
+                    "text": "Вставьте глагол в правильной форме Present Continuous.\n\n1. We ___ (have) a party tonight.\n2. She ___ (work) on her laptop.\n3. He ___ (teach) a class right now.\n4. They ___ (shop) for groceries.\n5. I ___ (travel) to Paris tomorrow.\n6. It ___ (rain) heavily.\n7. You ___ (make) a mistake.\n8. My mom ___ (bake) a cake.\n9. The kids ___ (play) in the yard.\n10. I ___ (dream) about you.",
+                    "subtasks": [
+                        {"question": "We ___ (have) a party tonight.", "answer": "are having", "explanation": "we + are + having"},
+                        {"question": "She ___ (work) on her laptop.", "answer": "is working", "explanation": "she + is + working"},
+                        {"question": "He ___ (teach) a class right now.", "answer": "is teaching", "explanation": "he + is + teaching"},
+                        {"question": "They ___ (shop) for groceries.", "answer": "are shopping", "explanation": "they + are + shopping"},
+                        {"question": "I ___ (travel) to Paris tomorrow.", "answer": "am travelling", "explanation": "I + am + travelling"},
+                        {"question": "It ___ (rain) heavily.", "answer": "is raining", "explanation": "it + is + raining"},
+                        {"question": "You ___ (make) a mistake.", "answer": "are making", "explanation": "you + are + making"},
+                        {"question": "My mom ___ (bake) a cake.", "answer": "is baking", "explanation": "mom = she → is baking"},
+                        {"question": "The kids ___ (play) in the yard.", "answer": "are playing", "explanation": "kids = they → are playing"},
+                        {"question": "I ___ (dream) about you.", "answer": "am dreaming", "explanation": "I + am + dreaming"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Переведите предложения на английский (Present Continuous).\n\n1. Сегодня вечером у нас вечеринка.\n2. Она работает на своём ноутбуке.\n3. Он сейчас ведёт урок.\n4. Они покупают продукты.\n5. Я завтра еду в Париж.\n6. Идёт сильный дождь.\n7. Ты совершаешь ошибку.\n8. Моя мама печёт торт.\n9. Дети играют во дворе.\n10. Я мечтаю о тебе.",
+                    "subtasks": [
+                        {"question": "Сегодня вечером у нас вечеринка.", "answer": "We are having a party tonight.", "explanation": "We are having a party tonight."},
+                        {"question": "Она работает на своём ноутбуке.", "answer": "She is working on her laptop.", "explanation": "She is working on her laptop."},
+                        {"question": "Он сейчас ведёт урок.", "answer": "He is teaching a class right now.", "explanation": "He is teaching a class right now."},
+                        {"question": "Они покупают продукты.", "answer": "They are shopping for groceries.", "explanation": "They are shopping for groceries."},
+                        {"question": "Я завтра еду в Париж.", "answer": "I am travelling to Paris tomorrow.", "explanation": "I am travelling to Paris tomorrow."},
+                        {"question": "Идёт сильный дождь.", "answer": "It is raining heavily.", "explanation": "It is raining heavily."},
+                        {"question": "Ты совершаешь ошибку.", "answer": "You are making a mistake.", "explanation": "You are making a mistake."},
+                        {"question": "Моя мама печёт торт.", "answer": "My mom is baking a cake.", "explanation": "My mom is baking a cake."},
+                        {"question": "Дети играют во дворе.", "answer": "The kids are playing in the yard.", "explanation": "The kids are playing in the yard."},
+                        {"question": "Я мечтаю о тебе.", "answer": "I am dreaming about you.", "explanation": "I am dreaming about you."}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Составьте предложения из слов (Present Continuous).\n\n1. having / party / a / tonight / we / are\n2. working / on / laptop / her / is / she\n3. teaching / class / a / right / now / is / he\n4. shopping / groceries / for / are / they\n5. travelling / Paris / to / tomorrow / am / I\n6. raining / heavily / is / it\n7. making / a / mistake / are / you\n8. baking / a / cake / mom / is / my\n9. playing / yard / in / kids / are / the / the\n10. dreaming / about / am / I / you",
+                    "subtasks": [
+                        {"question": "having / party / a / tonight / we / are", "answer": "We are having a party tonight.", "explanation": "We are having a party tonight."},
+                        {"question": "working / on / laptop / her / is / she", "answer": "She is working on her laptop.", "explanation": "She is working on her laptop."},
+                        {"question": "teaching / class / a / right / now / is / he", "answer": "He is teaching a class right now.", "explanation": "He is teaching a class right now."},
+                        {"question": "shopping / groceries / for / are / they", "answer": "They are shopping for groceries.", "explanation": "They are shopping for groceries."},
+                        {"question": "travelling / Paris / to / tomorrow / am / I", "answer": "I am travelling to Paris tomorrow.", "explanation": "I am travelling to Paris tomorrow."},
+                        {"question": "raining / heavily / is / it", "answer": "It is raining heavily.", "explanation": "It is raining heavily."},
+                        {"question": "making / a / mistake / are / you", "answer": "You are making a mistake.", "explanation": "You are making a mistake."},
+                        {"question": "baking / a / cake / mom / is / my", "answer": "My mom is baking a cake.", "explanation": "My mom is baking a cake."},
+                        {"question": "playing / yard / in / kids / are / the / the", "answer": "The kids are playing in the yard.", "explanation": "The kids are playing in the yard."},
+                        {"question": "dreaming / about / am / I / you", "answer": "I am dreaming about you.", "explanation": "I am dreaming about you."}
+                    ]
+                }
+            ],
+            # Вариант 8
+            [
+                {
+                    "type": "complex",
+                    "text": "Вставьте глагол в правильной форме Present Continuous.\n\n1. We ___ (wait) for the train.\n2. She ___ (buy) a new phone.\n3. He ___ (paint) the house.\n4. They ___ (talk) on the phone.\n5. I ___ (take) a picture.\n6. It ___ (get) windy.\n7. You ___ (read) my mind.\n8. My father ___ (cut) the grass.\n9. The students ___ (listen) to the teacher.\n10. I ___ (feel) better.",
+                    "subtasks": [
+                        {"question": "We ___ (wait) for the train.", "answer": "are waiting", "explanation": "we + are + waiting"},
+                        {"question": "She ___ (buy) a new phone.", "answer": "is buying", "explanation": "she + is + buying"},
+                        {"question": "He ___ (paint) the house.", "answer": "is painting", "explanation": "he + is + painting"},
+                        {"question": "They ___ (talk) on the phone.", "answer": "are talking", "explanation": "they + are + talking"},
+                        {"question": "I ___ (take) a picture.", "answer": "am taking", "explanation": "I + am + taking"},
+                        {"question": "It ___ (get) windy.", "answer": "is getting", "explanation": "it + is + getting"},
+                        {"question": "You ___ (read) my mind.", "answer": "are reading", "explanation": "you + are + reading"},
+                        {"question": "My father ___ (cut) the grass.", "answer": "is cutting", "explanation": "father = he → is cutting"},
+                        {"question": "The students ___ (listen) to the teacher.", "answer": "are listening", "explanation": "students = they → are listening"},
+                        {"question": "I ___ (feel) better.", "answer": "am feeling", "explanation": "I + am + feeling"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Переведите предложения на английский (Present Continuous).\n\n1. Мы ждём поезд.\n2. Она покупает новый телефон.\n3. Он красит дом.\n4. Они разговаривают по телефону.\n5. Я фотографирую.\n6. Становится ветрено.\n7. Ты читаешь мои мысли.\n8. Мой отец стрижёт газон.\n9. Студенты слушают учителя.\n10. Я чувствую себя лучше.",
+                    "subtasks": [
+                        {"question": "Мы ждём поезд.", "answer": "We are waiting for the train.", "explanation": "We are waiting for the train."},
+                        {"question": "Она покупает новый телефон.", "answer": "She is buying a new phone.", "explanation": "She is buying a new phone."},
+                        {"question": "Он красит дом.", "answer": "He is painting the house.", "explanation": "He is painting the house."},
+                        {"question": "Они разговаривают по телефону.", "answer": "They are talking on the phone.", "explanation": "They are talking on the phone."},
+                        {"question": "Я фотографирую.", "answer": "I am taking a picture.", "explanation": "I am taking a picture."},
+                        {"question": "Становится ветрено.", "answer": "It is getting windy.", "explanation": "It is getting windy."},
+                        {"question": "Ты читаешь мои мысли.", "answer": "You are reading my mind.", "explanation": "You are reading my mind."},
+                        {"question": "Мой отец стрижёт газон.", "answer": "My father is cutting the grass.", "explanation": "My father is cutting the grass."},
+                        {"question": "Студенты слушают учителя.", "answer": "The students are listening to the teacher.", "explanation": "The students are listening to the teacher."},
+                        {"question": "Я чувствую себя лучше.", "answer": "I am feeling better.", "explanation": "I am feeling better."}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Составьте предложения из слов (Present Continuous).\n\n1. waiting / for / train / the / we / are\n2. buying / a / new / phone / is / she\n3. painting / house / the / is / he\n4. talking / on / phone / the / are / they\n5. taking / a / picture / am / I\n6. getting / windy / is / it\n7. reading / mind / my / are / you\n8. cutting / grass / father / the / is / my\n9. listening / to / teacher / students / the / are / the\n10. feeling / better / am / I",
+                    "subtasks": [
+                        {"question": "waiting / for / train / the / we / are", "answer": "We are waiting for the train.", "explanation": "We are waiting for the train."},
+                        {"question": "buying / a / new / phone / is / she", "answer": "She is buying a new phone.", "explanation": "She is buying a new phone."},
+                        {"question": "painting / house / the / is / he", "answer": "He is painting the house.", "explanation": "He is painting the house."},
+                        {"question": "talking / on / phone / the / are / they", "answer": "They are talking on the phone.", "explanation": "They are talking on the phone."},
+                        {"question": "taking / a / picture / am / I", "answer": "I am taking a picture.", "explanation": "I am taking a picture."},
+                        {"question": "getting / windy / is / it", "answer": "It is getting windy.", "explanation": "It is getting windy."},
+                        {"question": "reading / mind / my / are / you", "answer": "You are reading my mind.", "explanation": "You are reading my mind."},
+                        {"question": "cutting / grass / father / the / is / my", "answer": "My father is cutting the grass.", "explanation": "My father is cutting the grass."},
+                        {"question": "listening / to / teacher / students / the / are / the", "answer": "The students are listening to the teacher.", "explanation": "The students are listening to the teacher."},
+                        {"question": "feeling / better / am / I", "answer": "I am feeling better.", "explanation": "I am feeling better."}
+                    ]
+                }
+            ],
+            # Вариант 9
+            [
+                {
+                    "type": "complex",
+                    "text": "Вставьте глагол в правильной форме Present Continuous.\n\n1. We ___ (prepare) for the exam.\n2. She ___ (wear) a new dress.\n3. He ___ (fix) the computer.\n4. They ___ (order) pizza.\n5. I ___ (learn) to drive.\n6. It ___ (shine) brightly.\n7. You ___ (look) at me.\n8. My sister ___ (write) a poem.\n9. The boys ___ (run) in the race.\n10. I ___ (enjoy) the party.",
+                    "subtasks": [
+                        {"question": "We ___ (prepare) for the exam.", "answer": "are preparing", "explanation": "we + are + preparing"},
+                        {"question": "She ___ (wear) a new dress.", "answer": "is wearing", "explanation": "she + is + wearing"},
+                        {"question": "He ___ (fix) the computer.", "answer": "is fixing", "explanation": "he + is + fixing"},
+                        {"question": "They ___ (order) pizza.", "answer": "are ordering", "explanation": "they + are + ordering"},
+                        {"question": "I ___ (learn) to drive.", "answer": "am learning", "explanation": "I + am + learning"},
+                        {"question": "It ___ (shine) brightly.", "answer": "is shining", "explanation": "it + is + shining"},
+                        {"question": "You ___ (look) at me.", "answer": "are looking", "explanation": "you + are + looking"},
+                        {"question": "My sister ___ (write) a poem.", "answer": "is writing", "explanation": "sister = she → is writing"},
+                        {"question": "The boys ___ (run) in the race.", "answer": "are running", "explanation": "boys = they → are running"},
+                        {"question": "I ___ (enjoy) the party.", "answer": "am enjoying", "explanation": "I + am + enjoying"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Переведите предложения на английский (Present Continuous).\n\n1. Мы готовимся к экзамену.\n2. Она носит новое платье.\n3. Он чинит компьютер.\n4. Они заказывают пиццу.\n5. Я учусь водить.\n6. Ярко светит солнце.\n7. Ты смотришь на меня.\n8. Моя сестра пишет стихотворение.\n9. Мальчики бегут в забеге.\n10. Я наслаждаюсь вечеринкой.",
+                    "subtasks": [
+                        {"question": "Мы готовимся к экзамену.", "answer": "We are preparing for the exam.", "explanation": "We are preparing for the exam."},
+                        {"question": "Она носит новое платье.", "answer": "She is wearing a new dress.", "explanation": "She is wearing a new dress."},
+                        {"question": "Он чинит компьютер.", "answer": "He is fixing the computer.", "explanation": "He is fixing the computer."},
+                        {"question": "Они заказывают пиццу.", "answer": "They are ordering pizza.", "explanation": "They are ordering pizza."},
+                        {"question": "Я учусь водить.", "answer": "I am learning to drive.", "explanation": "I am learning to drive."},
+                        {"question": "Ярко светит солнце.", "answer": "It is shining brightly.", "explanation": "It is shining brightly."},
+                        {"question": "Ты смотришь на меня.", "answer": "You are looking at me.", "explanation": "You are looking at me."},
+                        {"question": "Моя сестра пишет стихотворение.", "answer": "My sister is writing a poem.", "explanation": "My sister is writing a poem."},
+                        {"question": "Мальчики бегут в забеге.", "answer": "The boys are running in the race.", "explanation": "The boys are running in the race."},
+                        {"question": "Я наслаждаюсь вечеринкой.", "answer": "I am enjoying the party.", "explanation": "I am enjoying the party."}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Составьте предложения из слов (Present Continuous).\n\n1. preparing / for / exam / the / are / we\n2. wearing / new / a / dress / is / she\n3. fixing / computer / the / is / he\n4. ordering / pizza / are / they\n5. learning / to / drive / am / I\n6. shining / brightly / is / it\n7. looking / at / me / are / you\n8. writing / poem / a / is / sister / my\n9. running / in / race / the / boys / are / the\n10. enjoying / party / the / am / I",
+                    "subtasks": [
+                        {"question": "preparing / for / exam / the / are / we", "answer": "We are preparing for the exam.", "explanation": "We are preparing for the exam."},
+                        {"question": "wearing / new / a / dress / is / she", "answer": "She is wearing a new dress.", "explanation": "She is wearing a new dress."},
+                        {"question": "fixing / computer / the / is / he", "answer": "He is fixing the computer.", "explanation": "He is fixing the computer."},
+                        {"question": "ordering / pizza / are / they", "answer": "They are ordering pizza.", "explanation": "They are ordering pizza."},
+                        {"question": "learning / to / drive / am / I", "answer": "I am learning to drive.", "explanation": "I am learning to drive."},
+                        {"question": "shining / brightly / is / it", "answer": "It is shining brightly.", "explanation": "It is shining brightly."},
+                        {"question": "looking / at / me / are / you", "answer": "You are looking at me.", "explanation": "You are looking at me."},
+                        {"question": "writing / poem / a / is / sister / my", "answer": "My sister is writing a poem.", "explanation": "My sister is writing a poem."},
+                        {"question": "running / in / race / the / boys / are / the", "answer": "The boys are running in the race.", "explanation": "The boys are running in the race."},
+                        {"question": "enjoying / party / the / am / I", "answer": "I am enjoying the party.", "explanation": "I am enjoying the party."}
+                    ]
+                }
+            ],
+            # Вариант 10
+            [
+                {
+                    "type": "complex",
+                    "text": "Вставьте глагол в правильной форме Present Continuous.\n\n1. We ___ (leave) for work now.\n2. She ___ (drink) coffee.\n3. He ___ (walk) his dog.\n4. They ___ (swim) in the sea.\n5. I ___ (play) the piano.\n6. It ___ (blow) strongly.\n7. You ___ (make) progress.\n8. My husband ___ (clean) the house.\n9. The girls ___ (shop) for dresses.\n10. I ___ (try) to sleep.",
+                    "subtasks": [
+                        {"question": "We ___ (leave) for work now.", "answer": "are leaving", "explanation": "we + are + leaving"},
+                        {"question": "She ___ (drink) coffee.", "answer": "is drinking", "explanation": "she + is + drinking"},
+                        {"question": "He ___ (walk) his dog.", "answer": "is walking", "explanation": "he + is + walking"},
+                        {"question": "They ___ (swim) in the sea.", "answer": "are swimming", "explanation": "they + are + swimming"},
+                        {"question": "I ___ (play) the piano.", "answer": "am playing", "explanation": "I + am + playing"},
+                        {"question": "It ___ (blow) strongly.", "answer": "is blowing", "explanation": "it + is + blowing"},
+                        {"question": "You ___ (make) progress.", "answer": "are making", "explanation": "you + are + making"},
+                        {"question": "My husband ___ (clean) the house.", "answer": "is cleaning", "explanation": "husband = he → is cleaning"},
+                        {"question": "The girls ___ (shop) for dresses.", "answer": "are shopping", "explanation": "girls = they → are shopping"},
+                        {"question": "I ___ (try) to sleep.", "answer": "am trying", "explanation": "I + am + trying"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Переведите предложения на английский (Present Continuous).\n\n1. Мы сейчас уезжаем на работу.\n2. Она пьёт кофе.\n3. Он выгуливает собаку.\n4. Они плавают в море.\n5. Я играю на пианино.\n6. Сильно дует ветер.\n7. Ты делаешь успехи.\n8. Мой муж убирает дом.\n9. Девочки покупают платья.\n10. Я пытаюсь уснуть.",
+                    "subtasks": [
+                        {"question": "Мы сейчас уезжаем на работу.", "answer": "We are leaving for work now.", "explanation": "We are leaving for work now."},
+                        {"question": "Она пьёт кофе.", "answer": "She is drinking coffee.", "explanation": "She is drinking coffee."},
+                        {"question": "Он выгуливает собаку.", "answer": "He is walking his dog.", "explanation": "He is walking his dog."},
+                        {"question": "Они плавают в море.", "answer": "They are swimming in the sea.", "explanation": "They are swimming in the sea."},
+                        {"question": "Я играю на пианино.", "answer": "I am playing the piano.", "explanation": "I am playing the piano."},
+                        {"question": "Сильно дует ветер.", "answer": "It is blowing strongly.", "explanation": "It is blowing strongly."},
+                        {"question": "Ты делаешь успехи.", "answer": "You are making progress.", "explanation": "You are making progress."},
+                        {"question": "Мой муж убирает дом.", "answer": "My husband is cleaning the house.", "explanation": "My husband is cleaning the house."},
+                        {"question": "Девочки покупают платья.", "answer": "The girls are shopping for dresses.", "explanation": "The girls are shopping for dresses."},
+                        {"question": "Я пытаюсь уснуть.", "answer": "I am trying to sleep.", "explanation": "I am trying to sleep."}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Составьте предложения из слов (Present Continuous).\n\n1. leaving / for / work / now / we / are\n2. drinking / coffee / is / she\n3. walking / dog / his / is / he\n4. swimming / in / sea / are / they / the\n5. playing / piano / the / am / I\n6. blowing / strongly / is / it\n7. making / progress / are / you\n8. cleaning / house / husband / the / is / my\n9. shopping / for / dresses / girls / are / the\n10. trying / to / sleep / am / I",
+                    "subtasks": [
+                        {"question": "leaving / for / work / now / we / are", "answer": "We are leaving for work now.", "explanation": "We are leaving for work now."},
+                        {"question": "drinking / coffee / is / she", "answer": "She is drinking coffee.", "explanation": "She is drinking coffee."},
+                        {"question": "walking / dog / his / is / he", "answer": "He is walking his dog.", "explanation": "He is walking his dog."},
+                        {"question": "swimming / in / sea / are / they / the", "answer": "They are swimming in the sea.", "explanation": "They are swimming in the sea."},
+                        {"question": "playing / piano / the / am / I", "answer": "I am playing the piano.", "explanation": "I am playing the piano."},
+                        {"question": "blowing / strongly / is / it", "answer": "It is blowing strongly.", "explanation": "It is blowing strongly."},
+                        {"question": "making / progress / are / you", "answer": "You are making progress.", "explanation": "You are making progress."},
+                        {"question": "cleaning / house / husband / the / is / my", "answer": "My husband is cleaning the house.", "explanation": "My husband is cleaning the house."},
+                        {"question": "shopping / for / dresses / girls / are / the", "answer": "The girls are shopping for dresses.", "explanation": "The girls are shopping for dresses."},
+                        {"question": "trying / to / sleep / am / I", "answer": "I am trying to sleep.", "explanation": "I am trying to sleep."}
+                    ]
+                }
+            ]
         ]
-      },
-      {
-        "type": "choice",
-        "text": "They ___ football at the moment.",
-        "correct": "are playing",
-        "hint": "множественное число",
-        "star": True,
-        "options": [
-          "is playing",
-          "are playing",
-          "play",
-          "plays"
-        ]
-      },
-      {
-        "type": "choice",
-        "text": "I ___ an email now.",
-        "correct": "am writing",
-        "hint": "я пишу",
-        "star": True,
-        "options": [
-          "am writing",
-          "write",
-          "writes",
-          "is writing"
-        ]
-      },
-      {
-        "type": "choice",
-        "text": "He ___ TV at the moment.",
-        "correct": "is watching",
-        "hint": "он смотрит",
-        "star": True,
-        "options": [
-          "is watching",
-          "watch",
-          "watches",
-          "are watching"
-        ]
-      },
-      {
-        "type": "choice",
-        "text": "We ___ dinner right now.",
-        "correct": "are having",
-        "hint": "мы ужинаем",
-        "star": True,
-        "options": [
-          "is having",
-          "are having",
-          "have",
-          "has"
-        ]
-      },
-      {
-        "type": "fill_blank",
-        "text": "The dog ___ (bark) at the stranger now.",
-        "correct": "is barking",
-        "hint": "собака лает",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "They ___ (build) a new house at the moment.",
-        "correct": "are building",
-        "hint": "они строят",
-        "star": True
-      },
-      {
-        "type": "reorder",
-        "text": "Составьте предложение: now / the / is / sun / shining",
-        "correct": "The sun is shining now.",
-        "hint": "солнце светит",
-        "star": True
-      },
-      {
-        "type": "translation",
-        "text": "Переведите: Птицы поют в саду прямо сейчас.",
-        "correct": "The birds are singing in the garden right now.",
-        "hint": "множественное число, are singing",
-        "star": True
-      },
-      {
-        "type": "open",
-        "text": "Опишите, что вы делаете прямо сейчас (3-4 предложения, Present Continuous).",
-        "correct": "Пример: I am sitting at my desk. I am doing my homework. My cat is sleeping next to me.",
-        "hint": "используйте am/is/are + глагол-ing",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "She ___ (read) a book right now.",
-        "correct": "is reading",
-        "hint": "глагол to be + ing",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "They ___ (play) football at the moment.",
-        "correct": "are playing",
-        "hint": "множественное число + ing",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "I ___ (write) an email now.",
-        "correct": "am writing",
-        "hint": "я + am + ing",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He ___ (watch) TV at the moment.",
-        "correct": "is watching",
-        "hint": "он + is + ing",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "We ___ (have) dinner right now.",
-        "correct": "are having",
-        "hint": "мы + are + ing",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The cat ___ (sleep) on the sofa now.",
-        "correct": "is sleeping",
-        "hint": "животное одно — is",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "You ___ (listen) to music at the moment.",
-        "correct": "are listening",
-        "hint": "ты/вы + are",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "My parents ___ (work) in the garden now.",
-        "correct": "are working",
-        "hint": "родители — they",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The dog ___ (bark) loudly right now.",
-        "correct": "is barking",
-        "hint": "собака одна — is",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "I ___ (study) for my exam at the moment.",
-        "correct": "am studying",
-        "hint": "я + am + ing",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She ___ (not, dance) now.",
-        "correct": "is not dancing",
-        "hint": "отрицание: is not + ing",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "They ___ (not, swim) at the moment.",
-        "correct": "are not swimming",
-        "hint": "отрицание: are not + ing",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He ___ (not, eat) lunch right now.",
-        "correct": "is not eating",
-        "hint": "отрицание: is not + ing",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "We ___ (not, travel) now.",
-        "correct": "are not travelling",
-        "hint": "отрицание: are not + ing",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "I ___ (not, sleep) at the moment.",
-        "correct": "am not sleeping",
-        "hint": "отрицание: am not + ing",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "___ she ___ (cook) dinner now?",
-        "correct": "Is she cooking",
-        "hint": "вопрос: Is + подлежащее + ing",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "___ they ___ (run) in the park at the moment?",
-        "correct": "Are they running",
-        "hint": "вопрос: Are + подлежащее + ing",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "___ he ___ (play) the guitar now?",
-        "correct": "Is he playing",
-        "hint": "вопрос: Is + he + ing",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "___ you ___ (do) your homework right now?",
-        "correct": "Are you doing",
-        "hint": "вопрос: Are + you + ing",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "___ it ___ (rain) outside at the moment?",
-        "correct": "Is it raining",
-        "hint": "вопрос: Is + it + ing",
-        "star": False
-      },
-      {
-        "type": "reorder",
-        "text": "now / is / she / a song / singing",
-        "correct": "She is singing a song now",
-        "hint": "Порядок: подлежащее + is + ing + дополнение + now",
-        "star": True
-      },
-      {
-        "type": "reorder",
-        "text": "playing / they / are / at the moment / chess",
-        "correct": "They are playing chess at the moment",
-        "hint": "Порядок: They + are + ing + ...",
-        "star": True
-      },
-      {
-        "type": "reorder",
-        "text": "not / I / am / now / sleeping",
-        "correct": "I am not sleeping now",
-        "hint": "Отрицание: I + am + not + ing",
-        "star": True
-      },
-      {
-        "type": "reorder",
-        "text": "he / is / what / doing / now?",
-        "correct": "What is he doing now?",
-        "hint": "Вопрос: What + is + he + ing",
-        "star": True
-      },
-      {
-        "type": "translation",
-        "text": "Она сейчас читает газету.",
-        "correct": "She is reading a newspaper now",
-        "hint": "Present Continuous для действия прямо сейчас",
-        "star": True
-      },
-      {
-        "type": "translation",
-        "text": "Мы не играем в теннис в данный момент.",
-        "correct": "We are not playing tennis at the moment",
-        "hint": "Отрицание: are not + ing",
-        "star": True
-      },
-      {
-        "type": "translation",
-        "text": "Что ты сейчас делаешь?",
-        "correct": "What are you doing now?",
-        "hint": "Вопрос с what",
-        "star": True
-      },
-      {
-        "type": "choice",
-        "text": "They ___ (watch) a film now.",
-        "correct": "are watching",
-        "hint": "Выберите правильную форму",
-        "options": [
-          "is watching",
-          "are watching",
-          "am watching",
-          "watch"
-        ],
-        "star": True
-      },
-      {
-        "type": "choice",
-        "text": "___ she ___ (write) a letter at the moment?",
-        "correct": "Is she writing",
-        "hint": "Выберите правильный вопрос",
-        "options": [
-          "Is she writing",
-          "Are she writing",
-          "Does she write",
-          "She is writing"
-        ],
-        "star": True
-      },
-      {
-        "type": "open",
-        "text": "Опишите, что делает ваш друг прямо сейчас (3 предложения в Present Continuous).",
-        "correct": "My friend is reading a book. He is sitting on the sofa. He is drinking coffee.",
-        "hint": "Используйте is + ing для каждого действия",
-        "star": True
-      }
-    ]
   },
   "presimplevscont": {
     "title": "Present Simple vs Present Continuous",
@@ -7052,506 +7100,518 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "answer": "Задайте себе вопрос: действие происходит прямо сейчас или это общая истина / привычка?"
       }
     ],
-    "practice_tasks": [
-      {
-        "type": "fill_blank",
-        "text": "She usually ___ (walk) to school.",
-        "correct": "walks",
-        "hint": "Present Simple для регулярных действий",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "Listen! The baby ___ (cry).",
-        "correct": "is crying",
-        "hint": "Present Continuous для действия в момент речи",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "I ___ (not/like) coffee.",
-        "correct": "don't like",
-        "hint": "Present Simple с отрицанием",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "They ___ (play) football right now.",
-        "correct": "are playing",
-        "hint": "Present Continuous с 'right now'",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He ___ (go) to the gym every Monday.",
-        "correct": "goes",
-        "hint": "Present Simple с 'every Monday'",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "Look! It ___ (rain) outside.",
-        "correct": "is raining",
-        "hint": "Present Continuous с 'Look!'",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "We ___ (have) dinner at 7 pm every day.",
-        "correct": "have",
-        "hint": "Present Simple для расписания",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She ___ (read) a book at the moment.",
-        "correct": "is reading",
-        "hint": "Present Continuous с 'at the moment'",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "My parents ___ (work) in a hospital.",
-        "correct": "work",
-        "hint": "Present Simple для фактов",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The cat ___ (sleep) on the sofa now.",
-        "correct": "is sleeping",
-        "hint": "Present Continuous с 'now'",
-        "star": False
-      },
-      {
-        "type": "choice",
-        "text": "I ___ to music every evening.",
-        "correct": "listen",
-        "hint": "Выберите правильную форму",
-        "options": [
-          "listen",
-          "am listening",
-          "listens",
-          "listening"
-        ],
-        "star": False
-      },
-      {
-        "type": "choice",
-        "text": "They ___ a movie at the cinema right now.",
-        "correct": "are watching",
-        "hint": "Действие происходит в данный момент",
-        "options": [
-          "watch",
-          "are watching",
-          "watches",
-          "watching"
-        ],
-        "star": False
-      },
-      {
-        "type": "choice",
-        "text": "He ___ breakfast at 8 am.",
-        "correct": "has",
-        "hint": "Регулярное действие",
-        "options": [
-          "has",
-          "is having",
-          "have",
-          "having"
-        ],
-        "star": False
-      },
-      {
-        "type": "choice",
-        "text": "We ___ to the park now.",
-        "correct": "are going",
-        "hint": "Действие происходит сейчас",
-        "options": [
-          "go",
-          "are going",
-          "goes",
-          "going"
-        ],
-        "star": False
-      },
-      {
-        "type": "choice",
-        "text": "She ___ English very well.",
-        "correct": "speaks",
-        "hint": "Способность или факт",
-        "options": [
-          "speaks",
-          "is speaking",
-          "speak",
-          "speaking"
-        ],
-        "star": False
-      },
-      {
-        "type": "reorder",
-        "text": "she / every / reads / day / books",
-        "correct": "She reads books every day.",
-        "hint": "Порядок слов в Present Simple",
-        "star": False
-      },
-      {
-        "type": "reorder",
-        "text": "they / now / are / playing / tennis",
-        "correct": "They are playing tennis now.",
-        "hint": "Порядок слов в Present Continuous",
-        "star": False
-      },
-      {
-        "type": "reorder",
-        "text": "he / does / not / like / pizza",
-        "correct": "He does not like pizza.",
-        "hint": "Отрицание в Present Simple",
-        "star": False
-      },
-      {
-        "type": "reorder",
-        "text": "i / am / a / writing / letter / at / moment / the",
-        "correct": "I am writing a letter at the moment.",
-        "hint": "Порядок слов с обстоятельством времени",
-        "star": False
-      },
-      {
-        "type": "translation",
-        "text": "Она сейчас готовит ужин.",
-        "correct": "She is cooking dinner now.",
-        "hint": "Present Continuous для текущего действия",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The train ___ (leave) at 6 pm every day.",
-        "correct": "leaves",
-        "hint": "Расписание поездов (Present Simple)",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "I ___ (think) about moving to a new city these days.",
-        "correct": "am thinking",
-        "hint": "Действие в процессе (эти дни)",
-        "star": True
-      },
-      {
-        "type": "choice",
-        "text": "He ___ (taste) the soup to see if it needs salt.",
-        "correct": "is tasting",
-        "hint": "Глагол состояния 'taste' в значении действия",
-        "options": [
-          "tastes",
-          "is tasting",
-          "taste",
-          "tasting"
-        ],
-        "star": True
-      },
-      {
-        "type": "choice",
-        "text": "She ___ (have) a lot of money.",
-        "correct": "has",
-        "hint": "Глагол 'have' в значении обладания",
-        "options": [
-          "has",
-          "is having",
-          "have",
-          "having"
-        ],
-        "star": True
-      },
-      {
-        "type": "reorder",
-        "text": "always / he / is / late / for / class",
-        "correct": "He is always late for class.",
-        "hint": "Наречие частотности с глаголом 'to be'",
-        "star": True
-      },
-      {
-        "type": "reorder",
-        "text": "why / you / are / laughing / now",
-        "correct": "Why are you laughing now?",
-        "hint": "Вопрос в Present Continuous",
-        "star": True
-      },
-      {
-        "type": "translation",
-        "text": "Я вижу, что ты сейчас делаешь.",
-        "correct": "I see what you are doing now.",
-        "hint": "Глагол 'see' в Present Simple, второе действие в Continuous",
-        "star": True
-      },
-      {
-        "type": "translation",
-        "text": "Он обычно пьет чай, но сегодня пьет кофе.",
-        "correct": "He usually drinks tea, but today he is drinking coffee.",
-        "hint": "Сравнение двух времен",
-        "star": True
-      },
-      {
-        "type": "open",
-        "text": "Опишите свой типичный день (3 предложения) и что вы делаете прямо сейчас (1 предложение).",
-        "correct": "I wake up at 7 am. I have breakfast. I go to school. Right now I am doing my homework.",
-        "hint": "Используйте оба времени",
-        "star": True
-      },
-      {
-        "type": "open",
-        "text": "Составьте диалог из 4 реплик: один человек спрашивает о хобби, другой отвечает, используя Present Simple и Present Continuous.",
-        "correct": "A: What do you do in your free time? B: I usually play guitar. A: Are you playing now? B: Yes, I am learning a new song.",
-        "hint": "Чередуйте времена",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "She usually ___ (walk) to school.",
-        "correct": "walks",
-        "hint": "Present Simple для регулярных действий",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "Listen! The children ___ (play) in the garden.",
-        "correct": "are playing",
-        "hint": "Present Continuous для действий, происходящих сейчас",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "I ___ (not/like) coffee.",
-        "correct": "don't like",
-        "hint": "Отрицание в Present Simple",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He ___ (read) a book at the moment.",
-        "correct": "is reading",
-        "hint": "Present Continuous с 'at the moment'",
-        "star": False
-      },
-      {
-        "type": "choice",
-        "text": "They ___ football every Saturday.",
-        "correct": "play",
-        "hint": "Регулярное действие",
-        "options": [
-          "play",
-          "are playing",
-          "plays",
-          "is playing"
-        ],
-        "star": False
-      },
-      {
-        "type": "choice",
-        "text": "Where is John? He ___ a shower.",
-        "correct": "is having",
-        "hint": "Действие происходит сейчас",
-        "options": [
-          "has",
-          "is having",
-          "have",
-          "are having"
-        ],
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "My parents ___ (work) in a hospital.",
-        "correct": "work",
-        "hint": "Факт или постоянная работа",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "Look! It ___ (snow) outside.",
-        "correct": "is snowing",
-        "hint": "Present Continuous для описания того, что видим сейчас",
-        "star": False
-      },
-      {
-        "type": "reorder",
-        "text": "to / every / goes / she / school / day",
-        "correct": "She goes to school every day.",
-        "hint": "Порядок слов в Present Simple",
-        "star": False
-      },
-      {
-        "type": "reorder",
-        "text": "now / they / are / what / doing ?",
-        "correct": "What are they doing now?",
-        "hint": "Вопрос в Present Continuous",
-        "star": False
-      },
-      {
-        "type": "translation",
-        "text": "Я сейчас обедаю.",
-        "correct": "I am having lunch now.",
-        "hint": "Перевод с Present Continuous",
-        "star": False
-      },
-      {
-        "type": "translation",
-        "text": "Он никогда не опаздывает.",
-        "correct": "He never arrives late.",
-        "hint": "Наречия частотности в Present Simple",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "We ___ (not/watch) TV at the moment.",
-        "correct": "are not watching",
-        "hint": "Отрицание в Present Continuous",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "___ she ___ (speak) French?",
-        "correct": "Does she speak",
-        "hint": "Вопрос в Present Simple",
-        "star": False
-      },
-      {
-        "type": "choice",
-        "text": "The train ___ at 6 pm every day.",
-        "correct": "leaves",
-        "hint": "Расписание (Present Simple)",
-        "options": [
-          "leaves",
-          "is leaving",
-          "leave",
-          "are leaving"
-        ],
-        "star": False
-      },
-      {
-        "type": "choice",
-        "text": "Be quiet! The baby ___.",
-        "correct": "is sleeping",
-        "hint": "Действие в процессе",
-        "options": [
-          "sleeps",
-          "is sleeping",
-          "sleep",
-          "are sleeping"
-        ],
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "I ___ (think) this is a good idea.",
-        "correct": "think",
-        "hint": "Глагол состояния (stative verb) в Present Simple",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She ___ (have) a party next Saturday.",
-        "correct": "is having",
-        "hint": "Запланированное будущее действие (Present Continuous)",
-        "star": False
-      },
-      {
-        "type": "reorder",
-        "text": "usually / up / gets / he / early",
-        "correct": "He usually gets up early.",
-        "hint": "Порядок наречий частотности",
-        "star": False
-      },
-      {
-        "type": "translation",
-        "text": "Они сейчас играют в теннис.",
-        "correct": "They are playing tennis now.",
-        "hint": "Present Continuous",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "Water ___ (boil) at 100 degrees Celsius.",
-        "correct": "boils",
-        "hint": "Научный факт (Present Simple)",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "I ___ (see) the doctor tomorrow at 10.",
-        "correct": "am seeing",
-        "hint": "Личная договоренность (Present Continuous для будущего)",
-        "star": True
-      },
-      {
-        "type": "choice",
-        "text": "This soup ___ (taste) delicious.",
-        "correct": "tastes",
-        "hint": "Глагол восприятия в Present Simple",
-        "options": [
-          "tastes",
-          "is tasting",
-          "taste",
-          "are tasting"
-        ],
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "Why ___ you ___ (smell) the milk? Is it off?",
-        "correct": "are you smelling",
-        "hint": "Активное действие (нюхать сейчас)",
-        "star": True
-      },
-      {
-        "type": "reorder",
-        "text": "always / my / is / sister / losing / keys / her",
-        "correct": "My sister is always losing her keys.",
-        "hint": "Present Continuous для раздражения (always)",
-        "star": True
-      },
-      {
-        "type": "translation",
-        "text": "Он постоянно жалуется!",
-        "correct": "He is always complaining!",
-        "hint": "Present Continuous с always для выражения недовольства",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "The match ___ (start) at 8 pm tonight.",
-        "correct": "starts",
-        "hint": "Расписание (Present Simple для будущего)",
-        "star": True
-      },
-      {
-        "type": "choice",
-        "text": "I ___ (think) of moving to London.",
-        "correct": "am thinking",
-        "hint": "Обдумывание (активный процесс)",
-        "options": [
-          "think",
-          "am thinking",
-          "thought",
-          "have thought"
-        ],
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He ___ (have) a lot of money, but he ___ (not/have) a car.",
-        "correct": "has, doesn't have",
-        "hint": "Глагол have в разных значениях (обладание vs действие)",
-        "star": True
-      },
-      {
-        "type": "open",
-        "text": "Describe your daily routine using Present Simple and what you are doing right now using Present Continuous.",
-        "correct": "Пример: I usually wake up at 7 am. Right now, I am answering this question.",
-        "hint": "Сочетание двух времен",
-        "star": True
-      }
-    ]
+                    "practice_bank": [
+            # Вариант 1
+            [
+                {
+                    "type": "complex",
+                    "text": "Вставьте глагол в правильной форме (Present Simple или Present Continuous).\n\n1. She ___ (read) a book now.\n2. They ___ (go) to school every day.\n3. I ___ (watch) TV at the moment.\n4. He ___ (work) in a bank.\n5. We ___ (have) breakfast right now.\n6. The sun ___ (shine) every day.\n7. Listen! The baby ___ (cry).\n8. They ___ (visit) their grandparents every Sunday.\n9. She ___ (talk) on the phone now.\n10. I ___ (like) coffee.",
+                    "subtasks": [
+                        {"question": "She ___ (read) a book now.", "answer": "is reading", "explanation": "now — Present Continuous"},
+                        {"question": "They ___ (go) to school every day.", "answer": "go", "explanation": "every day — Present Simple"},
+                        {"question": "I ___ (watch) TV at the moment.", "answer": "am watching", "explanation": "at the moment — Present Continuous"},
+                        {"question": "He ___ (work) in a bank.", "answer": "works", "explanation": "факт — Present Simple"},
+                        {"question": "We ___ (have) breakfast right now.", "answer": "are having", "explanation": "right now — Present Continuous"},
+                        {"question": "The sun ___ (shine) every day.", "answer": "shines", "explanation": "every day — Present Simple"},
+                        {"question": "Listen! The baby ___ (cry).", "answer": "is crying", "explanation": "Listen! — действие сейчас"},
+                        {"question": "They ___ (visit) their grandparents every Sunday.", "answer": "visit", "explanation": "every Sunday — Present Simple"},
+                        {"question": "She ___ (talk) on the phone now.", "answer": "is talking", "explanation": "now — Present Continuous"},
+                        {"question": "I ___ (like) coffee.", "answer": "like", "explanation": "состояние — Present Simple"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Переведите предложения на английский, выбирая правильное время.\n\n1. Я читаю книгу сейчас.\n2. Они ходят в школу каждый день.\n3. Я смотрю телевизор в данный момент.\n4. Он работает в банке.\n5. Мы сейчас завтракаем.\n6. Солнце светит каждый день.\n7. Слушай! Ребёнок плачет.\n8. Они навещают бабушку каждое воскресенье.\n9. Она сейчас говорит по телефону.\n10. Я люблю кофе.",
+                    "subtasks": [
+                        {"question": "Я читаю книгу сейчас.", "answer": "I am reading a book now.", "explanation": "now — Present Continuous"},
+                        {"question": "Они ходят в школу каждый день.", "answer": "They go to school every day.", "explanation": "every day — Present Simple"},
+                        {"question": "Я смотрю телевизор в данный момент.", "answer": "I am watching TV at the moment.", "explanation": "at the moment — Present Continuous"},
+                        {"question": "Он работает в банке.", "answer": "He works in a bank.", "explanation": "факт — Present Simple"},
+                        {"question": "Мы сейчас завтракаем.", "answer": "We are having breakfast right now.", "explanation": "right now — Present Continuous"},
+                        {"question": "Солнце светит каждый день.", "answer": "The sun shines every day.", "explanation": "every day — Present Simple"},
+                        {"question": "Слушай! Ребёнок плачет.", "answer": "Listen! The baby is crying.", "explanation": "Listen! — действие сейчас"},
+                        {"question": "Они навещают бабушку каждое воскресенье.", "answer": "They visit their grandparents every Sunday.", "explanation": "every Sunday — Present Simple"},
+                        {"question": "Она сейчас говорит по телефону.", "answer": "She is talking on the phone now.", "explanation": "now — Present Continuous"},
+                        {"question": "Я люблю кофе.", "answer": "I like coffee.", "explanation": "состояние — Present Simple"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Составьте предложения из слов, выбрав правильное время.\n\n1. now / a / reading / book / I / am\n2. every / to / go / school / they / day\n3. moment / at / the / TV / watching / am / I\n4. bank / works / a / in / he\n5. right / having / breakfast / we / are / now\n6. every / shines / sun / the / day\n7. baby / crying / is / the / Listen\n8. visit / grandparents / their / every / they / Sunday\n9. now / phone / on / is / the / talking / she\n10. like / I / coffee",
+                    "subtasks": [
+                        {"question": "now / a / reading / book / I / am", "answer": "I am reading a book now.", "explanation": "I am reading a book now."},
+                        {"question": "every / to / go / school / they / day", "answer": "They go to school every day.", "explanation": "They go to school every day."},
+                        {"question": "moment / at / the / TV / watching / am / I", "answer": "I am watching TV at the moment.", "explanation": "I am watching TV at the moment."},
+                        {"question": "bank / works / a / in / he", "answer": "He works in a bank.", "explanation": "He works in a bank."},
+                        {"question": "right / having / breakfast / we / are / now", "answer": "We are having breakfast right now.", "explanation": "We are having breakfast right now."},
+                        {"question": "every / shines / sun / the / day", "answer": "The sun shines every day.", "explanation": "The sun shines every day."},
+                        {"question": "baby / crying / is / the / Listen", "answer": "Listen! The baby is crying.", "explanation": "Listen! The baby is crying."},
+                        {"question": "visit / grandparents / their / every / they / Sunday", "answer": "They visit their grandparents every Sunday.", "explanation": "They visit their grandparents every Sunday."},
+                        {"question": "now / phone / on / is / the / talking / she", "answer": "She is talking on the phone now.", "explanation": "She is talking on the phone now."},
+                        {"question": "like / I / coffee", "answer": "I like coffee.", "explanation": "I like coffee."}
+                    ]
+                }
+            ],
+            # Вариант 2
+            [
+                {
+                    "type": "complex",
+                    "text": "Вставьте глагол в правильной форме (Present Simple или Present Continuous).\n\n1. He ___ (play) the guitar at the moment.\n2. We ___ (go) to the gym every Monday.\n3. She ___ (write) a letter now.\n4. They ___ (live) in London.\n5. I ___ (cook) dinner right now.\n6. The Earth ___ (move) around the Sun.\n7. Look! The children ___ (play) in the garden.\n8. He ___ (visit) his mother every week.\n9. She ___ (dance) now.\n10. I ___ (think) you are right.",
+                    "subtasks": [
+                        {"question": "He ___ (play) the guitar at the moment.", "answer": "is playing", "explanation": "at the moment — Present Continuous"},
+                        {"question": "We ___ (go) to the gym every Monday.", "answer": "go", "explanation": "every Monday — Present Simple"},
+                        {"question": "She ___ (write) a letter now.", "answer": "is writing", "explanation": "now — Present Continuous"},
+                        {"question": "They ___ (live) in London.", "answer": "live", "explanation": "факт — Present Simple"},
+                        {"question": "I ___ (cook) dinner right now.", "answer": "am cooking", "explanation": "right now — Present Continuous"},
+                        {"question": "The Earth ___ (move) around the Sun.", "answer": "moves", "explanation": "факт — Present Simple"},
+                        {"question": "Look! The children ___ (play) in the garden.", "answer": "are playing", "explanation": "Look! — действие сейчас"},
+                        {"question": "He ___ (visit) his mother every week.", "answer": "visits", "explanation": "every week — Present Simple"},
+                        {"question": "She ___ (dance) now.", "answer": "is dancing", "explanation": "now — Present Continuous"},
+                        {"question": "I ___ (think) you are right.", "answer": "think", "explanation": "мнение — Present Simple"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Переведите предложения на английский.\n\n1. Он играет на гитаре в данный момент.\n2. Мы ходим в спортзал каждый понедельник.\n3. Она сейчас пишет письмо.\n4. Они живут в Лондоне.\n5. Я сейчас готовлю ужин.\n6. Земля движется вокруг Солнца.\n7. Смотри! Дети играют в саду.\n8. Он навещает свою маму каждую неделю.\n9. Она сейчас танцует.\n10. Я думаю, ты прав.",
+                    "subtasks": [
+                        {"question": "Он играет на гитаре в данный момент.", "answer": "He is playing the guitar at the moment.", "explanation": "at the moment — Present Continuous"},
+                        {"question": "Мы ходим в спортзал каждый понедельник.", "answer": "We go to the gym every Monday.", "explanation": "every Monday — Present Simple"},
+                        {"question": "Она сейчас пишет письмо.", "answer": "She is writing a letter now.", "explanation": "now — Present Continuous"},
+                        {"question": "Они живут в Лондоне.", "answer": "They live in London.", "explanation": "факт — Present Simple"},
+                        {"question": "Я сейчас готовлю ужин.", "answer": "I am cooking dinner right now.", "explanation": "right now — Present Continuous"},
+                        {"question": "Земля движется вокруг Солнца.", "answer": "The Earth moves around the Sun.", "explanation": "факт — Present Simple"},
+                        {"question": "Смотри! Дети играют в саду.", "answer": "Look! The children are playing in the garden.", "explanation": "Look! — действие сейчас"},
+                        {"question": "Он навещает свою маму каждую неделю.", "answer": "He visits his mother every week.", "explanation": "every week — Present Simple"},
+                        {"question": "Она сейчас танцует.", "answer": "She is dancing now.", "explanation": "now — Present Continuous"},
+                        {"question": "Я думаю, ты прав.", "answer": "I think you are right.", "explanation": "мнение — Present Simple"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Составьте предложения из слов.\n\n1. guitar / playing / at / the / is / moment / he / the\n2. Monday / gym / we / to / go / the / every\n3. now / letter / writing / is / she / a\n4. London / live / in / they\n5. now / cooking / dinner / right / am / I\n6. around / Sun / moves / Earth / the / the\n7. Look / garden / in / the / playing / children / are\n8. mother / visits / his / he / every / week\n9. dancing / is / now / she\n10. you / think / right / are / I",
+                    "subtasks": [
+                        {"question": "guitar / playing / at / the / is / moment / he / the", "answer": "He is playing the guitar at the moment.", "explanation": "He is playing the guitar at the moment."},
+                        {"question": "Monday / gym / we / to / go / the / every", "answer": "We go to the gym every Monday.", "explanation": "We go to the gym every Monday."},
+                        {"question": "now / letter / writing / is / she / a", "answer": "She is writing a letter now.", "explanation": "She is writing a letter now."},
+                        {"question": "London / live / in / they", "answer": "They live in London.", "explanation": "They live in London."},
+                        {"question": "now / cooking / dinner / right / am / I", "answer": "I am cooking dinner right now.", "explanation": "I am cooking dinner right now."},
+                        {"question": "around / Sun / moves / Earth / the / the", "answer": "The Earth moves around the Sun.", "explanation": "The Earth moves around the Sun."},
+                        {"question": "Look / garden / in / the / playing / children / are", "answer": "Look! The children are playing in the garden.", "explanation": "Look! The children are playing in the garden."},
+                        {"question": "mother / visits / his / he / every / week", "answer": "He visits his mother every week.", "explanation": "He visits his mother every week."},
+                        {"question": "dancing / is / now / she", "answer": "She is dancing now.", "explanation": "She is dancing now."},
+                        {"question": "you / think / right / are / I", "answer": "I think you are right.", "explanation": "I think you are right."}
+                    ]
+                }
+            ],
+            # Вариант 3
+            [
+                {
+                    "type": "complex",
+                    "text": "Вставьте глагол в правильной форме (Present Simple или Present Continuous).\n\n1. My sister ___ (read) a magazine now.\n2. They ___ (play) football every Saturday.\n3. I ___ (work) on my project at the moment.\n4. He ___ (teach) English at school.\n5. We ___ (listen) to music right now.\n6. The train ___ (arrive) at 10 am every day.\n7. Listen! Someone ___ (knock) at the door.\n8. She ___ (drink) tea every morning.\n9. They ___ (have) lunch now.\n10. I ___ (believe) you.",
+                    "subtasks": [
+                        {"question": "My sister ___ (read) a magazine now.", "answer": "is reading", "explanation": "now — Present Continuous"},
+                        {"question": "They ___ (play) football every Saturday.", "answer": "play", "explanation": "every Saturday — Present Simple"},
+                        {"question": "I ___ (work) on my project at the moment.", "answer": "am working", "explanation": "at the moment — Present Continuous"},
+                        {"question": "He ___ (teach) English at school.", "answer": "teaches", "explanation": "факт — Present Simple"},
+                        {"question": "We ___ (listen) to music right now.", "answer": "are listening", "explanation": "right now — Present Continuous"},
+                        {"question": "The train ___ (arrive) at 10 am every day.", "answer": "arrives", "explanation": "every day — Present Simple"},
+                        {"question": "Listen! Someone ___ (knock) at the door.", "answer": "is knocking", "explanation": "Listen! — действие сейчас"},
+                        {"question": "She ___ (drink) tea every morning.", "answer": "drinks", "explanation": "every morning — Present Simple"},
+                        {"question": "They ___ (have) lunch now.", "answer": "are having", "explanation": "now — Present Continuous"},
+                        {"question": "I ___ (believe) you.", "answer": "believe", "explanation": "состояние — Present Simple"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Переведите предложения на английский.\n\n1. Моя сестра сейчас читает журнал.\n2. Они играют в футбол каждую субботу.\n3. Я сейчас работаю над проектом.\n4. Он преподаёт английский в школе.\n5. Мы сейчас слушаем музыку.\n6. Поезд прибывает в 10 утра каждый день.\n7. Слушай! Кто-то стучит в дверь.\n8. Она пьёт чай каждое утро.\n9. Они сейчас обедают.\n10. Я верю тебе.",
+                    "subtasks": [
+                        {"question": "Моя сестра сейчас читает журнал.", "answer": "My sister is reading a magazine now.", "explanation": "now — Present Continuous"},
+                        {"question": "Они играют в футбол каждую субботу.", "answer": "They play football every Saturday.", "explanation": "every Saturday — Present Simple"},
+                        {"question": "Я сейчас работаю над проектом.", "answer": "I am working on my project at the moment.", "explanation": "at the moment — Present Continuous"},
+                        {"question": "Он преподаёт английский в школе.", "answer": "He teaches English at school.", "explanation": "факт — Present Simple"},
+                        {"question": "Мы сейчас слушаем музыку.", "answer": "We are listening to music right now.", "explanation": "right now — Present Continuous"},
+                        {"question": "Поезд прибывает в 10 утра каждый день.", "answer": "The train arrives at 10 am every day.", "explanation": "every day — Present Simple"},
+                        {"question": "Слушай! Кто-то стучит в дверь.", "answer": "Listen! Someone is knocking at the door.", "explanation": "Listen! — действие сейчас"},
+                        {"question": "Она пьёт чай каждое утро.", "answer": "She drinks tea every morning.", "explanation": "every morning — Present Simple"},
+                        {"question": "Они сейчас обедают.", "answer": "They are having lunch now.", "explanation": "now — Present Continuous"},
+                        {"question": "Я верю тебе.", "answer": "I believe you.", "explanation": "состояние — Present Simple"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Составьте предложения из слов.\n\n1. sister / now / a / magazine / reading / my / is\n2. Saturday / play / every / football / they\n3. project / working / my / am / I / on / moment / at / the\n4. school / at / English / he / teaches\n5. right / listening / to / now / music / we / are\n6. 10 / arrives / every / at / am / train / the / day\n7. Listen / at / knocking / is / door / someone / the\n8. every / drinks / tea / morning / she\n9. now / have / lunch / they / are\n10. believe / you / I",
+                    "subtasks": [
+                        {"question": "sister / now / a / magazine / reading / my / is", "answer": "My sister is reading a magazine now.", "explanation": "My sister is reading a magazine now."},
+                        {"question": "Saturday / play / every / football / they", "answer": "They play football every Saturday.", "explanation": "They play football every Saturday."},
+                        {"question": "project / working / my / am / I / on / moment / at / the", "answer": "I am working on my project at the moment.", "explanation": "I am working on my project at the moment."},
+                        {"question": "school / at / English / he / teaches", "answer": "He teaches English at school.", "explanation": "He teaches English at school."},
+                        {"question": "right / listening / to / now / music / we / are", "answer": "We are listening to music right now.", "explanation": "We are listening to music right now."},
+                        {"question": "10 / arrives / every / at / am / train / the / day", "answer": "The train arrives at 10 am every day.", "explanation": "The train arrives at 10 am every day."},
+                        {"question": "Listen / at / knocking / is / door / someone / the", "answer": "Listen! Someone is knocking at the door.", "explanation": "Listen! Someone is knocking at the door."},
+                        {"question": "every / drinks / tea / morning / she", "answer": "She drinks tea every morning.", "explanation": "She drinks tea every morning."},
+                        {"question": "now / have / lunch / they / are", "answer": "They are having lunch now.", "explanation": "They are having lunch now."},
+                        {"question": "believe / you / I", "answer": "I believe you.", "explanation": "I believe you."}
+                    ]
+                }
+            ],
+            # Вариант 4
+            [
+                {
+                    "type": "complex",
+                    "text": "Вставьте глагол в правильной форме (Present Simple или Present Continuous).\n\n1. She ___ (run) in the park now.\n2. We ___ (eat) pasta every Friday.\n3. I ___ (paint) a picture at the moment.\n4. He ___ (drive) a taxi.\n5. They ___ (swim) in the pool right now.\n6. It ___ (rain) a lot in April.\n7. Be quiet! The baby ___ (sleep).\n8. She ___ (go) to the cinema every week.\n9. They ___ (build) a house now.\n10. I ___ (feel) great today.",
+                    "subtasks": [
+                        {"question": "She ___ (run) in the park now.", "answer": "is running", "explanation": "now — Present Continuous"},
+                        {"question": "We ___ (eat) pasta every Friday.", "answer": "eat", "explanation": "every Friday — Present Simple"},
+                        {"question": "I ___ (paint) a picture at the moment.", "answer": "am painting", "explanation": "at the moment — Present Continuous"},
+                        {"question": "He ___ (drive) a taxi.", "answer": "drives", "explanation": "факт — Present Simple"},
+                        {"question": "They ___ (swim) in the pool right now.", "answer": "are swimming", "explanation": "right now — Present Continuous"},
+                        {"question": "It ___ (rain) a lot in April.", "answer": "rains", "explanation": "факт — Present Simple"},
+                        {"question": "Be quiet! The baby ___ (sleep).", "answer": "is sleeping", "explanation": "Be quiet! — действие сейчас"},
+                        {"question": "She ___ (go) to the cinema every week.", "answer": "goes", "explanation": "every week — Present Simple"},
+                        {"question": "They ___ (build) a house now.", "answer": "are building", "explanation": "now — Present Continuous"},
+                        {"question": "I ___ (feel) great today.", "answer": "feel", "explanation": "состояние — Present Simple"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Переведите предложения на английский.\n\n1. Она сейчас бегает в парке.\n2. Мы едим пасту каждую пятницу.\n3. Я сейчас рисую картину.\n4. Он водит такси.\n5. Они сейчас плавают в бассейне.\n6. В апреле часто идёт дождь.\n7. Тише! Ребёнок спит.\n8. Она ходит в кино каждую неделю.\n9. Они сейчас строят дом.\n10. Я сегодня отлично себя чувствую.",
+                    "subtasks": [
+                        {"question": "Она сейчас бегает в парке.", "answer": "She is running in the park now.", "explanation": "now — Present Continuous"},
+                        {"question": "Мы едим пасту каждую пятницу.", "answer": "We eat pasta every Friday.", "explanation": "every Friday — Present Simple"},
+                        {"question": "Я сейчас рисую картину.", "answer": "I am painting a picture at the moment.", "explanation": "at the moment — Present Continuous"},
+                        {"question": "Он водит такси.", "answer": "He drives a taxi.", "explanation": "факт — Present Simple"},
+                        {"question": "Они сейчас плавают в бассейне.", "answer": "They are swimming in the pool right now.", "explanation": "right now — Present Continuous"},
+                        {"question": "В апреле часто идёт дождь.", "answer": "It rains a lot in April.", "explanation": "факт — Present Simple"},
+                        {"question": "Тише! Ребёнок спит.", "answer": "Be quiet! The baby is sleeping.", "explanation": "Be quiet! — действие сейчас"},
+                        {"question": "Она ходит в кино каждую неделю.", "answer": "She goes to the cinema every week.", "explanation": "every week — Present Simple"},
+                        {"question": "Они сейчас строят дом.", "answer": "They are building a house now.", "explanation": "now — Present Continuous"},
+                        {"question": "Я сегодня отлично себя чувствую.", "answer": "I feel great today.", "explanation": "состояние — Present Simple"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Составьте предложения из слов.\n\n1. now / running / park / in / is / the / she\n2. Friday / eat / every / pasta / we\n3. painting / picture / a / moment / am / at / I / the\n4. taxi / drives / a / he\n5. pool / right / in / the / swimming / are / they / now\n6. April / a / lot / rains / it / in\n7. quiet / baby / sleeping / the / is / Be\n8. week / goes / cinema / every / she / to / the\n9. house / now / building / a / they / are\n10. great / feel / today / I",
+                    "subtasks": [
+                        {"question": "now / running / park / in / is / the / she", "answer": "She is running in the park now.", "explanation": "She is running in the park now."},
+                        {"question": "Friday / eat / every / pasta / we", "answer": "We eat pasta every Friday.", "explanation": "We eat pasta every Friday."},
+                        {"question": "painting / picture / a / moment / am / at / I / the", "answer": "I am painting a picture at the moment.", "explanation": "I am painting a picture at the moment."},
+                        {"question": "taxi / drives / a / he", "answer": "He drives a taxi.", "explanation": "He drives a taxi."},
+                        {"question": "pool / right / in / the / swimming / are / they / now", "answer": "They are swimming in the pool right now.", "explanation": "They are swimming in the pool right now."},
+                        {"question": "April / a / lot / rains / it / in", "answer": "It rains a lot in April.", "explanation": "It rains a lot in April."},
+                        {"question": "quiet / baby / sleeping / the / is / Be", "answer": "Be quiet! The baby is sleeping.", "explanation": "Be quiet! The baby is sleeping."},
+                        {"question": "week / goes / cinema / every / she / to / the", "answer": "She goes to the cinema every week.", "explanation": "She goes to the cinema every week."},
+                        {"question": "house / now / building / a / they / are", "answer": "They are building a house now.", "explanation": "They are building a house now."},
+                        {"question": "great / feel / today / I", "answer": "I feel great today.", "explanation": "I feel great today."}
+                    ]
+                }
+            ],
+            # Вариант 5
+            [
+                {
+                    "type": "complex",
+                    "text": "Вставьте глагол в правильной форме (Present Simple или Present Continuous).\n\n1. He ___ (study) at the library now.\n2. We ___ (visit) our friends every Saturday.\n3. She ___ (wear) a new dress today.\n4. I ___ (know) the answer.\n5. They ___ (work) hard these days.\n6. The sun ___ (set) in the west.\n7. Don't disturb me! I ___ (read).\n8. She ___ (take) the bus to work every morning.\n9. They ___ (prepare) for the exam now.\n10. I ___ (love) you.",
+                    "subtasks": [
+                        {"question": "He ___ (study) at the library now.", "answer": "is studying", "explanation": "now — Present Continuous"},
+                        {"question": "We ___ (visit) our friends every Saturday.", "answer": "visit", "explanation": "every Saturday — Present Simple"},
+                        {"question": "She ___ (wear) a new dress today.", "answer": "is wearing", "explanation": "today (в данном случае сейчас) — Present Continuous"},
+                        {"question": "I ___ (know) the answer.", "answer": "know", "explanation": "состояние — Present Simple"},
+                        {"question": "They ___ (work) hard these days.", "answer": "are working", "explanation": "these days — Present Continuous"},
+                        {"question": "The sun ___ (set) in the west.", "answer": "sets", "explanation": "факт — Present Simple"},
+                        {"question": "Don't disturb me! I ___ (read).", "answer": "am reading", "explanation": "действие сейчас"},
+                        {"question": "She ___ (take) the bus to work every morning.", "answer": "takes", "explanation": "every morning — Present Simple"},
+                        {"question": "They ___ (prepare) for the exam now.", "answer": "are preparing", "explanation": "now — Present Continuous"},
+                        {"question": "I ___ (love) you.", "answer": "love", "explanation": "состояние — Present Simple"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Переведите предложения на английский.\n\n1. Он сейчас учится в библиотеке.\n2. Мы навещаем друзей каждую субботу.\n3. Сегодня на ней новое платье.\n4. Я знаю ответ.\n5. Они сейчас много работают.\n6. Солнце садится на западе.\n7. Не мешай мне! Я читаю.\n8. Она ездит на автобусе на работу каждое утро.\n9. Они сейчас готовятся к экзамену.\n10. Я люблю тебя.",
+                    "subtasks": [
+                        {"question": "Он сейчас учится в библиотеке.", "answer": "He is studying at the library now.", "explanation": "now — Present Continuous"},
+                        {"question": "Мы навещаем друзей каждую субботу.", "answer": "We visit our friends every Saturday.", "explanation": "every Saturday — Present Simple"},
+                        {"question": "Сегодня на ней новое платье.", "answer": "She is wearing a new dress today.", "explanation": "today (сейчас) — Present Continuous"},
+                        {"question": "Я знаю ответ.", "answer": "I know the answer.", "explanation": "состояние — Present Simple"},
+                        {"question": "Они сейчас много работают.", "answer": "They are working hard these days.", "explanation": "these days — Present Continuous"},
+                        {"question": "Солнце садится на западе.", "answer": "The sun sets in the west.", "explanation": "факт — Present Simple"},
+                        {"question": "Не мешай мне! Я читаю.", "answer": "Don't disturb me! I am reading.", "explanation": "действие сейчас"},
+                        {"question": "Она ездит на автобусе на работу каждое утро.", "answer": "She takes the bus to work every morning.", "explanation": "every morning — Present Simple"},
+                        {"question": "Они сейчас готовятся к экзамену.", "answer": "They are preparing for the exam now.", "explanation": "now — Present Continuous"},
+                        {"question": "Я люблю тебя.", "answer": "I love you.", "explanation": "состояние — Present Simple"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Составьте предложения из слов.\n\n1. now / library / studying / is / at / he / the\n2. friends / visit / every / we / Saturday / our\n3. new / wearing / today / a / is / dress / she\n4. answer / know / the / I\n5. working / these / hard / are / days / they\n6. west / sets / in / the / sun / the\n7. disturb / me / reading / am / Don't / I\n8. bus / the / every / takes / she / morning / to / work\n9. now / preparing / for / exam / the / are / they\n10. love / you / I",
+                    "subtasks": [
+                        {"question": "now / library / studying / is / at / he / the", "answer": "He is studying at the library now.", "explanation": "He is studying at the library now."},
+                        {"question": "friends / visit / every / we / Saturday / our", "answer": "We visit our friends every Saturday.", "explanation": "We visit our friends every Saturday."},
+                        {"question": "new / wearing / today / a / is / dress / she", "answer": "She is wearing a new dress today.", "explanation": "She is wearing a new dress today."},
+                        {"question": "answer / know / the / I", "answer": "I know the answer.", "explanation": "I know the answer."},
+                        {"question": "working / these / hard / are / days / they", "answer": "They are working hard these days.", "explanation": "They are working hard these days."},
+                        {"question": "west / sets / in / the / sun / the", "answer": "The sun sets in the west.", "explanation": "The sun sets in the west."},
+                        {"question": "disturb / me / reading / am / Don't / I", "answer": "Don't disturb me! I am reading.", "explanation": "Don't disturb me! I am reading."},
+                        {"question": "bus / the / every / takes / she / morning / to / work", "answer": "She takes the bus to work every morning.", "explanation": "She takes the bus to work every morning."},
+                        {"question": "now / preparing / for / exam / the / are / they", "answer": "They are preparing for the exam now.", "explanation": "They are preparing for the exam now."},
+                        {"question": "love / you / I", "answer": "I love you.", "explanation": "I love you."}
+                    ]
+                }
+            ],
+            # Вариант 6
+            [
+                {
+                    "type": "complex",
+                    "text": "Вставьте глагол в правильной форме (Present Simple или Present Continuous).\n\n1. They ___ (play) the piano now.\n2. She ___ (walk) to school every day.\n3. I ___ (learn) Spanish at the moment.\n4. He ___ (speak) three languages.\n5. We ___ (have) dinner right now.\n6. The moon ___ (shine) at night.\n7. Look! The dog ___ (run) after the cat.\n8. She ___ (read) newspapers every morning.\n9. They ___ (travel) in Europe now.\n10. I ___ (want) a new phone.",
+                    "subtasks": [
+                        {"question": "They ___ (play) the piano now.", "answer": "are playing", "explanation": "now — Present Continuous"},
+                        {"question": "She ___ (walk) to school every day.", "answer": "walks", "explanation": "every day — Present Simple"},
+                        {"question": "I ___ (learn) Spanish at the moment.", "answer": "am learning", "explanation": "at the moment — Present Continuous"},
+                        {"question": "He ___ (speak) three languages.", "answer": "speaks", "explanation": "факт — Present Simple"},
+                        {"question": "We ___ (have) dinner right now.", "answer": "are having", "explanation": "right now — Present Continuous"},
+                        {"question": "The moon ___ (shine) at night.", "answer": "shines", "explanation": "факт — Present Simple"},
+                        {"question": "Look! The dog ___ (run) after the cat.", "answer": "is running", "explanation": "Look! — действие сейчас"},
+                        {"question": "She ___ (read) newspapers every morning.", "answer": "reads", "explanation": "every morning — Present Simple"},
+                        {"question": "They ___ (travel) in Europe now.", "answer": "are travelling", "explanation": "now — Present Continuous"},
+                        {"question": "I ___ (want) a new phone.", "answer": "want", "explanation": "состояние — Present Simple"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Переведите предложения на английский.\n\n1. Они сейчас играют на пианино.\n2. Она ходит в школу каждый день.\n3. Я сейчас учу испанский.\n4. Он говорит на трёх языках.\n5. Мы сейчас ужинаем.\n6. Луна светит ночью.\n7. Смотри! Собака бежит за кошкой.\n8. Она читает газеты каждое утро.\n9. Они сейчас путешествуют по Европе.\n10. Я хочу новый телефон.",
+                    "subtasks": [
+                        {"question": "Они сейчас играют на пианино.", "answer": "They are playing the piano now.", "explanation": "now — Present Continuous"},
+                        {"question": "Она ходит в школу каждый день.", "answer": "She walks to school every day.", "explanation": "every day — Present Simple"},
+                        {"question": "Я сейчас учу испанский.", "answer": "I am learning Spanish at the moment.", "explanation": "at the moment — Present Continuous"},
+                        {"question": "Он говорит на трёх языках.", "answer": "He speaks three languages.", "explanation": "факт — Present Simple"},
+                        {"question": "Мы сейчас ужинаем.", "answer": "We are having dinner right now.", "explanation": "right now — Present Continuous"},
+                        {"question": "Луна светит ночью.", "answer": "The moon shines at night.", "explanation": "факт — Present Simple"},
+                        {"question": "Смотри! Собака бежит за кошкой.", "answer": "Look! The dog is running after the cat.", "explanation": "Look! — действие сейчас"},
+                        {"question": "Она читает газеты каждое утро.", "answer": "She reads newspapers every morning.", "explanation": "every morning — Present Simple"},
+                        {"question": "Они сейчас путешествуют по Европе.", "answer": "They are travelling in Europe now.", "explanation": "now — Present Continuous"},
+                        {"question": "Я хочу новый телефон.", "answer": "I want a new phone.", "explanation": "состояние — Present Simple"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Составьте предложения из слов.\n\n1. now / piano / the / playing / they / are\n2. school / to / walks / every / she / day\n3. moment / Spanish / learning / am / at / I / the\n4. languages / three / speaks / he\n5. right / dinner / having / we / now / are\n6. night / shines / at / moon / the\n7. Look / after / the / cat / running / dog / is\n8. newspapers / reads / every / she / morning\n9. Europe / now / travelling / in / they / are\n10. new / phone / want / a / I",
+                    "subtasks": [
+                        {"question": "now / piano / the / playing / they / are", "answer": "They are playing the piano now.", "explanation": "They are playing the piano now."},
+                        {"question": "school / to / walks / every / she / day", "answer": "She walks to school every day.", "explanation": "She walks to school every day."},
+                        {"question": "moment / Spanish / learning / am / at / I / the", "answer": "I am learning Spanish at the moment.", "explanation": "I am learning Spanish at the moment."},
+                        {"question": "languages / three / speaks / he", "answer": "He speaks three languages.", "explanation": "He speaks three languages."},
+                        {"question": "right / dinner / having / we / now / are", "answer": "We are having dinner right now.", "explanation": "We are having dinner right now."},
+                        {"question": "night / shines / at / moon / the", "answer": "The moon shines at night.", "explanation": "The moon shines at night."},
+                        {"question": "Look / after / the / cat / running / dog / is", "answer": "Look! The dog is running after the cat.", "explanation": "Look! The dog is running after the cat."},
+                        {"question": "newspapers / reads / every / she / morning", "answer": "She reads newspapers every morning.", "explanation": "She reads newspapers every morning."},
+                        {"question": "Europe / now / travelling / in / they / are", "answer": "They are travelling in Europe now.", "explanation": "They are travelling in Europe now."},
+                        {"question": "new / phone / want / a / I", "answer": "I want a new phone.", "explanation": "I want a new phone."}
+                    ]
+                }
+            ],
+            # Вариант 7
+            [
+                {
+                    "type": "complex",
+                    "text": "Вставьте глагол в правильной форме (Present Simple или Present Continuous).\n\n1. She ___ (fly) to Paris now.\n2. They ___ (go) to the beach every summer.\n3. I ___ (write) a blog at the moment.\n4. He ___ (sell) cars.\n5. We ___ (wait) for the bus right now.\n6. Water ___ (boil) at 100 degrees.\n7. Listen! They ___ (argue) again.\n8. She ___ (buy) clothes every weekend.\n9. They ___ (decorate) the room now.\n10. I ___ (hate) spiders.",
+                    "subtasks": [
+                        {"question": "She ___ (fly) to Paris now.", "answer": "is flying", "explanation": "now — Present Continuous"},
+                        {"question": "They ___ (go) to the beach every summer.", "answer": "go", "explanation": "every summer — Present Simple"},
+                        {"question": "I ___ (write) a blog at the moment.", "answer": "am writing", "explanation": "at the moment — Present Continuous"},
+                        {"question": "He ___ (sell) cars.", "answer": "sells", "explanation": "факт — Present Simple"},
+                        {"question": "We ___ (wait) for the bus right now.", "answer": "are waiting", "explanation": "right now — Present Continuous"},
+                        {"question": "Water ___ (boil) at 100 degrees.", "answer": "boils", "explanation": "факт — Present Simple"},
+                        {"question": "Listen! They ___ (argue) again.", "answer": "are arguing", "explanation": "Listen! — действие сейчас"},
+                        {"question": "She ___ (buy) clothes every weekend.", "answer": "buys", "explanation": "every weekend — Present Simple"},
+                        {"question": "They ___ (decorate) the room now.", "answer": "are decorating", "explanation": "now — Present Continuous"},
+                        {"question": "I ___ (hate) spiders.", "answer": "hate", "explanation": "состояние — Present Simple"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Переведите предложения на английский.\n\n1. Она сейчас летит в Париж.\n2. Они ездят на пляж каждое лето.\n3. Я сейчас пишу блог.\n4. Он продаёт машины.\n5. Мы сейчас ждём автобус.\n6. Вода кипит при 100 градусах.\n7. Слушай! Они опять спорят.\n8. Она покупает одежду каждые выходные.\n9. Они сейчас украшают комнату.\n10. Я ненавижу пауков.",
+                    "subtasks": [
+                        {"question": "Она сейчас летит в Париж.", "answer": "She is flying to Paris now.", "explanation": "now — Present Continuous"},
+                        {"question": "Они ездят на пляж каждое лето.", "answer": "They go to the beach every summer.", "explanation": "every summer — Present Simple"},
+                        {"question": "Я сейчас пишу блог.", "answer": "I am writing a blog at the moment.", "explanation": "at the moment — Present Continuous"},
+                        {"question": "Он продаёт машины.", "answer": "He sells cars.", "explanation": "факт — Present Simple"},
+                        {"question": "Мы сейчас ждём автобус.", "answer": "We are waiting for the bus right now.", "explanation": "right now — Present Continuous"},
+                        {"question": "Вода кипит при 100 градусах.", "answer": "Water boils at 100 degrees.", "explanation": "факт — Present Simple"},
+                        {"question": "Слушай! Они опять спорят.", "answer": "Listen! They are arguing again.", "explanation": "Listen! — действие сейчас"},
+                        {"question": "Она покупает одежду каждые выходные.", "answer": "She buys clothes every weekend.", "explanation": "every weekend — Present Simple"},
+                        {"question": "Они сейчас украшают комнату.", "answer": "They are decorating the room now.", "explanation": "now — Present Continuous"},
+                        {"question": "Я ненавижу пауков.", "answer": "I hate spiders.", "explanation": "состояние — Present Simple"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Составьте предложения из слов.\n\n1. now / Paris / flying / to / is / she\n2. summer / go / to / beach / the / every / they\n3. moment / blog / writing / am / at / I / a / the\n4. cars / sells / he\n5. right / waiting / for / we / bus / are / now / the\n6. 100 / boils / degrees / water / at\n7. Listen / again / arguing / are / they\n8. buys / every / clothes / she / weekend\n9. now / room / decorating / the / they / are\n10. hate / I / spiders",
+                    "subtasks": [
+                        {"question": "now / Paris / flying / to / is / she", "answer": "She is flying to Paris now.", "explanation": "She is flying to Paris now."},
+                        {"question": "summer / go / to / beach / the / every / they", "answer": "They go to the beach every summer.", "explanation": "They go to the beach every summer."},
+                        {"question": "moment / blog / writing / am / at / I / a / the", "answer": "I am writing a blog at the moment.", "explanation": "I am writing a blog at the moment."},
+                        {"question": "cars / sells / he", "answer": "He sells cars.", "explanation": "He sells cars."},
+                        {"question": "right / waiting / for / we / bus / are / now / the", "answer": "We are waiting for the bus right now.", "explanation": "We are waiting for the bus right now."},
+                        {"question": "100 / boils / degrees / water / at", "answer": "Water boils at 100 degrees.", "explanation": "Water boils at 100 degrees."},
+                        {"question": "Listen / again / arguing / are / they", "answer": "Listen! They are arguing again.", "explanation": "Listen! They are arguing again."},
+                        {"question": "buys / every / clothes / she / weekend", "answer": "She buys clothes every weekend.", "explanation": "She buys clothes every weekend."},
+                        {"question": "now / room / decorating / the / they / are", "answer": "They are decorating the room now.", "explanation": "They are decorating the room now."},
+                        {"question": "hate / I / spiders", "answer": "I hate spiders.", "explanation": "I hate spiders."}
+                    ]
+                }
+            ],
+            # Вариант 8
+            [
+                {
+                    "type": "complex",
+                    "text": "Вставьте глагол в правильной форме (Present Simple или Present Continuous).\n\n1. They ___ (watch) a film at the moment.\n2. She ___ (go) to work by train every day.\n3. I ___ (do) my homework now.\n4. He ___ (play) tennis very well.\n5. We ___ (have) a party tonight.\n6. The Earth ___ (rotate) around its axis.\n7. Look! The children ___ (jump) on the bed.\n8. She ___ (call) her friend every evening.\n9. They ___ (build) a new bridge now.\n10. I ___ (prefer) tea to coffee.",
+                    "subtasks": [
+                        {"question": "They ___ (watch) a film at the moment.", "answer": "are watching", "explanation": "at the moment — Present Continuous"},
+                        {"question": "She ___ (go) to work by train every day.", "answer": "goes", "explanation": "every day — Present Simple"},
+                        {"question": "I ___ (do) my homework now.", "answer": "am doing", "explanation": "now — Present Continuous"},
+                        {"question": "He ___ (play) tennis very well.", "answer": "plays", "explanation": "факт — Present Simple"},
+                        {"question": "We ___ (have) a party tonight.", "answer": "are having", "explanation": "tonight (запланированное) — Present Continuous"},
+                        {"question": "The Earth ___ (rotate) around its axis.", "answer": "rotates", "explanation": "факт — Present Simple"},
+                        {"question": "Look! The children ___ (jump) on the bed.", "answer": "are jumping", "explanation": "Look! — действие сейчас"},
+                        {"question": "She ___ (call) her friend every evening.", "answer": "calls", "explanation": "every evening — Present Simple"},
+                        {"question": "They ___ (build) a new bridge now.", "answer": "are building", "explanation": "now — Present Continuous"},
+                        {"question": "I ___ (prefer) tea to coffee.", "answer": "prefer", "explanation": "предпочтение — Present Simple"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Переведите предложения на английский.\n\n1. Они сейчас смотрят фильм.\n2. Она ездит на работу на поезде каждый день.\n3. Я сейчас делаю домашнее задание.\n4. Он очень хорошо играет в теннис.\n5. Сегодня вечером у нас вечеринка.\n6. Земля вращается вокруг своей оси.\n7. Смотри! Дети прыгают на кровати.\n8. Она звонит своей подруге каждый вечер.\n9. Они сейчас строят новый мост.\n10. Я предпочитаю чай кофе.",
+                    "subtasks": [
+                        {"question": "Они сейчас смотрят фильм.", "answer": "They are watching a film at the moment.", "explanation": "at the moment — Present Continuous"},
+                        {"question": "Она ездит на работу на поезде каждый день.", "answer": "She goes to work by train every day.", "explanation": "every day — Present Simple"},
+                        {"question": "Я сейчас делаю домашнее задание.", "answer": "I am doing my homework now.", "explanation": "now — Present Continuous"},
+                        {"question": "Он очень хорошо играет в теннис.", "answer": "He plays tennis very well.", "explanation": "факт — Present Simple"},
+                        {"question": "Сегодня вечером у нас вечеринка.", "answer": "We are having a party tonight.", "explanation": "tonight — Present Continuous (запланированное)"},
+                        {"question": "Земля вращается вокруг своей оси.", "answer": "The Earth rotates around its axis.", "explanation": "факт — Present Simple"},
+                        {"question": "Смотри! Дети прыгают на кровати.", "answer": "Look! The children are jumping on the bed.", "explanation": "Look! — действие сейчас"},
+                        {"question": "Она звонит своей подруге каждый вечер.", "answer": "She calls her friend every evening.", "explanation": "every evening — Present Simple"},
+                        {"question": "Они сейчас строят новый мост.", "answer": "They are building a new bridge now.", "explanation": "now — Present Continuous"},
+                        {"question": "Я предпочитаю чай кофе.", "answer": "I prefer tea to coffee.", "explanation": "предпочтение — Present Simple"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Составьте предложения из слов.\n\n1. moment / film / a / watching / at / are / they / the\n2. every / by / train / goes / she / to / work / day\n3. now / homework / my / doing / am / I\n4. tennis / plays / well / very / he\n5. tonight / a / having / party / are / we\n6. axis / rotates / its / around / Earth / the\n7. Look / bed / jumping / on / children / are / the / the\n8. friend / calls / her / every / she / evening\n9. now / building / new / a / bridge / are / they\n10. tea / prefer / I / to / coffee",
+                    "subtasks": [
+                        {"question": "moment / film / a / watching / at / are / they / the", "answer": "They are watching a film at the moment.", "explanation": "They are watching a film at the moment."},
+                        {"question": "every / by / train / goes / she / to / work / day", "answer": "She goes to work by train every day.", "explanation": "She goes to work by train every day."},
+                        {"question": "now / homework / my / doing / am / I", "answer": "I am doing my homework now.", "explanation": "I am doing my homework now."},
+                        {"question": "tennis / plays / well / very / he", "answer": "He plays tennis very well.", "explanation": "He plays tennis very well."},
+                        {"question": "tonight / a / having / party / are / we", "answer": "We are having a party tonight.", "explanation": "We are having a party tonight."},
+                        {"question": "axis / rotates / its / around / Earth / the", "answer": "The Earth rotates around its axis.", "explanation": "The Earth rotates around its axis."},
+                        {"question": "Look / bed / jumping / on / children / are / the / the", "answer": "Look! The children are jumping on the bed.", "explanation": "Look! The children are jumping on the bed."},
+                        {"question": "friend / calls / her / every / she / evening", "answer": "She calls her friend every evening.", "explanation": "She calls her friend every evening."},
+                        {"question": "now / building / new / a / bridge / are / they", "answer": "They are building a new bridge now.", "explanation": "They are building a new bridge now."},
+                        {"question": "tea / prefer / I / to / coffee", "answer": "I prefer tea to coffee.", "explanation": "I prefer tea to coffee."}
+                    ]
+                }
+            ],
+            # Вариант 9
+            [
+                {
+                    "type": "complex",
+                    "text": "Вставьте глагол в правильной форме (Present Simple или Present Continuous).\n\n1. She ___ (sing) in the shower now.\n2. They ___ (eat) out every Friday.\n3. I ___ (study) for my exams these days.\n4. He ___ (work) as a teacher.\n5. We ___ (plan) a trip right now.\n6. The sun ___ (rise) in the east.\n7. Listen! The phone ___ (ring).\n8. She ___ (drink) coffee every morning.\n9. They ___ (discuss) the problem now.\n10. I ___ (understand) your point.",
+                    "subtasks": [
+                        {"question": "She ___ (sing) in the shower now.", "answer": "is singing", "explanation": "now — Present Continuous"},
+                        {"question": "They ___ (eat) out every Friday.", "answer": "eat", "explanation": "every Friday — Present Simple"},
+                        {"question": "I ___ (study) for my exams these days.", "answer": "am studying", "explanation": "these days — Present Continuous"},
+                        {"question": "He ___ (work) as a teacher.", "answer": "works", "explanation": "факт — Present Simple"},
+                        {"question": "We ___ (plan) a trip right now.", "answer": "are planning", "explanation": "right now — Present Continuous"},
+                        {"question": "The sun ___ (rise) in the east.", "answer": "rises", "explanation": "факт — Present Simple"},
+                        {"question": "Listen! The phone ___ (ring).", "answer": "is ringing", "explanation": "Listen! — действие сейчас"},
+                        {"question": "She ___ (drink) coffee every morning.", "answer": "drinks", "explanation": "every morning — Present Simple"},
+                        {"question": "They ___ (discuss) the problem now.", "answer": "are discussing", "explanation": "now — Present Continuous"},
+                        {"question": "I ___ (understand) your point.", "answer": "understand", "explanation": "состояние — Present Simple"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Переведите предложения на английский.\n\n1. Она сейчас поёт в душе.\n2. Они ужинают вне дома каждую пятницу.\n3. Я сейчас готовлюсь к экзаменам.\n4. Он работает учителем.\n5. Мы сейчас планируем поездку.\n6. Солнце встаёт на востоке.\n7. Слушай! Телефон звонит.\n8. Она пьёт кофе каждое утро.\n9. Они сейчас обсуждают проблему.\n10. Я понимаю твою точку зрения.",
+                    "subtasks": [
+                        {"question": "Она сейчас поёт в душе.", "answer": "She is singing in the shower now.", "explanation": "now — Present Continuous"},
+                        {"question": "Они ужинают вне дома каждую пятницу.", "answer": "They eat out every Friday.", "explanation": "every Friday — Present Simple"},
+                        {"question": "Я сейчас готовлюсь к экзаменам.", "answer": "I am studying for my exams these days.", "explanation": "these days — Present Continuous"},
+                        {"question": "Он работает учителем.", "answer": "He works as a teacher.", "explanation": "факт — Present Simple"},
+                        {"question": "Мы сейчас планируем поездку.", "answer": "We are planning a trip right now.", "explanation": "right now — Present Continuous"},
+                        {"question": "Солнце встаёт на востоке.", "answer": "The sun rises in the east.", "explanation": "факт — Present Simple"},
+                        {"question": "Слушай! Телефон звонит.", "answer": "Listen! The phone is ringing.", "explanation": "Listen! — действие сейчас"},
+                        {"question": "Она пьёт кофе каждое утро.", "answer": "She drinks coffee every morning.", "explanation": "every morning — Present Simple"},
+                        {"question": "Они сейчас обсуждают проблему.", "answer": "They are discussing the problem now.", "explanation": "now — Present Continuous"},
+                        {"question": "Я понимаю твою точку зрения.", "answer": "I understand your point.", "explanation": "состояние — Present Simple"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Составьте предложения из слов.\n\n1. now / shower / singing / the / in / is / she\n2. out / every / eat / they / Friday\n3. exams / these / studying / for / am / I / days\n4. teacher / as / works / a / he\n5. right / planning / a / trip / are / we / now\n6. east / rises / in / sun / the / the\n7. Listen / phone / ringing / the / is\n8. every / drinks / morning / coffee / she\n9. now / problem / discussing / the / are / they\n10. your / understand / point / I",
+                    "subtasks": [
+                        {"question": "now / shower / singing / the / in / is / she", "answer": "She is singing in the shower now.", "explanation": "She is singing in the shower now."},
+                        {"question": "out / every / eat / they / Friday", "answer": "They eat out every Friday.", "explanation": "They eat out every Friday."},
+                        {"question": "exams / these / studying / for / am / I / days", "answer": "I am studying for my exams these days.", "explanation": "I am studying for my exams these days."},
+                        {"question": "teacher / as / works / a / he", "answer": "He works as a teacher.", "explanation": "He works as a teacher."},
+                        {"question": "right / planning / a / trip / are / we / now", "answer": "We are planning a trip right now.", "explanation": "We are planning a trip right now."},
+                        {"question": "east / rises / in / sun / the / the", "answer": "The sun rises in the east.", "explanation": "The sun rises in the east."},
+                        {"question": "Listen / phone / ringing / the / is", "answer": "Listen! The phone is ringing.", "explanation": "Listen! The phone is ringing."},
+                        {"question": "every / drinks / morning / coffee / she", "answer": "She drinks coffee every morning.", "explanation": "She drinks coffee every morning."},
+                        {"question": "now / problem / discussing / the / are / they", "answer": "They are discussing the problem now.", "explanation": "They are discussing the problem now."},
+                        {"question": "your / understand / point / I", "answer": "I understand your point.", "explanation": "I understand your point."}
+                    ]
+                }
+            ],
+            # Вариант 10
+            [
+                {
+                    "type": "complex",
+                    "text": "Вставьте глагол в правильной форме (Present Simple или Present Continuous).\n\n1. They ___ (try) to fix the car now.\n2. She ___ (visit) her grandmother every Sunday.\n3. I ___ (think) about you at the moment.\n4. He ___ (work) on a new project.\n5. We ___ (leave) for the airport right now.\n6. The river ___ (flow) to the sea.\n7. Don't make noise! The teacher ___ (explain) the lesson.\n8. She ___ (wear) glasses every day.\n9. They ___ (look) for a new house these days.\n10. I ___ (need) some help.",
+                    "subtasks": [
+                        {"question": "They ___ (try) to fix the car now.", "answer": "are trying", "explanation": "now — Present Continuous"},
+                        {"question": "She ___ (visit) her grandmother every Sunday.", "answer": "visits", "explanation": "every Sunday — Present Simple"},
+                        {"question": "I ___ (think) about you at the moment.", "answer": "am thinking", "explanation": "at the moment — Present Continuous (действие, а не состояние)"},
+                        {"question": "He ___ (work) on a new project.", "answer": "works", "explanation": "факт (обычно) — Present Simple, но может быть и Continuous, но здесь лучше Present Simple как факт"},
+                        {"question": "We ___ (leave) for the airport right now.", "answer": "are leaving", "explanation": "right now — Present Continuous"},
+                        {"question": "The river ___ (flow) to the sea.", "answer": "flows", "explanation": "факт — Present Simple"},
+                        {"question": "Don't make noise! The teacher ___ (explain) the lesson.", "answer": "is explaining", "explanation": "действие сейчас"},
+                        {"question": "She ___ (wear) glasses every day.", "answer": "wears", "explanation": "every day — Present Simple"},
+                        {"question": "They ___ (look) for a new house these days.", "answer": "are looking", "explanation": "these days — Present Continuous"},
+                        {"question": "I ___ (need) some help.", "answer": "need", "explanation": "состояние — Present Simple"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Переведите предложения на английский.\n\n1. Они сейчас пытаются починить машину.\n2. Она навещает бабушку каждое воскресенье.\n3. Я сейчас думаю о тебе.\n4. Он работает над новым проектом.\n5. Мы сейчас выезжаем в аэропорт.\n6. Река впадает в море.\n7. Не шумите! Учитель объясняет урок.\n8. Она носит очки каждый день.\n9. Они сейчас ищут новый дом.\n10. Мне нужна помощь.",
+                    "subtasks": [
+                        {"question": "Они сейчас пытаются починить машину.", "answer": "They are trying to fix the car now.", "explanation": "now — Present Continuous"},
+                        {"question": "Она навещает бабушку каждое воскресенье.", "answer": "She visits her grandmother every Sunday.", "explanation": "every Sunday — Present Simple"},
+                        {"question": "Я сейчас думаю о тебе.", "answer": "I am thinking about you at the moment.", "explanation": "at the moment — Present Continuous (действие)"},
+                        {"question": "Он работает над новым проектом.", "answer": "He works on a new project.", "explanation": "факт — Present Simple (или is working, но я оставлю Present Simple для простоты)"},
+                        {"question": "Мы сейчас выезжаем в аэропорт.", "answer": "We are leaving for the airport right now.", "explanation": "right now — Present Continuous"},
+                        {"question": "Река впадает в море.", "answer": "The river flows to the sea.", "explanation": "факт — Present Simple"},
+                        {"question": "Не шумите! Учитель объясняет урок.", "answer": "Don't make noise! The teacher is explaining the lesson.", "explanation": "действие сейчас"},
+                        {"question": "Она носит очки каждый день.", "answer": "She wears glasses every day.", "explanation": "every day — Present Simple"},
+                        {"question": "Они сейчас ищут новый дом.", "answer": "They are looking for a new house these days.", "explanation": "these days — Present Continuous"},
+                        {"question": "Мне нужна помощь.", "answer": "I need some help.", "explanation": "состояние — Present Simple"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Составьте предложения из слов.\n\n1. now / trying / car / fix / the / are / they / to\n2. every / visits / grandmother / Sunday / she / her\n3. moment / thinking / about / am / at / you / I / the\n4. project / works / a / new / on / he\n5. right / airport / leaving / for / we / the / are / now\n6. sea / flows / river / to / the / the\n7. noise / make / explaining / Don't / is / teacher / the / lesson\n8. every / glasses / wears / she / day\n9. these / looking / house / new / a / days / they / are / for\n10. need / help / some / I",
+                    "subtasks": [
+                        {"question": "now / trying / car / fix / the / are / they / to", "answer": "They are trying to fix the car now.", "explanation": "They are trying to fix the car now."},
+                        {"question": "every / visits / grandmother / Sunday / she / her", "answer": "She visits her grandmother every Sunday.", "explanation": "She visits her grandmother every Sunday."},
+                        {"question": "moment / thinking / about / am / at / you / I / the", "answer": "I am thinking about you at the moment.", "explanation": "I am thinking about you at the moment."},
+                        {"question": "project / works / a / new / on / he", "answer": "He works on a new project.", "explanation": "He works on a new project."},
+                        {"question": "right / airport / leaving / for / we / the / are / now", "answer": "We are leaving for the airport right now.", "explanation": "We are leaving for the airport right now."},
+                        {"question": "sea / flows / river / to / the / the", "answer": "The river flows to the sea.", "explanation": "The river flows to the sea."},
+                        {"question": "noise / make / explaining / Don't / is / teacher / the / lesson", "answer": "Don't make noise! The teacher is explaining the lesson.", "explanation": "Don't make noise! The teacher is explaining the lesson."},
+                        {"question": "every / glasses / wears / she / day", "answer": "She wears glasses every day.", "explanation": "She wears glasses every day."},
+                        {"question": "these / looking / house / new / a / days / they / are / for", "answer": "They are looking for a new house these days.", "explanation": "They are looking for a new house these days."},
+                        {"question": "need / help / some / I", "answer": "I need some help.", "explanation": "I need some help."}
+                    ]
+                }
+            ]
+        ]
   },
   "tobePast": {
     "title": "Глагол to be в прошедшем (was/were)",
