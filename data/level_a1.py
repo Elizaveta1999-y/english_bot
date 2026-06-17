@@ -3319,438 +3319,518 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "answer": "Это древняя форма множественного числа, сохранившаяся в английском."
       }
     ],
-    "practice_tasks": [
-      {
-        "type": "fill_blank",
-        "text": "There are three ___ (cat) on the sofa.",
-        "correct": "cats",
-        "hint": "Добавьте -s к существительному",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "I have two ___ (brother) and one sister.",
-        "correct": "brothers",
-        "hint": "Простое множественное число",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She saw many ___ (fox) in the forest.",
-        "correct": "foxes",
-        "hint": "Добавьте -es после -x",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The ___ (child) are playing in the park.",
-        "correct": "children",
-        "hint": "Неправильная форма",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He bought two ___ (watch) yesterday.",
-        "correct": "watches",
-        "hint": "Добавьте -es после -ch",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "There are many ___ (sheep) on the farm.",
-        "correct": "sheep",
-        "hint": "Форма не меняется",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The ___ (man) are working in the garden.",
-        "correct": "men",
-        "hint": "Неправильное множественное число",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "I need two ___ (knife) for the kitchen.",
-        "correct": "knives",
-        "hint": "Замените -f на -ves",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The ___ (baby) are sleeping in their cribs.",
-        "correct": "babies",
-        "hint": "Замените -y на -ies",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "We saw several ___ (deer) in the woods.",
-        "correct": "deer",
-        "hint": "Форма не меняется",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "There are five ___ (piano) in the music room.",
-        "correct": "pianos",
-        "hint": "Просто добавьте -s",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The ___ (woman) are talking loudly.",
-        "correct": "women",
-        "hint": "Неправильная форма",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "I have two ___ (tooth) that hurt.",
-        "correct": "teeth",
-        "hint": "Неправильное множественное число",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The ___ (leaf) fall in autumn.",
-        "correct": "leaves",
-        "hint": "Замените -f на -ves",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She has three ___ (box) of chocolates.",
-        "correct": "boxes",
-        "hint": "Добавьте -es после -x",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The ___ (mouse) are hiding under the bed.",
-        "correct": "mice",
-        "hint": "Неправильная форма",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "There are many ___ (city) in this country.",
-        "correct": "cities",
-        "hint": "Замените -y на -ies",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "I saw two ___ (bus) at the station.",
-        "correct": "buses",
-        "hint": "Добавьте -es",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The ___ (foot) of the table are broken.",
-        "correct": "feet",
-        "hint": "Неправильное множественное число",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He has several ___ (photo) on his wall.",
-        "correct": "photos",
-        "hint": "Просто добавьте -s",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The ___ (goose) are swimming in the lake.",
-        "correct": "geese",
-        "hint": "Неправильная форма",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "There are many ___ (fish) in this aquarium.",
-        "correct": "fish",
-        "hint": "Форма не меняется, но есть вариант fishes для видов",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "The ___ (ox) are pulling the cart.",
-        "correct": "oxen",
-        "hint": "Старая неправильная форма",
-        "star": True
-      },
-      {
-        "type": "choice",
-        "text": "What is the plural of 'cactus'?",
-        "correct": "cacti",
-        "options": [
-          "cactuses",
-          "cacti",
-          "cactus"
-        ],
-        "hint": "Слова латинского происхождения",
-        "star": True
-      },
-      {
-        "type": "choice",
-        "text": "What is the plural of 'phenomenon'?",
-        "correct": "phenomena",
-        "options": [
-          "phenomenons",
-          "phenomena",
-          "phenomenon"
-        ],
-        "hint": "Греческое происхождение",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "The ___ (thief) were caught by the police.",
-        "correct": "thieves",
-        "hint": "Замените -f на -ves",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "I need two ___ (loaf) of bread.",
-        "correct": "loaves",
-        "hint": "Замените -f на -ves",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "The ___ (child) have many ___ (toy).",
-        "correct": "children, toys",
-        "hint": "Одно неправильное, одно правильное",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "There are several ___ (species) of birds here.",
-        "correct": "species",
-        "hint": "Форма не меняется",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "The ___ (person) in the room are all adults.",
-        "correct": "people",
-        "hint": "Неправильная форма",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "There are three ___ (cat) on the sofa.",
-        "correct": "cats",
-        "hint": "Добавьте -s к существительному",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "I have two ___ (brother).",
-        "correct": "brothers",
-        "hint": "Добавьте -s",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She saw many ___ (fox) in the forest.",
-        "correct": "foxes",
-        "hint": "К существительным, оканчивающимся на -x, добавляется -es",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The ___ (child) are playing outside.",
-        "correct": "children",
-        "hint": "Это слово-исключение",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "We need three ___ (box) for the move.",
-        "correct": "boxes",
-        "hint": "Добавьте -es к словам на -x",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "There are many ___ (leaf) on the ground.",
-        "correct": "leaves",
-        "hint": "Замените -f на -ves",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He has two ___ (watch).",
-        "correct": "watches",
-        "hint": "Добавьте -es к словам на -ch",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The ___ (man) are working hard.",
-        "correct": "men",
-        "hint": "Это слово-исключение",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "I bought some ___ (potato) for dinner.",
-        "correct": "potatoes",
-        "hint": "Добавьте -es к словам на -o",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "There are five ___ (knife) in the drawer.",
-        "correct": "knives",
-        "hint": "Замените -fe на -ves",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The ___ (woman) are talking loudly.",
-        "correct": "women",
-        "hint": "Это слово-исключение",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "We saw two ___ (deer) in the park.",
-        "correct": "deer",
-        "hint": "Это слово не меняется во множественном числе",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The ___ (mouse) ran away quickly.",
-        "correct": "mice",
-        "hint": "Это слово-исключение",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She has three ___ (baby).",
-        "correct": "babies",
-        "hint": "Замените -y на -ies",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "There are many ___ (bus) on the street.",
-        "correct": "buses",
-        "hint": "Добавьте -es к словам на -s",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "I need two ___ (glass) of water.",
-        "correct": "glasses",
-        "hint": "Добавьте -es к словам на -ss",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The ___ (foot) of the table are broken.",
-        "correct": "feet",
-        "hint": "Это слово-исключение",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He caught three ___ (fish) today.",
-        "correct": "fish",
-        "hint": "Это слово обычно не меняется",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "There are many ___ (city) in this country.",
-        "correct": "cities",
-        "hint": "Замените -y на -ies",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The ___ (tooth) of the comb are sharp.",
-        "correct": "teeth",
-        "hint": "Это слово-исключение",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "There are several ___ (sheep) in the field.",
-        "correct": "sheep",
-        "hint": "Это слово не меняется во множественном числе",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "The ___ (ox) are pulling the cart.",
-        "correct": "oxen",
-        "hint": "Это слово-исключение, добавляется -en",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "I saw two ___ (phenomenon) in the sky.",
-        "correct": "phenomena",
-        "hint": "Это слово греческого происхождения, меняет окончание на -a",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "The ___ (crisis) in the country are serious.",
-        "correct": "crises",
-        "hint": "Это слово греческого происхождения, меняет -is на -es",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "There are many ___ (cactus) in the desert.",
-        "correct": "cacti",
-        "hint": "Это слово латинского происхождения, меняет -us на -i",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "The ___ (analysis) were incorrect.",
-        "correct": "analyses",
-        "hint": "Это слово греческого происхождения, меняет -is на -es",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "We studied several ___ (thesis) for the exam.",
-        "correct": "theses",
-        "hint": "Это слово греческого происхождения, меняет -is на -es",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "The ___ (appendix) of the book are long.",
-        "correct": "appendices",
-        "hint": "Это слово латинского происхождения, меняет -ix на -ices",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "There are many ___ (index) in this database.",
-        "correct": "indices",
-        "hint": "Это слово латинского происхождения, меняет -ex на -ices",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "The ___ (datum) from the experiment are clear.",
-        "correct": "data",
-        "hint": "Это слово латинского происхождения, меняет -um на -a",
-        "star": True
-      }
-    ]
+            "practice_bank": [
+            # Вариант 1
+            [
+                {
+                    "type": "complex",
+                    "text": "Напишите слова во множественном числе.\n\n1. cat → __\n2. dog → __\n3. box → __\n4. bus → __\n5. watch → __\n6. dress → __\n7. baby → __\n8. city → __\n9. knife → __\n10. leaf → __",
+                    "subtasks": [
+                        {"question": "cat → __", "answer": "cats", "explanation": "cat + s"},
+                        {"question": "dog → __", "answer": "dogs", "explanation": "dog + s"},
+                        {"question": "box → __", "answer": "boxes", "explanation": "box + es (оканчивается на -x)"},
+                        {"question": "bus → __", "answer": "buses", "explanation": "bus + es (оканчивается на -s)"},
+                        {"question": "watch → __", "answer": "watches", "explanation": "watch + es (оканчивается на -ch)"},
+                        {"question": "dress → __", "answer": "dresses", "explanation": "dress + es (оканчивается на -ss)"},
+                        {"question": "baby → __", "answer": "babies", "explanation": "baby → babies (-y меняется на -ies)"},
+                        {"question": "city → __", "answer": "cities", "explanation": "city → cities (-y меняется на -ies)"},
+                        {"question": "knife → __", "answer": "knives", "explanation": "knife → knives (-f меняется на -ves)"},
+                        {"question": "leaf → __", "answer": "leaves", "explanation": "leaf → leaves (-f меняется на -ves)"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Переведите предложения на английский, используя множественное число.\n\n1. У меня есть кошки.\n2. Они собаки.\n3. Это коробки.\n4. Я вижу автобусы.\n5. Она носит платья.\n6. У неё есть дети.\n7. Это города.\n8. Он купил ножи.\n9. Деревья зелёные.\n10. Листья падают.",
+                    "subtasks": [
+                        {"question": "У меня есть кошки.", "answer": "I have cats.", "explanation": "I have + cats (мн.ч.)"},
+                        {"question": "Они собаки.", "answer": "They are dogs.", "explanation": "They are + dogs"},
+                        {"question": "Это коробки.", "answer": "These are boxes.", "explanation": "These are + boxes"},
+                        {"question": "Я вижу автобусы.", "answer": "I see buses.", "explanation": "I see + buses"},
+                        {"question": "Она носит платья.", "answer": "She wears dresses.", "explanation": "She wears + dresses"},
+                        {"question": "У неё есть дети.", "answer": "She has children.", "explanation": "child → children (исключение)"},
+                        {"question": "Это города.", "answer": "These are cities.", "explanation": "city → cities"},
+                        {"question": "Он купил ножи.", "answer": "He bought knives.", "explanation": "knife → knives"},
+                        {"question": "Деревья зелёные.", "answer": "The trees are green.", "explanation": "tree → trees"},
+                        {"question": "Листья падают.", "answer": "The leaves are falling.", "explanation": "leaf → leaves"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Составьте предложения из слов (используя множественное число).\n\n1. cats / have / I\n2. dogs / are / they\n3. boxes / these / are\n4. see / buses / I\n5. wears / dresses / she\n6. children / has / she\n7. cities / are / these\n8. bought / knives / he\n9. trees / green / are / the\n10. leaves / are / falling / the",
+                    "subtasks": [
+                        {"question": "cats / have / I", "answer": "I have cats.", "explanation": "I have cats."},
+                        {"question": "dogs / are / they", "answer": "They are dogs.", "explanation": "They are dogs."},
+                        {"question": "boxes / these / are", "answer": "These are boxes.", "explanation": "These are boxes."},
+                        {"question": "see / buses / I", "answer": "I see buses.", "explanation": "I see buses."},
+                        {"question": "wears / dresses / she", "answer": "She wears dresses.", "explanation": "She wears dresses."},
+                        {"question": "children / has / she", "answer": "She has children.", "explanation": "She has children."},
+                        {"question": "cities / are / these", "answer": "These are cities.", "explanation": "These are cities."},
+                        {"question": "bought / knives / he", "answer": "He bought knives.", "explanation": "He bought knives."},
+                        {"question": "trees / green / are / the", "answer": "The trees are green.", "explanation": "The trees are green."},
+                        {"question": "leaves / are / falling / the", "answer": "The leaves are falling.", "explanation": "The leaves are falling."}
+                    ]
+                }
+            ],
+            # Вариант 2
+            [
+                {
+                    "type": "complex",
+                    "text": "Напишите слова во множественном числе.\n\n1. book → __\n2. pen → __\n3. dish → __\n4. brush → __\n5. match → __\n6. glass → __\n7. story → __\n8. country → __\n9. wolf → __\n10. shelf → __",
+                    "subtasks": [
+                        {"question": "book → __", "answer": "books", "explanation": "book + s"},
+                        {"question": "pen → __", "answer": "pens", "explanation": "pen + s"},
+                        {"question": "dish → __", "answer": "dishes", "explanation": "dish + es (оканчивается на -sh)"},
+                        {"question": "brush → __", "answer": "brushes", "explanation": "brush + es (оканчивается на -sh)"},
+                        {"question": "match → __", "answer": "matches", "explanation": "match + es (оканчивается на -ch)"},
+                        {"question": "glass → __", "answer": "glasses", "explanation": "glass + es (оканчивается на -ss)"},
+                        {"question": "story → __", "answer": "stories", "explanation": "story → stories (-y меняется на -ies)"},
+                        {"question": "country → __", "answer": "countries", "explanation": "country → countries (-y меняется на -ies)"},
+                        {"question": "wolf → __", "answer": "wolves", "explanation": "wolf → wolves (-f меняется на -ves)"},
+                        {"question": "shelf → __", "answer": "shelves", "explanation": "shelf → shelves (-f меняется на -ves)"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Переведите предложения на английский.\n\n1. Я читаю книги.\n2. Это ручки.\n3. Она моет тарелки.\n4. У меня есть щётки.\n5. Он купил спички.\n6. Это стаканы.\n7. Я люблю истории.\n8. Они страны.\n9. Волки воют.\n10. Полки пустые.",
+                    "subtasks": [
+                        {"question": "Я читаю книги.", "answer": "I read books.", "explanation": "I read + books"},
+                        {"question": "Это ручки.", "answer": "These are pens.", "explanation": "These are + pens"},
+                        {"question": "Она моет тарелки.", "answer": "She washes dishes.", "explanation": "She washes + dishes"},
+                        {"question": "У меня есть щётки.", "answer": "I have brushes.", "explanation": "I have + brushes"},
+                        {"question": "Он купил спички.", "answer": "He bought matches.", "explanation": "He bought + matches"},
+                        {"question": "Это стаканы.", "answer": "These are glasses.", "explanation": "These are + glasses"},
+                        {"question": "Я люблю истории.", "answer": "I love stories.", "explanation": "I love + stories"},
+                        {"question": "Они страны.", "answer": "They are countries.", "explanation": "They are + countries"},
+                        {"question": "Волки воют.", "answer": "Wolves howl.", "explanation": "Wolves (wolf → wolves)"},
+                        {"question": "Полки пустые.", "answer": "The shelves are empty.", "explanation": "shelf → shelves"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Составьте предложения из слов.\n\n1. read / books / I\n2. pens / these / are\n3. dishes / washes / she\n4. brushes / have / I\n5. bought / matches / he\n6. glasses / these / are\n7. stories / love / I\n8. countries / they / are\n9. howl / wolves\n10. shelves / empty / the / are",
+                    "subtasks": [
+                        {"question": "read / books / I", "answer": "I read books.", "explanation": "I read books."},
+                        {"question": "pens / these / are", "answer": "These are pens.", "explanation": "These are pens."},
+                        {"question": "dishes / washes / she", "answer": "She washes dishes.", "explanation": "She washes dishes."},
+                        {"question": "brushes / have / I", "answer": "I have brushes.", "explanation": "I have brushes."},
+                        {"question": "bought / matches / he", "answer": "He bought matches.", "explanation": "He bought matches."},
+                        {"question": "glasses / these / are", "answer": "These are glasses.", "explanation": "These are glasses."},
+                        {"question": "stories / love / I", "answer": "I love stories.", "explanation": "I love stories."},
+                        {"question": "countries / they / are", "answer": "They are countries.", "explanation": "They are countries."},
+                        {"question": "howl / wolves", "answer": "Wolves howl.", "explanation": "Wolves howl."},
+                        {"question": "shelves / empty / the / are", "answer": "The shelves are empty.", "explanation": "The shelves are empty."}
+                    ]
+                }
+            ],
+            # Вариант 3
+            [
+                {
+                    "type": "complex",
+                    "text": "Напишите слова во множественном числе.\n\n1. tree → __\n2. key → __\n3. wife → __\n4. life → __\n5. potato → __\n6. tomato → __\n7. child → __\n8. man → __\n9. woman → __\n10. mouse → __",
+                    "subtasks": [
+                        {"question": "tree → __", "answer": "trees", "explanation": "tree + s"},
+                        {"question": "key → __", "answer": "keys", "explanation": "key + s (не меняется на -ies, т.к. перед -y гласная)"},
+                        {"question": "wife → __", "answer": "wives", "explanation": "wife → wives (-f меняется на -ves)"},
+                        {"question": "life → __", "answer": "lives", "explanation": "life → lives (-f меняется на -ves)"},
+                        {"question": "potato → __", "answer": "potatoes", "explanation": "potato + es (оканчивается на -o)"},
+                        {"question": "tomato → __", "answer": "tomatoes", "explanation": "tomato + es (оканчивается на -o)"},
+                        {"question": "child → __", "answer": "children", "explanation": "child → children (исключение)"},
+                        {"question": "man → __", "answer": "men", "explanation": "man → men (исключение)"},
+                        {"question": "woman → __", "answer": "women", "explanation": "woman → women (исключение)"},
+                        {"question": "mouse → __", "answer": "mice", "explanation": "mouse → mice (исключение)"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Переведите предложения на английский.\n\n1. Это деревья.\n2. У меня есть ключи.\n3. Она жена.\n4. Они жизни.\n5. Я люблю картошку.\n6. Он ест помидоры.\n7. Дети играют.\n8. Мужчины работают.\n9. Женщины говорят.\n10. Мыши бегут.",
+                    "subtasks": [
+                        {"question": "Это деревья.", "answer": "These are trees.", "explanation": "These are + trees"},
+                        {"question": "У меня есть ключи.", "answer": "I have keys.", "explanation": "I have + keys"},
+                        {"question": "Она жена.", "answer": "She is a wife.", "explanation": "wife (ед.ч.)"},
+                        {"question": "Они жизни.", "answer": "They are lives.", "explanation": "life → lives"},
+                        {"question": "Я люблю картошку.", "answer": "I love potatoes.", "explanation": "potato → potatoes"},
+                        {"question": "Он ест помидоры.", "answer": "He eats tomatoes.", "explanation": "tomato → tomatoes"},
+                        {"question": "Дети играют.", "answer": "The children are playing.", "explanation": "child → children"},
+                        {"question": "Мужчины работают.", "answer": "The men are working.", "explanation": "man → men"},
+                        {"question": "Женщины говорят.", "answer": "The women are talking.", "explanation": "woman → women"},
+                        {"question": "Мыши бегут.", "answer": "The mice are running.", "explanation": "mouse → mice"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Составьте предложения из слов.\n\n1. trees / these / are\n2. keys / have / I\n3. a / wife / she / is\n4. lives / they / are\n5. potatoes / love / I\n6. tomatoes / eats / he\n7. playing / children / are / the\n8. working / men / are / the\n9. talking / women / are / the\n10. mice / running / are / the",
+                    "subtasks": [
+                        {"question": "trees / these / are", "answer": "These are trees.", "explanation": "These are trees."},
+                        {"question": "keys / have / I", "answer": "I have keys.", "explanation": "I have keys."},
+                        {"question": "a / wife / she / is", "answer": "She is a wife.", "explanation": "She is a wife."},
+                        {"question": "lives / they / are", "answer": "They are lives.", "explanation": "They are lives."},
+                        {"question": "potatoes / love / I", "answer": "I love potatoes.", "explanation": "I love potatoes."},
+                        {"question": "tomatoes / eats / he", "answer": "He eats tomatoes.", "explanation": "He eats tomatoes."},
+                        {"question": "playing / children / are / the", "answer": "The children are playing.", "explanation": "The children are playing."},
+                        {"question": "working / men / are / the", "answer": "The men are working.", "explanation": "The men are working."},
+                        {"question": "talking / women / are / the", "answer": "The women are talking.", "explanation": "The women are talking."},
+                        {"question": "mice / running / are / the", "answer": "The mice are running.", "explanation": "The mice are running."}
+                    ]
+                }
+            ],
+            # Вариант 4
+            [
+                {
+                    "type": "complex",
+                    "text": "Напишите слова во множественном числе.\n\n1. foot → __\n2. tooth → __\n3. goose → __\n4. sheep → __\n5. fish → __\n6. deer → __\n7. mouse → __\n8. child → __\n9. man → __\n10. woman → __",
+                    "subtasks": [
+                        {"question": "foot → __", "answer": "feet", "explanation": "foot → feet (исключение)"},
+                        {"question": "tooth → __", "answer": "teeth", "explanation": "tooth → teeth (исключение)"},
+                        {"question": "goose → __", "answer": "geese", "explanation": "goose → geese (исключение)"},
+                        {"question": "sheep → __", "answer": "sheep", "explanation": "sheep → sheep (неизменяемое)"},
+                        {"question": "fish → __", "answer": "fish", "explanation": "fish → fish (неизменяемое, или fishes)"},
+                        {"question": "deer → __", "answer": "deer", "explanation": "deer → deer (неизменяемое)"},
+                        {"question": "mouse → __", "answer": "mice", "explanation": "mouse → mice (исключение)"},
+                        {"question": "child → __", "answer": "children", "explanation": "child → children (исключение)"},
+                        {"question": "man → __", "answer": "men", "explanation": "man → men (исключение)"},
+                        {"question": "woman → __", "answer": "women", "explanation": "woman → women (исключение)"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Переведите предложения на английский.\n\n1. У меня болят ноги.\n2. Она чистит зубы.\n3. Это гуси.\n4. Овцы в поле.\n5. Рыбы плавают.\n6. Олени бегут.\n7. Дети смеются.\n8. Мужчины сильны.\n9. Женщины красивы.\n10. Мыши боятся.",
+                    "subtasks": [
+                        {"question": "У меня болят ноги.", "answer": "My feet hurt.", "explanation": "foot → feet"},
+                        {"question": "Она чистит зубы.", "answer": "She brushes her teeth.", "explanation": "tooth → teeth"},
+                        {"question": "Это гуси.", "answer": "These are geese.", "explanation": "goose → geese"},
+                        {"question": "Овцы в поле.", "answer": "The sheep are in the field.", "explanation": "sheep (неизменяемое)"},
+                        {"question": "Рыбы плавают.", "answer": "The fish are swimming.", "explanation": "fish (неизменяемое)"},
+                        {"question": "Олени бегут.", "answer": "The deer are running.", "explanation": "deer (неизменяемое)"},
+                        {"question": "Дети смеются.", "answer": "The children are laughing.", "explanation": "child → children"},
+                        {"question": "Мужчины сильны.", "answer": "The men are strong.", "explanation": "man → men"},
+                        {"question": "Женщины красивы.", "answer": "The women are beautiful.", "explanation": "woman → women"},
+                        {"question": "Мыши боятся.", "answer": "The mice are afraid.", "explanation": "mouse → mice"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Составьте предложения из слов.\n\n1. hurt / feet / my\n2. brushes / teeth / her / she\n3. geese / these / are\n4. field / the / sheep / are / in\n5. swimming / fish / are / the\n6. running / deer / are / the\n7. laughing / children / are / the\n8. strong / men / are / the\n9. beautiful / women / are / the\n10. afraid / mice / are / the",
+                    "subtasks": [
+                        {"question": "hurt / feet / my", "answer": "My feet hurt.", "explanation": "My feet hurt."},
+                        {"question": "brushes / teeth / her / she", "answer": "She brushes her teeth.", "explanation": "She brushes her teeth."},
+                        {"question": "geese / these / are", "answer": "These are geese.", "explanation": "These are geese."},
+                        {"question": "field / the / sheep / are / in", "answer": "The sheep are in the field.", "explanation": "The sheep are in the field."},
+                        {"question": "swimming / fish / are / the", "answer": "The fish are swimming.", "explanation": "The fish are swimming."},
+                        {"question": "running / deer / are / the", "answer": "The deer are running.", "explanation": "The deer are running."},
+                        {"question": "laughing / children / are / the", "answer": "The children are laughing.", "explanation": "The children are laughing."},
+                        {"question": "strong / men / are / the", "answer": "The men are strong.", "explanation": "The men are strong."},
+                        {"question": "beautiful / women / are / the", "answer": "The women are beautiful.", "explanation": "The women are beautiful."},
+                        {"question": "afraid / mice / are / the", "answer": "The mice are afraid.", "explanation": "The mice are afraid."}
+                    ]
+                }
+            ],
+            # Вариант 5
+            [
+                {
+                    "type": "complex",
+                    "text": "Напишите слова во множественном числе.\n\n1. house → __\n2. horse → __\n3. bus → __\n4. class → __\n5. fox → __\n6. bench → __\n7. city → __\n8. party → __\n9. thief → __\n10. chief → __",
+                    "subtasks": [
+                        {"question": "house → __", "answer": "houses", "explanation": "house + s"},
+                        {"question": "horse → __", "answer": "horses", "explanation": "horse + s"},
+                        {"question": "bus → __", "answer": "buses", "explanation": "bus + es"},
+                        {"question": "class → __", "answer": "classes", "explanation": "class + es"},
+                        {"question": "fox → __", "answer": "foxes", "explanation": "fox + es"},
+                        {"question": "bench → __", "answer": "benches", "explanation": "bench + es"},
+                        {"question": "city → __", "answer": "cities", "explanation": "city → cities"},
+                        {"question": "party → __", "answer": "parties", "explanation": "party → parties"},
+                        {"question": "thief → __", "answer": "thieves", "explanation": "thief → thieves"},
+                        {"question": "chief → __", "answer": "chiefs", "explanation": "chief + s (не меняется на -ves)"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Переведите предложения на английский.\n\n1. Это дома.\n2. Лошади бегут.\n3. Автобусы ждут.\n4. Классы большие.\n5. Лисы хитрые.\n6. Скамейки новые.\n7. Города большие.\n8. Вечеринки весёлые.\n9. Воры убежали.\n10. Вожди говорят.",
+                    "subtasks": [
+                        {"question": "Это дома.", "answer": "These are houses.", "explanation": "These are houses."},
+                        {"question": "Лошади бегут.", "answer": "The horses are running.", "explanation": "horse → horses"},
+                        {"question": "Автобусы ждут.", "answer": "The buses are waiting.", "explanation": "bus → buses"},
+                        {"question": "Классы большие.", "answer": "The classes are big.", "explanation": "class → classes"},
+                        {"question": "Лисы хитрые.", "answer": "The foxes are clever.", "explanation": "fox → foxes"},
+                        {"question": "Скамейки новые.", "answer": "The benches are new.", "explanation": "bench → benches"},
+                        {"question": "Города большие.", "answer": "The cities are big.", "explanation": "city → cities"},
+                        {"question": "Вечеринки весёлые.", "answer": "The parties are fun.", "explanation": "party → parties"},
+                        {"question": "Воры убежали.", "answer": "The thieves ran away.", "explanation": "thief → thieves"},
+                        {"question": "Вожди говорят.", "answer": "The chiefs are speaking.", "explanation": "chief → chiefs"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Составьте предложения из слов.\n\n1. houses / these / are\n2. running / horses / the / are\n3. waiting / buses / the / are\n4. big / classes / are / the\n5. foxes / clever / are / the\n6. benches / new / are / the\n7. cities / big / are / the\n8. parties / fun / are / the\n9. away / thieves / ran / the\n10. chiefs / speaking / are / the",
+                    "subtasks": [
+                        {"question": "houses / these / are", "answer": "These are houses.", "explanation": "These are houses."},
+                        {"question": "running / horses / the / are", "answer": "The horses are running.", "explanation": "The horses are running."},
+                        {"question": "waiting / buses / the / are", "answer": "The buses are waiting.", "explanation": "The buses are waiting."},
+                        {"question": "big / classes / are / the", "answer": "The classes are big.", "explanation": "The classes are big."},
+                        {"question": "foxes / clever / are / the", "answer": "The foxes are clever.", "explanation": "The foxes are clever."},
+                        {"question": "benches / new / are / the", "answer": "The benches are new.", "explanation": "The benches are new."},
+                        {"question": "cities / big / are / the", "answer": "The cities are big.", "explanation": "The cities are big."},
+                        {"question": "parties / fun / are / the", "answer": "The parties are fun.", "explanation": "The parties are fun."},
+                        {"question": "away / thieves / ran / the", "answer": "The thieves ran away.", "explanation": "The thieves ran away."},
+                        {"question": "chiefs / speaking / are / the", "answer": "The chiefs are speaking.", "explanation": "The chiefs are speaking."}
+                    ]
+                }
+            ],
+            # Вариант 6
+            [
+                {
+                    "type": "complex",
+                    "text": "Напишите слова во множественном числе.\n\n1. toy → __\n2. boy → __\n3. day → __\n4. key → __\n5. monkey → __\n6. donkey → __\n7. tomato → __\n8. potato → __\n9. hero → __\n10. zero → __",
+                    "subtasks": [
+                        {"question": "toy → __", "answer": "toys", "explanation": "toy + s (перед -y гласная)"},
+                        {"question": "boy → __", "answer": "boys", "explanation": "boy + s (перед -y гласная)"},
+                        {"question": "day → __", "answer": "days", "explanation": "day + s (перед -y гласная)"},
+                        {"question": "key → __", "answer": "keys", "explanation": "key + s (перед -y гласная)"},
+                        {"question": "monkey → __", "answer": "monkeys", "explanation": "monkey + s (перед -y гласная)"},
+                        {"question": "donkey → __", "answer": "donkeys", "explanation": "donkey + s (перед -y гласная)"},
+                        {"question": "tomato → __", "answer": "tomatoes", "explanation": "tomato + es"},
+                        {"question": "potato → __", "answer": "potatoes", "explanation": "potato + es"},
+                        {"question": "hero → __", "answer": "heroes", "explanation": "hero + es"},
+                        {"question": "zero → __", "answer": "zeros", "explanation": "zero + s (или zeroes)"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Переведите предложения на английский.\n\n1. Это игрушки.\n2. Мальчики играют.\n3. Дни проходят.\n4. У меня есть ключи.\n5. Обезьяны смешные.\n6. Ослы медленные.\n7. Я люблю помидоры.\n8. Он ест картошку.\n9. Герои сильные.\n10. Нули не важны.",
+                    "subtasks": [
+                        {"question": "Это игрушки.", "answer": "These are toys.", "explanation": "toy → toys"},
+                        {"question": "Мальчики играют.", "answer": "The boys are playing.", "explanation": "boy → boys"},
+                        {"question": "Дни проходят.", "answer": "The days are passing.", "explanation": "day → days"},
+                        {"question": "У меня есть ключи.", "answer": "I have keys.", "explanation": "key → keys"},
+                        {"question": "Обезьяны смешные.", "answer": "The monkeys are funny.", "explanation": "monkey → monkeys"},
+                        {"question": "Ослы медленные.", "answer": "The donkeys are slow.", "explanation": "donkey → donkeys"},
+                        {"question": "Я люблю помидоры.", "answer": "I love tomatoes.", "explanation": "tomato → tomatoes"},
+                        {"question": "Он ест картошку.", "answer": "He eats potatoes.", "explanation": "potato → potatoes"},
+                        {"question": "Герои сильные.", "answer": "The heroes are strong.", "explanation": "hero → heroes"},
+                        {"question": "Нули не важны.", "answer": "Zeros are not important.", "explanation": "zero → zeros"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Составьте предложения из слов.\n\n1. toys / these / are\n2. playing / boys / are / the\n3. passing / days / are / the\n4. keys / have / I\n5. monkeys / funny / are / the\n6. donkeys / slow / are / the\n7. love / tomatoes / I\n8. potatoes / eats / he\n9. heroes / strong / are / the\n10. important / not / zeros / are",
+                    "subtasks": [
+                        {"question": "toys / these / are", "answer": "These are toys.", "explanation": "These are toys."},
+                        {"question": "playing / boys / are / the", "answer": "The boys are playing.", "explanation": "The boys are playing."},
+                        {"question": "passing / days / are / the", "answer": "The days are passing.", "explanation": "The days are passing."},
+                        {"question": "keys / have / I", "answer": "I have keys.", "explanation": "I have keys."},
+                        {"question": "monkeys / funny / are / the", "answer": "The monkeys are funny.", "explanation": "The monkeys are funny."},
+                        {"question": "donkeys / slow / are / the", "answer": "The donkeys are slow.", "explanation": "The donkeys are slow."},
+                        {"question": "love / tomatoes / I", "answer": "I love tomatoes.", "explanation": "I love tomatoes."},
+                        {"question": "potatoes / eats / he", "answer": "He eats potatoes.", "explanation": "He eats potatoes."},
+                        {"question": "heroes / strong / are / the", "answer": "The heroes are strong.", "explanation": "The heroes are strong."},
+                        {"question": "important / not / zeros / are", "answer": "Zeros are not important.", "explanation": "Zeros are not important."}
+                    ]
+                }
+            ],
+            # Вариант 7
+            [
+                {
+                    "type": "complex",
+                    "text": "Напишите слова во множественном числе.\n\n1. car → __\n2. star → __\n3. church → __\n4. box → __\n5. wish → __\n6. glass → __\n7. lady → __\n8. baby → __\n9. wolf → __\n10. leaf → __",
+                    "subtasks": [
+                        {"question": "car → __", "answer": "cars", "explanation": "car + s"},
+                        {"question": "star → __", "answer": "stars", "explanation": "star + s"},
+                        {"question": "church → __", "answer": "churches", "explanation": "church + es (оканчивается на -ch)"},
+                        {"question": "box → __", "answer": "boxes", "explanation": "box + es (-x)"},
+                        {"question": "wish → __", "answer": "wishes", "explanation": "wish + es (-sh)"},
+                        {"question": "glass → __", "answer": "glasses", "explanation": "glass + es (-ss)"},
+                        {"question": "lady → __", "answer": "ladies", "explanation": "lady → ladies (-y меняется на -ies)"},
+                        {"question": "baby → __", "answer": "babies", "explanation": "baby → babies (-y меняется на -ies)"},
+                        {"question": "wolf → __", "answer": "wolves", "explanation": "wolf → wolves (-f меняется на -ves)"},
+                        {"question": "leaf → __", "answer": "leaves", "explanation": "leaf → leaves (-f меняется на -ves)"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Переведите предложения на английский.\n\n1. Это машины.\n2. Звёзды светят.\n3. Церкви старые.\n4. Коробки пустые.\n5. У меня есть желания.\n6. Это стаканы.\n7. Леди красивые.\n8. Младенцы спят.\n9. Волки воют.\n10. Листья опадают.",
+                    "subtasks": [
+                        {"question": "Это машины.", "answer": "These are cars.", "explanation": "car → cars"},
+                        {"question": "Звёзды светят.", "answer": "The stars are shining.", "explanation": "star → stars"},
+                        {"question": "Церкви старые.", "answer": "The churches are old.", "explanation": "church → churches"},
+                        {"question": "Коробки пустые.", "answer": "The boxes are empty.", "explanation": "box → boxes"},
+                        {"question": "У меня есть желания.", "answer": "I have wishes.", "explanation": "wish → wishes"},
+                        {"question": "Это стаканы.", "answer": "These are glasses.", "explanation": "glass → glasses"},
+                        {"question": "Леди красивые.", "answer": "The ladies are beautiful.", "explanation": "lady → ladies"},
+                        {"question": "Младенцы спят.", "answer": "The babies are sleeping.", "explanation": "baby → babies"},
+                        {"question": "Волки воют.", "answer": "The wolves are howling.", "explanation": "wolf → wolves"},
+                        {"question": "Листья опадают.", "answer": "The leaves are falling.", "explanation": "leaf → leaves"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Составьте предложения из слов.\n\n1. cars / these / are\n2. shining / stars / the / are\n3. old / churches / the / are\n4. empty / boxes / the / are\n5. wishes / have / I\n6. glasses / these / are\n7. beautiful / ladies / the / are\n8. sleeping / babies / the / are\n9. howling / wolves / the / are\n10. falling / leaves / the / are",
+                    "subtasks": [
+                        {"question": "cars / these / are", "answer": "These are cars.", "explanation": "These are cars."},
+                        {"question": "shining / stars / the / are", "answer": "The stars are shining.", "explanation": "The stars are shining."},
+                        {"question": "old / churches / the / are", "answer": "The churches are old.", "explanation": "The churches are old."},
+                        {"question": "empty / boxes / the / are", "answer": "The boxes are empty.", "explanation": "The boxes are empty."},
+                        {"question": "wishes / have / I", "answer": "I have wishes.", "explanation": "I have wishes."},
+                        {"question": "glasses / these / are", "answer": "These are glasses.", "explanation": "These are glasses."},
+                        {"question": "beautiful / ladies / the / are", "answer": "The ladies are beautiful.", "explanation": "The ladies are beautiful."},
+                        {"question": "sleeping / babies / the / are", "answer": "The babies are sleeping.", "explanation": "The babies are sleeping."},
+                        {"question": "howling / wolves / the / are", "answer": "The wolves are howling.", "explanation": "The wolves are howling."},
+                        {"question": "falling / leaves / the / are", "answer": "The leaves are falling.", "explanation": "The leaves are falling."}
+                    ]
+                }
+            ],
+            # Вариант 8
+            [
+                {
+                    "type": "complex",
+                    "text": "Напишите слова во множественном числе.\n\n1. factory → __\n2. library → __\n3. dictionary → __\n4. country → __\n5. family → __\n6. foot → __\n7. tooth → __\n8. goose → __\n9. sheep → __\n10. fish → __",
+                    "subtasks": [
+                        {"question": "factory → __", "answer": "factories", "explanation": "factory → factories (-y меняется на -ies)"},
+                        {"question": "library → __", "answer": "libraries", "explanation": "library → libraries (-y меняется на -ies)"},
+                        {"question": "dictionary → __", "answer": "dictionaries", "explanation": "dictionary → dictionaries (-y меняется на -ies)"},
+                        {"question": "country → __", "answer": "countries", "explanation": "country → countries (-y меняется на -ies)"},
+                        {"question": "family → __", "answer": "families", "explanation": "family → families (-y меняется на -ies)"},
+                        {"question": "foot → __", "answer": "feet", "explanation": "foot → feet (исключение)"},
+                        {"question": "tooth → __", "answer": "teeth", "explanation": "tooth → teeth (исключение)"},
+                        {"question": "goose → __", "answer": "geese", "explanation": "goose → geese (исключение)"},
+                        {"question": "sheep → __", "answer": "sheep", "explanation": "sheep (неизменяемое)"},
+                        {"question": "fish → __", "answer": "fish", "explanation": "fish (неизменяемое)"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Переведите предложения на английский.\n\n1. Это фабрики.\n2. Библиотеки открыты.\n3. Словари полезны.\n4. Страны разные.\n5. Семьи большие.\n6. У меня болят ноги.\n7. Зубы белые.\n8. Гуси летят.\n9. Овцы пасутся.\n10. Рыбы в воде.",
+                    "subtasks": [
+                        {"question": "Это фабрики.", "answer": "These are factories.", "explanation": "factory → factories"},
+                        {"question": "Библиотеки открыты.", "answer": "The libraries are open.", "explanation": "library → libraries"},
+                        {"question": "Словари полезны.", "answer": "The dictionaries are useful.", "explanation": "dictionary → dictionaries"},
+                        {"question": "Страны разные.", "answer": "The countries are different.", "explanation": "country → countries"},
+                        {"question": "Семьи большие.", "answer": "The families are big.", "explanation": "family → families"},
+                        {"question": "У меня болят ноги.", "answer": "My feet hurt.", "explanation": "foot → feet"},
+                        {"question": "Зубы белые.", "answer": "The teeth are white.", "explanation": "tooth → teeth"},
+                        {"question": "Гуси летят.", "answer": "The geese are flying.", "explanation": "goose → geese"},
+                        {"question": "Овцы пасутся.", "answer": "The sheep are grazing.", "explanation": "sheep (неизменяемое)"},
+                        {"question": "Рыбы в воде.", "answer": "The fish are in the water.", "explanation": "fish (неизменяемое)"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Составьте предложения из слов.\n\n1. factories / these / are\n2. open / libraries / the / are\n3. useful / dictionaries / are / the\n4. different / countries / are / the\n5. big / families / are / the\n6. hurt / feet / my\n7. white / teeth / the / are\n8. flying / geese / are / the\n9. grazing / sheep / are / the\n10. water / fish / the / are / in",
+                    "subtasks": [
+                        {"question": "factories / these / are", "answer": "These are factories.", "explanation": "These are factories."},
+                        {"question": "open / libraries / the / are", "answer": "The libraries are open.", "explanation": "The libraries are open."},
+                        {"question": "useful / dictionaries / are / the", "answer": "The dictionaries are useful.", "explanation": "The dictionaries are useful."},
+                        {"question": "different / countries / are / the", "answer": "The countries are different.", "explanation": "The countries are different."},
+                        {"question": "big / families / are / the", "answer": "The families are big.", "explanation": "The families are big."},
+                        {"question": "hurt / feet / my", "answer": "My feet hurt.", "explanation": "My feet hurt."},
+                        {"question": "white / teeth / the / are", "answer": "The teeth are white.", "explanation": "The teeth are white."},
+                        {"question": "flying / geese / are / the", "answer": "The geese are flying.", "explanation": "The geese are flying."},
+                        {"question": "grazing / sheep / are / the", "answer": "The sheep are grazing.", "explanation": "The sheep are grazing."},
+                        {"question": "water / fish / the / are / in", "answer": "The fish are in the water.", "explanation": "The fish are in the water."}
+                    ]
+                }
+            ],
+            # Вариант 9
+            [
+                {
+                    "type": "complex",
+                    "text": "Напишите слова во множественном числе.\n\n1. photo → __\n2. piano → __\n3. radio → __\n4. video → __\n5. zoo → __\n6. kangaroo → __\n7. buffalo → __\n8. echo → __\n9. hero → __\n10. tomato → __",
+                    "subtasks": [
+                        {"question": "photo → __", "answer": "photos", "explanation": "photo + s (частое исключение)"},
+                        {"question": "piano → __", "answer": "pianos", "explanation": "piano + s (исключение)"},
+                        {"question": "radio → __", "answer": "radios", "explanation": "radio + s (исключение)"},
+                        {"question": "video → __", "answer": "videos", "explanation": "video + s (исключение)"},
+                        {"question": "zoo → __", "answer": "zoos", "explanation": "zoo + s (исключение)"},
+                        {"question": "kangaroo → __", "answer": "kangaroos", "explanation": "kangaroo + s (исключение)"},
+                        {"question": "buffalo → __", "answer": "buffaloes", "explanation": "buffalo + es (или buffalos)"},
+                        {"question": "echo → __", "answer": "echoes", "explanation": "echo + es"},
+                        {"question": "hero → __", "answer": "heroes", "explanation": "hero + es"},
+                        {"question": "tomato → __", "answer": "tomatoes", "explanation": "tomato + es"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Переведите предложения на английский.\n\n1. Это фотографии.\n2. Пианино старые.\n3. Радио работают.\n4. Видео интересны.\n5. Зоопарки открыты.\n6. Кенгуру прыгают.\n7. Буйволы сильны.\n8. Эхо слышно.\n9. Герои известны.\n10. Помидоры красные.",
+                    "subtasks": [
+                        {"question": "Это фотографии.", "answer": "These are photos.", "explanation": "photo → photos"},
+                        {"question": "Пианино старые.", "answer": "The pianos are old.", "explanation": "piano → pianos"},
+                        {"question": "Радио работают.", "answer": "The radios are working.", "explanation": "radio → radios"},
+                        {"question": "Видео интересны.", "answer": "The videos are interesting.", "explanation": "video → videos"},
+                        {"question": "Зоопарки открыты.", "answer": "The zoos are open.", "explanation": "zoo → zoos"},
+                        {"question": "Кенгуру прыгают.", "answer": "The kangaroos are jumping.", "explanation": "kangaroo → kangaroos"},
+                        {"question": "Буйволы сильны.", "answer": "The buffaloes are strong.", "explanation": "buffalo → buffaloes"},
+                        {"question": "Эхо слышно.", "answer": "The echoes are heard.", "explanation": "echo → echoes"},
+                        {"question": "Герои известны.", "answer": "The heroes are famous.", "explanation": "hero → heroes"},
+                        {"question": "Помидоры красные.", "answer": "The tomatoes are red.", "explanation": "tomato → tomatoes"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Составьте предложения из слов.\n\n1. photos / these / are\n2. old / pianos / the / are\n3. working / radios / the / are\n4. interesting / videos / the / are\n5. open / zoos / the / are\n6. jumping / kangaroos / are / the\n7. strong / buffaloes / are / the\n8. heard / echoes / are / the\n9. famous / heroes / are / the\n10. red / tomatoes / are / the",
+                    "subtasks": [
+                        {"question": "photos / these / are", "answer": "These are photos.", "explanation": "These are photos."},
+                        {"question": "old / pianos / the / are", "answer": "The pianos are old.", "explanation": "The pianos are old."},
+                        {"question": "working / radios / the / are", "answer": "The radios are working.", "explanation": "The radios are working."},
+                        {"question": "interesting / videos / the / are", "answer": "The videos are interesting.", "explanation": "The videos are interesting."},
+                        {"question": "open / zoos / the / are", "answer": "The zoos are open.", "explanation": "The zoos are open."},
+                        {"question": "jumping / kangaroos / are / the", "answer": "The kangaroos are jumping.", "explanation": "The kangaroos are jumping."},
+                        {"question": "strong / buffaloes / are / the", "answer": "The buffaloes are strong.", "explanation": "The buffaloes are strong."},
+                        {"question": "heard / echoes / are / the", "answer": "The echoes are heard.", "explanation": "The echoes are heard."},
+                        {"question": "famous / heroes / are / the", "answer": "The heroes are famous.", "explanation": "The heroes are famous."},
+                        {"question": "red / tomatoes / are / the", "answer": "The tomatoes are red.", "explanation": "The tomatoes are red."}
+                    ]
+                }
+            ],
+            # Вариант 10
+            [
+                {
+                    "type": "complex",
+                    "text": "Напишите слова во множественном числе.\n\n1. roof → __\n2. chief → __\n3. belief → __\n4. cliff → __\n5. safe → __\n6. wife → __\n7. life → __\n8. leaf → __\n9. thief → __\n10. wolf → __",
+                    "subtasks": [
+                        {"question": "roof → __", "answer": "roofs", "explanation": "roof + s (исключение, не меняется на -ves)"},
+                        {"question": "chief → __", "answer": "chiefs", "explanation": "chief + s (исключение)"},
+                        {"question": "belief → __", "answer": "beliefs", "explanation": "belief + s (исключение)"},
+                        {"question": "cliff → __", "answer": "cliffs", "explanation": "cliff + s (исключение)"},
+                        {"question": "safe → __", "answer": "safes", "explanation": "safe + s (исключение)"},
+                        {"question": "wife → __", "answer": "wives", "explanation": "wife → wives (-f меняется на -ves)"},
+                        {"question": "life → __", "answer": "lives", "explanation": "life → lives (-f меняется на -ves)"},
+                        {"question": "leaf → __", "answer": "leaves", "explanation": "leaf → leaves (-f меняется на -ves)"},
+                        {"question": "thief → __", "answer": "thieves", "explanation": "thief → thieves (-f меняется на -ves)"},
+                        {"question": "wolf → __", "answer": "wolves", "explanation": "wolf → wolves (-f меняется на -ves)"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Переведите предложения на английский.\n\n1. Крыши красные.\n2. Вожди сидят.\n3. Верования важны.\n4. Скалы высокие.\n5. Сейфы закрыты.\n6. Жёны ждут.\n7. Жизни прекрасны.\n8. Листья зелёные.\n9. Воры пойманы.\n10. Волки голодны.",
+                    "subtasks": [
+                        {"question": "Крыши красные.", "answer": "The roofs are red.", "explanation": "roof → roofs"},
+                        {"question": "Вожди сидят.", "answer": "The chiefs are sitting.", "explanation": "chief → chiefs"},
+                        {"question": "Верования важны.", "answer": "Beliefs are important.", "explanation": "belief → beliefs"},
+                        {"question": "Скалы высокие.", "answer": "The cliffs are high.", "explanation": "cliff → cliffs"},
+                        {"question": "Сейфы закрыты.", "answer": "The safes are locked.", "explanation": "safe → safes"},
+                        {"question": "Жёны ждут.", "answer": "The wives are waiting.", "explanation": "wife → wives"},
+                        {"question": "Жизни прекрасны.", "answer": "Lives are beautiful.", "explanation": "life → lives"},
+                        {"question": "Листья зелёные.", "answer": "The leaves are green.", "explanation": "leaf → leaves"},
+                        {"question": "Воры пойманы.", "answer": "The thieves are caught.", "explanation": "thief → thieves"},
+                        {"question": "Волки голодны.", "answer": "The wolves are hungry.", "explanation": "wolf → wolves"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Составьте предложения из слов.\n\n1. roofs / red / are / the\n2. sitting / chiefs / are / the\n3. important / beliefs / are\n4. high / cliffs / the / are\n5. locked / safes / are / the\n6. waiting / wives / are / the\n7. beautiful / lives / are\n8. green / leaves / the / are\n9. caught / thieves / are / the\n10. hungry / wolves / are / the",
+                    "subtasks": [
+                        {"question": "roofs / red / are / the", "answer": "The roofs are red.", "explanation": "The roofs are red."},
+                        {"question": "sitting / chiefs / are / the", "answer": "The chiefs are sitting.", "explanation": "The chiefs are sitting."},
+                        {"question": "important / beliefs / are", "answer": "Beliefs are important.", "explanation": "Beliefs are important."},
+                        {"question": "high / cliffs / the / are", "answer": "The cliffs are high.", "explanation": "The cliffs are high."},
+                        {"question": "locked / safes / are / the", "answer": "The safes are locked.", "explanation": "The safes are locked."},
+                        {"question": "waiting / wives / are / the", "answer": "The wives are waiting.", "explanation": "The wives are waiting."},
+                        {"question": "beautiful / lives / are", "answer": "Lives are beautiful.", "explanation": "Lives are beautiful."},
+                        {"question": "green / leaves / the / are", "answer": "The leaves are green.", "explanation": "The leaves are green."},
+                        {"question": "caught / thieves / are / the", "answer": "The thieves are caught.", "explanation": "The thieves are caught."},
+                        {"question": "hungry / wolves / are / the", "answer": "The wolves are hungry.", "explanation": "The wolves are hungry."}
+                    ]
+                }
+            ]
+        ]
   },
   "questionwords": {
     "title": "Вопросительные слова",
