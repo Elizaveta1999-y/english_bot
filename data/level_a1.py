@@ -7631,484 +7631,518 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "answer": "Was для единственного числа (кроме you), were для множественного и you."
       }
     ],
-    "practice_tasks": [
-      {
-        "type": "fill_blank",
-        "text": "She ___ at home yesterday.",
-        "correct": "was",
-        "hint": "Для единственного числа",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "They ___ in the park last Sunday.",
-        "correct": "were",
-        "hint": "Для множественного числа",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "I ___ very tired after the trip.",
-        "correct": "was",
-        "hint": "Для 'I'",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "We ___ happy to see you.",
-        "correct": "were",
-        "hint": "Для 'we'",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He ___ a good student.",
-        "correct": "was",
-        "hint": "Для 'he'",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The books ___ on the table.",
-        "correct": "were",
-        "hint": "Множественное число",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "It ___ cold yesterday.",
-        "correct": "was",
-        "hint": "Для 'it'",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "You ___ late for the meeting.",
-        "correct": "were",
-        "hint": "Для 'you'",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "My mother ___ a teacher.",
-        "correct": "was",
-        "hint": "Единственное число",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The children ___ in the garden.",
-        "correct": "were",
-        "hint": "Множественное число",
-        "star": False
-      },
-      {
-        "type": "choice",
-        "text": "I ___ at school yesterday.",
-        "correct": "was",
-        "hint": "Выберите правильную форму",
-        "options": [
-          "was",
-          "were"
-        ],
-        "star": False
-      },
-      {
-        "type": "choice",
-        "text": "They ___ friends long ago.",
-        "correct": "were",
-        "hint": "Выберите правильную форму",
-        "options": [
-          "was",
-          "were"
-        ],
-        "star": False
-      },
-      {
-        "type": "choice",
-        "text": "She ___ very kind.",
-        "correct": "was",
-        "hint": "Выберите правильную форму",
-        "options": [
-          "was",
-          "were"
-        ],
-        "star": False
-      },
-      {
-        "type": "choice",
-        "text": "We ___ at the cinema last night.",
-        "correct": "were",
-        "hint": "Выберите правильную форму",
-        "options": [
-          "was",
-          "were"
-        ],
-        "star": False
-      },
-      {
-        "type": "choice",
-        "text": "He ___ a doctor.",
-        "correct": "was",
-        "hint": "Выберите правильную форму",
-        "options": [
-          "was",
-          "were"
-        ],
-        "star": False
-      },
-      {
-        "type": "translation",
-        "text": "Они были в парке.",
-        "correct": "They were in the park.",
-        "hint": "Переведите на английский",
-        "star": False
-      },
-      {
-        "type": "translation",
-        "text": "Я был дома.",
-        "correct": "I was at home.",
-        "hint": "Переведите на английский",
-        "star": False
-      },
-      {
-        "type": "translation",
-        "text": "Она была счастлива.",
-        "correct": "She was happy.",
-        "hint": "Переведите на английский",
-        "star": False
-      },
-      {
-        "type": "translation",
-        "text": "Мы были студентами.",
-        "correct": "We were students.",
-        "hint": "Переведите на английский",
-        "star": False
-      },
-      {
-        "type": "translation",
-        "text": "Он был учителем.",
-        "correct": "He was a teacher.",
-        "hint": "Переведите на английский",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "___ you at the party last night?",
-        "correct": "Were",
-        "hint": "Вопрос с 'you'",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "She ___ not at work yesterday.",
-        "correct": "was",
-        "hint": "Отрицательная форма",
-        "star": True
-      },
-      {
-        "type": "reorder",
-        "text": "was / she / yesterday / where ?",
-        "correct": "Where was she yesterday?",
-        "hint": "Составьте вопрос",
-        "star": True
-      },
-      {
-        "type": "reorder",
-        "text": "were / they / not / at home",
-        "correct": "They were not at home.",
-        "hint": "Составьте предложение",
-        "star": True
-      },
-      {
-        "type": "choice",
-        "text": "There ___ a lot of people at the concert.",
-        "correct": "were",
-        "hint": "Согласование с 'people'",
-        "options": [
-          "was",
-          "were"
-        ],
-        "star": True
-      },
-      {
-        "type": "choice",
-        "text": "There ___ a cat in the room.",
-        "correct": "was",
-        "hint": "Согласование с 'cat'",
-        "options": [
-          "was",
-          "were"
-        ],
-        "star": True
-      },
-      {
-        "type": "translation",
-        "text": "Вчера было холодно.",
-        "correct": "It was cold yesterday.",
-        "hint": "Безличное предложение",
-        "star": True
-      },
-      {
-        "type": "translation",
-        "text": "Где они были вчера?",
-        "correct": "Where were they yesterday?",
-        "hint": "Вопросительное предложение",
-        "star": True
-      },
-      {
-        "type": "open",
-        "text": "Напишите предложение о себе в прошедшем времени с глаголом was/were.",
-        "correct": "I was at the library yesterday.",
-        "hint": "Пример: I was...",
-        "star": True
-      },
-      {
-        "type": "open",
-        "text": "Составьте вопрос с was/were о погоде вчера.",
-        "correct": "Was it sunny yesterday?",
-        "hint": "Пример: Was it...?",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "I ___ at home yesterday.",
-        "correct": "was",
-        "hint": "Единственное число, 1-е лицо",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "They ___ in the park last Sunday.",
-        "correct": "were",
-        "hint": "Множественное число",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She ___ very happy yesterday.",
-        "correct": "was",
-        "hint": "Единственное число, 3-е лицо",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "We ___ at school two hours ago.",
-        "correct": "were",
-        "hint": "Множественное число",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He ___ a doctor in 2010.",
-        "correct": "was",
-        "hint": "Единственное число, 3-е лицо",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The cats ___ on the sofa.",
-        "correct": "were",
-        "hint": "Множественное число",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "I ___ not tired after the walk.",
-        "correct": "was",
-        "hint": "Отрицание, единственное число",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "You ___ very kind to me.",
-        "correct": "were",
-        "hint": "Единственное и множественное число для you",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "It ___ a sunny day.",
-        "correct": "was",
-        "hint": "Неодушевлённое, единственное число",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "My parents ___ at home last night.",
-        "correct": "were",
-        "hint": "Множественное число",
-        "star": False
-      },
-      {
-        "type": "choice",
-        "text": "She ___ at the party.",
-        "correct": "was",
-        "hint": "Выберите правильную форму",
-        "star": False,
-        "options": [
-          "was",
-          "were"
+            "practice_bank": [
+            # Вариант 1
+            [
+                {
+                    "type": "complex",
+                    "text": "Вставьте правильную форму глагола to be в прошедшем времени (was / were).\n\n1. I ___ a student two years ago.\n2. She ___ my best friend at school.\n3. We ___ happy yesterday.\n4. He ___ a doctor in 2010.\n5. They ___ at home last night.\n6. It ___ a cold day.\n7. You ___ very kind to me.\n8. Tom ___ my brother.\n9. The girls ___ in the garden.\n10. I ___ from Russia.",
+                    "subtasks": [
+                        {"question": "I ___ a student two years ago.", "answer": "was", "explanation": "I + was"},
+                        {"question": "She ___ my best friend at school.", "answer": "was", "explanation": "she + was"},
+                        {"question": "We ___ happy yesterday.", "answer": "were", "explanation": "we + were"},
+                        {"question": "He ___ a doctor in 2010.", "answer": "was", "explanation": "he + was"},
+                        {"question": "They ___ at home last night.", "answer": "were", "explanation": "they + were"},
+                        {"question": "It ___ a cold day.", "answer": "was", "explanation": "it + was"},
+                        {"question": "You ___ very kind to me.", "answer": "were", "explanation": "you + were"},
+                        {"question": "Tom ___ my brother.", "answer": "was", "explanation": "Tom = he → was"},
+                        {"question": "The girls ___ in the garden.", "answer": "were", "explanation": "girls = they → were"},
+                        {"question": "I ___ from Russia.", "answer": "was", "explanation": "I + was"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Переведите предложения на английский (используя was / were).\n\n1. Я был студентом два года назад.\n2. Она была моей лучшей подругой в школе.\n3. Мы были счастливы вчера.\n4. Он был врачом в 2010 году.\n5. Они были дома прошлым вечером.\n6. Это был холодный день.\n7. Ты был очень добр ко мне.\n8. Том был моим братом.\n9. Девочки были в саду.\n10. Я был из России.",
+                    "subtasks": [
+                        {"question": "Я был студентом два года назад.", "answer": "I was a student two years ago.", "explanation": "I was a student two years ago."},
+                        {"question": "Она была моей лучшей подругой в школе.", "answer": "She was my best friend at school.", "explanation": "She was my best friend at school."},
+                        {"question": "Мы были счастливы вчера.", "answer": "We were happy yesterday.", "explanation": "We were happy yesterday."},
+                        {"question": "Он был врачом в 2010 году.", "answer": "He was a doctor in 2010.", "explanation": "He was a doctor in 2010."},
+                        {"question": "Они были дома прошлым вечером.", "answer": "They were at home last night.", "explanation": "They were at home last night."},
+                        {"question": "Это был холодный день.", "answer": "It was a cold day.", "explanation": "It was a cold day."},
+                        {"question": "Ты был очень добр ко мне.", "answer": "You were very kind to me.", "explanation": "You were very kind to me."},
+                        {"question": "Том был моим братом.", "answer": "Tom was my brother.", "explanation": "Tom was my brother."},
+                        {"question": "Девочки были в саду.", "answer": "The girls were in the garden.", "explanation": "The girls were in the garden."},
+                        {"question": "Я был из России.", "answer": "I was from Russia.", "explanation": "I was from Russia."}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Составьте предложения из слов (используя was / were).\n\n1. student / I / ago / two / was / years / a\n2. school / best / my / at / was / friend / she\n3. yesterday / happy / were / we\n4. 2010 / in / a / was / doctor / he\n5. night / last / at / were / home / they\n6. a / day / cold / was / it\n7. kind / to / were / me / you / very\n8. brother / Tom / was / my\n9. garden / were / the / in / girls / the\n10. Russia / from / was / I",
+                    "subtasks": [
+                        {"question": "student / I / ago / two / was / years / a", "answer": "I was a student two years ago.", "explanation": "I was a student two years ago."},
+                        {"question": "school / best / my / at / was / friend / she", "answer": "She was my best friend at school.", "explanation": "She was my best friend at school."},
+                        {"question": "yesterday / happy / were / we", "answer": "We were happy yesterday.", "explanation": "We were happy yesterday."},
+                        {"question": "2010 / in / a / was / doctor / he", "answer": "He was a doctor in 2010.", "explanation": "He was a doctor in 2010."},
+                        {"question": "night / last / at / were / home / they", "answer": "They were at home last night.", "explanation": "They were at home last night."},
+                        {"question": "a / day / cold / was / it", "answer": "It was a cold day.", "explanation": "It was a cold day."},
+                        {"question": "kind / to / were / me / you / very", "answer": "You were very kind to me.", "explanation": "You were very kind to me."},
+                        {"question": "brother / Tom / was / my", "answer": "Tom was my brother.", "explanation": "Tom was my brother."},
+                        {"question": "garden / were / the / in / girls / the", "answer": "The girls were in the garden.", "explanation": "The girls were in the garden."},
+                        {"question": "Russia / from / was / I", "answer": "I was from Russia.", "explanation": "I was from Russia."}
+                    ]
+                }
+            ],
+            # Вариант 2
+            [
+                {
+                    "type": "complex",
+                    "text": "Вставьте was или were.\n\n1. You ___ my teacher last year.\n2. It ___ a beautiful day.\n3. We ___ tired after the trip.\n4. She ___ a nurse in 2015.\n5. They ___ at the cinema yesterday.\n6. I ___ a pilot.\n7. He ___ a firefighter.\n8. The books ___ on the table.\n9. My parents ___ very old.\n10. This ___ my pen.",
+                    "subtasks": [
+                        {"question": "You ___ my teacher last year.", "answer": "were", "explanation": "you + were"},
+                        {"question": "It ___ a beautiful day.", "answer": "was", "explanation": "it + was"},
+                        {"question": "We ___ tired after the trip.", "answer": "were", "explanation": "we + were"},
+                        {"question": "She ___ a nurse in 2015.", "answer": "was", "explanation": "she + was"},
+                        {"question": "They ___ at the cinema yesterday.", "answer": "were", "explanation": "they + were"},
+                        {"question": "I ___ a pilot.", "answer": "was", "explanation": "I + was"},
+                        {"question": "He ___ a firefighter.", "answer": "was", "explanation": "he + was"},
+                        {"question": "The books ___ on the table.", "answer": "were", "explanation": "books = they → were"},
+                        {"question": "My parents ___ very old.", "answer": "were", "explanation": "parents = they → were"},
+                        {"question": "This ___ my pen.", "answer": "was", "explanation": "this = it → was"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Переведите предложения на английский.\n\n1. Ты был моим учителем в прошлом году.\n2. Это был прекрасный день.\n3. Мы были уставшими после поездки.\n4. Она была медсестрой в 2015 году.\n5. Они были в кино вчера.\n6. Я был пилотом.\n7. Он был пожарным.\n8. Книги были на столе.\n9. Мои родители были очень старыми.\n10. Это была моя ручка.",
+                    "subtasks": [
+                        {"question": "Ты был моим учителем в прошлом году.", "answer": "You were my teacher last year.", "explanation": "You were my teacher last year."},
+                        {"question": "Это был прекрасный день.", "answer": "It was a beautiful day.", "explanation": "It was a beautiful day."},
+                        {"question": "Мы были уставшими после поездки.", "answer": "We were tired after the trip.", "explanation": "We were tired after the trip."},
+                        {"question": "Она была медсестрой в 2015 году.", "answer": "She was a nurse in 2015.", "explanation": "She was a nurse in 2015."},
+                        {"question": "Они были в кино вчера.", "answer": "They were at the cinema yesterday.", "explanation": "They were at the cinema yesterday."},
+                        {"question": "Я был пилотом.", "answer": "I was a pilot.", "explanation": "I was a pilot."},
+                        {"question": "Он был пожарным.", "answer": "He was a firefighter.", "explanation": "He was a firefighter."},
+                        {"question": "Книги были на столе.", "answer": "The books were on the table.", "explanation": "The books were on the table."},
+                        {"question": "Мои родители были очень старыми.", "answer": "My parents were very old.", "explanation": "My parents were very old."},
+                        {"question": "Это была моя ручка.", "answer": "This was my pen.", "explanation": "This was my pen."}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Составьте предложения.\n\n1. teacher / my / last / were / year / you\n2. beautiful / a / day / was / it\n3. trip / after / were / tired / we / the\n4. 2015 / in / a / was / nurse / she\n5. cinema / at / yesterday / were / they / the\n6. pilot / was / I / a\n7. firefighter / a / was / he\n8. table / on / were / books / the / the\n9. parents / very / old / were / my\n10. pen / was / this / my",
+                    "subtasks": [
+                        {"question": "teacher / my / last / were / year / you", "answer": "You were my teacher last year.", "explanation": "You were my teacher last year."},
+                        {"question": "beautiful / a / day / was / it", "answer": "It was a beautiful day.", "explanation": "It was a beautiful day."},
+                        {"question": "trip / after / were / tired / we / the", "answer": "We were tired after the trip.", "explanation": "We were tired after the trip."},
+                        {"question": "2015 / in / a / was / nurse / she", "answer": "She was a nurse in 2015.", "explanation": "She was a nurse in 2015."},
+                        {"question": "cinema / at / yesterday / were / they / the", "answer": "They were at the cinema yesterday.", "explanation": "They were at the cinema yesterday."},
+                        {"question": "pilot / was / I / a", "answer": "I was a pilot.", "explanation": "I was a pilot."},
+                        {"question": "firefighter / a / was / he", "answer": "He was a firefighter.", "explanation": "He was a firefighter."},
+                        {"question": "table / on / were / books / the / the", "answer": "The books were on the table.", "explanation": "The books were on the table."},
+                        {"question": "parents / very / old / were / my", "answer": "My parents were very old.", "explanation": "My parents were very old."},
+                        {"question": "pen / was / this / my", "answer": "This was my pen.", "explanation": "This was my pen."}
+                    ]
+                }
+            ],
+            # Вариант 3
+            [
+                {
+                    "type": "complex",
+                    "text": "Вставьте was или were.\n\n1. The cat ___ black.\n2. I ___ a musician.\n3. We ___ good friends.\n4. She ___ a dancer.\n5. They ___ in the park.\n6. He ___ a policeman.\n7. You ___ right.\n8. The flowers ___ beautiful.\n9. My brother ___ tall.\n10. This ___ my pen.",
+                    "subtasks": [
+                        {"question": "The cat ___ black.", "answer": "was", "explanation": "cat = it → was"},
+                        {"question": "I ___ a musician.", "answer": "was", "explanation": "I + was"},
+                        {"question": "We ___ good friends.", "answer": "were", "explanation": "we + were"},
+                        {"question": "She ___ a dancer.", "answer": "was", "explanation": "she + was"},
+                        {"question": "They ___ in the park.", "answer": "were", "explanation": "they + were"},
+                        {"question": "He ___ a policeman.", "answer": "was", "explanation": "he + was"},
+                        {"question": "You ___ right.", "answer": "were", "explanation": "you + were"},
+                        {"question": "The flowers ___ beautiful.", "answer": "were", "explanation": "flowers = they → were"},
+                        {"question": "My brother ___ tall.", "answer": "was", "explanation": "brother = he → was"},
+                        {"question": "This ___ my pen.", "answer": "was", "explanation": "this = it → was"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Переведите предложения на английский.\n\n1. Кошка была чёрной.\n2. Я был музыкантом.\n3. Мы были хорошими друзьями.\n4. Она была танцовщицей.\n5. Они были в парке.\n6. Он был полицейским.\n7. Ты был прав.\n8. Цветы были красивыми.\n9. Мой брат был высоким.\n10. Это была моя ручка.",
+                    "subtasks": [
+                        {"question": "Кошка была чёрной.", "answer": "The cat was black.", "explanation": "The cat was black."},
+                        {"question": "Я был музыкантом.", "answer": "I was a musician.", "explanation": "I was a musician."},
+                        {"question": "Мы были хорошими друзьями.", "answer": "We were good friends.", "explanation": "We were good friends."},
+                        {"question": "Она была танцовщицей.", "answer": "She was a dancer.", "explanation": "She was a dancer."},
+                        {"question": "Они были в парке.", "answer": "They were in the park.", "explanation": "They were in the park."},
+                        {"question": "Он был полицейским.", "answer": "He was a policeman.", "explanation": "He was a policeman."},
+                        {"question": "Ты был прав.", "answer": "You were right.", "explanation": "You were right."},
+                        {"question": "Цветы были красивыми.", "answer": "The flowers were beautiful.", "explanation": "The flowers were beautiful."},
+                        {"question": "Мой брат был высоким.", "answer": "My brother was tall.", "explanation": "My brother was tall."},
+                        {"question": "Это была моя ручка.", "answer": "This was my pen.", "explanation": "This was my pen."}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Составьте предложения.\n\n1. black / cat / was / the\n2. musician / was / I / a\n3. good / friends / were / we\n4. dancer / a / was / she\n5. park / in / were / they / the\n6. policeman / a / was / he\n7. right / were / you\n8. beautiful / flowers / were / the\n9. tall / brother / was / my\n10. pen / this / was / my",
+                    "subtasks": [
+                        {"question": "black / cat / was / the", "answer": "The cat was black.", "explanation": "The cat was black."},
+                        {"question": "musician / was / I / a", "answer": "I was a musician.", "explanation": "I was a musician."},
+                        {"question": "good / friends / were / we", "answer": "We were good friends.", "explanation": "We were good friends."},
+                        {"question": "dancer / a / was / she", "answer": "She was a dancer.", "explanation": "She was a dancer."},
+                        {"question": "park / in / were / they / the", "answer": "They were in the park.", "explanation": "They were in the park."},
+                        {"question": "policeman / a / was / he", "answer": "He was a policeman.", "explanation": "He was a policeman."},
+                        {"question": "right / were / you", "answer": "You were right.", "explanation": "You were right."},
+                        {"question": "beautiful / flowers / were / the", "answer": "The flowers were beautiful.", "explanation": "The flowers were beautiful."},
+                        {"question": "tall / brother / was / my", "answer": "My brother was tall.", "explanation": "My brother was tall."},
+                        {"question": "pen / this / was / my", "answer": "This was my pen.", "explanation": "This was my pen."}
+                    ]
+                }
+            ],
+            # Вариант 4
+            [
+                {
+                    "type": "complex",
+                    "text": "Вставьте was или were.\n\n1. I ___ a singer.\n2. The house ___ big.\n3. We ___ tired.\n4. She ___ my aunt.\n5. They ___ in the garden.\n6. He ___ a driver.\n7. You ___ a good student.\n8. The birds ___ on the tree.\n9. My sister ___ a nurse.\n10. These ___ my shoes.",
+                    "subtasks": [
+                        {"question": "I ___ a singer.", "answer": "was", "explanation": "I + was"},
+                        {"question": "The house ___ big.", "answer": "was", "explanation": "house = it → was"},
+                        {"question": "We ___ tired.", "answer": "were", "explanation": "we + were"},
+                        {"question": "She ___ my aunt.", "answer": "was", "explanation": "she + was"},
+                        {"question": "They ___ in the garden.", "answer": "were", "explanation": "they + were"},
+                        {"question": "He ___ a driver.", "answer": "was", "explanation": "he + was"},
+                        {"question": "You ___ a good student.", "answer": "were", "explanation": "you + were"},
+                        {"question": "The birds ___ on the tree.", "answer": "were", "explanation": "birds = they → were"},
+                        {"question": "My sister ___ a nurse.", "answer": "was", "explanation": "sister = she → was"},
+                        {"question": "These ___ my shoes.", "answer": "were", "explanation": "these = they → were"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Переведите предложения на английский.\n\n1. Я был певицей.\n2. Дом был большим.\n3. Мы были уставшими.\n4. Она была моей тётей.\n5. Они были в саду.\n6. Он был водителем.\n7. Ты был хорошим учеником.\n8. Птицы были на дереве.\n9. Моя сестра была медсестрой.\n10. Это были мои туфли.",
+                    "subtasks": [
+                        {"question": "Я был певицей.", "answer": "I was a singer.", "explanation": "I was a singer."},
+                        {"question": "Дом был большим.", "answer": "The house was big.", "explanation": "The house was big."},
+                        {"question": "Мы были уставшими.", "answer": "We were tired.", "explanation": "We were tired."},
+                        {"question": "Она была моей тётей.", "answer": "She was my aunt.", "explanation": "She was my aunt."},
+                        {"question": "Они были в саду.", "answer": "They were in the garden.", "explanation": "They were in the garden."},
+                        {"question": "Он был водителем.", "answer": "He was a driver.", "explanation": "He was a driver."},
+                        {"question": "Ты был хорошим учеником.", "answer": "You were a good student.", "explanation": "You were a good student."},
+                        {"question": "Птицы были на дереве.", "answer": "The birds were on the tree.", "explanation": "The birds were on the tree."},
+                        {"question": "Моя сестра была медсестрой.", "answer": "My sister was a nurse.", "explanation": "My sister was a nurse."},
+                        {"question": "Это были мои туфли.", "answer": "These were my shoes.", "explanation": "These were my shoes."}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Составьте предложения.\n\n1. singer / a / was / I\n2. big / house / the / was\n3. tired / were / we\n4. aunt / my / was / she\n5. garden / in / were / they / the\n6. driver / a / was / he\n7. good / student / a / were / you\n8. tree / on / were / birds / the / the\n9. nurse / sister / my / was / a\n10. shoes / these / were / my",
+                    "subtasks": [
+                        {"question": "singer / a / was / I", "answer": "I was a singer.", "explanation": "I was a singer."},
+                        {"question": "big / house / the / was", "answer": "The house was big.", "explanation": "The house was big."},
+                        {"question": "tired / were / we", "answer": "We were tired.", "explanation": "We were tired."},
+                        {"question": "aunt / my / was / she", "answer": "She was my aunt.", "explanation": "She was my aunt."},
+                        {"question": "garden / in / were / they / the", "answer": "They were in the garden.", "explanation": "They were in the garden."},
+                        {"question": "driver / a / was / he", "answer": "He was a driver.", "explanation": "He was a driver."},
+                        {"question": "good / student / a / were / you", "answer": "You were a good student.", "explanation": "You were a good student."},
+                        {"question": "tree / on / were / birds / the / the", "answer": "The birds were on the tree.", "explanation": "The birds were on the tree."},
+                        {"question": "nurse / sister / my / was / a", "answer": "My sister was a nurse.", "explanation": "My sister was a nurse."},
+                        {"question": "shoes / these / were / my", "answer": "These were my shoes.", "explanation": "These were my shoes."}
+                    ]
+                }
+            ],
+            # Вариант 5
+            [
+                {
+                    "type": "complex",
+                    "text": "Вставьте was или were.\n\n1. The children ___ happy.\n2. I ___ a painter.\n3. We ___ from Canada.\n4. She ___ my mother.\n5. They ___ in the kitchen.\n6. He ___ a firefighter.\n7. You ___ a great friend.\n8. The car ___ new.\n9. My parents ___ teachers.\n10. This ___ my dog.",
+                    "subtasks": [
+                        {"question": "The children ___ happy.", "answer": "were", "explanation": "children = they → were"},
+                        {"question": "I ___ a painter.", "answer": "was", "explanation": "I + was"},
+                        {"question": "We ___ from Canada.", "answer": "were", "explanation": "we + were"},
+                        {"question": "She ___ my mother.", "answer": "was", "explanation": "she + was"},
+                        {"question": "They ___ in the kitchen.", "answer": "were", "explanation": "they + were"},
+                        {"question": "He ___ a firefighter.", "answer": "was", "explanation": "he + was"},
+                        {"question": "You ___ a great friend.", "answer": "were", "explanation": "you + were"},
+                        {"question": "The car ___ new.", "answer": "was", "explanation": "car = it → was"},
+                        {"question": "My parents ___ teachers.", "answer": "were", "explanation": "parents = they → were"},
+                        {"question": "This ___ my dog.", "answer": "was", "explanation": "this = it → was"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Переведите предложения на английский.\n\n1. Дети были счастливы.\n2. Я был художником.\n3. Мы были из Канады.\n4. Она была моей мамой.\n5. Они были на кухне.\n6. Он был пожарным.\n7. Ты был отличным другом.\n8. Машина была новой.\n9. Мои родители были учителями.\n10. Это была моя собака.",
+                    "subtasks": [
+                        {"question": "Дети были счастливы.", "answer": "The children were happy.", "explanation": "The children were happy."},
+                        {"question": "Я был художником.", "answer": "I was a painter.", "explanation": "I was a painter."},
+                        {"question": "Мы были из Канады.", "answer": "We were from Canada.", "explanation": "We were from Canada."},
+                        {"question": "Она была моей мамой.", "answer": "She was my mother.", "explanation": "She was my mother."},
+                        {"question": "Они были на кухне.", "answer": "They were in the kitchen.", "explanation": "They were in the kitchen."},
+                        {"question": "Он был пожарным.", "answer": "He was a firefighter.", "explanation": "He was a firefighter."},
+                        {"question": "Ты был отличным другом.", "answer": "You were a great friend.", "explanation": "You were a great friend."},
+                        {"question": "Машина была новой.", "answer": "The car was new.", "explanation": "The car was new."},
+                        {"question": "Мои родители были учителями.", "answer": "My parents were teachers.", "explanation": "My parents were teachers."},
+                        {"question": "Это была моя собака.", "answer": "This was my dog.", "explanation": "This was my dog."}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Составьте предложения.\n\n1. happy / children / the / were\n2. painter / a / was / I\n3. Canada / from / were / we\n4. mother / my / was / she\n5. kitchen / in / were / they / the\n6. firefighter / a / was / he\n7. great / a / friend / were / you\n8. new / car / the / was\n9. teachers / parents / my / were\n10. dog / this / was / my",
+                    "subtasks": [
+                        {"question": "happy / children / the / were", "answer": "The children were happy.", "explanation": "The children were happy."},
+                        {"question": "painter / a / was / I", "answer": "I was a painter.", "explanation": "I was a painter."},
+                        {"question": "Canada / from / were / we", "answer": "We were from Canada.", "explanation": "We were from Canada."},
+                        {"question": "mother / my / was / she", "answer": "She was my mother.", "explanation": "She was my mother."},
+                        {"question": "kitchen / in / were / they / the", "answer": "They were in the kitchen.", "explanation": "They were in the kitchen."},
+                        {"question": "firefighter / a / was / he", "answer": "He was a firefighter.", "explanation": "He was a firefighter."},
+                        {"question": "great / a / friend / were / you", "answer": "You were a great friend.", "explanation": "You were a great friend."},
+                        {"question": "new / car / the / was", "answer": "The car was new.", "explanation": "The car was new."},
+                        {"question": "teachers / parents / my / were", "answer": "My parents were teachers.", "explanation": "My parents were teachers."},
+                        {"question": "dog / this / was / my", "answer": "This was my dog.", "explanation": "This was my dog."}
+                    ]
+                }
+            ],
+            # Вариант 6
+            [
+                {
+                    "type": "complex",
+                    "text": "Вставьте was или were.\n\n1. The sky ___ blue.\n2. I ___ a programmer.\n3. We ___ friends.\n4. She ___ my classmate.\n5. They ___ at school.\n6. He ___ an engineer.\n7. You ___ very tall.\n8. The apples ___ red.\n9. My uncle ___ a pilot.\n10. These ___ my keys.",
+                    "subtasks": [
+                        {"question": "The sky ___ blue.", "answer": "was", "explanation": "sky = it → was"},
+                        {"question": "I ___ a programmer.", "answer": "was", "explanation": "I + was"},
+                        {"question": "We ___ friends.", "answer": "were", "explanation": "we + were"},
+                        {"question": "She ___ my classmate.", "answer": "was", "explanation": "she + was"},
+                        {"question": "They ___ at school.", "answer": "were", "explanation": "they + were"},
+                        {"question": "He ___ an engineer.", "answer": "was", "explanation": "he + was"},
+                        {"question": "You ___ very tall.", "answer": "were", "explanation": "you + were"},
+                        {"question": "The apples ___ red.", "answer": "were", "explanation": "apples = they → were"},
+                        {"question": "My uncle ___ a pilot.", "answer": "was", "explanation": "uncle = he → was"},
+                        {"question": "These ___ my keys.", "answer": "were", "explanation": "these = they → were"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Переведите предложения на английский.\n\n1. Небо было голубым.\n2. Я был программистом.\n3. Мы были друзьями.\n4. Она была моей одноклассницей.\n5. Они были в школе.\n6. Он был инженером.\n7. Ты был очень высоким.\n8. Яблоки были красными.\n9. Мой дядя был пилотом.\n10. Это были мои ключи.",
+                    "subtasks": [
+                        {"question": "Небо было голубым.", "answer": "The sky was blue.", "explanation": "The sky was blue."},
+                        {"question": "Я был программистом.", "answer": "I was a programmer.", "explanation": "I was a programmer."},
+                        {"question": "Мы были друзьями.", "answer": "We were friends.", "explanation": "We were friends."},
+                        {"question": "Она была моей одноклассницей.", "answer": "She was my classmate.", "explanation": "She was my classmate."},
+                        {"question": "Они были в школе.", "answer": "They were at school.", "explanation": "They were at school."},
+                        {"question": "Он был инженером.", "answer": "He was an engineer.", "explanation": "He was an engineer."},
+                        {"question": "Ты был очень высоким.", "answer": "You were very tall.", "explanation": "You were very tall."},
+                        {"question": "Яблоки были красными.", "answer": "The apples were red.", "explanation": "The apples were red."},
+                        {"question": "Мой дядя был пилотом.", "answer": "My uncle was a pilot.", "explanation": "My uncle was a pilot."},
+                        {"question": "Это были мои ключи.", "answer": "These were my keys.", "explanation": "These were my keys."}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Составьте предложения.\n\n1. blue / sky / the / was\n2. programmer / a / was / I\n3. friends / were / we\n4. classmate / my / was / she\n5. school / at / were / they\n6. engineer / an / was / he\n7. tall / very / were / you\n8. apples / red / the / were\n9. pilot / uncle / my / was / a\n10. keys / these / were / my",
+                    "subtasks": [
+                        {"question": "blue / sky / the / was", "answer": "The sky was blue.", "explanation": "The sky was blue."},
+                        {"question": "programmer / a / was / I", "answer": "I was a programmer.", "explanation": "I was a programmer."},
+                        {"question": "friends / were / we", "answer": "We were friends.", "explanation": "We were friends."},
+                        {"question": "classmate / my / was / she", "answer": "She was my classmate.", "explanation": "She was my classmate."},
+                        {"question": "school / at / were / they", "answer": "They were at school.", "explanation": "They were at school."},
+                        {"question": "engineer / an / was / he", "answer": "He was an engineer.", "explanation": "He was an engineer."},
+                        {"question": "tall / very / were / you", "answer": "You were very tall.", "explanation": "You were very tall."},
+                        {"question": "apples / red / the / were", "answer": "The apples were red.", "explanation": "The apples were red."},
+                        {"question": "pilot / uncle / my / was / a", "answer": "My uncle was a pilot.", "explanation": "My uncle was a pilot."},
+                        {"question": "keys / these / were / my", "answer": "These were my keys.", "explanation": "These were my keys."}
+                    ]
+                }
+            ],
+            # Вариант 7
+            [
+                {
+                    "type": "complex",
+                    "text": "Вставьте was или were.\n\n1. The dog ___ small.\n2. I ___ a teacher.\n3. We ___ in the library.\n4. She ___ a lawyer.\n5. They ___ on the bus.\n6. He ___ a mechanic.\n7. You ___ a good dancer.\n8. The trees ___ green.\n9. My mother ___ a cook.\n10. This ___ my computer.",
+                    "subtasks": [
+                        {"question": "The dog ___ small.", "answer": "was", "explanation": "dog = it → was"},
+                        {"question": "I ___ a teacher.", "answer": "was", "explanation": "I + was"},
+                        {"question": "We ___ in the library.", "answer": "were", "explanation": "we + were"},
+                        {"question": "She ___ a lawyer.", "answer": "was", "explanation": "she + was"},
+                        {"question": "They ___ on the bus.", "answer": "were", "explanation": "they + were"},
+                        {"question": "He ___ a mechanic.", "answer": "was", "explanation": "he + was"},
+                        {"question": "You ___ a good dancer.", "answer": "were", "explanation": "you + were"},
+                        {"question": "The trees ___ green.", "answer": "were", "explanation": "trees = they → were"},
+                        {"question": "My mother ___ a cook.", "answer": "was", "explanation": "mother = she → was"},
+                        {"question": "This ___ my computer.", "answer": "was", "explanation": "this = it → was"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Переведите предложения на английский.\n\n1. Собака была маленькой.\n2. Я был учителем.\n3. Мы были в библиотеке.\n4. Она была юристом.\n5. Они были в автобусе.\n6. Он был механиком.\n7. Ты был хорошим танцором.\n8. Деревья были зелёными.\n9. Моя мама была поваром.\n10. Это был мой компьютер.",
+                    "subtasks": [
+                        {"question": "Собака была маленькой.", "answer": "The dog was small.", "explanation": "The dog was small."},
+                        {"question": "Я был учителем.", "answer": "I was a teacher.", "explanation": "I was a teacher."},
+                        {"question": "Мы были в библиотеке.", "answer": "We were in the library.", "explanation": "We were in the library."},
+                        {"question": "Она была юристом.", "answer": "She was a lawyer.", "explanation": "She was a lawyer."},
+                        {"question": "Они были в автобусе.", "answer": "They were on the bus.", "explanation": "They were on the bus."},
+                        {"question": "Он был механиком.", "answer": "He was a mechanic.", "explanation": "He was a mechanic."},
+                        {"question": "Ты был хорошим танцором.", "answer": "You were a good dancer.", "explanation": "You were a good dancer."},
+                        {"question": "Деревья были зелёными.", "answer": "The trees were green.", "explanation": "The trees were green."},
+                        {"question": "Моя мама была поваром.", "answer": "My mother was a cook.", "explanation": "My mother was a cook."},
+                        {"question": "Это был мой компьютер.", "answer": "This was my computer.", "explanation": "This was my computer."}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Составьте предложения.\n\n1. small / dog / the / was\n2. teacher / a / was / I\n3. library / in / were / we / the\n4. lawyer / a / was / she\n5. bus / on / were / they / the\n6. mechanic / a / was / he\n7. good / dancer / a / were / you\n8. green / trees / the / were\n9. cook / mother / my / was / a\n10. computer / this / was / my",
+                    "subtasks": [
+                        {"question": "small / dog / the / was", "answer": "The dog was small.", "explanation": "The dog was small."},
+                        {"question": "teacher / a / was / I", "answer": "I was a teacher.", "explanation": "I was a teacher."},
+                        {"question": "library / in / were / we / the", "answer": "We were in the library.", "explanation": "We were in the library."},
+                        {"question": "lawyer / a / was / she", "answer": "She was a lawyer.", "explanation": "She was a lawyer."},
+                        {"question": "bus / on / were / they / the", "answer": "They were on the bus.", "explanation": "They were on the bus."},
+                        {"question": "mechanic / a / was / he", "answer": "He was a mechanic.", "explanation": "He was a mechanic."},
+                        {"question": "good / dancer / a / were / you", "answer": "You were a good dancer.", "explanation": "You were a good dancer."},
+                        {"question": "green / trees / the / were", "answer": "The trees were green.", "explanation": "The trees were green."},
+                        {"question": "cook / mother / my / was / a", "answer": "My mother was a cook.", "explanation": "My mother was a cook."},
+                        {"question": "computer / this / was / my", "answer": "This was my computer.", "explanation": "This was my computer."}
+                    ]
+                }
+            ],
+            # Вариант 8
+            [
+                {
+                    "type": "complex",
+                    "text": "Вставьте was или were.\n\n1. The students ___ in class.\n2. I ___ a writer.\n3. We ___ on vacation.\n4. She ___ my neighbor.\n5. They ___ in the living room.\n6. He ___ a soldier.\n7. You ___ a great cook.\n8. The shoes ___ new.\n9. My dad ___ a businessman.\n10. Here ___ my phone.",
+                    "subtasks": [
+                        {"question": "The students ___ in class.", "answer": "were", "explanation": "students = they → were"},
+                        {"question": "I ___ a writer.", "answer": "was", "explanation": "I + was"},
+                        {"question": "We ___ on vacation.", "answer": "were", "explanation": "we + were"},
+                        {"question": "She ___ my neighbor.", "answer": "was", "explanation": "she + was"},
+                        {"question": "They ___ in the living room.", "answer": "were", "explanation": "they + were"},
+                        {"question": "He ___ a soldier.", "answer": "was", "explanation": "he + was"},
+                        {"question": "You ___ a great cook.", "answer": "were", "explanation": "you + were"},
+                        {"question": "The shoes ___ new.", "answer": "were", "explanation": "shoes = they → were"},
+                        {"question": "My dad ___ a businessman.", "answer": "was", "explanation": "dad = he → was"},
+                        {"question": "Here ___ my phone.", "answer": "was", "explanation": "here = it → was"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Переведите предложения на английский.\n\n1. Студенты были в классе.\n2. Я был писателем.\n3. Мы были в отпуске.\n4. Она была моей соседкой.\n5. Они были в гостиной.\n6. Он был солдатом.\n7. Ты был отличным поваром.\n8. Туфли были новыми.\n9. Мой папа был бизнесменом.\n10. Это был мой телефон.",
+                    "subtasks": [
+                        {"question": "Студенты были в классе.", "answer": "The students were in class.", "explanation": "The students were in class."},
+                        {"question": "Я был писателем.", "answer": "I was a writer.", "explanation": "I was a writer."},
+                        {"question": "Мы были в отпуске.", "answer": "We were on vacation.", "explanation": "We were on vacation."},
+                        {"question": "Она была моей соседкой.", "answer": "She was my neighbor.", "explanation": "She was my neighbor."},
+                        {"question": "Они были в гостиной.", "answer": "They were in the living room.", "explanation": "They were in the living room."},
+                        {"question": "Он был солдатом.", "answer": "He was a soldier.", "explanation": "He was a soldier."},
+                        {"question": "Ты был отличным поваром.", "answer": "You were a great cook.", "explanation": "You were a great cook."},
+                        {"question": "Туфли были новыми.", "answer": "The shoes were new.", "explanation": "The shoes were new."},
+                        {"question": "Мой папа был бизнесменом.", "answer": "My dad was a businessman.", "explanation": "My dad was a businessman."},
+                        {"question": "Это был мой телефон.", "answer": "Here was my phone.", "explanation": "Here was my phone."}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Составьте предложения.\n\n1. class / in / students / were / the\n2. writer / a / was / I\n3. vacation / on / were / we\n4. neighbor / my / was / she\n5. living / room / in / were / they / the\n6. soldier / a / was / he\n7. great / cook / a / were / you\n8. new / shoes / the / were\n9. businessman / dad / my / was / a\n10. phone / my / was / here",
+                    "subtasks": [
+                        {"question": "class / in / students / were / the", "answer": "The students were in class.", "explanation": "The students were in class."},
+                        {"question": "writer / a / was / I", "answer": "I was a writer.", "explanation": "I was a writer."},
+                        {"question": "vacation / on / were / we", "answer": "We were on vacation.", "explanation": "We were on vacation."},
+                        {"question": "neighbor / my / was / she", "answer": "She was my neighbor.", "explanation": "She was my neighbor."},
+                        {"question": "living / room / in / were / they / the", "answer": "They were in the living room.", "explanation": "They were in the living room."},
+                        {"question": "soldier / a / was / he", "answer": "He was a soldier.", "explanation": "He was a soldier."},
+                        {"question": "great / cook / a / were / you", "answer": "You were a great cook.", "explanation": "You were a great cook."},
+                        {"question": "new / shoes / the / were", "answer": "The shoes were new.", "explanation": "The shoes were new."},
+                        {"question": "businessman / dad / my / was / a", "answer": "My dad was a businessman.", "explanation": "My dad was a businessman."},
+                        {"question": "phone / my / was / here", "answer": "Here was my phone.", "explanation": "Here was my phone."}
+                    ]
+                }
+            ],
+            # Вариант 9
+            [
+                {
+                    "type": "complex",
+                    "text": "Вставьте was или were.\n\n1. The girls ___ happy.\n2. I ___ a doctor.\n3. We ___ in the garden.\n4. She ___ my best friend.\n5. They ___ at the cinema.\n6. He ___ a teacher.\n7. You ___ very helpful.\n8. The chairs ___ old.\n9. My brother ___ a student.\n10. Those ___ my glasses.",
+                    "subtasks": [
+                        {"question": "The girls ___ happy.", "answer": "were", "explanation": "girls = they → were"},
+                        {"question": "I ___ a doctor.", "answer": "was", "explanation": "I + was"},
+                        {"question": "We ___ in the garden.", "answer": "were", "explanation": "we + were"},
+                        {"question": "She ___ my best friend.", "answer": "was", "explanation": "she + was"},
+                        {"question": "They ___ at the cinema.", "answer": "were", "explanation": "they + were"},
+                        {"question": "He ___ a teacher.", "answer": "was", "explanation": "he + was"},
+                        {"question": "You ___ very helpful.", "answer": "were", "explanation": "you + were"},
+                        {"question": "The chairs ___ old.", "answer": "were", "explanation": "chairs = they → were"},
+                        {"question": "My brother ___ a student.", "answer": "was", "explanation": "brother = he → was"},
+                        {"question": "Those ___ my glasses.", "answer": "were", "explanation": "those = they → were"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Переведите предложения на английский.\n\n1. Девочки были счастливы.\n2. Я был доктором.\n3. Мы были в саду.\n4. Она была моей лучшей подругой.\n5. Они были в кинотеатре.\n6. Он был учителем.\n7. Ты был очень отзывчивым.\n8. Стулья были старыми.\n9. Мой брат был студентом.\n10. Это были мои очки.",
+                    "subtasks": [
+                        {"question": "Девочки были счастливы.", "answer": "The girls were happy.", "explanation": "The girls were happy."},
+                        {"question": "Я был доктором.", "answer": "I was a doctor.", "explanation": "I was a doctor."},
+                        {"question": "Мы были в саду.", "answer": "We were in the garden.", "explanation": "We were in the garden."},
+                        {"question": "Она была моей лучшей подругой.", "answer": "She was my best friend.", "explanation": "She was my best friend."},
+                        {"question": "Они были в кинотеатре.", "answer": "They were at the cinema.", "explanation": "They were at the cinema."},
+                        {"question": "Он был учителем.", "answer": "He was a teacher.", "explanation": "He was a teacher."},
+                        {"question": "Ты был очень отзывчивым.", "answer": "You were very helpful.", "explanation": "You were very helpful."},
+                        {"question": "Стулья были старыми.", "answer": "The chairs were old.", "explanation": "The chairs were old."},
+                        {"question": "Мой брат был студентом.", "answer": "My brother was a student.", "explanation": "My brother was a student."},
+                        {"question": "Это были мои очки.", "answer": "Those were my glasses.", "explanation": "Those were my glasses."}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Составьте предложения.\n\n1. happy / girls / the / were\n2. doctor / a / was / I\n3. garden / in / were / we / the\n4. best / friend / my / was / she\n5. cinema / at / were / they / the\n6. teacher / a / was / he\n7. helpful / very / were / you\n8. old / chairs / the / were\n9. student / brother / a / was / my\n10. glasses / were / those / my",
+                    "subtasks": [
+                        {"question": "happy / girls / the / were", "answer": "The girls were happy.", "explanation": "The girls were happy."},
+                        {"question": "doctor / a / was / I", "answer": "I was a doctor.", "explanation": "I was a doctor."},
+                        {"question": "garden / in / were / we / the", "answer": "We were in the garden.", "explanation": "We were in the garden."},
+                        {"question": "best / friend / my / was / she", "answer": "She was my best friend.", "explanation": "She was my best friend."},
+                        {"question": "cinema / at / were / they / the", "answer": "They were at the cinema.", "explanation": "They were at the cinema."},
+                        {"question": "teacher / a / was / he", "answer": "He was a teacher.", "explanation": "He was a teacher."},
+                        {"question": "helpful / very / were / you", "answer": "You were very helpful.", "explanation": "You were very helpful."},
+                        {"question": "old / chairs / the / were", "answer": "The chairs were old.", "explanation": "The chairs were old."},
+                        {"question": "student / brother / a / was / my", "answer": "My brother was a student.", "explanation": "My brother was a student."},
+                        {"question": "glasses / were / those / my", "answer": "Those were my glasses.", "explanation": "Those were my glasses."}
+                    ]
+                }
+            ],
+            # Вариант 10
+            [
+                {
+                    "type": "complex",
+                    "text": "Вставьте was или were.\n\n1. The book ___ interesting.\n2. I ___ a student.\n3. We ___ at the museum.\n4. She ___ a designer.\n5. They ___ in the car.\n6. He ___ a scientist.\n7. You ___ a great leader.\n8. The windows ___ open.\n9. My sister ___ a musician.\n10. This ___ my umbrella.",
+                    "subtasks": [
+                        {"question": "The book ___ interesting.", "answer": "was", "explanation": "book = it → was"},
+                        {"question": "I ___ a student.", "answer": "was", "explanation": "I + was"},
+                        {"question": "We ___ at the museum.", "answer": "were", "explanation": "we + were"},
+                        {"question": "She ___ a designer.", "answer": "was", "explanation": "she + was"},
+                        {"question": "They ___ in the car.", "answer": "were", "explanation": "they + were"},
+                        {"question": "He ___ a scientist.", "answer": "was", "explanation": "he + was"},
+                        {"question": "You ___ a great leader.", "answer": "were", "explanation": "you + were"},
+                        {"question": "The windows ___ open.", "answer": "were", "explanation": "windows = they → were"},
+                        {"question": "My sister ___ a musician.", "answer": "was", "explanation": "sister = she → was"},
+                        {"question": "This ___ my umbrella.", "answer": "was", "explanation": "this = it → was"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Переведите предложения на английский.\n\n1. Книга была интересной.\n2. Я был студентом.\n3. Мы были в музее.\n4. Она была дизайнером.\n5. Они были в машине.\n6. Он был учёным.\n7. Ты был отличным лидером.\n8. Окна были открыты.\n9. Моя сестра была музыкантом.\n10. Это был мой зонт.",
+                    "subtasks": [
+                        {"question": "Книга была интересной.", "answer": "The book was interesting.", "explanation": "The book was interesting."},
+                        {"question": "Я был студентом.", "answer": "I was a student.", "explanation": "I was a student."},
+                        {"question": "Мы были в музее.", "answer": "We were at the museum.", "explanation": "We were at the museum."},
+                        {"question": "Она была дизайнером.", "answer": "She was a designer.", "explanation": "She was a designer."},
+                        {"question": "Они были в машине.", "answer": "They were in the car.", "explanation": "They were in the car."},
+                        {"question": "Он был учёным.", "answer": "He was a scientist.", "explanation": "He was a scientist."},
+                        {"question": "Ты был отличным лидером.", "answer": "You were a great leader.", "explanation": "You were a great leader."},
+                        {"question": "Окна были открыты.", "answer": "The windows were open.", "explanation": "The windows were open."},
+                        {"question": "Моя сестра была музыкантом.", "answer": "My sister was a musician.", "explanation": "My sister was a musician."},
+                        {"question": "Это был мой зонт.", "answer": "This was my umbrella.", "explanation": "This was my umbrella."}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Составьте предложения.\n\n1. interesting / book / the / was\n2. student / a / was / I\n3. museum / at / were / we / the\n4. designer / a / was / she\n5. car / in / were / they / the\n6. scientist / a / was / he\n7. great / leader / a / were / you\n8. open / windows / the / were\n9. musician / sister / my / was / a\n10. umbrella / this / was / my",
+                    "subtasks": [
+                        {"question": "interesting / book / the / was", "answer": "The book was interesting.", "explanation": "The book was interesting."},
+                        {"question": "student / a / was / I", "answer": "I was a student.", "explanation": "I was a student."},
+                        {"question": "museum / at / were / we / the", "answer": "We were at the museum.", "explanation": "We were at the museum."},
+                        {"question": "designer / a / was / she", "answer": "She was a designer.", "explanation": "She was a designer."},
+                        {"question": "car / in / were / they / the", "answer": "They were in the car.", "explanation": "They were in the car."},
+                        {"question": "scientist / a / was / he", "answer": "He was a scientist.", "explanation": "He was a scientist."},
+                        {"question": "great / leader / a / were / you", "answer": "You were a great leader.", "explanation": "You were a great leader."},
+                        {"question": "open / windows / the / were", "answer": "The windows were open.", "explanation": "The windows were open."},
+                        {"question": "musician / sister / my / was / a", "answer": "My sister was a musician.", "explanation": "My sister was a musician."},
+                        {"question": "umbrella / this / was / my", "answer": "This was my umbrella.", "explanation": "This was my umbrella."}
+                    ]
+                }
+            ]
         ]
-      },
-      {
-        "type": "choice",
-        "text": "We ___ late for the bus.",
-        "correct": "were",
-        "hint": "Выберите правильную форму",
-        "star": False,
-        "options": [
-          "was",
-          "were"
-        ]
-      },
-      {
-        "type": "choice",
-        "text": "The book ___ on the table.",
-        "correct": "was",
-        "hint": "Выберите правильную форму",
-        "star": False,
-        "options": [
-          "was",
-          "were"
-        ]
-      },
-      {
-        "type": "choice",
-        "text": "The children ___ in the garden.",
-        "correct": "were",
-        "hint": "Выберите правильную форму",
-        "star": False,
-        "options": [
-          "was",
-          "were"
-        ]
-      },
-      {
-        "type": "choice",
-        "text": "I ___ very busy yesterday.",
-        "correct": "was",
-        "hint": "Выберите правильную форму",
-        "star": False,
-        "options": [
-          "was",
-          "were"
-        ]
-      },
-      {
-        "type": "translation",
-        "text": "Они были в кино вчера.",
-        "correct": "They were at the cinema yesterday.",
-        "hint": "Используйте were",
-        "star": False
-      },
-      {
-        "type": "translation",
-        "text": "Я был голоден.",
-        "correct": "I was hungry.",
-        "hint": "Используйте was",
-        "star": False
-      },
-      {
-        "type": "translation",
-        "text": "Она не была в школе.",
-        "correct": "She was not at school.",
-        "hint": "Отрицательная форма",
-        "star": False
-      },
-      {
-        "type": "translation",
-        "text": "Мы были друзьями.",
-        "correct": "We were friends.",
-        "hint": "Используйте were",
-        "star": False
-      },
-      {
-        "type": "reorder",
-        "text": "he / was / at / home",
-        "correct": "He was at home.",
-        "hint": "Правильный порядок слов",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "___ you at the concert last night?",
-        "correct": "Were",
-        "hint": "Вопрос с you",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "There ___ a lot of people in the street.",
-        "correct": "were",
-        "hint": "Оборот there were",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "I wish I ___ there with you.",
-        "correct": "were",
-        "hint": "Сослагательное наклонение (I wish)",
-        "star": True
-      },
-      {
-        "type": "choice",
-        "text": "If I ___ you, I would go.",
-        "correct": "were",
-        "hint": "Сослагательное наклонение",
-        "star": True,
-        "options": [
-          "was",
-          "were"
-        ]
-      },
-      {
-        "type": "fill_blank",
-        "text": "Neither he nor she ___ ready.",
-        "correct": "was",
-        "hint": "Согласование с ближайшим подлежащим",
-        "star": True
-      },
-      {
-        "type": "translation",
-        "text": "В комнате было два стула.",
-        "correct": "There were two chairs in the room.",
-        "hint": "Оборот there were",
-        "star": True
-      },
-      {
-        "type": "reorder",
-        "text": "not / they / were / happy",
-        "correct": "They were not happy.",
-        "hint": "Отрицательное предложение",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "The news ___ very surprising.",
-        "correct": "was",
-        "hint": "News — неисчисляемое, единственное число",
-        "star": True
-      },
-      {
-        "type": "choice",
-        "text": "Everyone in the team ___ excited.",
-        "correct": "was",
-        "hint": "Everyone — единственное число",
-        "star": True,
-        "options": [
-          "was",
-          "were"
-        ]
-      },
-      {
-        "type": "open",
-        "text": "Составьте вопрос с was/were к предложению: They were at the zoo.",
-        "correct": "Were they at the zoo?",
-        "hint": "Инверсия подлежащего и глагола",
-        "star": True
-      }
-    ]
   },
   "pastSimpleRegular": {
     "title": "Past Simple (правильные глаголы)",
@@ -8132,470 +8166,518 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "answer": "После t/d добавляется слог [ɪd], чтобы было легче произносить."
       }
     ],
-    "practice_tasks": [
-      {
-        "type": "fill_blank",
-        "text": "She ___ (play) tennis yesterday.",
-        "correct": "played",
-        "hint": "play + ed",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "They ___ (watch) a movie last night.",
-        "correct": "watched",
-        "hint": "watch + ed",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He ___ (study) for the exam.",
-        "correct": "studied",
-        "hint": "y → i + ed",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "I ___ (visit) my grandparents on Sunday.",
-        "correct": "visited",
-        "hint": "visit + ed",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "We ___ (dance) at the party.",
-        "correct": "danced",
-        "hint": "dance + d",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The cat ___ (jump) onto the table.",
-        "correct": "jumped",
-        "hint": "jump + ed",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "You ___ (clean) your room yesterday.",
-        "correct": "cleaned",
-        "hint": "clean + ed",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "My mother ___ (cook) dinner.",
-        "correct": "cooked",
-        "hint": "cook + ed",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "They ___ (talk) on the phone for an hour.",
-        "correct": "talked",
-        "hint": "talk + ed",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He ___ (stop) the car suddenly.",
-        "correct": "stopped",
-        "hint": "double p + ed",
-        "star": False
-      },
-      {
-        "type": "choice",
-        "text": "She ___ her homework last night.",
-        "correct": "finished",
-        "hint": "finish + ed",
-        "star": False,
-        "options": [
-          "finish",
-          "finished",
-          "finishes",
-          "finishing"
+            "practice_bank": [
+            # Вариант 1
+            [
+                {
+                    "type": "complex",
+                    "text": "Вставьте глагол в Past Simple (правильная форма).\n\n1. I ___ (walk) to school yesterday.\n2. She ___ (play) the piano last night.\n3. We ___ (visit) our grandparents on Sunday.\n4. He ___ (watch) TV in the evening.\n5. They ___ (listen) to music an hour ago.\n6. I ___ (cook) dinner for my family.\n7. She ___ (study) for the test all day.\n8. He ___ (stop) the car at the traffic lights.\n9. We ___ (travel) to Paris last summer.\n10. They ___ (dance) at the party.",
+                    "subtasks": [
+                        {"question": "I ___ (walk) to school yesterday.", "answer": "walked", "explanation": "walk + ed"},
+                        {"question": "She ___ (play) the piano last night.", "answer": "played", "explanation": "play + ed"},
+                        {"question": "We ___ (visit) our grandparents on Sunday.", "answer": "visited", "explanation": "visit + ed"},
+                        {"question": "He ___ (watch) TV in the evening.", "answer": "watched", "explanation": "watch + ed"},
+                        {"question": "They ___ (listen) to music an hour ago.", "answer": "listened", "explanation": "listen + ed"},
+                        {"question": "I ___ (cook) dinner for my family.", "answer": "cooked", "explanation": "cook + ed"},
+                        {"question": "She ___ (study) for the test all day.", "answer": "studied", "explanation": "study → studied (y → i + ed)"},
+                        {"question": "He ___ (stop) the car at the traffic lights.", "answer": "stopped", "explanation": "stop + ed (удвоение p)"},
+                        {"question": "We ___ (travel) to Paris last summer.", "answer": "travelled", "explanation": "travel + ed (удвоение l)"},
+                        {"question": "They ___ (dance) at the party.", "answer": "danced", "explanation": "dance + d"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Переведите предложения на английский (Past Simple).\n\n1. Я вчера пошёл в школу пешком.\n2. Она играла на пианино прошлым вечером.\n3. Мы навестили бабушку и дедушку в воскресенье.\n4. Он смотрел телевизор вечером.\n5. Они слушали музыку час назад.\n6. Я приготовил ужин для своей семьи.\n7. Она училась весь день к тесту.\n8. Он остановил машину у светофора.\n9. Мы путешествовали в Париж прошлым летом.\n10. Они танцевали на вечеринке.",
+                    "subtasks": [
+                        {"question": "Я вчера пошёл в школу пешком.", "answer": "I walked to school yesterday.", "explanation": "I walked to school yesterday."},
+                        {"question": "Она играла на пианино прошлым вечером.", "answer": "She played the piano last night.", "explanation": "She played the piano last night."},
+                        {"question": "Мы навестили бабушку и дедушку в воскресенье.", "answer": "We visited our grandparents on Sunday.", "explanation": "We visited our grandparents on Sunday."},
+                        {"question": "Он смотрел телевизор вечером.", "answer": "He watched TV in the evening.", "explanation": "He watched TV in the evening."},
+                        {"question": "Они слушали музыку час назад.", "answer": "They listened to music an hour ago.", "explanation": "They listened to music an hour ago."},
+                        {"question": "Я приготовил ужин для своей семьи.", "answer": "I cooked dinner for my family.", "explanation": "I cooked dinner for my family."},
+                        {"question": "Она училась весь день к тесту.", "answer": "She studied for the test all day.", "explanation": "She studied for the test all day."},
+                        {"question": "Он остановил машину у светофора.", "answer": "He stopped the car at the traffic lights.", "explanation": "He stopped the car at the traffic lights."},
+                        {"question": "Мы путешествовали в Париж прошлым летом.", "answer": "We travelled to Paris last summer.", "explanation": "We travelled to Paris last summer."},
+                        {"question": "Они танцевали на вечеринке.", "answer": "They danced at the party.", "explanation": "They danced at the party."}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Составьте предложения из слов (Past Simple).\n\n1. walked / school / I / to / yesterday\n2. played / she / piano / the / night / last\n3. visited / we / grandparents / Sunday / on / our\n4. watched / he / TV / evening / the / in\n5. listened / music / they / to / hour / ago / an\n6. cooked / dinner / I / family / my / for\n7. studied / she / test / the / all / day / for\n8. stopped / car / he / the / lights / traffic / at\n9. travelled / to / we / Paris / summer / last\n10. danced / they / party / at / the",
+                    "subtasks": [
+                        {"question": "walked / school / I / to / yesterday", "answer": "I walked to school yesterday.", "explanation": "I walked to school yesterday."},
+                        {"question": "played / she / piano / the / night / last", "answer": "She played the piano last night.", "explanation": "She played the piano last night."},
+                        {"question": "visited / we / grandparents / Sunday / on / our", "answer": "We visited our grandparents on Sunday.", "explanation": "We visited our grandparents on Sunday."},
+                        {"question": "watched / he / TV / evening / the / in", "answer": "He watched TV in the evening.", "explanation": "He watched TV in the evening."},
+                        {"question": "listened / music / they / to / hour / ago / an", "answer": "They listened to music an hour ago.", "explanation": "They listened to music an hour ago."},
+                        {"question": "cooked / dinner / I / family / my / for", "answer": "I cooked dinner for my family.", "explanation": "I cooked dinner for my family."},
+                        {"question": "studied / she / test / the / all / day / for", "answer": "She studied for the test all day.", "explanation": "She studied for the test all day."},
+                        {"question": "stopped / car / he / the / lights / traffic / at", "answer": "He stopped the car at the traffic lights.", "explanation": "He stopped the car at the traffic lights."},
+                        {"question": "travelled / to / we / Paris / summer / last", "answer": "We travelled to Paris last summer.", "explanation": "We travelled to Paris last summer."},
+                        {"question": "danced / they / party / at / the", "answer": "They danced at the party.", "explanation": "They danced at the party."}
+                    ]
+                }
+            ],
+            # Вариант 2
+            [
+                {
+                    "type": "complex",
+                    "text": "Вставьте глагол в Past Simple.\n\n1. He ___ (help) his mother yesterday.\n2. We ___ (watch) a film last night.\n3. She ___ (clean) her room.\n4. They ___ (play) tennis on Saturday.\n5. I ___ (open) the door.\n6. You ___ (call) me an hour ago.\n7. She ___ (study) English at school.\n8. He ___ (stop) to say hello.\n9. We ___ (travel) to Italy.\n10. They ___ (dance) all night.",
+                    "subtasks": [
+                        {"question": "He ___ (help) his mother yesterday.", "answer": "helped", "explanation": "help + ed"},
+                        {"question": "We ___ (watch) a film last night.", "answer": "watched", "explanation": "watch + ed"},
+                        {"question": "She ___ (clean) her room.", "answer": "cleaned", "explanation": "clean + ed"},
+                        {"question": "They ___ (play) tennis on Saturday.", "answer": "played", "explanation": "play + ed"},
+                        {"question": "I ___ (open) the door.", "answer": "opened", "explanation": "open + ed"},
+                        {"question": "You ___ (call) me an hour ago.", "answer": "called", "explanation": "call + ed"},
+                        {"question": "She ___ (study) English at school.", "answer": "studied", "explanation": "study → studied"},
+                        {"question": "He ___ (stop) to say hello.", "answer": "stopped", "explanation": "stop → stopped"},
+                        {"question": "We ___ (travel) to Italy.", "answer": "travelled", "explanation": "travel → travelled"},
+                        {"question": "They ___ (dance) all night.", "answer": "danced", "explanation": "dance + d"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Переведите предложения на английский.\n\n1. Он помог своей маме вчера.\n2. Мы смотрели фильм прошлым вечером.\n3. Она убрала свою комнату.\n4. Они играли в теннис в субботу.\n5. Я открыл дверь.\n6. Ты позвонил мне час назад.\n7. Она учила английский в школе.\n8. Он остановился, чтобы поздороваться.\n9. Мы путешествовали в Италию.\n10. Они танцевали всю ночь.",
+                    "subtasks": [
+                        {"question": "Он помог своей маме вчера.", "answer": "He helped his mother yesterday.", "explanation": "He helped his mother yesterday."},
+                        {"question": "Мы смотрели фильм прошлым вечером.", "answer": "We watched a film last night.", "explanation": "We watched a film last night."},
+                        {"question": "Она убрала свою комнату.", "answer": "She cleaned her room.", "explanation": "She cleaned her room."},
+                        {"question": "Они играли в теннис в субботу.", "answer": "They played tennis on Saturday.", "explanation": "They played tennis on Saturday."},
+                        {"question": "Я открыл дверь.", "answer": "I opened the door.", "explanation": "I opened the door."},
+                        {"question": "Ты позвонил мне час назад.", "answer": "You called me an hour ago.", "explanation": "You called me an hour ago."},
+                        {"question": "Она учила английский в школе.", "answer": "She studied English at school.", "explanation": "She studied English at school."},
+                        {"question": "Он остановился, чтобы поздороваться.", "answer": "He stopped to say hello.", "explanation": "He stopped to say hello."},
+                        {"question": "Мы путешествовали в Италию.", "answer": "We travelled to Italy.", "explanation": "We travelled to Italy."},
+                        {"question": "Они танцевали всю ночь.", "answer": "They danced all night.", "explanation": "They danced all night."}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Составьте предложения.\n\n1. helped / mother / his / yesterday / he\n2. watched / film / we / last / night / a\n3. cleaned / room / her / she\n4. played / Saturday / tennis / on / they\n5. opened / door / I / the\n6. called / hour / ago / me / you / an\n7. studied / at / English / school / she\n8. stopped / say / to / hello / he\n9. travelled / Italy / we / to\n10. danced / all / they / night",
+                    "subtasks": [
+                        {"question": "helped / mother / his / yesterday / he", "answer": "He helped his mother yesterday.", "explanation": "He helped his mother yesterday."},
+                        {"question": "watched / film / we / last / night / a", "answer": "We watched a film last night.", "explanation": "We watched a film last night."},
+                        {"question": "cleaned / room / her / she", "answer": "She cleaned her room.", "explanation": "She cleaned her room."},
+                        {"question": "played / Saturday / tennis / on / they", "answer": "They played tennis on Saturday.", "explanation": "They played tennis on Saturday."},
+                        {"question": "opened / door / I / the", "answer": "I opened the door.", "explanation": "I opened the door."},
+                        {"question": "called / hour / ago / me / you / an", "answer": "You called me an hour ago.", "explanation": "You called me an hour ago."},
+                        {"question": "studied / at / English / school / she", "answer": "She studied English at school.", "explanation": "She studied English at school."},
+                        {"question": "stopped / say / to / hello / he", "answer": "He stopped to say hello.", "explanation": "He stopped to say hello."},
+                        {"question": "travelled / Italy / we / to", "answer": "We travelled to Italy.", "explanation": "We travelled to Italy."},
+                        {"question": "danced / all / they / night", "answer": "They danced all night.", "explanation": "They danced all night."}
+                    ]
+                }
+            ],
+            # Вариант 3
+            [
+                {
+                    "type": "complex",
+                    "text": "Вставьте глагол в Past Simple.\n\n1. We ___ (enjoy) the concert.\n2. She ___ (phone) her friend.\n3. He ___ (finish) his work.\n4. They ___ (move) to a new house.\n5. I ___ (wait) for the bus.\n6. You ___ (use) my pen.\n7. She ___ (cry) because she was sad.\n8. He ___ (try) to open the window.\n9. We ___ (play) football yesterday.\n10. They ___ (study) hard for the exam.",
+                    "subtasks": [
+                        {"question": "We ___ (enjoy) the concert.", "answer": "enjoyed", "explanation": "enjoy + ed"},
+                        {"question": "She ___ (phone) her friend.", "answer": "phoned", "explanation": "phone + d"},
+                        {"question": "He ___ (finish) his work.", "answer": "finished", "explanation": "finish + ed"},
+                        {"question": "They ___ (move) to a new house.", "answer": "moved", "explanation": "move + d"},
+                        {"question": "I ___ (wait) for the bus.", "answer": "waited", "explanation": "wait + ed"},
+                        {"question": "You ___ (use) my pen.", "answer": "used", "explanation": "use + d"},
+                        {"question": "She ___ (cry) because she was sad.", "answer": "cried", "explanation": "cry → cried"},
+                        {"question": "He ___ (try) to open the window.", "answer": "tried", "explanation": "try → tried"},
+                        {"question": "We ___ (play) football yesterday.", "answer": "played", "explanation": "play + ed"},
+                        {"question": "They ___ (study) hard for the exam.", "answer": "studied", "explanation": "study → studied"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Переведите предложения на английский.\n\n1. Нам понравился концерт.\n2. Она позвонила подруге.\n3. Он закончил работу.\n4. Они переехали в новый дом.\n5. Я ждал автобус.\n6. Ты использовал мою ручку.\n7. Она плакала, потому что была грустна.\n8. Он пытался открыть окно.\n9. Мы играли в футбол вчера.\n10. Они усердно готовились к экзамену.",
+                    "subtasks": [
+                        {"question": "Нам понравился концерт.", "answer": "We enjoyed the concert.", "explanation": "We enjoyed the concert."},
+                        {"question": "Она позвонила подруге.", "answer": "She phoned her friend.", "explanation": "She phoned her friend."},
+                        {"question": "Он закончил работу.", "answer": "He finished his work.", "explanation": "He finished his work."},
+                        {"question": "Они переехали в новый дом.", "answer": "They moved to a new house.", "explanation": "They moved to a new house."},
+                        {"question": "Я ждал автобус.", "answer": "I waited for the bus.", "explanation": "I waited for the bus."},
+                        {"question": "Ты использовал мою ручку.", "answer": "You used my pen.", "explanation": "You used my pen."},
+                        {"question": "Она плакала, потому что была грустна.", "answer": "She cried because she was sad.", "explanation": "She cried because she was sad."},
+                        {"question": "Он пытался открыть окно.", "answer": "He tried to open the window.", "explanation": "He tried to open the window."},
+                        {"question": "Мы играли в футбол вчера.", "answer": "We played football yesterday.", "explanation": "We played football yesterday."},
+                        {"question": "Они усердно готовились к экзамену.", "answer": "They studied hard for the exam.", "explanation": "They studied hard for the exam."}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Составьте предложения.\n\n1. enjoyed / concert / we / the\n2. phoned / friend / her / she\n3. finished / work / his / he\n4. moved / new / house / to / a / they\n5. waited / bus / for / I / the\n6. used / pen / my / you\n7. cried / because / sad / she / was\n8. tried / window / open / to / he\n9. played / yesterday / football / we\n10. studied / exam / hard / for / they",
+                    "subtasks": [
+                        {"question": "enjoyed / concert / we / the", "answer": "We enjoyed the concert.", "explanation": "We enjoyed the concert."},
+                        {"question": "phoned / friend / her / she", "answer": "She phoned her friend.", "explanation": "She phoned her friend."},
+                        {"question": "finished / work / his / he", "answer": "He finished his work.", "explanation": "He finished his work."},
+                        {"question": "moved / new / house / to / a / they", "answer": "They moved to a new house.", "explanation": "They moved to a new house."},
+                        {"question": "waited / bus / for / I / the", "answer": "I waited for the bus.", "explanation": "I waited for the bus."},
+                        {"question": "used / pen / my / you", "answer": "You used my pen.", "explanation": "You used my pen."},
+                        {"question": "cried / because / sad / she / was", "answer": "She cried because she was sad.", "explanation": "She cried because she was sad."},
+                        {"question": "tried / window / open / to / he", "answer": "He tried to open the window.", "explanation": "He tried to open the window."},
+                        {"question": "played / yesterday / football / we", "answer": "We played football yesterday.", "explanation": "We played football yesterday."},
+                        {"question": "studied / exam / hard / for / they", "answer": "They studied hard for the exam.", "explanation": "They studied hard for the exam."}
+                    ]
+                }
+            ],
+            # Вариант 4
+            [
+                {
+                    "type": "complex",
+                    "text": "Вставьте глагол в Past Simple.\n\n1. She ___ (wash) the dishes.\n2. He ___ (fix) the bike.\n3. They ___ (visit) the museum.\n4. We ___ (talk) about the project.\n5. I ___ (like) the film.\n6. You ___ (invite) us to the party.\n7. She ___ (carry) the heavy bag.\n8. He ___ (marry) his girlfriend.\n9. They ___ (watch) the match.\n10. We ___ (listen) to the radio.",
+                    "subtasks": [
+                        {"question": "She ___ (wash) the dishes.", "answer": "washed", "explanation": "wash + ed"},
+                        {"question": "He ___ (fix) the bike.", "answer": "fixed", "explanation": "fix + ed"},
+                        {"question": "They ___ (visit) the museum.", "answer": "visited", "explanation": "visit + ed"},
+                        {"question": "We ___ (talk) about the project.", "answer": "talked", "explanation": "talk + ed"},
+                        {"question": "I ___ (like) the film.", "answer": "liked", "explanation": "like + d"},
+                        {"question": "You ___ (invite) us to the party.", "answer": "invited", "explanation": "invite + d"},
+                        {"question": "She ___ (carry) the heavy bag.", "answer": "carried", "explanation": "carry → carried"},
+                        {"question": "He ___ (marry) his girlfriend.", "answer": "married", "explanation": "marry → married"},
+                        {"question": "They ___ (watch) the match.", "answer": "watched", "explanation": "watch + ed"},
+                        {"question": "We ___ (listen) to the radio.", "answer": "listened", "explanation": "listen + ed"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Переведите предложения на английский.\n\n1. Она помыла посуду.\n2. Он починил велосипед.\n3. Они посетили музей.\n4. Мы говорили о проекте.\n5. Мне понравился фильм.\n6. Ты пригласил нас на вечеринку.\n7. Она несла тяжёлую сумку.\n8. Он женился на своей девушке.\n9. Они смотрели матч.\n10. Мы слушали радио.",
+                    "subtasks": [
+                        {"question": "Она помыла посуду.", "answer": "She washed the dishes.", "explanation": "She washed the dishes."},
+                        {"question": "Он починил велосипед.", "answer": "He fixed the bike.", "explanation": "He fixed the bike."},
+                        {"question": "Они посетили музей.", "answer": "They visited the museum.", "explanation": "They visited the museum."},
+                        {"question": "Мы говорили о проекте.", "answer": "We talked about the project.", "explanation": "We talked about the project."},
+                        {"question": "Мне понравился фильм.", "answer": "I liked the film.", "explanation": "I liked the film."},
+                        {"question": "Ты пригласил нас на вечеринку.", "answer": "You invited us to the party.", "explanation": "You invited us to the party."},
+                        {"question": "Она несла тяжёлую сумку.", "answer": "She carried the heavy bag.", "explanation": "She carried the heavy bag."},
+                        {"question": "Он женился на своей девушке.", "answer": "He married his girlfriend.", "explanation": "He married his girlfriend."},
+                        {"question": "Они смотрели матч.", "answer": "They watched the match.", "explanation": "They watched the match."},
+                        {"question": "Мы слушали радио.", "answer": "We listened to the radio.", "explanation": "We listened to the radio."}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Составьте предложения.\n\n1. washed / dishes / she / the\n2. fixed / bike / he / the\n3. visited / museum / they / the\n4. talked / project / about / we / the\n5. liked / film / I / the\n6. invited / party / us / you / to / the\n7. carried / bag / heavy / she / the\n8. married / girlfriend / his / he\n9. watched / match / they / the\n10. listened / radio / we / to / the",
+                    "subtasks": [
+                        {"question": "washed / dishes / she / the", "answer": "She washed the dishes.", "explanation": "She washed the dishes."},
+                        {"question": "fixed / bike / he / the", "answer": "He fixed the bike.", "explanation": "He fixed the bike."},
+                        {"question": "visited / museum / they / the", "answer": "They visited the museum.", "explanation": "They visited the museum."},
+                        {"question": "talked / project / about / we / the", "answer": "We talked about the project.", "explanation": "We talked about the project."},
+                        {"question": "liked / film / I / the", "answer": "I liked the film.", "explanation": "I liked the film."},
+                        {"question": "invited / party / us / you / to / the", "answer": "You invited us to the party.", "explanation": "You invited us to the party."},
+                        {"question": "carried / bag / heavy / she / the", "answer": "She carried the heavy bag.", "explanation": "She carried the heavy bag."},
+                        {"question": "married / girlfriend / his / he", "answer": "He married his girlfriend.", "explanation": "He married his girlfriend."},
+                        {"question": "watched / match / they / the", "answer": "They watched the match.", "explanation": "They watched the match."},
+                        {"question": "listened / radio / we / to / the", "answer": "We listened to the radio.", "explanation": "We listened to the radio."}
+                    ]
+                }
+            ],
+            # Вариант 5
+            [
+                {
+                    "type": "complex",
+                    "text": "Вставьте глагол в Past Simple.\n\n1. I ___ (paint) the wall.\n2. She ___ (water) the flowers.\n3. He ___ (change) his clothes.\n4. They ___ (arrive) late.\n5. We ___ (decide) to go home.\n6. You ___ (ask) a question.\n7. She ___ (hurry) to the station.\n8. He ___ (carry) the luggage.\n9. They ___ (stay) at a hotel.\n10. We ___ (watch) the sunset.",
+                    "subtasks": [
+                        {"question": "I ___ (paint) the wall.", "answer": "painted", "explanation": "paint + ed"},
+                        {"question": "She ___ (water) the flowers.", "answer": "watered", "explanation": "water + ed"},
+                        {"question": "He ___ (change) his clothes.", "answer": "changed", "explanation": "change + d"},
+                        {"question": "They ___ (arrive) late.", "answer": "arrived", "explanation": "arrive + d"},
+                        {"question": "We ___ (decide) to go home.", "answer": "decided", "explanation": "decide + d"},
+                        {"question": "You ___ (ask) a question.", "answer": "asked", "explanation": "ask + ed"},
+                        {"question": "She ___ (hurry) to the station.", "answer": "hurried", "explanation": "hurry → hurried"},
+                        {"question": "He ___ (carry) the luggage.", "answer": "carried", "explanation": "carry → carried"},
+                        {"question": "They ___ (stay) at a hotel.", "answer": "stayed", "explanation": "stay + ed"},
+                        {"question": "We ___ (watch) the sunset.", "answer": "watched", "explanation": "watch + ed"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Переведите предложения на английский.\n\n1. Я покрасил стену.\n2. Она полила цветы.\n3. Он переоделся.\n4. Они опоздали.\n5. Мы решили пойти домой.\n6. Ты задал вопрос.\n7. Она поспешила на вокзал.\n8. Он нёс багаж.\n9. Они остановились в отеле.\n10. Мы смотрели закат.",
+                    "subtasks": [
+                        {"question": "Я покрасил стену.", "answer": "I painted the wall.", "explanation": "I painted the wall."},
+                        {"question": "Она полила цветы.", "answer": "She watered the flowers.", "explanation": "She watered the flowers."},
+                        {"question": "Он переоделся.", "answer": "He changed his clothes.", "explanation": "He changed his clothes."},
+                        {"question": "Они опоздали.", "answer": "They arrived late.", "explanation": "They arrived late."},
+                        {"question": "Мы решили пойти домой.", "answer": "We decided to go home.", "explanation": "We decided to go home."},
+                        {"question": "Ты задал вопрос.", "answer": "You asked a question.", "explanation": "You asked a question."},
+                        {"question": "Она поспешила на вокзал.", "answer": "She hurried to the station.", "explanation": "She hurried to the station."},
+                        {"question": "Он нёс багаж.", "answer": "He carried the luggage.", "explanation": "He carried the luggage."},
+                        {"question": "Они остановились в отеле.", "answer": "They stayed at a hotel.", "explanation": "They stayed at a hotel."},
+                        {"question": "Мы смотрели закат.", "answer": "We watched the sunset.", "explanation": "We watched the sunset."}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Составьте предложения.\n\n1. painted / wall / I / the\n2. watered / flowers / she / the\n3. changed / clothes / his / he\n4. arrived / late / they\n5. decided / go / home / we / to\n6. asked / question / a / you\n7. hurried / station / to / she / the\n8. carried / luggage / the / he\n9. stayed / hotel / at / a / they\n10. watched / sunset / we / the",
+                    "subtasks": [
+                        {"question": "painted / wall / I / the", "answer": "I painted the wall.", "explanation": "I painted the wall."},
+                        {"question": "watered / flowers / she / the", "answer": "She watered the flowers.", "explanation": "She watered the flowers."},
+                        {"question": "changed / clothes / his / he", "answer": "He changed his clothes.", "explanation": "He changed his clothes."},
+                        {"question": "arrived / late / they", "answer": "They arrived late.", "explanation": "They arrived late."},
+                        {"question": "decided / go / home / we / to", "answer": "We decided to go home.", "explanation": "We decided to go home."},
+                        {"question": "asked / question / a / you", "answer": "You asked a question.", "explanation": "You asked a question."},
+                        {"question": "hurried / station / to / she / the", "answer": "She hurried to the station.", "explanation": "She hurried to the station."},
+                        {"question": "carried / luggage / the / he", "answer": "He carried the luggage.", "explanation": "He carried the luggage."},
+                        {"question": "stayed / hotel / at / a / they", "answer": "They stayed at a hotel.", "explanation": "They stayed at a hotel."},
+                        {"question": "watched / sunset / we / the", "answer": "We watched the sunset.", "explanation": "We watched the sunset."}
+                    ]
+                }
+            ],
+            # Вариант 6
+            [
+                {
+                    "type": "complex",
+                    "text": "Вставьте глагол в Past Simple.\n\n1. She ___ (walk) to the park.\n2. We ___ (visit) the zoo.\n3. He ___ (clean) the windows.\n4. They ___ (play) chess.\n5. I ___ (start) a new job.\n6. You ___ (call) your mother.\n7. She ___ (carry) a small bag.\n8. He ___ (marry) her.\n9. They ___ (stay) at home.\n10. We ___ (watch) a documentary.",
+                    "subtasks": [
+                        {"question": "She ___ (walk) to the park.", "answer": "walked", "explanation": "walk + ed"},
+                        {"question": "We ___ (visit) the zoo.", "answer": "visited", "explanation": "visit + ed"},
+                        {"question": "He ___ (clean) the windows.", "answer": "cleaned", "explanation": "clean + ed"},
+                        {"question": "They ___ (play) chess.", "answer": "played", "explanation": "play + ed"},
+                        {"question": "I ___ (start) a new job.", "answer": "started", "explanation": "start + ed"},
+                        {"question": "You ___ (call) your mother.", "answer": "called", "explanation": "call + ed"},
+                        {"question": "She ___ (carry) a small bag.", "answer": "carried", "explanation": "carry → carried"},
+                        {"question": "He ___ (marry) her.", "answer": "married", "explanation": "marry → married"},
+                        {"question": "They ___ (stay) at home.", "answer": "stayed", "explanation": "stay + ed"},
+                        {"question": "We ___ (watch) a documentary.", "answer": "watched", "explanation": "watch + ed"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Переведите предложения на английский.\n\n1. Она пошла в парк пешком.\n2. Мы посетили зоопарк.\n3. Он помыл окна.\n4. Они играли в шахматы.\n5. Я начал новую работу.\n6. Ты позвонил маме.\n7. Она несла маленькую сумку.\n8. Он женился на ней.\n9. Они остались дома.\n10. Мы смотрели документальный фильм.",
+                    "subtasks": [
+                        {"question": "Она пошла в парк пешком.", "answer": "She walked to the park.", "explanation": "She walked to the park."},
+                        {"question": "Мы посетили зоопарк.", "answer": "We visited the zoo.", "explanation": "We visited the zoo."},
+                        {"question": "Он помыл окна.", "answer": "He cleaned the windows.", "explanation": "He cleaned the windows."},
+                        {"question": "Они играли в шахматы.", "answer": "They played chess.", "explanation": "They played chess."},
+                        {"question": "Я начал новую работу.", "answer": "I started a new job.", "explanation": "I started a new job."},
+                        {"question": "Ты позвонил маме.", "answer": "You called your mother.", "explanation": "You called your mother."},
+                        {"question": "Она несла маленькую сумку.", "answer": "She carried a small bag.", "explanation": "She carried a small bag."},
+                        {"question": "Он женился на ней.", "answer": "He married her.", "explanation": "He married her."},
+                        {"question": "Они остались дома.", "answer": "They stayed at home.", "explanation": "They stayed at home."},
+                        {"question": "Мы смотрели документальный фильм.", "answer": "We watched a documentary.", "explanation": "We watched a documentary."}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Составьте предложения.\n\n1. walked / park / to / the / she\n2. visited / zoo / we / the\n3. cleaned / windows / the / he\n4. played / chess / they\n5. started / a / job / new / I\n6. called / mother / your / you\n7. carried / a / bag / small / she\n8. married / her / he\n9. stayed / at / home / they\n10. watched / documentary / a / we",
+                    "subtasks": [
+                        {"question": "walked / park / to / the / she", "answer": "She walked to the park.", "explanation": "She walked to the park."},
+                        {"question": "visited / zoo / we / the", "answer": "We visited the zoo.", "explanation": "We visited the zoo."},
+                        {"question": "cleaned / windows / the / he", "answer": "He cleaned the windows.", "explanation": "He cleaned the windows."},
+                        {"question": "played / chess / they", "answer": "They played chess.", "explanation": "They played chess."},
+                        {"question": "started / a / job / new / I", "answer": "I started a new job.", "explanation": "I started a new job."},
+                        {"question": "called / mother / your / you", "answer": "You called your mother.", "explanation": "You called your mother."},
+                        {"question": "carried / a / bag / small / she", "answer": "She carried a small bag.", "explanation": "She carried a small bag."},
+                        {"question": "married / her / he", "answer": "He married her.", "explanation": "He married her."},
+                        {"question": "stayed / at / home / they", "answer": "They stayed at home.", "explanation": "They stayed at home."},
+                        {"question": "watched / documentary / a / we", "answer": "We watched a documentary.", "explanation": "We watched a documentary."}
+                    ]
+                }
+            ],
+            # Вариант 7
+            [
+                {
+                    "type": "complex",
+                    "text": "Вставьте глагол в Past Simple.\n\n1. I ___ (collect) stamps.\n2. She ___ (dance) beautifully.\n3. He ___ (play) the violin.\n4. They ___ (work) hard.\n5. We ___ (travel) around Europe.\n6. You ___ (look) tired.\n7. She ___ (worry) about the exam.\n8. He ___ (carry) a heavy box.\n9. They ___ (live) in London.\n10. We ___ (visit) many countries.",
+                    "subtasks": [
+                        {"question": "I ___ (collect) stamps.", "answer": "collected", "explanation": "collect + ed"},
+                        {"question": "She ___ (dance) beautifully.", "answer": "danced", "explanation": "dance + d"},
+                        {"question": "He ___ (play) the violin.", "answer": "played", "explanation": "play + ed"},
+                        {"question": "They ___ (work) hard.", "answer": "worked", "explanation": "work + ed"},
+                        {"question": "We ___ (travel) around Europe.", "answer": "travelled", "explanation": "travel → travelled"},
+                        {"question": "You ___ (look) tired.", "answer": "looked", "explanation": "look + ed"},
+                        {"question": "She ___ (worry) about the exam.", "answer": "worried", "explanation": "worry → worried"},
+                        {"question": "He ___ (carry) a heavy box.", "answer": "carried", "explanation": "carry → carried"},
+                        {"question": "They ___ (live) in London.", "answer": "lived", "explanation": "live + d"},
+                        {"question": "We ___ (visit) many countries.", "answer": "visited", "explanation": "visit + ed"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Переведите предложения на английский.\n\n1. Я коллекционировал марки.\n2. Она красиво танцевала.\n3. Он играл на скрипке.\n4. Они много работали.\n5. Мы путешествовали по Европе.\n6. Ты выглядел уставшим.\n7. Она волновалась о экзамене.\n8. Он нёс тяжёлую коробку.\n9. Они жили в Лондоне.\n10. Мы посетили много стран.",
+                    "subtasks": [
+                        {"question": "Я коллекционировал марки.", "answer": "I collected stamps.", "explanation": "I collected stamps."},
+                        {"question": "Она красиво танцевала.", "answer": "She danced beautifully.", "explanation": "She danced beautifully."},
+                        {"question": "Он играл на скрипке.", "answer": "He played the violin.", "explanation": "He played the violin."},
+                        {"question": "Они много работали.", "answer": "They worked hard.", "explanation": "They worked hard."},
+                        {"question": "Мы путешествовали по Европе.", "answer": "We travelled around Europe.", "explanation": "We travelled around Europe."},
+                        {"question": "Ты выглядел уставшим.", "answer": "You looked tired.", "explanation": "You looked tired."},
+                        {"question": "Она волновалась о экзамене.", "answer": "She worried about the exam.", "explanation": "She worried about the exam."},
+                        {"question": "Он нёс тяжёлую коробку.", "answer": "He carried a heavy box.", "explanation": "He carried a heavy box."},
+                        {"question": "Они жили в Лондоне.", "answer": "They lived in London.", "explanation": "They lived in London."},
+                        {"question": "Мы посетили много стран.", "answer": "We visited many countries.", "explanation": "We visited many countries."}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Составьте предложения.\n\n1. collected / stamps / I\n2. danced / beautifully / she\n3. played / violin / the / he\n4. worked / hard / they\n5. travelled / Europe / around / we\n6. looked / tired / you\n7. worried / about / exam / the / she\n8. carried / box / heavy / a / he\n9. lived / in / London / they\n10. visited / many / countries / we",
+                    "subtasks": [
+                        {"question": "collected / stamps / I", "answer": "I collected stamps.", "explanation": "I collected stamps."},
+                        {"question": "danced / beautifully / she", "answer": "She danced beautifully.", "explanation": "She danced beautifully."},
+                        {"question": "played / violin / the / he", "answer": "He played the violin.", "explanation": "He played the violin."},
+                        {"question": "worked / hard / they", "answer": "They worked hard.", "explanation": "They worked hard."},
+                        {"question": "travelled / Europe / around / we", "answer": "We travelled around Europe.", "explanation": "We travelled around Europe."},
+                        {"question": "looked / tired / you", "answer": "You looked tired.", "explanation": "You looked tired."},
+                        {"question": "worried / about / exam / the / she", "answer": "She worried about the exam.", "explanation": "She worried about the exam."},
+                        {"question": "carried / box / heavy / a / he", "answer": "He carried a heavy box.", "explanation": "He carried a heavy box."},
+                        {"question": "lived / in / London / they", "answer": "They lived in London.", "explanation": "They lived in London."},
+                        {"question": "visited / many / countries / we", "answer": "We visited many countries.", "explanation": "We visited many countries."}
+                    ]
+                }
+            ],
+            # Вариант 8
+            [
+                {
+                    "type": "complex",
+                    "text": "Вставьте глагол в Past Simple.\n\n1. She ___ (walk) home.\n2. He ___ (cook) dinner.\n3. They ___ (play) cards.\n4. We ___ (listen) to music.\n5. I ___ (watch) a movie.\n6. You ___ (help) me.\n7. She ___ (cry) for help.\n8. He ___ (try) again.\n9. They ___ (move) to a new city.\n10. We ___ (visit) our friends.",
+                    "subtasks": [
+                        {"question": "She ___ (walk) home.", "answer": "walked", "explanation": "walk + ed"},
+                        {"question": "He ___ (cook) dinner.", "answer": "cooked", "explanation": "cook + ed"},
+                        {"question": "They ___ (play) cards.", "answer": "played", "explanation": "play + ed"},
+                        {"question": "We ___ (listen) to music.", "answer": "listened", "explanation": "listen + ed"},
+                        {"question": "I ___ (watch) a movie.", "answer": "watched", "explanation": "watch + ed"},
+                        {"question": "You ___ (help) me.", "answer": "helped", "explanation": "help + ed"},
+                        {"question": "She ___ (cry) for help.", "answer": "cried", "explanation": "cry → cried"},
+                        {"question": "He ___ (try) again.", "answer": "tried", "explanation": "try → tried"},
+                        {"question": "They ___ (move) to a new city.", "answer": "moved", "explanation": "move + d"},
+                        {"question": "We ___ (visit) our friends.", "answer": "visited", "explanation": "visit + ed"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Переведите предложения на английский.\n\n1. Она пошла домой пешком.\n2. Он приготовил ужин.\n3. Они играли в карты.\n4. Мы слушали музыку.\n5. Я смотрел фильм.\n6. Ты помог мне.\n7. Она звала на помощь.\n8. Он попробовал снова.\n9. Они переехали в новый город.\n10. Мы навестили друзей.",
+                    "subtasks": [
+                        {"question": "Она пошла домой пешком.", "answer": "She walked home.", "explanation": "She walked home."},
+                        {"question": "Он приготовил ужин.", "answer": "He cooked dinner.", "explanation": "He cooked dinner."},
+                        {"question": "Они играли в карты.", "answer": "They played cards.", "explanation": "They played cards."},
+                        {"question": "Мы слушали музыку.", "answer": "We listened to music.", "explanation": "We listened to music."},
+                        {"question": "Я смотрел фильм.", "answer": "I watched a movie.", "explanation": "I watched a movie."},
+                        {"question": "Ты помог мне.", "answer": "You helped me.", "explanation": "You helped me."},
+                        {"question": "Она звала на помощь.", "answer": "She cried for help.", "explanation": "She cried for help."},
+                        {"question": "Он попробовал снова.", "answer": "He tried again.", "explanation": "He tried again."},
+                        {"question": "Они переехали в новый город.", "answer": "They moved to a new city.", "explanation": "They moved to a new city."},
+                        {"question": "Мы навестили друзей.", "answer": "We visited our friends.", "explanation": "We visited our friends."}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Составьте предложения.\n\n1. walked / home / she\n2. cooked / dinner / he\n3. played / cards / they\n4. listened / music / to / we\n5. watched / a / movie / I\n6. helped / me / you\n7. cried / help / for / she\n8. tried / again / he\n9. moved / to / city / a / new / they\n10. visited / friends / our / we",
+                    "subtasks": [
+                        {"question": "walked / home / she", "answer": "She walked home.", "explanation": "She walked home."},
+                        {"question": "cooked / dinner / he", "answer": "He cooked dinner.", "explanation": "He cooked dinner."},
+                        {"question": "played / cards / they", "answer": "They played cards.", "explanation": "They played cards."},
+                        {"question": "listened / music / to / we", "answer": "We listened to music.", "explanation": "We listened to music."},
+                        {"question": "watched / a / movie / I", "answer": "I watched a movie.", "explanation": "I watched a movie."},
+                        {"question": "helped / me / you", "answer": "You helped me.", "explanation": "You helped me."},
+                        {"question": "cried / help / for / she", "answer": "She cried for help.", "explanation": "She cried for help."},
+                        {"question": "tried / again / he", "answer": "He tried again.", "explanation": "He tried again."},
+                        {"question": "moved / to / city / a / new / they", "answer": "They moved to a new city.", "explanation": "They moved to a new city."},
+                        {"question": "visited / friends / our / we", "answer": "We visited our friends.", "explanation": "We visited our friends."}
+                    ]
+                }
+            ],
+            # Вариант 9
+            [
+                {
+                    "type": "complex",
+                    "text": "Вставьте глагол в Past Simple.\n\n1. They ___ (arrive) at 5 pm.\n2. She ___ (answer) the phone.\n3. He ___ (turn) off the lights.\n4. We ___ (wait) for you.\n5. I ___ (open) the window.\n6. You ___ (use) my computer.\n7. She ___ (carry) the baby.\n8. He ___ (marry) late.\n9. They ___ (live) abroad.\n10. We ___ (watch) the news.",
+                    "subtasks": [
+                        {"question": "They ___ (arrive) at 5 pm.", "answer": "arrived", "explanation": "arrive + d"},
+                        {"question": "She ___ (answer) the phone.", "answer": "answered", "explanation": "answer + ed"},
+                        {"question": "He ___ (turn) off the lights.", "answer": "turned", "explanation": "turn + ed"},
+                        {"question": "We ___ (wait) for you.", "answer": "waited", "explanation": "wait + ed"},
+                        {"question": "I ___ (open) the window.", "answer": "opened", "explanation": "open + ed"},
+                        {"question": "You ___ (use) my computer.", "answer": "used", "explanation": "use + d"},
+                        {"question": "She ___ (carry) the baby.", "answer": "carried", "explanation": "carry → carried"},
+                        {"question": "He ___ (marry) late.", "answer": "married", "explanation": "marry → married"},
+                        {"question": "They ___ (live) abroad.", "answer": "lived", "explanation": "live + d"},
+                        {"question": "We ___ (watch) the news.", "answer": "watched", "explanation": "watch + ed"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Переведите предложения на английский.\n\n1. Они прибыли в 5 вечера.\n2. Она ответила на звонок.\n3. Он выключил свет.\n4. Мы ждали тебя.\n5. Я открыл окно.\n6. Ты использовал мой компьютер.\n7. Она несла ребёнка.\n8. Он поздно женился.\n9. Они жили за границей.\n10. Мы смотрели новости.",
+                    "subtasks": [
+                        {"question": "Они прибыли в 5 вечера.", "answer": "They arrived at 5 pm.", "explanation": "They arrived at 5 pm."},
+                        {"question": "Она ответила на звонок.", "answer": "She answered the phone.", "explanation": "She answered the phone."},
+                        {"question": "Он выключил свет.", "answer": "He turned off the lights.", "explanation": "He turned off the lights."},
+                        {"question": "Мы ждали тебя.", "answer": "We waited for you.", "explanation": "We waited for you."},
+                        {"question": "Я открыл окно.", "answer": "I opened the window.", "explanation": "I opened the window."},
+                        {"question": "Ты использовал мой компьютер.", "answer": "You used my computer.", "explanation": "You used my computer."},
+                        {"question": "Она несла ребёнка.", "answer": "She carried the baby.", "explanation": "She carried the baby."},
+                        {"question": "Он поздно женился.", "answer": "He married late.", "explanation": "He married late."},
+                        {"question": "Они жили за границей.", "answer": "They lived abroad.", "explanation": "They lived abroad."},
+                        {"question": "Мы смотрели новости.", "answer": "We watched the news.", "explanation": "We watched the news."}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Составьте предложения.\n\n1. arrived / 5 / at / pm / they\n2. answered / phone / she / the\n3. turned / lights / off / he / the\n4. waited / for / we / you\n5. opened / window / I / the\n6. used / computer / my / you\n7. carried / baby / she / the\n8. married / late / he\n9. lived / abroad / they\n10. watched / news / we / the",
+                    "subtasks": [
+                        {"question": "arrived / 5 / at / pm / they", "answer": "They arrived at 5 pm.", "explanation": "They arrived at 5 pm."},
+                        {"question": "answered / phone / she / the", "answer": "She answered the phone.", "explanation": "She answered the phone."},
+                        {"question": "turned / lights / off / he / the", "answer": "He turned off the lights.", "explanation": "He turned off the lights."},
+                        {"question": "waited / for / we / you", "answer": "We waited for you.", "explanation": "We waited for you."},
+                        {"question": "opened / window / I / the", "answer": "I opened the window.", "explanation": "I opened the window."},
+                        {"question": "used / computer / my / you", "answer": "You used my computer.", "explanation": "You used my computer."},
+                        {"question": "carried / baby / she / the", "answer": "She carried the baby.", "explanation": "She carried the baby."},
+                        {"question": "married / late / he", "answer": "He married late.", "explanation": "He married late."},
+                        {"question": "lived / abroad / they", "answer": "They lived abroad.", "explanation": "They lived abroad."},
+                        {"question": "watched / news / we / the", "answer": "We watched the news.", "explanation": "We watched the news."}
+                    ]
+                }
+            ],
+            # Вариант 10
+            [
+                {
+                    "type": "complex",
+                    "text": "Вставьте глагол в Past Simple.\n\n1. I ___ (play) the guitar.\n2. She ___ (study) medicine.\n3. He ___ (work) in a shop.\n4. They ___ (travel) by train.\n5. We ___ (visit) the castle.\n6. You ___ (call) your sister.\n7. She ___ (hurry) to catch the bus.\n8. He ___ (carry) a backpack.\n9. They ___ (stay) in a hostel.\n10. We ___ (watch) the stars.",
+                    "subtasks": [
+                        {"question": "I ___ (play) the guitar.", "answer": "played", "explanation": "play + ed"},
+                        {"question": "She ___ (study) medicine.", "answer": "studied", "explanation": "study → studied"},
+                        {"question": "He ___ (work) in a shop.", "answer": "worked", "explanation": "work + ed"},
+                        {"question": "They ___ (travel) by train.", "answer": "travelled", "explanation": "travel → travelled"},
+                        {"question": "We ___ (visit) the castle.", "answer": "visited", "explanation": "visit + ed"},
+                        {"question": "You ___ (call) your sister.", "answer": "called", "explanation": "call + ed"},
+                        {"question": "She ___ (hurry) to catch the bus.", "answer": "hurried", "explanation": "hurry → hurried"},
+                        {"question": "He ___ (carry) a backpack.", "answer": "carried", "explanation": "carry → carried"},
+                        {"question": "They ___ (stay) in a hostel.", "answer": "stayed", "explanation": "stay + ed"},
+                        {"question": "We ___ (watch) the stars.", "answer": "watched", "explanation": "watch + ed"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Переведите предложения на английский.\n\n1. Я играл на гитаре.\n2. Она изучала медицину.\n3. Он работал в магазине.\n4. Они путешествовали на поезде.\n5. Мы посетили замок.\n6. Ты позвонил своей сестре.\n7. Она торопилась на автобус.\n8. Он нёс рюкзак.\n9. Они остановились в хостеле.\n10. Мы смотрели на звёзды.",
+                    "subtasks": [
+                        {"question": "Я играл на гитаре.", "answer": "I played the guitar.", "explanation": "I played the guitar."},
+                        {"question": "Она изучала медицину.", "answer": "She studied medicine.", "explanation": "She studied medicine."},
+                        {"question": "Он работал в магазине.", "answer": "He worked in a shop.", "explanation": "He worked in a shop."},
+                        {"question": "Они путешествовали на поезде.", "answer": "They travelled by train.", "explanation": "They travelled by train."},
+                        {"question": "Мы посетили замок.", "answer": "We visited the castle.", "explanation": "We visited the castle."},
+                        {"question": "Ты позвонил своей сестре.", "answer": "You called your sister.", "explanation": "You called your sister."},
+                        {"question": "Она торопилась на автобус.", "answer": "She hurried to catch the bus.", "explanation": "She hurried to catch the bus."},
+                        {"question": "Он нёс рюкзак.", "answer": "He carried a backpack.", "explanation": "He carried a backpack."},
+                        {"question": "Они остановились в хостеле.", "answer": "They stayed in a hostel.", "explanation": "They stayed in a hostel."},
+                        {"question": "Мы смотрели на звёзды.", "answer": "We watched the stars.", "explanation": "We watched the stars."}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Составьте предложения.\n\n1. played / guitar / I / the\n2. studied / medicine / she\n3. worked / in / shop / a / he\n4. travelled / train / by / they\n5. visited / castle / we / the\n6. called / sister / your / you\n7. hurried / catch / bus / to / the / she\n8. carried / backpack / a / he\n9. stayed / hostel / in / a / they\n10. watched / stars / we / the",
+                    "subtasks": [
+                        {"question": "played / guitar / I / the", "answer": "I played the guitar.", "explanation": "I played the guitar."},
+                        {"question": "studied / medicine / she", "answer": "She studied medicine.", "explanation": "She studied medicine."},
+                        {"question": "worked / in / shop / a / he", "answer": "He worked in a shop.", "explanation": "He worked in a shop."},
+                        {"question": "travelled / train / by / they", "answer": "They travelled by train.", "explanation": "They travelled by train."},
+                        {"question": "visited / castle / we / the", "answer": "We visited the castle.", "explanation": "We visited the castle."},
+                        {"question": "called / sister / your / you", "answer": "You called your sister.", "explanation": "You called your sister."},
+                        {"question": "hurried / catch / bus / to / the / she", "answer": "She hurried to catch the bus.", "explanation": "She hurried to catch the bus."},
+                        {"question": "carried / backpack / a / he", "answer": "He carried a backpack.", "explanation": "He carried a backpack."},
+                        {"question": "stayed / hostel / in / a / they", "answer": "They stayed in a hostel.", "explanation": "They stayed in a hostel."},
+                        {"question": "watched / stars / we / the", "answer": "We watched the stars.", "explanation": "We watched the stars."}
+                    ]
+                }
+            ]
         ]
-      },
-      {
-        "type": "choice",
-        "text": "We ___ to the park yesterday.",
-        "correct": "walked",
-        "hint": "walk + ed",
-        "star": False,
-        "options": [
-          "walk",
-          "walked",
-          "walks",
-          "walking"
-        ]
-      },
-      {
-        "type": "choice",
-        "text": "He ___ a letter to his friend.",
-        "correct": "mailed",
-        "hint": "mail + ed",
-        "star": False,
-        "options": [
-          "mail",
-          "mailed",
-          "mails",
-          "mailing"
-        ]
-      },
-      {
-        "type": "choice",
-        "text": "They ___ the game last week.",
-        "correct": "started",
-        "hint": "start + ed",
-        "star": False,
-        "options": [
-          "start",
-          "started",
-          "starts",
-          "starting"
-        ]
-      },
-      {
-        "type": "choice",
-        "text": "I ___ my keys this morning.",
-        "correct": "dropped",
-        "hint": "double p + ed",
-        "star": False,
-        "options": [
-          "drop",
-          "dropped",
-          "drops",
-          "dropping"
-        ]
-      },
-      {
-        "type": "reorder",
-        "text": "yesterday / played / he / football",
-        "correct": "He played football yesterday.",
-        "hint": "Порядок: подлежащее + глагол + дополнение + время",
-        "star": False
-      },
-      {
-        "type": "reorder",
-        "text": "watched / they / a film / last night",
-        "correct": "They watched a film last night.",
-        "hint": "Порядок: подлежащее + глагол + дополнение + время",
-        "star": False
-      },
-      {
-        "type": "reorder",
-        "text": "she / her room / cleaned / in the morning",
-        "correct": "She cleaned her room in the morning.",
-        "hint": "Порядок: подлежащее + глагол + дополнение + время",
-        "star": False
-      },
-      {
-        "type": "reorder",
-        "text": "we / pizza / ordered / for dinner",
-        "correct": "We ordered pizza for dinner.",
-        "hint": "Порядок: подлежащее + глагол + дополнение",
-        "star": False
-      },
-      {
-        "type": "translation",
-        "text": "Он вчера слушал музыку.",
-        "correct": "He listened to music yesterday.",
-        "hint": "listen + ed",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She ___ (try) to open the door.",
-        "correct": "tried",
-        "hint": "y → i + ed",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "They ___ (plan) a trip to London.",
-        "correct": "planned",
-        "hint": "double n + ed",
-        "star": True
-      },
-      {
-        "type": "choice",
-        "text": "He ___ his car yesterday.",
-        "correct": "repaired",
-        "hint": "repair + ed",
-        "star": True,
-        "options": [
-          "repair",
-          "repaired",
-          "repairs",
-          "repairing"
-        ]
-      },
-      {
-        "type": "choice",
-        "text": "We ___ the flowers in the garden.",
-        "correct": "watered",
-        "hint": "water + ed",
-        "star": True,
-        "options": [
-          "water",
-          "watered",
-          "waters",
-          "watering"
-        ]
-      },
-      {
-        "type": "reorder",
-        "text": "the letter / she / carefully / typed",
-        "correct": "She typed the letter carefully.",
-        "hint": "Порядок: подлежащее + глагол + дополнение + наречие",
-        "star": True
-      },
-      {
-        "type": "reorder",
-        "text": "last summer / they / in a small village / lived",
-        "correct": "They lived in a small village last summer.",
-        "hint": "Порядок: подлежащее + глагол + место + время",
-        "star": True
-      },
-      {
-        "type": "translation",
-        "text": "Мы остановились в отеле.",
-        "correct": "We stopped at a hotel.",
-        "hint": "double p + ed",
-        "star": True
-      },
-      {
-        "type": "translation",
-        "text": "Она изучала французский язык.",
-        "correct": "She studied French.",
-        "hint": "y → i + ed",
-        "star": True
-      },
-      {
-        "type": "open",
-        "text": "Напиши предложение в Past Simple: I (help) my friend.",
-        "correct": "I helped my friend.",
-        "hint": "help + ed",
-        "star": True
-      },
-      {
-        "type": "open",
-        "text": "Напиши предложение в Past Simple: They (carry) the boxes.",
-        "correct": "They carried the boxes.",
-        "hint": "y → i + ed",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "She ___ (play) tennis yesterday.",
-        "correct": "played",
-        "hint": "play + ed",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "They ___ (visit) their grandparents last weekend.",
-        "correct": "visited",
-        "hint": "visit + ed",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He ___ (study) for the exam all night.",
-        "correct": "studied",
-        "hint": "y → ied",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "I ___ (watch) a movie last night.",
-        "correct": "watched",
-        "hint": "watch + ed",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "We ___ (dance) at the party.",
-        "correct": "danced",
-        "hint": "dance + d",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The cat ___ (jump) onto the sofa.",
-        "correct": "jumped",
-        "hint": "jump + ed",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She ___ (cook) dinner for us.",
-        "correct": "cooked",
-        "hint": "cook + ed",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "They ___ (clean) the house yesterday.",
-        "correct": "cleaned",
-        "hint": "clean + ed",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He ___ (stop) the car suddenly.",
-        "correct": "stopped",
-        "hint": "stop → pp + ed",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "I ___ (like) the new song.",
-        "correct": "liked",
-        "hint": "like + d",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "We ___ (plan) a trip to London.",
-        "correct": "planned",
-        "hint": "plan → nn + ed",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She ___ (call) her friend yesterday.",
-        "correct": "called",
-        "hint": "call + ed",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "They ___ (arrive) late to the meeting.",
-        "correct": "arrived",
-        "hint": "arrive + d",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He ___ (try) to open the door.",
-        "correct": "tried",
-        "hint": "y → ied",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "I ___ (help) my mom with the dishes.",
-        "correct": "helped",
-        "hint": "help + ed",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "We ___ (walk) in the park.",
-        "correct": "walked",
-        "hint": "walk + ed",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She ___ (carry) the heavy box.",
-        "correct": "carried",
-        "hint": "y → ied",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "They ___ (start) the game at 5 pm.",
-        "correct": "started",
-        "hint": "start + ed",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He ___ (listen) to music all evening.",
-        "correct": "listened",
-        "hint": "listen + ed",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "I ___ (finish) my homework quickly.",
-        "correct": "finished",
-        "hint": "finish + ed",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She ___ (travel) to Japan last year.",
-        "correct": "travelled",
-        "hint": "travel → ll + ed (BrE)",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "They ___ (prefer) tea over coffee.",
-        "correct": "preferred",
-        "hint": "prefer → rr + ed",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "He ___ (drop) his phone on the floor.",
-        "correct": "dropped",
-        "hint": "drop → pp + ed",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "I ___ (admit) my mistake.",
-        "correct": "admitted",
-        "hint": "admit → tt + ed",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "We ___ (hurry) to catch the bus.",
-        "correct": "hurried",
-        "hint": "y → ied",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "She ___ (marry) him in 2010.",
-        "correct": "married",
-        "hint": "y → ied",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "They ___ (destroy) the old building.",
-        "correct": "destroyed",
-        "hint": "destroy + ed (y stays)",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "He ___ (enjoy) the concert a lot.",
-        "correct": "enjoyed",
-        "hint": "enjoy + ed (y stays)",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "I ___ (occur) to me later.",
-        "correct": "occurred",
-        "hint": "occur → rr + ed",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "We ___ (label) the boxes carefully.",
-        "correct": "labelled",
-        "hint": "label → ll + ed (BrE)",
-        "star": True
-      }
-    ]
   },
   "pastSimpleIrregular": {
     "title": "Past Simple (неправильные глаголы)",
