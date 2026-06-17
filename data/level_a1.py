@@ -3862,512 +3862,518 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "answer": "Да, это общий вопрос (ответ да/нет). Например: Are you a student? Но вопросительные слова дают конкретную информацию."
       }
     ],
-    "practice_tasks": [
-      {
-        "type": "fill_blank",
-        "text": "___ is your favourite colour?",
-        "correct": "What",
-        "hint": "Спрашиваем о предмете или явлении",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "___ are you from?",
-        "correct": "Where",
-        "hint": "Спрашиваем о месте",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "___ old are you?",
-        "correct": "How",
-        "hint": "Спрашиваем о возрасте",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "___ do you go to school?",
-        "correct": "How",
-        "hint": "Спрашиваем о способе передвижения",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "___ is your birthday?",
-        "correct": "When",
-        "hint": "Спрашиваем о времени или дате",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "___ is your best friend?",
-        "correct": "Who",
-        "hint": "Спрашиваем о человеке",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "___ do you like pizza?",
-        "correct": "Why",
-        "hint": "Спрашиваем о причине",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "___ books are on the table?",
-        "correct": "How many",
-        "hint": "Спрашиваем о количестве (исчисляемые)",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "___ milk do you want?",
-        "correct": "How much",
-        "hint": "Спрашиваем о количестве (неисчисляемые)",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "___ is your phone number?",
-        "correct": "What",
-        "hint": "Спрашиваем об информации",
-        "star": False
-      },
-      {
-        "type": "choice",
-        "text": "___ do you usually get up?",
-        "correct": "When",
-        "hint": "Выбери правильное вопросительное слово",
-        "star": False,
-        "options": [
-          "What",
-          "When",
-          "Where",
-          "Why"
+            "practice_bank": [
+            # Вариант 1
+            [
+                {
+                    "type": "complex",
+                    "text": "Задание 1. Вставьте правильное вопросительное слово: who, what, when, where, why, how.\n\n1. ___ is your name?\n2. ___ do you live?\n3. ___ are you happy?\n4. ___ old are you?\n5. ___ is that man?\n6. ___ time is it?\n7. ___ do you go to school?\n8. ___ is your teacher?\n9. ___ do you like English?\n10. ___ many books do you have?",
+                    "subtasks": [
+                        {"question": "___ is your name?", "answer": "What", "explanation": "What — вопрос о предмете/имени"},
+                        {"question": "___ do you live?", "answer": "Where", "explanation": "Where — вопрос о месте"},
+                        {"question": "___ are you happy?", "answer": "Why", "explanation": "Why — вопрос о причине"},
+                        {"question": "___ old are you?", "answer": "How", "explanation": "How + прилагательное (old)"},
+                        {"question": "___ is that man?", "answer": "Who", "explanation": "Who — вопрос о человеке"},
+                        {"question": "___ time is it?", "answer": "What", "explanation": "What time — вопрос о времени"},
+                        {"question": "___ do you go to school?", "answer": "When", "explanation": "When — вопрос о времени (день/период)"},
+                        {"question": "___ is your teacher?", "answer": "Who", "explanation": "Who — вопрос о человеке"},
+                        {"question": "___ do you like English?", "answer": "Why", "explanation": "Why — вопрос о причине"},
+                        {"question": "___ many books do you have?", "answer": "How", "explanation": "How + many — вопрос о количестве"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Задание 2. Переведите вопросы на английский.\n\n1. Как тебя зовут?\n2. Где ты живёшь?\n3. Почему ты счастлив?\n4. Сколько тебе лет?\n5. Кто тот мужчина?\n6. Который час?\n7. Когда ты идёшь в школу?\n8. Кто твой учитель?\n9. Почему тебе нравится английский?\n10. Сколько книг у тебя есть?",
+                    "subtasks": [
+                        {"question": "Как тебя зовут?", "answer": "What is your name?", "explanation": "What is your name?"},
+                        {"question": "Где ты живёшь?", "answer": "Where do you live?", "explanation": "Where do you live?"},
+                        {"question": "Почему ты счастлив?", "answer": "Why are you happy?", "explanation": "Why are you happy?"},
+                        {"question": "Сколько тебе лет?", "answer": "How old are you?", "explanation": "How old are you?"},
+                        {"question": "Кто тот мужчина?", "answer": "Who is that man?", "explanation": "Who is that man?"},
+                        {"question": "Который час?", "answer": "What time is it?", "explanation": "What time is it?"},
+                        {"question": "Когда ты идёшь в школу?", "answer": "When do you go to school?", "explanation": "When do you go to school?"},
+                        {"question": "Кто твой учитель?", "answer": "Who is your teacher?", "explanation": "Who is your teacher?"},
+                        {"question": "Почему тебе нравится английский?", "answer": "Why do you like English?", "explanation": "Why do you like English?"},
+                        {"question": "Сколько книг у тебя есть?", "answer": "How many books do you have?", "explanation": "How many books do you have?"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Задание 3. Составьте вопросы из слов в правильном порядке.\n\n1. name / your / what / is\n2. live / you / where / do\n3. happy / you / why / are\n4. old / how / you / are\n5. man / who / that / is\n6. time / what / it / is\n7. school / you / when / go / do / to\n8. teacher / who / your / is\n9. like / you / why / do / English\n10. many / how / books / you / do / have",
+                    "subtasks": [
+                        {"question": "name / your / what / is", "answer": "What is your name?", "explanation": "Порядок: вопросительное слово + глагол + подлежащее"},
+                        {"question": "live / you / where / do", "answer": "Where do you live?", "explanation": "Where + do + you + live?"},
+                        {"question": "happy / you / why / are", "answer": "Why are you happy?", "explanation": "Why + are + you + happy?"},
+                        {"question": "old / how / you / are", "answer": "How old are you?", "explanation": "How + old + are + you?"},
+                        {"question": "man / who / that / is", "answer": "Who is that man?", "explanation": "Who + is + that + man?"},
+                        {"question": "time / what / it / is", "answer": "What time is it?", "explanation": "What + time + is + it?"},
+                        {"question": "school / you / when / go / do / to", "answer": "When do you go to school?", "explanation": "When + do + you + go + to + school?"},
+                        {"question": "teacher / who / your / is", "answer": "Who is your teacher?", "explanation": "Who + is + your + teacher?"},
+                        {"question": "like / you / why / do / English", "answer": "Why do you like English?", "explanation": "Why + do + you + like + English?"},
+                        {"question": "many / how / books / you / do / have", "answer": "How many books do you have?", "explanation": "How many + books + do + you + have?"}
+                    ]
+                }
+            ],
+            # Вариант 2
+            [
+                {
+                    "type": "complex",
+                    "text": "Задание 1. Вставьте вопросительное слово.\n\n1. ___ is your favourite colour?\n2. ___ do you usually get up?\n3. ___ are you late?\n4. ___ much is this book?\n5. ___ is your best friend?\n6. ___ do you want to eat?\n7. ___ do you go to the gym?\n8. ___ are you from?\n9. ___ do you study English?\n10. ___ old is your mother?",
+                    "subtasks": [
+                        {"question": "___ is your favourite colour?", "answer": "What", "explanation": "What — вопрос о предмете/цвете"},
+                        {"question": "___ do you usually get up?", "answer": "When", "explanation": "When — вопрос о времени (когда)"},
+                        {"question": "___ are you late?", "answer": "Why", "explanation": "Why — вопрос о причине"},
+                        {"question": "___ much is this book?", "answer": "How", "explanation": "How much — вопрос о цене (неисчисляемое)"},
+                        {"question": "___ is your best friend?", "answer": "Who", "explanation": "Who — вопрос о человеке"},
+                        {"question": "___ do you want to eat?", "answer": "What", "explanation": "What — вопрос о предмете/еде"},
+                        {"question": "___ do you go to the gym?", "answer": "When", "explanation": "When — вопрос о времени"},
+                        {"question": "___ are you from?", "answer": "Where", "explanation": "Where — вопрос о месте"},
+                        {"question": "___ do you study English?", "answer": "Why", "explanation": "Why — вопрос о причине"},
+                        {"question": "___ old is your mother?", "answer": "How", "explanation": "How + old — вопрос о возрасте"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Задание 2. Переведите вопросы на английский.\n\n1. Какой твой любимый цвет?\n2. Когда ты обычно встаёшь?\n3. Почему ты опоздал?\n4. Сколько стоит эта книга?\n5. Кто твой лучший друг?\n6. Что ты хочешь есть?\n7. Когда ты ходишь в спортзал?\n8. Откуда ты?\n9. Почему ты учишь английский?\n10. Сколько лет твоей маме?",
+                    "subtasks": [
+                        {"question": "Какой твой любимый цвет?", "answer": "What is your favourite colour?", "explanation": "What is your favourite colour?"},
+                        {"question": "Когда ты обычно встаёшь?", "answer": "When do you usually get up?", "explanation": "When do you usually get up?"},
+                        {"question": "Почему ты опоздал?", "answer": "Why are you late?", "explanation": "Why are you late?"},
+                        {"question": "Сколько стоит эта книга?", "answer": "How much is this book?", "explanation": "How much is this book?"},
+                        {"question": "Кто твой лучший друг?", "answer": "Who is your best friend?", "explanation": "Who is your best friend?"},
+                        {"question": "Что ты хочешь есть?", "answer": "What do you want to eat?", "explanation": "What do you want to eat?"},
+                        {"question": "Когда ты ходишь в спортзал?", "answer": "When do you go to the gym?", "explanation": "When do you go to the gym?"},
+                        {"question": "Откуда ты?", "answer": "Where are you from?", "explanation": "Where are you from?"},
+                        {"question": "Почему ты учишь английский?", "answer": "Why do you study English?", "explanation": "Why do you study English?"},
+                        {"question": "Сколько лет твоей маме?", "answer": "How old is your mother?", "explanation": "How old is your mother?"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Задание 3. Составьте вопросы.\n\n1. colour / your / favourite / is / what\n2. usually / get / up / you / when / do\n3. late / why / are / you\n4. much / is / book / this / how\n5. friend / best / who / your / is\n6. eat / do / you / what / want / to\n7. gym / do / go / you / when / to / the\n8. from / you / where / are\n9. study / why / you / do / English\n10. mother / old / how / is / your",
+                    "subtasks": [
+                        {"question": "colour / your / favourite / is / what", "answer": "What is your favourite colour?", "explanation": "What is your favourite colour?"},
+                        {"question": "usually / get / up / you / when / do", "answer": "When do you usually get up?", "explanation": "When do you usually get up?"},
+                        {"question": "late / why / are / you", "answer": "Why are you late?", "explanation": "Why are you late?"},
+                        {"question": "much / is / book / this / how", "answer": "How much is this book?", "explanation": "How much is this book?"},
+                        {"question": "friend / best / who / your / is", "answer": "Who is your best friend?", "explanation": "Who is your best friend?"},
+                        {"question": "eat / do / you / what / want / to", "answer": "What do you want to eat?", "explanation": "What do you want to eat?"},
+                        {"question": "gym / do / go / you / when / to / the", "answer": "When do you go to the gym?", "explanation": "When do you go to the gym?"},
+                        {"question": "from / you / where / are", "answer": "Where are you from?", "explanation": "Where are you from?"},
+                        {"question": "study / why / you / do / English", "answer": "Why do you study English?", "explanation": "Why do you study English?"},
+                        {"question": "mother / old / how / is / your", "answer": "How old is your mother?", "explanation": "How old is your mother?"}
+                    ]
+                }
+            ],
+            # Вариант 3
+            [
+                {
+                    "type": "complex",
+                    "text": "Задание 1. Вставьте вопросительное слово.\n\n1. ___ do you want for dinner?\n2. ___ is the nearest bank?\n3. ___ are you crying?\n4. ___ long is the film?\n5. ___ is your favourite actor?\n6. ___ do you go on holiday?\n7. ___ do you get to work?\n8. ___ is your English teacher?\n9. ___ do you like this song?\n10. ___ books do you read?",
+                    "subtasks": [
+                        {"question": "___ do you want for dinner?", "answer": "What", "explanation": "What — вопрос о предмете/еде"},
+                        {"question": "___ is the nearest bank?", "answer": "Where", "explanation": "Where — вопрос о месте"},
+                        {"question": "___ are you crying?", "answer": "Why", "explanation": "Why — вопрос о причине"},
+                        {"question": "___ long is the film?", "answer": "How", "explanation": "How + long — вопрос о длительности"},
+                        {"question": "___ is your favourite actor?", "answer": "Who", "explanation": "Who — вопрос о человеке"},
+                        {"question": "___ do you go on holiday?", "answer": "When", "explanation": "When — вопрос о времени"},
+                        {"question": "___ do you get to work?", "answer": "How", "explanation": "How — вопрос о способе (как)"},
+                        {"question": "___ is your English teacher?", "answer": "Who", "explanation": "Who — вопрос о человеке"},
+                        {"question": "___ do you like this song?", "answer": "Why", "explanation": "Why — вопрос о причине"},
+                        {"question": "___ books do you read?", "answer": "How many", "explanation": "How many — вопрос о количестве (исчисляемые)"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Задание 2. Переведите вопросы.\n\n1. Что ты хочешь на ужин?\n2. Где ближайший банк?\n3. Почему ты плачешь?\n4. Как долго идёт фильм?\n5. Кто твой любимый актёр?\n6. Когда ты ездишь в отпуск?\n7. Как ты добираешься до работы?\n8. Кто твой учитель английского?\n9. Почему тебе нравится эта песня?\n10. Сколько книг ты читаешь?",
+                    "subtasks": [
+                        {"question": "Что ты хочешь на ужин?", "answer": "What do you want for dinner?", "explanation": "What do you want for dinner?"},
+                        {"question": "Где ближайший банк?", "answer": "Where is the nearest bank?", "explanation": "Where is the nearest bank?"},
+                        {"question": "Почему ты плачешь?", "answer": "Why are you crying?", "explanation": "Why are you crying?"},
+                        {"question": "Как долго идёт фильм?", "answer": "How long is the film?", "explanation": "How long is the film?"},
+                        {"question": "Кто твой любимый актёр?", "answer": "Who is your favourite actor?", "explanation": "Who is your favourite actor?"},
+                        {"question": "Когда ты ездишь в отпуск?", "answer": "When do you go on holiday?", "explanation": "When do you go on holiday?"},
+                        {"question": "Как ты добираешься до работы?", "answer": "How do you get to work?", "explanation": "How do you get to work?"},
+                        {"question": "Кто твой учитель английского?", "answer": "Who is your English teacher?", "explanation": "Who is your English teacher?"},
+                        {"question": "Почему тебе нравится эта песня?", "answer": "Why do you like this song?", "explanation": "Why do you like this song?"},
+                        {"question": "Сколько книг ты читаешь?", "answer": "How many books do you read?", "explanation": "How many books do you read?"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Задание 3. Составьте вопросы.\n\n1. for / dinner / want / you / what / do\n2. nearest / where / bank / is / the\n3. crying / why / are / you\n4. film / how / long / is / the\n5. actor / your / favourite / who / is\n6. holiday / do / go / you / when / on\n7. work / you / how / get / to / do\n8. teacher / your / who / is / English\n9. this / song / you / why / do / like\n10. books / many / you / do / read / how",
+                    "subtasks": [
+                        {"question": "for / dinner / want / you / what / do", "answer": "What do you want for dinner?", "explanation": "What do you want for dinner?"},
+                        {"question": "nearest / where / bank / is / the", "answer": "Where is the nearest bank?", "explanation": "Where is the nearest bank?"},
+                        {"question": "crying / why / are / you", "answer": "Why are you crying?", "explanation": "Why are you crying?"},
+                        {"question": "film / how / long / is / the", "answer": "How long is the film?", "explanation": "How long is the film?"},
+                        {"question": "actor / your / favourite / who / is", "answer": "Who is your favourite actor?", "explanation": "Who is your favourite actor?"},
+                        {"question": "holiday / do / go / you / when / on", "answer": "When do you go on holiday?", "explanation": "When do you go on holiday?"},
+                        {"question": "work / you / how / get / to / do", "answer": "How do you get to work?", "explanation": "How do you get to work?"},
+                        {"question": "teacher / your / who / is / English", "answer": "Who is your English teacher?", "explanation": "Who is your English teacher?"},
+                        {"question": "this / song / you / why / do / like", "answer": "Why do you like this song?", "explanation": "Why do you like this song?"},
+                        {"question": "books / many / you / do / read / how", "answer": "How many books do you read?", "explanation": "How many books do you read?"}
+                    ]
+                }
+            ],
+            # Вариант 4
+            [
+                {
+                    "type": "complex",
+                    "text": "Задание 1. Вставьте вопросительное слово.\n\n1. ___ do you go to the cinema?\n2. ___ is your favourite book?\n3. ___ are you tired?\n4. ___ often do you exercise?\n5. ___ is the capital of France?\n6. ___ did you buy that?\n7. ___ do you eat breakfast?\n8. ___ is your sister?\n9. ___ do you prefer tea or coffee?\n10. ___ money do you need?",
+                    "subtasks": [
+                        {"question": "___ do you go to the cinema?", "answer": "When", "explanation": "When — вопрос о времени"},
+                        {"question": "___ is your favourite book?", "answer": "What", "explanation": "What — вопрос о предмете"},
+                        {"question": "___ are you tired?", "answer": "Why", "explanation": "Why — вопрос о причине"},
+                        {"question": "___ often do you exercise?", "answer": "How", "explanation": "How + often — вопрос о частоте"},
+                        {"question": "___ is the capital of France?", "answer": "What", "explanation": "What — вопрос о факте/городе"},
+                        {"question": "___ did you buy that?", "answer": "Why", "explanation": "Why — вопрос о причине (можно also 'where' but here it's why)"},
+                        {"question": "___ do you eat breakfast?", "answer": "When", "explanation": "When — вопрос о времени"},
+                        {"question": "___ is your sister?", "answer": "Who", "explanation": "Who — вопрос о человеке"},
+                        {"question": "___ do you prefer tea or coffee?", "answer": "Which", "explanation": "Which — вопрос о выборе"},
+                        {"question": "___ money do you need?", "answer": "How much", "explanation": "How much — вопрос о количестве (неисчисляемое)"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Задание 2. Переведите вопросы.\n\n1. Когда ты ходишь в кино?\n2. Какая твоя любимая книга?\n3. Почему ты устал?\n4. Как часто ты занимаешься спортом?\n5. Как называется столица Франции?\n6. Зачем ты это купил?\n7. Когда ты завтракаешь?\n8. Кто твоя сестра?\n9. Что ты предпочитаешь: чай или кофе?\n10. Сколько денег тебе нужно?",
+                    "subtasks": [
+                        {"question": "Когда ты ходишь в кино?", "answer": "When do you go to the cinema?", "explanation": "When do you go to the cinema?"},
+                        {"question": "Какая твоя любимая книга?", "answer": "What is your favourite book?", "explanation": "What is your favourite book?"},
+                        {"question": "Почему ты устал?", "answer": "Why are you tired?", "explanation": "Why are you tired?"},
+                        {"question": "Как часто ты занимаешься спортом?", "answer": "How often do you exercise?", "explanation": "How often do you exercise?"},
+                        {"question": "Как называется столица Франции?", "answer": "What is the capital of France?", "explanation": "What is the capital of France?"},
+                        {"question": "Зачем ты это купил?", "answer": "Why did you buy that?", "explanation": "Why did you buy that?"},
+                        {"question": "Когда ты завтракаешь?", "answer": "When do you eat breakfast?", "explanation": "When do you eat breakfast?"},
+                        {"question": "Кто твоя сестра?", "answer": "Who is your sister?", "explanation": "Who is your sister?"},
+                        {"question": "Что ты предпочитаешь: чай или кофе?", "answer": "Which do you prefer, tea or coffee?", "explanation": "Which do you prefer, tea or coffee?"},
+                        {"question": "Сколько денег тебе нужно?", "answer": "How much money do you need?", "explanation": "How much money do you need?"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Задание 3. Составьте вопросы.\n\n1. cinema / you / do / when / go / to / the\n2. favourite / book / your / is / what\n3. tired / why / are / you\n4. exercise / how / you / often / do\n5. capital / France / what / the / is / of\n6. buy / you / why / that / did\n7. breakfast / you / do / when / eat\n8. your / who / is / sister\n9. prefer / you / which / tea / or / coffee\n10. need / you / money / how / do / much",
+                    "subtasks": [
+                        {"question": "cinema / you / do / when / go / to / the", "answer": "When do you go to the cinema?", "explanation": "When do you go to the cinema?"},
+                        {"question": "favourite / book / your / is / what", "answer": "What is your favourite book?", "explanation": "What is your favourite book?"},
+                        {"question": "tired / why / are / you", "answer": "Why are you tired?", "explanation": "Why are you tired?"},
+                        {"question": "exercise / how / you / often / do", "answer": "How often do you exercise?", "explanation": "How often do you exercise?"},
+                        {"question": "capital / France / what / the / is / of", "answer": "What is the capital of France?", "explanation": "What is the capital of France?"},
+                        {"question": "buy / you / why / that / did", "answer": "Why did you buy that?", "explanation": "Why did you buy that?"},
+                        {"question": "breakfast / you / do / when / eat", "answer": "When do you eat breakfast?", "explanation": "When do you eat breakfast?"},
+                        {"question": "your / who / is / sister", "answer": "Who is your sister?", "explanation": "Who is your sister?"},
+                        {"question": "prefer / you / which / tea / or / coffee", "answer": "Which do you prefer, tea or coffee?", "explanation": "Which do you prefer, tea or coffee?"},
+                        {"question": "need / you / money / how / do / much", "answer": "How much money do you need?", "explanation": "How much money do you need?"}
+                    ]
+                }
+            ],
+            # Вариант 5
+            [
+                {
+                    "type": "complex",
+                    "text": "Задание 1. Вставьте вопросительное слово.\n\n1. ___ do you usually have lunch?\n2. ___ is your favourite singer?\n3. ___ do you want to be a doctor?\n4. ___ tall are you?\n5. ___ is your house?\n6. ___ do you start work?\n7. ___ do you learn new words?\n8. ___ is your best subject?\n9. ___ do you go shopping?\n10. ___ sugar do you take?",
+                    "subtasks": [
+                        {"question": "___ do you usually have lunch?", "answer": "When", "explanation": "When — вопрос о времени"},
+                        {"question": "___ is your favourite singer?", "answer": "Who", "explanation": "Who — вопрос о человеке"},
+                        {"question": "___ do you want to be a doctor?", "answer": "Why", "explanation": "Why — вопрос о причине"},
+                        {"question": "___ tall are you?", "answer": "How", "explanation": "How + tall — вопрос о росте"},
+                        {"question": "___ is your house?", "answer": "Where", "explanation": "Where — вопрос о месте"},
+                        {"question": "___ do you start work?", "answer": "When", "explanation": "When — вопрос о времени"},
+                        {"question": "___ do you learn new words?", "answer": "How", "explanation": "How — вопрос о способе"},
+                        {"question": "___ is your best subject?", "answer": "What", "explanation": "What — вопрос о предмете"},
+                        {"question": "___ do you go shopping?", "answer": "When", "explanation": "When — вопрос о времени"},
+                        {"question": "___ sugar do you take?", "answer": "How much", "explanation": "How much — вопрос о количестве (неисчисляемое)"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Задание 2. Переведите вопросы.\n\n1. Когда ты обычно обедаешь?\n2. Кто твой любимый певец?\n3. Почему ты хочешь стать врачом?\n4. Какой у тебя рост?\n5. Где твой дом?\n6. Когда ты начинаешь работу?\n7. Как ты учишь новые слова?\n8. Какой твой любимый предмет?\n9. Когда ты ходишь за покупками?\n10. Сколько сахара ты кладёшь?",
+                    "subtasks": [
+                        {"question": "Когда ты обычно обедаешь?", "answer": "When do you usually have lunch?", "explanation": "When do you usually have lunch?"},
+                        {"question": "Кто твой любимый певец?", "answer": "Who is your favourite singer?", "explanation": "Who is your favourite singer?"},
+                        {"question": "Почему ты хочешь стать врачом?", "answer": "Why do you want to be a doctor?", "explanation": "Why do you want to be a doctor?"},
+                        {"question": "Какой у тебя рост?", "answer": "How tall are you?", "explanation": "How tall are you?"},
+                        {"question": "Где твой дом?", "answer": "Where is your house?", "explanation": "Where is your house?"},
+                        {"question": "Когда ты начинаешь работу?", "answer": "When do you start work?", "explanation": "When do you start work?"},
+                        {"question": "Как ты учишь новые слова?", "answer": "How do you learn new words?", "explanation": "How do you learn new words?"},
+                        {"question": "Какой твой любимый предмет?", "answer": "What is your best subject?", "explanation": "What is your best subject?"},
+                        {"question": "Когда ты ходишь за покупками?", "answer": "When do you go shopping?", "explanation": "When do you go shopping?"},
+                        {"question": "Сколько сахара ты кладёшь?", "answer": "How much sugar do you take?", "explanation": "How much sugar do you take?"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Задание 3. Составьте вопросы.\n\n1. have / lunch / usually / you / when / do\n2. favourite / singer / who / your / is\n3. doctor / want / you / why / to / be / a\n4. tall / how / are / you\n5. house / where / your / is\n6. work / start / you / when / do\n7. learn / new / words / how / do / you\n8. subject / best / your / is / what\n9. shopping / go / you / when / do\n10. sugar / much / do / you / how / take",
+                    "subtasks": [
+                        {"question": "have / lunch / usually / you / when / do", "answer": "When do you usually have lunch?", "explanation": "When do you usually have lunch?"},
+                        {"question": "favourite / singer / who / your / is", "answer": "Who is your favourite singer?", "explanation": "Who is your favourite singer?"},
+                        {"question": "doctor / want / you / why / to / be / a", "answer": "Why do you want to be a doctor?", "explanation": "Why do you want to be a doctor?"},
+                        {"question": "tall / how / are / you", "answer": "How tall are you?", "explanation": "How tall are you?"},
+                        {"question": "house / where / your / is", "answer": "Where is your house?", "explanation": "Where is your house?"},
+                        {"question": "work / start / you / when / do", "answer": "When do you start work?", "explanation": "When do you start work?"},
+                        {"question": "learn / new / words / how / do / you", "answer": "How do you learn new words?", "explanation": "How do you learn new words?"},
+                        {"question": "subject / best / your / is / what", "answer": "What is your best subject?", "explanation": "What is your best subject?"},
+                        {"question": "shopping / go / you / when / do", "answer": "When do you go shopping?", "explanation": "When do you go shopping?"},
+                        {"question": "sugar / much / do / you / how / take", "answer": "How much sugar do you take?", "explanation": "How much sugar do you take?"}
+                    ]
+                }
+            ],
+            # Вариант 6
+            [
+                {
+                    "type": "complex",
+                    "text": "Задание 1. Вставьте вопросительное слово.\n\n1. ___ is the weather like?\n2. ___ do you go to bed?\n3. ___ are you learning English?\n4. ___ far is the station?\n5. ___ is your favourite food?\n6. ___ do you meet your friends?\n7. ___ do you cook pasta?\n8. ___ is your dad?\n9. ___ do you prefer: cats or dogs?\n10. ___ people are there?",
+                    "subtasks": [
+                        {"question": "___ is the weather like?", "answer": "What", "explanation": "What ... like — вопрос о характеристике"},
+                        {"question": "___ do you go to bed?", "answer": "When", "explanation": "When — вопрос о времени"},
+                        {"question": "___ are you learning English?", "answer": "Why", "explanation": "Why — вопрос о причине"},
+                        {"question": "___ far is the station?", "answer": "How", "explanation": "How + far — вопрос о расстоянии"},
+                        {"question": "___ is your favourite food?", "answer": "What", "explanation": "What — вопрос о предмете/еде"},
+                        {"question": "___ do you meet your friends?", "answer": "When", "explanation": "When — вопрос о времени"},
+                        {"question": "___ do you cook pasta?", "answer": "How", "explanation": "How — вопрос о способе приготовления"},
+                        {"question": "___ is your dad?", "answer": "Who", "explanation": "Who — вопрос о человеке"},
+                        {"question": "___ do you prefer: cats or dogs?", "answer": "Which", "explanation": "Which — вопрос о выборе"},
+                        {"question": "___ people are there?", "answer": "How many", "explanation": "How many — вопрос о количестве (исчисляемые)"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Задание 2. Переведите вопросы.\n\n1. Какая погода?\n2. Когда ты ложишься спать?\n3. Почему ты учишь английский?\n4. Как далеко станция?\n5. Какая твоя любимая еда?\n6. Когда ты встречаешься с друзьями?\n7. Как ты готовишь пасту?\n8. Кто твой папа?\n9. Что ты предпочитаешь: кошек или собак?\n10. Сколько там людей?",
+                    "subtasks": [
+                        {"question": "Какая погода?", "answer": "What is the weather like?", "explanation": "What is the weather like?"},
+                        {"question": "Когда ты ложишься спать?", "answer": "When do you go to bed?", "explanation": "When do you go to bed?"},
+                        {"question": "Почему ты учишь английский?", "answer": "Why are you learning English?", "explanation": "Why are you learning English?"},
+                        {"question": "Как далеко станция?", "answer": "How far is the station?", "explanation": "How far is the station?"},
+                        {"question": "Какая твоя любимая еда?", "answer": "What is your favourite food?", "explanation": "What is your favourite food?"},
+                        {"question": "Когда ты встречаешься с друзьями?", "answer": "When do you meet your friends?", "explanation": "When do you meet your friends?"},
+                        {"question": "Как ты готовишь пасту?", "answer": "How do you cook pasta?", "explanation": "How do you cook pasta?"},
+                        {"question": "Кто твой папа?", "answer": "Who is your dad?", "explanation": "Who is your dad?"},
+                        {"question": "Что ты предпочитаешь: кошек или собак?", "answer": "Which do you prefer, cats or dogs?", "explanation": "Which do you prefer, cats or dogs?"},
+                        {"question": "Сколько там людей?", "answer": "How many people are there?", "explanation": "How many people are there?"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Задание 3. Составьте вопросы.\n\n1. weather / what / like / is / the\n2. go / bed / you / when / do / to\n3. learning / why / you / are / English\n4. far / how / station / is / the\n5. food / your / favourite / is / what\n6. friends / meet / you / when / do / your\n7. pasta / cook / you / how / do\n8. dad / your / who / is\n9. prefer / you / which / cats / or / dogs\n10. people / how / there / many / are",
+                    "subtasks": [
+                        {"question": "weather / what / like / is / the", "answer": "What is the weather like?", "explanation": "What is the weather like?"},
+                        {"question": "go / bed / you / when / do / to", "answer": "When do you go to bed?", "explanation": "When do you go to bed?"},
+                        {"question": "learning / why / you / are / English", "answer": "Why are you learning English?", "explanation": "Why are you learning English?"},
+                        {"question": "far / how / station / is / the", "answer": "How far is the station?", "explanation": "How far is the station?"},
+                        {"question": "food / your / favourite / is / what", "answer": "What is your favourite food?", "explanation": "What is your favourite food?"},
+                        {"question": "friends / meet / you / when / do / your", "answer": "When do you meet your friends?", "explanation": "When do you meet your friends?"},
+                        {"question": "pasta / cook / you / how / do", "answer": "How do you cook pasta?", "explanation": "How do you cook pasta?"},
+                        {"question": "dad / your / who / is", "answer": "Who is your dad?", "explanation": "Who is your dad?"},
+                        {"question": "prefer / you / which / cats / or / dogs", "answer": "Which do you prefer, cats or dogs?", "explanation": "Which do you prefer, cats or dogs?"},
+                        {"question": "people / how / there / many / are", "answer": "How many people are there?", "explanation": "How many people are there?"}
+                    ]
+                }
+            ],
+            # Вариант 7
+            [
+                {
+                    "type": "complex",
+                    "text": "Задание 1. Вставьте вопросительное слово.\n\n1. ___ do you get up in the morning?\n2. ___ is your mother?\n3. ___ are you so quiet?\n4. ___ long have you lived here?\n5. ___ is your favourite colour?\n6. ___ do you go swimming?\n7. ___ do you make a cake?\n8. ___ is your brother?\n9. ___ do you like better: summer or winter?\n10. ___ apples do you need?",
+                    "subtasks": [
+                        {"question": "___ do you get up in the morning?", "answer": "When", "explanation": "When — вопрос о времени"},
+                        {"question": "___ is your mother?", "answer": "Who", "explanation": "Who — вопрос о человеке"},
+                        {"question": "___ are you so quiet?", "answer": "Why", "explanation": "Why — вопрос о причине"},
+                        {"question": "___ long have you lived here?", "answer": "How", "explanation": "How + long — вопрос о продолжительности"},
+                        {"question": "___ is your favourite colour?", "answer": "What", "explanation": "What — вопрос о предмете/цвете"},
+                        {"question": "___ do you go swimming?", "answer": "When", "explanation": "When — вопрос о времени"},
+                        {"question": "___ do you make a cake?", "answer": "How", "explanation": "How — вопрос о способе приготовления"},
+                        {"question": "___ is your brother?", "answer": "Who", "explanation": "Who — вопрос о человеке"},
+                        {"question": "___ do you like better: summer or winter?", "answer": "Which", "explanation": "Which — вопрос о выборе"},
+                        {"question": "___ apples do you need?", "answer": "How many", "explanation": "How many — вопрос о количестве (исчисляемые)"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Задание 2. Переведите вопросы.\n\n1. Когда ты встаёшь утром?\n2. Кто твоя мама?\n3. Почему ты такой тихий?\n4. Как долго ты здесь живёшь?\n5. Какой твой любимый цвет?\n6. Когда ты ходишь плавать?\n7. Как ты делаешь торт?\n8. Кто твой брат?\n9. Что тебе больше нравится: лето или зима?\n10. Сколько яблок тебе нужно?",
+                    "subtasks": [
+                        {"question": "Когда ты встаёшь утром?", "answer": "When do you get up in the morning?", "explanation": "When do you get up in the morning?"},
+                        {"question": "Кто твоя мама?", "answer": "Who is your mother?", "explanation": "Who is your mother?"},
+                        {"question": "Почему ты такой тихий?", "answer": "Why are you so quiet?", "explanation": "Why are you so quiet?"},
+                        {"question": "Как долго ты здесь живёшь?", "answer": "How long have you lived here?", "explanation": "How long have you lived here?"},
+                        {"question": "Какой твой любимый цвет?", "answer": "What is your favourite colour?", "explanation": "What is your favourite colour?"},
+                        {"question": "Когда ты ходишь плавать?", "answer": "When do you go swimming?", "explanation": "When do you go swimming?"},
+                        {"question": "Как ты делаешь торт?", "answer": "How do you make a cake?", "explanation": "How do you make a cake?"},
+                        {"question": "Кто твой брат?", "answer": "Who is your brother?", "explanation": "Who is your brother?"},
+                        {"question": "Что тебе больше нравится: лето или зима?", "answer": "Which do you like better, summer or winter?", "explanation": "Which do you like better, summer or winter?"},
+                        {"question": "Сколько яблок тебе нужно?", "answer": "How many apples do you need?", "explanation": "How many apples do you need?"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Задание 3. Составьте вопросы.\n\n1. morning / get / you / up / do / when / in / the\n2. mother / who / your / is\n3. quiet / so / why / you / are\n4. long / have / here / how / lived / you\n5. colour / your / favourite / what / is\n6. swimming / go / you / do / when\n7. cake / a / make / you / how / do\n8. brother / who / your / is\n9. better / like / which / do / you / summer / or / winter\n10. apples / need / how / you / many / do",
+                    "subtasks": [
+                        {"question": "morning / get / you / up / do / when / in / the", "answer": "When do you get up in the morning?", "explanation": "When do you get up in the morning?"},
+                        {"question": "mother / who / your / is", "answer": "Who is your mother?", "explanation": "Who is your mother?"},
+                        {"question": "quiet / so / why / you / are", "answer": "Why are you so quiet?", "explanation": "Why are you so quiet?"},
+                        {"question": "long / have / here / how / lived / you", "answer": "How long have you lived here?", "explanation": "How long have you lived here?"},
+                        {"question": "colour / your / favourite / what / is", "answer": "What is your favourite colour?", "explanation": "What is your favourite colour?"},
+                        {"question": "swimming / go / you / do / when", "answer": "When do you go swimming?", "explanation": "When do you go swimming?"},
+                        {"question": "cake / a / make / you / how / do", "answer": "How do you make a cake?", "explanation": "How do you make a cake?"},
+                        {"question": "brother / who / your / is", "answer": "Who is your brother?", "explanation": "Who is your brother?"},
+                        {"question": "better / like / which / do / you / summer / or / winter", "answer": "Which do you like better, summer or winter?", "explanation": "Which do you like better, summer or winter?"},
+                        {"question": "apples / need / how / you / many / do", "answer": "How many apples do you need?", "explanation": "How many apples do you need?"}
+                    ]
+                }
+            ],
+            # Вариант 8
+            [
+                {
+                    "type": "complex",
+                    "text": "Задание 1. Вставьте вопросительное слово.\n\n1. ___ do you do in your free time?\n2. ___ is your favourite holiday?\n3. ___ are you smiling?\n4. ___ many languages do you speak?\n5. ___ is the best restaurant?\n6. ___ do you visit your grandparents?\n7. ___ do you spell your name?\n8. ___ is your cousin?\n9. ___ do you like to eat for breakfast?\n10. ___ milk do you want?",
+                    "subtasks": [
+                        {"question": "___ do you do in your free time?", "answer": "What", "explanation": "What — вопрос о занятии"},
+                        {"question": "___ is your favourite holiday?", "answer": "What", "explanation": "What — вопрос о празднике"},
+                        {"question": "___ are you smiling?", "answer": "Why", "explanation": "Why — вопрос о причине"},
+                        {"question": "___ many languages do you speak?", "answer": "How", "explanation": "How many — вопрос о количестве"},
+                        {"question": "___ is the best restaurant?", "answer": "What", "explanation": "What — вопрос о месте/ресторане"},
+                        {"question": "___ do you visit your grandparents?", "answer": "When", "explanation": "When — вопрос о времени"},
+                        {"question": "___ do you spell your name?", "answer": "How", "explanation": "How — вопрос о способе написания"},
+                        {"question": "___ is your cousin?", "answer": "Who", "explanation": "Who — вопрос о человеке"},
+                        {"question": "___ do you like to eat for breakfast?", "answer": "What", "explanation": "What — вопрос о еде"},
+                        {"question": "___ milk do you want?", "answer": "How much", "explanation": "How much — вопрос о количестве (неисчисляемое)"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Задание 2. Переведите вопросы.\n\n1. Что ты делаешь в свободное время?\n2. Какой твой любимый праздник?\n3. Почему ты улыбаешься?\n4. На скольких языках ты говоришь?\n5. Какой лучший ресторан?\n6. Когда ты навещаешь бабушку и дедушку?\n7. Как пишется твоё имя?\n8. Кто твой двоюродный брат/сестра?\n9. Что ты любишь есть на завтрак?\n10. Сколько молока ты хочешь?",
+                    "subtasks": [
+                        {"question": "Что ты делаешь в свободное время?", "answer": "What do you do in your free time?", "explanation": "What do you do in your free time?"},
+                        {"question": "Какой твой любимый праздник?", "answer": "What is your favourite holiday?", "explanation": "What is your favourite holiday?"},
+                        {"question": "Почему ты улыбаешься?", "answer": "Why are you smiling?", "explanation": "Why are you smiling?"},
+                        {"question": "На скольких языках ты говоришь?", "answer": "How many languages do you speak?", "explanation": "How many languages do you speak?"},
+                        {"question": "Какой лучший ресторан?", "answer": "What is the best restaurant?", "explanation": "What is the best restaurant?"},
+                        {"question": "Когда ты навещаешь бабушку и дедушку?", "answer": "When do you visit your grandparents?", "explanation": "When do you visit your grandparents?"},
+                        {"question": "Как пишется твоё имя?", "answer": "How do you spell your name?", "explanation": "How do you spell your name?"},
+                        {"question": "Кто твой двоюродный брат/сестра?", "answer": "Who is your cousin?", "explanation": "Who is your cousin?"},
+                        {"question": "Что ты любишь есть на завтрак?", "answer": "What do you like to eat for breakfast?", "explanation": "What do you like to eat for breakfast?"},
+                        {"question": "Сколько молока ты хочешь?", "answer": "How much milk do you want?", "explanation": "How much milk do you want?"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Задание 3. Составьте вопросы.\n\n1. free / time / you / what / do / in / your / do\n2. holiday / your / favourite / what / is\n3. smiling / why / you / are\n4. languages / many / you / how / do / speak\n5. restaurant / best / the / what / is\n6. grandparents / visit / you / when / do / your\n7. name / spell / you / how / do / your\n8. cousin / who / is / your\n9. breakfast / eat / like / you / what / do / to / for\n10. milk / want / you / how / do / much",
+                    "subtasks": [
+                        {"question": "free / time / you / what / do / in / your / do", "answer": "What do you do in your free time?", "explanation": "What do you do in your free time?"},
+                        {"question": "holiday / your / favourite / what / is", "answer": "What is your favourite holiday?", "explanation": "What is your favourite holiday?"},
+                        {"question": "smiling / why / you / are", "answer": "Why are you smiling?", "explanation": "Why are you smiling?"},
+                        {"question": "languages / many / you / how / do / speak", "answer": "How many languages do you speak?", "explanation": "How many languages do you speak?"},
+                        {"question": "restaurant / best / the / what / is", "answer": "What is the best restaurant?", "explanation": "What is the best restaurant?"},
+                        {"question": "grandparents / visit / you / when / do / your", "answer": "When do you visit your grandparents?", "explanation": "When do you visit your grandparents?"},
+                        {"question": "name / spell / you / how / do / your", "answer": "How do you spell your name?", "explanation": "How do you spell your name?"},
+                        {"question": "cousin / who / is / your", "answer": "Who is your cousin?", "explanation": "Who is your cousin?"},
+                        {"question": "breakfast / eat / like / you / what / do / to / for", "answer": "What do you like to eat for breakfast?", "explanation": "What do you like to eat for breakfast?"},
+                        {"question": "milk / want / you / how / do / much", "answer": "How much milk do you want?", "explanation": "How much milk do you want?"}
+                    ]
+                }
+            ],
+            # Вариант 9
+            [
+                {
+                    "type": "complex",
+                    "text": "Задание 1. Вставьте вопросительное слово.\n\n1. ___ do you like to read?\n2. ___ is your teacher?\n3. ___ are you here?\n4. ___ much does it cost?\n5. ___ is your phone?\n6. ___ do you wake up?\n7. ___ do you say 'hello' in English?\n8. ___ is your favourite sport?\n9. ___ do you prefer: pizza or pasta?\n10. ___ time do you finish work?",
+                    "subtasks": [
+                        {"question": "___ do you like to read?", "answer": "What", "explanation": "What — вопрос о чтении/книгах"},
+                        {"question": "___ is your teacher?", "answer": "Who", "explanation": "Who — вопрос о человеке"},
+                        {"question": "___ are you here?", "answer": "Why", "explanation": "Why — вопрос о причине"},
+                        {"question": "___ much does it cost?", "answer": "How", "explanation": "How much — вопрос о цене"},
+                        {"question": "___ is your phone?", "answer": "Where", "explanation": "Where — вопрос о месте (где телефон)"},
+                        {"question": "___ do you wake up?", "answer": "When", "explanation": "When — вопрос о времени"},
+                        {"question": "___ do you say 'hello' in English?", "answer": "How", "explanation": "How — вопрос о способе (как сказать)"},
+                        {"question": "___ is your favourite sport?", "answer": "What", "explanation": "What — вопрос о виде спорта"},
+                        {"question": "___ do you prefer: pizza or pasta?", "answer": "Which", "explanation": "Which — вопрос о выборе"},
+                        {"question": "___ time do you finish work?", "answer": "What", "explanation": "What time — вопрос о времени (когда)"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Задание 2. Переведите вопросы.\n\n1. Что ты любишь читать?\n2. Кто твой учитель?\n3. Почему ты здесь?\n4. Сколько это стоит?\n5. Где твой телефон?\n6. Когда ты просыпаешься?\n7. Как по-английски будет «привет»?\n8. Какой твой любимый вид спорта?\n9. Что ты предпочитаешь: пиццу или пасту?\n10. Во сколько ты заканчиваешь работу?",
+                    "subtasks": [
+                        {"question": "Что ты любишь читать?", "answer": "What do you like to read?", "explanation": "What do you like to read?"},
+                        {"question": "Кто твой учитель?", "answer": "Who is your teacher?", "explanation": "Who is your teacher?"},
+                        {"question": "Почему ты здесь?", "answer": "Why are you here?", "explanation": "Why are you here?"},
+                        {"question": "Сколько это стоит?", "answer": "How much does it cost?", "explanation": "How much does it cost?"},
+                        {"question": "Где твой телефон?", "answer": "Where is your phone?", "explanation": "Where is your phone?"},
+                        {"question": "Когда ты просыпаешься?", "answer": "When do you wake up?", "explanation": "When do you wake up?"},
+                        {"question": "Как по-английски будет «привет»?", "answer": "How do you say 'hello' in English?", "explanation": "How do you say 'hello' in English?"},
+                        {"question": "Какой твой любимый вид спорта?", "answer": "What is your favourite sport?", "explanation": "What is your favourite sport?"},
+                        {"question": "Что ты предпочитаешь: пиццу или пасту?", "answer": "Which do you prefer, pizza or pasta?", "explanation": "Which do you prefer, pizza or pasta?"},
+                        {"question": "Во сколько ты заканчиваешь работу?", "answer": "What time do you finish work?", "explanation": "What time do you finish work?"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Задание 3. Составьте вопросы.\n\n1. read / like / to / you / what / do\n2. teacher / your / who / is\n3. here / why / you / are\n4. much / cost / how / it / does\n5. phone / where / your / is\n6. wake / up / you / when / do\n7. say / 'hello' / how / you / do / in English\n8. favourite / sport / your / what / is\n9. prefer / you / which / pizza / or / pasta\n10. finish / work / you / what / time / do",
+                    "subtasks": [
+                        {"question": "read / like / to / you / what / do", "answer": "What do you like to read?", "explanation": "What do you like to read?"},
+                        {"question": "teacher / your / who / is", "answer": "Who is your teacher?", "explanation": "Who is your teacher?"},
+                        {"question": "here / why / you / are", "answer": "Why are you here?", "explanation": "Why are you here?"},
+                        {"question": "much / cost / how / it / does", "answer": "How much does it cost?", "explanation": "How much does it cost?"},
+                        {"question": "phone / where / your / is", "answer": "Where is your phone?", "explanation": "Where is your phone?"},
+                        {"question": "wake / up / you / when / do", "answer": "When do you wake up?", "explanation": "When do you wake up?"},
+                        {"question": "say / 'hello' / how / you / do / in English", "answer": "How do you say 'hello' in English?", "explanation": "How do you say 'hello' in English?"},
+                        {"question": "favourite / sport / your / what / is", "answer": "What is your favourite sport?", "explanation": "What is your favourite sport?"},
+                        {"question": "prefer / you / which / pizza / or / pasta", "answer": "Which do you prefer, pizza or pasta?", "explanation": "Which do you prefer, pizza or pasta?"},
+                        {"question": "finish / work / you / what / time / do", "answer": "What time do you finish work?", "explanation": "What time do you finish work?"}
+                    ]
+                }
+            ],
+            # Вариант 10
+            [
+                {
+                    "type": "complex",
+                    "text": "Задание 1. Вставьте вопросительное слово.\n\n1. ___ do you like about your job?\n2. ___ is your favourite animal?\n3. ___ are you so happy?\n4. ___ often do you travel?\n5. ___ is the best place to relax?\n6. ___ do you usually have dinner?\n7. ___ do you say 'thank you'?\n8. ___ is your best friend?\n9. ___ do you prefer: books or films?\n10. ___ hours do you sleep?",
+                    "subtasks": [
+                        {"question": "___ do you like about your job?", "answer": "What", "explanation": "What — вопрос о предмете/аспекте"},
+                        {"question": "___ is your favourite animal?", "answer": "What", "explanation": "What — вопрос о животном"},
+                        {"question": "___ are you so happy?", "answer": "Why", "explanation": "Why — вопрос о причине"},
+                        {"question": "___ often do you travel?", "answer": "How", "explanation": "How often — вопрос о частоте"},
+                        {"question": "___ is the best place to relax?", "answer": "What", "explanation": "What — вопрос о месте"},
+                        {"question": "___ do you usually have dinner?", "answer": "When", "explanation": "When — вопрос о времени"},
+                        {"question": "___ do you say 'thank you'?", "answer": "How", "explanation": "How — вопрос о способе (как сказать)"},
+                        {"question": "___ is your best friend?", "answer": "Who", "explanation": "Who — вопрос о человеке"},
+                        {"question": "___ do you prefer: books or films?", "answer": "Which", "explanation": "Which — вопрос о выборе"},
+                        {"question": "___ hours do you sleep?", "answer": "How many", "explanation": "How many — вопрос о количестве часов"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Задание 2. Переведите вопросы.\n\n1. Что тебе нравится в твоей работе?\n2. Какое твоё любимое животное?\n3. Почему ты так счастлив?\n4. Как часто ты путешествуешь?\n5. Какое лучшее место для отдыха?\n6. Когда ты обычно ужинаешь?\n7. Как сказать «спасибо»?\n8. Кто твой лучший друг?\n9. Что ты предпочитаешь: книги или фильмы?\n10. Сколько часов ты спишь?",
+                    "subtasks": [
+                        {"question": "Что тебе нравится в твоей работе?", "answer": "What do you like about your job?", "explanation": "What do you like about your job?"},
+                        {"question": "Какое твоё любимое животное?", "answer": "What is your favourite animal?", "explanation": "What is your favourite animal?"},
+                        {"question": "Почему ты так счастлив?", "answer": "Why are you so happy?", "explanation": "Why are you so happy?"},
+                        {"question": "Как часто ты путешествуешь?", "answer": "How often do you travel?", "explanation": "How often do you travel?"},
+                        {"question": "Какое лучшее место для отдыха?", "answer": "What is the best place to relax?", "explanation": "What is the best place to relax?"},
+                        {"question": "Когда ты обычно ужинаешь?", "answer": "When do you usually have dinner?", "explanation": "When do you usually have dinner?"},
+                        {"question": "Как сказать «спасибо»?", "answer": "How do you say 'thank you'?", "explanation": "How do you say 'thank you'?"},
+                        {"question": "Кто твой лучший друг?", "answer": "Who is your best friend?", "explanation": "Who is your best friend?"},
+                        {"question": "Что ты предпочитаешь: книги или фильмы?", "answer": "Which do you prefer, books or films?", "explanation": "Which do you prefer, books or films?"},
+                        {"question": "Сколько часов ты спишь?", "answer": "How many hours do you sleep?", "explanation": "How many hours do you sleep?"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Задание 3. Составьте вопросы.\n\n1. about / job / your / you / what / do / like\n2. animal / favourite / your / what / is\n3. happy / so / why / you / are\n4. travel / often / how / you / do\n5. place / best / to / relax / what / is / the\n6. dinner / have / you / when / usually / do\n7. say / 'thank you' / how / do / you\n8. friend / best / who / your / is\n9. prefer / you / which / books / or / films\n10. hours / sleep / you / how / many / do",
+                    "subtasks": [
+                        {"question": "about / job / your / you / what / do / like", "answer": "What do you like about your job?", "explanation": "What do you like about your job?"},
+                        {"question": "animal / favourite / your / what / is", "answer": "What is your favourite animal?", "explanation": "What is your favourite animal?"},
+                        {"question": "happy / so / why / you / are", "answer": "Why are you so happy?", "explanation": "Why are you so happy?"},
+                        {"question": "travel / often / how / you / do", "answer": "How often do you travel?", "explanation": "How often do you travel?"},
+                        {"question": "place / best / to / relax / what / is / the", "answer": "What is the best place to relax?", "explanation": "What is the best place to relax?"},
+                        {"question": "dinner / have / you / when / usually / do", "answer": "When do you usually have dinner?", "explanation": "When do you usually have dinner?"},
+                        {"question": "say / 'thank you' / how / do / you", "answer": "How do you say 'thank you'?", "explanation": "How do you say 'thank you'?"},
+                        {"question": "friend / best / who / your / is", "answer": "Who is your best friend?", "explanation": "Who is your best friend?"},
+                        {"question": "prefer / you / which / books / or / films", "answer": "Which do you prefer, books or films?", "explanation": "Which do you prefer, books or films?"},
+                        {"question": "hours / sleep / you / how / many / do", "answer": "How many hours do you sleep?", "explanation": "How many hours do you sleep?"}
+                    ]
+                }
+            ]
         ]
-      },
-      {
-        "type": "choice",
-        "text": "___ is that man over there?",
-        "correct": "Who",
-        "hint": "Выбери правильное вопросительное слово",
-        "star": False,
-        "options": [
-          "Who",
-          "What",
-          "Whose",
-          "How"
-        ]
-      },
-      {
-        "type": "choice",
-        "text": "___ did you put my keys?",
-        "correct": "Where",
-        "hint": "Выбери правильное вопросительное слово",
-        "star": False,
-        "options": [
-          "Where",
-          "When",
-          "Why",
-          "How"
-        ]
-      },
-      {
-        "type": "choice",
-        "text": "___ don't you like broccoli?",
-        "correct": "Why",
-        "hint": "Выбери правильное вопросительное слово",
-        "star": False,
-        "options": [
-          "What",
-          "Why",
-          "How",
-          "When"
-        ]
-      },
-      {
-        "type": "choice",
-        "text": "___ do you spell your name?",
-        "correct": "How",
-        "hint": "Выбери правильное вопросительное слово",
-        "star": False,
-        "options": [
-          "What",
-          "How",
-          "Where",
-          "Who"
-        ]
-      },
-      {
-        "type": "reorder",
-        "text": "you / are / How / old / ?",
-        "correct": "How old are you?",
-        "hint": "Составь вопрос о возрасте",
-        "star": False
-      },
-      {
-        "type": "reorder",
-        "text": "is / What / name / your / ?",
-        "correct": "What is your name?",
-        "hint": "Составь вопрос об имени",
-        "star": False
-      },
-      {
-        "type": "reorder",
-        "text": "from / Where / you / are / ?",
-        "correct": "Where are you from?",
-        "hint": "Составь вопрос о происхождении",
-        "star": False
-      },
-      {
-        "type": "translation",
-        "text": "Как дела?",
-        "correct": "How are you?",
-        "hint": "Переведи на английский",
-        "star": False
-      },
-      {
-        "type": "translation",
-        "text": "Который час?",
-        "correct": "What time is it?",
-        "hint": "Переведи на английский",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "___ coat is this? Is it yours?",
-        "correct": "Whose",
-        "hint": "Спрашиваем о принадлежности",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "___ one do you prefer, the red or the blue?",
-        "correct": "Which",
-        "hint": "Выбор из ограниченного количества",
-        "star": True
-      },
-      {
-        "type": "choice",
-        "text": "___ is the weather like today?",
-        "correct": "What",
-        "hint": "Спрашиваем о характеристике",
-        "star": True,
-        "options": [
-          "What",
-          "How",
-          "Which",
-          "Why"
-        ]
-      },
-      {
-        "type": "choice",
-        "text": "___ do you call this in English?",
-        "correct": "How",
-        "hint": "Спрашиваем о способе называния",
-        "star": True,
-        "options": [
-          "What",
-          "How",
-          "Where",
-          "Who"
-        ]
-      },
-      {
-        "type": "reorder",
-        "text": "does / mean / What / this word / ?",
-        "correct": "What does this word mean?",
-        "hint": "Составь вопрос о значении",
-        "star": True
-      },
-      {
-        "type": "reorder",
-        "text": "long / How / take / does it / to get there / ?",
-        "correct": "How long does it take to get there?",
-        "hint": "Составь вопрос о времени в пути",
-        "star": True
-      },
-      {
-        "type": "translation",
-        "text": "Сколько это стоит?",
-        "correct": "How much does it cost?",
-        "hint": "Переведи вопрос о цене",
-        "star": True
-      },
-      {
-        "type": "translation",
-        "text": "Как часто ты ходишь в спортзал?",
-        "correct": "How often do you go to the gym?",
-        "hint": "Переведи вопрос о частоте",
-        "star": True
-      },
-      {
-        "type": "open",
-        "text": "Задай вопрос к подчёркнутому слову: She lives *in London*.",
-        "correct": "Where does she live?",
-        "hint": "Используй подходящее вопросительное слово",
-        "star": True
-      },
-      {
-        "type": "open",
-        "text": "Задай вопрос к подчёркнутому слову: He bought *a car*.",
-        "correct": "What did he buy?",
-        "hint": "Используй подходящее вопросительное слово",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "___ is your name?",
-        "correct": "What",
-        "hint": "Спрашиваем об имени",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "___ old are you?",
-        "correct": "How",
-        "hint": "Спрашиваем о возрасте",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "___ do you live?",
-        "correct": "Where",
-        "hint": "Спрашиваем о месте",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "___ is your birthday?",
-        "correct": "When",
-        "hint": "Спрашиваем о дате",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "___ is your favourite colour?",
-        "correct": "What",
-        "hint": "Спрашиваем о предпочтениях",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "___ do you go to school?",
-        "correct": "How",
-        "hint": "Спрашиваем о способе",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "___ is your best friend?",
-        "correct": "Who",
-        "hint": "Спрашиваем о человеке",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "___ are you sad?",
-        "correct": "Why",
-        "hint": "Спрашиваем о причине",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "___ book is this?",
-        "correct": "Whose",
-        "hint": "Спрашиваем о принадлежности",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "___ do you want for breakfast?",
-        "correct": "What",
-        "hint": "Спрашиваем о выборе",
-        "star": False
-      },
-      {
-        "type": "choice",
-        "text": "___ do you usually wake up?",
-        "correct": "When",
-        "hint": "Спрашиваем о времени",
-        "star": False,
-        "options": [
-          "What",
-          "When",
-          "Where",
-          "Why"
-        ]
-      },
-      {
-        "type": "choice",
-        "text": "___ is your mother?",
-        "correct": "Where",
-        "hint": "Спрашиваем о местонахождении",
-        "star": False,
-        "options": [
-          "Who",
-          "What",
-          "Where",
-          "How"
-        ]
-      },
-      {
-        "type": "choice",
-        "text": "___ did you buy that gift for?",
-        "correct": "Who",
-        "hint": "Спрашиваем о получателе",
-        "star": False,
-        "options": [
-          "What",
-          "When",
-          "Who",
-          "Whose"
-        ]
-      },
-      {
-        "type": "choice",
-        "text": "___ do you like pizza?",
-        "correct": "Why",
-        "hint": "Спрашиваем о причине",
-        "star": False,
-        "options": [
-          "How",
-          "Why",
-          "Where",
-          "What"
-        ]
-      },
-      {
-        "type": "choice",
-        "text": "___ many apples are there?",
-        "correct": "How",
-        "hint": "Спрашиваем о количестве",
-        "star": False,
-        "options": [
-          "What",
-          "How",
-          "Who",
-          "Which"
-        ]
-      },
-      {
-        "type": "reorder",
-        "text": "you / are / old / How ?",
-        "correct": "How old are you?",
-        "hint": "Спросите возраст",
-        "star": False
-      },
-      {
-        "type": "reorder",
-        "text": "name / your / What / is ?",
-        "correct": "What is your name?",
-        "hint": "Спросите имя",
-        "star": False
-      },
-      {
-        "type": "reorder",
-        "text": "live / do / Where / you ?",
-        "correct": "Where do you live?",
-        "hint": "Спросите место жительства",
-        "star": False
-      },
-      {
-        "type": "reorder",
-        "text": "colour / favourite / your / What / is ?",
-        "correct": "What is your favourite colour?",
-        "hint": "Спросите любимый цвет",
-        "star": False
-      },
-      {
-        "type": "translation",
-        "text": "Кто твой учитель?",
-        "correct": "Who is your teacher?",
-        "hint": "Спросите о человеке",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "___ do you prefer, tea or coffee?",
-        "correct": "Which",
-        "hint": "Выбор из двух",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "___ time does the train arrive?",
-        "correct": "What",
-        "hint": "Спрашиваем о времени",
-        "star": True
-      },
-      {
-        "type": "choice",
-        "text": "___ car is parked outside?",
-        "correct": "Whose",
-        "hint": "Принадлежность",
-        "star": True,
-        "options": [
-          "Who",
-          "Whose",
-          "Which",
-          "What"
-        ]
-      },
-      {
-        "type": "choice",
-        "text": "___ do you get to the airport?",
-        "correct": "How",
-        "hint": "Способ передвижения",
-        "star": True,
-        "options": [
-          "What",
-          "When",
-          "How",
-          "Where"
-        ]
-      },
-      {
-        "type": "reorder",
-        "text": "is / the / What / weather / like ?",
-        "correct": "What is the weather like?",
-        "hint": "Спросите о погоде",
-        "star": True
-      },
-      {
-        "type": "reorder",
-        "text": "does / this / belong / Whom / to ?",
-        "correct": "Whom does this belong to?",
-        "hint": "Спросите о владельце",
-        "star": True
-      },
-      {
-        "type": "translation",
-        "text": "Сколько это стоит?",
-        "correct": "How much does it cost?",
-        "hint": "Спросите цену",
-        "star": True
-      },
-      {
-        "type": "translation",
-        "text": "Как часто ты ходишь в спортзал?",
-        "correct": "How often do you go to the gym?",
-        "hint": "Спросите частоту",
-        "star": True
-      },
-      {
-        "type": "open",
-        "text": "Задай вопрос к слову 'yesterday' в предложении: I met him yesterday.",
-        "correct": "When did you meet him?",
-        "hint": "Спросите время",
-        "star": True
-      },
-      {
-        "type": "open",
-        "text": "Задай вопрос к слову 'because' в предложении: She left because she was tired.",
-        "correct": "Why did she leave?",
-        "hint": "Спросите причину",
-        "star": True
-      }
-    ]
   },
   "thereisare": {
     "title": "Конструкция there is / there are",
