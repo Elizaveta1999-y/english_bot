@@ -1260,16 +1260,34 @@ async def back_to_main(callback: CallbackQuery):
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
 def parse_user_answers(text: str, expected_count: int) -> list:
-    """Разбивает ответы пользователя на список строк (очищает от лишнего)."""
-    # Удаляем лишние пробелы и заменяем запятые на пробелы
-    cleaned = text.replace(',', ' ').strip()
+    """
+    Извлекает ответы из текста, игнорируя нумерацию (1., 2), 3) и т.п.).
+    Возвращает список строк длиной expected_count.
+    """
+    import re
+    # Удаляем всё, кроме букв, пробелов, запятых, точек и цифр (для номеров)
+    # Но мы хотим сохранить только буквы и пробелы/запятые как разделители
+    # Сначала заменяем запятые на пробелы
+    text = text.replace(',', ' ')
+    # Удаляем всё, что не является буквой, пробелом или цифрой (но цифры потом уберём)
+    # Лучше оставить только буквы и пробелы
+    # Удаляем все символы, кроме букв и пробелов
+    text = re.sub(r'[^a-zA-Z\s]', ' ', text)
     # Разбиваем по пробелам
-    parts = cleaned.split()
-    # Если ответ слитный (например, "CEHLOQSUWY") и длина равна expected_count — разбиваем по буквам
-    if len(parts) == 1 and len(parts[0]) == expected_count:
-        return list(parts[0])
-    # Иначе возвращаем то, что получилось (обрезаем до expected_count)
-    return parts[:expected_count]
+    parts = text.split()
+    # Очищаем каждый токен от цифр и точек (если они остались)
+    cleaned = []
+    for token in parts:
+        # Убираем цифры, точки, скобки
+        token = re.sub(r'^[\d\.\)]+', '', token)  # убираем ведущие цифры, точки, скобки
+        if token:  # если осталось что-то кроме цифр
+            cleaned.append(token.lower())
+    # Если после очистки меньше expected_count, дополняем пустыми
+    while len(cleaned) < expected_count:
+        cleaned.append("")
+    # Если больше, обрезаем до expected_count
+    cleaned = cleaned[:expected_count]
+    return cleaned
 
 async def show_practice_task(message: Message, user_id: int, edit: bool = True):
     from data.users import get_user_state, set_user_state
