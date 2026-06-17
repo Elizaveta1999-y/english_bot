@@ -1155,478 +1155,518 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "answer": "Нет, в официальных документах пишут полные формы (I am, you are, he is…)."
       }
     ],
-    "practice_tasks": [
-      {
-        "type": "fill_blank",
-        "text": "I ___ a student.",
-        "correct": "am",
-        "hint": "Для I используем am",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She ___ my friend.",
-        "correct": "is",
-        "hint": "Для she используем is",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "They ___ happy.",
-        "correct": "are",
-        "hint": "Для they используем are",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He ___ a doctor.",
-        "correct": "is",
-        "hint": "Для he используем is",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "We ___ in the park.",
-        "correct": "are",
-        "hint": "Для we используем are",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "It ___ a cat.",
-        "correct": "is",
-        "hint": "Для it используем is",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "You ___ very kind.",
-        "correct": "are",
-        "hint": "Для you используем are",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "I ___ from London.",
-        "correct": "am",
-        "hint": "Для I используем am",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The book ___ on the table.",
-        "correct": "is",
-        "hint": "Для the book (ед.ч.) используем is",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "My parents ___ at home.",
-        "correct": "are",
-        "hint": "Для my parents (мн.ч.) используем are",
-        "star": False
-      },
-      {
-        "type": "reorder",
-        "text": "a / She / teacher / is",
-        "correct": "She is a teacher",
-        "hint": "Порядок: подлежащее + глагол to be + остальное",
-        "star": False
-      },
-      {
-        "type": "reorder",
-        "text": "happy / We / are",
-        "correct": "We are happy",
-        "hint": "Порядок: подлежащее + глагол to be + прилагательное",
-        "star": False
-      },
-      {
-        "type": "reorder",
-        "text": "am / I / student / a",
-        "correct": "I am a student",
-        "hint": "Порядок: подлежащее + глагол to be + артикль + существительное",
-        "star": False
-      },
-      {
-        "type": "reorder",
-        "text": "are / They / friends / good",
-        "correct": "They are good friends",
-        "hint": "Порядок: подлежащее + глагол to be + прилагательное + существительное",
-        "star": False
-      },
-      {
-        "type": "reorder",
-        "text": "is / He / engineer / an",
-        "correct": "He is an engineer",
-        "hint": "Порядок: подлежащее + глагол to be + артикль + существительное",
-        "star": False
-      },
-      {
-        "type": "translation",
-        "text": "Я учитель.",
-        "correct": "I am a teacher",
-        "hint": "Переведите на английский, используя to be",
-        "star": False
-      },
-      {
-        "type": "translation",
-        "text": "Она счастлива.",
-        "correct": "She is happy",
-        "hint": "Переведите на английский, используя to be",
-        "star": False
-      },
-      {
-        "type": "translation",
-        "text": "Мы дома.",
-        "correct": "We are at home",
-        "hint": "Переведите на английский, используя to be",
-        "star": False
-      },
-      {
-        "type": "translation",
-        "text": "Они студенты.",
-        "correct": "They are students",
-        "hint": "Переведите на английский, используя to be",
-        "star": False
-      },
-      {
-        "type": "translation",
-        "text": "Это книга.",
-        "correct": "It is a book",
-        "hint": "Переведите на английский, используя to be",
-        "star": False
-      },
-      {
-        "type": "choice",
-        "text": "He ___ a good boy.",
-        "correct": "is",
-        "hint": "Выберите правильную форму to be",
-        "options": [
-          "am",
-          "is",
-          "are"
-        ],
-        "star": True
-      },
-      {
-        "type": "choice",
-        "text": "I ___ ready.",
-        "correct": "am",
-        "hint": "Выберите правильную форму to be",
-        "options": [
-          "am",
-          "is",
-          "are"
-        ],
-        "star": True
-      },
-      {
-        "type": "choice",
-        "text": "The children ___ in the garden.",
-        "correct": "are",
-        "hint": "Выберите правильную форму to be",
-        "options": [
-          "am",
-          "is",
-          "are"
-        ],
-        "star": True
-      },
-      {
-        "type": "choice",
-        "text": "This ___ my pen.",
-        "correct": "is",
-        "hint": "Выберите правильную форму to be",
-        "options": [
-          "am",
-          "is",
-          "are"
-        ],
-        "star": True
-      },
-      {
-        "type": "choice",
-        "text": "You and I ___ friends.",
-        "correct": "are",
-        "hint": "Выберите правильную форму to be",
-        "options": [
-          "am",
-          "is",
-          "are"
-        ],
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "The weather ___ nice today.",
-        "correct": "is",
-        "hint": "Weather — это he/she/it",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "My sister and I ___ twins.",
-        "correct": "are",
-        "hint": "My sister and I = we",
-        "star": True
-      },
-      {
-        "type": "reorder",
-        "text": "a / This / car / is / red",
-        "correct": "This is a red car",
-        "hint": "Порядок: This + is + артикль + прилагательное + существительное",
-        "star": True
-      },
-      {
-        "type": "translation",
-        "text": "Они не врачи, они учителя.",
-        "correct": "They are not doctors, they are teachers",
-        "hint": "Используйте to be в утверждении и отрицании",
-        "star": True
-      },
-      {
-        "type": "open",
-        "text": "Составьте предложение с to be, используя слова: 'I', 'happy', 'today'.",
-        "correct": "I am happy today",
-        "hint": "Не забудьте про am",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "I ___ a student.",
-        "correct": "am",
-        "hint": "Глагол to be для I",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She ___ my friend.",
-        "correct": "is",
-        "hint": "Глагол to be для she",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "They ___ at home.",
-        "correct": "are",
-        "hint": "Глагол to be для they",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He ___ a doctor.",
-        "correct": "is",
-        "hint": "Глагол to be для he",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "We ___ happy.",
-        "correct": "are",
-        "hint": "Глагол to be для we",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "It ___ a cat.",
-        "correct": "is",
-        "hint": "Глагол to be для it",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "You ___ very kind.",
-        "correct": "are",
-        "hint": "Глагол to be для you",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "Tom and Jerry ___ friends.",
-        "correct": "are",
-        "hint": "Множественное число",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "This ___ my book.",
-        "correct": "is",
-        "hint": "Единственное число",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "I ___ from London.",
-        "correct": "am",
-        "hint": "Глагол to be для I",
-        "star": False
-      },
-      {
-        "type": "reorder",
-        "text": "a / She / teacher / is",
-        "correct": "She is a teacher",
-        "hint": "Порядок: подлежащее + глагол",
-        "star": False
-      },
-      {
-        "type": "reorder",
-        "text": "are / We / students",
-        "correct": "We are students",
-        "hint": "Порядок: подлежащее + глагол",
-        "star": False
-      },
-      {
-        "type": "reorder",
-        "text": "is / He / doctor / a",
-        "correct": "He is a doctor",
-        "hint": "Порядок: подлежащее + глагол",
-        "star": False
-      },
-      {
-        "type": "reorder",
-        "text": "They / happy / are",
-        "correct": "They are happy",
-        "hint": "Порядок: подлежащее + глагол",
-        "star": False
-      },
-      {
-        "type": "reorder",
-        "text": "am / I / tired",
-        "correct": "I am tired",
-        "hint": "Порядок: подлежащее + глагол",
-        "star": False
-      },
-      {
-        "type": "translation",
-        "text": "Он мой брат.",
-        "correct": "He is my brother",
-        "hint": "Глагол to be для he",
-        "star": False
-      },
-      {
-        "type": "translation",
-        "text": "Мы в школе.",
-        "correct": "We are at school",
-        "hint": "Глагол to be для we",
-        "star": False
-      },
-      {
-        "type": "translation",
-        "text": "Я учитель.",
-        "correct": "I am a teacher",
-        "hint": "Глагол to be для I",
-        "star": False
-      },
-      {
-        "type": "translation",
-        "text": "Они дома.",
-        "correct": "They are at home",
-        "hint": "Глагол to be для they",
-        "star": False
-      },
-      {
-        "type": "translation",
-        "text": "Это книга.",
-        "correct": "It is a book",
-        "hint": "Глагол to be для it",
-        "star": False
-      },
-      {
-        "type": "choice",
-        "text": "I ___ a student.",
-        "correct": "am",
-        "hint": "Выбери правильную форму",
-        "star": True,
-        "options": [
-          "am",
-          "is",
-          "are"
+            "practice_bank": [
+            # Вариант 1
+            [
+                {
+                    "type": "complex",
+                    "text": "Вставьте правильную форму глагола to be (am, is, are).\n\n1. I ___ a student.\n2. She ___ my friend.\n3. We ___ happy.\n4. He ___ a doctor.\n5. They ___ at home.\n6. It ___ a cat.\n7. You ___ very kind.\n8. Tom ___ my brother.\n9. The girls ___ in the garden.\n10. I ___ from Russia.",
+                    "subtasks": [
+                        {"question": "I ___ a student.", "answer": "am", "explanation": "I + am"},
+                        {"question": "She ___ my friend.", "answer": "is", "explanation": "She + is"},
+                        {"question": "We ___ happy.", "answer": "are", "explanation": "We + are"},
+                        {"question": "He ___ a doctor.", "answer": "is", "explanation": "He + is"},
+                        {"question": "They ___ at home.", "answer": "are", "explanation": "They + are"},
+                        {"question": "It ___ a cat.", "answer": "is", "explanation": "It + is"},
+                        {"question": "You ___ very kind.", "answer": "are", "explanation": "You + are"},
+                        {"question": "Tom ___ my brother.", "answer": "is", "explanation": "Tom = he → is"},
+                        {"question": "The girls ___ in the garden.", "answer": "are", "explanation": "The girls = they → are"},
+                        {"question": "I ___ from Russia.", "answer": "am", "explanation": "I + am"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Переведите предложения на английский.\n\n1. Я учитель.\n2. Она моя сестра.\n3. Мы студенты.\n4. Он врач.\n5. Они дома.\n6. Это собака.\n7. Ты очень умный.\n8. Майк мой друг.\n9. Дети в парке.\n10. Я из Америки.",
+                    "subtasks": [
+                        {"question": "Я учитель.", "answer": "I am a teacher.", "explanation": "I am + a teacher"},
+                        {"question": "Она моя сестра.", "answer": "She is my sister.", "explanation": "She is + my sister"},
+                        {"question": "Мы студенты.", "answer": "We are students.", "explanation": "We are + students"},
+                        {"question": "Он врач.", "answer": "He is a doctor.", "explanation": "He is + a doctor"},
+                        {"question": "Они дома.", "answer": "They are at home.", "explanation": "They are + at home"},
+                        {"question": "Это собака.", "answer": "It is a dog.", "explanation": "It is + a dog"},
+                        {"question": "Ты очень умный.", "answer": "You are very smart.", "explanation": "You are + very smart"},
+                        {"question": "Майк мой друг.", "answer": "Mike is my friend.", "explanation": "Mike = he → is"},
+                        {"question": "Дети в парке.", "answer": "The children are in the park.", "explanation": "children = they → are"},
+                        {"question": "Я из Америки.", "answer": "I am from America.", "explanation": "I am + from America"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Составьте предложения из слов в правильном порядке.\n\n1. teacher / I / am / a\n2. is / she / sister / my\n3. students / we / are\n4. doctor / is / he / a\n5. at / they / home / are\n6. a / is / cat / it\n7. are / you / very / kind\n8. brother / Tom / is / my\n9. in / girls / are / the / garden\n10. Russia / from / am / I",
+                    "subtasks": [
+                        {"question": "teacher / I / am / a", "answer": "I am a teacher.", "explanation": "Порядок: подлежащее + глагол + дополнение"},
+                        {"question": "is / she / sister / my", "answer": "She is my sister.", "explanation": "Подлежащее + глагол + дополнение"},
+                        {"question": "students / we / are", "answer": "We are students.", "explanation": "Подлежащее + глагол + дополнение"},
+                        {"question": "doctor / is / he / a", "answer": "He is a doctor.", "explanation": "Подлежащее + глагол + дополнение"},
+                        {"question": "at / they / home / are", "answer": "They are at home.", "explanation": "Подлежащее + глагол + обстоятельство"},
+                        {"question": "a / is / cat / it", "answer": "It is a cat.", "explanation": "Подлежащее + глагол + дополнение"},
+                        {"question": "are / you / very / kind", "answer": "You are very kind.", "explanation": "Подлежащее + глагол + наречие + прилагательное"},
+                        {"question": "brother / Tom / is / my", "answer": "Tom is my brother.", "explanation": "Подлежащее + глагол + дополнение"},
+                        {"question": "in / girls / are / the / garden", "answer": "The girls are in the garden.", "explanation": "Подлежащее + глагол + обстоятельство"},
+                        {"question": "Russia / from / am / I", "answer": "I am from Russia.", "explanation": "Подлежащее + глагол + обстоятельство"}
+                    ]
+                }
+            ],
+            # Вариант 2
+            [
+                {
+                    "type": "complex",
+                    "text": "Вставьте правильную форму глагола to be (am, is, are).\n\n1. You ___ my best friend.\n2. It ___ a beautiful day.\n3. We ___ in the classroom.\n4. She ___ a nurse.\n5. They ___ from London.\n6. I ___ happy.\n7. He ___ a pilot.\n8. The books ___ on the table.\n9. My parents ___ very nice.\n10. This ___ my house.",
+                    "subtasks": [
+                        {"question": "You ___ my best friend.", "answer": "are", "explanation": "You + are"},
+                        {"question": "It ___ a beautiful day.", "answer": "is", "explanation": "It + is"},
+                        {"question": "We ___ in the classroom.", "answer": "are", "explanation": "We + are"},
+                        {"question": "She ___ a nurse.", "answer": "is", "explanation": "She + is"},
+                        {"question": "They ___ from London.", "answer": "are", "explanation": "They + are"},
+                        {"question": "I ___ happy.", "answer": "am", "explanation": "I + am"},
+                        {"question": "He ___ a pilot.", "answer": "is", "explanation": "He + is"},
+                        {"question": "The books ___ on the table.", "answer": "are", "explanation": "books = they → are"},
+                        {"question": "My parents ___ very nice.", "answer": "are", "explanation": "parents = they → are"},
+                        {"question": "This ___ my house.", "answer": "is", "explanation": "This = it → is"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Переведите предложения на английский.\n\n1. Ты мой лучший друг.\n2. Это прекрасный день.\n3. Мы в классе.\n4. Она медсестра.\n5. Они из Лондона.\n6. Я счастлив.\n7. Он пилот.\n8. Книги на столе.\n9. Мои родители очень добрые.\n10. Это мой дом.",
+                    "subtasks": [
+                        {"question": "Ты мой лучший друг.", "answer": "You are my best friend.", "explanation": "You + are"},
+                        {"question": "Это прекрасный день.", "answer": "It is a beautiful day.", "explanation": "It is + a beautiful day"},
+                        {"question": "Мы в классе.", "answer": "We are in the classroom.", "explanation": "We are + in the classroom"},
+                        {"question": "Она медсестра.", "answer": "She is a nurse.", "explanation": "She is + a nurse"},
+                        {"question": "Они из Лондона.", "answer": "They are from London.", "explanation": "They are + from London"},
+                        {"question": "Я счастлив.", "answer": "I am happy.", "explanation": "I am + happy"},
+                        {"question": "Он пилот.", "answer": "He is a pilot.", "explanation": "He is + a pilot"},
+                        {"question": "Книги на столе.", "answer": "The books are on the table.", "explanation": "books = they → are"},
+                        {"question": "Мои родители очень добрые.", "answer": "My parents are very kind.", "explanation": "parents = they → are"},
+                        {"question": "Это мой дом.", "answer": "This is my house.", "explanation": "This = it → is"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Составьте предложения из слов в правильном порядке.\n\n1. best / friend / are / my / you\n2. day / it / a / beautiful / is\n3. classroom / in / we / the / are\n4. nurse / a / she / is\n5. London / from / are / they\n6. happy / am / I\n7. pilot / a / he / is\n8. table / the / on / are / books\n9. parents / very / are / my / kind\n10. house / is / this / my",
+                    "subtasks": [
+                        {"question": "best / friend / are / my / you", "answer": "You are my best friend.", "explanation": "Подлежащее + глагол + дополнение"},
+                        {"question": "day / it / a / beautiful / is", "answer": "It is a beautiful day.", "explanation": "Подлежащее + глагол + дополнение"},
+                        {"question": "classroom / in / we / the / are", "answer": "We are in the classroom.", "explanation": "Подлежащее + глагол + обстоятельство"},
+                        {"question": "nurse / a / she / is", "answer": "She is a nurse.", "explanation": "Подлежащее + глагол + дополнение"},
+                        {"question": "London / from / are / they", "answer": "They are from London.", "explanation": "Подлежащее + глагол + обстоятельство"},
+                        {"question": "happy / am / I", "answer": "I am happy.", "explanation": "Подлежащее + глагол + прилагательное"},
+                        {"question": "pilot / a / he / is", "answer": "He is a pilot.", "explanation": "Подлежащее + глагол + дополнение"},
+                        {"question": "table / the / on / are / books", "answer": "The books are on the table.", "explanation": "Подлежащее + глагол + обстоятельство"},
+                        {"question": "parents / very / are / my / kind", "answer": "My parents are very kind.", "explanation": "Подлежащее + глагол + наречие + прилагательное"},
+                        {"question": "house / is / this / my", "answer": "This is my house.", "explanation": "Подлежащее + глагол + дополнение"}
+                    ]
+                }
+            ],
+            # Вариант 3
+            [
+                {
+                    "type": "complex",
+                    "text": "Вставьте правильную форму глагола to be (am, is, are).\n\n1. The cat ___ black.\n2. I ___ a musician.\n3. We ___ good friends.\n4. She ___ a dancer.\n5. They ___ in the park.\n6. He ___ a policeman.\n7. You ___ right.\n8. The flowers ___ beautiful.\n9. My brother ___ tall.\n10. This ___ my pen.",
+                    "subtasks": [
+                        {"question": "The cat ___ black.", "answer": "is", "explanation": "cat = it → is"},
+                        {"question": "I ___ a musician.", "answer": "am", "explanation": "I + am"},
+                        {"question": "We ___ good friends.", "answer": "are", "explanation": "We + are"},
+                        {"question": "She ___ a dancer.", "answer": "is", "explanation": "She + is"},
+                        {"question": "They ___ in the park.", "answer": "are", "explanation": "They + are"},
+                        {"question": "He ___ a policeman.", "answer": "is", "explanation": "He + is"},
+                        {"question": "You ___ right.", "answer": "are", "explanation": "You + are"},
+                        {"question": "The flowers ___ beautiful.", "answer": "are", "explanation": "flowers = they → are"},
+                        {"question": "My brother ___ tall.", "answer": "is", "explanation": "brother = he → is"},
+                        {"question": "This ___ my pen.", "answer": "is", "explanation": "This = it → is"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Переведите предложения на английский.\n\n1. Кошка чёрная.\n2. Я музыкант.\n3. Мы хорошие друзья.\n4. Она танцовщица.\n5. Они в парке.\n6. Он полицейский.\n7. Ты прав.\n8. Цветы красивые.\n9. Мой брат высокий.\n10. Это моя ручка.",
+                    "subtasks": [
+                        {"question": "Кошка чёрная.", "answer": "The cat is black.", "explanation": "cat = it → is"},
+                        {"question": "Я музыкант.", "answer": "I am a musician.", "explanation": "I am + a musician"},
+                        {"question": "Мы хорошие друзья.", "answer": "We are good friends.", "explanation": "We are + good friends"},
+                        {"question": "Она танцовщица.", "answer": "She is a dancer.", "explanation": "She is + a dancer"},
+                        {"question": "Они в парке.", "answer": "They are in the park.", "explanation": "They are + in the park"},
+                        {"question": "Он полицейский.", "answer": "He is a policeman.", "explanation": "He is + a policeman"},
+                        {"question": "Ты прав.", "answer": "You are right.", "explanation": "You are + right"},
+                        {"question": "Цветы красивые.", "answer": "The flowers are beautiful.", "explanation": "flowers = they → are"},
+                        {"question": "Мой брат высокий.", "answer": "My brother is tall.", "explanation": "brother = he → is"},
+                        {"question": "Это моя ручка.", "answer": "This is my pen.", "explanation": "This = it → is"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Составьте предложения из слов в правильном порядке.\n\n1. black / is / cat / the\n2. musician / am / I / a\n3. good / friends / we / are\n4. dancer / she / a / is\n5. park / are / in / they / the\n6. policeman / he / a / is\n7. right / are / you\n8. flowers / beautiful / are / the\n9. tall / is / brother / my\n10. pen / is / this / my",
+                    "subtasks": [
+                        {"question": "black / is / cat / the", "answer": "The cat is black.", "explanation": "Подлежащее + глагол + прилагательное"},
+                        {"question": "musician / am / I / a", "answer": "I am a musician.", "explanation": "Подлежащее + глагол + дополнение"},
+                        {"question": "good / friends / we / are", "answer": "We are good friends.", "explanation": "Подлежащее + глагол + дополнение"},
+                        {"question": "dancer / she / a / is", "answer": "She is a dancer.", "explanation": "Подлежащее + глагол + дополнение"},
+                        {"question": "park / are / in / they / the", "answer": "They are in the park.", "explanation": "Подлежащее + глагол + обстоятельство"},
+                        {"question": "policeman / he / a / is", "answer": "He is a policeman.", "explanation": "Подлежащее + глагол + дополнение"},
+                        {"question": "right / are / you", "answer": "You are right.", "explanation": "Подлежащее + глагол + прилагательное"},
+                        {"question": "flowers / beautiful / are / the", "answer": "The flowers are beautiful.", "explanation": "Подлежащее + глагол + прилагательное"},
+                        {"question": "tall / is / brother / my", "answer": "My brother is tall.", "explanation": "Подлежащее + глагол + прилагательное"},
+                        {"question": "pen / is / this / my", "answer": "This is my pen.", "explanation": "Подлежащее + глагол + дополнение"}
+                    ]
+                }
+            ],
+            # Вариант 4
+            [
+                {
+                    "type": "complex",
+                    "text": "Вставьте правильную форму глагола to be (am, is, are).\n\n1. I ___ a singer.\n2. The house ___ big.\n3. We ___ tired.\n4. She ___ my aunt.\n5. They ___ in the garden.\n6. He ___ a driver.\n7. You ___ a good student.\n8. The birds ___ on the tree.\n9. My sister ___ a nurse.\n10. These ___ my shoes.",
+                    "subtasks": [
+                        {"question": "I ___ a singer.", "answer": "am", "explanation": "I + am"},
+                        {"question": "The house ___ big.", "answer": "is", "explanation": "house = it → is"},
+                        {"question": "We ___ tired.", "answer": "are", "explanation": "We + are"},
+                        {"question": "She ___ my aunt.", "answer": "is", "explanation": "She + is"},
+                        {"question": "They ___ in the garden.", "answer": "are", "explanation": "They + are"},
+                        {"question": "He ___ a driver.", "answer": "is", "explanation": "He + is"},
+                        {"question": "You ___ a good student.", "answer": "are", "explanation": "You + are"},
+                        {"question": "The birds ___ on the tree.", "answer": "are", "explanation": "birds = they → are"},
+                        {"question": "My sister ___ a nurse.", "answer": "is", "explanation": "sister = she → is"},
+                        {"question": "These ___ my shoes.", "answer": "are", "explanation": "these = they → are"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Переведите предложения на английский.\n\n1. Я певица.\n2. Дом большой.\n3. Мы устали.\n4. Она моя тётя.\n5. Они в саду.\n6. Он водитель.\n7. Ты хороший ученик.\n8. Птицы на дереве.\n9. Моя сестра медсестра.\n10. Это мои туфли.",
+                    "subtasks": [
+                        {"question": "Я певица.", "answer": "I am a singer.", "explanation": "I am + a singer"},
+                        {"question": "Дом большой.", "answer": "The house is big.", "explanation": "house = it → is"},
+                        {"question": "Мы устали.", "answer": "We are tired.", "explanation": "We are + tired"},
+                        {"question": "Она моя тётя.", "answer": "She is my aunt.", "explanation": "She is + my aunt"},
+                        {"question": "Они в саду.", "answer": "They are in the garden.", "explanation": "They are + in the garden"},
+                        {"question": "Он водитель.", "answer": "He is a driver.", "explanation": "He is + a driver"},
+                        {"question": "Ты хороший ученик.", "answer": "You are a good student.", "explanation": "You are + a good student"},
+                        {"question": "Птицы на дереве.", "answer": "The birds are on the tree.", "explanation": "birds = they → are"},
+                        {"question": "Моя сестра медсестра.", "answer": "My sister is a nurse.", "explanation": "sister = she → is"},
+                        {"question": "Это мои туфли.", "answer": "These are my shoes.", "explanation": "these = they → are"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Составьте предложения из слов в правильном порядке.\n\n1. singer / am / I / a\n2. big / house / is / the\n3. tired / are / we\n4. aunt / she / is / my\n5. garden / are / in / they / the\n6. driver / he / a / is\n7. good / you / a / student / are\n8. tree / the / on / are / birds\n9. nurse / sister / my / is / a\n10. shoes / are / these / my",
+                    "subtasks": [
+                        {"question": "singer / am / I / a", "answer": "I am a singer.", "explanation": "Подлежащее + глагол + дополнение"},
+                        {"question": "big / house / is / the", "answer": "The house is big.", "explanation": "Подлежащее + глагол + прилагательное"},
+                        {"question": "tired / are / we", "answer": "We are tired.", "explanation": "Подлежащее + глагол + прилагательное"},
+                        {"question": "aunt / she / is / my", "answer": "She is my aunt.", "explanation": "Подлежащее + глагол + дополнение"},
+                        {"question": "garden / are / in / they / the", "answer": "They are in the garden.", "explanation": "Подлежащее + глагол + обстоятельство"},
+                        {"question": "driver / he / a / is", "answer": "He is a driver.", "explanation": "Подлежащее + глагол + дополнение"},
+                        {"question": "good / you / a / student / are", "answer": "You are a good student.", "explanation": "Подлежащее + глагол + дополнение"},
+                        {"question": "tree / the / on / are / birds", "answer": "The birds are on the tree.", "explanation": "Подлежащее + глагол + обстоятельство"},
+                        {"question": "nurse / sister / my / is / a", "answer": "My sister is a nurse.", "explanation": "Подлежащее + глагол + дополнение"},
+                        {"question": "shoes / are / these / my", "answer": "These are my shoes.", "explanation": "Подлежащее + глагол + дополнение"}
+                    ]
+                }
+            ],
+            # Вариант 5
+            [
+                {
+                    "type": "complex",
+                    "text": "Вставьте правильную форму глагола to be (am, is, are).\n\n1. The children ___ happy.\n2. I ___ a painter.\n3. We ___ from Canada.\n4. She ___ my mother.\n5. They ___ in the kitchen.\n6. He ___ a firefighter.\n7. You ___ a great friend.\n8. The car ___ new.\n9. My parents ___ teachers.\n10. This ___ my dog.",
+                    "subtasks": [
+                        {"question": "The children ___ happy.", "answer": "are", "explanation": "children = they → are"},
+                        {"question": "I ___ a painter.", "answer": "am", "explanation": "I + am"},
+                        {"question": "We ___ from Canada.", "answer": "are", "explanation": "We + are"},
+                        {"question": "She ___ my mother.", "answer": "is", "explanation": "She + is"},
+                        {"question": "They ___ in the kitchen.", "answer": "are", "explanation": "They + are"},
+                        {"question": "He ___ a firefighter.", "answer": "is", "explanation": "He + is"},
+                        {"question": "You ___ a great friend.", "answer": "are", "explanation": "You + are"},
+                        {"question": "The car ___ new.", "answer": "is", "explanation": "car = it → is"},
+                        {"question": "My parents ___ teachers.", "answer": "are", "explanation": "parents = they → are"},
+                        {"question": "This ___ my dog.", "answer": "is", "explanation": "This = it → is"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Переведите предложения на английский.\n\n1. Дети счастливы.\n2. Я художник.\n3. Мы из Канады.\n4. Она моя мама.\n5. Они на кухне.\n6. Он пожарный.\n7. Ты отличный друг.\n8. Машина новая.\n9. Мои родители учителя.\n10. Это моя собака.",
+                    "subtasks": [
+                        {"question": "Дети счастливы.", "answer": "The children are happy.", "explanation": "children = they → are"},
+                        {"question": "Я художник.", "answer": "I am a painter.", "explanation": "I am + a painter"},
+                        {"question": "Мы из Канады.", "answer": "We are from Canada.", "explanation": "We are + from Canada"},
+                        {"question": "Она моя мама.", "answer": "She is my mother.", "explanation": "She is + my mother"},
+                        {"question": "Они на кухне.", "answer": "They are in the kitchen.", "explanation": "They are + in the kitchen"},
+                        {"question": "Он пожарный.", "answer": "He is a firefighter.", "explanation": "He is + a firefighter"},
+                        {"question": "Ты отличный друг.", "answer": "You are a great friend.", "explanation": "You are + a great friend"},
+                        {"question": "Машина новая.", "answer": "The car is new.", "explanation": "car = it → is"},
+                        {"question": "Мои родители учителя.", "answer": "My parents are teachers.", "explanation": "parents = they → are"},
+                        {"question": "Это моя собака.", "answer": "This is my dog.", "explanation": "This = it → is"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Составьте предложения из слов в правильном порядке.\n\n1. happy / children / the / are\n2. painter / am / I / a\n3. Canada / from / are / we\n4. mother / she / my / is\n5. kitchen / in / they / the / are\n6. firefighter / he / a / is\n7. great / a / friend / you / are\n8. new / car / the / is\n9. teachers / parents / my / are\n10. dog / this / my / is",
+                    "subtasks": [
+                        {"question": "happy / children / the / are", "answer": "The children are happy.", "explanation": "Подлежащее + глагол + прилагательное"},
+                        {"question": "painter / am / I / a", "answer": "I am a painter.", "explanation": "Подлежащее + глагол + дополнение"},
+                        {"question": "Canada / from / are / we", "answer": "We are from Canada.", "explanation": "Подлежащее + глагол + обстоятельство"},
+                        {"question": "mother / she / my / is", "answer": "She is my mother.", "explanation": "Подлежащее + глагол + дополнение"},
+                        {"question": "kitchen / in / they / the / are", "answer": "They are in the kitchen.", "explanation": "Подлежащее + глагол + обстоятельство"},
+                        {"question": "firefighter / he / a / is", "answer": "He is a firefighter.", "explanation": "Подлежащее + глагол + дополнение"},
+                        {"question": "great / a / friend / you / are", "answer": "You are a great friend.", "explanation": "Подлежащее + глагол + дополнение"},
+                        {"question": "new / car / the / is", "answer": "The car is new.", "explanation": "Подлежащее + глагол + прилагательное"},
+                        {"question": "teachers / parents / my / are", "answer": "My parents are teachers.", "explanation": "Подлежащее + глагол + дополнение"},
+                        {"question": "dog / this / my / is", "answer": "This is my dog.", "explanation": "Подлежащее + глагол + дополнение"}
+                    ]
+                }
+            ],
+            # Вариант 6
+            [
+                {
+                    "type": "complex",
+                    "text": "Вставьте правильную форму глагола to be (am, is, are).\n\n1. The sky ___ blue.\n2. I ___ a programmer.\n3. We ___ friends.\n4. She ___ my classmate.\n5. They ___ at school.\n6. He ___ an engineer.\n7. You ___ very tall.\n8. The apples ___ red.\n9. My uncle ___ a pilot.\n10. These ___ my keys.",
+                    "subtasks": [
+                        {"question": "The sky ___ blue.", "answer": "is", "explanation": "sky = it → is"},
+                        {"question": "I ___ a programmer.", "answer": "am", "explanation": "I + am"},
+                        {"question": "We ___ friends.", "answer": "are", "explanation": "We + are"},
+                        {"question": "She ___ my classmate.", "answer": "is", "explanation": "She + is"},
+                        {"question": "They ___ at school.", "answer": "are", "explanation": "They + are"},
+                        {"question": "He ___ an engineer.", "answer": "is", "explanation": "He + is"},
+                        {"question": "You ___ very tall.", "answer": "are", "explanation": "You + are"},
+                        {"question": "The apples ___ red.", "answer": "are", "explanation": "apples = they → are"},
+                        {"question": "My uncle ___ a pilot.", "answer": "is", "explanation": "uncle = he → is"},
+                        {"question": "These ___ my keys.", "answer": "are", "explanation": "these = they → are"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Переведите предложения на английский.\n\n1. Небо голубое.\n2. Я программист.\n3. Мы друзья.\n4. Она моя одноклассница.\n5. Они в школе.\n6. Он инженер.\n7. Ты очень высокий.\n8. Яблоки красные.\n9. Мой дядя пилот.\n10. Это мои ключи.",
+                    "subtasks": [
+                        {"question": "Небо голубое.", "answer": "The sky is blue.", "explanation": "sky = it → is"},
+                        {"question": "Я программист.", "answer": "I am a programmer.", "explanation": "I am + a programmer"},
+                        {"question": "Мы друзья.", "answer": "We are friends.", "explanation": "We are + friends"},
+                        {"question": "Она моя одноклассница.", "answer": "She is my classmate.", "explanation": "She is + my classmate"},
+                        {"question": "Они в школе.", "answer": "They are at school.", "explanation": "They are + at school"},
+                        {"question": "Он инженер.", "answer": "He is an engineer.", "explanation": "He is + an engineer"},
+                        {"question": "Ты очень высокий.", "answer": "You are very tall.", "explanation": "You are + very tall"},
+                        {"question": "Яблоки красные.", "answer": "The apples are red.", "explanation": "apples = they → are"},
+                        {"question": "Мой дядя пилот.", "answer": "My uncle is a pilot.", "explanation": "uncle = he → is"},
+                        {"question": "Это мои ключи.", "answer": "These are my keys.", "explanation": "these = they → are"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Составьте предложения из слов в правильном порядке.\n\n1. blue / sky / the / is\n2. programmer / am / I / a\n3. friends / are / we\n4. classmate / is / my / she\n5. school / at / are / they\n6. engineer / he / an / is\n7. tall / very / are / you\n8. apples / red / the / are\n9. pilot / uncle / a / my / is\n10. keys / these / my / are",
+                    "subtasks": [
+                        {"question": "blue / sky / the / is", "answer": "The sky is blue.", "explanation": "Подлежащее + глагол + прилагательное"},
+                        {"question": "programmer / am / I / a", "answer": "I am a programmer.", "explanation": "Подлежащее + глагол + дополнение"},
+                        {"question": "friends / are / we", "answer": "We are friends.", "explanation": "Подлежащее + глагол + дополнение"},
+                        {"question": "classmate / is / my / she", "answer": "She is my classmate.", "explanation": "Подлежащее + глагол + дополнение"},
+                        {"question": "school / at / are / they", "answer": "They are at school.", "explanation": "Подлежащее + глагол + обстоятельство"},
+                        {"question": "engineer / he / an / is", "answer": "He is an engineer.", "explanation": "Подлежащее + глагол + дополнение"},
+                        {"question": "tall / very / are / you", "answer": "You are very tall.", "explanation": "Подлежащее + глагол + наречие + прилагательное"},
+                        {"question": "apples / red / the / are", "answer": "The apples are red.", "explanation": "Подлежащее + глагол + прилагательное"},
+                        {"question": "pilot / uncle / a / my / is", "answer": "My uncle is a pilot.", "explanation": "Подлежащее + глагол + дополнение"},
+                        {"question": "keys / these / my / are", "answer": "These are my keys.", "explanation": "Подлежащее + глагол + дополнение"}
+                    ]
+                }
+            ],
+            # Вариант 7
+            [
+                {
+                    "type": "complex",
+                    "text": "Вставьте правильную форму глагола to be (am, is, are).\n\n1. The dog ___ small.\n2. I ___ a teacher.\n3. We ___ in the library.\n4. She ___ a lawyer.\n5. They ___ on the bus.\n6. He ___ a mechanic.\n7. You ___ a good dancer.\n8. The trees ___ green.\n9. My mother ___ a cook.\n10. This ___ my computer.",
+                    "subtasks": [
+                        {"question": "The dog ___ small.", "answer": "is", "explanation": "dog = it → is"},
+                        {"question": "I ___ a teacher.", "answer": "am", "explanation": "I + am"},
+                        {"question": "We ___ in the library.", "answer": "are", "explanation": "We + are"},
+                        {"question": "She ___ a lawyer.", "answer": "is", "explanation": "She + is"},
+                        {"question": "They ___ on the bus.", "answer": "are", "explanation": "They + are"},
+                        {"question": "He ___ a mechanic.", "answer": "is", "explanation": "He + is"},
+                        {"question": "You ___ a good dancer.", "answer": "are", "explanation": "You + are"},
+                        {"question": "The trees ___ green.", "answer": "are", "explanation": "trees = they → are"},
+                        {"question": "My mother ___ a cook.", "answer": "is", "explanation": "mother = she → is"},
+                        {"question": "This ___ my computer.", "answer": "is", "explanation": "This = it → is"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Переведите предложения на английский.\n\n1. Собака маленькая.\n2. Я учитель.\n3. Мы в библиотеке.\n4. Она юрист.\n5. Они в автобусе.\n6. Он механик.\n7. Ты хороший танцор.\n8. Деревья зелёные.\n9. Моя мама повар.\n10. Это мой компьютер.",
+                    "subtasks": [
+                        {"question": "Собака маленькая.", "answer": "The dog is small.", "explanation": "dog = it → is"},
+                        {"question": "Я учитель.", "answer": "I am a teacher.", "explanation": "I am + a teacher"},
+                        {"question": "Мы в библиотеке.", "answer": "We are in the library.", "explanation": "We are + in the library"},
+                        {"question": "Она юрист.", "answer": "She is a lawyer.", "explanation": "She is + a lawyer"},
+                        {"question": "Они в автобусе.", "answer": "They are on the bus.", "explanation": "They are + on the bus"},
+                        {"question": "Он механик.", "answer": "He is a mechanic.", "explanation": "He is + a mechanic"},
+                        {"question": "Ты хороший танцор.", "answer": "You are a good dancer.", "explanation": "You are + a good dancer"},
+                        {"question": "Деревья зелёные.", "answer": "The trees are green.", "explanation": "trees = they → are"},
+                        {"question": "Моя мама повар.", "answer": "My mother is a cook.", "explanation": "mother = she → is"},
+                        {"question": "Это мой компьютер.", "answer": "This is my computer.", "explanation": "This = it → is"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Составьте предложения из слов в правильном порядке.\n\n1. small / dog / the / is\n2. teacher / am / I / a\n3. library / in / are / we / the\n4. lawyer / she / a / is\n5. bus / on / are / they / the\n6. mechanic / he / a / is\n7. dancer / a / you / good / are\n8. green / trees / the / are\n9. cook / mother / my / is / a\n10. computer / this / my / is",
+                    "subtasks": [
+                        {"question": "small / dog / the / is", "answer": "The dog is small.", "explanation": "Подлежащее + глагол + прилагательное"},
+                        {"question": "teacher / am / I / a", "answer": "I am a teacher.", "explanation": "Подлежащее + глагол + дополнение"},
+                        {"question": "library / in / are / we / the", "answer": "We are in the library.", "explanation": "Подлежащее + глагол + обстоятельство"},
+                        {"question": "lawyer / she / a / is", "answer": "She is a lawyer.", "explanation": "Подлежащее + глагол + дополнение"},
+                        {"question": "bus / on / are / they / the", "answer": "They are on the bus.", "explanation": "Подлежащее + глагол + обстоятельство"},
+                        {"question": "mechanic / he / a / is", "answer": "He is a mechanic.", "explanation": "Подлежащее + глагол + дополнение"},
+                        {"question": "dancer / a / you / good / are", "answer": "You are a good dancer.", "explanation": "Подлежащее + глагол + дополнение"},
+                        {"question": "green / trees / the / are", "answer": "The trees are green.", "explanation": "Подлежащее + глагол + прилагательное"},
+                        {"question": "cook / mother / my / is / a", "answer": "My mother is a cook.", "explanation": "Подлежащее + глагол + дополнение"},
+                        {"question": "computer / this / my / is", "answer": "This is my computer.", "explanation": "Подлежащее + глагол + дополнение"}
+                    ]
+                }
+            ],
+            # Вариант 8
+            [
+                {
+                    "type": "complex",
+                    "text": "Вставьте правильную форму глагола to be (am, is, are).\n\n1. The students ___ in class.\n2. I ___ a writer.\n3. We ___ on vacation.\n4. She ___ my neighbor.\n5. They ___ in the living room.\n6. He ___ a soldier.\n7. You ___ a great cook.\n8. The shoes ___ new.\n9. My dad ___ a businessman.\n10. Here ___ my phone.",
+                    "subtasks": [
+                        {"question": "The students ___ in class.", "answer": "are", "explanation": "students = they → are"},
+                        {"question": "I ___ a writer.", "answer": "am", "explanation": "I + am"},
+                        {"question": "We ___ on vacation.", "answer": "are", "explanation": "We + are"},
+                        {"question": "She ___ my neighbor.", "answer": "is", "explanation": "She + is"},
+                        {"question": "They ___ in the living room.", "answer": "are", "explanation": "They + are"},
+                        {"question": "He ___ a soldier.", "answer": "is", "explanation": "He + is"},
+                        {"question": "You ___ a great cook.", "answer": "are", "explanation": "You + are"},
+                        {"question": "The shoes ___ new.", "answer": "are", "explanation": "shoes = they → are"},
+                        {"question": "My dad ___ a businessman.", "answer": "is", "explanation": "dad = he → is"},
+                        {"question": "Here ___ my phone.", "answer": "is", "explanation": "Here = it → is"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Переведите предложения на английский.\n\n1. Студенты в классе.\n2. Я писатель.\n3. Мы в отпуске.\n4. Она моя соседка.\n5. Они в гостиной.\n6. Он солдат.\n7. Ты отличный повар.\n8. Туфли новые.\n9. Мой папа бизнесмен.\n10. Вот мой телефон.",
+                    "subtasks": [
+                        {"question": "Студенты в классе.", "answer": "The students are in class.", "explanation": "students = they → are"},
+                        {"question": "Я писатель.", "answer": "I am a writer.", "explanation": "I am + a writer"},
+                        {"question": "Мы в отпуске.", "answer": "We are on vacation.", "explanation": "We are + on vacation"},
+                        {"question": "Она моя соседка.", "answer": "She is my neighbor.", "explanation": "She is + my neighbor"},
+                        {"question": "Они в гостиной.", "answer": "They are in the living room.", "explanation": "They are + in the living room"},
+                        {"question": "Он солдат.", "answer": "He is a soldier.", "explanation": "He is + a soldier"},
+                        {"question": "Ты отличный повар.", "answer": "You are a great cook.", "explanation": "You are + a great cook"},
+                        {"question": "Туфли новые.", "answer": "The shoes are new.", "explanation": "shoes = they → are"},
+                        {"question": "Мой папа бизнесмен.", "answer": "My dad is a businessman.", "explanation": "dad = he → is"},
+                        {"question": "Вот мой телефон.", "answer": "Here is my phone.", "explanation": "Here = it → is"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Составьте предложения из слов в правильном порядке.\n\n1. class / in / are / students / the\n2. writer / am / I / a\n3. vacation / on / are / we\n4. neighbor / she / my / is\n5. living / room / in / are / they / the\n6. soldier / he / a / is\n7. cook / a / great / are / you\n8. shoes / new / the / are\n9. businessman / dad / my / is / a\n10. phone / my / is / here",
+                    "subtasks": [
+                        {"question": "class / in / are / students / the", "answer": "The students are in class.", "explanation": "Подлежащее + глагол + обстоятельство"},
+                        {"question": "writer / am / I / a", "answer": "I am a writer.", "explanation": "Подлежащее + глагол + дополнение"},
+                        {"question": "vacation / on / are / we", "answer": "We are on vacation.", "explanation": "Подлежащее + глагол + обстоятельство"},
+                        {"question": "neighbor / she / my / is", "answer": "She is my neighbor.", "explanation": "Подлежащее + глагол + дополнение"},
+                        {"question": "living / room / in / are / they / the", "answer": "They are in the living room.", "explanation": "Подлежащее + глагол + обстоятельство"},
+                        {"question": "soldier / he / a / is", "answer": "He is a soldier.", "explanation": "Подлежащее + глагол + дополнение"},
+                        {"question": "cook / a / great / are / you", "answer": "You are a great cook.", "explanation": "Подлежащее + глагол + дополнение"},
+                        {"question": "shoes / new / the / are", "answer": "The shoes are new.", "explanation": "Подлежащее + глагол + прилагательное"},
+                        {"question": "businessman / dad / my / is / a", "answer": "My dad is a businessman.", "explanation": "Подлежащее + глагол + дополнение"},
+                        {"question": "phone / my / is / here", "answer": "Here is my phone.", "explanation": "Оборот here + глагол + подлежащее"}
+                    ]
+                }
+            ],
+            # Вариант 9
+            [
+                {
+                    "type": "complex",
+                    "text": "Вставьте правильную форму глагола to be (am, is, are).\n\n1. The girls ___ happy.\n2. I ___ a doctor.\n3. We ___ in the garden.\n4. She ___ my best friend.\n5. They ___ at the cinema.\n6. He ___ a teacher.\n7. You ___ very helpful.\n8. The chairs ___ old.\n9. My brother ___ a student.\n10. Those ___ my glasses.",
+                    "subtasks": [
+                        {"question": "The girls ___ happy.", "answer": "are", "explanation": "girls = they → are"},
+                        {"question": "I ___ a doctor.", "answer": "am", "explanation": "I + am"},
+                        {"question": "We ___ in the garden.", "answer": "are", "explanation": "We + are"},
+                        {"question": "She ___ my best friend.", "answer": "is", "explanation": "She + is"},
+                        {"question": "They ___ at the cinema.", "answer": "are", "explanation": "They + are"},
+                        {"question": "He ___ a teacher.", "answer": "is", "explanation": "He + is"},
+                        {"question": "You ___ very helpful.", "answer": "are", "explanation": "You + are"},
+                        {"question": "The chairs ___ old.", "answer": "are", "explanation": "chairs = they → are"},
+                        {"question": "My brother ___ a student.", "answer": "is", "explanation": "brother = he → is"},
+                        {"question": "Those ___ my glasses.", "answer": "are", "explanation": "those = they → are"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Переведите предложения на английский.\n\n1. Девочки счастливы.\n2. Я доктор.\n3. Мы в саду.\n4. Она моя лучшая подруга.\n5. Они в кинотеатре.\n6. Он учитель.\n7. Ты очень отзывчивый.\n8. Стулья старые.\n9. Мой брат студент.\n10. Это мои очки.",
+                    "subtasks": [
+                        {"question": "Девочки счастливы.", "answer": "The girls are happy.", "explanation": "girls = they → are"},
+                        {"question": "Я доктор.", "answer": "I am a doctor.", "explanation": "I am + a doctor"},
+                        {"question": "Мы в саду.", "answer": "We are in the garden.", "explanation": "We are + in the garden"},
+                        {"question": "Она моя лучшая подруга.", "answer": "She is my best friend.", "explanation": "She is + my best friend"},
+                        {"question": "Они в кинотеатре.", "answer": "They are at the cinema.", "explanation": "They are + at the cinema"},
+                        {"question": "Он учитель.", "answer": "He is a teacher.", "explanation": "He is + a teacher"},
+                        {"question": "Ты очень отзывчивый.", "answer": "You are very helpful.", "explanation": "You are + very helpful"},
+                        {"question": "Стулья старые.", "answer": "The chairs are old.", "explanation": "chairs = they → are"},
+                        {"question": "Мой брат студент.", "answer": "My brother is a student.", "explanation": "brother = he → is"},
+                        {"question": "Это мои очки.", "answer": "Those are my glasses.", "explanation": "those = they → are"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Составьте предложения из слов в правильном порядке.\n\n1. happy / girls / the / are\n2. doctor / am / I / a\n3. garden / in / are / we / the\n4. friend / best / she / my / is\n5. cinema / at / are / they / the\n6. teacher / he / a / is\n7. helpful / very / are / you\n8. old / chairs / the / are\n9. student / brother / a / my / is\n10. glasses / are / my / those",
+                    "subtasks": [
+                        {"question": "happy / girls / the / are", "answer": "The girls are happy.", "explanation": "Подлежащее + глагол + прилагательное"},
+                        {"question": "doctor / am / I / a", "answer": "I am a doctor.", "explanation": "Подлежащее + глагол + дополнение"},
+                        {"question": "garden / in / are / we / the", "answer": "We are in the garden.", "explanation": "Подлежащее + глагол + обстоятельство"},
+                        {"question": "friend / best / she / my / is", "answer": "She is my best friend.", "explanation": "Подлежащее + глагол + дополнение"},
+                        {"question": "cinema / at / are / they / the", "answer": "They are at the cinema.", "explanation": "Подлежащее + глагол + обстоятельство"},
+                        {"question": "teacher / he / a / is", "answer": "He is a teacher.", "explanation": "Подлежащее + глагол + дополнение"},
+                        {"question": "helpful / very / are / you", "answer": "You are very helpful.", "explanation": "Подлежащее + глагол + наречие + прилагательное"},
+                        {"question": "old / chairs / the / are", "answer": "The chairs are old.", "explanation": "Подлежащее + глагол + прилагательное"},
+                        {"question": "student / brother / a / my / is", "answer": "My brother is a student.", "explanation": "Подлежащее + глагол + дополнение"},
+                        {"question": "glasses / are / my / those", "answer": "Those are my glasses.", "explanation": "Подлежащее + глагол + дополнение"}
+                    ]
+                }
+            ],
+            # Вариант 10
+            [
+                {
+                    "type": "complex",
+                    "text": "Вставьте правильную форму глагола to be (am, is, are).\n\n1. The book ___ interesting.\n2. I ___ a student.\n3. We ___ at the museum.\n4. She ___ a designer.\n5. They ___ in the car.\n6. He ___ a scientist.\n7. You ___ a great leader.\n8. The windows ___ open.\n9. My sister ___ a musician.\n10. This ___ my umbrella.",
+                    "subtasks": [
+                        {"question": "The book ___ interesting.", "answer": "is", "explanation": "book = it → is"},
+                        {"question": "I ___ a student.", "answer": "am", "explanation": "I + am"},
+                        {"question": "We ___ at the museum.", "answer": "are", "explanation": "We + are"},
+                        {"question": "She ___ a designer.", "answer": "is", "explanation": "She + is"},
+                        {"question": "They ___ in the car.", "answer": "are", "explanation": "They + are"},
+                        {"question": "He ___ a scientist.", "answer": "is", "explanation": "He + is"},
+                        {"question": "You ___ a great leader.", "answer": "are", "explanation": "You + are"},
+                        {"question": "The windows ___ open.", "answer": "are", "explanation": "windows = they → are"},
+                        {"question": "My sister ___ a musician.", "answer": "is", "explanation": "sister = she → is"},
+                        {"question": "This ___ my umbrella.", "answer": "is", "explanation": "This = it → is"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Переведите предложения на английский.\n\n1. Книга интересная.\n2. Я студент.\n3. Мы в музее.\n4. Она дизайнер.\n5. Они в машине.\n6. Он учёный.\n7. Ты отличный лидер.\n8. Окна открыты.\n9. Моя сестра музыкант.\n10. Это мой зонт.",
+                    "subtasks": [
+                        {"question": "Книга интересная.", "answer": "The book is interesting.", "explanation": "book = it → is"},
+                        {"question": "Я студент.", "answer": "I am a student.", "explanation": "I am + a student"},
+                        {"question": "Мы в музее.", "answer": "We are at the museum.", "explanation": "We are + at the museum"},
+                        {"question": "Она дизайнер.", "answer": "She is a designer.", "explanation": "She is + a designer"},
+                        {"question": "Они в машине.", "answer": "They are in the car.", "explanation": "They are + in the car"},
+                        {"question": "Он учёный.", "answer": "He is a scientist.", "explanation": "He is + a scientist"},
+                        {"question": "Ты отличный лидер.", "answer": "You are a great leader.", "explanation": "You are + a great leader"},
+                        {"question": "Окна открыты.", "answer": "The windows are open.", "explanation": "windows = they → are"},
+                        {"question": "Моя сестра музыкант.", "answer": "My sister is a musician.", "explanation": "sister = she → is"},
+                        {"question": "Это мой зонт.", "answer": "This is my umbrella.", "explanation": "This = it → is"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Составьте предложения из слов в правильном порядке.\n\n1. interesting / book / the / is\n2. student / am / I / a\n3. museum / at / are / we / the\n4. designer / she / a / is\n5. car / in / are / they / the\n6. scientist / he / a / is\n7. leader / a / great / you / are\n8. open / windows / the / are\n9. musician / sister / my / is / a\n10. umbrella / this / my / is",
+                    "subtasks": [
+                        {"question": "interesting / book / the / is", "answer": "The book is interesting.", "explanation": "Подлежащее + глагол + прилагательное"},
+                        {"question": "student / am / I / a", "answer": "I am a student.", "explanation": "Подлежащее + глагол + дополнение"},
+                        {"question": "museum / at / are / we / the", "answer": "We are at the museum.", "explanation": "Подлежащее + глагол + обстоятельство"},
+                        {"question": "designer / she / a / is", "answer": "She is a designer.", "explanation": "Подлежащее + глагол + дополнение"},
+                        {"question": "car / in / are / they / the", "answer": "They are in the car.", "explanation": "Подлежащее + глагол + обстоятельство"},
+                        {"question": "scientist / he / a / is", "answer": "He is a scientist.", "explanation": "Подлежащее + глагол + дополнение"},
+                        {"question": "leader / a / great / you / are", "answer": "You are a great leader.", "explanation": "Подлежащее + глагол + дополнение"},
+                        {"question": "open / windows / the / are", "answer": "The windows are open.", "explanation": "Подлежащее + глагол + прилагательное"},
+                        {"question": "musician / sister / my / is / a", "answer": "My sister is a musician.", "explanation": "Подлежащее + глагол + дополнение"},
+                        {"question": "umbrella / this / my / is", "answer": "This is my umbrella.", "explanation": "Подлежащее + глагол + дополнение"}
+                    ]
+                }
+            ]
         ]
-      },
-      {
-        "type": "choice",
-        "text": "She ___ my sister.",
-        "correct": "is",
-        "hint": "Выбери правильную форму",
-        "star": True,
-        "options": [
-          "am",
-          "is",
-          "are"
-        ]
-      },
-      {
-        "type": "choice",
-        "text": "They ___ happy.",
-        "correct": "are",
-        "hint": "Выбери правильную форму",
-        "star": True,
-        "options": [
-          "am",
-          "is",
-          "are"
-        ]
-      },
-      {
-        "type": "choice",
-        "text": "We ___ friends.",
-        "correct": "are",
-        "hint": "Выбери правильную форму",
-        "star": True,
-        "options": [
-          "am",
-          "is",
-          "are"
-        ]
-      },
-      {
-        "type": "choice",
-        "text": "He ___ a doctor.",
-        "correct": "is",
-        "hint": "Выбери правильную форму",
-        "star": True,
-        "options": [
-          "am",
-          "is",
-          "are"
-        ]
-      },
-      {
-        "type": "fill_blank",
-        "text": "The children ___ in the park.",
-        "correct": "are",
-        "hint": "Множественное число",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "My mother ___ a nurse.",
-        "correct": "is",
-        "hint": "Единственное число",
-        "star": True
-      },
-      {
-        "type": "reorder",
-        "text": "is / This / car / a / new",
-        "correct": "This is a new car",
-        "hint": "Порядок: подлежащее + глагол + артикль",
-        "star": True
-      },
-      {
-        "type": "translation",
-        "text": "Они мои родители.",
-        "correct": "They are my parents",
-        "hint": "Множественное число",
-        "star": True
-      },
-      {
-        "type": "open",
-        "text": "Составь утверждение с глаголом to be: I / happy",
-        "correct": "I am happy",
-        "hint": "Используй am",
-        "star": True
-      }
-    ]
   },
   "tobenegaquestion": {
     "title": "Глагол to be (отрицание и вопрос)",
