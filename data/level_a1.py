@@ -2233,500 +2233,518 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "answer": "Названия стран без 'the' (Russia, France, Brazil), кроме the USA, the UK, the Netherlands."
       }
     ],
-    "practice_tasks": [
-      {
-        "type": "fill_blank",
-        "text": "She is from Japan. She is ___.",
-        "correct": "Japanese",
-        "hint": "Национальность от Japan",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He lives in France. He is ___.",
-        "correct": "French",
-        "hint": "Национальность от France",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "They come from Brazil. They are ___.",
-        "correct": "Brazilian",
-        "hint": "Национальность от Brazil",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "Maria is from Spain. She is ___.",
-        "correct": "Spanish",
-        "hint": "Национальность от Spain",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "I am from Russia. I am ___.",
-        "correct": "Russian",
-        "hint": "Национальность от Russia",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "We are from China. We are ___.",
-        "correct": "Chinese",
-        "hint": "Национальность от China",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He is from Germany. He is ___.",
-        "correct": "German",
-        "hint": "Национальность от Germany",
-        "star": False
-      },
-      {
-        "type": "choice",
-        "text": "What is the nationality of a person from Italy?",
-        "correct": "Italian",
-        "hint": "Страна: Italy",
-        "options": [
-          "Italian",
-          "Italic",
-          "Italish",
-          "Ital"
-        ],
-        "star": False
-      },
-      {
-        "type": "choice",
-        "text": "A person from Canada is ___.",
-        "correct": "Canadian",
-        "hint": "Страна: Canada",
-        "options": [
-          "Canadish",
-          "Canadian",
-          "Canad",
-          "Canado"
-        ],
-        "star": False
-      },
-      {
-        "type": "choice",
-        "text": "People from Australia are ___.",
-        "correct": "Australian",
-        "hint": "Страна: Australia",
-        "options": [
-          "Australish",
-          "Australian",
-          "Austral",
-          "Austrian"
-        ],
-        "star": False
-      },
-      {
-        "type": "translation",
-        "text": "Переведите: Я из Великобритании. Я британец.",
-        "correct": "I am from the UK. I am British.",
-        "hint": "UK = United Kingdom, British",
-        "star": False
-      },
-      {
-        "type": "translation",
-        "text": "Переведите: Она из Турции. Она турчанка.",
-        "correct": "She is from Turkey. She is Turkish.",
-        "hint": "Turkey, Turkish",
-        "star": False
-      },
-      {
-        "type": "translation",
-        "text": "Переведите: Они из Мексики. Они мексиканцы.",
-        "correct": "They are from Mexico. They are Mexican.",
-        "hint": "Mexico, Mexican",
-        "star": False
-      },
-      {
-        "type": "reorder",
-        "text": "Составьте предложение: is / from / He / Japan / .",
-        "correct": "He is from Japan.",
-        "hint": "Порядок слов: подлежащее + глагол",
-        "star": False
-      },
-      {
-        "type": "reorder",
-        "text": "Составьте предложение: are / They / Brazilian / .",
-        "correct": "They are Brazilian.",
-        "hint": "Порядок слов: подлежащее + глагол",
-        "star": False
-      },
-      {
-        "type": "reorder",
-        "text": "Составьте предложение: she / Is / from / France / ?",
-        "correct": "Is she from France?",
-        "hint": "Вопрос с глаголом to be",
-        "star": False
-      },
-      {
-        "type": "open",
-        "text": "Назовите национальность человека из Египта.",
-        "correct": "Egyptian",
-        "hint": "Страна: Egypt",
-        "star": False
-      },
-      {
-        "type": "open",
-        "text": "Назовите страну для национальности 'Polish'.",
-        "correct": "Poland",
-        "hint": "Национальность: Polish",
-        "star": False
-      },
-      {
-        "type": "open",
-        "text": "Какой язык является официальным в Бразилии?",
-        "correct": "Portuguese",
-        "hint": "Не испанский",
-        "star": False
-      },
-      {
-        "type": "open",
-        "text": "Назовите национальность человека из Швеции.",
-        "correct": "Swedish",
-        "hint": "Страна: Sweden",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He is from the Netherlands. He is ___.",
-        "correct": "Dutch",
-        "hint": "Страна: Netherlands",
-        "star": True
-      },
-      {
-        "type": "choice",
-        "text": "A person from Switzerland is ___.",
-        "correct": "Swiss",
-        "hint": "Страна: Switzerland",
-        "options": [
-          "Swedish",
-          "Swiss",
-          "Switzer",
-          "Switish"
-        ],
-        "star": True
-      },
-      {
-        "type": "translation",
-        "text": "Переведите: Они из Греции. Они греки.",
-        "correct": "They are from Greece. They are Greek.",
-        "hint": "Greece, Greek",
-        "star": True
-      },
-      {
-        "type": "reorder",
-        "text": "Составьте предложение: from / are / Where / they / ?",
-        "correct": "Where are they from?",
-        "hint": "Вопрос с Where",
-        "star": True
-      },
-      {
-        "type": "open",
-        "text": "Назовите национальность человека из Саудовской Аравии.",
-        "correct": "Saudi Arabian",
-        "hint": "Страна: Saudi Arabia",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "She is from South Korea. She is ___.",
-        "correct": "South Korean",
-        "hint": "Страна: South Korea",
-        "star": True
-      },
-      {
-        "type": "choice",
-        "text": "What is the nationality of a person from the Czech Republic?",
-        "correct": "Czech",
-        "hint": "Страна: Czech Republic",
-        "options": [
-          "Czech",
-          "Czechish",
-          "Chech",
-          "Czechian"
-        ],
-        "star": True
-      },
-      {
-        "type": "translation",
-        "text": "Переведите: Он из Ирландии. Он ирландец.",
-        "correct": "He is from Ireland. He is Irish.",
-        "hint": "Ireland, Irish",
-        "star": True
-      },
-      {
-        "type": "open",
-        "text": "Назовите страну для национальности 'Danish'.",
-        "correct": "Denmark",
-        "hint": "Национальность: Danish",
-        "star": True
-      },
-      {
-        "type": "reorder",
-        "text": "Составьте предложение: not / is / He / American / .",
-        "correct": "He is not American.",
-        "hint": "Отрицание с is",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "She is from France. She is ____.",
-        "correct": "French",
-        "hint": "Национальность от France",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "They live in Japan. They are ____.",
-        "correct": "Japanese",
-        "hint": "Национальность от Japan",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He comes from Brazil. He is ____.",
-        "correct": "Brazilian",
-        "hint": "Национальность от Brazil",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "Maria is from Spain. She speaks ____.",
-        "correct": "Spanish",
-        "hint": "Язык и национальность",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "This flag is from ____. The people are German.",
-        "correct": "Germany",
-        "hint": "Страна для German",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "I am from ____. I am American.",
-        "correct": "the USA",
-        "hint": "Страна для American",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "They are from ____. They are Australian.",
-        "correct": "Australia",
-        "hint": "Страна для Australian",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "Olga is from Russia. She is ____.",
-        "correct": "Russian",
-        "hint": "Национальность от Russia",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He is from China. He is ____.",
-        "correct": "Chinese",
-        "hint": "Национальность от China",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "We are from Canada. We are ____.",
-        "correct": "Canadian",
-        "hint": "Национальность от Canada",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "This pizza is from ____. It is Italian.",
-        "correct": "Italy",
-        "hint": "Страна для Italian",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "Sakura is from ____. She is Japanese.",
-        "correct": "Japan",
-        "hint": "Страна для Japanese",
-        "star": False
-      },
-      {
-        "type": "choice",
-        "text": "What is the nationality of a person from Mexico?",
-        "correct": "Mexican",
-        "hint": "Страна Mexico",
-        "options": [
-          "Mexican",
-          "Spanish",
-          "American",
-          "Brazilian"
-        ],
-        "star": False
-      },
-      {
-        "type": "choice",
-        "text": "Which country does 'British' refer to?",
-        "correct": "the UK",
-        "hint": "British = ?",
-        "options": [
-          "Britain",
-          "the UK",
-          "England",
-          "All of the above"
-        ],
-        "star": False
-      },
-      {
-        "type": "choice",
-        "text": "A person from Egypt is ____.",
-        "correct": "Egyptian",
-        "hint": "Национальность от Egypt",
-        "options": [
-          "Egypt",
-          "Egyptian",
-          "Arabic",
-          "African"
-        ],
-        "star": False
-      },
-      {
-        "type": "choice",
-        "text": "The capital of this country is Paris. The people are ____.",
-        "correct": "French",
-        "hint": "Страна с Парижем",
-        "options": [
-          "French",
-          "Parisian",
-          "European",
-          "Francophone"
-        ],
-        "star": False
-      },
-      {
-        "type": "choice",
-        "text": "Which nationality speaks Portuguese as an official language?",
-        "correct": "Brazilian",
-        "hint": "Португальский язык",
-        "options": [
-          "Spanish",
-          "Brazilian",
-          "Portuguese",
-          "Argentinian"
-        ],
-        "star": False
-      },
-      {
-        "type": "translation",
-        "text": "Он из Турции. Он турок.",
-        "correct": "He is from Turkey. He is Turkish.",
-        "hint": "Turkey / Turkish",
-        "star": False
-      },
-      {
-        "type": "translation",
-        "text": "Они из Кореи. Они корейцы.",
-        "correct": "They are from Korea. They are Korean.",
-        "hint": "Korea / Korean",
-        "star": False
-      },
-      {
-        "type": "translation",
-        "text": "Мы из Швеции. Мы шведы.",
-        "correct": "We are from Sweden. We are Swedish.",
-        "hint": "Sweden / Swedish",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He is from ____. He is Dutch.",
-        "correct": "the Netherlands",
-        "hint": "Страна для Dutch",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "She is from ____. She is Swiss.",
-        "correct": "Switzerland",
-        "hint": "Страна для Swiss",
-        "star": True
-      },
-      {
-        "type": "choice",
-        "text": "Which country has the nationality 'Irish'?",
-        "correct": "Ireland",
-        "hint": "Irish = ?",
-        "options": [
-          "Scotland",
-          "Ireland",
-          "Iceland",
-          "England"
-        ],
-        "star": True
-      },
-      {
-        "type": "choice",
-        "text": "A person from Saudi Arabia is ____.",
-        "correct": "Saudi Arabian",
-        "hint": "Сложная национальность",
-        "options": [
-          "Saudi",
-          "Arabian",
-          "Saudi Arabian",
-          "Arabic"
-        ],
-        "star": True
-      },
-      {
-        "type": "reorder",
-        "text": "Составьте предложение: from / is / He / Poland / Polish / . / and",
-        "correct": "He is from Poland and Polish.",
-        "hint": "Порядок: страна и национальность",
-        "star": True
-      },
-      {
-        "type": "reorder",
-        "text": "Составьте предложение: are / They / from / Greece / Greek / .",
-        "correct": "They are from Greece and Greek.",
-        "hint": "Порядок: страна и национальность",
-        "star": True
-      },
-      {
-        "type": "translation",
-        "text": "Она из Таиланда. Она тайка.",
-        "correct": "She is from Thailand. She is Thai.",
-        "hint": "Thailand / Thai",
-        "star": True
-      },
-      {
-        "type": "translation",
-        "text": "Они из Финляндии. Они финны.",
-        "correct": "They are from Finland. They are Finnish.",
-        "hint": "Finland / Finnish",
-        "star": True
-      },
-      {
-        "type": "open",
-        "text": "Назовите страну и национальность для человека из Дании.",
-        "correct": "Denmark, Danish",
-        "hint": "Denmark / Danish",
-        "star": True
-      },
-      {
-        "type": "open",
-        "text": "Назовите страну и национальность для человека из Чехии.",
-        "correct": "Czech Republic, Czech",
-        "hint": "Czech Republic / Czech",
-        "star": True
-      }
-    ]
+            "practice_bank": [
+            # Вариант 1
+            [
+                {
+                    "type": "complex",
+                    "text": "Вставьте правильную национальность (Russian, American, British, etc.).\n\n1. I am from Russia. I am ___.\n2. She is from the USA. She is ___.\n3. He is from the UK. He is ___.\n4. They are from France. They are ___.\n5. We are from Germany. We are ___.\n6. She is from Italy. She is ___.\n7. He is from Spain. He is ___.\n8. They are from China. They are ___.\n9. I am from Japan. I am ___.\n10. We are from Brazil. We are ___.",
+                    "subtasks": [
+                        {"question": "I am from Russia. I am ___.", "answer": "Russian", "explanation": "Russia → Russian"},
+                        {"question": "She is from the USA. She is ___.", "answer": "American", "explanation": "USA → American"},
+                        {"question": "He is from the UK. He is ___.", "answer": "British", "explanation": "UK → British"},
+                        {"question": "They are from France. They are ___.", "answer": "French", "explanation": "France → French"},
+                        {"question": "We are from Germany. We are ___.", "answer": "German", "explanation": "Germany → German"},
+                        {"question": "She is from Italy. She is ___.", "answer": "Italian", "explanation": "Italy → Italian"},
+                        {"question": "He is from Spain. He is ___.", "answer": "Spanish", "explanation": "Spain → Spanish"},
+                        {"question": "They are from China. They are ___.", "answer": "Chinese", "explanation": "China → Chinese"},
+                        {"question": "I am from Japan. I am ___.", "answer": "Japanese", "explanation": "Japan → Japanese"},
+                        {"question": "We are from Brazil. We are ___.", "answer": "Brazilian", "explanation": "Brazil → Brazilian"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Переведите предложения на английский.\n\n1. Я из России.\n2. Она из США.\n3. Он из Великобритании.\n4. Они из Франции.\n5. Мы из Германии.\n6. Она из Италии.\n7. Он из Испании.\n8. Они из Китая.\n9. Я из Японии.\n10. Мы из Бразилии.",
+                    "subtasks": [
+                        {"question": "Я из России.", "answer": "I am from Russia.", "explanation": "I am from Russia."},
+                        {"question": "Она из США.", "answer": "She is from the USA.", "explanation": "She is from the USA."},
+                        {"question": "Он из Великобритании.", "answer": "He is from the UK.", "explanation": "He is from the UK."},
+                        {"question": "Они из Франции.", "answer": "They are from France.", "explanation": "They are from France."},
+                        {"question": "Мы из Германии.", "answer": "We are from Germany.", "explanation": "We are from Germany."},
+                        {"question": "Она из Италии.", "answer": "She is from Italy.", "explanation": "She is from Italy."},
+                        {"question": "Он из Испании.", "answer": "He is from Spain.", "explanation": "He is from Spain."},
+                        {"question": "Они из Китая.", "answer": "They are from China.", "explanation": "They are from China."},
+                        {"question": "Я из Японии.", "answer": "I am from Japan.", "explanation": "I am from Japan."},
+                        {"question": "Мы из Бразилии.", "answer": "We are from Brazil.", "explanation": "We are from Brazil."}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Составьте предложения из слов в правильном порядке.\n\n1. from / Russia / I / am\n2. from / USA / is / she / the\n3. UK / from / he / is / the\n4. are / they / from / France\n5. Germany / from / we / are\n6. Italy / from / is / she\n7. Spain / from / is / he\n8. China / are / from / they\n9. Japan / from / am / I\n10. Brazil / from / are / we",
+                    "subtasks": [
+                        {"question": "from / Russia / I / am", "answer": "I am from Russia.", "explanation": "Порядок: подлежащее + глагол + from + страна"},
+                        {"question": "from / USA / is / she / the", "answer": "She is from the USA.", "explanation": "Порядок: подлежащее + глагол + from + страна"},
+                        {"question": "UK / from / he / is / the", "answer": "He is from the UK.", "explanation": "Порядок: подлежащее + глагол + from + страна"},
+                        {"question": "are / they / from / France", "answer": "They are from France.", "explanation": "Порядок: подлежащее + глагол + from + страна"},
+                        {"question": "Germany / from / we / are", "answer": "We are from Germany.", "explanation": "Порядок: подлежащее + глагол + from + страна"},
+                        {"question": "Italy / from / is / she", "answer": "She is from Italy.", "explanation": "Порядок: подлежащее + глагол + from + страна"},
+                        {"question": "Spain / from / is / he", "answer": "He is from Spain.", "explanation": "Порядок: подлежащее + глагол + from + страна"},
+                        {"question": "China / are / from / they", "answer": "They are from China.", "explanation": "Порядок: подлежащее + глагол + from + страна"},
+                        {"question": "Japan / from / am / I", "answer": "I am from Japan.", "explanation": "Порядок: подлежащее + глагол + from + страна"},
+                        {"question": "Brazil / from / are / we", "answer": "We are from Brazil.", "explanation": "Порядок: подлежащее + глагол + from + страна"}
+                    ]
+                }
+            ],
+            # Вариант 2
+            [
+                {
+                    "type": "complex",
+                    "text": "Вставьте правильную национальность.\n\n1. I am from Canada. I am ___.\n2. She is from Australia. She is ___.\n3. He is from India. He is ___.\n4. They are from Mexico. They are ___.\n5. We are from Egypt. We are ___.\n6. She is from Greece. She is ___.\n7. He is from Portugal. He is ___.\n8. They are from Turkey. They are ___.\n9. I am from South Korea. I am ___.\n10. We are from Argentina. We are ___.",
+                    "subtasks": [
+                        {"question": "I am from Canada. I am ___.", "answer": "Canadian", "explanation": "Canada → Canadian"},
+                        {"question": "She is from Australia. She is ___.", "answer": "Australian", "explanation": "Australia → Australian"},
+                        {"question": "He is from India. He is ___.", "answer": "Indian", "explanation": "India → Indian"},
+                        {"question": "They are from Mexico. They are ___.", "answer": "Mexican", "explanation": "Mexico → Mexican"},
+                        {"question": "We are from Egypt. We are ___.", "answer": "Egyptian", "explanation": "Egypt → Egyptian"},
+                        {"question": "She is from Greece. She is ___.", "answer": "Greek", "explanation": "Greece → Greek"},
+                        {"question": "He is from Portugal. He is ___.", "answer": "Portuguese", "explanation": "Portugal → Portuguese"},
+                        {"question": "They are from Turkey. They are ___.", "answer": "Turkish", "explanation": "Turkey → Turkish"},
+                        {"question": "I am from South Korea. I am ___.", "answer": "South Korean", "explanation": "South Korea → South Korean"},
+                        {"question": "We are from Argentina. We are ___.", "answer": "Argentinian", "explanation": "Argentina → Argentinian"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Переведите предложения на английский.\n\n1. Я из Канады.\n2. Она из Австралии.\n3. Он из Индии.\n4. Они из Мексики.\n5. Мы из Египта.\n6. Она из Греции.\n7. Он из Португалии.\n8. Они из Турции.\n9. Я из Южной Кореи.\n10. Мы из Аргентины.",
+                    "subtasks": [
+                        {"question": "Я из Канады.", "answer": "I am from Canada.", "explanation": "I am from Canada."},
+                        {"question": "Она из Австралии.", "answer": "She is from Australia.", "explanation": "She is from Australia."},
+                        {"question": "Он из Индии.", "answer": "He is from India.", "explanation": "He is from India."},
+                        {"question": "Они из Мексики.", "answer": "They are from Mexico.", "explanation": "They are from Mexico."},
+                        {"question": "Мы из Египта.", "answer": "We are from Egypt.", "explanation": "We are from Egypt."},
+                        {"question": "Она из Греции.", "answer": "She is from Greece.", "explanation": "She is from Greece."},
+                        {"question": "Он из Португалии.", "answer": "He is from Portugal.", "explanation": "He is from Portugal."},
+                        {"question": "Они из Турции.", "answer": "They are from Turkey.", "explanation": "They are from Turkey."},
+                        {"question": "Я из Южной Кореи.", "answer": "I am from South Korea.", "explanation": "I am from South Korea."},
+                        {"question": "Мы из Аргентины.", "answer": "We are from Argentina.", "explanation": "We are from Argentina."}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Составьте предложения из слов.\n\n1. Canada / from / am / I\n2. Australia / from / is / she\n3. India / from / is / he\n4. Mexico / from / are / they\n5. Egypt / from / are / we\n6. Greece / from / is / she\n7. Portugal / from / is / he\n8. Turkey / from / are / they\n9. South / Korea / from / am / I\n10. Argentina / from / are / we",
+                    "subtasks": [
+                        {"question": "Canada / from / am / I", "answer": "I am from Canada.", "explanation": "I am from Canada."},
+                        {"question": "Australia / from / is / she", "answer": "She is from Australia.", "explanation": "She is from Australia."},
+                        {"question": "India / from / is / he", "answer": "He is from India.", "explanation": "He is from India."},
+                        {"question": "Mexico / from / are / they", "answer": "They are from Mexico.", "explanation": "They are from Mexico."},
+                        {"question": "Egypt / from / are / we", "answer": "We are from Egypt.", "explanation": "We are from Egypt."},
+                        {"question": "Greece / from / is / she", "answer": "She is from Greece.", "explanation": "She is from Greece."},
+                        {"question": "Portugal / from / is / he", "answer": "He is from Portugal.", "explanation": "He is from Portugal."},
+                        {"question": "Turkey / from / are / they", "answer": "They are from Turkey.", "explanation": "They are from Turkey."},
+                        {"question": "South / Korea / from / am / I", "answer": "I am from South Korea.", "explanation": "I am from South Korea."},
+                        {"question": "Argentina / from / are / we", "answer": "We are from Argentina.", "explanation": "We are from Argentina."}
+                    ]
+                }
+            ],
+            # Вариант 3
+            [
+                {
+                    "type": "complex",
+                    "text": "Вставьте правильную национальность.\n\n1. I am from Poland. I am ___.\n2. She is from Sweden. She is ___.\n3. He is from Norway. He is ___.\n4. They are from Finland. They are ___.\n5. We are from Denmark. We are ___.\n6. She is from the Netherlands. She is ___.\n7. He is from Belgium. He is ___.\n8. They are from Switzerland. They are ___.\n9. I am from Austria. I am ___.\n10. We are from Hungary. We are ___.",
+                    "subtasks": [
+                        {"question": "I am from Poland. I am ___.", "answer": "Polish", "explanation": "Poland → Polish"},
+                        {"question": "She is from Sweden. She is ___.", "answer": "Swedish", "explanation": "Sweden → Swedish"},
+                        {"question": "He is from Norway. He is ___.", "answer": "Norwegian", "explanation": "Norway → Norwegian"},
+                        {"question": "They are from Finland. They are ___.", "answer": "Finnish", "explanation": "Finland → Finnish"},
+                        {"question": "We are from Denmark. We are ___.", "answer": "Danish", "explanation": "Denmark → Danish"},
+                        {"question": "She is from the Netherlands. She is ___.", "answer": "Dutch", "explanation": "Netherlands → Dutch"},
+                        {"question": "He is from Belgium. He is ___.", "answer": "Belgian", "explanation": "Belgium → Belgian"},
+                        {"question": "They are from Switzerland. They are ___.", "answer": "Swiss", "explanation": "Switzerland → Swiss"},
+                        {"question": "I am from Austria. I am ___.", "answer": "Austrian", "explanation": "Austria → Austrian"},
+                        {"question": "We are from Hungary. We are ___.", "answer": "Hungarian", "explanation": "Hungary → Hungarian"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Переведите предложения на английский.\n\n1. Я из Польши.\n2. Она из Швеции.\n3. Он из Норвегии.\n4. Они из Финляндии.\n5. Мы из Дании.\n6. Она из Нидерландов.\n7. Он из Бельгии.\n8. Они из Швейцарии.\n9. Я из Австрии.\n10. Мы из Венгрии.",
+                    "subtasks": [
+                        {"question": "Я из Польши.", "answer": "I am from Poland.", "explanation": "I am from Poland."},
+                        {"question": "Она из Швеции.", "answer": "She is from Sweden.", "explanation": "She is from Sweden."},
+                        {"question": "Он из Норвегии.", "answer": "He is from Norway.", "explanation": "He is from Norway."},
+                        {"question": "Они из Финляндии.", "answer": "They are from Finland.", "explanation": "They are from Finland."},
+                        {"question": "Мы из Дании.", "answer": "We are from Denmark.", "explanation": "We are from Denmark."},
+                        {"question": "Она из Нидерландов.", "answer": "She is from the Netherlands.", "explanation": "She is from the Netherlands."},
+                        {"question": "Он из Бельгии.", "answer": "He is from Belgium.", "explanation": "He is from Belgium."},
+                        {"question": "Они из Швейцарии.", "answer": "They are from Switzerland.", "explanation": "They are from Switzerland."},
+                        {"question": "Я из Австрии.", "answer": "I am from Austria.", "explanation": "I am from Austria."},
+                        {"question": "Мы из Венгрии.", "answer": "We are from Hungary.", "explanation": "We are from Hungary."}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Составьте предложения из слов.\n\n1. Poland / from / am / I\n2. Sweden / from / is / she\n3. Norway / from / is / he\n4. Finland / from / are / they\n5. Denmark / from / are / we\n6. Netherlands / from / is / she\n7. Belgium / from / is / he\n8. Switzerland / from / are / they\n9. Austria / from / am / I\n10. Hungary / from / are / we",
+                    "subtasks": [
+                        {"question": "Poland / from / am / I", "answer": "I am from Poland.", "explanation": "I am from Poland."},
+                        {"question": "Sweden / from / is / she", "answer": "She is from Sweden.", "explanation": "She is from Sweden."},
+                        {"question": "Norway / from / is / he", "answer": "He is from Norway.", "explanation": "He is from Norway."},
+                        {"question": "Finland / from / are / they", "answer": "They are from Finland.", "explanation": "They are from Finland."},
+                        {"question": "Denmark / from / are / we", "answer": "We are from Denmark.", "explanation": "We are from Denmark."},
+                        {"question": "Netherlands / from / is / she", "answer": "She is from the Netherlands.", "explanation": "She is from the Netherlands."},
+                        {"question": "Belgium / from / is / he", "answer": "He is from Belgium.", "explanation": "He is from Belgium."},
+                        {"question": "Switzerland / from / are / they", "answer": "They are from Switzerland.", "explanation": "They are from Switzerland."},
+                        {"question": "Austria / from / am / I", "answer": "I am from Austria.", "explanation": "I am from Austria."},
+                        {"question": "Hungary / from / are / we", "answer": "We are from Hungary.", "explanation": "We are from Hungary."}
+                    ]
+                }
+            ],
+            # Вариант 4
+            [
+                {
+                    "type": "complex",
+                    "text": "Вставьте правильную национальность.\n\n1. I am from Ireland. I am ___.\n2. She is from Scotland. She is ___.\n3. He is from Wales. He is ___.\n4. They are from New Zealand. They are ___.\n5. We are from South Africa. We are ___.\n6. She is from Jamaica. She is ___.\n7. He is from Cuba. He is ___.\n8. They are from Vietnam. They are ___.\n9. I am from Thailand. I am ___.\n10. We are from Indonesia. We are ___.",
+                    "subtasks": [
+                        {"question": "I am from Ireland. I am ___.", "answer": "Irish", "explanation": "Ireland → Irish"},
+                        {"question": "She is from Scotland. She is ___.", "answer": "Scottish", "explanation": "Scotland → Scottish"},
+                        {"question": "He is from Wales. He is ___.", "answer": "Welsh", "explanation": "Wales → Welsh"},
+                        {"question": "They are from New Zealand. They are ___.", "answer": "New Zealander", "explanation": "New Zealand → New Zealander"},
+                        {"question": "We are from South Africa. We are ___.", "answer": "South African", "explanation": "South Africa → South African"},
+                        {"question": "She is from Jamaica. She is ___.", "answer": "Jamaican", "explanation": "Jamaica → Jamaican"},
+                        {"question": "He is from Cuba. He is ___.", "answer": "Cuban", "explanation": "Cuba → Cuban"},
+                        {"question": "They are from Vietnam. They are ___.", "answer": "Vietnamese", "explanation": "Vietnam → Vietnamese"},
+                        {"question": "I am from Thailand. I am ___.", "answer": "Thai", "explanation": "Thailand → Thai"},
+                        {"question": "We are from Indonesia. We are ___.", "answer": "Indonesian", "explanation": "Indonesia → Indonesian"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Переведите предложения на английский.\n\n1. Я из Ирландии.\n2. Она из Шотландии.\n3. Он из Уэльса.\n4. Они из Новой Зеландии.\n5. Мы из Южной Африки.\n6. Она из Ямайки.\n7. Он из Кубы.\n8. Они из Вьетнама.\n9. Я из Таиланда.\n10. Мы из Индонезии.",
+                    "subtasks": [
+                        {"question": "Я из Ирландии.", "answer": "I am from Ireland.", "explanation": "I am from Ireland."},
+                        {"question": "Она из Шотландии.", "answer": "She is from Scotland.", "explanation": "She is from Scotland."},
+                        {"question": "Он из Уэльса.", "answer": "He is from Wales.", "explanation": "He is from Wales."},
+                        {"question": "Они из Новой Зеландии.", "answer": "They are from New Zealand.", "explanation": "They are from New Zealand."},
+                        {"question": "Мы из Южной Африки.", "answer": "We are from South Africa.", "explanation": "We are from South Africa."},
+                        {"question": "Она из Ямайки.", "answer": "She is from Jamaica.", "explanation": "She is from Jamaica."},
+                        {"question": "Он из Кубы.", "answer": "He is from Cuba.", "explanation": "He is from Cuba."},
+                        {"question": "Они из Вьетнама.", "answer": "They are from Vietnam.", "explanation": "They are from Vietnam."},
+                        {"question": "Я из Таиланда.", "answer": "I am from Thailand.", "explanation": "I am from Thailand."},
+                        {"question": "Мы из Индонезии.", "answer": "We are from Indonesia.", "explanation": "We are from Indonesia."}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Составьте предложения из слов.\n\n1. Ireland / from / am / I\n2. Scotland / from / is / she\n3. Wales / from / is / he\n4. New / Zealand / from / are / they\n5. South / Africa / from / are / we\n6. Jamaica / from / is / she\n7. Cuba / from / is / he\n8. Vietnam / from / are / they\n9. Thailand / from / am / I\n10. Indonesia / from / are / we",
+                    "subtasks": [
+                        {"question": "Ireland / from / am / I", "answer": "I am from Ireland.", "explanation": "I am from Ireland."},
+                        {"question": "Scotland / from / is / she", "answer": "She is from Scotland.", "explanation": "She is from Scotland."},
+                        {"question": "Wales / from / is / he", "answer": "He is from Wales.", "explanation": "He is from Wales."},
+                        {"question": "New / Zealand / from / are / they", "answer": "They are from New Zealand.", "explanation": "They are from New Zealand."},
+                        {"question": "South / Africa / from / are / we", "answer": "We are from South Africa.", "explanation": "We are from South Africa."},
+                        {"question": "Jamaica / from / is / she", "answer": "She is from Jamaica.", "explanation": "She is from Jamaica."},
+                        {"question": "Cuba / from / is / he", "answer": "He is from Cuba.", "explanation": "He is from Cuba."},
+                        {"question": "Vietnam / from / are / they", "answer": "They are from Vietnam.", "explanation": "They are from Vietnam."},
+                        {"question": "Thailand / from / am / I", "answer": "I am from Thailand.", "explanation": "I am from Thailand."},
+                        {"question": "Indonesia / from / are / we", "answer": "We are from Indonesia.", "explanation": "We are from Indonesia."}
+                    ]
+                }
+            ],
+            # Вариант 5
+            [
+                {
+                    "type": "complex",
+                    "text": "Вставьте правильную национальность.\n\n1. I am from Russia. I am ___.\n2. She is from the USA. She is ___.\n3. He is from the UK. He is ___.\n4. They are from France. They are ___.\n5. We are from Germany. We are ___.\n6. She is from Italy. She is ___.\n7. He is from Spain. He is ___.\n8. They are from China. They are ___.\n9. I am from Japan. I am ___.\n10. We are from Brazil. We are ___.",
+                    "subtasks": [
+                        {"question": "I am from Russia. I am ___.", "answer": "Russian", "explanation": "Russia → Russian"},
+                        {"question": "She is from the USA. She is ___.", "answer": "American", "explanation": "USA → American"},
+                        {"question": "He is from the UK. He is ___.", "answer": "British", "explanation": "UK → British"},
+                        {"question": "They are from France. They are ___.", "answer": "French", "explanation": "France → French"},
+                        {"question": "We are from Germany. We are ___.", "answer": "German", "explanation": "Germany → German"},
+                        {"question": "She is from Italy. She is ___.", "answer": "Italian", "explanation": "Italy → Italian"},
+                        {"question": "He is from Spain. He is ___.", "answer": "Spanish", "explanation": "Spain → Spanish"},
+                        {"question": "They are from China. They are ___.", "answer": "Chinese", "explanation": "China → Chinese"},
+                        {"question": "I am from Japan. I am ___.", "answer": "Japanese", "explanation": "Japan → Japanese"},
+                        {"question": "We are from Brazil. We are ___.", "answer": "Brazilian", "explanation": "Brazil → Brazilian"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Переведите предложения на английский (с национальностями).\n\n1. Я русский.\n2. Она американка.\n3. Он британец.\n4. Они французы.\n5. Мы немцы.\n6. Она итальянка.\n7. Он испанец.\n8. Они китайцы.\n9. Я японец.\n10. Мы бразильцы.",
+                    "subtasks": [
+                        {"question": "Я русский.", "answer": "I am Russian.", "explanation": "I am Russian."},
+                        {"question": "Она американка.", "answer": "She is American.", "explanation": "She is American."},
+                        {"question": "Он британец.", "answer": "He is British.", "explanation": "He is British."},
+                        {"question": "Они французы.", "answer": "They are French.", "explanation": "They are French."},
+                        {"question": "Мы немцы.", "answer": "We are German.", "explanation": "We are German."},
+                        {"question": "Она итальянка.", "answer": "She is Italian.", "explanation": "She is Italian."},
+                        {"question": "Он испанец.", "answer": "He is Spanish.", "explanation": "He is Spanish."},
+                        {"question": "Они китайцы.", "answer": "They are Chinese.", "explanation": "They are Chinese."},
+                        {"question": "Я японец.", "answer": "I am Japanese.", "explanation": "I am Japanese."},
+                        {"question": "Мы бразильцы.", "answer": "We are Brazilian.", "explanation": "We are Brazilian."}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Составьте предложения (национальности).\n\n1. Russian / am / I\n2. American / is / she\n3. British / is / he\n4. French / are / they\n5. German / are / we\n6. Italian / is / she\n7. Spanish / is / he\n8. Chinese / are / they\n9. Japanese / am / I\n10. Brazilian / are / we",
+                    "subtasks": [
+                        {"question": "Russian / am / I", "answer": "I am Russian.", "explanation": "I am Russian."},
+                        {"question": "American / is / she", "answer": "She is American.", "explanation": "She is American."},
+                        {"question": "British / is / he", "answer": "He is British.", "explanation": "He is British."},
+                        {"question": "French / are / they", "answer": "They are French.", "explanation": "They are French."},
+                        {"question": "German / are / we", "answer": "We are German.", "explanation": "We are German."},
+                        {"question": "Italian / is / she", "answer": "She is Italian.", "explanation": "She is Italian."},
+                        {"question": "Spanish / is / he", "answer": "He is Spanish.", "explanation": "He is Spanish."},
+                        {"question": "Chinese / are / they", "answer": "They are Chinese.", "explanation": "They are Chinese."},
+                        {"question": "Japanese / am / I", "answer": "I am Japanese.", "explanation": "I am Japanese."},
+                        {"question": "Brazilian / are / we", "answer": "We are Brazilian.", "explanation": "We are Brazilian."}
+                    ]
+                }
+            ],
+            # Вариант 6
+            [
+                {
+                    "type": "complex",
+                    "text": "Вставьте правильную национальность (смешанные).\n\n1. I am from Canada. I am ___.\n2. She is from Australia. She is ___.\n3. He is from India. He is ___.\n4. They are from Mexico. They are ___.\n5. We are from Egypt. We are ___.\n6. She is from Greece. She is ___.\n7. He is from Portugal. He is ___.\n8. They are from Turkey. They are ___.\n9. I am from South Korea. I am ___.\n10. We are from Argentina. We are ___.",
+                    "subtasks": [
+                        {"question": "I am from Canada. I am ___.", "answer": "Canadian", "explanation": "Canada → Canadian"},
+                        {"question": "She is from Australia. She is ___.", "answer": "Australian", "explanation": "Australia → Australian"},
+                        {"question": "He is from India. He is ___.", "answer": "Indian", "explanation": "India → Indian"},
+                        {"question": "They are from Mexico. They are ___.", "answer": "Mexican", "explanation": "Mexico → Mexican"},
+                        {"question": "We are from Egypt. We are ___.", "answer": "Egyptian", "explanation": "Egypt → Egyptian"},
+                        {"question": "She is from Greece. She is ___.", "answer": "Greek", "explanation": "Greece → Greek"},
+                        {"question": "He is from Portugal. He is ___.", "answer": "Portuguese", "explanation": "Portugal → Portuguese"},
+                        {"question": "They are from Turkey. They are ___.", "answer": "Turkish", "explanation": "Turkey → Turkish"},
+                        {"question": "I am from South Korea. I am ___.", "answer": "South Korean", "explanation": "South Korea → South Korean"},
+                        {"question": "We are from Argentina. We are ___.", "answer": "Argentinian", "explanation": "Argentina → Argentinian"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Переведите предложения на английский (национальности).\n\n1. Я канадец.\n2. Она австралийка.\n3. Он индиец.\n4. Они мексиканцы.\n5. Мы египтяне.\n6. Она гречанка.\n7. Он португалец.\n8. Они турки.\n9. Я южнокореец.\n10. Мы аргентинцы.",
+                    "subtasks": [
+                        {"question": "Я канадец.", "answer": "I am Canadian.", "explanation": "I am Canadian."},
+                        {"question": "Она австралийка.", "answer": "She is Australian.", "explanation": "She is Australian."},
+                        {"question": "Он индиец.", "answer": "He is Indian.", "explanation": "He is Indian."},
+                        {"question": "Они мексиканцы.", "answer": "They are Mexican.", "explanation": "They are Mexican."},
+                        {"question": "Мы египтяне.", "answer": "We are Egyptian.", "explanation": "We are Egyptian."},
+                        {"question": "Она гречанка.", "answer": "She is Greek.", "explanation": "She is Greek."},
+                        {"question": "Он португалец.", "answer": "He is Portuguese.", "explanation": "He is Portuguese."},
+                        {"question": "Они турки.", "answer": "They are Turkish.", "explanation": "They are Turkish."},
+                        {"question": "Я южнокореец.", "answer": "I am South Korean.", "explanation": "I am South Korean."},
+                        {"question": "Мы аргентинцы.", "answer": "We are Argentinian.", "explanation": "We are Argentinian."}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Составьте предложения из слов (национальности).\n\n1. Canadian / am / I\n2. Australian / is / she\n3. Indian / is / he\n4. Mexican / are / they\n5. Egyptian / are / we\n6. Greek / is / she\n7. Portuguese / is / he\n8. Turkish / are / they\n9. South / Korean / am / I\n10. Argentinian / are / we",
+                    "subtasks": [
+                        {"question": "Canadian / am / I", "answer": "I am Canadian.", "explanation": "I am Canadian."},
+                        {"question": "Australian / is / she", "answer": "She is Australian.", "explanation": "She is Australian."},
+                        {"question": "Indian / is / he", "answer": "He is Indian.", "explanation": "He is Indian."},
+                        {"question": "Mexican / are / they", "answer": "They are Mexican.", "explanation": "They are Mexican."},
+                        {"question": "Egyptian / are / we", "answer": "We are Egyptian.", "explanation": "We are Egyptian."},
+                        {"question": "Greek / is / she", "answer": "She is Greek.", "explanation": "She is Greek."},
+                        {"question": "Portuguese / is / he", "answer": "He is Portuguese.", "explanation": "He is Portuguese."},
+                        {"question": "Turkish / are / they", "answer": "They are Turkish.", "explanation": "They are Turkish."},
+                        {"question": "South / Korean / am / I", "answer": "I am South Korean.", "explanation": "I am South Korean."},
+                        {"question": "Argentinian / are / we", "answer": "We are Argentinian.", "explanation": "We are Argentinian."}
+                    ]
+                }
+            ],
+            # Вариант 7
+            [
+                {
+                    "type": "complex",
+                    "text": "Вставьте правильную национальность (смешанные).\n\n1. I am from Poland. I am ___.\n2. She is from Sweden. She is ___.\n3. He is from Norway. He is ___.\n4. They are from Finland. They are ___.\n5. We are from Denmark. We are ___.\n6. She is from the Netherlands. She is ___.\n7. He is from Belgium. He is ___.\n8. They are from Switzerland. They are ___.\n9. I am from Austria. I am ___.\n10. We are from Hungary. We are ___.",
+                    "subtasks": [
+                        {"question": "I am from Poland. I am ___.", "answer": "Polish", "explanation": "Poland → Polish"},
+                        {"question": "She is from Sweden. She is ___.", "answer": "Swedish", "explanation": "Sweden → Swedish"},
+                        {"question": "He is from Norway. He is ___.", "answer": "Norwegian", "explanation": "Norway → Norwegian"},
+                        {"question": "They are from Finland. They are ___.", "answer": "Finnish", "explanation": "Finland → Finnish"},
+                        {"question": "We are from Denmark. We are ___.", "answer": "Danish", "explanation": "Denmark → Danish"},
+                        {"question": "She is from the Netherlands. She is ___.", "answer": "Dutch", "explanation": "Netherlands → Dutch"},
+                        {"question": "He is from Belgium. He is ___.", "answer": "Belgian", "explanation": "Belgium → Belgian"},
+                        {"question": "They are from Switzerland. They are ___.", "answer": "Swiss", "explanation": "Switzerland → Swiss"},
+                        {"question": "I am from Austria. I am ___.", "answer": "Austrian", "explanation": "Austria → Austrian"},
+                        {"question": "We are from Hungary. We are ___.", "answer": "Hungarian", "explanation": "Hungary → Hungarian"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Переведите предложения на английский (национальности).\n\n1. Я поляк.\n2. Она шведка.\n3. Он норвежец.\n4. Они финны.\n5. Мы датчане.\n6. Она голландка.\n7. Он бельгиец.\n8. Они швейцарцы.\n9. Я австриец.\n10. Мы венгры.",
+                    "subtasks": [
+                        {"question": "Я поляк.", "answer": "I am Polish.", "explanation": "I am Polish."},
+                        {"question": "Она шведка.", "answer": "She is Swedish.", "explanation": "She is Swedish."},
+                        {"question": "Он норвежец.", "answer": "He is Norwegian.", "explanation": "He is Norwegian."},
+                        {"question": "Они финны.", "answer": "They are Finnish.", "explanation": "They are Finnish."},
+                        {"question": "Мы датчане.", "answer": "We are Danish.", "explanation": "We are Danish."},
+                        {"question": "Она голландка.", "answer": "She is Dutch.", "explanation": "She is Dutch."},
+                        {"question": "Он бельгиец.", "answer": "He is Belgian.", "explanation": "He is Belgian."},
+                        {"question": "Они швейцарцы.", "answer": "They are Swiss.", "explanation": "They are Swiss."},
+                        {"question": "Я австриец.", "answer": "I am Austrian.", "explanation": "I am Austrian."},
+                        {"question": "Мы венгры.", "answer": "We are Hungarian.", "explanation": "We are Hungarian."}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Составьте предложения из слов (национальности).\n\n1. Polish / am / I\n2. Swedish / is / she\n3. Norwegian / is / he\n4. Finnish / are / they\n5. Danish / are / we\n6. Dutch / is / she\n7. Belgian / is / he\n8. Swiss / are / they\n9. Austrian / am / I\n10. Hungarian / are / we",
+                    "subtasks": [
+                        {"question": "Polish / am / I", "answer": "I am Polish.", "explanation": "I am Polish."},
+                        {"question": "Swedish / is / she", "answer": "She is Swedish.", "explanation": "She is Swedish."},
+                        {"question": "Norwegian / is / he", "answer": "He is Norwegian.", "explanation": "He is Norwegian."},
+                        {"question": "Finnish / are / they", "answer": "They are Finnish.", "explanation": "They are Finnish."},
+                        {"question": "Danish / are / we", "answer": "We are Danish.", "explanation": "We are Danish."},
+                        {"question": "Dutch / is / she", "answer": "She is Dutch.", "explanation": "She is Dutch."},
+                        {"question": "Belgian / is / he", "answer": "He is Belgian.", "explanation": "He is Belgian."},
+                        {"question": "Swiss / are / they", "answer": "They are Swiss.", "explanation": "They are Swiss."},
+                        {"question": "Austrian / am / I", "answer": "I am Austrian.", "explanation": "I am Austrian."},
+                        {"question": "Hungarian / are / we", "answer": "We are Hungarian.", "explanation": "We are Hungarian."}
+                    ]
+                }
+            ],
+            # Вариант 8
+            [
+                {
+                    "type": "complex",
+                    "text": "Вставьте правильную национальность (смешанные).\n\n1. I am from Ireland. I am ___.\n2. She is from Scotland. She is ___.\n3. He is from Wales. He is ___.\n4. They are from New Zealand. They are ___.\n5. We are from South Africa. We are ___.\n6. She is from Jamaica. She is ___.\n7. He is from Cuba. He is ___.\n8. They are from Vietnam. They are ___.\n9. I am from Thailand. I am ___.\n10. We are from Indonesia. We are ___.",
+                    "subtasks": [
+                        {"question": "I am from Ireland. I am ___.", "answer": "Irish", "explanation": "Ireland → Irish"},
+                        {"question": "She is from Scotland. She is ___.", "answer": "Scottish", "explanation": "Scotland → Scottish"},
+                        {"question": "He is from Wales. He is ___.", "answer": "Welsh", "explanation": "Wales → Welsh"},
+                        {"question": "They are from New Zealand. They are ___.", "answer": "New Zealander", "explanation": "New Zealand → New Zealander"},
+                        {"question": "We are from South Africa. We are ___.", "answer": "South African", "explanation": "South Africa → South African"},
+                        {"question": "She is from Jamaica. She is ___.", "answer": "Jamaican", "explanation": "Jamaica → Jamaican"},
+                        {"question": "He is from Cuba. He is ___.", "answer": "Cuban", "explanation": "Cuba → Cuban"},
+                        {"question": "They are from Vietnam. They are ___.", "answer": "Vietnamese", "explanation": "Vietnam → Vietnamese"},
+                        {"question": "I am from Thailand. I am ___.", "answer": "Thai", "explanation": "Thailand → Thai"},
+                        {"question": "We are from Indonesia. We are ___.", "answer": "Indonesian", "explanation": "Indonesia → Indonesian"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Переведите предложения на английский (национальности).\n\n1. Я ирландец.\n2. Она шотландка.\n3. Он валлиец.\n4. Они новозеландцы.\n5. Мы южноафриканцы.\n6. Она ямайка.\n7. Он кубинец.\n8. Они вьетнамцы.\n9. Я таец.\n10. Мы индонезийцы.",
+                    "subtasks": [
+                        {"question": "Я ирландец.", "answer": "I am Irish.", "explanation": "I am Irish."},
+                        {"question": "Она шотландка.", "answer": "She is Scottish.", "explanation": "She is Scottish."},
+                        {"question": "Он валлиец.", "answer": "He is Welsh.", "explanation": "He is Welsh."},
+                        {"question": "Они новозеландцы.", "answer": "They are New Zealander.", "explanation": "They are New Zealander."},
+                        {"question": "Мы южноафриканцы.", "answer": "We are South African.", "explanation": "We are South African."},
+                        {"question": "Она ямайка.", "answer": "She is Jamaican.", "explanation": "She is Jamaican."},
+                        {"question": "Он кубинец.", "answer": "He is Cuban.", "explanation": "He is Cuban."},
+                        {"question": "Они вьетнамцы.", "answer": "They are Vietnamese.", "explanation": "They are Vietnamese."},
+                        {"question": "Я таец.", "answer": "I am Thai.", "explanation": "I am Thai."},
+                        {"question": "Мы индонезийцы.", "answer": "We are Indonesian.", "explanation": "We are Indonesian."}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Составьте предложения из слов (национальности).\n\n1. Irish / am / I\n2. Scottish / is / she\n3. Welsh / is / he\n4. New / Zealander / are / they\n5. South / African / are / we\n6. Jamaican / is / she\n7. Cuban / is / he\n8. Vietnamese / are / they\n9. Thai / am / I\n10. Indonesian / are / we",
+                    "subtasks": [
+                        {"question": "Irish / am / I", "answer": "I am Irish.", "explanation": "I am Irish."},
+                        {"question": "Scottish / is / she", "answer": "She is Scottish.", "explanation": "She is Scottish."},
+                        {"question": "Welsh / is / he", "answer": "He is Welsh.", "explanation": "He is Welsh."},
+                        {"question": "New / Zealander / are / they", "answer": "They are New Zealander.", "explanation": "They are New Zealander."},
+                        {"question": "South / African / are / we", "answer": "We are South African.", "explanation": "We are South African."},
+                        {"question": "Jamaican / is / she", "answer": "She is Jamaican.", "explanation": "She is Jamaican."},
+                        {"question": "Cuban / is / he", "answer": "He is Cuban.", "explanation": "He is Cuban."},
+                        {"question": "Vietnamese / are / they", "answer": "They are Vietnamese.", "explanation": "They are Vietnamese."},
+                        {"question": "Thai / am / I", "answer": "I am Thai.", "explanation": "I am Thai."},
+                        {"question": "Indonesian / are / we", "answer": "We are Indonesian.", "explanation": "We are Indonesian."}
+                    ]
+                }
+            ],
+            # Вариант 9
+            [
+                {
+                    "type": "complex",
+                    "text": "Вставьте правильную национальность (смешанные).\n\n1. I am from Russia. I am ___.\n2. She is from the USA. She is ___.\n3. He is from the UK. He is ___.\n4. They are from France. They are ___.\n5. We are from Germany. We are ___.\n6. She is from Italy. She is ___.\n7. He is from Spain. He is ___.\n8. They are from China. They are ___.\n9. I am from Japan. I am ___.\n10. We are from Brazil. We are ___.",
+                    "subtasks": [
+                        {"question": "I am from Russia. I am ___.", "answer": "Russian", "explanation": "Russia → Russian"},
+                        {"question": "She is from the USA. She is ___.", "answer": "American", "explanation": "USA → American"},
+                        {"question": "He is from the UK. He is ___.", "answer": "British", "explanation": "UK → British"},
+                        {"question": "They are from France. They are ___.", "answer": "French", "explanation": "France → French"},
+                        {"question": "We are from Germany. We are ___.", "answer": "German", "explanation": "Germany → German"},
+                        {"question": "She is from Italy. She is ___.", "answer": "Italian", "explanation": "Italy → Italian"},
+                        {"question": "He is from Spain. He is ___.", "answer": "Spanish", "explanation": "Spain → Spanish"},
+                        {"question": "They are from China. They are ___.", "answer": "Chinese", "explanation": "China → Chinese"},
+                        {"question": "I am from Japan. I am ___.", "answer": "Japanese", "explanation": "Japan → Japanese"},
+                        {"question": "We are from Brazil. We are ___.", "answer": "Brazilian", "explanation": "Brazil → Brazilian"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Переведите вопросы и отрицания с национальностями.\n\n1. Ты из России?\n2. Она не американка.\n3. Он британец?\n4. Они не французы.\n5. Мы немцы?\n6. Она итальянка?\n7. Он не испанец.\n8. Они китайцы?\n9. Я не японец.\n10. Мы из Бразилии?",
+                    "subtasks": [
+                        {"question": "Ты из России?", "answer": "Are you from Russia?", "explanation": "Are you from Russia?"},
+                        {"question": "Она не американка.", "answer": "She is not American.", "explanation": "She is not American."},
+                        {"question": "Он британец?", "answer": "Is he British?", "explanation": "Is he British?"},
+                        {"question": "Они не французы.", "answer": "They are not French.", "explanation": "They are not French."},
+                        {"question": "Мы немцы?", "answer": "Are we German?", "explanation": "Are we German?"},
+                        {"question": "Она итальянка?", "answer": "Is she Italian?", "explanation": "Is she Italian?"},
+                        {"question": "Он не испанец.", "answer": "He is not Spanish.", "explanation": "He is not Spanish."},
+                        {"question": "Они китайцы?", "answer": "Are they Chinese?", "explanation": "Are they Chinese?"},
+                        {"question": "Я не японец.", "answer": "I am not Japanese.", "explanation": "I am not Japanese."},
+                        {"question": "Мы из Бразилии?", "answer": "Are we from Brazil?", "explanation": "Are we from Brazil?"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Составьте предложения из слов (вопросы/отрицания).\n\n1. from / you / Russia / are / ?\n2. American / not / is / she\n3. British / he / is / ?\n4. not / French / are / they\n5. German / are / we / ?\n6. Italian / she / is / ?\n7. not / Spanish / is / he\n8. Chinese / are / they / ?\n9. Japanese / not / am / I\n10. Brazil / from / we / are / ?",
+                    "subtasks": [
+                        {"question": "from / you / Russia / are / ?", "answer": "Are you from Russia?", "explanation": "Вопрос: Are you from Russia?"},
+                        {"question": "American / not / is / she", "answer": "She is not American.", "explanation": "Отрицание: She is not American."},
+                        {"question": "British / he / is / ?", "answer": "Is he British?", "explanation": "Вопрос: Is he British?"},
+                        {"question": "not / French / are / they", "answer": "They are not French.", "explanation": "Отрицание: They are not French."},
+                        {"question": "German / are / we / ?", "answer": "Are we German?", "explanation": "Вопрос: Are we German?"},
+                        {"question": "Italian / she / is / ?", "answer": "Is she Italian?", "explanation": "Вопрос: Is she Italian?"},
+                        {"question": "not / Spanish / is / he", "answer": "He is not Spanish.", "explanation": "Отрицание: He is not Spanish."},
+                        {"question": "Chinese / are / they / ?", "answer": "Are they Chinese?", "explanation": "Вопрос: Are they Chinese?"},
+                        {"question": "Japanese / not / am / I", "answer": "I am not Japanese.", "explanation": "Отрицание: I am not Japanese."},
+                        {"question": "Brazil / from / we / are / ?", "answer": "Are we from Brazil?", "explanation": "Вопрос: Are we from Brazil?"}
+                    ]
+                }
+            ],
+            # Вариант 10
+            [
+                {
+                    "type": "complex",
+                    "text": "Вставьте правильную национальность (смешанные).\n\n1. I am from Canada. I am ___.\n2. She is from Australia. She is ___.\n3. He is from India. He is ___.\n4. They are from Mexico. They are ___.\n5. We are from Egypt. We are ___.\n6. She is from Greece. She is ___.\n7. He is from Portugal. He is ___.\n8. They are from Turkey. They are ___.\n9. I am from South Korea. I am ___.\n10. We are from Argentina. We are ___.",
+                    "subtasks": [
+                        {"question": "I am from Canada. I am ___.", "answer": "Canadian", "explanation": "Canada → Canadian"},
+                        {"question": "She is from Australia. She is ___.", "answer": "Australian", "explanation": "Australia → Australian"},
+                        {"question": "He is from India. He is ___.", "answer": "Indian", "explanation": "India → Indian"},
+                        {"question": "They are from Mexico. They are ___.", "answer": "Mexican", "explanation": "Mexico → Mexican"},
+                        {"question": "We are from Egypt. We are ___.", "answer": "Egyptian", "explanation": "Egypt → Egyptian"},
+                        {"question": "She is from Greece. She is ___.", "answer": "Greek", "explanation": "Greece → Greek"},
+                        {"question": "He is from Portugal. He is ___.", "answer": "Portuguese", "explanation": "Portugal → Portuguese"},
+                        {"question": "They are from Turkey. They are ___.", "answer": "Turkish", "explanation": "Turkey → Turkish"},
+                        {"question": "I am from South Korea. I am ___.", "answer": "South Korean", "explanation": "South Korea → South Korean"},
+                        {"question": "We are from Argentina. We are ___.", "answer": "Argentinian", "explanation": "Argentina → Argentinian"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Переведите вопросы и отрицания (национальности).\n\n1. Ты из Канады?\n2. Она не австралийка.\n3. Он индиец?\n4. Они не мексиканцы.\n5. Мы египтяне?\n6. Она гречанка?\n7. Он не португалец.\n8. Они турки?\n9. Я не южнокореец.\n10. Мы из Аргентины?",
+                    "subtasks": [
+                        {"question": "Ты из Канады?", "answer": "Are you from Canada?", "explanation": "Are you from Canada?"},
+                        {"question": "Она не австралийка.", "answer": "She is not Australian.", "explanation": "She is not Australian."},
+                        {"question": "Он индиец?", "answer": "Is he Indian?", "explanation": "Is he Indian?"},
+                        {"question": "Они не мексиканцы.", "answer": "They are not Mexican.", "explanation": "They are not Mexican."},
+                        {"question": "Мы египтяне?", "answer": "Are we Egyptian?", "explanation": "Are we Egyptian?"},
+                        {"question": "Она гречанка?", "answer": "Is she Greek?", "explanation": "Is she Greek?"},
+                        {"question": "Он не португалец.", "answer": "He is not Portuguese.", "explanation": "He is not Portuguese."},
+                        {"question": "Они турки?", "answer": "Are they Turkish?", "explanation": "Are they Turkish?"},
+                        {"question": "Я не южнокореец.", "answer": "I am not South Korean.", "explanation": "I am not South Korean."},
+                        {"question": "Мы из Аргентины?", "answer": "Are we from Argentina?", "explanation": "Are we from Argentina?"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Составьте предложения из слов (вопросы/отрицания).\n\n1. from / Canada / you / are / ?\n2. Australian / not / is / she\n3. Indian / he / is / ?\n4. not / Mexican / are / they\n5. Egyptian / are / we / ?\n6. Greek / she / is / ?\n7. not / Portuguese / is / he\n8. Turkish / are / they / ?\n9. South / Korean / not / am / I\n10. Argentina / from / we / are / ?",
+                    "subtasks": [
+                        {"question": "from / Canada / you / are / ?", "answer": "Are you from Canada?", "explanation": "Вопрос: Are you from Canada?"},
+                        {"question": "Australian / not / is / she", "answer": "She is not Australian.", "explanation": "Отрицание: She is not Australian."},
+                        {"question": "Indian / he / is / ?", "answer": "Is he Indian?", "explanation": "Вопрос: Is he Indian?"},
+                        {"question": "not / Mexican / are / they", "answer": "They are not Mexican.", "explanation": "Отрицание: They are not Mexican."},
+                        {"question": "Egyptian / are / we / ?", "answer": "Are we Egyptian?", "explanation": "Вопрос: Are we Egyptian?"},
+                        {"question": "Greek / she / is / ?", "answer": "Is she Greek?", "explanation": "Вопрос: Is she Greek?"},
+                        {"question": "not / Portuguese / is / he", "answer": "He is not Portuguese.", "explanation": "Отрицание: He is not Portuguese."},
+                        {"question": "Turkish / are / they / ?", "answer": "Are they Turkish?", "explanation": "Вопрос: Are they Turkish?"},
+                        {"question": "South / Korean / not / am / I", "answer": "I am not South Korean.", "explanation": "Отрицание: I am not South Korean."},
+                        {"question": "Argentina / from / we / are / ?", "answer": "Are we from Argentina?", "explanation": "Вопрос: Are we from Argentina?"}
+                    ]
+                }
+            ]
+        ]
   },
   "pronouns": {
     "title": "Личные и притяжательные местоимения",
