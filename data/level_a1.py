@@ -6022,228 +6022,518 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "answer": "Используйте do/does + наречие частотности: Do you often play football? Does she usually come on time?"
       }
     ],
-    "practice_tasks": [
-      {
-        "type": "fill_blank",
-        "text": "She ___ (go) to school every day.",
-        "correct": "goes",
-        "hint": "Добавьте -es к глаголу для he/she/it.",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "They ___ (play) football on Sundays.",
-        "correct": "play",
-        "hint": "Для they используйте форму без окончания.",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He ___ (watch) TV in the evening.",
-        "correct": "watches",
-        "hint": "После -ch добавьте -es.",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "I ___ (like) coffee.",
-        "correct": "like",
-        "hint": "Для I используйте базовую форму.",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The cat ___ (sleep) on the sofa.",
-        "correct": "sleeps",
-        "hint": "Добавьте -s для he/she/it.",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "We ___ (study) English every Monday.",
-        "correct": "study",
-        "hint": "Для we глагол без окончания.",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "My brother ___ (fix) cars.",
-        "correct": "fixes",
-        "hint": "После -x добавьте -es.",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "You ___ (read) books every night.",
-        "correct": "read",
-        "hint": "Для you форма глагола без изменений.",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "It ___ (rain) a lot in autumn.",
-        "correct": "rains",
-        "hint": "Добавьте -s для it.",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The children ___ (play) in the park.",
-        "correct": "play",
-        "hint": "Для множественного числа глагол без окончания.",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She ___ (wash) her car every Saturday.",
-        "correct": "washes",
-        "hint": "После -sh добавьте -es.",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "Tom and Jerry ___ (run) fast.",
-        "correct": "run",
-        "hint": "Множественное число — без окончания.",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "My mother ___ (cook) dinner.",
-        "correct": "cooks",
-        "hint": "Добавьте -s для he/she/it.",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "I ___ (do) my homework at 5 pm.",
-        "correct": "do",
-        "hint": "Для I используйте do.",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He ___ (go) to the gym twice a week.",
-        "correct": "goes",
-        "hint": "Добавьте -es к go.",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "We ___ (have) breakfast at 7 am.",
-        "correct": "have",
-        "hint": "Для we используйте have.",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She ___ (teach) math at school.",
-        "correct": "teaches",
-        "hint": "После -ch добавьте -es.",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The dog ___ (bark) loudly.",
-        "correct": "barks",
-        "hint": "Добавьте -s для it.",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "They ___ (drink) milk every morning.",
-        "correct": "drink",
-        "hint": "Для they без окончания.",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "My friend ___ (fly) to London every year.",
-        "correct": "flies",
-        "hint": "Y меняется на ies.",
-        "star": False
-      },
-      {
-        "type": "reorder",
-        "text": "Составьте предложение: goes / to / she / school / every / day",
-        "correct": "She goes to school every day.",
-        "hint": "Начните с подлежащего.",
-        "star": True
-      },
-      {
-        "type": "reorder",
-        "text": "Составьте предложение: play / they / football / on / Sundays",
-        "correct": "They play football on Sundays.",
-        "hint": "Подлежащее + глагол + остальное.",
-        "star": True
-      },
-      {
-        "type": "translation",
-        "text": "Переведите: Он читает книги каждый вечер.",
-        "correct": "He reads books every evening.",
-        "hint": "Не забудьте -s к глаголу.",
-        "star": True
-      },
-      {
-        "type": "translation",
-        "text": "Переведите: Мы не едим мясо по понедельникам.",
-        "correct": "We do not eat meat on Mondays.",
-        "hint": "Используйте do not для отрицания.",
-        "star": True
-      },
-      {
-        "type": "choice",
-        "text": "She ___ to music every day.",
-        "correct": "listens",
-        "hint": "Для he/she/it добавьте -s.",
-        "options": [
-          "listen",
-          "listens",
-          "listening"
-        ],
-        "star": True
-      },
-      {
-        "type": "choice",
-        "text": "They ___ coffee in the morning.",
-        "correct": "drink",
-        "hint": "Для they без окончания.",
-        "options": [
-          "drinks",
-          "drink",
-          "drinking"
-        ],
-        "star": True
-      },
-      {
-        "type": "open",
-        "text": "Напишите утверждение: I (like) apples.",
-        "correct": "I like apples.",
-        "hint": "Просто используйте like.",
-        "star": True
-      },
-      {
-        "type": "open",
-        "text": "Напишите отрицание: She (work) on Sundays.",
-        "correct": "She does not work on Sundays.",
-        "hint": "Используйте does not + глагол.",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "He ___ (study) hard for exams.",
-        "correct": "studies",
-        "hint": "Y меняется на ies.",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "I ___ (not / like) cold weather.",
-        "correct": "do not like",
-        "hint": "Используйте do not для I.",
-        "star": True
-      }
-    ]
+            "practice_bank": [
+            # Вариант 1
+            [
+                {
+                    "type": "complex",
+                    "text": "Вставьте глагол в правильной форме (Present Simple).\n\n1. I ___ (go) to school every day.\n2. She ___ (read) books in the evening.\n3. We ___ (play) football on Sundays.\n4. He ___ (drink) coffee in the morning.\n5. They ___ (live) in London.\n6. It ___ (rain) a lot in autumn.\n7. You ___ (like) chocolate.\n8. My mother ___ (cook) dinner every day.\n9. The sun ___ (rise) in the east.\n10. I ___ (study) English at university.",
+                    "subtasks": [
+                        {"question": "I ___ (go) to school every day.", "answer": "go", "explanation": "I + go (без -s)"},
+                        {"question": "She ___ (read) books in the evening.", "answer": "reads", "explanation": "she + reads (-s)"},
+                        {"question": "We ___ (play) football on Sundays.", "answer": "play", "explanation": "we + play (без -s)"},
+                        {"question": "He ___ (drink) coffee in the morning.", "answer": "drinks", "explanation": "he + drinks (-s)"},
+                        {"question": "They ___ (live) in London.", "answer": "live", "explanation": "they + live (без -s)"},
+                        {"question": "It ___ (rain) a lot in autumn.", "answer": "rains", "explanation": "it + rains (-s)"},
+                        {"question": "You ___ (like) chocolate.", "answer": "like", "explanation": "you + like (без -s)"},
+                        {"question": "My mother ___ (cook) dinner every day.", "answer": "cooks", "explanation": "mother = she → cooks (-s)"},
+                        {"question": "The sun ___ (rise) in the east.", "answer": "rises", "explanation": "sun = it → rises (-s)"},
+                        {"question": "I ___ (study) English at university.", "answer": "study", "explanation": "I + study (без -s)"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Переведите предложения на английский (Present Simple).\n\n1. Я хожу в школу каждый день.\n2. Она читает книги по вечерам.\n3. Мы играем в футбол по воскресеньям.\n4. Он пьёт кофе утром.\n5. Они живут в Лондоне.\n6. Осенью часто идёт дождь.\n7. Ты любишь шоколад.\n8. Моя мама готовит ужин каждый день.\n9. Солнце встаёт на востоке.\n10. Я учу английский в университете.",
+                    "subtasks": [
+                        {"question": "Я хожу в школу каждый день.", "answer": "I go to school every day.", "explanation": "I go to school every day."},
+                        {"question": "Она читает книги по вечерам.", "answer": "She reads books in the evening.", "explanation": "She reads books in the evening."},
+                        {"question": "Мы играем в футбол по воскресеньям.", "answer": "We play football on Sundays.", "explanation": "We play football on Sundays."},
+                        {"question": "Он пьёт кофе утром.", "answer": "He drinks coffee in the morning.", "explanation": "He drinks coffee in the morning."},
+                        {"question": "Они живут в Лондоне.", "answer": "They live in London.", "explanation": "They live in London."},
+                        {"question": "Осенью часто идёт дождь.", "answer": "It rains a lot in autumn.", "explanation": "It rains a lot in autumn."},
+                        {"question": "Ты любишь шоколад.", "answer": "You like chocolate.", "explanation": "You like chocolate."},
+                        {"question": "Моя мама готовит ужин каждый день.", "answer": "My mother cooks dinner every day.", "explanation": "My mother cooks dinner every day."},
+                        {"question": "Солнце встаёт на востоке.", "answer": "The sun rises in the east.", "explanation": "The sun rises in the east."},
+                        {"question": "Я учу английский в университете.", "answer": "I study English at university.", "explanation": "I study English at university."}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Составьте предложения из слов (Present Simple).\n\n1. go / I / school / every / to / day\n2. reads / books / in / she / evening / the\n3. play / on / football / Sundays / we\n4. drinks / morning / coffee / he / in / the\n5. London / in / live / they\n6. autumn / a / lot / rains / in / it\n7. like / chocolate / you\n8. cooks / dinner / every / mother / my / day\n9. the / east / in / rises / sun / the\n10. at / university / study / English / I",
+                    "subtasks": [
+                        {"question": "go / I / school / every / to / day", "answer": "I go to school every day.", "explanation": "I go to school every day."},
+                        {"question": "reads / books / in / she / evening / the", "answer": "She reads books in the evening.", "explanation": "She reads books in the evening."},
+                        {"question": "play / on / football / Sundays / we", "answer": "We play football on Sundays.", "explanation": "We play football on Sundays."},
+                        {"question": "drinks / morning / coffee / he / in / the", "answer": "He drinks coffee in the morning.", "explanation": "He drinks coffee in the morning."},
+                        {"question": "London / in / live / they", "answer": "They live in London.", "explanation": "They live in London."},
+                        {"question": "autumn / a / lot / rains / in / it", "answer": "It rains a lot in autumn.", "explanation": "It rains a lot in autumn."},
+                        {"question": "like / chocolate / you", "answer": "You like chocolate.", "explanation": "You like chocolate."},
+                        {"question": "cooks / dinner / every / mother / my / day", "answer": "My mother cooks dinner every day.", "explanation": "My mother cooks dinner every day."},
+                        {"question": "the / east / in / rises / sun / the", "answer": "The sun rises in the east.", "explanation": "The sun rises in the east."},
+                        {"question": "at / university / study / English / I", "answer": "I study English at university.", "explanation": "I study English at university."}
+                    ]
+                }
+            ],
+            # Вариант 2
+            [
+                {
+                    "type": "complex",
+                    "text": "Вставьте глагол в правильной форме (Present Simple).\n\n1. He ___ (work) in a bank.\n2. We ___ (eat) breakfast at 8 o'clock.\n3. She ___ (speak) French.\n4. They ___ (drive) to work every day.\n5. I ___ (like) pizza.\n6. It ___ (snow) in winter.\n7. You ___ (understand) me.\n8. My father ___ (read) newspapers in the morning.\n9. The Earth ___ (go) around the Sun.\n10. We ___ (watch) TV in the evening.",
+                    "subtasks": [
+                        {"question": "He ___ (work) in a bank.", "answer": "works", "explanation": "he + works (-s)"},
+                        {"question": "We ___ (eat) breakfast at 8 o'clock.", "answer": "eat", "explanation": "we + eat (без -s)"},
+                        {"question": "She ___ (speak) French.", "answer": "speaks", "explanation": "she + speaks (-s)"},
+                        {"question": "They ___ (drive) to work every day.", "answer": "drive", "explanation": "they + drive (без -s)"},
+                        {"question": "I ___ (like) pizza.", "answer": "like", "explanation": "I + like (без -s)"},
+                        {"question": "It ___ (snow) in winter.", "answer": "snows", "explanation": "it + snows (-s)"},
+                        {"question": "You ___ (understand) me.", "answer": "understand", "explanation": "you + understand (без -s)"},
+                        {"question": "My father ___ (read) newspapers in the morning.", "answer": "reads", "explanation": "father = he → reads (-s)"},
+                        {"question": "The Earth ___ (go) around the Sun.", "answer": "goes", "explanation": "Earth = it → goes (-es)"},
+                        {"question": "We ___ (watch) TV in the evening.", "answer": "watch", "explanation": "we + watch (без -s)"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Переведите предложения на английский (Present Simple).\n\n1. Он работает в банке.\n2. Мы завтракаем в 8 часов.\n3. Она говорит по-французски.\n4. Они ездят на работу каждый день.\n5. Я люблю пиццу.\n6. Зимой идёт снег.\n7. Ты понимаешь меня.\n8. Мой отец читает газеты утром.\n9. Земля вращается вокруг Солнца.\n10. Мы смотрим телевизор вечером.",
+                    "subtasks": [
+                        {"question": "Он работает в банке.", "answer": "He works in a bank.", "explanation": "He works in a bank."},
+                        {"question": "Мы завтракаем в 8 часов.", "answer": "We eat breakfast at 8 o'clock.", "explanation": "We eat breakfast at 8 o'clock."},
+                        {"question": "Она говорит по-французски.", "answer": "She speaks French.", "explanation": "She speaks French."},
+                        {"question": "Они ездят на работу каждый день.", "answer": "They drive to work every day.", "explanation": "They drive to work every day."},
+                        {"question": "Я люблю пиццу.", "answer": "I like pizza.", "explanation": "I like pizza."},
+                        {"question": "Зимой идёт снег.", "answer": "It snows in winter.", "explanation": "It snows in winter."},
+                        {"question": "Ты понимаешь меня.", "answer": "You understand me.", "explanation": "You understand me."},
+                        {"question": "Мой отец читает газеты утром.", "answer": "My father reads newspapers in the morning.", "explanation": "My father reads newspapers in the morning."},
+                        {"question": "Земля вращается вокруг Солнца.", "answer": "The Earth goes around the Sun.", "explanation": "The Earth goes around the Sun."},
+                        {"question": "Мы смотрим телевизор вечером.", "answer": "We watch TV in the evening.", "explanation": "We watch TV in the evening."}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Составьте предложения из слов.\n\n1. bank / in / works / a / he\n2. at / breakfast / eat / 8 / we / o'clock\n3. speaks / French / she\n4. every / drive / they / to / work / day\n5. like / pizza / I\n6. winter / snows / it / in\n7. understand / me / you\n8. newspapers / father / reads / my / morning / in / the\n9. Sun / the / goes / around / Earth / the\n10. evening / TV / we / in / watch / the",
+                    "subtasks": [
+                        {"question": "bank / in / works / a / he", "answer": "He works in a bank.", "explanation": "He works in a bank."},
+                        {"question": "at / breakfast / eat / 8 / we / o'clock", "answer": "We eat breakfast at 8 o'clock.", "explanation": "We eat breakfast at 8 o'clock."},
+                        {"question": "speaks / French / she", "answer": "She speaks French.", "explanation": "She speaks French."},
+                        {"question": "every / drive / they / to / work / day", "answer": "They drive to work every day.", "explanation": "They drive to work every day."},
+                        {"question": "like / pizza / I", "answer": "I like pizza.", "explanation": "I like pizza."},
+                        {"question": "winter / snows / it / in", "answer": "It snows in winter.", "explanation": "It snows in winter."},
+                        {"question": "understand / me / you", "answer": "You understand me.", "explanation": "You understand me."},
+                        {"question": "newspapers / father / reads / my / morning / in / the", "answer": "My father reads newspapers in the morning.", "explanation": "My father reads newspapers in the morning."},
+                        {"question": "Sun / the / goes / around / Earth / the", "answer": "The Earth goes around the Sun.", "explanation": "The Earth goes around the Sun."},
+                        {"question": "evening / TV / we / in / watch / the", "answer": "We watch TV in the evening.", "explanation": "We watch TV in the evening."}
+                    ]
+                }
+            ],
+            # Вариант 3
+            [
+                {
+                    "type": "complex",
+                    "text": "Вставьте глагол в правильной форме (Present Simple).\n\n1. My sister ___ (work) in a hospital.\n2. They ___ (play) tennis every weekend.\n3. He ___ (study) English at school.\n4. I ___ (drink) tea in the morning.\n5. She ___ (live) in a big house.\n6. We ___ (go) to the cinema on Fridays.\n7. It ___ (rain) a lot in spring.\n8. You ___ (know) the answer.\n9. The shop ___ (open) at 9 o'clock.\n10. They ___ (have) a dog.",
+                    "subtasks": [
+                        {"question": "My sister ___ (work) in a hospital.", "answer": "works", "explanation": "sister = she → works (-s)"},
+                        {"question": "They ___ (play) tennis every weekend.", "answer": "play", "explanation": "they + play (без -s)"},
+                        {"question": "He ___ (study) English at school.", "answer": "studies", "explanation": "he + studies (-ies)"},
+                        {"question": "I ___ (drink) tea in the morning.", "answer": "drink", "explanation": "I + drink (без -s)"},
+                        {"question": "She ___ (live) in a big house.", "answer": "lives", "explanation": "she + lives (-s)"},
+                        {"question": "We ___ (go) to the cinema on Fridays.", "answer": "go", "explanation": "we + go (без -s)"},
+                        {"question": "It ___ (rain) a lot in spring.", "answer": "rains", "explanation": "it + rains (-s)"},
+                        {"question": "You ___ (know) the answer.", "answer": "know", "explanation": "you + know (без -s)"},
+                        {"question": "The shop ___ (open) at 9 o'clock.", "answer": "opens", "explanation": "shop = it → opens (-s)"},
+                        {"question": "They ___ (have) a dog.", "answer": "have", "explanation": "they + have (без -s)"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Переведите предложения на английский (Present Simple).\n\n1. Моя сестра работает в больнице.\n2. Они играют в теннис каждые выходные.\n3. Он учит английский в школе.\n4. Я пью чай утром.\n5. Она живёт в большом доме.\n6. Мы ходим в кино по пятницам.\n7. Весной часто идёт дождь.\n8. Ты знаешь ответ.\n9. Магазин открывается в 9 часов.\n10. У них есть собака.",
+                    "subtasks": [
+                        {"question": "Моя сестра работает в больнице.", "answer": "My sister works in a hospital.", "explanation": "My sister works in a hospital."},
+                        {"question": "Они играют в теннис каждые выходные.", "answer": "They play tennis every weekend.", "explanation": "They play tennis every weekend."},
+                        {"question": "Он учит английский в школе.", "answer": "He studies English at school.", "explanation": "He studies English at school."},
+                        {"question": "Я пью чай утром.", "answer": "I drink tea in the morning.", "explanation": "I drink tea in the morning."},
+                        {"question": "Она живёт в большом доме.", "answer": "She lives in a big house.", "explanation": "She lives in a big house."},
+                        {"question": "Мы ходим в кино по пятницам.", "answer": "We go to the cinema on Fridays.", "explanation": "We go to the cinema on Fridays."},
+                        {"question": "Весной часто идёт дождь.", "answer": "It rains a lot in spring.", "explanation": "It rains a lot in spring."},
+                        {"question": "Ты знаешь ответ.", "answer": "You know the answer.", "explanation": "You know the answer."},
+                        {"question": "Магазин открывается в 9 часов.", "answer": "The shop opens at 9 o'clock.", "explanation": "The shop opens at 9 o'clock."},
+                        {"question": "У них есть собака.", "answer": "They have a dog.", "explanation": "They have a dog."}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Составьте предложения из слов.\n\n1. hospital / in / sister / works / my / a\n2. tennis / every / play / weekend / they\n3. at / studies / school / English / he\n4. tea / morning / drink / in / I / the\n5. big / house / in / lives / she / a\n6. Fridays / go / on / we / cinema / to / the\n7. spring / rains / a / in / lot / it\n8. answer / know / the / you\n9. 9 / at / opens / o'clock / shop / the\n10. dog / have / a / they",
+                    "subtasks": [
+                        {"question": "hospital / in / sister / works / my / a", "answer": "My sister works in a hospital.", "explanation": "My sister works in a hospital."},
+                        {"question": "tennis / every / play / weekend / they", "answer": "They play tennis every weekend.", "explanation": "They play tennis every weekend."},
+                        {"question": "at / studies / school / English / he", "answer": "He studies English at school.", "explanation": "He studies English at school."},
+                        {"question": "tea / morning / drink / in / I / the", "answer": "I drink tea in the morning.", "explanation": "I drink tea in the morning."},
+                        {"question": "big / house / in / lives / she / a", "answer": "She lives in a big house.", "explanation": "She lives in a big house."},
+                        {"question": "Fridays / go / on / we / cinema / to / the", "answer": "We go to the cinema on Fridays.", "explanation": "We go to the cinema on Fridays."},
+                        {"question": "spring / rains / a / in / lot / it", "answer": "It rains a lot in spring.", "explanation": "It rains a lot in spring."},
+                        {"question": "answer / know / the / you", "answer": "You know the answer.", "explanation": "You know the answer."},
+                        {"question": "9 / at / opens / o'clock / shop / the", "answer": "The shop opens at 9 o'clock.", "explanation": "The shop opens at 9 o'clock."},
+                        {"question": "dog / have / a / they", "answer": "They have a dog.", "explanation": "They have a dog."}
+                    ]
+                }
+            ],
+            # Вариант 4
+            [
+                {
+                    "type": "complex",
+                    "text": "Вставьте глагол в правильной форме (Present Simple).\n\n1. She ___ (take) the bus to work.\n2. They ___ (eat) dinner at 7 pm.\n3. He ___ (play) the guitar.\n4. I ___ (write) emails every day.\n5. We ___ (visit) our grandparents on Sundays.\n6. It ___ (freeze) in winter.\n7. You ___ (make) a lot of noise.\n8. My brother ___ (do) his homework in the evening.\n9. The train ___ (arrive) at 10 am.\n10. They ___ (want) to go home.",
+                    "subtasks": [
+                        {"question": "She ___ (take) the bus to work.", "answer": "takes", "explanation": "she + takes (-s)"},
+                        {"question": "They ___ (eat) dinner at 7 pm.", "answer": "eat", "explanation": "they + eat (без -s)"},
+                        {"question": "He ___ (play) the guitar.", "answer": "plays", "explanation": "he + plays (-s)"},
+                        {"question": "I ___ (write) emails every day.", "answer": "write", "explanation": "I + write (без -s)"},
+                        {"question": "We ___ (visit) our grandparents on Sundays.", "answer": "visit", "explanation": "we + visit (без -s)"},
+                        {"question": "It ___ (freeze) in winter.", "answer": "freezes", "explanation": "it + freezes (-es)"},
+                        {"question": "You ___ (make) a lot of noise.", "answer": "make", "explanation": "you + make (без -s)"},
+                        {"question": "My brother ___ (do) his homework in the evening.", "answer": "does", "explanation": "brother = he → does (-es)"},
+                        {"question": "The train ___ (arrive) at 10 am.", "answer": "arrives", "explanation": "train = it → arrives (-s)"},
+                        {"question": "They ___ (want) to go home.", "answer": "want", "explanation": "they + want (без -s)"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Переведите предложения на английский (Present Simple).\n\n1. Она ездит на автобусе на работу.\n2. Они ужинают в 7 часов вечера.\n3. Он играет на гитаре.\n4. Я пишу письма каждый день.\n5. Мы навещаем бабушку и дедушку по воскресеньям.\n6. Зимой бывает мороз.\n7. Ты много шумишь.\n8. Мой брат делает домашнее задание вечером.\n9. Поезд прибывает в 10 утра.\n10. Они хотят пойти домой.",
+                    "subtasks": [
+                        {"question": "Она ездит на автобусе на работу.", "answer": "She takes the bus to work.", "explanation": "She takes the bus to work."},
+                        {"question": "Они ужинают в 7 часов вечера.", "answer": "They eat dinner at 7 pm.", "explanation": "They eat dinner at 7 pm."},
+                        {"question": "Он играет на гитаре.", "answer": "He plays the guitar.", "explanation": "He plays the guitar."},
+                        {"question": "Я пишу письма каждый день.", "answer": "I write emails every day.", "explanation": "I write emails every day."},
+                        {"question": "Мы навещаем бабушку и дедушку по воскресеньям.", "answer": "We visit our grandparents on Sundays.", "explanation": "We visit our grandparents on Sundays."},
+                        {"question": "Зимой бывает мороз.", "answer": "It freezes in winter.", "explanation": "It freezes in winter."},
+                        {"question": "Ты много шумишь.", "answer": "You make a lot of noise.", "explanation": "You make a lot of noise."},
+                        {"question": "Мой брат делает домашнее задание вечером.", "answer": "My brother does his homework in the evening.", "explanation": "My brother does his homework in the evening."},
+                        {"question": "Поезд прибывает в 10 утра.", "answer": "The train arrives at 10 am.", "explanation": "The train arrives at 10 am."},
+                        {"question": "Они хотят пойти домой.", "answer": "They want to go home.", "explanation": "They want to go home."}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Составьте предложения из слов.\n\n1. bus / work / takes / to / the / she\n2. 7 / eat / dinner / at / they / pm\n3. guitar / the / plays / he\n4. write / emails / every / day / I\n5. grandparents / visit / on / Sundays / our / we\n6. winter / freezes / it / in\n7. noise / a / make / lot / of / you\n8. homework / his / evening / brother / does / my / in / the\n9. 10 / train / am / arrives / the / at\n10. go / want / home / to / they",
+                    "subtasks": [
+                        {"question": "bus / work / takes / to / the / she", "answer": "She takes the bus to work.", "explanation": "She takes the bus to work."},
+                        {"question": "7 / eat / dinner / at / they / pm", "answer": "They eat dinner at 7 pm.", "explanation": "They eat dinner at 7 pm."},
+                        {"question": "guitar / the / plays / he", "answer": "He plays the guitar.", "explanation": "He plays the guitar."},
+                        {"question": "write / emails / every / day / I", "answer": "I write emails every day.", "explanation": "I write emails every day."},
+                        {"question": "grandparents / visit / on / Sundays / our / we", "answer": "We visit our grandparents on Sundays.", "explanation": "We visit our grandparents on Sundays."},
+                        {"question": "winter / freezes / it / in", "answer": "It freezes in winter.", "explanation": "It freezes in winter."},
+                        {"question": "noise / a / make / lot / of / you", "answer": "You make a lot of noise.", "explanation": "You make a lot of noise."},
+                        {"question": "homework / his / evening / brother / does / my / in / the", "answer": "My brother does his homework in the evening.", "explanation": "My brother does his homework in the evening."},
+                        {"question": "10 / train / am / arrives / the / at", "answer": "The train arrives at 10 am.", "explanation": "The train arrives at 10 am."},
+                        {"question": "go / want / home / to / they", "answer": "They want to go home.", "explanation": "They want to go home."}
+                    ]
+                }
+            ],
+            # Вариант 5
+            [
+                {
+                    "type": "complex",
+                    "text": "Вставьте глагол в правильной форме (Present Simple).\n\n1. He ___ (teach) English at school.\n2. We ___ (buy) food at the supermarket.\n3. She ___ (listen) to music every day.\n4. I ___ (like) to read books.\n5. They ___ (speak) three languages.\n6. It ___ (become) cold in autumn.\n7. You ___ (look) tired.\n8. My mother ___ (cook) very well.\n9. The children ___ (play) in the garden.\n10. I ___ (get) up at 7 o'clock.",
+                    "subtasks": [
+                        {"question": "He ___ (teach) English at school.", "answer": "teaches", "explanation": "he + teaches (-es)"},
+                        {"question": "We ___ (buy) food at the supermarket.", "answer": "buy", "explanation": "we + buy (без -s)"},
+                        {"question": "She ___ (listen) to music every day.", "answer": "listens", "explanation": "she + listens (-s)"},
+                        {"question": "I ___ (like) to read books.", "answer": "like", "explanation": "I + like (без -s)"},
+                        {"question": "They ___ (speak) three languages.", "answer": "speak", "explanation": "they + speak (без -s)"},
+                        {"question": "It ___ (become) cold in autumn.", "answer": "becomes", "explanation": "it + becomes (-s)"},
+                        {"question": "You ___ (look) tired.", "answer": "look", "explanation": "you + look (без -s)"},
+                        {"question": "My mother ___ (cook) very well.", "answer": "cooks", "explanation": "mother = she → cooks (-s)"},
+                        {"question": "The children ___ (play) in the garden.", "answer": "play", "explanation": "children = they → play (без -s)"},
+                        {"question": "I ___ (get) up at 7 o'clock.", "answer": "get", "explanation": "I + get (без -s)"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Переведите предложения на английский (Present Simple).\n\n1. Он преподаёт английский в школе.\n2. Мы покупаем продукты в супермаркете.\n3. Она слушает музыку каждый день.\n4. Я люблю читать книги.\n5. Они говорят на трёх языках.\n6. Осенью становится холодно.\n7. Ты выглядишь уставшим.\n8. Моя мама очень хорошо готовит.\n9. Дети играют в саду.\n10. Я встаю в 7 часов.",
+                    "subtasks": [
+                        {"question": "Он преподаёт английский в школе.", "answer": "He teaches English at school.", "explanation": "He teaches English at school."},
+                        {"question": "Мы покупаем продукты в супермаркете.", "answer": "We buy food at the supermarket.", "explanation": "We buy food at the supermarket."},
+                        {"question": "Она слушает музыку каждый день.", "answer": "She listens to music every day.", "explanation": "She listens to music every day."},
+                        {"question": "Я люблю читать книги.", "answer": "I like to read books.", "explanation": "I like to read books."},
+                        {"question": "Они говорят на трёх языках.", "answer": "They speak three languages.", "explanation": "They speak three languages."},
+                        {"question": "Осенью становится холодно.", "answer": "It becomes cold in autumn.", "explanation": "It becomes cold in autumn."},
+                        {"question": "Ты выглядишь уставшим.", "answer": "You look tired.", "explanation": "You look tired."},
+                        {"question": "Моя мама очень хорошо готовит.", "answer": "My mother cooks very well.", "explanation": "My mother cooks very well."},
+                        {"question": "Дети играют в саду.", "answer": "The children play in the garden.", "explanation": "The children play in the garden."},
+                        {"question": "Я встаю в 7 часов.", "answer": "I get up at 7 o'clock.", "explanation": "I get up at 7 o'clock."}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Составьте предложения из слов.\n\n1. teaches / school / at / English / he\n2. supermarket / buy / food / at / we / the\n3. music / to / listens / every / she / day\n4. like / read / to / books / I\n5. languages / three / speak / they\n6. autumn / becomes / cold / it / in\n7. tired / look / you\n8. very / mother / cooks / my / well\n9. garden / play / the / children / in\n10. 7 / get / at / up / I / o'clock",
+                    "subtasks": [
+                        {"question": "teaches / school / at / English / he", "answer": "He teaches English at school.", "explanation": "He teaches English at school."},
+                        {"question": "supermarket / buy / food / at / we / the", "answer": "We buy food at the supermarket.", "explanation": "We buy food at the supermarket."},
+                        {"question": "music / to / listens / every / she / day", "answer": "She listens to music every day.", "explanation": "She listens to music every day."},
+                        {"question": "like / read / to / books / I", "answer": "I like to read books.", "explanation": "I like to read books."},
+                        {"question": "languages / three / speak / they", "answer": "They speak three languages.", "explanation": "They speak three languages."},
+                        {"question": "autumn / becomes / cold / it / in", "answer": "It becomes cold in autumn.", "explanation": "It becomes cold in autumn."},
+                        {"question": "tired / look / you", "answer": "You look tired.", "explanation": "You look tired."},
+                        {"question": "very / mother / cooks / my / well", "answer": "My mother cooks very well.", "explanation": "My mother cooks very well."},
+                        {"question": "garden / play / the / children / in", "answer": "The children play in the garden.", "explanation": "The children play in the garden."},
+                        {"question": "7 / get / at / up / I / o'clock", "answer": "I get up at 7 o'clock.", "explanation": "I get up at 7 o'clock."}
+                    ]
+                }
+            ],
+            # Вариант 6
+            [
+                {
+                    "type": "complex",
+                    "text": "Вставьте глагол в правильной форме (Present Simple).\n\n1. They ___ (go) to the gym every Monday.\n2. She ___ (wash) her car on Saturdays.\n3. He ___ (fix) computers.\n4. I ___ (read) the news in the morning.\n5. We ___ (help) our parents.\n6. It ___ (melt) in spring.\n7. You ___ (know) the truth.\n8. My uncle ___ (drive) a truck.\n9. The birds ___ (sing) in the morning.\n10. I ___ (have) a shower every day.",
+                    "subtasks": [
+                        {"question": "They ___ (go) to the gym every Monday.", "answer": "go", "explanation": "they + go (без -s)"},
+                        {"question": "She ___ (wash) her car on Saturdays.", "answer": "washes", "explanation": "she + washes (-es)"},
+                        {"question": "He ___ (fix) computers.", "answer": "fixes", "explanation": "he + fixes (-es)"},
+                        {"question": "I ___ (read) the news in the morning.", "answer": "read", "explanation": "I + read (без -s)"},
+                        {"question": "We ___ (help) our parents.", "answer": "help", "explanation": "we + help (без -s)"},
+                        {"question": "It ___ (melt) in spring.", "answer": "melts", "explanation": "it + melts (-s)"},
+                        {"question": "You ___ (know) the truth.", "answer": "know", "explanation": "you + know (без -s)"},
+                        {"question": "My uncle ___ (drive) a truck.", "answer": "drives", "explanation": "uncle = he → drives (-s)"},
+                        {"question": "The birds ___ (sing) in the morning.", "answer": "sing", "explanation": "birds = they → sing (без -s)"},
+                        {"question": "I ___ (have) a shower every day.", "answer": "have", "explanation": "I + have (без -s)"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Переведите предложения на английский (Present Simple).\n\n1. Они ходят в спортзал каждый понедельник.\n2. Она моет машину по субботам.\n3. Он чинит компьютеры.\n4. Я читаю новости утром.\n5. Мы помогаем нашим родителям.\n6. Весной тает снег.\n7. Ты знаешь правду.\n8. Мой дядя водит грузовик.\n9. Птицы поют утром.\n10. Я принимаю душ каждый день.",
+                    "subtasks": [
+                        {"question": "Они ходят в спортзал каждый понедельник.", "answer": "They go to the gym every Monday.", "explanation": "They go to the gym every Monday."},
+                        {"question": "Она моет машину по субботам.", "answer": "She washes her car on Saturdays.", "explanation": "She washes her car on Saturdays."},
+                        {"question": "Он чинит компьютеры.", "answer": "He fixes computers.", "explanation": "He fixes computers."},
+                        {"question": "Я читаю новости утром.", "answer": "I read the news in the morning.", "explanation": "I read the news in the morning."},
+                        {"question": "Мы помогаем нашим родителям.", "answer": "We help our parents.", "explanation": "We help our parents."},
+                        {"question": "Весной тает снег.", "answer": "It melts in spring.", "explanation": "It melts in spring."},
+                        {"question": "Ты знаешь правду.", "answer": "You know the truth.", "explanation": "You know the truth."},
+                        {"question": "Мой дядя водит грузовик.", "answer": "My uncle drives a truck.", "explanation": "My uncle drives a truck."},
+                        {"question": "Птицы поют утром.", "answer": "The birds sing in the morning.", "explanation": "The birds sing in the morning."},
+                        {"question": "Я принимаю душ каждый день.", "answer": "I have a shower every day.", "explanation": "I have a shower every day."}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Составьте предложения из слов.\n\n1. Monday / gym / go / the / every / to / they\n2. car / Saturdays / washes / on / her / she\n3. computers / fixes / he\n4. news / morning / read / the / I / in\n5. parents / help / our / we\n6. spring / melts / it / in\n7. truth / know / you / the\n8. truck / uncle / drives / a / my\n9. morning / sing / birds / the / in\n10. shower / have / a / every / day / I",
+                    "subtasks": [
+                        {"question": "Monday / gym / go / the / every / to / they", "answer": "They go to the gym every Monday.", "explanation": "They go to the gym every Monday."},
+                        {"question": "car / Saturdays / washes / on / her / she", "answer": "She washes her car on Saturdays.", "explanation": "She washes her car on Saturdays."},
+                        {"question": "computers / fixes / he", "answer": "He fixes computers.", "explanation": "He fixes computers."},
+                        {"question": "news / morning / read / the / I / in", "answer": "I read the news in the morning.", "explanation": "I read the news in the morning."},
+                        {"question": "parents / help / our / we", "answer": "We help our parents.", "explanation": "We help our parents."},
+                        {"question": "spring / melts / it / in", "answer": "It melts in spring.", "explanation": "It melts in spring."},
+                        {"question": "truth / know / you / the", "answer": "You know the truth.", "explanation": "You know the truth."},
+                        {"question": "truck / uncle / drives / a / my", "answer": "My uncle drives a truck.", "explanation": "My uncle drives a truck."},
+                        {"question": "morning / sing / birds / the / in", "answer": "The birds sing in the morning.", "explanation": "The birds sing in the morning."},
+                        {"question": "shower / have / a / every / day / I", "answer": "I have a shower every day.", "explanation": "I have a shower every day."}
+                    ]
+                }
+            ],
+            # Вариант 7
+            [
+                {
+                    "type": "complex",
+                    "text": "Вставьте глагол в правильной форме (Present Simple).\n\n1. My friends ___ (like) pizza.\n2. He ___ (work) in a shop.\n3. We ___ (live) in a small town.\n4. She ___ (play) the piano.\n5. I ___ (eat) fruit every day.\n6. They ___ (come) from Spain.\n7. It ___ (take) me 10 minutes to get to work.\n8. You ___ (speak) English very well.\n9. The moon ___ (shine) at night.\n10. We ___ (want) to buy a new house.",
+                    "subtasks": [
+                        {"question": "My friends ___ (like) pizza.", "answer": "like", "explanation": "friends = they → like (без -s)"},
+                        {"question": "He ___ (work) in a shop.", "answer": "works", "explanation": "he + works (-s)"},
+                        {"question": "We ___ (live) in a small town.", "answer": "live", "explanation": "we + live (без -s)"},
+                        {"question": "She ___ (play) the piano.", "answer": "plays", "explanation": "she + plays (-s)"},
+                        {"question": "I ___ (eat) fruit every day.", "answer": "eat", "explanation": "I + eat (без -s)"},
+                        {"question": "They ___ (come) from Spain.", "answer": "come", "explanation": "they + come (без -s)"},
+                        {"question": "It ___ (take) me 10 minutes to get to work.", "answer": "takes", "explanation": "it + takes (-s)"},
+                        {"question": "You ___ (speak) English very well.", "answer": "speak", "explanation": "you + speak (без -s)"},
+                        {"question": "The moon ___ (shine) at night.", "answer": "shines", "explanation": "moon = it → shines (-s)"},
+                        {"question": "We ___ (want) to buy a new house.", "answer": "want", "explanation": "we + want (без -s)"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Переведите предложения на английский (Present Simple).\n\n1. Мои друзья любят пиццу.\n2. Он работает в магазине.\n3. Мы живём в маленьком городе.\n4. Она играет на пианино.\n5. Я ем фрукты каждый день.\n6. Они из Испании.\n7. Мне требуется 10 минут, чтобы добраться до работы.\n8. Ты очень хорошо говоришь по-английски.\n9. Луна светит ночью.\n10. Мы хотим купить новый дом.",
+                    "subtasks": [
+                        {"question": "Мои друзья любят пиццу.", "answer": "My friends like pizza.", "explanation": "My friends like pizza."},
+                        {"question": "Он работает в магазине.", "answer": "He works in a shop.", "explanation": "He works in a shop."},
+                        {"question": "Мы живём в маленьком городе.", "answer": "We live in a small town.", "explanation": "We live in a small town."},
+                        {"question": "Она играет на пианино.", "answer": "She plays the piano.", "explanation": "She plays the piano."},
+                        {"question": "Я ем фрукты каждый день.", "answer": "I eat fruit every day.", "explanation": "I eat fruit every day."},
+                        {"question": "Они из Испании.", "answer": "They come from Spain.", "explanation": "They come from Spain."},
+                        {"question": "Мне требуется 10 минут, чтобы добраться до работы.", "answer": "It takes me 10 minutes to get to work.", "explanation": "It takes me 10 minutes to get to work."},
+                        {"question": "Ты очень хорошо говоришь по-английски.", "answer": "You speak English very well.", "explanation": "You speak English very well."},
+                        {"question": "Луна светит ночью.", "answer": "The moon shines at night.", "explanation": "The moon shines at night."},
+                        {"question": "Мы хотим купить новый дом.", "answer": "We want to buy a new house.", "explanation": "We want to buy a new house."}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Составьте предложения из слов.\n\n1. pizza / friends / like / my\n2. shop / in / works / a / he\n3. town / live / a / in / small / we\n4. piano / plays / the / she\n5. every / fruit / eat / day / I\n6. from / come / Spain / they\n7. 10 / takes / me / minutes / it / get / to / work / to\n8. speak / well / very / you / English\n9. night / at / moon / shines / the\n10. buy / house / a / new / want / to / we",
+                    "subtasks": [
+                        {"question": "pizza / friends / like / my", "answer": "My friends like pizza.", "explanation": "My friends like pizza."},
+                        {"question": "shop / in / works / a / he", "answer": "He works in a shop.", "explanation": "He works in a shop."},
+                        {"question": "town / live / a / in / small / we", "answer": "We live in a small town.", "explanation": "We live in a small town."},
+                        {"question": "piano / plays / the / she", "answer": "She plays the piano.", "explanation": "She plays the piano."},
+                        {"question": "every / fruit / eat / day / I", "answer": "I eat fruit every day.", "explanation": "I eat fruit every day."},
+                        {"question": "from / come / Spain / they", "answer": "They come from Spain.", "explanation": "They come from Spain."},
+                        {"question": "10 / takes / me / minutes / it / get / to / work / to", "answer": "It takes me 10 minutes to get to work.", "explanation": "It takes me 10 minutes to get to work."},
+                        {"question": "speak / well / very / you / English", "answer": "You speak English very well.", "explanation": "You speak English very well."},
+                        {"question": "night / at / moon / shines / the", "answer": "The moon shines at night.", "explanation": "The moon shines at night."},
+                        {"question": "buy / house / a / new / want / to / we", "answer": "We want to buy a new house.", "explanation": "We want to buy a new house."}
+                    ]
+                }
+            ],
+            # Вариант 8
+            [
+                {
+                    "type": "complex",
+                    "text": "Вставьте глагол в правильной форме (Present Simple).\n\n1. She ___ (enjoy) playing tennis.\n2. They ___ (watch) TV every evening.\n3. He ___ (travel) a lot for work.\n4. I ___ (feel) tired today.\n5. We ___ (meet) our friends on weekends.\n6. It ___ (cost) a lot of money.\n7. You ___ (seem) very happy.\n8. My sister ___ (study) at university.\n9. The bus ___ (stop) here.\n10. They ___ (need) help.",
+                    "subtasks": [
+                        {"question": "She ___ (enjoy) playing tennis.", "answer": "enjoys", "explanation": "she + enjoys (-s)"},
+                        {"question": "They ___ (watch) TV every evening.", "answer": "watch", "explanation": "they + watch (без -s)"},
+                        {"question": "He ___ (travel) a lot for work.", "answer": "travels", "explanation": "he + travels (-s)"},
+                        {"question": "I ___ (feel) tired today.", "answer": "feel", "explanation": "I + feel (без -s)"},
+                        {"question": "We ___ (meet) our friends on weekends.", "answer": "meet", "explanation": "we + meet (без -s)"},
+                        {"question": "It ___ (cost) a lot of money.", "answer": "costs", "explanation": "it + costs (-s)"},
+                        {"question": "You ___ (seem) very happy.", "answer": "seem", "explanation": "you + seem (без -s)"},
+                        {"question": "My sister ___ (study) at university.", "answer": "studies", "explanation": "sister = she → studies (-ies)"},
+                        {"question": "The bus ___ (stop) here.", "answer": "stops", "explanation": "bus = it → stops (-s)"},
+                        {"question": "They ___ (need) help.", "answer": "need", "explanation": "they + need (без -s)"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Переведите предложения на английский (Present Simple).\n\n1. Она любит играть в теннис.\n2. Они смотрят телевизор каждый вечер.\n3. Он много путешествует по работе.\n4. Я чувствую усталость сегодня.\n5. Мы встречаемся с друзьями по выходным.\n6. Это стоит много денег.\n7. Ты выглядишь очень счастливым.\n8. Моя сестра учится в университете.\n9. Автобус останавливается здесь.\n10. Им нужна помощь.",
+                    "subtasks": [
+                        {"question": "Она любит играть в теннис.", "answer": "She enjoys playing tennis.", "explanation": "She enjoys playing tennis."},
+                        {"question": "Они смотрят телевизор каждый вечер.", "answer": "They watch TV every evening.", "explanation": "They watch TV every evening."},
+                        {"question": "Он много путешествует по работе.", "answer": "He travels a lot for work.", "explanation": "He travels a lot for work."},
+                        {"question": "Я чувствую усталость сегодня.", "answer": "I feel tired today.", "explanation": "I feel tired today."},
+                        {"question": "Мы встречаемся с друзьями по выходным.", "answer": "We meet our friends on weekends.", "explanation": "We meet our friends on weekends."},
+                        {"question": "Это стоит много денег.", "answer": "It costs a lot of money.", "explanation": "It costs a lot of money."},
+                        {"question": "Ты выглядишь очень счастливым.", "answer": "You seem very happy.", "explanation": "You seem very happy."},
+                        {"question": "Моя сестра учится в университете.", "answer": "My sister studies at university.", "explanation": "My sister studies at university."},
+                        {"question": "Автобус останавливается здесь.", "answer": "The bus stops here.", "explanation": "The bus stops here."},
+                        {"question": "Им нужна помощь.", "answer": "They need help.", "explanation": "They need help."}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Составьте предложения из слов.\n\n1. enjoys / tennis / playing / she\n2. TV / every / evening / watch / they\n3. travels / work / he / a / lot / for\n4. feel / tired / today / I\n5. friends / meet / weekends / our / on / we\n6. costs / money / a / it / of / lot\n7. seem / happy / very / you\n8. university / studies / sister / at / my\n9. bus / stops / here / the\n10. help / need / they",
+                    "subtasks": [
+                        {"question": "enjoys / tennis / playing / she", "answer": "She enjoys playing tennis.", "explanation": "She enjoys playing tennis."},
+                        {"question": "TV / every / evening / watch / they", "answer": "They watch TV every evening.", "explanation": "They watch TV every evening."},
+                        {"question": "travels / work / he / a / lot / for", "answer": "He travels a lot for work.", "explanation": "He travels a lot for work."},
+                        {"question": "feel / tired / today / I", "answer": "I feel tired today.", "explanation": "I feel tired today."},
+                        {"question": "friends / meet / weekends / our / on / we", "answer": "We meet our friends on weekends.", "explanation": "We meet our friends on weekends."},
+                        {"question": "costs / money / a / it / of / lot", "answer": "It costs a lot of money.", "explanation": "It costs a lot of money."},
+                        {"question": "seem / happy / very / you", "answer": "You seem very happy.", "explanation": "You seem very happy."},
+                        {"question": "university / studies / sister / at / my", "answer": "My sister studies at university.", "explanation": "My sister studies at university."},
+                        {"question": "bus / stops / here / the", "answer": "The bus stops here.", "explanation": "The bus stops here."},
+                        {"question": "help / need / they", "answer": "They need help.", "explanation": "They need help."}
+                    ]
+                }
+            ],
+            # Вариант 9
+            [
+                {
+                    "type": "complex",
+                    "text": "Вставьте глагол в правильной форме (Present Simple).\n\n1. My father ___ (drive) to work every day.\n2. We ___ (eat) lunch at 12 o'clock.\n3. She ___ (call) her mother every day.\n4. I ___ (love) my family.\n5. They ___ (live) near the park.\n6. It ___ (snow) a lot in Canada.\n7. You ___ (look) beautiful today.\n8. My sister ___ (work) as a teacher.\n9. The children ___ (like) ice cream.\n10. I ___ (walk) to school.",
+                    "subtasks": [
+                        {"question": "My father ___ (drive) to work every day.", "answer": "drives", "explanation": "father = he → drives (-s)"},
+                        {"question": "We ___ (eat) lunch at 12 o'clock.", "answer": "eat", "explanation": "we + eat (без -s)"},
+                        {"question": "She ___ (call) her mother every day.", "answer": "calls", "explanation": "she + calls (-s)"},
+                        {"question": "I ___ (love) my family.", "answer": "love", "explanation": "I + love (без -s)"},
+                        {"question": "They ___ (live) near the park.", "answer": "live", "explanation": "they + live (без -s)"},
+                        {"question": "It ___ (snow) a lot in Canada.", "answer": "snows", "explanation": "it + snows (-s)"},
+                        {"question": "You ___ (look) beautiful today.", "answer": "look", "explanation": "you + look (без -s)"},
+                        {"question": "My sister ___ (work) as a teacher.", "answer": "works", "explanation": "sister = she → works (-s)"},
+                        {"question": "The children ___ (like) ice cream.", "answer": "like", "explanation": "children = they → like (без -s)"},
+                        {"question": "I ___ (walk) to school.", "answer": "walk", "explanation": "I + walk (без -s)"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Переведите предложения на английский (Present Simple).\n\n1. Мой отец ездит на работу каждый день.\n2. Мы обедаем в 12 часов.\n3. Она звонит своей маме каждый день.\n4. Я люблю свою семью.\n5. Они живут рядом с парком.\n6. В Канаде много снега.\n7. Ты сегодня прекрасно выглядишь.\n8. Моя сестра работает учителем.\n9. Дети любят мороженое.\n10. Я хожу в школу пешком.",
+                    "subtasks": [
+                        {"question": "Мой отец ездит на работу каждый день.", "answer": "My father drives to work every day.", "explanation": "My father drives to work every day."},
+                        {"question": "Мы обедаем в 12 часов.", "answer": "We eat lunch at 12 o'clock.", "explanation": "We eat lunch at 12 o'clock."},
+                        {"question": "Она звонит своей маме каждый день.", "answer": "She calls her mother every day.", "explanation": "She calls her mother every day."},
+                        {"question": "Я люблю свою семью.", "answer": "I love my family.", "explanation": "I love my family."},
+                        {"question": "Они живут рядом с парком.", "answer": "They live near the park.", "explanation": "They live near the park."},
+                        {"question": "В Канаде много снега.", "answer": "It snows a lot in Canada.", "explanation": "It snows a lot in Canada."},
+                        {"question": "Ты сегодня прекрасно выглядишь.", "answer": "You look beautiful today.", "explanation": "You look beautiful today."},
+                        {"question": "Моя сестра работает учителем.", "answer": "My sister works as a teacher.", "explanation": "My sister works as a teacher."},
+                        {"question": "Дети любят мороженое.", "answer": "The children like ice cream.", "explanation": "The children like ice cream."},
+                        {"question": "Я хожу в школу пешком.", "answer": "I walk to school.", "explanation": "I walk to school."}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Составьте предложения из слов.\n\n1. to / drives / every / work / father / my / day\n2. at / eat / lunch / 12 / we / o'clock\n3. mother / calls / her / every / she / day\n4. love / family / my / I\n5. park / near / live / the / they\n6. lot / in / snows / Canada / a / it\n7. beautiful / look / today / you\n8. teacher / as / works / sister / my / a\n9. children / ice / like / cream / the\n10. school / walk / to / I",
+                    "subtasks": [
+                        {"question": "to / drives / every / work / father / my / day", "answer": "My father drives to work every day.", "explanation": "My father drives to work every day."},
+                        {"question": "at / eat / lunch / 12 / we / o'clock", "answer": "We eat lunch at 12 o'clock.", "explanation": "We eat lunch at 12 o'clock."},
+                        {"question": "mother / calls / her / every / she / day", "answer": "She calls her mother every day.", "explanation": "She calls her mother every day."},
+                        {"question": "love / family / my / I", "answer": "I love my family.", "explanation": "I love my family."},
+                        {"question": "park / near / live / the / they", "answer": "They live near the park.", "explanation": "They live near the park."},
+                        {"question": "lot / in / snows / Canada / a / it", "answer": "It snows a lot in Canada.", "explanation": "It snows a lot in Canada."},
+                        {"question": "beautiful / look / today / you", "answer": "You look beautiful today.", "explanation": "You look beautiful today."},
+                        {"question": "teacher / as / works / sister / my / a", "answer": "My sister works as a teacher.", "explanation": "My sister works as a teacher."},
+                        {"question": "children / ice / like / cream / the", "answer": "The children like ice cream.", "explanation": "The children like ice cream."},
+                        {"question": "school / walk / to / I", "answer": "I walk to school.", "explanation": "I walk to school."}
+                    ]
+                }
+            ],
+            # Вариант 10
+            [
+                {
+                    "type": "complex",
+                    "text": "Вставьте глагол в правильной форме (Present Simple).\n\n1. He ___ (eat) breakfast at 7 o'clock.\n2. We ___ (take) the train to work.\n3. She ___ (watch) films in the evening.\n4. I ___ (believe) you.\n5. They ___ (have) two children.\n6. It ___ (get) dark early in winter.\n7. You ___ (look) great today.\n8. My brother ___ (play) football.\n9. The shops ___ (close) at 9 pm.\n10. I ___ (understand) the lesson.",
+                    "subtasks": [
+                        {"question": "He ___ (eat) breakfast at 7 o'clock.", "answer": "eats", "explanation": "he + eats (-s)"},
+                        {"question": "We ___ (take) the train to work.", "answer": "take", "explanation": "we + take (без -s)"},
+                        {"question": "She ___ (watch) films in the evening.", "answer": "watches", "explanation": "she + watches (-es)"},
+                        {"question": "I ___ (believe) you.", "answer": "believe", "explanation": "I + believe (без -s)"},
+                        {"question": "They ___ (have) two children.", "answer": "have", "explanation": "they + have (без -s)"},
+                        {"question": "It ___ (get) dark early in winter.", "answer": "gets", "explanation": "it + gets (-s)"},
+                        {"question": "You ___ (look) great today.", "answer": "look", "explanation": "you + look (без -s)"},
+                        {"question": "My brother ___ (play) football.", "answer": "plays", "explanation": "brother = he → plays (-s)"},
+                        {"question": "The shops ___ (close) at 9 pm.", "answer": "close", "explanation": "shops = they → close (без -s)"},
+                        {"question": "I ___ (understand) the lesson.", "answer": "understand", "explanation": "I + understand (без -s)"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Переведите предложения на английский (Present Simple).\n\n1. Он завтракает в 7 часов.\n2. Мы ездим на поезде на работу.\n3. Она смотрит фильмы вечером.\n4. Я верю тебе.\n5. У них двое детей.\n6. Зимой рано темнеет.\n7. Ты сегодня отлично выглядишь.\n8. Мой брат играет в футбол.\n9. Магазины закрываются в 9 часов вечера.\n10. Я понимаю урок.",
+                    "subtasks": [
+                        {"question": "Он завтракает в 7 часов.", "answer": "He eats breakfast at 7 o'clock.", "explanation": "He eats breakfast at 7 o'clock."},
+                        {"question": "Мы ездим на поезде на работу.", "answer": "We take the train to work.", "explanation": "We take the train to work."},
+                        {"question": "Она смотрит фильмы вечером.", "answer": "She watches films in the evening.", "explanation": "She watches films in the evening."},
+                        {"question": "Я верю тебе.", "answer": "I believe you.", "explanation": "I believe you."},
+                        {"question": "У них двое детей.", "answer": "They have two children.", "explanation": "They have two children."},
+                        {"question": "Зимой рано темнеет.", "answer": "It gets dark early in winter.", "explanation": "It gets dark early in winter."},
+                        {"question": "Ты сегодня отлично выглядишь.", "answer": "You look great today.", "explanation": "You look great today."},
+                        {"question": "Мой брат играет в футбол.", "answer": "My brother plays football.", "explanation": "My brother plays football."},
+                        {"question": "Магазины закрываются в 9 часов вечера.", "answer": "The shops close at 9 pm.", "explanation": "The shops close at 9 pm."},
+                        {"question": "Я понимаю урок.", "answer": "I understand the lesson.", "explanation": "I understand the lesson."}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Составьте предложения из слов.\n\n1. 7 / breakfast / at / eats / o'clock / he\n2. train / take / to / we / the / work\n3. evening / watches / in / the / she / films\n4. believe / you / I\n5. two / children / they / have\n6. early / gets / dark / winter / in / it\n7. great / today / look / you\n8. football / plays / brother / my\n9. 9 / at / close / shops / pm / the\n10. understand / lesson / I / the",
+                    "subtasks": [
+                        {"question": "7 / breakfast / at / eats / o'clock / he", "answer": "He eats breakfast at 7 o'clock.", "explanation": "He eats breakfast at 7 o'clock."},
+                        {"question": "train / take / to / we / the / work", "answer": "We take the train to work.", "explanation": "We take the train to work."},
+                        {"question": "evening / watches / in / the / she / films", "answer": "She watches films in the evening.", "explanation": "She watches films in the evening."},
+                        {"question": "believe / you / I", "answer": "I believe you.", "explanation": "I believe you."},
+                        {"question": "two / children / they / have", "answer": "They have two children.", "explanation": "They have two children."},
+                        {"question": "early / gets / dark / winter / in / it", "answer": "It gets dark early in winter.", "explanation": "It gets dark early in winter."},
+                        {"question": "great / today / look / you", "answer": "You look great today.", "explanation": "You look great today."},
+                        {"question": "football / plays / brother / my", "answer": "My brother plays football.", "explanation": "My brother plays football."},
+                        {"question": "9 / at / close / shops / pm / the", "answer": "The shops close at 9 pm.", "explanation": "The shops close at 9 pm."},
+                        {"question": "understand / lesson / I / the", "answer": "I understand the lesson.", "explanation": "I understand the lesson."}
+                    ]
+                }
+            ]
+        ]
   },
   "prescont": {
     "title": "Present Continuous (действие прямо сейчас)",
