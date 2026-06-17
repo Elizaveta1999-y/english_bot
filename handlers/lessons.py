@@ -866,7 +866,7 @@ async def show_practice_task(message: Message, user_id: int, edit: bool = True):
     task = practice["tasks"][session[idx]]
     star = " ⭐" if task.get("star") else ""
     text = f"📝 {task['text']}\n\n"
-    text += "Введите все ответы через пробел или запятую.\n"
+    text += "Введите все ответы через запятую\n"
     progress = f"\nЗадание {task_idx+1} из {len(tasks)}. ✅ Правильных: {practice['session_correct']}"
     full_text = text + progress
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
@@ -1261,33 +1261,16 @@ from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
 def parse_user_answers(text: str, expected_count: int) -> list:
     """
-    Извлекает ответы из текста, игнорируя нумерацию (1., 2), 3) и т.п.).
-    Возвращает список строк длиной expected_count.
+    Разбивает ответы по запятым. Каждый ответ может содержать пробелы.
+    Если ответов меньше expected_count, дополняет пустыми строками.
     """
-    import re
-    # Удаляем всё, кроме букв, пробелов, запятых, точек и цифр (для номеров)
-    # Но мы хотим сохранить только буквы и пробелы/запятые как разделители
-    # Сначала заменяем запятые на пробелы
-    text = text.replace(',', ' ')
-    # Удаляем всё, что не является буквой, пробелом или цифрой (но цифры потом уберём)
-    # Лучше оставить только буквы и пробелы
-    # Удаляем все символы, кроме букв и пробелов
-    text = re.sub(r'[^a-zA-Z\s]', ' ', text)
-    # Разбиваем по пробелам
-    parts = text.split()
-    # Очищаем каждый токен от цифр и точек (если они остались)
-    cleaned = []
-    for token in parts:
-        # Убираем цифры, точки, скобки
-        token = re.sub(r'^[\d\.\)]+', '', token)  # убираем ведущие цифры, точки, скобки
-        if token:  # если осталось что-то кроме цифр
-            cleaned.append(token.lower())
-    # Если после очистки меньше expected_count, дополняем пустыми
-    while len(cleaned) < expected_count:
-        cleaned.append("")
-    # Если больше, обрезаем до expected_count
-    cleaned = cleaned[:expected_count]
-    return cleaned
+    # Разбиваем по запятым, удаляем лишние пробелы
+    parts = [part.strip() for part in text.split(',') if part.strip()]
+    # Дополняем до нужного количества
+    while len(parts) < expected_count:
+        parts.append("")
+    # Обрезаем, если слишком много
+    return parts[:expected_count]
 
 async def show_practice_task(message: Message, user_id: int, edit: bool = True):
     from data.users import get_user_state, set_user_state
@@ -1326,7 +1309,7 @@ async def show_practice_task(message: Message, user_id: int, edit: bool = True):
     task = tasks[task_idx]
     star = " ⭐" if task.get("star") else ""
     text = f"📝 {task['text']}\n\n"
-    text += "Введите все ответы через пробел или запятую.\n"
+    text += "Введите все ответы через запятую\n"
     progress = f"\nЗадание {task_idx+1} из {len(tasks)}. ✅ Правильных: {practice['session_correct']}"
     full_text = text + progress
     
