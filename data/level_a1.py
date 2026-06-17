@@ -4401,7 +4401,546 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "answer": "Только для единственного числа: there's a cat. Неправильно: there's two cats – правильно: there are two cats."
       }
     ],
-                    "practice_bank": [
+                            "practice_bank": [
+            # Вариант 1
+            [
+                {
+                    "type": "complex",
+                    "text": "Вставьте there is или there are.\n\n1. ___ a cat on the sofa.\n2. ___ two dogs in the garden.\n3. ___ a book on the table.\n4. ___ three apples in the bowl.\n5. ___ a woman at the door.\n6. ___ five chairs in the room.\n7. ___ a picture on the wall.\n8. ___ many cars in the street.\n9. ___ a child in the park.\n10. ___ some water in the glass.",
+                    "subtasks": [
+                        {"question": "___ a cat on the sofa.", "answer": "There is", "explanation": "a cat (ед.ч.) → There is"},
+                        {"question": "___ two dogs in the garden.", "answer": "There are", "explanation": "two dogs (мн.ч.) → There are"},
+                        {"question": "___ a book on the table.", "answer": "There is", "explanation": "a book (ед.ч.) → There is"},
+                        {"question": "___ three apples in the bowl.", "answer": "There are", "explanation": "three apples (мн.ч.) → There are"},
+                        {"question": "___ a woman at the door.", "answer": "There is", "explanation": "a woman (ед.ч.) → There is"},
+                        {"question": "___ five chairs in the room.", "answer": "There are", "explanation": "five chairs (мн.ч.) → There are"},
+                        {"question": "___ a picture on the wall.", "answer": "There is", "explanation": "a picture (ед.ч.) → There is"},
+                        {"question": "___ many cars in the street.", "answer": "There are", "explanation": "many cars (мн.ч.) → There are"},
+                        {"question": "___ a child in the park.", "answer": "There is", "explanation": "a child (ед.ч.) → There is"},
+                        {"question": "___ some water in the glass.", "answer": "There is", "explanation": "water (неисч.) → There is"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Переведите предложения на английский, используя there is/are.\n\n1. На диване кошка.\n2. В саду две собаки.\n3. На столе книга.\n4. В миске три яблока.\n5. У двери женщина.\n6. В комнате пять стульев.\n7. На стене картина.\n8. На улице много машин.\n9. В парке ребёнок.\n10. В стакане немного воды.",
+                    "subtasks": [
+                        {"question": "На диване кошка.", "answer": "There is a cat on the sofa.", "explanation": "There is a cat on the sofa."},
+                        {"question": "В саду две собаки.", "answer": "There are two dogs in the garden.", "explanation": "There are two dogs in the garden."},
+                        {"question": "На столе книга.", "answer": "There is a book on the table.", "explanation": "There is a book on the table."},
+                        {"question": "В миске три яблока.", "answer": "There are three apples in the bowl.", "explanation": "There are three apples in the bowl."},
+                        {"question": "У двери женщина.", "answer": "There is a woman at the door.", "explanation": "There is a woman at the door."},
+                        {"question": "В комнате пять стульев.", "answer": "There are five chairs in the room.", "explanation": "There are five chairs in the room."},
+                        {"question": "На стене картина.", "answer": "There is a picture on the wall.", "explanation": "There is a picture on the wall."},
+                        {"question": "На улице много машин.", "answer": "There are many cars in the street.", "explanation": "There are many cars in the street."},
+                        {"question": "В парке ребёнок.", "answer": "There is a child in the park.", "explanation": "There is a child in the park."},
+                        {"question": "В стакане немного воды.", "answer": "There is some water in the glass.", "explanation": "There is some water in the glass."}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Составьте предложения из слов (используя there is/are).\n\n1. sofa / on / a / cat / is / there / the\n2. garden / dogs / in / two / are / there / the\n3. table / book / on / a / is / there / the\n4. bowl / apples / three / in / are / there / the\n5. door / woman / at / a / there / is / the\n6. room / chairs / five / in / are / there / the\n7. wall / picture / on / is / there / a / the\n8. street / cars / many / in / are / there / the\n9. park / child / a / there / is / in / the\n10. glass / water / in / some / is / there / the",
+                    "subtasks": [
+                        {"question": "sofa / on / a / cat / is / there / the", "answer": "There is a cat on the sofa.", "explanation": "There is a cat on the sofa."},
+                        {"question": "garden / dogs / in / two / are / there / the", "answer": "There are two dogs in the garden.", "explanation": "There are two dogs in the garden."},
+                        {"question": "table / book / on / a / is / there / the", "answer": "There is a book on the table.", "explanation": "There is a book on the table."},
+                        {"question": "bowl / apples / three / in / are / there / the", "answer": "There are three apples in the bowl.", "explanation": "There are three apples in the bowl."},
+                        {"question": "door / woman / at / a / there / is / the", "answer": "There is a woman at the door.", "explanation": "There is a woman at the door."},
+                        {"question": "room / chairs / five / in / are / there / the", "answer": "There are five chairs in the room.", "explanation": "There are five chairs in the room."},
+                        {"question": "wall / picture / on / is / there / a / the", "answer": "There is a picture on the wall.", "explanation": "There is a picture on the wall."},
+                        {"question": "street / cars / many / in / are / there / the", "answer": "There are many cars in the street.", "explanation": "There are many cars in the street."},
+                        {"question": "park / child / a / there / is / in / the", "answer": "There is a child in the park.", "explanation": "There is a child in the park."},
+                        {"question": "glass / water / in / some / is / there / the", "answer": "There is some water in the glass.", "explanation": "There is some water in the glass."}
+                    ]
+                }
+            ],
+            # Вариант 2
+            [
+                {
+                    "type": "complex",
+                    "text": "Вставьте there is или there are.\n\n1. ___ a bird in the tree.\n2. ___ four books on the shelf.\n3. ___ a lamp on the desk.\n4. ___ many flowers in the garden.\n5. ___ a man in the car.\n6. ___ six plates on the table.\n7. ___ a clock on the wall.\n8. ___ some milk in the fridge.\n9. ___ a girl in the classroom.\n10. ___ ten students in the hall.",
+                    "subtasks": [
+                        {"question": "___ a bird in the tree.", "answer": "There is", "explanation": "a bird (ед.ч.) → There is"},
+                        {"question": "___ four books on the shelf.", "answer": "There are", "explanation": "four books (мн.ч.) → There are"},
+                        {"question": "___ a lamp on the desk.", "answer": "There is", "explanation": "a lamp (ед.ч.) → There is"},
+                        {"question": "___ many flowers in the garden.", "answer": "There are", "explanation": "many flowers (мн.ч.) → There are"},
+                        {"question": "___ a man in the car.", "answer": "There is", "explanation": "a man (ед.ч.) → There is"},
+                        {"question": "___ six plates on the table.", "answer": "There are", "explanation": "six plates (мн.ч.) → There are"},
+                        {"question": "___ a clock on the wall.", "answer": "There is", "explanation": "a clock (ед.ч.) → There is"},
+                        {"question": "___ some milk in the fridge.", "answer": "There is", "explanation": "milk (неисч.) → There is"},
+                        {"question": "___ a girl in the classroom.", "answer": "There is", "explanation": "a girl (ед.ч.) → There is"},
+                        {"question": "___ ten students in the hall.", "answer": "There are", "explanation": "ten students (мн.ч.) → There are"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Переведите предложения на английский.\n\n1. На дереве птица.\n2. На полке четыре книги.\n3. На столе лампа.\n4. В саду много цветов.\n5. В машине мужчина.\n6. На столе шесть тарелок.\n7. На стене часы.\n8. В холодильнике немного молока.\n9. В классе девочка.\n10. В зале десять студентов.",
+                    "subtasks": [
+                        {"question": "На дереве птица.", "answer": "There is a bird in the tree.", "explanation": "There is a bird in the tree."},
+                        {"question": "На полке четыре книги.", "answer": "There are four books on the shelf.", "explanation": "There are four books on the shelf."},
+                        {"question": "На столе лампа.", "answer": "There is a lamp on the desk.", "explanation": "There is a lamp on the desk."},
+                        {"question": "В саду много цветов.", "answer": "There are many flowers in the garden.", "explanation": "There are many flowers in the garden."},
+                        {"question": "В машине мужчина.", "answer": "There is a man in the car.", "explanation": "There is a man in the car."},
+                        {"question": "На столе шесть тарелок.", "answer": "There are six plates on the table.", "explanation": "There are six plates on the table."},
+                        {"question": "На стене часы.", "answer": "There is a clock on the wall.", "explanation": "There is a clock on the wall."},
+                        {"question": "В холодильнике немного молока.", "answer": "There is some milk in the fridge.", "explanation": "There is some milk in the fridge."},
+                        {"question": "В классе девочка.", "answer": "There is a girl in the classroom.", "explanation": "There is a girl in the classroom."},
+                        {"question": "В зале десять студентов.", "answer": "There are ten students in the hall.", "explanation": "There are ten students in the hall."}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Составьте предложения.\n\n1. tree / bird / a / in / there / is / the\n2. shelf / four / books / on / are / there / the\n3. desk / lamp / a / on / there / is / the\n4. garden / many / flowers / in / are / there / the\n5. car / man / a / in / is / there / the\n6. table / plates / six / on / are / there / the\n7. wall / clock / a / on / is / there / the\n8. fridge / milk / some / in / is / there / the\n9. classroom / girl / a / in / is / there / the\n10. hall / students / ten / in / are / there / the",
+                    "subtasks": [
+                        {"question": "tree / bird / a / in / there / is / the", "answer": "There is a bird in the tree.", "explanation": "There is a bird in the tree."},
+                        {"question": "shelf / four / books / on / are / there / the", "answer": "There are four books on the shelf.", "explanation": "There are four books on the shelf."},
+                        {"question": "desk / lamp / a / on / there / is / the", "answer": "There is a lamp on the desk.", "explanation": "There is a lamp on the desk."},
+                        {"question": "garden / many / flowers / in / are / there / the", "answer": "There are many flowers in the garden.", "explanation": "There are many flowers in the garden."},
+                        {"question": "car / man / a / in / is / there / the", "answer": "There is a man in the car.", "explanation": "There is a man in the car."},
+                        {"question": "table / plates / six / on / are / there / the", "answer": "There are six plates on the table.", "explanation": "There are six plates on the table."},
+                        {"question": "wall / clock / a / on / is / there / the", "answer": "There is a clock on the wall.", "explanation": "There is a clock on the wall."},
+                        {"question": "fridge / milk / some / in / is / there / the", "answer": "There is some milk in the fridge.", "explanation": "There is some milk in the fridge."},
+                        {"question": "classroom / girl / a / in / is / there / the", "answer": "There is a girl in the classroom.", "explanation": "There is a girl in the classroom."},
+                        {"question": "hall / students / ten / in / are / there / the", "answer": "There are ten students in the hall.", "explanation": "There are ten students in the hall."}
+                    ]
+                }
+            ],
+            # Вариант 3
+            [
+                {
+                    "type": "complex",
+                    "text": "Вставьте there is или there are.\n\n1. ___ a pencil on the desk.\n2. ___ three chairs in the kitchen.\n3. ___ a mirror in the bathroom.\n4. ___ some juice in the bottle.\n5. ___ a dog in the garden.\n6. ___ eight apples in the basket.\n7. ___ a poster on the wall.\n8. ___ many people in the park.\n9. ___ a teacher in the classroom.\n10. ___ two windows in the room.",
+                    "subtasks": [
+                        {"question": "___ a pencil on the desk.", "answer": "There is", "explanation": "a pencil (ед.ч.)"},
+                        {"question": "___ three chairs in the kitchen.", "answer": "There are", "explanation": "three chairs (мн.ч.)"},
+                        {"question": "___ a mirror in the bathroom.", "answer": "There is", "explanation": "a mirror (ед.ч.)"},
+                        {"question": "___ some juice in the bottle.", "answer": "There is", "explanation": "juice (неисч.)"},
+                        {"question": "___ a dog in the garden.", "answer": "There is", "explanation": "a dog (ед.ч.)"},
+                        {"question": "___ eight apples in the basket.", "answer": "There are", "explanation": "eight apples (мн.ч.)"},
+                        {"question": "___ a poster on the wall.", "answer": "There is", "explanation": "a poster (ед.ч.)"},
+                        {"question": "___ many people in the park.", "answer": "There are", "explanation": "many people (мн.ч.)"},
+                        {"question": "___ a teacher in the classroom.", "answer": "There is", "explanation": "a teacher (ед.ч.)"},
+                        {"question": "___ two windows in the room.", "answer": "There are", "explanation": "two windows (мн.ч.)"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Переведите предложения на английский.\n\n1. На столе карандаш.\n2. На кухне три стула.\n3. В ванной зеркало.\n4. В бутылке немного сока.\n5. В саду собака.\n6. В корзине восемь яблок.\n7. На стене плакат.\n8. В парке много людей.\n9. В классе учитель.\n10. В комнате два окна.",
+                    "subtasks": [
+                        {"question": "На столе карандаш.", "answer": "There is a pencil on the desk.", "explanation": "There is a pencil on the desk."},
+                        {"question": "На кухне три стула.", "answer": "There are three chairs in the kitchen.", "explanation": "There are three chairs in the kitchen."},
+                        {"question": "В ванной зеркало.", "answer": "There is a mirror in the bathroom.", "explanation": "There is a mirror in the bathroom."},
+                        {"question": "В бутылке немного сока.", "answer": "There is some juice in the bottle.", "explanation": "There is some juice in the bottle."},
+                        {"question": "В саду собака.", "answer": "There is a dog in the garden.", "explanation": "There is a dog in the garden."},
+                        {"question": "В корзине восемь яблок.", "answer": "There are eight apples in the basket.", "explanation": "There are eight apples in the basket."},
+                        {"question": "На стене плакат.", "answer": "There is a poster on the wall.", "explanation": "There is a poster on the wall."},
+                        {"question": "В парке много людей.", "answer": "There are many people in the park.", "explanation": "There are many people in the park."},
+                        {"question": "В классе учитель.", "answer": "There is a teacher in the classroom.", "explanation": "There is a teacher in the classroom."},
+                        {"question": "В комнате два окна.", "answer": "There are two windows in the room.", "explanation": "There are two windows in the room."}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Составьте предложения.\n\n1. desk / pencil / a / on / there / is / the\n2. kitchen / chairs / three / in / are / there / the\n3. bathroom / mirror / a / in / is / there / the\n4. bottle / juice / some / in / is / there / the\n5. garden / dog / a / in / is / there / the\n6. basket / apples / eight / in / are / there / the\n7. wall / poster / a / on / is / there / the\n8. park / people / many / in / are / there / the\n9. classroom / teacher / a / in / is / there / the\n10. room / windows / two / in / are / there / the",
+                    "subtasks": [
+                        {"question": "desk / pencil / a / on / there / is / the", "answer": "There is a pencil on the desk.", "explanation": "There is a pencil on the desk."},
+                        {"question": "kitchen / chairs / three / in / are / there / the", "answer": "There are three chairs in the kitchen.", "explanation": "There are three chairs in the kitchen."},
+                        {"question": "bathroom / mirror / a / in / is / there / the", "answer": "There is a mirror in the bathroom.", "explanation": "There is a mirror in the bathroom."},
+                        {"question": "bottle / juice / some / in / is / there / the", "answer": "There is some juice in the bottle.", "explanation": "There is some juice in the bottle."},
+                        {"question": "garden / dog / a / in / is / there / the", "answer": "There is a dog in the garden.", "explanation": "There is a dog in the garden."},
+                        {"question": "basket / apples / eight / in / are / there / the", "answer": "There are eight apples in the basket.", "explanation": "There are eight apples in the basket."},
+                        {"question": "wall / poster / a / on / is / there / the", "answer": "There is a poster on the wall.", "explanation": "There is a poster on the wall."},
+                        {"question": "park / people / many / in / are / there / the", "answer": "There are many people in the park.", "explanation": "There are many people in the park."},
+                        {"question": "classroom / teacher / a / in / is / there / the", "answer": "There is a teacher in the classroom.", "explanation": "There is a teacher in the classroom."},
+                        {"question": "room / windows / two / in / are / there / the", "answer": "There are two windows in the room.", "explanation": "There are two windows in the room."}
+                    ]
+                }
+            ],
+            # Вариант 4
+            [
+                {
+                    "type": "complex",
+                    "text": "Вставьте there is или there are.\n\n1. ___ a radio on the shelf.\n2. ___ seven cats in the yard.\n3. ___ a picture in the book.\n4. ___ some tea in the cup.\n5. ___ a bike near the door.\n6. ___ twelve months in a year.\n7. ___ a map on the wall.\n8. ___ a lot of noise outside.\n9. ___ a nurse in the hospital.\n10. ___ three bedrooms in the house.",
+                    "subtasks": [
+                        {"question": "___ a radio on the shelf.", "answer": "There is", "explanation": "a radio (ед.ч.)"},
+                        {"question": "___ seven cats in the yard.", "answer": "There are", "explanation": "seven cats (мн.ч.)"},
+                        {"question": "___ a picture in the book.", "answer": "There is", "explanation": "a picture (ед.ч.)"},
+                        {"question": "___ some tea in the cup.", "answer": "There is", "explanation": "tea (неисч.)"},
+                        {"question": "___ a bike near the door.", "answer": "There is", "explanation": "a bike (ед.ч.)"},
+                        {"question": "___ twelve months in a year.", "answer": "There are", "explanation": "twelve months (мн.ч.)"},
+                        {"question": "___ a map on the wall.", "answer": "There is", "explanation": "a map (ед.ч.)"},
+                        {"question": "___ a lot of noise outside.", "answer": "There is", "explanation": "noise (неисч.)"},
+                        {"question": "___ a nurse in the hospital.", "answer": "There is", "explanation": "a nurse (ед.ч.)"},
+                        {"question": "___ three bedrooms in the house.", "answer": "There are", "explanation": "three bedrooms (мн.ч.)"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Переведите предложения на английский.\n\n1. На полке радио.\n2. Во дворе семь кошек.\n3. В книге картинка.\n4. В чашке немного чая.\n5. У двери велосипед.\n6. В году двенадцать месяцев.\n7. На стене карта.\n8. Снаружи много шума.\n9. В больнице медсестра.\n10. В доме три спальни.",
+                    "subtasks": [
+                        {"question": "На полке радио.", "answer": "There is a radio on the shelf.", "explanation": "There is a radio on the shelf."},
+                        {"question": "Во дворе семь кошек.", "answer": "There are seven cats in the yard.", "explanation": "There are seven cats in the yard."},
+                        {"question": "В книге картинка.", "answer": "There is a picture in the book.", "explanation": "There is a picture in the book."},
+                        {"question": "В чашке немного чая.", "answer": "There is some tea in the cup.", "explanation": "There is some tea in the cup."},
+                        {"question": "У двери велосипед.", "answer": "There is a bike near the door.", "explanation": "There is a bike near the door."},
+                        {"question": "В году двенадцать месяцев.", "answer": "There are twelve months in a year.", "explanation": "There are twelve months in a year."},
+                        {"question": "На стене карта.", "answer": "There is a map on the wall.", "explanation": "There is a map on the wall."},
+                        {"question": "Снаружи много шума.", "answer": "There is a lot of noise outside.", "explanation": "There is a lot of noise outside."},
+                        {"question": "В больнице медсестра.", "answer": "There is a nurse in the hospital.", "explanation": "There is a nurse in the hospital."},
+                        {"question": "В доме три спальни.", "answer": "There are three bedrooms in the house.", "explanation": "There are three bedrooms in the house."}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Составьте предложения.\n\n1. shelf / radio / a / on / is / there / the\n2. yard / cats / seven / in / are / there / the\n3. book / picture / a / in / is / there / the\n4. cup / tea / some / in / is / there / the\n5. door / bike / a / near / is / there / the\n6. year / months / twelve / in / are / there / a\n7. wall / map / a / on / is / there / the\n8. outside / noise / of / a / lot / is / there\n9. hospital / nurse / a / in / is / there / the\n10. house / three / bedrooms / in / are / there / the",
+                    "subtasks": [
+                        {"question": "shelf / radio / a / on / is / there / the", "answer": "There is a radio on the shelf.", "explanation": "There is a radio on the shelf."},
+                        {"question": "yard / cats / seven / in / are / there / the", "answer": "There are seven cats in the yard.", "explanation": "There are seven cats in the yard."},
+                        {"question": "book / picture / a / in / is / there / the", "answer": "There is a picture in the book.", "explanation": "There is a picture in the book."},
+                        {"question": "cup / tea / some / in / is / there / the", "answer": "There is some tea in the cup.", "explanation": "There is some tea in the cup."},
+                        {"question": "door / bike / a / near / is / there / the", "answer": "There is a bike near the door.", "explanation": "There is a bike near the door."},
+                        {"question": "year / months / twelve / in / are / there / a", "answer": "There are twelve months in a year.", "explanation": "There are twelve months in a year."},
+                        {"question": "wall / map / a / on / is / there / the", "answer": "There is a map on the wall.", "explanation": "There is a map on the wall."},
+                        {"question": "outside / noise / of / a / lot / is / there", "answer": "There is a lot of noise outside.", "explanation": "There is a lot of noise outside."},
+                        {"question": "hospital / nurse / a / in / is / there / the", "answer": "There is a nurse in the hospital.", "explanation": "There is a nurse in the hospital."},
+                        {"question": "house / three / bedrooms / in / are / there / the", "answer": "There are three bedrooms in the house.", "explanation": "There are three bedrooms in the house."}
+                    ]
+                }
+            ],
+            # Вариант 5
+            [
+                {
+                    "type": "complex",
+                    "text": "Вставьте there is или there are.\n\n1. ___ a computer on the desk.\n2. ___ two birds in the cage.\n3. ___ a phone in the bag.\n4. ___ some bread on the plate.\n5. ___ a rabbit in the garden.\n6. ___ nine players in the team.\n7. ___ a calendar on the wall.\n8. ___ a lot of traffic in the city.\n9. ___ a doctor at the clinic.\n10. ___ four wheels on a car.",
+                    "subtasks": [
+                        {"question": "___ a computer on the desk.", "answer": "There is", "explanation": "a computer (ед.ч.)"},
+                        {"question": "___ two birds in the cage.", "answer": "There are", "explanation": "two birds (мн.ч.)"},
+                        {"question": "___ a phone in the bag.", "answer": "There is", "explanation": "a phone (ед.ч.)"},
+                        {"question": "___ some bread on the plate.", "answer": "There is", "explanation": "bread (неисч.)"},
+                        {"question": "___ a rabbit in the garden.", "answer": "There is", "explanation": "a rabbit (ед.ч.)"},
+                        {"question": "___ nine players in the team.", "answer": "There are", "explanation": "nine players (мн.ч.)"},
+                        {"question": "___ a calendar on the wall.", "answer": "There is", "explanation": "a calendar (ед.ч.)"},
+                        {"question": "___ a lot of traffic in the city.", "answer": "There is", "explanation": "traffic (неисч.)"},
+                        {"question": "___ a doctor at the clinic.", "answer": "There is", "explanation": "a doctor (ед.ч.)"},
+                        {"question": "___ four wheels on a car.", "answer": "There are", "explanation": "four wheels (мн.ч.)"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Переведите предложения на английский.\n\n1. На столе компьютер.\n2. В клетке две птицы.\n3. В сумке телефон.\n4. На тарелке немного хлеба.\n5. В саду кролик.\n6. В команде девять игроков.\n7. На стене календарь.\n8. В городе много машин.\n9. В клинике врач.\n10. У машины четыре колеса.",
+                    "subtasks": [
+                        {"question": "На столе компьютер.", "answer": "There is a computer on the desk.", "explanation": "There is a computer on the desk."},
+                        {"question": "В клетке две птицы.", "answer": "There are two birds in the cage.", "explanation": "There are two birds in the cage."},
+                        {"question": "В сумке телефон.", "answer": "There is a phone in the bag.", "explanation": "There is a phone in the bag."},
+                        {"question": "На тарелке немного хлеба.", "answer": "There is some bread on the plate.", "explanation": "There is some bread on the plate."},
+                        {"question": "В саду кролик.", "answer": "There is a rabbit in the garden.", "explanation": "There is a rabbit in the garden."},
+                        {"question": "В команде девять игроков.", "answer": "There are nine players in the team.", "explanation": "There are nine players in the team."},
+                        {"question": "На стене календарь.", "answer": "There is a calendar on the wall.", "explanation": "There is a calendar on the wall."},
+                        {"question": "В городе много машин.", "answer": "There is a lot of traffic in the city.", "explanation": "There is a lot of traffic in the city."},
+                        {"question": "В клинике врач.", "answer": "There is a doctor at the clinic.", "explanation": "There is a doctor at the clinic."},
+                        {"question": "У машины четыре колеса.", "answer": "There are four wheels on a car.", "explanation": "There are four wheels on a car."}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Составьте предложения.\n\n1. desk / computer / a / on / there / is / the\n2. cage / birds / two / in / are / there / the\n3. bag / phone / a / in / is / there / the\n4. plate / bread / some / on / is / there / the\n5. garden / rabbit / a / in / is / there / the\n6. team / players / nine / in / are / there / the\n7. wall / calendar / a / on / is / there / the\n8. city / traffic / lot / a / of / is / there / the\n9. clinic / doctor / a / at / is / there / the\n10. car / wheels / four / on / are / there / a",
+                    "subtasks": [
+                        {"question": "desk / computer / a / on / there / is / the", "answer": "There is a computer on the desk.", "explanation": "There is a computer on the desk."},
+                        {"question": "cage / birds / two / in / are / there / the", "answer": "There are two birds in the cage.", "explanation": "There are two birds in the cage."},
+                        {"question": "bag / phone / a / in / is / there / the", "answer": "There is a phone in the bag.", "explanation": "There is a phone in the bag."},
+                        {"question": "plate / bread / some / on / is / there / the", "answer": "There is some bread on the plate.", "explanation": "There is some bread on the plate."},
+                        {"question": "garden / rabbit / a / in / is / there / the", "answer": "There is a rabbit in the garden.", "explanation": "There is a rabbit in the garden."},
+                        {"question": "team / players / nine / in / are / there / the", "answer": "There are nine players in the team.", "explanation": "There are nine players in the team."},
+                        {"question": "wall / calendar / a / on / is / there / the", "answer": "There is a calendar on the wall.", "explanation": "There is a calendar on the wall."},
+                        {"question": "city / traffic / lot / a / of / is / there / the", "answer": "There is a lot of traffic in the city.", "explanation": "There is a lot of traffic in the city."},
+                        {"question": "clinic / doctor / a / at / is / there / the", "answer": "There is a doctor at the clinic.", "explanation": "There is a doctor at the clinic."},
+                        {"question": "car / wheels / four / on / are / there / a", "answer": "There are four wheels on a car.", "explanation": "There are four wheels on a car."}
+                    ]
+                }
+            ],
+            # Вариант 6
+            [
+                {
+                    "type": "complex",
+                    "text": "Вставьте there is или there are.\n\n1. ___ a plant in the corner.\n2. ___ five cups on the shelf.\n3. ___ a key in the drawer.\n4. ___ some water in the bottle.\n5. ___ a horse in the field.\n6. ___ eleven players in a football team.\n7. ___ a notice on the board.\n8. ___ a lot of dust on the table.\n9. ___ a policeman at the station.\n10. ___ three pages in the letter.",
+                    "subtasks": [
+                        {"question": "___ a plant in the corner.", "answer": "There is", "explanation": "a plant (ед.ч.)"},
+                        {"question": "___ five cups on the shelf.", "answer": "There are", "explanation": "five cups (мн.ч.)"},
+                        {"question": "___ a key in the drawer.", "answer": "There is", "explanation": "a key (ед.ч.)"},
+                        {"question": "___ some water in the bottle.", "answer": "There is", "explanation": "water (неисч.)"},
+                        {"question": "___ a horse in the field.", "answer": "There is", "explanation": "a horse (ед.ч.)"},
+                        {"question": "___ eleven players in a football team.", "answer": "There are", "explanation": "eleven players (мн.ч.)"},
+                        {"question": "___ a notice on the board.", "answer": "There is", "explanation": "a notice (ед.ч.)"},
+                        {"question": "___ a lot of dust on the table.", "answer": "There is", "explanation": "dust (неисч.)"},
+                        {"question": "___ a policeman at the station.", "answer": "There is", "explanation": "a policeman (ед.ч.)"},
+                        {"question": "___ three pages in the letter.", "answer": "There are", "explanation": "three pages (мн.ч.)"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Переведите предложения на английский.\n\n1. В углу растение.\n2. На полке пять чашек.\n3. В ящике ключ.\n4. В бутылке немного воды.\n5. В поле лошадь.\n6. В футбольной команде одиннадцать игроков.\n7. На доске объявление.\n8. На столе много пыли.\n9. На станции полицейский.\n10. В письме три страницы.",
+                    "subtasks": [
+                        {"question": "В углу растение.", "answer": "There is a plant in the corner.", "explanation": "There is a plant in the corner."},
+                        {"question": "На полке пять чашек.", "answer": "There are five cups on the shelf.", "explanation": "There are five cups on the shelf."},
+                        {"question": "В ящике ключ.", "answer": "There is a key in the drawer.", "explanation": "There is a key in the drawer."},
+                        {"question": "В бутылке немного воды.", "answer": "There is some water in the bottle.", "explanation": "There is some water in the bottle."},
+                        {"question": "В поле лошадь.", "answer": "There is a horse in the field.", "explanation": "There is a horse in the field."},
+                        {"question": "В футбольной команде одиннадцать игроков.", "answer": "There are eleven players in a football team.", "explanation": "There are eleven players in a football team."},
+                        {"question": "На доске объявление.", "answer": "There is a notice on the board.", "explanation": "There is a notice on the board."},
+                        {"question": "На столе много пыли.", "answer": "There is a lot of dust on the table.", "explanation": "There is a lot of dust on the table."},
+                        {"question": "На станции полицейский.", "answer": "There is a policeman at the station.", "explanation": "There is a policeman at the station."},
+                        {"question": "В письме три страницы.", "answer": "There are three pages in the letter.", "explanation": "There are three pages in the letter."}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Составьте предложения.\n\n1. corner / plant / a / in / there / is / the\n2. shelf / cups / five / on / are / there / the\n3. drawer / key / a / in / is / there / the\n4. bottle / water / some / in / is / there / the\n5. field / horse / a / in / is / there / the\n6. football / team / eleven / players / in / are / there / a\n7. board / notice / a / on / is / there / the\n8. table / dust / of / lot / a / on / is / there / the\n9. station / policeman / a / at / is / there / the\n10. letter / pages / three / in / are / there / the",
+                    "subtasks": [
+                        {"question": "corner / plant / a / in / there / is / the", "answer": "There is a plant in the corner.", "explanation": "There is a plant in the corner."},
+                        {"question": "shelf / cups / five / on / are / there / the", "answer": "There are five cups on the shelf.", "explanation": "There are five cups on the shelf."},
+                        {"question": "drawer / key / a / in / is / there / the", "answer": "There is a key in the drawer.", "explanation": "There is a key in the drawer."},
+                        {"question": "bottle / water / some / in / is / there / the", "answer": "There is some water in the bottle.", "explanation": "There is some water in the bottle."},
+                        {"question": "field / horse / a / in / is / there / the", "answer": "There is a horse in the field.", "explanation": "There is a horse in the field."},
+                        {"question": "football / team / eleven / players / in / are / there / a", "answer": "There are eleven players in a football team.", "explanation": "There are eleven players in a football team."},
+                        {"question": "board / notice / a / on / is / there / the", "answer": "There is a notice on the board.", "explanation": "There is a notice on the board."},
+                        {"question": "table / dust / of / lot / a / on / is / there / the", "answer": "There is a lot of dust on the table.", "explanation": "There is a lot of dust on the table."},
+                        {"question": "station / policeman / a / at / is / there / the", "answer": "There is a policeman at the station.", "explanation": "There is a policeman at the station."},
+                        {"question": "letter / pages / three / in / are / there / the", "answer": "There are three pages in the letter.", "explanation": "There are three pages in the letter."}
+                    ]
+                }
+            ],
+            # Вариант 7
+            [
+                {
+                    "type": "complex",
+                    "text": "Вставьте there is или there are.\n\n1. ___ a lamp on the bedside table.\n2. ___ six books in the bag.\n3. ___ a magazine on the floor.\n4. ___ some cheese in the fridge.\n5. ___ a bird on the roof.\n6. ___ ten students in the library.\n7. ___ a clock on the mantelpiece.\n8. ___ a lot of snow outside.\n9. ___ a pilot in the plane.\n10. ___ two batteries in the remote.",
+                    "subtasks": [
+                        {"question": "___ a lamp on the bedside table.", "answer": "There is", "explanation": "a lamp (ед.ч.)"},
+                        {"question": "___ six books in the bag.", "answer": "There are", "explanation": "six books (мн.ч.)"},
+                        {"question": "___ a magazine on the floor.", "answer": "There is", "explanation": "a magazine (ед.ч.)"},
+                        {"question": "___ some cheese in the fridge.", "answer": "There is", "explanation": "cheese (неисч.)"},
+                        {"question": "___ a bird on the roof.", "answer": "There is", "explanation": "a bird (ед.ч.)"},
+                        {"question": "___ ten students in the library.", "answer": "There are", "explanation": "ten students (мн.ч.)"},
+                        {"question": "___ a clock on the mantelpiece.", "answer": "There is", "explanation": "a clock (ед.ч.)"},
+                        {"question": "___ a lot of snow outside.", "answer": "There is", "explanation": "snow (неисч.)"},
+                        {"question": "___ a pilot in the plane.", "answer": "There is", "explanation": "a pilot (ед.ч.)"},
+                        {"question": "___ two batteries in the remote.", "answer": "There are", "explanation": "two batteries (мн.ч.)"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Переведите предложения на английский.\n\n1. На прикроватном столике лампа.\n2. В сумке шесть книг.\n3. На полу журнал.\n4. В холодильнике немного сыра.\n5. На крыше птица.\n6. В библиотеке десять студентов.\n7. На каминной полке часы.\n8. На улице много снега.\n9. В самолёте пилот.\n10. В пульте две батарейки.",
+                    "subtasks": [
+                        {"question": "На прикроватном столике лампа.", "answer": "There is a lamp on the bedside table.", "explanation": "There is a lamp on the bedside table."},
+                        {"question": "В сумке шесть книг.", "answer": "There are six books in the bag.", "explanation": "There are six books in the bag."},
+                        {"question": "На полу журнал.", "answer": "There is a magazine on the floor.", "explanation": "There is a magazine on the floor."},
+                        {"question": "В холодильнике немного сыра.", "answer": "There is some cheese in the fridge.", "explanation": "There is some cheese in the fridge."},
+                        {"question": "На крыше птица.", "answer": "There is a bird on the roof.", "explanation": "There is a bird on the roof."},
+                        {"question": "В библиотеке десять студентов.", "answer": "There are ten students in the library.", "explanation": "There are ten students in the library."},
+                        {"question": "На каминной полке часы.", "answer": "There is a clock on the mantelpiece.", "explanation": "There is a clock on the mantelpiece."},
+                        {"question": "На улице много снега.", "answer": "There is a lot of snow outside.", "explanation": "There is a lot of snow outside."},
+                        {"question": "В самолёте пилот.", "answer": "There is a pilot in the plane.", "explanation": "There is a pilot in the plane."},
+                        {"question": "В пульте две батарейки.", "answer": "There are two batteries in the remote.", "explanation": "There are two batteries in the remote."}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Составьте предложения.\n\n1. bedside / table / lamp / a / on / there / is / the\n2. bag / books / six / in / are / there / the\n3. floor / magazine / a / on / is / there / the\n4. fridge / cheese / some / in / is / there / the\n5. roof / bird / a / on / is / there / the\n6. library / students / ten / in / are / there / the\n7. mantelpiece / clock / a / on / is / there / the\n8. outside / snow / of / lot / a / is / there\n9. plane / pilot / a / in / is / there / the\n10. remote / batteries / two / in / are / there / the",
+                    "subtasks": [
+                        {"question": "bedside / table / lamp / a / on / there / is / the", "answer": "There is a lamp on the bedside table.", "explanation": "There is a lamp on the bedside table."},
+                        {"question": "bag / books / six / in / are / there / the", "answer": "There are six books in the bag.", "explanation": "There are six books in the bag."},
+                        {"question": "floor / magazine / a / on / is / there / the", "answer": "There is a magazine on the floor.", "explanation": "There is a magazine on the floor."},
+                        {"question": "fridge / cheese / some / in / is / there / the", "answer": "There is some cheese in the fridge.", "explanation": "There is some cheese in the fridge."},
+                        {"question": "roof / bird / a / on / is / there / the", "answer": "There is a bird on the roof.", "explanation": "There is a bird on the roof."},
+                        {"question": "library / students / ten / in / are / there / the", "answer": "There are ten students in the library.", "explanation": "There are ten students in the library."},
+                        {"question": "mantelpiece / clock / a / on / is / there / the", "answer": "There is a clock on the mantelpiece.", "explanation": "There is a clock on the mantelpiece."},
+                        {"question": "outside / snow / of / lot / a / is / there", "answer": "There is a lot of snow outside.", "explanation": "There is a lot of snow outside."},
+                        {"question": "plane / pilot / a / in / is / there / the", "answer": "There is a pilot in the plane.", "explanation": "There is a pilot in the plane."},
+                        {"question": "remote / batteries / two / in / are / there / the", "answer": "There are two batteries in the remote.", "explanation": "There are two batteries in the remote."}
+                    ]
+                }
+            ],
+            # Вариант 8
+            [
+                {
+                    "type": "complex",
+                    "text": "Вставьте there is или there are.\n\n1. ___ a sofa in the living room.\n2. ___ four chairs around the table.\n3. ___ a fan in the room.\n4. ___ some sugar in the jar.\n5. ___ a cat on the roof.\n6. ___ twenty students in the class.\n7. ___ a picture on the cover.\n8. ___ a lot of noise in the street.\n9. ___ a driver in the bus.\n10. ___ five buttons on the shirt.",
+                    "subtasks": [
+                        {"question": "___ a sofa in the living room.", "answer": "There is", "explanation": "a sofa (ед.ч.)"},
+                        {"question": "___ four chairs around the table.", "answer": "There are", "explanation": "four chairs (мн.ч.)"},
+                        {"question": "___ a fan in the room.", "answer": "There is", "explanation": "a fan (ед.ч.)"},
+                        {"question": "___ some sugar in the jar.", "answer": "There is", "explanation": "sugar (неисч.)"},
+                        {"question": "___ a cat on the roof.", "answer": "There is", "explanation": "a cat (ед.ч.)"},
+                        {"question": "___ twenty students in the class.", "answer": "There are", "explanation": "twenty students (мн.ч.)"},
+                        {"question": "___ a picture on the cover.", "answer": "There is", "explanation": "a picture (ед.ч.)"},
+                        {"question": "___ a lot of noise in the street.", "answer": "There is", "explanation": "noise (неисч.)"},
+                        {"question": "___ a driver in the bus.", "answer": "There is", "explanation": "a driver (ед.ч.)"},
+                        {"question": "___ five buttons on the shirt.", "answer": "There are", "explanation": "five buttons (мн.ч.)"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Переведите предложения на английский.\n\n1. В гостиной диван.\n2. Вокруг стола четыре стула.\n3. В комнате вентилятор.\n4. В банке немного сахара.\n5. На крыше кошка.\n6. В классе двадцать студентов.\n7. На обложке картинка.\n8. На улице много шума.\n9. В автобусе водитель.\n10. На рубашке пять пуговиц.",
+                    "subtasks": [
+                        {"question": "В гостиной диван.", "answer": "There is a sofa in the living room.", "explanation": "There is a sofa in the living room."},
+                        {"question": "Вокруг стола четыре стула.", "answer": "There are four chairs around the table.", "explanation": "There are four chairs around the table."},
+                        {"question": "В комнате вентилятор.", "answer": "There is a fan in the room.", "explanation": "There is a fan in the room."},
+                        {"question": "В банке немного сахара.", "answer": "There is some sugar in the jar.", "explanation": "There is some sugar in the jar."},
+                        {"question": "На крыше кошка.", "answer": "There is a cat on the roof.", "explanation": "There is a cat on the roof."},
+                        {"question": "В классе двадцать студентов.", "answer": "There are twenty students in the class.", "explanation": "There are twenty students in the class."},
+                        {"question": "На обложке картинка.", "answer": "There is a picture on the cover.", "explanation": "There is a picture on the cover."},
+                        {"question": "На улице много шума.", "answer": "There is a lot of noise in the street.", "explanation": "There is a lot of noise in the street."},
+                        {"question": "В автобусе водитель.", "answer": "There is a driver in the bus.", "explanation": "There is a driver in the bus."},
+                        {"question": "На рубашке пять пуговиц.", "answer": "There are five buttons on the shirt.", "explanation": "There are five buttons on the shirt."}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Составьте предложения.\n\n1. living / room / sofa / a / in / is / there / the\n2. table / chairs / four / around / are / there / the\n3. room / fan / a / in / is / there / the\n4. jar / sugar / some / in / is / there / the\n5. roof / cat / a / on / is / there / the\n6. class / twenty / students / in / are / there / the\n7. cover / picture / a / on / is / there / the\n8. street / noise / of / lot / a / in / is / there / the\n9. bus / driver / a / in / is / there / the\n10. shirt / buttons / five / on / are / there / the",
+                    "subtasks": [
+                        {"question": "living / room / sofa / a / in / is / there / the", "answer": "There is a sofa in the living room.", "explanation": "There is a sofa in the living room."},
+                        {"question": "table / chairs / four / around / are / there / the", "answer": "There are four chairs around the table.", "explanation": "There are four chairs around the table."},
+                        {"question": "room / fan / a / in / is / there / the", "answer": "There is a fan in the room.", "explanation": "There is a fan in the room."},
+                        {"question": "jar / sugar / some / in / is / there / the", "answer": "There is some sugar in the jar.", "explanation": "There is some sugar in the jar."},
+                        {"question": "roof / cat / a / on / is / there / the", "answer": "There is a cat on the roof.", "explanation": "There is a cat on the roof."},
+                        {"question": "class / twenty / students / in / are / there / the", "answer": "There are twenty students in the class.", "explanation": "There are twenty students in the class."},
+                        {"question": "cover / picture / a / on / is / there / the", "answer": "There is a picture on the cover.", "explanation": "There is a picture on the cover."},
+                        {"question": "street / noise / of / lot / a / in / is / there / the", "answer": "There is a lot of noise in the street.", "explanation": "There is a lot of noise in the street."},
+                        {"question": "bus / driver / a / in / is / there / the", "answer": "There is a driver in the bus.", "explanation": "There is a driver in the bus."},
+                        {"question": "shirt / buttons / five / on / are / there / the", "answer": "There are five buttons on the shirt.", "explanation": "There are five buttons on the shirt."}
+                    ]
+                }
+            ],
+            # Вариант 9
+            [
+                {
+                    "type": "complex",
+                    "text": "Вставьте there is или there are.\n\n1. ___ a pen on the notebook.\n2. ___ three paintings on the wall.\n3. ___ a spider in the corner.\n4. ___ some butter in the fridge.\n5. ___ a duck in the pond.\n6. ___ fifty states in the USA.\n7. ___ a calendar on the door.\n8. ___ a lot of rain in autumn.\n9. ___ a cook in the kitchen.\n10. ___ six strings on a guitar.",
+                    "subtasks": [
+                        {"question": "___ a pen on the notebook.", "answer": "There is", "explanation": "a pen (ед.ч.)"},
+                        {"question": "___ three paintings on the wall.", "answer": "There are", "explanation": "three paintings (мн.ч.)"},
+                        {"question": "___ a spider in the corner.", "answer": "There is", "explanation": "a spider (ед.ч.)"},
+                        {"question": "___ some butter in the fridge.", "answer": "There is", "explanation": "butter (неисч.)"},
+                        {"question": "___ a duck in the pond.", "answer": "There is", "explanation": "a duck (ед.ч.)"},
+                        {"question": "___ fifty states in the USA.", "answer": "There are", "explanation": "fifty states (мн.ч.)"},
+                        {"question": "___ a calendar on the door.", "answer": "There is", "explanation": "a calendar (ед.ч.)"},
+                        {"question": "___ a lot of rain in autumn.", "answer": "There is", "explanation": "rain (неисч.)"},
+                        {"question": "___ a cook in the kitchen.", "answer": "There is", "explanation": "a cook (ед.ч.)"},
+                        {"question": "___ six strings on a guitar.", "answer": "There are", "explanation": "six strings (мн.ч.)"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Переведите предложения на английский.\n\n1. На тетради ручка.\n2. На стене три картины.\n3. В углу паук.\n4. В холодильнике немного масла.\n5. В пруду утка.\n6. В США пятьдесят штатов.\n7. На двери календарь.\n8. Осенью много дождя.\n9. На кухне повар.\n10. У гитары шесть струн.",
+                    "subtasks": [
+                        {"question": "На тетради ручка.", "answer": "There is a pen on the notebook.", "explanation": "There is a pen on the notebook."},
+                        {"question": "На стене три картины.", "answer": "There are three paintings on the wall.", "explanation": "There are three paintings on the wall."},
+                        {"question": "В углу паук.", "answer": "There is a spider in the corner.", "explanation": "There is a spider in the corner."},
+                        {"question": "В холодильнике немного масла.", "answer": "There is some butter in the fridge.", "explanation": "There is some butter in the fridge."},
+                        {"question": "В пруду утка.", "answer": "There is a duck in the pond.", "explanation": "There is a duck in the pond."},
+                        {"question": "В США пятьдесят штатов.", "answer": "There are fifty states in the USA.", "explanation": "There are fifty states in the USA."},
+                        {"question": "На двери календарь.", "answer": "There is a calendar on the door.", "explanation": "There is a calendar on the door."},
+                        {"question": "Осенью много дождя.", "answer": "There is a lot of rain in autumn.", "explanation": "There is a lot of rain in autumn."},
+                        {"question": "На кухне повар.", "answer": "There is a cook in the kitchen.", "explanation": "There is a cook in the kitchen."},
+                        {"question": "У гитары шесть струн.", "answer": "There are six strings on a guitar.", "explanation": "There are six strings on a guitar."}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Составьте предложения.\n\n1. notebook / pen / a / on / is / there / the\n2. wall / paintings / three / on / are / there / the\n3. corner / spider / a / in / is / there / the\n4. fridge / butter / some / in / is / there / the\n5. pond / duck / a / in / is / there / the\n6. USA / states / fifty / in / are / there / the\n7. door / calendar / a / on / is / there / the\n8. autumn / rain / of / lot / a / is / there / in\n9. kitchen / cook / a / in / is / there / the\n10. guitar / strings / six / on / are / there / a",
+                    "subtasks": [
+                        {"question": "notebook / pen / a / on / is / there / the", "answer": "There is a pen on the notebook.", "explanation": "There is a pen on the notebook."},
+                        {"question": "wall / paintings / three / on / are / there / the", "answer": "There are three paintings on the wall.", "explanation": "There are three paintings on the wall."},
+                        {"question": "corner / spider / a / in / is / there / the", "answer": "There is a spider in the corner.", "explanation": "There is a spider in the corner."},
+                        {"question": "fridge / butter / some / in / is / there / the", "answer": "There is some butter in the fridge.", "explanation": "There is some butter in the fridge."},
+                        {"question": "pond / duck / a / in / is / there / the", "answer": "There is a duck in the pond.", "explanation": "There is a duck in the pond."},
+                        {"question": "USA / states / fifty / in / are / there / the", "answer": "There are fifty states in the USA.", "explanation": "There are fifty states in the USA."},
+                        {"question": "door / calendar / a / on / is / there / the", "answer": "There is a calendar on the door.", "explanation": "There is a calendar on the door."},
+                        {"question": "autumn / rain / of / lot / a / is / there / in", "answer": "There is a lot of rain in autumn.", "explanation": "There is a lot of rain in autumn."},
+                        {"question": "kitchen / cook / a / in / is / there / the", "answer": "There is a cook in the kitchen.", "explanation": "There is a cook in the kitchen."},
+                        {"question": "guitar / strings / six / on / are / there / a", "answer": "There are six strings on a guitar.", "explanation": "There are six strings on a guitar."}
+                    ]
+                }
+            ],
+            # Вариант 10
+            [
+                {
+                    "type": "complex",
+                    "text": "Вставьте there is или there are.\n\n1. ___ a towel in the bathroom.\n2. ___ five pillows on the bed.\n3. ___ a mirror on the wardrobe.\n4. ___ some milk in the glass.\n5. ___ a squirrel in the tree.\n6. ___ seven continents in the world.\n7. ___ a sign on the wall.\n8. ___ a lot of traffic in the morning.\n9. ___ a waiter in the restaurant.\n10. ___ four legs on a table.",
+                    "subtasks": [
+                        {"question": "___ a towel in the bathroom.", "answer": "There is", "explanation": "a towel (ед.ч.)"},
+                        {"question": "___ five pillows on the bed.", "answer": "There are", "explanation": "five pillows (мн.ч.)"},
+                        {"question": "___ a mirror on the wardrobe.", "answer": "There is", "explanation": "a mirror (ед.ч.)"},
+                        {"question": "___ some milk in the glass.", "answer": "There is", "explanation": "milk (неисч.)"},
+                        {"question": "___ a squirrel in the tree.", "answer": "There is", "explanation": "a squirrel (ед.ч.)"},
+                        {"question": "___ seven continents in the world.", "answer": "There are", "explanation": "seven continents (мн.ч.)"},
+                        {"question": "___ a sign on the wall.", "answer": "There is", "explanation": "a sign (ед.ч.)"},
+                        {"question": "___ a lot of traffic in the morning.", "answer": "There is", "explanation": "traffic (неисч.)"},
+                        {"question": "___ a waiter in the restaurant.", "answer": "There is", "explanation": "a waiter (ед.ч.)"},
+                        {"question": "___ four legs on a table.", "answer": "There are", "explanation": "four legs (мн.ч.)"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Переведите предложения на английский.\n\n1. В ванной полотенце.\n2. На кровати пять подушек.\n3. На шкафу зеркало.\n4. В стакане немного молока.\n5. На дереве белка.\n6. В мире семь континентов.\n7. На стене знак.\n8. Утром много машин.\n9. В ресторане официант.\n10. У стола четыре ножки.",
+                    "subtasks": [
+                        {"question": "В ванной полотенце.", "answer": "There is a towel in the bathroom.", "explanation": "There is a towel in the bathroom."},
+                        {"question": "На кровати пять подушек.", "answer": "There are five pillows on the bed.", "explanation": "There are five pillows on the bed."},
+                        {"question": "На шкафу зеркало.", "answer": "There is a mirror on the wardrobe.", "explanation": "There is a mirror on the wardrobe."},
+                        {"question": "В стакане немного молока.", "answer": "There is some milk in the glass.", "explanation": "There is some milk in the glass."},
+                        {"question": "На дереве белка.", "answer": "There is a squirrel in the tree.", "explanation": "There is a squirrel in the tree."},
+                        {"question": "В мире семь континентов.", "answer": "There are seven continents in the world.", "explanation": "There are seven continents in the world."},
+                        {"question": "На стене знак.", "answer": "There is a sign on the wall.", "explanation": "There is a sign on the wall."},
+                        {"question": "Утром много машин.", "answer": "There is a lot of traffic in the morning.", "explanation": "There is a lot of traffic in the morning."},
+                        {"question": "В ресторане официант.", "answer": "There is a waiter in the restaurant.", "explanation": "There is a waiter in the restaurant."},
+                        {"question": "У стола четыре ножки.", "answer": "There are four legs on a table.", "explanation": "There are four legs on a table."}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Составьте предложения.\n\n1. bathroom / towel / a / in / is / there / the\n2. bed / pillows / five / on / are / there / the\n3. wardrobe / mirror / a / on / is / there / the\n4. glass / milk / some / in / is / there / the\n5. tree / squirrel / a / in / is / there / the\n6. world / continents / seven / in / are / there / the\n7. wall / sign / a / on / is / there / the\n8. morning / traffic / lot / a / of / is / there / in / the\n9. restaurant / waiter / a / in / is / there / the\n10. table / legs / four / on / are / there / a",
+                    "subtasks": [
+                        {"question": "bathroom / towel / a / in / is / there / the", "answer": "There is a towel in the bathroom.", "explanation": "There is a towel in the bathroom."},
+                        {"question": "bed / pillows / five / on / are / there / the", "answer": "There are five pillows on the bed.", "explanation": "There are five pillows on the bed."},
+                        {"question": "wardrobe / mirror / a / on / is / there / the", "answer": "There is a mirror on the wardrobe.", "explanation": "There is a mirror on the wardrobe."},
+                        {"question": "glass / milk / some / in / is / there / the", "answer": "There is some milk in the glass.", "explanation": "There is some milk in the glass."},
+                        {"question": "tree / squirrel / a / in / is / there / the", "answer": "There is a squirrel in the tree.", "explanation": "There is a squirrel in the tree."},
+                        {"question": "world / continents / seven / in / are / there / the", "answer": "There are seven continents in the world.", "explanation": "There are seven continents in the world."},
+                        {"question": "wall / sign / a / on / is / there / the", "answer": "There is a sign on the wall.", "explanation": "There is a sign on the wall."},
+                        {"question": "morning / traffic / lot / a / of / is / there / in / the", "answer": "There is a lot of traffic in the morning.", "explanation": "There is a lot of traffic in the morning."},
+                        {"question": "restaurant / waiter / a / in / is / there / the", "answer": "There is a waiter in the restaurant.", "explanation": "There is a waiter in the restaurant."},
+                        {"question": "table / legs / four / on / are / there / a", "answer": "There are four legs on a table.", "explanation": "There are four legs on a table."}
+                    ]
+                }
+            ]
+        ]
+  },
+  "prepositionsplace": {
+    "title": "Предлоги места",
+    "pages": [
+      {
+        "title": "Базовые предлоги",
+        "text": "\n<b>📍 Предлоги места показывают, где находится предмет.</b>\n\n<b>In – внутри (в)</b>\n• in the box (в коробке)\n• in the room (в комнате)\n• in London (в Лондоне)\n\n<b>On – на поверхности (на)</b>\n• on the table (на столе)\n• on the wall (на стене)\n• on the floor (на полу)\n\n<b>Under – под</b>\n• under the bed (под кроватью)\n• under the chair (под стулом)\n\n<b>Behind – за</b>\n• behind the door (за дверью)\n• behind the house (за домом)\n"
+      },
+      {
+        "title": "Next to, between, opposite",
+        "text": "\n<b>Next to / beside – рядом с</b>\n• The bank is next to the post office. (Банк рядом с почтой.)\n\n<b>Between – между (двумя объектами)</b>\n• The supermarket is between the school and the park. (Супермаркет между школой и парком.)\n\n<b>Opposite – напротив</b>\n• The cinema is opposite the hotel. (Кинотеатр напротив отеля.)\n\n<b>In front of – перед</b>\n• There is a car in front of the building. (Перед зданием машина.)\n\n<blockquote>Предлоги часто используются с глаголом to be или there is/are.</blockquote>\n"
+      },
+      {
+        "title": "Примеры и советы",
+        "text": "\n<b>📖 Примеры предложений:</b>\n• My phone is on the sofa. (Мой телефон на диване.)\n• The keys are under the mat. (Ключи под ковриком.)\n• She is sitting next to me. (Она сидит рядом со мной.)\n• The park is between the library and the school. (Парк между библиотекой и школой.)\n\n<b>🧠 Как запомнить:</b>\nПредставьте свою комнату и мысленно расставляйте предметы, проговаривая предлоги.\n\n<b>Вопросы с предлогами:</b>\n• Where is the cat? – It is under the table.\n• Where are my glasses? – They are on the shelf.\n\n<b>💡 Совет:</b> Опишите, где находятся предметы на вашем рабочем столе, используя предлоги.\n"
+      }
+    ],
+    "faq": [
+      {
+        "question": "В чём разница между next to и beside?",
+        "answer": "Они почти одинаковы. Beside чуть более формальный, next to – разговорный."
+      },
+      {
+        "question": "Можно ли использовать предлоги с there is/are?",
+        "answer": "Да, например: There is a cat under the chair. Это очень распространённая конструкция."
+      }
+    ],
+            "practice_bank": [
             # Вариант 1
             [
                 {
@@ -4913,467 +5452,6 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
                 }
             ]
         ]
-  },
-  "prepositionsplace": {
-    "title": "Предлоги места",
-    "pages": [
-      {
-        "title": "Базовые предлоги",
-        "text": "\n<b>📍 Предлоги места показывают, где находится предмет.</b>\n\n<b>In – внутри (в)</b>\n• in the box (в коробке)\n• in the room (в комнате)\n• in London (в Лондоне)\n\n<b>On – на поверхности (на)</b>\n• on the table (на столе)\n• on the wall (на стене)\n• on the floor (на полу)\n\n<b>Under – под</b>\n• under the bed (под кроватью)\n• under the chair (под стулом)\n\n<b>Behind – за</b>\n• behind the door (за дверью)\n• behind the house (за домом)\n"
-      },
-      {
-        "title": "Next to, between, opposite",
-        "text": "\n<b>Next to / beside – рядом с</b>\n• The bank is next to the post office. (Банк рядом с почтой.)\n\n<b>Between – между (двумя объектами)</b>\n• The supermarket is between the school and the park. (Супермаркет между школой и парком.)\n\n<b>Opposite – напротив</b>\n• The cinema is opposite the hotel. (Кинотеатр напротив отеля.)\n\n<b>In front of – перед</b>\n• There is a car in front of the building. (Перед зданием машина.)\n\n<blockquote>Предлоги часто используются с глаголом to be или there is/are.</blockquote>\n"
-      },
-      {
-        "title": "Примеры и советы",
-        "text": "\n<b>📖 Примеры предложений:</b>\n• My phone is on the sofa. (Мой телефон на диване.)\n• The keys are under the mat. (Ключи под ковриком.)\n• She is sitting next to me. (Она сидит рядом со мной.)\n• The park is between the library and the school. (Парк между библиотекой и школой.)\n\n<b>🧠 Как запомнить:</b>\nПредставьте свою комнату и мысленно расставляйте предметы, проговаривая предлоги.\n\n<b>Вопросы с предлогами:</b>\n• Where is the cat? – It is under the table.\n• Where are my glasses? – They are on the shelf.\n\n<b>💡 Совет:</b> Опишите, где находятся предметы на вашем рабочем столе, используя предлоги.\n"
-      }
-    ],
-    "faq": [
-      {
-        "question": "В чём разница между next to и beside?",
-        "answer": "Они почти одинаковы. Beside чуть более формальный, next to – разговорный."
-      },
-      {
-        "question": "Можно ли использовать предлоги с there is/are?",
-        "answer": "Да, например: There is a cat under the chair. Это очень распространённая конструкция."
-      }
-    ],
-    "practice_tasks": [
-      {
-        "type": "fill_blank",
-        "text": "The cat is ___ the table.",
-        "correct": "on",
-        "hint": "Surface contact",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "My phone is ___ my bag.",
-        "correct": "in",
-        "hint": "Inside something",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The school is ___ the bank and the post office.",
-        "correct": "between",
-        "hint": "Two things on each side",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He is sitting ___ me.",
-        "correct": "next to",
-        "hint": "Beside",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The book is ___ the shelf.",
-        "correct": "on",
-        "hint": "Surface",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The mouse ran ___ the chair.",
-        "correct": "under",
-        "hint": "Below",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She is standing ___ the door.",
-        "correct": "in front of",
-        "hint": "Before something",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The picture is ___ the wall.",
-        "correct": "on",
-        "hint": "Attached to vertical surface",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "We walked ___ the park.",
-        "correct": "through",
-        "hint": "From one side to another",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The restaurant is ___ the corner.",
-        "correct": "at",
-        "hint": "Specific point",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The plane flew ___ the clouds.",
-        "correct": "above",
-        "hint": "Higher than",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The cat is hiding ___ the sofa.",
-        "correct": "behind",
-        "hint": "At the back of",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He lives ___ 25 Baker Street.",
-        "correct": "at",
-        "hint": "Address",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "There is a bridge ___ the river.",
-        "correct": "over",
-        "hint": "Above and across",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The pencil is ___ the desk.",
-        "correct": "on",
-        "hint": "Top of",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She is ___ the bus.",
-        "correct": "on",
-        "hint": "Public transport",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The keys are ___ my pocket.",
-        "correct": "in",
-        "hint": "Inside clothing",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The dog jumped ___ the fence.",
-        "correct": "over",
-        "hint": "Across top",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "We met ___ the cinema.",
-        "correct": "at",
-        "hint": "Location/event",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The ball is ___ the box.",
-        "correct": "in",
-        "hint": "Contained",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The cat is ___ the table and the chair.",
-        "correct": "between",
-        "hint": "Two objects",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "The sun is ___ the horizon.",
-        "correct": "below",
-        "hint": "Lower than",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "She sat ___ me during the movie.",
-        "correct": "opposite",
-        "hint": "Facing",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "The path goes ___ the forest.",
-        "correct": "through",
-        "hint": "Inside and out",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "The painting is ___ the fireplace.",
-        "correct": "above",
-        "hint": "Higher position",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "He parked the car ___ the house.",
-        "correct": "in front of",
-        "hint": "Directly before",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "The bird flew ___ the tree.",
-        "correct": "into",
-        "hint": "Entering",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "The cat is ___ the table.",
-        "correct": "under",
-        "hint": "Beneath",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "She is standing ___ the two buildings.",
-        "correct": "between",
-        "hint": "In the middle",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "The river flows ___ the village.",
-        "correct": "through",
-        "hint": "Passing inside",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "The cat is ___ the table.",
-        "correct": "under",
-        "hint": "Прямо под столом",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She put the book ___ the shelf.",
-        "correct": "on",
-        "hint": "На полке",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "There is a bridge ___ the river.",
-        "correct": "over",
-        "hint": "Над рекой",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He lives ___ the third floor.",
-        "correct": "on",
-        "hint": "На этаже",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The school is ___ the corner of the street.",
-        "correct": "at",
-        "hint": "На углу",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "My keys are ___ my bag.",
-        "correct": "in",
-        "hint": "Внутри сумки",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The dog is sleeping ___ the sofa.",
-        "correct": "under",
-        "hint": "Под диваном",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She stood ___ the door.",
-        "correct": "behind",
-        "hint": "Позади двери",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The picture is hanging ___ the wall.",
-        "correct": "on",
-        "hint": "На стене",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "We walked ___ the park.",
-        "correct": "through",
-        "hint": "Сквозь парк",
-        "star": False
-      },
-      {
-        "type": "reorder",
-        "text": "is / the / cat / the / under / table",
-        "correct": "The cat is under the table",
-        "hint": "Кошка под столом",
-        "star": False
-      },
-      {
-        "type": "reorder",
-        "text": "are / keys / the / in / my / bag",
-        "correct": "The keys are in my bag",
-        "hint": "Ключи в сумке",
-        "star": False
-      },
-      {
-        "type": "reorder",
-        "text": "lives / she / on / floor / the / fifth",
-        "correct": "She lives on the fifth floor",
-        "hint": "Она живёт на пятом этаже",
-        "star": False
-      },
-      {
-        "type": "reorder",
-        "text": "book / the / is / the / on / shelf",
-        "correct": "The book is on the shelf",
-        "hint": "Книга на полке",
-        "star": False
-      },
-      {
-        "type": "reorder",
-        "text": "park / near / the / is / the / school",
-        "correct": "The park is near the school",
-        "hint": "Парк рядом со школой",
-        "star": False
-      },
-      {
-        "type": "translation",
-        "text": "Кошка под столом.",
-        "correct": "The cat is under the table.",
-        "hint": "Предлог 'under'",
-        "star": False
-      },
-      {
-        "type": "translation",
-        "text": "Ключи в сумке.",
-        "correct": "The keys are in the bag.",
-        "hint": "Предлог 'in'",
-        "star": False
-      },
-      {
-        "type": "translation",
-        "text": "Она стоит за дверью.",
-        "correct": "She is standing behind the door.",
-        "hint": "Предлог 'behind'",
-        "star": False
-      },
-      {
-        "type": "translation",
-        "text": "Картина висит на стене.",
-        "correct": "The picture is on the wall.",
-        "hint": "Предлог 'on'",
-        "star": False
-      },
-      {
-        "type": "translation",
-        "text": "Мост над рекой.",
-        "correct": "The bridge is over the river.",
-        "hint": "Предлог 'over'",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The restaurant is ___ the cinema and the bank.",
-        "correct": "between",
-        "hint": "Между двумя объектами",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "He put the vase ___ the window.",
-        "correct": "in front of",
-        "hint": "Перед окном",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "The cat jumped ___ the chair.",
-        "correct": "onto",
-        "hint": "На (с движением)",
-        "star": True
-      },
-      {
-        "type": "reorder",
-        "text": "is / the / bank / the / opposite / supermarket",
-        "correct": "The bank is opposite the supermarket",
-        "hint": "Напротив",
-        "star": True
-      },
-      {
-        "type": "reorder",
-        "text": "the / cat / is / hiding / the / behind / curtain",
-        "correct": "The cat is hiding behind the curtain",
-        "hint": "Прячется за шторой",
-        "star": True
-      },
-      {
-        "type": "translation",
-        "text": "Магазин напротив больницы.",
-        "correct": "The shop is opposite the hospital.",
-        "hint": "Предлог 'opposite'",
-        "star": True
-      },
-      {
-        "type": "translation",
-        "text": "Книга лежит между ручкой и тетрадью.",
-        "correct": "The book is between the pen and the notebook.",
-        "hint": "Предлог 'between'",
-        "star": True
-      },
-      {
-        "type": "choice",
-        "text": "The cat is ___ the table.",
-        "correct": "under",
-        "hint": "Выберите правильный предлог",
-        "star": True,
-        "options": [
-          "under",
-          "on",
-          "in",
-          "at"
-        ]
-      },
-      {
-        "type": "choice",
-        "text": "She put the vase ___ the window.",
-        "correct": "in front of",
-        "hint": "Выберите правильный предлог",
-        "star": True,
-        "options": [
-          "behind",
-          "in front of",
-          "between",
-          "over"
-        ]
-      },
-      {
-        "type": "open",
-        "text": "Describe where your school bag is right now using at least two prepositions of place.",
-        "correct": "My school bag is on the chair next to the desk.",
-        "hint": "Используйте предлоги, например: on, under, next to, in front of",
-        "star": True
-      }
-    ]
   },
   "adjectives": {
     "title": "Прилагательные",
