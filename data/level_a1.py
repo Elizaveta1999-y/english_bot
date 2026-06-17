@@ -1690,530 +1690,518 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "answer": "Сокращённая форма не может стоять в конце предложения – это правило английской грамматики."
       }
     ],
-    "practice_tasks": [
-      {
-        "type": "fill_blank",
-        "text": "She ___ a teacher.",
-        "correct": "is not",
-        "hint": "Отрицание для she",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "___ he your brother?",
-        "correct": "Is",
-        "hint": "Вопрос с he",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "They ___ at home.",
-        "correct": "are not",
-        "hint": "Отрицание для they",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "___ I late?",
-        "correct": "Am",
-        "hint": "Вопрос с I",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "It ___ a cat.",
-        "correct": "is not",
-        "hint": "Отрицание для it",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "___ you happy?",
-        "correct": "Are",
-        "hint": "Вопрос с you",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "We ___ students.",
-        "correct": "are not",
-        "hint": "Отрицание для we",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "___ she your friend?",
-        "correct": "Is",
-        "hint": "Вопрос с she",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "I ___ tired.",
-        "correct": "am not",
-        "hint": "Отрицание для I",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "___ they in the park?",
-        "correct": "Are",
-        "hint": "Вопрос с they",
-        "star": False
-      },
-      {
-        "type": "choice",
-        "text": "He ___ a doctor.",
-        "correct": "is not",
-        "hint": "Выбери правильную форму",
-        "star": False,
-        "options": [
-          "is not",
-          "are not",
-          "am not",
-          "not"
+            "practice_bank": [
+            # Вариант 1
+            [
+                {
+                    "type": "complex",
+                    "text": "Вставьте правильную отрицательную форму глагола to be (am not, is not, are not).\n\n1. I ___ a teacher.\n2. She ___ my sister.\n3. We ___ at home.\n4. He ___ a doctor.\n5. They ___ happy.\n6. It ___ a cat.\n7. You ___ very kind.\n8. Tom ___ my brother.\n9. The girls ___ in the garden.\n10. I ___ from Russia.",
+                    "subtasks": [
+                        {"question": "I ___ a teacher.", "answer": "am not", "explanation": "I + am not"},
+                        {"question": "She ___ my sister.", "answer": "is not", "explanation": "She + is not"},
+                        {"question": "We ___ at home.", "answer": "are not", "explanation": "We + are not"},
+                        {"question": "He ___ a doctor.", "answer": "is not", "explanation": "He + is not"},
+                        {"question": "They ___ happy.", "answer": "are not", "explanation": "They + are not"},
+                        {"question": "It ___ a cat.", "answer": "is not", "explanation": "It + is not"},
+                        {"question": "You ___ very kind.", "answer": "are not", "explanation": "You + are not"},
+                        {"question": "Tom ___ my brother.", "answer": "is not", "explanation": "Tom = he → is not"},
+                        {"question": "The girls ___ in the garden.", "answer": "are not", "explanation": "girls = they → are not"},
+                        {"question": "I ___ from Russia.", "answer": "am not", "explanation": "I + am not"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Переведите предложения на английский (отрицания).\n\n1. Я не учитель.\n2. Она не моя сестра.\n3. Мы не дома.\n4. Он не врач.\n5. Они не счастливы.\n6. Это не кошка.\n7. Ты не очень добрый.\n8. Том не мой брат.\n9. Девочки не в саду.\n10. Я не из России.",
+                    "subtasks": [
+                        {"question": "Я не учитель.", "answer": "I am not a teacher.", "explanation": "I am not + a teacher"},
+                        {"question": "Она не моя сестра.", "answer": "She is not my sister.", "explanation": "She is not + my sister"},
+                        {"question": "Мы не дома.", "answer": "We are not at home.", "explanation": "We are not + at home"},
+                        {"question": "Он не врач.", "answer": "He is not a doctor.", "explanation": "He is not + a doctor"},
+                        {"question": "Они не счастливы.", "answer": "They are not happy.", "explanation": "They are not + happy"},
+                        {"question": "Это не кошка.", "answer": "It is not a cat.", "explanation": "It is not + a cat"},
+                        {"question": "Ты не очень добрый.", "answer": "You are not very kind.", "explanation": "You are not + very kind"},
+                        {"question": "Том не мой брат.", "answer": "Tom is not my brother.", "explanation": "Tom is not + my brother"},
+                        {"question": "Девочки не в саду.", "answer": "The girls are not in the garden.", "explanation": "girls are not + in the garden"},
+                        {"question": "Я не из России.", "answer": "I am not from Russia.", "explanation": "I am not + from Russia"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Составьте вопросы из слов в правильном порядке.\n\n1. you / are / a / student\n2. she / is / sister / your\n3. they / at / home / are\n4. he / a / doctor / is\n5. happy / are / you\n6. cat / it / a / is\n7. are / from / you / Russia\n8. Tom / brother / is / your\n9. the / girls / in / are / garden\n10. I / am / right",
+                    "subtasks": [
+                        {"question": "you / are / a / student", "answer": "Are you a student?", "explanation": "Вопрос: глагол + подлежащее + дополнение"},
+                        {"question": "she / is / sister / your", "answer": "Is she your sister?", "explanation": "Вопрос: глагол + подлежащее + дополнение"},
+                        {"question": "they / at / home / are", "answer": "Are they at home?", "explanation": "Вопрос: глагол + подлежащее + обстоятельство"},
+                        {"question": "he / a / doctor / is", "answer": "Is he a doctor?", "explanation": "Вопрос: глагол + подлежащее + дополнение"},
+                        {"question": "happy / are / you", "answer": "Are you happy?", "explanation": "Вопрос: глагол + подлежащее + прилагательное"},
+                        {"question": "cat / it / a / is", "answer": "Is it a cat?", "explanation": "Вопрос: глагол + подлежащее + дополнение"},
+                        {"question": "are / from / you / Russia", "answer": "Are you from Russia?", "explanation": "Вопрос: глагол + подлежащее + обстоятельство"},
+                        {"question": "Tom / brother / is / your", "answer": "Is Tom your brother?", "explanation": "Вопрос: глагол + подлежащее + дополнение"},
+                        {"question": "the / girls / in / are / garden", "answer": "Are the girls in the garden?", "explanation": "Вопрос: глагол + подлежащее + обстоятельство"},
+                        {"question": "I / am / right", "answer": "Am I right?", "explanation": "Вопрос: глагол + подлежащее + прилагательное"}
+                    ]
+                }
+            ],
+            # Вариант 2
+            [
+                {
+                    "type": "complex",
+                    "text": "Вставьте правильную отрицательную форму глагола to be (am not, is not, are not).\n\n1. You ___ my teacher.\n2. It ___ a dog.\n3. We ___ tired.\n4. She ___ a nurse.\n5. They ___ at school.\n6. I ___ a pilot.\n7. He ___ a firefighter.\n8. The books ___ on the table.\n9. My parents ___ very old.\n10. This ___ my pen.",
+                    "subtasks": [
+                        {"question": "You ___ my teacher.", "answer": "are not", "explanation": "You + are not"},
+                        {"question": "It ___ a dog.", "answer": "is not", "explanation": "It + is not"},
+                        {"question": "We ___ tired.", "answer": "are not", "explanation": "We + are not"},
+                        {"question": "She ___ a nurse.", "answer": "is not", "explanation": "She + is not"},
+                        {"question": "They ___ at school.", "answer": "are not", "explanation": "They + are not"},
+                        {"question": "I ___ a pilot.", "answer": "am not", "explanation": "I + am not"},
+                        {"question": "He ___ a firefighter.", "answer": "is not", "explanation": "He + is not"},
+                        {"question": "The books ___ on the table.", "answer": "are not", "explanation": "books = they → are not"},
+                        {"question": "My parents ___ very old.", "answer": "are not", "explanation": "parents = they → are not"},
+                        {"question": "This ___ my pen.", "answer": "is not", "explanation": "This = it → is not"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Переведите предложения на английский (отрицания).\n\n1. Ты не мой учитель.\n2. Это не собака.\n3. Мы не устали.\n4. Она не медсестра.\n5. Они не в школе.\n6. Я не пилот.\n7. Он не пожарный.\n8. Книги не на столе.\n9. Мои родители не очень старые.\n10. Это не моя ручка.",
+                    "subtasks": [
+                        {"question": "Ты не мой учитель.", "answer": "You are not my teacher.", "explanation": "You are not + my teacher"},
+                        {"question": "Это не собака.", "answer": "It is not a dog.", "explanation": "It is not + a dog"},
+                        {"question": "Мы не устали.", "answer": "We are not tired.", "explanation": "We are not + tired"},
+                        {"question": "Она не медсестра.", "answer": "She is not a nurse.", "explanation": "She is not + a nurse"},
+                        {"question": "Они не в школе.", "answer": "They are not at school.", "explanation": "They are not + at school"},
+                        {"question": "Я не пилот.", "answer": "I am not a pilot.", "explanation": "I am not + a pilot"},
+                        {"question": "Он не пожарный.", "answer": "He is not a firefighter.", "explanation": "He is not + a firefighter"},
+                        {"question": "Книги не на столе.", "answer": "The books are not on the table.", "explanation": "books are not + on the table"},
+                        {"question": "Мои родители не очень старые.", "answer": "My parents are not very old.", "explanation": "parents are not + very old"},
+                        {"question": "Это не моя ручка.", "answer": "This is not my pen.", "explanation": "This is not + my pen"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Составьте вопросы из слов в правильном порядке.\n\n1. teacher / you / a / are\n2. dog / it / a / is\n3. tired / we / are\n4. nurse / she / a / is\n5. at / school / they / are\n6. pilot / I / am / a\n7. firefighter / he / a / is\n8. the / table / on / books / are\n9. parents / old / very / are / your\n10. this / pen / my / is",
+                    "subtasks": [
+                        {"question": "teacher / you / a / are", "answer": "Are you a teacher?", "explanation": "Вопрос: глагол + подлежащее + дополнение"},
+                        {"question": "dog / it / a / is", "answer": "Is it a dog?", "explanation": "Вопрос: глагол + подлежащее + дополнение"},
+                        {"question": "tired / we / are", "answer": "Are we tired?", "explanation": "Вопрос: глагол + подлежащее + прилагательное"},
+                        {"question": "nurse / she / a / is", "answer": "Is she a nurse?", "explanation": "Вопрос: глагол + подлежащее + дополнение"},
+                        {"question": "at / school / they / are", "answer": "Are they at school?", "explanation": "Вопрос: глагол + подлежащее + обстоятельство"},
+                        {"question": "pilot / I / am / a", "answer": "Am I a pilot?", "explanation": "Вопрос: глагол + подлежащее + дополнение"},
+                        {"question": "firefighter / he / a / is", "answer": "Is he a firefighter?", "explanation": "Вопрос: глагол + подлежащее + дополнение"},
+                        {"question": "the / table / on / books / are", "answer": "Are the books on the table?", "explanation": "Вопрос: глагол + подлежащее + обстоятельство"},
+                        {"question": "parents / old / very / are / your", "answer": "Are your parents very old?", "explanation": "Вопрос: глагол + подлежащее + наречие + прилагательное"},
+                        {"question": "this / pen / my / is", "answer": "Is this my pen?", "explanation": "Вопрос: глагол + подлежащее + дополнение"}
+                    ]
+                }
+            ],
+            # Вариант 3
+            [
+                {
+                    "type": "complex",
+                    "text": "Вставьте правильную форму глагола to be в вопросе (Am, Is, Are).\n\n1. ___ I a student?\n2. ___ she your friend?\n3. ___ we happy?\n4. ___ he a doctor?\n5. ___ they at home?\n6. ___ it a cat?\n7. ___ you very kind?\n8. ___ Tom your brother?\n9. ___ the girls in the garden?\n10. ___ I from Russia?",
+                    "subtasks": [
+                        {"question": "___ I a student?", "answer": "Am", "explanation": "Вопрос с I → Am"},
+                        {"question": "___ she your friend?", "answer": "Is", "explanation": "Вопрос с she → Is"},
+                        {"question": "___ we happy?", "answer": "Are", "explanation": "Вопрос с we → Are"},
+                        {"question": "___ he a doctor?", "answer": "Is", "explanation": "Вопрос с he → Is"},
+                        {"question": "___ they at home?", "answer": "Are", "explanation": "Вопрос с they → Are"},
+                        {"question": "___ it a cat?", "answer": "Is", "explanation": "Вопрос с it → Is"},
+                        {"question": "___ you very kind?", "answer": "Are", "explanation": "Вопрос с you → Are"},
+                        {"question": "___ Tom your brother?", "answer": "Is", "explanation": "Вопрос с Tom (he) → Is"},
+                        {"question": "___ the girls in the garden?", "answer": "Are", "explanation": "Вопрос с the girls (they) → Are"},
+                        {"question": "___ I from Russia?", "answer": "Am", "explanation": "Вопрос с I → Am"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Переведите предложения на английский (вопросы).\n\n1. Я студент?\n2. Она твоя подруга?\n3. Мы счастливы?\n4. Он врач?\n5. Они дома?\n6. Это кошка?\n7. Ты очень добрый?\n8. Том твой брат?\n9. Девочки в саду?\n10. Я из России?",
+                    "subtasks": [
+                        {"question": "Я студент?", "answer": "Am I a student?", "explanation": "Am I + a student?"},
+                        {"question": "Она твоя подруга?", "answer": "Is she your friend?", "explanation": "Is she + your friend?"},
+                        {"question": "Мы счастливы?", "answer": "Are we happy?", "explanation": "Are we + happy?"},
+                        {"question": "Он врач?", "answer": "Is he a doctor?", "explanation": "Is he + a doctor?"},
+                        {"question": "Они дома?", "answer": "Are they at home?", "explanation": "Are they + at home?"},
+                        {"question": "Это кошка?", "answer": "Is it a cat?", "explanation": "Is it + a cat?"},
+                        {"question": "Ты очень добрый?", "answer": "Are you very kind?", "explanation": "Are you + very kind?"},
+                        {"question": "Том твой брат?", "answer": "Is Tom your brother?", "explanation": "Is Tom + your brother?"},
+                        {"question": "Девочки в саду?", "answer": "Are the girls in the garden?", "explanation": "Are the girls + in the garden?"},
+                        {"question": "Я из России?", "answer": "Am I from Russia?", "explanation": "Am I + from Russia?"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Составьте отрицательные предложения из слов в правильном порядке.\n\n1. not / teacher / am / I / a\n2. sister / my / is / not / she\n3. not / at / are / home / we\n4. doctor / a / he / is / not\n5. happy / not / they / are\n6. a / cat / not / it / is\n7. very / you / not / are / kind\n8. brother / my / is / not / Tom\n9. garden / in / the / not / are / girls\n10. from / Russia / not / am / I",
+                    "subtasks": [
+                        {"question": "not / teacher / am / I / a", "answer": "I am not a teacher.", "explanation": "Отрицание: подлежащее + глагол + not + дополнение"},
+                        {"question": "sister / my / is / not / she", "answer": "She is not my sister.", "explanation": "Отрицание: подлежащее + глагол + not + дополнение"},
+                        {"question": "not / at / are / home / we", "answer": "We are not at home.", "explanation": "Отрицание: подлежащее + глагол + not + обстоятельство"},
+                        {"question": "doctor / a / he / is / not", "answer": "He is not a doctor.", "explanation": "Отрицание: подлежащее + глагол + not + дополнение"},
+                        {"question": "happy / not / they / are", "answer": "They are not happy.", "explanation": "Отрицание: подлежащее + глагол + not + прилагательное"},
+                        {"question": "a / cat / not / it / is", "answer": "It is not a cat.", "explanation": "Отрицание: подлежащее + глагол + not + дополнение"},
+                        {"question": "very / you / not / are / kind", "answer": "You are not very kind.", "explanation": "Отрицание: подлежащее + глагол + not + наречие + прилагательное"},
+                        {"question": "brother / my / is / not / Tom", "answer": "Tom is not my brother.", "explanation": "Отрицание: подлежащее + глагол + not + дополнение"},
+                        {"question": "garden / in / the / not / are / girls", "answer": "The girls are not in the garden.", "explanation": "Отрицание: подлежащее + глагол + not + обстоятельство"},
+                        {"question": "from / Russia / not / am / I", "answer": "I am not from Russia.", "explanation": "Отрицание: подлежащее + глагол + not + обстоятельство"}
+                    ]
+                }
+            ],
+            # Вариант 4
+            [
+                {
+                    "type": "complex",
+                    "text": "Вставьте правильную форму глагола to be в вопросе (Am, Is, Are).\n\n1. ___ you a student?\n2. ___ it a dog?\n3. ___ we tired?\n4. ___ she a nurse?\n5. ___ they at school?\n6. ___ I a pilot?\n7. ___ he a firefighter?\n8. ___ the books on the table?\n9. ___ your parents very old?\n10. ___ this your pen?",
+                    "subtasks": [
+                        {"question": "___ you a student?", "answer": "Are", "explanation": "Вопрос с you → Are"},
+                        {"question": "___ it a dog?", "answer": "Is", "explanation": "Вопрос с it → Is"},
+                        {"question": "___ we tired?", "answer": "Are", "explanation": "Вопрос с we → Are"},
+                        {"question": "___ she a nurse?", "answer": "Is", "explanation": "Вопрос с she → Is"},
+                        {"question": "___ they at school?", "answer": "Are", "explanation": "Вопрос с they → Are"},
+                        {"question": "___ I a pilot?", "answer": "Am", "explanation": "Вопрос с I → Am"},
+                        {"question": "___ he a firefighter?", "answer": "Is", "explanation": "Вопрос с he → Is"},
+                        {"question": "___ the books on the table?", "answer": "Are", "explanation": "Вопрос с the books (they) → Are"},
+                        {"question": "___ your parents very old?", "answer": "Are", "explanation": "Вопрос с parents (they) → Are"},
+                        {"question": "___ this your pen?", "answer": "Is", "explanation": "Вопрос с this (it) → Is"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Переведите предложения на английский (вопросы).\n\n1. Ты студент?\n2. Это собака?\n3. Мы устали?\n4. Она медсестра?\n5. Они в школе?\n6. Я пилот?\n7. Он пожарный?\n8. Книги на столе?\n9. Твои родители очень старые?\n10. Это твоя ручка?",
+                    "subtasks": [
+                        {"question": "Ты студент?", "answer": "Are you a student?", "explanation": "Are you + a student?"},
+                        {"question": "Это собака?", "answer": "Is it a dog?", "explanation": "Is it + a dog?"},
+                        {"question": "Мы устали?", "answer": "Are we tired?", "explanation": "Are we + tired?"},
+                        {"question": "Она медсестра?", "answer": "Is she a nurse?", "explanation": "Is she + a nurse?"},
+                        {"question": "Они в школе?", "answer": "Are they at school?", "explanation": "Are they + at school?"},
+                        {"question": "Я пилот?", "answer": "Am I a pilot?", "explanation": "Am I + a pilot?"},
+                        {"question": "Он пожарный?", "answer": "Is he a firefighter?", "explanation": "Is he + a firefighter?"},
+                        {"question": "Книги на столе?", "answer": "Are the books on the table?", "explanation": "Are the books + on the table?"},
+                        {"question": "Твои родители очень старые?", "answer": "Are your parents very old?", "explanation": "Are your parents + very old?"},
+                        {"question": "Это твоя ручка?", "answer": "Is this your pen?", "explanation": "Is this + your pen?"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Составьте отрицательные предложения из слов в правильном порядке.\n\n1. not / student / are / you / a\n2. dog / a / is / not / it\n3. tired / we / not / are\n4. nurse / not / she / a / is\n5. at / school / not / are / they\n6. pilot / am / I / not / a\n7. firefighter / not / he / a / is\n8. on / table / the / books / are / not\n9. old / parents / very / your / are / not\n10. pen / this / is / not / my",
+                    "subtasks": [
+                        {"question": "not / student / are / you / a", "answer": "You are not a student.", "explanation": "Отрицание: подлежащее + глагол + not + дополнение"},
+                        {"question": "dog / a / is / not / it", "answer": "It is not a dog.", "explanation": "Отрицание: подлежащее + глагол + not + дополнение"},
+                        {"question": "tired / we / not / are", "answer": "We are not tired.", "explanation": "Отрицание: подлежащее + глагол + not + прилагательное"},
+                        {"question": "nurse / not / she / a / is", "answer": "She is not a nurse.", "explanation": "Отрицание: подлежащее + глагол + not + дополнение"},
+                        {"question": "at / school / not / are / they", "answer": "They are not at school.", "explanation": "Отрицание: подлежащее + глагол + not + обстоятельство"},
+                        {"question": "pilot / am / I / not / a", "answer": "I am not a pilot.", "explanation": "Отрицание: подлежащее + глагол + not + дополнение"},
+                        {"question": "firefighter / not / he / a / is", "answer": "He is not a firefighter.", "explanation": "Отрицание: подлежащее + глагол + not + дополнение"},
+                        {"question": "on / table / the / books / are / not", "answer": "The books are not on the table.", "explanation": "Отрицание: подлежащее + глагол + not + обстоятельство"},
+                        {"question": "old / parents / very / your / are / not", "answer": "Your parents are not very old.", "explanation": "Отрицание: подлежащее + глагол + not + наречие + прилагательное"},
+                        {"question": "pen / this / is / not / my", "answer": "This is not my pen.", "explanation": "Отрицание: подлежащее + глагол + not + дополнение"}
+                    ]
+                }
+            ],
+            # Вариант 5
+            [
+                {
+                    "type": "complex",
+                    "text": "Вставьте правильную форму глагола to be в вопросе (Am, Is, Are).\n\n1. ___ I a student?\n2. ___ she your sister?\n3. ___ we happy?\n4. ___ he a teacher?\n5. ___ they at the cinema?\n6. ___ it a bird?\n7. ___ you very helpful?\n8. ___ John your friend?\n9. ___ the children in the park?\n10. ___ I right?",
+                    "subtasks": [
+                        {"question": "___ I a student?", "answer": "Am", "explanation": "Вопрос с I → Am"},
+                        {"question": "___ she your sister?", "answer": "Is", "explanation": "Вопрос с she → Is"},
+                        {"question": "___ we happy?", "answer": "Are", "explanation": "Вопрос с we → Are"},
+                        {"question": "___ he a teacher?", "answer": "Is", "explanation": "Вопрос с he → Is"},
+                        {"question": "___ they at the cinema?", "answer": "Are", "explanation": "Вопрос с they → Are"},
+                        {"question": "___ it a bird?", "answer": "Is", "explanation": "Вопрос с it → Is"},
+                        {"question": "___ you very helpful?", "answer": "Are", "explanation": "Вопрос с you → Are"},
+                        {"question": "___ John your friend?", "answer": "Is", "explanation": "Вопрос с John (he) → Is"},
+                        {"question": "___ the children in the park?", "answer": "Are", "explanation": "Вопрос с children (they) → Are"},
+                        {"question": "___ I right?", "answer": "Am", "explanation": "Вопрос с I → Am"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Переведите предложения на английский (вопросы и отрицания).\n\n1. Я студент?\n2. Она не моя сестра.\n3. Мы счастливы?\n4. Он не учитель.\n5. Они в кинотеатре?\n6. Это птица?\n7. Ты не очень отзывчивый.\n8. Джон твой друг?\n9. Дети не в парке.\n10. Я прав?",
+                    "subtasks": [
+                        {"question": "Я студент?", "answer": "Am I a student?", "explanation": "Am I + a student?"},
+                        {"question": "Она не моя сестра.", "answer": "She is not my sister.", "explanation": "She is not + my sister"},
+                        {"question": "Мы счастливы?", "answer": "Are we happy?", "explanation": "Are we + happy?"},
+                        {"question": "Он не учитель.", "answer": "He is not a teacher.", "explanation": "He is not + a teacher"},
+                        {"question": "Они в кинотеатре?", "answer": "Are they at the cinema?", "explanation": "Are they + at the cinema?"},
+                        {"question": "Это птица?", "answer": "Is it a bird?", "explanation": "Is it + a bird?"},
+                        {"question": "Ты не очень отзывчивый.", "answer": "You are not very helpful.", "explanation": "You are not + very helpful"},
+                        {"question": "Джон твой друг?", "answer": "Is John your friend?", "explanation": "Is John + your friend?"},
+                        {"question": "Дети не в парке.", "answer": "The children are not in the park.", "explanation": "children are not + in the park"},
+                        {"question": "Я прав?", "answer": "Am I right?", "explanation": "Am I + right?"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Составьте предложения из слов в правильном порядке (вопросы или отрицания).\n\n1. not / am / I / a / student\n2. sister / your / is / she / ?\n3. not / happy / we / are\n4. teacher / is / he / a / ?\n5. at / not / are / they / school\n6. bird / it / is / a / ?\n7. helpful / are / very / you / not\n8. friend / is / John / your / ?\n9. the / park / in / children / are / not\n10. right / am / I / ?",
+                    "subtasks": [
+                        {"question": "not / am / I / a / student", "answer": "I am not a student.", "explanation": "Отрицание: I am not a student."},
+                        {"question": "sister / your / is / she / ?", "answer": "Is she your sister?", "explanation": "Вопрос: Is she your sister?"},
+                        {"question": "not / happy / we / are", "answer": "We are not happy.", "explanation": "Отрицание: We are not happy."},
+                        {"question": "teacher / is / he / a / ?", "answer": "Is he a teacher?", "explanation": "Вопрос: Is he a teacher?"},
+                        {"question": "at / not / are / they / school", "answer": "They are not at school.", "explanation": "Отрицание: They are not at school."},
+                        {"question": "bird / it / is / a / ?", "answer": "Is it a bird?", "explanation": "Вопрос: Is it a bird?"},
+                        {"question": "helpful / are / very / you / not", "answer": "You are not very helpful.", "explanation": "Отрицание: You are not very helpful."},
+                        {"question": "friend / is / John / your / ?", "answer": "Is John your friend?", "explanation": "Вопрос: Is John your friend?"},
+                        {"question": "the / park / in / children / are / not", "answer": "The children are not in the park.", "explanation": "Отрицание: The children are not in the park."},
+                        {"question": "right / am / I / ?", "answer": "Am I right?", "explanation": "Вопрос: Am I right?"}
+                    ]
+                }
+            ],
+            # Вариант 6
+            [
+                {
+                    "type": "complex",
+                    "text": "Вставьте правильную форму глагола to be (отрицание или вопрос).\n\n1. I ___ a student. (отрицание)\n2. ___ she your friend? (вопрос)\n3. We ___ happy. (отрицание)\n4. ___ he a doctor? (вопрос)\n5. They ___ at home. (отрицание)\n6. ___ it a cat? (вопрос)\n7. You ___ very kind. (отрицание)\n8. ___ Tom your brother? (вопрос)\n9. The girls ___ in the garden. (отрицание)\n10. ___ I from Russia? (вопрос)",
+                    "subtasks": [
+                        {"question": "I ___ a student. (отрицание)", "answer": "am not", "explanation": "I + am not"},
+                        {"question": "___ she your friend? (вопрос)", "answer": "Is", "explanation": "Is she your friend?"},
+                        {"question": "We ___ happy. (отрицание)", "answer": "are not", "explanation": "We + are not"},
+                        {"question": "___ he a doctor? (вопрос)", "answer": "Is", "explanation": "Is he a doctor?"},
+                        {"question": "They ___ at home. (отрицание)", "answer": "are not", "explanation": "They + are not"},
+                        {"question": "___ it a cat? (вопрос)", "answer": "Is", "explanation": "Is it a cat?"},
+                        {"question": "You ___ very kind. (отрицание)", "answer": "are not", "explanation": "You + are not"},
+                        {"question": "___ Tom your brother? (вопрос)", "answer": "Is", "explanation": "Is Tom your brother?"},
+                        {"question": "The girls ___ in the garden. (отрицание)", "answer": "are not", "explanation": "girls + are not"},
+                        {"question": "___ I from Russia? (вопрос)", "answer": "Am", "explanation": "Am I from Russia?"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Переведите предложения на английский (чередование вопросов и отрицаний).\n\n1. Я не студент.\n2. Она твоя подруга?\n3. Мы не счастливы.\n4. Он врач?\n5. Они не дома.\n6. Это кошка?\n7. Ты не очень добрый.\n8. Том твой брат?\n9. Девочки не в саду.\n10. Я из России?",
+                    "subtasks": [
+                        {"question": "Я не студент.", "answer": "I am not a student.", "explanation": "I am not a student."},
+                        {"question": "Она твоя подруга?", "answer": "Is she your friend?", "explanation": "Is she your friend?"},
+                        {"question": "Мы не счастливы.", "answer": "We are not happy.", "explanation": "We are not happy."},
+                        {"question": "Он врач?", "answer": "Is he a doctor?", "explanation": "Is he a doctor?"},
+                        {"question": "Они не дома.", "answer": "They are not at home.", "explanation": "They are not at home."},
+                        {"question": "Это кошка?", "answer": "Is it a cat?", "explanation": "Is it a cat?"},
+                        {"question": "Ты не очень добрый.", "answer": "You are not very kind.", "explanation": "You are not very kind."},
+                        {"question": "Том твой брат?", "answer": "Is Tom your brother?", "explanation": "Is Tom your brother?"},
+                        {"question": "Девочки не в саду.", "answer": "The girls are not in the garden.", "explanation": "The girls are not in the garden."},
+                        {"question": "Я из России?", "answer": "Am I from Russia?", "explanation": "Am I from Russia?"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Составьте предложения из слов в правильном порядке (вопросы или отрицания).\n\n1. student / am / not / I / a\n2. friend / your / she / is / ?\n3. not / happy / are / we\n4. doctor / he / is / a / ?\n5. at / not / home / are / they\n6. a / cat / it / is / ?\n7. very / not / are / you / kind\n8. brother / Tom / is / your / ?\n9. in / garden / not / girls / are / the\n10. from / Russia / am / I / ?",
+                    "subtasks": [
+                        {"question": "student / am / not / I / a", "answer": "I am not a student.", "explanation": "Отрицание"},
+                        {"question": "friend / your / she / is / ?", "answer": "Is she your friend?", "explanation": "Вопрос"},
+                        {"question": "not / happy / are / we", "answer": "We are not happy.", "explanation": "Отрицание"},
+                        {"question": "doctor / he / is / a / ?", "answer": "Is he a doctor?", "explanation": "Вопрос"},
+                        {"question": "at / not / home / are / they", "answer": "They are not at home.", "explanation": "Отрицание"},
+                        {"question": "a / cat / it / is / ?", "answer": "Is it a cat?", "explanation": "Вопрос"},
+                        {"question": "very / not / are / you / kind", "answer": "You are not very kind.", "explanation": "Отрицание"},
+                        {"question": "brother / Tom / is / your / ?", "answer": "Is Tom your brother?", "explanation": "Вопрос"},
+                        {"question": "in / garden / not / girls / are / the", "answer": "The girls are not in the garden.", "explanation": "Отрицание"},
+                        {"question": "from / Russia / am / I / ?", "answer": "Am I from Russia?", "explanation": "Вопрос"}
+                    ]
+                }
+            ],
+            # Вариант 7
+            [
+                {
+                    "type": "complex",
+                    "text": "Вставьте правильную форму глагола to be (отрицание или вопрос).\n\n1. ___ you a student? (вопрос)\n2. I ___ a pilot. (отрицание)\n3. ___ she a nurse? (вопрос)\n4. We ___ tired. (отрицание)\n5. ___ they at school? (вопрос)\n6. It ___ a dog. (отрицание)\n7. ___ he a firefighter? (вопрос)\n8. The books ___ on the table. (отрицание)\n9. ___ your parents very old? (вопрос)\n10. This ___ my pen. (отрицание)",
+                    "subtasks": [
+                        {"question": "___ you a student? (вопрос)", "answer": "Are", "explanation": "Are you a student?"},
+                        {"question": "I ___ a pilot. (отрицание)", "answer": "am not", "explanation": "I am not a pilot."},
+                        {"question": "___ she a nurse? (вопрос)", "answer": "Is", "explanation": "Is she a nurse?"},
+                        {"question": "We ___ tired. (отрицание)", "answer": "are not", "explanation": "We are not tired."},
+                        {"question": "___ they at school? (вопрос)", "answer": "Are", "explanation": "Are they at school?"},
+                        {"question": "It ___ a dog. (отрицание)", "answer": "is not", "explanation": "It is not a dog."},
+                        {"question": "___ he a firefighter? (вопрос)", "answer": "Is", "explanation": "Is he a firefighter?"},
+                        {"question": "The books ___ on the table. (отрицание)", "answer": "are not", "explanation": "books are not on the table."},
+                        {"question": "___ your parents very old? (вопрос)", "answer": "Are", "explanation": "Are your parents very old?"},
+                        {"question": "This ___ my pen. (отрицание)", "answer": "is not", "explanation": "This is not my pen."}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Переведите предложения на английский (чередование).\n\n1. Ты студент?\n2. Я не пилот.\n3. Она медсестра?\n4. Мы не устали.\n5. Они в школе?\n6. Это не собака.\n7. Он пожарный?\n8. Книги не на столе.\n9. Твои родители очень старые?\n10. Это не моя ручка.",
+                    "subtasks": [
+                        {"question": "Ты студент?", "answer": "Are you a student?", "explanation": "Are you a student?"},
+                        {"question": "Я не пилот.", "answer": "I am not a pilot.", "explanation": "I am not a pilot."},
+                        {"question": "Она медсестра?", "answer": "Is she a nurse?", "explanation": "Is she a nurse?"},
+                        {"question": "Мы не устали.", "answer": "We are not tired.", "explanation": "We are not tired."},
+                        {"question": "Они в школе?", "answer": "Are they at school?", "explanation": "Are they at school?"},
+                        {"question": "Это не собака.", "answer": "It is not a dog.", "explanation": "It is not a dog."},
+                        {"question": "Он пожарный?", "answer": "Is he a firefighter?", "explanation": "Is he a firefighter?"},
+                        {"question": "Книги не на столе.", "answer": "The books are not on the table.", "explanation": "books are not on the table."},
+                        {"question": "Твои родители очень старые?", "answer": "Are your parents very old?", "explanation": "Are your parents very old?"},
+                        {"question": "Это не моя ручка.", "answer": "This is not my pen.", "explanation": "This is not my pen."}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Составьте предложения из слов в правильном порядке (вопросы или отрицания).\n\n1. student / you / are / a / ?\n2. pilot / am / I / not / a\n3. nurse / she / is / a / ?\n4. not / tired / are / we\n5. school / at / they / are / ?\n6. dog / a / not / it / is\n7. firefighter / he / is / a / ?\n8. table / the / on / books / are / not\n9. very / parents / old / are / your / ?\n10. pen / this / my / is / not",
+                    "subtasks": [
+                        {"question": "student / you / are / a / ?", "answer": "Are you a student?", "explanation": "Вопрос"},
+                        {"question": "pilot / am / I / not / a", "answer": "I am not a pilot.", "explanation": "Отрицание"},
+                        {"question": "nurse / she / is / a / ?", "answer": "Is she a nurse?", "explanation": "Вопрос"},
+                        {"question": "not / tired / are / we", "answer": "We are not tired.", "explanation": "Отрицание"},
+                        {"question": "school / at / they / are / ?", "answer": "Are they at school?", "explanation": "Вопрос"},
+                        {"question": "dog / a / not / it / is", "answer": "It is not a dog.", "explanation": "Отрицание"},
+                        {"question": "firefighter / he / is / a / ?", "answer": "Is he a firefighter?", "explanation": "Вопрос"},
+                        {"question": "table / the / on / books / are / not", "answer": "The books are not on the table.", "explanation": "Отрицание"},
+                        {"question": "very / parents / old / are / your / ?", "answer": "Are your parents very old?", "explanation": "Вопрос"},
+                        {"question": "pen / this / my / is / not", "answer": "This is not my pen.", "explanation": "Отрицание"}
+                    ]
+                }
+            ],
+            # Вариант 8
+            [
+                {
+                    "type": "complex",
+                    "text": "Вставьте правильную форму глагола to be (отрицание или вопрос).\n\n1. I ___ a teacher. (отрицание)\n2. ___ she your sister? (вопрос)\n3. We ___ at home. (отрицание)\n4. ___ he a doctor? (вопрос)\n5. They ___ happy. (отрицание)\n6. ___ it a cat? (вопрос)\n7. You ___ very kind. (отрицание)\n8. ___ Tom your brother? (вопрос)\n9. The girls ___ in the garden. (отрицание)\n10. ___ I from Russia? (вопрос)",
+                    "subtasks": [
+                        {"question": "I ___ a teacher. (отрицание)", "answer": "am not", "explanation": "I am not a teacher."},
+                        {"question": "___ she your sister? (вопрос)", "answer": "Is", "explanation": "Is she your sister?"},
+                        {"question": "We ___ at home. (отрицание)", "answer": "are not", "explanation": "We are not at home."},
+                        {"question": "___ he a doctor? (вопрос)", "answer": "Is", "explanation": "Is he a doctor?"},
+                        {"question": "They ___ happy. (отрицание)", "answer": "are not", "explanation": "They are not happy."},
+                        {"question": "___ it a cat? (вопрос)", "answer": "Is", "explanation": "Is it a cat?"},
+                        {"question": "You ___ very kind. (отрицание)", "answer": "are not", "explanation": "You are not very kind."},
+                        {"question": "___ Tom your brother? (вопрос)", "answer": "Is", "explanation": "Is Tom your brother?"},
+                        {"question": "The girls ___ in the garden. (отрицание)", "answer": "are not", "explanation": "girls are not in the garden."},
+                        {"question": "___ I from Russia? (вопрос)", "answer": "Am", "explanation": "Am I from Russia?"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Переведите предложения на английский (чередование).\n\n1. Я не учитель.\n2. Она твоя сестра?\n3. Мы не дома.\n4. Он врач?\n5. Они не счастливы.\n6. Это кошка?\n7. Ты не очень добрый.\n8. Том твой брат?\n9. Девочки не в саду.\n10. Я из России?",
+                    "subtasks": [
+                        {"question": "Я не учитель.", "answer": "I am not a teacher.", "explanation": "I am not a teacher."},
+                        {"question": "Она твоя сестра?", "answer": "Is she your sister?", "explanation": "Is she your sister?"},
+                        {"question": "Мы не дома.", "answer": "We are not at home.", "explanation": "We are not at home."},
+                        {"question": "Он врач?", "answer": "Is he a doctor?", "explanation": "Is he a doctor?"},
+                        {"question": "Они не счастливы.", "answer": "They are not happy.", "explanation": "They are not happy."},
+                        {"question": "Это кошка?", "answer": "Is it a cat?", "explanation": "Is it a cat?"},
+                        {"question": "Ты не очень добрый.", "answer": "You are not very kind.", "explanation": "You are not very kind."},
+                        {"question": "Том твой брат?", "answer": "Is Tom your brother?", "explanation": "Is Tom your brother?"},
+                        {"question": "Девочки не в саду.", "answer": "The girls are not in the garden.", "explanation": "girls are not in the garden."},
+                        {"question": "Я из России?", "answer": "Am I from Russia?", "explanation": "Am I from Russia?"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Составьте предложения из слов в правильном порядке (вопросы или отрицания).\n\n1. teacher / am / not / I / a\n2. sister / your / she / is / ?\n3. at / not / home / are / we\n4. doctor / he / is / a / ?\n5. happy / not / they / are\n6. a / cat / it / is / ?\n7. very / not / are / you / kind\n8. brother / Tom / is / your / ?\n9. garden / in / not / are / girls / the\n10. from / Russia / am / I / ?",
+                    "subtasks": [
+                        {"question": "teacher / am / not / I / a", "answer": "I am not a teacher.", "explanation": "Отрицание"},
+                        {"question": "sister / your / she / is / ?", "answer": "Is she your sister?", "explanation": "Вопрос"},
+                        {"question": "at / not / home / are / we", "answer": "We are not at home.", "explanation": "Отрицание"},
+                        {"question": "doctor / he / is / a / ?", "answer": "Is he a doctor?", "explanation": "Вопрос"},
+                        {"question": "happy / not / they / are", "answer": "They are not happy.", "explanation": "Отрицание"},
+                        {"question": "a / cat / it / is / ?", "answer": "Is it a cat?", "explanation": "Вопрос"},
+                        {"question": "very / not / are / you / kind", "answer": "You are not very kind.", "explanation": "Отрицание"},
+                        {"question": "brother / Tom / is / your / ?", "answer": "Is Tom your brother?", "explanation": "Вопрос"},
+                        {"question": "garden / in / not / are / girls / the", "answer": "The girls are not in the garden.", "explanation": "Отрицание"},
+                        {"question": "from / Russia / am / I / ?", "answer": "Am I from Russia?", "explanation": "Вопрос"}
+                    ]
+                }
+            ],
+            # Вариант 9
+            [
+                {
+                    "type": "complex",
+                    "text": "Вставьте правильную форму глагола to be (отрицание или вопрос).\n\n1. ___ you a student? (вопрос)\n2. I ___ a pilot. (отрицание)\n3. ___ she a nurse? (вопрос)\n4. We ___ tired. (отрицание)\n5. ___ they at school? (вопрос)\n6. It ___ a dog. (отрицание)\n7. ___ he a firefighter? (вопрос)\n8. The books ___ on the table. (отрицание)\n9. ___ your parents very old? (вопрос)\n10. This ___ my pen. (отрицание)",
+                    "subtasks": [
+                        {"question": "___ you a student? (вопрос)", "answer": "Are", "explanation": "Are you a student?"},
+                        {"question": "I ___ a pilot. (отрицание)", "answer": "am not", "explanation": "I am not a pilot."},
+                        {"question": "___ she a nurse? (вопрос)", "answer": "Is", "explanation": "Is she a nurse?"},
+                        {"question": "We ___ tired. (отрицание)", "answer": "are not", "explanation": "We are not tired."},
+                        {"question": "___ they at school? (вопрос)", "answer": "Are", "explanation": "Are they at school?"},
+                        {"question": "It ___ a dog. (отрицание)", "answer": "is not", "explanation": "It is not a dog."},
+                        {"question": "___ he a firefighter? (вопрос)", "answer": "Is", "explanation": "Is he a firefighter?"},
+                        {"question": "The books ___ on the table. (отрицание)", "answer": "are not", "explanation": "books are not on the table."},
+                        {"question": "___ your parents very old? (вопрос)", "answer": "Are", "explanation": "Are your parents very old?"},
+                        {"question": "This ___ my pen. (отрицание)", "answer": "is not", "explanation": "This is not my pen."}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Переведите предложения на английский (чередование).\n\n1. Ты студент?\n2. Я не пилот.\n3. Она медсестра?\n4. Мы не устали.\n5. Они в школе?\n6. Это не собака.\n7. Он пожарный?\n8. Книги не на столе.\n9. Твои родители очень старые?\n10. Это не моя ручка.",
+                    "subtasks": [
+                        {"question": "Ты студент?", "answer": "Are you a student?", "explanation": "Are you a student?"},
+                        {"question": "Я не пилот.", "answer": "I am not a pilot.", "explanation": "I am not a pilot."},
+                        {"question": "Она медсестра?", "answer": "Is she a nurse?", "explanation": "Is she a nurse?"},
+                        {"question": "Мы не устали.", "answer": "We are not tired.", "explanation": "We are not tired."},
+                        {"question": "Они в школе?", "answer": "Are they at school?", "explanation": "Are they at school?"},
+                        {"question": "Это не собака.", "answer": "It is not a dog.", "explanation": "It is not a dog."},
+                        {"question": "Он пожарный?", "answer": "Is he a firefighter?", "explanation": "Is he a firefighter?"},
+                        {"question": "Книги не на столе.", "answer": "The books are not on the table.", "explanation": "books are not on the table."},
+                        {"question": "Твои родители очень старые?", "answer": "Are your parents very old?", "explanation": "Are your parents very old?"},
+                        {"question": "Это не моя ручка.", "answer": "This is not my pen.", "explanation": "This is not my pen."}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Составьте предложения из слов в правильном порядке (вопросы или отрицания).\n\n1. student / you / are / a / ?\n2. pilot / am / I / not / a\n3. nurse / she / is / a / ?\n4. not / tired / are / we\n5. school / at / they / are / ?\n6. dog / a / not / it / is\n7. firefighter / he / is / a / ?\n8. table / the / on / books / are / not\n9. very / parents / old / are / your / ?\n10. pen / this / my / is / not",
+                    "subtasks": [
+                        {"question": "student / you / are / a / ?", "answer": "Are you a student?", "explanation": "Вопрос"},
+                        {"question": "pilot / am / I / not / a", "answer": "I am not a pilot.", "explanation": "Отрицание"},
+                        {"question": "nurse / she / is / a / ?", "answer": "Is she a nurse?", "explanation": "Вопрос"},
+                        {"question": "not / tired / are / we", "answer": "We are not tired.", "explanation": "Отрицание"},
+                        {"question": "school / at / they / are / ?", "answer": "Are they at school?", "explanation": "Вопрос"},
+                        {"question": "dog / a / not / it / is", "answer": "It is not a dog.", "explanation": "Отрицание"},
+                        {"question": "firefighter / he / is / a / ?", "answer": "Is he a firefighter?", "explanation": "Вопрос"},
+                        {"question": "table / the / on / books / are / not", "answer": "The books are not on the table.", "explanation": "Отрицание"},
+                        {"question": "very / parents / old / are / your / ?", "answer": "Are your parents very old?", "explanation": "Вопрос"},
+                        {"question": "pen / this / my / is / not", "answer": "This is not my pen.", "explanation": "Отрицание"}
+                    ]
+                }
+            ],
+            # Вариант 10
+            [
+                {
+                    "type": "complex",
+                    "text": "Вставьте правильную форму глагола to be (отрицание или вопрос).\n\n1. I ___ a student. (отрицание)\n2. ___ she your friend? (вопрос)\n3. We ___ happy. (отрицание)\n4. ___ he a doctor? (вопрос)\n5. They ___ at home. (отрицание)\n6. ___ it a cat? (вопрос)\n7. You ___ very kind. (отрицание)\n8. ___ Tom your brother? (вопрос)\n9. The girls ___ in the garden. (отрицание)\n10. ___ I from Russia? (вопрос)",
+                    "subtasks": [
+                        {"question": "I ___ a student. (отрицание)", "answer": "am not", "explanation": "I am not a student."},
+                        {"question": "___ she your friend? (вопрос)", "answer": "Is", "explanation": "Is she your friend?"},
+                        {"question": "We ___ happy. (отрицание)", "answer": "are not", "explanation": "We are not happy."},
+                        {"question": "___ he a doctor? (вопрос)", "answer": "Is", "explanation": "Is he a doctor?"},
+                        {"question": "They ___ at home. (отрицание)", "answer": "are not", "explanation": "They are not at home."},
+                        {"question": "___ it a cat? (вопрос)", "answer": "Is", "explanation": "Is it a cat?"},
+                        {"question": "You ___ very kind. (отрицание)", "answer": "are not", "explanation": "You are not very kind."},
+                        {"question": "___ Tom your brother? (вопрос)", "answer": "Is", "explanation": "Is Tom your brother?"},
+                        {"question": "The girls ___ in the garden. (отрицание)", "answer": "are not", "explanation": "girls are not in the garden."},
+                        {"question": "___ I from Russia? (вопрос)", "answer": "Am", "explanation": "Am I from Russia?"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Переведите предложения на английский (чередование).\n\n1. Я не студент.\n2. Она твоя подруга?\n3. Мы не счастливы.\n4. Он врач?\n5. Они не дома.\n6. Это кошка?\n7. Ты не очень добрый.\n8. Том твой брат?\n9. Девочки не в саду.\n10. Я из России?",
+                    "subtasks": [
+                        {"question": "Я не студент.", "answer": "I am not a student.", "explanation": "I am not a student."},
+                        {"question": "Она твоя подруга?", "answer": "Is she your friend?", "explanation": "Is she your friend?"},
+                        {"question": "Мы не счастливы.", "answer": "We are not happy.", "explanation": "We are not happy."},
+                        {"question": "Он врач?", "answer": "Is he a doctor?", "explanation": "Is he a doctor?"},
+                        {"question": "Они не дома.", "answer": "They are not at home.", "explanation": "They are not at home."},
+                        {"question": "Это кошка?", "answer": "Is it a cat?", "explanation": "Is it a cat?"},
+                        {"question": "Ты не очень добрый.", "answer": "You are not very kind.", "explanation": "You are not very kind."},
+                        {"question": "Том твой брат?", "answer": "Is Tom your brother?", "explanation": "Is Tom your brother?"},
+                        {"question": "Девочки не в саду.", "answer": "The girls are not in the garden.", "explanation": "girls are not in the garden."},
+                        {"question": "Я из России?", "answer": "Am I from Russia?", "explanation": "Am I from Russia?"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Составьте предложения из слов в правильном порядке (вопросы или отрицания).\n\n1. student / am / not / I / a\n2. friend / your / she / is / ?\n3. not / happy / are / we\n4. doctor / he / is / a / ?\n5. at / not / home / are / they\n6. a / cat / it / is / ?\n7. very / not / are / you / kind\n8. brother / Tom / is / your / ?\n9. in / garden / not / girls / are / the\n10. from / Russia / am / I / ?",
+                    "subtasks": [
+                        {"question": "student / am / not / I / a", "answer": "I am not a student.", "explanation": "Отрицание"},
+                        {"question": "friend / your / she / is / ?", "answer": "Is she your friend?", "explanation": "Вопрос"},
+                        {"question": "not / happy / are / we", "answer": "We are not happy.", "explanation": "Отрицание"},
+                        {"question": "doctor / he / is / a / ?", "answer": "Is he a doctor?", "explanation": "Вопрос"},
+                        {"question": "at / not / home / are / they", "answer": "They are not at home.", "explanation": "Отрицание"},
+                        {"question": "a / cat / it / is / ?", "answer": "Is it a cat?", "explanation": "Вопрос"},
+                        {"question": "very / not / are / you / kind", "answer": "You are not very kind.", "explanation": "Отрицание"},
+                        {"question": "brother / Tom / is / your / ?", "answer": "Is Tom your brother?", "explanation": "Вопрос"},
+                        {"question": "in / garden / not / girls / are / the", "answer": "The girls are not in the garden.", "explanation": "Отрицание"},
+                        {"question": "from / Russia / am / I / ?", "answer": "Am I from Russia?", "explanation": "Вопрос"}
+                    ]
+                }
+            ]
         ]
-      },
-      {
-        "type": "choice",
-        "text": "___ it cold outside?",
-        "correct": "Is",
-        "hint": "Выбери вопросительное слово",
-        "star": False,
-        "options": [
-          "Is",
-          "Are",
-          "Am",
-          "Do"
-        ]
-      },
-      {
-        "type": "choice",
-        "text": "We ___ ready.",
-        "correct": "are not",
-        "hint": "Выбери правильное отрицание",
-        "star": False,
-        "options": [
-          "is not",
-          "are not",
-          "am not",
-          "not are"
-        ]
-      },
-      {
-        "type": "choice",
-        "text": "___ I your friend?",
-        "correct": "Am",
-        "hint": "Выбери правильный глагол",
-        "star": False,
-        "options": [
-          "Am",
-          "Is",
-          "Are",
-          "Be"
-        ]
-      },
-      {
-        "type": "choice",
-        "text": "You ___ a student.",
-        "correct": "are not",
-        "hint": "Отрицание с you",
-        "star": False,
-        "options": [
-          "is not",
-          "are not",
-          "am not",
-          "not"
-        ]
-      },
-      {
-        "type": "translation",
-        "text": "Она не дома.",
-        "correct": "She is not at home.",
-        "hint": "Используй is not",
-        "star": False
-      },
-      {
-        "type": "translation",
-        "text": "Они счастливы?",
-        "correct": "Are they happy?",
-        "hint": "Начни с Are",
-        "star": False
-      },
-      {
-        "type": "translation",
-        "text": "Я не учитель.",
-        "correct": "I am not a teacher.",
-        "hint": "Используй am not",
-        "star": False
-      },
-      {
-        "type": "translation",
-        "text": "Это твоя книга?",
-        "correct": "Is it your book?",
-        "hint": "Вопрос с it",
-        "star": False
-      },
-      {
-        "type": "translation",
-        "text": "Мы не студенты.",
-        "correct": "We are not students.",
-        "hint": "Используй are not",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "___ I not invited?",
-        "correct": "Am",
-        "hint": "Вопрос с отрицанием",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "They ___ not at school, ___ they?",
-        "correct": "are, are",
-        "hint": "Отрицание и разделительный вопрос",
-        "star": True
-      },
-      {
-        "type": "choice",
-        "text": "___ he not your cousin?",
-        "correct": "Is",
-        "hint": "Вопрос с отрицанием",
-        "star": True,
-        "options": [
-          "Is",
-          "Are",
-          "Am",
-          "Does"
-        ]
-      },
-      {
-        "type": "choice",
-        "text": "We ___ not late, ___ we?",
-        "correct": "are, are",
-        "hint": "Разделительный вопрос",
-        "star": True,
-        "options": [
-          "are, are",
-          "is, is",
-          "am, am",
-          "are, aren't"
-        ]
-      },
-      {
-        "type": "translation",
-        "text": "Разве она не твоя сестра?",
-        "correct": "Is she not your sister?",
-        "hint": "Отрицательный вопрос",
-        "star": True
-      },
-      {
-        "type": "translation",
-        "text": "Они не дома, не так ли?",
-        "correct": "They are not at home, are they?",
-        "hint": "Разделительный вопрос",
-        "star": True
-      },
-      {
-        "type": "reorder",
-        "text": "not / is / she / here",
-        "correct": "She is not here",
-        "hint": "Порядок: подлежащее + глагол + not",
-        "star": True
-      },
-      {
-        "type": "reorder",
-        "text": "you / are / not / ready",
-        "correct": "You are not ready",
-        "hint": "Отрицательное предложение",
-        "star": True
-      },
-      {
-        "type": "open",
-        "text": "Сделай предложение отрицательным: He is a student.",
-        "correct": "He is not a student.",
-        "hint": "Добавь not после is",
-        "star": True
-      },
-      {
-        "type": "open",
-        "text": "Составь вопрос из слов: she / is / at home",
-        "correct": "Is she at home?",
-        "hint": "Начни с глагола",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "She ___ a student. (not)",
-        "correct": "is not",
-        "hint": "Отрицание с глаголом to be в 3-м лице ед.ч.",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "___ he at home?",
-        "correct": "Is",
-        "hint": "Вопрос с глаголом to be в 3-м лице ед.ч.",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "They ___ from Spain. (not)",
-        "correct": "are not",
-        "hint": "Отрицание с глаголом to be во мн.ч.",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "___ you a teacher?",
-        "correct": "Are",
-        "hint": "Вопрос с глаголом to be во 2-м лице",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "I ___ happy. (not)",
-        "correct": "am not",
-        "hint": "Отрицание с глаголом to be в 1-м лице ед.ч.",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "___ it cold outside?",
-        "correct": "Is",
-        "hint": "Вопрос с глаголом to be для неодушевленных предметов",
-        "star": False
-      },
-      {
-        "type": "choice",
-        "text": "We ___ ready for the test.",
-        "correct": "are not",
-        "hint": "Выберите правильную отрицательную форму",
-        "star": False,
-        "options": [
-          "is not",
-          "am not",
-          "are not",
-          "not"
-        ]
-      },
-      {
-        "type": "choice",
-        "text": "___ your brother a doctor?",
-        "correct": "Is",
-        "hint": "Выберите правильный вопросительный глагол",
-        "star": False,
-        "options": [
-          "Are",
-          "Is",
-          "Am",
-          "Do"
-        ]
-      },
-      {
-        "type": "choice",
-        "text": "The books ___ on the table. (not)",
-        "correct": "are not",
-        "hint": "Выберите правильную отрицательную форму для мн.ч.",
-        "star": False,
-        "options": [
-          "is not",
-          "am not",
-          "are not",
-          "not are"
-        ]
-      },
-      {
-        "type": "choice",
-        "text": "___ I late?",
-        "correct": "Am",
-        "hint": "Выберите правильный вопросительный глагол для 1-го лица",
-        "star": False,
-        "options": [
-          "Are",
-          "Is",
-          "Am",
-          "Do"
-        ]
-      },
-      {
-        "type": "fill_blank",
-        "text": "She ___ my sister. (not)",
-        "correct": "is not",
-        "hint": "Отрицание с глаголом to be",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "___ they your friends?",
-        "correct": "Are",
-        "hint": "Вопрос с глаголом to be во мн.ч.",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He ___ a good singer. (not)",
-        "correct": "is not",
-        "hint": "Отрицание с глаголом to be",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "___ this your pen?",
-        "correct": "Is",
-        "hint": "Вопрос с глаголом to be для ед.ч.",
-        "star": False
-      },
-      {
-        "type": "choice",
-        "text": "I ___ a student. (not)",
-        "correct": "am not",
-        "hint": "Выберите правильную отрицательную форму",
-        "star": False,
-        "options": [
-          "is not",
-          "am not",
-          "are not",
-          "not"
-        ]
-      },
-      {
-        "type": "choice",
-        "text": "___ the children in the garden?",
-        "correct": "Are",
-        "hint": "Выберите правильный вопросительный глагол",
-        "star": False,
-        "options": [
-          "Is",
-          "Are",
-          "Am",
-          "Do"
-        ]
-      },
-      {
-        "type": "fill_blank",
-        "text": "You ___ right. (not)",
-        "correct": "are not",
-        "hint": "Отрицание с глаголом to be во 2-м лице",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "___ she from London?",
-        "correct": "Is",
-        "hint": "Вопрос с глаголом to be",
-        "star": False
-      },
-      {
-        "type": "choice",
-        "text": "It ___ a big city. (not)",
-        "correct": "is not",
-        "hint": "Выберите правильную отрицательную форму",
-        "star": False,
-        "options": [
-          "is not",
-          "am not",
-          "are not",
-          "not"
-        ]
-      },
-      {
-        "type": "choice",
-        "text": "___ we friends?",
-        "correct": "Are",
-        "hint": "Выберите правильный вопросительный глагол",
-        "star": False,
-        "options": [
-          "Is",
-          "Are",
-          "Am",
-          "Do"
-        ]
-      },
-      {
-        "type": "fill_blank",
-        "text": "They ___ at the party last night. (not)",
-        "correct": "were not",
-        "hint": "Отрицание с глаголом to be в прошедшем времени",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "___ she at work yesterday?",
-        "correct": "Was",
-        "hint": "Вопрос с глаголом to be в прошедшем времени",
-        "star": True
-      },
-      {
-        "type": "reorder",
-        "text": "not / is / he / a / teacher",
-        "correct": "He is not a teacher",
-        "hint": "Составьте отрицательное предложение",
-        "star": True
-      },
-      {
-        "type": "reorder",
-        "text": "are / you / ? / happy",
-        "correct": "Are you happy?",
-        "hint": "Составьте вопросительное предложение",
-        "star": True
-      },
-      {
-        "type": "translation",
-        "text": "Они не из России.",
-        "correct": "They are not from Russia.",
-        "hint": "Переведите отрицательное предложение",
-        "star": True
-      },
-      {
-        "type": "translation",
-        "text": "Ты врач?",
-        "correct": "Are you a doctor?",
-        "hint": "Переведите вопросительное предложение",
-        "star": True
-      },
-      {
-        "type": "open",
-        "text": "Сделайте предложение отрицательным: 'She is a student.'",
-        "correct": "She is not a student.",
-        "hint": "Используйте 'not' после глагола",
-        "star": True
-      },
-      {
-        "type": "open",
-        "text": "Сделайте предложение вопросительным: 'They are at home.'",
-        "correct": "Are they at home?",
-        "hint": "Поменяйте местами глагол и подлежащее",
-        "star": True
-      },
-      {
-        "type": "choice",
-        "text": "___ there any milk in the fridge?",
-        "correct": "Is",
-        "hint": "Выберите правильный глагол для неисчисляемого существительного",
-        "star": True,
-        "options": [
-          "Is",
-          "Are",
-          "Am",
-          "Do"
-        ]
-      },
-      {
-        "type": "choice",
-        "text": "The news ___ good. (not)",
-        "correct": "is not",
-        "hint": "Выберите правильную отрицательную форму (news - ед.ч.)",
-        "star": True,
-        "options": [
-          "is not",
-          "are not",
-          "am not",
-          "not"
-        ]
-      }
-    ]
   },
   "countries": {
     "title": "Страны и национальности",
