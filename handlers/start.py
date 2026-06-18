@@ -13,12 +13,12 @@ WELCOME_TEXT = (
 
 def get_main_menu_keyboard():
     return InlineKeyboardMarkup(inline_keyboard=[
+        [InlineKeyboardButton(text="📚 Lessons", callback_data="start_lessons")],
+        [InlineKeyboardButton(text="🗂️ Words", callback_data="start_words"),
+         InlineKeyboardButton(text="📝 Language Skills", callback_data="start_skills")],
         [InlineKeyboardButton(text="🎤 Speaking", callback_data="start_speaking"),
          InlineKeyboardButton(text="🎭 RolePlay", callback_data="start_roleplay")],
-        [InlineKeyboardButton(text="📚 Lessons", callback_data="start_lessons"),
-         InlineKeyboardButton(text="🗃️ Words", callback_data="start_words")],
-        [InlineKeyboardButton(text="👤 Мой профиль", callback_data="profile_menu"),
-         InlineKeyboardButton(text="🗣️ Language Skills", callback_data="start_skills")]
+        [InlineKeyboardButton(text="👤 Мой профиль", callback_data="profile_menu")]
     ])
 
 async def show_main_menu(message: Message, edit: bool = False):
