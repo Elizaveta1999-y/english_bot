@@ -17,7 +17,8 @@ def get_main_menu_keyboard():
          InlineKeyboardButton(text="🎭 RolePlay", callback_data="start_roleplay")],
         [InlineKeyboardButton(text="📚 Lessons", callback_data="start_lessons"),
          InlineKeyboardButton(text="🗃️ Words", callback_data="start_words")],
-        [InlineKeyboardButton(text="👤 Мой профиль", callback_data="profile_menu")]
+        [InlineKeyboardButton(text="👤 Мой профиль", callback_data="profile_menu"),
+         InlineKeyboardButton(text="🗣️ Language Skills", callback_data="start_skills")]
     ])
 
 async def show_main_menu(message: Message, edit: bool = False):

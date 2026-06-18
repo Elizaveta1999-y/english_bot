@@ -3,7 +3,7 @@ import logging
 from aiohttp import web
 from aiogram import Bot, Dispatcher
 from aiogram.webhook.aiohttp_server import SimpleRequestHandler, setup_application
-from handlers import start, speaking, roleplay, common, voice, lessons, words, profile
+from handlers import start, speaking, roleplay, common, voice, lessons, words, profile, skills
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -27,6 +27,7 @@ dp.include_router(voice.router)
 dp.include_router(common.router)
 dp.include_router(words.router)
 dp.include_router(profile.router) 
+dp.include_router(skills.router)
 
 async def on_startup():
     external_url = os.environ.get('RENDER_EXTERNAL_URL')
