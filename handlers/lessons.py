@@ -1292,7 +1292,7 @@ async def show_practice_task(message: Message, user_id: int, edit: bool = True):
     
     task_idx = practice.get("session_index", 0)
     tasks = practice.get("tasks", [])
-        if task_idx >= len(tasks):
+    if task_idx >= len(tasks):
         correct = practice.get("session_correct", 0)
         total = len(tasks)
         wrong = total - correct
