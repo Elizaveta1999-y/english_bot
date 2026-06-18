@@ -12,6 +12,7 @@ from data.level_c2 import LEVEL_C2_CONTENT
 from data.thematic_new import THEMATIC_NEW_CONTENT
 from services.deepseek import chat
 from speaking.services.tts import text_to_voice
+from handlers.profile import update_stats_after_lesson, update_stats_after_practice
 
 router = Router()
 
@@ -607,6 +608,10 @@ async def show_lesson_page(message: Message, user_id: int, edit: bool = True):
     if page_idx >= total_pages:
         page_idx = total_pages - 1
     page = pages[page_idx]
+    # Если это последняя страница, считаем урок пройденным
+    if page_idx == total_pages - 1:
+        from handlers.profile import update_stats_after_lesson
+        update_stats_after_lesson(user_id)
 
     text = f"<b>📖 {lesson['topic']}</b>\n\n{page['text']}"
 
@@ -1287,10 +1292,11 @@ async def show_practice_task(message: Message, user_id: int, edit: bool = True):
     
     task_idx = practice.get("session_index", 0)
     tasks = practice.get("tasks", [])
-    if task_idx >= len(tasks):
-        # Завершение
+        if task_idx >= len(tasks):
         correct = practice.get("session_correct", 0)
         total = len(tasks)
+        wrong = total - correct
+        update_stats_after_practice(user_id, correct, wrong)
         percent = int(correct/total*100) if total else 0
         text = f"📊 Практика завершена!\nПравильно: {correct} из {total} ({percent}%)\n\n"
         text += "🎉 Отлично!" if percent >= 80 else "📚 Повторите тему и попробуйте снова."
