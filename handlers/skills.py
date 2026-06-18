@@ -3,12 +3,14 @@ from aiogram import Router, F
 from aiogram.types import Message, CallbackQuery, InlineKeyboardMarkup, InlineKeyboardButton
 from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import State, StatesGroup
+from datetime import datetime, timedelta
 from data.users import get_user_state, set_user_state
-from data.reading_tasks import READING_TASKS  # банк заданий для чтения
+from data.reading_tasks import READING_TASKS
 from services.deepseek import chat
 from speaking.services.stt import voice_to_text
 from speaking.services.tts import text_to_voice
 import random
+import re
 
 router = Router()
 
@@ -21,7 +23,6 @@ class SpeakingStates(StatesGroup):
 
 # ---------- Вспомогательные функции ----------
 def get_skills_keyboard():
-    """Клавиатура выбора навыка"""
     return InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(text="🎧 Аудирование", callback_data="skill_listening"),
          InlineKeyboardButton(text="📖 Чтение", callback_data="skill_reading")],
@@ -30,50 +31,99 @@ def get_skills_keyboard():
         [InlineKeyboardButton(text="🔙 Назад", callback_data="back_to_main")]
     ])
 
-def check_subscription(user_id: int) -> bool:
-    """Проверяет, активна ли подписка у пользователя."""
+def get_limited_access_keyboard():
+    return InlineKeyboardMarkup(inline_keyboard=[
+        [InlineKeyboardButton(text="💳 Оформить подписку (900 ₽/мес)", callback_data="profile_extend")],
+        [InlineKeyboardButton(text="🔙 Назад", callback_data="start_skills")]
+    ])
+
+def check_access(user_id: int) -> tuple:
+    """
+    Проверяет доступ пользователя к режиму Language Skills.
+    Возвращает (разрешено_ли, сообщение_при_отказе)
+    """
     state = get_user_state(user_id)
+    now = datetime.now()
+    
+    # Проверяем регистрационную дату
+    reg_date_str = state.get("registration_date")
+    if not reg_date_str:
+        # Первый запуск — сохраняем дату
+        state["registration_date"] = now.isoformat()
+        set_user_state(user_id, state)
+        return True, None
+    
+    reg_date = datetime.fromisoformat(reg_date_str)
+    hours_since_reg = (now - reg_date).total_seconds() / 3600
+    
+    # Если прошло менее 48 часов — полный доступ
+    if hours_since_reg < 48:
+        return True, None
+    
+    # Проверяем подписку
     sub = state.get("profile", {}).get("subscription", {})
-    return sub.get("active", False)
+    if sub.get("active"):
+        return True, None
+    
+    # Проверяем дневной лимит (3 задания)
+    today = now.date().isoformat()
+    daily_skills = state.get("daily_skills_count", 0)
+    last_skill_date = state.get("last_skill_date")
+    
+    if last_skill_date != today:
+        # Новый день — сбрасываем счётчик
+        daily_skills = 0
+        state["daily_skills_count"] = 0
+        state["last_skill_date"] = today
+        set_user_state(user_id, state)
+        return True, None
+    
+    if daily_skills < 3:
+        return True, None
+    else:
+        return False, "🔒 Вы исчерпали дневной лимит (3 задания). Оформите подписку для неограниченного доступа."
+
+def increment_skill_counter(user_id: int):
+    """Увеличивает счётчик выполненных заданий в день"""
+    state = get_user_state(user_id)
+    today = datetime.now().date().isoformat()
+    last_date = state.get("last_skill_date")
+    if last_date != today:
+        state["daily_skills_count"] = 1
+        state["last_skill_date"] = today
+    else:
+        state["daily_skills_count"] = state.get("daily_skills_count", 0) + 1
+    set_user_state(user_id, state)
 
 # ---------- Главное меню навыков ----------
 @router.callback_query(lambda c: c.data == "start_skills")
 async def start_skills(callback: CallbackQuery):
     user_id = callback.from_user.id
-    if not check_subscription(user_id):
-        await callback.message.edit_text(
-            "🔒 <b>Доступ к тренажёрам Language Skills</b>\n\n"
-            "Этот режим доступен только по подписке.\n"
-            "Оформите подписку, чтобы тренировать все четыре навыка: аудирование, чтение, письмо и говорение.\n\n"
-            "💳 <b>Подписка</b> — 399 ₽/мес.",
-            reply_markup=InlineKeyboardMarkup(inline_keyboard=[
-                [InlineKeyboardButton(text="💳 Оформить подписку", callback_data="profile_extend")],
-                [InlineKeyboardButton(text="🔙 Назад", callback_data="back_to_main")]
-            ]),
-            parse_mode="HTML"
-        )
-        await callback.answer()
-        return
-    
+    # Проверяем доступ (для входа в меню доступ всегда открыт)
     await callback.message.edit_text(
         "🗣️ <b>Language Skills</b>\n\n"
         "Практикуйте четыре ключевых навыка языка: аудирование, чтение, письмо и говорение.\n"
-        "Задания построены по аналогии с экзаменами ОГЭ и ЕГЭ — тренируйтесь в формате, приближенном к реальному.\n\n"
+        "Задания построены по аналогии с экзаменами ОГЭ и ЕГЭ.\n\n"
         "Выберите навык:",
         reply_markup=get_skills_keyboard(),
         parse_mode="HTML"
     )
     await callback.answer()
 
-# ---------- 1. ЧТЕНИЕ (полностью детерминированное) ----------
+# ---------- 1. ЧТЕНИЕ ----------
 @router.callback_query(lambda c: c.data == "skill_reading")
 async def skill_reading(callback: CallbackQuery):
     user_id = callback.from_user.id
-    if not check_subscription(user_id):
-        await callback.answer("Доступно только по подписке", show_alert=True)
+    allowed, msg = check_access(user_id)
+    if not allowed:
+        await callback.message.edit_text(
+            f"{msg}\n\nЧтобы получить неограниченный доступ, оформите подписку.",
+            reply_markup=get_limited_access_keyboard(),
+            parse_mode="HTML"
+        )
+        await callback.answer()
         return
     
-    # Выбираем случайное задание из банка
     tasks = READING_TASKS
     if not tasks:
         await callback.message.edit_text("📭 Заданий пока нет. Зайдите позже.")
@@ -81,12 +131,11 @@ async def skill_reading(callback: CallbackQuery):
         return
     
     task = random.choice(tasks)
-    # Сохраняем в состояние пользователя текущее задание
     state = get_user_state(user_id)
     state["current_reading_task"] = task
     set_user_state(user_id, state)
     
-    # Формируем сообщение: текст + вопросы
+    # Формируем текст
     text = f"📖 <b>Чтение</b>\n\n{task['text']}\n\n"
     for i, q in enumerate(task['questions'], 1):
         text += f"{i}. {q['question']}\n"
@@ -99,7 +148,6 @@ async def skill_reading(callback: CallbackQuery):
     await callback.message.edit_text(text, parse_mode="HTML")
     await callback.answer()
 
-# Обработчик ответов на чтение (детерминированная проверка)
 @router.message(F.text, lambda msg: get_user_state(msg.from_user.id).get("current_reading_task"))
 async def reading_answer(message: Message):
     user_id = message.from_user.id
@@ -108,10 +156,11 @@ async def reading_answer(message: Message):
     if not task:
         return
     
-    # Парсим ответы пользователя (ожидаем: "1A, 2B, 3C" или "1 A 2 B")
+    # Считаем выполненное задание
+    increment_skill_counter(user_id)
+    
+    # Парсим ответы
     raw = message.text.strip().upper().replace(" ", "")
-    # Разбиваем по запятым или пробелам
-    import re
     parts = re.split(r'[,;\s]+', raw)
     user_answers = {}
     for part in parts:
@@ -120,7 +169,6 @@ async def reading_answer(message: Message):
             letter = part[-1]
             if num.isdigit() and letter in "ABCD":
                 user_answers[int(num)] = letter
-    # Проверяем
     correct_count = 0
     feedback = []
     for i, q in enumerate(task['questions'], 1):
@@ -145,8 +193,8 @@ async def reading_answer(message: Message):
             else:
                 feedback.append(f"❌ {i}. {q['question']} — правильно: {correct}")
         elif q['type'] == 'fill':
-            # Для fill-blank ждём слово
-            user_word = message.text.strip().split()[-1]  # упрощённо
+            # Для fill-blank ждём слово (упрощённо)
+            user_word = message.text.strip().split()[-1]
             if user_word.lower() == correct.lower():
                 correct_count += 1
                 feedback.append(f"✅ {i}. {q['question']} — верно")
@@ -157,13 +205,23 @@ async def reading_answer(message: Message):
     result = f"📊 <b>Результат</b>: {correct_count} из {total}\n\n" + "\n".join(feedback)
     await message.answer(result, parse_mode="HTML")
     
-    # Очищаем состояние
     del state["current_reading_task"]
     set_user_state(user_id, state)
 
-# ---------- 2. АУДИРОВАНИЕ (пока заглушка) ----------
+# ---------- 2. АУДИРОВАНИЕ ----------
 @router.callback_query(lambda c: c.data == "skill_listening")
 async def skill_listening(callback: CallbackQuery):
+    user_id = callback.from_user.id
+    allowed, msg = check_access(user_id)
+    if not allowed:
+        await callback.message.edit_text(
+            f"{msg}\n\nЧтобы получить неограниченный доступ, оформите подписку.",
+            reply_markup=get_limited_access_keyboard(),
+            parse_mode="HTML"
+        )
+        await callback.answer()
+        return
+    
     await callback.message.edit_text(
         "🎧 <b>Аудирование</b>\n\n"
         "В разработке. Скоро здесь появятся задания на понимание речи.",
@@ -174,15 +232,20 @@ async def skill_listening(callback: CallbackQuery):
     )
     await callback.answer()
 
-# ---------- 3. ПИСЬМО (ИИ-проверка) ----------
+# ---------- 3. ПИСЬМО ----------
 @router.callback_query(lambda c: c.data == "skill_writing")
 async def skill_writing(callback: CallbackQuery, state: FSMContext):
     user_id = callback.from_user.id
-    if not check_subscription(user_id):
-        await callback.answer("Доступно только по подписке", show_alert=True)
+    allowed, msg = check_access(user_id)
+    if not allowed:
+        await callback.message.edit_text(
+            f"{msg}\n\nЧтобы получить неограниченный доступ, оформите подписку.",
+            reply_markup=get_limited_access_keyboard(),
+            parse_mode="HTML"
+        )
+        await callback.answer()
         return
     
-    # Даём тему
     topics = [
         "Напишите письмо другу (100–120 слов) на тему: «Мои летние каникулы».",
         "Напишите эссе (150–200 слов) на тему: «Преимущества и недостатки интернета».",
@@ -210,7 +273,8 @@ async def writing_submit(message: Message, state: FSMContext):
         await message.answer("Текст слишком короткий. Напишите хотя бы 20 слов.")
         return
     
-    # Проверяем через DeepSeek
+    increment_skill_counter(user_id)
+    
     data = await state.get_data()
     topic = data.get("topic", "")
     prompt = f"""
@@ -228,15 +292,20 @@ async def writing_submit(message: Message, state: FSMContext):
     await message.answer(f"📊 <b>Результат</b>:\n\n{feedback}", parse_mode="HTML")
     await state.clear()
 
-# ---------- 4. ГОВОРЕНИЕ (ИИ-проверка + STT) ----------
+# ---------- 4. ГОВОРЕНИЕ ----------
 @router.callback_query(lambda c: c.data == "skill_speaking")
 async def skill_speaking(callback: CallbackQuery, state: FSMContext):
     user_id = callback.from_user.id
-    if not check_subscription(user_id):
-        await callback.answer("Доступно только по подписке", show_alert=True)
+    allowed, msg = check_access(user_id)
+    if not allowed:
+        await callback.message.edit_text(
+            f"{msg}\n\nЧтобы получить неограниченный доступ, оформите подписку.",
+            reply_markup=get_limited_access_keyboard(),
+            parse_mode="HTML"
+        )
+        await callback.answer()
         return
     
-    # Даём тему
     topics = [
         "Опишите вашу любимую фотографию (5–7 предложений).",
         "Расскажите о своем хобби (5–7 предложений).",
@@ -264,6 +333,8 @@ async def speaking_submit(message: Message, state: FSMContext):
     if not user_text:
         await message.answer("Не удалось распознать речь. Попробуйте ещё раз.")
         return
+    
+    increment_skill_counter(user_id)
     
     data = await state.get_data()
     topic = data.get("topic", "")
