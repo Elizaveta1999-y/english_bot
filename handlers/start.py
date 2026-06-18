@@ -31,5 +31,9 @@ async def show_main_menu(message: Message, edit: bool = False):
 @router.message(Command("start"))
 async def start_handler(message: Message):
     user_id = message.from_user.id
-    set_user_state(user_id, {})
+    # Проверяем, есть ли уже состояние; если нет — создаём пустое
+    state = get_user_state(user_id)
+    if not state:
+        set_user_state(user_id, {})
+    # Если состояние есть — ничего не делаем, оставляем как есть
     await show_main_menu(message, edit=False)
