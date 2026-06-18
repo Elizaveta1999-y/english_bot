@@ -14636,12 +14636,12 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
         "answer": "Stepbrother (сын отчима или мачехи)."
       }
     ],
-            "practice_bank": [
+                    "practice_bank": [
             # Вариант 1
             [
                 {
                     "type": "complex",
-                    "text": "Задание 1. Вставьте пропущенные буквы, чтобы получилось слово (член семьи).\n\n1. m___ther (мама)\n2. f___ther (папа)\n3. s___ster (сестра)\n4. br___ther (брат)\n5. gr___ndmother (бабушка)\n6. gr___ndfather (дедушка)\n7. a___nt (тётя)\n8. u___cle (дядя)\n9. c___usin (двоюродный брат/сестра)\n10. d___ughter (дочь)",
+                    "text": "Задание 1. Вставьте пропущенные буквы.\n\n1. m___ther (мама)\n2. f___ther (папа)\n3. s___ster (сестра)\n4. br___ther (брат)\n5. gr___ndmother (бабушка)\n6. gr___ndfather (дедушка)\n7. a___nt (тётя)\n8. u___cle (дядя)\n9. c___usin (двоюродный брат/сестра)\n10. d___ughter (дочь)",
                     "subtasks": [
                         {"question": "m___ther (мама)", "answer": "mother", "explanation": "mother — мама"},
                         {"question": "f___ther (папа)", "answer": "father", "explanation": "father — папа"},
@@ -14657,15 +14657,494 @@ LEVEL_A1_CONTENT = LEVEL_A1_CONTENT = {
                 },
                 {
                     "type": "complex",
-                    "text": "Задание 2. Вставьте правильное слово из списка: mother, father, sister, brother, grandmother, grandfather, aunt, uncle, cousin, daughter.\n\n1. My ___ is my parent's mother. (бабушка)\n2. My ___ is my parent's father. (дедушка)\n3. My ___ is my mother's sister. (тётя)\n4. My ___ is my mother's brother. (дядя)\n5. My ___ is my uncle's child. (двоюродный брат/сестра)\n6. My ___ is my parent's female child. (дочь)\n7. My ___ is my parent's male child. (сын — но в списке нет, заменим на brother? Здесь нужно использовать из списка. У нас есть daughter, но нет son. В этом списке нет son, поэтому я заменю на sister или brother. Для этого варианта я включил daughter, но не son. Давайте я изменю список для этого варианта: включим son вместо cousin? Но я сделал так, чтобы в каждом варианте были разные слова. В этом варианте я использовал daughter, но не son. Пожалуй, я добавлю son в следующий вариант. В этом варианте я использую: mother, father, sister, brother, grandmother, grandfather, aunt, uncle, cousin, daughter. Подставлю правильные ответы.)\n8. My ___ is my mother's sister. (тётя) уже было.\n9. My ___ is my father's brother. (дядя)\n10. My ___ is my parent's mother. (бабушка)",
+                    "text": "Задание 2. Вставьте правильное слово из списка: mother, father, sister, brother, grandmother, grandfather, aunt, uncle, cousin, daughter.\n\n1. My mother's mother is my ___.\n2. My father's father is my ___.\n3. My mother's sister is my ___.\n4. My mother's brother is my ___.\n5. My uncle's child is my ___.\n6. My parents' daughter is my ___.\n7. My parents' son is my ___.\n8. My brother is my parents' ___.\n9. My sister is my parents' ___.\n10. My father is my mother's ___.",
                     "subtasks": [
-                        {"question": "My ___ is my mother's mother.", "answer": "grandmother", "explanation": "бабушка по матери — grandmother"},
-                        {"question": "My ___ is my father's father.", "answer": "grandfather", "explanation": "дедушка по отцу — grandfather"},
-                        {"question": "My ___ is my mother's sister.", "answer": "aunt", "explanation": "тётя — aunt"},
-                        {"question": "My ___ is my mother's brother.", "answer": "uncle", "explanation": "дядя — uncle"},
-                        {"question": "My ___ is my uncle's child.", "answer": "cousin", "explanation": "двоюродный брат/сестра — cousin"},
-                        {"question": "My ___ is my parent's female child.", "answer": "daughter", "explanation": "дочь — daughter"},
-                        {"question": "My ___ is my parent's male child.", "answer": "son", "explanation": "сын — son (но его нет в списке, поэтому я заменю вопрос на: My ___ is my father's son (если я сын) или brother? Нужно переделать задание, чтобы подходили слова из списка. Лучше я изменю это задание, чтобы вопросы соответствовали словам в списке. Я переделаю вариант 2 с другим набором. Но так как я уже начал, я просто заменю вопрос на: My ___ is my mother's brother (uncle) и т.д. Чтобы не путаться, я лучше перепишу все варианты с правильными вопросами. Я сейчас переделаю весь вариант 1.\n\nЯ перепишу задание 2 для варианта 1:\n\n1. My mother's mother is my ___. (grandmother)\n2. My father's father is my ___. (grandfather)\n3. My mother's sister is my ___. (aunt)\n4. My mother's brother is my ___. (uncle)\n5. My uncle's child is my ___. (cousin)\n6. My parent's female child is my ___. (daughter)\n7. My parent's male child is my ___. (son) – но son нет в списке. Значит, я заменю на brother: My father's son is my ___ (brother) – но это если я дочь. Лучше: My brother is my parent's ___. (son) – тоже нет. Я изменю список на: mother, father, sister, brother, grandmother, grandfather, aunt, uncle, cousin, son. Тогда вопросы:\n1. My mother's mother is my ___. (grandmother)\n2. My father's father is my ___. (grandfather)\n3. My mother's sister is my ___. (aunt)\n4. My mother's brother is my ___. (uncle)\n5. My uncle's child is my ___. (cousin)\n6. My parent's son is my ___. (brother – если я сестра? Нет, brother — это брат, а я могу быть сестрой. Но если я говорю про родителя, то их сын — это мой брат. Так что ответ brother.)\n7. My parent's daughter is my ___. (sister)\n8. My mother is my parent's ___. (mother – но это не логично. Я переделаю: My mother is my parent's female parent = grandmother? Нет. Надо проще: My mother is my ___ (mother) – это слишком просто. Я лучше сделаю вопросы типа: My father is my parent's ___. (father). Но это неинтересно. Я переделаю задание 2 так: давать предложения с пропуском, где нужно вставить слово из списка, например: My mother's mother is my __________. (grandmother). Я составлю 10 предложений, каждое с одним из слов: grandmother, grandfather, aunt, uncle, cousin, sister, brother, daughter, son, mother, father. Но их 11. Я возьму 10: grandmother, grandfather, aunt, uncle, cousin, sister, brother, daughter, son, parents? Но parents нет в списке. Я просто составлю.\n\nЯ лучше перепишу все варианты вручную, чтобы было правильно. Но так как это много, я просто изменю этот вариант, чтобы вопросы были понятны и ответы соответствовали списку. Я сейчас переделаю задание 2 для всех вариантов, чтобы не было ошибок. Но в целях экономии времени я дам готовый вариант, где задание 2 уже адаптировано. Поскольку я уже начал, я просто пришлю правильный код. Я перепишу вариант 1 полностью правильно.\n\nЯ создам новый вариант 1 с корректными заданиями. Давайте я просто сгенерирую 10 вариантов с тремя заданиями, где задание 1 – вставка букв, задание 2 – выбор правильного слова из списка, задание 3 – перевод. Я сделаю это сейчас и пришлю полный блок."
+                        {"question": "My mother's mother is my ___.", "answer": "grandmother", "explanation": "grandmother"},
+                        {"question": "My father's father is my ___.", "answer": "grandfather", "explanation": "grandfather"},
+                        {"question": "My mother's sister is my ___.", "answer": "aunt", "explanation": "aunt"},
+                        {"question": "My mother's brother is my ___.", "answer": "uncle", "explanation": "uncle"},
+                        {"question": "My uncle's child is my ___.", "answer": "cousin", "explanation": "cousin"},
+                        {"question": "My parents' daughter is my ___.", "answer": "sister", "explanation": "sister"},
+                        {"question": "My parents' son is my ___.", "answer": "brother", "explanation": "brother"},
+                        {"question": "My brother is my parents' ___.", "answer": "son", "explanation": "son"},
+                        {"question": "My sister is my parents' ___.", "answer": "daughter", "explanation": "daughter"},
+                        {"question": "My father is my mother's ___.", "answer": "husband", "explanation": "husband"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Задание 3. Переведите на английский.\n\n1. Моя мама – врач.\n2. Мой папа – учитель.\n3. Моя сестра – студентка.\n4. Мой брат – инженер.\n5. Моя бабушка живёт с нами.\n6. Мой дедушка любит читать.\n7. Моя тётя живёт в Лондоне.\n8. Мой дядя – водитель.\n9. Мой двоюродный брат – мой друг.\n10. Моя дочь ходит в школу.",
+                    "subtasks": [
+                        {"question": "Моя мама – врач.", "answer": "My mother is a doctor.", "explanation": "My mother is a doctor."},
+                        {"question": "Мой папа – учитель.", "answer": "My father is a teacher.", "explanation": "My father is a teacher."},
+                        {"question": "Моя сестра – студентка.", "answer": "My sister is a student.", "explanation": "My sister is a student."},
+                        {"question": "Мой брат – инженер.", "answer": "My brother is an engineer.", "explanation": "My brother is an engineer."},
+                        {"question": "Моя бабушка живёт с нами.", "answer": "My grandmother lives with us.", "explanation": "My grandmother lives with us."},
+                        {"question": "Мой дедушка любит читать.", "answer": "My grandfather likes to read.", "explanation": "My grandfather likes to read."},
+                        {"question": "Моя тётя живёт в Лондоне.", "answer": "My aunt lives in London.", "explanation": "My aunt lives in London."},
+                        {"question": "Мой дядя – водитель.", "answer": "My uncle is a driver.", "explanation": "My uncle is a driver."},
+                        {"question": "Мой двоюродный брат – мой друг.", "answer": "My cousin is my friend.", "explanation": "My cousin is my friend."},
+                        {"question": "Моя дочь ходит в школу.", "answer": "My daughter goes to school.", "explanation": "My daughter goes to school."}
+                    ]
+                }
+            ],
+            # Вариант 2
+            [
+                {
+                    "type": "complex",
+                    "text": "Задание 1. Вставьте пропущенные буквы.\n\n1. p___rents (родители)\n2. ch___ldren (дети)\n3. h___sband (муж)\n4. w___fe (жена)\n5. s___n (сын)\n6. d___ughter (дочь)\n7. br___ther (брат)\n8. s___ster (сестра)\n9. gr___ndmother (бабушка)\n10. gr___ndfather (дедушка)",
+                    "subtasks": [
+                        {"question": "p___rents (родители)", "answer": "parents", "explanation": "parents"},
+                        {"question": "ch___ldren (дети)", "answer": "children", "explanation": "children"},
+                        {"question": "h___sband (муж)", "answer": "husband", "explanation": "husband"},
+                        {"question": "w___fe (жена)", "answer": "wife", "explanation": "wife"},
+                        {"question": "s___n (сын)", "answer": "son", "explanation": "son"},
+                        {"question": "d___ughter (дочь)", "answer": "daughter", "explanation": "daughter"},
+                        {"question": "br___ther (брат)", "answer": "brother", "explanation": "brother"},
+                        {"question": "s___ster (сестра)", "answer": "sister", "explanation": "sister"},
+                        {"question": "gr___ndmother (бабушка)", "answer": "grandmother", "explanation": "grandmother"},
+                        {"question": "gr___ndfather (дедушка)", "answer": "grandfather", "explanation": "grandfather"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Задание 2. Вставьте правильное слово из списка: father, mother, brother, sister, son, daughter, grandmother, grandfather, parents, children.\n\n1. My mother's husband is my ___.\n2. My father's wife is my ___.\n3. My parents' son is my ___.\n4. My parents' daughter is my ___.\n5. My brother is my parents' ___.\n6. My sister is my parents' ___.\n7. My father's mother is my ___.\n8. My father's father is my ___.\n9. My father and mother are my ___.\n10. My son and daughter are my ___.",
+                    "subtasks": [
+                        {"question": "My mother's husband is my ___.", "answer": "father", "explanation": "father"},
+                        {"question": "My father's wife is my ___.", "answer": "mother", "explanation": "mother"},
+                        {"question": "My parents' son is my ___.", "answer": "brother", "explanation": "brother"},
+                        {"question": "My parents' daughter is my ___.", "answer": "sister", "explanation": "sister"},
+                        {"question": "My brother is my parents' ___.", "answer": "son", "explanation": "son"},
+                        {"question": "My sister is my parents' ___.", "answer": "daughter", "explanation": "daughter"},
+                        {"question": "My father's mother is my ___.", "answer": "grandmother", "explanation": "grandmother"},
+                        {"question": "My father's father is my ___.", "answer": "grandfather", "explanation": "grandfather"},
+                        {"question": "My father and mother are my ___.", "answer": "parents", "explanation": "parents"},
+                        {"question": "My son and daughter are my ___.", "answer": "children", "explanation": "children"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Задание 3. Переведите на английский.\n\n1. Мои родители живут в Москве.\n2. У меня двое детей: сын и дочь.\n3. Мой муж работает в офисе.\n4. Моя жена — учительница.\n5. Мой брат живёт за границей.\n6. Моя сестра изучает английский.\n7. Наша бабушка очень добрая.\n8. Наш дедушка любит садоводство.\n9. Мои дети ходят в школу.\n10. У нас большая семья.",
+                    "subtasks": [
+                        {"question": "Мои родители живут в Москве.", "answer": "My parents live in Moscow.", "explanation": "My parents live in Moscow."},
+                        {"question": "У меня двое детей: сын и дочь.", "answer": "I have two children: a son and a daughter.", "explanation": "I have two children: a son and a daughter."},
+                        {"question": "Мой муж работает в офисе.", "answer": "My husband works in an office.", "explanation": "My husband works in an office."},
+                        {"question": "Моя жена — учительница.", "answer": "My wife is a teacher.", "explanation": "My wife is a teacher."},
+                        {"question": "Мой брат живёт за границей.", "answer": "My brother lives abroad.", "explanation": "My brother lives abroad."},
+                        {"question": "Моя сестра изучает английский.", "answer": "My sister studies English.", "explanation": "My sister studies English."},
+                        {"question": "Наша бабушка очень добрая.", "answer": "Our grandmother is very kind.", "explanation": "Our grandmother is very kind."},
+                        {"question": "Наш дедушка любит садоводство.", "answer": "Our grandfather likes gardening.", "explanation": "Our grandfather likes gardening."},
+                        {"question": "Мои дети ходят в школу.", "answer": "My children go to school.", "explanation": "My children go to school."},
+                        {"question": "У нас большая семья.", "answer": "We have a big family.", "explanation": "We have a big family."}
+                    ]
+                }
+            ],
+            # Вариант 3
+            [
+                {
+                    "type": "complex",
+                    "text": "Задание 1. Вставьте пропущенные буквы.\n\n1. m___ther (мама)\n2. f___ther (папа)\n3. s___ster (сестра)\n4. br___ther (брат)\n5. gr___ndmother (бабушка)\n6. gr___ndfather (дедушка)\n7. a___nt (тётя)\n8. u___cle (дядя)\n9. c___usin (двоюродный брат/сестра)\n10. d___ughter (дочь)",
+                    "subtasks": [
+                        {"question": "m___ther (мама)", "answer": "mother", "explanation": "mother"},
+                        {"question": "f___ther (папа)", "answer": "father", "explanation": "father"},
+                        {"question": "s___ster (сестра)", "answer": "sister", "explanation": "sister"},
+                        {"question": "br___ther (брат)", "answer": "brother", "explanation": "brother"},
+                        {"question": "gr___ndmother (бабушка)", "answer": "grandmother", "explanation": "grandmother"},
+                        {"question": "gr___ndfather (дедушка)", "answer": "grandfather", "explanation": "grandfather"},
+                        {"question": "a___nt (тётя)", "answer": "aunt", "explanation": "aunt"},
+                        {"question": "u___cle (дядя)", "answer": "uncle", "explanation": "uncle"},
+                        {"question": "c___usin (двоюродный брат/сестра)", "answer": "cousin", "explanation": "cousin"},
+                        {"question": "d___ughter (дочь)", "answer": "daughter", "explanation": "daughter"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Задание 2. Вставьте правильное слово из списка: mother, father, sister, brother, grandmother, grandfather, aunt, uncle, cousin, son, daughter, wife, husband.\n\n1. My father's sister is my ___.\n2. My mother's brother is my ___.\n3. My mother's mother is my ___.\n4. My father's father is my ___.\n5. My uncle's daughter is my ___.\n6. My parents' son is my ___.\n7. My parents' daughter is my ___.\n8. My brother is my parents' ___.\n9. My sister is my parents' ___.\n10. My mother is my father's ___.",
+                    "subtasks": [
+                        {"question": "My father's sister is my ___.", "answer": "aunt", "explanation": "aunt"},
+                        {"question": "My mother's brother is my ___.", "answer": "uncle", "explanation": "uncle"},
+                        {"question": "My mother's mother is my ___.", "answer": "grandmother", "explanation": "grandmother"},
+                        {"question": "My father's father is my ___.", "answer": "grandfather", "explanation": "grandfather"},
+                        {"question": "My uncle's daughter is my ___.", "answer": "cousin", "explanation": "cousin"},
+                        {"question": "My parents' son is my ___.", "answer": "brother", "explanation": "brother"},
+                        {"question": "My parents' daughter is my ___.", "answer": "sister", "explanation": "sister"},
+                        {"question": "My brother is my parents' ___.", "answer": "son", "explanation": "son"},
+                        {"question": "My sister is my parents' ___.", "answer": "daughter", "explanation": "daughter"},
+                        {"question": "My mother is my father's ___.", "answer": "wife", "explanation": "wife"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Задание 3. Переведите на английский.\n\n1. Мой отец – программист.\n2. Моя мать – домохозяйка.\n3. Моя сестра играет на пианино.\n4. Мой брат любит футбол.\n5. Наша бабушка печёт пироги.\n6. Наш дедушка рассказывает истории.\n7. Моя тётя работает в больнице.\n8. Мой дядя – полицейский.\n9. Мой двоюродный брат живёт в Париже.\n10. Моя дочь любит рисовать.",
+                    "subtasks": [
+                        {"question": "Мой отец – программист.", "answer": "My father is a programmer.", "explanation": "My father is a programmer."},
+                        {"question": "Моя мать – домохозяйка.", "answer": "My mother is a housewife.", "explanation": "My mother is a housewife."},
+                        {"question": "Моя сестра играет на пианино.", "answer": "My sister plays the piano.", "explanation": "My sister plays the piano."},
+                        {"question": "Мой брат любит футбол.", "answer": "My brother likes football.", "explanation": "My brother likes football."},
+                        {"question": "Наша бабушка печёт пироги.", "answer": "Our grandmother bakes pies.", "explanation": "Our grandmother bakes pies."},
+                        {"question": "Наш дедушка рассказывает истории.", "answer": "Our grandfather tells stories.", "explanation": "Our grandfather tells stories."},
+                        {"question": "Моя тётя работает в больнице.", "answer": "My aunt works in a hospital.", "explanation": "My aunt works in a hospital."},
+                        {"question": "Мой дядя – полицейский.", "answer": "My uncle is a policeman.", "explanation": "My uncle is a policeman."},
+                        {"question": "Мой двоюродный брат живёт в Париже.", "answer": "My cousin lives in Paris.", "explanation": "My cousin lives in Paris."},
+                        {"question": "Моя дочь любит рисовать.", "answer": "My daughter likes to draw.", "explanation": "My daughter likes to draw."}
+                    ]
+                }
+            ],
+            # Вариант 4
+            [
+                {
+                    "type": "complex",
+                    "text": "Задание 1. Вставьте пропущенные буквы.\n\n1. p___rents (родители)\n2. ch___ldren (дети)\n3. h___sband (муж)\n4. w___fe (жена)\n5. s___n (сын)\n6. d___ughter (дочь)\n7. br___ther (брат)\n8. s___ster (сестра)\n9. gr___ndmother (бабушка)\n10. gr___ndfather (дедушка)",
+                    "subtasks": [
+                        {"question": "p___rents (родители)", "answer": "parents", "explanation": "parents"},
+                        {"question": "ch___ldren (дети)", "answer": "children", "explanation": "children"},
+                        {"question": "h___sband (муж)", "answer": "husband", "explanation": "husband"},
+                        {"question": "w___fe (жена)", "answer": "wife", "explanation": "wife"},
+                        {"question": "s___n (сын)", "answer": "son", "explanation": "son"},
+                        {"question": "d___ughter (дочь)", "answer": "daughter", "explanation": "daughter"},
+                        {"question": "br___ther (брат)", "answer": "brother", "explanation": "brother"},
+                        {"question": "s___ster (сестра)", "answer": "sister", "explanation": "sister"},
+                        {"question": "gr___ndmother (бабушка)", "answer": "grandmother", "explanation": "grandmother"},
+                        {"question": "gr___ndfather (дедушка)", "answer": "grandfather", "explanation": "grandfather"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Задание 2. Вставьте правильное слово из списка: father, mother, brother, sister, son, daughter, grandmother, grandfather, parents, children.\n\n1. My father's wife is my ___.\n2. My mother's husband is my ___.\n3. My parents' son is my ___.\n4. My parents' daughter is my ___.\n5. My brother is my parents' ___.\n6. My sister is my parents' ___.\n7. My mother's mother is my ___.\n8. My father's father is my ___.\n9. My mother and father are my ___.\n10. My son and daughter are my ___.",
+                    "subtasks": [
+                        {"question": "My father's wife is my ___.", "answer": "mother", "explanation": "mother"},
+                        {"question": "My mother's husband is my ___.", "answer": "father", "explanation": "father"},
+                        {"question": "My parents' son is my ___.", "answer": "brother", "explanation": "brother"},
+                        {"question": "My parents' daughter is my ___.", "answer": "sister", "explanation": "sister"},
+                        {"question": "My brother is my parents' ___.", "answer": "son", "explanation": "son"},
+                        {"question": "My sister is my parents' ___.", "answer": "daughter", "explanation": "daughter"},
+                        {"question": "My mother's mother is my ___.", "answer": "grandmother", "explanation": "grandmother"},
+                        {"question": "My father's father is my ___.", "answer": "grandfather", "explanation": "grandfather"},
+                        {"question": "My mother and father are my ___.", "answer": "parents", "explanation": "parents"},
+                        {"question": "My son and daughter are my ___.", "answer": "children", "explanation": "children"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Задание 3. Переведите на английский.\n\n1. Мои родители работают в школе.\n2. У нас двое детей – мальчик и девочка.\n3. Мой муж – архитектор.\n4. Моя жена – дизайнер.\n5. Мой брат учится в университете.\n6. Моя сестра работает в банке.\n7. Наша бабушка живёт в деревне.\n8. Наш дедушка водит машину.\n9. Мои дети любят животных.\n10. Мы счастливая семья.",
+                    "subtasks": [
+                        {"question": "Мои родители работают в школе.", "answer": "My parents work at a school.", "explanation": "My parents work at a school."},
+                        {"question": "У нас двое детей – мальчик и девочка.", "answer": "We have two children – a boy and a girl.", "explanation": "We have two children – a boy and a girl."},
+                        {"question": "Мой муж – архитектор.", "answer": "My husband is an architect.", "explanation": "My husband is an architect."},
+                        {"question": "Моя жена – дизайнер.", "answer": "My wife is a designer.", "explanation": "My wife is a designer."},
+                        {"question": "Мой брат учится в университете.", "answer": "My brother studies at university.", "explanation": "My brother studies at university."},
+                        {"question": "Моя сестра работает в банке.", "answer": "My sister works at a bank.", "explanation": "My sister works at a bank."},
+                        {"question": "Наша бабушка живёт в деревне.", "answer": "Our grandmother lives in the countryside.", "explanation": "Our grandmother lives in the countryside."},
+                        {"question": "Наш дедушка водит машину.", "answer": "Our grandfather drives a car.", "explanation": "Our grandfather drives a car."},
+                        {"question": "Мои дети любят животных.", "answer": "My children love animals.", "explanation": "My children love animals."},
+                        {"question": "Мы счастливая семья.", "answer": "We are a happy family.", "explanation": "We are a happy family."}
+                    ]
+                }
+            ],
+            # Вариант 5
+            [
+                {
+                    "type": "complex",
+                    "text": "Задание 1. Вставьте пропущенные буквы.\n\n1. m___ther (мама)\n2. f___ther (папа)\n3. s___ster (сестра)\n4. br___ther (брат)\n5. gr___ndmother (бабушка)\n6. gr___ndfather (дедушка)\n7. a___nt (тётя)\n8. u___cle (дядя)\n9. c___usin (двоюродный брат/сестра)\n10. d___ughter (дочь)",
+                    "subtasks": [
+                        {"question": "m___ther (мама)", "answer": "mother", "explanation": "mother"},
+                        {"question": "f___ther (папа)", "answer": "father", "explanation": "father"},
+                        {"question": "s___ster (сестра)", "answer": "sister", "explanation": "sister"},
+                        {"question": "br___ther (брат)", "answer": "brother", "explanation": "brother"},
+                        {"question": "gr___ndmother (бабушка)", "answer": "grandmother", "explanation": "grandmother"},
+                        {"question": "gr___ndfather (дедушка)", "answer": "grandfather", "explanation": "grandfather"},
+                        {"question": "a___nt (тётя)", "answer": "aunt", "explanation": "aunt"},
+                        {"question": "u___cle (дядя)", "answer": "uncle", "explanation": "uncle"},
+                        {"question": "c___usin (двоюродный брат/сестра)", "answer": "cousin", "explanation": "cousin"},
+                        {"question": "d___ughter (дочь)", "answer": "daughter", "explanation": "daughter"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Задание 2. Вставьте правильное слово из списка: mother, father, sister, brother, grandmother, grandfather, aunt, uncle, cousin, son, daughter, wife, husband.\n\n1. My father's brother is my ___.\n2. My mother's sister is my ___.\n3. My father's mother is my ___.\n4. My mother's father is my ___.\n5. My aunt's daughter is my ___.\n6. My parents' son is my ___.\n7. My parents' daughter is my ___.\n8. My brother is my parents' ___.\n9. My sister is my parents' ___.\n10. My father is my mother's ___.",
+                    "subtasks": [
+                        {"question": "My father's brother is my ___.", "answer": "uncle", "explanation": "uncle"},
+                        {"question": "My mother's sister is my ___.", "answer": "aunt", "explanation": "aunt"},
+                        {"question": "My father's mother is my ___.", "answer": "grandmother", "explanation": "grandmother"},
+                        {"question": "My mother's father is my ___.", "answer": "grandfather", "explanation": "grandfather"},
+                        {"question": "My aunt's daughter is my ___.", "answer": "cousin", "explanation": "cousin"},
+                        {"question": "My parents' son is my ___.", "answer": "brother", "explanation": "brother"},
+                        {"question": "My parents' daughter is my ___.", "answer": "sister", "explanation": "sister"},
+                        {"question": "My brother is my parents' ___.", "answer": "son", "explanation": "son"},
+                        {"question": "My sister is my parents' ___.", "answer": "daughter", "explanation": "daughter"},
+                        {"question": "My father is my mother's ___.", "answer": "husband", "explanation": "husband"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Задание 3. Переведите на английский.\n\n1. Мой отец – бизнесмен.\n2. Моя мать – медсестра.\n3. Моя сестра – художница.\n4. Мой брат – музыкант.\n5. Наша бабушка готовит обед.\n6. Наш дедушка гуляет в парке.\n7. Моя тётя – актриса.\n8. Мой дядя – шофёр.\n9. Мой двоюродный брат – студент.\n10. Моя дочь читает книгу.",
+                    "subtasks": [
+                        {"question": "Мой отец – бизнесмен.", "answer": "My father is a businessman.", "explanation": "My father is a businessman."},
+                        {"question": "Моя мать – медсестра.", "answer": "My mother is a nurse.", "explanation": "My mother is a nurse."},
+                        {"question": "Моя сестра – художница.", "answer": "My sister is an artist.", "explanation": "My sister is an artist."},
+                        {"question": "Мой брат – музыкант.", "answer": "My brother is a musician.", "explanation": "My brother is a musician."},
+                        {"question": "Наша бабушка готовит обед.", "answer": "Our grandmother cooks dinner.", "explanation": "Our grandmother cooks dinner."},
+                        {"question": "Наш дедушка гуляет в парке.", "answer": "Our grandfather walks in the park.", "explanation": "Our grandfather walks in the park."},
+                        {"question": "Моя тётя – актриса.", "answer": "My aunt is an actress.", "explanation": "My aunt is an actress."},
+                        {"question": "Мой дядя – шофёр.", "answer": "My uncle is a driver.", "explanation": "My uncle is a driver."},
+                        {"question": "Мой двоюродный брат – студент.", "answer": "My cousin is a student.", "explanation": "My cousin is a student."},
+                        {"question": "Моя дочь читает книгу.", "answer": "My daughter is reading a book.", "explanation": "My daughter is reading a book."}
+                    ]
+                }
+            ],
+            # Вариант 6
+            [
+                {
+                    "type": "complex",
+                    "text": "Задание 1. Вставьте пропущенные буквы.\n\n1. p___rents (родители)\n2. ch___ldren (дети)\n3. h___sband (муж)\n4. w___fe (жена)\n5. s___n (сын)\n6. d___ughter (дочь)\n7. br___ther (брат)\n8. s___ster (сестра)\n9. gr___ndmother (бабушка)\n10. gr___ndfather (дедушка)",
+                    "subtasks": [
+                        {"question": "p___rents (родители)", "answer": "parents", "explanation": "parents"},
+                        {"question": "ch___ldren (дети)", "answer": "children", "explanation": "children"},
+                        {"question": "h___sband (муж)", "answer": "husband", "explanation": "husband"},
+                        {"question": "w___fe (жена)", "answer": "wife", "explanation": "wife"},
+                        {"question": "s___n (сын)", "answer": "son", "explanation": "son"},
+                        {"question": "d___ughter (дочь)", "answer": "daughter", "explanation": "daughter"},
+                        {"question": "br___ther (брат)", "answer": "brother", "explanation": "brother"},
+                        {"question": "s___ster (сестра)", "answer": "sister", "explanation": "sister"},
+                        {"question": "gr___ndmother (бабушка)", "answer": "grandmother", "explanation": "grandmother"},
+                        {"question": "gr___ndfather (дедушка)", "answer": "grandfather", "explanation": "grandfather"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Задание 2. Вставьте правильное слово из списка: father, mother, brother, sister, son, daughter, grandmother, grandfather, parents, children.\n\n1. My mother's husband is my ___.\n2. My father's wife is my ___.\n3. My parents' son is my ___.\n4. My parents' daughter is my ___.\n5. My brother is my parents' ___.\n6. My sister is my parents' ___.\n7. My mother's mother is my ___.\n8. My father's father is my ___.\n9. My father and mother are my ___.\n10. My son and daughter are my ___.",
+                    "subtasks": [
+                        {"question": "My mother's husband is my ___.", "answer": "father", "explanation": "father"},
+                        {"question": "My father's wife is my ___.", "answer": "mother", "explanation": "mother"},
+                        {"question": "My parents' son is my ___.", "answer": "brother", "explanation": "brother"},
+                        {"question": "My parents' daughter is my ___.", "answer": "sister", "explanation": "sister"},
+                        {"question": "My brother is my parents' ___.", "answer": "son", "explanation": "son"},
+                        {"question": "My sister is my parents' ___.", "answer": "daughter", "explanation": "daughter"},
+                        {"question": "My mother's mother is my ___.", "answer": "grandmother", "explanation": "grandmother"},
+                        {"question": "My father's father is my ___.", "answer": "grandfather", "explanation": "grandfather"},
+                        {"question": "My father and mother are my ___.", "answer": "parents", "explanation": "parents"},
+                        {"question": "My son and daughter are my ___.", "answer": "children", "explanation": "children"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Задание 3. Переведите на английский.\n\n1. Мои родители любят путешествовать.\n2. Мои дети ходят в школу.\n3. Мой муж читает газету.\n4. Моя жена готовит ужин.\n5. Мой брат работает в больнице.\n6. Моя сестра учит детей.\n7. Наша бабушка вяжет свитер.\n8. Наш дедушка смотрит телевизор.\n9. Моя дочь помогает мне.\n10. Мы часто собираемся вместе.",
+                    "subtasks": [
+                        {"question": "Мои родители любят путешествовать.", "answer": "My parents like to travel.", "explanation": "My parents like to travel."},
+                        {"question": "Мои дети ходят в школу.", "answer": "My children go to school.", "explanation": "My children go to school."},
+                        {"question": "Мой муж читает газету.", "answer": "My husband reads a newspaper.", "explanation": "My husband reads a newspaper."},
+                        {"question": "Моя жена готовит ужин.", "answer": "My wife is cooking dinner.", "explanation": "My wife is cooking dinner."},
+                        {"question": "Мой брат работает в больнице.", "answer": "My brother works in a hospital.", "explanation": "My brother works in a hospital."},
+                        {"question": "Моя сестра учит детей.", "answer": "My sister teaches children.", "explanation": "My sister teaches children."},
+                        {"question": "Наша бабушка вяжет свитер.", "answer": "Our grandmother is knitting a sweater.", "explanation": "Our grandmother is knitting a sweater."},
+                        {"question": "Наш дедушка смотрит телевизор.", "answer": "Our grandfather is watching TV.", "explanation": "Our grandfather is watching TV."},
+                        {"question": "Моя дочь помогает мне.", "answer": "My daughter helps me.", "explanation": "My daughter helps me."},
+                        {"question": "Мы часто собираемся вместе.", "answer": "We often get together.", "explanation": "We often get together."}
+                    ]
+                }
+            ],
+            # Вариант 7
+            [
+                {
+                    "type": "complex",
+                    "text": "Задание 1. Вставьте пропущенные буквы.\n\n1. m___ther (мама)\n2. f___ther (папа)\n3. s___ster (сестра)\n4. br___ther (брат)\n5. gr___ndmother (бабушка)\n6. gr___ndfather (дедушка)\n7. a___nt (тётя)\n8. u___cle (дядя)\n9. c___usin (двоюродный брат/сестра)\n10. d___ughter (дочь)",
+                    "subtasks": [
+                        {"question": "m___ther (мама)", "answer": "mother", "explanation": "mother"},
+                        {"question": "f___ther (папа)", "answer": "father", "explanation": "father"},
+                        {"question": "s___ster (сестра)", "answer": "sister", "explanation": "sister"},
+                        {"question": "br___ther (брат)", "answer": "brother", "explanation": "brother"},
+                        {"question": "gr___ndmother (бабушка)", "answer": "grandmother", "explanation": "grandmother"},
+                        {"question": "gr___ndfather (дедушка)", "answer": "grandfather", "explanation": "grandfather"},
+                        {"question": "a___nt (тётя)", "answer": "aunt", "explanation": "aunt"},
+                        {"question": "u___cle (дядя)", "answer": "uncle", "explanation": "uncle"},
+                        {"question": "c___usin (двоюродный брат/сестра)", "answer": "cousin", "explanation": "cousin"},
+                        {"question": "d___ughter (дочь)", "answer": "daughter", "explanation": "daughter"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Задание 2. Вставьте правильное слово из списка: mother, father, sister, brother, grandmother, grandfather, aunt, uncle, cousin, son, daughter, wife, husband.\n\n1. My father's sister is my ___.\n2. My mother's brother is my ___.\n3. My father's mother is my ___.\n4. My mother's father is my ___.\n5. My uncle's son is my ___.\n6. My parents' daughter is my ___.\n7. My parents' son is my ___.\n8. My brother is my parents' ___.\n9. My sister is my parents' ___.\n10. My mother is my father's ___.",
+                    "subtasks": [
+                        {"question": "My father's sister is my ___.", "answer": "aunt", "explanation": "aunt"},
+                        {"question": "My mother's brother is my ___.", "answer": "uncle", "explanation": "uncle"},
+                        {"question": "My father's mother is my ___.", "answer": "grandmother", "explanation": "grandmother"},
+                        {"question": "My mother's father is my ___.", "answer": "grandfather", "explanation": "grandfather"},
+                        {"question": "My uncle's son is my ___.", "answer": "cousin", "explanation": "cousin"},
+                        {"question": "My parents' daughter is my ___.", "answer": "sister", "explanation": "sister"},
+                        {"question": "My parents' son is my ___.", "answer": "brother", "explanation": "brother"},
+                        {"question": "My brother is my parents' ___.", "answer": "son", "explanation": "son"},
+                        {"question": "My sister is my parents' ___.", "answer": "daughter", "explanation": "daughter"},
+                        {"question": "My mother is my father's ___.", "answer": "wife", "explanation": "wife"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Задание 3. Переведите на английский.\n\n1. Мой отец – ветеринар.\n2. Моя мать – библиотекарь.\n3. Моя сестра танцует.\n4. Мой брат играет в шахматы.\n5. Наша бабушка говорит по-английски.\n6. Наш дедушка работает в саду.\n7. Моя тётя пишет книги.\n8. Мой дядя строит дом.\n9. Мой двоюродный брат работает в кафе.\n10. Моя дочь учится в школе.",
+                    "subtasks": [
+                        {"question": "Мой отец – ветеринар.", "answer": "My father is a vet.", "explanation": "My father is a vet."},
+                        {"question": "Моя мать – библиотекарь.", "answer": "My mother is a librarian.", "explanation": "My mother is a librarian."},
+                        {"question": "Моя сестра танцует.", "answer": "My sister dances.", "explanation": "My sister dances."},
+                        {"question": "Мой брат играет в шахматы.", "answer": "My brother plays chess.", "explanation": "My brother plays chess."},
+                        {"question": "Наша бабушка говорит по-английски.", "answer": "Our grandmother speaks English.", "explanation": "Our grandmother speaks English."},
+                        {"question": "Наш дедушка работает в саду.", "answer": "Our grandfather works in the garden.", "explanation": "Our grandfather works in the garden."},
+                        {"question": "Моя тётя пишет книги.", "answer": "My aunt writes books.", "explanation": "My aunt writes books."},
+                        {"question": "Мой дядя строит дом.", "answer": "My uncle is building a house.", "explanation": "My uncle is building a house."},
+                        {"question": "Мой двоюродный брат работает в кафе.", "answer": "My cousin works at a café.", "explanation": "My cousin works at a café."},
+                        {"question": "Моя дочь учится в школе.", "answer": "My daughter studies at school.", "explanation": "My daughter studies at school."}
+                    ]
+                }
+            ],
+            # Вариант 8
+            [
+                {
+                    "type": "complex",
+                    "text": "Задание 1. Вставьте пропущенные буквы.\n\n1. p___rents (родители)\n2. ch___ldren (дети)\n3. h___sband (муж)\n4. w___fe (жена)\n5. s___n (сын)\n6. d___ughter (дочь)\n7. br___ther (брат)\n8. s___ster (сестра)\n9. gr___ndmother (бабушка)\n10. gr___ndfather (дедушка)",
+                    "subtasks": [
+                        {"question": "p___rents (родители)", "answer": "parents", "explanation": "parents"},
+                        {"question": "ch___ldren (дети)", "answer": "children", "explanation": "children"},
+                        {"question": "h___sband (муж)", "answer": "husband", "explanation": "husband"},
+                        {"question": "w___fe (жена)", "answer": "wife", "explanation": "wife"},
+                        {"question": "s___n (сын)", "answer": "son", "explanation": "son"},
+                        {"question": "d___ughter (дочь)", "answer": "daughter", "explanation": "daughter"},
+                        {"question": "br___ther (брат)", "answer": "brother", "explanation": "brother"},
+                        {"question": "s___ster (сестра)", "answer": "sister", "explanation": "sister"},
+                        {"question": "gr___ndmother (бабушка)", "answer": "grandmother", "explanation": "grandmother"},
+                        {"question": "gr___ndfather (дедушка)", "answer": "grandfather", "explanation": "grandfather"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Задание 2. Вставьте правильное слово из списка: father, mother, brother, sister, son, daughter, grandmother, grandfather, parents, children.\n\n1. My mother's husband is my ___.\n2. My father's wife is my ___.\n3. My parents' son is my ___.\n4. My parents' daughter is my ___.\n5. My brother is my parents' ___.\n6. My sister is my parents' ___.\n7. My mother's mother is my ___.\n8. My father's father is my ___.\n9. My father and mother are my ___.\n10. My son and daughter are my ___.",
+                    "subtasks": [
+                        {"question": "My mother's husband is my ___.", "answer": "father", "explanation": "father"},
+                        {"question": "My father's wife is my ___.", "answer": "mother", "explanation": "mother"},
+                        {"question": "My parents' son is my ___.", "answer": "brother", "explanation": "brother"},
+                        {"question": "My parents' daughter is my ___.", "answer": "sister", "explanation": "sister"},
+                        {"question": "My brother is my parents' ___.", "answer": "son", "explanation": "son"},
+                        {"question": "My sister is my parents' ___.", "answer": "daughter", "explanation": "daughter"},
+                        {"question": "My mother's mother is my ___.", "answer": "grandmother", "explanation": "grandmother"},
+                        {"question": "My father's father is my ___.", "answer": "grandfather", "explanation": "grandfather"},
+                        {"question": "My father and mother are my ___.", "answer": "parents", "explanation": "parents"},
+                        {"question": "My son and daughter are my ___.", "answer": "children", "explanation": "children"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Задание 3. Переведите на английский.\n\n1. Мои родители живут за городом.\n2. Мои дети любят играть.\n3. Мой муж готовит завтрак.\n4. Моя жена работает в магазине.\n5. Мой брат живёт в другом городе.\n6. Моя сестра замужем.\n7. Наша бабушка любит цветы.\n8. Наш дедушка рыбачит.\n9. Моя дочь поёт песни.\n10. Мы вместе ужинаем.",
+                    "subtasks": [
+                        {"question": "Мои родители живут за городом.", "answer": "My parents live in the countryside.", "explanation": "My parents live in the countryside."},
+                        {"question": "Мои дети любят играть.", "answer": "My children like to play.", "explanation": "My children like to play."},
+                        {"question": "Мой муж готовит завтрак.", "answer": "My husband cooks breakfast.", "explanation": "My husband cooks breakfast."},
+                        {"question": "Моя жена работает в магазине.", "answer": "My wife works in a shop.", "explanation": "My wife works in a shop."},
+                        {"question": "Мой брат живёт в другом городе.", "answer": "My brother lives in another city.", "explanation": "My brother lives in another city."},
+                        {"question": "Моя сестра замужем.", "answer": "My sister is married.", "explanation": "My sister is married."},
+                        {"question": "Наша бабушка любит цветы.", "answer": "Our grandmother loves flowers.", "explanation": "Our grandmother loves flowers."},
+                        {"question": "Наш дедушка рыбачит.", "answer": "Our grandfather goes fishing.", "explanation": "Our grandfather goes fishing."},
+                        {"question": "Моя дочь поёт песни.", "answer": "My daughter sings songs.", "explanation": "My daughter sings songs."},
+                        {"question": "Мы вместе ужинаем.", "answer": "We have dinner together.", "explanation": "We have dinner together."}
+                    ]
+                }
+            ],
+            # Вариант 9
+            [
+                {
+                    "type": "complex",
+                    "text": "Задание 1. Вставьте пропущенные буквы.\n\n1. m___ther (мама)\n2. f___ther (папа)\n3. s___ster (сестра)\n4. br___ther (брат)\n5. gr___ndmother (бабушка)\n6. gr___ndfather (дедушка)\n7. a___nt (тётя)\n8. u___cle (дядя)\n9. c___usin (двоюродный брат/сестра)\n10. d___ughter (дочь)",
+                    "subtasks": [
+                        {"question": "m___ther (мама)", "answer": "mother", "explanation": "mother"},
+                        {"question": "f___ther (папа)", "answer": "father", "explanation": "father"},
+                        {"question": "s___ster (сестра)", "answer": "sister", "explanation": "sister"},
+                        {"question": "br___ther (брат)", "answer": "brother", "explanation": "brother"},
+                        {"question": "gr___ndmother (бабушка)", "answer": "grandmother", "explanation": "grandmother"},
+                        {"question": "gr___ndfather (дедушка)", "answer": "grandfather", "explanation": "grandfather"},
+                        {"question": "a___nt (тётя)", "answer": "aunt", "explanation": "aunt"},
+                        {"question": "u___cle (дядя)", "answer": "uncle", "explanation": "uncle"},
+                        {"question": "c___usin (двоюродный брат/сестра)", "answer": "cousin", "explanation": "cousin"},
+                        {"question": "d___ughter (дочь)", "answer": "daughter", "explanation": "daughter"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Задание 2. Вставьте правильное слово из списка: mother, father, sister, brother, grandmother, grandfather, aunt, uncle, cousin, son, daughter, wife, husband.\n\n1. My father's sister is my ___.\n2. My mother's brother is my ___.\n3. My mother's mother is my ___.\n4. My father's father is my ___.\n5. My uncle's daughter is my ___.\n6. My parents' son is my ___.\n7. My parents' daughter is my ___.\n8. My brother is my parents' ___.\n9. My sister is my parents' ___.\n10. My mother is my father's ___.",
+                    "subtasks": [
+                        {"question": "My father's sister is my ___.", "answer": "aunt", "explanation": "aunt"},
+                        {"question": "My mother's brother is my ___.", "answer": "uncle", "explanation": "uncle"},
+                        {"question": "My mother's mother is my ___.", "answer": "grandmother", "explanation": "grandmother"},
+                        {"question": "My father's father is my ___.", "answer": "grandfather", "explanation": "grandfather"},
+                        {"question": "My uncle's daughter is my ___.", "answer": "cousin", "explanation": "cousin"},
+                        {"question": "My parents' son is my ___.", "answer": "brother", "explanation": "brother"},
+                        {"question": "My parents' daughter is my ___.", "answer": "sister", "explanation": "sister"},
+                        {"question": "My brother is my parents' ___.", "answer": "son", "explanation": "son"},
+                        {"question": "My sister is my parents' ___.", "answer": "daughter", "explanation": "daughter"},
+                        {"question": "My mother is my father's ___.", "answer": "wife", "explanation": "wife"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Задание 3. Переведите на английский.\n\n1. Мой отец работает в банке.\n2. Моя мать – продавец.\n3. Моя сестра любит музыку.\n4. Мой брат занимается спортом.\n5. Наша бабушка печёт хлеб.\n6. Наш дедушка читает газету.\n7. Моя тётя живёт в США.\n8. Мой дядя – фермер.\n9. Мой двоюродный брат – программист.\n10. Моя дочь мечтает стать врачом.",
+                    "subtasks": [
+                        {"question": "Мой отец работает в банке.", "answer": "My father works in a bank.", "explanation": "My father works in a bank."},
+                        {"question": "Моя мать – продавец.", "answer": "My mother is a shop assistant.", "explanation": "My mother is a shop assistant."},
+                        {"question": "Моя сестра любит музыку.", "answer": "My sister likes music.", "explanation": "My sister likes music."},
+                        {"question": "Мой брат занимается спортом.", "answer": "My brother does sports.", "explanation": "My brother does sports."},
+                        {"question": "Наша бабушка печёт хлеб.", "answer": "Our grandmother bakes bread.", "explanation": "Our grandmother bakes bread."},
+                        {"question": "Наш дедушка читает газету.", "answer": "Our grandfather reads a newspaper.", "explanation": "Our grandfather reads a newspaper."},
+                        {"question": "Моя тётя живёт в США.", "answer": "My aunt lives in the USA.", "explanation": "My aunt lives in the USA."},
+                        {"question": "Мой дядя – фермер.", "answer": "My uncle is a farmer.", "explanation": "My uncle is a farmer."},
+                        {"question": "Мой двоюродный брат – программист.", "answer": "My cousin is a programmer.", "explanation": "My cousin is a programmer."},
+                        {"question": "Моя дочь мечтает стать врачом.", "answer": "My daughter dreams of becoming a doctor.", "explanation": "My daughter dreams of becoming a doctor."}
+                    ]
+                }
+            ],
+            # Вариант 10
+            [
+                {
+                    "type": "complex",
+                    "text": "Задание 1. Вставьте пропущенные буквы.\n\n1. p___rents (родители)\n2. ch___ldren (дети)\n3. h___sband (муж)\n4. w___fe (жена)\n5. s___n (сын)\n6. d___ughter (дочь)\n7. br___ther (брат)\n8. s___ster (сестра)\n9. gr___ndmother (бабушка)\n10. gr___ndfather (дедушка)",
+                    "subtasks": [
+                        {"question": "p___rents (родители)", "answer": "parents", "explanation": "parents"},
+                        {"question": "ch___ldren (дети)", "answer": "children", "explanation": "children"},
+                        {"question": "h___sband (муж)", "answer": "husband", "explanation": "husband"},
+                        {"question": "w___fe (жена)", "answer": "wife", "explanation": "wife"},
+                        {"question": "s___n (сын)", "answer": "son", "explanation": "son"},
+                        {"question": "d___ughter (дочь)", "answer": "daughter", "explanation": "daughter"},
+                        {"question": "br___ther (брат)", "answer": "brother", "explanation": "brother"},
+                        {"question": "s___ster (сестра)", "answer": "sister", "explanation": "sister"},
+                        {"question": "gr___ndmother (бабушка)", "answer": "grandmother", "explanation": "grandmother"},
+                        {"question": "gr___ndfather (дедушка)", "answer": "grandfather", "explanation": "grandfather"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Задание 2. Вставьте правильное слово из списка: father, mother, brother, sister, son, daughter, grandmother, grandfather, parents, children.\n\n1. My mother's husband is my ___.\n2. My father's wife is my ___.\n3. My parents' son is my ___.\n4. My parents' daughter is my ___.\n5. My brother is my parents' ___.\n6. My sister is my parents' ___.\n7. My mother's mother is my ___.\n8. My father's father is my ___.\n9. My father and mother are my ___.\n10. My son and daughter are my ___.",
+                    "subtasks": [
+                        {"question": "My mother's husband is my ___.", "answer": "father", "explanation": "father"},
+                        {"question": "My father's wife is my ___.", "answer": "mother", "explanation": "mother"},
+                        {"question": "My parents' son is my ___.", "answer": "brother", "explanation": "brother"},
+                        {"question": "My parents' daughter is my ___.", "answer": "sister", "explanation": "sister"},
+                        {"question": "My brother is my parents' ___.", "answer": "son", "explanation": "son"},
+                        {"question": "My sister is my parents' ___.", "answer": "daughter", "explanation": "daughter"},
+                        {"question": "My mother's mother is my ___.", "answer": "grandmother", "explanation": "grandmother"},
+                        {"question": "My father's father is my ___.", "answer": "grandfather", "explanation": "grandfather"},
+                        {"question": "My father and mother are my ___.", "answer": "parents", "explanation": "parents"},
+                        {"question": "My son and daughter are my ___.", "answer": "children", "explanation": "children"}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "Задание 3. Переведите на английский.\n\n1. Мои родители любят читать.\n2. Мои дети играют в парке.\n3. Мой муж смотрит футбол.\n4. Моя жена занимается йогой.\n5. Мой брат путешествует.\n6. Моя сестра рисует картины.\n7. Наша бабушка готовит суп.\n8. Наш дедушка гуляет с собакой.\n9. Моя дочь учит стихи.\n10. Мы празднуем дни рождения.",
+                    "subtasks": [
+                        {"question": "Мои родители любят читать.", "answer": "My parents like to read.", "explanation": "My parents like to read."},
+                        {"question": "Мои дети играют в парке.", "answer": "My children are playing in the park.", "explanation": "My children are playing in the park."},
+                        {"question": "Мой муж смотрит футбол.", "answer": "My husband is watching football.", "explanation": "My husband is watching football."},
+                        {"question": "Моя жена занимается йогой.", "answer": "My wife is doing yoga.", "explanation": "My wife is doing yoga."},
+                        {"question": "Мой брат путешествует.", "answer": "My brother is travelling.", "explanation": "My brother is travelling."},
+                        {"question": "Моя сестра рисует картины.", "answer": "My sister is painting pictures.", "explanation": "My sister is painting pictures."},
+                        {"question": "Наша бабушка готовит суп.", "answer": "Our grandmother is making soup.", "explanation": "Our grandmother is making soup."},
+                        {"question": "Наш дедушка гуляет с собакой.", "answer": "Our grandfather is walking with the dog.", "explanation": "Our grandfather is walking with the dog."},
+                        {"question": "Моя дочь учит стихи.", "answer": "My daughter is learning poems.", "explanation": "My daughter is learning poems."},
+                        {"question": "Мы празднуем дни рождения.", "answer": "We celebrate birthdays.", "explanation": "We celebrate birthdays."}
+                    ]
                 }
             ]
         ]
