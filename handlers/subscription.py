@@ -25,7 +25,7 @@ async def show_subscription(message: Message):
         ])
     else:
         text = (
-⭐ <b>Premium подписка</b>
+<b>Premium подписка</b>
 
 Откройте все возможности AI English US для изучения английского без ограничений.
 
