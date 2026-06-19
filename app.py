@@ -3,7 +3,8 @@ import logging
 from aiohttp import web
 from aiogram import Bot, Dispatcher
 from aiogram.webhook.aiohttp_server import SimpleRequestHandler, setup_application
-from handlers import start, speaking, roleplay, common, voice, lessons, words, profile, skills
+from handlers import start, speaking, roleplay, common, voice, lessons, words, profile, skills, support, subscription
+from aiogram.types import BotCommand
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -28,6 +29,8 @@ dp.include_router(common.router)
 dp.include_router(words.router)
 dp.include_router(profile.router) 
 dp.include_router(skills.router)
+dp.include_router(support.router)
+dp.include_router(subscription.router)
 
 async def on_startup():
     external_url = os.environ.get('RENDER_EXTERNAL_URL')
@@ -36,6 +39,7 @@ async def on_startup():
     webhook_url = f"{external_url}{WEBHOOK_PATH}"
     await bot.set_webhook(webhook_url, secret_token=WEBHOOK_SECRET)
     logger.info(f"Webhook set to {webhook_url}")
+await set_commands(bot)
 
 dp.startup.register(on_startup)
 
@@ -49,6 +53,15 @@ app.router.add_get('/health', health_check)
 webhook_requests_handler = SimpleRequestHandler(dispatcher=dp, bot=bot, secret_token=WEBHOOK_SECRET)
 webhook_requests_handler.register(app, path=WEBHOOK_PATH)
 setup_application(app, dp, bot=bot)
+from aiogram.types import BotCommand
+
+async def set_commands(bot: Bot):
+    commands = [
+        BotCommand(command="start", description="Главное меню"),
+        BotCommand(command="support", description="Обратная связь / Поддержка"),
+        BotCommand(command="subscription", description="Моя подписка"),
+    ]
+    await bot.set_my_commands(commands)
 
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 10000))
