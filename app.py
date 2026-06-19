@@ -6,7 +6,6 @@ from aiogram import Bot, Dispatcher
 from aiogram.types import BotCommand
 from aiogram.webhook.aiohttp_server import SimpleRequestHandler, setup_application
 from handlers import start, speaking, roleplay, common, voice, lessons, words, profile, skills, support
-from handlers.subscription import router as subscription_router
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -32,14 +31,11 @@ dp.include_router(words.router)
 dp.include_router(profile.router)
 dp.include_router(skills.router)
 dp.include_router(support.router)
-dp.include_router(subscription.router)
 
-# Функция для установки команд меню
 async def set_commands(bot: Bot):
     commands = [
-        BotCommand(command="start", description="Главное меню"),
-        BotCommand(command="support", description="Обратная связь"),
-        BotCommand(command="subscription", description="Моя подписка"),
+        BotCommand(command="start", description="🏠 Главное меню"),
+        BotCommand(command="support", description="✉️ Обратная связь"),
     ]
     await bot.set_my_commands(commands)
     logger.info("Commands set")
@@ -51,8 +47,6 @@ async def on_startup():
     webhook_url = f"{external_url}{WEBHOOK_PATH}"
     await bot.set_webhook(webhook_url, secret_token=WEBHOOK_SECRET)
     logger.info(f"Webhook set to {webhook_url}")
-    
-    # Устанавливаем команды меню
     await set_commands(bot)
 
 dp.startup.register(on_startup)
