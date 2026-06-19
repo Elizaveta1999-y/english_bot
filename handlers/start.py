@@ -1,7 +1,7 @@
 from aiogram import Router
 from aiogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
 from aiogram.filters import Command
-from data.users import set_user_state
+from data.users import get_user_state, set_user_state
 
 router = Router()
 
