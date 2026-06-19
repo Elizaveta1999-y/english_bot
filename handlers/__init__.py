@@ -1,1 +1,1 @@
-from . import start, speaking, roleplay, common, voice, lessons, words, profile, skills, support, subscription
+from . import start, speaking, roleplay, common, voice, lessons, words, profile, skills, support

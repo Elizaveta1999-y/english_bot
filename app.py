@@ -5,7 +5,8 @@ from aiohttp import web
 from aiogram import Bot, Dispatcher
 from aiogram.types import BotCommand
 from aiogram.webhook.aiohttp_server import SimpleRequestHandler, setup_application
-from handlers import start, speaking, roleplay, common, voice, lessons, words, profile, skills, support, subscription
+from handlers import start, speaking, roleplay, common, voice, lessons, words, profile, skills, support
+from handlers.subscription import router as subscription_router
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
