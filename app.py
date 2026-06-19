@@ -1,4 +1,4 @@
-# app.py (основной бот)
+# app.py
 import os
 import logging
 from aiohttp import web
@@ -6,6 +6,7 @@ from aiogram import Bot, Dispatcher
 from aiogram.types import BotCommand
 from aiogram.webhook.aiohttp_server import SimpleRequestHandler, setup_application
 from handlers import start, speaking, roleplay, common, voice, lessons, words, profile, skills, support
+from handlers.subscription import router as subscription_router   # <-- добавляем
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -20,7 +21,6 @@ WEBHOOK_SECRET = "my-secret-key"
 bot = Bot(token=BOT_TOKEN)
 dp = Dispatcher()
 
-# Подключаем все роутеры
 dp.include_router(start.router)
 dp.include_router(speaking.router)
 dp.include_router(roleplay.router)
@@ -31,11 +31,13 @@ dp.include_router(words.router)
 dp.include_router(profile.router)
 dp.include_router(skills.router)
 dp.include_router(support.router)
+dp.include_router(subscription_router)   # <-- добавляем
 
 async def set_commands(bot: Bot):
     commands = [
-        BotCommand(command="start", description="🏠 Главное меню"),
-        BotCommand(command="support", description="✉️ Обратная связь"),
+        BotCommand(command="start", description="Главное меню"),
+        BotCommand(command="support", description="Обратная связь"),
+        BotCommand(command="subscription", description="Моя подписка"),   # <-- добавляем
     ]
     await bot.set_my_commands(commands)
     logger.info("Commands set")
