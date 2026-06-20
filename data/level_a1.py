@@ -12,7 +12,7 @@ LEVEL_A1_CONTENT = {
         "title": "Гласные и согласные",
         "text": "\n<b>🎵 Гласные (Vowels):</b> A, E, I, O, U (иногда Y)\n\nОстальные – согласные.\n\n<blockquote>Произношение буквы в слове может отличаться от её имени в алфавите.</blockquote>\n\n• Буква <b>A</b> в слове cat (кот) – [э]\n• Буква <b>E</b> в слове bed (кровать) – [э]\n• Буква <b>I</b> в слове sit (сидеть) – [и]\n• Буква <b>O</b> в слове hot (горячий) – [о]\n• Буква <b>U</b> в слове cup (чашка) – [а]\n",
         "image": None,
-        "has_audio_buttons": false
+        "has_audio_buttons": False
       },
       {
         "title": "Трудные буквы",
