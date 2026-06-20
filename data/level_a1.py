@@ -18,13 +18,13 @@ LEVEL_A1_CONTENT = {
         "title": "Трудные буквы",
         "text": "\n<b>⚠️ Буквы, которые путают:</b>\n\n• <b>B</b> [би] и <b>V</b> [ви]\n• <b>G</b> [джи] и <b>J</b> [джей]\n• <b>W</b> [дабл‑ю] – «двойная U»\n• <b>Y</b> [уай] – не [й]\n• <b>N</b> [эн] и <b>M</b> [эм]\n\n<blockquote>Совет: повторяйте алфавит вслух 2‑3 минуты в день.</blockquote>\n",
         "image": None,
-        "has_audio_buttons": false
+        "has_audio_buttons": False
       },
       {
         "title": "Советы для запоминания",
         "text": "\n<b>💡 Как быстро выучить алфавит:</b>\n\n1. Пойте песенку «ABC Song» – она поможет запомнить порядок букв.\n2. Распечатайте алфавит и повесьте на видное место.\n3. Каждый день называйте 5 букв и придумывайте слова, которые с них начинаются.\n4. Используйте карточки: на одной стороне буква, на другой – картинка и слово.\n5. Слушайте произношение букв в аудиозаписях и повторяйте вслух.\n\n<blockquote>Через неделю ежедневных повторений вы будете знать алфавит наизусть.</blockquote>\n",
         "image": None,
-        "has_audio_buttons": false
+        "has_audio_buttons": False
       }
     ],
     "faq": [
@@ -1743,25 +1743,25 @@ LEVEL_A1_CONTENT = {
         "title": "Числа 1‑5",
         "text": "\n<b>🔢 Числа 1‑5: запоминаем с примерами</b>\n\n• <b>1 – one</b> [уан]\n  Пример: one apple (одно яблоко)\n\n• <b>2 – two</b> [ту]\n  Пример: two cats (два кота)\n\n• <b>3 – three</b> [сри]\n  <i>Обратите внимание на межзубный звук – язык между зубами.</i>\n  Пример: three pens (три ручки)\n\n• <b>4 – four</b> [фо]\n  Пример: four chairs (четыре стула)\n\n• <b>5 – five</b> [файв]\n  Пример: five books (пять книг)\n\n<blockquote>Совет: произносите <b>three</b> с межзубным звуком, а в <b>five</b> – чётко слышите [в] на конце.</blockquote>\n",
         "image": None,
-        "has_audio_buttons": false
+        "has_audio_buttons": False
       },
       {
         "title": "Числа 6‑10",
         "text": "\n<b>🔢 Числа 6‑10:</b>\n\n• <b>6 – six</b> [сикс]\n  Пример: six eggs (шесть яиц)\n\n• <b>7 – seven</b> [сэвн]\n  Пример: seven days (семь дней)\n\n• <b>8 – eight</b> [эйт]\n  <i>Буква 'g' не произносится!</i>\n  Пример: eight balls (восемь мячей)\n\n• <b>9 – nine</b> [найн]\n  Пример: nine stars (девять звёзд)\n\n• <b>10 – ten</b> [тэн]\n  Пример: ten fingers (десять пальцев)\n\n<blockquote>Запомните: <b>eight</b> пишется с 'eigh', а произносится как [эйт].</blockquote>\n",
         "image": None,
-        "has_audio_buttons": false
+        "has_audio_buttons": False
       },
       {
         "title": "Числа 11‑15 (исключения)",
         "text": "\n<b>🔢 Числа 11‑15:</b>\n\n• <b>11 – eleven</b> [илэвн]\n  Пример: eleven players (одиннадцать игроков)\n\n• <b>12 – twelve</b> [твэлв]\n  Пример: twelve months (двенадцать месяцев)\n\n• <b>13 – thirteen</b> [сётин]\n  Пример: thirteen candles (тринадцать свечей)\n\n• <b>14 – fourteen</b> [фотин]\n  Пример: fourteen days (четырнадцать дней)\n\n• <b>15 – fifteen</b> [фифтин]\n  Пример: fifteen minutes (пятнадцать минут)\n\n<blockquote>Числа 13‑19 образуются добавлением суффикса <b>‑teen</b>, но 11 и 12 – исключения, их нужно запомнить.</blockquote>\n",
         "image": None,
-        "has_audio_buttons": false
+        "has_audio_buttons": False
       },
       {
         "title": "Числа 16‑20 и советы",
         "text": "\n<b>🔢 Числа 16‑20:</b>\n\n• <b>16 – sixteen</b> [сикстин]\n  Пример: sixteen years (шестнадцать лет)\n\n• <b>17 – seventeen</b> [сэвнтин]\n  Пример: seventeen steps (семнадцать шагов)\n\n• <b>18 – eighteen</b> [эйтин]\n  <i>Внимание: только одна буква 't' (eight + teen = eighteen)</i>\n  Пример: eighteen holes (восемнадцать лунок)\n\n• <b>19 – nineteen</b> [найн-тин]\n  Пример: nineteen floors (девятнадцать этажей)\n\n• <b>20 – twenty</b> [твэнти]\n  Пример: twenty euros (двадцать евро)\n\n<b>💡 Советы для запоминания:</b>\n\n1. Считайте всё, что видите: шаги, кнопки, книги на полке.\n2. Обратите внимание на ударение: в числах на <b>-teen</b> ударение падает на последний слог (thir<b>TEEN</b>).\n3. Не путайте <b>‑teen</b> (‑надцать) и <b>‑ty</b> (‑десят). Например: <b>fourteen</b> (14) vs <b>forty</b> (40).\n4. Запомните написание <b>forty</b> (без буквы 'u').\n\n<blockquote>Регулярно называйте числа вслух – это поможет автоматизировать счёт.</blockquote>\n",
         "image": None,
-        "has_audio_buttons": false
+        "has_audio_buttons": False
       }
     ],
     "faq": [
@@ -3534,31 +3534,31 @@ LEVEL_A1_CONTENT = {
         "title": "Что такое to be?",
         "text": "\n<b>📚 Глагол to be – самый важный глагол в английском языке</b>\n\nОн переводится как «быть, находиться, являться». В русском языке мы часто опускаем слово «есть»:\n- Я есть студент. → Я студент.\n- Она есть дома. → Она дома.\n\nВ английском <b>без глагола to be нельзя построить ни одно предложение</b> без действия. Поэтому его нужно выучить первым.\n\n<blockquote>Запомните: в английском нельзя сказать «I student» – обязательно нужно «I am a student».</blockquote>\n",
         "image": None,
-        "has_audio_buttons": false
+        "has_audio_buttons": False
       },
       {
         "title": "Формы to be в настоящем времени",
         "text": "\n<b>📌 Таблица форм (запомните наизусть):</b>\n\n• <b>I</b> (я) → <b>am</b>\n• <b>You</b> (ты, вы) → <b>are</b>\n• <b>He</b> (он), <b>She</b> (она), <b>It</b> (оно) → <b>is</b>\n• <b>We</b> (мы) → <b>are</b>\n• <b>They</b> (они) → <b>are</b>\n\n<b>Примеры с переводом:</b>\n\n• <b>I am</b> a teacher. → Я (есть) учитель.\n• <b>You are</b> my friend. → Ты мой друг.\n• <b>He is</b> happy. → Он счастлив.\n• <b>She is</b> at home. → Она дома.\n• <b>It is</b> a cat. → Это кот.\n• <b>We are</b> students. → Мы студенты.\n• <b>They are</b> from Russia. → Они из России.\n\n<blockquote>Обратите внимание: в русском языке слово «есть» опускается, а в английском – обязательно.</blockquote>\n",
         "image": None,
-        "has_audio_buttons": false
+        "has_audio_buttons": False
       },
       {
         "title": "Сокращённые формы (разговорный английский)",
         "text": "\n<b>✂️ В разговорной речи и в неформальной переписке используют короткие формы:</b>\n\n• I am → <b>I'm</b> (айм)\n• You are → <b>you're</b> (ёр)\n• He is → <b>he's</b> (хиз)\n• She is → <b>she's</b> (шиз)\n• It is → <b>it's</b> (итс)\n• We are → <b>we're</b> (вир)\n• They are → <b>they're</b> (зэа)\n\n<b>Примеры с сокращениями:</b>\n\n• <b>I'm</b> a doctor. → Я врач.\n• <b>She's</b> from Italy. → Она из Италии.\n• <b>It's</b> a big house. → Это большой дом.\n\n<blockquote>⚠️ <b>Важно:</b> в официальных документах и в кратких утвердительных ответах сокращения не используются! Нельзя сказать <b>Yes, I'm</b> – только <b>Yes, I am</b>.</blockquote>\n",
         "image": None,
-        "has_audio_buttons": false
+        "has_audio_buttons": False
       },
       {
         "title": "Когда используется to be",
         "text": "\n<b>📌 Глагол to be нужен в нескольких типичных ситуациях:</b>\n\n1️⃣ <b>Профессия или род деятельности:</b>\n   • He is a driver. (Он водитель.)\n\n2️⃣ <b>Местонахождение:</b>\n   • We are at home. (Мы дома.)\n\n3️⃣ <b>Состояние или чувство:</b>\n   • I am tired. (Я устал.)\n\n4️⃣ <b>Возраст:</b>\n   • She is 25 years old. (Ей 25 лет.)\n\n5️⃣ <b>Национальность:</b>\n   • They are Italian. (Они итальянцы.)\n\n6️⃣ <b>Описание (прилагательные):</b>\n   • The weather is nice. (Погода хорошая.)\n\n<blockquote>Запомните: если предложение не содержит действия (бежать, писать, читать), то почти наверняка нужен глагол to be.</blockquote>\n",
         "image": None,
-        "has_audio_buttons": false
+        "has_audio_buttons": False
       },
       {
         "title": "Советы для запоминания",
         "text": "\n<b>💡 Как быстро выучить и не путать формы to be:</b>\n\n1. Повторяйте таблицу вслух каждый день: I am, you are, he is…\n2. Составляйте короткие предложения про себя: «I am a student», «She is happy».\n3. Обратите внимание на особую форму I am – её нужно просто запомнить.\n4. Проверяйте себя: закройте таблицу и скажите форму для he, they, we и т.д.\n\n<blockquote>Через 3–4 дня регулярного повторения вы будете использовать to be автоматически.</blockquote>\n",
         "image": None,
-        "has_audio_buttons": false
+        "has_audio_buttons": False
       }
     ],
     "faq": [
