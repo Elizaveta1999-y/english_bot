@@ -54303,16 +54303,16 @@ LEVEL_A1_CONTENT = {
             "type": "complex",
             "text": "Задание 2. Переведите предложения на английский.\n\n1. Я еду в отпуск в Испанию.\n2. Я забронировал отель.\n3. У меня есть паспорт и билет.\n4. Мы упаковали чемоданы.\n5. Она останавливается в отеле.\n6. Они посещают музей.\n7. Мы делаем фотографии.\n8. Он купается в море.\n9. Я хочу взобраться на гору.\n10. Где аэропорт?",
             "subtasks": [
-                {"question": "1. Я еду в отпуск в Испанию.", "answer": "I am going on holiday to Spain.", "explanation": "I am going on holiday to Spain."},
-                {"question": "2. Я забронировал отель.", "answer": "I booked a hotel.", "explanation": "I booked a hotel."},
-                {"question": "3. У меня есть паспорт и билет.", "answer": "I have a passport and a ticket.", "explanation": "I have a passport and a ticket."},
-                {"question": "4. Мы упаковали чемоданы.", "answer": "We packed our suitcases.", "explanation": "We packed our suitcases."},
-                {"question": "5. Она останавливается в отеле.", "answer": "She stays in a hotel.", "explanation": "She stays in a hotel."},
-                {"question": "6. Они посещают музей.", "answer": "They visit a museum.", "explanation": "They visit a museum."},
-                {"question": "7. Мы делаем фотографии.", "answer": "We take photos.", "explanation": "We take photos."},
-                {"question": "8. Он купается в море.", "answer": "He swims in the sea.", "explanation": "He swims in the sea."},
-                {"question": "9. Я хочу взобраться на гору.", "answer": "I want to climb a mountain.", "explanation": "I want to climb a mountain."},
-                {"question": "10. Где аэропорт?", "answer": "Where is the airport?", "explanation": "Where is the airport?"}
+                {"question": "1. Я еду в отпуск в Испанию.", "answer": "I am going on holiday to Spain.", "explanation": ""},
+                {"question": "2. Я забронировал отель.", "answer": "I booked a hotel.", "explanation": ""},
+                {"question": "3. У меня есть паспорт и билет.", "answer": "I have a passport and a ticket.", "explanation": ""},
+                {"question": "4. Мы упаковали чемоданы.", "answer": "We packed our suitcases.", "explanation": ""},
+                {"question": "5. Она останавливается в отеле.", "answer": "She stays in a hotel.", "explanation": ""},
+                {"question": "6. Они посещают музей.", "answer": "They visit a museum.", "explanation": ""},
+                {"question": "7. Мы делаем фотографии.", "answer": "We take photos.", "explanation": ""},
+                {"question": "8. Он купается в море.", "answer": "He swims in the sea.", "explanation": ""},
+                {"question": "9. Я хочу взобраться на гору.", "answer": "I want to climb a mountain.", "explanation": ""},
+                {"question": "10. Где аэропорт?", "answer": "Where is the airport?", "explanation": ""}
             ]
         },
         {
@@ -54354,16 +54354,16 @@ LEVEL_A1_CONTENT = {
             "type": "complex",
             "text": "Задание 2. Переведите предложения на английский.\n\n1. Мы едем в круиз.\n2. Я бронирую хостел.\n3. У них есть виза.\n4. Мы идём на пляж.\n5. Она посетила музей.\n6. Я хочу увидеть озеро.\n7. Они остановились в отеле.\n8. Мы взяли билеты.\n9. Где находится автобусная остановка?\n10. Я люблю путешествовать.",
             "subtasks": [
-                {"question": "1. Мы едем в круиз.", "answer": "We are going on a cruise.", "explanation": "We are going on a cruise."},
-                {"question": "2. Я бронирую хостел.", "answer": "I am booking a hostel.", "explanation": "I am booking a hostel."},
-                {"question": "3. У них есть виза.", "answer": "They have a visa.", "explanation": "They have a visa."},
-                {"question": "4. Мы идём на пляж.", "answer": "We are going to the beach.", "explanation": "We are going to the beach."},
-                {"question": "5. Она посетила музей.", "answer": "She visited a museum.", "explanation": "She visited a museum."},
-                {"question": "6. Я хочу увидеть озеро.", "answer": "I want to see the lake.", "explanation": "I want to see the lake."},
-                {"question": "7. Они остановились в отеле.", "answer": "They stayed in a hotel.", "explanation": "They stayed in a hotel."},
-                {"question": "8. Мы взяли билеты.", "answer": "We took tickets.", "explanation": "We took tickets."},
-                {"question": "9. Где находится автобусная остановка?", "answer": "Where is the bus stop?", "explanation": "Where is the bus stop?"},
-                {"question": "10. Я люблю путешествовать.", "answer": "I love travelling.", "explanation": "I love travelling."}
+                {"question": "1. Мы едем в круиз.", "answer": "We are going on a cruise.", "explanation": ""},
+                {"question": "2. Я бронирую хостел.", "answer": "I am booking a hostel.", "explanation": ""},
+                {"question": "3. У них есть виза.", "answer": "They have a visa.", "explanation": ""},
+                {"question": "4. Мы идём на пляж.", "answer": "We are going to the beach.", "explanation": ""},
+                {"question": "5. Она посетила музей.", "answer": "She visited a museum.", "explanation": ""},
+                {"question": "6. Я хочу увидеть озеро.", "answer": "I want to see the lake.", "explanation": ""},
+                {"question": "7. Они остановились в отеле.", "answer": "They stayed in a hotel.", "explanation": ""},
+                {"question": "8. Мы взяли билеты.", "answer": "We took tickets.", "explanation": ""},
+                {"question": "9. Где находится автобусная остановка?", "answer": "Where is the bus stop?", "explanation": ""},
+                {"question": "10. Я люблю путешествовать.", "answer": "I love travelling.", "explanation": ""}
             ]
         },
         {
@@ -54405,16 +54405,16 @@ LEVEL_A1_CONTENT = {
             "type": "complex",
             "text": "Задание 2. Переведите предложения на английский.\n\n1. Мы путешествуем по Европе.\n2. Я забронировал номер в отеле.\n3. Она упаковала чемодан.\n4. Мы купили билеты на поезд.\n5. Они посетили много музеев.\n6. Я хочу искупаться в море.\n7. Он поднялся на гору.\n8. Мы сделали красивые фотографии.\n9. Где находится камера хранения?\n10. Я люблю отдыхать на пляже.",
             "subtasks": [
-                {"question": "1. Мы путешествуем по Европе.", "answer": "We are travelling around Europe.", "explanation": "We are travelling around Europe."},
-                {"question": "2. Я забронировал номер в отеле.", "answer": "I booked a room in a hotel.", "explanation": "I booked a room in a hotel."},
-                {"question": "3. Она упаковала чемодан.", "answer": "She packed her suitcase.", "explanation": "She packed her suitcase."},
-                {"question": "4. Мы купили билеты на поезд.", "answer": "We bought train tickets.", "explanation": "We bought train tickets."},
-                {"question": "5. Они посетили много музеев.", "answer": "They visited many museums.", "explanation": "They visited many museums."},
-                {"question": "6. Я хочу искупаться в море.", "answer": "I want to swim in the sea.", "explanation": "I want to swim in the sea."},
-                {"question": "7. Он поднялся на гору.", "answer": "He climbed the mountain.", "explanation": "He climbed the mountain."},
-                {"question": "8. Мы сделали красивые фотографии.", "answer": "We took beautiful photos.", "explanation": "We took beautiful photos."},
-                {"question": "9. Где находится камера хранения?", "answer": "Where is the luggage storage?", "explanation": "Where is the luggage storage?"},
-                {"question": "10. Я люблю отдыхать на пляже.", "answer": "I like to relax on the beach.", "explanation": "I like to relax on the beach."}
+                {"question": "1. Мы путешествуем по Европе.", "answer": "We are travelling around Europe.", "explanation": ""},
+                {"question": "2. Я забронировал номер в отеле.", "answer": "I booked a room in a hotel.", "explanation": ""},
+                {"question": "3. Она упаковала чемодан.", "answer": "She packed her suitcase.", "explanation": ""},
+                {"question": "4. Мы купили билеты на поезд.", "answer": "We bought train tickets.", "explanation": ""},
+                {"question": "5. Они посетили много музеев.", "answer": "They visited many museums.", "explanation": ""},
+                {"question": "6. Я хочу искупаться в море.", "answer": "I want to swim in the sea.", "explanation": ""},
+                {"question": "7. Он поднялся на гору.", "answer": "He climbed the mountain.", "explanation": ""},
+                {"question": "8. Мы сделали красивые фотографии.", "answer": "We took beautiful photos.", "explanation": ""},
+                {"question": "9. Где находится камера хранения?", "answer": "Where is the luggage storage?", "explanation": ""},
+                {"question": "10. Я люблю отдыхать на пляже.", "answer": "I like to relax on the beach.", "explanation": ""}
             ]
         },
         {
@@ -54456,16 +54456,16 @@ LEVEL_A1_CONTENT = {
             "type": "complex",
             "text": "Задание 2. Переведите предложения на английский.\n\n1. Мы путешествуем на поезде.\n2. Она забронировала отель у моря.\n3. Я взял с собой чемодан.\n4. Мы купили билеты на самолёт.\n5. Они посетили известные достопримечательности.\n6. Я хочу отдохнуть на озере.\n7. Он поднялся на высокую гору.\n8. Мы снимали видео во время поездки.\n9. Где можно найти туристический офис?\n10. Я люблю отдыхать в лесу.",
             "subtasks": [
-                {"question": "1. Мы путешествуем на поезде.", "answer": "We are travelling by train.", "explanation": "by train — на поезде."},
-                {"question": "2. Она забронировала отель у моря.", "answer": "She booked a hotel by the sea.", "explanation": "by the sea — у моря."},
-                {"question": "3. Я взял с собой чемодан.", "answer": "I took my suitcase with me.", "explanation": "took with me — взял с собой."},
-                {"question": "4. Мы купили билеты на самолёт.", "answer": "We bought plane tickets.", "explanation": "plane tickets — билеты на самолёт."},
-                {"question": "5. Они посетили известные достопримечательности.", "answer": "They visited famous sights.", "explanation": "famous sights — известные достопримечательности."},
-                {"question": "6. Я хочу отдохнуть на озере.", "answer": "I want to relax by the lake.", "explanation": "relax by the lake — отдохнуть на озере."},
-                {"question": "7. Он поднялся на высокую гору.", "answer": "He climbed a high mountain.", "explanation": "climbed a high mountain — поднялся на высокую гору."},
-                {"question": "8. Мы снимали видео во время поездки.", "answer": "We took videos during the trip.", "explanation": "took videos — снимали видео."},
-                {"question": "9. Где можно найти туристический офис?", "answer": "Where can I find the tourist office?", "explanation": "tourist office — туристический офис."},
-                {"question": "10. Я люблю отдыхать в лесу.", "answer": "I like to relax in the forest.", "explanation": "in the forest — в лесу."}
+                {"question": "1. Мы путешествуем на поезде.", "answer": "We are travelling by train.", "explanation": ""},
+                {"question": "2. Она забронировала отель у моря.", "answer": "She booked a hotel by the sea.", "explanation": ""},
+                {"question": "3. Я взял с собой чемодан.", "answer": "I took my suitcase with me.", "explanation": ""},
+                {"question": "4. Мы купили билеты на самолёт.", "answer": "We bought plane tickets.", "explanation": ""},
+                {"question": "5. Они посетили известные достопримечательности.", "answer": "They visited famous sights.", "explanation": ""},
+                {"question": "6. Я хочу отдохнуть на озере.", "answer": "I want to relax by the lake.", "explanation": ""},
+                {"question": "7. Он поднялся на высокую гору.", "answer": "He climbed a high mountain.", "explanation": ""},
+                {"question": "8. Мы снимали видео во время поездки.", "answer": "We took videos during the trip.", "explanation": ""},
+                {"question": "9. Где можно найти туристический офис?", "answer": "Where can I find the tourist office?", "explanation": ""},
+                {"question": "10. Я люблю отдыхать в лесу.", "answer": "I like to relax in the forest.", "explanation": ""}
             ]
         },
         {
@@ -54507,16 +54507,16 @@ LEVEL_A1_CONTENT = {
             "type": "complex",
             "text": "Задание 2. Переведите предложения на английский.\n\n1. Они путешествуют на корабле.\n2. Мы остановились в кемпинге.\n3. Она забронировала хостел.\n4. Я купил билет на круиз.\n5. Мы отдыхали на пляже.\n6. Он плавал в озере.\n7. Они гуляли в лесу.\n8. Я хочу увидеть горы.\n9. Где находится аэропорт?\n10. У них есть билеты на самолёт.",
             "subtasks": [
-                {"question": "1. Они путешествуют на корабле.", "answer": "They are travelling by ship.", "explanation": "by ship — на корабле."},
-                {"question": "2. Мы остановились в кемпинге.", "answer": "We stayed at a campsite.", "explanation": "at a campsite — в кемпинге."},
-                {"question": "3. Она забронировала хостел.", "answer": "She booked a hostel.", "explanation": "booked a hostel."},
-                {"question": "4. Я купил билет на круиз.", "answer": "I bought a ticket for a cruise.", "explanation": "a ticket for a cruise."},
-                {"question": "5. Мы отдыхали на пляже.", "answer": "We relaxed on the beach.", "explanation": "on the beach."},
-                {"question": "6. Он плавал в озере.", "answer": "He swam in the lake.", "explanation": "in the lake."},
-                {"question": "7. Они гуляли в лесу.", "answer": "They walked in the forest.", "explanation": "in the forest."},
-                {"question": "8. Я хочу увидеть горы.", "answer": "I want to see the mountains.", "explanation": "see the mountains."},
-                {"question": "9. Где находится аэропорт?", "answer": "Where is the airport?", "explanation": "Where is the airport?"},
-                {"question": "10. У них есть билеты на самолёт.", "answer": "They have plane tickets.", "explanation": "plane tickets."}
+                {"question": "1. Они путешествуют на корабле.", "answer": "They are travelling by ship.", "explanation": ""},
+                {"question": "2. Мы остановились в кемпинге.", "answer": "We stayed at a campsite.", "explanation": ""},
+                {"question": "3. Она забронировала хостел.", "answer": "She booked a hostel.", "explanation": ""},
+                {"question": "4. Я купил билет на круиз.", "answer": "I bought a ticket for a cruise.", "explanation": ""},
+                {"question": "5. Мы отдыхали на пляже.", "answer": "We relaxed on the beach.", "explanation": ""},
+                {"question": "6. Он плавал в озере.", "answer": "He swam in the lake.", "explanation": ""},
+                {"question": "7. Они гуляли в лесу.", "answer": "They walked in the forest.", "explanation": ""},
+                {"question": "8. Я хочу увидеть горы.", "answer": "I want to see the mountains.", "explanation": ""},
+                {"question": "9. Где находится аэропорт?", "answer": "Where is the airport?", "explanation": ""},
+                {"question": "10. У них есть билеты на самолёт.", "answer": "They have plane tickets.", "explanation": ""}
             ]
         },
         {
@@ -54558,16 +54558,16 @@ LEVEL_A1_CONTENT = {
             "type": "complex",
             "text": "Задание 2. Переведите предложения на английский.\n\n1. Мы путешествуем на автобусе.\n2. Она остановилась в хостеле.\n3. Я упаковал чемодан.\n4. Мы купили билеты на поезд.\n5. Они посетили музей современного искусства.\n6. Я хочу искупаться в море.\n7. Он поднялся на гору.\n8. Мы сделали много фотографий.\n9. Где находится туристический офис?\n10. Я люблю путешествовать.",
             "subtasks": [
-                {"question": "1. Мы путешествуем на автобусе.", "answer": "We are travelling by bus.", "explanation": "by bus."},
-                {"question": "2. Она остановилась в хостеле.", "answer": "She stayed in a hostel.", "explanation": "stayed in a hostel."},
-                {"question": "3. Я упаковал чемодан.", "answer": "I packed my suitcase.", "explanation": "packed my suitcase."},
-                {"question": "4. Мы купили билеты на поезд.", "answer": "We bought train tickets.", "explanation": "train tickets."},
-                {"question": "5. Они посетили музей современного искусства.", "answer": "They visited the museum of modern art.", "explanation": "museum of modern art."},
-                {"question": "6. Я хочу искупаться в море.", "answer": "I want to swim in the sea.", "explanation": "swim in the sea."},
-                {"question": "7. Он поднялся на гору.", "answer": "He climbed the mountain.", "explanation": "climbed the mountain."},
-                {"question": "8. Мы сделали много фотографий.", "answer": "We took many photos.", "explanation": "took many photos."},
-                {"question": "9. Где находится туристический офис?", "answer": "Where is the tourist office?", "explanation": "tourist office."},
-                {"question": "10. Я люблю путешествовать.", "answer": "I love travelling.", "explanation": "love travelling."}
+                {"question": "1. Мы путешествуем на автобусе.", "answer": "We are travelling by bus.", "explanation": ""},
+                {"question": "2. Она остановилась в хостеле.", "answer": "She stayed in a hostel.", "explanation": ""},
+                {"question": "3. Я упаковал чемодан.", "answer": "I packed my suitcase.", "explanation": ""},
+                {"question": "4. Мы купили билеты на поезд.", "answer": "We bought train tickets.", "explanation": ""},
+                {"question": "5. Они посетили музей современного искусства.", "answer": "They visited the museum of modern art.", "explanation": ""},
+                {"question": "6. Я хочу искупаться в море.", "answer": "I want to swim in the sea.", "explanation": ""},
+                {"question": "7. Он поднялся на гору.", "answer": "He climbed the mountain.", "explanation": ""},
+                {"question": "8. Мы сделали много фотографий.", "answer": "We took many photos.", "explanation": ""},
+                {"question": "9. Где находится туристический офис?", "answer": "Where is the tourist office?", "explanation": ""},
+                {"question": "10. Я люблю путешествовать.", "answer": "I love travelling.", "explanation": ""}
             ]
         },
         {
@@ -54609,16 +54609,16 @@ LEVEL_A1_CONTENT = {
             "type": "complex",
             "text": "Задание 2. Переведите предложения на английский.\n\n1. Мы путешествуем на самолёте.\n2. Она забронировала номер в отеле.\n3. Я взял с собой паспорт и билет.\n4. Мы купили сувениры.\n5. Они посетили старый замок.\n6. Я хочу отдохнуть на пляже.\n7. Он пересёк озеро на лодке.\n8. Мы гуляли по лесу.\n9. Где находится вокзал?\n10. Я люблю ходить в походы.",
             "subtasks": [
-                {"question": "1. Мы путешествуем на самолёте.", "answer": "We are travelling by plane.", "explanation": "by plane."},
-                {"question": "2. Она забронировала номер в отеле.", "answer": "She booked a room in the hotel.", "explanation": "booked a room."},
-                {"question": "3. Я взял с собой паспорт и билет.", "answer": "I took my passport and ticket with me.", "explanation": "took... with me."},
-                {"question": "4. Мы купили сувениры.", "answer": "We bought souvenirs.", "explanation": "bought souvenirs."},
-                {"question": "5. Они посетили старый замок.", "answer": "They visited an old castle.", "explanation": "old castle."},
-                {"question": "6. Я хочу отдохнуть на пляже.", "answer": "I want to relax on the beach.", "explanation": "relax on the beach."},
-                {"question": "7. Он пересёк озеро на лодке.", "answer": "He crossed the lake by boat.", "explanation": "crossed by boat."},
-                {"question": "8. Мы гуляли по лесу.", "answer": "We walked through the forest.", "explanation": "walked through the forest."},
-                {"question": "9. Где находится вокзал?", "answer": "Where is the railway station?", "explanation": "railway station."},
-                {"question": "10. Я люблю ходить в походы.", "answer": "I like to go hiking.", "explanation": "go hiking."}
+                {"question": "1. Мы путешествуем на самолёте.", "answer": "We are travelling by plane.", "explanation": ""},
+                {"question": "2. Она забронировала номер в отеле.", "answer": "She booked a room in the hotel.", "explanation": ""},
+                {"question": "3. Я взял с собой паспорт и билет.", "answer": "I took my passport and ticket with me.", "explanation": ""},
+                {"question": "4. Мы купили сувениры.", "answer": "We bought souvenirs.", "explanation": ""},
+                {"question": "5. Они посетили старый замок.", "answer": "They visited an old castle.", "explanation": ""},
+                {"question": "6. Я хочу отдохнуть на пляже.", "answer": "I want to relax on the beach.", "explanation": ""},
+                {"question": "7. Он пересёк озеро на лодке.", "answer": "He crossed the lake by boat.", "explanation": ""},
+                {"question": "8. Мы гуляли по лесу.", "answer": "We walked through the forest.", "explanation": ""},
+                {"question": "9. Где находится вокзал?", "answer": "Where is the railway station?", "explanation": ""},
+                {"question": "10. Я люблю ходить в походы.", "answer": "I like to go hiking.", "explanation": ""}
             ]
         },
         {
@@ -54660,16 +54660,16 @@ LEVEL_A1_CONTENT = {
             "type": "complex",
             "text": "Задание 2. Переведите предложения на английский.\n\n1. Мы путешествуем на машине.\n2. Она остановилась в отеле.\n3. Я заказал билеты онлайн.\n4. Мы посетили национальный парк.\n5. Они были в круизе.\n6. Я хочу искупаться в озере.\n7. Он взбирался на скалы.\n8. Мы фотографировали диких животных.\n9. Где можно купить сувениры?\n10. Я люблю отдыхать на природе.",
             "subtasks": [
-                {"question": "1. Мы путешествуем на машине.", "answer": "We are travelling by car.", "explanation": "by car."},
-                {"question": "2. Она остановилась в отеле.", "answer": "She stayed in a hotel.", "explanation": "stayed in a hotel."},
-                {"question": "3. Я заказал билеты онлайн.", "answer": "I booked tickets online.", "explanation": "booked online."},
-                {"question": "4. Мы посетили национальный парк.", "answer": "We visited a national park.", "explanation": "national park."},
-                {"question": "5. Они были в круизе.", "answer": "They were on a cruise.", "explanation": "on a cruise."},
-                {"question": "6. Я хочу искупаться в озере.", "answer": "I want to swim in the lake.", "explanation": "swim in the lake."},
-                {"question": "7. Он взбирался на скалы.", "answer": "He climbed the rocks.", "explanation": "climbed the rocks."},
-                {"question": "8. Мы фотографировали диких животных.", "answer": "We took photos of wild animals.", "explanation": "took photos of wild animals."},
-                {"question": "9. Где можно купить сувениры?", "answer": "Where can I buy souvenirs?", "explanation": "buy souvenirs."},
-                {"question": "10. Я люблю отдыхать на природе.", "answer": "I like to relax in nature.", "explanation": "relax in nature."}
+                {"question": "1. Мы путешествуем на машине.", "answer": "We are travelling by car.", "explanation": ""},
+                {"question": "2. Она остановилась в отеле.", "answer": "She stayed in a hotel.", "explanation": ""},
+                {"question": "3. Я заказал билеты онлайн.", "answer": "I booked tickets online.", "explanation": ""},
+                {"question": "4. Мы посетили национальный парк.", "answer": "We visited a national park.", "explanation": ""},
+                {"question": "5. Они были в круизе.", "answer": "They were on a cruise.", "explanation": ""},
+                {"question": "6. Я хочу искупаться в озере.", "answer": "I want to swim in the lake.", "explanation": ""},
+                {"question": "7. Он взбирался на скалы.", "answer": "He climbed the rocks.", "explanation": ""},
+                {"question": "8. Мы фотографировали диких животных.", "answer": "We took photos of wild animals.", "explanation": ""},
+                {"question": "9. Где можно купить сувениры?", "answer": "Where can I buy souvenirs?", "explanation": ""},
+                {"question": "10. Я люблю отдыхать на природе.", "answer": "I like to relax in nature.", "explanation": ""}
             ]
         },
         {
@@ -54711,16 +54711,16 @@ LEVEL_A1_CONTENT = {
             "type": "complex",
             "text": "Задание 2. Переведите предложения на английский.\n\n1. Мы едем в отпуск на море.\n2. Она бронирует отель сейчас.\n3. Я уже упаковал чемодан.\n4. Мы купили билеты на самолёт.\n5. Они посетят музей завтра.\n6. Я люблю плавать в море.\n7. Он часто ходит в горы.\n8. Мы делаем красивые фото.\n9. Где я могу обменять деньги?\n10. Я хочу посетить Париж.",
             "subtasks": [
-                {"question": "1. Мы едем в отпуск на море.", "answer": "We are going on holiday to the seaside.", "explanation": "to the seaside."},
-                {"question": "2. Она бронирует отель сейчас.", "answer": "She is booking a hotel now.", "explanation": "is booking."},
-                {"question": "3. Я уже упаковал чемодан.", "answer": "I have already packed my suitcase.", "explanation": "have already packed."},
-                {"question": "4. Мы купили билеты на самолёт.", "answer": "We bought plane tickets.", "explanation": "plane tickets."},
-                {"question": "5. Они посетят музей завтра.", "answer": "They will visit the museum tomorrow.", "explanation": "will visit."},
-                {"question": "6. Я люблю плавать в море.", "answer": "I like to swim in the sea.", "explanation": "swim in the sea."},
-                {"question": "7. Он часто ходит в горы.", "answer": "He often goes to the mountains.", "explanation": "goes to the mountains."},
-                {"question": "8. Мы делаем красивые фото.", "answer": "We take beautiful photos.", "explanation": "take photos."},
-                {"question": "9. Где я могу обменять деньги?", "answer": "Where can I exchange money?", "explanation": "exchange money."},
-                {"question": "10. Я хочу посетить Париж.", "answer": "I want to visit Paris.", "explanation": "visit Paris."}
+                {"question": "1. Мы едем в отпуск на море.", "answer": "We are going on holiday to the seaside.", "explanation": ""},
+                {"question": "2. Она бронирует отель сейчас.", "answer": "She is booking a hotel now.", "explanation": ""},
+                {"question": "3. Я уже упаковал чемодан.", "answer": "I have already packed my suitcase.", "explanation": ""},
+                {"question": "4. Мы купили билеты на самолёт.", "answer": "We bought plane tickets.", "explanation": ""},
+                {"question": "5. Они посетят музей завтра.", "answer": "They will visit the museum tomorrow.", "explanation": ""},
+                {"question": "6. Я люблю плавать в море.", "answer": "I like to swim in the sea.", "explanation": ""},
+                {"question": "7. Он часто ходит в горы.", "answer": "He often goes to the mountains.", "explanation": ""},
+                {"question": "8. Мы делаем красивые фото.", "answer": "We take beautiful photos.", "explanation": ""},
+                {"question": "9. Где я могу обменять деньги?", "answer": "Where can I exchange money?", "explanation": ""},
+                {"question": "10. Я хочу посетить Париж.", "answer": "I want to visit Paris.", "explanation": ""}
             ]
         },
         {
@@ -54762,16 +54762,16 @@ LEVEL_A1_CONTENT = {
             "type": "complex",
             "text": "Задание 2. Переведите предложения на английский.\n\n1. Мы путешествуем за границу.\n2. Она остановилась в кемпинге.\n3. Я потерял свой паспорт.\n4. Мы заказали такси до аэропорта.\n5. Они посетили Лувр.\n6. Я хочу полежать на пляже.\n7. Он переплыл озеро.\n8. Мы гуляли по лесу.\n9. Где находится остановка автобуса?\n10. Я люблю планировать поездки.",
             "subtasks": [
-                {"question": "1. Мы путешествуем за границу.", "answer": "We are travelling abroad.", "explanation": "travel abroad."},
-                {"question": "2. Она остановилась в кемпинге.", "answer": "She stayed at a campsite.", "explanation": "at a campsite."},
-                {"question": "3. Я потерял свой паспорт.", "answer": "I have lost my passport.", "explanation": "lost my passport."},
-                {"question": "4. Мы заказали такси до аэропорта.", "answer": "We ordered a taxi to the airport.", "explanation": "taxi to the airport."},
-                {"question": "5. Они посетили Лувр.", "answer": "They visited the Louvre.", "explanation": "the Louvre."},
-                {"question": "6. Я хочу полежать на пляже.", "answer": "I want to lie on the beach.", "explanation": "lie on the beach."},
-                {"question": "7. Он переплыл озеро.", "answer": "He swam across the lake.", "explanation": "swam across the lake."},
-                {"question": "8. Мы гуляли по лесу.", "answer": "We walked through the forest.", "explanation": "walked through the forest."},
-                {"question": "9. Где находится остановка автобуса?", "answer": "Where is the bus stop?", "explanation": "bus stop."},
-                {"question": "10. Я люблю планировать поездки.", "answer": "I like to plan trips.", "explanation": "plan trips."}
+                {"question": "1. Мы путешествуем за границу.", "answer": "We are travelling abroad.", "explanation": ""},
+                {"question": "2. Она остановилась в кемпинге.", "answer": "She stayed at a campsite.", "explanation": ""},
+                {"question": "3. Я потерял свой паспорт.", "answer": "I have lost my passport.", "explanation": ""},
+                {"question": "4. Мы заказали такси до аэропорта.", "answer": "We ordered a taxi to the airport.", "explanation": ""},
+                {"question": "5. Они посетили Лувр.", "answer": "They visited the Louvre.", "explanation": ""},
+                {"question": "6. Я хочу полежать на пляже.", "answer": "I want to lie on the beach.", "explanation": ""},
+                {"question": "7. Он переплыл озеро.", "answer": "He swam across the lake.", "explanation": ""},
+                {"question": "8. Мы гуляли по лесу.", "answer": "We walked through the forest.", "explanation": ""},
+                {"question": "9. Где находится остановка автобуса?", "answer": "Where is the bus stop?", "explanation": ""},
+                {"question": "10. Я люблю планировать поездки.", "answer": "I like to plan trips.", "explanation": ""}
             ]
         },
         {
@@ -54791,6 +54791,7 @@ LEVEL_A1_CONTENT = {
             ]
         }
     ]
+]
 ]
   },
   "shoppingVocabulary": {
