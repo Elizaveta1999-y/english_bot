@@ -6,7 +6,7 @@ LEVEL_A1_CONTENT = {
         "title": "Знакомство с алфавитом",
         "text": "\n<b>🔤 Тема: Английский алфавит (26 букв)</b>\n\n<blockquote>Произношение букв в алфавите отличается от их звучания в словах.</blockquote>\n\n<b>A</b> [эй] – Apple (яблоко)\n<b>B</b> [би] – Boy (мальчик)\n<b>C</b> [си] – Cat (кот)\n<b>D</b> [ди] – Dog (собака)\n<b>E</b> [и] – Egg (яйцо)\n<b>F</b> [эф] – Fish (рыба)\n<b>G</b> [джи] – Girl (девочка)\n<b>H</b> [эйч] – Hat (шляпа)\n<b>I</b> [ай] – Ice (лёд)\n<b>J</b> [джей] – Juice (сок)\n<b>K</b> [кей] – Kite (воздушный змей)\n<b>L</b> [эл] – Lion (лев)\n<b>M</b> [эм] – Mother (мама)\n<b>N</b> [эн] – Night (ночь)\n<b>O</b> [оу] – Orange (апельсин)\n<b>P</b> [пи] – Pen (ручка)\n<b>Q</b> [кью] – Queen (королева)\n<b>R</b> [ар] – Red (красный)\n<b>S</b> [эс] – Sun (солнце)\n<b>T</b> [ти] – Tea (чай)\n<b>U</b> [ю] – Umbrella (зонт)\n<b>V</b> [ви] – Violin (скрипка)\n<b>W</b> [дабл‑ю] – Window (окно)\n<b>X</b> [экс] – X‑ray (рентген)\n<b>Y</b> [уай] – Yellow (жёлтый)\n<b>Z</b> [зед] – Zebra (зебра)\n",
         "image": None,
-        "has_audio_buttons": true
+        "has_audio_buttons": True
       },
       {
         "title": "Гласные и согласные",
@@ -53713,7 +53713,519 @@ LEVEL_A1_CONTENT = {
         "question": "Как спросить о профессии вежливо?",
         "answer": "What do you do for a living? или What is your occupation?"
       }
+    ],
+"practice_bank": [
+    # Вариант 1
+    [
+        {
+            "type": "complex",
+            "text": "Задание 1. Напишите профессию по описанию.\n\n1. He helps sick people. He is a ___.\n2. She teaches children. She is a ___.\n3. He designs buildings and machines. He is an ___.\n4. She drives a bus. She is a ___.\n5. He looks after patients in a hospital. He is a ___.\n6. She flies a plane. She is a ___.\n7. He defends people in court. He is a ___.\n8. She paints pictures. She is an ___.\n9. He puts out fires. He is a ___.\n10. She answers phones and types letters. She is a ___.",
+            "subtasks": [
+                {"question": "1. He helps sick people. He is a ___.", "answer": "doctor", "explanation": "Врач помогает больным людям."},
+                {"question": "2. She teaches children. She is a ___.", "answer": "teacher", "explanation": "Учитель учит детей."},
+                {"question": "3. He designs buildings and machines. He is an ___.", "answer": "engineer", "explanation": "Инженер проектирует здания и машины. Перед 'engineer' ставим 'an'."},
+                {"question": "4. She drives a bus. She is a ___.", "answer": "driver", "explanation": "Водитель управляет автобусом."},
+                {"question": "5. He looks after patients in a hospital. He is a ___.", "answer": "nurse", "explanation": "Медбрат/медсестра ухаживает за пациентами."},
+                {"question": "6. She flies a plane. She is a ___.", "answer": "pilot", "explanation": "Пилот управляет самолётом."},
+                {"question": "7. He defends people in court. He is a ___.", "answer": "lawyer", "explanation": "Юрист защищает людей в суде."},
+                {"question": "8. She paints pictures. She is an ___.", "answer": "artist", "explanation": "Художник рисует картины. Перед 'artist' ставим 'an'."},
+                {"question": "9. He puts out fires. He is a ___.", "answer": "firefighter", "explanation": "Пожарный тушит пожары."},
+                {"question": "10. She answers phones and types letters. She is a ___.", "answer": "secretary", "explanation": "Секретарь отвечает на звонки и печатает письма."}
+            ]
+        },
+        {
+            "type": "complex",
+            "text": "Задание 2. Переведите предложения на английский.\n\n1. Я учитель.\n2. Она медсестра.\n3. Он инженер.\n4. Мы студенты.\n5. Вы водитель?\n6. Он не пилот, он пожарный.\n7. Мой отец – юрист.\n8. Моя мама работает врачом.\n9. Они художники.\n10. Я хочу быть секретарём.",
+            "subtasks": [
+                {"question": "1. Я учитель.", "answer": "I am a teacher.", "explanation": "I + am + a + teacher."},
+                {"question": "2. Она медсестра.", "answer": "She is a nurse.", "explanation": "She + is + a + nurse."},
+                {"question": "3. Он инженер.", "answer": "He is an engineer.", "explanation": "Перед 'engineer' – an."},
+                {"question": "4. Мы студенты.", "answer": "We are students.", "explanation": "Множественное число – без артикля."},
+                {"question": "5. Вы водитель?", "answer": "Are you a driver?", "explanation": "Вопрос с 'are' для you."},
+                {"question": "6. Он не пилот, он пожарный.", "answer": "He is not a pilot, he is a firefighter.", "explanation": "Отрицание is not."},
+                {"question": "7. Мой отец – юрист.", "answer": "My father is a lawyer.", "explanation": "Притяжательное + is + a."},
+                {"question": "8. Моя мама работает врачом.", "answer": "My mother works as a doctor.", "explanation": "works as a – работает в качестве."},
+                {"question": "9. Они художники.", "answer": "They are artists.", "explanation": "Мн.ч. без артикля."},
+                {"question": "10. Я хочу быть секретарём.", "answer": "I want to be a secretary.", "explanation": "want to be + a."}
+            ]
+        },
+        {
+            "type": "complex",
+            "text": "Задание 3. Вставьте a, an или — (если артикль не нужен).\n\n1. He is ___ doctor.\n2. She is ___ engineer.\n3. They are ___ students.\n4. I am ___ artist.\n5. He is ___ pilot.\n6. We are ___ drivers.\n7. She is ___ nurse.\n8. He is ___ firefighter.\n9. They are ___ lawyers.\n10. I want to be ___ secretary.",
+            "subtasks": [
+                {"question": "1. He is ___ doctor.", "answer": "a", "explanation": "doctor – согласный звук → a."},
+                {"question": "2. She is ___ engineer.", "answer": "an", "explanation": "engineer – гласный → an."},
+                {"question": "3. They are ___ students.", "answer": "—", "explanation": "Мн.ч. – артикль не нужен."},
+                {"question": "4. I am ___ artist.", "answer": "an", "explanation": "artist – гласный → an."},
+                {"question": "5. He is ___ pilot.", "answer": "a", "explanation": "pilot – согласный → a."},
+                {"question": "6. We are ___ drivers.", "answer": "—", "explanation": "Мн.ч."},
+                {"question": "7. She is ___ nurse.", "answer": "a", "explanation": "nurse – согласный → a."},
+                {"question": "8. He is ___ firefighter.", "answer": "a", "explanation": "firefighter – согласный → a."},
+                {"question": "9. They are ___ lawyers.", "answer": "—", "explanation": "Мн.ч."},
+                {"question": "10. I want to be ___ secretary.", "answer": "a", "explanation": "secretary – согласный → a."}
+            ]
+        }
+    ],
+    # Вариант 2
+    [
+        {
+            "type": "complex",
+            "text": "Задание 1. Напишите профессию по описанию.\n\n1. He serves food in a restaurant. He is a ___.\n2. She helps doctors in a hospital. She is a ___.\n3. He catches criminals. He is a ___.\n4. She works in a school and helps children learn. She is a ___.\n5. He drives a taxi. He is a ___.\n6. She sings songs on stage. She is a ___.\n7. He writes books. He is a ___.\n8. She looks after passengers on a plane. She is a ___.\n9. He repairs cars. He is a ___.\n10. She sells things in a shop. She is a ___.",
+            "subtasks": [
+                {"question": "1. He serves food in a restaurant. He is a ___.", "answer": "waiter", "explanation": "Официант подаёт еду."},
+                {"question": "2. She helps doctors in a hospital. She is a ___.", "answer": "nurse", "explanation": "Медсестра помогает врачам."},
+                {"question": "3. He catches criminals. He is a ___.", "answer": "police officer", "explanation": "Полицейский ловит преступников."},
+                {"question": "4. She works in a school and helps children learn. She is a ___.", "answer": "teacher", "explanation": "Учитель помогает детям учиться."},
+                {"question": "5. He drives a taxi. He is a ___.", "answer": "driver", "explanation": "Водитель такси."},
+                {"question": "6. She sings songs on stage. She is a ___.", "answer": "singer", "explanation": "Певица поёт на сцене."},
+                {"question": "7. He writes books. He is a ___.", "answer": "writer", "explanation": "Писатель пишет книги."},
+                {"question": "8. She looks after passengers on a plane. She is a ___.", "answer": "flight attendant", "explanation": "Стюардесса заботится о пассажирах."},
+                {"question": "9. He repairs cars. He is a ___.", "answer": "mechanic", "explanation": "Механик ремонтирует машины."},
+                {"question": "10. She sells things in a shop. She is a ___.", "answer": "shop assistant", "explanation": "Продавец продаёт товары в магазине."}
+            ]
+        },
+        {
+            "type": "complex",
+            "text": "Задание 2. Переведите предложения на английский.\n\n1. Он официант.\n2. Она медсестра.\n3. Он полицейский.\n4. Мы учителя.\n5. Вы певица?\n6. Она не водитель, она стюардесса.\n7. Мой брат – писатель.\n8. Моя сестра работает механиком.\n9. Они продавцы.\n10. Я хочу быть полицейским.",
+            "subtasks": [
+                {"question": "1. Он официант.", "answer": "He is a waiter.", "explanation": "He is a waiter."},
+                {"question": "2. Она медсестра.", "answer": "She is a nurse.", "explanation": "She is a nurse."},
+                {"question": "3. Он полицейский.", "answer": "He is a police officer.", "explanation": "He is a police officer."},
+                {"question": "4. Мы учителя.", "answer": "We are teachers.", "explanation": "We are teachers."},
+                {"question": "5. Вы певица?", "answer": "Are you a singer?", "explanation": "Are you a singer?"},
+                {"question": "6. Она не водитель, она стюардесса.", "answer": "She is not a driver, she is a flight attendant.", "explanation": "She is not a driver, she is a flight attendant."},
+                {"question": "7. Мой брат – писатель.", "answer": "My brother is a writer.", "explanation": "My brother is a writer."},
+                {"question": "8. Моя сестра работает механиком.", "answer": "My sister works as a mechanic.", "explanation": "works as a mechanic."},
+                {"question": "9. Они продавцы.", "answer": "They are shop assistants.", "explanation": "They are shop assistants."},
+                {"question": "10. Я хочу быть полицейским.", "answer": "I want to be a police officer.", "explanation": "I want to be a police officer."}
+            ]
+        },
+        {
+            "type": "complex",
+            "text": "Задание 3. Вставьте am, is, are.\n\n1. I ___ a student.\n2. She ___ a nurse.\n3. They ___ police officers.\n4. He ___ a driver.\n5. We ___ teachers.\n6. You ___ a singer.\n7. My father ___ a mechanic.\n8. My mother ___ a shop assistant.\n9. The children ___ students.\n10. I ___ a writer.",
+            "subtasks": [
+                {"question": "1. I ___ a student.", "answer": "am", "explanation": "I + am."},
+                {"question": "2. She ___ a nurse.", "answer": "is", "explanation": "she + is."},
+                {"question": "3. They ___ police officers.", "answer": "are", "explanation": "they + are."},
+                {"question": "4. He ___ a driver.", "answer": "is", "explanation": "he + is."},
+                {"question": "5. We ___ teachers.", "answer": "are", "explanation": "we + are."},
+                {"question": "6. You ___ a singer.", "answer": "are", "explanation": "you + are."},
+                {"question": "7. My father ___ a mechanic.", "answer": "is", "explanation": "father = he → is."},
+                {"question": "8. My mother ___ a shop assistant.", "answer": "is", "explanation": "mother = she → is."},
+                {"question": "9. The children ___ students.", "answer": "are", "explanation": "children = they → are."},
+                {"question": "10. I ___ a writer.", "answer": "am", "explanation": "I + am."}
+            ]
+        }
+    ],
+    # Вариант 3
+    [
+        {
+            "type": "complex",
+            "text": "Задание 1. Напишите профессию по описанию.\n\n1. She works in a hospital and helps sick people. She is a ___.\n2. He flies helicopters. He is a ___.\n3. She teaches music at school. She is a ___.\n4. He builds houses. He is a ___.\n5. She writes poems. She is a ___.\n6. He works in a court. He is a ___.\n7. She drives a truck. She is a ___.\n8. He plays the guitar in a band. He is a ___.\n9. She takes care of children. She is a ___.\n10. He works in a restaurant and cooks food. He is a ___.",
+            "subtasks": [
+                {"question": "1. She works in a hospital and helps sick people. She is a ___.", "answer": "doctor", "explanation": "Врач работает в больнице."},
+                {"question": "2. He flies helicopters. He is a ___.", "answer": "pilot", "explanation": "Пилот управляет вертолётом."},
+                {"question": "3. She teaches music at school. She is a ___.", "answer": "teacher", "explanation": "Учитель музыки."},
+                {"question": "4. He builds houses. He is a ___.", "answer": "builder", "explanation": "Строитель строит дома."},
+                {"question": "5. She writes poems. She is a ___.", "answer": "poet", "explanation": "Поэт пишет стихи."},
+                {"question": "6. He works in a court. He is a ___.", "answer": "lawyer", "explanation": "Юрист работает в суде."},
+                {"question": "7. She drives a truck. She is a ___.", "answer": "driver", "explanation": "Водитель грузовика."},
+                {"question": "8. He plays the guitar in a band. He is a ___.", "answer": "musician", "explanation": "Музыкант играет в группе."},
+                {"question": "9. She takes care of children. She is a ___.", "answer": "nanny", "explanation": "Няня заботится о детях."},
+                {"question": "10. He works in a restaurant and cooks food. He is a ___.", "answer": "cook", "explanation": "Повар готовит еду."}
+            ]
+        },
+        {
+            "type": "complex",
+            "text": "Задание 2. Переведите предложения на английский.\n\n1. Она врач.\n2. Он пилот.\n3. Они учителя.\n4. Я строитель.\n5. Ты поэт?\n6. Он не юрист, он музыкант.\n7. Моя сестра – водитель грузовика.\n8. Мой брат работает поваром.\n9. Мы няни.\n10. Она хочет быть поэтом.",
+            "subtasks": [
+                {"question": "1. Она врач.", "answer": "She is a doctor.", "explanation": "She is a doctor."},
+                {"question": "2. Он пилот.", "answer": "He is a pilot.", "explanation": "He is a pilot."},
+                {"question": "3. Они учителя.", "answer": "They are teachers.", "explanation": "They are teachers."},
+                {"question": "4. Я строитель.", "answer": "I am a builder.", "explanation": "I am a builder."},
+                {"question": "5. Ты поэт?", "answer": "Are you a poet?", "explanation": "Are you a poet?"},
+                {"question": "6. Он не юрист, он музыкант.", "answer": "He is not a lawyer, he is a musician.", "explanation": "He is not a lawyer, he is a musician."},
+                {"question": "7. Моя сестра – водитель грузовика.", "answer": "My sister is a truck driver.", "explanation": "My sister is a truck driver."},
+                {"question": "8. Мой брат работает поваром.", "answer": "My brother works as a cook.", "explanation": "works as a cook."},
+                {"question": "9. Мы няни.", "answer": "We are nannies.", "explanation": "We are nannies."},
+                {"question": "10. Она хочет быть поэтом.", "answer": "She wants to be a poet.", "explanation": "She wants to be a poet."}
+            ]
+        },
+        {
+            "type": "complex",
+            "text": "Задание 3. Вставьте a, an или —.\n\n1. She is ___ doctor.\n2. He is ___ pilot.\n3. They are ___ teachers.\n4. I am ___ builder.\n5. Are you ___ poet?\n6. He is ___ lawyer.\n7. She is ___ musician.\n8. My brother is ___ cook.\n9. We are ___ nannies.\n10. She wants to be ___ poet.",
+            "subtasks": [
+                {"question": "1. She is ___ doctor.", "answer": "a", "explanation": "doctor → a."},
+                {"question": "2. He is ___ pilot.", "answer": "a", "explanation": "pilot → a."},
+                {"question": "3. They are ___ teachers.", "answer": "—", "explanation": "мн.ч."},
+                {"question": "4. I am ___ builder.", "answer": "a", "explanation": "builder → a."},
+                {"question": "5. Are you ___ poet?", "answer": "a", "explanation": "poet → a."},
+                {"question": "6. He is ___ lawyer.", "answer": "a", "explanation": "lawyer → a."},
+                {"question": "7. She is ___ musician.", "answer": "a", "explanation": "musician → a."},
+                {"question": "8. My brother is ___ cook.", "answer": "a", "explanation": "cook → a."},
+                {"question": "9. We are ___ nannies.", "answer": "—", "explanation": "мн.ч."},
+                {"question": "10. She wants to be ___ poet.", "answer": "a", "explanation": "poet → a."}
+            ]
+        }
+    ],
+    # Вариант 4
+    [
+        {
+            "type": "complex",
+            "text": "Задание 1. Напишите профессию по описанию.\n\n1. He works in a hospital and operates on people. He is a ___.\n2. She teaches English. She is a ___.\n3. He designs bridges. He is an ___.\n4. She delivers letters. She is a ___.\n5. He looks after animals. He is a ___.\n6. She acts in films. She is an ___.\n7. He plays football professionally. He is a ___.\n8. She takes photos. She is a ___.\n9. He fixes computers. He is a ___.\n10. She works in a library. She is a ___.",
+            "subtasks": [
+                {"question": "1. He works in a hospital and operates on people. He is a ___.", "answer": "surgeon", "explanation": "Хирург оперирует людей."},
+                {"question": "2. She teaches English. She is a ___.", "answer": "teacher", "explanation": "Учитель английского."},
+                {"question": "3. He designs bridges. He is an ___.", "answer": "engineer", "explanation": "Инженер проектирует мосты."},
+                {"question": "4. She delivers letters. She is a ___.", "answer": "postwoman", "explanation": "Почтальон разносит письма."},
+                {"question": "5. He looks after animals. He is a ___.", "answer": "vet", "explanation": "Ветеринар заботится о животных."},
+                {"question": "6. She acts in films. She is an ___.", "answer": "actress", "explanation": "Актриса снимается в фильмах."},
+                {"question": "7. He plays football professionally. He is a ___.", "answer": "footballer", "explanation": "Футболист играет в футбол."},
+                {"question": "8. She takes photos. She is a ___.", "answer": "photographer", "explanation": "Фотограф делает снимки."},
+                {"question": "9. He fixes computers. He is a ___.", "answer": "computer technician", "explanation": "Компьютерный техник чинит компьютеры."},
+                {"question": "10. She works in a library. She is a ___.", "answer": "librarian", "explanation": "Библиотекарь работает в библиотеке."}
+            ]
+        },
+        {
+            "type": "complex",
+            "text": "Задание 2. Переведите предложения на английский.\n\n1. Он хирург.\n2. Она учительница.\n3. Мы инженеры.\n4. Я почтальон.\n5. Ты ветеринар?\n6. Она не актриса, она фотограф.\n7. Мой отец – футболист.\n8. Моя мама работает библиотекарем.\n9. Они компьютерные техники.\n10. Я хочу быть ветеринаром.",
+            "subtasks": [
+                {"question": "1. Он хирург.", "answer": "He is a surgeon.", "explanation": "He is a surgeon."},
+                {"question": "2. Она учительница.", "answer": "She is a teacher.", "explanation": "She is a teacher."},
+                {"question": "3. Мы инженеры.", "answer": "We are engineers.", "explanation": "We are engineers."},
+                {"question": "4. Я почтальон.", "answer": "I am a postman.", "explanation": "I am a postman."},
+                {"question": "5. Ты ветеринар?", "answer": "Are you a vet?", "explanation": "Are you a vet?"},
+                {"question": "6. Она не актриса, она фотограф.", "answer": "She is not an actress, she is a photographer.", "explanation": "She is not an actress, she is a photographer."},
+                {"question": "7. Мой отец – футболист.", "answer": "My father is a footballer.", "explanation": "My father is a footballer."},
+                {"question": "8. Моя мама работает библиотекарем.", "answer": "My mother works as a librarian.", "explanation": "works as a librarian."},
+                {"question": "9. Они компьютерные техники.", "answer": "They are computer technicians.", "explanation": "They are computer technicians."},
+                {"question": "10. Я хочу быть ветеринаром.", "answer": "I want to be a vet.", "explanation": "I want to be a vet."}
+            ]
+        },
+        {
+            "type": "complex",
+            "text": "Задание 3. Вставьте a, an или —.\n\n1. He is ___ surgeon.\n2. She is ___ teacher.\n3. We are ___ engineers.\n4. I am ___ postman.\n5. Are you ___ vet?\n6. She is ___ actress.\n7. He is ___ photographer.\n8. My father is ___ footballer.\n9. They are ___ computer technicians.\n10. I want to be ___ vet.",
+            "subtasks": [
+                {"question": "1. He is ___ surgeon.", "answer": "a", "explanation": "surgeon → a."},
+                {"question": "2. She is ___ teacher.", "answer": "a", "explanation": "teacher → a."},
+                {"question": "3. We are ___ engineers.", "answer": "—", "explanation": "мн.ч."},
+                {"question": "4. I am ___ postman.", "answer": "a", "explanation": "postman → a."},
+                {"question": "5. Are you ___ vet?", "answer": "a", "explanation": "vet → a."},
+                {"question": "6. She is ___ actress.", "answer": "an", "explanation": "actress → an (гласный)."},
+                {"question": "7. He is ___ photographer.", "answer": "a", "explanation": "photographer → a."},
+                {"question": "8. My father is ___ footballer.", "answer": "a", "explanation": "footballer → a."},
+                {"question": "9. They are ___ computer technicians.", "answer": "—", "explanation": "мн.ч."},
+                {"question": "10. I want to be ___ vet.", "answer": "a", "explanation": "vet → a."}
+            ]
+        }
+    ],
+    # Вариант 5
+    [
+        {
+            "type": "complex",
+            "text": "Задание 1. Напишите профессию по описанию.\n\n1. She cuts hair. She is a ___.\n2. He fixes cars. He is a ___.\n3. She works in a bank. She is a ___.\n4. He fights fires. He is a ___.\n5. She teaches dance. She is a ___.\n6. He writes code for computers. He is a ___.\n7. She takes care of people's teeth. She is a ___.\n8. He works in a hotel and welcomes guests. He is a ___.\n9. She sells flowers. She is a ___.\n10. He drives a bus. He is a ___.",
+            "subtasks": [
+                {"question": "1. She cuts hair. She is a ___.", "answer": "hairdresser", "explanation": "Парикмахер стрижёт волосы."},
+                {"question": "2. He fixes cars. He is a ___.", "answer": "mechanic", "explanation": "Механик чинит машины."},
+                {"question": "3. She works in a bank. She is a ___.", "answer": "bank clerk", "explanation": "Банковский служащий."},
+                {"question": "4. He fights fires. He is a ___.", "answer": "firefighter", "explanation": "Пожарный борется с огнём."},
+                {"question": "5. She teaches dance. She is a ___.", "answer": "dance teacher", "explanation": "Учитель танцев."},
+                {"question": "6. He writes code for computers. He is a ___.", "answer": "programmer", "explanation": "Программист пишет код."},
+                {"question": "7. She takes care of people's teeth. She is a ___.", "answer": "dentist", "explanation": "Стоматолог лечит зубы."},
+                {"question": "8. He works in a hotel and welcomes guests. He is a ___.", "answer": "receptionist", "explanation": "Администратор встречает гостей."},
+                {"question": "9. She sells flowers. She is a ___.", "answer": "florist", "explanation": "Флорист продаёт цветы."},
+                {"question": "10. He drives a bus. He is a ___.", "answer": "bus driver", "explanation": "Водитель автобуса."}
+            ]
+        },
+        {
+            "type": "complex",
+            "text": "Задание 2. Переведите предложения на английский.\n\n1. Она парикмахер.\n2. Он механик.\n3. Мы банковские служащие.\n4. Я пожарный.\n5. Ты учитель танцев?\n6. Он не программист, он администратор.\n7. Моя сестра – стоматолог.\n8. Мой брат работает флористом.\n9. Они водители автобусов.\n10. Я хочу быть программистом.",
+            "subtasks": [
+                {"question": "1. Она парикмахер.", "answer": "She is a hairdresser.", "explanation": "She is a hairdresser."},
+                {"question": "2. Он механик.", "answer": "He is a mechanic.", "explanation": "He is a mechanic."},
+                {"question": "3. Мы банковские служащие.", "answer": "We are bank clerks.", "explanation": "We are bank clerks."},
+                {"question": "4. Я пожарный.", "answer": "I am a firefighter.", "explanation": "I am a firefighter."},
+                {"question": "5. Ты учитель танцев?", "answer": "Are you a dance teacher?", "explanation": "Are you a dance teacher?"},
+                {"question": "6. Он не программист, он администратор.", "answer": "He is not a programmer, he is a receptionist.", "explanation": "He is not a programmer, he is a receptionist."},
+                {"question": "7. Моя сестра – стоматолог.", "answer": "My sister is a dentist.", "explanation": "My sister is a dentist."},
+                {"question": "8. Мой брат работает флористом.", "answer": "My brother works as a florist.", "explanation": "works as a florist."},
+                {"question": "9. Они водители автобусов.", "answer": "They are bus drivers.", "explanation": "They are bus drivers."},
+                {"question": "10. Я хочу быть программистом.", "answer": "I want to be a programmer.", "explanation": "I want to be a programmer."}
+            ]
+        },
+        {
+            "type": "complex",
+            "text": "Задание 3. Вставьте am, is, are.\n\n1. She ___ a hairdresser.\n2. He ___ a mechanic.\n3. We ___ bank clerks.\n4. I ___ a firefighter.\n5. You ___ a dance teacher.\n6. He ___ a receptionist.\n7. My sister ___ a dentist.\n8. My brother ___ a florist.\n9. They ___ bus drivers.\n10. I ___ a programmer.",
+            "subtasks": [
+                {"question": "1. She ___ a hairdresser.", "answer": "is", "explanation": "she + is."},
+                {"question": "2. He ___ a mechanic.", "answer": "is", "explanation": "he + is."},
+                {"question": "3. We ___ bank clerks.", "answer": "are", "explanation": "we + are."},
+                {"question": "4. I ___ a firefighter.", "answer": "am", "explanation": "I + am."},
+                {"question": "5. You ___ a dance teacher.", "answer": "are", "explanation": "you + are."},
+                {"question": "6. He ___ a receptionist.", "answer": "is", "explanation": "he + is."},
+                {"question": "7. My sister ___ a dentist.", "answer": "is", "explanation": "sister = she → is."},
+                {"question": "8. My brother ___ a florist.", "answer": "is", "explanation": "brother = he → is."},
+                {"question": "9. They ___ bus drivers.", "answer": "are", "explanation": "they + are."},
+                {"question": "10. I ___ a programmer.", "answer": "am", "explanation": "I + am."}
+            ]
+        }
+    ],
+    # Вариант 6
+    [
+        {
+            "type": "complex",
+            "text": "Задание 1. Напишите профессию по описанию.\n\n1. She works in a kindergarten. She is a ___.\n2. He flies fighter jets. He is a ___.\n3. She designs clothes. She is a ___.\n4. He plays the piano in concerts. He is a ___.\n5. She takes care of sick animals. She is a ___.\n6. He manages a company. He is a ___.\n7. She writes news articles. She is a ___.\n8. He works in a laboratory. He is a ___.\n9. She drives a race car. She is a ___.\n10. He teaches history. He is a ___.",
+            "subtasks": [
+                {"question": "1. She works in a kindergarten. She is a ___.", "answer": "kindergarten teacher", "explanation": "Воспитатель работает в детском саду."},
+                {"question": "2. He flies fighter jets. He is a ___.", "answer": "fighter pilot", "explanation": "Военный лётчик."},
+                {"question": "3. She designs clothes. She is a ___.", "answer": "fashion designer", "explanation": "Дизайнер одежды."},
+                {"question": "4. He plays the piano in concerts. He is a ___.", "answer": "pianist", "explanation": "Пианист играет на фортепиано."},
+                {"question": "5. She takes care of sick animals. She is a ___.", "answer": "veterinarian", "explanation": "Ветеринар лечит животных."},
+                {"question": "6. He manages a company. He is a ___.", "answer": "manager", "explanation": "Менеджер управляет компанией."},
+                {"question": "7. She writes news articles. She is a ___.", "answer": "journalist", "explanation": "Журналист пишет новости."},
+                {"question": "8. He works in a laboratory. He is a ___.", "answer": "scientist", "explanation": "Учёный работает в лаборатории."},
+                {"question": "9. She drives a race car. She is a ___.", "answer": "race car driver", "explanation": "Гонщик управляет гоночной машиной."},
+                {"question": "10. He teaches history. He is a ___.", "answer": "history teacher", "explanation": "Учитель истории."}
+            ]
+        },
+        {
+            "type": "complex",
+            "text": "Задание 2. Переведите предложения на английский.\n\n1. Она воспитательница.\n2. Он военный лётчик.\n3. Мы дизайнеры одежды.\n4. Я пианист.\n5. Ты ветеринар?\n6. Она не менеджер, она журналист.\n7. Мой отец – учёный.\n8. Моя мама работает гонщиком.\n9. Они учителя истории.\n10. Я хочу быть дизайнером.",
+            "subtasks": [
+                {"question": "1. Она воспитательница.", "answer": "She is a kindergarten teacher.", "explanation": "She is a kindergarten teacher."},
+                {"question": "2. Он военный лётчик.", "answer": "He is a fighter pilot.", "explanation": "He is a fighter pilot."},
+                {"question": "3. Мы дизайнеры одежды.", "answer": "We are fashion designers.", "explanation": "We are fashion designers."},
+                {"question": "4. Я пианист.", "answer": "I am a pianist.", "explanation": "I am a pianist."},
+                {"question": "5. Ты ветеринар?", "answer": "Are you a veterinarian?", "explanation": "Are you a veterinarian?"},
+                {"question": "6. Она не менеджер, она журналист.", "answer": "She is not a manager, she is a journalist.", "explanation": "She is not a manager, she is a journalist."},
+                {"question": "7. Мой отец – учёный.", "answer": "My father is a scientist.", "explanation": "My father is a scientist."},
+                {"question": "8. Моя мама работает гонщиком.", "answer": "My mother works as a race car driver.", "explanation": "works as a race car driver."},
+                {"question": "9. Они учителя истории.", "answer": "They are history teachers.", "explanation": "They are history teachers."},
+                {"question": "10. Я хочу быть дизайнером.", "answer": "I want to be a fashion designer.", "explanation": "I want to be a fashion designer."}
+            ]
+        },
+        {
+            "type": "complex",
+            "text": "Задание 3. Вставьте a, an или —.\n\n1. She is ___ kindergarten teacher.\n2. He is ___ fighter pilot.\n3. We are ___ fashion designers.\n4. I am ___ pianist.\n5. Are you ___ veterinarian?\n6. She is ___ journalist.\n7. My father is ___ scientist.\n8. My mother is ___ race car driver.\n9. They are ___ history teachers.\n10. I want to be ___ fashion designer.",
+            "subtasks": [
+                {"question": "1. She is ___ kindergarten teacher.", "answer": "a", "explanation": "kindergarten teacher → a."},
+                {"question": "2. He is ___ fighter pilot.", "answer": "a", "explanation": "fighter pilot → a."},
+                {"question": "3. We are ___ fashion designers.", "answer": "—", "explanation": "мн.ч."},
+                {"question": "4. I am ___ pianist.", "answer": "a", "explanation": "pianist → a."},
+                {"question": "5. Are you ___ veterinarian?", "answer": "a", "explanation": "veterinarian → a."},
+                {"question": "6. She is ___ journalist.", "answer": "a", "explanation": "journalist → a."},
+                {"question": "7. My father is ___ scientist.", "answer": "a", "explanation": "scientist → a."},
+                {"question": "8. My mother is ___ race car driver.", "answer": "a", "explanation": "race car driver → a."},
+                {"question": "9. They are ___ history teachers.", "answer": "—", "explanation": "мн.ч."},
+                {"question": "10. I want to be ___ fashion designer.", "answer": "a", "explanation": "fashion designer → a."}
+            ]
+        }
+    ],
+    # Вариант 7
+    [
+        {
+            "type": "complex",
+            "text": "Задание 1. Напишите профессию по описанию.\n\n1. She works in a hospital and gives injections. She is a ___.\n2. He flies a plane. He is a ___.\n3. She teaches French. She is a ___.\n4. He builds ships. He is a ___.\n5. She writes novels. She is a ___.\n6. He takes care of gardens. He is a ___.\n7. She plays basketball professionally. She is a ___.\n8. He takes pictures of animals. He is a ___.\n9. She cleans offices. She is a ___.\n10. He works as a translator. He is a ___.",
+            "subtasks": [
+                {"question": "1. She works in a hospital and gives injections. She is a ___.", "answer": "nurse", "explanation": "Медсестра делает уколы."},
+                {"question": "2. He flies a plane. He is a ___.", "answer": "pilot", "explanation": "Пилот управляет самолётом."},
+                {"question": "3. She teaches French. She is a ___.", "answer": "French teacher", "explanation": "Учитель французского."},
+                {"question": "4. He builds ships. He is a ___.", "answer": "shipbuilder", "explanation": "Строитель кораблей."},
+                {"question": "5. She writes novels. She is a ___.", "answer": "novelist", "explanation": "Писательница романов."},
+                {"question": "6. He takes care of gardens. He is a ___.", "answer": "gardener", "explanation": "Садовник ухаживает за садом."},
+                {"question": "7. She plays basketball professionally. She is a ___.", "answer": "basketball player", "explanation": "Баскетболистка."},
+                {"question": "8. He takes pictures of animals. He is a ___.", "answer": "wildlife photographer", "explanation": "Фотограф дикой природы."},
+                {"question": "9. She cleans offices. She is a ___.", "answer": "cleaner", "explanation": "Уборщица убирает офисы."},
+                {"question": "10. He works as a translator. He is a ___.", "answer": "translator", "explanation": "Переводчик."}
+            ]
+        },
+        {
+            "type": "complex",
+            "text": "Задание 2. Переведите предложения на английский.\n\n1. Она медсестра.\n2. Он пилот.\n3. Мы учителя французского.\n4. Я строитель кораблей.\n5. Ты писатель?\n6. Он не садовник, он фотограф дикой природы.\n7. Моя сестра – баскетболистка.\n8. Мой брат работает переводчиком.\n9. Они уборщики.\n10. Я хочу быть фотографом.",
+            "subtasks": [
+                {"question": "1. Она медсестра.", "answer": "She is a nurse.", "explanation": "She is a nurse."},
+                {"question": "2. Он пилот.", "answer": "He is a pilot.", "explanation": "He is a pilot."},
+                {"question": "3. Мы учителя французского.", "answer": "We are French teachers.", "explanation": "We are French teachers."},
+                {"question": "4. Я строитель кораблей.", "answer": "I am a shipbuilder.", "explanation": "I am a shipbuilder."},
+                {"question": "5. Ты писатель?", "answer": "Are you a novelist?", "explanation": "Are you a novelist?"},
+                {"question": "6. Он не садовник, он фотограф дикой природы.", "answer": "He is not a gardener, he is a wildlife photographer.", "explanation": "He is not a gardener, he is a wildlife photographer."},
+                {"question": "7. Моя сестра – баскетболистка.", "answer": "My sister is a basketball player.", "explanation": "My sister is a basketball player."},
+                {"question": "8. Мой брат работает переводчиком.", "answer": "My brother works as a translator.", "explanation": "works as a translator."},
+                {"question": "9. Они уборщики.", "answer": "They are cleaners.", "explanation": "They are cleaners."},
+                {"question": "10. Я хочу быть фотографом.", "answer": "I want to be a photographer.", "explanation": "I want to be a photographer."}
+            ]
+        },
+        {
+            "type": "complex",
+            "text": "Задание 3. Вставьте am, is, are.\n\n1. She ___ a nurse.\n2. He ___ a pilot.\n3. We ___ French teachers.\n4. I ___ a shipbuilder.\n5. You ___ a novelist.\n6. He ___ a wildlife photographer.\n7. My sister ___ a basketball player.\n8. My brother ___ a translator.\n9. They ___ cleaners.\n10. I ___ a photographer.",
+            "subtasks": [
+                {"question": "1. She ___ a nurse.", "answer": "is", "explanation": "she + is."},
+                {"question": "2. He ___ a pilot.", "answer": "is", "explanation": "he + is."},
+                {"question": "3. We ___ French teachers.", "answer": "are", "explanation": "we + are."},
+                {"question": "4. I ___ a shipbuilder.", "answer": "am", "explanation": "I + am."},
+                {"question": "5. You ___ a novelist.", "answer": "are", "explanation": "you + are."},
+                {"question": "6. He ___ a wildlife photographer.", "answer": "is", "explanation": "he + is."},
+                {"question": "7. My sister ___ a basketball player.", "answer": "is", "explanation": "sister = she → is."},
+                {"question": "8. My brother ___ a translator.", "answer": "is", "explanation": "brother = he → is."},
+                {"question": "9. They ___ cleaners.", "answer": "are", "explanation": "they + are."},
+                {"question": "10. I ___ a photographer.", "answer": "am", "explanation": "I + am."}
+            ]
+        }
+    ],
+    # Вариант 8
+    [
+        {
+            "type": "complex",
+            "text": "Задание 1. Напишите профессию по описанию.\n\n1. She works in a school and teaches math. She is a ___.\n2. He flies a helicopter. He is a ___.\n3. She treats sick people in a clinic. She is a ___.\n4. He drives a train. He is a ___.\n5. She writes plays. She is a ___.\n6. He plays drums in a band. He is a ___.\n7. She manages a hotel. She is a ___.\n8. He repairs electrical devices. He is an ___.\n9. She works in a flower shop. She is a ___.\n10. He delivers packages. He is a ___.",
+            "subtasks": [
+                {"question": "1. She works in a school and teaches math. She is a ___.", "answer": "math teacher", "explanation": "Учитель математики."},
+                {"question": "2. He flies a helicopter. He is a ___.", "answer": "helicopter pilot", "explanation": "Пилот вертолёта."},
+                {"question": "3. She treats sick people in a clinic. She is a ___.", "answer": "doctor", "explanation": "Врач лечит больных."},
+                {"question": "4. He drives a train. He is a ___.", "answer": "train driver", "explanation": "Машинист поезда."},
+                {"question": "5. She writes plays. She is a ___.", "answer": "playwright", "explanation": "Драматург пишет пьесы."},
+                {"question": "6. He plays drums in a band. He is a ___.", "answer": "drummer", "explanation": "Барабанщик играет на барабанах."},
+                {"question": "7. She manages a hotel. She is a ___.", "answer": "hotel manager", "explanation": "Управляющий отелем."},
+                {"question": "8. He repairs electrical devices. He is an ___.", "answer": "electrician", "explanation": "Электрик ремонтирует приборы."},
+                {"question": "9. She works in a flower shop. She is a ___.", "answer": "florist", "explanation": "Флорист работает в цветочном магазине."},
+                {"question": "10. He delivers packages. He is a ___.", "answer": "courier", "explanation": "Курьер доставляет посылки."}
+            ]
+        },
+        {
+            "type": "complex",
+            "text": "Задание 2. Переведите предложения на английский.\n\n1. Она учитель математики.\n2. Он пилот вертолёта.\n3. Мы врачи.\n4. Я машинист поезда.\n5. Ты драматург?\n6. Он не барабанщик, он электрик.\n7. Моя сестра – управляющий отелем.\n8. Мой брат работает курьером.\n9. Они флористы.\n10. Я хочу быть электриком.",
+            "subtasks": [
+                {"question": "1. Она учитель математики.", "answer": "She is a math teacher.", "explanation": "She is a math teacher."},
+                {"question": "2. Он пилот вертолёта.", "answer": "He is a helicopter pilot.", "explanation": "He is a helicopter pilot."},
+                {"question": "3. Мы врачи.", "answer": "We are doctors.", "explanation": "We are doctors."},
+                {"question": "4. Я машинист поезда.", "answer": "I am a train driver.", "explanation": "I am a train driver."},
+                {"question": "5. Ты драматург?", "answer": "Are you a playwright?", "explanation": "Are you a playwright?"},
+                {"question": "6. Он не барабанщик, он электрик.", "answer": "He is not a drummer, he is an electrician.", "explanation": "He is not a drummer, he is an electrician."},
+                {"question": "7. Моя сестра – управляющий отелем.", "answer": "My sister is a hotel manager.", "explanation": "My sister is a hotel manager."},
+                {"question": "8. Мой брат работает курьером.", "answer": "My brother works as a courier.", "explanation": "works as a courier."},
+                {"question": "9. Они флористы.", "answer": "They are florists.", "explanation": "They are florists."},
+                {"question": "10. Я хочу быть электриком.", "answer": "I want to be an electrician.", "explanation": "I want to be an electrician."}
+            ]
+        },
+        {
+            "type": "complex",
+            "text": "Задание 3. Вставьте a, an или —.\n\n1. She is ___ math teacher.\n2. He is ___ helicopter pilot.\n3. We are ___ doctors.\n4. I am ___ train driver.\n5. Are you ___ playwright?\n6. He is ___ electrician.\n7. My sister is ___ hotel manager.\n8. My brother is ___ courier.\n9. They are ___ florists.\n10. I want to be ___ electrician.",
+            "subtasks": [
+                {"question": "1. She is ___ math teacher.", "answer": "a", "explanation": "math teacher → a."},
+                {"question": "2. He is ___ helicopter pilot.", "answer": "a", "explanation": "helicopter pilot → a."},
+                {"question": "3. We are ___ doctors.", "answer": "—", "explanation": "мн.ч."},
+                {"question": "4. I am ___ train driver.", "answer": "a", "explanation": "train driver → a."},
+                {"question": "5. Are you ___ playwright?", "answer": "a", "explanation": "playwright → a."},
+                {"question": "6. He is ___ electrician.", "answer": "an", "explanation": "electrician → an (гласный)."},
+                {"question": "7. My sister is ___ hotel manager.", "answer": "a", "explanation": "hotel manager → a."},
+                {"question": "8. My brother is ___ courier.", "answer": "a", "explanation": "courier → a."},
+                {"question": "9. They are ___ florists.", "answer": "—", "explanation": "мн.ч."},
+                {"question": "10. I want to be ___ electrician.", "answer": "an", "explanation": "electrician → an."}
+            ]
+        }
+    ],
+    # Вариант 9
+    [
+        {
+            "type": "complex",
+            "text": "Задание 1. Напишите профессию по описанию.\n\n1. She works in a law firm. She is a ___.\n2. He flies drones for filming. He is a ___.\n3. She teaches singing. She is a ___.\n4. He builds roads. He is a ___.\n5. She writes science fiction books. She is a ___.\n6. He plays chess professionally. He is a ___.\n7. She takes care of plants in a greenhouse. She is a ___.\n8. He fixes watches. He is a ___.\n9. She translates documents. She is a ___.\n10. He works as a bodyguard. He is a ___.",
+            "subtasks": [
+                {"question": "1. She works in a law firm. She is a ___.", "answer": "lawyer", "explanation": "Юрист работает в юридической фирме."},
+                {"question": "2. He flies drones for filming. He is a ___.", "answer": "drone pilot", "explanation": "Оператор дрона."},
+                {"question": "3. She teaches singing. She is a ___.", "answer": "singing teacher", "explanation": "Учитель пения."},
+                {"question": "4. He builds roads. He is a ___.", "answer": "road builder", "explanation": "Дорожный строитель."},
+                {"question": "5. She writes science fiction books. She is a ___.", "answer": "science fiction writer", "explanation": "Писатель научной фантастики."},
+                {"question": "6. He plays chess professionally. He is a ___.", "answer": "chess player", "explanation": "Шахматист."},
+                {"question": "7. She takes care of plants in a greenhouse. She is a ___.", "answer": "gardener", "explanation": "Садовник ухаживает за растениями."},
+                {"question": "8. He fixes watches. He is a ___.", "answer": "watchmaker", "explanation": "Часовщик чинит часы."},
+                {"question": "9. She translates documents. She is a ___.", "answer": "translator", "explanation": "Переводчик документов."},
+                {"question": "10. He works as a bodyguard. He is a ___.", "answer": "bodyguard", "explanation": "Телохранитель."}
+            ]
+        },
+        {
+            "type": "complex",
+            "text": "Задание 2. Переведите предложения на английский.\n\n1. Она юрист.\n2. Он оператор дрона.\n3. Мы учителя пения.\n4. Я дорожный строитель.\n5. Ты писатель научной фантастики?\n6. Он не шахматист, он часовщик.\n7. Моя сестра – садовник.\n8. Мой брат работает переводчиком.\n9. Они телохранители.\n10. Я хочу быть шахматистом.",
+            "subtasks": [
+                {"question": "1. Она юрист.", "answer": "She is a lawyer.", "explanation": "She is a lawyer."},
+                {"question": "2. Он оператор дрона.", "answer": "He is a drone pilot.", "explanation": "He is a drone pilot."},
+                {"question": "3. Мы учителя пения.", "answer": "We are singing teachers.", "explanation": "We are singing teachers."},
+                {"question": "4. Я дорожный строитель.", "answer": "I am a road builder.", "explanation": "I am a road builder."},
+                {"question": "5. Ты писатель научной фантастики?", "answer": "Are you a science fiction writer?", "explanation": "Are you a science fiction writer?"},
+                {"question": "6. Он не шахматист, он часовщик.", "answer": "He is not a chess player, he is a watchmaker.", "explanation": "He is not a chess player, he is a watchmaker."},
+                {"question": "7. Моя сестра – садовник.", "answer": "My sister is a gardener.", "explanation": "My sister is a gardener."},
+                {"question": "8. Мой брат работает переводчиком.", "answer": "My brother works as a translator.", "explanation": "works as a translator."},
+                {"question": "9. Они телохранители.", "answer": "They are bodyguards.", "explanation": "They are bodyguards."},
+                {"question": "10. Я хочу быть шахматистом.", "answer": "I want to be a chess player.", "explanation": "I want to be a chess player."}
+            ]
+        },
+        {
+            "type": "complex",
+            "text": "Задание 3. Вставьте am, is, are.\n\n1. She ___ a lawyer.\n2. He ___ a drone pilot.\n3. We ___ singing teachers.\n4. I ___ a road builder.\n5. You ___ a science fiction writer.\n6. He ___ a watchmaker.\n7. My sister ___ a gardener.\n8. My brother ___ a translator.\n9. They ___ bodyguards.\n10. I ___ a chess player.",
+            "subtasks": [
+                {"question": "1. She ___ a lawyer.", "answer": "is", "explanation": "she + is."},
+                {"question": "2. He ___ a drone pilot.", "answer": "is", "explanation": "he + is."},
+                {"question": "3. We ___ singing teachers.", "answer": "are", "explanation": "we + are."},
+                {"question": "4. I ___ a road builder.", "answer": "am", "explanation": "I + am."},
+                {"question": "5. You ___ a science fiction writer.", "answer": "are", "explanation": "you + are."},
+                {"question": "6. He ___ a watchmaker.", "answer": "is", "explanation": "he + is."},
+                {"question": "7. My sister ___ a gardener.", "answer": "is", "explanation": "sister = she → is."},
+                {"question": "8. My brother ___ a translator.", "answer": "is", "explanation": "brother = he → is."},
+                {"question": "9. They ___ bodyguards.", "answer": "are", "explanation": "they + are."},
+                {"question": "10. I ___ a chess player.", "answer": "am", "explanation": "I + am."}
+            ]
+        }
+    ],
+    # Вариант 10
+    [
+        {
+            "type": "complex",
+            "text": "Задание 1. Напишите профессию по описанию.\n\n1. She works in a bakery. She is a ___.\n2. He flies a spaceship. He is an ___.\n3. She teaches biology. She is a ___.\n4. He builds bridges. He is a ___.\n5. She writes poetry. She is a ___.\n6. He plays the saxophone. He is a ___.\n7. She designs websites. She is a ___.\n8. He repairs shoes. He is a ___.\n9. She works in a museum. She is a ___.\n10. He drives an ambulance. He is a ___.",
+            "subtasks": [
+                {"question": "1. She works in a bakery. She is a ___.", "answer": "baker", "explanation": "Пекарь работает в пекарне."},
+                {"question": "2. He flies a spaceship. He is an ___.", "answer": "astronaut", "explanation": "Астронавт управляет космическим кораблём."},
+                {"question": "3. She teaches biology. She is a ___.", "answer": "biology teacher", "explanation": "Учитель биологии."},
+                {"question": "4. He builds bridges. He is a ___.", "answer": "bridge builder", "explanation": "Строитель мостов."},
+                {"question": "5. She writes poetry. She is a ___.", "answer": "poet", "explanation": "Поэт пишет стихи."},
+                {"question": "6. He plays the saxophone. He is a ___.", "answer": "saxophonist", "explanation": "Саксофонист играет на саксофоне."},
+                {"question": "7. She designs websites. She is a ___.", "answer": "web designer", "explanation": "Веб-дизайнер создаёт сайты."},
+                {"question": "8. He repairs shoes. He is a ___.", "answer": "shoemaker", "explanation": "Сапожник ремонтирует обувь."},
+                {"question": "9. She works in a museum. She is a ___.", "answer": "museum curator", "explanation": "Хранитель музея."},
+                {"question": "10. He drives an ambulance. He is a ___.", "answer": "ambulance driver", "explanation": "Водитель скорой помощи."}
+            ]
+        },
+        {
+            "type": "complex",
+            "text": "Задание 2. Переведите предложения на английский.\n\n1. Она пекарь.\n2. Он астронавт.\n3. Мы учителя биологии.\n4. Я строитель мостов.\n5. Ты поэт?\n6. Он не саксофонист, он веб-дизайнер.\n7. Моя сестра – сапожник.\n8. Мой брат работает хранителем музея.\n9. Они водители скорой помощи.\n10. Я хочу быть астронавтом.",
+            "subtasks": [
+                {"question": "1. Она пекарь.", "answer": "She is a baker.", "explanation": "She is a baker."},
+                {"question": "2. Он астронавт.", "answer": "He is an astronaut.", "explanation": "He is an astronaut."},
+                {"question": "3. Мы учителя биологии.", "answer": "We are biology teachers.", "explanation": "We are biology teachers."},
+                {"question": "4. Я строитель мостов.", "answer": "I am a bridge builder.", "explanation": "I am a bridge builder."},
+                {"question": "5. Ты поэт?", "answer": "Are you a poet?", "explanation": "Are you a poet?"},
+                {"question": "6. Он не саксофонист, он веб-дизайнер.", "answer": "He is not a saxophonist, he is a web designer.", "explanation": "He is not a saxophonist, he is a web designer."},
+                {"question": "7. Моя сестра – сапожник.", "answer": "My sister is a shoemaker.", "explanation": "My sister is a shoemaker."},
+                {"question": "8. Мой брат работает хранителем музея.", "answer": "My brother works as a museum curator.", "explanation": "works as a museum curator."},
+                {"question": "9. Они водители скорой помощи.", "answer": "They are ambulance drivers.", "explanation": "They are ambulance drivers."},
+                {"question": "10. Я хочу быть астронавтом.", "answer": "I want to be an astronaut.", "explanation": "I want to be an astronaut."}
+            ]
+        },
+        {
+            "type": "complex",
+            "text": "Задание 3. Вставьте a, an или —.\n\n1. She is ___ baker.\n2. He is ___ astronaut.\n3. We are ___ biology teachers.\n4. I am ___ bridge builder.\n5. Are you ___ poet?\n6. He is ___ web designer.\n7. My sister is ___ shoemaker.\n8. My brother is ___ museum curator.\n9. They are ___ ambulance drivers.\n10. I want to be ___ astronaut.",
+            "subtasks": [
+                {"question": "1. She is ___ baker.", "answer": "a", "explanation": "baker → a."},
+                {"question": "2. He is ___ astronaut.", "answer": "an", "explanation": "astronaut → an."},
+                {"question": "3. We are ___ biology teachers.", "answer": "—", "explanation": "мн.ч."},
+                {"question": "4. I am ___ bridge builder.", "answer": "a", "explanation": "bridge builder → a."},
+                {"question": "5. Are you ___ poet?", "answer": "a", "explanation": "poet → a."},
+                {"question": "6. He is ___ web designer.", "answer": "a", "explanation": "web designer → a."},
+                {"question": "7. My sister is ___ shoemaker.", "answer": "a", "explanation": "shoemaker → a."},
+                {"question": "8. My brother is ___ museum curator.", "answer": "a", "explanation": "museum curator → a."},
+                {"question": "9. They are ___ ambulance drivers.", "answer": "—", "explanation": "мн.ч."},
+                {"question": "10. I want to be ___ astronaut.", "answer": "an", "explanation": "astronaut → an."}
+            ]
+        }
     ]
+]
   },
   "hobbyVocabulary": {
     "title": "Лексика: хобби и свободное время",
@@ -53767,7 +54279,519 @@ LEVEL_A1_CONTENT = {
         "question": "Чем отличаются 'holiday' и 'vacation'?",
         "answer": "Holiday – британский вариант, vacation – американский. В британском 'holiday' также означает праздник."
       }
+    ],
+"practice_bank": [
+    # ==================== ВАРИАНТ 1 ====================
+    [
+        {
+            "type": "complex",
+            "text": "Задание 1. Вставьте пропущенные буквы, чтобы получилось слово по теме «Путешествия».\n\n1. tr___p (поездка)\n2. j___rney (путь)\n3. h___liday (отпуск)\n4. v___cation (отпуск, амер.)\n5. t___cket (билет)\n6. p___ssport (паспорт)\n7. l___ggage (багаж)\n8. f___ght (авиарейс)\n9. h___tel (отель)\n10. b___ch (пляж)",
+            "subtasks": [
+                {"question": "1. tr___p (поездка)", "answer": "trip", "explanation": "trip — поездка туда-обратно."},
+                {"question": "2. j___rney (путь)", "answer": "journey", "explanation": "journey — путь в одну сторону."},
+                {"question": "3. h___liday (отпуск)", "answer": "holiday", "explanation": "holiday — британский вариант отпуска."},
+                {"question": "4. v___cation (отпуск, амер.)", "answer": "vacation", "explanation": "vacation — американский вариант отпуска."},
+                {"question": "5. t___cket (билет)", "answer": "ticket", "explanation": "ticket — билет."},
+                {"question": "6. p___ssport (паспорт)", "answer": "passport", "explanation": "passport — паспорт."},
+                {"question": "7. l___ggage (багаж)", "answer": "luggage", "explanation": "luggage — багаж."},
+                {"question": "8. f___ght (авиарейс)", "answer": "flight", "explanation": "flight — авиарейс."},
+                {"question": "9. h___tel (отель)", "answer": "hotel", "explanation": "hotel — отель."},
+                {"question": "10. b___ch (пляж)", "answer": "beach", "explanation": "beach — пляж."}
+            ]
+        },
+        {
+            "type": "complex",
+            "text": "Задание 2. Переведите предложения на английский.\n\n1. Я еду в отпуск в Испанию.\n2. Я забронировал отель.\n3. У меня есть паспорт и билет.\n4. Мы упаковали чемоданы.\n5. Она останавливается в отеле.\n6. Они посещают музей.\n7. Мы делаем фотографии.\n8. Он купается в море.\n9. Я хочу взобраться на гору.\n10. Где аэропорт?",
+            "subtasks": [
+                {"question": "1. Я еду в отпуск в Испанию.", "answer": "I am going on holiday to Spain.", "explanation": "I am going on holiday to Spain."},
+                {"question": "2. Я забронировал отель.", "answer": "I booked a hotel.", "explanation": "I booked a hotel."},
+                {"question": "3. У меня есть паспорт и билет.", "answer": "I have a passport and a ticket.", "explanation": "I have a passport and a ticket."},
+                {"question": "4. Мы упаковали чемоданы.", "answer": "We packed our suitcases.", "explanation": "We packed our suitcases."},
+                {"question": "5. Она останавливается в отеле.", "answer": "She stays in a hotel.", "explanation": "She stays in a hotel."},
+                {"question": "6. Они посещают музей.", "answer": "They visit a museum.", "explanation": "They visit a museum."},
+                {"question": "7. Мы делаем фотографии.", "answer": "We take photos.", "explanation": "We take photos."},
+                {"question": "8. Он купается в море.", "answer": "He swims in the sea.", "explanation": "He swims in the sea."},
+                {"question": "9. Я хочу взобраться на гору.", "answer": "I want to climb a mountain.", "explanation": "I want to climb a mountain."},
+                {"question": "10. Где аэропорт?", "answer": "Where is the airport?", "explanation": "Where is the airport?"}
+            ]
+        },
+        {
+            "type": "complex",
+            "text": "Задание 3. Выберите правильное слово: travel, trip или journey.\n\n1. We had a wonderful ___ to Paris. (поездка)\n2. The ___ from London to Edinburgh takes 5 hours. (путь)\n3. I love ___ by train. (путешествие вообще)\n4. Our ___ to Rome was very pleasant. (поездка)\n5. The ___ to the mountains is long. (путь)\n6. She enjoys ___ abroad. (путешествовать)\n7. How was your ___ to the USA? (поездка)\n8. The ___ across the desert was difficult. (путь)\n9. Do you like ___? (путешествовать)\n10. My ___ to work takes 30 minutes. (путь)",
+            "subtasks": [
+                {"question": "1. We had a wonderful ___ to Paris.", "answer": "trip", "explanation": "trip — поездка туда-обратно."},
+                {"question": "2. The ___ from London to Edinburgh takes 5 hours.", "answer": "journey", "explanation": "journey — путь в одну сторону."},
+                {"question": "3. I love ___ by train.", "answer": "travel", "explanation": "travel — путешествие вообще."},
+                {"question": "4. Our ___ to Rome was very pleasant.", "answer": "trip", "explanation": "trip — поездка."},
+                {"question": "5. The ___ to the mountains is long.", "answer": "journey", "explanation": "journey — путь."},
+                {"question": "6. She enjoys ___ abroad.", "answer": "travel", "explanation": "travel как деятельность."},
+                {"question": "7. How was your ___ to the USA?", "answer": "trip", "explanation": "trip — поездка."},
+                {"question": "8. The ___ across the desert was difficult.", "answer": "journey", "explanation": "journey — путь."},
+                {"question": "9. Do you like ___?", "answer": "travel", "explanation": "travel как общее понятие."},
+                {"question": "10. My ___ to work takes 30 minutes.", "answer": "journey", "explanation": "journey — путь."}
+            ]
+        }
+    ],
+    # ==================== ВАРИАНТ 2 ====================
+    [
+        {
+            "type": "complex",
+            "text": "Задание 1. Вставьте пропущенные буквы.\n\n1. g___de (гид)\n2. c___mp___ite (кемпинг)\n3. h___stel (хостел)\n4. s___tcase (чемодан)\n5. v___sa (виза)\n6. a___rport (аэропорт)\n7. sh___p (корабль)\n8. cr___se (круиз)\n9. l___ke (озеро)\n10. f___rest (лес)",
+            "subtasks": [
+                {"question": "1. g___de (гид)", "answer": "guide", "explanation": "guide — гид."},
+                {"question": "2. c___mp___ite (кемпинг)", "answer": "campsite", "explanation": "campsite — кемпинг."},
+                {"question": "3. h___stel (хостел)", "answer": "hostel", "explanation": "hostel — хостел."},
+                {"question": "4. s___tcase (чемодан)", "answer": "suitcase", "explanation": "suitcase — чемодан."},
+                {"question": "5. v___sa (виза)", "answer": "visa", "explanation": "visa — виза."},
+                {"question": "6. a___rport (аэропорт)", "answer": "airport", "explanation": "airport — аэропорт."},
+                {"question": "7. sh___p (корабль)", "answer": "ship", "explanation": "ship — корабль."},
+                {"question": "8. cr___se (круиз)", "answer": "cruise", "explanation": "cruise — круиз."},
+                {"question": "9. l___ke (озеро)", "answer": "lake", "explanation": "lake — озеро."},
+                {"question": "10. f___rest (лес)", "answer": "forest", "explanation": "forest — лес."}
+            ]
+        },
+        {
+            "type": "complex",
+            "text": "Задание 2. Переведите предложения на английский.\n\n1. Мы едем в круиз.\n2. Я бронирую хостел.\n3. У них есть виза.\n4. Мы идём на пляж.\n5. Она посетила музей.\n6. Я хочу увидеть озеро.\n7. Они остановились в отеле.\n8. Мы взяли билеты.\n9. Где находится автобусная остановка?\n10. Я люблю путешествовать.",
+            "subtasks": [
+                {"question": "1. Мы едем в круиз.", "answer": "We are going on a cruise.", "explanation": "We are going on a cruise."},
+                {"question": "2. Я бронирую хостел.", "answer": "I am booking a hostel.", "explanation": "I am booking a hostel."},
+                {"question": "3. У них есть виза.", "answer": "They have a visa.", "explanation": "They have a visa."},
+                {"question": "4. Мы идём на пляж.", "answer": "We are going to the beach.", "explanation": "We are going to the beach."},
+                {"question": "5. Она посетила музей.", "answer": "She visited a museum.", "explanation": "She visited a museum."},
+                {"question": "6. Я хочу увидеть озеро.", "answer": "I want to see the lake.", "explanation": "I want to see the lake."},
+                {"question": "7. Они остановились в отеле.", "answer": "They stayed in a hotel.", "explanation": "They stayed in a hotel."},
+                {"question": "8. Мы взяли билеты.", "answer": "We took tickets.", "explanation": "We took tickets."},
+                {"question": "9. Где находится автобусная остановка?", "answer": "Where is the bus stop?", "explanation": "Where is the bus stop?"},
+                {"question": "10. Я люблю путешествовать.", "answer": "I love travelling.", "explanation": "I love travelling."}
+            ]
+        },
+        {
+            "type": "complex",
+            "text": "Задание 3. Вставьте правильный артикль: a, an, the или — (если не нужен).\n\n1. I booked ___ hotel near ___ beach.\n2. She wants to visit ___ museum.\n3. We are going on ___ cruise.\n4. He has ___ passport and ___ visa.\n5. They stayed in ___ hostel in ___ city centre.\n6. Is there ___ airport near here?\n7. I need ___ ticket to London.\n8. We took ___ photos during ___ trip.\n9. She packed ___ suitcase.\n10. He climbed ___ mountain.",
+            "subtasks": [
+                {"question": "1. I booked ___ hotel near ___ beach.", "answer": "a, the", "explanation": "a hotel (неопределённый), the beach (конкретный)."},
+                {"question": "2. She wants to visit ___ museum.", "answer": "a", "explanation": "a museum — неопределённый."},
+                {"question": "3. We are going on ___ cruise.", "answer": "a", "explanation": "a cruise — неопределённый."},
+                {"question": "4. He has ___ passport and ___ visa.", "answer": "a, a", "explanation": "a passport, a visa."},
+                {"question": "5. They stayed in ___ hostel in ___ city centre.", "answer": "a, the", "explanation": "a hostel, the city centre."},
+                {"question": "6. Is there ___ airport near here?", "answer": "an", "explanation": "an airport (гласный звук)."},
+                {"question": "7. I need ___ ticket to London.", "answer": "a", "explanation": "a ticket."},
+                {"question": "8. We took ___ photos during ___ trip.", "answer": "—, the", "explanation": "photos (мн.ч. без артикля), the trip (конкретная)."},
+                {"question": "9. She packed ___ suitcase.", "answer": "a", "explanation": "a suitcase."},
+                {"question": "10. He climbed ___ mountain.", "answer": "a", "explanation": "a mountain."}
+            ]
+        }
+    ],
+    # ==================== ВАРИАНТ 3 ====================
+    [
+        {
+            "type": "complex",
+            "text": "Задание 1. Вставьте пропущенные буквы.\n\n1. t___urist (турист)\n2. g___ide (гид)\n3. h___tel (отель)\n4. l___ggage (багаж)\n5. s___tcase (чемодан)\n6. t___cket (билет)\n7. p___ssport (паспорт)\n8. f___light (рейс)\n9. a___rport (аэропорт)\n10. b___ach (пляж)",
+            "subtasks": [
+                {"question": "1. t___urist (турист)", "answer": "tourist", "explanation": "tourist — турист."},
+                {"question": "2. g___ide (гид)", "answer": "guide", "explanation": "guide — гид."},
+                {"question": "3. h___tel (отель)", "answer": "hotel", "explanation": "hotel — отель."},
+                {"question": "4. l___ggage (багаж)", "answer": "luggage", "explanation": "luggage — багаж."},
+                {"question": "5. s___tcase (чемодан)", "answer": "suitcase", "explanation": "suitcase — чемодан."},
+                {"question": "6. t___cket (билет)", "answer": "ticket", "explanation": "ticket — билет."},
+                {"question": "7. p___ssport (паспорт)", "answer": "passport", "explanation": "passport — паспорт."},
+                {"question": "8. f___light (рейс)", "answer": "flight", "explanation": "flight — авиарейс."},
+                {"question": "9. a___rport (аэропорт)", "answer": "airport", "explanation": "airport — аэропорт."},
+                {"question": "10. b___ach (пляж)", "answer": "beach", "explanation": "beach — пляж."}
+            ]
+        },
+        {
+            "type": "complex",
+            "text": "Задание 2. Переведите предложения на английский.\n\n1. Мы путешествуем по Европе.\n2. Я забронировал номер в отеле.\n3. Она упаковала чемодан.\n4. Мы купили билеты на поезд.\n5. Они посетили много музеев.\n6. Я хочу искупаться в море.\n7. Он поднялся на гору.\n8. Мы сделали красивые фотографии.\n9. Где находится камера хранения?\n10. Я люблю отдыхать на пляже.",
+            "subtasks": [
+                {"question": "1. Мы путешествуем по Европе.", "answer": "We are travelling around Europe.", "explanation": "We are travelling around Europe."},
+                {"question": "2. Я забронировал номер в отеле.", "answer": "I booked a room in a hotel.", "explanation": "I booked a room in a hotel."},
+                {"question": "3. Она упаковала чемодан.", "answer": "She packed her suitcase.", "explanation": "She packed her suitcase."},
+                {"question": "4. Мы купили билеты на поезд.", "answer": "We bought train tickets.", "explanation": "We bought train tickets."},
+                {"question": "5. Они посетили много музеев.", "answer": "They visited many museums.", "explanation": "They visited many museums."},
+                {"question": "6. Я хочу искупаться в море.", "answer": "I want to swim in the sea.", "explanation": "I want to swim in the sea."},
+                {"question": "7. Он поднялся на гору.", "answer": "He climbed the mountain.", "explanation": "He climbed the mountain."},
+                {"question": "8. Мы сделали красивые фотографии.", "answer": "We took beautiful photos.", "explanation": "We took beautiful photos."},
+                {"question": "9. Где находится камера хранения?", "answer": "Where is the luggage storage?", "explanation": "Where is the luggage storage?"},
+                {"question": "10. Я люблю отдыхать на пляже.", "answer": "I like to relax on the beach.", "explanation": "I like to relax on the beach."}
+            ]
+        },
+        {
+            "type": "complex",
+            "text": "Задание 3. Вставьте правильное слово: holiday или vacation.\n\n1. We are going on ___ next week. (британский)\n2. She spent her ___ in Florida. (американский)\n3. This is a public ___ in the UK. (праздник)\n4. When does your summer ___ start? (американский)\n5. They are on ___ in Greece. (британский)\n6. I need a ___ from work. (отпуск, общий)\n7. We had a wonderful ___ in Italy. (британский)\n8. My family goes on ___ every year. (американский)\n9. It's a national ___ today. (праздник)\n10. Do you get a winter ___? (отпуск, общий)",
+            "subtasks": [
+                {"question": "1. We are going on ___ next week. (британский)", "answer": "holiday", "explanation": "В британском английском — holiday."},
+                {"question": "2. She spent her ___ in Florida. (американский)", "answer": "vacation", "explanation": "В американском — vacation."},
+                {"question": "3. This is a public ___ in the UK. (праздник)", "answer": "holiday", "explanation": "public holiday — государственный праздник."},
+                {"question": "4. When does your summer ___ start? (американский)", "answer": "vacation", "explanation": "summer vacation — летние каникулы (амер.)."},
+                {"question": "5. They are on ___ in Greece. (британский)", "answer": "holiday", "explanation": "on holiday — в отпуске (брит.)."},
+                {"question": "6. I need a ___ from work. (отпуск, общий)", "answer": "holiday", "explanation": "можно и holiday, и vacation. Выберите holiday."},
+                {"question": "7. We had a wonderful ___ in Italy. (британский)", "answer": "holiday", "explanation": "holiday — отпуск в Британии."},
+                {"question": "8. My family goes on ___ every year. (американский)", "answer": "vacation", "explanation": "go on vacation — американский вариант."},
+                {"question": "9. It's a national ___ today. (праздник)", "answer": "holiday", "explanation": "national holiday — государственный праздник."},
+                {"question": "10. Do you get a winter ___? (отпуск, общий)", "answer": "holiday", "explanation": "winter holiday — зимний отпуск/каникулы."}
+            ]
+        }
+    ],
+    # ==================== ВАРИАНТ 4 ====================
+    [
+        {
+            "type": "complex",
+            "text": "Задание 1. Вставьте пропущенные буквы.\n\n1. tr___vel (путешествовать)\n2. t___ip (поездка)\n3. j___urney (путь)\n4. h___liday (отпуск)\n5. v___cation (отпуск, амер.)\n6. t___urist (турист)\n7. g___ide (гид)\n8. l___ggage (багаж)\n9. s___itcase (чемодан)\n10. p___ssport (паспорт)",
+            "subtasks": [
+                {"question": "1. tr___vel (путешествовать)", "answer": "travel", "explanation": "travel — путешествовать."},
+                {"question": "2. t___ip (поездка)", "answer": "trip", "explanation": "trip — поездка."},
+                {"question": "3. j___urney (путь)", "answer": "journey", "explanation": "journey — путь."},
+                {"question": "4. h___liday (отпуск)", "answer": "holiday", "explanation": "holiday — отпуск (брит.)."},
+                {"question": "5. v___cation (отпуск, амер.)", "answer": "vacation", "explanation": "vacation — отпуск (амер.)."},
+                {"question": "6. t___urist (турист)", "answer": "tourist", "explanation": "tourist — турист."},
+                {"question": "7. g___ide (гид)", "answer": "guide", "explanation": "guide — гид."},
+                {"question": "8. l___ggage (багаж)", "answer": "luggage", "explanation": "luggage — багаж."},
+                {"question": "9. s___itcase (чемодан)", "answer": "suitcase", "explanation": "suitcase — чемодан."},
+                {"question": "10. p___ssport (паспорт)", "answer": "passport", "explanation": "passport — паспорт."}
+            ]
+        },
+        {
+            "type": "complex",
+            "text": "Задание 2. Переведите предложения на английский.\n\n1. Мы путешествуем на поезде.\n2. Она забронировала отель у моря.\n3. Я взял с собой чемодан.\n4. Мы купили билеты на самолёт.\n5. Они посетили известные достопримечательности.\n6. Я хочу отдохнуть на озере.\n7. Он поднялся на высокую гору.\n8. Мы снимали видео во время поездки.\n9. Где можно найти туристический офис?\n10. Я люблю отдыхать в лесу.",
+            "subtasks": [
+                {"question": "1. Мы путешествуем на поезде.", "answer": "We are travelling by train.", "explanation": "by train — на поезде."},
+                {"question": "2. Она забронировала отель у моря.", "answer": "She booked a hotel by the sea.", "explanation": "by the sea — у моря."},
+                {"question": "3. Я взял с собой чемодан.", "answer": "I took my suitcase with me.", "explanation": "took with me — взял с собой."},
+                {"question": "4. Мы купили билеты на самолёт.", "answer": "We bought plane tickets.", "explanation": "plane tickets — билеты на самолёт."},
+                {"question": "5. Они посетили известные достопримечательности.", "answer": "They visited famous sights.", "explanation": "famous sights — известные достопримечательности."},
+                {"question": "6. Я хочу отдохнуть на озере.", "answer": "I want to relax by the lake.", "explanation": "relax by the lake — отдохнуть на озере."},
+                {"question": "7. Он поднялся на высокую гору.", "answer": "He climbed a high mountain.", "explanation": "climbed a high mountain — поднялся на высокую гору."},
+                {"question": "8. Мы снимали видео во время поездки.", "answer": "We took videos during the trip.", "explanation": "took videos — снимали видео."},
+                {"question": "9. Где можно найти туристический офис?", "answer": "Where can I find the tourist office?", "explanation": "tourist office — туристический офис."},
+                {"question": "10. Я люблю отдыхать в лесу.", "answer": "I like to relax in the forest.", "explanation": "in the forest — в лесу."}
+            ]
+        },
+        {
+            "type": "complex",
+            "text": "Задание 3. Вставьте предлоги: to, in, on, at, by (где необходимо).\n\n1. I am going ___ holiday ___ Spain.\n2. She stays ___ a hotel.\n3. We travel ___ train.\n4. He swam ___ the sea.\n5. They arrived ___ the airport.\n6. I want to relax ___ the beach.\n7. We climbed ___ the mountain.\n8. She is ___ vacation ___ July.\n9. They visited museums ___ London.\n10. He booked a room ___ the hotel.",
+            "subtasks": [
+                {"question": "1. I am going ___ holiday ___ Spain.", "answer": "on, to", "explanation": "go on holiday, to Spain."},
+                {"question": "2. She stays ___ a hotel.", "answer": "in", "explanation": "stay in a hotel."},
+                {"question": "3. We travel ___ train.", "answer": "by", "explanation": "by train."},
+                {"question": "4. He swam ___ the sea.", "answer": "in", "explanation": "swim in the sea."},
+                {"question": "5. They arrived ___ the airport.", "answer": "at", "explanation": "arrive at the airport."},
+                {"question": "6. I want to relax ___ the beach.", "answer": "on", "explanation": "relax on the beach."},
+                {"question": "7. We climbed ___ the mountain.", "answer": "up", "explanation": "climb up the mountain."},
+                {"question": "8. She is ___ vacation ___ July.", "answer": "on, in", "explanation": "on vacation, in July."},
+                {"question": "9. They visited museums ___ London.", "answer": "in", "explanation": "in London."},
+                {"question": "10. He booked a room ___ the hotel.", "answer": "in", "explanation": "in the hotel."}
+            ]
+        }
+    ],
+    # ==================== ВАРИАНТ 5 ====================
+    [
+        {
+            "type": "complex",
+            "text": "Задание 1. Вставьте пропущенные буквы.\n\n1. c___mp___ite (кемпинг)\n2. h___stel (хостел)\n3. c___uise (круиз)\n4. b___ach (пляж)\n5. l___ke (озеро)\n6. f___rest (лес)\n7. m___untain (гора)\n8. sh___p (корабль)\n9. a___rport (аэропорт)\n10. t___icket (билет)",
+            "subtasks": [
+                {"question": "1. c___mp___ite (кемпинг)", "answer": "campsite", "explanation": "campsite — кемпинг."},
+                {"question": "2. h___stel (хостел)", "answer": "hostel", "explanation": "hostel — хостел."},
+                {"question": "3. c___uise (круиз)", "answer": "cruise", "explanation": "cruise — круиз."},
+                {"question": "4. b___ach (пляж)", "answer": "beach", "explanation": "beach — пляж."},
+                {"question": "5. l___ke (озеро)", "answer": "lake", "explanation": "lake — озеро."},
+                {"question": "6. f___rest (лес)", "answer": "forest", "explanation": "forest — лес."},
+                {"question": "7. m___untain (гора)", "answer": "mountain", "explanation": "mountain — гора."},
+                {"question": "8. sh___p (корабль)", "answer": "ship", "explanation": "ship — корабль."},
+                {"question": "9. a___rport (аэропорт)", "answer": "airport", "explanation": "airport — аэропорт."},
+                {"question": "10. t___icket (билет)", "answer": "ticket", "explanation": "ticket — билет."}
+            ]
+        },
+        {
+            "type": "complex",
+            "text": "Задание 2. Переведите предложения на английский.\n\n1. Они путешествуют на корабле.\n2. Мы остановились в кемпинге.\n3. Она забронировала хостел.\n4. Я купил билет на круиз.\n5. Мы отдыхали на пляже.\n6. Он плавал в озере.\n7. Они гуляли в лесу.\n8. Я хочу увидеть горы.\n9. Где находится аэропорт?\n10. У них есть билеты на самолёт.",
+            "subtasks": [
+                {"question": "1. Они путешествуют на корабле.", "answer": "They are travelling by ship.", "explanation": "by ship — на корабле."},
+                {"question": "2. Мы остановились в кемпинге.", "answer": "We stayed at a campsite.", "explanation": "at a campsite — в кемпинге."},
+                {"question": "3. Она забронировала хостел.", "answer": "She booked a hostel.", "explanation": "booked a hostel."},
+                {"question": "4. Я купил билет на круиз.", "answer": "I bought a ticket for a cruise.", "explanation": "a ticket for a cruise."},
+                {"question": "5. Мы отдыхали на пляже.", "answer": "We relaxed on the beach.", "explanation": "on the beach."},
+                {"question": "6. Он плавал в озере.", "answer": "He swam in the lake.", "explanation": "in the lake."},
+                {"question": "7. Они гуляли в лесу.", "answer": "They walked in the forest.", "explanation": "in the forest."},
+                {"question": "8. Я хочу увидеть горы.", "answer": "I want to see the mountains.", "explanation": "see the mountains."},
+                {"question": "9. Где находится аэропорт?", "answer": "Where is the airport?", "explanation": "Where is the airport?"},
+                {"question": "10. У них есть билеты на самолёт.", "answer": "They have plane tickets.", "explanation": "plane tickets."}
+            ]
+        },
+        {
+            "type": "complex",
+            "text": "Задание 3. Вставьте правильный глагол: go, book, pack, catch, stay, visit, take, swim, climb.\n\n1. We ___ on holiday next week.\n2. She ___ a hotel near the beach.\n3. I need to ___ my suitcase.\n4. They ___ a flight at 7 am.\n5. He ___ in a hostel for two nights.\n6. We ___ museums and galleries.\n7. I ___ photos of the sunset.\n8. She ___ in the sea every morning.\n9. He ___ the mountain yesterday.\n10. We ___ to the lake on Sunday.",
+            "subtasks": [
+                {"question": "1. We ___ on holiday next week.", "answer": "are going", "explanation": "are going on holiday."},
+                {"question": "2. She ___ a hotel near the beach.", "answer": "booked", "explanation": "booked a hotel."},
+                {"question": "3. I need to ___ my suitcase.", "answer": "pack", "explanation": "pack a suitcase."},
+                {"question": "4. They ___ a flight at 7 am.", "answer": "catch", "explanation": "catch a flight."},
+                {"question": "5. He ___ in a hostel for two nights.", "answer": "stayed", "explanation": "stayed in a hostel."},
+                {"question": "6. We ___ museums and galleries.", "answer": "visited", "explanation": "visited museums."},
+                {"question": "7. I ___ photos of the sunset.", "answer": "took", "explanation": "took photos."},
+                {"question": "8. She ___ in the sea every morning.", "answer": "swims", "explanation": "swims in the sea."},
+                {"question": "9. He ___ the mountain yesterday.", "answer": "climbed", "explanation": "climbed the mountain."},
+                {"question": "10. We ___ to the lake on Sunday.", "answer": "went", "explanation": "went to the lake."}
+            ]
+        }
+    ],
+    # ==================== ВАРИАНТ 6 ====================
+    [
+        {
+            "type": "complex",
+            "text": "Задание 1. Вставьте пропущенные буквы.\n\n1. tr___vel (путешествие)\n2. t___ip (поездка)\n3. j___urney (путь)\n4. h___liday (отпуск)\n5. v___cation (отпуск, амер.)\n6. t___urist (турист)\n7. g___ide (гид)\n8. l___ggage (багаж)\n9. s___itcase (чемодан)\n10. p___ssport (паспорт)",
+            "subtasks": [
+                {"question": "1. tr___vel (путешествие)", "answer": "travel", "explanation": "travel — путешествие."},
+                {"question": "2. t___ip (поездка)", "answer": "trip", "explanation": "trip — поездка."},
+                {"question": "3. j___urney (путь)", "answer": "journey", "explanation": "journey — путь."},
+                {"question": "4. h___liday (отпуск)", "answer": "holiday", "explanation": "holiday — отпуск (брит.)."},
+                {"question": "5. v___cation (отпуск, амер.)", "answer": "vacation", "explanation": "vacation — отпуск (амер.)."},
+                {"question": "6. t___urist (турист)", "answer": "tourist", "explanation": "tourist — турист."},
+                {"question": "7. g___ide (гид)", "answer": "guide", "explanation": "guide — гид."},
+                {"question": "8. l___ggage (багаж)", "answer": "luggage", "explanation": "luggage — багаж."},
+                {"question": "9. s___itcase (чемодан)", "answer": "suitcase", "explanation": "suitcase — чемодан."},
+                {"question": "10. p___ssport (паспорт)", "answer": "passport", "explanation": "passport — паспорт."}
+            ]
+        },
+        {
+            "type": "complex",
+            "text": "Задание 2. Переведите предложения на английский.\n\n1. Мы путешествуем на автобусе.\n2. Она остановилась в хостеле.\n3. Я упаковал чемодан.\n4. Мы купили билеты на поезд.\n5. Они посетили музей современного искусства.\n6. Я хочу искупаться в море.\n7. Он поднялся на гору.\n8. Мы сделали много фотографий.\n9. Где находится туристический офис?\n10. Я люблю путешествовать.",
+            "subtasks": [
+                {"question": "1. Мы путешествуем на автобусе.", "answer": "We are travelling by bus.", "explanation": "by bus."},
+                {"question": "2. Она остановилась в хостеле.", "answer": "She stayed in a hostel.", "explanation": "stayed in a hostel."},
+                {"question": "3. Я упаковал чемодан.", "answer": "I packed my suitcase.", "explanation": "packed my suitcase."},
+                {"question": "4. Мы купили билеты на поезд.", "answer": "We bought train tickets.", "explanation": "train tickets."},
+                {"question": "5. Они посетили музей современного искусства.", "answer": "They visited the museum of modern art.", "explanation": "museum of modern art."},
+                {"question": "6. Я хочу искупаться в море.", "answer": "I want to swim in the sea.", "explanation": "swim in the sea."},
+                {"question": "7. Он поднялся на гору.", "answer": "He climbed the mountain.", "explanation": "climbed the mountain."},
+                {"question": "8. Мы сделали много фотографий.", "answer": "We took many photos.", "explanation": "took many photos."},
+                {"question": "9. Где находится туристический офис?", "answer": "Where is the tourist office?", "explanation": "tourist office."},
+                {"question": "10. Я люблю путешествовать.", "answer": "I love travelling.", "explanation": "love travelling."}
+            ]
+        },
+        {
+            "type": "complex",
+            "text": "Задание 3. Вставьте правильную форму глагола: Present Simple или Present Continuous.\n\n1. I ___ (travel) to Paris every summer.\n2. She ___ (book) a hotel at the moment.\n3. They ___ (stay) in a hostel this week.\n4. We ___ (visit) museums every day.\n5. He ___ (swim) in the lake now.\n6. My parents ___ (go) on holiday next month.\n7. I ___ (pack) my suitcase right now.\n8. We ___ (take) photos all the time.\n9. She ___ (climb) mountains often.\n10. They ___ (catch) the train now.",
+            "subtasks": [
+                {"question": "1. I ___ (travel) to Paris every summer.", "answer": "travel", "explanation": "every summer — Present Simple."},
+                {"question": "2. She ___ (book) a hotel at the moment.", "answer": "is booking", "explanation": "at the moment — Present Continuous."},
+                {"question": "3. They ___ (stay) in a hostel this week.", "answer": "are staying", "explanation": "this week — Present Continuous."},
+                {"question": "4. We ___ (visit) museums every day.", "answer": "visit", "explanation": "every day — Present Simple."},
+                {"question": "5. He ___ (swim) in the lake now.", "answer": "is swimming", "explanation": "now — Present Continuous."},
+                {"question": "6. My parents ___ (go) on holiday next month.", "answer": "are going", "explanation": "next month — будущее, но можно Present Continuous."},
+                {"question": "7. I ___ (pack) my suitcase right now.", "answer": "am packing", "explanation": "right now — Present Continuous."},
+                {"question": "8. We ___ (take) photos all the time.", "answer": "take", "explanation": "all the time — Present Simple."},
+                {"question": "9. She ___ (climb) mountains often.", "answer": "climbs", "explanation": "often — Present Simple."},
+                {"question": "10. They ___ (catch) the train now.", "answer": "are catching", "explanation": "now — Present Continuous."}
+            ]
+        }
+    ],
+    # ==================== ВАРИАНТ 7 ====================
+    [
+        {
+            "type": "complex",
+            "text": "Задание 1. Вставьте пропущенные буквы.\n\n1. h___liday (отпуск)\n2. v___cation (отпуск, амер.)\n3. tr___p (поездка)\n4. j___urney (путь)\n5. t___icket (билет)\n6. p___ssport (паспорт)\n7. l___ggage (багаж)\n8. f___light (рейс)\n9. a___rport (аэропорт)\n10. b___ach (пляж)",
+            "subtasks": [
+                {"question": "1. h___liday (отпуск)", "answer": "holiday", "explanation": "holiday."},
+                {"question": "2. v___cation (отпуск, амер.)", "answer": "vacation", "explanation": "vacation."},
+                {"question": "3. tr___p (поездка)", "answer": "trip", "explanation": "trip."},
+                {"question": "4. j___urney (путь)", "answer": "journey", "explanation": "journey."},
+                {"question": "5. t___icket (билет)", "answer": "ticket", "explanation": "ticket."},
+                {"question": "6. p___ssport (паспорт)", "answer": "passport", "explanation": "passport."},
+                {"question": "7. l___ggage (багаж)", "answer": "luggage", "explanation": "luggage."},
+                {"question": "8. f___light (рейс)", "answer": "flight", "explanation": "flight."},
+                {"question": "9. a___rport (аэропорт)", "answer": "airport", "explanation": "airport."},
+                {"question": "10. b___ach (пляж)", "answer": "beach", "explanation": "beach."}
+            ]
+        },
+        {
+            "type": "complex",
+            "text": "Задание 2. Переведите предложения на английский.\n\n1. Мы путешествуем на самолёте.\n2. Она забронировала номер в отеле.\n3. Я взял с собой паспорт и билет.\n4. Мы купили сувениры.\n5. Они посетили старый замок.\n6. Я хочу отдохнуть на пляже.\n7. Он пересёк озеро на лодке.\n8. Мы гуляли по лесу.\n9. Где находится вокзал?\n10. Я люблю ходить в походы.",
+            "subtasks": [
+                {"question": "1. Мы путешествуем на самолёте.", "answer": "We are travelling by plane.", "explanation": "by plane."},
+                {"question": "2. Она забронировала номер в отеле.", "answer": "She booked a room in the hotel.", "explanation": "booked a room."},
+                {"question": "3. Я взял с собой паспорт и билет.", "answer": "I took my passport and ticket with me.", "explanation": "took... with me."},
+                {"question": "4. Мы купили сувениры.", "answer": "We bought souvenirs.", "explanation": "bought souvenirs."},
+                {"question": "5. Они посетили старый замок.", "answer": "They visited an old castle.", "explanation": "old castle."},
+                {"question": "6. Я хочу отдохнуть на пляже.", "answer": "I want to relax on the beach.", "explanation": "relax on the beach."},
+                {"question": "7. Он пересёк озеро на лодке.", "answer": "He crossed the lake by boat.", "explanation": "crossed by boat."},
+                {"question": "8. Мы гуляли по лесу.", "answer": "We walked through the forest.", "explanation": "walked through the forest."},
+                {"question": "9. Где находится вокзал?", "answer": "Where is the railway station?", "explanation": "railway station."},
+                {"question": "10. Я люблю ходить в походы.", "answer": "I like to go hiking.", "explanation": "go hiking."}
+            ]
+        },
+        {
+            "type": "complex",
+            "text": "Задание 3. Вставьте правильную форму: trip, journey, travel.\n\n1. She went on a business ___ to London.\n2. The ___ by train took 3 hours.\n3. I like to ___ to new countries.\n4. Our ___ to the mountains was fantastic.\n5. It was a long ___ from the airport to the hotel.\n6. He writes books about his ___ adventures.\n7. We had a short ___ to the museum.\n8. The ___ across the ocean was rough.\n9. Do you enjoy foreign ___?\n10. My daily ___ to work is 20 minutes.",
+            "subtasks": [
+                {"question": "1. She went on a business ___ to London.", "answer": "trip", "explanation": "business trip — деловая поездка."},
+                {"question": "2. The ___ by train took 3 hours.", "answer": "journey", "explanation": "journey — путь."},
+                {"question": "3. I like to ___ to new countries.", "answer": "travel", "explanation": "to travel — глагол."},
+                {"question": "4. Our ___ to the mountains was fantastic.", "answer": "trip", "explanation": "trip — поездка."},
+                {"question": "5. It was a long ___ from the airport to the hotel.", "answer": "journey", "explanation": "journey — путь."},
+                {"question": "6. He writes books about his ___ adventures.", "answer": "travel", "explanation": "travel adventures — приключения в путешествиях."},
+                {"question": "7. We had a short ___ to the museum.", "answer": "trip", "explanation": "trip."},
+                {"question": "8. The ___ across the ocean was rough.", "answer": "journey", "explanation": "journey."},
+                {"question": "9. Do you enjoy foreign ___?", "answer": "travel", "explanation": "foreign travel — зарубежные поездки."},
+                {"question": "10. My daily ___ to work is 20 minutes.", "answer": "journey", "explanation": "journey."}
+            ]
+        }
+    ],
+    # ==================== ВАРИАНТ 8 ====================
+    [
+        {
+            "type": "complex",
+            "text": "Задание 1. Вставьте пропущенные буквы.\n\n1. t___ourist (турист)\n2. g___ide (гид)\n3. h___tel (отель)\n4. c___ampsite (кемпинг)\n5. h___ostel (хостел)\n6. s___uitcase (чемодан)\n7. t___icket (билет)\n8. p___assport (паспорт)\n9. f___light (рейс)\n10. a___irport (аэропорт)",
+            "subtasks": [
+                {"question": "1. t___ourist (турист)", "answer": "tourist", "explanation": "tourist."},
+                {"question": "2. g___ide (гид)", "answer": "guide", "explanation": "guide."},
+                {"question": "3. h___tel (отель)", "answer": "hotel", "explanation": "hotel."},
+                {"question": "4. c___ampsite (кемпинг)", "answer": "campsite", "explanation": "campsite."},
+                {"question": "5. h___ostel (хостел)", "answer": "hostel", "explanation": "hostel."},
+                {"question": "6. s___uitcase (чемодан)", "answer": "suitcase", "explanation": "suitcase."},
+                {"question": "7. t___icket (билет)", "answer": "ticket", "explanation": "ticket."},
+                {"question": "8. p___assport (паспорт)", "answer": "passport", "explanation": "passport."},
+                {"question": "9. f___light (рейс)", "answer": "flight", "explanation": "flight."},
+                {"question": "10. a___irport (аэропорт)", "answer": "airport", "explanation": "airport."}
+            ]
+        },
+        {
+            "type": "complex",
+            "text": "Задание 2. Переведите предложения на английский.\n\n1. Мы путешествуем на машине.\n2. Она остановилась в отеле.\n3. Я заказал билеты онлайн.\n4. Мы посетили национальный парк.\n5. Они были в круизе.\n6. Я хочу искупаться в озере.\n7. Он взбирался на скалы.\n8. Мы фотографировали диких животных.\n9. Где можно купить сувениры?\n10. Я люблю отдыхать на природе.",
+            "subtasks": [
+                {"question": "1. Мы путешествуем на машине.", "answer": "We are travelling by car.", "explanation": "by car."},
+                {"question": "2. Она остановилась в отеле.", "answer": "She stayed in a hotel.", "explanation": "stayed in a hotel."},
+                {"question": "3. Я заказал билеты онлайн.", "answer": "I booked tickets online.", "explanation": "booked online."},
+                {"question": "4. Мы посетили национальный парк.", "answer": "We visited a national park.", "explanation": "national park."},
+                {"question": "5. Они были в круизе.", "answer": "They were on a cruise.", "explanation": "on a cruise."},
+                {"question": "6. Я хочу искупаться в озере.", "answer": "I want to swim in the lake.", "explanation": "swim in the lake."},
+                {"question": "7. Он взбирался на скалы.", "answer": "He climbed the rocks.", "explanation": "climbed the rocks."},
+                {"question": "8. Мы фотографировали диких животных.", "answer": "We took photos of wild animals.", "explanation": "took photos of wild animals."},
+                {"question": "9. Где можно купить сувениры?", "answer": "Where can I buy souvenirs?", "explanation": "buy souvenirs."},
+                {"question": "10. Я люблю отдыхать на природе.", "answer": "I like to relax in nature.", "explanation": "relax in nature."}
+            ]
+        },
+        {
+            "type": "complex",
+            "text": "Задание 3. Вставьте артикль: a, an, the или —.\n\n1. We went on ___ cruise.\n2. She bought ___ ticket for ___ train.\n3. He has ___ passport.\n4. We stayed in ___ hotel near ___ airport.\n5. They visited ___ museum of natural history.\n6. I took ___ photos of ___ mountains.\n7. She packed ___ suitcase.\n8. He swam in ___ lake.\n9. We walked in ___ forest.\n10. He wants to climb ___ mountain.",
+            "subtasks": [
+                {"question": "1. We went on ___ cruise.", "answer": "a", "explanation": "a cruise."},
+                {"question": "2. She bought ___ ticket for ___ train.", "answer": "a, the", "explanation": "a ticket for the train."},
+                {"question": "3. He has ___ passport.", "answer": "a", "explanation": "a passport."},
+                {"question": "4. We stayed in ___ hotel near ___ airport.", "answer": "a, the", "explanation": "a hotel near the airport."},
+                {"question": "5. They visited ___ museum of natural history.", "answer": "the", "explanation": "the museum (конкретный)."},
+                {"question": "6. I took ___ photos of ___ mountains.", "answer": "—, the", "explanation": "photos (мн.ч.), the mountains (конкретные)."},
+                {"question": "7. She packed ___ suitcase.", "answer": "a", "explanation": "a suitcase."},
+                {"question": "8. He swam in ___ lake.", "answer": "the", "explanation": "the lake (конкретное)."},
+                {"question": "9. We walked in ___ forest.", "answer": "the", "explanation": "the forest."},
+                {"question": "10. He wants to climb ___ mountain.", "answer": "a", "explanation": "a mountain."}
+            ]
+        }
+    ],
+    # ==================== ВАРИАНТ 9 ====================
+    [
+        {
+            "type": "complex",
+            "text": "Задание 1. Вставьте пропущенные буквы.\n\n1. tr___vel (путешествовать)\n2. t___ip (поездка)\n3. j___ourney (путь)\n4. h___oliday (отпуск)\n5. v___acation (отпуск, амер.)\n6. t___ourist (турист)\n7. g___uide (гид)\n8. l___uggage (багаж)\n9. s___uitcase (чемодан)\n10. p___assport (паспорт)",
+            "subtasks": [
+                {"question": "1. tr___vel (путешествовать)", "answer": "travel", "explanation": "travel."},
+                {"question": "2. t___ip (поездка)", "answer": "trip", "explanation": "trip."},
+                {"question": "3. j___ourney (путь)", "answer": "journey", "explanation": "journey."},
+                {"question": "4. h___oliday (отпуск)", "answer": "holiday", "explanation": "holiday."},
+                {"question": "5. v___acation (отпуск, амер.)", "answer": "vacation", "explanation": "vacation."},
+                {"question": "6. t___ourist (турист)", "answer": "tourist", "explanation": "tourist."},
+                {"question": "7. g___uide (гид)", "answer": "guide", "explanation": "guide."},
+                {"question": "8. l___uggage (багаж)", "answer": "luggage", "explanation": "luggage."},
+                {"question": "9. s___uitcase (чемодан)", "answer": "suitcase", "explanation": "suitcase."},
+                {"question": "10. p___assport (паспорт)", "answer": "passport", "explanation": "passport."}
+            ]
+        },
+        {
+            "type": "complex",
+            "text": "Задание 2. Переведите предложения на английский.\n\n1. Мы едем в отпуск на море.\n2. Она бронирует отель сейчас.\n3. Я уже упаковал чемодан.\n4. Мы купили билеты на самолёт.\n5. Они посетят музей завтра.\n6. Я люблю плавать в море.\n7. Он часто ходит в горы.\n8. Мы делаем красивые фото.\n9. Где я могу обменять деньги?\n10. Я хочу посетить Париж.",
+            "subtasks": [
+                {"question": "1. Мы едем в отпуск на море.", "answer": "We are going on holiday to the seaside.", "explanation": "to the seaside."},
+                {"question": "2. Она бронирует отель сейчас.", "answer": "She is booking a hotel now.", "explanation": "is booking."},
+                {"question": "3. Я уже упаковал чемодан.", "answer": "I have already packed my suitcase.", "explanation": "have already packed."},
+                {"question": "4. Мы купили билеты на самолёт.", "answer": "We bought plane tickets.", "explanation": "plane tickets."},
+                {"question": "5. Они посетят музей завтра.", "answer": "They will visit the museum tomorrow.", "explanation": "will visit."},
+                {"question": "6. Я люблю плавать в море.", "answer": "I like to swim in the sea.", "explanation": "swim in the sea."},
+                {"question": "7. Он часто ходит в горы.", "answer": "He often goes to the mountains.", "explanation": "goes to the mountains."},
+                {"question": "8. Мы делаем красивые фото.", "answer": "We take beautiful photos.", "explanation": "take photos."},
+                {"question": "9. Где я могу обменять деньги?", "answer": "Where can I exchange money?", "explanation": "exchange money."},
+                {"question": "10. Я хочу посетить Париж.", "answer": "I want to visit Paris.", "explanation": "visit Paris."}
+            ]
+        },
+        {
+            "type": "complex",
+            "text": "Задание 3. Выберите правильное слово: holiday или vacation.\n\n1. I need to book a ___ for next month.\n2. She is going on ___ with her family.\n3. The school ___ starts in June.\n4. He took a week's ___ from work.\n5. We spent our summer ___ at the beach.\n6. It's a public ___ in our country.\n7. They are on ___ in Australia.\n8. She is planning a ___ to Europe.\n9. We had a great ___ in the mountains.\n10. Do you get a winter ___?",
+            "subtasks": [
+                {"question": "1. I need to book a ___ for next month.", "answer": "holiday", "explanation": "book a holiday."},
+                {"question": "2. She is going on ___ with her family.", "answer": "holiday", "explanation": "going on holiday."},
+                {"question": "3. The school ___ starts in June.", "answer": "vacation", "explanation": "school vacation (амер.)."},
+                {"question": "4. He took a week's ___ from work.", "answer": "holiday", "explanation": "a week's holiday."},
+                {"question": "5. We spent our summer ___ at the beach.", "answer": "vacation", "explanation": "summer vacation (амер.)."},
+                {"question": "6. It's a public ___ in our country.", "answer": "holiday", "explanation": "public holiday."},
+                {"question": "7. They are on ___ in Australia.", "answer": "holiday", "explanation": "on holiday."},
+                {"question": "8. She is planning a ___ to Europe.", "answer": "trip", "explanation": "trip — поездка, не holiday/vacation."},
+                {"question": "9. We had a great ___ in the mountains.", "answer": "holiday", "explanation": "great holiday."},
+                {"question": "10. Do you get a winter ___?", "answer": "holiday", "explanation": "winter holiday."}
+            ]
+        }
+    ],
+    # ==================== ВАРИАНТ 10 ====================
+    [
+        {
+            "type": "complex",
+            "text": "Задание 1. Вставьте пропущенные буквы.\n\n1. h___oliday (отпуск)\n2. v___acation (отпуск, амер.)\n3. t___rip (поездка)\n4. j___ourney (путь)\n5. t___icket (билет)\n6. p___assport (паспорт)\n7. l___uggage (багаж)\n8. f___light (рейс)\n9. a___irport (аэропорт)\n10. b___each (пляж)",
+            "subtasks": [
+                {"question": "1. h___oliday (отпуск)", "answer": "holiday", "explanation": "holiday."},
+                {"question": "2. v___acation (отпуск, амер.)", "answer": "vacation", "explanation": "vacation."},
+                {"question": "3. t___rip (поездка)", "answer": "trip", "explanation": "trip."},
+                {"question": "4. j___ourney (путь)", "answer": "journey", "explanation": "journey."},
+                {"question": "5. t___icket (билет)", "answer": "ticket", "explanation": "ticket."},
+                {"question": "6. p___assport (паспорт)", "answer": "passport", "explanation": "passport."},
+                {"question": "7. l___uggage (багаж)", "answer": "luggage", "explanation": "luggage."},
+                {"question": "8. f___light (рейс)", "answer": "flight", "explanation": "flight."},
+                {"question": "9. a___irport (аэропорт)", "answer": "airport", "explanation": "airport."},
+                {"question": "10. b___each (пляж)", "answer": "beach", "explanation": "beach."}
+            ]
+        },
+        {
+            "type": "complex",
+            "text": "Задание 2. Переведите предложения на английский.\n\n1. Мы путешествуем за границу.\n2. Она остановилась в кемпинге.\n3. Я потерял свой паспорт.\n4. Мы заказали такси до аэропорта.\n5. Они посетили Лувр.\n6. Я хочу полежать на пляже.\n7. Он переплыл озеро.\n8. Мы гуляли по лесу.\n9. Где находится остановка автобуса?\n10. Я люблю планировать поездки.",
+            "subtasks": [
+                {"question": "1. Мы путешествуем за границу.", "answer": "We are travelling abroad.", "explanation": "travel abroad."},
+                {"question": "2. Она остановилась в кемпинге.", "answer": "She stayed at a campsite.", "explanation": "at a campsite."},
+                {"question": "3. Я потерял свой паспорт.", "answer": "I have lost my passport.", "explanation": "lost my passport."},
+                {"question": "4. Мы заказали такси до аэропорта.", "answer": "We ordered a taxi to the airport.", "explanation": "taxi to the airport."},
+                {"question": "5. Они посетили Лувр.", "answer": "They visited the Louvre.", "explanation": "the Louvre."},
+                {"question": "6. Я хочу полежать на пляже.", "answer": "I want to lie on the beach.", "explanation": "lie on the beach."},
+                {"question": "7. Он переплыл озеро.", "answer": "He swam across the lake.", "explanation": "swam across the lake."},
+                {"question": "8. Мы гуляли по лесу.", "answer": "We walked through the forest.", "explanation": "walked through the forest."},
+                {"question": "9. Где находится остановка автобуса?", "answer": "Where is the bus stop?", "explanation": "bus stop."},
+                {"question": "10. Я люблю планировать поездки.", "answer": "I like to plan trips.", "explanation": "plan trips."}
+            ]
+        },
+        {
+            "type": "complex",
+            "text": "Задание 3. Вставьте правильный глагол: book, pack, catch, visit, take, swim, climb, stay, go, buy.\n\n1. We ___ on holiday to Italy.\n2. She ___ a room at the hotel.\n3. I need to ___ my suitcase.\n4. They ___ a flight to London.\n5. He ___ in a hostel for three days.\n6. We ___ museums in Rome.\n7. I ___ photos of the Colosseum.\n8. She ___ in the Mediterranean sea.\n9. He ___ the mountain yesterday.\n10. We ___ souvenirs for our friends.",
+            "subtasks": [
+                {"question": "1. We ___ on holiday to Italy.", "answer": "are going", "explanation": "are going on holiday."},
+                {"question": "2. She ___ a room at the hotel.", "answer": "booked", "explanation": "booked a room."},
+                {"question": "3. I need to ___ my suitcase.", "answer": "pack", "explanation": "pack."},
+                {"question": "4. They ___ a flight to London.", "answer": "caught", "explanation": "caught a flight."},
+                {"question": "5. He ___ in a hostel for three days.", "answer": "stayed", "explanation": "stayed."},
+                {"question": "6. We ___ museums in Rome.", "answer": "visited", "explanation": "visited."},
+                {"question": "7. I ___ photos of the Colosseum.", "answer": "took", "explanation": "took photos."},
+                {"question": "8. She ___ in the Mediterranean sea.", "answer": "swam", "explanation": "swam."},
+                {"question": "9. He ___ the mountain yesterday.", "answer": "climbed", "explanation": "climbed."},
+                {"question": "10. We ___ souvenirs for our friends.", "answer": "bought", "explanation": "bought souvenirs."}
+            ]
+        }
     ]
+]
   },
   "shoppingVocabulary": {
     "title": "Лексика: покупки",

@@ -5,8 +5,9 @@ from data.users import get_user_state, set_user_state
 from services.deepseek import chat
 from speaking.services.ai import is_safe_message, process_roleplay_message, process_voice_message
 from handlers.lesson_utils import check_answer
-from handlers.lessons import show_practice_task
-
+def some_function():
+    from handlers.lessons import show_practice_task
+    # используйте show_practice_task
 router = Router()
 
 CATEGORIES = [
