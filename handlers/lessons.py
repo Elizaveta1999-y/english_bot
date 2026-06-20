@@ -1443,3 +1443,62 @@ async def practice_exit(callback: CallbackQuery):
     await show_main_menu(callback.message, edit=True)
     await callback.answer()
 # (они у вас были рабочими). Если их нет – дайте знать, я добавлю.
+
+# ========== ОБРАБОТКА ТЕКСТОВЫХ ОТВЕТОВ НА ПРАКТИКУ ==========
+
+def parse_user_answers(text: str, expected_count: int) -> list:
+    """Разбивает ответы по запятой, возвращает список длиной expected_count."""
+    parts = [part.strip() for part in text.split(',') if part.strip()]
+    while len(parts) < expected_count:
+        parts.append("")
+    return parts[:expected_count]
+
+@router.message(F.text)
+async def handle_practice_answer(message: Message):
+    user_id = message.from_user.id
+    user_state = get_user_state(user_id)
+    lesson_key = user_state.get("practice_lesson_key")
+    if not lesson_key:
+        return  # не практика – пропускаем
+
+    practice = user_state.get("practice", {}).get(lesson_key)
+    if not practice:
+        return
+
+    task_idx = practice.get("session_index", 0)
+    tasks = practice.get("tasks", [])
+    if task_idx >= len(tasks):
+        return
+
+    task = tasks[task_idx]
+    subtasks = task.get("subtasks", [])
+    expected = len(subtasks)
+
+    # Парсим ответы пользователя
+    user_answers = parse_user_answers(message.text, expected)
+
+    correct_count = 0
+    feedback_lines = []
+    for i, subtask in enumerate(subtasks):
+        user_ans = user_answers[i] if i < len(user_answers) else ""
+        correct_ans = subtask.get("answer", "").strip()
+        # Сравниваем без учёта регистра и лишних пробелов
+        if user_ans.lower() == correct_ans.lower():
+            correct_count += 1
+            feedback_lines.append(f"✅ {subtask['question']} – верно!")
+        else:
+            feedback_lines.append(
+                f"❌ {subtask['question']} – неверно. Правильно: {correct_ans}.\n"
+                f"Пояснение: {subtask.get('explanation', '')}"
+            )
+
+    # Обновляем статистику сессии
+    practice["session_correct"] = practice.get("session_correct", 0) + correct_count
+    practice["session_index"] = task_idx + 1
+    set_user_state(user_id, user_state)
+
+    # Отправляем обратную связь по заданию
+    await message.answer("\n\n".join(feedback_lines))
+
+    # Показываем следующее задание или итог
+    await show_practice_task(message, user_id, edit=False)
