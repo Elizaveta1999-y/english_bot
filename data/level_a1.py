@@ -54792,7 +54792,6 @@ LEVEL_A1_CONTENT = {
         }
     ]
 ]
-]
   },
   "shoppingVocabulary": {
     "title": "Лексика: покупки",
