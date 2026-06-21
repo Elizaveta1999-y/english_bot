@@ -2,6 +2,7 @@
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton, Message
 from data.users import get_user_state, set_user_state
 from handlers.profile import update_stats_after_practice
+import re
 
 async def show_practice_task(message: Message, user_id: int, edit: bool = True):
     from data.users import get_user_state, set_user_state
@@ -51,8 +52,11 @@ async def show_practice_task(message: Message, user_id: int, edit: bool = True):
     
     # --- ТЕКУЩЕЕ ЗАДАНИЕ ---
     task = tasks[task_idx]
-    # Заменяем разделитель с "запятую" на "«;»"
-    task_text = task['text'].replace("запятую", "«;»")
+    task_text = task['text']
+    
+    # Заменяем "через запятую", "запятую", "запятая" на «;»
+    task_text = re.sub(r'(через\s+)?запят(ую|ая|ой|ые|ых|ыми)?', '«;»', task_text, flags=re.IGNORECASE)
+    
     header = f"Задание {task_idx+1}/{len(tasks)}"
     full_text = f"{header}\n{task_text}"
     
