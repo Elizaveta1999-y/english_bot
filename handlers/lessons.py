@@ -914,6 +914,16 @@ def parse_user_answers(text: str, expected_count: int) -> list:
         parts.append("")
     return parts[:expected_count]
 
+import re  # убедитесь, что импорт есть
+
+def normalize_answer(text: str) -> str:
+    """Убирает пробелы, знаки пунктуации в конце и приводит к нижнему регистру."""
+    text = text.strip()
+    # Убираем точку, запятую, восклицательный знак, вопрос в конце
+    text = re.sub(r'[.,!?]+$', '', text)
+    # Приводим к нижнему регистру
+    return text.lower()
+
 @router.message(F.text)
 async def handle_practice_answer(message: Message):
     user_id = message.from_user.id
@@ -935,18 +945,19 @@ async def handle_practice_answer(message: Message):
     subtasks = task.get("subtasks", [])
     expected = len(subtasks)
 
-    # Разбиваем по ";"
-    parts = [part.strip() for part in message.text.split(';') if part.strip()]
-    while len(parts) < expected:
-        parts.append("")
-    user_answers = parts[:expected]
+    # Разбиваем ответы строго по ";"
+    raw_parts = [part.strip() for part in message.text.split(';') if part.strip()]
+    while len(raw_parts) < expected:
+        raw_parts.append("")
+    user_answers = raw_parts[:expected]
 
     correct_count = 0
     feedback_lines = []
     for i, subtask in enumerate(subtasks):
         user_ans = user_answers[i] if i < len(user_answers) else ""
         correct_ans = subtask.get("answer", "").strip()
-        if user_ans.lower() == correct_ans.lower():
+        # Нормализуем оба ответа
+        if normalize_answer(user_ans) == normalize_answer(correct_ans):
             correct_count += 1
             feedback_lines.append(f"{i+1}. Верно")
         else:
