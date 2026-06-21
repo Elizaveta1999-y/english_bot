@@ -944,14 +944,14 @@ async def handle_practice_answer(message: Message):
         user_ans = user_answers[i] if i < len(user_answers) else ""
         correct_ans = subtask.get("answer", "").strip()
         if user_ans.lower() == correct_ans.lower():
-            correct_count += 1
-            feedback_lines.append(f"{subtask['question']} – верно!")   # БЕЗ ✅
-        else:
-            feedback_lines.append(
-                f"{subtask['question']} – неверно. Правильно: {correct_ans}.\n"
-                f"Пояснение: {subtask.get('explanation', '')}"
-            )   # БЕЗ ❌
-
+    correct_count += 1
+    feedback_lines.append(f"✔️ {correct_ans}")
+else:
+    feedback_lines.append(
+        f"{i+1}. Неверно\n"
+        f"✔️ {correct_ans}\n"
+        f"{subtask.get('explanation', '')}"
+    )
     practice["session_correct"] = practice.get("session_correct", 0) + correct_count
     practice["session_index"] = task_idx + 1
     set_user_state(user_id, user_state)

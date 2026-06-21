@@ -39,8 +39,7 @@ async def show_practice_task(message: Message, user_id: int, edit: bool = True):
         text = f"📊 Практика завершена!\nПравильно: {correct} из {total} ({percent}%)\n\n"
         text += "🎉 Отлично!" if percent >= 80 else "📚 Повторите тему и попробуйте снова."
         keyboard = InlineKeyboardMarkup(inline_keyboard=[
-            [InlineKeyboardButton(text="📚 Вернуться к уроку", callback_data=f"back_to_lesson_{lesson_key}")],
-            [InlineKeyboardButton(text="🏠 Главное меню", callback_data="back_to_main")]
+            [InlineKeyboardButton(text="📚 Вернуться к уроку", callback_data=f"back_to_lesson_{lesson_key}")]
         ])
         if edit:
             await message.edit_text(text, reply_markup=keyboard)
@@ -50,17 +49,16 @@ async def show_practice_task(message: Message, user_id: int, edit: bool = True):
         set_user_state(user_id, user_state)
         return
     
+    # --- ТЕКУЩЕЕ ЗАДАНИЕ ---
     task = tasks[task_idx]
-    text = f"📝 {task['text']}\n\n"
-    text += "Введите все ответы через запятую\n"
-    progress = f"\nЗадание {task_idx+1} из {len(tasks)}. Правильных: {practice['session_correct']}"  
+    text = f"{task['text']}\n\n"
+    text += 'Введите все ответы через ";"\n'   # экранируем кавычки
+    progress = f"\nЗадание {task_idx+1}/{len(tasks)}. Правильных: {practice['session_correct']}"
     full_text = text + progress
     
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
-        [InlineKeyboardButton(text="Подсказка", callback_data=f"practice_hint_{lesson_key}"),
-         InlineKeyboardButton(text="Пропустить", callback_data=f"practice_skip_{lesson_key}")],
-        [InlineKeyboardButton(text="Завершить", callback_data=f"practice_exit_{lesson_key}"),
-         InlineKeyboardButton(text="Главное меню", callback_data="back_to_main")]
+        [InlineKeyboardButton(text="Пропустить", callback_data=f"practice_skip_{lesson_key}"),
+         InlineKeyboardButton(text="Завершить", callback_data=f"practice_exit_{lesson_key}")]
     ])
     
     if edit:
