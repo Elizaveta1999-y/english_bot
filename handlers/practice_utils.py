@@ -50,12 +50,12 @@ async def show_practice_task(message: Message, user_id: int, edit: bool = True):
         return
 
     # --- ТЕКУЩЕЕ ЗАДАНИЕ ---
+         # --- ТЕКУЩЕЕ ЗАДАНИЕ ---
     task = tasks[task_idx]
-    task_text = task['text']
-    instruction = "\n\nВведите все ответы через «;»"
     header = f"Задание {task_idx+1}/{len(tasks)}"
-    full_text = f"{header}\n{task_text}{instruction}"
-    
+    instruction = "Введите все ответы через «;»"
+    full_text = f"{header}\n{instruction}\n\n{task['text']}"
+   
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(text="Пропустить", callback_data=f"practice_skip_{lesson_key}"),
          InlineKeyboardButton(text="Завершить", callback_data=f"practice_exit_{lesson_key}")]
