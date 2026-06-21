@@ -20,10 +20,12 @@ async def show_practice_task(message: Message, user_id: int, edit: bool = True):
     task_idx = practice.get("session_index", 0)
     tasks = practice.get("tasks", [])
     if task_idx >= len(tasks):
-        correct = practice.get("session_correct", 0)
-        total = len(tasks)
-        wrong = total - correct
+                correct = practice.get("session_correct", 0)
+        # total_subtasks — общее количество подзадач за всю сессию
+        total_subtasks = practice.get("total_subtasks", 0)
+        wrong = total_subtasks - correct
         update_stats_after_practice(user_id, correct, wrong)
+        percent = int(correct/total_subtasks*100) if total_subtasks else 0
 
         # --- УВЕЛИЧИВАЕМ ВАРИАНТ ДЛЯ СЛЕДУЮЩЕГО РАЗА ---
         current_variant = practice.get("variant_index", 0)
