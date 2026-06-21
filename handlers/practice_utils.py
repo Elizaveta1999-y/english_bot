@@ -4,6 +4,7 @@ from data.users import get_user_state, set_user_state
 from handlers.profile import update_stats_after_practice
 
 async def show_practice_task(message: Message, user_id: int, edit: bool = True):
+    from data.users import get_user_state, set_user_state
     user_state = get_user_state(user_id)
     lesson_key = user_state.get("practice_lesson_key")
     if not lesson_key:
@@ -23,16 +24,17 @@ async def show_practice_task(message: Message, user_id: int, edit: bool = True):
         wrong = total - correct
         update_stats_after_practice(user_id, correct, wrong)
 
-# --- УВЕЛИЧИВАЕМ ВАРИАНТ ДЛЯ СЛЕДУЮЩЕГО РАЗА ---
-current_variant = practice.get("variant_index", 0)
-lesson_content = user_state.get("current_lesson", {}).get("content", {})
-practice_bank = lesson_content.get("practice_bank", [])
-if practice_bank:
-    next_variant = (current_variant + 1) % len(practice_bank)
-    if "practice_variant" not in user_state:
-        user_state["practice_variant"] = {}
-    user_state["practice_variant"][key] = next_variant
-# --------------------------------------------
+        # --- УВЕЛИЧИВАЕМ ВАРИАНТ ДЛЯ СЛЕДУЮЩЕГО РАЗА ---
+        current_variant = practice.get("variant_index", 0)
+        lesson_content = user_state.get("current_lesson", {}).get("content", {})
+        practice_bank = lesson_content.get("practice_bank", [])
+        if practice_bank:
+            next_variant = (current_variant + 1) % len(practice_bank)
+            if "practice_variant" not in user_state:
+                user_state["practice_variant"] = {}
+            user_state["practice_variant"][lesson_key] = next_variant
+        # --------------------------------------------
+
         percent = int(correct/total*100) if total else 0
         text = f"📊 Практика завершена!\nПравильно: {correct} из {total} ({percent}%)\n\n"
         text += "🎉 Отлично!" if percent >= 80 else "📚 Повторите тему и попробуйте снова."
@@ -51,7 +53,7 @@ if practice_bank:
     task = tasks[task_idx]
     text = f"📝 {task['text']}\n\n"
     text += "Введите все ответы через запятую\n"
-    progress = f"\nЗадание {task_idx+1} из {len(tasks)}. ✅ Правильных: {practice['session_correct']}"
+    progress = f"\nЗадание {task_idx+1} из {len(tasks)}. Правильных: {practice['session_correct']}"  
     full_text = text + progress
     
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
