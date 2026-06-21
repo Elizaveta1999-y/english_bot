@@ -22,6 +22,17 @@ async def show_practice_task(message: Message, user_id: int, edit: bool = True):
         total = len(tasks)
         wrong = total - correct
         update_stats_after_practice(user_id, correct, wrong)
+
+# --- УВЕЛИЧИВАЕМ ВАРИАНТ ДЛЯ СЛЕДУЮЩЕГО РАЗА ---
+current_variant = practice.get("variant_index", 0)
+lesson_content = user_state.get("current_lesson", {}).get("content", {})
+practice_bank = lesson_content.get("practice_bank", [])
+if practice_bank:
+    next_variant = (current_variant + 1) % len(practice_bank)
+    if "practice_variant" not in user_state:
+        user_state["practice_variant"] = {}
+    user_state["practice_variant"][key] = next_variant
+# --------------------------------------------
         percent = int(correct/total*100) if total else 0
         text = f"📊 Практика завершена!\nПравильно: {correct} из {total} ({percent}%)\n\n"
         text += "🎉 Отлично!" if percent >= 80 else "📚 Повторите тему и попробуйте снова."
@@ -44,10 +55,10 @@ async def show_practice_task(message: Message, user_id: int, edit: bool = True):
     full_text = text + progress
     
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
-        [InlineKeyboardButton(text="💡 Подсказка", callback_data=f"practice_hint_{lesson_key}"),
-         InlineKeyboardButton(text="⏩ Пропустить", callback_data=f"practice_skip_{lesson_key}")],
-        [InlineKeyboardButton(text="❌ Завершить", callback_data=f"practice_exit_{lesson_key}"),
-         InlineKeyboardButton(text="🏠 Главное меню", callback_data="back_to_main")]
+        [InlineKeyboardButton(text="Подсказка", callback_data=f"practice_hint_{lesson_key}"),
+         InlineKeyboardButton(text="Пропустить", callback_data=f"practice_skip_{lesson_key}")],
+        [InlineKeyboardButton(text="Завершить", callback_data=f"practice_exit_{lesson_key}"),
+         InlineKeyboardButton(text="Главное меню", callback_data="back_to_main")]
     ])
     
     if edit:
