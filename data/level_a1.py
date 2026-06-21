@@ -5470,1707 +5470,517 @@ LEVEL_A1_CONTENT = {
       }
     ],
     "practice_bank": [
-      [
+    # ==================== ВАРИАНТ 1 ====================
+    [
         {
-          "type": "complex",
-          "text": "Вставьте правильное прилагательное: big, small, tall, short, long, fast, slow, happy, sad, old, new, young.\n\n1. The elephant is ___. (большой)\n2. The mouse is ___. (маленький)\n3. My grandfather is very ___. (старый)\n4. The girl is ___. (счастливая)\n5. The car is ___. (быстрый)\n6. The turtle is ___. (медленный)\n7. The building is very ___. (высокий)\n8. The pencil is ___. (короткий)\n9. The river is ___. (длинный)\n10. My sister is ___. (молодая)",
-          "subtasks": [
-            {
-              "question": "The elephant is ___. (большой)",
-              "answer": "big",
-              "explanation": "big — большой"
-            },
-            {
-              "question": "The mouse is ___. (маленький)",
-              "answer": "small",
-              "explanation": "small — маленький"
-            },
-            {
-              "question": "My grandfather is very ___. (старый)",
-              "answer": "old",
-              "explanation": "old — старый"
-            },
-            {
-              "question": "The girl is ___. (счастливая)",
-              "answer": "happy",
-              "explanation": "happy — счастливый"
-            },
-            {
-              "question": "The car is ___. (быстрый)",
-              "answer": "fast",
-              "explanation": "fast — быстрый"
-            },
-            {
-              "question": "The turtle is ___. (медленный)",
-              "answer": "slow",
-              "explanation": "slow — медленный"
-            },
-            {
-              "question": "The building is very ___. (высокий)",
-              "answer": "tall",
-              "explanation": "tall — высокий (для людей/зданий)"
-            },
-            {
-              "question": "The pencil is ___. (короткий)",
-              "answer": "short",
-              "explanation": "short — короткий/низкий"
-            },
-            {
-              "question": "The river is ___. (длинный)",
-              "answer": "long",
-              "explanation": "long — длинный"
-            },
-            {
-              "question": "My sister is ___. (молодая)",
-              "answer": "young",
-              "explanation": "young — молодой"
-            }
-          ]
+            "type": "complex",
+            "text": "Задание 1. Вставьте правильное прилагательное из списка: big, small, red, blue, happy, sad, tall, short, hot, cold.\n\n1. The elephant is ___ . (большой)\n2. The cat is ___ . (маленький)\n3. The apple is ___ . (красное)\n4. The sky is ___ . (голубое)\n5. She is ___ . (счастливая)\n6. He is ___ . (грустный)\n7. The man is ___ . (высокий)\n8. The boy is ___ . (низкий)\n9. The soup is ___ . (горячий)\n10. The ice is ___ . (холодный)",
+            "subtasks": [
+                {"question": "1. The elephant is ___ . (большой)", "answer": "big", "explanation": "elephant большой → big"},
+                {"question": "2. The cat is ___ . (маленький)", "answer": "small", "explanation": "cat маленький → small"},
+                {"question": "3. The apple is ___ . (красное)", "answer": "red", "explanation": "apple красный → red"},
+                {"question": "4. The sky is ___ . (голубое)", "answer": "blue", "explanation": "sky голубой → blue"},
+                {"question": "5. She is ___ . (счастливая)", "answer": "happy", "explanation": "she счастлива → happy"},
+                {"question": "6. He is ___ . (грустный)", "answer": "sad", "explanation": "he грустный → sad"},
+                {"question": "7. The man is ___ . (высокий)", "answer": "tall", "explanation": "man высокий → tall"},
+                {"question": "8. The boy is ___ . (низкий)", "answer": "short", "explanation": "boy низкий → short"},
+                {"question": "9. The soup is ___ . (горячий)", "answer": "hot", "explanation": "soup горячий → hot"},
+                {"question": "10. The ice is ___ . (холодный)", "answer": "cold", "explanation": "ice холодный → cold"}
+            ]
         },
         {
-          "type": "complex",
-          "text": "Переведите предложения на английский, используя прилагательные.\n\n1. Слон большой.\n2. Мышь маленькая.\n3. Мой дедушка очень старый.\n4. Девочка счастливая.\n5. Машина быстрая.\n6. Черепаха медленная.\n7. Здание очень высокое.\n8. Карандаш короткий.\n9. Река длинная.\n10. Моя сестра молодая.",
-          "subtasks": [
-            {
-              "question": "Слон большой.",
-              "answer": "The elephant is big.",
-              "explanation": "The elephant is big."
-            },
-            {
-              "question": "Мышь маленькая.",
-              "answer": "The mouse is small.",
-              "explanation": "The mouse is small."
-            },
-            {
-              "question": "Мой дедушка очень старый.",
-              "answer": "My grandfather is very old.",
-              "explanation": "My grandfather is very old."
-            },
-            {
-              "question": "Девочка счастливая.",
-              "answer": "The girl is happy.",
-              "explanation": "The girl is happy."
-            },
-            {
-              "question": "Машина быстрая.",
-              "answer": "The car is fast.",
-              "explanation": "The car is fast."
-            },
-            {
-              "question": "Черепаха медленная.",
-              "answer": "The turtle is slow.",
-              "explanation": "The turtle is slow."
-            },
-            {
-              "question": "Здание очень высокое.",
-              "answer": "The building is very tall.",
-              "explanation": "The building is very tall."
-            },
-            {
-              "question": "Карандаш короткий.",
-              "answer": "The pencil is short.",
-              "explanation": "The pencil is short."
-            },
-            {
-              "question": "Река длинная.",
-              "answer": "The river is long.",
-              "explanation": "The river is long."
-            },
-            {
-              "question": "Моя сестра молодая.",
-              "answer": "My sister is young.",
-              "explanation": "My sister is young."
-            }
-          ]
+            "type": "complex",
+            "text": "Задание 2. Переведите предложения на английский.\n\n1. Слон большой.\n2. Кот маленький.\n3. Яблоко красное.\n4. Небо голубое.\n5. Она счастливая.\n6. Он грустный.\n7. Мужчина высокий.\n8. Мальчик низкий.\n9. Суп горячий.\n10. Лёд холодный.",
+            "subtasks": [
+                {"question": "1. Слон большой.", "answer": "The elephant is big.", "explanation": ""},
+                {"question": "2. Кот маленький.", "answer": "The cat is small.", "explanation": ""},
+                {"question": "3. Яблоко красное.", "answer": "The apple is red.", "explanation": ""},
+                {"question": "4. Небо голубое.", "answer": "The sky is blue.", "explanation": ""},
+                {"question": "5. Она счастливая.", "answer": "She is happy.", "explanation": ""},
+                {"question": "6. Он грустный.", "answer": "He is sad.", "explanation": ""},
+                {"question": "7. Мужчина высокий.", "answer": "The man is tall.", "explanation": ""},
+                {"question": "8. Мальчик низкий.", "answer": "The boy is short.", "explanation": ""},
+                {"question": "9. Суп горячий.", "answer": "The soup is hot.", "explanation": ""},
+                {"question": "10. Лёд холодный.", "answer": "The ice is cold.", "explanation": ""}
+            ]
         },
         {
-          "type": "complex",
-          "text": "Составьте предложения из слов, используя прилагательные.\n\n1. big / elephant / the / is\n2. small / mouse / the / is\n3. old / grandfather / my / very / is\n4. happy / girl / the / is\n5. fast / car / the / is\n6. slow / turtle / the / is\n7. tall / building / the / is / very\n8. short / pencil / the / is\n9. long / river / the / is\n10. young / sister / my / is",
-          "subtasks": [
-            {
-              "question": "big / elephant / the / is",
-              "answer": "The elephant is big.",
-              "explanation": "The elephant is big."
-            },
-            {
-              "question": "small / mouse / the / is",
-              "answer": "The mouse is small.",
-              "explanation": "The mouse is small."
-            },
-            {
-              "question": "old / grandfather / my / very / is",
-              "answer": "My grandfather is very old.",
-              "explanation": "My grandfather is very old."
-            },
-            {
-              "question": "happy / girl / the / is",
-              "answer": "The girl is happy.",
-              "explanation": "The girl is happy."
-            },
-            {
-              "question": "fast / car / the / is",
-              "answer": "The car is fast.",
-              "explanation": "The car is fast."
-            },
-            {
-              "question": "slow / turtle / the / is",
-              "answer": "The turtle is slow.",
-              "explanation": "The turtle is slow."
-            },
-            {
-              "question": "tall / building / the / is / very",
-              "answer": "The building is very tall.",
-              "explanation": "The building is very tall."
-            },
-            {
-              "question": "short / pencil / the / is",
-              "answer": "The pencil is short.",
-              "explanation": "The pencil is short."
-            },
-            {
-              "question": "long / river / the / is",
-              "answer": "The river is long.",
-              "explanation": "The river is long."
-            },
-            {
-              "question": "young / sister / my / is",
-              "answer": "My sister is young.",
-              "explanation": "My sister is young."
-            }
-          ]
+            "type": "complex",
+            "text": "Задание 3. Напишите сравнительную степень прилагательных.\n\n1. big\n2. small\n3. tall\n4. short\n5. hot\n6. cold\n7. happy\n8. sad\n9. long\n10. fast",
+            "subtasks": [
+                {"question": "1. big", "answer": "bigger", "explanation": "big → bigger"},
+                {"question": "2. small", "answer": "smaller", "explanation": "small → smaller"},
+                {"question": "3. tall", "answer": "taller", "explanation": "tall → taller"},
+                {"question": "4. short", "answer": "shorter", "explanation": "short → shorter"},
+                {"question": "5. hot", "answer": "hotter", "explanation": "hot → hotter (удвоение t)"},
+                {"question": "6. cold", "answer": "colder", "explanation": "cold → colder"},
+                {"question": "7. happy", "answer": "happier", "explanation": "happy → happier (y→i)"},
+                {"question": "8. sad", "answer": "sadder", "explanation": "sad → sadder (удвоение d)"},
+                {"question": "9. long", "answer": "longer", "explanation": "long → longer"},
+                {"question": "10. fast", "answer": "faster", "explanation": "fast → faster"}
+            ]
         }
-      ],
-      [
+    ],
+    # ==================== ВАРИАНТ 2 ====================
+    [
         {
-          "type": "complex",
-          "text": "Вставьте правильное прилагательное: beautiful, ugly, clean, dirty, easy, difficult, cheap, expensive, hot, cold, warm, cool.\n\n1. The weather is ___ today. (тёплый)\n2. The room is very ___. (грязный)\n3. This test is ___. (лёгкий)\n4. The dress is ___. (красивый)\n5. The car is ___. (дорогой)\n6. The water is ___. (холодный)\n7. The task is ___. (трудный)\n8. The kitchen is ___. (чистый)\n9. The shoes are ___. (дешёвые)\n10. The weather is ___ in summer. (жаркий)",
-          "subtasks": [
-            {
-              "question": "The weather is ___ today. (тёплый)",
-              "answer": "warm",
-              "explanation": "warm — тёплый"
-            },
-            {
-              "question": "The room is very ___. (грязный)",
-              "answer": "dirty",
-              "explanation": "dirty — грязный"
-            },
-            {
-              "question": "This test is ___. (лёгкий)",
-              "answer": "easy",
-              "explanation": "easy — лёгкий"
-            },
-            {
-              "question": "The dress is ___. (красивый)",
-              "answer": "beautiful",
-              "explanation": "beautiful — красивый"
-            },
-            {
-              "question": "The car is ___. (дорогой)",
-              "answer": "expensive",
-              "explanation": "expensive — дорогой"
-            },
-            {
-              "question": "The water is ___. (холодный)",
-              "answer": "cold",
-              "explanation": "cold — холодный"
-            },
-            {
-              "question": "The task is ___. (трудный)",
-              "answer": "difficult",
-              "explanation": "difficult — трудный"
-            },
-            {
-              "question": "The kitchen is ___. (чистый)",
-              "answer": "clean",
-              "explanation": "clean — чистый"
-            },
-            {
-              "question": "The shoes are ___. (дешёвые)",
-              "answer": "cheap",
-              "explanation": "cheap — дешёвый"
-            },
-            {
-              "question": "The weather is ___ in summer. (жаркий)",
-              "answer": "hot",
-              "explanation": "hot — жаркий"
-            }
-          ]
+            "type": "complex",
+            "text": "Задание 1. Вставьте правильное прилагательное из списка: beautiful, ugly, expensive, cheap, old, new, young, easy, difficult, interesting.\n\n1. The park is ___ . (красивый)\n2. The monster is ___ . (уродливый)\n3. The car is ___ . (дорогой)\n4. The pen is ___ . (дешёвый)\n5. The house is ___ . (старый)\n6. The phone is ___ . (новый)\n7. The girl is ___ . (молодая)\n8. The test is ___ . (лёгкий)\n9. The problem is ___ . (сложный)\n10. The book is ___ . (интересный)",
+            "subtasks": [
+                {"question": "1. The park is ___ . (красивый)", "answer": "beautiful", "explanation": "park красивый → beautiful"},
+                {"question": "2. The monster is ___ . (уродливый)", "answer": "ugly", "explanation": "monster уродливый → ugly"},
+                {"question": "3. The car is ___ . (дорогой)", "answer": "expensive", "explanation": "car дорогой → expensive"},
+                {"question": "4. The pen is ___ . (дешёвый)", "answer": "cheap", "explanation": "pen дешёвый → cheap"},
+                {"question": "5. The house is ___ . (старый)", "answer": "old", "explanation": "house старый → old"},
+                {"question": "6. The phone is ___ . (новый)", "answer": "new", "explanation": "phone новый → new"},
+                {"question": "7. The girl is ___ . (молодая)", "answer": "young", "explanation": "girl молодая → young"},
+                {"question": "8. The test is ___ . (лёгкий)", "answer": "easy", "explanation": "test лёгкий → easy"},
+                {"question": "9. The problem is ___ . (сложный)", "answer": "difficult", "explanation": "problem сложный → difficult"},
+                {"question": "10. The book is ___ . (интересный)", "answer": "interesting", "explanation": "book интересный → interesting"}
+            ]
         },
         {
-          "type": "complex",
-          "text": "Переведите предложения на английский.\n\n1. Погода сегодня тёплая.\n2. Комната очень грязная.\n3. Этот тест лёгкий.\n4. Платье красивое.\n5. Машина дорогая.\n6. Вода холодная.\n7. Задача трудная.\n8. Кухня чистая.\n9. Туфли дешёвые.\n10. Летом погода жаркая.",
-          "subtasks": [
-            {
-              "question": "Погода сегодня тёплая.",
-              "answer": "The weather is warm today.",
-              "explanation": "The weather is warm today."
-            },
-            {
-              "question": "Комната очень грязная.",
-              "answer": "The room is very dirty.",
-              "explanation": "The room is very dirty."
-            },
-            {
-              "question": "Этот тест лёгкий.",
-              "answer": "This test is easy.",
-              "explanation": "This test is easy."
-            },
-            {
-              "question": "Платье красивое.",
-              "answer": "The dress is beautiful.",
-              "explanation": "The dress is beautiful."
-            },
-            {
-              "question": "Машина дорогая.",
-              "answer": "The car is expensive.",
-              "explanation": "The car is expensive."
-            },
-            {
-              "question": "Вода холодная.",
-              "answer": "The water is cold.",
-              "explanation": "The water is cold."
-            },
-            {
-              "question": "Задача трудная.",
-              "answer": "The task is difficult.",
-              "explanation": "The task is difficult."
-            },
-            {
-              "question": "Кухня чистая.",
-              "answer": "The kitchen is clean.",
-              "explanation": "The kitchen is clean."
-            },
-            {
-              "question": "Туфли дешёвые.",
-              "answer": "The shoes are cheap.",
-              "explanation": "The shoes are cheap."
-            },
-            {
-              "question": "Летом погода жаркая.",
-              "answer": "The weather is hot in summer.",
-              "explanation": "The weather is hot in summer."
-            }
-          ]
+            "type": "complex",
+            "text": "Задание 2. Переведите предложения на английский.\n\n1. Парк красивый.\n2. Монстр уродливый.\n3. Машина дорогая.\n4. Ручка дешёвая.\n5. Дом старый.\n6. Телефон новый.\n7. Девушка молодая.\n8. Тест лёгкий.\n9. Проблема сложная.\n10. Книга интересная.",
+            "subtasks": [
+                {"question": "1. Парк красивый.", "answer": "The park is beautiful.", "explanation": ""},
+                {"question": "2. Монстр уродливый.", "answer": "The monster is ugly.", "explanation": ""},
+                {"question": "3. Машина дорогая.", "answer": "The car is expensive.", "explanation": ""},
+                {"question": "4. Ручка дешёвая.", "answer": "The pen is cheap.", "explanation": ""},
+                {"question": "5. Дом старый.", "answer": "The house is old.", "explanation": ""},
+                {"question": "6. Телефон новый.", "answer": "The phone is new.", "explanation": ""},
+                {"question": "7. Девушка молодая.", "answer": "The girl is young.", "explanation": ""},
+                {"question": "8. Тест лёгкий.", "answer": "The test is easy.", "explanation": ""},
+                {"question": "9. Проблема сложная.", "answer": "The problem is difficult.", "explanation": ""},
+                {"question": "10. Книга интересная.", "answer": "The book is interesting.", "explanation": ""}
+            ]
         },
         {
-          "type": "complex",
-          "text": "Составьте предложения.\n\n1. warm / today / weather / is / the\n2. dirty / room / very / the / is\n3. easy / test / this / is\n4. beautiful / dress / the / is\n5. expensive / car / the / is\n6. cold / water / the / is\n7. difficult / task / the / is\n8. clean / kitchen / the / is\n9. cheap / shoes / the / are\n10. hot / summer / in / weather / is / the",
-          "subtasks": [
-            {
-              "question": "warm / today / weather / is / the",
-              "answer": "The weather is warm today.",
-              "explanation": "The weather is warm today."
-            },
-            {
-              "question": "dirty / room / very / the / is",
-              "answer": "The room is very dirty.",
-              "explanation": "The room is very dirty."
-            },
-            {
-              "question": "easy / test / this / is",
-              "answer": "This test is easy.",
-              "explanation": "This test is easy."
-            },
-            {
-              "question": "beautiful / dress / the / is",
-              "answer": "The dress is beautiful.",
-              "explanation": "The dress is beautiful."
-            },
-            {
-              "question": "expensive / car / the / is",
-              "answer": "The car is expensive.",
-              "explanation": "The car is expensive."
-            },
-            {
-              "question": "cold / water / the / is",
-              "answer": "The water is cold.",
-              "explanation": "The water is cold."
-            },
-            {
-              "question": "difficult / task / the / is",
-              "answer": "The task is difficult.",
-              "explanation": "The task is difficult."
-            },
-            {
-              "question": "clean / kitchen / the / is",
-              "answer": "The kitchen is clean.",
-              "explanation": "The kitchen is clean."
-            },
-            {
-              "question": "cheap / shoes / the / are",
-              "answer": "The shoes are cheap.",
-              "explanation": "The shoes are cheap."
-            },
-            {
-              "question": "hot / summer / in / weather / is / the",
-              "answer": "The weather is hot in summer.",
-              "explanation": "The weather is hot in summer."
-            }
-          ]
+            "type": "complex",
+            "text": "Задание 3. Напишите сравнительную степень прилагательных.\n\n1. beautiful\n2. expensive\n3. interesting\n4. difficult\n5. ugly\n6. cheap\n7. old\n8. new\n9. young\n10. easy",
+            "subtasks": [
+                {"question": "1. beautiful", "answer": "more beautiful", "explanation": "beautiful → more beautiful (длинное)"},
+                {"question": "2. expensive", "answer": "more expensive", "explanation": "expensive → more expensive (длинное)"},
+                {"question": "3. interesting", "answer": "more interesting", "explanation": "interesting → more interesting (длинное)"},
+                {"question": "4. difficult", "answer": "more difficult", "explanation": "difficult → more difficult (длинное)"},
+                {"question": "5. ugly", "answer": "uglier", "explanation": "ugly → uglier (y→i)"},
+                {"question": "6. cheap", "answer": "cheaper", "explanation": "cheap → cheaper"},
+                {"question": "7. old", "answer": "older", "explanation": "old → older"},
+                {"question": "8. new", "answer": "newer", "explanation": "new → newer"},
+                {"question": "9. young", "answer": "younger", "explanation": "young → younger"},
+                {"question": "10. easy", "answer": "easier", "explanation": "easy → easier (y→i)"}
+            ]
         }
-      ],
-      [
+    ],
+    # ==================== ВАРИАНТ 3 ====================
+    [
         {
-          "type": "complex",
-          "text": "Вставьте прилагательное: interesting, boring, funny, serious, kind, rude, clever, stupid, brave, cowardly.\n\n1. The book is very ___. (интересный)\n2. The film is ___. (скучный)\n3. The joke is ___. (смешной)\n4. My teacher is ___. (серьёзный)\n5. She is always ___. (добрая)\n6. He is sometimes ___. (грубый)\n7. My dog is very ___. (умный)\n8. That idea is ___. (глупый)\n9. The soldier is ___. (храбрый)\n10. He is ___. (трусливый)",
-          "subtasks": [
-            {
-              "question": "The book is very ___. (интересный)",
-              "answer": "interesting",
-              "explanation": "interesting — интересный"
-            },
-            {
-              "question": "The film is ___. (скучный)",
-              "answer": "boring",
-              "explanation": "boring — скучный"
-            },
-            {
-              "question": "The joke is ___. (смешной)",
-              "answer": "funny",
-              "explanation": "funny — смешной"
-            },
-            {
-              "question": "My teacher is ___. (серьёзный)",
-              "answer": "serious",
-              "explanation": "serious — серьёзный"
-            },
-            {
-              "question": "She is always ___. (добрая)",
-              "answer": "kind",
-              "explanation": "kind — добрый"
-            },
-            {
-              "question": "He is sometimes ___. (грубый)",
-              "answer": "rude",
-              "explanation": "rude — грубый"
-            },
-            {
-              "question": "My dog is very ___. (умный)",
-              "answer": "clever",
-              "explanation": "clever — умный"
-            },
-            {
-              "question": "That idea is ___. (глупый)",
-              "answer": "stupid",
-              "explanation": "stupid — глупый"
-            },
-            {
-              "question": "The soldier is ___. (храбрый)",
-              "answer": "brave",
-              "explanation": "brave — храбрый"
-            },
-            {
-              "question": "He is ___. (трусливый)",
-              "answer": "cowardly",
-              "explanation": "cowardly — трусливый"
-            }
-          ]
+            "type": "complex",
+            "text": "Задание 1. Вставьте правильное прилагательное из списка: good, bad, nice, kind, clever, strong, weak, fast, slow, lazy.\n\n1. The food is ___ . (хороший)\n2. The weather is ___ . (плохой)\n3. The girl is ___ . (милая)\n4. The woman is ___ . (добрая)\n5. The boy is ___ . (умный)\n6. The man is ___ . (сильный)\n7. The old man is ___ . (слабый)\n8. The car is ___ . (быстрый)\n9. The turtle is ___ . (медленный)\n10. The cat is ___ . (ленивый)",
+            "subtasks": [
+                {"question": "1. The food is ___ . (хороший)", "answer": "good", "explanation": "food хороший → good"},
+                {"question": "2. The weather is ___ . (плохой)", "answer": "bad", "explanation": "weather плохой → bad"},
+                {"question": "3. The girl is ___ . (милая)", "answer": "nice", "explanation": "girl милая → nice"},
+                {"question": "4. The woman is ___ . (добрая)", "answer": "kind", "explanation": "woman добрая → kind"},
+                {"question": "5. The boy is ___ . (умный)", "answer": "clever", "explanation": "boy умный → clever"},
+                {"question": "6. The man is ___ . (сильный)", "answer": "strong", "explanation": "man сильный → strong"},
+                {"question": "7. The old man is ___ . (слабый)", "answer": "weak", "explanation": "old man слабый → weak"},
+                {"question": "8. The car is ___ . (быстрый)", "answer": "fast", "explanation": "car быстрый → fast"},
+                {"question": "9. The turtle is ___ . (медленный)", "answer": "slow", "explanation": "turtle медленный → slow"},
+                {"question": "10. The cat is ___ . (ленивый)", "answer": "lazy", "explanation": "cat ленивый → lazy"}
+            ]
         },
         {
-          "type": "complex",
-          "text": "Переведите предложения на английский.\n\n1. Книга очень интересная.\n2. Фильм скучный.\n3. Шутка смешная.\n4. Мой учитель серьёзный.\n5. Она всегда добрая.\n6. Он иногда грубый.\n7. Моя собака очень умная.\n8. Эта идея глупая.\n9. Солдат храбрый.\n10. Он трусливый.",
-          "subtasks": [
-            {
-              "question": "Книга очень интересная.",
-              "answer": "The book is very interesting.",
-              "explanation": "The book is very interesting."
-            },
-            {
-              "question": "Фильм скучный.",
-              "answer": "The film is boring.",
-              "explanation": "The film is boring."
-            },
-            {
-              "question": "Шутка смешная.",
-              "answer": "The joke is funny.",
-              "explanation": "The joke is funny."
-            },
-            {
-              "question": "Мой учитель серьёзный.",
-              "answer": "My teacher is serious.",
-              "explanation": "My teacher is serious."
-            },
-            {
-              "question": "Она всегда добрая.",
-              "answer": "She is always kind.",
-              "explanation": "She is always kind."
-            },
-            {
-              "question": "Он иногда грубый.",
-              "answer": "He is sometimes rude.",
-              "explanation": "He is sometimes rude."
-            },
-            {
-              "question": "Моя собака очень умная.",
-              "answer": "My dog is very clever.",
-              "explanation": "My dog is very clever."
-            },
-            {
-              "question": "Эта идея глупая.",
-              "answer": "That idea is stupid.",
-              "explanation": "That idea is stupid."
-            },
-            {
-              "question": "Солдат храбрый.",
-              "answer": "The soldier is brave.",
-              "explanation": "The soldier is brave."
-            },
-            {
-              "question": "Он трусливый.",
-              "answer": "He is cowardly.",
-              "explanation": "He is cowardly."
-            }
-          ]
+            "type": "complex",
+            "text": "Задание 2. Переведите предложения на английский.\n\n1. Еда хорошая.\n2. Погода плохая.\n3. Девочка милая.\n4. Женщина добрая.\n5. Мальчик умный.\n6. Мужчина сильный.\n7. Старик слабый.\n8. Машина быстрая.\n9. Черепаха медленная.\n10. Кот ленивый.",
+            "subtasks": [
+                {"question": "1. Еда хорошая.", "answer": "The food is good.", "explanation": ""},
+                {"question": "2. Погода плохая.", "answer": "The weather is bad.", "explanation": ""},
+                {"question": "3. Девочка милая.", "answer": "The girl is nice.", "explanation": ""},
+                {"question": "4. Женщина добрая.", "answer": "The woman is kind.", "explanation": ""},
+                {"question": "5. Мальчик умный.", "answer": "The boy is clever.", "explanation": ""},
+                {"question": "6. Мужчина сильный.", "answer": "The man is strong.", "explanation": ""},
+                {"question": "7. Старик слабый.", "answer": "The old man is weak.", "explanation": ""},
+                {"question": "8. Машина быстрая.", "answer": "The car is fast.", "explanation": ""},
+                {"question": "9. Черепаха медленная.", "answer": "The turtle is slow.", "explanation": ""},
+                {"question": "10. Кот ленивый.", "answer": "The cat is lazy.", "explanation": ""}
+            ]
         },
         {
-          "type": "complex",
-          "text": "Составьте предложения.\n\n1. interesting / very / book / the / is\n2. boring / film / the / is\n3. funny / joke / the / is\n4. serious / teacher / my / is\n5. kind / always / she / is\n6. rude / sometimes / he / is\n7. clever / very / dog / my / is\n8. stupid / idea / that / is\n9. brave / soldier / the / is\n10. cowardly / he / is",
-          "subtasks": [
-            {
-              "question": "interesting / very / book / the / is",
-              "answer": "The book is very interesting.",
-              "explanation": "The book is very interesting."
-            },
-            {
-              "question": "boring / film / the / is",
-              "answer": "The film is boring.",
-              "explanation": "The film is boring."
-            },
-            {
-              "question": "funny / joke / the / is",
-              "answer": "The joke is funny.",
-              "explanation": "The joke is funny."
-            },
-            {
-              "question": "serious / teacher / my / is",
-              "answer": "My teacher is serious.",
-              "explanation": "My teacher is serious."
-            },
-            {
-              "question": "kind / always / she / is",
-              "answer": "She is always kind.",
-              "explanation": "She is always kind."
-            },
-            {
-              "question": "rude / sometimes / he / is",
-              "answer": "He is sometimes rude.",
-              "explanation": "He is sometimes rude."
-            },
-            {
-              "question": "clever / very / dog / my / is",
-              "answer": "My dog is very clever.",
-              "explanation": "My dog is very clever."
-            },
-            {
-              "question": "stupid / idea / that / is",
-              "answer": "That idea is stupid.",
-              "explanation": "That idea is stupid."
-            },
-            {
-              "question": "brave / soldier / the / is",
-              "answer": "The soldier is brave.",
-              "explanation": "The soldier is brave."
-            },
-            {
-              "question": "cowardly / he / is",
-              "answer": "He is cowardly.",
-              "explanation": "He is cowardly."
-            }
-          ]
+            "type": "complex",
+            "text": "Задание 3. Напишите сравнительную степень прилагательных.\n\n1. good\n2. bad\n3. nice\n4. kind\n5. clever\n6. strong\n7. weak\n8. fast\n9. slow\n10. lazy",
+            "subtasks": [
+                {"question": "1. good", "answer": "better", "explanation": "good → better (исключение)"},
+                {"question": "2. bad", "answer": "worse", "explanation": "bad → worse (исключение)"},
+                {"question": "3. nice", "answer": "nicer", "explanation": "nice → nicer"},
+                {"question": "4. kind", "answer": "kinder", "explanation": "kind → kinder"},
+                {"question": "5. clever", "answer": "cleverer", "explanation": "clever → cleverer"},
+                {"question": "6. strong", "answer": "stronger", "explanation": "strong → stronger"},
+                {"question": "7. weak", "answer": "weaker", "explanation": "weak → weaker"},
+                {"question": "8. fast", "answer": "faster", "explanation": "fast → faster"},
+                {"question": "9. slow", "answer": "slower", "explanation": "slow → slower"},
+                {"question": "10. lazy", "answer": "lazier", "explanation": "lazy → lazier (y→i)"}
+            ]
         }
-      ],
-      [
+    ],
+    # ==================== ВАРИАНТ 4 ====================
+    [
         {
-          "type": "complex",
-          "text": "Вставьте прилагательное: strong, weak, healthy, sick, rich, poor, intelligent, foolish, confident, shy.\n\n1. He is very ___. (сильный)\n2. She is ___. (слабая)\n3. I feel ___. (здоровый)\n4. He is ___. (больной)\n5. She is ___. (богатая)\n6. He is ___. (бедный)\n7. She is very ___. (умная)\n8. He is ___. (глупый)\n9. She is ___. (уверенная)\n10. He is ___. (застенчивый)",
-          "subtasks": [
-            {
-              "question": "He is very ___. (сильный)",
-              "answer": "strong",
-              "explanation": "strong — сильный"
-            },
-            {
-              "question": "She is ___. (слабая)",
-              "answer": "weak",
-              "explanation": "weak — слабый"
-            },
-            {
-              "question": "I feel ___. (здоровый)",
-              "answer": "healthy",
-              "explanation": "healthy — здоровый"
-            },
-            {
-              "question": "He is ___. (больной)",
-              "answer": "sick",
-              "explanation": "sick — больной"
-            },
-            {
-              "question": "She is ___. (богатая)",
-              "answer": "rich",
-              "explanation": "rich — богатый"
-            },
-            {
-              "question": "He is ___. (бедный)",
-              "answer": "poor",
-              "explanation": "poor — бедный"
-            },
-            {
-              "question": "She is very ___. (умная)",
-              "answer": "intelligent",
-              "explanation": "intelligent — умный (интеллектуальный)"
-            },
-            {
-              "question": "He is ___. (глупый)",
-              "answer": "foolish",
-              "explanation": "foolish — глупый"
-            },
-            {
-              "question": "She is ___. (уверенная)",
-              "answer": "confident",
-              "explanation": "confident — уверенный"
-            },
-            {
-              "question": "He is ___. (застенчивый)",
-              "answer": "shy",
-              "explanation": "shy — застенчивый"
-            }
-          ]
+            "type": "complex",
+            "text": "Задание 1. Вставьте правильное прилагательное из списка: hungry, thirsty, tired, angry, scared, bored, excited, surprised, worried, nervous.\n\n1. The children are ___ . (голодные)\n2. He is ___ . (хочет пить)\n3. She is ___ . (уставшая)\n4. The teacher is ___ . (сердитый)\n5. The girl is ___ . (испуганная)\n6. The students are ___ . (скучающие)\n7. The fans are ___ . (взволнованные)\n8. He is ___ . (удивлённый)\n9. The mother is ___ . (обеспокоенная)\n10. She is ___ . (нервная)",
+            "subtasks": [
+                {"question": "1. The children are ___ . (голодные)", "answer": "hungry", "explanation": "children голодные → hungry"},
+                {"question": "2. He is ___ . (хочет пить)", "answer": "thirsty", "explanation": "he хочет пить → thirsty"},
+                {"question": "3. She is ___ . (уставшая)", "answer": "tired", "explanation": "she уставшая → tired"},
+                {"question": "4. The teacher is ___ . (сердитый)", "answer": "angry", "explanation": "teacher сердитый → angry"},
+                {"question": "5. The girl is ___ . (испуганная)", "answer": "scared", "explanation": "girl испуганная → scared"},
+                {"question": "6. The students are ___ . (скучающие)", "answer": "bored", "explanation": "students скучающие → bored"},
+                {"question": "7. The fans are ___ . (взволнованные)", "answer": "excited", "explanation": "fans взволнованные → excited"},
+                {"question": "8. He is ___ . (удивлённый)", "answer": "surprised", "explanation": "he удивлённый → surprised"},
+                {"question": "9. The mother is ___ . (обеспокоенная)", "answer": "worried", "explanation": "mother обеспокоенная → worried"},
+                {"question": "10. She is ___ . (нервная)", "answer": "nervous", "explanation": "she нервная → nervous"}
+            ]
         },
         {
-          "type": "complex",
-          "text": "Переведите предложения на английский.\n\n1. Он очень сильный.\n2. Она слабая.\n3. Я чувствую себя здоровым.\n4. Он больной.\n5. Она богатая.\n6. Он бедный.\n7. Она очень умная.\n8. Он глупый.\n9. Она уверенная.\n10. Он застенчивый.",
-          "subtasks": [
-            {
-              "question": "Он очень сильный.",
-              "answer": "He is very strong.",
-              "explanation": "He is very strong."
-            },
-            {
-              "question": "Она слабая.",
-              "answer": "She is weak.",
-              "explanation": "She is weak."
-            },
-            {
-              "question": "Я чувствую себя здоровым.",
-              "answer": "I feel healthy.",
-              "explanation": "I feel healthy."
-            },
-            {
-              "question": "Он больной.",
-              "answer": "He is sick.",
-              "explanation": "He is sick."
-            },
-            {
-              "question": "Она богатая.",
-              "answer": "She is rich.",
-              "explanation": "She is rich."
-            },
-            {
-              "question": "Он бедный.",
-              "answer": "He is poor.",
-              "explanation": "He is poor."
-            },
-            {
-              "question": "Она очень умная.",
-              "answer": "She is very intelligent.",
-              "explanation": "She is very intelligent."
-            },
-            {
-              "question": "Он глупый.",
-              "answer": "He is foolish.",
-              "explanation": "He is foolish."
-            },
-            {
-              "question": "Она уверенная.",
-              "answer": "She is confident.",
-              "explanation": "She is confident."
-            },
-            {
-              "question": "Он застенчивый.",
-              "answer": "He is shy.",
-              "explanation": "He is shy."
-            }
-          ]
+            "type": "complex",
+            "text": "Задание 2. Переведите предложения на английский.\n\n1. Дети голодные.\n2. Он хочет пить.\n3. Она уставшая.\n4. Учитель сердитый.\n5. Девочка испуганная.\n6. Студенты скучают.\n7. Фанаты взволнованы.\n8. Он удивлён.\n9. Мама обеспокоена.\n10. Она нервничает.",
+            "subtasks": [
+                {"question": "1. Дети голодные.", "answer": "The children are hungry.", "explanation": ""},
+                {"question": "2. Он хочет пить.", "answer": "He is thirsty.", "explanation": ""},
+                {"question": "3. Она уставшая.", "answer": "She is tired.", "explanation": ""},
+                {"question": "4. Учитель сердитый.", "answer": "The teacher is angry.", "explanation": ""},
+                {"question": "5. Девочка испуганная.", "answer": "The girl is scared.", "explanation": ""},
+                {"question": "6. Студенты скучают.", "answer": "The students are bored.", "explanation": ""},
+                {"question": "7. Фанаты взволнованы.", "answer": "The fans are excited.", "explanation": ""},
+                {"question": "8. Он удивлён.", "answer": "He is surprised.", "explanation": ""},
+                {"question": "9. Мама обеспокоена.", "answer": "The mother is worried.", "explanation": ""},
+                {"question": "10. Она нервничает.", "answer": "She is nervous.", "explanation": ""}
+            ]
         },
         {
-          "type": "complex",
-          "text": "Составьте предложения.\n\n1. strong / very / he / is\n2. weak / she / is\n3. feel / I / healthy\n4. sick / he / is\n5. rich / she / is\n6. poor / he / is\n7. intelligent / very / she / is\n8. foolish / he / is\n9. confident / she / is\n10. shy / he / is",
-          "subtasks": [
-            {
-              "question": "strong / very / he / is",
-              "answer": "He is very strong.",
-              "explanation": "He is very strong."
-            },
-            {
-              "question": "weak / she / is",
-              "answer": "She is weak.",
-              "explanation": "She is weak."
-            },
-            {
-              "question": "feel / I / healthy",
-              "answer": "I feel healthy.",
-              "explanation": "I feel healthy."
-            },
-            {
-              "question": "sick / he / is",
-              "answer": "He is sick.",
-              "explanation": "He is sick."
-            },
-            {
-              "question": "rich / she / is",
-              "answer": "She is rich.",
-              "explanation": "She is rich."
-            },
-            {
-              "question": "poor / he / is",
-              "answer": "He is poor.",
-              "explanation": "He is poor."
-            },
-            {
-              "question": "intelligent / very / she / is",
-              "answer": "She is very intelligent.",
-              "explanation": "She is very intelligent."
-            },
-            {
-              "question": "foolish / he / is",
-              "answer": "He is foolish.",
-              "explanation": "He is foolish."
-            },
-            {
-              "question": "confident / she / is",
-              "answer": "She is confident.",
-              "explanation": "She is confident."
-            },
-            {
-              "question": "shy / he / is",
-              "answer": "He is shy.",
-              "explanation": "He is shy."
-            }
-          ]
+            "type": "complex",
+            "text": "Задание 3. Напишите сравнительную степень прилагательных.\n\n1. hungry\n2. thirsty\n3. tired\n4. angry\n5. scared\n6. bored\n7. excited\n8. surprised\n9. worried\n10. nervous",
+            "subtasks": [
+                {"question": "1. hungry", "answer": "hungrier", "explanation": "hungry → hungrier (y→i)"},
+                {"question": "2. thirsty", "answer": "thirstier", "explanation": "thirsty → thirstier (y→i)"},
+                {"question": "3. tired", "answer": "more tired", "explanation": "tired → more tired (длинное)"},
+                {"question": "4. angry", "answer": "angrier", "explanation": "angry → angrier (y→i)"},
+                {"question": "5. scared", "answer": "more scared", "explanation": "scared → more scared (длинное)"},
+                {"question": "6. bored", "answer": "more bored", "explanation": "bored → more bored (длинное)"},
+                {"question": "7. excited", "answer": "more excited", "explanation": "excited → more excited (длинное)"},
+                {"question": "8. surprised", "answer": "more surprised", "explanation": "surprised → more surprised (длинное)"},
+                {"question": "9. worried", "answer": "more worried", "explanation": "worried → more worried (длинное)"},
+                {"question": "10. nervous", "answer": "more nervous", "explanation": "nervous → more nervous (длинное)"}
+            ]
         }
-      ],
-      [
+    ],
+    # ==================== ВАРИАНТ 5 ====================
+    [
         {
-          "type": "complex",
-          "text": "Вставьте прилагательное: busy, lazy, careful, careless, polite, impolite, patient, impatient, generous, mean.\n\n1. She is very ___. (занятая)\n2. He is ___. (ленивый)\n3. Be ___. (осторожный)\n4. He is ___. (неосторожный)\n5. She is ___. (вежливая)\n6. He is ___. (невежливый)\n7. She is ___. (терпеливая)\n8. He is ___. (нетерпеливый)\n9. She is ___. (щедрая)\n10. He is ___. (жадный)",
-          "subtasks": [
-            {
-              "question": "She is very ___. (занятая)",
-              "answer": "busy",
-              "explanation": "busy — занятый"
-            },
-            {
-              "question": "He is ___. (ленивый)",
-              "answer": "lazy",
-              "explanation": "lazy — ленивый"
-            },
-            {
-              "question": "Be ___. (осторожный)",
-              "answer": "careful",
-              "explanation": "careful — осторожный"
-            },
-            {
-              "question": "He is ___. (неосторожный)",
-              "answer": "careless",
-              "explanation": "careless — неосторожный"
-            },
-            {
-              "question": "She is ___. (вежливая)",
-              "answer": "polite",
-              "explanation": "polite — вежливый"
-            },
-            {
-              "question": "He is ___. (невежливый)",
-              "answer": "impolite",
-              "explanation": "impolite — невежливый"
-            },
-            {
-              "question": "She is ___. (терпеливая)",
-              "answer": "patient",
-              "explanation": "patient — терпеливый"
-            },
-            {
-              "question": "He is ___. (нетерпеливый)",
-              "answer": "impatient",
-              "explanation": "impatient — нетерпеливый"
-            },
-            {
-              "question": "She is ___. (щедрая)",
-              "answer": "generous",
-              "explanation": "generous — щедрый"
-            },
-            {
-              "question": "He is ___. (жадный)",
-              "answer": "mean",
-              "explanation": "mean — жадный (скупой)"
-            }
-          ]
+            "type": "complex",
+            "text": "Задание 1. Вставьте правильное прилагательное из списка: delicious, terrible, wonderful, awful, great, perfect, amazing, fantastic, horrible, excellent.\n\n1. The cake is ___ . (вкусный)\n2. The weather is ___ . (ужасный)\n3. The holiday is ___ . (замечательный)\n4. The film is ___ . (ужасный)\n5. The news is ___ . (отличные)\n6. The day is ___ . (идеальный)\n7. The view is ___ . (потрясающий)\n8. The party is ___ . (фантастический)\n9. The food is ___ . (ужасная)\n10. The result is ___ . (отличный)",
+            "subtasks": [
+                {"question": "1. The cake is ___ . (вкусный)", "answer": "delicious", "explanation": "cake вкусный → delicious"},
+                {"question": "2. The weather is ___ . (ужасный)", "answer": "terrible", "explanation": "weather ужасный → terrible"},
+                {"question": "3. The holiday is ___ . (замечательный)", "answer": "wonderful", "explanation": "holiday замечательный → wonderful"},
+                {"question": "4. The film is ___ . (ужасный)", "answer": "awful", "explanation": "film ужасный → awful"},
+                {"question": "5. The news is ___ . (отличные)", "answer": "great", "explanation": "news отличные → great"},
+                {"question": "6. The day is ___ . (идеальный)", "answer": "perfect", "explanation": "day идеальный → perfect"},
+                {"question": "7. The view is ___ . (потрясающий)", "answer": "amazing", "explanation": "view потрясающий → amazing"},
+                {"question": "8. The party is ___ . (фантастический)", "answer": "fantastic", "explanation": "party фантастический → fantastic"},
+                {"question": "9. The food is ___ . (ужасная)", "answer": "horrible", "explanation": "food ужасная → horrible"},
+                {"question": "10. The result is ___ . (отличный)", "answer": "excellent", "explanation": "result отличный → excellent"}
+            ]
         },
         {
-          "type": "complex",
-          "text": "Переведите предложения на английский.\n\n1. Она очень занятая.\n2. Он ленивый.\n3. Будь осторожен.\n4. Он неосторожный.\n5. Она вежливая.\n6. Он невежливый.\n7. Она терпеливая.\n8. Он нетерпеливый.\n9. Она щедрая.\n10. Он жадный.",
-          "subtasks": [
-            {
-              "question": "Она очень занятая.",
-              "answer": "She is very busy.",
-              "explanation": "She is very busy."
-            },
-            {
-              "question": "Он ленивый.",
-              "answer": "He is lazy.",
-              "explanation": "He is lazy."
-            },
-            {
-              "question": "Будь осторожен.",
-              "answer": "Be careful.",
-              "explanation": "Be careful."
-            },
-            {
-              "question": "Он неосторожный.",
-              "answer": "He is careless.",
-              "explanation": "He is careless."
-            },
-            {
-              "question": "Она вежливая.",
-              "answer": "She is polite.",
-              "explanation": "She is polite."
-            },
-            {
-              "question": "Он невежливый.",
-              "answer": "He is impolite.",
-              "explanation": "He is impolite."
-            },
-            {
-              "question": "Она терпеливая.",
-              "answer": "She is patient.",
-              "explanation": "She is patient."
-            },
-            {
-              "question": "Он нетерпеливый.",
-              "answer": "He is impatient.",
-              "explanation": "He is impatient."
-            },
-            {
-              "question": "Она щедрая.",
-              "answer": "She is generous.",
-              "explanation": "She is generous."
-            },
-            {
-              "question": "Он жадный.",
-              "answer": "He is mean.",
-              "explanation": "He is mean."
-            }
-          ]
+            "type": "complex",
+            "text": "Задание 2. Переведите предложения на английский.\n\n1. Торт вкусный.\n2. Погода ужасная.\n3. Отдых замечательный.\n4. Фильм ужасный.\n5. Новости отличные.\n6. День идеальный.\n7. Вид потрясающий.\n8. Вечеринка фантастическая.\n9. Еда ужасная.\n10. Результат отличный.",
+            "subtasks": [
+                {"question": "1. Торт вкусный.", "answer": "The cake is delicious.", "explanation": ""},
+                {"question": "2. Погода ужасная.", "answer": "The weather is terrible.", "explanation": ""},
+                {"question": "3. Отдых замечательный.", "answer": "The holiday is wonderful.", "explanation": ""},
+                {"question": "4. Фильм ужасный.", "answer": "The film is awful.", "explanation": ""},
+                {"question": "5. Новости отличные.", "answer": "The news is great.", "explanation": ""},
+                {"question": "6. День идеальный.", "answer": "The day is perfect.", "explanation": ""},
+                {"question": "7. Вид потрясающий.", "answer": "The view is amazing.", "explanation": ""},
+                {"question": "8. Вечеринка фантастическая.", "answer": "The party is fantastic.", "explanation": ""},
+                {"question": "9. Еда ужасная.", "answer": "The food is horrible.", "explanation": ""},
+                {"question": "10. Результат отличный.", "answer": "The result is excellent.", "explanation": ""}
+            ]
         },
         {
-          "type": "complex",
-          "text": "Составьте предложения.\n\n1. busy / very / she / is\n2. lazy / he / is\n3. careful / be\n4. careless / he / is\n5. polite / she / is\n6. impolite / he / is\n7. patient / she / is\n8. impatient / he / is\n9. generous / she / is\n10. mean / he / is",
-          "subtasks": [
-            {
-              "question": "busy / very / she / is",
-              "answer": "She is very busy.",
-              "explanation": "She is very busy."
-            },
-            {
-              "question": "lazy / he / is",
-              "answer": "He is lazy.",
-              "explanation": "He is lazy."
-            },
-            {
-              "question": "careful / be",
-              "answer": "Be careful.",
-              "explanation": "Be careful."
-            },
-            {
-              "question": "careless / he / is",
-              "answer": "He is careless.",
-              "explanation": "He is careless."
-            },
-            {
-              "question": "polite / she / is",
-              "answer": "She is polite.",
-              "explanation": "She is polite."
-            },
-            {
-              "question": "impolite / he / is",
-              "answer": "He is impolite.",
-              "explanation": "He is impolite."
-            },
-            {
-              "question": "patient / she / is",
-              "answer": "She is patient.",
-              "explanation": "She is patient."
-            },
-            {
-              "question": "impatient / he / is",
-              "answer": "He is impatient.",
-              "explanation": "He is impatient."
-            },
-            {
-              "question": "generous / she / is",
-              "answer": "She is generous.",
-              "explanation": "She is generous."
-            },
-            {
-              "question": "mean / he / is",
-              "answer": "He is mean.",
-              "explanation": "He is mean."
-            }
-          ]
+            "type": "complex",
+            "text": "Задание 3. Напишите сравнительную степень прилагательных.\n\n1. delicious\n2. terrible\n3. wonderful\n4. awful\n5. great\n6. perfect\n7. amazing\n8. fantastic\n9. horrible\n10. excellent",
+            "subtasks": [
+                {"question": "1. delicious", "answer": "more delicious", "explanation": "delicious → more delicious (длинное)"},
+                {"question": "2. terrible", "answer": "more terrible", "explanation": "terrible → more terrible (длинное)"},
+                {"question": "3. wonderful", "answer": "more wonderful", "explanation": "wonderful → more wonderful (длинное)"},
+                {"question": "4. awful", "answer": "more awful", "explanation": "awful → more awful (длинное)"},
+                {"question": "5. great", "answer": "greater", "explanation": "great → greater"},
+                {"question": "6. perfect", "answer": "more perfect", "explanation": "perfect → more perfect (длинное)"},
+                {"question": "7. amazing", "answer": "more amazing", "explanation": "amazing → more amazing (длинное)"},
+                {"question": "8. fantastic", "answer": "more fantastic", "explanation": "fantastic → more fantastic (длинное)"},
+                {"question": "9. horrible", "answer": "more horrible", "explanation": "horrible → more horrible (длинное)"},
+                {"question": "10. excellent", "answer": "more excellent", "explanation": "excellent → more excellent (длинное)"}
+            ]
         }
-      ],
-      [
+    ],
+    # ==================== ВАРИАНТ 6 ====================
+    [
         {
-          "type": "complex",
-          "text": "Вставьте прилагательное: wide, narrow, deep, shallow, quiet, noisy, dark, light, bright, dull.\n\n1. The river is very ___. (широкая)\n2. The street is ___. (узкая)\n3. The lake is ___. (глубокое)\n4. The pool is ___. (мелкое)\n5. The classroom is ___. (тихий)\n6. The market is ___. (шумный)\n7. The room is ___. (тёмный)\n8. The house is ___. (светлый)\n9. The sun is ___. (яркий)\n10. The colour is ___. (тусклый)",
-          "subtasks": [
-            {
-              "question": "The river is very ___. (широкая)",
-              "answer": "wide",
-              "explanation": "wide — широкий"
-            },
-            {
-              "question": "The street is ___. (узкая)",
-              "answer": "narrow",
-              "explanation": "narrow — узкий"
-            },
-            {
-              "question": "The lake is ___. (глубокое)",
-              "answer": "deep",
-              "explanation": "deep — глубокий"
-            },
-            {
-              "question": "The pool is ___. (мелкое)",
-              "answer": "shallow",
-              "explanation": "shallow — мелкий (неглубокий)"
-            },
-            {
-              "question": "The classroom is ___. (тихий)",
-              "answer": "quiet",
-              "explanation": "quiet — тихий"
-            },
-            {
-              "question": "The market is ___. (шумный)",
-              "answer": "noisy",
-              "explanation": "noisy — шумный"
-            },
-            {
-              "question": "The room is ___. (тёмный)",
-              "answer": "dark",
-              "explanation": "dark — тёмный"
-            },
-            {
-              "question": "The house is ___. (светлый)",
-              "answer": "light",
-              "explanation": "light — светлый (по освещённости)"
-            },
-            {
-              "question": "The sun is ___. (яркий)",
-              "answer": "bright",
-              "explanation": "bright — яркий"
-            },
-            {
-              "question": "The colour is ___. (тусклый)",
-              "answer": "dull",
-              "explanation": "dull — тусклый"
-            }
-          ]
+            "type": "complex",
+            "text": "Задание 1. Вставьте правильное прилагательное из списка: light, dark, heavy, soft, hard, smooth, rough, warm, cool, sweet.\n\n1. The feather is ___ . (лёгкое)\n2. The room is ___ . (тёмная)\n3. The box is ___ . (тяжёлый)\n4. The pillow is ___ . (мягкий)\n5. The floor is ___ . (твёрдый)\n6. The glass is ___ . (гладкий)\n7. The wall is ___ . (шершавый)\n8. The soup is ___ . (тёплый)\n9. The breeze is ___ . (прохладный)\n10. The honey is ___ . (сладкий)",
+            "subtasks": [
+                {"question": "1. The feather is ___ . (лёгкое)", "answer": "light", "explanation": "feather лёгкое → light"},
+                {"question": "2. The room is ___ . (тёмная)", "answer": "dark", "explanation": "room тёмная → dark"},
+                {"question": "3. The box is ___ . (тяжёлый)", "answer": "heavy", "explanation": "box тяжёлый → heavy"},
+                {"question": "4. The pillow is ___ . (мягкий)", "answer": "soft", "explanation": "pillow мягкий → soft"},
+                {"question": "5. The floor is ___ . (твёрдый)", "answer": "hard", "explanation": "floor твёрдый → hard"},
+                {"question": "6. The glass is ___ . (гладкий)", "answer": "smooth", "explanation": "glass гладкий → smooth"},
+                {"question": "7. The wall is ___ . (шершавый)", "answer": "rough", "explanation": "wall шершавый → rough"},
+                {"question": "8. The soup is ___ . (тёплый)", "answer": "warm", "explanation": "soup тёплый → warm"},
+                {"question": "9. The breeze is ___ . (прохладный)", "answer": "cool", "explanation": "breeze прохладный → cool"},
+                {"question": "10. The honey is ___ . (сладкий)", "answer": "sweet", "explanation": "honey сладкий → sweet"}
+            ]
         },
         {
-          "type": "complex",
-          "text": "Переведите предложения на английский.\n\n1. Река очень широкая.\n2. Улица узкая.\n3. Озеро глубокое.\n4. Бассейн мелкий.\n5. Класс тихий.\n6. Рынок шумный.\n7. Комната тёмная.\n8. Дом светлый.\n9. Солнце яркое.\n10. Цвет тусклый.",
-          "subtasks": [
-            {
-              "question": "Река очень широкая.",
-              "answer": "The river is very wide.",
-              "explanation": "The river is very wide."
-            },
-            {
-              "question": "Улица узкая.",
-              "answer": "The street is narrow.",
-              "explanation": "The street is narrow."
-            },
-            {
-              "question": "Озеро глубокое.",
-              "answer": "The lake is deep.",
-              "explanation": "The lake is deep."
-            },
-            {
-              "question": "Бассейн мелкий.",
-              "answer": "The pool is shallow.",
-              "explanation": "The pool is shallow."
-            },
-            {
-              "question": "Класс тихий.",
-              "answer": "The classroom is quiet.",
-              "explanation": "The classroom is quiet."
-            },
-            {
-              "question": "Рынок шумный.",
-              "answer": "The market is noisy.",
-              "explanation": "The market is noisy."
-            },
-            {
-              "question": "Комната тёмная.",
-              "answer": "The room is dark.",
-              "explanation": "The room is dark."
-            },
-            {
-              "question": "Дом светлый.",
-              "answer": "The house is light.",
-              "explanation": "The house is light."
-            },
-            {
-              "question": "Солнце яркое.",
-              "answer": "The sun is bright.",
-              "explanation": "The sun is bright."
-            },
-            {
-              "question": "Цвет тусклый.",
-              "answer": "The colour is dull.",
-              "explanation": "The colour is dull."
-            }
-          ]
+            "type": "complex",
+            "text": "Задание 2. Переведите предложения на английский.\n\n1. Перо лёгкое.\n2. Комната тёмная.\n3. Коробка тяжёлая.\n4. Подушка мягкая.\n5. Пол твёрдый.\n6. Стекло гладкое.\n7. Стена шершавая.\n8. Суп тёплый.\n9. Ветерок прохладный.\n10. Мёд сладкий.",
+            "subtasks": [
+                {"question": "1. Перо лёгкое.", "answer": "The feather is light.", "explanation": ""},
+                {"question": "2. Комната тёмная.", "answer": "The room is dark.", "explanation": ""},
+                {"question": "3. Коробка тяжёлая.", "answer": "The box is heavy.", "explanation": ""},
+                {"question": "4. Подушка мягкая.", "answer": "The pillow is soft.", "explanation": ""},
+                {"question": "5. Пол твёрдый.", "answer": "The floor is hard.", "explanation": ""},
+                {"question": "6. Стекло гладкое.", "answer": "The glass is smooth.", "explanation": ""},
+                {"question": "7. Стена шершавая.", "answer": "The wall is rough.", "explanation": ""},
+                {"question": "8. Суп тёплый.", "answer": "The soup is warm.", "explanation": ""},
+                {"question": "9. Ветерок прохладный.", "answer": "The breeze is cool.", "explanation": ""},
+                {"question": "10. Мёд сладкий.", "answer": "The honey is sweet.", "explanation": ""}
+            ]
         },
         {
-          "type": "complex",
-          "text": "Составьте предложения.\n\n1. wide / very / river / the / is\n2. narrow / street / the / is\n3. deep / lake / the / is\n4. shallow / pool / the / is\n5. quiet / classroom / the / is\n6. noisy / market / the / is\n7. dark / room / the / is\n8. light / house / the / is\n9. bright / sun / the / is\n10. dull / colour / the / is",
-          "subtasks": [
-            {
-              "question": "wide / very / river / the / is",
-              "answer": "The river is very wide.",
-              "explanation": "The river is very wide."
-            },
-            {
-              "question": "narrow / street / the / is",
-              "answer": "The street is narrow.",
-              "explanation": "The street is narrow."
-            },
-            {
-              "question": "deep / lake / the / is",
-              "answer": "The lake is deep.",
-              "explanation": "The lake is deep."
-            },
-            {
-              "question": "shallow / pool / the / is",
-              "answer": "The pool is shallow.",
-              "explanation": "The pool is shallow."
-            },
-            {
-              "question": "quiet / classroom / the / is",
-              "answer": "The classroom is quiet.",
-              "explanation": "The classroom is quiet."
-            },
-            {
-              "question": "noisy / market / the / is",
-              "answer": "The market is noisy.",
-              "explanation": "The market is noisy."
-            },
-            {
-              "question": "dark / room / the / is",
-              "answer": "The room is dark.",
-              "explanation": "The room is dark."
-            },
-            {
-              "question": "light / house / the / is",
-              "answer": "The house is light.",
-              "explanation": "The house is light."
-            },
-            {
-              "question": "bright / sun / the / is",
-              "answer": "The sun is bright.",
-              "explanation": "The sun is bright."
-            },
-            {
-              "question": "dull / colour / the / is",
-              "answer": "The colour is dull.",
-              "explanation": "The colour is dull."
-            }
-          ]
+            "type": "complex",
+            "text": "Задание 3. Напишите сравнительную степень прилагательных.\n\n1. light\n2. dark\n3. heavy\n4. soft\n5. hard\n6. smooth\n7. rough\n8. warm\n9. cool\n10. sweet",
+            "subtasks": [
+                {"question": "1. light", "answer": "lighter", "explanation": "light → lighter"},
+                {"question": "2. dark", "answer": "darker", "explanation": "dark → darker"},
+                {"question": "3. heavy", "answer": "heavier", "explanation": "heavy → heavier (y→i)"},
+                {"question": "4. soft", "answer": "softer", "explanation": "soft → softer"},
+                {"question": "5. hard", "answer": "harder", "explanation": "hard → harder"},
+                {"question": "6. smooth", "answer": "smoother", "explanation": "smooth → smoother"},
+                {"question": "7. rough", "answer": "rougher", "explanation": "rough → rougher"},
+                {"question": "8. warm", "answer": "warmer", "explanation": "warm → warmer"},
+                {"question": "9. cool", "answer": "cooler", "explanation": "cool → cooler"},
+                {"question": "10. sweet", "answer": "sweeter", "explanation": "sweet → sweeter"}
+            ]
         }
-      ],
-      [
+    ],
+    # ==================== ВАРИАНТ 7 ====================
+    [
         {
-          "type": "complex",
-          "text": "Вставьте прилагательное: delicious, awful, tasty, bitter, sour, sweet, salty, spicy, fresh, stale.\n\n1. The cake is very ___. (вкусный)\n2. The soup is ___. (ужасный)\n3. The salad is ___. (вкусный)\n4. The coffee is ___. (горький)\n5. The lemon is ___. (кислый)\n6. The chocolate is ___. (сладкий)\n7. The chips are ___. (солёные)\n8. The curry is ___. (острый)\n9. The bread is ___. (свежий)\n10. The biscuits are ___. (чёрствый)",
-          "subtasks": [
-            {
-              "question": "The cake is very ___. (вкусный)",
-              "answer": "delicious",
-              "explanation": "delicious — вкусный"
-            },
-            {
-              "question": "The soup is ___. (ужасный)",
-              "answer": "awful",
-              "explanation": "awful — ужасный"
-            },
-            {
-              "question": "The salad is ___. (вкусный)",
-              "answer": "tasty",
-              "explanation": "tasty — вкусный"
-            },
-            {
-              "question": "The coffee is ___. (горький)",
-              "answer": "bitter",
-              "explanation": "bitter — горький"
-            },
-            {
-              "question": "The lemon is ___. (кислый)",
-              "answer": "sour",
-              "explanation": "sour — кислый"
-            },
-            {
-              "question": "The chocolate is ___. (сладкий)",
-              "answer": "sweet",
-              "explanation": "sweet — сладкий"
-            },
-            {
-              "question": "The chips are ___. (солёные)",
-              "answer": "salty",
-              "explanation": "salty — солёный"
-            },
-            {
-              "question": "The curry is ___. (острый)",
-              "answer": "spicy",
-              "explanation": "spicy — острый (пряный)"
-            },
-            {
-              "question": "The bread is ___. (свежий)",
-              "answer": "fresh",
-              "explanation": "fresh — свежий"
-            },
-            {
-              "question": "The biscuits are ___. (чёрствый)",
-              "answer": "stale",
-              "explanation": "stale — чёрствый (несвежий)"
-            }
-          ]
+            "type": "complex",
+            "text": "Задание 1. Вставьте правильное прилагательное из списка: noisy, quiet, crowded, empty, modern, ancient, clean, dirty, messy, tidy.\n\n1. The city is ___ . (шумный)\n2. The library is ___ . (тихая)\n3. The market is ___ . (переполненный)\n4. The room is ___ . (пустая)\n5. The building is ___ . (современный)\n6. The castle is ___ . (древний)\n7. The kitchen is ___ . (чистая)\n8. The clothes are ___ . (грязные)\n9. The room is ___ . (неубранная)\n10. The desk is ___ . (аккуратный)",
+            "subtasks": [
+                {"question": "1. The city is ___ . (шумный)", "answer": "noisy", "explanation": "city шумный → noisy"},
+                {"question": "2. The library is ___ . (тихая)", "answer": "quiet", "explanation": "library тихая → quiet"},
+                {"question": "3. The market is ___ . (переполненный)", "answer": "crowded", "explanation": "market переполненный → crowded"},
+                {"question": "4. The room is ___ . (пустая)", "answer": "empty", "explanation": "room пустая → empty"},
+                {"question": "5. The building is ___ . (современный)", "answer": "modern", "explanation": "building современный → modern"},
+                {"question": "6. The castle is ___ . (древний)", "answer": "ancient", "explanation": "castle древний → ancient"},
+                {"question": "7. The kitchen is ___ . (чистая)", "answer": "clean", "explanation": "kitchen чистая → clean"},
+                {"question": "8. The clothes are ___ . (грязные)", "answer": "dirty", "explanation": "clothes грязные → dirty"},
+                {"question": "9. The room is ___ . (неубранная)", "answer": "messy", "explanation": "room неубранная → messy"},
+                {"question": "10. The desk is ___ . (аккуратный)", "answer": "tidy", "explanation": "desk аккуратный → tidy"}
+            ]
         },
         {
-          "type": "complex",
-          "text": "Переведите предложения на английский.\n\n1. Торт очень вкусный.\n2. Суп ужасный.\n3. Салат вкусный.\n4. Кофе горький.\n5. Лимон кислый.\n6. Шоколад сладкий.\n7. Чипсы солёные.\n8. Карри острый.\n9. Хлеб свежий.\n10. Печенье чёрствое.",
-          "subtasks": [
-            {
-              "question": "Торт очень вкусный.",
-              "answer": "The cake is very delicious.",
-              "explanation": "The cake is very delicious."
-            },
-            {
-              "question": "Суп ужасный.",
-              "answer": "The soup is awful.",
-              "explanation": "The soup is awful."
-            },
-            {
-              "question": "Салат вкусный.",
-              "answer": "The salad is tasty.",
-              "explanation": "The salad is tasty."
-            },
-            {
-              "question": "Кофе горький.",
-              "answer": "The coffee is bitter.",
-              "explanation": "The coffee is bitter."
-            },
-            {
-              "question": "Лимон кислый.",
-              "answer": "The lemon is sour.",
-              "explanation": "The lemon is sour."
-            },
-            {
-              "question": "Шоколад сладкий.",
-              "answer": "The chocolate is sweet.",
-              "explanation": "The chocolate is sweet."
-            },
-            {
-              "question": "Чипсы солёные.",
-              "answer": "The chips are salty.",
-              "explanation": "The chips are salty."
-            },
-            {
-              "question": "Карри острый.",
-              "answer": "The curry is spicy.",
-              "explanation": "The curry is spicy."
-            },
-            {
-              "question": "Хлеб свежий.",
-              "answer": "The bread is fresh.",
-              "explanation": "The bread is fresh."
-            },
-            {
-              "question": "Печенье чёрствое.",
-              "answer": "The biscuits are stale.",
-              "explanation": "The biscuits are stale."
-            }
-          ]
+            "type": "complex",
+            "text": "Задание 2. Переведите предложения на английский.\n\n1. Город шумный.\n2. Библиотека тихая.\n3. Рынок переполнен.\n4. Комната пустая.\n5. Здание современное.\n6. Замок древний.\n7. Кухня чистая.\n8. Одежда грязная.\n9. Комната неубранная.\n10. Стол аккуратный.",
+            "subtasks": [
+                {"question": "1. Город шумный.", "answer": "The city is noisy.", "explanation": ""},
+                {"question": "2. Библиотека тихая.", "answer": "The library is quiet.", "explanation": ""},
+                {"question": "3. Рынок переполнен.", "answer": "The market is crowded.", "explanation": ""},
+                {"question": "4. Комната пустая.", "answer": "The room is empty.", "explanation": ""},
+                {"question": "5. Здание современное.", "answer": "The building is modern.", "explanation": ""},
+                {"question": "6. Замок древний.", "answer": "The castle is ancient.", "explanation": ""},
+                {"question": "7. Кухня чистая.", "answer": "The kitchen is clean.", "explanation": ""},
+                {"question": "8. Одежда грязная.", "answer": "The clothes are dirty.", "explanation": ""},
+                {"question": "9. Комната неубранная.", "answer": "The room is messy.", "explanation": ""},
+                {"question": "10. Стол аккуратный.", "answer": "The desk is tidy.", "explanation": ""}
+            ]
         },
         {
-          "type": "complex",
-          "text": "Составьте предложения.\n\n1. delicious / very / cake / the / is\n2. awful / soup / the / is\n3. tasty / salad / the / is\n4. bitter / coffee / the / is\n5. sour / lemon / the / is\n6. sweet / chocolate / the / is\n7. salty / chips / the / are\n8. spicy / curry / the / is\n9. fresh / bread / the / is\n10. stale / biscuits / the / are",
-          "subtasks": [
-            {
-              "question": "delicious / very / cake / the / is",
-              "answer": "The cake is very delicious.",
-              "explanation": "The cake is very delicious."
-            },
-            {
-              "question": "awful / soup / the / is",
-              "answer": "The soup is awful.",
-              "explanation": "The soup is awful."
-            },
-            {
-              "question": "tasty / salad / the / is",
-              "answer": "The salad is tasty.",
-              "explanation": "The salad is tasty."
-            },
-            {
-              "question": "bitter / coffee / the / is",
-              "answer": "The coffee is bitter.",
-              "explanation": "The coffee is bitter."
-            },
-            {
-              "question": "sour / lemon / the / is",
-              "answer": "The lemon is sour.",
-              "explanation": "The lemon is sour."
-            },
-            {
-              "question": "sweet / chocolate / the / is",
-              "answer": "The chocolate is sweet.",
-              "explanation": "The chocolate is sweet."
-            },
-            {
-              "question": "salty / chips / the / are",
-              "answer": "The chips are salty.",
-              "explanation": "The chips are salty."
-            },
-            {
-              "question": "spicy / curry / the / is",
-              "answer": "The curry is spicy.",
-              "explanation": "The curry is spicy."
-            },
-            {
-              "question": "fresh / bread / the / is",
-              "answer": "The bread is fresh.",
-              "explanation": "The bread is fresh."
-            },
-            {
-              "question": "stale / biscuits / the / are",
-              "answer": "The biscuits are stale.",
-              "explanation": "The biscuits are stale."
-            }
-          ]
+            "type": "complex",
+            "text": "Задание 3. Напишите сравнительную степень прилагательных.\n\n1. noisy\n2. quiet\n3. crowded\n4. empty\n5. modern\n6. ancient\n7. clean\n8. dirty\n9. messy\n10. tidy",
+            "subtasks": [
+                {"question": "1. noisy", "answer": "noisier", "explanation": "noisy → noisier (y→i)"},
+                {"question": "2. quiet", "answer": "quieter", "explanation": "quiet → quieter"},
+                {"question": "3. crowded", "answer": "more crowded", "explanation": "crowded → more crowded (длинное)"},
+                {"question": "4. empty", "answer": "emptier", "explanation": "empty → emptier (y→i)"},
+                {"question": "5. modern", "answer": "more modern", "explanation": "modern → more modern (длинное)"},
+                {"question": "6. ancient", "answer": "more ancient", "explanation": "ancient → more ancient (длинное)"},
+                {"question": "7. clean", "answer": "cleaner", "explanation": "clean → cleaner"},
+                {"question": "8. dirty", "answer": "dirtier", "explanation": "dirty → dirtier (y→i)"},
+                {"question": "9. messy", "answer": "messier", "explanation": "messy → messier (y→i)"},
+                {"question": "10. tidy", "answer": "tidier", "explanation": "tidy → tidier (y→i)"}
+            ]
         }
-      ],
-      [
+    ],
+    # ==================== ВАРИАНТ 8 ====================
+    [
         {
-          "type": "complex",
-          "text": "Вставьте прилагательное: beautiful, ugly, nice, horrible, wonderful, terrible, great, awful, lovely, nasty.\n\n1. The view is ___. (красивый)\n2. The picture is ___. (уродливый)\n3. She is very ___. (милая)\n4. The weather is ___. (ужасный)\n5. The holiday was ___. (замечательный)\n6. The film was ___. (ужасный)\n7. The news is ___. (отличный)\n8. The smell is ___. (отвратительный)\n9. The garden is ___. (прекрасный)\n10. The taste is ___. (противный)",
-          "subtasks": [
-            {
-              "question": "The view is ___. (красивый)",
-              "answer": "beautiful",
-              "explanation": "beautiful — красивый"
-            },
-            {
-              "question": "The picture is ___. (уродливый)",
-              "answer": "ugly",
-              "explanation": "ugly — уродливый"
-            },
-            {
-              "question": "She is very ___. (милая)",
-              "answer": "nice",
-              "explanation": "nice — милый (приятный)"
-            },
-            {
-              "question": "The weather is ___. (ужасный)",
-              "answer": "horrible",
-              "explanation": "horrible — ужасный"
-            },
-            {
-              "question": "The holiday was ___. (замечательный)",
-              "answer": "wonderful",
-              "explanation": "wonderful — замечательный"
-            },
-            {
-              "question": "The film was ___. (ужасный)",
-              "answer": "terrible",
-              "explanation": "terrible — ужасный"
-            },
-            {
-              "question": "The news is ___. (отличный)",
-              "answer": "great",
-              "explanation": "great — отличный"
-            },
-            {
-              "question": "The smell is ___. (отвратительный)",
-              "answer": "awful",
-              "explanation": "awful — отвратительный"
-            },
-            {
-              "question": "The garden is ___. (прекрасный)",
-              "answer": "lovely",
-              "explanation": "lovely — прекрасный"
-            },
-            {
-              "question": "The taste is ___. (противный)",
-              "answer": "nasty",
-              "explanation": "nasty — противный"
-            }
-          ]
+            "type": "complex",
+            "text": "Задание 1. Вставьте правильное прилагательное из списка: rich, poor, famous, unknown, successful, lucky, unlucky, safe, dangerous, healthy.\n\n1. The businessman is ___ . (богатый)\n2. The family is ___ . (бедная)\n3. The actor is ___ . (известный)\n4. The artist is ___ . (неизвестный)\n5. The company is ___ . (успешная)\n6. She is ___ . (удачливая)\n7. He is ___ . (неудачливый)\n8. The city is ___ . (безопасный)\n9. The road is ___ . (опасная)\n10. The food is ___ . (полезный)",
+            "subtasks": [
+                {"question": "1. The businessman is ___ . (богатый)", "answer": "rich", "explanation": "businessman богатый → rich"},
+                {"question": "2. The family is ___ . (бедная)", "answer": "poor", "explanation": "family бедная → poor"},
+                {"question": "3. The actor is ___ . (известный)", "answer": "famous", "explanation": "actor известный → famous"},
+                {"question": "4. The artist is ___ . (неизвестный)", "answer": "unknown", "explanation": "artist неизвестный → unknown"},
+                {"question": "5. The company is ___ . (успешная)", "answer": "successful", "explanation": "company успешная → successful"},
+                {"question": "6. She is ___ . (удачливая)", "answer": "lucky", "explanation": "she удачливая → lucky"},
+                {"question": "7. He is ___ . (неудачливый)", "answer": "unlucky", "explanation": "he неудачливый → unlucky"},
+                {"question": "8. The city is ___ . (безопасный)", "answer": "safe", "explanation": "city безопасный → safe"},
+                {"question": "9. The road is ___ . (опасная)", "answer": "dangerous", "explanation": "road опасная → dangerous"},
+                {"question": "10. The food is ___ . (полезный)", "answer": "healthy", "explanation": "food полезный → healthy"}
+            ]
         },
         {
-          "type": "complex",
-          "text": "Переведите предложения на английский.\n\n1. Вид красивый.\n2. Картина уродливая.\n3. Она очень милая.\n4. Погода ужасная.\n5. Отпуск был замечательный.\n6. Фильм был ужасный.\n7. Новости отличные.\n8. Запах отвратительный.\n9. Сад прекрасный.\n10. Вкус противный.",
-          "subtasks": [
-            {
-              "question": "Вид красивый.",
-              "answer": "The view is beautiful.",
-              "explanation": "The view is beautiful."
-            },
-            {
-              "question": "Картина уродливая.",
-              "answer": "The picture is ugly.",
-              "explanation": "The picture is ugly."
-            },
-            {
-              "question": "Она очень милая.",
-              "answer": "She is very nice.",
-              "explanation": "She is very nice."
-            },
-            {
-              "question": "Погода ужасная.",
-              "answer": "The weather is horrible.",
-              "explanation": "The weather is horrible."
-            },
-            {
-              "question": "Отпуск был замечательный.",
-              "answer": "The holiday was wonderful.",
-              "explanation": "The holiday was wonderful."
-            },
-            {
-              "question": "Фильм был ужасный.",
-              "answer": "The film was terrible.",
-              "explanation": "The film was terrible."
-            },
-            {
-              "question": "Новости отличные.",
-              "answer": "The news is great.",
-              "explanation": "The news is great."
-            },
-            {
-              "question": "Запах отвратительный.",
-              "answer": "The smell is awful.",
-              "explanation": "The smell is awful."
-            },
-            {
-              "question": "Сад прекрасный.",
-              "answer": "The garden is lovely.",
-              "explanation": "The garden is lovely."
-            },
-            {
-              "question": "Вкус противный.",
-              "answer": "The taste is nasty.",
-              "explanation": "The taste is nasty."
-            }
-          ]
+            "type": "complex",
+            "text": "Задание 2. Переведите предложения на английский.\n\n1. Бизнесмен богатый.\n2. Семья бедная.\n3. Актер известный.\n4. Художник неизвестный.\n5. Компания успешная.\n6. Она удачливая.\n7. Он неудачливый.\n8. Город безопасный.\n9. Дорога опасная.\n10. Еда полезная.",
+            "subtasks": [
+                {"question": "1. Бизнесмен богатый.", "answer": "The businessman is rich.", "explanation": ""},
+                {"question": "2. Семья бедная.", "answer": "The family is poor.", "explanation": ""},
+                {"question": "3. Актер известный.", "answer": "The actor is famous.", "explanation": ""},
+                {"question": "4. Художник неизвестный.", "answer": "The artist is unknown.", "explanation": ""},
+                {"question": "5. Компания успешная.", "answer": "The company is successful.", "explanation": ""},
+                {"question": "6. Она удачливая.", "answer": "She is lucky.", "explanation": ""},
+                {"question": "7. Он неудачливый.", "answer": "He is unlucky.", "explanation": ""},
+                {"question": "8. Город безопасный.", "answer": "The city is safe.", "explanation": ""},
+                {"question": "9. Дорога опасная.", "answer": "The road is dangerous.", "explanation": ""},
+                {"question": "10. Еда полезная.", "answer": "The food is healthy.", "explanation": ""}
+            ]
         },
         {
-          "type": "complex",
-          "text": "Составьте предложения.\n\n1. beautiful / view / the / is\n2. ugly / picture / the / is\n3. nice / very / she / is\n4. horrible / weather / the / is\n5. wonderful / holiday / the / was\n6. terrible / film / the / was\n7. great / news / the / is\n8. awful / smell / the / is\n9. lovely / garden / the / is\n10. nasty / taste / the / is",
-          "subtasks": [
-            {
-              "question": "beautiful / view / the / is",
-              "answer": "The view is beautiful.",
-              "explanation": "The view is beautiful."
-            },
-            {
-              "question": "ugly / picture / the / is",
-              "answer": "The picture is ugly.",
-              "explanation": "The picture is ugly."
-            },
-            {
-              "question": "nice / very / she / is",
-              "answer": "She is very nice.",
-              "explanation": "She is very nice."
-            },
-            {
-              "question": "horrible / weather / the / is",
-              "answer": "The weather is horrible.",
-              "explanation": "The weather is horrible."
-            },
-            {
-              "question": "wonderful / holiday / the / was",
-              "answer": "The holiday was wonderful.",
-              "explanation": "The holiday was wonderful."
-            },
-            {
-              "question": "terrible / film / the / was",
-              "answer": "The film was terrible.",
-              "explanation": "The film was terrible."
-            },
-            {
-              "question": "great / news / the / is",
-              "answer": "The news is great.",
-              "explanation": "The news is great."
-            },
-            {
-              "question": "awful / smell / the / is",
-              "answer": "The smell is awful.",
-              "explanation": "The smell is awful."
-            },
-            {
-              "question": "lovely / garden / the / is",
-              "answer": "The garden is lovely.",
-              "explanation": "The garden is lovely."
-            },
-            {
-              "question": "nasty / taste / the / is",
-              "answer": "The taste is nasty.",
-              "explanation": "The taste is nasty."
-            }
-          ]
+            "type": "complex",
+            "text": "Задание 3. Напишите сравнительную степень прилагательных.\n\n1. rich\n2. poor\n3. famous\n4. successful\n5. lucky\n6. unlucky\n7. safe\n8. dangerous\n9. healthy\n10. unknown",
+            "subtasks": [
+                {"question": "1. rich", "answer": "richer", "explanation": "rich → richer"},
+                {"question": "2. poor", "answer": "poorer", "explanation": "poor → poorer"},
+                {"question": "3. famous", "answer": "more famous", "explanation": "famous → more famous (длинное)"},
+                {"question": "4. successful", "answer": "more successful", "explanation": "successful → more successful (длинное)"},
+                {"question": "5. lucky", "answer": "luckier", "explanation": "lucky → luckier (y→i)"},
+                {"question": "6. unlucky", "answer": "unluckier", "explanation": "unlucky → unluckier (y→i)"},
+                {"question": "7. safe", "answer": "safer", "explanation": "safe → safer"},
+                {"question": "8. dangerous", "answer": "more dangerous", "explanation": "dangerous → more dangerous (длинное)"},
+                {"question": "9. healthy", "answer": "healthier", "explanation": "healthy → healthier (y→i)"},
+                {"question": "10. unknown", "answer": "more unknown", "explanation": "unknown → more unknown (длинное)"}
+            ]
         }
-      ],
-      [
+    ],
+    # ==================== ВАРИАНТ 9 ====================
+    [
         {
-          "type": "complex",
-          "text": "Вставьте прилагательное: happy, sad, glad, sorry, angry, calm, worried, excited, tired, energetic.\n\n1. She is very ___. (счастливая)\n2. He is ___. (грустный)\n3. I am ___. (рад)\n4. I am ___. (сожалею)\n5. He is ___. (злой)\n6. She is ___. (спокойная)\n7. He is ___. (взволнованный)\n8. She is ___. (возбуждённая)\n9. I am ___. (усталый)\n10. He is ___. (энергичный)",
-          "subtasks": [
-            {
-              "question": "She is very ___. (счастливая)",
-              "answer": "happy",
-              "explanation": "happy — счастливый"
-            },
-            {
-              "question": "He is ___. (грустный)",
-              "answer": "sad",
-              "explanation": "sad — грустный"
-            },
-            {
-              "question": "I am ___. (рад)",
-              "answer": "glad",
-              "explanation": "glad — рад"
-            },
-            {
-              "question": "I am ___. (сожалею)",
-              "answer": "sorry",
-              "explanation": "sorry — сожалею"
-            },
-            {
-              "question": "He is ___. (злой)",
-              "answer": "angry",
-              "explanation": "angry — злой"
-            },
-            {
-              "question": "She is ___. (спокойная)",
-              "answer": "calm",
-              "explanation": "calm — спокойный"
-            },
-            {
-              "question": "He is ___. (взволнованный)",
-              "answer": "worried",
-              "explanation": "worried — взволнованный (обеспокоенный)"
-            },
-            {
-              "question": "She is ___. (возбуждённая)",
-              "answer": "excited",
-              "explanation": "excited — возбуждённый (в предвкушении)"
-            },
-            {
-              "question": "I am ___. (усталый)",
-              "answer": "tired",
-              "explanation": "tired — усталый"
-            },
-            {
-              "question": "He is ___. (энергичный)",
-              "answer": "energetic",
-              "explanation": "energetic — энергичный"
-            }
-          ]
+            "type": "complex",
+            "text": "Задание 1. Вставьте правильное прилагательное из списка: brave, cowardly, generous, selfish, honest, dishonest, patient, impatient, polite, rude.\n\n1. The soldier is ___ . (храбрый)\n2. The man is ___ . (трусливый)\n3. The woman is ___ . (щедрая)\n4. The child is ___ . (эгоистичный)\n5. The man is ___ . (честный)\n6. The politician is ___ . (нечестный)\n7. The teacher is ___ . (терпеливый)\n8. The boy is ___ . (нетерпеливый)\n9. The girl is ___ . (вежливая)\n10. The teenager is ___ . (грубый)",
+            "subtasks": [
+                {"question": "1. The soldier is ___ . (храбрый)", "answer": "brave", "explanation": "soldier храбрый → brave"},
+                {"question": "2. The man is ___ . (трусливый)", "answer": "cowardly", "explanation": "man трусливый → cowardly"},
+                {"question": "3. The woman is ___ . (щедрая)", "answer": "generous", "explanation": "woman щедрая → generous"},
+                {"question": "4. The child is ___ . (эгоистичный)", "answer": "selfish", "explanation": "child эгоистичный → selfish"},
+                {"question": "5. The man is ___ . (честный)", "answer": "honest", "explanation": "man честный → honest"},
+                {"question": "6. The politician is ___ . (нечестный)", "answer": "dishonest", "explanation": "politician нечестный → dishonest"},
+                {"question": "7. The teacher is ___ . (терпеливый)", "answer": "patient", "explanation": "teacher терпеливый → patient"},
+                {"question": "8. The boy is ___ . (нетерпеливый)", "answer": "impatient", "explanation": "boy нетерпеливый → impatient"},
+                {"question": "9. The girl is ___ . (вежливая)", "answer": "polite", "explanation": "girl вежливая → polite"},
+                {"question": "10. The teenager is ___ . (грубый)", "answer": "rude", "explanation": "teenager грубый → rude"}
+            ]
         },
         {
-          "type": "complex",
-          "text": "Переведите предложения на английский.\n\n1. Она очень счастливая.\n2. Он грустный.\n3. Я рад.\n4. Мне жаль.\n5. Он злой.\n6. Она спокойная.\n7. Он взволнованный.\n8. Она возбуждённая.\n9. Я усталый.\n10. Он энергичный.",
-          "subtasks": [
-            {
-              "question": "Она очень счастливая.",
-              "answer": "She is very happy.",
-              "explanation": "She is very happy."
-            },
-            {
-              "question": "Он грустный.",
-              "answer": "He is sad.",
-              "explanation": "He is sad."
-            },
-            {
-              "question": "Я рад.",
-              "answer": "I am glad.",
-              "explanation": "I am glad."
-            },
-            {
-              "question": "Мне жаль.",
-              "answer": "I am sorry.",
-              "explanation": "I am sorry."
-            },
-            {
-              "question": "Он злой.",
-              "answer": "He is angry.",
-              "explanation": "He is angry."
-            },
-            {
-              "question": "Она спокойная.",
-              "answer": "She is calm.",
-              "explanation": "She is calm."
-            },
-            {
-              "question": "Он взволнованный.",
-              "answer": "He is worried.",
-              "explanation": "He is worried."
-            },
-            {
-              "question": "Она возбуждённая.",
-              "answer": "She is excited.",
-              "explanation": "She is excited."
-            },
-            {
-              "question": "Я усталый.",
-              "answer": "I am tired.",
-              "explanation": "I am tired."
-            },
-            {
-              "question": "Он энергичный.",
-              "answer": "He is energetic.",
-              "explanation": "He is energetic."
-            }
-          ]
+            "type": "complex",
+            "text": "Задание 2. Переведите предложения на английский.\n\n1. Солдат храбрый.\n2. Мужчина трусливый.\n3. Женщина щедрая.\n4. Ребёнок эгоистичный.\n5. Мужчина честный.\n6. Политик нечестный.\n7. Учитель терпеливый.\n8. Мальчик нетерпеливый.\n9. Девочка вежливая.\n10. Подросток грубый.",
+            "subtasks": [
+                {"question": "1. Солдат храбрый.", "answer": "The soldier is brave.", "explanation": ""},
+                {"question": "2. Мужчина трусливый.", "answer": "The man is cowardly.", "explanation": ""},
+                {"question": "3. Женщина щедрая.", "answer": "The woman is generous.", "explanation": ""},
+                {"question": "4. Ребёнок эгоистичный.", "answer": "The child is selfish.", "explanation": ""},
+                {"question": "5. Мужчина честный.", "answer": "The man is honest.", "explanation": ""},
+                {"question": "6. Политик нечестный.", "answer": "The politician is dishonest.", "explanation": ""},
+                {"question": "7. Учитель терпеливый.", "answer": "The teacher is patient.", "explanation": ""},
+                {"question": "8. Мальчик нетерпеливый.", "answer": "The boy is impatient.", "explanation": ""},
+                {"question": "9. Девочка вежливая.", "answer": "The girl is polite.", "explanation": ""},
+                {"question": "10. Подросток грубый.", "answer": "The teenager is rude.", "explanation": ""}
+            ]
         },
         {
-          "type": "complex",
-          "text": "Составьте предложения.\n\n1. happy / very / she / is\n2. sad / he / is\n3. glad / am / I\n4. sorry / am / I\n5. angry / he / is\n6. calm / she / is\n7. worried / he / is\n8. excited / she / is\n9. tired / am / I\n10. energetic / he / is",
-          "subtasks": [
-            {
-              "question": "happy / very / she / is",
-              "answer": "She is very happy.",
-              "explanation": "She is very happy."
-            },
-            {
-              "question": "sad / he / is",
-              "answer": "He is sad.",
-              "explanation": "He is sad."
-            },
-            {
-              "question": "glad / am / I",
-              "answer": "I am glad.",
-              "explanation": "I am glad."
-            },
-            {
-              "question": "sorry / am / I",
-              "answer": "I am sorry.",
-              "explanation": "I am sorry."
-            },
-            {
-              "question": "angry / he / is",
-              "answer": "He is angry.",
-              "explanation": "He is angry."
-            },
-            {
-              "question": "calm / she / is",
-              "answer": "She is calm.",
-              "explanation": "She is calm."
-            },
-            {
-              "question": "worried / he / is",
-              "answer": "He is worried.",
-              "explanation": "He is worried."
-            },
-            {
-              "question": "excited / she / is",
-              "answer": "She is excited.",
-              "explanation": "She is excited."
-            },
-            {
-              "question": "tired / am / I",
-              "answer": "I am tired.",
-              "explanation": "I am tired."
-            },
-            {
-              "question": "energetic / he / is",
-              "answer": "He is energetic.",
-              "explanation": "He is energetic."
-            }
-          ]
+            "type": "complex",
+            "text": "Задание 3. Напишите сравнительную степень прилагательных.\n\n1. brave\n2. generous\n3. selfish\n4. honest\n5. dishonest\n6. patient\n7. impatient\n8. polite\n9. rude\n10. cowardly",
+            "subtasks": [
+                {"question": "1. brave", "answer": "braver", "explanation": "brave → braver"},
+                {"question": "2. generous", "answer": "more generous", "explanation": "generous → more generous (длинное)"},
+                {"question": "3. selfish", "answer": "more selfish", "explanation": "selfish → more selfish (длинное)"},
+                {"question": "4. honest", "answer": "more honest", "explanation": "honest → more honest (длинное)"},
+                {"question": "5. dishonest", "answer": "more dishonest", "explanation": "dishonest → more dishonest (длинное)"},
+                {"question": "6. patient", "answer": "more patient", "explanation": "patient → more patient (длинное)"},
+                {"question": "7. impatient", "answer": "more impatient", "explanation": "impatient → more impatient (длинное)"},
+                {"question": "8. polite", "answer": "politer", "explanation": "polite → politer"},
+                {"question": "9. rude", "answer": "ruder", "explanation": "rude → ruder"},
+                {"question": "10. cowardly", "answer": "more cowardly", "explanation": "cowardly → more cowardly (длинное)"}
+            ]
         }
-      ],
-      [
+    ],
+    # ==================== ВАРИАНТ 10 ====================
+    [
         {
-          "type": "complex",
-          "text": "Вставьте прилагательное: easy, difficult, interesting, boring, useful, useless, important, unimportant, necessary, unnecessary.\n\n1. This task is ___. (лёгкий)\n2. That problem is ___. (трудный)\n3. The book is ___. (интересный)\n4. The lecture is ___. (скучный)\n5. The tool is ___. (полезный)\n6. The device is ___. (бесполезный)\n7. It is ___. (важный)\n8. It is ___. (неважный)\n9. It is ___. (необходимый)\n10. It is ___. (ненужный)",
-          "subtasks": [
-            {
-              "question": "This task is ___. (лёгкий)",
-              "answer": "easy",
-              "explanation": "easy — лёгкий"
-            },
-            {
-              "question": "That problem is ___. (трудный)",
-              "answer": "difficult",
-              "explanation": "difficult — трудный"
-            },
-            {
-              "question": "The book is ___. (интересный)",
-              "answer": "interesting",
-              "explanation": "interesting — интересный"
-            },
-            {
-              "question": "The lecture is ___. (скучный)",
-              "answer": "boring",
-              "explanation": "boring — скучный"
-            },
-            {
-              "question": "The tool is ___. (полезный)",
-              "answer": "useful",
-              "explanation": "useful — полезный"
-            },
-            {
-              "question": "The device is ___. (бесполезный)",
-              "answer": "useless",
-              "explanation": "useless — бесполезный"
-            },
-            {
-              "question": "It is ___. (важный)",
-              "answer": "important",
-              "explanation": "important — важный"
-            },
-            {
-              "question": "It is ___. (неважный)",
-              "answer": "unimportant",
-              "explanation": "unimportant — неважный"
-            },
-            {
-              "question": "It is ___. (необходимый)",
-              "answer": "necessary",
-              "explanation": "necessary — необходимый"
-            },
-            {
-              "question": "It is ___. (ненужный)",
-              "answer": "unnecessary",
-              "explanation": "unnecessary — ненужный"
-            }
-          ]
+            "type": "complex",
+            "text": "Задание 1. Вставьте правильное прилагательное из списка: gentle, harsh, fragile, tough, wise, foolish, cheerful, gloomy, calm, anxious.\n\n1. The mother is ___ . (нежная)\n2. The voice is ___ . (резкий)\n3. The glass is ___ . (хрупкое)\n4. The material is ___ . (прочный)\n5. The old man is ___ . (мудрый)\n6. The decision is ___ . (глупое)\n7. The child is ___ . (весёлый)\n8. The weather is ___ . (мрачная)\n9. The sea is ___ . (спокойное)\n10. She is ___ . (взволнованная)",
+            "subtasks": [
+                {"question": "1. The mother is ___ . (нежная)", "answer": "gentle", "explanation": "mother нежная → gentle"},
+                {"question": "2. The voice is ___ . (резкий)", "answer": "harsh", "explanation": "voice резкий → harsh"},
+                {"question": "3. The glass is ___ . (хрупкое)", "answer": "fragile", "explanation": "glass хрупкое → fragile"},
+                {"question": "4. The material is ___ . (прочный)", "answer": "tough", "explanation": "material прочный → tough"},
+                {"question": "5. The old man is ___ . (мудрый)", "answer": "wise", "explanation": "old man мудрый → wise"},
+                {"question": "6. The decision is ___ . (глупое)", "answer": "foolish", "explanation": "decision глупое → foolish"},
+                {"question": "7. The child is ___ . (весёлый)", "answer": "cheerful", "explanation": "child весёлый → cheerful"},
+                {"question": "8. The weather is ___ . (мрачная)", "answer": "gloomy", "explanation": "weather мрачная → gloomy"},
+                {"question": "9. The sea is ___ . (спокойное)", "answer": "calm", "explanation": "sea спокойное → calm"},
+                {"question": "10. She is ___ . (взволнованная)", "answer": "anxious", "explanation": "she взволнованная → anxious"}
+            ]
         },
         {
-          "type": "complex",
-          "text": "Переведите предложения на английский.\n\n1. Это задание лёгкое.\n2. Та проблема трудная.\n3. Книга интересная.\n4. Лекция скучная.\n5. Инструмент полезный.\n6. Устройство бесполезное.\n7. Это важно.\n8. Это неважно.\n9. Это необходимо.\n10. Это ненужно.",
-          "subtasks": [
-            {
-              "question": "Это задание лёгкое.",
-              "answer": "This task is easy.",
-              "explanation": "This task is easy."
-            },
-            {
-              "question": "Та проблема трудная.",
-              "answer": "That problem is difficult.",
-              "explanation": "That problem is difficult."
-            },
-            {
-              "question": "Книга интересная.",
-              "answer": "The book is interesting.",
-              "explanation": "The book is interesting."
-            },
-            {
-              "question": "Лекция скучная.",
-              "answer": "The lecture is boring.",
-              "explanation": "The lecture is boring."
-            },
-            {
-              "question": "Инструмент полезный.",
-              "answer": "The tool is useful.",
-              "explanation": "The tool is useful."
-            },
-            {
-              "question": "Устройство бесполезное.",
-              "answer": "The device is useless.",
-              "explanation": "The device is useless."
-            },
-            {
-              "question": "Это важно.",
-              "answer": "It is important.",
-              "explanation": "It is important."
-            },
-            {
-              "question": "Это неважно.",
-              "answer": "It is unimportant.",
-              "explanation": "It is unimportant."
-            },
-            {
-              "question": "Это необходимо.",
-              "answer": "It is necessary.",
-              "explanation": "It is necessary."
-            },
-            {
-              "question": "Это ненужно.",
-              "answer": "It is unnecessary.",
-              "explanation": "It is unnecessary."
-            }
-          ]
+            "type": "complex",
+            "text": "Задание 2. Переведите предложения на английский.\n\n1. Мама нежная.\n2. Голос резкий.\n3. Стекло хрупкое.\n4. Материал прочный.\n5. Старик мудрый.\n6. Решение глупое.\n7. Ребёнок весёлый.\n8. Погода мрачная.\n9. Море спокойное.\n10. Она взволнована.",
+            "subtasks": [
+                {"question": "1. Мама нежная.", "answer": "The mother is gentle.", "explanation": ""},
+                {"question": "2. Голос резкий.", "answer": "The voice is harsh.", "explanation": ""},
+                {"question": "3. Стекло хрупкое.", "answer": "The glass is fragile.", "explanation": ""},
+                {"question": "4. Материал прочный.", "answer": "The material is tough.", "explanation": ""},
+                {"question": "5. Старик мудрый.", "answer": "The old man is wise.", "explanation": ""},
+                {"question": "6. Решение глупое.", "answer": "The decision is foolish.", "explanation": ""},
+                {"question": "7. Ребёнок весёлый.", "answer": "The child is cheerful.", "explanation": ""},
+                {"question": "8. Погода мрачная.", "answer": "The weather is gloomy.", "explanation": ""},
+                {"question": "9. Море спокойное.", "answer": "The sea is calm.", "explanation": ""},
+                {"question": "10. Она взволнована.", "answer": "She is anxious.", "explanation": ""}
+            ]
         },
         {
-          "type": "complex",
-          "text": "Составьте предложения.\n\n1. easy / task / this / is\n2. difficult / problem / that / is\n3. interesting / book / the / is\n4. boring / lecture / the / is\n5. useful / tool / the / is\n6. useless / device / the / is\n7. important / it / is\n8. unimportant / it / is\n9. necessary / it / is\n10. unnecessary / it / is",
-          "subtasks": [
-            {
-              "question": "easy / task / this / is",
-              "answer": "This task is easy.",
-              "explanation": "This task is easy."
-            },
-            {
-              "question": "difficult / problem / that / is",
-              "answer": "That problem is difficult.",
-              "explanation": "That problem is difficult."
-            },
-            {
-              "question": "interesting / book / the / is",
-              "answer": "The book is interesting.",
-              "explanation": "The book is interesting."
-            },
-            {
-              "question": "boring / lecture / the / is",
-              "answer": "The lecture is boring.",
-              "explanation": "The lecture is boring."
-            },
-            {
-              "question": "useful / tool / the / is",
-              "answer": "The tool is useful.",
-              "explanation": "The tool is useful."
-            },
-            {
-              "question": "useless / device / the / is",
-              "answer": "The device is useless.",
-              "explanation": "The device is useless."
-            },
-            {
-              "question": "important / it / is",
-              "answer": "It is important.",
-              "explanation": "It is important."
-            },
-            {
-              "question": "unimportant / it / is",
-              "answer": "It is unimportant.",
-              "explanation": "It is unimportant."
-            },
-            {
-              "question": "necessary / it / is",
-              "answer": "It is necessary.",
-              "explanation": "It is necessary."
-            },
-            {
-              "question": "unnecessary / it / is",
-              "answer": "It is unnecessary.",
-              "explanation": "It is unnecessary."
-            }
-          ]
+            "type": "complex",
+            "text": "Задание 3. Напишите сравнительную степень прилагательных.\n\n1. gentle\n2. harsh\n3. fragile\n4. tough\n5. wise\n6. foolish\n7. cheerful\n8. gloomy\n9. calm\n10. anxious",
+            "subtasks": [
+                {"question": "1. gentle", "answer": "gentler", "explanation": "gentle → gentler"},
+                {"question": "2. harsh", "answer": "harsher", "explanation": "harsh → harsher"},
+                {"question": "3. fragile", "answer": "more fragile", "explanation": "fragile → more fragile (длинное)"},
+                {"question": "4. tough", "answer": "tougher", "explanation": "tough → tougher"},
+                {"question": "5. wise", "answer": "wiser", "explanation": "wise → wiser"},
+                {"question": "6. foolish", "answer": "more foolish", "explanation": "foolish → more foolish (длинное)"},
+                {"question": "7. cheerful", "answer": "more cheerful", "explanation": "cheerful → more cheerful (длинное)"},
+                {"question": "8. gloomy", "answer": "gloomier", "explanation": "gloomy → gloomier (y→i)"},
+                {"question": "9. calm", "answer": "calmer", "explanation": "calm → calmer"},
+                {"question": "10. anxious", "answer": "more anxious", "explanation": "anxious → more anxious (длинное)"}
+            ]
         }
-      ]
     ]
+]
   },
   "presentsimple": {
     "title": "Present Simple (настоящее простое время)",
