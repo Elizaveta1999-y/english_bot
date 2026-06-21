@@ -935,7 +935,11 @@ async def handle_practice_answer(message: Message):
     subtasks = task.get("subtasks", [])
     expected = len(subtasks)
 
-    user_answers = parse_user_answers(message.text, expected)
+    # Разбиваем по ";"
+    parts = [part.strip() for part in message.text.split(';') if part.strip()]
+    while len(parts) < expected:
+        parts.append("")
+    user_answers = parts[:expected]
 
     correct_count = 0
     feedback_lines = []
@@ -948,9 +952,7 @@ async def handle_practice_answer(message: Message):
         else:
             explanation = subtask.get("explanation", "")
             feedback_lines.append(
-                f"{i+1}. Неверно\n"
-                f"✔️ {correct_ans}\n"
-                f"{explanation}"
+                f"{i+1}. Неверно\n✔️ {correct_ans}\n{explanation}"
             )
 
     practice["session_correct"] = practice.get("session_correct", 0) + correct_count
@@ -959,7 +961,6 @@ async def handle_practice_answer(message: Message):
 
     await message.answer("\n\n".join(feedback_lines))
 
-    # Показываем следующее задание или итог
     await show_practice_task(message, user_id, edit=False)
 
 @router.callback_query(lambda c: c.data.startswith("practice_hint_"))
