@@ -22,6 +22,10 @@ async def show_practice_task(message: Message, user_id: int, edit: bool = True):
     if task_idx >= len(tasks):
         correct = practice.get("session_correct", 0)
         total_subtasks = practice.get("total_subtasks", 0)
+        # Если total_subtasks == 0 (старые данные), пересчитываем из tasks
+        if total_subtasks == 0:
+            tasks = practice.get("tasks", [])
+            total_subtasks = sum(len(t.get("subtasks", [])) for t in tasks)
         wrong = total_subtasks - correct
         update_stats_after_practice(user_id, correct, wrong)
 
