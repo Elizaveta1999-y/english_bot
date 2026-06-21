@@ -67,9 +67,9 @@ async def show_practice_task(message: Message, user_id: int, edit: bool = True):
     
     description_text = '\n'.join(description)
     items_text = '\n'.join(items)
-    instruction = "\n\nВведите все ответы через «;»"
+    instruction = "Введите все ответы через «;»"
     
-    full_text = f"{header}\n\n{description_text}{instruction}\n\n{items_text}"
+    full_text = f"{header}\n{description_text}\n{instruction}\n\n{items_text}"
     
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(text="Пропустить", callback_data=f"practice_skip_{lesson_key}"),
