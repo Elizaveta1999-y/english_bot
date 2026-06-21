@@ -1,4 +1,5 @@
 # handlers/practice_utils.py
+import re
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton, Message
 from data.users import get_user_state, set_user_state
 from handlers.profile import update_stats_after_practice
@@ -50,12 +51,26 @@ async def show_practice_task(message: Message, user_id: int, edit: bool = True):
         return
 
     # --- ТЕКУЩЕЕ ЗАДАНИЕ ---
-         # --- ТЕКУЩЕЕ ЗАДАНИЕ ---
     task = tasks[task_idx]
     header = f"Задание {task_idx+1}/{len(tasks)}"
-    instruction = "Введите все ответы через «;»"
-    full_text = f"{header}\n{instruction}\n\n{task['text']}"
-   
+    
+    # Разделяем текст на описание и пункты
+    text_lines = task['text'].split('\n')
+    description = []
+    items = []
+    for line in text_lines:
+        if re.match(r'^\d+\.', line.strip()):
+            items.append(line)
+        else:
+            if line.strip():
+                description.append(line)
+    
+    description_text = '\n'.join(description)
+    items_text = '\n'.join(items)
+    instruction = "\n\nВведите все ответы через «;»"
+    
+    full_text = f"{header}\n\n{description_text}{instruction}\n\n{items_text}"
+    
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(text="Пропустить", callback_data=f"practice_skip_{lesson_key}"),
          InlineKeyboardButton(text="Завершить", callback_data=f"practice_exit_{lesson_key}")]
