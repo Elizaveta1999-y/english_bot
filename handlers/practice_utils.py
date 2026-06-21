@@ -20,12 +20,10 @@ async def show_practice_task(message: Message, user_id: int, edit: bool = True):
     task_idx = practice.get("session_index", 0)
     tasks = practice.get("tasks", [])
     if task_idx >= len(tasks):
-                correct = practice.get("session_correct", 0)
-        # total_subtasks — общее количество подзадач за всю сессию
+        correct = practice.get("session_correct", 0)
         total_subtasks = practice.get("total_subtasks", 0)
         wrong = total_subtasks - correct
         update_stats_after_practice(user_id, correct, wrong)
-        percent = int(correct/total_subtasks*100) if total_subtasks else 0
 
         # --- УВЕЛИЧИВАЕМ ВАРИАНТ ДЛЯ СЛЕДУЮЩЕГО РАЗА ---
         current_variant = practice.get("variant_index", 0)
@@ -38,8 +36,8 @@ async def show_practice_task(message: Message, user_id: int, edit: bool = True):
             user_state["practice_variant"][lesson_key] = next_variant
         # --------------------------------------------
 
-        percent = int(correct/total*100) if total else 0
-        text = f"📊 Практика завершена!\nПравильно: {correct} из {total} ({percent}%)\n\n"
+        percent = int(correct / total_subtasks * 100) if total_subtasks else 0
+        text = f"📊 Практика завершена!\nПравильно: {correct} из {total_subtasks} ({percent}%)\n\n"
         text += "🎉 Отлично!" if percent >= 80 else "📚 Повторите тему и попробуйте снова."
         keyboard = InlineKeyboardMarkup(inline_keyboard=[
             [InlineKeyboardButton(text="📚 Вернуться к уроку", callback_data=f"back_to_lesson_{lesson_key}")]
