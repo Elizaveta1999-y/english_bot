@@ -51,10 +51,10 @@ async def show_practice_task(message: Message, user_id: int, edit: bool = True):
     
     # --- ТЕКУЩЕЕ ЗАДАНИЕ ---
     task = tasks[task_idx]
-    text = f"{task['text']}\n\n"
-    text += 'Введите все ответы через ";"\n'   # экранируем кавычки
-    progress = f"\nЗадание {task_idx+1}/{len(tasks)}. Правильных: {practice['session_correct']}"
-    full_text = text + progress
+    # Заменяем разделитель с "запятую" на "«;»"
+    task_text = task['text'].replace("запятую", "«;»")
+    header = f"Задание {task_idx+1}/{len(tasks)}"
+    full_text = f"{header}\n{task_text}"
     
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(text="Пропустить", callback_data=f"practice_skip_{lesson_key}"),
