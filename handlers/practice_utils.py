@@ -58,7 +58,7 @@ async def show_practice_task(message: Message, user_id: int, edit: bool = True):
     task = tasks[task_idx]
     header = f"Задание {task_idx+1}/{len(tasks)}"
     
-    # Разделяем текст на описание и пункты
+        # Разделяем текст на описание и пункты
     text_lines = task['text'].split('\n')
     description = []
     items = []
@@ -66,7 +66,8 @@ async def show_practice_task(message: Message, user_id: int, edit: bool = True):
         if re.match(r'^\d+\.', line.strip()):
             items.append(line)
         else:
-            if line.strip():
+            # Пропускаем строки, начинающиеся с "Задание" (чтобы не дублировать заголовок)
+            if line.strip() and not line.strip().startswith('Задание'):
                 description.append(line)
     
     description_text = '\n'.join(description)
