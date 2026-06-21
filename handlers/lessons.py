@@ -883,7 +883,7 @@ async def lesson_practice_start(callback: CallbackQuery):
             "session_correct": 0,
             "skip_count": 0,
             "attempts": {},
-            "variant_index": variant_index
+            "variant_index": variant_index,
             "total_subtasks": sum(len(t.get("subtasks", [])) for t in tasks)
         }
         user_state["practice_variant"][key] = variant_index
