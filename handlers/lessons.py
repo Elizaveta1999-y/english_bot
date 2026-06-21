@@ -909,8 +909,7 @@ async def lesson_practice_start(callback: CallbackQuery):
 # ========== ОБРАБОТКА ТЕКСТОВЫХ ОТВЕТОВ ==========
 
 def parse_user_answers(text: str, expected_count: int) -> list:
-    """Разбивает ответы по запятым, возвращает список длиной expected_count."""
-    parts = [part.strip() for part in text.split(',') if part.strip()]
+    parts = [part.strip() for part in text.split(';') if part.strip()]
     while len(parts) < expected_count:
         parts.append("")
     return parts[:expected_count]
@@ -921,7 +920,7 @@ async def handle_practice_answer(message: Message):
     user_state = get_user_state(user_id)
     lesson_key = user_state.get("practice_lesson_key")
     if not lesson_key:
-        return  # не практика – пропускаем
+        return
 
     practice = user_state.get("practice", {}).get(lesson_key)
     if not practice:
@@ -944,14 +943,16 @@ async def handle_practice_answer(message: Message):
         user_ans = user_answers[i] if i < len(user_answers) else ""
         correct_ans = subtask.get("answer", "").strip()
         if user_ans.lower() == correct_ans.lower():
-    correct_count += 1
-    feedback_lines.append(f"✔️ {correct_ans}")
-else:
-    feedback_lines.append(
-        f"{i+1}. Неверно\n"
-        f"✔️ {correct_ans}\n"
-        f"{subtask.get('explanation', '')}"
-    )
+            correct_count += 1
+            feedback_lines.append(f"{i+1}. Верно")
+        else:
+            explanation = subtask.get("explanation", "")
+            feedback_lines.append(
+                f"{i+1}. Неверно\n"
+                f"✔️ {correct_ans}\n"
+                f"{explanation}"
+            )
+
     practice["session_correct"] = practice.get("session_correct", 0) + correct_count
     practice["session_index"] = task_idx + 1
     set_user_state(user_id, user_state)
