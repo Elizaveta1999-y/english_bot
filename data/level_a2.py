@@ -10934,7 +10934,7 @@ LEVEL_A2_CONTENT = LEVEL_A2_CONTENT = {
           {"question": "4. This task is more easy than that one.", "answer": "This task is easier than that one.", "explanation": "easy → easier (не more easy)"},
           {"question": "5. She is the better student in the group.", "answer": "She is the best student in the group.", "explanation": "better — сравнительная, нужно превосходная best"},
           {"question": "6. My house is not as big as yours.", "answer": "My house is not as big as yours.", "explanation": "верно"},
-          {"question": "7. He drives more slower than me.", "answer": "He drives slower than me.", "explanation": "more + slow (1 слог) → slower, нельзя more"}
+          {"question": "7. He drives more slower than me.", "answer": "He drives slower than me.", "explanation": "more + slow (1 слог) → slower, нельзя more"},
           {"question": "8. This is the most famous museum in the city.", "answer": "This is the most famous museum in the city.", "explanation": "верно"},
           {"question": "9. Her dress is more colourful than mine.", "answer": "Her dress is more colourful than mine.", "explanation": "верно (colourful 3 слога → more)"},
           {"question": "10. He is the most happiest person I know.", "answer": "He is the happiest person I know.", "explanation": "нельзя most + -est"}
