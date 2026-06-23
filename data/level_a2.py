@@ -6460,8 +6460,7 @@ LEVEL_A2_CONTENT = LEVEL_A2_CONTENT = {
       }
     ]
   ]
-}
-  },
+},
   "mustnt_vs_dont_have_to": {
     "title": "Mustn't vs don't have to (запрет и отсутствие необходимости)",
     "pages": [
@@ -7001,8 +7000,7 @@ LEVEL_A2_CONTENT = LEVEL_A2_CONTENT = {
       }
     ]
   ]
-}
-  },
+},
   "conditionals_0": {
     "title": "Условные предложения 0 типа",
     "pages": [
@@ -7542,8 +7540,7 @@ LEVEL_A2_CONTENT = LEVEL_A2_CONTENT = {
       }
     ]
   ]
-}
-  },
+},
   "conditionals_1": {
     "title": "Условные предложения 1 типа (реальное условие)",
     "pages": [
@@ -8083,8 +8080,7 @@ LEVEL_A2_CONTENT = LEVEL_A2_CONTENT = {
       }
     ]
   ]
-}
-  },
+},
   "passive_present": {
     "title": "Пассивный залог (настоящее время)",
     "pages": [
@@ -8624,8 +8620,7 @@ LEVEL_A2_CONTENT = LEVEL_A2_CONTENT = {
       }
     ]
   ]
-}
-  },
+},
   "passive_past": {
     "title": "Пассивный залог (прошедшее время)",
     "pages": [
@@ -9165,8 +9160,7 @@ LEVEL_A2_CONTENT = LEVEL_A2_CONTENT = {
       }
     ]
   ]
-}
-  },
+},
   "reported_speech_statements": {
     "title": "Косвенная речь (утверждения)",
     "pages": [
@@ -9706,8 +9700,7 @@ LEVEL_A2_CONTENT = LEVEL_A2_CONTENT = {
       }
     ]
   ]
-}
-  },
+},
   "reported_speech_questions": {
     "title": "Косвенная речь (вопросы)",
     "pages": [
@@ -10247,8 +10240,7 @@ LEVEL_A2_CONTENT = LEVEL_A2_CONTENT = {
       }
     ]
   ]
-}
-  },
+},
   "indirect_questions": {
     "title": "Косвенные вопросы (Could you tell me…, Do you know…)",
     "pages": [
@@ -10792,8 +10784,7 @@ LEVEL_A2_CONTENT = LEVEL_A2_CONTENT = {
       }
     ]
   ]
-}
-  },
+},
   "comparatives_superlatives": {
     "title": "Степени сравнения прилагательных (повторение и as…as)",
     "pages": [
@@ -11333,8 +11324,7 @@ LEVEL_A2_CONTENT = LEVEL_A2_CONTENT = {
       }
     ]
   ]
-}
-  },
+},
   "adverbs_manner": {
     "title": "Наречия образа действия (quickly, carefully)",
     "pages": [
@@ -11874,8 +11864,7 @@ LEVEL_A2_CONTENT = LEVEL_A2_CONTENT = {
       }
     ]
   ]
-}
-  },
+},
   "adjectives_order": {
     "title": "Порядок прилагательных (opinion, size, age, colour...)",
     "pages": [
@@ -12415,8 +12404,7 @@ LEVEL_A2_CONTENT = LEVEL_A2_CONTENT = {
       }
     ]
   ]
-}
-  },
+},
   "comparative_structures": {
     "title": "Сравнительные конструкции (the more… the more)",
     "pages": [
@@ -12956,8 +12944,7 @@ LEVEL_A2_CONTENT = LEVEL_A2_CONTENT = {
       }
     ]
   ]
-}
-  },
+},
   "too_enough": {
     "title": "Конструкции too / enough (слишком / достаточно)",
     "pages": [
@@ -13497,8 +13484,7 @@ LEVEL_A2_CONTENT = LEVEL_A2_CONTENT = {
       }
     ]
   ]
-}
-  },
+},
   "gerund_infinitive": {
     "title": "Герундий и инфинитив (like + ing, want + to)",
     "pages": [
@@ -14038,8 +14024,7 @@ LEVEL_A2_CONTENT = LEVEL_A2_CONTENT = {
       }
     ]
   ]
-}
-  },
+},
   "prepositions_time_place_advanced": {
     "title": "Предлоги времени и места (повторение и углубление)",
     "pages": [
@@ -14579,8 +14564,7 @@ LEVEL_A2_CONTENT = LEVEL_A2_CONTENT = {
       }
     ]
   ]
-}
-  },
+},
   "relative_clauses": {
     "title": "Определительные придаточные (who, which, that)",
     "pages": [
@@ -15120,8 +15104,7 @@ LEVEL_A2_CONTENT = LEVEL_A2_CONTENT = {
       }
     ]
   ]
-}
-  },
+},
   "work_career": {
     "title": "Лексика: работа и карьера",
     "pages": [
@@ -15661,8 +15644,7 @@ LEVEL_A2_CONTENT = LEVEL_A2_CONTENT = {
       }
     ]
   ]
-}
-  },
+},
   "travel_transport": {
     "title": "Лексика: путешествия и транспорт (углубление)",
     "pages": [
@@ -16179,8 +16161,7 @@ LEVEL_A2_CONTENT = LEVEL_A2_CONTENT = {
       }
     ]
   ]
-}
-  },
+},
   "food_restaurant": {
     "title": "Лексика: еда и ресторан (заказ блюд, описание вкусов)",
     "pages": [
@@ -16720,8 +16701,7 @@ LEVEL_A2_CONTENT = LEVEL_A2_CONTENT = {
       }
     ]
   ]
-}
-  },
+},
   "health_fitness": {
     "title": "Лексика: здоровье и фитнес (симптомы, визит к врачу)",
     "pages": [
@@ -17261,8 +17241,7 @@ LEVEL_A2_CONTENT = LEVEL_A2_CONTENT = {
       }
     ]
   ]
-}
-  },
+},
   "technology_internet": {
     "title": "Лексика: технологии и интернет",
     "pages": [
@@ -17802,8 +17781,7 @@ LEVEL_A2_CONTENT = LEVEL_A2_CONTENT = {
       }
     ]
   ]
-}
-  },
+},
   "environment_weather": {
     "title": "Лексика: окружающая среда и погода (углубление)",
     "pages": [
@@ -18343,8 +18321,7 @@ LEVEL_A2_CONTENT = LEVEL_A2_CONTENT = {
       }
     ]
   ]
-}
-  },
+},
   "feelings_emotions": {
     "title": "Лексика: чувства и эмоции",
     "pages": [
@@ -18884,8 +18861,7 @@ LEVEL_A2_CONTENT = LEVEL_A2_CONTENT = {
       }
     ]
   ]
-}
-  },
+},
   "relationships_communication": {
     "title": "Лексика: отношения и общение",
     "pages": [
@@ -19425,8 +19401,7 @@ LEVEL_A2_CONTENT = LEVEL_A2_CONTENT = {
       }
     ]
   ]
-}
-  },
+},
   "news_current_events": {
     "title": "Лексика: новости и текущие события",
     "pages": [
@@ -19966,8 +19941,7 @@ LEVEL_A2_CONTENT = LEVEL_A2_CONTENT = {
       }
     ]
   ]
-}
-  },
+},
   "idioms_phrases": {
     "title": "Разговорные фразы и идиомы (A2)",
     "pages": [
