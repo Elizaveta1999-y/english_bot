@@ -5391,31 +5391,25 @@ LEVEL_A2_CONTENT = LEVEL_A2_CONTENT = {
 }
   },
     "modal_should_ought": {
-    "title": "Модальные глаголы: should, ought to",
-    "pages": [
-      {
-        "title": "Should – совет, рекомендация, моральный долг",
-        "text": "\n<b>📌 Should – самый частотный глагол для совета.</b>\n\n<b>Значения:</b>\n1. <b>Совет, рекомендация</b> – You should see a doctor. (Тебе следует сходить к врачу.)\n2. <b>Моральный долг</b> – We should respect the law. (Мы должны уважать закон.)\n3. <b>Ожидание</b> – The train should arrive soon. (Поезд должен прибыть скоро.)\n\n<b>Формы:</b>\n• Утверждение: I should study.\n• Отрицание: should not / shouldn't (You shouldn't smoke.)\n• Вопрос: Should I call him?\n\n<blockquote>Should мягче, чем must. Must – жёсткая обязанность, should – рекомендация.</blockquote>\n"
-      },
-      {
-        "title": "Ought to – синоним should (чуть формальнее)",
-        "text": "\n<b>⚖️ Ought to имеет то же значение, что и should, но используется реже и звучит более формально.</b>\n\n• You ought to apologize. (Тебе следует извиниться.)\n• She ought to be more careful. (Ей следует быть осторожнее.)\n• They ought to arrive by 6 pm. (Они должны прибыть к 6 вечера.)\n\n<b>Важные отличия от should:</b>\n• После ought to всегда частица to (в отличие от should).\n• В вопросах ought to почти не используется (вместо него should).\n• Отрицание: ought not to / oughtn't to (редко, чаще shouldn't).\n\n<blockquote>В современном английском should предпочтительнее в разговорной речи.</blockquote>\n"
-      },
-      {
-        "title": "Сравнение should, ought to, must, have to",
-        "text": "\n<b>📊 Сравнение обязанности и совета:</b>\n\n• <b>Must</b> – сильная внутренняя обязанность (I must finish this – я так решил).\n• <b>Have to</b> – вынужден из-за обстоятельств (I have to work – меня заставляют).\n• <b>Should</b> – совет, мягкая рекомендация (You should rest – тебе стоит отдохнуть).\n• <b>Ought to</b> – то же, что should, но формальнее.\n\n<b>Примеры:</b>\n• You must stop at a red light. (правило – обязательно)\n• You should stop smoking. (совет, не обязанность)\n• I have to go to the meeting. (меня заставляют)\n• You ought to see that film. (рекомендация)\n\n<blockquote>Отрицание should not = shouldn't (не следует); must not = mustn't (запрещено).</blockquote>\n"
-      },
-      {
-        "title": "Типичные ошибки и советы",
-        "text": "\n<b>⚠️ Частые ошибки:</b>\n• ❌ I should to go.  ✅ I should go.\n• ❌ She oughts to come.  ✅ She ought to come.\n• ❌ You must not should go.  ✅ You shouldn't go.\n\n<b>💡 Советы:</b>\n• Для совета другу используйте should (Should I buy this? – Yes, you should.)\n• Для формальных рекомендаций – ought to.\n• Не путайте should (следует) с must (должен).\n• В вопросах всегда should: Should we leave now? (не Ought we to leave?)\n\n<blockquote>Практикуйтесь: дайте совет другу, который плохо себя чувствует, используя should.</blockquote>\n"
-      }
-    ],
-    "faq": [
-      {
-        "question": "Можно ли использовать 'ought to' в вопросах?",
-        "answer": "Формально да, но очень редко. Вместо 'Ought we to go?' лучше 'Should we go?'."
-      }
-    ],
+        "title": "Модальные глаголы: should, ought to",
+        "pages": [
+            {
+                "title": "Should – совет, рекомендация, моральный долг",
+                "text": "\n<b>📌 Should – самый частотный глагол для совета.</b>\n\n<b>Значения:</b>\n1. <b>Совет, рекомендация</b> – You should see a doctor. (Тебе следует сходить к врачу.)\n2. <b>Моральный долг</b> – We should respect the law. (Мы должны уважать закон.)\n3. <b>Ожидание</b> – The train should arrive soon. (Поезд должен прибыть скоро.)\n\n<b>Формы:</b>\n• Утверждение: I should study.\n• Отрицание: should not / shouldn't (You shouldn't smoke.)\n• Вопрос: Should I call him?\n\n<blockquote>Should мягче, чем must. Must – жёсткая обязанность, should – рекомендация.</blockquote>\n"
+            },
+            {
+                "title": "Ought to – синоним should (чуть формальнее)",
+                "text": "\n<b>⚖️ Ought to имеет то же значение, что и should, но используется реже и звучит более формально.</b>\n\n• You ought to apologize. (Тебе следует извиниться.)\n• She ought to be more careful. (Ей следует быть осторожнее.)\n• They ought to arrive by 6 pm. (Они должны прибыть к 6 вечера.)\n\n<b>Важные отличия от should:</b>\n• После ought to всегда частица to (в отличие от should).\n• В вопросах ought to почти не используется (вместо него should).\n• Отрицание: ought not to / oughtn't to (редко, чаще shouldn't).\n\n<blockquote>В современном английском should предпочтительнее в разговорной речи.</blockquote>\n"
+            },
+            {
+                "title": "Сравнение should, ought to, must, have to",
+                "text": "\n<b>📊 Сравнение обязанности и совета:</b>\n\n• <b>Must</b> – сильная внутренняя обязанность (I must finish this – я так решил).\n• <b>Have to</b> – вынужден из-за обстоятельств (I have to work – меня заставляют).\n• <b>Should</b> – совет, мягкая рекомендация (You should rest – тебе стоит отдохнуть).\n• <b>Ought to</b> – то же, что should, но формальнее.\n\n<b>Примеры:</b>\n• You must stop at a red light. (правило – обязательно)\n• You should stop smoking. (совет, не обязанность)\n• I have to go to the meeting. (меня заставляют)\n• You ought to see that film. (рекомендация)\n\n<blockquote>Отрицание should not = shouldn't (не следует); must not = mustn't (запрещено).</blockquote>\n"
+            },
+            {
+                "title": "Типичные ошибки и советы",
+                "text": "\n<b>⚠️ Частые ошибки:</b>\n• ❌ I should to go.  ✅ I should go.\n• ❌ She oughts to come.  ✅ She ought to come.\n• ❌ You must not should go.  ✅ You shouldn't go.\n\n<b>💡 Советы:</b>\n• Для совета другу используйте should (Should I buy this? – Yes, you should.)\n• Для формальных рекомендаций – ought to.\n• Не путайте should (следует) с must (должен).\n• В вопросах всегда should: Should we leave now? (не Ought we to leave?)\n\n<blockquote>Практикуйтесь: дайте совет другу, который плохо себя чувствует, используя should.</blockquote>\n"
+            }
+        ],
     "practice_bank": [
     # ==================== ВАРИАНТ 1 ====================
     [
