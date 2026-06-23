@@ -110,249 +110,8 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
         "answer": "Часто да, но с акцентом: Simple – факт, Continuous – подчёркивание длительности и временности."
       }
     ],
-    "practice_tasks": [
-      {
-        "type": "fill_blank",
-        "text": "She ___ (read) that book for three hours.",
-        "correct": "has been reading",
-        "hint": "Действие длится до сих пор",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "They ___ (finish) their homework already.",
-        "correct": "have finished",
-        "hint": "Результат важен",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "I ___ (wait) for you since 5 o'clock.",
-        "correct": "have been waiting",
-        "hint": "Акцент на длительности",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He ___ (visit) Paris three times.",
-        "correct": "has visited",
-        "hint": "Количество завершённых действий",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "We ___ (paint) the room all morning.",
-        "correct": "have been painting",
-        "hint": "Процесс, возможно незаконченный",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "___ you ever ___ (eat) sushi?",
-        "correct": "Have ... eaten",
-        "hint": "Опыт в жизни",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She ___ (work) here since 2010.",
-        "correct": "has been working",
-        "hint": "Действие продолжается",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "They ___ (just / arrive).",
-        "correct": "have just arrived",
-        "hint": "Только что завершилось",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "I ___ (try) to call you all day.",
-        "correct": "have been trying",
-        "hint": "Попытки, возможно безуспешные",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He ___ (lose) his keys.",
-        "correct": "has lost",
-        "hint": "Результат — ключи пропали",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "My hands are dirty because I ___ (repair) the bike.",
-        "correct": "have been repairing",
-        "hint": "Видимый результат процесса",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "How long ___ you ___ (know) him?",
-        "correct": "have ... known",
-        "hint": "Глагол состояния, не используется в Continuous",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She ___ (write) a novel for two years.",
-        "correct": "has been writing",
-        "hint": "Длительный процесс",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "I ___ (see) that film already.",
-        "correct": "have seen",
-        "hint": "Завершённый опыт",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "They ___ (build) a new house recently.",
-        "correct": "have built",
-        "hint": "Завершённое действие",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He ___ (sleep) for 10 hours! No wonder he's rested.",
-        "correct": "has been sleeping",
-        "hint": "Длительность с результатом",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "We ___ (not / see) each other for ages.",
-        "correct": "haven't seen",
-        "hint": "Отрицание, период",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "Why are you so tired? — I ___ (run).",
-        "correct": "have been running",
-        "hint": "Причина состояния",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She ___ (already / buy) a gift.",
-        "correct": "has already bought",
-        "hint": "Уже совершила",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "They ___ (live) in London since 2015.",
-        "correct": "have been living",
-        "hint": "Продолжающееся действие",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "I ___ (read) 50 pages of this book.",
-        "correct": "have read",
-        "hint": "Достигнутый результат",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He ___ (study) English for 5 years.",
-        "correct": "has been studying",
-        "hint": "Длительность процесса",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She ___ (never / be) to Japan.",
-        "correct": "has never been",
-        "hint": "Опыт",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "It ___ (rain) since morning.",
-        "correct": "has been raining",
-        "hint": "Продолжающаяся погода",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "They ___ (finish) the project just now.",
-        "correct": "have finished",
-        "hint": "Только что",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "I ___ (look) for my glasses all day.",
-        "correct": "have been looking",
-        "hint": "Поиск, возможно не найден",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He ___ (drink) three cups of coffee today.",
-        "correct": "has drunk",
-        "hint": "Количество",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "We ___ (wait) for the bus for half an hour.",
-        "correct": "have been waiting",
-        "hint": "Длительное ожидание",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She ___ (clean) the house all day.",
-        "correct": "has been cleaning",
-        "hint": "Процесс, возможно незакончен",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "I ___ (already / do) my homework.",
-        "correct": "have already done",
-        "hint": "Результат",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He ___ (write) emails since 9 am.",
-        "correct": "has been writing",
-        "hint": "Длительное действие с перерывами",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "They ___ (travel) to 15 countries so far.",
-        "correct": "have traveled",
-        "hint": "Общий опыт, количество",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "I ___ (try) to fix this computer for hours, but it still doesn't work.",
-        "correct": "have been trying",
-        "hint": "Безуспешные попытки",
-        "star": True
-      },
-      {
-        "type": "choice",
-        "text": "She ___ (learn) Spanish for two years and can speak fluently.",
-        "correct": "has been learning",
-        "hint": "Акцент на процессе и результате",
-        "options": [
-          "has learned",
-          "has been learning",
-          "learned"
-        ],
-        "star": True
+    "practice_tasks": [],
+        "star": true
       },
       {
         "type": "choice",
@@ -364,28 +123,28 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
           "have been knowing",
           "knew"
         ],
-        "star": True
+        "star": true
       },
       {
         "type": "fill_blank",
         "text": "The ground is wet. It ___ (rain).",
         "correct": "has been raining",
         "hint": "Видимый признак",
-        "star": True
+        "star": true
       },
       {
         "type": "fill_blank",
         "text": "He ___ (write) five letters today.",
         "correct": "has written",
         "hint": "Количество завершённых",
-        "star": True
+        "star": true
       },
       {
         "type": "fill_blank",
         "text": "I ___ (wait) for you for two hours! Where were you?",
         "correct": "have been waiting",
         "hint": "Раздражение от длительности",
-        "star": True
+        "star": true
       },
       {
         "type": "choice",
@@ -397,14 +156,14 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
           "has been painting",
           "painted"
         ],
-        "star": True
+        "star": true
       },
       {
         "type": "fill_blank",
         "text": "They ___ (build) this bridge for over a year and it's still not finished.",
         "correct": "have been building",
         "hint": "Незаконченное длительное действие",
-        "star": True
+        "star": true
       }
     ]
   },
@@ -461,558 +220,14 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
         "answer": "As soon as сразу после события, once – как только (может быть чуть более формальным, часто с перфектом)."
       }
     ],
-    "practice_tasks": [
-      {
-        "type": "fill_blank",
-        "text": "I will call you ___ I arrive at the airport.",
-        "correct": "as soon as",
-        "hint": "Сразу по прибытии",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "___ you finish your homework, you can watch TV.",
-        "correct": "Once",
-        "hint": "Как только",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She will stay here ___ you need her.",
-        "correct": "as long as",
-        "hint": "Пока ты нуждаешься",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "___ the time he arrives, dinner will be ready.",
-        "correct": "By",
-        "hint": "К тому времени, как",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "We won't leave ___ the rain stops.",
-        "correct": "until",
-        "hint": "До тех пор, пока",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "___ I saw him, I knew he was lying.",
-        "correct": "The moment",
-        "hint": "В тот момент, когда",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "Please wait here ___ I come back.",
-        "correct": "until",
-        "hint": "Пока я не вернусь",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "___ she graduates, she will look for a job.",
-        "correct": "After",
-        "hint": "После того как",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He always reads a book ___ he goes to sleep.",
-        "correct": "before",
-        "hint": "Перед тем как",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "___ you promise to be careful, you can borrow my car.",
-        "correct": "As long as",
-        "hint": "При условии, что",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "___ the movie started, I realized I had seen it before.",
-        "correct": "When",
-        "hint": "Когда",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "I will finish the project ___ the deadline.",
-        "correct": "by",
-        "hint": "К дедлайну",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "___ he had left, she started crying.",
-        "correct": "After",
-        "hint": "После того как",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "We will go hiking ___ the weather clears up.",
-        "correct": "once",
-        "hint": "Как только",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "___ you are ready, we can start the meeting.",
-        "correct": "Whenever",
-        "hint": "Когда бы ни",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She won't speak to him ___ he apologizes.",
-        "correct": "until",
-        "hint": "Пока не извинится",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "___ the bell rings, the students leave the classroom.",
-        "correct": "As soon as",
-        "hint": "Как только",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "I had already eaten ___ she arrived.",
-        "correct": "by the time",
-        "hint": "К тому времени, как",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "___ you call me, I will be there.",
-        "correct": "If",
-        "hint": "Если (условие)",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He will keep working ___ he finishes the task.",
-        "correct": "until",
-        "hint": "Пока не закончит",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "___ I was walking home, it started to rain.",
-        "correct": "While",
-        "hint": "Пока я шёл",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "___ you have any questions, feel free to ask.",
-        "correct": "Whenever",
-        "hint": "Когда бы ни",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She will call you ___ she gets the news.",
-        "correct": "as soon as",
-        "hint": "Как только",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "___ the time we got there, the store had closed.",
-        "correct": "By",
-        "hint": "К тому времени",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "___ he was young, he lived in London.",
-        "correct": "When",
-        "hint": "Когда он был молод",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "I'll wait ___ you finish your coffee.",
-        "correct": "until",
-        "hint": "Пока ты не допьёшь",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "___ you sign the contract, we can proceed.",
-        "correct": "Once",
-        "hint": "Как только",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "___ he arrives, we will have lunch.",
-        "correct": "After",
-        "hint": "После того как",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She always listens to music ___ she works.",
-        "correct": "while",
-        "hint": "Пока работает",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "___ you are happy, I am happy.",
-        "correct": "As long as",
-        "hint": "Пока ты счастлив",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "___ I had locked the door, I remembered the keys were inside.",
-        "correct": "After",
-        "hint": "После того как запер",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "She won't forgive him ___ he proves his sincerity.",
-        "correct": "until",
-        "hint": "Пока не докажет",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "___ the concert ended, the crowd cheered for five minutes.",
-        "correct": "Once",
-        "hint": "Как только концерт закончился",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "___ the time you read this, I will have already left.",
-        "correct": "By",
-        "hint": "К тому времени, как ты прочитаешь",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "___ you agree to the terms, we cannot proceed.",
-        "correct": "Unless",
-        "hint": "Если вы не согласитесь",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "___ he had finished his speech, the audience applauded.",
-        "correct": "As soon as",
-        "hint": "Как только закончил",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "___ you need me, I will be right here.",
-        "correct": "Whenever",
-        "hint": "Когда бы ни",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "___ the storm passes, we can go outside.",
-        "correct": "After",
-        "hint": "После того как шторм пройдёт",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "___ I was about to leave, the phone rang.",
-        "correct": "Just as",
-        "hint": "Как раз когда",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "___ you promise to return it, you can borrow my book.",
-        "correct": "As long as",
-        "hint": "При условии, что пообещаешь",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "I will call you ___ I get home.",
-        "correct": "as soon as",
-        "hint": "immediately after",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "___ you finish your homework, you can watch TV.",
-        "correct": "Once",
-        "hint": "after",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She will stay here ___ you need her.",
-        "correct": "as long as",
-        "hint": "during the time that",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "___ the time we arrived, the movie had already started.",
-        "correct": "By",
-        "hint": "before a specific time",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "You can borrow my car ___ you promise to drive carefully.",
-        "correct": "as long as",
-        "hint": "on condition that",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "___ he had finished his speech, everyone applauded.",
-        "correct": "As soon as",
-        "hint": "right after",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "We will start the meeting ___ everyone arrives.",
-        "correct": "once",
-        "hint": "when",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "___ the time you read this, I will be in Paris.",
-        "correct": "By",
-        "hint": "before",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "I will support you ___ you are honest with me.",
-        "correct": "as long as",
-        "hint": "provided that",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "___ she saw the cake, she smiled.",
-        "correct": "As soon as",
-        "hint": "the moment",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "___ the alarm rings, get out of bed.",
-        "correct": "Once",
-        "hint": "when",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He will be fine ___ he takes his medicine.",
-        "correct": "as long as",
-        "hint": "if",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "___ the time we reached the station, the train had left.",
-        "correct": "By",
-        "hint": "before that moment",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "___ you agree to the terms, please sign here.",
-        "correct": "Once",
-        "hint": "after",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "I will tell you the secret ___ you promise not to tell anyone.",
-        "correct": "as long as",
-        "hint": "on condition",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "___ the sun sets, we will light the campfire.",
-        "correct": "As soon as",
-        "hint": "immediately after",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "___ the time you graduate, you will have learned a lot.",
-        "correct": "By",
-        "hint": "before that time",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "You can go out ___ you finish your chores.",
-        "correct": "once",
-        "hint": "when",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "I will love you ___ you love me.",
-        "correct": "as long as",
-        "hint": "while",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "___ he entered the room, everyone stood up.",
-        "correct": "As soon as",
-        "hint": "the moment",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "___ the time the police arrived, the thief had escaped.",
-        "correct": "By",
-        "hint": "before",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "___ you press this button, the machine will start.",
-        "correct": "Once",
-        "hint": "after",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "We can stay here ___ you want.",
-        "correct": "as long as",
-        "hint": "for the duration",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "___ I opened the door, the cat ran out.",
-        "correct": "As soon as",
-        "hint": "immediately when",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "___ the time you wake up, breakfast will be ready.",
-        "correct": "By",
-        "hint": "before",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "___ you pass the test, you will get a certificate.",
-        "correct": "Once",
-        "hint": "when",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "I will help you ___ you help me in return.",
-        "correct": "as long as",
-        "hint": "if",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "___ she heard the news, she started crying.",
-        "correct": "As soon as",
-        "hint": "the moment",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "___ the time we finish, it will be dark outside.",
-        "correct": "By",
-        "hint": "before that time",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "___ you decide, let me know.",
-        "correct": "Once",
-        "hint": "after",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "___ the time he retires, he will have worked for 40 years.",
-        "correct": "By",
-        "hint": "before",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "___ you promise to be careful, I will lend you my laptop.",
-        "correct": "As long as",
-        "hint": "on condition",
-        "star": True
-      },
-      {
-        "type": "reorder",
-        "text": "finish / as soon as / I / call / will / you / I",
-        "correct": "I will call you as soon as I finish",
-        "hint": "immediately after finishing",
-        "star": True
-      },
-      {
-        "type": "reorder",
-        "text": "the time / by / arrived / had / we / left / she",
-        "correct": "By the time we arrived, she had left",
-        "hint": "before our arrival",
-        "star": True
-      },
-      {
-        "type": "translation",
-        "text": "Как только он придет, мы начнем ужинать.",
-        "correct": "As soon as he comes, we will start dinner.",
-        "hint": "use 'as soon as'",
-        "star": True
-      },
-      {
-        "type": "translation",
-        "text": "К тому времени, как ты вернешься, я уже уйду.",
-        "correct": "By the time you come back, I will have already left.",
-        "hint": "use 'by the time' and future perfect",
-        "star": True
-      },
-      {
-        "type": "choice",
-        "text": "___ you finish your work, you can leave.",
-        "correct": "Once",
-        "hint": "after",
-        "star": True,
-        "options": [
-          "Until",
-          "Once",
-          "While",
-          "Since"
-        ]
+    "practice_tasks": []
       },
       {
         "type": "choice",
         "text": "I will stay ___ you need me.",
         "correct": "as long as",
         "hint": "during the time",
-        "star": True,
+        "star": true,
         "options": [
           "until",
           "as long as",
@@ -1025,14 +240,14 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
         "text": "Write a sentence using 'by the time' about finishing a project.",
         "correct": "By the time the deadline arrives, I will have finished the project.",
         "hint": "use future perfect",
-        "star": True
+        "star": true
       },
       {
         "type": "open",
         "text": "Write a sentence using 'as long as' about a promise.",
         "correct": "I will keep your secret as long as you keep mine.",
         "hint": "condition",
-        "star": True
+        "star": true
       }
     ]
   },
@@ -1092,7 +307,8 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
         "question": "Как сказать 'это могло быть сделано лучше'?",
         "answer": "It could have been done better."
       }
-    ]
+    ],
+    "practice_tasks": []
   },
   "modal_expressions_ability": {
     "title": "Выражение способности (can, could, be able to, manage to, succeed in)",
@@ -1120,288 +336,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
         "answer": "Could – общая способность в прошлом (I could read). Was able to – успешно справился с конкретной задачей (I was able to escape)."
       }
     ],
-    "practice_tasks": [
-      {
-        "type": "fill_blank",
-        "text": "She ___ speak three languages fluently when she was only five.",
-        "correct": "could",
-        "hint": "Прошедшее время, общая способность",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "I ___ finish the report before the deadline yesterday.",
-        "correct": "managed to",
-        "hint": "Удалось с трудом",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He ___ pass the exam after studying all night.",
-        "correct": "was able to",
-        "hint": "Способность в конкретной ситуации",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "___ you swim when you were six?",
-        "correct": "Could",
-        "hint": "Вопрос о способности в прошлом",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "I'm sure he will ___ to solve this problem.",
-        "correct": "be able",
-        "hint": "Будущее время",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "They ___ in finding a solution after hours of discussion.",
-        "correct": "succeeded",
-        "hint": "Добились успеха в чем-то",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She ___ to open the door, but it was stuck.",
-        "correct": "wasn't able",
-        "hint": "Отрицание в прошлом",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "I ___ hear you very well. Could you speak louder?",
-        "correct": "can't",
-        "hint": "Настоящее время, отсутствие способности",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He ___ to escape from the burning building.",
-        "correct": "managed",
-        "hint": "Удалось сделать что-то сложное",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "We ___ to convince him to join the team.",
-        "correct": "succeeded",
-        "hint": "Успешно завершили действие",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "___ you help me with this heavy box?",
-        "correct": "Can",
-        "hint": "Просьба в настоящем",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "I ___ to call you yesterday, but my phone was dead.",
-        "correct": "wasn't able",
-        "hint": "Отсутствие возможности",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She ___ to finish the marathon despite the injury.",
-        "correct": "managed",
-        "hint": "Преодоление трудности",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "They ___ to get the project approved.",
-        "correct": "succeeded in",
-        "hint": "Добились успеха в",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He ___ play the piano beautifully when he was young.",
-        "correct": "could",
-        "hint": "Умение в прошлом",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "I ___ to attend the meeting tomorrow.",
-        "correct": "will be able",
-        "hint": "Будущая возможность",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She ___ to finish the book in one day.",
-        "correct": "was able",
-        "hint": "Конкретная ситуация в прошлом",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "___ you speak English?",
-        "correct": "Can",
-        "hint": "Вопрос о способности",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He ___ to win the competition after months of training.",
-        "correct": "managed",
-        "hint": "Успешное достижение цели",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "I ___ to understand the lecture because it was too complex.",
-        "correct": "couldn't",
-        "hint": "Отрицание в прошлом",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "We ___ to find the lost keys in the garden.",
-        "correct": "succeeded in",
-        "hint": "Успех в поиске",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She ___ to travel abroad when she was a child.",
-        "correct": "could",
-        "hint": "Общая способность в прошлом",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "I ___ to finish the task on time.",
-        "correct": "was able",
-        "hint": "Конкретная ситуация",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He ___ to fix the car by himself.",
-        "correct": "managed",
-        "hint": "Справился самостоятельно",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "They ___ to persuade the client.",
-        "correct": "succeeded in",
-        "hint": "Успешно убедили",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "___ you see the stars clearly last night?",
-        "correct": "Could",
-        "hint": "Вопрос о возможности в прошлом",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "I ___ to come to the party, but I was sick.",
-        "correct": "wasn't able",
-        "hint": "Отсутствие возможности",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She ___ to solve the puzzle in five minutes.",
-        "correct": "managed",
-        "hint": "Быстрое выполнение",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He ___ to become a successful writer.",
-        "correct": "succeeded in",
-        "hint": "Достижение цели",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "I ___ to call you later.",
-        "correct": "will be able",
-        "hint": "Будущее",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She ___ to climb the mountain despite the bad weather.",
-        "correct": "managed",
-        "hint": "Преодоление препятствий",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "By next year, I ___ to speak English fluently.",
-        "correct": "will be able",
-        "hint": "Будущая способность после усилий",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "He ___ to negotiate a better deal for the company.",
-        "correct": "succeeded in",
-        "hint": "Успешные переговоры",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "I ___ to finish the project even though I had little time.",
-        "correct": "managed",
-        "hint": "Успех при ограничениях",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "She ___ to learn the entire poem by heart in one hour.",
-        "correct": "was able",
-        "hint": "Конкретное достижение",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "They ___ to launch the product before the competitor.",
-        "correct": "succeeded in",
-        "hint": "Опережение конкурентов",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "He ___ to survive in the wilderness for a week.",
-        "correct": "managed",
-        "hint": "Выживание в сложных условиях",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "I ___ to understand the complex theory after reading it twice.",
-        "correct": "was able",
-        "hint": "Понимание после усилий",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "She ___ to get a scholarship to study abroad.",
-        "correct": "succeeded in",
-        "hint": "Достижение важной цели",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "He ___ to catch the last train by running as fast as he could.",
-        "correct": "managed",
-        "hint": "Успех в последний момент",
-        "star": True
-      }
-    ]
+    "practice_tasks": []
   },
   "modal_expressions_necessity": {
     "title": "Выражение необходимости (need to, don't need to, needn't have done, didn't need to)",
@@ -1518,236 +453,14 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
         "answer": "Они взаимозаменяемы, but 'provided that' чуть более формален."
       }
     ],
-    "practice_tasks": [
-      {
-        "type": "fill_blank",
-        "text": "You can go out ___ you finish your homework.",
-        "correct": "provided that",
-        "hint": "условие выполнения",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "I’ll help you ___ you promise to be careful.",
-        "correct": "as long as",
-        "hint": "при условии",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "We won’t go to the beach ___ it stops raining.",
-        "correct": "unless",
-        "hint": "если не",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "You should study hard; ___, you might fail the exam.",
-        "correct": "otherwise",
-        "hint": "иначе",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "___ it rains, we will still have the picnic.",
-        "correct": "Even if",
-        "hint": "даже если",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She will lend you the money ___ you pay her back next week.",
-        "correct": "provided that",
-        "hint": "при условии",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "You can stay up late ___ you don’t make noise.",
-        "correct": "as long as",
-        "hint": "пока",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "I won’t call you ___ there is an emergency.",
-        "correct": "unless",
-        "hint": "если не",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "Hurry up; ___, we’ll miss the train.",
-        "correct": "otherwise",
-        "hint": "иначе",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "___ he apologizes, she won’t forgive him.",
-        "correct": "Even if",
-        "hint": "даже если",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "You can borrow my car ___ you drive carefully.",
-        "correct": "as long as",
-        "hint": "при условии",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The project will succeed ___ everyone contributes.",
-        "correct": "provided that",
-        "hint": "если",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "I’ll go with you ___ you insist.",
-        "correct": "even if",
-        "hint": "даже если",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "We’ll be late ___ we leave now.",
-        "correct": "unless",
-        "hint": "если не",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "Finish your work; ___, you can’t watch TV.",
-        "correct": "otherwise",
-        "hint": "иначе",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "___ you study, you might not pass.",
-        "correct": "Unless",
-        "hint": "если не",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "I’ll trust you ___ you tell me the truth.",
-        "correct": "as long as",
-        "hint": "пока",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She will come ___ she is invited.",
-        "correct": "provided that",
-        "hint": "при условии",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He won’t change his mind ___ you prove him wrong.",
-        "correct": "unless",
-        "hint": "если не",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "Take an umbrella; ___, you’ll get wet.",
-        "correct": "otherwise",
-        "hint": "иначе",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "___ you are tired, you should finish the race.",
-        "correct": "Even if",
-        "hint": "даже если",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "You can use my phone ___ you pay for the call.",
-        "correct": "provided that",
-        "hint": "при условии",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "I’ll wait for you ___ you are late.",
-        "correct": "even if",
-        "hint": "даже если",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "We’ll have a picnic ___ the weather is bad.",
-        "correct": "unless",
-        "hint": "если не",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "Save your work; ___, you might lose it.",
-        "correct": "otherwise",
-        "hint": "иначе",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "___ you help me, I’ll finish on time.",
-        "correct": "As long as",
-        "hint": "при условии",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She’ll agree ___ you ask politely.",
-        "correct": "provided that",
-        "hint": "если",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "I won’t go ___ you come with me.",
-        "correct": "unless",
-        "hint": "если не",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "Be quiet; ___, you’ll wake the baby.",
-        "correct": "otherwise",
-        "hint": "иначе",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "___ it’s expensive, I’ll buy it.",
-        "correct": "Even if",
-        "hint": "даже если",
-        "star": False
-      },
-      {
-        "type": "choice",
-        "text": "You can go to the party ___ you come home by 10.",
-        "correct": "as long as",
-        "hint": "при условии",
-        "star": True,
-        "options": [
-          "as long as",
-          "unless",
-          "otherwise",
-          "even if"
-        ]
+    "practice_tasks": []
       },
       {
         "type": "choice",
         "text": "___ you try, you might not succeed.",
         "correct": "Even if",
         "hint": "даже если",
-        "star": True,
+        "star": true,
         "options": [
           "Provided that",
           "Unless",
@@ -1760,7 +473,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
         "text": "I’ll call you ___ there’s a problem.",
         "correct": "unless",
         "hint": "если не",
-        "star": True,
+        "star": true,
         "options": [
           "provided that",
           "as long as",
@@ -1773,7 +486,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
         "text": "Study hard; ___, you’ll regret it.",
         "correct": "otherwise",
         "hint": "иначе",
-        "star": True,
+        "star": true,
         "options": [
           "provided that",
           "as long as",
@@ -1786,7 +499,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
         "text": "You can stay ___ you behave.",
         "correct": "as long as",
         "hint": "при условии",
-        "star": True,
+        "star": true,
         "options": [
           "unless",
           "otherwise",
@@ -1799,7 +512,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
         "text": "___ he is late, we’ll start without him.",
         "correct": "Even if",
         "hint": "даже если",
-        "star": True,
+        "star": true,
         "options": [
           "Provided that",
           "Unless",
@@ -1812,7 +525,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
         "text": "I’ll help you ___ you ask nicely.",
         "correct": "provided that",
         "hint": "при условии",
-        "star": True,
+        "star": true,
         "options": [
           "provided that",
           "unless",
@@ -1825,7 +538,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
         "text": "We won’t go ___ it stops snowing.",
         "correct": "unless",
         "hint": "если не",
-        "star": True,
+        "star": true,
         "options": [
           "provided that",
           "as long as",
@@ -1838,7 +551,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
         "text": "Finish your dinner; ___, no dessert.",
         "correct": "otherwise",
         "hint": "иначе",
-        "star": True,
+        "star": true,
         "options": [
           "provided that",
           "as long as",
@@ -1851,7 +564,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
         "text": "___ you are busy, I’ll wait.",
         "correct": "Even if",
         "hint": "даже если",
-        "star": True,
+        "star": true,
         "options": [
           "Provided that",
           "Unless",
@@ -1941,288 +654,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
         "answer": "I'd rather you didn't smoke."
       }
     ],
-    "practice_tasks": [
-      {
-        "type": "fill_blank",
-        "text": "I ______ stay at home than go to the party.",
-        "correct": "would rather",
-        "hint": "Выражает предпочтение",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She ______ not go to the cinema tonight.",
-        "correct": "would rather",
-        "hint": "Отрицательная форма предпочтения",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He ______ you didn't smoke in the house.",
-        "correct": "would rather",
-        "hint": "Предпочтение с другим подлежащим",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "We ______ leave now than wait any longer.",
-        "correct": "would sooner",
-        "hint": "Синоним would rather",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "I ______ you hadn't told her about it.",
-        "correct": "would rather",
-        "hint": "Сожаление о прошлом",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "They ______ not discuss this topic.",
-        "correct": "would sooner",
-        "hint": "Отрицание с would sooner",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "______ you rather have tea or coffee?",
-        "correct": "Would",
-        "hint": "Вопрос с would rather",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "I ______ you were more careful.",
-        "correct": "would rather",
-        "hint": "Критика в настоящем",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She said she ______ not go with us.",
-        "correct": "would rather",
-        "hint": "Косвенная речь",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He ______ die than apologize.",
-        "correct": "would sooner",
-        "hint": "Усиление предпочтения",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "I ______ you didn't interrupt me.",
-        "correct": "would rather",
-        "hint": "Вежливая просьба",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "We ______ have stayed at home yesterday.",
-        "correct": "would rather",
-        "hint": "Сожаление о прошлом действии",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "______ you sooner walk than take a taxi?",
-        "correct": "Would",
-        "hint": "Вопрос с would sooner",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "I ______ you didn't make so much noise.",
-        "correct": "would rather",
-        "hint": "Критика поведения",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "They ______ not have gone there.",
-        "correct": "would sooner",
-        "hint": "Сожаление с would sooner",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She ______ that he had called earlier.",
-        "correct": "would rather",
-        "hint": "Пожелание о прошлом",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "I ______ you told me the truth.",
-        "correct": "would rather",
-        "hint": "Предпочтение с другим субъектом",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He ______ not be here right now.",
-        "correct": "would sooner",
-        "hint": "Отрицание в настоящем",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "We ______ you had informed us earlier.",
-        "correct": "would rather",
-        "hint": "Критика прошлого действия",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "I ______ eat nothing than eat that.",
-        "correct": "would sooner",
-        "hint": "Сравнение предпочтений",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "______ you rather I stayed or left?",
-        "correct": "Would",
-        "hint": "Вопрос с другим подлежащим",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She ______ you didn't ask so many questions.",
-        "correct": "would rather",
-        "hint": "Выражение недовольства",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "I ______ not think about it now.",
-        "correct": "would rather",
-        "hint": "Предпочтение действия",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He ______ have taken the train than the bus.",
-        "correct": "would sooner",
-        "hint": "Сравнение в прошлом",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "We ______ you didn't smoke in here.",
-        "correct": "would rather",
-        "hint": "Просьба-критика",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "I ______ you had finished the project on time.",
-        "correct": "would rather",
-        "hint": "Критика прошлого",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "They ______ stay home than go out in this rain.",
-        "correct": "would sooner",
-        "hint": "Предпочтение в настоящем",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She ______ not have said that.",
-        "correct": "would rather",
-        "hint": "Сожаление о сказанном",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "I ______ you didn't use my phone.",
-        "correct": "would rather",
-        "hint": "Запрет в мягкой форме",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He ______ you had kept it a secret.",
-        "correct": "would rather",
-        "hint": "Пожелание о прошлом",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "I ______ you had told me the truth from the beginning.",
-        "correct": "would rather",
-        "hint": "Критика сожаления",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "She ______ you didn't always arrive late.",
-        "correct": "would sooner",
-        "hint": "Критика повторяющегося действия",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "We ______ they had never met.",
-        "correct": "would rather",
-        "hint": "Сожаление о событии",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "He ______ you hadn't mentioned that in the meeting.",
-        "correct": "would sooner",
-        "hint": "Критика прошлого действия",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "I ______ you didn't keep interrupting me.",
-        "correct": "would rather",
-        "hint": "Критика текущего поведения",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "They ______ you had been more honest with them.",
-        "correct": "would sooner",
-        "hint": "Критика прошлого",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "She ______ you didn't take her advice for granted.",
-        "correct": "would rather",
-        "hint": "Критика отношения",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "I ______ you had left the room when I asked.",
-        "correct": "would rather",
-        "hint": "Критика непослушания",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "He ______ you didn't make such a fuss about everything.",
-        "correct": "would sooner",
-        "hint": "Критика поведения",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "We ______ you had considered our feelings before deciding.",
-        "correct": "would rather",
-        "hint": "Критика эгоизма",
-        "star": True
-      }
-    ]
+    "practice_tasks": []
   },
   "infinitive_gerund_advanced": {
     "title": "Инфинитив и герундий (сложные глаголы и конструкции)",
@@ -2250,288 +682,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
         "answer": "Need + V‑ing (пассивный смысл) = The car needs washing. Need + to + V (активный) = I need to wash the car."
       }
     ],
-    "practice_tasks": [
-      {
-        "type": "fill_blank",
-        "text": "She admitted ___ (steal) the money.",
-        "correct": "stealing",
-        "hint": "После admit используется герундий",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He offered ___ (help) me with the project.",
-        "correct": "to help",
-        "hint": "После offer используется инфинитив",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "I can't help ___ (laugh) at his jokes.",
-        "correct": "laughing",
-        "hint": "Фраза can't help требует герундий",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "They decided ___ (not/go) to the party.",
-        "correct": "not to go",
-        "hint": "Отрицание с инфинитивом: not + to + verb",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She risked ___ (lose) her job by speaking out.",
-        "correct": "losing",
-        "hint": "После risk используется герундий",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "We need ___ (finish) this report by Friday.",
-        "correct": "to finish",
-        "hint": "После need обычно инфинитив",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He stopped ___ (smoke) last year.",
-        "correct": "smoking",
-        "hint": "Stop + герундий означает прекратить действие",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "I remember ___ (lock) the door this morning.",
-        "correct": "locking",
-        "hint": "Remember + герундий — вспоминать о прошлом действии",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She tried ___ (open) the window but it was stuck.",
-        "correct": "to open",
-        "hint": "Try + инфинитив — попытка сделать что-то",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "They avoid ___ (travel) during rush hour.",
-        "correct": "traveling",
-        "hint": "После avoid используется герундий",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He pretended ___ (be) asleep.",
-        "correct": "to be",
-        "hint": "После pretend используется инфинитив",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "I don't mind ___ (wait) for you.",
-        "correct": "waiting",
-        "hint": "После mind используется герундий",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She suggested ___ (go) to the cinema.",
-        "correct": "going",
-        "hint": "После suggest используется герундий",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He refused ___ (pay) the bill.",
-        "correct": "to pay",
-        "hint": "После refuse используется инфинитив",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "I enjoy ___ (read) books in my free time.",
-        "correct": "reading",
-        "hint": "После enjoy используется герундий",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "They hope ___ (win) the competition.",
-        "correct": "to win",
-        "hint": "После hope используется инфинитив",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She kept ___ (talk) during the movie.",
-        "correct": "talking",
-        "hint": "После keep используется герундий",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He promised ___ (call) me later.",
-        "correct": "to call",
-        "hint": "После promise используется инфинитив",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "I can't stand ___ (wait) in long lines.",
-        "correct": "waiting",
-        "hint": "Фраза can't stand требует герундий",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She learned ___ (speak) French fluently.",
-        "correct": "to speak",
-        "hint": "После learn используется инфинитив",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He considered ___ (move) to another city.",
-        "correct": "moving",
-        "hint": "После consider используется герундий",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "I forgot ___ (buy) milk on my way home.",
-        "correct": "to buy",
-        "hint": "Forget + инфинитив — забыть сделать что-то",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She regrets ___ (not/study) harder for the exam.",
-        "correct": "not studying",
-        "hint": "Regret + герундий — сожалеть о прошлом",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He went on ___ (talk) for hours.",
-        "correct": "talking",
-        "hint": "Go on + герундий — продолжать действие",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "I look forward to ___ (hear) from you.",
-        "correct": "hearing",
-        "hint": "Фраза look forward to требует герундий",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She is used to ___ (get) up early.",
-        "correct": "getting",
-        "hint": "Фраза be used to требует герундий",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He apologized for ___ (be) late.",
-        "correct": "being",
-        "hint": "После предлога for используется герундий",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "I'm interested in ___ (learn) Spanish.",
-        "correct": "learning",
-        "hint": "После предлога in используется герундий",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She succeeded in ___ (pass) the test.",
-        "correct": "passing",
-        "hint": "Фраза succeed in требует герундий",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He insisted on ___ (pay) for dinner.",
-        "correct": "paying",
-        "hint": "Фраза insist on требует герундий",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "It's no use ___ (cry) over spilt milk.",
-        "correct": "crying",
-        "hint": "Конструкция It's no use + герундий",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "She was seen ___ (enter) the building.",
-        "correct": "to enter",
-        "hint": "Пассивная конструкция: be seen + to + infinitive",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "He had his car ___ (repair) yesterday.",
-        "correct": "repaired",
-        "hint": "Конструкция have something done (past participle)",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "I would rather ___ (stay) home tonight.",
-        "correct": "stay",
-        "hint": "После would rather используется bare infinitive",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "She is too tired ___ (go) out.",
-        "correct": "to go",
-        "hint": "Конструкция too + adjective + to + infinitive",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "The problem is worth ___ (discuss).",
-        "correct": "discussing",
-        "hint": "Конструкция be worth + герундий",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "He was made ___ (apologize) by his boss.",
-        "correct": "to apologize",
-        "hint": "Пассив: be made + to + infinitive",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "I can't help but ___ (admire) her courage.",
-        "correct": "admire",
-        "hint": "Фраза can't help but + bare infinitive",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "She is looking forward to ___ (meet) him again.",
-        "correct": "meeting",
-        "hint": "Фраза look forward to + герундий",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "He regrets not ___ (take) the opportunity.",
-        "correct": "having taken",
-        "hint": "Perfect gerund для прошлого действия",
-        "star": True
-      }
-    ]
+    "practice_tasks": []
   },
   "perfect_infinitive_gerund": {
     "title": "Перфектный инфинитив и герундий (to have done, having done)",
@@ -2559,288 +710,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
         "answer": "He seems to be tired (сейчас), He seems to have been tired (в прошлом). Выбор зависит от времени."
       }
     ],
-    "practice_tasks": [
-      {
-        "type": "fill_blank",
-        "text": "She seems ___ (finish) the project on time.",
-        "correct": "to have finished",
-        "hint": "Perfect infinitive after 'seems'",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He is known ___ (win) the competition last year.",
-        "correct": "to have won",
-        "hint": "Perfect infinitive after 'known'",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "I regret ___ (not study) harder for the exam.",
-        "correct": "not having studied",
-        "hint": "Perfect gerund after 'regret'",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "They admitted ___ (steal) the money.",
-        "correct": "having stolen",
-        "hint": "Perfect gerund after 'admitted'",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She denied ___ (see) him before.",
-        "correct": "having seen",
-        "hint": "Perfect gerund after 'denied'",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He claims ___ (meet) the president.",
-        "correct": "to have met",
-        "hint": "Perfect infinitive after 'claims'",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "I am happy ___ (receive) your letter.",
-        "correct": "to have received",
-        "hint": "Perfect infinitive after 'happy'",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She was accused of ___ (lie) to the police.",
-        "correct": "having lied",
-        "hint": "Perfect gerund after 'accused of'",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "They are believed ___ (leave) the country.",
-        "correct": "to have left",
-        "hint": "Perfect infinitive passive",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He apologized for ___ (be) late.",
-        "correct": "having been",
-        "hint": "Perfect gerund after 'apologized for'",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "I remember ___ (lock) the door.",
-        "correct": "having locked",
-        "hint": "Perfect gerund after 'remember'",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She seems ___ (cry) recently.",
-        "correct": "to have been crying",
-        "hint": "Perfect infinitive continuous",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He is said ___ (write) a novel.",
-        "correct": "to have written",
-        "hint": "Perfect infinitive after 'said'",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "They are thought ___ (arrive) yesterday.",
-        "correct": "to have arrived",
-        "hint": "Perfect infinitive after 'thought'",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "I am sorry ___ (hurt) your feelings.",
-        "correct": "to have hurt",
-        "hint": "Perfect infinitive after 'sorry'",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She was proud of ___ (win) the award.",
-        "correct": "having won",
-        "hint": "Perfect gerund after 'proud of'",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He is suspected of ___ (take) the money.",
-        "correct": "having taken",
-        "hint": "Perfect gerund after 'suspected of'",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "I don't recall ___ (meet) her before.",
-        "correct": "having met",
-        "hint": "Perfect gerund after 'recall'",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She appears ___ (lose) her keys.",
-        "correct": "to have lost",
-        "hint": "Perfect infinitive after 'appears'",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He is reported ___ (survive) the crash.",
-        "correct": "to have survived",
-        "hint": "Perfect infinitive after 'reported'",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "They are supposed ___ (finish) by now.",
-        "correct": "to have finished",
-        "hint": "Perfect infinitive after 'supposed'",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "I am glad ___ (meet) you.",
-        "correct": "to have met",
-        "hint": "Perfect infinitive after 'glad'",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He complained of ___ (not treat) fairly.",
-        "correct": "not having been treated",
-        "hint": "Perfect gerund passive",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She is known ___ (travel) extensively.",
-        "correct": "to have traveled",
-        "hint": "Perfect infinitive after 'known'",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "I regret ___ (tell) him the secret.",
-        "correct": "having told",
-        "hint": "Perfect gerund after 'regret'",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He is believed ___ (make) a fortune.",
-        "correct": "to have made",
-        "hint": "Perfect infinitive after 'believed'",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She was accused of ___ (cheat) on the test.",
-        "correct": "having cheated",
-        "hint": "Perfect gerund after 'accused of'",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "I am sorry ___ (not come) to your party.",
-        "correct": "not to have come",
-        "hint": "Perfect infinitive negative",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He is said ___ (be) a spy.",
-        "correct": "to have been",
-        "hint": "Perfect infinitive after 'said'",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She admitted ___ (make) a mistake.",
-        "correct": "having made",
-        "hint": "Perfect gerund after 'admitted'",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He is thought ___ (invent) the device.",
-        "correct": "to have invented",
-        "hint": "Perfect infinitive after 'thought'",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "I remember ___ (tell) you about it.",
-        "correct": "having told",
-        "hint": "Perfect gerund after 'remember'",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "She is reported ___ (win) the lottery.",
-        "correct": "to have won",
-        "hint": "Perfect infinitive after 'reported'",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "He denied ___ (break) the window.",
-        "correct": "having broken",
-        "hint": "Perfect gerund after 'denied'",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "They are supposed ___ (arrive) earlier.",
-        "correct": "to have arrived",
-        "hint": "Perfect infinitive after 'supposed'",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "She was proud of ___ (raise) three children.",
-        "correct": "having raised",
-        "hint": "Perfect gerund after 'proud of'",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "He is suspected of ___ (steal) the car.",
-        "correct": "having stolen",
-        "hint": "Perfect gerund after 'suspected of'",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "I am happy ___ (see) you again.",
-        "correct": "to have seen",
-        "hint": "Perfect infinitive after 'happy'",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "She appears ___ (forget) the appointment.",
-        "correct": "to have forgotten",
-        "hint": "Perfect infinitive after 'appears'",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "He apologized for ___ (not call) earlier.",
-        "correct": "not having called",
-        "hint": "Perfect gerund negative",
-        "star": True
-      }
-    ]
+    "practice_tasks": []
   },
   "passive_infinitive_gerund": {
     "title": "Пассивный инфинитив и герундий (to be done, being done, having been done)",
@@ -2868,288 +738,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
         "answer": "Being done – после предлогов и глаголов, требующих герундий. To be done – после want, need, hope, it's important."
       }
     ],
-    "practice_tasks": [
-      {
-        "type": "fill_blank",
-        "text": "She expects ___ (to invite) to the party.",
-        "correct": "to be invited",
-        "hint": "Passive infinitive after expect",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He admitted ___ (to steal) the money.",
-        "correct": "having stolen",
-        "hint": "Perfect gerund for past action",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The report needs ___ (to check) carefully.",
-        "correct": "to be checked",
-        "hint": "Passive infinitive after need",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "I remember ___ (to tell) the news yesterday.",
-        "correct": "being told",
-        "hint": "Passive gerund after remember",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "They are happy ___ (to give) a promotion.",
-        "correct": "to have been given",
-        "hint": "Perfect passive infinitive",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She denied ___ (to see) the accident.",
-        "correct": "having seen",
-        "hint": "Perfect gerund after deny",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The window needs ___ (to clean).",
-        "correct": "to be cleaned",
-        "hint": "Passive infinitive after need",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He avoided ___ (to ask) personal questions.",
-        "correct": "being asked",
-        "hint": "Passive gerund after avoid",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "I hope ___ (to give) a second chance.",
-        "correct": "to be given",
-        "hint": "Passive infinitive after hope",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She regrets ___ (to leave) school early.",
-        "correct": "having left",
-        "hint": "Perfect gerund after regret",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The car seems ___ (to repair) recently.",
-        "correct": "to have been repaired",
-        "hint": "Perfect passive infinitive",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He is used to ___ (to treat) with respect.",
-        "correct": "being treated",
-        "hint": "Passive gerund after be used to",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "They plan ___ (to finish) by Friday.",
-        "correct": "to be finished",
-        "hint": "Passive infinitive after plan",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She admitted ___ (to break) the vase.",
-        "correct": "having broken",
-        "hint": "Perfect gerund after admit",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The letter needs ___ (to sign) by the manager.",
-        "correct": "to be signed",
-        "hint": "Passive infinitive after need",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "I can't stand ___ (to wait) in long queues.",
-        "correct": "being kept waiting",
-        "hint": "Passive gerund after can't stand",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She is proud ___ (to choose) for the role.",
-        "correct": "to have been chosen",
-        "hint": "Perfect passive infinitive",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He mentioned ___ (to see) the movie already.",
-        "correct": "having seen",
-        "hint": "Perfect gerund after mention",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The house needs ___ (to paint) again.",
-        "correct": "to be painted",
-        "hint": "Passive infinitive after need",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "They risk ___ (to catch) in the storm.",
-        "correct": "being caught",
-        "hint": "Passive gerund after risk",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "I expect ___ (to inform) about the changes.",
-        "correct": "to be informed",
-        "hint": "Passive infinitive after expect",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She forgot ___ (to lock) the door.",
-        "correct": "to lock",
-        "hint": "Simple infinitive (active)",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He is afraid of ___ (to attack) in the dark.",
-        "correct": "being attacked",
-        "hint": "Passive gerund after afraid of",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The documents appear ___ (to forge).",
-        "correct": "to have been forged",
-        "hint": "Perfect passive infinitive",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She denied ___ (to involve) in the scandal.",
-        "correct": "being involved",
-        "hint": "Passive gerund after deny",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "I appreciate ___ (to give) this opportunity.",
-        "correct": "being given",
-        "hint": "Passive gerund after appreciate",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The problem needs ___ (to solve) urgently.",
-        "correct": "to be solved",
-        "hint": "Passive infinitive after need",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He is looking forward to ___ (to promote).",
-        "correct": "being promoted",
-        "hint": "Passive gerund after look forward to",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "They claim ___ (to treat) unfairly.",
-        "correct": "to have been treated",
-        "hint": "Perfect passive infinitive",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She is tired of ___ (to criticize) all the time.",
-        "correct": "being criticized",
-        "hint": "Passive gerund after tired of",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He is known ___ (to write) that novel.",
-        "correct": "to have written",
-        "hint": "Perfect infinitive active",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "The thief admitted ___ (to catch) on camera.",
-        "correct": "having been caught",
-        "hint": "Perfect passive gerund",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "She regrets ___ (to not invite) to the wedding.",
-        "correct": "not having been invited",
-        "hint": "Perfect passive gerund negative",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "The package seems ___ (to deliver) to the wrong address.",
-        "correct": "to have been delivered",
-        "hint": "Perfect passive infinitive",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "He is upset about ___ (to ignore) at the meeting.",
-        "correct": "having been ignored",
-        "hint": "Perfect passive gerund",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "She claims ___ (to promote) twice last year.",
-        "correct": "to have been promoted",
-        "hint": "Perfect passive infinitive",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "They denied ___ (to involve) in the crime.",
-        "correct": "having been involved",
-        "hint": "Perfect passive gerund",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "I am happy ___ (to accept) into the university.",
-        "correct": "to have been accepted",
-        "hint": "Perfect passive infinitive",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "He is proud ___ (to award) the prize.",
-        "correct": "to have been awarded",
-        "hint": "Perfect passive infinitive",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "She was angry about ___ (to blame) for the mistake.",
-        "correct": "having been blamed",
-        "hint": "Perfect passive gerund",
-        "star": True
-      }
-    ]
+    "practice_tasks": []
   },
   "verbs_of_perception": {
     "title": "Глаголы восприятия (see, hear, watch + object + V‑ing / infinitive without to)",
@@ -3181,235 +770,14 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
         "answer": "See – случайно увидеть, watch – наблюдать намеренно. She saw a bird (случайно). She watched the bird (наблюдала)."
       }
     ],
-    "practice_tasks": [
-      {
-        "type": "fill_blank",
-        "text": "I saw him ___ (cross) the street.",
-        "correct": "cross",
-        "hint": "Глагол восприятия + объект + инфинитив без to",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She heard the baby ___ (cry) all night.",
-        "correct": "crying",
-        "hint": "Длительное действие — V-ing",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "We watched the children ___ (play) in the park.",
-        "correct": "play",
-        "hint": "Завершённое действие — инфинитив",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "I heard someone ___ (call) my name.",
-        "correct": "call",
-        "hint": "Краткое действие — инфинитив",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "They saw a bird ___ (fly) away.",
-        "correct": "fly",
-        "hint": "Инфинитив без to",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He watched the chef ___ (prepare) the meal.",
-        "correct": "prepare",
-        "hint": "Процесс — V-ing",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "Did you see him ___ (leave) the house?",
-        "correct": "leave",
-        "hint": "Инфинитив без to",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She heard the door ___ (open) slowly.",
-        "correct": "open",
-        "hint": "Краткое действие",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "We watched the sun ___ (set) over the ocean.",
-        "correct": "set",
-        "hint": "Инфинитив без to",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "I saw them ___ (argue) in the street.",
-        "correct": "arguing",
-        "hint": "Длительное действие",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He heard his neighbor ___ (sing) in the shower.",
-        "correct": "singing",
-        "hint": "Процесс",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "They watched the car ___ (disappear) around the corner.",
-        "correct": "disappear",
-        "hint": "Завершённое действие",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "I saw her ___ (write) a letter.",
-        "correct": "writing",
-        "hint": "Длительное действие",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "Did you hear the bell ___ (ring)?",
-        "correct": "ring",
-        "hint": "Краткое действие",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "We watched the kids ___ (swim) in the pool.",
-        "correct": "swim",
-        "hint": "Инфинитив без to",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He saw the man ___ (run) away.",
-        "correct": "run",
-        "hint": "Завершённое действие",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She heard the rain ___ (fall) on the roof.",
-        "correct": "falling",
-        "hint": "Длительное действие",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "I watched him ___ (fix) the computer.",
-        "correct": "fix",
-        "hint": "Инфинитив без to",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "They saw the thief ___ (steal) the bag.",
-        "correct": "steal",
-        "hint": "Краткое действие",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "We heard the children ___ (laugh) loudly.",
-        "correct": "laughing",
-        "hint": "Процесс",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "I saw a cat ___ (jump) over the fence.",
-        "correct": "jump",
-        "hint": "Инфинитив без to",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She watched the stars ___ (twinkle) in the sky.",
-        "correct": "twinkle",
-        "hint": "Инфинитив без to",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He heard someone ___ (whisper) behind him.",
-        "correct": "whispering",
-        "hint": "Длительное действие",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "They saw the train ___ (arrive) at the station.",
-        "correct": "arrive",
-        "hint": "Завершённое действие",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "I watched her ___ (paint) a picture.",
-        "correct": "paint",
-        "hint": "Инфинитив без to",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "Did you see the dog ___ (chase) the cat?",
-        "correct": "chase",
-        "hint": "Инфинитив без to",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "We heard the wind ___ (howl) outside.",
-        "correct": "howling",
-        "hint": "Длительное действие",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He saw his friend ___ (wave) from the window.",
-        "correct": "wave",
-        "hint": "Краткое действие",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She watched the leaves ___ (fall) from the tree.",
-        "correct": "fall",
-        "hint": "Инфинитив без to",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "I heard the phone ___ (ring) three times.",
-        "correct": "ring",
-        "hint": "Завершённое действие",
-        "star": False
-      },
-      {
-        "type": "choice",
-        "text": "I saw him ___ the window.",
-        "correct": "open",
-        "hint": "Выберите правильную форму",
-        "star": True,
-        "options": [
-          "open",
-          "opening",
-          "to open"
-        ]
+    "practice_tasks": []
       },
       {
         "type": "choice",
         "text": "She heard the children ___ in the garden.",
         "correct": "playing",
         "hint": "Длительное действие",
-        "star": True,
+        "star": true,
         "options": [
           "play",
           "playing",
@@ -3421,7 +789,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
         "text": "We watched the sun ___ behind the hills.",
         "correct": "set",
         "hint": "Завершённое действие",
-        "star": True,
+        "star": true,
         "options": [
           "set",
           "setting",
@@ -3433,7 +801,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
         "text": "Did you see him ___ the bus?",
         "correct": "miss",
         "hint": "Краткое действие",
-        "star": True,
+        "star": true,
         "options": [
           "miss",
           "missing",
@@ -3445,7 +813,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
         "text": "I heard someone ___ my name.",
         "correct": "call",
         "hint": "Инфинитив без to",
-        "star": True,
+        "star": true,
         "options": [
           "call",
           "calling",
@@ -3457,7 +825,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
         "text": "They watched the birds ___ south.",
         "correct": "fly",
         "hint": "Инфинитив без to",
-        "star": True,
+        "star": true,
         "options": [
           "fly",
           "flying",
@@ -3469,7 +837,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
         "text": "She saw the boy ___ over the fence.",
         "correct": "climb",
         "hint": "Завершённое действие",
-        "star": True,
+        "star": true,
         "options": [
           "climb",
           "climbing",
@@ -3481,7 +849,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
         "text": "He heard the rain ___ on the window.",
         "correct": "beating",
         "hint": "Длительное действие",
-        "star": True,
+        "star": true,
         "options": [
           "beat",
           "beating",
@@ -3493,7 +861,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
         "text": "We watched the chef ___ the cake.",
         "correct": "decorate",
         "hint": "Инфинитив без to",
-        "star": True,
+        "star": true,
         "options": [
           "decorate",
           "decorating",
@@ -3505,7 +873,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
         "text": "I saw the car ___ down the street.",
         "correct": "speed",
         "hint": "Краткое действие",
-        "star": True,
+        "star": true,
         "options": [
           "speed",
           "speeding",
@@ -3517,280 +885,280 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
         "text": "I saw him ___ (cross) the street.",
         "correct": "cross",
         "hint": "Используйте инфинитив без to для завершённого действия.",
-        "star": False
+        "star": false
       },
       {
         "type": "fill_blank",
         "text": "She heard the baby ___ (cry) all night.",
         "correct": "crying",
         "hint": "Используйте V-ing для длительного действия.",
-        "star": False
+        "star": false
       },
       {
         "type": "fill_blank",
         "text": "We watched them ___ (play) football yesterday.",
         "correct": "play",
         "hint": "Инфинитив без to для факта.",
-        "star": False
+        "star": false
       },
       {
         "type": "fill_blank",
         "text": "I heard someone ___ (sing) in the next room.",
         "correct": "singing",
         "hint": "Действие в процессе.",
-        "star": False
+        "star": false
       },
       {
         "type": "fill_blank",
         "text": "Did you see him ___ (leave) the party?",
         "correct": "leave",
         "hint": "Завершённое действие.",
-        "star": False
+        "star": false
       },
       {
         "type": "fill_blank",
         "text": "They watched the sun ___ (set) over the ocean.",
         "correct": "set",
         "hint": "Инфинитив без to.",
-        "star": False
+        "star": false
       },
       {
         "type": "fill_blank",
         "text": "She saw her friend ___ (wave) from the window.",
         "correct": "waving",
         "hint": "Действие в процессе.",
-        "star": False
+        "star": false
       },
       {
         "type": "fill_blank",
         "text": "I heard the door ___ (open) quietly.",
         "correct": "open",
         "hint": "Завершённое действие.",
-        "star": False
+        "star": false
       },
       {
         "type": "fill_blank",
         "text": "We saw the children ___ (run) in the park.",
         "correct": "running",
         "hint": "Длительное действие.",
-        "star": False
+        "star": false
       },
       {
         "type": "fill_blank",
         "text": "He watched her ___ (write) a letter.",
         "correct": "write",
         "hint": "Инфинитив без to.",
-        "star": False
+        "star": false
       },
       {
         "type": "fill_blank",
         "text": "I saw a cat ___ (jump) over the fence.",
         "correct": "jump",
         "hint": "Завершённое действие.",
-        "star": False
+        "star": false
       },
       {
         "type": "fill_blank",
         "text": "She heard the rain ___ (fall) on the roof.",
         "correct": "falling",
         "hint": "Действие в процессе.",
-        "star": False
+        "star": false
       },
       {
         "type": "fill_blank",
         "text": "We watched the birds ___ (fly) south.",
         "correct": "fly",
         "hint": "Инфинитив без to.",
-        "star": False
+        "star": false
       },
       {
         "type": "fill_blank",
         "text": "Did you hear him ___ (call) your name?",
         "correct": "call",
         "hint": "Завершённое действие.",
-        "star": False
+        "star": false
       },
       {
         "type": "fill_blank",
         "text": "I saw her ___ (dance) at the club.",
         "correct": "dancing",
         "hint": "Действие в процессе.",
-        "star": False
+        "star": false
       },
       {
         "type": "fill_blank",
         "text": "They heard the teacher ___ (explain) the lesson.",
         "correct": "explain",
         "hint": "Инфинитив без to.",
-        "star": False
+        "star": false
       },
       {
         "type": "fill_blank",
         "text": "She watched the dog ___ (chase) its tail.",
         "correct": "chasing",
         "hint": "Длительное действие.",
-        "star": False
+        "star": false
       },
       {
         "type": "fill_blank",
         "text": "I saw a man ___ (fall) off his bike.",
         "correct": "fall",
         "hint": "Завершённое действие.",
-        "star": False
+        "star": false
       },
       {
         "type": "fill_blank",
         "text": "He heard someone ___ (knock) on the door.",
         "correct": "knocking",
         "hint": "Действие в процессе.",
-        "star": False
+        "star": false
       },
       {
         "type": "fill_blank",
         "text": "We watched the chef ___ (prepare) the meal.",
         "correct": "prepare",
         "hint": "Инфинитив без to.",
-        "star": False
+        "star": false
       },
       {
         "type": "fill_blank",
         "text": "I saw them ___ (argue) in the street.",
         "correct": "arguing",
         "hint": "Действие в процессе.",
-        "star": False
+        "star": false
       },
       {
         "type": "fill_blank",
         "text": "She heard the phone ___ (ring) twice.",
         "correct": "ring",
         "hint": "Завершённое действие.",
-        "star": False
+        "star": false
       },
       {
         "type": "fill_blank",
         "text": "They watched the train ___ (arrive) at the station.",
         "correct": "arrive",
         "hint": "Инфинитив без to.",
-        "star": False
+        "star": false
       },
       {
         "type": "fill_blank",
         "text": "I saw a girl ___ (cry) on the bench.",
         "correct": "crying",
         "hint": "Длительное действие.",
-        "star": False
+        "star": false
       },
       {
         "type": "fill_blank",
         "text": "He heard the wind ___ (howl) outside.",
         "correct": "howling",
         "hint": "Действие в процессе.",
-        "star": False
+        "star": false
       },
       {
         "type": "fill_blank",
         "text": "We watched the actor ___ (perform) on stage.",
         "correct": "perform",
         "hint": "Инфинитив без to.",
-        "star": False
+        "star": false
       },
       {
         "type": "fill_blank",
         "text": "Did you see the car ___ (crash) into the tree?",
         "correct": "crash",
         "hint": "Завершённое действие.",
-        "star": False
+        "star": false
       },
       {
         "type": "fill_blank",
         "text": "I heard the children ___ (laugh) in the garden.",
         "correct": "laughing",
         "hint": "Действие в процессе.",
-        "star": False
+        "star": false
       },
       {
         "type": "fill_blank",
         "text": "She saw the flowers ___ (bloom) in spring.",
         "correct": "bloom",
         "hint": "Инфинитив без to.",
-        "star": False
+        "star": false
       },
       {
         "type": "fill_blank",
         "text": "They watched the fire ___ (burn) brightly.",
         "correct": "burning",
         "hint": "Длительное действие.",
-        "star": False
+        "star": false
       },
       {
         "type": "fill_blank",
         "text": "I saw him ___ (steal) the wallet and then run away.",
         "correct": "steal",
         "hint": "Завершённое действие, но обратите внимание на контекст.",
-        "star": True
+        "star": true
       },
       {
         "type": "fill_blank",
         "text": "She heard the orchestra ___ (play) the symphony for hours.",
         "correct": "playing",
         "hint": "Длительное действие, подчеркнутое 'for hours'.",
-        "star": True
+        "star": true
       },
       {
         "type": "fill_blank",
         "text": "We watched the artist ___ (paint) the portrait from start to finish.",
         "correct": "paint",
         "hint": "Весь процесс целиком, инфинитив.",
-        "star": True
+        "star": true
       },
       {
         "type": "fill_blank",
         "text": "I saw a stranger ___ (enter) the building and then heard a scream.",
         "correct": "enter",
         "hint": "Два последовательных действия, первое завершено.",
-        "star": True
+        "star": true
       },
       {
         "type": "fill_blank",
         "text": "He heard his name ___ (mention) in the conversation.",
         "correct": "mentioned",
         "hint": "Пассивная конструкция: hear + object + past participle.",
-        "star": True
+        "star": true
       },
       {
         "type": "fill_blank",
         "text": "They watched the plane ___ (disappear) into the clouds.",
         "correct": "disappear",
         "hint": "Завершённое действие, полное исчезновение.",
-        "star": True
+        "star": true
       },
       {
         "type": "fill_blank",
         "text": "She saw the kids ___ (play) in the yard when it started raining.",
         "correct": "playing",
         "hint": "Действие прервано другим событием.",
-        "star": True
+        "star": true
       },
       {
         "type": "fill_blank",
         "text": "I heard the glass ___ (break) into a thousand pieces.",
         "correct": "break",
         "hint": "Мгновенное завершённое действие.",
-        "star": True
+        "star": true
       },
       {
         "type": "fill_blank",
         "text": "We watched the snow ___ (fall) gently all night long.",
         "correct": "falling",
         "hint": "Длительное действие, акцент на процессе.",
-        "star": True
+        "star": true
       },
       {
         "type": "fill_blank",
         "text": "Did you see the thief ___ (get) arrested by the police?",
         "correct": "get",
         "hint": "Инфинитив без to в пассивном значении.",
-        "star": True
+        "star": true
       }
     ]
   },
@@ -3820,288 +1188,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
         "answer": "Have – просто поручение (часто формальное). Get – уговорить, убедить (требует усилий)."
       }
     ],
-    "practice_tasks": [
-      {
-        "type": "fill_blank",
-        "text": "I need to ___ my hair cut before the interview.",
-        "correct": "have",
-        "hint": "Use 'have' for arranging a service.",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She ___ her car washed every week.",
-        "correct": "gets",
-        "hint": "Use 'get' in present simple for routine.",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "We ___ the plumber fix the leak yesterday.",
-        "correct": "had",
-        "hint": "Past tense of 'have someone do something'.",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He ___ his assistant to book the tickets.",
-        "correct": "got",
-        "hint": "Use 'get someone to do something' in past.",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "They are going to ___ their house painted next month.",
-        "correct": "have",
-        "hint": "Future arrangement with 'have something done'.",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "I ___ my phone repaired last week.",
-        "correct": "had",
-        "hint": "Past of 'have something done'.",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "Can you ___ someone to carry these boxes?",
-        "correct": "get",
-        "hint": "Use 'get someone to do something' for request.",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She ___ her nails done every Friday.",
-        "correct": "has",
-        "hint": "Present simple third person of 'have something done'.",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "We ___ the documents signed by the manager tomorrow.",
-        "correct": "will have",
-        "hint": "Future simple of 'have something done'.",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He ___ his brother to drive him to the airport.",
-        "correct": "got",
-        "hint": "Past of 'get someone to do something'.",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "I must ___ my eyes tested this year.",
-        "correct": "have",
-        "hint": "Use 'have' after modal verb.",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She ___ her hair cut short last summer.",
-        "correct": "had",
-        "hint": "Past of 'have something done'.",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "They ___ the roof repaired after the storm.",
-        "correct": "got",
-        "hint": "Past of 'get something done'.",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "I need to ___ the mechanic check the brakes.",
-        "correct": "have",
-        "hint": "Use 'have someone do something'.",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He ___ his suit cleaned for the wedding.",
-        "correct": "had",
-        "hint": "Past of 'have something done'.",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "We ___ the teacher to explain the lesson again.",
-        "correct": "got",
-        "hint": "Past of 'get someone to do something'.",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She ___ her makeup done by a professional.",
-        "correct": "has",
-        "hint": "Present simple third person of 'have something done'.",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "I ___ my watch fixed last month.",
-        "correct": "had",
-        "hint": "Past of 'have something done'.",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "Can you ___ the kids to clean their room?",
-        "correct": "get",
-        "hint": "Use 'get someone to do something' for persuasion.",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "They ___ their garden designed by a landscaper.",
-        "correct": "had",
-        "hint": "Past of 'have something done'.",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She ___ her assistant to make coffee every morning.",
-        "correct": "has",
-        "hint": "Present simple of 'have someone do something'.",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "We ___ the pizza delivered an hour ago.",
-        "correct": "had",
-        "hint": "Past of 'have something done'.",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He ___ his teeth whitened before the party.",
-        "correct": "got",
-        "hint": "Past of 'get something done'.",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "I ___ my neighbor to feed the cat while I'm away.",
-        "correct": "will get",
-        "hint": "Future of 'get someone to do something'.",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She ___ her dress altered for the gala.",
-        "correct": "had",
-        "hint": "Past of 'have something done'.",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "They ___ the windows cleaned every month.",
-        "correct": "have",
-        "hint": "Present simple of 'have something done'.",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He ___ his friend to lend him some money.",
-        "correct": "got",
-        "hint": "Past of 'get someone to do something'.",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "I need to ___ my passport renewed.",
-        "correct": "have",
-        "hint": "Use 'have something done' for official process.",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She ___ her picture taken for the ID card.",
-        "correct": "had",
-        "hint": "Past of 'have something done'.",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "We ___ the mechanic to fix the car last night.",
-        "correct": "got",
-        "hint": "Past of 'get someone to do something'.",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He ___ his essay proofread by a tutor.",
-        "correct": "had",
-        "hint": "Past of 'have something done'.",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "She ___ her hair dyed blonde next week.",
-        "correct": "is having",
-        "hint": "Present continuous for arranged future.",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "They ___ the house renovated before they moved in.",
-        "correct": "had had",
-        "hint": "Past perfect of 'have something done'.",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "I ___ my laptop repaired twice this year.",
-        "correct": "have had",
-        "hint": "Present perfect of 'have something done'.",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "He ___ his car serviced every six months.",
-        "correct": "has",
-        "hint": "Use 'have something done' in present simple.",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "We ___ the report finished by Friday.",
-        "correct": "must have",
-        "hint": "Modal + 'have something done'.",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "She ___ her nails done when I called her.",
-        "correct": "was having",
-        "hint": "Past continuous of 'have something done'.",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "I ___ my bags packed by the porter.",
-        "correct": "had",
-        "hint": "Past of 'have something done' with agent.",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "They ___ the project completed by the deadline.",
-        "correct": "got",
-        "hint": "Past of 'get something done' with emphasis on completion.",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "He ___ his suit pressed before the meeting.",
-        "correct": "had had",
-        "hint": "Past perfect of 'have something done' for earlier action.",
-        "star": True
-      }
-    ]
+    "practice_tasks": []
   },
   "passive_reporting_verbs": {
     "title": "Пассив с глаголами передачи информации (He is said to be... It is believed that...)",
@@ -4160,515 +1247,14 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
         "answer": "Нет, предлог обязателен, иначе смысл теряется: He was laughed at (над ним смеялись) vs He was laughed (он был смеян – бессмысленно)."
       }
     ],
-    "practice_tasks": [
-      {
-        "type": "fill_blank",
-        "text": "The doctor was sent ___ immediately.",
-        "correct": "for",
-        "hint": "send for = вызывать",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "This house was lived ___ by my grandparents.",
-        "correct": "in",
-        "hint": "live in = жить в",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He was laughed ___ by the whole class.",
-        "correct": "at",
-        "hint": "laugh at = смеяться над",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The problem was not referred ___ in the meeting.",
-        "correct": "to",
-        "hint": "refer to = ссылаться на",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She was looked ___ as a leader.",
-        "correct": "up to",
-        "hint": "look up to = уважать",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The bed was slept ___ by the guest.",
-        "correct": "in",
-        "hint": "sleep in = спать в (кровати)",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The decision was arrived ___ after long discussion.",
-        "correct": "at",
-        "hint": "arrive at = приходить к (решению)",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He was shouted ___ for being late.",
-        "correct": "at",
-        "hint": "shout at = кричать на",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The package was paid ___ in advance.",
-        "correct": "for",
-        "hint": "pay for = платить за",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "This chair was sat ___ by the king.",
-        "correct": "on",
-        "hint": "sit on = сидеть на",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The accident was talked ___ for weeks.",
-        "correct": "about",
-        "hint": "talk about = говорить о",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She was operated ___ yesterday.",
-        "correct": "on",
-        "hint": "operate on = оперировать",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The rules must be adhered ___.",
-        "correct": "to",
-        "hint": "adhere to = придерживаться",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He was well provided ___.",
-        "correct": "for",
-        "hint": "provide for = обеспечивать",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The thief was run ___ by the police.",
-        "correct": "after",
-        "hint": "run after = преследовать",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "This theory was objected ___ by many scientists.",
-        "correct": "to",
-        "hint": "object to = возражать против",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The children were taken care ___ by the nanny.",
-        "correct": "of",
-        "hint": "take care of = заботиться о",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The matter was dealt ___ quickly.",
-        "correct": "with",
-        "hint": "deal with = иметь дело с",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He was looked ___ with suspicion.",
-        "correct": "at",
-        "hint": "look at = смотреть на",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The bridge was blown ___ during the war.",
-        "correct": "up",
-        "hint": "blow up = взрывать",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The proposal was agreed ___ by everyone.",
-        "correct": "to",
-        "hint": "agree to = соглашаться на",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She was stared ___ in an embarrassing way.",
-        "correct": "at",
-        "hint": "stare at = пялиться на",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The old castle was lived ___ for centuries.",
-        "correct": "in",
-        "hint": "live in = жить в",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The money was accounted ___ by the treasurer.",
-        "correct": "for",
-        "hint": "account for = отчитываться за",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The suspect was sent ___ to prison.",
-        "correct": "to",
-        "hint": "send to = отправлять в",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The project was called ___ due to lack of funds.",
-        "correct": "off",
-        "hint": "call off = отменять",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He was waited ___ for an hour.",
-        "correct": "for",
-        "hint": "wait for = ждать",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The answer was arrived ___ after research.",
-        "correct": "at",
-        "hint": "arrive at = приходить к",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The child was spoken ___ harshly.",
-        "correct": "to",
-        "hint": "speak to = говорить с",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The issue was thought ___ carefully.",
-        "correct": "about",
-        "hint": "think about = думать о",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The legend was handed ___ from generation to generation.",
-        "correct": "down",
-        "hint": "hand down = передавать по наследству",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "The new policy was put ___ with great difficulty.",
-        "correct": "up with",
-        "hint": "put up with = мириться с",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "The criminal was done ___ with swiftly.",
-        "correct": "away",
-        "hint": "do away with = покончить с",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "The truth was finally got ___ by the detective.",
-        "correct": "at",
-        "hint": "get at = добираться до (истины)",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "The old traditions were kept ___ in the village.",
-        "correct": "up",
-        "hint": "keep up = поддерживать",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "The meeting was put ___ until next week.",
-        "correct": "off",
-        "hint": "put off = откладывать",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "The mystery was cleared ___ by the scientist.",
-        "correct": "up",
-        "hint": "clear up = прояснять",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "The contract was backed ___ of at the last moment.",
-        "correct": "out",
-        "hint": "back out of = отказываться от",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "The proposal was turned ___ by the committee.",
-        "correct": "down",
-        "hint": "turn down = отклонять",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "The details were gone ___ in the report.",
-        "correct": "into",
-        "hint": "go into = вдаваться в",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "He was ___ at by everyone in the room.",
-        "correct": "laughed",
-        "hint": "Past participle of 'laugh'",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "This bed was ___ in by a famous writer.",
-        "correct": "slept",
-        "hint": "Past participle of 'sleep'",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The doctor was ___ for immediately.",
-        "correct": "sent",
-        "hint": "Past participle of 'send'",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She was ___ after by her grandmother.",
-        "correct": "looked",
-        "hint": "Past participle of 'look'",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The problem was ___ about for hours.",
-        "correct": "talked",
-        "hint": "Past participle of 'talk'",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The old house was ___ into by thieves.",
-        "correct": "broken",
-        "hint": "Past participle of 'break'",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The children were ___ for by their aunt.",
-        "correct": "cared",
-        "hint": "Past participle of 'care'",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "This chair was ___ on by my grandfather.",
-        "correct": "sat",
-        "hint": "Past participle of 'sit'",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The package was ___ for by the courier.",
-        "correct": "paid",
-        "hint": "Past participle of 'pay'",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The suspect was ___ for by the police.",
-        "correct": "searched",
-        "hint": "Past participle of 'search'",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "This song was ___ to by millions.",
-        "correct": "listened",
-        "hint": "Past participle of 'listen'",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The proposal was ___ upon by the committee.",
-        "correct": "acted",
-        "hint": "Past participle of 'act'",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The missing keys were ___ for everywhere.",
-        "correct": "looked",
-        "hint": "Past participle of 'look'",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The lecture was ___ to by all students.",
-        "correct": "listened",
-        "hint": "Past participle of 'listen'",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The accident was ___ at by many witnesses.",
-        "correct": "looked",
-        "hint": "Past participle of 'look'",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The new policy was ___ about in the meeting.",
-        "correct": "talked",
-        "hint": "Past participle of 'talk'",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The patient was ___ for by the nurse.",
-        "correct": "cared",
-        "hint": "Past participle of 'care'",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The window was ___ into by the cat.",
-        "correct": "looked",
-        "hint": "Past participle of 'look'",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The instructions were ___ at by the team.",
-        "correct": "looked",
-        "hint": "Past participle of 'look'",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The treasure was ___ for by the pirates.",
-        "correct": "searched",
-        "hint": "Past participle of 'search'",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The speech was ___ to by the audience.",
-        "correct": "listened",
-        "hint": "Past participle of 'listen'",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The house was ___ into last night.",
-        "correct": "broken",
-        "hint": "Past participle of 'break'",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The decision was ___ upon by the board.",
-        "correct": "acted",
-        "hint": "Past participle of 'act'",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The letter was ___ for by the secretary.",
-        "correct": "paid",
-        "hint": "Past participle of 'pay'",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The baby was ___ after by the babysitter.",
-        "correct": "looked",
-        "hint": "Past participle of 'look'",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The movie was ___ about by critics.",
-        "correct": "talked",
-        "hint": "Past participle of 'talk'",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The garden was ___ for by the gardener.",
-        "correct": "cared",
-        "hint": "Past participle of 'care'",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The sofa was ___ on by the guests.",
-        "correct": "sat",
-        "hint": "Past participle of 'sit'",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The report was ___ for by the manager.",
-        "correct": "paid",
-        "hint": "Past participle of 'pay'",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The rumor was ___ about by everyone.",
-        "correct": "talked",
-        "hint": "Past participle of 'talk'",
-        "star": False
-      },
-      {
-        "type": "choice",
-        "text": "He was ___ at for his mistake.",
-        "correct": "laughed",
-        "hint": "Choose the correct past participle",
-        "star": True,
-        "options": [
-          "laughing",
-          "laughed",
-          "laughs"
-        ]
+    "practice_tasks": []
       },
       {
         "type": "choice",
         "text": "This bed was ___ in by a king.",
         "correct": "slept",
         "hint": "Choose the correct past participle",
-        "star": True,
+        "star": true,
         "options": [
           "sleeping",
           "slept",
@@ -4680,7 +1266,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
         "text": "The child was ___ after by the nanny.",
         "correct": "looked",
         "hint": "Choose the correct past participle",
-        "star": True,
+        "star": true,
         "options": [
           "looking",
           "looked",
@@ -4692,7 +1278,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
         "text": "The issue was ___ about at the conference.",
         "correct": "talked",
         "hint": "Choose the correct past participle",
-        "star": True,
+        "star": true,
         "options": [
           "talking",
           "talked",
@@ -4704,7 +1290,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
         "text": "The house was ___ into during the storm.",
         "correct": "broken",
         "hint": "Choose the correct past participle",
-        "star": True,
+        "star": true,
         "options": [
           "breaking",
           "broke",
@@ -4716,7 +1302,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
         "text": "The patient was ___ for by the doctor.",
         "correct": "cared",
         "hint": "Choose the correct past participle",
-        "star": True,
+        "star": true,
         "options": [
           "caring",
           "cared",
@@ -4728,7 +1314,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
         "text": "The chair was ___ on by the old man.",
         "correct": "sat",
         "hint": "Choose the correct past participle",
-        "star": True,
+        "star": true,
         "options": [
           "sitting",
           "sat",
@@ -4740,7 +1326,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
         "text": "The music was ___ to by the crowd.",
         "correct": "listened",
         "hint": "Choose the correct past participle",
-        "star": True,
+        "star": true,
         "options": [
           "listening",
           "listened",
@@ -4752,7 +1338,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
         "text": "The thief was ___ for by the guards.",
         "correct": "searched",
         "hint": "Choose the correct past participle",
-        "star": True,
+        "star": true,
         "options": [
           "searching",
           "searched",
@@ -4764,7 +1350,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
         "text": "The bill was ___ for by the customer.",
         "correct": "paid",
         "hint": "Choose the correct past participle",
-        "star": True,
+        "star": true,
         "options": [
           "paying",
           "paid",
@@ -4856,7 +1442,8 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
         "question": "Всегда ли нужно сдвигать 'must' в косвенной речи?",
         "answer": "Вероятностное must часто не меняется (He must be tired → He said he must be tired). Обязательное must обычно меняется на had to."
       }
-    ]
+    ],
+    "practice_tasks": []
   },
   "reported_speech_mix": {
     "title": "Смешение времён в косвенной речи (если ситуация актуальна)",
@@ -4884,288 +1471,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
         "answer": "Если человек всё ещё любит, можно не сдвигать. Но на экзаменах для уверенности лучше сдвигать."
       }
     ],
-    "practice_tasks": [
-      {
-        "type": "fill_blank",
-        "text": "She said she ___ (work) on the project now.",
-        "correct": "is working",
-        "hint": "Актуальное действие в момент речи",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He told me he ___ (live) in London since 2010.",
-        "correct": "has lived",
-        "hint": "Ситуация продолжается до сих пор",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "They said the train ___ (arrive) at 5 PM tomorrow.",
-        "correct": "arrives",
-        "hint": "Расписание, будущее время не меняется",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She mentioned that she ___ (be) a teacher for ten years.",
-        "correct": "has been",
-        "hint": "Стаж актуален на момент речи",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He said, 'I am reading a book.' → He said he ___ a book.",
-        "correct": "is reading",
-        "hint": "Прямая речь в Present Continuous, ситуация актуальна",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She told me she ___ (not/see) him recently.",
-        "correct": "hasn't seen",
-        "hint": "Связь с настоящим",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He said the Earth ___ (go) around the Sun.",
-        "correct": "goes",
-        "hint": "Общеизвестный факт",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She said she ___ (wait) for you right now.",
-        "correct": "is waiting",
-        "hint": "Действие происходит в момент речи",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "They told me they ___ (already/finish) the work.",
-        "correct": "have already finished",
-        "hint": "Результат важен сейчас",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He said he ___ (can) swim very well.",
-        "correct": "can",
-        "hint": "Модальный глагол не меняется, если ситуация актуальна",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She said she ___ (must) go now.",
-        "correct": "must",
-        "hint": "Must в косвенной речи часто не меняется",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He told me that water ___ (boil) at 100°C.",
-        "correct": "boils",
-        "hint": "Научный факт",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She said she ___ (like) this song.",
-        "correct": "likes",
-        "hint": "Постоянное состояние",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He said he ___ (not/need) any help.",
-        "correct": "doesn't need",
-        "hint": "Ситуация актуальна в настоящем",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "They said they ___ (be) happy with the results.",
-        "correct": "are",
-        "hint": "Эмоции актуальны",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She told me she ___ (have) a car.",
-        "correct": "has",
-        "hint": "Обладание в настоящем",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He said he ___ (usually/get up) at 7 am.",
-        "correct": "usually gets up",
-        "hint": "Привычка",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She said she ___ (not/understand) the question.",
-        "correct": "doesn't understand",
-        "hint": "Актуальное непонимание",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He told me he ___ (work) as a doctor.",
-        "correct": "works",
-        "hint": "Профессия",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She said she ___ (want) to travel.",
-        "correct": "wants",
-        "hint": "Желание в настоящем",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He said he ___ (be) sorry for that.",
-        "correct": "is",
-        "hint": "Извинение актуально",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "They said they ___ (have) a meeting now.",
-        "correct": "are having",
-        "hint": "Действие в процессе",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She told me she ___ (know) the answer.",
-        "correct": "knows",
-        "hint": "Знание в настоящем",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He said he ___ (be) sure about it.",
-        "correct": "is",
-        "hint": "Уверенность",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She said she ___ (not/believe) him.",
-        "correct": "doesn't believe",
-        "hint": "Неверие актуально",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He said he ___ (live) in this city.",
-        "correct": "lives",
-        "hint": "Постоянное место жительства",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She told me she ___ (study) English.",
-        "correct": "studies",
-        "hint": "Регулярное занятие",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He said he ___ (need) some rest.",
-        "correct": "needs",
-        "hint": "Потребность",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She said she ___ (feel) tired.",
-        "correct": "feels",
-        "hint": "Состояние",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He said he ___ (have) two brothers.",
-        "correct": "has",
-        "hint": "Семейное положение",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She said she ___ (not/like) coffee.",
-        "correct": "doesn't like",
-        "hint": "Вкусы",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "He told me he ___ (just/arrive) from Paris.",
-        "correct": "has just arrived",
-        "hint": "Только что, связь с настоящим",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "She said she ___ (be) in love with him.",
-        "correct": "is",
-        "hint": "Чувства актуальны",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "He said he ___ (can/not) believe it.",
-        "correct": "cannot believe",
-        "hint": "Модальный глагол can в отрицании",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "She said she ___ (have to) go now.",
-        "correct": "has to",
-        "hint": "Вынужденность в настоящем",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "He said he ___ (be) going to call her.",
-        "correct": "is going to",
-        "hint": "Планы на будущее",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "She told me she ___ (not/have) any money.",
-        "correct": "doesn't have",
-        "hint": "Отсутствие денег сейчас",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "He said he ___ (prefer) tea to coffee.",
-        "correct": "prefers",
-        "hint": "Предпочтение",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "She said she ___ (hope) to see you soon.",
-        "correct": "hopes",
-        "hint": "Надежда",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "He said he ___ (think) it's a good idea.",
-        "correct": "thinks",
-        "hint": "Мнение",
-        "star": True
-      }
-    ]
+    "practice_tasks": []
   },
   "reporting_verbs_advanced": {
     "title": "Глаголы передачи речи (advise, encourage, warn, accuse, boast, deny, admit, suggest)",
@@ -5193,236 +1499,14 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
         "answer": "Suggest + V‑ing (предложить действие вообще). Suggest that someone do (предложить кому-то сделать)."
       }
     ],
-    "practice_tasks": [
-      {
-        "type": "fill_blank",
-        "text": "She ___ him to apply for the job, saying he had the right skills.",
-        "correct": "advised",
-        "hint": "советовать",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The teacher ___ the students to participate in the competition.",
-        "correct": "encouraged",
-        "hint": "поощрять",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He ___ me not to go there alone at night.",
-        "correct": "warned",
-        "hint": "предупреждать",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "They ___ him of stealing the money.",
-        "correct": "accused",
-        "hint": "обвинять",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She ___ about her achievements all evening.",
-        "correct": "boasted",
-        "hint": "хвастаться",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He ___ having broken the window.",
-        "correct": "denied",
-        "hint": "отрицать",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She ___ that she had made a mistake.",
-        "correct": "admitted",
-        "hint": "признавать",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "I ___ going to the cinema tonight.",
-        "correct": "suggested",
-        "hint": "предлагать",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The doctor ___ him to take more exercise.",
-        "correct": "advised",
-        "hint": "советовать",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "My parents always ___ me to follow my dreams.",
-        "correct": "encouraged",
-        "hint": "поощрять",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The sign ___ people of the dangerous cliff.",
-        "correct": "warned",
-        "hint": "предупреждать",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The police ___ him of robbery.",
-        "correct": "accused",
-        "hint": "обвинять",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He ___ that he was the best player on the team.",
-        "correct": "boasted",
-        "hint": "хвастаться",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She ___ taking the last cookie.",
-        "correct": "denied",
-        "hint": "отрицать",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He ___ that he had forgotten her birthday.",
-        "correct": "admitted",
-        "hint": "признавать",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She ___ that we should leave early.",
-        "correct": "suggested",
-        "hint": "предлагать",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The lawyer ___ his client not to say anything.",
-        "correct": "advised",
-        "hint": "советовать",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The coach ___ the team to keep trying.",
-        "correct": "encouraged",
-        "hint": "поощрять",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The guide ___ tourists about pickpockets.",
-        "correct": "warned",
-        "hint": "предупреждать",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She ___ him of lying to her.",
-        "correct": "accused",
-        "hint": "обвинять",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He ___ about his new car for hours.",
-        "correct": "boasted",
-        "hint": "хвастаться",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The suspect ___ any involvement in the crime.",
-        "correct": "denied",
-        "hint": "отрицать",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She ___ that she was tired.",
-        "correct": "admitted",
-        "hint": "признавать",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He ___ taking a break for coffee.",
-        "correct": "suggested",
-        "hint": "предлагать",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "I ___ him to see a specialist.",
-        "correct": "advised",
-        "hint": "советовать",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The campaign ___ people to recycle more.",
-        "correct": "encouraged",
-        "hint": "поощрять",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "They ___ us that the bridge was unsafe.",
-        "correct": "warned",
-        "hint": "предупреждать",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She ___ her colleague of stealing her idea.",
-        "correct": "accused",
-        "hint": "обвинять",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He ___ that he could run faster than anyone.",
-        "correct": "boasted",
-        "hint": "хвастаться",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She ___ that she had seen the accident.",
-        "correct": "admitted",
-        "hint": "признавать",
-        "star": False
-      },
-      {
-        "type": "choice",
-        "text": "Choose the correct verb: 'He ___ that he had never been there.'",
-        "correct": "denied",
-        "hint": "отрицать",
-        "star": True,
-        "options": [
-          "admitted",
-          "denied",
-          "boasted",
-          "suggested"
-        ]
+    "practice_tasks": []
       },
       {
         "type": "choice",
         "text": "Choose the correct verb: 'She ___ him to take the opportunity.'",
         "correct": "encouraged",
         "hint": "поощрять",
-        "star": True,
+        "star": true,
         "options": [
           "warned",
           "accused",
@@ -5435,7 +1519,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
         "text": "Choose the correct verb: 'The teacher ___ that we study harder.'",
         "correct": "suggested",
         "hint": "предлагать",
-        "star": True,
+        "star": true,
         "options": [
           "admitted",
           "boasted",
@@ -5448,7 +1532,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
         "text": "Choose the correct verb: 'They ___ him of cheating on the test.'",
         "correct": "accused",
         "hint": "обвинять",
-        "star": True,
+        "star": true,
         "options": [
           "warned",
           "accused",
@@ -5461,7 +1545,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
         "text": "Choose the correct verb: 'He ___ about his wealth constantly.'",
         "correct": "boasted",
         "hint": "хвастаться",
-        "star": True,
+        "star": true,
         "options": [
           "admitted",
           "denied",
@@ -5474,35 +1558,35 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
         "text": "Reorder: advised / He / to / me / apply / for / the job",
         "correct": "He advised me to apply for the job",
         "hint": "советовать",
-        "star": True
+        "star": true
       },
       {
         "type": "reorder",
         "text": "Reorder: warned / The / us / guide / about / dangerous / animals",
         "correct": "The guide warned us about dangerous animals",
         "hint": "предупреждать",
-        "star": True
+        "star": true
       },
       {
         "type": "translation",
         "text": "Translate: Она призналась, что опоздала.",
         "correct": "She admitted that she was late.",
         "hint": "признавать",
-        "star": True
+        "star": true
       },
       {
         "type": "translation",
         "text": "Translate: Он отрицал, что брал деньги.",
         "correct": "He denied taking the money.",
         "hint": "отрицать",
-        "star": True
+        "star": true
       },
       {
         "type": "open",
         "text": "Write a sentence using 'suggest' to propose an activity.",
         "correct": "I suggest going to the park.",
         "hint": "предлагать",
-        "star": True
+        "star": true
       }
     ]
   },
@@ -5532,228 +1616,8 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
         "answer": "Группируйте глаголы по смыслу: чувства/мысли (think, believe) + that; желания/попытки (want, try) + to V; завершённые действия (admit, deny) + V‑ing."
       }
     ],
-    "practice_tasks": [
-      {
-        "type": "fill_blank",
-        "text": "She denied ___ (steal) the money.",
-        "correct": "stealing",
-        "hint": "После deny используется verb + -ing",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He admitted ___ (break) the window.",
-        "correct": "breaking",
-        "hint": "После admit используется verb + -ing",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "They suggested ___ (go) to the cinema.",
-        "correct": "going",
-        "hint": "После suggest используется verb + -ing",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She promised ___ (help) us with the project.",
-        "correct": "to help",
-        "hint": "После promise используется verb + to infinitive",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He offered ___ (drive) me to the airport.",
-        "correct": "to drive",
-        "hint": "После offer используется verb + to infinitive",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "They agreed ___ (meet) at the station.",
-        "correct": "to meet",
-        "hint": "После agree используется verb + to infinitive",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She complained ___ (have) too much work.",
-        "correct": "about having",
-        "hint": "После complain используется verb + about + -ing",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He insisted ___ (pay) for the dinner.",
-        "correct": "on paying",
-        "hint": "После insist используется verb + on + -ing",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "They apologized ___ (be) late.",
-        "correct": "for being",
-        "hint": "После apologize используется verb + for + -ing",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She warned him ___ (not touch) the wire.",
-        "correct": "not to touch",
-        "hint": "После warn используется verb + to infinitive (отрицание: not to)",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He advised me ___ (see) a doctor.",
-        "correct": "to see",
-        "hint": "После advise используется verb + to infinitive",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "They recommended ___ (book) in advance.",
-        "correct": "booking",
-        "hint": "После recommend используется verb + -ing",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She denied ___ (see) him before.",
-        "correct": "seeing",
-        "hint": "После deny используется verb + -ing",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He admitted ___ (make) a mistake.",
-        "correct": "making",
-        "hint": "После admit используется verb + -ing",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "They suggested ___ (try) a different approach.",
-        "correct": "trying",
-        "hint": "После suggest используется verb + -ing",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She promised ___ (call) me later.",
-        "correct": "to call",
-        "hint": "После promise используется verb + to infinitive",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He offered ___ (carry) the bags.",
-        "correct": "to carry",
-        "hint": "После offer используется verb + to infinitive",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "They agreed ___ (share) the costs.",
-        "correct": "to share",
-        "hint": "После agree используется verb + to infinitive",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She complained ___ (not get) enough sleep.",
-        "correct": "about not getting",
-        "hint": "После complain используется verb + about + -ing",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He insisted ___ (come) with us.",
-        "correct": "on coming",
-        "hint": "После insist используется verb + on + -ing",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "They apologized ___ (disturb) us.",
-        "correct": "for disturbing",
-        "hint": "После apologize используется verb + for + -ing",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She warned him ___ (not go) there alone.",
-        "correct": "not to go",
-        "hint": "После warn используется verb + to infinitive (отрицание: not to)",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He advised her ___ (take) an umbrella.",
-        "correct": "to take",
-        "hint": "После advise используется verb + to infinitive",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "They recommended ___ (visit) the museum.",
-        "correct": "visiting",
-        "hint": "После recommend используется verb + -ing",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She denied ___ (break) the vase.",
-        "correct": "breaking",
-        "hint": "После deny используется verb + -ing",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He admitted ___ (cheat) on the test.",
-        "correct": "cheating",
-        "hint": "После admit используется verb + -ing",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "They suggested ___ (take) a break.",
-        "correct": "taking",
-        "hint": "После suggest используется verb + -ing",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She promised ___ (send) the documents.",
-        "correct": "to send",
-        "hint": "После promise используется verb + to infinitive",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He offered ___ (cook) dinner.",
-        "correct": "to cook",
-        "hint": "После offer используется verb + to infinitive",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "They agreed ___ (start) early.",
-        "correct": "to start",
-        "hint": "После agree используется verb + to infinitive",
-        "star": False
-      },
-      {
-        "type": "choice",
-        "text": "She ___ that she was tired.",
-        "correct": "said",
-        "hint": "После say используется that",
-        "options": [
-          "said",
-          "told",
-          "suggested"
-        ],
-        "star": True
+    "practice_tasks": [],
+        "star": true
       },
       {
         "type": "choice",
@@ -5765,7 +1629,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
           "told",
           "offered"
         ],
-        "star": True
+        "star": true
       },
       {
         "type": "choice",
@@ -5777,7 +1641,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
           "offered",
           "denied"
         ],
-        "star": True
+        "star": true
       },
       {
         "type": "choice",
@@ -5789,7 +1653,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
           "admitted",
           "suggested"
         ],
-        "star": True
+        "star": true
       },
       {
         "type": "choice",
@@ -5801,7 +1665,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
           "offered",
           "warned"
         ],
-        "star": True
+        "star": true
       },
       {
         "type": "choice",
@@ -5813,35 +1677,35 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
           "suggested",
           "denied"
         ],
-        "star": True
+        "star": true
       },
       {
         "type": "fill_blank",
         "text": "She ___ (say) that she was happy.",
         "correct": "said",
         "hint": "say + that",
-        "star": True
+        "star": true
       },
       {
         "type": "fill_blank",
         "text": "He ___ (tell) us that he was leaving.",
         "correct": "told",
         "hint": "tell + объект + that",
-        "star": True
+        "star": true
       },
       {
         "type": "fill_blank",
         "text": "They ___ (announce) that the flight was delayed.",
         "correct": "announced",
         "hint": "announce + that",
-        "star": True
+        "star": true
       },
       {
         "type": "fill_blank",
         "text": "She ___ (explain) that she was busy.",
         "correct": "explained",
         "hint": "explain + that",
-        "star": True
+        "star": true
       }
     ]
   },
@@ -5991,243 +1855,8 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
         "answer": "Они почти одинаковы, nevertheless более формальный."
       }
     ],
-    "practice_tasks": [
-      {
-        "type": "fill_blank",
-        "text": "The weather was terrible; ______, we decided to go for a walk.",
-        "correct": "nevertheless",
-        "hint": "despite that",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He is very rich; ______, he is not happy.",
-        "correct": "however",
-        "hint": "but",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She loves classical music; ______, her brother prefers rock.",
-        "correct": "whereas",
-        "hint": "in contrast to",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The company expanded rapidly; ______, profits increased significantly.",
-        "correct": "consequently",
-        "hint": "as a result",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The first plan was cheap; ______, the second was more efficient.",
-        "correct": "in contrast",
-        "hint": "on the other hand",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The project was difficult; ______, we completed it on time.",
-        "correct": "nevertheless",
-        "hint": "still",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He didn't study; ______, he failed the exam.",
-        "correct": "consequently",
-        "hint": "therefore",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The north is cold; ______, the south is warm.",
-        "correct": "whereas",
-        "hint": "while",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She is talented; ______, she is also very hardworking.",
-        "correct": "moreover",
-        "hint": "in addition",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The car is old; ______, it runs perfectly.",
-        "correct": "nevertheless",
-        "hint": "yet",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He was late; ______, he missed the beginning of the movie.",
-        "correct": "consequently",
-        "hint": "so",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "Some people love cats; ______, others prefer dogs.",
-        "correct": "whereas",
-        "hint": "but on the other hand",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The hotel was expensive; ______, it had a great view.",
-        "correct": "however",
-        "hint": "nevertheless",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He is a great leader; ______, he is also a good friend.",
-        "correct": "moreover",
-        "hint": "furthermore",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The city is noisy; ______, the countryside is peaceful.",
-        "correct": "in contrast",
-        "hint": "by comparison",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She forgot her keys; ______, she couldn't enter the house.",
-        "correct": "consequently",
-        "hint": "as a result",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The task was challenging; ______, we enjoyed it.",
-        "correct": "nevertheless",
-        "hint": "even so",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He is outgoing; ______, his sister is shy.",
-        "correct": "whereas",
-        "hint": "in contrast",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The food was delicious; ______, the service was poor.",
-        "correct": "however",
-        "hint": "but",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The plan was risky; ______, it succeeded.",
-        "correct": "nevertheless",
-        "hint": "nonetheless",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He studied hard; ______, he got a scholarship.",
-        "correct": "consequently",
-        "hint": "therefore",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The first option is fast; ______, the second is cheap.",
-        "correct": "in contrast",
-        "hint": "on the other hand",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She is a doctor; ______, her husband is a teacher.",
-        "correct": "whereas",
-        "hint": "while",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The movie was boring; ______, we left early.",
-        "correct": "consequently",
-        "hint": "so",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He is very smart; ______, he lacks common sense.",
-        "correct": "however",
-        "hint": "nevertheless",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The house is small; ______, it is cozy.",
-        "correct": "nevertheless",
-        "hint": "yet",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She speaks three languages; ______, she is learning a fourth.",
-        "correct": "moreover",
-        "hint": "in addition",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "Winter is cold; ______, summer is hot.",
-        "correct": "whereas",
-        "hint": "in contrast",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He didn't wear a coat; ______, he caught a cold.",
-        "correct": "consequently",
-        "hint": "as a result",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The theory is complex; ______, it is fascinating.",
-        "correct": "nevertheless",
-        "hint": "still",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The economy grew; ______, unemployment fell.",
-        "correct": "consequently",
-        "hint": "therefore",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "Some animals are active at night; ______, others are active during the day.",
-        "correct": "whereas",
-        "hint": "while",
-        "star": True
-      },
-      {
-        "type": "choice",
-        "text": "He is very rich; ______, he lives modestly.",
-        "correct": "nevertheless",
-        "hint": "despite his wealth",
-        "options": [
-          "moreover",
-          "nevertheless",
-          "consequently",
-          "whereas"
-        ],
-        "star": True
+    "practice_tasks": [],
+        "star": true
       },
       {
         "type": "choice",
@@ -6240,49 +1869,49 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
           "whereas",
           "consequently"
         ],
-        "star": True
+        "star": true
       },
       {
         "type": "reorder",
         "text": "Расположите слова в правильном порядке: / however / , / tired / was / he / , / continued / he / working",
         "correct": "He was tired; however, he continued working.",
         "hint": "but he kept working",
-        "star": True
+        "star": true
       },
       {
         "type": "reorder",
         "text": "Расположите слова в правильном порядке: / consequently / , / rain / heavy / the / , / canceled / was / game / the",
         "correct": "The rain was heavy; consequently, the game was canceled.",
         "hint": "as a result",
-        "star": True
+        "star": true
       },
       {
         "type": "translation",
         "text": "Переведите: Она умна; более того, она трудолюбива.",
         "correct": "She is smart; moreover, she is hardworking.",
         "hint": "in addition",
-        "star": True
+        "star": true
       },
       {
         "type": "translation",
         "text": "Переведите: Он опоздал; следовательно, он пропустил автобус.",
         "correct": "He was late; consequently, he missed the bus.",
         "hint": "therefore",
-        "star": True
+        "star": true
       },
       {
         "type": "open",
         "text": "Составьте предложение, используя 'nevertheless' и слова 'rain, walk'.",
         "correct": "It was raining; nevertheless, we went for a walk.",
         "hint": "despite the rain",
-        "star": True
+        "star": true
       },
       {
         "type": "open",
         "text": "Составьте предложение, используя 'in contrast' и слова 'city, village'.",
         "correct": "The city is noisy; in contrast, the village is quiet.",
         "hint": "compare two places",
-        "star": True
+        "star": true
       }
     ]
   },
@@ -6312,288 +1941,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
         "answer": "Resign – официально уволиться. Quit – разговорный вариант."
       }
     ],
-    "practice_tasks": [
-      {
-        "type": "fill_blank",
-        "text": "After years of hard work, she finally got a ______ to the position of CEO.",
-        "correct": "promotion",
-        "hint": "повышение",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He decided to ______ from his job because of the toxic work environment.",
-        "correct": "resign",
-        "hint": "уволиться",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The company is ______ new employees for the marketing department.",
-        "correct": "recruiting",
-        "hint": "нанимать",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She has a heavy ______ this month, including several important presentations.",
-        "correct": "workload",
-        "hint": "рабочая нагрузка",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He was given a ______ for his outstanding performance last quarter.",
-        "correct": "bonus",
-        "hint": "премия",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The ______ between work and personal life is crucial for mental health.",
-        "correct": "balance",
-        "hint": "баланс",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She is a ______ who manages a team of ten people.",
-        "correct": "supervisor",
-        "hint": "руководитель",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The company offers excellent ______ benefits, including health insurance.",
-        "correct": "fringe",
-        "hint": "дополнительные льготы",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He was ______ from his position due to budget cuts.",
-        "correct": "laid off",
-        "hint": "уволен (сокращение)",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "A strong ______ is essential for advancing in your career.",
-        "correct": "network",
-        "hint": "сеть контактов",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She is looking for a job with more ______ for growth.",
-        "correct": "opportunities",
-        "hint": "возможности",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He submitted his ______ of resignation yesterday.",
-        "correct": "letter",
-        "hint": "заявление",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The ______ for this position includes a competitive salary and flexible hours.",
-        "correct": "compensation package",
-        "hint": "компенсационный пакет",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She needs to ______ her skills to stay relevant in the industry.",
-        "correct": "update",
-        "hint": "обновить",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He is a ______ who works on short-term projects for different companies.",
-        "correct": "freelancer",
-        "hint": "фрилансер",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The company is known for its ______ culture that encourages innovation.",
-        "correct": "corporate",
-        "hint": "корпоративная",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She was offered a ______ contract for six months.",
-        "correct": "temporary",
-        "hint": "временный",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He has a lot of ______ in managing cross-functional teams.",
-        "correct": "experience",
-        "hint": "опыт",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The ______ process involves several rounds of interviews.",
-        "correct": "hiring",
-        "hint": "найм",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She decided to ______ her own business after years of planning.",
-        "correct": "start",
-        "hint": "начать",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He is a ______ executive with a focus on sales.",
-        "correct": "senior",
-        "hint": "старший",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The job requires a high level of ______ and attention to detail.",
-        "correct": "accuracy",
-        "hint": "точность",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She received a ______ for her contribution to the project.",
-        "correct": "commendation",
-        "hint": "похвала",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He is on a ______ track to become a manager within two years.",
-        "correct": "career",
-        "hint": "карьерный",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The company is ______ its operations to new markets.",
-        "correct": "expanding",
-        "hint": "расширяет",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She needs to ______ a strong portfolio to impress clients.",
-        "correct": "build",
-        "hint": "создать",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He was ______ for his innovative ideas during the meeting.",
-        "correct": "praised",
-        "hint": "похвален",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The ______ of the company is to become a market leader.",
-        "correct": "mission",
-        "hint": "миссия",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She has a ______ in human resources management.",
-        "correct": "background",
-        "hint": "образование/опыт",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He is looking for a job that offers a good ______-life balance.",
-        "correct": "work",
-        "hint": "работа",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The company's ______ strategy focuses on digital transformation.",
-        "correct": "business",
-        "hint": "бизнес",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "She is a ______ who specializes in data analysis and reporting.",
-        "correct": "analyst",
-        "hint": "аналитик",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "He was ______ to a higher position after demonstrating leadership skills.",
-        "correct": "elevated",
-        "hint": "повышен (формально)",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "The ______ of employees is high due to poor management.",
-        "correct": "turnover",
-        "hint": "текучесть кадров",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "She needs to ______ her qualifications to match the job requirements.",
-        "correct": "enhance",
-        "hint": "улучшить",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "He is a ______ who advises companies on financial strategies.",
-        "correct": "consultant",
-        "hint": "консультант",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "The company is ______ a new training program for employees.",
-        "correct": "implementing",
-        "hint": "внедряет",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "She was ______ for her dedication and hard work over the years.",
-        "correct": "recognized",
-        "hint": "признана",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "He has a ______ role in the organization, overseeing multiple departments.",
-        "correct": "strategic",
-        "hint": "стратегический",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "The ______ of the project was delayed due to unforeseen issues.",
-        "correct": "completion",
-        "hint": "завершение",
-        "star": True
-      }
-    ]
+    "practice_tasks": []
   },
   "education_b2": {
     "title": "Лексика: образование (продвинутая)",
@@ -6621,288 +1969,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
         "answer": "В США college часто относится к бакалавриату, university – к университету в целом. В Великобритании college может быть частью университета или отдельным учебным заведением."
       }
     ],
-    "practice_tasks": [
-      {
-        "type": "fill_blank",
-        "text": "The university offers a wide range of ______ (academic) programs at the undergraduate level.",
-        "correct": "academic",
-        "hint": "Relating to education and scholarship",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She decided to ______ (enroll) in a course on advanced linguistics.",
-        "correct": "enroll",
-        "hint": "To officially join a course or program",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The ______ (curriculum) includes both theoretical and practical subjects.",
-        "correct": "curriculum",
-        "hint": "The subjects in a course of study",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He received a ______ (scholarship) to study abroad for a year.",
-        "correct": "scholarship",
-        "hint": "Financial aid for education",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The professor emphasized the importance of ______ (critical) thinking in research.",
-        "correct": "critical",
-        "hint": "Involving careful judgment",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "After graduating, she pursued a ______ (postgraduate) degree in economics.",
-        "correct": "postgraduate",
-        "hint": "Study after a bachelor's degree",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The school has a strict ______ (attendance) policy for all students.",
-        "correct": "attendance",
-        "hint": "Being present at school",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He struggled to meet the ______ (deadline) for his thesis submission.",
-        "correct": "deadline",
-        "hint": "Final time limit",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The ______ (faculty) members are experts in their respective fields.",
-        "correct": "faculty",
-        "hint": "Teaching staff of a university",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She completed her ______ (dissertation) on climate change impacts.",
-        "correct": "dissertation",
-        "hint": "Long research paper for a degree",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The course requires a high level of ______ (proficiency) in English.",
-        "correct": "proficiency",
-        "hint": "Skill or competence",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He was awarded a ______ (diploma) after finishing the vocational program.",
-        "correct": "diploma",
-        "hint": "Certificate of completion",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The ______ (seminar) focused on modern teaching methodologies.",
-        "correct": "seminar",
-        "hint": "Small group discussion class",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She passed the entrance ______ (examination) with flying colors.",
-        "correct": "examination",
-        "hint": "Formal test",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The university offers ______ (tuition) waivers for low-income students.",
-        "correct": "tuition",
-        "hint": "Fee for instruction",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He is a ______ (graduate) of Harvard University.",
-        "correct": "graduate",
-        "hint": "Person who completed a degree",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The ______ (syllabus) outlines all the topics for the semester.",
-        "correct": "syllabus",
-        "hint": "Course outline",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She received a ______ (grant) to fund her research project.",
-        "correct": "grant",
-        "hint": "Sum of money for a specific purpose",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The school promotes ______ (lifelong) learning among its alumni.",
-        "correct": "lifelong",
-        "hint": "Continuing throughout life",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He was expelled due to ______ (plagiarism) in his assignment.",
-        "correct": "plagiarism",
-        "hint": "Copying someone else's work",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The ______ (lecture) hall was filled with eager students.",
-        "correct": "lecture",
-        "hint": "Formal talk to a class",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She earned a ______ (bachelor's) degree in biology.",
-        "correct": "bachelor's",
-        "hint": "First university degree",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The ______ (internship) provided valuable work experience.",
-        "correct": "internship",
-        "hint": "Temporary work placement",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He is pursuing a ______ (doctoral) degree in physics.",
-        "correct": "doctoral",
-        "hint": "Related to a PhD",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The ______ (alumni) association organizes networking events.",
-        "correct": "alumni",
-        "hint": "Former students of a school",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She gave a ______ (presentation) on educational reforms.",
-        "correct": "presentation",
-        "hint": "Talk with visual aids",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The course includes a ______ (practical) component in a lab.",
-        "correct": "practical",
-        "hint": "Hands-on learning",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He failed the ______ (assessment) because he didn't prepare.",
-        "correct": "assessment",
-        "hint": "Evaluation of skills",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The school has a strong ______ (reputation) for academic excellence.",
-        "correct": "reputation",
-        "hint": "General opinion about quality",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She enrolled in a ______ (vocational) training program for nursing.",
-        "correct": "vocational",
-        "hint": "Related to a specific trade",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The professor's ______ (pedagogical) approach is innovative and student-centered.",
-        "correct": "pedagogical",
-        "hint": "Relating to teaching methods",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "He wrote a comprehensive ______ (monograph) on medieval history.",
-        "correct": "monograph",
-        "hint": "Detailed scholarly book on one subject",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "The university is known for its rigorous ______ (accreditation) process.",
-        "correct": "accreditation",
-        "hint": "Official approval of standards",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "She received a ______ (fellowship) to conduct research at the institute.",
-        "correct": "fellowship",
-        "hint": "Paid academic position for research",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "The ______ (interdisciplinary) program combines science and art.",
-        "correct": "interdisciplinary",
-        "hint": "Involving multiple academic fields",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "He defended his ______ (thesis) on quantum computing successfully.",
-        "correct": "thesis",
-        "hint": "Long essay for a degree",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "The school emphasizes ______ (holistic) education beyond academics.",
-        "correct": "holistic",
-        "hint": "Considering the whole person",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "She was appointed as a ______ (tenured) professor after years of service.",
-        "correct": "tenured",
-        "hint": "Permanent academic position",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "The ______ (sabbatical) allowed him to write his book.",
-        "correct": "sabbatical",
-        "hint": "Paid leave for research",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "He contributed to a ______ (peer-reviewed) journal on education.",
-        "correct": "peer-reviewed",
-        "hint": "Evaluated by experts in the field",
-        "star": True
-      }
-    ]
+    "practice_tasks": []
   },
   "health_medicine": {
     "title": "Лексика: здоровье и медицина",
@@ -6957,288 +2024,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
         "answer": "Global warming – повышение температуры. Climate change – более широкое понятие, включающее изменение погодных паттернов, уровня моря и т.д."
       }
     ],
-    "practice_tasks": [
-      {
-        "type": "fill_blank",
-        "text": "The government has implemented new policies to reduce the carbon ______.",
-        "correct": "footprint",
-        "hint": "мера воздействия на климат",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "Deforestation leads to habitat ______ for many species.",
-        "correct": "loss",
-        "hint": "утрата",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "Renewable energy sources like solar and wind power help to ______ greenhouse gas emissions.",
-        "correct": "mitigate",
-        "hint": "смягчать, уменьшать",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The ______ of the rainforest is critical for global biodiversity.",
-        "correct": "preservation",
-        "hint": "сохранение",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "Ocean ______ is caused by the absorption of excess CO2 from the atmosphere.",
-        "correct": "acidification",
-        "hint": "закисление",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "Many companies are trying to achieve ______ by balancing their emissions with carbon offsets.",
-        "correct": "carbon neutrality",
-        "hint": "углеродная нейтральность",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The ______ effect is intensified by the burning of fossil fuels.",
-        "correct": "greenhouse",
-        "hint": "парниковый",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "Plastic waste often ends up in ______, harming marine life.",
-        "correct": "ocean gyres",
-        "hint": "океанические круговороты",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "______ farming practices can help restore soil health and reduce erosion.",
-        "correct": "Regenerative",
-        "hint": "восстановительное (земледелие)",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The concept of a ______ economy aims to eliminate waste and keep resources in use.",
-        "correct": "circular",
-        "hint": "циркулярная, замкнутая",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "Air ______ in urban areas can lead to respiratory problems.",
-        "correct": "pollution",
-        "hint": "загрязнение",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "______ species often outcompete native flora and fauna.",
-        "correct": "Invasive",
-        "hint": "инвазивные, чужеродные",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The ______ of natural resources must be managed sustainably.",
-        "correct": "exploitation",
-        "hint": "эксплуатация, использование",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "A ______ is a person who advocates for the protection of the environment.",
-        "correct": "environmentalist",
-        "hint": "эколог-активист",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The melting of polar ice caps contributes to sea-level ______.",
-        "correct": "rise",
-        "hint": "повышение",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "______ energy is derived from sources that are naturally replenished.",
-        "correct": "Renewable",
-        "hint": "возобновляемая",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The ______ of a species can have cascading effects on the entire ecosystem.",
-        "correct": "extinction",
-        "hint": "вымирание",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "______ refers to the variety of life in the world or in a particular habitat.",
-        "correct": "Biodiversity",
-        "hint": "биоразнообразие",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The ______ layer protects us from harmful ultraviolet radiation.",
-        "correct": "ozone",
-        "hint": "озоновый",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "______ waste, such as batteries and electronics, requires special disposal.",
-        "correct": "Hazardous",
-        "hint": "опасные (отходы)",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "______ is the process of converting waste materials into new materials and objects.",
-        "correct": "Recycling",
-        "hint": "переработка",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The ______ of forests helps to regulate the climate and water cycles.",
-        "correct": "conservation",
-        "hint": "сохранение, охрана",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "______ fuels like coal and oil are major contributors to air pollution.",
-        "correct": "Fossil",
-        "hint": "ископаемое (топливо)",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "______ is the gradual increase in the earth's average temperature.",
-        "correct": "Global warming",
-        "hint": "глобальное потепление",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "A ______ is a community of interacting organisms and their physical environment.",
-        "correct": "ecosystem",
-        "hint": "экосистема",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "______ is the contamination of the environment by harmful substances.",
-        "correct": "Pollution",
-        "hint": "загрязнение",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The ______ of waste in landfills produces methane, a potent greenhouse gas.",
-        "correct": "decomposition",
-        "hint": "разложение",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "______ is the practice of using resources in a way that does not deplete them.",
-        "correct": "Sustainability",
-        "hint": "устойчивость",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "______ is the clearing of forests on a large scale.",
-        "correct": "Deforestation",
-        "hint": "вырубка лесов",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "______ refers to the protection of natural resources for future generations.",
-        "correct": "Stewardship",
-        "hint": "ответственное управление",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The ______ of the Amazon is a major global concern.",
-        "correct": "deforestation",
-        "hint": "вырубка лесов",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "______ is the process by which fertile land becomes desert.",
-        "correct": "Desertification",
-        "hint": "опустынивание",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "______ is the introduction of harmful materials into the environment.",
-        "correct": "Contamination",
-        "hint": "загрязнение (более широкий термин)",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "The ______ of the Arctic ice sheet is accelerating.",
-        "correct": "melting",
-        "hint": "таяние",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "______ is the use of living organisms to clean up environmental pollution.",
-        "correct": "Bioremediation",
-        "hint": "биоремедиация",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "The ______ of the ozone layer is a success story of international cooperation.",
-        "correct": "recovery",
-        "hint": "восстановление",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "______ is the practice of planting trees to restore forested areas.",
-        "correct": "Reforestation",
-        "hint": "лесовосстановление",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "______ is the study of the interactions between organisms and their environment.",
-        "correct": "Ecology",
-        "hint": "экология (наука)",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "The ______ of the Everglades is a complex environmental issue.",
-        "correct": "restoration",
-        "hint": "восстановление",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "______ is the process of capturing and storing carbon dioxide to reduce emissions.",
-        "correct": "Carbon sequestration",
-        "hint": "секвестрация углерода",
-        "star": True
-      }
-    ]
+    "practice_tasks": []
   },
   "science_technology": {
     "title": "Лексика: наука и технологии",
@@ -7320,288 +2106,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
         "answer": "Jail обычно местное исправительное учреждение для краткосрочного заключения, prison – для длительного."
       }
     ],
-    "practice_tasks": [
-      {
-        "type": "fill_blank",
-        "text": "The judge sentenced the criminal to life imprisonment for his heinous ______.",
-        "correct": "crime",
-        "hint": "An unlawful act punishable by law",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The police officer made a lawful ______ of the suspect at the scene.",
-        "correct": "arrest",
-        "hint": "The act of taking someone into custody",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The defendant pleaded not guilty to the charge of ______.",
-        "correct": "theft",
-        "hint": "The act of stealing property",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The witness provided a detailed ______ of the robbery.",
-        "correct": "testimony",
-        "hint": "A formal statement given in court",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The ______ was handed down by the jury after hours of deliberation.",
-        "correct": "verdict",
-        "hint": "The decision in a court case",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The criminal was found guilty of ______ and sentenced to ten years.",
-        "correct": "fraud",
-        "hint": "Deception for financial gain",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The judge issued a ______ for the suspect's immediate detention.",
-        "correct": "warrant",
-        "hint": "A legal document authorizing action",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The lawyer presented strong ______ to prove her client's innocence.",
-        "correct": "evidence",
-        "hint": "Facts or proof in a case",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The prisoner was granted ______ after serving half of his sentence.",
-        "correct": "parole",
-        "hint": "Early release from prison under conditions",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The act of ______ is considered a serious offense against the state.",
-        "correct": "treason",
-        "hint": "Betrayal of one's country",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The detective investigated the ______ of the missing jewels.",
-        "correct": "burglary",
-        "hint": "Illegal entry to steal",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The court imposed a heavy ______ on the company for environmental violations.",
-        "correct": "fine",
-        "hint": "A monetary penalty",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The suspect was charged with ______ after attacking the officer.",
-        "correct": "assault",
-        "hint": "Physical attack or threat",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The ______ of the law requires all citizens to follow regulations.",
-        "correct": "enforcement",
-        "hint": "The process of ensuring compliance",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The criminal was involved in ______ of illegal drugs across the border.",
-        "correct": "trafficking",
-        "hint": "Illegal trade or transport",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The court ordered ______ of the stolen property to the owner.",
-        "correct": "restitution",
-        "hint": "Return or compensation for loss",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The ______ was called to testify about the defendant's alibi.",
-        "correct": "witness",
-        "hint": "A person who sees an event",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The judge dismissed the case due to lack of ______.",
-        "correct": "jurisdiction",
-        "hint": "Legal authority to hear a case",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The prisoner escaped from ______ and is now at large.",
-        "correct": "custody",
-        "hint": "State of being held by authorities",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The lawyer filed an ______ against the lower court's decision.",
-        "correct": "appeal",
-        "hint": "A request to review a verdict",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The crime of ______ involves taking someone against their will.",
-        "correct": "kidnapping",
-        "hint": "Unlawful abduction",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The suspect was held in ______ pending trial.",
-        "correct": "detention",
-        "hint": "Confinement before court",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The jury found the defendant ______ of all charges.",
-        "correct": "innocent",
-        "hint": "Not guilty",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The ______ of the crime scene revealed crucial clues.",
-        "correct": "investigation",
-        "hint": "Systematic examination",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The criminal was sentenced to ______ for his violent acts.",
-        "correct": "imprisonment",
-        "hint": "Confinement in prison",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The court granted a ______ to protect the victim from harassment.",
-        "correct": "restraining order",
-        "hint": "Legal order to stay away",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The act of ______ involves destroying public property.",
-        "correct": "vandalism",
-        "hint": "Willful damage to property",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The defendant was charged with ______ for lying under oath.",
-        "correct": "perjury",
-        "hint": "Lying in court",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The police used ______ to subdue the armed suspect.",
-        "correct": "force",
-        "hint": "Physical power or violence",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The criminal was convicted of ______ for killing the victim.",
-        "correct": "murder",
-        "hint": "Unlawful killing with intent",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The judge imposed a ______ sentence to deter future crimes.",
-        "correct": "harsh",
-        "hint": "Severe or strict",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "The defendant's ______ was based on a technicality in the law.",
-        "correct": "acquittal",
-        "hint": "A verdict of not guilty",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "The criminal was charged with ______ for plotting to overthrow the government.",
-        "correct": "sedition",
-        "hint": "Inciting rebellion against authority",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "The lawyer argued that the ______ of evidence was unconstitutional.",
-        "correct": "suppression",
-        "hint": "The act of excluding evidence",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "The court ordered ______ of the defendant's assets.",
-        "correct": "forfeiture",
-        "hint": "Loss of property due to crime",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "The witness's ______ was deemed unreliable by the judge.",
-        "correct": "credibility",
-        "hint": "Trustworthiness of testimony",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "The criminal was convicted of ______ for helping the murderer escape.",
-        "correct": "accessory",
-        "hint": "A person who aids a crime",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "The judge issued a ______ to prevent the media from reporting the case.",
-        "correct": "gag order",
-        "hint": "Legal restriction on speech",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "The defendant's ______ was based on mental illness.",
-        "correct": "insanity plea",
-        "hint": "Claim of not guilty by reason of insanity",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "The prosecutor proved the defendant's ______ beyond a reasonable doubt.",
-        "correct": "culpability",
-        "hint": "Responsibility for a crime",
-        "star": True
-      }
-    ]
+    "practice_tasks": []
   },
   "politics_government": {
     "title": "Лексика: политика и правительство",
@@ -7629,288 +2134,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
         "answer": "Government – правительство (исполнительная власть). Parliament – парламент (законодательная власть)."
       }
     ],
-    "practice_tasks": [
-      {
-        "type": "fill_blank",
-        "text": "The Prime Minister is the head of the _____.",
-        "correct": "government",
-        "hint": "The group of people who rule a country",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "Citizens vote in a general _____ every five years.",
-        "correct": "election",
-        "hint": "Process of choosing leaders by voting",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The _____ passes laws in a democratic system.",
-        "correct": "parliament",
-        "hint": "Legislative body of government",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "A _____ is a formal agreement between countries.",
-        "correct": "treaty",
-        "hint": "Official document signed by nations",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The _____ is the highest court in many countries.",
-        "correct": "supreme court",
-        "hint": "Final judicial authority",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "A _____ is a change to a constitution or law.",
-        "correct": "amendment",
-        "hint": "Formal alteration of legal text",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The _____ party is the main opposition to the ruling party.",
-        "correct": "opposition",
-        "hint": "Political group that challenges the government",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "A _____ is a system where citizens elect representatives.",
-        "correct": "democracy",
-        "hint": "Rule by the people",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The _____ is responsible for foreign affairs.",
-        "correct": "ministry",
-        "hint": "Government department",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "A _____ is a person who runs for office.",
-        "correct": "candidate",
-        "hint": "Someone seeking election",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The _____ vetoed the new bill.",
-        "correct": "president",
-        "hint": "Head of state in many republics",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "A _____ is a formal public meeting to discuss issues.",
-        "correct": "debate",
-        "hint": "Structured discussion",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The _____ collects taxes and manages public funds.",
-        "correct": "treasury",
-        "hint": "Financial department of government",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "A _____ is a rule made by a government.",
-        "correct": "regulation",
-        "hint": "Official directive",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The _____ is the official residence of the monarch or president.",
-        "correct": "palace",
-        "hint": "Grand building for head of state",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "A _____ is a group of ministers in the government.",
-        "correct": "cabinet",
-        "hint": "Senior decision-making body",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The _____ is the process of becoming a citizen.",
-        "correct": "naturalization",
-        "hint": "Legal procedure for citizenship",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "A _____ is a temporary government during a crisis.",
-        "correct": "interim government",
-        "hint": "Transitional administration",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The _____ is the right to vote in elections.",
-        "correct": "suffrage",
-        "hint": "Voting rights",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "A _____ is a formal accusation against a public official.",
-        "correct": "impeachment",
-        "hint": "Process to remove official from office",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The _____ is the lower house of parliament in some countries.",
-        "correct": "house of commons",
-        "hint": "Elected legislative chamber",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "A _____ is a policy of staying neutral in international affairs.",
-        "correct": "isolationism",
-        "hint": "Avoiding alliances",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The _____ is the official count of the population.",
-        "correct": "census",
-        "hint": "Population survey",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "A _____ is a system where one person holds all power.",
-        "correct": "dictatorship",
-        "hint": "Autocratic rule",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The _____ is the process of approving a treaty.",
-        "correct": "ratification",
-        "hint": "Formal confirmation",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "A _____ is a written proposal for a new law.",
-        "correct": "bill",
-        "hint": "Draft legislation",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The _____ is the area a politician represents.",
-        "correct": "constituency",
-        "hint": "Electoral district",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "A _____ is a formal agreement between political parties.",
-        "correct": "coalition",
-        "hint": "Joint government",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The _____ is the head of a city government.",
-        "correct": "mayor",
-        "hint": "Local executive leader",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "A _____ is a system of government with a king or queen.",
-        "correct": "monarchy",
-        "hint": "Rule by hereditary sovereign",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The _____ is the process of removing a law from the books.",
-        "correct": "repeal",
-        "hint": "Cancel a law",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "A _____ is a political system where power is divided between central and regional governments.",
-        "correct": "federation",
-        "hint": "Federal state structure",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "The _____ is the principle that no one is above the law.",
-        "correct": "rule of law",
-        "hint": "Legal doctrine",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "A _____ is a meeting of party members to choose a candidate.",
-        "correct": "caucus",
-        "hint": "Internal party selection",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "The _____ is the process of redrawing electoral boundaries.",
-        "correct": "redistricting",
-        "hint": "Reapportionment of seats",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "A _____ is a system where the head of state is separate from the head of government.",
-        "correct": "presidential system",
-        "hint": "Separation of powers",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "The _____ is a formal document that outlines the fundamental principles of a state.",
-        "correct": "constitution",
-        "hint": "Supreme legal document",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "A _____ is a political ideology that emphasizes individual freedom and limited government.",
-        "correct": "liberalism",
-        "hint": "Political philosophy",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "The _____ is the practice of using public office for private gain.",
-        "correct": "corruption",
-        "hint": "Abuse of power",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "A _____ is a system where citizens vote directly on laws.",
-        "correct": "direct democracy",
-        "hint": "Pure form of democracy",
-        "star": True
-      }
-    ]
+    "practice_tasks": []
   },
   "economy_business": {
     "title": "Лексика: экономика и бизнес",
@@ -7938,288 +2162,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
         "answer": "Recession – снижение ВВП два квартала подряд. Depression – более глубокий и продолжительный спад."
       }
     ],
-    "practice_tasks": [
-      {
-        "type": "fill_blank",
-        "text": "The company's main goal is to maximize ______.",
-        "correct": "profit",
-        "hint": "Financial gain",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "A period of economic decline is called a ______.",
-        "correct": "recession",
-        "hint": "Opposite of growth",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "Money borrowed from a bank is a ______.",
-        "correct": "loan",
-        "hint": "Financial debt",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The total value of goods and services produced in a country is ______.",
-        "correct": "GDP",
-        "hint": "Gross Domestic Product",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "When prices rise over time, it is called ______.",
-        "correct": "inflation",
-        "hint": "Decrease in purchasing power",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "A person who starts a new business is an ______.",
-        "correct": "entrepreneur",
-        "hint": "Risk-taker in business",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The money a business makes after costs is ______.",
-        "correct": "revenue",
-        "hint": "Total income",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "A plan for spending money is a ______.",
-        "correct": "budget",
-        "hint": "Financial plan",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "When a company stops operating due to debts, it goes ______.",
-        "correct": "bankrupt",
-        "hint": "Financial failure",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The people who buy a product are the ______.",
-        "correct": "customers",
-        "hint": "Buyers",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "A tax on imported goods is a ______.",
-        "correct": "tariff",
-        "hint": "Trade barrier",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The amount of a product available is the ______.",
-        "correct": "supply",
-        "hint": "Quantity available",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The desire for a product is the ______.",
-        "correct": "demand",
-        "hint": "Consumer desire",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "A person who manages a company is a ______.",
-        "correct": "manager",
-        "hint": "Leader in business",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "Money paid to workers for their work is a ______.",
-        "correct": "salary",
-        "hint": "Regular payment",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "A formal meeting to discuss business is a ______.",
-        "correct": "conference",
-        "hint": "Business event",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The process of selling goods to other countries is ______.",
-        "correct": "export",
-        "hint": "International trade",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The process of buying goods from other countries is ______.",
-        "correct": "import",
-        "hint": "International purchase",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "A share of ownership in a company is a ______.",
-        "correct": "stock",
-        "hint": "Equity",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The money a company pays to shareholders is a ______.",
-        "correct": "dividend",
-        "hint": "Profit share",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "A person who invests money in a business is an ______.",
-        "correct": "investor",
-        "hint": "Capital provider",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The costs of running a business are ______.",
-        "correct": "expenses",
-        "hint": "Business costs",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "A company that provides a service or product is a ______.",
-        "correct": "supplier",
-        "hint": "Provider",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The value of a currency compared to another is the ______.",
-        "correct": "exchange rate",
-        "hint": "Currency value",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "A person who sells goods in a shop is a ______.",
-        "correct": "retailer",
-        "hint": "Shop owner",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The money a business spends on advertising is a ______.",
-        "correct": "marketing cost",
-        "hint": "Promotion expense",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "A new company that is just starting is a ______.",
-        "correct": "startup",
-        "hint": "New business",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The person in charge of a company's finances is the ______.",
-        "correct": "CFO",
-        "hint": "Chief Financial Officer",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "A written agreement between two parties is a ______.",
-        "correct": "contract",
-        "hint": "Legal document",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The process of making a product is ______.",
-        "correct": "manufacturing",
-        "hint": "Production",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "A decrease in the value of assets over time is ______.",
-        "correct": "depreciation",
-        "hint": "Asset value loss",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "The total amount of money a company owes is its ______.",
-        "correct": "liabilities",
-        "hint": "Debts and obligations",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "A market where only one seller controls the supply is a ______.",
-        "correct": "monopoly",
-        "hint": "Single seller market",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "The cost of producing one additional unit is ______.",
-        "correct": "marginal cost",
-        "hint": "Extra production cost",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "A government payment to support a business is a ______.",
-        "correct": "subsidy",
-        "hint": "Financial aid from state",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "The point where supply equals demand is ______.",
-        "correct": "equilibrium",
-        "hint": "Market balance",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "A company that owns most of the market share is a ______.",
-        "correct": "market leader",
-        "hint": "Dominant firm",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "The process of combining two companies is a ______.",
-        "correct": "merger",
-        "hint": "Business combination",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "A person who buys and sells stocks is a ______.",
-        "correct": "trader",
-        "hint": "Stock market participant",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "The total value of a company's shares is its ______.",
-        "correct": "market capitalization",
-        "hint": "Market cap",
-        "star": True
-      }
-    ]
+    "practice_tasks": []
   },
   "phrasal_verbs_b2": {
     "title": "Фразовые глаголы B2 (часть 1)",
@@ -8247,288 +2190,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
         "answer": "Get over – преодолеть эмоциональное или физическое состояние. Get through – преодолеть трудный период, дозвониться."
       }
     ],
-    "practice_tasks": [
-      {
-        "type": "fill_blank",
-        "text": "She decided to ___ ___ the job offer because it was too good to refuse.",
-        "correct": "take up",
-        "hint": "принять предложение",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He needs to ___ ___ with his studies after the break.",
-        "correct": "catch up",
-        "hint": "догнать, наверстать",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "They managed to ___ ___ the problem before it got worse.",
-        "correct": "sort out",
-        "hint": "решить проблему",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "I can't ___ ___ what he said; it was too confusing.",
-        "correct": "figure out",
-        "hint": "понять, разобраться",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She ___ ___ her old friend at the supermarket yesterday.",
-        "correct": "ran into",
-        "hint": "случайно встретить",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "We need to ___ ___ a plan for the weekend.",
-        "correct": "come up with",
-        "hint": "придумать",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He decided to ___ ___ smoking for his health.",
-        "correct": "give up",
-        "hint": "бросить (привычку)",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The meeting was ___ ___ until next Monday.",
-        "correct": "put off",
-        "hint": "отложить",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She always ___ ___ her younger brother when he's in trouble.",
-        "correct": "stands up for",
-        "hint": "защищать, заступаться",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He ___ ___ the document quickly to find the key information.",
-        "correct": "looked through",
-        "hint": "просмотреть",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "They ___ ___ the old building to build a new one.",
-        "correct": "tore down",
-        "hint": "сносить",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "I need to ___ ___ my notes before the exam.",
-        "correct": "go over",
-        "hint": "повторить, проверить",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She couldn't ___ ___ the pressure and quit.",
-        "correct": "handle",
-        "hint": "справиться с давлением (синоним)",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He ___ ___ a story to explain his absence.",
-        "correct": "made up",
-        "hint": "выдумать",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "We should ___ ___ the details of the contract.",
-        "correct": "go through",
-        "hint": "внимательно изучить",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The car ___ ___ on the highway.",
-        "correct": "broke down",
-        "hint": "сломаться (о машине)",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She ___ ___ her coat before leaving.",
-        "correct": "put on",
-        "hint": "надеть",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He ___ ___ the invitation because he was busy.",
-        "correct": "turned down",
-        "hint": "отклонить",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "They ___ ___ the new software last week.",
-        "correct": "rolled out",
-        "hint": "внедрить, запустить",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "I need to ___ ___ my room this weekend.",
-        "correct": "clean up",
-        "hint": "убрать",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She ___ ___ the truth about the accident.",
-        "correct": "found out",
-        "hint": "узнать, выяснить",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He ___ ___ his father in many ways.",
-        "correct": "takes after",
-        "hint": "быть похожим на",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The company ___ ___ a new product line.",
-        "correct": "came out with",
-        "hint": "выпустить",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She ___ ___ the problem with her boss.",
-        "correct": "brought up",
-        "hint": "поднять вопрос",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "We need to ___ ___ the costs before deciding.",
-        "correct": "add up",
-        "hint": "подсчитать",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He ___ ___ the chance to study abroad.",
-        "correct": "jumped at",
-        "hint": "ухватиться за возможность",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The teacher ___ ___ the students for their hard work.",
-        "correct": "praised",
-        "hint": "похвалить (синоним)",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She ___ ___ the letter and threw it away.",
-        "correct": "tore up",
-        "hint": "разорвать",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He ___ ___ the idea of starting a business.",
-        "correct": "came up with",
-        "hint": "придумать идею",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "They ___ ___ the party because of the rain.",
-        "correct": "called off",
-        "hint": "отменить",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She ___ ___ her fear of heights.",
-        "correct": "got over",
-        "hint": "преодолеть",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "He ___ ___ the report in just two hours.",
-        "correct": "dashed off",
-        "hint": "написать наспех",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "The negotiations ___ ___ due to disagreements.",
-        "correct": "broke down",
-        "hint": "сорваться (о переговорах)",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "She ___ ___ the company after the merger.",
-        "correct": "took over",
-        "hint": "взять управление",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "He ___ ___ the details of the plan.",
-        "correct": "fleshed out",
-        "hint": "детализировать",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "They ___ ___ the old traditions.",
-        "correct": "did away with",
-        "hint": "упразднить",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "She ___ ___ the opportunity to travel.",
-        "correct": "leapt at",
-        "hint": "воспользоваться шансом",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "He ___ ___ the problem from a different angle.",
-        "correct": "looked at",
-        "hint": "рассмотреть (под углом)",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "The project ___ ___ due to lack of funds.",
-        "correct": "fell through",
-        "hint": "провалиться",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "She ___ ___ the challenge with confidence.",
-        "correct": "rose to",
-        "hint": "справиться с вызовом",
-        "star": True
-      }
-    ]
+    "practice_tasks": []
   },
   "phrasal_verbs_b2_2": {
     "title": "Фразовые глаголы B2 (часть 2)",
@@ -8556,551 +2218,8 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
         "answer": "He turned down the offer."
       }
     ],
-    "practice_tasks": [
-      {
-        "type": "fill_blank",
-        "text": "She decided to ___ ___ the job offer because it was too good to refuse.",
-        "correct": "take up",
-        "hint": "принять предложение",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He needs to ___ ___ his old habits if he wants to succeed.",
-        "correct": "give up",
-        "hint": "отказаться от привычек",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The meeting was ___ ___ due to the manager's illness.",
-        "correct": "called off",
-        "hint": "отменено",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "We should ___ ___ the details before making a final decision.",
-        "correct": "go over",
-        "hint": "просмотреть, обсудить",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She couldn't ___ ___ with the constant noise in the office.",
-        "correct": "put up",
-        "hint": "мириться",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The company plans to ___ ___ a new branch in Berlin.",
-        "correct": "set up",
-        "hint": "открыть, основать",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He ___ ___ the truth about his past eventually.",
-        "correct": "came out with",
-        "hint": "выдал, рассказал",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "Please ___ ___ the form and sign it.",
-        "correct": "fill in",
-        "hint": "заполнить",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The car ___ ___ on the highway and we had to call a tow truck.",
-        "correct": "broke down",
-        "hint": "сломалось",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She decided to ___ ___ her studies after a year off.",
-        "correct": "take up",
-        "hint": "возобновить",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He ___ ___ his father in many ways.",
-        "correct": "takes after",
-        "hint": "похож на",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The police are ___ ___ the cause of the fire.",
-        "correct": "looking into",
-        "hint": "расследуют",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "I need to ___ ___ my notes before the exam.",
-        "correct": "look over",
-        "hint": "просмотреть",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She ___ ___ the invitation because she was too busy.",
-        "correct": "turned down",
-        "hint": "отклонила",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The project ___ ___ to be more difficult than expected.",
-        "correct": "turned out",
-        "hint": "оказался",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He ___ ___ his own business after losing his job.",
-        "correct": "set up",
-        "hint": "открыл",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "We need to ___ ___ a solution to this problem.",
-        "correct": "come up with",
-        "hint": "придумать",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The teacher asked the students to ___ ___ their essays.",
-        "correct": "hand in",
-        "hint": "сдать",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She ___ ___ her coat and went out.",
-        "correct": "put on",
-        "hint": "надела",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He ___ ___ the book on the table and left.",
-        "correct": "put down",
-        "hint": "положил",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The meeting was ___ ___ until next week.",
-        "correct": "put off",
-        "hint": "отложено",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She ___ ___ the old photos and started crying.",
-        "correct": "came across",
-        "hint": "наткнулась на",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He ___ ___ the idea of becoming a doctor.",
-        "correct": "gave up",
-        "hint": "отказался от",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The plane ___ ___ at 6 PM.",
-        "correct": "took off",
-        "hint": "взлетел",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "We need to ___ ___ the problem immediately.",
-        "correct": "deal with",
-        "hint": "разобраться с",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She ___ ___ her younger brother while their parents were away.",
-        "correct": "looked after",
-        "hint": "присматривала за",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He ___ ___ the truth from his parents.",
-        "correct": "kept back",
-        "hint": "утаил",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The company ___ ___ a new product last month.",
-        "correct": "brought out",
-        "hint": "выпустила",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She ___ ___ her anger and stayed calm.",
-        "correct": "held back",
-        "hint": "сдержала",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He ___ ___ the job because of the low salary.",
-        "correct": "turned down",
-        "hint": "отказался от",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The scientist ___ ___ a new theory about black holes.",
-        "correct": "came up with",
-        "hint": "предложил",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "She ___ ___ the company after the founder retired.",
-        "correct": "took over",
-        "hint": "взяла на себя управление",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "The negotiations ___ ___ because of a disagreement.",
-        "correct": "broke down",
-        "hint": "сорвались",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "He ___ ___ the documents carefully before signing.",
-        "correct": "looked through",
-        "hint": "просмотрел",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "The old building was ___ ___ to make way for a new mall.",
-        "correct": "pulled down",
-        "hint": "снесено",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "She ___ ___ the challenge and succeeded.",
-        "correct": "rose to",
-        "hint": "справилась с",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "The government ___ ___ new regulations for online privacy.",
-        "correct": "brought in",
-        "hint": "ввело",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "He ___ ___ his speech to fit the time limit.",
-        "correct": "cut down",
-        "hint": "сократил",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "The team ___ ___ the project despite the difficulties.",
-        "correct": "carried on with",
-        "hint": "продолжила",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "She ___ ___ the truth after hours of questioning.",
-        "correct": "gave away",
-        "hint": "выдала",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "She couldn't ___ the pressure and decided to quit.",
-        "correct": "cope with",
-        "hint": "справляться с",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He needs to ___ his anger before it's too late.",
-        "correct": "let go of",
-        "hint": "отпускать (чувства)",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "They managed to ___ the problem without any help.",
-        "correct": "sort out",
-        "hint": "разобраться с",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "I can't ___ the meaning of this poem.",
-        "correct": "figure out",
-        "hint": "понять, разобраться",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The meeting was ___ due to the storm.",
-        "correct": "called off",
-        "hint": "отменить",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She ___ her old toys to charity.",
-        "correct": "gave away",
-        "hint": "отдать (пожертвовать)",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "We need to ___ a solution quickly.",
-        "correct": "come up with",
-        "hint": "придумать",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He ___ his father in many ways.",
-        "correct": "takes after",
-        "hint": "быть похожим на (родственника)",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "Don't ___ the opportunity to study abroad.",
-        "correct": "pass up",
-        "hint": "упустить (возможность)",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The car ___ on the highway.",
-        "correct": "broke down",
-        "hint": "сломаться (о машине)",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She ___ the job offer because of the low salary.",
-        "correct": "turned down",
-        "hint": "отклонить (предложение)",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He needs to ___ smoking for his health.",
-        "correct": "give up",
-        "hint": "бросить (привычку)",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "They ___ the old building last month.",
-        "correct": "pulled down",
-        "hint": "сносить (здание)",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "I'll ___ you at the airport at 5 pm.",
-        "correct": "pick up",
-        "hint": "забрать (кого-то)",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She ___ her notes before the exam.",
-        "correct": "looked over",
-        "hint": "просмотреть",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The company ___ new employees last week.",
-        "correct": "took on",
-        "hint": "нанимать",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He ___ the truth about the accident.",
-        "correct": "found out",
-        "hint": "узнать",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "We need to ___ the details of the contract.",
-        "correct": "go over",
-        "hint": "проверить, повторить",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She ___ her friends at the party.",
-        "correct": "ran into",
-        "hint": "случайно встретить",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The teacher ___ the homework for next week.",
-        "correct": "handed out",
-        "hint": "раздать",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He ___ the idea of moving abroad.",
-        "correct": "played with",
-        "hint": "обдумывать (идею)",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "They ___ the project until next year.",
-        "correct": "put off",
-        "hint": "откладывать",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She ___ the mess in her room.",
-        "correct": "cleaned up",
-        "hint": "убрать",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He ___ his brother during the argument.",
-        "correct": "stood up for",
-        "hint": "заступиться за",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The plan didn't ___ as expected.",
-        "correct": "work out",
-        "hint": "получиться, сработать",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She ___ the report in two hours.",
-        "correct": "got through",
-        "hint": "справиться с (задачей)",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He ___ the invitation without hesitation.",
-        "correct": "jumped at",
-        "hint": "с радостью принять",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The police are ___ the crime.",
-        "correct": "looking into",
-        "hint": "расследовать",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She ___ her savings for the trip.",
-        "correct": "dipped into",
-        "hint": "потратить часть (сбережений)",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He ___ the challenge and succeeded.",
-        "correct": "rose to",
-        "hint": "оказаться на высоте",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "The theory ___ after new evidence emerged.",
-        "correct": "fell apart",
-        "hint": "развалиться (о теории)",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "She ___ the complex text with ease.",
-        "correct": "waded through",
-        "hint": "продираться сквозь (текст)",
-        "star": True
-      },
-      {
-        "type": "reorder",
-        "text": "up / give / smoking / decided / He / to",
-        "correct": "He decided to give up smoking",
-        "hint": "бросить курить",
-        "star": True
-      },
-      {
-        "type": "reorder",
-        "text": "down / turned / She / offer / the / job",
-        "correct": "She turned down the job offer",
-        "hint": "отклонить предложение",
-        "star": True
-      },
-      {
-        "type": "translation",
-        "text": "Она наткнулась на старые фотографии.",
-        "correct": "She came across old photographs",
-        "hint": "come across",
-        "star": True
-      },
-      {
-        "type": "translation",
-        "text": "Мы должны придерживаться плана.",
-        "correct": "We must stick to the plan",
-        "hint": "stick to",
-        "star": True
-      },
-      {
-        "type": "choice",
-        "text": "He ___ his father in personality.",
-        "correct": "takes after",
-        "hint": "быть похожим",
-        "options": [
-          "takes after",
-          "looks after",
-          "runs after",
-          "goes after"
-        ],
-        "star": True
+    "practice_tasks": [],
+        "star": true
       },
       {
         "type": "choice",
@@ -9113,35 +2232,35 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
           "called in",
           "called up"
         ],
-        "star": True
+        "star": true
       },
       {
         "type": "open",
         "text": "Explain the difference between 'break down' and 'break up' with examples.",
         "correct": "Break down means to stop functioning (e.g., car), break up means to end a relationship.",
         "hint": "сломаться vs расстаться",
-        "star": True
+        "star": true
       },
       {
         "type": "open",
         "text": "Use 'come up with' in a sentence about a solution.",
         "correct": "We need to come up with a new strategy.",
         "hint": "придумать",
-        "star": True
+        "star": true
       },
       {
         "type": "fill_blank",
         "text": "He ___ the problem from a different angle.",
         "correct": "looked at",
         "hint": "рассмотреть (под углом)",
-        "star": True
+        "star": true
       },
       {
         "type": "fill_blank",
         "text": "The negotiations ___ after hours of discussion.",
         "correct": "broke down",
         "hint": "сорваться (о переговорах)",
-        "star": True
+        "star": true
       }
     ]
   },
@@ -9171,287 +2290,6 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
         "answer": "Достаточно 30-40 самых распространённых. Они помогают в разговоре и чтении."
       }
     ],
-    "practice_tasks": [
-      {
-        "type": "fill_blank",
-        "text": "He decided to ___ the bullet and tell her the truth.",
-        "correct": "bite",
-        "hint": "endure something painful",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She was ___ over the moon when she got the job.",
-        "correct": "over the moon",
-        "hint": "extremely happy",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "We need to ___ the ball rolling on this project.",
-        "correct": "get",
-        "hint": "start something",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He's always ___ the pot calling the kettle black.",
-        "correct": "the pot calling the kettle black",
-        "hint": "criticizing someone for a fault you have",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "I'll ___ it a day and finish tomorrow.",
-        "correct": "call",
-        "hint": "stop working for the day",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She let the cat out of the ___ about the surprise party.",
-        "correct": "bag",
-        "hint": "reveal a secret",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He's been under the ___ lately with all the deadlines.",
-        "correct": "weather",
-        "hint": "feeling ill or stressed",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "We must face the ___ and accept the loss.",
-        "correct": "music",
-        "hint": "confront consequences",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She's a ___ of all trades, but master of none.",
-        "correct": "jack",
-        "hint": "person with many skills",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "Don't count your chickens before they ___ .",
-        "correct": "hatch",
-        "hint": "don't assume success too early",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He's been ___ the fence about which university to choose.",
-        "correct": "sitting on",
-        "hint": "undecided",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She went out on a ___ and invested in the startup.",
-        "correct": "limb",
-        "hint": "take a risk",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "We need to cut to the ___ and discuss the main issue.",
-        "correct": "chase",
-        "hint": "get to the point",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He's always ___ the devil's advocate in debates.",
-        "correct": "playing",
-        "hint": "argue an opposing view",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She's been ___ the grapevine about the merger.",
-        "correct": "hearing through",
-        "hint": "hearing rumors",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "It's not rocket ___ ; just follow the instructions.",
-        "correct": "science",
-        "hint": "not complicated",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He pulled a fast ___ on me and changed the deal.",
-        "correct": "one",
-        "hint": "trick someone",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She's been burning the ___ at both ends to finish the report.",
-        "correct": "candle",
-        "hint": "working too hard",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "We'll cross that ___ when we come to it.",
-        "correct": "bridge",
-        "hint": "deal with problem later",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He's got a ___ in his bonnet about recycling.",
-        "correct": "bee",
-        "hint": "obsession with an idea",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She's the ___ of the ball at every party.",
-        "correct": "life",
-        "hint": "most lively person",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "We need to get our ___ together and plan this.",
-        "correct": "ducks in a row",
-        "hint": "get organized",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He's been ___ the blues since his dog died.",
-        "critical": "singing the blues",
-        "hint": "feeling sad",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She's always ___ the green-eyed monster.",
-        "correct": "green with envy",
-        "hint": "jealous",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "Don't throw the baby out with the ___ water.",
-        "correct": "bath",
-        "hint": "discard something valuable with trash",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He's been ___ the dog and pony show for the investors.",
-        "correct": "putting on",
-        "hint": "a flashy presentation",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She's a ___ of sunshine on a rainy day.",
-        "correct": "ray",
-        "hint": "a cheerful person",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "We need to take the ___ by the horns.",
-        "correct": "bull",
-        "hint": "confront a problem directly",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "He's been ___ the line between honesty and diplomacy.",
-        "correct": "walking a fine",
-        "hint": "balancing two things",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "She's been ___ the hatchet with her old rival.",
-        "correct": "burying",
-        "hint": "making peace",
-        "star": False
-      },
-      {
-        "type": "fill_blank",
-        "text": "It's a ___ of cake to fix this bug.",
-        "correct": "piece",
-        "hint": "very easy",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "He's been ___ the elephant in the room all evening.",
-        "correct": "ignoring",
-        "hint": "avoiding an obvious problem",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "She's the ___ that stirs the drink in our team.",
-        "correct": "straw",
-        "hint": "key person",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "We need to ___ the ground running on Monday.",
-        "correct": "hit",
-        "hint": "start quickly and energetically",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "He's been ___ the ropes of the new system.",
-        "correct": "learning",
-        "hint": "learning the basics",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "She's always ___ the silver lining in every cloud.",
-        "correct": "looking for",
-        "hint": "finding something positive",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "We'll have to ___ the bullet and raise prices.",
-        "correct": "bite",
-        "hint": "accept something unpleasant",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "He's been ___ the cat's pajamas since his promotion.",
-        "correct": "thinking he's",
-        "hint": "thinking he's great",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "She's a ___ in the rough; she needs training.",
-        "correct": "diamond",
-        "hint": "someone with hidden potential",
-        "star": True
-      },
-      {
-        "type": "fill_blank",
-        "text": "We need to ___ the ship before it sinks.",
-        "correct": "abandon",
-        "hint": "leave a failing situation",
-        "star": True
-      }
-    ]
+    "practice_tasks": []
   }
 }
