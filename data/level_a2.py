@@ -5921,8 +5921,7 @@ LEVEL_A2_CONTENT = LEVEL_A2_CONTENT = {
       }
     ]
   ]
-}
-  },
+},
   "modal_must_have_to": {
     "title": "Модальные глаголы: must, have to (обязанность)",
     "pages": [
