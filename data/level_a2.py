@@ -5416,8 +5416,7 @@ LEVEL_A2_CONTENT = LEVEL_A2_CONTENT = {
         "answer": "Формально да, но очень редко. Вместо 'Ought we to go?' лучше 'Should we go?'."
       }
     ],
-    {
-  "practice_bank": [
+    "practice_bank": [
     # ==================== ВАРИАНТ 1 ====================
     [
       {
