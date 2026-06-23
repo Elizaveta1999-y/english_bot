@@ -5948,7 +5948,6 @@ LEVEL_A2_CONTENT = LEVEL_A2_CONTENT = {
         "answer": "Mustn't – нельзя (запрещено). Don't have to – не нужно (отсутствие необходимости). Например: You mustn't park here (штраф). You don't have to park here (можешь, но необязательно)."
       }
     ],
-    {
   "practice_bank": [
     # ==================== ВАРИАНТ 1 ====================
     [
@@ -20508,4 +20507,6 @@ LEVEL_A2_CONTENT = LEVEL_A2_CONTENT = {
     ]
   ]
 }
+
+
 
