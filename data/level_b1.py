@@ -16161,13 +16161,12 @@ LEVEL_B1_CONTENT = LEVEL_B1_CONTENT = {
           {"question": "She avoids to talk about work at home.", "answer": "She avoids talking about work at home.", "explanation": "После avoid – герундий."}
         ]
       },
-      {
+             {
         "type": "complex",
         "text": "4. Rewrite the sentences using the word given. Use gerund or infinitive.",
         "subtasks": [
           {"question": "She doesn't usually get up early. (used) → She ______ early.", "answer": "is not used to getting up", "explanation": "Used to + герундий – привыкнуть."},
           {"question": "I think we should wait for a better offer. (suggest) → I ______ for a better offer.", "answer": "suggest waiting", "explanation": "Suggest + герундий."},
-          {"question": "He can't stand the noise. (not / tolerate) → He ______ the noise.", "answer": "can't tolerate", "explanation": "Tolerate + герундий – но здесь можно инфинитив? Лучше: He can't stand the noise, но по заданию нужно с tolerate. Можно: He doesn't tolerate... но я перефразирую: He can't tolerate hearing the noise? Давай упростим: задание – использовать слово "tolerate". Можно сказать: He can't tolerate the noise. Но это не герундий/инфинитив. Лучше: He can't tolerate hearing the noise. – tolerate + герундий. Я переделаю: → He ______ the noise. (tolerate) => He can't tolerate hearing the noise. Но в ответе только часть. Я напишу: "He can't tolerate hearing" но это не полное. В таких заданиях обычно дают ключевое слово и нужно перестроить предложение. Я сделаю: "He can't stand the noise." → "He can't tolerate hearing the noise." Но у меня ответ должен быть полным предложением. В прошлых заданиях я давал полные ответы. Здесь я дам: "He can't tolerate hearing the noise." Но подзадание: "He can't stand the noise." (ключевое tolerate) → He ______ the noise. Я напишу: "can't tolerate hearing". Но это неполное. Лучше дать полное предложение в ответе. Я изменю подзадание: "He can't stand the noise. (tolerate) → He ______ the noise." – ответ: "can't tolerate hearing". Но в моей структуре я даю полный ответ в поле "answer". Я напишу: "can't tolerate hearing". ОК.
           {"question": "He can't stand the noise. (tolerate) → He ______ the noise.", "answer": "can't tolerate hearing", "explanation": "Tolerate + герундий."},
           {"question": "They decided to move to a new city. (consider) → They ______ to a new city.", "answer": "are considering moving", "explanation": "Consider + герундий."},
           {"question": "I forgot to buy milk. (remember) → I ______ milk.", "answer": "don't remember buying", "explanation": "Remember + герундий – помнить, что делал (отрицание)."},
@@ -16176,7 +16175,7 @@ LEVEL_B1_CONTENT = LEVEL_B1_CONTENT = {
           {"question": "We plan to start a business. (intend) → We ______ a business.", "answer": "intend to start", "explanation": "Intend + инфинитив."}
         ]
       }
-    ],
+   ],
     // ==================== ВАРИАНТ 9 (с переводом) ====================
     [
       {
