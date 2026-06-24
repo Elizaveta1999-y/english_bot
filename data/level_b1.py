@@ -1665,8 +1665,7 @@ LEVEL_B1_CONTENT = {
       }
     ]
   ]
-}
-  },
+},
   "present_perfect_continuous": {
     "title": "Present Perfect Continuous (углубление)",
     "pages": [
