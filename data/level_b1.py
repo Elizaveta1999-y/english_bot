@@ -34053,10 +34053,7 @@ LEVEL_B1_CONTENT = {
           {"question": "She is curious to learn. (curiosity) → Her ______ to learn is amazing.", "answer": "curiosity", "explanation": "Curiosity – любознательность."},
           {"question": "The new technology was introduced. (introduction) → The ______ of the new technology was revolutionary.", "answer": "introduction", "explanation": "Introduction – введение."},
           {"question": "He has an open heart. (open-hearted) → He is very ______.", "answer": "open-hearted", "explanation": "Open-hearted – добрый."}
-            ]
-        }
+        ]
     ]
   }
 }
-
-
