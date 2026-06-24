@@ -2234,7 +2234,7 @@ LEVEL_B1_CONTENT = {
         "type": "complex",
         "text": "1. Choose the correct tense: Present Perfect Simple or Present Perfect Continuous.",
         "subtasks": [
-          {"question": "I ______ (live) in this city for 20 years and I love it.", "answer": "have lived", "explanation": "акцент на результате проживания → Present Perfect Simple"}
+          {"question": "I ______ (live) in this city for 20 years and I love it.", "answer": "have lived", "explanation": "акцент на результате проживания → Present Perfect Simple"},
           {"question": "She ______ (paint) the fence all afternoon, and now it looks great.", "answer": "has been painting", "explanation": "длительный процесс, результат виден → Continuous"},
           {"question": "We ______ (visit) that restaurant twice this month.", "answer": "have visited", "explanation": "количество → Simple"},
           {"question": "He ______ (write) emails all morning.", "answer": "has been writing", "explanation": "длительный процесс → Continuous"},
