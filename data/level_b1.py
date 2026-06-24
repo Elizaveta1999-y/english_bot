@@ -1797,7 +1797,7 @@ LEVEL_B1_CONTENT = {
         "type": "complex",
         "text": "3. Complete the sentences with the correct form: Present Perfect Simple or Present Perfect Continuous.",
         "subtasks": [
-          {"question": "I ______ (live) in this city for 10 years.", "answer": "have lived", "explanation": "акцент на результате проживания → Present Perfect Simple"}
+          {"question": "I ______ (live) in this city for 10 years.", "answer": "have lived", "explanation": "акцент на результате проживания → Present Perfect Simple"},
           {"question": "She ______ (write) a novel recently, but she hasn't finished it yet.", "answer": "has been writing", "explanation": "недавний процесс, не завершён → Continuous"},
           {"question": "They ______ (visit) that museum three times.", "answer": "have visited", "explanation": "количество раз → Simple"},
           {"question": "He ______ (work) as a teacher for ten years.", "answer": "has been working", "explanation": "длительность, процесс → Continuous (можно и Simple, но здесь акцент на продолжительности)"},
