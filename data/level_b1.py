@@ -17500,7 +17500,7 @@ LEVEL_B1_CONTENT = {
         "subtasks": [
           {"question": "I dislike ______ (interrupt) in the middle of a sentence.", "answer": "being interrupted", "explanation": "Dislike + герундий. Пассивный герундий – не люблю, когда меня прерывают."},
           {"question": "She expects ______ (invite) to the award ceremony.", "answer": "to be invited", "explanation": "Expect + инфинитив. Пассивный инфинитив – ожидает, что её пригласят."},
-          {"question": "He managed ______ (select) for the team.", "answer": "to be selected", "explanation": "Managed + инфинитив. Пассивный инфинитив – смогли его отобрать? Нет, здесь "he managed to be selected" – он смог быть отобранным. Ок."},
+          {"question": "He managed ______ (select) for the team.", "answer": "to be selected", "explanation": "Managed + пассивный инфинитив – он смог быть отобранным."},
           {"question": "The carpet needs ______ (vacuum) – it's full of dust.", "answer": "to be vacuumed", "explanation": "Need + инфинитив. Пассивный инфинитив – ковёр нужно пропылесосить."},
           {"question": "She remembers ______ (take) to the theatre by her parents.", "answer": "being taken", "explanation": "Remember + герундий. Пассивный герундий – помнит, как её водили."},
           {"question": "He is proud ______ (nominate) for the award.", "answer": "to have been nominated", "explanation": "Proud + перфектный пассивный инфинитив – гордится тем, что его номинировали."},
