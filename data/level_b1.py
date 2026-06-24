@@ -17018,12 +17018,11 @@ LEVEL_B1_CONTENT = LEVEL_B1_CONTENT = {
           {"question": "This means to spend more money on maintenance.", "answer": "This means spending more money on maintenance.", "explanation": "Mean + герундий."}
         ]
       },
-      {
+            {
         "type": "complex",
         "text": "4. Rewrite the sentences using the word given. Use gerund or infinitive.",
         "subtasks": [
           {"question": "She forgot to water the plants. (remember) → She ______ the plants.", "answer": "didn't remember to water", "explanation": "Remember + инфинитив (отрицание)."},
-          {"question": "I still have a memory of that trip. (remember) → I ______ that trip.", "answer": "remember taking", "explanation": "Remember + герундий (если подразумевается trip как действие) – лучше "remember going on that trip" или просто "remember that trip"? Можно: "remember going on that trip". Но я напишу: "remember traveling"? Или: "remember visiting"? Давай упростим: "I remember that trip" – это не герундий. Переделаем: "I remember going on that trip." Тогда ответ: "remember going on". Но в задании дано "I still have a memory of that trip." → переделаем: "I remember going on that trip." – ответ: "remember going on". Ок.
           {"question": "I still have a memory of that trip. (remember) → I ______ that trip.", "answer": "remember going on", "explanation": "Remember + герундий."},
           {"question": "He regrets not having studied more. (regret) → He ______ more.", "answer": "regrets not studying", "explanation": "Regret + герундий."},
           {"question": "We are sorry to tell you about the change. (regret) → We ______ you about the change.", "answer": "regret to inform", "explanation": "Regret + инфинитив."},
