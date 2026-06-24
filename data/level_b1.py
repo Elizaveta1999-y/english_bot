@@ -17289,14 +17289,13 @@ LEVEL_B1_CONTENT = LEVEL_B1_CONTENT = {
         "type": "complex",
         "text": "4. Rewrite the sentences using the word given. Use passive gerund or infinitive.",
         "subtasks": [
-          {"question": "Nobody invited her to the party, and she felt sad. (not / like) → She ______ to the party.", "answer": "didn't like not being invited", "explanation": "Like + герундий. Пассивный герундий с отрицанием – не любит, что её не пригласили."},
-          {"question": "They expect that we will inform them. (expect) → They ______ by us.", "answer": "expect to be informed", "explanation": "Expect + пассивный инфинитив – ожидают, что их проинформируют."},
-          {"question": "Someone stole his car, and he reported it. (report) → He reported his car ______.", "answer": "having been stolen", "explanation": "Перфектный пассивный герундий – машина была украдена до того, как он сообщил."},
-          {"question": "The manager will interview you. (expect) → You ______ by the manager.", "answer": "can expect to be interviewed", "explanation": "Expect + пассивный инфинитив – вы можете ожидать, что вас проинтервьюируют."},
-          {"question": "They don't allow smoking here. (not / allow) → Smoking ______ here.", "answer": "is not allowed", "explanation": "Пассивный залог (но не герундий/инфинитив). Лучше: You ______ to smoke here. – ответ: "are not allowed". Но здесь нужно герундий/инфинитив. Я переделаю: "They don't allow you to smoke here." (not / allow) → You ______ here. – ответ: "are not allowed to smoke". Ок."},
-          {"question": "They don't allow you to smoke here. (not / allow) → You ______ here.", "answer": "are not allowed to smoke", "explanation": "Пассивный инфинитив – вам не разрешают курить."},
-          {"question": "I remember that they took me to the museum. (remember) → I ______ to the museum.", "answer": "remember being taken", "explanation": "Remember + пассивный герундий – помню, как меня водили."},
-          {"question": "She hates it when people criticise her. (hate) → She ______.", "answer": "hates being criticised", "explanation": "Hate + пассивный герундий – ненавидит, когда её критикуют."}
+          {"question": "Nobody invited her to the party, and she felt sad. (not / like) → She ______ to the party.", "answer": "didn't like not being invited", "explanation": "Like + пассивный герундий с отрицанием."},
+          {"question": "They expect that we will inform them. (expect) → They ______ by us.", "answer": "expect to be informed", "explanation": "Expect + пассивный инфинитив."},
+          {"question": "Someone stole his car, and he reported it. (report) → He reported his car ______.", "answer": "having been stolen", "explanation": "Перфектный пассивный герундий."},
+          {"question": "The manager will interview you. (expect) → You ______ by the manager.", "answer": "can expect to be interviewed", "explanation": "Expect + пассивный инфинитив."},
+          {"question": "They don't allow you to smoke here. (not / allow) → You ______ here.", "answer": "are not allowed to smoke", "explanation": "Пассивный инфинитив с отрицанием."},
+          {"question": "I remember that they took me to the museum. (remember) → I ______ to the museum.", "answer": "remember being taken", "explanation": "Remember + пассивный герундий."},
+          {"question": "She hates it when people criticise her. (hate) → She ______.", "answer": "hates being criticised", "explanation": "Hate + пассивный герундий."}
         ]
       }
     ],
