@@ -831,8 +831,7 @@ LEVEL_B1_CONTENT = {
       }
     ]
   ]
-}
-  },
+},
   "past_tenses_review": {
     "title": "Past Tenses (Simple, Continuous, Perfect) – повторение",
     "pages": [
@@ -2498,8 +2497,7 @@ LEVEL_B1_CONTENT = {
       }
     ]
   ]
-}
-  },
+},
   "past_perfect": {
     "title": "Past Perfect (had done)",
     "pages": [
@@ -3332,8 +3330,7 @@ LEVEL_B1_CONTENT = {
       }
     ]
   ]
-}
-  },
+},
   "past_perfect_continuous": {
     "title": "Past Perfect Continuous",
     "pages": [
@@ -4166,8 +4163,7 @@ LEVEL_B1_CONTENT = {
       }
     ]
   ]
-}
-  },
+},
   "future_continuous": {
     "title": "Future Continuous (will be doing)",
     "pages": [
@@ -5000,8 +4996,7 @@ LEVEL_B1_CONTENT = {
       }
     ]
   ]
-}
-  },
+},
   "future_perfect": {
     "title": "Future Perfect (will have done)",
     "pages": [
@@ -5834,8 +5829,7 @@ LEVEL_B1_CONTENT = {
       }
     ]
   ]
-}
-  },
+},
   "future_in_the_past": {
     "title": "Future in the Past (would do, was going to)",
     "pages": [
@@ -6668,8 +6662,7 @@ LEVEL_B1_CONTENT = {
       }
     ]
   ]
-}
-  },
+},
   "time_clauses": {
     "title": "Придаточные времени (when, as soon as, until, before, after)",
     "pages": [
@@ -7502,8 +7495,7 @@ LEVEL_B1_CONTENT = {
       }
     ]
   ]
-}
-  },
+},
   "modal_ability": {
     "title": "Модальные глаголы: способность (can, could, be able to)",
     "pages": [
@@ -8336,8 +8328,7 @@ LEVEL_B1_CONTENT = {
       }
     ]
   ]
-}
-  },
+},
   "modal_permission_obligation": {
     "title": "Модальные глаголы: разрешение, обязанность (may, might, must, have to, need to)",
     "pages": [
@@ -9170,8 +9161,7 @@ LEVEL_B1_CONTENT = {
       }
     ]
   ]
-}
-  },
+},
   "modal_probability": {
     "title": "Модальные глаголы: вероятность (must, might, could, can't)",
     "pages": [
@@ -10004,8 +9994,7 @@ LEVEL_B1_CONTENT = {
       }
     ]
   ]
-}
-  },
+},
   "modal_advice_criticism": {
     "title": "Модальные глаголы: совет, критика (should, ought to, had better)",
     "pages": [
@@ -10838,8 +10827,7 @@ LEVEL_B1_CONTENT = {
       }
     ]
   ]
-}
-  },
+},
   "modal_perfect": {
     "title": "Modal Perfect (must have done, could have done, should have done)",
     "pages": [
@@ -11676,8 +11664,7 @@ LEVEL_B1_CONTENT = {
       }
     ]
   ]
-}
-  },
+},
   "conditionals_2": {
     "title": "Условные предложения 2 типа (If I were…)",
     "pages": [
@@ -12510,8 +12497,7 @@ LEVEL_B1_CONTENT = {
       }
     ]
   ]
-}
-  },
+},
   "conditionals_3": {
     "title": "Условные предложения 3 типа (If I had known…)",
     "pages": [
@@ -13344,8 +13330,7 @@ LEVEL_B1_CONTENT = {
       }
     ]
   ]
-}
-  },
+},
   "mixed_conditionals": {
     "title": "Смешанные условные предложения",
     "pages": [
@@ -14178,8 +14163,7 @@ LEVEL_B1_CONTENT = {
       }
     ]
   ]
-}
-  },
+},
   "wish_if_only": {
     "title": "Конструкции I wish, If only (жаль, что…; если бы только…)",
     "pages": [
@@ -14916,8 +14900,7 @@ LEVEL_B1_CONTENT = {
       }
     ]
   ]
-}
-  },
+},
   "would_rather_prefer": {
     "title": "Конструкции would rather, prefer (предпочтение)",
     "pages": [
@@ -15654,8 +15637,7 @@ LEVEL_B1_CONTENT = {
       }
     ]
   ]
-}
-  },
+},
   "gerund_vs_infinitive_advanced": {
     "title": "Герундий и инфинитив: сложные случаи",
     "pages": [
@@ -16392,8 +16374,7 @@ LEVEL_B1_CONTENT = {
       }
     ]
   ]
-}
-  },
+},
   "verbs_with_both": {
     "title": "Глаголы, после которых возможен и герундий, и инфинитив (с изменением смысла)",
     "pages": [
@@ -17130,8 +17111,7 @@ LEVEL_B1_CONTENT = {
       }
     ]
   ]
-}
-  },
+},
   "passive_gerund_infinitive": {
     "title": "Пассивный герундий и инфинитив",
     "pages": [
@@ -17867,8 +17847,7 @@ LEVEL_B1_CONTENT = {
       }
     ]
   ]
-}
-  },
+},
   "passive_all_tenses": {
     "title": "Пассивный залог во всех временах",
     "pages": [
@@ -18605,8 +18584,7 @@ LEVEL_B1_CONTENT = {
       }
     ]
   ]
-}
-  },
+},
   "passive_with_modals": {
     "title": "Пассивный залог с модальными глаголами",
     "pages": [
@@ -19343,8 +19321,7 @@ LEVEL_B1_CONTENT = {
       }
     ]
   ]
-}
-  },
+},
   "impersonal_passive": {
     "title": "Безличный пассив (It is said that…, He is said to…)",
     "pages": [
@@ -20081,8 +20058,7 @@ LEVEL_B1_CONTENT = {
       }
     ]
   ]
-}
-  },
+},
   "causative_have_get": {
     "title": "Конструкция have/get something done (каузатив)",
     "pages": [
@@ -20819,8 +20795,7 @@ LEVEL_B1_CONTENT = {
       }
     ]
   ]
-}
-  },
+},
   "reported_speech_advanced": {
     "title": "Косвенная речь: согласование времён (сложные случаи)",
     "pages": [
@@ -21557,8 +21532,7 @@ LEVEL_B1_CONTENT = {
       }
     ]
   ]
-}
-  },
+},
   "reported_commands_requests": {
     "title": "Косвенная речь: приказы и просьбы (tell someone to do something)",
     "pages": [
@@ -22295,8 +22269,7 @@ LEVEL_B1_CONTENT = {
       }
     ]
   ]
-}
-  },
+},
   "reported_questions_advanced": {
     "title": "Косвенные вопросы (сложные случаи)",
     "pages": [
@@ -23033,8 +23006,7 @@ LEVEL_B1_CONTENT = {
       }
     ]
   ]
-}
-  },
+},
   "reporting_verbs": {
     "title": "Глаголы для передачи речи (advise, suggest, promise, warn, etc.)",
     "pages": [
@@ -23771,8 +23743,7 @@ LEVEL_B1_CONTENT = {
       }
     ]
   ]
-}
-  },
+},
   "relative_clauses_advanced": {
     "title": "Определительные придаточные (defining vs non‑defining)",
     "pages": [
@@ -24509,8 +24480,7 @@ LEVEL_B1_CONTENT = {
       }
     ]
   ]
-}
-  },
+},
   "clauses_of_concession": {
     "title": "Придаточные уступки (although, even though, despite, in spite of)",
     "pages": [
@@ -25244,8 +25214,7 @@ LEVEL_B1_CONTENT = {
       }
     ]
   ]
-}
-  },
+},
   "clauses_of_purpose": {
     "title": "Придаточные цели (to, in order to, so that)",
     "pages": [
@@ -25982,8 +25951,7 @@ LEVEL_B1_CONTENT = {
       }
     ]
   ]
-}
-  },
+},
   "clauses_of_result": {
     "title": "Придаточные следствия (so…that, such…that)",
     "pages": [
@@ -26720,8 +26688,7 @@ LEVEL_B1_CONTENT = {
       }
     ]
   ]
-}
-  },
+},
   "education_learning": {
     "title": "Лексика: образование и обучение",
     "pages": [
@@ -27458,8 +27425,7 @@ LEVEL_B1_CONTENT = {
       }
     ]
   ]
-}
-  },
+},
   "money_finance": {
     "title": "Лексика: деньги и финансы",
     "pages": [
@@ -28196,8 +28162,7 @@ LEVEL_B1_CONTENT = {
       }
     ]
   ]
-}
-  },
+},
   "media_advertising": {
     "title": "Лексика: медиа и реклама",
     "pages": [
@@ -28934,8 +28899,7 @@ LEVEL_B1_CONTENT = {
       }
     ]
   ]
-}
-  },
+},
   "crime_law": {
     "title": "Лексика: преступления и закон",
     "pages": [
@@ -29672,8 +29636,7 @@ LEVEL_B1_CONTENT = {
       }
     ]
   ]
-}
-  },
+},
   "personality_character": {
     "title": "Лексика: характер человека (углубление)",
     "pages": [
@@ -30410,8 +30373,7 @@ LEVEL_B1_CONTENT = {
       }
     ]
   ]
-}
-  },
+},
   "workplace": {
     "title": "Лексика: рабочая среда",
     "pages": [
@@ -31148,8 +31110,7 @@ LEVEL_B1_CONTENT = {
       }
     ]
   ]
-}
-  },
+},
   "global_issues": {
     "title": "Лексика: глобальные проблемы",
     "pages": [
@@ -31886,8 +31847,7 @@ LEVEL_B1_CONTENT = {
       }
     ]
   ]
-}
-  },
+},
   "phrasal_verbs_1": {
     "title": "Фразовые глаголы (часть 1)",
     "pages": [
@@ -32623,8 +32583,7 @@ LEVEL_B1_CONTENT = {
       }
     ]
   ]
-}
-  },
+},
   "phrasal_verbs_2": {
     "title": "Фразовые глаголы (часть 2)",
     "pages": [
@@ -33361,8 +33320,7 @@ LEVEL_B1_CONTENT = {
       }
     ]
   ]
-}
-  },
+},
   "word_formation": {
     "title": "Словообразование (суффиксы, префиксы)",
     "pages": [
