@@ -22674,7 +22674,7 @@ LEVEL_B1_CONTENT = {
           {"question": "\"Are they married?\" She asked me ______ they were married.", "answer": "whether", "explanation": "Общий вопрос: whether."},
           {"question": "\"When did you start?\" He asked me ______ I had started.", "answer": "when", "explanation": "Специальный вопрос: when + сдвиг."},
           {"question": "\"What does he do?\" She asked me ______ he did.", "answer": "what", "explanation": "Специальный вопрос: what + прямой порядок."},
-          {"question": "\"Who is that?\" He asked me ______ that was.", "answer": "who", "explanation": "Who — подлежащее, порядок слов не меняется."}
+          {"question": "\"Who is that?\" He asked me ______ that was.", "answer": "who", "explanation": "Who — подлежащее, порядок слов не меняется."},
           {"question": "\"What is your favourite colour?\" She asked me ______.", "answer": "what my favourite colour was", "explanation": "Специальный вопрос: what + прямой порядок."},
           {"question": "\"Can you type?\" He asked me ______ I could type.", "answer": "if", "explanation": "Общий вопрос: if + can → could."},
           {"question": "\"How do you know?\" She asked me ______ I knew.", "answer": "how", "explanation": "Специальный вопрос: how + прямой порядок."}
