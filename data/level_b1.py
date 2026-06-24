@@ -34054,6 +34054,5 @@ LEVEL_B1_CONTENT = {
           {"question": "The new technology was introduced. (introduction) → The ______ of the new technology was revolutionary.", "answer": "introduction", "explanation": "Introduction – введение."},
           {"question": "He has an open heart. (open-hearted) → He is very ______.", "answer": "open-hearted", "explanation": "Open-hearted – добрый."}
         ]
-    ]
   }
 }
