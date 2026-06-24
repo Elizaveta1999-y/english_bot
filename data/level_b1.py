@@ -1933,7 +1933,7 @@ LEVEL_B1_CONTENT = {
         "subtasks": [
           {"question": "I ______ (clean) the house all day, and I'm exhausted.", "answer": "have been cleaning", "explanation": "длительный процесс, результат (устал) → Continuous"},
           {"question": "She ______ (clean) the windows already.", "answer": "has cleaned", "explanation": "already — результат → Simple"},
-          {"question": "We ______ (live) in this neighbourhood for 20 years.", "answer": "have lived", "explanation": "акцент на результате проживания → Present Perfect Simple"}
+          {"question": "We ______ (live) in this neighbourhood for 20 years.", "answer": "have lived", "explanation": "акцент на результате проживания → Present Perfect Simple"},
           {"question": "He ______ (read) that book for a month and he still hasn't finished.", "answer": "has been reading", "explanation": "длительный процесс → Continuous"},
           {"question": "They ______ (buy) a new house recently.", "answer": "have bought", "explanation": "результат → Simple"},
           {"question": "I ______ (write) a blog for three years now.", "answer": "have been writing", "explanation": "длительность → Continuous"},
