@@ -7564,7 +7564,7 @@ LEVEL_B1_CONTENT = {
           {"question": "I ______ (finish) the project by tomorrow if I work hard.", "answer": "will be able to finish", "explanation": "будущая способность — will be able to"},
           {"question": "She ______ (play) the guitar since she was a child.", "answer": "has been able to play", "explanation": "способность с детства и до сих пор — Present Perfect + be able to"},
           {"question": "He ______ (not / come) to the meeting yesterday because he was ill.", "answer": "wasn't able to come", "explanation": "отрицательная способность в прошлом (конкретный случай) — wasn't able to"},
-          {"question": "They ______ (not / understand) the instructions, so they asked for help.", "answer": "couldn't understand", "explanation": "общая неспособность в прошлом — couldn't"}
+          {"question": "They ______ (not / understand) the instructions, so they asked for help.", "answer": "couldn't understand", "explanation": "общая неспособность в прошлом — couldn't"},
           {"question": "We ______ (go) to the cinema tonight if you want.", "answer": "can go", "explanation": "способность/возможность в настоящем — can"},
           {"question": "I ______ (not / believe) my eyes when I saw the accident.", "answer": "couldn't believe", "explanation": "не мог поверить (эмоциональная реакция) — couldn't"},
           {"question": "She ______ (speak) French and Spanish fluently.", "answer": "can speak", "explanation": "способность в настоящем — can"},
