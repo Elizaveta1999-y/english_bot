@@ -1,4 +1,4 @@
-LEVEL_B1_CONTENT = LEVEL_B1_CONTENT = {
+LEVEL_B1_CONTENT = {
   "present_tenses_review": {
     "title": "Present Tenses (Simple, Continuous, Perfect) – повторение",
     "pages": [
@@ -34143,7 +34143,6 @@ LEVEL_B1_CONTENT = LEVEL_B1_CONTENT = {
             ]
         }
     ]
-]
   }
 }
 
