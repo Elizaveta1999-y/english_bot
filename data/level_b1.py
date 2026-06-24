@@ -3371,7 +3371,7 @@ LEVEL_B1_CONTENT = {
           {"question": "We ______ (drive) for three hours before we stopped for lunch.", "answer": "had been driving", "explanation": "длительное действие (ехали) до остановки — Past Perfect Continuous"},
           {"question": "She ______ (already / eat) when I arrived.", "answer": "had already eaten", "explanation": "результат до момента в прошлом — Past Perfect"},
           {"question": "I ______ (read) that book for weeks before I finally finished it.", "answer": "had been reading", "explanation": "длительное действие (читал) до завершения — Past Perfect Continuous"},
-          {"question": "They ______ (live) in London for five years before they moved to Paris.", "answer": "had been living", "explanation": "длительное действие (жили) до переезда → Past Perfect Continuous"}
+          {"question": "They ______ (live) in London for five years before they moved to Paris.", "answer": "had been living", "explanation": "длительное действие (жили) до переезда → Past Perfect Continuous"},
           {"question": "When I arrived, the train ______ (already / leave).", "answer": "had already left", "explanation": "результат — поезд уже ушёл — Past Perfect"},
           {"question": "She was tired because she ______ (work) all day.", "answer": "had been working", "explanation": "причина состояния (устала) — длительное действие в прошлом — Past Perfect Continuous"}
         ]
