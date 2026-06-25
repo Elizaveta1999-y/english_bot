@@ -81,7 +81,7 @@ def check_access(user_id: int) -> tuple:
     if daily_skills < 3:
         return True, None
     else:
-        return False, "🔒 Вы исчерпали дневной лимит (3 задания). Оформите подписку для неограниченного доступа."
+        return False, "🔒 Вы исчерпали дневной лимит. Оформите подписку для неограниченного доступа."
 
 def increment_skill_counter(user_id: int):
     """Увеличивает счётчик выполненных заданий в день"""
@@ -103,7 +103,7 @@ async def start_skills(callback: CallbackQuery):
     await callback.message.edit_text(
         "🗣️ <b>Language Skills</b>\n\n"
         "Практикуйте четыре ключевых навыка языка: аудирование, чтение, письмо и говорение.\n"
-        "Задания построены по аналогии с экзаменами ОГЭ и ЕГЭ.\n\n"
+        "Задания построены по аналогии с экзаменами ОГЭ и ЕГЭ — тренируйтесь в формате, приближенном к реальному.\n\n"
         "Выберите навык:",
         reply_markup=get_skills_keyboard(),
         parse_mode="HTML"

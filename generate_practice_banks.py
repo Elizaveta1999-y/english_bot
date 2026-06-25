@@ -15,7 +15,7 @@ from typing import Dict, List, Any
 # Добавьте путь к проекту (если запускаете не из корня)
 sys.path.append(os.path.dirname(__file__))
 
-# Загрузка API ключа из .env (если используете)
+# Загрузка API ключа из .env
 try:
     from dotenv import load_dotenv
     load_dotenv()
@@ -29,12 +29,10 @@ if not DEEPSEEK_API_KEY:
 import requests
 
 # ----- НАСТРОЙКИ -----
-# Для A1 и A2
-NORMAL_A1A2 = 40
-STAR_A1A2 = 20
-# Для остальных уровней (B1, B2, C1, C2, thematic)
-NORMAL_OTHER = 60
-STAR_OTHER = 20
+NORMAL_A1A2 = 20   # 20 обычных заданий на урок (2 на вариант × 10 вариантов)
+STAR_A1A2 = 10     # 10 звёздочных (1 на вариант × 10 вариантов)
+NORMAL_OTHER = 20
+STAR_OTHER = 10
 
 API_URL = "https://api.deepseek.com/v1/chat/completions"
 MODEL = "deepseek-chat"
@@ -61,7 +59,7 @@ FILE_CONFIG = {
     "data/thematic_new.py": NORMAL_OTHER,
 }
 
-def call_deepseek(prompt: str, max_tokens=3500, temperature=0.6) -> str:
+def call_deepseek(prompt: str, max_tokens=4000, temperature=0.6) -> str:
     headers = {
         "Authorization": f"Bearer {DEEPSEEK_API_KEY}",
         "Content-Type": "application/json"
@@ -83,44 +81,94 @@ def call_deepseek(prompt: str, max_tokens=3500, temperature=0.6) -> str:
             time.sleep(2 ** attempt)
     return ""
 
-def generate_tasks(topic_name: str, topic_key: str, normal_count: int, star_count: int) -> List[Dict]:
-    # Разбиваем на две части (по половине)
-    half_normal = normal_count // 2
-    half_star = star_count // 2
-    # Первая часть
-    tasks1 = _generate_batch(topic_name, topic_key, half_normal, half_star)
-    # Вторая часть (остаток, если нечётное количество)
-    remaining_normal = normal_count - half_normal
-    remaining_star = star_count - half_star
-    tasks2 = _generate_batch(topic_name, topic_key, remaining_normal, remaining_star) if remaining_normal > 0 else []
-    # Объединяем
-    return tasks1 + tasks2
+def generate_tasks_for_topic(topic_name: str, topic_key: str, level_hint: str = "") -> List[Dict]:
+    """
+    Генерирует 3 комплексных задания для одного урока (10 подвопросов каждое).
+    Третье задание получает star: true.
+    """
+    # Определяем язык инструкций и название заданий по уровню
+    if level_hint.upper() in ["A1", "A2", "B1"]:
+        lang = "ru"
+        task_name = "Задание"
+        instruction_lang = "на русском"
+    else:
+        lang = "en"
+        task_name = "Exercise"
+        instruction_lang = "in English"
 
-def _generate_batch(topic_name: str, topic_key: str, normal_count: int, star_count: int) -> List[Dict]:
     prompt = f"""
-Ты генератор учебных заданий по английскому языку.
-Создай {normal_count} обычных заданий и {star_count} заданий со звёздочкой (*) для темы "{topic_name}" (ключ: {topic_key}).
+Ты — опытный преподаватель английского языка. Ты создаёшь учебные задания для учеников.
 
-Верни ТОЛЬКО JSON-массив. Начинай с '[' и заканчивай ']'. Никаких пояснений. Используй двойные кавычки.
+Тема урока: "{topic_name}" (ключ: {topic_key}, уровень: {level_hint}).
 
-Формат каждого объекта:
-{{"type": "fill_blank"/"reorder"/"translation"/"choice"/"open",
- "text": "...",
- "correct": "...",
- "hint": "...",
- "star": true/false,
- (только для choice) "options": ["...","..."] }}
+Твоя задача — создать ровно 3 КОМПЛЕКСНЫХ задания для этой темы. Каждое задание должно содержать 10 подвопросов.
+
+**Важно:** Третье задание должно быть ДРУГОГО ТИПА, чем первые два, чтобы разнообразить практику. Но все 3 задания должны иметь однозначный правильный ответ (не творческие).
+
+**Рекомендации по типам заданий:**
+
+1. Для грамматических тем (времена, модальные глаголы, пассив, артикли):
+   - Задание 1: Вставьте правильную форму/слово (fill_blank)
+   - Задание 2: Переведите предложения с русского на английский (translation)
+   - Задание 3: Составьте предложения из слов в правильном порядке (reorder)
+
+2. Для лексических тем (еда, одежда, профессии, дом, город):
+   - Задание 1: Вставьте пропущенные буквы (fill_blank)
+   - Задание 2: Выберите правильное слово из списка (choice или fill_blank)
+   - Задание 3: Переведите предложения на английский (translation)
+
+3. Для тем с числами, алфавитом, порядковыми числительными:
+   - Задание 1: Напишите по описанию
+   - Задание 2: Расставьте по порядку
+   - Задание 3: Переведите с русского на английский
+
+**Важно:** третье задание должно отличаться по типу от первых двух, но иметь чёткий правильный ответ (поле "answer").
+
+**Общие требования:**
+- Все 3 задания — комплексные (по 10 подвопросов).
+- Для каждого подвопроса укажи поле "explanation" (краткое пояснение правильного ответа {instruction_lang}).
+- Язык инструкций: для A1–B1 — русский; для B2–C2 и thematic — английский.
+- Названия заданий: для A1–B1 — «Задание 1», «Задание 2», «Задание 3»; для остальных — «Exercise 1», «Exercise 2», «Exercise 3».
+
+**Формат вывода:** верни ТОЛЬКО JSON-массив из 3 заданий. Без пояснений, без markdown.
+
+Пример правильного формата (для темы "Present Simple", уровень A1):
+[
+  {{
+    "type": "complex",
+    "text": "Задание 1. Вставьте глагол в правильной форме (Present Simple).\\n\\n1. I ___ (go) to school every day.\\n2. She ___ (read) books in the evening.\\n... (10 вопросов)",
+    "subtasks": [
+      {{"question": "I ___ (go) to school every day.", "answer": "go", "explanation": "I + go (без -s)"}},
+      ...
+    ]
+  }},
+  {{
+    "type": "complex",
+    "text": "Задание 2. Переведите предложения на английский (Present Simple).\\n\\n1. Я хожу в школу каждый день.\\n2. Она читает книги по вечерам.\\n... (10 предложений)",
+    "subtasks": [
+      {{"question": "Я хожу в школу каждый день.", "answer": "I go to school every day.", "explanation": "I go to school every day."}},
+      ...
+    ]
+  }},
+  {{
+    "type": "complex",
+    "text": "Задание 3. Составьте предложения из слов (Present Simple).\\n\\n1. go / I / school / to / every / day\\n2. reads / books / in / she / evening / the\\n... (10 предложений)",
+    "subtasks": [
+      {{"question": "go / I / school / to / every / day", "answer": "I go to school every day.", "explanation": "Порядок: подлежащее + глагол + дополнение"}},
+      ...
+    ]
+  }}
+]
 """
-    raw = call_deepseek(prompt, max_tokens=2000, temperature=0.5)
+    raw = call_deepseek(prompt, max_tokens=4000, temperature=0.6)
     # Ищем JSON
     start = raw.find('[')
     end = raw.rfind(']')
     if start == -1 or end == -1:
-        print(f"  Не найден JSON для {topic_key} (batch)")
+        print(f"  Не найден массив JSON для {topic_key}")
         return []
     json_str = raw[start:end+1]
-    import re
-    # Удаляем лишние запятые перед скобками
+    # Удаляем лишние запятые
     json_str = re.sub(r',\s*]', ']', json_str)
     json_str = re.sub(r',\s*}', '}', json_str)
     try:
@@ -128,16 +176,18 @@ def _generate_batch(topic_name: str, topic_key: str, normal_count: int, star_cou
         if not isinstance(tasks, list):
             tasks = []
     except Exception as e:
-        print(f"  Ошибка парсинга batch: {e}")
-        with open(f"debug_{topic_key}_batch.txt", "w", encoding="utf-8") as f:
+        print(f"  Ошибка парсинга JSON: {e}")
+        with open(f"debug_{topic_key}.txt", "w", encoding="utf-8") as f:
             f.write(json_str)
         return []
-    for t in tasks:
-        t.setdefault("star", False)
+    # Третье задание (индекс 2) получает star: true
+    for i, t in enumerate(tasks):
+        t.setdefault("star", i == 2)
         t.setdefault("hint", "")
     return tasks
 
-def update_file(filepath: str, normal_count: int):
+def update_file(filepath: str, normal_count: int, star_count: int):
+    """Обрабатывает один файл, добавляя practice_bank для уроков, где его нет"""
     print(f"\nОбработка {filepath} (нормальных заданий: {normal_count})")
     # Резервная копия
     backup = filepath + ".bak"
@@ -150,7 +200,9 @@ def update_file(filepath: str, normal_count: int):
 
     # Определяем имя переменной словаря
     namespace = {}
-    exec(content, namespace)
+    # Заменяем null на None при чтении
+    content_fixed = content.replace('null', 'None').replace('true', 'True').replace('false', 'False')
+    exec(content_fixed, namespace)
     possible_names = ["LEVEL_A1_CONTENT", "LEVEL_A2_CONTENT", "LEVEL_B1_CONTENT",
                       "LEVEL_B2_CONTENT", "LEVEL_C1_CONTENT", "LEVEL_C2_CONTENT",
                       "THEMATIC_NEW_CONTENT"]
@@ -164,18 +216,28 @@ def update_file(filepath: str, normal_count: int):
         return
     lessons_dict = namespace[var_name]
 
+    # Определяем уровень для файла
+    level_hint = os.path.basename(filepath).replace(".py", "").replace("level_", "").upper()
+    if level_hint == "THEMATIC_NEW":
+        level_hint = "C1"
+
     # Перебираем уроки
     for key, lesson_data in lessons_dict.items():
-        if "practice_tasks" in lesson_data:
-            print(f"  Урок {key} уже имеет practice_tasks, пропускаем")
+        # Пропускаем, если уже есть практика
+                # Если есть только practice_tasks (старая), удаляем её и генерируем новую
+        if "practice_tasks" in lesson_data and "practice_bank" not in lesson_data:
+            print(f"  Урок {key} имеет старую practice_tasks, удаляем и генерируем новую")
+            del lesson_data["practice_tasks"]
+        elif "practice_bank" in lesson_data:
+            print(f"  Урок {key} уже имеет practice_bank, пропускаем")
             continue
         topic_title = lesson_data.get("title", key)
         print(f"  Генерация для {key} ({topic_title})...")
-        star_count = STAR_A1A2 if filepath in ["data/level_a1.py", "data/level_a2.py"] else STAR_OTHER
-        tasks = generate_tasks(topic_title, key, normal_count, star_count)
-        if tasks and len(tasks) >= 5:
-            lesson_data["practice_tasks"] = tasks
-            print(f"    Сгенерировано {len(tasks)} заданий")
+        tasks = generate_tasks_for_topic(topic_title, key, level_hint)
+        if tasks and len(tasks) == 3:
+            # Превращаем 3 задания в 1 вариант (в формате practice_bank)
+            lesson_data["practice_bank"] = [tasks]
+            print(f"    Сгенерировано 3 задания (1 вариант)")
         else:
             print(f"    Ошибка: получено {len(tasks)} заданий, пропускаем")
         time.sleep(1)  # пауза между запросами
@@ -185,7 +247,7 @@ def update_file(filepath: str, normal_count: int):
         f.write(f"{var_name} = ")
         json_str = json.dumps(lessons_dict, indent=2, ensure_ascii=False)
         json_str = json_str.replace('null', 'None')
-        f.write(f"{var_name} = " + json_str)
+        f.write(json_str)
     print(f"  Файл обновлён")
 
 def main():
@@ -194,7 +256,8 @@ def main():
             print(f"Файл не найден: {filepath}")
             continue
         normal_count = FILE_CONFIG.get(filepath, NORMAL_OTHER)
-        update_file(filepath, normal_count)
+        star_count = STAR_A1A2 if filepath in ["data/level_a1.py", "data/level_a2.py"] else STAR_OTHER
+        update_file(filepath, normal_count, star_count)
     print("\nГенерация завершена.")
 
 if __name__ == "__main__":
