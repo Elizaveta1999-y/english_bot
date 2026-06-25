@@ -10111,7 +10111,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "______ I not so hungry, I would share my food.", "answer": "Were", "explanation": "Инверсия 2 типа."},
                 {"question": "______ they taken the train, they would be here by now.", "answer": "Had", "explanation": "Смешанная инверсия."},
                 {"question": "______ it to snow, we would make a snowman.", "answer": "Were", "explanation": "Инверсия 2 типа с to."},
-                {"question": "______ I had more time, I would learn a new language." – но здесь уже есть 'had' – нужно выбрать 'Had'? Но вопрос: '______ I had more time' – это не инверсия, потому что инверсия требует 'Had I more time' (без had). Так что правильный ответ – 'Were'? Нет, для 2 типа с глаголом have – 'Had I more time' – это инверсия 3 типа? Но 'would learn' – 2 тип. На самом деле 'Had I more time' – это инверсия 2 типа для глагола have (как 'Had I the money'). Да, 'Had I more time' – это старый вариант. Так что ответ 'Had'. Я дам 'Had'."}
+                {"question": "______ I more time, I would learn a new language.", "answer": "Had", "explanation": "Инверсия 2 типа для глагола have: Had I more time (старая форма, но правильная)."}
             ]
         },
         {
