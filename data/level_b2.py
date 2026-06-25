@@ -10172,7 +10172,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "______ I not so forgetful, I would remember your name.", "answer": "Were", "explanation": "Инверсия 2 типа."},
                 {"question": "______ she taken the medicine, she would feel better now.", "answer": "Had", "explanation": "Смешанная инверсия."},
                 {"question": "______ it to be sunny, we would go to the beach.", "answer": "Were", "explanation": "Инверсия 2 типа с to."},
-                {"question": "______ I had the choice, I would choose differently." – здесь 'had' – инверсия 'Had I the choice' – ответ 'Had'."}
+                {"question": "______ I had the choice, I would choose differently.", "answer": "Had", "explanation": "Инверсия 2 типа для глагола have: Had I the choice (устаревшая форма)."}
             ]
         },
         {
@@ -35024,3 +35024,4 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
 ]
   }
 }
+
