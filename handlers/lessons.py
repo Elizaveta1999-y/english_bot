@@ -6,7 +6,7 @@ from data.users import get_user_state, set_user_state
 from data.level_a1 import LEVEL_A1_CONTENT
 from data.level_a2 import LEVEL_A2_CONTENT
 from data.level_b1 import LEVEL_B1_CONTENT
-# from data.level_b2 import LEVEL_B2_CONTENT
+from data.level_b2 import LEVEL_B2_CONTENT
 # from data.level_c1 import LEVEL_C1_CONTENT
 # from data.level_c2 import LEVEL_C2_CONTENT
 # from data.thematic_new import THEMATIC_NEW_CONTENT
@@ -99,6 +99,7 @@ LESSON_CONTENT = {}
 LESSON_CONTENT.update(LEVEL_A1_CONTENT)
 LESSON_CONTENT.update(LEVEL_A2_CONTENT)
 LESSON_CONTENT.update(LEVEL_B1_CONTENT)
+LESSON_CONTENT.update(LEVEL_B2_CONTENT)
 THEMATIC_TOPICS = [
     "Inversion after negative adverbs",
     "Inversion for emphasis",

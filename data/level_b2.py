@@ -28,7 +28,719 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
         "question": "Всегда ли нужно использовать Past Perfect в рассказах?",
         "answer": "Нет, только когда нужно показать, что одно событие произошло раньше другого. Часто порядок ясен из контекста."
       }
-    ]
+    ],
+        "practice_bank": [
+            # =====================================================
+            # ВАРИАНТ 1
+            # =====================================================
+            [
+                {
+                    "type": "complex",
+                    "text": "1. Choose the correct narrative tense to complete the sentences.",
+                    "subtasks": [
+                        {"question": "When I ______ (arrive) at the station, the train ______ (already / leave).", "answer": "arrived, had already left", "explanation": "Прибыл (Past Simple) – поезд уже ушёл до этого (Past Perfect)."},
+                        {"question": "She ______ (walk) home when she ______ (hear) a strange noise.", "answer": "was walking, heard", "explanation": "Шла (Past Continuous – фон) и услышала (Past Simple – прерывающее действие)."},
+                        {"question": "I ______ (read) for two hours when the lights ______ (go out).", "answer": "had been reading, went out", "explanation": "Читал до того (Past Perfect Continuous), потом свет погас (Past Simple)."},
+                        {"question": "They ______ (live) in Paris for five years before they ______ (move) to Rome.", "answer": "had lived, moved", "explanation": "Жили до переезда (Past Perfect) – завершённое действие."},
+                        {"question": "The sun ______ (shine), and the birds ______ (sing) when we ______ (start) our walk.", "answer": "was shining, were singing, started", "explanation": "Светило, пели (Past Continuous – фон), мы начали (Past Simple – событие)."},
+                        {"question": "He ______ (never / be) to a concert before he ______ (go) to the festival.", "answer": "had never been, went", "explanation": "Никогда не был до того (Past Perfect), потом пошёл (Past Simple)."},
+                        {"question": "We ______ (drive) for three hours when we ______ (realise) we ______ (forget) the map.", "answer": "had been driving, realised, had forgotten", "explanation": "Ехали (Past Perfect Continuous), поняли (Past Simple), забыли (Past Perfect – ещё раньше)."},
+                        {"question": "She ______ (work) on the report all morning, so she ______ (be) exhausted.", "answer": "had been working, was", "explanation": "Работала всё утро (Past Perfect Continuous – причина), была уставшей (Past Simple – результат)."},
+                        {"question": "When I ______ (get) home, my sister ______ (already / cook) dinner.", "answer": "got, had already cooked", "explanation": "Пришёл (Past Simple) – сестра уже приготовила (Past Perfect)."},
+                        {"question": "They ______ (play) tennis for an hour when it ______ (start) to rain.", "answer": "had been playing, started", "explanation": "Играли час (Past Perfect Continuous), потом начался дождь (Past Simple)."}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "2. Correct the mistakes in the sentences. If the sentence is correct, write 'Correct'.",
+                    "subtasks": [
+                        {"question": "When I arrived, she already left.", "answer": "When I arrived, she had already left.", "explanation": "Она ушла до моего прихода – нужен Past Perfect."},
+                        {"question": "I was reading a book when my friend called me.", "answer": "Correct", "explanation": "Верно – Past Continuous (фон) + Past Simple (прерывание)."},
+                        {"question": "By the time we got to the station, the train left.", "answer": "By the time we got to the station, the train had left.", "explanation": "Поезд ушёл до нашего прихода – нужен Past Perfect."},
+                        {"question": "They had been waiting for an hour before the bus arrived.", "answer": "Correct", "explanation": "Верно – Past Perfect Continuous + Past Simple."},
+                        {"question": "She was cooking dinner when the power went out.", "answer": "Correct", "explanation": "Верно – Past Continuous + Past Simple."},
+                        {"question": "He had never seen such a beautiful sunset before he travelled to Greece.", "answer": "Correct", "explanation": "Верно – Past Perfect для опыта до поездки."},
+                        {"question": "I had been knowing him for ten years before we got married.", "answer": "I had known him for ten years before we got married.", "explanation": "know – глагол состояния, не используется в Continuous."},
+                        {"question": "She finished her homework, then she watched TV.", "answer": "Correct", "explanation": "Верно – последовательность Past Simple."},
+                        {"question": "They had finished their work and went home.", "answer": "Correct", "explanation": "Верно – Past Perfect + Past Simple."},
+                        {"question": "We had been driving for two hours, but we still didn't arrive.", "answer": "Correct", "explanation": "Верно – Past Perfect Continuous + Past Simple."}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "3. Complete the story with the correct narrative tenses. Use the verbs in brackets.",
+                    "subtasks": [
+                        {"question": "It ______ (be) a cold winter evening. The wind ______ (blow) strongly, and snow ______ (fall) heavily. I ______ (walk) home from work when I ______ (notice) a strange light in the sky. I ______ (never / see) anything like it before. I ______ (stop) and ______ (stare) at it for a few minutes. Then I ______ (realise) that it ______ (be) a UFO! I ______ (run) home as fast as I could.", "answer": "was, was blowing, was falling, was walking, noticed, had never seen, stopped, stared, realised, was, ran", "explanation": "was – обстановка; was blowing, was falling, was walking – фон; noticed – прерывание; had never seen – опыт до того; stopped, stared, realised, ran – последовательные события."},
+                        {"question": "I ______ (work) on my novel for three months when I ______ (receive) a rejection letter. I ______ (feel) disappointed because I ______ (spend) so much time on it. I ______ (decide) to keep trying, so I ______ (send) it to another publisher.", "answer": "had been working, received, felt, had spent, decided, sent", "explanation": "had been working – длительность до получения письма; received – прерывание; felt – состояние; had spent – причина; decided и sent – последовательные действия."}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "4. Translate the sentences into English.",
+                    "subtasks": [
+                        {"question": "Когда я приехал на вокзал, поезд уже ушёл.", "answer": "When I arrived at the station, the train had already left.", "explanation": ""},
+                        {"question": "Она шла домой, когда услышала странный шум.", "answer": "She was walking home when she heard a strange noise.", "explanation": ""},
+                        {"question": "Я читал два часа, когда погас свет.", "answer": "I had been reading for two hours when the lights went out.", "explanation": ""},
+                        {"question": "Они жили в Париже пять лет до переезда в Рим.", "answer": "They had lived in Paris for five years before they moved to Rome.", "explanation": ""},
+                        {"question": "Солнце светило, птицы пели, когда мы начали прогулку.", "answer": "The sun was shining, the birds were singing when we started our walk.", "explanation": ""},
+                        {"question": "Он никогда не был на концерте до того, как пошёл на фестиваль.", "answer": "He had never been to a concert before he went to the festival.", "explanation": ""},
+                        {"question": "Мы ехали три часа, когда поняли, что забыли карту.", "answer": "We had been driving for three hours when we realised we had forgotten the map.", "explanation": ""},
+                        {"question": "Она работала над отчётом всё утро, поэтому была измотана.", "answer": "She had been working on the report all morning, so she was exhausted.", "explanation": ""}
+                    ]
+                }
+            ],
+            # =====================================================
+            # ВАРИАНТ 2
+            # =====================================================
+            [
+                {
+                    "type": "complex",
+                    "text": "1. Choose the correct narrative tense to complete the sentences.",
+                    "subtasks": [
+                        {"question": "By the time we ______ (get) to the cinema, the film ______ (already / start).", "answer": "got, had already started", "explanation": "Прибыли (Past Simple) – фильм уже начался до этого (Past Perfect)."},
+                        {"question": "He ______ (walk) down the street when he ______ (see) a car accident.", "answer": "was walking, saw", "explanation": "Шёл (Past Continuous) – увидел (Past Simple)."},
+                        {"question": "They ______ (wait) for the bus for 30 minutes when it ______ (finally / arrive).", "answer": "had been waiting, finally arrived", "explanation": "Ждали (Past Perfect Continuous) – потом автобус приехал (Past Simple)."},
+                        {"question": "She ______ (study) law for three years before she ______ (decide) to change careers.", "answer": "had studied, decided", "explanation": "Училась до решения (Past Perfect) – завершённое действие."},
+                        {"question": "The children ______ (play) in the garden when it ______ (start) to rain.", "answer": "were playing, started", "explanation": "Играли (Past Continuous – фон) – начался дождь (Past Simple)."},
+                        {"question": "He ______ (never / try) sushi before he ______ (visit) Japan.", "answer": "had never tried, visited", "explanation": "Никогда не пробовал до того (Past Perfect), потом попробовал (Past Simple)."},
+                        {"question": "We ______ (run) for an hour when we ______ (realise) we ______ (take) the wrong path.", "answer": "had been running, realised, had taken", "explanation": "Бежали час (Past Perfect Continuous), поняли (Past Simple), взяли не ту дорогу (Past Perfect)."},
+                        {"question": "She ______ (be) exhausted because she ______ (work) all day.", "answer": "was, had been working", "explanation": "Была уставшей (Past Simple – результат), работала весь день (Past Perfect Continuous – причина)."},
+                        {"question": "When I ______ (call) him, he ______ (already / eat) dinner.", "answer": "called, had already eaten", "explanation": "Позвонил (Past Simple) – он уже поел (Past Perfect)."},
+                        {"question": "They ______ (talk) for hours when the phone ______ (ring).", "answer": "had been talking, rang", "explanation": "Говорили часами (Past Perfect Continuous), потом зазвонил телефон (Past Simple)."}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "2. Correct the mistakes in the sentences. If the sentence is correct, write 'Correct'.",
+                    "subtasks": [
+                        {"question": "By the time we got to the cinema, the film already started.", "answer": "By the time we got to the cinema, the film had already started.", "explanation": "Фильм начался до нашего прихода – нужен Past Perfect."},
+                        {"question": "He was walking down the street when he saw a car accident.", "answer": "Correct", "explanation": "Верно – Past Continuous + Past Simple."},
+                        {"question": "They were waiting for the bus for 30 minutes when it finally arrived.", "answer": "They had been waiting for the bus for 30 minutes when it finally arrived.", "explanation": "Длительное ожидание до прибытия – Past Perfect Continuous."},
+                        {"question": "She had studied law for three years before she decided to change careers.", "answer": "Correct", "explanation": "Верно – Past Perfect + Past Simple."},
+                        {"question": "The children played in the garden when it started to rain.", "answer": "The children were playing in the garden when it started to rain.", "explanation": "Фоновое действие – Past Continuous."},
+                        {"question": "He had never tried sushi before he visited Japan.", "answer": "Correct", "explanation": "Верно – Past Perfect для опыта."},
+                        {"question": "We were running for an hour when we realised we took the wrong path.", "answer": "We had been running for an hour when we realised we had taken the wrong path.", "explanation": "Длительное действие до realisation – Past Perfect Continuous; взяли не ту дорогу ещё раньше – Past Perfect."},
+                        {"question": "She was exhausted because she worked all day.", "answer": "She was exhausted because she had been working all day.", "explanation": "Работала весь день (причина) – Past Perfect Continuous."},
+                        {"question": "When I called him, he already ate dinner.", "answer": "When I called him, he had already eaten dinner.", "explanation": "Он уже поел до звонка – Past Perfect."},
+                        {"question": "They had been talking for hours when the phone rang.", "answer": "Correct", "explanation": "Верно – Past Perfect Continuous + Past Simple."}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "3. Complete the story with the correct narrative tenses. Use the verbs in brackets.",
+                    "subtasks": [
+                        {"question": "It ______ (be) a sunny morning. The birds ______ (sing) and the flowers ______ (bloom). I ______ (walk) through the park when I ______ (see) a puppy all alone. I ______ (never / see) such a cute dog before. I ______ (decide) to take it home and ______ (call) it Lucky.", "answer": "was, were singing, were blooming, was walking, saw, had never seen, decided, called", "explanation": "was – обстановка; were singing, were blooming, was walking – фон; saw – прерывание; had never seen – опыт до того; decided, called – последовательные действия."},
+                        {"question": "He ______ (work) as a teacher for ten years when he ______ (get) a job at a university. He ______ (be) very excited because he ______ (always / dream) of teaching at that level. He ______ (prepare) his first lecture for days.", "answer": "had been working, got, was, had always dreamed, had been preparing", "explanation": "had been working – длительность до получения работы; got – прерывание; was – состояние; had always dreamed – мечтал до того; had been preparing – готовился несколько дней."}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "4. Translate the sentences into English.",
+                    "subtasks": [
+                        {"question": "К тому времени, как мы добрались до кинотеатра, фильм уже начался.", "answer": "By the time we got to the cinema, the film had already started.", "explanation": ""},
+                        {"question": "Он шёл по улице, когда увидел аварию.", "answer": "He was walking down the street when he saw a car accident.", "explanation": ""},
+                        {"question": "Они ждали автобус 30 минут, когда он наконец приехал.", "answer": "They had been waiting for the bus for 30 minutes when it finally arrived.", "explanation": ""},
+                        {"question": "Она изучала право три года до того, как решила сменить профессию.", "answer": "She had studied law for three years before she decided to change careers.", "explanation": ""},
+                        {"question": "Дети играли в саду, когда начался дождь.", "answer": "The children were playing in the garden when it started to rain.", "explanation": ""},
+                        {"question": "Он никогда не пробовал суши до поездки в Японию.", "answer": "He had never tried sushi before he visited Japan.", "explanation": ""},
+                        {"question": "Мы бежали час, когда поняли, что пошли не той дорогой.", "answer": "We had been running for an hour when we realised we had taken the wrong path.", "explanation": ""},
+                        {"question": "Она была измотана, потому что работала весь день.", "answer": "She was exhausted because she had been working all day.", "explanation": ""}
+                    ]
+                }
+            ],
+            # =====================================================
+            # ВАРИАНТ 3
+            # =====================================================
+            [
+                {
+                    "type": "complex",
+                    "text": "1. Choose the correct narrative tense to complete the sentences.",
+                    "subtasks": [
+                        {"question": "When I ______ (open) the door, I ______ (see) that someone ______ (leave) a note.", "answer": "opened, saw, had left", "explanation": "Открыл, увидел (Past Simple) – кто-то оставил записку раньше (Past Perfect)."},
+                        {"question": "She ______ (drive) to work when her car ______ (break) down.", "answer": "was driving, broke", "explanation": "Ехала (Past Continuous) – машина сломалась (Past Simple)."},
+                        {"question": "They ______ (wait) for the train for 20 minutes when it ______ (finally / arrive).", "answer": "had been waiting, finally arrived", "explanation": "Ждали 20 минут (Past Perfect Continuous), потом поезд приехал (Past Simple)."},
+                        {"question": "He ______ (read) the book before he ______ (watch) the film.", "answer": "had read, watched", "explanation": "Прочитал книгу до того (Past Perfect), потом посмотрел фильм (Past Simple)."},
+                        {"question": "The sun ______ (shine) and the sea ______ (sparkle) when we ______ (arrive) at the beach.", "answer": "was shining, was sparkling, arrived", "explanation": "Светило, сверкало (Past Continuous – фон), мы приехали (Past Simple – событие)."},
+                        {"question": "She ______ (never / eat) such delicious food before she ______ (go) to Italy.", "answer": "had never eaten, went", "explanation": "Никогда не ела до того (Past Perfect), потом поехала (Past Simple)."},
+                        {"question": "We ______ (travel) for two weeks when we ______ (realise) we ______ (spend) all our money.", "answer": "had been travelling, realised, had spent", "explanation": "Путешествовали две недели (Past Perfect Continuous), поняли (Past Simple), потратили все деньги (Past Perfect – ещё раньше)."},
+                        {"question": "He ______ (be) hungry because he ______ (not / eat) all day.", "answer": "was, hadn't eaten", "explanation": "Был голоден (Past Simple – результат), не ел весь день (Past Perfect – причина)."},
+                        {"question": "When I ______ (get) to the office, my boss ______ (already / leave).", "answer": "got, had already left", "explanation": "Пришёл (Past Simple) – босс уже ушёл (Past Perfect)."},
+                        {"question": "They ______ (argue) for hours when she ______ (finally / walk) out.", "answer": "had been arguing, finally walked", "explanation": "Ссорились часами (Past Perfect Continuous), потом она вышла (Past Simple)."}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "2. Correct the mistakes in the sentences. If the sentence is correct, write 'Correct'.",
+                    "subtasks": [
+                        {"question": "When I opened the door, I saw that someone left a note.", "answer": "When I opened the door, I saw that someone had left a note.", "explanation": "Кто-то оставил записку до того – Past Perfect."},
+                        {"question": "She was driving to work when her car broke down.", "answer": "Correct", "explanation": "Верно – Past Continuous + Past Simple."},
+                        {"question": "They waited for the train for 20 minutes when it finally arrived.", "answer": "They had been waiting for the train for 20 minutes when it finally arrived.", "explanation": "Длительное ожидание до прибытия – Past Perfect Continuous."},
+                        {"question": "He had read the book before he watched the film.", "answer": "Correct", "explanation": "Верно – Past Perfect + Past Simple."},
+                        {"question": "The sun was shining and the sea was sparkling when we arrived at the beach.", "answer": "Correct", "explanation": "Верно – Past Continuous + Past Simple."},
+                        {"question": "She never ate such delicious food before she went to Italy.", "answer": "She had never eaten such delicious food before she went to Italy.", "explanation": "Опыт до поездки – Past Perfect."},
+                        {"question": "We travelled for two weeks when we realised we spent all our money.", "answer": "We had been travelling for two weeks when we realised we had spent all our money.", "explanation": "Путешествовали до того – Past Perfect Continuous; потратили ещё раньше – Past Perfect."},
+                        {"question": "He was hungry because he didn't eat all day.", "answer": "He was hungry because he hadn't eaten all day.", "explanation": "Не ел весь день (причина) – Past Perfect."},
+                        {"question": "When I got to the office, my boss already left.", "answer": "When I got to the office, my boss had already left.", "explanation": "Босс уже ушёл до моего прихода – Past Perfect."},
+                        {"question": "They had been arguing for hours when she finally walked out.", "answer": "Correct", "explanation": "Верно – Past Perfect Continuous + Past Simple."}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "3. Complete the story with the correct narrative tenses. Use the verbs in brackets.",
+                    "subtasks": [
+                        {"question": "It ______ (be) a rainy evening. The wind ______ (howl) and the rain ______ (beat) against the windows. I ______ (sit) by the fire when I ______ (hear) a knock at the door. I ______ (not / expect) anyone, so I ______ (be) surprised. I ______ (open) the door and ______ (see) a stranger holding a map.", "answer": "was, was howling, was beating, was sitting, heard, hadn't expected, was, opened, saw", "explanation": "was – обстановка; was howling, was beating, was sitting – фон; heard – прерывание; hadn't expected – состояние до того; was – реакция; opened, saw – последовательные действия."},
+                        {"question": "She ______ (learn) Spanish for two years before she ______ (go) to Spain. She ______ (feel) confident because she ______ (practise) every day. When she ______ (arrive) in Madrid, she ______ (realise) that she ______ (understand) almost everything.", "answer": "had been learning, went, felt, had been practising, arrived, realised, understood", "explanation": "had been learning – длительность до поездки; went – событие; felt – состояние; had been practising – причина уверенности; arrived, realised, understood – последовательные события."}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "4. Translate the sentences into English.",
+                    "subtasks": [
+                        {"question": "Когда я открыл дверь, я увидел, что кто-то оставил записку.", "answer": "When I opened the door, I saw that someone had left a note.", "explanation": ""},
+                        {"question": "Она ехала на работу, когда её машина сломалась.", "answer": "She was driving to work when her car broke down.", "explanation": ""},
+                        {"question": "Они ждали поезд 20 минут, когда он наконец приехал.", "answer": "They had been waiting for the train for 20 minutes when it finally arrived.", "explanation": ""},
+                        {"question": "Он прочитал книгу до того, как посмотрел фильм.", "answer": "He had read the book before he watched the film.", "explanation": ""},
+                        {"question": "Солнце светило, и море сверкало, когда мы приехали на пляж.", "answer": "The sun was shining and the sea was sparkling when we arrived at the beach.", "explanation": ""},
+                        {"question": "Она никогда не ела такой вкусной еды до поездки в Италию.", "answer": "She had never eaten such delicious food before she went to Italy.", "explanation": ""},
+                        {"question": "Мы путешествовали две недели, когда поняли, что потратили все деньги.", "answer": "We had been travelling for two weeks when we realised we had spent all our money.", "explanation": ""},
+                        {"question": "Он был голоден, потому что не ел весь день.", "answer": "He was hungry because he hadn't eaten all day.", "explanation": ""}
+                    ]
+                }
+            ],
+            # =====================================================
+            # ВАРИАНТ 4
+            # =====================================================
+            [
+                {
+                    "type": "complex",
+                    "text": "1. Choose the correct narrative tense to complete the sentences.",
+                    "subtasks": [
+                        {"question": "She ______ (study) all night, so she ______ (be) exhausted in the morning.", "answer": "had been studying, was", "explanation": "Училась всю ночь (Past Perfect Continuous – причина), была уставшей (Past Simple – результат)."},
+                        {"question": "When I ______ (arrive) at the party, everyone ______ (dance) for hours.", "answer": "arrived, had been dancing", "explanation": "Пришёл (Past Simple) – все танцевали до этого (Past Perfect Continuous)."},
+                        {"question": "He ______ (walk) through the forest when he ______ (discover) an old castle.", "answer": "was walking, discovered", "explanation": "Шёл (Past Continuous) – обнаружил (Past Simple)."},
+                        {"question": "They ______ (live) in that house for ten years before they ______ (sell) it.", "answer": "had lived, sold", "explanation": "Жили до продажи (Past Perfect), потом продали (Past Simple)."},
+                        {"question": "The children ______ (play) in the garden when the storm ______ (hit).", "answer": "were playing, hit", "explanation": "Играли (Past Continuous) – началась буря (Past Simple)."},
+                        {"question": "I ______ (never / meet) anyone famous before I ______ (work) on that film set.", "answer": "had never met, worked", "explanation": "Никогда не встречал до того (Past Perfect), потом работал (Past Simple)."},
+                        {"question": "We ______ (travel) for six hours when we ______ (stop) for a break.", "answer": "had been travelling, stopped", "explanation": "Путешествовали шесть часов (Past Perfect Continuous), потом остановились (Past Simple)."},
+                        {"question": "She ______ (finish) her project by the time the manager ______ (ask) for it.", "answer": "had finished, asked", "explanation": "Закончила проект до того (Past Perfect), как менеджер попросил (Past Simple)."},
+                        {"question": "They ______ (wait) for the bus for 45 minutes when it ______ (finally / come).", "answer": "had been waiting, finally came", "explanation": "Ждали 45 минут (Past Perfect Continuous), потом автобус приехал (Past Simple)."},
+                        {"question": "He ______ (read) the report before he ______ (attend) the meeting.", "answer": "had read, attended", "explanation": "Прочитал отчёт до того (Past Perfect), потом посетил встречу (Past Simple)."}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "2. Correct the mistakes in the sentences. If the sentence is correct, write 'Correct'.",
+                    "subtasks": [
+                        {"question": "She was studying all night, so she was exhausted in the morning.", "answer": "She had been studying all night, so she was exhausted in the morning.", "explanation": "Длительное действие до результата – Past Perfect Continuous."},
+                        {"question": "When I arrived at the party, everyone danced for hours.", "answer": "When I arrived at the party, everyone had been dancing for hours.", "explanation": "Танцевали до моего прихода – Past Perfect Continuous."},
+                        {"question": "He was walking through the forest when he discovered an old castle.", "answer": "Correct", "explanation": "Верно – Past Continuous + Past Simple."},
+                        {"question": "They lived in that house for ten years before they sold it.", "answer": "They had lived in that house for ten years before they sold it.", "explanation": "Прожили до продажи – Past Perfect."},
+                        {"question": "The children were playing in the garden when the storm hit.", "answer": "Correct", "explanation": "Верно – Past Continuous + Past Simple."},
+                        {"question": "I never met anyone famous before I worked on that film set.", "answer": "I had never met anyone famous before I worked on that film set.", "explanation": "Опыт до того – Past Perfect."},
+                        {"question": "We travelled for six hours when we stopped for a break.", "answer": "We had been travelling for six hours when we stopped for a break.", "explanation": "Длительное путешествие до остановки – Past Perfect Continuous."},
+                        {"question": "She finished her project by the time the manager asked for it.", "answer": "She had finished her project by the time the manager asked for it.", "explanation": "Закончила до того, как менеджер попросил – Past Perfect."},
+                        {"question": "They had been waiting for the bus for 45 minutes when it finally came.", "answer": "Correct", "explanation": "Верно – Past Perfect Continuous + Past Simple."},
+                        {"question": "He read the report before he attended the meeting.", "answer": "He had read the report before he attended the meeting.", "explanation": "Прочитал до встречи – Past Perfect."}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "3. Complete the story with the correct narrative tenses. Use the verbs in brackets.",
+                    "subtasks": [
+                        {"question": "It ______ (be) a warm summer day. The birds ______ (chirp) and the flowers ______ (smell) lovely. I ______ (walk) along the beach when I ______ (notice) a message in a bottle. I ______ (never / find) anything like that before. I ______ (open) the bottle and ______ (read) the note. It ______ (say): 'Help! I'm stranded on a desert island!'", "answer": "was, were chirping, were smelling, was walking, noticed, had never found, opened, read, said", "explanation": "was – обстановка; were chirping, were smelling, was walking – фон; noticed – прерывание; had never found – опыт до того; opened, read, said – последовательные действия."},
+                        {"question": "He ______ (train) for the marathon for months when he ______ (injure) his knee. He ______ (be) devastated because he ______ (work) so hard. He ______ (decide) to see a doctor and ______ (follow) the recovery plan.", "answer": "had been training, injured, was, had been working, decided, followed", "explanation": "had been training – длительность до травмы; injured – прерывание; was – состояние; had been working – причина расстройства; decided, followed – последовательные действия."}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "4. Translate the sentences into English.",
+                    "subtasks": [
+                        {"question": "Она училась всю ночь, поэтому утром была измотана.", "answer": "She had been studying all night, so she was exhausted in the morning.", "explanation": ""},
+                        {"question": "Когда я пришёл на вечеринку, все танцевали уже несколько часов.", "answer": "When I arrived at the party, everyone had been dancing for hours.", "explanation": ""},
+                        {"question": "Он шёл через лес, когда обнаружил старый замок.", "answer": "He was walking through the forest when he discovered an old castle.", "explanation": ""},
+                        {"question": "Они жили в том доме десять лет до продажи.", "answer": "They had lived in that house for ten years before they sold it.", "explanation": ""},
+                        {"question": "Дети играли в саду, когда началась буря.", "answer": "The children were playing in the garden when the storm hit.", "explanation": ""},
+                        {"question": "Я никогда не встречал знаменитостей до работы над тем фильмом.", "answer": "I had never met anyone famous before I worked on that film set.", "explanation": ""},
+                        {"question": "Мы путешествовали шесть часов, когда остановились на перерыв.", "answer": "We had been travelling for six hours when we stopped for a break.", "explanation": ""},
+                        {"question": "Она закончила проект к тому времени, как менеджер попросил его.", "answer": "She had finished her project by the time the manager asked for it.", "explanation": ""}
+                    ]
+                }
+            ],
+            # =====================================================
+            # ВАРИАНТ 5
+            # =====================================================
+            [
+                {
+                    "type": "complex",
+                    "text": "1. Choose the correct narrative tense to complete the sentences.",
+                    "subtasks": [
+                        {"question": "When I ______ (get) home, my parents ______ (already / go) to bed.", "answer": "got, had already gone", "explanation": "Пришёл (Past Simple) – родители уже легли (Past Perfect)."},
+                        {"question": "She ______ (work) in the garden when she ______ (find) a gold coin.", "answer": "was working, found", "explanation": "Работала (Past Continuous) – нашла (Past Simple)."},
+                        {"question": "They ______ (live) in New York for ten years before they ______ (move) to California.", "answer": "had lived, moved", "explanation": "Жили до переезда (Past Perfect), потом переехали (Past Simple)."},
+                        {"question": "I ______ (read) the book when I ______ (realise) I ______ (read) it before.", "answer": "was reading, realised, had read", "explanation": "Читал (Past Continuous), понял (Past Simple), что читал это раньше (Past Perfect)."},
+                        {"question": "He ______ (wait) for her for two hours before she ______ (finally / arrive).", "answer": "had been waiting, finally arrived", "explanation": "Ждал два часа (Past Perfect Continuous), потом она пришла (Past Simple)."},
+                        {"question": "She ______ (never / see) such a beautiful sunset before she ______ (go) to the island.", "answer": "had never seen, went", "explanation": "Никогда не видела до того (Past Perfect), потом поехала (Past Simple)."},
+                        {"question": "We ______ (drive) down the highway when we ______ (see) a huge truck in front of us.", "answer": "were driving, saw", "explanation": "Ехали (Past Continuous) – увидели (Past Simple)."},
+                        {"question": "He ______ (finish) his homework by the time his friends ______ (arrive).", "answer": "had finished, arrived", "explanation": "Закончил до того (Past Perfect), как друзья пришли (Past Simple)."},
+                        {"question": "She ______ (be) tired because she ______ (work) all morning.", "answer": "was, had been working", "explanation": "Была уставшей (Past Simple) – работала всё утро (Past Perfect Continuous)."},
+                        {"question": "They ______ (play) chess for hours when I ______ (call) them.", "answer": "had been playing, called", "explanation": "Играли часами (Past Perfect Continuous), потом я позвонил (Past Simple)."}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "2. Correct the mistakes in the sentences. If the sentence is correct, write 'Correct'.",
+                    "subtasks": [
+                        {"question": "When I got home, my parents already went to bed.", "answer": "When I got home, my parents had already gone to bed.", "explanation": "Родители уже легли до моего прихода – Past Perfect."},
+                        {"question": "She was working in the garden when she found a gold coin.", "answer": "Correct", "explanation": "Верно – Past Continuous + Past Simple."},
+                        {"question": "They lived in New York for ten years before they moved to California.", "answer": "They had lived in New York for ten years before they moved to California.", "explanation": "Прожили до переезда – Past Perfect."},
+                        {"question": "I was reading the book when I realised I read it before.", "answer": "I was reading the book when I realised I had read it before.", "explanation": "Читал раньше – Past Perfect."},
+                        {"question": "He had been waiting for her for two hours before she finally arrived.", "answer": "Correct", "explanation": "Верно – Past Perfect Continuous + Past Simple."},
+                        {"question": "She never saw such a beautiful sunset before she went to the island.", "answer": "She had never seen such a beautiful sunset before she went to the island.", "explanation": "Опыт до поездки – Past Perfect."},
+                        {"question": "We were driving down the highway when we saw a huge truck.", "answer": "Correct", "explanation": "Верно – Past Continuous + Past Simple."},
+                        {"question": "He finished his homework by the time his friends arrived.", "answer": "He had finished his homework by the time his friends arrived.", "explanation": "Закончил до прихода друзей – Past Perfect."},
+                        {"question": "She was tired because she worked all morning.", "answer": "She was tired because she had been working all morning.", "explanation": "Работала всё утро (причина) – Past Perfect Continuous."},
+                        {"question": "They had been playing chess for hours when I called them.", "answer": "Correct", "explanation": "Верно – Past Perfect Continuous + Past Simple."}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "3. Complete the story with the correct narrative tenses. Use the verbs in brackets.",
+                    "subtasks": [
+                        {"question": "It ______ (be) a beautiful autumn day. The leaves ______ (fall) gently from the trees. I ______ (walk) through the park when I ______ (see) an old friend. I ______ (not / see) him for years. He ______ (look) older but still ______ (have) the same smile. We ______ (talk) for hours about the old times.", "answer": "was, were falling, was walking, saw, hadn't seen, looked, had, talked", "explanation": "was – обстановка; were falling, was walking – фон; saw – событие; hadn't seen – состояние до того; looked, had – описание; talked – последовательное действие."},
+                        {"question": "She ______ (save) money for a year before she ______ (buy) her dream car. She ______ (be) so excited that she ______ (call) all her friends. She ______ (drive) it for hours on the first day.", "answer": "had been saving, bought, was, called, drove", "explanation": "had been saving – длительность до покупки; bought – событие; was – состояние; called, drove – последовательные действия."}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "4. Translate the sentences into English.",
+                    "subtasks": [
+                        {"question": "Когда я пришёл домой, родители уже легли спать.", "answer": "When I got home, my parents had already gone to bed.", "explanation": ""},
+                        {"question": "Она работала в саду, когда нашла золотую монету.", "answer": "She was working in the garden when she found a gold coin.", "explanation": ""},
+                        {"question": "Они жили в Нью-Йорке десять лет до переезда в Калифорнию.", "answer": "They had lived in New York for ten years before they moved to California.", "explanation": ""},
+                        {"question": "Я читал книгу, когда понял, что уже читал её раньше.", "answer": "I was reading the book when I realised I had read it before.", "explanation": ""},
+                        {"question": "Он ждал её два часа, прежде чем она наконец пришла.", "answer": "He had been waiting for her for two hours before she finally arrived.", "explanation": ""},
+                        {"question": "Она никогда не видела такого красивого заката до поездки на остров.", "answer": "She had never seen such a beautiful sunset before she went to the island.", "explanation": ""},
+                        {"question": "Мы ехали по трассе, когда увидели огромный грузовик.", "answer": "We were driving down the highway when we saw a huge truck.", "explanation": ""},
+                        {"question": "Она была уставшей, потому что работала всё утро.", "answer": "She was tired because she had been working all morning.", "explanation": ""}
+                    ]
+                }
+            ],
+            # =====================================================
+            # ВАРИАНТ 6
+            # =====================================================
+            [
+                {
+                    "type": "complex",
+                    "text": "1. Choose the correct narrative tense to complete the sentences.",
+                    "subtasks": [
+                        {"question": "By the time we ______ (get) to the theatre, the play ______ (already / begin).", "answer": "got, had already begun", "explanation": "Прибыли (Past Simple) – спектакль уже начался (Past Perfect)."},
+                        {"question": "He ______ (cross) the street when he ______ (slip) and ______ (fall).", "answer": "was crossing, slipped, fell", "explanation": "Переходил (Past Continuous), поскользнулся и упал (Past Simple)."},
+                        {"question": "They ______ (work) on the project for weeks before they ______ (finish) it.", "answer": "had been working, finished", "explanation": "Работали неделями (Past Perfect Continuous), потом закончили (Past Simple)."},
+                        {"question": "She ______ (study) English for five years before she ______ (move) to the UK.", "answer": "had studied, moved", "explanation": "Учила до переезда (Past Perfect), потом переехала (Past Simple)."},
+                        {"question": "The children ______ (laugh) and ______ (play) when the teacher ______ (enter) the room.", "answer": "were laughing, playing, entered", "explanation": "Смеялись и играли (Past Continuous), учитель вошёл (Past Simple)."},
+                        {"question": "He ______ (never / ride) a horse before he ______ (travel) to Mongolia.", "answer": "had never ridden, travelled", "explanation": "Никогда не ездил до того (Past Perfect), потом путешествовал (Past Simple)."},
+                        {"question": "We ______ (run) for 20 minutes when we ______ (realise) we ______ (lose) our way.", "answer": "had been running, realised, had lost", "explanation": "Бежали 20 минут (Past Perfect Continuous), поняли (Past Simple), потерялись (Past Perfect – ещё раньше)."},
+                        {"question": "She ______ (be) angry because someone ______ (break) her favourite vase.", "answer": "was, had broken", "explanation": "Была зла (Past Simple) – кто-то разбил вазу раньше (Past Perfect)."},
+                        {"question": "When I ______ (wake) up, the sun ______ (already / rise).", "answer": "woke, had already risen", "explanation": "Проснулся (Past Simple) – солнце уже взошло (Past Perfect)."},
+                        {"question": "They ______ (wait) for the train for 15 minutes when it ______ (finally / pull) in.", "answer": "had been waiting, finally pulled", "explanation": "Ждали 15 минут (Past Perfect Continuous), потом поезд прибыл (Past Simple)."}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "2. Correct the mistakes in the sentences. If the sentence is correct, write 'Correct'.",
+                    "subtasks": [
+                        {"question": "By the time we got to the theatre, the play already began.", "answer": "By the time we got to the theatre, the play had already begun.", "explanation": "Спектакль начался до нашего прихода – Past Perfect."},
+                        {"question": "He was crossing the street when he slipped and fell.", "answer": "Correct", "explanation": "Верно – Past Continuous + Past Simple."},
+                        {"question": "They worked on the project for weeks before they finished it.", "answer": "They had been working on the project for weeks before they finished it.", "explanation": "Длительная работа до завершения – Past Perfect Continuous."},
+                        {"question": "She studied English for five years before she moved to the UK.", "answer": "She had studied English for five years before she moved to the UK.", "explanation": "Учила до переезда – Past Perfect."},
+                        {"question": "The children were laughing and playing when the teacher entered the room.", "answer": "Correct", "explanation": "Верно – Past Continuous + Past Simple."},
+                        {"question": "He never rode a horse before he travelled to Mongolia.", "answer": "He had never ridden a horse before he travelled to Mongolia.", "explanation": "Опыт до поездки – Past Perfect."},
+                        {"question": "We were running for 20 minutes when we realised we lost our way.", "answer": "We had been running for 20 minutes when we realised we had lost our way.", "explanation": "Бежали до того – Past Perfect Continuous; потерялись ещё раньше – Past Perfect."},
+                        {"question": "She was angry because someone broke her favourite vase.", "answer": "She was angry because someone had broken her favourite vase.", "explanation": "Кто-то разбил до того – Past Perfect."},
+                        {"question": "When I woke up, the sun already rose.", "answer": "When I woke up, the sun had already risen.", "explanation": "Солнце уже взошло до моего пробуждения – Past Perfect."},
+                        {"question": "They had been waiting for the train for 15 minutes when it finally pulled in.", "answer": "Correct", "explanation": "Верно – Past Perfect Continuous + Past Simple."}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "3. Complete the story with the correct narrative tenses. Use the verbs in brackets.",
+                    "subtasks": [
+                        {"question": "It ______ (be) a cold winter night. The snow ______ (fall) heavily and the wind ______ (blow) fiercely. I ______ (walk) home from work when I ______ (notice) a small figure in the distance. I ______ (never / see) anyone out so late. I ______ (approach) carefully and ______ (realise) it was my neighbour's lost dog.", "answer": "was, was falling, was blowing, was walking, noticed, had never seen, approached, realised", "explanation": "was – обстановка; was falling, was blowing, was walking – фон; noticed – прерывание; had never seen – опыт до того; approached, realised – последовательные действия."},
+                        {"question": "He ______ (practise) the piano for hours when he ______ (finally / play) the piece perfectly. He ______ (feel) proud because he ______ (work) on it for weeks.", "answer": "had been practising, finally played, felt, had been working", "explanation": "had been practising – длительность до успеха; finally played – результат; felt – состояние; had been working – причина гордости."}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "4. Translate the sentences into English.",
+                    "subtasks": [
+                        {"question": "К тому времени, как мы добрались до театра, спектакль уже начался.", "answer": "By the time we got to the theatre, the play had already begun.", "explanation": ""},
+                        {"question": "Он переходил улицу, когда поскользнулся и упал.", "answer": "He was crossing the street when he slipped and fell.", "explanation": ""},
+                        {"question": "Они работали над проектом несколько недель до того, как закончили его.", "answer": "They had been working on the project for weeks before they finished it.", "explanation": ""},
+                        {"question": "Она учила английский пять лет до переезда в Великобританию.", "answer": "She had studied English for five years before she moved to the UK.", "explanation": ""},
+                        {"question": "Дети смеялись и играли, когда учитель вошёл в класс.", "answer": "The children were laughing and playing when the teacher entered the room.", "explanation": ""},
+                        {"question": "Он никогда не ездил верхом до поездки в Монголию.", "answer": "He had never ridden a horse before he travelled to Mongolia.", "explanation": ""},
+                        {"question": "Мы бежали 20 минут, когда поняли, что потерялись.", "answer": "We had been running for 20 minutes when we realised we had lost our way.", "explanation": ""},
+                        {"question": "Она была зла, потому что кто-то разбил её любимую вазу.", "answer": "She was angry because someone had broken her favourite vase.", "explanation": ""}
+                    ]
+                }
+            ],
+            # =====================================================
+            # ВАРИАНТ 7
+            # =====================================================
+            [
+                {
+                    "type": "complex",
+                    "text": "1. Choose the correct narrative tense to complete the sentences.",
+                    "subtasks": [
+                        {"question": "When I ______ (enter) the room, everyone ______ (already / leave).", "answer": "entered, had already left", "explanation": "Вошел (Past Simple) – все уже ушли (Past Perfect)."},
+                        {"question": "She ______ (cook) dinner when I ______ (arrive) home.", "answer": "was cooking, arrived", "explanation": "Готовила (Past Continuous), я пришёл (Past Simple)."},
+                        {"question": "They ______ (wait) for the concert for an hour when the band ______ (finally / come) on stage.", "answer": "had been waiting, finally came", "explanation": "Ждали час (Past Perfect Continuous), потом группа вышла на сцену (Past Simple)."},
+                        {"question": "He ______ (write) three novels before he ______ (get) published.", "answer": "had written, got", "explanation": "Написал три романа до того (Past Perfect), потом опубликовали (Past Simple)."},
+                        {"question": "The sun ______ (set) and the sky ______ (turn) orange when we ______ (start) our walk.", "answer": "was setting, was turning, started", "explanation": "Солнце садилось, небо оранжевело (Past Continuous), мы начали (Past Simple)."},
+                        {"question": "She ______ (never / eat) Italian food before she ______ (go) to Rome.", "answer": "had never eaten, went", "explanation": "Никогда не ела до того (Past Perfect), потом поехала (Past Simple)."},
+                        {"question": "We ______ (work) on the project for weeks when the manager ______ (announce) it was cancelled.", "answer": "had been working, announced", "explanation": "Работали неделями (Past Perfect Continuous), потом менеджер объявил (Past Simple)."},
+                        {"question": "He ______ (be) late because he ______ (miss) the bus.", "answer": "was, had missed", "explanation": "Опоздал (Past Simple) – пропустил автобус (Past Perfect – причина)."},
+                        {"question": "By the time I ______ (finish) my breakfast, my brother ______ (already / leave).", "answer": "finished, had already left", "explanation": "Закончил завтрак (Past Simple) – брат уже ушёл (Past Perfect)."},
+                        {"question": "They ______ (study) for three hours when they ______ (decide) to take a break.", "answer": "had been studying, decided", "explanation": "Учились три часа (Past Perfect Continuous), потом решили (Past Simple)."}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "2. Correct the mistakes in the sentences. If the sentence is correct, write 'Correct'.",
+                    "subtasks": [
+                        {"question": "When I entered the room, everyone already left.", "answer": "When I entered the room, everyone had already left.", "explanation": "Все уже ушли до моего входа – Past Perfect."},
+                        {"question": "She was cooking dinner when I arrived home.", "answer": "Correct", "explanation": "Верно – Past Continuous + Past Simple."},
+                        {"question": "They waited for the concert for an hour when the band finally came on stage.", "answer": "They had been waiting for the concert for an hour when the band finally came on stage.", "explanation": "Длительное ожидание до выхода группы – Past Perfect Continuous."},
+                        {"question": "He had written three novels before he got published.", "answer": "Correct", "explanation": "Верно – Past Perfect + Past Simple."},
+                        {"question": "The sun was setting and the sky was turning orange when we started our walk.", "answer": "Correct", "explanation": "Верно – Past Continuous + Past Simple."},
+                        {"question": "She never ate Italian food before she went to Rome.", "answer": "She had never eaten Italian food before she went to Rome.", "explanation": "Опыт до поездки – Past Perfect."},
+                        {"question": "We worked on the project for weeks when the manager announced it was cancelled.", "answer": "We had been working on the project for weeks when the manager announced it was cancelled.", "explanation": "Длительная работа до объявления – Past Perfect Continuous."},
+                        {"question": "He was late because he missed the bus.", "answer": "He was late because he had missed the bus.", "explanation": "Пропустил автобус (причина) – Past Perfect."},
+                        {"question": "By the time I finished my breakfast, my brother already left.", "answer": "By the time I finished my breakfast, my brother had already left.", "explanation": "Брат уже ушёл до того – Past Perfect."},
+                        {"question": "They had been studying for three hours when they decided to take a break.", "answer": "Correct", "explanation": "Верно – Past Perfect Continuous + Past Simple."}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "3. Complete the story with the correct narrative tenses. Use the verbs in brackets.",
+                    "subtasks": [
+                        {"question": "It ______ (be) a peaceful morning. The birds ______ (chirp) and the sun ______ (warm) the earth. I ______ (sit) on the porch when I ______ (hear) a strange sound from the forest. I ______ (never / hear) anything like it. I ______ (stand) up and ______ (walk) towards the trees.", "answer": "was, were chirping, was warming, was sitting, heard, had never heard, stood, walked", "explanation": "was – обстановка; were chirping, was warming, was sitting – фон; heard – прерывание; had never heard – опыт до того; stood, walked – последовательные действия."},
+                        {"question": "She ______ (prepare) for the exam for months when she ______ (find) out it was postponed. She ______ (feel) both relieved and annoyed because she ______ (study) so hard.", "answer": "had been preparing, found, felt, had been studying", "explanation": "had been preparing – длительность до новости; found – событие; felt – состояние; had been studying – причина чувств."}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "4. Translate the sentences into English.",
+                    "subtasks": [
+                        {"question": "Когда я вошёл в комнату, все уже ушли.", "answer": "When I entered the room, everyone had already left.", "explanation": ""},
+                        {"question": "Она готовила ужин, когда я пришёл домой.", "answer": "She was cooking dinner when I arrived home.", "explanation": ""},
+                        {"question": "Они ждали концерт час, когда группа наконец вышла на сцену.", "answer": "They had been waiting for the concert for an hour when the band finally came on stage.", "explanation": ""},
+                        {"question": "Он написал три романа до того, как его опубликовали.", "answer": "He had written three novels before he got published.", "explanation": ""},
+                        {"question": "Солнце садилось, и небо оранжевело, когда мы начали прогулку.", "answer": "The sun was setting and the sky was turning orange when we started our walk.", "explanation": ""},
+                        {"question": "Она никогда не ела итальянскую еду до поездки в Рим.", "answer": "She had never eaten Italian food before she went to Rome.", "explanation": ""},
+                        {"question": "Мы работали над проектом недели, когда менеджер объявил, что его отменили.", "answer": "We had been working on the project for weeks when the manager announced it was cancelled.", "explanation": ""},
+                        {"question": "Он опоздал, потому что пропустил автобус.", "answer": "He was late because he had missed the bus.", "explanation": ""}
+                    ]
+                }
+            ],
+            # =====================================================
+            # ВАРИАНТ 8
+            # =====================================================
+            [
+                {
+                    "type": "complex",
+                    "text": "1. Choose the correct narrative tense to complete the sentences.",
+                    "subtasks": [
+                        {"question": "When I ______ (reach) the station, the train ______ (already / depart).", "answer": "reached, had already departed", "explanation": "Прибыл (Past Simple) – поезд уже ушёл (Past Perfect)."},
+                        {"question": "She ______ (read) a book when someone ______ (knock) at the door.", "answer": "was reading, knocked", "explanation": "Читала (Past Continuous), кто-то постучал (Past Simple)."},
+                        {"question": "They ______ (play) tennis for two hours when it ______ (start) to rain.", "answer": "had been playing, started", "explanation": "Играли два часа (Past Perfect Continuous), потом начался дождь (Past Simple)."},
+                        {"question": "He ______ (work) as a teacher for five years before he ______ (become) a writer.", "answer": "had worked, became", "explanation": "Работал до того (Past Perfect), потом стал (Past Simple)."},
+                        {"question": "The children ______ (play) in the park when the storm ______ (approach).", "answer": "were playing, approached", "explanation": "Играли (Past Continuous), буря приближалась (Past Simple – событие)."},
+                        {"question": "She ______ (never / try) such an unusual dish before she ______ (visit) Thailand.", "answer": "had never tried, visited", "explanation": "Никогда не пробовала до того (Past Perfect), потом посетила (Past Simple)."},
+                        {"question": "We ______ (travel) for hours when we ______ (finally / arrive) at our destination.", "answer": "had been travelling, finally arrived", "explanation": "Путешествовали часами (Past Perfect Continuous), потом прибыли (Past Simple)."},
+                        {"question": "He ______ (be) exhausted because he ______ (run) a marathon.", "answer": "was, had run", "explanation": "Был измотан (Past Simple) – пробежал марафон (Past Perfect – причина)."},
+                        {"question": "When I ______ (look) out the window, I ______ (see) that it ______ (snow) all night.", "answer": "looked, saw, had been snowing", "explanation": "Посмотрел (Past Simple), увидел (Past Simple), что снег шёл всю ночь (Past Perfect Continuous)."},
+                        {"question": "They ______ (wait) for the bus for 40 minutes when it ______ (finally / come).", "answer": "had been waiting, finally came", "explanation": "Ждали 40 минут (Past Perfect Continuous), потом автобус приехал (Past Simple)."}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "2. Correct the mistakes in the sentences. If the sentence is correct, write 'Correct'.",
+                    "subtasks": [
+                        {"question": "When I reached the station, the train already departed.", "answer": "When I reached the station, the train had already departed.", "explanation": "Поезд уже ушёл до моего прибытия – Past Perfect."},
+                        {"question": "She was reading a book when someone knocked at the door.", "answer": "Correct", "explanation": "Верно – Past Continuous + Past Simple."},
+                        {"question": "They played tennis for two hours when it started to rain.", "answer": "They had been playing tennis for two hours when it started to rain.", "explanation": "Длительная игра до дождя – Past Perfect Continuous."},
+                        {"question": "He had worked as a teacher for five years before he became a writer.", "answer": "Correct", "explanation": "Верно – Past Perfect + Past Simple."},
+                        {"question": "The children were playing in the park when the storm approached.", "answer": "Correct", "explanation": "Верно – Past Continuous + Past Simple."},
+                        {"question": "She never tried such an unusual dish before she visited Thailand.", "answer": "She had never tried such an unusual dish before she visited Thailand.", "explanation": "Опыт до поездки – Past Perfect."},
+                        {"question": "We travelled for hours when we finally arrived at our destination.", "answer": "We had been travelling for hours when we finally arrived at our destination.", "explanation": "Длительное путешествие до прибытия – Past Perfect Continuous."},
+                        {"question": "He was exhausted because he ran a marathon.", "answer": "He was exhausted because he had run a marathon.", "explanation": "Пробежал марафон (причина) – Past Perfect."},
+                        {"question": "When I looked out the window, I saw that it snowed all night.", "answer": "When I looked out the window, I saw that it had been snowing all night.", "explanation": "Снег шёл всю ночь до того – Past Perfect Continuous."},
+                        {"question": "They had been waiting for the bus for 40 minutes when it finally came.", "answer": "Correct", "explanation": "Верно – Past Perfect Continuous + Past Simple."}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "3. Complete the story with the correct narrative tenses. Use the verbs in brackets.",
+                    "subtasks": [
+                        {"question": "It ______ (be) a stormy night. The wind ______ (howl) and the rain ______ (beat) against the windows. I ______ (try) to sleep when I ______ (hear) a crash downstairs. I ______ (never / be) so scared. I ______ (get) up and ______ (walk) slowly towards the noise.", "answer": "was, was howling, was beating, was trying, heard, had never been, got, walked", "explanation": "was – обстановка; was howling, was beating, was trying – фон; heard – прерывание; had never been – опыт до того; got, walked – последовательные действия."},
+                        {"question": "She ______ (dream) of becoming a pilot for years before she ______ (finally / get) her licence. She ______ (be) overjoyed because she ______ (work) so hard for it.", "answer": "had been dreaming, finally got, was, had been working", "explanation": "had been dreaming – длительность до получения лицензии; finally got – результат; was – состояние; had been working – причина радости."}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "4. Translate the sentences into English.",
+                    "subtasks": [
+                        {"question": "Когда я добрался до вокзала, поезд уже ушёл.", "answer": "When I reached the station, the train had already departed.", "explanation": ""},
+                        {"question": "Она читала книгу, когда кто-то постучал в дверь.", "answer": "She was reading a book when someone knocked at the door.", "explanation": ""},
+                        {"question": "Они играли в теннис два часа, когда начался дождь.", "answer": "They had been playing tennis for two hours when it started to rain.", "explanation": ""},
+                        {"question": "Он работал учителем пять лет до того, как стал писателем.", "answer": "He had worked as a teacher for five years before he became a writer.", "explanation": ""},
+                        {"question": "Дети играли в парке, когда приближалась буря.", "answer": "The children were playing in the park when the storm approached.", "explanation": ""},
+                        {"question": "Она никогда не пробовала такое необычное блюдо до поездки в Таиланд.", "answer": "She had never tried such an unusual dish before she visited Thailand.", "explanation": ""},
+                        {"question": "Мы путешествовали часами, когда наконец прибыли к месту назначения.", "answer": "We had been travelling for hours when we finally arrived at our destination.", "explanation": ""},
+                        {"question": "Он был измотан, потому что пробежал марафон.", "answer": "He was exhausted because he had run a marathon.", "explanation": ""}
+                    ]
+                }
+            ],
+            # =====================================================
+            # ВАРИАНТ 9
+            # =====================================================
+            [
+                {
+                    "type": "complex",
+                    "text": "1. Choose the correct narrative tense to complete the sentences.",
+                    "subtasks": [
+                        {"question": "When I ______ (get) to the airport, the plane ______ (already / take off).", "answer": "got, had already taken off", "explanation": "Прибыл (Past Simple) – самолёт уже взлетел (Past Perfect)."},
+                        {"question": "She ______ (write) a letter when someone ______ (enter) the room.", "answer": "was writing, entered", "explanation": "Писала (Past Continuous), кто-то вошёл (Past Simple)."},
+                        {"question": "They ______ (talk) for hours when the phone ______ (ring).", "answer": "had been talking, rang", "explanation": "Говорили часами (Past Perfect Continuous), потом зазвонил телефон (Past Simple)."},
+                        {"question": "He ______ (never / see) the ocean before he ______ (visit) California.", "answer": "had never seen, visited", "explanation": "Никогда не видел до того (Past Perfect), потом посетил (Past Simple)."},
+                        {"question": "The students ______ (listen) to the teacher when the fire alarm ______ (go off).", "answer": "were listening, went off", "explanation": "Слушали (Past Continuous), сработала пожарная сигнализация (Past Simple)."},
+                        {"question": "We ______ (wait) for the bus for 20 minutes when it ______ (finally / arrive).", "answer": "had been waiting, finally arrived", "explanation": "Ждали 20 минут (Past Perfect Continuous), потом автобус приехал (Past Simple)."},
+                        {"question": "She ______ (finish) her work by 6 pm and ______ (leave) the office.", "answer": "had finished, left", "explanation": "Закончила работу до 6 (Past Perfect), потом ушла (Past Simple)."},
+                        {"question": "He ______ (be) hungry because he ______ (not / eat) all day.", "answer": "was, hadn't eaten", "explanation": "Был голоден (Past Simple) – не ел весь день (Past Perfect – причина)."},
+                        {"question": "By the time we ______ (arrive) at the party, everyone ______ (already / dance).", "answer": "arrived, had already danced", "explanation": "Прибыли (Past Simple) – все уже танцевали (Past Perfect)."},
+                        {"question": "They ______ (study) for the exam for weeks when they ______ (decide) to take a break.", "answer": "had been studying, decided", "explanation": "Учились неделями (Past Perfect Continuous), потом решили (Past Simple)."}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "2. Correct the mistakes in the sentences. If the sentence is correct, write 'Correct'.",
+                    "subtasks": [
+                        {"question": "When I got to the airport, the plane already took off.", "answer": "When I got to the airport, the plane had already taken off.", "explanation": "Самолёт уже взлетел до моего прибытия – Past Perfect."},
+                        {"question": "She was writing a letter when someone entered the room.", "answer": "Correct", "explanation": "Верно – Past Continuous + Past Simple."},
+                        {"question": "They talked for hours when the phone rang.", "answer": "They had been talking for hours when the phone rang.", "explanation": "Длительный разговор до звонка – Past Perfect Continuous."},
+                        {"question": "He never saw the ocean before he visited California.", "answer": "He had never seen the ocean before he visited California.", "explanation": "Опыт до поездки – Past Perfect."},
+                        {"question": "The students were listening to the teacher when the fire alarm went off.", "answer": "Correct", "explanation": "Верно – Past Continuous + Past Simple."},
+                        {"question": "We waited for the bus for 20 minutes when it finally arrived.", "answer": "We had been waiting for the bus for 20 minutes when it finally arrived.", "explanation": "Длительное ожидание до прибытия – Past Perfect Continuous."},
+                        {"question": "She finished her work by 6 pm and left the office.", "answer": "She had finished her work by 6 pm and left the office.", "explanation": "Закончила работу до 6 – Past Perfect."},
+                        {"question": "He was hungry because he didn't eat all day.", "answer": "He was hungry because he hadn't eaten all day.", "explanation": "Не ел весь день (причина) – Past Perfect."},
+                        {"question": "By the time we arrived at the party, everyone already danced.", "answer": "By the time we arrived at the party, everyone had already danced.", "explanation": "Все уже танцевали до нашего прихода – Past Perfect."},
+                        {"question": "They had been studying for the exam for weeks when they decided to take a break.", "answer": "Correct", "explanation": "Верно – Past Perfect Continuous + Past Simple."}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "3. Complete the story with the correct narrative tenses. Use the verbs in brackets.",
+                    "subtasks": [
+                        {"question": "It ______ (be) a sunny afternoon. The children ______ (play) in the garden and the adults ______ (chat) on the terrace. I ______ (sit) under a tree when I ______ (notice) something shiny in the grass. I ______ (never / see) such a beautiful stone before. I ______ (pick) it up and ______ (put) it in my pocket.", "answer": "was, were playing, were chatting, was sitting, noticed, had never seen, picked, put", "explanation": "was – обстановка; were playing, were chatting, was sitting – фон; noticed – прерывание; had never seen – опыт до того; picked, put – последовательные действия."},
+                        {"question": "He ______ (want) to be a chef for as long as he ______ (remember). He ______ (work) in restaurants for years before he ______ (finally / open) his own place.", "answer": "had wanted, remembered, had been working, finally opened", "explanation": "had wanted – желание до того; remembered – момент осознания; had been working – длительность до открытия; finally opened – результат."}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "4. Translate the sentences into English.",
+                    "subtasks": [
+                        {"question": "Когда я добрался до аэропорта, самолёт уже взлетел.", "answer": "When I got to the airport, the plane had already taken off.", "explanation": ""},
+                        {"question": "Она писала письмо, когда кто-то вошёл в комнату.", "answer": "She was writing a letter when someone entered the room.", "explanation": ""},
+                        {"question": "Они говорили часами, когда зазвонил телефон.", "answer": "They had been talking for hours when the phone rang.", "explanation": ""},
+                        {"question": "Он никогда не видел океана до поездки в Калифорнию.", "answer": "He had never seen the ocean before he visited California.", "explanation": ""},
+                        {"question": "Студенты слушали учителя, когда сработала пожарная сигнализация.", "answer": "The students were listening to the teacher when the fire alarm went off.", "explanation": ""},
+                        {"question": "Мы ждали автобус 20 минут, когда он наконец приехал.", "answer": "We had been waiting for the bus for 20 minutes when it finally arrived.", "explanation": ""},
+                        {"question": "Она закончила работу к 6 вечера и ушла из офиса.", "answer": "She had finished her work by 6 pm and left the office.", "explanation": ""},
+                        {"question": "Он был голоден, потому что не ел весь день.", "answer": "He was hungry because he hadn't eaten all day.", "explanation": ""}
+                    ]
+                }
+            ],
+            # =====================================================
+            # ВАРИАНТ 10
+            # =====================================================
+            [
+                {
+                    "type": "complex",
+                    "text": "1. Choose the correct narrative tense to complete the sentences.",
+                    "subtasks": [
+                        {"question": "When I ______ (call) her, she ______ (already / leave) the office.", "answer": "called, had already left", "explanation": "Позвонил (Past Simple) – она уже ушла (Past Perfect)."},
+                        {"question": "He ______ (read) the newspaper when his phone ______ (ring).", "answer": "was reading, rang", "explanation": "Читал (Past Continuous), зазвонил телефон (Past Simple)."},
+                        {"question": "They ______ (work) on the project for a month when they ______ (finish) it.", "answer": "had been working, finished", "explanation": "Работали месяц (Past Perfect Continuous), потом закончили (Past Simple)."},
+                        {"question": "She ______ (never / be) to a concert before she ______ (go) to the festival.", "answer": "had never been, went", "explanation": "Никогда не была до того (Past Perfect), потом пошла (Past Simple)."},
+                        {"question": "The children ______ (play) in the garden when it ______ (start) to snow.", "answer": "were playing, started", "explanation": "Играли (Past Continuous), начался снег (Past Simple)."},
+                        {"question": "We ______ (drive) for three hours when we ______ (finally / reach) the hotel.", "answer": "had been driving, finally reached", "explanation": "Ехали три часа (Past Perfect Continuous), потом добрались до отеля (Past Simple)."},
+                        {"question": "He ______ (write) the report by the time the boss ______ (ask) for it.", "answer": "had written, asked", "explanation": "Написал отчёт до того (Past Perfect), как босс попросил (Past Simple)."},
+                        {"question": "She ______ (be) tired because she ______ (work) all night.", "answer": "was, had been working", "explanation": "Была уставшей (Past Simple) – работала всю ночь (Past Perfect Continuous – причина)."},
+                        {"question": "When I ______ (arrive) at the station, the train ______ (already / depart).", "answer": "arrived, had already departed", "explanation": "Прибыл (Past Simple) – поезд уже ушёл (Past Perfect)."},
+                        {"question": "They ______ (study) French for two years before they ______ (move) to Paris.", "answer": "had studied, moved", "explanation": "Учили до переезда (Past Perfect), потом переехали (Past Simple)."}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "2. Correct the mistakes in the sentences. If the sentence is correct, write 'Correct'.",
+                    "subtasks": [
+                        {"question": "When I called her, she already left the office.", "answer": "When I called her, she had already left the office.", "explanation": "Она уже ушла до моего звонка – Past Perfect."},
+                        {"question": "He was reading the newspaper when his phone rang.", "answer": "Correct", "explanation": "Верно – Past Continuous + Past Simple."},
+                        {"question": "They worked on the project for a month when they finished it.", "answer": "They had been working on the project for a month when they finished it.", "explanation": "Длительная работа до завершения – Past Perfect Continuous."},
+                        {"question": "She never was to a concert before she went to the festival.", "answer": "She had never been to a concert before she went to the festival.", "explanation": "Опыт до того – Past Perfect."},
+                        {"question": "The children were playing in the garden when it started to snow.", "answer": "Correct", "explanation": "Верно – Past Continuous + Past Simple."},
+                        {"question": "We drove for three hours when we finally reached the hotel.", "answer": "We had been driving for three hours when we finally reached the hotel.", "explanation": "Длительное вождение до прибытия – Past Perfect Continuous."},
+                        {"question": "He wrote the report by the time the boss asked for it.", "answer": "He had written the report by the time the boss asked for it.", "explanation": "Написал отчёт до того, как босс попросил – Past Perfect."},
+                        {"question": "She was tired because she worked all night.", "answer": "She was tired because she had been working all night.", "explanation": "Работала всю ночь (причина) – Past Perfect Continuous."},
+                        {"question": "When I arrived at the station, the train already departed.", "answer": "When I arrived at the station, the train had already departed.", "explanation": "Поезд уже ушёл до моего прибытия – Past Perfect."},
+                        {"question": "They studied French for two years before they moved to Paris.", "answer": "They had studied French for two years before they moved to Paris.", "explanation": "Учили до переезда – Past Perfect."}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "3. Complete the story with the correct narrative tenses. Use the verbs in brackets.",
+                    "subtasks": [
+                        {"question": "It ______ (be) a foggy evening. The streetlights ______ (glow) dimly and the streets ______ (be) empty. I ______ (walk) home when I ______ (hear) footsteps behind me. I ______ (never / feel) so nervous. I ______ (turn) around but ______ (see) no one.", "answer": "was, were glowing, were, was walking, heard, had never felt, turned, saw", "explanation": "was – обстановка; were glowing, were, was walking – фон; heard – прерывание; had never felt – опыт до того; turned, saw – последовательные действия."},
+                        {"question": "He ______ (want) to become a doctor since he ______ (be) a child. He ______ (study) medicine for six years before he ______ (finally / qualify).", "answer": "had wanted, was, had been studying, finally qualified", "explanation": "had wanted – желание с детства; was – состояние; had been studying – длительность до квалификации; finally qualified – результат."}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "4. Translate the sentences into English.",
+                    "subtasks": [
+                        {"question": "Когда я позвонил ей, она уже ушла из офиса.", "answer": "When I called her, she had already left the office.", "explanation": ""},
+                        {"question": "Он читал газету, когда зазвонил телефон.", "answer": "He was reading the newspaper when his phone rang.", "explanation": ""},
+                        {"question": "Они работали над проектом месяц, когда закончили его.", "answer": "They had been working on the project for a month when they finished it.", "explanation": ""},
+                        {"question": "Она никогда не была на концерте до того, как пошла на фестиваль.", "answer": "She had never been to a concert before she went to the festival.", "explanation": ""},
+                        {"question": "Дети играли в саду, когда начался снег.", "answer": "The children were playing in the garden when it started to snow.", "explanation": ""},
+                        {"question": "Мы ехали три часа, когда наконец добрались до отеля.", "answer": "We had been driving for three hours when we finally reached the hotel.", "explanation": ""},
+                        {"question": "Он написал отчёт к тому времени, как босс попросил его.", "answer": "He had written the report by the time the boss asked for it.", "explanation": ""},
+                        {"question": "Она была уставшей, потому что работала всю ночь.", "answer": "She was tired because she had been working all night.", "explanation": ""}
+                    ]
+                }
+            ],
+            # =====================================================
+            # ВАРИАНТ 11
+            # =====================================================
+            [
+                {
+                    "type": "complex",
+                    "text": "1. Choose the correct narrative tense to complete the sentences.",
+                    "subtasks": [
+                        {"question": "By the time I ______ (arrive), the meeting ______ (already / finish).", "answer": "arrived, had already finished", "explanation": "Прибыл (Past Simple) – встреча уже закончилась (Past Perfect)."},
+                        {"question": "She ______ (walk) along the beach when she ______ (find) a shell.", "answer": "was walking, found", "explanation": "Гуляла (Past Continuous), нашла (Past Simple)."},
+                        {"question": "They ______ (wait) for the train for 10 minutes when it ______ (finally / arrive).", "answer": "had been waiting, finally arrived", "explanation": "Ждали 10 минут (Past Perfect Continuous), потом поезд приехал (Past Simple)."},
+                        {"question": "He ______ (live) in London for three years before he ______ (move) to Edinburgh.", "answer": "had lived, moved", "explanation": "Жил до переезда (Past Perfect), потом переехал (Past Simple)."},
+                        {"question": "The sun ______ (set) and the stars ______ (appear) when we ______ (leave) the house.", "answer": "was setting, were appearing, left", "explanation": "Солнце садилось, звёзды появлялись (Past Continuous), мы вышли (Past Simple)."},
+                        {"question": "She ______ (never / ride) a bike before she ______ (learn) at the age of 30.", "answer": "had never ridden, learned", "explanation": "Никогда не ездила до того (Past Perfect), потом научилась (Past Simple)."},
+                        {"question": "We ______ (study) all day, so we ______ (be) tired in the evening.", "answer": "had been studying, were", "explanation": "Учились весь день (Past Perfect Continuous), были уставшими (Past Simple – результат)."},
+                        {"question": "He ______ (forget) his keys, so he ______ (can't) get into his house.", "answer": "had forgotten, couldn't", "explanation": "Забыл ключи (Past Perfect – причина), не мог войти (Past Simple – результат)."},
+                        {"question": "When I ______ (wake) up, my mother ______ (already / make) breakfast.", "answer": "woke, had already made", "explanation": "Проснулся (Past Simple) – мама уже приготовила завтрак (Past Perfect)."},
+                        {"question": "They ______ (play) football for an hour when it ______ (start) to rain.", "answer": "had been playing, started", "explanation": "Играли час (Past Perfect Continuous), потом начался дождь (Past Simple)."}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "2. Correct the mistakes in the sentences. If the sentence is correct, write 'Correct'.",
+                    "subtasks": [
+                        {"question": "By the time I arrived, the meeting already finished.", "answer": "By the time I arrived, the meeting had already finished.", "explanation": "Встреча уже закончилась до моего прихода – Past Perfect."},
+                        {"question": "She was walking along the beach when she found a shell.", "answer": "Correct", "explanation": "Верно – Past Continuous + Past Simple."},
+                        {"question": "They waited for the train for 10 minutes when it finally arrived.", "answer": "They had been waiting for the train for 10 minutes when it finally arrived.", "explanation": "Длительное ожидание до прибытия – Past Perfect Continuous."},
+                        {"question": "He lived in London for three years before he moved to Edinburgh.", "answer": "He had lived in London for three years before he moved to Edinburgh.", "explanation": "Прожил до переезда – Past Perfect."},
+                        {"question": "The sun was setting and the stars were appearing when we left the house.", "answer": "Correct", "explanation": "Верно – Past Continuous + Past Simple."},
+                        {"question": "She never rode a bike before she learned at the age of 30.", "answer": "She had never ridden a bike before she learned at the age of 30.", "explanation": "Опыт до того – Past Perfect."},
+                        {"question": "We studied all day, so we were tired in the evening.", "answer": "We had been studying all day, so we were tired in the evening.", "explanation": "Длительная учёба до результата – Past Perfect Continuous."},
+                        {"question": "He forgot his keys, so he couldn't get into his house.", "answer": "He had forgotten his keys, so he couldn't get into his house.", "explanation": "Забыл ключи (причина) – Past Perfect."},
+                        {"question": "When I woke up, my mother already made breakfast.", "answer": "When I woke up, my mother had already made breakfast.", "explanation": "Мама уже приготовила до моего пробуждения – Past Perfect."},
+                        {"question": "They had been playing football for an hour when it started to rain.", "answer": "Correct", "explanation": "Верно – Past Perfect Continuous + Past Simple."}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "3. Complete the story with the correct narrative tenses. Use the verbs in brackets.",
+                    "subtasks": [
+                        {"question": "It ______ (be) a warm spring day. The flowers ______ (bloom) and the bees ______ (buzz) around. I ______ (sit) on the grass when I ______ (see) a beautiful butterfly. I ______ (never / see) such a colourful one before. I ______ (try) to take a picture, but it ______ (fly) away.", "answer": "was, were blooming, were buzzing, was sitting, saw, had never seen, tried, flew", "explanation": "was – обстановка; were blooming, were buzzing, was sitting – фон; saw – прерывание; had never seen – опыт до того; tried, flew – последовательные действия."},
+                        {"question": "She ______ (dream) of visiting Japan for years when she ______ (finally / book) a ticket. She ______ (be) so excited that she ______ (start) learning Japanese immediately.", "answer": "had been dreaming, finally booked, was, started", "explanation": "had been dreaming – длительность до бронирования; finally booked – событие; was – состояние; started – последовательное действие."}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "4. Translate the sentences into English.",
+                    "subtasks": [
+                        {"question": "К тому времени, как я пришёл, встреча уже закончилась.", "answer": "By the time I arrived, the meeting had already finished.", "explanation": ""},
+                        {"question": "Она гуляла по пляжу, когда нашла ракушку.", "answer": "She was walking along the beach when she found a shell.", "explanation": ""},
+                        {"question": "Они ждали поезд 10 минут, когда он наконец приехал.", "answer": "They had been waiting for the train for 10 minutes when it finally arrived.", "explanation": ""},
+                        {"question": "Он жил в Лондоне три года до переезда в Эдинбург.", "answer": "He had lived in London for three years before he moved to Edinburgh.", "explanation": ""},
+                        {"question": "Солнце садилось, и звёзды появлялись, когда мы вышли из дома.", "answer": "The sun was setting and the stars were appearing when we left the house.", "explanation": ""},
+                        {"question": "Она никогда не ездила на велосипеде до того, как научилась в 30 лет.", "answer": "She had never ridden a bike before she learned at the age of 30.", "explanation": ""},
+                        {"question": "Мы учились весь день, поэтому вечером были уставшими.", "answer": "We had been studying all day, so we were tired in the evening.", "explanation": ""},
+                        {"question": "Он забыл ключи, поэтому не мог попасть в дом.", "answer": "He had forgotten his keys, so he couldn't get into his house.", "explanation": ""}
+                    ]
+                }
+            ],
+            # =====================================================
+            # ВАРИАНТ 12
+            # =====================================================
+            [
+                {
+                    "type": "complex",
+                    "text": "1. Choose the correct narrative tense to complete the sentences.",
+                    "subtasks": [
+                        {"question": "When I ______ (look) at the clock, I ______ (realise) that I ______ (miss) the train.", "answer": "looked, realised, had missed", "explanation": "Посмотрел (Past Simple), понял (Past Simple), что опоздал на поезд (Past Perfect – ещё раньше)."},
+                        {"question": "She ______ (read) in the garden when it ______ (start) to rain.", "answer": "was reading, started", "explanation": "Читала (Past Continuous), начался дождь (Past Simple)."},
+                        {"question": "They ______ (wait) for the concert to start for 30 minutes when the band ______ (finally / appear).", "answer": "had been waiting, finally appeared", "explanation": "Ждали 30 минут (Past Perfect Continuous), потом группа появилась (Past Simple)."},
+                        {"question": "He ______ (work) in a bank for five years before he ______ (become) a teacher.", "answer": "had worked, became", "explanation": "Работал до того (Past Perfect), потом стал (Past Simple)."},
+                        {"question": "The children ______ (laugh) and ______ (jump) when their mother ______ (call) them.", "answer": "were laughing, jumping, called", "explanation": "Смеялись и прыгали (Past Continuous), мама позвала (Past Simple)."},
+                        {"question": "She ______ (never / eat) such a delicious dessert before she ______ (try) the chocolate cake.", "answer": "had never eaten, tried", "explanation": "Никогда не ела до того (Past Perfect), потом попробовала (Past Simple)."},
+                        {"question": "We ______ (drive) for five hours when we ______ (finally / arrive) at the coast.", "answer": "had been driving, finally arrived", "explanation": "Ехали пять часов (Past Perfect Continuous), потом прибыли на побережье (Past Simple)."},
+                        {"question": "He ______ (be) very upset because someone ______ (steal) his wallet.", "answer": "was, had stolen", "explanation": "Был расстроен (Past Simple) – кто-то украл кошелёк (Past Perfect – причина)."},
+                        {"question": "When I ______ (get) home, my sister ______ (already / finish) her homework.", "answer": "got, had already finished", "explanation": "Пришёл (Past Simple) – сестра уже сделала уроки (Past Perfect)."},
+                        {"question": "They ______ (study) for three hours when they ______ (decide) to go out.", "answer": "had been studying, decided", "explanation": "Учились три часа (Past Perfect Continuous), потом решили выйти (Past Simple)."}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "2. Correct the mistakes in the sentences. If the sentence is correct, write 'Correct'.",
+                    "subtasks": [
+                        {"question": "When I looked at the clock, I realised that I missed the train.", "answer": "When I looked at the clock, I realised that I had missed the train.", "explanation": "Опоздал на поезд до того, как понял – Past Perfect."},
+                        {"question": "She was reading in the garden when it started to rain.", "answer": "Correct", "explanation": "Верно – Past Continuous + Past Simple."},
+                        {"question": "They waited for the concert to start for 30 minutes when the band finally appeared.", "answer": "They had been waiting for the concert to start for 30 minutes when the band finally appeared.", "explanation": "Длительное ожидание до появления группы – Past Perfect Continuous."},
+                        {"question": "He worked in a bank for five years before he became a teacher.", "answer": "He had worked in a bank for five years before he became a teacher.", "explanation": "Работал до того – Past Perfect."},
+                        {"question": "The children were laughing and jumping when their mother called them.", "answer": "Correct", "explanation": "Верно – Past Continuous + Past Simple."},
+                        {"question": "She never ate such a delicious dessert before she tried the chocolate cake.", "answer": "She had never eaten such a delicious dessert before she tried the chocolate cake.", "explanation": "Опыт до того – Past Perfect."},
+                        {"question": "We drove for five hours when we finally arrived at the coast.", "answer": "We had been driving for five hours when we finally arrived at the coast.", "explanation": "Длительное вождение до прибытия – Past Perfect Continuous."},
+                        {"question": "He was very upset because someone stole his wallet.", "answer": "He was very upset because someone had stolen his wallet.", "explanation": "Кто-то украл до того (причина) – Past Perfect."},
+                        {"question": "When I got home, my sister already finished her homework.", "answer": "When I got home, my sister had already finished her homework.", "explanation": "Сестра уже сделала уроки до моего прихода – Past Perfect."},
+                        {"question": "They had been studying for three hours when they decided to go out.", "answer": "Correct", "explanation": "Верно – Past Perfect Continuous + Past Simple."}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "3. Complete the story with the correct narrative tenses. Use the verbs in brackets.",
+                    "subtasks": [
+                        {"question": "It ______ (be) a quiet evening. The fire ______ (crackle) in the fireplace and the dog ______ (sleep) on the rug. I ______ (read) a book when I ______ (hear) a strange noise outside. I ______ (never / be) so curious. I ______ (put) down my book and ______ (walk) to the window.", "answer": "was, was crackling, was sleeping, was reading, heard, had never been, put, walked", "explanation": "was – обстановка; was crackling, was sleeping, was reading – фон; heard – прерывание; had never been – опыт до того; put, walked – последовательные действия."},
+                        {"question": "She ______ (save) money for a long time before she ______ (finally / buy) her dream house. She ______ (feel) proud because she ______ (work) so hard to achieve it.", "answer": "had been saving, finally bought, felt, had been working", "explanation": "had been saving – длительность до покупки; finally bought – результат; felt – состояние; had been working – причина гордости."}
+                    ]
+                },
+                {
+                    "type": "complex",
+                    "text": "4. Translate the sentences into English.",
+                    "subtasks": [
+                        {"question": "Когда я посмотрел на часы, я понял, что опоздал на поезд.", "answer": "When I looked at the clock, I realised that I had missed the train.", "explanation": ""},
+                        {"question": "Она читала в саду, когда начался дождь.", "answer": "She was reading in the garden when it started to rain.", "explanation": ""},
+                        {"question": "Они ждали начала концерта 30 минут, когда группа наконец появилась.", "answer": "They had been waiting for the concert to start for 30 minutes when the band finally appeared.", "explanation": ""},
+                        {"question": "Он работал в банке пять лет до того, как стал учителем.", "answer": "He had worked in a bank for five years before he became a teacher.", "explanation": ""},
+                        {"question": "Дети смеялись и прыгали, когда мама позвала их.", "answer": "The children were laughing and jumping when their mother called them.", "explanation": ""},
+                        {"question": "Она никогда не ела такого вкусного десерта до того, как попробовала шоколадный торт.", "answer": "She had never eaten such a delicious dessert before she tried the chocolate cake.", "explanation": ""},
+                        {"question": "Мы ехали пять часов, когда наконец добрались до побережья.", "answer": "We had been driving for five hours when we finally arrived at the coast.", "explanation": ""},
+                        {"question": "Он был очень расстроен, потому что кто-то украл его кошелёк.", "answer": "He was very upset because someone had stolen his wallet.", "explanation": ""}
+                    ]
+                }
+            ]
+        ]
+    }
+}
   },
   "future_continuous_perfect": {
     "title": "Future Continuous vs Future Perfect (повторение и углубление)",
