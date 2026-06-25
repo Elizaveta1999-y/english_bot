@@ -55,12 +55,12 @@ async def show_practice_task(message: Message, user_id: int, edit: bool = True):
     task = tasks[task_idx]
     header = f"Задание {task_idx+1}/{len(tasks)}"
 
-    # Берём описание задания (все строки, кроме пунктов с номерами)
+    # Берём описание: все строки до первой пустой строки
     text_lines = task['text'].split('\n')
     description_lines = []
     for line in text_lines:
-        if re.match(r'^\d+\.', line.strip()):
-            continue
+        if line.strip() == '':
+            break
         if line.strip() and not line.strip().startswith('Задание'):
             description_lines.append(line)
 
