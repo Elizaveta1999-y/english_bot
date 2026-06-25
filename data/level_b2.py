@@ -10233,7 +10233,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "______ I not so clumsy, I wouldn't have dropped the glass.", "answer": "Were", "explanation": "Инверсия 2 типа (условие в настоящем, результат в прошлом – смесь)."},
                 {"question": "______ they left earlier, they wouldn't be stuck now.", "answer": "Had", "explanation": "Смешанная инверсия."},
                 {"question": "______ it to rain, the match would be cancelled.", "answer": "Were", "explanation": "Инверсия 2 типа."},
-                {"question": "______ I more time, I would read more books." – опять 'Had I more time' – ответ 'Had'."}
+                {"question": "______ I more time, I would read more books.", "answer": "Had", "explanation": "Инверсия 2 типа для глагола have: Had I more time."}
             ]
         },
         {
