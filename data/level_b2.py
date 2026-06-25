@@ -9690,7 +9690,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
             "type": "complex",
             "text": "4. Translate the sentences into English using the given conjunctions.",
             "subtasks": [
-                {"question": "Я не съем суп, если он не будет слишком солёным? (unless) – но здесь смысл: я съем, если он будет солёным? Нет, лучше: Я не съем суп, если он будет слишком солёным? Но обычно unless = if not, так что перефразируем: Я съем суп, если он не будет слишком солёным. Но дано: "I won't eat the soup unless it's too salty." – это значит: я не съем, если он не слишком солёный? Это странно. Лучше: Я не буду есть суп, если он не слишком солёный (т.е. я буду есть только если он солёный). Но я напишу как в задании: "Я не съем суп, если он не будет слишком солёным." – это соответствует "I won't eat the soup unless it's too salty." (т.е. я съем его, только если он солёный). Но я оставлю как есть."},
+                {"question": "Я не съем суп, если он не будет слишком солёным. (unless)", "answer": "I won't eat the soup unless it is too salty.", "explanation": ""},
                 {"question": "Мы можем устроить вечеринку при условии, что мы потом уберёмся. (provided that)", "answer": "We can have a party provided that we clean up afterwards.", "explanation": ""},
                 {"question": "Тебе следует усердно учиться; иначе ты можешь провалить экзамен. (otherwise)", "answer": "You should study hard; otherwise, you might fail the exam.", "explanation": ""},
                 {"question": "Она пойдёт в спортзал, даже если ей лень. (even if)", "answer": "She'll go to the gym even if she is feeling lazy.", "explanation": ""},
@@ -9812,7 +9812,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
             "type": "complex",
             "text": "4. Translate the sentences into English using the given conjunctions.",
             "subtasks": [
-                {"question": "Я не поверю в это, пока не увижу своими глазами. (unless) – но unless = if not, значит "если не увижу" – верно.", "answer": "I won't believe it unless I see it with my own eyes.", "explanation": ""},
+                {"question": "Я не поверю в это, пока не увижу своими глазами. (unless)", "answer": "I won't believe it unless I see it with my own eyes.", "explanation": ""},
                 {"question": "Мы можем заказать пиццу при условии, что все согласятся с начинкой. (provided that)", "answer": "We can order pizza provided that everyone agrees on toppings.", "explanation": ""},
                 {"question": "Тебе следует поливать растения; иначе они погибнут. (otherwise)", "answer": "You should water the plants; otherwise, they'll die.", "explanation": ""},
                 {"question": "Она пойдёт в поход, даже если пойдёт снег. (even if)", "answer": "She'll go hiking even if it snows.", "explanation": ""},
@@ -10355,7 +10355,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "______ I not so lazy, I would exercise more.", "answer": "Were", "explanation": "Инверсия 2 типа."},
                 {"question": "______ they taken the bus, they would be here already.", "answer": "Had", "explanation": "Смешанная."},
                 {"question": "______ it to freeze, the pipes would burst.", "answer": "Were", "explanation": "Инверсия 2 типа."},
-                {"question": "______ I had a map, I would find the way." – инверсия 'Had I a map' – ответ 'Had'."}
+                {"question": "______ I had a map, I would find the way.", "answer": "Had", "explanation": "Инверсия 2 типа для глагола have: Had I a map."}
             ]
         },
         {
@@ -10477,7 +10477,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "______ I not so anxious, I would have performed better.", "answer": "Were", "explanation": "Смешанная (условие в настоящем, результат в прошлом)."},
                 {"question": "______ she taken the opportunity, she would be happier now.", "answer": "Had", "explanation": "Смешанная."},
                 {"question": "______ it to be sunny, we would go to the park.", "answer": "Were", "explanation": "Инверсия 2 типа."},
-                {"question": "______ I had a car, I would drive you." – 'Had I a car'."}
+                {"question": "______ I had a car, I would drive you.", "answer": "Had", "explanation": "Инверсия 2 типа для глагола have: Had I a car."}
             ]
         },
         {
