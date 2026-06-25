@@ -14858,7 +14858,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
             "text": "1. Choose the correct form (infinitive without 'to' or V‑ing) to complete the sentences.",
             "subtasks": [
                 {"question": "I saw the bus ______ (arrive / arriving) at the station.", "answer": "arrive", "explanation": "Инфинитив без to – завершённое прибытие."},
-                {"question": "She heard someone ______ (call / calling) her name.", "answer": "calling", "explanation": "V‑ing – процесс (слышала, как кто-то звал)."}
+                {"question": "She heard someone ______ (call / calling) her name.", "answer": "calling", "explanation": "V‑ing – процесс (слышала, как кто-то звал)."},
                 {"question": "We watched the clouds ______ (move / moving) across the sky.", "answer": "moving", "explanation": "V‑ing – процесс движения."},
                 {"question": "I noticed the cat ______ (scratch / scratching) the furniture.", "answer": "scratching", "explanation": "V‑ing – процесс."},
                 {"question": "He was seen ______ (leave / to leave) the building.", "answer": "to leave", "explanation": "Пассив – to‑infinitive."},
