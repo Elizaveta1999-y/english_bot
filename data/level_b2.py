@@ -739,8 +739,6 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 }
             ]
         ]
-    }
-}
   },
   "future_continuous_perfect": {
     "title": "Future Continuous vs Future Perfect (повторение и углубление)",
