@@ -54,27 +54,27 @@ async def show_practice_task(message: Message, user_id: int, edit: bool = True):
         set_user_state(user_id, user_state)
         return
 
-    # --- ТЕКУЩЕЕ ЗАДАНИЕ ---
-    task = tasks[task_idx]
-    header = f"Задание {task_idx+1}/{len(tasks)}"
-    
-        # Разделяем текст на описание и пункты
-    text_lines = task['text'].split('\n')
-    description = []
-    items = []
-    for line in text_lines:
-        if re.match(r'^\d+\.', line.strip()):
-            items.append(line)
-        else:
-            # Пропускаем строки, начинающиеся с "Задание" (чтобы не дублировать заголовок)
-            if line.strip() and not line.strip().startswith('Задание'):
-                description.append(line)
-    
-    description_text = '\n'.join(description)
-    items_text = '\n'.join(items)
-    instruction = "Введите все ответы через «;»"
-    
-    full_text = f"{header}\n{description_text}\n{instruction}\n\n{items_text}"
+# --- ТЕКУЩЕЕ ЗАДАНИЕ ---
+task = tasks[task_idx]
+header = f"Задание {task_idx+1}/{len(tasks)}"
+
+# Берём описание задания (всё до первого пункта с номером)
+text_lines = task['text'].split('\n')
+description_lines = []
+for line in text_lines:
+    if re.match(r'^\d+\.', line.strip()):
+        break  # встречаем первый пункт – выходим
+    if line.strip() and not line.strip().startswith('Задание'):
+        description_lines.append(line)
+
+description_text = '\n'.join(description_lines).strip()
+
+# Генерируем пункты из subtasks
+items_text = '\n'.join([f"{i+1}. {sub['question']}" for i, sub in enumerate(task['subtasks'])])
+
+instruction = "Введите все ответы через «;»"
+
+full_text = f"{header}\n{description_text}\n{instruction}\n\n{items_text}"
     
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(text="Пропустить", callback_data=f"practice_skip_{lesson_key}"),
