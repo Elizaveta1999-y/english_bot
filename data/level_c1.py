@@ -4535,6 +4535,7 @@ LEVEL_C1_CONTENT = LEVEL_C1_CONTENT = {
             ]
         }
     ]
+]
 },
   "modal_verbs_advanced_c1": {
     "title": "Модальные глаголы: must, can't, could, might, may – вероятностные значения",
