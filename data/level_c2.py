@@ -974,7 +974,7 @@ LEVEL_C2_CONTENT = LEVEL_C2_CONTENT = {
         {"question": "Text: 'The government has announced a new initiative to combat climate change.'", "answer": "a", "explanation": "a) Passive voice, neutral register, reported speech. b) Metaphors, imagery — нет, c) First person, contractions — нет, d) Complex sentences, formal vocabulary — частично, но a точнее."},
         {"question": "Text: 'It is widely believed that the discovery will revolutionise the field of medicine.'", "answer": "b", "explanation": "b) Impersonal construction, formal vocabulary, passive voice. a) Dialogue — нет, c) Slang — нет, d) Rhetorical questions — нет."},
         {"question": "Text: 'He walked through the forest, the leaves crunching beneath his feet. A sense of unease settled in his stomach.'", "answer": "c", "explanation": "c) Imagery, narrative tenses, emotional language. a) Passive voice — нет, b) Formal vocabulary — нет, d) Direct address — нет."},
-        {"question": "Text: 'If you're looking for a quick and easy dinner idea, this one is for you!'," "answer": "d", "explanation": "d) Direct address, contractions, first person. a) Complex sentences — нет, b) Formal vocabulary — нет, c) Imagery — нет."},
+        {"question": "Text: 'If you're looking for a quick and easy dinner idea, this one is for you!'", "answer": "d", "explanation": "d) Direct address, contractions, first person. a) Complex sentences — нет, b) Formal vocabulary — нет, c) Imagery — нет."},
         {"question": "Text: 'The mayor has promised to invest in affordable housing projects.'", "answer": "a", "explanation": "a) Reported speech, neutral register, passive voice. b) Metaphors — нет, c) Contractions — нет, d) Complex syntax — нет."},
         {"question": "Text: 'The findings suggest a correlation between diet and mental health.'", "answer": "b", "explanation": "b) Formal vocabulary, impersonal construction, passive voice. a) Imagery — нет, c) Direct address — нет, d) Slang — нет."},
         {"question": "Text: 'He felt a chill run down his spine as he turned the key.'", "answer": "c", "explanation": "c) Imagery, narrative tenses, emotional language. a) Neutral register — нет, b) Formal vocabulary — нет, d) Contractions — нет."},
@@ -49783,3 +49783,4 @@ practice_bank = [
     }
   ]
 ]
+
