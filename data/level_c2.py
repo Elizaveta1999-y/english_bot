@@ -1,4 +1,4 @@
-LEVEL_C2_CONTENT = LEVEL_C2_CONTENT = {
+LEVEL_C2_CONTENT = {
   "formal_vs_informal_advanced": {
     "title": "Formal vs Informal: регистры и стилистика",
     "pages": [
