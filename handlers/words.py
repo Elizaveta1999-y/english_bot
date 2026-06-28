@@ -47,6 +47,7 @@ user_sessions = {}
 
 # ---------- Клавиатуры ----------
 def get_categories_keyboard():
+    # Группируем по две в ряд
     items = list(AVAILABLE_CATEGORIES.items())
     keyboard = []
     for i in range(0, len(items), 2):
@@ -61,7 +62,6 @@ def get_categories_keyboard():
     return InlineKeyboardMarkup(inline_keyboard=keyboard)
 
 def get_word_card_keyboard():
-    # Кнопки в одной строке
     return InlineKeyboardMarkup(inline_keyboard=[
         [
             InlineKeyboardButton(text="Показать ответ", callback_data="word_show_answer"),
@@ -100,11 +100,6 @@ def is_correct(user_answer: str, correct_answer: str) -> bool:
     return user_answer in variants
 
 async def show_answer_with_example(message, word_data, is_correct: bool = False):
-    """
-    Отправляет ответ с примером.
-    is_correct=True → пишем "Верно! Правильный ответ: ..."
-    is_correct=False → просто "Правильный ответ: ..."
-    """
     answer = word_data["answer"]
     example = word_data.get("example")
     if is_correct:
@@ -115,23 +110,8 @@ async def show_answer_with_example(message, word_data, is_correct: bool = False)
         text += f"\n\n<i>{example}</i>"
     await message.answer(text, parse_mode="HTML")
 
-async def disable_buttons_and_send_next(message, user_id, session, edit_message):
-    """
-    Редактирует сообщение с карточкой (убирает кнопки) и отправляет новую карточку.
-    edit_message – исходное сообщение карточки (Message или CallbackQuery.message)
-    """
-    # Редактируем карточку — убираем клавиатуру
-    if isinstance(edit_message, CallbackQuery):
-        msg = edit_message.message
-    else:
-        msg = edit_message
-    await msg.edit_text(msg.text, reply_markup=None, parse_mode="HTML")
-
-    # Отправляем новое слово (новым сообщением)
-    await show_word(message, user_id, session, edit=False)
-
 async def show_word(message_or_callback, user_id: int, session: dict, edit: bool = False):
-    """Показывает карточку слова (слово: _____)"""
+    """Показывает карточку слова (слово: _____) и сохраняет ID сообщения"""
     words = session["words"]
     index = session["index"]
     total = len(words)
@@ -149,9 +129,52 @@ async def show_word(message_or_callback, user_id: int, session: dict, edit: bool
     text = f"{word['word']}: _____"
     keyboard = get_word_card_keyboard()
     if edit:
+        # Редактируем существующее сообщение
         await message_or_callback.edit_text(text, reply_markup=keyboard, parse_mode="HTML")
+        # ID сообщения не меняется
     else:
-        await message_or_callback.answer(text, reply_markup=keyboard, parse_mode="HTML")
+        # Отправляем новое сообщение и сохраняем его ID
+        sent_msg = await message_or_callback.answer(text, reply_markup=keyboard, parse_mode="HTML")
+        session["card_message_id"] = sent_msg.message_id
+
+async def remove_buttons_and_send_next(chat_id, user_id, session, bot, edit_message=None):
+    """
+    Убирает кнопки у карточки (по сохранённому ID или по объекту Message)
+    и отправляет следующее слово.
+    edit_message — если передан, то редактируем его (используется для колбэков).
+    """
+    # 1. Убираем кнопки
+    if edit_message:
+        # Редактируем переданное сообщение (например, из колбэка)
+        await edit_message.edit_text(edit_message.text, reply_markup=None, parse_mode="HTML")
+    else:
+        # Редактируем по сохранённому ID (для текстовых ответов)
+        card_msg_id = session.get("card_message_id")
+        if card_msg_id:
+            try:
+                await bot.edit_message_text(
+                    chat_id=chat_id,
+                    message_id=card_msg_id,
+                    text=session.get("current_word", {}).get("word", "") + ": _____",
+                    reply_markup=None,
+                    parse_mode="HTML"
+                )
+            except Exception:
+                pass  # если сообщение уже удалено или не найдено
+
+    # 2. Отправляем новую карточку (новым сообщением)
+    # Создаём фейковый объект для отправки (используем bot.send_message)
+    # Но проще вызвать show_word с параметром edit=False, передавая chat_id
+    # Для этого создадим объект Message-like
+    class FakeMessage:
+        def __init__(self, chat_id, bot):
+            self.chat = type('obj', (object,), {'id': chat_id})()
+            self.bot = bot
+        async def answer(self, text, reply_markup=None, parse_mode=None):
+            return await self.bot.send_message(chat_id=self.chat.id, text=text, reply_markup=reply_markup, parse_mode=parse_mode)
+
+    fake_msg = FakeMessage(chat_id, bot)
+    await show_word(fake_msg, user_id, session, edit=False)
 
 # ---------- Хендлеры ----------
 @router.callback_query(F.data == "start_words")
@@ -186,7 +209,8 @@ async def category_selected(callback: CallbackQuery, state: FSMContext):
         "correct": 0,
         "wrong": 0,
         "category": category_key,
-        "current_word": None
+        "current_word": None,
+        "card_message_id": None  # будем хранить ID сообщения с карточкой
     }
 
     # Приветствие
@@ -219,15 +243,15 @@ async def handle_answer(message: Message, state: FSMContext):
 
     if is_correct(user_answer, correct_answer):
         session["correct"] += 1
-        # Показываем ответ с примером (с "Верно!")
+        # Показываем ответ с примером
         await show_answer_with_example(message, current_word, is_correct=True)
         # Увеличиваем индекс и сохраняем
         session["index"] += 1
         if session["index"] >= len(session["words"]):
             session["index"] = 0
         await set_user_index(user_id, session["category"], session["index"])
-        # Редактируем карточку (убираем кнопки) и отправляем новую
-        await disable_buttons_and_send_next(message, user_id, session, message)
+        # Убираем кнопки у старой карточки и отправляем новую
+        await remove_buttons_and_send_next(message.chat.id, user_id, session, message.bot)
     else:
         session["wrong"] += 1
         await message.answer("Неверно, попробуйте ещё раз.")
@@ -254,8 +278,8 @@ async def show_answer(callback: CallbackQuery, state: FSMContext):
         session["index"] = 0
     await set_user_index(user_id, session["category"], session["index"])
 
-    # Редактируем карточку (убираем кнопки) и отправляем новую
-    await disable_buttons_and_send_next(callback.message, user_id, session, callback)
+    # Убираем кнопки у текущей карточки (редактируем её) и отправляем новую
+    await remove_buttons_and_send_next(callback.message.chat.id, user_id, session, callback.bot, edit_message=callback.message)
 
     await callback.answer()
 
@@ -289,7 +313,7 @@ async def back_to_categories(callback: CallbackQuery, state: FSMContext):
     await state.clear()
     user_id = callback.from_user.id
     user_sessions.pop(user_id, None)
-    await callback.message.edit_text("Выберите категорию слов:", reply_markup=get_categories_keyboard())
+    await callback.message.edit_text("Выберите категорию слов для тренировки:", reply_markup=get_categories_keyboard())
     await callback.answer()
 
 @router.callback_query(F.data == "back_to_main")
