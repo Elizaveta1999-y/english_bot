@@ -1,0 +1,9 @@
+[
+  {"word": "быстро", "answer": "quickly"},
+  {"word": "медленно", "answer": "slowly"},
+  {"word": "хорошо", "answer": "well"},
+  {"word": "плохо", "answer": "badly"},
+  {"word": "громко", "answer": "loudly"},
+  {"word": "тихо", "answer": "quietly"},
+  {"word": "внимательно", "answer": "carefully"}
+]

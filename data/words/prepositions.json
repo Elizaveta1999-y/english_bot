@@ -1,0 +1,9 @@
+[
+  {"word": "в", "answer": "in"},
+  {"word": "на", "answer": "on"},
+  {"word": "у", "answer": "at"},
+  {"word": "под", "answer": "under"},
+  {"word": "над", "answer": "over"},
+  {"word": "между", "answer": "between"},
+  {"word": "рядом с", "answer": "next to"}
+]
