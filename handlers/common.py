@@ -17,3 +17,6 @@ async def main_menu_button(message: Message, state: FSMContext):
     user_id = message.from_user.id
     set_user_state(user_id, {"mode": None, "history": []})
     await show_main_menu(message, edit=True)
+
+
+
