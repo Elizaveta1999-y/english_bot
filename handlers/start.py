@@ -46,7 +46,6 @@ async def start_handler(message: Message):
         set_user_state(user_id, {})
     await show_main_menu(message, edit=False)
 
-# ---------- Заглушки для новых режимов (пока в разработке) ----------
-@router.callback_query(F.data.in_(["start_listening", "start_reading", "start_writing", "start_govorenie"]))
+@router.callback_query(F.data.in_(["start_reading", "start_writing", "start_govorenie"]))
 async def under_construction(callback: CallbackQuery):
     await callback.answer("Этот режим в разработке. Скоро появится! 🚧", show_alert=True)

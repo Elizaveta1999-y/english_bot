@@ -1,0 +1,662 @@
+[
+  {
+    "id": 1,
+    "level": "beginner",
+    "text": "My name is Anna. I am 25 years old. I live in London with my family. I work as a teacher at a primary school. I love my job.",
+    "tasks": [
+      {"type": "title", "options": ["Anna's Job", "My Family", "A Day in London"], "correct": 0},
+      {"type": "truefalse", "statement": "Anna lives in Paris.", "correct": false},
+      {"type": "choice", "question": "What is Anna's profession?", "options": ["Teacher", "Doctor", "Engineer"], "correct": 0},
+      {"type": "order", "items": ["Anna works", "Anna lives in London", "Anna is 25"], "correct": "B; C; A"}
+    ]
+  },
+  {
+    "id": 2,
+    "level": "beginner",
+    "text": "Tom and Jerry are friends. They live in New York. Tom works in a bank. Jerry is a student at the university. On weekends they go to the park.",
+    "tasks": [
+      {"type": "title", "options": ["Friends in New York", "Weekend Plans", "Working in a Bank"], "correct": 0},
+      {"type": "truefalse", "statement": "Jerry works in a bank.", "correct": false},
+      {"type": "choice", "question": "Where do Tom and Jerry live?", "options": ["London", "New York", "Paris"], "correct": 1},
+      {"type": "order", "items": ["They go to the park", "Tom works in a bank", "They live in New York"], "correct": "C; B; A"}
+    ]
+  },
+  {
+    "id": 3,
+    "level": "beginner",
+    "text": "My day starts at 6:30. I have breakfast at 7:00. Then I go to work. I work from 8:30 to 5:00. I have lunch at 12:30. In the evening I watch TV.",
+    "tasks": [
+      {"type": "title", "options": ["My Daily Routine", "Breakfast Time", "Work Schedule"], "correct": 0},
+      {"type": "truefalse", "statement": "I have breakfast at 8:00.", "correct": false},
+      {"type": "choice", "question": "What time does the person have lunch?", "options": ["12:00", "12:30", "13:00"], "correct": 1},
+      {"type": "order", "items": ["Have breakfast", "Go to work", "Watch TV"], "correct": "A; B; C"}
+    ]
+  },
+  {
+    "id": 4,
+    "level": "beginner",
+    "text": "My sister is a doctor. She works in a hospital. She helps sick people. She works long hours, but she loves her job.",
+    "tasks": [
+      {"type": "title", "options": ["A Doctor's Life", "My Sister", "Helping People"], "correct": 0},
+      {"type": "truefalse", "statement": "My sister works in a school.", "correct": false},
+      {"type": "choice", "question": "What is my sister's profession?", "options": ["Teacher", "Doctor", "Nurse"], "correct": 1},
+      {"type": "order", "items": ["She works in a hospital", "She helps sick people", "She is a doctor"], "correct": "C; A; B"}
+    ]
+  },
+  {
+    "id": 5,
+    "level": "beginner",
+    "text": "I like to eat pizza. Pizza is my favorite food. I usually eat pizza on Fridays. I go to a pizza place near my house.",
+    "tasks": [
+      {"type": "title", "options": ["My Favorite Food", "Pizza Place", "Friday Dinner"], "correct": 0},
+      {"type": "truefalse", "statement": "I eat pizza every day.", "correct": false},
+      {"type": "choice", "question": "When do I usually eat pizza?", "options": ["Mondays", "Fridays", "Sundays"], "correct": 1},
+      {"type": "order", "items": ["Go to a pizza place", "Eat pizza", "Decide to eat pizza"], "correct": "C; B; A"}
+    ]
+  },
+  {
+    "id": 6,
+    "level": "beginner",
+    "text": "My school is near my house. I walk to school every day. It takes me 10 minutes. I like school because I meet my friends there.",
+    "tasks": [
+      {"type": "title", "options": ["My School", "Walking to School", "Friends at School"], "correct": 0},
+      {"type": "truefalse", "statement": "I go to school by bus.", "correct": false},
+      {"type": "choice", "question": "How long does it take to walk to school?", "options": ["5 minutes", "10 minutes", "15 minutes"], "correct": 1},
+      {"type": "order", "items": ["Meet friends", "Walk to school", "Reach school"], "correct": "B; C; A"}
+    ]
+  },
+  {
+    "id": 7,
+    "level": "beginner",
+    "text": "I have a dog named Max. Max is brown and white. He is very friendly. He likes to play with a ball. We go to the park every day.",
+    "tasks": [
+      {"type": "title", "options": ["My Dog Max", "Playing with the Ball", "A Friendly Dog"], "correct": 0},
+      {"type": "truefalse", "statement": "Max is black.", "correct": false},
+      {"type": "choice", "question": "What color is Max?", "options": ["Brown and white", "Black and white", "Golden"], "correct": 0},
+      {"type": "order", "items": ["Go to the park", "Play with a ball", "Meet Max"], "correct": "C; B; A"}
+    ]
+  },
+  {
+    "id": 8,
+    "level": "beginner",
+    "text": "My father is a driver. He drives a bus. He works in the city. He comes home at 6 pm. We have dinner together.",
+    "tasks": [
+      {"type": "title", "options": ["My Father's Job", "The Bus Driver", "Family Dinner"], "correct": 0},
+      {"type": "truefalse", "statement": "My father is a teacher.", "correct": false},
+      {"type": "choice", "question": "What does my father drive?", "options": ["Car", "Bus", "Train"], "correct": 1},
+      {"type": "order", "items": ["Have dinner", "Father comes home", "Father drives the bus"], "correct": "C; B; A"}
+    ]
+  },
+  {
+    "id": 9,
+    "level": "beginner",
+    "text": "I like to read books. My favorite book is Harry Potter. I read it every evening. It is very interesting. I learn new words.",
+    "tasks": [
+      {"type": "title", "options": ["My Favorite Book", "Reading in the Evening", "Learning Words"], "correct": 0},
+      {"type": "truefalse", "statement": "I read books every morning.", "correct": false},
+      {"type": "choice", "question": "What is my favorite book?", "options": ["Lord of the Rings", "Harry Potter", "The Hobbit"], "correct": 1},
+      {"type": "order", "items": ["Learn new words", "Read the book", "Choose a book"], "correct": "C; B; A"}
+    ]
+  },
+  {
+    "id": 10,
+    "level": "beginner",
+    "text": "I live in a small town. There is a river near my house. I like to walk along the river. It is very peaceful.",
+    "tasks": [
+      {"type": "title", "options": ["My Small Town", "River Walks", "Peaceful Place"], "correct": 0},
+      {"type": "truefalse", "statement": "I live in a big city.", "correct": false},
+      {"type": "choice", "question": "What is near my house?", "options": ["Park", "River", "Forest"], "correct": 1},
+      {"type": "order", "items": ["Walk along the river", "Enjoy the peace", "Go out of the house"], "correct": "C; A; B"}
+    ]
+  },
+  {
+    "id": 11,
+    "level": "beginner",
+    "text": "My family goes to the beach every summer. We swim in the sea. We build sandcastles. We have a lot of fun.",
+    "tasks": [
+      {"type": "title", "options": ["Summer at the Beach", "Building Sandcastles", "Family Fun"], "correct": 0},
+      {"type": "truefalse", "statement": "We go to the beach in winter.", "correct": false},
+      {"type": "choice", "question": "What do we do at the beach?", "options": ["Swim and build sandcastles", "Play football", "Read books"], "correct": 0},
+      {"type": "order", "items": ["Build sandcastles", "Swim in the sea", "Go to the beach"], "correct": "C; B; A"}
+    ]
+  },
+  {
+    "id": 12,
+    "level": "beginner",
+    "text": "I have a hobby. I like to paint pictures. I paint landscapes and flowers. I paint every weekend. It helps me relax.",
+    "tasks": [
+      {"type": "title", "options": ["My Painting Hobby", "Landscape Art", "Relaxing Weekend"], "correct": 0},
+      {"type": "truefalse", "statement": "I paint every day.", "correct": false},
+      {"type": "choice", "question": "What do I like to paint?", "options": ["Portraits", "Landscapes", "Abstract art"], "correct": 1},
+      {"type": "order", "items": ["Relax", "Paint a picture", "Prepare materials"], "correct": "C; B; A"}
+    ]
+  },
+  {
+    "id": 13,
+    "level": "beginner",
+    "text": "My mother is a good cook. She makes delicious cakes. She bakes a cake for my birthday every year. I love her cakes.",
+    "tasks": [
+      {"type": "title", "options": ["My Mother's Cooking", "Birthday Cakes", "Delicious Food"], "correct": 0},
+      {"type": "truefalse", "statement": "My mother hates cooking.", "correct": false},
+      {"type": "choice", "question": "What does my mother make for my birthday?", "options": ["Pizza", "Cake", "Pasta"], "correct": 1},
+      {"type": "order", "items": ["Eat the cake", "Mother bakes a cake", "Celebrate birthday"], "correct": "B; C; A"}
+    ]
+  },
+  {
+    "id": 14,
+    "level": "beginner",
+    "text": "I am learning English. I study every day. I watch English movies. I speak English with my friends. It is not easy, but I try.",
+    "tasks": [
+      {"type": "title", "options": ["Learning English", "English Movies", "Practicing with Friends"], "correct": 0},
+      {"type": "truefalse", "statement": "I never study English.", "correct": false},
+      {"type": "choice", "question": "How do I learn English?", "options": ["Read books", "Watch movies", "Listen to songs"], "correct": 1},
+      {"type": "order", "items": ["Speak with friends", "Watch a movie", "Study vocabulary"], "correct": "C; B; A"}
+    ]
+  },
+  {
+    "id": 15,
+    "level": "beginner",
+    "text": "I have a bicycle. I ride it to the park. I like cycling. It is good exercise. I ride with my brother.",
+    "tasks": [
+      {"type": "title", "options": ["My Bicycle", "Cycling Exercise", "Park Rides"], "correct": 0},
+      {"type": "truefalse", "statement": "I ride my bicycle to school.", "correct": false},
+      {"type": "choice", "question": "Where do I ride my bicycle?", "options": ["Park", "School", "Shop"], "correct": 0},
+      {"type": "order", "items": ["Cycle with my brother", "Go to the park", "Get on the bicycle"], "correct": "C; B; A"}
+    ]
+  },
+  {
+    "id": 16,
+    "level": "beginner",
+    "text": "I like to watch cartoons. My favorite cartoon is Tom and Jerry. I watch it after school. It makes me laugh.",
+    "tasks": [
+      {"type": "title", "options": ["My Favorite Cartoon", "Watching TV", "After School Fun"], "correct": 0},
+      {"type": "truefalse", "statement": "I watch cartoons in the morning.", "correct": false},
+      {"type": "choice", "question": "What is my favorite cartoon?", "options": ["Tom and Jerry", "SpongeBob", "Pikachu"], "correct": 0},
+      {"type": "order", "items": ["Laugh", "Watch cartoon", "Come home from school"], "correct": "C; B; A"}
+    ]
+  },
+  {
+    "id": 17,
+    "level": "beginner",
+    "text": "My friend lives in a big house. It has a garden. We play in the garden. We play football. It is a lot of fun.",
+    "tasks": [
+      {"type": "title", "options": ["My Friend's House", "Garden Games", "Playing Football"], "correct": 0},
+      {"type": "truefalse", "statement": "My friend's house is small.", "correct": false},
+      {"type": "choice", "question": "What do we play in the garden?", "options": ["Football", "Basketball", "Tennis"], "correct": 0},
+      {"type": "order", "items": ["Play football", "Go to friend's house", "Play in the garden"], "correct": "B; C; A"}
+    ]
+  },
+  {
+    "id": 18,
+    "level": "beginner",
+    "text": "I have a cat. Her name is Lily. She is black and white. She likes to sleep on the sofa. She is cute.",
+    "tasks": [
+      {"type": "title", "options": ["My Cat Lily", "A Black and White Cat", "Sleepy Cat"], "correct": 0},
+      {"type": "truefalse", "statement": "Lily is a dog.", "correct": false},
+      {"type": "choice", "question": "What color is my cat?", "options": ["Black and white", "Orange", "Gray"], "correct": 0},
+      {"type": "order", "items": ["Sleep on the sofa", "See the cat", "Name her Lily"], "correct": "C; B; A"}
+    ]
+  },
+  {
+    "id": 19,
+    "level": "beginner",
+    "text": "I like to travel. I have been to Spain. I saw the beach. I ate delicious food. I want to travel more.",
+    "tasks": [
+      {"type": "title", "options": ["My Travels", "Spain Trip", "Delicious Food"], "correct": 0},
+      {"type": "truefalse", "statement": "I have never been to Spain.", "correct": false},
+      {"type": "choice", "question": "What did I do in Spain?", "options": ["Saw the beach", "Hiked mountains", "Visited museums"], "correct": 0},
+      {"type": "order", "items": ["Eat food", "Travel to Spain", "See the beach"], "correct": "B; C; A"}
+    ]
+  },
+  {
+    "id": 20,
+    "level": "beginner",
+    "text": "My school has a library. I borrow books from the library. I read them at home. I like the adventure books.",
+    "tasks": [
+      {"type": "title", "options": ["School Library", "Adventure Books", "Reading at Home"], "correct": 0},
+      {"type": "truefalse", "statement": "The library has only school books.", "correct": false},
+      {"type": "choice", "question": "What kind of books do I like?", "options": ["Adventure", "Romance", "Science"], "correct": 0},
+      {"type": "order", "items": ["Read the book", "Borrow a book", "Go to the library"], "correct": "C; B; A"}
+    ]
+  },
+  {
+    "id": 21,
+    "level": "intermediate",
+    "text": "The Great Wall of China is one of the most famous landmarks in the world. It was built over 2,000 years ago to protect the country from invasions. Today it is a popular tourist destination with stunning views.",
+    "tasks": [
+      {"type": "title", "options": ["The Great Wall History", "Chinese Landmark", "Tourist Destination"], "correct": 0},
+      {"type": "truefalse", "statement": "The Great Wall was built to protect from invasions.", "correct": true},
+      {"type": "choice", "question": "How old is the Great Wall?", "options": ["Over 1000 years", "Over 2000 years", "Over 3000 years"], "correct": 1},
+      {"type": "order", "items": ["Built to protect", "Became tourist site", "Construction started"], "correct": "C; A; B"}
+    ]
+  },
+  {
+    "id": 22,
+    "level": "intermediate",
+    "text": "Alice decided to start her own business. She opened a small bakery in the city center. She bakes fresh bread and pastries every morning. Her shop is very popular because she uses organic ingredients.",
+    "tasks": [
+      {"type": "title", "options": ["Organic Bakery", "New Business", "Popular Shop"], "correct": 0},
+      {"type": "truefalse", "statement": "Alice's bakery sells only cakes.", "correct": false},
+      {"type": "choice", "question": "Why is her shop popular?", "options": ["Organic ingredients", "Low prices", "Location"], "correct": 0},
+      {"type": "order", "items": ["Bakes bread", "Opened a bakery", "Uses organic ingredients"], "correct": "B; A; C"}
+    ]
+  },
+  {
+    "id": 23,
+    "level": "intermediate",
+    "text": "The internet has changed the way we communicate. People can connect instantly across the world. However, this also brings challenges. Many people spend too much time online and forget about real-life interactions.",
+    "tasks": [
+      {"type": "title", "options": ["Internet Communication", "Online Challenges", "Modern Life"], "correct": 0},
+      {"type": "truefalse", "statement": "The internet has no negative effects.", "correct": false},
+      {"type": "choice", "question": "What is one challenge mentioned?", "options": ["High cost", "Too much time online", "Lack of interest"], "correct": 1},
+      {"type": "order", "items": ["People go online", "Connect with others", "Forget about real life"], "correct": "B; A; C"}
+    ]
+  },
+  {
+    "id": 24,
+    "level": "intermediate",
+    "text": "Many cities have introduced bicycle-sharing systems. People can rent a bike for a short trip. This reduces traffic and pollution. It also promotes a healthy lifestyle.",
+    "tasks": [
+      {"type": "title", "options": ["Bike Sharing", "Healthy Cities", "Reducing Pollution"], "correct": 0},
+      {"type": "truefalse", "statement": "Bike-sharing systems increase traffic.", "correct": false},
+      {"type": "choice", "question": "What is a benefit of bike sharing?", "options": ["Reduces pollution", "Makes travel expensive", "Slows down traffic"], "correct": 0},
+      {"type": "order", "items": ["Rent a bike", "Reduce pollution", "Introduce the system"], "correct": "C; A; B"}
+    ]
+  },
+  {
+    "id": 25,
+    "level": "intermediate",
+    "text": "Volunteering is a great way to help others and gain new experiences. Many people volunteer at local charities or hospitals. It can also improve your social skills and make you feel happy.",
+    "tasks": [
+      {"type": "title", "options": ["Benefits of Volunteering", "Helping Others", "Social Skills"], "correct": 0},
+      {"type": "truefalse", "statement": "Volunteering only helps you.", "correct": false},
+      {"type": "choice", "question": "Where can people volunteer?", "options": ["Hospitals", "Schools", "All of the above"], "correct": 2},
+      {"type": "order", "items": ["Feel happy", "Volunteer", "Help others"], "correct": "B; C; A"}
+    ]
+  },
+  {
+    "id": 26,
+    "level": "intermediate",
+    "text": "The Amazon rainforest is home to millions of species. It is often called the lungs of the planet because it produces a lot of oxygen. Deforestation is a major threat to its survival.",
+    "tasks": [
+      {"type": "title", "options": ["Amazon Rainforest", "Oxygen Producers", "Threats to Nature"], "correct": 0},
+      {"type": "truefalse", "statement": "The Amazon produces oxygen.", "correct": true},
+      {"type": "choice", "question": "What is a major threat to the Amazon?", "options": ["Deforestation", "Pollution", "Tourism"], "correct": 0},
+      {"type": "order", "items": ["Species live", "Oxygen produced", "Deforestation threatens"], "correct": "A; B; C"}
+    ]
+  },
+  {
+    "id": 27,
+    "level": "intermediate",
+    "text": "Mobile phones have become essential in our daily lives. We use them for communication, work, and entertainment. However, overuse can lead to addiction and health problems.",
+    "tasks": [
+      {"type": "title", "options": ["Mobile Phone Use", "Modern Communication", "Health Concerns"], "correct": 0},
+      {"type": "truefalse", "statement": "Mobile phones are not used for work.", "correct": false},
+      {"type": "choice", "question": "What is a problem with overuse?", "options": ["Addiction", "Better health", "Less communication"], "correct": 0},
+      {"type": "order", "items": ["Use for work", "Overuse leads to health issues", "Become essential"], "correct": "C; A; B"}
+    ]
+  },
+  {
+    "id": 28,
+    "level": "intermediate",
+    "text": "Fast food is popular because it is cheap and convenient. However, it often contains high levels of fat, sugar, and salt. Eating too much fast food can cause health problems like obesity.",
+    "tasks": [
+      {"type": "title", "options": ["Fast Food Consequences", "Cheap Meals", "Health Risks"], "correct": 0},
+      {"type": "truefalse", "statement": "Fast food is good for health.", "correct": false},
+      {"type": "choice", "question": "Why is fast food popular?", "options": ["Cheap and convenient", "Healthy", "Tasty"], "correct": 0},
+      {"type": "order", "items": ["Eat fast food", "Develop health problems", "Choose convenience"], "correct": "C; A; B"}
+    ]
+  },
+  {
+    "id": 29,
+    "level": "intermediate",
+    "text": "Learning a new language is challenging but rewarding. It opens up new opportunities and helps you understand different cultures. Regular practice is key to success.",
+    "tasks": [
+      {"type": "title", "options": ["Language Learning", "Cultural Understanding", "Practice Makes Perfect"], "correct": 0},
+      {"type": "truefalse", "statement": "Learning a language is easy.", "correct": false},
+      {"type": "choice", "question": "What does learning a language help with?", "options": ["Understanding cultures", "Making friends only", "Traveling", "All of the above"], "correct": 3},
+      {"type": "order", "items": ["Practice", "Learn a language", "Understand culture"], "correct": "B; C; A"}
+    ]
+  },
+  {
+    "id": 30,
+    "level": "intermediate",
+    "text": "Many people enjoy watching movies. Movies can make us laugh, cry, or think. They are a form of art and entertainment. Some movies teach us about history or science.",
+    "tasks": [
+      {"type": "title", "options": ["The World of Movies", "Art and Entertainment", "Learning through Film"], "correct": 0},
+      {"type": "truefalse", "statement": "Movies can only make us laugh.", "correct": false},
+      {"type": "choice", "question": "What can movies teach us?", "options": ["History", "Science", "Both history and science"], "correct": 2},
+      {"type": "order", "items": ["Watch a movie", "Learn something", "Enjoy entertainment"], "correct": "A; C; B"}
+    ]
+  },
+  {
+    "id": 31,
+    "level": "intermediate",
+    "text": "Climate change is caused by human activities. Burning fossil fuels releases greenhouse gases. This leads to global warming. We need to reduce our carbon footprint.",
+    "tasks": [
+      {"type": "title", "options": ["Climate Change Causes", "Global Warming", "Reducing Footprint"], "correct": 0},
+      {"type": "truefalse", "statement": "Climate change is natural, not human-caused.", "correct": false},
+      {"type": "choice", "question": "What releases greenhouse gases?", "options": ["Burning fossil fuels", "Planting trees", "Recycling"], "correct": 0},
+      {"type": "order", "items": ["Global warming", "Release gases", "Burn fuels"], "correct": "C; B; A"}
+    ]
+  },
+  {
+    "id": 32,
+    "level": "intermediate",
+    "text": "Traveling abroad exposes you to new cultures. You can try local food, visit historical sites, and meet people. It broadens your perspective and makes you more tolerant.",
+    "tasks": [
+      {"type": "title", "options": ["Benefits of Traveling", "Cultural Experience", "New Perspectives"], "correct": 0},
+      {"type": "truefalse", "statement": "Traveling only lets you eat new food.", "correct": false},
+      {"type": "choice", "question": "What does travel broaden?", "options": ["Perspective", "Wallet", "Knowledge only"], "correct": 0},
+      {"type": "order", "items": ["Meet people", "Visit sites", "Travel abroad"], "correct": "C; B; A"}
+    ]
+  },
+  {
+    "id": 33,
+    "level": "intermediate",
+    "text": "Social media has become a part of everyday life. It allows us to stay connected with friends and family. However, it can also be addictive and cause anxiety. Balance is important.",
+    "tasks": [
+      {"type": "title", "options": ["Social Media Impact", "Staying Connected", "Addiction and Anxiety"], "correct": 0},
+      {"type": "truefalse", "statement": "Social media has only positive effects.", "correct": false},
+      {"type": "choice", "question": "What is a negative effect of social media?", "options": ["Anxiety", "Better connections", "More free time"], "correct": 0},
+      {"type": "order", "items": ["Use social media", "Become anxious", "Connect with friends"], "correct": "C; A; B"}
+    ]
+  },
+  {
+    "id": 34,
+    "level": "intermediate",
+    "text": "Yoga is a practice that combines physical postures, breathing, and meditation. It improves flexibility and reduces stress. Many people practice yoga daily.",
+    "tasks": [
+      {"type": "title", "options": ["Benefits of Yoga", "Physical and Mental Health", "Daily Practice"], "correct": 0},
+      {"type": "truefalse", "statement": "Yoga only involves physical exercise.", "correct": false},
+      {"type": "choice", "question": "What does yoga combine?", "options": ["Postures, breathing, meditation", "Only postures", "Only meditation"], "correct": 0},
+      {"type": "order", "items": ["Reduce stress", "Practice yoga", "Improve flexibility"], "correct": "B; C; A"}
+    ]
+  },
+  {
+    "id": 35,
+    "level": "intermediate",
+    "text": "The city of Paris is known as the City of Light. It has many famous landmarks like the Eiffel Tower and the Louvre Museum. It is a popular tourist destination.",
+    "tasks": [
+      {"type": "title", "options": ["Paris, City of Light", "Landmarks of Paris", "Tourist Destination"], "correct": 0},
+      {"type": "truefalse", "statement": "Paris is known as the City of Light.", "correct": true},
+      {"type": "choice", "question": "Which landmark is mentioned in Paris?", "options": ["Eiffel Tower", "Big Ben", "Statue of Liberty"], "correct": 0},
+      {"type": "order", "items": ["Visit the Louvre", "See the Eiffel Tower", "Travel to Paris"], "correct": "C; B; A"}
+    ]
+  },
+  {
+    "id": 36,
+    "level": "intermediate",
+    "text": "Many people prefer to work from home. It saves time on commuting and offers flexibility. However, it can also be lonely and require self-discipline.",
+    "tasks": [
+      {"type": "title", "options": ["Working from Home", "Pros and Cons", "Flexibility vs Loneliness"], "correct": 0},
+      {"type": "truefalse", "statement": "Working from home always increases productivity.", "correct": false},
+      {"type": "choice", "question": "What is a benefit of working from home?", "options": ["Saves commuting time", "More office interaction", "More expensive"], "correct": 0},
+      {"type": "order", "items": ["Work from home", "Save time", "Feel lonely"], "correct": "A; B; C"}
+    ]
+  },
+  {
+    "id": 37,
+    "level": "intermediate",
+    "text": "Electric cars are becoming more popular because they are environmentally friendly. They produce zero emissions and are cheaper to run than petrol cars. However, charging infrastructure is still limited.",
+    "tasks": [
+      {"type": "title", "options": ["Electric Cars", "Eco-Friendly Vehicles", "Future of Transport"], "correct": 0},
+      {"type": "truefalse", "statement": "Electric cars produce emissions.", "correct": false},
+      {"type": "choice", "question": "What is a disadvantage of electric cars?", "options": ["Limited charging", "High emissions", "Expensive fuel"], "correct": 0},
+      {"type": "order", "items": ["Buy electric car", "Charge the car", "Drive with zero emissions"], "correct": "B; A; C"}
+    ]
+  },
+  {
+    "id": 38,
+    "level": "intermediate",
+    "text": "The Great Barrier Reef is the world's largest coral reef system. It is located in Australia. It is home to a diverse range of marine life. Climate change is a major threat.",
+    "tasks": [
+      {"type": "title", "options": ["Great Barrier Reef", "Marine Life", "Climate Threat"], "correct": 0},
+      {"type": "truefalse", "statement": "The Great Barrier Reef is in the USA.", "correct": false},
+      {"type": "choice", "question": "Where is the Great Barrier Reef?", "options": ["Australia", "Brazil", "Indonesia"], "correct": 0},
+      {"type": "order", "items": ["Threatened by climate change", "Home to marine life", "Located in Australia"], "correct": "C; B; A"}
+    ]
+  },
+  {
+    "id": 39,
+    "level": "intermediate",
+    "text": "Reading books is a good way to improve your vocabulary and comprehension. It also reduces stress. Many people read before sleep to relax.",
+    "tasks": [
+      {"type": "title", "options": ["Benefits of Reading", "Vocabulary Builder", "Stress Relief"], "correct": 0},
+      {"type": "truefalse", "statement": "Reading has no effect on stress.", "correct": false},
+      {"type": "choice", "question": "What does reading improve?", "options": ["Vocabulary", "Stress", "Both vocabulary and comprehension"], "correct": 2},
+      {"type": "order", "items": ["Relax before sleep", "Read a book", "Improve vocabulary"], "correct": "B; C; A"}
+    ]
+  },
+  {
+    "id": 40,
+    "level": "intermediate",
+    "text": "The invention of the internet has revolutionized communication. It allows instant messaging, video calls, and information sharing. It has made the world smaller.",
+    "tasks": [
+      {"type": "title", "options": ["Internet Revolution", "Communication Evolution", "Global Connection"], "correct": 0},
+      {"type": "truefalse", "statement": "The internet has made the world smaller.", "correct": true},
+      {"type": "choice", "question": "What does the internet allow?", "options": ["Video calls", "Letter writing", "Slower communication"], "correct": 0},
+      {"type": "order", "items": ["Share information", "Use video calls", "Connect globally"], "correct": "C; A; B"}
+    ]
+  },
+  {
+    "id": 41,
+    "level": "expert",
+    "text": "Artificial intelligence is rapidly transforming many industries. In healthcare, AI algorithms can analyze medical images faster than human doctors, potentially saving lives. In education, personalized learning systems adapt to individual student needs. However, concerns about job displacement and data privacy remain prevalent. Experts agree that regulation is needed to ensure ethical use. The technology is still evolving, and its long-term impact on society is uncertain. Nonetheless, the potential benefits are immense, and investment in AI research continues to grow.",
+    "tasks": [
+      {"type": "title", "options": ["AI in Healthcare", "Ethics of AI", "AI Applications and Concerns"], "correct": 2},
+      {"type": "truefalse", "statement": "AI can analyze medical images faster than humans.", "correct": true},
+      {"type": "choice", "question": "What is one concern about AI?", "options": ["Job displacement", "Higher costs", "Less efficiency"], "correct": 0},
+      {"type": "order", "items": ["AI analyzes images", "Need for regulation", "Concerns about privacy"], "correct": "A; C; B"}
+    ]
+  },
+  {
+    "id": 42,
+    "level": "expert",
+    "text": "Climate change is one of the most pressing issues of our time. Rising global temperatures lead to extreme weather events, melting ice caps, and rising sea levels. Many countries have pledged to reduce carbon emissions. However, achieving these targets requires unprecedented global cooperation and innovation in renewable energy technologies. Critics argue that current efforts are insufficient and that more aggressive measures are needed. The economic transition away from fossil fuels poses both challenges and opportunities for developing nations.",
+    "tasks": [
+      {"type": "title", "options": ["Climate Crisis", "Global Cooperation", "Renewable Energy"], "correct": 0},
+      {"type": "truefalse", "statement": "Rising temperatures cause extreme weather.", "correct": true},
+      {"type": "choice", "question": "What is needed to achieve emission targets?", "options": ["Global cooperation", "More fossil fuels", "Individual action only"], "correct": 0},
+      {"type": "order", "items": ["Rising temperatures", "Extreme weather", "Pledge to reduce emissions"], "correct": "A; B; C"}
+    ]
+  },
+  {
+    "id": 43,
+    "level": "expert",
+    "text": "The concept of space tourism is no longer science fiction. Companies like SpaceX and Blue Origin are actively developing vehicles to transport civilians to space. While the experience promises breathtaking views and a sense of wonder, critics argue that space tourism exacerbates environmental problems due to high fuel consumption. The debate over its viability continues, with proponents highlighting technological spillover effects. Regulators are now considering safety standards for commercial space flights. The future of space travel may depend on balancing innovation with environmental responsibility.",
+    "tasks": [
+      {"type": "title", "options": ["Space Tourism Reality", "Environmental Impact", "Future of Travel"], "correct": 0},
+      {"type": "truefalse", "statement": "Space tourism is already a reality for everyone.", "correct": false},
+      {"type": "choice", "question": "What is a criticism of space tourism?", "options": ["High fuel consumption", "It's boring", "Too slow"], "correct": 0},
+      {"type": "order", "items": ["Develop vehicles", "Debate viability", "Criticize environmental impact"], "correct": "A; C; B"}
+    ]
+  },
+  {
+    "id": 44,
+    "level": "expert",
+    "text": "Genetic engineering has the potential to cure many diseases. Scientists can modify genes to treat illnesses like cancer and cystic fibrosis. However, ethical concerns arise about altering human embryos. The technology is still in its early stages, and many regulatory frameworks are being developed to oversee its application. Public opinion is divided, with some advocating for strict bans and others for cautious progress. The debate touches on fundamental questions about human nature and the limits of science.",
+    "tasks": [
+      {"type": "title", "options": ["Genetic Engineering", "Ethical Dilemmas", "Medical Breakthroughs"], "correct": 0},
+      {"type": "truefalse", "statement": "Genetic engineering can cure all diseases.", "correct": false},
+      {"type": "choice", "question": "What is a concern about genetic engineering?", "options": ["Altering embryos", "Expensive", "Slow progress"], "correct": 0},
+      {"type": "order", "items": ["Early stage research", "Potential to cure", "Ethical debates"], "correct": "A; B; C"}
+    ]
+  },
+  {
+    "id": 45,
+    "level": "expert",
+    "text": "The influence of social media on political opinions is a growing concern. Algorithms often create echo chambers, reinforcing existing beliefs. This can lead to polarization and misinformation. Educating users about media literacy is essential, but many platforms resist implementing more transparent content moderation. Governments are under pressure to regulate tech giants, yet finding a balance between free speech and censorship remains difficult. The long-term effects on democratic processes are still being studied.",
+    "tasks": [
+      {"type": "title", "options": ["Social Media and Politics", "Echo Chambers", "Media Literacy"], "correct": 0},
+      {"type": "truefalse", "statement": "Social media always promotes diverse opinions.", "correct": false},
+      {"type": "choice", "question": "What does media literacy help with?", "options": ["Identifying misinformation", "Avoiding social media", "Increasing polarization"], "correct": 0},
+      {"type": "order", "items": ["Algorithms create echo chambers", "Polarization increases", "Media literacy needed"], "correct": "A; B; C"}
+    ]
+  },
+  {
+    "id": 46,
+    "level": "expert",
+    "text": "The future of work is likely to involve more remote collaboration. Advances in technology make it easier to work across time zones. However, companies must address issues like team cohesion and mental health. Flexible policies are being adopted, but there is no one-size-fits-all solution. Some employees thrive in remote settings, while others miss the social interaction of offices. Organizations are experimenting with hybrid models, and the outcome of these experiments will shape the workplace for decades to come.",
+    "tasks": [
+      {"type": "title", "options": ["Future of Work", "Remote Collaboration", "Flexible Policies"], "correct": 0},
+      {"type": "truefalse", "statement": "Remote work eliminates the need for communication.", "correct": false},
+      {"type": "choice", "question": "What challenges does remote work bring?", "options": ["Team cohesion", "Less productivity", "More costs"], "correct": 0},
+      {"type": "order", "items": ["Adopt flexible policies", "Address cohesion", "Work across time zones"], "correct": "C; B; A"}
+    ]
+  },
+  {
+    "id": 47,
+    "level": "expert",
+    "text": "The biodiversity of our planet is declining at an alarming rate. Habitat loss, pollution, and climate change are major drivers. Protecting endangered species and preserving natural habitats are crucial for ecosystem balance. Conservation efforts have had some successes, but they are often underfunded and face political resistance. The loss of biodiversity has cascading effects on food security and human health. International cooperation is essential to halt this decline before it reaches irreversible levels.",
+    "tasks": [
+      {"type": "title", "options": ["Biodiversity Loss", "Ecosystem Balance", "Conservation Efforts"], "correct": 0},
+      {"type": "truefalse", "statement": "Climate change is not a driver of biodiversity loss.", "correct": false},
+      {"type": "choice", "question": "What is a major driver of biodiversity loss?", "options": ["Habitat loss", "Urbanization", "Tourism"], "correct": 0},
+      {"type": "order", "items": ["Declining biodiversity", "Protect habitats", "Address pollution"], "correct": "A; C; B"}
+    ]
+  },
+  {
+    "id": 48,
+    "level": "expert",
+    "text": "The concept of universal basic income (UBI) has gained attention as a solution to job displacement by automation. UBI would provide a regular cash payment to all citizens. Proponents argue it reduces poverty, while critics say it may discourage work. Experimental pilots in various countries have produced mixed results, with some showing positive effects on well-being and others indicating reduced labor participation. The debate is likely to intensify as automation accelerates, and policymakers are under pressure to find viable social safety nets.",
+    "tasks": [
+      {"type": "title", "options": ["Universal Basic Income", "Automation Impact", "Poverty Reduction"], "correct": 0},
+      {"type": "truefalse", "statement": "UBI is a payment to all citizens.", "correct": true},
+      {"type": "choice", "question": "What is a criticism of UBI?", "options": ["May discourage work", "Increases poverty", "Reduces automation"], "correct": 0},
+      {"type": "order", "items": ["Job displacement", "Propose UBI", "Debate effects"], "correct": "A; B; C"}
+    ]
+  },
+  {
+    "id": 49,
+    "level": "expert",
+    "text": "The rise of renewable energy sources like solar and wind is essential for a sustainable future. They reduce reliance on fossil fuels and lower carbon emissions. However, storage and distribution remain challenges. Battery technology is advancing, but grid-scale solutions are still costly. Governments are offering subsidies to accelerate adoption, yet the transition is uneven across regions. The energy sector must also address the environmental impact of manufacturing solar panels and wind turbines, creating a complex set of trade-offs.",
+    "tasks": [
+      {"type": "title", "options": ["Renewable Energy", "Sustainable Future", "Energy Storage Challenges"], "correct": 0},
+      {"type": "truefalse", "statement": "Renewable energy sources produce carbon emissions.", "correct": false},
+      {"type": "choice", "question": "What is a challenge for renewable energy?", "options": ["Storage", "Cost", "Both storage and distribution"], "correct": 2},
+      {"type": "order", "items": ["Reduce emissions", "Implement renewable", "Address storage"], "correct": "B; A; C"}
+    ]
+  },
+  {
+    "id": 50,
+    "level": "expert",
+    "text": "Cultural heritage sites are under threat from war, pollution, and tourism. Preserving them is important for future generations. International organizations work to protect these sites. Funding and awareness are key, but political will is often lacking. The loss of cultural heritage can lead to a loss of identity and history. Innovative approaches, such as digital reconstruction, offer new ways to safeguard these treasures, yet they cannot fully replace the original artifacts.",
+    "tasks": [
+      {"type": "title", "options": ["Protecting Cultural Heritage", "Threats to History", "Preservation Efforts"], "correct": 0},
+      {"type": "truefalse", "statement": "War does not threaten cultural sites.", "correct": false},
+      {"type": "choice", "question": "What is needed for preservation?", "options": ["Funding and awareness", "Less tourism", "More wars"], "correct": 0},
+      {"type": "order", "items": ["Sites threatened", "International efforts", "Funding needed"], "correct": "A; C; B"}
+    ]
+  },
+  {
+    "id": 51,
+    "level": "expert",
+    "text": "The increasing use of artificial intelligence in hiring processes raises questions about bias. Algorithms can unintentionally discriminate based on gender or ethnicity. Companies must ensure their AI systems are fair and transparent. Several countries are introducing regulations to audit AI decision-making. However, technical solutions alone are insufficient; organizations need to foster inclusive cultures. The challenge is to balance efficiency with equity, and many HR departments are struggling to keep up with technological advances.",
+    "tasks": [
+      {"type": "title", "options": ["AI in Hiring", "Bias and Fairness", "Transparent Systems"], "correct": 0},
+      {"type": "truefalse", "statement": "Algorithms in hiring are completely unbiased.", "correct": false},
+      {"type": "choice", "question": "What must companies ensure about AI?", "options": ["Fairness", "Speed", "Cheapness"], "correct": 0},
+      {"type": "order", "items": ["Develop AI", "Detect bias", "Ensure transparency"], "correct": "A; B; C"}
+    ]
+  },
+  {
+    "id": 52,
+    "level": "expert",
+    "text": "Urban sprawl refers to the uncontrolled expansion of cities. It leads to loss of agricultural land and increased traffic. Sustainable city planning is needed to address these issues. Green infrastructure, public transport, and mixed-use developments are part of the solution. However, such initiatives require significant investment and long-term vision. Many municipalities are adopting smart city technologies, but the digital divide may exacerbate inequalities in access to urban services.",
+    "tasks": [
+      {"type": "title", "options": ["Urban Sprawl", "Sustainable Cities", "Loss of Land"], "correct": 0},
+      {"type": "truefalse", "statement": "Urban sprawl is beneficial for agriculture.", "correct": false},
+      {"type": "choice", "question": "What does urban sprawl cause?", "options": ["Loss of agricultural land", "Less traffic", "More green areas"], "correct": 0},
+      {"type": "order", "items": ["City expands", "Loss of land", "Need for planning"], "correct": "A; B; C"}
+    ]
+  },
+  {
+    "id": 53,
+    "level": "expert",
+    "text": "The popularity of plant-based diets is growing due to health and environmental concerns. These diets reduce the risk of chronic diseases and lower carbon footprint. However, careful planning is needed to get all nutrients, such as vitamin B12 and iron. The food industry is responding with a wide array of plant-based alternatives, but some products are heavily processed and not necessarily healthier. Consumer education is crucial to navigate these choices and adopt sustainable eating habits.",
+    "tasks": [
+      {"type": "title", "options": ["Plant-Based Diets", "Health and Environment", "Nutrient Planning"], "correct": 0},
+      {"type": "truefalse", "statement": "Plant-based diets are always healthy without planning.", "correct": false},
+      {"type": "choice", "question": "What is a benefit of plant-based diets?", "options": ["Lower carbon footprint", "More meat", "More saturated fat"], "correct": 0},
+      {"type": "order", "items": ["Choose plant-based", "Reduce risk", "Plan nutrients"], "correct": "A; B; C"}
+    ]
+  },
+  {
+    "id": 54,
+    "level": "expert",
+    "text": "The education system is evolving to include more technology in the classroom. Interactive whiteboards, tablets, and online resources are becoming common. This can make learning more engaging but also raises concerns about screen time. Teachers need training to effectively integrate these tools. Moreover, the digital divide remains a barrier for underprivileged students. Policymakers are debating whether technology should replace traditional teaching methods or merely supplement them.",
+    "tasks": [
+      {"type": "title", "options": ["EdTech in Schools", "Engaging Learning", "Screen Time Concerns"], "correct": 0},
+      {"type": "truefalse", "statement": "Technology in schools always improves learning.", "correct": false},
+      {"type": "choice", "question": "What is a concern about tech in classrooms?", "options": ["Screen time", "Better results", "More interaction"], "correct": 0},
+      {"type": "order", "items": ["Introduce tech", "Engage students", "Consider screen time"], "correct": "A; B; C"}
+    ]
+  },
+  {
+    "id": 55,
+    "level": "expert",
+    "text": "Microplastics are tiny plastic particles found in the environment. They come from product breakdown and are harmful to marine life. Reducing plastic use and improving waste management are crucial. These particles have been detected in drinking water and food, raising health concerns. Scientists are investigating the long-term effects on human health, but current evidence suggests potential risks. International cooperation is needed to address this global problem through coordinated policies and public awareness campaigns.",
+    "tasks": [
+      {"type": "title", "options": ["Microplastics Problem", "Marine Life Threat", "Waste Management"], "correct": 0},
+      {"type": "truefalse", "statement": "Microplastics are harmless.", "correct": false},
+      {"type": "choice", "question": "What is a source of microplastics?", "options": ["Product breakdown", "Trees", "Rocks"], "correct": 0},
+      {"type": "order", "items": ["Microplastics in water", "Harm marine life", "Reduce plastic"], "correct": "A; B; C"}
+    ]
+  },
+  {
+    "id": 56,
+    "level": "expert",
+    "text": "The concept of lifelong learning is gaining importance. In a rapidly changing world, people need to continuously update their skills. This can be through online courses, workshops, or self-study. Employers are increasingly valuing adaptability over specific qualifications. However, access to quality education remains unequal, and many adults lack time or motivation to engage in further learning. Governments and institutions are promoting lifelong learning programs to bridge this gap and foster economic resilience.",
+    "tasks": [
+      {"type": "title", "options": ["Lifelong Learning", "Skill Updating", "Continuous Education"], "correct": 0},
+      {"type": "truefalse", "statement": "Learning stops after university.", "correct": false},
+      {"type": "choice", "question": "What is a way to continue learning?", "options": ["Online courses", "Watching TV", "Sleeping"], "correct": 0},
+      {"type": "order", "items": ["Need to update skills", "Choose online course", "Lifelong learning"], "correct": "C; A; B"}
+    ]
+  },
+  {
+    "id": 57,
+    "level": "expert",
+    "text": "The decline of bee populations is alarming because bees are essential pollinators for many crops. Pesticides and habitat loss are major contributors. Protecting bees is vital for food security. Farmers are adopting more sustainable practices, but the shift is slow. Public awareness campaigns have increased, yet the use of harmful chemicals persists. Without intervention, the agricultural industry could face significant disruptions, making this an urgent environmental and economic issue.",
+    "tasks": [
+      {"type": "title", "options": ["Bee Decline", "Pollination Crisis", "Food Security"], "correct": 0},
+      {"type": "truefalse", "statement": "Bees are not important for crops.", "correct": false},
+      {"type": "choice", "question": "What is a cause of bee decline?", "options": ["Pesticides", "More flowers", "Better weather"], "correct": 0},
+      {"type": "order", "items": ["Decline of bees", "Use of pesticides", "Threat to food"], "correct": "B; A; C"}
+    ]
+  },
+  {
+    "id": 58,
+    "level": "expert",
+    "text": "The debate over gun control is highly polarizing in many countries. Proponents argue for stricter laws to reduce violence, while opponents cite the right to self-defense. Finding common ground is difficult. Mass shootings often reignite the debate, but legislative progress is slow. Cultural factors and constitutional interpretations play a significant role in shaping policies. The issue is further complicated by lobbying groups that influence political decisions, making it a persistent challenge for democracies.",
+    "tasks": [
+      {"type": "title", "options": ["Gun Control Debate", "Rights and Safety", "Polarizing Issue"], "correct": 0},
+      {"type": "truefalse", "statement": "Everyone agrees on gun control.", "correct": false},
+      {"type": "choice", "question": "What is one argument for stricter laws?", "options": ["Reduce violence", "More freedom", "Lower taxes"], "correct": 0},
+      {"type": "order", "items": ["Debate polarizing", "Propose stricter laws", "Oppose citing rights"], "correct": "A; B; C"}
+    ]
+  },
+  {
+    "id": 59,
+    "level": "expert",
+    "text": "The use of drones for delivery services is expanding. Drones can deliver packages faster and more efficiently. However, regulation and safety concerns need to be addressed. Air traffic management and privacy issues are key challenges. Companies are testing drone delivery in urban areas, but public acceptance remains mixed. The technology is evolving rapidly, and standards are being developed to ensure safe integration into airspace, potentially revolutionizing logistics in the coming years.",
+    "tasks": [
+      {"type": "title", "options": ["Drone Delivery", "Efficient Logistics", "Regulatory Challenges"], "correct": 0},
+      {"type": "truefalse", "statement": "Drones are slower than traditional delivery.", "correct": false},
+      {"type": "choice", "question": "What is a concern about drones?", "options": ["Regulation", "Speed", "Cost", "All of the above"], "correct": 3},
+      {"type": "order", "items": ["Expand drone use", "Address safety", "Improve delivery"], "correct": "A; C; B"}
+    ]
+  },
+  {
+    "id": 60,
+    "level": "expert",
+    "text": "Mental health awareness has increased in recent years. More people are seeking therapy and discussing mental health openly. However, stigma still exists and access to care is limited in many regions. The pandemic exacerbated mental health issues, prompting governments to invest more in resources. Yet, long waiting times and high costs remain barriers. Innovative solutions like telehealth are improving access, but more work is needed to destigmatize mental health conditions and ensure equitable care.",
+    "tasks": [
+      {"type": "title", "options": ["Mental Health Awareness", "Stigma and Access", "Seeking Therapy"], "correct": 0},
+      {"type": "truefalse", "statement": "Mental health is now completely destigmatized.", "correct": false},
+      {"type": "choice", "question": "What remains a challenge?", "options": ["Access to care", "More awareness", "Better therapy", "All of the above"], "correct": 0},
+      {"type": "order", "items": ["Increase awareness", "Reduce stigma", "Improve access"], "correct": "A; C; B"}
+    ]
+  }
+]

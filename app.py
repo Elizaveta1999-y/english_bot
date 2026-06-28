@@ -7,6 +7,7 @@ from aiogram.types import BotCommand
 from aiogram.webhook.aiohttp_server import SimpleRequestHandler, setup_application
 from handlers import start, speaking, roleplay, common, voice, words, profile, skills, support
 from handlers.subscription import router as subscription_router   # <-- добавляем
+from handlers import listening
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -29,6 +30,7 @@ dp.include_router(words.router)
 dp.include_router(roleplay.router)
 dp.include_router(voice.router)
 dp.include_router(common.router)
+dp.include_router(listening.router)
 dp.include_router(speaking.router)
 dp.include_router(profile.router)
 dp.include_router(skills.router)
