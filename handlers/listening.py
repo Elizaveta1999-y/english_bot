@@ -100,7 +100,6 @@ async def send_audio_and_start_tasks(message: Message, user_id: int, level: str,
         "answered": False
     })
 
-    # Генерация аудио (используем тот же голос, что и в voice.py, без параметра speed)
     audio_path = await text_to_voice(block["text"], voice_id="yM93hbw8Qtvdma2wCnJG")
     if audio_path and os.path.exists(audio_path):
         try:
@@ -115,7 +114,6 @@ async def send_audio_and_start_tasks(message: Message, user_id: int, level: str,
     else:
         await message.answer(f"Текст для прослушивания:\n\n{block['text']}")
 
-    # Отправляем первое задание
     await send_task(message, state)
 
 async def send_task(message: Message, state: FSMContext, first: bool = True):
@@ -166,34 +164,40 @@ async def finish_block(message: Message, state: FSMContext):
     await message.answer(f"Блок завершён!\n\n{stats}", reply_markup=get_continue_keyboard())
     await state.clear()
 
-# ---------- Хендлеры ----------
-@router.callback_query(F.data == "start_listening")
-@router.message(Command("listening"))
-async def listening_start(event, state: FSMContext):
-    await state.clear()
-    text = "Учебный режим - <b>🎧 Аудирование</b>\nПрослушайте запись, прочитайте задания, затем напишите ответы через \";\"\n\nВыберите уровень:"
-    if isinstance(event, Message):
-        await event.answer(text, reply_markup=get_levels_keyboard(), parse_mode="HTML")
-    else:
-        await event.message.edit_text(text, reply_markup=get_levels_keyboard(), parse_mode="HTML")
-        await event.answer()
-
-@router.callback_query(F.data.startswith("listening_level_"))
-async def level_selected(callback: CallbackQuery, state: FSMContext):
-    level = callback.data.split("_")[-1]
-    user_id = callback.from_user.id
-    await callback.message.delete()
-    await send_audio_and_start_tasks(callback.message, user_id, level, state)
-    await callback.answer()
-
-# Универсальный обработчик для всех текстовых сообщений
+# ---------- УНИВЕРСАЛЬНЫЙ ОБРАБОТЧИК ТЕКСТОВЫХ СООБЩЕНИЙ ----------
+# Этот хендлер срабатывает для любого текста, если он находится в этом роутере.
+# Роутер listening должен быть самым первым после start.
 @router.message(F.text)
-async def handle_text_answer(message: Message, state: FSMContext):
-    # Проверяем, находимся ли мы в режиме аудирования
+async def text_handler(message: Message, state: FSMContext):
     current_state = await state.get_state()
-    if current_state != ListeningState.answering_task:
-        return  # пропускаем, если не в аудировании
+    logger.info(f"Text received. Current state: {current_state}, User: {message.from_user.id}")
+    
+    if current_state == ListeningState.answering_task:
+        # Обрабатываем ответ на задание
+        await handle_answer(message, state)
+    # Если состояние не answering_task – просто выходим, не пропуская дальше?
+    # Нет, если просто выйти, сообщение не дойдёт до других роутеров.
+    # Нужно пропустить дальше, если состояние не answering_task.
+    # Для этого возвращаем None (событие продолжит обработку в следующих роутерах).
+    # В aiogram, если хендлер ничего не возвращает, событие считается обработанным.
+    # Чтобы пропустить дальше, нужно использовать фильтр или не перехватывать.
+    # Лучше перехватывать только если состояние answering_task, иначе пропускать.
+    # Но @router.message(F.text) перехватывает все, и если мы не обработаем, оно не дойдёт.
+    # Значит, нужно либо в этом хендлере проверять состояние и обрабатывать только своё,
+    # а для остальных – вызывать пропуск.
+    # В aiogram нет прямого пропуска, но можно использовать middleware или просто
+    # проверять состояние и если не answering_task – ничего не делать.
+    # Но тогда сообщение не дойдёт до других роутеров, потому что хендлер сработал.
+    # Этого нельзя допустить.
+    # Поэтому правильный подход: использовать фильтр в хендлере, чтобы он срабатывал
+    # только когда состояние answering_task.
+    # А для всех остальных случаев – другой хендлер (или просто не перехватывать).
+    pass
 
+# Лучше использовать фильтр в хендлере
+@router.message(F.text, ListeningState.answering_task)
+async def handle_answer(message: Message, state: FSMContext):
+    # Здесь обработка ответов
     data = await state.get_data()
     if data.get("answered", False):
         await message.answer("Вы уже ответили на это задание. Переходим к следующему.")
@@ -272,7 +276,26 @@ async def handle_text_answer(message: Message, state: FSMContext):
     await state.update_data(data)
     await send_task(message, state)
 
-# ---------- Обработчики кнопок ----------
+# ---------- Обработчики кнопок и команд ----------
+@router.callback_query(F.data == "start_listening")
+@router.message(Command("listening"))
+async def listening_start(event, state: FSMContext):
+    await state.clear()
+    text = "Учебный режим - <b>🎧 Аудирование</b>\nПрослушайте запись, прочитайте задания, затем напишите ответы через \";\"\n\nВыберите уровень:"
+    if isinstance(event, Message):
+        await event.answer(text, reply_markup=get_levels_keyboard(), parse_mode="HTML")
+    else:
+        await event.message.edit_text(text, reply_markup=get_levels_keyboard(), parse_mode="HTML")
+        await event.answer()
+
+@router.callback_query(F.data.startswith("listening_level_"))
+async def level_selected(callback: CallbackQuery, state: FSMContext):
+    level = callback.data.split("_")[-1]
+    user_id = callback.from_user.id
+    await callback.message.delete()
+    await send_audio_and_start_tasks(callback.message, user_id, level, state)
+    await callback.answer()
+
 @router.callback_query(F.data.startswith("listening_show_answer_"))
 async def show_answer(callback: CallbackQuery, state: FSMContext):
     task_index = int(callback.data.split("_")[-1])
