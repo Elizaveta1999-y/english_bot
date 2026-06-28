@@ -8,11 +8,12 @@ from aiogram.fsm.context import FSMContext
 router = Router()
 
 @router.message(F.text == "🏠 Главное меню")
-async def main_menu_button(message: Message):
+async def main_menu_button(message: Message, state: FSMContext):
+    # Проверяем, не находится ли пользователь в режиме аудирования
+    current_state = await state.get_state()
+    if current_state == ListeningState.answering_task:
+        return  # игнорируем, чтобы не мешать аудированию
+
     user_id = message.from_user.id
     set_user_state(user_id, {"mode": None, "history": []})
     await show_main_menu(message, edit=True)
-
-state = await state.get_state()
-if state == ListeningState.answering_task:
-    return  # игнорируем, чтобы не мешать аудированию
