@@ -22873,19 +22873,59 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 1 (перевод)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct word (a, b, c, or d) to complete the cleft sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "It was John ______ saw the accident.", "answer": "who", "explanation": "Для человека используем who."},
-                {"question": "It was yesterday ______ I met your brother.", "answer": "that", "explanation": "Для обстоятельств времени используем that."},
-                {"question": "______ I need is a good rest.", "answer": "What", "explanation": "What-расщепление для выделения дополнения."},
-                {"question": "It was more time ______ they need.", "answer": "that", "explanation": "Для предметов используем that."},
-                {"question": "______ she loves is chocolate.", "answer": "What", "explanation": "What-расщепление."},
-                {"question": "It was John ______ saw the accident. (вариант с who)", "answer": "who", "explanation": "Для человека."},
-                {"question": "______ I want is to sleep.", "answer": "All", "explanation": "All-расщепление для единственной вещи."},
-                {"question": "It was in Paris ______ I was born.", "answer": "that", "explanation": "Для места используем that."}
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct word (a, b, c, or d) to complete the cleft sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "It was John ______ saw the accident.",
+        "options": ["a) who", "b) which", "c) that", "d) whom"],
+        "answer": "a",
+        "explanation": "Для человека используем who."
+      },
+      {
+        "question": "It was yesterday ______ I met your brother.",
+        "options": ["a) when", "b) which", "c) that", "d) where"],
+        "answer": "c",
+        "explanation": "Для обстоятельств времени используем that."
+      },
+      {
+        "question": "______ I need is a good rest.",
+        "options": ["a) That", "b) What", "c) Which", "d) All"],
+        "answer": "b",
+        "explanation": "What-расщепление для выделения дополнения."
+      },
+      {
+        "question": "It was more time ______ they need.",
+        "options": ["a) which", "b) who", "c) that", "d) what"],
+        "answer": "c",
+        "explanation": "Для предметов используем that."
+      },
+      {
+        "question": "______ she loves is chocolate.",
+        "options": ["a) That", "b) What", "c) Which", "d) All"],
+        "answer": "b",
+        "explanation": "What-расщепление."
+      },
+      {
+        "question": "It was John ______ saw the accident. (variant with who)",
+        "options": ["a) who", "b) which", "c) that", "d) whom"],
+        "answer": "a",
+        "explanation": "Для человека используем who."
+      },
+      {
+        "question": "______ I want is to sleep.",
+        "options": ["a) What", "b) All", "c) That", "d) Which"],
+        "answer": "b",
+        "explanation": "All-расщепление для единственной вещи."
+      },
+      {
+        "question": "It was in Paris ______ I was born.",
+        "options": ["a) where", "b) which", "c) that", "d) who"],
+        "answer": "c",
+        "explanation": "Для места используем that."
+              }
             ]
         },
         {
@@ -22934,19 +22974,58 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 2 (перефразирование)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct word (a, b, c, or d) to complete the cleft sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "It was my sister ______ called you.", "answer": "who", "explanation": "Для человека – who."},
-                {"question": "It was at midnight ______ the phone rang.", "answer": "that", "explanation": "Для времени – that."},
-                {"question": "______ we need is more time.", "answer": "What", "explanation": "What-расщепление."},
-                {"question": "It was the manager ______ made the decision.", "answer": "who", "explanation": "Для человека – who."},
-                {"question": "______ I enjoy most is reading.", "answer": "What", "explanation": "What-расщепление."},
-                {"question": "It was in London ______ they met.", "answer": "that", "explanation": "Для места – that."},
-                {"question": "______ she wanted was a cup of tea.", "answer": "All", "explanation": "All-расщепление."},
-                {"question": "It was my father ______ taught me to swim.", "answer": "who", "explanation": "Для человека – who."}
+{
+  "type": "complex",
+  "text": "1. Choose the correct word (a, b, c, or d) to complete the cleft sentence. Type the letter of your answer.",
+  "subtasks": [
+    {
+      "question": "It was my sister ______ called you.",
+      "options": ["a) who", "b) which", "c) that", "d) whom"],
+      "answer": "a",
+      "explanation": "Для человека – who."
+    },
+    {
+      "question": "It was at midnight ______ the phone rang.",
+      "options": ["a) when", "b) which", "c) that", "d) where"],
+      "answer": "c",
+      "explanation": "Для времени – that."
+    },
+    {
+      "question": "______ we need is more time.",
+      "options": ["a) That", "b) What", "c) Which", "d) All"],
+      "answer": "b",
+      "explanation": "What-расщепление."
+    },
+    {
+      "question": "It was the manager ______ made the decision.",
+      "options": ["a) who", "b) which", "c) that", "d) whom"],
+      "answer": "a",
+      "explanation": "Для человека – who."
+    },
+    {
+      "question": "______ I enjoy most is reading.",
+      "options": ["a) That", "b) What", "c) Which", "d) All"],
+      "answer": "b",
+      "explanation": "What-расщепление."
+    },
+    {
+      "question": "It was in London ______ they met.",
+      "options": ["a) where", "b) which", "c) that", "d) who"],
+      "answer": "c",
+      "explanation": "Для места – that."
+    },
+    {
+      "question": "______ she wanted was a cup of tea.",
+      "options": ["a) What", "b) All", "c) That", "d) Which"],
+      "answer": "b",
+      "explanation": "All-расщепление."
+    },
+    {
+      "question": "It was my father ______ taught me to swim.",
+      "options": ["a) who", "b) which", "c) that", "d) whom"],
+      "answer": "a",
+      "explanation": "Для человека – who."
+              }
             ]
         },
         {
@@ -22995,19 +23074,59 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 3 (перевод)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct word (a, b, c, or d) to complete the cleft sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "It was the police ______ arrested him.", "answer": "who", "explanation": "Для человека – who."},
-                {"question": "It was in 1998 ______ she was born.", "answer": "that", "explanation": "Для времени – that."},
-                {"question": "______ I hate is waiting.", "answer": "What", "explanation": "What-расщепление."},
-                {"question": "It was the teacher ______ helped me.", "answer": "who", "explanation": "Для человека – who."},
-                {"question": "______ they need is a new car.", "answer": "What", "explanation": "What-расщепление."},
-                {"question": "It was at the station ______ we met.", "answer": "that", "explanation": "Для места – that."},
-                {"question": "______ I bought was a book.", "answer": "What", "explanation": "What-расщепление."},
-                {"question": "It was my mother ______ cooked dinner.", "answer": "who", "explanation": "Для человека – who."}
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct word (a, b, c, or d) to complete the cleft sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "It was the police ______ arrested him.",
+        "options": ["a) who", "b) which", "c) that", "d) whom"],
+        "answer": "a",
+        "explanation": "Для человека – who."
+      },
+      {
+        "question": "It was in 1998 ______ she was born.",
+        "options": ["a) when", "b) which", "c) that", "d) where"],
+        "answer": "c",
+        "explanation": "Для времени – that."
+      },
+      {
+        "question": "______ I hate is waiting.",
+        "options": ["a) That", "b) What", "c) Which", "d) All"],
+        "answer": "b",
+        "explanation": "What-расщепление."
+      },
+      {
+        "question": "It was the teacher ______ helped me.",
+        "options": ["a) who", "b) which", "c) that", "d) whom"],
+        "answer": "a",
+        "explanation": "Для человека – who."
+      },
+      {
+        "question": "______ they need is a new car.",
+        "options": ["a) That", "b) What", "c) Which", "d) All"],
+        "answer": "b",
+        "explanation": "What-расщепление."
+      },
+      {
+        "question": "It was at the station ______ we met.",
+        "options": ["a) where", "b) which", "c) that", "d) who"],
+        "answer": "c",
+        "explanation": "Для места – that."
+      },
+      {
+        "question": "______ I bought was a book.",
+        "options": ["a) That", "b) What", "c) Which", "d) All"],
+        "answer": "b",
+        "explanation": "What-расщепление."
+      },
+      {
+        "question": "It was my mother ______ cooked dinner.",
+        "options": ["a) who", "b) which", "c) that", "d) whom"],
+        "answer": "a",
+        "explanation": "Для человека – who."
+              }
             ]
         },
         {
@@ -23056,19 +23175,59 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 4 (перефразирование)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct word (a, b, c, or d) to complete the cleft sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "It was the doctor ______ saved his life.", "answer": "who", "explanation": "Для человека – who."},
-                {"question": "It was in the morning ______ we left.", "answer": "that", "explanation": "Для времени – that."},
-                {"question": "______ I like most is summer.", "answer": "What", "explanation": "What-расщепление."},
-                {"question": "It was the students ______ organized the event.", "answer": "who", "explanation": "Для человека – who."},
-                {"question": "______ she wants is a new job.", "answer": "What", "explanation": "What-расщепление."},
-                {"question": "It was in the garden ______ they found it.", "answer": "that", "explanation": "Для места – that."},
-                {"question": "______ I did was call for help.", "answer": "All", "explanation": "All-расщепление."},
-                {"question": "It was my friend ______ helped me move.", "answer": "who", "explanation": "Для человека – who."}
+ [
+  {
+    "type": "complex",
+    "text": "1. Choose the correct word (a, b, c, or d) to complete the cleft sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "It was the doctor ______ saved his life.",
+        "options": ["a) who", "b) which", "c) that", "d) whom"],
+        "answer": "a",
+        "explanation": "Для человека – who."
+      },
+      {
+        "question": "It was in the morning ______ we left.",
+        "options": ["a) when", "b) which", "c) that", "d) where"],
+        "answer": "c",
+        "explanation": "Для времени – that."
+      },
+      {
+        "question": "______ I like most is summer.",
+        "options": ["a) That", "b) What", "c) Which", "d) All"],
+        "answer": "b",
+        "explanation": "What-расщепление."
+      },
+      {
+        "question": "It was the students ______ organized the event.",
+        "options": ["a) who", "b) which", "c) that", "d) whom"],
+        "answer": "a",
+        "explanation": "Для человека – who."
+      },
+      {
+        "question": "______ she wants is a new job.",
+        "options": ["a) That", "b) What", "c) Which", "d) All"],
+        "answer": "b",
+        "explanation": "What-расщепление."
+      },
+      {
+        "question": "It was in the garden ______ they found it.",
+        "options": ["a) where", "b) which", "c) that", "d) who"],
+        "answer": "c",
+        "explanation": "Для места – that."
+      },
+      {
+        "question": "______ I did was call for help.",
+        "options": ["a) What", "b) All", "c) That", "d) Which"],
+        "answer": "b",
+        "explanation": "All-расщепление."
+      },
+      {
+        "question": "It was my friend ______ helped me move.",
+        "options": ["a) who", "b) which", "c) that", "d) whom"],
+        "answer": "a",
+        "explanation": "Для человека – who."
+              }
             ]
         },
         {
@@ -23118,18 +23277,58 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # ВАРИАНТ 5 (перевод)
     # =====================================================
     [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct word (a, b, c, or d) to complete the cleft sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "It was the firefighter ______ rescued the cat.", "answer": "who", "explanation": "Для человека – who."},
-                {"question": "It was at 5 o'clock ______ we arrived.", "answer": "that", "explanation": "Для времени – that."},
-                {"question": "______ I need is your help.", "answer": "What", "explanation": "What-расщепление."},
-                {"question": "It was the actress ______ starred in the film.", "answer": "who", "explanation": "Для человека – who."},
-                {"question": "______ he said was not true.", "answer": "What", "explanation": "What-расщепление."},
-                {"question": "It was by the river ______ we had a picnic.", "answer": "that", "explanation": "Для места – that."},
-                {"question": "______ I want is a glass of water.", "answer": "All", "explanation": "All-расщепление."},
-                {"question": "It was my uncle ______ gave me this watch.", "answer": "who", "explanation": "Для человека – who."}
+{
+  "type": "complex",
+  "text": "1. Choose the correct word (a, b, c, or d) to complete the cleft sentence. Type the letter of your answer.",
+  "subtasks": [
+    {
+      "question": "It was the firefighter ______ rescued the cat.",
+      "options": ["a) who", "b) which", "c) that", "d) whom"],
+      "answer": "a",
+      "explanation": "Для человека – who."
+    },
+    {
+      "question": "It was at 5 o'clock ______ we arrived.",
+      "options": ["a) when", "b) which", "c) that", "d) where"],
+      "answer": "c",
+      "explanation": "Для времени – that."
+    },
+    {
+      "question": "______ I need is your help.",
+      "options": ["a) That", "b) What", "c) Which", "d) All"],
+      "answer": "b",
+      "explanation": "What-расщепление."
+    },
+    {
+      "question": "It was the actress ______ starred in the film.",
+      "options": ["a) who", "b) which", "c) that", "d) whom"],
+      "answer": "a",
+      "explanation": "Для человека – who."
+    },
+    {
+      "question": "______ he said was not true.",
+      "options": ["a) That", "b) What", "c) Which", "d) All"],
+      "answer": "b",
+      "explanation": "What-расщепление."
+    },
+    {
+      "question": "It was by the river ______ we had a picnic.",
+      "options": ["a) where", "b) which", "c) that", "d) who"],
+      "answer": "c",
+      "explanation": "Для места – that."
+    },
+    {
+      "question": "______ I want is a glass of water.",
+      "options": ["a) What", "b) All", "c) That", "d) Which"],
+      "answer": "b",
+      "explanation": "All-расщепление."
+    },
+    {
+      "question": "It was my uncle ______ gave me this watch.",
+      "options": ["a) who", "b) which", "c) that", "d) whom"],
+      "answer": "a",
+      "explanation": "Для человека – who."
+              }
             ]
         },
         {
@@ -23178,19 +23377,59 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 6 (перефразирование)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct word (a, b, c, or d) to complete the cleft sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "It was the pilot ______ flew the plane.", "answer": "who", "explanation": "Для человека – who."},
-                {"question": "It was on Monday ______ she started her new job.", "answer": "that", "explanation": "Для времени – that."},
-                {"question": "______ I love most is travelling.", "answer": "What", "explanation": "What-расщепление."},
-                {"question": "It was the chef ______ prepared the meal.", "answer": "who", "explanation": "Для человека – who."},
-                {"question": "______ they discovered was a hidden room.", "answer": "What", "explanation": "What-расщепление."},
-                {"question": "It was under the bed ______ they hid the treasure.", "answer": "that", "explanation": "Для места – that."},
-                {"question": "______ I can offer is my support.", "answer": "All", "explanation": "All-расщепление."},
-                {"question": "It was my teacher ______ inspired me.", "answer": "who", "explanation": "Для человека – who."}
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct word (a, b, c, or d) to complete the cleft sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "It was the pilot ______ flew the plane.",
+        "options": ["a) who", "b) which", "c) that", "d) whom"],
+        "answer": "a",
+        "explanation": "Для человека – who."
+      },
+      {
+        "question": "It was on Monday ______ she started her new job.",
+        "options": ["a) when", "b) which", "c) that", "d) where"],
+        "answer": "c",
+        "explanation": "Для времени – that."
+      },
+      {
+        "question": "______ I love most is travelling.",
+        "options": ["a) That", "b) What", "c) Which", "d) All"],
+        "answer": "b",
+        "explanation": "What-расщепление."
+      },
+      {
+        "question": "It was the chef ______ prepared the meal.",
+        "options": ["a) who", "b) which", "c) that", "d) whom"],
+        "answer": "a",
+        "explanation": "Для человека – who."
+      },
+      {
+        "question": "______ they discovered was a hidden room.",
+        "options": ["a) That", "b) What", "c) Which", "d) All"],
+        "answer": "b",
+        "explanation": "What-расщепление."
+      },
+      {
+        "question": "It was under the bed ______ they hid the treasure.",
+        "options": ["a) where", "b) which", "c) that", "d) who"],
+        "answer": "c",
+        "explanation": "Для места – that."
+      },
+      {
+        "question": "______ I can offer is my support.",
+        "options": ["a) What", "b) All", "c) That", "d) Which"],
+        "answer": "b",
+        "explanation": "All-расщепление."
+      },
+      {
+        "question": "It was my teacher ______ inspired me.",
+        "options": ["a) who", "b) which", "c) that", "d) whom"],
+        "answer": "a",
+        "explanation": "Для человека – who."
+              }
             ]
         },
         {
@@ -23239,19 +23478,59 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 7 (перевод)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct word (a, b, c, or d) to complete the cleft sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "It was the lawyer ______ won the case.", "answer": "who", "explanation": "Для человека – who."},
-                {"question": "It was in 2001 ______ they got married.", "answer": "that", "explanation": "Для времени – that."},
-                {"question": "______ she loves most is her family.", "answer": "What", "explanation": "What-расщепление."},
-                {"question": "It was the journalist ______ wrote the article.", "answer": "who", "explanation": "Для человека – who."},
-                {"question": "______ we need is a miracle.", "answer": "What", "explanation": "What-расщепление."},
-                {"question": "It was in the forest ______ they got lost.", "answer": "that", "explanation": "Для места – that."},
-                {"question": "______ I want is peace and quiet.", "answer": "All", "explanation": "All-расщепление."},
-                {"question": "It was my grandmother ______ made this dress.", "answer": "who", "explanation": "Для человека – who."}
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct word (a, b, c, or d) to complete the cleft sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "It was the lawyer ______ won the case.",
+        "options": ["a) who", "b) which", "c) that", "d) whom"],
+        "answer": "a",
+        "explanation": "Для человека – who."
+      },
+      {
+        "question": "It was in 2001 ______ they got married.",
+        "options": ["a) when", "b) which", "c) that", "d) where"],
+        "answer": "c",
+        "explanation": "Для времени – that."
+      },
+      {
+        "question": "______ she loves most is her family.",
+        "options": ["a) That", "b) What", "c) Which", "d) All"],
+        "answer": "b",
+        "explanation": "What-расщепление."
+      },
+      {
+        "question": "It was the journalist ______ wrote the article.",
+        "options": ["a) who", "b) which", "c) that", "d) whom"],
+        "answer": "a",
+        "explanation": "Для человека – who."
+      },
+      {
+        "question": "______ we need is a miracle.",
+        "options": ["a) That", "b) What", "c) Which", "d) All"],
+        "answer": "b",
+        "explanation": "What-расщепление."
+      },
+      {
+        "question": "It was in the forest ______ they got lost.",
+        "options": ["a) where", "b) which", "c) that", "d) who"],
+        "answer": "c",
+        "explanation": "Для места – that."
+      },
+      {
+        "question": "______ I want is peace and quiet.",
+        "options": ["a) What", "b) All", "c) That", "d) Which"],
+        "answer": "b",
+        "explanation": "All-расщепление."
+      },
+      {
+        "question": "It was my grandmother ______ made this dress.",
+        "options": ["a) who", "b) which", "c) that", "d) whom"],
+        "answer": "a",
+        "explanation": "Для человека – who."
+              }
             ]
         },
         {
@@ -23300,19 +23579,59 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 8 (перефразирование)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct word (a, b, c, or d) to complete the cleft sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "It was the musician ______ composed the song.", "answer": "who", "explanation": "Для человека – who."},
-                {"question": "It was on Friday ______ we finished the project.", "answer": "that", "explanation": "Для времени – that."},
-                {"question": "______ I admire most is her courage.", "answer": "What", "explanation": "What-расщепление."},
-                {"question": "It was the scientist ______ made the discovery.", "answer": "who", "explanation": "Для человека – who."},
-                {"question": "______ they found was a secret passage.", "answer": "What", "explanation": "What-расщепление."},
-                {"question": "It was in the cellar ______ they kept the wine.", "answer": "that", "explanation": "Для места – that."},
-                {"question": "______ I need is a good night's sleep.", "answer": "All", "explanation": "All-расщепление."},
-                {"question": "It was my brother ______ fixed the car.", "answer": "who", "explanation": "Для человека – who."}
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct word (a, b, c, or d) to complete the cleft sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "It was the musician ______ composed the song.",
+        "options": ["a) who", "b) which", "c) that", "d) whom"],
+        "answer": "a",
+        "explanation": "Для человека – who."
+      },
+      {
+        "question": "It was on Friday ______ we finished the project.",
+        "options": ["a) when", "b) which", "c) that", "d) where"],
+        "answer": "c",
+        "explanation": "Для времени – that."
+      },
+      {
+        "question": "______ I admire most is her courage.",
+        "options": ["a) That", "b) What", "c) Which", "d) All"],
+        "answer": "b",
+        "explanation": "What-расщепление."
+      },
+      {
+        "question": "It was the scientist ______ made the discovery.",
+        "options": ["a) who", "b) which", "c) that", "d) whom"],
+        "answer": "a",
+        "explanation": "Для человека – who."
+      },
+      {
+        "question": "______ they found was a secret passage.",
+        "options": ["a) That", "b) What", "c) Which", "d) All"],
+        "answer": "b",
+        "explanation": "What-расщепление."
+      },
+      {
+        "question": "It was in the cellar ______ they kept the wine.",
+        "options": ["a) where", "b) which", "c) that", "d) who"],
+        "answer": "c",
+        "explanation": "Для места – that."
+      },
+      {
+        "question": "______ I need is a good night's sleep.",
+        "options": ["a) What", "b) All", "c) That", "d) Which"],
+        "answer": "b",
+        "explanation": "All-расщепление."
+      },
+      {
+        "question": "It was my brother ______ fixed the car.",
+        "options": ["a) who", "b) which", "c) that", "d) whom"],
+        "answer": "a",
+        "explanation": "Для человека – who."
+              }
             ]
         },
         {
@@ -23361,19 +23680,58 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 9 (перевод)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct word (a, b, c, or d) to complete the cleft sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "It was the photographer ______ took the picture.", "answer": "who", "explanation": "Для человека – who."},
-                {"question": "It was in the evening ______ we went for a walk.", "answer": "that", "explanation": "Для времени – that."},
-                {"question": "______ he wants is a new beginning.", "answer": "What", "explanation": "What-расщепление."},
-                {"question": "It was the reporter ______ interviewed the celebrity.", "answer": "who", "explanation": "Для человека – who."},
-                {"question": "______ I remember most is the music.", "answer": "What", "explanation": "What-расщепление."},
-                {"question": "It was on the beach ______ they built a sandcastle.", "answer": "that", "explanation": "Для места – that."},
-                {"question": "______ they wanted was a warm meal.", "answer": "All", "explanation": "All-расщепление."},
-                {"question": "It was my sister ______ painted this picture.", "answer": "who", "explanation": "Для человека – who."}
+{
+  "type": "complex",
+  "text": "1. Choose the correct word (a, b, c, or d) to complete the cleft sentence. Type the letter of your answer.",
+  "subtasks": [
+    {
+      "question": "It was the photographer ______ took the picture.",
+      "options": ["a) who", "b) which", "c) that", "d) whom"],
+      "answer": "a",
+      "explanation": "Для человека – who."
+    },
+    {
+      "question": "It was in the evening ______ we went for a walk.",
+      "options": ["a) when", "b) which", "c) that", "d) where"],
+      "answer": "c",
+      "explanation": "Для времени – that."
+    },
+    {
+      "question": "______ he wants is a new beginning.",
+      "options": ["a) That", "b) What", "c) Which", "d) All"],
+      "answer": "b",
+      "explanation": "What-расщепление."
+    },
+    {
+      "question": "It was the reporter ______ interviewed the celebrity.",
+      "options": ["a) who", "b) which", "c) that", "d) whom"],
+      "answer": "a",
+      "explanation": "Для человека – who."
+    },
+    {
+      "question": "______ I remember most is the music.",
+      "options": ["a) That", "b) What", "c) Which", "d) All"],
+      "answer": "b",
+      "explanation": "What-расщепление."
+    },
+    {
+      "question": "It was on the beach ______ they built a sandcastle.",
+      "options": ["a) where", "b) which", "c) that", "d) who"],
+      "answer": "c",
+      "explanation": "Для места – that."
+    },
+    {
+      "question": "______ they wanted was a warm meal.",
+      "options": ["a) What", "b) All", "c) That", "d) Which"],
+      "answer": "b",
+      "explanation": "All-расщепление."
+    },
+    {
+      "question": "It was my sister ______ painted this picture.",
+      "options": ["a) who", "b) which", "c) that", "d) whom"],
+      "answer": "a",
+      "explanation": "Для человека – who."
+              }
             ]
         },
         {
@@ -23422,19 +23780,58 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 10 (перефразирование)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct word (a, b, c, or d) to complete the cleft sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "It was the artist ______ created the sculpture.", "answer": "who", "explanation": "Для человека – who."},
-                {"question": "It was in June ______ she graduated.", "answer": "that", "explanation": "Для времени – that."},
-                {"question": "______ I really need is a holiday.", "answer": "What", "explanation": "What-расщепление."},
-                {"question": "It was the driver ______ caused the accident.", "answer": "who", "explanation": "Для человека – who."},
-                {"question": "______ she said made everyone laugh.", "answer": "What", "explanation": "What-расщепление."},
-                {"question": "It was in the mountains ______ we spent our holiday.", "answer": "that", "explanation": "Для места – that."},
-                {"question": "______ I have is a few dollars.", "answer": "All", "explanation": "All-расщепление."},
-                {"question": "It was my cousin ______ gave me this guitar.", "answer": "who", "explanation": "Для человека – who."}
+{
+  "type": "complex",
+  "text": "1. Choose the correct word (a, b, c, or d) to complete the cleft sentence. Type the letter of your answer.",
+  "subtasks": [
+    {
+      "question": "It was the artist ______ created the sculpture.",
+      "options": ["a) who", "b) which", "c) that", "d) whom"],
+      "answer": "a",
+      "explanation": "Для человека – who."
+    },
+    {
+      "question": "It was in June ______ she graduated.",
+      "options": ["a) when", "b) which", "c) that", "d) where"],
+      "answer": "c",
+      "explanation": "Для времени – that."
+    },
+    {
+      "question": "______ I really need is a holiday.",
+      "options": ["a) That", "b) What", "c) Which", "d) All"],
+      "answer": "b",
+      "explanation": "What-расщепление."
+    },
+    {
+      "question": "It was the driver ______ caused the accident.",
+      "options": ["a) who", "b) which", "c) that", "d) whom"],
+      "answer": "a",
+      "explanation": "Для человека – who."
+    },
+    {
+      "question": "______ she said made everyone laugh.",
+      "options": ["a) That", "b) What", "c) Which", "d) All"],
+      "answer": "b",
+      "explanation": "What-расщепление."
+    },
+    {
+      "question": "It was in the mountains ______ we spent our holiday.",
+      "options": ["a) where", "b) which", "c) that", "d) who"],
+      "answer": "c",
+      "explanation": "Для места – that."
+    },
+    {
+      "question": "______ I have is a few dollars.",
+      "options": ["a) What", "b) All", "c) That", "d) Which"],
+      "answer": "b",
+      "explanation": "All-расщепление."
+    },
+    {
+      "question": "It was my cousin ______ gave me this guitar.",
+      "options": ["a) who", "b) which", "c) that", "d) whom"],
+      "answer": "a",
+      "explanation": "Для человека – who."
+              }
             ]
         },
         {
@@ -23483,19 +23880,58 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 11 (перевод)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct word (a, b, c, or d) to complete the cleft sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "It was the detective ______ solved the mystery.", "answer": "who", "explanation": "Для человека – who."},
-                {"question": "It was on Tuesday ______ we left for holiday.", "answer": "that", "explanation": "Для времени – that."},
-                {"question": "______ I enjoy most is dancing.", "answer": "What", "explanation": "What-расщепление."},
-                {"question": "It was the conductor ______ led the orchestra.", "answer": "who", "explanation": "Для человека – who."},
-                {"question": "______ they saw was a shooting star.", "answer": "What", "explanation": "What-расщепление."},
-                {"question": "It was in the library ______ she found the book.", "answer": "that", "explanation": "Для места – that."},
-                {"question": "______ I can give you is advice.", "answer": "All", "explanation": "All-расщепление."},
-                {"question": "It was my neighbour ______ helped me.", "answer": "who", "explanation": "Для человека – who."}
+{
+  "type": "complex",
+  "text": "1. Choose the correct word (a, b, c, or d) to complete the cleft sentence. Type the letter of your answer.",
+  "subtasks": [
+    {
+      "question": "It was the detective ______ solved the mystery.",
+      "options": ["a) whom", "b) which", "c) that", "d) who"],
+      "answer": "d",
+      "explanation": "Для человека – who."
+    },
+    {
+      "question": "It was on Tuesday ______ we left for holiday.",
+      "options": ["a) where", "b) which", "c) when", "d) that"],
+      "answer": "d",
+      "explanation": "Для времени – that."
+    },
+    {
+      "question": "______ I enjoy most is dancing.",
+      "options": ["a) All", "b) That", "c) What", "d) Which"],
+      "answer": "c",
+      "explanation": "What-расщепление."
+    },
+    {
+      "question": "It was the conductor ______ led the orchestra.",
+      "options": ["a) whom", "b) which", "c) that", "d) who"],
+      "answer": "d",
+      "explanation": "Для человека – who."
+    },
+    {
+      "question": "______ they saw was a shooting star.",
+      "options": ["a) That", "b) What", "c) Which", "d) All"],
+      "answer": "b",
+      "explanation": "What-расщепление."
+    },
+    {
+      "question": "It was in the library ______ she found the book.",
+      "options": ["a) which", "b) who", "c) where", "d) that"],
+      "answer": "d",
+      "explanation": "Для места – that."
+    },
+    {
+      "question": "______ I can give you is advice.",
+      "options": ["a) What", "b) That", "c) All", "d) Which"],
+      "answer": "c",
+      "explanation": "All-расщепление."
+    },
+    {
+      "question": "It was my neighbour ______ helped me.",
+      "options": ["a) whom", "b) which", "c) that", "d) who"],
+      "answer": "d",
+      "explanation": "Для человека – who."
+              }
             ]
         },
         {
@@ -23544,19 +23980,58 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 12 (перефразирование)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct word (a, b, c, or d) to complete the cleft sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "It was the architect ______ designed the building.", "answer": "who", "explanation": "Для человека – who."},
-                {"question": "It was in 2010 ______ they moved to London.", "answer": "that", "explanation": "Для времени – that."},
-                {"question": "______ I love most is autumn.", "answer": "What", "explanation": "What-расщепление."},
-                {"question": "It was the captain ______ led the team.", "answer": "who", "explanation": "Для человека – who."},
-                {"question": "______ he needs is a second chance.", "answer": "What", "explanation": "What-расщепление."},
-                {"question": "It was on the island ______ they got stranded.", "answer": "that", "explanation": "Для места – that."},
-                {"question": "______ she wants is a beautiful dress.", "answer": "All", "explanation": "All-расщепление."},
-                {"question": "It was my grandfather ______ built this house.", "answer": "who", "explanation": "Для человека – who."}
+ {
+  "type": "complex",
+  "text": "1. Choose the correct word (a, b, c, or d) to complete the cleft sentence. Type the letter of your answer.",
+  "subtasks": [
+    {
+      "question": "It was the architect ______ designed the building.",
+      "options": ["a) which", "b) that", "c) whom", "d) who"],
+      "answer": "d",
+      "explanation": "Для человека – who."
+    },
+    {
+      "question": "It was in 2010 ______ they moved to London.",
+      "options": ["a) where", "b) when", "c) which", "d) that"],
+      "answer": "d",
+      "explanation": "Для времени – that."
+    },
+    {
+      "question": "______ I love most is autumn.",
+      "options": ["a) That", "b) All", "c) Which", "d) What"],
+      "answer": "d",
+      "explanation": "What-расщепление."
+    },
+    {
+      "question": "It was the captain ______ led the team.",
+      "options": ["a) whom", "b) which", "c) that", "d) who"],
+      "answer": "d",
+      "explanation": "Для человека – who."
+    },
+    {
+      "question": "______ he needs is a second chance.",
+      "options": ["a) Which", "b) All", "c) That", "d) What"],
+      "answer": "d",
+      "explanation": "What-расщепление."
+    },
+    {
+      "question": "It was on the island ______ they got stranded.",
+      "options": ["a) which", "b) where", "c) when", "d) that"],
+      "answer": "d",
+      "explanation": "Для места – that."
+    },
+    {
+      "question": "______ she wants is a beautiful dress.",
+      "options": ["a) That", "b) Which", "c) What", "d) All"],
+      "answer": "d",
+      "explanation": "All-расщепление."
+    },
+    {
+      "question": "It was my grandfather ______ built this house.",
+      "options": ["a) whom", "b) which", "c) that", "d) who"],
+      "answer": "d",
+      "explanation": "Для человека – who."
+              }
             ]
         },
         {
@@ -25159,20 +25634,58 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
 "practice_bank": [
     # =====================================================
     # ВАРИАНТ 1 (перевод)
-    # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct linking word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "The task was difficult. ______, we managed to finish on time.", "answer": "However", "explanation": "However – однако, вводное слово."},
-                {"question": "The weather was terrible. ______, they continued the climb.", "answer": "Nevertheless", "explanation": "Nevertheless – тем не менее (формально)."},
-                {"question": "Some people love coffee, ______ others prefer tea.", "answer": "whereas", "explanation": "Whereas – тогда как (сравнение)."},
-                {"question": "______ to her brother, she is very outgoing.", "answer": "In contrast", "explanation": "In contrast – в отличие от."},
-                {"question": "The new policy is unpopular. ______, it may be illegal.", "answer": "Moreover", "explanation": "Moreover – более того."},
-                {"question": "He didn't study. ______, he failed the exam.", "answer": "Consequently", "explanation": "Consequently – следовательно."},
-                {"question": "It was raining, ______ we stayed home.", "answer": "so", "explanation": "So – поэтому (разговорный)."},
-                {"question": "I don't want to go. ______, it's too late.", "answer": "Besides", "explanation": "Besides – кроме того (разговорный)."}
+{
+  "type": "complex",
+  "text": "1. Choose the correct linking word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+  "subtasks": [
+    {
+      "question": "The hotel was expensive. ______, it was the only one available.",
+      "options": ["a) Moreover", "b) Nevertheless", "c) Therefore", "d) However"],
+      "answer": "b",
+      "explanation": "Nevertheless – тем не менее (несмотря на цену, это был единственный вариант)."
+    },
+    {
+      "question": "She is a gifted writer. ______, she is also a talented painter.",
+      "options": ["a) In contrast", "b) Consequently", "c) Moreover", "d) However"],
+      "answer": "c",
+      "explanation": "Moreover – более того, добавление информации."
+    },
+    {
+      "question": "He studied hard, ______ he passed the exam with flying colours.",
+      "options": ["a) whereas", "b) so", "c) however", "d) nevertheless"],
+      "answer": "b",
+      "explanation": "So – поэтому (результат)."
+    },
+    {
+      "question": "The north is mountainous, ______ the south is flat.",
+      "options": ["a) in contrast", "b) moreover", "c) whereas", "d) consequently"],
+      "answer": "c",
+      "explanation": "Whereas – тогда как (сравнение)."
+    },
+    {
+      "question": "The project was completed on time. ______, it was under budget.",
+      "options": ["a) However", "b) In addition", "c) Consequently", "d) Nevertheless"],
+      "answer": "b",
+      "explanation": "In addition – кроме того, добавление."
+    },
+    {
+      "question": "The company invested heavily in marketing. ______, sales increased significantly.",
+      "options": ["a) However", "b) Moreover", "c) Consequently", "d) In contrast"],
+      "answer": "c",
+      "explanation": "Consequently – следовательно (причина-следствие)."
+    },
+    {
+      "question": "He is very talented. ______, he is too lazy to work hard.",
+      "options": ["a) Moreover", "b) However", "c) Therefore", "d) Whereas"],
+      "answer": "b",
+      "explanation": "However – однако (противопоставление)."
+    },
+    {
+      "question": "______ to the previous policy, the new one is far more flexible.",
+      "options": ["a) In contrast", "b) In addition", "c) Consequently", "d) Moreover"],
+      "answer": "a",
+      "explanation": "In contrast – в отличие от (сравнение)."
+              }
             ]
         },
         {
@@ -25221,19 +25734,58 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 2 (перефразирование)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct linking word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "The road was icy. ______, we drove slowly.", "answer": "Therefore", "explanation": "Therefore – следовательно."},
-                {"question": "She is very intelligent, ______ her brother is quite lazy.", "answer": "whereas", "explanation": "Whereas – тогда как."},
-                {"question": "The hotel was expensive. ______, it was very comfortable.", "answer": "Nevertheless", "explanation": "Nevertheless – тем не менее."},
-                {"question": "______, we also need to consider the environmental impact.", "answer": "Furthermore", "explanation": "Furthermore – более того."},
-                {"question": "He was tired. ______, he finished the race.", "answer": "However", "explanation": "However – однако."},
-                {"question": "The company lost money. ______, many workers were laid off.", "answer": "As a result", "explanation": "As a result – в результате."},
-                {"question": "I love summer, ______ my sister prefers winter.", "answer": "whereas", "explanation": "Whereas – тогда как."},
-                {"question": "She didn't have much experience. ______, she got the job.", "answer": "Nevertheless", "explanation": "Nevertheless – тем не менее."}
+{
+  "type": "complex",
+  "text": "1. Choose the correct linking word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+  "subtasks": [
+    {
+      "question": "The road was icy. ______, we drove slowly.",
+      "options": ["a) However", "b) Therefore", "c) Moreover", "d) Nevertheless"],
+      "answer": "b",
+      "explanation": "Therefore – следовательно."
+    },
+    {
+      "question": "She is very intelligent, ______ her brother is quite lazy.",
+      "options": ["a) whereas", "b) however", "c) moreover", "d) consequently"],
+      "answer": "a",
+      "explanation": "Whereas – тогда как."
+    },
+    {
+      "question": "The hotel was expensive. ______, it was very comfortable.",
+      "options": ["a) Therefore", "b) However", "c) Nevertheless", "d) Moreover"],
+      "answer": "c",
+      "explanation": "Nevertheless – тем не менее."
+    },
+    {
+      "question": "______, we also need to consider the environmental impact.",
+      "options": ["a) Furthermore", "b) However", "c) Consequently", "d) In contrast"],
+      "answer": "a",
+      "explanation": "Furthermore – более того."
+    },
+    {
+      "question": "He was tired. ______, he finished the race.",
+      "options": ["a) However", "b) Therefore", "c) Moreover", "d) Consequently"],
+      "answer": "a",
+      "explanation": "However – однако."
+    },
+    {
+      "question": "The company lost money. ______, many workers were laid off.",
+      "options": ["a) Nevertheless", "b) However", "c) As a result", "d) In addition"],
+      "answer": "c",
+      "explanation": "As a result – в результате."
+    },
+    {
+      "question": "I love summer, ______ my sister prefers winter.",
+      "options": ["a) whereas", "b) so", "c) however", "d) moreover"],
+      "answer": "a",
+      "explanation": "Whereas – тогда как."
+    },
+    {
+      "question": "She didn't have much experience. ______, she got the job.",
+      "options": ["a) Consequently", "b) Nevertheless", "c) Therefore", "d) Moreover"],
+      "answer": "b",
+      "explanation": "Nevertheless – тем не менее."
+              }
             ]
         },
         {
@@ -25282,19 +25834,59 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 3 (перевод)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct linking word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "The project was expensive. ______, it was completed on time.", "answer": "Nevertheless", "explanation": "Nevertheless – тем не менее."},
-                {"question": "Some people enjoy cold weather, ______ others hate it.", "answer": "whereas", "explanation": "Whereas – тогда как."},
-                {"question": "______, we need to consider the ethical implications.", "answer": "Moreover", "explanation": "Moreover – более того."},
-                {"question": "He was late. ______, he missed the beginning of the film.", "answer": "Consequently", "explanation": "Consequently – следовательно."},
-                {"question": "______ to his brother, he is very quiet.", "answer": "In contrast", "explanation": "In contrast – в отличие от."},
-                {"question": "The food was delicious. ______, the service was excellent.", "answer": "In addition", "explanation": "In addition – в добавок."},
-                {"question": "She studied hard, ______ she passed the exam.", "answer": "so", "explanation": "So – поэтому."},
-                {"question": "I understand your point. ______, I disagree with your conclusion.", "answer": "However", "explanation": "However – однако."}
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct linking word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "The project was expensive. ______, it was completed on time.",
+        "options": ["a) However", "b) Therefore", "c) Nevertheless", "d) Moreover"],
+        "answer": "c",
+        "explanation": "Nevertheless – тем не менее."
+      },
+      {
+        "question": "Some people enjoy cold weather, ______ others hate it.",
+        "options": ["a) whereas", "b) however", "c) so", "d) consequently"],
+        "answer": "a",
+        "explanation": "Whereas – тогда как."
+      },
+      {
+        "question": "______, we need to consider the ethical implications.",
+        "options": ["a) Consequently", "b) Moreover", "c) However", "d) In contrast"],
+        "answer": "b",
+        "explanation": "Moreover – более того."
+      },
+      {
+        "question": "He was late. ______, he missed the beginning of the film.",
+        "options": ["a) Consequently", "b) Nevertheless", "c) Moreover", "d) However"],
+        "answer": "a",
+        "explanation": "Consequently – следовательно."
+      },
+      {
+        "question": "______ to his brother, he is very quiet.",
+        "options": ["a) In addition", "b) In contrast", "c) Moreover", "d) Consequently"],
+        "answer": "b",
+        "explanation": "In contrast – в отличие от."
+      },
+      {
+        "question": "The food was delicious. ______, the service was excellent.",
+        "options": ["a) However", "b) In addition", "c) Consequently", "d) Nevertheless"],
+        "answer": "b",
+        "explanation": "In addition – в добавок."
+      },
+      {
+        "question": "She studied hard, ______ she passed the exam.",
+        "options": ["a) therefore", "b) so", "c) however", "d) whereas"],
+        "answer": "b",
+        "explanation": "So – поэтому."
+      },
+      {
+        "question": "I understand your point. ______, I disagree with your conclusion.",
+        "options": ["a) However", "b) Moreover", "c) Consequently", "d) In contrast"],
+        "answer": "a",
+        "explanation": "However – однако."
+              }
             ]
         },
         {
@@ -25343,19 +25935,59 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 4 (перефразирование)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct linking word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "The team played badly. ______, they won the match.", "answer": "Nevertheless", "explanation": "Nevertheless – тем не менее."},
-                {"question": "I love classical music, ______ my friend prefers jazz.", "answer": "whereas", "explanation": "Whereas – тогда как."},
-                {"question": "______, we must also consider the cost.", "answer": "Furthermore", "explanation": "Furthermore – более того."},
-                {"question": "He forgot his umbrella. ______, he got wet.", "answer": "Consequently", "explanation": "Consequently – следовательно."},
-                {"question": "______ to her sister, she is very shy.", "answer": "In contrast", "explanation": "In contrast – в отличие от."},
-                {"question": "The museum was interesting. ______, it was very crowded.", "answer": "However", "explanation": "However – однако."},
-                {"question": "She was tired, ______ she went to bed early.", "answer": "so", "explanation": "So – поэтому."},
-                {"question": "I'm not hungry. ______, I don't feel like eating.", "answer": "Besides", "explanation": "Besides – кроме того."}
+ [
+  {
+    "type": "complex",
+    "text": "1. Choose the correct linking word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "The team played badly. ______, they won the match.",
+        "options": ["a) However", "b) Therefore", "c) Nevertheless", "d) Moreover"],
+        "answer": "c",
+        "explanation": "Nevertheless – тем не менее."
+      },
+      {
+        "question": "I love classical music, ______ my friend prefers jazz.",
+        "options": ["a) whereas", "b) however", "c) so", "d) consequently"],
+        "answer": "a",
+        "explanation": "Whereas – тогда как."
+      },
+      {
+        "question": "______, we must also consider the cost.",
+        "options": ["a) Consequently", "b) Furthermore", "c) However", "d) In contrast"],
+        "answer": "b",
+        "explanation": "Furthermore – более того."
+      },
+      {
+        "question": "He forgot his umbrella. ______, he got wet.",
+        "options": ["a) Consequently", "b) Nevertheless", "c) Moreover", "d) However"],
+        "answer": "a",
+        "explanation": "Consequently – следовательно."
+      },
+      {
+        "question": "______ to her sister, she is very shy.",
+        "options": ["a) In addition", "b) In contrast", "c) Moreover", "d) Consequently"],
+        "answer": "b",
+        "explanation": "In contrast – в отличие от."
+      },
+      {
+        "question": "The museum was interesting. ______, it was very crowded.",
+        "options": ["a) However", "b) Moreover", "c) Consequently", "d) In addition"],
+        "answer": "a",
+        "explanation": "However – однако."
+      },
+      {
+        "question": "She was tired, ______ she went to bed early.",
+        "options": ["a) therefore", "b) so", "c) however", "d) whereas"],
+        "answer": "b",
+        "explanation": "So – поэтому."
+      },
+      {
+        "question": "I'm not hungry. ______, I don't feel like eating.",
+        "options": ["a) Besides", "b) However", "c) Moreover", "d) Consequently"],
+        "answer": "a",
+        "explanation": "Besides – кроме того."
+              }
             ]
         },
         {
@@ -25403,20 +26035,60 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     ],
     # =====================================================
     # ВАРИАНТ 5 (перевод)
-    # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct linking word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "The experiment failed. ______, the scientists continued their research.", "answer": "Nevertheless", "explanation": "Nevertheless – тем не менее."},
-                {"question": "Some people are naturally talented, ______ others have to work hard.", "answer": "whereas", "explanation": "Whereas – тогда как."},
-                {"question": "______, we should also think about the long-term effects.", "answer": "Moreover", "explanation": "Moreover – более того."},
-                {"question": "The traffic was terrible. ______, we arrived late.", "answer": "Consequently", "explanation": "Consequently – следовательно."},
-                {"question": "______ with his previous work, this novel is much better.", "answer": "In contrast", "explanation": "In contrast – в отличие от."},
-                {"question": "The hotel was clean. ______, it was very well-located.", "answer": "In addition", "explanation": "In addition – в добавок."},
-                {"question": "The problem was complex, ______ we solved it quickly.", "answer": "but", "explanation": "But – но (противопоставление)."},
-                {"question": "I'm not ready. ______, I need more time.", "answer": "Besides", "explanation": "Besides – кроме того."}
+# =====================================================
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct linking word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "The experiment failed. ______, the scientists continued their research.",
+        "options": ["a) Therefore", "b) Moreover", "c) Nevertheless", "d) However"],
+        "answer": "c",
+        "explanation": "Nevertheless – тем не менее."
+      },
+      {
+        "question": "Some people are naturally talented, ______ others have to work hard.",
+        "options": ["a) whereas", "b) however", "c) so", "d) consequently"],
+        "answer": "a",
+        "explanation": "Whereas – тогда как."
+      },
+      {
+        "question": "______, we should also think about the long-term effects.",
+        "options": ["a) Consequently", "b) Moreover", "c) However", "d) In contrast"],
+        "answer": "b",
+        "explanation": "Moreover – более того."
+      },
+      {
+        "question": "The traffic was terrible. ______, we arrived late.",
+        "options": ["a) However", "b) Nevertheless", "c) Moreover", "d) Consequently"],
+        "answer": "d",
+        "explanation": "Consequently – следовательно."
+      },
+      {
+        "question": "______ with his previous work, this novel is much better.",
+        "options": ["a) Moreover", "b) In addition", "c) In contrast", "d) Consequently"],
+        "answer": "c",
+        "explanation": "In contrast – в отличие от."
+      },
+      {
+        "question": "The hotel was clean. ______, it was very well-located.",
+        "options": ["a) In addition", "b) However", "c) Consequently", "d) Nevertheless"],
+        "answer": "a",
+        "explanation": "In addition – в добавок."
+      },
+      {
+        "question": "The problem was complex, ______ we solved it quickly.",
+        "options": ["a) so", "b) but", "c) whereas", "d) however"],
+        "answer": "b",
+        "explanation": "But – но (противопоставление)."
+      },
+      {
+        "question": "I'm not ready. ______, I need more time.",
+        "options": ["a) Besides", "b) However", "c) Moreover", "d) Consequently"],
+        "answer": "a",
+        "explanation": "Besides – кроме того."
+              }
             ]
         },
         {
@@ -25465,19 +26137,59 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 6 (перефразирование)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct linking word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "The film was long. ______, it was very entertaining.", "answer": "Nevertheless", "explanation": "Nevertheless – тем не менее."},
-                {"question": "My sister loves spicy food, ______ I prefer mild dishes.", "answer": "whereas", "explanation": "Whereas – тогда как."},
-                {"question": "______, we must also ensure quality.", "answer": "Furthermore", "explanation": "Furthermore – более того."},
-                {"question": "He didn't sleep well. ______, he was tired all day.", "answer": "Consequently", "explanation": "Consequently – следовательно."},
-                {"question": "______ to her husband, she is very practical.", "answer": "In contrast", "explanation": "In contrast – в отличие от."},
-                {"question": "The book was well-written. ______, it was a pleasure to read.", "answer": "Moreover", "explanation": "Moreover – более того."},
-                {"question": "I was hungry, ______ I made a sandwich.", "answer": "so", "explanation": "So – поэтому."},
-                {"question": "We have enough money. ______, we can't buy it because it's out of stock.", "answer": "However", "explanation": "However – однако."}
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct linking word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "The film was long. ______, it was very entertaining.",
+        "options": ["a) Therefore", "b) Moreover", "c) Nevertheless", "d) However"],
+        "answer": "c",
+        "explanation": "Nevertheless – тем не менее."
+      },
+      {
+        "question": "My sister loves spicy food, ______ I prefer mild dishes.",
+        "options": ["a) whereas", "b) however", "c) so", "d) consequently"],
+        "answer": "a",
+        "explanation": "Whereas – тогда как."
+      },
+      {
+        "question": "______, we must also ensure quality.",
+        "options": ["a) Moreover", "b) Consequently", "c) However", "d) In contrast"],
+        "answer": "a",
+        "explanation": "Furthermore – более того."
+      },
+      {
+        "question": "He didn't sleep well. ______, he was tired all day.",
+        "options": ["a) However", "b) Nevertheless", "c) Moreover", "d) Consequently"],
+        "answer": "d",
+        "explanation": "Consequently – следовательно."
+      },
+      {
+        "question": "______ to her husband, she is very practical.",
+        "options": ["a) Moreover", "b) In addition", "c) In contrast", "d) Consequently"],
+        "answer": "c",
+        "explanation": "In contrast – в отличие от."
+      },
+      {
+        "question": "The book was well-written. ______, it was a pleasure to read.",
+        "options": ["a) However", "b) Consequently", "c) Nevertheless", "d) Moreover"],
+        "answer": "d",
+        "explanation": "Moreover – более того."
+      },
+      {
+        "question": "I was hungry, ______ I made a sandwich.",
+        "options": ["a) therefore", "b) so", "c) however", "d) whereas"],
+        "answer": "b",
+        "explanation": "So – поэтому."
+      },
+      {
+        "question": "We have enough money. ______, we can't buy it because it's out of stock.",
+        "options": ["a) Besides", "b) However", "c) Moreover", "d) Consequently"],
+        "answer": "b",
+        "explanation": "However – однако."
+              }
             ]
         },
         {
@@ -25526,19 +26238,59 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 7 (перевод)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct linking word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "The company is profitable. ______, it has high debts.", "answer": "However", "explanation": "However – однако."},
-                {"question": "He is very talented, ______ he lacks motivation.", "answer": "whereas? Нет, здесь 'но' – but. Однако в задании даны варианты, я поставлю 'but'. Но поскольку это тест, я дам правильный ответ: 'but'."},
-                {"question": "______, we also need to check the references.", "answer": "In addition", "explanation": "In addition – в добавок."},
-                {"question": "She missed the bus. ______, she had to walk.", "answer": "Consequently", "explanation": "Consequently – следовательно."},
-                {"question": "______ with the previous model, this one is much faster.", "answer": "In contrast", "explanation": "In contrast – в отличие от."},
-                {"question": "The weather was awful. ______, we enjoyed the trip.", "answer": "Nevertheless", "explanation": "Nevertheless – тем не менее."},
-                {"question": "He worked hard, ______ he passed the exam.", "answer": "so", "explanation": "So – поэтому."},
-                {"question": "I'm not interested. ______, I'm too busy.", "answer": "Besides", "explanation": "Besides – кроме того."}
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct linking word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "The company is profitable. ______, it has high debts.",
+        "options": ["a) However", "b) Moreover", "c) Consequently", "d) Nevertheless"],
+        "answer": "a",
+        "explanation": "However – однако (противопоставление)."
+      },
+      {
+        "question": "He is very talented, ______ he lacks motivation.",
+        "options": ["a) whereas", "b) so", "c) but", "d) however"],
+        "answer": "c",
+        "explanation": "But – но (противопоставление)."
+      },
+      {
+        "question": "______, we also need to check the references.",
+        "options": ["a) In contrast", "b) In addition", "c) Consequently", "d) However"],
+        "answer": "b",
+        "explanation": "In addition – в добавок."
+      },
+      {
+        "question": "She missed the bus. ______, she had to walk.",
+        "options": ["a) However", "b) Nevertheless", "c) Moreover", "d) Consequently"],
+        "answer": "d",
+        "explanation": "Consequently – следовательно."
+      },
+      {
+        "question": "______ with the previous model, this one is much faster.",
+        "options": ["a) In contrast", "b) Moreover", "c) In addition", "d) Consequently"],
+        "answer": "a",
+        "explanation": "In contrast – в отличие от."
+      },
+      {
+        "question": "The weather was awful. ______, we enjoyed the trip.",
+        "options": ["a) Moreover", "b) Therefore", "c) Nevertheless", "d) However"],
+        "answer": "c",
+        "explanation": "Nevertheless – тем не менее."
+      },
+      {
+        "question": "He worked hard, ______ he passed the exam.",
+        "options": ["a) so", "b) but", "c) however", "d) whereas"],
+        "answer": "a",
+        "explanation": "So – поэтому."
+      },
+      {
+        "question": "I'm not interested. ______, I'm too busy.",
+        "options": ["a) Besides", "b) Moreover", "c) However", "d) Consequently"],
+        "answer": "a",
+        "explanation": "Besides – кроме того."
+              }
             ]
         },
         {
@@ -25587,19 +26339,59 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 8 (перефразирование)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct linking word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "The price was high. ______, we decided to buy it.", "answer": "Nevertheless", "explanation": "Nevertheless – тем не менее."},
-                {"question": "She is an extrovert, ______ her sister is an introvert.", "answer": "whereas", "explanation": "Whereas – тогда как."},
-                {"question": "______, we should also consult the experts.", "answer": "Moreover", "explanation": "Moreover – более того."},
-                {"question": "He didn't listen to the advice. ______, he made a mistake.", "answer": "Consequently", "explanation": "Consequently – следовательно."},
-                {"question": "______ to his colleagues, he is very ambitious.", "answer": "In contrast", "explanation": "In contrast – в отличие от."},
-                {"question": "The view was breathtaking. ______, we took many photos.", "answer": "Therefore", "explanation": "Therefore – следовательно."},
-                {"question": "I was late, ______ I missed the train.", "answer": "so", "explanation": "So – поэтому."},
-                {"question": "We have a problem. ______, I think we can solve it.", "answer": "However", "explanation": "However – однако."}
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct linking word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "The price was high. ______, we decided to buy it.",
+        "options": ["a) However", "b) Therefore", "c) Nevertheless", "d) Moreover"],
+        "answer": "c",
+        "explanation": "Nevertheless – тем не менее."
+      },
+      {
+        "question": "She is an extrovert, ______ her sister is an introvert.",
+        "options": ["a) whereas", "b) however", "c) so", "d) consequently"],
+        "answer": "a",
+        "explanation": "Whereas – тогда как."
+      },
+      {
+        "question": "______, we should also consult the experts.",
+        "options": ["a) Consequently", "b) Moreover", "c) However", "d) In contrast"],
+        "answer": "b",
+        "explanation": "Moreover – более того."
+      },
+      {
+        "question": "He didn't listen to the advice. ______, he made a mistake.",
+        "options": ["a) However", "b) Nevertheless", "c) Moreover", "d) Consequently"],
+        "answer": "d",
+        "explanation": "Consequently – следовательно."
+      },
+      {
+        "question": "______ to his colleagues, he is very ambitious.",
+        "options": ["a) Moreover", "b) In addition", "c) In contrast", "d) Consequently"],
+        "answer": "c",
+        "explanation": "In contrast – в отличие от."
+      },
+      {
+        "question": "The view was breathtaking. ______, we took many photos.",
+        "options": ["a) Therefore", "b) However", "c) Moreover", "d) Nevertheless"],
+        "answer": "a",
+        "explanation": "Therefore – следовательно."
+      },
+      {
+        "question": "I was late, ______ I missed the train.",
+        "options": ["a) therefore", "b) so", "c) however", "d) whereas"],
+        "answer": "b",
+        "explanation": "So – поэтому."
+      },
+      {
+        "question": "We have a problem. ______, I think we can solve it.",
+        "options": ["a) Moreover", "b) Consequently", "c) Nevertheless", "d) However"],
+        "answer": "d",
+        "explanation": "However – однако."
+              }
             ]
         },
         {
@@ -25648,19 +26440,59 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 9 (перевод)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct linking word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "The exam was difficult. ______, most students passed.", "answer": "Nevertheless", "explanation": "Nevertheless – тем не менее."},
-                {"question": "Tom loves action movies, ______ his girlfriend prefers romantic comedies.", "answer": "whereas", "explanation": "Whereas – тогда как."},
-                {"question": "______, we also need to consider the time factor.", "answer": "Furthermore", "explanation": "Furthermore – более того."},
-                {"question": "He forgot to set his alarm. ______, he overslept.", "answer": "Consequently", "explanation": "Consequently – следовательно."},
-                {"question": "______ with the original plan, the new one is much simpler.", "answer": "In contrast", "explanation": "In contrast – в отличие от."},
-                {"question": "The product is reliable. ______, it is also affordable.", "answer": "Moreover", "explanation": "Moreover – более того."},
-                {"question": "She was exhausted, ______ she went to bed early.", "answer": "so", "explanation": "So – поэтому."},
-                {"question": "I agree with your idea. ______, I have some concerns.", "answer": "However", "explanation": "However – однако."}
+ [
+  {
+    "type": "complex",
+    "text": "1. Choose the correct linking word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "The exam was difficult. ______, most students passed.",
+        "options": ["a) However", "b) Therefore", "c) Nevertheless", "d) Moreover"],
+        "answer": "c",
+        "explanation": "Nevertheless – тем не менее."
+      },
+      {
+        "question": "Tom loves action movies, ______ his girlfriend prefers romantic comedies.",
+        "options": ["a) whereas", "b) however", "c) so", "d) consequently"],
+        "answer": "a",
+        "explanation": "Whereas – тогда как."
+      },
+      {
+        "question": "______, we also need to consider the time factor.",
+        "options": ["a) Consequently", "b) Furthermore", "c) However", "d) In contrast"],
+        "answer": "b",
+        "explanation": "Furthermore – более того."
+      },
+      {
+        "question": "He forgot to set his alarm. ______, he overslept.",
+        "options": ["a) However", "b) Nevertheless", "c) Moreover", "d) Consequently"],
+        "answer": "d",
+        "explanation": "Consequently – следовательно."
+      },
+      {
+        "question": "______ with the original plan, the new one is much simpler.",
+        "options": ["a) Moreover", "b) In addition", "c) In contrast", "d) Consequently"],
+        "answer": "c",
+        "explanation": "In contrast – в отличие от."
+      },
+      {
+        "question": "The product is reliable. ______, it is also affordable.",
+        "options": ["a) However", "b) Consequently", "c) Nevertheless", "d) Moreover"],
+        "answer": "d",
+        "explanation": "Moreover – более того."
+      },
+      {
+        "question": "She was exhausted, ______ she went to bed early.",
+        "options": ["a) therefore", "b) so", "c) however", "d) whereas"],
+        "answer": "b",
+        "explanation": "So – поэтому."
+      },
+      {
+        "question": "I agree with your idea. ______, I have some concerns.",
+        "options": ["a) Moreover", "b) Consequently", "c) Nevertheless", "d) However"],
+        "answer": "d",
+        "explanation": "However – однако."
+              }
             ]
         },
         {
@@ -25709,19 +26541,58 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 10 (перефразирование)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct linking word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "The restaurant was crowded. ______, the food was excellent.", "answer": "Nevertheless", "explanation": "Nevertheless – тем не менее."},
-                {"question": "Peter is very sociable, ______ his brother is quite reserved.", "answer": "whereas", "explanation": "Whereas – тогда как."},
-                {"question": "______, we must also consider the environmental costs.", "answer": "Moreover", "explanation": "Moreover – более того."},
-                {"question": "She lost her passport. ______, she couldn't board the flight.", "answer": "Consequently", "explanation": "Consequently – следовательно."},
-                {"question": "______ to her previous job, her new one is much more challenging.", "answer": "In contrast", "explanation": "In contrast – в отличие от."},
-                {"question": "The service was slow. ______, we had a great time.", "answer": "However", "explanation": "However – однако."},
-                {"question": "He was feeling ill, ______ he stayed home.", "answer": "so", "explanation": "So – поэтому."},
-                {"question": "I need a break. ______, I've been working all day.", "answer": "Besides", "explanation": "Besides – кроме того."}
+{
+  "type": "complex",
+  "text": "1. Choose the correct linking word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+  "subtasks": [
+    {
+      "question": "The restaurant was crowded. ______, the food was excellent.",
+      "options": ["a) However", "b) Therefore", "c) Nevertheless", "d) Moreover"],
+      "answer": "c",
+      "explanation": "Nevertheless – тем не менее."
+    },
+    {
+      "question": "Peter is very sociable, ______ his brother is quite reserved.",
+      "options": ["a) whereas", "b) however", "c) so", "d) consequently"],
+      "answer": "a",
+      "explanation": "Whereas – тогда как."
+    },
+    {
+      "question": "______, we must also consider the environmental costs.",
+      "options": ["a) Consequently", "b) Moreover", "c) However", "d) In contrast"],
+      "answer": "b",
+      "explanation": "Moreover – более того."
+    },
+    {
+      "question": "She lost her passport. ______, she couldn't board the flight.",
+      "options": ["a) However", "b) Nevertheless", "c) Moreover", "d) Consequently"],
+      "answer": "d",
+      "explanation": "Consequently – следовательно."
+    },
+    {
+      "question": "______ to her previous job, her new one is much more challenging.",
+      "options": ["a) Moreover", "b) In addition", "c) In contrast", "d) Consequently"],
+      "answer": "c",
+      "explanation": "In contrast – в отличие от."
+    },
+    {
+      "question": "The service was slow. ______, we had a great time.",
+      "options": ["a) However", "b) Moreover", "c) Consequently", "d) Nevertheless"],
+      "answer": "a",
+      "explanation": "However – однако."
+    },
+    {
+      "question": "He was feeling ill, ______ he stayed home.",
+      "options": ["a) therefore", "b) so", "c) however", "d) whereas"],
+      "answer": "b",
+      "explanation": "So – поэтому."
+    },
+    {
+      "question": "I need a break. ______, I've been working all day.",
+      "options": ["a) Besides", "b) However", "c) Moreover", "d) Consequently"],
+      "answer": "a",
+      "explanation": "Besides – кроме того."
+              }
             ]
         },
         {
@@ -25770,19 +26641,59 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 11 (перевод)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct linking word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "The plan was risky. ______, they decided to go ahead.", "answer": "Nevertheless", "explanation": "Nevertheless – тем не менее."},
-                {"question": "My brother loves hiking, ______ I prefer swimming.", "answer": "whereas", "explanation": "Whereas – тогда как."},
-                {"question": "______, we should also consider the cultural differences.", "answer": "Furthermore", "explanation": "Furthermore – более того."},
-                {"question": "He missed the train. ______, he was late for work.", "answer": "Consequently", "explanation": "Consequently – следовательно."},
-                {"question": "______ with the previous version, the new software is more user-friendly.", "answer": "In contrast", "explanation": "In contrast – в отличие от."},
-                {"question": "The museum was interesting. ______, it was very educational.", "answer": "In addition", "explanation": "In addition – в добавок."},
-                {"question": "She was tired, ______ she continued working.", "answer": "but", "explanation": "But – но."},
-                {"question": "I don't like this colour. ______, it's too expensive.", "answer": "Besides", "explanation": "Besides – кроме того."}
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct linking word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "The plan was risky. ______, they decided to go ahead.",
+        "options": ["a) However", "b) Therefore", "c) Nevertheless", "d) Moreover"],
+        "answer": "c",
+        "explanation": "Nevertheless – тем не менее."
+      },
+      {
+        "question": "My brother loves hiking, ______ I prefer swimming.",
+        "options": ["a) whereas", "b) however", "c) so", "d) consequently"],
+        "answer": "a",
+        "explanation": "Whereas – тогда как."
+      },
+      {
+        "question": "______, we should also consider the cultural differences.",
+        "options": ["a) Consequently", "b) Furthermore", "c) However", "d) In contrast"],
+        "answer": "b",
+        "explanation": "Furthermore – более того."
+      },
+      {
+        "question": "He missed the train. ______, he was late for work.",
+        "options": ["a) However", "b) Nevertheless", "c) Moreover", "d) Consequently"],
+        "answer": "d",
+        "explanation": "Consequently – следовательно."
+      },
+      {
+        "question": "______ with the previous version, the new software is more user-friendly.",
+        "options": ["a) Moreover", "b) In addition", "c) In contrast", "d) Consequently"],
+        "answer": "c",
+        "explanation": "In contrast – в отличие от."
+      },
+      {
+        "question": "The museum was interesting. ______, it was very educational.",
+        "options": ["a) However", "b) In addition", "c) Consequently", "d) Nevertheless"],
+        "answer": "b",
+        "explanation": "In addition – в добавок."
+      },
+      {
+        "question": "She was tired, ______ she continued working.",
+        "options": ["a) so", "b) but", "c) however", "d) whereas"],
+        "answer": "b",
+        "explanation": "But – но."
+      },
+      {
+        "question": "I don't like this colour. ______, it's too expensive.",
+        "options": ["a) Besides", "b) However", "c) Moreover", "d) Consequently"],
+        "answer": "a",
+        "explanation": "Besides – кроме того."
+              }
             ]
         },
         {
@@ -25831,19 +26742,59 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 12 (перефразирование)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct linking word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "The weather forecast was bad. ______, we decided to go camping.", "answer": "Nevertheless", "explanation": "Nevertheless – тем не менее."},
-                {"question": "I enjoy classical music, ______ my sister prefers pop.", "answer": "whereas", "explanation": "Whereas – тогда как."},
-                {"question": "______, we also need to consider the security aspects.", "answer": "Furthermore", "explanation": "Furthermore – более того."},
-                {"question": "She forgot her keys. ______, she couldn't enter the house.", "answer": "Consequently", "explanation": "Consequently – следовательно."},
-                {"question": "______ with the old system, the new one is much faster.", "answer": "In contrast", "explanation": "In contrast – в отличие от."},
-                {"question": "The house is spacious. ______, it has a beautiful garden.", "answer": "In addition", "explanation": "In addition – в добавок."},
-                {"question": "He was tired, ______ he didn't go to bed.", "answer": "but", "explanation": "But – но."},
-                {"question": "I have no money. ______, I can't afford it.", "answer": "Therefore", "explanation": "Therefore – следовательно."}
+ [
+  {
+    "type": "complex",
+    "text": "1. Choose the correct linking word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "The weather forecast was bad. ______, we decided to go camping.",
+        "options": ["a) Therefore", "b) Moreover", "c) Nevertheless", "d) However"],
+        "answer": "c",
+        "explanation": "Nevertheless – тем не менее."
+      },
+      {
+        "question": "I enjoy classical music, ______ my sister prefers pop.",
+        "options": ["a) whereas", "b) however", "c) so", "d) consequently"],
+        "answer": "a",
+        "explanation": "Whereas – тогда как."
+      },
+      {
+        "question": "______, we also need to consider the security aspects.",
+        "options": ["a) Consequently", "b) However", "c) In contrast", "d) Furthermore"],
+        "answer": "d",
+        "explanation": "Furthermore – более того."
+      },
+      {
+        "question": "She forgot her keys. ______, she couldn't enter the house.",
+        "options": ["a) However", "b) Nevertheless", "c) Consequently", "d) Moreover"],
+        "answer": "c",
+        "explanation": "Consequently – следовательно."
+      },
+      {
+        "question": "______ with the old system, the new one is much faster.",
+        "options": ["a) In contrast", "b) In addition", "c) Moreover", "d) Consequently"],
+        "answer": "a",
+        "explanation": "In contrast – в отличие от."
+      },
+      {
+        "question": "The house is spacious. ______, it has a beautiful garden.",
+        "options": ["a) However", "b) Consequently", "c) Nevertheless", "d) In addition"],
+        "answer": "d",
+        "explanation": "In addition – в добавок."
+      },
+      {
+        "question": "He was tired, ______ he didn't go to bed.",
+        "options": ["a) so", "b) but", "c) however", "d) whereas"],
+        "answer": "b",
+        "explanation": "But – но."
+      },
+      {
+        "question": "I have no money. ______, I can't afford it.",
+        "options": ["a) Therefore", "b) However", "c) Moreover", "d) Nevertheless"],
+        "answer": "a",
+        "explanation": "Therefore – следовательно."
+              }
             ]
         },
         {
@@ -25921,20 +26872,60 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 1 (перевод)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "She was ______ redundant after the merger.", "answer": "made", "explanation": "to be made redundant – быть уволенным по сокращению."},
-                {"question": "He is seeking a ______ in finance.", "answer": "career path", "explanation": "career path – карьерная траектория."},
-                {"question": "I work ______ hours, so I can start late.", "answer": "flexible", "explanation": "flexible hours – гибкий график."},
-                {"question": "As a project manager, I am in ______ of coordinating the team.", "answer": "charge", "explanation": "to be in charge of – отвечать за."},
-                {"question": "She was ______ after achieving all her targets.", "answer": "promoted", "explanation": "to be promoted – получить повышение."},
-                {"question": "He submitted his ______ because he found a better job.", "answer": "resignation", "explanation": "resignation – увольнение по собственному желанию."},
-                {"question": "We need to ______ the deadline for this project.", "answer": "meet", "explanation": "to meet a deadline – соблюдать срок."},
-                {"question": "She received a ______ for exceeding expectations.", "answer": "bonus", "explanation": "bonus – премия."}
-            ]
+ [
+  {
+    "type": "complex",
+    "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "She was ______ redundant after the merger.",
+        "options": ["a) fired", "b) laid", "c) made", "d) taken"],
+        "answer": "c",
+        "explanation": "to be made redundant – быть уволенным по сокращению."
+      },
+      {
+        "question": "He is seeking a ______ in finance.",
+        "options": ["a) profession", "b) career path", "c) position", "d) job"],
+        "answer": "b",
+        "explanation": "career path – карьерная траектория."
+      },
+      {
+        "question": "I work ______ hours, so I can start late.",
+        "options": ["a) flexible", "b) fixed", "c) regular", "d) long"],
+        "answer": "a",
+        "explanation": "flexible hours – гибкий график."
+      },
+      {
+        "question": "As a project manager, I am in ______ of coordinating the team.",
+        "options": ["a) control", "b) command", "c) responsibility", "d) charge"],
+        "answer": "d",
+        "explanation": "to be in charge of – отвечать за."
+      },
+      {
+        "question": "She was ______ after achieving all her targets.",
+        "options": ["a) demoted", "b) transferred", "c) promoted", "d) rewarded"],
+        "answer": "c",
+        "explanation": "to be promoted – получить повышение."
+      },
+      {
+        "question": "He submitted his ______ because he found a better job.",
+        "options": ["a) resignation", "b) application", "c) request", "d) notice"],
+        "answer": "a",
+        "explanation": "resignation – увольнение по собственному желанию."
+      },
+      {
+        "question": "We need to ______ the deadline for this project.",
+        "options": ["a) extend", "b) meet", "c) miss", "d) set"],
+        "answer": "b",
+        "explanation": "to meet a deadline – соблюдать срок."
+      },
+      {
+        "question": "She received a ______ for exceeding expectations.",
+        "options": ["a) prize", "b) promotion", "c) bonus", "d) reward"],
+        "answer": "c",
+        "explanation": "bonus – премия."
+             }
+           ]
         },
         {
             "type": "complex",
@@ -25982,20 +26973,60 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 2 (перефразирование)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "Many companies now offer ______ work options.", "answer": "remote", "explanation": "remote work – удалённая работа."},
-                {"question": "He works in ______ because his job requires being at the office at different times.", "answer": "shifts", "explanation": "shift work – посменная работа."},
-                {"question": "She has a ______ position, so she feels secure.", "answer": "permanent", "explanation": "permanent position – постоянная должность."},
-                {"question": "He is ______ to his line manager.", "answer": "subordinate", "explanation": "subordinate – подчинённый."},
-                {"question": "The CEO is the highest ______ in the company.", "answer": "executive", "explanation": "executive – руководитель."},
-                {"question": "She was ______ after the company downsized.", "answer": "dismissed", "explanation": "dismissal – увольнение за провинность (или по сокращению, но здесь лучше 'made redundant'? В данном случае я использовал dismissed как увольнение)."},
-                {"question": "He ______ the project from start to finish.", "answer": "supervised", "explanation": "to supervise – руководить."},
-                {"question": "We need to ______ tasks among team members.", "answer": "delegate", "explanation": "to delegate – делегировать."}
-            ]
+[
+ {
+  "type": "complex",
+  "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+  "subtasks": [
+    {
+      "question": "Many companies now offer ______ work options.",
+      "options": ["a) remote", "b) local", "c) flexible", "d) traditional"],
+      "answer": "a",
+      "explanation": "remote work – удалённая работа."
+    },
+    {
+      "question": "He works in ______ because his job requires being at the office at different times.",
+      "options": ["a) shifts", "b) teams", "c) departments", "d) roles"],
+      "answer": "a",
+      "explanation": "shift work – посменная работа."
+    },
+    {
+      "question": "She has a ______ position, so she feels secure.",
+      "options": ["a) temporary", "b) permanent", "c) part-time", "d) seasonal"],
+      "answer": "b",
+      "explanation": "permanent position – постоянная должность."
+    },
+    {
+      "question": "He is ______ to his line manager.",
+      "options": ["a) superior", "b) subordinate", "c) equal", "d) senior"],
+      "answer": "b",
+      "explanation": "subordinate – подчинённый."
+    },
+    {
+      "question": "The CEO is the highest ______ in the company.",
+      "options": ["a) employee", "b) manager", "c) executive", "d) director"],
+      "answer": "c",
+      "explanation": "executive – руководитель."
+    },
+    {
+      "question": "She was ______ after the company downsized.",
+      "options": ["a) promoted", "b) transferred", "c) made redundant", "d) resigned"],
+      "answer": "c",
+      "explanation": "to be made redundant – быть уволенным по сокращению."
+    },
+    {
+      "question": "He ______ the project from start to finish.",
+      "options": ["a) supervised", "b) ignored", "c) delayed", "d) rejected"],
+      "answer": "a",
+      "explanation": "to supervise – руководить."
+    },
+    {
+      "question": "We need to ______ tasks among team members.",
+      "options": ["a) delegate", "b) concentrate", "c) centralise", "d) postpone"],
+      "answer": "a",
+      "explanation": "to delegate – делегировать."
+             }
+           ]
         },
         {
             "type": "complex",
@@ -26043,19 +27074,59 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 3 (перевод)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "He works on a ______ contract, so it's not permanent.", "answer": "temporary", "explanation": "temporary contract – временный контракт."},
-                {"question": "She is a ______ designer, so she works for multiple clients.", "answer": "freelance", "explanation": "freelance – фриланс."},
-                {"question": "He does a lot of ______, so he gets paid extra.", "answer": "overtime", "explanation": "overtime – сверхурочная работа."},
-                {"question": "The ______ is very heavy this month.", "answer": "workload", "explanation": "workload – нагрузка."},
-                {"question": "She is an ______, so she is learning the trade.", "answer": "apprentice", "explanation": "apprentice – ученик."},
-                {"question": "He ______ a target last quarter.", "answer": "achieved", "explanation": "to achieve a target – достичь цели."},
-                {"question": "She needs to ______ with her colleagues on the project.", "answer": "collaborate", "explanation": "to collaborate – сотрудничать."},
-                {"question": "He is under a lot of ______ at work.", "answer": "pressure", "explanation": "to be under pressure – быть под давлением."}
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "He works on a ______ contract, so it's not permanent.",
+        "options": ["a) permanent", "b) part-time", "c) temporary", "d) full-time"],
+        "answer": "c",
+        "explanation": "temporary contract – временный контракт."
+      },
+      {
+        "question": "She is a ______ designer, so she works for multiple clients.",
+        "options": ["a) permanent", "b) temporary", "c) part-time", "d) freelance"],
+        "answer": "d",
+        "explanation": "freelance – фриланс."
+      },
+      {
+        "question": "He does a lot of ______, so he gets paid extra.",
+        "options": ["a) overtime", "b) holiday", "c) sick leave", "d) vacation"],
+        "answer": "a",
+        "explanation": "overtime – сверхурочная работа."
+      },
+      {
+        "question": "The ______ is very heavy this month.",
+        "options": ["a) workload", "b) deadline", "c) schedule", "d) pressure"],
+        "answer": "a",
+        "explanation": "workload – нагрузка."
+      },
+      {
+        "question": "She is an ______, so she is learning the trade.",
+        "options": ["a) intern", "b) apprentice", "c) trainee", "d) mentor"],
+        "answer": "b",
+        "explanation": "apprentice – ученик."
+      },
+      {
+        "question": "He ______ a target last quarter.",
+        "options": ["a) missed", "b) set", "c) achieved", "d) exceeded"],
+        "answer": "c",
+        "explanation": "to achieve a target – достичь цели."
+      },
+      {
+        "question": "She needs to ______ with her colleagues on the project.",
+        "options": ["a) compete", "b) collaborate", "c) avoid", "d) communicate"],
+        "answer": "b",
+        "explanation": "to collaborate – сотрудничать."
+      },
+      {
+        "question": "He is under a lot of ______ at work.",
+        "options": ["a) stress", "b) pressure", "c) responsibility", "d) risk"],
+        "answer": "b",
+        "explanation": "to be under pressure – быть под давлением."
+              }
             ]
         },
         {
@@ -26104,19 +27175,59 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 4 (перефразирование)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "After years of hard work, she finally got a ______.", "answer": "promotion", "explanation": "promotion – повышение."},
-                {"question": "The company is going through a ______ round.", "answer": "redundancy", "explanation": "redundancy – сокращение."},
-                {"question": "He ______ his resignation last week.", "answer": "submitted", "explanation": "to submit a resignation – подать заявление."},
-                {"question": "She works in ______, so she often works nights.", "answer": "shifts", "explanation": "shift work."},
-                {"question": "He is ______ for the marketing department.", "answer": "responsible", "explanation": "to be responsible for – быть ответственным за."},
-                {"question": "She is an ______ at a law firm.", "answer": "intern", "explanation": "intern – стажёр."},
-                {"question": "We need to ______ the issue with the client.", "answer": "resolve", "explanation": "to resolve conflict – разрешать конфликт."},
-                {"question": "He ______ stress very well.", "answer": "handles", "explanation": "to handle stress – справляться со стрессом."}
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "He works on a ______ contract, so it's not permanent.",
+        "options": ["a) permanent", "b) part-time", "c) temporary", "d) full-time"],
+        "answer": "c",
+        "explanation": "temporary contract – временный контракт."
+      },
+      {
+        "question": "She is a ______ designer, so she works for multiple clients.",
+        "options": ["a) permanent", "b) temporary", "c) part-time", "d) freelance"],
+        "answer": "d",
+        "explanation": "freelance – фриланс."
+      },
+      {
+        "question": "He does a lot of ______, so he gets paid extra.",
+        "options": ["a) overtime", "b) holiday", "c) sick leave", "d) vacation"],
+        "answer": "a",
+        "explanation": "overtime – сверхурочная работа."
+      },
+      {
+        "question": "The ______ is very heavy this month.",
+        "options": ["a) workload", "b) deadline", "c) schedule", "d) pressure"],
+        "answer": "a",
+        "explanation": "workload – нагрузка."
+      },
+      {
+        "question": "She is an ______, so she is learning the trade.",
+        "options": ["a) intern", "b) apprentice", "c) trainee", "d) mentor"],
+        "answer": "b",
+        "explanation": "apprentice – ученик."
+      },
+      {
+        "question": "He ______ a target last quarter.",
+        "options": ["a) missed", "b) set", "c) achieved", "d) exceeded"],
+        "answer": "c",
+        "explanation": "to achieve a target – достичь цели."
+      },
+      {
+        "question": "She needs to ______ with her colleagues on the project.",
+        "options": ["a) compete", "b) collaborate", "c) avoid", "d) communicate"],
+        "answer": "b",
+        "explanation": "to collaborate – сотрудничать."
+      },
+      {
+        "question": "He is under a lot of ______ at work.",
+        "options": ["a) stress", "b) pressure", "c) responsibility", "d) risk"],
+        "answer": "b",
+        "explanation": "to be under pressure – быть под давлением."
+              }
             ]
         },
         {
@@ -26165,19 +27276,59 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 5 (перевод)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "She is in an ______ position, so she is just starting out.", "answer": "entry-level", "explanation": "entry-level – начальный уровень."},
-                {"question": "He is a ______ manager with many years of experience.", "answer": "senior", "explanation": "senior manager – старший менеджер."},
-                {"question": "The ______ manages the entire company.", "answer": "CEO", "explanation": "CEO – генеральный директор."},
-                {"question": "She works in ______, which deals with recruiting and training.", "answer": "HR", "explanation": "HR – отдел кадров."},
-                {"question": "He is the ______ manager, so I report to him directly.", "answer": "line", "explanation": "line manager – непосредственный руководитель."},
-                {"question": "She ______ expectations at work.", "answer": "exceeded", "explanation": "to exceed expectations – превзойти ожидания."},
-                {"question": "We need to ______ complaints from customers.", "answer": "deal with", "explanation": "to deal with complaints – иметь дело с жалобами."},
-                {"question": "He ______ a deadline last week.", "answer": "missed", "explanation": "to miss a deadline – не уложиться в срок."}
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "She is in an ______ position, so she is just starting out.",
+        "options": ["a) entry-level", "b) mid-level", "c) senior", "d) junior"],
+        "answer": "a",
+        "explanation": "entry-level – начальный уровень."
+      },
+      {
+        "question": "He is a ______ manager with many years of experience.",
+        "options": ["a) junior", "b) senior", "c) middle", "d) entry-level"],
+        "answer": "b",
+        "explanation": "senior manager – старший менеджер."
+      },
+      {
+        "question": "The ______ manages the entire company.",
+        "options": ["a) CEO", "b) COO", "c) CFO", "d) Director"],
+        "answer": "a",
+        "explanation": "CEO – генеральный директор."
+      },
+      {
+        "question": "She works in ______, which deals with recruiting and training.",
+        "options": ["a) HR", "b) IT", "c) PR", "d) R&D"],
+        "answer": "a",
+        "explanation": "HR – отдел кадров."
+      },
+      {
+        "question": "He is the ______ manager, so I report to him directly.",
+        "options": ["a) line", "b) senior", "c) project", "d) general"],
+        "answer": "a",
+        "explanation": "line manager – непосредственный руководитель."
+      },
+      {
+        "question": "She ______ expectations at work.",
+        "options": ["a) met", "b) missed", "c) exceeded", "d) achieved"],
+        "answer": "c",
+        "explanation": "to exceed expectations – превзойти ожидания."
+      },
+      {
+        "question": "We need to ______ complaints from customers.",
+        "options": ["a) ignore", "b) deal with", "c) avoid", "d) handle"],
+        "answer": "b",
+        "explanation": "to deal with complaints – иметь дело с жалобами."
+      },
+      {
+        "question": "He ______ a deadline last week.",
+        "options": ["a) met", "b) set", "c) extended", "d) missed"],
+        "answer": "d",
+        "explanation": "to miss a deadline – не уложиться в срок."
+              }
             ]
         },
         {
@@ -26226,19 +27377,59 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 6 (перефразирование)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "She is planning to ______ her career in medicine.", "answer": "pursue", "explanation": "to pursue a career – заниматься карьерой."},
-                {"question": "He ______ a new position last month.", "answer": "started", "explanation": "to start a position – начать работу."},
-                {"question": "They ______ a new colleague to the team.", "answer": "hired", "explanation": "to hire – нанимать."},
-                {"question": "She ______ a new skill during the course.", "answer": "acquired", "explanation": "to acquire a skill – приобрести навык."},
-                {"question": "We are ______ a new project next month.", "answer": "launching", "explanation": "to launch a project – запустить проект."},
-                {"question": "He ______ the training programme.", "answer": "completed", "explanation": "to complete a programme – завершить программу."},
-                {"question": "She ______ a new branch of the company.", "answer": "opened", "explanation": "to open a branch – открыть филиал."},
-                {"question": "They ______ a new strategy to increase sales.", "answer": "implemented", "explanation": "to implement a strategy – внедрить стратегию."}
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "She is planning to ______ her career in medicine.",
+        "options": ["a) avoid", "b) abandon", "c) pursue", "d) consider"],
+        "answer": "c",
+        "explanation": "to pursue a career – заниматься карьерой."
+      },
+      {
+        "question": "He ______ a new position last month.",
+        "options": ["a) started", "b) left", "c) applied for", "d) rejected"],
+        "answer": "a",
+        "explanation": "to start a position – начать работу."
+      },
+      {
+        "question": "They ______ a new colleague to the team.",
+        "options": ["a) fired", "b) transferred", "c) hired", "d) promoted"],
+        "answer": "c",
+        "explanation": "to hire – нанимать."
+      },
+      {
+        "question": "She ______ a new skill during the course.",
+        "options": ["a) taught", "b) ignored", "c) lost", "d) acquired"],
+        "answer": "d",
+        "explanation": "to acquire a skill – приобрести навык."
+      },
+      {
+        "question": "We are ______ a new project next month.",
+        "options": ["a) cancelling", "b) delaying", "c) finishing", "d) launching"],
+        "answer": "d",
+        "explanation": "to launch a project – запустить проект."
+      },
+      {
+        "question": "He ______ the training programme.",
+        "options": ["a) repeated", "b) failed", "c) completed", "d) started"],
+        "answer": "c",
+        "explanation": "to complete a programme – завершить программу."
+      },
+      {
+        "question": "She ______ a new branch of the company.",
+        "options": ["a) sold", "b) rented", "c) closed", "d) opened"],
+        "answer": "d",
+        "explanation": "to open a branch – открыть филиал."
+      },
+      {
+        "question": "They ______ a new strategy to increase sales.",
+        "options": ["a) proposed", "b) criticised", "c) ignored", "d) implemented"],
+        "answer": "d",
+        "explanation": "to implement a strategy – внедрить стратегию."
+              }
             ]
         },
         {
@@ -26287,20 +27478,60 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 7 (перевод)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "He is looking for a job with ______ hours.", "answer": "flexible", "explanation": "flexible hours – гибкий график."},
-                {"question": "She was ______ from her position due to misconduct.", "answer": "dismissed", "explanation": "dismissal – увольнение за провинность."},
-                {"question": "He was given a ______ by his manager.", "answer": "warning", "explanation": "warning – предупреждение."},
-                {"question": "She has a ______ relationship with her colleagues.", "answer": "good working", "explanation": "good working relationship – хорошие рабочие отношения."},
-                {"question": "He is ______ for the project timeline.", "answer": "accountable", "explanation": "accountable for – подотчётный за."},
-                {"question": "She needs to ______ her skills.", "answer": "improve", "explanation": "to improve skills – улучшить навыки."},
-                {"question": "He ______ the team effectively.", "answer": "leads", "explanation": "to lead a team – руководить командой."},
-                {"question": "They are ______ a new product line.", "answer": "developing", "explanation": "to develop a product – разрабатывать продукт."}
-            ]
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "He is looking for a job with ______ hours.",
+        "options": ["a) fixed", "b) flexible", "c) long", "d) short"],
+        "answer": "b",
+        "explanation": "flexible hours – гибкий график."
+      },
+      {
+        "question": "She was ______ from her position due to misconduct.",
+        "options": ["a) promoted", "b) dismissed", "c) transferred", "d) resigned"],
+        "answer": "b",
+        "explanation": "dismissal – увольнение за провинность."
+      },
+      {
+        "question": "He was given a ______ by his manager.",
+        "options": ["a) warning", "b) bonus", "c) promotion", "d) raise"],
+        "answer": "a",
+        "explanation": "warning – предупреждение."
+      },
+      {
+        "question": "She has a ______ relationship with her colleagues.",
+        "options": ["a) difficult", "b) tense", "c) good working", "d) formal"],
+        "answer": "c",
+        "explanation": "good working relationship – хорошие рабочие отношения."
+      },
+      {
+        "question": "He is ______ for the project timeline.",
+        "options": ["a) responsible", "b) accountable", "c) available", "d) prepared"],
+        "answer": "b",
+        "explanation": "accountable for – подотчётный за."
+      },
+      {
+        "question": "She needs to ______ her skills.",
+        "options": ["a) improve", "b) ignore", "c) forget", "d) repeat"],
+        "answer": "a",
+        "explanation": "to improve skills – улучшить навыки."
+      },
+      {
+        "question": "He ______ the team effectively.",
+        "options": ["a) follows", "b) avoids", "c) leads", "d) serves"],
+        "answer": "c",
+        "explanation": "to lead a team – руководить командой."
+      },
+      {
+        "question": "They are ______ a new product line.",
+        "options": ["a) developing", "b) cancelling", "c) ignoring", "d) postponing"],
+        "answer": "a",
+        "explanation": "to develop a product – разрабатывать продукт."
+             }
+           ]
         },
         {
             "type": "complex",
@@ -26348,20 +27579,60 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 8 (перефразирование)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "She was offered a ______ position with better pay.", "answer": "permanent", "explanation": "permanent position."},
-                {"question": "He is on a ______ contract for six months.", "answer": "fixed-term", "explanation": "fixed-term contract – срочный контракт."},
-                {"question": "She works from home, so she does ______ work.", "answer": "remote", "explanation": "remote work."},
-                {"question": "He is the ______ officer of the company.", "answer": "chief executive", "explanation": "chief executive officer – CEO."},
-                {"question": "She is in ______ of the marketing team.", "answer": "charge", "explanation": "in charge of."},
-                {"question": "He ______ a new record in sales.", "answer": "set", "explanation": "to set a record – установить рекорд."},
-                {"question": "We need to ______ our annual targets.", "answer": "achieve", "explanation": "to achieve targets."},
-                {"question": "She ______ a promotion after five years.", "answer": "received", "explanation": "to receive a promotion."}
-            ]
+ [
+  {
+    "type": "complex",
+    "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "She was offered a ______ position with better pay.",
+        "options": ["a) temporary", "b) permanent", "c) part-time", "d) seasonal"],
+        "answer": "b",
+        "explanation": "permanent position – постоянная должность."
+      },
+      {
+        "question": "He is on a ______ contract for six months.",
+        "options": ["a) fixed-term", "b) permanent", "c) temporary", "d) freelance"],
+        "answer": "a",
+        "explanation": "fixed-term contract – срочный контракт."
+      },
+      {
+        "question": "She works from home, so she does ______ work.",
+        "options": ["a) remote", "b) flexible", "c) part-time", "d) shift"],
+        "answer": "a",
+        "explanation": "remote work – удалённая работа."
+      },
+      {
+        "question": "He is the ______ officer of the company.",
+        "options": ["a) chief executive", "b) chief financial", "c) chief operating", "d) chief technology"],
+        "answer": "a",
+        "explanation": "chief executive officer – CEO."
+      },
+      {
+        "question": "She is in ______ of the marketing team.",
+        "options": ["a) control", "b) command", "c) charge", "d) responsibility"],
+        "answer": "c",
+        "explanation": "in charge of – ответственный за."
+      },
+      {
+        "question": "He ______ a new record in sales.",
+        "options": ["a) broke", "b) set", "c) achieved", "d) reached"],
+        "answer": "b",
+        "explanation": "to set a record – установить рекорд."
+      },
+      {
+        "question": "We need to ______ our annual targets.",
+        "options": ["a) meet", "b) achieve", "c) reach", "d) all of the above"],
+        "answer": "b",
+        "explanation": "to achieve targets – достичь целей."
+      },
+      {
+        "question": "She ______ a promotion after five years.",
+        "options": ["a) asked for", "b) requested", "c) received", "d) expected"],
+        "answer": "c",
+        "explanation": "to receive a promotion – получить повышение."
+             }
+           ]
         },
         {
             "type": "complex",
@@ -26409,19 +27680,59 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 9 (перевод)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "He was ______ for his excellent performance.", "answer": "rewarded", "explanation": "to be rewarded – быть вознаграждённым."},
-                {"question": "She ______ a promotion after her successful project.", "answer": "was given", "explanation": "to be given a promotion."},
-                {"question": "He ______ the company after ten years.", "answer": "left", "explanation": "to leave a company – уйти из компании."},
-                {"question": "She ______ her career as a teacher.", "answer": "began", "explanation": "to begin a career – начать карьеру."},
-                {"question": "They ______ a new branch in Paris.", "answer": "opened", "explanation": "to open a branch."},
-                {"question": "He ______ a salary increase.", "answer": "negotiated", "explanation": "to negotiate a salary – вести переговоры о зарплате."},
-                {"question": "She ______ from her job to start her own business.", "answer": "resigned", "explanation": "to resign – уволиться."},
-                {"question": "They ______ to hire more staff.", "answer": "decided", "explanation": "to decide to hire – решить нанять."}
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "He was ______ for his excellent performance.",
+        "options": ["a) punished", "b) rewarded", "c) ignored", "d) fired"],
+        "answer": "b",
+        "explanation": "to be rewarded – быть вознаграждённым."
+      },
+      {
+        "question": "She ______ a promotion after her successful project.",
+        "options": ["a) was given", "b) was refused", "c) was offered", "d) was denied"],
+        "answer": "a",
+        "explanation": "to be given a promotion – получить повышение."
+      },
+      {
+        "question": "He ______ the company after ten years.",
+        "options": ["a) joined", "b) left", "c) managed", "d) started"],
+        "answer": "b",
+        "explanation": "to leave a company – уйти из компании."
+      },
+      {
+        "question": "She ______ her career as a teacher.",
+        "options": ["a) began", "b) ended", "c) changed", "d) improved"],
+        "answer": "a",
+        "explanation": "to begin a career – начать карьеру."
+      },
+      {
+        "question": "They ______ a new branch in Paris.",
+        "options": ["a) opened", "b) closed", "c) sold", "d) rented"],
+        "answer": "a",
+        "explanation": "to open a branch – открыть филиал."
+      },
+      {
+        "question": "He ______ a salary increase.",
+        "options": ["a) received", "b) asked for", "c) negotiated", "d) accepted"],
+        "answer": "c",
+        "explanation": "to negotiate a salary – вести переговоры о зарплате."
+      },
+      {
+        "question": "She ______ from her job to start her own business.",
+        "options": ["a) resigned", "b) retired", "c) was fired", "d) transferred"],
+        "answer": "a",
+        "explanation": "to resign – уволиться."
+      },
+      {
+        "question": "They ______ to hire more staff.",
+        "options": ["a) decided", "b) hesitated", "c) promised", "d) refused"],
+        "answer": "a",
+        "explanation": "to decide to hire – решить нанять."
+              }
             ]
         },
         {
@@ -26470,19 +27781,59 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 10 (перефразирование)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "She is a ______ worker, which means she is paid per project.", "answer": "freelance", "explanation": "freelance worker."},
-                {"question": "He has a ______ job, so he works from 9 to 5.", "answer": "full-time", "explanation": "full-time – полная занятость."},
-                {"question": "She works ______, so she is paid by the hour.", "answer": "part-time", "explanation": "part-time – частичная занятость."},
-                {"question": "He is a ______, so he is learning on the job.", "answer": "trainee", "explanation": "trainee – стажёр."},
-                {"question": "She is ______ for the company's growth.", "answer": "responsible", "explanation": "responsible for."},
-                {"question": "He ______ a difficult situation at work.", "answer": "handled", "explanation": "to handle a situation."},
-                {"question": "They ______ a new policy last month.", "answer": "introduced", "explanation": "to introduce a policy."},
-                {"question": "She ______ her goals for the year.", "answer": "set", "explanation": "to set goals."}
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "She is a ______ worker, which means she is paid per project.",
+        "options": ["a) permanent", "b) temporary", "c) freelance", "d) full-time"],
+        "answer": "c",
+        "explanation": "freelance worker – фрилансер."
+      },
+      {
+        "question": "He has a ______ job, so he works from 9 to 5.",
+        "options": ["a) full-time", "b) part-time", "c) flexible", "d) remote"],
+        "answer": "a",
+        "explanation": "full-time – полная занятость."
+      },
+      {
+        "question": "She works ______, so she is paid by the hour.",
+        "options": ["a) full-time", "b) part-time", "c) freelance", "d) permanent"],
+        "answer": "b",
+        "explanation": "part-time – частичная занятость."
+      },
+      {
+        "question": "He is a ______, so he is learning on the job.",
+        "options": ["a) trainee", "b) manager", "c) executive", "d) director"],
+        "answer": "a",
+        "explanation": "trainee – стажёр."
+      },
+      {
+        "question": "She is ______ for the company's growth.",
+        "options": ["a) responsible", "b) accountable", "c) available", "d) suitable"],
+        "answer": "a",
+        "explanation": "responsible for – ответственный за."
+      },
+      {
+        "question": "He ______ a difficult situation at work.",
+        "options": ["a) created", "b) avoided", "c) ignored", "d) handled"],
+        "answer": "d",
+        "explanation": "to handle a situation – справиться с ситуацией."
+      },
+      {
+        "question": "They ______ a new policy last month.",
+        "options": ["a) introduced", "b) cancelled", "c) delayed", "d) rejected"],
+        "answer": "a",
+        "explanation": "to introduce a policy – ввести политику."
+      },
+      {
+        "question": "She ______ her goals for the year.",
+        "options": ["a) set", "b) missed", "c) achieved", "d) changed"],
+        "answer": "a",
+        "explanation": "to set goals – ставить цели."
+              }
             ]
         },
         {
@@ -26531,19 +27882,59 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 11 (перевод)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "He is a ______ manager with a lot of authority.", "answer": "senior", "explanation": "senior manager."},
-                {"question": "She is an ______ in the HR department.", "answer": "assistant", "explanation": "assistant – помощник."},
-                {"question": "He works as a ______ in a law firm.", "answer": "paralegal", "explanation": "paralegal – помощник юриста."},
-                {"question": "She is a ______ consultant.", "answer": "management", "explanation": "management consultant – консультант по управлению."},
-                {"question": "He is a ______ analyst.", "answer": "financial", "explanation": "financial analyst – финансовый аналитик."},
-                {"question": "She is a ______ specialist.", "answer": "marketing", "explanation": "marketing specialist – специалист по маркетингу."},
-                {"question": "He is a ______ engineer.", "answer": "software", "explanation": "software engineer – инженер-программист."},
-                {"question": "She is a ______ designer.", "answer": "graphic", "explanation": "graphic designer – графический дизайнер."}
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "He is a ______ manager with a lot of authority.",
+        "options": ["a) junior", "b) senior", "c) middle", "d) entry-level"],
+        "answer": "b",
+        "explanation": "senior manager – старший менеджер."
+      },
+      {
+        "question": "She is an ______ in the HR department.",
+        "options": ["a) assistant", "b) executive", "c) director", "d) manager"],
+        "answer": "a",
+        "explanation": "assistant – помощник."
+      },
+      {
+        "question": "He works as a ______ in a law firm.",
+        "options": ["a) lawyer", "b) paralegal", "c) judge", "d) solicitor"],
+        "answer": "b",
+        "explanation": "paralegal – помощник юриста."
+      },
+      {
+        "question": "She is a ______ consultant.",
+        "options": ["a) management", "b) financial", "c) marketing", "d) IT"],
+        "answer": "a",
+        "explanation": "management consultant – консультант по управлению."
+      },
+      {
+        "question": "He is a ______ analyst.",
+        "options": ["a) business", "b) financial", "c) data", "d) systems"],
+        "answer": "b",
+        "explanation": "financial analyst – финансовый аналитик."
+      },
+      {
+        "question": "She is a ______ specialist.",
+        "options": ["a) marketing", "b) sales", "c) public relations", "d) human resources"],
+        "answer": "a",
+        "explanation": "marketing specialist – специалист по маркетингу."
+      },
+      {
+        "question": "He is a ______ engineer.",
+        "options": ["a) mechanical", "b) electrical", "c) software", "d) civil"],
+        "answer": "c",
+        "explanation": "software engineer – инженер-программист."
+      },
+      {
+        "question": "She is a ______ designer.",
+        "options": ["a) graphic", "b) web", "c) fashion", "d) interior"],
+        "answer": "a",
+        "explanation": "graphic designer – графический дизайнер."
+              }
             ]
         },
         {
@@ -26592,19 +27983,59 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 12 (перефразирование)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "She is a ______ executive at a tech company.", "answer": "senior", "explanation": "senior executive."},
-                {"question": "He is a ______ developer.", "answer": "software", "explanation": "software developer."},
-                {"question": "She is a ______ manager in the sales department.", "answer": "team", "explanation": "team manager – руководитель команды."},
-                {"question": "He is a ______ officer.", "answer": "chief operating", "explanation": "chief operating officer – COO."},
-                {"question": "She is a ______ coordinator.", "answer": "project", "explanation": "project coordinator – координатор проекта."},
-                {"question": "He is a ______ adviser.", "answer": "financial", "explanation": "financial adviser – финансовый консультант."},
-                {"question": "She is a ______ representative.", "answer": "sales", "explanation": "sales representative – торговый представитель."},
-                {"question": "He is a ______ director.", "answer": "creative", "explanation": "creative director – креативный директор."}
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "She is a ______ executive at a tech company.",
+        "options": ["a) senior", "b) junior", "c) middle", "d) entry-level"],
+        "answer": "a",
+        "explanation": "senior executive – старший руководитель."
+      },
+      {
+        "question": "He is a ______ developer.",
+        "options": ["a) web", "b) software", "c) mobile", "d) game"],
+        "answer": "b",
+        "explanation": "software developer – разработчик программного обеспечения."
+      },
+      {
+        "question": "She is a ______ manager in the sales department.",
+        "options": ["a) project", "b) team", "c) product", "d) general"],
+        "answer": "b",
+        "explanation": "team manager – руководитель команды."
+      },
+      {
+        "question": "He is a ______ officer.",
+        "options": ["a) chief operating", "b) chief financial", "c) chief technology", "d) chief marketing"],
+        "answer": "a",
+        "explanation": "chief operating officer – COO."
+      },
+      {
+        "question": "She is a ______ coordinator.",
+        "options": ["a) project", "b) event", "c) marketing", "d) sales"],
+        "answer": "a",
+        "explanation": "project coordinator – координатор проекта."
+      },
+      {
+        "question": "He is a ______ adviser.",
+        "options": ["a) financial", "b) legal", "c) tax", "d) investment"],
+        "answer": "a",
+        "explanation": "financial adviser – финансовый консультант."
+      },
+      {
+        "question": "She is a ______ representative.",
+        "options": ["a) customer service", "b) sales", "c) marketing", "d) public relations"],
+        "answer": "b",
+        "explanation": "sales representative – торговый представитель."
+      },
+      {
+        "question": "He is a ______ director.",
+        "options": ["a) technical", "b) creative", "c) financial", "d) managing"],
+        "answer": "b",
+        "explanation": "creative director – креативный директор."
+              }
             ]
         },
         {
@@ -26682,19 +28113,59 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 1 (перевод)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "She holds a ______ degree in economics.", "answer": "master's", "explanation": "master's degree – степень магистра."},
-                {"question": "He is pursuing a ______ in chemistry.", "answer": "PhD", "explanation": "PhD – докторская степень."},
-                {"question": "The ______ for submitting your essay is Friday.", "answer": "deadline", "explanation": "deadline – крайний срок."},
-                {"question": "He ______ out of university in his second year.", "answer": "dropped", "explanation": "to drop out – бросить учёбу."},
-                {"question": "She is an ______ student at the university.", "answer": "undergraduate", "explanation": "undergraduate – студент бакалавриата."},
-                {"question": "The ______ is responsible for the academic programme.", "answer": "dean", "explanation": "dean – декан."},
-                {"question": "He was accused of ______ in his essay.", "answer": "plagiarism", "explanation": "plagiarism – плагиат."},
-                {"question": "She needs to ______ the course to pass.", "answer": "attend", "explanation": "to attend – посещать."}
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "She holds a ______ degree in economics.",
+        "options": ["a) bachelor's", "b) master's", "c) doctoral", "d) associate"],
+        "answer": "b",
+        "explanation": "master's degree – степень магистра."
+      },
+      {
+        "question": "He is pursuing a ______ in chemistry.",
+        "options": ["a) Master's", "b) Diploma", "c) PhD", "d) Bachelor's"],
+        "answer": "c",
+        "explanation": "PhD – докторская степень."
+      },
+      {
+        "question": "The ______ for submitting your essay is Friday.",
+        "options": ["a) due date", "b) deadline", "c) time limit", "d) cut-off"],
+        "answer": "b",
+        "explanation": "deadline – крайний срок."
+      },
+      {
+        "question": "He ______ out of university in his second year.",
+        "options": ["a) ran", "b) walked", "c) dropped", "d) fell"],
+        "answer": "c",
+        "explanation": "to drop out – бросить учёбу."
+      },
+      {
+        "question": "She is an ______ student at the university.",
+        "options": ["a) postgraduate", "b) undergraduate", "c) graduate", "d) freshman"],
+        "answer": "b",
+        "explanation": "undergraduate – студент бакалавриата."
+      },
+      {
+        "question": "The ______ is responsible for the academic programme.",
+        "options": ["a) registrar", "b) dean", "c) headmaster", "d) professor"],
+        "answer": "b",
+        "explanation": "dean – декан."
+      },
+      {
+        "question": "He was accused of ______ in his essay.",
+        "options": ["a) cheating", "b) falsification", "c) plagiarism", "d) copying"],
+        "answer": "c",
+        "explanation": "plagiarism – плагиат."
+      },
+      {
+        "question": "She needs to ______ the course to pass.",
+        "options": ["a) avoid", "b) attend", "c) miss", "d) skip"],
+        "answer": "b",
+        "explanation": "to attend – посещать."
+              }
             ]
         },
         {
@@ -26743,19 +28214,59 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 2 (перефразирование)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "She is a ______ student, so she is studying for her bachelor's degree.", "answer": "undergraduate", "explanation": "undergraduate – студент бакалавриата."},
-                {"question": "He is a ______ student, working on his master's thesis.", "answer": "postgraduate", "explanation": "postgraduate – магистрант/аспирант."},
-                {"question": "The ______ gives lectures in the main hall.", "answer": "lecturer", "explanation": "lecturer – лектор."},
-                {"question": "She is a ______ at the university.", "answer": "professor", "explanation": "professor – профессор."},
-                {"question": "He needs to ______ his assignment by Monday.", "answer": "submit", "explanation": "to submit – сдавать работу."},
-                {"question": "She ______ from university last year.", "answer": "graduated", "explanation": "to graduate – закончить."},
-                {"question": "He failed the exam and has to ______ it.", "answer": "retake", "explanation": "to retake – пересдавать."},
-                {"question": "She needs to ______ in psychology.", "answer": "major", "explanation": "to major in – специализироваться в."}
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "She is a ______ student, so she is studying for her bachelor's degree.",
+        "options": ["a) undergraduate", "b) postgraduate", "c) graduate", "d) freshman"],
+        "answer": "a",
+        "explanation": "undergraduate – студент бакалавриата."
+      },
+      {
+        "question": "He is a ______ student, working on his master's thesis.",
+        "options": ["a) undergraduate", "b) postgraduate", "c) doctoral", "d) high school"],
+        "answer": "b",
+        "explanation": "postgraduate – магистрант/аспирант."
+      },
+      {
+        "question": "The ______ gives lectures in the main hall.",
+        "options": ["a) professor", "b) dean", "c) tutor", "d) lecturer"],
+        "answer": "d",
+        "explanation": "lecturer – лектор."
+      },
+      {
+        "question": "She is a ______ at the university.",
+        "options": ["a) instructor", "b) professor", "c) lecturer", "d) dean"],
+        "answer": "b",
+        "explanation": "professor – профессор."
+      },
+      {
+        "question": "He needs to ______ his assignment by Monday.",
+        "options": ["a) submit", "b) hand in", "c) turn in", "d) complete"],
+        "answer": "a",
+        "explanation": "to submit – сдавать работу."
+      },
+      {
+        "question": "She ______ from university last year.",
+        "options": ["a) retired", "b) dropped out", "c) left", "d) graduated"],
+        "answer": "d",
+        "explanation": "to graduate – закончить."
+      },
+      {
+        "question": "He failed the exam and has to ______ it.",
+        "options": ["a) rewrite", "b) retake", "c) redo", "d) resit"],
+        "answer": "b",
+        "explanation": "to retake – пересдавать."
+      },
+      {
+        "question": "She needs to ______ in psychology.",
+        "options": ["a) major", "b) specialize", "c) focus", "d) study"],
+        "answer": "a",
+        "explanation": "to major in – специализироваться в."
+              }
             ]
         },
         {
@@ -26804,19 +28315,59 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 3 (перевод)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "She is writing her ______ for her PhD.", "answer": "thesis", "explanation": "thesis – диссертация (PhD)."},
-                {"question": "He is working on his ______ for his master's degree.", "answer": "dissertation", "explanation": "dissertation – диссертация (магистерская)."},
-                {"question": "The ______ is the head of the school.", "answer": "headteacher", "explanation": "headteacher – директор школы (Великобритания)."},
-                {"question": "She has a ______ in teaching English.", "answer": "certificate", "explanation": "certificate – сертификат."},
-                {"question": "He is a ______ at the local college.", "answer": "tutor", "explanation": "tutor – репетитор/тьютор."},
-                {"question": "The ______ supervises the research project.", "answer": "supervisor", "explanation": "supervisor – научный руководитель."},
-                {"question": "She needs to ______ for the course.", "answer": "enrol", "explanation": "to enrol – зачисляться."},
-                {"question": "He has to do a lot of ______ for his course.", "answer": "coursework", "explanation": "coursework – курсовая работа."}
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "She is writing her ______ for her PhD.",
+        "options": ["a) dissertation", "b) essay", "c) thesis", "d) paper"],
+        "answer": "c",
+        "explanation": "thesis – диссертация (PhD)."
+      },
+      {
+        "question": "He is working on his ______ for his master's degree.",
+        "options": ["a) thesis", "b) dissertation", "c) project", "d) report"],
+        "answer": "b",
+        "explanation": "dissertation – диссертация (магистерская)."
+      },
+      {
+        "question": "The ______ is the head of the school.",
+        "options": ["a) headteacher", "b) principal", "c) rector", "d) chancellor"],
+        "answer": "a",
+        "explanation": "headteacher – директор школы (Великобритания)."
+      },
+      {
+        "question": "She has a ______ in teaching English.",
+        "options": ["a) certificate", "b) degree", "c) diploma", "d) qualification"],
+        "answer": "a",
+        "explanation": "certificate – сертификат."
+      },
+      {
+        "question": "He is a ______ at the local college.",
+        "options": ["a) lecturer", "b) professor", "c) tutor", "d) instructor"],
+        "answer": "c",
+        "explanation": "tutor – репетитор/тьютор."
+      },
+      {
+        "question": "The ______ supervises the research project.",
+        "options": ["a) supervisor", "b) advisor", "c) mentor", "d) coach"],
+        "answer": "a",
+        "explanation": "supervisor – научный руководитель."
+      },
+      {
+        "question": "She needs to ______ for the course.",
+        "options": ["a) register", "b) enrol", "c) apply", "d) sign up"],
+        "answer": "b",
+        "explanation": "to enrol – зачисляться."
+      },
+      {
+        "question": "He has to do a lot of ______ for his course.",
+        "options": ["a) coursework", "b) homework", "c) assignments", "d) projects"],
+        "answer": "a",
+        "explanation": "coursework – курсовая работа."
+              }
             ]
         },
         {
@@ -26865,20 +28416,60 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 4 (перефразирование)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "She is in her first year of ______ school.", "answer": "secondary", "explanation": "secondary school – средняя школа."},
-                {"question": "He is studying at a ______ school to learn a trade.", "answer": "vocational", "explanation": "vocational school – профессиональное училище."},
-                {"question": "She is a student at a ______ school in the USA.", "answer": "high", "explanation": "high school – старшая школа (США)."},
-                {"question": "He is a ______ student, so he is studying for his bachelor's degree.", "answer": "college", "explanation": "college – колледж."},
-                {"question": "She is a ______ student at the university.", "answer": "postgraduate", "explanation": "postgraduate – аспирант."},
-                {"question": "He is a ______ of the university.", "answer": "graduate", "explanation": "graduate – выпускник."},
-                {"question": "She is a ______ in the history department.", "answer": "lecturer", "explanation": "lecturer – лектор."},
-                {"question": "He is a ______ in the physics department.", "answer": "professor", "explanation": "professor – профессор."}
-            ]
+ [
+  {
+    "type": "complex",
+    "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "She is in her first year of ______ school.",
+        "options": ["a) primary", "b) secondary", "c) high", "d) college"],
+        "answer": "b",
+        "explanation": "secondary school – средняя школа."
+      },
+      {
+        "question": "He is studying at a ______ school to learn a trade.",
+        "options": ["a) vocational", "b) grammar", "c) public", "d) private"],
+        "answer": "a",
+        "explanation": "vocational school – профессиональное училище."
+      },
+      {
+        "question": "She is a student at a ______ school in the USA.",
+        "options": ["a) high", "b) secondary", "c) primary", "d) middle"],
+        "answer": "a",
+        "explanation": "high school – старшая школа (США)."
+      },
+      {
+        "question": "He is a ______ student, so he is studying for his bachelor's degree.",
+        "options": ["a) high school", "b) secondary", "c) college", "d) postgraduate"],
+        "answer": "c",
+        "explanation": "college – колледж (в США часто = университет)."
+      },
+      {
+        "question": "She is a ______ student at the university.",
+        "options": ["a) undergraduate", "b) postgraduate", "c) doctoral", "d) graduate"],
+        "answer": "b",
+        "explanation": "postgraduate – аспирант/магистрант."
+      },
+      {
+        "question": "He is a ______ of the university.",
+        "options": ["a) graduate", "b) lecturer", "c) professor", "d) dean"],
+        "answer": "a",
+        "explanation": "graduate – выпускник."
+      },
+      {
+        "question": "She is a ______ in the history department.",
+        "options": ["a) lecturer", "b) professor", "c) tutor", "d) supervisor"],
+        "answer": "a",
+        "explanation": "lecturer – лектор."
+      },
+      {
+        "question": "He is a ______ in the physics department.",
+        "options": ["a) lecturer", "b) professor", "c) tutor", "d) supervisor"],
+        "answer": "b",
+        "explanation": "professor – профессор."
+             }
+           ]
         },
         {
             "type": "complex",
@@ -26926,19 +28517,59 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 5 (перевод)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "He received a ______ grade on his exam.", "answer": "passing", "explanation": "passing grade – сдаточная оценка."},
-                {"question": "She got a ______ on her test and has to retake it.", "answer": "fail", "explanation": "fail – провал."},
-                {"question": "The teacher gave her an ______ for her project.", "answer": "assessment", "explanation": "assessment – оценивание."},
-                {"question": "He needs to ______ his exam.", "answer": "pass", "explanation": "to pass – сдать."},
-                {"question": "She ______ the exam and has to take it again.", "answer": "failed", "explanation": "to fail – провалить."},
-                {"question": "He is going to ______ his exam next week.", "answer": "retake", "explanation": "to retake – пересдавать."},
-                {"question": "She ______ her assignment on time.", "answer": "submitted", "explanation": "to submit – сдавать работу."},
-                {"question": "He needs to ______ to the university.", "answer": "apply", "explanation": "to apply – подавать заявление."}
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "He received a ______ grade on his exam.",
+        "options": ["a) passing", "b) failing", "c) final", "d) midterm"],
+        "answer": "a",
+        "explanation": "passing grade – сдаточная оценка."
+      },
+      {
+        "question": "She got a ______ on her test and has to retake it.",
+        "options": ["a) pass", "b) A", "c) fail", "d) credit"],
+        "answer": "c",
+        "explanation": "fail – провал."
+      },
+      {
+        "question": "The teacher gave her an ______ for her project.",
+        "options": ["a) assessment", "b) assignment", "c) examination", "d) interview"],
+        "answer": "a",
+        "explanation": "assessment – оценивание."
+      },
+      {
+        "question": "He needs to ______ his exam.",
+        "options": ["a) pass", "b) fail", "c) miss", "d) skip"],
+        "answer": "a",
+        "explanation": "to pass – сдать."
+      },
+      {
+        "question": "She ______ the exam and has to take it again.",
+        "options": ["a) passed", "b) failed", "c) submitted", "d) completed"],
+        "answer": "b",
+        "explanation": "to fail – провалить."
+      },
+      {
+        "question": "He is going to ______ his exam next week.",
+        "options": ["a) rewrite", "b) retake", "c) review", "d) revise"],
+        "answer": "b",
+        "explanation": "to retake – пересдавать."
+      },
+      {
+        "question": "She ______ her assignment on time.",
+        "options": ["a) submitted", "b) skipped", "c) missed", "d) postponed"],
+        "answer": "a",
+        "explanation": "to submit – сдавать работу."
+      },
+      {
+        "question": "He needs to ______ to the university.",
+        "options": ["a) apply", "b) admit", "c) register", "d) enrol"],
+        "answer": "a",
+        "explanation": "to apply – подавать заявление."
+              }
             ]
         },
         {
@@ -26987,19 +28618,59 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 6 (перефразирование)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "She is studying at a ______ to become a teacher.", "answer": "university", "explanation": "university – университет."},
-                {"question": "He is at a ______ to learn practical skills.", "answer": "vocational school", "explanation": "vocational school – профессиональное училище."},
-                {"question": "She is in her final year of ______ school.", "answer": "secondary", "explanation": "secondary school – средняя школа."},
-                {"question": "He is a ______ at a local school.", "answer": "headteacher", "explanation": "headteacher – директор."},
-                {"question": "She is a ______ in the English department.", "answer": "lecturer", "explanation": "lecturer – лектор."},
-                {"question": "He is a ______ in the chemistry department.", "answer": "professor", "explanation": "professor – профессор."},
-                {"question": "She is a ______ student, so she is working on her research.", "answer": "postgraduate", "explanation": "postgraduate – аспирант."},
-                {"question": "He is a ______ student, so he is studying for his bachelor's degree.", "answer": "undergraduate", "explanation": "undergraduate – студент бакалавриата."}
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "She is studying at a ______ to become a teacher.",
+        "options": ["a) college", "b) university", "c) school", "d) academy"],
+        "answer": "b",
+        "explanation": "university – университет."
+      },
+      {
+        "question": "He is at a ______ to learn practical skills.",
+        "options": ["a) grammar school", "b) high school", "c) vocational school", "d) college"],
+        "answer": "c",
+        "explanation": "vocational school – профессиональное училище."
+      },
+      {
+        "question": "She is in her final year of ______ school.",
+        "options": ["a) primary", "b) secondary", "c) high", "d) middle"],
+        "answer": "b",
+        "explanation": "secondary school – средняя школа."
+      },
+      {
+        "question": "He is a ______ at a local school.",
+        "options": ["a) headteacher", "b) professor", "c) lecturer", "d) tutor"],
+        "answer": "a",
+        "explanation": "headteacher – директор."
+      },
+      {
+        "question": "She is a ______ in the English department.",
+        "options": ["a) professor", "b) tutor", "c) lecturer", "d) supervisor"],
+        "answer": "c",
+        "explanation": "lecturer – лектор."
+      },
+      {
+        "question": "He is a ______ in the chemistry department.",
+        "options": ["a) lecturer", "b) professor", "c) tutor", "d) headteacher"],
+        "answer": "b",
+        "explanation": "professor – профессор."
+      },
+      {
+        "question": "She is a ______ student, so she is working on her research.",
+        "options": ["a) undergraduate", "b) postgraduate", "c) doctoral", "d) graduate"],
+        "answer": "b",
+        "explanation": "postgraduate – аспирант."
+      },
+      {
+        "question": "He is a ______ student, so he is studying for his bachelor's degree.",
+        "options": ["a) undergraduate", "b) postgraduate", "c) doctoral", "d) graduate"],
+        "answer": "a",
+        "explanation": "undergraduate – студент бакалавриата."
+              }
             ]
         },
         {
@@ -27048,19 +28719,59 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 7 (перевод)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "She is a ______ in the English department.", "answer": "lecturer", "explanation": "lecturer – лектор."},
-                {"question": "He is a ______ and is in charge of the whole school.", "answer": "principal", "explanation": "principal – директор школы (США)."},
-                {"question": "She is a ______, helping students individually.", "answer": "tutor", "explanation": "tutor – репетитор/тьютор."},
-                {"question": "He is a ______ at the university.", "answer": "dean", "explanation": "dean – декан."},
-                {"question": "She is a ______ in the science department.", "answer": "professor", "explanation": "professor – профессор."},
-                {"question": "He is a ______ for his research project.", "answer": "supervisor", "explanation": "supervisor – научный руководитель."},
-                {"question": "She is a ______ student at the university.", "answer": "postgraduate", "explanation": "postgraduate – аспирант."},
-                {"question": "He is an ______ student at the university.", "answer": "undergraduate", "explanation": "undergraduate – студент бакалавриата."}
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "She is a ______ in the English department.",
+        "options": ["a) tutor", "b) lecturer", "c) professor", "d) headteacher"],
+        "answer": "b",
+        "explanation": "lecturer – лектор."
+      },
+      {
+        "question": "He is a ______ and is in charge of the whole school.",
+        "options": ["a) tutor", "b) lecturer", "c) principal", "d) supervisor"],
+        "answer": "c",
+        "explanation": "principal – директор школы (США)."
+      },
+      {
+        "question": "She is a ______, helping students individually.",
+        "options": ["a) tutor", "b) lecturer", "c) professor", "d) headteacher"],
+        "answer": "a",
+        "explanation": "tutor – репетитор/тьютор."
+      },
+      {
+        "question": "He is a ______ at the university.",
+        "options": ["a) tutor", "b) lecturer", "c) principal", "d) dean"],
+        "answer": "d",
+        "explanation": "dean – декан."
+      },
+      {
+        "question": "She is a ______ in the science department.",
+        "options": ["a) tutor", "b) professor", "c) lecturer", "d) supervisor"],
+        "answer": "b",
+        "explanation": "professor – профессор."
+      },
+      {
+        "question": "He is a ______ for his research project.",
+        "options": ["a) tutor", "b) lecturer", "c) supervisor", "d) dean"],
+        "answer": "c",
+        "explanation": "supervisor – научный руководитель."
+      },
+      {
+        "question": "She is a ______ student at the university.",
+        "options": ["a) postgraduate", "b) undergraduate", "c) graduate", "d) doctoral"],
+        "answer": "a",
+        "explanation": "postgraduate – аспирант."
+      },
+      {
+        "question": "He is an ______ student at the university.",
+        "options": ["a) postgraduate", "b) graduate", "c) doctoral", "d) undergraduate"],
+        "answer": "d",
+        "explanation": "undergraduate – студент бакалавриата."
+              }
             ]
         },
         {
@@ -27109,19 +28820,59 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 8 (перефразирование)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "She ______ from university with a degree in law.", "answer": "graduated", "explanation": "to graduate – закончить."},
-                {"question": "He ______ in physics from Oxford University.", "answer": "graduated", "explanation": "to graduate from – закончить."},
-                {"question": "She ______ her PhD in 2020.", "answer": "received", "explanation": "to receive a PhD – получить докторскую."},
-                {"question": "He is a ______ of the University of Cambridge.", "answer": "graduate", "explanation": "graduate – выпускник."},
-                {"question": "She ______ in English literature.", "answer": "majored", "explanation": "to major in – специализироваться."},
-                {"question": "He ______ a degree in computer science.", "answer": "holds", "explanation": "to hold a degree – иметь степень."},
-                {"question": "She ______ a scholarship to study abroad.", "answer": "won", "explanation": "to win a scholarship – получить стипендию."},
-                {"question": "He ______ in education for five years.", "answer": "studied", "explanation": "to study – изучать."}
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "She ______ from university with a degree in law.",
+        "options": ["a) studied", "b) graduated", "c) completed", "d) finished"],
+        "answer": "b",
+        "explanation": "to graduate – закончить."
+      },
+      {
+        "question": "He ______ in physics from Oxford University.",
+        "options": ["a) graduated", "b) studied", "c) majored", "d) received"],
+        "answer": "a",
+        "explanation": "to graduate from – закончить."
+      },
+      {
+        "question": "She ______ her PhD in 2020.",
+        "options": ["a) achieved", "b) graduated", "c) received", "d) completed"],
+        "answer": "c",
+        "explanation": "to receive a PhD – получить докторскую."
+      },
+      {
+        "question": "He is a ______ of the University of Cambridge.",
+        "options": ["a) graduate", "b) student", "c) lecturer", "d) professor"],
+        "answer": "a",
+        "explanation": "graduate – выпускник."
+      },
+      {
+        "question": "She ______ in English literature.",
+        "options": ["a) studied", "b) majored", "c) graduated", "d) received"],
+        "answer": "b",
+        "explanation": "to major in – специализироваться."
+      },
+      {
+        "question": "He ______ a degree in computer science.",
+        "options": ["a) has", "b) holds", "c) got", "d) received"],
+        "answer": "b",
+        "explanation": "to hold a degree – иметь степень."
+      },
+      {
+        "question": "She ______ a scholarship to study abroad.",
+        "options": ["a) won", "b) got", "c) received", "d) earned"],
+        "answer": "a",
+        "explanation": "to win a scholarship – получить стипендию."
+      },
+      {
+        "question": "He ______ in education for five years.",
+        "options": ["a) studied", "b) worked", "c) taught", "d) researched"],
+        "answer": "a",
+        "explanation": "to study – изучать."
+              }
             ]
         },
         {
@@ -27170,20 +28921,60 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 9 (перевод)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "She is ______ in the school play.", "answer": "participating", "explanation": "to participate – участвовать."},
-                {"question": "He ______ a research project on climate change.", "answer": "conducted", "explanation": "to conduct research – проводить исследование."},
-                {"question": "She ______ a paper on education reform.", "answer": "published", "explanation": "to publish a paper – опубликовать статью."},
-                {"question": "He ______ a lecture on economics yesterday.", "answer": "gave", "explanation": "to give a lecture – читать лекцию."},
-                {"question": "She ______ a course on English literature.", "answer": "took", "explanation": "to take a course – пройти курс."},
-                {"question": "He ______ a workshop on creative writing.", "answer": "attended", "explanation": "to attend a workshop – посетить мастер-класс."},
-                {"question": "She ______ a seminar on teaching methods.", "answer": "led", "explanation": "to lead a seminar – вести семинар."},
-                {"question": "He ______ a debate on education policy.", "answer": "organised", "explanation": "to organise a debate – организовать дебаты."}
-            ]
+ [
+  {
+    "type": "complex",
+    "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "She is ______ in the school play.",
+        "options": ["a) attending", "b) joining", "c) participating", "d) volunteering"],
+        "answer": "c",
+        "explanation": "to participate – участвовать."
+      },
+      {
+        "question": "He ______ a research project on climate change.",
+        "options": ["a) carried", "b) conducted", "c) performed", "d) executed"],
+        "answer": "b",
+        "explanation": "to conduct research – проводить исследование."
+      },
+      {
+        "question": "She ______ a paper on education reform.",
+        "options": ["a) wrote", "b) submitted", "c) presented", "d) published"],
+        "answer": "d",
+        "explanation": "to publish a paper – опубликовать статью."
+      },
+      {
+        "question": "He ______ a lecture on economics yesterday.",
+        "options": ["a) gave", "b) held", "c) presented", "d) delivered"],
+        "answer": "a",
+        "explanation": "to give a lecture – читать лекцию."
+      },
+      {
+        "question": "She ______ a course on English literature.",
+        "options": ["a) attended", "b) registered", "c) took", "d) enrolled"],
+        "answer": "c",
+        "explanation": "to take a course – пройти курс."
+      },
+      {
+        "question": "He ______ a workshop on creative writing.",
+        "options": ["a) visited", "b) attended", "c) participated", "d) joined"],
+        "answer": "b",
+        "explanation": "to attend a workshop – посетить мастер-класс."
+      },
+      {
+        "question": "She ______ a seminar on teaching methods.",
+        "options": ["a) ran", "b) hosted", "c) conducted", "d) led"],
+        "answer": "d",
+        "explanation": "to lead a seminar – вести семинар."
+      },
+      {
+        "question": "He ______ a debate on education policy.",
+        "options": ["a) organised", "b) planned", "c) arranged", "d) coordinated"],
+        "answer": "a",
+        "explanation": "to organise a debate – организовать дебаты."
+             }
+           ]
         },
         {
             "type": "complex",
@@ -27231,20 +29022,60 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 10 (перефразирование)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "She is a ______ student, so she is working on her PhD.", "answer": "doctoral", "explanation": "doctoral student – докторант."},
-                {"question": "He is a ______ student at the university.", "answer": "research", "explanation": "research student – аспирант."},
-                {"question": "She is a ______ student in the English department.", "answer": "graduate", "explanation": "graduate student – магистрант/аспирант."},
-                {"question": "He is a ______ student in the science department.", "answer": "undergraduate", "explanation": "undergraduate – студент бакалавриата."},
-                {"question": "She is a ______ in the physics department.", "answer": "professor", "explanation": "professor."},
-                {"question": "He is a ______ in the history department.", "answer": "lecturer", "explanation": "lecturer."},
-                {"question": "She is a ______ at the university.", "answer": "dean", "explanation": "dean."},
-                {"question": "He is a ______ of the university.", "answer": "graduate", "explanation": "graduate."}
-            ]
+ [
+  {
+    "type": "complex",
+    "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "She is a ______ student, so she is working on her PhD.",
+        "options": ["a) graduate", "b) postgraduate", "c) doctoral", "d) research"],
+        "answer": "c",
+        "explanation": "doctoral student – докторант."
+      },
+      {
+        "question": "He is a ______ student at the university.",
+        "options": ["a) research", "b) graduate", "c) doctoral", "d) undergraduate"],
+        "answer": "a",
+        "explanation": "research student – аспирант."
+      },
+      {
+        "question": "She is a ______ student in the English department.",
+        "options": ["a) graduate", "b) undergraduate", "c) doctoral", "d) research"],
+        "answer": "a",
+        "explanation": "graduate student – магистрант/аспирант."
+      },
+      {
+        "question": "He is a ______ student in the science department.",
+        "options": ["a) graduate", "b) postgraduate", "c) doctoral", "d) undergraduate"],
+        "answer": "d",
+        "explanation": "undergraduate – студент бакалавриата."
+      },
+      {
+        "question": "She is a ______ in the physics department.",
+        "options": ["a) lecturer", "b) tutor", "c) professor", "d) supervisor"],
+        "answer": "c",
+        "explanation": "professor – профессор."
+      },
+      {
+        "question": "He is a ______ in the history department.",
+        "options": ["a) professor", "b) lecturer", "c) tutor", "d) supervisor"],
+        "answer": "b",
+        "explanation": "lecturer – лектор."
+      },
+      {
+        "question": "She is a ______ at the university.",
+        "options": ["a) dean", "b) lecturer", "c) professor", "d) tutor"],
+        "answer": "a",
+        "explanation": "dean – декан."
+      },
+      {
+        "question": "He is a ______ of the university.",
+        "options": ["a) graduate", "b) student", "c) lecturer", "d) professor"],
+        "answer": "a",
+        "explanation": "graduate – выпускник."
+             }
+           ]
         },
         {
             "type": "complex",
@@ -27292,19 +29123,59 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 11 (перевод)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "She is studying for her ______ degree.", "answer": "bachelor's", "explanation": "bachelor's degree – степень бакалавра."},
-                {"question": "He is working on his ______ degree.", "answer": "master's", "explanation": "master's degree – степень магистра."},
-                {"question": "She has a ______ in economics.", "answer": "PhD", "explanation": "PhD – докторская степень."},
-                {"question": "He is a ______ student at the university.", "answer": "postgraduate", "explanation": "postgraduate – аспирант."},
-                {"question": "She is an ______ student at the university.", "answer": "undergraduate", "explanation": "undergraduate – студент бакалавриата."},
-                {"question": "He is a ______ at the university.", "answer": "professor", "explanation": "professor – профессор."},
-                {"question": "She is a ______ in the English department.", "answer": "lecturer", "explanation": "lecturer – лектор."},
-                {"question": "He is a ______ of the university.", "answer": "graduate", "explanation": "graduate – выпускник."}
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "She is studying for her ______ degree.",
+        "options": ["a) bachelor's", "b) master's", "c) doctoral", "d) associate"],
+        "answer": "a",
+        "explanation": "bachelor's degree – степень бакалавра."
+      },
+      {
+        "question": "He is working on his ______ degree.",
+        "options": ["a) bachelor's", "b) PhD", "c) master's", "d) diploma"],
+        "answer": "c",
+        "explanation": "master's degree – степень магистра."
+      },
+      {
+        "question": "She has a ______ in economics.",
+        "options": ["a) Master's", "b) PhD", "c) Doctorate", "d) Postdoc"],
+        "answer": "b",
+        "explanation": "PhD – докторская степень."
+      },
+      {
+        "question": "He is a ______ student at the university.",
+        "options": ["a) postgraduate", "b) undergraduate", "c) graduate", "d) doctoral"],
+        "answer": "a",
+        "explanation": "postgraduate – аспирант."
+      },
+      {
+        "question": "She is an ______ student at the university.",
+        "options": ["a) postgraduate", "b) doctoral", "c) graduate", "d) undergraduate"],
+        "answer": "d",
+        "explanation": "undergraduate – студент бакалавриата."
+      },
+      {
+        "question": "He is a ______ at the university.",
+        "options": ["a) lecturer", "b) professor", "c) tutor", "d) supervisor"],
+        "answer": "b",
+        "explanation": "professor – профессор."
+      },
+      {
+        "question": "She is a ______ in the English department.",
+        "options": ["a) lecturer", "b) professor", "c) tutor", "d) supervisor"],
+        "answer": "a",
+        "explanation": "lecturer – лектор."
+      },
+      {
+        "question": "He is a ______ of the university.",
+        "options": ["a) student", "b) lecturer", "c) graduate", "d) professor"],
+        "answer": "c",
+        "explanation": "graduate – выпускник."
+              }
             ]
         },
         {
@@ -27353,19 +29224,59 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 12 (перефразирование)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "She is a ______ student, so she is studying for her master's degree.", "answer": "graduate", "explanation": "graduate student – магистрант."},
-                {"question": "He is a ______ student, so he is studying for his bachelor's degree.", "answer": "undergraduate", "explanation": "undergraduate – студент бакалавриата."},
-                {"question": "She is a ______ student, so she is working on her PhD.", "answer": "doctoral", "explanation": "doctoral student – докторант."},
-                {"question": "He is a ______ in the physics department.", "answer": "professor", "explanation": "professor."},
-                {"question": "She is a ______ in the history department.", "answer": "lecturer", "explanation": "lecturer."},
-                {"question": "He is a ______ at the university.", "answer": "dean", "explanation": "dean."},
-                {"question": "She is a ______ of the university.", "answer": "graduate", "explanation": "graduate."},
-                {"question": "He is a ______ at the local college.", "answer": "tutor", "explanation": "tutor."}
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "She is a ______ student, so she is studying for her master's degree.",
+        "options": ["a) undergraduate", "b) graduate", "c) doctoral", "d) postgraduate"],
+        "answer": "b",
+        "explanation": "graduate student – магистрант."
+      },
+      {
+        "question": "He is a ______ student, so he is studying for his bachelor's degree.",
+        "options": ["a) postgraduate", "b) doctoral", "c) undergraduate", "d) graduate"],
+        "answer": "c",
+        "explanation": "undergraduate – студент бакалавриата."
+      },
+      {
+        "question": "She is a ______ student, so she is working on her PhD.",
+        "options": ["a) graduate", "b) postgraduate", "c) undergraduate", "d) doctoral"],
+        "answer": "d",
+        "explanation": "doctoral student – докторант."
+      },
+      {
+        "question": "He is a ______ in the physics department.",
+        "options": ["a) lecturer", "b) tutor", "c) professor", "d) supervisor"],
+        "answer": "c",
+        "explanation": "professor – профессор."
+      },
+      {
+        "question": "She is a ______ in the history department.",
+        "options": ["a) professor", "b) lecturer", "c) tutor", "d) supervisor"],
+        "answer": "b",
+        "explanation": "lecturer – лектор."
+      },
+      {
+        "question": "He is a ______ at the university.",
+        "options": ["a) dean", "b) lecturer", "c) professor", "d) tutor"],
+        "answer": "a",
+        "explanation": "dean – декан."
+      },
+      {
+        "question": "She is a ______ of the university.",
+        "options": ["a) student", "b) graduate", "c) lecturer", "d) professor"],
+        "answer": "b",
+        "explanation": "graduate – выпускник."
+      },
+      {
+        "question": "He is a ______ at the local college.",
+        "options": ["a) professor", "b) lecturer", "c) tutor", "d) supervisor"],
+        "answer": "c",
+        "explanation": "tutor – репетитор/тьютор."
+              }
             ]
         },
         {
@@ -27443,19 +29354,59 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 1 (перевод)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "I have a splitting ______.", "answer": "headache", "explanation": "headache – головная боль."},
-                {"question": "She suffers from a chronic back ______.", "answer": "problem", "explanation": "chronic back problem – хроническая проблема со спиной."},
-                {"question": "You need to see a ______.", "answer": "specialist", "explanation": "specialist – специалист."},
-                {"question": "The ______ arrived within minutes.", "answer": "paramedic", "explanation": "paramedic – фельдшер скорой."},
-                {"question": "The doctor ______ antibiotics.", "answer": "prescribed", "explanation": "to prescribe – выписывать лекарство."},
-                {"question": "She is ______ from surgery.", "answer": "recovering", "explanation": "to recover – выздоравливать."},
-                {"question": "I'm ______ to penicillin.", "answer": "allergic", "explanation": "to be allergic to – иметь аллергию на."},
-                {"question": "He needs to ______ on the patient.", "answer": "operate", "explanation": "to operate on – оперировать."}
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "I have a splitting ______.",
+        "options": ["a) headache", "b) backache", "c) stomach ache", "d) toothache"],
+        "answer": "a",
+        "explanation": "headache – головная боль."
+      },
+      {
+        "question": "She suffers from a chronic back ______.",
+        "options": ["a) pain", "b) problem", "c) condition", "d) injury"],
+        "answer": "b",
+        "explanation": "chronic back problem – хроническая проблема со спиной."
+      },
+      {
+        "question": "You need to see a ______.",
+        "options": ["a) GP", "b) surgeon", "c) specialist", "d) consultant"],
+        "answer": "c",
+        "explanation": "specialist – специалист."
+      },
+      {
+        "question": "The ______ arrived within minutes.",
+        "options": ["a) doctor", "b) nurse", "c) surgeon", "d) paramedic"],
+        "answer": "d",
+        "explanation": "paramedic – фельдшер скорой."
+      },
+      {
+        "question": "The doctor ______ antibiotics.",
+        "options": ["a) prescribed", "b) recommended", "c) administered", "d) gave"],
+        "answer": "a",
+        "explanation": "to prescribe – выписывать лекарство."
+      },
+      {
+        "question": "She is ______ from surgery.",
+        "options": ["a) healing", "b) recovering", "c) resting", "d) improving"],
+        "answer": "b",
+        "explanation": "to recover – выздоравливать."
+      },
+      {
+        "question": "I'm ______ to penicillin.",
+        "options": ["a) sensitive", "b) intolerant", "c) allergic", "d) susceptible"],
+        "answer": "c",
+        "explanation": "to be allergic to – иметь аллергию на."
+      },
+      {
+        "question": "He needs to ______ on the patient.",
+        "options": ["a) treat", "b) examine", "c) cure", "d) operate"],
+        "answer": "d",
+        "explanation": "to operate on – оперировать."
+              }
             ]
         },
         {
@@ -27504,19 +29455,59 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 2 (перефразирование)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "She has a high ______, so she needs to see a doctor.", "answer": "temperature", "explanation": "high temperature – высокая температура."},
-                {"question": "He has a bad ______ and can't stop coughing.", "answer": "cold", "explanation": "cold – простуда."},
-                {"question": "I have a ______ throat and it hurts to swallow.", "answer": "sore", "explanation": "sore throat – боль в горле."},
-                {"question": "She broke her arm and suffered a ______.", "answer": "fracture", "explanation": "fracture – перелом."},
-                {"question": "He twisted his ankle and got a ______.", "answer": "sprain", "explanation": "sprain – растяжение."},
-                {"question": "She has a bad case of the ______.", "answer": "flu", "explanation": "flu – грипп."},
-                {"question": "He needs to take ______ for his infection.", "answer": "antibiotics", "explanation": "antibiotics – антибиотики."},
-                {"question": "She is a ______, so she treats children.", "answer": "paediatrician", "explanation": "paediatrician – педиатр."}
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "She has a high ______, so she needs to see a doctor.",
+        "options": ["a) fever", "b) temperature", "c) pulse", "d) blood pressure"],
+        "answer": "b",
+        "explanation": "high temperature – высокая температура."
+      },
+      {
+        "question": "He has a bad ______ and can't stop coughing.",
+        "options": ["a) flu", "b) cold", "c) cough", "d) chest infection"],
+        "answer": "b",
+        "explanation": "cold – простуда."
+      },
+      {
+        "question": "I have a ______ throat and it hurts to swallow.",
+        "options": ["a) painful", "b) swollen", "c) sore", "d) infected"],
+        "answer": "c",
+        "explanation": "sore throat – боль в горле."
+      },
+      {
+        "question": "She broke her arm and suffered a ______.",
+        "options": ["a) sprain", "b) fracture", "c) dislocation", "d) strain"],
+        "answer": "b",
+        "explanation": "fracture – перелом."
+      },
+      {
+        "question": "He twisted his ankle and got a ______.",
+        "options": ["a) fracture", "b) sprain", "c) dislocation", "d) break"],
+        "answer": "b",
+        "explanation": "sprain – растяжение."
+      },
+      {
+        "question": "She has a bad case of the ______.",
+        "options": ["a) flu", "b) cold", "c) infection", "d) virus"],
+        "answer": "a",
+        "explanation": "flu – грипп."
+      },
+      {
+        "question": "He needs to take ______ for his infection.",
+        "options": ["a) antibiotics", "b) painkillers", "c) vitamins", "d) steroids"],
+        "answer": "a",
+        "explanation": "antibiotics – антибиотики."
+      },
+      {
+        "question": "She is a ______, so she treats children.",
+        "options": ["a) paediatrician", "b) geriatrician", "c) obstetrician", "d) surgeon"],
+        "answer": "a",
+        "explanation": "paediatrician – педиатр."
+              }
             ]
         },
         {
@@ -27565,19 +29556,59 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 3 (перевод)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "He has a ______ back and needs to rest.", "answer": "bad", "explanation": "bad back – больная спина."},
-                {"question": "She felt ______ and had to sit down.", "answer": "dizzy", "explanation": "dizzy – головокружение."},
-                {"question": "He has a ______ rash on his arm.", "answer": "skin", "explanation": "skin rash – кожная сыпь."},
-                {"question": "She has a ______ to nuts.", "answer": "allergy", "explanation": "allergy – аллергия."},
-                {"question": "He is a ______ and works in a hospital.", "answer": "surgeon", "explanation": "surgeon – хирург."},
-                {"question": "She is a ______ and treats heart problems.", "answer": "cardiologist", "explanation": "cardiologist – кардиолог."},
-                {"question": "He is a ______ and treats skin conditions.", "answer": "dermatologist", "explanation": "dermatologist – дерматолог."},
-                {"question": "She is a ______ and helps people with mental health.", "answer": "psychologist", "explanation": "psychologist – психолог."}
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "He has a ______ back and needs to rest.",
+        "options": ["a) sore", "b) bad", "c) painful", "d) weak"],
+        "answer": "b",
+        "explanation": "bad back – больная спина."
+      },
+      {
+        "question": "She felt ______ and had to sit down.",
+        "options": ["a) faint", "b) dizzy", "c) light-headed", "d) unsteady"],
+        "answer": "b",
+        "explanation": "dizzy – головокружение."
+      },
+      {
+        "question": "He has a ______ rash on his arm.",
+        "options": ["a) skin", "b) red", "c) allergic", "d) itchy"],
+        "answer": "a",
+        "explanation": "skin rash – кожная сыпь."
+      },
+      {
+        "question": "She has a ______ to nuts.",
+        "options": ["a) intolerance", "b) sensitivity", "c) allergy", "d) reaction"],
+        "answer": "c",
+        "explanation": "allergy – аллергия."
+      },
+      {
+        "question": "He is a ______ and works in a hospital.",
+        "options": ["a) surgeon", "b) physician", "c) nurse", "d] paramedic"],
+        "answer": "a",
+        "explanation": "surgeon – хирург."
+      },
+      {
+        "question": "She is a ______ and treats heart problems.",
+        "options": ["a) cardiologist", "b) neurologist", "c) pulmonologist", "d) cardiothoracic surgeon"],
+        "answer": "a",
+        "explanation": "cardiologist – кардиолог."
+      },
+      {
+        "question": "He is a ______ and treats skin conditions.",
+        "options": ["a) dermatologist", "b) plastic surgeon", "c) allergist", "d) rheumatologist"],
+        "answer": "a",
+        "explanation": "dermatologist – дерматолог."
+      },
+      {
+        "question": "She is a ______ and helps people with mental health.",
+        "options": ["a) psychiatrist", "b) psychologist", "c) counsellor", "d) psychotherapist"],
+        "answer": "b",
+        "explanation": "psychologist – психолог."
+              }
             ]
         },
         {
@@ -27626,19 +29657,59 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 4 (перефразирование)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "She has a ______ ache and can't eat.", "answer": "stomach", "explanation": "stomach ache – боль в животе."},
-                {"question": "He felt ______ and thought he was going to vomit.", "answer": "nauseous", "explanation": "nauseous – тошнота."},
-                {"question": "I need to take a ______ for my headache.", "answer": "painkiller", "explanation": "painkiller – обезболивающее."},
-                {"question": "She is a ______ and works in a pharmacy.", "answer": "pharmacist", "explanation": "pharmacist – фармацевт."},
-                {"question": "He is a ______ and treats teeth problems.", "answer": "dentist", "explanation": "dentist – стоматолог."},
-                {"question": "She is a ______ and helps people with mental disorders.", "answer": "psychiatrist", "explanation": "psychiatrist – психиатр."},
-                {"question": "He is a ______ and gives first aid.", "answer": "paramedic", "explanation": "paramedic – фельдшер скорой."},
-                {"question": "She is a ______ and works in a hospital.", "answer": "GP", "explanation": "GP – терапевт."}
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "She has a ______ ache and can't eat.",
+        "options": ["a) stomach", "b) head", "c) back", "d) tooth"],
+        "answer": "a",
+        "explanation": "stomach ache – боль в животе."
+      },
+      {
+        "question": "He felt ______ and thought he was going to vomit.",
+        "options": ["a) dizzy", "b) nauseous", "c) faint", "d) sick"],
+        "answer": "b",
+        "explanation": "nauseous – тошнота."
+      },
+      {
+        "question": "I need to take a ______ for my headache.",
+        "options": ["a) antibiotic", "b) pill", "c) painkiller", "d) medicine"],
+        "answer": "c",
+        "explanation": "painkiller – обезболивающее."
+      },
+      {
+        "question": "She is a ______ and works in a pharmacy.",
+        "options": ["a) chemist", "b) GP", "c) nurse", "d) pharmacist"],
+        "answer": "d",
+        "explanation": "pharmacist – фармацевт."
+      },
+      {
+        "question": "He is a ______ and treats teeth problems.",
+        "options": ["a) dentist", "b) surgeon", "c) cardiologist", "d) neurologist"],
+        "answer": "a",
+        "explanation": "dentist – стоматолог."
+      },
+      {
+        "question": "She is a ______ and helps people with mental disorders.",
+        "options": ["a) psychologist", "b) psychiatrist", "c) counsellor", "d) therapist"],
+        "answer": "b",
+        "explanation": "psychiatrist – психиатр."
+      },
+      {
+        "question": "He is a ______ and gives first aid.",
+        "options": ["a) doctor", "b) nurse", "c) paramedic", "d) surgeon"],
+        "answer": "c",
+        "explanation": "paramedic – фельдшер скорой."
+      },
+      {
+        "question": "She is a ______ and works in a hospital.",
+        "options": ["a) specialist", "b) consultant", "c) surgeon", "d) GP"],
+        "answer": "d",
+        "explanation": "GP – терапевт."
+              }
             ]
         },
         {
@@ -27687,19 +29758,59 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 5 (перевод)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "He has a ______ cough that won't go away.", "answer": "persistent", "explanation": "persistent cough – постоянный кашель."},
-                {"question": "She has a ______ and needs to rest in bed.", "answer": "fever", "explanation": "fever – жар."},
-                {"question": "He needs to see a ______ for his heart condition.", "answer": "cardiologist", "explanation": "cardiologist – кардиолог."},
-                {"question": "She is a ______ and works in a hospital.", "answer": "nurse", "explanation": "nurse – медсестра."},
-                {"question": "He needs to take a ______ for his pain.", "answer": "painkiller", "explanation": "painkiller – обезболивающее."},
-                {"question": "She needs to get a ______ for her flu.", "answer": "vaccination", "explanation": "vaccination – вакцинация."},
-                {"question": "He is a ______ and performs operations.", "answer": "surgeon", "explanation": "surgeon – хирург."},
-                {"question": "She is a ______ and treats skin problems.", "answer": "dermatologist", "explanation": "dermatologist – дерматолог."}
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "He has a ______ cough that won't go away.",
+        "options": ["a) severe", "b) persistent", "c) chronic", "d) mild"],
+        "answer": "b",
+        "explanation": "persistent cough – постоянный кашель."
+      },
+      {
+        "question": "She has a ______ and needs to rest in bed.",
+        "options": ["a) temperature", "b) fever", "c) headache", "d) cold"],
+        "answer": "b",
+        "explanation": "fever – жар."
+      },
+      {
+        "question": "He needs to see a ______ for his heart condition.",
+        "options": ["a) cardiologist", "b) neurologist", "c) dermatologist", "d) psychiatrist"],
+        "answer": "a",
+        "explanation": "cardiologist – кардиолог."
+      },
+      {
+        "question": "She is a ______ and works in a hospital.",
+        "options": ["a) nurse", "b) surgeon", "c) pharmacist", "d] GP"],
+        "answer": "a",
+        "explanation": "nurse – медсестра."
+      },
+      {
+        "question": "He needs to take a ______ for his pain.",
+        "options": ["a) antibiotic", "b) painkiller", "c) vitamin", "d) injection"],
+        "answer": "b",
+        "explanation": "painkiller – обезболивающее."
+      },
+      {
+        "question": "She needs to get a ______ for her flu.",
+        "options": ["a) vaccination", "b) prescription", "c) blood test", "d) X-ray"],
+        "answer": "a",
+        "explanation": "vaccination – вакцинация."
+      },
+      {
+        "question": "He is a ______ and performs operations.",
+        "options": ["a) GP", "b) cardiologist", "c) surgeon", "d) anaesthetist"],
+        "answer": "c",
+        "explanation": "surgeon – хирург."
+      },
+      {
+        "question": "She is a ______ and treats skin problems.",
+        "options": ["a) dermatologist", "b) paediatrician", "c) obstetrician", "d) psychologist"],
+        "answer": "a",
+        "explanation": "dermatologist – дерматолог."
+              }
             ]
         },
         {
@@ -27748,19 +29859,59 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 6 (перефразирование)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "He has a ______ and needs to take some medicine.", "answer": "cold", "explanation": "cold – простуда."},
-                {"question": "She has a ______ and needs to drink plenty of fluids.", "answer": "fever", "explanation": "fever – жар."},
-                {"question": "He has a ______ and needs to see a dentist.", "answer": "toothache", "explanation": "toothache – зубная боль."},
-                {"question": "She has a ______ and needs to see a physiotherapist.", "answer": "backache", "explanation": "backache – боль в спине."},
-                {"question": "He has a ______ and needs to see a specialist.", "answer": "chronic disease", "explanation": "chronic disease – хроническое заболевание."},
-                {"question": "She has a ______ and needs to rest.", "answer": "sprain", "explanation": "sprain – растяжение."},
-                {"question": "He has a ______ and needs to see a surgeon.", "answer": "injury", "explanation": "injury – травма."},
-                {"question": "She has a ______ and needs to take antibiotics.", "answer": "infection", "explanation": "infection – инфекция."}
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "He has a ______ and needs to take some medicine.",
+        "options": ["a) flu", "b) cold", "c) cough", "d) infection"],
+        "answer": "b",
+        "explanation": "cold – простуда."
+      },
+      {
+        "question": "She has a ______ and needs to drink plenty of fluids.",
+        "options": ["a) temperature", "b) cold", "c) fever", "d) headache"],
+        "answer": "c",
+        "explanation": "fever – жар."
+      },
+      {
+        "question": "He has a ______ and needs to see a dentist.",
+        "options": ["a) toothache", "b) headache", "c) backache", "d) stomach ache"],
+        "answer": "a",
+        "explanation": "toothache – зубная боль."
+      },
+      {
+        "question": "She has a ______ and needs to see a physiotherapist.",
+        "options": ["a) headache", "b) toothache", "c) stomach ache", "d) backache"],
+        "answer": "d",
+        "explanation": "backache – боль в спине."
+      },
+      {
+        "question": "He has a ______ and needs to see a specialist.",
+        "options": ["a) chronic disease", "b) acute condition", "c) temporary illness", "d) minor injury"],
+        "answer": "a",
+        "explanation": "chronic disease – хроническое заболевание."
+      },
+      {
+        "question": "She has a ______ and needs to rest.",
+        "options": ["a) fracture", "b) sprain", "c) cut", "d) bruise"],
+        "answer": "b",
+        "explanation": "sprain – растяжение."
+      },
+      {
+        "question": "He has a ______ and needs to see a surgeon.",
+        "options": ["a) injury", "b) illness", "c) disease", "d) condition"],
+        "answer": "a",
+        "explanation": "injury – травма."
+      },
+      {
+        "question": "She has a ______ and needs to take antibiotics.",
+        "options": ["a) allergy", "b) infection", "c) rash", "d) injury"],
+        "answer": "b",
+        "explanation": "infection – инфекция."
+              }
             ]
         },
         {
@@ -27809,19 +29960,59 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 7 (перевод)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "She is a ______ and treats mental health issues.", "answer": "psychiatrist", "explanation": "psychiatrist – психиатр."},
-                {"question": "He is a ______ and works in a laboratory.", "answer": "pharmacist", "explanation": "pharmacist – фармацевт."},
-                {"question": "She is a ______ and works in a hospital.", "answer": "paramedic", "explanation": "paramedic – фельдшер скорой."},
-                {"question": "He is a ______ and treats allergies.", "answer": "immunologist", "explanation": "immunologist – иммунолог."},
-                {"question": "She is a ______ and treats kidney problems.", "answer": "nephrologist", "explanation": "nephrologist – нефролог."},
-                {"question": "He is a ______ and treats blood disorders.", "answer": "haematologist", "explanation": "haematologist – гематолог."},
-                {"question": "She is a ______ and treats digestive issues.", "answer": "gastroenterologist", "explanation": "gastroenterologist – гастроэнтеролог."},
-                {"question": "He is a ______ and treats neurological disorders.", "answer": "neurologist", "explanation": "neurologist – невролог."}
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "She is a ______ and treats mental health issues.",
+        "options": ["a) psychologist", "b) counsellor", "c) psychiatrist", "d) therapist"],
+        "answer": "c",
+        "explanation": "psychiatrist – психиатр."
+      },
+      {
+        "question": "He is a ______ and works in a laboratory.",
+        "options": ["a) chemist", "b) druggist", "c) dispenser", "d) pharmacist"],
+        "answer": "d",
+        "explanation": "pharmacist – фармацевт."
+      },
+      {
+        "question": "She is a ______ and works in a hospital.",
+        "options": ["a) paramedic", "b) nurse", "c) doctor", "d) first aider"],
+        "answer": "a",
+        "explanation": "paramedic – фельдшер скорой."
+      },
+      {
+        "question": "He is a ______ and treats allergies.",
+        "options": ["a) allergist", "b) immunologist", "c) rheumatologist", "d) infectious disease specialist"],
+        "answer": "b",
+        "explanation": "immunologist – иммунолог."
+      },
+      {
+        "question": "She is a ______ and treats kidney problems.",
+        "options": ["a) urologist", "b) cardiologist", "c) nephrologist", "d) pulmonologist"],
+        "answer": "c",
+        "explanation": "nephrologist – нефролог."
+      },
+      {
+        "question": "He is a ______ and treats blood disorders.",
+        "options": ["a) oncologist", "b) pathologist", "c) radiologist", "d) haematologist"],
+        "answer": "d",
+        "explanation": "haematologist – гематолог."
+      },
+      {
+        "question": "She is a ______ and treats digestive issues.",
+        "options": ["a) gastroenterologist", "b) proctologist", "c) hepatologist", "d) endocrinologist"],
+        "answer": "a",
+        "explanation": "gastroenterologist – гастроэнтеролог."
+      },
+      {
+        "question": "He is a ______ and treats neurological disorders.",
+        "options": ["a) psychiatrist", "b) neurologist", "c) neurosurgeon", "d) pain specialist"],
+        "answer": "b",
+        "explanation": "neurologist – невролог."
+              }
             ]
         },
         {
@@ -27870,20 +30061,60 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 8 (перефразирование)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "She needs to buy some ______ for her cough.", "answer": "cough syrup", "explanation": "cough syrup – сироп от кашля."},
-                {"question": "He needs to put some ______ on his wound.", "answer": "ointment", "explanation": "ointment – мазь."},
-                {"question": "She needs to put a ______ on her cut.", "answer": "plaster", "explanation": "plaster – пластырь."},
-                {"question": "He needs to use a ______ to support his arm.", "answer": "bandage", "explanation": "bandage – бинт."},
-                {"question": "She needs to do some ______ for her back.", "answer": "physical therapy", "explanation": "physical therapy – физиотерапия."},
-                {"question": "He needs to take a ______ for his pain.", "answer": "painkiller", "explanation": "painkiller – обезболивающее."},
-                {"question": "She needs to have ______ to fix her knee.", "answer": "surgery", "explanation": "surgery – хирургическая операция."},
-                {"question": "He needs to get a ______ to prevent the flu.", "answer": "vaccination", "explanation": "vaccination – вакцинация."}
-            ]
+ [
+  {
+    "type": "complex",
+    "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "She needs to buy some ______ for her cough.",
+        "options": ["a) cough medicine", "b) cough syrup", "c) lozenges", "d) antibiotics"],
+        "answer": "b",
+        "explanation": "cough syrup – сироп от кашля."
+      },
+      {
+        "question": "He needs to put some ______ on his wound.",
+        "options": ["a) cream", "b) ointment", "c) lotion", "d) gel"],
+        "answer": "b",
+        "explanation": "ointment – мазь."
+      },
+      {
+        "question": "She needs to put a ______ on her cut.",
+        "options": ["a) bandage", "b) dressing", "c) plaster", "d) tape"],
+        "answer": "c",
+        "explanation": "plaster – пластырь."
+      },
+      {
+        "question": "He needs to use a ______ to support his arm.",
+        "options": ["a) cast", "b) sling", "c) bandage", "d) splint"],
+        "answer": "c",
+        "explanation": "bandage – бинт."
+      },
+      {
+        "question": "She needs to do some ______ for her back.",
+        "options": ["a) exercises", "b) physical therapy", "c) stretching", "d) yoga"],
+        "answer": "b",
+        "explanation": "physical therapy – физиотерапия."
+      },
+      {
+        "question": "He needs to take a ______ for his pain.",
+        "options": ["a) painkiller", "b) antibiotic", "c) vitamin", "d) tablet"],
+        "answer": "a",
+        "explanation": "painkiller – обезболивающее."
+      },
+      {
+        "question": "She needs to have ______ to fix her knee.",
+        "options": ["a) an operation", "b) a procedure", "c) surgery", "d) a treatment"],
+        "answer": "c",
+        "explanation": "surgery – хирургическая операция."
+      },
+      {
+        "question": "He needs to get a ______ to prevent the flu.",
+        "options": ["a) vaccination", "b) injection", "c) shot", "d) immunization"],
+        "answer": "a",
+        "explanation": "vaccination – вакцинация."
+             }
+           ]
         },
         {
             "type": "complex",
@@ -27931,19 +30162,59 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 9 (перевод)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "She has a ______ of the flu.", "answer": "case", "explanation": "case – случай болезни."},
-                {"question": "He has a ______ of food poisoning.", "answer": "case", "explanation": "case – случай."},
-                {"question": "She needs to see a ______ about her rash.", "answer": "dermatologist", "explanation": "dermatologist – дерматолог."},
-                {"question": "He needs to see a ______ about his heart.", "answer": "cardiologist", "explanation": "cardiologist – кардиолог."},
-                {"question": "She needs to see a ______ about her back.", "answer": "physiotherapist", "explanation": "physiotherapist – физиотерапевт."},
-                {"question": "He needs to see a ______ about his broken leg.", "answer": "orthopaedic surgeon", "explanation": "orthopaedic surgeon – ортопед-хирург."},
-                {"question": "She needs to see a ______ about her eyes.", "answer": "ophthalmologist", "explanation": "ophthalmologist – офтальмолог."},
-                {"question": "He needs to see a ______ about his ears.", "answer": "ENT specialist", "explanation": "ENT specialist – ЛОР."}
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "She has a ______ of the flu.",
+        "options": ["a) case", "b) bout", "c) attack", "d) spell"],
+        "answer": "a",
+        "explanation": "case – случай болезни."
+      },
+      {
+        "question": "He has a ______ of food poisoning.",
+        "options": ["a) case", "b) bout", "c) attack", "d) spell"],
+        "answer": "a",
+        "explanation": "case – случай."
+      },
+      {
+        "question": "She needs to see a ______ about her rash.",
+        "options": ["a) dermatologist", "b) paediatrician", "c) obstetrician", "d) psychologist"],
+        "answer": "a",
+        "explanation": "dermatologist – дерматолог."
+      },
+      {
+        "question": "He needs to see a ______ about his heart.",
+        "options": ["a) cardiologist", "b) neurologist", "c) pulmonologist", "d) immunologist"],
+        "answer": "a",
+        "explanation": "cardiologist – кардиолог."
+      },
+      {
+        "question": "She needs to see a ______ about her back.",
+        "options": ["a) physiotherapist", "b) chiropractor", "c) osteopath", "d) personal trainer"],
+        "answer": "a",
+        "explanation": "physiotherapist – физиотерапевт."
+      },
+      {
+        "question": "He needs to see a ______ about his broken leg.",
+        "options": ["a) orthopaedic surgeon", "b) cardiologist", "c) dermatologist", "d) ophthalmologist"],
+        "answer": "a",
+        "explanation": "orthopaedic surgeon – ортопед-хирург."
+      },
+      {
+        "question": "She needs to see a ______ about her eyes.",
+        "options": ["a) ophthalmologist", "b) optician", "c) optometrist", "d) orthoptist"],
+        "answer": "a",
+        "explanation": "ophthalmologist – офтальмолог."
+      },
+      {
+        "question": "He needs to see a ______ about his ears.",
+        "options": ["a) ENT specialist", "b) audiologist", "c) otolaryngologist", "d) hearing specialist"],
+        "answer": "a",
+        "explanation": "ENT specialist – ЛОР."
+              }
             ]
         },
         {
@@ -27992,19 +30263,59 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 10 (перефразирование)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "She is ______ from a serious illness.", "answer": "recovering", "explanation": "to recover – выздоравливать."},
-                {"question": "He is ______ from his injury.", "answer": "recovering", "explanation": "to recover – выздоравливать."},
-                {"question": "She is ______ for her operation.", "answer": "preparing", "explanation": "to prepare – готовиться."},
-                {"question": "He is ______ for his surgery.", "answer": "preparing", "explanation": "to prepare – готовиться."},
-                {"question": "She is ______ her medication.", "answer": "taking", "explanation": "to take medication – принимать лекарства."},
-                {"question": "He is ______ his treatment.", "answer": "undergoing", "explanation": "to undergo treatment – проходить лечение."},
-                {"question": "She is ______ from her surgery.", "answer": "recovering", "explanation": "to recover – выздоравливать."},
-                {"question": "He is ______ for his appointment.", "answer": "waiting", "explanation": "to wait – ждать."}
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "She is ______ from a serious illness.",
+        "options": ["a) healing", "b) recovering", "c) resting", "d) improving"],
+        "answer": "b",
+        "explanation": "to recover – выздоравливать."
+      },
+      {
+        "question": "He is ______ from his injury.",
+        "options": ["a) recovering", "b) resting", "c) healing", "d) improving"],
+        "answer": "a",
+        "explanation": "to recover – выздоравливать."
+      },
+      {
+        "question": "She is ______ for her operation.",
+        "options": ["a) waiting", "b) preparing", "c) resting", "d) recovering"],
+        "answer": "b",
+        "explanation": "to prepare – готовиться."
+      },
+      {
+        "question": "He is ______ for his surgery.",
+        "options": ["a) preparing", "b) waiting", "c) resting", "d) healing"],
+        "answer": "a",
+        "explanation": "to prepare – готовиться."
+      },
+      {
+        "question": "She is ______ her medication.",
+        "options": ["a) taking", "b) receiving", "c) undergoing", "d) using"],
+        "answer": "a",
+        "explanation": "to take medication – принимать лекарства."
+      },
+      {
+        "question": "He is ______ his treatment.",
+        "options": ["a) taking", "b) receiving", "c) undergoing", "d) having"],
+        "answer": "c",
+        "explanation": "to undergo treatment – проходить лечение."
+      },
+      {
+        "question": "She is ______ from her surgery.",
+        "options": ["a) healing", "b) recovering", "c) resting", "d) improving"],
+        "answer": "b",
+        "explanation": "to recover – выздоравливать."
+      },
+      {
+        "question": "He is ______ for his appointment.",
+        "options": ["a) preparing", "b) waiting", "c) resting", "d) recovering"],
+        "answer": "b",
+        "explanation": "to wait – ждать."
+              }
             ]
         },
         {
@@ -28053,20 +30364,60 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 11 (перевод)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "She has a ______ and needs to go to the hospital.", "answer": "heart attack", "explanation": "heart attack – сердечный приступ."},
-                {"question": "He has a ______ and needs to rest.", "answer": "stroke", "explanation": "stroke – инсульт."},
-                {"question": "She has a ______ and needs to see a doctor.", "answer": "cancer", "explanation": "cancer – рак."},
-                {"question": "He has a ______ and needs to take medication.", "answer": "diabetes", "explanation": "diabetes – диабет."},
-                {"question": "She has a ______ and needs to use an inhaler.", "answer": "asthma", "explanation": "asthma – астма."},
-                {"question": "He has a ______ and needs to see a specialist.", "answer": "hypertension", "explanation": "hypertension – гипертония."},
-                {"question": "She has a ______ and needs to lose weight.", "answer": "obesity", "explanation": "obesity – ожирение."},
-                {"question": "He has a ______ and needs to eat a healthy diet.", "answer": "high cholesterol", "explanation": "high cholesterol – высокий холестерин."}
-            ]
+ [
+  {
+    "type": "complex",
+    "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "She has a ______ and needs to go to the hospital.",
+        "options": ["a) heart attack", "b) stroke", "c) asthma attack", "d) seizure"],
+        "answer": "a",
+        "explanation": "heart attack – сердечный приступ."
+      },
+      {
+        "question": "He has a ______ and needs to rest.",
+        "options": ["a) heart attack", "b) stroke", "c) migraine", "d) concussion"],
+        "answer": "b",
+        "explanation": "stroke – инсульт."
+      },
+      {
+        "question": "She has a ______ and needs to see a doctor.",
+        "options": ["a) cancer", "b) tumour", "c) infection", "d) disease"],
+        "answer": "a",
+        "explanation": "cancer – рак."
+      },
+      {
+        "question": "He has a ______ and needs to take medication.",
+        "options": ["a) diabetes", "b) obesity", "c) hypertension", "d) high cholesterol"],
+        "answer": "a",
+        "explanation": "diabetes – диабет."
+      },
+      {
+        "question": "She has a ______ and needs to use an inhaler.",
+        "options": ["a) asthma", "b) bronchitis", "c) pneumonia", "d) COPD"],
+        "answer": "a",
+        "explanation": "asthma – астма."
+      },
+      {
+        "question": "He has a ______ and needs to see a specialist.",
+        "options": ["a) hypertension", "b) low blood pressure", "c) heart disease", "d) arrhythmia"],
+        "answer": "a",
+        "explanation": "hypertension – гипертония."
+      },
+      {
+        "question": "She has a ______ and needs to lose weight.",
+        "options": ["a) obesity", "b) diabetes", "c) high cholesterol", "d) heart disease"],
+        "answer": "a",
+        "explanation": "obesity – ожирение."
+      },
+      {
+        "question": "He has a ______ and needs to eat a healthy diet.",
+        "options": ["a) high cholesterol", "b) diabetes", "c) obesity", "d) hypertension"],
+        "answer": "a",
+        "explanation": "high cholesterol – высокий холестерин."
+             }
+           ]
         },
         {
             "type": "complex",
@@ -28114,19 +30465,59 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 12 (перефразирование)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "She is ______ to treat her illness.", "answer": "taking medication", "explanation": "to take medication – принимать лекарства."},
-                {"question": "He is ______ to reduce his pain.", "answer": "taking painkillers", "explanation": "to take painkillers – принимать обезболивающие."},
-                {"question": "She is ______ to improve her mobility.", "answer": "doing physical therapy", "explanation": "to do physical therapy – заниматься физиотерапией."},
-                {"question": "He is ______ to recover from his injury.", "answer": "doing exercises", "explanation": "to do exercises – делать упражнения."},
-                {"question": "She is ______ to prevent the disease.", "answer": "getting vaccinated", "explanation": "to get vaccinated – сделать прививку."},
-                {"question": "He is ______ to treat his condition.", "answer": "undergoing treatment", "explanation": "to undergo treatment – проходить лечение."},
-                {"question": "She is ______ to cure her infection.", "answer": "taking antibiotics", "explanation": "to take antibiotics – принимать антибиотики."},
-                {"question": "He is ______ to relieve his symptoms.", "answer": "taking medication", "explanation": "to take medication – принимать лекарства."}
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "She is ______ to treat her illness.",
+        "options": ["a) taking medication", "b) doing therapy", "c) having surgery", "d) receiving care"],
+        "answer": "a",
+        "explanation": "to take medication – принимать лекарства."
+      },
+      {
+        "question": "He is ______ to reduce his pain.",
+        "options": ["a) using ointment", "b) taking painkillers", "c) applying cream", "d) getting massage"],
+        "answer": "b",
+        "explanation": "to take painkillers – принимать обезболивающие."
+      },
+      {
+        "question": "She is ______ to improve her mobility.",
+        "options": ["a) doing surgery", "b) taking pills", "c) doing physical therapy", "d) having rest"],
+        "answer": "c",
+        "explanation": "to do physical therapy – заниматься физиотерапией."
+      },
+      {
+        "question": "He is ______ to recover from his injury.",
+        "options": ["a) doing exercises", "b) taking medicine", "c) having injections", "d) using a crutch"],
+        "answer": "a",
+        "explanation": "to do exercises – делать упражнения."
+      },
+      {
+        "question": "She is ______ to prevent the disease.",
+        "options": ["a) taking antibiotics", "b) getting vaccinated", "c) having an operation", "d) doing rehabilitation"],
+        "answer": "b",
+        "explanation": "to get vaccinated – сделать прививку."
+      },
+      {
+        "question": "He is ______ to treat his condition.",
+        "options": ["a) taking medication", "b) having a check-up", "c) undergoing treatment", "d) doing therapy"],
+        "answer": "c",
+        "explanation": "to undergo treatment – проходить лечение."
+      },
+      {
+        "question": "She is ______ to cure her infection.",
+        "options": ["a) having physiotherapy", "b) taking antibiotics", "c) doing exercises", "d) getting a vaccine"],
+        "answer": "b",
+        "explanation": "to take antibiotics – принимать антибиотики."
+      },
+      {
+        "question": "He is ______ to relieve his symptoms.",
+        "options": ["a) having an injection", "b) doing rehabilitation", "c) taking medication", "d) using a bandage"],
+        "answer": "c",
+        "explanation": "to take medication – принимать лекарства."
+              }
             ]
         },
         {
@@ -28204,19 +30595,59 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 1 (перевод)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "Carbon ______ must be reduced to slow down climate change.", "answer": "emissions", "explanation": "carbon emissions – выбросы углерода."},
-                {"question": "______ is destroying the Amazon rainforest.", "answer": "Deforestation", "explanation": "deforestation – вырубка лесов."},
-                {"question": "Many countries are investing in ______ energy.", "answer": "renewable", "explanation": "renewable energy – возобновляемая энергия."},
-                {"question": "We should buy ______ products to protect the environment.", "answer": "eco-friendly", "explanation": "eco-friendly – экологичный."},
-                {"question": "______ is one of the biggest environmental problems today.", "answer": "Plastic pollution", "explanation": "plastic pollution – пластиковое загрязнение."},
-                {"question": "We need to ______ energy by switching to LED bulbs.", "answer": "save", "explanation": "to save energy – экономить энергию."},
-                {"question": "The ______ effect is causing global temperatures to rise.", "answer": "greenhouse", "explanation": "greenhouse effect – парниковый эффект."},
-                {"question": "Many species are facing ______ due to habitat loss.", "answer": "extinction", "explanation": "extinction – вымирание."}
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "Carbon ______ must be reduced to slow down climate change.",
+        "options": ["a) gases", "b) dioxide", "c) pollution", "d) emissions"],
+        "answer": "d",
+        "explanation": "carbon emissions – выбросы углерода."
+      },
+      {
+        "question": "______ is destroying the Amazon rainforest.",
+        "options": ["a) Pollution", "b) Deforestation", "c) Urbanisation", "d) Overpopulation"],
+        "answer": "b",
+        "explanation": "deforestation – вырубка лесов."
+      },
+      {
+        "question": "Many countries are investing in ______ energy.",
+        "options": ["a) fossil", "b) nuclear", "c) renewable", "d) solar"],
+        "answer": "c",
+        "explanation": "renewable energy – возобновляемая энергия."
+      },
+      {
+        "question": "We should buy ______ products to protect the environment.",
+        "options": ["a) organic", "b) eco-friendly", "c) natural", "d) recycled"],
+        "answer": "b",
+        "explanation": "eco-friendly – экологичный."
+      },
+      {
+        "question": "______ is one of the biggest environmental problems today.",
+        "options": ["a) Air pollution", "b) Water pollution", "c) Noise pollution", "d) Plastic pollution"],
+        "answer": "d",
+        "explanation": "plastic pollution – пластиковое загрязнение."
+      },
+      {
+        "question": "We need to ______ energy by switching to LED bulbs.",
+        "options": ["a) save", "b) produce", "c) waste", "d) generate"],
+        "answer": "a",
+        "explanation": "to save energy – экономить энергию."
+      },
+      {
+        "question": "The ______ effect is causing global temperatures to rise.",
+        "options": ["a) global", "b) warming", "c) greenhouse", "d) climate"],
+        "answer": "c",
+        "explanation": "greenhouse effect – парниковый эффект."
+      },
+      {
+        "question": "Many species are facing ______ due to habitat loss.",
+        "options": ["a) danger", "b) threat", "c) risk", "d) extinction"],
+        "answer": "d",
+        "explanation": "extinction – вымирание."
+              }
             ]
         },
         {
@@ -28265,19 +30696,59 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 2 (перефразирование)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "Solar ______ is a clean source of energy.", "answer": "power", "explanation": "solar power – солнечная энергия."},
-                {"question": "Wind ______ is becoming more popular in Europe.", "answer": "power", "explanation": "wind power – энергия ветра."},
-                {"question": "______ development aims to meet the needs of the present without harming the future.", "answer": "Sustainable", "explanation": "sustainable development – устойчивое развитие."},
-                {"question": "The circular ______ promotes recycling and reusing materials.", "answer": "economy", "explanation": "circular economy – циркулярная экономика."},
-                {"question": "______ is the process of turning waste into new products.", "answer": "Recycling", "explanation": "recycling – переработка."},
-                {"question": "We should avoid ______ plastic to reduce waste.", "answer": "single-use", "explanation": "single-use plastic – одноразовый пластик."},
-                {"question": "______ means creating something new from old items.", "answer": "Upcycling", "explanation": "upcycling – креативное повторное использование."},
-                {"question": "The ______ layer protects us from harmful UV rays.", "answer": "ozone", "explanation": "ozone layer – озоновый слой."}
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "Solar ______ is a clean source of energy.",
+        "options": ["a) panels", "b) power", "c) cells", "d) radiation"],
+        "answer": "b",
+        "explanation": "solar power – солнечная энергия."
+      },
+      {
+        "question": "Wind ______ is becoming more popular in Europe.",
+        "options": ["a) turbines", "b) farms", "c) power", "d) energy"],
+        "answer": "c",
+        "explanation": "wind power – энергия ветра."
+      },
+      {
+        "question": "______ development aims to meet the needs of the present without harming the future.",
+        "options": ["a) Economic", "b) Industrial", "c) Sustainable", "d) Urban"],
+        "answer": "c",
+        "explanation": "sustainable development – устойчивое развитие."
+      },
+      {
+        "question": "The circular ______ promotes recycling and reusing materials.",
+        "options": ["a) policy", "b) economy", "c) system", "d) model"],
+        "answer": "b",
+        "explanation": "circular economy – циркулярная экономика."
+      },
+      {
+        "question": "______ is the process of turning waste into new products.",
+        "options": ["a) Upcycling", "b) Composting", "c) Recycling", "d) Reusing"],
+        "answer": "c",
+        "explanation": "recycling – переработка."
+      },
+      {
+        "question": "We should avoid ______ plastic to reduce waste.",
+        "options": ["a) single-use", "b) biodegradable", "c) recyclable", "d) compostable"],
+        "answer": "a",
+        "explanation": "single-use plastic – одноразовый пластик."
+      },
+      {
+        "question": "______ means creating something new from old items.",
+        "options": ["a) Upcycling", "b) Recycling", "c) Downcycling", "d) Repurposing"],
+        "answer": "a",
+        "explanation": "upcycling – креативное повторное использование."
+      },
+      {
+        "question": "The ______ layer protects us from harmful UV rays.",
+        "options": ["a) ozone", "b) atmospheric", "c) stratospheric", "d) mesospheric"],
+        "answer": "a",
+        "explanation": "ozone layer – озоновый слой."
+              }
             ]
         },
         {
@@ -28326,19 +30797,59 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 3 (перевод)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "______ warming is causing polar ice caps to melt.", "answer": "Global", "explanation": "global warming – глобальное потепление."},
-                {"question": "The ______ footprint of a person is the amount of carbon they produce.", "answer": "carbon", "explanation": "carbon footprint – углеродный след."},
-                {"question": "______ loss is a major concern for conservationists.", "answer": "Biodiversity", "explanation": "biodiversity loss – потеря биоразнообразия."},
-                {"question": "______ energy comes from sources like the sun, wind, and water.", "answer": "Renewable", "explanation": "renewable energy – возобновляемая энергия."},
-                {"question": "We need to protect ______ to ensure the survival of many species.", "answer": "habitats", "explanation": "habitats – места обитания."},
-                {"question": "______ pollution affects both land and water.", "answer": "Soil", "explanation": "soil pollution – загрязнение почвы."},
-                {"question": "The ______ of the ozone layer is a serious problem.", "answer": "depletion", "explanation": "depletion – истощение."},
-                {"question": "We should use ______ transport to reduce emissions.", "answer": "public", "explanation": "public transport – общественный транспорт."}
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "______ warming is causing polar ice caps to melt.",
+        "options": ["a) Global", "b) Planetary", "c) Atmospheric", "d) Climatic"],
+        "answer": "a",
+        "explanation": "global warming – глобальное потепление."
+      },
+      {
+        "question": "The ______ footprint of a person is the amount of carbon they produce.",
+        "options": ["a) carbon", "b) ecological", "c) environmental", "d) climatic"],
+        "answer": "a",
+        "explanation": "carbon footprint – углеродный след."
+      },
+      {
+        "question": "______ loss is a major concern for conservationists.",
+        "options": ["a) Habitat", "b) Biodiversity", "c) Wildlife", "d) Forest"],
+        "answer": "b",
+        "explanation": "biodiversity loss – потеря биоразнообразия."
+      },
+      {
+        "question": "______ energy comes from sources like the sun, wind, and water.",
+        "options": ["a) Clean", "b) Natural", "c) Green", "d) Renewable"],
+        "answer": "d",
+        "explanation": "renewable energy – возобновляемая энергия."
+      },
+      {
+        "question": "We need to protect ______ to ensure the survival of many species.",
+        "options": ["a) ecosystems", "b) habitats", "c) environments", "d) territories"],
+        "answer": "b",
+        "explanation": "habitats – места обитания."
+      },
+      {
+        "question": "______ pollution affects both land and water.",
+        "options": ["a) Soil", "b) Air", "c) Noise", "d) Light"],
+        "answer": "a",
+        "explanation": "soil pollution – загрязнение почвы."
+      },
+      {
+        "question": "The ______ of the ozone layer is a serious problem.",
+        "options": ["a) depletion", "b) destruction", "c) erosion", "d) thinning"],
+        "answer": "a",
+        "explanation": "depletion – истощение."
+      },
+      {
+        "question": "We should use ______ transport to reduce emissions.",
+        "options": ["a) private", "b) public", "c) shared", "d) electric"],
+        "answer": "b",
+        "explanation": "public transport – общественный транспорт."
+              }
             ]
         },
         {
@@ -28387,19 +30898,59 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 4 (перефразирование)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "______ is the process of planting trees to restore forests.", "answer": "Reforestation", "explanation": "reforestation – лесовосстановление."},
-                {"question": "______ is the protection of natural resources.", "answer": "Conservation", "explanation": "conservation – сохранение природы."},
-                {"question": "______ energy is produced by the movement of water.", "answer": "Hydroelectric", "explanation": "hydroelectric power – гидроэлектроэнергия."},
-                {"question": "______ energy comes from the heat of the Earth.", "answer": "Geothermal", "explanation": "geothermal energy – геотермальная энергия."},
-                {"question": "______ is a renewable energy source made from plants.", "answer": "Biomass", "explanation": "biomass – биомасса."},
-                {"question": "______ means the ability to be maintained at a certain level.", "answer": "Sustainability", "explanation": "sustainability – устойчивость."},
-                {"question": "We should ______ water by taking shorter showers.", "answer": "save", "explanation": "to save water – экономить воду."},
-                {"question": "We need to ______ trees to improve air quality.", "answer": "plant", "explanation": "to plant trees – сажать деревья."}
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "______ is the process of planting trees to restore forests.",
+        "options": ["a) Deforestation", "b) Logging", "c) Reforestation", "d) Agriculture"],
+        "answer": "c",
+        "explanation": "reforestation – лесовосстановление."
+      },
+      {
+        "question": "______ is the protection of natural resources.",
+        "options": ["a) Exploitation", "b) Conservation", "c) Development", "d) Urbanisation"],
+        "answer": "b",
+        "explanation": "conservation – сохранение природы."
+      },
+      {
+        "question": "______ energy is produced by the movement of water.",
+        "options": ["a) Solar", "b) Wind", "c) Geothermal", "d) Hydroelectric"],
+        "answer": "d",
+        "explanation": "hydroelectric power – гидроэлектроэнергия."
+      },
+      {
+        "question": "______ energy comes from the heat of the Earth.",
+        "options": ["a) Geothermal", "b) Solar", "c) Wind", "d) Nuclear"],
+        "answer": "a",
+        "explanation": "geothermal energy – геотермальная энергия."
+      },
+      {
+        "question": "______ is a renewable energy source made from plants.",
+        "options": ["a) Fossil fuel", "b) Nuclear", "c) Biomass", "d) Natural gas"],
+        "answer": "c",
+        "explanation": "biomass – биомасса."
+      },
+      {
+        "question": "______ means the ability to be maintained at a certain level.",
+        "options": ["a) Stability", "b) Durability", "c) Efficiency", "d) Sustainability"],
+        "answer": "d",
+        "explanation": "sustainability – устойчивость."
+      },
+      {
+        "question": "We should ______ water by taking shorter showers.",
+        "options": ["a) waste", "b) save", "c) use", "d) consume"],
+        "answer": "b",
+        "explanation": "to save water – экономить воду."
+      },
+      {
+        "question": "We need to ______ trees to improve air quality.",
+        "options": ["a) cut", "b) burn", "c) plant", "d) remove"],
+        "answer": "c",
+        "explanation": "to plant trees – сажать деревья."
+              }
             ]
         },
         {
@@ -28448,19 +30999,59 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 5 (перевод)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "______ change is the biggest threat to our planet.", "answer": "Climate", "explanation": "climate change – изменение климата."},
-                {"question": "______ emissions are a major cause of global warming.", "answer": "Carbon", "explanation": "carbon emissions – выбросы углерода."},
-                {"question": "______ energy sources do not produce greenhouse gases.", "answer": "Green", "explanation": "green energy – чистая энергия (но правильнее renewable). Однако в контексте этого задания я дам 'Renewable'."},
-                {"question": "We should ______ waste to protect the environment.", "answer": "reduce", "explanation": "to reduce waste – сокращать отходы."},
-                {"question": "We can ______ plastic bottles to create new products.", "answer": "recycle", "explanation": "to recycle – перерабатывать."},
-                {"question": "We should ______ old clothes instead of throwing them away.", "answer": "reuse", "explanation": "to reuse – использовать повторно."},
-                {"question": "______ is the practice of protecting the natural environment.", "answer": "Conservation", "explanation": "conservation – сохранение природы."},
-                {"question": "______ farming uses no artificial chemicals.", "answer": "Organic", "explanation": "organic farming – органическое земледелие."}
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "______ change is the biggest threat to our planet.",
+        "options": ["a) Weather", "b) Atmospheric", "c) Climate", "d) Environmental"],
+        "answer": "c",
+        "explanation": "climate change – изменение климата."
+      },
+      {
+        "question": "______ emissions are a major cause of global warming.",
+        "options": ["a) Methane", "b) Carbon", "c) Nitrogen", "d) Sulphur"],
+        "answer": "b",
+        "explanation": "carbon emissions – выбросы углерода."
+      },
+      {
+        "question": "______ energy sources do not produce greenhouse gases.",
+        "options": ["a) Renewable", "b) Clean", "c) Alternative", "d) Green"],
+        "answer": "d",
+        "explanation": "green energy – чистая энергия (но правильнее renewable)."
+      },
+      {
+        "question": "We should ______ waste to protect the environment.",
+        "options": ["a) reduce", "b) recycle", "c) reuse", "d) save"],
+        "answer": "a",
+        "explanation": "to reduce waste – сокращать отходы."
+      },
+      {
+        "question": "We can ______ plastic bottles to create new products.",
+        "options": ["a) reuse", "b) recycle", "c) reduce", "d) upcycle"],
+        "answer": "b",
+        "explanation": "to recycle – перерабатывать."
+      },
+      {
+        "question": "We should ______ old clothes instead of throwing them away.",
+        "options": ["a) recycle", "b) repair", "c) reuse", "d) reduce"],
+        "answer": "c",
+        "explanation": "to reuse – использовать повторно."
+      },
+      {
+        "question": "______ is the practice of protecting the natural environment.",
+        "options": ["a) Preservation", "b) Protection", "c) Sustainability", "d) Conservation"],
+        "answer": "d",
+        "explanation": "conservation – сохранение природы."
+      },
+      {
+        "question": "______ farming uses no artificial chemicals.",
+        "options": ["a) Organic", "b) Natural", "c) Ecological", "d) Sustainable"],
+        "answer": "a",
+        "explanation": "organic farming – органическое земледелие."
+              }
             ]
         },
         {
@@ -28509,20 +31100,60 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 6 (перефразирование)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "______ is a major environmental issue caused by excessive waste.", "answer": "Pollution", "explanation": "pollution – загрязнение."},
-                {"question": "______ is the release of harmful substances into the air.", "answer": "Air pollution", "explanation": "air pollution – загрязнение воздуха."},
-                {"question": "______ is the contamination of rivers and oceans.", "answer": "Water pollution", "explanation": "water pollution – загрязнение воды."},
-                {"question": "______ waste includes plastic bottles, bags, and packaging.", "answer": "Plastic", "explanation": "plastic waste – пластиковые отходы."},
-                {"question": "______ is the process of decomposing organic matter.", "answer": "Composting", "explanation": "composting – компостирование."},
-                {"question": "______ should be avoided because it harms the environment.", "answer": "Waste", "explanation": "waste – отходы."},
-                {"question": "______ initiatives aim to protect the planet for future generations.", "answer": "Green", "explanation": "green initiatives – зелёные инициативы."},
-                {"question": "We should ______ petitions to demand environmental action.", "answer": "sign", "explanation": "to sign petitions – подписывать петиции."}
-            ]
+ [
+  {
+    "type": "complex",
+    "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "______ is a major environmental issue caused by excessive waste.",
+        "options": ["a) Pollution", "b) Destruction", "c) Degradation", "d) Contamination"],
+        "answer": "a",
+        "explanation": "pollution – загрязнение."
+      },
+      {
+        "question": "______ is the release of harmful substances into the air.",
+        "options": ["a) Soil pollution", "b) Air pollution", "c) Noise pollution", "d) Water pollution"],
+        "answer": "b",
+        "explanation": "air pollution – загрязнение воздуха."
+      },
+      {
+        "question": "______ is the contamination of rivers and oceans.",
+        "options": ["a) Land pollution", "b) Marine pollution", "c) Water pollution", "d) Air pollution"],
+        "answer": "c",
+        "explanation": "water pollution – загрязнение воды."
+      },
+      {
+        "question": "______ waste includes plastic bottles, bags, and packaging.",
+        "options": ["a) Organic", "b) Hazardous", "c) Industrial", "d) Plastic"],
+        "answer": "d",
+        "explanation": "plastic waste – пластиковые отходы."
+      },
+      {
+        "question": "______ is the process of decomposing organic matter.",
+        "options": ["a) Composting", "b) Recycling", "c) Upcycling", "d) Landfilling"],
+        "answer": "a",
+        "explanation": "composting – компостирование."
+      },
+      {
+        "question": "______ should be avoided because it harms the environment.",
+        "options": ["a) Reuse", "b) Waste", "c) Recycling", "d) Conservation"],
+        "answer": "b",
+        "explanation": "waste – отходы."
+      },
+      {
+        "question": "______ initiatives aim to protect the planet for future generations.",
+        "options": ["a) Sustainable", "b) Ecological", "c) Green", "d) Environmental"],
+        "answer": "c",
+        "explanation": "green initiatives – зелёные инициативы."
+      },
+      {
+        "question": "We should ______ petitions to demand environmental action.",
+        "options": ["a) write", "b) create", "c) support", "d) sign"],
+        "answer": "d",
+        "explanation": "to sign petitions – подписывать петиции."
+             }
+           ]
         },
         {
             "type": "complex",
@@ -28570,19 +31201,59 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 7 (перевод)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "______ is the warming of the Earth due to greenhouse gases.", "answer": "Global warming", "explanation": "global warming – глобальное потепление."},
-                {"question": "______ is the clearing of forests for agriculture or logging.", "answer": "Deforestation", "explanation": "deforestation – вырубка лесов."},
-                {"question": "______ energy is generated by the sun.", "answer": "Solar", "explanation": "solar energy – солнечная энергия."},
-                {"question": "______ energy is generated by the wind.", "answer": "Wind", "explanation": "wind energy – энергия ветра."},
-                {"question": "We should ______ our carbon footprint by reducing energy use.", "answer": "reduce", "explanation": "to reduce carbon footprint – сокращать углеродный след."},
-                {"question": "We should ______ environmental NGOs to support their work.", "answer": "donate to", "explanation": "to donate to – жертвовать."},
-                {"question": "______ is the practice of protecting endangered species.", "answer": "Conservation", "explanation": "conservation – сохранение природы."},
-                {"question": "______ is the process of turning organic waste into fertiliser.", "answer": "Composting", "explanation": "composting – компостирование."}
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "______ is the warming of the Earth due to greenhouse gases.",
+        "options": ["a) Climate change", "b) Global warming", "c) Ozone depletion", "d) Acid rain"],
+        "answer": "b",
+        "explanation": "global warming – глобальное потепление."
+      },
+      {
+        "question": "______ is the clearing of forests for agriculture or logging.",
+        "options": ["a) Reforestation", "b) Afforestation", "c) Deforestation", "d) Urbanisation"],
+        "answer": "c",
+        "explanation": "deforestation – вырубка лесов."
+      },
+      {
+        "question": "______ energy is generated by the sun.",
+        "options": ["a) Geothermal", "b) Wind", "c) Nuclear", "d) Solar"],
+        "answer": "d",
+        "explanation": "solar energy – солнечная энергия."
+      },
+      {
+        "question": "______ energy is generated by the wind.",
+        "options": ["a) Wind", "b) Solar", "c) Hydro", "d) Tidal"],
+        "answer": "a",
+        "explanation": "wind energy – энергия ветра."
+      },
+      {
+        "question": "We should ______ our carbon footprint by reducing energy use.",
+        "options": ["a) increase", "b) maintain", "c) reduce", "d) ignore"],
+        "answer": "c",
+        "explanation": "to reduce carbon footprint – сокращать углеродный след."
+      },
+      {
+        "question": "We should ______ environmental NGOs to support their work.",
+        "options": ["a) protest against", "b) boycott", "c) ignore", "d) donate to"],
+        "answer": "d",
+        "explanation": "to donate to – жертвовать."
+      },
+      {
+        "question": "______ is the practice of protecting endangered species.",
+        "options": ["a) Exploitation", "b) Conservation", "c) Destruction", "d) Development"],
+        "answer": "b",
+        "explanation": "conservation – сохранение природы."
+      },
+      {
+        "question": "______ is the process of turning organic waste into fertiliser.",
+        "options": ["a) Recycling", "b) Upcycling", "c) Incineration", "d) Composting"],
+        "answer": "d",
+        "explanation": "composting – компостирование."
+              }
             ]
         },
         {
@@ -28631,19 +31302,59 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 8 (перефразирование)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "______ is a major contributor to global warming.", "answer": "Carbon dioxide", "explanation": "carbon dioxide – углекислый газ."},
-                {"question": "______ is a greenhouse gas released by livestock.", "answer": "Methane", "explanation": "methane – метан."},
-                {"question": "______ is the process of reducing the use of natural resources.", "answer": "Resource efficiency", "explanation": "resource efficiency – эффективность использования ресурсов."},
-                {"question": "______ is the ability of an ecosystem to maintain itself.", "answer": "Resilience", "explanation": "resilience – устойчивость (экосистемы)."},
-                {"question": "______ is the movement of people to protect the environment.", "answer": "Environmentalism", "explanation": "environmentalism – охрана окружающей среды."},
-                {"question": "______ is the practice of using renewable resources.", "answer": "Green living", "explanation": "green living – экологичный образ жизни."},
-                {"question": "______ is the study of the environment and its problems.", "answer": "Ecology", "explanation": "ecology – экология."},
-                {"question": "______ is the management of natural resources.", "answer": "Environmental management", "explanation": "environmental management – экологический менеджмент."}
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "______ is the warming of the Earth due to greenhouse gases.",
+        "options": ["a) Climate change", "b) Global warming", "c) Ozone depletion", "d) Acid rain"],
+        "answer": "b",
+        "explanation": "global warming – глобальное потепление."
+      },
+      {
+        "question": "______ is the clearing of forests for agriculture or logging.",
+        "options": ["a) Reforestation", "b) Afforestation", "c) Deforestation", "d) Urbanisation"],
+        "answer": "c",
+        "explanation": "deforestation – вырубка лесов."
+      },
+      {
+        "question": "______ energy is generated by the sun.",
+        "options": ["a) Geothermal", "b) Wind", "c) Nuclear", "d) Solar"],
+        "answer": "d",
+        "explanation": "solar energy – солнечная энергия."
+      },
+      {
+        "question": "______ energy is generated by the wind.",
+        "options": ["a) Wind", "b) Solar", "c) Hydro", "d) Tidal"],
+        "answer": "a",
+        "explanation": "wind energy – энергия ветра."
+      },
+      {
+        "question": "We should ______ our carbon footprint by reducing energy use.",
+        "options": ["a) increase", "b) maintain", "c) reduce", "d) ignore"],
+        "answer": "c",
+        "explanation": "to reduce carbon footprint – сокращать углеродный след."
+      },
+      {
+        "question": "We should ______ environmental NGOs to support their work.",
+        "options": ["a) protest against", "b) boycott", "c) ignore", "d) donate to"],
+        "answer": "d",
+        "explanation": "to donate to – жертвовать."
+      },
+      {
+        "question": "______ is the practice of protecting endangered species.",
+        "options": ["a) Exploitation", "b) Conservation", "c) Destruction", "d) Development"],
+        "answer": "b",
+        "explanation": "conservation – сохранение природы."
+      },
+      {
+        "question": "______ is the process of turning organic waste into fertiliser.",
+        "options": ["a) Recycling", "b) Upcycling", "c) Incineration", "d) Composting"],
+        "answer": "d",
+        "explanation": "composting – компостирование."
+              }
             ]
         },
         {
@@ -28692,19 +31403,59 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 9 (перевод)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "______ gas emissions are the main cause of the greenhouse effect.", "answer": "Greenhouse", "explanation": "greenhouse gas – парниковый газ."},
-                {"question": "______ is the process of restoring damaged ecosystems.", "answer": "Ecological restoration", "explanation": "ecological restoration – экологическое восстановление."},
-                {"question": "______ is the protection of animals and plants in their natural habitats.", "answer": "Wildlife conservation", "explanation": "wildlife conservation – сохранение дикой природы."},
-                {"question": "______ is the use of natural resources at a rate that does not deplete them.", "answer": "Sustainable resource use", "explanation": "sustainable resource use – устойчивое использование ресурсов."},
-                {"question": "______ is the process of making something less harmful to the environment.", "answer": "Greening", "explanation": "greening – озеленение (в широком смысле)."},
-                {"question": "______ is the practice of reducing food waste.", "answer": "Food waste reduction", "explanation": "food waste reduction – сокращение пищевых отходов."},
-                {"question": "______ is the use of natural light to save energy.", "answer": "Daylighting", "explanation": "daylighting – использование естественного освещения."},
-                {"question": "______ is the use of plants to clean polluted soil.", "answer": "Phytoremediation", "explanation": "phytoremediation – фиторемедиация."}
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "______ gas emissions are the main cause of the greenhouse effect.",
+        "options": ["a) Industrial", "b) Greenhouse", "c) Toxic", "d) Exhaust"],
+        "answer": "b",
+        "explanation": "greenhouse gas – парниковый газ."
+      },
+      {
+        "question": "______ is the process of restoring damaged ecosystems.",
+        "options": ["a) Ecosystem management", "b) Habitat protection", "c) Ecological restoration", "d) Biodiversity conservation"],
+        "answer": "c",
+        "explanation": "ecological restoration – экологическое восстановление."
+      },
+      {
+        "question": "______ is the protection of animals and plants in their natural habitats.",
+        "options": ["a) Zoo conservation", "b) Habitat protection", "c) Wildlife conservation", "d) Species management"],
+        "answer": "c",
+        "explanation": "wildlife conservation – сохранение дикой природы."
+      },
+      {
+        "question": "______ is the use of natural resources at a rate that does not deplete them.",
+        "options": ["a) Resource exploitation", "b) Resource extraction", "c) Resource depletion", "d) Sustainable resource use"],
+        "answer": "d",
+        "explanation": "sustainable resource use – устойчивое использование ресурсов."
+      },
+      {
+        "question": "______ is the process of making something less harmful to the environment.",
+        "options": ["a) Pollution", "b) Greening", "c) Waste management", "d) Environmental impact"],
+        "answer": "b",
+        "explanation": "greening – озеленение (в широком смысле)."
+      },
+      {
+        "question": "______ is the practice of reducing food waste.",
+        "options": ["a) Food recycling", "b) Food composting", "c) Food waste reduction", "d) Food donation"],
+        "answer": "c",
+        "explanation": "food waste reduction – сокращение пищевых отходов."
+      },
+      {
+        "question": "______ is the use of natural light to save energy.",
+        "options": ["a) Solar power", "b) Natural lighting", "c) Daylighting", "d) Light conservation"],
+        "answer": "c",
+        "explanation": "daylighting – использование естественного освещения."
+      },
+      {
+        "question": "______ is the use of plants to clean polluted soil.",
+        "options": ["a) Bioremediation", "b) Phytoremediation", "c) Soil restoration", "d) Land reclamation"],
+        "answer": "b",
+        "explanation": "phytoremediation – фиторемедиация."
+              }
             ]
         },
         {
@@ -28753,19 +31504,59 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 10 (перефразирование)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "______ is the practice of reducing the amount of waste we produce.", "answer": "Waste minimisation", "explanation": "waste minimisation – минимизация отходов."},
-                {"question": "______ is the use of products that can be reused.", "answer": "Reusable products", "explanation": "reusable products – многоразовые продукты."},
-                {"question": "______ is the process of breaking down organic matter.", "answer": "Decomposition", "explanation": "decomposition – разложение."},
-                {"question": "______ is the practice of using less water.", "answer": "Water conservation", "explanation": "water conservation – сохранение воды."},
-                {"question": "______ is the use of energy-saving appliances.", "answer": "Energy efficiency", "explanation": "energy efficiency – энергоэффективность."},
-                {"question": "______ is the practice of walking or cycling instead of driving.", "answer": "Active transport", "explanation": "active transport – активный транспорт."},
-                {"question": "______ is the practice of buying local produce.", "answer": "Local sourcing", "explanation": "local sourcing – покупка местных продуктов."},
-                {"question": "______ is the practice of reducing noise pollution.", "answer": "Noise reduction", "explanation": "noise reduction – снижение шума."}
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "______ is the practice of reducing the amount of waste we produce.",
+        "options": ["a) Waste recycling", "b) Waste minimisation", "c) Waste management", "d) Waste disposal"],
+        "answer": "b",
+        "explanation": "waste minimisation – минимизация отходов."
+      },
+      {
+        "question": "______ is the use of products that can be reused.",
+        "options": ["a) Disposable products", "b) Single-use products", "c) Reusable products", "d) Recyclable products"],
+        "answer": "c",
+        "explanation": "reusable products – многоразовые продукты."
+      },
+      {
+        "question": "______ is the process of breaking down organic matter.",
+        "options": ["a) Composting", "b) Recycling", "c) Decomposition", "d) Incineration"],
+        "answer": "c",
+        "explanation": "decomposition – разложение."
+      },
+      {
+        "question": "______ is the practice of using less water.",
+        "options": ["a) Water management", "b) Water conservation", "c) Water treatment", "d) Water distribution"],
+        "answer": "b",
+        "explanation": "water conservation – сохранение воды."
+      },
+      {
+        "question": "______ is the use of energy-saving appliances.",
+        "options": ["a) Energy production", "b) Energy storage", "c) Energy consumption", "d) Energy efficiency"],
+        "answer": "d",
+        "explanation": "energy efficiency – энергоэффективность."
+      },
+      {
+        "question": "______ is the practice of walking or cycling instead of driving.",
+        "options": ["a) Active transport", "b) Public transport", "c) Private transport", "d) Shared transport"],
+        "answer": "a",
+        "explanation": "active transport – активный транспорт."
+      },
+      {
+        "question": "______ is the practice of buying local produce.",
+        "options": ["a) International sourcing", "b) Imported goods", "c) Local sourcing", "d) Mass production"],
+        "answer": "c",
+        "explanation": "local sourcing – покупка местных продуктов."
+      },
+      {
+        "question": "______ is the practice of reducing noise pollution.",
+        "options": ["a) Sound insulation", "b) Noise cancellation", "c) Noise control", "d) Noise reduction"],
+        "answer": "d",
+        "explanation": "noise reduction – снижение шума."
+              }
             ]
         },
         {
@@ -28814,19 +31605,59 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 11 (перевод)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "______ is the warming of the oceans due to climate change.", "answer": "Ocean warming", "explanation": "ocean warming – потепление океанов."},
-                {"question": "______ is the increase in the acidity of the oceans.", "answer": "Ocean acidification", "explanation": "ocean acidification – закисление океанов."},
-                {"question": "______ is the loss of ice in the Arctic.", "answer": "Arctic ice loss", "explanation": "Arctic ice loss – потеря арктического льда."},
-                {"question": "______ is the practice of using non-toxic materials.", "answer": "Non-toxic living", "explanation": "non-toxic living – нетоксичный образ жизни."},
-                {"question": "______ is the practice of reducing the use of plastic bags.", "answer": "Plastic bag reduction", "explanation": "plastic bag reduction – сокращение использования пластиковых пакетов."},
-                {"question": "______ is the practice of using energy-efficient light bulbs.", "answer": "LED lighting", "explanation": "LED lighting – светодиодное освещение."},
-                {"question": "______ is the practice of reducing car usage.", "answer": "Car-free living", "explanation": "car-free living – жизнь без автомобиля."},
-                {"question": "______ is the practice of using renewable materials.", "answer": "Sustainable materials", "explanation": "sustainable materials – устойчивые материалы."}
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "______ is the warming of the oceans due to climate change.",
+        "options": ["a) Ocean cooling", "b) Ocean warming", "c) Ocean current", "d) Ocean salinity"],
+        "answer": "b",
+        "explanation": "ocean warming – потепление океанов."
+      },
+      {
+        "question": "______ is the increase in the acidity of the oceans.",
+        "options": ["a) Ocean desalination", "b) Ocean alkalinity", "c) Ocean acidification", "d) Ocean pollution"],
+        "answer": "c",
+        "explanation": "ocean acidification – закисление океанов."
+      },
+      {
+        "question": "______ is the loss of ice in the Arctic.",
+        "options": ["a) Arctic ice loss", "b) Arctic ice growth", "c) Antarctic ice loss", "d) Glacial retreat"],
+        "answer": "a",
+        "explanation": "Arctic ice loss – потеря арктического льда."
+      },
+      {
+        "question": "______ is the practice of using non-toxic materials.",
+        "options": ["a) Toxic living", "b) Non-toxic living", "c) Chemical-free living", "d) Eco-friendly living"],
+        "answer": "b",
+        "explanation": "non-toxic living – нетоксичный образ жизни."
+      },
+      {
+        "question": "______ is the practice of reducing the use of plastic bags.",
+        "options": ["a) Plastic bag increase", "b) Plastic bag recycling", "c) Plastic bag reduction", "d) Plastic bag disposal"],
+        "answer": "c",
+        "explanation": "plastic bag reduction – сокращение использования пластиковых пакетов."
+      },
+      {
+        "question": "______ is the practice of using energy-efficient light bulbs.",
+        "options": ["a) Incandescent lighting", "b) Halogen lighting", "c) Fluorescent lighting", "d) LED lighting"],
+        "answer": "d",
+        "explanation": "LED lighting – светодиодное освещение."
+      },
+      {
+        "question": "______ is the practice of reducing car usage.",
+        "options": ["a) Car-dependent living", "b) Car-free living", "c) Car-sharing", "d) Public transport"],
+        "answer": "b",
+        "explanation": "car-free living – жизнь без автомобиля."
+      },
+      {
+        "question": "______ is the practice of using renewable materials.",
+        "options": ["a) Single-use materials", "b) Non-renewable materials", "c) Sustainable materials", "d) Synthetic materials"],
+        "answer": "c",
+        "explanation": "sustainable materials – устойчивые материалы."
+              }
             ]
         },
         {
@@ -28875,19 +31706,59 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 12 (перефразирование)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "______ is the practice of not using cars for short trips.", "answer": "Walking", "explanation": "walking – ходьба пешком."},
-                {"question": "______ is the practice of using a bicycle instead of a car.", "answer": "Cycling", "explanation": "cycling – езда на велосипеде."},
-                {"question": "______ is the practice of using public transport.", "answer": "Public transport use", "explanation": "public transport use – использование общественного транспорта."},
-                {"question": "______ is the practice of planting trees in cities.", "answer": "Urban forestry", "explanation": "urban forestry – городское озеленение."},
-                {"question": "______ is the practice of using green roofs to reduce heat.", "answer": "Green roofs", "explanation": "green roofs – зелёные крыши."},
-                {"question": "______ is the practice of using recycled paper.", "answer": "Recycled paper use", "explanation": "recycled paper use – использование переработанной бумаги."},
-                {"question": "______ is the practice of using renewable energy at home.", "answer": "Home renewables", "explanation": "home renewables – возобновляемая энергия дома."},
-                {"question": "______ is the practice of reducing food waste.", "answer": "Food waste prevention", "explanation": "food waste prevention – предотвращение пищевых отходов."}
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "______ is the practice of not using cars for short trips.",
+        "options": ["a) Cycling", "b) Walking", "c) Jogging", "d) Running"],
+        "answer": "b",
+        "explanation": "walking – ходьба пешком."
+      },
+      {
+        "question": "______ is the practice of using a bicycle instead of a car.",
+        "options": ["a) Cycling", "b) Driving", "c) Walking", "d) Skateboarding"],
+        "answer": "a",
+        "explanation": "cycling – езда на велосипеде."
+      },
+      {
+        "question": "______ is the practice of using public transport.",
+        "options": ["a) Private transport", "b) Active transport", "c) Public transport use", "d) Shared mobility"],
+        "answer": "c",
+        "explanation": "public transport use – использование общественного транспорта."
+      },
+      {
+        "question": "______ is the practice of planting trees in cities.",
+        "options": ["a) Urbanisation", "b) Deforestation", "c) Urban forestry", "d) Reforestation"],
+        "answer": "c",
+        "explanation": "urban forestry – городское озеленение."
+      },
+      {
+        "question": "______ is the practice of using green roofs to reduce heat.",
+        "options": ["a) Green roofs", "b) Solar panels", "c) Roof gardens", "d) Cool roofs"],
+        "answer": "a",
+        "explanation": "green roofs – зелёные крыши."
+      },
+      {
+        "question": "______ is the practice of using recycled paper.",
+        "options": ["a) Virgin paper use", "b) Recycled paper use", "c) Paper saving", "d) Paper recycling"],
+        "answer": "b",
+        "explanation": "recycled paper use – использование переработанной бумаги."
+      },
+      {
+        "question": "______ is the practice of using renewable energy at home.",
+        "options": ["a) Home energy", "b) Traditional energy", "c) Fossil fuels", "d) Home renewables"],
+        "answer": "d",
+        "explanation": "home renewables – возобновляемая энергия дома."
+      },
+      {
+        "question": "______ is the practice of reducing food waste.",
+        "options": ["a) Food waste increase", "b) Food waste prevention", "c) Food waste disposal", "d) Food waste composting"],
+        "answer": "b",
+        "explanation": "food waste prevention – предотвращение пищевых отходов."
+              }
             ]
         },
         {
@@ -28965,19 +31836,59 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 1 (перевод)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "She is a research ______ in the field of genetics.", "answer": "biologist", "explanation": "biologist – биолог."},
-                {"question": "He studied ______ at university.", "answer": "computer science", "explanation": "computer science – информатика."},
-                {"question": "AI is ______ many industries.", "answer": "transforming", "explanation": "to transform – преобразовывать."},
-                {"question": "They developed a new ______ for language learning.", "answer": "app", "explanation": "app – приложение."},
-                {"question": "The ______ of penicillin was a breakthrough.", "answer": "discovery", "explanation": "discovery – открытие."},
-                {"question": "They conducted an ______ to test the hypothesis.", "answer": "experiment", "explanation": "experiment – эксперимент."},
-                {"question": "______ is a branch of biology that studies genes.", "answer": "Genetics", "explanation": "genetics – генетика."},
-                {"question": "A ______ is a person who designs and builds machines.", "answer": "engineer", "explanation": "engineer – инженер."}
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "She is a research ______ in the field of genetics.",
+        "options": ["a) physicist", "b) biologist", "c) chemist", "d) mathematician"],
+        "answer": "b",
+        "explanation": "biologist – биолог."
+      },
+      {
+        "question": "He studied ______ at university.",
+        "options": ["a) computer science", "b) literature", "c) history", "d) philosophy"],
+        "answer": "a",
+        "explanation": "computer science – информатика."
+      },
+      {
+        "question": "AI is ______ many industries.",
+        "options": ["a) destroying", "b) ignoring", "c) transforming", "d) simplifying"],
+        "answer": "c",
+        "explanation": "to transform – преобразовывать."
+      },
+      {
+        "question": "They developed a new ______ for language learning.",
+        "options": ["a) website", "b) app", "c) programme", "d) tool"],
+        "answer": "b",
+        "explanation": "app – приложение."
+      },
+      {
+        "question": "The ______ of penicillin was a breakthrough.",
+        "options": ["a) invention", "b) creation", "c) discovery", "d) production"],
+        "answer": "c",
+        "explanation": "discovery – открытие."
+      },
+      {
+        "question": "They conducted an ______ to test the hypothesis.",
+        "options": ["a) experiment", "b) observation", "c) interview", "d) survey"],
+        "answer": "a",
+        "explanation": "experiment – эксперимент."
+      },
+      {
+        "question": "______ is a branch of biology that studies genes.",
+        "options": ["a) Botany", "b) Genetics", "c) Zoology", "d) Ecology"],
+        "answer": "b",
+        "explanation": "genetics – генетика."
+      },
+      {
+        "question": "A ______ is a person who designs and builds machines.",
+        "options": ["a) physicist", "b) technician", "c) engineer", "d) mechanic"],
+        "answer": "c",
+        "explanation": "engineer – инженер."
+              }
             ]
         },
         {
@@ -29026,19 +31937,59 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 2 (перефразирование)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "______ is the study of the universe and celestial objects.", "answer": "Astronomy", "explanation": "astronomy – астрономия."},
-                {"question": "A ______ is a scientist who studies the Earth's structure.", "answer": "geologist", "explanation": "geologist – геолог."},
-                {"question": "______ is the study of the brain and nervous system.", "answer": "Neuroscience", "explanation": "neuroscience – нейробиология."},
-                {"question": "A ______ is a scientist who studies chemicals and their reactions.", "answer": "chemist", "explanation": "chemist – химик."},
-                {"question": "______ is the practice of using computer algorithms to learn from data.", "answer": "Machine learning", "explanation": "machine learning – машинное обучение."},
-                {"question": "______ reality creates a fully immersive digital environment.", "answer": "Virtual", "explanation": "virtual reality – виртуальная реальность."},
-                {"question": "______ reality overlays digital information onto the real world.", "answer": "Augmented", "explanation": "augmented reality – дополненная реальность."},
-                {"question": "The ______ of Things connects everyday devices to the internet.", "answer": "Internet", "explanation": "Internet of Things – интернет вещей."}
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "______ is the study of the universe and celestial objects.",
+        "options": ["a) Astrology", "b) Astronomy", "c) Astrophysics", "d) Cosmology"],
+        "answer": "b",
+        "explanation": "astronomy – астрономия."
+      },
+      {
+        "question": "A ______ is a scientist who studies the Earth's structure.",
+        "options": ["a) geographer", "b) geologist", "c) geophysicist", "d) geochemist"],
+        "answer": "b",
+        "explanation": "geologist – геолог."
+      },
+      {
+        "question": "______ is the study of the brain and nervous system.",
+        "options": ["a) Neurology", "b) Neuroscience", "c) Psychology", "d) Psychiatry"],
+        "answer": "b",
+        "explanation": "neuroscience – нейробиология."
+      },
+      {
+        "question": "A ______ is a scientist who studies chemicals and their reactions.",
+        "options": ["a) physicist", "b) chemist", "c) biologist", "d) mathematician"],
+        "answer": "b",
+        "explanation": "chemist – химик."
+      },
+      {
+        "question": "______ is the practice of using computer algorithms to learn from data.",
+        "options": ["a) Deep learning", "b) Artificial intelligence", "c) Machine learning", "d) Data science"],
+        "answer": "c",
+        "explanation": "machine learning – машинное обучение."
+      },
+      {
+        "question": "______ reality creates a fully immersive digital environment.",
+        "options": ["a) Augmented", "b) Virtual", "c) Mixed", "d) Extended"],
+        "answer": "b",
+        "explanation": "virtual reality – виртуальная реальность."
+      },
+      {
+        "question": "______ reality overlays digital information onto the real world.",
+        "options": ["a) Augmented", "b) Virtual", "c) Mixed", "d) Extended"],
+        "answer": "a",
+        "explanation": "augmented reality – дополненная реальность."
+      },
+      {
+        "question": "The ______ of Things connects everyday devices to the internet.",
+        "options": ["a) Network", "b) Internet", "c) Web", "d) Cloud"],
+        "answer": "b",
+        "explanation": "Internet of Things – интернет вещей."
+              }
             ]
         },
         {
@@ -29087,19 +32038,59 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 3 (перевод)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "______ is the study of living organisms.", "answer": "Biology", "explanation": "biology – биология."},
-                {"question": "A ______ is a scientist who studies physics.", "answer": "physicist", "explanation": "physicist – физик."},
-                {"question": "______ is the study of the mind and behaviour.", "answer": "Psychology", "explanation": "psychology – психология."},
-                {"question": "A ______ is a scientist who studies the stars and planets.", "answer": "astronomer", "explanation": "astronomer – астроном."},
-                {"question": "______ is the field of designing and building structures.", "answer": "Engineering", "explanation": "engineering – инженерия."},
-                {"question": "A ______ is a scientist who studies genes and heredity.", "answer": "geneticist", "explanation": "geneticist – генетик."},
-                {"question": "______ computing allows users to access data over the internet.", "answer": "Cloud", "explanation": "cloud computing – облачные вычисления."},
-                {"question": "______ is a system of recording information that is difficult to change.", "answer": "Blockchain", "explanation": "blockchain – блокчейн."}
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "______ is the study of living organisms.",
+        "options": ["a) Physics", "b) Chemistry", "c) Biology", "d) Geology"],
+        "answer": "c",
+        "explanation": "biology – биология."
+      },
+      {
+        "question": "A ______ is a scientist who studies physics.",
+        "options": ["a) chemist", "b) physicist", "c) biologist", "d) astronomer"],
+        "answer": "b",
+        "explanation": "physicist – физик."
+      },
+      {
+        "question": "______ is the study of the mind and behaviour.",
+        "options": ["a) Psychiatry", "b) Neurology", "c) Psychology", "d) Sociology"],
+        "answer": "c",
+        "explanation": "psychology – психология."
+      },
+      {
+        "question": "A ______ is a scientist who studies the stars and planets.",
+        "options": ["a) astrologer", "b) astronomer", "c) astronaut", "d) cosmologist"],
+        "answer": "b",
+        "explanation": "astronomer – астроном."
+      },
+      {
+        "question": "______ is the field of designing and building structures.",
+        "options": ["a) Architecture", "b) Construction", "c) Engineering", "d) Design"],
+        "answer": "c",
+        "explanation": "engineering – инженерия."
+      },
+      {
+        "question": "A ______ is a scientist who studies genes and heredity.",
+        "options": ["a) geneticist", "b) botanist", "c) zoologist", "d) ecologist"],
+        "answer": "a",
+        "explanation": "geneticist – генетик."
+      },
+      {
+        "question": "______ computing allows users to access data over the internet.",
+        "options": ["a) Edge", "b) Cloud", "c) Quantum", "d) Grid"],
+        "answer": "b",
+        "explanation": "cloud computing – облачные вычисления."
+      },
+      {
+        "question": "______ is a system of recording information that is difficult to change.",
+        "options": ["a) Database", "b) Spreadsheet", "c) Blockchain", "d) Ledger"],
+        "answer": "c",
+        "explanation": "blockchain – блокчейн."
+              }
             ]
         },
         {
@@ -29148,19 +32139,59 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 4 (перефразирование)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "______ is the practice of using drones for delivery.", "answer": "Drone delivery", "explanation": "drone delivery – доставка дронами."},
-                {"question": "______ is the study of the Earth's physical structure.", "answer": "Geology", "explanation": "geology – геология."},
-                {"question": "A ______ is a machine that can perform tasks automatically.", "answer": "robot", "explanation": "robot – робот."},
-                {"question": "______ is a portable computer that fits on your lap.", "answer": "Laptop", "explanation": "laptop – ноутбук."},
-                {"question": "______ is the process of finding and fixing errors in code.", "answer": "Debugging", "explanation": "debugging – отладка."},
-                {"question": "A ______ is a device worn on the wrist that tracks health data.", "answer": "smartwatch", "explanation": "smartwatch – умные часы."},
-                {"question": "______ is the use of technology to create artificial environments.", "answer": "Virtual reality", "explanation": "virtual reality – виртуальная реальность."},
-                {"question": "______ is the study of how living things interact with their environment.", "answer": "Ecology", "explanation": "ecology – экология."}
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "______ is the practice of using drones for delivery.",
+        "options": ["a) Aerial delivery", "b) Drone delivery", "c) Autonomous delivery", "d) Airborne logistics"],
+        "answer": "b",
+        "explanation": "drone delivery – доставка дронами."
+      },
+      {
+        "question": "______ is the study of the Earth's physical structure.",
+        "options": ["a) Geology", "b) Geography", "c) Geophysics", "d) Mineralogy"],
+        "answer": "a",
+        "explanation": "geology – геология."
+      },
+      {
+        "question": "A ______ is a machine that can perform tasks automatically.",
+        "options": ["a) drone", "b) robot", "c) computer", "d] android"],
+        "answer": "b",
+        "explanation": "robot – робот."
+      },
+      {
+        "question": "______ is a portable computer that fits on your lap.",
+        "options": ["a) Desktop", "b) Tablet", "c) Laptop", "d) Smartphone"],
+        "answer": "c",
+        "explanation": "laptop – ноутбук."
+      },
+      {
+        "question": "______ is the process of finding and fixing errors in code.",
+        "options": ["a) Debugging", "b) Testing", "c) Coding", "d) Monitoring"],
+        "answer": "a",
+        "explanation": "debugging – отладка."
+      },
+      {
+        "question": "A ______ is a device worn on the wrist that tracks health data.",
+        "options": ["a) fitness tracker", "b) smartwatch", "c) wearable", "d] health monitor"],
+        "answer": "b",
+        "explanation": "smartwatch – умные часы."
+      },
+      {
+        "question": "______ is the use of technology to create artificial environments.",
+        "options": ["a) Augmented reality", "b) Mixed reality", "c) Virtual reality", "d) Extended reality"],
+        "answer": "c",
+        "explanation": "virtual reality – виртуальная реальность."
+      },
+      {
+        "question": "______ is the study of how living things interact with their environment.",
+        "options": ["a) Biology", "b) Ecology", "c) Botany", "d) Zoology"],
+        "answer": "b",
+        "explanation": "ecology – экология."
+              }
             ]
         },
         {
@@ -29209,19 +32240,59 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 5 (перевод)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "______ is the practice of using renewable energy sources.", "answer": "Green energy", "explanation": "green energy – зелёная энергия."},
-                {"question": "______ is the study of the origin of the universe.", "answer": "Cosmology", "explanation": "cosmology – космология."},
-                {"question": "A ______ is a person who studies the human mind.", "answer": "psychologist", "explanation": "psychologist – психолог."},
-                {"question": "______ is a device that can fly without a pilot.", "answer": "Drone", "explanation": "drone – дрон."},
-                {"question": "______ is the practice of using advanced technology to solve problems.", "answer": "Tech innovation", "explanation": "tech innovation – технологические инновации."},
-                {"question": "______ is a branch of computer science that focuses on intelligent systems.", "answer": "AI", "explanation": "AI – искусственный интеллект."},
-                {"question": "______ is the study of the properties of matter and energy.", "answer": "Physics", "explanation": "physics – физика."},
-                {"question": "A ______ is a scientist who studies the chemical composition of substances.", "answer": "chemist", "explanation": "chemist – химик."}
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "______ is the practice of using renewable energy sources.",
+        "options": ["a) Fossil energy", "b) Nuclear energy", "c) Green energy", "d) Natural gas"],
+        "answer": "c",
+        "explanation": "green energy – зелёная энергия."
+      },
+      {
+        "question": "______ is the study of the origin of the universe.",
+        "options": ["a) Astrology", "b) Astronomy", "c) Cosmology", "d) Astrophysics"],
+        "answer": "c",
+        "explanation": "cosmology – космология."
+      },
+      {
+        "question": "A ______ is a person who studies the human mind.",
+        "options": ["a) psychologist", "b) psychiatrist", "c) neurologist", "d) sociologist"],
+        "answer": "a",
+        "explanation": "psychologist – психолог."
+      },
+      {
+        "question": "______ is a device that can fly without a pilot.",
+        "options": ["a) Helicopter", "b) Glider", "c) Drone", "d) Rocket"],
+        "answer": "c",
+        "explanation": "drone – дрон."
+      },
+      {
+        "question": "______ is the practice of using advanced technology to solve problems.",
+        "options": ["a) Tech innovation", "b) Digital transformation", "c) Tech disruption", "d) Tech revolution"],
+        "answer": "a",
+        "explanation": "tech innovation – технологические инновации."
+      },
+      {
+        "question": "______ is a branch of computer science that focuses on intelligent systems.",
+        "options": ["a) Data science", "b) AI", "c) Programming", "d) Web development"],
+        "answer": "b",
+        "explanation": "AI – искусственный интеллект."
+      },
+      {
+        "question": "______ is the study of the properties of matter and energy.",
+        "options": ["a) Physics", "b) Chemistry", "c) Biology", "d) Geology"],
+        "answer": "a",
+        "explanation": "physics – физика."
+      },
+      {
+        "question": "A ______ is a scientist who studies the chemical composition of substances.",
+        "options": ["a) biologist", "b) physicist", "c) chemist", "d) geologist"],
+        "answer": "c",
+        "explanation": "chemist – химик."
+              }
             ]
         },
         {
@@ -29270,20 +32341,60 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 6 (перефразирование)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "______ is the practice of using technology to improve healthcare.", "answer": "Health tech", "explanation": "health tech – медицинские технологии."},
-                {"question": "______ is the study of how organisms evolve over time.", "answer": "Evolutionary biology", "explanation": "evolutionary biology – эволюционная биология."},
-                {"question": "A ______ is a specialist in the study of the nervous system.", "answer": "neuroscientist", "explanation": "neuroscientist – нейробиолог."},
-                {"question": "______ is a type of software designed for smartphones.", "answer": "Mobile app", "explanation": "mobile app – мобильное приложение."},
-                {"question": "______ is the process of updating software to improve performance.", "answer": "Upgrading", "explanation": "upgrading – модернизация."},
-                {"question": "______ is the study of the relationship between living things and their environment.", "answer": "Ecology", "explanation": "ecology – экология."},
-                {"question": "A ______ is a scientist who studies the composition of rocks.", "answer": "geologist", "explanation": "geologist – геолог."},
-                {"question": "______ is the practice of using robots in manufacturing.", "answer": "Robotics", "explanation": "robotics – робототехника."}
-            ]
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "______ is the practice of using technology to improve healthcare.",
+        "options": ["a) Telemedicine", "b) Bioengineering", "c) Health tech", "d) Medical tech"],
+        "answer": "c",
+        "explanation": "health tech – медицинские технологии."
+      },
+      {
+        "question": "______ is the study of how organisms evolve over time.",
+        "options": ["a) Genetics", "b) Ecology", "c) Paleontology", "d) Evolutionary biology"],
+        "answer": "d",
+        "explanation": "evolutionary biology – эволюционная биология."
+      },
+      {
+        "question": "A ______ is a specialist in the study of the nervous system.",
+        "options": ["a) neuroscientist", "b) psychologist", "c) psychiatrist", "d) neurologist"],
+        "answer": "a",
+        "explanation": "neuroscientist – нейробиолог."
+      },
+      {
+        "question": "______ is a type of software designed for smartphones.",
+        "options": ["a) Desktop app", "b) Mobile app", "c) Web app", "d) Utility app"],
+        "answer": "b",
+        "explanation": "mobile app – мобильное приложение."
+      },
+      {
+        "question": "______ is the process of updating software to improve performance.",
+        "options": ["a) Debugging", "b) Patching", "c) Upgrading", "d) Updating"],
+        "answer": "c",
+        "explanation": "upgrading – модернизация."
+      },
+      {
+        "question": "______ is the study of the relationship between living things and their environment.",
+        "options": ["a) Biology", "b) Botany", "c) Zoology", "d) Ecology"],
+        "answer": "d",
+        "explanation": "ecology – экология."
+      },
+      {
+        "question": "A ______ is a scientist who studies the composition of rocks.",
+        "options": ["a) geologist", "b) geographer", "c) geophysicist", "d) mineralogist"],
+        "answer": "a",
+        "explanation": "geologist – геолог."
+      },
+      {
+        "question": "______ is the practice of using robots in manufacturing.",
+        "options": ["a) Automation", "b) Robotics", "c) Mechatronics", "d) Cybernetics"],
+        "answer": "b",
+        "explanation": "robotics – робототехника."
+               }
+             ]
         },
         {
             "type": "complex",
@@ -29331,19 +32442,59 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 7 (перевод)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "______ is the study of the Earth's atmosphere and weather.", "answer": "Meteorology", "explanation": "meteorology – метеорология."},
-                {"question": "A ______ is a scientist who studies the stars and galaxies.", "answer": "astrophysicist", "explanation": "astrophysicist – астрофизик."},
-                {"question": "______ is the practice of using artificial intelligence in everyday life.", "answer": "AI integration", "explanation": "AI integration – интеграция ИИ."},
-                {"question": "______ is a network of interconnected devices.", "answer": "Internet of Things", "explanation": "Internet of Things – интернет вещей."},
-                {"question": "______ is the study of the origin and evolution of the universe.", "answer": "Cosmology", "explanation": "cosmology – космология."},
-                {"question": "A ______ is a person who studies the human brain.", "answer": "neuroscientist", "explanation": "neuroscientist – нейробиолог."},
-                {"question": "______ is the practice of using virtual reality for training.", "answer": "VR training", "explanation": "VR training – обучение с помощью VR."},
-                {"question": "______ is the study of the behaviour of animals.", "answer": "Zoology", "explanation": "zoology – зоология."}
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "______ is the study of the Earth's atmosphere and weather.",
+        "options": ["a) Climatology", "b) Meteorology", "c) Geology", "d) Oceanography"],
+        "answer": "b",
+        "explanation": "meteorology – метеорология."
+      },
+      {
+        "question": "A ______ is a scientist who studies the stars and galaxies.",
+        "options": ["a) astrologer", "b) astronomer", "c) astrophysicist", "d) cosmologist"],
+        "answer": "c",
+        "explanation": "astrophysicist – астрофизик."
+      },
+      {
+        "question": "______ is the practice of using artificial intelligence in everyday life.",
+        "options": ["a) AI development", "b) Machine learning", "c) AI integration", "d) AI research"],
+        "answer": "c",
+        "explanation": "AI integration – интеграция ИИ."
+      },
+      {
+        "question": "______ is a network of interconnected devices.",
+        "options": ["a) World Wide Web", "b) The Internet", "c) Internet of Things", "d) Computer network"],
+        "answer": "c",
+        "explanation": "Internet of Things – интернет вещей."
+      },
+      {
+        "question": "______ is the study of the origin and evolution of the universe.",
+        "options": ["a) Astrology", "b) Astronomy", "c) Astrophysics", "d) Cosmology"],
+        "answer": "d",
+        "explanation": "cosmology – космология."
+      },
+      {
+        "question": "A ______ is a person who studies the human brain.",
+        "options": ["a) psychologist", "b) psychiatrist", "c) neurologist", "d) neuroscientist"],
+        "answer": "d",
+        "explanation": "neuroscientist – нейробиолог."
+      },
+      {
+        "question": "______ is the practice of using virtual reality for training.",
+        "options": ["a) Virtual learning", "b) VR training", "c) Simulated training", "d) Immersive learning"],
+        "answer": "b",
+        "explanation": "VR training – обучение с помощью VR."
+      },
+      {
+        "question": "______ is the study of the behaviour of animals.",
+        "options": ["a) Botany", "b) Ecology", "c) Zoology", "d) Ethology"],
+        "answer": "c",
+        "explanation": "zoology – зоология."
+              }
             ]
         },
         {
@@ -29392,19 +32543,59 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 8 (перефразирование)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "______ is the practice of using wearable technology for health monitoring.", "answer": "Wearable health tech", "explanation": "wearable health tech – носимая медицинская технология."},
-                {"question": "______ is the study of the molecular structure of living things.", "answer": "Molecular biology", "explanation": "molecular biology – молекулярная биология."},
-                {"question": "A ______ is a specialist in the study of earthquakes.", "answer": "seismologist", "explanation": "seismologist – сейсмолог."},
-                {"question": "______ is a type of artificial intelligence that learns from data.", "answer": "Machine learning", "explanation": "machine learning – машинное обучение."},
-                {"question": "______ is the practice of using drones for agriculture.", "answer": "Agricultural drones", "explanation": "agricultural drones – сельскохозяйственные дроны."},
-                {"question": "______ is the study of the chemical processes in living organisms.", "answer": "Biochemistry", "explanation": "biochemistry – биохимия."},
-                {"question": "A ______ is a scientist who studies the physics of the Earth.", "answer": "geophysicist", "explanation": "geophysicist – геофизик."},
-                {"question": "______ is the practice of using AI in healthcare.", "answer": "AI healthcare", "explanation": "AI healthcare – ИИ в здравоохранении."}
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "______ is the practice of using wearable technology for health monitoring.",
+        "options": ["a) Digital health", "b) Wearable health tech", "c) Remote monitoring", "d) Health apps"],
+        "answer": "b",
+        "explanation": "wearable health tech – носимая медицинская технология."
+      },
+      {
+        "question": "______ is the study of the molecular structure of living things.",
+        "options": ["a) Genetics", "b) Molecular biology", "c) Biochemistry", "d) Cell biology"],
+        "answer": "b",
+        "explanation": "molecular biology – молекулярная биология."
+      },
+      {
+        "question": "A ______ is a specialist in the study of earthquakes.",
+        "options": ["a) volcanologist", "b) geologist", "c) seismologist", "d) paleontologist"],
+        "answer": "c",
+        "explanation": "seismologist – сейсмолог."
+      },
+      {
+        "question": "______ is a type of artificial intelligence that learns from data.",
+        "options": ["a) Machine learning", "b) Robotics", "c) Natural language processing", "d) Computer vision"],
+        "answer": "a",
+        "explanation": "machine learning – машинное обучение."
+      },
+      {
+        "question": "______ is the practice of using drones for agriculture.",
+        "options": ["a) Precision farming", "b) Agricultural drones", "c) Smart farming", "d) Aerial monitoring"],
+        "answer": "b",
+        "explanation": "agricultural drones – сельскохозяйственные дроны."
+      },
+      {
+        "question": "______ is the study of the chemical processes in living organisms.",
+        "options": ["a) Organic chemistry", "b) Biochemistry", "c) Molecular biology", "d) Biophysics"],
+        "answer": "b",
+        "explanation": "biochemistry – биохимия."
+      },
+      {
+        "question": "A ______ is a scientist who studies the physics of the Earth.",
+        "options": ["a) geologist", "b) geophysicist", "c) geochemist", "d) geographer"],
+        "answer": "b",
+        "explanation": "geophysicist – геофизик."
+      },
+      {
+        "question": "______ is the practice of using AI in healthcare.",
+        "options": ["a) AI healthcare", "b) Medical informatics", "c) Digital medicine", "d) eHealth"],
+        "answer": "a",
+        "explanation": "AI healthcare – ИИ в здравоохранении."
+              }
             ]
         },
         {
@@ -29453,19 +32644,59 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 9 (перевод)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "______ is the study of the interactions between organisms and their environment.", "answer": "Ecology", "explanation": "ecology – экология."},
-                {"question": "A ______ is a scientist who studies the history of the Earth.", "answer": "paleontologist", "explanation": "paleontologist – палеонтолог."},
-                {"question": "______ is the practice of using technology to reduce waste.", "answer": "Green tech", "explanation": "green tech – зелёные технологии."},
-                {"question": "______ is a type of computer network that connects devices wirelessly.", "answer": "Wi-Fi", "explanation": "Wi-Fi – беспроводная сеть."},
-                {"question": "______ is the study of the properties of light.", "answer": "Optics", "explanation": "optics – оптика."},
-                {"question": "A ______ is a scientist who studies the structure of matter.", "answer": "physicist", "explanation": "physicist – физик."},
-                {"question": "______ is the practice of using AI to automate tasks.", "answer": "AI automation", "explanation": "AI automation – автоматизация с помощью ИИ."},
-                {"question": "______ is the study of the Earth's oceans.", "answer": "Oceanography", "explanation": "oceanography – океанография."}
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "______ is the study of the interactions between organisms and their environment.",
+        "options": ["a) Biology", "b) Ecology", "c) Botany", "d) Zoology"],
+        "answer": "b",
+        "explanation": "ecology – экология."
+      },
+      {
+        "question": "A ______ is a scientist who studies the history of the Earth.",
+        "options": ["a) paleontologist", "b) geologist", "c) archaeologist", "d) anthropologist"],
+        "answer": "a",
+        "explanation": "paleontologist – палеонтолог."
+      },
+      {
+        "question": "______ is the practice of using technology to reduce waste.",
+        "options": ["a) Clean tech", "b) Eco-tech", "c) Green tech", "d) Sustainable tech"],
+        "answer": "c",
+        "explanation": "green tech – зелёные технологии."
+      },
+      {
+        "question": "______ is a type of computer network that connects devices wirelessly.",
+        "options": ["a) Bluetooth", "b) Ethernet", "c) NFC", "d) Wi-Fi"],
+        "answer": "d",
+        "explanation": "Wi-Fi – беспроводная сеть."
+      },
+      {
+        "question": "______ is the study of the properties of light.",
+        "options": ["a) Optics", "b) Acoustics", "c) Thermodynamics", "d) Mechanics"],
+        "answer": "a",
+        "explanation": "optics – оптика."
+      },
+      {
+        "question": "A ______ is a scientist who studies the structure of matter.",
+        "options": ["a) chemist", "b) physicist", "c) biologist", "d) mathematician"],
+        "answer": "b",
+        "explanation": "physicist – физик."
+      },
+      {
+        "question": "______ is the practice of using AI to automate tasks.",
+        "options": ["a) Robotic process automation", "b) Digital transformation", "c) AI automation", "d) Smart automation"],
+        "answer": "c",
+        "explanation": "AI automation – автоматизация с помощью ИИ."
+      },
+      {
+        "question": "______ is the study of the Earth's oceans.",
+        "options": ["a) Marine biology", "b) Limnology", "c) Hydrology", "d) Oceanography"],
+        "answer": "d",
+        "explanation": "oceanography – океанография."
+              }
             ]
         },
         {
@@ -29514,20 +32745,60 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 10 (перефразирование)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "______ is the practice of using technology to improve education.", "answer": "EdTech", "explanation": "EdTech – образовательные технологии."},
-                {"question": "______ is the study of the chemical composition of the Earth.", "answer": "Geochemistry", "explanation": "geochemistry – геохимия."},
-                {"question": "A ______ is a specialist in the study of plant life.", "answer": "botanist", "explanation": "botanist – ботаник."},
-                {"question": "______ is a system of tracking items using radio waves.", "answer": "RFID", "explanation": "RFID – радиочастотная идентификация."},
-                {"question": "______ is the practice of using solar panels to generate electricity.", "answer": "Solar energy", "explanation": "solar energy – солнечная энергия."},
-                {"question": "______ is the study of the behaviour of light.", "answer": "Optics", "explanation": "optics – оптика."},
-                {"question": "A ______ is a scientist who studies the properties of matter.", "answer": "material scientist", "explanation": "material scientist – учёный в области материаловедения."},
-                {"question": "______ is the practice of using technology to solve environmental problems.", "answer": "Environmental technology", "explanation": "environmental technology – экологические технологии."}
-            ]
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "______ is the practice of using technology to improve education.",
+        "options": ["a) EdTech", "b) EduTech", "c) Digital learning", "d) E-learning"],
+        "answer": "a",
+        "explanation": "EdTech – образовательные технологии."
+      },
+      {
+        "question": "______ is the study of the chemical composition of the Earth.",
+        "options": ["a) Geophysics", "b) Geochemistry", "c) Geology", "d) Geomorphology"],
+        "answer": "b",
+        "explanation": "geochemistry – геохимия."
+      },
+      {
+        "question": "A ______ is a specialist in the study of plant life.",
+        "options": ["a) botanist", "b) zoologist", "c) ecologist", "d) geneticist"],
+        "answer": "a",
+        "explanation": "botanist – ботаник."
+      },
+      {
+        "question": "______ is a system of tracking items using radio waves.",
+        "options": ["a) GPS", "b) NFC", "c) RFID", "d) Bluetooth"],
+        "answer": "c",
+        "explanation": "RFID – радиочастотная идентификация."
+      },
+      {
+        "question": "______ is the practice of using solar panels to generate electricity.",
+        "options": ["a) Solar power", "b) Wind energy", "c) Hydro energy", "d) Geothermal energy"],
+        "answer": "a",
+        "explanation": "solar energy – солнечная энергия."
+      },
+      {
+        "question": "______ is the study of the behaviour of light.",
+        "options": ["a) Optics", "b) Acoustics", "c) Thermodynamics", "d) Mechanics"],
+        "answer": "a",
+        "explanation": "optics – оптика."
+      },
+      {
+        "question": "A ______ is a scientist who studies the properties of matter.",
+        "options": ["a) physicist", "b) material scientist", "c) chemist", "d) engineer"],
+        "answer": "b",
+        "explanation": "material scientist – учёный в области материаловедения."
+      },
+      {
+        "question": "______ is the practice of using technology to solve environmental problems.",
+        "options": ["a) Green tech", "b) Eco-tech", "c) Environmental technology", "d) Sustainable tech"],
+        "answer": "c",
+        "explanation": "environmental technology – экологические технологии."
+               }
+             ]
         },
         {
             "type": "complex",
@@ -29575,19 +32846,59 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 11 (перевод)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "______ is the practice of using technology to improve transportation.", "answer": "Smart mobility", "explanation": "smart mobility – умная мобильность."},
-                {"question": "______ is the study of the Earth's magnetic field.", "answer": "Geomagnetism", "explanation": "geomagnetism – геомагнетизм."},
-                {"question": "A ______ is a scientist who studies the evolution of species.", "answer": "evolutionary biologist", "explanation": "evolutionary biologist – эволюционный биолог."},
-                {"question": "______ is a technology that uses sound waves to detect objects.", "answer": "Sonar", "explanation": "sonar – сонар."},
-                {"question": "______ is the practice of using technology to monitor health.", "answer": "Digital health", "explanation": "digital health – цифровое здоровье."},
-                {"question": "______ is the study of the structure of matter at the atomic level.", "answer": "Nanotechnology", "explanation": "nanotechnology – нанотехнология."},
-                {"question": "A ______ is a scientist who studies the effects of radiation.", "answer": "radiobiologist", "explanation": "radiobiologist – радиобиолог."},
-                {"question": "______ is the practice of using technology to reduce carbon emissions.", "answer": "Low-carbon tech", "explanation": "low-carbon tech – низкоуглеродные технологии."}
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "______ is the practice of using technology to improve transportation.",
+        "options": ["a) Smart mobility", "b) Urban mobility", "c) Green transport", "d] Intelligent transport"],
+        "answer": "a",
+        "explanation": "smart mobility – умная мобильность."
+      },
+      {
+        "question": "______ is the study of the Earth's magnetic field.",
+        "options": ["a) Geomagnetism", "b) Geophysics", "c) Geology", "d) Geochemistry"],
+        "answer": "a",
+        "explanation": "geomagnetism – геомагнетизм."
+      },
+      {
+        "question": "A ______ is a scientist who studies the evolution of species.",
+        "options": ["a) evolutionary biologist", "b) geneticist", "c) ecologist", "d) paleontologist"],
+        "answer": "a",
+        "explanation": "evolutionary biologist – эволюционный биолог."
+      },
+      {
+        "question": "______ is a technology that uses sound waves to detect objects.",
+        "options": ["a) Radar", "b) Sonar", "c) Lidar", "d) Ultrasonic"],
+        "answer": "b",
+        "explanation": "sonar – сонар."
+      },
+      {
+        "question": "______ is the practice of using technology to monitor health.",
+        "options": ["a) Digital health", "b) Telemedicine", "c) eHealth", "d) Health informatics"],
+        "answer": "a",
+        "explanation": "digital health – цифровое здоровье."
+      },
+      {
+        "question": "______ is the study of the structure of matter at the atomic level.",
+        "options": ["a) Nanotechnology", "b) Quantum physics", "c) Materials science", "d) Microtechnology"],
+        "answer": "a",
+        "explanation": "nanotechnology – нанотехнология."
+      },
+      {
+        "question": "A ______ is a scientist who studies the effects of radiation.",
+        "options": ["a) radiobiologist", "b) radiologist", "c) radiation physicist", "d) biophysicist"],
+        "answer": "a",
+        "explanation": "radiobiologist – радиобиолог."
+      },
+      {
+        "question": "______ is the practice of using technology to reduce carbon emissions.",
+        "options": ["a) Low-carbon tech", "b) Renewable energy", "c) Carbon capture", "d) Clean tech"],
+        "answer": "a",
+        "explanation": "low-carbon tech – низкоуглеродные технологии."
+              }
             ]
         },
         {
@@ -29636,20 +32947,60 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 12 (перефразирование)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "______ is the practice of using technology to improve financial services.", "answer": "FinTech", "explanation": "FinTech – финансовые технологии."},
-                {"question": "______ is the study of the origin and evolution of the solar system.", "answer": "Planetary science", "explanation": "planetary science – планетология."},
-                {"question": "A ______ is a scientist who studies the behaviour of matter at low temperatures.", "answer": "cryogenicist", "explanation": "cryogenicist – криогенщик."},
-                {"question": "______ is a technology that uses light to transmit data.", "answer": "Li-Fi", "explanation": "Li-Fi – технология передачи данных по свету."},
-                {"question": "______ is the practice of using technology to improve energy efficiency.", "answer": "Energy efficiency tech", "explanation": "energy efficiency tech – технологии энергоэффективности."},
-                {"question": "______ is the study of the properties and behaviour of plasma.", "answer": "Plasma physics", "explanation": "plasma physics – физика плазмы."},
-                {"question": "A ______ is a scientist who studies the structure of DNA.", "answer": "geneticist", "explanation": "geneticist – генетик."},
-                {"question": "______ is the practice of using technology to reduce water waste.", "answer": "Water efficiency tech", "explanation": "water efficiency tech – технологии водосбережения."}
-            ]
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "______ is the practice of using technology to improve financial services.",
+        "options": ["a) FinTech", "b) Banking tech", "c) InsurTech", "d) RegTech"],
+        "answer": "a",
+        "explanation": "FinTech – финансовые технологии."
+      },
+      {
+        "question": "______ is the study of the origin and evolution of the solar system.",
+        "options": ["a) Planetary science", "b) Astronomy", "c) Astrophysics", "d) Cosmology"],
+        "answer": "a",
+        "explanation": "planetary science – планетология."
+      },
+      {
+        "question": "A ______ is a scientist who studies the behaviour of matter at low temperatures.",
+        "options": ["a) cryogenicist", "b) cryologist", "c) low-temperature physicist", "d) quantum physicist"],
+        "answer": "a",
+        "explanation": "cryogenicist – криогенщик."
+      },
+      {
+        "question": "______ is a technology that uses light to transmit data.",
+        "options": ["a) Li-Fi", "b) Wi-Fi", "c) Bluetooth", "d] Infrared"],
+        "answer": "a",
+        "explanation": "Li-Fi – технология передачи данных по свету."
+      },
+      {
+        "question": "______ is the practice of using technology to improve energy efficiency.",
+        "options": ["a) Energy efficiency tech", "b) Smart grid", "c) Demand response", "d) Energy management"],
+        "answer": "a",
+        "explanation": "energy efficiency tech – технологии энергоэффективности."
+      },
+      {
+        "question": "______ is the study of the properties and behaviour of plasma.",
+        "options": ["a) Plasma physics", "b) Nuclear physics", "c) Astrophysics", "d) Electromagnetism"],
+        "answer": "a",
+        "explanation": "plasma physics – физика плазмы."
+      },
+      {
+        "question": "A ______ is a scientist who studies the structure of DNA.",
+        "options": ["a) geneticist", "b) molecular biologist", "c) biochemist", "d) cytologist"],
+        "answer": "a",
+        "explanation": "geneticist – генетик."
+      },
+      {
+        "question": "______ is the practice of using technology to reduce water waste.",
+        "options": ["a) Water efficiency tech", "b) Smart irrigation", "c) Water recycling", "d) Desalination tech"],
+        "answer": "a",
+        "explanation": "water efficiency tech – технологии водосбережения."
+               }
+             ]
         },
         {
             "type": "complex",
@@ -29726,19 +33077,59 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 1 (перевод)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "The story was all over ______ media.", "answer": "social", "explanation": "social media – социальные сети."},
-                {"question": "She runs a popular ______ about travel.", "answer": "blog", "explanation": "blog – блог."},
-                {"question": "The ______ was sent to cover the election.", "answer": "correspondent", "explanation": "correspondent – корреспондент."},
-                {"question": "They ______ the story about the scandal.", "answer": "broke", "explanation": "to break a story – первым опубликовать новость."},
-                {"question": "______ news spread quickly on social media.", "answer": "Fake", "explanation": "fake news – фейковые новости."},
-                {"question": "Media ______ helps people identify bias.", "answer": "literacy", "explanation": "media literacy – медиаграмотность."},
-                {"question": "The editor ______ the article before publication.", "answer": "fact-checked", "explanation": "to fact-check – проверять факты."},
-                {"question": "The anchor ______ the evening news.", "answer": "presented", "explanation": "to present the news – вести новости."}
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "The story was all over ______ media.",
+        "options": ["a) social", "b) digital", "c) mass", "d) online"],
+        "answer": "a",
+        "explanation": "social media – социальные сети."
+      },
+      {
+        "question": "She runs a popular ______ about travel.",
+        "options": ["a) blog", "b) website", "c) channel", "d] page"],
+        "answer": "a",
+        "explanation": "blog – блог."
+      },
+      {
+        "question": "The ______ was sent to cover the election.",
+        "options": ["a) correspondent", "b) reporter", "c) journalist", "d) anchor"],
+        "answer": "a",
+        "explanation": "correspondent – корреспондент."
+      },
+      {
+        "question": "They ______ the story about the scandal.",
+        "options": ["a) broke", "b) covered", "c) reported", "d) published"],
+        "answer": "a",
+        "explanation": "to break a story – первым опубликовать новость."
+      },
+      {
+        "question": "______ news spread quickly on social media.",
+        "options": ["a) Fake", "b) False", "c) Misleading", "d) Incorrect"],
+        "answer": "a",
+        "explanation": "fake news – фейковые новости."
+      },
+      {
+        "question": "Media ______ helps people identify bias.",
+        "options": ["a) literacy", "b) education", "c) awareness", "d) knowledge"],
+        "answer": "a",
+        "explanation": "media literacy – медиаграмотность."
+      },
+      {
+        "question": "The editor ______ the article before publication.",
+        "options": ["a) fact-checked", "b) proofread", "c) edited", "d] revised"],
+        "answer": "a",
+        "explanation": "to fact-check – проверять факты."
+      },
+      {
+        "question": "The anchor ______ the evening news.",
+        "options": ["a) presented", "b) delivered", "c) read", "d) hosted"],
+        "answer": "a",
+        "explanation": "to present the news – вести новости."
+              }
             ]
         },
         {
@@ -29787,20 +33178,60 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 2 (перефразирование)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "The ______ media includes television and radio.", "answer": "broadcast", "explanation": "broadcast media – телевидение и радио."},
-                {"question": "She reads a ______ newspaper every morning.", "answer": "broadsheet", "explanation": "broadsheet – качественная газета."},
-                {"question": "The ______ interviewed the celebrity on the red carpet.", "answer": "reporter", "explanation": "reporter – репортёр."},
-                {"question": "The editor had to ______ the article because of sensitive content.", "answer": "censor", "explanation": "to censor – цензурировать."},
-                {"question": "The news outlet was accused of spreading ______.", "answer": "misinformation", "explanation": "misinformation – дезинформация."},
-                {"question": "The columnist writes a weekly ______ in the newspaper.", "answer": "column", "explanation": "column – колонка."},
-                {"question": "The photographer took a picture of the ______ following the celebrity.", "answer": "paparazzi", "explanation": "paparazzi – папарацци."},
-                {"question": "The streaming ______ has millions of subscribers.", "answer": "service", "explanation": "streaming service – стриминговый сервис."}
-            ]
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "The ______ media includes television and radio.",
+        "options": ["a) broadcast", "b) print", "c) online", "d] digital"],
+        "answer": "a",
+        "explanation": "broadcast media – телевидение и радио."
+      },
+      {
+        "question": "She reads a ______ newspaper every morning.",
+        "options": ["a) broadsheet", "b) tabloid", "c) magazine", "d) journal"],
+        "answer": "a",
+        "explanation": "broadsheet – качественная газета."
+      },
+      {
+        "question": "The ______ interviewed the celebrity on the red carpet.",
+        "options": ["a) reporter", "b) journalist", "c) correspondent", "d) anchor"],
+        "answer": "a",
+        "explanation": "reporter – репортёр."
+      },
+      {
+        "question": "The editor had to ______ the article because of sensitive content.",
+        "options": ["a) censor", "b) edit", "c) cut", "d] remove"],
+        "answer": "a",
+        "explanation": "to censor – цензурировать."
+      },
+      {
+        "question": "The news outlet was accused of spreading ______.",
+        "options": ["a) misinformation", "b) disinformation", "c) propaganda", "d) fake news"],
+        "answer": "a",
+        "explanation": "misinformation – дезинформация."
+      },
+      {
+        "question": "The columnist writes a weekly ______ in the newspaper.",
+        "options": ["a) column", "b) article", "c) feature", "d) editorial"],
+        "answer": "a",
+        "explanation": "column – колонка."
+      },
+      {
+        "question": "The photographer took a picture of the ______ following the celebrity.",
+        "options": ["a) paparazzi", "b) fans", "c) bodyguards", "d) reporters"],
+        "answer": "a",
+        "explanation": "paparazzi – папарацци."
+      },
+      {
+        "question": "The streaming ______ has millions of subscribers.",
+        "options": ["a) service", "b) platform", "c) channel", "d] network"],
+        "answer": "a",
+        "explanation": "streaming service – стриминговый сервис."
+               }
+             ]
         },
         {
             "type": "complex",
@@ -29848,19 +33279,59 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 3 (перевод)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "The ______ was full of sensational headlines.", "answer": "tabloid", "explanation": "tabloid – таблоид."},
-                {"question": "Many people get their news from ______ platforms.", "answer": "online", "explanation": "online platform – онлайн-платформа."},
-                {"question": "She listens to a ______ about current events every day.", "answer": "podcast", "explanation": "podcast – подкаст."},
-                {"question": "The ______ is responsible for the overall content of the newspaper.", "answer": "editor", "explanation": "editor – редактор."},
-                {"question": "The journalist had to ______ the facts before publishing.", "answer": "verify", "explanation": "to verify – проверять."},
-                {"question": "The story was a classic example of ______.", "answer": "clickbait", "explanation": "clickbait – кликбейт."},
-                {"question": "The government was accused of using ______ to control the media.", "answer": "propaganda", "explanation": "propaganda – пропаганда."},
-                {"question": "The ______ on social media can create an echo chamber.", "answer": "bias", "explanation": "bias – предвзятость."}
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "The ______ was full of sensational headlines.",
+        "options": ["a) tabloid", "b) broadsheet", "c) magazine", "d) newsletter"],
+        "answer": "a",
+        "explanation": "tabloid – таблоид."
+      },
+      {
+        "question": "Many people get their news from ______ platforms.",
+        "options": ["a) online", "b) social", "c) digital", "d] web"],
+        "answer": "a",
+        "explanation": "online platform – онлайн-платформа."
+      },
+      {
+        "question": "She listens to a ______ about current events every day.",
+        "options": ["a) podcast", "b) radio", "c) audiobook", "d) stream"],
+        "answer": "a",
+        "explanation": "podcast – подкаст."
+      },
+      {
+        "question": "The ______ is responsible for the overall content of the newspaper.",
+        "options": ["a) editor", "b) publisher", "c) chief", "d) manager"],
+        "answer": "a",
+        "explanation": "editor – редактор."
+      },
+      {
+        "question": "The journalist had to ______ the facts before publishing.",
+        "options": ["a) verify", "b) check", "c) confirm", "d) validate"],
+        "answer": "a",
+        "explanation": "to verify – проверять."
+      },
+      {
+        "question": "The story was a classic example of ______.",
+        "options": ["a) clickbait", "b) sensationalism", "c) yellow journalism", "d) fake news"],
+        "answer": "a",
+        "explanation": "clickbait – кликбейт."
+      },
+      {
+        "question": "The government was accused of using ______ to control the media.",
+        "options": ["a) propaganda", "b) censorship", "c) misinformation", "d) disinformation"],
+        "answer": "a",
+        "explanation": "propaganda – пропаганда."
+      },
+      {
+        "question": "The ______ on social media can create an echo chamber.",
+        "options": ["a) bias", "b) filter", "c) algorithm", "d) bubble"],
+        "answer": "a",
+        "explanation": "bias – предвзятость."
+              }
             ]
         },
         {
@@ -29909,19 +33380,59 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 4 (перефразирование)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "The ______ media includes printed materials like newspapers.", "answer": "print", "explanation": "print media – печатные СМИ."},
-                {"question": "He is a well-known ______ who writes about politics.", "answer": "columnist", "explanation": "columnist – обозреватель."},
-                {"question": "The news ______ was accused of having a political bias.", "answer": "outlet", "explanation": "news outlet – информационный канал."},
-                {"question": "The ______ of the article was very professional.", "answer": "photographer", "explanation": "photographer – фотограф."},
-                {"question": "The journalist tried to ______ the truth from the sources.", "answer": "uncover", "explanation": "to uncover – раскрывать."},
-                {"question": "The ______ of the magazine is to inform the public.", "answer": "mission", "explanation": "mission – миссия."},
-                {"question": "The reporter's ______ was to ask tough questions.", "answer": "role", "explanation": "role – роль."},
-                {"question": "The ______ of the story was leaked to the press.", "answer": "details", "explanation": "details – детали."}
+ [
+  {
+    "type": "complex",
+    "text": "1. Choose the correct word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "The ______ media includes printed materials like newspapers.",
+        "options": ["a) broadcast", "b) digital", "c) print", "d) social"],
+        "answer": "c",
+        "explanation": "print media – печатные СМИ."
+      },
+      {
+        "question": "He is a well-known ______ who writes about politics.",
+        "options": ["a) journalist", "b) columnist", "c) reporter", "d) correspondent"],
+        "answer": "b",
+        "explanation": "columnist – обозреватель."
+      },
+      {
+        "question": "The news ______ was accused of having a political bias.",
+        "options": ["a) network", "b) platform", "c) outlet", "d) channel"],
+        "answer": "c",
+        "explanation": "news outlet – информационный канал."
+      },
+      {
+        "question": "The ______ of the article was very professional.",
+        "options": ["a) editor", "b) photographer", "c) writer", "d) publisher"],
+        "answer": "b",
+        "explanation": "photographer – фотограф."
+      },
+      {
+        "question": "The journalist tried to ______ the truth from the sources.",
+        "options": ["a) cover", "b) hide", "c) uncover", "d) bury"],
+        "answer": "c",
+        "explanation": "to uncover – раскрывать."
+      },
+      {
+        "question": "The ______ of the magazine is to inform the public.",
+        "options": ["a) goal", "b) aim", "c) mission", "d) purpose"],
+        "answer": "c",
+        "explanation": "mission – миссия."
+      },
+      {
+        "question": "The reporter's ______ was to ask tough questions.",
+        "options": ["a) job", "b) task", "c) duty", "d) role"],
+        "answer": "d",
+        "explanation": "role – роль."
+      },
+      {
+        "question": "The ______ of the story was leaked to the press.",
+        "options": ["a) summary", "b) details", "c) conclusion", "d) beginning"],
+        "answer": "b",
+        "explanation": "details – детали."
+             }
             ]
         },
         {
@@ -29970,19 +33481,59 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 5 (перевод)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "The ______ is a person who presents news on TV.", "answer": "anchor", "explanation": "anchor – ведущий новостей."},
-                {"question": "She is a ______ who covers international events.", "answer": "correspondent", "explanation": "correspondent – корреспондент."},
-                {"question": "The ______ of the newspaper decided to publish the story.", "answer": "editor", "explanation": "editor – редактор."},
-                {"question": "The ______ was criticized for being too sensational.", "answer": "journalist", "explanation": "journalist – журналист."},
-                {"question": "The ______ of the news report was questioned.", "answer": "accuracy", "explanation": "accuracy – точность."},
-                {"question": "The media has a strong ______ on public opinion.", "answer": "influence", "explanation": "influence – влияние."},
-                {"question": "The ______ of the story was to raise awareness.", "answer": "goal", "explanation": "goal – цель."},
-                {"question": "The ______ of the article was to inform the readers.", "answer": "purpose", "explanation": "purpose – цель."}
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "The ______ is a person who presents news on TV.",
+        "options": ["a) reporter", "b) anchor", "c) journalist", "d) correspondent"],
+        "answer": "b",
+        "explanation": "anchor – ведущий новостей."
+      },
+      {
+        "question": "She is a ______ who covers international events.",
+        "options": ["a) columnist", "b) editor", "c) correspondent", "d) publisher"],
+        "answer": "c",
+        "explanation": "correspondent – корреспондент."
+      },
+      {
+        "question": "The ______ of the newspaper decided to publish the story.",
+        "options": ["a) journalist", "b) reporter", "c) anchor", "d) editor"],
+        "answer": "d",
+        "explanation": "editor – редактор."
+      },
+      {
+        "question": "The ______ was criticized for being too sensational.",
+        "options": ["a) anchor", "b) correspondent", "c) columnist", "d) journalist"],
+        "answer": "d",
+        "explanation": "journalist – журналист."
+      },
+      {
+        "question": "The ______ of the news report was questioned.",
+        "options": ["a) length", "b) timing", "c) accuracy", "d) source"],
+        "answer": "c",
+        "explanation": "accuracy – точность."
+      },
+      {
+        "question": "The media has a strong ______ on public opinion.",
+        "options": ["a) impact", "b) effect", "c) influence", "d) power"],
+        "answer": "c",
+        "explanation": "influence – влияние."
+      },
+      {
+        "question": "The ______ of the story was to raise awareness.",
+        "options": ["a) beginning", "b) goal", "c) conclusion", "d) headline"],
+        "answer": "b",
+        "explanation": "goal – цель."
+      },
+      {
+        "question": "The ______ of the article was to inform the readers.",
+        "options": ["a) length", "b) style", "c) purpose", "d) title"],
+        "answer": "c",
+        "explanation": "purpose – цель."
+              }
             ]
         },
         {
@@ -30031,19 +33582,59 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 6 (перефразирование)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "The ______ of the newspaper is to provide reliable news.", "answer": "goal", "explanation": "goal – цель."},
-                {"question": "The ______ of the journalist is to ask the right questions.", "answer": "job", "explanation": "job – работа."},
-                {"question": "The ______ of the media is to inform the public.", "answer": "role", "explanation": "role – роль."},
-                {"question": "The ______ of the story was to expose corruption.", "answer": "aim", "explanation": "aim – цель."},
-                {"question": "The ______ of the article was to educate the readers.", "answer": "objective", "explanation": "objective – задача."},
-                {"question": "The ______ of the news anchor is to deliver the news clearly.", "answer": "duty", "explanation": "duty – обязанность."},
-                {"question": "The ______ of the press is to hold power to account.", "answer": "responsibility", "explanation": "responsibility – ответственность."},
-                {"question": "The ______ of the media is to shape public opinion.", "answer": "function", "explanation": "function – функция."}
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "The ______ of the newspaper is to provide reliable news.",
+        "options": ["a) editor", "b) goal", "c) journalist", "d) headline"],
+        "answer": "b",
+        "explanation": "goal – цель."
+      },
+      {
+        "question": "The ______ of the journalist is to ask the right questions.",
+        "options": ["a) role", "b) job", "c) duty", "d) goal"],
+        "answer": "b",
+        "explanation": "job – работа."
+      },
+      {
+        "question": "The ______ of the media is to inform the public.",
+        "options": ["a) goal", "b) purpose", "c) objective", "d) role"],
+        "answer": "d",
+        "explanation": "role – роль."
+      },
+      {
+        "question": "The ______ of the story was to expose corruption.",
+        "options": ["a) role", "b) duty", "c) aim", "d) function"],
+        "answer": "c",
+        "explanation": "aim – цель."
+      },
+      {
+        "question": "The ______ of the article was to educate the readers.",
+        "options": ["a) headline", "b) source", "c) style", "d) objective"],
+        "answer": "d",
+        "explanation": "objective – задача."
+      },
+      {
+        "question": "The ______ of the news anchor is to deliver the news clearly.",
+        "options": ["a) goal", "b) role", "c) duty", "d) purpose"],
+        "answer": "c",
+        "explanation": "duty – обязанность."
+      },
+      {
+        "question": "The ______ of the press is to hold power to account.",
+        "options": ["a) goal", "b) aim", "c) responsibility", "d) objective"],
+        "answer": "c",
+        "explanation": "responsibility – ответственность."
+      },
+      {
+        "question": "The ______ of the media is to shape public opinion.",
+        "options": ["a) goal", "b) role", "c) purpose", "d) function"],
+        "answer": "d",
+        "explanation": "function – функция."
+              }
             ]
         },
         {
@@ -30092,19 +33683,59 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 7 (перевод)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "The ______ of the article was to expose the truth.", "answer": "purpose", "explanation": "purpose – цель."},
-                {"question": "The ______ of the journalist is to report facts.", "answer": "role", "explanation": "role – роль."},
-                {"question": "The ______ of the media is to keep the public informed.", "answer": "function", "explanation": "function – функция."},
-                {"question": "The ______ of the editor is to ensure accuracy.", "answer": "responsibility", "explanation": "responsibility – ответственность."},
-                {"question": "The ______ of the news anchor is to present the news.", "answer": "duty", "explanation": "duty – обязанность."},
-                {"question": "The ______ of the photographer is to capture images.", "answer": "job", "explanation": "job – работа."},
-                {"question": "The ______ of the reporter is to investigate stories.", "answer": "task", "explanation": "task – задача."},
-                {"question": "The ______ of the columnist is to express opinions.", "answer": "goal", "explanation": "goal – цель."}
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "The ______ of the article was to expose the truth.",
+        "options": ["a) headline", "b) source", "c) purpose", "d) editor"],
+        "answer": "c",
+        "explanation": "purpose – цель."
+      },
+      {
+        "question": "The ______ of the journalist is to report facts.",
+        "options": ["a) goal", "b) duty", "c) job", "d) role"],
+        "answer": "d",
+        "explanation": "role – роль."
+      },
+      {
+        "question": "The ______ of the media is to keep the public informed.",
+        "options": ["a) role", "b) purpose", "c) goal", "d) function"],
+        "answer": "d",
+        "explanation": "function – функция."
+      },
+      {
+        "question": "The ______ of the editor is to ensure accuracy.",
+        "options": ["a) role", "b) duty", "c) job", "d) responsibility"],
+        "answer": "d",
+        "explanation": "responsibility – ответственность."
+      },
+      {
+        "question": "The ______ of the news anchor is to present the news.",
+        "options": ["a) goal", "b) role", "c) purpose", "d) duty"],
+        "answer": "d",
+        "explanation": "duty – обязанность."
+      },
+      {
+        "question": "The ______ of the photographer is to capture images.",
+        "options": ["a) role", "b) duty", "c) goal", "d) job"],
+        "answer": "d",
+        "explanation": "job – работа."
+      },
+      {
+        "question": "The ______ of the reporter is to investigate stories.",
+        "options": ["a) job", "b) role", "c) duty", "d) task"],
+        "answer": "d",
+        "explanation": "task – задача."
+      },
+      {
+        "question": "The ______ of the columnist is to express opinions.",
+        "options": ["a) role", "b) purpose", "c) job", "d) goal"],
+        "answer": "d",
+        "explanation": "goal – цель."
+              }
             ]
         },
         {
@@ -30153,19 +33784,59 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 8 (перефразирование)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "The ______ of the story is to inform the public.", "answer": "aim", "explanation": "aim – цель."},
-                {"question": "The ______ of the journalist is to investigate.", "answer": "role", "explanation": "role – роль."},
-                {"question": "The ______ of the media is to provide information.", "answer": "purpose", "explanation": "purpose – цель."},
-                {"question": "The ______ of the editor is to check facts.", "answer": "responsibility", "explanation": "responsibility – ответственность."},
-                {"question": "The ______ of the anchor is to deliver news.", "answer": "duty", "explanation": "duty – обязанность."},
-                {"question": "The ______ of the photographer is to take pictures.", "answer": "job", "explanation": "job – работа."},
-                {"question": "The ______ of the reporter is to ask questions.", "answer": "task", "explanation": "task – задача."},
-                {"question": "The ______ of the columnist is to write opinions.", "answer": "goal", "explanation": "goal – цель."}
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "The ______ of the story is to inform the public.",
+        "options": ["a) role", "b) duty", "c) aim", "d) job"],
+        "answer": "c",
+        "explanation": "aim – цель."
+      },
+      {
+        "question": "The ______ of the journalist is to investigate.",
+        "options": ["a) goal", "b) purpose", "c) duty", "d) role"],
+        "answer": "d",
+        "explanation": "role – роль."
+      },
+      {
+        "question": "The ______ of the media is to provide information.",
+        "options": ["a) role", "b) goal", "c) purpose", "d) function"],
+        "answer": "c",
+        "explanation": "purpose – цель."
+      },
+      {
+        "question": "The ______ of the editor is to check facts.",
+        "options": ["a) role", "b) duty", "c) job", "d) responsibility"],
+        "answer": "d",
+        "explanation": "responsibility – ответственность."
+      },
+      {
+        "question": "The ______ of the anchor is to deliver news.",
+        "options": ["a) goal", "b) role", "c) purpose", "d) duty"],
+        "answer": "d",
+        "explanation": "duty – обязанность."
+      },
+      {
+        "question": "The ______ of the photographer is to take pictures.",
+        "options": ["a) role", "b) duty", "c) goal", "d) job"],
+        "answer": "d",
+        "explanation": "job – работа."
+      },
+      {
+        "question": "The ______ of the reporter is to ask questions.",
+        "options": ["a) job", "b) role", "c) duty", "d) task"],
+        "answer": "d",
+        "explanation": "task – задача."
+      },
+      {
+        "question": "The ______ of the columnist is to write opinions.",
+        "options": ["a) role", "b) purpose", "c) job", "d) goal"],
+        "answer": "d",
+        "explanation": "goal – цель."
+              }
             ]
         },
         {
@@ -30214,19 +33885,59 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 9 (перевод)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "The ______ of the story was to highlight injustice.", "answer": "objective", "explanation": "objective – цель."},
-                {"question": "The ______ of the journalist is to be objective.", "answer": "responsibility", "explanation": "responsibility – ответственность."},
-                {"question": "The ______ of the media is to educate the public.", "answer": "role", "explanation": "role – роль."},
-                {"question": "The ______ of the editor is to improve the content.", "answer": "task", "explanation": "task – задача."},
-                {"question": "The ______ of the anchor is to control the broadcast.", "answer": "duty", "explanation": "duty – обязанность."},
-                {"question": "The ______ of the photographer is to capture the moment.", "answer": "job", "explanation": "job – работа."},
-                {"question": "The ______ of the reporter is to uncover the truth.", "answer": "mission", "explanation": "mission – миссия."},
-                {"question": "The ______ of the columnist is to influence public opinion.", "answer": "goal", "explanation": "goal – цель."}
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "The ______ of the story was to highlight injustice.",
+        "options": ["a) role", "b) purpose", "c) goal", "d) objective"],
+        "answer": "d",
+        "explanation": "objective – цель."
+      },
+      {
+        "question": "The ______ of the journalist is to be objective.",
+        "options": ["a) role", "b) duty", "c) job", "d) responsibility"],
+        "answer": "d",
+        "explanation": "responsibility – ответственность."
+      },
+      {
+        "question": "The ______ of the media is to educate the public.",
+        "options": ["a) goal", "b) purpose", "c) role", "d) function"],
+        "answer": "c",
+        "explanation": "role – роль."
+      },
+      {
+        "question": "The ______ of the editor is to improve the content.",
+        "options": ["a) role", "b) duty", "c) job", "d) task"],
+        "answer": "d",
+        "explanation": "task – задача."
+      },
+      {
+        "question": "The ______ of the anchor is to control the broadcast.",
+        "options": ["a) goal", "b) role", "c) purpose", "d) duty"],
+        "answer": "d",
+        "explanation": "duty – обязанность."
+      },
+      {
+        "question": "The ______ of the photographer is to capture the moment.",
+        "options": ["a) role", "b) duty", "c) goal", "d) job"],
+        "answer": "d",
+        "explanation": "job – работа."
+      },
+      {
+        "question": "The ______ of the reporter is to uncover the truth.",
+        "options": ["a) role", "b) task", "c) duty", "d) mission"],
+        "answer": "d",
+        "explanation": "mission – миссия."
+      },
+      {
+        "question": "The ______ of the columnist is to influence public opinion.",
+        "options": ["a) role", "b) purpose", "c) job", "d) goal"],
+        "answer": "d",
+        "explanation": "goal – цель."
+              }
             ]
         },
         {
@@ -30275,20 +33986,60 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 10 (перефразирование)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "The ______ of the article is to persuade readers.", "answer": "aim", "explanation": "aim – цель."},
-                {"question": "The ______ of the journalist is to seek the truth.", "answer": "duty", "explanation": "duty – обязанность."},
-                {"question": "The ______ of the media is to hold power accountable.", "answer": "role", "explanation": "role – роль."},
-                {"question": "The ______ of the editor is to ensure quality.", "answer": "responsibility", "explanation": "responsibility – ответственность."},
-                {"question": "The ______ of the anchor is to engage the audience.", "answer": "job", "explanation": "job – работа."},
-                {"question": "The ______ of the photographer is to create visual stories.", "answer": "goal", "explanation": "goal – цель."},
-                {"question": "The ______ of the reporter is to ask tough questions.", "answer": "task", "explanation": "task – задача."},
-                {"question": "The ______ of the columnist is to offer analysis.", "answer": "purpose", "explanation": "purpose – цель."}
-            ]
+ [
+  {
+    "type": "complex",
+    "text": "1. Choose the correct word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "The ______ of the article is to persuade readers.",
+        "options": ["a) role", "b) duty", "c) aim", "d) job"],
+        "answer": "c",
+        "explanation": "aim – цель."
+      },
+      {
+        "question": "The ______ of the journalist is to seek the truth.",
+        "options": ["a) role", "b) goal", "c) purpose", "d) duty"],
+        "answer": "d",
+        "explanation": "duty – обязанность."
+      },
+      {
+        "question": "The ______ of the media is to hold power accountable.",
+        "options": ["a) goal", "b) purpose", "c) function", "d) role"],
+        "answer": "d",
+        "explanation": "role – роль."
+      },
+      {
+        "question": "The ______ of the editor is to ensure quality.",
+        "options": ["a) role", "b) duty", "c) job", "d) responsibility"],
+        "answer": "d",
+        "explanation": "responsibility – ответственность."
+      },
+      {
+        "question": "The ______ of the anchor is to engage the audience.",
+        "options": ["a) role", "b) duty", "c) goal", "d) job"],
+        "answer": "d",
+        "explanation": "job – работа."
+      },
+      {
+        "question": "The ______ of the photographer is to create visual stories.",
+        "options": ["a) role", "b) duty", "c) job", "d) goal"],
+        "answer": "d",
+        "explanation": "goal – цель."
+      },
+      {
+        "question": "The ______ of the reporter is to ask tough questions.",
+        "options": ["a) job", "b) role", "c) duty", "d) task"],
+        "answer": "d",
+        "explanation": "task – задача."
+      },
+      {
+        "question": "The ______ of the columnist is to offer analysis.",
+        "options": ["a) role", "b) goal", "c) job", "d) purpose"],
+        "answer": "d",
+        "explanation": "purpose – цель."
+             }
+           ]
         },
         {
             "type": "complex",
@@ -30336,20 +34087,60 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 11 (перевод)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "The ______ of the story was to create controversy.", "answer": "objective", "explanation": "objective – цель."},
-                {"question": "The ______ of the journalist is to report the news.", "answer": "role", "explanation": "role – роль."},
-                {"question": "The ______ of the media is to shape public discourse.", "answer": "function", "explanation": "function – функция."},
-                {"question": "The ______ of the editor is to make decisions.", "answer": "responsibility", "explanation": "responsibility – ответственность."},
-                {"question": "The ______ of the anchor is to keep the show running.", "answer": "duty", "explanation": "duty – обязанность."},
-                {"question": "The ______ of the photographer is to document events.", "answer": "job", "explanation": "job – работа."},
-                {"question": "The ______ of the reporter is to investigate leads.", "answer": "task", "explanation": "task – задача."},
-                {"question": "The ______ of the columnist is to provoke thought.", "answer": "goal", "explanation": "goal – цель."}
-            ]
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "The ______ of the story was to create controversy.",
+        "options": ["a) role", "b) purpose", "c) goal", "d) objective"],
+        "answer": "d",
+        "explanation": "objective – цель."
+      },
+      {
+        "question": "The ______ of the journalist is to report the news.",
+        "options": ["a) goal", "b) duty", "c) job", "d) role"],
+        "answer": "d",
+        "explanation": "role – роль."
+      },
+      {
+        "question": "The ______ of the media is to shape public discourse.",
+        "options": ["a) role", "b) purpose", "c) goal", "d) function"],
+        "answer": "d",
+        "explanation": "function – функция."
+      },
+      {
+        "question": "The ______ of the editor is to make decisions.",
+        "options": ["a) role", "b) duty", "c) job", "d) responsibility"],
+        "answer": "d",
+        "explanation": "responsibility – ответственность."
+      },
+      {
+        "question": "The ______ of the anchor is to keep the show running.",
+        "options": ["a) goal", "b) role", "c) purpose", "d) duty"],
+        "answer": "d",
+        "explanation": "duty – обязанность."
+      },
+      {
+        "question": "The ______ of the photographer is to document events.",
+        "options": ["a) role", "b) duty", "c) goal", "d) job"],
+        "answer": "d",
+        "explanation": "job – работа."
+      },
+      {
+        "question": "The ______ of the reporter is to investigate leads.",
+        "options": ["a) job", "b) role", "c) duty", "d) task"],
+        "answer": "d",
+        "explanation": "task – задача."
+      },
+      {
+        "question": "The ______ of the columnist is to provoke thought.",
+        "options": ["a) role", "b) purpose", "c) job", "d) goal"],
+        "answer": "d",
+        "explanation": "goal – цель."
+             }
+           ]
         },
         {
             "type": "complex",
@@ -30397,19 +34188,59 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 12 (перефразирование)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "The ______ of the article is to provide analysis.", "answer": "aim", "explanation": "aim – цель."},
-                {"question": "The ______ of the journalist is to be fair.", "answer": "duty", "explanation": "duty – обязанность."},
-                {"question": "The ______ of the media is to reflect society.", "answer": "role", "explanation": "role – роль."},
-                {"question": "The ______ of the editor is to improve readability.", "answer": "responsibility", "explanation": "responsibility – ответственность."},
-                {"question": "The ______ of the anchor is to connect with viewers.", "answer": "job", "explanation": "job – работа."},
-                {"question": "The ______ of the photographer is to tell stories with images.", "answer": "goal", "explanation": "goal – цель."},
-                {"question": "The ______ of the reporter is to find sources.", "answer": "task", "explanation": "task – задача."},
-                {"question": "The ______ of the columnist is to share insights.", "answer": "purpose", "explanation": "purpose – цель."}
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "The ______ of the article is to provide analysis.",
+        "options": ["a) role", "b) duty", "c) aim", "d) job"],
+        "answer": "c",
+        "explanation": "aim – цель."
+      },
+      {
+        "question": "The ______ of the journalist is to be fair.",
+        "options": ["a) role", "b) goal", "c) purpose", "d) duty"],
+        "answer": "d",
+        "explanation": "duty – обязанность."
+      },
+      {
+        "question": "The ______ of the media is to reflect society.",
+        "options": ["a) goal", "b) purpose", "c) function", "d) role"],
+        "answer": "d",
+        "explanation": "role – роль."
+      },
+      {
+        "question": "The ______ of the editor is to improve readability.",
+        "options": ["a) role", "b) duty", "c) job", "d) responsibility"],
+        "answer": "d",
+        "explanation": "responsibility – ответственность."
+      },
+      {
+        "question": "The ______ of the anchor is to connect with viewers.",
+        "options": ["a) role", "b) duty", "c) goal", "d) job"],
+        "answer": "d",
+        "explanation": "job – работа."
+      },
+      {
+        "question": "The ______ of the photographer is to tell stories with images.",
+        "options": ["a) role", "b) duty", "c) job", "d) goal"],
+        "answer": "d",
+        "explanation": "goal – цель."
+      },
+      {
+        "question": "The ______ of the reporter is to find sources.",
+        "options": ["a) job", "b) role", "c) duty", "d) task"],
+        "answer": "d",
+        "explanation": "task – задача."
+      },
+      {
+        "question": "The ______ of the columnist is to share insights.",
+        "options": ["a) role", "b) goal", "c) job", "d) purpose"],
+        "answer": "d",
+        "explanation": "purpose – цель."
+              }
             ]
         },
         {
@@ -30487,19 +34318,59 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 1 (перевод)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "The executive was charged with ______.", "answer": "embezzlement", "explanation": "embezzlement – присвоение средств."},
-                {"question": "______ is on the rise in many countries.", "answer": "Cybercrime", "explanation": "cybercrime – киберпреступность."},
-                {"question": "The defendant was found ______.", "answer": "guilty", "explanation": "to be found guilty – быть признанным виновным."},
-                {"question": "The judge ______ him to ten years in prison.", "answer": "sentenced", "explanation": "to sentence – приговорить."},
-                {"question": "He was sentenced to ______ service.", "answer": "community", "explanation": "community service – общественные работы."},
-                {"question": "She was ______ on parole after five years.", "answer": "released", "explanation": "to release – освобождать."},
-                {"question": "The ______ was accused of taking bribes.", "answer": "politician", "explanation": "politician – политик (контекст взятки)."},
-                {"question": "The jury reached a ______ of guilty.", "answer": "verdict", "explanation": "verdict – вердикт."}
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "The executive was charged with ______.",
+        "options": ["a) fraud", "b) theft", "c) embezzlement", "d) bribery"],
+        "answer": "c",
+        "explanation": "embezzlement – присвоение средств."
+      },
+      {
+        "question": "______ is on the rise in many countries.",
+        "options": ["a) Fraud", "b) Theft", "c) Bribery", "d) Cybercrime"],
+        "answer": "d",
+        "explanation": "cybercrime – киберпреступность."
+      },
+      {
+        "question": "The defendant was found ______.",
+        "options": ["a) innocent", "b) convicted", "c) guilty", "d) acquitted"],
+        "answer": "c",
+        "explanation": "to be found guilty – быть признанным виновным."
+      },
+      {
+        "question": "The judge ______ him to ten years in prison.",
+        "options": ["a) charged", "b) convicted", "c) acquitted", "d) sentenced"],
+        "answer": "d",
+        "explanation": "to sentence – приговорить."
+      },
+      {
+        "question": "He was sentenced to ______ service.",
+        "options": ["a) public", "b) social", "c) community", "d) civic"],
+        "answer": "c",
+        "explanation": "community service – общественные работы."
+      },
+      {
+        "question": "She was ______ on parole after five years.",
+        "options": ["a) arrested", "b) charged", "c) convicted", "d) released"],
+        "answer": "d",
+        "explanation": "to release – освобождать."
+      },
+      {
+        "question": "The ______ was accused of taking bribes.",
+        "options": ["a) judge", "b) lawyer", "c) prosecutor", "d) politician"],
+        "answer": "d",
+        "explanation": "politician – политик (контекст взятки)."
+      },
+      {
+        "question": "The jury reached a ______ of guilty.",
+        "options": ["a) sentence", "b) decision", "c) conclusion", "d) verdict"],
+        "answer": "d",
+        "explanation": "verdict – вердикт."
+              }
             ]
         },
         {
@@ -30548,19 +34419,59 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 2 (перефразирование)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "The company was involved in a case of ______.", "answer": "corruption", "explanation": "corruption – коррупция."},
-                {"question": "He was accused of ______ money.", "answer": "laundering", "explanation": "money laundering – отмывание денег."},
-                {"question": "The ______ was found not guilty.", "answer": "defendant", "explanation": "defendant – обвиняемый."},
-                {"question": "The ______ presented the evidence in court.", "answer": "prosecutor", "explanation": "prosecutor – прокурор."},
-                {"question": "The judge decided to ______ him of all charges.", "answer": "acquit", "explanation": "to acquit – оправдать."},
-                {"question": "The defence ______ cross-examined the witness.", "answer": "attorney", "explanation": "defence attorney – адвокат защиты."},
-                {"question": "The witness gave a detailed ______.", "answer": "testimony", "explanation": "testimony – показания."},
-                {"question": "The plaintiff filed a ______ against the company.", "answer": "lawsuit", "explanation": "lawsuit – судебный иск."}
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "The company was involved in a case of ______.",
+        "options": ["a) theft", "b) fraud", "c) corruption", "d) bribery"],
+        "answer": "c",
+        "explanation": "corruption – коррупция."
+      },
+      {
+        "question": "He was accused of ______ money.",
+        "options": ["a) hiding", "b) stealing", "c) laundering", "d) printing"],
+        "answer": "c",
+        "explanation": "money laundering – отмывание денег."
+      },
+      {
+        "question": "The ______ was found not guilty.",
+        "options": ["a) prosecutor", "b) judge", "c) defendant", "d) witness"],
+        "answer": "c",
+        "explanation": "defendant – обвиняемый."
+      },
+      {
+        "question": "The ______ presented the evidence in court.",
+        "options": ["a) defendant", "b) judge", "c) attorney", "d) prosecutor"],
+        "answer": "d",
+        "explanation": "prosecutor – прокурор."
+      },
+      {
+        "question": "The judge decided to ______ him of all charges.",
+        "options": ["a) convict", "b) sentence", "c) acquit", "d) charge"],
+        "answer": "c",
+        "explanation": "to acquit – оправдать."
+      },
+      {
+        "question": "The defence ______ cross-examined the witness.",
+        "options": ["a) prosecutor", "b) judge", "c) defendant", "d) attorney"],
+        "answer": "d",
+        "explanation": "defence attorney – адвокат защиты."
+      },
+      {
+        "question": "The witness gave a detailed ______.",
+        "options": ["a) statement", "b) report", "c) testimony", "d) summary"],
+        "answer": "c",
+        "explanation": "testimony – показания."
+      },
+      {
+        "question": "The plaintiff filed a ______ against the company.",
+        "options": ["a) complaint", "b) petition", "c) lawsuit", "d) claim"],
+        "answer": "c",
+        "explanation": "lawsuit – судебный иск."
+              }
             ]
         },
         {
@@ -30609,19 +34520,59 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 3 (перевод)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "He was found guilty of ______.", "answer": "fraud", "explanation": "fraud – мошенничество."},
-                {"question": "The company was accused of ______ practices.", "answer": "corrupt", "explanation": "corrupt practices – коррумпированные практики."},
-                {"question": "The ______ was sentenced to life in prison.", "answer": "convict", "explanation": "convict – осуждённый."},
-                {"question": "The judge imposed a heavy ______.", "answer": "fine", "explanation": "fine – штраф."},
-                {"question": "The criminal was put under house ______.", "answer": "arrest", "explanation": "house arrest – домашний арест."},
-                {"question": "The ______ was granted after two years.", "answer": "parole", "explanation": "parole – условно-досрочное освобождение."},
-                {"question": "The police found ______ linking him to the crime.", "answer": "evidence", "explanation": "evidence – улика."},
-                {"question": "The judge gave a harsh ______.", "answer": "sentence", "explanation": "sentence – приговор."}
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "He was found guilty of ______.",
+        "options": ["a) theft", "b) bribery", "c) fraud", "d) arson"],
+        "answer": "c",
+        "explanation": "fraud – мошенничество."
+      },
+      {
+        "question": "The company was accused of ______ practices.",
+        "options": ["a) illegal", "b) criminal", "c) fraudulent", "d) corrupt"],
+        "answer": "d",
+        "explanation": "corrupt practices – коррумпированные практики."
+      },
+      {
+        "question": "The ______ was sentenced to life in prison.",
+        "options": ["a) defendant", "b) suspect", "c) convict", "d) witness"],
+        "answer": "c",
+        "explanation": "convict – осуждённый."
+      },
+      {
+        "question": "The judge imposed a heavy ______.",
+        "options": ["a) sentence", "b) verdict", "c) fine", "d) charge"],
+        "answer": "c",
+        "explanation": "fine – штраф."
+      },
+      {
+        "question": "The criminal was put under house ______.",
+        "options": ["a) detention", "b) custody", "c) arrest", "d) supervision"],
+        "answer": "c",
+        "explanation": "house arrest – домашний арест."
+      },
+      {
+        "question": "The ______ was granted after two years.",
+        "options": ["a) pardon", "b) release", "c) parole", "d) freedom"],
+        "answer": "c",
+        "explanation": "parole – условно-досрочное освобождение."
+      },
+      {
+        "question": "The police found ______ linking him to the crime.",
+        "options": ["a) clues", "b) traces", "c) evidence", "d) proof"],
+        "answer": "c",
+        "explanation": "evidence – улика."
+      },
+      {
+        "question": "The judge gave a harsh ______.",
+        "options": ["a) verdict", "b) decision", "c) sentence", "d) ruling"],
+        "answer": "c",
+        "explanation": "sentence – приговор."
+              }
             ]
         },
         {
@@ -30670,19 +34621,59 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 4 (перефразирование)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "The official was arrested for ______.", "answer": "bribery", "explanation": "bribery – взяточничество."},
-                {"question": "The document was a ______.", "answer": "forgery", "explanation": "forgery – подделка документов."},
-                {"question": "The building was destroyed by ______.", "answer": "arson", "explanation": "arson – поджог."},
-                {"question": "The teenager was charged with ______.", "answer": "vandalism", "explanation": "vandalism – вандализм."},
-                {"question": "The victim was a victim of ______.", "answer": "stalking", "explanation": "stalking – преследование."},
-                {"question": "The driver was arrested for a ______ accident.", "answer": "hit-and-run", "explanation": "hit-and-run – наезд со скрытием."},
-                {"question": "The gang was involved in drug ______.", "answer": "trafficking", "explanation": "drug trafficking – торговля наркотиками."},
-                {"question": "The court heard the ______ of the witness.", "answer": "testimony", "explanation": "testimony – показания."}
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "The official was arrested for ______.",
+        "options": ["a) theft", "b) fraud", "c) bribery", "d) embezzlement"],
+        "answer": "c",
+        "explanation": "bribery – взяточничество."
+      },
+      {
+        "question": "The document was a ______.",
+        "options": ["a) fake", "b) copy", "c) forgery", "d) duplicate"],
+        "answer": "c",
+        "explanation": "forgery – подделка документов."
+      },
+      {
+        "question": "The building was destroyed by ______.",
+        "options": ["a) fire", "b) explosion", "c) arson", "d) earthquake"],
+        "answer": "c",
+        "explanation": "arson – поджог."
+      },
+      {
+        "question": "The teenager was charged with ______.",
+        "options": ["a) theft", "b) robbery", "c) vandalism", "d) burglary"],
+        "answer": "c",
+        "explanation": "vandalism – вандализм."
+      },
+      {
+        "question": "The victim was a victim of ______.",
+        "options": ["a) harassment", "b) assault", "c) stalking", "d) bullying"],
+        "answer": "c",
+        "explanation": "stalking – преследование."
+      },
+      {
+        "question": "The driver was arrested for a ______ accident.",
+        "options": ["a) car", "b) fatal", "c) serious", "d) hit-and-run"],
+        "answer": "d",
+        "explanation": "hit-and-run – наезд со скрытием."
+      },
+      {
+        "question": "The gang was involved in drug ______.",
+        "options": ["a) smuggling", "b) selling", "c) trafficking", "d) distribution"],
+        "answer": "c",
+        "explanation": "drug trafficking – торговля наркотиками."
+      },
+      {
+        "question": "The court heard the ______ of the witness.",
+        "options": ["a) statement", "b) report", "c) testimony", "d) account"],
+        "answer": "c",
+        "explanation": "testimony – показания."
+              }
             ]
         },
         {
@@ -30731,19 +34722,59 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 5 (перевод)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "The ______ was cross-examined by the prosecutor.", "answer": "witness", "explanation": "witness – свидетель."},
-                {"question": "The judge instructed the ______ before they began deliberations.", "answer": "jury", "explanation": "jury – присяжные."},
-                {"question": "The ______ was found guilty and sentenced to prison.", "answer": "defendant", "explanation": "defendant – обвиняемый."},
-                {"question": "The ______ argued that his client was innocent.", "answer": "defence attorney", "explanation": "defence attorney – адвокат защиты."},
-                {"question": "The ______ decided to drop the charges.", "answer": "prosecutor", "explanation": "prosecutor – прокурор."},
-                {"question": "The ______ of the crime was arrested yesterday.", "answer": "perpetrator", "explanation": "perpetrator – преступник (совершивший)."},
-                {"question": "The judge called for a ______ to testify.", "answer": "witness", "explanation": "witness – свидетель."},
-                {"question": "The ______ is a very serious crime.", "answer": "offence", "explanation": "offence – преступление (правонарушение)."}
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "The ______ was cross-examined by the prosecutor.",
+        "options": ["a) defendant", "b) witness", "c) judge", "d) jury"],
+        "answer": "b",
+        "explanation": "witness – свидетель."
+      },
+      {
+        "question": "The judge instructed the ______ before they began deliberations.",
+        "options": ["a) jury", "b) defendant", "c) attorney", "d) prosecutor"],
+        "answer": "a",
+        "explanation": "jury – присяжные."
+      },
+      {
+        "question": "The ______ was found guilty and sentenced to prison.",
+        "options": ["a) witness", "b) defendant", "c) victim", "d) judge"],
+        "answer": "b",
+        "explanation": "defendant – обвиняемый."
+      },
+      {
+        "question": "The ______ argued that his client was innocent.",
+        "options": ["a) defence attorney", "b) prosecutor", "c) judge", "d) witness"],
+        "answer": "a",
+        "explanation": "defence attorney – адвокат защиты."
+      },
+      {
+        "question": "The ______ decided to drop the charges.",
+        "options": ["a) judge", "b) defence attorney", "c) prosecutor", "d) jury"],
+        "answer": "c",
+        "explanation": "prosecutor – прокурор."
+      },
+      {
+        "question": "The ______ of the crime was arrested yesterday.",
+        "options": ["a) victim", "b) perpetrator", "c) witness", "d) judge"],
+        "answer": "b",
+        "explanation": "perpetrator – преступник (совершивший)."
+      },
+      {
+        "question": "The judge called for a ______ to testify.",
+        "options": ["a) jury", "b) defendant", "c) witness", "d) prosecutor"],
+        "answer": "c",
+        "explanation": "witness – свидетель."
+      },
+      {
+        "question": "The ______ is a very serious crime.",
+        "options": ["a) offence", "b) verdict", "c) trial", "d) arrest"],
+        "answer": "a",
+        "explanation": "offence – преступление (правонарушение)."
+              }
             ]
         },
         {
@@ -30792,20 +34823,60 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 6 (перефразирование)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "The police are investigating a case of ______.", "answer": "cybercrime", "explanation": "cybercrime – киберпреступность."},
-                {"question": "The hacker was charged with ______.", "answer": "cybercrime", "explanation": "cybercrime – киберпреступность (взлом)."},
-                {"question": "The company lost millions due to ______.", "answer": "fraud", "explanation": "fraud – мошенничество."},
-                {"question": "The bank manager was involved in ______.", "answer": "embezzlement", "explanation": "embezzlement – присвоение средств."},
-                {"question": "The government promised to fight ______.", "answer": "corruption", "explanation": "corruption – коррупция."},
-                {"question": "The criminal was sentenced to ______.", "answer": "life imprisonment", "explanation": "life imprisonment – пожизненное заключение."},
-                {"question": "The judge decided to ______ the case.", "answer": "adjourn", "explanation": "to adjourn – отложить (дело)."},
-                {"question": "The witness was asked to ______.", "answer": "testify", "explanation": "to testify – давать показания."}
-            ]
+ [
+  {
+    "type": "complex",
+    "text": "1. Choose the correct word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "The police are investigating a case of ______.",
+        "options": ["a) fraud", "b) cybercrime", "c) bribery", "d) vandalism"],
+        "answer": "b",
+        "explanation": "cybercrime – киберпреступность."
+      },
+      {
+        "question": "The hacker was charged with ______.",
+        "options": ["a) cybercrime", "b) embezzlement", "c) corruption", "d) forgery"],
+        "answer": "a",
+        "explanation": "cybercrime – киберпреступность (взлом)."
+      },
+      {
+        "question": "The company lost millions due to ______.",
+        "options": ["a) fraud", "b) theft", "c) vandalism", "d) arson"],
+        "answer": "a",
+        "explanation": "fraud – мошенничество."
+      },
+      {
+        "question": "The bank manager was involved in ______.",
+        "options": ["a) embezzlement", "b) cybercrime", "c) assault", "d) burglary"],
+        "answer": "a",
+        "explanation": "embezzlement – присвоение средств."
+      },
+      {
+        "question": "The government promised to fight ______.",
+        "options": ["a) corruption", "b) poverty", "c) disease", "d) illiteracy"],
+        "answer": "a",
+        "explanation": "corruption – коррупция."
+      },
+      {
+        "question": "The criminal was sentenced to ______.",
+        "options": ["a) life imprisonment", "b) community service", "c) probation", "d) a fine"],
+        "answer": "a",
+        "explanation": "life imprisonment – пожизненное заключение."
+      },
+      {
+        "question": "The judge decided to ______ the case.",
+        "options": ["a) adjourn", "b) convict", "c) acquit", "d) appeal"],
+        "answer": "a",
+        "explanation": "to adjourn – отложить (дело)."
+      },
+      {
+        "question": "The witness was asked to ______.",
+        "options": ["a) testify", "b) lie", "c) remain silent", "d) leave"],
+        "answer": "a",
+        "explanation": "to testify – давать показания."
+             }
+           ]
         },
         {
             "type": "complex",
@@ -30853,19 +34924,59 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 7 (перевод)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "The ______ was sentenced to community service.", "answer": "offender", "explanation": "offender – правонарушитель."},
-                {"question": "The ______ was granted parole after three years.", "answer": "inmate", "explanation": "inmate – заключённый."},
-                {"question": "The police made an ______ at the scene.", "answer": "arrest", "explanation": "arrest – арест."},
-                {"question": "The judge called for a ______ against the accused.", "answer": "verdict", "explanation": "verdict – вердикт."},
-                {"question": "The defence ______ requested a new trial.", "answer": "lawyer", "explanation": "lawyer – юрист."},
-                {"question": "The prosecutor filed a ______ against the suspect.", "answer": "charge", "explanation": "charge – обвинение."},
-                {"question": "The ______ was found hiding in the warehouse.", "answer": "fugitive", "explanation": "fugitive – беглец."},
-                {"question": "The police issued a ______ for his arrest.", "answer": "warrant", "explanation": "warrant – ордер."}
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "The ______ was sentenced to community service.",
+        "options": ["a) offender", "b) witness", "c) juror", "d) prosecutor"],
+        "answer": "a",
+        "explanation": "offender – правонарушитель."
+      },
+      {
+        "question": "The ______ was granted parole after three years.",
+        "options": ["a) inmate", "b) fugitive", "c) suspect", "d] defendant"],
+        "answer": "a",
+        "explanation": "inmate – заключённый."
+      },
+      {
+        "question": "The police made an ______ at the scene.",
+        "options": ["a) arrest", "b) inquiry", "c) accusation", "d) objection"],
+        "answer": "a",
+        "explanation": "arrest – арест."
+      },
+      {
+        "question": "The judge called for a ______ against the accused.",
+        "options": ["a) verdict", "b) sentence", "c) charge", "d) plea"],
+        "answer": "a",
+        "explanation": "verdict – вердикт."
+      },
+      {
+        "question": "The defence ______ requested a new trial.",
+        "options": ["a) lawyer", "b) judge", "c) prosecutor", "d) witness"],
+        "answer": "a",
+        "explanation": "lawyer – юрист."
+      },
+      {
+        "question": "The prosecutor filed a ______ against the suspect.",
+        "options": ["a) charge", "b) warrant", "c) verdict", "d) appeal"],
+        "answer": "a",
+        "explanation": "charge – обвинение."
+      },
+      {
+        "question": "The ______ was found hiding in the warehouse.",
+        "options": ["a) fugitive", "b) witness", "c) judge", "d) attorney"],
+        "answer": "a",
+        "explanation": "fugitive – беглец."
+      },
+      {
+        "question": "The police issued a ______ for his arrest.",
+        "options": ["a) warrant", "b) charge", "c) verdict", "d) order"],
+        "answer": "a",
+        "explanation": "warrant – ордер."
+              }
             ]
         },
         {
@@ -30914,19 +35025,59 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 8 (перефразирование)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "The ______ was convicted of armed robbery.", "answer": "criminal", "explanation": "criminal – преступник."},
-                {"question": "The ______ stole jewellery worth millions.", "answer": "thief", "explanation": "thief – вор."},
-                {"question": "The ______ broke into the house at night.", "answer": "burglar", "explanation": "burglar – вор-взломщик."},
-                {"question": "The ______ robbed the bank with a weapon.", "answer": "robber", "explanation": "robber – грабитель."},
-                {"question": "The ______ was caught shoplifting.", "answer": "shoplifter", "explanation": "shoplifter – магазинный вор."},
-                {"question": "The ______ kidnapped the child and demanded ransom.", "answer": "kidnapper", "explanation": "kidnapper – похититель."},
-                {"question": "The ______ threatened the victim with a weapon.", "answer": "mugger", "explanation": "mugger – уличный грабитель."},
-                {"question": "The ______ was convicted of murder.", "answer": "killer", "explanation": "killer – убийца."}
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "The ______ was convicted of armed robbery.",
+        "options": ["a) thief", "b) burglar", "c) criminal", "d) robber"],
+        "answer": "c",
+        "explanation": "criminal – преступник."
+      },
+      {
+        "question": "The ______ stole jewellery worth millions.",
+        "options": ["a) thief", "b) burglar", "c) robber", "d) mugger"],
+        "answer": "a",
+        "explanation": "thief – вор."
+      },
+      {
+        "question": "The ______ broke into the house at night.",
+        "options": ["a) burglar", "b) thief", "c) robber", "d) shoplifter"],
+        "answer": "a",
+        "explanation": "burglar – вор-взломщик."
+      },
+      {
+        "question": "The ______ robbed the bank with a weapon.",
+        "options": ["a) robber", "b) burglar", "c) thief", "d) mugger"],
+        "answer": "a",
+        "explanation": "robber – грабитель."
+      },
+      {
+        "question": "The ______ was caught shoplifting.",
+        "options": ["a) shoplifter", "b) thief", "c) robber", "d) burglar"],
+        "answer": "a",
+        "explanation": "shoplifter – магазинный вор."
+      },
+      {
+        "question": "The ______ kidnapped the child and demanded ransom.",
+        "options": ["a) kidnapper", "b) mugger", "c) robber", "d) killer"],
+        "answer": "a",
+        "explanation": "kidnapper – похититель."
+      },
+      {
+        "question": "The ______ threatened the victim with a weapon.",
+        "options": ["a) mugger", "b) robber", "c) burglar", "d) shoplifter"],
+        "answer": "a",
+        "explanation": "mugger – уличный грабитель."
+      },
+      {
+        "question": "The ______ was convicted of murder.",
+        "options": ["a) killer", "b) thief", "c) kidnapper", "d) robber"],
+        "answer": "a",
+        "explanation": "killer – убийца."
+              }
             ]
         },
         {
@@ -30975,19 +35126,59 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 9 (перевод)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "The ______ was arrested for hacking into the system.", "answer": "hacker", "explanation": "hacker – хакер."},
-                {"question": "The ______ of the building was an act of vandalism.", "answer": "destruction", "explanation": "destruction – разрушение."},
-                {"question": "The ______ was charged with human trafficking.", "answer": "trafficker", "explanation": "trafficker – торговец (людьми)."},
-                {"question": "The ______ was convicted of money laundering.", "answer": "money launderer", "explanation": "money launderer – отмыватель денег."},
-                {"question": "The ______ was caught forging signatures.", "answer": "forger", "explanation": "forger – фальшивомонетчик (подделыватель)."},
-                {"question": "The ______ was sentenced to death.", "answer": "murderer", "explanation": "murderer – убийца."},
-                {"question": "The ______ was involved in a drug ring.", "answer": "drug dealer", "explanation": "drug dealer – наркоторговец."},
-                {"question": "The ______ was acquitted due to lack of evidence.", "answer": "suspect", "explanation": "suspect – подозреваемый."}
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "The ______ was arrested for hacking into the system.",
+        "options": ["a) hacker", "b) fraudster", "c) thief", "d) burglar"],
+        "answer": "a",
+        "explanation": "hacker – хакер."
+      },
+      {
+        "question": "The ______ of the building was an act of vandalism.",
+        "options": ["a) destruction", "b) theft", "c) burglary", "d) arson"],
+        "answer": "a",
+        "explanation": "destruction – разрушение."
+      },
+      {
+        "question": "The ______ was charged with human trafficking.",
+        "options": ["a) trafficker", "b) smuggler", "c) kidnapper", "d) forger"],
+        "answer": "a",
+        "explanation": "trafficker – торговец (людьми)."
+      },
+      {
+        "question": "The ______ was convicted of money laundering.",
+        "options": ["a) money launderer", "b) fraudster", "c) hacker", "d) forger"],
+        "answer": "a",
+        "explanation": "money launderer – отмыватель денег."
+      },
+      {
+        "question": "The ______ was caught forging signatures.",
+        "options": ["a) forger", "b) thief", "c) robber", "d) mugger"],
+        "answer": "a",
+        "explanation": "forger – фальшивомонетчик (подделыватель)."
+      },
+      {
+        "question": "The ______ was sentenced to death.",
+        "options": ["a) murderer", "b) thief", "c) kidnapper", "d) robber"],
+        "answer": "a",
+        "explanation": "murderer – убийца."
+      },
+      {
+        "question": "The ______ was involved in a drug ring.",
+        "options": ["a) drug dealer", "b) trafficker", "c) smuggler", "d) hacker"],
+        "answer": "a",
+        "explanation": "drug dealer – наркоторговец."
+      },
+      {
+        "question": "The ______ was acquitted due to lack of evidence.",
+        "options": ["a) suspect", "b) defendant", "c) convict", "d) offender"],
+        "answer": "a",
+        "explanation": "suspect – подозреваемый."
+              }
             ]
         },
         {
@@ -31036,20 +35227,60 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 10 (перефразирование)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "The ______ was sentenced to ten years in jail.", "answer": "convict", "explanation": "convict – осуждённый."},
-                {"question": "The ______ was found innocent of all charges.", "answer": "accused", "explanation": "accused – обвиняемый."},
-                {"question": "The ______ of the crime was never caught.", "answer": "culprit", "explanation": "culprit – виновник."},
-                {"question": "The ______ was released on bail.", "answer": "suspect", "explanation": "suspect – подозреваемый."},
-                {"question": "The ______ was given a suspended sentence.", "answer": "offender", "explanation": "offender – правонарушитель."},
-                {"question": "The ______ was put on probation for two years.", "answer": "convict", "explanation": "convict – осуждённый."},
-                {"question": "The ______ of the robbery was described by witnesses.", "answer": "perpetrator", "explanation": "perpetrator – совершивший преступление."},
-                {"question": "The ______ was charged with assault.", "answer": "defendant", "explanation": "defendant – обвиняемый."}
-            ]
+ [
+  {
+    "type": "complex",
+    "text": "1. Choose the correct word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "The ______ was sentenced to ten years in jail.",
+        "options": ["a) convict", "b) suspect", "c) witness", "d) judge"],
+        "answer": "a",
+        "explanation": "convict – осуждённый."
+      },
+      {
+        "question": "The ______ was found innocent of all charges.",
+        "options": ["a) accused", "b) convict", "c) offender", "d) perpetrator"],
+        "answer": "a",
+        "explanation": "accused – обвиняемый."
+      },
+      {
+        "question": "The ______ of the crime was never caught.",
+        "options": ["a) culprit", "b) witness", "c) judge", "d) jury"],
+        "answer": "a",
+        "explanation": "culprit – виновник."
+      },
+      {
+        "question": "The ______ was released on bail.",
+        "options": ["a) suspect", "b) convict", "c) offender", "d) fugitive"],
+        "answer": "a",
+        "explanation": "suspect – подозреваемый."
+      },
+      {
+        "question": "The ______ was given a suspended sentence.",
+        "options": ["a) offender", "b) victim", "c) witness", "d] prosecutor"],
+        "answer": "a",
+        "explanation": "offender – правонарушитель."
+      },
+      {
+        "question": "The ______ was put on probation for two years.",
+        "options": ["a) convict", "b) suspect", "c) fugitive", "d) defendant"],
+        "answer": "a",
+        "explanation": "convict – осуждённый."
+      },
+      {
+        "question": "The ______ of the robbery was described by witnesses.",
+        "options": ["a) perpetrator", "b) offender", "c) criminal", "d) burglar"],
+        "answer": "a",
+        "explanation": "perpetrator – совершивший преступление."
+      },
+      {
+        "question": "The ______ was charged with assault.",
+        "options": ["a) defendant", "b) witness", "c) judge", "d) jury"],
+        "answer": "a",
+        "explanation": "defendant – обвиняемый."
+             }
+           ]
         },
         {
             "type": "complex",
@@ -31097,19 +35328,59 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 11 (перевод)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "The ______ was charged with forgery.", "answer": "forger", "explanation": "forger – подделыватель."},
-                {"question": "The ______ was convicted of bribery.", "answer": "bribe-taker", "explanation": "bribe-taker – взяточник."},
-                {"question": "The ______ was arrested for embezzlement.", "answer": "embezzler", "explanation": "embezzler – присвоитель."},
-                {"question": "The ______ was involved in a corruption scandal.", "answer": "official", "explanation": "official – чиновник."},
-                {"question": "The ______ was sentenced to death.", "answer": "murderer", "explanation": "murderer – убийца."},
-                {"question": "The ______ was acquitted by the jury.", "answer": "defendant", "explanation": "defendant – обвиняемый."},
-                {"question": "The ______ was asked to provide evidence.", "answer": "witness", "explanation": "witness – свидетель."},
-                {"question": "The ______ was found guilty of arson.", "answer": "arsonist", "explanation": "arsonist – поджигатель."}
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "The ______ was charged with forgery.",
+        "options": ["a) thief", "b) forger", "c) burglar", "d) robber"],
+        "answer": "b",
+        "explanation": "forger – подделыватель."
+      },
+      {
+        "question": "The ______ was convicted of bribery.",
+        "options": ["a) forger", "b) embezzler", "c) bribe-taker", "d) fraudster"],
+        "answer": "c",
+        "explanation": "bribe-taker – взяточник."
+      },
+      {
+        "question": "The ______ was arrested for embezzlement.",
+        "options": ["a) robber", "b) burglar", "c) thief", "d) embezzler"],
+        "answer": "d",
+        "explanation": "embezzler – присвоитель."
+      },
+      {
+        "question": "The ______ was involved in a corruption scandal.",
+        "options": ["a) politician", "b) judge", "c) official", "d) lawyer"],
+        "answer": "c",
+        "explanation": "official – чиновник."
+      },
+      {
+        "question": "The ______ was sentenced to death.",
+        "options": ["a) robber", "b) kidnapper", "c) murderer", "d) thief"],
+        "answer": "c",
+        "explanation": "murderer – убийца."
+      },
+      {
+        "question": "The ______ was acquitted by the jury.",
+        "options": ["a) prosecutor", "b) defendant", "c) witness", "d) judge"],
+        "answer": "b",
+        "explanation": "defendant – обвиняемый."
+      },
+      {
+        "question": "The ______ was asked to provide evidence.",
+        "options": ["a) suspect", "b) convict", "c) witness", "d) defendant"],
+        "answer": "c",
+        "explanation": "witness – свидетель."
+      },
+      {
+        "question": "The ______ was found guilty of arson.",
+        "options": ["a) vandal", "b) burglar", "c) arsonist", "d) thief"],
+        "answer": "c",
+        "explanation": "arsonist – поджигатель."
+              }
             ]
         },
         {
@@ -31158,19 +35429,59 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 12 (перефразирование)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "The ______ was accused of human trafficking.", "answer": "trafficker", "explanation": "trafficker – торговец."},
-                {"question": "The ______ was convicted of drug trafficking.", "answer": "drug dealer", "explanation": "drug dealer – наркоторговец."},
-                {"question": "The ______ was charged with money laundering.", "answer": "money launderer", "explanation": "money launderer – отмыватель денег."},
-                {"question": "The ______ was arrested for cybercrime.", "answer": "hacker", "explanation": "hacker – хакер."},
-                {"question": "The ______ was found guilty of fraud.", "answer": "fraudster", "explanation": "fraudster – мошенник."},
-                {"question": "The ______ was involved in a hit-and-run accident.", "answer": "driver", "explanation": "driver – водитель (виновник наезда)."},
-                {"question": "The ______ was sentenced to life imprisonment.", "answer": "murderer", "explanation": "murderer – убийца."},
-                {"question": "The ______ was put under house arrest.", "answer": "criminal", "explanation": "criminal – преступник."}
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "The ______ was accused of human trafficking.",
+        "options": ["a) smuggler", "b) kidnapper", "c) trafficker", "d) forger"],
+        "answer": "c",
+        "explanation": "trafficker – торговец."
+      },
+      {
+        "question": "The ______ was convicted of drug trafficking.",
+        "options": ["a) trafficker", "b) drug dealer", "c) smuggler", "d) hacker"],
+        "answer": "b",
+        "explanation": "drug dealer – наркоторговец."
+      },
+      {
+        "question": "The ______ was charged with money laundering.",
+        "options": ["a) money launderer", "b) fraudster", "c) hacker", "d) forger"],
+        "answer": "a",
+        "explanation": "money launderer – отмыватель денег."
+      },
+      {
+        "question": "The ______ was arrested for cybercrime.",
+        "options": ["a) burglar", "b) thief", "c) hacker", "d) fraudster"],
+        "answer": "c",
+        "explanation": "hacker – хакер."
+      },
+      {
+        "question": "The ______ was found guilty of fraud.",
+        "options": ["a) money launderer", "b) hacker", "c) fraudster", "d) forger"],
+        "answer": "c",
+        "explanation": "fraudster – мошенник."
+      },
+      {
+        "question": "The ______ was involved in a hit-and-run accident.",
+        "options": ["a) pedestrian", "b) driver", "c) cyclist", "d) passenger"],
+        "answer": "b",
+        "explanation": "driver – водитель (виновник наезда)."
+      },
+      {
+        "question": "The ______ was sentenced to life imprisonment.",
+        "options": ["a) thief", "b) robber", "c) murderer", "d) kidnapper"],
+        "answer": "c",
+        "explanation": "murderer – убийца."
+      },
+      {
+        "question": "The ______ was put under house arrest.",
+        "options": ["a) suspect", "b) defendant", "c) criminal", "d) convict"],
+        "answer": "c",
+        "explanation": "criminal – преступник."
+              }
             ]
         },
         {
@@ -31248,20 +35559,60 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 1 (перевод)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "The UK is a constitutional ______.", "answer": "monarchy", "explanation": "monarchy – монархия."},
-                {"question": "The bill was passed by ______.", "answer": "parliament", "explanation": "parliament – парламент."},
-                {"question": "The ______ called a snap election.", "answer": "prime minister", "explanation": "prime minister – премьер-министр."},
-                {"question": "The candidate won by a narrow ______.", "answer": "majority", "explanation": "majority – большинство."},
-                {"question": "The president ______ the bill.", "answer": "vetoed", "explanation": "to veto – наложить вето."},
-                {"question": "The new legislation was ______ by parliament.", "answer": "ratified", "explanation": "to ratify – ратифицировать."},
-                {"question": "The ______ opposed the new policy.", "answer": "opposition", "explanation": "opposition – оппозиция."},
-                {"question": "The government promised to fight ______.", "answer": "corruption", "explanation": "corruption – коррупция."}
-            ]
+ [
+  {
+    "type": "complex",
+    "text": "1. Choose the correct word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "The UK is a constitutional ______.",
+        "options": ["a) republic", "b) democracy", "c) monarchy", "d) dictatorship"],
+        "answer": "c",
+        "explanation": "monarchy – монархия."
+      },
+      {
+        "question": "The bill was passed by ______.",
+        "options": ["a) senate", "b) cabinet", "c) congress", "d) parliament"],
+        "answer": "d",
+        "explanation": "parliament – парламент."
+      },
+      {
+        "question": "The ______ called a snap election.",
+        "options": ["a) president", "b) prime minister", "c) speaker", "d) monarch"],
+        "answer": "b",
+        "explanation": "prime minister – премьер-министр."
+      },
+      {
+        "question": "The candidate won by a narrow ______.",
+        "options": ["a) minority", "b) majority", "c) margin", "d) lead"],
+        "answer": "b",
+        "explanation": "majority – большинство."
+      },
+      {
+        "question": "The president ______ the bill.",
+        "options": ["a) vetoed", "b) amended", "c) signed", "d) reviewed"],
+        "answer": "a",
+        "explanation": "to veto – наложить вето."
+      },
+      {
+        "question": "The new legislation was ______ by parliament.",
+        "options": ["a) ratified", "b) rejected", "c) amended", "d) tabled"],
+        "answer": "a",
+        "explanation": "to ratify – ратифицировать."
+      },
+      {
+        "question": "The ______ opposed the new policy.",
+        "options": ["a) government", "b) majority", "c) opposition", "d) parliament"],
+        "answer": "c",
+        "explanation": "opposition – оппозиция."
+      },
+      {
+        "question": "The government promised to fight ______.",
+        "options": ["a) poverty", "b) corruption", "c) disease", "d) illiteracy"],
+        "answer": "b",
+        "explanation": "corruption – коррупция."
+             }
+           ]
         },
         {
             "type": "complex",
@@ -31309,20 +35660,60 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 2 (перефразирование)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "The USA is a federal ______.", "answer": "republic", "explanation": "republic – республика."},
-                {"question": "The ______ is the highest court in the country.", "answer": "supreme court", "explanation": "supreme court – верховный суд."},
-                {"question": "The ______ was elected last year.", "answer": "president", "explanation": "president – президент."},
-                {"question": "The ______ represents the people in congress.", "answer": "senator", "explanation": "senator – сенатор."},
-                {"question": "The ______ was held to decide the issue.", "answer": "referendum", "explanation": "referendum – референдум."},
-                {"question": "The government formed a ______ with another party.", "answer": "coalition", "explanation": "coalition – коалиция."},
-                {"question": "The constitution was amended by a new ______.", "answer": "amendment", "explanation": "amendment – поправка."},
-                {"question": "The ambassador was recalled from the ______ country.", "answer": "foreign", "explanation": "foreign – иностранный (о стране)."}
-            ]
+ [
+  {
+    "type": "complex",
+    "text": "1. Choose the correct word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "The USA is a federal ______.",
+        "options": ["a) monarchy", "b) republic", "c) dictatorship", "d) theocracy"],
+        "answer": "b",
+        "explanation": "republic – республика."
+      },
+      {
+        "question": "The ______ is the highest court in the country.",
+        "options": ["a) high court", "b) supreme court", "c) court of appeals", "d) constitutional court"],
+        "answer": "b",
+        "explanation": "supreme court – верховный суд."
+      },
+      {
+        "question": "The ______ was elected last year.",
+        "options": ["a) prime minister", "b) president", "c) chancellor", "d) governor"],
+        "answer": "b",
+        "explanation": "president – президент."
+      },
+      {
+        "question": "The ______ represents the people in congress.",
+        "options": ["a) senator", "b) representative", "c) congressman", "d) delegate"],
+        "answer": "a",
+        "explanation": "senator – сенатор."
+      },
+      {
+        "question": "The ______ was held to decide the issue.",
+        "options": ["a) election", "b) plebiscite", "c) referendum", "d) poll"],
+        "answer": "c",
+        "explanation": "referendum – референдум."
+      },
+      {
+        "question": "The government formed a ______ with another party.",
+        "options": ["a) alliance", "b) coalition", "c) union", "d) federation"],
+        "answer": "b",
+        "explanation": "coalition – коалиция."
+      },
+      {
+        "question": "The constitution was amended by a new ______.",
+        "options": ["a) amendment", "b) clause", "c) article", "d) section"],
+        "answer": "a",
+        "explanation": "amendment – поправка."
+      },
+      {
+        "question": "The ambassador was recalled from the ______ country.",
+        "options": ["a) foreign", "b) allied", "c) neutral", "d) friendly"],
+        "answer": "a",
+        "explanation": "foreign – иностранный (о стране)."
+             }
+           ]
         },
         {
             "type": "complex",
@@ -31370,19 +35761,59 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 3 (перевод)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "The country is ruled by a ______ regime.", "answer": "authoritarian", "explanation": "authoritarian regime – авторитарный режим."},
-                {"question": "The ______ state has a strong central government.", "answer": "unitary", "explanation": "unitary state – унитарное государство."},
-                {"question": "The ______ is the head of the government in many countries.", "answer": "prime minister", "explanation": "prime minister – премьер-министр."},
-                {"question": "The ______ appointed a new minister.", "answer": "cabinet", "explanation": "cabinet – кабинет министров."},
-                {"question": "The ______ was declared unconstitutional.", "answer": "act", "explanation": "act – закон."},
-                {"question": "The ______ of the constitution requires a two-thirds majority.", "answer": "amendment", "explanation": "amendment – поправка."},
-                {"question": "The ______ was held to elect a new president.", "answer": "election", "explanation": "election – выборы."},
-                {"question": "The politician launched a ______ campaign.", "answer": "election", "explanation": "election campaign – избирательная кампания."}
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "The country is ruled by a ______ regime.",
+        "options": ["a) democratic", "b) authoritarian", "c) totalitarian", "d) federal"],
+        "answer": "b",
+        "explanation": "authoritarian regime – авторитарный режим."
+      },
+      {
+        "question": "The ______ state has a strong central government.",
+        "options": ["a) federal", "b) unitary", "c) confederal", "d) devolved"],
+        "answer": "b",
+        "explanation": "unitary state – унитарное государство."
+      },
+      {
+        "question": "The ______ is the head of the government in many countries.",
+        "options": ["a) president", "b) prime minister", "c) chancellor", "d) monarch"],
+        "answer": "b",
+        "explanation": "prime minister – премьер-министр."
+      },
+      {
+        "question": "The ______ appointed a new minister.",
+        "options": ["a) parliament", "b) congress", "c) cabinet", "d) senate"],
+        "answer": "c",
+        "explanation": "cabinet – кабинет министров."
+      },
+      {
+        "question": "The ______ was declared unconstitutional.",
+        "options": ["a) bill", "b) act", "c) law", "d) regulation"],
+        "answer": "b",
+        "explanation": "act – закон."
+      },
+      {
+        "question": "The ______ of the constitution requires a two-thirds majority.",
+        "options": ["a) revision", "b) article", "c) amendment", "d) section"],
+        "answer": "c",
+        "explanation": "amendment – поправка."
+      },
+      {
+        "question": "The ______ was held to elect a new president.",
+        "options": ["a) referendum", "b) election", "c) plebiscite", "d) caucus"],
+        "answer": "b",
+        "explanation": "election – выборы."
+      },
+      {
+        "question": "The politician launched a ______ campaign.",
+        "options": ["a) political", "b) electoral", "c) election", "d) campaign"],
+        "answer": "c",
+        "explanation": "election campaign – избирательная кампания."
+              }
             ]
         },
         {
@@ -31431,19 +35862,6 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 4 (перефразирование)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "The ______ is the head of state in the USA.", "answer": "president", "explanation": "president – президент."},
-                {"question": "The ______ is the head of government in the UK.", "answer": "prime minister", "explanation": "prime minister – премьер-министр."},
-                {"question": "The ______ is the leader of the country's foreign policy.", "answer": "minister of foreign affairs", "explanation": "minister of foreign affairs – министр иностранных дел."},
-                {"question": "The ______ is responsible for the country's finances.", "answer": "minister of finance", "explanation": "minister of finance – министр финансов."},
-                {"question": "The ______ is the chief legal officer of the government.", "answer": "attorney general", "explanation": "attorney general – генеральный прокурор."},
-                {"question": "The ______ is the head of the police force.", "answer": "chief of police", "explanation": "chief of police – начальник полиции."},
-                {"question": "The ______ is the head of the armed forces.", "answer": "commander-in-chief", "explanation": "commander-in-chief – главнокомандующий."},
-                {"question": "The ______ is the representative of the government abroad.", "answer": "ambassador", "explanation": "ambassador – посол."}
             ]
         },
         {
@@ -31492,20 +35910,60 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 5 (перевод)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "The ______ is the law-making body in many countries.", "answer": "parliament", "explanation": "parliament – парламент."},
-                {"question": "The ______ is the upper house of the US Congress.", "answer": "senate", "explanation": "senate – сенат."},
-                {"question": "The ______ is the lower house of the US Congress.", "answer": "house of representatives", "explanation": "house of representatives – палата представителей."},
-                {"question": "The ______ is the head of the judicial branch.", "answer": "chief justice", "explanation": "chief justice – председатель верховного суда."},
-                {"question": "The ______ is the head of the executive branch in the USA.", "answer": "president", "explanation": "president – президент."},
-                {"question": "The ______ is the head of the executive branch in the UK.", "answer": "prime minister", "explanation": "prime minister – премьер-министр."},
-                {"question": "The ______ is responsible for interpreting laws.", "answer": "judiciary", "explanation": "judiciary – судебная власть."},
-                {"question": "The ______ is responsible for enforcing laws.", "answer": "executive", "explanation": "executive – исполнительная власть."}
-            ]
+ [
+  {
+    "type": "complex",
+    "text": "1. Choose the correct word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "The ______ is the law-making body in many countries.",
+        "options": ["a) cabinet", "b) parliament", "c) senate", "d) congress"],
+        "answer": "b",
+        "explanation": "parliament – парламент."
+      },
+      {
+        "question": "The ______ is the upper house of the US Congress.",
+        "options": ["a) senate", "b) house of representatives", "c) parliament", "d) supreme court"],
+        "answer": "a",
+        "explanation": "senate – сенат."
+      },
+      {
+        "question": "The ______ is the lower house of the US Congress.",
+        "options": ["a) senate", "b) parliament", "c) house of representatives", "d) cabinet"],
+        "answer": "c",
+        "explanation": "house of representatives – палата представителей."
+      },
+      {
+        "question": "The ______ is the head of the judicial branch.",
+        "options": ["a) president", "b) chief justice", "c) prime minister", "d) speaker"],
+        "answer": "b",
+        "explanation": "chief justice – председатель верховного суда."
+      },
+      {
+        "question": "The ______ is the head of the executive branch in the USA.",
+        "options": ["a) president", "b) prime minister", "c) chancellor", "d) monarch"],
+        "answer": "a",
+        "explanation": "president – президент."
+      },
+      {
+        "question": "The ______ is the head of the executive branch in the UK.",
+        "options": ["a) president", "b) prime minister", "c) speaker", "d) lord chancellor"],
+        "answer": "b",
+        "explanation": "prime minister – премьер-министр."
+      },
+      {
+        "question": "The ______ is responsible for interpreting laws.",
+        "options": ["a) executive", "b) legislature", "c) judiciary", "d) bureaucracy"],
+        "answer": "c",
+        "explanation": "judiciary – судебная власть."
+      },
+      {
+        "question": "The ______ is responsible for enforcing laws.",
+        "options": ["a) judiciary", "b) legislature", "c) executive", "d) civil service"],
+        "answer": "c",
+        "explanation": "executive – исполнительная власть."
+             }
+           ]
         },
         {
             "type": "complex",
@@ -31553,19 +36011,59 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 6 (перефразирование)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "The ______ is the political system in which people elect their leaders.", "answer": "democracy", "explanation": "democracy – демократия."},
-                {"question": "The ______ is a form of government with a king or queen.", "answer": "monarchy", "explanation": "monarchy – монархия."},
-                {"question": "The ______ is a form of government with a single ruler with absolute power.", "answer": "dictatorship", "explanation": "dictatorship – диктатура."},
-                {"question": "The ______ is a political system with multiple parties.", "answer": "multi-party system", "explanation": "multi-party system – многопартийная система."},
-                {"question": "The ______ is a political system with two main parties.", "answer": "two-party system", "explanation": "two-party system – двухпартийная система."},
-                {"question": "The ______ is a political system in which power is shared between central and regional governments.", "answer": "federal system", "explanation": "federal system – федеративная система."},
-                {"question": "The ______ is a political system in which power is centralised.", "answer": "unitary system", "explanation": "unitary system – унитарная система."},
-                {"question": "The ______ is a political system in which the head of state is not elected.", "answer": "monarchy", "explanation": "monarchy – монархия."}
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "The ______ is the political system in which people elect their leaders.",
+        "options": ["a) monarchy", "b) dictatorship", "c) democracy", "d) oligarchy"],
+        "answer": "c",
+        "explanation": "democracy – демократия."
+      },
+      {
+        "question": "The ______ is a form of government with a king or queen.",
+        "options": ["a) republic", "b) democracy", "c) monarchy", "d) theocracy"],
+        "answer": "c",
+        "explanation": "monarchy – монархия."
+      },
+      {
+        "question": "The ______ is a form of government with a single ruler with absolute power.",
+        "options": ["a) dictatorship", "b) democracy", "c) monarchy", "d) aristocracy"],
+        "answer": "a",
+        "explanation": "dictatorship – диктатура."
+      },
+      {
+        "question": "The ______ is a political system with multiple parties.",
+        "options": ["a) two-party system", "b) multi-party system", "c) one-party system", "d) non-partisan system"],
+        "answer": "b",
+        "explanation": "multi-party system – многопартийная система."
+      },
+      {
+        "question": "The ______ is a political system with two main parties.",
+        "options": ["a) multi-party system", "b) two-party system", "c) coalition system", "d) dominant-party system"],
+        "answer": "b",
+        "explanation": "two-party system – двухпартийная система."
+      },
+      {
+        "question": "The ______ is a political system in which power is shared between central and regional governments.",
+        "options": ["a) federal system", "b) unitary system", "c) confederal system", "d) devolved system"],
+        "answer": "a",
+        "explanation": "federal system – федеративная система."
+      },
+      {
+        "question": "The ______ is a political system in which power is centralised.",
+        "options": ["a) federal system", "b) unitary system", "c) confederal system", "d) regional system"],
+        "answer": "b",
+        "explanation": "unitary system – унитарная система."
+      },
+      {
+        "question": "The ______ is a political system in which the head of state is not elected.",
+        "options": ["a) republic", "b) democracy", "c) monarchy", "d) oligarchy"],
+        "answer": "c",
+        "explanation": "monarchy – монархия."
+              }
             ]
         },
         {
@@ -31614,19 +36112,59 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 7 (перевод)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "The ______ is the head of state in many republics.", "answer": "president", "explanation": "president – президент."},
-                {"question": "The ______ is the head of government in many parliamentary systems.", "answer": "prime minister", "explanation": "prime minister – премьер-министр."},
-                {"question": "The ______ is the leader of the largest party in parliament.", "answer": "leader of the opposition", "explanation": "leader of the opposition – лидер оппозиции."},
-                {"question": "The ______ is the official residence of the president.", "answer": "presidential palace", "explanation": "presidential palace – президентский дворец."},
-                {"question": "The ______ is the official residence of the prime minister.", "answer": "official residence", "explanation": "official residence – официальная резиденция."},
-                {"question": "The ______ is the place where parliament meets.", "answer": "parliament building", "explanation": "parliament building – здание парламента."},
-                {"question": "The ______ is the seat of the government.", "answer": "capital", "explanation": "capital – столица."},
-                {"question": "The ______ is the highest political office in the country.", "answer": "presidency", "explanation": "presidency – пост президента."}
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "The ______ is the head of state in many republics.",
+        "options": ["a) prime minister", "b) president", "c) chancellor", "d) speaker"],
+        "answer": "b",
+        "explanation": "president – президент."
+      },
+      {
+        "question": "The ______ is the head of government in many parliamentary systems.",
+        "options": ["a) president", "b) prime minister", "c) monarch", "d) dictator"],
+        "answer": "b",
+        "explanation": "prime minister – премьер-министр."
+      },
+      {
+        "question": "The ______ is the leader of the largest party in parliament.",
+        "options": ["a) leader of the opposition", "b) majority leader", "c) whip", "d) speaker"],
+        "answer": "a",
+        "explanation": "leader of the opposition – лидер оппозиции."
+      },
+      {
+        "question": "The ______ is the official residence of the president.",
+        "options": ["a) White House", "b) presidential palace", "c) parliament building", "d) official residence"],
+        "answer": "b",
+        "explanation": "presidential palace – президентский дворец."
+      },
+      {
+        "question": "The ______ is the official residence of the prime minister.",
+        "options": ["a) presidential palace", "b) parliament building", "c) official residence", "d) capital"],
+        "answer": "c",
+        "explanation": "official residence – официальная резиденция."
+      },
+      {
+        "question": "The ______ is the place where parliament meets.",
+        "options": ["a) parliament building", "b) capital", "c) presidential palace", "d) White House"],
+        "answer": "a",
+        "explanation": "parliament building – здание парламента."
+      },
+      {
+        "question": "The ______ is the seat of the government.",
+        "options": ["a) capital", "b) parliament building", "c) official residence", "d) supreme court"],
+        "answer": "a",
+        "explanation": "capital – столица."
+      },
+      {
+        "question": "The ______ is the highest political office in the country.",
+        "options": ["a) presidency", "b) premiership", "c) speakership", "d) chief justiceship"],
+        "answer": "a",
+        "explanation": "presidency – пост президента."
+              }
             ]
         },
         {
@@ -31675,19 +36213,59 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 8 (перефразирование)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "The ______ is the policy of a political party.", "answer": "platform", "explanation": "platform – политическая платформа."},
-                {"question": "The ______ is a promise made by a political party before an election.", "answer": "manifesto", "explanation": "manifesto – предвыборная программа."},
-                {"question": "The ______ is a person who is running for political office.", "answer": "candidate", "explanation": "candidate – кандидат."},
-                {"question": "The ______ is the person who is elected to represent a constituency.", "answer": "MP", "explanation": "MP – член парламента."},
-                {"question": "The ______ is the process of electing a government.", "answer": "election", "explanation": "election – выборы."},
-                {"question": "The ______ is the place where people vote.", "answer": "polling station", "explanation": "polling station – избирательный участок."},
-                {"question": "The ______ is the percentage of people who vote.", "answer": "turnout", "explanation": "turnout – явка избирателей."},
-                {"question": "The ______ is the result of an election.", "answer": "outcome", "explanation": "outcome – исход."}
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "The ______ is the policy of a political party.",
+        "options": ["a) platform", "b) manifesto", "c) programme", "d) agenda"],
+        "answer": "a",
+        "explanation": "platform – политическая платформа."
+      },
+      {
+        "question": "The ______ is a promise made by a political party before an election.",
+        "options": ["a) platform", "b) manifesto", "c) pledge", "d) commitment"],
+        "answer": "b",
+        "explanation": "manifesto – предвыборная программа."
+      },
+      {
+        "question": "The ______ is a person who is running for political office.",
+        "options": ["a) candidate", "b) voter", "c) MP", "d) activist"],
+        "answer": "a",
+        "explanation": "candidate – кандидат."
+      },
+      {
+        "question": "The ______ is the person who is elected to represent a constituency.",
+        "options": ["a) MP", "b) senator", "c) councillor", "d) mayor"],
+        "answer": "a",
+        "explanation": "MP – член парламента."
+      },
+      {
+        "question": "The ______ is the process of electing a government.",
+        "options": ["a) election", "b) referendum", "c) plebiscite", "d) caucus"],
+        "answer": "a",
+        "explanation": "election – выборы."
+      },
+      {
+        "question": "The ______ is the place where people vote.",
+        "options": ["a) polling station", "b) parliament", "c) court", "d) town hall"],
+        "answer": "a",
+        "explanation": "polling station – избирательный участок."
+      },
+      {
+        "question": "The ______ is the percentage of people who vote.",
+        "options": ["a) turnout", "b) majority", "c) quorum", "d) voter share"],
+        "answer": "a",
+        "explanation": "turnout – явка избирателей."
+      },
+      {
+        "question": "The ______ is the result of an election.",
+        "options": ["a) outcome", "b) verdict", "c) decision", "d) conclusion"],
+        "answer": "a",
+        "explanation": "outcome – исход."
+              }
             ]
         },
         {
@@ -31736,19 +36314,59 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 9 (перевод)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "The ______ is the process of making laws.", "answer": "legislation", "explanation": "legislation – законодательство."},
-                {"question": "The ______ is a proposed law.", "answer": "bill", "explanation": "bill – законопроект."},
-                {"question": "The ______ is a law that has been passed.", "answer": "act", "explanation": "act – закон."},
-                {"question": "The ______ is the supreme law of the land.", "answer": "constitution", "explanation": "constitution – конституция."},
-                {"question": "The ______ is a change to the constitution.", "answer": "amendment", "explanation": "amendment – поправка."},
-                {"question": "The ______ is the power of the president to reject a bill.", "answer": "veto", "explanation": "veto – вето."},
-                {"question": "The ______ is the process of approving a treaty.", "answer": "ratification", "explanation": "ratification – ратификация."},
-                {"question": "The ______ is the body that interprets laws.", "answer": "judiciary", "explanation": "judiciary – судебная власть."}
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "The ______ is the process of making laws.",
+        "options": ["a) legislation", "b) regulation", "c) policy", "d) directive"],
+        "answer": "a",
+        "explanation": "legislation – законодательство."
+      },
+      {
+        "question": "The ______ is a proposed law.",
+        "options": ["a) act", "b) bill", "c) statute", "d) ordinance"],
+        "answer": "b",
+        "explanation": "bill – законопроект."
+      },
+      {
+        "question": "The ______ is a law that has been passed.",
+        "options": ["a) bill", "b) act", "c) regulation", "d) directive"],
+        "answer": "b",
+        "explanation": "act – закон."
+      },
+      {
+        "question": "The ______ is the supreme law of the land.",
+        "options": ["a) constitution", "b) treaty", "c) charter", "d) covenant"],
+        "answer": "a",
+        "explanation": "constitution – конституция."
+      },
+      {
+        "question": "The ______ is a change to the constitution.",
+        "options": ["a) amendment", "b) revision", "c) reform", "d) alteration"],
+        "answer": "a",
+        "explanation": "amendment – поправка."
+      },
+      {
+        "question": "The ______ is the power of the president to reject a bill.",
+        "options": ["a) veto", "b) overrule", "c) deny", "d) nullify"],
+        "answer": "a",
+        "explanation": "veto – вето."
+      },
+      {
+        "question": "The ______ is the process of approving a treaty.",
+        "options": ["a) ratification", "b) confirmation", "c) endorsement", "d) validation"],
+        "answer": "a",
+        "explanation": "ratification – ратификация."
+      },
+      {
+        "question": "The ______ is the body that interprets laws.",
+        "options": ["a) judiciary", "b) executive", "c) legislature", "d) bureaucracy"],
+        "answer": "a",
+        "explanation": "judiciary – судебная власть."
+              }
             ]
         },
         {
@@ -31797,19 +36415,59 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 10 (перефразирование)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "The ______ is the leader of the executive branch in a parliamentary system.", "answer": "prime minister", "explanation": "prime minister – премьер-министр."},
-                {"question": "The ______ is the leader of the executive branch in a presidential system.", "answer": "president", "explanation": "president – президент."},
-                {"question": "The ______ is the head of the legislative branch.", "answer": "speaker", "explanation": "speaker – спикер (парламента)."},
-                {"question": "The ______ is the head of the judicial branch.", "answer": "chief justice", "explanation": "chief justice – председатель верховного суда."},
-                {"question": "The ______ is the leader of the majority party in parliament.", "answer": "majority leader", "explanation": "majority leader – лидер большинства."},
-                {"question": "The ______ is the leader of the minority party in parliament.", "answer": "minority leader", "explanation": "minority leader – лидер меньшинства."},
-                {"question": "The ______ is the person who presides over the Senate.", "answer": "vice president", "explanation": "vice president – вице-президент (в США председатель сената)."},
-                {"question": "The ______ is the person who presides over the House of Representatives.", "answer": "speaker", "explanation": "speaker – спикер (палаты представителей)."}
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "The ______ is the leader of the executive branch in a parliamentary system.",
+        "options": ["a) president", "b) prime minister", "c) chancellor", "d) monarch"],
+        "answer": "b",
+        "explanation": "prime minister – премьер-министр."
+      },
+      {
+        "question": "The ______ is the leader of the executive branch in a presidential system.",
+        "options": ["a) prime minister", "b) president", "c) speaker", "d) chief justice"],
+        "answer": "b",
+        "explanation": "president – президент."
+      },
+      {
+        "question": "The ______ is the head of the legislative branch.",
+        "options": ["a) speaker", "b) prime minister", "c) president", "d) chief justice"],
+        "answer": "a",
+        "explanation": "speaker – спикер (парламента)."
+      },
+      {
+        "question": "The ______ is the head of the judicial branch.",
+        "options": ["a) president", "b) prime minister", "c) chief justice", "d) speaker"],
+        "answer": "c",
+        "explanation": "chief justice – председатель верховного суда."
+      },
+      {
+        "question": "The ______ is the leader of the majority party in parliament.",
+        "options": ["a) minority leader", "b) majority leader", "c) speaker", "d) whip"],
+        "answer": "b",
+        "explanation": "majority leader – лидер большинства."
+      },
+      {
+        "question": "The ______ is the leader of the minority party in parliament.",
+        "options": ["a) majority leader", "b) minority leader", "c) speaker", "d) chief whip"],
+        "answer": "b",
+        "explanation": "minority leader – лидер меньшинства."
+      },
+      {
+        "question": "The ______ is the person who presides over the Senate.",
+        "options": ["a) vice president", "b) speaker", "c) majority leader", "d) president pro tempore"],
+        "answer": "a",
+        "explanation": "vice president – вице-президент (в США председатель сената)."
+      },
+      {
+        "question": "The ______ is the person who presides over the House of Representatives.",
+        "options": ["a) speaker", "b) vice president", "c) majority leader", "d) chief justice"],
+        "answer": "a",
+        "explanation": "speaker – спикер (палаты представителей)."
+              }
             ]
         },
         {
@@ -31858,20 +36516,60 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 11 (перевод)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "The ______ is the process of choosing a leader by voting.", "answer": "election", "explanation": "election – выборы."},
-                {"question": "The ______ is the official count of votes.", "answer": "ballot count", "explanation": "ballot count – подсчёт голосов."},
-                {"question": "The ______ is the person who votes.", "answer": "voter", "explanation": "voter – избиратель."},
-                {"question": "The ______ is the right to vote.", "answer": "suffrage", "explanation": "suffrage – избирательное право."},
-                {"question": "The ______ is the group of people who advise the president.", "answer": "cabinet", "explanation": "cabinet – кабинет министров."},
-                {"question": "The ______ is the official residence of the British monarch.", "answer": "Buckingham Palace", "explanation": "Buckingham Palace – Букингемский дворец."},
-                {"question": "The ______ is the official residence of the US president.", "answer": "White House", "explanation": "White House – Белый дом."},
-                {"question": "The ______ is the building where the US Congress meets.", "answer": "Capitol", "explanation": "Capitol – Капитолий."}
-            ]
+ [
+  {
+    "type": "complex",
+    "text": "1. Choose the correct word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "The ______ is the process of choosing a leader by voting.",
+        "options": ["a) election", "b) referendum", "c) plebiscite", "d) primary"],
+        "answer": "a",
+        "explanation": "election – выборы."
+      },
+      {
+        "question": "The ______ is the official count of votes.",
+        "options": ["a) ballot count", "b) voter turnout", "c) exit poll", "d) opinion poll"],
+        "answer": "a",
+        "explanation": "ballot count – подсчёт голосов."
+      },
+      {
+        "question": "The ______ is the person who votes.",
+        "options": ["a) voter", "b) candidate", "c) MP", "d) delegate"],
+        "answer": "a",
+        "explanation": "voter – избиратель."
+      },
+      {
+        "question": "The ______ is the right to vote.",
+        "options": ["a) suffrage", "b) franchise", "c) enfranchisement", "d) electorate"],
+        "answer": "a",
+        "explanation": "suffrage – избирательное право."
+      },
+      {
+        "question": "The ______ is the group of people who advise the president.",
+        "options": ["a) cabinet", "b) council", "c) commission", "d) board"],
+        "answer": "a",
+        "explanation": "cabinet – кабинет министров."
+      },
+      {
+        "question": "The ______ is the official residence of the British monarch.",
+        "options": ["a) White House", "b) Buckingham Palace", "c) Windsor Castle", "d) Tower of London"],
+        "answer": "b",
+        "explanation": "Buckingham Palace – Букингемский дворец."
+      },
+      {
+        "question": "The ______ is the official residence of the US president.",
+        "options": ["a) White House", "b) Capitol", "c) Pentagon", "d) Supreme Court"],
+        "answer": "a",
+        "explanation": "White House – Белый дом."
+      },
+      {
+        "question": "The ______ is the building where the US Congress meets.",
+        "options": ["a) White House", "b) Capitol", "c) Supreme Court", "d) Pentagon"],
+        "answer": "b",
+        "explanation": "Capitol – Капитолий."
+             }
+           ]
         },
         {
             "type": "complex",
@@ -31919,19 +36617,59 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 12 (перефразирование)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "The ______ is the process of governing a country.", "answer": "governance", "explanation": "governance – управление."},
-                {"question": "The ______ is the system of rules in a country.", "answer": "legal system", "explanation": "legal system – правовая система."},
-                {"question": "The ______ is the system of government in which power is held by the people.", "answer": "democracy", "explanation": "democracy – демократия."},
-                {"question": "The ______ is the system of government in which power is held by a small group.", "answer": "oligarchy", "explanation": "oligarchy – олигархия."},
-                {"question": "The ______ is the system of government in which power is held by a single person.", "answer": "autocracy", "explanation": "autocracy – автократия."},
-                {"question": "The ______ is the system of government in which power is held by religious leaders.", "answer": "theocracy", "explanation": "theocracy – теократия."},
-                {"question": "The ______ is the system of government in which power is held by the nobility.", "answer": "aristocracy", "explanation": "aristocracy – аристократия."},
-                {"question": "The ______ is the system of government in which power is held by the wealthy.", "answer": "plutocracy", "explanation": "plutocracy – плутократия."}
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "The ______ is the process of governing a country.",
+        "options": ["a) management", "b) governance", "c) administration", "d) regulation"],
+        "answer": "b",
+        "explanation": "governance – управление."
+      },
+      {
+        "question": "The ______ is the system of rules in a country.",
+        "options": ["a) constitution", "b) legal system", "c) code", "d) statute"],
+        "answer": "b",
+        "explanation": "legal system – правовая система."
+      },
+      {
+        "question": "The ______ is the system of government in which power is held by the people.",
+        "options": ["a) oligarchy", "b) democracy", "c) autocracy", "d) theocracy"],
+        "answer": "b",
+        "explanation": "democracy – демократия."
+      },
+      {
+        "question": "The ______ is the system of government in which power is held by a small group.",
+        "options": ["a) oligarchy", "b) democracy", "c) aristocracy", "d) autocracy"],
+        "answer": "a",
+        "explanation": "oligarchy – олигархия."
+      },
+      {
+        "question": "The ______ is the system of government in which power is held by a single person.",
+        "options": ["a) plutocracy", "b) autocracy", "c) democracy", "d) oligarchy"],
+        "answer": "b",
+        "explanation": "autocracy – автократия."
+      },
+      {
+        "question": "The ______ is the system of government in which power is held by religious leaders.",
+        "options": ["a) monarchy", "b) theocracy", "c) democracy", "d) oligarchy"],
+        "answer": "b",
+        "explanation": "theocracy – теократия."
+      },
+      {
+        "question": "The ______ is the system of government in which power is held by the nobility.",
+        "options": ["a) plutocracy", "b) democracy", "c) aristocracy", "d) autocracy"],
+        "answer": "c",
+        "explanation": "aristocracy – аристократия."
+      },
+      {
+        "question": "The ______ is the system of government in which power is held by the wealthy.",
+        "options": ["a) aristocracy", "b) plutocracy", "c) democracy", "d) oligarchy"],
+        "answer": "b",
+        "explanation": "plutocracy – плутократия."
+              }
             ]
         },
         {
@@ -32009,19 +36747,59 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 1 (перевод)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "The economy is growing at 2% per ______.", "answer": "year", "explanation": "per year – в год."},
-                {"question": "The central bank raised interest ______.", "answer": "rates", "explanation": "interest rates – процентные ставки."},
-                {"question": "The startup attracted significant ______.", "answer": "investment", "explanation": "investment – инвестиции."},
-                {"question": "The board of directors approved the ______.", "answer": "merger", "explanation": "merger – слияние."},
-                {"question": "The company reported record ______.", "answer": "profits", "explanation": "profits – прибыль."},
-                {"question": "The trade ______ widened last year.", "answer": "deficit", "explanation": "trade deficit – дефицит торгового баланса."},
-                {"question": "The ______ rate increased to 5%.", "answer": "interest", "explanation": "interest rate – процентная ставка."},
-                {"question": "The company needs to reduce its ______.", "answer": "debt", "explanation": "debt – долг."}
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "The economy is growing at 2% per ______.",
+        "options": ["a) month", "b) quarter", "c) year", "d) decade"],
+        "answer": "c",
+        "explanation": "per year – в год."
+      },
+      {
+        "question": "The central bank raised interest ______.",
+        "options": ["a) rates", "b) payments", "c) charges", "d) fees"],
+        "answer": "a",
+        "explanation": "interest rates – процентные ставки."
+      },
+      {
+        "question": "The startup attracted significant ______.",
+        "options": ["a) funding", "b) investment", "c) capital", "d) sponsorship"],
+        "answer": "b",
+        "explanation": "investment – инвестиции."
+      },
+      {
+        "question": "The board of directors approved the ______.",
+        "options": ["a) merger", "b) acquisition", "c) takeover", "d) alliance"],
+        "answer": "a",
+        "explanation": "merger – слияние."
+      },
+      {
+        "question": "The company reported record ______.",
+        "options": ["a) losses", "b) profits", "c) revenues", "d) earnings"],
+        "answer": "b",
+        "explanation": "profits – прибыль."
+      },
+      {
+        "question": "The trade ______ widened last year.",
+        "options": ["a) surplus", "b) deficit", "c) balance", "d) gap"],
+        "answer": "b",
+        "explanation": "trade deficit – дефицит торгового баланса."
+      },
+      {
+        "question": "The ______ rate increased to 5%.",
+        "options": ["a) discount", "b) interest", "c) exchange", "d) inflation"],
+        "answer": "b",
+        "explanation": "interest rate – процентная ставка."
+      },
+      {
+        "question": "The company needs to reduce its ______.",
+        "options": ["a) debt", "b) equity", "c) assets", "d) cash"],
+        "answer": "a",
+        "explanation": "debt – долг."
+              }
             ]
         },
         {
@@ -32070,19 +36848,59 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 2 (перефразирование)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "The company is planning to ______ its operations overseas.", "answer": "expand", "explanation": "to expand – расширяться."},
-                {"question": "The board decided to ______ the workforce by 10%.", "answer": "downsize", "explanation": "to downsize – сокращать персонал."},
-                {"question": "The CEO ______ the annual shareholders' meeting.", "answer": "chaired", "explanation": "to chair a meeting – председательствовать."},
-                {"question": "The company ______ a new product line last year.", "answer": "launched", "explanation": "to launch – запускать."},
-                {"question": "The investor ______ $10 million in the startup.", "answer": "invested", "explanation": "to invest – инвестировать."},
-                {"question": "The business ______ doubled in the last quarter.", "answer": "revenue", "explanation": "revenue – выручка."},
-                {"question": "The company's ______ are higher than its liabilities.", "answer": "assets", "explanation": "assets – активы."},
-                {"question": "The ______ is the difference between assets and liabilities.", "answer": "equity", "explanation": "equity – собственный капитал."}
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "The company is planning to ______ its operations overseas.",
+        "options": ["a) downsize", "b) expand", "c) contract", "d) reduce"],
+        "answer": "b",
+        "explanation": "to expand – расширяться."
+      },
+      {
+        "question": "The board decided to ______ the workforce by 10%.",
+        "options": ["a) expand", "b) downsize", "c) increase", "d) hire"],
+        "answer": "b",
+        "explanation": "to downsize – сокращать персонал."
+      },
+      {
+        "question": "The CEO ______ the annual shareholders' meeting.",
+        "options": ["a) attended", "b) chaired", "c) addressed", "d) organised"],
+        "answer": "b",
+        "explanation": "to chair a meeting – председательствовать."
+      },
+      {
+        "question": "The company ______ a new product line last year.",
+        "options": ["a) launched", "b) discontinued", "c) modified", "d) cancelled"],
+        "answer": "a",
+        "explanation": "to launch – запускать."
+      },
+      {
+        "question": "The investor ______ $10 million in the startup.",
+        "options": ["a) borrowed", "b) withdrew", "c) invested", "d) donated"],
+        "answer": "c",
+        "explanation": "to invest – инвестировать."
+      },
+      {
+        "question": "The business ______ doubled in the last quarter.",
+        "options": ["a) losses", "b) revenue", "c) costs", "d) debt"],
+        "answer": "b",
+        "explanation": "revenue – выручка."
+      },
+      {
+        "question": "The company's ______ are higher than its liabilities.",
+        "options": ["a) assets", "b) debts", "c) expenses", "d) obligations"],
+        "answer": "a",
+        "explanation": "assets – активы."
+      },
+      {
+        "question": "The ______ is the difference between assets and liabilities.",
+        "options": ["a) equity", "b) profit", "c) loss", "d) capital"],
+        "answer": "a",
+        "explanation": "equity – собственный капитал."
+              }
             ]
         },
         {
@@ -32131,19 +36949,59 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 3 (перевод)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "______ is the total value of goods and services produced in a country.", "answer": "GDP", "explanation": "GDP – ВВП."},
-                {"question": "______ is a period of economic decline.", "answer": "Recession", "explanation": "recession – рецессия."},
-                {"question": "______ is the percentage of people who are without work.", "answer": "Unemployment", "explanation": "unemployment – безработица."},
-                {"question": "______ is the increase in prices of goods and services.", "answer": "Inflation", "explanation": "inflation – инфляция."},
-                {"question": "______ is the value of one currency in terms of another.", "answer": "Exchange rate", "explanation": "exchange rate – обменный курс."},
-                {"question": "______ is the place where shares are bought and sold.", "answer": "Stock market", "explanation": "stock market – фондовый рынок."},
-                {"question": "______ is a type of loan used to buy property.", "answer": "Mortgage", "explanation": "mortgage – ипотека."},
-                {"question": "______ is the money that a business earns from sales.", "answer": "Revenue", "explanation": "revenue – выручка."}
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "______ is the total value of goods and services produced in a country.",
+        "options": ["a) GDP", "b) GNP", "c) NNP", "d) CPI"],
+        "answer": "a",
+        "explanation": "GDP – ВВП."
+      },
+      {
+        "question": "______ is a period of economic decline.",
+        "options": ["a) Inflation", "b) Recession", "c) Deflation", "d) Stagnation"],
+        "answer": "b",
+        "explanation": "recession – рецессия."
+      },
+      {
+        "question": "______ is the percentage of people who are without work.",
+        "options": ["a) Inflation", "b) Unemployment", "c) Participation rate", "d) Underemployment"],
+        "answer": "b",
+        "explanation": "unemployment – безработица."
+      },
+      {
+        "question": "______ is the increase in prices of goods and services.",
+        "options": ["a) Deflation", "b) Disinflation", "c) Inflation", "d) Stagflation"],
+        "answer": "c",
+        "explanation": "inflation – инфляция."
+      },
+      {
+        "question": "______ is the value of one currency in terms of another.",
+        "options": ["a) Interest rate", "b) Inflation rate", "c) Exchange rate", "d) Discount rate"],
+        "answer": "c",
+        "explanation": "exchange rate – обменный курс."
+      },
+      {
+        "question": "______ is the place where shares are bought and sold.",
+        "options": ["a) Bond market", "b) Stock market", "c) Commodity market", "d) Forex market"],
+        "answer": "b",
+        "explanation": "stock market – фондовый рынок."
+      },
+      {
+        "question": "______ is a type of loan used to buy property.",
+        "options": ["a) Mortgage", "b) Credit", "c) Loan", "d) Overdraft"],
+        "answer": "a",
+        "explanation": "mortgage – ипотека."
+      },
+      {
+        "question": "______ is the money that a business earns from sales.",
+        "options": ["a) Revenue", "b) Profit", "c) Cash flow", "d) Income"],
+        "answer": "a",
+        "explanation": "revenue – выручка."
+              }
             ]
         },
         {
@@ -32192,19 +37050,59 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 4 (перефразирование)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "The company issued new ______ to raise capital.", "answer": "shares", "explanation": "shares – акции."},
-                {"question": "The investor received a ______ of $2 per share.", "answer": "dividend", "explanation": "dividend – дивиденд."},
-                {"question": "The company is a ______ with operations in 30 countries.", "answer": "multinational", "explanation": "multinational – транснациональная корпорация."},
-                {"question": "The ______ includes everyone affected by the company's actions.", "answer": "stakeholder", "explanation": "stakeholder – заинтересованная сторона."},
-                {"question": "The ______ is the most senior executive in the company.", "answer": "CEO", "explanation": "CEO – генеральный директор."},
-                {"question": "The company has a strong ______ in the market.", "answer": "brand", "explanation": "brand – бренд."},
-                {"question": "The ______ chain ensures products are delivered on time.", "answer": "supply", "explanation": "supply chain – цепочка поставок."},
-                {"question": "The company's ______ is 20% of the total market.", "answer": "market share", "explanation": "market share – доля рынка."}
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "The company issued new ______ to raise capital.",
+        "options": ["a) bonds", "b) shares", "c) debentures", "d) warrants"],
+        "answer": "b",
+        "explanation": "shares – акции."
+      },
+      {
+        "question": "The investor received a ______ of $2 per share.",
+        "options": ["a) dividend", "b) bonus", "c) incentive", "d) return"],
+        "answer": "a",
+        "explanation": "dividend – дивиденд."
+      },
+      {
+        "question": "The company is a ______ with operations in 30 countries.",
+        "options": ["a) multinational", "b) conglomerate", "c) franchise", "d) holding"],
+        "answer": "a",
+        "explanation": "multinational – транснациональная корпорация."
+      },
+      {
+        "question": "The ______ includes everyone affected by the company's actions.",
+        "options": ["a) shareholder", "b) stakeholder", "c) director", "d) manager"],
+        "answer": "b",
+        "explanation": "stakeholder – заинтересованная сторона."
+      },
+      {
+        "question": "The ______ is the most senior executive in the company.",
+        "options": ["a) CFO", "b) COO", "c) CEO", "d) CTO"],
+        "answer": "c",
+        "explanation": "CEO – генеральный директор."
+      },
+      {
+        "question": "The company has a strong ______ in the market.",
+        "options": ["a) brand", "b) image", "c) reputation", "d) identity"],
+        "answer": "a",
+        "explanation": "brand – бренд."
+      },
+      {
+        "question": "The ______ chain ensures products are delivered on time.",
+        "options": ["a) value", "b) supply", "c) demand", "d) logistics"],
+        "answer": "b",
+        "explanation": "supply chain – цепочка поставок."
+      },
+      {
+        "question": "The company's ______ is 20% of the total market.",
+        "options": ["a) market share", "b) market capitalisation", "c) market value", "d) market size"],
+        "answer": "a",
+        "explanation": "market share – доля рынка."
+              }
             ]
         },
         {
@@ -32253,20 +37151,60 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 5 (перевод)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "______ is the money that a company owes to others.", "answer": "Debt", "explanation": "debt – долг."},
-                {"question": "______ is the cost of borrowing money.", "answer": "Interest", "explanation": "interest – проценты."},
-                {"question": "______ is the government's spending and taxation policy.", "answer": "Fiscal policy", "explanation": "fiscal policy – фискальная политика."},
-                {"question": "______ is the central bank's control of the money supply.", "answer": "Monetary policy", "explanation": "monetary policy – монетарная политика."},
-                {"question": "______ is the purchase of goods from other countries.", "answer": "Import", "explanation": "import – импорт."},
-                {"question": "______ is the sale of goods to other countries.", "answer": "Export", "explanation": "export – экспорт."},
-                {"question": "______ is a tax on imported goods.", "answer": "Tariff", "explanation": "tariff – пошлина."},
-                {"question": "______ is when a country exports more than it imports.", "answer": "Trade surplus", "explanation": "trade surplus – профицит торгового баланса."}
-            ]
+ [
+  {
+    "type": "complex",
+    "text": "1. Choose the correct word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "______ is the money that a company owes to others.",
+        "options": ["a) Debt", "b) Equity", "c) Assets", "d) Revenue"],
+        "answer": "a",
+        "explanation": "debt – долг."
+      },
+      {
+        "question": "______ is the cost of borrowing money.",
+        "options": ["a) Tax", "b) Interest", "c) Commission", "d) Fee"],
+        "answer": "b",
+        "explanation": "interest – проценты."
+      },
+      {
+        "question": "______ is the government's spending and taxation policy.",
+        "options": ["a) Monetary policy", "b) Fiscal policy", "c) Trade policy", "d) Industrial policy"],
+        "answer": "b",
+        "explanation": "fiscal policy – фискальная политика."
+      },
+      {
+        "question": "______ is the central bank's control of the money supply.",
+        "options": ["a) Fiscal policy", "b) Monetary policy", "c) Fiscal policy", "d) Exchange rate policy"],
+        "answer": "b",
+        "explanation": "monetary policy – монетарная политика."
+      },
+      {
+        "question": "______ is the purchase of goods from other countries.",
+        "options": ["a) Export", "b) Import", "c) Re-export", "d) Transshipment"],
+        "answer": "b",
+        "explanation": "import – импорт."
+      },
+      {
+        "question": "______ is the sale of goods to other countries.",
+        "options": ["a) Import", "b) Export", "c) Re-export", "d) Entrepôt"],
+        "answer": "b",
+        "explanation": "export – экспорт."
+      },
+      {
+        "question": "______ is a tax on imported goods.",
+        "options": ["a) Tariff", "b) Quota", "c) Subsidy", "d) Embargo"],
+        "answer": "a",
+        "explanation": "tariff – пошлина."
+      },
+      {
+        "question": "______ is when a country exports more than it imports.",
+        "options": ["a) Trade surplus", "b) Trade deficit", "c) Trade balance", "d) Trade gap"],
+        "answer": "a",
+        "explanation": "trade surplus – профицит торгового баланса."
+             }
+           ]
         },
         {
             "type": "complex",
@@ -32314,19 +37252,59 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 6 (перефразирование)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "The company's ______ has increased by 15% this year.", "answer": "revenue", "explanation": "revenue – выручка."},
-                {"question": "The company reported a net ______ of $5 million.", "answer": "profit", "explanation": "profit – прибыль."},
-                {"question": "The business suffered a ______ due to the pandemic.", "answer": "loss", "explanation": "loss – убыток."},
-                {"question": "The company's ______ include cash and property.", "answer": "assets", "explanation": "assets – активы."},
-                {"question": "The company's ______ are its financial obligations.", "answer": "liabilities", "explanation": "liabilities – обязательства."},
-                {"question": "The ______ flow shows how money moves in and out of the business.", "answer": "cash", "explanation": "cash flow – денежный поток."},
-                {"question": "The company prepared a ______ for the next financial year.", "answer": "budget", "explanation": "budget – бюджет."},
-                {"question": "The financial ______ predicts a growth of 3%.", "answer": "forecast", "explanation": "forecast – прогноз."}
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "The company's ______ has increased by 15% this year.",
+        "options": ["a) revenue", "b) costs", "c) debt", "d) equity"],
+        "answer": "a",
+        "explanation": "revenue – выручка."
+      },
+      {
+        "question": "The company reported a net ______ of $5 million.",
+        "options": ["a) profit", "b) loss", "c) revenue", "d) income"],
+        "answer": "a",
+        "explanation": "profit – прибыль."
+      },
+      {
+        "question": "The business suffered a ______ due to the pandemic.",
+        "options": ["a) profit", "b) loss", "c) surplus", "d) gain"],
+        "answer": "b",
+        "explanation": "loss – убыток."
+      },
+      {
+        "question": "The company's ______ include cash and property.",
+        "options": ["a) assets", "b) liabilities", "c) equity", "d) debts"],
+        "answer": "a",
+        "explanation": "assets – активы."
+      },
+      {
+        "question": "The company's ______ are its financial obligations.",
+        "options": ["a) assets", "b) liabilities", "c) equity", "d) reserves"],
+        "answer": "b",
+        "explanation": "liabilities – обязательства."
+      },
+      {
+        "question": "The ______ flow shows how money moves in and out of the business.",
+        "options": ["a) cash", "b) capital", "c) income", "d) expenditure"],
+        "answer": "a",
+        "explanation": "cash flow – денежный поток."
+      },
+      {
+        "question": "The company prepared a ______ for the next financial year.",
+        "options": ["a) budget", "b) forecast", "c) plan", "d) strategy"],
+        "answer": "a",
+        "explanation": "budget – бюджет."
+      },
+      {
+        "question": "The financial ______ predicts a growth of 3%.",
+        "options": ["a) forecast", "b) report", "c) statement", "d) audit"],
+        "answer": "a",
+        "explanation": "forecast – прогноз."
+              }
             ]
         },
         {
@@ -32375,20 +37353,60 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 7 (перевод)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "The government is implementing new ______ policies to boost the economy.", "answer": "fiscal", "explanation": "fiscal policy – фискальная политика."},
-                {"question": "The central bank uses ______ policy to control inflation.", "answer": "monetary", "explanation": "monetary policy – монетарная политика."},
-                {"question": "The company is a ______ enterprise with fewer than 250 employees.", "answer": "small and medium", "explanation": "SME – small and medium enterprise."},
-                {"question": "The ______ of directors meets once a month.", "answer": "board", "explanation": "board of directors – совет директоров."},
-                {"question": "The company needs to improve its ______ strategy.", "answer": "management", "explanation": "management – менеджмент."},
-                {"question": "The business ______ is to increase market share.", "answer": "strategy", "explanation": "strategy – стратегия."},
-                {"question": "The company's ______ value is $50 million.", "answer": "equity", "explanation": "equity – собственный капитал."},
-                {"question": "The company took out a ______ to expand operations.", "answer": "loan", "explanation": "loan – кредит."}
-            ]
+ [
+  {
+    "type": "complex",
+    "text": "1. Choose the correct word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "The government is implementing new ______ policies to boost the economy.",
+        "options": ["a) fiscal", "b) monetary", "c) trade", "d) industrial"],
+        "answer": "a",
+        "explanation": "fiscal policy – фискальная политика."
+      },
+      {
+        "question": "The central bank uses ______ policy to control inflation.",
+        "options": ["a) fiscal", "b) monetary", "c) fiscal", "d) exchange rate"],
+        "answer": "b",
+        "explanation": "monetary policy – монетарная политика."
+      },
+      {
+        "question": "The company is a ______ enterprise with fewer than 250 employees.",
+        "options": ["a) small and medium", "b) large", "c) micro", "d) family"],
+        "answer": "a",
+        "explanation": "SME – small and medium enterprise."
+      },
+      {
+        "question": "The ______ of directors meets once a month.",
+        "options": ["a) board", "b) committee", "c) council", "d) panel"],
+        "answer": "a",
+        "explanation": "board of directors – совет директоров."
+      },
+      {
+        "question": "The company needs to improve its ______ strategy.",
+        "options": ["a) management", "b) marketing", "c) financial", "d) operational"],
+        "answer": "a",
+        "explanation": "management – менеджмент."
+      },
+      {
+        "question": "The business ______ is to increase market share.",
+        "options": ["a) strategy", "b) plan", "c) goal", "d) mission"],
+        "answer": "a",
+        "explanation": "strategy – стратегия."
+      },
+      {
+        "question": "The company's ______ value is $50 million.",
+        "options": ["a) equity", "b) debt", "c) asset", "d) cash"],
+        "answer": "a",
+        "explanation": "equity – собственный капитал."
+      },
+      {
+        "question": "The company took out a ______ to expand operations.",
+        "options": ["a) loan", "b) grant", "c) subsidy", "d) investment"],
+        "answer": "a",
+        "explanation": "loan – кредит."
+             }
+           ]
         },
         {
             "type": "complex",
@@ -32436,20 +37454,61 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 8 (перефразирование)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "The company is going to ______ a smaller competitor.", "answer": "acquire", "explanation": "to acquire – приобретать."},
-                {"question": "The two companies will ______ to form a new corporation.", "answer": "merge", "explanation": "to merge – сливаться."},
-                {"question": "The business is struggling and may ______.", "answer": "go bankrupt", "explanation": "to go bankrupt – обанкротиться."},
-                {"question": "The company decided to ______ a new CEO.", "answer": "appoint", "explanation": "to appoint – назначать."},
-                {"question": "The board voted to ______ the proposal.", "answer": "reject", "explanation": "to reject – отклонять."},
-                {"question": "The company needs to ______ its costs.", "answer": "cut", "explanation": "to cut costs – сокращать расходы."},
-                {"question": "The business ______ a new market strategy.", "answer": "adopted", "explanation": "to adopt – принимать (стратегию)."},
-                {"question": "The company ______ its sales target.", "answer": "achieved", "explanation": "to achieve – достигать."}
-            ]
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "The company is going to ______ a smaller competitor.",
+        "options": ["a) sell", "b) acquire", "c) split", "d) merge"],
+        "answer": "b",
+        "explanation": "to acquire – приобретать."
+      },
+      {
+        "question": "The two companies will ______ to form a new corporation.",
+        "options": ["a) divide", "b) compete", "c) merge", "d) partner"],
+        "answer": "c",
+        "explanation": "to merge – сливаться."
+      },
+      {
+        "question": "The business is struggling and may ______.",
+        "options": ["a) go bankrupt", "b) prosper", "c) expand", "d) diversify"],
+        "answer": "a",
+        "explanation": "to go bankrupt – обанкротиться."
+      },
+      {
+        "question": "The company decided to ______ a new CEO.",
+        "options": ["a) appoint", "b) fire", "c) demote", "d) transfer"],
+        "answer": "a",
+        "explanation": "to appoint – назначать."
+      },
+      {
+        "question": "The board voted to ______ the proposal.",
+        "options": ["a) approve", "b) amend", "c) reject", "d) postpone"],
+        "answer": "c",
+        "explanation": "to reject – отклонять."
+      },
+      {
+        "question": "The company needs to ______ its costs.",
+        "options": ["a) cut", "b) increase", "c) maintain", "d) stabilise"],
+        "answer": "a",
+        "explanation": "to cut costs – сокращать расходы."
+      },
+      {
+        "question": "The business ______ a new market strategy.",
+        "options": ["a) rejected", "b) adopted", "c) abandoned", "d) revised"],
+        "answer": "b",
+        "explanation": "to adopt – принимать (стратегию)."
+      },
+      {
+        "question": "The company ______ its sales target.",
+        "options": ["a) missed", "b) achieved", "c) abandoned", "d) exceeded"],
+        "answer": "b",
+        "explanation": "to achieve – достигать."
+               }
+             }
+           ]
         },
         {
             "type": "complex",
@@ -32497,19 +37556,59 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 9 (перевод)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "______ is the total value of all goods and services produced in a country.", "answer": "GDP", "explanation": "GDP – ВВП."},
-                {"question": "______ is the rate at which the general level of prices for goods and services is rising.", "answer": "Inflation", "explanation": "inflation – инфляция."},
-                {"question": "______ is a severe and prolonged economic downturn.", "answer": "Depression", "explanation": "depression – депрессия (экономическая)."},
-                {"question": "______ is the decrease in prices of goods and services.", "answer": "Deflation", "explanation": "deflation – дефляция."},
-                {"question": "______ is the movement of money in and out of a business.", "answer": "Cash flow", "explanation": "cash flow – денежный поток."},
-                {"question": "______ is a type of financial security that represents ownership in a company.", "answer": "Share", "explanation": "share – акция."},
-                {"question": "______ is a type of financial security that represents a loan to a company.", "answer": "Bond", "explanation": "bond – облигация."},
-                {"question": "______ is the practice of reducing the size of a company's workforce.", "answer": "Downsizing", "explanation": "downsizing – сокращение персонала."}
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "______ is the total value of all goods and services produced in a country.",
+        "options": ["a) GDP", "b) GNP", "c) NNI", "d) CPI"],
+        "answer": "a",
+        "explanation": "GDP – ВВП."
+      },
+      {
+        "question": "______ is the rate at which the general level of prices for goods and services is rising.",
+        "options": ["a) Deflation", "b) Inflation", "c) Disinflation", "d) Stagflation"],
+        "answer": "b",
+        "explanation": "inflation – инфляция."
+      },
+      {
+        "question": "______ is a severe and prolonged economic downturn.",
+        "options": ["a) Recession", "b) Depression", "c) Stagnation", "d) Hyperinflation"],
+        "answer": "b",
+        "explanation": "depression – депрессия (экономическая)."
+      },
+      {
+        "question": "______ is the decrease in prices of goods and services.",
+        "options": ["a) Inflation", "b) Deflation", "c) Disinflation", "d) Stagflation"],
+        "answer": "b",
+        "explanation": "deflation – дефляция."
+      },
+      {
+        "question": "______ is the movement of money in and out of a business.",
+        "options": ["a) Cash flow", "b) Profit", "c) Revenue", "d) Turnover"],
+        "answer": "a",
+        "explanation": "cash flow – денежный поток."
+      },
+      {
+        "question": "______ is a type of financial security that represents ownership in a company.",
+        "options": ["a) Share", "b) Bond", "c) Warrant", "d) Option"],
+        "answer": "a",
+        "explanation": "share – акция."
+      },
+      {
+        "question": "______ is a type of financial security that represents a loan to a company.",
+        "options": ["a) Share", "b) Bond", "c) Warrant", "d) Derivative"],
+        "answer": "b",
+        "explanation": "bond – облигация."
+      },
+      {
+        "question": "______ is the practice of reducing the size of a company's workforce.",
+        "options": ["a) Downsizing", "b) Outsourcing", "c) Restructuring", "d) Offshoring"],
+        "answer": "a",
+        "explanation": "downsizing – сокращение персонала."
+              }
             ]
         },
         {
@@ -32558,20 +37657,60 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 10 (перефразирование)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "The company's ______ are the people who own shares.", "answer": "shareholders", "explanation": "shareholders – акционеры."},
-                {"question": "The ______ is responsible for the company's overall strategy.", "answer": "board of directors", "explanation": "board of directors – совет директоров."},
-                {"question": "The company's ______ is to become the market leader.", "answer": "goal", "explanation": "goal – цель."},
-                {"question": "The business has a strong ______ in the local market.", "answer": "presence", "explanation": "presence – присутствие."},
-                {"question": "The company is a ______ player in the industry.", "answer": "major", "explanation": "major player – крупный игрок."},
-                {"question": "The company's ______ is a key factor in its success.", "answer": "culture", "explanation": "culture – корпоративная культура."},
-                {"question": "The business has a ______ of innovation.", "answer": "culture", "explanation": "culture of innovation – культура инноваций."},
-                {"question": "The company's ______ is its commitment to quality.", "answer": "reputation", "explanation": "reputation – репутация."}
-            ]
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "The company's ______ are the people who own shares.",
+        "options": ["a) stakeholders", "b) directors", "c) shareholders", "d) employees"],
+        "answer": "c",
+        "explanation": "shareholders – акционеры."
+      },
+      {
+        "question": "The ______ is responsible for the company's overall strategy.",
+        "options": ["a) board of directors", "b) executive committee", "c) management team", "d) supervisory board"],
+        "answer": "a",
+        "explanation": "board of directors – совет директоров."
+      },
+      {
+        "question": "The company's ______ is to become the market leader.",
+        "options": ["a) mission", "b) goal", "c) vision", "d) objective"],
+        "answer": "b",
+        "explanation": "goal – цель."
+      },
+      {
+        "question": "The business has a strong ______ in the local market.",
+        "options": ["a) reputation", "b) brand", "c) presence", "d) image"],
+        "answer": "c",
+        "explanation": "presence – присутствие."
+      },
+      {
+        "question": "The company is a ______ player in the industry.",
+        "options": ["a) minor", "b) major", "c) key", "d) leading"],
+        "answer": "b",
+        "explanation": "major player – крупный игрок."
+      },
+      {
+        "question": "The company's ______ is a key factor in its success.",
+        "options": ["a) culture", "b) strategy", "c) policy", "d) structure"],
+        "answer": "a",
+        "explanation": "culture – корпоративная культура."
+      },
+      {
+        "question": "The business has a ______ of innovation.",
+        "options": ["a) tradition", "b) culture", "c) history", "d) legacy"],
+        "answer": "b",
+        "explanation": "culture of innovation – культура инноваций."
+      },
+      {
+        "question": "The company's ______ is its commitment to quality.",
+        "options": ["a) image", "b) brand", "c) reputation", "d) identity"],
+        "answer": "c",
+        "explanation": "reputation – репутация."
+             }
+           ]
         },
         {
             "type": "complex",
@@ -32619,19 +37758,59 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 11 (перевод)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "______ is the money that a business receives from selling goods or services.", "answer": "Revenue", "explanation": "revenue – выручка."},
-                {"question": "______ is the money that a business has left after paying all expenses.", "answer": "Profit", "explanation": "profit – прибыль."},
-                {"question": "______ is the money that a business loses.", "answer": "Loss", "explanation": "loss – убыток."},
-                {"question": "______ are the resources that a business owns.", "answer": "Assets", "explanation": "assets – активы."},
-                {"question": "______ are the debts that a business owes.", "answer": "Liabilities", "explanation": "liabilities – обязательства."},
-                {"question": "______ is the value of the owners' stake in the business.", "answer": "Equity", "explanation": "equity – собственный капитал."},
-                {"question": "______ is the plan for how much money a business will spend and earn.", "answer": "Budget", "explanation": "budget – бюджет."},
-                {"question": "______ is the prediction of future economic conditions.", "answer": "Forecast", "explanation": "forecast – прогноз."}
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "______ is the money that a business receives from selling goods or services.",
+        "options": ["a) Revenue", "b) Profit", "c) Income", "d) Turnover"],
+        "answer": "a",
+        "explanation": "revenue – выручка."
+      },
+      {
+        "question": "______ is the money that a business has left after paying all expenses.",
+        "options": ["a) Revenue", "b) Profit", "c) Cash", "d) Equity"],
+        "answer": "b",
+        "explanation": "profit – прибыль."
+      },
+      {
+        "question": "______ is the money that a business loses.",
+        "options": ["a) Debt", "b) Loss", "c) Deficit", "d) Shortfall"],
+        "answer": "b",
+        "explanation": "loss – убыток."
+      },
+      {
+        "question": "______ are the resources that a business owns.",
+        "options": ["a) Assets", "b) Liabilities", "c) Equity", "d) Reserves"],
+        "answer": "a",
+        "explanation": "assets – активы."
+      },
+      {
+        "question": "______ are the debts that a business owes.",
+        "options": ["a) Assets", "b) Liabilities", "c) Equity", "d) Provisions"],
+        "answer": "b",
+        "explanation": "liabilities – обязательства."
+      },
+      {
+        "question": "______ is the value of the owners' stake in the business.",
+        "options": ["a) Equity", "b) Debt", "c) Asset", "d) Cash"],
+        "answer": "a",
+        "explanation": "equity – собственный капитал."
+      },
+      {
+        "question": "______ is the plan for how much money a business will spend and earn.",
+        "options": ["a) Budget", "b) Forecast", "c) Plan", "d) Strategy"],
+        "answer": "a",
+        "explanation": "budget – бюджет."
+      },
+      {
+        "question": "______ is the prediction of future economic conditions.",
+        "options": ["a) Budget", "b) Forecast", "c) Audit", "d) Statement"],
+        "answer": "b",
+        "explanation": "forecast – прогноз."
+              }
             ]
         },
         {
@@ -32680,20 +37859,60 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 12 (перефразирование)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "The company's ______ is the total value of its shares.", "answer": "market capitalisation", "explanation": "market capitalisation – рыночная капитализация."},
-                {"question": "The company's ______ is the percentage of the market it controls.", "answer": "market share", "explanation": "market share – доля рынка."},
-                {"question": "The business has a ______ strategy for growth.", "answer": "clear", "explanation": "clear strategy – чёткая стратегия."},
-                {"question": "The company's ______ are the people who work for it.", "answer": "employees", "explanation": "employees – сотрудники."},
-                {"question": "The company's ______ is its main office.", "answer": "headquarters", "explanation": "headquarters – штаб-квартира."},
-                {"question": "The company has a ______ of excellent customer service.", "answer": "reputation", "explanation": "reputation – репутация."},
-                {"question": "The business is a ______ in the technology sector.", "answer": "leader", "explanation": "leader – лидер."},
-                {"question": "The company's ______ is to increase shareholder value.", "answer": "mission", "explanation": "mission – миссия."}
-            ]
+ [
+  {
+    "type": "complex",
+    "text": "1. Choose the correct word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "The company's ______ is the total value of its shares.",
+        "options": ["a) market capitalisation", "b) market share", "c) market value", "d] market size"],
+        "answer": "a",
+        "explanation": "market capitalisation – рыночная капитализация."
+      },
+      {
+        "question": "The company's ______ is the percentage of the market it controls.",
+        "options": ["a) market capitalisation", "b) market share", "c) market value", "d) market size"],
+        "answer": "b",
+        "explanation": "market share – доля рынка."
+      },
+      {
+        "question": "The business has a ______ strategy for growth.",
+        "options": ["a) clear", "b) vague", "c) complex", "d) simple"],
+        "answer": "a",
+        "explanation": "clear strategy – чёткая стратегия."
+      },
+      {
+        "question": "The company's ______ are the people who work for it.",
+        "options": ["a) employees", "b) stakeholders", "c) shareholders", "d) customers"],
+        "answer": "a",
+        "explanation": "employees – сотрудники."
+      },
+      {
+        "question": "The company's ______ is its main office.",
+        "options": ["a) headquarters", "b) branch", "c) subsidiary", "d) division"],
+        "answer": "a",
+        "explanation": "headquarters – штаб-квартира."
+      },
+      {
+        "question": "The company has a ______ of excellent customer service.",
+        "options": ["a) reputation", "b) culture", "c) policy", "d) strategy"],
+        "answer": "a",
+        "explanation": "reputation – репутация."
+      },
+      {
+        "question": "The business is a ______ in the technology sector.",
+        "options": ["a) leader", "b) follower", "c) challenger", "d] pioneer"],
+        "answer": "a",
+        "explanation": "leader – лидер."
+      },
+      {
+        "question": "The company's ______ is to increase shareholder value.",
+        "options": ["a) mission", "b) vision", "c) goal", "d) objective"],
+        "answer": "a",
+        "explanation": "mission – миссия."
+             }
+           ]
         },
         {
             "type": "complex",
@@ -32770,20 +37989,60 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 1 (перевод)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct phrasal verb (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "I ______ an old photo while cleaning the attic.", "answer": "came across", "explanation": "come across – наткнуться."},
-                {"question": "She ______ with a brilliant idea.", "answer": "came up", "explanation": "come up with – придумать."},
-                {"question": "I think I'm coming ______ with the flu.", "answer": "down", "explanation": "come down with – заболеть."},
-                {"question": "The new album will come ______ next month.", "answer": "out", "explanation": "come out – выходить."},
-                {"question": "I finally ______ through to customer service.", "answer": "got", "explanation": "get through – дозвониться."},
-                {"question": "I can't ______ over how much you've grown.", "answer": "get", "explanation": "get over – оправиться (или удивиться)."},
-                {"question": "I can't ______ up with his rudeness.", "answer": "put", "explanation": "put up with – мириться с."},
-                {"question": "Never ______ off until tomorrow what you can do today.", "answer": "put", "explanation": "put off – откладывать."}
-            ]
+ [
+  {
+    "type": "complex",
+    "text": "1. Choose the correct phrasal verb (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "I ______ an old photo while cleaning the attic.",
+        "options": ["a) ran across", "b) came across", "c) found out", "d) came up"],
+        "answer": "b",
+        "explanation": "come across – наткнуться."
+      },
+      {
+        "question": "She ______ with a brilliant idea.",
+        "options": ["a) came up", "b) came across", "c) went over", "d) brought out"],
+        "answer": "a",
+        "explanation": "come up with – придумать."
+      },
+      {
+        "question": "I think I'm coming ______ with the flu.",
+        "options": ["a) up", "b) down", "c) out", "d) off"],
+        "answer": "b",
+        "explanation": "come down with – заболеть."
+      },
+      {
+        "question": "The new album will come ______ next month.",
+        "options": ["a) up", "b) down", "c) out", "d) off"],
+        "answer": "c",
+        "explanation": "come out – выходить."
+      },
+      {
+        "question": "I finally ______ through to customer service.",
+        "options": ["a) got", "b) came", "c) put", "d) went"],
+        "answer": "a",
+        "explanation": "get through – дозвониться."
+      },
+      {
+        "question": "I can't ______ over how much you've grown.",
+        "options": ["a) get", "b) come", "c) put", "d) go"],
+        "answer": "a",
+        "explanation": "get over – оправиться (или удивиться)."
+      },
+      {
+        "question": "I can't ______ up with his rudeness.",
+        "options": ["a) get", "b) put", "c) come", "d) go"],
+        "answer": "b",
+        "explanation": "put up with – мириться с."
+      },
+      {
+        "question": "Never ______ off until tomorrow what you can do today.",
+        "options": ["a) put", "b) get", "c) come", "d) go"],
+        "answer": "a",
+        "explanation": "put off – откладывать."
+            }
+          ]
         },
         {
             "type": "complex",
@@ -32831,19 +38090,59 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 2 (перефразирование)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct phrasal verb (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "He ______ as arrogant, but he's actually kind.", "answer": "comes across", "explanation": "come across – производить впечатление."},
-                {"question": "She ______ with a solution to the problem.", "answer": "came up", "explanation": "come up with – придумать."},
-                {"question": "How did this situation ______ about?", "answer": "come", "explanation": "come about – случиться."},
-                {"question": "The handle ______ off.", "answer": "came", "explanation": "come off – отвалиться."},
-                {"question": "How will we ______ through the winter?", "answer": "get", "explanation": "get through – пережить."},
-                {"question": "He didn't ______ his point across.", "answer": "get", "explanation": "get across – донести мысль."},
-                {"question": "He thought he could ______ away with cheating.", "answer": "get", "explanation": "get away with – избежать наказания."},
-                {"question": "What are you ______ at?", "answer": "getting", "explanation": "get at – подразумевать."}
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct phrasal verb (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "He ______ as arrogant, but he's actually kind.",
+        "options": ["a) gets across", "b) comes across", "c) comes up", "d) puts across"],
+        "answer": "b",
+        "explanation": "come across – производить впечатление."
+      },
+      {
+        "question": "She ______ with a solution to the problem.",
+        "options": ["a) came up", "b) came across", "c) got through", "d) put forward"],
+        "answer": "a",
+        "explanation": "come up with – придумать."
+      },
+      {
+        "question": "How did this situation ______ about?",
+        "options": ["a) get", "b) put", "c) come", "d] go"],
+        "answer": "c",
+        "explanation": "come about – случиться."
+      },
+      {
+        "question": "The handle ______ off.",
+        "options": ["a) came", "b) got", "c) put", "d] went"],
+        "answer": "a",
+        "explanation": "come off – отвалиться."
+      },
+      {
+        "question": "How will we ______ through the winter?",
+        "options": ["a) get", "b) come", "c) put", "d] go"],
+        "answer": "a",
+        "explanation": "get through – пережить."
+      },
+      {
+        "question": "He didn't ______ his point across.",
+        "options": ["a) come", "b) put", "c) get", "d] go"],
+        "answer": "c",
+        "explanation": "get across – донести мысль."
+      },
+      {
+        "question": "He thought he could ______ away with cheating.",
+        "options": ["a) get", "b) come", "c) put", "d] go"],
+        "answer": "a",
+        "explanation": "get away with – избежать наказания."
+      },
+      {
+        "question": "What are you ______ at?",
+        "options": ["a) coming", "b) getting", "c) putting", "d] going"],
+        "answer": "b",
+        "explanation": "get at – подразумевать."
+              }
             ]
         },
         {
@@ -32892,19 +38191,59 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 3 (перевод)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct phrasal verb (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "He ______ a new plan at the meeting.", "answer": "put forward", "explanation": "put forward – предлагать."},
-                {"question": "Firefighters ______ out the fire.", "answer": "put", "explanation": "put out – тушить."},
-                {"question": "Could you ______ me through to the manager?", "answer": "put", "explanation": "put through – соединить по телефону."},
-                {"question": "She was ______ through a lot of stress.", "answer": "put", "explanation": "put through – подвергать."},
-                {"question": "The performance ______ off well.", "answer": "came", "explanation": "come off – удаться."},
-                {"question": "I can't ______ through to her on the phone.", "answer": "get", "explanation": "get through – дозвониться."},
-                {"question": "It took me a long time to ______ over the breakup.", "answer": "get", "explanation": "get over – оправиться от."},
-                {"question": "Would you be ______ out if I left early?", "answer": "put", "explanation": "put out – неудобствовать."}
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct phrasal verb (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "He ______ a new plan at the meeting.",
+        "options": ["a) put forward", "b) put out", "c) put through", "d) put on"],
+        "answer": "a",
+        "explanation": "put forward – предлагать."
+      },
+      {
+        "question": "Firefighters ______ out the fire.",
+        "options": ["a) came", "b) got", "c) put", "d] went"],
+        "answer": "c",
+        "explanation": "put out – тушить."
+      },
+      {
+        "question": "Could you ______ me through to the manager?",
+        "options": ["a) get", "b) put", "c) come", "d] go"],
+        "answer": "b",
+        "explanation": "put through – соединить по телефону."
+      },
+      {
+        "question": "She was ______ through a lot of stress.",
+        "options": ["a) got", "b) came", "c) put", "d] went"],
+        "answer": "c",
+        "explanation": "put through – подвергать."
+      },
+      {
+        "question": "The performance ______ off well.",
+        "options": ["a) came", "b) got", "c) put", "d] went"],
+        "answer": "a",
+        "explanation": "come off – удаться."
+      },
+      {
+        "question": "I can't ______ through to her on the phone.",
+        "options": ["a) come", "b) put", "c) get", "d] go"],
+        "answer": "c",
+        "explanation": "get through – дозвониться."
+      },
+      {
+        "question": "It took me a long time to ______ over the breakup.",
+        "options": ["a) come", "b) put", "c) get", "d] go"],
+        "answer": "c",
+        "explanation": "get over – оправиться от."
+      },
+      {
+        "question": "Would you be ______ out if I left early?",
+        "options": ["a) put", "b) got", "c) came", "d] went"],
+        "answer": "a",
+        "explanation": "put out – неудобствовать."
+              }
             ]
         },
         {
@@ -32953,19 +38292,59 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 4 (перефразирование)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct phrasal verb (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "I can't ______ his constant complaints.", "answer": "put up with", "explanation": "put up with – мириться с."},
-                {"question": "She ______ an act to hide her sadness.", "answer": "put on", "explanation": "put on – притворяться."},
-                {"question": "______ on your coat, it's cold outside.", "answer": "Put", "explanation": "put on – надевать."},
-                {"question": "He ______ a convincing argument.", "answer": "put forward", "explanation": "put forward – предлагать."},
-                {"question": "I ______ across your profile online.", "answer": "came", "explanation": "come across – наткнуться."},
-                {"question": "She ______ up with a solution.", "answer": "came", "explanation": "come up with – придумать."},
-                {"question": "I finally ______ through to customer service.", "answer": "got", "explanation": "get through – дозвониться."},
-                {"question": "What are you ______ at?", "answer": "getting", "explanation": "get at – подразумевать."}
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct phrasal verb (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "I can't ______ his constant complaints.",
+        "options": ["a) put up with", "b) put on", "c) put forward", "d) put out"],
+        "answer": "a",
+        "explanation": "put up with – мириться с."
+      },
+      {
+        "question": "She ______ an act to hide her sadness.",
+        "options": ["a) put up", "b) put on", "c) put forward", "d) put out"],
+        "answer": "b",
+        "explanation": "put on – притворяться."
+      },
+      {
+        "question": "______ on your coat, it's cold outside.",
+        "options": ["a) Come", "b) Get", "c) Put", "d) Go"],
+        "answer": "c",
+        "explanation": "put on – надевать."
+      },
+      {
+        "question": "He ______ a convincing argument.",
+        "options": ["a) put forward", "b) put on", "c) put up", "d) put out"],
+        "answer": "a",
+        "explanation": "put forward – предлагать."
+      },
+      {
+        "question": "I ______ across your profile online.",
+        "options": ["a) got", "b) put", "c) came", "d] went"],
+        "answer": "c",
+        "explanation": "come across – наткнуться."
+      },
+      {
+        "question": "She ______ up with a solution.",
+        "options": ["a) came", "b) got", "c) put", "d] went"],
+        "answer": "a",
+        "explanation": "come up with – придумать."
+      },
+      {
+        "question": "I finally ______ through to customer service.",
+        "options": ["a) came", "b) put", "c) got", "d] went"],
+        "answer": "c",
+        "explanation": "get through – дозвониться."
+      },
+      {
+        "question": "What are you ______ at?",
+        "options": ["a) coming", "b) putting", "c) getting", "d] going"],
+        "answer": "c",
+        "explanation": "get at – подразумевать."
+              }
             ]
         },
         {
@@ -33014,19 +38393,59 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 5 (перевод)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct phrasal verb (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "She ______ as very confident.", "answer": "comes across", "explanation": "come across – производить впечатление."},
-                {"question": "He ______ with a great idea for the project.", "answer": "came up", "explanation": "come up with – придумать."},
-                {"question": "I think I'm ______ down with something.", "answer": "coming", "explanation": "come down with – заболеть."},
-                {"question": "The new book will ______ out in June.", "answer": "come", "explanation": "come out – выходить."},
-                {"question": "I can't ______ through the amount of work.", "answer": "get", "explanation": "get through – справиться."},
-                {"question": "He got ______ with the crime because of lack of evidence.", "answer": "away", "explanation": "get away with – избежать наказания."},
-                {"question": "She ______ forward a new proposal.", "answer": "put", "explanation": "put forward – предлагать."},
-                {"question": "The firefighters ______ out the blaze quickly.", "answer": "put", "explanation": "put out – тушить."}
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct phrasal verb (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "She ______ as very confident.",
+        "options": ["a) comes across", "b) comes up", "c) gets across", "d) puts across"],
+        "answer": "a",
+        "explanation": "come across – производить впечатление."
+      },
+      {
+        "question": "He ______ with a great idea for the project.",
+        "options": ["a) came up", "b) came across", "c) got through", "d) put forward"],
+        "answer": "a",
+        "explanation": "come up with – придумать."
+      },
+      {
+        "question": "I think I'm ______ down with something.",
+        "options": ["a) getting", "b) coming", "c) putting", "d) going"],
+        "answer": "b",
+        "explanation": "come down with – заболеть."
+      },
+      {
+        "question": "The new book will ______ out in June.",
+        "options": ["a) get", "b) put", "c) come", "d) go"],
+        "answer": "c",
+        "explanation": "come out – выходить."
+      },
+      {
+        "question": "I can't ______ through the amount of work.",
+        "options": ["a) come", "b) put", "c) get", "d) go"],
+        "answer": "c",
+        "explanation": "get through – справиться."
+      },
+      {
+        "question": "He got ______ with the crime because of lack of evidence.",
+        "options": ["a) away", "b) through", "c) over", "d) across"],
+        "answer": "a",
+        "explanation": "get away with – избежать наказания."
+      },
+      {
+        "question": "She ______ forward a new proposal.",
+        "options": ["a) got", "b) came", "c) put", "d) went"],
+        "answer": "c",
+        "explanation": "put forward – предлагать."
+      },
+      {
+        "question": "The firefighters ______ out the blaze quickly.",
+        "options": ["a) got", "b) came", "c) put", "d) went"],
+        "answer": "c",
+        "explanation": "put out – тушить."
+              }
             ]
         },
         {
@@ -33075,19 +38494,59 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 6 (перефразирование)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct phrasal verb (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "I can't ______ up with this noise anymore.", "answer": "put", "explanation": "put up with – мириться с."},
-                {"question": "She ______ on a brave face.", "answer": "put", "explanation": "put on – притворяться/надеть."},
-                {"question": "The meeting was ______ off until next week.", "answer": "put", "explanation": "put off – откладывать."},
-                {"question": "I was ______ through to the wrong department.", "answer": "put", "explanation": "put through – соединить по телефону."},
-                {"question": "He ______ across as very knowledgeable.", "answer": "comes", "explanation": "come across – производить впечатление."},
-                {"question": "How did that ______ about?", "answer": "come", "explanation": "come about – случиться."},
-                {"question": "She ______ off her performance perfectly.", "answer": "came", "explanation": "come off – удаться."},
-                {"question": "I can't ______ over her sudden decision.", "answer": "get", "explanation": "get over – оправиться/пережить."}
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct phrasal verb (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "I can't ______ up with this noise anymore.",
+        "options": ["a) get", "b) come", "c) put", "d) go"],
+        "answer": "c",
+        "explanation": "put up with – мириться с."
+      },
+      {
+        "question": "She ______ on a brave face.",
+        "options": ["a) got", "b) came", "c) put", "d) went"],
+        "answer": "c",
+        "explanation": "put on – притворяться/надеть."
+      },
+      {
+        "question": "The meeting was ______ off until next week.",
+        "options": ["a) got", "b) came", "c) put", "d) went"],
+        "answer": "c",
+        "explanation": "put off – откладывать."
+      },
+      {
+        "question": "I was ______ through to the wrong department.",
+        "options": ["a) got", "b) came", "c) put", "d) went"],
+        "answer": "c",
+        "explanation": "put through – соединить по телефону."
+      },
+      {
+        "question": "He ______ across as very knowledgeable.",
+        "options": ["a) comes", "b) gets", "c) puts", "d) goes"],
+        "answer": "a",
+        "explanation": "come across – производить впечатление."
+      },
+      {
+        "question": "How did that ______ about?",
+        "options": ["a) get", "b) put", "c) come", "d) go"],
+        "answer": "c",
+        "explanation": "come about – случиться."
+      },
+      {
+        "question": "She ______ off her performance perfectly.",
+        "options": ["a) got", "b) came", "c) put", "d) went"],
+        "answer": "b",
+        "explanation": "come off – удаться."
+      },
+      {
+        "question": "I can't ______ over her sudden decision.",
+        "options": ["a) come", "b) put", "c) get", "d) go"],
+        "answer": "c",
+        "explanation": "get over – оправиться/пережить."
+              }
             ]
         },
         {
@@ -33136,20 +38595,60 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 7 (перевод)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct phrasal verb (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "I ______ an interesting article on the internet.", "answer": "came across", "explanation": "come across – наткнуться."},
-                {"question": "She ______ with an innovative solution.", "answer": "came up", "explanation": "come up with – придумать."},
-                {"question": "The new software will ______ out next year.", "answer": "come", "explanation": "come out – выходить."},
-                {"question": "He ______ off as very sincere.", "answer": "comes", "explanation": "come across – производить впечатление (здесь comes across)."},
-                {"question": "I can't ______ through this paperwork.", "answer": "get", "explanation": "get through – справиться."},
-                {"question": "He tried to ______ away with cheating on the test.", "answer": "get", "explanation": "get away with – избежать наказания."},
-                {"question": "She ______ forward a new strategy.", "answer": "put", "explanation": "put forward – предлагать."},
-                {"question": "I need to ______ on my glasses to read this.", "answer": "put", "explanation": "put on – надевать."}
-            ]
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct phrasal verb (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "I ______ an interesting article on the internet.",
+        "options": ["a) got across", "b) came across", "c) put up", "d) came up"],
+        "answer": "b",
+        "explanation": "come across – наткнуться."
+      },
+      {
+        "question": "She ______ with an innovative solution.",
+        "options": ["a) came across", "b) got through", "c) came up", "d) put forward"],
+        "answer": "c",
+        "explanation": "come up with – придумать."
+      },
+      {
+        "question": "The new software will ______ out next year.",
+        "options": ["a) get", "b) come", "c) put", "d) go"],
+        "answer": "b",
+        "explanation": "come out – выходить."
+      },
+      {
+        "question": "He ______ off as very sincere.",
+        "options": ["a) comes", "b) gets", "c) puts", "d) goes"],
+        "answer": "a",
+        "explanation": "come across – производить впечатление (здесь comes across)."
+      },
+      {
+        "question": "I can't ______ through this paperwork.",
+        "options": ["a) come", "b) put", "c) get", "d) go"],
+        "answer": "c",
+        "explanation": "get through – справиться."
+      },
+      {
+        "question": "He tried to ______ away with cheating on the test.",
+        "options": ["a) put", "b) come", "c) get", "d) go"],
+        "answer": "c",
+        "explanation": "get away with – избежать наказания."
+      },
+      {
+        "question": "She ______ forward a new strategy.",
+        "options": ["a) put", "b) came", "c) got", "d) went"],
+        "answer": "a",
+        "explanation": "put forward – предлагать."
+      },
+      {
+        "question": "I need to ______ on my glasses to read this.",
+        "options": ["a) get", "b) put", "c) come", "d) go"],
+        "answer": "b",
+        "explanation": "put on – надевать."
+             }
+           ]
         },
         {
             "type": "complex",
@@ -33197,19 +38696,59 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 8 (перефразирование)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct phrasal verb (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "I can't ______ with his laziness anymore.", "answer": "put up", "explanation": "put up with – мириться с."},
-                {"question": "The concert was ______ off due to bad weather.", "answer": "put", "explanation": "put off – откладывать."},
-                {"question": "Could you ______ the light? It's dark in here.", "answer": "put on", "explanation": "put on – включать."},
-                {"question": "She ______ on a show for her friends.", "answer": "put", "explanation": "put on – притворяться/устраивать."},
-                {"question": "I ______ across your blog yesterday.", "answer": "came", "explanation": "come across – наткнуться."},
-                {"question": "She ______ up with a creative solution.", "answer": "came", "explanation": "come up with – придумать."},
-                {"question": "The handle ______ off, so I can't open the door.", "answer": "came", "explanation": "come off – отвалиться."},
-                {"question": "I can't ______ through to her at the moment.", "answer": "get", "explanation": "get through – дозвониться."}
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct phrasal verb (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "I can't ______ with his laziness anymore.",
+        "options": ["a) put up", "b) come up", "c) get up", "d) put on"],
+        "answer": "a",
+        "explanation": "put up with – мириться с."
+      },
+      {
+        "question": "The concert was ______ off due to bad weather.",
+        "options": ["a) came", "b) got", "c) put", "d) went"],
+        "answer": "c",
+        "explanation": "put off – откладывать."
+      },
+      {
+        "question": "Could you ______ the light? It's dark in here.",
+        "options": ["a) put on", "b) put up", "c) come on", "d) get on"],
+        "answer": "a",
+        "explanation": "put on – включать."
+      },
+      {
+        "question": "She ______ on a show for her friends.",
+        "options": ["a) came", "b) got", "c) put", "d) went"],
+        "answer": "c",
+        "explanation": "put on – притворяться/устраивать."
+      },
+      {
+        "question": "I ______ across your blog yesterday.",
+        "options": ["a) came", "b) got", "c) put", "d) went"],
+        "answer": "a",
+        "explanation": "come across – наткнуться."
+      },
+      {
+        "question": "She ______ up with a creative solution.",
+        "options": ["a) put", "b) got", "c) came", "d) went"],
+        "answer": "c",
+        "explanation": "come up with – придумать."
+      },
+      {
+        "question": "The handle ______ off, so I can't open the door.",
+        "options": ["a) got", "b) put", "c) came", "d) went"],
+        "answer": "c",
+        "explanation": "come off – отвалиться."
+      },
+      {
+        "question": "I can't ______ through to her at the moment.",
+        "options": ["a) come", "b) put", "c) get", "d) go"],
+        "answer": "c",
+        "explanation": "get through – дозвониться."
+              }
             ]
         },
         {
@@ -33258,19 +38797,59 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 9 (перевод)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct phrasal verb (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "I ______ a great restaurant in the city centre.", "answer": "came across", "explanation": "come across – наткнуться."},
-                {"question": "She ______ with a brilliant marketing campaign.", "answer": "came up", "explanation": "come up with – придумать."},
-                {"question": "I think I'm ______ down with a cold.", "answer": "coming", "explanation": "come down with – заболеть."},
-                {"question": "The new film will ______ out in cinemas soon.", "answer": "come", "explanation": "come out – выходить."},
-                {"question": "He didn't ______ his message across.", "answer": "get", "explanation": "get across – донести."},
-                {"question": "I can't ______ over losing my job.", "answer": "get", "explanation": "get over – оправиться от."},
-                {"question": "She ______ forward a bold proposal.", "answer": "put", "explanation": "put forward – предлагать."},
-                {"question": "The firefighters managed to ______ out the fire.", "answer": "put", "explanation": "put out – тушить."}
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct phrasal verb (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "I ______ a great restaurant in the city centre.",
+        "options": ["a) put across", "b) came across", "c) got across", "d) came up"],
+        "answer": "b",
+        "explanation": "come across – наткнуться."
+      },
+      {
+        "question": "She ______ with a brilliant marketing campaign.",
+        "options": ["a) came across", "b) got through", "c) came up", "d) put forward"],
+        "answer": "c",
+        "explanation": "come up with – придумать."
+      },
+      {
+        "question": "I think I'm ______ down with a cold.",
+        "options": ["a) getting", "b) coming", "c) putting", "d) going"],
+        "answer": "b",
+        "explanation": "come down with – заболеть."
+      },
+      {
+        "question": "The new film will ______ out in cinemas soon.",
+        "options": ["a) get", "b) put", "c) come", "d) go"],
+        "answer": "c",
+        "explanation": "come out – выходить."
+      },
+      {
+        "question": "He didn't ______ his message across.",
+        "options": ["a) come", "b) put", "c) get", "d) go"],
+        "answer": "c",
+        "explanation": "get across – донести."
+      },
+      {
+        "question": "I can't ______ over losing my job.",
+        "options": ["a) come", "b) put", "c) get", "d) go"],
+        "answer": "c",
+        "explanation": "get over – оправиться от."
+      },
+      {
+        "question": "She ______ forward a bold proposal.",
+        "options": ["a) got", "b) came", "c) put", "d) went"],
+        "answer": "c",
+        "explanation": "put forward – предлагать."
+      },
+      {
+        "question": "The firefighters managed to ______ out the fire.",
+        "options": ["a) get", "b) came", "c) put", "d) went"],
+        "answer": "c",
+        "explanation": "put out – тушить."
+              }
             ]
         },
         {
@@ -33319,19 +38898,59 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 10 (перефразирование)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct phrasal verb (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "How did the accident ______ about?", "answer": "come", "explanation": "come about – случиться."},
-                {"question": "The project ______ off successfully.", "answer": "came", "explanation": "come off – удаться."},
-                {"question": "She ______ across as very professional.", "answer": "comes", "explanation": "come across – производить впечатление."},
-                {"question": "I can't ______ through all this work by myself.", "answer": "get", "explanation": "get through – справиться."},
-                {"question": "He thought he could ______ away with the mistake.", "answer": "get", "explanation": "get away with – избежать наказания."},
-                {"question": "What are you ______ at with that question?", "answer": "getting", "explanation": "get at – подразумевать."},
-                {"question": "Could you ______ me through to the HR department?", "answer": "put", "explanation": "put through – соединить по телефону."},
-                {"question": "I'm sorry to ______ you out, but could you help me?", "answer": "put", "explanation": "put out – неудобствовать."}
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct phrasal verb (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "How did the accident ______ about?",
+        "options": ["a) come", "b) get", "c) put", "d) go"],
+        "answer": "a",
+        "explanation": "come about – случиться."
+      },
+      {
+        "question": "The project ______ off successfully.",
+        "options": ["a) got", "b) came", "c) put", "d) went"],
+        "answer": "b",
+        "explanation": "come off – удаться."
+      },
+      {
+        "question": "She ______ across as very professional.",
+        "options": ["a) gets", "b) puts", "c) comes", "d) goes"],
+        "answer": "c",
+        "explanation": "come across – производить впечатление."
+      },
+      {
+        "question": "I can't ______ through all this work by myself.",
+        "options": ["a) come", "b) put", "c) get", "d) go"],
+        "answer": "c",
+        "explanation": "get through – справиться."
+      },
+      {
+        "question": "He thought he could ______ away with the mistake.",
+        "options": ["a) put", "b) come", "c) get", "d) go"],
+        "answer": "c",
+        "explanation": "get away with – избежать наказания."
+      },
+      {
+        "question": "What are you ______ at with that question?",
+        "options": ["a) coming", "b) putting", "c) getting", "d) going"],
+        "answer": "c",
+        "explanation": "get at – подразумевать."
+      },
+      {
+        "question": "Could you ______ me through to the HR department?",
+        "options": ["a) get", "b) put", "c) come", "d) go"],
+        "answer": "b",
+        "explanation": "put through – соединить по телефону."
+      },
+      {
+        "question": "I'm sorry to ______ you out, but could you help me?",
+        "options": ["a) get", "b) come", "c) put", "d) go"],
+        "answer": "c",
+        "explanation": "put out – неудобствовать."
+              }
             ]
         },
         {
@@ -33380,19 +38999,59 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 11 (перевод)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct phrasal verb (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "I ______ an old friend at the supermarket.", "answer": "came across", "explanation": "come across – наткнуться."},
-                {"question": "She ______ with an amazing recipe.", "answer": "came up", "explanation": "come up with – придумать."},
-                {"question": "The new policy will ______ out next month.", "answer": "come", "explanation": "come out – выходить."},
-                {"question": "He ______ off as very confident.", "answer": "comes", "explanation": "come across – производить впечатление."},
-                {"question": "I need to ______ over the flu quickly.", "answer": "get", "explanation": "get over – оправиться от."},
-                {"question": "She ______ up with a great idea.", "answer": "came", "explanation": "come up with – придумать."},
-                {"question": "He ______ forward a new theory.", "answer": "put", "explanation": "put forward – предлагать."},
-                {"question": "Please ______ out the cigarette.", "answer": "put", "explanation": "put out – тушить."}
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct phrasal verb (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "I ______ an old friend at the supermarket.",
+        "options": ["a) put across", "b) came across", "c) got across", "d) came up"],
+        "answer": "b",
+        "explanation": "come across – наткнуться."
+      },
+      {
+        "question": "She ______ with an amazing recipe.",
+        "options": ["a) came across", "b) got through", "c) came up", "d) put forward"],
+        "answer": "c",
+        "explanation": "come up with – придумать."
+      },
+      {
+        "question": "The new policy will ______ out next month.",
+        "options": ["a) get", "b) come", "c) put", "d) go"],
+        "answer": "b",
+        "explanation": "come out – выходить."
+      },
+      {
+        "question": "He ______ off as very confident.",
+        "options": ["a) comes", "b) gets", "c) puts", "d) goes"],
+        "answer": "a",
+        "explanation": "come across – производить впечатление."
+      },
+      {
+        "question": "I need to ______ over the flu quickly.",
+        "options": ["a) come", "b) put", "c) get", "d) go"],
+        "answer": "c",
+        "explanation": "get over – оправиться от."
+      },
+      {
+        "question": "She ______ up with a great idea.",
+        "options": ["a) put", "b) got", "c) came", "d) went"],
+        "answer": "c",
+        "explanation": "come up with – придумать."
+      },
+      {
+        "question": "He ______ forward a new theory.",
+        "options": ["a) got", "b) came", "c) put", "d) went"],
+        "answer": "c",
+        "explanation": "put forward – предлагать."
+      },
+      {
+        "question": "Please ______ out the cigarette.",
+        "options": ["a) get", "b) came", "c) put", "d) went"],
+        "answer": "c",
+        "explanation": "put out – тушить."
+              }
             ]
         },
         {
@@ -33441,19 +39100,59 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 12 (перефразирование)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct phrasal verb (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "I can't ______ with this situation any longer.", "answer": "put up", "explanation": "put up with – мириться с."},
-                {"question": "She ______ off the meeting until next Monday.", "answer": "put", "explanation": "put off – откладывать."},
-                {"question": "He ______ on a lot of weight over the holidays.", "answer": "put", "explanation": "put on – набирать вес."},
-                {"question": "Could you ______ me through to the IT department?", "answer": "put", "explanation": "put through – соединить по телефону."},
-                {"question": "The handle ______ off when I pulled it.", "answer": "came", "explanation": "come off – отвалиться."},
-                {"question": "I ______ across a useful website.", "answer": "came", "explanation": "come across – наткнуться."},
-                {"question": "She ______ up with a new approach.", "answer": "came", "explanation": "come up with – придумать."},
-                {"question": "I can't ______ through to the internet.", "answer": "get", "explanation": "get through – дозвониться/подключиться."}
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct phrasal verb (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "I can't ______ with this situation any longer.",
+        "options": ["a) put up", "b) come up", "c) get up", "d) put on"],
+        "answer": "a",
+        "explanation": "put up with – мириться с."
+      },
+      {
+        "question": "She ______ off the meeting until next Monday.",
+        "options": ["a) came", "b) got", "c) put", "d) went"],
+        "answer": "c",
+        "explanation": "put off – откладывать."
+      },
+      {
+        "question": "He ______ on a lot of weight over the holidays.",
+        "options": ["a) came", "b) got", "c) put", "d) went"],
+        "answer": "c",
+        "explanation": "put on – набирать вес."
+      },
+      {
+        "question": "Could you ______ me through to the IT department?",
+        "options": ["a) get", "b) put", "c) come", "d) go"],
+        "answer": "b",
+        "explanation": "put through – соединить по телефону."
+      },
+      {
+        "question": "The handle ______ off when I pulled it.",
+        "options": ["a) got", "b) put", "c) came", "d) went"],
+        "answer": "c",
+        "explanation": "come off – отвалиться."
+      },
+      {
+        "question": "I ______ across a useful website.",
+        "options": ["a) put", "b) got", "c) came", "d) went"],
+        "answer": "c",
+        "explanation": "come across – наткнуться."
+      },
+      {
+        "question": "She ______ up with a new approach.",
+        "options": ["a) put", "b) got", "c) came", "d) went"],
+        "answer": "c",
+        "explanation": "come up with – придумать."
+      },
+      {
+        "question": "I can't ______ through to the internet.",
+        "options": ["a) come", "b) put", "c) get", "d) go"],
+        "answer": "c",
+        "explanation": "get through – дозвониться/подключиться."
+              }
             ]
         },
         {
@@ -33531,19 +39230,59 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 1 (перевод)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct phrasal verb (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "She ______ up yoga last year.", "answer": "took", "explanation": "take up – начать заниматься."},
-                {"question": "The plane ______ off at 7 am.", "answer": "took", "explanation": "take off – взлететь."},
-                {"question": "She ______ after her mother.", "answer": "takes", "explanation": "take after – быть похожим на."},
-                {"question": "The company ______ on new staff.", "answer": "took", "explanation": "take on – нанимать."},
-                {"question": "The new CEO will ______ over next week.", "answer": "take", "explanation": "take over – принять управление."},
-                {"question": "The party ______ out to be great.", "answer": "turned", "explanation": "turn out – оказаться."},
-                {"question": "She ______ down the job offer.", "answer": "turned", "explanation": "turn down – отвергнуть."},
-                {"question": "The caterpillar ______ into a butterfly.", "answer": "turned", "explanation": "turn into – превратиться."}
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct phrasal verb (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "She ______ up yoga last year.",
+        "options": ["a) took", "b) brought", "c) turned", "d) gave"],
+        "answer": "a",
+        "explanation": "take up – начать заниматься."
+      },
+      {
+        "question": "The plane ______ off at 7 am.",
+        "options": ["a) turned", "b) took", "c) brought", "d) went"],
+        "answer": "b",
+        "explanation": "take off – взлететь."
+      },
+      {
+        "question": "She ______ after her mother.",
+        "options": ["a) takes", "b) brings", "c) turns", "d) goes"],
+        "answer": "a",
+        "explanation": "take after – быть похожим на."
+      },
+      {
+        "question": "The company ______ on new staff.",
+        "options": ["a) brought", "b) took", "c) turned", "d) went"],
+        "answer": "b",
+        "explanation": "take on – нанимать."
+      },
+      {
+        "question": "The new CEO will ______ over next week.",
+        "options": ["a) bring", "b) turn", "c) take", "d) go"],
+        "answer": "c",
+        "explanation": "take over – принять управление."
+      },
+      {
+        "question": "The party ______ out to be great.",
+        "options": ["a) took", "b) brought", "c) turned", "d) went"],
+        "answer": "c",
+        "explanation": "turn out – оказаться."
+      },
+      {
+        "question": "She ______ down the job offer.",
+        "options": ["a) brought", "b) turned", "c) took", "d) gave"],
+        "answer": "b",
+        "explanation": "turn down – отвергнуть."
+      },
+      {
+        "question": "The caterpillar ______ into a butterfly.",
+        "options": ["a) took", "b) brought", "c) turned", "d) went"],
+        "answer": "c",
+        "explanation": "turn into – превратиться."
+              }
             ]
         },
         {
@@ -33592,20 +39331,60 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 2 (перефразирование)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct phrasal verb (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "The table ______ up too much space.", "answer": "takes", "explanation": "take up – занимать (место)."},
-                {"question": "______ off your shoes before entering.", "answer": "Take", "explanation": "take off – снимать."},
-                {"question": "He ______ off without saying goodbye.", "answer": "took", "explanation": "take off – уйти, убежать."},
-                {"question": "She ______ on too much responsibility.", "answer": "took", "explanation": "take on – брать на себя."},
-                {"question": "______ up the music, I can't hear it.", "answer": "Turn", "explanation": "turn up – увеличить громкость."},
-                {"question": "He ______ up late again.", "answer": "turned", "explanation": "turn up – появиться."},
-                {"question": "They ______ away dozens of fans.", "answer": "turned", "explanation": "turn away – не пустить, отказать."},
-                {"question": "She was ______ up by her grandparents.", "answer": "brought", "explanation": "bring up – воспитывать."}
-            ]
+ [
+  {
+    "type": "complex",
+    "text": "1. Choose the correct phrasal verb (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "The table ______ up too much space.",
+        "options": ["a) brings", "b) takes", "c) turns", "d) goes"],
+        "answer": "b",
+        "explanation": "take up – занимать (место)."
+      },
+      {
+        "question": "______ off your shoes before entering.",
+        "options": ["a) Take", "b) Bring", "c) Turn", "d) Go"],
+        "answer": "a",
+        "explanation": "take off – снимать."
+      },
+      {
+        "question": "He ______ off without saying goodbye.",
+        "options": ["a) brought", "b) turned", "c) took", "d) went"],
+        "answer": "c",
+        "explanation": "take off – уйти, убежать."
+      },
+      {
+        "question": "She ______ on too much responsibility.",
+        "options": ["a) brought", "b) turned", "c) took", "d) went"],
+        "answer": "c",
+        "explanation": "take on – брать на себя."
+      },
+      {
+        "question": "______ up the music, I can't hear it.",
+        "options": ["a) Bring", "b) Turn", "c) Take", "d) Go"],
+        "answer": "b",
+        "explanation": "turn up – увеличить громкость."
+      },
+      {
+        "question": "He ______ up late again.",
+        "options": ["a) brought", "b) took", "c) turned", "d) went"],
+        "answer": "c",
+        "explanation": "turn up – появиться."
+      },
+      {
+        "question": "They ______ away dozens of fans.",
+        "options": ["a) brought", "b) took", "c) turned", "d) went"],
+        "answer": "c",
+        "explanation": "turn away – не пустить, отказать."
+      },
+      {
+        "question": "She was ______ up by her grandparents.",
+        "options": ["a) took", "b) turned", "c) brought", "d) went"],
+        "answer": "c",
+        "explanation": "bring up – воспитывать."
+             }
+           ]
         },
         {
             "type": "complex",
@@ -33653,20 +39432,60 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 3 (перевод)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct phrasal verb (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "The new law ______ about many changes.", "answer": "brought", "explanation": "bring about – вызывать."},
-                {"question": "These photos ______ back memories.", "answer": "bring", "explanation": "bring back – вернуть, воскресить."},
-                {"question": "They ______ in new rules.", "answer": "brought", "explanation": "bring in – вводить."},
-                {"question": "The company ______ out a new model.", "answer": "brought", "explanation": "bring out – выпускать."},
-                {"question": "The crisis ______ out the best in him.", "answer": "brought", "explanation": "bring out – проявлять."},
-                {"question": "Don't ______ on more than you can handle.", "answer": "take", "explanation": "take on – брать на себя."},
-                {"question": "He was ______ in by the scam.", "answer": "taken", "explanation": "take in – обмануть."},
-                {"question": "It ______ out that he was lying.", "answer": "turned", "explanation": "turn out – оказаться."}
-            ]
+ [
+  {
+    "type": "complex",
+    "text": "1. Choose the correct phrasal verb (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "The new law ______ about many changes.",
+        "options": ["a) took", "b) brought", "c) turned", "d) went"],
+        "answer": "b",
+        "explanation": "bring about – вызывать."
+      },
+      {
+        "question": "These photos ______ back memories.",
+        "options": ["a) bring", "b) take", "c) turn", "d) go"],
+        "answer": "a",
+        "explanation": "bring back – вернуть, воскресить."
+      },
+      {
+        "question": "They ______ in new rules.",
+        "options": ["a) took", "b) brought", "c) turned", "d) went"],
+        "answer": "b",
+        "explanation": "bring in – вводить."
+      },
+      {
+        "question": "The company ______ out a new model.",
+        "options": ["a) took", "b) turned", "c) brought", "d) went"],
+        "answer": "c",
+        "explanation": "bring out – выпускать."
+      },
+      {
+        "question": "The crisis ______ out the best in him.",
+        "options": ["a) took", "b) turned", "c) brought", "d) went"],
+        "answer": "c",
+        "explanation": "bring out – проявлять."
+      },
+      {
+        "question": "Don't ______ on more than you can handle.",
+        "options": ["a) bring", "b) turn", "c) take", "d) go"],
+        "answer": "c",
+        "explanation": "take on – брать на себя."
+      },
+      {
+        "question": "He was ______ in by the scam.",
+        "options": ["a) brought", "b) turned", "c) taken", "d) went"],
+        "answer": "c",
+        "explanation": "take in – обмануть."
+      },
+      {
+        "question": "It ______ out that he was lying.",
+        "options": ["a) took", "b) brought", "c) turned", "d) went"],
+        "answer": "c",
+        "explanation": "turn out – оказаться."
+             }
+           ]
         },
         {
             "type": "complex",
@@ -33714,19 +39533,59 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 4 (перефразирование)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct phrasal verb (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "Why did you ______ up that subject?", "answer": "bring", "explanation": "bring up – поднимать (тему)."},
-                {"question": "The job ______ in $50,000 a year.", "answer": "brings", "explanation": "bring in – приносить доход."},
-                {"question": "She ______ up three children alone.", "answer": "brought", "explanation": "bring up – воспитывать."},
-                {"question": "______ down the volume, please.", "answer": "Turn", "explanation": "turn down – уменьшить громкость."},
-                {"question": "Don't ______ away from those in need.", "answer": "turn", "explanation": "turn away – отворачиваться."},
-                {"question": "She ______ in the washing.", "answer": "took", "explanation": "take in – вносить в дом."},
-                {"question": "The crisis ______ out the worst in people.", "answer": "brought", "explanation": "bring out – проявлять."},
-                {"question": "He was ______ up by his grandparents.", "answer": "brought", "explanation": "bring up – воспитывать."}
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct phrasal verb (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "Why did you ______ up that subject?",
+        "options": ["a) bring", "b) take", "c) turn", "d) go"],
+        "answer": "a",
+        "explanation": "bring up – поднимать (тему)."
+      },
+      {
+        "question": "The job ______ in $50,000 a year.",
+        "options": ["a) takes", "b) brings", "c) turns", "d) goes"],
+        "answer": "b",
+        "explanation": "bring in – приносить доход."
+      },
+      {
+        "question": "She ______ up three children alone.",
+        "options": ["a) took", "b) brought", "c) turned", "d) went"],
+        "answer": "b",
+        "explanation": "bring up – воспитывать."
+      },
+      {
+        "question": "______ down the volume, please.",
+        "options": ["a) Bring", "b) Take", "c) Turn", "d) Go"],
+        "answer": "c",
+        "explanation": "turn down – уменьшить громкость."
+      },
+      {
+        "question": "Don't ______ away from those in need.",
+        "options": ["a) bring", "b) take", "c) turn", "d) go"],
+        "answer": "c",
+        "explanation": "turn away – отворачиваться."
+      },
+      {
+        "question": "She ______ in the washing.",
+        "options": ["a) brought", "b) turned", "c) took", "d) went"],
+        "answer": "c",
+        "explanation": "take in – вносить в дом."
+      },
+      {
+        "question": "The crisis ______ out the worst in people.",
+        "options": ["a) took", "b) turned", "c) brought", "d) went"],
+        "answer": "c",
+        "explanation": "bring out – проявлять."
+      },
+      {
+        "question": "He was ______ up by his grandparents.",
+        "options": ["a) took", "b) turned", "c) brought", "d) went"],
+        "answer": "c",
+        "explanation": "bring up – воспитывать."
+              }
             ]
         },
         {
@@ -33775,19 +39634,59 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 5 (перевод)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct phrasal verb (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "She ______ up a new hobby last month.", "answer": "took", "explanation": "take up – начать заниматься."},
-                {"question": "The plane will ______ off in ten minutes.", "answer": "take", "explanation": "take off – взлететь."},
-                {"question": "He ______ on a new project at work.", "answer": "took", "explanation": "take on – брать на себя."},
-                {"question": "The new manager will ______ over in May.", "answer": "take", "explanation": "take over – принять управление."},
-                {"question": "The concert ______ out to be amazing.", "answer": "turned", "explanation": "turn out – оказаться."},
-                {"question": "She ______ down his invitation to dinner.", "answer": "turned", "explanation": "turn down – отвергнуть."},
-                {"question": "The magician ______ the rabbit into a dove.", "answer": "turned", "explanation": "turn into – превратить."},
-                {"question": "The new policy ______ about a lot of confusion.", "answer": "brought", "explanation": "bring about – вызывать."}
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct phrasal verb (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "She ______ up a new hobby last month.",
+        "options": ["a) brought", "b) turned", "c) took", "d) went"],
+        "answer": "c",
+        "explanation": "take up – начать заниматься."
+      },
+      {
+        "question": "The plane will ______ off in ten minutes.",
+        "options": ["a) bring", "b) turn", "c) take", "d) go"],
+        "answer": "c",
+        "explanation": "take off – взлететь."
+      },
+      {
+        "question": "He ______ on a new project at work.",
+        "options": ["a) brought", "b) turned", "c) took", "d) went"],
+        "answer": "c",
+        "explanation": "take on – брать на себя."
+      },
+      {
+        "question": "The new manager will ______ over in May.",
+        "options": ["a) bring", "b) turn", "c) take", "d) go"],
+        "answer": "c",
+        "explanation": "take over – принять управление."
+      },
+      {
+        "question": "The concert ______ out to be amazing.",
+        "options": ["a) took", "b) brought", "c) turned", "d) went"],
+        "answer": "c",
+        "explanation": "turn out – оказаться."
+      },
+      {
+        "question": "She ______ down his invitation to dinner.",
+        "options": ["a) took", "b) brought", "c) turned", "d) went"],
+        "answer": "c",
+        "explanation": "turn down – отвергнуть."
+      },
+      {
+        "question": "The magician ______ the rabbit into a dove.",
+        "options": ["a) took", "b) brought", "c) turned", "d) went"],
+        "answer": "c",
+        "explanation": "turn into – превратить."
+      },
+      {
+        "question": "The new policy ______ about a lot of confusion.",
+        "options": ["a) took", "b) turned", "c) brought", "d) went"],
+        "answer": "c",
+        "explanation": "bring about – вызывать."
+              }
             ]
         },
         {
@@ -33836,19 +39735,59 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 6 (перефразирование)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct phrasal verb (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "The new CEO will ______ over next month.", "answer": "take", "explanation": "take over – принять управление."},
-                {"question": "She ______ up knitting as a hobby.", "answer": "took", "explanation": "take up – начать заниматься."},
-                {"question": "He ______ after his father in many ways.", "answer": "takes", "explanation": "take after – быть похожим."},
-                {"question": "The company ______ in a lot of money from sales.", "answer": "brings", "explanation": "bring in – приносить доход."},
-                {"question": "The new rules were ______ in last year.", "answer": "brought", "explanation": "bring in – вводить (пассив)."},
-                {"question": "The crisis ______ out the best in people.", "answer": "brought", "explanation": "bring out – проявлять."},
-                {"question": "She ______ on a lot of responsibility.", "answer": "took", "explanation": "take on – брать на себя."},
-                {"question": "He ______ up the topic of salaries.", "answer": "brought", "explanation": "bring up – поднимать тему."}
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct phrasal verb (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "The new CEO will ______ over next month.",
+        "options": ["a) bring", "b) turn", "c) take", "d) go"],
+        "answer": "c",
+        "explanation": "take over – принять управление."
+      },
+      {
+        "question": "She ______ up knitting as a hobby.",
+        "options": ["a) brought", "b) turned", "c) took", "d) went"],
+        "answer": "c",
+        "explanation": "take up – начать заниматься."
+      },
+      {
+        "question": "He ______ after his father in many ways.",
+        "options": ["a) takes", "b) brings", "c) turns", "d) goes"],
+        "answer": "a",
+        "explanation": "take after – быть похожим."
+      },
+      {
+        "question": "The company ______ in a lot of money from sales.",
+        "options": ["a) takes", "b) brings", "c) turns", "d) goes"],
+        "answer": "b",
+        "explanation": "bring in – приносить доход."
+      },
+      {
+        "question": "The new rules were ______ in last year.",
+        "options": ["a) taken", "b) turned", "c) brought", "d) gone"],
+        "answer": "c",
+        "explanation": "bring in – вводить (пассив)."
+      },
+      {
+        "question": "The crisis ______ out the best in people.",
+        "options": ["a) took", "b) turned", "c) brought", "d) went"],
+        "answer": "c",
+        "explanation": "bring out – проявлять."
+      },
+      {
+        "question": "She ______ on a lot of responsibility.",
+        "options": ["a) brought", "b) turned", "c) took", "d) went"],
+        "answer": "c",
+        "explanation": "take on – брать на себя."
+      },
+      {
+        "question": "He ______ up the topic of salaries.",
+        "options": ["a) took", "b) turned", "c) brought", "d) went"],
+        "answer": "c",
+        "explanation": "bring up – поднимать тему."
+              }
             ]
         },
         {
@@ -33897,19 +39836,59 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 7 (перевод)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct phrasal verb (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "The company ______ out a new smartphone.", "answer": "brought", "explanation": "bring out – выпускать."},
-                {"question": "She ______ up the idea of moving abroad.", "answer": "brought", "explanation": "bring up – поднимать тему."},
-                {"question": "The new manager ______ in a lot of changes.", "answer": "brought", "explanation": "bring in – вводить."},
-                {"question": "The story ______ out to be false.", "answer": "turned", "explanation": "turn out – оказаться."},
-                {"question": "He ______ up at the party unexpectedly.", "answer": "turned", "explanation": "turn up – появиться."},
-                {"question": "She ______ down the proposal.", "answer": "turned", "explanation": "turn down – отвергнуть."},
-                {"question": "The cold weather ______ into snow.", "answer": "turned", "explanation": "turn into – превратиться."},
-                {"question": "He ______ off his hat before entering.", "answer": "took", "explanation": "take off – снимать."}
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct phrasal verb (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "The company ______ out a new smartphone.",
+        "options": ["a) took", "b) brought", "c) turned", "d) went"],
+        "answer": "b",
+        "explanation": "bring out – выпускать."
+      },
+      {
+        "question": "She ______ up the idea of moving abroad.",
+        "options": ["a) took", "b) turned", "c) brought", "d) went"],
+        "answer": "c",
+        "explanation": "bring up – поднимать тему."
+      },
+      {
+        "question": "The new manager ______ in a lot of changes.",
+        "options": ["a) took", "b) turned", "c) brought", "d) went"],
+        "answer": "c",
+        "explanation": "bring in – вводить."
+      },
+      {
+        "question": "The story ______ out to be false.",
+        "options": ["a) took", "b) brought", "c) turned", "d) went"],
+        "answer": "c",
+        "explanation": "turn out – оказаться."
+      },
+      {
+        "question": "He ______ up at the party unexpectedly.",
+        "options": ["a) took", "b) brought", "c) turned", "d) went"],
+        "answer": "c",
+        "explanation": "turn up – появиться."
+      },
+      {
+        "question": "She ______ down the proposal.",
+        "options": ["a) took", "b) brought", "c) turned", "d) went"],
+        "answer": "c",
+        "explanation": "turn down – отвергнуть."
+      },
+      {
+        "question": "The cold weather ______ into snow.",
+        "options": ["a) took", "b) brought", "c) turned", "d) went"],
+        "answer": "c",
+        "explanation": "turn into – превратиться."
+      },
+      {
+        "question": "He ______ off his hat before entering.",
+        "options": ["a) brought", "b) turned", "c) took", "d) went"],
+        "answer": "c",
+        "explanation": "take off – снимать."
+              }
             ]
         },
         {
@@ -33958,20 +39937,60 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 8 (перефразирование)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct phrasal verb (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "The new employee ______ on a lot of tasks.", "answer": "took", "explanation": "take on – брать на себя."},
-                {"question": "She ______ in the stray cat.", "answer": "took", "explanation": "take in – впускать, приютить."},
-                {"question": "He ______ over the business from his father.", "answer": "took", "explanation": "take over – принять управление."},
-                {"question": "They ______ on more staff due to demand.", "answer": "took", "explanation": "take on – нанимать."},
-                {"question": "The new law ______ about significant changes.", "answer": "brought", "explanation": "bring about – вызывать."},
-                {"question": "The song ______ back memories of my childhood.", "answer": "brings", "explanation": "bring back – воскрешать воспоминания."},
-                {"question": "The team ______ out a new product.", "answer": "brought", "explanation": "bring out – выпускать."},
-                {"question": "The protest ______ out the anger of the people.", "answer": "brought", "explanation": "bring out – проявлять."}
-            ]
+ [
+  {
+    "type": "complex",
+    "text": "1. Choose the correct phrasal verb (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "The new employee ______ on a lot of tasks.",
+        "options": ["a) brought", "b) turned", "c) took", "d) went"],
+        "answer": "c",
+        "explanation": "take on – брать на себя."
+      },
+      {
+        "question": "She ______ in the stray cat.",
+        "options": ["a) brought", "b) turned", "c) took", "d) went"],
+        "answer": "c",
+        "explanation": "take in – впускать, приютить."
+      },
+      {
+        "question": "He ______ over the business from his father.",
+        "options": ["a) brought", "b) turned", "c) took", "d) went"],
+        "answer": "c",
+        "explanation": "take over – принять управление."
+      },
+      {
+        "question": "They ______ on more staff due to demand.",
+        "options": ["a) brought", "b) turned", "c) took", "d) went"],
+        "answer": "c",
+        "explanation": "take on – нанимать."
+      },
+      {
+        "question": "The new law ______ about significant changes.",
+        "options": ["a) took", "b) turned", "c) brought", "d) went"],
+        "answer": "c",
+        "explanation": "bring about – вызывать."
+      },
+      {
+        "question": "The song ______ back memories of my childhood.",
+        "options": ["a) takes", "b) turns", "c) brings", "d) goes"],
+        "answer": "c",
+        "explanation": "bring back – воскрешать воспоминания."
+      },
+      {
+        "question": "The team ______ out a new product.",
+        "options": ["a) took", "b) turned", "c) brought", "d) went"],
+        "answer": "c",
+        "explanation": "bring out – выпускать."
+      },
+      {
+        "question": "The protest ______ out the anger of the people.",
+        "options": ["a) took", "b) turned", "c) brought", "d) went"],
+        "answer": "c",
+        "explanation": "bring out – проявлять."
+             }
+           ]
         },
         {
             "type": "complex",
@@ -34019,19 +40038,59 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 9 (перевод)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct phrasal verb (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "He ______ up the topic of promotion.", "answer": "brought", "explanation": "bring up – поднимать тему."},
-                {"question": "The new policy ______ about many changes.", "answer": "brought", "explanation": "bring about – вызывать."},
-                {"question": "She ______ on a new challenge.", "answer": "took", "explanation": "take on – брать на себя."},
-                {"question": "The plane ______ off smoothly.", "answer": "took", "explanation": "take off – взлететь."},
-                {"question": "He ______ after his grandfather.", "answer": "takes", "explanation": "take after – быть похожим."},
-                {"question": "The meeting ______ out to be pointless.", "answer": "turned", "explanation": "turn out – оказаться."},
-                {"question": "She ______ down his help.", "answer": "turned", "explanation": "turn down – отвергнуть."},
-                {"question": "The argument ______ into a fight.", "answer": "turned", "explanation": "turn into – превратиться."}
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct phrasal verb (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "He ______ up the topic of promotion.",
+        "options": ["a) took", "b) turned", "c) brought", "d) went"],
+        "answer": "c",
+        "explanation": "bring up – поднимать тему."
+      },
+      {
+        "question": "The new policy ______ about many changes.",
+        "options": ["a) took", "b) turned", "c) brought", "d) went"],
+        "answer": "c",
+        "explanation": "bring about – вызывать."
+      },
+      {
+        "question": "She ______ on a new challenge.",
+        "options": ["a) brought", "b) turned", "c) took", "d) went"],
+        "answer": "c",
+        "explanation": "take on – брать на себя."
+      },
+      {
+        "question": "The plane ______ off smoothly.",
+        "options": ["a) brought", "b) turned", "c) took", "d) went"],
+        "answer": "c",
+        "explanation": "take off – взлететь."
+      },
+      {
+        "question": "He ______ after his grandfather.",
+        "options": ["a) takes", "b) brings", "c) turns", "d) goes"],
+        "answer": "a",
+        "explanation": "take after – быть похожим."
+      },
+      {
+        "question": "The meeting ______ out to be pointless.",
+        "options": ["a) took", "b) brought", "c) turned", "d) went"],
+        "answer": "c",
+        "explanation": "turn out – оказаться."
+      },
+      {
+        "question": "She ______ down his help.",
+        "options": ["a) took", "b) brought", "c) turned", "d) went"],
+        "answer": "c",
+        "explanation": "turn down – отвергнуть."
+      },
+      {
+        "question": "The argument ______ into a fight.",
+        "options": ["a) took", "b) brought", "c) turned", "d) went"],
+        "answer": "c",
+        "explanation": "turn into – превратиться."
+              }
             ]
         },
         {
@@ -34080,20 +40139,60 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 10 (перефразирование)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct phrasal verb (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "The company ______ in new technology last year.", "answer": "brought", "explanation": "bring in – вводить."},
-                {"question": "She ______ up the issue of pay.", "answer": "brought", "explanation": "bring up – поднимать тему."},
-                {"question": "The crisis ______ about a change of leadership.", "answer": "brought", "explanation": "bring about – вызывать."},
-                {"question": "He ______ on the challenge with enthusiasm.", "answer": "took", "explanation": "take on – брать на себя."},
-                {"question": "The new model ______ out last month.", "answer": "came", "explanation": "come out – выходить (но здесь речь о продукте). Однако в задании я хочу проверить 'bring out' – выпускать. Я изменю на 'brought'."},
-                {"question": "The music ______ up memories of summer.", "answer": "brought", "explanation": "bring back – воскрешать (но здесь 'brought up' – но правильнее 'brought back'. Я дам вариант 'brings back'."},
-                {"question": "She ______ after her mother in personality.", "answer": "takes", "explanation": "take after – быть похожим."},
-                {"question": "The company ______ over by a larger firm.", "answer": "was taken", "explanation": "take over – принять управление (пассив)."}
-            ]
+ [
+  {
+    "type": "complex",
+    "text": "1. Choose the correct phrasal verb (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "The company ______ in new technology last year.",
+        "options": ["a) took", "b) turned", "c) brought", "d) went"],
+        "answer": "c",
+        "explanation": "bring in – вводить."
+      },
+      {
+        "question": "She ______ up the issue of pay.",
+        "options": ["a) took", "b) turned", "c) brought", "d) went"],
+        "answer": "c",
+        "explanation": "bring up – поднимать тему."
+      },
+      {
+        "question": "The crisis ______ about a change of leadership.",
+        "options": ["a) took", "b) turned", "c) brought", "d) went"],
+        "answer": "c",
+        "explanation": "bring about – вызывать."
+      },
+      {
+        "question": "He ______ on the challenge with enthusiasm.",
+        "options": ["a) brought", "b) turned", "c) took", "d) went"],
+        "answer": "c",
+        "explanation": "take on – брать на себя."
+      },
+      {
+        "question": "The new model ______ out last month.",
+        "options": ["a) came", "b) brought", "c) took", "d) turned"],
+        "answer": "a",
+        "explanation": "come out – выходить"
+      },
+      {
+        "question": "The music ______ up memories of summer.",
+        "options": ["a) brought", "b) took", "c) turned", "d) went"],
+        "answer": "a",
+        "explanation": "bring back – воскрешать"
+      },
+      {
+        "question": "She ______ after her mother in personality.",
+        "options": ["a) takes", "b) brings", "c) turns", "d) goes"],
+        "answer": "a",
+        "explanation": "take after – быть похожим."
+      },
+      {
+        "question": "The company ______ over by a larger firm.",
+        "options": ["a) was taken", "b) was brought", "c) was turned", "d) went"],
+        "answer": "a",
+        "explanation": "take over – принять управление (пассив)."
+             }
+           ]
         },
         {
             "type": "complex",
@@ -34141,19 +40240,59 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 11 (перевод)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct phrasal verb (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "The meeting was ______ off until next week.", "answer": "put", "explanation": "put off – откладывать (но здесь мы проверяем 'turned'? Нет, это из предыдущего урока. Я дам правильный вариант."},
-                {"question": "She ______ on a new role at work.", "answer": "took", "explanation": "take on – брать на себя."},
-                {"question": "He ______ up the topic of holidays.", "answer": "brought", "explanation": "bring up – поднимать тему."},
-                {"question": "The company ______ out a new line of products.", "answer": "brought", "explanation": "bring out – выпускать."},
-                {"question": "The situation ______ out to be more serious.", "answer": "turned", "explanation": "turn out – оказаться."},
-                {"question": "She ______ down the offer without hesitation.", "answer": "turned", "explanation": "turn down – отвергнуть."},
-                {"question": "The rain ______ into sleet.", "answer": "turned", "explanation": "turn into – превратиться."},
-                {"question": "He ______ after his uncle in appearance.", "answer": "takes", "explanation": "take after – быть похожим."}
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct phrasal verb (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "The meeting was ______ off until next week.",
+        "options": ["a) turned", "b) put", "c) took", "d) brought"],
+        "answer": "b",
+        "explanation": "put off – откладывать."
+      },
+      {
+        "question": "She ______ on a new role at work.",
+        "options": ["a) brought", "b) turned", "c) took", "d) went"],
+        "answer": "c",
+        "explanation": "take on – брать на себя."
+      },
+      {
+        "question": "He ______ up the topic of holidays.",
+        "options": ["a) took", "b) turned", "c) brought", "d) went"],
+        "answer": "c",
+        "explanation": "bring up – поднимать тему."
+      },
+      {
+        "question": "The company ______ out a new line of products.",
+        "options": ["a) took", "b) turned", "c) brought", "d) went"],
+        "answer": "c",
+        "explanation": "bring out – выпускать."
+      },
+      {
+        "question": "The situation ______ out to be more serious.",
+        "options": ["a) took", "b) brought", "c) turned", "d) went"],
+        "answer": "c",
+        "explanation": "turn out – оказаться."
+      },
+      {
+        "question": "She ______ down the offer without hesitation.",
+        "options": ["a) took", "b) brought", "c) turned", "d) went"],
+        "answer": "c",
+        "explanation": "turn down – отвергнуть."
+      },
+      {
+        "question": "The rain ______ into sleet.",
+        "options": ["a) took", "b) brought", "c) turned", "d) went"],
+        "answer": "c",
+        "explanation": "turn into – превратиться."
+      },
+      {
+        "question": "He ______ after his uncle in appearance.",
+        "options": ["a) takes", "b) brings", "c) turns", "d) goes"],
+        "answer": "a",
+        "explanation": "take after – быть похожим."
+              }
             ]
         },
         {
@@ -34202,19 +40341,59 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 12 (перефразирование)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct phrasal verb (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "The company ______ over the smaller firm.", "answer": "took", "explanation": "take over – захватить."},
-                {"question": "She ______ in the laundry from the garden.", "answer": "took", "explanation": "take in – вносить в дом."},
-                {"question": "He ______ on the extra work willingly.", "answer": "took", "explanation": "take on – брать на себя."},
-                {"question": "The scandal ______ down the government.", "answer": "brought", "explanation": "bring down – свергнуть (но мы не изучали этот глагол в явном виде, однако он есть в B2). Я заменю на 'brought about' – но это другое. Я дам правильный вариант: 'brought' – но в задании я хочу использовать 'bring about'."},
-                {"question": "The new director ______ in many reforms.", "answer": "brought", "explanation": "bring in – вводить."},
-                {"question": "The witness ______ forward new evidence.", "answer": "brought", "explanation": "bring forward – представить (но мы изучали put forward). Я заменю на 'put' – но это из другого урока. Я дам 'brought' – но правильнее 'put forward'. Однако я хочу проверить 'bring' – так что я дам 'brought forward'."},
-                {"question": "The news ______ out the truth.", "answer": "brought", "explanation": "bring out – выявить."},
-                {"question": "The situation ______ into a crisis.", "answer": "turned", "explanation": "turn into – превратиться."}
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct phrasal verb (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "The company ______ over the smaller firm.",
+        "options": ["a) brought", "b) turned", "c) took", "d) went"],
+        "answer": "c",
+        "explanation": "take over – захватить."
+      },
+      {
+        "question": "She ______ in the laundry from the garden.",
+        "options": ["a) brought", "b) turned", "c) took", "d) went"],
+        "answer": "c",
+        "explanation": "take in – вносить в дом."
+      },
+      {
+        "question": "He ______ on the extra work willingly.",
+        "options": ["a) brought", "b) turned", "c) took", "d) went"],
+        "answer": "c",
+        "explanation": "take on – брать на себя."
+      },
+      {
+        "question": "The scandal ______ down the government.",
+        "options": ["a) took", "b) brought", "c) turned", "d) went"],
+        "answer": "b",
+        "explanation": "bring down – свергнуть."
+      },
+      {
+        "question": "The new director ______ in many reforms.",
+        "options": ["a) took", "b) turned", "c) brought", "d) went"],
+        "answer": "c",
+        "explanation": "bring in – вводить."
+      },
+      {
+        "question": "The witness ______ forward new evidence.",
+        "options": ["a) took", "b) turned", "c) brought", "d) went"],
+        "answer": "c",
+        "explanation": "bring forward – представить."
+      },
+      {
+        "question": "The news ______ out the truth.",
+        "options": ["a) took", "b) turned", "c) brought", "d) went"],
+        "answer": "c",
+        "explanation": "bring out – выявить."
+      },
+      {
+        "question": "The situation ______ into a crisis.",
+        "options": ["a) took", "b) brought", "c) turned", "d) went"],
+        "answer": "c",
+        "explanation": "turn into – превратиться."
+              }
             ]
         },
         {
@@ -34292,19 +40471,59 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 1 (перевод)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct idiom (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "Can you ______ an eye on my bag?", "answer": "keep", "explanation": "keep an eye on – присматривать за."},
-                {"question": "The teacher ______ a blind eye to cheating.", "answer": "turned", "explanation": "turn a blind eye – закрывать глаза."},
-                {"question": "I'm just ______ your leg.", "answer": "pulling", "explanation": "pull someone's leg – разыгрывать."},
-                {"question": "The repair ______ an arm and a leg.", "answer": "cost", "explanation": "cost an arm and a leg – стоить бешеных денег."},
-                {"question": "She gave me the cold ______ after the argument.", "answer": "shoulder", "explanation": "give someone the cold shoulder – игнорировать."},
-                {"question": "Let's ______ it by ear.", "answer": "play", "explanation": "play it by ear – действовать по обстоятельствам."},
-                {"question": "You ______ the nail on the head with that comment.", "answer": "hit", "explanation": "hit the nail on the head – попасть в точку."},
-                {"question": "The exam was a ______ of cake.", "answer": "piece", "explanation": "a piece of cake – легкотня."}
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct idiom (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "Can you ______ an eye on my bag?",
+        "options": ["a) put", "b) keep", "c) take", "d) have"],
+        "answer": "b",
+        "explanation": "keep an eye on – присматривать за."
+      },
+      {
+        "question": "The teacher ______ a blind eye to cheating.",
+        "options": ["a) gave", "b) kept", "c) turned", "d) paid"],
+        "answer": "c",
+        "explanation": "turn a blind eye – закрывать глаза."
+      },
+      {
+        "question": "I'm just ______ your leg.",
+        "options": ["a) pushing", "b) pulling", "c) holding", "d) taking"],
+        "answer": "b",
+        "explanation": "pull someone's leg – разыгрывать."
+      },
+      {
+        "question": "The repair ______ an arm and a leg.",
+        "options": ["a) spent", "b) paid", "c) cost", "d) took"],
+        "answer": "c",
+        "explanation": "cost an arm and a leg – стоить бешеных денег."
+      },
+      {
+        "question": "She gave me the cold ______ after the argument.",
+        "options": ["a) hand", "b) shoulder", "c) face", "d) back"],
+        "answer": "b",
+        "explanation": "give someone the cold shoulder – игнорировать."
+      },
+      {
+        "question": "Let's ______ it by ear.",
+        "options": ["a) play", "b) do", "c) make", "d) take"],
+        "answer": "a",
+        "explanation": "play it by ear – действовать по обстоятельствам."
+      },
+      {
+        "question": "You ______ the nail on the head with that comment.",
+        "options": ["a) hit", "b) struck", "c) beat", "d) tapped"],
+        "answer": "a",
+        "explanation": "hit the nail on the head – попасть в точку."
+      },
+      {
+        "question": "The exam was a ______ of cake.",
+        "options": ["a) slice", "b) piece", "c) bit", "d) chunk"],
+        "answer": "b",
+        "explanation": "a piece of cake – легкотня."
+              }
             ]
         },
         {
@@ -34353,19 +40572,59 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 2 (перефразирование)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct idiom (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "It took me a while, but I ______ the hang of it.", "answer": "got", "explanation": "get the hang of it – освоить."},
-                {"question": "We need to be on the same ______ before the meeting.", "answer": "page", "explanation": "be on the same page – иметь одинаковое мнение."},
-                {"question": "She always ______ the extra mile to help.", "answer": "goes", "explanation": "go the extra mile – сделать больше."},
-                {"question": "We don't ______ eye to eye on politics.", "answer": "see", "explanation": "see eye to eye – соглашаться."},
-                {"question": "Time ______ when you're having fun.", "answer": "flies", "explanation": "time flies – время летит."},
-                {"question": "I eat fast food ______ in a blue moon.", "answer": "once", "explanation": "once in a blue moon – очень редко."},
-                {"question": "Buying a new car won't ______ the bank.", "answer": "break", "explanation": "break the bank – разорить."},
-                {"question": "Money doesn't ______ on trees.", "answer": "grow", "explanation": "money doesn't grow on trees – деньги не растут на деревьях."}
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct idiom (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "It took me a while, but I ______ the hang of it.",
+        "options": ["a) got", "b) took", "c) made", "d) found"],
+        "answer": "a",
+        "explanation": "get the hang of it – освоить."
+      },
+      {
+        "question": "We need to be on the same ______ before the meeting.",
+        "options": ["a) line", "b) page", "c) level", "d) side"],
+        "answer": "b",
+        "explanation": "be on the same page – иметь одинаковое мнение."
+      },
+      {
+        "question": "She always ______ the extra mile to help.",
+        "options": ["a) goes", "b) runs", "c) walks", "d) travels"],
+        "answer": "a",
+        "explanation": "go the extra mile – сделать больше."
+      },
+      {
+        "question": "We don't ______ eye to eye on politics.",
+        "options": ["a) look", "b) meet", "c) see", "d) find"],
+        "answer": "c",
+        "explanation": "see eye to eye – соглашаться."
+      },
+      {
+        "question": "Time ______ when you're having fun.",
+        "options": ["a) runs", "b) goes", "c) flies", "d) passes"],
+        "answer": "c",
+        "explanation": "time flies – время летит."
+      },
+      {
+        "question": "I eat fast food ______ in a blue moon.",
+        "options": ["a) once", "b) twice", "c) never", "d) always"],
+        "answer": "a",
+        "explanation": "once in a blue moon – очень редко."
+      },
+      {
+        "question": "Buying a new car won't ______ the bank.",
+        "options": ["a) break", "b) crash", "c) close", "d) empty"],
+        "answer": "a",
+        "explanation": "break the bank – разорить."
+      },
+      {
+        "question": "Money doesn't ______ on trees.",
+        "options": ["a) grow", "b) hang", "c) fall", "d] appear"],
+        "answer": "a",
+        "explanation": "money doesn't grow on trees – деньги не растут на деревьях."
+              }
             ]
         },
         {
@@ -34414,20 +40673,60 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 3 (перевод)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct idiom (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "Better late than ______.", "answer": "never", "explanation": "better late than never – лучше поздно, чем никогда."},
-                {"question": "This project is a ______ of time.", "answer": "waste", "explanation": "a waste of time – пустая трата времени."},
-                {"question": "Money ______ a hole in my pocket.", "answer": "burns", "explanation": "burn a hole in your pocket – деньги жгут карман."},
-                {"question": "I'll ______ an eye on the soup.", "answer": "keep", "explanation": "keep an eye on – присматривать за."},
-                {"question": "Don't ______ my leg!", "answer": "pull", "explanation": "pull someone's leg – разыгрывать."},
-                {"question": "You've finally ______ the hang of driving.", "answer": "got", "explanation": "get the hang of – освоить."},
-                {"question": "Let's ______ eye to eye on this issue.", "answer": "see", "explanation": "see eye to eye – соглашаться."},
-                {"question": "I go to the cinema ______ in a blue moon.", "answer": "once", "explanation": "once in a blue moon – очень редко."}
-            ]
+ [
+  {
+    "type": "complex",
+    "text": "1. Choose the correct idiom (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "Better late than ______.",
+        "options": ["a) never", "b) ever", "c) always", "d) sometimes"],
+        "answer": "a",
+        "explanation": "better late than never – лучше поздно, чем никогда."
+      },
+      {
+        "question": "This project is a ______ of time.",
+        "options": ["a) loss", "b) waste", "c) spend", "d) use"],
+        "answer": "b",
+        "explanation": "a waste of time – пустая трата времени."
+      },
+      {
+        "question": "Money ______ a hole in my pocket.",
+        "options": ["a) burns", "b) makes", "c) creates", "d] tears"],
+        "answer": "a",
+        "explanation": "burn a hole in your pocket – деньги жгут карман."
+      },
+      {
+        "question": "I'll ______ an eye on the soup.",
+        "options": ["a) put", "b) take", "c) keep", "d) have"],
+        "answer": "c",
+        "explanation": "keep an eye on – присматривать за."
+      },
+      {
+        "question": "Don't ______ my leg!",
+        "options": ["a) push", "b) pull", "c) hold", "d) take"],
+        "answer": "b",
+        "explanation": "pull someone's leg – разыгрывать."
+      },
+      {
+        "question": "You've finally ______ the hang of driving.",
+        "options": ["a) took", "b) got", "c) made", "d) found"],
+        "answer": "b",
+        "explanation": "get the hang of – освоить."
+      },
+      {
+        "question": "Let's ______ eye to eye on this issue.",
+        "options": ["a) look", "b) meet", "c) see", "d) find"],
+        "answer": "c",
+        "explanation": "see eye to eye – соглашаться."
+      },
+      {
+        "question": "I go to the cinema ______ in a blue moon.",
+        "options": ["a) once", "b) twice", "c) never", "d) always"],
+        "answer": "a",
+        "explanation": "once in a blue moon – очень редко."
+             }
+           ]
         },
         {
             "type": "complex",
@@ -34475,19 +40774,59 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 4 (перефразирование)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct idiom (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "The teacher ______ a blind eye to the student's behaviour.", "answer": "turned", "explanation": "turn a blind eye."},
-                {"question": "The new phone ______ an arm and a leg.", "answer": "cost", "explanation": "cost an arm and a leg."},
-                {"question": "She gave me the ______ shoulder at the party.", "answer": "cold", "explanation": "cold shoulder."},
-                {"question": "We don't have a plan; let's ______ it by ear.", "answer": "play", "explanation": "play it by ear."},
-                {"question": "You ______ the nail on the head with that suggestion.", "answer": "hit", "explanation": "hit the nail on the head."},
-                {"question": "The test was a ______ of cake.", "answer": "piece", "explanation": "piece of cake."},
-                {"question": "We need to be on the same ______ about this.", "answer": "page", "explanation": "be on the same page."},
-                {"question": "She always goes the ______ mile.", "answer": "extra", "explanation": "go the extra mile."}
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct idiom (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "The teacher ______ a blind eye to the student's behaviour.",
+        "options": ["a) gave", "b) turned", "c) kept", "d) paid"],
+        "answer": "b",
+        "explanation": "turn a blind eye."
+      },
+      {
+        "question": "The new phone ______ an arm and a leg.",
+        "options": ["a) spent", "b) paid", "c) cost", "d) took"],
+        "answer": "c",
+        "explanation": "cost an arm and a leg."
+      },
+      {
+        "question": "She gave me the ______ shoulder at the party.",
+        "options": ["a) warm", "b) cold", "c) hot", "d) right"],
+        "answer": "b",
+        "explanation": "cold shoulder."
+      },
+      {
+        "question": "We don't have a plan; let's ______ it by ear.",
+        "options": ["a) do", "b) make", "c) play", "d) take"],
+        "answer": "c",
+        "explanation": "play it by ear."
+      },
+      {
+        "question": "You ______ the nail on the head with that suggestion.",
+        "options": ["a) hit", "b) struck", "c) beat", "d) tapped"],
+        "answer": "a",
+        "explanation": "hit the nail on the head."
+      },
+      {
+        "question": "The test was a ______ of cake.",
+        "options": ["a) slice", "b) piece", "c) bit", "d) chunk"],
+        "answer": "b",
+        "explanation": "piece of cake."
+      },
+      {
+        "question": "We need to be on the same ______ about this.",
+        "options": ["a) line", "b) page", "c) level", "d) side"],
+        "answer": "b",
+        "explanation": "be on the same page."
+      },
+      {
+        "question": "She always goes the ______ mile.",
+        "options": ["a) extra", "b) more", "c) longer", "d) further"],
+        "answer": "a",
+        "explanation": "go the extra mile."
+              }
             ]
         },
         {
@@ -34536,19 +40875,59 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 5 (перевод)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct idiom (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "Time ______ when you're busy.", "answer": "flies", "explanation": "time flies."},
-                {"question": "Better ______ than never.", "answer": "late", "explanation": "better late than never."},
-                {"question": "This is a ______ of money.", "answer": "waste", "explanation": "a waste of money."},
-                {"question": "Money ______ a hole in his pocket.", "answer": "burns", "explanation": "burn a hole in your pocket."},
-                {"question": "I'll ______ an eye on your house while you're away.", "answer": "keep", "explanation": "keep an eye on."},
-                {"question": "Don't ______ my leg! I know it's not true.", "answer": "pull", "explanation": "pull someone's leg."},
-                {"question": "She finally ______ the hang of using the software.", "answer": "got", "explanation": "get the hang of."},
-                {"question": "They don't ______ eye to eye on most things.", "answer": "see", "explanation": "see eye to eye."}
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct idiom (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "Time ______ when you're busy.",
+        "options": ["a) runs", "b) goes", "c) flies", "d) passes"],
+        "answer": "c",
+        "explanation": "time flies."
+      },
+      {
+        "question": "Better ______ than never.",
+        "options": ["a) late", "b) early", "c) soon", "d] quick"],
+        "answer": "a",
+        "explanation": "better late than never."
+      },
+      {
+        "question": "This is a ______ of money.",
+        "options": ["a) loss", "b) waste", "c) spend", "d) use"],
+        "answer": "b",
+        "explanation": "a waste of money."
+      },
+      {
+        "question": "Money ______ a hole in his pocket.",
+        "options": ["a) burns", "b) makes", "c) creates", "d] tears"],
+        "answer": "a",
+        "explanation": "burn a hole in your pocket."
+      },
+      {
+        "question": "I'll ______ an eye on your house while you're away.",
+        "options": ["a) put", "b) take", "c) keep", "d) have"],
+        "answer": "c",
+        "explanation": "keep an eye on."
+      },
+      {
+        "question": "Don't ______ my leg! I know it's not true.",
+        "options": ["a) push", "b) pull", "c) hold", "d) take"],
+        "answer": "b",
+        "explanation": "pull someone's leg."
+      },
+      {
+        "question": "She finally ______ the hang of using the software.",
+        "options": ["a) took", "b) got", "c) made", "d) found"],
+        "answer": "b",
+        "explanation": "get the hang of."
+      },
+      {
+        "question": "They don't ______ eye to eye on most things.",
+        "options": ["a) look", "b) meet", "c) see", "d) find"],
+        "answer": "c",
+        "explanation": "see eye to eye."
+              }
             ]
         },
         {
@@ -34597,19 +40976,59 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 6 (перефразирование)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct idiom (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "She ______ a blind eye to his mistakes.", "answer": "turned", "explanation": "turn a blind eye."},
-                {"question": "The repairs ______ an arm and a leg.", "answer": "cost", "explanation": "cost an arm and a leg."},
-                {"question": "He gave me the cold ______ after our disagreement.", "answer": "shoulder", "explanation": "cold shoulder."},
-                {"question": "We'll ______ it by ear and see what happens.", "answer": "play", "explanation": "play it by ear."},
-                {"question": "You ______ the nail on the head about the problem.", "answer": "hit", "explanation": "hit the nail on the head."},
-                {"question": "The homework was a ______ of cake.", "answer": "piece", "explanation": "piece of cake."},
-                {"question": "We're not on the same ______ regarding this issue.", "answer": "page", "explanation": "same page."},
-                {"question": "He always goes the ______ mile for his clients.", "answer": "extra", "explanation": "extra mile."}
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct idiom (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "She ______ a blind eye to his mistakes.",
+        "options": ["a) gave", "b) kept", "c) turned", "d) paid"],
+        "answer": "c",
+        "explanation": "turn a blind eye."
+      },
+      {
+        "question": "The repairs ______ an arm and a leg.",
+        "options": ["a) spent", "b) paid", "c) cost", "d) took"],
+        "answer": "c",
+        "explanation": "cost an arm and a leg."
+      },
+      {
+        "question": "He gave me the cold ______ after our disagreement.",
+        "options": ["a) hand", "b) shoulder", "c) face", "d) back"],
+        "answer": "b",
+        "explanation": "cold shoulder."
+      },
+      {
+        "question": "We'll ______ it by ear and see what happens.",
+        "options": ["a) do", "b) make", "c) play", "d) take"],
+        "answer": "c",
+        "explanation": "play it by ear."
+      },
+      {
+        "question": "You ______ the nail on the head about the problem.",
+        "options": ["a) hit", "b) struck", "c) beat", "d) tapped"],
+        "answer": "a",
+        "explanation": "hit the nail on the head."
+      },
+      {
+        "question": "The homework was a ______ of cake.",
+        "options": ["a) slice", "b) piece", "c) bit", "d) chunk"],
+        "answer": "b",
+        "explanation": "piece of cake."
+      },
+      {
+        "question": "We're not on the same ______ regarding this issue.",
+        "options": ["a) line", "b) page", "c) level", "d) side"],
+        "answer": "b",
+        "explanation": "same page."
+      },
+      {
+        "question": "He always goes the ______ mile for his clients.",
+        "options": ["a) extra", "b) more", "c) longer", "d) further"],
+        "answer": "a",
+        "explanation": "extra mile."
+              }
             ]
         },
         {
@@ -34658,19 +41077,59 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 7 (перевод)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct idiom (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "Better late than ______.", "answer": "never", "explanation": "better late than never."},
-                {"question": "This is a ______ of effort.", "answer": "waste", "explanation": "a waste of effort."},
-                {"question": "Money ______ a hole in her pocket.", "answer": "burns", "explanation": "burn a hole in your pocket."},
-                {"question": "I'll ______ an eye on your luggage.", "answer": "keep", "explanation": "keep an eye on."},
-                {"question": "You're ______ my leg, aren't you?", "answer": "pulling", "explanation": "pull someone's leg."},
-                {"question": "He's finally ______ the hang of cooking.", "answer": "got", "explanation": "get the hang of."},
-                {"question": "We ______ eye to eye on most topics.", "answer": "see", "explanation": "see eye to eye."},
-                {"question": "I only go to the theatre ______ in a blue moon.", "answer": "once", "explanation": "once in a blue moon."}
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct idiom (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "Better late than ______.",
+        "options": ["a) never", "b) ever", "c) always", "d) sometimes"],
+        "answer": "a",
+        "explanation": "better late than never."
+      },
+      {
+        "question": "This is a ______ of effort.",
+        "options": ["a) loss", "b) waste", "c) spend", "d) use"],
+        "answer": "b",
+        "explanation": "a waste of effort."
+      },
+      {
+        "question": "Money ______ a hole in her pocket.",
+        "options": ["a) burns", "b) makes", "c) creates", "d] tears"],
+        "answer": "a",
+        "explanation": "burn a hole in your pocket."
+      },
+      {
+        "question": "I'll ______ an eye on your luggage.",
+        "options": ["a) put", "b) take", "c) keep", "d) have"],
+        "answer": "c",
+        "explanation": "keep an eye on."
+      },
+      {
+        "question": "You're ______ my leg, aren't you?",
+        "options": ["a) pushing", "b) pulling", "c) holding", "d) taking"],
+        "answer": "b",
+        "explanation": "pull someone's leg."
+      },
+      {
+        "question": "He's finally ______ the hang of cooking.",
+        "options": ["a) took", "b) got", "c) made", "d) found"],
+        "answer": "b",
+        "explanation": "get the hang of."
+      },
+      {
+        "question": "We ______ eye to eye on most topics.",
+        "options": ["a) look", "b) meet", "c) see", "d) find"],
+        "answer": "c",
+        "explanation": "see eye to eye."
+      },
+      {
+        "question": "I only go to the theatre ______ in a blue moon.",
+        "options": ["a) once", "b) twice", "c) never", "d) always"],
+        "answer": "a",
+        "explanation": "once in a blue moon."
+              }
             ]
         },
         {
@@ -34719,19 +41178,59 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 8 (перефразирование)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct idiom (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "She ______ a blind eye to the rule-breaking.", "answer": "turned", "explanation": "turn a blind eye."},
-                {"question": "That dress ______ an arm and a leg.", "answer": "cost", "explanation": "cost an arm and a leg."},
-                {"question": "He gave me the cold ______ after the argument.", "answer": "shoulder", "explanation": "cold shoulder."},
-                {"question": "We'll ______ it by ear and decide later.", "answer": "play", "explanation": "play it by ear."},
-                {"question": "You ______ the nail on the head with that idea.", "answer": "hit", "explanation": "hit the nail on the head."},
-                {"question": "The quiz was a ______ of cake.", "answer": "piece", "explanation": "piece of cake."},
-                {"question": "We're on the same ______ about the new policy.", "answer": "page", "explanation": "same page."},
-                {"question": "She always goes the ______ mile for her students.", "answer": "extra", "explanation": "extra mile."}
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct idiom (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "She ______ a blind eye to the rule-breaking.",
+        "options": ["a) gave", "b) kept", "c) turned", "d) paid"],
+        "answer": "c",
+        "explanation": "turn a blind eye."
+      },
+      {
+        "question": "That dress ______ an arm and a leg.",
+        "options": ["a) spent", "b) paid", "c) cost", "d) took"],
+        "answer": "c",
+        "explanation": "cost an arm and a leg."
+      },
+      {
+        "question": "He gave me the cold ______ after the argument.",
+        "options": ["a) hand", "b) shoulder", "c) face", "d) back"],
+        "answer": "b",
+        "explanation": "cold shoulder."
+      },
+      {
+        "question": "We'll ______ it by ear and decide later.",
+        "options": ["a) do", "b) make", "c) play", "d) take"],
+        "answer": "c",
+        "explanation": "play it by ear."
+      },
+      {
+        "question": "You ______ the nail on the head with that idea.",
+        "options": ["a) hit", "b) struck", "c) beat", "d) tapped"],
+        "answer": "a",
+        "explanation": "hit the nail on the head."
+      },
+      {
+        "question": "The quiz was a ______ of cake.",
+        "options": ["a) slice", "b) piece", "c) bit", "d) chunk"],
+        "answer": "b",
+        "explanation": "piece of cake."
+      },
+      {
+        "question": "We're on the same ______ about the new policy.",
+        "options": ["a) line", "b) page", "c) level", "d) side"],
+        "answer": "b",
+        "explanation": "same page."
+      },
+      {
+        "question": "She always goes the ______ mile for her students.",
+        "options": ["a) extra", "b) more", "c) longer", "d) further"],
+        "answer": "a",
+        "explanation": "extra mile."
+              }
             ]
         },
         {
@@ -34780,19 +41279,59 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 9 (перевод)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct idiom (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "Time ______ when you're enjoying yourself.", "answer": "flies", "explanation": "time flies."},
-                {"question": "Better ______ than never.", "answer": "late", "explanation": "better late than never."},
-                {"question": "This meeting is a ______ of time.", "answer": "waste", "explanation": "a waste of time."},
-                {"question": "Money ______ a hole in his pocket.", "answer": "burns", "explanation": "burn a hole in your pocket."},
-                {"question": "Can you ______ an eye on my laptop?", "answer": "keep", "explanation": "keep an eye on."},
-                {"question": "Stop ______ my leg!", "answer": "pulling", "explanation": "pull someone's leg."},
-                {"question": "I've finally ______ the hang of this software.", "answer": "got", "explanation": "get the hang of."},
-                {"question": "They ______ eye to eye on the new project.", "answer": "see", "explanation": "see eye to eye."}
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct idiom (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "Time ______ when you're enjoying yourself.",
+        "options": ["a) runs", "b) goes", "c) flies", "d) passes"],
+        "answer": "c",
+        "explanation": "time flies."
+      },
+      {
+        "question": "Better ______ than never.",
+        "options": ["a) late", "b) early", "c) soon", "d] quick"],
+        "answer": "a",
+        "explanation": "better late than never."
+      },
+      {
+        "question": "This meeting is a ______ of time.",
+        "options": ["a) loss", "b) waste", "c) spend", "d) use"],
+        "answer": "b",
+        "explanation": "a waste of time."
+      },
+      {
+        "question": "Money ______ a hole in his pocket.",
+        "options": ["a) burns", "b) makes", "c) creates", "d] tears"],
+        "answer": "a",
+        "explanation": "burn a hole in your pocket."
+      },
+      {
+        "question": "Can you ______ an eye on my laptop?",
+        "options": ["a) put", "b) take", "c) keep", "d) have"],
+        "answer": "c",
+        "explanation": "keep an eye on."
+      },
+      {
+        "question": "Stop ______ my leg!",
+        "options": ["a) pushing", "b) pulling", "c) holding", "d) taking"],
+        "answer": "b",
+        "explanation": "pull someone's leg."
+      },
+      {
+        "question": "I've finally ______ the hang of this software.",
+        "options": ["a) took", "b) got", "c) made", "d) found"],
+        "answer": "b",
+        "explanation": "get the hang of."
+      },
+      {
+        "question": "They ______ eye to eye on the new project.",
+        "options": ["a) look", "b) meet", "c) see", "d) find"],
+        "answer": "c",
+        "explanation": "see eye to eye."
+              }
             ]
         },
         {
@@ -34841,20 +41380,62 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 10 (перефразирование)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct idiom (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "She ______ a blind eye to the situation.", "answer": "turned", "explanation": "turn a blind eye."},
-                {"question": "The holiday ______ an arm and a leg.", "answer": "cost", "explanation": "cost an arm and a leg."},
-                {"question": "He gave me the ______ shoulder at the office.", "answer": "cold", "explanation": "cold shoulder."},
-                {"question": "We'll ______ it by ear and see what happens.", "answer": "play", "explanation": "play it by ear."},
-                {"question": "He ______ the nail on the head with his comment.", "answer": "hit", "explanation": "hit the nail on the head."},
-                {"question": "The task was a ______ of cake.", "answer": "piece", "explanation": "piece of cake."},
-                {"question": "We're not on the same ______ about this decision.", "answer": "page", "explanation": "same page."},
-                {"question": "She goes the ______ mile to ensure quality.", "answer": "extra", "explanation": "extra mile."}
-            ]
+ [
+  {
+    "type": "complex",
+    "text": "1. Choose the correct idiom (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "She ______ a blind eye to the situation.",
+        "options": ["a) gave", "b) kept", "c) turned", "d) paid"],
+        "answer": "c",
+        "explanation": "turn a blind eye."
+      },
+      {
+        "question": "The holiday ______ an arm and a leg.",
+        "options": ["a) spent", "b) paid", "c) cost", "d) took"],
+        "answer": "c",
+        "explanation": "cost an arm and a leg."
+      },
+      {
+        "question": "He gave me the ______ shoulder at the office.",
+        "options": ["a) warm", "b) cold", "c) hot", "d) right"],
+        "answer": "b",
+        "explanation": "cold shoulder."
+      },
+      {
+        "question": "We'll ______ it by ear and see what happens.",
+        "options": ["a) do", "b) make", "c) play", "d) take"],
+        "answer": "c",
+        "explanation": "play it by ear."
+      },
+      {
+        "question": "He ______ the nail on the head with his comment.",
+        "options": ["a) hit", "b) struck", "c) beat", "d) tapped"],
+        "answer": "a",
+        "explanation": "hit the nail on the head."
+      },
+      {
+        "question": "The task was a ______ of cake.",
+        "options": ["a) slice", "b) piece", "c) bit", "d) chunk"],
+        "answer": "b",
+        "explanation": "piece of cake."
+      },
+      {
+        "question": "We're not on the same ______ about this decision.",
+        "options": ["a) line", "b) page", "c) level", "d) side"],
+        "answer": "b",
+        "explanation": "same page."
+      },
+      {
+        "question": "She goes the ______ mile to ensure quality.",
+        "options": ["a) extra", "b) more", "c) longer", "d) further"],
+        "answer": "a",
+        "explanation": "extra mile."
+      }
+    ]
+  }
+]           ]
         },
         {
             "type": "complex",
@@ -34902,20 +41483,60 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 11 (перевод)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct idiom (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "Better ______ than never.", "answer": "late", "explanation": "better late than never."},
-                {"question": "This is a ______ of time and effort.", "answer": "waste", "explanation": "a waste of time."},
-                {"question": "Money ______ a hole in his pocket.", "answer": "burns", "explanation": "burn a hole in your pocket."},
-                {"question": "I'll ______ an eye on your things.", "answer": "keep", "explanation": "keep an eye on."},
-                {"question": "You're ______ my leg, right?", "answer": "pulling", "explanation": "pull someone's leg."},
-                {"question": "She quickly ______ the hang of the new system.", "answer": "got", "explanation": "get the hang of."},
-                {"question": "They don't ______ eye to eye on the budget.", "answer": "see", "explanation": "see eye to eye."},
-                {"question": "I go to concerts ______ in a blue moon.", "answer": "once", "explanation": "once in a blue moon."}
-            ]
+ [
+  {
+    "type": "complex",
+    "text": "1. Choose the correct idiom (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "Better ______ than never.",
+        "options": ["a) late", "b) early", "c) soon", "d] quick"],
+        "answer": "a",
+        "explanation": "better late than never."
+      },
+      {
+        "question": "This is a ______ of time and effort.",
+        "options": ["a) loss", "b) waste", "c) spend", "d) use"],
+        "answer": "b",
+        "explanation": "a waste of time."
+      },
+      {
+        "question": "Money ______ a hole in his pocket.",
+        "options": ["a) burns", "b) makes", "c) creates", "d] tears"],
+        "answer": "a",
+        "explanation": "burn a hole in your pocket."
+      },
+      {
+        "question": "I'll ______ an eye on your things.",
+        "options": ["a) put", "b) take", "c) keep", "d) have"],
+        "answer": "c",
+        "explanation": "keep an eye on."
+      },
+      {
+        "question": "You're ______ my leg, right?",
+        "options": ["a) pushing", "b) pulling", "c) holding", "d) taking"],
+        "answer": "b",
+        "explanation": "pull someone's leg."
+      },
+      {
+        "question": "She quickly ______ the hang of the new system.",
+        "options": ["a) took", "b) got", "c) made", "d) found"],
+        "answer": "b",
+        "explanation": "get the hang of."
+      },
+      {
+        "question": "They don't ______ eye to eye on the budget.",
+        "options": ["a) look", "b) meet", "c) see", "d) find"],
+        "answer": "c",
+        "explanation": "see eye to eye."
+      },
+      {
+        "question": "I go to concerts ______ in a blue moon.",
+        "options": ["a) once", "b) twice", "c) never", "d) always"],
+        "answer": "a",
+        "explanation": "once in a blue moon."
+             }
+           ]
         },
         {
             "type": "complex",
@@ -34963,20 +41584,60 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     # =====================================================
     # ВАРИАНТ 12 (перефразирование)
     # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct idiom (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "She ______ a blind eye to his rudeness.", "answer": "turned", "explanation": "turn a blind eye."},
-                {"question": "The new car ______ an arm and a leg.", "answer": "cost", "explanation": "cost an arm and a leg."},
-                {"question": "He gave her the ______ shoulder after the breakup.", "answer": "cold", "explanation": "cold shoulder."},
-                {"question": "We'll ______ it by ear and see how it goes.", "answer": "play", "explanation": "play it by ear."},
-                {"question": "You ______ the nail on the head with that diagnosis.", "answer": "hit", "explanation": "hit the nail on the head."},
-                {"question": "The problem was a ______ of cake to solve.", "answer": "piece", "explanation": "piece of cake."},
-                {"question": "We need to be on the same ______ about the strategy.", "answer": "page", "explanation": "same page."},
-                {"question": "He goes the ______ mile to satisfy customers.", "answer": "extra", "explanation": "extra mile."}
-            ]
+ [
+  {
+    "type": "complex",
+    "text": "1. Choose the correct idiom (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+    "subtasks": [
+      {
+        "question": "She ______ a blind eye to his rudeness.",
+        "options": ["a) gave", "b) kept", "c) turned", "d) paid"],
+        "answer": "c",
+        "explanation": "turn a blind eye."
+      },
+      {
+        "question": "The new car ______ an arm and a leg.",
+        "options": ["a) spent", "b) paid", "c) cost", "d) took"],
+        "answer": "c",
+        "explanation": "cost an arm and a leg."
+      },
+      {
+        "question": "He gave her the ______ shoulder after the breakup.",
+        "options": ["a) warm", "b) cold", "c) hot", "d) right"],
+        "answer": "b",
+        "explanation": "cold shoulder."
+      },
+      {
+        "question": "We'll ______ it by ear and see how it goes.",
+        "options": ["a) do", "b) make", "c) play", "d) take"],
+        "answer": "c",
+        "explanation": "play it by ear."
+      },
+      {
+        "question": "You ______ the nail on the head with that diagnosis.",
+        "options": ["a) hit", "b) struck", "c) beat", "d) tapped"],
+        "answer": "a",
+        "explanation": "hit the nail on the head."
+      },
+      {
+        "question": "The problem was a ______ of cake to solve.",
+        "options": ["a) slice", "b) piece", "c) bit", "d) chunk"],
+        "answer": "b",
+        "explanation": "piece of cake."
+      },
+      {
+        "question": "We need to be on the same ______ about the strategy.",
+        "options": ["a) line", "b) page", "c) level", "d) side"],
+        "answer": "b",
+        "explanation": "same page."
+      },
+      {
+        "question": "He goes the ______ mile to satisfy customers.",
+        "options": ["a) extra", "b) more", "c) longer", "d) further"],
+        "answer": "a",
+        "explanation": "extra mile."
+             }
+           ]
         },
         {
             "type": "complex",
