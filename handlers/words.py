@@ -15,11 +15,9 @@ WORDS_DIR = "data/words/"
 META_FILE = "data/categories_meta.json"
 REDIS_URL = os.getenv("REDIS_URL", "redis://localhost:6379")
 
-# Загружаем метаданные
 with open(META_FILE, "r", encoding="utf-8") as f:
     CATEGORIES_META = json.load(f)
 
-# Доступные категории из файлов
 AVAILABLE_CATEGORIES = {}
 for filename in os.listdir(WORDS_DIR):
     if filename.endswith(".json"):
@@ -32,7 +30,6 @@ for filename in os.listdir(WORDS_DIR):
                 "instruction": "Переведите слово."
             }
 
-# Redis-клиент
 redis_client = None
 
 async def get_redis():
@@ -53,18 +50,19 @@ def get_categories_keyboard():
     buttons = []
     for key, meta in AVAILABLE_CATEGORIES.items():
         buttons.append([InlineKeyboardButton(text=meta["label"], callback_data=f"word_cat_{key}")])
-    buttons.append([InlineKeyboardButton(text="🔙 Назад", callback_data="back_to_main")])
+    buttons.append([InlineKeyboardButton(text="Назад", callback_data="back_to_main")])
     return InlineKeyboardMarkup(inline_keyboard=buttons)
 
 def get_word_card_keyboard():
+    # Кнопки без смайликов
     return InlineKeyboardMarkup(inline_keyboard=[
-        [InlineKeyboardButton(text="📖 Показать ответ", callback_data="word_show_answer")],
-        [InlineKeyboardButton(text="❌ Завершить", callback_data="word_finish")]
+        [InlineKeyboardButton(text="Показать ответ", callback_data="word_show_answer")],
+        [InlineKeyboardButton(text="Завершить", callback_data="word_finish")]
     ])
 
 def get_finish_keyboard():
     return InlineKeyboardMarkup(inline_keyboard=[
-        [InlineKeyboardButton(text="🔙 К категориям", callback_data="back_to_categories")]
+        [InlineKeyboardButton(text="К категориям", callback_data="back_to_categories")]
     ])
 
 # ---------- Вспомогательные ----------
@@ -78,15 +76,22 @@ def load_words(category_key: str):
 
 async def get_user_index(user_id: int, category_key: str) -> int:
     r = await get_redis()
-    key = f"word_progress:{user_id}:{category_key}"
-    val = await r.get(key)
+    val = await r.get(f"word_progress:{user_id}:{category_key}")
     return int(val) if val else 0
 
 async def set_user_index(user_id: int, category_key: str, index: int):
     r = await get_redis()
     await r.set(f"word_progress:{user_id}:{category_key}", str(index))
 
+def is_correct(user_answer: str, correct_answer: str) -> bool:
+    user_answer = normalize_text(user_answer)
+    variants = re.split(r'\s*[,/]\s*', correct_answer.lower())
+    if not variants:
+        variants = [correct_answer.lower()]
+    return user_answer in variants
+
 async def show_word(message_or_callback, user_id: int, session: dict, edit: bool = False):
+    """Показывает только карточку слова (без приветствия)"""
     words = session["words"]
     index = session["index"]
     total = len(words)
@@ -100,14 +105,9 @@ async def show_word(message_or_callback, user_id: int, session: dict, edit: bool
 
     word = words[index]
     session["current_word"] = word
-    category_key = session["category"]
-    meta = AVAILABLE_CATEGORIES.get(category_key, {})
-    instruction = meta.get("instruction", "Переведите слово.")
 
-    text = f"<b>Режим: «{meta.get('label', category_key)}»</b>\n"
-    text += f"{instruction}\n\n"
-    text += f"📌 {word['word']}\n\n"
-    text += f"<i>Слово {index+1} из {total}</i>"
+    # Формат: "слово: _____"
+    text = f"{word['word']}: _____"
 
     keyboard = get_word_card_keyboard()
     if edit:
@@ -142,6 +142,7 @@ async def category_selected(callback: CallbackQuery, state: FSMContext):
 
     start_index = await get_user_index(user_id, category_key)
 
+    # Сохраняем сессию
     user_sessions[user_id] = {
         "words": words,
         "index": start_index,
@@ -151,7 +152,15 @@ async def category_selected(callback: CallbackQuery, state: FSMContext):
         "current_word": None
     }
 
-    await show_word(callback.message, user_id, user_sessions[user_id], edit=True)
+    # 1. Отправляем приветственное сообщение (отдельно)
+    meta = AVAILABLE_CATEGORIES.get(category_key, {})
+    instruction = meta.get("instruction", "Переведите слово.")
+    welcome_text = f"<b>Режим: «{meta.get('label', category_key)}»</b>\n{instruction}"
+    await callback.message.edit_text(welcome_text, parse_mode="HTML")
+
+    # 2. Отправляем первую карточку (новым сообщением)
+    await show_word(callback.message, user_id, user_sessions[user_id], edit=False)
+
     await state.set_state(WordsState.category_chosen)
     await callback.answer()
 
@@ -169,12 +178,12 @@ async def handle_answer(message: Message, state: FSMContext):
         return
 
     correct_answer = current_word["answer"]
-    user_answer = normalize_text(message.text)
+    user_answer = message.text
 
-    if user_answer == normalize_text(correct_answer):
+    if is_correct(user_answer, correct_answer):
         session["correct"] += 1
-        # Отдельное сообщение с правильным ответом (как на скриншоте)
-        await message.answer(f"Верно! Правильный ответ: <b>{correct_answer}</b>", parse_mode="HTML")
+        # Отдельное сообщение с правильным ответом (без смайликов)
+        await message.answer(f"Верно! Правильный ответ: {correct_answer}")
         # Переход к следующему слову
         session["index"] += 1
         if session["index"] >= len(session["words"]):
@@ -199,9 +208,9 @@ async def show_answer(callback: CallbackQuery, state: FSMContext):
         return
 
     # Показываем правильный ответ отдельным сообщением
-    await callback.message.answer(f"Правильный ответ: <b>{current_word['answer']}</b>", parse_mode="HTML")
+    await callback.message.answer(f"Правильный ответ: {current_word['answer']}")
 
-    # Переходим к следующему слову (не засчитываем)
+    # Переход к следующему слову
     session["index"] += 1
     if session["index"] >= len(session["words"]):
         session["index"] = 0
@@ -224,10 +233,10 @@ async def finish_session(callback: CallbackQuery, state: FSMContext):
     if total == 0:
         stats_text = "Вы не дали ни одного ответа."
     else:
-        stats_text = f"Правильно: {correct}\n Ошибок: {wrong}\n📊 Точность: {correct/total*100:.1f}%"
+        stats_text = f"Правильно: {correct}\nОшибок: {wrong}\nТочность: {correct/total*100:.1f}%"
 
     await callback.message.edit_text(
-        f"<b>Сессия завершена!</b>\n\n{stats_text}",
+        f"Сессия завершена!\n\n{stats_text}",
         reply_markup=get_finish_keyboard(),
         parse_mode="HTML"
     )
