@@ -289,3 +289,4 @@ async def original_text_callback(callback: CallbackQuery):
     data["translation"] = None
     last_text_response[user_id] = data
     await callback.answer()
+
