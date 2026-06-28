@@ -92,14 +92,20 @@ def is_correct(user_answer: str, correct_answer: str) -> bool:
         variants = [correct_answer.lower()]
     return user_answer in variants
 
-async def show_answer_with_example(message, word_data):
-    """Формирует сообщение с правильным ответом и примером (если есть)"""
+async def show_answer_with_example(message, word_data, is_correct: bool = False):
+    """
+    Отправляет ответ с примером.
+    is_correct=True → пишем "Верно! Правильный ответ: ..."
+    is_correct=False → просто "Правильный ответ: ..."
+    """
     answer = word_data["answer"]
     example = word_data.get("example")
-    if example:
-        text = f"Правильный ответ: {answer}\n\n<i>{example}</i>"
+    if is_correct:
+        text = f"Верно! Правильный ответ: {answer}"
     else:
         text = f"Правильный ответ: {answer}"
+    if example:
+        text += f"\n\n<i>{example}</i>"
     await message.answer(text, parse_mode="HTML")
 
 async def disable_buttons_and_send_next(message, user_id, session, edit_message):
@@ -112,11 +118,9 @@ async def disable_buttons_and_send_next(message, user_id, session, edit_message)
         msg = edit_message.message
     else:
         msg = edit_message
-    # Оставляем текст без изменений, но убираем кнопки
     await msg.edit_text(msg.text, reply_markup=None, parse_mode="HTML")
 
-    # Переходим к следующему слову (индекс уже увеличен в вызывающем коде)
-    # Теперь отправляем новое слово (новым сообщением)
+    # Отправляем новое слово (новым сообщением)
     await show_word(message, user_id, session, edit=False)
 
 async def show_word(message_or_callback, user_id: int, session: dict, edit: bool = False):
@@ -140,7 +144,6 @@ async def show_word(message_or_callback, user_id: int, session: dict, edit: bool
     if edit:
         await message_or_callback.edit_text(text, reply_markup=keyboard, parse_mode="HTML")
     else:
-        # Отправляем новое сообщение
         await message_or_callback.answer(text, reply_markup=keyboard, parse_mode="HTML")
 
 # ---------- Хендлеры ----------
@@ -209,15 +212,15 @@ async def handle_answer(message: Message, state: FSMContext):
 
     if is_correct(user_answer, correct_answer):
         session["correct"] += 1
-        # Показываем ответ с примером
-        await show_answer_with_example(message, current_word)
+        # Показываем ответ с примером (с "Верно!")
+        await show_answer_with_example(message, current_word, is_correct=True)
         # Увеличиваем индекс и сохраняем
         session["index"] += 1
         if session["index"] >= len(session["words"]):
             session["index"] = 0
         await set_user_index(user_id, session["category"], session["index"])
         # Редактируем карточку (убираем кнопки) и отправляем новую
-        await disable_buttons_and_send_next(message, user_id, session, message)  # message – текущее сообщение с вопросом
+        await disable_buttons_and_send_next(message, user_id, session, message)
     else:
         session["wrong"] += 1
         await message.answer("Неверно, попробуйте ещё раз.")
@@ -235,8 +238,8 @@ async def show_answer(callback: CallbackQuery, state: FSMContext):
         await callback.answer("Ошибка. Попробуйте заново.", show_alert=True)
         return
 
-    # Показываем ответ с примером
-    await show_answer_with_example(callback.message, current_word)
+    # Показываем ответ с примером (без "Верно!")
+    await show_answer_with_example(callback.message, current_word, is_correct=False)
 
     # Увеличиваем индекс и сохраняем
     session["index"] += 1
