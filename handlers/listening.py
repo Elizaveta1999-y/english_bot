@@ -2,7 +2,7 @@ import os
 import json
 import logging
 from aiogram import Router, F
-from aiogram.types import Message, CallbackQuery, InlineKeyboardMarkup, InlineKeyboardButton
+from aiogram.types import Message, CallbackQuery, InlineKeyboardMarkup, InlineKeyboardButton, BufferedInputFile
 from aiogram.filters import Command
 from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import State, StatesGroup
@@ -45,7 +45,6 @@ def get_levels_keyboard():
     return InlineKeyboardMarkup(inline_keyboard=buttons)
 
 def get_choices_keyboard(options, task_index, task_type="choice"):
-    """Клавиатура для choice, title, truefalse"""
     buttons = []
     if task_type == "truefalse":
         buttons.append([InlineKeyboardButton(text="Верно", callback_data=f"listening_answer_{task_index}_true")])
@@ -75,8 +74,6 @@ def get_blocks_by_level(level):
     return [b for b in ALL_TASKS if b["level"] == level]
 
 def normalize_order_answer(answer: str) -> str:
-    """Приводит ответ пользователя к каноническому виду: убирает пробелы, ; заменяет на ;, приводит к верхнему регистру"""
-    # Удаляем лишние пробелы, заменяем несколько ; на один
     parts = [p.strip().upper() for p in answer.split(';') if p.strip()]
     return ';'.join(parts)
 
@@ -90,7 +87,6 @@ async def send_audio_and_start_tasks(message: Message, user_id: int, level: str,
         block_index = 0
     block = blocks[block_index]
 
-    # Сохраняем в состояние
     await state.update_data({
         "level": level,
         "block_index": block_index,
@@ -104,10 +100,15 @@ async def send_audio_and_start_tasks(message: Message, user_id: int, level: str,
     # Генерируем аудио
     audio_path = await text_to_voice(block["text"], voice_id="yM93hbw8Qtvdma2wCnJG")
     if audio_path and os.path.exists(audio_path):
-        with open(audio_path, 'rb') as f:
-            audio_bytes = f.read()
-        await message.answer_audio(audio_bytes, caption="🎧 Прослушайте аудио, затем отвечайте на задания.", reply_markup=get_repeat_audio_keyboard())
-        os.unlink(audio_path)
+        try:
+            with open(audio_path, 'rb') as f:
+                audio_bytes = f.read()
+            audio_file = BufferedInputFile(audio_bytes, filename="audio.mp3")
+            await message.answer_audio(audio_file, caption="🎧 Прослушайте аудио, затем отвечайте на задания.", reply_markup=get_repeat_audio_keyboard())
+            os.unlink(audio_path)
+        except Exception as e:
+            logger.error(f"Ошибка отправки аудио: {e}")
+            await message.answer(f"🎧 Текст для прослушивания:\n\n{block['text']}", reply_markup=get_repeat_audio_keyboard())
     else:
         await message.answer(f"🎧 Текст для прослушивания:\n\n{block['text']}", reply_markup=get_repeat_audio_keyboard())
 
@@ -119,7 +120,6 @@ async def send_task(message: Message, state: FSMContext, first: bool = False):
     tasks = data["block"]["tasks"]
     task_index = data.get("task_index", 0)
     if task_index >= len(tasks):
-        # Все задания выполнены
         await finish_block(message, state)
         return
 
@@ -139,7 +139,7 @@ async def send_task(message: Message, state: FSMContext, first: bool = False):
         items = task["items"]
         formatted = "\n".join([f"{chr(65+i)}) {item}" for i, item in enumerate(items)])
         text = f"📌 Задание {task_index+1} из {len(tasks)}: Расставьте события по порядку.\nВведите буквы через точку с запятой (;), например: A; B; C\n\n{formatted}"
-        keyboard = None  # ожидаем текстовый ответ
+        keyboard = None
     else:
         return
 
@@ -148,10 +148,7 @@ async def send_task(message: Message, state: FSMContext, first: bool = False):
     else:
         await message.answer(text, reply_markup=keyboard, parse_mode="HTML")
 
-    if task["type"] != "order":
-        await state.set_state(ListeningState.answering_task)  # для кнопок
-    else:
-        await state.set_state(ListeningState.answering_task)  # тоже ждём текст
+    await state.set_state(ListeningState.answering_task)
 
 async def finish_block(message: Message, state: FSMContext):
     data = await state.get_data()
@@ -160,7 +157,6 @@ async def finish_block(message: Message, state: FSMContext):
     total = data.get("total", 0)
     stats = f"✅ Правильно: {correct}\n❌ Ошибок: {wrong}\n📊 Точность: {correct/total*100:.1f}%" if total else "Вы не ответили ни на одно задание."
 
-    # Сохраняем прогресс
     level = data["level"]
     block_index = data["block_index"] + 1
     user_id = message.from_user.id
@@ -205,19 +201,17 @@ async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
         await callback.answer("Ошибка, начните заново.")
         return
 
-    # Определяем ответ пользователя
     parts = callback.data.split("_")
     if task["type"] == "truefalse":
         user_answer = parts[-1] == "true"
         correct = task["correct"]
         is_correct = (user_answer == correct)
-    else:  # choice или title
+    else:
         selected_index = int(parts[-1])
         correct_index = task["correct"]
         is_correct = (selected_index == correct_index)
         correct_answer = task["options"][correct_index] if "options" in task else ""
 
-    # Обновляем статистику
     if is_correct:
         data["correct"] += 1
         result_text = "✅ Правильно!"
@@ -231,7 +225,6 @@ async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
     await callback.message.edit_text(f"{result_text}\n\n{callback.message.text}")
     await state.update_data(data)
 
-    # Переход к следующему заданию
     data["task_index"] = data.get("task_index", 0) + 1
     await state.update_data(data)
     await send_task(callback.message, state, first=False)
@@ -246,8 +239,8 @@ async def handle_text_answer(message: Message, state: FSMContext):
         return
 
     user_input = message.text.strip()
-    normalized = normalize_order_answer(user_input)  # например "A; B; C" → "A;B;C"
-    correct = task["correct"]  # эталон, например "B;C;A"
+    normalized = normalize_order_answer(user_input)
+    correct = task["correct"]
     normalized_correct = normalize_order_answer(correct)
 
     is_correct = (normalized == normalized_correct)
@@ -274,10 +267,15 @@ async def repeat_audio(callback: CallbackQuery, state: FSMContext):
         return
     audio_path = await text_to_voice(block["text"], voice_id="yM93hbw8Qtvdma2wCnJG")
     if audio_path and os.path.exists(audio_path):
-        with open(audio_path, 'rb') as f:
-            audio_bytes = f.read()
-        await callback.message.answer_audio(audio_bytes, caption="🔄 Повтор аудио")
-        os.unlink(audio_path)
+        try:
+            with open(audio_path, 'rb') as f:
+                audio_bytes = f.read()
+            audio_file = BufferedInputFile(audio_bytes, filename="audio.mp3")
+            await callback.message.answer_audio(audio_file, caption="🔄 Повтор аудио")
+            os.unlink(audio_path)
+        except Exception as e:
+            logger.error(f"Ошибка повторного аудио: {e}")
+            await callback.message.answer(f"🔄 Текст для повторения:\n\n{block['text']}")
     else:
         await callback.message.answer(f"🔄 Текст для повторения:\n\n{block['text']}")
     await callback.answer()
