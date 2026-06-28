@@ -1,11 +1,12 @@
 import os
 import json
 import logging
-from aiogram import Router, F
+from aiogram import Router, F, types
 from aiogram.types import Message, CallbackQuery, InlineKeyboardMarkup, InlineKeyboardButton, BufferedInputFile
-from aiogram.filters import Command
+from aiogram.filters import Command, StateFilter
 from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import State, StatesGroup
+from aiogram.fsm.storage.base import StorageKey
 from speaking.services.tts import text_to_voice
 import redis.asyncio as redis
 
@@ -35,6 +36,25 @@ async def get_redis():
 class ListeningState(StatesGroup):
     choosing_level = State()
     answering_task = State()
+
+# ---------- Middleware для перехвата текстовых сообщений ----------
+@router.message.outer_middleware()
+async def listening_text_middleware(call: types.Message, event: types.Message, data: dict):
+    """
+    Перехватывает все текстовые сообщения. Если пользователь в состоянии answering_task,
+    обрабатывает сообщение внутри этого роутера и не пропускает дальше.
+    Иначе пропускает дальше (позволяет другим роутерам обработать).
+    """
+    state: FSMContext = data.get('state')
+    if state:
+        current_state = await state.get_state()
+        logger.info(f"Middleware: state = {current_state}, text: {event.text}")
+        if current_state == ListeningState.answering_task:
+            # Обрабатываем ответ и возвращаем результат, не пропуская дальше
+            await handle_answer(event, state)
+            return  # прерываем цепочку, чтобы другие роутеры не получили это сообщение
+    # Если не в answering_task, пропускаем дальше
+    return await call(event, data)
 
 # ---------- Клавиатуры ----------
 def get_levels_keyboard():
@@ -145,6 +165,7 @@ async def send_task(message: Message, state: FSMContext, first: bool = True):
     keyboard = get_task_keyboard(task_index)
     await message.answer(text, reply_markup=keyboard)
     await state.set_state(ListeningState.answering_task)
+    logger.info(f"State set to answering_task for user {message.from_user.id}")
 
 async def finish_block(message: Message, state: FSMContext):
     data = await state.get_data()
@@ -164,40 +185,10 @@ async def finish_block(message: Message, state: FSMContext):
     await message.answer(f"Блок завершён!\n\n{stats}", reply_markup=get_continue_keyboard())
     await state.clear()
 
-# ---------- УНИВЕРСАЛЬНЫЙ ОБРАБОТЧИК ТЕКСТОВЫХ СООБЩЕНИЙ ----------
-# Этот хендлер срабатывает для любого текста, если он находится в этом роутере.
-# Роутер listening должен быть самым первым после start.
-@router.message(F.text)
-async def text_handler(message: Message, state: FSMContext):
-    current_state = await state.get_state()
-    logger.info(f"Text received. Current state: {current_state}, User: {message.from_user.id}")
-    
-    if current_state == ListeningState.answering_task:
-        # Обрабатываем ответ на задание
-        await handle_answer(message, state)
-    # Если состояние не answering_task – просто выходим, не пропуская дальше?
-    # Нет, если просто выйти, сообщение не дойдёт до других роутеров.
-    # Нужно пропустить дальше, если состояние не answering_task.
-    # Для этого возвращаем None (событие продолжит обработку в следующих роутерах).
-    # В aiogram, если хендлер ничего не возвращает, событие считается обработанным.
-    # Чтобы пропустить дальше, нужно использовать фильтр или не перехватывать.
-    # Лучше перехватывать только если состояние answering_task, иначе пропускать.
-    # Но @router.message(F.text) перехватывает все, и если мы не обработаем, оно не дойдёт.
-    # Значит, нужно либо в этом хендлере проверять состояние и обрабатывать только своё,
-    # а для остальных – вызывать пропуск.
-    # В aiogram нет прямого пропуска, но можно использовать middleware или просто
-    # проверять состояние и если не answering_task – ничего не делать.
-    # Но тогда сообщение не дойдёт до других роутеров, потому что хендлер сработал.
-    # Этого нельзя допустить.
-    # Поэтому правильный подход: использовать фильтр в хендлере, чтобы он срабатывал
-    # только когда состояние answering_task.
-    # А для всех остальных случаев – другой хендлер (или просто не перехватывать).
-    pass
-
-# Лучше использовать фильтр в хендлере
-@router.message(F.text, ListeningState.answering_task)
+# ---------- Функция обработки ответа ----------
 async def handle_answer(message: Message, state: FSMContext):
-    # Здесь обработка ответов
+    """Обработка ответа пользователя на задание."""
+    logger.info(f"Handling answer from user {message.from_user.id}")
     data = await state.get_data()
     if data.get("answered", False):
         await message.answer("Вы уже ответили на это задание. Переходим к следующему.")
@@ -276,7 +267,7 @@ async def handle_answer(message: Message, state: FSMContext):
     await state.update_data(data)
     await send_task(message, state)
 
-# ---------- Обработчики кнопок и команд ----------
+# ---------- Обработчики команд и кнопок ----------
 @router.callback_query(F.data == "start_listening")
 @router.message(Command("listening"))
 async def listening_start(event, state: FSMContext):

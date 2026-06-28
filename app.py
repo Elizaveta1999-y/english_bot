@@ -23,12 +23,11 @@ bot = Bot(token=BOT_TOKEN)
 dp = Dispatcher()
 
 dp.include_router(start.router)
+dp.include_router(listening.router)   # ПЕРВЫЙ после start
 dp.include_router(support.router)
 dp.include_router(subscription_router)
-# dp.include_router(lessons.router)          # отключено
 dp.include_router(words.router)
 dp.include_router(roleplay.router)
-dp.include_router(listening.router)   # <-- ПЕРЕНЕСЛИ СЮДА (раньше voice и common)
 dp.include_router(voice.router)
 dp.include_router(common.router)
 dp.include_router(speaking.router)
