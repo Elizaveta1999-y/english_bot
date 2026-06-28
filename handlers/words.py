@@ -47,11 +47,18 @@ user_sessions = {}
 
 # ---------- Клавиатуры ----------
 def get_categories_keyboard():
-    buttons = []
-    for key, meta in AVAILABLE_CATEGORIES.items():
-        buttons.append([InlineKeyboardButton(text=meta["label"], callback_data=f"word_cat_{key}")])
-    buttons.append([InlineKeyboardButton(text="Назад", callback_data="back_to_main")])
-    return InlineKeyboardMarkup(inline_keyboard=buttons)
+    items = list(AVAILABLE_CATEGORIES.items())
+    keyboard = []
+    for i in range(0, len(items), 2):
+        row = []
+        key, meta = items[i]
+        row.append(InlineKeyboardButton(text=meta["label"], callback_data=f"word_cat_{key}"))
+        if i + 1 < len(items):
+            key2, meta2 = items[i + 1]
+            row.append(InlineKeyboardButton(text=meta2["label"], callback_data=f"word_cat_{key2}"))
+        keyboard.append(row)
+    keyboard.append([InlineKeyboardButton(text="Назад", callback_data="back_to_main")])
+    return InlineKeyboardMarkup(inline_keyboard=keyboard)
 
 def get_word_card_keyboard():
     # Кнопки в одной строке
