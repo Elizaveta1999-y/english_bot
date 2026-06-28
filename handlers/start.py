@@ -1,5 +1,5 @@
-from aiogram import Router
-from aiogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
+from aiogram import Router, F
+from aiogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
 from aiogram.filters import Command
 from data.users import get_user_state, set_user_state
 
@@ -13,11 +13,22 @@ WELCOME_TEXT = (
 
 def get_main_menu_keyboard():
     return InlineKeyboardMarkup(inline_keyboard=[
-        [InlineKeyboardButton(text="🎤 Speaking", callback_data="start_speaking")],
-        [InlineKeyboardButton(text="🎭 RolePlay", callback_data="start_roleplay")],
-        [InlineKeyboardButton(text="🗂️ Words", callback_data="start_words")],
-        [InlineKeyboardButton(text="📝 Language Skills", callback_data="start_skills")],
-        [InlineKeyboardButton(text="👤 Мой профиль", callback_data="profile_menu")]
+        [
+            InlineKeyboardButton(text="🎤 Speaking", callback_data="start_speaking"),
+            InlineKeyboardButton(text="🎭 RolePlay", callback_data="start_roleplay")
+        ],
+        [
+            InlineKeyboardButton(text="🎧 Аудирование", callback_data="start_listening"),
+            InlineKeyboardButton(text="📖 Чтение", callback_data="start_reading")
+        ],
+        [
+            InlineKeyboardButton(text="✍️ Письмо", callback_data="start_writing"),
+            InlineKeyboardButton(text="🗣️ Говорение", callback_data="start_govorenie")
+        ],
+        [
+            InlineKeyboardButton(text="📚 Words", callback_data="start_words"),
+            InlineKeyboardButton(text="⚙️ Мой профиль", callback_data="profile_menu")
+        ]
     ])
 
 async def show_main_menu(message: Message, edit: bool = False):
@@ -30,9 +41,12 @@ async def show_main_menu(message: Message, edit: bool = False):
 @router.message(Command("start"))
 async def start_handler(message: Message):
     user_id = message.from_user.id
-    # Проверяем, есть ли уже состояние; если нет — создаём пустое
     state = get_user_state(user_id)
     if not state:
         set_user_state(user_id, {})
-    # Если состояние есть — ничего не делаем, оставляем как есть
     await show_main_menu(message, edit=False)
+
+# ---------- Заглушки для новых режимов (пока в разработке) ----------
+@router.callback_query(F.data.in_(["start_listening", "start_reading", "start_writing", "start_govorenie"]))
+async def under_construction(callback: CallbackQuery):
+    await callback.answer("Этот режим в разработке. Скоро появится! 🚧", show_alert=True)
