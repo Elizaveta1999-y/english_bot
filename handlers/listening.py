@@ -100,7 +100,7 @@ async def send_audio_and_start_tasks(message: Message, user_id: int, level: str,
         "answered": False
     })
 
-    # Генерация аудио (без параметра speed)
+    # Генерация аудио (используем тот же голос, что и в voice.py, без параметра speed)
     audio_path = await text_to_voice(block["text"], voice_id="yM93hbw8Qtvdma2wCnJG")
     if audio_path and os.path.exists(audio_path):
         try:
@@ -186,8 +186,14 @@ async def level_selected(callback: CallbackQuery, state: FSMContext):
     await send_audio_and_start_tasks(callback.message, user_id, level, state)
     await callback.answer()
 
-@router.message(ListeningState.answering_task, F.text)
+# Универсальный обработчик для всех текстовых сообщений
+@router.message(F.text)
 async def handle_text_answer(message: Message, state: FSMContext):
+    # Проверяем, находимся ли мы в режиме аудирования
+    current_state = await state.get_state()
+    if current_state != ListeningState.answering_task:
+        return  # пропускаем, если не в аудировании
+
     data = await state.get_data()
     if data.get("answered", False):
         await message.answer("Вы уже ответили на это задание. Переходим к следующему.")
@@ -266,6 +272,7 @@ async def handle_text_answer(message: Message, state: FSMContext):
     await state.update_data(data)
     await send_task(message, state)
 
+# ---------- Обработчики кнопок ----------
 @router.callback_query(F.data.startswith("listening_show_answer_"))
 async def show_answer(callback: CallbackQuery, state: FSMContext):
     task_index = int(callback.data.split("_")[-1])
