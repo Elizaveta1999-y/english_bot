@@ -57,7 +57,7 @@ def get_categories_keyboard():
             key2, meta2 = items[i + 1]
             row.append(InlineKeyboardButton(text=meta2["label"], callback_data=f"word_cat_{key2}"))
         keyboard.append(row)
-    keyboard.append([InlineKeyboardButton(text="Назад", callback_data="back_to_main")])
+    keyboard.append([InlineKeyboardButton(text="🔙 Назад", callback_data="back_to_main")])
     return InlineKeyboardMarkup(inline_keyboard=keyboard)
 
 def get_word_card_keyboard():
@@ -159,9 +159,9 @@ async def show_word(message_or_callback, user_id: int, session: dict, edit: bool
 async def words_start(event, state: FSMContext):
     await state.clear()
     if isinstance(event, Message):
-        await event.answer("Выберите категорию слов:", reply_markup=get_categories_keyboard())
+        await event.answer("Выберите категорию слов для тренировки:", reply_markup=get_categories_keyboard())
     elif isinstance(event, CallbackQuery):
-        await event.message.edit_text("Выберите категорию слов:", reply_markup=get_categories_keyboard())
+        await event.message.edit_text("Выберите категорию слов для тренировки:", reply_markup=get_categories_keyboard())
         await event.answer()
 
 @router.callback_query(F.data.startswith("word_cat_"))
