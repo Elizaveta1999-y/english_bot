@@ -9,8 +9,7 @@ from speaking.services.ai import process_voice_message, process_roleplay_message
 from speaking.services.tts import text_to_voice
 from data.users import get_user_state, set_user_state, set_user_mode
 from services.deepseek import chat
-from handlers.lessons import show_practice_task
-from handlers.lessons import show_practice_task, parse_user_answers
+#from handlers.lessons import show_practice_task, parse_user_answers
 
 logger = logging.getLogger(__name__)
 router = Router()
