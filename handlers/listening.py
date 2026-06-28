@@ -3,10 +3,9 @@ import json
 import logging
 from aiogram import Router, F, types
 from aiogram.types import Message, CallbackQuery, InlineKeyboardMarkup, InlineKeyboardButton, BufferedInputFile
-from aiogram.filters import Command, StateFilter
+from aiogram.filters import Command
 from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import State, StatesGroup
-from aiogram.fsm.storage.base import StorageKey
 from speaking.services.tts import text_to_voice
 import redis.asyncio as redis
 
@@ -40,20 +39,12 @@ class ListeningState(StatesGroup):
 # ---------- Middleware для перехвата текстовых сообщений ----------
 @router.message.outer_middleware()
 async def listening_text_middleware(call: types.Message, event: types.Message, data: dict):
-    """
-    Перехватывает все текстовые сообщения. Если пользователь в состоянии answering_task,
-    обрабатывает сообщение внутри этого роутера и не пропускает дальше.
-    Иначе пропускает дальше (позволяет другим роутерам обработать).
-    """
     state: FSMContext = data.get('state')
     if state:
         current_state = await state.get_state()
-        logger.info(f"Middleware: state = {current_state}, text: {event.text}")
         if current_state == ListeningState.answering_task:
-            # Обрабатываем ответ и возвращаем результат, не пропуская дальше
             await handle_answer(event, state)
-            return  # прерываем цепочку, чтобы другие роутеры не получили это сообщение
-    # Если не в answering_task, пропускаем дальше
+            return
     return await call(event, data)
 
 # ---------- Клавиатуры ----------
@@ -73,9 +64,12 @@ def get_task_keyboard(task_index):
     ])
 
 def get_continue_keyboard():
+    # Две кнопки в одной строке
     return InlineKeyboardMarkup(inline_keyboard=[
-        [InlineKeyboardButton(text="Следующее задание", callback_data="listening_next_block")],
-        [InlineKeyboardButton(text="Завершить сессию", callback_data="listening_finish_session")]
+        [
+            InlineKeyboardButton(text="Следующее задание", callback_data="listening_next_block"),
+            InlineKeyboardButton(text="Завершить сессию", callback_data="listening_finish_session")
+        ]
     ])
 
 # ---------- Вспомогательные ----------
@@ -93,7 +87,10 @@ def get_blocks_by_level(level):
     return [b for b in ALL_TASKS if b["level"] == level]
 
 def normalize_order_answer(answer: str) -> str:
-    parts = [p.strip().upper() for p in answer.split(';') if p.strip()]
+    # Приводим к верхнему регистру, удаляем все пробелы, заменяем возможные запятые на ;
+    ans = answer.strip().upper().replace(' ', '').replace(',', ';')
+    # Разбиваем по ;, убираем пустые, соединяем с ;
+    parts = [p for p in ans.split(';') if p]
     return ';'.join(parts)
 
 def normalize_text_answer(answer: str) -> str:
@@ -120,13 +117,15 @@ async def send_audio_and_start_tasks(message: Message, user_id: int, level: str,
         "answered": False
     })
 
+    # Генерация аудио
     audio_path = await text_to_voice(block["text"], voice_id="yM93hbw8Qtvdma2wCnJG")
     if audio_path and os.path.exists(audio_path):
         try:
             with open(audio_path, 'rb') as f:
                 audio_bytes = f.read()
-            audio_file = BufferedInputFile(audio_bytes, filename="audio.mp3")
-            await message.answer_audio(audio_file, caption="Прослушайте аудио, затем отвечайте на задания.")
+            # Отправляем как голосовое сообщение (без caption)
+            audio_file = BufferedInputFile(audio_bytes, filename="audio.ogg")
+            await message.answer_voice(audio_file)  # <-- заменено на answer_voice, без caption
             os.unlink(audio_path)
         except Exception as e:
             logger.error(f"Ошибка отправки аудио: {e}")
@@ -154,7 +153,7 @@ async def send_task(message: Message, state: FSMContext, first: bool = True):
         text = f"Задание {task_index+1} из {len(tasks)}: {task['question']}\n\nВведите ваш ответ текстом:"
     elif task["type"] == "fill":
         fill_text = task["text"]
-        text = f"Задание {task_index+1} из {len(tasks)}: Вставьте пропущенные слова.\n\n{fill_text}\n\nВведите все пропущенные слова через точку с запятой (;), например: ___; ___; ___;"
+        text = f"Задание {task_index+1} из {len(tasks)}: Вставьте пропущенные слова.\n\n{fill_text}\n\nВведите все пропущенные слова в формате: ___; ___; ___;"
     elif task["type"] == "order":
         items = task["items"]
         formatted = "\n".join([f"{chr(65+i)}) {item}" for i, item in enumerate(items)])
@@ -165,7 +164,6 @@ async def send_task(message: Message, state: FSMContext, first: bool = True):
     keyboard = get_task_keyboard(task_index)
     await message.answer(text, reply_markup=keyboard)
     await state.set_state(ListeningState.answering_task)
-    logger.info(f"State set to answering_task for user {message.from_user.id}")
 
 async def finish_block(message: Message, state: FSMContext):
     data = await state.get_data()
@@ -182,13 +180,11 @@ async def finish_block(message: Message, state: FSMContext):
         block_index = 0
     await set_user_block_index(user_id, level, block_index)
 
-    await message.answer(f"Блок завершён!\n\n{stats}", reply_markup=get_continue_keyboard())
+    await message.answer(f"Задания выполнены!\n\n{stats}", reply_markup=get_continue_keyboard())
     await state.clear()
 
 # ---------- Функция обработки ответа ----------
 async def handle_answer(message: Message, state: FSMContext):
-    """Обработка ответа пользователя на задание."""
-    logger.info(f"Handling answer from user {message.from_user.id}")
     data = await state.get_data()
     if data.get("answered", False):
         await message.answer("Вы уже ответили на это задание. Переходим к следующему.")
