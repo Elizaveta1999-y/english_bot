@@ -177,12 +177,16 @@ async def finish_block(message: Message, state: FSMContext):
 @router.message(Command("listening"))
 async def listening_start(event, state: FSMContext):
     await state.clear()
+    # Отладочное сообщение для проверки, что колбэк сработал
+    if isinstance(event, CallbackQuery):
+        await event.answer("✅ Кнопка сработала!", show_alert=True)
     text = "🎧 Аудирование\nУчебный режим - Аудирование.\nПрослушайте запись, затем напишите ответы через \";\"\nВыберите уровень:"
     if isinstance(event, Message):
         await event.answer(text, reply_markup=get_levels_keyboard())
     else:
         await event.message.edit_text(text, reply_markup=get_levels_keyboard())
-        await event.answer()
+        # Не вызываем callback.answer() повторно, уже вызвали выше
+        # await event.answer() # закомментировать, чтобы не было двойного ответа
 
 @router.callback_query(F.data.startswith("listening_level_"))
 async def level_selected(callback: CallbackQuery, state: FSMContext):
