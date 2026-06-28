@@ -24,7 +24,7 @@ dp = Dispatcher()
 dp.include_router(start.router)
 dp.include_router(support.router)
 dp.include_router(subscription_router)
-dp.include_router(lessons.router)          # <-- теперь раньше speaking
+# dp.include_router(lessons.router)          # <-- теперь раньше speaking
 dp.include_router(speaking.router)
 dp.include_router(roleplay.router)
 dp.include_router(voice.router)
