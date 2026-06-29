@@ -25,16 +25,17 @@ def get_main_menu_keyboard():
             InlineKeyboardButton(text="📖 Чтение", callback_data="start_reading"),
             InlineKeyboardButton(text="🗣️ Говорение", callback_data="start_govorenie")
         ],
-        # 4 строка: 🔀 Грамматика
-        [InlineKeyboardButton(text="🔀 Грамматика", callback_data="start_grammar")],
-        # 5 строка: 🎙️Свободное общение
-        [InlineKeyboardButton(text="🎙️ Свободное общение", callback_data="start_speaking")],
-        # 6 строка: 🎬 Роль      🥇Лексика
+        # 4 строка: 🔀 Грамматика   🥇Лексика
         [
-            InlineKeyboardButton(text="🎬 Ролевые игры", callback_data="start_roleplay"),
+            InlineKeyboardButton(text="🔀 Грамматика", callback_data="start_grammar"),
             InlineKeyboardButton(text="🥇 Лексика", callback_data="start_words")
         ],
-        # 7 строка: 📊 Моя статистика
+        # 5 строка: 🎙️Общение с AI  🎬 Ролевые игры
+        [
+            InlineKeyboardButton(text="🎙️ Общение с AI", callback_data="start_speaking"),
+            InlineKeyboardButton(text="🎬 Ролевые игры", callback_data="start_roleplay")
+        ],
+        # 6 строка: 📊 Моя статистика
         [InlineKeyboardButton(text="📊 Моя статистика", callback_data="profile_menu")]
     ])
 
