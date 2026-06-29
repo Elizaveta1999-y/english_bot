@@ -23,7 +23,7 @@ bot = Bot(token=BOT_TOKEN)
 dp = Dispatcher()
 
 dp.include_router(start.router)
-dp.include_router(listening.router)   # ПЕРВЫЙ после start
+dp.include_router(listening.router)   # <-- сразу после start
 dp.include_router(support.router)
 dp.include_router(subscription_router)
 dp.include_router(words.router)
