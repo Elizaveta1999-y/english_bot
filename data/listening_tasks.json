@@ -1,36 +1,77 @@
 [
-  // === choice: beginner ===
   {"id": 1, "type": "choice", "level": "beginner", "audio_text": "My name is Anna. I am 25 years old.", "question": "How old is Anna?", "options": ["22", "25", "30"], "correct": 1},
   {"id": 2, "type": "choice", "level": "beginner", "audio_text": "I like pizza. Pizza is my favorite food.", "question": "What is the speaker's favorite food?", "options": ["Pasta", "Pizza", "Salad"], "correct": 1},
   {"id": 3, "type": "choice", "level": "beginner", "audio_text": "The Great Wall is in China.", "question": "Where is the Great Wall?", "options": ["Japan", "China", "India"], "correct": 1},
   {"id": 4, "type": "choice", "level": "beginner", "audio_text": "Tom and Jerry are friends.", "question": "Who are friends?", "options": ["Tom and Jerry", "Tom and John", "Jerry and John"], "correct": 0},
   {"id": 5, "type": "choice", "level": "beginner", "audio_text": "I have a cat named Lily.", "question": "What is the cat's name?", "options": ["Lily", "Max", "Tom"], "correct": 0},
-  {"id": 6, "type": "choice", "level": "beginner", "audio_text": "I like to read books.", "question": "What does the speaker like to do?", "options": ["Read", "Write", "Sing"], "correct": 0},
-  {"id": 7, "type": "choice", "level": "beginner", "audio_text": "My sister is a doctor.", "question": "What is my sister?", "options": ["Teacher", "Doctor", "Nurse"], "correct": 1},
-  {"id": 8, "type": "choice", "level": "beginner", "audio_text": "We go to the park every day.", "question": "How often do we go to the park?", "options": ["Every day", "Every week", "Every month"], "correct": 0},
-  {"id": 9, "type": "choice", "level": "beginner", "audio_text": "I have a big family.", "question": "Is the family big or small?", "options": ["Big", "Small", "Medium"], "correct": 0},
-  {"id": 10, "type": "choice", "level": "beginner", "audio_text": "My school is near my house.", "question": "Where is my school?", "options": ["Far", "Near", "In the city"], "correct": 1},
-  // choice: intermediate
-  {"id": 11, "type": "choice", "level": "intermediate", "audio_text": "The Amazon rainforest produces a lot of oxygen.", "question": "What does the Amazon produce?", "options": ["Oxygen", "Carbon dioxide", "Nitrogen"], "correct": 0},
-  {"id": 12, "type": "choice", "level": "intermediate", "audio_text": "Many people prefer to work from home.", "question": "What is a benefit of working from home?", "options": ["Less commuting", "More distractions", "Higher pay"], "correct": 0},
-  // ... (добавьте ещё 8 для intermediate)
-  // choice: expert
-  {"id": 21, "type": "choice", "level": "expert", "audio_text": "Artificial intelligence is transforming healthcare.", "question": "What field is AI transforming?", "options": ["Healthcare", "Education", "Finance"], "correct": 0},
-  // ... (добавьте ещё 9 для expert)
-
-  // === truefalse: beginner ===
+  {"id": 6, "type": "choice", "level": "intermediate", "audio_text": "The Amazon rainforest produces a lot of oxygen.", "question": "What does the Amazon produce?", "options": ["Oxygen", "Carbon dioxide", "Nitrogen"], "correct": 0},
+  {"id": 7, "type": "choice", "level": "intermediate", "audio_text": "Many people prefer to work from home.", "question": "What is a benefit of working from home?", "options": ["Less commuting", "More distractions", "Higher pay"], "correct": 0},
+  {"id": 8, "type": "choice", "level": "intermediate", "audio_text": "Volunteering can improve social skills.", "question": "What can volunteering improve?", "options": ["Social skills", "Physical health", "Cooking"], "correct": 0},
+  {"id": 9, "type": "choice", "level": "intermediate", "audio_text": "Paris is known as the City of Light.", "question": "What is Paris known as?", "options": ["City of Light", "City of Love", "City of Bridges"], "correct": 0},
+  {"id": 10, "type": "choice", "level": "intermediate", "audio_text": "Yoga reduces stress and improves flexibility.", "question": "What does yoga improve?", "options": ["Flexibility", "Strength", "Speed"], "correct": 0},
+  {"id": 11, "type": "choice", "level": "expert", "audio_text": "Artificial intelligence is transforming healthcare, education, and finance.", "question": "Which field is mentioned as being transformed by AI?", "options": ["Healthcare", "Construction", "Fashion"], "correct": 0},
+  {"id": 12, "type": "choice", "level": "expert", "audio_text": "Climate change is causing extreme weather events and rising sea levels.", "question": "What is one consequence of climate change?", "options": ["Extreme weather", "Cooler temperatures", "More forests"], "correct": 0},
+  {"id": 13, "type": "choice", "level": "expert", "audio_text": "Space tourism companies like SpaceX and Blue Origin are developing vehicles.", "question": "Which companies are mentioned?", "options": ["SpaceX and Blue Origin", "NASA and ESA", "Boeing and Airbus"], "correct": 0},
+  {"id": 14, "type": "choice", "level": "expert", "audio_text": "Genetic engineering can cure diseases by modifying genes.", "question": "What can genetic engineering do?", "options": ["Cure diseases", "Prevent accidents", "Improve memory"], "correct": 0},
+  {"id": 15, "type": "choice", "level": "expert", "audio_text": "The concept of universal basic income has gained attention.", "question": "What has gained attention?", "options": ["Universal basic income", "Free education", "Housing for all"], "correct": 0},
   {"id": 101, "type": "truefalse", "level": "beginner", "audio_text": "Anna lives in Paris.", "statement": "Anna lives in Paris.", "correct": "false"},
-  // ... (ещё 9 для beginner)
-
-  // === fill_one: beginner ===
+  {"id": 102, "type": "truefalse", "level": "beginner", "audio_text": "Tom and Jerry are friends.", "statement": "Tom and Jerry are friends.", "correct": "true"},
+  {"id": 103, "type": "truefalse", "level": "beginner", "audio_text": "The Great Wall is in Japan.", "statement": "The Great Wall is in Japan.", "correct": "false"},
+  {"id": 104, "type": "truefalse", "level": "beginner", "audio_text": "I have a cat.", "statement": "The speaker has a cat.", "correct": "true"},
+  {"id": 105, "type": "truefalse", "level": "beginner", "audio_text": "I like to read.", "statement": "The speaker likes to read.", "correct": "true"},
+  {"id": 106, "type": "truefalse", "level": "intermediate", "audio_text": "The Amazon produces a lot of oxygen.", "statement": "The Amazon produces a lot of oxygen.", "correct": "true"},
+  {"id": 107, "type": "truefalse", "level": "intermediate", "audio_text": "Working from home increases productivity.", "statement": "Working from home always increases productivity.", "correct": "false"},
+  {"id": 108, "type": "truefalse", "level": "intermediate", "audio_text": "Volunteering is beneficial for mental health.", "statement": "Volunteering is beneficial for mental health.", "correct": "true"},
+  {"id": 109, "type": "truefalse", "level": "intermediate", "audio_text": "Paris is the capital of Italy.", "statement": "Paris is the capital of Italy.", "correct": "false"},
+  {"id": 110, "type": "truefalse", "level": "intermediate", "audio_text": "Yoga is only for young people.", "statement": "Yoga is only for young people.", "correct": "false"},
+  {"id": 111, "type": "truefalse", "level": "expert", "audio_text": "AI is used in healthcare to analyze medical images.", "statement": "AI is used in healthcare to analyze medical images.", "correct": "true"},
+  {"id": 112, "type": "truefalse", "level": "expert", "audio_text": "Climate change is not caused by human activities.", "statement": "Climate change is not caused by human activities.", "correct": "false"},
+  {"id": 113, "type": "truefalse", "level": "expert", "audio_text": "Space tourism is already affordable for everyone.", "statement": "Space tourism is already affordable for everyone.", "correct": "false"},
+  {"id": 114, "type": "truefalse", "level": "expert", "audio_text": "Genetic engineering raises ethical concerns.", "statement": "Genetic engineering raises ethical concerns.", "correct": "true"},
+  {"id": 115, "type": "truefalse", "level": "expert", "audio_text": "Universal basic income is a proven policy.", "statement": "Universal basic income is a proven policy.", "correct": "false"},
   {"id": 201, "type": "fill_one", "level": "beginner", "audio_text": "I have a dog.", "question": "I have a ____.", "correct": "dog"},
-  // ... (ещё 9)
-
-  // === fill_multiple: beginner ===
+  {"id": 202, "type": "fill_one", "level": "beginner", "audio_text": "My name is Anna.", "question": "My name is ____.", "correct": "Anna"},
+  {"id": 203, "type": "fill_one", "level": "beginner", "audio_text": "I like pizza.", "question": "I like ____.", "correct": "pizza"},
+  {"id": 204, "type": "fill_one", "level": "beginner", "audio_text": "I have a cat.", "question": "I have a ____.", "correct": "cat"},
+  {"id": 205, "type": "fill_one", "level": "beginner", "audio_text": "I am 25 years old.", "question": "I am ____ years old.", "correct": "25"},
+  {"id": 206, "type": "fill_one", "level": "intermediate", "audio_text": "The Amazon produces a lot of oxygen.", "question": "The Amazon produces a lot of ____.", "correct": "oxygen"},
+  {"id": 207, "type": "fill_one", "level": "intermediate", "audio_text": "Working from home can reduce commuting.", "question": "Working from home can reduce ____.", "correct": "commuting"},
+  {"id": 208, "type": "fill_one", "level": "intermediate", "audio_text": "Volunteering improves social skills.", "question": "Volunteering improves ____ skills.", "correct": "social"},
+  {"id": 209, "type": "fill_one", "level": "intermediate", "audio_text": "Paris is known as the City of Light.", "question": "Paris is known as the City of ____.", "correct": "Light"},
+  {"id": 210, "type": "fill_one", "level": "intermediate", "audio_text": "Yoga improves flexibility.", "question": "Yoga improves ____.", "correct": "flexibility"},
+  {"id": 211, "type": "fill_one", "level": "expert", "audio_text": "AI can analyze medical images.", "question": "AI can analyze ____ images.", "correct": "medical"},
+  {"id": 212, "type": "fill_one", "level": "expert", "audio_text": "Climate change causes extreme weather.", "question": "Climate change causes ____ weather.", "correct": "extreme"},
+  {"id": 213, "type": "fill_one", "level": "expert", "audio_text": "Space tourism companies are developing vehicles.", "question": "Space tourism companies are developing ____.", "correct": "vehicles"},
+  {"id": 214, "type": "fill_one", "level": "expert", "audio_text": "Genetic engineering can cure diseases.", "question": "Genetic engineering can cure ____.", "correct": "diseases"},
+  {"id": 215, "type": "fill_one", "level": "expert", "audio_text": "Universal basic income has gained attention.", "question": "Universal basic income has gained ____.", "correct": "attention"},
   {"id": 301, "type": "fill_multiple", "level": "beginner", "audio_text": "My name is Anna. I am 25.", "question": "My name is ___. I am ___ years old.", "answers": ["Anna", "25"]},
-  // ... (ещё 9)
-
-  // === speaker: beginner ===
-  {"id": 401, "type": "speaker", "level": "beginner", "audio_text": "I like to play football.", "question": "What does the speaker like?", "options": ["Football", "Basketball", "Tennis"], "correct": 0}
-  // ... (ещё 9 для каждого уровня)
+  {"id": 302, "type": "fill_multiple", "level": "beginner", "audio_text": "I have a dog and a cat.", "question": "I have a ___ and a ___.", "answers": ["dog", "cat"]},
+  {"id": 303, "type": "fill_multiple", "level": "beginner", "audio_text": "I like pizza and pasta.", "question": "I like ___ and ___.", "answers": ["pizza", "pasta"]},
+  {"id": 304, "type": "fill_multiple", "level": "beginner", "audio_text": "The book is on the table.", "question": "The book is ___ the ___.", "answers": ["on", "table"]},
+  {"id": 305, "type": "fill_multiple", "level": "beginner", "audio_text": "We go to the park every day.", "question": "We go to the ___ every ___.", "answers": ["park", "day"]},
+  {"id": 306, "type": "fill_multiple", "level": "intermediate", "audio_text": "The Amazon produces oxygen and absorbs carbon dioxide.", "question": "The Amazon produces ___ and absorbs ___ ___.", "answers": ["oxygen", "carbon", "dioxide"]},
+  {"id": 307, "type": "fill_multiple", "level": "intermediate", "audio_text": "Working from home saves time and reduces stress.", "question": "Working from home saves ___ and reduces ___.", "answers": ["time", "stress"]},
+  {"id": 308, "type": "fill_multiple", "level": "intermediate", "audio_text": "Volunteering helps others and improves your skills.", "question": "Volunteering helps ___ and improves your ___.", "answers": ["others", "skills"]},
+  {"id": 309, "type": "fill_multiple", "level": "intermediate", "audio_text": "Paris is famous for the Eiffel Tower and the Louvre.", "question": "Paris is famous for the ___ Tower and the ___.", "answers": ["Eiffel", "Louvre"]},
+  {"id": 310, "type": "fill_multiple", "level": "intermediate", "audio_text": "Yoga combines breathing, meditation, and postures.", "question": "Yoga combines ___, ___, and ___.", "answers": ["breathing", "meditation", "postures"]},
+  {"id": 311, "type": "fill_multiple", "level": "expert", "audio_text": "AI can analyze images and predict outcomes.", "question": "AI can analyze ___ and predict ___.", "answers": ["images", "outcomes"]},
+  {"id": 312, "type": "fill_multiple", "level": "expert", "audio_text": "Climate change leads to rising seas and extreme heat.", "question": "Climate change leads to ___ seas and ___ heat.", "answers": ["rising", "extreme"]},
+  {"id": 313, "type": "fill_multiple", "level": "expert", "audio_text": "Space tourism offers weightlessness and amazing views.", "question": "Space tourism offers ___ and ___ views.", "answers": ["weightlessness", "amazing"]},
+  {"id": 314, "type": "fill_multiple", "level": "expert", "audio_text": "Genetic engineering involves modifying DNA and genes.", "question": "Genetic engineering involves modifying ___ and ___.", "answers": ["DNA", "genes"]},
+  {"id": 315, "type": "fill_multiple", "level": "expert", "audio_text": "UBI provides cash payments and reduces poverty.", "question": "UBI provides ___ payments and reduces ___.", "answers": ["cash", "poverty"]},
+  {"id": 401, "type": "speaker", "level": "beginner", "audio_text": "I like to play football.", "question": "What does the speaker like?", "options": ["Football", "Basketball", "Tennis"], "correct": 0},
+  {"id": 402, "type": "speaker", "level": "beginner", "audio_text": "I work as a teacher.", "question": "What is the speaker's job?", "options": ["Teacher", "Doctor", "Engineer"], "correct": 0},
+  {"id": 403, "type": "speaker", "level": "beginner", "audio_text": "I live in London.", "question": "Where does the speaker live?", "options": ["London", "Paris", "New York"], "correct": 0},
+  {"id": 404, "type": "speaker", "level": "beginner", "audio_text": "I have a sister.", "question": "Who does the speaker have?", "options": ["Sister", "Brother", "Dog"], "correct": 0},
+  {"id": 405, "type": "speaker", "level": "beginner", "audio_text": "I like to read books.", "question": "What does the speaker like to read?", "options": ["Books", "Magazines", "Newspapers"], "correct": 0},
+  {"id": 406, "type": "speaker", "level": "intermediate", "audio_text": "I enjoy volunteering at local charities.", "question": "What does the speaker enjoy?", "options": ["Volunteering", "Traveling", "Cooking"], "correct": 0},
+  {"id": 407, "type": "speaker", "level": "intermediate", "audio_text": "I prefer working from home.", "question": "What does the speaker prefer?", "options": ["Working from home", "Working in an office", "Working outdoors"], "correct": 0},
+  {"id": 408, "type": "speaker", "level": "intermediate", "audio_text": "I practice yoga every morning.", "question": "When does the speaker practice yoga?", "options": ["Every morning", "Every evening", "Every weekend"], "correct": 0},
+  {"id": 409, "type": "speaker", "level": "intermediate", "audio_text": "I love to visit the Louvre Museum.", "question": "What museum does the speaker love?", "options": ["Louvre", "British Museum", "Metropolitan"], "correct": 0},
+  {"id": 410, "type": "speaker", "level": "intermediate", "audio_text": "I find documentaries very interesting.", "question": "What does the speaker find interesting?", "options": ["Documentaries", "Movies", "Sports"], "correct": 0},
+  {"id": 411, "type": "speaker", "level": "expert", "audio_text": "I believe AI will revolutionize healthcare.", "question": "What does the speaker believe about AI?", "options": ["It will revolutionize healthcare", "It will be dangerous", "It will slow down research"], "correct": 0},
+  {"id": 412, "type": "speaker", "level": "expert", "audio_text": "I am concerned about the environmental impact of space tourism.", "question": "What is the speaker concerned about?", "options": ["Environmental impact of space tourism", "Cost of space travel", "Safety of space travel"], "correct": 0},
+  {"id": 413, "type": "speaker", "level": "expert", "audio_text": "I think genetic engineering should be regulated strictly.", "question": "What does the speaker think about genetic engineering?", "options": ["It should be regulated strictly", "It should be banned", "It should be encouraged"], "correct": 0},
+  {"id": 414, "type": "speaker", "level": "expert", "audio_text": "I support universal basic income as a solution to poverty.", "question": "What solution does the speaker support?", "options": ["Universal basic income", "Free education", "Tax cuts"], "correct": 0},
+  {"id": 415, "type": "speaker", "level": "expert", "audio_text": "I study the effects of climate change on agriculture.", "question": "What does the speaker study?", "options": ["Effects of climate change on agriculture", "Ocean currents", "Solar energy"], "correct": 0}
 ]
