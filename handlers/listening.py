@@ -1,4 +1,4 @@
- import os
+import os
 import json
 import logging
 import tempfile
@@ -38,14 +38,12 @@ class ListeningState(StatesGroup):
     choosing_level = State()
     answering_task = State()
 
-# ---------- Конвертация в OGG Opus (как в voice.py) ----------
 def convert_to_opus(mp3_path: str) -> str:
     ogg_path = tempfile.mktemp(suffix=".ogg")
     cmd = ["ffmpeg", "-i", mp3_path, "-c:a", "libopus", "-ar", "16000", "-ac", "1", "-b:a", "16k", ogg_path, "-y"]
     subprocess.run(cmd, check=True, capture_output=True)
     return ogg_path
 
-# ---------- Middleware для перехвата текстовых сообщений ----------
 @router.message.outer_middleware()
 async def listening_text_middleware(call: types.Message, event: types.Message, data: dict):
     state: FSMContext = data.get('state')
@@ -56,7 +54,6 @@ async def listening_text_middleware(call: types.Message, event: types.Message, d
             return
     return await call(event, data)
 
-# ---------- Клавиатуры ----------
 def get_levels_keyboard():
     buttons = []
     for level, label in LEVELS.items():
@@ -80,7 +77,6 @@ def get_continue_keyboard():
         ]
     ])
 
-# ---------- Вспомогательные ----------
 async def get_user_block_index(user_id: int, level: str) -> int:
     r = await get_redis()
     key = f"listening_progress:{user_id}:{level}"
@@ -95,7 +91,6 @@ def get_blocks_by_level(level):
     return [b for b in ALL_TASKS if b["level"] == level]
 
 def normalize_order_answer(answer: str) -> str:
-    # Удаляем пробелы, приводим к верхнему регистру, заменяем запятые на ;
     ans = answer.strip().upper().replace(' ', '').replace(',', ';')
     parts = [p for p in ans.split(';') if p]
     return ';'.join(parts)
@@ -124,19 +119,16 @@ async def send_audio_and_start_tasks(message: Message, user_id: int, level: str,
         "answered": False
     })
 
-    # Сообщение о генерации
     status_msg = await message.answer("⏳ Генерирую аудио...")
 
-    # Генерация аудио через TTS
     audio_path = await text_to_voice(block["text"], voice_id="yM93hbw8Qtvdma2wCnJG")
     if audio_path and os.path.exists(audio_path):
         try:
-            # Конвертируем в OGG Opus для голосового сообщения
             ogg_path = convert_to_opus(audio_path)
             with open(ogg_path, 'rb') as f:
                 audio_bytes = f.read()
             audio_file = BufferedInputFile(audio_bytes, filename="audio.ogg")
-            await message.answer_voice(audio_file)  # волны появляются автоматически
+            await message.answer_voice(audio_file)
             os.unlink(audio_path)
             os.unlink(ogg_path)
         except Exception as e:
@@ -145,9 +137,7 @@ async def send_audio_and_start_tasks(message: Message, user_id: int, level: str,
     else:
         await message.answer(f"Текст для прослушивания:\n\n{block['text']}")
 
-    # Удаляем статусное сообщение
     await status_msg.delete()
-
     await send_task(message, state)
 
 async def send_task(message: Message, state: FSMContext, first: bool = True):
@@ -198,7 +188,6 @@ async def finish_block(message: Message, state: FSMContext):
     await message.answer(f"Задания выполнены!\n\n{stats}", reply_markup=get_continue_keyboard())
     await state.clear()
 
-# ---------- Функция обработки ответа ----------
 async def handle_answer(message: Message, state: FSMContext):
     data = await state.get_data()
     if data.get("answered", False):
@@ -278,7 +267,6 @@ async def handle_answer(message: Message, state: FSMContext):
     await state.update_data(data)
     await send_task(message, state)
 
-# ---------- Обработчики команд и кнопок ----------
 @router.callback_query(F.data == "start_listening")
 @router.message(Command("listening"))
 async def listening_start(event, state: FSMContext):
