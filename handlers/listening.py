@@ -1,6 +1,8 @@
-import os
+ import os
 import json
 import logging
+import tempfile
+import subprocess
 from aiogram import Router, F, types
 from aiogram.types import Message, CallbackQuery, InlineKeyboardMarkup, InlineKeyboardButton, BufferedInputFile
 from aiogram.filters import Command
@@ -36,6 +38,13 @@ class ListeningState(StatesGroup):
     choosing_level = State()
     answering_task = State()
 
+# ---------- Конвертация в OGG Opus (как в voice.py) ----------
+def convert_to_opus(mp3_path: str) -> str:
+    ogg_path = tempfile.mktemp(suffix=".ogg")
+    cmd = ["ffmpeg", "-i", mp3_path, "-c:a", "libopus", "-ar", "16000", "-ac", "1", "-b:a", "16k", ogg_path, "-y"]
+    subprocess.run(cmd, check=True, capture_output=True)
+    return ogg_path
+
 # ---------- Middleware для перехвата текстовых сообщений ----------
 @router.message.outer_middleware()
 async def listening_text_middleware(call: types.Message, event: types.Message, data: dict):
@@ -64,7 +73,6 @@ def get_task_keyboard(task_index):
     ])
 
 def get_continue_keyboard():
-    # Две кнопки в одной строке
     return InlineKeyboardMarkup(inline_keyboard=[
         [
             InlineKeyboardButton(text="Следующее задание", callback_data="listening_next_block"),
@@ -87,9 +95,8 @@ def get_blocks_by_level(level):
     return [b for b in ALL_TASKS if b["level"] == level]
 
 def normalize_order_answer(answer: str) -> str:
-    # Приводим к верхнему регистру, удаляем все пробелы, заменяем возможные запятые на ;
+    # Удаляем пробелы, приводим к верхнему регистру, заменяем запятые на ;
     ans = answer.strip().upper().replace(' ', '').replace(',', ';')
-    # Разбиваем по ;, убираем пустые, соединяем с ;
     parts = [p for p in ans.split(';') if p]
     return ';'.join(parts)
 
@@ -117,21 +124,29 @@ async def send_audio_and_start_tasks(message: Message, user_id: int, level: str,
         "answered": False
     })
 
-    # Генерация аудио
+    # Сообщение о генерации
+    status_msg = await message.answer("⏳ Генерирую аудио...")
+
+    # Генерация аудио через TTS
     audio_path = await text_to_voice(block["text"], voice_id="yM93hbw8Qtvdma2wCnJG")
     if audio_path and os.path.exists(audio_path):
         try:
-            with open(audio_path, 'rb') as f:
+            # Конвертируем в OGG Opus для голосового сообщения
+            ogg_path = convert_to_opus(audio_path)
+            with open(ogg_path, 'rb') as f:
                 audio_bytes = f.read()
-            # Отправляем как голосовое сообщение (без caption)
             audio_file = BufferedInputFile(audio_bytes, filename="audio.ogg")
-            await message.answer_voice(audio_file)  # <-- заменено на answer_voice, без caption
+            await message.answer_voice(audio_file)  # волны появляются автоматически
             os.unlink(audio_path)
+            os.unlink(ogg_path)
         except Exception as e:
             logger.error(f"Ошибка отправки аудио: {e}")
             await message.answer(f"Текст для прослушивания:\n\n{block['text']}")
     else:
         await message.answer(f"Текст для прослушивания:\n\n{block['text']}")
+
+    # Удаляем статусное сообщение
+    await status_msg.delete()
 
     await send_task(message, state)
 
