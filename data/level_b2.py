@@ -26628,7 +26628,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
       ]
     ]
   },
-  "education_b2": {
+"education_b2": {
     "title": "Лексика: образование (продвинутая)",
     "pages": [
       {
@@ -26654,1209 +26654,740 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
         "answer": "В США college часто относится к бакалавриату, university – к университету в целом. В Великобритании college может быть частью университета или отдельным учебным заведением."
       }
     ],
-"practice_bank": [
-    # =====================================================
-    # ВАРИАНТ 1 (перевод)
-    # =====================================================
-[
-  {
-    "type": "complex",
-    "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-    "subtasks": [
-      {
-        "question": "She holds a ______ degree in economics.",
-        "options": ["a) bachelor's", "b) master's", "c) doctoral", "d) associate"],
-        "answer": "b",
-        "explanation": "master's degree – степень магистра."
-      },
-      {
-        "question": "He is pursuing a ______ in chemistry.",
-        "options": ["a) Master's", "b) Diploma", "c) PhD", "d) Bachelor's"],
-        "answer": "c",
-        "explanation": "PhD – докторская степень."
-      },
-      {
-        "question": "The ______ for submitting your essay is Friday.",
-        "options": ["a) due date", "b) deadline", "c) time limit", "d) cut-off"],
-        "answer": "b",
-        "explanation": "deadline – крайний срок."
-      },
-      {
-        "question": "He ______ out of university in his second year.",
-        "options": ["a) ran", "b) walked", "c) dropped", "d) fell"],
-        "answer": "c",
-        "explanation": "to drop out – бросить учёбу."
-      },
-      {
-        "question": "She is an ______ student at the university.",
-        "options": ["a) postgraduate", "b) undergraduate", "c) graduate", "d) freshman"],
-        "answer": "b",
-        "explanation": "undergraduate – студент бакалавриата."
-      },
-      {
-        "question": "The ______ is responsible for the academic programme.",
-        "options": ["a) registrar", "b) dean", "c) headmaster", "d) professor"],
-        "answer": "b",
-        "explanation": "dean – декан."
-      },
-      {
-        "question": "He was accused of ______ in his essay.",
-        "options": ["a) cheating", "b) falsification", "c) plagiarism", "d) copying"],
-        "answer": "c",
-        "explanation": "plagiarism – плагиат."
-      },
-      {
-        "question": "She needs to ______ the course to pass.",
-        "options": ["a) avoid", "b) attend", "c) miss", "d) skip"],
-        "answer": "b",
-        "explanation": "to attend – посещать."
-              }
-            ]
+    "practice_bank": [
+      # =====================================================
+      # ВАРИАНТ 1 (перевод)
+      # =====================================================
+      [
+        {
+          "type": "complex",
+          "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+          "subtasks": [
+            {"question": "She holds a ______ degree in economics.", "options": ["a) bachelor's", "b) master's", "c) doctoral", "d) associate"], "answer": "b", "explanation": "master's degree – степень магистра."},
+            {"question": "He is pursuing a ______ in chemistry.", "options": ["a) Master's", "b) Diploma", "c) PhD", "d) Bachelor's"], "answer": "c", "explanation": "PhD – докторская степень."},
+            {"question": "The ______ for submitting your essay is Friday.", "options": ["a) due date", "b) deadline", "c) time limit", "d) cut-off"], "answer": "b", "explanation": "deadline – крайний срок."},
+            {"question": "He ______ out of university in his second year.", "options": ["a) ran", "b) walked", "c) dropped", "d) fell"], "answer": "c", "explanation": "to drop out – бросить учёбу."},
+            {"question": "She is an ______ student at the university.", "options": ["a) postgraduate", "b) undergraduate", "c) graduate", "d) freshman"], "answer": "b", "explanation": "undergraduate – студент бакалавриата."},
+            {"question": "The ______ is responsible for the academic programme.", "options": ["a) registrar", "b) dean", "c) headmaster", "d) professor"], "answer": "b", "explanation": "dean – декан."},
+            {"question": "He was accused of ______ in his essay.", "options": ["a) cheating", "b) falsification", "c) plagiarism", "d) copying"], "answer": "c", "explanation": "plagiarism – плагиат."},
+            {"question": "She needs to ______ the course to pass.", "options": ["a) avoid", "b) attend", "c) miss", "d) skip"], "answer": "b", "explanation": "to attend – посещать."}
+          ]
         },
         {
-            "type": "complex",
-            "text": "2. Fill in the gaps with the correct word or phrase. Type the missing word(s) in the box.",
-            "subtasks": [
-                {"question": "She holds a ______ degree in economics.", "answer": "master's", "explanation": "master's."},
-                {"question": "He is pursuing a ______ in chemistry.", "answer": "PhD", "explanation": "PhD."},
-                {"question": "The ______ for submitting your essay is Friday.", "answer": "deadline", "explanation": "deadline."},
-                {"question": "He ______ out of university in his second year.", "answer": "dropped", "explanation": "dropped."},
-                {"question": "She is an ______ student at the university.", "answer": "undergraduate", "explanation": "undergraduate."},
-                {"question": "The ______ is responsible for the academic programme.", "answer": "dean", "explanation": "dean."},
-                {"question": "He was accused of ______ in his essay.", "answer": "plagiarism", "explanation": "plagiarism."},
-                {"question": "She needs to ______ the course to pass.", "answer": "attend", "explanation": "attend."}
-            ]
+          "type": "complex",
+          "text": "2. Fill in the gaps with the correct word or phrase. Type the missing word(s) in the box.",
+          "subtasks": [
+            {"question": "She holds a ______ degree in economics.", "answer": "master's", "explanation": "master's."},
+            {"question": "He is pursuing a ______ in chemistry.", "answer": "PhD", "explanation": "PhD."},
+            {"question": "The ______ for submitting your essay is Friday.", "answer": "deadline", "explanation": "deadline."},
+            {"question": "He ______ out of university in his second year.", "answer": "dropped", "explanation": "dropped."},
+            {"question": "She is an ______ student at the university.", "answer": "undergraduate", "explanation": "undergraduate."},
+            {"question": "The ______ is responsible for the academic programme.", "answer": "dean", "explanation": "dean."},
+            {"question": "He was accused of ______ in his essay.", "answer": "plagiarism", "explanation": "plagiarism."},
+            {"question": "She needs to ______ the course to pass.", "answer": "attend", "explanation": "attend."}
+          ]
         },
         {
-            "type": "complex",
-            "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
-            "subtasks": [
-                {"question": "She holds a master's degree in economics.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "He is pursuing a PhD in chemistry.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "The deadline for submitting your essay is Friday.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "He droped out of university in his second year.", "answer": "He dropped out of university in his second year.", "explanation": "Dropped, не droped."},
-                {"question": "She is an undergraduate student at the university.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "The dean is responsible for the academic programme.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "He was accused of plagiarism in his essay.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "She needs to atend the course to pass.", "answer": "She needs to attend the course to pass.", "explanation": "Attend, не atend."}
-            ]
+          "type": "complex",
+          "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
+          "subtasks": [
+            {"question": "She holds a master's degree in economics.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "He is pursuing a PhD in chemistry.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "The deadline for submitting your essay is Friday.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "He droped out of university in his second year.", "answer": "He dropped out of university in his second year.", "explanation": "Dropped, не droped."},
+            {"question": "She is an undergraduate student at the university.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "The dean is responsible for the academic programme.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "He was accused of plagiarism in his essay.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "She needs to atend the course to pass.", "answer": "She needs to attend the course to pass.", "explanation": "Attend, не atend."}
+          ]
         },
         {
-            "type": "complex",
-            "text": "4. Translate the sentences into English using the correct education vocabulary. Type your translation (one sentence) in the box.",
-            "subtasks": [
-                {"question": "У неё степень магистра по экономике.", "answer": "She holds a master's degree in economics.", "explanation": ""},
-                {"question": "Он получает докторскую степень по химии.", "answer": "He is pursuing a PhD in chemistry.", "explanation": ""},
-                {"question": "Крайний срок сдачи эссе – пятница.", "answer": "The deadline for submitting your essay is Friday.", "explanation": ""},
-                {"question": "Он бросил университет на втором курсе.", "answer": "He dropped out of university in his second year.", "explanation": ""},
-                {"question": "Она студентка бакалавриата в университете.", "answer": "She is an undergraduate student at the university.", "explanation": ""},
-                {"question": "Декан отвечает за академическую программу.", "answer": "The dean is responsible for the academic programme.", "explanation": ""},
-                {"question": "Его обвинили в плагиате в эссе.", "answer": "He was accused of plagiarism in his essay.", "explanation": ""},
-                {"question": "Ей нужно посещать курс, чтобы сдать.", "answer": "She needs to attend the course to pass.", "explanation": ""}
-            ]
-        },
-    # =====================================================
-    # ВАРИАНТ 2 (перефразирование)
-    # =====================================================
-[
-  {
-    "type": "complex",
-    "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-    "subtasks": [
-      {
-        "question": "She is a ______ student, so she is studying for her bachelor's degree.",
-        "options": ["a) undergraduate", "b) postgraduate", "c) graduate", "d) freshman"],
-        "answer": "a",
-        "explanation": "undergraduate – студент бакалавриата."
-      },
-      {
-        "question": "He is a ______ student, working on his master's thesis.",
-        "options": ["a) undergraduate", "b) postgraduate", "c) doctoral", "d) high school"],
-        "answer": "b",
-        "explanation": "postgraduate – магистрант/аспирант."
-      },
-      {
-        "question": "The ______ gives lectures in the main hall.",
-        "options": ["a) professor", "b) dean", "c) tutor", "d) lecturer"],
-        "answer": "d",
-        "explanation": "lecturer – лектор."
-      },
-      {
-        "question": "She is a ______ at the university.",
-        "options": ["a) instructor", "b) professor", "c) lecturer", "d) dean"],
-        "answer": "b",
-        "explanation": "professor – профессор."
-      },
-      {
-        "question": "He needs to ______ his assignment by Monday.",
-        "options": ["a) submit", "b) hand in", "c) turn in", "d) complete"],
-        "answer": "a",
-        "explanation": "to submit – сдавать работу."
-      },
-      {
-        "question": "She ______ from university last year.",
-        "options": ["a) retired", "b) dropped out", "c) left", "d) graduated"],
-        "answer": "d",
-        "explanation": "to graduate – закончить."
-      },
-      {
-        "question": "He failed the exam and has to ______ it.",
-        "options": ["a) rewrite", "b) retake", "c) redo", "d) resit"],
-        "answer": "b",
-        "explanation": "to retake – пересдавать."
-      },
-      {
-        "question": "She needs to ______ in psychology.",
-        "options": ["a) major", "b) specialize", "c) focus", "d) study"],
-        "answer": "a",
-        "explanation": "to major in – специализироваться в."
-              }
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "2. Fill in the gaps with the correct word or phrase. Type the missing word(s) in the box.",
-            "subtasks": [
-                {"question": "She is a ______ student, so she is studying for her bachelor's degree.", "answer": "undergraduate", "explanation": "undergraduate."},
-                {"question": "He is a ______ student, working on his master's thesis.", "answer": "postgraduate", "explanation": "postgraduate."},
-                {"question": "The ______ gives lectures in the main hall.", "answer": "lecturer", "explanation": "lecturer."},
-                {"question": "She is a ______ at the university.", "answer": "professor", "explanation": "professor."},
-                {"question": "He needs to ______ his assignment by Monday.", "answer": "submit", "explanation": "submit."},
-                {"question": "She ______ from university last year.", "answer": "graduated", "explanation": "graduated."},
-                {"question": "He failed the exam and has to ______ it.", "answer": "retake", "explanation": "retake."},
-                {"question": "She needs to ______ in psychology.", "answer": "major", "explanation": "major."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
-            "subtasks": [
-                {"question": "She is an undergraduate student, so she is studying for her bachelor's degree.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "He is a postgraduate student, working on his master's thesis.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "The lecturer gives lectures in the main hall.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "She is a professor at the university.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "He needs to submit his assignment by Monday.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "She graduated from university last year.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "He failed the exam and has to retake it.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "She needs to major in psychology.", "answer": "Correct", "explanation": "Верно."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "4. Rewrite the sentences using the word given in brackets. Type the whole sentence.",
-            "subtasks": [
-                {"question": "She is studying for her bachelor's degree. (undergraduate) → She is an undergraduate student.", "answer": "She is an undergraduate student.", "explanation": "undergraduate."},
-                {"question": "He is working on his master's thesis. (postgraduate) → He is a postgraduate student.", "answer": "He is a postgraduate student.", "explanation": "postgraduate."},
-                {"question": "The professor gives lectures. (lecturer) → The lecturer gives lectures in the main hall.", "answer": "The lecturer gives lectures in the main hall.", "explanation": "lecturer."},
-                {"question": "She is a teacher at the university. (professor) → She is a professor at the university.", "answer": "She is a professor at the university.", "explanation": "professor."},
-                {"question": "He needs to hand in his assignment by Monday. (submit) → He needs to submit his assignment by Monday.", "answer": "He needs to submit his assignment by Monday.", "explanation": "submit."},
-                {"question": "She finished university last year. (graduated) → She graduated from university last year.", "answer": "She graduated from university last year.", "explanation": "graduated."},
-                {"question": "He failed the exam and has to take it again. (retake) → He failed the exam and has to retake it.", "answer": "He failed the exam and has to retake it.", "explanation": "retake."},
-                {"question": "She wants to specialise in psychology. (major) → She needs to major in psychology.", "answer": "She needs to major in psychology.", "explanation": "major."}
-            ]
-        },
-    # =====================================================
-    # ВАРИАНТ 3 (перевод)
-    # =====================================================
-[
-  {
-    "type": "complex",
-    "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-    "subtasks": [
-      {
-        "question": "She is writing her ______ for her PhD.",
-        "options": ["a) dissertation", "b) essay", "c) thesis", "d) paper"],
-        "answer": "c",
-        "explanation": "thesis – диссертация (PhD)."
-      },
-      {
-        "question": "He is working on his ______ for his master's degree.",
-        "options": ["a) thesis", "b) dissertation", "c) project", "d) report"],
-        "answer": "b",
-        "explanation": "dissertation – диссертация (магистерская)."
-      },
-      {
-        "question": "The ______ is the head of the school.",
-        "options": ["a) headteacher", "b) principal", "c) rector", "d) chancellor"],
-        "answer": "a",
-        "explanation": "headteacher – директор школы (Великобритания)."
-      },
-      {
-        "question": "She has a ______ in teaching English.",
-        "options": ["a) certificate", "b) degree", "c) diploma", "d) qualification"],
-        "answer": "a",
-        "explanation": "certificate – сертификат."
-      },
-      {
-        "question": "He is a ______ at the local college.",
-        "options": ["a) lecturer", "b) professor", "c) tutor", "d) instructor"],
-        "answer": "c",
-        "explanation": "tutor – репетитор/тьютор."
-      },
-      {
-        "question": "The ______ supervises the research project.",
-        "options": ["a) supervisor", "b) advisor", "c) mentor", "d) coach"],
-        "answer": "a",
-        "explanation": "supervisor – научный руководитель."
-      },
-      {
-        "question": "She needs to ______ for the course.",
-        "options": ["a) register", "b) enrol", "c) apply", "d) sign up"],
-        "answer": "b",
-        "explanation": "to enrol – зачисляться."
-      },
-      {
-        "question": "He has to do a lot of ______ for his course.",
-        "options": ["a) coursework", "b) homework", "c) assignments", "d) projects"],
-        "answer": "a",
-        "explanation": "coursework – курсовая работа."
-              }
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "2. Fill in the gaps with the correct word or phrase. Type the missing word(s) in the box.",
-            "subtasks": [
-                {"question": "She is writing her ______ for her PhD.", "answer": "thesis", "explanation": "thesis."},
-                {"question": "He is working on his ______ for his master's degree.", "answer": "dissertation", "explanation": "dissertation."},
-                {"question": "The ______ is the head of the school.", "answer": "headteacher", "explanation": "headteacher."},
-                {"question": "She has a ______ in teaching English.", "answer": "certificate", "explanation": "certificate."},
-                {"question": "He is a ______ at the local college.", "answer": "tutor", "explanation": "tutor."},
-                {"question": "The ______ supervises the research project.", "answer": "supervisor", "explanation": "supervisor."},
-                {"question": "She needs to ______ for the course.", "answer": "enrol", "explanation": "enrol."},
-                {"question": "He has to do a lot of ______ for his course.", "answer": "coursework", "explanation": "coursework."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
-            "subtasks": [
-                {"question": "She is writing her thesis for her PhD.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "He is working on his dissertation for his master's degree.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "The headteacher is the head of the school.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "She has a certificate in teaching English.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "He is a tutor at the local college.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "The supervisor supervises the research project.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "She needs to enrol for the course.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "He has to do a lot of coursework for his course.", "answer": "Correct", "explanation": "Верно."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "4. Translate the sentences into English using the correct education vocabulary. Type your translation (one sentence) in the box.",
-            "subtasks": [
-                {"question": "Она пишет диссертацию для докторской степени.", "answer": "She is writing her thesis for her PhD.", "explanation": ""},
-                {"question": "Он работает над магистерской диссертацией.", "answer": "He is working on his dissertation for his master's degree.", "explanation": ""},
-                {"question": "Директор школы является главой школы.", "answer": "The headteacher is the head of the school.", "explanation": ""},
-                {"question": "У неё есть сертификат по преподаванию английского.", "answer": "She has a certificate in teaching English.", "explanation": ""},
-                {"question": "Он репетитор в местном колледже.", "answer": "He is a tutor at the local college.", "explanation": ""},
-                {"question": "Научный руководитель курирует исследовательский проект.", "answer": "The supervisor supervises the research project.", "explanation": ""},
-                {"question": "Ей нужно зачислиться на курс.", "answer": "She needs to enrol for the course.", "explanation": ""},
-                {"question": "Ему нужно сделать много курсовых работ.", "answer": "He has to do a lot of coursework for his course.", "explanation": ""}
-            ]
-        },
-    # =====================================================
-    # ВАРИАНТ 4 (перефразирование)
-    # =====================================================
- [
-  {
-    "type": "complex",
-    "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-    "subtasks": [
-      {
-        "question": "She is in her first year of ______ school.",
-        "options": ["a) primary", "b) secondary", "c) high", "d) college"],
-        "answer": "b",
-        "explanation": "secondary school – средняя школа."
-      },
-      {
-        "question": "He is studying at a ______ school to learn a trade.",
-        "options": ["a) vocational", "b) grammar", "c) public", "d) private"],
-        "answer": "a",
-        "explanation": "vocational school – профессиональное училище."
-      },
-      {
-        "question": "She is a student at a ______ school in the USA.",
-        "options": ["a) high", "b) secondary", "c) primary", "d) middle"],
-        "answer": "a",
-        "explanation": "high school – старшая школа (США)."
-      },
-      {
-        "question": "He is a ______ student, so he is studying for his bachelor's degree.",
-        "options": ["a) high school", "b) secondary", "c) college", "d) postgraduate"],
-        "answer": "c",
-        "explanation": "college – колледж (в США часто = университет)."
-      },
-      {
-        "question": "She is a ______ student at the university.",
-        "options": ["a) undergraduate", "b) postgraduate", "c) doctoral", "d) graduate"],
-        "answer": "b",
-        "explanation": "postgraduate – аспирант/магистрант."
-      },
-      {
-        "question": "He is a ______ of the university.",
-        "options": ["a) graduate", "b) lecturer", "c) professor", "d) dean"],
-        "answer": "a",
-        "explanation": "graduate – выпускник."
-      },
-      {
-        "question": "She is a ______ in the history department.",
-        "options": ["a) lecturer", "b) professor", "c) tutor", "d) supervisor"],
-        "answer": "a",
-        "explanation": "lecturer – лектор."
-      },
-      {
-        "question": "He is a ______ in the physics department.",
-        "options": ["a) lecturer", "b) professor", "c) tutor", "d) supervisor"],
-        "answer": "b",
-        "explanation": "professor – профессор."
-             }
-           ]
-        },
-        {
-            "type": "complex",
-            "text": "2. Fill in the gaps with the correct word or phrase. Type the missing word(s) in the box.",
-            "subtasks": [
-                {"question": "She is in her first year of ______ school.", "answer": "secondary", "explanation": "secondary."},
-                {"question": "He is studying at a ______ school to learn a trade.", "answer": "vocational", "explanation": "vocational."},
-                {"question": "She is a student at a ______ school in the USA.", "answer": "high", "explanation": "high."},
-                {"question": "He is a ______ student, so he is studying for his bachelor's degree.", "answer": "college", "explanation": "college."},
-                {"question": "She is a ______ student at the university.", "answer": "postgraduate", "explanation": "postgraduate."},
-                {"question": "He is a ______ of the university.", "answer": "graduate", "explanation": "graduate."},
-                {"question": "She is a ______ in the history department.", "answer": "lecturer", "explanation": "lecturer."},
-                {"question": "He is a ______ in the physics department.", "answer": "professor", "explanation": "professor."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
-            "subtasks": [
-                {"question": "She is in her first year of secondary school.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "He is studying at a vocational school to learn a trade.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "She is a student at a high school in the USA.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "He is a college student, so he is studying for his bachelor's degree.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "She is a postgraduate student at the university.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "He is a graduate of the university.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "She is a lecturer in the history department.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "He is a professor in the physics department.", "answer": "Correct", "explanation": "Верно."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "4. Rewrite the sentences using the word given in brackets. Type the whole sentence.",
-            "subtasks": [
-                {"question": "She is in year 7-9. (secondary school) → She is in her first year of secondary school.", "answer": "She is in her first year of secondary school.", "explanation": "secondary school."},
-                {"question": "He is learning a trade. (vocational school) → He is studying at a vocational school to learn a trade.", "answer": "He is studying at a vocational school to learn a trade.", "explanation": "vocational school."},
-                {"question": "She is a student in the USA. (high school) → She is a student at a high school in the USA.", "answer": "She is a student at a high school in the USA.", "explanation": "high school."},
-                {"question": "He is studying for his bachelor's degree. (college student) → He is a college student.", "answer": "He is a college student.", "explanation": "college student."},
-                {"question": "She is studying for her master's degree. (postgraduate) → She is a postgraduate student at the university.", "answer": "She is a postgraduate student at the university.", "explanation": "postgraduate."},
-                {"question": "He has finished the university. (graduate) → He is a graduate of the university.", "answer": "He is a graduate of the university.", "explanation": "graduate."},
-                {"question": "She teaches in the history department. (lecturer) → She is a lecturer in the history department.", "answer": "She is a lecturer in the history department.", "explanation": "lecturer."},
-                {"question": "He teaches in the physics department. (professor) → He is a professor in the physics department.", "answer": "He is a professor in the physics department.", "explanation": "professor."}
-            ]
-        },
-    # =====================================================
-    # ВАРИАНТ 5 (перевод)
-    # =====================================================
-[
-  {
-    "type": "complex",
-    "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-    "subtasks": [
-      {
-        "question": "He received a ______ grade on his exam.",
-        "options": ["a) passing", "b) failing", "c) final", "d) midterm"],
-        "answer": "a",
-        "explanation": "passing grade – сдаточная оценка."
-      },
-      {
-        "question": "She got a ______ on her test and has to retake it.",
-        "options": ["a) pass", "b) A", "c) fail", "d) credit"],
-        "answer": "c",
-        "explanation": "fail – провал."
-      },
-      {
-        "question": "The teacher gave her an ______ for her project.",
-        "options": ["a) assessment", "b) assignment", "c) examination", "d) interview"],
-        "answer": "a",
-        "explanation": "assessment – оценивание."
-      },
-      {
-        "question": "He needs to ______ his exam.",
-        "options": ["a) pass", "b) fail", "c) miss", "d) skip"],
-        "answer": "a",
-        "explanation": "to pass – сдать."
-      },
-      {
-        "question": "She ______ the exam and has to take it again.",
-        "options": ["a) passed", "b) failed", "c) submitted", "d) completed"],
-        "answer": "b",
-        "explanation": "to fail – провалить."
-      },
-      {
-        "question": "He is going to ______ his exam next week.",
-        "options": ["a) rewrite", "b) retake", "c) review", "d) revise"],
-        "answer": "b",
-        "explanation": "to retake – пересдавать."
-      },
-      {
-        "question": "She ______ her assignment on time.",
-        "options": ["a) submitted", "b) skipped", "c) missed", "d) postponed"],
-        "answer": "a",
-        "explanation": "to submit – сдавать работу."
-      },
-      {
-        "question": "He needs to ______ to the university.",
-        "options": ["a) apply", "b) admit", "c) register", "d) enrol"],
-        "answer": "a",
-        "explanation": "to apply – подавать заявление."
-              }
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "2. Fill in the gaps with the correct word or phrase. Type the missing word(s) in the box.",
-            "subtasks": [
-                {"question": "He received a ______ grade on his exam.", "answer": "passing", "explanation": "passing."},
-                {"question": "She got a ______ on her test and has to retake it.", "answer": "fail", "explanation": "fail."},
-                {"question": "The teacher gave her an ______ for her project.", "answer": "assessment", "explanation": "assessment."},
-                {"question": "He needs to ______ his exam.", "answer": "pass", "explanation": "pass."},
-                {"question": "She ______ the exam and has to take it again.", "answer": "failed", "explanation": "failed."},
-                {"question": "He is going to ______ his exam next week.", "answer": "retake", "explanation": "retake."},
-                {"question": "She ______ her assignment on time.", "answer": "submitted", "explanation": "submitted."},
-                {"question": "He needs to ______ to the university.", "answer": "apply", "explanation": "apply."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
-            "subtasks": [
-                {"question": "He received a passing grade on his exam.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "She got a fail on her test and has to retake it.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "The teacher gave her an assessment for her project.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "He needs to pass his exam.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "She failed the exam and has to take it again.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "He is going to retake his exam next week.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "She submited her assignment on time.", "answer": "She submitted her assignment on time.", "explanation": "Submitted, не submited."},
-                {"question": "He needs to apply to the university.", "answer": "Correct", "explanation": "Верно."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "4. Translate the sentences into English using the correct education vocabulary. Type your translation (one sentence) in the box.",
-            "subtasks": [
-                {"question": "Он получил сдаточную оценку на экзамене.", "answer": "He received a passing grade on his exam.", "explanation": ""},
-                {"question": "Она получила провал на тесте и должна пересдать.", "answer": "She got a fail on her test and has to retake it.", "explanation": ""},
-                {"question": "Учитель дал ей оценку за проект.", "answer": "The teacher gave her an assessment for her project.", "explanation": ""},
-                {"question": "Ему нужно сдать экзамен.", "answer": "He needs to pass his exam.", "explanation": ""},
-                {"question": "Она провалила экзамен и должна пересдать.", "answer": "She failed the exam and has to take it again.", "explanation": ""},
-                {"question": "Он собирается пересдать экзамен на следующей неделе.", "answer": "He is going to retake his exam next week.", "explanation": ""},
-                {"question": "Она сдала задание вовремя.", "answer": "She submitted her assignment on time.", "explanation": ""},
-                {"question": "Ему нужно подать заявление в университет.", "answer": "He needs to apply to the university.", "explanation": ""}
-            ]
-        },
-    # =====================================================
-    # ВАРИАНТ 6 (перефразирование)
-    # =====================================================
-[
-  {
-    "type": "complex",
-    "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-    "subtasks": [
-      {
-        "question": "She is studying at a ______ to become a teacher.",
-        "options": ["a) college", "b) university", "c) school", "d) academy"],
-        "answer": "b",
-        "explanation": "university – университет."
-      },
-      {
-        "question": "He is at a ______ to learn practical skills.",
-        "options": ["a) grammar school", "b) high school", "c) vocational school", "d) college"],
-        "answer": "c",
-        "explanation": "vocational school – профессиональное училище."
-      },
-      {
-        "question": "She is in her final year of ______ school.",
-        "options": ["a) primary", "b) secondary", "c) high", "d) middle"],
-        "answer": "b",
-        "explanation": "secondary school – средняя школа."
-      },
-      {
-        "question": "He is a ______ at a local school.",
-        "options": ["a) headteacher", "b) professor", "c) lecturer", "d) tutor"],
-        "answer": "a",
-        "explanation": "headteacher – директор."
-      },
-      {
-        "question": "She is a ______ in the English department.",
-        "options": ["a) professor", "b) tutor", "c) lecturer", "d) supervisor"],
-        "answer": "c",
-        "explanation": "lecturer – лектор."
-      },
-      {
-        "question": "He is a ______ in the chemistry department.",
-        "options": ["a) lecturer", "b) professor", "c) tutor", "d) headteacher"],
-        "answer": "b",
-        "explanation": "professor – профессор."
-      },
-      {
-        "question": "She is a ______ student, so she is working on her research.",
-        "options": ["a) undergraduate", "b) postgraduate", "c) doctoral", "d) graduate"],
-        "answer": "b",
-        "explanation": "postgraduate – аспирант."
-      },
-      {
-        "question": "He is a ______ student, so he is studying for his bachelor's degree.",
-        "options": ["a) undergraduate", "b) postgraduate", "c) doctoral", "d) graduate"],
-        "answer": "a",
-        "explanation": "undergraduate – студент бакалавриата."
-              }
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "2. Fill in the gaps with the correct word or phrase. Type the missing word(s) in the box.",
-            "subtasks": [
-                {"question": "She is studying at a ______ to become a teacher.", "answer": "university", "explanation": "university."},
-                {"question": "He is at a ______ to learn practical skills.", "answer": "vocational school", "explanation": "vocational school."},
-                {"question": "She is in her final year of ______ school.", "answer": "secondary", "explanation": "secondary."},
-                {"question": "He is a ______ at a local school.", "answer": "headteacher", "explanation": "headteacher."},
-                {"question": "She is a ______ in the English department.", "answer": "lecturer", "explanation": "lecturer."},
-                {"question": "He is a ______ in the chemistry department.", "answer": "professor", "explanation": "professor."},
-                {"question": "She is a ______ student, so she is working on her research.", "answer": "postgraduate", "explanation": "postgraduate."},
-                {"question": "He is a ______ student, so he is studying for his bachelor's degree.", "answer": "undergraduate", "explanation": "undergraduate."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
-            "subtasks": [
-                {"question": "She is studying at a university to become a teacher.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "He is at a vocational school to learn practical skills.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "She is in her final year of secondary school.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "He is a headteacher at a local school.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "She is a lecturer in the English department.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "He is a professor in the chemistry department.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "She is a postgraduate student, so she is working on her research.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "He is an undergraduate student, so he is studying for his bachelor's degree.", "answer": "Correct", "explanation": "Верно."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "4. Rewrite the sentences using the word given in brackets. Type the whole sentence.",
-            "subtasks": [
-                {"question": "She is studying to become a teacher. (university) → She is studying at a university to become a teacher.", "answer": "She is studying at a university to become a teacher.", "explanation": "university."},
-                {"question": "He is learning practical skills. (vocational school) → He is at a vocational school to learn practical skills.", "answer": "He is at a vocational school to learn practical skills.", "explanation": "vocational school."},
-                {"question": "She is in year 11. (secondary school) → She is in her final year of secondary school.", "answer": "She is in her final year of secondary school.", "explanation": "secondary school."},
-                {"question": "He is the principal of a school. (headteacher) → He is a headteacher at a local school.", "answer": "He is a headteacher at a local school.", "explanation": "headteacher."},
-                {"question": "She teaches in the English department. (lecturer) → She is a lecturer in the English department.", "answer": "She is a lecturer in the English department.", "explanation": "lecturer."},
-                {"question": "He teaches in the chemistry department. (professor) → He is a professor in the chemistry department.", "answer": "He is a professor in the chemistry department.", "explanation": "professor."},
-                {"question": "She is working on her research. (postgraduate) → She is a postgraduate student.", "answer": "She is a postgraduate student.", "explanation": "postgraduate."},
-                {"question": "He is studying for his bachelor's degree. (undergraduate) → He is an undergraduate student.", "answer": "He is an undergraduate student.", "explanation": "undergraduate."}
-            ]
-        },
-    # =====================================================
-    # ВАРИАНТ 7 (перевод)
-    # =====================================================
-[
-  {
-    "type": "complex",
-    "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-    "subtasks": [
-      {
-        "question": "She is a ______ in the English department.",
-        "options": ["a) tutor", "b) lecturer", "c) professor", "d) headteacher"],
-        "answer": "b",
-        "explanation": "lecturer – лектор."
-      },
-      {
-        "question": "He is a ______ and is in charge of the whole school.",
-        "options": ["a) tutor", "b) lecturer", "c) principal", "d) supervisor"],
-        "answer": "c",
-        "explanation": "principal – директор школы (США)."
-      },
-      {
-        "question": "She is a ______, helping students individually.",
-        "options": ["a) tutor", "b) lecturer", "c) professor", "d) headteacher"],
-        "answer": "a",
-        "explanation": "tutor – репетитор/тьютор."
-      },
-      {
-        "question": "He is a ______ at the university.",
-        "options": ["a) tutor", "b) lecturer", "c) principal", "d) dean"],
-        "answer": "d",
-        "explanation": "dean – декан."
-      },
-      {
-        "question": "She is a ______ in the science department.",
-        "options": ["a) tutor", "b) professor", "c) lecturer", "d) supervisor"],
-        "answer": "b",
-        "explanation": "professor – профессор."
-      },
-      {
-        "question": "He is a ______ for his research project.",
-        "options": ["a) tutor", "b) lecturer", "c) supervisor", "d) dean"],
-        "answer": "c",
-        "explanation": "supervisor – научный руководитель."
-      },
-      {
-        "question": "She is a ______ student at the university.",
-        "options": ["a) postgraduate", "b) undergraduate", "c) graduate", "d) doctoral"],
-        "answer": "a",
-        "explanation": "postgraduate – аспирант."
-      },
-      {
-        "question": "He is an ______ student at the university.",
-        "options": ["a) postgraduate", "b) graduate", "c) doctoral", "d) undergraduate"],
-        "answer": "d",
-        "explanation": "undergraduate – студент бакалавриата."
-              }
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "2. Fill in the gaps with the correct word or phrase. Type the missing word(s) in the box.",
-            "subtasks": [
-                {"question": "She is a ______ in the English department.", "answer": "lecturer", "explanation": "lecturer."},
-                {"question": "He is a ______ and is in charge of the whole school.", "answer": "principal", "explanation": "principal."},
-                {"question": "She is a ______, helping students individually.", "answer": "tutor", "explanation": "tutor."},
-                {"question": "He is a ______ at the university.", "answer": "dean", "explanation": "dean."},
-                {"question": "She is a ______ in the science department.", "answer": "professor", "explanation": "professor."},
-                {"question": "He is a ______ for his research project.", "answer": "supervisor", "explanation": "supervisor."},
-                {"question": "She is a ______ student at the university.", "answer": "postgraduate", "explanation": "postgraduate."},
-                {"question": "He is an ______ student at the university.", "answer": "undergraduate", "explanation": "undergraduate."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
-            "subtasks": [
-                {"question": "She is a lecturer in the English department.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "He is a principal and is in charge of the whole school.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "She is a tutor, helping students individually.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "He is a dean at the university.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "She is a professor in the science department.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "He is a supervisor for his research project.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "She is a postgraduate student at the university.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "He is a undergraduate student at the university.", "answer": "He is an undergraduate student at the university.", "explanation": "Undergraduate начинается с гласной, нужно 'an'."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "4. Translate the sentences into English using the correct education vocabulary. Type your translation (one sentence) in the box.",
-            "subtasks": [
-                {"question": "Она лектор на кафедре английского языка.", "answer": "She is a lecturer in the English department.", "explanation": ""},
-                {"question": "Он директор школы и отвечает за всё учебное заведение.", "answer": "He is a principal and is in charge of the whole school.", "explanation": ""},
-                {"question": "Она репетитор, помогающая студентам индивидуально.", "answer": "She is a tutor, helping students individually.", "explanation": ""},
-                {"question": "Он декан в университете.", "answer": "He is a dean at the university.", "explanation": ""},
-                {"question": "Она профессор на кафедре естественных наук.", "answer": "She is a professor in the science department.", "explanation": ""},
-                {"question": "Он научный руководитель исследовательского проекта.", "answer": "He is a supervisor for his research project.", "explanation": ""},
-                {"question": "Она аспирантка в университете.", "answer": "She is a postgraduate student at the university.", "explanation": ""},
-                {"question": "Он студент бакалавриата в университете.", "answer": "He is an undergraduate student at the university.", "explanation": ""}
-            ]
-        },
-    # =====================================================
-    # ВАРИАНТ 8 (перефразирование)
-    # =====================================================
-[
-  {
-    "type": "complex",
-    "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-    "subtasks": [
-      {
-        "question": "She ______ from university with a degree in law.",
-        "options": ["a) studied", "b) graduated", "c) completed", "d) finished"],
-        "answer": "b",
-        "explanation": "to graduate – закончить."
-      },
-      {
-        "question": "He ______ in physics from Oxford University.",
-        "options": ["a) graduated", "b) studied", "c) majored", "d) received"],
-        "answer": "a",
-        "explanation": "to graduate from – закончить."
-      },
-      {
-        "question": "She ______ her PhD in 2020.",
-        "options": ["a) achieved", "b) graduated", "c) received", "d) completed"],
-        "answer": "c",
-        "explanation": "to receive a PhD – получить докторскую."
-      },
-      {
-        "question": "He is a ______ of the University of Cambridge.",
-        "options": ["a) graduate", "b) student", "c) lecturer", "d) professor"],
-        "answer": "a",
-        "explanation": "graduate – выпускник."
-      },
-      {
-        "question": "She ______ in English literature.",
-        "options": ["a) studied", "b) majored", "c) graduated", "d) received"],
-        "answer": "b",
-        "explanation": "to major in – специализироваться."
-      },
-      {
-        "question": "He ______ a degree in computer science.",
-        "options": ["a) has", "b) holds", "c) got", "d) received"],
-        "answer": "b",
-        "explanation": "to hold a degree – иметь степень."
-      },
-      {
-        "question": "She ______ a scholarship to study abroad.",
-        "options": ["a) won", "b) got", "c) received", "d) earned"],
-        "answer": "a",
-        "explanation": "to win a scholarship – получить стипендию."
-      },
-      {
-        "question": "He ______ in education for five years.",
-        "options": ["a) studied", "b) worked", "c) taught", "d) researched"],
-        "answer": "a",
-        "explanation": "to study – изучать."
-              }
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "2. Fill in the gaps with the correct word or phrase. Type the missing word(s) in the box.",
-            "subtasks": [
-                {"question": "She ______ from university with a degree in law.", "answer": "graduated", "explanation": "graduated."},
-                {"question": "He ______ in physics from Oxford University.", "answer": "graduated", "explanation": "graduated."},
-                {"question": "She ______ her PhD in 2020.", "answer": "received", "explanation": "received."},
-                {"question": "He is a ______ of the University of Cambridge.", "answer": "graduate", "explanation": "graduate."},
-                {"question": "She ______ in English literature.", "answer": "majored", "explanation": "majored."},
-                {"question": "He ______ a degree in computer science.", "answer": "holds", "explanation": "holds."},
-                {"question": "She ______ a scholarship to study abroad.", "answer": "won", "explanation": "won."},
-                {"question": "He ______ in education for five years.", "answer": "studied", "explanation": "studied."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
-            "subtasks": [
-                {"question": "She graduated from university with a degree in law.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "He graduated in physics from Oxford University.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "She received her PhD in 2020.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "He is a graduate of the University of Cambridge.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "She majored in English literature.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "He holds a degree in computer science.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "She won a scholarship to study abroad.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "He studdied in education for five years.", "answer": "He studied in education for five years.", "explanation": "Studied, не studdied."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "4. Rewrite the sentences using the word given in brackets. Type the whole sentence.",
-            "subtasks": [
-                {"question": "She finished university with a degree in law. (graduated) → She graduated from university with a degree in law.", "answer": "She graduated from university with a degree in law.", "explanation": "graduated."},
-                {"question": "He finished from Oxford University in physics. (graduated) → He graduated in physics from Oxford University.", "answer": "He graduated in physics from Oxford University.", "explanation": "graduated."},
-                {"question": "She got her PhD in 2020. (received) → She received her PhD in 2020.", "answer": "She received her PhD in 2020.", "explanation": "received."},
-                {"question": "He is an alumnus of Cambridge. (graduate) → He is a graduate of the University of Cambridge.", "answer": "He is a graduate of the University of Cambridge.", "explanation": "graduate."},
-                {"question": "She specialised in English literature. (majored) → She majored in English literature.", "answer": "She majored in English literature.", "explanation": "majored."},
-                {"question": "He has a degree in computer science. (holds) → He holds a degree in computer science.", "answer": "He holds a degree in computer science.", "explanation": "holds."},
-                {"question": "She got a scholarship to study abroad. (won) → She won a scholarship to study abroad.", "answer": "She won a scholarship to study abroad.", "explanation": "won."},
-                {"question": "He was a student of education for five years. (studied) → He studied in education for five years.", "answer": "He studied in education for five years.", "explanation": "studied."}
-            ]
-        },
-    # =====================================================
-    # ВАРИАНТ 9 (перевод)
-    # =====================================================
- [
-  {
-    "type": "complex",
-    "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-    "subtasks": [
-      {
-        "question": "She is ______ in the school play.",
-        "options": ["a) attending", "b) joining", "c) participating", "d) volunteering"],
-        "answer": "c",
-        "explanation": "to participate – участвовать."
-      },
-      {
-        "question": "He ______ a research project on climate change.",
-        "options": ["a) carried", "b) conducted", "c) performed", "d) executed"],
-        "answer": "b",
-        "explanation": "to conduct research – проводить исследование."
-      },
-      {
-        "question": "She ______ a paper on education reform.",
-        "options": ["a) wrote", "b) submitted", "c) presented", "d) published"],
-        "answer": "d",
-        "explanation": "to publish a paper – опубликовать статью."
-      },
-      {
-        "question": "He ______ a lecture on economics yesterday.",
-        "options": ["a) gave", "b) held", "c) presented", "d) delivered"],
-        "answer": "a",
-        "explanation": "to give a lecture – читать лекцию."
-      },
-      {
-        "question": "She ______ a course on English literature.",
-        "options": ["a) attended", "b) registered", "c) took", "d) enrolled"],
-        "answer": "c",
-        "explanation": "to take a course – пройти курс."
-      },
-      {
-        "question": "He ______ a workshop on creative writing.",
-        "options": ["a) visited", "b) attended", "c) participated", "d) joined"],
-        "answer": "b",
-        "explanation": "to attend a workshop – посетить мастер-класс."
-      },
-      {
-        "question": "She ______ a seminar on teaching methods.",
-        "options": ["a) ran", "b) hosted", "c) conducted", "d) led"],
-        "answer": "d",
-        "explanation": "to lead a seminar – вести семинар."
-      },
-      {
-        "question": "He ______ a debate on education policy.",
-        "options": ["a) organised", "b) planned", "c) arranged", "d) coordinated"],
-        "answer": "a",
-        "explanation": "to organise a debate – организовать дебаты."
-             }
-           ]
-        },
-        {
-            "type": "complex",
-            "text": "2. Fill in the gaps with the correct word or phrase. Type the missing word(s) in the box.",
-            "subtasks": [
-                {"question": "She is ______ in the school play.", "answer": "participating", "explanation": "participating."},
-                {"question": "He ______ a research project on climate change.", "answer": "conducted", "explanation": "conducted."},
-                {"question": "She ______ a paper on education reform.", "answer": "published", "explanation": "published."},
-                {"question": "He ______ a lecture on economics yesterday.", "answer": "gave", "explanation": "gave."},
-                {"question": "She ______ a course on English literature.", "answer": "took", "explanation": "took."},
-                {"question": "He ______ a workshop on creative writing.", "answer": "attended", "explanation": "attended."},
-                {"question": "She ______ a seminar on teaching methods.", "answer": "led", "explanation": "led."},
-                {"question": "He ______ a debate on education policy.", "answer": "organised", "explanation": "organised."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
-            "subtasks": [
-                {"question": "She is participating in the school play.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "He conducted a research project on climate change.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "She published a paper on education reform.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "He gave a lecture on economics yesterday.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "She took a course on English literature.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "He attended a workshop on creative writing.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "She lead a seminar on teaching methods.", "answer": "She led a seminar on teaching methods.", "explanation": "Led, не lead (past simple)."},
-                {"question": "He organised a debate on education policy.", "answer": "Correct", "explanation": "Верно."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "4. Translate the sentences into English using the correct education vocabulary. Type your translation (one sentence) in the box.",
-            "subtasks": [
-                {"question": "Она участвует в школьном спектакле.", "answer": "She is participating in the school play.", "explanation": ""},
-                {"question": "Он проводил исследовательский проект по изменению климата.", "answer": "He conducted a research project on climate change.", "explanation": ""},
-                {"question": "Она опубликовала статью по реформе образования.", "answer": "She published a paper on education reform.", "explanation": ""},
-                {"question": "Вчера он прочитал лекцию по экономике.", "answer": "He gave a lecture on economics yesterday.", "explanation": ""},
-                {"question": "Она прошла курс по английской литературе.", "answer": "She took a course on English literature.", "explanation": ""},
-                {"question": "Он посетил мастер-класс по творческому письму.", "answer": "He attended a workshop on creative writing.", "explanation": ""},
-                {"question": "Она вела семинар по методике преподавания.", "answer": "She led a seminar on teaching methods.", "explanation": ""},
-                {"question": "Он организовал дебаты по образовательной политике.", "answer": "He organised a debate on education policy.", "explanation": ""}
-            ]
-        },
-    # =====================================================
-    # ВАРИАНТ 10 (перефразирование)
-    # =====================================================
- [
-  {
-    "type": "complex",
-    "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-    "subtasks": [
-      {
-        "question": "She is a ______ student, so she is working on her PhD.",
-        "options": ["a) graduate", "b) postgraduate", "c) doctoral", "d) research"],
-        "answer": "c",
-        "explanation": "doctoral student – докторант."
-      },
-      {
-        "question": "He is a ______ student at the university.",
-        "options": ["a) research", "b) graduate", "c) doctoral", "d) undergraduate"],
-        "answer": "a",
-        "explanation": "research student – аспирант."
-      },
-      {
-        "question": "She is a ______ student in the English department.",
-        "options": ["a) graduate", "b) undergraduate", "c) doctoral", "d) research"],
-        "answer": "a",
-        "explanation": "graduate student – магистрант/аспирант."
-      },
-      {
-        "question": "He is a ______ student in the science department.",
-        "options": ["a) graduate", "b) postgraduate", "c) doctoral", "d) undergraduate"],
-        "answer": "d",
-        "explanation": "undergraduate – студент бакалавриата."
-      },
-      {
-        "question": "She is a ______ in the physics department.",
-        "options": ["a) lecturer", "b) tutor", "c) professor", "d) supervisor"],
-        "answer": "c",
-        "explanation": "professor – профессор."
-      },
-      {
-        "question": "He is a ______ in the history department.",
-        "options": ["a) professor", "b) lecturer", "c) tutor", "d) supervisor"],
-        "answer": "b",
-        "explanation": "lecturer – лектор."
-      },
-      {
-        "question": "She is a ______ at the university.",
-        "options": ["a) dean", "b) lecturer", "c) professor", "d) tutor"],
-        "answer": "a",
-        "explanation": "dean – декан."
-      },
-      {
-        "question": "He is a ______ of the university.",
-        "options": ["a) graduate", "b) student", "c) lecturer", "d) professor"],
-        "answer": "a",
-        "explanation": "graduate – выпускник."
-             }
-           ]
-        },
-        {
-            "type": "complex",
-            "text": "2. Fill in the gaps with the correct word or phrase. Type the missing word(s) in the box.",
-            "subtasks": [
-                {"question": "She is a ______ student, so she is working on her PhD.", "answer": "doctoral", "explanation": "doctoral."},
-                {"question": "He is a ______ student at the university.", "answer": "research", "explanation": "research."},
-                {"question": "She is a ______ student in the English department.", "answer": "graduate", "explanation": "graduate."},
-                {"question": "He is a ______ student in the science department.", "answer": "undergraduate", "explanation": "undergraduate."},
-                {"question": "She is a ______ in the physics department.", "answer": "professor", "explanation": "professor."},
-                {"question": "He is a ______ in the history department.", "answer": "lecturer", "explanation": "lecturer."},
-                {"question": "She is a ______ at the university.", "answer": "dean", "explanation": "dean."},
-                {"question": "He is a ______ of the university.", "answer": "graduate", "explanation": "graduate."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
-            "subtasks": [
-                {"question": "She is a doctoral student, so she is working on her PhD.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "He is a research student at the university.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "She is a graduate student in the English department.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "He is a undergraduate student in the science department.", "answer": "He is an undergraduate student in the science department.", "explanation": "An undergraduate (гласная)."},
-                {"question": "She is a professor in the physics department.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "He is a lecturer in the history department.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "She is a dean at the university.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "He is a graduate of the university.", "answer": "Correct", "explanation": "Верно."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "4. Rewrite the sentences using the word given in brackets. Type the whole sentence.",
-            "subtasks": [
-                {"question": "She is working on her PhD. (doctoral student) → She is a doctoral student.", "answer": "She is a doctoral student.", "explanation": "doctoral student."},
-                {"question": "He is doing research at the university. (research student) → He is a research student at the university.", "answer": "He is a research student at the university.", "explanation": "research student."},
-                {"question": "She is studying for her master's degree. (graduate student) → She is a graduate student in the English department.", "answer": "She is a graduate student in the English department.", "explanation": "graduate student."},
-                {"question": "He is studying for his bachelor's degree. (undergraduate) → He is an undergraduate student in the science department.", "answer": "He is an undergraduate student in the science department.", "explanation": "undergraduate."},
-                {"question": "She is a teacher in the physics department. (professor) → She is a professor in the physics department.", "answer": "She is a professor in the physics department.", "explanation": "professor."},
-                {"question": "He is a teacher in the history department. (lecturer) → He is a lecturer in the history department.", "answer": "He is a lecturer in the history department.", "explanation": "lecturer."},
-                {"question": "She is the head of the faculty. (dean) → She is a dean at the university.", "answer": "She is a dean at the university.", "explanation": "dean."},
-                {"question": "He has finished the university. (graduate) → He is a graduate of the university.", "answer": "He is a graduate of the university.", "explanation": "graduate."}
-            ]
-        },
-    # =====================================================
-    # ВАРИАНТ 11 (перевод)
-    # =====================================================
-[
-  {
-    "type": "complex",
-    "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-    "subtasks": [
-      {
-        "question": "She is studying for her ______ degree.",
-        "options": ["a) bachelor's", "b) master's", "c) doctoral", "d) associate"],
-        "answer": "a",
-        "explanation": "bachelor's degree – степень бакалавра."
-      },
-      {
-        "question": "He is working on his ______ degree.",
-        "options": ["a) bachelor's", "b) PhD", "c) master's", "d) diploma"],
-        "answer": "c",
-        "explanation": "master's degree – степень магистра."
-      },
-      {
-        "question": "She has a ______ in economics.",
-        "options": ["a) Master's", "b) PhD", "c) Doctorate", "d) Postdoc"],
-        "answer": "b",
-        "explanation": "PhD – докторская степень."
-      },
-      {
-        "question": "He is a ______ student at the university.",
-        "options": ["a) postgraduate", "b) undergraduate", "c) graduate", "d) doctoral"],
-        "answer": "a",
-        "explanation": "postgraduate – аспирант."
-      },
-      {
-        "question": "She is an ______ student at the university.",
-        "options": ["a) postgraduate", "b) doctoral", "c) graduate", "d) undergraduate"],
-        "answer": "d",
-        "explanation": "undergraduate – студент бакалавриата."
-      },
-      {
-        "question": "He is a ______ at the university.",
-        "options": ["a) lecturer", "b) professor", "c) tutor", "d) supervisor"],
-        "answer": "b",
-        "explanation": "professor – профессор."
-      },
-      {
-        "question": "She is a ______ in the English department.",
-        "options": ["a) lecturer", "b) professor", "c) tutor", "d) supervisor"],
-        "answer": "a",
-        "explanation": "lecturer – лектор."
-      },
-      {
-        "question": "He is a ______ of the university.",
-        "options": ["a) student", "b) lecturer", "c) graduate", "d) professor"],
-        "answer": "c",
-        "explanation": "graduate – выпускник."
-              }
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "2. Fill in the gaps with the correct word or phrase. Type the missing word(s) in the box.",
-            "subtasks": [
-                {"question": "She is studying for her ______ degree.", "answer": "bachelor's", "explanation": "bachelor's."},
-                {"question": "He is working on his ______ degree.", "answer": "master's", "explanation": "master's."},
-                {"question": "She has a ______ in economics.", "answer": "PhD", "explanation": "PhD."},
-                {"question": "He is a ______ student at the university.", "answer": "postgraduate", "explanation": "postgraduate."},
-                {"question": "She is an ______ student at the university.", "answer": "undergraduate", "explanation": "undergraduate."},
-                {"question": "He is a ______ at the university.", "answer": "professor", "explanation": "professor."},
-                {"question": "She is a ______ in the English department.", "answer": "lecturer", "explanation": "lecturer."},
-                {"question": "He is a ______ of the university.", "answer": "graduate", "explanation": "graduate."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
-            "subtasks": [
-                {"question": "She is studying for her bachelor's degree.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "He is working on his master's degree.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "She has a PhD in economics.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "He is a postgraduate student at the university.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "She is an undergraduate student at the university.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "He is a professor at the university.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "She is a lecturer in the English department.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "He is a graduate of the university.", "answer": "Correct", "explanation": "Верно."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "4. Translate the sentences into English using the correct education vocabulary. Type your translation (one sentence) in the box.",
-            "subtasks": [
-                {"question": "Она учится на степень бакалавра.", "answer": "She is studying for her bachelor's degree.", "explanation": ""},
-                {"question": "Он работает над степенью магистра.", "answer": "He is working on his master's degree.", "explanation": ""},
-                {"question": "У неё докторская степень по экономике.", "answer": "She has a PhD in economics.", "explanation": ""},
-                {"question": "Он аспирант в университете.", "answer": "He is a postgraduate student at the university.", "explanation": ""},
-                {"question": "Она студентка бакалавриата в университете.", "answer": "She is an undergraduate student at the university.", "explanation": ""},
-                {"question": "Он профессор в университете.", "answer": "He is a professor at the university.", "explanation": ""},
-                {"question": "Она лектор на кафедре английского языка.", "answer": "She is a lecturer in the English department.", "explanation": ""},
-                {"question": "Он выпускник университета.", "answer": "He is a graduate of the university.", "explanation": ""}
-            ]
-        },
-    # =====================================================
-    # ВАРИАНТ 12 (перефразирование)
-    # =====================================================
-[
-  {
-    "type": "complex",
-    "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-    "subtasks": [
-      {
-        "question": "She is a ______ student, so she is studying for her master's degree.",
-        "options": ["a) undergraduate", "b) graduate", "c) doctoral", "d) postgraduate"],
-        "answer": "b",
-        "explanation": "graduate student – магистрант."
-      },
-      {
-        "question": "He is a ______ student, so he is studying for his bachelor's degree.",
-        "options": ["a) postgraduate", "b) doctoral", "c) undergraduate", "d) graduate"],
-        "answer": "c",
-        "explanation": "undergraduate – студент бакалавриата."
-      },
-      {
-        "question": "She is a ______ student, so she is working on her PhD.",
-        "options": ["a) graduate", "b) postgraduate", "c) undergraduate", "d) doctoral"],
-        "answer": "d",
-        "explanation": "doctoral student – докторант."
-      },
-      {
-        "question": "He is a ______ in the physics department.",
-        "options": ["a) lecturer", "b) tutor", "c) professor", "d) supervisor"],
-        "answer": "c",
-        "explanation": "professor – профессор."
-      },
-      {
-        "question": "She is a ______ in the history department.",
-        "options": ["a) professor", "b) lecturer", "c) tutor", "d) supervisor"],
-        "answer": "b",
-        "explanation": "lecturer – лектор."
-      },
-      {
-        "question": "He is a ______ at the university.",
-        "options": ["a) dean", "b) lecturer", "c) professor", "d) tutor"],
-        "answer": "a",
-        "explanation": "dean – декан."
-      },
-      {
-        "question": "She is a ______ of the university.",
-        "options": ["a) student", "b) graduate", "c) lecturer", "d) professor"],
-        "answer": "b",
-        "explanation": "graduate – выпускник."
-      },
-      {
-        "question": "He is a ______ at the local college.",
-        "options": ["a) professor", "b) lecturer", "c) tutor", "d) supervisor"],
-        "answer": "c",
-        "explanation": "tutor – репетитор/тьютор."
-              }
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "2. Fill in the gaps with the correct word or phrase. Type the missing word(s) in the box.",
-            "subtasks": [
-                {"question": "She is a ______ student, so she is studying for her master's degree.", "answer": "graduate", "explanation": "graduate."},
-                {"question": "He is a ______ student, so he is studying for his bachelor's degree.", "answer": "undergraduate", "explanation": "undergraduate."},
-                {"question": "She is a ______ student, so she is working on her PhD.", "answer": "doctoral", "explanation": "doctoral."},
-                {"question": "He is a ______ in the physics department.", "answer": "professor", "explanation": "professor."},
-                {"question": "She is a ______ in the history department.", "answer": "lecturer", "explanation": "lecturer."},
-                {"question": "He is a ______ at the university.", "answer": "dean", "explanation": "dean."},
-                {"question": "She is a ______ of the university.", "answer": "graduate", "explanation": "graduate."},
-                {"question": "He is a ______ at the local college.", "answer": "tutor", "explanation": "tutor."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
-            "subtasks": [
-                {"question": "She is a graduate student, so she is studying for her master's degree.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "He is an undergraduate student, so he is studying for his bachelor's degree.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "She is a doctoral student, so she is working on her PhD.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "He is a professor in the physics department.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "She is a lecturer in the history department.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "He is a dean at the university.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "She is a graduate of the university.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "He is a tutor at the local college.", "answer": "Correct", "explanation": "Верно."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "4. Rewrite the sentences using the word given in brackets. Type the whole sentence.",
-            "subtasks": [
-                {"question": "She is studying for her master's degree. (graduate student) → She is a graduate student.", "answer": "She is a graduate student.", "explanation": "graduate student."},
-                {"question": "He is studying for his bachelor's degree. (undergraduate) → He is an undergraduate student.", "answer": "He is an undergraduate student.", "explanation": "undergraduate."},
-                {"question": "She is working on her PhD. (doctoral student) → She is a doctoral student.", "answer": "She is a doctoral student.", "explanation": "doctoral student."},
-                {"question": "He is a teacher in the physics department. (professor) → He is a professor in the physics department.", "answer": "He is a professor in the physics department.", "explanation": "professor."},
-                {"question": "She is a teacher in the history department. (lecturer) → She is a lecturer in the history department.", "answer": "She is a lecturer in the history department.", "explanation": "lecturer."},
-                {"question": "He is the head of the faculty. (dean) → He is a dean at the university.", "answer": "He is a dean at the university.", "explanation": "dean."},
-                {"question": "She has finished the university. (graduate) → She is a graduate of the university.", "answer": "She is a graduate of the university.", "explanation": "graduate."},
-                {"question": "He teaches students individually. (tutor) → He is a tutor at the local college.", "answer": "He is a tutor at the local college.", "explanation": "tutor."}
-            ]
+          "type": "complex",
+          "text": "4. Translate the sentences into English using the correct education vocabulary. Type your translation (one sentence) in the box.",
+          "subtasks": [
+            {"question": "У неё степень магистра по экономике.", "answer": "She holds a master's degree in economics.", "explanation": ""},
+            {"question": "Он получает докторскую степень по химии.", "answer": "He is pursuing a PhD in chemistry.", "explanation": ""},
+            {"question": "Крайний срок сдачи эссе – пятница.", "answer": "The deadline for submitting your essay is Friday.", "explanation": ""},
+            {"question": "Он бросил университет на втором курсе.", "answer": "He dropped out of university in his second year.", "explanation": ""},
+            {"question": "Она студентка бакалавриата в университете.", "answer": "She is an undergraduate student at the university.", "explanation": ""},
+            {"question": "Декан отвечает за академическую программу.", "answer": "The dean is responsible for the academic programme.", "explanation": ""},
+            {"question": "Его обвинили в плагиате в эссе.", "answer": "He was accused of plagiarism in his essay.", "explanation": ""},
+            {"question": "Ей нужно посещать курс, чтобы сдать.", "answer": "She needs to attend the course to pass.", "explanation": ""}
+          ]
         }
+      ],
+      # =====================================================
+      # ВАРИАНТ 2 (перефразирование)
+      # =====================================================
+      [
+        {
+          "type": "complex",
+          "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+          "subtasks": [
+            {"question": "She is a ______ student, so she is studying for her bachelor's degree.", "options": ["a) undergraduate", "b) postgraduate", "c) graduate", "d) freshman"], "answer": "a", "explanation": "undergraduate – студент бакалавриата."},
+            {"question": "He is a ______ student, working on his master's thesis.", "options": ["a) undergraduate", "b) postgraduate", "c) doctoral", "d) high school"], "answer": "b", "explanation": "postgraduate – магистрант/аспирант."},
+            {"question": "The ______ gives lectures in the main hall.", "options": ["a) professor", "b) dean", "c) tutor", "d) lecturer"], "answer": "d", "explanation": "lecturer – лектор."},
+            {"question": "She is a ______ at the university.", "options": ["a) instructor", "b) professor", "c) lecturer", "d) dean"], "answer": "b", "explanation": "professor – профессор."},
+            {"question": "He needs to ______ his assignment by Monday.", "options": ["a) submit", "b) hand in", "c) turn in", "d) complete"], "answer": "a", "explanation": "to submit – сдавать работу."},
+            {"question": "She ______ from university last year.", "options": ["a) retired", "b) dropped out", "c) left", "d) graduated"], "answer": "d", "explanation": "to graduate – закончить."},
+            {"question": "He failed the exam and has to ______ it.", "options": ["a) rewrite", "b) retake", "c) redo", "d) resit"], "answer": "b", "explanation": "to retake – пересдавать."},
+            {"question": "She needs to ______ in psychology.", "options": ["a) major", "b) specialize", "c) focus", "d) study"], "answer": "a", "explanation": "to major in – специализироваться в."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "2. Fill in the gaps with the correct word or phrase. Type the missing word(s) in the box.",
+          "subtasks": [
+            {"question": "She is a ______ student, so she is studying for her bachelor's degree.", "answer": "undergraduate", "explanation": "undergraduate."},
+            {"question": "He is a ______ student, working on his master's thesis.", "answer": "postgraduate", "explanation": "postgraduate."},
+            {"question": "The ______ gives lectures in the main hall.", "answer": "lecturer", "explanation": "lecturer."},
+            {"question": "She is a ______ at the university.", "answer": "professor", "explanation": "professor."},
+            {"question": "He needs to ______ his assignment by Monday.", "answer": "submit", "explanation": "submit."},
+            {"question": "She ______ from university last year.", "answer": "graduated", "explanation": "graduated."},
+            {"question": "He failed the exam and has to ______ it.", "answer": "retake", "explanation": "retake."},
+            {"question": "She needs to ______ in psychology.", "answer": "major", "explanation": "major."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
+          "subtasks": [
+            {"question": "She is an undergraduate student, so she is studying for her bachelor's degree.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "He is a postgraduate student, working on his master's thesis.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "The lecturer gives lectures in the main hall.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "She is a professor at the university.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "He needs to submit his assignment by Monday.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "She graduated from university last year.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "He failed the exam and has to retake it.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "She needs to major in psychology.", "answer": "Correct", "explanation": "Верно."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "4. Rewrite the sentences using the word given in brackets. Type the whole sentence.",
+          "subtasks": [
+            {"question": "She is studying for her bachelor's degree. (undergraduate) → She is an undergraduate student.", "answer": "She is an undergraduate student.", "explanation": "undergraduate."},
+            {"question": "He is working on his master's thesis. (postgraduate) → He is a postgraduate student.", "answer": "He is a postgraduate student.", "explanation": "postgraduate."},
+            {"question": "The professor gives lectures. (lecturer) → The lecturer gives lectures in the main hall.", "answer": "The lecturer gives lectures in the main hall.", "explanation": "lecturer."},
+            {"question": "She is a teacher at the university. (professor) → She is a professor at the university.", "answer": "She is a professor at the university.", "explanation": "professor."},
+            {"question": "He needs to hand in his assignment by Monday. (submit) → He needs to submit his assignment by Monday.", "answer": "He needs to submit his assignment by Monday.", "explanation": "submit."},
+            {"question": "She finished university last year. (graduated) → She graduated from university last year.", "answer": "She graduated from university last year.", "explanation": "graduated."},
+            {"question": "He failed the exam and has to take it again. (retake) → He failed the exam and has to retake it.", "answer": "He failed the exam and has to retake it.", "explanation": "retake."},
+            {"question": "She wants to specialise in psychology. (major) → She needs to major in psychology.", "answer": "She needs to major in psychology.", "explanation": "major."}
+          ]
+        }
+      ],
+      # =====================================================
+      # ВАРИАНТ 3 (перевод)
+      # =====================================================
+      [
+        {
+          "type": "complex",
+          "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+          "subtasks": [
+            {"question": "She is writing her ______ for her PhD.", "options": ["a) dissertation", "b) essay", "c) thesis", "d) paper"], "answer": "c", "explanation": "thesis – диссертация (PhD)."},
+            {"question": "He is working on his ______ for his master's degree.", "options": ["a) thesis", "b) dissertation", "c) project", "d) report"], "answer": "b", "explanation": "dissertation – диссертация (магистерская)."},
+            {"question": "The ______ is the head of the school.", "options": ["a) headteacher", "b) principal", "c) rector", "d) chancellor"], "answer": "a", "explanation": "headteacher – директор школы (Великобритания)."},
+            {"question": "She has a ______ in teaching English.", "options": ["a) certificate", "b) degree", "c) diploma", "d) qualification"], "answer": "a", "explanation": "certificate – сертификат."},
+            {"question": "He is a ______ at the local college.", "options": ["a) lecturer", "b) professor", "c) tutor", "d) instructor"], "answer": "c", "explanation": "tutor – репетитор/тьютор."},
+            {"question": "The ______ supervises the research project.", "options": ["a) supervisor", "b) advisor", "c) mentor", "d) coach"], "answer": "a", "explanation": "supervisor – научный руководитель."},
+            {"question": "She needs to ______ for the course.", "options": ["a) register", "b) enrol", "c) apply", "d) sign up"], "answer": "b", "explanation": "to enrol – зачисляться."},
+            {"question": "He has to do a lot of ______ for his course.", "options": ["a) coursework", "b) homework", "c) assignments", "d) projects"], "answer": "a", "explanation": "coursework – курсовая работа."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "2. Fill in the gaps with the correct word or phrase. Type the missing word(s) in the box.",
+          "subtasks": [
+            {"question": "She is writing her ______ for her PhD.", "answer": "thesis", "explanation": "thesis."},
+            {"question": "He is working on his ______ for his master's degree.", "answer": "dissertation", "explanation": "dissertation."},
+            {"question": "The ______ is the head of the school.", "answer": "headteacher", "explanation": "headteacher."},
+            {"question": "She has a ______ in teaching English.", "answer": "certificate", "explanation": "certificate."},
+            {"question": "He is a ______ at the local college.", "answer": "tutor", "explanation": "tutor."},
+            {"question": "The ______ supervises the research project.", "answer": "supervisor", "explanation": "supervisor."},
+            {"question": "She needs to ______ for the course.", "answer": "enrol", "explanation": "enrol."},
+            {"question": "He has to do a lot of ______ for his course.", "answer": "coursework", "explanation": "coursework."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
+          "subtasks": [
+            {"question": "She is writing her thesis for her PhD.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "He is working on his dissertation for his master's degree.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "The headteacher is the head of the school.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "She has a certificate in teaching English.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "He is a tutor at the local college.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "The supervisor supervises the research project.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "She needs to enrol for the course.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "He has to do a lot of coursework for his course.", "answer": "Correct", "explanation": "Верно."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "4. Translate the sentences into English using the correct education vocabulary. Type your translation (one sentence) in the box.",
+          "subtasks": [
+            {"question": "Она пишет диссертацию для докторской степени.", "answer": "She is writing her thesis for her PhD.", "explanation": ""},
+            {"question": "Он работает над магистерской диссертацией.", "answer": "He is working on his dissertation for his master's degree.", "explanation": ""},
+            {"question": "Директор школы является главой школы.", "answer": "The headteacher is the head of the school.", "explanation": ""},
+            {"question": "У неё есть сертификат по преподаванию английского.", "answer": "She has a certificate in teaching English.", "explanation": ""},
+            {"question": "Он репетитор в местном колледже.", "answer": "He is a tutor at the local college.", "explanation": ""},
+            {"question": "Научный руководитель курирует исследовательский проект.", "answer": "The supervisor supervises the research project.", "explanation": ""},
+            {"question": "Ей нужно зачислиться на курс.", "answer": "She needs to enrol for the course.", "explanation": ""},
+            {"question": "Ему нужно сделать много курсовых работ.", "answer": "He has to do a lot of coursework for his course.", "explanation": ""}
+          ]
+        }
+      ],
+      # =====================================================
+      # ВАРИАНТ 4 (перефразирование)
+      # =====================================================
+      [
+        {
+          "type": "complex",
+          "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+          "subtasks": [
+            {"question": "She is in her first year of ______ school.", "options": ["a) primary", "b) secondary", "c) high", "d) college"], "answer": "b", "explanation": "secondary school – средняя школа."},
+            {"question": "He is studying at a ______ school to learn a trade.", "options": ["a) vocational", "b) grammar", "c) public", "d) private"], "answer": "a", "explanation": "vocational school – профессиональное училище."},
+            {"question": "She is a student at a ______ school in the USA.", "options": ["a) high", "b) secondary", "c) primary", "d) middle"], "answer": "a", "explanation": "high school – старшая школа (США)."},
+            {"question": "He is a ______ student, so he is studying for his bachelor's degree.", "options": ["a) high school", "b) secondary", "c) college", "d) postgraduate"], "answer": "c", "explanation": "college – колледж (в США часто = университет)."},
+            {"question": "She is a ______ student at the university.", "options": ["a) undergraduate", "b) postgraduate", "c) doctoral", "d) graduate"], "answer": "b", "explanation": "postgraduate – аспирант/магистрант."},
+            {"question": "He is a ______ of the university.", "options": ["a) graduate", "b) lecturer", "c) professor", "d) dean"], "answer": "a", "explanation": "graduate – выпускник."},
+            {"question": "She is a ______ in the history department.", "options": ["a) lecturer", "b) professor", "c) tutor", "d) supervisor"], "answer": "a", "explanation": "lecturer – лектор."},
+            {"question": "He is a ______ in the physics department.", "options": ["a) lecturer", "b) professor", "c) tutor", "d) supervisor"], "answer": "b", "explanation": "professor – профессор."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "2. Fill in the gaps with the correct word or phrase. Type the missing word(s) in the box.",
+          "subtasks": [
+            {"question": "She is in her first year of ______ school.", "answer": "secondary", "explanation": "secondary."},
+            {"question": "He is studying at a ______ school to learn a trade.", "answer": "vocational", "explanation": "vocational."},
+            {"question": "She is a student at a ______ school in the USA.", "answer": "high", "explanation": "high."},
+            {"question": "He is a ______ student, so he is studying for his bachelor's degree.", "answer": "college", "explanation": "college."},
+            {"question": "She is a ______ student at the university.", "answer": "postgraduate", "explanation": "postgraduate."},
+            {"question": "He is a ______ of the university.", "answer": "graduate", "explanation": "graduate."},
+            {"question": "She is a ______ in the history department.", "answer": "lecturer", "explanation": "lecturer."},
+            {"question": "He is a ______ in the physics department.", "answer": "professor", "explanation": "professor."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
+          "subtasks": [
+            {"question": "She is in her first year of secondary school.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "He is studying at a vocational school to learn a trade.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "She is a student at a high school in the USA.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "He is a college student, so he is studying for his bachelor's degree.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "She is a postgraduate student at the university.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "He is a graduate of the university.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "She is a lecturer in the history department.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "He is a professor in the physics department.", "answer": "Correct", "explanation": "Верно."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "4. Rewrite the sentences using the word given in brackets. Type the whole sentence.",
+          "subtasks": [
+            {"question": "She is in year 7-9. (secondary school) → She is in her first year of secondary school.", "answer": "She is in her first year of secondary school.", "explanation": "secondary school."},
+            {"question": "He is learning a trade. (vocational school) → He is studying at a vocational school to learn a trade.", "answer": "He is studying at a vocational school to learn a trade.", "explanation": "vocational school."},
+            {"question": "She is a student in the USA. (high school) → She is a student at a high school in the USA.", "answer": "She is a student at a high school in the USA.", "explanation": "high school."},
+            {"question": "He is studying for his bachelor's degree. (college student) → He is a college student.", "answer": "He is a college student.", "explanation": "college student."},
+            {"question": "She is studying for her master's degree. (postgraduate) → She is a postgraduate student at the university.", "answer": "She is a postgraduate student at the university.", "explanation": "postgraduate."},
+            {"question": "He has finished the university. (graduate) → He is a graduate of the university.", "answer": "He is a graduate of the university.", "explanation": "graduate."},
+            {"question": "She teaches in the history department. (lecturer) → She is a lecturer in the history department.", "answer": "She is a lecturer in the history department.", "explanation": "lecturer."},
+            {"question": "He teaches in the physics department. (professor) → He is a professor in the physics department.", "answer": "He is a professor in the physics department.", "explanation": "professor."}
+          ]
+        }
+      ],
+      # =====================================================
+      # ВАРИАНТ 5 (перевод)
+      # =====================================================
+      [
+        {
+          "type": "complex",
+          "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+          "subtasks": [
+            {"question": "He received a ______ grade on his exam.", "options": ["a) passing", "b) failing", "c) final", "d) midterm"], "answer": "a", "explanation": "passing grade – сдаточная оценка."},
+            {"question": "She got a ______ on her test and has to retake it.", "options": ["a) pass", "b) A", "c) fail", "d) credit"], "answer": "c", "explanation": "fail – провал."},
+            {"question": "The teacher gave her an ______ for her project.", "options": ["a) assessment", "b) assignment", "c) examination", "d) interview"], "answer": "a", "explanation": "assessment – оценивание."},
+            {"question": "He needs to ______ his exam.", "options": ["a) pass", "b) fail", "c) miss", "d) skip"], "answer": "a", "explanation": "to pass – сдать."},
+            {"question": "She ______ the exam and has to take it again.", "options": ["a) passed", "b) failed", "c) submitted", "d) completed"], "answer": "b", "explanation": "to fail – провалить."},
+            {"question": "He is going to ______ his exam next week.", "options": ["a) rewrite", "b) retake", "c) review", "d) revise"], "answer": "b", "explanation": "to retake – пересдавать."},
+            {"question": "She ______ her assignment on time.", "options": ["a) submitted", "b) skipped", "c) missed", "d) postponed"], "answer": "a", "explanation": "to submit – сдавать работу."},
+            {"question": "He needs to ______ to the university.", "options": ["a) apply", "b) admit", "c) register", "d) enrol"], "answer": "a", "explanation": "to apply – подавать заявление."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "2. Fill in the gaps with the correct word or phrase. Type the missing word(s) in the box.",
+          "subtasks": [
+            {"question": "He received a ______ grade on his exam.", "answer": "passing", "explanation": "passing."},
+            {"question": "She got a ______ on her test and has to retake it.", "answer": "fail", "explanation": "fail."},
+            {"question": "The teacher gave her an ______ for her project.", "answer": "assessment", "explanation": "assessment."},
+            {"question": "He needs to ______ his exam.", "answer": "pass", "explanation": "pass."},
+            {"question": "She ______ the exam and has to take it again.", "answer": "failed", "explanation": "failed."},
+            {"question": "He is going to ______ his exam next week.", "answer": "retake", "explanation": "retake."},
+            {"question": "She ______ her assignment on time.", "answer": "submitted", "explanation": "submitted."},
+            {"question": "He needs to ______ to the university.", "answer": "apply", "explanation": "apply."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
+          "subtasks": [
+            {"question": "He received a passing grade on his exam.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "She got a fail on her test and has to retake it.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "The teacher gave her an assessment for her project.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "He needs to pass his exam.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "She failed the exam and has to take it again.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "He is going to retake his exam next week.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "She submited her assignment on time.", "answer": "She submitted her assignment on time.", "explanation": "Submitted, не submited."},
+            {"question": "He needs to apply to the university.", "answer": "Correct", "explanation": "Верно."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "4. Translate the sentences into English using the correct education vocabulary. Type your translation (one sentence) in the box.",
+          "subtasks": [
+            {"question": "Он получил сдаточную оценку на экзамене.", "answer": "He received a passing grade on his exam.", "explanation": ""},
+            {"question": "Она получила провал на тесте и должна пересдать.", "answer": "She got a fail on her test and has to retake it.", "explanation": ""},
+            {"question": "Учитель дал ей оценку за проект.", "answer": "The teacher gave her an assessment for her project.", "explanation": ""},
+            {"question": "Ему нужно сдать экзамен.", "answer": "He needs to pass his exam.", "explanation": ""},
+            {"question": "Она провалила экзамен и должна пересдать.", "answer": "She failed the exam and has to take it again.", "explanation": ""},
+            {"question": "Он собирается пересдать экзамен на следующей неделе.", "answer": "He is going to retake his exam next week.", "explanation": ""},
+            {"question": "Она сдала задание вовремя.", "answer": "She submitted her assignment on time.", "explanation": ""},
+            {"question": "Ему нужно подать заявление в университет.", "answer": "He needs to apply to the university.", "explanation": ""}
+          ]
+        }
+      ],
+      # =====================================================
+      # ВАРИАНТ 6 (перефразирование)
+      # =====================================================
+      [
+        {
+          "type": "complex",
+          "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+          "subtasks": [
+            {"question": "She is studying at a ______ to become a teacher.", "options": ["a) college", "b) university", "c) school", "d) academy"], "answer": "b", "explanation": "university – университет."},
+            {"question": "He is at a ______ to learn practical skills.", "options": ["a) grammar school", "b) high school", "c) vocational school", "d) college"], "answer": "c", "explanation": "vocational school – профессиональное училище."},
+            {"question": "She is in her final year of ______ school.", "options": ["a) primary", "b) secondary", "c) high", "d) middle"], "answer": "b", "explanation": "secondary school – средняя школа."},
+            {"question": "He is a ______ at a local school.", "options": ["a) headteacher", "b) professor", "c) lecturer", "d) tutor"], "answer": "a", "explanation": "headteacher – директор."},
+            {"question": "She is a ______ in the English department.", "options": ["a) professor", "b) tutor", "c) lecturer", "d) supervisor"], "answer": "c", "explanation": "lecturer – лектор."},
+            {"question": "He is a ______ in the chemistry department.", "options": ["a) lecturer", "b) professor", "c) tutor", "d) headteacher"], "answer": "b", "explanation": "professor – профессор."},
+            {"question": "She is a ______ student, so she is working on her research.", "options": ["a) undergraduate", "b) postgraduate", "c) doctoral", "d) graduate"], "answer": "b", "explanation": "postgraduate – аспирант."},
+            {"question": "He is a ______ student, so he is studying for his bachelor's degree.", "options": ["a) undergraduate", "b) postgraduate", "c) doctoral", "d) graduate"], "answer": "a", "explanation": "undergraduate – студент бакалавриата."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "2. Fill in the gaps with the correct word or phrase. Type the missing word(s) in the box.",
+          "subtasks": [
+            {"question": "She is studying at a ______ to become a teacher.", "answer": "university", "explanation": "university."},
+            {"question": "He is at a ______ to learn practical skills.", "answer": "vocational school", "explanation": "vocational school."},
+            {"question": "She is in her final year of ______ school.", "answer": "secondary", "explanation": "secondary."},
+            {"question": "He is a ______ at a local school.", "answer": "headteacher", "explanation": "headteacher."},
+            {"question": "She is a ______ in the English department.", "answer": "lecturer", "explanation": "lecturer."},
+            {"question": "He is a ______ in the chemistry department.", "answer": "professor", "explanation": "professor."},
+            {"question": "She is a ______ student, so she is working on her research.", "answer": "postgraduate", "explanation": "postgraduate."},
+            {"question": "He is a ______ student, so he is studying for his bachelor's degree.", "answer": "undergraduate", "explanation": "undergraduate."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
+          "subtasks": [
+            {"question": "She is studying at a university to become a teacher.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "He is at a vocational school to learn practical skills.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "She is in her final year of secondary school.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "He is a headteacher at a local school.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "She is a lecturer in the English department.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "He is a professor in the chemistry department.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "She is a postgraduate student, so she is working on her research.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "He is an undergraduate student, so he is studying for his bachelor's degree.", "answer": "Correct", "explanation": "Верно."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "4. Rewrite the sentences using the word given in brackets. Type the whole sentence.",
+          "subtasks": [
+            {"question": "She is studying to become a teacher. (university) → She is studying at a university to become a teacher.", "answer": "She is studying at a university to become a teacher.", "explanation": "university."},
+            {"question": "He is learning practical skills. (vocational school) → He is at a vocational school to learn practical skills.", "answer": "He is at a vocational school to learn practical skills.", "explanation": "vocational school."},
+            {"question": "She is in year 11. (secondary school) → She is in her final year of secondary school.", "answer": "She is in her final year of secondary school.", "explanation": "secondary school."},
+            {"question": "He is the principal of a school. (headteacher) → He is a headteacher at a local school.", "answer": "He is a headteacher at a local school.", "explanation": "headteacher."},
+            {"question": "She teaches in the English department. (lecturer) → She is a lecturer in the English department.", "answer": "She is a lecturer in the English department.", "explanation": "lecturer."},
+            {"question": "He teaches in the chemistry department. (professor) → He is a professor in the chemistry department.", "answer": "He is a professor in the chemistry department.", "explanation": "professor."},
+            {"question": "She is working on her research. (postgraduate) → She is a postgraduate student.", "answer": "She is a postgraduate student.", "explanation": "postgraduate."},
+            {"question": "He is studying for his bachelor's degree. (undergraduate) → He is an undergraduate student.", "answer": "He is an undergraduate student.", "explanation": "undergraduate."}
+          ]
+        }
+      ],
+      # =====================================================
+      # ВАРИАНТ 7 (перевод)
+      # =====================================================
+      [
+        {
+          "type": "complex",
+          "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+          "subtasks": [
+            {"question": "She is a ______ in the English department.", "options": ["a) tutor", "b) lecturer", "c) professor", "d) headteacher"], "answer": "b", "explanation": "lecturer – лектор."},
+            {"question": "He is a ______ and is in charge of the whole school.", "options": ["a) tutor", "b) lecturer", "c) principal", "d) supervisor"], "answer": "c", "explanation": "principal – директор школы (США)."},
+            {"question": "She is a ______, helping students individually.", "options": ["a) tutor", "b) lecturer", "c) professor", "d) headteacher"], "answer": "a", "explanation": "tutor – репетитор/тьютор."},
+            {"question": "He is a ______ at the university.", "options": ["a) tutor", "b) lecturer", "c) principal", "d) dean"], "answer": "d", "explanation": "dean – декан."},
+            {"question": "She is a ______ in the science department.", "options": ["a) tutor", "b) professor", "c) lecturer", "d) supervisor"], "answer": "b", "explanation": "professor – профессор."},
+            {"question": "He is a ______ for his research project.", "options": ["a) tutor", "b) lecturer", "c) supervisor", "d) dean"], "answer": "c", "explanation": "supervisor – научный руководитель."},
+            {"question": "She is a ______ student at the university.", "options": ["a) postgraduate", "b) undergraduate", "c) graduate", "d) doctoral"], "answer": "a", "explanation": "postgraduate – аспирант."},
+            {"question": "He is an ______ student at the university.", "options": ["a) postgraduate", "b) graduate", "c) doctoral", "d) undergraduate"], "answer": "d", "explanation": "undergraduate – студент бакалавриата."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "2. Fill in the gaps with the correct word or phrase. Type the missing word(s) in the box.",
+          "subtasks": [
+            {"question": "She is a ______ in the English department.", "answer": "lecturer", "explanation": "lecturer."},
+            {"question": "He is a ______ and is in charge of the whole school.", "answer": "principal", "explanation": "principal."},
+            {"question": "She is a ______, helping students individually.", "answer": "tutor", "explanation": "tutor."},
+            {"question": "He is a ______ at the university.", "answer": "dean", "explanation": "dean."},
+            {"question": "She is a ______ in the science department.", "answer": "professor", "explanation": "professor."},
+            {"question": "He is a ______ for his research project.", "answer": "supervisor", "explanation": "supervisor."},
+            {"question": "She is a ______ student at the university.", "answer": "postgraduate", "explanation": "postgraduate."},
+            {"question": "He is an ______ student at the university.", "answer": "undergraduate", "explanation": "undergraduate."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
+          "subtasks": [
+            {"question": "She is a lecturer in the English department.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "He is a principal and is in charge of the whole school.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "She is a tutor, helping students individually.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "He is a dean at the university.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "She is a professor in the science department.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "He is a supervisor for his research project.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "She is a postgraduate student at the university.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "He is a undergraduate student at the university.", "answer": "He is an undergraduate student at the university.", "explanation": "Undergraduate начинается с гласной, нужно 'an'."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "4. Translate the sentences into English using the correct education vocabulary. Type your translation (one sentence) in the box.",
+          "subtasks": [
+            {"question": "Она лектор на кафедре английского языка.", "answer": "She is a lecturer in the English department.", "explanation": ""},
+            {"question": "Он директор школы и отвечает за всё учебное заведение.", "answer": "He is a principal and is in charge of the whole school.", "explanation": ""},
+            {"question": "Она репетитор, помогающая студентам индивидуально.", "answer": "She is a tutor, helping students individually.", "explanation": ""},
+            {"question": "Он декан в университете.", "answer": "He is a dean at the university.", "explanation": ""},
+            {"question": "Она профессор на кафедре естественных наук.", "answer": "She is a professor in the science department.", "explanation": ""},
+            {"question": "Он научный руководитель исследовательского проекта.", "answer": "He is a supervisor for his research project.", "explanation": ""},
+            {"question": "Она аспирантка в университете.", "answer": "She is a postgraduate student at the university.", "explanation": ""},
+            {"question": "Он студент бакалавриата в университете.", "answer": "He is an undergraduate student at the university.", "explanation": ""}
+          ]
+        }
+      ],
+      # =====================================================
+      # ВАРИАНТ 8 (перефразирование)
+      # =====================================================
+      [
+        {
+          "type": "complex",
+          "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+          "subtasks": [
+            {"question": "She ______ from university with a degree in law.", "options": ["a) studied", "b) graduated", "c) completed", "d) finished"], "answer": "b", "explanation": "to graduate – закончить."},
+            {"question": "He ______ in physics from Oxford University.", "options": ["a) graduated", "b) studied", "c) majored", "d) received"], "answer": "a", "explanation": "to graduate from – закончить."},
+            {"question": "She ______ her PhD in 2020.", "options": ["a) achieved", "b) graduated", "c) received", "d) completed"], "answer": "c", "explanation": "to receive a PhD – получить докторскую."},
+            {"question": "He is a ______ of the University of Cambridge.", "options": ["a) graduate", "b) student", "c) lecturer", "d) professor"], "answer": "a", "explanation": "graduate – выпускник."},
+            {"question": "She ______ in English literature.", "options": ["a) studied", "b) majored", "c) graduated", "d) received"], "answer": "b", "explanation": "to major in – специализироваться."},
+            {"question": "He ______ a degree in computer science.", "options": ["a) has", "b) holds", "c) got", "d) received"], "answer": "b", "explanation": "to hold a degree – иметь степень."},
+            {"question": "She ______ a scholarship to study abroad.", "options": ["a) won", "b) got", "c) received", "d) earned"], "answer": "a", "explanation": "to win a scholarship – получить стипендию."},
+            {"question": "He ______ in education for five years.", "options": ["a) studied", "b) worked", "c) taught", "d) researched"], "answer": "a", "explanation": "to study – изучать."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "2. Fill in the gaps with the correct word or phrase. Type the missing word(s) in the box.",
+          "subtasks": [
+            {"question": "She ______ from university with a degree in law.", "answer": "graduated", "explanation": "graduated."},
+            {"question": "He ______ in physics from Oxford University.", "answer": "graduated", "explanation": "graduated."},
+            {"question": "She ______ her PhD in 2020.", "answer": "received", "explanation": "received."},
+            {"question": "He is a ______ of the University of Cambridge.", "answer": "graduate", "explanation": "graduate."},
+            {"question": "She ______ in English literature.", "answer": "majored", "explanation": "majored."},
+            {"question": "He ______ a degree in computer science.", "answer": "holds", "explanation": "holds."},
+            {"question": "She ______ a scholarship to study abroad.", "answer": "won", "explanation": "won."},
+            {"question": "He ______ in education for five years.", "answer": "studied", "explanation": "studied."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
+          "subtasks": [
+            {"question": "She graduated from university with a degree in law.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "He graduated in physics from Oxford University.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "She received her PhD in 2020.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "He is a graduate of the University of Cambridge.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "She majored in English literature.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "He holds a degree in computer science.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "She won a scholarship to study abroad.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "He studdied in education for five years.", "answer": "He studied in education for five years.", "explanation": "Studied, не studdied."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "4. Rewrite the sentences using the word given in brackets. Type the whole sentence.",
+          "subtasks": [
+            {"question": "She finished university with a degree in law. (graduated) → She graduated from university with a degree in law.", "answer": "She graduated from university with a degree in law.", "explanation": "graduated."},
+            {"question": "He finished from Oxford University in physics. (graduated) → He graduated in physics from Oxford University.", "answer": "He graduated in physics from Oxford University.", "explanation": "graduated."},
+            {"question": "She got her PhD in 2020. (received) → She received her PhD in 2020.", "answer": "She received her PhD in 2020.", "explanation": "received."},
+            {"question": "He is an alumnus of Cambridge. (graduate) → He is a graduate of the University of Cambridge.", "answer": "He is a graduate of the University of Cambridge.", "explanation": "graduate."},
+            {"question": "She specialised in English literature. (majored) → She majored in English literature.", "answer": "She majored in English literature.", "explanation": "majored."},
+            {"question": "He has a degree in computer science. (holds) → He holds a degree in computer science.", "answer": "He holds a degree in computer science.", "explanation": "holds."},
+            {"question": "She got a scholarship to study abroad. (won) → She won a scholarship to study abroad.", "answer": "She won a scholarship to study abroad.", "explanation": "won."},
+            {"question": "He was a student of education for five years. (studied) → He studied in education for five years.", "answer": "He studied in education for five years.", "explanation": "studied."}
+          ]
+        }
+      ],
+      # =====================================================
+      # ВАРИАНТ 9 (перевод)
+      # =====================================================
+      [
+        {
+          "type": "complex",
+          "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+          "subtasks": [
+            {"question": "She is ______ in the school play.", "options": ["a) attending", "b) joining", "c) participating", "d) volunteering"], "answer": "c", "explanation": "to participate – участвовать."},
+            {"question": "He ______ a research project on climate change.", "options": ["a) carried", "b) conducted", "c) performed", "d) executed"], "answer": "b", "explanation": "to conduct research – проводить исследование."},
+            {"question": "She ______ a paper on education reform.", "options": ["a) wrote", "b) submitted", "c) presented", "d) published"], "answer": "d", "explanation": "to publish a paper – опубликовать статью."},
+            {"question": "He ______ a lecture on economics yesterday.", "options": ["a) gave", "b) held", "c) presented", "d) delivered"], "answer": "a", "explanation": "to give a lecture – читать лекцию."},
+            {"question": "She ______ a course on English literature.", "options": ["a) attended", "b) registered", "c) took", "d) enrolled"], "answer": "c", "explanation": "to take a course – пройти курс."},
+            {"question": "He ______ a workshop on creative writing.", "options": ["a) visited", "b) attended", "c) participated", "d) joined"], "answer": "b", "explanation": "to attend a workshop – посетить мастер-класс."},
+            {"question": "She ______ a seminar on teaching methods.", "options": ["a) ran", "b) hosted", "c) conducted", "d) led"], "answer": "d", "explanation": "to lead a seminar – вести семинар."},
+            {"question": "He ______ a debate on education policy.", "options": ["a) organised", "b) planned", "c) arranged", "d) coordinated"], "answer": "a", "explanation": "to organise a debate – организовать дебаты."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "2. Fill in the gaps with the correct word or phrase. Type the missing word(s) in the box.",
+          "subtasks": [
+            {"question": "She is ______ in the school play.", "answer": "participating", "explanation": "participating."},
+            {"question": "He ______ a research project on climate change.", "answer": "conducted", "explanation": "conducted."},
+            {"question": "She ______ a paper on education reform.", "answer": "published", "explanation": "published."},
+            {"question": "He ______ a lecture on economics yesterday.", "answer": "gave", "explanation": "gave."},
+            {"question": "She ______ a course on English literature.", "answer": "took", "explanation": "took."},
+            {"question": "He ______ a workshop on creative writing.", "answer": "attended", "explanation": "attended."},
+            {"question": "She ______ a seminar on teaching methods.", "answer": "led", "explanation": "led."},
+            {"question": "He ______ a debate on education policy.", "answer": "organised", "explanation": "organised."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
+          "subtasks": [
+            {"question": "She is participating in the school play.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "He conducted a research project on climate change.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "She published a paper on education reform.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "He gave a lecture on economics yesterday.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "She took a course on English literature.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "He attended a workshop on creative writing.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "She lead a seminar on teaching methods.", "answer": "She led a seminar on teaching methods.", "explanation": "Led, не lead (past simple)."},
+            {"question": "He organised a debate on education policy.", "answer": "Correct", "explanation": "Верно."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "4. Translate the sentences into English using the correct education vocabulary. Type your translation (one sentence) in the box.",
+          "subtasks": [
+            {"question": "Она участвует в школьном спектакле.", "answer": "She is participating in the school play.", "explanation": ""},
+            {"question": "Он проводил исследовательский проект по изменению климата.", "answer": "He conducted a research project on climate change.", "explanation": ""},
+            {"question": "Она опубликовала статью по реформе образования.", "answer": "She published a paper on education reform.", "explanation": ""},
+            {"question": "Вчера он прочитал лекцию по экономике.", "answer": "He gave a lecture on economics yesterday.", "explanation": ""},
+            {"question": "Она прошла курс по английской литературе.", "answer": "She took a course on English literature.", "explanation": ""},
+            {"question": "Он посетил мастер-класс по творческому письму.", "answer": "He attended a workshop on creative writing.", "explanation": ""},
+            {"question": "Она вела семинар по методике преподавания.", "answer": "She led a seminar on teaching methods.", "explanation": ""},
+            {"question": "Он организовал дебаты по образовательной политике.", "answer": "He organised a debate on education policy.", "explanation": ""}
+          ]
+        }
+      ],
+      # =====================================================
+      # ВАРИАНТ 10 (перефразирование)
+      # =====================================================
+      [
+        {
+          "type": "complex",
+          "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+          "subtasks": [
+            {"question": "She is a ______ student, so she is working on her PhD.", "options": ["a) graduate", "b) postgraduate", "c) doctoral", "d) research"], "answer": "c", "explanation": "doctoral student – докторант."},
+            {"question": "He is a ______ student at the university.", "options": ["a) research", "b) graduate", "c) doctoral", "d) undergraduate"], "answer": "a", "explanation": "research student – аспирант."},
+            {"question": "She is a ______ student in the English department.", "options": ["a) graduate", "b) undergraduate", "c) doctoral", "d) research"], "answer": "a", "explanation": "graduate student – магистрант/аспирант."},
+            {"question": "He is a ______ student in the science department.", "options": ["a) graduate", "b) postgraduate", "c) doctoral", "d) undergraduate"], "answer": "d", "explanation": "undergraduate – студент бакалавриата."},
+            {"question": "She is a ______ in the physics department.", "options": ["a) lecturer", "b) tutor", "c) professor", "d) supervisor"], "answer": "c", "explanation": "professor – профессор."},
+            {"question": "He is a ______ in the history department.", "options": ["a) professor", "b) lecturer", "c) tutor", "d) supervisor"], "answer": "b", "explanation": "lecturer – лектор."},
+            {"question": "She is a ______ at the university.", "options": ["a) dean", "b) lecturer", "c) professor", "d) tutor"], "answer": "a", "explanation": "dean – декан."},
+            {"question": "He is a ______ of the university.", "options": ["a) graduate", "b) student", "c) lecturer", "d) professor"], "answer": "a", "explanation": "graduate – выпускник."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "2. Fill in the gaps with the correct word or phrase. Type the missing word(s) in the box.",
+          "subtasks": [
+            {"question": "She is a ______ student, so she is working on her PhD.", "answer": "doctoral", "explanation": "doctoral."},
+            {"question": "He is a ______ student at the university.", "answer": "research", "explanation": "research."},
+            {"question": "She is a ______ student in the English department.", "answer": "graduate", "explanation": "graduate."},
+            {"question": "He is a ______ student in the science department.", "answer": "undergraduate", "explanation": "undergraduate."},
+            {"question": "She is a ______ in the physics department.", "answer": "professor", "explanation": "professor."},
+            {"question": "He is a ______ in the history department.", "answer": "lecturer", "explanation": "lecturer."},
+            {"question": "She is a ______ at the university.", "answer": "dean", "explanation": "dean."},
+            {"question": "He is a ______ of the university.", "answer": "graduate", "explanation": "graduate."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
+          "subtasks": [
+            {"question": "She is a doctoral student, so she is working on her PhD.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "He is a research student at the university.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "She is a graduate student in the English department.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "He is a undergraduate student in the science department.", "answer": "He is an undergraduate student in the science department.", "explanation": "An undergraduate (гласная)."},
+            {"question": "She is a professor in the physics department.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "He is a lecturer in the history department.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "She is a dean at the university.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "He is a graduate of the university.", "answer": "Correct", "explanation": "Верно."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "4. Rewrite the sentences using the word given in brackets. Type the whole sentence.",
+          "subtasks": [
+            {"question": "She is working on her PhD. (doctoral student) → She is a doctoral student.", "answer": "She is a doctoral student.", "explanation": "doctoral student."},
+            {"question": "He is doing research at the university. (research student) → He is a research student at the university.", "answer": "He is a research student at the university.", "explanation": "research student."},
+            {"question": "She is studying for her master's degree. (graduate student) → She is a graduate student in the English department.", "answer": "She is a graduate student in the English department.", "explanation": "graduate student."},
+            {"question": "He is studying for his bachelor's degree. (undergraduate) → He is an undergraduate student in the science department.", "answer": "He is an undergraduate student in the science department.", "explanation": "undergraduate."},
+            {"question": "She is a teacher in the physics department. (professor) → She is a professor in the physics department.", "answer": "She is a professor in the physics department.", "explanation": "professor."},
+            {"question": "He is a teacher in the history department. (lecturer) → He is a lecturer in the history department.", "answer": "He is a lecturer in the history department.", "explanation": "lecturer."},
+            {"question": "She is the head of the faculty. (dean) → She is a dean at the university.", "answer": "She is a dean at the university.", "explanation": "dean."},
+            {"question": "He has finished the university. (graduate) → He is a graduate of the university.", "answer": "He is a graduate of the university.", "explanation": "graduate."}
+          ]
+        }
+      ],
+      # =====================================================
+      # ВАРИАНТ 11 (перевод)
+      # =====================================================
+      [
+        {
+          "type": "complex",
+          "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+          "subtasks": [
+            {"question": "She is studying for her ______ degree.", "options": ["a) bachelor's", "b) master's", "c) doctoral", "d) associate"], "answer": "a", "explanation": "bachelor's degree – степень бакалавра."},
+            {"question": "He is working on his ______ degree.", "options": ["a) bachelor's", "b) PhD", "c) master's", "d) diploma"], "answer": "c", "explanation": "master's degree – степень магистра."},
+            {"question": "She has a ______ in economics.", "options": ["a) Master's", "b) PhD", "c) Doctorate", "d) Postdoc"], "answer": "b", "explanation": "PhD – докторская степень."},
+            {"question": "He is a ______ student at the university.", "options": ["a) postgraduate", "b) undergraduate", "c) graduate", "d) doctoral"], "answer": "a", "explanation": "postgraduate – аспирант."},
+            {"question": "She is an ______ student at the university.", "options": ["a) postgraduate", "b) doctoral", "c) graduate", "d) undergraduate"], "answer": "d", "explanation": "undergraduate – студент бакалавриата."},
+            {"question": "He is a ______ at the university.", "options": ["a) lecturer", "b) professor", "c) tutor", "d) supervisor"], "answer": "b", "explanation": "professor – профессор."},
+            {"question": "She is a ______ in the English department.", "options": ["a) lecturer", "b) professor", "c) tutor", "d) supervisor"], "answer": "a", "explanation": "lecturer – лектор."},
+            {"question": "He is a ______ of the university.", "options": ["a) student", "b) lecturer", "c) graduate", "d) professor"], "answer": "c", "explanation": "graduate – выпускник."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "2. Fill in the gaps with the correct word or phrase. Type the missing word(s) in the box.",
+          "subtasks": [
+            {"question": "She is studying for her ______ degree.", "answer": "bachelor's", "explanation": "bachelor's."},
+            {"question": "He is working on his ______ degree.", "answer": "master's", "explanation": "master's."},
+            {"question": "She has a ______ in economics.", "answer": "PhD", "explanation": "PhD."},
+            {"question": "He is a ______ student at the university.", "answer": "postgraduate", "explanation": "postgraduate."},
+            {"question": "She is an ______ student at the university.", "answer": "undergraduate", "explanation": "undergraduate."},
+            {"question": "He is a ______ at the university.", "answer": "professor", "explanation": "professor."},
+            {"question": "She is a ______ in the English department.", "answer": "lecturer", "explanation": "lecturer."},
+            {"question": "He is a ______ of the university.", "answer": "graduate", "explanation": "graduate."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
+          "subtasks": [
+            {"question": "She is studying for her bachelor's degree.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "He is working on his master's degree.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "She has a PhD in economics.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "He is a postgraduate student at the university.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "She is an undergraduate student at the university.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "He is a professor at the university.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "She is a lecturer in the English department.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "He is a graduate of the university.", "answer": "Correct", "explanation": "Верно."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "4. Translate the sentences into English using the correct education vocabulary. Type your translation (one sentence) in the box.",
+          "subtasks": [
+            {"question": "Она учится на степень бакалавра.", "answer": "She is studying for her bachelor's degree.", "explanation": ""},
+            {"question": "Он работает над степенью магистра.", "answer": "He is working on his master's degree.", "explanation": ""},
+            {"question": "У неё докторская степень по экономике.", "answer": "She has a PhD in economics.", "explanation": ""},
+            {"question": "Он аспирант в университете.", "answer": "He is a postgraduate student at the university.", "explanation": ""},
+            {"question": "Она студентка бакалавриата в университете.", "answer": "She is an undergraduate student at the university.", "explanation": ""},
+            {"question": "Он профессор в университете.", "answer": "He is a professor at the university.", "explanation": ""},
+            {"question": "Она лектор на кафедре английского языка.", "answer": "She is a lecturer in the English department.", "explanation": ""},
+            {"question": "Он выпускник университета.", "answer": "He is a graduate of the university.", "explanation": ""}
+          ]
+        }
+      ],
+      # =====================================================
+      # ВАРИАНТ 12 (перефразирование)
+      # =====================================================
+      [
+        {
+          "type": "complex",
+          "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+          "subtasks": [
+            {"question": "She is a ______ student, so she is studying for her master's degree.", "options": ["a) undergraduate", "b) graduate", "c) doctoral", "d) postgraduate"], "answer": "b", "explanation": "graduate student – магистрант."},
+            {"question": "He is a ______ student, so he is studying for his bachelor's degree.", "options": ["a) postgraduate", "b) doctoral", "c) undergraduate", "d) graduate"], "answer": "c", "explanation": "undergraduate – студент бакалавриата."},
+            {"question": "She is a ______ student, so she is working on her PhD.", "options": ["a) graduate", "b) postgraduate", "c) undergraduate", "d) doctoral"], "answer": "d", "explanation": "doctoral student – докторант."},
+            {"question": "He is a ______ in the physics department.", "options": ["a) lecturer", "b) tutor", "c) professor", "d) supervisor"], "answer": "c", "explanation": "professor – профессор."},
+            {"question": "She is a ______ in the history department.", "options": ["a) professor", "b) lecturer", "c) tutor", "d) supervisor"], "answer": "b", "explanation": "lecturer – лектор."},
+            {"question": "He is a ______ at the university.", "options": ["a) dean", "b) lecturer", "c) professor", "d) tutor"], "answer": "a", "explanation": "dean – декан."},
+            {"question": "She is a ______ of the university.", "options": ["a) student", "b) graduate", "c) lecturer", "d) professor"], "answer": "b", "explanation": "graduate – выпускник."},
+            {"question": "He is a ______ at the local college.", "options": ["a) professor", "b) lecturer", "c) tutor", "d) supervisor"], "answer": "c", "explanation": "tutor – репетитор/тьютор."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "2. Fill in the gaps with the correct word or phrase. Type the missing word(s) in the box.",
+          "subtasks": [
+            {"question": "She is a ______ student, so she is studying for her master's degree.", "answer": "graduate", "explanation": "graduate."},
+            {"question": "He is a ______ student, so he is studying for his bachelor's degree.", "answer": "undergraduate", "explanation": "undergraduate."},
+            {"question": "She is a ______ student, so she is working on her PhD.", "answer": "doctoral", "explanation": "doctoral."},
+            {"question": "He is a ______ in the physics department.", "answer": "professor", "explanation": "professor."},
+            {"question": "She is a ______ in the history department.", "answer": "lecturer", "explanation": "lecturer."},
+            {"question": "He is a ______ at the university.", "answer": "dean", "explanation": "dean."},
+            {"question": "She is a ______ of the university.", "answer": "graduate", "explanation": "graduate."},
+            {"question": "He is a ______ at the local college.", "answer": "tutor", "explanation": "tutor."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
+          "subtasks": [
+            {"question": "She is a graduate student, so she is studying for her master's degree.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "He is an undergraduate student, so he is studying for his bachelor's degree.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "She is a doctoral student, so she is working on her PhD.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "He is a professor in the physics department.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "She is a lecturer in the history department.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "He is a dean at the university.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "She is a graduate of the university.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "He is a tutor at the local college.", "answer": "Correct", "explanation": "Верно."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "4. Rewrite the sentences using the word given in brackets. Type the whole sentence.",
+          "subtasks": [
+            {"question": "She is studying for her master's degree. (graduate student) → She is a graduate student.", "answer": "She is a graduate student.", "explanation": "graduate student."},
+            {"question": "He is studying for his bachelor's degree. (undergraduate) → He is an undergraduate student.", "answer": "He is an undergraduate student.", "explanation": "undergraduate."},
+            {"question": "She is working on her PhD. (doctoral student) → She is a doctoral student.", "answer": "She is a doctoral student.", "explanation": "doctoral student."},
+            {"question": "He is a teacher in the physics department. (professor) → He is a professor in the physics department.", "answer": "He is a professor in the physics department.", "explanation": "professor."},
+            {"question": "She is a teacher in the history department. (lecturer) → She is a lecturer in the history department.", "answer": "She is a lecturer in the history department.", "explanation": "lecturer."},
+            {"question": "He is the head of the faculty. (dean) → He is a dean at the university.", "answer": "He is a dean at the university.", "explanation": "dean."},
+            {"question": "She has finished the university. (graduate) → She is a graduate of the university.", "answer": "She is a graduate of the university.", "explanation": "graduate."},
+            {"question": "He teaches students individually. (tutor) → He is a tutor at the local college.", "answer": "He is a tutor at the local college.", "explanation": "tutor."}
+          ]
+        }
+      ]
     ]
-]
   },
   "health_medicine": {
     "title": "Лексика: здоровье и медицина",
