@@ -24369,7 +24369,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
       ]
     ]
   },
-  "inversion_emphatic": {
+"inversion_emphatic": {
     "title": "Инверсия для эмфазы (Only after, Only then, Little did he know)",
     "pages": [
       {
@@ -24395,729 +24395,740 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
         "answer": "Только если only стоит в начале предложения и относится ко всему предложению (не к подлежащему). Only John can help (инверсии нет)."
       }
     ],
-    "practice_bank": []   # пустой, вы можете заполнить позже
-    # =====================================================
-    # ВАРИАНТ 1 (перевод)
-    # =====================================================
-    [
+    "practice_bank": [
+      # =====================================================
+      # ВАРИАНТ 1 (перевод)
+      # =====================================================
+      [
         {
-            "type": "complex",
-            "text": "1. Choose the correct inverted form (a, b, or c) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "Only after the film started ______ I realise I had seen it before.", "answer": "did", "explanation": "Only after + did + подлежащее + V."},
-                {"question": "Only when you apologise ______ I forgive you.", "answer": "will", "explanation": "Only when + will + подлежащее."},
-                {"question": "Only then ______ he understand his mistake.", "answer": "did", "explanation": "Only then + did + подлежащее."},
-                {"question": "Little ______ he know that his life was about to change.", "answer": "did", "explanation": "Little + did + подлежащее."},
-                {"question": "Little ______ they suspect that the police were waiting.", "answer": "did", "explanation": "Little + did + подлежащее."},
-                {"question": "So beautiful ______ the view that we stopped to take photos.", "answer": "was", "explanation": "So + прилагательное + was + подлежащее."},
-                {"question": "Such ______ his anger that he couldn't speak.", "answer": "was", "explanation": "Such + was + подлежащее."},
-                {"question": "Only after I finished ______ I notice the mistake.", "answer": "did", "explanation": "Only after + did + подлежащее."}
-            ]
+          "type": "complex",
+          "text": "1. Choose the correct inverted form (a, b, or c) to complete the sentence. Type the letter of your answer.",
+          "subtasks": [
+            {"question": "Only after the film started ______ I realise I had seen it before.", "answer": "did", "explanation": "Only after + did + подлежащее + V."},
+            {"question": "Only when you apologise ______ I forgive you.", "answer": "will", "explanation": "Only when + will + подлежащее."},
+            {"question": "Only then ______ he understand his mistake.", "answer": "did", "explanation": "Only then + did + подлежащее."},
+            {"question": "Little ______ he know that his life was about to change.", "answer": "did", "explanation": "Little + did + подлежащее."},
+            {"question": "Little ______ they suspect that the police were waiting.", "answer": "did", "explanation": "Little + did + подлежащее."},
+            {"question": "So beautiful ______ the view that we stopped to take photos.", "answer": "was", "explanation": "So + прилагательное + was + подлежащее."},
+            {"question": "Such ______ his anger that he couldn't speak.", "answer": "was", "explanation": "Such + was + подлежащее."},
+            {"question": "Only after I finished ______ I notice the mistake.", "answer": "did", "explanation": "Only after + did + подлежащее."}
+          ]
         },
         {
-            "type": "complex",
-            "text": "2. Fill in the gaps with the correct form of the verb in brackets. Type the missing word(s) in the box.",
-            "subtasks": [
-                {"question": "Only after the film started ______ (realise) I I had seen it before.", "answer": "did I realise", "explanation": "Only after + did + подлежащее + V."},
-                {"question": "Only when you apologise ______ (forgive) I you.", "answer": "will I forgive", "explanation": "Only when + will + подлежащее + V."},
-                {"question": "Only then ______ (understand) he his mistake.", "answer": "did he understand", "explanation": "Only then + did + подлежащее + V."},
-                {"question": "Little ______ (know) he that his life was about to change.", "answer": "did he know", "explanation": "Little + did + подлежащее + V."},
-                {"question": "Little ______ (suspect) they that the police were waiting.", "answer": "did they suspect", "explanation": "Little + did + подлежащее + V."},
-                {"question": "So beautiful ______ (be) the view that we stopped to take photos.", "answer": "was", "explanation": "So + прилагательное + was + подлежащее."},
-                {"question": "Such ______ (be) his anger that he couldn't speak.", "answer": "was", "explanation": "Such + was + подлежащее."},
-                {"question": "Only after I finished ______ (notice) I the mistake.", "answer": "did I notice", "explanation": "Only after + did + подлежащее + V."}
-            ]
+          "type": "complex",
+          "text": "2. Fill in the gaps with the correct form of the verb in brackets. Type the missing word(s) in the box.",
+          "subtasks": [
+            {"question": "Only after the film started ______ (realise) I I had seen it before.", "answer": "did I realise", "explanation": "Only after + did + подлежащее + V."},
+            {"question": "Only when you apologise ______ (forgive) I you.", "answer": "will I forgive", "explanation": "Only when + will + подлежащее + V."},
+            {"question": "Only then ______ (understand) he his mistake.", "answer": "did he understand", "explanation": "Only then + did + подлежащее + V."},
+            {"question": "Little ______ (know) he that his life was about to change.", "answer": "did he know", "explanation": "Little + did + подлежащее + V."},
+            {"question": "Little ______ (suspect) they that the police were waiting.", "answer": "did they suspect", "explanation": "Little + did + подлежащее + V."},
+            {"question": "So beautiful ______ (be) the view that we stopped to take photos.", "answer": "was", "explanation": "So + прилагательное + was + подлежащее."},
+            {"question": "Such ______ (be) his anger that he couldn't speak.", "answer": "was", "explanation": "Such + was + подлежащее."},
+            {"question": "Only after I finished ______ (notice) I the mistake.", "answer": "did I notice", "explanation": "Only after + did + подлежащее + V."}
+          ]
         },
         {
-            "type": "complex",
-            "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
-            "subtasks": [
-                {"question": "Only after I finished, I realised the mistake.", "answer": "Only after I finished did I realise the mistake.", "explanation": "Инверсия: did I realise."},
-                {"question": "Only when you apologise will I forgive you.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Only then he understood his mistake.", "answer": "Only then did he understand his mistake.", "explanation": "Инверсия: did he understand."},
-                {"question": "Little did he know that his life was about to change.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Little they suspected that the police were waiting.", "answer": "Little did they suspect that the police were waiting.", "explanation": "Инверсия: did they suspect."},
-                {"question": "So beautiful was the view that we stopped to take photos.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Such was his anger that he couldn't speak.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Only after I finished I noticed the mistake.", "answer": "Only after I finished did I notice the mistake.", "explanation": "Инверсия: did I notice."}
-            ]
+          "type": "complex",
+          "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
+          "subtasks": [
+            {"question": "Only after I finished, I realised the mistake.", "answer": "Only after I finished did I realise the mistake.", "explanation": "Инверсия: did I realise."},
+            {"question": "Only when you apologise will I forgive you.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Only then he understood his mistake.", "answer": "Only then did he understand his mistake.", "explanation": "Инверсия: did he understand."},
+            {"question": "Little did he know that his life was about to change.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Little they suspected that the police were waiting.", "answer": "Little did they suspect that the police were waiting.", "explanation": "Инверсия: did they suspect."},
+            {"question": "So beautiful was the view that we stopped to take photos.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Such was his anger that he couldn't speak.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Only after I finished I noticed the mistake.", "answer": "Only after I finished did I notice the mistake.", "explanation": "Инверсия: did I notice."}
+          ]
         },
         {
-            "type": "complex",
-            "text": "4. Translate the sentences into English using emphatic inversion. Type your translation (one sentence) in the box.",
-            "subtasks": [
-                {"question": "Только после начала фильма я понял, что уже видел его.", "answer": "Only after the film started did I realise I had seen it before.", "explanation": ""},
-                {"question": "Только когда извинишься, я прощу тебя.", "answer": "Only when you apologise will I forgive you.", "explanation": ""},
-                {"question": "Только тогда он понял свою ошибку.", "answer": "Only then did he understand his mistake.", "explanation": ""},
-                {"question": "Он понятия не имел, что его жизнь вот-вот изменится.", "answer": "Little did he know that his life was about to change.", "explanation": ""},
-                {"question": "Они ни о чём не подозревали, что полиция ждала.", "answer": "Little did they suspect that the police were waiting.", "explanation": ""},
-                {"question": "Вид был настолько красивым, что мы остановились фотографировать.", "answer": "So beautiful was the view that we stopped to take photos.", "explanation": ""},
-                {"question": "Таким был его гнев, что он не мог говорить.", "answer": "Such was his anger that he couldn't speak.", "explanation": ""},
-                {"question": "Только после того как я закончил, я заметил ошибку.", "answer": "Only after I finished did I notice the mistake.", "explanation": ""}
-            ]
-        },
-    # =====================================================
-    # ВАРИАНТ 2 (перефразирование)
-    # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct inverted form (a, b, or c) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "Only after the concert ended ______ I realise I had lost my keys.", "answer": "did", "explanation": "Only after + did."},
-                {"question": "Only when you finish your homework ______ we go out.", "answer": "will", "explanation": "Only when + will."},
-                {"question": "Only then ______ she remember his name.", "answer": "did", "explanation": "Only then + did."},
-                {"question": "Little ______ he expect such a surprise.", "answer": "did", "explanation": "Little + did."},
-                {"question": "Little ______ they know that we were watching them.", "answer": "did", "explanation": "Little + did."},
-                {"question": "So delicious ______ the food that we ordered more.", "answer": "was", "explanation": "So + was."},
-                {"question": "Such ______ her joy that she burst into tears.", "answer": "was", "explanation": "Such + was."},
-                {"question": "Only after we left ______ we see the warning sign.", "answer": "did", "explanation": "Only after + did."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "2. Fill in the gaps with the correct form of the verb in brackets. Type the missing word(s) in the box.",
-            "subtasks": [
-                {"question": "Only after the concert ended ______ (realise) I I had lost my keys.", "answer": "did I realise", "explanation": "Only after + did + подлежащее + V."},
-                {"question": "Only when you finish your homework ______ (go) we out.", "answer": "will we go", "explanation": "Only when + will + подлежащее + V."},
-                {"question": "Only then ______ (remember) she his name.", "answer": "did she remember", "explanation": "Only then + did + подлежащее + V."},
-                {"question": "Little ______ (expect) he such a surprise.", "answer": "did he expect", "explanation": "Little + did + подлежащее + V."},
-                {"question": "Little ______ (know) they that we were watching them.", "answer": "did they know", "explanation": "Little + did + подлежащее + V."},
-                {"question": "So delicious ______ (be) the food that we ordered more.", "answer": "was", "explanation": "So + was."},
-                {"question": "Such ______ (be) her joy that she burst into tears.", "answer": "was", "explanation": "Such + was."},
-                {"question": "Only after we left ______ (see) we the warning sign.", "answer": "did we see", "explanation": "Only after + did + подлежащее + V."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
-            "subtasks": [
-                {"question": "Only after the concert ended I realised I had lost my keys.", "answer": "Only after the concert ended did I realise I had lost my keys.", "explanation": "Инверсия: did I realise."},
-                {"question": "Only when you finish your homework will we go out.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Only then she remembered his name.", "answer": "Only then did she remember his name.", "explanation": "Инверсия: did she remember."},
-                {"question": "Little did he expect such a surprise.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Little they knew that we were watching them.", "answer": "Little did they know that we were watching them.", "explanation": "Инверсия: did they know."},
-                {"question": "So delicious was the food that we ordered more.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Such was her joy that she burst into tears.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Only after we left we saw the warning sign.", "answer": "Only after we left did we see the warning sign.", "explanation": "Инверсия: did we see."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "4. Rewrite the sentences using emphatic inversion (with the word given in brackets). Type the whole sentence.",
-            "subtasks": [
-                {"question": "I realised I had lost my keys only after the concert ended. (Only after) → Only after the concert ended did I realise I had lost my keys.", "answer": "Only after the concert ended did I realise I had lost my keys.", "explanation": "Only after + did."},
-                {"question": "We will go out only when you finish your homework. (Only when) → Only when you finish your homework will we go out.", "answer": "Only when you finish your homework will we go out.", "explanation": "Only when + will."},
-                {"question": "She remembered his name only then. (Only then) → Only then did she remember his name.", "answer": "Only then did she remember his name.", "explanation": "Only then + did."},
-                {"question": "He didn't expect such a surprise at all. (Little) → Little did he expect such a surprise.", "answer": "Little did he expect such a surprise.", "explanation": "Little + did."},
-                {"question": "They didn't know that we were watching them. (Little) → Little did they know that we were watching them.", "answer": "Little did they know that we were watching them.", "explanation": "Little + did."},
-                {"question": "The food was so delicious that we ordered more. (So) → So delicious was the food that we ordered more.", "answer": "So delicious was the food that we ordered more.", "explanation": "So + прил + was."},
-                {"question": "Her joy was such that she burst into tears. (Such) → Such was her joy that she burst into tears.", "answer": "Such was her joy that she burst into tears.", "explanation": "Such + was."},
-                {"question": "We saw the warning sign only after we left. (Only after) → Only after we left did we see the warning sign.", "answer": "Only after we left did we see the warning sign.", "explanation": "Only after + did."}
-            ]
-        },
-    # =====================================================
-    # ВАРИАНТ 3 (перевод)
-    # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct inverted form (a, b, or c) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "Only after I read the letter ______ I understand the truth.", "answer": "did", "explanation": "Only after + did."},
-                {"question": "Only when the rain stops ______ we leave.", "answer": "will", "explanation": "Only when + will."},
-                {"question": "Only then ______ she realise her mistake.", "answer": "did", "explanation": "Only then + did."},
-                {"question": "Little ______ he care about what others thought.", "answer": "did", "explanation": "Little + did."},
-                {"question": "Little ______ she imagine that she would win.", "answer": "did", "explanation": "Little + did."},
-                {"question": "So tired ______ I that I fell asleep immediately.", "answer": "was", "explanation": "So + was."},
-                {"question": "Such ______ the noise that we couldn't hear anything.", "answer": "was", "explanation": "Such + was."},
-                {"question": "Only after the show finished ______ we leave the theatre.", "answer": "did", "explanation": "Only after + did."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "2. Fill in the gaps with the correct form of the verb in brackets. Type the missing word(s) in the box.",
-            "subtasks": [
-                {"question": "Only after I read the letter ______ (understand) I the truth.", "answer": "did I understand", "explanation": "Only after + did + подлежащее + V."},
-                {"question": "Only when the rain stops ______ (leave) we.", "answer": "will we leave", "explanation": "Only when + will + подлежащее + V."},
-                {"question": "Only then ______ (realise) she her mistake.", "answer": "did she realise", "explanation": "Only then + did + подлежащее + V."},
-                {"question": "Little ______ (care) he about what others thought.", "answer": "did he care", "explanation": "Little + did + подлежащее + V."},
-                {"question": "Little ______ (imagine) she that she would win.", "answer": "did she imagine", "explanation": "Little + did + подлежащее + V."},
-                {"question": "So tired ______ (be) I that I fell asleep immediately.", "answer": "was", "explanation": "So + was."},
-                {"question": "Such ______ (be) the noise that we couldn't hear anything.", "answer": "was", "explanation": "Such + was."},
-                {"question": "Only after the show finished ______ (leave) we the theatre.", "answer": "did we leave", "explanation": "Only after + did + подлежащее + V."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
-            "subtasks": [
-                {"question": "Only after I read the letter I understood the truth.", "answer": "Only after I read the letter did I understand the truth.", "explanation": "Инверсия: did I understand."},
-                {"question": "Only when the rain stops will we leave.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Only then she realised her mistake.", "answer": "Only then did she realise her mistake.", "explanation": "Инверсия: did she realise."},
-                {"question": "Little did he care about what others thought.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Little she imagined that she would win.", "answer": "Little did she imagine that she would win.", "explanation": "Инверсия: did she imagine."},
-                {"question": "So tired was I that I fell asleep immediately.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Such was the noise that we couldn't hear anything.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Only after the show finished we left the theatre.", "answer": "Only after the show finished did we leave the theatre.", "explanation": "Инверсия: did we leave."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "4. Translate the sentences into English using emphatic inversion. Type your translation (one sentence) in the box.",
-            "subtasks": [
-                {"question": "Только после того как я прочитал письмо, я понял правду.", "answer": "Only after I read the letter did I understand the truth.", "explanation": ""},
-                {"question": "Только когда дождь прекратится, мы уйдём.", "answer": "Only when the rain stops will we leave.", "explanation": ""},
-                {"question": "Только тогда она осознала свою ошибку.", "answer": "Only then did she realise her mistake.", "explanation": ""},
-                {"question": "Он совершенно не заботился о том, что думают другие.", "answer": "Little did he care about what others thought.", "explanation": ""},
-                {"question": "Она и представить не могла, что выиграет.", "answer": "Little did she imagine that she would win.", "explanation": ""},
-                {"question": "Я был так устал, что сразу уснул.", "answer": "So tired was I that I fell asleep immediately.", "explanation": ""},
-                {"question": "Шум был таким, что мы ничего не слышали.", "answer": "Such was the noise that we couldn't hear anything.", "explanation": ""},
-                {"question": "Только после окончания шоу мы вышли из театра.", "answer": "Only after the show finished did we leave the theatre.", "explanation": ""}
-            ]
-        },
-    # =====================================================
-    # ВАРИАНТ 4 (перефразирование)
-    # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct inverted form (a, b, or c) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "Only after I called him ______ I find out he was already here.", "answer": "did", "explanation": "Only after + did."},
-                {"question": "Only when you tell me the truth ______ I believe you.", "answer": "will", "explanation": "Only when + will."},
-                {"question": "Only then ______ I realize how important it was.", "answer": "did", "explanation": "Only then + did."},
-                {"question": "Little ______ he know that she was his sister.", "answer": "did", "explanation": "Little + did."},
-                {"question": "Little ______ we expect such a warm welcome.", "answer": "did", "explanation": "Little + did."},
-                {"question": "So cold ______ the weather that we stayed indoors.", "answer": "was", "explanation": "So + was."},
-                {"question": "Such ______ his determination that he never gave up.", "answer": "was", "explanation": "Such + was."},
-                {"question": "Only after the meal ______ we realise we had forgotten to pay.", "answer": "did", "explanation": "Only after + did."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "2. Fill in the gaps with the correct form of the verb in brackets. Type the missing word(s) in the box.",
-            "subtasks": [
-                {"question": "Only after I called him ______ (find) I out he was already here.", "answer": "did I find", "explanation": "Only after + did + подлежащее + V."},
-                {"question": "Only when you tell me the truth ______ (believe) I you.", "answer": "will I believe", "explanation": "Only when + will + подлежащее + V."},
-                {"question": "Only then ______ (realise) I how important it was.", "answer": "did I realise", "explanation": "Only then + did + подлежащее + V."},
-                {"question": "Little ______ (know) he that she was his sister.", "answer": "did he know", "explanation": "Little + did + подлежащее + V."},
-                {"question": "Little ______ (expect) we such a warm welcome.", "answer": "did we expect", "explanation": "Little + did + подлежащее + V."},
-                {"question": "So cold ______ (be) the weather that we stayed indoors.", "answer": "was", "explanation": "So + was."},
-                {"question": "Such ______ (be) his determination that he never gave up.", "answer": "was", "explanation": "Such + was."},
-                {"question": "Only after the meal ______ (realise) we we had forgotten to pay.", "answer": "did we realise", "explanation": "Only after + did + подлежащее + V."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
-            "subtasks": [
-                {"question": "Only after I called him I found out he was already here.", "answer": "Only after I called him did I find out he was already here.", "explanation": "Инверсия: did I find."},
-                {"question": "Only when you tell me the truth will I believe you.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Only then I realised how important it was.", "answer": "Only then did I realise how important it was.", "explanation": "Инверсия: did I realise."},
-                {"question": "Little did he know that she was his sister.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Little we expected such a warm welcome.", "answer": "Little did we expect such a warm welcome.", "explanation": "Инверсия: did we expect."},
-                {"question": "So cold was the weather that we stayed indoors.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Such was his determination that he never gave up.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Only after the meal we realised we had forgotten to pay.", "answer": "Only after the meal did we realise we had forgotten to pay.", "explanation": "Инверсия: did we realise."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "4. Rewrite the sentences using emphatic inversion (with the word given in brackets). Type the whole sentence.",
-            "subtasks": [
-                {"question": "I found out he was already here only after I called him. (Only after) → Only after I called him did I find out he was already here.", "answer": "Only after I called him did I find out he was already here.", "explanation": "Only after + did."},
-                {"question": "I will believe you only when you tell me the truth. (Only when) → Only when you tell me the truth will I believe you.", "answer": "Only when you tell me the truth will I believe you.", "explanation": "Only when + will."},
-                {"question": "I realised how important it was only then. (Only then) → Only then did I realise how important it was.", "answer": "Only then did I realise how important it was.", "explanation": "Only then + did."},
-                {"question": "He didn't know she was his sister. (Little) → Little did he know that she was his sister.", "answer": "Little did he know that she was his sister.", "explanation": "Little + did."},
-                {"question": "We didn't expect such a warm welcome. (Little) → Little did we expect such a warm welcome.", "answer": "Little did we expect such a warm welcome.", "explanation": "Little + did."},
-                {"question": "The weather was so cold that we stayed indoors. (So) → So cold was the weather that we stayed indoors.", "answer": "So cold was the weather that we stayed indoors.", "explanation": "So + прил + was."},
-                {"question": "His determination was such that he never gave up. (Such) → Such was his determination that he never gave up.", "answer": "Such was his determination that he never gave up.", "explanation": "Such + was."},
-                {"question": "We realised we had forgotten to pay only after the meal. (Only after) → Only after the meal did we realise we had forgotten to pay.", "answer": "Only after the meal did we realise we had forgotten to pay.", "explanation": "Only after + did."}
-            ]
-        },
-    # =====================================================
-    # ВАРИАНТ 5 (перевод)
-    # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct inverted form (a, b, or c) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "Only after I checked the map ______ I discover the correct route.", "answer": "did", "explanation": "Only after + did."},
-                {"question": "Only when you calm down ______ we talk about it.", "answer": "will", "explanation": "Only when + will."},
-                {"question": "Only then ______ he notice the beautiful painting.", "answer": "did", "explanation": "Only then + did."},
-                {"question": "Little ______ he think that he would fail.", "answer": "did", "explanation": "Little + did."},
-                {"question": "Little ______ they realise the danger they were in.", "answer": "did", "explanation": "Little + did."},
-                {"question": "So excited ______ the children that they couldn't sleep.", "answer": "were", "explanation": "So + were (множественное число)."},
-                {"question": "Such ______ the confusion that nobody knew what to do.", "answer": "was", "explanation": "Such + was."},
-                {"question": "Only after the storm ______ we realise how much damage it had done.", "answer": "did", "explanation": "Only after + did."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "2. Fill in the gaps with the correct form of the verb in brackets. Type the missing word(s) in the box.",
-            "subtasks": [
-                {"question": "Only after I checked the map ______ (discover) I the correct route.", "answer": "did I discover", "explanation": "Only after + did + подлежащее + V."},
-                {"question": "Only when you calm down ______ (talk) we about it.", "answer": "will we talk", "explanation": "Only when + will + подлежащее + V."},
-                {"question": "Only then ______ (notice) he the beautiful painting.", "answer": "did he notice", "explanation": "Only then + did + подлежащее + V."},
-                {"question": "Little ______ (think) he that he would fail.", "answer": "did he think", "explanation": "Little + did + подлежащее + V."},
-                {"question": "Little ______ (realise) they the danger they were in.", "answer": "did they realise", "explanation": "Little + did + подлежащее + V."},
-                {"question": "So excited ______ (be) the children that they couldn't sleep.", "answer": "were", "explanation": "So + were (множественное)."},
-                {"question": "Such ______ (be) the confusion that nobody knew what to do.", "answer": "was", "explanation": "Such + was."},
-                {"question": "Only after the storm ______ (realise) we how much damage it had done.", "answer": "did we realise", "explanation": "Only after + did + подлежащее + V."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
-            "subtasks": [
-                {"question": "Only after I checked the map I discovered the correct route.", "answer": "Only after I checked the map did I discover the correct route.", "explanation": "Инверсия: did I discover."},
-                {"question": "Only when you calm down will we talk about it.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Only then he noticed the beautiful painting.", "answer": "Only then did he notice the beautiful painting.", "explanation": "Инверсия: did he notice."},
-                {"question": "Little did he think that he would fail.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Little they realised the danger they were in.", "answer": "Little did they realise the danger they were in.", "explanation": "Инверсия: did they realise."},
-                {"question": "So excited were the children that they couldn't sleep.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Such was the confusion that nobody knew what to do.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Only after the storm we realised how much damage it had done.", "answer": "Only after the storm did we realise how much damage it had done.", "explanation": "Инверсия: did we realise."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "4. Translate the sentences into English using emphatic inversion. Type your translation (one sentence) in the box.",
-            "subtasks": [
-                {"question": "Только после того как я проверил карту, я нашёл правильный маршрут.", "answer": "Only after I checked the map did I discover the correct route.", "explanation": ""},
-                {"question": "Только когда успокоишься, мы поговорим об этом.", "answer": "Only when you calm down will we talk about it.", "explanation": ""},
-                {"question": "Только тогда он заметил красивую картину.", "answer": "Only then did he notice the beautiful painting.", "explanation": ""},
-                {"question": "Он и не думал, что провалится.", "answer": "Little did he think that he would fail.", "explanation": ""},
-                {"question": "Они не осознавали опасность, в которой находились.", "answer": "Little did they realise the danger they were in.", "explanation": ""},
-                {"question": "Дети были так взволнованы, что не могли уснуть.", "answer": "So excited were the children that they couldn't sleep.", "explanation": ""},
-                {"question": "Всеобщее замешательство было таким, что никто не знал, что делать.", "answer": "Such was the confusion that nobody knew what to do.", "explanation": ""},
-                {"question": "Только после шторма мы поняли, сколько ущерба он нанёс.", "answer": "Only after the storm did we realise how much damage it had done.", "explanation": ""}
-            ]
-        },
-    # =====================================================
-    # ВАРИАНТ 6 (перефразирование)
-    # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct inverted form (a, b, or c) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "Only after the meeting ______ I find out the truth.", "answer": "did", "explanation": "Only after + did."},
-                {"question": "Only when you explain yourself ______ I understand.", "answer": "will", "explanation": "Only when + will."},
-                {"question": "Only then ______ we appreciate her efforts.", "answer": "did", "explanation": "Only then + did."},
-                {"question": "Little ______ he suspect that we were planning a party.", "answer": "did", "explanation": "Little + did."},
-                {"question": "Little ______ she know that her book would be a bestseller.", "answer": "did", "explanation": "Little + did."},
-                {"question": "So quickly ______ he run that we couldn't catch him.", "answer": "did", "explanation": "So + quickly + did + подлежащее (для наречий)."},
-                {"question": "Such ______ the heat that we had to stop working.", "answer": "was", "explanation": "Such + was."},
-                {"question": "Only after the exam ______ I realise I had studied the wrong material.", "answer": "did", "explanation": "Only after + did."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "2. Fill in the gaps with the correct form of the verb in brackets. Type the missing word(s) in the box.",
-            "subtasks": [
-                {"question": "Only after the meeting ______ (find) I out the truth.", "answer": "did I find", "explanation": "Only after + did + подлежащее + V."},
-                {"question": "Only when you explain yourself ______ (understand) I.", "answer": "will I understand", "explanation": "Only when + will + подлежащее + V."},
-                {"question": "Only then ______ (appreciate) we her efforts.", "answer": "did we appreciate", "explanation": "Only then + did + подлежащее + V."},
-                {"question": "Little ______ (suspect) he that we were planning a party.", "answer": "did he suspect", "explanation": "Little + did + подлежащее + V."},
-                {"question": "Little ______ (know) she that her book would be a bestseller.", "answer": "did she know", "explanation": "Little + did + подлежащее + V."},
-                {"question": "So quickly ______ (run) he that we couldn't catch him.", "answer": "did he run", "explanation": "So + наречие + did + подлежащее + V."},
-                {"question": "Such ______ (be) the heat that we had to stop working.", "answer": "was", "explanation": "Such + was."},
-                {"question": "Only after the exam ______ (realise) I I had studied the wrong material.", "answer": "did I realise", "explanation": "Only after + did + подлежащее + V."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
-            "subtasks": [
-                {"question": "Only after the meeting I found out the truth.", "answer": "Only after the meeting did I find out the truth.", "explanation": "Инверсия: did I find."},
-                {"question": "Only when you explain yourself will I understand.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Only then we appreciated her efforts.", "answer": "Only then did we appreciate her efforts.", "explanation": "Инверсия: did we appreciate."},
-                {"question": "Little did he suspect that we were planning a party.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Little she knew that her book would be a bestseller.", "answer": "Little did she know that her book would be a bestseller.", "explanation": "Инверсия: did she know."},
-                {"question": "So quickly he ran that we couldn't catch him.", "answer": "So quickly did he run that we couldn't catch him.", "explanation": "Инверсия: did he run."},
-                {"question": "Such was the heat that we had to stop working.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Only after the exam I realised I had studied the wrong material.", "answer": "Only after the exam did I realise I had studied the wrong material.", "explanation": "Инверсия: did I realise."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "4. Rewrite the sentences using emphatic inversion (with the word given in brackets). Type the whole sentence.",
-            "subtasks": [
-                {"question": "I found out the truth only after the meeting. (Only after) → Only after the meeting did I find out the truth.", "answer": "Only after the meeting did I find out the truth.", "explanation": "Only after + did."},
-                {"question": "I will understand only when you explain yourself. (Only when) → Only when you explain yourself will I understand.", "answer": "Only when you explain yourself will I understand.", "explanation": "Only when + will."},
-                {"question": "We appreciated her efforts only then. (Only then) → Only then did we appreciate her efforts.", "answer": "Only then did we appreciate her efforts.", "explanation": "Only then + did."},
-                {"question": "He didn't suspect that we were planning a party. (Little) → Little did he suspect that we were planning a party.", "answer": "Little did he suspect that we were planning a party.", "explanation": "Little + did."},
-                {"question": "She didn't know her book would be a bestseller. (Little) → Little did she know that her book would be a bestseller.", "answer": "Little did she know that her book would be a bestseller.", "explanation": "Little + did."},
-                {"question": "He ran so quickly that we couldn't catch him. (So) → So quickly did he run that we couldn't catch him.", "answer": "So quickly did he run that we couldn't catch him.", "explanation": "So + наречие + did."},
-                {"question": "The heat was such that we had to stop working. (Such) → Such was the heat that we had to stop working.", "answer": "Such was the heat that we had to stop working.", "explanation": "Such + was."},
-                {"question": "I realised I had studied the wrong material only after the exam. (Only after) → Only after the exam did I realise I had studied the wrong material.", "answer": "Only after the exam did I realise I had studied the wrong material.", "explanation": "Only after + did."}
-            ]
-        },
-    # =====================================================
-    # ВАРИАНТ 7 (перевод)
-    # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct inverted form (a, b, or c) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "Only after the train left ______ I remember I had left my bag.", "answer": "did", "explanation": "Only after + did."},
-                {"question": "Only when you arrive ______ we start the ceremony.", "answer": "will", "explanation": "Only when + will."},
-                {"question": "Only then ______ I realise she was telling the truth.", "answer": "did", "explanation": "Only then + did."},
-                {"question": "Little ______ he imagine that he would become a millionaire.", "answer": "did", "explanation": "Little + did."},
-                {"question": "Little ______ they care about the consequences.", "answer": "did", "explanation": "Little + did."},
-                {"question": "So deeply ______ he sleep that he didn't hear the alarm.", "answer": "did", "explanation": "So + deeply + did."},
-                {"question": "Such ______ the silence that you could hear a pin drop.", "answer": "was", "explanation": "Such + was."},
-                {"question": "Only after the rain stopped ______ we go outside.", "answer": "did", "explanation": "Only after + did."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "2. Fill in the gaps with the correct form of the verb in brackets. Type the missing word(s) in the box.",
-            "subtasks": [
-                {"question": "Only after the train left ______ (remember) I I had left my bag.", "answer": "did I remember", "explanation": "Only after + did + подлежащее + V."},
-                {"question": "Only when you arrive ______ (start) we the ceremony.", "answer": "will we start", "explanation": "Only when + will + подлежащее + V."},
-                {"question": "Only then ______ (realise) I she was telling the truth.", "answer": "did I realise", "explanation": "Only then + did + подлежащее + V."},
-                {"question": "Little ______ (imagine) he that he would become a millionaire.", "answer": "did he imagine", "explanation": "Little + did + подлежащее + V."},
-                {"question": "Little ______ (care) they about the consequences.", "answer": "did they care", "explanation": "Little + did + подлежащее + V."},
-                {"question": "So deeply ______ (sleep) he that he didn't hear the alarm.", "answer": "did he sleep", "explanation": "So + наречие + did + подлежащее + V."},
-                {"question": "Such ______ (be) the silence that you could hear a pin drop.", "answer": "was", "explanation": "Such + was."},
-                {"question": "Only after the rain stopped ______ (go) we outside.", "answer": "did we go", "explanation": "Only after + did + подлежащее + V."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
-            "subtasks": [
-                {"question": "Only after the train left I remembered I had left my bag.", "answer": "Only after the train left did I remember I had left my bag.", "explanation": "Инверсия: did I remember."},
-                {"question": "Only when you arrive will we start the ceremony.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Only then I realised she was telling the truth.", "answer": "Only then did I realise she was telling the truth.", "explanation": "Инверсия: did I realise."},
-                {"question": "Little did he imagine that he would become a millionaire.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Little they cared about the consequences.", "answer": "Little did they care about the consequences.", "explanation": "Инверсия: did they care."},
-                {"question": "So deeply he slept that he didn't hear the alarm.", "answer": "So deeply did he sleep that he didn't hear the alarm.", "explanation": "Инверсия: did he sleep."},
-                {"question": "Such was the silence that you could hear a pin drop.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Only after the rain stopped we went outside.", "answer": "Only after the rain stopped did we go outside.", "explanation": "Инверсия: did we go."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "4. Translate the sentences into English using emphatic inversion. Type your translation (one sentence) in the box.",
-            "subtasks": [
-                {"question": "Только после того как поезд уехал, я вспомнил, что оставил сумку.", "answer": "Only after the train left did I remember I had left my bag.", "explanation": ""},
-                {"question": "Только когда ты приедешь, мы начнём церемонию.", "answer": "Only when you arrive will we start the ceremony.", "explanation": ""},
-                {"question": "Только тогда я понял, что она говорила правду.", "answer": "Only then did I realise she was telling the truth.", "explanation": ""},
-                {"question": "Он и представить не мог, что станет миллионером.", "answer": "Little did he imagine that he would become a millionaire.", "explanation": ""},
-                {"question": "Им было всё равно на последствия.", "answer": "Little did they care about the consequences.", "explanation": ""},
-                {"question": "Он спал так крепко, что не услышал будильник.", "answer": "So deeply did he sleep that he didn't hear the alarm.", "explanation": ""},
-                {"question": "Тишина была такой, что можно было услышать, как падает булавка.", "answer": "Such was the silence that you could hear a pin drop.", "explanation": ""},
-                {"question": "Только после того как дождь закончился, мы вышли на улицу.", "answer": "Only after the rain stopped did we go outside.", "explanation": ""}
-            ]
-        },
-    # =====================================================
-    # ВАРИАНТ 8 (перефразирование)
-    # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct inverted form (a, b, or c) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "Only after the lesson ______ I understand the topic.", "answer": "did", "explanation": "Only after + did."},
-                {"question": "Only when we finish this project ______ we take a break.", "answer": "will", "explanation": "Only when + will."},
-                {"question": "Only then ______ she start to believe him.", "answer": "did", "explanation": "Only then + did."},
-                {"question": "Little ______ he know that she was his long-lost sister.", "answer": "did", "explanation": "Little + did."},
-                {"question": "Little ______ we imagine that it would be so difficult.", "answer": "did", "explanation": "Little + did."},
-                {"question": "So loudly ______ he shout that everyone turned around.", "answer": "did", "explanation": "So + loudly + did."},
-                {"question": "Such ______ her beauty that everyone was captivated.", "answer": "was", "explanation": "Such + was."},
-                {"question": "Only after I read the email ______ I understand the situation.", "answer": "did", "explanation": "Only after + did."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "2. Fill in the gaps with the correct form of the verb in brackets. Type the missing word(s) in the box.",
-            "subtasks": [
-                {"question": "Only after the lesson ______ (understand) I the topic.", "answer": "did I understand", "explanation": "Only after + did + подлежащее + V."},
-                {"question": "Only when we finish this project ______ (take) we a break.", "answer": "will we take", "explanation": "Only when + will + подлежащее + V."},
-                {"question": "Only then ______ (start) she to believe him.", "answer": "did she start", "explanation": "Only then + did + подлежащее + V."},
-                {"question": "Little ______ (know) he that she was his long-lost sister.", "answer": "did he know", "explanation": "Little + did + подлежащее + V."},
-                {"question": "Little ______ (imagine) we that it would be so difficult.", "answer": "did we imagine", "explanation": "Little + did + подлежащее + V."},
-                {"question": "So loudly ______ (shout) he that everyone turned around.", "answer": "did he shout", "explanation": "So + наречие + did + подлежащее + V."},
-                {"question": "Such ______ (be) her beauty that everyone was captivated.", "answer": "was", "explanation": "Such + was."},
-                {"question": "Only after I read the email ______ (understand) I the situation.", "answer": "did I understand", "explanation": "Only after + did + подлежащее + V."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
-            "subtasks": [
-                {"question": "Only after the lesson I understood the topic.", "answer": "Only after the lesson did I understand the topic.", "explanation": "Инверсия: did I understand."},
-                {"question": "Only when we finish this project will we take a break.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Only then she started to believe him.", "answer": "Only then did she start to believe him.", "explanation": "Инверсия: did she start."},
-                {"question": "Little did he know that she was his long-lost sister.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Little we imagined that it would be so difficult.", "answer": "Little did we imagine that it would be so difficult.", "explanation": "Инверсия: did we imagine."},
-                {"question": "So loudly he shouted that everyone turned around.", "answer": "So loudly did he shout that everyone turned around.", "explanation": "Инверсия: did he shout."},
-                {"question": "Such was her beauty that everyone was captivated.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Only after I read the email I understood the situation.", "answer": "Only after I read the email did I understand the situation.", "explanation": "Инверсия: did I understand."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "4. Rewrite the sentences using emphatic inversion (with the word given in brackets). Type the whole sentence.",
-            "subtasks": [
-                {"question": "I understood the topic only after the lesson. (Only after) → Only after the lesson did I understand the topic.", "answer": "Only after the lesson did I understand the topic.", "explanation": "Only after + did."},
-                {"question": "We will take a break only when we finish this project. (Only when) → Only when we finish this project will we take a break.", "answer": "Only when we finish this project will we take a break.", "explanation": "Only when + will."},
-                {"question": "She started to believe him only then. (Only then) → Only then did she start to believe him.", "answer": "Only then did she start to believe him.", "explanation": "Only then + did."},
-                {"question": "He didn't know she was his long-lost sister. (Little) → Little did he know that she was his long-lost sister.", "answer": "Little did he know that she was his long-lost sister.", "explanation": "Little + did."},
-                {"question": "We didn't imagine it would be so difficult. (Little) → Little did we imagine that it would be so difficult.", "answer": "Little did we imagine that it would be so difficult.", "explanation": "Little + did."},
-                {"question": "He shouted so loudly that everyone turned around. (So) → So loudly did he shout that everyone turned around.", "answer": "So loudly did he shout that everyone turned around.", "explanation": "So + наречие + did."},
-                {"question": "Her beauty was such that everyone was captivated. (Such) → Such was her beauty that everyone was captivated.", "answer": "Such was her beauty that everyone was captivated.", "explanation": "Such + was."},
-                {"question": "I understood the situation only after I read the email. (Only after) → Only after I read the email did I understand the situation.", "answer": "Only after I read the email did I understand the situation.", "explanation": "Only after + did."}
-            ]
-        },
-    # =====================================================
-    # ВАРИАНТ 9 (перевод)
-    # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct inverted form (a, b, or c) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "Only after the phone call ______ I realise my mistake.", "answer": "did", "explanation": "Only after + did."},
-                {"question": "Only when you finish your work ______ you go home.", "answer": "can", "explanation": "Only when + can."},
-                {"question": "Only then ______ we understand the importance of the event.", "answer": "did", "explanation": "Only then + did."},
-                {"question": "Little ______ he care about the rules.", "answer": "did", "explanation": "Little + did."},
-                {"question": "Little ______ they expect to see such a beautiful view.", "answer": "did", "explanation": "Little + did."},
-                {"question": "So carefully ______ he drive that he never had an accident.", "answer": "did", "explanation": "So + carefully + did."},
-                {"question": "Such ______ her kindness that everyone loved her.", "answer": "was", "explanation": "Such + was."},
-                {"question": "Only after the earthquake ______ we realise how dangerous it was.", "answer": "did", "explanation": "Only after + did."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "2. Fill in the gaps with the correct form of the verb in brackets. Type the missing word(s) in the box.",
-            "subtasks": [
-                {"question": "Only after the phone call ______ (realise) I my mistake.", "answer": "did I realise", "explanation": "Only after + did + подлежащее + V."},
-                {"question": "Only when you finish your work ______ (go) you home.", "answer": "can you go", "explanation": "Only when + can + подлежащее + V."},
-                {"question": "Only then ______ (understand) we the importance of the event.", "answer": "did we understand", "explanation": "Only then + did + подлежащее + V."},
-                {"question": "Little ______ (care) he about the rules.", "answer": "did he care", "explanation": "Little + did + подлежащее + V."},
-                {"question": "Little ______ (expect) they to see such a beautiful view.", "answer": "did they expect", "explanation": "Little + did + подлежащее + V."},
-                {"question": "So carefully ______ (drive) he that he never had an accident.", "answer": "did he drive", "explanation": "So + наречие + did + подлежащее + V."},
-                {"question": "Such ______ (be) her kindness that everyone loved her.", "answer": "was", "explanation": "Such + was."},
-                {"question": "Only after the earthquake ______ (realise) we how dangerous it was.", "answer": "did we realise", "explanation": "Only after + did + подлежащее + V."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
-            "subtasks": [
-                {"question": "Only after the phone call I realised my mistake.", "answer": "Only after the phone call did I realise my mistake.", "explanation": "Инверсия: did I realise."},
-                {"question": "Only when you finish your work can you go home.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Only then we understood the importance of the event.", "answer": "Only then did we understand the importance of the event.", "explanation": "Инверсия: did we understand."},
-                {"question": "Little did he care about the rules.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Little they expected to see such a beautiful view.", "answer": "Little did they expect to see such a beautiful view.", "explanation": "Инверсия: did they expect."},
-                {"question": "So carefully he drove that he never had an accident.", "answer": "So carefully did he drive that he never had an accident.", "explanation": "Инверсия: did he drive."},
-                {"question": "Such was her kindness that everyone loved her.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Only after the earthquake we realised how dangerous it was.", "answer": "Only after the earthquake did we realise how dangerous it was.", "explanation": "Инверсия: did we realise."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "4. Translate the sentences into English using emphatic inversion. Type your translation (one sentence) in the box.",
-            "subtasks": [
-                {"question": "Только после телефонного звонка я осознал свою ошибку.", "answer": "Only after the phone call did I realise my mistake.", "explanation": ""},
-                {"question": "Только когда закончишь работу, ты сможешь пойти домой.", "answer": "Only when you finish your work can you go home.", "explanation": ""},
-                {"question": "Только тогда мы поняли важность этого события.", "answer": "Only then did we understand the importance of the event.", "explanation": ""},
-                {"question": "Ему было всё равно на правила.", "answer": "Little did he care about the rules.", "explanation": ""},
-                {"question": "Они и не ожидали увидеть такой красивый вид.", "answer": "Little did they expect to see such a beautiful view.", "explanation": ""},
-                {"question": "Он водил так осторожно, что никогда не попадал в аварии.", "answer": "So carefully did he drive that he never had an accident.", "explanation": ""},
-                {"question": "Её доброта была такова, что все её любили.", "answer": "Such was her kindness that everyone loved her.", "explanation": ""},
-                {"question": "Только после землетрясения мы поняли, насколько это было опасно.", "answer": "Only after the earthquake did we realise how dangerous it was.", "explanation": ""}
-            ]
-        },
-    # =====================================================
-    # ВАРИАНТ 10 (перефразирование)
-    # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct inverted form (a, b, or c) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "Only after I apologised ______ she forgive me.", "answer": "did", "explanation": "Only after + did."},
-                {"question": "Only when the sun sets ______ we see the stars.", "answer": "will", "explanation": "Only when + will."},
-                {"question": "Only then ______ I realise the value of friendship.", "answer": "did", "explanation": "Only then + did."},
-                {"question": "Little ______ she know that he was watching her.", "answer": "did", "explanation": "Little + did."},
-                {"question": "Little ______ they suspect that the plan would fail.", "answer": "did", "explanation": "Little + did."},
-                {"question": "So quietly ______ he speak that we couldn't hear him.", "answer": "did", "explanation": "So + quietly + did."},
-                {"question": "Such ______ the excitement that nobody slept all night.", "answer": "was", "explanation": "Such + was."},
-                {"question": "Only after we lost everything ______ we appreciate what we had.", "answer": "did", "explanation": "Only after + did."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "2. Fill in the gaps with the correct form of the verb in brackets. Type the missing word(s) in the box.",
-            "subtasks": [
-                {"question": "Only after I apologised ______ (forgive) she me.", "answer": "did she forgive", "explanation": "Only after + did + подлежащее + V."},
-                {"question": "Only when the sun sets ______ (see) we the stars.", "answer": "will we see", "explanation": "Only when + will + подлежащее + V."},
-                {"question": "Only then ______ (realise) I the value of friendship.", "answer": "did I realise", "explanation": "Only then + did + подлежащее + V."},
-                {"question": "Little ______ (know) she that he was watching her.", "answer": "did she know", "explanation": "Little + did + подлежащее + V."},
-                {"question": "Little ______ (suspect) they that the plan would fail.", "answer": "did they suspect", "explanation": "Little + did + подлежащее + V."},
-                {"question": "So quietly ______ (speak) he that we couldn't hear him.", "answer": "did he speak", "explanation": "So + наречие + did + подлежащее + V."},
-                {"question": "Such ______ (be) the excitement that nobody slept all night.", "answer": "was", "explanation": "Such + was."},
-                {"question": "Only after we lost everything ______ (appreciate) we what we had.", "answer": "did we appreciate", "explanation": "Only after + did + подлежащее + V."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
-            "subtasks": [
-                {"question": "Only after I apologised she forgave me.", "answer": "Only after I apologised did she forgive me.", "explanation": "Инверсия: did she forgive."},
-                {"question": "Only when the sun sets will we see the stars.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Only then I realised the value of friendship.", "answer": "Only then did I realise the value of friendship.", "explanation": "Инверсия: did I realise."},
-                {"question": "Little did she know that he was watching her.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Little they suspected that the plan would fail.", "answer": "Little did they suspect that the plan would fail.", "explanation": "Инверсия: did they suspect."},
-                {"question": "So quietly he spoke that we couldn't hear him.", "answer": "So quietly did he speak that we couldn't hear him.", "explanation": "Инверсия: did he speak."},
-                {"question": "Such was the excitement that nobody slept all night.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Only after we lost everything we appreciated what we had.", "answer": "Only after we lost everything did we appreciate what we had.", "explanation": "Инверсия: did we appreciate."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "4. Rewrite the sentences using emphatic inversion (with the word given in brackets). Type the whole sentence.",
-            "subtasks": [
-                {"question": "She forgave me only after I apologised. (Only after) → Only after I apologised did she forgive me.", "answer": "Only after I apologised did she forgive me.", "explanation": "Only after + did."},
-                {"question": "We will see the stars only when the sun sets. (Only when) → Only when the sun sets will we see the stars.", "answer": "Only when the sun sets will we see the stars.", "explanation": "Only when + will."},
-                {"question": "I realised the value of friendship only then. (Only then) → Only then did I realise the value of friendship.", "answer": "Only then did I realise the value of friendship.", "explanation": "Only then + did."},
-                {"question": "She didn't know that he was watching her. (Little) → Little did she know that he was watching her.", "answer": "Little did she know that he was watching her.", "explanation": "Little + did."},
-                {"question": "They didn't suspect that the plan would fail. (Little) → Little did they suspect that the plan would fail.", "answer": "Little did they suspect that the plan would fail.", "explanation": "Little + did."},
-                {"question": "He spoke so quietly that we couldn't hear him. (So) → So quietly did he speak that we couldn't hear him.", "answer": "So quietly did he speak that we couldn't hear him.", "explanation": "So + наречие + did."},
-                {"question": "The excitement was such that nobody slept all night. (Such) → Such was the excitement that nobody slept all night.", "answer": "Such was the excitement that nobody slept all night.", "explanation": "Such + was."},
-                {"question": "We appreciated what we had only after we lost everything. (Only after) → Only after we lost everything did we appreciate what we had.", "answer": "Only after we lost everything did we appreciate what we had.", "explanation": "Only after + did."}
-            ]
-        },
-    # =====================================================
-    # ВАРИАНТ 11 (перевод)
-    # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct inverted form (a, b, or c) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "Only after the police arrived ______ I feel safe.", "answer": "did", "explanation": "Only after + did."},
-                {"question": "Only when you sign the document ______ we proceed.", "answer": "will", "explanation": "Only when + will."},
-                {"question": "Only then ______ he agree to help us.", "answer": "did", "explanation": "Only then + did."},
-                {"question": "Little ______ he realise the seriousness of the situation.", "answer": "did", "explanation": "Little + did."},
-                {"question": "Little ______ we know that he was a famous actor.", "answer": "did", "explanation": "Little + did."},
-                {"question": "So elegantly ______ she dress that everyone admired her.", "answer": "did", "explanation": "So + elegantly + did."},
-                {"question": "Such ______ his pride that he never asked for help.", "answer": "was", "explanation": "Such + was."},
-                {"question": "Only after the surgery ______ he start to recover.", "answer": "did", "explanation": "Only after + did."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "2. Fill in the gaps with the correct form of the verb in brackets. Type the missing word(s) in the box.",
-            "subtasks": [
-                {"question": "Only after the police arrived ______ (feel) I safe.", "answer": "did I feel", "explanation": "Only after + did + подлежащее + V."},
-                {"question": "Only when you sign the document ______ (proceed) we.", "answer": "will we proceed", "explanation": "Only when + will + подлежащее + V."},
-                {"question": "Only then ______ (agree) he to help us.", "answer": "did he agree", "explanation": "Only then + did + подлежащее + V."},
-                {"question": "Little ______ (realise) he the seriousness of the situation.", "answer": "did he realise", "explanation": "Little + did + подлежащее + V."},
-                {"question": "Little ______ (know) we that he was a famous actor.", "answer": "did we know", "explanation": "Little + did + подлежащее + V."},
-                {"question": "So elegantly ______ (dress) she that everyone admired her.", "answer": "did she dress", "explanation": "So + наречие + did + подлежащее + V."},
-                {"question": "Such ______ (be) his pride that he never asked for help.", "answer": "was", "explanation": "Such + was."},
-                {"question": "Only after the surgery ______ (start) he to recover.", "answer": "did he start", "explanation": "Only after + did + подлежащее + V."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
-            "subtasks": [
-                {"question": "Only after the police arrived I felt safe.", "answer": "Only after the police arrived did I feel safe.", "explanation": "Инверсия: did I feel."},
-                {"question": "Only when you sign the document will we proceed.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Only then he agreed to help us.", "answer": "Only then did he agree to help us.", "explanation": "Инверсия: did he agree."},
-                {"question": "Little did he realise the seriousness of the situation.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Little we knew that he was a famous actor.", "answer": "Little did we know that he was a famous actor.", "explanation": "Инверсия: did we know."},
-                {"question": "So elegantly she dressed that everyone admired her.", "answer": "So elegantly did she dress that everyone admired her.", "explanation": "Инверсия: did she dress."},
-                {"question": "Such was his pride that he never asked for help.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Only after the surgery he started to recover.", "answer": "Only after the surgery did he start to recover.", "explanation": "Инверсия: did he start."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "4. Translate the sentences into English using emphatic inversion. Type your translation (one sentence) in the box.",
-            "subtasks": [
-                {"question": "Только после того как приехала полиция, я почувствовал себя в безопасности.", "answer": "Only after the police arrived did I feel safe.", "explanation": ""},
-                {"question": "Только когда ты подпишешь документ, мы продолжим.", "answer": "Only when you sign the document will we proceed.", "explanation": ""},
-                {"question": "Только тогда он согласился помочь нам.", "answer": "Only then did he agree to help us.", "explanation": ""},
-                {"question": "Он не осознавал серьёзности ситуации.", "answer": "Little did he realise the seriousness of the situation.", "explanation": ""},
-                {"question": "Мы и не знали, что он был известным актёром.", "answer": "Little did we know that he was a famous actor.", "explanation": ""},
-                {"question": "Она одевалась так элегантно, что все ею восхищались.", "answer": "So elegantly did she dress that everyone admired her.", "explanation": ""},
-                {"question": "Его гордость была такова, что он никогда не просил о помощи.", "answer": "Such was his pride that he never asked for help.", "explanation": ""},
-                {"question": "Только после операции он начал восстанавливаться.", "answer": "Only after the surgery did he start to recover.", "explanation": ""}
-            ]
-        },
-    # =====================================================
-    # ВАРИАНТ 12 (перефразирование)
-    # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct inverted form (a, b, or c) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "Only after the exam results ______ I decide to change my major.", "answer": "did", "explanation": "Only after + did."},
-                {"question": "Only when you pass the test ______ you get your licence.", "answer": "will", "explanation": "Only when + will."},
-                {"question": "Only then ______ I fully appreciate her advice.", "answer": "did", "explanation": "Only then + did."},
-                {"question": "Little ______ he imagine the consequences of his actions.", "answer": "did", "explanation": "Little + did."},
-                {"question": "Little ______ they realise how lucky they were.", "answer": "did", "explanation": "Little + did."},
-                {"question": "So generously ______ he donate that he became famous.", "answer": "did", "explanation": "So + generously + did."},
-                {"question": "Such ______ the chaos that nobody could find their way out.", "answer": "was", "explanation": "Such + was."},
-                {"question": "Only after the trial ______ we know the truth.", "answer": "did", "explanation": "Only after + did."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "2. Fill in the gaps with the correct form of the verb in brackets. Type the missing word(s) in the box.",
-            "subtasks": [
-                {"question": "Only after the exam results ______ (decide) I to change my major.", "answer": "did I decide", "explanation": "Only after + did + подлежащее + V."},
-                {"question": "Only when you pass the test ______ (get) you your licence.", "answer": "will you get", "explanation": "Only when + will + подлежащее + V."},
-                {"question": "Only then ______ (appreciate) I fully her advice.", "answer": "did I appreciate", "explanation": "Only then + did + подлежащее + V."},
-                {"question": "Little ______ (imagine) he the consequences of his actions.", "answer": "did he imagine", "explanation": "Little + did + подлежащее + V."},
-                {"question": "Little ______ (realise) they how lucky they were.", "answer": "did they realise", "explanation": "Little + did + подлежащее + V."},
-                {"question": "So generously ______ (donate) he that he became famous.", "answer": "did he donate", "explanation": "So + наречие + did + подлежащее + V."},
-                {"question": "Such ______ (be) the chaos that nobody could find their way out.", "answer": "was", "explanation": "Such + was."},
-                {"question": "Only after the trial ______ (know) we the truth.", "answer": "did we know", "explanation": "Only after + did + подлежащее + V."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
-            "subtasks": [
-                {"question": "Only after the exam results I decided to change my major.", "answer": "Only after the exam results did I decide to change my major.", "explanation": "Инверсия: did I decide."},
-                {"question": "Only when you pass the test will you get your licence.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Only then I fully appreciated her advice.", "answer": "Only then did I fully appreciate her advice.", "explanation": "Инверсия: did I appreciate."},
-                {"question": "Little did he imagine the consequences of his actions.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Little they realised how lucky they were.", "answer": "Little did they realise how lucky they were.", "explanation": "Инверсия: did they realise."},
-                {"question": "So generously he donated that he became famous.", "answer": "So generously did he donate that he became famous.", "explanation": "Инверсия: did he donate."},
-                {"question": "Such was the chaos that nobody could find their way out.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Only after the trial we knew the truth.", "answer": "Only after the trial did we know the truth.", "explanation": "Инверсия: did we know."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "4. Rewrite the sentences using emphatic inversion (with the word given in brackets). Type the whole sentence.",
-            "subtasks": [
-                {"question": "I decided to change my major only after the exam results. (Only after) → Only after the exam results did I decide to change my major.", "answer": "Only after the exam results did I decide to change my major.", "explanation": "Only after + did."},
-                {"question": "You will get your licence only when you pass the test. (Only when) → Only when you pass the test will you get your licence.", "answer": "Only when you pass the test will you get your licence.", "explanation": "Only when + will."},
-                {"question": "I fully appreciated her advice only then. (Only then) → Only then did I fully appreciate her advice.", "answer": "Only then did I fully appreciate her advice.", "explanation": "Only then + did."},
-                {"question": "He didn't imagine the consequences of his actions. (Little) → Little did he imagine the consequences of his actions.", "answer": "Little did he imagine the consequences of his actions.", "explanation": "Little + did."},
-                {"question": "They didn't realise how lucky they were. (Little) → Little did they realise how lucky they were.", "answer": "Little did they realise how lucky they were.", "explanation": "Little + did."},
-                {"question": "He donated so generously that he became famous. (So) → So generously did he donate that he became famous.", "answer": "So generously did he donate that he became famous.", "explanation": "So + наречие + did."},
-                {"question": "The chaos was such that nobody could find their way out. (Such) → Such was the chaos that nobody could find their way out.", "answer": "Such was the chaos that nobody could find their way out.", "explanation": "Such + was."},
-                {"question": "We knew the truth only after the trial. (Only after) → Only after the trial did we know the truth.", "answer": "Only after the trial did we know the truth.", "explanation": "Only after + did."}
-            ]
+          "type": "complex",
+          "text": "4. Translate the sentences into English using emphatic inversion. Type your translation (one sentence) in the box.",
+          "subtasks": [
+            {"question": "Только после начала фильма я понял, что уже видел его.", "answer": "Only after the film started did I realise I had seen it before.", "explanation": ""},
+            {"question": "Только когда извинишься, я прощу тебя.", "answer": "Only when you apologise will I forgive you.", "explanation": ""},
+            {"question": "Только тогда он понял свою ошибку.", "answer": "Only then did he understand his mistake.", "explanation": ""},
+            {"question": "Он понятия не имел, что его жизнь вот-вот изменится.", "answer": "Little did he know that his life was about to change.", "explanation": ""},
+            {"question": "Они ни о чём не подозревали, что полиция ждала.", "answer": "Little did they suspect that the police were waiting.", "explanation": ""},
+            {"question": "Вид был настолько красивым, что мы остановились фотографировать.", "answer": "So beautiful was the view that we stopped to take photos.", "explanation": ""},
+            {"question": "Таким был его гнев, что он не мог говорить.", "answer": "Such was his anger that he couldn't speak.", "explanation": ""},
+            {"question": "Только после того как я закончил, я заметил ошибку.", "answer": "Only after I finished did I notice the mistake.", "explanation": ""}
+          ]
         }
+      ],
+      # =====================================================
+      # ВАРИАНТ 2 (перефразирование)
+      # =====================================================
+      [
+        {
+          "type": "complex",
+          "text": "1. Choose the correct inverted form (a, b, or c) to complete the sentence. Type the letter of your answer.",
+          "subtasks": [
+            {"question": "Only after the concert ended ______ I realise I had lost my keys.", "answer": "did", "explanation": "Only after + did."},
+            {"question": "Only when you finish your homework ______ we go out.", "answer": "will", "explanation": "Only when + will."},
+            {"question": "Only then ______ she remember his name.", "answer": "did", "explanation": "Only then + did."},
+            {"question": "Little ______ he expect such a surprise.", "answer": "did", "explanation": "Little + did."},
+            {"question": "Little ______ they know that we were watching them.", "answer": "did", "explanation": "Little + did."},
+            {"question": "So delicious ______ the food that we ordered more.", "answer": "was", "explanation": "So + was."},
+            {"question": "Such ______ her joy that she burst into tears.", "answer": "was", "explanation": "Such + was."},
+            {"question": "Only after we left ______ we see the warning sign.", "answer": "did", "explanation": "Only after + did."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "2. Fill in the gaps with the correct form of the verb in brackets. Type the missing word(s) in the box.",
+          "subtasks": [
+            {"question": "Only after the concert ended ______ (realise) I I had lost my keys.", "answer": "did I realise", "explanation": "Only after + did + подлежащее + V."},
+            {"question": "Only when you finish your homework ______ (go) we out.", "answer": "will we go", "explanation": "Only when + will + подлежащее + V."},
+            {"question": "Only then ______ (remember) she his name.", "answer": "did she remember", "explanation": "Only then + did + подлежащее + V."},
+            {"question": "Little ______ (expect) he such a surprise.", "answer": "did he expect", "explanation": "Little + did + подлежащее + V."},
+            {"question": "Little ______ (know) they that we were watching them.", "answer": "did they know", "explanation": "Little + did + подлежащее + V."},
+            {"question": "So delicious ______ (be) the food that we ordered more.", "answer": "was", "explanation": "So + was."},
+            {"question": "Such ______ (be) her joy that she burst into tears.", "answer": "was", "explanation": "Such + was."},
+            {"question": "Only after we left ______ (see) we the warning sign.", "answer": "did we see", "explanation": "Only after + did + подлежащее + V."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
+          "subtasks": [
+            {"question": "Only after the concert ended I realised I had lost my keys.", "answer": "Only after the concert ended did I realise I had lost my keys.", "explanation": "Инверсия: did I realise."},
+            {"question": "Only when you finish your homework will we go out.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Only then she remembered his name.", "answer": "Only then did she remember his name.", "explanation": "Инверсия: did she remember."},
+            {"question": "Little did he expect such a surprise.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Little they knew that we were watching them.", "answer": "Little did they know that we were watching them.", "explanation": "Инверсия: did they know."},
+            {"question": "So delicious was the food that we ordered more.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Such was her joy that she burst into tears.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Only after we left we saw the warning sign.", "answer": "Only after we left did we see the warning sign.", "explanation": "Инверсия: did we see."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "4. Rewrite the sentences using emphatic inversion (with the word given in brackets). Type the whole sentence.",
+          "subtasks": [
+            {"question": "I realised I had lost my keys only after the concert ended. (Only after) → Only after the concert ended did I realise I had lost my keys.", "answer": "Only after the concert ended did I realise I had lost my keys.", "explanation": "Only after + did."},
+            {"question": "We will go out only when you finish your homework. (Only when) → Only when you finish your homework will we go out.", "answer": "Only when you finish your homework will we go out.", "explanation": "Only when + will."},
+            {"question": "She remembered his name only then. (Only then) → Only then did she remember his name.", "answer": "Only then did she remember his name.", "explanation": "Only then + did."},
+            {"question": "He didn't expect such a surprise at all. (Little) → Little did he expect such a surprise.", "answer": "Little did he expect such a surprise.", "explanation": "Little + did."},
+            {"question": "They didn't know that we were watching them. (Little) → Little did they know that we were watching them.", "answer": "Little did they know that we were watching them.", "explanation": "Little + did."},
+            {"question": "The food was so delicious that we ordered more. (So) → So delicious was the food that we ordered more.", "answer": "So delicious was the food that we ordered more.", "explanation": "So + прил + was."},
+            {"question": "Her joy was such that she burst into tears. (Such) → Such was her joy that she burst into tears.", "answer": "Such was her joy that she burst into tears.", "explanation": "Such + was."},
+            {"question": "We saw the warning sign only after we left. (Only after) → Only after we left did we see the warning sign.", "answer": "Only after we left did we see the warning sign.", "explanation": "Only after + did."}
+          ]
+        }
+      ],
+      # =====================================================
+      # ВАРИАНТ 3 (перевод)
+      # =====================================================
+      [
+        {
+          "type": "complex",
+          "text": "1. Choose the correct inverted form (a, b, or c) to complete the sentence. Type the letter of your answer.",
+          "subtasks": [
+            {"question": "Only after I read the letter ______ I understand the truth.", "answer": "did", "explanation": "Only after + did."},
+            {"question": "Only when the rain stops ______ we leave.", "answer": "will", "explanation": "Only when + will."},
+            {"question": "Only then ______ she realise her mistake.", "answer": "did", "explanation": "Only then + did."},
+            {"question": "Little ______ he care about what others thought.", "answer": "did", "explanation": "Little + did."},
+            {"question": "Little ______ she imagine that she would win.", "answer": "did", "explanation": "Little + did."},
+            {"question": "So tired ______ I that I fell asleep immediately.", "answer": "was", "explanation": "So + was."},
+            {"question": "Such ______ the noise that we couldn't hear anything.", "answer": "was", "explanation": "Such + was."},
+            {"question": "Only after the show finished ______ we leave the theatre.", "answer": "did", "explanation": "Only after + did."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "2. Fill in the gaps with the correct form of the verb in brackets. Type the missing word(s) in the box.",
+          "subtasks": [
+            {"question": "Only after I read the letter ______ (understand) I the truth.", "answer": "did I understand", "explanation": "Only after + did + подлежащее + V."},
+            {"question": "Only when the rain stops ______ (leave) we.", "answer": "will we leave", "explanation": "Only when + will + подлежащее + V."},
+            {"question": "Only then ______ (realise) she her mistake.", "answer": "did she realise", "explanation": "Only then + did + подлежащее + V."},
+            {"question": "Little ______ (care) he about what others thought.", "answer": "did he care", "explanation": "Little + did + подлежащее + V."},
+            {"question": "Little ______ (imagine) she that she would win.", "answer": "did she imagine", "explanation": "Little + did + подлежащее + V."},
+            {"question": "So tired ______ (be) I that I fell asleep immediately.", "answer": "was", "explanation": "So + was."},
+            {"question": "Such ______ (be) the noise that we couldn't hear anything.", "answer": "was", "explanation": "Such + was."},
+            {"question": "Only after the show finished ______ (leave) we the theatre.", "answer": "did we leave", "explanation": "Only after + did + подлежащее + V."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
+          "subtasks": [
+            {"question": "Only after I read the letter I understood the truth.", "answer": "Only after I read the letter did I understand the truth.", "explanation": "Инверсия: did I understand."},
+            {"question": "Only when the rain stops will we leave.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Only then she realised her mistake.", "answer": "Only then did she realise her mistake.", "explanation": "Инверсия: did she realise."},
+            {"question": "Little did he care about what others thought.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Little she imagined that she would win.", "answer": "Little did she imagine that she would win.", "explanation": "Инверсия: did she imagine."},
+            {"question": "So tired was I that I fell asleep immediately.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Such was the noise that we couldn't hear anything.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Only after the show finished we left the theatre.", "answer": "Only after the show finished did we leave the theatre.", "explanation": "Инверсия: did we leave."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "4. Translate the sentences into English using emphatic inversion. Type your translation (one sentence) in the box.",
+          "subtasks": [
+            {"question": "Только после того как я прочитал письмо, я понял правду.", "answer": "Only after I read the letter did I understand the truth.", "explanation": ""},
+            {"question": "Только когда дождь прекратится, мы уйдём.", "answer": "Only when the rain stops will we leave.", "explanation": ""},
+            {"question": "Только тогда она осознала свою ошибку.", "answer": "Only then did she realise her mistake.", "explanation": ""},
+            {"question": "Он совершенно не заботился о том, что думают другие.", "answer": "Little did he care about what others thought.", "explanation": ""},
+            {"question": "Она и представить не могла, что выиграет.", "answer": "Little did she imagine that she would win.", "explanation": ""},
+            {"question": "Я был так устал, что сразу уснул.", "answer": "So tired was I that I fell asleep immediately.", "explanation": ""},
+            {"question": "Шум был таким, что мы ничего не слышали.", "answer": "Such was the noise that we couldn't hear anything.", "explanation": ""},
+            {"question": "Только после окончания шоу мы вышли из театра.", "answer": "Only after the show finished did we leave the theatre.", "explanation": ""}
+          ]
+        }
+      ],
+      # =====================================================
+      # ВАРИАНТ 4 (перефразирование)
+      # =====================================================
+      [
+        {
+          "type": "complex",
+          "text": "1. Choose the correct inverted form (a, b, or c) to complete the sentence. Type the letter of your answer.",
+          "subtasks": [
+            {"question": "Only after I called him ______ I find out he was already here.", "answer": "did", "explanation": "Only after + did."},
+            {"question": "Only when you tell me the truth ______ I believe you.", "answer": "will", "explanation": "Only when + will."},
+            {"question": "Only then ______ I realize how important it was.", "answer": "did", "explanation": "Only then + did."},
+            {"question": "Little ______ he know that she was his sister.", "answer": "did", "explanation": "Little + did."},
+            {"question": "Little ______ we expect such a warm welcome.", "answer": "did", "explanation": "Little + did."},
+            {"question": "So cold ______ the weather that we stayed indoors.", "answer": "was", "explanation": "So + was."},
+            {"question": "Such ______ his determination that he never gave up.", "answer": "was", "explanation": "Such + was."},
+            {"question": "Only after the meal ______ we realise we had forgotten to pay.", "answer": "did", "explanation": "Only after + did."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "2. Fill in the gaps with the correct form of the verb in brackets. Type the missing word(s) in the box.",
+          "subtasks": [
+            {"question": "Only after I called him ______ (find) I out he was already here.", "answer": "did I find", "explanation": "Only after + did + подлежащее + V."},
+            {"question": "Only when you tell me the truth ______ (believe) I you.", "answer": "will I believe", "explanation": "Only when + will + подлежащее + V."},
+            {"question": "Only then ______ (realise) I how important it was.", "answer": "did I realise", "explanation": "Only then + did + подлежащее + V."},
+            {"question": "Little ______ (know) he that she was his sister.", "answer": "did he know", "explanation": "Little + did + подлежащее + V."},
+            {"question": "Little ______ (expect) we such a warm welcome.", "answer": "did we expect", "explanation": "Little + did + подлежащее + V."},
+            {"question": "So cold ______ (be) the weather that we stayed indoors.", "answer": "was", "explanation": "So + was."},
+            {"question": "Such ______ (be) his determination that he never gave up.", "answer": "was", "explanation": "Such + was."},
+            {"question": "Only after the meal ______ (realise) we we had forgotten to pay.", "answer": "did we realise", "explanation": "Only after + did + подлежащее + V."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
+          "subtasks": [
+            {"question": "Only after I called him I found out he was already here.", "answer": "Only after I called him did I find out he was already here.", "explanation": "Инверсия: did I find."},
+            {"question": "Only when you tell me the truth will I believe you.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Only then I realised how important it was.", "answer": "Only then did I realise how important it was.", "explanation": "Инверсия: did I realise."},
+            {"question": "Little did he know that she was his sister.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Little we expected such a warm welcome.", "answer": "Little did we expect such a warm welcome.", "explanation": "Инверсия: did we expect."},
+            {"question": "So cold was the weather that we stayed indoors.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Such was his determination that he never gave up.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Only after the meal we realised we had forgotten to pay.", "answer": "Only after the meal did we realise we had forgotten to pay.", "explanation": "Инверсия: did we realise."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "4. Rewrite the sentences using emphatic inversion (with the word given in brackets). Type the whole sentence.",
+          "subtasks": [
+            {"question": "I found out he was already here only after I called him. (Only after) → Only after I called him did I find out he was already here.", "answer": "Only after I called him did I find out he was already here.", "explanation": "Only after + did."},
+            {"question": "I will believe you only when you tell me the truth. (Only when) → Only when you tell me the truth will I believe you.", "answer": "Only when you tell me the truth will I believe you.", "explanation": "Only when + will."},
+            {"question": "I realised how important it was only then. (Only then) → Only then did I realise how important it was.", "answer": "Only then did I realise how important it was.", "explanation": "Only then + did."},
+            {"question": "He didn't know she was his sister. (Little) → Little did he know that she was his sister.", "answer": "Little did he know that she was his sister.", "explanation": "Little + did."},
+            {"question": "We didn't expect such a warm welcome. (Little) → Little did we expect such a warm welcome.", "answer": "Little did we expect such a warm welcome.", "explanation": "Little + did."},
+            {"question": "The weather was so cold that we stayed indoors. (So) → So cold was the weather that we stayed indoors.", "answer": "So cold was the weather that we stayed indoors.", "explanation": "So + прил + was."},
+            {"question": "His determination was such that he never gave up. (Such) → Such was his determination that he never gave up.", "answer": "Such was his determination that he never gave up.", "explanation": "Such + was."},
+            {"question": "We realised we had forgotten to pay only after the meal. (Only after) → Only after the meal did we realise we had forgotten to pay.", "answer": "Only after the meal did we realise we had forgotten to pay.", "explanation": "Only after + did."}
+          ]
+        }
+      ],
+      # =====================================================
+      # ВАРИАНТ 5 (перевод)
+      # =====================================================
+      [
+        {
+          "type": "complex",
+          "text": "1. Choose the correct inverted form (a, b, or c) to complete the sentence. Type the letter of your answer.",
+          "subtasks": [
+            {"question": "Only after I checked the map ______ I discover the correct route.", "answer": "did", "explanation": "Only after + did."},
+            {"question": "Only when you calm down ______ we talk about it.", "answer": "will", "explanation": "Only when + will."},
+            {"question": "Only then ______ he notice the beautiful painting.", "answer": "did", "explanation": "Only then + did."},
+            {"question": "Little ______ he think that he would fail.", "answer": "did", "explanation": "Little + did."},
+            {"question": "Little ______ they realise the danger they were in.", "answer": "did", "explanation": "Little + did."},
+            {"question": "So excited ______ the children that they couldn't sleep.", "answer": "were", "explanation": "So + were (множественное число)."},
+            {"question": "Such ______ the confusion that nobody knew what to do.", "answer": "was", "explanation": "Such + was."},
+            {"question": "Only after the storm ______ we realise how much damage it had done.", "answer": "did", "explanation": "Only after + did."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "2. Fill in the gaps with the correct form of the verb in brackets. Type the missing word(s) in the box.",
+          "subtasks": [
+            {"question": "Only after I checked the map ______ (discover) I the correct route.", "answer": "did I discover", "explanation": "Only after + did + подлежащее + V."},
+            {"question": "Only when you calm down ______ (talk) we about it.", "answer": "will we talk", "explanation": "Only when + will + подлежащее + V."},
+            {"question": "Only then ______ (notice) he the beautiful painting.", "answer": "did he notice", "explanation": "Only then + did + подлежащее + V."},
+            {"question": "Little ______ (think) he that he would fail.", "answer": "did he think", "explanation": "Little + did + подлежащее + V."},
+            {"question": "Little ______ (realise) they the danger they were in.", "answer": "did they realise", "explanation": "Little + did + подлежащее + V."},
+            {"question": "So excited ______ (be) the children that they couldn't sleep.", "answer": "were", "explanation": "So + were (множественное)."},
+            {"question": "Such ______ (be) the confusion that nobody knew what to do.", "answer": "was", "explanation": "Such + was."},
+            {"question": "Only after the storm ______ (realise) we how much damage it had done.", "answer": "did we realise", "explanation": "Only after + did + подлежащее + V."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
+          "subtasks": [
+            {"question": "Only after I checked the map I discovered the correct route.", "answer": "Only after I checked the map did I discover the correct route.", "explanation": "Инверсия: did I discover."},
+            {"question": "Only when you calm down will we talk about it.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Only then he noticed the beautiful painting.", "answer": "Only then did he notice the beautiful painting.", "explanation": "Инверсия: did he notice."},
+            {"question": "Little did he think that he would fail.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Little they realised the danger they were in.", "answer": "Little did they realise the danger they were in.", "explanation": "Инверсия: did they realise."},
+            {"question": "So excited were the children that they couldn't sleep.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Such was the confusion that nobody knew what to do.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Only after the storm we realised how much damage it had done.", "answer": "Only after the storm did we realise how much damage it had done.", "explanation": "Инверсия: did we realise."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "4. Translate the sentences into English using emphatic inversion. Type your translation (one sentence) in the box.",
+          "subtasks": [
+            {"question": "Только после того как я проверил карту, я нашёл правильный маршрут.", "answer": "Only after I checked the map did I discover the correct route.", "explanation": ""},
+            {"question": "Только когда успокоишься, мы поговорим об этом.", "answer": "Only when you calm down will we talk about it.", "explanation": ""},
+            {"question": "Только тогда он заметил красивую картину.", "answer": "Only then did he notice the beautiful painting.", "explanation": ""},
+            {"question": "Он и не думал, что провалится.", "answer": "Little did he think that he would fail.", "explanation": ""},
+            {"question": "Они не осознавали опасность, в которой находились.", "answer": "Little did they realise the danger they were in.", "explanation": ""},
+            {"question": "Дети были так взволнованы, что не могли уснуть.", "answer": "So excited were the children that they couldn't sleep.", "explanation": ""},
+            {"question": "Всеобщее замешательство было таким, что никто не знал, что делать.", "answer": "Such was the confusion that nobody knew what to do.", "explanation": ""},
+            {"question": "Только после шторма мы поняли, сколько ущерба он нанёс.", "answer": "Only after the storm did we realise how much damage it had done.", "explanation": ""}
+          ]
+        }
+      ],
+      # =====================================================
+      # ВАРИАНТ 6 (перефразирование)
+      # =====================================================
+      [
+        {
+          "type": "complex",
+          "text": "1. Choose the correct inverted form (a, b, or c) to complete the sentence. Type the letter of your answer.",
+          "subtasks": [
+            {"question": "Only after the meeting ______ I find out the truth.", "answer": "did", "explanation": "Only after + did."},
+            {"question": "Only when you explain yourself ______ I understand.", "answer": "will", "explanation": "Only when + will."},
+            {"question": "Only then ______ we appreciate her efforts.", "answer": "did", "explanation": "Only then + did."},
+            {"question": "Little ______ he suspect that we were planning a party.", "answer": "did", "explanation": "Little + did."},
+            {"question": "Little ______ she know that her book would be a bestseller.", "answer": "did", "explanation": "Little + did."},
+            {"question": "So quickly ______ he run that we couldn't catch him.", "answer": "did", "explanation": "So + quickly + did + подлежащее (для наречий)."},
+            {"question": "Such ______ the heat that we had to stop working.", "answer": "was", "explanation": "Such + was."},
+            {"question": "Only after the exam ______ I realise I had studied the wrong material.", "answer": "did", "explanation": "Only after + did."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "2. Fill in the gaps with the correct form of the verb in brackets. Type the missing word(s) in the box.",
+          "subtasks": [
+            {"question": "Only after the meeting ______ (find) I out the truth.", "answer": "did I find", "explanation": "Only after + did + подлежащее + V."},
+            {"question": "Only when you explain yourself ______ (understand) I.", "answer": "will I understand", "explanation": "Only when + will + подлежащее + V."},
+            {"question": "Only then ______ (appreciate) we her efforts.", "answer": "did we appreciate", "explanation": "Only then + did + подлежащее + V."},
+            {"question": "Little ______ (suspect) he that we were planning a party.", "answer": "did he suspect", "explanation": "Little + did + подлежащее + V."},
+            {"question": "Little ______ (know) she that her book would be a bestseller.", "answer": "did she know", "explanation": "Little + did + подлежащее + V."},
+            {"question": "So quickly ______ (run) he that we couldn't catch him.", "answer": "did he run", "explanation": "So + наречие + did + подлежащее + V."},
+            {"question": "Such ______ (be) the heat that we had to stop working.", "answer": "was", "explanation": "Such + was."},
+            {"question": "Only after the exam ______ (realise) I I had studied the wrong material.", "answer": "did I realise", "explanation": "Only after + did + подлежащее + V."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
+          "subtasks": [
+            {"question": "Only after the meeting I found out the truth.", "answer": "Only after the meeting did I find out the truth.", "explanation": "Инверсия: did I find."},
+            {"question": "Only when you explain yourself will I understand.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Only then we appreciated her efforts.", "answer": "Only then did we appreciate her efforts.", "explanation": "Инверсия: did we appreciate."},
+            {"question": "Little did he suspect that we were planning a party.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Little she knew that her book would be a bestseller.", "answer": "Little did she know that her book would be a bestseller.", "explanation": "Инверсия: did she know."},
+            {"question": "So quickly he ran that we couldn't catch him.", "answer": "So quickly did he run that we couldn't catch him.", "explanation": "Инверсия: did he run."},
+            {"question": "Such was the heat that we had to stop working.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Only after the exam I realised I had studied the wrong material.", "answer": "Only after the exam did I realise I had studied the wrong material.", "explanation": "Инверсия: did I realise."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "4. Rewrite the sentences using emphatic inversion (with the word given in brackets). Type the whole sentence.",
+          "subtasks": [
+            {"question": "I found out the truth only after the meeting. (Only after) → Only after the meeting did I find out the truth.", "answer": "Only after the meeting did I find out the truth.", "explanation": "Only after + did."},
+            {"question": "I will understand only when you explain yourself. (Only when) → Only when you explain yourself will I understand.", "answer": "Only when you explain yourself will I understand.", "explanation": "Only when + will."},
+            {"question": "We appreciated her efforts only then. (Only then) → Only then did we appreciate her efforts.", "answer": "Only then did we appreciate her efforts.", "explanation": "Only then + did."},
+            {"question": "He didn't suspect that we were planning a party. (Little) → Little did he suspect that we were planning a party.", "answer": "Little did he suspect that we were planning a party.", "explanation": "Little + did."},
+            {"question": "She didn't know her book would be a bestseller. (Little) → Little did she know that her book would be a bestseller.", "answer": "Little did she know that her book would be a bestseller.", "explanation": "Little + did."},
+            {"question": "He ran so quickly that we couldn't catch him. (So) → So quickly did he run that we couldn't catch him.", "answer": "So quickly did he run that we couldn't catch him.", "explanation": "So + наречие + did."},
+            {"question": "The heat was such that we had to stop working. (Such) → Such was the heat that we had to stop working.", "answer": "Such was the heat that we had to stop working.", "explanation": "Such + was."},
+            {"question": "I realised I had studied the wrong material only after the exam. (Only after) → Only after the exam did I realise I had studied the wrong material.", "answer": "Only after the exam did I realise I had studied the wrong material.", "explanation": "Only after + did."}
+          ]
+        }
+      ],
+      # =====================================================
+      # ВАРИАНТ 7 (перевод)
+      # =====================================================
+      [
+        {
+          "type": "complex",
+          "text": "1. Choose the correct inverted form (a, b, or c) to complete the sentence. Type the letter of your answer.",
+          "subtasks": [
+            {"question": "Only after the train left ______ I remember I had left my bag.", "answer": "did", "explanation": "Only after + did."},
+            {"question": "Only when you arrive ______ we start the ceremony.", "answer": "will", "explanation": "Only when + will."},
+            {"question": "Only then ______ I realise she was telling the truth.", "answer": "did", "explanation": "Only then + did."},
+            {"question": "Little ______ he imagine that he would become a millionaire.", "answer": "did", "explanation": "Little + did."},
+            {"question": "Little ______ they care about the consequences.", "answer": "did", "explanation": "Little + did."},
+            {"question": "So deeply ______ he sleep that he didn't hear the alarm.", "answer": "did", "explanation": "So + deeply + did."},
+            {"question": "Such ______ the silence that you could hear a pin drop.", "answer": "was", "explanation": "Such + was."},
+            {"question": "Only after the rain stopped ______ we go outside.", "answer": "did", "explanation": "Only after + did."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "2. Fill in the gaps with the correct form of the verb in brackets. Type the missing word(s) in the box.",
+          "subtasks": [
+            {"question": "Only after the train left ______ (remember) I I had left my bag.", "answer": "did I remember", "explanation": "Only after + did + подлежащее + V."},
+            {"question": "Only when you arrive ______ (start) we the ceremony.", "answer": "will we start", "explanation": "Only when + will + подлежащее + V."},
+            {"question": "Only then ______ (realise) I she was telling the truth.", "answer": "did I realise", "explanation": "Only then + did + подлежащее + V."},
+            {"question": "Little ______ (imagine) he that he would become a millionaire.", "answer": "did he imagine", "explanation": "Little + did + подлежащее + V."},
+            {"question": "Little ______ (care) they about the consequences.", "answer": "did they care", "explanation": "Little + did + подлежащее + V."},
+            {"question": "So deeply ______ (sleep) he that he didn't hear the alarm.", "answer": "did he sleep", "explanation": "So + наречие + did + подлежащее + V."},
+            {"question": "Such ______ (be) the silence that you could hear a pin drop.", "answer": "was", "explanation": "Such + was."},
+            {"question": "Only after the rain stopped ______ (go) we outside.", "answer": "did we go", "explanation": "Only after + did + подлежащее + V."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
+          "subtasks": [
+            {"question": "Only after the train left I remembered I had left my bag.", "answer": "Only after the train left did I remember I had left my bag.", "explanation": "Инверсия: did I remember."},
+            {"question": "Only when you arrive will we start the ceremony.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Only then I realised she was telling the truth.", "answer": "Only then did I realise she was telling the truth.", "explanation": "Инверсия: did I realise."},
+            {"question": "Little did he imagine that he would become a millionaire.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Little they cared about the consequences.", "answer": "Little did they care about the consequences.", "explanation": "Инверсия: did they care."},
+            {"question": "So deeply he slept that he didn't hear the alarm.", "answer": "So deeply did he sleep that he didn't hear the alarm.", "explanation": "Инверсия: did he sleep."},
+            {"question": "Such was the silence that you could hear a pin drop.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Only after the rain stopped we went outside.", "answer": "Only after the rain stopped did we go outside.", "explanation": "Инверсия: did we go."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "4. Translate the sentences into English using emphatic inversion. Type your translation (one sentence) in the box.",
+          "subtasks": [
+            {"question": "Только после того как поезд уехал, я вспомнил, что оставил сумку.", "answer": "Only after the train left did I remember I had left my bag.", "explanation": ""},
+            {"question": "Только когда ты приедешь, мы начнём церемонию.", "answer": "Only when you arrive will we start the ceremony.", "explanation": ""},
+            {"question": "Только тогда я понял, что она говорила правду.", "answer": "Only then did I realise she was telling the truth.", "explanation": ""},
+            {"question": "Он и представить не мог, что станет миллионером.", "answer": "Little did he imagine that he would become a millionaire.", "explanation": ""},
+            {"question": "Им было всё равно на последствия.", "answer": "Little did they care about the consequences.", "explanation": ""},
+            {"question": "Он спал так крепко, что не услышал будильник.", "answer": "So deeply did he sleep that he didn't hear the alarm.", "explanation": ""},
+            {"question": "Тишина была такой, что можно было услышать, как падает булавка.", "answer": "Such was the silence that you could hear a pin drop.", "explanation": ""},
+            {"question": "Только после того как дождь закончился, мы вышли на улицу.", "answer": "Only after the rain stopped did we go outside.", "explanation": ""}
+          ]
+        }
+      ],
+      # =====================================================
+      # ВАРИАНТ 8 (перефразирование)
+      # =====================================================
+      [
+        {
+          "type": "complex",
+          "text": "1. Choose the correct inverted form (a, b, or c) to complete the sentence. Type the letter of your answer.",
+          "subtasks": [
+            {"question": "Only after the lesson ______ I understand the topic.", "answer": "did", "explanation": "Only after + did."},
+            {"question": "Only when we finish this project ______ we take a break.", "answer": "will", "explanation": "Only when + will."},
+            {"question": "Only then ______ she start to believe him.", "answer": "did", "explanation": "Only then + did."},
+            {"question": "Little ______ he know that she was his long-lost sister.", "answer": "did", "explanation": "Little + did."},
+            {"question": "Little ______ we imagine that it would be so difficult.", "answer": "did", "explanation": "Little + did."},
+            {"question": "So loudly ______ he shout that everyone turned around.", "answer": "did", "explanation": "So + loudly + did."},
+            {"question": "Such ______ her beauty that everyone was captivated.", "answer": "was", "explanation": "Such + was."},
+            {"question": "Only after I read the email ______ I understand the situation.", "answer": "did", "explanation": "Only after + did."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "2. Fill in the gaps with the correct form of the verb in brackets. Type the missing word(s) in the box.",
+          "subtasks": [
+            {"question": "Only after the lesson ______ (understand) I the topic.", "answer": "did I understand", "explanation": "Only after + did + подлежащее + V."},
+            {"question": "Only when we finish this project ______ (take) we a break.", "answer": "will we take", "explanation": "Only when + will + подлежащее + V."},
+            {"question": "Only then ______ (start) she to believe him.", "answer": "did she start", "explanation": "Only then + did + подлежащее + V."},
+            {"question": "Little ______ (know) he that she was his long-lost sister.", "answer": "did he know", "explanation": "Little + did + подлежащее + V."},
+            {"question": "Little ______ (imagine) we that it would be so difficult.", "answer": "did we imagine", "explanation": "Little + did + подлежащее + V."},
+            {"question": "So loudly ______ (shout) he that everyone turned around.", "answer": "did he shout", "explanation": "So + наречие + did + подлежащее + V."},
+            {"question": "Such ______ (be) her beauty that everyone was captivated.", "answer": "was", "explanation": "Such + was."},
+            {"question": "Only after I read the email ______ (understand) I the situation.", "answer": "did I understand", "explanation": "Only after + did + подлежащее + V."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
+          "subtasks": [
+            {"question": "Only after the lesson I understood the topic.", "answer": "Only after the lesson did I understand the topic.", "explanation": "Инверсия: did I understand."},
+            {"question": "Only when we finish this project will we take a break.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Only then she started to believe him.", "answer": "Only then did she start to believe him.", "explanation": "Инверсия: did she start."},
+            {"question": "Little did he know that she was his long-lost sister.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Little we imagined that it would be so difficult.", "answer": "Little did we imagine that it would be so difficult.", "explanation": "Инверсия: did we imagine."},
+            {"question": "So loudly he shouted that everyone turned around.", "answer": "So loudly did he shout that everyone turned around.", "explanation": "Инверсия: did he shout."},
+            {"question": "Such was her beauty that everyone was captivated.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Only after I read the email I understood the situation.", "answer": "Only after I read the email did I understand the situation.", "explanation": "Инверсия: did I understand."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "4. Rewrite the sentences using emphatic inversion (with the word given in brackets). Type the whole sentence.",
+          "subtasks": [
+            {"question": "I understood the topic only after the lesson. (Only after) → Only after the lesson did I understand the topic.", "answer": "Only after the lesson did I understand the topic.", "explanation": "Only after + did."},
+            {"question": "We will take a break only when we finish this project. (Only when) → Only when we finish this project will we take a break.", "answer": "Only when we finish this project will we take a break.", "explanation": "Only when + will."},
+            {"question": "She started to believe him only then. (Only then) → Only then did she start to believe him.", "answer": "Only then did she start to believe him.", "explanation": "Only then + did."},
+            {"question": "He didn't know she was his long-lost sister. (Little) → Little did he know that she was his long-lost sister.", "answer": "Little did he know that she was his long-lost sister.", "explanation": "Little + did."},
+            {"question": "We didn't imagine it would be so difficult. (Little) → Little did we imagine that it would be so difficult.", "answer": "Little did we imagine that it would be so difficult.", "explanation": "Little + did."},
+            {"question": "He shouted so loudly that everyone turned around. (So) → So loudly did he shout that everyone turned around.", "answer": "So loudly did he shout that everyone turned around.", "explanation": "So + наречие + did."},
+            {"question": "Her beauty was such that everyone was captivated. (Such) → Such was her beauty that everyone was captivated.", "answer": "Such was her beauty that everyone was captivated.", "explanation": "Such + was."},
+            {"question": "I understood the situation only after I read the email. (Only after) → Only after I read the email did I understand the situation.", "answer": "Only after I read the email did I understand the situation.", "explanation": "Only after + did."}
+          ]
+        }
+      ],
+      # =====================================================
+      # ВАРИАНТ 9 (перевод)
+      # =====================================================
+      [
+        {
+          "type": "complex",
+          "text": "1. Choose the correct inverted form (a, b, or c) to complete the sentence. Type the letter of your answer.",
+          "subtasks": [
+            {"question": "Only after the phone call ______ I realise my mistake.", "answer": "did", "explanation": "Only after + did."},
+            {"question": "Only when you finish your work ______ you go home.", "answer": "can", "explanation": "Only when + can."},
+            {"question": "Only then ______ we understand the importance of the event.", "answer": "did", "explanation": "Only then + did."},
+            {"question": "Little ______ he care about the rules.", "answer": "did", "explanation": "Little + did."},
+            {"question": "Little ______ they expect to see such a beautiful view.", "answer": "did", "explanation": "Little + did."},
+            {"question": "So carefully ______ he drive that he never had an accident.", "answer": "did", "explanation": "So + carefully + did."},
+            {"question": "Such ______ her kindness that everyone loved her.", "answer": "was", "explanation": "Such + was."},
+            {"question": "Only after the earthquake ______ we realise how dangerous it was.", "answer": "did", "explanation": "Only after + did."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "2. Fill in the gaps with the correct form of the verb in brackets. Type the missing word(s) in the box.",
+          "subtasks": [
+            {"question": "Only after the phone call ______ (realise) I my mistake.", "answer": "did I realise", "explanation": "Only after + did + подлежащее + V."},
+            {"question": "Only when you finish your work ______ (go) you home.", "answer": "can you go", "explanation": "Only when + can + подлежащее + V."},
+            {"question": "Only then ______ (understand) we the importance of the event.", "answer": "did we understand", "explanation": "Only then + did + подлежащее + V."},
+            {"question": "Little ______ (care) he about the rules.", "answer": "did he care", "explanation": "Little + did + подлежащее + V."},
+            {"question": "Little ______ (expect) they to see such a beautiful view.", "answer": "did they expect", "explanation": "Little + did + подлежащее + V."},
+            {"question": "So carefully ______ (drive) he that he never had an accident.", "answer": "did he drive", "explanation": "So + наречие + did + подлежащее + V."},
+            {"question": "Such ______ (be) her kindness that everyone loved her.", "answer": "was", "explanation": "Such + was."},
+            {"question": "Only after the earthquake ______ (realise) we how dangerous it was.", "answer": "did we realise", "explanation": "Only after + did + подлежащее + V."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
+          "subtasks": [
+            {"question": "Only after the phone call I realised my mistake.", "answer": "Only after the phone call did I realise my mistake.", "explanation": "Инверсия: did I realise."},
+            {"question": "Only when you finish your work can you go home.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Only then we understood the importance of the event.", "answer": "Only then did we understand the importance of the event.", "explanation": "Инверсия: did we understand."},
+            {"question": "Little did he care about the rules.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Little they expected to see such a beautiful view.", "answer": "Little did they expect to see such a beautiful view.", "explanation": "Инверсия: did they expect."},
+            {"question": "So carefully he drove that he never had an accident.", "answer": "So carefully did he drive that he never had an accident.", "explanation": "Инверсия: did he drive."},
+            {"question": "Such was her kindness that everyone loved her.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Only after the earthquake we realised how dangerous it was.", "answer": "Only after the earthquake did we realise how dangerous it was.", "explanation": "Инверсия: did we realise."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "4. Translate the sentences into English using emphatic inversion. Type your translation (one sentence) in the box.",
+          "subtasks": [
+            {"question": "Только после телефонного звонка я осознал свою ошибку.", "answer": "Only after the phone call did I realise my mistake.", "explanation": ""},
+            {"question": "Только когда закончишь работу, ты сможешь пойти домой.", "answer": "Only when you finish your work can you go home.", "explanation": ""},
+            {"question": "Только тогда мы поняли важность этого события.", "answer": "Only then did we understand the importance of the event.", "explanation": ""},
+            {"question": "Ему было всё равно на правила.", "answer": "Little did he care about the rules.", "explanation": ""},
+            {"question": "Они и не ожидали увидеть такой красивый вид.", "answer": "Little did they expect to see such a beautiful view.", "explanation": ""},
+            {"question": "Он водил так осторожно, что никогда не попадал в аварии.", "answer": "So carefully did he drive that he never had an accident.", "explanation": ""},
+            {"question": "Её доброта была такова, что все её любили.", "answer": "Such was her kindness that everyone loved her.", "explanation": ""},
+            {"question": "Только после землетрясения мы поняли, насколько это было опасно.", "answer": "Only after the earthquake did we realise how dangerous it was.", "explanation": ""}
+          ]
+        }
+      ],
+      # =====================================================
+      # ВАРИАНТ 10 (перефразирование)
+      # =====================================================
+      [
+        {
+          "type": "complex",
+          "text": "1. Choose the correct inverted form (a, b, or c) to complete the sentence. Type the letter of your answer.",
+          "subtasks": [
+            {"question": "Only after I apologised ______ she forgive me.", "answer": "did", "explanation": "Only after + did."},
+            {"question": "Only when the sun sets ______ we see the stars.", "answer": "will", "explanation": "Only when + will."},
+            {"question": "Only then ______ I realise the value of friendship.", "answer": "did", "explanation": "Only then + did."},
+            {"question": "Little ______ she know that he was watching her.", "answer": "did", "explanation": "Little + did."},
+            {"question": "Little ______ they suspect that the plan would fail.", "answer": "did", "explanation": "Little + did."},
+            {"question": "So quietly ______ he speak that we couldn't hear him.", "answer": "did", "explanation": "So + quietly + did."},
+            {"question": "Such ______ the excitement that nobody slept all night.", "answer": "was", "explanation": "Such + was."},
+            {"question": "Only after we lost everything ______ we appreciate what we had.", "answer": "did", "explanation": "Only after + did."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "2. Fill in the gaps with the correct form of the verb in brackets. Type the missing word(s) in the box.",
+          "subtasks": [
+            {"question": "Only after I apologised ______ (forgive) she me.", "answer": "did she forgive", "explanation": "Only after + did + подлежащее + V."},
+            {"question": "Only when the sun sets ______ (see) we the stars.", "answer": "will we see", "explanation": "Only when + will + подлежащее + V."},
+            {"question": "Only then ______ (realise) I the value of friendship.", "answer": "did I realise", "explanation": "Only then + did + подлежащее + V."},
+            {"question": "Little ______ (know) she that he was watching her.", "answer": "did she know", "explanation": "Little + did + подлежащее + V."},
+            {"question": "Little ______ (suspect) they that the plan would fail.", "answer": "did they suspect", "explanation": "Little + did + подлежащее + V."},
+            {"question": "So quietly ______ (speak) he that we couldn't hear him.", "answer": "did he speak", "explanation": "So + наречие + did + подлежащее + V."},
+            {"question": "Such ______ (be) the excitement that nobody slept all night.", "answer": "was", "explanation": "Such + was."},
+            {"question": "Only after we lost everything ______ (appreciate) we what we had.", "answer": "did we appreciate", "explanation": "Only after + did + подлежащее + V."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
+          "subtasks": [
+            {"question": "Only after I apologised she forgave me.", "answer": "Only after I apologised did she forgive me.", "explanation": "Инверсия: did she forgive."},
+            {"question": "Only when the sun sets will we see the stars.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Only then I realised the value of friendship.", "answer": "Only then did I realise the value of friendship.", "explanation": "Инверсия: did I realise."},
+            {"question": "Little did she know that he was watching her.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Little they suspected that the plan would fail.", "answer": "Little did they suspect that the plan would fail.", "explanation": "Инверсия: did they suspect."},
+            {"question": "So quietly he spoke that we couldn't hear him.", "answer": "So quietly did he speak that we couldn't hear him.", "explanation": "Инверсия: did he speak."},
+            {"question": "Such was the excitement that nobody slept all night.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Only after we lost everything we appreciated what we had.", "answer": "Only after we lost everything did we appreciate what we had.", "explanation": "Инверсия: did we appreciate."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "4. Rewrite the sentences using emphatic inversion (with the word given in brackets). Type the whole sentence.",
+          "subtasks": [
+            {"question": "She forgave me only after I apologised. (Only after) → Only after I apologised did she forgive me.", "answer": "Only after I apologised did she forgive me.", "explanation": "Only after + did."},
+            {"question": "We will see the stars only when the sun sets. (Only when) → Only when the sun sets will we see the stars.", "answer": "Only when the sun sets will we see the stars.", "explanation": "Only when + will."},
+            {"question": "I realised the value of friendship only then. (Only then) → Only then did I realise the value of friendship.", "answer": "Only then did I realise the value of friendship.", "explanation": "Only then + did."},
+            {"question": "She didn't know that he was watching her. (Little) → Little did she know that he was watching her.", "answer": "Little did she know that he was watching her.", "explanation": "Little + did."},
+            {"question": "They didn't suspect that the plan would fail. (Little) → Little did they suspect that the plan would fail.", "answer": "Little did they suspect that the plan would fail.", "explanation": "Little + did."},
+            {"question": "He spoke so quietly that we couldn't hear him. (So) → So quietly did he speak that we couldn't hear him.", "answer": "So quietly did he speak that we couldn't hear him.", "explanation": "So + наречие + did."},
+            {"question": "The excitement was such that nobody slept all night. (Such) → Such was the excitement that nobody slept all night.", "answer": "Such was the excitement that nobody slept all night.", "explanation": "Such + was."},
+            {"question": "We appreciated what we had only after we lost everything. (Only after) → Only after we lost everything did we appreciate what we had.", "answer": "Only after we lost everything did we appreciate what we had.", "explanation": "Only after + did."}
+          ]
+        }
+      ],
+      # =====================================================
+      # ВАРИАНТ 11 (перевод)
+      # =====================================================
+      [
+        {
+          "type": "complex",
+          "text": "1. Choose the correct inverted form (a, b, or c) to complete the sentence. Type the letter of your answer.",
+          "subtasks": [
+            {"question": "Only after the police arrived ______ I feel safe.", "answer": "did", "explanation": "Only after + did."},
+            {"question": "Only when you sign the document ______ we proceed.", "answer": "will", "explanation": "Only when + will."},
+            {"question": "Only then ______ he agree to help us.", "answer": "did", "explanation": "Only then + did."},
+            {"question": "Little ______ he realise the seriousness of the situation.", "answer": "did", "explanation": "Little + did."},
+            {"question": "Little ______ we know that he was a famous actor.", "answer": "did", "explanation": "Little + did."},
+            {"question": "So elegantly ______ she dress that everyone admired her.", "answer": "did", "explanation": "So + elegantly + did."},
+            {"question": "Such ______ his pride that he never asked for help.", "answer": "was", "explanation": "Such + was."},
+            {"question": "Only after the surgery ______ he start to recover.", "answer": "did", "explanation": "Only after + did."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "2. Fill in the gaps with the correct form of the verb in brackets. Type the missing word(s) in the box.",
+          "subtasks": [
+            {"question": "Only after the police arrived ______ (feel) I safe.", "answer": "did I feel", "explanation": "Only after + did + подлежащее + V."},
+            {"question": "Only when you sign the document ______ (proceed) we.", "answer": "will we proceed", "explanation": "Only when + will + подлежащее + V."},
+            {"question": "Only then ______ (agree) he to help us.", "answer": "did he agree", "explanation": "Only then + did + подлежащее + V."},
+            {"question": "Little ______ (realise) he the seriousness of the situation.", "answer": "did he realise", "explanation": "Little + did + подлежащее + V."},
+            {"question": "Little ______ (know) we that he was a famous actor.", "answer": "did we know", "explanation": "Little + did + подлежащее + V."},
+            {"question": "So elegantly ______ (dress) she that everyone admired her.", "answer": "did she dress", "explanation": "So + наречие + did + подлежащее + V."},
+            {"question": "Such ______ (be) his pride that he never asked for help.", "answer": "was", "explanation": "Such + was."},
+            {"question": "Only after the surgery ______ (start) he to recover.", "answer": "did he start", "explanation": "Only after + did + подлежащее + V."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
+          "subtasks": [
+            {"question": "Only after the police arrived I felt safe.", "answer": "Only after the police arrived did I feel safe.", "explanation": "Инверсия: did I feel."},
+            {"question": "Only when you sign the document will we proceed.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Only then he agreed to help us.", "answer": "Only then did he agree to help us.", "explanation": "Инверсия: did he agree."},
+            {"question": "Little did he realise the seriousness of the situation.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Little we knew that he was a famous actor.", "answer": "Little did we know that he was a famous actor.", "explanation": "Инверсия: did we know."},
+            {"question": "So elegantly she dressed that everyone admired her.", "answer": "So elegantly did she dress that everyone admired her.", "explanation": "Инверсия: did she dress."},
+            {"question": "Such was his pride that he never asked for help.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Only after the surgery he started to recover.", "answer": "Only after the surgery did he start to recover.", "explanation": "Инверсия: did he start."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "4. Translate the sentences into English using emphatic inversion. Type your translation (one sentence) in the box.",
+          "subtasks": [
+            {"question": "Только после того как приехала полиция, я почувствовал себя в безопасности.", "answer": "Only after the police arrived did I feel safe.", "explanation": ""},
+            {"question": "Только когда ты подпишешь документ, мы продолжим.", "answer": "Only when you sign the document will we proceed.", "explanation": ""},
+            {"question": "Только тогда он согласился помочь нам.", "answer": "Only then did he agree to help us.", "explanation": ""},
+            {"question": "Он не осознавал серьёзности ситуации.", "answer": "Little did he realise the seriousness of the situation.", "explanation": ""},
+            {"question": "Мы и не знали, что он был известным актёром.", "answer": "Little did we know that he was a famous actor.", "explanation": ""},
+            {"question": "Она одевалась так элегантно, что все ею восхищались.", "answer": "So elegantly did she dress that everyone admired her.", "explanation": ""},
+            {"question": "Его гордость была такова, что он никогда не просил о помощи.", "answer": "Such was his pride that he never asked for help.", "explanation": ""},
+            {"question": "Только после операции он начал восстанавливаться.", "answer": "Only after the surgery did he start to recover.", "explanation": ""}
+          ]
+        }
+      ],
+      # =====================================================
+      # ВАРИАНТ 12 (перефразирование)
+      # =====================================================
+      [
+        {
+          "type": "complex",
+          "text": "1. Choose the correct inverted form (a, b, or c) to complete the sentence. Type the letter of your answer.",
+          "subtasks": [
+            {"question": "Only after the exam results ______ I decide to change my major.", "answer": "did", "explanation": "Only after + did."},
+            {"question": "Only when you pass the test ______ you get your licence.", "answer": "will", "explanation": "Only when + will."},
+            {"question": "Only then ______ I fully appreciate her advice.", "answer": "did", "explanation": "Only then + did."},
+            {"question": "Little ______ he imagine the consequences of his actions.", "answer": "did", "explanation": "Little + did."},
+            {"question": "Little ______ they realise how lucky they were.", "answer": "did", "explanation": "Little + did."},
+            {"question": "So generously ______ he donate that he became famous.", "answer": "did", "explanation": "So + generously + did."},
+            {"question": "Such ______ the chaos that nobody could find their way out.", "answer": "was", "explanation": "Such + was."},
+            {"question": "Only after the trial ______ we know the truth.", "answer": "did", "explanation": "Only after + did."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "2. Fill in the gaps with the correct form of the verb in brackets. Type the missing word(s) in the box.",
+          "subtasks": [
+            {"question": "Only after the exam results ______ (decide) I to change my major.", "answer": "did I decide", "explanation": "Only after + did + подлежащее + V."},
+            {"question": "Only when you pass the test ______ (get) you your licence.", "answer": "will you get", "explanation": "Only when + will + подлежащее + V."},
+            {"question": "Only then ______ (appreciate) I fully her advice.", "answer": "did I appreciate", "explanation": "Only then + did + подлежащее + V."},
+            {"question": "Little ______ (imagine) he the consequences of his actions.", "answer": "did he imagine", "explanation": "Little + did + подлежащее + V."},
+            {"question": "Little ______ (realise) they how lucky they were.", "answer": "did they realise", "explanation": "Little + did + подлежащее + V."},
+            {"question": "So generously ______ (donate) he that he became famous.", "answer": "did he donate", "explanation": "So + наречие + did + подлежащее + V."},
+            {"question": "Such ______ (be) the chaos that nobody could find their way out.", "answer": "was", "explanation": "Such + was."},
+            {"question": "Only after the trial ______ (know) we the truth.", "answer": "did we know", "explanation": "Only after + did + подлежащее + V."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
+          "subtasks": [
+            {"question": "Only after the exam results I decided to change my major.", "answer": "Only after the exam results did I decide to change my major.", "explanation": "Инверсия: did I decide."},
+            {"question": "Only when you pass the test will you get your licence.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Only then I fully appreciated her advice.", "answer": "Only then did I fully appreciate her advice.", "explanation": "Инверсия: did I appreciate."},
+            {"question": "Little did he imagine the consequences of his actions.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Little they realised how lucky they were.", "answer": "Little did they realise how lucky they were.", "explanation": "Инверсия: did they realise."},
+            {"question": "So generously he donated that he became famous.", "answer": "So generously did he donate that he became famous.", "explanation": "Инверсия: did he donate."},
+            {"question": "Such was the chaos that nobody could find their way out.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Only after the trial we knew the truth.", "answer": "Only after the trial did we know the truth.", "explanation": "Инверсия: did we know."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "4. Rewrite the sentences using emphatic inversion (with the word given in brackets). Type the whole sentence.",
+          "subtasks": [
+            {"question": "I decided to change my major only after the exam results. (Only after) → Only after the exam results did I decide to change my major.", "answer": "Only after the exam results did I decide to change my major.", "explanation": "Only after + did."},
+            {"question": "You will get your licence only when you pass the test. (Only when) → Only when you pass the test will you get your licence.", "answer": "Only when you pass the test will you get your licence.", "explanation": "Only when + will."},
+            {"question": "I fully appreciated her advice only then. (Only then) → Only then did I fully appreciate her advice.", "answer": "Only then did I fully appreciate her advice.", "explanation": "Only then + did."},
+            {"question": "He didn't imagine the consequences of his actions. (Little) → Little did he imagine the consequences of his actions.", "answer": "Little did he imagine the consequences of his actions.", "explanation": "Little + did."},
+            {"question": "They didn't realise how lucky they were. (Little) → Little did they realise how lucky they were.", "answer": "Little did they realise how lucky they were.", "explanation": "Little + did."},
+            {"question": "He donated so generously that he became famous. (So) → So generously did he donate that he became famous.", "answer": "So generously did he donate that he became famous.", "explanation": "So + наречие + did."},
+            {"question": "The chaos was such that nobody could find their way out. (Such) → Such was the chaos that nobody could find their way out.", "answer": "Such was the chaos that nobody could find their way out.", "explanation": "Such + was."},
+            {"question": "We knew the truth only after the trial. (Only after) → Only after the trial did we know the truth.", "answer": "Only after the trial did we know the truth.", "explanation": "Only after + did."}
+          ]
+        }
+      ]
     ]
-]
   },
   "conjunctions_advanced": {
     "title": "Союзы и связки (however, moreover, nevertheless, whereas, in contrast, consequently)",
