@@ -21,19 +21,21 @@ REDIS_URL = os.getenv("REDIS_URL", "redis://localhost:6379")
 with open(TASKS_FILE, "r", encoding="utf-8") as f:
     ALL_TASKS = json.load(f)
 
+# ===== Добавлены смайлики для типов заданий =====
 TASK_TYPES = {
-    "choice": "Выбор варианта",
-    "truefalse": "True/False/Not stated",
-    "fill_one": "Вставка пропуска",
-    "fill_multiple": "Вставка пропусков",
-    "speaker": "Выбор утверждения",
-    "random": "Случайный тип"
+    "choice": "📝 Выбор варианта",
+    "truefalse": "⚖️ True/False/Not stated",
+    "fill_one": "📁 Вставка пропуска",
+    "fill_multiple": "📄 Вставка пропусков",
+    "speaker": "☑️ Выбор утверждения",
+    "random": "🎲 Случайный тип"
 }
 
+# ===== Добавлены смайлики для уровней сложности =====
 LEVELS = {
-    "beginner": "Новичок",
-    "intermediate": "Любитель",
-    "expert": "Эксперт"
+    "beginner": "🌱 Новичок",
+    "intermediate": "📚 Любитель",
+    "expert": "🎓 Эксперт"
 }
 
 redis_client = None
@@ -60,14 +62,16 @@ def get_types_keyboard():
     buttons = []
     for key, label in TASK_TYPES.items():
         buttons.append([InlineKeyboardButton(text=label, callback_data=f"listening_type_{key}")])
-    buttons.append([InlineKeyboardButton(text="Назад", callback_data="back_to_main")])
+    # Кнопка "Назад" теперь со смайликом
+    buttons.append([InlineKeyboardButton(text="🔙 Назад", callback_data="back_to_main")])
     return InlineKeyboardMarkup(inline_keyboard=buttons)
 
 def get_levels_keyboard(task_type):
     buttons = []
     for level, label in LEVELS.items():
         buttons.append([InlineKeyboardButton(text=label, callback_data=f"listening_level_{task_type}_{level}")])
-    buttons.append([InlineKeyboardButton(text="Назад", callback_data="back_to_types")])
+    # Кнопка "Назад" тоже со смайликом
+    buttons.append([InlineKeyboardButton(text="🔙 Назад", callback_data="back_to_types")])
     return InlineKeyboardMarkup(inline_keyboard=buttons)
 
 def get_choice_keyboard(options, task_id):
@@ -207,7 +211,6 @@ async def show_question(message: Message, state: FSMContext):
     task_type = task["type"]
     task_id = task["id"]
 
-    # Подсказка в зависимости от типа
     if task_type == "choice":
         text = f"{task['question']}\n\nВыберите правильный вариант:"
         keyboard = get_choice_keyboard(task["options"], task_id)
@@ -221,7 +224,6 @@ async def show_question(message: Message, state: FSMContext):
         text = f"{task['question']}\n\nВведите все пропущенные слова в формате: ___; ___; ___;"
         keyboard = get_fill_keyboard(task_id)
     elif task_type == "speaker":
-        # Только вопрос, варианты уже в тексте, кнопки с вариантами
         text = f"{task['question']}\n\nВыберите правильный вариант:"
         keyboard = get_choice_keyboard(task["options"], task_id)
     else:
