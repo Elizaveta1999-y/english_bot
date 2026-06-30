@@ -24074,8 +24074,8 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
             ]
         }
     ]
-]
-  },
+  ]
+},
   "inversion_negative": {
     "title": "Инверсия после отрицательных наречий (Not only... but also, No sooner... than, Hardly... when)",
     "pages": [
