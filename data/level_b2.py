@@ -23874,8 +23874,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "I have a few dollars. → All I have is a few dollars.", "answer": "All I have is a few dollars.", "explanation": "All-расщепление."},
                 {"question": "My cousin gave me this guitar. → It was my cousin who gave me this guitar.", "answer": "It was my cousin who gave me this guitar.", "explanation": "It-расщепление."}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 11 (перевод)
     # =====================================================
@@ -23974,8 +23973,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "Всё, что я могу тебе дать, – это совет.", "answer": "All I can give you is advice.", "explanation": ""},
                 {"question": "Именно мой сосед помог мне.", "answer": "It was my neighbour who helped me.", "explanation": ""}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 12 (перефразирование)
     # =====================================================
@@ -24168,8 +24166,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "Едва он вошёл в комнату, как погас свет.", "answer": "Scarcely had he entered the room when the lights went out.", "explanation": ""},
                 {"question": "Они не только проиграли матч, но и травмировали лучшего игрока.", "answer": "Not only did they lose the match, but they also injured their best player.", "explanation": ""}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 2 (перефразирование)
     # =====================================================
@@ -24229,8 +24226,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "I closed my eyes and the phone rang immediately. (Scarcely) → Scarcely had I closed my eyes when the phone rang.", "answer": "Scarcely had I closed my eyes when the phone rang.", "explanation": "Scarcely + had."},
                 {"question": "They arrived on time and helped set up. (Not only) → Not only did they arrive on time, but they also helped set up.", "answer": "Not only did they arrive on time, but they also helped set up.", "explanation": "Not only + did."}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 3 (перевод)
     # =====================================================
@@ -24290,8 +24286,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "Едва она сказала это, как пожалела.", "answer": "Scarcely had she said it when she regretted it.", "explanation": ""},
                 {"question": "Он не только богат, но и щедр.", "answer": "Not only is he rich, but he is also generous.", "explanation": ""}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 4 (перефразирование)
     # =====================================================
@@ -24351,8 +24346,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "He started his new job and got a promotion. (Scarcely) → Scarcely had he started his new job when he got a promotion.", "answer": "Scarcely had he started his new job when he got a promotion.", "explanation": "Scarcely + had."},
                 {"question": "She is a doctor and a researcher. (Not only) → Not only is she a doctor, but she is also a researcher.", "answer": "Not only is she a doctor, but she is also a researcher.", "explanation": "Not only + is."}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 5 (перевод)
     # =====================================================
@@ -24412,8 +24406,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "Едва они начали встречу, как сработала пожарная сигнализация.", "answer": "Scarcely had they started the meeting when the fire alarm went off.", "explanation": ""},
                 {"question": "Он не только красив, но и очень добр.", "answer": "Not only is he handsome, but he is also very kind.", "explanation": ""}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 6 (перефразирование)
     # =====================================================
@@ -24473,8 +24466,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "The plane landed and the passengers stood up. (Scarcely) → Scarcely had the plane landed when the passengers stood up.", "answer": "Scarcely had the plane landed when the passengers stood up.", "explanation": "Scarcely + had."},
                 {"question": "They are talented and hardworking. (Not only) → Not only are they talented, but they are also hardworking.", "answer": "Not only are they talented, but they are also hardworking.", "explanation": "Not only + are."}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 7 (перевод)
     # =====================================================
@@ -24534,8 +24526,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "Едва я допил кофе, как пришёл поезд.", "answer": "Scarcely had I finished my coffee when the train arrived.", "explanation": ""},
                 {"question": "Погода была не только идеальной, но и тёплой.", "answer": "Not only was the weather perfect, but it was also warm.", "explanation": ""}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 8 (перефразирование)
     # =====================================================
@@ -24595,8 +24586,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "She opened the email and realized it was spam. (Scarcely) → Scarcely had she opened the email when she realized it was spam.", "answer": "Scarcely had she opened the email when she realized it was spam.", "explanation": "Scarcely + had."},
                 {"question": "The city was beautiful and had a rich history. (Not only) → Not only was the city beautiful, but it also had a rich history.", "answer": "Not only was the city beautiful, but it also had a rich history.", "explanation": "Not only + was."}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 9 (перевод)
     # =====================================================
@@ -24656,8 +24646,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "Едва он закончил есть, как попросил счёт.", "answer": "Scarcely had he finished his meal when he asked for the bill.", "explanation": ""},
                 {"question": "Вечеринка была не только весёлой, но и с отличной музыкой.", "answer": "Not only was the party fun, but it also had great music.", "explanation": ""}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 10 (перефразирование)
     # =====================================================
@@ -24717,8 +24706,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "He started reading and fell asleep. (Scarcely) → Scarcely had he started reading when he fell asleep.", "answer": "Scarcely had he started reading when he fell asleep.", "explanation": "Scarcely + had."},
                 {"question": "The exam was difficult and long. (Not only) → Not only was the exam difficult, but it was also very long.", "answer": "Not only was the exam difficult, but it was also very long.", "explanation": "Not only + was."}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 11 (перевод)
     # =====================================================
@@ -24778,8 +24766,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "Едва я сел, как автобус тронулся.", "answer": "Scarcely had I sat down when the bus started moving.", "explanation": ""},
                 {"question": "Книга была не только длинной, но и очень скучной.", "answer": "Not only was the book long, but it was also very boring.", "explanation": ""}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 12 (перефразирование)
     # =====================================================
@@ -24929,8 +24916,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "Таким был его гнев, что он не мог говорить.", "answer": "Such was his anger that he couldn't speak.", "explanation": ""},
                 {"question": "Только после того как я закончил, я заметил ошибку.", "answer": "Only after I finished did I notice the mistake.", "explanation": ""}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 2 (перефразирование)
     # =====================================================
@@ -24990,8 +24976,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "Her joy was such that she burst into tears. (Such) → Such was her joy that she burst into tears.", "answer": "Such was her joy that she burst into tears.", "explanation": "Such + was."},
                 {"question": "We saw the warning sign only after we left. (Only after) → Only after we left did we see the warning sign.", "answer": "Only after we left did we see the warning sign.", "explanation": "Only after + did."}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 3 (перевод)
     # =====================================================
@@ -25051,8 +25036,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "Шум был таким, что мы ничего не слышали.", "answer": "Such was the noise that we couldn't hear anything.", "explanation": ""},
                 {"question": "Только после окончания шоу мы вышли из театра.", "answer": "Only after the show finished did we leave the theatre.", "explanation": ""}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 4 (перефразирование)
     # =====================================================
@@ -25112,8 +25096,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "His determination was such that he never gave up. (Such) → Such was his determination that he never gave up.", "answer": "Such was his determination that he never gave up.", "explanation": "Such + was."},
                 {"question": "We realised we had forgotten to pay only after the meal. (Only after) → Only after the meal did we realise we had forgotten to pay.", "answer": "Only after the meal did we realise we had forgotten to pay.", "explanation": "Only after + did."}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 5 (перевод)
     # =====================================================
@@ -25173,8 +25156,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "Всеобщее замешательство было таким, что никто не знал, что делать.", "answer": "Such was the confusion that nobody knew what to do.", "explanation": ""},
                 {"question": "Только после шторма мы поняли, сколько ущерба он нанёс.", "answer": "Only after the storm did we realise how much damage it had done.", "explanation": ""}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 6 (перефразирование)
     # =====================================================
@@ -25234,8 +25216,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "The heat was such that we had to stop working. (Such) → Such was the heat that we had to stop working.", "answer": "Such was the heat that we had to stop working.", "explanation": "Such + was."},
                 {"question": "I realised I had studied the wrong material only after the exam. (Only after) → Only after the exam did I realise I had studied the wrong material.", "answer": "Only after the exam did I realise I had studied the wrong material.", "explanation": "Only after + did."}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 7 (перевод)
     # =====================================================
@@ -25295,8 +25276,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "Тишина была такой, что можно было услышать, как падает булавка.", "answer": "Such was the silence that you could hear a pin drop.", "explanation": ""},
                 {"question": "Только после того как дождь закончился, мы вышли на улицу.", "answer": "Only after the rain stopped did we go outside.", "explanation": ""}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 8 (перефразирование)
     # =====================================================
@@ -25356,8 +25336,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "Her beauty was such that everyone was captivated. (Such) → Such was her beauty that everyone was captivated.", "answer": "Such was her beauty that everyone was captivated.", "explanation": "Such + was."},
                 {"question": "I understood the situation only after I read the email. (Only after) → Only after I read the email did I understand the situation.", "answer": "Only after I read the email did I understand the situation.", "explanation": "Only after + did."}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 9 (перевод)
     # =====================================================
@@ -25417,8 +25396,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "Её доброта была такова, что все её любили.", "answer": "Such was her kindness that everyone loved her.", "explanation": ""},
                 {"question": "Только после землетрясения мы поняли, насколько это было опасно.", "answer": "Only after the earthquake did we realise how dangerous it was.", "explanation": ""}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 10 (перефразирование)
     # =====================================================
@@ -25478,8 +25456,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "The excitement was such that nobody slept all night. (Such) → Such was the excitement that nobody slept all night.", "answer": "Such was the excitement that nobody slept all night.", "explanation": "Such + was."},
                 {"question": "We appreciated what we had only after we lost everything. (Only after) → Only after we lost everything did we appreciate what we had.", "answer": "Only after we lost everything did we appreciate what we had.", "explanation": "Only after + did."}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 11 (перевод)
     # =====================================================
@@ -25539,8 +25516,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "Его гордость была такова, что он никогда не просил о помощи.", "answer": "Such was his pride that he never asked for help.", "explanation": ""},
                 {"question": "Только после операции он начал восстанавливаться.", "answer": "Only after the surgery did he start to recover.", "explanation": ""}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 12 (перефразирование)
     # =====================================================
@@ -25728,8 +25704,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "Шёл дождь, поэтому мы остались дома.", "answer": "It was raining, so we stayed home.", "explanation": ""},
                 {"question": "Я не хочу идти. Кроме того, уже слишком поздно.", "answer": "I don't want to go. Besides, it's too late.", "explanation": ""}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 2 (перефразирование)
     # =====================================================
@@ -25828,8 +25803,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "I love summer, but my sister prefers winter. (whereas) → I love summer, whereas my sister prefers winter.", "answer": "I love summer, whereas my sister prefers winter.", "explanation": "Whereas – тогда как."},
                 {"question": "She didn't have much experience, but she got the job. (nevertheless) → She didn't have much experience. Nevertheless, she got the job.", "answer": "She didn't have much experience. Nevertheless, she got the job.", "explanation": "Nevertheless – тем не менее."}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 3 (перевод)
     # =====================================================
@@ -25929,8 +25903,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "Она усердно училась, поэтому сдала экзамен.", "answer": "She studied hard, so she passed the exam.", "explanation": ""},
                 {"question": "Я понимаю твою точку зрения. Однако я не согласен с твоим выводом.", "answer": "I understand your point. However, I disagree with your conclusion.", "explanation": ""}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 4 (перефразирование)
     # =====================================================
@@ -26030,8 +26003,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "She was tired, so she went to bed early. (therefore) → She was tired; therefore, she went to bed early.", "answer": "She was tired; therefore, she went to bed early.", "explanation": "Therefore – поэтому."},
                 {"question": "I'm not hungry, and I don't feel like eating. (besides) → I'm not hungry. Besides, I don't feel like eating.", "answer": "I'm not hungry. Besides, I don't feel like eating.", "explanation": "Besides – кроме того."}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 5 (перевод)
 # =====================================================
@@ -26131,8 +26103,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "Проблема была сложной, но мы решили её быстро.", "answer": "The problem was complex, but we solved it quickly.", "explanation": ""},
                 {"question": "Я не готов. Кроме того, мне нужно больше времени.", "answer": "I'm not ready. Besides, I need more time.", "explanation": ""}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 6 (перефразирование)
     # =====================================================
@@ -26232,8 +26203,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "I was hungry, so I made a sandwich. (therefore) → I was hungry; therefore, I made a sandwich.", "answer": "I was hungry; therefore, I made a sandwich.", "explanation": "Therefore – поэтому."},
                 {"question": "We have enough money, but we can't buy it. (however) → We have enough money; however, we can't buy it because it's out of stock.", "answer": "We have enough money; however, we can't buy it because it's out of stock.", "explanation": "However – однако."}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 7 (перевод)
     # =====================================================
@@ -26333,8 +26303,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "Он много работал, поэтому сдал экзамен.", "answer": "He worked hard, so he passed the exam.", "explanation": ""},
                 {"question": "Мне это не интересно. Кроме того, я слишком занят.", "answer": "I'm not interested. Besides, I'm too busy.", "explanation": ""}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 8 (перефразирование)
     # =====================================================
@@ -26434,8 +26403,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "I was late, so I missed the train. (thus) → I was late; thus, I missed the train.", "answer": "I was late; thus, I missed the train.", "explanation": "Thus – таким образом."},
                 {"question": "We have a problem, but I think we can solve it. (however) → We have a problem; however, I think we can solve it.", "answer": "We have a problem; however, I think we can solve it.", "explanation": "However – однако."}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 9 (перевод)
     # =====================================================
@@ -26535,8 +26503,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "Она была истощена, поэтому легла спать рано.", "answer": "She was exhausted, so she went to bed early.", "explanation": ""},
                 {"question": "Я согласен с твоей идеей. Однако у меня есть некоторые опасения.", "answer": "I agree with your idea. However, I have some concerns.", "explanation": ""}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 10 (перефразирование)
     # =====================================================
@@ -26635,8 +26602,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "He was feeling ill, so he stayed home. (therefore) → He was feeling ill; therefore, he stayed home.", "answer": "He was feeling ill; therefore, he stayed home.", "explanation": "Therefore – поэтому."},
                 {"question": "I need a break. I've been working all day. (besides) → I need a break. Besides, I've been working all day.", "answer": "I need a break. Besides, I've been working all day.", "explanation": "Besides – кроме того."}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 11 (перевод)
     # =====================================================
@@ -26736,8 +26702,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "Она была уставшей, но продолжала работать.", "answer": "She was tired, but she continued working.", "explanation": ""},
                 {"question": "Мне не нравится этот цвет. Кроме того, он слишком дорогой.", "answer": "I don't like this colour. Besides, it's too expensive.", "explanation": ""}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 12 (перефразирование)
     # =====================================================
@@ -26967,8 +26932,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "Нам нужно соблюсти сроки по этому проекту.", "answer": "We need to meet the deadline for this project.", "explanation": ""},
                 {"question": "Она получила премию за превышение ожиданий.", "answer": "She received a bonus for exceeding expectations.", "explanation": ""}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 2 (перефразирование)
     # =====================================================
@@ -27068,8 +27032,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "He managed the project. (supervised) → He supervised the project from start to finish.", "answer": "He supervised the project from start to finish.", "explanation": "supervised."},
                 {"question": "We need to assign tasks to team members. (delegate) → We need to delegate tasks among team members.", "answer": "We need to delegate tasks among team members.", "explanation": "delegate."}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 3 (перевод)
     # =====================================================
@@ -27169,8 +27132,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "Ей нужно сотрудничать с коллегами по проекту.", "answer": "She needs to collaborate with her colleagues on the project.", "explanation": ""},
                 {"question": "Он испытывает большое давление на работе.", "answer": "He is under a lot of pressure at work.", "explanation": ""}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 4 (перефразирование)
     # =====================================================
@@ -27270,8 +27232,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "We need to fix the issue with the client. (resolve) → We need to resolve the issue with the client.", "answer": "We need to resolve the issue with the client.", "explanation": "resolve."},
                 {"question": "He copes with stress very well. (handles) → He handles stress very well.", "answer": "He handles stress very well.", "explanation": "handles."}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 5 (перевод)
     # =====================================================
@@ -27371,8 +27332,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "Нам нужно иметь дело с жалобами клиентов.", "answer": "We need to deal with complaints from customers.", "explanation": ""},
                 {"question": "Он не уложился в срок на прошлой неделе.", "answer": "He missed a deadline last week.", "explanation": ""}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 6 (перефразирование)
     # =====================================================
@@ -27472,8 +27432,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "She established a new branch. (opened) → She opened a new branch of the company.", "answer": "She opened a new branch of the company.", "explanation": "opened."},
                 {"question": "They introduced a new strategy. (implemented) → They implemented a new strategy to increase sales.", "answer": "They implemented a new strategy to increase sales.", "explanation": "implemented."}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 7 (перевод)
     # =====================================================
@@ -27573,8 +27532,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "Он эффективно руководит командой.", "answer": "He leads the team effectively.", "explanation": ""},
                 {"question": "Они разрабатывают новую линейку продуктов.", "answer": "They are developing a new product line.", "explanation": ""}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 8 (перефразирование)
     # =====================================================
@@ -27674,8 +27632,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "We need to reach our annual targets. (achieve) → We need to achieve our annual targets.", "answer": "We need to achieve our annual targets.", "explanation": "achieve."},
                 {"question": "She got a promotion after five years. (received) → She received a promotion after five years.", "answer": "She received a promotion after five years.", "explanation": "received."}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 9 (перевод)
     # =====================================================
@@ -27775,8 +27732,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "Она уволилась, чтобы открыть свой бизнес.", "answer": "She resigned from her job to start her own business.", "explanation": ""},
                 {"question": "Они решили нанять больше сотрудников.", "answer": "They decided to hire more staff.", "explanation": ""}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 10 (перефразирование)
     # =====================================================
@@ -27876,8 +27832,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "They brought in a new policy. (introduced) → They introduced a new policy last month.", "answer": "They introduced a new policy last month.", "explanation": "introduced."},
                 {"question": "She established her goals. (set) → She set her goals for the year.", "answer": "She set her goals for the year.", "explanation": "set."}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 11 (перевод)
     # =====================================================
@@ -27977,8 +27932,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "Он инженер-программист.", "answer": "He is a software engineer.", "explanation": ""},
                 {"question": "Она графический дизайнер.", "answer": "She is a graphic designer.", "explanation": ""}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 12 (перефразирование)
     # =====================================================
@@ -28208,8 +28162,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "Его обвинили в плагиате в эссе.", "answer": "He was accused of plagiarism in his essay.", "explanation": ""},
                 {"question": "Ей нужно посещать курс, чтобы сдать.", "answer": "She needs to attend the course to pass.", "explanation": ""}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 2 (перефразирование)
     # =====================================================
@@ -28309,8 +28262,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "He failed the exam and has to take it again. (retake) → He failed the exam and has to retake it.", "answer": "He failed the exam and has to retake it.", "explanation": "retake."},
                 {"question": "She wants to specialise in psychology. (major) → She needs to major in psychology.", "answer": "She needs to major in psychology.", "explanation": "major."}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 3 (перевод)
     # =====================================================
@@ -28410,8 +28362,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "Ей нужно зачислиться на курс.", "answer": "She needs to enrol for the course.", "explanation": ""},
                 {"question": "Ему нужно сделать много курсовых работ.", "answer": "He has to do a lot of coursework for his course.", "explanation": ""}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 4 (перефразирование)
     # =====================================================
@@ -28511,8 +28462,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "She teaches in the history department. (lecturer) → She is a lecturer in the history department.", "answer": "She is a lecturer in the history department.", "explanation": "lecturer."},
                 {"question": "He teaches in the physics department. (professor) → He is a professor in the physics department.", "answer": "He is a professor in the physics department.", "explanation": "professor."}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 5 (перевод)
     # =====================================================
@@ -28612,8 +28562,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "Она сдала задание вовремя.", "answer": "She submitted her assignment on time.", "explanation": ""},
                 {"question": "Ему нужно подать заявление в университет.", "answer": "He needs to apply to the university.", "explanation": ""}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 6 (перефразирование)
     # =====================================================
@@ -28713,8 +28662,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "She is working on her research. (postgraduate) → She is a postgraduate student.", "answer": "She is a postgraduate student.", "explanation": "postgraduate."},
                 {"question": "He is studying for his bachelor's degree. (undergraduate) → He is an undergraduate student.", "answer": "He is an undergraduate student.", "explanation": "undergraduate."}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 7 (перевод)
     # =====================================================
@@ -28814,8 +28762,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "Она аспирантка в университете.", "answer": "She is a postgraduate student at the university.", "explanation": ""},
                 {"question": "Он студент бакалавриата в университете.", "answer": "He is an undergraduate student at the university.", "explanation": ""}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 8 (перефразирование)
     # =====================================================
@@ -28915,8 +28862,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "She got a scholarship to study abroad. (won) → She won a scholarship to study abroad.", "answer": "She won a scholarship to study abroad.", "explanation": "won."},
                 {"question": "He was a student of education for five years. (studied) → He studied in education for five years.", "answer": "He studied in education for five years.", "explanation": "studied."}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 9 (перевод)
     # =====================================================
@@ -29016,8 +28962,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "Она вела семинар по методике преподавания.", "answer": "She led a seminar on teaching methods.", "explanation": ""},
                 {"question": "Он организовал дебаты по образовательной политике.", "answer": "He organised a debate on education policy.", "explanation": ""}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 10 (перефразирование)
     # =====================================================
@@ -29117,8 +29062,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "She is the head of the faculty. (dean) → She is a dean at the university.", "answer": "She is a dean at the university.", "explanation": "dean."},
                 {"question": "He has finished the university. (graduate) → He is a graduate of the university.", "answer": "He is a graduate of the university.", "explanation": "graduate."}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 11 (перевод)
     # =====================================================
@@ -29218,8 +29162,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "Она лектор на кафедре английского языка.", "answer": "She is a lecturer in the English department.", "explanation": ""},
                 {"question": "Он выпускник университета.", "answer": "He is a graduate of the university.", "explanation": ""}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 12 (перефразирование)
     # =====================================================
@@ -29449,8 +29392,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "У меня аллергия на пенициллин.", "answer": "I'm allergic to penicillin.", "explanation": ""},
                 {"question": "Ему нужно оперировать пациента.", "answer": "He needs to operate on the patient.", "explanation": ""}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 2 (перефразирование)
     # =====================================================
@@ -29550,8 +29492,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "He needs medication for his infection. (antibiotics) → He needs to take antibiotics for his infection.", "answer": "He needs to take antibiotics for his infection.", "explanation": "antibiotics."},
                 {"question": "She treats children. (paediatrician) → She is a paediatrician.", "answer": "She is a paediatrician.", "explanation": "paediatrician."}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 3 (перевод)
     # =====================================================
@@ -29651,8 +29592,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "Он дерматолог, лечит кожные заболевания.", "answer": "He is a dermatologist and treats skin conditions.", "explanation": ""},
                 {"question": "Она психолог, помогает людям с ментальным здоровьем.", "answer": "She is a psychologist and helps people with mental health.", "explanation": ""}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 4 (перефразирование)
     # =====================================================
@@ -29752,8 +29692,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "He gives first aid. (paramedic) → He is a paramedic.", "answer": "He is a paramedic.", "explanation": "paramedic."},
                 {"question": "She is a family doctor. (GP) → She is a GP.", "answer": "She is a GP.", "explanation": "GP."}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 5 (перевод)
     # =====================================================
@@ -29853,8 +29792,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "Он хирург и проводит операции.", "answer": "He is a surgeon and performs operations.", "explanation": ""},
                 {"question": "Она дерматолог, лечит кожные проблемы.", "answer": "She is a dermatologist and treats skin problems.", "explanation": ""}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 6 (перефразирование)
     # =====================================================
@@ -29954,8 +29892,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "He has a physical harm. (injury) → He has an injury.", "answer": "He has an injury.", "explanation": "injury."},
                 {"question": "She has a bacterial problem. (infection) → She has an infection.", "answer": "She has an infection.", "explanation": "infection."}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 7 (перевод)
     # =====================================================
@@ -30055,8 +29992,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "Она гастроэнтеролог, лечит проблемы с пищеварением.", "answer": "She is a gastroenterologist and treats digestive issues.", "explanation": ""},
                 {"question": "Он невролог, лечит неврологические расстройства.", "answer": "He is a neurologist and treats neurological disorders.", "explanation": ""}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 8 (перефразирование)
     # =====================================================
@@ -30156,8 +30092,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "She needs an operation for her knee. (surgery) → She needs to have surgery to fix her knee.", "answer": "She needs to have surgery to fix her knee.", "explanation": "surgery."},
                 {"question": "He needs a shot to prevent the flu. (vaccination) → He needs to get a vaccination to prevent the flu.", "answer": "He needs to get a vaccination to prevent the flu.", "explanation": "vaccination."}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 9 (перевод)
     # =====================================================
@@ -30257,8 +30192,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "Ей нужно обратиться к офтальмологу из-за глаз.", "answer": "She needs to see an ophthalmologist about her eyes.", "explanation": ""},
                 {"question": "Ему нужно обратиться к ЛОРу из-за ушей.", "answer": "He needs to see an ENT specialist about his ears.", "explanation": ""}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 10 (перефразирование)
     # =====================================================
@@ -30358,8 +30292,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "She is getting better after surgery. (recovering) → She is recovering from her surgery.", "answer": "She is recovering from her surgery.", "explanation": "recovering."},
                 {"question": "He is waiting for his appointment. (waiting) → He is waiting for his appointment.", "answer": "He is waiting for his appointment.", "explanation": "waiting."}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 11 (перевод)
     # =====================================================
@@ -30459,8 +30392,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "У неё ожирение, ей нужно похудеть.", "answer": "She has obesity and needs to lose weight.", "explanation": ""},
                 {"question": "У него высокий холестерин, ему нужно питаться здоровой пищей.", "answer": "He has high cholesterol and needs to eat a healthy diet.", "explanation": ""}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 12 (перефразирование)
     # =====================================================
@@ -30690,8 +30622,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "Парниковый эффект вызывает повышение глобальной температуры.", "answer": "The greenhouse effect is causing global temperatures to rise.", "explanation": ""},
                 {"question": "Многие виды находятся под угрозой вымирания из-за потери среды обитания.", "answer": "Many species are facing extinction due to habitat loss.", "explanation": ""}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 2 (перефразирование)
     # =====================================================
@@ -30791,8 +30722,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "Upcycling is creative reuse. (upcycling) → Upcycling means creating something new from old items.", "answer": "Upcycling means creating something new from old items.", "explanation": "upcycling."},
                 {"question": "The ozone layer shields us. (ozone) → The ozone layer protects us from harmful UV rays.", "answer": "The ozone layer protects us from harmful UV rays.", "explanation": "ozone layer."}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 3 (перевод)
     # =====================================================
@@ -30892,8 +30822,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "Истощение озонового слоя – серьёзная проблема.", "answer": "The depletion of the ozone layer is a serious problem.", "explanation": ""},
                 {"question": "Нам следует пользоваться общественным транспортом, чтобы сократить выбросы.", "answer": "We should use public transport to reduce emissions.", "explanation": ""}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 4 (перефразирование)
     # =====================================================
@@ -30993,8 +30922,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "Use less water. (save) → We should save water by taking shorter showers.", "answer": "We should save water by taking shorter showers.", "explanation": "save water."},
                 {"question": "Put trees in the ground. (plant) → We need to plant trees to improve air quality.", "answer": "We need to plant trees to improve air quality.", "explanation": "plant trees."}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 5 (перевод)
     # =====================================================
@@ -31094,8 +31022,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "Сохранение природы – это практика защиты окружающей среды.", "answer": "Conservation is the practice of protecting the natural environment.", "explanation": ""},
                 {"question": "Органическое земледелие не использует искусственные химикаты.", "answer": "Organic farming uses no artificial chemicals.", "explanation": ""}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 6 (перефразирование)
     # =====================================================
@@ -31195,8 +31122,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "Initiatives for the planet exist. (green) → Green initiatives aim to protect the planet for future generations.", "answer": "Green initiatives aim to protect the planet for future generations.", "explanation": "green initiatives."},
                 {"question": "We can demand action by petition. (sign) → We should sign petitions to demand environmental action.", "answer": "We should sign petitions to demand environmental action.", "explanation": "sign petitions."}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 7 (перевод)
     # =====================================================
@@ -31296,8 +31222,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "Сохранение природы – это практика защиты исчезающих видов.", "answer": "Conservation is the practice of protecting endangered species.", "explanation": ""},
                 {"question": "Компостирование – это процесс превращения органических отходов в удобрение.", "answer": "Composting is the process of turning organic waste into fertiliser.", "explanation": ""}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 8 (перефразирование)
     # =====================================================
@@ -31397,8 +31322,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "Study the environment. (ecology) → Ecology is the study of the environment and its problems.", "answer": "Ecology is the study of the environment and its problems.", "explanation": "ecology."},
                 {"question": "Manage nature wisely. (environmental management) → Environmental management is the management of natural resources.", "answer": "Environmental management is the management of natural resources.", "explanation": "environmental management."}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 9 (перевод)
     # =====================================================
@@ -31498,8 +31422,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "Использование естественного освещения – это использование естественного света для экономии энергии.", "answer": "Daylighting is the use of natural light to save energy.", "explanation": ""},
                 {"question": "Фиторемедиация – это использование растений для очистки загрязнённой почвы.", "answer": "Phytoremediation is the use of plants to clean polluted soil.", "explanation": ""}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 10 (перефразирование)
     # =====================================================
@@ -31599,8 +31522,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "Buy food from local farms. (local sourcing) → Local sourcing is the practice of buying local produce.", "answer": "Local sourcing is the practice of buying local produce.", "explanation": "local sourcing."},
                 {"question": "Reduce noise. (noise reduction) → Noise reduction is the practice of reducing noise pollution.", "answer": "Noise reduction is the practice of reducing noise pollution.", "explanation": "noise reduction."}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 11 (перевод)
     # =====================================================
@@ -31700,8 +31622,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "Жизнь без автомобиля – это практика сокращения использования автомобилей.", "answer": "Car-free living is the practice of reducing car usage.", "explanation": ""},
                 {"question": "Устойчивые материалы – это практика использования возобновляемых материалов.", "answer": "Sustainable materials are the practice of using renewable materials.", "explanation": ""}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 12 (перефразирование)
     # =====================================================
@@ -31931,8 +31852,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "Генетика – это раздел биологии, изучающий гены.", "answer": "Genetics is a branch of biology that studies genes.", "explanation": ""},
                 {"question": "Инженер – это человек, который проектирует и строит машины.", "answer": "An engineer is a person who designs and builds machines.", "explanation": ""}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 2 (перефразирование)
     # =====================================================
@@ -32032,8 +31952,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "It overlays digital info on the real world. (augmented reality) → Augmented reality overlays digital information onto the real world.", "answer": "Augmented reality overlays digital information onto the real world.", "explanation": "augmented reality."},
                 {"question": "It connects devices to the internet. (Internet of Things) → The Internet of Things connects everyday devices to the internet.", "answer": "The Internet of Things connects everyday devices to the internet.", "explanation": "Internet of Things."}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 3 (перевод)
     # =====================================================
@@ -32133,8 +32052,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "Облачные вычисления позволяют пользователям получать доступ к данным через интернет.", "answer": "Cloud computing allows users to access data over the internet.", "explanation": ""},
                 {"question": "Блокчейн – это система записи информации, которую трудно изменить.", "answer": "Blockchain is a system of recording information that is difficult to change.", "explanation": ""}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 4 (перефразирование)
     # =====================================================
@@ -32234,8 +32152,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "It creates artificial environments. (virtual reality) → Virtual reality is the use of technology to create artificial environments.", "answer": "Virtual reality is the use of technology to create artificial environments.", "explanation": "virtual reality."},
                 {"question": "It studies interactions with the environment. (ecology) → Ecology is the study of how living things interact with their environment.", "answer": "Ecology is the study of how living things interact with their environment.", "explanation": "ecology."}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 5 (перевод)
     # =====================================================
@@ -32335,8 +32252,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "Физика – это изучение свойств материи и энергии.", "answer": "Physics is the study of the properties of matter and energy.", "explanation": ""},
                 {"question": "Химик – это учёный, изучающий химический состав веществ.", "answer": "A chemist is a scientist who studies the chemical composition of substances.", "explanation": ""}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 6 (перефразирование)
     # =====================================================
@@ -32436,8 +32352,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "She studies rocks. (geologist) → A geologist is a scientist who studies the composition of rocks.", "answer": "A geologist is a scientist who studies the composition of rocks.", "explanation": "geologist."},
                 {"question": "It uses robots in manufacturing. (robotics) → Robotics is the practice of using robots in manufacturing.", "answer": "Robotics is the practice of using robots in manufacturing.", "explanation": "robotics."}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 7 (перевод)
     # =====================================================
@@ -32537,8 +32452,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "Обучение с помощью VR – это использование виртуальной реальности для обучения.", "answer": "VR training is the practice of using virtual reality for training.", "explanation": ""},
                 {"question": "Зоология – это изучение поведения животных.", "answer": "Zoology is the study of the behaviour of animals.", "explanation": ""}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 8 (перефразирование)
     # =====================================================
@@ -32638,8 +32552,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "He studies the physics of the Earth. (geophysicist) → A geophysicist is a scientist who studies the physics of the Earth.", "answer": "A geophysicist is a scientist who studies the physics of the Earth.", "explanation": "geophysicist."},
                 {"question": "AI is used in healthcare. (AI healthcare) → AI healthcare is the practice of using AI in healthcare.", "answer": "AI healthcare is the practice of using AI in healthcare.", "explanation": "AI healthcare."}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 9 (перевод)
     # =====================================================
@@ -32739,8 +32652,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "Автоматизация с помощью ИИ – это использование ИИ для автоматизации задач.", "answer": "AI automation is the practice of using AI to automate tasks.", "explanation": ""},
                 {"question": "Океанография – это изучение океанов Земли.", "answer": "Oceanography is the study of the Earth's oceans.", "explanation": ""}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 10 (перефразирование)
     # =====================================================
@@ -32840,8 +32752,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "He studies matter properties. (material scientist) → A material scientist is a scientist who studies the properties of matter.", "answer": "A material scientist is a scientist who studies the properties of matter.", "explanation": "material scientist."},
                 {"question": "Technology solves environmental problems. (environmental technology) → Environmental technology is the practice of using technology to solve environmental problems.", "answer": "Environmental technology is the practice of using technology to solve environmental problems.", "explanation": "environmental technology."}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 11 (перевод)
     # =====================================================
@@ -32941,8 +32852,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "Радиобиолог – это учёный, изучающий воздействие радиации.", "answer": "A radiobiologist is a scientist who studies the effects of radiation.", "explanation": ""},
                 {"question": "Низкоуглеродные технологии – это использование технологий для сокращения выбросов углерода.", "answer": "Low-carbon tech is the practice of using technology to reduce carbon emissions.", "explanation": ""}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 12 (перефразирование)
     # =====================================================
@@ -33172,8 +33082,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "Редактор проверил факты перед публикацией.", "answer": "The editor fact-checked the article before publication.", "explanation": ""},
                 {"question": "Ведущий представил вечерние новости.", "answer": "The anchor presented the evening news.", "explanation": ""}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 2 (перефразирование)
     # =====================================================
@@ -33273,8 +33182,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "The celebrity was followed by photographers. (paparazzi) → The photographer took a picture of the paparazzi following the celebrity.", "answer": "The photographer took a picture of the paparazzi following the celebrity.", "explanation": "paparazzi."},
                 {"question": "The platform has many subscribers. (streaming service) → The streaming service has millions of subscribers.", "answer": "The streaming service has millions of subscribers.", "explanation": "streaming service."}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 3 (перевод)
     # =====================================================
@@ -33374,8 +33282,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "Правительство обвинили в использовании пропаганды для контроля над СМИ.", "answer": "The government was accused of using propaganda to control the media.", "explanation": ""},
                 {"question": "Предвзятость в социальных сетях может создавать информационный пузырь.", "answer": "The bias on social media can create an echo chamber.", "explanation": ""}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 4 (перефразирование)
     # =====================================================
@@ -33475,8 +33382,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "Her job was to ask questions. (role) → The reporter's role was to ask tough questions.", "answer": "The reporter's role was to ask tough questions.", "explanation": "role."},
                 {"question": "Some information was leaked. (details) → The details of the story were leaked to the press.", "answer": "The details of the story were leaked to the press.", "explanation": "details."}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 5 (перевод)
     # =====================================================
@@ -33576,8 +33482,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "Цель этой истории – привлечь внимание.", "answer": "The goal of the story was to raise awareness.", "explanation": ""},
                 {"question": "Цель статьи – информировать читателей.", "answer": "The purpose of the article was to inform the readers.", "explanation": ""}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 6 (перефразирование)
     # =====================================================
@@ -33677,8 +33582,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "The press holds power to account. (responsibility) → The responsibility of the press is to hold power to account.", "answer": "The responsibility of the press is to hold power to account.", "explanation": "responsibility."},
                 {"question": "The media shapes public opinion. (function) → The function of the media is to shape public opinion.", "answer": "The function of the media is to shape public opinion.", "explanation": "function."}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 7 (перевод)
     # =====================================================
@@ -33778,8 +33682,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "Задача репортёра – расследовать истории.", "answer": "The task of the reporter is to investigate stories.", "explanation": ""},
                 {"question": "Цель обозревателя – выражать мнения.", "answer": "The goal of the columnist is to express opinions.", "explanation": ""}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 8 (перефразирование)
     # =====================================================
@@ -33879,8 +33782,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "Reporters ask questions. (task) → The task of the reporter is to ask questions.", "answer": "The task of the reporter is to ask questions.", "explanation": "task."},
                 {"question": "Columnists write opinions. (goal) → The goal of the columnist is to write opinions.", "answer": "The goal of the columnist is to write opinions.", "explanation": "goal."}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 9 (перевод)
     # =====================================================
@@ -33980,8 +33882,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "Миссия репортёра – раскрыть правду.", "answer": "The mission of the reporter is to uncover the truth.", "explanation": ""},
                 {"question": "Цель обозревателя – влиять на общественное мнение.", "answer": "The goal of the columnist is to influence public opinion.", "explanation": ""}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 10 (перефразирование)
     # =====================================================
@@ -34081,8 +33982,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "Reporters ask tough questions. (task) → The task of the reporter is to ask tough questions.", "answer": "The task of the reporter is to ask tough questions.", "explanation": "task."},
                 {"question": "Columnists offer analysis. (purpose) → The purpose of the columnist is to offer analysis.", "answer": "The purpose of the columnist is to offer analysis.", "explanation": "purpose."}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 11 (перевод)
     # =====================================================
@@ -34182,8 +34082,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "Задача репортёра – расследовать зацепки.", "answer": "The task of the reporter is to investigate leads.", "explanation": ""},
                 {"question": "Цель обозревателя – провоцировать размышления.", "answer": "The goal of the columnist is to provoke thought.", "explanation": ""}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 12 (перефразирование)
     # =====================================================
@@ -34413,8 +34312,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "Политика обвинили во взяточничестве.", "answer": "The politician was accused of taking bribes.", "explanation": ""},
                 {"question": "Присяжные вынесли обвинительный вердикт.", "answer": "The jury reached a verdict of guilty.", "explanation": ""}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 2 (перефразирование)
     # =====================================================
@@ -34514,8 +34412,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "The witness gave a statement. (testimony) → The witness gave a detailed testimony.", "answer": "The witness gave a detailed testimony.", "explanation": "testimony."},
                 {"question": "The plaintiff sued the company. (lawsuit) → The plaintiff filed a lawsuit against the company.", "answer": "The plaintiff filed a lawsuit against the company.", "explanation": "lawsuit."}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 3 (перевод)
     # =====================================================
@@ -34615,8 +34512,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "Полиция нашла улики, связывающие его с преступлением.", "answer": "The police found evidence linking him to the crime.", "explanation": ""},
                 {"question": "Судья вынес суровый приговор.", "answer": "The judge gave a harsh sentence.", "explanation": ""}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 4 (перефразирование)
     # =====================================================
@@ -34716,8 +34612,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "The gang sold drugs. (trafficking) → The gang was involved in drug trafficking.", "answer": "The gang was involved in drug trafficking.", "explanation": "trafficking."},
                 {"question": "The witness spoke in court. (testimony) → The court heard the testimony of the witness.", "answer": "The court heard the testimony of the witness.", "explanation": "testimony."}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 5 (перевод)
     # =====================================================
@@ -34817,8 +34712,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "Судья вызвал свидетеля для дачи показаний.", "answer": "The judge called for a witness to testify.", "explanation": ""},
                 {"question": "Это преступление очень серьёзное.", "answer": "The offence is a very serious crime.", "explanation": ""}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 6 (перефразирование)
     # =====================================================
@@ -34918,8 +34812,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "The judge postponed the case. (adjourn) → The judge decided to adjourn the case.", "answer": "The judge decided to adjourn the case.", "explanation": "adjourn."},
                 {"question": "The witness gave evidence. (testify) → The witness was asked to testify.", "answer": "The witness was asked to testify.", "explanation": "testify."}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 7 (перевод)
     # =====================================================
@@ -35019,8 +34912,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "Беглеца нашли прячущимся на складе.", "answer": "The fugitive was found hiding in the warehouse.", "explanation": ""},
                 {"question": "Полиция выдала ордер на его арест.", "answer": "The police issued a warrant for his arrest.", "explanation": ""}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 8 (перефразирование)
     # =====================================================
@@ -35120,8 +35012,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "He attacked people on the street. (mugger) → The mugger threatened the victim with a weapon.", "answer": "The mugger threatened the victim with a weapon.", "explanation": "mugger."},
                 {"question": "He killed people. (killer) → The killer was convicted of murder.", "answer": "The killer was convicted of murder.", "explanation": "killer."}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 9 (перевод)
     # =====================================================
@@ -35221,8 +35112,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "Наркоторговец был вовлечён в наркосеть.", "answer": "The drug dealer was involved in a drug ring.", "explanation": ""},
                 {"question": "Подозреваемого оправдали за недостатком улик.", "answer": "The suspect was acquitted due to lack of evidence.", "explanation": ""}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 10 (перефразирование)
     # =====================================================
@@ -35322,8 +35212,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "Witnesses described him. (perpetrator) → The perpetrator of the robbery was described by witnesses.", "answer": "The perpetrator of the robbery was described by witnesses.", "explanation": "perpetrator."},
                 {"question": "He was charged with assault. (defendant) → The defendant was charged with assault.", "answer": "The defendant was charged with assault.", "explanation": "defendant."}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 11 (перевод)
     # =====================================================
@@ -35423,8 +35312,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "Свидетеля попросили предоставить улики.", "answer": "The witness was asked to provide evidence.", "explanation": ""},
                 {"question": "Поджигателя признали виновным в поджоге.", "answer": "The arsonist was found guilty of arson.", "explanation": ""}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 12 (перефразирование)
     # =====================================================
@@ -35654,8 +35542,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "Оппозиция выступила против новой политики.", "answer": "The opposition opposed the new policy.", "explanation": ""},
                 {"question": "Правительство пообещало бороться с коррупцией.", "answer": "The government promised to fight corruption.", "explanation": ""}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 2 (перефразирование)
     # =====================================================
@@ -35755,8 +35642,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "A change was made to the constitution. (amendment) → The constitution was amended by a new amendment.", "answer": "The constitution was amended by a new amendment.", "explanation": "amendment."},
                 {"question": "The ambassador was recalled. (foreign) → The ambassador was recalled from the foreign country.", "answer": "The ambassador was recalled from the foreign country.", "explanation": "foreign."}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 3 (перевод)
     # =====================================================
@@ -35856,8 +35742,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "Выборы были проведены для избрания нового президента.", "answer": "The election was held to elect a new president.", "explanation": ""},
                 {"question": "Политик начал избирательную кампанию.", "answer": "The politician launched an election campaign.", "explanation": ""}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 4 (перефразирование)
     # =====================================================
@@ -35904,8 +35789,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "He leads the army. (commander-in-chief) → The commander-in-chief is the head of the armed forces.", "answer": "The commander-in-chief is the head of the armed forces.", "explanation": "commander-in-chief."},
                 {"question": "She represents the country abroad. (ambassador) → The ambassador is the representative of the government abroad.", "answer": "The ambassador is the representative of the government abroad.", "explanation": "ambassador."}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 5 (перевод)
     # =====================================================
@@ -36005,8 +35889,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "Судебная власть отвечает за толкование законов.", "answer": "The judiciary is responsible for interpreting laws.", "explanation": ""},
                 {"question": "Исполнительная власть отвечает за обеспечение соблюдения законов.", "answer": "The executive is responsible for enforcing laws.", "explanation": ""}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 6 (перефразирование)
     # =====================================================
@@ -36106,8 +35989,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "Power is centralised. (unitary system) → The unitary system is a political system in which power is centralised.", "answer": "The unitary system is a political system in which power is centralised.", "explanation": "unitary system."},
                 {"question": "The head of state is not elected. (monarchy) → The monarchy is a political system in which the head of state is not elected.", "answer": "The monarchy is a political system in which the head of state is not elected.", "explanation": "monarchy."}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 7 (перевод)
     # =====================================================
@@ -36207,8 +36089,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "Столица – это местонахождение правительства.", "answer": "The capital is the seat of the government.", "explanation": ""},
                 {"question": "Пост президента – это высшая политическая должность в стране.", "answer": "The presidency is the highest political office in the country.", "explanation": ""}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 8 (перефразирование)
     # =====================================================
@@ -36308,8 +36189,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "It shows how many people vote. (turnout) → The turnout is the percentage of people who vote.", "answer": "The turnout is the percentage of people who vote.", "explanation": "turnout."},
                 {"question": "It is the final result. (outcome) → The outcome is the result of an election.", "answer": "The outcome is the result of an election.", "explanation": "outcome."}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 9 (перевод)
     # =====================================================
@@ -36409,8 +36289,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "Ратификация – это процесс утверждения договора.", "answer": "The ratification is the process of approving a treaty.", "explanation": ""},
                 {"question": "Судебная власть – это орган, который толкует законы.", "answer": "The judiciary is the body that interprets laws.", "explanation": ""}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 10 (перефразирование)
     # =====================================================
@@ -36510,8 +36389,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "He presides over the Senate. (vice president) → The vice president is the person who presides over the Senate.", "answer": "The vice president is the person who presides over the Senate.", "explanation": "vice president."},
                 {"question": "He presides over the House. (speaker) → The speaker is the person who presides over the House of Representatives.", "answer": "The speaker is the person who presides over the House of Representatives.", "explanation": "speaker."}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 11 (перевод)
     # =====================================================
@@ -36611,8 +36489,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "Белый дом – официальная резиденция президента США.", "answer": "The White House is the official residence of the US president.", "explanation": ""},
                 {"question": "Капитолий – это здание, где заседает Конгресс США.", "answer": "The Capitol is the building where the US Congress meets.", "explanation": ""}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 12 (перефразирование)
     # =====================================================
@@ -36842,8 +36719,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "Процентная ставка выросла до 5%.", "answer": "The interest rate increased to 5%.", "explanation": ""},
                 {"question": "Компании необходимо сократить свой долг.", "answer": "The company needs to reduce its debt.", "explanation": ""}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 2 (перефразирование)
     # =====================================================
@@ -36943,8 +36819,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "The company's possessions exceed its debts. (assets) → The company's assets are higher than its liabilities.", "answer": "The company's assets are higher than its liabilities.", "explanation": "assets."},
                 {"question": "It is the difference between assets and liabilities. (equity) → The equity is the difference between assets and liabilities.", "answer": "The equity is the difference between assets and liabilities.", "explanation": "equity."}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 3 (перевод)
     # =====================================================
@@ -37044,8 +36919,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "Ипотека – это вид кредита для покупки недвижимости.", "answer": "Mortgage is a type of loan used to buy property.", "explanation": ""},
                 {"question": "Выручка – это деньги, которые бизнес зарабатывает от продаж.", "answer": "Revenue is the money that a business earns from sales.", "explanation": ""}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 4 (перефразирование)
     # =====================================================
@@ -37145,8 +37019,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "It ensures timely delivery. (supply chain) → The supply chain ensures products are delivered on time.", "answer": "The supply chain ensures products are delivered on time.", "explanation": "supply chain."},
                 {"question": "It is 20% of the market. (market share) → The company's market share is 20% of the total market.", "answer": "The company's market share is 20% of the total market.", "explanation": "market share."}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 5 (перевод)
     # =====================================================
@@ -37246,8 +37119,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "Пошлина – это налог на импортируемые товары.", "answer": "Tariff is a tax on imported goods.", "explanation": ""},
                 {"question": "Профицит торгового баланса – это когда страна экспортирует больше, чем импортирует.", "answer": "Trade surplus is when a country exports more than it imports.", "explanation": ""}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 6 (перефразирование)
     # =====================================================
@@ -37347,8 +37219,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "It is a plan for the year. (budget) → The company prepared a budget for the next financial year.", "answer": "The company prepared a budget for the next financial year.", "explanation": "budget."},
                 {"question": "It predicts 3% growth. (forecast) → The financial forecast predicts a growth of 3%.", "answer": "The financial forecast predicts a growth of 3%.", "explanation": "forecast."}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 7 (перевод)
     # =====================================================
@@ -37448,8 +37319,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "Стоимость собственного капитала компании составляет 50 миллионов долларов.", "answer": "The company's equity value is $50 million.", "explanation": ""},
                 {"question": "Компания взяла кредит для расширения деятельности.", "answer": "The company took out a loan to expand operations.", "explanation": ""}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 8 (перефразирование)
     # =====================================================
@@ -37550,8 +37420,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "The business chose a new strategy. (adopted) → The business adopted a new market strategy.", "answer": "The business adopted a new market strategy.", "explanation": "adopted."},
                 {"question": "The company reached its target. (achieved) → The company achieved its sales target.", "answer": "The company achieved its sales target.", "explanation": "achieved."}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 9 (перевод)
     # =====================================================
@@ -37651,8 +37520,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "Облигация – это вид ценной бумаги, который представляет собой кредит компании.", "answer": "Bond is a type of financial security that represents a loan to a company.", "explanation": ""},
                 {"question": "Сокращение персонала – это практика уменьшения численности рабочей силы компании.", "answer": "Downsizing is the practice of reducing the size of a company's workforce.", "explanation": ""}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 10 (перефразирование)
     # =====================================================
@@ -37752,8 +37620,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "It encourages new ideas. (culture of innovation) → The business has a culture of innovation.", "answer": "The business has a culture of innovation.", "explanation": "culture of innovation."},
                 {"question": "It is about quality. (reputation) → The company's reputation is its commitment to quality.", "answer": "The company's reputation is its commitment to quality.", "explanation": "reputation."}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 11 (перевод)
     # =====================================================
@@ -37853,8 +37720,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "Бюджет – это план того, сколько денег бизнес потратит и заработает.", "answer": "Budget is the plan for how much money a business will spend and earn.", "explanation": ""},
                 {"question": "Прогноз – это предсказание будущих экономических условий.", "answer": "Forecast is the prediction of future economic conditions.", "explanation": ""}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 12 (перефразирование)
     # =====================================================
@@ -38084,8 +37950,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "Я не могу мириться с его грубостью.", "answer": "I can't put up with his rudeness.", "explanation": ""},
                 {"question": "Никогда не откладывай на завтра то, что можно сделать сегодня.", "answer": "Never put off until tomorrow what you can do today.", "explanation": ""}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 2 (перефразирование)
     # =====================================================
@@ -38185,8 +38050,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "He thought he could cheat without punishment. (get away with) → He thought he could get away with cheating.", "answer": "He thought he could get away with cheating.", "explanation": "get away with – избежать наказания."},
                 {"question": "What do you mean? (getting at) → What are you getting at?", "answer": "What are you getting at?", "explanation": "get at – подразумевать."}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 3 (перевод)
     # =====================================================
@@ -38286,8 +38150,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "Мне потребовалось много времени, чтобы оправиться после разрыва.", "answer": "It took me a long time to get over the breakup.", "explanation": ""},
                 {"question": "Тебе будет неудобно, если я уйду рано?", "answer": "Would you be put out if I left early?", "explanation": ""}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 4 (перефразирование)
     # =====================================================
@@ -38387,8 +38250,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "I finally reached customer service by phone. (got through) → I finally got through to customer service.", "answer": "I finally got through to customer service.", "explanation": "get through – дозвониться."},
                 {"question": "What do you mean? (getting at) → What are you getting at?", "answer": "What are you getting at?", "explanation": "get at – подразумевать."}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 5 (перевод)
     # =====================================================
@@ -38488,8 +38350,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "Она предложила новое предложение.", "answer": "She put forward a new proposal.", "explanation": ""},
                 {"question": "Пожарные быстро потушили пожар.", "answer": "The firefighters put out the blaze quickly.", "explanation": ""}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 6 (перефразирование)
     # =====================================================
@@ -38589,8 +38450,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "Her performance was a success. (came off) → She came off her performance perfectly.", "answer": "She came off her performance perfectly.", "explanation": "come off – удаться."},
                 {"question": "I can't accept her sudden decision. (get over) → I can't get over her sudden decision.", "answer": "I can't get over her sudden decision.", "explanation": "get over – оправиться/пережить."}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 7 (перевод)
     # =====================================================
@@ -38690,8 +38550,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "Она предложила новую стратегию.", "answer": "She put forward a new strategy.", "explanation": ""},
                 {"question": "Мне нужно надеть очки, чтобы это прочитать.", "answer": "I need to put on my glasses to read this.", "explanation": ""}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 8 (перефразирование)
     # =====================================================
@@ -38791,8 +38650,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "The handle fell off. (came off) → The handle came off.", "answer": "The handle came off.", "explanation": "come off – отвалиться."},
                 {"question": "I can't reach her by phone at the moment. (get through) → I can't get through to her at the moment.", "answer": "I can't get through to her at the moment.", "explanation": "get through – дозвониться."}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 9 (перевод)
     # =====================================================
@@ -38892,8 +38750,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "Она предложила смелое предложение.", "answer": "She put forward a bold proposal.", "explanation": ""},
                 {"question": "Пожарным удалось потушить огонь.", "answer": "The firefighters managed to put out the fire.", "explanation": ""}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 10 (перефразирование)
     # =====================================================
@@ -38993,8 +38850,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "Could you connect me to HR? (put through) → Could you put me through to the HR department?", "answer": "Could you put me through to the HR department?", "explanation": "put through – соединить по телефону."},
                 {"question": "I'm sorry to inconvenience you. (put out) → I'm sorry to put you out.", "answer": "I'm sorry to put you out.", "explanation": "put out – неудобствовать."}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 11 (перевод)
     # =====================================================
@@ -39094,8 +38950,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "Он предложил новую теорию.", "answer": "He put forward a new theory.", "explanation": ""},
                 {"question": "Пожалуйста, потуши сигарету.", "answer": "Please put out the cigarette.", "explanation": ""}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 12 (перефразирование)
     # =====================================================
@@ -39325,8 +39180,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "Она отклонила предложение о работе.", "answer": "She turned down the job offer.", "explanation": ""},
                 {"question": "Гусеница превратилась в бабочку.", "answer": "The caterpillar turned into a butterfly.", "explanation": ""}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 2 (перефразирование)
     # =====================================================
@@ -39426,8 +39280,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "They refused entry to dozens of fans. (turned away) → They turned away dozens of fans.", "answer": "They turned away dozens of fans.", "explanation": "turn away – не пустить."},
                 {"question": "Her grandparents raised her. (brought up) → She was brought up by her grandparents.", "answer": "She was brought up by her grandparents.", "explanation": "bring up – воспитывать."}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 3 (перевод)
     # =====================================================
@@ -39527,8 +39380,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "Его обманула мошенническая схема.", "answer": "He was taken in by the scam.", "explanation": ""},
                 {"question": "Оказалось, что он лгал.", "answer": "It turned out that he was lying.", "explanation": ""}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 4 (перефразирование)
     # =====================================================
@@ -39628,8 +39480,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "The crisis revealed the worst in people. (brought out) → The crisis brought out the worst in people.", "answer": "The crisis brought out the worst in people.", "explanation": "bring out – проявлять."},
                 {"question": "His grandparents raised him. (brought up) → He was brought up by his grandparents.", "answer": "He was brought up by his grandparents.", "explanation": "bring up – воспитывать."}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 5 (перевод)
     # =====================================================
@@ -39729,8 +39580,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "Фокусник превратил кролика в голубя.", "answer": "The magician turned the rabbit into a dove.", "explanation": ""},
                 {"question": "Новая политика вызвала много путаницы.", "answer": "The new policy brought about a lot of confusion.", "explanation": ""}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 6 (перефразирование)
     # =====================================================
@@ -39830,8 +39680,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "She accepted a lot of responsibility. (took on) → She took on a lot of responsibility.", "answer": "She took on a lot of responsibility.", "explanation": "take on – брать на себя."},
                 {"question": "He mentioned the topic of salaries. (brought up) → He brought up the topic of salaries.", "answer": "He brought up the topic of salaries.", "explanation": "bring up – поднимать тему."}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 7 (перевод)
     # =====================================================
@@ -39931,8 +39780,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "Холодная погода превратилась в снег.", "answer": "The cold weather turned into snow.", "explanation": ""},
                 {"question": "Он снял шляпу перед входом.", "answer": "He took off his hat before entering.", "explanation": ""}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 8 (перефразирование)
     # =====================================================
@@ -40032,8 +39880,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "The team released a new product. (brought out) → The team brought out a new product.", "answer": "The team brought out a new product.", "explanation": "bring out – выпускать."},
                 {"question": "The protest revealed the anger of the people. (brought out) → The protest brought out the anger of the people.", "answer": "The protest brought out the anger of the people.", "explanation": "bring out – проявлять."}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 9 (перевод)
     # =====================================================
@@ -40133,8 +39980,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "Она отвергла его помощь.", "answer": "She turned down his help.", "explanation": ""},
                 {"question": "Спор перерос в драку.", "answer": "The argument turned into a fight.", "explanation": ""}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 10 (перефразирование)
     # =====================================================
@@ -40234,8 +40080,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "She resembles her mother in personality. (takes after) → She takes after her mother in personality.", "answer": "She takes after her mother in personality.", "explanation": "take after – быть похожим."},
                 {"question": "A larger firm acquired the company. (taken over) → The company was taken over by a larger firm.", "answer": "The company was taken over by a larger firm.", "explanation": "take over – принять управление."}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 11 (перевод)
     # =====================================================
@@ -40335,8 +40180,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "Он похож на своего дядю по внешности.", "answer": "He takes after his uncle in appearance.", "explanation": ""},
                 {"question": "Встречу отложили до следующей недели.", "answer": "The meeting was put off until next week.", "explanation": ""}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 12 (перефразирование)
     # =====================================================
@@ -40566,8 +40410,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "Ты попал в точку с этим замечанием.", "answer": "You hit the nail on the head with that comment.", "explanation": ""},
                 {"question": "Экзамен был легкотней.", "answer": "The exam was a piece of cake.", "explanation": ""}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 2 (перефразирование)
     # =====================================================
@@ -40667,8 +40510,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "Buying a new car won't cost too much. (break the bank) → Buying a new car won't break the bank.", "answer": "Buying a new car won't break the bank.", "explanation": "break the bank."},
                 {"question": "Money is limited. (doesn't grow on trees) → Money doesn't grow on trees.", "answer": "Money doesn't grow on trees.", "explanation": "doesn't grow on trees."}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 3 (перевод)
     # =====================================================
@@ -40768,8 +40610,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "Давай договоримся по этому вопросу.", "answer": "Let's see eye to eye on this issue.", "explanation": ""},
                 {"question": "Я хожу в кино очень редко.", "answer": "I go to the cinema once in a blue moon.", "explanation": ""}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 4 (перефразирование)
     # =====================================================
@@ -40869,8 +40710,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "We need to agree about this. (same page) → We need to be on the same page about this.", "answer": "We need to be on the same page about this.", "explanation": "be on the same page."},
                 {"question": "She always does more than required. (extra mile) → She always goes the extra mile.", "answer": "She always goes the extra mile.", "explanation": "go the extra mile."}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 5 (перевод)
     # =====================================================
@@ -40970,8 +40810,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "Она наконец освоила работу с программой.", "answer": "She finally got the hang of using the software.", "explanation": ""},
                 {"question": "Они не согласны друг с другом по большинству вопросов.", "answer": "They don't see eye to eye on most things.", "explanation": ""}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 6 (перефразирование)
     # =====================================================
@@ -41071,8 +40910,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "We disagree on this issue. (same page) → We're not on the same page regarding this issue.", "answer": "We're not on the same page regarding this issue.", "explanation": "same page."},
                 {"question": "He always does more than required for his clients. (extra mile) → He always goes the extra mile for his clients.", "answer": "He always goes the extra mile for his clients.", "explanation": "extra mile."}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 7 (перевод)
     # =====================================================
@@ -41172,8 +41010,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "Мы согласны друг с другом по большинству тем.", "answer": "We see eye to eye on most topics.", "explanation": ""},
                 {"question": "Я хожу в театр очень редко.", "answer": "I only go to the theatre once in a blue moon.", "explanation": ""}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 8 (перефразирование)
     # =====================================================
@@ -41273,8 +41110,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "We agree about the new policy. (same page) → We're on the same page about the new policy.", "answer": "We're on the same page about the new policy.", "explanation": "same page."},
                 {"question": "She does more than expected for her students. (extra mile) → She always goes the extra mile for her students.", "answer": "She always goes the extra mile for her students.", "explanation": "extra mile."}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 9 (перевод)
     # =====================================================
@@ -41374,8 +41210,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "Я наконец освоил эту программу.", "answer": "I've finally got the hang of this software.", "explanation": ""},
                 {"question": "Они согласны друг с другом по новому проекту.", "answer": "They see eye to eye on the new project.", "explanation": ""}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 10 (перефразирование)
     # =====================================================
@@ -41477,8 +41312,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "We don't agree about this decision. (same page) → We're not on the same page about this decision.", "answer": "We're not on the same page about this decision.", "explanation": "same page."},
                 {"question": "She ensures quality by doing more than expected. (extra mile) → She goes the extra mile to ensure quality.", "answer": "She goes the extra mile to ensure quality.", "explanation": "extra mile."}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 11 (перевод)
     # =====================================================
@@ -41578,8 +41412,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "Они не согласны по бюджету.", "answer": "They don't see eye to eye on the budget.", "explanation": ""},
                 {"question": "Я хожу на концерты очень редко.", "answer": "I go to concerts once in a blue moon.", "explanation": ""}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 12 (перефразирование)
     # =====================================================
