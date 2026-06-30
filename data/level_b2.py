@@ -27389,7 +27389,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
       ]
     ]
   },
-  "health_medicine": {
+"health_medicine": {
     "title": "Лексика: здоровье и медицина",
     "pages": [
       {
@@ -27415,1209 +27415,740 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
         "answer": "I have a headache. (не I have a head pain)"
       }
     ],
-"practice_bank": [
-    # =====================================================
-    # ВАРИАНТ 1 (перевод)
-    # =====================================================
-[
-  {
-    "type": "complex",
-    "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-    "subtasks": [
-      {
-        "question": "I have a splitting ______.",
-        "options": ["a) headache", "b) backache", "c) stomach ache", "d) toothache"],
-        "answer": "a",
-        "explanation": "headache – головная боль."
-      },
-      {
-        "question": "She suffers from a chronic back ______.",
-        "options": ["a) pain", "b) problem", "c) condition", "d) injury"],
-        "answer": "b",
-        "explanation": "chronic back problem – хроническая проблема со спиной."
-      },
-      {
-        "question": "You need to see a ______.",
-        "options": ["a) GP", "b) surgeon", "c) specialist", "d) consultant"],
-        "answer": "c",
-        "explanation": "specialist – специалист."
-      },
-      {
-        "question": "The ______ arrived within minutes.",
-        "options": ["a) doctor", "b) nurse", "c) surgeon", "d) paramedic"],
-        "answer": "d",
-        "explanation": "paramedic – фельдшер скорой."
-      },
-      {
-        "question": "The doctor ______ antibiotics.",
-        "options": ["a) prescribed", "b) recommended", "c) administered", "d) gave"],
-        "answer": "a",
-        "explanation": "to prescribe – выписывать лекарство."
-      },
-      {
-        "question": "She is ______ from surgery.",
-        "options": ["a) healing", "b) recovering", "c) resting", "d) improving"],
-        "answer": "b",
-        "explanation": "to recover – выздоравливать."
-      },
-      {
-        "question": "I'm ______ to penicillin.",
-        "options": ["a) sensitive", "b) intolerant", "c) allergic", "d) susceptible"],
-        "answer": "c",
-        "explanation": "to be allergic to – иметь аллергию на."
-      },
-      {
-        "question": "He needs to ______ on the patient.",
-        "options": ["a) treat", "b) examine", "c) cure", "d) operate"],
-        "answer": "d",
-        "explanation": "to operate on – оперировать."
-              }
-            ]
+    "practice_bank": [
+      # =====================================================
+      # ВАРИАНТ 1 (перевод)
+      # =====================================================
+      [
+        {
+          "type": "complex",
+          "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+          "subtasks": [
+            {"question": "I have a splitting ______.", "options": ["a) headache", "b) backache", "c) stomach ache", "d) toothache"], "answer": "a", "explanation": "headache – головная боль."},
+            {"question": "She suffers from a chronic back ______.", "options": ["a) pain", "b) problem", "c) condition", "d) injury"], "answer": "b", "explanation": "chronic back problem – хроническая проблема со спиной."},
+            {"question": "You need to see a ______.", "options": ["a) GP", "b) surgeon", "c) specialist", "d) consultant"], "answer": "c", "explanation": "specialist – специалист."},
+            {"question": "The ______ arrived within minutes.", "options": ["a) doctor", "b) nurse", "c) surgeon", "d) paramedic"], "answer": "d", "explanation": "paramedic – фельдшер скорой."},
+            {"question": "The doctor ______ antibiotics.", "options": ["a) prescribed", "b) recommended", "c) administered", "d) gave"], "answer": "a", "explanation": "to prescribe – выписывать лекарство."},
+            {"question": "She is ______ from surgery.", "options": ["a) healing", "b) recovering", "c) resting", "d) improving"], "answer": "b", "explanation": "to recover – выздоравливать."},
+            {"question": "I'm ______ to penicillin.", "options": ["a) sensitive", "b) intolerant", "c) allergic", "d) susceptible"], "answer": "c", "explanation": "to be allergic to – иметь аллергию на."},
+            {"question": "He needs to ______ on the patient.", "options": ["a) treat", "b) examine", "c) cure", "d) operate"], "answer": "d", "explanation": "to operate on – оперировать."}
+          ]
         },
         {
-            "type": "complex",
-            "text": "2. Fill in the gaps with the correct word or phrase. Type the missing word(s) in the box.",
-            "subtasks": [
-                {"question": "I have a splitting ______.", "answer": "headache", "explanation": "headache."},
-                {"question": "She suffers from a chronic back ______.", "answer": "problem", "explanation": "problem."},
-                {"question": "You need to see a ______.", "answer": "specialist", "explanation": "specialist."},
-                {"question": "The ______ arrived within minutes.", "answer": "paramedic", "explanation": "paramedic."},
-                {"question": "The doctor ______ antibiotics.", "answer": "prescribed", "explanation": "prescribed."},
-                {"question": "She is ______ from surgery.", "answer": "recovering", "explanation": "recovering."},
-                {"question": "I'm ______ to penicillin.", "answer": "allergic", "explanation": "allergic."},
-                {"question": "He needs to ______ on the patient.", "answer": "operate", "explanation": "operate."}
-            ]
+          "type": "complex",
+          "text": "2. Fill in the gaps with the correct word or phrase. Type the missing word(s) in the box.",
+          "subtasks": [
+            {"question": "I have a splitting ______.", "answer": "headache", "explanation": "headache."},
+            {"question": "She suffers from a chronic back ______.", "answer": "problem", "explanation": "problem."},
+            {"question": "You need to see a ______.", "answer": "specialist", "explanation": "specialist."},
+            {"question": "The ______ arrived within minutes.", "answer": "paramedic", "explanation": "paramedic."},
+            {"question": "The doctor ______ antibiotics.", "answer": "prescribed", "explanation": "prescribed."},
+            {"question": "She is ______ from surgery.", "answer": "recovering", "explanation": "recovering."},
+            {"question": "I'm ______ to penicillin.", "answer": "allergic", "explanation": "allergic."},
+            {"question": "He needs to ______ on the patient.", "answer": "operate", "explanation": "operate."}
+          ]
         },
         {
-            "type": "complex",
-            "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
-            "subtasks": [
-                {"question": "I have a splitting headache.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "She suffers from a chronic back problem.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "You need to see a specialist.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "The paramedic arrived within minutes.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "The doctor prescribled antibiotics.", "answer": "The doctor prescribed antibiotics.", "explanation": "Prescribed, не prescribled."},
-                {"question": "She is recovering from surgery.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "I'm allergic to penicillin.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "He needs to operate on the patient.", "answer": "Correct", "explanation": "Верно."}
-            ]
+          "type": "complex",
+          "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
+          "subtasks": [
+            {"question": "I have a splitting headache.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "She suffers from a chronic back problem.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "You need to see a specialist.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "The paramedic arrived within minutes.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "The doctor prescribled antibiotics.", "answer": "The doctor prescribed antibiotics.", "explanation": "Prescribed, не prescribled."},
+            {"question": "She is recovering from surgery.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "I'm allergic to penicillin.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "He needs to operate on the patient.", "answer": "Correct", "explanation": "Верно."}
+          ]
         },
         {
-            "type": "complex",
-            "text": "4. Translate the sentences into English using the correct health vocabulary. Type your translation (one sentence) in the box.",
-            "subtasks": [
-                {"question": "У меня сильная головная боль.", "answer": "I have a splitting headache.", "explanation": ""},
-                {"question": "Она страдает от хронической боли в спине.", "answer": "She suffers from a chronic back problem.", "explanation": ""},
-                {"question": "Тебе нужно обратиться к специалисту.", "answer": "You need to see a specialist.", "explanation": ""},
-                {"question": "Фельдшер скорой прибыл через несколько минут.", "answer": "The paramedic arrived within minutes.", "explanation": ""},
-                {"question": "Врач выписал антибиотики.", "answer": "The doctor prescribed antibiotics.", "explanation": ""},
-                {"question": "Она восстанавливается после операции.", "answer": "She is recovering from surgery.", "explanation": ""},
-                {"question": "У меня аллергия на пенициллин.", "answer": "I'm allergic to penicillin.", "explanation": ""},
-                {"question": "Ему нужно оперировать пациента.", "answer": "He needs to operate on the patient.", "explanation": ""}
-            ]
-        },
-    # =====================================================
-    # ВАРИАНТ 2 (перефразирование)
-    # =====================================================
-[
-  {
-    "type": "complex",
-    "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-    "subtasks": [
-      {
-        "question": "She has a high ______, so she needs to see a doctor.",
-        "options": ["a) fever", "b) temperature", "c) pulse", "d) blood pressure"],
-        "answer": "b",
-        "explanation": "high temperature – высокая температура."
-      },
-      {
-        "question": "He has a bad ______ and can't stop coughing.",
-        "options": ["a) flu", "b) cold", "c) cough", "d) chest infection"],
-        "answer": "b",
-        "explanation": "cold – простуда."
-      },
-      {
-        "question": "I have a ______ throat and it hurts to swallow.",
-        "options": ["a) painful", "b) swollen", "c) sore", "d) infected"],
-        "answer": "c",
-        "explanation": "sore throat – боль в горле."
-      },
-      {
-        "question": "She broke her arm and suffered a ______.",
-        "options": ["a) sprain", "b) fracture", "c) dislocation", "d) strain"],
-        "answer": "b",
-        "explanation": "fracture – перелом."
-      },
-      {
-        "question": "He twisted his ankle and got a ______.",
-        "options": ["a) fracture", "b) sprain", "c) dislocation", "d) break"],
-        "answer": "b",
-        "explanation": "sprain – растяжение."
-      },
-      {
-        "question": "She has a bad case of the ______.",
-        "options": ["a) flu", "b) cold", "c) infection", "d) virus"],
-        "answer": "a",
-        "explanation": "flu – грипп."
-      },
-      {
-        "question": "He needs to take ______ for his infection.",
-        "options": ["a) antibiotics", "b) painkillers", "c) vitamins", "d) steroids"],
-        "answer": "a",
-        "explanation": "antibiotics – антибиотики."
-      },
-      {
-        "question": "She is a ______, so she treats children.",
-        "options": ["a) paediatrician", "b) geriatrician", "c) obstetrician", "d) surgeon"],
-        "answer": "a",
-        "explanation": "paediatrician – педиатр."
-              }
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "2. Fill in the gaps with the correct word or phrase. Type the missing word(s) in the box.",
-            "subtasks": [
-                {"question": "She has a high ______, so she needs to see a doctor.", "answer": "temperature", "explanation": "temperature."},
-                {"question": "He has a bad ______ and can't stop coughing.", "answer": "cold", "explanation": "cold."},
-                {"question": "I have a ______ throat and it hurts to swallow.", "answer": "sore", "explanation": "sore."},
-                {"question": "She broke her arm and suffered a ______.", "answer": "fracture", "explanation": "fracture."},
-                {"question": "He twisted his ankle and got a ______.", "answer": "sprain", "explanation": "sprain."},
-                {"question": "She has a bad case of the ______.", "answer": "flu", "explanation": "flu."},
-                {"question": "He needs to take ______ for his infection.", "answer": "antibiotics", "explanation": "antibiotics."},
-                {"question": "She is a ______, so she treats children.", "answer": "paediatrician", "explanation": "paediatrician."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
-            "subtasks": [
-                {"question": "She has a high temperature, so she needs to see a doctor.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "He has a bad cold and can't stop coughing.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "I have a sore throat and it hurts to swallow.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "She broke her arm and suffered a fracture.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "He twisted his ankle and got a sprain.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "She has a bad case of the flu.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "He needs to take antibiotics for his infection.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "She is a paediatrician, so she treats childs.", "answer": "She is a paediatrician, so she treats children.", "explanation": "Children, не childs."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "4. Rewrite the sentences using the word given in brackets. Type the whole sentence.",
-            "subtasks": [
-                {"question": "She has a fever. (temperature) → She has a high temperature.", "answer": "She has a high temperature.", "explanation": "temperature."},
-                {"question": "He has a bad cough. (cold) → He has a bad cold.", "answer": "He has a bad cold.", "explanation": "cold."},
-                {"question": "My throat hurts. (sore) → I have a sore throat.", "answer": "I have a sore throat.", "explanation": "sore throat."},
-                {"question": "She broke her arm. (fracture) → She suffered a fracture.", "answer": "She suffered a fracture.", "explanation": "fracture."},
-                {"question": "He twisted his ankle. (sprain) → He got a sprain.", "answer": "He got a sprain.", "explanation": "sprain."},
-                {"question": "She has the flu. (case) → She has a bad case of the flu.", "answer": "She has a bad case of the flu.", "explanation": "case."},
-                {"question": "He needs medication for his infection. (antibiotics) → He needs to take antibiotics for his infection.", "answer": "He needs to take antibiotics for his infection.", "explanation": "antibiotics."},
-                {"question": "She treats children. (paediatrician) → She is a paediatrician.", "answer": "She is a paediatrician.", "explanation": "paediatrician."}
-            ]
-        },
-    # =====================================================
-    # ВАРИАНТ 3 (перевод)
-    # =====================================================
-[
-  {
-    "type": "complex",
-    "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-    "subtasks": [
-      {
-        "question": "He has a ______ back and needs to rest.",
-        "options": ["a) sore", "b) bad", "c) painful", "d) weak"],
-        "answer": "b",
-        "explanation": "bad back – больная спина."
-      },
-      {
-        "question": "She felt ______ and had to sit down.",
-        "options": ["a) faint", "b) dizzy", "c) light-headed", "d) unsteady"],
-        "answer": "b",
-        "explanation": "dizzy – головокружение."
-      },
-      {
-        "question": "He has a ______ rash on his arm.",
-        "options": ["a) skin", "b) red", "c) allergic", "d) itchy"],
-        "answer": "a",
-        "explanation": "skin rash – кожная сыпь."
-      },
-      {
-        "question": "She has a ______ to nuts.",
-        "options": ["a) intolerance", "b) sensitivity", "c) allergy", "d) reaction"],
-        "answer": "c",
-        "explanation": "allergy – аллергия."
-      },
-      {
-        "question": "He is a ______ and works in a hospital.",
-        "options": ["a) surgeon", "b) physician", "c) nurse", "d] paramedic"],
-        "answer": "a",
-        "explanation": "surgeon – хирург."
-      },
-      {
-        "question": "She is a ______ and treats heart problems.",
-        "options": ["a) cardiologist", "b) neurologist", "c) pulmonologist", "d) cardiothoracic surgeon"],
-        "answer": "a",
-        "explanation": "cardiologist – кардиолог."
-      },
-      {
-        "question": "He is a ______ and treats skin conditions.",
-        "options": ["a) dermatologist", "b) plastic surgeon", "c) allergist", "d) rheumatologist"],
-        "answer": "a",
-        "explanation": "dermatologist – дерматолог."
-      },
-      {
-        "question": "She is a ______ and helps people with mental health.",
-        "options": ["a) psychiatrist", "b) psychologist", "c) counsellor", "d) psychotherapist"],
-        "answer": "b",
-        "explanation": "psychologist – психолог."
-              }
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "2. Fill in the gaps with the correct word or phrase. Type the missing word(s) in the box.",
-            "subtasks": [
-                {"question": "He has a ______ back and needs to rest.", "answer": "bad", "explanation": "bad."},
-                {"question": "She felt ______ and had to sit down.", "answer": "dizzy", "explanation": "dizzy."},
-                {"question": "He has a ______ rash on his arm.", "answer": "skin", "explanation": "skin."},
-                {"question": "She has a ______ to nuts.", "answer": "allergy", "explanation": "allergy."},
-                {"question": "He is a ______ and works in a hospital.", "answer": "surgeon", "explanation": "surgeon."},
-                {"question": "She is a ______ and treats heart problems.", "answer": "cardiologist", "explanation": "cardiologist."},
-                {"question": "He is a ______ and treats skin conditions.", "answer": "dermatologist", "explanation": "dermatologist."},
-                {"question": "She is a ______ and helps people with mental health.", "answer": "psychologist", "explanation": "psychologist."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
-            "subtasks": [
-                {"question": "He has a bad back and needs to rest.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "She felt dizzy and had to sit down.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "He has a skin rash on his arm.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "She has a allergy to nuts.", "answer": "She has an allergy to nuts.", "explanation": "Allergy начинается с гласной, нужен 'an'."},
-                {"question": "He is a surgeon and works in a hospital.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "She is a cardiologist and treats heart problems.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "He is a dermatologist and treats skin conditions.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "She is a psychologist and helps people with mental health.", "answer": "Correct", "explanation": "Верно."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "4. Translate the sentences into English using the correct health vocabulary. Type your translation (one sentence) in the box.",
-            "subtasks": [
-                {"question": "У него болит спина, ему нужно отдохнуть.", "answer": "He has a bad back and needs to rest.", "explanation": ""},
-                {"question": "У неё закружилась голова, и ей пришлось сесть.", "answer": "She felt dizzy and had to sit down.", "explanation": ""},
-                {"question": "У него сыпь на руке.", "answer": "He has a skin rash on his arm.", "explanation": ""},
-                {"question": "У неё аллергия на орехи.", "answer": "She has an allergy to nuts.", "explanation": ""},
-                {"question": "Он хирург и работает в больнице.", "answer": "He is a surgeon and works in a hospital.", "explanation": ""},
-                {"question": "Она кардиолог, лечит проблемы с сердцем.", "answer": "She is a cardiologist and treats heart problems.", "explanation": ""},
-                {"question": "Он дерматолог, лечит кожные заболевания.", "answer": "He is a dermatologist and treats skin conditions.", "explanation": ""},
-                {"question": "Она психолог, помогает людям с ментальным здоровьем.", "answer": "She is a psychologist and helps people with mental health.", "explanation": ""}
-            ]
-        },
-    # =====================================================
-    # ВАРИАНТ 4 (перефразирование)
-    # =====================================================
-[
-  {
-    "type": "complex",
-    "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-    "subtasks": [
-      {
-        "question": "She has a ______ ache and can't eat.",
-        "options": ["a) stomach", "b) head", "c) back", "d) tooth"],
-        "answer": "a",
-        "explanation": "stomach ache – боль в животе."
-      },
-      {
-        "question": "He felt ______ and thought he was going to vomit.",
-        "options": ["a) dizzy", "b) nauseous", "c) faint", "d) sick"],
-        "answer": "b",
-        "explanation": "nauseous – тошнота."
-      },
-      {
-        "question": "I need to take a ______ for my headache.",
-        "options": ["a) antibiotic", "b) pill", "c) painkiller", "d) medicine"],
-        "answer": "c",
-        "explanation": "painkiller – обезболивающее."
-      },
-      {
-        "question": "She is a ______ and works in a pharmacy.",
-        "options": ["a) chemist", "b) GP", "c) nurse", "d) pharmacist"],
-        "answer": "d",
-        "explanation": "pharmacist – фармацевт."
-      },
-      {
-        "question": "He is a ______ and treats teeth problems.",
-        "options": ["a) dentist", "b) surgeon", "c) cardiologist", "d) neurologist"],
-        "answer": "a",
-        "explanation": "dentist – стоматолог."
-      },
-      {
-        "question": "She is a ______ and helps people with mental disorders.",
-        "options": ["a) psychologist", "b) psychiatrist", "c) counsellor", "d) therapist"],
-        "answer": "b",
-        "explanation": "psychiatrist – психиатр."
-      },
-      {
-        "question": "He is a ______ and gives first aid.",
-        "options": ["a) doctor", "b) nurse", "c) paramedic", "d) surgeon"],
-        "answer": "c",
-        "explanation": "paramedic – фельдшер скорой."
-      },
-      {
-        "question": "She is a ______ and works in a hospital.",
-        "options": ["a) specialist", "b) consultant", "c) surgeon", "d) GP"],
-        "answer": "d",
-        "explanation": "GP – терапевт."
-              }
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "2. Fill in the gaps with the correct word or phrase. Type the missing word(s) in the box.",
-            "subtasks": [
-                {"question": "She has a ______ ache and can't eat.", "answer": "stomach", "explanation": "stomach."},
-                {"question": "He felt ______ and thought he was going to vomit.", "answer": "nauseous", "explanation": "nauseous."},
-                {"question": "I need to take a ______ for my headache.", "answer": "painkiller", "explanation": "painkiller."},
-                {"question": "She is a ______ and works in a pharmacy.", "answer": "pharmacist", "explanation": "pharmacist."},
-                {"question": "He is a ______ and treats teeth problems.", "answer": "dentist", "explanation": "dentist."},
-                {"question": "She is a ______ and helps people with mental disorders.", "answer": "psychiatrist", "explanation": "psychiatrist."},
-                {"question": "He is a ______ and gives first aid.", "answer": "paramedic", "explanation": "paramedic."},
-                {"question": "She is a ______ and works in a hospital.", "answer": "GP", "explanation": "GP."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
-            "subtasks": [
-                {"question": "She has a stomach ache and can't eat.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "He felt nauseous and thought he was going to vomit.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "I need to take a painkiller for my headache.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "She is a pharmacist and works in a pharmacy.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "He is a dentist and treats teeth problems.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "She is a psychiatrist and helps people with mental disorders.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "He is a paramedic and gives first aid.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "She is a GP and works in a hospital.", "answer": "Correct", "explanation": "Верно."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "4. Rewrite the sentences using the word given in brackets. Type the whole sentence.",
-            "subtasks": [
-                {"question": "Her stomach hurts. (stomach ache) → She has a stomach ache.", "answer": "She has a stomach ache.", "explanation": "stomach ache."},
-                {"question": "He felt sick. (nauseous) → He felt nauseous.", "answer": "He felt nauseous.", "explanation": "nauseous."},
-                {"question": "I need to take something for my headache. (painkiller) → I need to take a painkiller for my headache.", "answer": "I need to take a painkiller for my headache.", "explanation": "painkiller."},
-                {"question": "She works in a pharmacy. (pharmacist) → She is a pharmacist.", "answer": "She is a pharmacist.", "explanation": "pharmacist."},
-                {"question": "He treats teeth. (dentist) → He is a dentist.", "answer": "He is a dentist.", "explanation": "dentist."},
-                {"question": "She treats mental disorders. (psychiatrist) → She is a psychiatrist.", "answer": "She is a psychiatrist.", "explanation": "psychiatrist."},
-                {"question": "He gives first aid. (paramedic) → He is a paramedic.", "answer": "He is a paramedic.", "explanation": "paramedic."},
-                {"question": "She is a family doctor. (GP) → She is a GP.", "answer": "She is a GP.", "explanation": "GP."}
-            ]
-        },
-    # =====================================================
-    # ВАРИАНТ 5 (перевод)
-    # =====================================================
-[
-  {
-    "type": "complex",
-    "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-    "subtasks": [
-      {
-        "question": "He has a ______ cough that won't go away.",
-        "options": ["a) severe", "b) persistent", "c) chronic", "d) mild"],
-        "answer": "b",
-        "explanation": "persistent cough – постоянный кашель."
-      },
-      {
-        "question": "She has a ______ and needs to rest in bed.",
-        "options": ["a) temperature", "b) fever", "c) headache", "d) cold"],
-        "answer": "b",
-        "explanation": "fever – жар."
-      },
-      {
-        "question": "He needs to see a ______ for his heart condition.",
-        "options": ["a) cardiologist", "b) neurologist", "c) dermatologist", "d) psychiatrist"],
-        "answer": "a",
-        "explanation": "cardiologist – кардиолог."
-      },
-      {
-        "question": "She is a ______ and works in a hospital.",
-        "options": ["a) nurse", "b) surgeon", "c) pharmacist", "d] GP"],
-        "answer": "a",
-        "explanation": "nurse – медсестра."
-      },
-      {
-        "question": "He needs to take a ______ for his pain.",
-        "options": ["a) antibiotic", "b) painkiller", "c) vitamin", "d) injection"],
-        "answer": "b",
-        "explanation": "painkiller – обезболивающее."
-      },
-      {
-        "question": "She needs to get a ______ for her flu.",
-        "options": ["a) vaccination", "b) prescription", "c) blood test", "d) X-ray"],
-        "answer": "a",
-        "explanation": "vaccination – вакцинация."
-      },
-      {
-        "question": "He is a ______ and performs operations.",
-        "options": ["a) GP", "b) cardiologist", "c) surgeon", "d) anaesthetist"],
-        "answer": "c",
-        "explanation": "surgeon – хирург."
-      },
-      {
-        "question": "She is a ______ and treats skin problems.",
-        "options": ["a) dermatologist", "b) paediatrician", "c) obstetrician", "d) psychologist"],
-        "answer": "a",
-        "explanation": "dermatologist – дерматолог."
-              }
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "2. Fill in the gaps with the correct word or phrase. Type the missing word(s) in the box.",
-            "subtasks": [
-                {"question": "He has a ______ cough that won't go away.", "answer": "persistent", "explanation": "persistent."},
-                {"question": "She has a ______ and needs to rest in bed.", "answer": "fever", "explanation": "fever."},
-                {"question": "He needs to see a ______ for his heart condition.", "answer": "cardiologist", "explanation": "cardiologist."},
-                {"question": "She is a ______ and works in a hospital.", "answer": "nurse", "explanation": "nurse."},
-                {"question": "He needs to take a ______ for his pain.", "answer": "painkiller", "explanation": "painkiller."},
-                {"question": "She needs to get a ______ for her flu.", "answer": "vaccination", "explanation": "vaccination."},
-                {"question": "He is a ______ and performs operations.", "answer": "surgeon", "explanation": "surgeon."},
-                {"question": "She is a ______ and treats skin problems.", "answer": "dermatologist", "explanation": "dermatologist."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
-            "subtasks": [
-                {"question": "He has a persistent cough that won't go away.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "She has a fever and needs to rest in bed.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "He needs to see a cardiologist for his heart condition.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "She is a nurse and works in a hospital.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "He needs to take a painkiller for his pain.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "She needs to get a vaccination for her flu.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "He is a surgeon and performs operations.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "She is a dermatologist and treats skin problems.", "answer": "Correct", "explanation": "Верно."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "4. Translate the sentences into English using the correct health vocabulary. Type your translation (one sentence) in the box.",
-            "subtasks": [
-                {"question": "У него постоянный кашель, который не проходит.", "answer": "He has a persistent cough that won't go away.", "explanation": ""},
-                {"question": "У неё жар, ей нужно отлежаться.", "answer": "She has a fever and needs to rest in bed.", "explanation": ""},
-                {"question": "Ему нужно обратиться к кардиологу из-за проблем с сердцем.", "answer": "He needs to see a cardiologist for his heart condition.", "explanation": ""},
-                {"question": "Она медсестра и работает в больнице.", "answer": "She is a nurse and works in a hospital.", "explanation": ""},
-                {"question": "Ему нужно принять обезболивающее от боли.", "answer": "He needs to take a painkiller for his pain.", "explanation": ""},
-                {"question": "Ей нужно сделать прививку от гриппа.", "answer": "She needs to get a vaccination for her flu.", "explanation": ""},
-                {"question": "Он хирург и проводит операции.", "answer": "He is a surgeon and performs operations.", "explanation": ""},
-                {"question": "Она дерматолог, лечит кожные проблемы.", "answer": "She is a dermatologist and treats skin problems.", "explanation": ""}
-            ]
-        },
-    # =====================================================
-    # ВАРИАНТ 6 (перефразирование)
-    # =====================================================
-[
-  {
-    "type": "complex",
-    "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-    "subtasks": [
-      {
-        "question": "He has a ______ and needs to take some medicine.",
-        "options": ["a) flu", "b) cold", "c) cough", "d) infection"],
-        "answer": "b",
-        "explanation": "cold – простуда."
-      },
-      {
-        "question": "She has a ______ and needs to drink plenty of fluids.",
-        "options": ["a) temperature", "b) cold", "c) fever", "d) headache"],
-        "answer": "c",
-        "explanation": "fever – жар."
-      },
-      {
-        "question": "He has a ______ and needs to see a dentist.",
-        "options": ["a) toothache", "b) headache", "c) backache", "d) stomach ache"],
-        "answer": "a",
-        "explanation": "toothache – зубная боль."
-      },
-      {
-        "question": "She has a ______ and needs to see a physiotherapist.",
-        "options": ["a) headache", "b) toothache", "c) stomach ache", "d) backache"],
-        "answer": "d",
-        "explanation": "backache – боль в спине."
-      },
-      {
-        "question": "He has a ______ and needs to see a specialist.",
-        "options": ["a) chronic disease", "b) acute condition", "c) temporary illness", "d) minor injury"],
-        "answer": "a",
-        "explanation": "chronic disease – хроническое заболевание."
-      },
-      {
-        "question": "She has a ______ and needs to rest.",
-        "options": ["a) fracture", "b) sprain", "c) cut", "d) bruise"],
-        "answer": "b",
-        "explanation": "sprain – растяжение."
-      },
-      {
-        "question": "He has a ______ and needs to see a surgeon.",
-        "options": ["a) injury", "b) illness", "c) disease", "d) condition"],
-        "answer": "a",
-        "explanation": "injury – травма."
-      },
-      {
-        "question": "She has a ______ and needs to take antibiotics.",
-        "options": ["a) allergy", "b) infection", "c) rash", "d) injury"],
-        "answer": "b",
-        "explanation": "infection – инфекция."
-              }
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "2. Fill in the gaps with the correct word or phrase. Type the missing word(s) in the box.",
-            "subtasks": [
-                {"question": "He has a ______ and needs to take some medicine.", "answer": "cold", "explanation": "cold."},
-                {"question": "She has a ______ and needs to drink plenty of fluids.", "answer": "fever", "explanation": "fever."},
-                {"question": "He has a ______ and needs to see a dentist.", "answer": "toothache", "explanation": "toothache."},
-                {"question": "She has a ______ and needs to see a physiotherapist.", "answer": "backache", "explanation": "backache."},
-                {"question": "He has a ______ and needs to see a specialist.", "answer": "chronic disease", "explanation": "chronic disease."},
-                {"question": "She has a ______ and needs to rest.", "answer": "sprain", "explanation": "sprain."},
-                {"question": "He has a ______ and needs to see a surgeon.", "answer": "injury", "explanation": "injury."},
-                {"question": "She has a ______ and needs to take antibiotics.", "answer": "infection", "explanation": "infection."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
-            "subtasks": [
-                {"question": "He has a cold and needs to take some medicine.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "She has a fever and needs to drink plenty of fluids.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "He has a toothache and needs to see a dentist.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "She has a backache and needs to see a physiotherapist.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "He has a chronic disease and needs to see a specialist.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "She has a sprain and needs to rest.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "He has a injury and needs to see a surgeon.", "answer": "He has an injury and needs to see a surgeon.", "explanation": "Injury начинается с гласной, нужен 'an'."},
-                {"question": "She has a infection and needs to take antibiotics.", "answer": "She has an infection and needs to take antibiotics.", "explanation": "Infection начинается с гласной, нужен 'an'."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "4. Rewrite the sentences using the word given in brackets. Type the whole sentence.",
-            "subtasks": [
-                {"question": "He is ill with a common illness. (cold) → He has a cold.", "answer": "He has a cold.", "explanation": "cold."},
-                {"question": "She has a high temperature. (fever) → She has a fever.", "answer": "She has a fever.", "explanation": "fever."},
-                {"question": "His tooth hurts. (toothache) → He has a toothache.", "answer": "He has a toothache.", "explanation": "toothache."},
-                {"question": "Her back hurts. (backache) → She has a backache.", "answer": "She has a backache.", "explanation": "backache."},
-                {"question": "He has a long-term illness. (chronic disease) → He has a chronic disease.", "answer": "He has a chronic disease.", "explanation": "chronic disease."},
-                {"question": "She has a twisted ankle. (sprain) → She has a sprain.", "answer": "She has a sprain.", "explanation": "sprain."},
-                {"question": "He has a physical harm. (injury) → He has an injury.", "answer": "He has an injury.", "explanation": "injury."},
-                {"question": "She has a bacterial problem. (infection) → She has an infection.", "answer": "She has an infection.", "explanation": "infection."}
-            ]
-        },
-    # =====================================================
-    # ВАРИАНТ 7 (перевод)
-    # =====================================================
-[
-  {
-    "type": "complex",
-    "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-    "subtasks": [
-      {
-        "question": "She is a ______ and treats mental health issues.",
-        "options": ["a) psychologist", "b) counsellor", "c) psychiatrist", "d) therapist"],
-        "answer": "c",
-        "explanation": "psychiatrist – психиатр."
-      },
-      {
-        "question": "He is a ______ and works in a laboratory.",
-        "options": ["a) chemist", "b) druggist", "c) dispenser", "d) pharmacist"],
-        "answer": "d",
-        "explanation": "pharmacist – фармацевт."
-      },
-      {
-        "question": "She is a ______ and works in a hospital.",
-        "options": ["a) paramedic", "b) nurse", "c) doctor", "d) first aider"],
-        "answer": "a",
-        "explanation": "paramedic – фельдшер скорой."
-      },
-      {
-        "question": "He is a ______ and treats allergies.",
-        "options": ["a) allergist", "b) immunologist", "c) rheumatologist", "d) infectious disease specialist"],
-        "answer": "b",
-        "explanation": "immunologist – иммунолог."
-      },
-      {
-        "question": "She is a ______ and treats kidney problems.",
-        "options": ["a) urologist", "b) cardiologist", "c) nephrologist", "d) pulmonologist"],
-        "answer": "c",
-        "explanation": "nephrologist – нефролог."
-      },
-      {
-        "question": "He is a ______ and treats blood disorders.",
-        "options": ["a) oncologist", "b) pathologist", "c) radiologist", "d) haematologist"],
-        "answer": "d",
-        "explanation": "haematologist – гематолог."
-      },
-      {
-        "question": "She is a ______ and treats digestive issues.",
-        "options": ["a) gastroenterologist", "b) proctologist", "c) hepatologist", "d) endocrinologist"],
-        "answer": "a",
-        "explanation": "gastroenterologist – гастроэнтеролог."
-      },
-      {
-        "question": "He is a ______ and treats neurological disorders.",
-        "options": ["a) psychiatrist", "b) neurologist", "c) neurosurgeon", "d) pain specialist"],
-        "answer": "b",
-        "explanation": "neurologist – невролог."
-              }
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "2. Fill in the gaps with the correct word or phrase. Type the missing word(s) in the box.",
-            "subtasks": [
-                {"question": "She is a ______ and treats mental health issues.", "answer": "psychiatrist", "explanation": "psychiatrist."},
-                {"question": "He is a ______ and works in a laboratory.", "answer": "pharmacist", "explanation": "pharmacist."},
-                {"question": "She is a ______ and works in a hospital.", "answer": "paramedic", "explanation": "paramedic."},
-                {"question": "He is a ______ and treats allergies.", "answer": "immunologist", "explanation": "immunologist."},
-                {"question": "She is a ______ and treats kidney problems.", "answer": "nephrologist", "explanation": "nephrologist."},
-                {"question": "He is a ______ and treats blood disorders.", "answer": "haematologist", "explanation": "haematologist."},
-                {"question": "She is a ______ and treats digestive issues.", "answer": "gastroenterologist", "explanation": "gastroenterologist."},
-                {"question": "He is a ______ and treats neurological disorders.", "answer": "neurologist", "explanation": "neurologist."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
-            "subtasks": [
-                {"question": "She is a psychiatrist and treats mental health issues.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "He is a pharmacist and works in a laboratory.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "She is a paramedic and works in a hospital.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "He is a immunologist and treats allergies.", "answer": "He is an immunologist and treats allergies.", "explanation": "Immunologist начинается с гласной, нужен 'an'."},
-                {"question": "She is a nephrologist and treats kidney problems.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "He is a haematologist and treats blood disorders.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "She is a gastroenterologist and treats digestive issues.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "He is a neurologist and treats neurological disorders.", "answer": "Correct", "explanation": "Верно."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "4. Translate the sentences into English using the correct health vocabulary. Type your translation (one sentence) in the box.",
-            "subtasks": [
-                {"question": "Она психиатр, лечит проблемы с ментальным здоровьем.", "answer": "She is a psychiatrist and treats mental health issues.", "explanation": ""},
-                {"question": "Он фармацевт, работает в лаборатории.", "answer": "He is a pharmacist and works in a laboratory.", "explanation": ""},
-                {"question": "Она фельдшер скорой, работает в больнице.", "answer": "She is a paramedic and works in a hospital.", "explanation": ""},
-                {"question": "Он иммунолог, лечит аллергии.", "answer": "He is an immunologist and treats allergies.", "explanation": ""},
-                {"question": "Она нефролог, лечит проблемы с почками.", "answer": "She is a nephrologist and treats kidney problems.", "explanation": ""},
-                {"question": "Он гематолог, лечит заболевания крови.", "answer": "He is a haematologist and treats blood disorders.", "explanation": ""},
-                {"question": "Она гастроэнтеролог, лечит проблемы с пищеварением.", "answer": "She is a gastroenterologist and treats digestive issues.", "explanation": ""},
-                {"question": "Он невролог, лечит неврологические расстройства.", "answer": "He is a neurologist and treats neurological disorders.", "explanation": ""}
-            ]
-        },
-    # =====================================================
-    # ВАРИАНТ 8 (перефразирование)
-    # =====================================================
- [
-  {
-    "type": "complex",
-    "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-    "subtasks": [
-      {
-        "question": "She needs to buy some ______ for her cough.",
-        "options": ["a) cough medicine", "b) cough syrup", "c) lozenges", "d) antibiotics"],
-        "answer": "b",
-        "explanation": "cough syrup – сироп от кашля."
-      },
-      {
-        "question": "He needs to put some ______ on his wound.",
-        "options": ["a) cream", "b) ointment", "c) lotion", "d) gel"],
-        "answer": "b",
-        "explanation": "ointment – мазь."
-      },
-      {
-        "question": "She needs to put a ______ on her cut.",
-        "options": ["a) bandage", "b) dressing", "c) plaster", "d) tape"],
-        "answer": "c",
-        "explanation": "plaster – пластырь."
-      },
-      {
-        "question": "He needs to use a ______ to support his arm.",
-        "options": ["a) cast", "b) sling", "c) bandage", "d) splint"],
-        "answer": "c",
-        "explanation": "bandage – бинт."
-      },
-      {
-        "question": "She needs to do some ______ for her back.",
-        "options": ["a) exercises", "b) physical therapy", "c) stretching", "d) yoga"],
-        "answer": "b",
-        "explanation": "physical therapy – физиотерапия."
-      },
-      {
-        "question": "He needs to take a ______ for his pain.",
-        "options": ["a) painkiller", "b) antibiotic", "c) vitamin", "d) tablet"],
-        "answer": "a",
-        "explanation": "painkiller – обезболивающее."
-      },
-      {
-        "question": "She needs to have ______ to fix her knee.",
-        "options": ["a) an operation", "b) a procedure", "c) surgery", "d) a treatment"],
-        "answer": "c",
-        "explanation": "surgery – хирургическая операция."
-      },
-      {
-        "question": "He needs to get a ______ to prevent the flu.",
-        "options": ["a) vaccination", "b) injection", "c) shot", "d) immunization"],
-        "answer": "a",
-        "explanation": "vaccination – вакцинация."
-             }
-           ]
-        },
-        {
-            "type": "complex",
-            "text": "2. Fill in the gaps with the correct word or phrase. Type the missing word(s) in the box.",
-            "subtasks": [
-                {"question": "She needs to buy some ______ for her cough.", "answer": "cough syrup", "explanation": "cough syrup."},
-                {"question": "He needs to put some ______ on his wound.", "answer": "ointment", "explanation": "ointment."},
-                {"question": "She needs to put a ______ on her cut.", "answer": "plaster", "explanation": "plaster."},
-                {"question": "He needs to use a ______ to support his arm.", "answer": "bandage", "explanation": "bandage."},
-                {"question": "She needs to do some ______ for her back.", "answer": "physical therapy", "explanation": "physical therapy."},
-                {"question": "He needs to take a ______ for his pain.", "answer": "painkiller", "explanation": "painkiller."},
-                {"question": "She needs to have ______ to fix her knee.", "answer": "surgery", "explanation": "surgery."},
-                {"question": "He needs to get a ______ to prevent the flu.", "answer": "vaccination", "explanation": "vaccination."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
-            "subtasks": [
-                {"question": "She needs to buy some cough syrup for her cough.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "He needs to put some ointment on his wound.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "She needs to put a plaster on her cut.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "He needs to use a bandage to support his arm.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "She needs to do some physical therapy for her back.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "He needs to take a painkiller for his pain.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "She needs to have surgery to fix her knee.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "He needs to get a vaccination to prevent the flu.", "answer": "Correct", "explanation": "Верно."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "4. Rewrite the sentences using the word given in brackets. Type the whole sentence.",
-            "subtasks": [
-                {"question": "She needs to buy medicine for her cough. (cough syrup) → She needs to buy some cough syrup for her cough.", "answer": "She needs to buy some cough syrup for her cough.", "explanation": "cough syrup."},
-                {"question": "He needs to apply cream to his wound. (ointment) → He needs to put some ointment on his wound.", "answer": "He needs to put some ointment on his wound.", "explanation": "ointment."},
-                {"question": "She needs to cover her cut. (plaster) → She needs to put a plaster on her cut.", "answer": "She needs to put a plaster on her cut.", "explanation": "plaster."},
-                {"question": "He needs to wrap his arm. (bandage) → He needs to use a bandage to support his arm.", "answer": "He needs to use a bandage to support his arm.", "explanation": "bandage."},
-                {"question": "She needs exercises for her back. (physical therapy) → She needs to do some physical therapy for her back.", "answer": "She needs to do some physical therapy for her back.", "explanation": "physical therapy."},
-                {"question": "He needs to take something for his pain. (painkiller) → He needs to take a painkiller for his pain.", "answer": "He needs to take a painkiller for his pain.", "explanation": "painkiller."},
-                {"question": "She needs an operation for her knee. (surgery) → She needs to have surgery to fix her knee.", "answer": "She needs to have surgery to fix her knee.", "explanation": "surgery."},
-                {"question": "He needs a shot to prevent the flu. (vaccination) → He needs to get a vaccination to prevent the flu.", "answer": "He needs to get a vaccination to prevent the flu.", "explanation": "vaccination."}
-            ]
-        },
-    # =====================================================
-    # ВАРИАНТ 9 (перевод)
-    # =====================================================
-[
-  {
-    "type": "complex",
-    "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-    "subtasks": [
-      {
-        "question": "She has a ______ of the flu.",
-        "options": ["a) case", "b) bout", "c) attack", "d) spell"],
-        "answer": "a",
-        "explanation": "case – случай болезни."
-      },
-      {
-        "question": "He has a ______ of food poisoning.",
-        "options": ["a) case", "b) bout", "c) attack", "d) spell"],
-        "answer": "a",
-        "explanation": "case – случай."
-      },
-      {
-        "question": "She needs to see a ______ about her rash.",
-        "options": ["a) dermatologist", "b) paediatrician", "c) obstetrician", "d) psychologist"],
-        "answer": "a",
-        "explanation": "dermatologist – дерматолог."
-      },
-      {
-        "question": "He needs to see a ______ about his heart.",
-        "options": ["a) cardiologist", "b) neurologist", "c) pulmonologist", "d) immunologist"],
-        "answer": "a",
-        "explanation": "cardiologist – кардиолог."
-      },
-      {
-        "question": "She needs to see a ______ about her back.",
-        "options": ["a) physiotherapist", "b) chiropractor", "c) osteopath", "d) personal trainer"],
-        "answer": "a",
-        "explanation": "physiotherapist – физиотерапевт."
-      },
-      {
-        "question": "He needs to see a ______ about his broken leg.",
-        "options": ["a) orthopaedic surgeon", "b) cardiologist", "c) dermatologist", "d) ophthalmologist"],
-        "answer": "a",
-        "explanation": "orthopaedic surgeon – ортопед-хирург."
-      },
-      {
-        "question": "She needs to see a ______ about her eyes.",
-        "options": ["a) ophthalmologist", "b) optician", "c) optometrist", "d) orthoptist"],
-        "answer": "a",
-        "explanation": "ophthalmologist – офтальмолог."
-      },
-      {
-        "question": "He needs to see a ______ about his ears.",
-        "options": ["a) ENT specialist", "b) audiologist", "c) otolaryngologist", "d) hearing specialist"],
-        "answer": "a",
-        "explanation": "ENT specialist – ЛОР."
-              }
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "2. Fill in the gaps with the correct word or phrase. Type the missing word(s) in the box.",
-            "subtasks": [
-                {"question": "She has a ______ of the flu.", "answer": "case", "explanation": "case."},
-                {"question": "He has a ______ of food poisoning.", "answer": "case", "explanation": "case."},
-                {"question": "She needs to see a ______ about her rash.", "answer": "dermatologist", "explanation": "dermatologist."},
-                {"question": "He needs to see a ______ about his heart.", "answer": "cardiologist", "explanation": "cardiologist."},
-                {"question": "She needs to see a ______ about her back.", "answer": "physiotherapist", "explanation": "physiotherapist."},
-                {"question": "He needs to see an ______ about his broken leg.", "answer": "orthopaedic surgeon", "explanation": "orthopaedic surgeon."},
-                {"question": "She needs to see an ______ about her eyes.", "answer": "ophthalmologist", "explanation": "ophthalmologist."},
-                {"question": "He needs to see an ______ about his ears.", "answer": "ENT specialist", "explanation": "ENT specialist."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
-            "subtasks": [
-                {"question": "She has a case of the flu.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "He has a case of food poisoning.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "She needs to see a dermatologist about her rash.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "He needs to see a cardiologist about his heart.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "She needs to see a physiotherapist about her back.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "He needs to see an orthopaedic surgeon about his broken leg.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "She needs to see an ophthalmologist about her eyes.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "He needs to see a ENT specialist about his ears.", "answer": "He needs to see an ENT specialist about his ears.", "explanation": "ENT начинается с гласной (E), нужен 'an'."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "4. Translate the sentences into English using the correct health vocabulary. Type your translation (one sentence) in the box.",
-            "subtasks": [
-                {"question": "У неё случай гриппа.", "answer": "She has a case of the flu.", "explanation": ""},
-                {"question": "У него случай пищевого отравления.", "answer": "He has a case of food poisoning.", "explanation": ""},
-                {"question": "Ей нужно обратиться к дерматологу из-за сыпи.", "answer": "She needs to see a dermatologist about her rash.", "explanation": ""},
-                {"question": "Ему нужно обратиться к кардиологу из-за сердца.", "answer": "He needs to see a cardiologist about his heart.", "explanation": ""},
-                {"question": "Ей нужно обратиться к физиотерапевту из-за спины.", "answer": "She needs to see a physiotherapist about her back.", "explanation": ""},
-                {"question": "Ему нужно обратиться к ортопеду-хирургу из-за сломанной ноги.", "answer": "He needs to see an orthopaedic surgeon about his broken leg.", "explanation": ""},
-                {"question": "Ей нужно обратиться к офтальмологу из-за глаз.", "answer": "She needs to see an ophthalmologist about her eyes.", "explanation": ""},
-                {"question": "Ему нужно обратиться к ЛОРу из-за ушей.", "answer": "He needs to see an ENT specialist about his ears.", "explanation": ""}
-            ]
-        },
-    # =====================================================
-    # ВАРИАНТ 10 (перефразирование)
-    # =====================================================
-[
-  {
-    "type": "complex",
-    "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-    "subtasks": [
-      {
-        "question": "She is ______ from a serious illness.",
-        "options": ["a) healing", "b) recovering", "c) resting", "d) improving"],
-        "answer": "b",
-        "explanation": "to recover – выздоравливать."
-      },
-      {
-        "question": "He is ______ from his injury.",
-        "options": ["a) recovering", "b) resting", "c) healing", "d) improving"],
-        "answer": "a",
-        "explanation": "to recover – выздоравливать."
-      },
-      {
-        "question": "She is ______ for her operation.",
-        "options": ["a) waiting", "b) preparing", "c) resting", "d) recovering"],
-        "answer": "b",
-        "explanation": "to prepare – готовиться."
-      },
-      {
-        "question": "He is ______ for his surgery.",
-        "options": ["a) preparing", "b) waiting", "c) resting", "d) healing"],
-        "answer": "a",
-        "explanation": "to prepare – готовиться."
-      },
-      {
-        "question": "She is ______ her medication.",
-        "options": ["a) taking", "b) receiving", "c) undergoing", "d) using"],
-        "answer": "a",
-        "explanation": "to take medication – принимать лекарства."
-      },
-      {
-        "question": "He is ______ his treatment.",
-        "options": ["a) taking", "b) receiving", "c) undergoing", "d) having"],
-        "answer": "c",
-        "explanation": "to undergo treatment – проходить лечение."
-      },
-      {
-        "question": "She is ______ from her surgery.",
-        "options": ["a) healing", "b) recovering", "c) resting", "d) improving"],
-        "answer": "b",
-        "explanation": "to recover – выздоравливать."
-      },
-      {
-        "question": "He is ______ for his appointment.",
-        "options": ["a) preparing", "b) waiting", "c) resting", "d) recovering"],
-        "answer": "b",
-        "explanation": "to wait – ждать."
-              }
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "2. Fill in the gaps with the correct word or phrase. Type the missing word(s) in the box.",
-            "subtasks": [
-                {"question": "She is ______ from a serious illness.", "answer": "recovering", "explanation": "recovering."},
-                {"question": "He is ______ from his injury.", "answer": "recovering", "explanation": "recovering."},
-                {"question": "She is ______ for her operation.", "answer": "preparing", "explanation": "preparing."},
-                {"question": "He is ______ for his surgery.", "answer": "preparing", "explanation": "preparing."},
-                {"question": "She is ______ her medication.", "answer": "taking", "explanation": "taking."},
-                {"question": "He is ______ his treatment.", "answer": "undergoing", "explanation": "undergoing."},
-                {"question": "She is ______ from her surgery.", "answer": "recovering", "explanation": "recovering."},
-                {"question": "He is ______ for his appointment.", "answer": "waiting", "explanation": "waiting."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
-            "subtasks": [
-                {"question": "She is recovering from a serious illness.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "He is recovering from his injury.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "She is preparing for her operation.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "He is preparing for his surgery.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "She is taking her medication.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "He is undergoing his treatment.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "She is recover from her surgery.", "answer": "She is recovering from her surgery.", "explanation": "Recovering, не recover."},
-                {"question": "He is waiting for his appointment.", "answer": "Correct", "explanation": "Верно."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "4. Rewrite the sentences using the word given in brackets. Type the whole sentence.",
-            "subtasks": [
-                {"question": "She is getting better after an illness. (recovering) → She is recovering from a serious illness.", "answer": "She is recovering from a serious illness.", "explanation": "recovering."},
-                {"question": "He is getting better after an injury. (recovering) → He is recovering from his injury.", "answer": "He is recovering from his injury.", "explanation": "recovering."},
-                {"question": "She is getting ready for her operation. (preparing) → She is preparing for her operation.", "answer": "She is preparing for her operation.", "explanation": "preparing."},
-                {"question": "He is getting ready for his surgery. (preparing) → He is preparing for his surgery.", "answer": "He is preparing for his surgery.", "explanation": "preparing."},
-                {"question": "She is using her medication. (taking) → She is taking her medication.", "answer": "She is taking her medication.", "explanation": "taking."},
-                {"question": "He is receiving treatment. (undergoing) → He is undergoing his treatment.", "answer": "He is undergoing his treatment.", "explanation": "undergoing."},
-                {"question": "She is getting better after surgery. (recovering) → She is recovering from her surgery.", "answer": "She is recovering from her surgery.", "explanation": "recovering."},
-                {"question": "He is waiting for his appointment. (waiting) → He is waiting for his appointment.", "answer": "He is waiting for his appointment.", "explanation": "waiting."}
-            ]
-        },
-    # =====================================================
-    # ВАРИАНТ 11 (перевод)
-    # =====================================================
- [
-  {
-    "type": "complex",
-    "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-    "subtasks": [
-      {
-        "question": "She has a ______ and needs to go to the hospital.",
-        "options": ["a) heart attack", "b) stroke", "c) asthma attack", "d) seizure"],
-        "answer": "a",
-        "explanation": "heart attack – сердечный приступ."
-      },
-      {
-        "question": "He has a ______ and needs to rest.",
-        "options": ["a) heart attack", "b) stroke", "c) migraine", "d) concussion"],
-        "answer": "b",
-        "explanation": "stroke – инсульт."
-      },
-      {
-        "question": "She has a ______ and needs to see a doctor.",
-        "options": ["a) cancer", "b) tumour", "c) infection", "d) disease"],
-        "answer": "a",
-        "explanation": "cancer – рак."
-      },
-      {
-        "question": "He has a ______ and needs to take medication.",
-        "options": ["a) diabetes", "b) obesity", "c) hypertension", "d) high cholesterol"],
-        "answer": "a",
-        "explanation": "diabetes – диабет."
-      },
-      {
-        "question": "She has a ______ and needs to use an inhaler.",
-        "options": ["a) asthma", "b) bronchitis", "c) pneumonia", "d) COPD"],
-        "answer": "a",
-        "explanation": "asthma – астма."
-      },
-      {
-        "question": "He has a ______ and needs to see a specialist.",
-        "options": ["a) hypertension", "b) low blood pressure", "c) heart disease", "d) arrhythmia"],
-        "answer": "a",
-        "explanation": "hypertension – гипертония."
-      },
-      {
-        "question": "She has a ______ and needs to lose weight.",
-        "options": ["a) obesity", "b) diabetes", "c) high cholesterol", "d) heart disease"],
-        "answer": "a",
-        "explanation": "obesity – ожирение."
-      },
-      {
-        "question": "He has a ______ and needs to eat a healthy diet.",
-        "options": ["a) high cholesterol", "b) diabetes", "c) obesity", "d) hypertension"],
-        "answer": "a",
-        "explanation": "high cholesterol – высокий холестерин."
-             }
-           ]
-        },
-        {
-            "type": "complex",
-            "text": "2. Fill in the gaps with the correct word or phrase. Type the missing word(s) in the box.",
-            "subtasks": [
-                {"question": "She has a ______ and needs to go to the hospital.", "answer": "heart attack", "explanation": "heart attack."},
-                {"question": "He has a ______ and needs to rest.", "answer": "stroke", "explanation": "stroke."},
-                {"question": "She has a ______ and needs to see a doctor.", "answer": "cancer", "explanation": "cancer."},
-                {"question": "He has a ______ and needs to take medication.", "answer": "diabetes", "explanation": "diabetes."},
-                {"question": "She has a ______ and needs to use an inhaler.", "answer": "asthma", "explanation": "asthma."},
-                {"question": "He has a ______ and needs to see a specialist.", "answer": "hypertension", "explanation": "hypertension."},
-                {"question": "She has a ______ and needs to lose weight.", "answer": "obesity", "explanation": "obesity."},
-                {"question": "He has a ______ and needs to eat a healthy diet.", "answer": "high cholesterol", "explanation": "high cholesterol."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
-            "subtasks": [
-                {"question": "She has a heart attack and needs to go to the hospital.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "He has a stroke and needs to rest.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "She has a cancer and needs to see a doctor.", "answer": "She has cancer and needs to see a doctor.", "explanation": "Cancer – неисчисляемое, без артикля."},
-                {"question": "He has diabetes and needs to take medication.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "She has asthma and needs to use an inhaler.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "He has hypertension and needs to see a specialist.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "She has obesity and needs to lose weight.", "answer": "She has obesity and needs to lose weight. (можно и без артикля, но обычно the obesity – но чаще без артикля в медицине). В данном случае оставлю как есть, но в некоторых контекстах 'obesity' без артикля. Я дам как Correct."},
-                {"question": "He has high cholesterol and needs to eat a healthy diet.", "answer": "Correct", "explanation": "Верно."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "4. Translate the sentences into English using the correct health vocabulary. Type your translation (one sentence) in the box.",
-            "subtasks": [
-                {"question": "У неё сердечный приступ, ей нужно в больницу.", "answer": "She has a heart attack and needs to go to the hospital.", "explanation": ""},
-                {"question": "У него инсульт, ему нужно отдохнуть.", "answer": "He has a stroke and needs to rest.", "explanation": ""},
-                {"question": "У неё рак, ей нужно обратиться к врачу.", "answer": "She has cancer and needs to see a doctor.", "explanation": ""},
-                {"question": "У него диабет, ему нужно принимать лекарства.", "answer": "He has diabetes and needs to take medication.", "explanation": ""},
-                {"question": "У неё астма, ей нужно использовать ингалятор.", "answer": "She has asthma and needs to use an inhaler.", "explanation": ""},
-                {"question": "У него гипертония, ему нужно обратиться к специалисту.", "answer": "He has hypertension and needs to see a specialist.", "explanation": ""},
-                {"question": "У неё ожирение, ей нужно похудеть.", "answer": "She has obesity and needs to lose weight.", "explanation": ""},
-                {"question": "У него высокий холестерин, ему нужно питаться здоровой пищей.", "answer": "He has high cholesterol and needs to eat a healthy diet.", "explanation": ""}
-            ]
-        },
-    # =====================================================
-    # ВАРИАНТ 12 (перефразирование)
-    # =====================================================
-[
-  {
-    "type": "complex",
-    "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-    "subtasks": [
-      {
-        "question": "She is ______ to treat her illness.",
-        "options": ["a) taking medication", "b) doing therapy", "c) having surgery", "d) receiving care"],
-        "answer": "a",
-        "explanation": "to take medication – принимать лекарства."
-      },
-      {
-        "question": "He is ______ to reduce his pain.",
-        "options": ["a) using ointment", "b) taking painkillers", "c) applying cream", "d) getting massage"],
-        "answer": "b",
-        "explanation": "to take painkillers – принимать обезболивающие."
-      },
-      {
-        "question": "She is ______ to improve her mobility.",
-        "options": ["a) doing surgery", "b) taking pills", "c) doing physical therapy", "d) having rest"],
-        "answer": "c",
-        "explanation": "to do physical therapy – заниматься физиотерапией."
-      },
-      {
-        "question": "He is ______ to recover from his injury.",
-        "options": ["a) doing exercises", "b) taking medicine", "c) having injections", "d) using a crutch"],
-        "answer": "a",
-        "explanation": "to do exercises – делать упражнения."
-      },
-      {
-        "question": "She is ______ to prevent the disease.",
-        "options": ["a) taking antibiotics", "b) getting vaccinated", "c) having an operation", "d) doing rehabilitation"],
-        "answer": "b",
-        "explanation": "to get vaccinated – сделать прививку."
-      },
-      {
-        "question": "He is ______ to treat his condition.",
-        "options": ["a) taking medication", "b) having a check-up", "c) undergoing treatment", "d) doing therapy"],
-        "answer": "c",
-        "explanation": "to undergo treatment – проходить лечение."
-      },
-      {
-        "question": "She is ______ to cure her infection.",
-        "options": ["a) having physiotherapy", "b) taking antibiotics", "c) doing exercises", "d) getting a vaccine"],
-        "answer": "b",
-        "explanation": "to take antibiotics – принимать антибиотики."
-      },
-      {
-        "question": "He is ______ to relieve his symptoms.",
-        "options": ["a) having an injection", "b) doing rehabilitation", "c) taking medication", "d) using a bandage"],
-        "answer": "c",
-        "explanation": "to take medication – принимать лекарства."
-              }
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "2. Fill in the gaps with the correct word or phrase. Type the missing word(s) in the box.",
-            "subtasks": [
-                {"question": "She is ______ to treat her illness.", "answer": "taking medication", "explanation": "taking medication."},
-                {"question": "He is ______ to reduce his pain.", "answer": "taking painkillers", "explanation": "taking painkillers."},
-                {"question": "She is ______ to improve her mobility.", "answer": "doing physical therapy", "explanation": "doing physical therapy."},
-                {"question": "He is ______ to recover from his injury.", "answer": "doing exercises", "explanation": "doing exercises."},
-                {"question": "She is ______ to prevent the disease.", "answer": "getting vaccinated", "explanation": "getting vaccinated."},
-                {"question": "He is ______ to treat his condition.", "answer": "undergoing treatment", "explanation": "undergoing treatment."},
-                {"question": "She is ______ to cure her infection.", "answer": "taking antibiotics", "explanation": "taking antibiotics."},
-                {"question": "He is ______ to relieve his symptoms.", "answer": "taking medication", "explanation": "taking medication."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
-            "subtasks": [
-                {"question": "She is taking medication to treat her illness.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "He is taking painkillers to reduce his pain.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "She is doing physical therapy to improve her mobility.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "He is doing exercises to recover from his injury.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "She is getting vaccinated to prevent the disease.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "He is undergoing treatment to treat his condition.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "She is taking antibiotics to cure her infection.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "He is take medication to relieve his symptoms.", "answer": "He is taking medication to relieve his symptoms.", "explanation": "Taking, не take."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "4. Rewrite the sentences using the word given in brackets. Type the whole sentence.",
-            "subtasks": [
-                {"question": "She is using medicine for her illness. (taking medication) → She is taking medication to treat her illness.", "answer": "She is taking medication to treat her illness.", "explanation": "taking medication."},
-                {"question": "He is using pain relievers for his pain. (taking painkillers) → He is taking painkillers to reduce his pain.", "answer": "He is taking painkillers to reduce his pain.", "explanation": "taking painkillers."},
-                {"question": "She is doing exercises for her mobility. (physical therapy) → She is doing physical therapy to improve her mobility.", "answer": "She is doing physical therapy to improve her mobility.", "explanation": "physical therapy."},
-                {"question": "He is exercising to recover. (doing exercises) → He is doing exercises to recover from his injury.", "answer": "He is doing exercises to recover from his injury.", "explanation": "doing exercises."},
-                {"question": "She is getting a shot to prevent the disease. (getting vaccinated) → She is getting vaccinated to prevent the disease.", "answer": "She is getting vaccinated to prevent the disease.", "explanation": "getting vaccinated."},
-                {"question": "He is receiving care for his condition. (undergoing treatment) → He is undergoing treatment to treat his condition.", "answer": "He is undergoing treatment to treat his condition.", "explanation": "undergoing treatment."},
-                {"question": "She is using antibiotics for her infection. (taking antibiotics) → She is taking antibiotics to cure her infection.", "answer": "She is taking antibiotics to cure her infection.", "explanation": "taking antibiotics."},
-                {"question": "He is using medicine for his symptoms. (taking medication) → He is taking medication to relieve his symptoms.", "answer": "He is taking medication to relieve his symptoms.", "explanation": "taking medication."}
-            ]
+          "type": "complex",
+          "text": "4. Translate the sentences into English using the correct health vocabulary. Type your translation (one sentence) in the box.",
+          "subtasks": [
+            {"question": "У меня сильная головная боль.", "answer": "I have a splitting headache.", "explanation": ""},
+            {"question": "Она страдает от хронической боли в спине.", "answer": "She suffers from a chronic back problem.", "explanation": ""},
+            {"question": "Тебе нужно обратиться к специалисту.", "answer": "You need to see a specialist.", "explanation": ""},
+            {"question": "Фельдшер скорой прибыл через несколько минут.", "answer": "The paramedic arrived within minutes.", "explanation": ""},
+            {"question": "Врач выписал антибиотики.", "answer": "The doctor prescribed antibiotics.", "explanation": ""},
+            {"question": "Она восстанавливается после операции.", "answer": "She is recovering from surgery.", "explanation": ""},
+            {"question": "У меня аллергия на пенициллин.", "answer": "I'm allergic to penicillin.", "explanation": ""},
+            {"question": "Ему нужно оперировать пациента.", "answer": "He needs to operate on the patient.", "explanation": ""}
+          ]
         }
+      ],
+      # =====================================================
+      # ВАРИАНТ 2 (перефразирование)
+      # =====================================================
+      [
+        {
+          "type": "complex",
+          "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+          "subtasks": [
+            {"question": "She has a high ______, so she needs to see a doctor.", "options": ["a) fever", "b) temperature", "c) pulse", "d) blood pressure"], "answer": "b", "explanation": "high temperature – высокая температура."},
+            {"question": "He has a bad ______ and can't stop coughing.", "options": ["a) flu", "b) cold", "c) cough", "d) chest infection"], "answer": "b", "explanation": "cold – простуда."},
+            {"question": "I have a ______ throat and it hurts to swallow.", "options": ["a) painful", "b) swollen", "c) sore", "d) infected"], "answer": "c", "explanation": "sore throat – боль в горле."},
+            {"question": "She broke her arm and suffered a ______.", "options": ["a) sprain", "b) fracture", "c) dislocation", "d) strain"], "answer": "b", "explanation": "fracture – перелом."},
+            {"question": "He twisted his ankle and got a ______.", "options": ["a) fracture", "b) sprain", "c) dislocation", "d) break"], "answer": "b", "explanation": "sprain – растяжение."},
+            {"question": "She has a bad case of the ______.", "options": ["a) flu", "b) cold", "c) infection", "d) virus"], "answer": "a", "explanation": "flu – грипп."},
+            {"question": "He needs to take ______ for his infection.", "options": ["a) antibiotics", "b) painkillers", "c) vitamins", "d) steroids"], "answer": "a", "explanation": "antibiotics – антибиотики."},
+            {"question": "She is a ______, so she treats children.", "options": ["a) paediatrician", "b) geriatrician", "c) obstetrician", "d) surgeon"], "answer": "a", "explanation": "paediatrician – педиатр."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "2. Fill in the gaps with the correct word or phrase. Type the missing word(s) in the box.",
+          "subtasks": [
+            {"question": "She has a high ______, so she needs to see a doctor.", "answer": "temperature", "explanation": "temperature."},
+            {"question": "He has a bad ______ and can't stop coughing.", "answer": "cold", "explanation": "cold."},
+            {"question": "I have a ______ throat and it hurts to swallow.", "answer": "sore", "explanation": "sore."},
+            {"question": "She broke her arm and suffered a ______.", "answer": "fracture", "explanation": "fracture."},
+            {"question": "He twisted his ankle and got a ______.", "answer": "sprain", "explanation": "sprain."},
+            {"question": "She has a bad case of the ______.", "answer": "flu", "explanation": "flu."},
+            {"question": "He needs to take ______ for his infection.", "answer": "antibiotics", "explanation": "antibiotics."},
+            {"question": "She is a ______, so she treats children.", "answer": "paediatrician", "explanation": "paediatrician."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
+          "subtasks": [
+            {"question": "She has a high temperature, so she needs to see a doctor.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "He has a bad cold and can't stop coughing.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "I have a sore throat and it hurts to swallow.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "She broke her arm and suffered a fracture.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "He twisted his ankle and got a sprain.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "She has a bad case of the flu.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "He needs to take antibiotics for his infection.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "She is a paediatrician, so she treats childs.", "answer": "She is a paediatrician, so she treats children.", "explanation": "Children, не childs."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "4. Rewrite the sentences using the word given in brackets. Type the whole sentence.",
+          "subtasks": [
+            {"question": "She has a fever. (temperature) → She has a high temperature.", "answer": "She has a high temperature.", "explanation": "temperature."},
+            {"question": "He has a bad cough. (cold) → He has a bad cold.", "answer": "He has a bad cold.", "explanation": "cold."},
+            {"question": "My throat hurts. (sore) → I have a sore throat.", "answer": "I have a sore throat.", "explanation": "sore throat."},
+            {"question": "She broke her arm. (fracture) → She suffered a fracture.", "answer": "She suffered a fracture.", "explanation": "fracture."},
+            {"question": "He twisted his ankle. (sprain) → He got a sprain.", "answer": "He got a sprain.", "explanation": "sprain."},
+            {"question": "She has the flu. (case) → She has a bad case of the flu.", "answer": "She has a bad case of the flu.", "explanation": "case."},
+            {"question": "He needs medication for his infection. (antibiotics) → He needs to take antibiotics for his infection.", "answer": "He needs to take antibiotics for his infection.", "explanation": "antibiotics."},
+            {"question": "She treats children. (paediatrician) → She is a paediatrician.", "answer": "She is a paediatrician.", "explanation": "paediatrician."}
+          ]
+        }
+      ],
+      # =====================================================
+      # ВАРИАНТ 3 (перевод)
+      # =====================================================
+      [
+        {
+          "type": "complex",
+          "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+          "subtasks": [
+            {"question": "He has a ______ back and needs to rest.", "options": ["a) sore", "b) bad", "c) painful", "d) weak"], "answer": "b", "explanation": "bad back – больная спина."},
+            {"question": "She felt ______ and had to sit down.", "options": ["a) faint", "b) dizzy", "c) light-headed", "d) unsteady"], "answer": "b", "explanation": "dizzy – головокружение."},
+            {"question": "He has a ______ rash on his arm.", "options": ["a) skin", "b) red", "c) allergic", "d) itchy"], "answer": "a", "explanation": "skin rash – кожная сыпь."},
+            {"question": "She has a ______ to nuts.", "options": ["a) intolerance", "b) sensitivity", "c) allergy", "d) reaction"], "answer": "c", "explanation": "allergy – аллергия."},
+            {"question": "He is a ______ and works in a hospital.", "options": ["a) surgeon", "b) physician", "c) nurse", "d) paramedic"], "answer": "a", "explanation": "surgeon – хирург."},
+            {"question": "She is a ______ and treats heart problems.", "options": ["a) cardiologist", "b) neurologist", "c) pulmonologist", "d) cardiothoracic surgeon"], "answer": "a", "explanation": "cardiologist – кардиолог."},
+            {"question": "He is a ______ and treats skin conditions.", "options": ["a) dermatologist", "b) plastic surgeon", "c) allergist", "d) rheumatologist"], "answer": "a", "explanation": "dermatologist – дерматолог."},
+            {"question": "She is a ______ and helps people with mental health.", "options": ["a) psychiatrist", "b) psychologist", "c) counsellor", "d) psychotherapist"], "answer": "b", "explanation": "psychologist – психолог."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "2. Fill in the gaps with the correct word or phrase. Type the missing word(s) in the box.",
+          "subtasks": [
+            {"question": "He has a ______ back and needs to rest.", "answer": "bad", "explanation": "bad."},
+            {"question": "She felt ______ and had to sit down.", "answer": "dizzy", "explanation": "dizzy."},
+            {"question": "He has a ______ rash on his arm.", "answer": "skin", "explanation": "skin."},
+            {"question": "She has a ______ to nuts.", "answer": "allergy", "explanation": "allergy."},
+            {"question": "He is a ______ and works in a hospital.", "answer": "surgeon", "explanation": "surgeon."},
+            {"question": "She is a ______ and treats heart problems.", "answer": "cardiologist", "explanation": "cardiologist."},
+            {"question": "He is a ______ and treats skin conditions.", "answer": "dermatologist", "explanation": "dermatologist."},
+            {"question": "She is a ______ and helps people with mental health.", "answer": "psychologist", "explanation": "psychologist."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
+          "subtasks": [
+            {"question": "He has a bad back and needs to rest.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "She felt dizzy and had to sit down.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "He has a skin rash on his arm.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "She has a allergy to nuts.", "answer": "She has an allergy to nuts.", "explanation": "Allergy начинается с гласной, нужен 'an'."},
+            {"question": "He is a surgeon and works in a hospital.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "She is a cardiologist and treats heart problems.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "He is a dermatologist and treats skin conditions.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "She is a psychologist and helps people with mental health.", "answer": "Correct", "explanation": "Верно."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "4. Translate the sentences into English using the correct health vocabulary. Type your translation (one sentence) in the box.",
+          "subtasks": [
+            {"question": "У него болит спина, ему нужно отдохнуть.", "answer": "He has a bad back and needs to rest.", "explanation": ""},
+            {"question": "У неё закружилась голова, и ей пришлось сесть.", "answer": "She felt dizzy and had to sit down.", "explanation": ""},
+            {"question": "У него сыпь на руке.", "answer": "He has a skin rash on his arm.", "explanation": ""},
+            {"question": "У неё аллергия на орехи.", "answer": "She has an allergy to nuts.", "explanation": ""},
+            {"question": "Он хирург и работает в больнице.", "answer": "He is a surgeon and works in a hospital.", "explanation": ""},
+            {"question": "Она кардиолог, лечит проблемы с сердцем.", "answer": "She is a cardiologist and treats heart problems.", "explanation": ""},
+            {"question": "Он дерматолог, лечит кожные заболевания.", "answer": "He is a dermatologist and treats skin conditions.", "explanation": ""},
+            {"question": "Она психолог, помогает людям с ментальным здоровьем.", "answer": "She is a psychologist and helps people with mental health.", "explanation": ""}
+          ]
+        }
+      ],
+      # =====================================================
+      # ВАРИАНТ 4 (перефразирование)
+      # =====================================================
+      [
+        {
+          "type": "complex",
+          "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+          "subtasks": [
+            {"question": "She has a ______ ache and can't eat.", "options": ["a) stomach", "b) head", "c) back", "d) tooth"], "answer": "a", "explanation": "stomach ache – боль в животе."},
+            {"question": "He felt ______ and thought he was going to vomit.", "options": ["a) dizzy", "b) nauseous", "c) faint", "d) sick"], "answer": "b", "explanation": "nauseous – тошнота."},
+            {"question": "I need to take a ______ for my headache.", "options": ["a) antibiotic", "b) pill", "c) painkiller", "d) medicine"], "answer": "c", "explanation": "painkiller – обезболивающее."},
+            {"question": "She is a ______ and works in a pharmacy.", "options": ["a) chemist", "b) GP", "c) nurse", "d) pharmacist"], "answer": "d", "explanation": "pharmacist – фармацевт."},
+            {"question": "He is a ______ and treats teeth problems.", "options": ["a) dentist", "b) surgeon", "c) cardiologist", "d) neurologist"], "answer": "a", "explanation": "dentist – стоматолог."},
+            {"question": "She is a ______ and helps people with mental disorders.", "options": ["a) psychologist", "b) psychiatrist", "c) counsellor", "d) therapist"], "answer": "b", "explanation": "psychiatrist – психиатр."},
+            {"question": "He is a ______ and gives first aid.", "options": ["a) doctor", "b) nurse", "c) paramedic", "d) surgeon"], "answer": "c", "explanation": "paramedic – фельдшер скорой."},
+            {"question": "She is a ______ and works in a hospital.", "options": ["a) specialist", "b) consultant", "c) surgeon", "d) GP"], "answer": "d", "explanation": "GP – терапевт."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "2. Fill in the gaps with the correct word or phrase. Type the missing word(s) in the box.",
+          "subtasks": [
+            {"question": "She has a ______ ache and can't eat.", "answer": "stomach", "explanation": "stomach."},
+            {"question": "He felt ______ and thought he was going to vomit.", "answer": "nauseous", "explanation": "nauseous."},
+            {"question": "I need to take a ______ for my headache.", "answer": "painkiller", "explanation": "painkiller."},
+            {"question": "She is a ______ and works in a pharmacy.", "answer": "pharmacist", "explanation": "pharmacist."},
+            {"question": "He is a ______ and treats teeth problems.", "answer": "dentist", "explanation": "dentist."},
+            {"question": "She is a ______ and helps people with mental disorders.", "answer": "psychiatrist", "explanation": "psychiatrist."},
+            {"question": "He is a ______ and gives first aid.", "answer": "paramedic", "explanation": "paramedic."},
+            {"question": "She is a ______ and works in a hospital.", "answer": "GP", "explanation": "GP."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
+          "subtasks": [
+            {"question": "She has a stomach ache and can't eat.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "He felt nauseous and thought he was going to vomit.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "I need to take a painkiller for my headache.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "She is a pharmacist and works in a pharmacy.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "He is a dentist and treats teeth problems.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "She is a psychiatrist and helps people with mental disorders.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "He is a paramedic and gives first aid.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "She is a GP and works in a hospital.", "answer": "Correct", "explanation": "Верно."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "4. Rewrite the sentences using the word given in brackets. Type the whole sentence.",
+          "subtasks": [
+            {"question": "Her stomach hurts. (stomach ache) → She has a stomach ache.", "answer": "She has a stomach ache.", "explanation": "stomach ache."},
+            {"question": "He felt sick. (nauseous) → He felt nauseous.", "answer": "He felt nauseous.", "explanation": "nauseous."},
+            {"question": "I need to take something for my headache. (painkiller) → I need to take a painkiller for my headache.", "answer": "I need to take a painkiller for my headache.", "explanation": "painkiller."},
+            {"question": "She works in a pharmacy. (pharmacist) → She is a pharmacist.", "answer": "She is a pharmacist.", "explanation": "pharmacist."},
+            {"question": "He treats teeth. (dentist) → He is a dentist.", "answer": "He is a dentist.", "explanation": "dentist."},
+            {"question": "She treats mental disorders. (psychiatrist) → She is a psychiatrist.", "answer": "She is a psychiatrist.", "explanation": "psychiatrist."},
+            {"question": "He gives first aid. (paramedic) → He is a paramedic.", "answer": "He is a paramedic.", "explanation": "paramedic."},
+            {"question": "She is a family doctor. (GP) → She is a GP.", "answer": "She is a GP.", "explanation": "GP."}
+          ]
+        }
+      ],
+      # =====================================================
+      # ВАРИАНТ 5 (перевод)
+      # =====================================================
+      [
+        {
+          "type": "complex",
+          "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+          "subtasks": [
+            {"question": "He has a ______ cough that won't go away.", "options": ["a) severe", "b) persistent", "c) chronic", "d) mild"], "answer": "b", "explanation": "persistent cough – постоянный кашель."},
+            {"question": "She has a ______ and needs to rest in bed.", "options": ["a) temperature", "b) fever", "c) headache", "d) cold"], "answer": "b", "explanation": "fever – жар."},
+            {"question": "He needs to see a ______ for his heart condition.", "options": ["a) cardiologist", "b) neurologist", "c) dermatologist", "d) psychiatrist"], "answer": "a", "explanation": "cardiologist – кардиолог."},
+            {"question": "She is a ______ and works in a hospital.", "options": ["a) nurse", "b) surgeon", "c) pharmacist", "d) GP"], "answer": "a", "explanation": "nurse – медсестра."},
+            {"question": "He needs to take a ______ for his pain.", "options": ["a) antibiotic", "b) painkiller", "c) vitamin", "d) injection"], "answer": "b", "explanation": "painkiller – обезболивающее."},
+            {"question": "She needs to get a ______ for her flu.", "options": ["a) vaccination", "b) prescription", "c) blood test", "d) X-ray"], "answer": "a", "explanation": "vaccination – вакцинация."},
+            {"question": "He is a ______ and performs operations.", "options": ["a) GP", "b) cardiologist", "c) surgeon", "d) anaesthetist"], "answer": "c", "explanation": "surgeon – хирург."},
+            {"question": "She is a ______ and treats skin problems.", "options": ["a) dermatologist", "b) paediatrician", "c) obstetrician", "d) psychologist"], "answer": "a", "explanation": "dermatologist – дерматолог."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "2. Fill in the gaps with the correct word or phrase. Type the missing word(s) in the box.",
+          "subtasks": [
+            {"question": "He has a ______ cough that won't go away.", "answer": "persistent", "explanation": "persistent."},
+            {"question": "She has a ______ and needs to rest in bed.", "answer": "fever", "explanation": "fever."},
+            {"question": "He needs to see a ______ for his heart condition.", "answer": "cardiologist", "explanation": "cardiologist."},
+            {"question": "She is a ______ and works in a hospital.", "answer": "nurse", "explanation": "nurse."},
+            {"question": "He needs to take a ______ for his pain.", "answer": "painkiller", "explanation": "painkiller."},
+            {"question": "She needs to get a ______ for her flu.", "answer": "vaccination", "explanation": "vaccination."},
+            {"question": "He is a ______ and performs operations.", "answer": "surgeon", "explanation": "surgeon."},
+            {"question": "She is a ______ and treats skin problems.", "answer": "dermatologist", "explanation": "dermatologist."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
+          "subtasks": [
+            {"question": "He has a persistent cough that won't go away.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "She has a fever and needs to rest in bed.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "He needs to see a cardiologist for his heart condition.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "She is a nurse and works in a hospital.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "He needs to take a painkiller for his pain.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "She needs to get a vaccination for her flu.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "He is a surgeon and performs operations.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "She is a dermatologist and treats skin problems.", "answer": "Correct", "explanation": "Верно."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "4. Translate the sentences into English using the correct health vocabulary. Type your translation (one sentence) in the box.",
+          "subtasks": [
+            {"question": "У него постоянный кашель, который не проходит.", "answer": "He has a persistent cough that won't go away.", "explanation": ""},
+            {"question": "У неё жар, ей нужно отлежаться.", "answer": "She has a fever and needs to rest in bed.", "explanation": ""},
+            {"question": "Ему нужно обратиться к кардиологу из-за проблем с сердцем.", "answer": "He needs to see a cardiologist for his heart condition.", "explanation": ""},
+            {"question": "Она медсестра и работает в больнице.", "answer": "She is a nurse and works in a hospital.", "explanation": ""},
+            {"question": "Ему нужно принять обезболивающее от боли.", "answer": "He needs to take a painkiller for his pain.", "explanation": ""},
+            {"question": "Ей нужно сделать прививку от гриппа.", "answer": "She needs to get a vaccination for her flu.", "explanation": ""},
+            {"question": "Он хирург и проводит операции.", "answer": "He is a surgeon and performs operations.", "explanation": ""},
+            {"question": "Она дерматолог, лечит кожные проблемы.", "answer": "She is a dermatologist and treats skin problems.", "explanation": ""}
+          ]
+        }
+      ],
+      # =====================================================
+      # ВАРИАНТ 6 (перефразирование)
+      # =====================================================
+      [
+        {
+          "type": "complex",
+          "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+          "subtasks": [
+            {"question": "He has a ______ and needs to take some medicine.", "options": ["a) flu", "b) cold", "c) cough", "d) infection"], "answer": "b", "explanation": "cold – простуда."},
+            {"question": "She has a ______ and needs to drink plenty of fluids.", "options": ["a) temperature", "b) cold", "c) fever", "d) headache"], "answer": "c", "explanation": "fever – жар."},
+            {"question": "He has a ______ and needs to see a dentist.", "options": ["a) toothache", "b) headache", "c) backache", "d) stomach ache"], "answer": "a", "explanation": "toothache – зубная боль."},
+            {"question": "She has a ______ and needs to see a physiotherapist.", "options": ["a) headache", "b) toothache", "c) stomach ache", "d) backache"], "answer": "d", "explanation": "backache – боль в спине."},
+            {"question": "He has a ______ and needs to see a specialist.", "options": ["a) chronic disease", "b) acute condition", "c) temporary illness", "d) minor injury"], "answer": "a", "explanation": "chronic disease – хроническое заболевание."},
+            {"question": "She has a ______ and needs to rest.", "options": ["a) fracture", "b) sprain", "c) cut", "d) bruise"], "answer": "b", "explanation": "sprain – растяжение."},
+            {"question": "He has a ______ and needs to see a surgeon.", "options": ["a) injury", "b) illness", "c) disease", "d) condition"], "answer": "a", "explanation": "injury – травма."},
+            {"question": "She has a ______ and needs to take antibiotics.", "options": ["a) allergy", "b) infection", "c) rash", "d) injury"], "answer": "b", "explanation": "infection – инфекция."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "2. Fill in the gaps with the correct word or phrase. Type the missing word(s) in the box.",
+          "subtasks": [
+            {"question": "He has a ______ and needs to take some medicine.", "answer": "cold", "explanation": "cold."},
+            {"question": "She has a ______ and needs to drink plenty of fluids.", "answer": "fever", "explanation": "fever."},
+            {"question": "He has a ______ and needs to see a dentist.", "answer": "toothache", "explanation": "toothache."},
+            {"question": "She has a ______ and needs to see a physiotherapist.", "answer": "backache", "explanation": "backache."},
+            {"question": "He has a ______ and needs to see a specialist.", "answer": "chronic disease", "explanation": "chronic disease."},
+            {"question": "She has a ______ and needs to rest.", "answer": "sprain", "explanation": "sprain."},
+            {"question": "He has a ______ and needs to see a surgeon.", "answer": "injury", "explanation": "injury."},
+            {"question": "She has a ______ and needs to take antibiotics.", "answer": "infection", "explanation": "infection."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
+          "subtasks": [
+            {"question": "He has a cold and needs to take some medicine.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "She has a fever and needs to drink plenty of fluids.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "He has a toothache and needs to see a dentist.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "She has a backache and needs to see a physiotherapist.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "He has a chronic disease and needs to see a specialist.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "She has a sprain and needs to rest.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "He has a injury and needs to see a surgeon.", "answer": "He has an injury and needs to see a surgeon.", "explanation": "Injury начинается с гласной, нужен 'an'."},
+            {"question": "She has a infection and needs to take antibiotics.", "answer": "She has an infection and needs to take antibiotics.", "explanation": "Infection начинается с гласной, нужен 'an'."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "4. Rewrite the sentences using the word given in brackets. Type the whole sentence.",
+          "subtasks": [
+            {"question": "He is ill with a common illness. (cold) → He has a cold.", "answer": "He has a cold.", "explanation": "cold."},
+            {"question": "She has a high temperature. (fever) → She has a fever.", "answer": "She has a fever.", "explanation": "fever."},
+            {"question": "His tooth hurts. (toothache) → He has a toothache.", "answer": "He has a toothache.", "explanation": "toothache."},
+            {"question": "Her back hurts. (backache) → She has a backache.", "answer": "She has a backache.", "explanation": "backache."},
+            {"question": "He has a long-term illness. (chronic disease) → He has a chronic disease.", "answer": "He has a chronic disease.", "explanation": "chronic disease."},
+            {"question": "She has a twisted ankle. (sprain) → She has a sprain.", "answer": "She has a sprain.", "explanation": "sprain."},
+            {"question": "He has a physical harm. (injury) → He has an injury.", "answer": "He has an injury.", "explanation": "injury."},
+            {"question": "She has a bacterial problem. (infection) → She has an infection.", "answer": "She has an infection.", "explanation": "infection."}
+          ]
+        }
+      ],
+      # =====================================================
+      # ВАРИАНТ 7 (перевод)
+      # =====================================================
+      [
+        {
+          "type": "complex",
+          "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+          "subtasks": [
+            {"question": "She is a ______ and treats mental health issues.", "options": ["a) psychologist", "b) counsellor", "c) psychiatrist", "d) therapist"], "answer": "c", "explanation": "psychiatrist – психиатр."},
+            {"question": "He is a ______ and works in a laboratory.", "options": ["a) chemist", "b) druggist", "c) dispenser", "d) pharmacist"], "answer": "d", "explanation": "pharmacist – фармацевт."},
+            {"question": "She is a ______ and works in a hospital.", "options": ["a) paramedic", "b) nurse", "c) doctor", "d) first aider"], "answer": "a", "explanation": "paramedic – фельдшер скорой."},
+            {"question": "He is a ______ and treats allergies.", "options": ["a) allergist", "b) immunologist", "c) rheumatologist", "d) infectious disease specialist"], "answer": "b", "explanation": "immunologist – иммунолог."},
+            {"question": "She is a ______ and treats kidney problems.", "options": ["a) urologist", "b) cardiologist", "c) nephrologist", "d) pulmonologist"], "answer": "c", "explanation": "nephrologist – нефролог."},
+            {"question": "He is a ______ and treats blood disorders.", "options": ["a) oncologist", "b) pathologist", "c) radiologist", "d) haematologist"], "answer": "d", "explanation": "haematologist – гематолог."},
+            {"question": "She is a ______ and treats digestive issues.", "options": ["a) gastroenterologist", "b) proctologist", "c) hepatologist", "d) endocrinologist"], "answer": "a", "explanation": "gastroenterologist – гастроэнтеролог."},
+            {"question": "He is a ______ and treats neurological disorders.", "options": ["a) psychiatrist", "b) neurologist", "c) neurosurgeon", "d) pain specialist"], "answer": "b", "explanation": "neurologist – невролог."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "2. Fill in the gaps with the correct word or phrase. Type the missing word(s) in the box.",
+          "subtasks": [
+            {"question": "She is a ______ and treats mental health issues.", "answer": "psychiatrist", "explanation": "psychiatrist."},
+            {"question": "He is a ______ and works in a laboratory.", "answer": "pharmacist", "explanation": "pharmacist."},
+            {"question": "She is a ______ and works in a hospital.", "answer": "paramedic", "explanation": "paramedic."},
+            {"question": "He is a ______ and treats allergies.", "answer": "immunologist", "explanation": "immunologist."},
+            {"question": "She is a ______ and treats kidney problems.", "answer": "nephrologist", "explanation": "nephrologist."},
+            {"question": "He is a ______ and treats blood disorders.", "answer": "haematologist", "explanation": "haematologist."},
+            {"question": "She is a ______ and treats digestive issues.", "answer": "gastroenterologist", "explanation": "gastroenterologist."},
+            {"question": "He is a ______ and treats neurological disorders.", "answer": "neurologist", "explanation": "neurologist."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
+          "subtasks": [
+            {"question": "She is a psychiatrist and treats mental health issues.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "He is a pharmacist and works in a laboratory.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "She is a paramedic and works in a hospital.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "He is a immunologist and treats allergies.", "answer": "He is an immunologist and treats allergies.", "explanation": "Immunologist начинается с гласной, нужен 'an'."},
+            {"question": "She is a nephrologist and treats kidney problems.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "He is a haematologist and treats blood disorders.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "She is a gastroenterologist and treats digestive issues.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "He is a neurologist and treats neurological disorders.", "answer": "Correct", "explanation": "Верно."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "4. Translate the sentences into English using the correct health vocabulary. Type your translation (one sentence) in the box.",
+          "subtasks": [
+            {"question": "Она психиатр, лечит проблемы с ментальным здоровьем.", "answer": "She is a psychiatrist and treats mental health issues.", "explanation": ""},
+            {"question": "Он фармацевт, работает в лаборатории.", "answer": "He is a pharmacist and works in a laboratory.", "explanation": ""},
+            {"question": "Она фельдшер скорой, работает в больнице.", "answer": "She is a paramedic and works in a hospital.", "explanation": ""},
+            {"question": "Он иммунолог, лечит аллергии.", "answer": "He is an immunologist and treats allergies.", "explanation": ""},
+            {"question": "Она нефролог, лечит проблемы с почками.", "answer": "She is a nephrologist and treats kidney problems.", "explanation": ""},
+            {"question": "Он гематолог, лечит заболевания крови.", "answer": "He is a haematologist and treats blood disorders.", "explanation": ""},
+            {"question": "Она гастроэнтеролог, лечит проблемы с пищеварением.", "answer": "She is a gastroenterologist and treats digestive issues.", "explanation": ""},
+            {"question": "Он невролог, лечит неврологические расстройства.", "answer": "He is a neurologist and treats neurological disorders.", "explanation": ""}
+          ]
+        }
+      ],
+      # =====================================================
+      # ВАРИАНТ 8 (перефразирование)
+      # =====================================================
+      [
+        {
+          "type": "complex",
+          "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+          "subtasks": [
+            {"question": "She needs to buy some ______ for her cough.", "options": ["a) cough medicine", "b) cough syrup", "c) lozenges", "d) antibiotics"], "answer": "b", "explanation": "cough syrup – сироп от кашля."},
+            {"question": "He needs to put some ______ on his wound.", "options": ["a) cream", "b) ointment", "c) lotion", "d) gel"], "answer": "b", "explanation": "ointment – мазь."},
+            {"question": "She needs to put a ______ on her cut.", "options": ["a) bandage", "b) dressing", "c) plaster", "d) tape"], "answer": "c", "explanation": "plaster – пластырь."},
+            {"question": "He needs to use a ______ to support his arm.", "options": ["a) cast", "b) sling", "c) bandage", "d) splint"], "answer": "c", "explanation": "bandage – бинт."},
+            {"question": "She needs to do some ______ for her back.", "options": ["a) exercises", "b) physical therapy", "c) stretching", "d) yoga"], "answer": "b", "explanation": "physical therapy – физиотерапия."},
+            {"question": "He needs to take a ______ for his pain.", "options": ["a) painkiller", "b) antibiotic", "c) vitamin", "d) tablet"], "answer": "a", "explanation": "painkiller – обезболивающее."},
+            {"question": "She needs to have ______ to fix her knee.", "options": ["a) an operation", "b) a procedure", "c) surgery", "d) a treatment"], "answer": "c", "explanation": "surgery – хирургическая операция."},
+            {"question": "He needs to get a ______ to prevent the flu.", "options": ["a) vaccination", "b) injection", "c) shot", "d) immunization"], "answer": "a", "explanation": "vaccination – вакцинация."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "2. Fill in the gaps with the correct word or phrase. Type the missing word(s) in the box.",
+          "subtasks": [
+            {"question": "She needs to buy some ______ for her cough.", "answer": "cough syrup", "explanation": "cough syrup."},
+            {"question": "He needs to put some ______ on his wound.", "answer": "ointment", "explanation": "ointment."},
+            {"question": "She needs to put a ______ on her cut.", "answer": "plaster", "explanation": "plaster."},
+            {"question": "He needs to use a ______ to support his arm.", "answer": "bandage", "explanation": "bandage."},
+            {"question": "She needs to do some ______ for her back.", "answer": "physical therapy", "explanation": "physical therapy."},
+            {"question": "He needs to take a ______ for his pain.", "answer": "painkiller", "explanation": "painkiller."},
+            {"question": "She needs to have ______ to fix her knee.", "answer": "surgery", "explanation": "surgery."},
+            {"question": "He needs to get a ______ to prevent the flu.", "answer": "vaccination", "explanation": "vaccination."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
+          "subtasks": [
+            {"question": "She needs to buy some cough syrup for her cough.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "He needs to put some ointment on his wound.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "She needs to put a plaster on her cut.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "He needs to use a bandage to support his arm.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "She needs to do some physical therapy for her back.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "He needs to take a painkiller for his pain.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "She needs to have surgery to fix her knee.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "He needs to get a vaccination to prevent the flu.", "answer": "Correct", "explanation": "Верно."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "4. Rewrite the sentences using the word given in brackets. Type the whole sentence.",
+          "subtasks": [
+            {"question": "She needs to buy medicine for her cough. (cough syrup) → She needs to buy some cough syrup for her cough.", "answer": "She needs to buy some cough syrup for her cough.", "explanation": "cough syrup."},
+            {"question": "He needs to apply cream to his wound. (ointment) → He needs to put some ointment on his wound.", "answer": "He needs to put some ointment on his wound.", "explanation": "ointment."},
+            {"question": "She needs to cover her cut. (plaster) → She needs to put a plaster on her cut.", "answer": "She needs to put a plaster on her cut.", "explanation": "plaster."},
+            {"question": "He needs to wrap his arm. (bandage) → He needs to use a bandage to support his arm.", "answer": "He needs to use a bandage to support his arm.", "explanation": "bandage."},
+            {"question": "She needs exercises for her back. (physical therapy) → She needs to do some physical therapy for her back.", "answer": "She needs to do some physical therapy for her back.", "explanation": "physical therapy."},
+            {"question": "He needs to take something for his pain. (painkiller) → He needs to take a painkiller for his pain.", "answer": "He needs to take a painkiller for his pain.", "explanation": "painkiller."},
+            {"question": "She needs an operation for her knee. (surgery) → She needs to have surgery to fix her knee.", "answer": "She needs to have surgery to fix her knee.", "explanation": "surgery."},
+            {"question": "He needs a shot to prevent the flu. (vaccination) → He needs to get a vaccination to prevent the flu.", "answer": "He needs to get a vaccination to prevent the flu.", "explanation": "vaccination."}
+          ]
+        }
+      ],
+      # =====================================================
+      # ВАРИАНТ 9 (перевод)
+      # =====================================================
+      [
+        {
+          "type": "complex",
+          "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+          "subtasks": [
+            {"question": "She has a ______ of the flu.", "options": ["a) case", "b) bout", "c) attack", "d) spell"], "answer": "a", "explanation": "case – случай болезни."},
+            {"question": "He has a ______ of food poisoning.", "options": ["a) case", "b) bout", "c) attack", "d) spell"], "answer": "a", "explanation": "case – случай."},
+            {"question": "She needs to see a ______ about her rash.", "options": ["a) dermatologist", "b) paediatrician", "c) obstetrician", "d) psychologist"], "answer": "a", "explanation": "dermatologist – дерматолог."},
+            {"question": "He needs to see a ______ about his heart.", "options": ["a) cardiologist", "b) neurologist", "c) pulmonologist", "d) immunologist"], "answer": "a", "explanation": "cardiologist – кардиолог."},
+            {"question": "She needs to see a ______ about her back.", "options": ["a) physiotherapist", "b) chiropractor", "c) osteopath", "d) personal trainer"], "answer": "a", "explanation": "physiotherapist – физиотерапевт."},
+            {"question": "He needs to see a ______ about his broken leg.", "options": ["a) orthopaedic surgeon", "b) cardiologist", "c) dermatologist", "d) ophthalmologist"], "answer": "a", "explanation": "orthopaedic surgeon – ортопед-хирург."},
+            {"question": "She needs to see a ______ about her eyes.", "options": ["a) ophthalmologist", "b) optician", "c) optometrist", "d) orthoptist"], "answer": "a", "explanation": "ophthalmologist – офтальмолог."},
+            {"question": "He needs to see a ______ about his ears.", "options": ["a) ENT specialist", "b) audiologist", "c) otolaryngologist", "d) hearing specialist"], "answer": "a", "explanation": "ENT specialist – ЛОР."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "2. Fill in the gaps with the correct word or phrase. Type the missing word(s) in the box.",
+          "subtasks": [
+            {"question": "She has a ______ of the flu.", "answer": "case", "explanation": "case."},
+            {"question": "He has a ______ of food poisoning.", "answer": "case", "explanation": "case."},
+            {"question": "She needs to see a ______ about her rash.", "answer": "dermatologist", "explanation": "dermatologist."},
+            {"question": "He needs to see a ______ about his heart.", "answer": "cardiologist", "explanation": "cardiologist."},
+            {"question": "She needs to see a ______ about her back.", "answer": "physiotherapist", "explanation": "physiotherapist."},
+            {"question": "He needs to see an ______ about his broken leg.", "answer": "orthopaedic surgeon", "explanation": "orthopaedic surgeon."},
+            {"question": "She needs to see an ______ about her eyes.", "answer": "ophthalmologist", "explanation": "ophthalmologist."},
+            {"question": "He needs to see an ______ about his ears.", "answer": "ENT specialist", "explanation": "ENT specialist."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
+          "subtasks": [
+            {"question": "She has a case of the flu.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "He has a case of food poisoning.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "She needs to see a dermatologist about her rash.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "He needs to see a cardiologist about his heart.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "She needs to see a physiotherapist about her back.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "He needs to see an orthopaedic surgeon about his broken leg.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "She needs to see an ophthalmologist about her eyes.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "He needs to see a ENT specialist about his ears.", "answer": "He needs to see an ENT specialist about his ears.", "explanation": "ENT начинается с гласной (E), нужен 'an'."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "4. Translate the sentences into English using the correct health vocabulary. Type your translation (one sentence) in the box.",
+          "subtasks": [
+            {"question": "У неё случай гриппа.", "answer": "She has a case of the flu.", "explanation": ""},
+            {"question": "У него случай пищевого отравления.", "answer": "He has a case of food poisoning.", "explanation": ""},
+            {"question": "Ей нужно обратиться к дерматологу из-за сыпи.", "answer": "She needs to see a dermatologist about her rash.", "explanation": ""},
+            {"question": "Ему нужно обратиться к кардиологу из-за сердца.", "answer": "He needs to see a cardiologist about his heart.", "explanation": ""},
+            {"question": "Ей нужно обратиться к физиотерапевту из-за спины.", "answer": "She needs to see a physiotherapist about her back.", "explanation": ""},
+            {"question": "Ему нужно обратиться к ортопеду-хирургу из-за сломанной ноги.", "answer": "He needs to see an orthopaedic surgeon about his broken leg.", "explanation": ""},
+            {"question": "Ей нужно обратиться к офтальмологу из-за глаз.", "answer": "She needs to see an ophthalmologist about her eyes.", "explanation": ""},
+            {"question": "Ему нужно обратиться к ЛОРу из-за ушей.", "answer": "He needs to see an ENT specialist about his ears.", "explanation": ""}
+          ]
+        }
+      ],
+      # =====================================================
+      # ВАРИАНТ 10 (перефразирование)
+      # =====================================================
+      [
+        {
+          "type": "complex",
+          "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+          "subtasks": [
+            {"question": "She is ______ from a serious illness.", "options": ["a) healing", "b) recovering", "c) resting", "d) improving"], "answer": "b", "explanation": "to recover – выздоравливать."},
+            {"question": "He is ______ from his injury.", "options": ["a) recovering", "b) resting", "c) healing", "d) improving"], "answer": "a", "explanation": "to recover – выздоравливать."},
+            {"question": "She is ______ for her operation.", "options": ["a) waiting", "b) preparing", "c) resting", "d) recovering"], "answer": "b", "explanation": "to prepare – готовиться."},
+            {"question": "He is ______ for his surgery.", "options": ["a) preparing", "b) waiting", "c) resting", "d) healing"], "answer": "a", "explanation": "to prepare – готовиться."},
+            {"question": "She is ______ her medication.", "options": ["a) taking", "b) receiving", "c) undergoing", "d) using"], "answer": "a", "explanation": "to take medication – принимать лекарства."},
+            {"question": "He is ______ his treatment.", "options": ["a) taking", "b) receiving", "c) undergoing", "d) having"], "answer": "c", "explanation": "to undergo treatment – проходить лечение."},
+            {"question": "She is ______ from her surgery.", "options": ["a) healing", "b) recovering", "c) resting", "d) improving"], "answer": "b", "explanation": "to recover – выздоравливать."},
+            {"question": "He is ______ for his appointment.", "options": ["a) preparing", "b) waiting", "c) resting", "d) recovering"], "answer": "b", "explanation": "to wait – ждать."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "2. Fill in the gaps with the correct word or phrase. Type the missing word(s) in the box.",
+          "subtasks": [
+            {"question": "She is ______ from a serious illness.", "answer": "recovering", "explanation": "recovering."},
+            {"question": "He is ______ from his injury.", "answer": "recovering", "explanation": "recovering."},
+            {"question": "She is ______ for her operation.", "answer": "preparing", "explanation": "preparing."},
+            {"question": "He is ______ for his surgery.", "answer": "preparing", "explanation": "preparing."},
+            {"question": "She is ______ her medication.", "answer": "taking", "explanation": "taking."},
+            {"question": "He is ______ his treatment.", "answer": "undergoing", "explanation": "undergoing."},
+            {"question": "She is ______ from her surgery.", "answer": "recovering", "explanation": "recovering."},
+            {"question": "He is ______ for his appointment.", "answer": "waiting", "explanation": "waiting."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
+          "subtasks": [
+            {"question": "She is recovering from a serious illness.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "He is recovering from his injury.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "She is preparing for her operation.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "He is preparing for his surgery.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "She is taking her medication.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "He is undergoing his treatment.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "She is recover from her surgery.", "answer": "She is recovering from her surgery.", "explanation": "Recovering, не recover."},
+            {"question": "He is waiting for his appointment.", "answer": "Correct", "explanation": "Верно."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "4. Rewrite the sentences using the word given in brackets. Type the whole sentence.",
+          "subtasks": [
+            {"question": "She is getting better after an illness. (recovering) → She is recovering from a serious illness.", "answer": "She is recovering from a serious illness.", "explanation": "recovering."},
+            {"question": "He is getting better after an injury. (recovering) → He is recovering from his injury.", "answer": "He is recovering from his injury.", "explanation": "recovering."},
+            {"question": "She is getting ready for her operation. (preparing) → She is preparing for her operation.", "answer": "She is preparing for her operation.", "explanation": "preparing."},
+            {"question": "He is getting ready for his surgery. (preparing) → He is preparing for his surgery.", "answer": "He is preparing for his surgery.", "explanation": "preparing."},
+            {"question": "She is using her medication. (taking) → She is taking her medication.", "answer": "She is taking her medication.", "explanation": "taking."},
+            {"question": "He is receiving treatment. (undergoing) → He is undergoing his treatment.", "answer": "He is undergoing his treatment.", "explanation": "undergoing."},
+            {"question": "She is getting better after surgery. (recovering) → She is recovering from her surgery.", "answer": "She is recovering from her surgery.", "explanation": "recovering."},
+            {"question": "He is waiting for his appointment. (waiting) → He is waiting for his appointment.", "answer": "He is waiting for his appointment.", "explanation": "waiting."}
+          ]
+        }
+      ],
+      # =====================================================
+      # ВАРИАНТ 11 (перевод)
+      # =====================================================
+      [
+        {
+          "type": "complex",
+          "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+          "subtasks": [
+            {"question": "She has a ______ and needs to go to the hospital.", "options": ["a) heart attack", "b) stroke", "c) asthma attack", "d) seizure"], "answer": "a", "explanation": "heart attack – сердечный приступ."},
+            {"question": "He has a ______ and needs to rest.", "options": ["a) heart attack", "b) stroke", "c) migraine", "d) concussion"], "answer": "b", "explanation": "stroke – инсульт."},
+            {"question": "She has a ______ and needs to see a doctor.", "options": ["a) cancer", "b) tumour", "c) infection", "d) disease"], "answer": "a", "explanation": "cancer – рак."},
+            {"question": "He has a ______ and needs to take medication.", "options": ["a) diabetes", "b) obesity", "c) hypertension", "d) high cholesterol"], "answer": "a", "explanation": "diabetes – диабет."},
+            {"question": "She has a ______ and needs to use an inhaler.", "options": ["a) asthma", "b) bronchitis", "c) pneumonia", "d) COPD"], "answer": "a", "explanation": "asthma – астма."},
+            {"question": "He has a ______ and needs to see a specialist.", "options": ["a) hypertension", "b) low blood pressure", "c) heart disease", "d) arrhythmia"], "answer": "a", "explanation": "hypertension – гипертония."},
+            {"question": "She has a ______ and needs to lose weight.", "options": ["a) obesity", "b) diabetes", "c) high cholesterol", "d) heart disease"], "answer": "a", "explanation": "obesity – ожирение."},
+            {"question": "He has a ______ and needs to eat a healthy diet.", "options": ["a) high cholesterol", "b) diabetes", "c) obesity", "d) hypertension"], "answer": "a", "explanation": "high cholesterol – высокий холестерин."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "2. Fill in the gaps with the correct word or phrase. Type the missing word(s) in the box.",
+          "subtasks": [
+            {"question": "She has a ______ and needs to go to the hospital.", "answer": "heart attack", "explanation": "heart attack."},
+            {"question": "He has a ______ and needs to rest.", "answer": "stroke", "explanation": "stroke."},
+            {"question": "She has a ______ and needs to see a doctor.", "answer": "cancer", "explanation": "cancer."},
+            {"question": "He has a ______ and needs to take medication.", "answer": "diabetes", "explanation": "diabetes."},
+            {"question": "She has a ______ and needs to use an inhaler.", "answer": "asthma", "explanation": "asthma."},
+            {"question": "He has a ______ and needs to see a specialist.", "answer": "hypertension", "explanation": "hypertension."},
+            {"question": "She has a ______ and needs to lose weight.", "answer": "obesity", "explanation": "obesity."},
+            {"question": "He has a ______ and needs to eat a healthy diet.", "answer": "high cholesterol", "explanation": "high cholesterol."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
+          "subtasks": [
+            {"question": "She has a heart attack and needs to go to the hospital.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "He has a stroke and needs to rest.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "She has a cancer and needs to see a doctor.", "answer": "She has cancer and needs to see a doctor.", "explanation": "Cancer – неисчисляемое, без артикля."},
+            {"question": "He has diabetes and needs to take medication.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "She has asthma and needs to use an inhaler.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "He has hypertension and needs to see a specialist.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "She has obesity and needs to lose weight.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "He has high cholesterol and needs to eat a healthy diet.", "answer": "Correct", "explanation": "Верно."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "4. Translate the sentences into English using the correct health vocabulary. Type your translation (one sentence) in the box.",
+          "subtasks": [
+            {"question": "У неё сердечный приступ, ей нужно в больницу.", "answer": "She has a heart attack and needs to go to the hospital.", "explanation": ""},
+            {"question": "У него инсульт, ему нужно отдохнуть.", "answer": "He has a stroke and needs to rest.", "explanation": ""},
+            {"question": "У неё рак, ей нужно обратиться к врачу.", "answer": "She has cancer and needs to see a doctor.", "explanation": ""},
+            {"question": "У него диабет, ему нужно принимать лекарства.", "answer": "He has diabetes and needs to take medication.", "explanation": ""},
+            {"question": "У неё астма, ей нужно использовать ингалятор.", "answer": "She has asthma and needs to use an inhaler.", "explanation": ""},
+            {"question": "У него гипертония, ему нужно обратиться к специалисту.", "answer": "He has hypertension and needs to see a specialist.", "explanation": ""},
+            {"question": "У неё ожирение, ей нужно похудеть.", "answer": "She has obesity and needs to lose weight.", "explanation": ""},
+            {"question": "У него высокий холестерин, ему нужно питаться здоровой пищей.", "answer": "He has high cholesterol and needs to eat a healthy diet.", "explanation": ""}
+          ]
+        }
+      ],
+      # =====================================================
+      # ВАРИАНТ 12 (перефразирование)
+      # =====================================================
+      [
+        {
+          "type": "complex",
+          "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+          "subtasks": [
+            {"question": "She is ______ to treat her illness.", "options": ["a) taking medication", "b) doing therapy", "c) having surgery", "d) receiving care"], "answer": "a", "explanation": "to take medication – принимать лекарства."},
+            {"question": "He is ______ to reduce his pain.", "options": ["a) using ointment", "b) taking painkillers", "c) applying cream", "d) getting massage"], "answer": "b", "explanation": "to take painkillers – принимать обезболивающие."},
+            {"question": "She is ______ to improve her mobility.", "options": ["a) doing surgery", "b) taking pills", "c) doing physical therapy", "d) having rest"], "answer": "c", "explanation": "to do physical therapy – заниматься физиотерапией."},
+            {"question": "He is ______ to recover from his injury.", "options": ["a) doing exercises", "b) taking medicine", "c) having injections", "d) using a crutch"], "answer": "a", "explanation": "to do exercises – делать упражнения."},
+            {"question": "She is ______ to prevent the disease.", "options": ["a) taking antibiotics", "b) getting vaccinated", "c) having an operation", "d) doing rehabilitation"], "answer": "b", "explanation": "to get vaccinated – сделать прививку."},
+            {"question": "He is ______ to treat his condition.", "options": ["a) taking medication", "b) having a check-up", "c) undergoing treatment", "d) doing therapy"], "answer": "c", "explanation": "to undergo treatment – проходить лечение."},
+            {"question": "She is ______ to cure her infection.", "options": ["a) having physiotherapy", "b) taking antibiotics", "c) doing exercises", "d) getting a vaccine"], "answer": "b", "explanation": "to take antibiotics – принимать антибиотики."},
+            {"question": "He is ______ to relieve his symptoms.", "options": ["a) having an injection", "b) doing rehabilitation", "c) taking medication", "d) using a bandage"], "answer": "c", "explanation": "to take medication – принимать лекарства."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "2. Fill in the gaps with the correct word or phrase. Type the missing word(s) in the box.",
+          "subtasks": [
+            {"question": "She is ______ to treat her illness.", "answer": "taking medication", "explanation": "taking medication."},
+            {"question": "He is ______ to reduce his pain.", "answer": "taking painkillers", "explanation": "taking painkillers."},
+            {"question": "She is ______ to improve her mobility.", "answer": "doing physical therapy", "explanation": "doing physical therapy."},
+            {"question": "He is ______ to recover from his injury.", "answer": "doing exercises", "explanation": "doing exercises."},
+            {"question": "She is ______ to prevent the disease.", "answer": "getting vaccinated", "explanation": "getting vaccinated."},
+            {"question": "He is ______ to treat his condition.", "answer": "undergoing treatment", "explanation": "undergoing treatment."},
+            {"question": "She is ______ to cure her infection.", "answer": "taking antibiotics", "explanation": "taking antibiotics."},
+            {"question": "He is ______ to relieve his symptoms.", "answer": "taking medication", "explanation": "taking medication."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
+          "subtasks": [
+            {"question": "She is taking medication to treat her illness.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "He is taking painkillers to reduce his pain.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "She is doing physical therapy to improve her mobility.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "He is doing exercises to recover from his injury.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "She is getting vaccinated to prevent the disease.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "He is undergoing treatment to treat his condition.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "She is taking antibiotics to cure her infection.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "He is take medication to relieve his symptoms.", "answer": "He is taking medication to relieve his symptoms.", "explanation": "Taking, не take."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "4. Rewrite the sentences using the word given in brackets. Type the whole sentence.",
+          "subtasks": [
+            {"question": "She is using medicine for her illness. (taking medication) → She is taking medication to treat her illness.", "answer": "She is taking medication to treat her illness.", "explanation": "taking medication."},
+            {"question": "He is using pain relievers for his pain. (taking painkillers) → He is taking painkillers to reduce his pain.", "answer": "He is taking painkillers to reduce his pain.", "explanation": "taking painkillers."},
+            {"question": "She is doing exercises for her mobility. (physical therapy) → She is doing physical therapy to improve her mobility.", "answer": "She is doing physical therapy to improve her mobility.", "explanation": "physical therapy."},
+            {"question": "He is exercising to recover. (doing exercises) → He is doing exercises to recover from his injury.", "answer": "He is doing exercises to recover from his injury.", "explanation": "doing exercises."},
+            {"question": "She is getting a shot to prevent the disease. (getting vaccinated) → She is getting vaccinated to prevent the disease.", "answer": "She is getting vaccinated to prevent the disease.", "explanation": "getting vaccinated."},
+            {"question": "He is receiving care for his condition. (undergoing treatment) → He is undergoing treatment to treat his condition.", "answer": "He is undergoing treatment to treat his condition.", "explanation": "undergoing treatment."},
+            {"question": "She is using antibiotics for her infection. (taking antibiotics) → She is taking antibiotics to cure her infection.", "answer": "She is taking antibiotics to cure her infection.", "explanation": "taking antibiotics."},
+            {"question": "He is using medicine for his symptoms. (taking medication) → He is taking medication to relieve his symptoms.", "answer": "He is taking medication to relieve his symptoms.", "explanation": "taking medication."}
+          ]
+        }
+      ]
     ]
-]
   },
   "environment_b2": {
     "title": "Лексика: окружающая среда (продвинутая)",
