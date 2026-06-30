@@ -8,6 +8,7 @@ from aiogram.webhook.aiohttp_server import SimpleRequestHandler, setup_applicati
 from handlers import start, speaking, roleplay, common, voice, lessons, words, profile, skills, support
 from handlers.subscription import router as subscription_router   # <-- добавляем
 from handlers import listening
+from middleware.access import AccessMiddleware
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -34,6 +35,8 @@ dp.include_router(lessons.router)
 dp.include_router(speaking.router)
 dp.include_router(profile.router)
 dp.include_router(skills.router)
+dp.message.middleware(AccessMiddleware())
+dp.callback_query.middleware(AccessMiddleware())
 
 async def set_commands(bot: Bot):
     commands = [
