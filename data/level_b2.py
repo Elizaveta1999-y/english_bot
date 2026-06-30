@@ -29391,7 +29391,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
       ]
     ]
   },
-  "science_technology": {
+"science_technology": {
     "title": "Лексика: наука и технологии",
     "pages": [
       {
@@ -29417,1209 +29417,1220 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
         "answer": "Research – исследование (в целом), experiment – эксперимент (конкретная процедура)."
       }
     ],
-"practice_bank": [
-    # =====================================================
-    # ВАРИАНТ 1 (перевод)
-    # =====================================================
-[
-  {
-    "type": "complex",
-    "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-    "subtasks": [
-      {
-        "question": "She is a research ______ in the field of genetics.",
-        "options": ["a) physicist", "b) biologist", "c) chemist", "d) mathematician"],
-        "answer": "b",
-        "explanation": "biologist – биолог."
-      },
-      {
-        "question": "He studied ______ at university.",
-        "options": ["a) computer science", "b) literature", "c) history", "d) philosophy"],
-        "answer": "a",
-        "explanation": "computer science – информатика."
-      },
-      {
-        "question": "AI is ______ many industries.",
-        "options": ["a) destroying", "b) ignoring", "c) transforming", "d) simplifying"],
-        "answer": "c",
-        "explanation": "to transform – преобразовывать."
-      },
-      {
-        "question": "They developed a new ______ for language learning.",
-        "options": ["a) website", "b) app", "c) programme", "d) tool"],
-        "answer": "b",
-        "explanation": "app – приложение."
-      },
-      {
-        "question": "The ______ of penicillin was a breakthrough.",
-        "options": ["a) invention", "b) creation", "c) discovery", "d) production"],
-        "answer": "c",
-        "explanation": "discovery – открытие."
-      },
-      {
-        "question": "They conducted an ______ to test the hypothesis.",
-        "options": ["a) experiment", "b) observation", "c) interview", "d) survey"],
-        "answer": "a",
-        "explanation": "experiment – эксперимент."
-      },
-      {
-        "question": "______ is a branch of biology that studies genes.",
-        "options": ["a) Botany", "b) Genetics", "c) Zoology", "d) Ecology"],
-        "answer": "b",
-        "explanation": "genetics – генетика."
-      },
-      {
-        "question": "A ______ is a person who designs and builds machines.",
-        "options": ["a) physicist", "b) technician", "c) engineer", "d) mechanic"],
-        "answer": "c",
-        "explanation": "engineer – инженер."
-              }
-            ]
+    "practice_bank": [
+      # =====================================================
+      # ВАРИАНТ 1 (перевод)
+      # =====================================================
+      [
+        {
+          "type": "complex",
+          "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+          "subtasks": [
+            {
+              "question": "She is a research ______ in the field of genetics.",
+              "options": ["a) physicist", "b) biologist", "c) chemist", "d) mathematician"],
+              "answer": "b",
+              "explanation": "biologist – биолог."
+            },
+            {
+              "question": "He studied ______ at university.",
+              "options": ["a) computer science", "b) literature", "c) history", "d) philosophy"],
+              "answer": "a",
+              "explanation": "computer science – информатика."
+            },
+            {
+              "question": "AI is ______ many industries.",
+              "options": ["a) destroying", "b) ignoring", "c) transforming", "d) simplifying"],
+              "answer": "c",
+              "explanation": "to transform – преобразовывать."
+            },
+            {
+              "question": "They developed a new ______ for language learning.",
+              "options": ["a) website", "b) app", "c) programme", "d) tool"],
+              "answer": "b",
+              "explanation": "app – приложение."
+            },
+            {
+              "question": "The ______ of penicillin was a breakthrough.",
+              "options": ["a) invention", "b) creation", "c) discovery", "d) production"],
+              "answer": "c",
+              "explanation": "discovery – открытие."
+            },
+            {
+              "question": "They conducted an ______ to test the hypothesis.",
+              "options": ["a) experiment", "b) observation", "c) interview", "d) survey"],
+              "answer": "a",
+              "explanation": "experiment – эксперимент."
+            },
+            {
+              "question": "______ is a branch of biology that studies genes.",
+              "options": ["a) Botany", "b) Genetics", "c) Zoology", "d) Ecology"],
+              "answer": "b",
+              "explanation": "genetics – генетика."
+            },
+            {
+              "question": "A ______ is a person who designs and builds machines.",
+              "options": ["a) physicist", "b) technician", "c) engineer", "d) mechanic"],
+              "answer": "c",
+              "explanation": "engineer – инженер."
+            }
+          ]
         },
         {
-            "type": "complex",
-            "text": "2. Fill in the gaps with the correct word or phrase. Type the missing word(s) in the box.",
-            "subtasks": [
-                {"question": "She is a research ______ in the field of genetics.", "answer": "biologist", "explanation": "biologist."},
-                {"question": "He studied ______ at university.", "answer": "computer science", "explanation": "computer science."},
-                {"question": "AI is ______ many industries.", "answer": "transforming", "explanation": "transforming."},
-                {"question": "They developed a new ______ for language learning.", "answer": "app", "explanation": "app."},
-                {"question": "The ______ of penicillin was a breakthrough.", "answer": "discovery", "explanation": "discovery."},
-                {"question": "They conducted an ______ to test the hypothesis.", "answer": "experiment", "explanation": "experiment."},
-                {"question": "______ is a branch of biology that studies genes.", "answer": "Genetics", "explanation": "Genetics."},
-                {"question": "A ______ is a person who designs and builds machines.", "answer": "engineer", "explanation": "engineer."}
-            ]
+          "type": "complex",
+          "text": "2. Fill in the gaps with the correct word or phrase. Type the missing word(s) in the box.",
+          "subtasks": [
+            {"question": "She is a research ______ in the field of genetics.", "answer": "biologist", "explanation": "biologist."},
+            {"question": "He studied ______ at university.", "answer": "computer science", "explanation": "computer science."},
+            {"question": "AI is ______ many industries.", "answer": "transforming", "explanation": "transforming."},
+            {"question": "They developed a new ______ for language learning.", "answer": "app", "explanation": "app."},
+            {"question": "The ______ of penicillin was a breakthrough.", "answer": "discovery", "explanation": "discovery."},
+            {"question": "They conducted an ______ to test the hypothesis.", "answer": "experiment", "explanation": "experiment."},
+            {"question": "______ is a branch of biology that studies genes.", "answer": "Genetics", "explanation": "Genetics."},
+            {"question": "A ______ is a person who designs and builds machines.", "answer": "engineer", "explanation": "engineer."}
+          ]
         },
         {
-            "type": "complex",
-            "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
-            "subtasks": [
-                {"question": "She is a research biologist in the field of genetics.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "He studied computer science at university.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "AI is transforming many industries.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "They developed a new app for language learning.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "The discovery of penicillin was a breakthrough.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "They conducted an experiment to test the hypothesis.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Genetics is a branch of biology that studies genes.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "A engineer is a person who designs and builds machines.", "answer": "An engineer is a person who designs and builds machines.", "explanation": "Engineer начинается с гласной, нужен 'an'."}
-            ]
+          "type": "complex",
+          "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
+          "subtasks": [
+            {"question": "She is a research biologist in the field of genetics.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "He studied computer science at university.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "AI is transforming many industries.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "They developed a new app for language learning.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "The discovery of penicillin was a breakthrough.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "They conducted an experiment to test the hypothesis.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Genetics is a branch of biology that studies genes.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "A engineer is a person who designs and builds machines.", "answer": "An engineer is a person who designs and builds machines.", "explanation": "Engineer начинается с гласной, нужен 'an'."}
+          ]
         },
         {
-            "type": "complex",
-            "text": "4. Translate the sentences into English using the correct science and technology vocabulary. Type your translation (one sentence) in the box.",
-            "subtasks": [
-                {"question": "Она научный сотрудник-биолог в области генетики.", "answer": "She is a research biologist in the field of genetics.", "explanation": ""},
-                {"question": "Он изучал информатику в университете.", "answer": "He studied computer science at university.", "explanation": ""},
-                {"question": "ИИ преобразует многие отрасли.", "answer": "AI is transforming many industries.", "explanation": ""},
-                {"question": "Они разработали новое приложение для изучения языков.", "answer": "They developed a new app for language learning.", "explanation": ""},
-                {"question": "Открытие пенициллина было прорывом.", "answer": "The discovery of penicillin was a breakthrough.", "explanation": ""},
-                {"question": "Они провели эксперимент, чтобы проверить гипотезу.", "answer": "They conducted an experiment to test the hypothesis.", "explanation": ""},
-                {"question": "Генетика – это раздел биологии, изучающий гены.", "answer": "Genetics is a branch of biology that studies genes.", "explanation": ""},
-                {"question": "Инженер – это человек, который проектирует и строит машины.", "answer": "An engineer is a person who designs and builds machines.", "explanation": ""}
-            ]
-        },
-    # =====================================================
-    # ВАРИАНТ 2 (перефразирование)
-    # =====================================================
-[
-  {
-    "type": "complex",
-    "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-    "subtasks": [
-      {
-        "question": "______ is the study of the universe and celestial objects.",
-        "options": ["a) Astrology", "b) Astronomy", "c) Astrophysics", "d) Cosmology"],
-        "answer": "b",
-        "explanation": "astronomy – астрономия."
-      },
-      {
-        "question": "A ______ is a scientist who studies the Earth's structure.",
-        "options": ["a) geographer", "b) geologist", "c) geophysicist", "d) geochemist"],
-        "answer": "b",
-        "explanation": "geologist – геолог."
-      },
-      {
-        "question": "______ is the study of the brain and nervous system.",
-        "options": ["a) Neurology", "b) Neuroscience", "c) Psychology", "d) Psychiatry"],
-        "answer": "b",
-        "explanation": "neuroscience – нейробиология."
-      },
-      {
-        "question": "A ______ is a scientist who studies chemicals and their reactions.",
-        "options": ["a) physicist", "b) chemist", "c) biologist", "d) mathematician"],
-        "answer": "b",
-        "explanation": "chemist – химик."
-      },
-      {
-        "question": "______ is the practice of using computer algorithms to learn from data.",
-        "options": ["a) Deep learning", "b) Artificial intelligence", "c) Machine learning", "d) Data science"],
-        "answer": "c",
-        "explanation": "machine learning – машинное обучение."
-      },
-      {
-        "question": "______ reality creates a fully immersive digital environment.",
-        "options": ["a) Augmented", "b) Virtual", "c) Mixed", "d) Extended"],
-        "answer": "b",
-        "explanation": "virtual reality – виртуальная реальность."
-      },
-      {
-        "question": "______ reality overlays digital information onto the real world.",
-        "options": ["a) Augmented", "b) Virtual", "c) Mixed", "d) Extended"],
-        "answer": "a",
-        "explanation": "augmented reality – дополненная реальность."
-      },
-      {
-        "question": "The ______ of Things connects everyday devices to the internet.",
-        "options": ["a) Network", "b) Internet", "c) Web", "d) Cloud"],
-        "answer": "b",
-        "explanation": "Internet of Things – интернет вещей."
-              }
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "2. Fill in the gaps with the correct word or phrase. Type the missing word(s) in the box.",
-            "subtasks": [
-                {"question": "______ is the study of the universe and celestial objects.", "answer": "Astronomy", "explanation": "Astronomy."},
-                {"question": "A ______ is a scientist who studies the Earth's structure.", "answer": "geologist", "explanation": "geologist."},
-                {"question": "______ is the study of the brain and nervous system.", "answer": "Neuroscience", "explanation": "Neuroscience."},
-                {"question": "A ______ is a scientist who studies chemicals and their reactions.", "answer": "chemist", "explanation": "chemist."},
-                {"question": "______ is the practice of using computer algorithms to learn from data.", "answer": "Machine learning", "explanation": "Machine learning."},
-                {"question": "______ reality creates a fully immersive digital environment.", "answer": "Virtual", "explanation": "Virtual."},
-                {"question": "______ reality overlays digital information onto the real world.", "answer": "Augmented", "explanation": "Augmented."},
-                {"question": "The ______ of Things connects everyday devices to the internet.", "answer": "Internet", "explanation": "Internet."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
-            "subtasks": [
-                {"question": "Astronomy is the study of the universe and celestial objects.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "A geologist is a scientist who studies the Earth's structure.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Neuroscience is the study of the brain and nervous system.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "A chemist is a scientist who studies chemicals and their reactions.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Machine learning is the practice of using computer algorithms to learn from data.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Virtual reality creates a fully immersive digital environment.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Augmented reality overlays digital information onto the real world.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "The Internet of Things connects everyday devices to the internet.", "answer": "Correct", "explanation": "Верно."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "4. Rewrite the sentences using the word given in brackets. Type the whole sentence.",
-            "subtasks": [
-                {"question": "It studies the universe. (astronomy) → Astronomy is the study of the universe and celestial objects.", "answer": "Astronomy is the study of the universe and celestial objects.", "explanation": "astronomy."},
-                {"question": "He studies the Earth's structure. (geologist) → A geologist is a scientist who studies the Earth's structure.", "answer": "A geologist is a scientist who studies the Earth's structure.", "explanation": "geologist."},
-                {"question": "It studies the brain. (neuroscience) → Neuroscience is the study of the brain and nervous system.", "answer": "Neuroscience is the study of the brain and nervous system.", "explanation": "neuroscience."},
-                {"question": "She studies chemicals. (chemist) → A chemist is a scientist who studies chemicals and their reactions.", "answer": "A chemist is a scientist who studies chemicals and their reactions.", "explanation": "chemist."},
-                {"question": "It uses algorithms to learn. (machine learning) → Machine learning is the practice of using computer algorithms to learn from data.", "answer": "Machine learning is the practice of using computer algorithms to learn from data.", "explanation": "machine learning."},
-                {"question": "It creates immersive environments. (virtual reality) → Virtual reality creates a fully immersive digital environment.", "answer": "Virtual reality creates a fully immersive digital environment.", "explanation": "virtual reality."},
-                {"question": "It overlays digital info on the real world. (augmented reality) → Augmented reality overlays digital information onto the real world.", "answer": "Augmented reality overlays digital information onto the real world.", "explanation": "augmented reality."},
-                {"question": "It connects devices to the internet. (Internet of Things) → The Internet of Things connects everyday devices to the internet.", "answer": "The Internet of Things connects everyday devices to the internet.", "explanation": "Internet of Things."}
-            ]
-        },
-    # =====================================================
-    # ВАРИАНТ 3 (перевод)
-    # =====================================================
-[
-  {
-    "type": "complex",
-    "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-    "subtasks": [
-      {
-        "question": "______ is the study of living organisms.",
-        "options": ["a) Physics", "b) Chemistry", "c) Biology", "d) Geology"],
-        "answer": "c",
-        "explanation": "biology – биология."
-      },
-      {
-        "question": "A ______ is a scientist who studies physics.",
-        "options": ["a) chemist", "b) physicist", "c) biologist", "d) astronomer"],
-        "answer": "b",
-        "explanation": "physicist – физик."
-      },
-      {
-        "question": "______ is the study of the mind and behaviour.",
-        "options": ["a) Psychiatry", "b) Neurology", "c) Psychology", "d) Sociology"],
-        "answer": "c",
-        "explanation": "psychology – психология."
-      },
-      {
-        "question": "A ______ is a scientist who studies the stars and planets.",
-        "options": ["a) astrologer", "b) astronomer", "c) astronaut", "d) cosmologist"],
-        "answer": "b",
-        "explanation": "astronomer – астроном."
-      },
-      {
-        "question": "______ is the field of designing and building structures.",
-        "options": ["a) Architecture", "b) Construction", "c) Engineering", "d) Design"],
-        "answer": "c",
-        "explanation": "engineering – инженерия."
-      },
-      {
-        "question": "A ______ is a scientist who studies genes and heredity.",
-        "options": ["a) geneticist", "b) botanist", "c) zoologist", "d) ecologist"],
-        "answer": "a",
-        "explanation": "geneticist – генетик."
-      },
-      {
-        "question": "______ computing allows users to access data over the internet.",
-        "options": ["a) Edge", "b) Cloud", "c) Quantum", "d) Grid"],
-        "answer": "b",
-        "explanation": "cloud computing – облачные вычисления."
-      },
-      {
-        "question": "______ is a system of recording information that is difficult to change.",
-        "options": ["a) Database", "b) Spreadsheet", "c) Blockchain", "d) Ledger"],
-        "answer": "c",
-        "explanation": "blockchain – блокчейн."
-              }
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "2. Fill in the gaps with the correct word or phrase. Type the missing word(s) in the box.",
-            "subtasks": [
-                {"question": "______ is the study of living organisms.", "answer": "Biology", "explanation": "Biology."},
-                {"question": "A ______ is a scientist who studies physics.", "answer": "physicist", "explanation": "physicist."},
-                {"question": "______ is the study of the mind and behaviour.", "answer": "Psychology", "explanation": "Psychology."},
-                {"question": "A ______ is a scientist who studies the stars and planets.", "answer": "astronomer", "explanation": "astronomer."},
-                {"question": "______ is the field of designing and building structures.", "answer": "Engineering", "explanation": "Engineering."},
-                {"question": "A ______ is a scientist who studies genes and heredity.", "answer": "geneticist", "explanation": "geneticist."},
-                {"question": "______ computing allows users to access data over the internet.", "answer": "Cloud", "explanation": "Cloud."},
-                {"question": "______ is a system of recording information that is difficult to change.", "answer": "Blockchain", "explanation": "Blockchain."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
-            "subtasks": [
-                {"question": "Biology is the study of living organisms.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "A physicist is a scientist who studies physics.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Psychology is the study of the mind and behaviour.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "A astronomer is a scientist who studies the stars and planets.", "answer": "An astronomer is a scientist who studies the stars and planets.", "explanation": "Astronomer начинается с гласной, нужен 'an'."},
-                {"question": "Engineering is the field of designing and building structures.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "A geneticist is a scientist who studies genes and heredity.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Cloud computing allows users to access data over the internet.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Blockchain is a system of recording information that is difficult to change.", "answer": "Correct", "explanation": "Верно."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "4. Translate the sentences into English using the correct science and technology vocabulary. Type your translation (one sentence) in the box.",
-            "subtasks": [
-                {"question": "Биология – это наука о живых организмах.", "answer": "Biology is the study of living organisms.", "explanation": ""},
-                {"question": "Физик – это учёный, изучающий физику.", "answer": "A physicist is a scientist who studies physics.", "explanation": ""},
-                {"question": "Психология – это изучение психики и поведения.", "answer": "Psychology is the study of the mind and behaviour.", "explanation": ""},
-                {"question": "Астроном – это учёный, изучающий звёзды и планеты.", "answer": "An astronomer is a scientist who studies the stars and planets.", "explanation": ""},
-                {"question": "Инженерия – это область проектирования и строительства.", "answer": "Engineering is the field of designing and building structures.", "explanation": ""},
-                {"question": "Генетик – это учёный, изучающий гены и наследственность.", "answer": "A geneticist is a scientist who studies genes and heredity.", "explanation": ""},
-                {"question": "Облачные вычисления позволяют пользователям получать доступ к данным через интернет.", "answer": "Cloud computing allows users to access data over the internet.", "explanation": ""},
-                {"question": "Блокчейн – это система записи информации, которую трудно изменить.", "answer": "Blockchain is a system of recording information that is difficult to change.", "explanation": ""}
-            ]
-        },
-    # =====================================================
-    # ВАРИАНТ 4 (перефразирование)
-    # =====================================================
-[
-  {
-    "type": "complex",
-    "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-    "subtasks": [
-      {
-        "question": "______ is the practice of using drones for delivery.",
-        "options": ["a) Aerial delivery", "b) Drone delivery", "c) Autonomous delivery", "d) Airborne logistics"],
-        "answer": "b",
-        "explanation": "drone delivery – доставка дронами."
-      },
-      {
-        "question": "______ is the study of the Earth's physical structure.",
-        "options": ["a) Geology", "b) Geography", "c) Geophysics", "d) Mineralogy"],
-        "answer": "a",
-        "explanation": "geology – геология."
-      },
-      {
-        "question": "A ______ is a machine that can perform tasks automatically.",
-        "options": ["a) drone", "b) robot", "c) computer", "d] android"],
-        "answer": "b",
-        "explanation": "robot – робот."
-      },
-      {
-        "question": "______ is a portable computer that fits on your lap.",
-        "options": ["a) Desktop", "b) Tablet", "c) Laptop", "d) Smartphone"],
-        "answer": "c",
-        "explanation": "laptop – ноутбук."
-      },
-      {
-        "question": "______ is the process of finding and fixing errors in code.",
-        "options": ["a) Debugging", "b) Testing", "c) Coding", "d) Monitoring"],
-        "answer": "a",
-        "explanation": "debugging – отладка."
-      },
-      {
-        "question": "A ______ is a device worn on the wrist that tracks health data.",
-        "options": ["a) fitness tracker", "b) smartwatch", "c) wearable", "d] health monitor"],
-        "answer": "b",
-        "explanation": "smartwatch – умные часы."
-      },
-      {
-        "question": "______ is the use of technology to create artificial environments.",
-        "options": ["a) Augmented reality", "b) Mixed reality", "c) Virtual reality", "d) Extended reality"],
-        "answer": "c",
-        "explanation": "virtual reality – виртуальная реальность."
-      },
-      {
-        "question": "______ is the study of how living things interact with their environment.",
-        "options": ["a) Biology", "b) Ecology", "c) Botany", "d) Zoology"],
-        "answer": "b",
-        "explanation": "ecology – экология."
-              }
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "2. Fill in the gaps with the correct word or phrase. Type the missing word(s) in the box.",
-            "subtasks": [
-                {"question": "______ is the practice of using drones for delivery.", "answer": "Drone delivery", "explanation": "Drone delivery."},
-                {"question": "______ is the study of the Earth's physical structure.", "answer": "Geology", "explanation": "Geology."},
-                {"question": "A ______ is a machine that can perform tasks automatically.", "answer": "robot", "explanation": "robot."},
-                {"question": "______ is a portable computer that fits on your lap.", "answer": "Laptop", "explanation": "Laptop."},
-                {"question": "______ is the process of finding and fixing errors in code.", "answer": "Debugging", "explanation": "Debugging."},
-                {"question": "A ______ is a device worn on the wrist that tracks health data.", "answer": "smartwatch", "explanation": "smartwatch."},
-                {"question": "______ is the use of technology to create artificial environments.", "answer": "Virtual reality", "explanation": "Virtual reality."},
-                {"question": "______ is the study of how living things interact with their environment.", "answer": "Ecology", "explanation": "Ecology."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
-            "subtasks": [
-                {"question": "Drone delivery is the practice of using drones for delivery.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Geology is the study of the Earth's physical structure.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "A robot is a machine that can perform tasks automatically.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Laptop is a portable computer that fits on your lap.", "answer": "A laptop is a portable computer that fits on your lap.", "explanation": "Нужен артикль 'a'."},
-                {"question": "Debugging is the process of finding and fixing errors in code.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "A smartwatch is a device worn on the wrist that tracks health data.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Virtual reality is the use of technology to create artificial environments.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Ecology is the study of how living things interact with their environment.", "answer": "Correct", "explanation": "Верно."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "4. Rewrite the sentences using the word given in brackets. Type the whole sentence.",
-            "subtasks": [
-                {"question": "Drones are used for delivery. (drone delivery) → Drone delivery is the practice of using drones for delivery.", "answer": "Drone delivery is the practice of using drones for delivery.", "explanation": "drone delivery."},
-                {"question": "It studies the Earth's structure. (geology) → Geology is the study of the Earth's physical structure.", "answer": "Geology is the study of the Earth's physical structure.", "explanation": "geology."},
-                {"question": "It works automatically. (robot) → A robot is a machine that can perform tasks automatically.", "answer": "A robot is a machine that can perform tasks automatically.", "explanation": "robot."},
-                {"question": "It is a portable computer. (laptop) → A laptop is a portable computer that fits on your lap.", "answer": "A laptop is a portable computer that fits on your lap.", "explanation": "laptop."},
-                {"question": "It fixes errors in code. (debugging) → Debugging is the process of finding and fixing errors in code.", "answer": "Debugging is the process of finding and fixing errors in code.", "explanation": "debugging."},
-                {"question": "It tracks health data on the wrist. (smartwatch) → A smartwatch is a device worn on the wrist that tracks health data.", "answer": "A smartwatch is a device worn on the wrist that tracks health data.", "explanation": "smartwatch."},
-                {"question": "It creates artificial environments. (virtual reality) → Virtual reality is the use of technology to create artificial environments.", "answer": "Virtual reality is the use of technology to create artificial environments.", "explanation": "virtual reality."},
-                {"question": "It studies interactions with the environment. (ecology) → Ecology is the study of how living things interact with their environment.", "answer": "Ecology is the study of how living things interact with their environment.", "explanation": "ecology."}
-            ]
-        },
-    # =====================================================
-    # ВАРИАНТ 5 (перевод)
-    # =====================================================
-[
-  {
-    "type": "complex",
-    "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-    "subtasks": [
-      {
-        "question": "______ is the practice of using renewable energy sources.",
-        "options": ["a) Fossil energy", "b) Nuclear energy", "c) Green energy", "d) Natural gas"],
-        "answer": "c",
-        "explanation": "green energy – зелёная энергия."
-      },
-      {
-        "question": "______ is the study of the origin of the universe.",
-        "options": ["a) Astrology", "b) Astronomy", "c) Cosmology", "d) Astrophysics"],
-        "answer": "c",
-        "explanation": "cosmology – космология."
-      },
-      {
-        "question": "A ______ is a person who studies the human mind.",
-        "options": ["a) psychologist", "b) psychiatrist", "c) neurologist", "d) sociologist"],
-        "answer": "a",
-        "explanation": "psychologist – психолог."
-      },
-      {
-        "question": "______ is a device that can fly without a pilot.",
-        "options": ["a) Helicopter", "b) Glider", "c) Drone", "d) Rocket"],
-        "answer": "c",
-        "explanation": "drone – дрон."
-      },
-      {
-        "question": "______ is the practice of using advanced technology to solve problems.",
-        "options": ["a) Tech innovation", "b) Digital transformation", "c) Tech disruption", "d) Tech revolution"],
-        "answer": "a",
-        "explanation": "tech innovation – технологические инновации."
-      },
-      {
-        "question": "______ is a branch of computer science that focuses on intelligent systems.",
-        "options": ["a) Data science", "b) AI", "c) Programming", "d) Web development"],
-        "answer": "b",
-        "explanation": "AI – искусственный интеллект."
-      },
-      {
-        "question": "______ is the study of the properties of matter and energy.",
-        "options": ["a) Physics", "b) Chemistry", "c) Biology", "d) Geology"],
-        "answer": "a",
-        "explanation": "physics – физика."
-      },
-      {
-        "question": "A ______ is a scientist who studies the chemical composition of substances.",
-        "options": ["a) biologist", "b) physicist", "c) chemist", "d) geologist"],
-        "answer": "c",
-        "explanation": "chemist – химик."
-              }
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "2. Fill in the gaps with the correct word or phrase. Type the missing word(s) in the box.",
-            "subtasks": [
-                {"question": "______ is the practice of using renewable energy sources.", "answer": "Green energy", "explanation": "Green energy."},
-                {"question": "______ is the study of the origin of the universe.", "answer": "Cosmology", "explanation": "Cosmology."},
-                {"question": "A ______ is a person who studies the human mind.", "answer": "psychologist", "explanation": "psychologist."},
-                {"question": "______ is a device that can fly without a pilot.", "answer": "Drone", "explanation": "Drone."},
-                {"question": "______ is the practice of using advanced technology to solve problems.", "answer": "Tech innovation", "explanation": "Tech innovation."},
-                {"question": "______ is a branch of computer science that focuses on intelligent systems.", "answer": "AI", "explanation": "AI."},
-                {"question": "______ is the study of the properties of matter and energy.", "answer": "Physics", "explanation": "Physics."},
-                {"question": "A ______ is a scientist who studies the chemical composition of substances.", "answer": "chemist", "explanation": "chemist."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
-            "subtasks": [
-                {"question": "Green energy is the practice of using renewable energy sources.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Cosmology is the study of the origin of the universe.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "A psychologist is a person who studies the human mind.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "A drone is a device that can fly without a pilot.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Tech innovation is the practice of using advanced technology to solve problems.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "AI is a branch of computer science that focuses on intelligent systems.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Physics is the study of the properties of matter and energy.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "A chemist is a scientist who studies the chemical composition of substance.", "answer": "A chemist is a scientist who studies the chemical composition of substances.", "explanation": "Substances – множественное число."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "4. Translate the sentences into English using the correct science and technology vocabulary. Type your translation (one sentence) in the box.",
-            "subtasks": [
-                {"question": "Зелёная энергия – это использование возобновляемых источников энергии.", "answer": "Green energy is the practice of using renewable energy sources.", "explanation": ""},
-                {"question": "Космология – это изучение происхождения Вселенной.", "answer": "Cosmology is the study of the origin of the universe.", "explanation": ""},
-                {"question": "Психолог – это человек, изучающий человеческий разум.", "answer": "A psychologist is a person who studies the human mind.", "explanation": ""},
-                {"question": "Дрон – это устройство, которое может летать без пилота.", "answer": "A drone is a device that can fly without a pilot.", "explanation": ""},
-                {"question": "Технологические инновации – это использование передовых технологий для решения проблем.", "answer": "Tech innovation is the practice of using advanced technology to solve problems.", "explanation": ""},
-                {"question": "ИИ – это раздел информатики, который занимается интеллектуальными системами.", "answer": "AI is a branch of computer science that focuses on intelligent systems.", "explanation": ""},
-                {"question": "Физика – это изучение свойств материи и энергии.", "answer": "Physics is the study of the properties of matter and energy.", "explanation": ""},
-                {"question": "Химик – это учёный, изучающий химический состав веществ.", "answer": "A chemist is a scientist who studies the chemical composition of substances.", "explanation": ""}
-            ]
-        },
-    # =====================================================
-    # ВАРИАНТ 6 (перефразирование)
-    # =====================================================
-[
-  {
-    "type": "complex",
-    "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-    "subtasks": [
-      {
-        "question": "______ is the practice of using technology to improve healthcare.",
-        "options": ["a) Telemedicine", "b) Bioengineering", "c) Health tech", "d) Medical tech"],
-        "answer": "c",
-        "explanation": "health tech – медицинские технологии."
-      },
-      {
-        "question": "______ is the study of how organisms evolve over time.",
-        "options": ["a) Genetics", "b) Ecology", "c) Paleontology", "d) Evolutionary biology"],
-        "answer": "d",
-        "explanation": "evolutionary biology – эволюционная биология."
-      },
-      {
-        "question": "A ______ is a specialist in the study of the nervous system.",
-        "options": ["a) neuroscientist", "b) psychologist", "c) psychiatrist", "d) neurologist"],
-        "answer": "a",
-        "explanation": "neuroscientist – нейробиолог."
-      },
-      {
-        "question": "______ is a type of software designed for smartphones.",
-        "options": ["a) Desktop app", "b) Mobile app", "c) Web app", "d) Utility app"],
-        "answer": "b",
-        "explanation": "mobile app – мобильное приложение."
-      },
-      {
-        "question": "______ is the process of updating software to improve performance.",
-        "options": ["a) Debugging", "b) Patching", "c) Upgrading", "d) Updating"],
-        "answer": "c",
-        "explanation": "upgrading – модернизация."
-      },
-      {
-        "question": "______ is the study of the relationship between living things and their environment.",
-        "options": ["a) Biology", "b) Botany", "c) Zoology", "d) Ecology"],
-        "answer": "d",
-        "explanation": "ecology – экология."
-      },
-      {
-        "question": "A ______ is a scientist who studies the composition of rocks.",
-        "options": ["a) geologist", "b) geographer", "c) geophysicist", "d) mineralogist"],
-        "answer": "a",
-        "explanation": "geologist – геолог."
-      },
-      {
-        "question": "______ is the practice of using robots in manufacturing.",
-        "options": ["a) Automation", "b) Robotics", "c) Mechatronics", "d) Cybernetics"],
-        "answer": "b",
-        "explanation": "robotics – робототехника."
-               }
-             ]
-        },
-        {
-            "type": "complex",
-            "text": "2. Fill in the gaps with the correct word or phrase. Type the missing word(s) in the box.",
-            "subtasks": [
-                {"question": "______ is the practice of using technology to improve healthcare.", "answer": "Health tech", "explanation": "Health tech."},
-                {"question": "______ is the study of how organisms evolve over time.", "answer": "Evolutionary biology", "explanation": "Evolutionary biology."},
-                {"question": "A ______ is a specialist in the study of the nervous system.", "answer": "neuroscientist", "explanation": "neuroscientist."},
-                {"question": "______ is a type of software designed for smartphones.", "answer": "Mobile app", "explanation": "Mobile app."},
-                {"question": "______ is the process of updating software to improve performance.", "answer": "Upgrading", "explanation": "Upgrading."},
-                {"question": "______ is the study of the relationship between living things and their environment.", "answer": "Ecology", "explanation": "Ecology."},
-                {"question": "A ______ is a scientist who studies the composition of rocks.", "answer": "geologist", "explanation": "geologist."},
-                {"question": "______ is the practice of using robots in manufacturing.", "answer": "Robotics", "explanation": "Robotics."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
-            "subtasks": [
-                {"question": "Health tech is the practice of using technology to improve healthcare.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Evolutionary biology is the study of how organisms evolve over time.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "A neuroscientist is a specialist in the study of the nervous system.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Mobile app is a type of software designed for smartphones.", "answer": "A mobile app is a type of software designed for smartphones.", "explanation": "Нужен артикль 'a'."},
-                {"question": "Upgrading is the process of updating software to improve performance.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Ecology is the study of the relationship between living things and their environment.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "A geologist is a scientist who studies the composition of rocks.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Robotics is the practice of using robots in manufacturing.", "answer": "Correct", "explanation": "Верно."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "4. Rewrite the sentences using the word given in brackets. Type the whole sentence.",
-            "subtasks": [
-                {"question": "Technology improves healthcare. (health tech) → Health tech is the practice of using technology to improve healthcare.", "answer": "Health tech is the practice of using technology to improve healthcare.", "explanation": "health tech."},
-                {"question": "It studies how organisms evolve. (evolutionary biology) → Evolutionary biology is the study of how organisms evolve over time.", "answer": "Evolutionary biology is the study of how organisms evolve over time.", "explanation": "evolutionary biology."},
-                {"question": "He studies the nervous system. (neuroscientist) → A neuroscientist is a specialist in the study of the nervous system.", "answer": "A neuroscientist is a specialist in the study of the nervous system.", "explanation": "neuroscientist."},
-                {"question": "It is software for phones. (mobile app) → A mobile app is a type of software designed for smartphones.", "answer": "A mobile app is a type of software designed for smartphones.", "explanation": "mobile app."},
-                {"question": "It updates software. (upgrading) → Upgrading is the process of updating software to improve performance.", "answer": "Upgrading is the process of updating software to improve performance.", "explanation": "upgrading."},
-                {"question": "It studies relationships between living things and the environment. (ecology) → Ecology is the study of the relationship between living things and their environment.", "answer": "Ecology is the study of the relationship between living things and their environment.", "explanation": "ecology."},
-                {"question": "She studies rocks. (geologist) → A geologist is a scientist who studies the composition of rocks.", "answer": "A geologist is a scientist who studies the composition of rocks.", "explanation": "geologist."},
-                {"question": "It uses robots in manufacturing. (robotics) → Robotics is the practice of using robots in manufacturing.", "answer": "Robotics is the practice of using robots in manufacturing.", "explanation": "robotics."}
-            ]
-        },
-    # =====================================================
-    # ВАРИАНТ 7 (перевод)
-    # =====================================================
-[
-  {
-    "type": "complex",
-    "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-    "subtasks": [
-      {
-        "question": "______ is the study of the Earth's atmosphere and weather.",
-        "options": ["a) Climatology", "b) Meteorology", "c) Geology", "d) Oceanography"],
-        "answer": "b",
-        "explanation": "meteorology – метеорология."
-      },
-      {
-        "question": "A ______ is a scientist who studies the stars and galaxies.",
-        "options": ["a) astrologer", "b) astronomer", "c) astrophysicist", "d) cosmologist"],
-        "answer": "c",
-        "explanation": "astrophysicist – астрофизик."
-      },
-      {
-        "question": "______ is the practice of using artificial intelligence in everyday life.",
-        "options": ["a) AI development", "b) Machine learning", "c) AI integration", "d) AI research"],
-        "answer": "c",
-        "explanation": "AI integration – интеграция ИИ."
-      },
-      {
-        "question": "______ is a network of interconnected devices.",
-        "options": ["a) World Wide Web", "b) The Internet", "c) Internet of Things", "d) Computer network"],
-        "answer": "c",
-        "explanation": "Internet of Things – интернет вещей."
-      },
-      {
-        "question": "______ is the study of the origin and evolution of the universe.",
-        "options": ["a) Astrology", "b) Astronomy", "c) Astrophysics", "d) Cosmology"],
-        "answer": "d",
-        "explanation": "cosmology – космология."
-      },
-      {
-        "question": "A ______ is a person who studies the human brain.",
-        "options": ["a) psychologist", "b) psychiatrist", "c) neurologist", "d) neuroscientist"],
-        "answer": "d",
-        "explanation": "neuroscientist – нейробиолог."
-      },
-      {
-        "question": "______ is the practice of using virtual reality for training.",
-        "options": ["a) Virtual learning", "b) VR training", "c) Simulated training", "d) Immersive learning"],
-        "answer": "b",
-        "explanation": "VR training – обучение с помощью VR."
-      },
-      {
-        "question": "______ is the study of the behaviour of animals.",
-        "options": ["a) Botany", "b) Ecology", "c) Zoology", "d) Ethology"],
-        "answer": "c",
-        "explanation": "zoology – зоология."
-              }
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "2. Fill in the gaps with the correct word or phrase. Type the missing word(s) in the box.",
-            "subtasks": [
-                {"question": "______ is the study of the Earth's atmosphere and weather.", "answer": "Meteorology", "explanation": "Meteorology."},
-                {"question": "A ______ is a scientist who studies the stars and galaxies.", "answer": "astrophysicist", "explanation": "astrophysicist."},
-                {"question": "______ is the practice of using artificial intelligence in everyday life.", "answer": "AI integration", "explanation": "AI integration."},
-                {"question": "______ is a network of interconnected devices.", "answer": "Internet of Things", "explanation": "Internet of Things."},
-                {"question": "______ is the study of the origin and evolution of the universe.", "answer": "Cosmology", "explanation": "Cosmology."},
-                {"question": "A ______ is a person who studies the human brain.", "answer": "neuroscientist", "explanation": "neuroscientist."},
-                {"question": "______ is the practice of using virtual reality for training.", "answer": "VR training", "explanation": "VR training."},
-                {"question": "______ is the study of the behaviour of animals.", "answer": "Zoology", "explanation": "Zoology."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
-            "subtasks": [
-                {"question": "Meteorology is the study of the Earth's atmosphere and weather.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "An astrophysicist is a scientist who studies the stars and galaxies.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "AI integration is the practice of using artificial intelligence in everyday life.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Internet of Things is a network of interconnected devices.", "answer": "The Internet of Things is a network of interconnected devices.", "explanation": "Нужен артикль 'The'."},
-                {"question": "Cosmology is the study of the origin and evolution of the universe.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "A neuroscientist is a person who studies the human brain.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "VR training is the practice of using virtual reality for training.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Zoology is the study of the behaviour of animals.", "answer": "Correct", "explanation": "Верно."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "4. Translate the sentences into English using the correct science and technology vocabulary. Type your translation (one sentence) in the box.",
-            "subtasks": [
-                {"question": "Метеорология – это изучение атмосферы Земли и погоды.", "answer": "Meteorology is the study of the Earth's atmosphere and weather.", "explanation": ""},
-                {"question": "Астрофизик – это учёный, изучающий звёзды и галактики.", "answer": "An astrophysicist is a scientist who studies the stars and galaxies.", "explanation": ""},
-                {"question": "Интеграция ИИ – это использование искусственного интеллекта в повседневной жизни.", "answer": "AI integration is the practice of using artificial intelligence in everyday life.", "explanation": ""},
-                {"question": "Интернет вещей – это сеть взаимосвязанных устройств.", "answer": "The Internet of Things is a network of interconnected devices.", "explanation": ""},
-                {"question": "Космология – это изучение происхождения и эволюции Вселенной.", "answer": "Cosmology is the study of the origin and evolution of the universe.", "explanation": ""},
-                {"question": "Нейробиолог – это человек, изучающий человеческий мозг.", "answer": "A neuroscientist is a person who studies the human brain.", "explanation": ""},
-                {"question": "Обучение с помощью VR – это использование виртуальной реальности для обучения.", "answer": "VR training is the practice of using virtual reality for training.", "explanation": ""},
-                {"question": "Зоология – это изучение поведения животных.", "answer": "Zoology is the study of the behaviour of animals.", "explanation": ""}
-            ]
-        },
-    # =====================================================
-    # ВАРИАНТ 8 (перефразирование)
-    # =====================================================
-[
-  {
-    "type": "complex",
-    "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-    "subtasks": [
-      {
-        "question": "______ is the practice of using wearable technology for health monitoring.",
-        "options": ["a) Digital health", "b) Wearable health tech", "c) Remote monitoring", "d) Health apps"],
-        "answer": "b",
-        "explanation": "wearable health tech – носимая медицинская технология."
-      },
-      {
-        "question": "______ is the study of the molecular structure of living things.",
-        "options": ["a) Genetics", "b) Molecular biology", "c) Biochemistry", "d) Cell biology"],
-        "answer": "b",
-        "explanation": "molecular biology – молекулярная биология."
-      },
-      {
-        "question": "A ______ is a specialist in the study of earthquakes.",
-        "options": ["a) volcanologist", "b) geologist", "c) seismologist", "d) paleontologist"],
-        "answer": "c",
-        "explanation": "seismologist – сейсмолог."
-      },
-      {
-        "question": "______ is a type of artificial intelligence that learns from data.",
-        "options": ["a) Machine learning", "b) Robotics", "c) Natural language processing", "d) Computer vision"],
-        "answer": "a",
-        "explanation": "machine learning – машинное обучение."
-      },
-      {
-        "question": "______ is the practice of using drones for agriculture.",
-        "options": ["a) Precision farming", "b) Agricultural drones", "c) Smart farming", "d) Aerial monitoring"],
-        "answer": "b",
-        "explanation": "agricultural drones – сельскохозяйственные дроны."
-      },
-      {
-        "question": "______ is the study of the chemical processes in living organisms.",
-        "options": ["a) Organic chemistry", "b) Biochemistry", "c) Molecular biology", "d) Biophysics"],
-        "answer": "b",
-        "explanation": "biochemistry – биохимия."
-      },
-      {
-        "question": "A ______ is a scientist who studies the physics of the Earth.",
-        "options": ["a) geologist", "b) geophysicist", "c) geochemist", "d) geographer"],
-        "answer": "b",
-        "explanation": "geophysicist – геофизик."
-      },
-      {
-        "question": "______ is the practice of using AI in healthcare.",
-        "options": ["a) AI healthcare", "b) Medical informatics", "c) Digital medicine", "d) eHealth"],
-        "answer": "a",
-        "explanation": "AI healthcare – ИИ в здравоохранении."
-              }
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "2. Fill in the gaps with the correct word or phrase. Type the missing word(s) in the box.",
-            "subtasks": [
-                {"question": "______ is the practice of using wearable technology for health monitoring.", "answer": "Wearable health tech", "explanation": "Wearable health tech."},
-                {"question": "______ is the study of the molecular structure of living things.", "answer": "Molecular biology", "explanation": "Molecular biology."},
-                {"question": "A ______ is a specialist in the study of earthquakes.", "answer": "seismologist", "explanation": "seismologist."},
-                {"question": "______ is a type of artificial intelligence that learns from data.", "answer": "Machine learning", "explanation": "Machine learning."},
-                {"question": "______ is the practice of using drones for agriculture.", "answer": "Agricultural drones", "explanation": "Agricultural drones."},
-                {"question": "______ is the study of the chemical processes in living organisms.", "answer": "Biochemistry", "explanation": "Biochemistry."},
-                {"question": "A ______ is a scientist who studies the physics of the Earth.", "answer": "geophysicist", "explanation": "geophysicist."},
-                {"question": "______ is the practice of using AI in healthcare.", "answer": "AI healthcare", "explanation": "AI healthcare."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
-            "subtasks": [
-                {"question": "Wearable health tech is the practice of using wearable technology for health monitoring.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Molecular biology is the study of the molecular structure of living things.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "A seismologist is a specialist in the study of earthquakes.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Machine learning is a type of artificial intelligence that learns from data.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Agricultural drones is the practice of using drones for agriculture.", "answer": "Agricultural drones are the practice of using drones for agriculture.", "explanation": "Согласование: drones (мн. ч.) – are."},
-                {"question": "Biochemistry is the study of the chemical processes in living organisms.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "A geophysicist is a scientist who studies the physics of the Earth.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "AI healthcare is the practice of using AI in healthcare.", "answer": "Correct", "explanation": "Верно."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "4. Rewrite the sentences using the word given in brackets. Type the whole sentence.",
-            "subtasks": [
-                {"question": "Wearable tech monitors health. (wearable health tech) → Wearable health tech is the practice of using wearable technology for health monitoring.", "answer": "Wearable health tech is the practice of using wearable technology for health monitoring.", "explanation": "wearable health tech."},
-                {"question": "It studies molecules in living things. (molecular biology) → Molecular biology is the study of the molecular structure of living things.", "answer": "Molecular biology is the study of the molecular structure of living things.", "explanation": "molecular biology."},
-                {"question": "He studies earthquakes. (seismologist) → A seismologist is a specialist in the study of earthquakes.", "answer": "A seismologist is a specialist in the study of earthquakes.", "explanation": "seismologist."},
-                {"question": "It learns from data. (machine learning) → Machine learning is a type of artificial intelligence that learns from data.", "answer": "Machine learning is a type of artificial intelligence that learns from data.", "explanation": "machine learning."},
-                {"question": "Drones are used in farming. (agricultural drones) → Agricultural drones are the practice of using drones for agriculture.", "answer": "Agricultural drones are the practice of using drones for agriculture.", "explanation": "agricultural drones."},
-                {"question": "It studies chemical processes in living things. (biochemistry) → Biochemistry is the study of the chemical processes in living organisms.", "answer": "Biochemistry is the study of the chemical processes in living organisms.", "explanation": "biochemistry."},
-                {"question": "He studies the physics of the Earth. (geophysicist) → A geophysicist is a scientist who studies the physics of the Earth.", "answer": "A geophysicist is a scientist who studies the physics of the Earth.", "explanation": "geophysicist."},
-                {"question": "AI is used in healthcare. (AI healthcare) → AI healthcare is the practice of using AI in healthcare.", "answer": "AI healthcare is the practice of using AI in healthcare.", "explanation": "AI healthcare."}
-            ]
-        },
-    # =====================================================
-    # ВАРИАНТ 9 (перевод)
-    # =====================================================
-[
-  {
-    "type": "complex",
-    "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-    "subtasks": [
-      {
-        "question": "______ is the study of the interactions between organisms and their environment.",
-        "options": ["a) Biology", "b) Ecology", "c) Botany", "d) Zoology"],
-        "answer": "b",
-        "explanation": "ecology – экология."
-      },
-      {
-        "question": "A ______ is a scientist who studies the history of the Earth.",
-        "options": ["a) paleontologist", "b) geologist", "c) archaeologist", "d) anthropologist"],
-        "answer": "a",
-        "explanation": "paleontologist – палеонтолог."
-      },
-      {
-        "question": "______ is the practice of using technology to reduce waste.",
-        "options": ["a) Clean tech", "b) Eco-tech", "c) Green tech", "d) Sustainable tech"],
-        "answer": "c",
-        "explanation": "green tech – зелёные технологии."
-      },
-      {
-        "question": "______ is a type of computer network that connects devices wirelessly.",
-        "options": ["a) Bluetooth", "b) Ethernet", "c) NFC", "d) Wi-Fi"],
-        "answer": "d",
-        "explanation": "Wi-Fi – беспроводная сеть."
-      },
-      {
-        "question": "______ is the study of the properties of light.",
-        "options": ["a) Optics", "b) Acoustics", "c) Thermodynamics", "d) Mechanics"],
-        "answer": "a",
-        "explanation": "optics – оптика."
-      },
-      {
-        "question": "A ______ is a scientist who studies the structure of matter.",
-        "options": ["a) chemist", "b) physicist", "c) biologist", "d) mathematician"],
-        "answer": "b",
-        "explanation": "physicist – физик."
-      },
-      {
-        "question": "______ is the practice of using AI to automate tasks.",
-        "options": ["a) Robotic process automation", "b) Digital transformation", "c) AI automation", "d) Smart automation"],
-        "answer": "c",
-        "explanation": "AI automation – автоматизация с помощью ИИ."
-      },
-      {
-        "question": "______ is the study of the Earth's oceans.",
-        "options": ["a) Marine biology", "b) Limnology", "c) Hydrology", "d) Oceanography"],
-        "answer": "d",
-        "explanation": "oceanography – океанография."
-              }
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "2. Fill in the gaps with the correct word or phrase. Type the missing word(s) in the box.",
-            "subtasks": [
-                {"question": "______ is the study of the interactions between organisms and their environment.", "answer": "Ecology", "explanation": "Ecology."},
-                {"question": "A ______ is a scientist who studies the history of the Earth.", "answer": "paleontologist", "explanation": "paleontologist."},
-                {"question": "______ is the practice of using technology to reduce waste.", "answer": "Green tech", "explanation": "Green tech."},
-                {"question": "______ is a type of computer network that connects devices wirelessly.", "answer": "Wi-Fi", "explanation": "Wi-Fi."},
-                {"question": "______ is the study of the properties of light.", "answer": "Optics", "explanation": "Optics."},
-                {"question": "A ______ is a scientist who studies the structure of matter.", "answer": "physicist", "explanation": "physicist."},
-                {"question": "______ is the practice of using AI to automate tasks.", "answer": "AI automation", "explanation": "AI automation."},
-                {"question": "______ is the study of the Earth's oceans.", "answer": "Oceanography", "explanation": "Oceanography."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
-            "subtasks": [
-                {"question": "Ecology is the study of the interactions between organisms and their environment.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "A paleontologist is a scientist who studies the history of the Earth.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Green tech is the practice of using technology to reduce waste.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Wi-Fi is a type of computer network that connects devices wirelessly.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Optics is the study of the properties of light.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "A physicist is a scientist who studies the structure of matter.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "AI automation is the practice of using AI to automate tasks.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Oceanography is the study of the Earth's ocean.", "answer": "Oceanography is the study of the Earth's oceans.", "explanation": "Oceans – множественное число."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "4. Translate the sentences into English using the correct science and technology vocabulary. Type your translation (one sentence) in the box.",
-            "subtasks": [
-                {"question": "Экология – это изучение взаимодействий между организмами и окружающей средой.", "answer": "Ecology is the study of the interactions between organisms and their environment.", "explanation": ""},
-                {"question": "Палеонтолог – это учёный, изучающий историю Земли.", "answer": "A paleontologist is a scientist who studies the history of the Earth.", "explanation": ""},
-                {"question": "Зелёные технологии – это использование технологий для сокращения отходов.", "answer": "Green tech is the practice of using technology to reduce waste.", "explanation": ""},
-                {"question": "Wi-Fi – это тип компьютерной сети, которая подключает устройства по беспроводной сети.", "answer": "Wi-Fi is a type of computer network that connects devices wirelessly.", "explanation": ""},
-                {"question": "Оптика – это изучение свойств света.", "answer": "Optics is the study of the properties of light.", "explanation": ""},
-                {"question": "Физик – это учёный, изучающий структуру материи.", "answer": "A physicist is a scientist who studies the structure of matter.", "explanation": ""},
-                {"question": "Автоматизация с помощью ИИ – это использование ИИ для автоматизации задач.", "answer": "AI automation is the practice of using AI to automate tasks.", "explanation": ""},
-                {"question": "Океанография – это изучение океанов Земли.", "answer": "Oceanography is the study of the Earth's oceans.", "explanation": ""}
-            ]
-        },
-    # =====================================================
-    # ВАРИАНТ 10 (перефразирование)
-    # =====================================================
-[
-  {
-    "type": "complex",
-    "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-    "subtasks": [
-      {
-        "question": "______ is the practice of using technology to improve education.",
-        "options": ["a) EdTech", "b) EduTech", "c) Digital learning", "d) E-learning"],
-        "answer": "a",
-        "explanation": "EdTech – образовательные технологии."
-      },
-      {
-        "question": "______ is the study of the chemical composition of the Earth.",
-        "options": ["a) Geophysics", "b) Geochemistry", "c) Geology", "d) Geomorphology"],
-        "answer": "b",
-        "explanation": "geochemistry – геохимия."
-      },
-      {
-        "question": "A ______ is a specialist in the study of plant life.",
-        "options": ["a) botanist", "b) zoologist", "c) ecologist", "d) geneticist"],
-        "answer": "a",
-        "explanation": "botanist – ботаник."
-      },
-      {
-        "question": "______ is a system of tracking items using radio waves.",
-        "options": ["a) GPS", "b) NFC", "c) RFID", "d) Bluetooth"],
-        "answer": "c",
-        "explanation": "RFID – радиочастотная идентификация."
-      },
-      {
-        "question": "______ is the practice of using solar panels to generate electricity.",
-        "options": ["a) Solar power", "b) Wind energy", "c) Hydro energy", "d) Geothermal energy"],
-        "answer": "a",
-        "explanation": "solar energy – солнечная энергия."
-      },
-      {
-        "question": "______ is the study of the behaviour of light.",
-        "options": ["a) Optics", "b) Acoustics", "c) Thermodynamics", "d) Mechanics"],
-        "answer": "a",
-        "explanation": "optics – оптика."
-      },
-      {
-        "question": "A ______ is a scientist who studies the properties of matter.",
-        "options": ["a) physicist", "b) material scientist", "c) chemist", "d) engineer"],
-        "answer": "b",
-        "explanation": "material scientist – учёный в области материаловедения."
-      },
-      {
-        "question": "______ is the practice of using technology to solve environmental problems.",
-        "options": ["a) Green tech", "b) Eco-tech", "c) Environmental technology", "d) Sustainable tech"],
-        "answer": "c",
-        "explanation": "environmental technology – экологические технологии."
-               }
-             ]
-        },
-        {
-            "type": "complex",
-            "text": "2. Fill in the gaps with the correct word or phrase. Type the missing word(s) in the box.",
-            "subtasks": [
-                {"question": "______ is the practice of using technology to improve education.", "answer": "EdTech", "explanation": "EdTech."},
-                {"question": "______ is the study of the chemical composition of the Earth.", "answer": "Geochemistry", "explanation": "Geochemistry."},
-                {"question": "A ______ is a specialist in the study of plant life.", "answer": "botanist", "explanation": "botanist."},
-                {"question": "______ is a system of tracking items using radio waves.", "answer": "RFID", "explanation": "RFID."},
-                {"question": "______ is the practice of using solar panels to generate electricity.", "answer": "Solar energy", "explanation": "Solar energy."},
-                {"question": "______ is the study of the behaviour of light.", "answer": "Optics", "explanation": "Optics."},
-                {"question": "A ______ is a scientist who studies the properties of matter.", "answer": "material scientist", "explanation": "material scientist."},
-                {"question": "______ is the practice of using technology to solve environmental problems.", "answer": "Environmental technology", "explanation": "Environmental technology."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
-            "subtasks": [
-                {"question": "EdTech is the practice of using technology to improve education.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Geochemistry is the study of the chemical composition of the Earth.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "A botanist is a specialist in the study of plant life.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "RFID is a system of tracking items using radio waves.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Solar energy is the practice of using solar panels to generate electricity.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Optics is the study of the behaviour of light.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "A material scientist is a scientist who studies the properties of matter.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Environmental technology is the practice of using technology to solve environmental problem.", "answer": "Environmental technology is the practice of using technology to solve environmental problems.", "explanation": "Problems – множественное число."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "4. Rewrite the sentences using the word given in brackets. Type the whole sentence.",
-            "subtasks": [
-                {"question": "Technology improves education. (EdTech) → EdTech is the practice of using technology to improve education.", "answer": "EdTech is the practice of using technology to improve education.", "explanation": "EdTech."},
-                {"question": "It studies the Earth's chemistry. (geochemistry) → Geochemistry is the study of the chemical composition of the Earth.", "answer": "Geochemistry is the study of the chemical composition of the Earth.", "explanation": "geochemistry."},
-                {"question": "He studies plants. (botanist) → A botanist is a specialist in the study of plant life.", "answer": "A botanist is a specialist in the study of plant life.", "explanation": "botanist."},
-                {"question": "It tracks items with radio waves. (RFID) → RFID is a system of tracking items using radio waves.", "answer": "RFID is a system of tracking items using radio waves.", "explanation": "RFID."},
-                {"question": "It uses solar panels for electricity. (solar energy) → Solar energy is the practice of using solar panels to generate electricity.", "answer": "Solar energy is the practice of using solar panels to generate electricity.", "explanation": "solar energy."},
-                {"question": "It studies light behaviour. (optics) → Optics is the study of the behaviour of light.", "answer": "Optics is the study of the behaviour of light.", "explanation": "optics."},
-                {"question": "He studies matter properties. (material scientist) → A material scientist is a scientist who studies the properties of matter.", "answer": "A material scientist is a scientist who studies the properties of matter.", "explanation": "material scientist."},
-                {"question": "Technology solves environmental problems. (environmental technology) → Environmental technology is the practice of using technology to solve environmental problems.", "answer": "Environmental technology is the practice of using technology to solve environmental problems.", "explanation": "environmental technology."}
-            ]
-        },
-    # =====================================================
-    # ВАРИАНТ 11 (перевод)
-    # =====================================================
-[
-  {
-    "type": "complex",
-    "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-    "subtasks": [
-      {
-        "question": "______ is the practice of using technology to improve transportation.",
-        "options": ["a) Smart mobility", "b) Urban mobility", "c) Green transport", "d] Intelligent transport"],
-        "answer": "a",
-        "explanation": "smart mobility – умная мобильность."
-      },
-      {
-        "question": "______ is the study of the Earth's magnetic field.",
-        "options": ["a) Geomagnetism", "b) Geophysics", "c) Geology", "d) Geochemistry"],
-        "answer": "a",
-        "explanation": "geomagnetism – геомагнетизм."
-      },
-      {
-        "question": "A ______ is a scientist who studies the evolution of species.",
-        "options": ["a) evolutionary biologist", "b) geneticist", "c) ecologist", "d) paleontologist"],
-        "answer": "a",
-        "explanation": "evolutionary biologist – эволюционный биолог."
-      },
-      {
-        "question": "______ is a technology that uses sound waves to detect objects.",
-        "options": ["a) Radar", "b) Sonar", "c) Lidar", "d) Ultrasonic"],
-        "answer": "b",
-        "explanation": "sonar – сонар."
-      },
-      {
-        "question": "______ is the practice of using technology to monitor health.",
-        "options": ["a) Digital health", "b) Telemedicine", "c) eHealth", "d) Health informatics"],
-        "answer": "a",
-        "explanation": "digital health – цифровое здоровье."
-      },
-      {
-        "question": "______ is the study of the structure of matter at the atomic level.",
-        "options": ["a) Nanotechnology", "b) Quantum physics", "c) Materials science", "d) Microtechnology"],
-        "answer": "a",
-        "explanation": "nanotechnology – нанотехнология."
-      },
-      {
-        "question": "A ______ is a scientist who studies the effects of radiation.",
-        "options": ["a) radiobiologist", "b) radiologist", "c) radiation physicist", "d) biophysicist"],
-        "answer": "a",
-        "explanation": "radiobiologist – радиобиолог."
-      },
-      {
-        "question": "______ is the practice of using technology to reduce carbon emissions.",
-        "options": ["a) Low-carbon tech", "b) Renewable energy", "c) Carbon capture", "d) Clean tech"],
-        "answer": "a",
-        "explanation": "low-carbon tech – низкоуглеродные технологии."
-              }
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "2. Fill in the gaps with the correct word or phrase. Type the missing word(s) in the box.",
-            "subtasks": [
-                {"question": "______ is the practice of using technology to improve transportation.", "answer": "Smart mobility", "explanation": "Smart mobility."},
-                {"question": "______ is the study of the Earth's magnetic field.", "answer": "Geomagnetism", "explanation": "Geomagnetism."},
-                {"question": "A ______ is a scientist who studies the evolution of species.", "answer": "evolutionary biologist", "explanation": "evolutionary biologist."},
-                {"question": "______ is a technology that uses sound waves to detect objects.", "answer": "Sonar", "explanation": "Sonar."},
-                {"question": "______ is the practice of using technology to monitor health.", "answer": "Digital health", "explanation": "Digital health."},
-                {"question": "______ is the study of the structure of matter at the atomic level.", "answer": "Nanotechnology", "explanation": "Nanotechnology."},
-                {"question": "A ______ is a scientist who studies the effects of radiation.", "answer": "radiobiologist", "explanation": "radiobiologist."},
-                {"question": "______ is the practice of using technology to reduce carbon emissions.", "answer": "Low-carbon tech", "explanation": "Low-carbon tech."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
-            "subtasks": [
-                {"question": "Smart mobility is the practice of using technology to improve transportation.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Geomagnetism is the study of the Earth's magnetic field.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "An evolutionary biologist is a scientist who studies the evolution of species.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Sonar is a technology that uses sound waves to detect objects.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Digital health is the practice of using technology to monitor health.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Nanotechnology is the study of the structure of matter at the atomic level.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "A radiobiologist is a scientist who studies the effects of radiation.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Low-carbon tech is the practice of using technology to reduce carbon emission.", "answer": "Low-carbon tech is the practice of using technology to reduce carbon emissions.", "explanation": "Emissions – множественное число."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "4. Translate the sentences into English using the correct science and technology vocabulary. Type your translation (one sentence) in the box.",
-            "subtasks": [
-                {"question": "Умная мобильность – это использование технологий для улучшения транспорта.", "answer": "Smart mobility is the practice of using technology to improve transportation.", "explanation": ""},
-                {"question": "Геомагнетизм – это изучение магнитного поля Земли.", "answer": "Geomagnetism is the study of the Earth's magnetic field.", "explanation": ""},
-                {"question": "Эволюционный биолог – это учёный, изучающий эволюцию видов.", "answer": "An evolutionary biologist is a scientist who studies the evolution of species.", "explanation": ""},
-                {"question": "Сонар – это технология, использующая звуковые волны для обнаружения объектов.", "answer": "Sonar is a technology that uses sound waves to detect objects.", "explanation": ""},
-                {"question": "Цифровое здоровье – это использование технологий для мониторинга здоровья.", "answer": "Digital health is the practice of using technology to monitor health.", "explanation": ""},
-                {"question": "Нанотехнология – это изучение структуры материи на атомном уровне.", "answer": "Nanotechnology is the study of the structure of matter at the atomic level.", "explanation": ""},
-                {"question": "Радиобиолог – это учёный, изучающий воздействие радиации.", "answer": "A radiobiologist is a scientist who studies the effects of radiation.", "explanation": ""},
-                {"question": "Низкоуглеродные технологии – это использование технологий для сокращения выбросов углерода.", "answer": "Low-carbon tech is the practice of using technology to reduce carbon emissions.", "explanation": ""}
-            ]
-        },
-    # =====================================================
-    # ВАРИАНТ 12 (перефразирование)
-    # =====================================================
-[
-  {
-    "type": "complex",
-    "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-    "subtasks": [
-      {
-        "question": "______ is the practice of using technology to improve financial services.",
-        "options": ["a) FinTech", "b) Banking tech", "c) InsurTech", "d) RegTech"],
-        "answer": "a",
-        "explanation": "FinTech – финансовые технологии."
-      },
-      {
-        "question": "______ is the study of the origin and evolution of the solar system.",
-        "options": ["a) Planetary science", "b) Astronomy", "c) Astrophysics", "d) Cosmology"],
-        "answer": "a",
-        "explanation": "planetary science – планетология."
-      },
-      {
-        "question": "A ______ is a scientist who studies the behaviour of matter at low temperatures.",
-        "options": ["a) cryogenicist", "b) cryologist", "c) low-temperature physicist", "d) quantum physicist"],
-        "answer": "a",
-        "explanation": "cryogenicist – криогенщик."
-      },
-      {
-        "question": "______ is a technology that uses light to transmit data.",
-        "options": ["a) Li-Fi", "b) Wi-Fi", "c) Bluetooth", "d] Infrared"],
-        "answer": "a",
-        "explanation": "Li-Fi – технология передачи данных по свету."
-      },
-      {
-        "question": "______ is the practice of using technology to improve energy efficiency.",
-        "options": ["a) Energy efficiency tech", "b) Smart grid", "c) Demand response", "d) Energy management"],
-        "answer": "a",
-        "explanation": "energy efficiency tech – технологии энергоэффективности."
-      },
-      {
-        "question": "______ is the study of the properties and behaviour of plasma.",
-        "options": ["a) Plasma physics", "b) Nuclear physics", "c) Astrophysics", "d) Electromagnetism"],
-        "answer": "a",
-        "explanation": "plasma physics – физика плазмы."
-      },
-      {
-        "question": "A ______ is a scientist who studies the structure of DNA.",
-        "options": ["a) geneticist", "b) molecular biologist", "c) biochemist", "d) cytologist"],
-        "answer": "a",
-        "explanation": "geneticist – генетик."
-      },
-      {
-        "question": "______ is the practice of using technology to reduce water waste.",
-        "options": ["a) Water efficiency tech", "b) Smart irrigation", "c) Water recycling", "d) Desalination tech"],
-        "answer": "a",
-        "explanation": "water efficiency tech – технологии водосбережения."
-               }
-             ]
-        },
-        {
-            "type": "complex",
-            "text": "2. Fill in the gaps with the correct word or phrase. Type the missing word(s) in the box.",
-            "subtasks": [
-                {"question": "______ is the practice of using technology to improve financial services.", "answer": "FinTech", "explanation": "FinTech."},
-                {"question": "______ is the study of the origin and evolution of the solar system.", "answer": "Planetary science", "explanation": "Planetary science."},
-                {"question": "A ______ is a scientist who studies the behaviour of matter at low temperatures.", "answer": "cryogenicist", "explanation": "cryogenicist."},
-                {"question": "______ is a technology that uses light to transmit data.", "answer": "Li-Fi", "explanation": "Li-Fi."},
-                {"question": "______ is the practice of using technology to improve energy efficiency.", "answer": "Energy efficiency tech", "explanation": "Energy efficiency tech."},
-                {"question": "______ is the study of the properties and behaviour of plasma.", "answer": "Plasma physics", "explanation": "Plasma physics."},
-                {"question": "A ______ is a scientist who studies the structure of DNA.", "answer": "geneticist", "explanation": "geneticist."},
-                {"question": "______ is the practice of using technology to reduce water waste.", "answer": "Water efficiency tech", "explanation": "Water efficiency tech."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
-            "subtasks": [
-                {"question": "FinTech is the practice of using technology to improve financial services.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Planetary science is the study of the origin and evolution of the solar system.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "A cryogenicist is a scientist who studies the behaviour of matter at low temperatures.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Li-Fi is a technology that uses light to transmit data.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Energy efficiency tech is the practice of using technology to improve energy efficiency.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Plasma physics is the study of the properties and behaviour of plasma.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "A geneticist is a scientist who studies the structure of DNA.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Water efficiency tech is the practice of using technology to reduce water waste.", "answer": "Correct", "explanation": "Верно."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "4. Rewrite the sentences using the word given in brackets. Type the whole sentence.",
-            "subtasks": [
-                {"question": "Technology improves finance. (FinTech) → FinTech is the practice of using technology to improve financial services.", "answer": "FinTech is the practice of using technology to improve financial services.", "explanation": "FinTech."},
-                {"question": "It studies the solar system. (planetary science) → Planetary science is the study of the origin and evolution of the solar system.", "answer": "Planetary science is the study of the origin and evolution of the solar system.", "explanation": "planetary science."},
-                {"question": "He studies matter at low temperatures. (cryogenicist) → A cryogenicist is a scientist who studies the behaviour of matter at low temperatures.", "answer": "A cryogenicist is a scientist who studies the behaviour of matter at low temperatures.", "explanation": "cryogenicist."},
-                {"question": "It uses light for data. (Li-Fi) → Li-Fi is a technology that uses light to transmit data.", "answer": "Li-Fi is a technology that uses light to transmit data.", "explanation": "Li-Fi."},
-                {"question": "It improves energy efficiency. (energy efficiency tech) → Energy efficiency tech is the practice of using technology to improve energy efficiency.", "answer": "Energy efficiency tech is the practice of using technology to improve energy efficiency.", "explanation": "energy efficiency tech."},
-                {"question": "It studies plasma. (plasma physics) → Plasma physics is the study of the properties and behaviour of plasma.", "answer": "Plasma physics is the study of the properties and behaviour of plasma.", "explanation": "plasma physics."},
-                {"question": "She studies DNA. (geneticist) → A geneticist is a scientist who studies the structure of DNA.", "answer": "A geneticist is a scientist who studies the structure of DNA.", "explanation": "geneticist."},
-                {"question": "It reduces water waste. (water efficiency tech) → Water efficiency tech is the practice of using technology to reduce water waste.", "answer": "Water efficiency tech is the practice of using technology to reduce water waste.", "explanation": "water efficiency tech."}
-            ]
+          "type": "complex",
+          "text": "4. Translate the sentences into English using the correct science and technology vocabulary. Type your translation (one sentence) in the box.",
+          "subtasks": [
+            {"question": "Она научный сотрудник-биолог в области генетики.", "answer": "She is a research biologist in the field of genetics.", "explanation": ""},
+            {"question": "Он изучал информатику в университете.", "answer": "He studied computer science at university.", "explanation": ""},
+            {"question": "ИИ преобразует многие отрасли.", "answer": "AI is transforming many industries.", "explanation": ""},
+            {"question": "Они разработали новое приложение для изучения языков.", "answer": "They developed a new app for language learning.", "explanation": ""},
+            {"question": "Открытие пенициллина было прорывом.", "answer": "The discovery of penicillin was a breakthrough.", "explanation": ""},
+            {"question": "Они провели эксперимент, чтобы проверить гипотезу.", "answer": "They conducted an experiment to test the hypothesis.", "explanation": ""},
+            {"question": "Генетика – это раздел биологии, изучающий гены.", "answer": "Genetics is a branch of biology that studies genes.", "explanation": ""},
+            {"question": "Инженер – это человек, который проектирует и строит машины.", "answer": "An engineer is a person who designs and builds machines.", "explanation": ""}
+          ]
         }
+      ],
+      # =====================================================
+      # ВАРИАНТ 2 (перефразирование)
+      # =====================================================
+      [
+        {
+          "type": "complex",
+          "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+          "subtasks": [
+            {
+              "question": "______ is the study of the universe and celestial objects.",
+              "options": ["a) Astrology", "b) Astronomy", "c) Astrophysics", "d) Cosmology"],
+              "answer": "b",
+              "explanation": "astronomy – астрономия."
+            },
+            {
+              "question": "A ______ is a scientist who studies the Earth's structure.",
+              "options": ["a) geographer", "b) geologist", "c) geophysicist", "d) geochemist"],
+              "answer": "b",
+              "explanation": "geologist – геолог."
+            },
+            {
+              "question": "______ is the study of the brain and nervous system.",
+              "options": ["a) Neurology", "b) Neuroscience", "c) Psychology", "d) Psychiatry"],
+              "answer": "b",
+              "explanation": "neuroscience – нейробиология."
+            },
+            {
+              "question": "A ______ is a scientist who studies chemicals and their reactions.",
+              "options": ["a) physicist", "b) chemist", "c) biologist", "d) mathematician"],
+              "answer": "b",
+              "explanation": "chemist – химик."
+            },
+            {
+              "question": "______ is the practice of using computer algorithms to learn from data.",
+              "options": ["a) Deep learning", "b) Artificial intelligence", "c) Machine learning", "d) Data science"],
+              "answer": "c",
+              "explanation": "machine learning – машинное обучение."
+            },
+            {
+              "question": "______ reality creates a fully immersive digital environment.",
+              "options": ["a) Augmented", "b) Virtual", "c) Mixed", "d) Extended"],
+              "answer": "b",
+              "explanation": "virtual reality – виртуальная реальность."
+            },
+            {
+              "question": "______ reality overlays digital information onto the real world.",
+              "options": ["a) Augmented", "b) Virtual", "c) Mixed", "d) Extended"],
+              "answer": "a",
+              "explanation": "augmented reality – дополненная реальность."
+            },
+            {
+              "question": "The ______ of Things connects everyday devices to the internet.",
+              "options": ["a) Network", "b) Internet", "c) Web", "d) Cloud"],
+              "answer": "b",
+              "explanation": "Internet of Things – интернет вещей."
+            }
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "2. Fill in the gaps with the correct word or phrase. Type the missing word(s) in the box.",
+          "subtasks": [
+            {"question": "______ is the study of the universe and celestial objects.", "answer": "Astronomy", "explanation": "Astronomy."},
+            {"question": "A ______ is a scientist who studies the Earth's structure.", "answer": "geologist", "explanation": "geologist."},
+            {"question": "______ is the study of the brain and nervous system.", "answer": "Neuroscience", "explanation": "Neuroscience."},
+            {"question": "A ______ is a scientist who studies chemicals and their reactions.", "answer": "chemist", "explanation": "chemist."},
+            {"question": "______ is the practice of using computer algorithms to learn from data.", "answer": "Machine learning", "explanation": "Machine learning."},
+            {"question": "______ reality creates a fully immersive digital environment.", "answer": "Virtual", "explanation": "Virtual."},
+            {"question": "______ reality overlays digital information onto the real world.", "answer": "Augmented", "explanation": "Augmented."},
+            {"question": "The ______ of Things connects everyday devices to the internet.", "answer": "Internet", "explanation": "Internet."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
+          "subtasks": [
+            {"question": "Astronomy is the study of the universe and celestial objects.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "A geologist is a scientist who studies the Earth's structure.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Neuroscience is the study of the brain and nervous system.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "A chemist is a scientist who studies chemicals and their reactions.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Machine learning is the practice of using computer algorithms to learn from data.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Virtual reality creates a fully immersive digital environment.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Augmented reality overlays digital information onto the real world.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "The Internet of Things connects everyday devices to the internet.", "answer": "Correct", "explanation": "Верно."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "4. Rewrite the sentences using the word given in brackets. Type the whole sentence.",
+          "subtasks": [
+            {"question": "It studies the universe. (astronomy) → Astronomy is the study of the universe and celestial objects.", "answer": "Astronomy is the study of the universe and celestial objects.", "explanation": "astronomy."},
+            {"question": "He studies the Earth's structure. (geologist) → A geologist is a scientist who studies the Earth's structure.", "answer": "A geologist is a scientist who studies the Earth's structure.", "explanation": "geologist."},
+            {"question": "It studies the brain. (neuroscience) → Neuroscience is the study of the brain and nervous system.", "answer": "Neuroscience is the study of the brain and nervous system.", "explanation": "neuroscience."},
+            {"question": "She studies chemicals. (chemist) → A chemist is a scientist who studies chemicals and their reactions.", "answer": "A chemist is a scientist who studies chemicals and their reactions.", "explanation": "chemist."},
+            {"question": "It uses algorithms to learn. (machine learning) → Machine learning is the practice of using computer algorithms to learn from data.", "answer": "Machine learning is the practice of using computer algorithms to learn from data.", "explanation": "machine learning."},
+            {"question": "It creates immersive environments. (virtual reality) → Virtual reality creates a fully immersive digital environment.", "answer": "Virtual reality creates a fully immersive digital environment.", "explanation": "virtual reality."},
+            {"question": "It overlays digital info on the real world. (augmented reality) → Augmented reality overlays digital information onto the real world.", "answer": "Augmented reality overlays digital information onto the real world.", "explanation": "augmented reality."},
+            {"question": "It connects devices to the internet. (Internet of Things) → The Internet of Things connects everyday devices to the internet.", "answer": "The Internet of Things connects everyday devices to the internet.", "explanation": "Internet of Things."}
+          ]
+        }
+      ],
+      # =====================================================
+      # ВАРИАНТ 3 (перевод)
+      # =====================================================
+      [
+        {
+          "type": "complex",
+          "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+          "subtasks": [
+            {
+              "question": "______ is the study of living organisms.",
+              "options": ["a) Physics", "b) Chemistry", "c) Biology", "d) Geology"],
+              "answer": "c",
+              "explanation": "biology – биология."
+            },
+            {
+              "question": "A ______ is a scientist who studies physics.",
+              "options": ["a) chemist", "b) physicist", "c) biologist", "d) astronomer"],
+              "answer": "b",
+              "explanation": "physicist – физик."
+            },
+            {
+              "question": "______ is the study of the mind and behaviour.",
+              "options": ["a) Psychiatry", "b) Neurology", "c) Psychology", "d) Sociology"],
+              "answer": "c",
+              "explanation": "psychology – психология."
+            },
+            {
+              "question": "A ______ is a scientist who studies the stars and planets.",
+              "options": ["a) astrologer", "b) astronomer", "c) astronaut", "d) cosmologist"],
+              "answer": "b",
+              "explanation": "astronomer – астроном."
+            },
+            {
+              "question": "______ is the field of designing and building structures.",
+              "options": ["a) Architecture", "b) Construction", "c) Engineering", "d) Design"],
+              "answer": "c",
+              "explanation": "engineering – инженерия."
+            },
+            {
+              "question": "A ______ is a scientist who studies genes and heredity.",
+              "options": ["a) geneticist", "b) botanist", "c) zoologist", "d) ecologist"],
+              "answer": "a",
+              "explanation": "geneticist – генетик."
+            },
+            {
+              "question": "______ computing allows users to access data over the internet.",
+              "options": ["a) Edge", "b) Cloud", "c) Quantum", "d) Grid"],
+              "answer": "b",
+              "explanation": "cloud computing – облачные вычисления."
+            },
+            {
+              "question": "______ is a system of recording information that is difficult to change.",
+              "options": ["a) Database", "b) Spreadsheet", "c) Blockchain", "d) Ledger"],
+              "answer": "c",
+              "explanation": "blockchain – блокчейн."
+            }
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "2. Fill in the gaps with the correct word or phrase. Type the missing word(s) in the box.",
+          "subtasks": [
+            {"question": "______ is the study of living organisms.", "answer": "Biology", "explanation": "Biology."},
+            {"question": "A ______ is a scientist who studies physics.", "answer": "physicist", "explanation": "physicist."},
+            {"question": "______ is the study of the mind and behaviour.", "answer": "Psychology", "explanation": "Psychology."},
+            {"question": "A ______ is a scientist who studies the stars and planets.", "answer": "astronomer", "explanation": "astronomer."},
+            {"question": "______ is the field of designing and building structures.", "answer": "Engineering", "explanation": "Engineering."},
+            {"question": "A ______ is a scientist who studies genes and heredity.", "answer": "geneticist", "explanation": "geneticist."},
+            {"question": "______ computing allows users to access data over the internet.", "answer": "Cloud", "explanation": "Cloud."},
+            {"question": "______ is a system of recording information that is difficult to change.", "answer": "Blockchain", "explanation": "Blockchain."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
+          "subtasks": [
+            {"question": "Biology is the study of living organisms.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "A physicist is a scientist who studies physics.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Psychology is the study of the mind and behaviour.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "A astronomer is a scientist who studies the stars and planets.", "answer": "An astronomer is a scientist who studies the stars and planets.", "explanation": "Astronomer начинается с гласной, нужен 'an'."},
+            {"question": "Engineering is the field of designing and building structures.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "A geneticist is a scientist who studies genes and heredity.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Cloud computing allows users to access data over the internet.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Blockchain is a system of recording information that is difficult to change.", "answer": "Correct", "explanation": "Верно."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "4. Translate the sentences into English using the correct science and technology vocabulary. Type your translation (one sentence) in the box.",
+          "subtasks": [
+            {"question": "Биология – это наука о живых организмах.", "answer": "Biology is the study of living organisms.", "explanation": ""},
+            {"question": "Физик – это учёный, изучающий физику.", "answer": "A physicist is a scientist who studies physics.", "explanation": ""},
+            {"question": "Психология – это изучение психики и поведения.", "answer": "Psychology is the study of the mind and behaviour.", "explanation": ""},
+            {"question": "Астроном – это учёный, изучающий звёзды и планеты.", "answer": "An astronomer is a scientist who studies the stars and planets.", "explanation": ""},
+            {"question": "Инженерия – это область проектирования и строительства.", "answer": "Engineering is the field of designing and building structures.", "explanation": ""},
+            {"question": "Генетик – это учёный, изучающий гены и наследственность.", "answer": "A geneticist is a scientist who studies genes and heredity.", "explanation": ""},
+            {"question": "Облачные вычисления позволяют пользователям получать доступ к данным через интернет.", "answer": "Cloud computing allows users to access data over the internet.", "explanation": ""},
+            {"question": "Блокчейн – это система записи информации, которую трудно изменить.", "answer": "Blockchain is a system of recording information that is difficult to change.", "explanation": ""}
+          ]
+        }
+      ],
+      # =====================================================
+      # ВАРИАНТ 4 (перефразирование)
+      # =====================================================
+      [
+        {
+          "type": "complex",
+          "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+          "subtasks": [
+            {
+              "question": "______ is the practice of using drones for delivery.",
+              "options": ["a) Aerial delivery", "b) Drone delivery", "c) Autonomous delivery", "d) Airborne logistics"],
+              "answer": "b",
+              "explanation": "drone delivery – доставка дронами."
+            },
+            {
+              "question": "______ is the study of the Earth's physical structure.",
+              "options": ["a) Geology", "b) Geography", "c) Geophysics", "d) Mineralogy"],
+              "answer": "a",
+              "explanation": "geology – геология."
+            },
+            {
+              "question": "A ______ is a machine that can perform tasks automatically.",
+              "options": ["a) drone", "b) robot", "c) computer", "d) android"],
+              "answer": "b",
+              "explanation": "robot – робот."
+            },
+            {
+              "question": "______ is a portable computer that fits on your lap.",
+              "options": ["a) Desktop", "b) Tablet", "c) Laptop", "d) Smartphone"],
+              "answer": "c",
+              "explanation": "laptop – ноутбук."
+            },
+            {
+              "question": "______ is the process of finding and fixing errors in code.",
+              "options": ["a) Debugging", "b) Testing", "c) Coding", "d) Monitoring"],
+              "answer": "a",
+              "explanation": "debugging – отладка."
+            },
+            {
+              "question": "A ______ is a device worn on the wrist that tracks health data.",
+              "options": ["a) fitness tracker", "b) smartwatch", "c) wearable", "d) health monitor"],
+              "answer": "b",
+              "explanation": "smartwatch – умные часы."
+            },
+            {
+              "question": "______ is the use of technology to create artificial environments.",
+              "options": ["a) Augmented reality", "b) Mixed reality", "c) Virtual reality", "d) Extended reality"],
+              "answer": "c",
+              "explanation": "virtual reality – виртуальная реальность."
+            },
+            {
+              "question": "______ is the study of how living things interact with their environment.",
+              "options": ["a) Biology", "b) Ecology", "c) Botany", "d) Zoology"],
+              "answer": "b",
+              "explanation": "ecology – экология."
+            }
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "2. Fill in the gaps with the correct word or phrase. Type the missing word(s) in the box.",
+          "subtasks": [
+            {"question": "______ is the practice of using drones for delivery.", "answer": "Drone delivery", "explanation": "Drone delivery."},
+            {"question": "______ is the study of the Earth's physical structure.", "answer": "Geology", "explanation": "Geology."},
+            {"question": "A ______ is a machine that can perform tasks automatically.", "answer": "robot", "explanation": "robot."},
+            {"question": "______ is a portable computer that fits on your lap.", "answer": "Laptop", "explanation": "Laptop."},
+            {"question": "______ is the process of finding and fixing errors in code.", "answer": "Debugging", "explanation": "Debugging."},
+            {"question": "A ______ is a device worn on the wrist that tracks health data.", "answer": "smartwatch", "explanation": "smartwatch."},
+            {"question": "______ is the use of technology to create artificial environments.", "answer": "Virtual reality", "explanation": "Virtual reality."},
+            {"question": "______ is the study of how living things interact with their environment.", "answer": "Ecology", "explanation": "Ecology."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
+          "subtasks": [
+            {"question": "Drone delivery is the practice of using drones for delivery.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Geology is the study of the Earth's physical structure.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "A robot is a machine that can perform tasks automatically.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Laptop is a portable computer that fits on your lap.", "answer": "A laptop is a portable computer that fits on your lap.", "explanation": "Нужен артикль 'a'."},
+            {"question": "Debugging is the process of finding and fixing errors in code.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "A smartwatch is a device worn on the wrist that tracks health data.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Virtual reality is the use of technology to create artificial environments.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Ecology is the study of how living things interact with their environment.", "answer": "Correct", "explanation": "Верно."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "4. Rewrite the sentences using the word given in brackets. Type the whole sentence.",
+          "subtasks": [
+            {"question": "Drones are used for delivery. (drone delivery) → Drone delivery is the practice of using drones for delivery.", "answer": "Drone delivery is the practice of using drones for delivery.", "explanation": "drone delivery."},
+            {"question": "It studies the Earth's structure. (geology) → Geology is the study of the Earth's physical structure.", "answer": "Geology is the study of the Earth's physical structure.", "explanation": "geology."},
+            {"question": "It works automatically. (robot) → A robot is a machine that can perform tasks automatically.", "answer": "A robot is a machine that can perform tasks automatically.", "explanation": "robot."},
+            {"question": "It is a portable computer. (laptop) → A laptop is a portable computer that fits on your lap.", "answer": "A laptop is a portable computer that fits on your lap.", "explanation": "laptop."},
+            {"question": "It fixes errors in code. (debugging) → Debugging is the process of finding and fixing errors in code.", "answer": "Debugging is the process of finding and fixing errors in code.", "explanation": "debugging."},
+            {"question": "It tracks health data on the wrist. (smartwatch) → A smartwatch is a device worn on the wrist that tracks health data.", "answer": "A smartwatch is a device worn on the wrist that tracks health data.", "explanation": "smartwatch."},
+            {"question": "It creates artificial environments. (virtual reality) → Virtual reality is the use of technology to create artificial environments.", "answer": "Virtual reality is the use of technology to create artificial environments.", "explanation": "virtual reality."},
+            {"question": "It studies interactions with the environment. (ecology) → Ecology is the study of how living things interact with their environment.", "answer": "Ecology is the study of how living things interact with their environment.", "explanation": "ecology."}
+          ]
+        }
+      ],
+      # =====================================================
+      # ВАРИАНТ 5 (перевод)
+      # =====================================================
+      [
+        {
+          "type": "complex",
+          "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+          "subtasks": [
+            {
+              "question": "______ is the practice of using renewable energy sources.",
+              "options": ["a) Fossil energy", "b) Nuclear energy", "c) Green energy", "d) Natural gas"],
+              "answer": "c",
+              "explanation": "green energy – зелёная энергия."
+            },
+            {
+              "question": "______ is the study of the origin of the universe.",
+              "options": ["a) Astrology", "b) Astronomy", "c) Cosmology", "d) Astrophysics"],
+              "answer": "c",
+              "explanation": "cosmology – космология."
+            },
+            {
+              "question": "A ______ is a person who studies the human mind.",
+              "options": ["a) psychologist", "b) psychiatrist", "c) neurologist", "d) sociologist"],
+              "answer": "a",
+              "explanation": "psychologist – психолог."
+            },
+            {
+              "question": "______ is a device that can fly without a pilot.",
+              "options": ["a) Helicopter", "b) Glider", "c) Drone", "d) Rocket"],
+              "answer": "c",
+              "explanation": "drone – дрон."
+            },
+            {
+              "question": "______ is the practice of using advanced technology to solve problems.",
+              "options": ["a) Tech innovation", "b) Digital transformation", "c) Tech disruption", "d) Tech revolution"],
+              "answer": "a",
+              "explanation": "tech innovation – технологические инновации."
+            },
+            {
+              "question": "______ is a branch of computer science that focuses on intelligent systems.",
+              "options": ["a) Data science", "b) AI", "c) Programming", "d) Web development"],
+              "answer": "b",
+              "explanation": "AI – искусственный интеллект."
+            },
+            {
+              "question": "______ is the study of the properties of matter and energy.",
+              "options": ["a) Physics", "b) Chemistry", "c) Biology", "d) Geology"],
+              "answer": "a",
+              "explanation": "physics – физика."
+            },
+            {
+              "question": "A ______ is a scientist who studies the chemical composition of substances.",
+              "options": ["a) biologist", "b) physicist", "c) chemist", "d) geologist"],
+              "answer": "c",
+              "explanation": "chemist – химик."
+            }
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "2. Fill in the gaps with the correct word or phrase. Type the missing word(s) in the box.",
+          "subtasks": [
+            {"question": "______ is the practice of using renewable energy sources.", "answer": "Green energy", "explanation": "Green energy."},
+            {"question": "______ is the study of the origin of the universe.", "answer": "Cosmology", "explanation": "Cosmology."},
+            {"question": "A ______ is a person who studies the human mind.", "answer": "psychologist", "explanation": "psychologist."},
+            {"question": "______ is a device that can fly without a pilot.", "answer": "Drone", "explanation": "Drone."},
+            {"question": "______ is the practice of using advanced technology to solve problems.", "answer": "Tech innovation", "explanation": "Tech innovation."},
+            {"question": "______ is a branch of computer science that focuses on intelligent systems.", "answer": "AI", "explanation": "AI."},
+            {"question": "______ is the study of the properties of matter and energy.", "answer": "Physics", "explanation": "Physics."},
+            {"question": "A ______ is a scientist who studies the chemical composition of substances.", "answer": "chemist", "explanation": "chemist."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
+          "subtasks": [
+            {"question": "Green energy is the practice of using renewable energy sources.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Cosmology is the study of the origin of the universe.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "A psychologist is a person who studies the human mind.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "A drone is a device that can fly without a pilot.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Tech innovation is the practice of using advanced technology to solve problems.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "AI is a branch of computer science that focuses on intelligent systems.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Physics is the study of the properties of matter and energy.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "A chemist is a scientist who studies the chemical composition of substance.", "answer": "A chemist is a scientist who studies the chemical composition of substances.", "explanation": "Substances – множественное число."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "4. Translate the sentences into English using the correct science and technology vocabulary. Type your translation (one sentence) in the box.",
+          "subtasks": [
+            {"question": "Зелёная энергия – это использование возобновляемых источников энергии.", "answer": "Green energy is the practice of using renewable energy sources.", "explanation": ""},
+            {"question": "Космология – это изучение происхождения Вселенной.", "answer": "Cosmology is the study of the origin of the universe.", "explanation": ""},
+            {"question": "Психолог – это человек, изучающий человеческий разум.", "answer": "A psychologist is a person who studies the human mind.", "explanation": ""},
+            {"question": "Дрон – это устройство, которое может летать без пилота.", "answer": "A drone is a device that can fly without a pilot.", "explanation": ""},
+            {"question": "Технологические инновации – это использование передовых технологий для решения проблем.", "answer": "Tech innovation is the practice of using advanced technology to solve problems.", "explanation": ""},
+            {"question": "ИИ – это раздел информатики, который занимается интеллектуальными системами.", "answer": "AI is a branch of computer science that focuses on intelligent systems.", "explanation": ""},
+            {"question": "Физика – это изучение свойств материи и энергии.", "answer": "Physics is the study of the properties of matter and energy.", "explanation": ""},
+            {"question": "Химик – это учёный, изучающий химический состав веществ.", "answer": "A chemist is a scientist who studies the chemical composition of substances.", "explanation": ""}
+          ]
+        }
+      ],
+      # =====================================================
+      # ВАРИАНТ 6 (перефразирование)
+      # =====================================================
+      [
+        {
+          "type": "complex",
+          "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+          "subtasks": [
+            {
+              "question": "______ is the practice of using technology to improve healthcare.",
+              "options": ["a) Telemedicine", "b) Bioengineering", "c) Health tech", "d) Medical tech"],
+              "answer": "c",
+              "explanation": "health tech – медицинские технологии."
+            },
+            {
+              "question": "______ is the study of how organisms evolve over time.",
+              "options": ["a) Genetics", "b) Ecology", "c) Paleontology", "d) Evolutionary biology"],
+              "answer": "d",
+              "explanation": "evolutionary biology – эволюционная биология."
+            },
+            {
+              "question": "A ______ is a specialist in the study of the nervous system.",
+              "options": ["a) neuroscientist", "b) psychologist", "c) psychiatrist", "d) neurologist"],
+              "answer": "a",
+              "explanation": "neuroscientist – нейробиолог."
+            },
+            {
+              "question": "______ is a type of software designed for smartphones.",
+              "options": ["a) Desktop app", "b) Mobile app", "c) Web app", "d) Utility app"],
+              "answer": "b",
+              "explanation": "mobile app – мобильное приложение."
+            },
+            {
+              "question": "______ is the process of updating software to improve performance.",
+              "options": ["a) Debugging", "b) Patching", "c) Upgrading", "d) Updating"],
+              "answer": "c",
+              "explanation": "upgrading – модернизация."
+            },
+            {
+              "question": "______ is the study of the relationship between living things and their environment.",
+              "options": ["a) Biology", "b) Botany", "c) Zoology", "d) Ecology"],
+              "answer": "d",
+              "explanation": "ecology – экология."
+            },
+            {
+              "question": "A ______ is a scientist who studies the composition of rocks.",
+              "options": ["a) geologist", "b) geographer", "c) geophysicist", "d) mineralogist"],
+              "answer": "a",
+              "explanation": "geologist – геолог."
+            },
+            {
+              "question": "______ is the practice of using robots in manufacturing.",
+              "options": ["a) Automation", "b) Robotics", "c) Mechatronics", "d) Cybernetics"],
+              "answer": "b",
+              "explanation": "robotics – робототехника."
+            }
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "2. Fill in the gaps with the correct word or phrase. Type the missing word(s) in the box.",
+          "subtasks": [
+            {"question": "______ is the practice of using technology to improve healthcare.", "answer": "Health tech", "explanation": "Health tech."},
+            {"question": "______ is the study of how organisms evolve over time.", "answer": "Evolutionary biology", "explanation": "Evolutionary biology."},
+            {"question": "A ______ is a specialist in the study of the nervous system.", "answer": "neuroscientist", "explanation": "neuroscientist."},
+            {"question": "______ is a type of software designed for smartphones.", "answer": "Mobile app", "explanation": "Mobile app."},
+            {"question": "______ is the process of updating software to improve performance.", "answer": "Upgrading", "explanation": "Upgrading."},
+            {"question": "______ is the study of the relationship between living things and their environment.", "answer": "Ecology", "explanation": "Ecology."},
+            {"question": "A ______ is a scientist who studies the composition of rocks.", "answer": "geologist", "explanation": "geologist."},
+            {"question": "______ is the practice of using robots in manufacturing.", "answer": "Robotics", "explanation": "Robotics."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
+          "subtasks": [
+            {"question": "Health tech is the practice of using technology to improve healthcare.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Evolutionary biology is the study of how organisms evolve over time.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "A neuroscientist is a specialist in the study of the nervous system.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Mobile app is a type of software designed for smartphones.", "answer": "A mobile app is a type of software designed for smartphones.", "explanation": "Нужен артикль 'a'."},
+            {"question": "Upgrading is the process of updating software to improve performance.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Ecology is the study of the relationship between living things and their environment.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "A geologist is a scientist who studies the composition of rocks.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Robotics is the practice of using robots in manufacturing.", "answer": "Correct", "explanation": "Верно."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "4. Rewrite the sentences using the word given in brackets. Type the whole sentence.",
+          "subtasks": [
+            {"question": "Technology improves healthcare. (health tech) → Health tech is the practice of using technology to improve healthcare.", "answer": "Health tech is the practice of using technology to improve healthcare.", "explanation": "health tech."},
+            {"question": "It studies how organisms evolve. (evolutionary biology) → Evolutionary biology is the study of how organisms evolve over time.", "answer": "Evolutionary biology is the study of how organisms evolve over time.", "explanation": "evolutionary biology."},
+            {"question": "He studies the nervous system. (neuroscientist) → A neuroscientist is a specialist in the study of the nervous system.", "answer": "A neuroscientist is a specialist in the study of the nervous system.", "explanation": "neuroscientist."},
+            {"question": "It is software for phones. (mobile app) → A mobile app is a type of software designed for smartphones.", "answer": "A mobile app is a type of software designed for smartphones.", "explanation": "mobile app."},
+            {"question": "It updates software. (upgrading) → Upgrading is the process of updating software to improve performance.", "answer": "Upgrading is the process of updating software to improve performance.", "explanation": "upgrading."},
+            {"question": "It studies relationships between living things and the environment. (ecology) → Ecology is the study of the relationship between living things and their environment.", "answer": "Ecology is the study of the relationship between living things and their environment.", "explanation": "ecology."},
+            {"question": "She studies rocks. (geologist) → A geologist is a scientist who studies the composition of rocks.", "answer": "A geologist is a scientist who studies the composition of rocks.", "explanation": "geologist."},
+            {"question": "It uses robots in manufacturing. (robotics) → Robotics is the practice of using robots in manufacturing.", "answer": "Robotics is the practice of using robots in manufacturing.", "explanation": "robotics."}
+          ]
+        }
+      ],
+      # =====================================================
+      # ВАРИАНТ 7 (перевод)
+      # =====================================================
+      [
+        {
+          "type": "complex",
+          "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+          "subtasks": [
+            {
+              "question": "______ is the study of the Earth's atmosphere and weather.",
+              "options": ["a) Climatology", "b) Meteorology", "c) Geology", "d) Oceanography"],
+              "answer": "b",
+              "explanation": "meteorology – метеорология."
+            },
+            {
+              "question": "A ______ is a scientist who studies the stars and galaxies.",
+              "options": ["a) astrologer", "b) astronomer", "c) astrophysicist", "d) cosmologist"],
+              "answer": "c",
+              "explanation": "astrophysicist – астрофизик."
+            },
+            {
+              "question": "______ is the practice of using artificial intelligence in everyday life.",
+              "options": ["a) AI development", "b) Machine learning", "c) AI integration", "d) AI research"],
+              "answer": "c",
+              "explanation": "AI integration – интеграция ИИ."
+            },
+            {
+              "question": "______ is a network of interconnected devices.",
+              "options": ["a) World Wide Web", "b) The Internet", "c) Internet of Things", "d) Computer network"],
+              "answer": "c",
+              "explanation": "Internet of Things – интернет вещей."
+            },
+            {
+              "question": "______ is the study of the origin and evolution of the universe.",
+              "options": ["a) Astrology", "b) Astronomy", "c) Astrophysics", "d) Cosmology"],
+              "answer": "d",
+              "explanation": "cosmology – космология."
+            },
+            {
+              "question": "A ______ is a person who studies the human brain.",
+              "options": ["a) psychologist", "b) psychiatrist", "c) neurologist", "d) neuroscientist"],
+              "answer": "d",
+              "explanation": "neuroscientist – нейробиолог."
+            },
+            {
+              "question": "______ is the practice of using virtual reality for training.",
+              "options": ["a) Virtual learning", "b) VR training", "c) Simulated training", "d) Immersive learning"],
+              "answer": "b",
+              "explanation": "VR training – обучение с помощью VR."
+            },
+            {
+              "question": "______ is the study of the behaviour of animals.",
+              "options": ["a) Botany", "b) Ecology", "c) Zoology", "d) Ethology"],
+              "answer": "c",
+              "explanation": "zoology – зоология."
+            }
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "2. Fill in the gaps with the correct word or phrase. Type the missing word(s) in the box.",
+          "subtasks": [
+            {"question": "______ is the study of the Earth's atmosphere and weather.", "answer": "Meteorology", "explanation": "Meteorology."},
+            {"question": "A ______ is a scientist who studies the stars and galaxies.", "answer": "astrophysicist", "explanation": "astrophysicist."},
+            {"question": "______ is the practice of using artificial intelligence in everyday life.", "answer": "AI integration", "explanation": "AI integration."},
+            {"question": "______ is a network of interconnected devices.", "answer": "Internet of Things", "explanation": "Internet of Things."},
+            {"question": "______ is the study of the origin and evolution of the universe.", "answer": "Cosmology", "explanation": "Cosmology."},
+            {"question": "A ______ is a person who studies the human brain.", "answer": "neuroscientist", "explanation": "neuroscientist."},
+            {"question": "______ is the practice of using virtual reality for training.", "answer": "VR training", "explanation": "VR training."},
+            {"question": "______ is the study of the behaviour of animals.", "answer": "Zoology", "explanation": "Zoology."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
+          "subtasks": [
+            {"question": "Meteorology is the study of the Earth's atmosphere and weather.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "An astrophysicist is a scientist who studies the stars and galaxies.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "AI integration is the practice of using artificial intelligence in everyday life.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Internet of Things is a network of interconnected devices.", "answer": "The Internet of Things is a network of interconnected devices.", "explanation": "Нужен артикль 'The'."},
+            {"question": "Cosmology is the study of the origin and evolution of the universe.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "A neuroscientist is a person who studies the human brain.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "VR training is the practice of using virtual reality for training.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Zoology is the study of the behaviour of animals.", "answer": "Correct", "explanation": "Верно."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "4. Translate the sentences into English using the correct science and technology vocabulary. Type your translation (one sentence) in the box.",
+          "subtasks": [
+            {"question": "Метеорология – это изучение атмосферы Земли и погоды.", "answer": "Meteorology is the study of the Earth's atmosphere and weather.", "explanation": ""},
+            {"question": "Астрофизик – это учёный, изучающий звёзды и галактики.", "answer": "An astrophysicist is a scientist who studies the stars and galaxies.", "explanation": ""},
+            {"question": "Интеграция ИИ – это использование искусственного интеллекта в повседневной жизни.", "answer": "AI integration is the practice of using artificial intelligence in everyday life.", "explanation": ""},
+            {"question": "Интернет вещей – это сеть взаимосвязанных устройств.", "answer": "The Internet of Things is a network of interconnected devices.", "explanation": ""},
+            {"question": "Космология – это изучение происхождения и эволюции Вселенной.", "answer": "Cosmology is the study of the origin and evolution of the universe.", "explanation": ""},
+            {"question": "Нейробиолог – это человек, изучающий человеческий мозг.", "answer": "A neuroscientist is a person who studies the human brain.", "explanation": ""},
+            {"question": "Обучение с помощью VR – это использование виртуальной реальности для обучения.", "answer": "VR training is the practice of using virtual reality for training.", "explanation": ""},
+            {"question": "Зоология – это изучение поведения животных.", "answer": "Zoology is the study of the behaviour of animals.", "explanation": ""}
+          ]
+        }
+      ],
+      # =====================================================
+      # ВАРИАНТ 8 (перефразирование)
+      # =====================================================
+      [
+        {
+          "type": "complex",
+          "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+          "subtasks": [
+            {
+              "question": "______ is the practice of using wearable technology for health monitoring.",
+              "options": ["a) Digital health", "b) Wearable health tech", "c) Remote monitoring", "d) Health apps"],
+              "answer": "b",
+              "explanation": "wearable health tech – носимая медицинская технология."
+            },
+            {
+              "question": "______ is the study of the molecular structure of living things.",
+              "options": ["a) Genetics", "b) Molecular biology", "c) Biochemistry", "d) Cell biology"],
+              "answer": "b",
+              "explanation": "molecular biology – молекулярная биология."
+            },
+            {
+              "question": "A ______ is a specialist in the study of earthquakes.",
+              "options": ["a) volcanologist", "b) geologist", "c) seismologist", "d) paleontologist"],
+              "answer": "c",
+              "explanation": "seismologist – сейсмолог."
+            },
+            {
+              "question": "______ is a type of artificial intelligence that learns from data.",
+              "options": ["a) Machine learning", "b) Robotics", "c) Natural language processing", "d) Computer vision"],
+              "answer": "a",
+              "explanation": "machine learning – машинное обучение."
+            },
+            {
+              "question": "______ is the practice of using drones for agriculture.",
+              "options": ["a) Precision farming", "b) Agricultural drones", "c) Smart farming", "d) Aerial monitoring"],
+              "answer": "b",
+              "explanation": "agricultural drones – сельскохозяйственные дроны."
+            },
+            {
+              "question": "______ is the study of the chemical processes in living organisms.",
+              "options": ["a) Organic chemistry", "b) Biochemistry", "c) Molecular biology", "d) Biophysics"],
+              "answer": "b",
+              "explanation": "biochemistry – биохимия."
+            },
+            {
+              "question": "A ______ is a scientist who studies the physics of the Earth.",
+              "options": ["a) geologist", "b) geophysicist", "c) geochemist", "d) geographer"],
+              "answer": "b",
+              "explanation": "geophysicist – геофизик."
+            },
+            {
+              "question": "______ is the practice of using AI in healthcare.",
+              "options": ["a) AI healthcare", "b) Medical informatics", "c) Digital medicine", "d) eHealth"],
+              "answer": "a",
+              "explanation": "AI healthcare – ИИ в здравоохранении."
+            }
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "2. Fill in the gaps with the correct word or phrase. Type the missing word(s) in the box.",
+          "subtasks": [
+            {"question": "______ is the practice of using wearable technology for health monitoring.", "answer": "Wearable health tech", "explanation": "Wearable health tech."},
+            {"question": "______ is the study of the molecular structure of living things.", "answer": "Molecular biology", "explanation": "Molecular biology."},
+            {"question": "A ______ is a specialist in the study of earthquakes.", "answer": "seismologist", "explanation": "seismologist."},
+            {"question": "______ is a type of artificial intelligence that learns from data.", "answer": "Machine learning", "explanation": "Machine learning."},
+            {"question": "______ is the practice of using drones for agriculture.", "answer": "Agricultural drones", "explanation": "Agricultural drones."},
+            {"question": "______ is the study of the chemical processes in living organisms.", "answer": "Biochemistry", "explanation": "Biochemistry."},
+            {"question": "A ______ is a scientist who studies the physics of the Earth.", "answer": "geophysicist", "explanation": "geophysicist."},
+            {"question": "______ is the practice of using AI in healthcare.", "answer": "AI healthcare", "explanation": "AI healthcare."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
+          "subtasks": [
+            {"question": "Wearable health tech is the practice of using wearable technology for health monitoring.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Molecular biology is the study of the molecular structure of living things.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "A seismologist is a specialist in the study of earthquakes.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Machine learning is a type of artificial intelligence that learns from data.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Agricultural drones is the practice of using drones for agriculture.", "answer": "Agricultural drones are the practice of using drones for agriculture.", "explanation": "Согласование: drones (мн. ч.) – are."},
+            {"question": "Biochemistry is the study of the chemical processes in living organisms.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "A geophysicist is a scientist who studies the physics of the Earth.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "AI healthcare is the practice of using AI in healthcare.", "answer": "Correct", "explanation": "Верно."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "4. Rewrite the sentences using the word given in brackets. Type the whole sentence.",
+          "subtasks": [
+            {"question": "Wearable tech monitors health. (wearable health tech) → Wearable health tech is the practice of using wearable technology for health monitoring.", "answer": "Wearable health tech is the practice of using wearable technology for health monitoring.", "explanation": "wearable health tech."},
+            {"question": "It studies molecules in living things. (molecular biology) → Molecular biology is the study of the molecular structure of living things.", "answer": "Molecular biology is the study of the molecular structure of living things.", "explanation": "molecular biology."},
+            {"question": "He studies earthquakes. (seismologist) → A seismologist is a specialist in the study of earthquakes.", "answer": "A seismologist is a specialist in the study of earthquakes.", "explanation": "seismologist."},
+            {"question": "It learns from data. (machine learning) → Machine learning is a type of artificial intelligence that learns from data.", "answer": "Machine learning is a type of artificial intelligence that learns from data.", "explanation": "machine learning."},
+            {"question": "Drones are used in farming. (agricultural drones) → Agricultural drones are the practice of using drones for agriculture.", "answer": "Agricultural drones are the practice of using drones for agriculture.", "explanation": "agricultural drones."},
+            {"question": "It studies chemical processes in living things. (biochemistry) → Biochemistry is the study of the chemical processes in living organisms.", "answer": "Biochemistry is the study of the chemical processes in living organisms.", "explanation": "biochemistry."},
+            {"question": "He studies the physics of the Earth. (geophysicist) → A geophysicist is a scientist who studies the physics of the Earth.", "answer": "A geophysicist is a scientist who studies the physics of the Earth.", "explanation": "geophysicist."},
+            {"question": "AI is used in healthcare. (AI healthcare) → AI healthcare is the practice of using AI in healthcare.", "answer": "AI healthcare is the practice of using AI in healthcare.", "explanation": "AI healthcare."}
+          ]
+        }
+      ],
+      # =====================================================
+      # ВАРИАНТ 9 (перевод)
+      # =====================================================
+      [
+        {
+          "type": "complex",
+          "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+          "subtasks": [
+            {
+              "question": "______ is the study of the interactions between organisms and their environment.",
+              "options": ["a) Biology", "b) Ecology", "c) Botany", "d) Zoology"],
+              "answer": "b",
+              "explanation": "ecology – экология."
+            },
+            {
+              "question": "A ______ is a scientist who studies the history of the Earth.",
+              "options": ["a) paleontologist", "b) geologist", "c) archaeologist", "d) anthropologist"],
+              "answer": "a",
+              "explanation": "paleontologist – палеонтолог."
+            },
+            {
+              "question": "______ is the practice of using technology to reduce waste.",
+              "options": ["a) Clean tech", "b) Eco-tech", "c) Green tech", "d) Sustainable tech"],
+              "answer": "c",
+              "explanation": "green tech – зелёные технологии."
+            },
+            {
+              "question": "______ is a type of computer network that connects devices wirelessly.",
+              "options": ["a) Bluetooth", "b) Ethernet", "c) NFC", "d) Wi-Fi"],
+              "answer": "d",
+              "explanation": "Wi-Fi – беспроводная сеть."
+            },
+            {
+              "question": "______ is the study of the properties of light.",
+              "options": ["a) Optics", "b) Acoustics", "c) Thermodynamics", "d) Mechanics"],
+              "answer": "a",
+              "explanation": "optics – оптика."
+            },
+            {
+              "question": "A ______ is a scientist who studies the structure of matter.",
+              "options": ["a) chemist", "b) physicist", "c) biologist", "d) mathematician"],
+              "answer": "b",
+              "explanation": "physicist – физик."
+            },
+            {
+              "question": "______ is the practice of using AI to automate tasks.",
+              "options": ["a) Robotic process automation", "b) Digital transformation", "c) AI automation", "d) Smart automation"],
+              "answer": "c",
+              "explanation": "AI automation – автоматизация с помощью ИИ."
+            },
+            {
+              "question": "______ is the study of the Earth's oceans.",
+              "options": ["a) Marine biology", "b) Limnology", "c) Hydrology", "d) Oceanography"],
+              "answer": "d",
+              "explanation": "oceanography – океанография."
+            }
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "2. Fill in the gaps with the correct word or phrase. Type the missing word(s) in the box.",
+          "subtasks": [
+            {"question": "______ is the study of the interactions between organisms and their environment.", "answer": "Ecology", "explanation": "Ecology."},
+            {"question": "A ______ is a scientist who studies the history of the Earth.", "answer": "paleontologist", "explanation": "paleontologist."},
+            {"question": "______ is the practice of using technology to reduce waste.", "answer": "Green tech", "explanation": "Green tech."},
+            {"question": "______ is a type of computer network that connects devices wirelessly.", "answer": "Wi-Fi", "explanation": "Wi-Fi."},
+            {"question": "______ is the study of the properties of light.", "answer": "Optics", "explanation": "Optics."},
+            {"question": "A ______ is a scientist who studies the structure of matter.", "answer": "physicist", "explanation": "physicist."},
+            {"question": "______ is the practice of using AI to automate tasks.", "answer": "AI automation", "explanation": "AI automation."},
+            {"question": "______ is the study of the Earth's oceans.", "answer": "Oceanography", "explanation": "Oceanography."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
+          "subtasks": [
+            {"question": "Ecology is the study of the interactions between organisms and their environment.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "A paleontologist is a scientist who studies the history of the Earth.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Green tech is the practice of using technology to reduce waste.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Wi-Fi is a type of computer network that connects devices wirelessly.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Optics is the study of the properties of light.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "A physicist is a scientist who studies the structure of matter.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "AI automation is the practice of using AI to automate tasks.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Oceanography is the study of the Earth's ocean.", "answer": "Oceanography is the study of the Earth's oceans.", "explanation": "Oceans – множественное число."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "4. Translate the sentences into English using the correct science and technology vocabulary. Type your translation (one sentence) in the box.",
+          "subtasks": [
+            {"question": "Экология – это изучение взаимодействий между организмами и окружающей средой.", "answer": "Ecology is the study of the interactions between organisms and their environment.", "explanation": ""},
+            {"question": "Палеонтолог – это учёный, изучающий историю Земли.", "answer": "A paleontologist is a scientist who studies the history of the Earth.", "explanation": ""},
+            {"question": "Зелёные технологии – это использование технологий для сокращения отходов.", "answer": "Green tech is the practice of using technology to reduce waste.", "explanation": ""},
+            {"question": "Wi-Fi – это тип компьютерной сети, которая подключает устройства по беспроводной сети.", "answer": "Wi-Fi is a type of computer network that connects devices wirelessly.", "explanation": ""},
+            {"question": "Оптика – это изучение свойств света.", "answer": "Optics is the study of the properties of light.", "explanation": ""},
+            {"question": "Физик – это учёный, изучающий структуру материи.", "answer": "A physicist is a scientist who studies the structure of matter.", "explanation": ""},
+            {"question": "Автоматизация с помощью ИИ – это использование ИИ для автоматизации задач.", "answer": "AI automation is the practice of using AI to automate tasks.", "explanation": ""},
+            {"question": "Океанография – это изучение океанов Земли.", "answer": "Oceanography is the study of the Earth's oceans.", "explanation": ""}
+          ]
+        }
+      ],
+      # =====================================================
+      # ВАРИАНТ 10 (перефразирование)
+      # =====================================================
+      [
+        {
+          "type": "complex",
+          "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+          "subtasks": [
+            {
+              "question": "______ is the practice of using technology to improve education.",
+              "options": ["a) EdTech", "b) EduTech", "c) Digital learning", "d) E-learning"],
+              "answer": "a",
+              "explanation": "EdTech – образовательные технологии."
+            },
+            {
+              "question": "______ is the study of the chemical composition of the Earth.",
+              "options": ["a) Geophysics", "b) Geochemistry", "c) Geology", "d) Geomorphology"],
+              "answer": "b",
+              "explanation": "geochemistry – геохимия."
+            },
+            {
+              "question": "A ______ is a specialist in the study of plant life.",
+              "options": ["a) botanist", "b) zoologist", "c) ecologist", "d) geneticist"],
+              "answer": "a",
+              "explanation": "botanist – ботаник."
+            },
+            {
+              "question": "______ is a system of tracking items using radio waves.",
+              "options": ["a) GPS", "b) NFC", "c) RFID", "d) Bluetooth"],
+              "answer": "c",
+              "explanation": "RFID – радиочастотная идентификация."
+            },
+            {
+              "question": "______ is the practice of using solar panels to generate electricity.",
+              "options": ["a) Solar energy", "b) Wind energy", "c) Hydro energy", "d) Geothermal energy"],
+              "answer": "a",
+              "explanation": "solar energy – солнечная энергия."
+            },
+            {
+              "question": "______ is the study of the behaviour of light.",
+              "options": ["a) Optics", "b) Acoustics", "c) Thermodynamics", "d) Mechanics"],
+              "answer": "a",
+              "explanation": "optics – оптика."
+            },
+            {
+              "question": "A ______ is a scientist who studies the properties of matter.",
+              "options": ["a) physicist", "b) material scientist", "c) chemist", "d) engineer"],
+              "answer": "b",
+              "explanation": "material scientist – учёный в области материаловедения."
+            },
+            {
+              "question": "______ is the practice of using technology to solve environmental problems.",
+              "options": ["a) Green tech", "b) Eco-tech", "c) Environmental technology", "d) Sustainable tech"],
+              "answer": "c",
+              "explanation": "environmental technology – экологические технологии."
+            }
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "2. Fill in the gaps with the correct word or phrase. Type the missing word(s) in the box.",
+          "subtasks": [
+            {"question": "______ is the practice of using technology to improve education.", "answer": "EdTech", "explanation": "EdTech."},
+            {"question": "______ is the study of the chemical composition of the Earth.", "answer": "Geochemistry", "explanation": "Geochemistry."},
+            {"question": "A ______ is a specialist in the study of plant life.", "answer": "botanist", "explanation": "botanist."},
+            {"question": "______ is a system of tracking items using radio waves.", "answer": "RFID", "explanation": "RFID."},
+            {"question": "______ is the practice of using solar panels to generate electricity.", "answer": "Solar energy", "explanation": "Solar energy."},
+            {"question": "______ is the study of the behaviour of light.", "answer": "Optics", "explanation": "Optics."},
+            {"question": "A ______ is a scientist who studies the properties of matter.", "answer": "material scientist", "explanation": "material scientist."},
+            {"question": "______ is the practice of using technology to solve environmental problems.", "answer": "Environmental technology", "explanation": "Environmental technology."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
+          "subtasks": [
+            {"question": "EdTech is the practice of using technology to improve education.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Geochemistry is the study of the chemical composition of the Earth.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "A botanist is a specialist in the study of plant life.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "RFID is a system of tracking items using radio waves.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Solar energy is the practice of using solar panels to generate electricity.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Optics is the study of the behaviour of light.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "A material scientist is a scientist who studies the properties of matter.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Environmental technology is the practice of using technology to solve environmental problem.", "answer": "Environmental technology is the practice of using technology to solve environmental problems.", "explanation": "Problems – множественное число."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "4. Rewrite the sentences using the word given in brackets. Type the whole sentence.",
+          "subtasks": [
+            {"question": "Technology improves education. (EdTech) → EdTech is the practice of using technology to improve education.", "answer": "EdTech is the practice of using technology to improve education.", "explanation": "EdTech."},
+            {"question": "It studies the Earth's chemistry. (geochemistry) → Geochemistry is the study of the chemical composition of the Earth.", "answer": "Geochemistry is the study of the chemical composition of the Earth.", "explanation": "geochemistry."},
+            {"question": "He studies plants. (botanist) → A botanist is a specialist in the study of plant life.", "answer": "A botanist is a specialist in the study of plant life.", "explanation": "botanist."},
+            {"question": "It tracks items with radio waves. (RFID) → RFID is a system of tracking items using radio waves.", "answer": "RFID is a system of tracking items using radio waves.", "explanation": "RFID."},
+            {"question": "It uses solar panels for electricity. (solar energy) → Solar energy is the practice of using solar panels to generate electricity.", "answer": "Solar energy is the practice of using solar panels to generate electricity.", "explanation": "solar energy."},
+            {"question": "It studies light behaviour. (optics) → Optics is the study of the behaviour of light.", "answer": "Optics is the study of the behaviour of light.", "explanation": "optics."},
+            {"question": "He studies matter properties. (material scientist) → A material scientist is a scientist who studies the properties of matter.", "answer": "A material scientist is a scientist who studies the properties of matter.", "explanation": "material scientist."},
+            {"question": "Technology solves environmental problems. (environmental technology) → Environmental technology is the practice of using technology to solve environmental problems.", "answer": "Environmental technology is the practice of using technology to solve environmental problems.", "explanation": "environmental technology."}
+          ]
+        }
+      ],
+      # =====================================================
+      # ВАРИАНТ 11 (перевод)
+      # =====================================================
+      [
+        {
+          "type": "complex",
+          "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+          "subtasks": [
+            {
+              "question": "______ is the practice of using technology to improve transportation.",
+              "options": ["a) Smart mobility", "b) Urban mobility", "c) Green transport", "d) Intelligent transport"],
+              "answer": "a",
+              "explanation": "smart mobility – умная мобильность."
+            },
+            {
+              "question": "______ is the study of the Earth's magnetic field.",
+              "options": ["a) Geomagnetism", "b) Geophysics", "c) Geology", "d) Geochemistry"],
+              "answer": "a",
+              "explanation": "geomagnetism – геомагнетизм."
+            },
+            {
+              "question": "A ______ is a scientist who studies the evolution of species.",
+              "options": ["a) evolutionary biologist", "b) geneticist", "c) ecologist", "d) paleontologist"],
+              "answer": "a",
+              "explanation": "evolutionary biologist – эволюционный биолог."
+            },
+            {
+              "question": "______ is a technology that uses sound waves to detect objects.",
+              "options": ["a) Radar", "b) Sonar", "c) Lidar", "d) Ultrasonic"],
+              "answer": "b",
+              "explanation": "sonar – сонар."
+            },
+            {
+              "question": "______ is the practice of using technology to monitor health.",
+              "options": ["a) Digital health", "b) Telemedicine", "c) eHealth", "d) Health informatics"],
+              "answer": "a",
+              "explanation": "digital health – цифровое здоровье."
+            },
+            {
+              "question": "______ is the study of the structure of matter at the atomic level.",
+              "options": ["a) Nanotechnology", "b) Quantum physics", "c) Materials science", "d) Microtechnology"],
+              "answer": "a",
+              "explanation": "nanotechnology – нанотехнология."
+            },
+            {
+              "question": "A ______ is a scientist who studies the effects of radiation.",
+              "options": ["a) radiobiologist", "b) radiologist", "c) radiation physicist", "d) biophysicist"],
+              "answer": "a",
+              "explanation": "radiobiologist – радиобиолог."
+            },
+            {
+              "question": "______ is the practice of using technology to reduce carbon emissions.",
+              "options": ["a) Low-carbon tech", "b) Renewable energy", "c) Carbon capture", "d) Clean tech"],
+              "answer": "a",
+              "explanation": "low-carbon tech – низкоуглеродные технологии."
+            }
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "2. Fill in the gaps with the correct word or phrase. Type the missing word(s) in the box.",
+          "subtasks": [
+            {"question": "______ is the practice of using technology to improve transportation.", "answer": "Smart mobility", "explanation": "Smart mobility."},
+            {"question": "______ is the study of the Earth's magnetic field.", "answer": "Geomagnetism", "explanation": "Geomagnetism."},
+            {"question": "A ______ is a scientist who studies the evolution of species.", "answer": "evolutionary biologist", "explanation": "evolutionary biologist."},
+            {"question": "______ is a technology that uses sound waves to detect objects.", "answer": "Sonar", "explanation": "Sonar."},
+            {"question": "______ is the practice of using technology to monitor health.", "answer": "Digital health", "explanation": "Digital health."},
+            {"question": "______ is the study of the structure of matter at the atomic level.", "answer": "Nanotechnology", "explanation": "Nanotechnology."},
+            {"question": "A ______ is a scientist who studies the effects of radiation.", "answer": "radiobiologist", "explanation": "radiobiologist."},
+            {"question": "______ is the practice of using technology to reduce carbon emissions.", "answer": "Low-carbon tech", "explanation": "Low-carbon tech."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
+          "subtasks": [
+            {"question": "Smart mobility is the practice of using technology to improve transportation.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Geomagnetism is the study of the Earth's magnetic field.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "An evolutionary biologist is a scientist who studies the evolution of species.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Sonar is a technology that uses sound waves to detect objects.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Digital health is the practice of using technology to monitor health.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Nanotechnology is the study of the structure of matter at the atomic level.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "A radiobiologist is a scientist who studies the effects of radiation.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Low-carbon tech is the practice of using technology to reduce carbon emission.", "answer": "Low-carbon tech is the practice of using technology to reduce carbon emissions.", "explanation": "Emissions – множественное число."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "4. Translate the sentences into English using the correct science and technology vocabulary. Type your translation (one sentence) in the box.",
+          "subtasks": [
+            {"question": "Умная мобильность – это использование технологий для улучшения транспорта.", "answer": "Smart mobility is the practice of using technology to improve transportation.", "explanation": ""},
+            {"question": "Геомагнетизм – это изучение магнитного поля Земли.", "answer": "Geomagnetism is the study of the Earth's magnetic field.", "explanation": ""},
+            {"question": "Эволюционный биолог – это учёный, изучающий эволюцию видов.", "answer": "An evolutionary biologist is a scientist who studies the evolution of species.", "explanation": ""},
+            {"question": "Сонар – это технология, использующая звуковые волны для обнаружения объектов.", "answer": "Sonar is a technology that uses sound waves to detect objects.", "explanation": ""},
+            {"question": "Цифровое здоровье – это использование технологий для мониторинга здоровья.", "answer": "Digital health is the practice of using technology to monitor health.", "explanation": ""},
+            {"question": "Нанотехнология – это изучение структуры материи на атомном уровне.", "answer": "Nanotechnology is the study of the structure of matter at the atomic level.", "explanation": ""},
+            {"question": "Радиобиолог – это учёный, изучающий воздействие радиации.", "answer": "A radiobiologist is a scientist who studies the effects of radiation.", "explanation": ""},
+            {"question": "Низкоуглеродные технологии – это использование технологий для сокращения выбросов углерода.", "answer": "Low-carbon tech is the practice of using technology to reduce carbon emissions.", "explanation": ""}
+          ]
+        }
+      ],
+      # =====================================================
+      # ВАРИАНТ 12 (перефразирование)
+      # =====================================================
+      [
+        {
+          "type": "complex",
+          "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+          "subtasks": [
+            {
+              "question": "______ is the practice of using technology to improve financial services.",
+              "options": ["a) FinTech", "b) Banking tech", "c) InsurTech", "d) RegTech"],
+              "answer": "a",
+              "explanation": "FinTech – финансовые технологии."
+            },
+            {
+              "question": "______ is the study of the origin and evolution of the solar system.",
+              "options": ["a) Planetary science", "b) Astronomy", "c) Astrophysics", "d) Cosmology"],
+              "answer": "a",
+              "explanation": "planetary science – планетология."
+            },
+            {
+              "question": "A ______ is a scientist who studies the behaviour of matter at low temperatures.",
+              "options": ["a) cryogenicist", "b) cryologist", "c) low-temperature physicist", "d) quantum physicist"],
+              "answer": "a",
+              "explanation": "cryogenicist – криогенщик."
+            },
+            {
+              "question": "______ is a technology that uses light to transmit data.",
+              "options": ["a) Li-Fi", "b) Wi-Fi", "c) Bluetooth", "d) Infrared"],
+              "answer": "a",
+              "explanation": "Li-Fi – технология передачи данных по свету."
+            },
+            {
+              "question": "______ is the practice of using technology to improve energy efficiency.",
+              "options": ["a) Energy efficiency tech", "b) Smart grid", "c) Demand response", "d) Energy management"],
+              "answer": "a",
+              "explanation": "energy efficiency tech – технологии энергоэффективности."
+            },
+            {
+              "question": "______ is the study of the properties and behaviour of plasma.",
+              "options": ["a) Plasma physics", "b) Nuclear physics", "c) Astrophysics", "d) Electromagnetism"],
+              "answer": "a",
+              "explanation": "plasma physics – физика плазмы."
+            },
+            {
+              "question": "A ______ is a scientist who studies the structure of DNA.",
+              "options": ["a) geneticist", "b) molecular biologist", "c) biochemist", "d) cytologist"],
+              "answer": "a",
+              "explanation": "geneticist – генетик."
+            },
+            {
+              "question": "______ is the practice of using technology to reduce water waste.",
+              "options": ["a) Water efficiency tech", "b) Smart irrigation", "c) Water recycling", "d) Desalination tech"],
+              "answer": "a",
+              "explanation": "water efficiency tech – технологии водосбережения."
+            }
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "2. Fill in the gaps with the correct word or phrase. Type the missing word(s) in the box.",
+          "subtasks": [
+            {"question": "______ is the practice of using technology to improve financial services.", "answer": "FinTech", "explanation": "FinTech."},
+            {"question": "______ is the study of the origin and evolution of the solar system.", "answer": "Planetary science", "explanation": "Planetary science."},
+            {"question": "A ______ is a scientist who studies the behaviour of matter at low temperatures.", "answer": "cryogenicist", "explanation": "cryogenicist."},
+            {"question": "______ is a technology that uses light to transmit data.", "answer": "Li-Fi", "explanation": "Li-Fi."},
+            {"question": "______ is the practice of using technology to improve energy efficiency.", "answer": "Energy efficiency tech", "explanation": "Energy efficiency tech."},
+            {"question": "______ is the study of the properties and behaviour of plasma.", "answer": "Plasma physics", "explanation": "Plasma physics."},
+            {"question": "A ______ is a scientist who studies the structure of DNA.", "answer": "geneticist", "explanation": "geneticist."},
+            {"question": "______ is the practice of using technology to reduce water waste.", "answer": "Water efficiency tech", "explanation": "Water efficiency tech."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
+          "subtasks": [
+            {"question": "FinTech is the practice of using technology to improve financial services.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Planetary science is the study of the origin and evolution of the solar system.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "A cryogenicist is a scientist who studies the behaviour of matter at low temperatures.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Li-Fi is a technology that uses light to transmit data.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Energy efficiency tech is the practice of using technology to improve energy efficiency.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Plasma physics is the study of the properties and behaviour of plasma.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "A geneticist is a scientist who studies the structure of DNA.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Water efficiency tech is the practice of using technology to reduce water waste.", "answer": "Correct", "explanation": "Верно."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "4. Rewrite the sentences using the word given in brackets. Type the whole sentence.",
+          "subtasks": [
+            {"question": "Technology improves finance. (FinTech) → FinTech is the practice of using technology to improve financial services.", "answer": "FinTech is the practice of using technology to improve financial services.", "explanation": "FinTech."},
+            {"question": "It studies the solar system. (planetary science) → Planetary science is the study of the origin and evolution of the solar system.", "answer": "Planetary science is the study of the origin and evolution of the solar system.", "explanation": "planetary science."},
+            {"question": "He studies matter at low temperatures. (cryogenicist) → A cryogenicist is a scientist who studies the behaviour of matter at low temperatures.", "answer": "A cryogenicist is a scientist who studies the behaviour of matter at low temperatures.", "explanation": "cryogenicist."},
+            {"question": "It uses light for data. (Li-Fi) → Li-Fi is a technology that uses light to transmit data.", "answer": "Li-Fi is a technology that uses light to transmit data.", "explanation": "Li-Fi."},
+            {"question": "It improves energy efficiency. (energy efficiency tech) → Energy efficiency tech is the practice of using technology to improve energy efficiency.", "answer": "Energy efficiency tech is the practice of using technology to improve energy efficiency.", "explanation": "energy efficiency tech."},
+            {"question": "It studies plasma. (plasma physics) → Plasma physics is the study of the properties and behaviour of plasma.", "answer": "Plasma physics is the study of the properties and behaviour of plasma.", "explanation": "plasma physics."},
+            {"question": "She studies DNA. (geneticist) → A geneticist is a scientist who studies the structure of DNA.", "answer": "A geneticist is a scientist who studies the structure of DNA.", "explanation": "geneticist."},
+            {"question": "It reduces water waste. (water efficiency tech) → Water efficiency tech is the practice of using technology to reduce water waste.", "answer": "Water efficiency tech is the practice of using technology to reduce water waste.", "explanation": "water efficiency tech."}
+          ]
+        }
+      ]
     ]
-]
   },
   "media_communication": {
     "title": "Лексика: медиа и коммуникация (продвинутая)",
