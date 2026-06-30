@@ -22837,6 +22837,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
             ]
         }
     ]
+   }
 ]
   },
   "cleft_sentences": {
@@ -22869,1213 +22870,740 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
         "answer": "It is выделяет любой элемент (человек, время, место, предмет). What выделяет действие или объект."
       }
     ],
-"practice_bank": [
-    # =====================================================
-    # ВАРИАНТ 1 (перевод)
-    # =====================================================
-[
-  {
-    "type": "complex",
-    "text": "1. Choose the correct word (a, b, c, or d) to complete the cleft sentence. Type the letter of your answer.",
-    "subtasks": [
-      {
-        "question": "It was John ______ saw the accident.",
-        "options": ["a) who", "b) which", "c) that", "d) whom"],
-        "answer": "a",
-        "explanation": "Для человека используем who."
-      },
-      {
-        "question": "It was yesterday ______ I met your brother.",
-        "options": ["a) when", "b) which", "c) that", "d) where"],
-        "answer": "c",
-        "explanation": "Для обстоятельств времени используем that."
-      },
-      {
-        "question": "______ I need is a good rest.",
-        "options": ["a) That", "b) What", "c) Which", "d) All"],
-        "answer": "b",
-        "explanation": "What-расщепление для выделения дополнения."
-      },
-      {
-        "question": "It was more time ______ they need.",
-        "options": ["a) which", "b) who", "c) that", "d) what"],
-        "answer": "c",
-        "explanation": "Для предметов используем that."
-      },
-      {
-        "question": "______ she loves is chocolate.",
-        "options": ["a) That", "b) What", "c) Which", "d) All"],
-        "answer": "b",
-        "explanation": "What-расщепление."
-      },
-      {
-        "question": "It was John ______ saw the accident. (variant with who)",
-        "options": ["a) who", "b) which", "c) that", "d) whom"],
-        "answer": "a",
-        "explanation": "Для человека используем who."
-      },
-      {
-        "question": "______ I want is to sleep.",
-        "options": ["a) What", "b) All", "c) That", "d) Which"],
-        "answer": "b",
-        "explanation": "All-расщепление для единственной вещи."
-      },
-      {
-        "question": "It was in Paris ______ I was born.",
-        "options": ["a) where", "b) which", "c) that", "d) who"],
-        "answer": "c",
-        "explanation": "Для места используем that."
-              }
-            ]
+    "practice_bank": [
+      # =====================================================
+      # ВАРИАНТ 1 (перевод)
+      # =====================================================
+      [
+        {
+          "type": "complex",
+          "text": "1. Choose the correct word (a, b, c, or d) to complete the cleft sentence. Type the letter of your answer.",
+          "subtasks": [
+            {"question": "It was John ______ saw the accident.", "options": ["a) who", "b) which", "c) that", "d) whom"], "answer": "a", "explanation": "Для человека используем who."},
+            {"question": "It was yesterday ______ I met your brother.", "options": ["a) when", "b) which", "c) that", "d) where"], "answer": "c", "explanation": "Для обстоятельств времени используем that."},
+            {"question": "______ I need is a good rest.", "options": ["a) That", "b) What", "c) Which", "d) All"], "answer": "b", "explanation": "What-расщепление для выделения дополнения."},
+            {"question": "It was more time ______ they need.", "options": ["a) which", "b) who", "c) that", "d) what"], "answer": "c", "explanation": "Для предметов используем that."},
+            {"question": "______ she loves is chocolate.", "options": ["a) That", "b) What", "c) Which", "d) All"], "answer": "b", "explanation": "What-расщепление."},
+            {"question": "It was John ______ saw the accident. (variant with who)", "options": ["a) who", "b) which", "c) that", "d) whom"], "answer": "a", "explanation": "Для человека используем who."},
+            {"question": "______ I want is to sleep.", "options": ["a) What", "b) All", "c) That", "d) Which"], "answer": "b", "explanation": "All-расщепление для единственной вещи."},
+            {"question": "It was in Paris ______ I was born.", "options": ["a) where", "b) which", "c) that", "d) who"], "answer": "c", "explanation": "Для места используем that."}
+          ]
         },
         {
-            "type": "complex",
-            "text": "2. Fill in the gaps with the missing word(s). Type the missing word(s) in the box.",
-            "subtasks": [
-                {"question": "It was John ______ saw the accident.", "answer": "who", "explanation": "Для человека – who."},
-                {"question": "It was yesterday ______ I met your brother.", "answer": "that", "explanation": "Для времени – that."},
-                {"question": "______ I need is a good rest.", "answer": "What", "explanation": "What-расщепление."},
-                {"question": "It was more time ______ they need.", "answer": "that", "explanation": "Для предметов – that."},
-                {"question": "______ she loves is chocolate.", "answer": "What", "explanation": "What-расщепление."},
-                {"question": "______ I want is to sleep.", "answer": "All", "explanation": "All-расщепление."},
-                {"question": "It was in Paris ______ I was born.", "answer": "that", "explanation": "Для места – that."},
-                {"question": "______ he gave me was a book.", "answer": "What", "explanation": "What-расщепление."}
-            ]
+          "type": "complex",
+          "text": "2. Fill in the gaps with the missing word(s). Type the missing word(s) in the box.",
+          "subtasks": [
+            {"question": "It was John ______ saw the accident.", "answer": "who", "explanation": "Для человека – who."},
+            {"question": "It was yesterday ______ I met your brother.", "answer": "that", "explanation": "Для времени – that."},
+            {"question": "______ I need is a good rest.", "answer": "What", "explanation": "What-расщепление."},
+            {"question": "It was more time ______ they need.", "answer": "that", "explanation": "Для предметов – that."},
+            {"question": "______ she loves is chocolate.", "answer": "What", "explanation": "What-расщепление."},
+            {"question": "______ I want is to sleep.", "answer": "All", "explanation": "All-расщепление."},
+            {"question": "It was in Paris ______ I was born.", "answer": "that", "explanation": "Для места – that."},
+            {"question": "______ he gave me was a book.", "answer": "What", "explanation": "What-расщепление."}
+          ]
         },
         {
-            "type": "complex",
-            "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
-            "subtasks": [
-                {"question": "It was John who he saw the accident.", "answer": "It was John who saw the accident.", "explanation": "Лишнее подлежащее he после who."},
-                {"question": "It was yesterday that I met your brother.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "What I need is a good rest.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "It was more time that they need.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "What she loves is chocolate.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "All I want is to sleep.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "It was in Paris where I was born. (можно и where, но формально that)", "answer": "It was in Paris that I was born.", "explanation": "В формальных cleft-предложениях используется that."},
-                {"question": "What he gave me was a book.", "answer": "Correct", "explanation": "Верно."}
-            ]
+          "type": "complex",
+          "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
+          "subtasks": [
+            {"question": "It was John who he saw the accident.", "answer": "It was John who saw the accident.", "explanation": "Лишнее подлежащее he после who."},
+            {"question": "It was yesterday that I met your brother.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "What I need is a good rest.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "It was more time that they need.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "What she loves is chocolate.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "All I want is to sleep.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "It was in Paris where I was born. (можно и where, но формально that)", "answer": "It was in Paris that I was born.", "explanation": "В формальных cleft-предложениях используется that."},
+            {"question": "What he gave me was a book.", "answer": "Correct", "explanation": "Верно."}
+          ]
         },
         {
-            "type": "complex",
-            "text": "4. Translate the sentences into English using cleft sentences. Type your translation (one sentence) in the box.",
-            "subtasks": [
-                {"question": "Именно Джон увидел аварию.", "answer": "It was John who saw the accident.", "explanation": ""},
-                {"question": "Именно вчера я встретил твоего брата.", "answer": "It was yesterday that I met your brother.", "explanation": ""},
-                {"question": "Что мне нужно, так это хороший отдых.", "answer": "What I need is a good rest.", "explanation": ""},
-                {"question": "Именно больше времени им нужно.", "answer": "It is more time that they need.", "explanation": ""},
-                {"question": "Что она любит, так это шоколад.", "answer": "What she loves is chocolate.", "explanation": ""},
-                {"question": "Всё, что я хочу, – это поспать.", "answer": "All I want is to sleep.", "explanation": ""},
-                {"question": "Именно в Париже я родился.", "answer": "It was in Paris that I was born.", "explanation": ""},
-                {"question": "Что он мне дал, так это книгу.", "answer": "What he gave me was a book.", "explanation": ""}
-            ]
+          "type": "complex",
+          "text": "4. Translate the sentences into English using cleft sentences. Type your translation (one sentence) in the box.",
+          "subtasks": [
+            {"question": "Именно Джон увидел аварию.", "answer": "It was John who saw the accident.", "explanation": ""},
+            {"question": "Именно вчера я встретил твоего брата.", "answer": "It was yesterday that I met your brother.", "explanation": ""},
+            {"question": "Что мне нужно, так это хороший отдых.", "answer": "What I need is a good rest.", "explanation": ""},
+            {"question": "Именно больше времени им нужно.", "answer": "It is more time that they need.", "explanation": ""},
+            {"question": "Что она любит, так это шоколад.", "answer": "What she loves is chocolate.", "explanation": ""},
+            {"question": "Всё, что я хочу, – это поспать.", "answer": "All I want is to sleep.", "explanation": ""},
+            {"question": "Именно в Париже я родился.", "answer": "It was in Paris that I was born.", "explanation": ""},
+            {"question": "Что он мне дал, так это книгу.", "answer": "What he gave me was a book.", "explanation": ""}
+          ]
         }
-    ],
-    # =====================================================
-    # ВАРИАНТ 2 (перефразирование)
-    # =====================================================
-{
-  "type": "complex",
-  "text": "1. Choose the correct word (a, b, c, or d) to complete the cleft sentence. Type the letter of your answer.",
-  "subtasks": [
-    {
-      "question": "It was my sister ______ called you.",
-      "options": ["a) who", "b) which", "c) that", "d) whom"],
-      "answer": "a",
-      "explanation": "Для человека – who."
-    },
-    {
-      "question": "It was at midnight ______ the phone rang.",
-      "options": ["a) when", "b) which", "c) that", "d) where"],
-      "answer": "c",
-      "explanation": "Для времени – that."
-    },
-    {
-      "question": "______ we need is more time.",
-      "options": ["a) That", "b) What", "c) Which", "d) All"],
-      "answer": "b",
-      "explanation": "What-расщепление."
-    },
-    {
-      "question": "It was the manager ______ made the decision.",
-      "options": ["a) who", "b) which", "c) that", "d) whom"],
-      "answer": "a",
-      "explanation": "Для человека – who."
-    },
-    {
-      "question": "______ I enjoy most is reading.",
-      "options": ["a) That", "b) What", "c) Which", "d) All"],
-      "answer": "b",
-      "explanation": "What-расщепление."
-    },
-    {
-      "question": "It was in London ______ they met.",
-      "options": ["a) where", "b) which", "c) that", "d) who"],
-      "answer": "c",
-      "explanation": "Для места – that."
-    },
-    {
-      "question": "______ she wanted was a cup of tea.",
-      "options": ["a) What", "b) All", "c) That", "d) Which"],
-      "answer": "b",
-      "explanation": "All-расщепление."
-    },
-    {
-      "question": "It was my father ______ taught me to swim.",
-      "options": ["a) who", "b) which", "c) that", "d) whom"],
-      "answer": "a",
-      "explanation": "Для человека – who."
-              }
-            ]
+      ],
+      # =====================================================
+      # ВАРИАНТ 2 (перефразирование)
+      # =====================================================
+      [
+        {
+          "type": "complex",
+          "text": "1. Choose the correct word (a, b, c, or d) to complete the cleft sentence. Type the letter of your answer.",
+          "subtasks": [
+            {"question": "It was my sister ______ called you.", "options": ["a) who", "b) which", "c) that", "d) whom"], "answer": "a", "explanation": "Для человека – who."},
+            {"question": "It was at midnight ______ the phone rang.", "options": ["a) when", "b) which", "c) that", "d) where"], "answer": "c", "explanation": "Для времени – that."},
+            {"question": "______ we need is more time.", "options": ["a) That", "b) What", "c) Which", "d) All"], "answer": "b", "explanation": "What-расщепление."},
+            {"question": "It was the manager ______ made the decision.", "options": ["a) who", "b) which", "c) that", "d) whom"], "answer": "a", "explanation": "Для человека – who."},
+            {"question": "______ I enjoy most is reading.", "options": ["a) That", "b) What", "c) Which", "d) All"], "answer": "b", "explanation": "What-расщепление."},
+            {"question": "It was in London ______ they met.", "options": ["a) where", "b) which", "c) that", "d) who"], "answer": "c", "explanation": "Для места – that."},
+            {"question": "______ she wanted was a cup of tea.", "options": ["a) What", "b) All", "c) That", "d) Which"], "answer": "b", "explanation": "All-расщепление."},
+            {"question": "It was my father ______ taught me to swim.", "options": ["a) who", "b) which", "c) that", "d) whom"], "answer": "a", "explanation": "Для человека – who."}
+          ]
         },
         {
-            "type": "complex",
-            "text": "2. Fill in the gaps with the missing word(s). Type the missing word(s) in the box.",
-            "subtasks": [
-                {"question": "It was my sister ______ called you.", "answer": "who", "explanation": "Для человека."},
-                {"question": "It was at midnight ______ the phone rang.", "answer": "that", "explanation": "Для времени."},
-                {"question": "______ we need is more time.", "answer": "What", "explanation": "What-расщепление."},
-                {"question": "It was the manager ______ made the decision.", "answer": "who", "explanation": "Для человека."},
-                {"question": "______ I enjoy most is reading.", "answer": "What", "explanation": "What-расщепление."},
-                {"question": "It was in London ______ they met.", "answer": "that", "explanation": "Для места."},
-                {"question": "______ she wanted was a cup of tea.", "answer": "All", "explanation": "All-расщепление."},
-                {"question": "It was my father ______ taught me to swim.", "answer": "who", "explanation": "Для человека."}
-            ]
+          "type": "complex",
+          "text": "2. Fill in the gaps with the missing word(s). Type the missing word(s) in the box.",
+          "subtasks": [
+            {"question": "It was my sister ______ called you.", "answer": "who", "explanation": "Для человека."},
+            {"question": "It was at midnight ______ the phone rang.", "answer": "that", "explanation": "Для времени."},
+            {"question": "______ we need is more time.", "answer": "What", "explanation": "What-расщепление."},
+            {"question": "It was the manager ______ made the decision.", "answer": "who", "explanation": "Для человека."},
+            {"question": "______ I enjoy most is reading.", "answer": "What", "explanation": "What-расщепление."},
+            {"question": "It was in London ______ they met.", "answer": "that", "explanation": "Для места."},
+            {"question": "______ she wanted was a cup of tea.", "answer": "All", "explanation": "All-расщепление."},
+            {"question": "It was my father ______ taught me to swim.", "answer": "who", "explanation": "Для человека."}
+          ]
         },
         {
-            "type": "complex",
-            "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
-            "subtasks": [
-                {"question": "It was my sister who she called you.", "answer": "It was my sister who called you.", "explanation": "Лишнее she."},
-                {"question": "It was at midnight that the phone rang.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "What we need is more time.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "It was the manager who made the decision.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "What I enjoy most is reading.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "It was in London where they met. (можно, но формально that)", "answer": "It was in London that they met.", "explanation": "В формальных cleft-предложениях that."},
-                {"question": "All she wanted was a cup of tea.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "It was my father who taught me to swim.", "answer": "Correct", "explanation": "Верно."}
-            ]
+          "type": "complex",
+          "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
+          "subtasks": [
+            {"question": "It was my sister who she called you.", "answer": "It was my sister who called you.", "explanation": "Лишнее she."},
+            {"question": "It was at midnight that the phone rang.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "What we need is more time.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "It was the manager who made the decision.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "What I enjoy most is reading.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "It was in London where they met. (можно, но формально that)", "answer": "It was in London that they met.", "explanation": "В формальных cleft-предложениях that."},
+            {"question": "All she wanted was a cup of tea.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "It was my father who taught me to swim.", "answer": "Correct", "explanation": "Верно."}
+          ]
         },
         {
-            "type": "complex",
-            "text": "4. Rewrite the sentences using cleft sentences (It was... that... / What... is...). Type the whole sentence.",
-            "subtasks": [
-                {"question": "My sister called you. → It was my sister who called you.", "answer": "It was my sister who called you.", "explanation": "It-расщепление с who."},
-                {"question": "The phone rang at midnight. → It was at midnight that the phone rang.", "answer": "It was at midnight that the phone rang.", "explanation": "It-расщепление с that для времени."},
-                {"question": "We need more time. → What we need is more time.", "answer": "What we need is more time.", "explanation": "What-расщепление."},
-                {"question": "The manager made the decision. → It was the manager who made the decision.", "answer": "It was the manager who made the decision.", "explanation": "It-расщепление с who."},
-                {"question": "I enjoy reading most. → What I enjoy most is reading.", "answer": "What I enjoy most is reading.", "explanation": "What-расщепление."},
-                {"question": "They met in London. → It was in London that they met.", "answer": "It was in London that they met.", "explanation": "It-расщепление с that для места."},
-                {"question": "She wanted a cup of tea. → All she wanted was a cup of tea.", "answer": "All she wanted was a cup of tea.", "explanation": "All-расщепление."},
-                {"question": "My father taught me to swim. → It was my father who taught me to swim.", "answer": "It was my father who taught me to swim.", "explanation": "It-расщепление с who."}
-            ]
+          "type": "complex",
+          "text": "4. Rewrite the sentences using cleft sentences (It was... that... / What... is...). Type the whole sentence.",
+          "subtasks": [
+            {"question": "My sister called you. → It was my sister who called you.", "answer": "It was my sister who called you.", "explanation": "It-расщепление с who."},
+            {"question": "The phone rang at midnight. → It was at midnight that the phone rang.", "answer": "It was at midnight that the phone rang.", "explanation": "It-расщепление с that для времени."},
+            {"question": "We need more time. → What we need is more time.", "answer": "What we need is more time.", "explanation": "What-расщепление."},
+            {"question": "The manager made the decision. → It was the manager who made the decision.", "answer": "It was the manager who made the decision.", "explanation": "It-расщепление с who."},
+            {"question": "I enjoy reading most. → What I enjoy most is reading.", "answer": "What I enjoy most is reading.", "explanation": "What-расщепление."},
+            {"question": "They met in London. → It was in London that they met.", "answer": "It was in London that they met.", "explanation": "It-расщепление с that для места."},
+            {"question": "She wanted a cup of tea. → All she wanted was a cup of tea.", "answer": "All she wanted was a cup of tea.", "explanation": "All-расщепление."},
+            {"question": "My father taught me to swim. → It was my father who taught me to swim.", "answer": "It was my father who taught me to swim.", "explanation": "It-расщепление с who."}
+          ]
         }
-    ],
-    # =====================================================
-    # ВАРИАНТ 3 (перевод)
-    # =====================================================
-[
-  {
-    "type": "complex",
-    "text": "1. Choose the correct word (a, b, c, or d) to complete the cleft sentence. Type the letter of your answer.",
-    "subtasks": [
-      {
-        "question": "It was the police ______ arrested him.",
-        "options": ["a) who", "b) which", "c) that", "d) whom"],
-        "answer": "a",
-        "explanation": "Для человека – who."
-      },
-      {
-        "question": "It was in 1998 ______ she was born.",
-        "options": ["a) when", "b) which", "c) that", "d) where"],
-        "answer": "c",
-        "explanation": "Для времени – that."
-      },
-      {
-        "question": "______ I hate is waiting.",
-        "options": ["a) That", "b) What", "c) Which", "d) All"],
-        "answer": "b",
-        "explanation": "What-расщепление."
-      },
-      {
-        "question": "It was the teacher ______ helped me.",
-        "options": ["a) who", "b) which", "c) that", "d) whom"],
-        "answer": "a",
-        "explanation": "Для человека – who."
-      },
-      {
-        "question": "______ they need is a new car.",
-        "options": ["a) That", "b) What", "c) Which", "d) All"],
-        "answer": "b",
-        "explanation": "What-расщепление."
-      },
-      {
-        "question": "It was at the station ______ we met.",
-        "options": ["a) where", "b) which", "c) that", "d) who"],
-        "answer": "c",
-        "explanation": "Для места – that."
-      },
-      {
-        "question": "______ I bought was a book.",
-        "options": ["a) That", "b) What", "c) Which", "d) All"],
-        "answer": "b",
-        "explanation": "What-расщепление."
-      },
-      {
-        "question": "It was my mother ______ cooked dinner.",
-        "options": ["a) who", "b) which", "c) that", "d) whom"],
-        "answer": "a",
-        "explanation": "Для человека – who."
-              }
-            ]
+      ],
+      # =====================================================
+      # ВАРИАНТ 3 (перевод)
+      # =====================================================
+      [
+        {
+          "type": "complex",
+          "text": "1. Choose the correct word (a, b, c, or d) to complete the cleft sentence. Type the letter of your answer.",
+          "subtasks": [
+            {"question": "It was the police ______ arrested him.", "options": ["a) who", "b) which", "c) that", "d) whom"], "answer": "a", "explanation": "Для человека – who."},
+            {"question": "It was in 1998 ______ she was born.", "options": ["a) when", "b) which", "c) that", "d) where"], "answer": "c", "explanation": "Для времени – that."},
+            {"question": "______ I hate is waiting.", "options": ["a) That", "b) What", "c) Which", "d) All"], "answer": "b", "explanation": "What-расщепление."},
+            {"question": "It was the teacher ______ helped me.", "options": ["a) who", "b) which", "c) that", "d) whom"], "answer": "a", "explanation": "Для человека – who."},
+            {"question": "______ they need is a new car.", "options": ["a) That", "b) What", "c) Which", "d) All"], "answer": "b", "explanation": "What-расщепление."},
+            {"question": "It was at the station ______ we met.", "options": ["a) where", "b) which", "c) that", "d) who"], "answer": "c", "explanation": "Для места – that."},
+            {"question": "______ I bought was a book.", "options": ["a) That", "b) What", "c) Which", "d) All"], "answer": "b", "explanation": "What-расщепление."},
+            {"question": "It was my mother ______ cooked dinner.", "options": ["a) who", "b) which", "c) that", "d) whom"], "answer": "a", "explanation": "Для человека – who."}
+          ]
         },
         {
-            "type": "complex",
-            "text": "2. Fill in the gaps with the missing word(s). Type the missing word(s) in the box.",
-            "subtasks": [
-                {"question": "It was the police ______ arrested him.", "answer": "who", "explanation": "Для человека."},
-                {"question": "It was in 1998 ______ she was born.", "answer": "that", "explanation": "Для времени."},
-                {"question": "______ I hate is waiting.", "answer": "What", "explanation": "What-расщепление."},
-                {"question": "It was the teacher ______ helped me.", "answer": "who", "explanation": "Для человека."},
-                {"question": "______ they need is a new car.", "answer": "What", "explanation": "What-расщепление."},
-                {"question": "It was at the station ______ we met.", "answer": "that", "explanation": "Для места."},
-                {"question": "______ I bought was a book.", "answer": "What", "explanation": "What-расщепление."},
-                {"question": "It was my mother ______ cooked dinner.", "answer": "who", "explanation": "Для человека."}
-            ]
+          "type": "complex",
+          "text": "2. Fill in the gaps with the missing word(s). Type the missing word(s) in the box.",
+          "subtasks": [
+            {"question": "It was the police ______ arrested him.", "answer": "who", "explanation": "Для человека."},
+            {"question": "It was in 1998 ______ she was born.", "answer": "that", "explanation": "Для времени."},
+            {"question": "______ I hate is waiting.", "answer": "What", "explanation": "What-расщепление."},
+            {"question": "It was the teacher ______ helped me.", "answer": "who", "explanation": "Для человека."},
+            {"question": "______ they need is a new car.", "answer": "What", "explanation": "What-расщепление."},
+            {"question": "It was at the station ______ we met.", "answer": "that", "explanation": "Для места."},
+            {"question": "______ I bought was a book.", "answer": "What", "explanation": "What-расщепление."},
+            {"question": "It was my mother ______ cooked dinner.", "answer": "who", "explanation": "Для человека."}
+          ]
         },
         {
-            "type": "complex",
-            "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
-            "subtasks": [
-                {"question": "It was the police who arrested him.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "It was in 1998 that she was born.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "What I hate is waiting.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "It was the teacher who helped me.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "What they need is a new car.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "It was at the station that we met.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "What I bought was a book.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "It was my mother who cooked dinner.", "answer": "Correct", "explanation": "Верно."}
-            ]
+          "type": "complex",
+          "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
+          "subtasks": [
+            {"question": "It was the police who arrested him.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "It was in 1998 that she was born.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "What I hate is waiting.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "It was the teacher who helped me.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "What they need is a new car.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "It was at the station that we met.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "What I bought was a book.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "It was my mother who cooked dinner.", "answer": "Correct", "explanation": "Верно."}
+          ]
         },
         {
-            "type": "complex",
-            "text": "4. Translate the sentences into English using cleft sentences. Type your translation (one sentence) in the box.",
-            "subtasks": [
-                {"question": "Именно полиция арестовала его.", "answer": "It was the police who arrested him.", "explanation": ""},
-                {"question": "Именно в 1998 году она родилась.", "answer": "It was in 1998 that she was born.", "explanation": ""},
-                {"question": "Что я ненавижу, так это ожидание.", "answer": "What I hate is waiting.", "explanation": ""},
-                {"question": "Именно учитель помог мне.", "answer": "It was the teacher who helped me.", "explanation": ""},
-                {"question": "Что им нужно, так это новая машина.", "answer": "What they need is a new car.", "explanation": ""},
-                {"question": "Именно на вокзале мы встретились.", "answer": "It was at the station that we met.", "explanation": ""},
-                {"question": "Что я купил, так это книгу.", "answer": "What I bought was a book.", "explanation": ""},
-                {"question": "Именно моя мама приготовила ужин.", "answer": "It was my mother who cooked dinner.", "explanation": ""}
-            ]
+          "type": "complex",
+          "text": "4. Translate the sentences into English using cleft sentences. Type your translation (one sentence) in the box.",
+          "subtasks": [
+            {"question": "Именно полиция арестовала его.", "answer": "It was the police who arrested him.", "explanation": ""},
+            {"question": "Именно в 1998 году она родилась.", "answer": "It was in 1998 that she was born.", "explanation": ""},
+            {"question": "Что я ненавижу, так это ожидание.", "answer": "What I hate is waiting.", "explanation": ""},
+            {"question": "Именно учитель помог мне.", "answer": "It was the teacher who helped me.", "explanation": ""},
+            {"question": "Что им нужно, так это новая машина.", "answer": "What they need is a new car.", "explanation": ""},
+            {"question": "Именно на вокзале мы встретились.", "answer": "It was at the station that we met.", "explanation": ""},
+            {"question": "Что я купил, так это книгу.", "answer": "What I bought was a book.", "explanation": ""},
+            {"question": "Именно моя мама приготовила ужин.", "answer": "It was my mother who cooked dinner.", "explanation": ""}
+          ]
         }
-    ],
-    # =====================================================
-    # ВАРИАНТ 4 (перефразирование)
-    # =====================================================
- [
-  {
-    "type": "complex",
-    "text": "1. Choose the correct word (a, b, c, or d) to complete the cleft sentence. Type the letter of your answer.",
-    "subtasks": [
-      {
-        "question": "It was the doctor ______ saved his life.",
-        "options": ["a) who", "b) which", "c) that", "d) whom"],
-        "answer": "a",
-        "explanation": "Для человека – who."
-      },
-      {
-        "question": "It was in the morning ______ we left.",
-        "options": ["a) when", "b) which", "c) that", "d) where"],
-        "answer": "c",
-        "explanation": "Для времени – that."
-      },
-      {
-        "question": "______ I like most is summer.",
-        "options": ["a) That", "b) What", "c) Which", "d) All"],
-        "answer": "b",
-        "explanation": "What-расщепление."
-      },
-      {
-        "question": "It was the students ______ organized the event.",
-        "options": ["a) who", "b) which", "c) that", "d) whom"],
-        "answer": "a",
-        "explanation": "Для человека – who."
-      },
-      {
-        "question": "______ she wants is a new job.",
-        "options": ["a) That", "b) What", "c) Which", "d) All"],
-        "answer": "b",
-        "explanation": "What-расщепление."
-      },
-      {
-        "question": "It was in the garden ______ they found it.",
-        "options": ["a) where", "b) which", "c) that", "d) who"],
-        "answer": "c",
-        "explanation": "Для места – that."
-      },
-      {
-        "question": "______ I did was call for help.",
-        "options": ["a) What", "b) All", "c) That", "d) Which"],
-        "answer": "b",
-        "explanation": "All-расщепление."
-      },
-      {
-        "question": "It was my friend ______ helped me move.",
-        "options": ["a) who", "b) which", "c) that", "d) whom"],
-        "answer": "a",
-        "explanation": "Для человека – who."
-              }
-            ]
+      ],
+      # =====================================================
+      # ВАРИАНТ 4 (перефразирование)
+      # =====================================================
+      [
+        {
+          "type": "complex",
+          "text": "1. Choose the correct word (a, b, c, or d) to complete the cleft sentence. Type the letter of your answer.",
+          "subtasks": [
+            {"question": "It was the doctor ______ saved his life.", "options": ["a) who", "b) which", "c) that", "d) whom"], "answer": "a", "explanation": "Для человека – who."},
+            {"question": "It was in the morning ______ we left.", "options": ["a) when", "b) which", "c) that", "d) where"], "answer": "c", "explanation": "Для времени – that."},
+            {"question": "______ I like most is summer.", "options": ["a) That", "b) What", "c) Which", "d) All"], "answer": "b", "explanation": "What-расщепление."},
+            {"question": "It was the students ______ organized the event.", "options": ["a) who", "b) which", "c) that", "d) whom"], "answer": "a", "explanation": "Для человека – who."},
+            {"question": "______ she wants is a new job.", "options": ["a) That", "b) What", "c) Which", "d) All"], "answer": "b", "explanation": "What-расщепление."},
+            {"question": "It was in the garden ______ they found it.", "options": ["a) where", "b) which", "c) that", "d) who"], "answer": "c", "explanation": "Для места – that."},
+            {"question": "______ I did was call for help.", "options": ["a) What", "b) All", "c) That", "d) Which"], "answer": "b", "explanation": "All-расщепление."},
+            {"question": "It was my friend ______ helped me move.", "options": ["a) who", "b) which", "c) that", "d) whom"], "answer": "a", "explanation": "Для человека – who."}
+          ]
         },
         {
-            "type": "complex",
-            "text": "2. Fill in the gaps with the missing word(s). Type the missing word(s) in the box.",
-            "subtasks": [
-                {"question": "It was the doctor ______ saved his life.", "answer": "who", "explanation": "Для человека."},
-                {"question": "It was in the morning ______ we left.", "answer": "that", "explanation": "Для времени."},
-                {"question": "______ I like most is summer.", "answer": "What", "explanation": "What-расщепление."},
-                {"question": "It was the students ______ organized the event.", "answer": "who", "explanation": "Для человека."},
-                {"question": "______ she wants is a new job.", "answer": "What", "explanation": "What-расщепление."},
-                {"question": "It was in the garden ______ they found it.", "answer": "that", "explanation": "Для места."},
-                {"question": "______ I did was call for help.", "answer": "All", "explanation": "All-расщепление."},
-                {"question": "It was my friend ______ helped me move.", "answer": "who", "explanation": "Для человека."}
-            ]
+          "type": "complex",
+          "text": "2. Fill in the gaps with the missing word(s). Type the missing word(s) in the box.",
+          "subtasks": [
+            {"question": "It was the doctor ______ saved his life.", "answer": "who", "explanation": "Для человека."},
+            {"question": "It was in the morning ______ we left.", "answer": "that", "explanation": "Для времени."},
+            {"question": "______ I like most is summer.", "answer": "What", "explanation": "What-расщепление."},
+            {"question": "It was the students ______ organized the event.", "answer": "who", "explanation": "Для человека."},
+            {"question": "______ she wants is a new job.", "answer": "What", "explanation": "What-расщепление."},
+            {"question": "It was in the garden ______ they found it.", "answer": "that", "explanation": "Для места."},
+            {"question": "______ I did was call for help.", "answer": "All", "explanation": "All-расщепление."},
+            {"question": "It was my friend ______ helped me move.", "answer": "who", "explanation": "Для человека."}
+          ]
         },
         {
-            "type": "complex",
-            "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
-            "subtasks": [
-                {"question": "It was the doctor who saved his life.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "It was in the morning that we left.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "What I like most is summer.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "It was the students who organized the event.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "What she wants is a new job.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "It was in the garden that they found it.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "All I did was call for help.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "It was my friend who helped me move.", "answer": "Correct", "explanation": "Верно."}
-            ]
+          "type": "complex",
+          "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
+          "subtasks": [
+            {"question": "It was the doctor who saved his life.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "It was in the morning that we left.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "What I like most is summer.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "It was the students who organized the event.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "What she wants is a new job.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "It was in the garden that they found it.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "All I did was call for help.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "It was my friend who helped me move.", "answer": "Correct", "explanation": "Верно."}
+          ]
         },
         {
-            "type": "complex",
-            "text": "4. Rewrite the sentences using cleft sentences (It was... that... / What... is...). Type the whole sentence.",
-            "subtasks": [
-                {"question": "The doctor saved his life. → It was the doctor who saved his life.", "answer": "It was the doctor who saved his life.", "explanation": "It-расщепление."},
-                {"question": "We left in the morning. → It was in the morning that we left.", "answer": "It was in the morning that we left.", "explanation": "It-расщепление."},
-                {"question": "I like summer most. → What I like most is summer.", "answer": "What I like most is summer.", "explanation": "What-расщепление."},
-                {"question": "The students organized the event. → It was the students who organized the event.", "answer": "It was the students who organized the event.", "explanation": "It-расщепление."},
-                {"question": "She wants a new job. → What she wants is a new job.", "answer": "What she wants is a new job.", "explanation": "What-расщепление."},
-                {"question": "They found it in the garden. → It was in the garden that they found it.", "answer": "It was in the garden that they found it.", "explanation": "It-расщепление."},
-                {"question": "I just called for help. → All I did was call for help.", "answer": "All I did was call for help.", "explanation": "All-расщепление."},
-                {"question": "My friend helped me move. → It was my friend who helped me move.", "answer": "It was my friend who helped me move.", "explanation": "It-расщепление."}
-            ]
+          "type": "complex",
+          "text": "4. Rewrite the sentences using cleft sentences (It was... that... / What... is...). Type the whole sentence.",
+          "subtasks": [
+            {"question": "The doctor saved his life. → It was the doctor who saved his life.", "answer": "It was the doctor who saved his life.", "explanation": "It-расщепление."},
+            {"question": "We left in the morning. → It was in the morning that we left.", "answer": "It was in the morning that we left.", "explanation": "It-расщепление."},
+            {"question": "I like summer most. → What I like most is summer.", "answer": "What I like most is summer.", "explanation": "What-расщепление."},
+            {"question": "The students organized the event. → It was the students who organized the event.", "answer": "It was the students who organized the event.", "explanation": "It-расщепление."},
+            {"question": "She wants a new job. → What she wants is a new job.", "answer": "What she wants is a new job.", "explanation": "What-расщепление."},
+            {"question": "They found it in the garden. → It was in the garden that they found it.", "answer": "It was in the garden that they found it.", "explanation": "It-расщепление."},
+            {"question": "I just called for help. → All I did was call for help.", "answer": "All I did was call for help.", "explanation": "All-расщепление."},
+            {"question": "My friend helped me move. → It was my friend who helped me move.", "answer": "It was my friend who helped me move.", "explanation": "It-расщепление."}
+          ]
         }
-    ],
-    # =====================================================
-    # ВАРИАНТ 5 (перевод)
-    # =====================================================
-    [
-{
-  "type": "complex",
-  "text": "1. Choose the correct word (a, b, c, or d) to complete the cleft sentence. Type the letter of your answer.",
-  "subtasks": [
-    {
-      "question": "It was the firefighter ______ rescued the cat.",
-      "options": ["a) who", "b) which", "c) that", "d) whom"],
-      "answer": "a",
-      "explanation": "Для человека – who."
-    },
-    {
-      "question": "It was at 5 o'clock ______ we arrived.",
-      "options": ["a) when", "b) which", "c) that", "d) where"],
-      "answer": "c",
-      "explanation": "Для времени – that."
-    },
-    {
-      "question": "______ I need is your help.",
-      "options": ["a) That", "b) What", "c) Which", "d) All"],
-      "answer": "b",
-      "explanation": "What-расщепление."
-    },
-    {
-      "question": "It was the actress ______ starred in the film.",
-      "options": ["a) who", "b) which", "c) that", "d) whom"],
-      "answer": "a",
-      "explanation": "Для человека – who."
-    },
-    {
-      "question": "______ he said was not true.",
-      "options": ["a) That", "b) What", "c) Which", "d) All"],
-      "answer": "b",
-      "explanation": "What-расщепление."
-    },
-    {
-      "question": "It was by the river ______ we had a picnic.",
-      "options": ["a) where", "b) which", "c) that", "d) who"],
-      "answer": "c",
-      "explanation": "Для места – that."
-    },
-    {
-      "question": "______ I want is a glass of water.",
-      "options": ["a) What", "b) All", "c) That", "d) Which"],
-      "answer": "b",
-      "explanation": "All-расщепление."
-    },
-    {
-      "question": "It was my uncle ______ gave me this watch.",
-      "options": ["a) who", "b) which", "c) that", "d) whom"],
-      "answer": "a",
-      "explanation": "Для человека – who."
-              }
-            ]
+      ],
+      # =====================================================
+      # ВАРИАНТ 5 (перевод)
+      # =====================================================
+      [
+        {
+          "type": "complex",
+          "text": "1. Choose the correct word (a, b, c, or d) to complete the cleft sentence. Type the letter of your answer.",
+          "subtasks": [
+            {"question": "It was the firefighter ______ rescued the cat.", "options": ["a) who", "b) which", "c) that", "d) whom"], "answer": "a", "explanation": "Для человека – who."},
+            {"question": "It was at 5 o'clock ______ we arrived.", "options": ["a) when", "b) which", "c) that", "d) where"], "answer": "c", "explanation": "Для времени – that."},
+            {"question": "______ I need is your help.", "options": ["a) That", "b) What", "c) Which", "d) All"], "answer": "b", "explanation": "What-расщепление."},
+            {"question": "It was the actress ______ starred in the film.", "options": ["a) who", "b) which", "c) that", "d) whom"], "answer": "a", "explanation": "Для человека – who."},
+            {"question": "______ he said was not true.", "options": ["a) That", "b) What", "c) Which", "d) All"], "answer": "b", "explanation": "What-расщепление."},
+            {"question": "It was by the river ______ we had a picnic.", "options": ["a) where", "b) which", "c) that", "d) who"], "answer": "c", "explanation": "Для места – that."},
+            {"question": "______ I want is a glass of water.", "options": ["a) What", "b) All", "c) That", "d) Which"], "answer": "b", "explanation": "All-расщепление."},
+            {"question": "It was my uncle ______ gave me this watch.", "options": ["a) who", "b) which", "c) that", "d) whom"], "answer": "a", "explanation": "Для человека – who."}
+          ]
         },
         {
-            "type": "complex",
-            "text": "2. Fill in the gaps with the missing word(s). Type the missing word(s) in the box.",
-            "subtasks": [
-                {"question": "It was the firefighter ______ rescued the cat.", "answer": "who", "explanation": "Для человека."},
-                {"question": "It was at 5 o'clock ______ we arrived.", "answer": "that", "explanation": "Для времени."},
-                {"question": "______ I need is your help.", "answer": "What", "explanation": "What-расщепление."},
-                {"question": "It was the actress ______ starred in the film.", "answer": "who", "explanation": "Для человека."},
-                {"question": "______ he said was not true.", "answer": "What", "explanation": "What-расщепление."},
-                {"question": "It was by the river ______ we had a picnic.", "answer": "that", "explanation": "Для места."},
-                {"question": "______ I want is a glass of water.", "answer": "All", "explanation": "All-расщепление."},
-                {"question": "It was my uncle ______ gave me this watch.", "answer": "who", "explanation": "Для человека."}
-            ]
+          "type": "complex",
+          "text": "2. Fill in the gaps with the missing word(s). Type the missing word(s) in the box.",
+          "subtasks": [
+            {"question": "It was the firefighter ______ rescued the cat.", "answer": "who", "explanation": "Для человека."},
+            {"question": "It was at 5 o'clock ______ we arrived.", "answer": "that", "explanation": "Для времени."},
+            {"question": "______ I need is your help.", "answer": "What", "explanation": "What-расщепление."},
+            {"question": "It was the actress ______ starred in the film.", "answer": "who", "explanation": "Для человека."},
+            {"question": "______ he said was not true.", "answer": "What", "explanation": "What-расщепление."},
+            {"question": "It was by the river ______ we had a picnic.", "answer": "that", "explanation": "Для места."},
+            {"question": "______ I want is a glass of water.", "answer": "All", "explanation": "All-расщепление."},
+            {"question": "It was my uncle ______ gave me this watch.", "answer": "who", "explanation": "Для человека."}
+          ]
         },
         {
-            "type": "complex",
-            "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
-            "subtasks": [
-                {"question": "It was the firefighter who rescued the cat.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "It was at 5 o'clock that we arrived.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "What I need is your help.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "It was the actress who starred in the film.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "What he said was not true.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "It was by the river that we had a picnic.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "All I want is a glass of water.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "It was my uncle who gave me this watch.", "answer": "Correct", "explanation": "Верно."}
-            ]
+          "type": "complex",
+          "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
+          "subtasks": [
+            {"question": "It was the firefighter who rescued the cat.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "It was at 5 o'clock that we arrived.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "What I need is your help.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "It was the actress who starred in the film.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "What he said was not true.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "It was by the river that we had a picnic.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "All I want is a glass of water.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "It was my uncle who gave me this watch.", "answer": "Correct", "explanation": "Верно."}
+          ]
         },
         {
-            "type": "complex",
-            "text": "4. Translate the sentences into English using cleft sentences. Type your translation (one sentence) in the box.",
-            "subtasks": [
-                {"question": "Именно пожарный спас кошку.", "answer": "It was the firefighter who rescued the cat.", "explanation": ""},
-                {"question": "Именно в 5 часов мы приехали.", "answer": "It was at 5 o'clock that we arrived.", "explanation": ""},
-                {"question": "Что мне нужно, так это твоя помощь.", "answer": "What I need is your help.", "explanation": ""},
-                {"question": "Именно актриса снималась в этом фильме.", "answer": "It was the actress who starred in the film.", "explanation": ""},
-                {"question": "Что он сказал, было неправдой.", "answer": "What he said was not true.", "explanation": ""},
-                {"question": "Именно у реки мы устроили пикник.", "answer": "It was by the river that we had a picnic.", "explanation": ""},
-                {"question": "Всё, что я хочу, – это стакан воды.", "answer": "All I want is a glass of water.", "explanation": ""},
-                {"question": "Именно мой дядя подарил мне эти часы.", "answer": "It was my uncle who gave me this watch.", "explanation": ""}
-            ]
+          "type": "complex",
+          "text": "4. Translate the sentences into English using cleft sentences. Type your translation (one sentence) in the box.",
+          "subtasks": [
+            {"question": "Именно пожарный спас кошку.", "answer": "It was the firefighter who rescued the cat.", "explanation": ""},
+            {"question": "Именно в 5 часов мы приехали.", "answer": "It was at 5 o'clock that we arrived.", "explanation": ""},
+            {"question": "Что мне нужно, так это твоя помощь.", "answer": "What I need is your help.", "explanation": ""},
+            {"question": "Именно актриса снималась в этом фильме.", "answer": "It was the actress who starred in the film.", "explanation": ""},
+            {"question": "Что он сказал, было неправдой.", "answer": "What he said was not true.", "explanation": ""},
+            {"question": "Именно у реки мы устроили пикник.", "answer": "It was by the river that we had a picnic.", "explanation": ""},
+            {"question": "Всё, что я хочу, – это стакан воды.", "answer": "All I want is a glass of water.", "explanation": ""},
+            {"question": "Именно мой дядя подарил мне эти часы.", "answer": "It was my uncle who gave me this watch.", "explanation": ""}
+          ]
         }
-    ],
-    # =====================================================
-    # ВАРИАНТ 6 (перефразирование)
-    # =====================================================
-[
-  {
-    "type": "complex",
-    "text": "1. Choose the correct word (a, b, c, or d) to complete the cleft sentence. Type the letter of your answer.",
-    "subtasks": [
-      {
-        "question": "It was the pilot ______ flew the plane.",
-        "options": ["a) who", "b) which", "c) that", "d) whom"],
-        "answer": "a",
-        "explanation": "Для человека – who."
-      },
-      {
-        "question": "It was on Monday ______ she started her new job.",
-        "options": ["a) when", "b) which", "c) that", "d) where"],
-        "answer": "c",
-        "explanation": "Для времени – that."
-      },
-      {
-        "question": "______ I love most is travelling.",
-        "options": ["a) That", "b) What", "c) Which", "d) All"],
-        "answer": "b",
-        "explanation": "What-расщепление."
-      },
-      {
-        "question": "It was the chef ______ prepared the meal.",
-        "options": ["a) who", "b) which", "c) that", "d) whom"],
-        "answer": "a",
-        "explanation": "Для человека – who."
-      },
-      {
-        "question": "______ they discovered was a hidden room.",
-        "options": ["a) That", "b) What", "c) Which", "d) All"],
-        "answer": "b",
-        "explanation": "What-расщепление."
-      },
-      {
-        "question": "It was under the bed ______ they hid the treasure.",
-        "options": ["a) where", "b) which", "c) that", "d) who"],
-        "answer": "c",
-        "explanation": "Для места – that."
-      },
-      {
-        "question": "______ I can offer is my support.",
-        "options": ["a) What", "b) All", "c) That", "d) Which"],
-        "answer": "b",
-        "explanation": "All-расщепление."
-      },
-      {
-        "question": "It was my teacher ______ inspired me.",
-        "options": ["a) who", "b) which", "c) that", "d) whom"],
-        "answer": "a",
-        "explanation": "Для человека – who."
-              }
-            ]
+      ],
+      # =====================================================
+      # ВАРИАНТ 6 (перефразирование)
+      # =====================================================
+      [
+        {
+          "type": "complex",
+          "text": "1. Choose the correct word (a, b, c, or d) to complete the cleft sentence. Type the letter of your answer.",
+          "subtasks": [
+            {"question": "It was the pilot ______ flew the plane.", "options": ["a) who", "b) which", "c) that", "d) whom"], "answer": "a", "explanation": "Для человека – who."},
+            {"question": "It was on Monday ______ she started her new job.", "options": ["a) when", "b) which", "c) that", "d) where"], "answer": "c", "explanation": "Для времени – that."},
+            {"question": "______ I love most is travelling.", "options": ["a) That", "b) What", "c) Which", "d) All"], "answer": "b", "explanation": "What-расщепление."},
+            {"question": "It was the chef ______ prepared the meal.", "options": ["a) who", "b) which", "c) that", "d) whom"], "answer": "a", "explanation": "Для человека – who."},
+            {"question": "______ they discovered was a hidden room.", "options": ["a) That", "b) What", "c) Which", "d) All"], "answer": "b", "explanation": "What-расщепление."},
+            {"question": "It was under the bed ______ they hid the treasure.", "options": ["a) where", "b) which", "c) that", "d) who"], "answer": "c", "explanation": "Для места – that."},
+            {"question": "______ I can offer is my support.", "options": ["a) What", "b) All", "c) That", "d) Which"], "answer": "b", "explanation": "All-расщепление."},
+            {"question": "It was my teacher ______ inspired me.", "options": ["a) who", "b) which", "c) that", "d) whom"], "answer": "a", "explanation": "Для человека – who."}
+          ]
         },
         {
-            "type": "complex",
-            "text": "2. Fill in the gaps with the missing word(s). Type the missing word(s) in the box.",
-            "subtasks": [
-                {"question": "It was the pilot ______ flew the plane.", "answer": "who", "explanation": "Для человека."},
-                {"question": "It was on Monday ______ she started her new job.", "answer": "that", "explanation": "Для времени."},
-                {"question": "______ I love most is travelling.", "answer": "What", "explanation": "What-расщепление."},
-                {"question": "It was the chef ______ prepared the meal.", "answer": "who", "explanation": "Для человека."},
-                {"question": "______ they discovered was a hidden room.", "answer": "What", "explanation": "What-расщепление."},
-                {"question": "It was under the bed ______ they hid the treasure.", "answer": "that", "explanation": "Для места."},
-                {"question": "______ I can offer is my support.", "answer": "All", "explanation": "All-расщепление."},
-                {"question": "It was my teacher ______ inspired me.", "answer": "who", "explanation": "Для человека."}
-            ]
+          "type": "complex",
+          "text": "2. Fill in the gaps with the missing word(s). Type the missing word(s) in the box.",
+          "subtasks": [
+            {"question": "It was the pilot ______ flew the plane.", "answer": "who", "explanation": "Для человека."},
+            {"question": "It was on Monday ______ she started her new job.", "answer": "that", "explanation": "Для времени."},
+            {"question": "______ I love most is travelling.", "answer": "What", "explanation": "What-расщепление."},
+            {"question": "It was the chef ______ prepared the meal.", "answer": "who", "explanation": "Для человека."},
+            {"question": "______ they discovered was a hidden room.", "answer": "What", "explanation": "What-расщепление."},
+            {"question": "It was under the bed ______ they hid the treasure.", "answer": "that", "explanation": "Для места."},
+            {"question": "______ I can offer is my support.", "answer": "All", "explanation": "All-расщепление."},
+            {"question": "It was my teacher ______ inspired me.", "answer": "who", "explanation": "Для человека."}
+          ]
         },
         {
-            "type": "complex",
-            "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
-            "subtasks": [
-                {"question": "It was the pilot who flew the plane.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "It was on Monday that she started her new job.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "What I love most is travelling.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "It was the chef who prepared the meal.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "What they discovered was a hidden room.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "It was under the bed that they hid the treasure.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "All I can offer is my support.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "It was my teacher who inspired me.", "answer": "Correct", "explanation": "Верно."}
-            ]
+          "type": "complex",
+          "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
+          "subtasks": [
+            {"question": "It was the pilot who flew the plane.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "It was on Monday that she started her new job.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "What I love most is travelling.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "It was the chef who prepared the meal.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "What they discovered was a hidden room.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "It was under the bed that they hid the treasure.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "All I can offer is my support.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "It was my teacher who inspired me.", "answer": "Correct", "explanation": "Верно."}
+          ]
         },
         {
-            "type": "complex",
-            "text": "4. Rewrite the sentences using cleft sentences (It was... that... / What... is...). Type the whole sentence.",
-            "subtasks": [
-                {"question": "The pilot flew the plane. → It was the pilot who flew the plane.", "answer": "It was the pilot who flew the plane.", "explanation": "It-расщепление."},
-                {"question": "She started her new job on Monday. → It was on Monday that she started her new job.", "answer": "It was on Monday that she started her new job.", "explanation": "It-расщепление."},
-                {"question": "I love travelling most. → What I love most is travelling.", "answer": "What I love most is travelling.", "explanation": "What-расщепление."},
-                {"question": "The chef prepared the meal. → It was the chef who prepared the meal.", "answer": "It was the chef who prepared the meal.", "explanation": "It-расщепление."},
-                {"question": "They discovered a hidden room. → What they discovered was a hidden room.", "answer": "What they discovered was a hidden room.", "explanation": "What-расщепление."},
-                {"question": "They hid the treasure under the bed. → It was under the bed that they hid the treasure.", "answer": "It was under the bed that they hid the treasure.", "explanation": "It-расщепление."},
-                {"question": "I can offer my support. → All I can offer is my support.", "answer": "All I can offer is my support.", "explanation": "All-расщепление."},
-                {"question": "My teacher inspired me. → It was my teacher who inspired me.", "answer": "It was my teacher who inspired me.", "explanation": "It-расщепление."}
-            ]
+          "type": "complex",
+          "text": "4. Rewrite the sentences using cleft sentences (It was... that... / What... is...). Type the whole sentence.",
+          "subtasks": [
+            {"question": "The pilot flew the plane. → It was the pilot who flew the plane.", "answer": "It was the pilot who flew the plane.", "explanation": "It-расщепление."},
+            {"question": "She started her new job on Monday. → It was on Monday that she started her new job.", "answer": "It was on Monday that she started her new job.", "explanation": "It-расщепление."},
+            {"question": "I love travelling most. → What I love most is travelling.", "answer": "What I love most is travelling.", "explanation": "What-расщепление."},
+            {"question": "The chef prepared the meal. → It was the chef who prepared the meal.", "answer": "It was the chef who prepared the meal.", "explanation": "It-расщепление."},
+            {"question": "They discovered a hidden room. → What they discovered was a hidden room.", "answer": "What they discovered was a hidden room.", "explanation": "What-расщепление."},
+            {"question": "They hid the treasure under the bed. → It was under the bed that they hid the treasure.", "answer": "It was under the bed that they hid the treasure.", "explanation": "It-расщепление."},
+            {"question": "I can offer my support. → All I can offer is my support.", "answer": "All I can offer is my support.", "explanation": "All-расщепление."},
+            {"question": "My teacher inspired me. → It was my teacher who inspired me.", "answer": "It was my teacher who inspired me.", "explanation": "It-расщепление."}
+          ]
         }
-    ],
-    # =====================================================
-    # ВАРИАНТ 7 (перевод)
-    # =====================================================
-[
-  {
-    "type": "complex",
-    "text": "1. Choose the correct word (a, b, c, or d) to complete the cleft sentence. Type the letter of your answer.",
-    "subtasks": [
-      {
-        "question": "It was the lawyer ______ won the case.",
-        "options": ["a) who", "b) which", "c) that", "d) whom"],
-        "answer": "a",
-        "explanation": "Для человека – who."
-      },
-      {
-        "question": "It was in 2001 ______ they got married.",
-        "options": ["a) when", "b) which", "c) that", "d) where"],
-        "answer": "c",
-        "explanation": "Для времени – that."
-      },
-      {
-        "question": "______ she loves most is her family.",
-        "options": ["a) That", "b) What", "c) Which", "d) All"],
-        "answer": "b",
-        "explanation": "What-расщепление."
-      },
-      {
-        "question": "It was the journalist ______ wrote the article.",
-        "options": ["a) who", "b) which", "c) that", "d) whom"],
-        "answer": "a",
-        "explanation": "Для человека – who."
-      },
-      {
-        "question": "______ we need is a miracle.",
-        "options": ["a) That", "b) What", "c) Which", "d) All"],
-        "answer": "b",
-        "explanation": "What-расщепление."
-      },
-      {
-        "question": "It was in the forest ______ they got lost.",
-        "options": ["a) where", "b) which", "c) that", "d) who"],
-        "answer": "c",
-        "explanation": "Для места – that."
-      },
-      {
-        "question": "______ I want is peace and quiet.",
-        "options": ["a) What", "b) All", "c) That", "d) Which"],
-        "answer": "b",
-        "explanation": "All-расщепление."
-      },
-      {
-        "question": "It was my grandmother ______ made this dress.",
-        "options": ["a) who", "b) which", "c) that", "d) whom"],
-        "answer": "a",
-        "explanation": "Для человека – who."
-              }
-            ]
+      ],
+      # =====================================================
+      # ВАРИАНТ 7 (перевод)
+      # =====================================================
+      [
+        {
+          "type": "complex",
+          "text": "1. Choose the correct word (a, b, c, or d) to complete the cleft sentence. Type the letter of your answer.",
+          "subtasks": [
+            {"question": "It was the lawyer ______ won the case.", "options": ["a) who", "b) which", "c) that", "d) whom"], "answer": "a", "explanation": "Для человека – who."},
+            {"question": "It was in 2001 ______ they got married.", "options": ["a) when", "b) which", "c) that", "d) where"], "answer": "c", "explanation": "Для времени – that."},
+            {"question": "______ she loves most is her family.", "options": ["a) That", "b) What", "c) Which", "d) All"], "answer": "b", "explanation": "What-расщепление."},
+            {"question": "It was the journalist ______ wrote the article.", "options": ["a) who", "b) which", "c) that", "d) whom"], "answer": "a", "explanation": "Для человека – who."},
+            {"question": "______ we need is a miracle.", "options": ["a) That", "b) What", "c) Which", "d) All"], "answer": "b", "explanation": "What-расщепление."},
+            {"question": "It was in the forest ______ they got lost.", "options": ["a) where", "b) which", "c) that", "d) who"], "answer": "c", "explanation": "Для места – that."},
+            {"question": "______ I want is peace and quiet.", "options": ["a) What", "b) All", "c) That", "d) Which"], "answer": "b", "explanation": "All-расщепление."},
+            {"question": "It was my grandmother ______ made this dress.", "options": ["a) who", "b) which", "c) that", "d) whom"], "answer": "a", "explanation": "Для человека – who."}
+          ]
         },
         {
-            "type": "complex",
-            "text": "2. Fill in the gaps with the missing word(s). Type the missing word(s) in the box.",
-            "subtasks": [
-                {"question": "It was the lawyer ______ won the case.", "answer": "who", "explanation": "Для человека."},
-                {"question": "It was in 2001 ______ they got married.", "answer": "that", "explanation": "Для времени."},
-                {"question": "______ she loves most is her family.", "answer": "What", "explanation": "What-расщепление."},
-                {"question": "It was the journalist ______ wrote the article.", "answer": "who", "explanation": "Для человека."},
-                {"question": "______ we need is a miracle.", "answer": "What", "explanation": "What-расщепление."},
-                {"question": "It was in the forest ______ they got lost.", "answer": "that", "explanation": "Для места."},
-                {"question": "______ I want is peace and quiet.", "answer": "All", "explanation": "All-расщепление."},
-                {"question": "It was my grandmother ______ made this dress.", "answer": "who", "explanation": "Для человека."}
-            ]
+          "type": "complex",
+          "text": "2. Fill in the gaps with the missing word(s). Type the missing word(s) in the box.",
+          "subtasks": [
+            {"question": "It was the lawyer ______ won the case.", "answer": "who", "explanation": "Для человека."},
+            {"question": "It was in 2001 ______ they got married.", "answer": "that", "explanation": "Для времени."},
+            {"question": "______ she loves most is her family.", "answer": "What", "explanation": "What-расщепление."},
+            {"question": "It was the journalist ______ wrote the article.", "answer": "who", "explanation": "Для человека."},
+            {"question": "______ we need is a miracle.", "answer": "What", "explanation": "What-расщепление."},
+            {"question": "It was in the forest ______ they got lost.", "answer": "that", "explanation": "Для места."},
+            {"question": "______ I want is peace and quiet.", "answer": "All", "explanation": "All-расщепление."},
+            {"question": "It was my grandmother ______ made this dress.", "answer": "who", "explanation": "Для человека."}
+          ]
         },
         {
-            "type": "complex",
-            "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
-            "subtasks": [
-                {"question": "It was the lawyer who won the case.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "It was in 2001 that they got married.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "What she loves most is her family.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "It was the journalist who wrote the article.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "What we need is a miracle.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "It was in the forest that they got lost.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "All I want is peace and quiet.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "It was my grandmother who made this dress.", "answer": "Correct", "explanation": "Верно."}
-            ]
+          "type": "complex",
+          "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
+          "subtasks": [
+            {"question": "It was the lawyer who won the case.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "It was in 2001 that they got married.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "What she loves most is her family.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "It was the journalist who wrote the article.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "What we need is a miracle.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "It was in the forest that they got lost.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "All I want is peace and quiet.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "It was my grandmother who made this dress.", "answer": "Correct", "explanation": "Верно."}
+          ]
         },
         {
-            "type": "complex",
-            "text": "4. Translate the sentences into English using cleft sentences. Type your translation (one sentence) in the box.",
-            "subtasks": [
-                {"question": "Именно юрист выиграл дело.", "answer": "It was the lawyer who won the case.", "explanation": ""},
-                {"question": "Именно в 2001 году они поженились.", "answer": "It was in 2001 that they got married.", "explanation": ""},
-                {"question": "Что она любит больше всего, так это свою семью.", "answer": "What she loves most is her family.", "explanation": ""},
-                {"question": "Именно журналист написал статью.", "answer": "It was the journalist who wrote the article.", "explanation": ""},
-                {"question": "Что нам нужно, так это чудо.", "answer": "What we need is a miracle.", "explanation": ""},
-                {"question": "Именно в лесу они заблудились.", "answer": "It was in the forest that they got lost.", "explanation": ""},
-                {"question": "Всё, что я хочу, – это покой и тишина.", "answer": "All I want is peace and quiet.", "explanation": ""},
-                {"question": "Именно моя бабушка сшила это платье.", "answer": "It was my grandmother who made this dress.", "explanation": ""}
-            ]
+          "type": "complex",
+          "text": "4. Translate the sentences into English using cleft sentences. Type your translation (one sentence) in the box.",
+          "subtasks": [
+            {"question": "Именно юрист выиграл дело.", "answer": "It was the lawyer who won the case.", "explanation": ""},
+            {"question": "Именно в 2001 году они поженились.", "answer": "It was in 2001 that they got married.", "explanation": ""},
+            {"question": "Что она любит больше всего, так это свою семью.", "answer": "What she loves most is her family.", "explanation": ""},
+            {"question": "Именно журналист написал статью.", "answer": "It was the journalist who wrote the article.", "explanation": ""},
+            {"question": "Что нам нужно, так это чудо.", "answer": "What we need is a miracle.", "explanation": ""},
+            {"question": "Именно в лесу они заблудились.", "answer": "It was in the forest that they got lost.", "explanation": ""},
+            {"question": "Всё, что я хочу, – это покой и тишина.", "answer": "All I want is peace and quiet.", "explanation": ""},
+            {"question": "Именно моя бабушка сшила это платье.", "answer": "It was my grandmother who made this dress.", "explanation": ""}
+          ]
         }
-    ],
-    # =====================================================
-    # ВАРИАНТ 8 (перефразирование)
-    # =====================================================
-[
-  {
-    "type": "complex",
-    "text": "1. Choose the correct word (a, b, c, or d) to complete the cleft sentence. Type the letter of your answer.",
-    "subtasks": [
-      {
-        "question": "It was the musician ______ composed the song.",
-        "options": ["a) who", "b) which", "c) that", "d) whom"],
-        "answer": "a",
-        "explanation": "Для человека – who."
-      },
-      {
-        "question": "It was on Friday ______ we finished the project.",
-        "options": ["a) when", "b) which", "c) that", "d) where"],
-        "answer": "c",
-        "explanation": "Для времени – that."
-      },
-      {
-        "question": "______ I admire most is her courage.",
-        "options": ["a) That", "b) What", "c) Which", "d) All"],
-        "answer": "b",
-        "explanation": "What-расщепление."
-      },
-      {
-        "question": "It was the scientist ______ made the discovery.",
-        "options": ["a) who", "b) which", "c) that", "d) whom"],
-        "answer": "a",
-        "explanation": "Для человека – who."
-      },
-      {
-        "question": "______ they found was a secret passage.",
-        "options": ["a) That", "b) What", "c) Which", "d) All"],
-        "answer": "b",
-        "explanation": "What-расщепление."
-      },
-      {
-        "question": "It was in the cellar ______ they kept the wine.",
-        "options": ["a) where", "b) which", "c) that", "d) who"],
-        "answer": "c",
-        "explanation": "Для места – that."
-      },
-      {
-        "question": "______ I need is a good night's sleep.",
-        "options": ["a) What", "b) All", "c) That", "d) Which"],
-        "answer": "b",
-        "explanation": "All-расщепление."
-      },
-      {
-        "question": "It was my brother ______ fixed the car.",
-        "options": ["a) who", "b) which", "c) that", "d) whom"],
-        "answer": "a",
-        "explanation": "Для человека – who."
-              }
-            ]
+      ],
+      # =====================================================
+      # ВАРИАНТ 8 (перефразирование)
+      # =====================================================
+      [
+        {
+          "type": "complex",
+          "text": "1. Choose the correct word (a, b, c, or d) to complete the cleft sentence. Type the letter of your answer.",
+          "subtasks": [
+            {"question": "It was the musician ______ composed the song.", "options": ["a) who", "b) which", "c) that", "d) whom"], "answer": "a", "explanation": "Для человека – who."},
+            {"question": "It was on Friday ______ we finished the project.", "options": ["a) when", "b) which", "c) that", "d) where"], "answer": "c", "explanation": "Для времени – that."},
+            {"question": "______ I admire most is her courage.", "options": ["a) That", "b) What", "c) Which", "d) All"], "answer": "b", "explanation": "What-расщепление."},
+            {"question": "It was the scientist ______ made the discovery.", "options": ["a) who", "b) which", "c) that", "d) whom"], "answer": "a", "explanation": "Для человека – who."},
+            {"question": "______ they found was a secret passage.", "options": ["a) That", "b) What", "c) Which", "d) All"], "answer": "b", "explanation": "What-расщепление."},
+            {"question": "It was in the cellar ______ they kept the wine.", "options": ["a) where", "b) which", "c) that", "d) who"], "answer": "c", "explanation": "Для места – that."},
+            {"question": "______ I need is a good night's sleep.", "options": ["a) What", "b) All", "c) That", "d) Which"], "answer": "b", "explanation": "All-расщепление."},
+            {"question": "It was my brother ______ fixed the car.", "options": ["a) who", "b) which", "c) that", "d) whom"], "answer": "a", "explanation": "Для человека – who."}
+          ]
         },
         {
-            "type": "complex",
-            "text": "2. Fill in the gaps with the missing word(s). Type the missing word(s) in the box.",
-            "subtasks": [
-                {"question": "It was the musician ______ composed the song.", "answer": "who", "explanation": "Для человека."},
-                {"question": "It was on Friday ______ we finished the project.", "answer": "that", "explanation": "Для времени."},
-                {"question": "______ I admire most is her courage.", "answer": "What", "explanation": "What-расщепление."},
-                {"question": "It was the scientist ______ made the discovery.", "answer": "who", "explanation": "Для человека."},
-                {"question": "______ they found was a secret passage.", "answer": "What", "explanation": "What-расщепление."},
-                {"question": "It was in the cellar ______ they kept the wine.", "answer": "that", "explanation": "Для места."},
-                {"question": "______ I need is a good night's sleep.", "answer": "All", "explanation": "All-расщепление."},
-                {"question": "It was my brother ______ fixed the car.", "answer": "who", "explanation": "Для человека."}
-            ]
+          "type": "complex",
+          "text": "2. Fill in the gaps with the missing word(s). Type the missing word(s) in the box.",
+          "subtasks": [
+            {"question": "It was the musician ______ composed the song.", "answer": "who", "explanation": "Для человека."},
+            {"question": "It was on Friday ______ we finished the project.", "answer": "that", "explanation": "Для времени."},
+            {"question": "______ I admire most is her courage.", "answer": "What", "explanation": "What-расщепление."},
+            {"question": "It was the scientist ______ made the discovery.", "answer": "who", "explanation": "Для человека."},
+            {"question": "______ they found was a secret passage.", "answer": "What", "explanation": "What-расщепление."},
+            {"question": "It was in the cellar ______ they kept the wine.", "answer": "that", "explanation": "Для места."},
+            {"question": "______ I need is a good night's sleep.", "answer": "All", "explanation": "All-расщепление."},
+            {"question": "It was my brother ______ fixed the car.", "answer": "who", "explanation": "Для человека."}
+          ]
         },
         {
-            "type": "complex",
-            "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
-            "subtasks": [
-                {"question": "It was the musician who composed the song.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "It was on Friday that we finished the project.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "What I admire most is her courage.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "It was the scientist who made the discovery.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "What they found was a secret passage.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "It was in the cellar that they kept the wine.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "All I need is a good night's sleep.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "It was my brother who fixed the car.", "answer": "Correct", "explanation": "Верно."}
-            ]
+          "type": "complex",
+          "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
+          "subtasks": [
+            {"question": "It was the musician who composed the song.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "It was on Friday that we finished the project.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "What I admire most is her courage.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "It was the scientist who made the discovery.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "What they found was a secret passage.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "It was in the cellar that they kept the wine.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "All I need is a good night's sleep.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "It was my brother who fixed the car.", "answer": "Correct", "explanation": "Верно."}
+          ]
         },
         {
-            "type": "complex",
-            "text": "4. Rewrite the sentences using cleft sentences (It was... that... / What... is...). Type the whole sentence.",
-            "subtasks": [
-                {"question": "The musician composed the song. → It was the musician who composed the song.", "answer": "It was the musician who composed the song.", "explanation": "It-расщепление."},
-                {"question": "We finished the project on Friday. → It was on Friday that we finished the project.", "answer": "It was on Friday that we finished the project.", "explanation": "It-расщепление."},
-                {"question": "I admire her courage most. → What I admire most is her courage.", "answer": "What I admire most is her courage.", "explanation": "What-расщепление."},
-                {"question": "The scientist made the discovery. → It was the scientist who made the discovery.", "answer": "It was the scientist who made the discovery.", "explanation": "It-расщепление."},
-                {"question": "They found a secret passage. → What they found was a secret passage.", "answer": "What they found was a secret passage.", "explanation": "What-расщепление."},
-                {"question": "They kept the wine in the cellar. → It was in the cellar that they kept the wine.", "answer": "It was in the cellar that they kept the wine.", "explanation": "It-расщепление."},
-                {"question": "I need a good night's sleep. → All I need is a good night's sleep.", "answer": "All I need is a good night's sleep.", "explanation": "All-расщепление."},
-                {"question": "My brother fixed the car. → It was my brother who fixed the car.", "answer": "It was my brother who fixed the car.", "explanation": "It-расщепление."}
-            ]
+          "type": "complex",
+          "text": "4. Rewrite the sentences using cleft sentences (It was... that... / What... is...). Type the whole sentence.",
+          "subtasks": [
+            {"question": "The musician composed the song. → It was the musician who composed the song.", "answer": "It was the musician who composed the song.", "explanation": "It-расщепление."},
+            {"question": "We finished the project on Friday. → It was on Friday that we finished the project.", "answer": "It was on Friday that we finished the project.", "explanation": "It-расщепление."},
+            {"question": "I admire her courage most. → What I admire most is her courage.", "answer": "What I admire most is her courage.", "explanation": "What-расщепление."},
+            {"question": "The scientist made the discovery. → It was the scientist who made the discovery.", "answer": "It was the scientist who made the discovery.", "explanation": "It-расщепление."},
+            {"question": "They found a secret passage. → What they found was a secret passage.", "answer": "What they found was a secret passage.", "explanation": "What-расщепление."},
+            {"question": "They kept the wine in the cellar. → It was in the cellar that they kept the wine.", "answer": "It was in the cellar that they kept the wine.", "explanation": "It-расщепление."},
+            {"question": "I need a good night's sleep. → All I need is a good night's sleep.", "answer": "All I need is a good night's sleep.", "explanation": "All-расщепление."},
+            {"question": "My brother fixed the car. → It was my brother who fixed the car.", "answer": "It was my brother who fixed the car.", "explanation": "It-расщепление."}
+          ]
         }
-    ],
-    # =====================================================
-    # ВАРИАНТ 9 (перевод)
-    # =====================================================
-{
-  "type": "complex",
-  "text": "1. Choose the correct word (a, b, c, or d) to complete the cleft sentence. Type the letter of your answer.",
-  "subtasks": [
-    {
-      "question": "It was the photographer ______ took the picture.",
-      "options": ["a) who", "b) which", "c) that", "d) whom"],
-      "answer": "a",
-      "explanation": "Для человека – who."
-    },
-    {
-      "question": "It was in the evening ______ we went for a walk.",
-      "options": ["a) when", "b) which", "c) that", "d) where"],
-      "answer": "c",
-      "explanation": "Для времени – that."
-    },
-    {
-      "question": "______ he wants is a new beginning.",
-      "options": ["a) That", "b) What", "c) Which", "d) All"],
-      "answer": "b",
-      "explanation": "What-расщепление."
-    },
-    {
-      "question": "It was the reporter ______ interviewed the celebrity.",
-      "options": ["a) who", "b) which", "c) that", "d) whom"],
-      "answer": "a",
-      "explanation": "Для человека – who."
-    },
-    {
-      "question": "______ I remember most is the music.",
-      "options": ["a) That", "b) What", "c) Which", "d) All"],
-      "answer": "b",
-      "explanation": "What-расщепление."
-    },
-    {
-      "question": "It was on the beach ______ they built a sandcastle.",
-      "options": ["a) where", "b) which", "c) that", "d) who"],
-      "answer": "c",
-      "explanation": "Для места – that."
-    },
-    {
-      "question": "______ they wanted was a warm meal.",
-      "options": ["a) What", "b) All", "c) That", "d) Which"],
-      "answer": "b",
-      "explanation": "All-расщепление."
-    },
-    {
-      "question": "It was my sister ______ painted this picture.",
-      "options": ["a) who", "b) which", "c) that", "d) whom"],
-      "answer": "a",
-      "explanation": "Для человека – who."
-              }
-            ]
+      ],
+      # =====================================================
+      # ВАРИАНТ 9 (перевод)
+      # =====================================================
+      [
+        {
+          "type": "complex",
+          "text": "1. Choose the correct word (a, b, c, or d) to complete the cleft sentence. Type the letter of your answer.",
+          "subtasks": [
+            {"question": "It was the photographer ______ took the picture.", "options": ["a) who", "b) which", "c) that", "d) whom"], "answer": "a", "explanation": "Для человека – who."},
+            {"question": "It was in the evening ______ we went for a walk.", "options": ["a) when", "b) which", "c) that", "d) where"], "answer": "c", "explanation": "Для времени – that."},
+            {"question": "______ he wants is a new beginning.", "options": ["a) That", "b) What", "c) Which", "d) All"], "answer": "b", "explanation": "What-расщепление."},
+            {"question": "It was the reporter ______ interviewed the celebrity.", "options": ["a) who", "b) which", "c) that", "d) whom"], "answer": "a", "explanation": "Для человека – who."},
+            {"question": "______ I remember most is the music.", "options": ["a) That", "b) What", "c) Which", "d) All"], "answer": "b", "explanation": "What-расщепление."},
+            {"question": "It was on the beach ______ they built a sandcastle.", "options": ["a) where", "b) which", "c) that", "d) who"], "answer": "c", "explanation": "Для места – that."},
+            {"question": "______ they wanted was a warm meal.", "options": ["a) What", "b) All", "c) That", "d) Which"], "answer": "b", "explanation": "All-расщепление."},
+            {"question": "It was my sister ______ painted this picture.", "options": ["a) who", "b) which", "c) that", "d) whom"], "answer": "a", "explanation": "Для человека – who."}
+          ]
         },
         {
-            "type": "complex",
-            "text": "2. Fill in the gaps with the missing word(s). Type the missing word(s) in the box.",
-            "subtasks": [
-                {"question": "It was the photographer ______ took the picture.", "answer": "who", "explanation": "Для человека."},
-                {"question": "It was in the evening ______ we went for a walk.", "answer": "that", "explanation": "Для времени."},
-                {"question": "______ he wants is a new beginning.", "answer": "What", "explanation": "What-расщепление."},
-                {"question": "It was the reporter ______ interviewed the celebrity.", "answer": "who", "explanation": "Для человека."},
-                {"question": "______ I remember most is the music.", "answer": "What", "explanation": "What-расщепление."},
-                {"question": "It was on the beach ______ they built a sandcastle.", "answer": "that", "explanation": "Для места."},
-                {"question": "______ they wanted was a warm meal.", "answer": "All", "explanation": "All-расщепление."},
-                {"question": "It was my sister ______ painted this picture.", "answer": "who", "explanation": "Для человека."}
-            ]
+          "type": "complex",
+          "text": "2. Fill in the gaps with the missing word(s). Type the missing word(s) in the box.",
+          "subtasks": [
+            {"question": "It was the photographer ______ took the picture.", "answer": "who", "explanation": "Для человека."},
+            {"question": "It was in the evening ______ we went for a walk.", "answer": "that", "explanation": "Для времени."},
+            {"question": "______ he wants is a new beginning.", "answer": "What", "explanation": "What-расщепление."},
+            {"question": "It was the reporter ______ interviewed the celebrity.", "answer": "who", "explanation": "Для человека."},
+            {"question": "______ I remember most is the music.", "answer": "What", "explanation": "What-расщепление."},
+            {"question": "It was on the beach ______ they built a sandcastle.", "answer": "that", "explanation": "Для места."},
+            {"question": "______ they wanted was a warm meal.", "answer": "All", "explanation": "All-расщепление."},
+            {"question": "It was my sister ______ painted this picture.", "answer": "who", "explanation": "Для человека."}
+          ]
         },
         {
-            "type": "complex",
-            "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
-            "subtasks": [
-                {"question": "It was the photographer who took the picture.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "It was in the evening that we went for a walk.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "What he wants is a new beginning.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "It was the reporter who interviewed the celebrity.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "What I remember most is the music.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "It was on the beach that they built a sandcastle.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "All they wanted was a warm meal.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "It was my sister who painted this picture.", "answer": "Correct", "explanation": "Верно."}
-            ]
+          "type": "complex",
+          "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
+          "subtasks": [
+            {"question": "It was the photographer who took the picture.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "It was in the evening that we went for a walk.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "What he wants is a new beginning.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "It was the reporter who interviewed the celebrity.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "What I remember most is the music.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "It was on the beach that they built a sandcastle.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "All they wanted was a warm meal.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "It was my sister who painted this picture.", "answer": "Correct", "explanation": "Верно."}
+          ]
         },
         {
-            "type": "complex",
-            "text": "4. Translate the sentences into English using cleft sentences. Type your translation (one sentence) in the box.",
-            "subtasks": [
-                {"question": "Именно фотограф сделал этот снимок.", "answer": "It was the photographer who took the picture.", "explanation": ""},
-                {"question": "Именно вечером мы пошли гулять.", "answer": "It was in the evening that we went for a walk.", "explanation": ""},
-                {"question": "Что он хочет, так это новое начало.", "answer": "What he wants is a new beginning.", "explanation": ""},
-                {"question": "Именно репортёр взял интервью у знаменитости.", "answer": "It was the reporter who interviewed the celebrity.", "explanation": ""},
-                {"question": "Что я помню больше всего, так это музыку.", "answer": "What I remember most is the music.", "explanation": ""},
-                {"question": "Именно на пляже они построили замок из песка.", "answer": "It was on the beach that they built a sandcastle.", "explanation": ""},
-                {"question": "Всё, что они хотели, – это горячая еда.", "answer": "All they wanted was a warm meal.", "explanation": ""},
-                {"question": "Именно моя сестра нарисовала эту картину.", "answer": "It was my sister who painted this picture.", "explanation": ""}
-            ]
-        },
-    # =====================================================
-    # ВАРИАНТ 10 (перефразирование)
-    # =====================================================
-{
-  "type": "complex",
-  "text": "1. Choose the correct word (a, b, c, or d) to complete the cleft sentence. Type the letter of your answer.",
-  "subtasks": [
-    {
-      "question": "It was the artist ______ created the sculpture.",
-      "options": ["a) who", "b) which", "c) that", "d) whom"],
-      "answer": "a",
-      "explanation": "Для человека – who."
-    },
-    {
-      "question": "It was in June ______ she graduated.",
-      "options": ["a) when", "b) which", "c) that", "d) where"],
-      "answer": "c",
-      "explanation": "Для времени – that."
-    },
-    {
-      "question": "______ I really need is a holiday.",
-      "options": ["a) That", "b) What", "c) Which", "d) All"],
-      "answer": "b",
-      "explanation": "What-расщепление."
-    },
-    {
-      "question": "It was the driver ______ caused the accident.",
-      "options": ["a) who", "b) which", "c) that", "d) whom"],
-      "answer": "a",
-      "explanation": "Для человека – who."
-    },
-    {
-      "question": "______ she said made everyone laugh.",
-      "options": ["a) That", "b) What", "c) Which", "d) All"],
-      "answer": "b",
-      "explanation": "What-расщепление."
-    },
-    {
-      "question": "It was in the mountains ______ we spent our holiday.",
-      "options": ["a) where", "b) which", "c) that", "d) who"],
-      "answer": "c",
-      "explanation": "Для места – that."
-    },
-    {
-      "question": "______ I have is a few dollars.",
-      "options": ["a) What", "b) All", "c) That", "d) Which"],
-      "answer": "b",
-      "explanation": "All-расщепление."
-    },
-    {
-      "question": "It was my cousin ______ gave me this guitar.",
-      "options": ["a) who", "b) which", "c) that", "d) whom"],
-      "answer": "a",
-      "explanation": "Для человека – who."
-              }
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "2. Fill in the gaps with the missing word(s). Type the missing word(s) in the box.",
-            "subtasks": [
-                {"question": "It was the artist ______ created the sculpture.", "answer": "who", "explanation": "Для человека."},
-                {"question": "It was in June ______ she graduated.", "answer": "that", "explanation": "Для времени."},
-                {"question": "______ I really need is a holiday.", "answer": "What", "explanation": "What-расщепление."},
-                {"question": "It was the driver ______ caused the accident.", "answer": "who", "explanation": "Для человека."},
-                {"question": "______ she said made everyone laugh.", "answer": "What", "explanation": "What-расщепление."},
-                {"question": "It was in the mountains ______ we spent our holiday.", "answer": "that", "explanation": "Для места."},
-                {"question": "______ I have is a few dollars.", "answer": "All", "explanation": "All-расщепление."},
-                {"question": "It was my cousin ______ gave me this guitar.", "answer": "who", "explanation": "Для человека."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
-            "subtasks": [
-                {"question": "It was the artist who created the sculpture.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "It was in June that she graduated.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "What I really need is a holiday.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "It was the driver who caused the accident.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "What she said made everyone laugh.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "It was in the mountains that we spent our holiday.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "All I have is a few dollars.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "It was my cousin who gave me this guitar.", "answer": "Correct", "explanation": "Верно."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "4. Rewrite the sentences using cleft sentences (It was... that... / What... is...). Type the whole sentence.",
-            "subtasks": [
-                {"question": "The artist created the sculpture. → It was the artist who created the sculpture.", "answer": "It was the artist who created the sculpture.", "explanation": "It-расщепление."},
-                {"question": "She graduated in June. → It was in June that she graduated.", "answer": "It was in June that she graduated.", "explanation": "It-расщепление."},
-                {"question": "I really need a holiday. → What I really need is a holiday.", "answer": "What I really need is a holiday.", "explanation": "What-расщепление."},
-                {"question": "The driver caused the accident. → It was the driver who caused the accident.", "answer": "It was the driver who caused the accident.", "explanation": "It-расщепление."},
-                {"question": "She said something that made everyone laugh. → What she said made everyone laugh.", "answer": "What she said made everyone laugh.", "explanation": "What-расщепление."},
-                {"question": "We spent our holiday in the mountains. → It was in the mountains that we spent our holiday.", "answer": "It was in the mountains that we spent our holiday.", "explanation": "It-расщепление."},
-                {"question": "I have a few dollars. → All I have is a few dollars.", "answer": "All I have is a few dollars.", "explanation": "All-расщепление."},
-                {"question": "My cousin gave me this guitar. → It was my cousin who gave me this guitar.", "answer": "It was my cousin who gave me this guitar.", "explanation": "It-расщепление."}
-            ]
-        },
-    # =====================================================
-    # ВАРИАНТ 11 (перевод)
-    # =====================================================
-{
-  "type": "complex",
-  "text": "1. Choose the correct word (a, b, c, or d) to complete the cleft sentence. Type the letter of your answer.",
-  "subtasks": [
-    {
-      "question": "It was the detective ______ solved the mystery.",
-      "options": ["a) whom", "b) which", "c) that", "d) who"],
-      "answer": "d",
-      "explanation": "Для человека – who."
-    },
-    {
-      "question": "It was on Tuesday ______ we left for holiday.",
-      "options": ["a) where", "b) which", "c) when", "d) that"],
-      "answer": "d",
-      "explanation": "Для времени – that."
-    },
-    {
-      "question": "______ I enjoy most is dancing.",
-      "options": ["a) All", "b) That", "c) What", "d) Which"],
-      "answer": "c",
-      "explanation": "What-расщепление."
-    },
-    {
-      "question": "It was the conductor ______ led the orchestra.",
-      "options": ["a) whom", "b) which", "c) that", "d) who"],
-      "answer": "d",
-      "explanation": "Для человека – who."
-    },
-    {
-      "question": "______ they saw was a shooting star.",
-      "options": ["a) That", "b) What", "c) Which", "d) All"],
-      "answer": "b",
-      "explanation": "What-расщепление."
-    },
-    {
-      "question": "It was in the library ______ she found the book.",
-      "options": ["a) which", "b) who", "c) where", "d) that"],
-      "answer": "d",
-      "explanation": "Для места – that."
-    },
-    {
-      "question": "______ I can give you is advice.",
-      "options": ["a) What", "b) That", "c) All", "d) Which"],
-      "answer": "c",
-      "explanation": "All-расщепление."
-    },
-    {
-      "question": "It was my neighbour ______ helped me.",
-      "options": ["a) whom", "b) which", "c) that", "d) who"],
-      "answer": "d",
-      "explanation": "Для человека – who."
-              }
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "2. Fill in the gaps with the missing word(s). Type the missing word(s) in the box.",
-            "subtasks": [
-                {"question": "It was the detective ______ solved the mystery.", "answer": "who", "explanation": "Для человека."},
-                {"question": "It was on Tuesday ______ we left for holiday.", "answer": "that", "explanation": "Для времени."},
-                {"question": "______ I enjoy most is dancing.", "answer": "What", "explanation": "What-расщепление."},
-                {"question": "It was the conductor ______ led the orchestra.", "answer": "who", "explanation": "Для человека."},
-                {"question": "______ they saw was a shooting star.", "answer": "What", "explanation": "What-расщепление."},
-                {"question": "It was in the library ______ she found the book.", "answer": "that", "explanation": "Для места."},
-                {"question": "______ I can give you is advice.", "answer": "All", "explanation": "All-расщепление."},
-                {"question": "It was my neighbour ______ helped me.", "answer": "who", "explanation": "Для человека."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
-            "subtasks": [
-                {"question": "It was the detective who solved the mystery.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "It was on Tuesday that we left for holiday.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "What I enjoy most is dancing.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "It was the conductor who led the orchestra.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "What they saw was a shooting star.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "It was in the library that she found the book.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "All I can give you is advice.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "It was my neighbour who helped me.", "answer": "Correct", "explanation": "Верно."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "4. Translate the sentences into English using cleft sentences. Type your translation (one sentence) in the box.",
-            "subtasks": [
-                {"question": "Именно детектив раскрыл тайну.", "answer": "It was the detective who solved the mystery.", "explanation": ""},
-                {"question": "Именно во вторник мы уехали в отпуск.", "answer": "It was on Tuesday that we left for holiday.", "explanation": ""},
-                {"question": "Что я люблю больше всего, так это танцевать.", "answer": "What I enjoy most is dancing.", "explanation": ""},
-                {"question": "Именно дирижёр руководил оркестром.", "answer": "It was the conductor who led the orchestra.", "explanation": ""},
-                {"question": "Что они увидели, так это падающую звезду.", "answer": "What they saw was a shooting star.", "explanation": ""},
-                {"question": "Именно в библиотеке она нашла книгу.", "answer": "It was in the library that she found the book.", "explanation": ""},
-                {"question": "Всё, что я могу тебе дать, – это совет.", "answer": "All I can give you is advice.", "explanation": ""},
-                {"question": "Именно мой сосед помог мне.", "answer": "It was my neighbour who helped me.", "explanation": ""}
-            ]
-        },
-    # =====================================================
-    # ВАРИАНТ 12 (перефразирование)
-    # =====================================================
- {
-  "type": "complex",
-  "text": "1. Choose the correct word (a, b, c, or d) to complete the cleft sentence. Type the letter of your answer.",
-  "subtasks": [
-    {
-      "question": "It was the architect ______ designed the building.",
-      "options": ["a) which", "b) that", "c) whom", "d) who"],
-      "answer": "d",
-      "explanation": "Для человека – who."
-    },
-    {
-      "question": "It was in 2010 ______ they moved to London.",
-      "options": ["a) where", "b) when", "c) which", "d) that"],
-      "answer": "d",
-      "explanation": "Для времени – that."
-    },
-    {
-      "question": "______ I love most is autumn.",
-      "options": ["a) That", "b) All", "c) Which", "d) What"],
-      "answer": "d",
-      "explanation": "What-расщепление."
-    },
-    {
-      "question": "It was the captain ______ led the team.",
-      "options": ["a) whom", "b) which", "c) that", "d) who"],
-      "answer": "d",
-      "explanation": "Для человека – who."
-    },
-    {
-      "question": "______ he needs is a second chance.",
-      "options": ["a) Which", "b) All", "c) That", "d) What"],
-      "answer": "d",
-      "explanation": "What-расщепление."
-    },
-    {
-      "question": "It was on the island ______ they got stranded.",
-      "options": ["a) which", "b) where", "c) when", "d) that"],
-      "answer": "d",
-      "explanation": "Для места – that."
-    },
-    {
-      "question": "______ she wants is a beautiful dress.",
-      "options": ["a) That", "b) Which", "c) What", "d) All"],
-      "answer": "d",
-      "explanation": "All-расщепление."
-    },
-    {
-      "question": "It was my grandfather ______ built this house.",
-      "options": ["a) whom", "b) which", "c) that", "d) who"],
-      "answer": "d",
-      "explanation": "Для человека – who."
-              }
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "2. Fill in the gaps with the missing word(s). Type the missing word(s) in the box.",
-            "subtasks": [
-                {"question": "It was the architect ______ designed the building.", "answer": "who", "explanation": "Для человека."},
-                {"question": "It was in 2010 ______ they moved to London.", "answer": "that", "explanation": "Для времени."},
-                {"question": "______ I love most is autumn.", "answer": "What", "explanation": "What-расщепление."},
-                {"question": "It was the captain ______ led the team.", "answer": "who", "explanation": "Для человека."},
-                {"question": "______ he needs is a second chance.", "answer": "What", "explanation": "What-расщепление."},
-                {"question": "It was on the island ______ they got stranded.", "answer": "that", "explanation": "Для места."},
-                {"question": "______ she wants is a beautiful dress.", "answer": "All", "explanation": "All-расщепление."},
-                {"question": "It was my grandfather ______ built this house.", "answer": "who", "explanation": "Для человека."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
-            "subtasks": [
-                {"question": "It was the architect who designed the building.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "It was in 2010 that they moved to London.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "What I love most is autumn.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "It was the captain who led the team.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "What he needs is a second chance.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "It was on the island that they got stranded.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "All she wants is a beautiful dress.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "It was my grandfather who built this house.", "answer": "Correct", "explanation": "Верно."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "4. Rewrite the sentences using cleft sentences (It was... that... / What... is...). Type the whole sentence.",
-            "subtasks": [
-                {"question": "The architect designed the building. → It was the architect who designed the building.", "answer": "It was the architect who designed the building.", "explanation": "It-расщепление."},
-                {"question": "They moved to London in 2010. → It was in 2010 that they moved to London.", "answer": "It was in 2010 that they moved to London.", "explanation": "It-расщепление."},
-                {"question": "I love autumn most. → What I love most is autumn.", "answer": "What I love most is autumn.", "explanation": "What-расщепление."},
-                {"question": "The captain led the team. → It was the captain who led the team.", "answer": "It was the captain who led the team.", "explanation": "It-расщепление."},
-                {"question": "He needs a second chance. → What he needs is a second chance.", "answer": "What he needs is a second chance.", "explanation": "What-расщепление."},
-                {"question": "They got stranded on the island. → It was on the island that they got stranded.", "answer": "It was on the island that they got stranded.", "explanation": "It-расщепление."},
-                {"question": "She wants a beautiful dress. → All she wants is a beautiful dress.", "answer": "All she wants is a beautiful dress.", "explanation": "All-расщепление."},
-                {"question": "My grandfather built this house. → It was my grandfather who built this house.", "answer": "It was my grandfather who built this house.", "explanation": "It-расщепление."}
-            ]
+          "type": "complex",
+          "text": "4. Translate the sentences into English using cleft sentences. Type your translation (one sentence) in the box.",
+          "subtasks": [
+            {"question": "Именно фотограф сделал этот снимок.", "answer": "It was the photographer who took the picture.", "explanation": ""},
+            {"question": "Именно вечером мы пошли гулять.", "answer": "It was in the evening that we went for a walk.", "explanation": ""},
+            {"question": "Что он хочет, так это новое начало.", "answer": "What he wants is a new beginning.", "explanation": ""},
+            {"question": "Именно репортёр взял интервью у знаменитости.", "answer": "It was the reporter who interviewed the celebrity.", "explanation": ""},
+            {"question": "Что я помню больше всего, так это музыку.", "answer": "What I remember most is the music.", "explanation": ""},
+            {"question": "Именно на пляже они построили замок из песка.", "answer": "It was on the beach that they built a sandcastle.", "explanation": ""},
+            {"question": "Всё, что они хотели, – это горячая еда.", "answer": "All they wanted was a warm meal.", "explanation": ""},
+            {"question": "Именно моя сестра нарисовала эту картину.", "answer": "It was my sister who painted this picture.", "explanation": ""}
+          ]
         }
+      ],
+      # =====================================================
+      # ВАРИАНТ 10 (перефразирование)
+      # =====================================================
+      [
+        {
+          "type": "complex",
+          "text": "1. Choose the correct word (a, b, c, or d) to complete the cleft sentence. Type the letter of your answer.",
+          "subtasks": [
+            {"question": "It was the artist ______ created the sculpture.", "options": ["a) who", "b) which", "c) that", "d) whom"], "answer": "a", "explanation": "Для человека – who."},
+            {"question": "It was in June ______ she graduated.", "options": ["a) when", "b) which", "c) that", "d) where"], "answer": "c", "explanation": "Для времени – that."},
+            {"question": "______ I really need is a holiday.", "options": ["a) That", "b) What", "c) Which", "d) All"], "answer": "b", "explanation": "What-расщепление."},
+            {"question": "It was the driver ______ caused the accident.", "options": ["a) who", "b) which", "c) that", "d) whom"], "answer": "a", "explanation": "Для человека – who."},
+            {"question": "______ she said made everyone laugh.", "options": ["a) That", "b) What", "c) Which", "d) All"], "answer": "b", "explanation": "What-расщепление."},
+            {"question": "It was in the mountains ______ we spent our holiday.", "options": ["a) where", "b) which", "c) that", "d) who"], "answer": "c", "explanation": "Для места – that."},
+            {"question": "______ I have is a few dollars.", "options": ["a) What", "b) All", "c) That", "d) Which"], "answer": "b", "explanation": "All-расщепление."},
+            {"question": "It was my cousin ______ gave me this guitar.", "options": ["a) who", "b) which", "c) that", "d) whom"], "answer": "a", "explanation": "Для человека – who."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "2. Fill in the gaps with the missing word(s). Type the missing word(s) in the box.",
+          "subtasks": [
+            {"question": "It was the artist ______ created the sculpture.", "answer": "who", "explanation": "Для человека."},
+            {"question": "It was in June ______ she graduated.", "answer": "that", "explanation": "Для времени."},
+            {"question": "______ I really need is a holiday.", "answer": "What", "explanation": "What-расщепление."},
+            {"question": "It was the driver ______ caused the accident.", "answer": "who", "explanation": "Для человека."},
+            {"question": "______ she said made everyone laugh.", "answer": "What", "explanation": "What-расщепление."},
+            {"question": "It was in the mountains ______ we spent our holiday.", "answer": "that", "explanation": "Для места."},
+            {"question": "______ I have is a few dollars.", "answer": "All", "explanation": "All-расщепление."},
+            {"question": "It was my cousin ______ gave me this guitar.", "answer": "who", "explanation": "Для человека."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
+          "subtasks": [
+            {"question": "It was the artist who created the sculpture.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "It was in June that she graduated.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "What I really need is a holiday.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "It was the driver who caused the accident.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "What she said made everyone laugh.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "It was in the mountains that we spent our holiday.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "All I have is a few dollars.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "It was my cousin who gave me this guitar.", "answer": "Correct", "explanation": "Верно."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "4. Rewrite the sentences using cleft sentences (It was... that... / What... is...). Type the whole sentence.",
+          "subtasks": [
+            {"question": "The artist created the sculpture. → It was the artist who created the sculpture.", "answer": "It was the artist who created the sculpture.", "explanation": "It-расщепление."},
+            {"question": "She graduated in June. → It was in June that she graduated.", "answer": "It was in June that she graduated.", "explanation": "It-расщепление."},
+            {"question": "I really need a holiday. → What I really need is a holiday.", "answer": "What I really need is a holiday.", "explanation": "What-расщепление."},
+            {"question": "The driver caused the accident. → It was the driver who caused the accident.", "answer": "It was the driver who caused the accident.", "explanation": "It-расщепление."},
+            {"question": "She said something that made everyone laugh. → What she said made everyone laugh.", "answer": "What she said made everyone laugh.", "explanation": "What-расщепление."},
+            {"question": "We spent our holiday in the mountains. → It was in the mountains that we spent our holiday.", "answer": "It was in the mountains that we spent our holiday.", "explanation": "It-расщепление."},
+            {"question": "I have a few dollars. → All I have is a few dollars.", "answer": "All I have is a few dollars.", "explanation": "All-расщепление."},
+            {"question": "My cousin gave me this guitar. → It was my cousin who gave me this guitar.", "answer": "It was my cousin who gave me this guitar.", "explanation": "It-расщепление."}
+          ]
+        }
+      ],
+      # =====================================================
+      # ВАРИАНТ 11 (перевод)
+      # =====================================================
+      [
+        {
+          "type": "complex",
+          "text": "1. Choose the correct word (a, b, c, or d) to complete the cleft sentence. Type the letter of your answer.",
+          "subtasks": [
+            {"question": "It was the detective ______ solved the mystery.", "options": ["a) whom", "b) which", "c) that", "d) who"], "answer": "d", "explanation": "Для человека – who."},
+            {"question": "It was on Tuesday ______ we left for holiday.", "options": ["a) where", "b) which", "c) when", "d) that"], "answer": "d", "explanation": "Для времени – that."},
+            {"question": "______ I enjoy most is dancing.", "options": ["a) All", "b) That", "c) What", "d) Which"], "answer": "c", "explanation": "What-расщепление."},
+            {"question": "It was the conductor ______ led the orchestra.", "options": ["a) whom", "b) which", "c) that", "d) who"], "answer": "d", "explanation": "Для человека – who."},
+            {"question": "______ they saw was a shooting star.", "options": ["a) That", "b) What", "c) Which", "d) All"], "answer": "b", "explanation": "What-расщепление."},
+            {"question": "It was in the library ______ she found the book.", "options": ["a) which", "b) who", "c) where", "d) that"], "answer": "d", "explanation": "Для места – that."},
+            {"question": "______ I can give you is advice.", "options": ["a) What", "b) That", "c) All", "d) Which"], "answer": "c", "explanation": "All-расщепление."},
+            {"question": "It was my neighbour ______ helped me.", "options": ["a) whom", "b) which", "c) that", "d) who"], "answer": "d", "explanation": "Для человека – who."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "2. Fill in the gaps with the missing word(s). Type the missing word(s) in the box.",
+          "subtasks": [
+            {"question": "It was the detective ______ solved the mystery.", "answer": "who", "explanation": "Для человека."},
+            {"question": "It was on Tuesday ______ we left for holiday.", "answer": "that", "explanation": "Для времени."},
+            {"question": "______ I enjoy most is dancing.", "answer": "What", "explanation": "What-расщепление."},
+            {"question": "It was the conductor ______ led the orchestra.", "answer": "who", "explanation": "Для человека."},
+            {"question": "______ they saw was a shooting star.", "answer": "What", "explanation": "What-расщепление."},
+            {"question": "It was in the library ______ she found the book.", "answer": "that", "explanation": "Для места."},
+            {"question": "______ I can give you is advice.", "answer": "All", "explanation": "All-расщепление."},
+            {"question": "It was my neighbour ______ helped me.", "answer": "who", "explanation": "Для человека."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
+          "subtasks": [
+            {"question": "It was the detective who solved the mystery.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "It was on Tuesday that we left for holiday.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "What I enjoy most is dancing.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "It was the conductor who led the orchestra.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "What they saw was a shooting star.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "It was in the library that she found the book.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "All I can give you is advice.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "It was my neighbour who helped me.", "answer": "Correct", "explanation": "Верно."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "4. Translate the sentences into English using cleft sentences. Type your translation (one sentence) in the box.",
+          "subtasks": [
+            {"question": "Именно детектив раскрыл тайну.", "answer": "It was the detective who solved the mystery.", "explanation": ""},
+            {"question": "Именно во вторник мы уехали в отпуск.", "answer": "It was on Tuesday that we left for holiday.", "explanation": ""},
+            {"question": "Что я люблю больше всего, так это танцевать.", "answer": "What I enjoy most is dancing.", "explanation": ""},
+            {"question": "Именно дирижёр руководил оркестром.", "answer": "It was the conductor who led the orchestra.", "explanation": ""},
+            {"question": "Что они увидели, так это падающую звезду.", "answer": "What they saw was a shooting star.", "explanation": ""},
+            {"question": "Именно в библиотеке она нашла книгу.", "answer": "It was in the library that she found the book.", "explanation": ""},
+            {"question": "Всё, что я могу тебе дать, – это совет.", "answer": "All I can give you is advice.", "explanation": ""},
+            {"question": "Именно мой сосед помог мне.", "answer": "It was my neighbour who helped me.", "explanation": ""}
+          ]
+        }
+      ],
+      # =====================================================
+      # ВАРИАНТ 12 (перефразирование)
+      # =====================================================
+      [
+        {
+          "type": "complex",
+          "text": "1. Choose the correct word (a, b, c, or d) to complete the cleft sentence. Type the letter of your answer.",
+          "subtasks": [
+            {"question": "It was the architect ______ designed the building.", "options": ["a) which", "b) that", "c) whom", "d) who"], "answer": "d", "explanation": "Для человека – who."},
+            {"question": "It was in 2010 ______ they moved to London.", "options": ["a) where", "b) when", "c) which", "d) that"], "answer": "d", "explanation": "Для времени – that."},
+            {"question": "______ I love most is autumn.", "options": ["a) That", "b) All", "c) Which", "d) What"], "answer": "d", "explanation": "What-расщепление."},
+            {"question": "It was the captain ______ led the team.", "options": ["a) whom", "b) which", "c) that", "d) who"], "answer": "d", "explanation": "Для человека – who."},
+            {"question": "______ he needs is a second chance.", "options": ["a) Which", "b) All", "c) That", "d) What"], "answer": "d", "explanation": "What-расщепление."},
+            {"question": "It was on the island ______ they got stranded.", "options": ["a) which", "b) where", "c) when", "d) that"], "answer": "d", "explanation": "Для места – that."},
+            {"question": "______ she wants is a beautiful dress.", "options": ["a) That", "b) Which", "c) What", "d) All"], "answer": "d", "explanation": "All-расщепление."},
+            {"question": "It was my grandfather ______ built this house.", "options": ["a) whom", "b) which", "c) that", "d) who"], "answer": "d", "explanation": "Для человека – who."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "2. Fill in the gaps with the missing word(s). Type the missing word(s) in the box.",
+          "subtasks": [
+            {"question": "It was the architect ______ designed the building.", "answer": "who", "explanation": "Для человека."},
+            {"question": "It was in 2010 ______ they moved to London.", "answer": "that", "explanation": "Для времени."},
+            {"question": "______ I love most is autumn.", "answer": "What", "explanation": "What-расщепление."},
+            {"question": "It was the captain ______ led the team.", "answer": "who", "explanation": "Для человека."},
+            {"question": "______ he needs is a second chance.", "answer": "What", "explanation": "What-расщепление."},
+            {"question": "It was on the island ______ they got stranded.", "answer": "that", "explanation": "Для места."},
+            {"question": "______ she wants is a beautiful dress.", "answer": "All", "explanation": "All-расщепление."},
+            {"question": "It was my grandfather ______ built this house.", "answer": "who", "explanation": "Для человека."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
+          "subtasks": [
+            {"question": "It was the architect who designed the building.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "It was in 2010 that they moved to London.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "What I love most is autumn.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "It was the captain who led the team.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "What he needs is a second chance.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "It was on the island that they got stranded.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "All she wants is a beautiful dress.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "It was my grandfather who built this house.", "answer": "Correct", "explanation": "Верно."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "4. Rewrite the sentences using cleft sentences (It was... that... / What... is...). Type the whole sentence.",
+          "subtasks": [
+            {"question": "The architect designed the building. → It was the architect who designed the building.", "answer": "It was the architect who designed the building.", "explanation": "It-расщепление."},
+            {"question": "They moved to London in 2010. → It was in 2010 that they moved to London.", "answer": "It was in 2010 that they moved to London.", "explanation": "It-расщепление."},
+            {"question": "I love autumn most. → What I love most is autumn.", "answer": "What I love most is autumn.", "explanation": "What-расщепление."},
+            {"question": "The captain led the team. → It was the captain who led the team.", "answer": "It was the captain who led the team.", "explanation": "It-расщепление."},
+            {"question": "He needs a second chance. → What he needs is a second chance.", "answer": "What he needs is a second chance.", "explanation": "What-расщепление."},
+            {"question": "They got stranded on the island. → It was on the island that they got stranded.", "answer": "It was on the island that they got stranded.", "explanation": "It-расщепление."},
+            {"question": "She wants a beautiful dress. → All she wants is a beautiful dress.", "answer": "All she wants is a beautiful dress.", "explanation": "All-расщепление."},
+            {"question": "My grandfather built this house. → It was my grandfather who built this house.", "answer": "It was my grandfather who built this house.", "explanation": "It-расщепление."}
+          ]
+        }
+      ]
     ]
-   }
-  ]
 },
   "inversion_negative": {
     "title": "Инверсия после отрицательных наречий (Not only... but also, No sooner... than, Hardly... when)",
