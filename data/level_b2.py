@@ -28150,7 +28150,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
       ]
     ]
   },
-  "environment_b2": {
+"environment_b2": {
     "title": "Лексика: окружающая среда (продвинутая)",
     "pages": [
       {
@@ -28176,1209 +28176,1220 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
         "answer": "Global warming – повышение температуры. Climate change – более широкое понятие, включающее изменение погодных паттернов, уровня моря и т.д."
       }
     ],
-"practice_bank": [
-    # =====================================================
-    # ВАРИАНТ 1 (перевод)
-    # =====================================================
-[
-  {
-    "type": "complex",
-    "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-    "subtasks": [
-      {
-        "question": "Carbon ______ must be reduced to slow down climate change.",
-        "options": ["a) gases", "b) dioxide", "c) pollution", "d) emissions"],
-        "answer": "d",
-        "explanation": "carbon emissions – выбросы углерода."
-      },
-      {
-        "question": "______ is destroying the Amazon rainforest.",
-        "options": ["a) Pollution", "b) Deforestation", "c) Urbanisation", "d) Overpopulation"],
-        "answer": "b",
-        "explanation": "deforestation – вырубка лесов."
-      },
-      {
-        "question": "Many countries are investing in ______ energy.",
-        "options": ["a) fossil", "b) nuclear", "c) renewable", "d) solar"],
-        "answer": "c",
-        "explanation": "renewable energy – возобновляемая энергия."
-      },
-      {
-        "question": "We should buy ______ products to protect the environment.",
-        "options": ["a) organic", "b) eco-friendly", "c) natural", "d) recycled"],
-        "answer": "b",
-        "explanation": "eco-friendly – экологичный."
-      },
-      {
-        "question": "______ is one of the biggest environmental problems today.",
-        "options": ["a) Air pollution", "b) Water pollution", "c) Noise pollution", "d) Plastic pollution"],
-        "answer": "d",
-        "explanation": "plastic pollution – пластиковое загрязнение."
-      },
-      {
-        "question": "We need to ______ energy by switching to LED bulbs.",
-        "options": ["a) save", "b) produce", "c) waste", "d) generate"],
-        "answer": "a",
-        "explanation": "to save energy – экономить энергию."
-      },
-      {
-        "question": "The ______ effect is causing global temperatures to rise.",
-        "options": ["a) global", "b) warming", "c) greenhouse", "d) climate"],
-        "answer": "c",
-        "explanation": "greenhouse effect – парниковый эффект."
-      },
-      {
-        "question": "Many species are facing ______ due to habitat loss.",
-        "options": ["a) danger", "b) threat", "c) risk", "d) extinction"],
-        "answer": "d",
-        "explanation": "extinction – вымирание."
-              }
-            ]
+    "practice_bank": [
+      # =====================================================
+      # ВАРИАНТ 1 (перевод)
+      # =====================================================
+      [
+        {
+          "type": "complex",
+          "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+          "subtasks": [
+            {
+              "question": "Carbon ______ must be reduced to slow down climate change.",
+              "options": ["a) gases", "b) dioxide", "c) pollution", "d) emissions"],
+              "answer": "d",
+              "explanation": "carbon emissions – выбросы углерода."
+            },
+            {
+              "question": "______ is destroying the Amazon rainforest.",
+              "options": ["a) Pollution", "b) Deforestation", "c) Urbanisation", "d) Overpopulation"],
+              "answer": "b",
+              "explanation": "deforestation – вырубка лесов."
+            },
+            {
+              "question": "Many countries are investing in ______ energy.",
+              "options": ["a) fossil", "b) nuclear", "c) renewable", "d) solar"],
+              "answer": "c",
+              "explanation": "renewable energy – возобновляемая энергия."
+            },
+            {
+              "question": "We should buy ______ products to protect the environment.",
+              "options": ["a) organic", "b) eco-friendly", "c) natural", "d) recycled"],
+              "answer": "b",
+              "explanation": "eco-friendly – экологичный."
+            },
+            {
+              "question": "______ is one of the biggest environmental problems today.",
+              "options": ["a) Air pollution", "b) Water pollution", "c) Noise pollution", "d) Plastic pollution"],
+              "answer": "d",
+              "explanation": "plastic pollution – пластиковое загрязнение."
+            },
+            {
+              "question": "We need to ______ energy by switching to LED bulbs.",
+              "options": ["a) save", "b) produce", "c) waste", "d) generate"],
+              "answer": "a",
+              "explanation": "to save energy – экономить энергию."
+            },
+            {
+              "question": "The ______ effect is causing global temperatures to rise.",
+              "options": ["a) global", "b) warming", "c) greenhouse", "d) climate"],
+              "answer": "c",
+              "explanation": "greenhouse effect – парниковый эффект."
+            },
+            {
+              "question": "Many species are facing ______ due to habitat loss.",
+              "options": ["a) danger", "b) threat", "c) risk", "d) extinction"],
+              "answer": "d",
+              "explanation": "extinction – вымирание."
+            }
+          ]
         },
         {
-            "type": "complex",
-            "text": "2. Fill in the gaps with the correct word or phrase. Type the missing word(s) in the box.",
-            "subtasks": [
-                {"question": "Carbon ______ must be reduced to slow down climate change.", "answer": "emissions", "explanation": "emissions."},
-                {"question": "______ is destroying the Amazon rainforest.", "answer": "Deforestation", "explanation": "Deforestation."},
-                {"question": "Many countries are investing in ______ energy.", "answer": "renewable", "explanation": "renewable."},
-                {"question": "We should buy ______ products to protect the environment.", "answer": "eco-friendly", "explanation": "eco-friendly."},
-                {"question": "______ is one of the biggest environmental problems today.", "answer": "Plastic pollution", "explanation": "Plastic pollution."},
-                {"question": "We need to ______ energy by switching to LED bulbs.", "answer": "save", "explanation": "save."},
-                {"question": "The ______ effect is causing global temperatures to rise.", "answer": "greenhouse", "explanation": "greenhouse."},
-                {"question": "Many species are facing ______ due to habitat loss.", "answer": "extinction", "explanation": "extinction."}
-            ]
+          "type": "complex",
+          "text": "2. Fill in the gaps with the correct word or phrase. Type the missing word(s) in the box.",
+          "subtasks": [
+            {"question": "Carbon ______ must be reduced to slow down climate change.", "answer": "emissions", "explanation": "emissions."},
+            {"question": "______ is destroying the Amazon rainforest.", "answer": "Deforestation", "explanation": "Deforestation."},
+            {"question": "Many countries are investing in ______ energy.", "answer": "renewable", "explanation": "renewable."},
+            {"question": "We should buy ______ products to protect the environment.", "answer": "eco-friendly", "explanation": "eco-friendly."},
+            {"question": "______ is one of the biggest environmental problems today.", "answer": "Plastic pollution", "explanation": "Plastic pollution."},
+            {"question": "We need to ______ energy by switching to LED bulbs.", "answer": "save", "explanation": "save."},
+            {"question": "The ______ effect is causing global temperatures to rise.", "answer": "greenhouse", "explanation": "greenhouse."},
+            {"question": "Many species are facing ______ due to habitat loss.", "answer": "extinction", "explanation": "extinction."}
+          ]
         },
         {
-            "type": "complex",
-            "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
-            "subtasks": [
-                {"question": "Carbon emissions must be reduced to slow down climate change.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Deforestation is destroying the Amazon rainforest.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Many countries are investing in renewable energy.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "We should buy eco-friendly products to protect the environment.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Plastic pollution is one of the biggest environmental problems today.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "We need to save energy by switching to LED bulbs.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "The greenhouse effect is causing global temperatures to rise.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Many species are facing extinct due to habitat loss.", "answer": "Many species are facing extinction due to habitat loss.", "explanation": "Extinction, не extinct."}
-            ]
+          "type": "complex",
+          "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
+          "subtasks": [
+            {"question": "Carbon emissions must be reduced to slow down climate change.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Deforestation is destroying the Amazon rainforest.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Many countries are investing in renewable energy.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "We should buy eco-friendly products to protect the environment.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Plastic pollution is one of the biggest environmental problems today.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "We need to save energy by switching to LED bulbs.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "The greenhouse effect is causing global temperatures to rise.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Many species are facing extinct due to habitat loss.", "answer": "Many species are facing extinction due to habitat loss.", "explanation": "Extinction, не extinct."}
+          ]
         },
         {
-            "type": "complex",
-            "text": "4. Translate the sentences into English using the correct environment vocabulary. Type your translation (one sentence) in the box.",
-            "subtasks": [
-                {"question": "Выбросы углерода необходимо сократить, чтобы замедлить изменение климата.", "answer": "Carbon emissions must be reduced to slow down climate change.", "explanation": ""},
-                {"question": "Вырубка лесов уничтожает тропические леса Амазонии.", "answer": "Deforestation is destroying the Amazon rainforest.", "explanation": ""},
-                {"question": "Многие страны инвестируют в возобновляемую энергию.", "answer": "Many countries are investing in renewable energy.", "explanation": ""},
-                {"question": "Нам следует покупать экологичные продукты, чтобы защитить окружающую среду.", "answer": "We should buy eco-friendly products to protect the environment.", "explanation": ""},
-                {"question": "Пластиковое загрязнение – одна из самых больших экологических проблем сегодня.", "answer": "Plastic pollution is one of the biggest environmental problems today.", "explanation": ""},
-                {"question": "Нам нужно экономить энергию, перейдя на светодиодные лампы.", "answer": "We need to save energy by switching to LED bulbs.", "explanation": ""},
-                {"question": "Парниковый эффект вызывает повышение глобальной температуры.", "answer": "The greenhouse effect is causing global temperatures to rise.", "explanation": ""},
-                {"question": "Многие виды находятся под угрозой вымирания из-за потери среды обитания.", "answer": "Many species are facing extinction due to habitat loss.", "explanation": ""}
-            ]
-        },
-    # =====================================================
-    # ВАРИАНТ 2 (перефразирование)
-    # =====================================================
-[
-  {
-    "type": "complex",
-    "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-    "subtasks": [
-      {
-        "question": "Solar ______ is a clean source of energy.",
-        "options": ["a) panels", "b) power", "c) cells", "d) radiation"],
-        "answer": "b",
-        "explanation": "solar power – солнечная энергия."
-      },
-      {
-        "question": "Wind ______ is becoming more popular in Europe.",
-        "options": ["a) turbines", "b) farms", "c) power", "d) energy"],
-        "answer": "c",
-        "explanation": "wind power – энергия ветра."
-      },
-      {
-        "question": "______ development aims to meet the needs of the present without harming the future.",
-        "options": ["a) Economic", "b) Industrial", "c) Sustainable", "d) Urban"],
-        "answer": "c",
-        "explanation": "sustainable development – устойчивое развитие."
-      },
-      {
-        "question": "The circular ______ promotes recycling and reusing materials.",
-        "options": ["a) policy", "b) economy", "c) system", "d) model"],
-        "answer": "b",
-        "explanation": "circular economy – циркулярная экономика."
-      },
-      {
-        "question": "______ is the process of turning waste into new products.",
-        "options": ["a) Upcycling", "b) Composting", "c) Recycling", "d) Reusing"],
-        "answer": "c",
-        "explanation": "recycling – переработка."
-      },
-      {
-        "question": "We should avoid ______ plastic to reduce waste.",
-        "options": ["a) single-use", "b) biodegradable", "c) recyclable", "d) compostable"],
-        "answer": "a",
-        "explanation": "single-use plastic – одноразовый пластик."
-      },
-      {
-        "question": "______ means creating something new from old items.",
-        "options": ["a) Upcycling", "b) Recycling", "c) Downcycling", "d) Repurposing"],
-        "answer": "a",
-        "explanation": "upcycling – креативное повторное использование."
-      },
-      {
-        "question": "The ______ layer protects us from harmful UV rays.",
-        "options": ["a) ozone", "b) atmospheric", "c) stratospheric", "d) mesospheric"],
-        "answer": "a",
-        "explanation": "ozone layer – озоновый слой."
-              }
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "2. Fill in the gaps with the correct word or phrase. Type the missing word(s) in the box.",
-            "subtasks": [
-                {"question": "Solar ______ is a clean source of energy.", "answer": "power", "explanation": "power."},
-                {"question": "Wind ______ is becoming more popular in Europe.", "answer": "power", "explanation": "power."},
-                {"question": "______ development aims to meet the needs of the present without harming the future.", "answer": "Sustainable", "explanation": "Sustainable."},
-                {"question": "The circular ______ promotes recycling and reusing materials.", "answer": "economy", "explanation": "economy."},
-                {"question": "______ is the process of turning waste into new products.", "answer": "Recycling", "explanation": "Recycling."},
-                {"question": "We should avoid ______ plastic to reduce waste.", "answer": "single-use", "explanation": "single-use."},
-                {"question": "______ means creating something new from old items.", "answer": "Upcycling", "explanation": "Upcycling."},
-                {"question": "The ______ layer protects us from harmful UV rays.", "answer": "ozone", "explanation": "ozone."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
-            "subtasks": [
-                {"question": "Solar power is a clean source of energy.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Wind power is becoming more popular in Europe.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Sustainable development aims to meet the needs of the present without harming the future.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "The circular economy promotes recycling and reusing materials.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Recycling is the process of turning waste into new products.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "We should avoid single-use plastic to reduce waste.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Upcycling means creating something new from old items.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "The ozone layer protect us from harmful UV rays.", "answer": "The ozone layer protects us from harmful UV rays.", "explanation": "Protects, не protect."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "4. Rewrite the sentences using the word given in brackets. Type the whole sentence.",
-            "subtasks": [
-                {"question": "Solar energy is clean. (power) → Solar power is a clean source of energy.", "answer": "Solar power is a clean source of energy.", "explanation": "solar power."},
-                {"question": "Wind energy is popular. (power) → Wind power is becoming more popular in Europe.", "answer": "Wind power is becoming more popular in Europe.", "explanation": "wind power."},
-                {"question": "Development that is sustainable helps the future. (sustainable) → Sustainable development aims to meet the needs of the present without harming the future.", "answer": "Sustainable development aims to meet the needs of the present without harming the future.", "explanation": "sustainable development."},
-                {"question": "A circular system helps the planet. (economy) → The circular economy promotes recycling and reusing materials.", "answer": "The circular economy promotes recycling and reusing materials.", "explanation": "circular economy."},
-                {"question": "Recycling helps reduce waste. (recycling) → Recycling is the process of turning waste into new products.", "answer": "Recycling is the process of turning waste into new products.", "explanation": "recycling."},
-                {"question": "Avoid disposable plastic. (single-use) → We should avoid single-use plastic to reduce waste.", "answer": "We should avoid single-use plastic to reduce waste.", "explanation": "single-use plastic."},
-                {"question": "Upcycling is creative reuse. (upcycling) → Upcycling means creating something new from old items.", "answer": "Upcycling means creating something new from old items.", "explanation": "upcycling."},
-                {"question": "The ozone layer shields us. (ozone) → The ozone layer protects us from harmful UV rays.", "answer": "The ozone layer protects us from harmful UV rays.", "explanation": "ozone layer."}
-            ]
-        },
-    # =====================================================
-    # ВАРИАНТ 3 (перевод)
-    # =====================================================
-[
-  {
-    "type": "complex",
-    "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-    "subtasks": [
-      {
-        "question": "______ warming is causing polar ice caps to melt.",
-        "options": ["a) Global", "b) Planetary", "c) Atmospheric", "d) Climatic"],
-        "answer": "a",
-        "explanation": "global warming – глобальное потепление."
-      },
-      {
-        "question": "The ______ footprint of a person is the amount of carbon they produce.",
-        "options": ["a) carbon", "b) ecological", "c) environmental", "d) climatic"],
-        "answer": "a",
-        "explanation": "carbon footprint – углеродный след."
-      },
-      {
-        "question": "______ loss is a major concern for conservationists.",
-        "options": ["a) Habitat", "b) Biodiversity", "c) Wildlife", "d) Forest"],
-        "answer": "b",
-        "explanation": "biodiversity loss – потеря биоразнообразия."
-      },
-      {
-        "question": "______ energy comes from sources like the sun, wind, and water.",
-        "options": ["a) Clean", "b) Natural", "c) Green", "d) Renewable"],
-        "answer": "d",
-        "explanation": "renewable energy – возобновляемая энергия."
-      },
-      {
-        "question": "We need to protect ______ to ensure the survival of many species.",
-        "options": ["a) ecosystems", "b) habitats", "c) environments", "d) territories"],
-        "answer": "b",
-        "explanation": "habitats – места обитания."
-      },
-      {
-        "question": "______ pollution affects both land and water.",
-        "options": ["a) Soil", "b) Air", "c) Noise", "d) Light"],
-        "answer": "a",
-        "explanation": "soil pollution – загрязнение почвы."
-      },
-      {
-        "question": "The ______ of the ozone layer is a serious problem.",
-        "options": ["a) depletion", "b) destruction", "c) erosion", "d) thinning"],
-        "answer": "a",
-        "explanation": "depletion – истощение."
-      },
-      {
-        "question": "We should use ______ transport to reduce emissions.",
-        "options": ["a) private", "b) public", "c) shared", "d) electric"],
-        "answer": "b",
-        "explanation": "public transport – общественный транспорт."
-              }
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "2. Fill in the gaps with the correct word or phrase. Type the missing word(s) in the box.",
-            "subtasks": [
-                {"question": "______ warming is causing polar ice caps to melt.", "answer": "Global", "explanation": "Global."},
-                {"question": "The ______ footprint of a person is the amount of carbon they produce.", "answer": "carbon", "explanation": "carbon."},
-                {"question": "______ loss is a major concern for conservationists.", "answer": "Biodiversity", "explanation": "Biodiversity."},
-                {"question": "______ energy comes from sources like the sun, wind, and water.", "answer": "Renewable", "explanation": "Renewable."},
-                {"question": "We need to protect ______ to ensure the survival of many species.", "answer": "habitats", "explanation": "habitats."},
-                {"question": "______ pollution affects both land and water.", "answer": "Soil", "explanation": "Soil."},
-                {"question": "The ______ of the ozone layer is a serious problem.", "answer": "depletion", "explanation": "depletion."},
-                {"question": "We should use ______ transport to reduce emissions.", "answer": "public", "explanation": "public."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
-            "subtasks": [
-                {"question": "Global warming is causing polar ice caps to melt.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "The carbon footprint of a person is the amount of carbon they produce.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Biodiversity loss is a major concern for conservationists.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Renewable energy comes from sources like the sun, wind, and water.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "We need to protect habitats to ensure the survival of many species.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Soil pollution affects both land and water.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "The depletion of the ozone layer is a serious problem.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "We should use public transport to reduce emission.", "answer": "We should use public transport to reduce emissions.", "explanation": "Emissions, не emission (множественное число)."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "4. Translate the sentences into English using the correct environment vocabulary. Type your translation (one sentence) in the box.",
-            "subtasks": [
-                {"question": "Глобальное потепление вызывает таяние полярных ледников.", "answer": "Global warming is causing polar ice caps to melt.", "explanation": ""},
-                {"question": "Углеродный след человека – это количество углерода, которое он производит.", "answer": "The carbon footprint of a person is the amount of carbon they produce.", "explanation": ""},
-                {"question": "Потеря биоразнообразия – серьёзная проблема для защитников природы.", "answer": "Biodiversity loss is a major concern for conservationists.", "explanation": ""},
-                {"question": "Возобновляемая энергия поступает из таких источников, как солнце, ветер и вода.", "answer": "Renewable energy comes from sources like the sun, wind, and water.", "explanation": ""},
-                {"question": "Нам нужно защищать места обитания, чтобы обеспечить выживание многих видов.", "answer": "We need to protect habitats to ensure the survival of many species.", "explanation": ""},
-                {"question": "Загрязнение почвы влияет как на землю, так и на воду.", "answer": "Soil pollution affects both land and water.", "explanation": ""},
-                {"question": "Истощение озонового слоя – серьёзная проблема.", "answer": "The depletion of the ozone layer is a serious problem.", "explanation": ""},
-                {"question": "Нам следует пользоваться общественным транспортом, чтобы сократить выбросы.", "answer": "We should use public transport to reduce emissions.", "explanation": ""}
-            ]
-        },
-    # =====================================================
-    # ВАРИАНТ 4 (перефразирование)
-    # =====================================================
-[
-  {
-    "type": "complex",
-    "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-    "subtasks": [
-      {
-        "question": "______ is the process of planting trees to restore forests.",
-        "options": ["a) Deforestation", "b) Logging", "c) Reforestation", "d) Agriculture"],
-        "answer": "c",
-        "explanation": "reforestation – лесовосстановление."
-      },
-      {
-        "question": "______ is the protection of natural resources.",
-        "options": ["a) Exploitation", "b) Conservation", "c) Development", "d) Urbanisation"],
-        "answer": "b",
-        "explanation": "conservation – сохранение природы."
-      },
-      {
-        "question": "______ energy is produced by the movement of water.",
-        "options": ["a) Solar", "b) Wind", "c) Geothermal", "d) Hydroelectric"],
-        "answer": "d",
-        "explanation": "hydroelectric power – гидроэлектроэнергия."
-      },
-      {
-        "question": "______ energy comes from the heat of the Earth.",
-        "options": ["a) Geothermal", "b) Solar", "c) Wind", "d) Nuclear"],
-        "answer": "a",
-        "explanation": "geothermal energy – геотермальная энергия."
-      },
-      {
-        "question": "______ is a renewable energy source made from plants.",
-        "options": ["a) Fossil fuel", "b) Nuclear", "c) Biomass", "d) Natural gas"],
-        "answer": "c",
-        "explanation": "biomass – биомасса."
-      },
-      {
-        "question": "______ means the ability to be maintained at a certain level.",
-        "options": ["a) Stability", "b) Durability", "c) Efficiency", "d) Sustainability"],
-        "answer": "d",
-        "explanation": "sustainability – устойчивость."
-      },
-      {
-        "question": "We should ______ water by taking shorter showers.",
-        "options": ["a) waste", "b) save", "c) use", "d) consume"],
-        "answer": "b",
-        "explanation": "to save water – экономить воду."
-      },
-      {
-        "question": "We need to ______ trees to improve air quality.",
-        "options": ["a) cut", "b) burn", "c) plant", "d) remove"],
-        "answer": "c",
-        "explanation": "to plant trees – сажать деревья."
-              }
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "2. Fill in the gaps with the correct word or phrase. Type the missing word(s) in the box.",
-            "subtasks": [
-                {"question": "______ is the process of planting trees to restore forests.", "answer": "Reforestation", "explanation": "Reforestation."},
-                {"question": "______ is the protection of natural resources.", "answer": "Conservation", "explanation": "Conservation."},
-                {"question": "______ energy is produced by the movement of water.", "answer": "Hydroelectric", "explanation": "Hydroelectric."},
-                {"question": "______ energy comes from the heat of the Earth.", "answer": "Geothermal", "explanation": "Geothermal."},
-                {"question": "______ is a renewable energy source made from plants.", "answer": "Biomass", "explanation": "Biomass."},
-                {"question": "______ means the ability to be maintained at a certain level.", "answer": "Sustainability", "explanation": "Sustainability."},
-                {"question": "We should ______ water by taking shorter showers.", "answer": "save", "explanation": "save."},
-                {"question": "We need to ______ trees to improve air quality.", "answer": "plant", "explanation": "plant."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
-            "subtasks": [
-                {"question": "Reforestation is the process of planting trees to restore forests.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Conservation is the protection of natural resources.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Hydroelectric energy is produced by the movement of water.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Geothermal energy comes from the heat of the Earth.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Biomass is a renewable energy source made from plants.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Sustainability means the ability to be maintained at a certain level.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "We should save water by taking shorter showers.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "We need to plant trees to improve air quality.", "answer": "Correct", "explanation": "Верно."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "4. Rewrite the sentences using the word given in brackets. Type the whole sentence.",
-            "subtasks": [
-                {"question": "Planting trees to restore forests is important. (reforestation) → Reforestation is the process of planting trees to restore forests.", "answer": "Reforestation is the process of planting trees to restore forests.", "explanation": "reforestation."},
-                {"question": "Protecting nature is essential. (conservation) → Conservation is the protection of natural resources.", "answer": "Conservation is the protection of natural resources.", "explanation": "conservation."},
-                {"question": "Water movement produces energy. (hydroelectric) → Hydroelectric energy is produced by the movement of water.", "answer": "Hydroelectric energy is produced by the movement of water.", "explanation": "hydroelectric."},
-                {"question": "Earth's heat is a source of energy. (geothermal) → Geothermal energy comes from the heat of the Earth.", "answer": "Geothermal energy comes from the heat of the Earth.", "explanation": "geothermal."},
-                {"question": "Plants can be used for energy. (biomass) → Biomass is a renewable energy source made from plants.", "answer": "Biomass is a renewable energy source made from plants.", "explanation": "biomass."},
-                {"question": "Being maintained is important. (sustainability) → Sustainability means the ability to be maintained at a certain level.", "answer": "Sustainability means the ability to be maintained at a certain level.", "explanation": "sustainability."},
-                {"question": "Use less water. (save) → We should save water by taking shorter showers.", "answer": "We should save water by taking shorter showers.", "explanation": "save water."},
-                {"question": "Put trees in the ground. (plant) → We need to plant trees to improve air quality.", "answer": "We need to plant trees to improve air quality.", "explanation": "plant trees."}
-            ]
-        },
-    # =====================================================
-    # ВАРИАНТ 5 (перевод)
-    # =====================================================
-[
-  {
-    "type": "complex",
-    "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-    "subtasks": [
-      {
-        "question": "______ change is the biggest threat to our planet.",
-        "options": ["a) Weather", "b) Atmospheric", "c) Climate", "d) Environmental"],
-        "answer": "c",
-        "explanation": "climate change – изменение климата."
-      },
-      {
-        "question": "______ emissions are a major cause of global warming.",
-        "options": ["a) Methane", "b) Carbon", "c) Nitrogen", "d) Sulphur"],
-        "answer": "b",
-        "explanation": "carbon emissions – выбросы углерода."
-      },
-      {
-        "question": "______ energy sources do not produce greenhouse gases.",
-        "options": ["a) Renewable", "b) Clean", "c) Alternative", "d) Green"],
-        "answer": "d",
-        "explanation": "green energy – чистая энергия (но правильнее renewable)."
-      },
-      {
-        "question": "We should ______ waste to protect the environment.",
-        "options": ["a) reduce", "b) recycle", "c) reuse", "d) save"],
-        "answer": "a",
-        "explanation": "to reduce waste – сокращать отходы."
-      },
-      {
-        "question": "We can ______ plastic bottles to create new products.",
-        "options": ["a) reuse", "b) recycle", "c) reduce", "d) upcycle"],
-        "answer": "b",
-        "explanation": "to recycle – перерабатывать."
-      },
-      {
-        "question": "We should ______ old clothes instead of throwing them away.",
-        "options": ["a) recycle", "b) repair", "c) reuse", "d) reduce"],
-        "answer": "c",
-        "explanation": "to reuse – использовать повторно."
-      },
-      {
-        "question": "______ is the practice of protecting the natural environment.",
-        "options": ["a) Preservation", "b) Protection", "c) Sustainability", "d) Conservation"],
-        "answer": "d",
-        "explanation": "conservation – сохранение природы."
-      },
-      {
-        "question": "______ farming uses no artificial chemicals.",
-        "options": ["a) Organic", "b) Natural", "c) Ecological", "d) Sustainable"],
-        "answer": "a",
-        "explanation": "organic farming – органическое земледелие."
-              }
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "2. Fill in the gaps with the correct word or phrase. Type the missing word(s) in the box.",
-            "subtasks": [
-                {"question": "______ change is the biggest threat to our planet.", "answer": "Climate", "explanation": "Climate."},
-                {"question": "______ emissions are a major cause of global warming.", "answer": "Carbon", "explanation": "Carbon."},
-                {"question": "______ energy sources do not produce greenhouse gases.", "answer": "Renewable", "explanation": "Renewable."},
-                {"question": "We should ______ waste to protect the environment.", "answer": "reduce", "explanation": "reduce."},
-                {"question": "We can ______ plastic bottles to create new products.", "answer": "recycle", "explanation": "recycle."},
-                {"question": "We should ______ old clothes instead of throwing them away.", "answer": "reuse", "explanation": "reuse."},
-                {"question": "______ is the practice of protecting the natural environment.", "answer": "Conservation", "explanation": "Conservation."},
-                {"question": "______ farming uses no artificial chemicals.", "answer": "Organic", "explanation": "Organic."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
-            "subtasks": [
-                {"question": "Climate change is the biggest threat to our planet.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Carbon emissions are a major cause of global warming.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Renewable energy sources do not produce greenhouse gases.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "We should reduce waste to protect the environment.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "We can recycle plastic bottles to create new products.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "We should reuse old clothes instead of throwing them away.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Conservation is the practice of protecting the natural environment.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Organic farming uses no artificial chemicals.", "answer": "Correct", "explanation": "Верно."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "4. Translate the sentences into English using the correct environment vocabulary. Type your translation (one sentence) in the box.",
-            "subtasks": [
-                {"question": "Изменение климата – самая большая угроза для нашей планеты.", "answer": "Climate change is the biggest threat to our planet.", "explanation": ""},
-                {"question": "Выбросы углерода – основная причина глобального потепления.", "answer": "Carbon emissions are a major cause of global warming.", "explanation": ""},
-                {"question": "Возобновляемые источники энергии не производят парниковых газов.", "answer": "Renewable energy sources do not produce greenhouse gases.", "explanation": ""},
-                {"question": "Нам следует сокращать отходы, чтобы защитить окружающую среду.", "answer": "We should reduce waste to protect the environment.", "explanation": ""},
-                {"question": "Мы можем перерабатывать пластиковые бутылки, чтобы создавать новые продукты.", "answer": "We can recycle plastic bottles to create new products.", "explanation": ""},
-                {"question": "Нам следует использовать старую одежду повторно, а не выбрасывать.", "answer": "We should reuse old clothes instead of throwing them away.", "explanation": ""},
-                {"question": "Сохранение природы – это практика защиты окружающей среды.", "answer": "Conservation is the practice of protecting the natural environment.", "explanation": ""},
-                {"question": "Органическое земледелие не использует искусственные химикаты.", "answer": "Organic farming uses no artificial chemicals.", "explanation": ""}
-            ]
-        },
-    # =====================================================
-    # ВАРИАНТ 6 (перефразирование)
-    # =====================================================
- [
-  {
-    "type": "complex",
-    "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-    "subtasks": [
-      {
-        "question": "______ is a major environmental issue caused by excessive waste.",
-        "options": ["a) Pollution", "b) Destruction", "c) Degradation", "d) Contamination"],
-        "answer": "a",
-        "explanation": "pollution – загрязнение."
-      },
-      {
-        "question": "______ is the release of harmful substances into the air.",
-        "options": ["a) Soil pollution", "b) Air pollution", "c) Noise pollution", "d) Water pollution"],
-        "answer": "b",
-        "explanation": "air pollution – загрязнение воздуха."
-      },
-      {
-        "question": "______ is the contamination of rivers and oceans.",
-        "options": ["a) Land pollution", "b) Marine pollution", "c) Water pollution", "d) Air pollution"],
-        "answer": "c",
-        "explanation": "water pollution – загрязнение воды."
-      },
-      {
-        "question": "______ waste includes plastic bottles, bags, and packaging.",
-        "options": ["a) Organic", "b) Hazardous", "c) Industrial", "d) Plastic"],
-        "answer": "d",
-        "explanation": "plastic waste – пластиковые отходы."
-      },
-      {
-        "question": "______ is the process of decomposing organic matter.",
-        "options": ["a) Composting", "b) Recycling", "c) Upcycling", "d) Landfilling"],
-        "answer": "a",
-        "explanation": "composting – компостирование."
-      },
-      {
-        "question": "______ should be avoided because it harms the environment.",
-        "options": ["a) Reuse", "b) Waste", "c) Recycling", "d) Conservation"],
-        "answer": "b",
-        "explanation": "waste – отходы."
-      },
-      {
-        "question": "______ initiatives aim to protect the planet for future generations.",
-        "options": ["a) Sustainable", "b) Ecological", "c) Green", "d) Environmental"],
-        "answer": "c",
-        "explanation": "green initiatives – зелёные инициативы."
-      },
-      {
-        "question": "We should ______ petitions to demand environmental action.",
-        "options": ["a) write", "b) create", "c) support", "d) sign"],
-        "answer": "d",
-        "explanation": "to sign petitions – подписывать петиции."
-             }
-           ]
-        },
-        {
-            "type": "complex",
-            "text": "2. Fill in the gaps with the correct word or phrase. Type the missing word(s) in the box.",
-            "subtasks": [
-                {"question": "______ is a major environmental issue caused by excessive waste.", "answer": "Pollution", "explanation": "Pollution."},
-                {"question": "______ is the release of harmful substances into the air.", "answer": "Air pollution", "explanation": "Air pollution."},
-                {"question": "______ is the contamination of rivers and oceans.", "answer": "Water pollution", "explanation": "Water pollution."},
-                {"question": "______ waste includes plastic bottles, bags, and packaging.", "answer": "Plastic", "explanation": "Plastic."},
-                {"question": "______ is the process of decomposing organic matter.", "answer": "Composting", "explanation": "Composting."},
-                {"question": "______ should be avoided because it harms the environment.", "answer": "Waste", "explanation": "Waste."},
-                {"question": "______ initiatives aim to protect the planet for future generations.", "answer": "Green", "explanation": "Green."},
-                {"question": "We should ______ petitions to demand environmental action.", "answer": "sign", "explanation": "sign."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
-            "subtasks": [
-                {"question": "Pollution is a major environmental issue caused by excessive waste.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Air pollution is the release of harmful substances into the air.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Water pollution is the contamination of rivers and oceans.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Plastic waste includes plastic bottles, bags, and packaging.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Composting is the process of decomposing organic matter.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Waste should be avoided because it harms the environment.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Green initiatives aim to protect the planet for future generations.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "We should sign petitions to demand environmental action.", "answer": "Correct", "explanation": "Верно."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "4. Rewrite the sentences using the word given in brackets. Type the whole sentence.",
-            "subtasks": [
-                {"question": "Excessive waste causes problems. (pollution) → Pollution is a major environmental issue caused by excessive waste.", "answer": "Pollution is a major environmental issue caused by excessive waste.", "explanation": "pollution."},
-                {"question": "Harmful substances in the air cause problems. (air pollution) → Air pollution is the release of harmful substances into the air.", "answer": "Air pollution is the release of harmful substances into the air.", "explanation": "air pollution."},
-                {"question": "Rivers and oceans are being contaminated. (water pollution) → Water pollution is the contamination of rivers and oceans.", "answer": "Water pollution is the contamination of rivers and oceans.", "explanation": "water pollution."},
-                {"question": "Plastic products are a problem. (plastic waste) → Plastic waste includes plastic bottles, bags, and packaging.", "answer": "Plastic waste includes plastic bottles, bags, and packaging.", "explanation": "plastic waste."},
-                {"question": "Organic matter can be decomposed. (composting) → Composting is the process of decomposing organic matter.", "answer": "Composting is the process of decomposing organic matter.", "explanation": "composting."},
-                {"question": "Don't create too much trash. (waste) → Waste should be avoided because it harms the environment.", "answer": "Waste should be avoided because it harms the environment.", "explanation": "waste."},
-                {"question": "Initiatives for the planet exist. (green) → Green initiatives aim to protect the planet for future generations.", "answer": "Green initiatives aim to protect the planet for future generations.", "explanation": "green initiatives."},
-                {"question": "We can demand action by petition. (sign) → We should sign petitions to demand environmental action.", "answer": "We should sign petitions to demand environmental action.", "explanation": "sign petitions."}
-            ]
-        },
-    # =====================================================
-    # ВАРИАНТ 7 (перевод)
-    # =====================================================
-[
-  {
-    "type": "complex",
-    "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-    "subtasks": [
-      {
-        "question": "______ is the warming of the Earth due to greenhouse gases.",
-        "options": ["a) Climate change", "b) Global warming", "c) Ozone depletion", "d) Acid rain"],
-        "answer": "b",
-        "explanation": "global warming – глобальное потепление."
-      },
-      {
-        "question": "______ is the clearing of forests for agriculture or logging.",
-        "options": ["a) Reforestation", "b) Afforestation", "c) Deforestation", "d) Urbanisation"],
-        "answer": "c",
-        "explanation": "deforestation – вырубка лесов."
-      },
-      {
-        "question": "______ energy is generated by the sun.",
-        "options": ["a) Geothermal", "b) Wind", "c) Nuclear", "d) Solar"],
-        "answer": "d",
-        "explanation": "solar energy – солнечная энергия."
-      },
-      {
-        "question": "______ energy is generated by the wind.",
-        "options": ["a) Wind", "b) Solar", "c) Hydro", "d) Tidal"],
-        "answer": "a",
-        "explanation": "wind energy – энергия ветра."
-      },
-      {
-        "question": "We should ______ our carbon footprint by reducing energy use.",
-        "options": ["a) increase", "b) maintain", "c) reduce", "d) ignore"],
-        "answer": "c",
-        "explanation": "to reduce carbon footprint – сокращать углеродный след."
-      },
-      {
-        "question": "We should ______ environmental NGOs to support their work.",
-        "options": ["a) protest against", "b) boycott", "c) ignore", "d) donate to"],
-        "answer": "d",
-        "explanation": "to donate to – жертвовать."
-      },
-      {
-        "question": "______ is the practice of protecting endangered species.",
-        "options": ["a) Exploitation", "b) Conservation", "c) Destruction", "d) Development"],
-        "answer": "b",
-        "explanation": "conservation – сохранение природы."
-      },
-      {
-        "question": "______ is the process of turning organic waste into fertiliser.",
-        "options": ["a) Recycling", "b) Upcycling", "c) Incineration", "d) Composting"],
-        "answer": "d",
-        "explanation": "composting – компостирование."
-              }
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "2. Fill in the gaps with the correct word or phrase. Type the missing word(s) in the box.",
-            "subtasks": [
-                {"question": "______ is the warming of the Earth due to greenhouse gases.", "answer": "Global warming", "explanation": "Global warming."},
-                {"question": "______ is the clearing of forests for agriculture or logging.", "answer": "Deforestation", "explanation": "Deforestation."},
-                {"question": "______ energy is generated by the sun.", "answer": "Solar", "explanation": "Solar."},
-                {"question": "______ energy is generated by the wind.", "answer": "Wind", "explanation": "Wind."},
-                {"question": "We should ______ our carbon footprint by reducing energy use.", "answer": "reduce", "explanation": "reduce."},
-                {"question": "We should ______ environmental NGOs to support their work.", "answer": "donate to", "explanation": "donate to."},
-                {"question": "______ is the practice of protecting endangered species.", "answer": "Conservation", "explanation": "Conservation."},
-                {"question": "______ is the process of turning organic waste into fertiliser.", "answer": "Composting", "explanation": "Composting."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
-            "subtasks": [
-                {"question": "Global warming is the warming of the Earth due to greenhouse gases.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Deforestation is the clearing of forests for agriculture or logging.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Solar energy is generated by the sun.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Wind energy is generated by the wind.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "We should reduce our carbon footprint by reducing energy use.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "We should donate to environmental NGOs to support their work.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Conservation is the practice of protecting endangered species.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Composting is the process of turning organic waste into fertiliser.", "answer": "Correct", "explanation": "Верно."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "4. Translate the sentences into English using the correct environment vocabulary. Type your translation (one sentence) in the box.",
-            "subtasks": [
-                {"question": "Глобальное потепление – это потепление Земли из-за парниковых газов.", "answer": "Global warming is the warming of the Earth due to greenhouse gases.", "explanation": ""},
-                {"question": "Вырубка лесов – это вырубка лесов для сельского хозяйства или лесозаготовок.", "answer": "Deforestation is the clearing of forests for agriculture or logging.", "explanation": ""},
-                {"question": "Солнечная энергия вырабатывается солнцем.", "answer": "Solar energy is generated by the sun.", "explanation": ""},
-                {"question": "Энергия ветра вырабатывается ветром.", "answer": "Wind energy is generated by the wind.", "explanation": ""},
-                {"question": "Нам следует сократить свой углеродный след, уменьшив потребление энергии.", "answer": "We should reduce our carbon footprint by reducing energy use.", "explanation": ""},
-                {"question": "Нам следует жертвовать экологическим НПО, чтобы поддержать их работу.", "answer": "We should donate to environmental NGOs to support their work.", "explanation": ""},
-                {"question": "Сохранение природы – это практика защиты исчезающих видов.", "answer": "Conservation is the practice of protecting endangered species.", "explanation": ""},
-                {"question": "Компостирование – это процесс превращения органических отходов в удобрение.", "answer": "Composting is the process of turning organic waste into fertiliser.", "explanation": ""}
-            ]
-        },
-    # =====================================================
-    # ВАРИАНТ 8 (перефразирование)
-    # =====================================================
-[
-  {
-    "type": "complex",
-    "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-    "subtasks": [
-      {
-        "question": "______ is the warming of the Earth due to greenhouse gases.",
-        "options": ["a) Climate change", "b) Global warming", "c) Ozone depletion", "d) Acid rain"],
-        "answer": "b",
-        "explanation": "global warming – глобальное потепление."
-      },
-      {
-        "question": "______ is the clearing of forests for agriculture or logging.",
-        "options": ["a) Reforestation", "b) Afforestation", "c) Deforestation", "d) Urbanisation"],
-        "answer": "c",
-        "explanation": "deforestation – вырубка лесов."
-      },
-      {
-        "question": "______ energy is generated by the sun.",
-        "options": ["a) Geothermal", "b) Wind", "c) Nuclear", "d) Solar"],
-        "answer": "d",
-        "explanation": "solar energy – солнечная энергия."
-      },
-      {
-        "question": "______ energy is generated by the wind.",
-        "options": ["a) Wind", "b) Solar", "c) Hydro", "d) Tidal"],
-        "answer": "a",
-        "explanation": "wind energy – энергия ветра."
-      },
-      {
-        "question": "We should ______ our carbon footprint by reducing energy use.",
-        "options": ["a) increase", "b) maintain", "c) reduce", "d) ignore"],
-        "answer": "c",
-        "explanation": "to reduce carbon footprint – сокращать углеродный след."
-      },
-      {
-        "question": "We should ______ environmental NGOs to support their work.",
-        "options": ["a) protest against", "b) boycott", "c) ignore", "d) donate to"],
-        "answer": "d",
-        "explanation": "to donate to – жертвовать."
-      },
-      {
-        "question": "______ is the practice of protecting endangered species.",
-        "options": ["a) Exploitation", "b) Conservation", "c) Destruction", "d) Development"],
-        "answer": "b",
-        "explanation": "conservation – сохранение природы."
-      },
-      {
-        "question": "______ is the process of turning organic waste into fertiliser.",
-        "options": ["a) Recycling", "b) Upcycling", "c) Incineration", "d) Composting"],
-        "answer": "d",
-        "explanation": "composting – компостирование."
-              }
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "2. Fill in the gaps with the correct word or phrase. Type the missing word(s) in the box.",
-            "subtasks": [
-                {"question": "______ is a major contributor to global warming.", "answer": "Carbon dioxide", "explanation": "Carbon dioxide."},
-                {"question": "______ is a greenhouse gas released by livestock.", "answer": "Methane", "explanation": "Methane."},
-                {"question": "______ is the process of reducing the use of natural resources.", "answer": "Resource efficiency", "explanation": "Resource efficiency."},
-                {"question": "______ is the ability of an ecosystem to maintain itself.", "answer": "Resilience", "explanation": "Resilience."},
-                {"question": "______ is the movement of people to protect the environment.", "answer": "Environmentalism", "explanation": "Environmentalism."},
-                {"question": "______ is the practice of using renewable resources.", "answer": "Green living", "explanation": "Green living."},
-                {"question": "______ is the study of the environment and its problems.", "answer": "Ecology", "explanation": "Ecology."},
-                {"question": "______ is the management of natural resources.", "answer": "Environmental management", "explanation": "Environmental management."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
-            "subtasks": [
-                {"question": "Carbon dioxide is a major contributor to global warming.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Methane is a greenhouse gas released by livestock.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Resource efficiency is the process of reducing the use of natural resources.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Resilience is the ability of an ecosystem to maintain itself.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Environmentalism is the movement of people to protect the environment.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Green living is the practice of using renewable resources.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Ecology is the study of the environment and its problems.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Environmental management is the management of natural resources.", "answer": "Correct", "explanation": "Верно."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "4. Rewrite the sentences using the word given in brackets. Type the whole sentence.",
-            "subtasks": [
-                {"question": "CO2 warms the planet. (carbon dioxide) → Carbon dioxide is a major contributor to global warming.", "answer": "Carbon dioxide is a major contributor to global warming.", "explanation": "carbon dioxide."},
-                {"question": "Cows release a harmful gas. (methane) → Methane is a greenhouse gas released by livestock.", "answer": "Methane is a greenhouse gas released by livestock.", "explanation": "methane."},
-                {"question": "Using fewer resources is important. (resource efficiency) → Resource efficiency is the process of reducing the use of natural resources.", "answer": "Resource efficiency is the process of reducing the use of natural resources.", "explanation": "resource efficiency."},
-                {"question": "Ecosystems need to stay balanced. (resilience) → Resilience is the ability of an ecosystem to maintain itself.", "answer": "Resilience is the ability of an ecosystem to maintain itself.", "explanation": "resilience."},
-                {"question": "People are fighting for the planet. (environmentalism) → Environmentalism is the movement of people to protect the environment.", "answer": "Environmentalism is the movement of people to protect the environment.", "explanation": "environmentalism."},
-                {"question": "Living green helps the planet. (green living) → Green living is the practice of using renewable resources.", "answer": "Green living is the practice of using renewable resources.", "explanation": "green living."},
-                {"question": "Study the environment. (ecology) → Ecology is the study of the environment and its problems.", "answer": "Ecology is the study of the environment and its problems.", "explanation": "ecology."},
-                {"question": "Manage nature wisely. (environmental management) → Environmental management is the management of natural resources.", "answer": "Environmental management is the management of natural resources.", "explanation": "environmental management."}
-            ]
-        },
-    # =====================================================
-    # ВАРИАНТ 9 (перевод)
-    # =====================================================
-[
-  {
-    "type": "complex",
-    "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-    "subtasks": [
-      {
-        "question": "______ gas emissions are the main cause of the greenhouse effect.",
-        "options": ["a) Industrial", "b) Greenhouse", "c) Toxic", "d) Exhaust"],
-        "answer": "b",
-        "explanation": "greenhouse gas – парниковый газ."
-      },
-      {
-        "question": "______ is the process of restoring damaged ecosystems.",
-        "options": ["a) Ecosystem management", "b) Habitat protection", "c) Ecological restoration", "d) Biodiversity conservation"],
-        "answer": "c",
-        "explanation": "ecological restoration – экологическое восстановление."
-      },
-      {
-        "question": "______ is the protection of animals and plants in their natural habitats.",
-        "options": ["a) Zoo conservation", "b) Habitat protection", "c) Wildlife conservation", "d) Species management"],
-        "answer": "c",
-        "explanation": "wildlife conservation – сохранение дикой природы."
-      },
-      {
-        "question": "______ is the use of natural resources at a rate that does not deplete them.",
-        "options": ["a) Resource exploitation", "b) Resource extraction", "c) Resource depletion", "d) Sustainable resource use"],
-        "answer": "d",
-        "explanation": "sustainable resource use – устойчивое использование ресурсов."
-      },
-      {
-        "question": "______ is the process of making something less harmful to the environment.",
-        "options": ["a) Pollution", "b) Greening", "c) Waste management", "d) Environmental impact"],
-        "answer": "b",
-        "explanation": "greening – озеленение (в широком смысле)."
-      },
-      {
-        "question": "______ is the practice of reducing food waste.",
-        "options": ["a) Food recycling", "b) Food composting", "c) Food waste reduction", "d) Food donation"],
-        "answer": "c",
-        "explanation": "food waste reduction – сокращение пищевых отходов."
-      },
-      {
-        "question": "______ is the use of natural light to save energy.",
-        "options": ["a) Solar power", "b) Natural lighting", "c) Daylighting", "d) Light conservation"],
-        "answer": "c",
-        "explanation": "daylighting – использование естественного освещения."
-      },
-      {
-        "question": "______ is the use of plants to clean polluted soil.",
-        "options": ["a) Bioremediation", "b) Phytoremediation", "c) Soil restoration", "d) Land reclamation"],
-        "answer": "b",
-        "explanation": "phytoremediation – фиторемедиация."
-              }
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "2. Fill in the gaps with the correct word or phrase. Type the missing word(s) in the box.",
-            "subtasks": [
-                {"question": "______ gas emissions are the main cause of the greenhouse effect.", "answer": "Greenhouse", "explanation": "Greenhouse."},
-                {"question": "______ is the process of restoring damaged ecosystems.", "answer": "Ecological restoration", "explanation": "Ecological restoration."},
-                {"question": "______ is the protection of animals and plants in their natural habitats.", "answer": "Wildlife conservation", "explanation": "Wildlife conservation."},
-                {"question": "______ is the use of natural resources at a rate that does not deplete them.", "answer": "Sustainable resource use", "explanation": "Sustainable resource use."},
-                {"question": "______ is the process of making something less harmful to the environment.", "answer": "Greening", "explanation": "Greening."},
-                {"question": "______ is the practice of reducing food waste.", "answer": "Food waste reduction", "explanation": "Food waste reduction."},
-                {"question": "______ is the use of natural light to save energy.", "answer": "Daylighting", "explanation": "Daylighting."},
-                {"question": "______ is the use of plants to clean polluted soil.", "answer": "Phytoremediation", "explanation": "Phytoremediation."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
-            "subtasks": [
-                {"question": "Greenhouse gas emissions are the main cause of the greenhouse effect.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Ecological restoration is the process of restoring damaged ecosystems.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Wildlife conservation is the protection of animals and plants in their natural habitats.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Sustainable resource use is the use of natural resources at a rate that does not deplete them.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Greening is the process of making something less harmful to the environment.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Food waste reduction is the practice of reducing food waste.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Daylighting is the use of natural light to save energy.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Phytoremediation is the use of plants to clean polluted soil.", "answer": "Correct", "explanation": "Верно."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "4. Translate the sentences into English using the correct environment vocabulary. Type your translation (one sentence) in the box.",
-            "subtasks": [
-                {"question": "Выбросы парниковых газов являются основной причиной парникового эффекта.", "answer": "Greenhouse gas emissions are the main cause of the greenhouse effect.", "explanation": ""},
-                {"question": "Экологическое восстановление – это процесс восстановления повреждённых экосистем.", "answer": "Ecological restoration is the process of restoring damaged ecosystems.", "explanation": ""},
-                {"question": "Сохранение дикой природы – это защита животных и растений в их естественной среде обитания.", "answer": "Wildlife conservation is the protection of animals and plants in their natural habitats.", "explanation": ""},
-                {"question": "Устойчивое использование ресурсов – это использование природных ресурсов в таком темпе, который не истощает их.", "answer": "Sustainable resource use is the use of natural resources at a rate that does not deplete them.", "explanation": ""},
-                {"question": "Озеленение – это процесс уменьшения вреда для окружающей среды.", "answer": "Greening is the process of making something less harmful to the environment.", "explanation": ""},
-                {"question": "Сокращение пищевых отходов – это практика уменьшения количества пищевых отходов.", "answer": "Food waste reduction is the practice of reducing food waste.", "explanation": ""},
-                {"question": "Использование естественного освещения – это использование естественного света для экономии энергии.", "answer": "Daylighting is the use of natural light to save energy.", "explanation": ""},
-                {"question": "Фиторемедиация – это использование растений для очистки загрязнённой почвы.", "answer": "Phytoremediation is the use of plants to clean polluted soil.", "explanation": ""}
-            ]
-        },
-    # =====================================================
-    # ВАРИАНТ 10 (перефразирование)
-    # =====================================================
-[
-  {
-    "type": "complex",
-    "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-    "subtasks": [
-      {
-        "question": "______ is the practice of reducing the amount of waste we produce.",
-        "options": ["a) Waste recycling", "b) Waste minimisation", "c) Waste management", "d) Waste disposal"],
-        "answer": "b",
-        "explanation": "waste minimisation – минимизация отходов."
-      },
-      {
-        "question": "______ is the use of products that can be reused.",
-        "options": ["a) Disposable products", "b) Single-use products", "c) Reusable products", "d) Recyclable products"],
-        "answer": "c",
-        "explanation": "reusable products – многоразовые продукты."
-      },
-      {
-        "question": "______ is the process of breaking down organic matter.",
-        "options": ["a) Composting", "b) Recycling", "c) Decomposition", "d) Incineration"],
-        "answer": "c",
-        "explanation": "decomposition – разложение."
-      },
-      {
-        "question": "______ is the practice of using less water.",
-        "options": ["a) Water management", "b) Water conservation", "c) Water treatment", "d) Water distribution"],
-        "answer": "b",
-        "explanation": "water conservation – сохранение воды."
-      },
-      {
-        "question": "______ is the use of energy-saving appliances.",
-        "options": ["a) Energy production", "b) Energy storage", "c) Energy consumption", "d) Energy efficiency"],
-        "answer": "d",
-        "explanation": "energy efficiency – энергоэффективность."
-      },
-      {
-        "question": "______ is the practice of walking or cycling instead of driving.",
-        "options": ["a) Active transport", "b) Public transport", "c) Private transport", "d) Shared transport"],
-        "answer": "a",
-        "explanation": "active transport – активный транспорт."
-      },
-      {
-        "question": "______ is the practice of buying local produce.",
-        "options": ["a) International sourcing", "b) Imported goods", "c) Local sourcing", "d) Mass production"],
-        "answer": "c",
-        "explanation": "local sourcing – покупка местных продуктов."
-      },
-      {
-        "question": "______ is the practice of reducing noise pollution.",
-        "options": ["a) Sound insulation", "b) Noise cancellation", "c) Noise control", "d) Noise reduction"],
-        "answer": "d",
-        "explanation": "noise reduction – снижение шума."
-              }
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "2. Fill in the gaps with the correct word or phrase. Type the missing word(s) in the box.",
-            "subtasks": [
-                {"question": "______ is the practice of reducing the amount of waste we produce.", "answer": "Waste minimisation", "explanation": "Waste minimisation."},
-                {"question": "______ is the use of products that can be reused.", "answer": "Reusable products", "explanation": "Reusable products."},
-                {"question": "______ is the process of breaking down organic matter.", "answer": "Decomposition", "explanation": "Decomposition."},
-                {"question": "______ is the practice of using less water.", "answer": "Water conservation", "explanation": "Water conservation."},
-                {"question": "______ is the use of energy-saving appliances.", "answer": "Energy efficiency", "explanation": "Energy efficiency."},
-                {"question": "______ is the practice of walking or cycling instead of driving.", "answer": "Active transport", "explanation": "Active transport."},
-                {"question": "______ is the practice of buying local produce.", "answer": "Local sourcing", "explanation": "Local sourcing."},
-                {"question": "______ is the practice of reducing noise pollution.", "answer": "Noise reduction", "explanation": "Noise reduction."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
-            "subtasks": [
-                {"question": "Waste minimisation is the practice of reducing the amount of waste we produce.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Reusable products is the use of products that can be reused.", "answer": "Reusable products are the use of products that can be reused."},
-                {"question": "Decomposition is the process of breaking down organic matter.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Water conservation is the practice of using less water.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Energy efficiency is the use of energy-saving appliances.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Active transport is the practice of walking or cycling instead of driving.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Local sourcing is the practice of buying local produce.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Noise reduction is the practice of reducing noise pollution.", "answer": "Correct", "explanation": "Верно."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "4. Rewrite the sentences using the word given in brackets. Type the whole sentence.",
-            "subtasks": [
-                {"question": "We need to reduce waste. (waste minimisation) → Waste minimisation is the practice of reducing the amount of waste we produce.", "answer": "Waste minimisation is the practice of reducing the amount of waste we produce.", "explanation": "waste minimisation."},
-                {"question": "Products that can be reused are good. (reusable products) → Reusable products are the use of products that can be reused.", "answer": "Reusable products are the use of products that can be reused.", "explanation": "reusable products."},
-                {"question": "Organic matter breaks down. (decomposition) → Decomposition is the process of breaking down organic matter.", "answer": "Decomposition is the process of breaking down organic matter.", "explanation": "decomposition."},
-                {"question": "Use less water. (water conservation) → Water conservation is the practice of using less water.", "answer": "Water conservation is the practice of using less water.", "explanation": "water conservation."},
-                {"question": "Use appliances that save energy. (energy efficiency) → Energy efficiency is the use of energy-saving appliances.", "answer": "Energy efficiency is the use of energy-saving appliances.", "explanation": "energy efficiency."},
-                {"question": "Walk or cycle instead of drive. (active transport) → Active transport is the practice of walking or cycling instead of driving.", "answer": "Active transport is the practice of walking or cycling instead of driving.", "explanation": "active transport."},
-                {"question": "Buy food from local farms. (local sourcing) → Local sourcing is the practice of buying local produce.", "answer": "Local sourcing is the practice of buying local produce.", "explanation": "local sourcing."},
-                {"question": "Reduce noise. (noise reduction) → Noise reduction is the practice of reducing noise pollution.", "answer": "Noise reduction is the practice of reducing noise pollution.", "explanation": "noise reduction."}
-            ]
-        },
-    # =====================================================
-    # ВАРИАНТ 11 (перевод)
-    # =====================================================
-[
-  {
-    "type": "complex",
-    "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-    "subtasks": [
-      {
-        "question": "______ is the warming of the oceans due to climate change.",
-        "options": ["a) Ocean cooling", "b) Ocean warming", "c) Ocean current", "d) Ocean salinity"],
-        "answer": "b",
-        "explanation": "ocean warming – потепление океанов."
-      },
-      {
-        "question": "______ is the increase in the acidity of the oceans.",
-        "options": ["a) Ocean desalination", "b) Ocean alkalinity", "c) Ocean acidification", "d) Ocean pollution"],
-        "answer": "c",
-        "explanation": "ocean acidification – закисление океанов."
-      },
-      {
-        "question": "______ is the loss of ice in the Arctic.",
-        "options": ["a) Arctic ice loss", "b) Arctic ice growth", "c) Antarctic ice loss", "d) Glacial retreat"],
-        "answer": "a",
-        "explanation": "Arctic ice loss – потеря арктического льда."
-      },
-      {
-        "question": "______ is the practice of using non-toxic materials.",
-        "options": ["a) Toxic living", "b) Non-toxic living", "c) Chemical-free living", "d) Eco-friendly living"],
-        "answer": "b",
-        "explanation": "non-toxic living – нетоксичный образ жизни."
-      },
-      {
-        "question": "______ is the practice of reducing the use of plastic bags.",
-        "options": ["a) Plastic bag increase", "b) Plastic bag recycling", "c) Plastic bag reduction", "d) Plastic bag disposal"],
-        "answer": "c",
-        "explanation": "plastic bag reduction – сокращение использования пластиковых пакетов."
-      },
-      {
-        "question": "______ is the practice of using energy-efficient light bulbs.",
-        "options": ["a) Incandescent lighting", "b) Halogen lighting", "c) Fluorescent lighting", "d) LED lighting"],
-        "answer": "d",
-        "explanation": "LED lighting – светодиодное освещение."
-      },
-      {
-        "question": "______ is the practice of reducing car usage.",
-        "options": ["a) Car-dependent living", "b) Car-free living", "c) Car-sharing", "d) Public transport"],
-        "answer": "b",
-        "explanation": "car-free living – жизнь без автомобиля."
-      },
-      {
-        "question": "______ is the practice of using renewable materials.",
-        "options": ["a) Single-use materials", "b) Non-renewable materials", "c) Sustainable materials", "d) Synthetic materials"],
-        "answer": "c",
-        "explanation": "sustainable materials – устойчивые материалы."
-              }
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "2. Fill in the gaps with the correct word or phrase. Type the missing word(s) in the box.",
-            "subtasks": [
-                {"question": "______ is the warming of the oceans due to climate change.", "answer": "Ocean warming", "explanation": "Ocean warming."},
-                {"question": "______ is the increase in the acidity of the oceans.", "answer": "Ocean acidification", "explanation": "Ocean acidification."},
-                {"question": "______ is the loss of ice in the Arctic.", "answer": "Arctic ice loss", "explanation": "Arctic ice loss."},
-                {"question": "______ is the practice of using non-toxic materials.", "answer": "Non-toxic living", "explanation": "Non-toxic living."},
-                {"question": "______ is the practice of reducing the use of plastic bags.", "answer": "Plastic bag reduction", "explanation": "Plastic bag reduction."},
-                {"question": "______ is the practice of using energy-efficient light bulbs.", "answer": "LED lighting", "explanation": "LED lighting."},
-                {"question": "______ is the practice of reducing car usage.", "answer": "Car-free living", "explanation": "Car-free living."},
-                {"question": "______ is the practice of using renewable materials.", "answer": "Sustainable materials", "explanation": "Sustainable materials."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
-            "subtasks": [
-                {"question": "Ocean warming is the warming of the oceans due to climate change.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Ocean acidification is the increase in the acidity of the oceans.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Arctic ice loss is the loss of ice in the Arctic.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Non-toxic living is the practice of using non-toxic materials.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Plastic bag reduction is the practice of reducing the use of plastic bags.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "LED lighting is the practice of using energy-efficient light bulbs.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Car-free living is the practice of reducing car usage.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Sustainable materials is the practice of using renewable materials.", "answer": "Sustainable materials are the practice of using renewable materials."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "4. Translate the sentences into English using the correct environment vocabulary. Type your translation (one sentence) in the box.",
-            "subtasks": [
-                {"question": "Потепление океанов – это потепление океанов из-за изменения климата.", "answer": "Ocean warming is the warming of the oceans due to climate change.", "explanation": ""},
-                {"question": "Закисление океанов – это повышение кислотности океанов.", "answer": "Ocean acidification is the increase in the acidity of the oceans.", "explanation": ""},
-                {"question": "Потеря арктического льда – это потеря льда в Арктике.", "answer": "Arctic ice loss is the loss of ice in the Arctic.", "explanation": ""},
-                {"question": "Нетоксичный образ жизни – это практика использования нетоксичных материалов.", "answer": "Non-toxic living is the practice of using non-toxic materials.", "explanation": ""},
-                {"question": "Сокращение использования пластиковых пакетов – это практика уменьшения использования пластиковых пакетов.", "answer": "Plastic bag reduction is the practice of reducing the use of plastic bags.", "explanation": ""},
-                {"question": "Светодиодное освещение – это практика использования энергоэффективных лампочек.", "answer": "LED lighting is the practice of using energy-efficient light bulbs.", "explanation": ""},
-                {"question": "Жизнь без автомобиля – это практика сокращения использования автомобилей.", "answer": "Car-free living is the practice of reducing car usage.", "explanation": ""},
-                {"question": "Устойчивые материалы – это практика использования возобновляемых материалов.", "answer": "Sustainable materials are the practice of using renewable materials.", "explanation": ""}
-            ]
-        },
-    # =====================================================
-    # ВАРИАНТ 12 (перефразирование)
-    # =====================================================
-[
-  {
-    "type": "complex",
-    "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-    "subtasks": [
-      {
-        "question": "______ is the practice of not using cars for short trips.",
-        "options": ["a) Cycling", "b) Walking", "c) Jogging", "d) Running"],
-        "answer": "b",
-        "explanation": "walking – ходьба пешком."
-      },
-      {
-        "question": "______ is the practice of using a bicycle instead of a car.",
-        "options": ["a) Cycling", "b) Driving", "c) Walking", "d) Skateboarding"],
-        "answer": "a",
-        "explanation": "cycling – езда на велосипеде."
-      },
-      {
-        "question": "______ is the practice of using public transport.",
-        "options": ["a) Private transport", "b) Active transport", "c) Public transport use", "d) Shared mobility"],
-        "answer": "c",
-        "explanation": "public transport use – использование общественного транспорта."
-      },
-      {
-        "question": "______ is the practice of planting trees in cities.",
-        "options": ["a) Urbanisation", "b) Deforestation", "c) Urban forestry", "d) Reforestation"],
-        "answer": "c",
-        "explanation": "urban forestry – городское озеленение."
-      },
-      {
-        "question": "______ is the practice of using green roofs to reduce heat.",
-        "options": ["a) Green roofs", "b) Solar panels", "c) Roof gardens", "d) Cool roofs"],
-        "answer": "a",
-        "explanation": "green roofs – зелёные крыши."
-      },
-      {
-        "question": "______ is the practice of using recycled paper.",
-        "options": ["a) Virgin paper use", "b) Recycled paper use", "c) Paper saving", "d) Paper recycling"],
-        "answer": "b",
-        "explanation": "recycled paper use – использование переработанной бумаги."
-      },
-      {
-        "question": "______ is the practice of using renewable energy at home.",
-        "options": ["a) Home energy", "b) Traditional energy", "c) Fossil fuels", "d) Home renewables"],
-        "answer": "d",
-        "explanation": "home renewables – возобновляемая энергия дома."
-      },
-      {
-        "question": "______ is the practice of reducing food waste.",
-        "options": ["a) Food waste increase", "b) Food waste prevention", "c) Food waste disposal", "d) Food waste composting"],
-        "answer": "b",
-        "explanation": "food waste prevention – предотвращение пищевых отходов."
-              }
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "2. Fill in the gaps with the correct word or phrase. Type the missing word(s) in the box.",
-            "subtasks": [
-                {"question": "______ is the practice of not using cars for short trips.", "answer": "Walking", "explanation": "Walking."},
-                {"question": "______ is the practice of using a bicycle instead of a car.", "answer": "Cycling", "explanation": "Cycling."},
-                {"question": "______ is the practice of using public transport.", "answer": "Public transport use", "explanation": "Public transport use."},
-                {"question": "______ is the practice of planting trees in cities.", "answer": "Urban forestry", "explanation": "Urban forestry."},
-                {"question": "______ is the practice of using green roofs to reduce heat.", "answer": "Green roofs", "explanation": "Green roofs."},
-                {"question": "______ is the practice of using recycled paper.", "answer": "Recycled paper use", "explanation": "Recycled paper use."},
-                {"question": "______ is the practice of using renewable energy at home.", "answer": "Home renewables", "explanation": "Home renewables."},
-                {"question": "______ is the practice of reducing food waste.", "answer": "Food waste prevention", "explanation": "Food waste prevention."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
-            "subtasks": [
-                {"question": "Walking is the practice of not using cars for short trips.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Cycling is the practice of using a bicycle instead of a car.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Public transport use is the practice of using public transport.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Urban forestry is the practice of planting trees in cities.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Green roofs is the practice of using green roofs to reduce heat.", "answer": "Green roofs are the practice of using green roofs to reduce heat."},
-                {"question": "Recycled paper use is the practice of using recycled paper.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Home renewables is the practice of using renewable energy at home.", "answer": "Home renewables are the practice of using renewable energy at home."},
-                {"question": "Food waste prevention is the practice of reducing food waste.", "answer": "Correct", "explanation": "Верно."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "4. Rewrite the sentences using the word given in brackets. Type the whole sentence.",
-            "subtasks": [
-                {"question": "Don't drive for short trips. (walking) → Walking is the practice of not using cars for short trips.", "answer": "Walking is the practice of not using cars for short trips.", "explanation": "walking."},
-                {"question": "Use a bike. (cycling) → Cycling is the practice of using a bicycle instead of a car.", "answer": "Cycling is the practice of using a bicycle instead of a car.", "explanation": "cycling."},
-                {"question": "Take the bus or train. (public transport use) → Public transport use is the practice of using public transport.", "answer": "Public transport use is the practice of using public transport.", "explanation": "public transport use."},
-                {"question": "Plant trees in the city. (urban forestry) → Urban forestry is the practice of planting trees in cities.", "answer": "Urban forestry is the practice of planting trees in cities.", "explanation": "urban forestry."},
-                {"question": "Use green roofs. (green roofs) → Green roofs are the practice of using green roofs to reduce heat.", "answer": "Green roofs are the practice of using green roofs to reduce heat.", "explanation": "green roofs."},
-                {"question": "Use recycled paper. (recycled paper use) → Recycled paper use is the practice of using recycled paper.", "answer": "Recycled paper use is the practice of using recycled paper.", "explanation": "recycled paper use."},
-                {"question": "Use renewable energy at home. (home renewables) → Home renewables are the practice of using renewable energy at home.", "answer": "Home renewables are the practice of using renewable energy at home.", "explanation": "home renewables."},
-                {"question": "Stop wasting food. (food waste prevention) → Food waste prevention is the practice of reducing food waste.", "answer": "Food waste prevention is the practice of reducing food waste.", "explanation": "food waste prevention."}
-            ]
+          "type": "complex",
+          "text": "4. Translate the sentences into English using the correct environment vocabulary. Type your translation (one sentence) in the box.",
+          "subtasks": [
+            {"question": "Выбросы углерода необходимо сократить, чтобы замедлить изменение климата.", "answer": "Carbon emissions must be reduced to slow down climate change.", "explanation": ""},
+            {"question": "Вырубка лесов уничтожает тропические леса Амазонии.", "answer": "Deforestation is destroying the Amazon rainforest.", "explanation": ""},
+            {"question": "Многие страны инвестируют в возобновляемую энергию.", "answer": "Many countries are investing in renewable energy.", "explanation": ""},
+            {"question": "Нам следует покупать экологичные продукты, чтобы защитить окружающую среду.", "answer": "We should buy eco-friendly products to protect the environment.", "explanation": ""},
+            {"question": "Пластиковое загрязнение – одна из самых больших экологических проблем сегодня.", "answer": "Plastic pollution is one of the biggest environmental problems today.", "explanation": ""},
+            {"question": "Нам нужно экономить энергию, перейдя на светодиодные лампы.", "answer": "We need to save energy by switching to LED bulbs.", "explanation": ""},
+            {"question": "Парниковый эффект вызывает повышение глобальной температуры.", "answer": "The greenhouse effect is causing global temperatures to rise.", "explanation": ""},
+            {"question": "Многие виды находятся под угрозой вымирания из-за потери среды обитания.", "answer": "Many species are facing extinction due to habitat loss.", "explanation": ""}
+          ]
         }
+      ],
+      # =====================================================
+      # ВАРИАНТ 2 (перефразирование)
+      # =====================================================
+      [
+        {
+          "type": "complex",
+          "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+          "subtasks": [
+            {
+              "question": "Solar ______ is a clean source of energy.",
+              "options": ["a) panels", "b) power", "c) cells", "d) radiation"],
+              "answer": "b",
+              "explanation": "solar power – солнечная энергия."
+            },
+            {
+              "question": "Wind ______ is becoming more popular in Europe.",
+              "options": ["a) turbines", "b) farms", "c) power", "d) energy"],
+              "answer": "c",
+              "explanation": "wind power – энергия ветра."
+            },
+            {
+              "question": "______ development aims to meet the needs of the present without harming the future.",
+              "options": ["a) Economic", "b) Industrial", "c) Sustainable", "d) Urban"],
+              "answer": "c",
+              "explanation": "sustainable development – устойчивое развитие."
+            },
+            {
+              "question": "The circular ______ promotes recycling and reusing materials.",
+              "options": ["a) policy", "b) economy", "c) system", "d) model"],
+              "answer": "b",
+              "explanation": "circular economy – циркулярная экономика."
+            },
+            {
+              "question": "______ is the process of turning waste into new products.",
+              "options": ["a) Upcycling", "b) Composting", "c) Recycling", "d) Reusing"],
+              "answer": "c",
+              "explanation": "recycling – переработка."
+            },
+            {
+              "question": "We should avoid ______ plastic to reduce waste.",
+              "options": ["a) single-use", "b) biodegradable", "c) recyclable", "d) compostable"],
+              "answer": "a",
+              "explanation": "single-use plastic – одноразовый пластик."
+            },
+            {
+              "question": "______ means creating something new from old items.",
+              "options": ["a) Upcycling", "b) Recycling", "c) Downcycling", "d) Repurposing"],
+              "answer": "a",
+              "explanation": "upcycling – креативное повторное использование."
+            },
+            {
+              "question": "The ______ layer protects us from harmful UV rays.",
+              "options": ["a) ozone", "b) atmospheric", "c) stratospheric", "d) mesospheric"],
+              "answer": "a",
+              "explanation": "ozone layer – озоновый слой."
+            }
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "2. Fill in the gaps with the correct word or phrase. Type the missing word(s) in the box.",
+          "subtasks": [
+            {"question": "Solar ______ is a clean source of energy.", "answer": "power", "explanation": "power."},
+            {"question": "Wind ______ is becoming more popular in Europe.", "answer": "power", "explanation": "power."},
+            {"question": "______ development aims to meet the needs of the present without harming the future.", "answer": "Sustainable", "explanation": "Sustainable."},
+            {"question": "The circular ______ promotes recycling and reusing materials.", "answer": "economy", "explanation": "economy."},
+            {"question": "______ is the process of turning waste into new products.", "answer": "Recycling", "explanation": "Recycling."},
+            {"question": "We should avoid ______ plastic to reduce waste.", "answer": "single-use", "explanation": "single-use."},
+            {"question": "______ means creating something new from old items.", "answer": "Upcycling", "explanation": "Upcycling."},
+            {"question": "The ______ layer protects us from harmful UV rays.", "answer": "ozone", "explanation": "ozone."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
+          "subtasks": [
+            {"question": "Solar power is a clean source of energy.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Wind power is becoming more popular in Europe.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Sustainable development aims to meet the needs of the present without harming the future.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "The circular economy promotes recycling and reusing materials.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Recycling is the process of turning waste into new products.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "We should avoid single-use plastic to reduce waste.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Upcycling means creating something new from old items.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "The ozone layer protect us from harmful UV rays.", "answer": "The ozone layer protects us from harmful UV rays.", "explanation": "Protects, не protect."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "4. Rewrite the sentences using the word given in brackets. Type the whole sentence.",
+          "subtasks": [
+            {"question": "Solar energy is clean. (power) → Solar power is a clean source of energy.", "answer": "Solar power is a clean source of energy.", "explanation": "solar power."},
+            {"question": "Wind energy is popular. (power) → Wind power is becoming more popular in Europe.", "answer": "Wind power is becoming more popular in Europe.", "explanation": "wind power."},
+            {"question": "Development that is sustainable helps the future. (sustainable) → Sustainable development aims to meet the needs of the present without harming the future.", "answer": "Sustainable development aims to meet the needs of the present without harming the future.", "explanation": "sustainable development."},
+            {"question": "A circular system helps the planet. (economy) → The circular economy promotes recycling and reusing materials.", "answer": "The circular economy promotes recycling and reusing materials.", "explanation": "circular economy."},
+            {"question": "Recycling helps reduce waste. (recycling) → Recycling is the process of turning waste into new products.", "answer": "Recycling is the process of turning waste into new products.", "explanation": "recycling."},
+            {"question": "Avoid disposable plastic. (single-use) → We should avoid single-use plastic to reduce waste.", "answer": "We should avoid single-use plastic to reduce waste.", "explanation": "single-use plastic."},
+            {"question": "Upcycling is creative reuse. (upcycling) → Upcycling means creating something new from old items.", "answer": "Upcycling means creating something new from old items.", "explanation": "upcycling."},
+            {"question": "The ozone layer shields us. (ozone) → The ozone layer protects us from harmful UV rays.", "answer": "The ozone layer protects us from harmful UV rays.", "explanation": "ozone layer."}
+          ]
+        }
+      ],
+      # =====================================================
+      # ВАРИАНТ 3 (перевод)
+      # =====================================================
+      [
+        {
+          "type": "complex",
+          "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+          "subtasks": [
+            {
+              "question": "______ warming is causing polar ice caps to melt.",
+              "options": ["a) Global", "b) Planetary", "c) Atmospheric", "d) Climatic"],
+              "answer": "a",
+              "explanation": "global warming – глобальное потепление."
+            },
+            {
+              "question": "The ______ footprint of a person is the amount of carbon they produce.",
+              "options": ["a) carbon", "b) ecological", "c) environmental", "d) climatic"],
+              "answer": "a",
+              "explanation": "carbon footprint – углеродный след."
+            },
+            {
+              "question": "______ loss is a major concern for conservationists.",
+              "options": ["a) Habitat", "b) Biodiversity", "c) Wildlife", "d) Forest"],
+              "answer": "b",
+              "explanation": "biodiversity loss – потеря биоразнообразия."
+            },
+            {
+              "question": "______ energy comes from sources like the sun, wind, and water.",
+              "options": ["a) Clean", "b) Natural", "c) Green", "d) Renewable"],
+              "answer": "d",
+              "explanation": "renewable energy – возобновляемая энергия."
+            },
+            {
+              "question": "We need to protect ______ to ensure the survival of many species.",
+              "options": ["a) ecosystems", "b) habitats", "c) environments", "d) territories"],
+              "answer": "b",
+              "explanation": "habitats – места обитания."
+            },
+            {
+              "question": "______ pollution affects both land and water.",
+              "options": ["a) Soil", "b) Air", "c) Noise", "d) Light"],
+              "answer": "a",
+              "explanation": "soil pollution – загрязнение почвы."
+            },
+            {
+              "question": "The ______ of the ozone layer is a serious problem.",
+              "options": ["a) depletion", "b) destruction", "c) erosion", "d) thinning"],
+              "answer": "a",
+              "explanation": "depletion – истощение."
+            },
+            {
+              "question": "We should use ______ transport to reduce emissions.",
+              "options": ["a) private", "b) public", "c) shared", "d) electric"],
+              "answer": "b",
+              "explanation": "public transport – общественный транспорт."
+            }
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "2. Fill in the gaps with the correct word or phrase. Type the missing word(s) in the box.",
+          "subtasks": [
+            {"question": "______ warming is causing polar ice caps to melt.", "answer": "Global", "explanation": "Global."},
+            {"question": "The ______ footprint of a person is the amount of carbon they produce.", "answer": "carbon", "explanation": "carbon."},
+            {"question": "______ loss is a major concern for conservationists.", "answer": "Biodiversity", "explanation": "Biodiversity."},
+            {"question": "______ energy comes from sources like the sun, wind, and water.", "answer": "Renewable", "explanation": "Renewable."},
+            {"question": "We need to protect ______ to ensure the survival of many species.", "answer": "habitats", "explanation": "habitats."},
+            {"question": "______ pollution affects both land and water.", "answer": "Soil", "explanation": "Soil."},
+            {"question": "The ______ of the ozone layer is a serious problem.", "answer": "depletion", "explanation": "depletion."},
+            {"question": "We should use ______ transport to reduce emissions.", "answer": "public", "explanation": "public."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
+          "subtasks": [
+            {"question": "Global warming is causing polar ice caps to melt.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "The carbon footprint of a person is the amount of carbon they produce.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Biodiversity loss is a major concern for conservationists.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Renewable energy comes from sources like the sun, wind, and water.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "We need to protect habitats to ensure the survival of many species.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Soil pollution affects both land and water.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "The depletion of the ozone layer is a serious problem.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "We should use public transport to reduce emission.", "answer": "We should use public transport to reduce emissions.", "explanation": "Emissions, не emission (множественное число)."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "4. Translate the sentences into English using the correct environment vocabulary. Type your translation (one sentence) in the box.",
+          "subtasks": [
+            {"question": "Глобальное потепление вызывает таяние полярных ледников.", "answer": "Global warming is causing polar ice caps to melt.", "explanation": ""},
+            {"question": "Углеродный след человека – это количество углерода, которое он производит.", "answer": "The carbon footprint of a person is the amount of carbon they produce.", "explanation": ""},
+            {"question": "Потеря биоразнообразия – серьёзная проблема для защитников природы.", "answer": "Biodiversity loss is a major concern for conservationists.", "explanation": ""},
+            {"question": "Возобновляемая энергия поступает из таких источников, как солнце, ветер и вода.", "answer": "Renewable energy comes from sources like the sun, wind, and water.", "explanation": ""},
+            {"question": "Нам нужно защищать места обитания, чтобы обеспечить выживание многих видов.", "answer": "We need to protect habitats to ensure the survival of many species.", "explanation": ""},
+            {"question": "Загрязнение почвы влияет как на землю, так и на воду.", "answer": "Soil pollution affects both land and water.", "explanation": ""},
+            {"question": "Истощение озонового слоя – серьёзная проблема.", "answer": "The depletion of the ozone layer is a serious problem.", "explanation": ""},
+            {"question": "Нам следует пользоваться общественным транспортом, чтобы сократить выбросы.", "answer": "We should use public transport to reduce emissions.", "explanation": ""}
+          ]
+        }
+      ],
+      # =====================================================
+      # ВАРИАНТ 4 (перефразирование)
+      # =====================================================
+      [
+        {
+          "type": "complex",
+          "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+          "subtasks": [
+            {
+              "question": "______ is the process of planting trees to restore forests.",
+              "options": ["a) Deforestation", "b) Logging", "c) Reforestation", "d) Agriculture"],
+              "answer": "c",
+              "explanation": "reforestation – лесовосстановление."
+            },
+            {
+              "question": "______ is the protection of natural resources.",
+              "options": ["a) Exploitation", "b) Conservation", "c) Development", "d) Urbanisation"],
+              "answer": "b",
+              "explanation": "conservation – сохранение природы."
+            },
+            {
+              "question": "______ energy is produced by the movement of water.",
+              "options": ["a) Solar", "b) Wind", "c) Geothermal", "d) Hydroelectric"],
+              "answer": "d",
+              "explanation": "hydroelectric power – гидроэлектроэнергия."
+            },
+            {
+              "question": "______ energy comes from the heat of the Earth.",
+              "options": ["a) Geothermal", "b) Solar", "c) Wind", "d) Nuclear"],
+              "answer": "a",
+              "explanation": "geothermal energy – геотермальная энергия."
+            },
+            {
+              "question": "______ is a renewable energy source made from plants.",
+              "options": ["a) Fossil fuel", "b) Nuclear", "c) Biomass", "d) Natural gas"],
+              "answer": "c",
+              "explanation": "biomass – биомасса."
+            },
+            {
+              "question": "______ means the ability to be maintained at a certain level.",
+              "options": ["a) Stability", "b) Durability", "c) Efficiency", "d) Sustainability"],
+              "answer": "d",
+              "explanation": "sustainability – устойчивость."
+            },
+            {
+              "question": "We should ______ water by taking shorter showers.",
+              "options": ["a) waste", "b) save", "c) use", "d) consume"],
+              "answer": "b",
+              "explanation": "to save water – экономить воду."
+            },
+            {
+              "question": "We need to ______ trees to improve air quality.",
+              "options": ["a) cut", "b) burn", "c) plant", "d) remove"],
+              "answer": "c",
+              "explanation": "to plant trees – сажать деревья."
+            }
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "2. Fill in the gaps with the correct word or phrase. Type the missing word(s) in the box.",
+          "subtasks": [
+            {"question": "______ is the process of planting trees to restore forests.", "answer": "Reforestation", "explanation": "Reforestation."},
+            {"question": "______ is the protection of natural resources.", "answer": "Conservation", "explanation": "Conservation."},
+            {"question": "______ energy is produced by the movement of water.", "answer": "Hydroelectric", "explanation": "Hydroelectric."},
+            {"question": "______ energy comes from the heat of the Earth.", "answer": "Geothermal", "explanation": "Geothermal."},
+            {"question": "______ is a renewable energy source made from plants.", "answer": "Biomass", "explanation": "Biomass."},
+            {"question": "______ means the ability to be maintained at a certain level.", "answer": "Sustainability", "explanation": "Sustainability."},
+            {"question": "We should ______ water by taking shorter showers.", "answer": "save", "explanation": "save."},
+            {"question": "We need to ______ trees to improve air quality.", "answer": "plant", "explanation": "plant."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
+          "subtasks": [
+            {"question": "Reforestation is the process of planting trees to restore forests.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Conservation is the protection of natural resources.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Hydroelectric energy is produced by the movement of water.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Geothermal energy comes from the heat of the Earth.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Biomass is a renewable energy source made from plants.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Sustainability means the ability to be maintained at a certain level.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "We should save water by taking shorter showers.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "We need to plant trees to improve air quality.", "answer": "Correct", "explanation": "Верно."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "4. Rewrite the sentences using the word given in brackets. Type the whole sentence.",
+          "subtasks": [
+            {"question": "Planting trees to restore forests is important. (reforestation) → Reforestation is the process of planting trees to restore forests.", "answer": "Reforestation is the process of planting trees to restore forests.", "explanation": "reforestation."},
+            {"question": "Protecting nature is essential. (conservation) → Conservation is the protection of natural resources.", "answer": "Conservation is the protection of natural resources.", "explanation": "conservation."},
+            {"question": "Water movement produces energy. (hydroelectric) → Hydroelectric energy is produced by the movement of water.", "answer": "Hydroelectric energy is produced by the movement of water.", "explanation": "hydroelectric."},
+            {"question": "Earth's heat is a source of energy. (geothermal) → Geothermal energy comes from the heat of the Earth.", "answer": "Geothermal energy comes from the heat of the Earth.", "explanation": "geothermal."},
+            {"question": "Plants can be used for energy. (biomass) → Biomass is a renewable energy source made from plants.", "answer": "Biomass is a renewable energy source made from plants.", "explanation": "biomass."},
+            {"question": "Being maintained is important. (sustainability) → Sustainability means the ability to be maintained at a certain level.", "answer": "Sustainability means the ability to be maintained at a certain level.", "explanation": "sustainability."},
+            {"question": "Use less water. (save) → We should save water by taking shorter showers.", "answer": "We should save water by taking shorter showers.", "explanation": "save water."},
+            {"question": "Put trees in the ground. (plant) → We need to plant trees to improve air quality.", "answer": "We need to plant trees to improve air quality.", "explanation": "plant trees."}
+          ]
+        }
+      ],
+      # =====================================================
+      # ВАРИАНТ 5 (перевод)
+      # =====================================================
+      [
+        {
+          "type": "complex",
+          "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+          "subtasks": [
+            {
+              "question": "______ change is the biggest threat to our planet.",
+              "options": ["a) Weather", "b) Atmospheric", "c) Climate", "d) Environmental"],
+              "answer": "c",
+              "explanation": "climate change – изменение климата."
+            },
+            {
+              "question": "______ emissions are a major cause of global warming.",
+              "options": ["a) Methane", "b) Carbon", "c) Nitrogen", "d) Sulphur"],
+              "answer": "b",
+              "explanation": "carbon emissions – выбросы углерода."
+            },
+            {
+              "question": "______ energy sources do not produce greenhouse gases.",
+              "options": ["a) Renewable", "b) Clean", "c) Alternative", "d) Green"],
+              "answer": "d",
+              "explanation": "green energy – чистая энергия (но правильнее renewable)."
+            },
+            {
+              "question": "We should ______ waste to protect the environment.",
+              "options": ["a) reduce", "b) recycle", "c) reuse", "d) save"],
+              "answer": "a",
+              "explanation": "to reduce waste – сокращать отходы."
+            },
+            {
+              "question": "We can ______ plastic bottles to create new products.",
+              "options": ["a) reuse", "b) recycle", "c) reduce", "d) upcycle"],
+              "answer": "b",
+              "explanation": "to recycle – перерабатывать."
+            },
+            {
+              "question": "We should ______ old clothes instead of throwing them away.",
+              "options": ["a) recycle", "b) repair", "c) reuse", "d) reduce"],
+              "answer": "c",
+              "explanation": "to reuse – использовать повторно."
+            },
+            {
+              "question": "______ is the practice of protecting the natural environment.",
+              "options": ["a) Preservation", "b) Protection", "c) Sustainability", "d) Conservation"],
+              "answer": "d",
+              "explanation": "conservation – сохранение природы."
+            },
+            {
+              "question": "______ farming uses no artificial chemicals.",
+              "options": ["a) Organic", "b) Natural", "c) Ecological", "d) Sustainable"],
+              "answer": "a",
+              "explanation": "organic farming – органическое земледелие."
+            }
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "2. Fill in the gaps with the correct word or phrase. Type the missing word(s) in the box.",
+          "subtasks": [
+            {"question": "______ change is the biggest threat to our planet.", "answer": "Climate", "explanation": "Climate."},
+            {"question": "______ emissions are a major cause of global warming.", "answer": "Carbon", "explanation": "Carbon."},
+            {"question": "______ energy sources do not produce greenhouse gases.", "answer": "Renewable", "explanation": "Renewable."},
+            {"question": "We should ______ waste to protect the environment.", "answer": "reduce", "explanation": "reduce."},
+            {"question": "We can ______ plastic bottles to create new products.", "answer": "recycle", "explanation": "recycle."},
+            {"question": "We should ______ old clothes instead of throwing them away.", "answer": "reuse", "explanation": "reuse."},
+            {"question": "______ is the practice of protecting the natural environment.", "answer": "Conservation", "explanation": "Conservation."},
+            {"question": "______ farming uses no artificial chemicals.", "answer": "Organic", "explanation": "Organic."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
+          "subtasks": [
+            {"question": "Climate change is the biggest threat to our planet.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Carbon emissions are a major cause of global warming.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Renewable energy sources do not produce greenhouse gases.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "We should reduce waste to protect the environment.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "We can recycle plastic bottles to create new products.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "We should reuse old clothes instead of throwing them away.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Conservation is the practice of protecting the natural environment.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Organic farming uses no artificial chemicals.", "answer": "Correct", "explanation": "Верно."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "4. Translate the sentences into English using the correct environment vocabulary. Type your translation (one sentence) in the box.",
+          "subtasks": [
+            {"question": "Изменение климата – самая большая угроза для нашей планеты.", "answer": "Climate change is the biggest threat to our planet.", "explanation": ""},
+            {"question": "Выбросы углерода – основная причина глобального потепления.", "answer": "Carbon emissions are a major cause of global warming.", "explanation": ""},
+            {"question": "Возобновляемые источники энергии не производят парниковых газов.", "answer": "Renewable energy sources do not produce greenhouse gases.", "explanation": ""},
+            {"question": "Нам следует сокращать отходы, чтобы защитить окружающую среду.", "answer": "We should reduce waste to protect the environment.", "explanation": ""},
+            {"question": "Мы можем перерабатывать пластиковые бутылки, чтобы создавать новые продукты.", "answer": "We can recycle plastic bottles to create new products.", "explanation": ""},
+            {"question": "Нам следует использовать старую одежду повторно, а не выбрасывать.", "answer": "We should reuse old clothes instead of throwing them away.", "explanation": ""},
+            {"question": "Сохранение природы – это практика защиты окружающей среды.", "answer": "Conservation is the practice of protecting the natural environment.", "explanation": ""},
+            {"question": "Органическое земледелие не использует искусственные химикаты.", "answer": "Organic farming uses no artificial chemicals.", "explanation": ""}
+          ]
+        }
+      ],
+      # =====================================================
+      # ВАРИАНТ 6 (перефразирование)
+      # =====================================================
+      [
+        {
+          "type": "complex",
+          "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+          "subtasks": [
+            {
+              "question": "______ is a major environmental issue caused by excessive waste.",
+              "options": ["a) Pollution", "b) Destruction", "c) Degradation", "d) Contamination"],
+              "answer": "a",
+              "explanation": "pollution – загрязнение."
+            },
+            {
+              "question": "______ is the release of harmful substances into the air.",
+              "options": ["a) Soil pollution", "b) Air pollution", "c) Noise pollution", "d) Water pollution"],
+              "answer": "b",
+              "explanation": "air pollution – загрязнение воздуха."
+            },
+            {
+              "question": "______ is the contamination of rivers and oceans.",
+              "options": ["a) Land pollution", "b) Marine pollution", "c) Water pollution", "d) Air pollution"],
+              "answer": "c",
+              "explanation": "water pollution – загрязнение воды."
+            },
+            {
+              "question": "______ waste includes plastic bottles, bags, and packaging.",
+              "options": ["a) Organic", "b) Hazardous", "c) Industrial", "d) Plastic"],
+              "answer": "d",
+              "explanation": "plastic waste – пластиковые отходы."
+            },
+            {
+              "question": "______ is the process of decomposing organic matter.",
+              "options": ["a) Composting", "b) Recycling", "c) Upcycling", "d) Landfilling"],
+              "answer": "a",
+              "explanation": "composting – компостирование."
+            },
+            {
+              "question": "______ should be avoided because it harms the environment.",
+              "options": ["a) Reuse", "b) Waste", "c) Recycling", "d) Conservation"],
+              "answer": "b",
+              "explanation": "waste – отходы."
+            },
+            {
+              "question": "______ initiatives aim to protect the planet for future generations.",
+              "options": ["a) Sustainable", "b) Ecological", "c) Green", "d) Environmental"],
+              "answer": "c",
+              "explanation": "green initiatives – зелёные инициативы."
+            },
+            {
+              "question": "We should ______ petitions to demand environmental action.",
+              "options": ["a) write", "b) create", "c) support", "d) sign"],
+              "answer": "d",
+              "explanation": "to sign petitions – подписывать петиции."
+            }
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "2. Fill in the gaps with the correct word or phrase. Type the missing word(s) in the box.",
+          "subtasks": [
+            {"question": "______ is a major environmental issue caused by excessive waste.", "answer": "Pollution", "explanation": "Pollution."},
+            {"question": "______ is the release of harmful substances into the air.", "answer": "Air pollution", "explanation": "Air pollution."},
+            {"question": "______ is the contamination of rivers and oceans.", "answer": "Water pollution", "explanation": "Water pollution."},
+            {"question": "______ waste includes plastic bottles, bags, and packaging.", "answer": "Plastic", "explanation": "Plastic."},
+            {"question": "______ is the process of decomposing organic matter.", "answer": "Composting", "explanation": "Composting."},
+            {"question": "______ should be avoided because it harms the environment.", "answer": "Waste", "explanation": "Waste."},
+            {"question": "______ initiatives aim to protect the planet for future generations.", "answer": "Green", "explanation": "Green."},
+            {"question": "We should ______ petitions to demand environmental action.", "answer": "sign", "explanation": "sign."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
+          "subtasks": [
+            {"question": "Pollution is a major environmental issue caused by excessive waste.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Air pollution is the release of harmful substances into the air.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Water pollution is the contamination of rivers and oceans.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Plastic waste includes plastic bottles, bags, and packaging.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Composting is the process of decomposing organic matter.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Waste should be avoided because it harms the environment.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Green initiatives aim to protect the planet for future generations.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "We should sign petitions to demand environmental action.", "answer": "Correct", "explanation": "Верно."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "4. Rewrite the sentences using the word given in brackets. Type the whole sentence.",
+          "subtasks": [
+            {"question": "Excessive waste causes problems. (pollution) → Pollution is a major environmental issue caused by excessive waste.", "answer": "Pollution is a major environmental issue caused by excessive waste.", "explanation": "pollution."},
+            {"question": "Harmful substances in the air cause problems. (air pollution) → Air pollution is the release of harmful substances into the air.", "answer": "Air pollution is the release of harmful substances into the air.", "explanation": "air pollution."},
+            {"question": "Rivers and oceans are being contaminated. (water pollution) → Water pollution is the contamination of rivers and oceans.", "answer": "Water pollution is the contamination of rivers and oceans.", "explanation": "water pollution."},
+            {"question": "Plastic products are a problem. (plastic waste) → Plastic waste includes plastic bottles, bags, and packaging.", "answer": "Plastic waste includes plastic bottles, bags, and packaging.", "explanation": "plastic waste."},
+            {"question": "Organic matter can be decomposed. (composting) → Composting is the process of decomposing organic matter.", "answer": "Composting is the process of decomposing organic matter.", "explanation": "composting."},
+            {"question": "Don't create too much trash. (waste) → Waste should be avoided because it harms the environment.", "answer": "Waste should be avoided because it harms the environment.", "explanation": "waste."},
+            {"question": "Initiatives for the planet exist. (green) → Green initiatives aim to protect the planet for future generations.", "answer": "Green initiatives aim to protect the planet for future generations.", "explanation": "green initiatives."},
+            {"question": "We can demand action by petition. (sign) → We should sign petitions to demand environmental action.", "answer": "We should sign petitions to demand environmental action.", "explanation": "sign petitions."}
+          ]
+        }
+      ],
+      # =====================================================
+      # ВАРИАНТ 7 (перевод)
+      # =====================================================
+      [
+        {
+          "type": "complex",
+          "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+          "subtasks": [
+            {
+              "question": "______ is the warming of the Earth due to greenhouse gases.",
+              "options": ["a) Climate change", "b) Global warming", "c) Ozone depletion", "d) Acid rain"],
+              "answer": "b",
+              "explanation": "global warming – глобальное потепление."
+            },
+            {
+              "question": "______ is the clearing of forests for agriculture or logging.",
+              "options": ["a) Reforestation", "b) Afforestation", "c) Deforestation", "d) Urbanisation"],
+              "answer": "c",
+              "explanation": "deforestation – вырубка лесов."
+            },
+            {
+              "question": "______ energy is generated by the sun.",
+              "options": ["a) Geothermal", "b) Wind", "c) Nuclear", "d) Solar"],
+              "answer": "d",
+              "explanation": "solar energy – солнечная энергия."
+            },
+            {
+              "question": "______ energy is generated by the wind.",
+              "options": ["a) Wind", "b) Solar", "c) Hydro", "d) Tidal"],
+              "answer": "a",
+              "explanation": "wind energy – энергия ветра."
+            },
+            {
+              "question": "We should ______ our carbon footprint by reducing energy use.",
+              "options": ["a) increase", "b) maintain", "c) reduce", "d) ignore"],
+              "answer": "c",
+              "explanation": "to reduce carbon footprint – сокращать углеродный след."
+            },
+            {
+              "question": "We should ______ environmental NGOs to support their work.",
+              "options": ["a) protest against", "b) boycott", "c) ignore", "d) donate to"],
+              "answer": "d",
+              "explanation": "to donate to – жертвовать."
+            },
+            {
+              "question": "______ is the practice of protecting endangered species.",
+              "options": ["a) Exploitation", "b) Conservation", "c) Destruction", "d) Development"],
+              "answer": "b",
+              "explanation": "conservation – сохранение природы."
+            },
+            {
+              "question": "______ is the process of turning organic waste into fertiliser.",
+              "options": ["a) Recycling", "b) Upcycling", "c) Incineration", "d) Composting"],
+              "answer": "d",
+              "explanation": "composting – компостирование."
+            }
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "2. Fill in the gaps with the correct word or phrase. Type the missing word(s) in the box.",
+          "subtasks": [
+            {"question": "______ is the warming of the Earth due to greenhouse gases.", "answer": "Global warming", "explanation": "Global warming."},
+            {"question": "______ is the clearing of forests for agriculture or logging.", "answer": "Deforestation", "explanation": "Deforestation."},
+            {"question": "______ energy is generated by the sun.", "answer": "Solar", "explanation": "Solar."},
+            {"question": "______ energy is generated by the wind.", "answer": "Wind", "explanation": "Wind."},
+            {"question": "We should ______ our carbon footprint by reducing energy use.", "answer": "reduce", "explanation": "reduce."},
+            {"question": "We should ______ environmental NGOs to support their work.", "answer": "donate to", "explanation": "donate to."},
+            {"question": "______ is the practice of protecting endangered species.", "answer": "Conservation", "explanation": "Conservation."},
+            {"question": "______ is the process of turning organic waste into fertiliser.", "answer": "Composting", "explanation": "Composting."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
+          "subtasks": [
+            {"question": "Global warming is the warming of the Earth due to greenhouse gases.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Deforestation is the clearing of forests for agriculture or logging.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Solar energy is generated by the sun.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Wind energy is generated by the wind.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "We should reduce our carbon footprint by reducing energy use.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "We should donate to environmental NGOs to support their work.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Conservation is the practice of protecting endangered species.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Composting is the process of turning organic waste into fertiliser.", "answer": "Correct", "explanation": "Верно."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "4. Translate the sentences into English using the correct environment vocabulary. Type your translation (one sentence) in the box.",
+          "subtasks": [
+            {"question": "Глобальное потепление – это потепление Земли из-за парниковых газов.", "answer": "Global warming is the warming of the Earth due to greenhouse gases.", "explanation": ""},
+            {"question": "Вырубка лесов – это вырубка лесов для сельского хозяйства или лесозаготовок.", "answer": "Deforestation is the clearing of forests for agriculture or logging.", "explanation": ""},
+            {"question": "Солнечная энергия вырабатывается солнцем.", "answer": "Solar energy is generated by the sun.", "explanation": ""},
+            {"question": "Энергия ветра вырабатывается ветром.", "answer": "Wind energy is generated by the wind.", "explanation": ""},
+            {"question": "Нам следует сократить свой углеродный след, уменьшив потребление энергии.", "answer": "We should reduce our carbon footprint by reducing energy use.", "explanation": ""},
+            {"question": "Нам следует жертвовать экологическим НПО, чтобы поддержать их работу.", "answer": "We should donate to environmental NGOs to support their work.", "explanation": ""},
+            {"question": "Сохранение природы – это практика защиты исчезающих видов.", "answer": "Conservation is the practice of protecting endangered species.", "explanation": ""},
+            {"question": "Компостирование – это процесс превращения органических отходов в удобрение.", "answer": "Composting is the process of turning organic waste into fertiliser.", "explanation": ""}
+          ]
+        }
+      ],
+      # =====================================================
+      # ВАРИАНТ 8 (перефразирование)
+      # =====================================================
+      [
+        {
+          "type": "complex",
+          "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+          "subtasks": [
+            {
+              "question": "______ is the warming of the Earth due to greenhouse gases.",
+              "options": ["a) Climate change", "b) Global warming", "c) Ozone depletion", "d) Acid rain"],
+              "answer": "b",
+              "explanation": "global warming – глобальное потепление."
+            },
+            {
+              "question": "______ is the clearing of forests for agriculture or logging.",
+              "options": ["a) Reforestation", "b) Afforestation", "c) Deforestation", "d) Urbanisation"],
+              "answer": "c",
+              "explanation": "deforestation – вырубка лесов."
+            },
+            {
+              "question": "______ energy is generated by the sun.",
+              "options": ["a) Geothermal", "b) Wind", "c) Nuclear", "d) Solar"],
+              "answer": "d",
+              "explanation": "solar energy – солнечная энергия."
+            },
+            {
+              "question": "______ energy is generated by the wind.",
+              "options": ["a) Wind", "b) Solar", "c) Hydro", "d) Tidal"],
+              "answer": "a",
+              "explanation": "wind energy – энергия ветра."
+            },
+            {
+              "question": "We should ______ our carbon footprint by reducing energy use.",
+              "options": ["a) increase", "b) maintain", "c) reduce", "d) ignore"],
+              "answer": "c",
+              "explanation": "to reduce carbon footprint – сокращать углеродный след."
+            },
+            {
+              "question": "We should ______ environmental NGOs to support their work.",
+              "options": ["a) protest against", "b) boycott", "c) ignore", "d) donate to"],
+              "answer": "d",
+              "explanation": "to donate to – жертвовать."
+            },
+            {
+              "question": "______ is the practice of protecting endangered species.",
+              "options": ["a) Exploitation", "b) Conservation", "c) Destruction", "d) Development"],
+              "answer": "b",
+              "explanation": "conservation – сохранение природы."
+            },
+            {
+              "question": "______ is the process of turning organic waste into fertiliser.",
+              "options": ["a) Recycling", "b) Upcycling", "c) Incineration", "d) Composting"],
+              "answer": "d",
+              "explanation": "composting – компостирование."
+            }
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "2. Fill in the gaps with the correct word or phrase. Type the missing word(s) in the box.",
+          "subtasks": [
+            {"question": "______ is a major contributor to global warming.", "answer": "Carbon dioxide", "explanation": "Carbon dioxide."},
+            {"question": "______ is a greenhouse gas released by livestock.", "answer": "Methane", "explanation": "Methane."},
+            {"question": "______ is the process of reducing the use of natural resources.", "answer": "Resource efficiency", "explanation": "Resource efficiency."},
+            {"question": "______ is the ability of an ecosystem to maintain itself.", "answer": "Resilience", "explanation": "Resilience."},
+            {"question": "______ is the movement of people to protect the environment.", "answer": "Environmentalism", "explanation": "Environmentalism."},
+            {"question": "______ is the practice of using renewable resources.", "answer": "Green living", "explanation": "Green living."},
+            {"question": "______ is the study of the environment and its problems.", "answer": "Ecology", "explanation": "Ecology."},
+            {"question": "______ is the management of natural resources.", "answer": "Environmental management", "explanation": "Environmental management."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
+          "subtasks": [
+            {"question": "Carbon dioxide is a major contributor to global warming.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Methane is a greenhouse gas released by livestock.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Resource efficiency is the process of reducing the use of natural resources.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Resilience is the ability of an ecosystem to maintain itself.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Environmentalism is the movement of people to protect the environment.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Green living is the practice of using renewable resources.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Ecology is the study of the environment and its problems.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Environmental management is the management of natural resources.", "answer": "Correct", "explanation": "Верно."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "4. Rewrite the sentences using the word given in brackets. Type the whole sentence.",
+          "subtasks": [
+            {"question": "CO2 warms the planet. (carbon dioxide) → Carbon dioxide is a major contributor to global warming.", "answer": "Carbon dioxide is a major contributor to global warming.", "explanation": "carbon dioxide."},
+            {"question": "Cows release a harmful gas. (methane) → Methane is a greenhouse gas released by livestock.", "answer": "Methane is a greenhouse gas released by livestock.", "explanation": "methane."},
+            {"question": "Using fewer resources is important. (resource efficiency) → Resource efficiency is the process of reducing the use of natural resources.", "answer": "Resource efficiency is the process of reducing the use of natural resources.", "explanation": "resource efficiency."},
+            {"question": "Ecosystems need to stay balanced. (resilience) → Resilience is the ability of an ecosystem to maintain itself.", "answer": "Resilience is the ability of an ecosystem to maintain itself.", "explanation": "resilience."},
+            {"question": "People are fighting for the planet. (environmentalism) → Environmentalism is the movement of people to protect the environment.", "answer": "Environmentalism is the movement of people to protect the environment.", "explanation": "environmentalism."},
+            {"question": "Living green helps the planet. (green living) → Green living is the practice of using renewable resources.", "answer": "Green living is the practice of using renewable resources.", "explanation": "green living."},
+            {"question": "Study the environment. (ecology) → Ecology is the study of the environment and its problems.", "answer": "Ecology is the study of the environment and its problems.", "explanation": "ecology."},
+            {"question": "Manage nature wisely. (environmental management) → Environmental management is the management of natural resources.", "answer": "Environmental management is the management of natural resources.", "explanation": "environmental management."}
+          ]
+        }
+      ],
+      # =====================================================
+      # ВАРИАНТ 9 (перевод)
+      # =====================================================
+      [
+        {
+          "type": "complex",
+          "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+          "subtasks": [
+            {
+              "question": "______ gas emissions are the main cause of the greenhouse effect.",
+              "options": ["a) Industrial", "b) Greenhouse", "c) Toxic", "d) Exhaust"],
+              "answer": "b",
+              "explanation": "greenhouse gas – парниковый газ."
+            },
+            {
+              "question": "______ is the process of restoring damaged ecosystems.",
+              "options": ["a) Ecosystem management", "b) Habitat protection", "c) Ecological restoration", "d) Biodiversity conservation"],
+              "answer": "c",
+              "explanation": "ecological restoration – экологическое восстановление."
+            },
+            {
+              "question": "______ is the protection of animals and plants in their natural habitats.",
+              "options": ["a) Zoo conservation", "b) Habitat protection", "c) Wildlife conservation", "d) Species management"],
+              "answer": "c",
+              "explanation": "wildlife conservation – сохранение дикой природы."
+            },
+            {
+              "question": "______ is the use of natural resources at a rate that does not deplete them.",
+              "options": ["a) Resource exploitation", "b) Resource extraction", "c) Resource depletion", "d) Sustainable resource use"],
+              "answer": "d",
+              "explanation": "sustainable resource use – устойчивое использование ресурсов."
+            },
+            {
+              "question": "______ is the process of making something less harmful to the environment.",
+              "options": ["a) Pollution", "b) Greening", "c) Waste management", "d) Environmental impact"],
+              "answer": "b",
+              "explanation": "greening – озеленение (в широком смысле)."
+            },
+            {
+              "question": "______ is the practice of reducing food waste.",
+              "options": ["a) Food recycling", "b) Food composting", "c) Food waste reduction", "d) Food donation"],
+              "answer": "c",
+              "explanation": "food waste reduction – сокращение пищевых отходов."
+            },
+            {
+              "question": "______ is the use of natural light to save energy.",
+              "options": ["a) Solar power", "b) Natural lighting", "c) Daylighting", "d) Light conservation"],
+              "answer": "c",
+              "explanation": "daylighting – использование естественного освещения."
+            },
+            {
+              "question": "______ is the use of plants to clean polluted soil.",
+              "options": ["a) Bioremediation", "b) Phytoremediation", "c) Soil restoration", "d) Land reclamation"],
+              "answer": "b",
+              "explanation": "phytoremediation – фиторемедиация."
+            }
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "2. Fill in the gaps with the correct word or phrase. Type the missing word(s) in the box.",
+          "subtasks": [
+            {"question": "______ gas emissions are the main cause of the greenhouse effect.", "answer": "Greenhouse", "explanation": "Greenhouse."},
+            {"question": "______ is the process of restoring damaged ecosystems.", "answer": "Ecological restoration", "explanation": "Ecological restoration."},
+            {"question": "______ is the protection of animals and plants in their natural habitats.", "answer": "Wildlife conservation", "explanation": "Wildlife conservation."},
+            {"question": "______ is the use of natural resources at a rate that does not deplete them.", "answer": "Sustainable resource use", "explanation": "Sustainable resource use."},
+            {"question": "______ is the process of making something less harmful to the environment.", "answer": "Greening", "explanation": "Greening."},
+            {"question": "______ is the practice of reducing food waste.", "answer": "Food waste reduction", "explanation": "Food waste reduction."},
+            {"question": "______ is the use of natural light to save energy.", "answer": "Daylighting", "explanation": "Daylighting."},
+            {"question": "______ is the use of plants to clean polluted soil.", "answer": "Phytoremediation", "explanation": "Phytoremediation."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
+          "subtasks": [
+            {"question": "Greenhouse gas emissions are the main cause of the greenhouse effect.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Ecological restoration is the process of restoring damaged ecosystems.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Wildlife conservation is the protection of animals and plants in their natural habitats.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Sustainable resource use is the use of natural resources at a rate that does not deplete them.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Greening is the process of making something less harmful to the environment.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Food waste reduction is the practice of reducing food waste.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Daylighting is the use of natural light to save energy.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Phytoremediation is the use of plants to clean polluted soil.", "answer": "Correct", "explanation": "Верно."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "4. Translate the sentences into English using the correct environment vocabulary. Type your translation (one sentence) in the box.",
+          "subtasks": [
+            {"question": "Выбросы парниковых газов являются основной причиной парникового эффекта.", "answer": "Greenhouse gas emissions are the main cause of the greenhouse effect.", "explanation": ""},
+            {"question": "Экологическое восстановление – это процесс восстановления повреждённых экосистем.", "answer": "Ecological restoration is the process of restoring damaged ecosystems.", "explanation": ""},
+            {"question": "Сохранение дикой природы – это защита животных и растений в их естественной среде обитания.", "answer": "Wildlife conservation is the protection of animals and plants in their natural habitats.", "explanation": ""},
+            {"question": "Устойчивое использование ресурсов – это использование природных ресурсов в таком темпе, который не истощает их.", "answer": "Sustainable resource use is the use of natural resources at a rate that does not deplete them.", "explanation": ""},
+            {"question": "Озеленение – это процесс уменьшения вреда для окружающей среды.", "answer": "Greening is the process of making something less harmful to the environment.", "explanation": ""},
+            {"question": "Сокращение пищевых отходов – это практика уменьшения количества пищевых отходов.", "answer": "Food waste reduction is the practice of reducing food waste.", "explanation": ""},
+            {"question": "Использование естественного освещения – это использование естественного света для экономии энергии.", "answer": "Daylighting is the use of natural light to save energy.", "explanation": ""},
+            {"question": "Фиторемедиация – это использование растений для очистки загрязнённой почвы.", "answer": "Phytoremediation is the use of plants to clean polluted soil.", "explanation": ""}
+          ]
+        }
+      ],
+      # =====================================================
+      # ВАРИАНТ 10 (перефразирование)
+      # =====================================================
+      [
+        {
+          "type": "complex",
+          "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+          "subtasks": [
+            {
+              "question": "______ is the practice of reducing the amount of waste we produce.",
+              "options": ["a) Waste recycling", "b) Waste minimisation", "c) Waste management", "d) Waste disposal"],
+              "answer": "b",
+              "explanation": "waste minimisation – минимизация отходов."
+            },
+            {
+              "question": "______ is the use of products that can be reused.",
+              "options": ["a) Disposable products", "b) Single-use products", "c) Reusable products", "d) Recyclable products"],
+              "answer": "c",
+              "explanation": "reusable products – многоразовые продукты."
+            },
+            {
+              "question": "______ is the process of breaking down organic matter.",
+              "options": ["a) Composting", "b) Recycling", "c) Decomposition", "d) Incineration"],
+              "answer": "c",
+              "explanation": "decomposition – разложение."
+            },
+            {
+              "question": "______ is the practice of using less water.",
+              "options": ["a) Water management", "b) Water conservation", "c) Water treatment", "d) Water distribution"],
+              "answer": "b",
+              "explanation": "water conservation – сохранение воды."
+            },
+            {
+              "question": "______ is the use of energy-saving appliances.",
+              "options": ["a) Energy production", "b) Energy storage", "c) Energy consumption", "d) Energy efficiency"],
+              "answer": "d",
+              "explanation": "energy efficiency – энергоэффективность."
+            },
+            {
+              "question": "______ is the practice of walking or cycling instead of driving.",
+              "options": ["a) Active transport", "b) Public transport", "c) Private transport", "d) Shared transport"],
+              "answer": "a",
+              "explanation": "active transport – активный транспорт."
+            },
+            {
+              "question": "______ is the practice of buying local produce.",
+              "options": ["a) International sourcing", "b) Imported goods", "c) Local sourcing", "d) Mass production"],
+              "answer": "c",
+              "explanation": "local sourcing – покупка местных продуктов."
+            },
+            {
+              "question": "______ is the practice of reducing noise pollution.",
+              "options": ["a) Sound insulation", "b) Noise cancellation", "c) Noise control", "d) Noise reduction"],
+              "answer": "d",
+              "explanation": "noise reduction – снижение шума."
+            }
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "2. Fill in the gaps with the correct word or phrase. Type the missing word(s) in the box.",
+          "subtasks": [
+            {"question": "______ is the practice of reducing the amount of waste we produce.", "answer": "Waste minimisation", "explanation": "Waste minimisation."},
+            {"question": "______ is the use of products that can be reused.", "answer": "Reusable products", "explanation": "Reusable products."},
+            {"question": "______ is the process of breaking down organic matter.", "answer": "Decomposition", "explanation": "Decomposition."},
+            {"question": "______ is the practice of using less water.", "answer": "Water conservation", "explanation": "Water conservation."},
+            {"question": "______ is the use of energy-saving appliances.", "answer": "Energy efficiency", "explanation": "Energy efficiency."},
+            {"question": "______ is the practice of walking or cycling instead of driving.", "answer": "Active transport", "explanation": "Active transport."},
+            {"question": "______ is the practice of buying local produce.", "answer": "Local sourcing", "explanation": "Local sourcing."},
+            {"question": "______ is the practice of reducing noise pollution.", "answer": "Noise reduction", "explanation": "Noise reduction."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
+          "subtasks": [
+            {"question": "Waste minimisation is the practice of reducing the amount of waste we produce.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Reusable products is the use of products that can be reused.", "answer": "Reusable products are the use of products that can be reused."},
+            {"question": "Decomposition is the process of breaking down organic matter.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Water conservation is the practice of using less water.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Energy efficiency is the use of energy-saving appliances.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Active transport is the practice of walking or cycling instead of driving.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Local sourcing is the practice of buying local produce.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Noise reduction is the practice of reducing noise pollution.", "answer": "Correct", "explanation": "Верно."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "4. Rewrite the sentences using the word given in brackets. Type the whole sentence.",
+          "subtasks": [
+            {"question": "We need to reduce waste. (waste minimisation) → Waste minimisation is the practice of reducing the amount of waste we produce.", "answer": "Waste minimisation is the practice of reducing the amount of waste we produce.", "explanation": "waste minimisation."},
+            {"question": "Products that can be reused are good. (reusable products) → Reusable products are the use of products that can be reused.", "answer": "Reusable products are the use of products that can be reused.", "explanation": "reusable products."},
+            {"question": "Organic matter breaks down. (decomposition) → Decomposition is the process of breaking down organic matter.", "answer": "Decomposition is the process of breaking down organic matter.", "explanation": "decomposition."},
+            {"question": "Use less water. (water conservation) → Water conservation is the practice of using less water.", "answer": "Water conservation is the practice of using less water.", "explanation": "water conservation."},
+            {"question": "Use appliances that save energy. (energy efficiency) → Energy efficiency is the use of energy-saving appliances.", "answer": "Energy efficiency is the use of energy-saving appliances.", "explanation": "energy efficiency."},
+            {"question": "Walk or cycle instead of drive. (active transport) → Active transport is the practice of walking or cycling instead of driving.", "answer": "Active transport is the practice of walking or cycling instead of driving.", "explanation": "active transport."},
+            {"question": "Buy food from local farms. (local sourcing) → Local sourcing is the practice of buying local produce.", "answer": "Local sourcing is the practice of buying local produce.", "explanation": "local sourcing."},
+            {"question": "Reduce noise. (noise reduction) → Noise reduction is the practice of reducing noise pollution.", "answer": "Noise reduction is the practice of reducing noise pollution.", "explanation": "noise reduction."}
+          ]
+        }
+      ],
+      # =====================================================
+      # ВАРИАНТ 11 (перевод)
+      # =====================================================
+      [
+        {
+          "type": "complex",
+          "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+          "subtasks": [
+            {
+              "question": "______ is the warming of the oceans due to climate change.",
+              "options": ["a) Ocean cooling", "b) Ocean warming", "c) Ocean current", "d) Ocean salinity"],
+              "answer": "b",
+              "explanation": "ocean warming – потепление океанов."
+            },
+            {
+              "question": "______ is the increase in the acidity of the oceans.",
+              "options": ["a) Ocean desalination", "b) Ocean alkalinity", "c) Ocean acidification", "d) Ocean pollution"],
+              "answer": "c",
+              "explanation": "ocean acidification – закисление океанов."
+            },
+            {
+              "question": "______ is the loss of ice in the Arctic.",
+              "options": ["a) Arctic ice loss", "b) Arctic ice growth", "c) Antarctic ice loss", "d) Glacial retreat"],
+              "answer": "a",
+              "explanation": "Arctic ice loss – потеря арктического льда."
+            },
+            {
+              "question": "______ is the practice of using non-toxic materials.",
+              "options": ["a) Toxic living", "b) Non-toxic living", "c) Chemical-free living", "d) Eco-friendly living"],
+              "answer": "b",
+              "explanation": "non-toxic living – нетоксичный образ жизни."
+            },
+            {
+              "question": "______ is the practice of reducing the use of plastic bags.",
+              "options": ["a) Plastic bag increase", "b) Plastic bag recycling", "c) Plastic bag reduction", "d) Plastic bag disposal"],
+              "answer": "c",
+              "explanation": "plastic bag reduction – сокращение использования пластиковых пакетов."
+            },
+            {
+              "question": "______ is the practice of using energy-efficient light bulbs.",
+              "options": ["a) Incandescent lighting", "b) Halogen lighting", "c) Fluorescent lighting", "d) LED lighting"],
+              "answer": "d",
+              "explanation": "LED lighting – светодиодное освещение."
+            },
+            {
+              "question": "______ is the practice of reducing car usage.",
+              "options": ["a) Car-dependent living", "b) Car-free living", "c) Car-sharing", "d) Public transport"],
+              "answer": "b",
+              "explanation": "car-free living – жизнь без автомобиля."
+            },
+            {
+              "question": "______ is the practice of using renewable materials.",
+              "options": ["a) Single-use materials", "b) Non-renewable materials", "c) Sustainable materials", "d) Synthetic materials"],
+              "answer": "c",
+              "explanation": "sustainable materials – устойчивые материалы."
+            }
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "2. Fill in the gaps with the correct word or phrase. Type the missing word(s) in the box.",
+          "subtasks": [
+            {"question": "______ is the warming of the oceans due to climate change.", "answer": "Ocean warming", "explanation": "Ocean warming."},
+            {"question": "______ is the increase in the acidity of the oceans.", "answer": "Ocean acidification", "explanation": "Ocean acidification."},
+            {"question": "______ is the loss of ice in the Arctic.", "answer": "Arctic ice loss", "explanation": "Arctic ice loss."},
+            {"question": "______ is the practice of using non-toxic materials.", "answer": "Non-toxic living", "explanation": "Non-toxic living."},
+            {"question": "______ is the practice of reducing the use of plastic bags.", "answer": "Plastic bag reduction", "explanation": "Plastic bag reduction."},
+            {"question": "______ is the practice of using energy-efficient light bulbs.", "answer": "LED lighting", "explanation": "LED lighting."},
+            {"question": "______ is the practice of reducing car usage.", "answer": "Car-free living", "explanation": "Car-free living."},
+            {"question": "______ is the practice of using renewable materials.", "answer": "Sustainable materials", "explanation": "Sustainable materials."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
+          "subtasks": [
+            {"question": "Ocean warming is the warming of the oceans due to climate change.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Ocean acidification is the increase in the acidity of the oceans.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Arctic ice loss is the loss of ice in the Arctic.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Non-toxic living is the practice of using non-toxic materials.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Plastic bag reduction is the practice of reducing the use of plastic bags.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "LED lighting is the practice of using energy-efficient light bulbs.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Car-free living is the practice of reducing car usage.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Sustainable materials is the practice of using renewable materials.", "answer": "Sustainable materials are the practice of using renewable materials."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "4. Translate the sentences into English using the correct environment vocabulary. Type your translation (one sentence) in the box.",
+          "subtasks": [
+            {"question": "Потепление океанов – это потепление океанов из-за изменения климата.", "answer": "Ocean warming is the warming of the oceans due to climate change.", "explanation": ""},
+            {"question": "Закисление океанов – это повышение кислотности океанов.", "answer": "Ocean acidification is the increase in the acidity of the oceans.", "explanation": ""},
+            {"question": "Потеря арктического льда – это потеря льда в Арктике.", "answer": "Arctic ice loss is the loss of ice in the Arctic.", "explanation": ""},
+            {"question": "Нетоксичный образ жизни – это практика использования нетоксичных материалов.", "answer": "Non-toxic living is the practice of using non-toxic materials.", "explanation": ""},
+            {"question": "Сокращение использования пластиковых пакетов – это практика уменьшения использования пластиковых пакетов.", "answer": "Plastic bag reduction is the practice of reducing the use of plastic bags.", "explanation": ""},
+            {"question": "Светодиодное освещение – это практика использования энергоэффективных лампочек.", "answer": "LED lighting is the practice of using energy-efficient light bulbs.", "explanation": ""},
+            {"question": "Жизнь без автомобиля – это практика сокращения использования автомобилей.", "answer": "Car-free living is the practice of reducing car usage.", "explanation": ""},
+            {"question": "Устойчивые материалы – это практика использования возобновляемых материалов.", "answer": "Sustainable materials are the practice of using renewable materials.", "explanation": ""}
+          ]
+        }
+      ],
+      # =====================================================
+      # ВАРИАНТ 12 (перефразирование)
+      # =====================================================
+      [
+        {
+          "type": "complex",
+          "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+          "subtasks": [
+            {
+              "question": "______ is the practice of not using cars for short trips.",
+              "options": ["a) Cycling", "b) Walking", "c) Jogging", "d) Running"],
+              "answer": "b",
+              "explanation": "walking – ходьба пешком."
+            },
+            {
+              "question": "______ is the practice of using a bicycle instead of a car.",
+              "options": ["a) Cycling", "b) Driving", "c) Walking", "d) Skateboarding"],
+              "answer": "a",
+              "explanation": "cycling – езда на велосипеде."
+            },
+            {
+              "question": "______ is the practice of using public transport.",
+              "options": ["a) Private transport", "b) Active transport", "c) Public transport use", "d) Shared mobility"],
+              "answer": "c",
+              "explanation": "public transport use – использование общественного транспорта."
+            },
+            {
+              "question": "______ is the practice of planting trees in cities.",
+              "options": ["a) Urbanisation", "b) Deforestation", "c) Urban forestry", "d) Reforestation"],
+              "answer": "c",
+              "explanation": "urban forestry – городское озеленение."
+            },
+            {
+              "question": "______ is the practice of using green roofs to reduce heat.",
+              "options": ["a) Green roofs", "b) Solar panels", "c) Roof gardens", "d) Cool roofs"],
+              "answer": "a",
+              "explanation": "green roofs – зелёные крыши."
+            },
+            {
+              "question": "______ is the practice of using recycled paper.",
+              "options": ["a) Virgin paper use", "b) Recycled paper use", "c) Paper saving", "d) Paper recycling"],
+              "answer": "b",
+              "explanation": "recycled paper use – использование переработанной бумаги."
+            },
+            {
+              "question": "______ is the practice of using renewable energy at home.",
+              "options": ["a) Home energy", "b) Traditional energy", "c) Fossil fuels", "d) Home renewables"],
+              "answer": "d",
+              "explanation": "home renewables – возобновляемая энергия дома."
+            },
+            {
+              "question": "______ is the practice of reducing food waste.",
+              "options": ["a) Food waste increase", "b) Food waste prevention", "c) Food waste disposal", "d) Food waste composting"],
+              "answer": "b",
+              "explanation": "food waste prevention – предотвращение пищевых отходов."
+            }
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "2. Fill in the gaps with the correct word or phrase. Type the missing word(s) in the box.",
+          "subtasks": [
+            {"question": "______ is the practice of not using cars for short trips.", "answer": "Walking", "explanation": "Walking."},
+            {"question": "______ is the practice of using a bicycle instead of a car.", "answer": "Cycling", "explanation": "Cycling."},
+            {"question": "______ is the practice of using public transport.", "answer": "Public transport use", "explanation": "Public transport use."},
+            {"question": "______ is the practice of planting trees in cities.", "answer": "Urban forestry", "explanation": "Urban forestry."},
+            {"question": "______ is the practice of using green roofs to reduce heat.", "answer": "Green roofs", "explanation": "Green roofs."},
+            {"question": "______ is the practice of using recycled paper.", "answer": "Recycled paper use", "explanation": "Recycled paper use."},
+            {"question": "______ is the practice of using renewable energy at home.", "answer": "Home renewables", "explanation": "Home renewables."},
+            {"question": "______ is the practice of reducing food waste.", "answer": "Food waste prevention", "explanation": "Food waste prevention."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
+          "subtasks": [
+            {"question": "Walking is the practice of not using cars for short trips.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Cycling is the practice of using a bicycle instead of a car.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Public transport use is the practice of using public transport.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Urban forestry is the practice of planting trees in cities.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Green roofs is the practice of using green roofs to reduce heat.", "answer": "Green roofs are the practice of using green roofs to reduce heat."},
+            {"question": "Recycled paper use is the practice of using recycled paper.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Home renewables is the practice of using renewable energy at home.", "answer": "Home renewables are the practice of using renewable energy at home."},
+            {"question": "Food waste prevention is the practice of reducing food waste.", "answer": "Correct", "explanation": "Верно."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "4. Rewrite the sentences using the word given in brackets. Type the whole sentence.",
+          "subtasks": [
+            {"question": "Don't drive for short trips. (walking) → Walking is the practice of not using cars for short trips.", "answer": "Walking is the practice of not using cars for short trips.", "explanation": "walking."},
+            {"question": "Use a bike. (cycling) → Cycling is the practice of using a bicycle instead of a car.", "answer": "Cycling is the practice of using a bicycle instead of a car.", "explanation": "cycling."},
+            {"question": "Take the bus or train. (public transport use) → Public transport use is the practice of using public transport.", "answer": "Public transport use is the practice of using public transport.", "explanation": "public transport use."},
+            {"question": "Plant trees in the city. (urban forestry) → Urban forestry is the practice of planting trees in cities.", "answer": "Urban forestry is the practice of planting trees in cities.", "explanation": "urban forestry."},
+            {"question": "Use green roofs. (green roofs) → Green roofs are the practice of using green roofs to reduce heat.", "answer": "Green roofs are the practice of using green roofs to reduce heat.", "explanation": "green roofs."},
+            {"question": "Use recycled paper. (recycled paper use) → Recycled paper use is the practice of using recycled paper.", "answer": "Recycled paper use is the practice of using recycled paper.", "explanation": "recycled paper use."},
+            {"question": "Use renewable energy at home. (home renewables) → Home renewables are the practice of using renewable energy at home.", "answer": "Home renewables are the practice of using renewable energy at home.", "explanation": "home renewables."},
+            {"question": "Stop wasting food. (food waste prevention) → Food waste prevention is the practice of reducing food waste.", "answer": "Food waste prevention is the practice of reducing food waste.", "explanation": "food waste prevention."}
+          ]
+        }
+      ]
     ]
-]
   },
   "science_technology": {
     "title": "Лексика: наука и технологии",
