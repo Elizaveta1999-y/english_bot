@@ -26793,309 +26793,230 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "Она уволилась, чтобы открыть свой бизнес.", "answer": "She resigned from her job to start her own business.", "explanation": ""},
                 {"question": "Они решили нанять больше сотрудников.", "answer": "They decided to hire more staff.", "explanation": ""}
             ]
-        },
+    },
     # =====================================================
     # ВАРИАНТ 10 (перефразирование)
     # =====================================================
-[
-  {
-    "type": "complex",
-    "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-    "subtasks": [
+    [
       {
-        "question": "She is a ______ worker, which means she is paid per project.",
-        "options": ["a) permanent", "b) temporary", "c) freelance", "d) full-time"],
-        "answer": "c",
-        "explanation": "freelance worker – фрилансер."
+        "type": "complex",
+        "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+        "subtasks": [
+          {
+            "question": "She is a ______ worker, which means she is paid per project.",
+            "options": ["a) permanent", "b) temporary", "c) freelance", "d) full-time"],
+            "answer": "c",
+            "explanation": "freelance worker – фрилансер."
+          },
+          {
+            "question": "He has a ______ job, so he works from 9 to 5.",
+            "options": ["a) full-time", "b) part-time", "c) flexible", "d) remote"],
+            "answer": "a",
+            "explanation": "full-time – полная занятость."
+          },
+          {
+            "question": "She works ______, so she is paid by the hour.",
+            "options": ["a) full-time", "b) part-time", "c) freelance", "d) permanent"],
+            "answer": "b",
+            "explanation": "part-time – частичная занятость."
+          },
+          {
+            "question": "He is a ______, so he is learning on the job.",
+            "options": ["a) trainee", "b) manager", "c) executive", "d) director"],
+            "answer": "a",
+            "explanation": "trainee – стажёр."
+          },
+          {
+            "question": "She is ______ for the company's growth.",
+            "options": ["a) responsible", "b) accountable", "c) available", "d) suitable"],
+            "answer": "a",
+            "explanation": "responsible for – ответственный за."
+          },
+          {
+            "question": "He ______ a difficult situation at work.",
+            "options": ["a) created", "b) avoided", "c) ignored", "d) handled"],
+            "answer": "d",
+            "explanation": "to handle a situation – справиться с ситуацией."
+          },
+          {
+            "question": "They ______ a new policy last month.",
+            "options": ["a) introduced", "b) cancelled", "c) delayed", "d) rejected"],
+            "answer": "a",
+            "explanation": "to introduce a policy – ввести политику."
+          },
+          {
+            "question": "She ______ her goals for the year.",
+            "options": ["a) set", "b) missed", "c) achieved", "d) changed"],
+            "answer": "a",
+            "explanation": "to set goals – ставить цели."
+          }
+        ]
       },
       {
-        "question": "He has a ______ job, so he works from 9 to 5.",
-        "options": ["a) full-time", "b) part-time", "c) flexible", "d) remote"],
-        "answer": "a",
-        "explanation": "full-time – полная занятость."
+        "type": "complex",
+        "text": "2. Fill in the gaps with the correct word or phrase. Type the missing word(s) in the box.",
+        "subtasks": [
+          {"question": "She is a ______ worker, which means she is paid per project.", "answer": "freelance", "explanation": "freelance."},
+          {"question": "He has a ______ job, so he works from 9 to 5.", "answer": "full-time", "explanation": "full-time."},
+          {"question": "She works ______, so she is paid by the hour.", "answer": "part-time", "explanation": "part-time."},
+          {"question": "He is a ______, so he is learning on the job.", "answer": "trainee", "explanation": "trainee."},
+          {"question": "She is ______ for the company's growth.", "answer": "responsible", "explanation": "responsible."},
+          {"question": "He ______ a difficult situation at work.", "answer": "handled", "explanation": "handled."},
+          {"question": "They ______ a new policy last month.", "answer": "introduced", "explanation": "introduced."},
+          {"question": "She ______ her goals for the year.", "answer": "set", "explanation": "set."}
+        ]
       },
       {
-        "question": "She works ______, so she is paid by the hour.",
-        "options": ["a) full-time", "b) part-time", "c) freelance", "d) permanent"],
-        "answer": "b",
-        "explanation": "part-time – частичная занятость."
+        "type": "complex",
+        "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
+        "subtasks": [
+          {"question": "She is a freelance worker, which means she is paid per project.", "answer": "Correct", "explanation": "Верно."},
+          {"question": "He has a full-time job, so he works from 9 to 5.", "answer": "Correct", "explanation": "Верно."},
+          {"question": "She works part-time, so she is paid by the hour.", "answer": "Correct", "explanation": "Верно."},
+          {"question": "He is a trainee, so he is learning on the job.", "answer": "Correct", "explanation": "Верно."},
+          {"question": "She is responsible for the company's growth.", "answer": "Correct", "explanation": "Верно."},
+          {"question": "He handled a difficult situation at work.", "answer": "Correct", "explanation": "Верно."},
+          {"question": "They introduced a new policy last month.", "answer": "Correct", "explanation": "Верно."},
+          {"question": "She set her goals for the year.", "answer": "Correct", "explanation": "Верно."}
+        ]
       },
       {
-        "question": "He is a ______, so he is learning on the job.",
-        "options": ["a) trainee", "b) manager", "c) executive", "d) director"],
-        "answer": "a",
-        "explanation": "trainee – стажёр."
-      },
-      {
-        "question": "She is ______ for the company's growth.",
-        "options": ["a) responsible", "b) accountable", "c) available", "d) suitable"],
-        "answer": "a",
-        "explanation": "responsible for – ответственный за."
-      },
-      {
-        "question": "He ______ a difficult situation at work.",
-        "options": ["a) created", "b) avoided", "c) ignored", "d) handled"],
-        "answer": "d",
-        "explanation": "to handle a situation – справиться с ситуацией."
-      },
-      {
-        "question": "They ______ a new policy last month.",
-        "options": ["a) introduced", "b) cancelled", "c) delayed", "d) rejected"],
-        "answer": "a",
-        "explanation": "to introduce a policy – ввести политику."
-      },
-      {
-        "question": "She ______ her goals for the year.",
-        "options": ["a) set", "b) missed", "c) achieved", "d) changed"],
-        "answer": "a",
-        "explanation": "to set goals – ставить цели."
-              }
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "2. Fill in the gaps with the correct word or phrase. Type the missing word(s) in the box.",
-            "subtasks": [
-                {"question": "She is a ______ worker, which means she is paid per project.", "answer": "freelance", "explanation": "freelance."},
-                {"question": "He has a ______ job, so he works from 9 to 5.", "answer": "full-time", "explanation": "full-time."},
-                {"question": "She works ______, so she is paid by the hour.", "answer": "part-time", "explanation": "part-time."},
-                {"question": "He is a ______, so he is learning on the job.", "answer": "trainee", "explanation": "trainee."},
-                {"question": "She is ______ for the company's growth.", "answer": "responsible", "explanation": "responsible."},
-                {"question": "He ______ a difficult situation at work.", "answer": "handled", "explanation": "handled."},
-                {"question": "They ______ a new policy last month.", "answer": "introduced", "explanation": "introduced."},
-                {"question": "She ______ her goals for the year.", "answer": "set", "explanation": "set."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
-            "subtasks": [
-                {"question": "She is a freelance worker, which means she is paid per project.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "He has a full-time job, so he works from 9 to 5.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "She works part-time, so she is paid by the hour.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "He is a trainee, so he is learning on the job.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "She is responsible for the company's growth.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "He handled a difficult situation at work.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "They introduced a new policy last month.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "She set her goals for the year.", "answer": "Correct", "explanation": "Верно."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "4. Rewrite the sentences using the word given in brackets. Type the whole sentence.",
-            "subtasks": [
-                {"question": "She works independently for different clients. (freelance) → She is a freelance worker.", "answer": "She is a freelance worker.", "explanation": "freelance."},
-                {"question": "He works 40 hours a week. (full-time) → He has a full-time job.", "answer": "He has a full-time job.", "explanation": "full-time."},
-                {"question": "She works only in the mornings. (part-time) → She works part-time.", "answer": "She works part-time.", "explanation": "part-time."},
-                {"question": "He is learning the job while working. (trainee) → He is a trainee.", "answer": "He is a trainee.", "explanation": "trainee."},
-                {"question": "She is in charge of growth. (responsible) → She is responsible for the company's growth.", "answer": "She is responsible for the company's growth.", "explanation": "responsible for."},
-                {"question": "He dealt with a difficult situation. (handled) → He handled a difficult situation at work.", "answer": "He handled a difficult situation at work.", "explanation": "handled."},
-                {"question": "They brought in a new policy. (introduced) → They introduced a new policy last month.", "answer": "They introduced a new policy last month.", "explanation": "introduced."},
-                {"question": "She established her goals. (set) → She set her goals for the year.", "answer": "She set her goals for the year.", "explanation": "set."}
-            ]
-        },
+        "type": "complex",
+        "text": "4. Rewrite the sentences using the word given in brackets. Type the whole sentence.",
+        "subtasks": [
+          {"question": "She works independently for different clients. (freelance) → She is a freelance worker.", "answer": "She is a freelance worker.", "explanation": "freelance."},
+          {"question": "He works 40 hours a week. (full-time) → He has a full-time job.", "answer": "He has a full-time job.", "explanation": "full-time."},
+          {"question": "She works only in the mornings. (part-time) → She works part-time.", "answer": "She works part-time.", "explanation": "part-time."},
+          {"question": "He is learning the job while working. (trainee) → He is a trainee.", "answer": "He is a trainee.", "explanation": "trainee."},
+          {"question": "She is in charge of growth. (responsible) → She is responsible for the company's growth.", "answer": "She is responsible for the company's growth.", "explanation": "responsible for."},
+          {"question": "He dealt with a difficult situation. (handled) → He handled a difficult situation at work.", "answer": "He handled a difficult situation at work.", "explanation": "handled."},
+          {"question": "They brought in a new policy. (introduced) → They introduced a new policy last month.", "answer": "They introduced a new policy last month.", "explanation": "introduced."},
+          {"question": "She established her goals. (set) → She set her goals for the year.", "answer": "She set her goals for the year.", "explanation": "set."}
+        ]
+      }
+    ],
     # =====================================================
     # ВАРИАНТ 11 (перевод)
     # =====================================================
-[
-  {
-    "type": "complex",
-    "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-    "subtasks": [
+    [
       {
-        "question": "He is a ______ manager with a lot of authority.",
-        "options": ["a) junior", "b) senior", "c) middle", "d) entry-level"],
-        "answer": "b",
-        "explanation": "senior manager – старший менеджер."
+        "type": "complex",
+        "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+        "subtasks": [
+          {"question": "He is a ______ manager with a lot of authority.", "options": ["a) junior", "b) senior", "c) middle", "d) entry-level"], "answer": "b", "explanation": "senior manager – старший менеджер."},
+          {"question": "She is an ______ in the HR department.", "options": ["a) assistant", "b) executive", "c) director", "d) manager"], "answer": "a", "explanation": "assistant – помощник."},
+          {"question": "He works as a ______ in a law firm.", "options": ["a) lawyer", "b) paralegal", "c) judge", "d) solicitor"], "answer": "b", "explanation": "paralegal – помощник юриста."},
+          {"question": "She is a ______ consultant.", "options": ["a) management", "b) financial", "c) marketing", "d) IT"], "answer": "a", "explanation": "management consultant – консультант по управлению."},
+          {"question": "He is a ______ analyst.", "options": ["a) business", "b) financial", "c) data", "d) systems"], "answer": "b", "explanation": "financial analyst – финансовый аналитик."},
+          {"question": "She is a ______ specialist.", "options": ["a) marketing", "b) sales", "c) public relations", "d) human resources"], "answer": "a", "explanation": "marketing specialist – специалист по маркетингу."},
+          {"question": "He is a ______ engineer.", "options": ["a) mechanical", "b) electrical", "c) software", "d) civil"], "answer": "c", "explanation": "software engineer – инженер-программист."},
+          {"question": "She is a ______ designer.", "options": ["a) graphic", "b) web", "c) fashion", "d) interior"], "answer": "a", "explanation": "graphic designer – графический дизайнер."}
+        ]
       },
       {
-        "question": "She is an ______ in the HR department.",
-        "options": ["a) assistant", "b) executive", "c) director", "d) manager"],
-        "answer": "a",
-        "explanation": "assistant – помощник."
+        "type": "complex",
+        "text": "2. Fill in the gaps with the correct word or phrase. Type the missing word(s) in the box.",
+        "subtasks": [
+          {"question": "He is a ______ manager with a lot of authority.", "answer": "senior", "explanation": "senior."},
+          {"question": "She is an ______ in the HR department.", "answer": "assistant", "explanation": "assistant."},
+          {"question": "He works as a ______ in a law firm.", "answer": "paralegal", "explanation": "paralegal."},
+          {"question": "She is a ______ consultant.", "answer": "management", "explanation": "management."},
+          {"question": "He is a ______ analyst.", "answer": "financial", "explanation": "financial."},
+          {"question": "She is a ______ specialist.", "answer": "marketing", "explanation": "marketing."},
+          {"question": "He is a ______ engineer.", "answer": "software", "explanation": "software."},
+          {"question": "She is a ______ designer.", "answer": "graphic", "explanation": "graphic."}
+        ]
       },
       {
-        "question": "He works as a ______ in a law firm.",
-        "options": ["a) lawyer", "b) paralegal", "c) judge", "d) solicitor"],
-        "answer": "b",
-        "explanation": "paralegal – помощник юриста."
+        "type": "complex",
+        "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
+        "subtasks": [
+          {"question": "He is a senior manager with a lot of authority.", "answer": "Correct", "explanation": "Верно."},
+          {"question": "She is an assistant in the HR department.", "answer": "Correct", "explanation": "Верно."},
+          {"question": "He works as a paralegal in a law firm.", "answer": "Correct", "explanation": "Верно."},
+          {"question": "She is a management consultant.", "answer": "Correct", "explanation": "Верно."},
+          {"question": "He is a financial analyst.", "answer": "Correct", "explanation": "Верно."},
+          {"question": "She is a marketing specialist.", "answer": "Correct", "explanation": "Верно."},
+          {"question": "He is a software engineer.", "answer": "Correct", "explanation": "Верно."},
+          {"question": "She is a graphic designer.", "answer": "Correct", "explanation": "Верно."}
+        ]
       },
       {
-        "question": "She is a ______ consultant.",
-        "options": ["a) management", "b) financial", "c) marketing", "d) IT"],
-        "answer": "a",
-        "explanation": "management consultant – консультант по управлению."
-      },
-      {
-        "question": "He is a ______ analyst.",
-        "options": ["a) business", "b) financial", "c) data", "d) systems"],
-        "answer": "b",
-        "explanation": "financial analyst – финансовый аналитик."
-      },
-      {
-        "question": "She is a ______ specialist.",
-        "options": ["a) marketing", "b) sales", "c) public relations", "d) human resources"],
-        "answer": "a",
-        "explanation": "marketing specialist – специалист по маркетингу."
-      },
-      {
-        "question": "He is a ______ engineer.",
-        "options": ["a) mechanical", "b) electrical", "c) software", "d) civil"],
-        "answer": "c",
-        "explanation": "software engineer – инженер-программист."
-      },
-      {
-        "question": "She is a ______ designer.",
-        "options": ["a) graphic", "b) web", "c) fashion", "d) interior"],
-        "answer": "a",
-        "explanation": "graphic designer – графический дизайнер."
-              }
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "2. Fill in the gaps with the correct word or phrase. Type the missing word(s) in the box.",
-            "subtasks": [
-                {"question": "He is a ______ manager with a lot of authority.", "answer": "senior", "explanation": "senior."},
-                {"question": "She is an ______ in the HR department.", "answer": "assistant", "explanation": "assistant."},
-                {"question": "He works as a ______ in a law firm.", "answer": "paralegal", "explanation": "paralegal."},
-                {"question": "She is a ______ consultant.", "answer": "management", "explanation": "management."},
-                {"question": "He is a ______ analyst.", "answer": "financial", "explanation": "financial."},
-                {"question": "She is a ______ specialist.", "answer": "marketing", "explanation": "marketing."},
-                {"question": "He is a ______ engineer.", "answer": "software", "explanation": "software."},
-                {"question": "She is a ______ designer.", "answer": "graphic", "explanation": "graphic."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
-            "subtasks": [
-                {"question": "He is a senior manager with a lot of authority.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "She is an assistant in the HR department.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "He works as a paralegal in a law firm.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "She is a management consultant.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "He is a financial analyst.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "She is a marketing specialist.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "He is a software engineer.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "She is a graphic designer.", "answer": "Correct", "explanation": "Верно."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "4. Translate the sentences into English using the correct work-related vocabulary. Type your translation (one sentence) in the box.",
-            "subtasks": [
-                {"question": "Он старший менеджер с большими полномочиями.", "answer": "He is a senior manager with a lot of authority.", "explanation": ""},
-                {"question": "Она помощник в отделе кадров.", "answer": "She is an assistant in the HR department.", "explanation": ""},
-                {"question": "Он работает помощником юриста в юридической фирме.", "answer": "He works as a paralegal in a law firm.", "explanation": ""},
-                {"question": "Она консультант по управлению.", "answer": "She is a management consultant.", "explanation": ""},
-                {"question": "Он финансовый аналитик.", "answer": "He is a financial analyst.", "explanation": ""},
-                {"question": "Она специалист по маркетингу.", "answer": "She is a marketing specialist.", "explanation": ""},
-                {"question": "Он инженер-программист.", "answer": "He is a software engineer.", "explanation": ""},
-                {"question": "Она графический дизайнер.", "answer": "She is a graphic designer.", "explanation": ""}
-            ]
-        },
+        "type": "complex",
+        "text": "4. Translate the sentences into English using the correct work-related vocabulary. Type your translation (one sentence) in the box.",
+        "subtasks": [
+          {"question": "Он старший менеджер с большими полномочиями.", "answer": "He is a senior manager with a lot of authority.", "explanation": ""},
+          {"question": "Она помощник в отделе кадров.", "answer": "She is an assistant in the HR department.", "explanation": ""},
+          {"question": "Он работает помощником юриста в юридической фирме.", "answer": "He works as a paralegal in a law firm.", "explanation": ""},
+          {"question": "Она консультант по управлению.", "answer": "She is a management consultant.", "explanation": ""},
+          {"question": "Он финансовый аналитик.", "answer": "He is a financial analyst.", "explanation": ""},
+          {"question": "Она специалист по маркетингу.", "answer": "She is a marketing specialist.", "explanation": ""},
+          {"question": "Он инженер-программист.", "answer": "He is a software engineer.", "explanation": ""},
+          {"question": "Она графический дизайнер.", "answer": "She is a graphic designer.", "explanation": ""}
+        ]
+      }
+    ],
     # =====================================================
     # ВАРИАНТ 12 (перефразирование)
     # =====================================================
-[
-  {
-    "type": "complex",
-    "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-    "subtasks": [
+    [
       {
-        "question": "She is a ______ executive at a tech company.",
-        "options": ["a) senior", "b) junior", "c) middle", "d) entry-level"],
-        "answer": "a",
-        "explanation": "senior executive – старший руководитель."
+        "type": "complex",
+        "text": "1. Choose the correct word or phrase (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+        "subtasks": [
+          {"question": "She is a ______ executive at a tech company.", "options": ["a) senior", "b) junior", "c) middle", "d) entry-level"], "answer": "a", "explanation": "senior executive – старший руководитель."},
+          {"question": "He is a ______ developer.", "options": ["a) web", "b) software", "c) mobile", "d) game"], "answer": "b", "explanation": "software developer – разработчик программного обеспечения."},
+          {"question": "She is a ______ manager in the sales department.", "options": ["a) project", "b) team", "c) product", "d) general"], "answer": "b", "explanation": "team manager – руководитель команды."},
+          {"question": "He is a ______ officer.", "options": ["a) chief operating", "b) chief financial", "c) chief technology", "d) chief marketing"], "answer": "a", "explanation": "chief operating officer – COO."},
+          {"question": "She is a ______ coordinator.", "options": ["a) project", "b) event", "c) marketing", "d) sales"], "answer": "a", "explanation": "project coordinator – координатор проекта."},
+          {"question": "He is a ______ adviser.", "options": ["a) financial", "b) legal", "c) tax", "d) investment"], "answer": "a", "explanation": "financial adviser – финансовый консультант."},
+          {"question": "She is a ______ representative.", "options": ["a) customer service", "b) sales", "c) marketing", "d) public relations"], "answer": "b", "explanation": "sales representative – торговый представитель."},
+          {"question": "He is a ______ director.", "options": ["a) technical", "b) creative", "c) financial", "d) managing"], "answer": "b", "explanation": "creative director – креативный директор."}
+        ]
       },
       {
-        "question": "He is a ______ developer.",
-        "options": ["a) web", "b) software", "c) mobile", "d) game"],
-        "answer": "b",
-        "explanation": "software developer – разработчик программного обеспечения."
+        "type": "complex",
+        "text": "2. Fill in the gaps with the correct word or phrase. Type the missing word(s) in the box.",
+        "subtasks": [
+          {"question": "She is a ______ executive at a tech company.", "answer": "senior", "explanation": "senior."},
+          {"question": "He is a ______ developer.", "answer": "software", "explanation": "software."},
+          {"question": "She is a ______ manager in the sales department.", "answer": "team", "explanation": "team."},
+          {"question": "He is a chief ______ officer.", "answer": "operating", "explanation": "operating."},
+          {"question": "She is a ______ coordinator.", "answer": "project", "explanation": "project."},
+          {"question": "He is a ______ adviser.", "answer": "financial", "explanation": "financial."},
+          {"question": "She is a ______ representative.", "answer": "sales", "explanation": "sales."},
+          {"question": "He is a ______ director.", "answer": "creative", "explanation": "creative."}
+        ]
       },
       {
-        "question": "She is a ______ manager in the sales department.",
-        "options": ["a) project", "b) team", "c) product", "d) general"],
-        "answer": "b",
-        "explanation": "team manager – руководитель команды."
+        "type": "complex",
+        "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
+        "subtasks": [
+          {"question": "She is a senior executive at a tech company.", "answer": "Correct", "explanation": "Верно."},
+          {"question": "He is a software developer.", "answer": "Correct", "explanation": "Верно."},
+          {"question": "She is a team manager in the sales department.", "answer": "Correct", "explanation": "Верно."},
+          {"question": "He is a chief operating officer.", "answer": "Correct", "explanation": "Верно."},
+          {"question": "She is a project coordinator.", "answer": "Correct", "explanation": "Верно."},
+          {"question": "He is a financial adviser.", "answer": "Correct", "explanation": "Верно."},
+          {"question": "She is a sales representative.", "answer": "Correct", "explanation": "Верно."},
+          {"question": "He is a creative director.", "answer": "Correct", "explanation": "Верно."}
+        ]
       },
       {
-        "question": "He is a ______ officer.",
-        "options": ["a) chief operating", "b) chief financial", "c) chief technology", "d) chief marketing"],
-        "answer": "a",
-        "explanation": "chief operating officer – COO."
-      },
-      {
-        "question": "She is a ______ coordinator.",
-        "options": ["a) project", "b) event", "c) marketing", "d) sales"],
-        "answer": "a",
-        "explanation": "project coordinator – координатор проекта."
-      },
-      {
-        "question": "He is a ______ adviser.",
-        "options": ["a) financial", "b) legal", "c) tax", "d) investment"],
-        "answer": "a",
-        "explanation": "financial adviser – финансовый консультант."
-      },
-      {
-        "question": "She is a ______ representative.",
-        "options": ["a) customer service", "b) sales", "c) marketing", "d) public relations"],
-        "answer": "b",
-        "explanation": "sales representative – торговый представитель."
-      },
-      {
-        "question": "He is a ______ director.",
-        "options": ["a) technical", "b) creative", "c) financial", "d) managing"],
-        "answer": "b",
-        "explanation": "creative director – креативный директор."
-              }
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "2. Fill in the gaps with the correct word or phrase. Type the missing word(s) in the box.",
-            "subtasks": [
-                {"question": "She is a ______ executive at a tech company.", "answer": "senior", "explanation": "senior."},
-                {"question": "He is a ______ developer.", "answer": "software", "explanation": "software."},
-                {"question": "She is a ______ manager in the sales department.", "answer": "team", "explanation": "team."},
-                {"question": "He is a chief ______ officer.", "answer": "operating", "explanation": "operating."},
-                {"question": "She is a ______ coordinator.", "answer": "project", "explanation": "project."},
-                {"question": "He is a ______ adviser.", "answer": "financial", "explanation": "financial."},
-                {"question": "She is a ______ representative.", "answer": "sales", "explanation": "sales."},
-                {"question": "He is a ______ director.", "answer": "creative", "explanation": "creative."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
-            "subtasks": [
-                {"question": "She is a senior executive at a tech company.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "He is a software developer.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "She is a team manager in the sales department.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "He is a chief operating officer.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "She is a project coordinator.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "He is a financial adviser.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "She is a sales representative.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "He is a creative director.", "answer": "Correct", "explanation": "Верно."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "4. Rewrite the sentences using the word given in brackets. Type the whole sentence.",
-            "subtasks": [
-                {"question": "She is a top leader at a tech company. (senior executive) → She is a senior executive at a tech company.", "answer": "She is a senior executive at a tech company.", "explanation": "senior executive."},
-                {"question": "He is a programmer. (software developer) → He is a software developer.", "answer": "He is a software developer.", "explanation": "software developer."},
-                {"question": "She is a group leader in sales. (team manager) → She is a team manager in the sales department.", "answer": "She is a team manager in the sales department.", "explanation": "team manager."},
-                {"question": "He is a COO. (chief operating officer) → He is a chief operating officer.", "answer": "He is a chief operating officer.", "explanation": "chief operating officer."},
-                {"question": "She is a project leader. (project coordinator) → She is a project coordinator.", "answer": "She is a project coordinator.", "explanation": "project coordinator."},
-                {"question": "He gives financial advice. (financial adviser) → He is a financial adviser.", "answer": "He is a financial adviser.", "explanation": "financial adviser."},
-                {"question": "She sells products for the company. (sales representative) → She is a sales representative.", "answer": "She is a sales representative.", "explanation": "sales representative."},
-                {"question": "He is in charge of the creative team. (creative director) → He is a creative director.", "answer": "He is a creative director.", "explanation": "creative director."}
-            ]
-        }
+        "type": "complex",
+        "text": "4. Rewrite the sentences using the word given in brackets. Type the whole sentence.",
+        "subtasks": [
+          {"question": "She is a top leader at a tech company. (senior executive) → She is a senior executive at a tech company.", "answer": "She is a senior executive at a tech company.", "explanation": "senior executive."},
+          {"question": "He is a programmer. (software developer) → He is a software developer.", "answer": "He is a software developer.", "explanation": "software developer."},
+          {"question": "She is a group leader in sales. (team manager) → She is a team manager in the sales department.", "answer": "She is a team manager in the sales department.", "explanation": "team manager."},
+          {"question": "He is a COO. (chief operating officer) → He is a chief operating officer.", "answer": "He is a chief operating officer.", "explanation": "chief operating officer."},
+          {"question": "She is a project leader. (project coordinator) → She is a project coordinator.", "answer": "She is a project coordinator.", "explanation": "project coordinator."},
+          {"question": "He gives financial advice. (financial adviser) → He is a financial adviser.", "answer": "He is a financial adviser.", "explanation": "financial adviser."},
+          {"question": "She sells products for the company. (sales representative) → She is a sales representative.", "answer": "She is a sales representative.", "explanation": "sales representative."},
+          {"question": "He is in charge of the creative team. (creative director) → He is a creative director.", "answer": "He is a creative director.", "explanation": "creative director."}
+        ]
+      }
     ]
-]
   },
   "education_b2": {
     "title": "Лексика: образование (продвинутая)",
