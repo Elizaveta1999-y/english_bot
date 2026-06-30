@@ -180,7 +180,7 @@ async def send_task(message: Message, state: FSMContext):
         task = tasks[index]
         await state.update_data({"task": task, "task_index": index, "answered": False})
 
-    # Генерация аудио (длинные тексты уже в JSON)
+    # Генерация аудио (здесь можно добавить проверку на наличие предварительно сохранённого файла)
     status_msg = await message.answer("⏳ Генерирую аудио...")
     audio_path = await text_to_voice(task["audio_text"], voice_id="yM93hbw8Qtvdma2wCnJG")
     if audio_path and os.path.exists(audio_path):
@@ -199,28 +199,30 @@ async def send_task(message: Message, state: FSMContext):
         await message.answer(f"Текст для прослушивания:\n\n{task['audio_text']}")
     await status_msg.delete()
 
-    # Показываем вопрос (без лишнего текста)
-    await show_question(message, state, task)
+    await show_question(message, state)
 
-async def show_question(message: Message, state: FSMContext, task: dict):
+async def show_question(message: Message, state: FSMContext):
+    data = await state.get_data()
+    task = data["task"]
     task_type = task["type"]
     task_id = task["id"]
 
-    # Формируем вопрос в зависимости от типа
+    # Подсказка в зависимости от типа
     if task_type == "choice":
-        text = f"{task['question']}"
+        text = f"{task['question']}\n\nВыберите правильный вариант:"
         keyboard = get_choice_keyboard(task["options"], task_id)
     elif task_type == "truefalse":
-        text = f"{task['statement']}"
+        text = f"{task['statement']}\n\nВыберите верное утверждение:"
         keyboard = get_truefalse_keyboard(task_id)
     elif task_type == "fill_one":
-        text = f"{task['question']}"
+        text = f"{task['question']}\n\nВведите пропущенное слово:"
         keyboard = get_fill_keyboard(task_id)
     elif task_type == "fill_multiple":
-        text = f"{task['question']}"
+        text = f"{task['question']}\n\nВведите все пропущенные слова в формате: ___; ___; ___;"
         keyboard = get_fill_keyboard(task_id)
     elif task_type == "speaker":
-        text = f"{task['question']}\n\n" + "\n".join(task['options'])
+        # Только вопрос, варианты уже в тексте, кнопки с вариантами
+        text = f"{task['question']}\n\nВыберите правильный вариант:"
         keyboard = get_choice_keyboard(task["options"], task_id)
     else:
         return
@@ -394,7 +396,6 @@ async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
     else:
         data["wrong"] = data.get("wrong", 0) + 1
 
-    # Убираем кнопки из сообщения с вопросом
     await callback.message.edit_text(callback.message.text, reply_markup=None)
     await callback.message.answer(result_text)
     data["answered"] = True
@@ -423,7 +424,6 @@ async def show_answer(callback: CallbackQuery, state: FSMContext):
     else:
         answer_text = ""
 
-    # Убираем кнопки из сообщения с вопросом
     await callback.message.edit_text(callback.message.text, reply_markup=None)
     await callback.message.answer(f"Правильный ответ: {answer_text}")
     data["answered"] = True
