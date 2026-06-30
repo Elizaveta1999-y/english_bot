@@ -25130,7 +25130,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
       ]
     ]
   },
-  "conjunctions_advanced": {
+"conjunctions_advanced": {
     "title": "Союзы и связки (however, moreover, nevertheless, whereas, in contrast, consequently)",
     "pages": [
       {
@@ -25156,1205 +25156,716 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
         "answer": "Они почти одинаковы, nevertheless более формальный."
       }
     ],
-"practice_bank": [
-    # =====================================================
-    # ВАРИАНТ 1 (перевод)
-{
-  "type": "complex",
-  "text": "1. Choose the correct linking word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-  "subtasks": [
-    {
-      "question": "The hotel was expensive. ______, it was the only one available.",
-      "options": ["a) Moreover", "b) Nevertheless", "c) Therefore", "d) However"],
-      "answer": "b",
-      "explanation": "Nevertheless – тем не менее (несмотря на цену, это был единственный вариант)."
-    },
-    {
-      "question": "She is a gifted writer. ______, she is also a talented painter.",
-      "options": ["a) In contrast", "b) Consequently", "c) Moreover", "d) However"],
-      "answer": "c",
-      "explanation": "Moreover – более того, добавление информации."
-    },
-    {
-      "question": "He studied hard, ______ he passed the exam with flying colours.",
-      "options": ["a) whereas", "b) so", "c) however", "d) nevertheless"],
-      "answer": "b",
-      "explanation": "So – поэтому (результат)."
-    },
-    {
-      "question": "The north is mountainous, ______ the south is flat.",
-      "options": ["a) in contrast", "b) moreover", "c) whereas", "d) consequently"],
-      "answer": "c",
-      "explanation": "Whereas – тогда как (сравнение)."
-    },
-    {
-      "question": "The project was completed on time. ______, it was under budget.",
-      "options": ["a) However", "b) In addition", "c) Consequently", "d) Nevertheless"],
-      "answer": "b",
-      "explanation": "In addition – кроме того, добавление."
-    },
-    {
-      "question": "The company invested heavily in marketing. ______, sales increased significantly.",
-      "options": ["a) However", "b) Moreover", "c) Consequently", "d) In contrast"],
-      "answer": "c",
-      "explanation": "Consequently – следовательно (причина-следствие)."
-    },
-    {
-      "question": "He is very talented. ______, he is too lazy to work hard.",
-      "options": ["a) Moreover", "b) However", "c) Therefore", "d) Whereas"],
-      "answer": "b",
-      "explanation": "However – однако (противопоставление)."
-    },
-    {
-      "question": "______ to the previous policy, the new one is far more flexible.",
-      "options": ["a) In contrast", "b) In addition", "c) Consequently", "d) Moreover"],
-      "answer": "a",
-      "explanation": "In contrast – в отличие от (сравнение)."
-              }
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "2. Fill in the gaps with the correct linking word. Type the missing word(s) in the box.",
-            "subtasks": [
-                {"question": "The task was difficult. ______, we managed to finish on time.", "answer": "However", "explanation": "However – однако."},
-                {"question": "The weather was terrible. ______, they continued the climb.", "answer": "Nevertheless", "explanation": "Nevertheless – тем не менее."},
-                {"question": "Some people love coffee, ______ others prefer tea.", "answer": "whereas", "explanation": "Whereas – тогда как."},
-                {"question": "______ to her brother, she is very outgoing.", "answer": "In contrast", "explanation": "In contrast – в отличие от."},
-                {"question": "The new policy is unpopular. ______, it may be illegal.", "answer": "Moreover", "explanation": "Moreover – более того."},
-                {"question": "He didn't study. ______, he failed the exam.", "answer": "Consequently", "explanation": "Consequently – следовательно."},
-                {"question": "It was raining, ______ we stayed home.", "answer": "so", "explanation": "So – поэтому."},
-                {"question": "I don't want to go. ______, it's too late.", "answer": "Besides", "explanation": "Besides – кроме того."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
-            "subtasks": [
-                {"question": "However he is tired, he keeps working.", "answer": "He is tired. However, he keeps working.", "explanation": "However – вводное слово, ставится в начале предложения с запятой."},
-                {"question": "She is tall, whereas her sister is short.", "answer": "Correct", "explanation": "Верно – whereas в середине."},
-                {"question": "I studied hard, consequently I passed.", "answer": "I studied hard; consequently, I passed.", "explanation": "После consequently нужна запятая, перед ним точка с запятой."},
-                {"question": "The weather was terrible. Nevertheless, they continued.", "answer": "Correct", "explanation": "Верно – nevertheless с запятой."},
-                {"question": "In addition to the budget, we need to consider the timeline.", "answer": "Correct", "explanation": "Верно – in addition to с объектом."},
-                {"question": "Moreover he is late, he also forgot his keys.", "answer": "Moreover, he is late, and he also forgot his keys.", "explanation": "Moreover – вводное слово, требует запятой."},
-                {"question": "It was raining so we stayed home.", "answer": "Correct", "explanation": "So в разговорной речи допустимо."},
-                {"question": "I don't want to go besides it's too late.", "answer": "I don't want to go. Besides, it's too late.", "explanation": "Besides – вводное слово, запятая после."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "4. Translate the sentences into English using the correct linking words. Type your translation (one sentence) in the box.",
-            "subtasks": [
-                {"question": "Задание было сложным. Однако нам удалось закончить вовремя.", "answer": "The task was difficult. However, we managed to finish on time.", "explanation": ""},
-                {"question": "Погода была ужасной. Тем не менее они продолжили восхождение.", "answer": "The weather was terrible. Nevertheless, they continued the climb.", "explanation": ""},
-                {"question": "Некоторые люди любят кофе, тогда как другие предпочитают чай.", "answer": "Some people love coffee, whereas others prefer tea.", "explanation": ""},
-                {"question": "В отличие от брата, она очень общительная.", "answer": "In contrast to her brother, she is very outgoing.", "explanation": ""},
-                {"question": "Новая политика непопулярна. Более того, она может быть незаконной.", "answer": "The new policy is unpopular. Moreover, it may be illegal.", "explanation": ""},
-                {"question": "Он не учился. Следовательно, он провалил экзамен.", "answer": "He didn't study. Consequently, he failed the exam.", "explanation": ""},
-                {"question": "Шёл дождь, поэтому мы остались дома.", "answer": "It was raining, so we stayed home.", "explanation": ""},
-                {"question": "Я не хочу идти. Кроме того, уже слишком поздно.", "answer": "I don't want to go. Besides, it's too late.", "explanation": ""}
-            ]
-        },
-    # =====================================================
-    # ВАРИАНТ 2 (перефразирование)
-    # =====================================================
-{
-  "type": "complex",
-  "text": "1. Choose the correct linking word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-  "subtasks": [
-    {
-      "question": "The road was icy. ______, we drove slowly.",
-      "options": ["a) However", "b) Therefore", "c) Moreover", "d) Nevertheless"],
-      "answer": "b",
-      "explanation": "Therefore – следовательно."
-    },
-    {
-      "question": "She is very intelligent, ______ her brother is quite lazy.",
-      "options": ["a) whereas", "b) however", "c) moreover", "d) consequently"],
-      "answer": "a",
-      "explanation": "Whereas – тогда как."
-    },
-    {
-      "question": "The hotel was expensive. ______, it was very comfortable.",
-      "options": ["a) Therefore", "b) However", "c) Nevertheless", "d) Moreover"],
-      "answer": "c",
-      "explanation": "Nevertheless – тем не менее."
-    },
-    {
-      "question": "______, we also need to consider the environmental impact.",
-      "options": ["a) Furthermore", "b) However", "c) Consequently", "d) In contrast"],
-      "answer": "a",
-      "explanation": "Furthermore – более того."
-    },
-    {
-      "question": "He was tired. ______, he finished the race.",
-      "options": ["a) However", "b) Therefore", "c) Moreover", "d) Consequently"],
-      "answer": "a",
-      "explanation": "However – однако."
-    },
-    {
-      "question": "The company lost money. ______, many workers were laid off.",
-      "options": ["a) Nevertheless", "b) However", "c) As a result", "d) In addition"],
-      "answer": "c",
-      "explanation": "As a result – в результате."
-    },
-    {
-      "question": "I love summer, ______ my sister prefers winter.",
-      "options": ["a) whereas", "b) so", "c) however", "d) moreover"],
-      "answer": "a",
-      "explanation": "Whereas – тогда как."
-    },
-    {
-      "question": "She didn't have much experience. ______, she got the job.",
-      "options": ["a) Consequently", "b) Nevertheless", "c) Therefore", "d) Moreover"],
-      "answer": "b",
-      "explanation": "Nevertheless – тем не менее."
-              }
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "2. Fill in the gaps with the correct linking word. Type the missing word(s) in the box.",
-            "subtasks": [
-                {"question": "The road was icy. ______, we drove slowly.", "answer": "Therefore", "explanation": "Therefore – следовательно."},
-                {"question": "She is very intelligent, ______ her brother is quite lazy.", "answer": "whereas", "explanation": "Whereas – тогда как."},
-                {"question": "The hotel was expensive. ______, it was very comfortable.", "answer": "Nevertheless", "explanation": "Nevertheless – тем не менее."},
-                {"question": "______, we also need to consider the environmental impact.", "answer": "Furthermore", "explanation": "Furthermore – более того."},
-                {"question": "He was tired. ______, he finished the race.", "answer": "However", "explanation": "However – однако."},
-                {"question": "The company lost money. ______, many workers were laid off.", "answer": "As a result", "explanation": "As a result – в результате."},
-                {"question": "I love summer, ______ my sister prefers winter.", "answer": "whereas", "explanation": "Whereas – тогда как."},
-                {"question": "She didn't have much experience. ______, she got the job.", "answer": "Nevertheless", "explanation": "Nevertheless – тем не менее."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
-            "subtasks": [
-                {"question": "The road was icy therefore we drove slowly.", "answer": "The road was icy; therefore, we drove slowly.", "explanation": "Пунктуация: ; therefore,"},
-                {"question": "She is very intelligent, whereas her brother is lazy.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "The hotel was expensive nevertheless it was comfortable.", "answer": "The hotel was expensive; nevertheless, it was comfortable.", "explanation": "Пунктуация."},
-                {"question": "Furthermore we also need to consider the environmental impact.", "answer": "Furthermore, we also need to consider the environmental impact.", "explanation": "Запятая после furthermore."},
-                {"question": "He was tired however he finished the race.", "answer": "He was tired. However, he finished the race.", "explanation": "Пунктуация."},
-                {"question": "The company lost money as a result many workers were laid off.", "answer": "The company lost money. As a result, many workers were laid off.", "explanation": "Пунктуация."},
-                {"question": "I love summer, whereas my sister prefers winter.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "She didn't have much experience nevertheless she got the job.", "answer": "She didn't have much experience. Nevertheless, she got the job.", "explanation": "Пунктуация."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "4. Rewrite the sentences using the linking word given in brackets. Type the whole sentence.",
-            "subtasks": [
-                {"question": "The road was icy, so we drove slowly. (therefore) → The road was icy; therefore, we drove slowly.", "answer": "The road was icy; therefore, we drove slowly.", "explanation": "Therefore – следовательно."},
-                {"question": "She is intelligent, but her brother is lazy. (whereas) → She is intelligent, whereas her brother is lazy.", "answer": "She is intelligent, whereas her brother is lazy.", "explanation": "Whereas – тогда как."},
-                {"question": "The hotel was expensive, but it was comfortable. (nevertheless) → The hotel was expensive; nevertheless, it was comfortable.", "answer": "The hotel was expensive; nevertheless, it was comfortable.", "explanation": "Nevertheless – тем не менее."},
-                {"question": "We also need to consider the environmental impact. (furthermore) → Furthermore, we also need to consider the environmental impact.", "answer": "Furthermore, we also need to consider the environmental impact.", "explanation": "Furthermore – более того."},
-                {"question": "He was tired, but he finished the race. (however) → He was tired. However, he finished the race.", "answer": "He was tired. However, he finished the race.", "explanation": "However – однако."},
-                {"question": "The company lost money, so many workers were laid off. (as a result) → The company lost money. As a result, many workers were laid off.", "answer": "The company lost money. As a result, many workers were laid off.", "explanation": "As a result – в результате."},
-                {"question": "I love summer, but my sister prefers winter. (whereas) → I love summer, whereas my sister prefers winter.", "answer": "I love summer, whereas my sister prefers winter.", "explanation": "Whereas – тогда как."},
-                {"question": "She didn't have much experience, but she got the job. (nevertheless) → She didn't have much experience. Nevertheless, she got the job.", "answer": "She didn't have much experience. Nevertheless, she got the job.", "explanation": "Nevertheless – тем не менее."}
-            ]
-        },
-    # =====================================================
-    # ВАРИАНТ 3 (перевод)
-    # =====================================================
-[
-  {
-    "type": "complex",
-    "text": "1. Choose the correct linking word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-    "subtasks": [
+    "practice_bank": [
+      # =====================================================
+      # ВАРИАНТ 1 (перевод)
+      # =====================================================
       {
-        "question": "The project was expensive. ______, it was completed on time.",
-        "options": ["a) However", "b) Therefore", "c) Nevertheless", "d) Moreover"],
-        "answer": "c",
-        "explanation": "Nevertheless – тем не менее."
+        "type": "complex",
+        "text": "1. Choose the correct linking word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+        "subtasks": [
+          {"question": "The hotel was expensive. ______, it was the only one available.", "options": ["a) Moreover", "b) Nevertheless", "c) Therefore", "d) However"], "answer": "b", "explanation": "Nevertheless – тем не менее (несмотря на цену, это был единственный вариант)."},
+          {"question": "She is a gifted writer. ______, she is also a talented painter.", "options": ["a) In contrast", "b) Consequently", "c) Moreover", "d) However"], "answer": "c", "explanation": "Moreover – более того, добавление информации."},
+          {"question": "He studied hard, ______ he passed the exam with flying colours.", "options": ["a) whereas", "b) so", "c) however", "d) nevertheless"], "answer": "b", "explanation": "So – поэтому (результат)."},
+          {"question": "The north is mountainous, ______ the south is flat.", "options": ["a) in contrast", "b) moreover", "c) whereas", "d) consequently"], "answer": "c", "explanation": "Whereas – тогда как (сравнение)."},
+          {"question": "The project was completed on time. ______, it was under budget.", "options": ["a) However", "b) In addition", "c) Consequently", "d) Nevertheless"], "answer": "b", "explanation": "In addition – кроме того, добавление."},
+          {"question": "The company invested heavily in marketing. ______, sales increased significantly.", "options": ["a) However", "b) Moreover", "c) Consequently", "d) In contrast"], "answer": "c", "explanation": "Consequently – следовательно (причина-следствие)."},
+          {"question": "He is very talented. ______, he is too lazy to work hard.", "options": ["a) Moreover", "b) However", "c) Therefore", "d) Whereas"], "answer": "b", "explanation": "However – однако (противопоставление)."},
+          {"question": "______ to the previous policy, the new one is far more flexible.", "options": ["a) In contrast", "b) In addition", "c) Consequently", "d) Moreover"], "answer": "a", "explanation": "In contrast – в отличие от (сравнение)."}
+        ]
       },
       {
-        "question": "Some people enjoy cold weather, ______ others hate it.",
-        "options": ["a) whereas", "b) however", "c) so", "d) consequently"],
-        "answer": "a",
-        "explanation": "Whereas – тогда как."
+        "type": "complex",
+        "text": "2. Fill in the gaps with the correct linking word. Type the missing word(s) in the box.",
+        "subtasks": [
+          {"question": "The task was difficult. ______, we managed to finish on time.", "answer": "However", "explanation": "However – однако."},
+          {"question": "The weather was terrible. ______, they continued the climb.", "answer": "Nevertheless", "explanation": "Nevertheless – тем не менее."},
+          {"question": "Some people love coffee, ______ others prefer tea.", "answer": "whereas", "explanation": "Whereas – тогда как."},
+          {"question": "______ to her brother, she is very outgoing.", "answer": "In contrast", "explanation": "In contrast – в отличие от."},
+          {"question": "The new policy is unpopular. ______, it may be illegal.", "answer": "Moreover", "explanation": "Moreover – более того."},
+          {"question": "He didn't study. ______, he failed the exam.", "answer": "Consequently", "explanation": "Consequently – следовательно."},
+          {"question": "It was raining, ______ we stayed home.", "answer": "so", "explanation": "So – поэтому."},
+          {"question": "I don't want to go. ______, it's too late.", "answer": "Besides", "explanation": "Besides – кроме того."}
+        ]
       },
       {
-        "question": "______, we need to consider the ethical implications.",
-        "options": ["a) Consequently", "b) Moreover", "c) However", "d) In contrast"],
-        "answer": "b",
-        "explanation": "Moreover – более того."
+        "type": "complex",
+        "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
+        "subtasks": [
+          {"question": "However he is tired, he keeps working.", "answer": "He is tired. However, he keeps working.", "explanation": "However – вводное слово, ставится в начале предложения с запятой."},
+          {"question": "She is tall, whereas her sister is short.", "answer": "Correct", "explanation": "Верно – whereas в середине."},
+          {"question": "I studied hard, consequently I passed.", "answer": "I studied hard; consequently, I passed.", "explanation": "После consequently нужна запятая, перед ним точка с запятой."},
+          {"question": "The weather was terrible. Nevertheless, they continued.", "answer": "Correct", "explanation": "Верно – nevertheless с запятой."},
+          {"question": "In addition to the budget, we need to consider the timeline.", "answer": "Correct", "explanation": "Верно – in addition to с объектом."},
+          {"question": "Moreover he is late, he also forgot his keys.", "answer": "Moreover, he is late, and he also forgot his keys.", "explanation": "Moreover – вводное слово, требует запятой."},
+          {"question": "It was raining so we stayed home.", "answer": "Correct", "explanation": "So в разговорной речи допустимо."},
+          {"question": "I don't want to go besides it's too late.", "answer": "I don't want to go. Besides, it's too late.", "explanation": "Besides – вводное слово, запятая после."}
+        ]
       },
       {
-        "question": "He was late. ______, he missed the beginning of the film.",
-        "options": ["a) Consequently", "b) Nevertheless", "c) Moreover", "d) However"],
-        "answer": "a",
-        "explanation": "Consequently – следовательно."
+        "type": "complex",
+        "text": "4. Translate the sentences into English using the correct linking words. Type your translation (one sentence) in the box.",
+        "subtasks": [
+          {"question": "Задание было сложным. Однако нам удалось закончить вовремя.", "answer": "The task was difficult. However, we managed to finish on time.", "explanation": ""},
+          {"question": "Погода была ужасной. Тем не менее они продолжили восхождение.", "answer": "The weather was terrible. Nevertheless, they continued the climb.", "explanation": ""},
+          {"question": "Некоторые люди любят кофе, тогда как другие предпочитают чай.", "answer": "Some people love coffee, whereas others prefer tea.", "explanation": ""},
+          {"question": "В отличие от брата, она очень общительная.", "answer": "In contrast to her brother, she is very outgoing.", "explanation": ""},
+          {"question": "Новая политика непопулярна. Более того, она может быть незаконной.", "answer": "The new policy is unpopular. Moreover, it may be illegal.", "explanation": ""},
+          {"question": "Он не учился. Следовательно, он провалил экзамен.", "answer": "He didn't study. Consequently, he failed the exam.", "explanation": ""},
+          {"question": "Шёл дождь, поэтому мы остались дома.", "answer": "It was raining, so we stayed home.", "explanation": ""},
+          {"question": "Я не хочу идти. Кроме того, уже слишком поздно.", "answer": "I don't want to go. Besides, it's too late.", "explanation": ""}
+        ]
+      },
+      # =====================================================
+      # ВАРИАНТ 2 (перефразирование)
+      # =====================================================
+      {
+        "type": "complex",
+        "text": "1. Choose the correct linking word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+        "subtasks": [
+          {"question": "The road was icy. ______, we drove slowly.", "options": ["a) However", "b) Therefore", "c) Moreover", "d) Nevertheless"], "answer": "b", "explanation": "Therefore – следовательно."},
+          {"question": "She is very intelligent, ______ her brother is quite lazy.", "options": ["a) whereas", "b) however", "c) moreover", "d) consequently"], "answer": "a", "explanation": "Whereas – тогда как."},
+          {"question": "The hotel was expensive. ______, it was very comfortable.", "options": ["a) Therefore", "b) However", "c) Nevertheless", "d) Moreover"], "answer": "c", "explanation": "Nevertheless – тем не менее."},
+          {"question": "______, we also need to consider the environmental impact.", "options": ["a) Furthermore", "b) However", "c) Consequently", "d) In contrast"], "answer": "a", "explanation": "Furthermore – более того."},
+          {"question": "He was tired. ______, he finished the race.", "options": ["a) However", "b) Therefore", "c) Moreover", "d) Consequently"], "answer": "a", "explanation": "However – однако."},
+          {"question": "The company lost money. ______, many workers were laid off.", "options": ["a) Nevertheless", "b) However", "c) As a result", "d) In addition"], "answer": "c", "explanation": "As a result – в результате."},
+          {"question": "I love summer, ______ my sister prefers winter.", "options": ["a) whereas", "b) so", "c) however", "d) moreover"], "answer": "a", "explanation": "Whereas – тогда как."},
+          {"question": "She didn't have much experience. ______, she got the job.", "options": ["a) Consequently", "b) Nevertheless", "c) Therefore", "d) Moreover"], "answer": "b", "explanation": "Nevertheless – тем не менее."}
+        ]
       },
       {
-        "question": "______ to his brother, he is very quiet.",
-        "options": ["a) In addition", "b) In contrast", "c) Moreover", "d) Consequently"],
-        "answer": "b",
-        "explanation": "In contrast – в отличие от."
+        "type": "complex",
+        "text": "2. Fill in the gaps with the correct linking word. Type the missing word(s) in the box.",
+        "subtasks": [
+          {"question": "The road was icy. ______, we drove slowly.", "answer": "Therefore", "explanation": "Therefore – следовательно."},
+          {"question": "She is very intelligent, ______ her brother is quite lazy.", "answer": "whereas", "explanation": "Whereas – тогда как."},
+          {"question": "The hotel was expensive. ______, it was very comfortable.", "answer": "Nevertheless", "explanation": "Nevertheless – тем не менее."},
+          {"question": "______, we also need to consider the environmental impact.", "answer": "Furthermore", "explanation": "Furthermore – более того."},
+          {"question": "He was tired. ______, he finished the race.", "answer": "However", "explanation": "However – однако."},
+          {"question": "The company lost money. ______, many workers were laid off.", "answer": "As a result", "explanation": "As a result – в результате."},
+          {"question": "I love summer, ______ my sister prefers winter.", "answer": "whereas", "explanation": "Whereas – тогда как."},
+          {"question": "She didn't have much experience. ______, she got the job.", "answer": "Nevertheless", "explanation": "Nevertheless – тем не менее."}
+        ]
       },
       {
-        "question": "The food was delicious. ______, the service was excellent.",
-        "options": ["a) However", "b) In addition", "c) Consequently", "d) Nevertheless"],
-        "answer": "b",
-        "explanation": "In addition – в добавок."
+        "type": "complex",
+        "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
+        "subtasks": [
+          {"question": "The road was icy therefore we drove slowly.", "answer": "The road was icy; therefore, we drove slowly.", "explanation": "Пунктуация: ; therefore,"},
+          {"question": "She is very intelligent, whereas her brother is lazy.", "answer": "Correct", "explanation": "Верно."},
+          {"question": "The hotel was expensive nevertheless it was comfortable.", "answer": "The hotel was expensive; nevertheless, it was comfortable.", "explanation": "Пунктуация."},
+          {"question": "Furthermore we also need to consider the environmental impact.", "answer": "Furthermore, we also need to consider the environmental impact.", "explanation": "Запятая после furthermore."},
+          {"question": "He was tired however he finished the race.", "answer": "He was tired. However, he finished the race.", "explanation": "Пунктуация."},
+          {"question": "The company lost money as a result many workers were laid off.", "answer": "The company lost money. As a result, many workers were laid off.", "explanation": "Пунктуация."},
+          {"question": "I love summer, whereas my sister prefers winter.", "answer": "Correct", "explanation": "Верно."},
+          {"question": "She didn't have much experience nevertheless she got the job.", "answer": "She didn't have much experience. Nevertheless, she got the job.", "explanation": "Пунктуация."}
+        ]
       },
       {
-        "question": "She studied hard, ______ she passed the exam.",
-        "options": ["a) therefore", "b) so", "c) however", "d) whereas"],
-        "answer": "b",
-        "explanation": "So – поэтому."
+        "type": "complex",
+        "text": "4. Rewrite the sentences using the linking word given in brackets. Type the whole sentence.",
+        "subtasks": [
+          {"question": "The road was icy, so we drove slowly. (therefore) → The road was icy; therefore, we drove slowly.", "answer": "The road was icy; therefore, we drove slowly.", "explanation": "Therefore – следовательно."},
+          {"question": "She is intelligent, but her brother is lazy. (whereas) → She is intelligent, whereas her brother is lazy.", "answer": "She is intelligent, whereas her brother is lazy.", "explanation": "Whereas – тогда как."},
+          {"question": "The hotel was expensive, but it was comfortable. (nevertheless) → The hotel was expensive; nevertheless, it was comfortable.", "answer": "The hotel was expensive; nevertheless, it was comfortable.", "explanation": "Nevertheless – тем не менее."},
+          {"question": "We also need to consider the environmental impact. (furthermore) → Furthermore, we also need to consider the environmental impact.", "answer": "Furthermore, we also need to consider the environmental impact.", "explanation": "Furthermore – более того."},
+          {"question": "He was tired, but he finished the race. (however) → He was tired. However, he finished the race.", "answer": "He was tired. However, he finished the race.", "explanation": "However – однако."},
+          {"question": "The company lost money, so many workers were laid off. (as a result) → The company lost money. As a result, many workers were laid off.", "answer": "The company lost money. As a result, many workers were laid off.", "explanation": "As a result – в результате."},
+          {"question": "I love summer, but my sister prefers winter. (whereas) → I love summer, whereas my sister prefers winter.", "answer": "I love summer, whereas my sister prefers winter.", "explanation": "Whereas – тогда как."},
+          {"question": "She didn't have much experience, but she got the job. (nevertheless) → She didn't have much experience. Nevertheless, she got the job.", "answer": "She didn't have much experience. Nevertheless, she got the job.", "explanation": "Nevertheless – тем не менее."}
+        ]
+      },
+      # =====================================================
+      # ВАРИАНТ 3 (перевод)
+      # =====================================================
+      {
+        "type": "complex",
+        "text": "1. Choose the correct linking word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+        "subtasks": [
+          {"question": "The project was expensive. ______, it was completed on time.", "options": ["a) However", "b) Therefore", "c) Nevertheless", "d) Moreover"], "answer": "c", "explanation": "Nevertheless – тем не менее."},
+          {"question": "Some people enjoy cold weather, ______ others hate it.", "options": ["a) whereas", "b) however", "c) so", "d) consequently"], "answer": "a", "explanation": "Whereas – тогда как."},
+          {"question": "______, we need to consider the ethical implications.", "options": ["a) Consequently", "b) Moreover", "c) However", "d) In contrast"], "answer": "b", "explanation": "Moreover – более того."},
+          {"question": "He was late. ______, he missed the beginning of the film.", "options": ["a) Consequently", "b) Nevertheless", "c) Moreover", "d) However"], "answer": "a", "explanation": "Consequently – следовательно."},
+          {"question": "______ to his brother, he is very quiet.", "options": ["a) In addition", "b) In contrast", "c) Moreover", "d) Consequently"], "answer": "b", "explanation": "In contrast – в отличие от."},
+          {"question": "The food was delicious. ______, the service was excellent.", "options": ["a) However", "b) In addition", "c) Consequently", "d) Nevertheless"], "answer": "b", "explanation": "In addition – кроме того."},
+          {"question": "She studied hard, ______ she passed the exam.", "options": ["a) therefore", "b) so", "c) however", "d) whereas"], "answer": "b", "explanation": "So – поэтому."},
+          {"question": "I understand your point. ______, I disagree with your conclusion.", "options": ["a) However", "b) Moreover", "c) Consequently", "d) In contrast"], "answer": "a", "explanation": "However – однако."}
+        ]
       },
       {
-        "question": "I understand your point. ______, I disagree with your conclusion.",
-        "options": ["a) However", "b) Moreover", "c) Consequently", "d) In contrast"],
-        "answer": "a",
-        "explanation": "However – однако."
-              }
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "2. Fill in the gaps with the correct linking word. Type the missing word(s) in the box.",
-            "subtasks": [
-                {"question": "The project was expensive. ______, it was completed on time.", "answer": "Nevertheless", "explanation": "Nevertheless."},
-                {"question": "Some people enjoy cold weather, ______ others hate it.", "answer": "whereas", "explanation": "Whereas."},
-                {"question": "______, we need to consider the ethical implications.", "answer": "Moreover", "explanation": "Moreover."},
-                {"question": "He was late. ______, he missed the beginning of the film.", "answer": "Consequently", "explanation": "Consequently."},
-                {"question": "______ to his brother, he is very quiet.", "answer": "In contrast", "explanation": "In contrast."},
-                {"question": "The food was delicious. ______, the service was excellent.", "answer": "In addition", "explanation": "In addition."},
-                {"question": "She studied hard, ______ she passed the exam.", "answer": "so", "explanation": "So."},
-                {"question": "I understand your point. ______, I disagree with your conclusion.", "answer": "However", "explanation": "However."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
-            "subtasks": [
-                {"question": "The project was expensive nevertheless it was completed on time.", "answer": "The project was expensive; nevertheless, it was completed on time.", "explanation": "Пунктуация."},
-                {"question": "Some people enjoy cold weather, whereas others hate it.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Moreover we need to consider the ethical implications.", "answer": "Moreover, we need to consider the ethical implications.", "explanation": "Запятая после moreover."},
-                {"question": "He was late consequently he missed the beginning of the film.", "answer": "He was late; consequently, he missed the beginning of the film.", "explanation": "Пунктуация."},
-                {"question": "In contrast to his brother, he is very quiet.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "The food was delicious in addition the service was excellent.", "answer": "The food was delicious. In addition, the service was excellent.", "explanation": "Пунктуация."},
-                {"question": "She studied hard, so she passed the exam.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "I understand your point however I disagree with your conclusion.", "answer": "I understand your point. However, I disagree with your conclusion.", "explanation": "Пунктуация."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "4. Translate the sentences into English using the correct linking words. Type your translation (one sentence) in the box.",
-            "subtasks": [
-                {"question": "Проект был дорогим. Тем не менее он был завершён вовремя.", "answer": "The project was expensive. Nevertheless, it was completed on time.", "explanation": ""},
-                {"question": "Некоторые люди любят холодную погоду, тогда как другие её ненавидят.", "answer": "Some people enjoy cold weather, whereas others hate it.", "explanation": ""},
-                {"question": "Более того, нам нужно рассмотреть этические последствия.", "answer": "Moreover, we need to consider the ethical implications.", "explanation": ""},
-                {"question": "Он опоздал. Следовательно, он пропустил начало фильма.", "answer": "He was late. Consequently, he missed the beginning of the film.", "explanation": ""},
-                {"question": "В отличие от брата, он очень тихий.", "answer": "In contrast to his brother, he is very quiet.", "explanation": ""},
-                {"question": "Еда была вкусной. Кроме того, обслуживание было отличным.", "answer": "The food was delicious. In addition, the service was excellent.", "explanation": ""},
-                {"question": "Она усердно училась, поэтому сдала экзамен.", "answer": "She studied hard, so she passed the exam.", "explanation": ""},
-                {"question": "Я понимаю твою точку зрения. Однако я не согласен с твоим выводом.", "answer": "I understand your point. However, I disagree with your conclusion.", "explanation": ""}
-            ]
-        },
-    # =====================================================
-    # ВАРИАНТ 4 (перефразирование)
-    # =====================================================
- [
-  {
-    "type": "complex",
-    "text": "1. Choose the correct linking word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-    "subtasks": [
-      {
-        "question": "The team played badly. ______, they won the match.",
-        "options": ["a) However", "b) Therefore", "c) Nevertheless", "d) Moreover"],
-        "answer": "c",
-        "explanation": "Nevertheless – тем не менее."
+        "type": "complex",
+        "text": "2. Fill in the gaps with the correct linking word. Type the missing word(s) in the box.",
+        "subtasks": [
+          {"question": "The project was expensive. ______, it was completed on time.", "answer": "Nevertheless", "explanation": "Nevertheless."},
+          {"question": "Some people enjoy cold weather, ______ others hate it.", "answer": "whereas", "explanation": "Whereas."},
+          {"question": "______, we need to consider the ethical implications.", "answer": "Moreover", "explanation": "Moreover."},
+          {"question": "He was late. ______, he missed the beginning of the film.", "answer": "Consequently", "explanation": "Consequently."},
+          {"question": "______ to his brother, he is very quiet.", "answer": "In contrast", "explanation": "In contrast."},
+          {"question": "The food was delicious. ______, the service was excellent.", "answer": "In addition", "explanation": "In addition."},
+          {"question": "She studied hard, ______ she passed the exam.", "answer": "so", "explanation": "So."},
+          {"question": "I understand your point. ______, I disagree with your conclusion.", "answer": "However", "explanation": "However."}
+        ]
       },
       {
-        "question": "I love classical music, ______ my friend prefers jazz.",
-        "options": ["a) whereas", "b) however", "c) so", "d) consequently"],
-        "answer": "a",
-        "explanation": "Whereas – тогда как."
+        "type": "complex",
+        "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
+        "subtasks": [
+          {"question": "The project was expensive nevertheless it was completed on time.", "answer": "The project was expensive; nevertheless, it was completed on time.", "explanation": "Пунктуация."},
+          {"question": "Some people enjoy cold weather, whereas others hate it.", "answer": "Correct", "explanation": "Верно."},
+          {"question": "Moreover we need to consider the ethical implications.", "answer": "Moreover, we need to consider the ethical implications.", "explanation": "Запятая."},
+          {"question": "He was late consequently he missed the beginning of the film.", "answer": "He was late; consequently, he missed the beginning of the film.", "explanation": "Пунктуация."},
+          {"question": "In contrast to his brother, he is very quiet.", "answer": "Correct", "explanation": "Верно."},
+          {"question": "The food was delicious in addition the service was excellent.", "answer": "The food was delicious. In addition, the service was excellent.", "explanation": "Пунктуация."},
+          {"question": "She studied hard, so she passed the exam.", "answer": "Correct", "explanation": "Верно."},
+          {"question": "I understand your point however I disagree with your conclusion.", "answer": "I understand your point. However, I disagree with your conclusion.", "explanation": "Пунктуация."}
+        ]
       },
       {
-        "question": "______, we must also consider the cost.",
-        "options": ["a) Consequently", "b) Furthermore", "c) However", "d) In contrast"],
-        "answer": "b",
-        "explanation": "Furthermore – более того."
+        "type": "complex",
+        "text": "4. Translate the sentences into English using the correct linking words. Type your translation (one sentence) in the box.",
+        "subtasks": [
+          {"question": "Проект был дорогим. Тем не менее он был завершён вовремя.", "answer": "The project was expensive. Nevertheless, it was completed on time.", "explanation": ""},
+          {"question": "Некоторые люди любят холодную погоду, тогда как другие её ненавидят.", "answer": "Some people enjoy cold weather, whereas others hate it.", "explanation": ""},
+          {"question": "Более того, нам нужно рассмотреть этические последствия.", "answer": "Moreover, we need to consider the ethical implications.", "explanation": ""},
+          {"question": "Он опоздал. Следовательно, он пропустил начало фильма.", "answer": "He was late. Consequently, he missed the beginning of the film.", "explanation": ""},
+          {"question": "В отличие от брата, он очень тихий.", "answer": "In contrast to his brother, he is very quiet.", "explanation": ""},
+          {"question": "Еда была вкусной. Кроме того, обслуживание было отличным.", "answer": "The food was delicious. In addition, the service was excellent.", "explanation": ""},
+          {"question": "Она усердно училась, поэтому сдала экзамен.", "answer": "She studied hard, so she passed the exam.", "explanation": ""},
+          {"question": "Я понимаю твою точку зрения. Однако я не согласен с твоим выводом.", "answer": "I understand your point. However, I disagree with your conclusion.", "explanation": ""}
+        ]
+      },
+      # =====================================================
+      # ВАРИАНТ 4 (перефразирование)
+      # =====================================================
+      {
+        "type": "complex",
+        "text": "1. Choose the correct linking word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+        "subtasks": [
+          {"question": "The team played badly. ______, they won the match.", "options": ["a) However", "b) Therefore", "c) Nevertheless", "d) Moreover"], "answer": "c", "explanation": "Nevertheless – тем не менее."},
+          {"question": "I love classical music, ______ my friend prefers jazz.", "options": ["a) whereas", "b) however", "c) so", "d) consequently"], "answer": "a", "explanation": "Whereas – тогда как."},
+          {"question": "______, we must also consider the cost.", "options": ["a) Consequently", "b) Furthermore", "c) However", "d) In contrast"], "answer": "b", "explanation": "Furthermore – более того."},
+          {"question": "He forgot his umbrella. ______, he got wet.", "options": ["a) Consequently", "b) Nevertheless", "c) Moreover", "d) However"], "answer": "a", "explanation": "Consequently – следовательно."},
+          {"question": "______ to her sister, she is very shy.", "options": ["a) In addition", "b) In contrast", "c) Moreover", "d) Consequently"], "answer": "b", "explanation": "In contrast – в отличие от."},
+          {"question": "The museum was interesting. ______, it was very crowded.", "options": ["a) However", "b) Moreover", "c) Consequently", "d) In addition"], "answer": "a", "explanation": "However – однако."},
+          {"question": "She was tired, ______ she went to bed early.", "options": ["a) therefore", "b) so", "c) however", "d) whereas"], "answer": "b", "explanation": "So – поэтому."},
+          {"question": "I'm not hungry. ______, I don't feel like eating.", "options": ["a) Besides", "b) However", "c) Moreover", "d) Consequently"], "answer": "a", "explanation": "Besides – кроме того."}
+        ]
       },
       {
-        "question": "He forgot his umbrella. ______, he got wet.",
-        "options": ["a) Consequently", "b) Nevertheless", "c) Moreover", "d) However"],
-        "answer": "a",
-        "explanation": "Consequently – следовательно."
+        "type": "complex",
+        "text": "2. Fill in the gaps with the correct linking word. Type the missing word(s) in the box.",
+        "subtasks": [
+          {"question": "The team played badly. ______, they won the match.", "answer": "Nevertheless", "explanation": "Nevertheless."},
+          {"question": "I love classical music, ______ my friend prefers jazz.", "answer": "whereas", "explanation": "Whereas."},
+          {"question": "______, we must also consider the cost.", "answer": "Furthermore", "explanation": "Furthermore."},
+          {"question": "He forgot his umbrella. ______, he got wet.", "answer": "Consequently", "explanation": "Consequently."},
+          {"question": "______ to her sister, she is very shy.", "answer": "In contrast", "explanation": "In contrast."},
+          {"question": "The museum was interesting. ______, it was very crowded.", "answer": "However", "explanation": "However."},
+          {"question": "She was tired, ______ she went to bed early.", "answer": "so", "explanation": "So."},
+          {"question": "I'm not hungry. ______, I don't feel like eating.", "answer": "Besides", "explanation": "Besides."}
+        ]
       },
       {
-        "question": "______ to her sister, she is very shy.",
-        "options": ["a) In addition", "b) In contrast", "c) Moreover", "d) Consequently"],
-        "answer": "b",
-        "explanation": "In contrast – в отличие от."
+        "type": "complex",
+        "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
+        "subtasks": [
+          {"question": "The team played badly nevertheless they won.", "answer": "The team played badly; nevertheless, they won.", "explanation": "Пунктуация."},
+          {"question": "I love classical music, whereas my friend prefers jazz.", "answer": "Correct", "explanation": "Верно."},
+          {"question": "Furthermore we must also consider the cost.", "answer": "Furthermore, we must also consider the cost.", "explanation": "Запятая."},
+          {"question": "He forgot his umbrella consequently he got wet.", "answer": "He forgot his umbrella; consequently, he got wet.", "explanation": "Пунктуация."},
+          {"question": "In contrast to her sister, she is very shy.", "answer": "Correct", "explanation": "Верно."},
+          {"question": "The museum was interesting however it was crowded.", "answer": "The museum was interesting; however, it was crowded.", "explanation": "Пунктуация."},
+          {"question": "She was tired so she went to bed early.", "answer": "Correct", "explanation": "Верно."},
+          {"question": "I'm not hungry besides I don't feel like eating.", "answer": "I'm not hungry. Besides, I don't feel like eating.", "explanation": "Пунктуация."}
+        ]
       },
       {
-        "question": "The museum was interesting. ______, it was very crowded.",
-        "options": ["a) However", "b) Moreover", "c) Consequently", "d) In addition"],
-        "answer": "a",
-        "explanation": "However – однако."
+        "type": "complex",
+        "text": "4. Rewrite the sentences using the linking word given in brackets. Type the whole sentence.",
+        "subtasks": [
+          {"question": "The team played badly, but they won. (nevertheless) → The team played badly; nevertheless, they won.", "answer": "The team played badly; nevertheless, they won.", "explanation": "Nevertheless – тем не менее."},
+          {"question": "I love classical music, but my friend prefers jazz. (whereas) → I love classical music, whereas my friend prefers jazz.", "answer": "I love classical music, whereas my friend prefers jazz.", "explanation": "Whereas – тогда как."},
+          {"question": "We must also consider the cost. (furthermore) → Furthermore, we must also consider the cost.", "answer": "Furthermore, we must also consider the cost.", "explanation": "Furthermore – более того."},
+          {"question": "He forgot his umbrella, so he got wet. (consequently) → He forgot his umbrella; consequently, he got wet.", "answer": "He forgot his umbrella; consequently, he got wet.", "explanation": "Consequently – следовательно."},
+          {"question": "Unlike her sister, she is very shy. (in contrast) → In contrast to her sister, she is very shy.", "answer": "In contrast to her sister, she is very shy.", "explanation": "In contrast – в отличие от."},
+          {"question": "The museum was interesting, but it was crowded. (however) → The museum was interesting; however, it was very crowded.", "answer": "The museum was interesting; however, it was very crowded.", "explanation": "However – однако."},
+          {"question": "She was tired, so she went to bed early. (therefore) → She was tired; therefore, she went to bed early.", "answer": "She was tired; therefore, she went to bed early.", "explanation": "Therefore – поэтому."},
+          {"question": "I'm not hungry, and I don't feel like eating. (besides) → I'm not hungry. Besides, I don't feel like eating.", "answer": "I'm not hungry. Besides, I don't feel like eating.", "explanation": "Besides – кроме того."}
+        ]
+      },
+      # =====================================================
+      # ВАРИАНТ 5 (перевод)
+      # =====================================================
+      {
+        "type": "complex",
+        "text": "1. Choose the correct linking word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+        "subtasks": [
+          {"question": "The experiment failed. ______, the scientists continued their research.", "options": ["a) Therefore", "b) Moreover", "c) Nevertheless", "d) However"], "answer": "c", "explanation": "Nevertheless – тем не менее."},
+          {"question": "Some people are naturally talented, ______ others have to work hard.", "options": ["a) whereas", "b) however", "c) so", "d) consequently"], "answer": "a", "explanation": "Whereas – тогда как."},
+          {"question": "______, we should also think about the long-term effects.", "options": ["a) Consequently", "b) Moreover", "c) However", "d) In contrast"], "answer": "b", "explanation": "Moreover – более того."},
+          {"question": "The traffic was terrible. ______, we arrived late.", "options": ["a) However", "b) Nevertheless", "c) Moreover", "d) Consequently"], "answer": "d", "explanation": "Consequently – следовательно."},
+          {"question": "______ with his previous work, this novel is much better.", "options": ["a) Moreover", "b) In addition", "c) In contrast", "d) Consequently"], "answer": "c", "explanation": "In contrast – в отличие от."},
+          {"question": "The hotel was clean. ______, it was very well-located.", "options": ["a) In addition", "b) However", "c) Consequently", "d) Nevertheless"], "answer": "a", "explanation": "In addition – кроме того."},
+          {"question": "The problem was complex, ______ we solved it quickly.", "options": ["a) so", "b) but", "c) whereas", "d) however"], "answer": "b", "explanation": "But – но (противопоставление)."},
+          {"question": "I'm not ready. ______, I need more time.", "options": ["a) Besides", "b) However", "c) Moreover", "d) Consequently"], "answer": "a", "explanation": "Besides – кроме того."}
+        ]
       },
       {
-        "question": "She was tired, ______ she went to bed early.",
-        "options": ["a) therefore", "b) so", "c) however", "d) whereas"],
-        "answer": "b",
-        "explanation": "So – поэтому."
+        "type": "complex",
+        "text": "2. Fill in the gaps with the correct linking word. Type the missing word(s) in the box.",
+        "subtasks": [
+          {"question": "The experiment failed. ______, the scientists continued their research.", "answer": "Nevertheless", "explanation": "Nevertheless."},
+          {"question": "Some people are naturally talented, ______ others have to work hard.", "answer": "whereas", "explanation": "Whereas."},
+          {"question": "______, we should also think about the long-term effects.", "answer": "Moreover", "explanation": "Moreover."},
+          {"question": "The traffic was terrible. ______, we arrived late.", "answer": "Consequently", "explanation": "Consequently."},
+          {"question": "______ with his previous work, this novel is much better.", "answer": "In contrast", "explanation": "In contrast."},
+          {"question": "The hotel was clean. ______, it was very well-located.", "answer": "In addition", "explanation": "In addition."},
+          {"question": "The problem was complex, ______ we solved it quickly.", "answer": "but", "explanation": "But."},
+          {"question": "I'm not ready. ______, I need more time.", "answer": "Besides", "explanation": "Besides."}
+        ]
       },
       {
-        "question": "I'm not hungry. ______, I don't feel like eating.",
-        "options": ["a) Besides", "b) However", "c) Moreover", "d) Consequently"],
-        "answer": "a",
-        "explanation": "Besides – кроме того."
-              }
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "2. Fill in the gaps with the correct linking word. Type the missing word(s) in the box.",
-            "subtasks": [
-                {"question": "The team played badly. ______, they won the match.", "answer": "Nevertheless", "explanation": "Nevertheless."},
-                {"question": "I love classical music, ______ my friend prefers jazz.", "answer": "whereas", "explanation": "Whereas."},
-                {"question": "______, we must also consider the cost.", "answer": "Furthermore", "explanation": "Furthermore."},
-                {"question": "He forgot his umbrella. ______, he got wet.", "answer": "Consequently", "explanation": "Consequently."},
-                {"question": "______ to her sister, she is very shy.", "answer": "In contrast", "explanation": "In contrast."},
-                {"question": "The museum was interesting. ______, it was very crowded.", "answer": "However", "explanation": "However."},
-                {"question": "She was tired, ______ she went to bed early.", "answer": "so", "explanation": "So."},
-                {"question": "I'm not hungry. ______, I don't feel like eating.", "answer": "Besides", "explanation": "Besides."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
-            "subtasks": [
-                {"question": "The team played badly nevertheless they won.", "answer": "The team played badly; nevertheless, they won.", "explanation": "Пунктуация."},
-                {"question": "I love classical music, whereas my friend prefers jazz.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Furthermore we must also consider the cost.", "answer": "Furthermore, we must also consider the cost.", "explanation": "Запятая."},
-                {"question": "He forgot his umbrella consequently he got wet.", "answer": "He forgot his umbrella; consequently, he got wet.", "explanation": "Пунктуация."},
-                {"question": "In contrast to her sister, she is very shy.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "The museum was interesting however it was crowded.", "answer": "The museum was interesting; however, it was crowded.", "explanation": "Пунктуация."},
-                {"question": "She was tired so she went to bed early.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "I'm not hungry besides I don't feel like eating.", "answer": "I'm not hungry. Besides, I don't feel like eating.", "explanation": "Пунктуация."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "4. Rewrite the sentences using the linking word given in brackets. Type the whole sentence.",
-            "subtasks": [
-                {"question": "The team played badly, but they won. (nevertheless) → The team played badly; nevertheless, they won.", "answer": "The team played badly; nevertheless, they won.", "explanation": "Nevertheless – тем не менее."},
-                {"question": "I love classical music, but my friend prefers jazz. (whereas) → I love classical music, whereas my friend prefers jazz.", "answer": "I love classical music, whereas my friend prefers jazz.", "explanation": "Whereas – тогда как."},
-                {"question": "We must also consider the cost. (furthermore) → Furthermore, we must also consider the cost.", "answer": "Furthermore, we must also consider the cost.", "explanation": "Furthermore – более того."},
-                {"question": "He forgot his umbrella, so he got wet. (consequently) → He forgot his umbrella; consequently, he got wet.", "answer": "He forgot his umbrella; consequently, he got wet.", "explanation": "Consequently – следовательно."},
-                {"question": "Unlike her sister, she is very shy. (in contrast) → In contrast to her sister, she is very shy.", "answer": "In contrast to her sister, she is very shy.", "explanation": "In contrast – в отличие от."},
-                {"question": "The museum was interesting, but it was crowded. (however) → The museum was interesting; however, it was very crowded.", "answer": "The museum was interesting; however, it was very crowded.", "explanation": "However – однако."},
-                {"question": "She was tired, so she went to bed early. (therefore) → She was tired; therefore, she went to bed early.", "answer": "She was tired; therefore, she went to bed early.", "explanation": "Therefore – поэтому."},
-                {"question": "I'm not hungry, and I don't feel like eating. (besides) → I'm not hungry. Besides, I don't feel like eating.", "answer": "I'm not hungry. Besides, I don't feel like eating.", "explanation": "Besides – кроме того."}
-            ]
-        },
-    # =====================================================
-    # ВАРИАНТ 5 (перевод)
-# =====================================================
-[
-  {
-    "type": "complex",
-    "text": "1. Choose the correct linking word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-    "subtasks": [
-      {
-        "question": "The experiment failed. ______, the scientists continued their research.",
-        "options": ["a) Therefore", "b) Moreover", "c) Nevertheless", "d) However"],
-        "answer": "c",
-        "explanation": "Nevertheless – тем не менее."
+        "type": "complex",
+        "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
+        "subtasks": [
+          {"question": "The experiment failed nevertheless the scientists continued.", "answer": "The experiment failed; nevertheless, the scientists continued.", "explanation": "Пунктуация."},
+          {"question": "Some people are naturally talented, whereas others work hard.", "answer": "Correct", "explanation": "Верно."},
+          {"question": "Moreover we should think about the long-term effects.", "answer": "Moreover, we should think about the long-term effects.", "explanation": "Запятая."},
+          {"question": "The traffic was terrible consequently we arrived late.", "answer": "The traffic was terrible; consequently, we arrived late.", "explanation": "Пунктуация."},
+          {"question": "In contrast with his previous work, this novel is much better.", "answer": "Correct", "explanation": "Верно."},
+          {"question": "The hotel was clean in addition it was well-located.", "answer": "The hotel was clean. In addition, it was well-located.", "explanation": "Пунктуация."},
+          {"question": "The problem was complex, but we solved it quickly.", "answer": "Correct", "explanation": "Верно."},
+          {"question": "I'm not ready besides I need more time.", "answer": "I'm not ready. Besides, I need more time.", "explanation": "Пунктуация."}
+        ]
       },
       {
-        "question": "Some people are naturally talented, ______ others have to work hard.",
-        "options": ["a) whereas", "b) however", "c) so", "d) consequently"],
-        "answer": "a",
-        "explanation": "Whereas – тогда как."
+        "type": "complex",
+        "text": "4. Translate the sentences into English using the correct linking words. Type your translation (one sentence) in the box.",
+        "subtasks": [
+          {"question": "Эксперимент провалился. Тем не менее учёные продолжили исследования.", "answer": "The experiment failed. Nevertheless, the scientists continued their research.", "explanation": ""},
+          {"question": "Некоторые люди талантливы от природы, тогда как другим приходится усердно работать.", "answer": "Some people are naturally talented, whereas others have to work hard.", "explanation": ""},
+          {"question": "Более того, нам следует также подумать о долгосрочных последствиях.", "answer": "Moreover, we should also think about the long-term effects.", "explanation": ""},
+          {"question": "Движение было ужасным. Следовательно, мы прибыли поздно.", "answer": "The traffic was terrible. Consequently, we arrived late.", "explanation": ""},
+          {"question": "В отличие от его предыдущей работы, этот роман намного лучше.", "answer": "In contrast with his previous work, this novel is much better.", "explanation": ""},
+          {"question": "Отель был чистым. Кроме того, он был очень удачно расположен.", "answer": "The hotel was clean. In addition, it was very well-located.", "explanation": ""},
+          {"question": "Проблема была сложной, но мы решили её быстро.", "answer": "The problem was complex, but we solved it quickly.", "explanation": ""},
+          {"question": "Я не готов. Кроме того, мне нужно больше времени.", "answer": "I'm not ready. Besides, I need more time.", "explanation": ""}
+        ]
+      },
+      # =====================================================
+      # ВАРИАНТ 6 (перефразирование)
+      # =====================================================
+      {
+        "type": "complex",
+        "text": "1. Choose the correct linking word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+        "subtasks": [
+          {"question": "The film was long. ______, it was very entertaining.", "options": ["a) Therefore", "b) Moreover", "c) Nevertheless", "d) However"], "answer": "c", "explanation": "Nevertheless – тем не менее."},
+          {"question": "My sister loves spicy food, ______ I prefer mild dishes.", "options": ["a) whereas", "b) however", "c) so", "d) consequently"], "answer": "a", "explanation": "Whereas – тогда как."},
+          {"question": "______, we must also ensure quality.", "options": ["a) Moreover", "b) Consequently", "c) However", "d) In contrast"], "answer": "a", "explanation": "Furthermore – более того."},
+          {"question": "He didn't sleep well. ______, he was tired all day.", "options": ["a) However", "b) Nevertheless", "c) Moreover", "d) Consequently"], "answer": "d", "explanation": "Consequently – следовательно."},
+          {"question": "______ to her husband, she is very practical.", "options": ["a) Moreover", "b) In addition", "c) In contrast", "d) Consequently"], "answer": "c", "explanation": "In contrast – в отличие от."},
+          {"question": "The book was well-written. ______, it was a pleasure to read.", "options": ["a) However", "b) Consequently", "c) Nevertheless", "d) Moreover"], "answer": "d", "explanation": "Moreover – более того."},
+          {"question": "I was hungry, ______ I made a sandwich.", "options": ["a) therefore", "b) so", "c) however", "d) whereas"], "answer": "b", "explanation": "So – поэтому."},
+          {"question": "We have enough money. ______, we can't buy it because it's out of stock.", "options": ["a) Besides", "b) However", "c) Moreover", "d) Consequently"], "answer": "b", "explanation": "However – однако."}
+        ]
       },
       {
-        "question": "______, we should also think about the long-term effects.",
-        "options": ["a) Consequently", "b) Moreover", "c) However", "d) In contrast"],
-        "answer": "b",
-        "explanation": "Moreover – более того."
+        "type": "complex",
+        "text": "2. Fill in the gaps with the correct linking word. Type the missing word(s) in the box.",
+        "subtasks": [
+          {"question": "The film was long. ______, it was very entertaining.", "answer": "Nevertheless", "explanation": "Nevertheless."},
+          {"question": "My sister loves spicy food, ______ I prefer mild dishes.", "answer": "whereas", "explanation": "Whereas."},
+          {"question": "______, we must also ensure quality.", "answer": "Furthermore", "explanation": "Furthermore."},
+          {"question": "He didn't sleep well. ______, he was tired all day.", "answer": "Consequently", "explanation": "Consequently."},
+          {"question": "______ to her husband, she is very practical.", "answer": "In contrast", "explanation": "In contrast."},
+          {"question": "The book was well-written. ______, it was a pleasure to read.", "answer": "Moreover", "explanation": "Moreover."},
+          {"question": "I was hungry, ______ I made a sandwich.", "answer": "so", "explanation": "So."},
+          {"question": "We have enough money. ______, we can't buy it because it's out of stock.", "answer": "However", "explanation": "However."}
+        ]
       },
       {
-        "question": "The traffic was terrible. ______, we arrived late.",
-        "options": ["a) However", "b) Nevertheless", "c) Moreover", "d) Consequently"],
-        "answer": "d",
-        "explanation": "Consequently – следовательно."
+        "type": "complex",
+        "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
+        "subtasks": [
+          {"question": "The film was long nevertheless it was entertaining.", "answer": "The film was long; nevertheless, it was very entertaining.", "explanation": "Пунктуация."},
+          {"question": "My sister loves spicy food, whereas I prefer mild dishes.", "answer": "Correct", "explanation": "Верно."},
+          {"question": "Furthermore we must also ensure quality.", "answer": "Furthermore, we must also ensure quality.", "explanation": "Запятая."},
+          {"question": "He didn't sleep well consequently he was tired all day.", "answer": "He didn't sleep well; consequently, he was tired all day.", "explanation": "Пунктуация."},
+          {"question": "In contrast to her husband, she is very practical.", "answer": "Correct", "explanation": "Верно."},
+          {"question": "The book was well-written moreover it was a pleasure to read.", "answer": "The book was well-written; moreover, it was a pleasure to read.", "explanation": "Пунктуация."},
+          {"question": "I was hungry, so I made a sandwich.", "answer": "Correct", "explanation": "Верно."},
+          {"question": "We have enough money however we can't buy it because it's out of stock.", "answer": "We have enough money; however, we can't buy it because it's out of stock.", "explanation": "Пунктуация."}
+        ]
       },
       {
-        "question": "______ with his previous work, this novel is much better.",
-        "options": ["a) Moreover", "b) In addition", "c) In contrast", "d) Consequently"],
-        "answer": "c",
-        "explanation": "In contrast – в отличие от."
+        "type": "complex",
+        "text": "4. Rewrite the sentences using the linking word given in brackets. Type the whole sentence.",
+        "subtasks": [
+          {"question": "The film was long, but it was entertaining. (nevertheless) → The film was long; nevertheless, it was very entertaining.", "answer": "The film was long; nevertheless, it was very entertaining.", "explanation": "Nevertheless – тем не менее."},
+          {"question": "My sister loves spicy food, but I prefer mild dishes. (whereas) → My sister loves spicy food, whereas I prefer mild dishes.", "answer": "My sister loves spicy food, whereas I prefer mild dishes.", "explanation": "Whereas – тогда как."},
+          {"question": "We must also ensure quality. (furthermore) → Furthermore, we must also ensure quality.", "answer": "Furthermore, we must also ensure quality.", "explanation": "Furthermore – более того."},
+          {"question": "He didn't sleep well, so he was tired. (consequently) → He didn't sleep well; consequently, he was tired all day.", "answer": "He didn't sleep well; consequently, he was tired all day.", "explanation": "Consequently – следовательно."},
+          {"question": "Unlike her husband, she is practical. (in contrast) → In contrast to her husband, she is very practical.", "answer": "In contrast to her husband, she is very practical.", "explanation": "In contrast – в отличие от."},
+          {"question": "The book was well-written and a pleasure to read. (moreover) → The book was well-written; moreover, it was a pleasure to read.", "answer": "The book was well-written; moreover, it was a pleasure to read.", "explanation": "Moreover – более того."},
+          {"question": "I was hungry, so I made a sandwich. (therefore) → I was hungry; therefore, I made a sandwich.", "answer": "I was hungry; therefore, I made a sandwich.", "explanation": "Therefore – поэтому."},
+          {"question": "We have enough money, but we can't buy it. (however) → We have enough money; however, we can't buy it because it's out of stock.", "answer": "We have enough money; however, we can't buy it because it's out of stock.", "explanation": "However – однако."}
+        ]
+      },
+      # =====================================================
+      # ВАРИАНТ 7 (перевод)
+      # =====================================================
+      {
+        "type": "complex",
+        "text": "1. Choose the correct linking word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+        "subtasks": [
+          {"question": "The company is profitable. ______, it has high debts.", "options": ["a) However", "b) Moreover", "c) Consequently", "d) Nevertheless"], "answer": "a", "explanation": "However – однако (противопоставление)."},
+          {"question": "He is very talented, ______ he lacks motivation.", "options": ["a) whereas", "b) so", "c) but", "d) however"], "answer": "c", "explanation": "But – но (противопоставление)."},
+          {"question": "______, we also need to check the references.", "options": ["a) In contrast", "b) In addition", "c) Consequently", "d) However"], "answer": "b", "explanation": "In addition – кроме того."},
+          {"question": "She missed the bus. ______, she had to walk.", "options": ["a) However", "b) Nevertheless", "c) Moreover", "d) Consequently"], "answer": "d", "explanation": "Consequently – следовательно."},
+          {"question": "______ with the previous model, this one is much faster.", "options": ["a) In contrast", "b) Moreover", "c) In addition", "d) Consequently"], "answer": "a", "explanation": "In contrast – в отличие от."},
+          {"question": "The weather was awful. ______, we enjoyed the trip.", "options": ["a) Moreover", "b) Therefore", "c) Nevertheless", "d) However"], "answer": "c", "explanation": "Nevertheless – тем не менее."},
+          {"question": "He worked hard, ______ he passed the exam.", "options": ["a) so", "b) but", "c) however", "d) whereas"], "answer": "a", "explanation": "So – поэтому."},
+          {"question": "I'm not interested. ______, I'm too busy.", "options": ["a) Besides", "b) Moreover", "c) However", "d) Consequently"], "answer": "a", "explanation": "Besides – кроме того."}
+        ]
       },
       {
-        "question": "The hotel was clean. ______, it was very well-located.",
-        "options": ["a) In addition", "b) However", "c) Consequently", "d) Nevertheless"],
-        "answer": "a",
-        "explanation": "In addition – в добавок."
+        "type": "complex",
+        "text": "2. Fill in the gaps with the correct linking word. Type the missing word(s) in the box.",
+        "subtasks": [
+          {"question": "The company is profitable. ______, it has high debts.", "answer": "However", "explanation": "However."},
+          {"question": "He is very talented, ______ he lacks motivation.", "answer": "but", "explanation": "But."},
+          {"question": "______, we also need to check the references.", "answer": "In addition", "explanation": "In addition."},
+          {"question": "She missed the bus. ______, she had to walk.", "answer": "Consequently", "explanation": "Consequently."},
+          {"question": "______ with the previous model, this one is much faster.", "answer": "In contrast", "explanation": "In contrast."},
+          {"question": "The weather was awful. ______, we enjoyed the trip.", "answer": "Nevertheless", "explanation": "Nevertheless."},
+          {"question": "He worked hard, ______ he passed the exam.", "answer": "so", "explanation": "So."},
+          {"question": "I'm not interested. ______, I'm too busy.", "answer": "Besides", "explanation": "Besides."}
+        ]
       },
       {
-        "question": "The problem was complex, ______ we solved it quickly.",
-        "options": ["a) so", "b) but", "c) whereas", "d) however"],
-        "answer": "b",
-        "explanation": "But – но (противопоставление)."
+        "type": "complex",
+        "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
+        "subtasks": [
+          {"question": "The company is profitable however it has high debts.", "answer": "The company is profitable; however, it has high debts.", "explanation": "Пунктуация."},
+          {"question": "He is very talented, but he lacks motivation.", "answer": "Correct", "explanation": "Верно."},
+          {"question": "In addition we also need to check the references.", "answer": "In addition, we also need to check the references.", "explanation": "Запятая."},
+          {"question": "She missed the bus consequently she had to walk.", "answer": "She missed the bus; consequently, she had to walk.", "explanation": "Пунктуация."},
+          {"question": "In contrast with the previous model, this one is much faster.", "answer": "Correct", "explanation": "Верно."},
+          {"question": "The weather was awful nevertheless we enjoyed the trip.", "answer": "The weather was awful; nevertheless, we enjoyed the trip.", "explanation": "Пунктуация."},
+          {"question": "He worked hard so he passed the exam.", "answer": "Correct", "explanation": "Верно."},
+          {"question": "I'm not interested besides I'm too busy.", "answer": "I'm not interested. Besides, I'm too busy.", "explanation": "Пунктуация."}
+        ]
       },
       {
-        "question": "I'm not ready. ______, I need more time.",
-        "options": ["a) Besides", "b) However", "c) Moreover", "d) Consequently"],
-        "answer": "a",
-        "explanation": "Besides – кроме того."
-              }
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "2. Fill in the gaps with the correct linking word. Type the missing word(s) in the box.",
-            "subtasks": [
-                {"question": "The experiment failed. ______, the scientists continued their research.", "answer": "Nevertheless", "explanation": "Nevertheless."},
-                {"question": "Some people are naturally talented, ______ others have to work hard.", "answer": "whereas", "explanation": "Whereas."},
-                {"question": "______, we should also think about the long-term effects.", "answer": "Moreover", "explanation": "Moreover."},
-                {"question": "The traffic was terrible. ______, we arrived late.", "answer": "Consequently", "explanation": "Consequently."},
-                {"question": "______ with his previous work, this novel is much better.", "answer": "In contrast", "explanation": "In contrast."},
-                {"question": "The hotel was clean. ______, it was very well-located.", "answer": "In addition", "explanation": "In addition."},
-                {"question": "The problem was complex, ______ we solved it quickly.", "answer": "but", "explanation": "But."},
-                {"question": "I'm not ready. ______, I need more time.", "answer": "Besides", "explanation": "Besides."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
-            "subtasks": [
-                {"question": "The experiment failed nevertheless the scientists continued.", "answer": "The experiment failed; nevertheless, the scientists continued.", "explanation": "Пунктуация."},
-                {"question": "Some people are naturally talented, whereas others work hard.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Moreover we should think about the long-term effects.", "answer": "Moreover, we should think about the long-term effects.", "explanation": "Запятая."},
-                {"question": "The traffic was terrible consequently we arrived late.", "answer": "The traffic was terrible; consequently, we arrived late.", "explanation": "Пунктуация."},
-                {"question": "In contrast with his previous work, this novel is much better.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "The hotel was clean in addition it was well-located.", "answer": "The hotel was clean. In addition, it was well-located.", "explanation": "Пунктуация."},
-                {"question": "The problem was complex, but we solved it quickly.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "I'm not ready besides I need more time.", "answer": "I'm not ready. Besides, I need more time.", "explanation": "Пунктуация."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "4. Translate the sentences into English using the correct linking words. Type your translation (one sentence) in the box.",
-            "subtasks": [
-                {"question": "Эксперимент провалился. Тем не менее учёные продолжили исследования.", "answer": "The experiment failed. Nevertheless, the scientists continued their research.", "explanation": ""},
-                {"question": "Некоторые люди талантливы от природы, тогда как другим приходится усердно работать.", "answer": "Some people are naturally talented, whereas others have to work hard.", "explanation": ""},
-                {"question": "Более того, нам следует также подумать о долгосрочных последствиях.", "answer": "Moreover, we should also think about the long-term effects.", "explanation": ""},
-                {"question": "Движение было ужасным. Следовательно, мы прибыли поздно.", "answer": "The traffic was terrible. Consequently, we arrived late.", "explanation": ""},
-                {"question": "В отличие от его предыдущей работы, этот роман намного лучше.", "answer": "In contrast with his previous work, this novel is much better.", "explanation": ""},
-                {"question": "Отель был чистым. Кроме того, он был очень удачно расположен.", "answer": "The hotel was clean. In addition, it was very well-located.", "explanation": ""},
-                {"question": "Проблема была сложной, но мы решили её быстро.", "answer": "The problem was complex, but we solved it quickly.", "explanation": ""},
-                {"question": "Я не готов. Кроме того, мне нужно больше времени.", "answer": "I'm not ready. Besides, I need more time.", "explanation": ""}
-            ]
-        },
-    # =====================================================
-    # ВАРИАНТ 6 (перефразирование)
-    # =====================================================
-[
-  {
-    "type": "complex",
-    "text": "1. Choose the correct linking word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-    "subtasks": [
+        "type": "complex",
+        "text": "4. Translate the sentences into English using the correct linking words. Type your translation (one sentence) in the box.",
+        "subtasks": [
+          {"question": "Компания прибыльна. Однако у неё большие долги.", "answer": "The company is profitable. However, it has high debts.", "explanation": ""},
+          {"question": "Он очень талантлив, но ему не хватает мотивации.", "answer": "He is very talented, but he lacks motivation.", "explanation": ""},
+          {"question": "Кроме того, нам также нужно проверить рекомендации.", "answer": "In addition, we also need to check the references.", "explanation": ""},
+          {"question": "Она опоздала на автобус. Следовательно, ей пришлось идти пешком.", "answer": "She missed the bus. Consequently, she had to walk.", "explanation": ""},
+          {"question": "В отличие от предыдущей модели, эта намного быстрее.", "answer": "In contrast with the previous model, this one is much faster.", "explanation": ""},
+          {"question": "Погода была ужасной. Тем не менее мы насладились поездкой.", "answer": "The weather was awful. Nevertheless, we enjoyed the trip.", "explanation": ""},
+          {"question": "Он много работал, поэтому сдал экзамен.", "answer": "He worked hard, so he passed the exam.", "explanation": ""},
+          {"question": "Мне это не интересно. Кроме того, я слишком занят.", "answer": "I'm not interested. Besides, I'm too busy.", "explanation": ""}
+        ]
+      },
+      # =====================================================
+      # ВАРИАНТ 8 (перефразирование)
+      # =====================================================
       {
-        "question": "The film was long. ______, it was very entertaining.",
-        "options": ["a) Therefore", "b) Moreover", "c) Nevertheless", "d) However"],
-        "answer": "c",
-        "explanation": "Nevertheless – тем не менее."
+        "type": "complex",
+        "text": "1. Choose the correct linking word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+        "subtasks": [
+          {"question": "The price was high. ______, we decided to buy it.", "options": ["a) However", "b) Therefore", "c) Nevertheless", "d) Moreover"], "answer": "c", "explanation": "Nevertheless – тем не менее."},
+          {"question": "She is an extrovert, ______ her sister is an introvert.", "options": ["a) whereas", "b) however", "c) so", "d) consequently"], "answer": "a", "explanation": "Whereas – тогда как."},
+          {"question": "______, we should also consult the experts.", "options": ["a) Consequently", "b) Moreover", "c) However", "d) In contrast"], "answer": "b", "explanation": "Moreover – более того."},
+          {"question": "He didn't listen to the advice. ______, he made a mistake.", "options": ["a) However", "b) Nevertheless", "c) Moreover", "d) Consequently"], "answer": "d", "explanation": "Consequently – следовательно."},
+          {"question": "______ to his colleagues, he is very ambitious.", "options": ["a) Moreover", "b) In addition", "c) In contrast", "d) Consequently"], "answer": "c", "explanation": "In contrast – в отличие от."},
+          {"question": "The view was breathtaking. ______, we took many photos.", "options": ["a) Therefore", "b) However", "c) Moreover", "d) Nevertheless"], "answer": "a", "explanation": "Therefore – следовательно."},
+          {"question": "I was late, ______ I missed the train.", "options": ["a) therefore", "b) so", "c) however", "d) whereas"], "answer": "b", "explanation": "So – поэтому."},
+          {"question": "We have a problem. ______, I think we can solve it.", "options": ["a) Moreover", "b) Consequently", "c) Nevertheless", "d) However"], "answer": "d", "explanation": "However – однако."}
+        ]
       },
       {
-        "question": "My sister loves spicy food, ______ I prefer mild dishes.",
-        "options": ["a) whereas", "b) however", "c) so", "d) consequently"],
-        "answer": "a",
-        "explanation": "Whereas – тогда как."
+        "type": "complex",
+        "text": "2. Fill in the gaps with the correct linking word. Type the missing word(s) in the box.",
+        "subtasks": [
+          {"question": "The price was high. ______, we decided to buy it.", "answer": "Nevertheless", "explanation": "Nevertheless."},
+          {"question": "She is an extrovert, ______ her sister is an introvert.", "answer": "whereas", "explanation": "Whereas."},
+          {"question": "______, we should also consult the experts.", "answer": "Moreover", "explanation": "Moreover."},
+          {"question": "He didn't listen to the advice. ______, he made a mistake.", "answer": "Consequently", "explanation": "Consequently."},
+          {"question": "______ to his colleagues, he is very ambitious.", "answer": "In contrast", "explanation": "In contrast."},
+          {"question": "The view was breathtaking. ______, we took many photos.", "answer": "Therefore", "explanation": "Therefore."},
+          {"question": "I was late, ______ I missed the train.", "answer": "so", "explanation": "So."},
+          {"question": "We have a problem. ______, I think we can solve it.", "answer": "However", "explanation": "However."}
+        ]
       },
       {
-        "question": "______, we must also ensure quality.",
-        "options": ["a) Moreover", "b) Consequently", "c) However", "d) In contrast"],
-        "answer": "a",
-        "explanation": "Furthermore – более того."
+        "type": "complex",
+        "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
+        "subtasks": [
+          {"question": "The price was high nevertheless we decided to buy it.", "answer": "The price was high; nevertheless, we decided to buy it.", "explanation": "Пунктуация."},
+          {"question": "She is an extrovert, whereas her sister is an introvert.", "answer": "Correct", "explanation": "Верно."},
+          {"question": "Moreover we should also consult the experts.", "answer": "Moreover, we should also consult the experts.", "explanation": "Запятая."},
+          {"question": "He didn't listen to the advice consequently he made a mistake.", "answer": "He didn't listen to the advice; consequently, he made a mistake.", "explanation": "Пунктуация."},
+          {"question": "In contrast to his colleagues, he is very ambitious.", "answer": "Correct", "explanation": "Верно."},
+          {"question": "The view was breathtaking therefore we took many photos.", "answer": "The view was breathtaking; therefore, we took many photos.", "explanation": "Пунктуация."},
+          {"question": "I was late, so I missed the train.", "answer": "Correct", "explanation": "Верно."},
+          {"question": "We have a problem however I think we can solve it.", "answer": "We have a problem; however, I think we can solve it.", "explanation": "Пунктуация."}
+        ]
       },
       {
-        "question": "He didn't sleep well. ______, he was tired all day.",
-        "options": ["a) However", "b) Nevertheless", "c) Moreover", "d) Consequently"],
-        "answer": "d",
-        "explanation": "Consequently – следовательно."
+        "type": "complex",
+        "text": "4. Rewrite the sentences using the linking word given in brackets. Type the whole sentence.",
+        "subtasks": [
+          {"question": "The price was high, but we decided to buy it. (nevertheless) → The price was high; nevertheless, we decided to buy it.", "answer": "The price was high; nevertheless, we decided to buy it.", "explanation": "Nevertheless."},
+          {"question": "She is an extrovert, but her sister is an introvert. (whereas) → She is an extrovert, whereas her sister is an introvert.", "answer": "She is an extrovert, whereas her sister is an introvert.", "explanation": "Whereas."},
+          {"question": "We should also consult the experts. (moreover) → Moreover, we should also consult the experts.", "answer": "Moreover, we should also consult the experts.", "explanation": "Moreover."},
+          {"question": "He didn't listen to the advice, so he made a mistake. (consequently) → He didn't listen to the advice; consequently, he made a mistake.", "answer": "He didn't listen to the advice; consequently, he made a mistake.", "explanation": "Consequently."},
+          {"question": "Unlike his colleagues, he is ambitious. (in contrast) → In contrast to his colleagues, he is very ambitious.", "answer": "In contrast to his colleagues, he is very ambitious.", "explanation": "In contrast."},
+          {"question": "The view was breathtaking, so we took many photos. (therefore) → The view was breathtaking; therefore, we took many photos.", "answer": "The view was breathtaking; therefore, we took many photos.", "explanation": "Therefore."},
+          {"question": "I was late, so I missed the train. (thus) → I was late; thus, I missed the train.", "answer": "I was late; thus, I missed the train.", "explanation": "Thus."},
+          {"question": "We have a problem, but I think we can solve it. (however) → We have a problem; however, I think we can solve it.", "answer": "We have a problem; however, I think we can solve it.", "explanation": "However."}
+        ]
+      },
+      # =====================================================
+      # ВАРИАНТ 9 (перевод)
+      # =====================================================
+      {
+        "type": "complex",
+        "text": "1. Choose the correct linking word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+        "subtasks": [
+          {"question": "The exam was difficult. ______, most students passed.", "options": ["a) However", "b) Therefore", "c) Nevertheless", "d) Moreover"], "answer": "c", "explanation": "Nevertheless – тем не менее."},
+          {"question": "Tom loves action movies, ______ his girlfriend prefers romantic comedies.", "options": ["a) whereas", "b) however", "c) so", "d) consequently"], "answer": "a", "explanation": "Whereas – тогда как."},
+          {"question": "______, we also need to consider the time factor.", "options": ["a) Consequently", "b) Furthermore", "c) However", "d) In contrast"], "answer": "b", "explanation": "Furthermore – более того."},
+          {"question": "He forgot to set his alarm. ______, he overslept.", "options": ["a) However", "b) Nevertheless", "c) Moreover", "d) Consequently"], "answer": "d", "explanation": "Consequently – следовательно."},
+          {"question": "______ with the original plan, the new one is much simpler.", "options": ["a) Moreover", "b) In addition", "c) In contrast", "d) Consequently"], "answer": "c", "explanation": "In contrast – в отличие от."},
+          {"question": "The product is reliable. ______, it is also affordable.", "options": ["a) However", "b) Consequently", "c) Nevertheless", "d) Moreover"], "answer": "d", "explanation": "Moreover – более того."},
+          {"question": "She was exhausted, ______ she went to bed early.", "options": ["a) therefore", "b) so", "c) however", "d) whereas"], "answer": "b", "explanation": "So – поэтому."},
+          {"question": "I agree with your idea. ______, I have some concerns.", "options": ["a) Moreover", "b) Consequently", "c) Nevertheless", "d) However"], "answer": "d", "explanation": "However – однако."}
+        ]
       },
       {
-        "question": "______ to her husband, she is very practical.",
-        "options": ["a) Moreover", "b) In addition", "c) In contrast", "d) Consequently"],
-        "answer": "c",
-        "explanation": "In contrast – в отличие от."
+        "type": "complex",
+        "text": "2. Fill in the gaps with the correct linking word. Type the missing word(s) in the box.",
+        "subtasks": [
+          {"question": "The exam was difficult. ______, most students passed.", "answer": "Nevertheless", "explanation": "Nevertheless."},
+          {"question": "Tom loves action movies, ______ his girlfriend prefers romantic comedies.", "answer": "whereas", "explanation": "Whereas."},
+          {"question": "______, we also need to consider the time factor.", "answer": "Furthermore", "explanation": "Furthermore."},
+          {"question": "He forgot to set his alarm. ______, he overslept.", "answer": "Consequently", "explanation": "Consequently."},
+          {"question": "______ with the original plan, the new one is much simpler.", "answer": "In contrast", "explanation": "In contrast."},
+          {"question": "The product is reliable. ______, it is also affordable.", "answer": "Moreover", "explanation": "Moreover."},
+          {"question": "She was exhausted, ______ she went to bed early.", "answer": "so", "explanation": "So."},
+          {"question": "I agree with your idea. ______, I have some concerns.", "answer": "However", "explanation": "However."}
+        ]
       },
       {
-        "question": "The book was well-written. ______, it was a pleasure to read.",
-        "options": ["a) However", "b) Consequently", "c) Nevertheless", "d) Moreover"],
-        "answer": "d",
-        "explanation": "Moreover – более того."
+        "type": "complex",
+        "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
+        "subtasks": [
+          {"question": "The exam was difficult nevertheless most students passed.", "answer": "The exam was difficult; nevertheless, most students passed.", "explanation": "Пунктуация."},
+          {"question": "Tom loves action movies, whereas his girlfriend prefers romantic comedies.", "answer": "Correct", "explanation": "Верно."},
+          {"question": "Furthermore we also need to consider the time factor.", "answer": "Furthermore, we also need to consider the time factor.", "explanation": "Запятая."},
+          {"question": "He forgot to set his alarm consequently he overslept.", "answer": "He forgot to set his alarm; consequently, he overslept.", "explanation": "Пунктуация."},
+          {"question": "In contrast with the original plan, the new one is much simpler.", "answer": "Correct", "explanation": "Верно."},
+          {"question": "The product is reliable moreover it is also affordable.", "answer": "The product is reliable; moreover, it is also affordable.", "explanation": "Пунктуация."},
+          {"question": "She was exhausted, so she went to bed early.", "answer": "Correct", "explanation": "Верно."},
+          {"question": "I agree with your idea however I have some concerns.", "answer": "I agree with your idea; however, I have some concerns.", "explanation": "Пунктуация."}
+        ]
       },
       {
-        "question": "I was hungry, ______ I made a sandwich.",
-        "options": ["a) therefore", "b) so", "c) however", "d) whereas"],
-        "answer": "b",
-        "explanation": "So – поэтому."
+        "type": "complex",
+        "text": "4. Translate the sentences into English using the correct linking words. Type your translation (one sentence) in the box.",
+        "subtasks": [
+          {"question": "Экзамен был сложным. Тем не менее большинство студентов сдали.", "answer": "The exam was difficult. Nevertheless, most students passed.", "explanation": ""},
+          {"question": "Том любит боевики, тогда как его девушка предпочитает романтические комедии.", "answer": "Tom loves action movies, whereas his girlfriend prefers romantic comedies.", "explanation": ""},
+          {"question": "Более того, нам также нужно учесть временной фактор.", "answer": "Furthermore, we also need to consider the time factor.", "explanation": ""},
+          {"question": "Он забыл поставить будильник. Следовательно, он проспал.", "answer": "He forgot to set his alarm. Consequently, he overslept.", "explanation": ""},
+          {"question": "В отличие от первоначального плана, новый намного проще.", "answer": "In contrast with the original plan, the new one is much simpler.", "explanation": ""},
+          {"question": "Продукт надёжен. Более того, он также доступен по цене.", "answer": "The product is reliable. Moreover, it is also affordable.", "explanation": ""},
+          {"question": "Она была истощена, поэтому легла спать рано.", "answer": "She was exhausted, so she went to bed early.", "explanation": ""},
+          {"question": "Я согласен с твоей идеей. Однако у меня есть некоторые опасения.", "answer": "I agree with your idea. However, I have some concerns.", "explanation": ""}
+        ]
+      },
+      # =====================================================
+      # ВАРИАНТ 10 (перефразирование)
+      # =====================================================
+      {
+        "type": "complex",
+        "text": "1. Choose the correct linking word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+        "subtasks": [
+          {"question": "The restaurant was crowded. ______, the food was excellent.", "options": ["a) However", "b) Therefore", "c) Nevertheless", "d) Moreover"], "answer": "c", "explanation": "Nevertheless – тем не менее."},
+          {"question": "Peter is very sociable, ______ his brother is quite reserved.", "options": ["a) whereas", "b) however", "c) so", "d) consequently"], "answer": "a", "explanation": "Whereas – тогда как."},
+          {"question": "______, we must also consider the environmental costs.", "options": ["a) Consequently", "b) Moreover", "c) However", "d) In contrast"], "answer": "b", "explanation": "Moreover – более того."},
+          {"question": "She lost her passport. ______, she couldn't board the flight.", "options": ["a) However", "b) Nevertheless", "c) Moreover", "d) Consequently"], "answer": "d", "explanation": "Consequently – следовательно."},
+          {"question": "______ to her previous job, her new one is much more challenging.", "options": ["a) Moreover", "b) In addition", "c) In contrast", "d) Consequently"], "answer": "c", "explanation": "In contrast – в отличие от."},
+          {"question": "The service was slow. ______, we had a great time.", "options": ["a) However", "b) Moreover", "c) Consequently", "d) Nevertheless"], "answer": "a", "explanation": "However – однако."},
+          {"question": "He was feeling ill, ______ he stayed home.", "options": ["a) therefore", "b) so", "c) however", "d) whereas"], "answer": "b", "explanation": "So – поэтому."},
+          {"question": "I need a break. ______, I've been working all day.", "options": ["a) Besides", "b) However", "c) Moreover", "d) Consequently"], "answer": "a", "explanation": "Besides – кроме того."}
+        ]
       },
       {
-        "question": "We have enough money. ______, we can't buy it because it's out of stock.",
-        "options": ["a) Besides", "b) However", "c) Moreover", "d) Consequently"],
-        "answer": "b",
-        "explanation": "However – однако."
-              }
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "2. Fill in the gaps with the correct linking word. Type the missing word(s) in the box.",
-            "subtasks": [
-                {"question": "The film was long. ______, it was very entertaining.", "answer": "Nevertheless", "explanation": "Nevertheless."},
-                {"question": "My sister loves spicy food, ______ I prefer mild dishes.", "answer": "whereas", "explanation": "Whereas."},
-                {"question": "______, we must also ensure quality.", "answer": "Furthermore", "explanation": "Furthermore."},
-                {"question": "He didn't sleep well. ______, he was tired all day.", "answer": "Consequently", "explanation": "Consequently."},
-                {"question": "______ to her husband, she is very practical.", "answer": "In contrast", "explanation": "In contrast."},
-                {"question": "The book was well-written. ______, it was a pleasure to read.", "answer": "Moreover", "explanation": "Moreover."},
-                {"question": "I was hungry, ______ I made a sandwich.", "answer": "so", "explanation": "So."},
-                {"question": "We have enough money. ______, we can't buy it because it's out of stock.", "answer": "However", "explanation": "However."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
-            "subtasks": [
-                {"question": "The film was long nevertheless it was entertaining.", "answer": "The film was long; nevertheless, it was very entertaining.", "explanation": "Пунктуация."},
-                {"question": "My sister loves spicy food, whereas I prefer mild dishes.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Furthermore we must also ensure quality.", "answer": "Furthermore, we must also ensure quality.", "explanation": "Запятая."},
-                {"question": "He didn't sleep well consequently he was tired all day.", "answer": "He didn't sleep well; consequently, he was tired all day.", "explanation": "Пунктуация."},
-                {"question": "In contrast to her husband, she is very practical.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "The book was well-written moreover it was a pleasure to read.", "answer": "The book was well-written; moreover, it was a pleasure to read.", "explanation": "Пунктуация."},
-                {"question": "I was hungry, so I made a sandwich.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "We have enough money however we can't buy it because it's out of stock.", "answer": "We have enough money; however, we can't buy it because it's out of stock.", "explanation": "Пунктуация."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "4. Rewrite the sentences using the linking word given in brackets. Type the whole sentence.",
-            "subtasks": [
-                {"question": "The film was long, but it was entertaining. (nevertheless) → The film was long; nevertheless, it was very entertaining.", "answer": "The film was long; nevertheless, it was very entertaining.", "explanation": "Nevertheless – тем не менее."},
-                {"question": "My sister loves spicy food, but I prefer mild dishes. (whereas) → My sister loves spicy food, whereas I prefer mild dishes.", "answer": "My sister loves spicy food, whereas I prefer mild dishes.", "explanation": "Whereas – тогда как."},
-                {"question": "We must also ensure quality. (furthermore) → Furthermore, we must also ensure quality.", "answer": "Furthermore, we must also ensure quality.", "explanation": "Furthermore – более того."},
-                {"question": "He didn't sleep well, so he was tired. (consequently) → He didn't sleep well; consequently, he was tired all day.", "answer": "He didn't sleep well; consequently, he was tired all day.", "explanation": "Consequently – следовательно."},
-                {"question": "Unlike her husband, she is practical. (in contrast) → In contrast to her husband, she is very practical.", "answer": "In contrast to her husband, she is very practical.", "explanation": "In contrast – в отличие от."},
-                {"question": "The book was well-written and a pleasure to read. (moreover) → The book was well-written; moreover, it was a pleasure to read.", "answer": "The book was well-written; moreover, it was a pleasure to read.", "explanation": "Moreover – более того."},
-                {"question": "I was hungry, so I made a sandwich. (therefore) → I was hungry; therefore, I made a sandwich.", "answer": "I was hungry; therefore, I made a sandwich.", "explanation": "Therefore – поэтому."},
-                {"question": "We have enough money, but we can't buy it. (however) → We have enough money; however, we can't buy it because it's out of stock.", "answer": "We have enough money; however, we can't buy it because it's out of stock.", "explanation": "However – однако."}
-            ]
-        },
-    # =====================================================
-    # ВАРИАНТ 7 (перевод)
-    # =====================================================
-[
-  {
-    "type": "complex",
-    "text": "1. Choose the correct linking word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-    "subtasks": [
-      {
-        "question": "The company is profitable. ______, it has high debts.",
-        "options": ["a) However", "b) Moreover", "c) Consequently", "d) Nevertheless"],
-        "answer": "a",
-        "explanation": "However – однако (противопоставление)."
+        "type": "complex",
+        "text": "2. Fill in the gaps with the correct linking word. Type the missing word(s) in the box.",
+        "subtasks": [
+          {"question": "The restaurant was crowded. ______, the food was excellent.", "answer": "Nevertheless", "explanation": "Nevertheless."},
+          {"question": "Peter is very sociable, ______ his brother is quite reserved.", "answer": "whereas", "explanation": "Whereas."},
+          {"question": "______, we must also consider the environmental costs.", "answer": "Moreover", "explanation": "Moreover."},
+          {"question": "She lost her passport. ______, she couldn't board the flight.", "answer": "Consequently", "explanation": "Consequently."},
+          {"question": "______ to her previous job, her new one is much more challenging.", "answer": "In contrast", "explanation": "In contrast."},
+          {"question": "The service was slow. ______, we had a great time.", "answer": "However", "explanation": "However."},
+          {"question": "He was feeling ill, ______ he stayed home.", "answer": "so", "explanation": "So."},
+          {"question": "I need a break. ______, I've been working all day.", "answer": "Besides", "explanation": "Besides."}
+        ]
       },
       {
-        "question": "He is very talented, ______ he lacks motivation.",
-        "options": ["a) whereas", "b) so", "c) but", "d) however"],
-        "answer": "c",
-        "explanation": "But – но (противопоставление)."
+        "type": "complex",
+        "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
+        "subtasks": [
+          {"question": "The restaurant was crowded nevertheless the food was excellent.", "answer": "The restaurant was crowded; nevertheless, the food was excellent.", "explanation": "Пунктуация."},
+          {"question": "Peter is sociable, whereas his brother is reserved.", "answer": "Correct", "explanation": "Верно."},
+          {"question": "Moreover we must also consider the environmental costs.", "answer": "Moreover, we must also consider the environmental costs.", "explanation": "Запятая."},
+          {"question": "She lost her passport consequently she couldn't board.", "answer": "She lost her passport; consequently, she couldn't board the flight.", "explanation": "Пунктуация."},
+          {"question": "In contrast to her previous job, her new one is challenging.", "answer": "Correct", "explanation": "Верно."},
+          {"question": "The service was slow however we had a great time.", "answer": "The service was slow; however, we had a great time.", "explanation": "Пунктуация."},
+          {"question": "He was feeling ill, so he stayed home.", "answer": "Correct", "explanation": "Верно."},
+          {"question": "I need a break besides I've been working all day.", "answer": "I need a break. Besides, I've been working all day.", "explanation": "Пунктуация."}
+        ]
       },
       {
-        "question": "______, we also need to check the references.",
-        "options": ["a) In contrast", "b) In addition", "c) Consequently", "d) However"],
-        "answer": "b",
-        "explanation": "In addition – в добавок."
+        "type": "complex",
+        "text": "4. Rewrite the sentences using the linking word given in brackets. Type the whole sentence.",
+        "subtasks": [
+          {"question": "The restaurant was crowded, but the food was excellent. (nevertheless) → The restaurant was crowded; nevertheless, the food was excellent.", "answer": "The restaurant was crowded; nevertheless, the food was excellent.", "explanation": "Nevertheless."},
+          {"question": "Peter is sociable, but his brother is reserved. (whereas) → Peter is very sociable, whereas his brother is quite reserved.", "answer": "Peter is very sociable, whereas his brother is quite reserved.", "explanation": "Whereas."},
+          {"question": "We must also consider the environmental costs. (moreover) → Moreover, we must also consider the environmental costs.", "answer": "Moreover, we must also consider the environmental costs.", "explanation": "Moreover."},
+          {"question": "She lost her passport, so she couldn't board. (consequently) → She lost her passport; consequently, she couldn't board the flight.", "answer": "She lost her passport; consequently, she couldn't board the flight.", "explanation": "Consequently."},
+          {"question": "Unlike her previous job, her new one is challenging. (in contrast) → In contrast to her previous job, her new one is much more challenging.", "answer": "In contrast to her previous job, her new one is much more challenging.", "explanation": "In contrast."},
+          {"question": "The service was slow, but we had a great time. (however) → The service was slow; however, we had a great time.", "answer": "The service was slow; however, we had a great time.", "explanation": "However."},
+          {"question": "He was feeling ill, so he stayed home. (therefore) → He was feeling ill; therefore, he stayed home.", "answer": "He was feeling ill; therefore, he stayed home.", "explanation": "Therefore."},
+          {"question": "I need a break. I've been working all day. (besides) → I need a break. Besides, I've been working all day.", "answer": "I need a break. Besides, I've been working all day.", "explanation": "Besides."}
+        ]
+      },
+      # =====================================================
+      # ВАРИАНТ 11 (перевод)
+      # =====================================================
+      {
+        "type": "complex",
+        "text": "1. Choose the correct linking word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+        "subtasks": [
+          {"question": "The plan was risky. ______, they decided to go ahead.", "options": ["a) However", "b) Therefore", "c) Nevertheless", "d) Moreover"], "answer": "c", "explanation": "Nevertheless – тем не менее."},
+          {"question": "My brother loves hiking, ______ I prefer swimming.", "options": ["a) whereas", "b) however", "c) so", "d) consequently"], "answer": "a", "explanation": "Whereas – тогда как."},
+          {"question": "______, we should also consider the cultural differences.", "options": ["a) Consequently", "b) Furthermore", "c) However", "d) In contrast"], "answer": "b", "explanation": "Furthermore – более того."},
+          {"question": "He missed the train. ______, he was late for work.", "options": ["a) However", "b) Nevertheless", "c) Moreover", "d) Consequently"], "answer": "d", "explanation": "Consequently – следовательно."},
+          {"question": "______ with the previous version, the new software is more user-friendly.", "options": ["a) Moreover", "b) In addition", "c) In contrast", "d) Consequently"], "answer": "c", "explanation": "In contrast – в отличие от."},
+          {"question": "The museum was interesting. ______, it was very educational.", "options": ["a) However", "b) In addition", "c) Consequently", "d) Nevertheless"], "answer": "b", "explanation": "In addition – кроме того."},
+          {"question": "She was tired, ______ she continued working.", "options": ["a) so", "b) but", "c) however", "d) whereas"], "answer": "b", "explanation": "But – но."},
+          {"question": "I don't like this colour. ______, it's too expensive.", "options": ["a) Besides", "b) However", "c) Moreover", "d) Consequently"], "answer": "a", "explanation": "Besides – кроме того."}
+        ]
       },
       {
-        "question": "She missed the bus. ______, she had to walk.",
-        "options": ["a) However", "b) Nevertheless", "c) Moreover", "d) Consequently"],
-        "answer": "d",
-        "explanation": "Consequently – следовательно."
+        "type": "complex",
+        "text": "2. Fill in the gaps with the correct linking word. Type the missing word(s) in the box.",
+        "subtasks": [
+          {"question": "The plan was risky. ______, they decided to go ahead.", "answer": "Nevertheless", "explanation": "Nevertheless."},
+          {"question": "My brother loves hiking, ______ I prefer swimming.", "answer": "whereas", "explanation": "Whereas."},
+          {"question": "______, we should also consider the cultural differences.", "answer": "Furthermore", "explanation": "Furthermore."},
+          {"question": "He missed the train. ______, he was late for work.", "answer": "Consequently", "explanation": "Consequently."},
+          {"question": "______ with the previous version, the new software is more user-friendly.", "answer": "In contrast", "explanation": "In contrast."},
+          {"question": "The museum was interesting. ______, it was very educational.", "answer": "In addition", "explanation": "In addition."},
+          {"question": "She was tired, ______ she continued working.", "answer": "but", "explanation": "But."},
+          {"question": "I don't like this colour. ______, it's too expensive.", "answer": "Besides", "explanation": "Besides."}
+        ]
       },
       {
-        "question": "______ with the previous model, this one is much faster.",
-        "options": ["a) In contrast", "b) Moreover", "c) In addition", "d) Consequently"],
-        "answer": "a",
-        "explanation": "In contrast – в отличие от."
+        "type": "complex",
+        "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
+        "subtasks": [
+          {"question": "The plan was risky nevertheless they decided to go ahead.", "answer": "The plan was risky; nevertheless, they decided to go ahead.", "explanation": "Пунктуация."},
+          {"question": "My brother loves hiking, whereas I prefer swimming.", "answer": "Correct", "explanation": "Верно."},
+          {"question": "Furthermore we should also consider the cultural differences.", "answer": "Furthermore, we should also consider the cultural differences.", "explanation": "Запятая."},
+          {"question": "He missed the train consequently he was late for work.", "answer": "He missed the train; consequently, he was late for work.", "explanation": "Пунктуация."},
+          {"question": "In contrast with the previous version, the new software is more user-friendly.", "answer": "Correct", "explanation": "Верно."},
+          {"question": "The museum was interesting in addition it was educational.", "answer": "The museum was interesting. In addition, it was very educational.", "explanation": "Пунктуация."},
+          {"question": "She was tired, but she continued working.", "answer": "Correct", "explanation": "Верно."},
+          {"question": "I don't like this colour besides it's too expensive.", "answer": "I don't like this colour. Besides, it's too expensive.", "explanation": "Пунктуация."}
+        ]
       },
       {
-        "question": "The weather was awful. ______, we enjoyed the trip.",
-        "options": ["a) Moreover", "b) Therefore", "c) Nevertheless", "d) However"],
-        "answer": "c",
-        "explanation": "Nevertheless – тем не менее."
+        "type": "complex",
+        "text": "4. Translate the sentences into English using the correct linking words. Type your translation (one sentence) in the box.",
+        "subtasks": [
+          {"question": "План был рискованным. Тем не менее они решили действовать.", "answer": "The plan was risky. Nevertheless, they decided to go ahead.", "explanation": ""},
+          {"question": "Мой брат любит пешие походы, тогда как я предпочитаю плавание.", "answer": "My brother loves hiking, whereas I prefer swimming.", "explanation": ""},
+          {"question": "Более того, нам следует также учитывать культурные различия.", "answer": "Furthermore, we should also consider the cultural differences.", "explanation": ""},
+          {"question": "Он опоздал на поезд. Следовательно, он опоздал на работу.", "answer": "He missed the train. Consequently, he was late for work.", "explanation": ""},
+          {"question": "В отличие от предыдущей версии, новое программное обеспечение более удобное.", "answer": "In contrast with the previous version, the new software is more user-friendly.", "explanation": ""},
+          {"question": "Музей был интересным. Кроме того, он был очень познавательным.", "answer": "The museum was interesting. In addition, it was very educational.", "explanation": ""},
+          {"question": "Она была уставшей, но продолжала работать.", "answer": "She was tired, but she continued working.", "explanation": ""},
+          {"question": "Мне не нравится этот цвет. Кроме того, он слишком дорогой.", "answer": "I don't like this colour. Besides, it's too expensive.", "explanation": ""}
+        ]
+      },
+      # =====================================================
+      # ВАРИАНТ 12 (перефразирование)
+      # =====================================================
+      {
+        "type": "complex",
+        "text": "1. Choose the correct linking word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
+        "subtasks": [
+          {"question": "The weather forecast was bad. ______, we decided to go camping.", "options": ["a) Therefore", "b) Moreover", "c) Nevertheless", "d) However"], "answer": "c", "explanation": "Nevertheless – тем не менее."},
+          {"question": "I enjoy classical music, ______ my sister prefers pop.", "options": ["a) whereas", "b) however", "c) so", "d) consequently"], "answer": "a", "explanation": "Whereas – тогда как."},
+          {"question": "______, we also need to consider the security aspects.", "options": ["a) Consequently", "b) However", "c) In contrast", "d) Furthermore"], "answer": "d", "explanation": "Furthermore – более того."},
+          {"question": "She forgot her keys. ______, she couldn't enter the house.", "options": ["a) However", "b) Nevertheless", "c) Consequently", "d) Moreover"], "answer": "c", "explanation": "Consequently – следовательно."},
+          {"question": "______ with the old system, the new one is much faster.", "options": ["a) In contrast", "b) In addition", "c) Moreover", "d) Consequently"], "answer": "a", "explanation": "In contrast – в отличие от."},
+          {"question": "The house is spacious. ______, it has a beautiful garden.", "options": ["a) However", "b) Consequently", "c) Nevertheless", "d) In addition"], "answer": "d", "explanation": "In addition – кроме того."},
+          {"question": "He was tired, ______ he didn't go to bed.", "options": ["a) so", "b) but", "c) however", "d) whereas"], "answer": "b", "explanation": "But – но."},
+          {"question": "I have no money. ______, I can't afford it.", "options": ["a) Therefore", "b) However", "c) Moreover", "d) Nevertheless"], "answer": "a", "explanation": "Therefore – следовательно."}
+        ]
       },
       {
-        "question": "He worked hard, ______ he passed the exam.",
-        "options": ["a) so", "b) but", "c) however", "d) whereas"],
-        "answer": "a",
-        "explanation": "So – поэтому."
+        "type": "complex",
+        "text": "2. Fill in the gaps with the correct linking word. Type the missing word(s) in the box.",
+        "subtasks": [
+          {"question": "The weather forecast was bad. ______, we decided to go camping.", "answer": "Nevertheless", "explanation": "Nevertheless."},
+          {"question": "I enjoy classical music, ______ my sister prefers pop.", "answer": "whereas", "explanation": "Whereas."},
+          {"question": "______, we also need to consider the security aspects.", "answer": "Furthermore", "explanation": "Furthermore."},
+          {"question": "She forgot her keys. ______, she couldn't enter the house.", "answer": "Consequently", "explanation": "Consequently."},
+          {"question": "______ with the old system, the new one is much faster.", "answer": "In contrast", "explanation": "In contrast."},
+          {"question": "The house is spacious. ______, it has a beautiful garden.", "answer": "In addition", "explanation": "In addition."},
+          {"question": "He was tired, ______ he didn't go to bed.", "answer": "but", "explanation": "But."},
+          {"question": "I have no money. ______, I can't afford it.", "answer": "Therefore", "explanation": "Therefore."}
+        ]
       },
       {
-        "question": "I'm not interested. ______, I'm too busy.",
-        "options": ["a) Besides", "b) Moreover", "c) However", "d) Consequently"],
-        "answer": "a",
-        "explanation": "Besides – кроме того."
-              }
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "2. Fill in the gaps with the correct linking word. Type the missing word(s) in the box.",
-            "subtasks": [
-                {"question": "The company is profitable. ______, it has high debts.", "answer": "However", "explanation": "However."},
-                {"question": "He is very talented, ______ he lacks motivation.", "answer": "but", "explanation": "But."},
-                {"question": "______, we also need to check the references.", "answer": "In addition", "explanation": "In addition."},
-                {"question": "She missed the bus. ______, she had to walk.", "answer": "Consequently", "explanation": "Consequently."},
-                {"question": "______ with the previous model, this one is much faster.", "answer": "In contrast", "explanation": "In contrast."},
-                {"question": "The weather was awful. ______, we enjoyed the trip.", "answer": "Nevertheless", "explanation": "Nevertheless."},
-                {"question": "He worked hard, ______ he passed the exam.", "answer": "so", "explanation": "So."},
-                {"question": "I'm not interested. ______, I'm too busy.", "answer": "Besides", "explanation": "Besides."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
-            "subtasks": [
-                {"question": "The company is profitable however it has high debts.", "answer": "The company is profitable; however, it has high debts.", "explanation": "Пунктуация."},
-                {"question": "He is very talented, but he lacks motivation.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "In addition we also need to check the references.", "answer": "In addition, we also need to check the references.", "explanation": "Запятая."},
-                {"question": "She missed the bus consequently she had to walk.", "answer": "She missed the bus; consequently, she had to walk.", "explanation": "Пунктуация."},
-                {"question": "In contrast with the previous model, this one is much faster.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "The weather was awful nevertheless we enjoyed the trip.", "answer": "The weather was awful; nevertheless, we enjoyed the trip.", "explanation": "Пунктуация."},
-                {"question": "He worked hard so he passed the exam.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "I'm not interested besides I'm too busy.", "answer": "I'm not interested. Besides, I'm too busy.", "explanation": "Пунктуация."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "4. Translate the sentences into English using the correct linking words. Type your translation (one sentence) in the box.",
-            "subtasks": [
-                {"question": "Компания прибыльна. Однако у неё большие долги.", "answer": "The company is profitable. However, it has high debts.", "explanation": ""},
-                {"question": "Он очень талантлив, но ему не хватает мотивации.", "answer": "He is very talented, but he lacks motivation.", "explanation": ""},
-                {"question": "Кроме того, нам также нужно проверить рекомендации.", "answer": "In addition, we also need to check the references.", "explanation": ""},
-                {"question": "Она опоздала на автобус. Следовательно, ей пришлось идти пешком.", "answer": "She missed the bus. Consequently, she had to walk.", "explanation": ""},
-                {"question": "В отличие от предыдущей модели, эта намного быстрее.", "answer": "In contrast with the previous model, this one is much faster.", "explanation": ""},
-                {"question": "Погода была ужасной. Тем не менее мы насладились поездкой.", "answer": "The weather was awful. Nevertheless, we enjoyed the trip.", "explanation": ""},
-                {"question": "Он много работал, поэтому сдал экзамен.", "answer": "He worked hard, so he passed the exam.", "explanation": ""},
-                {"question": "Мне это не интересно. Кроме того, я слишком занят.", "answer": "I'm not interested. Besides, I'm too busy.", "explanation": ""}
-            ]
-        },
-    # =====================================================
-    # ВАРИАНТ 8 (перефразирование)
-    # =====================================================
-[
-  {
-    "type": "complex",
-    "text": "1. Choose the correct linking word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-    "subtasks": [
-      {
-        "question": "The price was high. ______, we decided to buy it.",
-        "options": ["a) However", "b) Therefore", "c) Nevertheless", "d) Moreover"],
-        "answer": "c",
-        "explanation": "Nevertheless – тем не менее."
+        "type": "complex",
+        "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
+        "subtasks": [
+          {"question": "The weather forecast was bad nevertheless we decided to go camping.", "answer": "The weather forecast was bad; nevertheless, we decided to go camping.", "explanation": "Пунктуация."},
+          {"question": "I enjoy classical music, whereas my sister prefers pop.", "answer": "Correct", "explanation": "Верно."},
+          {"question": "Furthermore we also need to consider the security aspects.", "answer": "Furthermore, we also need to consider the security aspects.", "explanation": "Запятая."},
+          {"question": "She forgot her keys consequently she couldn't enter the house.", "answer": "She forgot her keys; consequently, she couldn't enter the house.", "explanation": "Пунктуация."},
+          {"question": "In contrast with the old system, the new one is much faster.", "answer": "Correct", "explanation": "Верно."},
+          {"question": "The house is spacious in addition it has a beautiful garden.", "answer": "The house is spacious. In addition, it has a beautiful garden.", "explanation": "Пунктуация."},
+          {"question": "He was tired, but he didn't go to bed.", "answer": "Correct", "explanation": "Верно."},
+          {"question": "I have no money therefore I can't afford it.", "answer": "I have no money; therefore, I can't afford it.", "explanation": "Пунктуация."}
+        ]
       },
       {
-        "question": "She is an extrovert, ______ her sister is an introvert.",
-        "options": ["a) whereas", "b) however", "c) so", "d) consequently"],
-        "answer": "a",
-        "explanation": "Whereas – тогда как."
-      },
-      {
-        "question": "______, we should also consult the experts.",
-        "options": ["a) Consequently", "b) Moreover", "c) However", "d) In contrast"],
-        "answer": "b",
-        "explanation": "Moreover – более того."
-      },
-      {
-        "question": "He didn't listen to the advice. ______, he made a mistake.",
-        "options": ["a) However", "b) Nevertheless", "c) Moreover", "d) Consequently"],
-        "answer": "d",
-        "explanation": "Consequently – следовательно."
-      },
-      {
-        "question": "______ to his colleagues, he is very ambitious.",
-        "options": ["a) Moreover", "b) In addition", "c) In contrast", "d) Consequently"],
-        "answer": "c",
-        "explanation": "In contrast – в отличие от."
-      },
-      {
-        "question": "The view was breathtaking. ______, we took many photos.",
-        "options": ["a) Therefore", "b) However", "c) Moreover", "d) Nevertheless"],
-        "answer": "a",
-        "explanation": "Therefore – следовательно."
-      },
-      {
-        "question": "I was late, ______ I missed the train.",
-        "options": ["a) therefore", "b) so", "c) however", "d) whereas"],
-        "answer": "b",
-        "explanation": "So – поэтому."
-      },
-      {
-        "question": "We have a problem. ______, I think we can solve it.",
-        "options": ["a) Moreover", "b) Consequently", "c) Nevertheless", "d) However"],
-        "answer": "d",
-        "explanation": "However – однако."
-              }
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "2. Fill in the gaps with the correct linking word. Type the missing word(s) in the box.",
-            "subtasks": [
-                {"question": "The price was high. ______, we decided to buy it.", "answer": "Nevertheless", "explanation": "Nevertheless."},
-                {"question": "She is an extrovert, ______ her sister is an introvert.", "answer": "whereas", "explanation": "Whereas."},
-                {"question": "______, we should also consult the experts.", "answer": "Moreover", "explanation": "Moreover."},
-                {"question": "He didn't listen to the advice. ______, he made a mistake.", "answer": "Consequently", "explanation": "Consequently."},
-                {"question": "______ to his colleagues, he is very ambitious.", "answer": "In contrast", "explanation": "In contrast."},
-                {"question": "The view was breathtaking. ______, we took many photos.", "answer": "Therefore", "explanation": "Therefore."},
-                {"question": "I was late, ______ I missed the train.", "answer": "so", "explanation": "So."},
-                {"question": "We have a problem. ______, I think we can solve it.", "answer": "However", "explanation": "However."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
-            "subtasks": [
-                {"question": "The price was high nevertheless we decided to buy it.", "answer": "The price was high; nevertheless, we decided to buy it.", "explanation": "Пунктуация."},
-                {"question": "She is an extrovert, whereas her sister is an introvert.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Moreover we should also consult the experts.", "answer": "Moreover, we should also consult the experts.", "explanation": "Запятая."},
-                {"question": "He didn't listen to the advice consequently he made a mistake.", "answer": "He didn't listen to the advice; consequently, he made a mistake.", "explanation": "Пунктуация."},
-                {"question": "In contrast to his colleagues, he is very ambitious.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "The view was breathtaking therefore we took many photos.", "answer": "The view was breathtaking; therefore, we took many photos.", "explanation": "Пунктуация."},
-                {"question": "I was late, so I missed the train.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "We have a problem however I think we can solve it.", "answer": "We have a problem; however, I think we can solve it.", "explanation": "Пунктуация."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "4. Rewrite the sentences using the linking word given in brackets. Type the whole sentence.",
-            "subtasks": [
-                {"question": "The price was high, but we decided to buy it. (nevertheless) → The price was high; nevertheless, we decided to buy it.", "answer": "The price was high; nevertheless, we decided to buy it.", "explanation": "Nevertheless – тем не менее."},
-                {"question": "She is an extrovert, but her sister is an introvert. (whereas) → She is an extrovert, whereas her sister is an introvert.", "answer": "She is an extrovert, whereas her sister is an introvert.", "explanation": "Whereas – тогда как."},
-                {"question": "We should also consult the experts. (moreover) → Moreover, we should also consult the experts.", "answer": "Moreover, we should also consult the experts.", "explanation": "Moreover – более того."},
-                {"question": "He didn't listen to the advice, so he made a mistake. (consequently) → He didn't listen to the advice; consequently, he made a mistake.", "answer": "He didn't listen to the advice; consequently, he made a mistake.", "explanation": "Consequently – следовательно."},
-                {"question": "Unlike his colleagues, he is ambitious. (in contrast) → In contrast to his colleagues, he is very ambitious.", "answer": "In contrast to his colleagues, he is very ambitious.", "explanation": "In contrast – в отличие от."},
-                {"question": "The view was breathtaking, so we took many photos. (therefore) → The view was breathtaking; therefore, we took many photos.", "answer": "The view was breathtaking; therefore, we took many photos.", "explanation": "Therefore – следовательно."},
-                {"question": "I was late, so I missed the train. (thus) → I was late; thus, I missed the train.", "answer": "I was late; thus, I missed the train.", "explanation": "Thus – таким образом."},
-                {"question": "We have a problem, but I think we can solve it. (however) → We have a problem; however, I think we can solve it.", "answer": "We have a problem; however, I think we can solve it.", "explanation": "However – однако."}
-            ]
-        },
-    # =====================================================
-    # ВАРИАНТ 9 (перевод)
-    # =====================================================
- [
-  {
-    "type": "complex",
-    "text": "1. Choose the correct linking word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-    "subtasks": [
-      {
-        "question": "The exam was difficult. ______, most students passed.",
-        "options": ["a) However", "b) Therefore", "c) Nevertheless", "d) Moreover"],
-        "answer": "c",
-        "explanation": "Nevertheless – тем не менее."
-      },
-      {
-        "question": "Tom loves action movies, ______ his girlfriend prefers romantic comedies.",
-        "options": ["a) whereas", "b) however", "c) so", "d) consequently"],
-        "answer": "a",
-        "explanation": "Whereas – тогда как."
-      },
-      {
-        "question": "______, we also need to consider the time factor.",
-        "options": ["a) Consequently", "b) Furthermore", "c) However", "d) In contrast"],
-        "answer": "b",
-        "explanation": "Furthermore – более того."
-      },
-      {
-        "question": "He forgot to set his alarm. ______, he overslept.",
-        "options": ["a) However", "b) Nevertheless", "c) Moreover", "d) Consequently"],
-        "answer": "d",
-        "explanation": "Consequently – следовательно."
-      },
-      {
-        "question": "______ with the original plan, the new one is much simpler.",
-        "options": ["a) Moreover", "b) In addition", "c) In contrast", "d) Consequently"],
-        "answer": "c",
-        "explanation": "In contrast – в отличие от."
-      },
-      {
-        "question": "The product is reliable. ______, it is also affordable.",
-        "options": ["a) However", "b) Consequently", "c) Nevertheless", "d) Moreover"],
-        "answer": "d",
-        "explanation": "Moreover – более того."
-      },
-      {
-        "question": "She was exhausted, ______ she went to bed early.",
-        "options": ["a) therefore", "b) so", "c) however", "d) whereas"],
-        "answer": "b",
-        "explanation": "So – поэтому."
-      },
-      {
-        "question": "I agree with your idea. ______, I have some concerns.",
-        "options": ["a) Moreover", "b) Consequently", "c) Nevertheless", "d) However"],
-        "answer": "d",
-        "explanation": "However – однако."
-              }
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "2. Fill in the gaps with the correct linking word. Type the missing word(s) in the box.",
-            "subtasks": [
-                {"question": "The exam was difficult. ______, most students passed.", "answer": "Nevertheless", "explanation": "Nevertheless."},
-                {"question": "Tom loves action movies, ______ his girlfriend prefers romantic comedies.", "answer": "whereas", "explanation": "Whereas."},
-                {"question": "______, we also need to consider the time factor.", "answer": "Furthermore", "explanation": "Furthermore."},
-                {"question": "He forgot to set his alarm. ______, he overslept.", "answer": "Consequently", "explanation": "Consequently."},
-                {"question": "______ with the original plan, the new one is much simpler.", "answer": "In contrast", "explanation": "In contrast."},
-                {"question": "The product is reliable. ______, it is also affordable.", "answer": "Moreover", "explanation": "Moreover."},
-                {"question": "She was exhausted, ______ she went to bed early.", "answer": "so", "explanation": "So."},
-                {"question": "I agree with your idea. ______, I have some concerns.", "answer": "However", "explanation": "However."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
-            "subtasks": [
-                {"question": "The exam was difficult nevertheless most students passed.", "answer": "The exam was difficult; nevertheless, most students passed.", "explanation": "Пунктуация."},
-                {"question": "Tom loves action movies, whereas his girlfriend prefers romantic comedies.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Furthermore we also need to consider the time factor.", "answer": "Furthermore, we also need to consider the time factor.", "explanation": "Запятая."},
-                {"question": "He forgot to set his alarm consequently he overslept.", "answer": "He forgot to set his alarm; consequently, he overslept.", "explanation": "Пунктуация."},
-                {"question": "In contrast with the original plan, the new one is much simpler.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "The product is reliable moreover it is also affordable.", "answer": "The product is reliable; moreover, it is also affordable.", "explanation": "Пунктуация."},
-                {"question": "She was exhausted, so she went to bed early.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "I agree with your idea however I have some concerns.", "answer": "I agree with your idea; however, I have some concerns.", "explanation": "Пунктуация."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "4. Translate the sentences into English using the correct linking words. Type your translation (one sentence) in the box.",
-            "subtasks": [
-                {"question": "Экзамен был сложным. Тем не менее большинство студентов сдали.", "answer": "The exam was difficult. Nevertheless, most students passed.", "explanation": ""},
-                {"question": "Том любит боевики, тогда как его девушка предпочитает романтические комедии.", "answer": "Tom loves action movies, whereas his girlfriend prefers romantic comedies.", "explanation": ""},
-                {"question": "Более того, нам также нужно учесть временной фактор.", "answer": "Furthermore, we also need to consider the time factor.", "explanation": ""},
-                {"question": "Он забыл поставить будильник. Следовательно, он проспал.", "answer": "He forgot to set his alarm. Consequently, he overslept.", "explanation": ""},
-                {"question": "В отличие от первоначального плана, новый намного проще.", "answer": "In contrast with the original plan, the new one is much simpler.", "explanation": ""},
-                {"question": "Продукт надёжен. Более того, он также доступен по цене.", "answer": "The product is reliable. Moreover, it is also affordable.", "explanation": ""},
-                {"question": "Она была истощена, поэтому легла спать рано.", "answer": "She was exhausted, so she went to bed early.", "explanation": ""},
-                {"question": "Я согласен с твоей идеей. Однако у меня есть некоторые опасения.", "answer": "I agree with your idea. However, I have some concerns.", "explanation": ""}
-            ]
-        },
-    # =====================================================
-    # ВАРИАНТ 10 (перефразирование)
-    # =====================================================
-{
-  "type": "complex",
-  "text": "1. Choose the correct linking word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-  "subtasks": [
-    {
-      "question": "The restaurant was crowded. ______, the food was excellent.",
-      "options": ["a) However", "b) Therefore", "c) Nevertheless", "d) Moreover"],
-      "answer": "c",
-      "explanation": "Nevertheless – тем не менее."
-    },
-    {
-      "question": "Peter is very sociable, ______ his brother is quite reserved.",
-      "options": ["a) whereas", "b) however", "c) so", "d) consequently"],
-      "answer": "a",
-      "explanation": "Whereas – тогда как."
-    },
-    {
-      "question": "______, we must also consider the environmental costs.",
-      "options": ["a) Consequently", "b) Moreover", "c) However", "d) In contrast"],
-      "answer": "b",
-      "explanation": "Moreover – более того."
-    },
-    {
-      "question": "She lost her passport. ______, she couldn't board the flight.",
-      "options": ["a) However", "b) Nevertheless", "c) Moreover", "d) Consequently"],
-      "answer": "d",
-      "explanation": "Consequently – следовательно."
-    },
-    {
-      "question": "______ to her previous job, her new one is much more challenging.",
-      "options": ["a) Moreover", "b) In addition", "c) In contrast", "d) Consequently"],
-      "answer": "c",
-      "explanation": "In contrast – в отличие от."
-    },
-    {
-      "question": "The service was slow. ______, we had a great time.",
-      "options": ["a) However", "b) Moreover", "c) Consequently", "d) Nevertheless"],
-      "answer": "a",
-      "explanation": "However – однако."
-    },
-    {
-      "question": "He was feeling ill, ______ he stayed home.",
-      "options": ["a) therefore", "b) so", "c) however", "d) whereas"],
-      "answer": "b",
-      "explanation": "So – поэтому."
-    },
-    {
-      "question": "I need a break. ______, I've been working all day.",
-      "options": ["a) Besides", "b) However", "c) Moreover", "d) Consequently"],
-      "answer": "a",
-      "explanation": "Besides – кроме того."
-              }
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "2. Fill in the gaps with the correct linking word. Type the missing word(s) in the box.",
-            "subtasks": [
-                {"question": "The restaurant was crowded. ______, the food was excellent.", "answer": "Nevertheless", "explanation": "Nevertheless."},
-                {"question": "Peter is very sociable, ______ his brother is quite reserved.", "answer": "whereas", "explanation": "Whereas."},
-                {"question": "______, we must also consider the environmental costs.", "answer": "Moreover", "explanation": "Moreover."},
-                {"question": "She lost her passport. ______, she couldn't board the flight.", "answer": "Consequently", "explanation": "Consequently."},
-                {"question": "______ to her previous job, her new one is much more challenging.", "answer": "In contrast", "explanation": "In contrast."},
-                {"question": "The service was slow. ______, we had a great time.", "answer": "However", "explanation": "However."},
-                {"question": "He was feeling ill, ______ he stayed home.", "answer": "so", "explanation": "So."},
-                {"question": "I need a break. ______, I've been working all day.", "answer": "Besides", "explanation": "Besides."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
-            "subtasks": [
-                {"question": "The restaurant was crowded nevertheless the food was excellent.", "answer": "The restaurant was crowded; nevertheless, the food was excellent.", "explanation": "Пунктуация."},
-                {"question": "Peter is sociable, whereas his brother is reserved.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Moreover we must also consider the environmental costs.", "answer": "Moreover, we must also consider the environmental costs.", "explanation": "Запятая."},
-                {"question": "She lost her passport consequently she couldn't board.", "answer": "She lost her passport; consequently, she couldn't board the flight.", "explanation": "Пунктуация."},
-                {"question": "In contrast to her previous job, her new one is challenging.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "The service was slow however we had a great time.", "answer": "The service was slow; however, we had a great time.", "explanation": "Пунктуация."},
-                {"question": "He was feeling ill, so he stayed home.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "I need a break besides I've been working all day.", "answer": "I need a break. Besides, I've been working all day.", "explanation": "Пунктуация."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "4. Rewrite the sentences using the linking word given in brackets. Type the whole sentence.",
-            "subtasks": [
-                {"question": "The restaurant was crowded, but the food was excellent. (nevertheless) → The restaurant was crowded; nevertheless, the food was excellent.", "answer": "The restaurant was crowded; nevertheless, the food was excellent.", "explanation": "Nevertheless – тем не менее."},
-                {"question": "Peter is sociable, but his brother is reserved. (whereas) → Peter is very sociable, whereas his brother is quite reserved.", "answer": "Peter is very sociable, whereas his brother is quite reserved.", "explanation": "Whereas – тогда как."},
-                {"question": "We must also consider the environmental costs. (moreover) → Moreover, we must also consider the environmental costs.", "answer": "Moreover, we must also consider the environmental costs.", "explanation": "Moreover – более того."},
-                {"question": "She lost her passport, so she couldn't board. (consequently) → She lost her passport; consequently, she couldn't board the flight.", "answer": "She lost her passport; consequently, she couldn't board the flight.", "explanation": "Consequently – следовательно."},
-                {"question": "Unlike her previous job, her new one is challenging. (in contrast) → In contrast to her previous job, her new one is much more challenging.", "answer": "In contrast to her previous job, her new one is much more challenging.", "explanation": "In contrast – в отличие от."},
-                {"question": "The service was slow, but we had a great time. (however) → The service was slow; however, we had a great time.", "answer": "The service was slow; however, we had a great time.", "explanation": "However – однако."},
-                {"question": "He was feeling ill, so he stayed home. (therefore) → He was feeling ill; therefore, he stayed home.", "answer": "He was feeling ill; therefore, he stayed home.", "explanation": "Therefore – поэтому."},
-                {"question": "I need a break. I've been working all day. (besides) → I need a break. Besides, I've been working all day.", "answer": "I need a break. Besides, I've been working all day.", "explanation": "Besides – кроме того."}
-            ]
-        },
-    # =====================================================
-    # ВАРИАНТ 11 (перевод)
-    # =====================================================
-[
-  {
-    "type": "complex",
-    "text": "1. Choose the correct linking word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-    "subtasks": [
-      {
-        "question": "The plan was risky. ______, they decided to go ahead.",
-        "options": ["a) However", "b) Therefore", "c) Nevertheless", "d) Moreover"],
-        "answer": "c",
-        "explanation": "Nevertheless – тем не менее."
-      },
-      {
-        "question": "My brother loves hiking, ______ I prefer swimming.",
-        "options": ["a) whereas", "b) however", "c) so", "d) consequently"],
-        "answer": "a",
-        "explanation": "Whereas – тогда как."
-      },
-      {
-        "question": "______, we should also consider the cultural differences.",
-        "options": ["a) Consequently", "b) Furthermore", "c) However", "d) In contrast"],
-        "answer": "b",
-        "explanation": "Furthermore – более того."
-      },
-      {
-        "question": "He missed the train. ______, he was late for work.",
-        "options": ["a) However", "b) Nevertheless", "c) Moreover", "d) Consequently"],
-        "answer": "d",
-        "explanation": "Consequently – следовательно."
-      },
-      {
-        "question": "______ with the previous version, the new software is more user-friendly.",
-        "options": ["a) Moreover", "b) In addition", "c) In contrast", "d) Consequently"],
-        "answer": "c",
-        "explanation": "In contrast – в отличие от."
-      },
-      {
-        "question": "The museum was interesting. ______, it was very educational.",
-        "options": ["a) However", "b) In addition", "c) Consequently", "d) Nevertheless"],
-        "answer": "b",
-        "explanation": "In addition – в добавок."
-      },
-      {
-        "question": "She was tired, ______ she continued working.",
-        "options": ["a) so", "b) but", "c) however", "d) whereas"],
-        "answer": "b",
-        "explanation": "But – но."
-      },
-      {
-        "question": "I don't like this colour. ______, it's too expensive.",
-        "options": ["a) Besides", "b) However", "c) Moreover", "d) Consequently"],
-        "answer": "a",
-        "explanation": "Besides – кроме того."
-              }
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "2. Fill in the gaps with the correct linking word. Type the missing word(s) in the box.",
-            "subtasks": [
-                {"question": "The plan was risky. ______, they decided to go ahead.", "answer": "Nevertheless", "explanation": "Nevertheless."},
-                {"question": "My brother loves hiking, ______ I prefer swimming.", "answer": "whereas", "explanation": "Whereas."},
-                {"question": "______, we should also consider the cultural differences.", "answer": "Furthermore", "explanation": "Furthermore."},
-                {"question": "He missed the train. ______, he was late for work.", "answer": "Consequently", "explanation": "Consequently."},
-                {"question": "______ with the previous version, the new software is more user-friendly.", "answer": "In contrast", "explanation": "In contrast."},
-                {"question": "The museum was interesting. ______, it was very educational.", "answer": "In addition", "explanation": "In addition."},
-                {"question": "She was tired, ______ she continued working.", "answer": "but", "explanation": "But."},
-                {"question": "I don't like this colour. ______, it's too expensive.", "answer": "Besides", "explanation": "Besides."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
-            "subtasks": [
-                {"question": "The plan was risky nevertheless they decided to go ahead.", "answer": "The plan was risky; nevertheless, they decided to go ahead.", "explanation": "Пунктуация."},
-                {"question": "My brother loves hiking, whereas I prefer swimming.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Furthermore we should also consider the cultural differences.", "answer": "Furthermore, we should also consider the cultural differences.", "explanation": "Запятая."},
-                {"question": "He missed the train consequently he was late for work.", "answer": "He missed the train; consequently, he was late for work.", "explanation": "Пунктуация."},
-                {"question": "In contrast with the previous version, the new software is more user-friendly.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "The museum was interesting in addition it was educational.", "answer": "The museum was interesting. In addition, it was very educational.", "explanation": "Пунктуация."},
-                {"question": "She was tired, but she continued working.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "I don't like this colour besides it's too expensive.", "answer": "I don't like this colour. Besides, it's too expensive.", "explanation": "Пунктуация."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "4. Translate the sentences into English using the correct linking words. Type your translation (one sentence) in the box.",
-            "subtasks": [
-                {"question": "План был рискованным. Тем не менее они решили действовать.", "answer": "The plan was risky. Nevertheless, they decided to go ahead.", "explanation": ""},
-                {"question": "Мой брат любит пешие походы, тогда как я предпочитаю плавание.", "answer": "My brother loves hiking, whereas I prefer swimming.", "explanation": ""},
-                {"question": "Более того, нам следует также учитывать культурные различия.", "answer": "Furthermore, we should also consider the cultural differences.", "explanation": ""},
-                {"question": "Он опоздал на поезд. Следовательно, он опоздал на работу.", "answer": "He missed the train. Consequently, he was late for work.", "explanation": ""},
-                {"question": "В отличие от предыдущей версии, новое программное обеспечение более удобное.", "answer": "In contrast with the previous version, the new software is more user-friendly.", "explanation": ""},
-                {"question": "Музей был интересным. Кроме того, он был очень познавательным.", "answer": "The museum was interesting. In addition, it was very educational.", "explanation": ""},
-                {"question": "Она была уставшей, но продолжала работать.", "answer": "She was tired, but she continued working.", "explanation": ""},
-                {"question": "Мне не нравится этот цвет. Кроме того, он слишком дорогой.", "answer": "I don't like this colour. Besides, it's too expensive.", "explanation": ""}
-            ]
-        },
-    # =====================================================
-    # ВАРИАНТ 12 (перефразирование)
-    # =====================================================
- [
-  {
-    "type": "complex",
-    "text": "1. Choose the correct linking word (a, b, c, or d) to complete the sentence. Type the letter of your answer.",
-    "subtasks": [
-      {
-        "question": "The weather forecast was bad. ______, we decided to go camping.",
-        "options": ["a) Therefore", "b) Moreover", "c) Nevertheless", "d) However"],
-        "answer": "c",
-        "explanation": "Nevertheless – тем не менее."
-      },
-      {
-        "question": "I enjoy classical music, ______ my sister prefers pop.",
-        "options": ["a) whereas", "b) however", "c) so", "d) consequently"],
-        "answer": "a",
-        "explanation": "Whereas – тогда как."
-      },
-      {
-        "question": "______, we also need to consider the security aspects.",
-        "options": ["a) Consequently", "b) However", "c) In contrast", "d) Furthermore"],
-        "answer": "d",
-        "explanation": "Furthermore – более того."
-      },
-      {
-        "question": "She forgot her keys. ______, she couldn't enter the house.",
-        "options": ["a) However", "b) Nevertheless", "c) Consequently", "d) Moreover"],
-        "answer": "c",
-        "explanation": "Consequently – следовательно."
-      },
-      {
-        "question": "______ with the old system, the new one is much faster.",
-        "options": ["a) In contrast", "b) In addition", "c) Moreover", "d) Consequently"],
-        "answer": "a",
-        "explanation": "In contrast – в отличие от."
-      },
-      {
-        "question": "The house is spacious. ______, it has a beautiful garden.",
-        "options": ["a) However", "b) Consequently", "c) Nevertheless", "d) In addition"],
-        "answer": "d",
-        "explanation": "In addition – в добавок."
-      },
-      {
-        "question": "He was tired, ______ he didn't go to bed.",
-        "options": ["a) so", "b) but", "c) however", "d) whereas"],
-        "answer": "b",
-        "explanation": "But – но."
-      },
-      {
-        "question": "I have no money. ______, I can't afford it.",
-        "options": ["a) Therefore", "b) However", "c) Moreover", "d) Nevertheless"],
-        "answer": "a",
-        "explanation": "Therefore – следовательно."
-              }
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "2. Fill in the gaps with the correct linking word. Type the missing word(s) in the box.",
-            "subtasks": [
-                {"question": "The weather forecast was bad. ______, we decided to go camping.", "answer": "Nevertheless", "explanation": "Nevertheless."},
-                {"question": "I enjoy classical music, ______ my sister prefers pop.", "answer": "whereas", "explanation": "Whereas."},
-                {"question": "______, we also need to consider the security aspects.", "answer": "Furthermore", "explanation": "Furthermore."},
-                {"question": "She forgot her keys. ______, she couldn't enter the house.", "answer": "Consequently", "explanation": "Consequently."},
-                {"question": "______ with the old system, the new one is much faster.", "answer": "In contrast", "explanation": "In contrast."},
-                {"question": "The house is spacious. ______, it has a beautiful garden.", "answer": "In addition", "explanation": "In addition."},
-                {"question": "He was tired, ______ he didn't go to bed.", "answer": "but", "explanation": "But."},
-                {"question": "I have no money. ______, I can't afford it.", "answer": "Therefore", "explanation": "Therefore."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
-            "subtasks": [
-                {"question": "The weather forecast was bad nevertheless we decided to go camping.", "answer": "The weather forecast was bad; nevertheless, we decided to go camping.", "explanation": "Пунктуация."},
-                {"question": "I enjoy classical music, whereas my sister prefers pop.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Furthermore we also need to consider the security aspects.", "answer": "Furthermore, we also need to consider the security aspects.", "explanation": "Запятая."},
-                {"question": "She forgot her keys consequently she couldn't enter the house.", "answer": "She forgot her keys; consequently, she couldn't enter the house.", "explanation": "Пунктуация."},
-                {"question": "In contrast with the old system, the new one is much faster.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "The house is spacious in addition it has a beautiful garden.", "answer": "The house is spacious. In addition, it has a beautiful garden.", "explanation": "Пунктуация."},
-                {"question": "He was tired, but he didn't go to bed.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "I have no money therefore I can't afford it.", "answer": "I have no money; therefore, I can't afford it.", "explanation": "Пунктуация."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "4. Rewrite the sentences using the linking word given in brackets. Type the whole sentence.",
-            "subtasks": [
-                {"question": "The weather forecast was bad, but we decided to go camping. (nevertheless) → The weather forecast was bad; nevertheless, we decided to go camping.", "answer": "The weather forecast was bad; nevertheless, we decided to go camping.", "explanation": "Nevertheless – тем не менее."},
-                {"question": "I enjoy classical music, but my sister prefers pop. (whereas) → I enjoy classical music, whereas my sister prefers pop.", "answer": "I enjoy classical music, whereas my sister prefers pop.", "explanation": "Whereas – тогда как."},
-                {"question": "We also need to consider the security aspects. (furthermore) → Furthermore, we also need to consider the security aspects.", "answer": "Furthermore, we also need to consider the security aspects.", "explanation": "Furthermore – более того."},
-                {"question": "She forgot her keys, so she couldn't enter the house. (consequently) → She forgot her keys; consequently, she couldn't enter the house.", "answer": "She forgot her keys; consequently, she couldn't enter the house.", "explanation": "Consequently – следовательно."},
-                {"question": "Unlike the old system, the new one is faster. (in contrast) → In contrast with the old system, the new one is much faster.", "answer": "In contrast with the old system, the new one is much faster.", "explanation": "In contrast – в отличие от."},
-                {"question": "The house is spacious and has a beautiful garden. (in addition) → The house is spacious. In addition, it has a beautiful garden.", "answer": "The house is spacious. In addition, it has a beautiful garden.", "explanation": "In addition – в добавок."},
-                {"question": "He was tired, but he didn't go to bed. (however) → He was tired; however, he didn't go to bed.", "answer": "He was tired; however, he didn't go to bed.", "explanation": "However – однако."},
-                {"question": "I have no money, so I can't afford it. (therefore) → I have no money; therefore, I can't afford it.", "answer": "I have no money; therefore, I can't afford it.", "explanation": "Therefore – следовательно."}
-            ]
-        }
+        "type": "complex",
+        "text": "4. Rewrite the sentences using the linking word given in brackets. Type the whole sentence.",
+        "subtasks": [
+          {"question": "The weather forecast was bad, but we decided to go camping. (nevertheless) → The weather forecast was bad; nevertheless, we decided to go camping.", "answer": "The weather forecast was bad; nevertheless, we decided to go camping.", "explanation": "Nevertheless."},
+          {"question": "I enjoy classical music, but my sister prefers pop. (whereas) → I enjoy classical music, whereas my sister prefers pop.", "answer": "I enjoy classical music, whereas my sister prefers pop.", "explanation": "Whereas."},
+          {"question": "We also need to consider the security aspects. (furthermore) → Furthermore, we also need to consider the security aspects.", "answer": "Furthermore, we also need to consider the security aspects.", "explanation": "Furthermore."},
+          {"question": "She forgot her keys, so she couldn't enter the house. (consequently) → She forgot her keys; consequently, she couldn't enter the house.", "answer": "She forgot her keys; consequently, she couldn't enter the house.", "explanation": "Consequently."},
+          {"question": "Unlike the old system, the new one is faster. (in contrast) → In contrast with the old system, the new one is much faster.", "answer": "In contrast with the old system, the new one is much faster.", "explanation": "In contrast."},
+          {"question": "The house is spacious and has a beautiful garden. (in addition) → The house is spacious. In addition, it has a beautiful garden.", "answer": "The house is spacious. In addition, it has a beautiful garden.", "explanation": "In addition."},
+          {"question": "He was tired, but he didn't go to bed. (however) → He was tired; however, he didn't go to bed.", "answer": "He was tired; however, he didn't go to bed.", "explanation": "However."},
+          {"question": "I have no money, so I can't afford it. (therefore) → I have no money; therefore, I can't afford it.", "answer": "I have no money; therefore, I can't afford it.", "explanation": "Therefore."}
+        ]
+      }
     ]
-]
   },
   "work_career_b2": {
     "title": "Лексика: работа и карьера (продвинутая)",
