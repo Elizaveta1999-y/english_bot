@@ -23604,7 +23604,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
       ]
     ]
 },
-  "inversion_negative": {
+"inversion_negative": {
     "title": "Инверсия после отрицательных наречий (Not only... but also, No sooner... than, Hardly... when)",
     "pages": [
       {
@@ -23634,729 +23634,740 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
         "answer": "Да: never, rarely, seldom, little, at no time, under no circumstances: Never have I seen such a sight."
       }
     ],
-"practice_bank": [
-    # =====================================================
-    # ВАРИАНТ 1 (перевод)
-    # =====================================================
-    [
+    "practice_bank": [
+      # =====================================================
+      # ВАРИАНТ 1 (перевод)
+      # =====================================================
+      [
         {
-            "type": "complex",
-            "text": "1. Choose the correct inverted form (a, b, or c) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "Not only ______ late, but he also forgot the gift.", "answer": "did he arrive", "explanation": "Not only + did + подлежащее + V."},
-                {"question": "No sooner ______ I left than it started to rain.", "answer": "had", "explanation": "No sooner + had + подлежащее + V3."},
-                {"question": "Hardly ______ we started when the fire alarm went off.", "answer": "had", "explanation": "Hardly + had + подлежащее + V3."},
-                {"question": "Not only ______ she intelligent, but she is also beautiful.", "answer": "is", "explanation": "Not only + is + подлежащее."},
-                {"question": "No sooner ______ she closed the door than someone knocked.", "answer": "had", "explanation": "No sooner + had + подлежащее + V3."},
-                {"question": "Hardly ______ we sat down when the film started.", "answer": "had", "explanation": "Hardly + had + подлежащее + V3."},
-                {"question": "Scarcely ______ he entered the room when the lights went out.", "answer": "had", "explanation": "Scarcely + had + подлежащее + V3."},
-                {"question": "Not only ______ they lose the match, but they also injured their best player.", "answer": "did", "explanation": "Not only + did + подлежащее."}
-            ]
+          "type": "complex",
+          "text": "1. Choose the correct inverted form (a, b, or c) to complete the sentence. Type the letter of your answer.",
+          "subtasks": [
+            {"question": "Not only ______ late, but he also forgot the gift.", "answer": "did he arrive", "explanation": "Not only + did + подлежащее + V."},
+            {"question": "No sooner ______ I left than it started to rain.", "answer": "had", "explanation": "No sooner + had + подлежащее + V3."},
+            {"question": "Hardly ______ we started when the fire alarm went off.", "answer": "had", "explanation": "Hardly + had + подлежащее + V3."},
+            {"question": "Not only ______ she intelligent, but she is also beautiful.", "answer": "is", "explanation": "Not only + is + подлежащее."},
+            {"question": "No sooner ______ she closed the door than someone knocked.", "answer": "had", "explanation": "No sooner + had + подлежащее + V3."},
+            {"question": "Hardly ______ we sat down when the film started.", "answer": "had", "explanation": "Hardly + had + подлежащее + V3."},
+            {"question": "Scarcely ______ he entered the room when the lights went out.", "answer": "had", "explanation": "Scarcely + had + подлежащее + V3."},
+            {"question": "Not only ______ they lose the match, but they also injured their best player.", "answer": "did", "explanation": "Not only + did + подлежащее."}
+          ]
         },
         {
-            "type": "complex",
-            "text": "2. Fill in the gaps with the correct form of the verb in brackets. Type the missing word(s) in the box.",
-            "subtasks": [
-                {"question": "Not only ______ (arrive) he late, but he also forgot the gift.", "answer": "did he arrive", "explanation": "Not only + did + подлежащее + V."},
-                {"question": "No sooner ______ (leave) I than it started to rain.", "answer": "had I left", "explanation": "No sooner + had + подлежащее + V3."},
-                {"question": "Hardly ______ (start) we when the fire alarm went off.", "answer": "had we started", "explanation": "Hardly + had + подлежащее + V3."},
-                {"question": "Not only ______ (be) she intelligent, but she is also beautiful.", "answer": "is she", "explanation": "Not only + is + подлежащее."},
-                {"question": "No sooner ______ (close) she the door than someone knocked.", "answer": "had she closed", "explanation": "No sooner + had + подлежащее + V3."},
-                {"question": "Hardly ______ (sit) we down when the film started.", "answer": "had we sat", "explanation": "Hardly + had + подлежащее + V3."},
-                {"question": "Scarcely ______ (enter) he the room when the lights went out.", "answer": "had he entered", "explanation": "Scarcely + had + подлежащее + V3."},
-                {"question": "Not only ______ (lose) they the match, but they also injured their best player.", "answer": "did they lose", "explanation": "Not only + did + подлежащее + V."}
-            ]
+          "type": "complex",
+          "text": "2. Fill in the gaps with the correct form of the verb in brackets. Type the missing word(s) in the box.",
+          "subtasks": [
+            {"question": "Not only ______ (arrive) he late, but he also forgot the gift.", "answer": "did he arrive", "explanation": "Not only + did + подлежащее + V."},
+            {"question": "No sooner ______ (leave) I than it started to rain.", "answer": "had I left", "explanation": "No sooner + had + подлежащее + V3."},
+            {"question": "Hardly ______ (start) we when the fire alarm went off.", "answer": "had we started", "explanation": "Hardly + had + подлежащее + V3."},
+            {"question": "Not only ______ (be) she intelligent, but she is also beautiful.", "answer": "is she", "explanation": "Not only + is + подлежащее."},
+            {"question": "No sooner ______ (close) she the door than someone knocked.", "answer": "had she closed", "explanation": "No sooner + had + подлежащее + V3."},
+            {"question": "Hardly ______ (sit) we down when the film started.", "answer": "had we sat", "explanation": "Hardly + had + подлежащее + V3."},
+            {"question": "Scarcely ______ (enter) he the room when the lights went out.", "answer": "had he entered", "explanation": "Scarcely + had + подлежащее + V3."},
+            {"question": "Not only ______ (lose) they the match, but they also injured their best player.", "answer": "did they lose", "explanation": "Not only + did + подлежащее + V."}
+          ]
         },
         {
-            "type": "complex",
-            "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
-            "subtasks": [
-                {"question": "Not only he arrived late, but he also forgot the gift.", "answer": "Not only did he arrive late, but he also forgot the gift.", "explanation": "Нужна инверсия: did he arrive."},
-                {"question": "No sooner had I left than it started to rain.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Hardly had we started when the fire alarm went off.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Not only is she intelligent, but she is also beautiful.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "No sooner she had closed the door than someone knocked.", "answer": "No sooner had she closed the door than someone knocked.", "explanation": "Порядок: had she closed."},
-                {"question": "Hardly we had sat down when the film started.", "answer": "Hardly had we sat down when the film started.", "explanation": "Инверсия: had we sat."},
-                {"question": "Scarcely had he entered the room when the lights went out.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Not only they lost the match, but they also injured their best player.", "answer": "Not only did they lose the match, but they also injured their best player.", "explanation": "Инверсия: did they lose."}
-            ]
+          "type": "complex",
+          "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
+          "subtasks": [
+            {"question": "Not only he arrived late, but he also forgot the gift.", "answer": "Not only did he arrive late, but he also forgot the gift.", "explanation": "Нужна инверсия: did he arrive."},
+            {"question": "No sooner had I left than it started to rain.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Hardly had we started when the fire alarm went off.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Not only is she intelligent, but she is also beautiful.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "No sooner she had closed the door than someone knocked.", "answer": "No sooner had she closed the door than someone knocked.", "explanation": "Порядок: had she closed."},
+            {"question": "Hardly we had sat down when the film started.", "answer": "Hardly had we sat down when the film started.", "explanation": "Инверсия: had we sat."},
+            {"question": "Scarcely had he entered the room when the lights went out.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Not only they lost the match, but they also injured their best player.", "answer": "Not only did they lose the match, but they also injured their best player.", "explanation": "Инверсия: did they lose."}
+          ]
         },
         {
-            "type": "complex",
-            "text": "4. Translate the sentences into English using inversion. Type your translation (one sentence) in the box.",
-            "subtasks": [
-                {"question": "Он не только опоздал, но и забыл подарок.", "answer": "Not only did he arrive late, but he also forgot the gift.", "explanation": ""},
-                {"question": "Не успел я уйти, как пошёл дождь.", "answer": "No sooner had I left than it started to rain.", "explanation": ""},
-                {"question": "Едва мы начали, как сработала пожарная сигнализация.", "answer": "Hardly had we started when the fire alarm went off.", "explanation": ""},
-                {"question": "Она не только умна, но и красива.", "answer": "Not only is she intelligent, but she is also beautiful.", "explanation": ""},
-                {"question": "Не успела она закрыть дверь, как кто-то постучал.", "answer": "No sooner had she closed the door than someone knocked.", "explanation": ""},
-                {"question": "Едва мы сели, как начался фильм.", "answer": "Hardly had we sat down when the film started.", "explanation": ""},
-                {"question": "Едва он вошёл в комнату, как погас свет.", "answer": "Scarcely had he entered the room when the lights went out.", "explanation": ""},
-                {"question": "Они не только проиграли матч, но и травмировали лучшего игрока.", "answer": "Not only did they lose the match, but they also injured their best player.", "explanation": ""}
-            ]
-        },
-    # =====================================================
-    # ВАРИАНТ 2 (перефразирование)
-    # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct inverted form (a, b, or c) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "Not only ______ she sing well, but she also dances.", "answer": "does", "explanation": "Not only + does + подлежащее."},
-                {"question": "No sooner ______ the train arrived than we boarded.", "answer": "had", "explanation": "No sooner + had + подлежащее + V3."},
-                {"question": "Hardly ______ the lesson started when the bell rang.", "answer": "had", "explanation": "Hardly + had + подлежащее + V3."},
-                {"question": "Not only ______ he speak English, but he also speaks French.", "answer": "does", "explanation": "Not only + does + подлежащее."},
-                {"question": "No sooner ______ I reached the station than the train left.", "answer": "had", "explanation": "No sooner + had + подлежащее + V3."},
-                {"question": "Hardly ______ the sun risen when it started to rain.", "answer": "had", "explanation": "Hardly + had + подлежащее + V3."},
-                {"question": "Scarcely ______ I closed my eyes when the phone rang.", "answer": "had", "explanation": "Scarcely + had + подлежащее + V3."},
-                {"question": "Not only ______ they arrive on time, but they also helped set up.", "answer": "did", "explanation": "Not only + did + подлежащее."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "2. Fill in the gaps with the correct form of the verb in brackets. Type the missing word(s) in the box.",
-            "subtasks": [
-                {"question": "Not only ______ (sing) she well, but she also dances.", "answer": "does she sing", "explanation": "Not only + does + подлежащее + V."},
-                {"question": "No sooner ______ (arrive) the train than we boarded.", "answer": "had the train arrived", "explanation": "No sooner + had + подлежащее + V3."},
-                {"question": "Hardly ______ (start) the lesson when the bell rang.", "answer": "had the lesson started", "explanation": "Hardly + had + подлежащее + V3."},
-                {"question": "Not only ______ (speak) he English, but he also speaks French.", "answer": "does he speak", "explanation": "Not only + does + подлежащее + V."},
-                {"question": "No sooner ______ (reach) I the station than the train left.", "answer": "had I reached", "explanation": "No sooner + had + подлежащее + V3."},
-                {"question": "Hardly ______ (rise) the sun when it started to rain.", "answer": "had the sun risen", "explanation": "Hardly + had + подлежащее + V3."},
-                {"question": "Scarcely ______ (close) I my eyes when the phone rang.", "answer": "had I closed", "explanation": "Scarcely + had + подлежащее + V3."},
-                {"question": "Not only ______ (arrive) they on time, but they also helped set up.", "answer": "did they arrive", "explanation": "Not only + did + подлежащее + V."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
-            "subtasks": [
-                {"question": "Not only she does sing well, but she also dances.", "answer": "Not only does she sing well, but she also dances.", "explanation": "Порядок: does she sing."},
-                {"question": "No sooner had the train arrived than we boarded.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Hardly had the lesson started when the bell rang.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Not only does he speak English, but he also speaks French.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "No sooner I had reached the station than the train left.", "answer": "No sooner had I reached the station than the train left.", "explanation": "Инверсия: had I reached."},
-                {"question": "Hardly the sun had risen when it started to rain.", "answer": "Hardly had the sun risen when it started to rain.", "explanation": "Инверсия: had the sun risen."},
-                {"question": "Scarcely had I closed my eyes when the phone rang.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Not only they arrived on time, but they also helped set up.", "answer": "Not only did they arrive on time, but they also helped set up.", "explanation": "Инверсия: did they arrive."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "4. Rewrite the sentences using inversion (with the word given in brackets). Type the whole sentence.",
-            "subtasks": [
-                {"question": "She not only sings well but also dances. (Not only) → Not only does she sing well, but she also dances.", "answer": "Not only does she sing well, but she also dances.", "explanation": "Not only + does + подлежащее."},
-                {"question": "The train arrived and we boarded immediately. (No sooner) → No sooner had the train arrived than we boarded.", "answer": "No sooner had the train arrived than we boarded.", "explanation": "No sooner + had + подлежащее + V3, than."},
-                {"question": "The lesson started and the bell rang immediately. (Hardly) → Hardly had the lesson started when the bell rang.", "answer": "Hardly had the lesson started when the bell rang.", "explanation": "Hardly + had + подлежащее + V3, when."},
-                {"question": "He speaks English and French. (Not only) → Not only does he speak English, but he also speaks French.", "answer": "Not only does he speak English, but he also speaks French.", "explanation": "Not only + does."},
-                {"question": "I reached the station and the train left immediately. (No sooner) → No sooner had I reached the station than the train left.", "answer": "No sooner had I reached the station than the train left.", "explanation": "No sooner + had."},
-                {"question": "The sun rose and it started to rain immediately. (Hardly) → Hardly had the sun risen when it started to rain.", "answer": "Hardly had the sun risen when it started to rain.", "explanation": "Hardly + had."},
-                {"question": "I closed my eyes and the phone rang immediately. (Scarcely) → Scarcely had I closed my eyes when the phone rang.", "answer": "Scarcely had I closed my eyes when the phone rang.", "explanation": "Scarcely + had."},
-                {"question": "They arrived on time and helped set up. (Not only) → Not only did they arrive on time, but they also helped set up.", "answer": "Not only did they arrive on time, but they also helped set up.", "explanation": "Not only + did."}
-            ]
-        },
-    # =====================================================
-    # ВАРИАНТ 3 (перевод)
-    # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct inverted form (a, b, or c) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "Not only ______ he play the guitar, but he also sings.", "answer": "does", "explanation": "Not only + does + подлежащее."},
-                {"question": "No sooner ______ I arrived than I realized I had forgotten my keys.", "answer": "had", "explanation": "No sooner + had + подлежащее + V3."},
-                {"question": "Hardly ______ she opened the book when she fell asleep.", "answer": "had", "explanation": "Hardly + had + подлежащее + V3."},
-                {"question": "Not only ______ they late, but they also missed the beginning.", "answer": "were", "explanation": "Not only + were + подлежащее."},
-                {"question": "No sooner ______ the concert ended than everyone started clapping.", "answer": "had", "explanation": "No sooner + had + подлежащее + V3."},
-                {"question": "Hardly ______ we finished dinner when the guests arrived.", "answer": "had", "explanation": "Hardly + had + подлежащее + V3."},
-                {"question": "Scarcely ______ she said it when she regretted it.", "answer": "had", "explanation": "Scarcely + had + подлежащее + V3."},
-                {"question": "Not only ______ he rich, but he is also generous.", "answer": "is", "explanation": "Not only + is + подлежащее."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "2. Fill in the gaps with the correct form of the verb in brackets. Type the missing word(s) in the box.",
-            "subtasks": [
-                {"question": "Not only ______ (play) he the guitar, but he also sings.", "answer": "does he play", "explanation": "Not only + does + подлежащее + V."},
-                {"question": "No sooner ______ (arrive) I than I realized I had forgotten my keys.", "answer": "had I arrived", "explanation": "No sooner + had + подлежащее + V3."},
-                {"question": "Hardly ______ (open) she the book when she fell asleep.", "answer": "had she opened", "explanation": "Hardly + had + подлежащее + V3."},
-                {"question": "Not only ______ (be) they late, but they also missed the beginning.", "answer": "were they", "explanation": "Not only + were + подлежащее."},
-                {"question": "No sooner ______ (end) the concert than everyone started clapping.", "answer": "had the concert ended", "explanation": "No sooner + had + подлежащее + V3."},
-                {"question": "Hardly ______ (finish) we dinner when the guests arrived.", "answer": "had we finished", "explanation": "Hardly + had + подлежащее + V3."},
-                {"question": "Scarcely ______ (say) she it when she regretted it.", "answer": "had she said", "explanation": "Scarcely + had + подлежащее + V3."},
-                {"question": "Not only ______ (be) he rich, but he is also generous.", "answer": "is he", "explanation": "Not only + is + подлежащее."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
-            "subtasks": [
-                {"question": "Not only does he play the guitar, but he also sings.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "No sooner had I arrived than I realized I had forgotten my keys.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Hardly had she opened the book when she fell asleep.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Not only were they late, but they also missed the beginning.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "No sooner the concert had ended than everyone started clapping.", "answer": "No sooner had the concert ended than everyone started clapping.", "explanation": "Инверсия: had the concert ended."},
-                {"question": "Hardly we had finished dinner when the guests arrived.", "answer": "Hardly had we finished dinner when the guests arrived.", "explanation": "Инверсия: had we finished."},
-                {"question": "Scarcely had she said it when she regretted it.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Not only he is rich, but he is also generous.", "answer": "Not only is he rich, but he is also generous.", "explanation": "Инверсия: is he."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "4. Translate the sentences into English using inversion. Type your translation (one sentence) in the box.",
-            "subtasks": [
-                {"question": "Он не только играет на гитаре, но и поёт.", "answer": "Not only does he play the guitar, but he also sings.", "explanation": ""},
-                {"question": "Не успел я прийти, как понял, что забыл ключи.", "answer": "No sooner had I arrived than I realized I had forgotten my keys.", "explanation": ""},
-                {"question": "Едва она открыла книгу, как уснула.", "answer": "Hardly had she opened the book when she fell asleep.", "explanation": ""},
-                {"question": "Они не только опоздали, но и пропустили начало.", "answer": "Not only were they late, but they also missed the beginning.", "explanation": ""},
-                {"question": "Не успел концерт закончиться, как все начали хлопать.", "answer": "No sooner had the concert ended than everyone started clapping.", "explanation": ""},
-                {"question": "Едва мы закончили ужин, как пришли гости.", "answer": "Hardly had we finished dinner when the guests arrived.", "explanation": ""},
-                {"question": "Едва она сказала это, как пожалела.", "answer": "Scarcely had she said it when she regretted it.", "explanation": ""},
-                {"question": "Он не только богат, но и щедр.", "answer": "Not only is he rich, but he is also generous.", "explanation": ""}
-            ]
-        },
-    # =====================================================
-    # ВАРИАНТ 4 (перефразирование)
-    # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct inverted form (a, b, or c) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "Not only ______ she write novels, but she also writes poetry.", "answer": "does", "explanation": "Not only + does + подлежащее."},
-                {"question": "No sooner ______ we left the house than it started snowing.", "answer": "had", "explanation": "No sooner + had + подлежащее + V3."},
-                {"question": "Hardly ______ he finished his speech when the audience started cheering.", "answer": "had", "explanation": "Hardly + had + подлежащее + V3."},
-                {"question": "Not only ______ the movie good, but it also had an amazing soundtrack.", "answer": "was", "explanation": "Not only + was + подлежащее."},
-                {"question": "No sooner ______ I turned on the TV than the power went out.", "answer": "had", "explanation": "No sooner + had + подлежащее + V3."},
-                {"question": "Hardly ______ they arrived at the station when the train departed.", "answer": "had", "explanation": "Hardly + had + подлежащее + V3."},
-                {"question": "Scarcely ______ he started his new job when he got a promotion.", "answer": "had", "explanation": "Scarcely + had + подлежащее + V3."},
-                {"question": "Not only ______ she a doctor, but she is also a researcher.", "answer": "is", "explanation": "Not only + is + подлежащее."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "2. Fill in the gaps with the correct form of the verb in brackets. Type the missing word(s) in the box.",
-            "subtasks": [
-                {"question": "Not only ______ (write) she novels, but she also writes poetry.", "answer": "does she write", "explanation": "Not only + does + подлежащее + V."},
-                {"question": "No sooner ______ (leave) we the house than it started snowing.", "answer": "had we left", "explanation": "No sooner + had + подлежащее + V3."},
-                {"question": "Hardly ______ (finish) he his speech when the audience started cheering.", "answer": "had he finished", "explanation": "Hardly + had + подлежащее + V3."},
-                {"question": "Not only ______ (be) the movie good, but it also had an amazing soundtrack.", "answer": "was the movie", "explanation": "Not only + was + подлежащее."},
-                {"question": "No sooner ______ (turn) I on the TV than the power went out.", "answer": "had I turned", "explanation": "No sooner + had + подлежащее + V3."},
-                {"question": "Hardly ______ (arrive) they at the station when the train departed.", "answer": "had they arrived", "explanation": "Hardly + had + подлежащее + V3."},
-                {"question": "Scarcely ______ (start) he his new job when he got a promotion.", "answer": "had he started", "explanation": "Scarcely + had + подлежащее + V3."},
-                {"question": "Not only ______ (be) she a doctor, but she is also a researcher.", "answer": "is she", "explanation": "Not only + is + подлежащее."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
-            "subtasks": [
-                {"question": "Not only does she write novels, but she also writes poetry.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "No sooner had we left the house than it started snowing.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Hardly had he finished his speech when the audience started cheering.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Not only was the movie good, but it also had an amazing soundtrack.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "No sooner I had turned on the TV than the power went out.", "answer": "No sooner had I turned on the TV than the power went out.", "explanation": "Инверсия: had I turned."},
-                {"question": "Hardly they had arrived at the station when the train departed.", "answer": "Hardly had they arrived at the station when the train departed.", "explanation": "Инверсия: had they arrived."},
-                {"question": "Scarcely had he started his new job when he got a promotion.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Not only she is a doctor, but she is also a researcher.", "answer": "Not only is she a doctor, but she is also a researcher.", "explanation": "Инверсия: is she."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "4. Rewrite the sentences using inversion (with the word given in brackets). Type the whole sentence.",
-            "subtasks": [
-                {"question": "She writes novels and poetry. (Not only) → Not only does she write novels, but she also writes poetry.", "answer": "Not only does she write novels, but she also writes poetry.", "explanation": "Not only + does."},
-                {"question": "We left the house and it started snowing. (No sooner) → No sooner had we left the house than it started snowing.", "answer": "No sooner had we left the house than it started snowing.", "explanation": "No sooner + had."},
-                {"question": "He finished his speech and the audience started cheering. (Hardly) → Hardly had he finished his speech when the audience started cheering.", "answer": "Hardly had he finished his speech when the audience started cheering.", "explanation": "Hardly + had."},
-                {"question": "The movie was good and had an amazing soundtrack. (Not only) → Not only was the movie good, but it also had an amazing soundtrack.", "answer": "Not only was the movie good, but it also had an amazing soundtrack.", "explanation": "Not only + was."},
-                {"question": "I turned on the TV and the power went out. (No sooner) → No sooner had I turned on the TV than the power went out.", "answer": "No sooner had I turned on the TV than the power went out.", "explanation": "No sooner + had."},
-                {"question": "They arrived at the station and the train departed. (Hardly) → Hardly had they arrived at the station when the train departed.", "answer": "Hardly had they arrived at the station when the train departed.", "explanation": "Hardly + had."},
-                {"question": "He started his new job and got a promotion. (Scarcely) → Scarcely had he started his new job when he got a promotion.", "answer": "Scarcely had he started his new job when he got a promotion.", "explanation": "Scarcely + had."},
-                {"question": "She is a doctor and a researcher. (Not only) → Not only is she a doctor, but she is also a researcher.", "answer": "Not only is she a doctor, but she is also a researcher.", "explanation": "Not only + is."}
-            ]
-        },
-    # =====================================================
-    # ВАРИАНТ 5 (перевод)
-    # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct inverted form (a, b, or c) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "Not only ______ he fail the test, but he also lost his confidence.", "answer": "did", "explanation": "Not only + did + подлежащее."},
-                {"question": "No sooner ______ I sat down than the phone rang.", "answer": "had", "explanation": "No sooner + had + подлежащее + V3."},
-                {"question": "Hardly ______ the concert started when it began to rain.", "answer": "had", "explanation": "Hardly + had + подлежащее + V3."},
-                {"question": "Not only ______ the food delicious, but it was also beautifully presented.", "answer": "was", "explanation": "Not only + was + подлежащее."},
-                {"question": "No sooner ______ she arrived at the station than the bus left.", "answer": "had", "explanation": "No sooner + had + подлежащее + V3."},
-                {"question": "Hardly ______ we entered the room when we heard a strange noise.", "answer": "had", "explanation": "Hardly + had + подлежащее + V3."},
-                {"question": "Scarcely ______ they started the meeting when the fire alarm went off.", "answer": "had", "explanation": "Scarcely + had + подлежащее + V3."},
-                {"question": "Not only ______ he handsome, but he is also very kind.", "answer": "is", "explanation": "Not only + is + подлежащее."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "2. Fill in the gaps with the correct form of the verb in brackets. Type the missing word(s) in the box.",
-            "subtasks": [
-                {"question": "Not only ______ (fail) he the test, but he also lost his confidence.", "answer": "did he fail", "explanation": "Not only + did + подлежащее + V."},
-                {"question": "No sooner ______ (sit) I down than the phone rang.", "answer": "had I sat", "explanation": "No sooner + had + подлежащее + V3."},
-                {"question": "Hardly ______ (start) the concert when it began to rain.", "answer": "had the concert started", "explanation": "Hardly + had + подлежащее + V3."},
-                {"question": "Not only ______ (be) the food delicious, but it was also beautifully presented.", "answer": "was the food", "explanation": "Not only + was + подлежащее."},
-                {"question": "No sooner ______ (arrive) she at the station than the bus left.", "answer": "had she arrived", "explanation": "No sooner + had + подлежащее + V3."},
-                {"question": "Hardly ______ (enter) we the room when we heard a strange noise.", "answer": "had we entered", "explanation": "Hardly + had + подлежащее + V3."},
-                {"question": "Scarcely ______ (start) they the meeting when the fire alarm went off.", "answer": "had they started", "explanation": "Scarcely + had + подлежащее + V3."},
-                {"question": "Not only ______ (be) he handsome, but he is also very kind.", "answer": "is he", "explanation": "Not only + is + подлежащее."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
-            "subtasks": [
-                {"question": "Not only did he fail the test, but he also lost his confidence.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "No sooner had I sat down than the phone rang.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Hardly had the concert started when it began to rain.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Not only was the food delicious, but it was also beautifully presented.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "No sooner she had arrived at the station than the bus left.", "answer": "No sooner had she arrived at the station than the bus left.", "explanation": "Инверсия: had she arrived."},
-                {"question": "Hardly we had entered the room when we heard a strange noise.", "answer": "Hardly had we entered the room when we heard a strange noise.", "explanation": "Инверсия: had we entered."},
-                {"question": "Scarcely had they started the meeting when the fire alarm went off.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Not only he is handsome, but he is also very kind.", "answer": "Not only is he handsome, but he is also very kind.", "explanation": "Инверсия: is he."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "4. Translate the sentences into English using inversion. Type your translation (one sentence) in the box.",
-            "subtasks": [
-                {"question": "Он не только провалил тест, но и потерял уверенность.", "answer": "Not only did he fail the test, but he also lost his confidence.", "explanation": ""},
-                {"question": "Не успел я сесть, как зазвонил телефон.", "answer": "No sooner had I sat down than the phone rang.", "explanation": ""},
-                {"question": "Едва концерт начался, как пошёл дождь.", "answer": "Hardly had the concert started when it began to rain.", "explanation": ""},
-                {"question": "Еда была не только вкусной, но и красиво оформленной.", "answer": "Not only was the food delicious, but it was also beautifully presented.", "explanation": ""},
-                {"question": "Не успела она прийти на станцию, как автобус уехал.", "answer": "No sooner had she arrived at the station than the bus left.", "explanation": ""},
-                {"question": "Едва мы вошли в комнату, как услышали странный звук.", "answer": "Hardly had we entered the room when we heard a strange noise.", "explanation": ""},
-                {"question": "Едва они начали встречу, как сработала пожарная сигнализация.", "answer": "Scarcely had they started the meeting when the fire alarm went off.", "explanation": ""},
-                {"question": "Он не только красив, но и очень добр.", "answer": "Not only is he handsome, but he is also very kind.", "explanation": ""}
-            ]
-        },
-    # =====================================================
-    # ВАРИАНТ 6 (перефразирование)
-    # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct inverted form (a, b, or c) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "Not only ______ he speak three languages, but he also writes poetry.", "answer": "does", "explanation": "Not only + does + подлежащее."},
-                {"question": "No sooner ______ I opened the window than the cat jumped in.", "answer": "had", "explanation": "No sooner + had + подлежащее + V3."},
-                {"question": "Hardly ______ we started our journey when the car broke down.", "answer": "had", "explanation": "Hardly + had + подлежащее + V3."},
-                {"question": "Not only ______ the hotel luxurious, but it also had a great view.", "answer": "was", "explanation": "Not only + was + подлежащее."},
-                {"question": "No sooner ______ he arrived home than he realized he had lost his wallet.", "answer": "had", "explanation": "No sooner + had + подлежащее + V3."},
-                {"question": "Hardly ______ she finished her presentation when the audience started applauding.", "answer": "had", "explanation": "Hardly + had + подлежащее + V3."},
-                {"question": "Scarcely ______ the plane landed when the passengers stood up.", "answer": "had", "explanation": "Scarcely + had + подлежащее + V3."},
-                {"question": "Not only ______ they talented, but they are also hardworking.", "answer": "are", "explanation": "Not only + are + подлежащее."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "2. Fill in the gaps with the correct form of the verb in brackets. Type the missing word(s) in the box.",
-            "subtasks": [
-                {"question": "Not only ______ (speak) he three languages, but he also writes poetry.", "answer": "does he speak", "explanation": "Not only + does + подлежащее + V."},
-                {"question": "No sooner ______ (open) I the window than the cat jumped in.", "answer": "had I opened", "explanation": "No sooner + had + подлежащее + V3."},
-                {"question": "Hardly ______ (start) we our journey when the car broke down.", "answer": "had we started", "explanation": "Hardly + had + подлежащее + V3."},
-                {"question": "Not only ______ (be) the hotel luxurious, but it also had a great view.", "answer": "was the hotel", "explanation": "Not only + was + подлежащее."},
-                {"question": "No sooner ______ (arrive) he home than he realized he had lost his wallet.", "answer": "had he arrived", "explanation": "No sooner + had + подлежащее + V3."},
-                {"question": "Hardly ______ (finish) she her presentation when the audience started applauding.", "answer": "had she finished", "explanation": "Hardly + had + подлежащее + V3."},
-                {"question": "Scarcely ______ (land) the plane when the passengers stood up.", "answer": "had the plane landed", "explanation": "Scarcely + had + подлежащее + V3."},
-                {"question": "Not only ______ (be) they talented, but they are also hardworking.", "answer": "are they", "explanation": "Not only + are + подлежащее."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
-            "subtasks": [
-                {"question": "Not only does he speak three languages, but he also writes poetry.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "No sooner had I opened the window than the cat jumped in.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Hardly had we started our journey when the car broke down.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Not only was the hotel luxurious, but it also had a great view.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "No sooner he had arrived home than he realized he had lost his wallet.", "answer": "No sooner had he arrived home than he realized he had lost his wallet.", "explanation": "Инверсия: had he arrived."},
-                {"question": "Hardly she had finished her presentation when the audience started applauding.", "answer": "Hardly had she finished her presentation when the audience started applauding.", "explanation": "Инверсия: had she finished."},
-                {"question": "Scarcely had the plane landed when the passengers stood up.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Not only they are talented, but they are also hardworking.", "answer": "Not only are they talented, but they are also hardworking.", "explanation": "Инверсия: are they."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "4. Rewrite the sentences using inversion (with the word given in brackets). Type the whole sentence.",
-            "subtasks": [
-                {"question": "He speaks three languages and writes poetry. (Not only) → Not only does he speak three languages, but he also writes poetry.", "answer": "Not only does he speak three languages, but he also writes poetry.", "explanation": "Not only + does."},
-                {"question": "I opened the window and the cat jumped in. (No sooner) → No sooner had I opened the window than the cat jumped in.", "answer": "No sooner had I opened the window than the cat jumped in.", "explanation": "No sooner + had."},
-                {"question": "We started our journey and the car broke down. (Hardly) → Hardly had we started our journey when the car broke down.", "answer": "Hardly had we started our journey when the car broke down.", "explanation": "Hardly + had."},
-                {"question": "The hotel was luxurious and had a great view. (Not only) → Not only was the hotel luxurious, but it also had a great view.", "answer": "Not only was the hotel luxurious, but it also had a great view.", "explanation": "Not only + was."},
-                {"question": "He arrived home and realized he had lost his wallet. (No sooner) → No sooner had he arrived home than he realized he had lost his wallet.", "answer": "No sooner had he arrived home than he realized he had lost his wallet.", "explanation": "No sooner + had."},
-                {"question": "She finished her presentation and the audience started applauding. (Hardly) → Hardly had she finished her presentation when the audience started applauding.", "answer": "Hardly had she finished her presentation when the audience started applauding.", "explanation": "Hardly + had."},
-                {"question": "The plane landed and the passengers stood up. (Scarcely) → Scarcely had the plane landed when the passengers stood up.", "answer": "Scarcely had the plane landed when the passengers stood up.", "explanation": "Scarcely + had."},
-                {"question": "They are talented and hardworking. (Not only) → Not only are they talented, but they are also hardworking.", "answer": "Not only are they talented, but they are also hardworking.", "explanation": "Not only + are."}
-            ]
-        },
-    # =====================================================
-    # ВАРИАНТ 7 (перевод)
-    # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct inverted form (a, b, or c) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "Not only ______ she play the violin, but she also composes music.", "answer": "does", "explanation": "Not only + does + подлежащее."},
-                {"question": "No sooner ______ I stepped outside than it started to hail.", "answer": "had", "explanation": "No sooner + had + подлежащее + V3."},
-                {"question": "Hardly ______ the teacher left the room when the students started talking.", "answer": "had", "explanation": "Hardly + had + подлежащее + V3."},
-                {"question": "Not only ______ the book interesting, but it was also very educational.", "answer": "was", "explanation": "Not only + was + подлежащее."},
-                {"question": "No sooner ______ the phone stopped ringing than it started again.", "answer": "had", "explanation": "No sooner + had + подлежащее + V3."},
-                {"question": "Hardly ______ we sat down to eat when the doorbell rang.", "answer": "had", "explanation": "Hardly + had + подлежащее + V3."},
-                {"question": "Scarcely ______ I finished my coffee when the train arrived.", "answer": "had", "explanation": "Scarcely + had + подлежащее + V3."},
-                {"question": "Not only ______ the weather perfect, but it was also warm.", "answer": "was", "explanation": "Not only + was + подлежащее."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "2. Fill in the gaps with the correct form of the verb in brackets. Type the missing word(s) in the box.",
-            "subtasks": [
-                {"question": "Not only ______ (play) she the violin, but she also composes music.", "answer": "does she play", "explanation": "Not only + does + подлежащее + V."},
-                {"question": "No sooner ______ (step) I outside than it started to hail.", "answer": "had I stepped", "explanation": "No sooner + had + подлежащее + V3."},
-                {"question": "Hardly ______ (leave) the teacher the room when the students started talking.", "answer": "had the teacher left", "explanation": "Hardly + had + подлежащее + V3."},
-                {"question": "Not only ______ (be) the book interesting, but it was also very educational.", "answer": "was the book", "explanation": "Not only + was + подлежащее."},
-                {"question": "No sooner ______ (stop) the phone ringing than it started again.", "answer": "had the phone stopped", "explanation": "No sooner + had + подлежащее + V3."},
-                {"question": "Hardly ______ (sit) we down to eat when the doorbell rang.", "answer": "had we sat", "explanation": "Hardly + had + подлежащее + V3."},
-                {"question": "Scarcely ______ (finish) I my coffee when the train arrived.", "answer": "had I finished", "explanation": "Scarcely + had + подлежащее + V3."},
-                {"question": "Not only ______ (be) the weather perfect, but it was also warm.", "answer": "was the weather", "explanation": "Not only + was + подлежащее."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
-            "subtasks": [
-                {"question": "Not only does she play the violin, but she also composes music.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "No sooner had I stepped outside than it started to hail.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Hardly had the teacher left the room when the students started talking.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Not only was the book interesting, but it was also very educational.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "No sooner the phone had stopped ringing than it started again.", "answer": "No sooner had the phone stopped ringing than it started again.", "explanation": "Инверсия: had the phone stopped."},
-                {"question": "Hardly we had sat down to eat when the doorbell rang.", "answer": "Hardly had we sat down to eat when the doorbell rang.", "explanation": "Инверсия: had we sat."},
-                {"question": "Scarcely had I finished my coffee when the train arrived.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Not only the weather was perfect, but it was also warm.", "answer": "Not only was the weather perfect, but it was also warm.", "explanation": "Инверсия: was the weather."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "4. Translate the sentences into English using inversion. Type your translation (one sentence) in the box.",
-            "subtasks": [
-                {"question": "Она не только играет на скрипке, но и сочиняет музыку.", "answer": "Not only does she play the violin, but she also composes music.", "explanation": ""},
-                {"question": "Не успел я выйти на улицу, как начался град.", "answer": "No sooner had I stepped outside than it started to hail.", "explanation": ""},
-                {"question": "Едва учитель вышел из комнаты, как ученики начали разговаривать.", "answer": "Hardly had the teacher left the room when the students started talking.", "explanation": ""},
-                {"question": "Книга была не только интересной, но и очень познавательной.", "answer": "Not only was the book interesting, but it was also very educational.", "explanation": ""},
-                {"question": "Не успел телефон перестать звонить, как он снова зазвонил.", "answer": "No sooner had the phone stopped ringing than it started again.", "explanation": ""},
-                {"question": "Едва мы сели обедать, как раздался звонок в дверь.", "answer": "Hardly had we sat down to eat when the doorbell rang.", "explanation": ""},
-                {"question": "Едва я допил кофе, как пришёл поезд.", "answer": "Scarcely had I finished my coffee when the train arrived.", "explanation": ""},
-                {"question": "Погода была не только идеальной, но и тёплой.", "answer": "Not only was the weather perfect, but it was also warm.", "explanation": ""}
-            ]
-        },
-    # =====================================================
-    # ВАРИАНТ 8 (перефразирование)
-    # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct inverted form (a, b, or c) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "Not only ______ he write bestsellers, but he also helps young writers.", "answer": "does", "explanation": "Not only + does + подлежащее."},
-                {"question": "No sooner ______ I closed the door than the phone rang.", "answer": "had", "explanation": "No sooner + had + подлежащее + V3."},
-                {"question": "Hardly ______ the game started when it began to rain.", "answer": "had", "explanation": "Hardly + had + подлежащее + V3."},
-                {"question": "Not only ______ the restaurant famous, but it also had excellent service.", "answer": "was", "explanation": "Not only + was + подлежащее."},
-                {"question": "No sooner ______ I finished my homework than my friend called.", "answer": "had", "explanation": "No sooner + had + подлежащее + V3."},
-                {"question": "Hardly ______ we arrived at the beach when the weather turned bad.", "answer": "had", "explanation": "Hardly + had + подлежащее + V3."},
-                {"question": "Scarcely ______ she opened the email when she realized it was spam.", "answer": "had", "explanation": "Scarcely + had + подлежащее + V3."},
-                {"question": "Not only ______ the city beautiful, but it also had a rich history.", "answer": "was", "explanation": "Not only + was + подлежащее."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "2. Fill in the gaps with the correct form of the verb in brackets. Type the missing word(s) in the box.",
-            "subtasks": [
-                {"question": "Not only ______ (write) he bestsellers, but he also helps young writers.", "answer": "does he write", "explanation": "Not only + does + подлежащее + V."},
-                {"question": "No sooner ______ (close) I the door than the phone rang.", "answer": "had I closed", "explanation": "No sooner + had + подлежащее + V3."},
-                {"question": "Hardly ______ (start) the game when it began to rain.", "answer": "had the game started", "explanation": "Hardly + had + подлежащее + V3."},
-                {"question": "Not only ______ (be) the restaurant famous, but it also had excellent service.", "answer": "was the restaurant", "explanation": "Not only + was + подлежащее."},
-                {"question": "No sooner ______ (finish) I my homework than my friend called.", "answer": "had I finished", "explanation": "No sooner + had + подлежащее + V3."},
-                {"question": "Hardly ______ (arrive) we at the beach when the weather turned bad.", "answer": "had we arrived", "explanation": "Hardly + had + подлежащее + V3."},
-                {"question": "Scarcely ______ (open) she the email when she realized it was spam.", "answer": "had she opened", "explanation": "Scarcely + had + подлежащее + V3."},
-                {"question": "Not only ______ (be) the city beautiful, but it also had a rich history.", "answer": "was the city", "explanation": "Not only + was + подлежащее."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
-            "subtasks": [
-                {"question": "Not only does he write bestsellers, but he also helps young writers.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "No sooner had I closed the door than the phone rang.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Hardly had the game started when it began to rain.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Not only was the restaurant famous, but it also had excellent service.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "No sooner I had finished my homework than my friend called.", "answer": "No sooner had I finished my homework than my friend called.", "explanation": "Инверсия: had I finished."},
-                {"question": "Hardly we had arrived at the beach when the weather turned bad.", "answer": "Hardly had we arrived at the beach when the weather turned bad.", "explanation": "Инверсия: had we arrived."},
-                {"question": "Scarcely had she opened the email when she realized it was spam.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Not only the city was beautiful, but it also had a rich history.", "answer": "Not only was the city beautiful, but it also had a rich history.", "explanation": "Инверсия: was the city."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "4. Rewrite the sentences using inversion (with the word given in brackets). Type the whole sentence.",
-            "subtasks": [
-                {"question": "He writes bestsellers and helps young writers. (Not only) → Not only does he write bestsellers, but he also helps young writers.", "answer": "Not only does he write bestsellers, but he also helps young writers.", "explanation": "Not only + does."},
-                {"question": "I closed the door and the phone rang. (No sooner) → No sooner had I closed the door than the phone rang.", "answer": "No sooner had I closed the door than the phone rang.", "explanation": "No sooner + had."},
-                {"question": "The game started and it began to rain. (Hardly) → Hardly had the game started when it began to rain.", "answer": "Hardly had the game started when it began to rain.", "explanation": "Hardly + had."},
-                {"question": "The restaurant was famous and had excellent service. (Not only) → Not only was the restaurant famous, but it also had excellent service.", "answer": "Not only was the restaurant famous, but it also had excellent service.", "explanation": "Not only + was."},
-                {"question": "I finished my homework and my friend called. (No sooner) → No sooner had I finished my homework than my friend called.", "answer": "No sooner had I finished my homework than my friend called.", "explanation": "No sooner + had."},
-                {"question": "We arrived at the beach and the weather turned bad. (Hardly) → Hardly had we arrived at the beach when the weather turned bad.", "answer": "Hardly had we arrived at the beach when the weather turned bad.", "explanation": "Hardly + had."},
-                {"question": "She opened the email and realized it was spam. (Scarcely) → Scarcely had she opened the email when she realized it was spam.", "answer": "Scarcely had she opened the email when she realized it was spam.", "explanation": "Scarcely + had."},
-                {"question": "The city was beautiful and had a rich history. (Not only) → Not only was the city beautiful, but it also had a rich history.", "answer": "Not only was the city beautiful, but it also had a rich history.", "explanation": "Not only + was."}
-            ]
-        },
-    # =====================================================
-    # ВАРИАНТ 9 (перевод)
-    # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct inverted form (a, b, or c) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "Not only ______ he paint beautifully, but he also sculpts.", "answer": "does", "explanation": "Not only + does + подлежащее."},
-                {"question": "No sooner ______ I parked the car than I realized it was a no-parking zone.", "answer": "had", "explanation": "No sooner + had + подлежащее + V3."},
-                {"question": "Hardly ______ the children fallen asleep when the baby woke up.", "answer": "had", "explanation": "Hardly + had + подлежащее + V3."},
-                {"question": "Not only ______ the hotel clean, but it was also very comfortable.", "answer": "was", "explanation": "Not only + was + подлежащее."},
-                {"question": "No sooner ______ I submitted the report than I found a mistake.", "answer": "had", "explanation": "No sooner + had + подлежащее + V3."},
-                {"question": "Hardly ______ we started the meeting when the fire alarm went off.", "answer": "had", "explanation": "Hardly + had + подлежащее + V3."},
-                {"question": "Scarcely ______ he finished his meal when he asked for the bill.", "answer": "had", "explanation": "Scarcely + had + подлежащее + V3."},
-                {"question": "Not only ______ the party fun, but it also had great music.", "answer": "was", "explanation": "Not only + was + подлежащее."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "2. Fill in the gaps with the correct form of the verb in brackets. Type the missing word(s) in the box.",
-            "subtasks": [
-                {"question": "Not only ______ (paint) he beautifully, but he also sculpts.", "answer": "does he paint", "explanation": "Not only + does + подлежащее + V."},
-                {"question": "No sooner ______ (park) I the car than I realized it was a no-parking zone.", "answer": "had I parked", "explanation": "No sooner + had + подлежащее + V3."},
-                {"question": "Hardly ______ (fall) the children asleep when the baby woke up.", "answer": "had the children fallen", "explanation": "Hardly + had + подлежащее + V3."},
-                {"question": "Not only ______ (be) the hotel clean, but it was also very comfortable.", "answer": "was the hotel", "explanation": "Not only + was + подлежащее."},
-                {"question": "No sooner ______ (submit) I the report than I found a mistake.", "answer": "had I submitted", "explanation": "No sooner + had + подлежащее + V3."},
-                {"question": "Hardly ______ (start) we the meeting when the fire alarm went off.", "answer": "had we started", "explanation": "Hardly + had + подлежащее + V3."},
-                {"question": "Scarcely ______ (finish) he his meal when he asked for the bill.", "answer": "had he finished", "explanation": "Scarcely + had + подлежащее + V3."},
-                {"question": "Not only ______ (be) the party fun, but it also had great music.", "answer": "was the party", "explanation": "Not only + was + подлежащее."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
-            "subtasks": [
-                {"question": "Not only does he paint beautifully, but he also sculpts.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "No sooner had I parked the car than I realized it was a no-parking zone.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Hardly had the children fallen asleep when the baby woke up.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Not only was the hotel clean, but it was also very comfortable.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "No sooner I had submitted the report than I found a mistake.", "answer": "No sooner had I submitted the report than I found a mistake.", "explanation": "Инверсия: had I submitted."},
-                {"question": "Hardly we had started the meeting when the fire alarm went off.", "answer": "Hardly had we started the meeting when the fire alarm went off.", "explanation": "Инверсия: had we started."},
-                {"question": "Scarcely had he finished his meal when he asked for the bill.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Not only the party was fun, but it also had great music.", "answer": "Not only was the party fun, but it also had great music.", "explanation": "Инверсия: was the party."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "4. Translate the sentences into English using inversion. Type your translation (one sentence) in the box.",
-            "subtasks": [
-                {"question": "Он не только красиво рисует, но и лепит.", "answer": "Not only does he paint beautifully, but he also sculpts.", "explanation": ""},
-                {"question": "Не успел я припарковать машину, как понял, что это зона запрета парковки.", "answer": "No sooner had I parked the car than I realized it was a no-parking zone.", "explanation": ""},
-                {"question": "Едва дети уснули, как проснулся младенец.", "answer": "Hardly had the children fallen asleep when the baby woke up.", "explanation": ""},
-                {"question": "Отель был не только чистым, но и очень уютным.", "answer": "Not only was the hotel clean, but it was also very comfortable.", "explanation": ""},
-                {"question": "Не успел я отправить отчёт, как нашёл ошибку.", "answer": "No sooner had I submitted the report than I found a mistake.", "explanation": ""},
-                {"question": "Едва мы начали встречу, как сработала пожарная сигнализация.", "answer": "Hardly had we started the meeting when the fire alarm went off.", "explanation": ""},
-                {"question": "Едва он закончил есть, как попросил счёт.", "answer": "Scarcely had he finished his meal when he asked for the bill.", "explanation": ""},
-                {"question": "Вечеринка была не только весёлой, но и с отличной музыкой.", "answer": "Not only was the party fun, but it also had great music.", "explanation": ""}
-            ]
-        },
-    # =====================================================
-    # ВАРИАНТ 10 (перефразирование)
-    # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct inverted form (a, b, or c) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "Not only ______ she cook well, but she also bakes.", "answer": "does", "explanation": "Not only + does + подлежащее."},
-                {"question": "No sooner ______ I unpacked my bags than I remembered I had left my passport.", "answer": "had", "explanation": "No sooner + had + подлежащее + V3."},
-                {"question": "Hardly ______ the film started when there was a technical problem.", "answer": "had", "explanation": "Hardly + had + подлежащее + V3."},
-                {"question": "Not only ______ the scenery beautiful, but it was also peaceful.", "answer": "was", "explanation": "Not only + was + подлежащее."},
-                {"question": "No sooner ______ I hung up the phone than it rang again.", "answer": "had", "explanation": "No sooner + had + подлежащее + V3."},
-                {"question": "Hardly ______ we gone ten miles when the car broke down.", "answer": "had", "explanation": "Hardly + had + подлежащее + V3."},
-                {"question": "Scarcely ______ he started reading when he fell asleep.", "answer": "had", "explanation": "Scarcely + had + подлежащее + V3."},
-                {"question": "Not only ______ the exam difficult, but it was also very long.", "answer": "was", "explanation": "Not only + was + подлежащее."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "2. Fill in the gaps with the correct form of the verb in brackets. Type the missing word(s) in the box.",
-            "subtasks": [
-                {"question": "Not only ______ (cook) she well, but she also bakes.", "answer": "does she cook", "explanation": "Not only + does + подлежащее + V."},
-                {"question": "No sooner ______ (unpack) I my bags than I remembered I had left my passport.", "answer": "had I unpacked", "explanation": "No sooner + had + подлежащее + V3."},
-                {"question": "Hardly ______ (start) the film when there was a technical problem.", "answer": "had the film started", "explanation": "Hardly + had + подлежащее + V3."},
-                {"question": "Not only ______ (be) the scenery beautiful, but it was also peaceful.", "answer": "was the scenery", "explanation": "Not only + was + подлежащее."},
-                {"question": "No sooner ______ (hang) I up the phone than it rang again.", "answer": "had I hung", "explanation": "No sooner + had + подлежащее + V3."},
-                {"question": "Hardly ______ (go) we ten miles when the car broke down.", "answer": "had we gone", "explanation": "Hardly + had + подлежащее + V3."},
-                {"question": "Scarcely ______ (start) he reading when he fell asleep.", "answer": "had he started", "explanation": "Scarcely + had + подлежащее + V3."},
-                {"question": "Not only ______ (be) the exam difficult, but it was also very long.", "answer": "was the exam", "explanation": "Not only + was + подлежащее."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
-            "subtasks": [
-                {"question": "Not only does she cook well, but she also bakes.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "No sooner had I unpacked my bags than I remembered I had left my passport.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Hardly had the film started when there was a technical problem.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Not only was the scenery beautiful, but it was also peaceful.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "No sooner I had hung up the phone than it rang again.", "answer": "No sooner had I hung up the phone than it rang again.", "explanation": "Инверсия: had I hung."},
-                {"question": "Hardly we had gone ten miles when the car broke down.", "answer": "Hardly had we gone ten miles when the car broke down.", "explanation": "Инверсия: had we gone."},
-                {"question": "Scarcely had he started reading when he fell asleep.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Not only the exam was difficult, but it was also very long.", "answer": "Not only was the exam difficult, but it was also very long.", "explanation": "Инверсия: was the exam."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "4. Rewrite the sentences using inversion (with the word given in brackets). Type the whole sentence.",
-            "subtasks": [
-                {"question": "She cooks well and bakes. (Not only) → Not only does she cook well, but she also bakes.", "answer": "Not only does she cook well, but she also bakes.", "explanation": "Not only + does."},
-                {"question": "I unpacked my bags and remembered I had left my passport. (No sooner) → No sooner had I unpacked my bags than I remembered I had left my passport.", "answer": "No sooner had I unpacked my bags than I remembered I had left my passport.", "explanation": "No sooner + had."},
-                {"question": "The film started and there was a technical problem. (Hardly) → Hardly had the film started when there was a technical problem.", "answer": "Hardly had the film started when there was a technical problem.", "explanation": "Hardly + had."},
-                {"question": "The scenery was beautiful and peaceful. (Not only) → Not only was the scenery beautiful, but it was also peaceful.", "answer": "Not only was the scenery beautiful, but it was also peaceful.", "explanation": "Not only + was."},
-                {"question": "I hung up the phone and it rang again. (No sooner) → No sooner had I hung up the phone than it rang again.", "answer": "No sooner had I hung up the phone than it rang again.", "explanation": "No sooner + had."},
-                {"question": "We went ten miles and the car broke down. (Hardly) → Hardly had we gone ten miles when the car broke down.", "answer": "Hardly had we gone ten miles when the car broke down.", "explanation": "Hardly + had."},
-                {"question": "He started reading and fell asleep. (Scarcely) → Scarcely had he started reading when he fell asleep.", "answer": "Scarcely had he started reading when he fell asleep.", "explanation": "Scarcely + had."},
-                {"question": "The exam was difficult and long. (Not only) → Not only was the exam difficult, but it was also very long.", "answer": "Not only was the exam difficult, but it was also very long.", "explanation": "Not only + was."}
-            ]
-        },
-    # =====================================================
-    # ВАРИАНТ 11 (перевод)
-    # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct inverted form (a, b, or c) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "Not only ______ he run fast, but he also swims well.", "answer": "does", "explanation": "Not only + does + подлежащее."},
-                {"question": "No sooner ______ I finished eating than the waiter brought the bill.", "answer": "had", "explanation": "No sooner + had + подлежащее + V3."},
-                {"question": "Hardly ______ the summer started when the weather turned cold.", "answer": "had", "explanation": "Hardly + had + подлежащее + V3."},
-                {"question": "Not only ______ the film exciting, but it also had a great story.", "answer": "was", "explanation": "Not only + was + подлежащее."},
-                {"question": "No sooner ______ I turned off the lights than I heard a noise.", "answer": "had", "explanation": "No sooner + had + подлежащее + V3."},
-                {"question": "Hardly ______ the plane taken off when it started to shake.", "answer": "had", "explanation": "Hardly + had + подлежащее + V3."},
-                {"question": "Scarcely ______ I sat down when the bus started moving.", "answer": "had", "explanation": "Scarcely + had + подлежащее + V3."},
-                {"question": "Not only ______ the book long, but it was also very boring.", "answer": "was", "explanation": "Not only + was + подлежащее."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "2. Fill in the gaps with the correct form of the verb in brackets. Type the missing word(s) in the box.",
-            "subtasks": [
-                {"question": "Not only ______ (run) he fast, but he also swims well.", "answer": "does he run", "explanation": "Not only + does + подлежащее + V."},
-                {"question": "No sooner ______ (finish) I eating than the waiter brought the bill.", "answer": "had I finished", "explanation": "No sooner + had + подлежащее + V3."},
-                {"question": "Hardly ______ (start) the summer when the weather turned cold.", "answer": "had the summer started", "explanation": "Hardly + had + подлежащее + V3."},
-                {"question": "Not only ______ (be) the film exciting, but it also had a great story.", "answer": "was the film", "explanation": "Not only + was + подлежащее."},
-                {"question": "No sooner ______ (turn) I off the lights than I heard a noise.", "answer": "had I turned", "explanation": "No sooner + had + подлежащее + V3."},
-                {"question": "Hardly ______ (take) the plane off when it started to shake.", "answer": "had the plane taken", "explanation": "Hardly + had + подлежащее + V3."},
-                {"question": "Scarcely ______ (sit) I down when the bus started moving.", "answer": "had I sat", "explanation": "Scarcely + had + подлежащее + V3."},
-                {"question": "Not only ______ (be) the book long, but it was also very boring.", "answer": "was the book", "explanation": "Not only + was + подлежащее."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
-            "subtasks": [
-                {"question": "Not only does he run fast, but he also swims well.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "No sooner had I finished eating than the waiter brought the bill.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Hardly had the summer started when the weather turned cold.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Not only was the film exciting, but it also had a great story.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "No sooner I had turned off the lights than I heard a noise.", "answer": "No sooner had I turned off the lights than I heard a noise.", "explanation": "Инверсия: had I turned."},
-                {"question": "Hardly the plane had taken off when it started to shake.", "answer": "Hardly had the plane taken off when it started to shake.", "explanation": "Инверсия: had the plane taken."},
-                {"question": "Scarcely had I sat down when the bus started moving.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Not only the book was long, but it was also very boring.", "answer": "Not only was the book long, but it was also very boring.", "explanation": "Инверсия: was the book."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "4. Translate the sentences into English using inversion. Type your translation (one sentence) in the box.",
-            "subtasks": [
-                {"question": "Он не только быстро бегает, но и хорошо плавает.", "answer": "Not only does he run fast, but he also swims well.", "explanation": ""},
-                {"question": "Не успел я закончить есть, как официант принёс счёт.", "answer": "No sooner had I finished eating than the waiter brought the bill.", "explanation": ""},
-                {"question": "Едва началось лето, как погода стала холодной.", "answer": "Hardly had the summer started when the weather turned cold.", "explanation": ""},
-                {"question": "Фильм был не только захватывающим, но и с отличным сюжетом.", "answer": "Not only was the film exciting, but it also had a great story.", "explanation": ""},
-                {"question": "Не успел я выключить свет, как услышал шум.", "answer": "No sooner had I turned off the lights than I heard a noise.", "explanation": ""},
-                {"question": "Едва самолёт взлетел, как он начал трястись.", "answer": "Hardly had the plane taken off when it started to shake.", "explanation": ""},
-                {"question": "Едва я сел, как автобус тронулся.", "answer": "Scarcely had I sat down when the bus started moving.", "explanation": ""},
-                {"question": "Книга была не только длинной, но и очень скучной.", "answer": "Not only was the book long, but it was also very boring.", "explanation": ""}
-            ]
-        },
-    # =====================================================
-    # ВАРИАНТ 12 (перефразирование)
-    # =====================================================
-    [
-        {
-            "type": "complex",
-            "text": "1. Choose the correct inverted form (a, b, or c) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "Not only ______ they dance well, but they also sing beautifully.", "answer": "do", "explanation": "Not only + do + подлежащее."},
-                {"question": "No sooner ______ I entered the room than I felt something strange.", "answer": "had", "explanation": "No sooner + had + подлежащее + V3."},
-                {"question": "Hardly ______ the sun set when the stars appeared.", "answer": "had", "explanation": "Hardly + had + подлежащее + V3."},
-                {"question": "Not only ______ the town small, but it was also very quiet.", "answer": "was", "explanation": "Not only + was + подлежащее."},
-                {"question": "No sooner ______ the rain stopped than the sun came out.", "answer": "had", "explanation": "No sooner + had + подлежащее + V3."},
-                {"question": "Hardly ______ we said goodbye when we realized we had forgotten the gift.", "answer": "had", "explanation": "Hardly + had + подлежащее + V3."},
-                {"question": "Scarcely ______ she started the car when the engine died.", "answer": "had", "explanation": "Scarcely + had + подлежащее + V3."},
-                {"question": "Not only ______ the lecture informative, but it was also interesting.", "answer": "was", "explanation": "Not only + was + подлежащее."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "2. Fill in the gaps with the correct form of the verb in brackets. Type the missing word(s) in the box.",
-            "subtasks": [
-                {"question": "Not only ______ (dance) they well, but they also sing beautifully.", "answer": "do they dance", "explanation": "Not only + do + подлежащее + V."},
-                {"question": "No sooner ______ (enter) I the room than I felt something strange.", "answer": "had I entered", "explanation": "No sooner + had + подлежащее + V3."},
-                {"question": "Hardly ______ (set) the sun when the stars appeared.", "answer": "had the sun set", "explanation": "Hardly + had + подлежащее + V3."},
-                {"question": "Not only ______ (be) the town small, but it was also very quiet.", "answer": "was the town", "explanation": "Not only + was + подлежащее."},
-                {"question": "No sooner ______ (stop) the rain than the sun came out.", "answer": "had the rain stopped", "explanation": "No sooner + had + подлежащее + V3."},
-                {"question": "Hardly ______ (say) we goodbye when we realized we had forgotten the gift.", "answer": "had we said", "explanation": "Hardly + had + подлежащее + V3."},
-                {"question": "Scarcely ______ (start) she the car when the engine died.", "answer": "had she started", "explanation": "Scarcely + had + подлежащее + V3."},
-                {"question": "Not only ______ (be) the lecture informative, but it was also interesting.", "answer": "was the lecture", "explanation": "Not only + was + подлежащее."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
-            "subtasks": [
-                {"question": "Not only do they dance well, but they also sing beautifully.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "No sooner had I entered the room than I felt something strange.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Hardly had the sun set when the stars appeared.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Not only was the town small, but it was also very quiet.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "No sooner the rain had stopped than the sun came out.", "answer": "No sooner had the rain stopped than the sun came out.", "explanation": "Инверсия: had the rain stopped."},
-                {"question": "Hardly we had said goodbye when we realized we had forgotten the gift.", "answer": "Hardly had we said goodbye when we realized we had forgotten the gift.", "explanation": "Инверсия: had we said."},
-                {"question": "Scarcely had she started the car when the engine died.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "Not only the lecture was informative, but it was also interesting.", "answer": "Not only was the lecture informative, but it was also interesting.", "explanation": "Инверсия: was the lecture."}
-            ]
-        },
-        {
-            "type": "complex",
-            "text": "4. Rewrite the sentences using inversion (with the word given in brackets). Type the whole sentence.",
-            "subtasks": [
-                {"question": "They dance well and sing beautifully. (Not only) → Not only do they dance well, but they also sing beautifully.", "answer": "Not only do they dance well, but they also sing beautifully.", "explanation": "Not only + do."},
-                {"question": "I entered the room and felt something strange. (No sooner) → No sooner had I entered the room than I felt something strange.", "answer": "No sooner had I entered the room than I felt something strange.", "explanation": "No sooner + had."},
-                {"question": "The sun set and the stars appeared. (Hardly) → Hardly had the sun set when the stars appeared.", "answer": "Hardly had the sun set when the stars appeared.", "explanation": "Hardly + had."},
-                {"question": "The town was small and quiet. (Not only) → Not only was the town small, but it was also very quiet.", "answer": "Not only was the town small, but it was also very quiet.", "explanation": "Not only + was."},
-                {"question": "The rain stopped and the sun came out. (No sooner) → No sooner had the rain stopped than the sun came out.", "answer": "No sooner had the rain stopped than the sun came out.", "explanation": "No sooner + had."},
-                {"question": "We said goodbye and realized we had forgotten the gift. (Hardly) → Hardly had we said goodbye when we realized we had forgotten the gift.", "answer": "Hardly had we said goodbye when we realized we had forgotten the gift.", "explanation": "Hardly + had."},
-                {"question": "She started the car and the engine died. (Scarcely) → Scarcely had she started the car when the engine died.", "answer": "Scarcely had she started the car when the engine died.", "explanation": "Scarcely + had."},
-                {"question": "The lecture was informative and interesting. (Not only) → Not only was the lecture informative, but it was also interesting.", "answer": "Not only was the lecture informative, but it was also interesting.", "explanation": "Not only + was."}
-            ]
+          "type": "complex",
+          "text": "4. Translate the sentences into English using inversion. Type your translation (one sentence) in the box.",
+          "subtasks": [
+            {"question": "Он не только опоздал, но и забыл подарок.", "answer": "Not only did he arrive late, but he also forgot the gift.", "explanation": ""},
+            {"question": "Не успел я уйти, как пошёл дождь.", "answer": "No sooner had I left than it started to rain.", "explanation": ""},
+            {"question": "Едва мы начали, как сработала пожарная сигнализация.", "answer": "Hardly had we started when the fire alarm went off.", "explanation": ""},
+            {"question": "Она не только умна, но и красива.", "answer": "Not only is she intelligent, but she is also beautiful.", "explanation": ""},
+            {"question": "Не успела она закрыть дверь, как кто-то постучал.", "answer": "No sooner had she closed the door than someone knocked.", "explanation": ""},
+            {"question": "Едва мы сели, как начался фильм.", "answer": "Hardly had we sat down when the film started.", "explanation": ""},
+            {"question": "Едва он вошёл в комнату, как погас свет.", "answer": "Scarcely had he entered the room when the lights went out.", "explanation": ""},
+            {"question": "Они не только проиграли матч, но и травмировали лучшего игрока.", "answer": "Not only did they lose the match, but they also injured their best player.", "explanation": ""}
+          ]
         }
+      ],
+      # =====================================================
+      # ВАРИАНТ 2 (перефразирование)
+      # =====================================================
+      [
+        {
+          "type": "complex",
+          "text": "1. Choose the correct inverted form (a, b, or c) to complete the sentence. Type the letter of your answer.",
+          "subtasks": [
+            {"question": "Not only ______ she sing well, but she also dances.", "answer": "does", "explanation": "Not only + does + подлежащее."},
+            {"question": "No sooner ______ the train arrived than we boarded.", "answer": "had", "explanation": "No sooner + had + подлежащее + V3."},
+            {"question": "Hardly ______ the lesson started when the bell rang.", "answer": "had", "explanation": "Hardly + had + подлежащее + V3."},
+            {"question": "Not only ______ he speak English, but he also speaks French.", "answer": "does", "explanation": "Not only + does + подлежащее."},
+            {"question": "No sooner ______ I reached the station than the train left.", "answer": "had", "explanation": "No sooner + had + подлежащее + V3."},
+            {"question": "Hardly ______ the sun risen when it started to rain.", "answer": "had", "explanation": "Hardly + had + подлежащее + V3."},
+            {"question": "Scarcely ______ I closed my eyes when the phone rang.", "answer": "had", "explanation": "Scarcely + had + подлежащее + V3."},
+            {"question": "Not only ______ they arrive on time, but they also helped set up.", "answer": "did", "explanation": "Not only + did + подлежащее."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "2. Fill in the gaps with the correct form of the verb in brackets. Type the missing word(s) in the box.",
+          "subtasks": [
+            {"question": "Not only ______ (sing) she well, but she also dances.", "answer": "does she sing", "explanation": "Not only + does + подлежащее + V."},
+            {"question": "No sooner ______ (arrive) the train than we boarded.", "answer": "had the train arrived", "explanation": "No sooner + had + подлежащее + V3."},
+            {"question": "Hardly ______ (start) the lesson when the bell rang.", "answer": "had the lesson started", "explanation": "Hardly + had + подлежащее + V3."},
+            {"question": "Not only ______ (speak) he English, but he also speaks French.", "answer": "does he speak", "explanation": "Not only + does + подлежащее + V."},
+            {"question": "No sooner ______ (reach) I the station than the train left.", "answer": "had I reached", "explanation": "No sooner + had + подлежащее + V3."},
+            {"question": "Hardly ______ (rise) the sun when it started to rain.", "answer": "had the sun risen", "explanation": "Hardly + had + подлежащее + V3."},
+            {"question": "Scarcely ______ (close) I my eyes when the phone rang.", "answer": "had I closed", "explanation": "Scarcely + had + подлежащее + V3."},
+            {"question": "Not only ______ (arrive) they on time, but they also helped set up.", "answer": "did they arrive", "explanation": "Not only + did + подлежащее + V."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
+          "subtasks": [
+            {"question": "Not only she does sing well, but she also dances.", "answer": "Not only does she sing well, but she also dances.", "explanation": "Порядок: does she sing."},
+            {"question": "No sooner had the train arrived than we boarded.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Hardly had the lesson started when the bell rang.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Not only does he speak English, but he also speaks French.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "No sooner I had reached the station than the train left.", "answer": "No sooner had I reached the station than the train left.", "explanation": "Инверсия: had I reached."},
+            {"question": "Hardly the sun had risen when it started to rain.", "answer": "Hardly had the sun risen when it started to rain.", "explanation": "Инверсия: had the sun risen."},
+            {"question": "Scarcely had I closed my eyes when the phone rang.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Not only they arrived on time, but they also helped set up.", "answer": "Not only did they arrive on time, but they also helped set up.", "explanation": "Инверсия: did they arrive."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "4. Rewrite the sentences using inversion (with the word given in brackets). Type the whole sentence.",
+          "subtasks": [
+            {"question": "She not only sings well but also dances. (Not only) → Not only does she sing well, but she also dances.", "answer": "Not only does she sing well, but she also dances.", "explanation": "Not only + does + подлежащее."},
+            {"question": "The train arrived and we boarded immediately. (No sooner) → No sooner had the train arrived than we boarded.", "answer": "No sooner had the train arrived than we boarded.", "explanation": "No sooner + had + подлежащее + V3, than."},
+            {"question": "The lesson started and the bell rang immediately. (Hardly) → Hardly had the lesson started when the bell rang.", "answer": "Hardly had the lesson started when the bell rang.", "explanation": "Hardly + had + подлежащее + V3, when."},
+            {"question": "He speaks English and French. (Not only) → Not only does he speak English, but he also speaks French.", "answer": "Not only does he speak English, but he also speaks French.", "explanation": "Not only + does."},
+            {"question": "I reached the station and the train left immediately. (No sooner) → No sooner had I reached the station than the train left.", "answer": "No sooner had I reached the station than the train left.", "explanation": "No sooner + had."},
+            {"question": "The sun rose and it started to rain immediately. (Hardly) → Hardly had the sun risen when it started to rain.", "answer": "Hardly had the sun risen when it started to rain.", "explanation": "Hardly + had."},
+            {"question": "I closed my eyes and the phone rang immediately. (Scarcely) → Scarcely had I closed my eyes when the phone rang.", "answer": "Scarcely had I closed my eyes when the phone rang.", "explanation": "Scarcely + had."},
+            {"question": "They arrived on time and helped set up. (Not only) → Not only did they arrive on time, but they also helped set up.", "answer": "Not only did they arrive on time, but they also helped set up.", "explanation": "Not only + did."}
+          ]
+        }
+      ],
+      # =====================================================
+      # ВАРИАНТ 3 (перевод)
+      # =====================================================
+      [
+        {
+          "type": "complex",
+          "text": "1. Choose the correct inverted form (a, b, or c) to complete the sentence. Type the letter of your answer.",
+          "subtasks": [
+            {"question": "Not only ______ he play the guitar, but he also sings.", "answer": "does", "explanation": "Not only + does + подлежащее."},
+            {"question": "No sooner ______ I arrived than I realized I had forgotten my keys.", "answer": "had", "explanation": "No sooner + had + подлежащее + V3."},
+            {"question": "Hardly ______ she opened the book when she fell asleep.", "answer": "had", "explanation": "Hardly + had + подлежащее + V3."},
+            {"question": "Not only ______ they late, but they also missed the beginning.", "answer": "were", "explanation": "Not only + were + подлежащее."},
+            {"question": "No sooner ______ the concert ended than everyone started clapping.", "answer": "had", "explanation": "No sooner + had + подлежащее + V3."},
+            {"question": "Hardly ______ we finished dinner when the guests arrived.", "answer": "had", "explanation": "Hardly + had + подлежащее + V3."},
+            {"question": "Scarcely ______ she said it when she regretted it.", "answer": "had", "explanation": "Scarcely + had + подлежащее + V3."},
+            {"question": "Not only ______ he rich, but he is also generous.", "answer": "is", "explanation": "Not only + is + подлежащее."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "2. Fill in the gaps with the correct form of the verb in brackets. Type the missing word(s) in the box.",
+          "subtasks": [
+            {"question": "Not only ______ (play) he the guitar, but he also sings.", "answer": "does he play", "explanation": "Not only + does + подлежащее + V."},
+            {"question": "No sooner ______ (arrive) I than I realized I had forgotten my keys.", "answer": "had I arrived", "explanation": "No sooner + had + подлежащее + V3."},
+            {"question": "Hardly ______ (open) she the book when she fell asleep.", "answer": "had she opened", "explanation": "Hardly + had + подлежащее + V3."},
+            {"question": "Not only ______ (be) they late, but they also missed the beginning.", "answer": "were they", "explanation": "Not only + were + подлежащее."},
+            {"question": "No sooner ______ (end) the concert than everyone started clapping.", "answer": "had the concert ended", "explanation": "No sooner + had + подлежащее + V3."},
+            {"question": "Hardly ______ (finish) we dinner when the guests arrived.", "answer": "had we finished", "explanation": "Hardly + had + подлежащее + V3."},
+            {"question": "Scarcely ______ (say) she it when she regretted it.", "answer": "had she said", "explanation": "Scarcely + had + подлежащее + V3."},
+            {"question": "Not only ______ (be) he rich, but he is also generous.", "answer": "is he", "explanation": "Not only + is + подлежащее."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
+          "subtasks": [
+            {"question": "Not only does he play the guitar, but he also sings.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "No sooner had I arrived than I realized I had forgotten my keys.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Hardly had she opened the book when she fell asleep.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Not only were they late, but they also missed the beginning.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "No sooner the concert had ended than everyone started clapping.", "answer": "No sooner had the concert ended than everyone started clapping.", "explanation": "Инверсия: had the concert ended."},
+            {"question": "Hardly we had finished dinner when the guests arrived.", "answer": "Hardly had we finished dinner when the guests arrived.", "explanation": "Инверсия: had we finished."},
+            {"question": "Scarcely had she said it when she regretted it.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Not only he is rich, but he is also generous.", "answer": "Not only is he rich, but he is also generous.", "explanation": "Инверсия: is he."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "4. Translate the sentences into English using inversion. Type your translation (one sentence) in the box.",
+          "subtasks": [
+            {"question": "Он не только играет на гитаре, но и поёт.", "answer": "Not only does he play the guitar, but he also sings.", "explanation": ""},
+            {"question": "Не успел я прийти, как понял, что забыл ключи.", "answer": "No sooner had I arrived than I realized I had forgotten my keys.", "explanation": ""},
+            {"question": "Едва она открыла книгу, как уснула.", "answer": "Hardly had she opened the book when she fell asleep.", "explanation": ""},
+            {"question": "Они не только опоздали, но и пропустили начало.", "answer": "Not only were they late, but they also missed the beginning.", "explanation": ""},
+            {"question": "Не успел концерт закончиться, как все начали хлопать.", "answer": "No sooner had the concert ended than everyone started clapping.", "explanation": ""},
+            {"question": "Едва мы закончили ужин, как пришли гости.", "answer": "Hardly had we finished dinner when the guests arrived.", "explanation": ""},
+            {"question": "Едва она сказала это, как пожалела.", "answer": "Scarcely had she said it when she regretted it.", "explanation": ""},
+            {"question": "Он не только богат, но и щедр.", "answer": "Not only is he rich, but he is also generous.", "explanation": ""}
+          ]
+        }
+      ],
+      # =====================================================
+      # ВАРИАНТ 4 (перефразирование)
+      # =====================================================
+      [
+        {
+          "type": "complex",
+          "text": "1. Choose the correct inverted form (a, b, or c) to complete the sentence. Type the letter of your answer.",
+          "subtasks": [
+            {"question": "Not only ______ she write novels, but she also writes poetry.", "answer": "does", "explanation": "Not only + does + подлежащее."},
+            {"question": "No sooner ______ we left the house than it started snowing.", "answer": "had", "explanation": "No sooner + had + подлежащее + V3."},
+            {"question": "Hardly ______ he finished his speech when the audience started cheering.", "answer": "had", "explanation": "Hardly + had + подлежащее + V3."},
+            {"question": "Not only ______ the movie good, but it also had an amazing soundtrack.", "answer": "was", "explanation": "Not only + was + подлежащее."},
+            {"question": "No sooner ______ I turned on the TV than the power went out.", "answer": "had", "explanation": "No sooner + had + подлежащее + V3."},
+            {"question": "Hardly ______ they arrived at the station when the train departed.", "answer": "had", "explanation": "Hardly + had + подлежащее + V3."},
+            {"question": "Scarcely ______ he started his new job when he got a promotion.", "answer": "had", "explanation": "Scarcely + had + подлежащее + V3."},
+            {"question": "Not only ______ she a doctor, but she is also a researcher.", "answer": "is", "explanation": "Not only + is + подлежащее."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "2. Fill in the gaps with the correct form of the verb in brackets. Type the missing word(s) in the box.",
+          "subtasks": [
+            {"question": "Not only ______ (write) she novels, but she also writes poetry.", "answer": "does she write", "explanation": "Not only + does + подлежащее + V."},
+            {"question": "No sooner ______ (leave) we the house than it started snowing.", "answer": "had we left", "explanation": "No sooner + had + подлежащее + V3."},
+            {"question": "Hardly ______ (finish) he his speech when the audience started cheering.", "answer": "had he finished", "explanation": "Hardly + had + подлежащее + V3."},
+            {"question": "Not only ______ (be) the movie good, but it also had an amazing soundtrack.", "answer": "was the movie", "explanation": "Not only + was + подлежащее."},
+            {"question": "No sooner ______ (turn) I on the TV than the power went out.", "answer": "had I turned", "explanation": "No sooner + had + подлежащее + V3."},
+            {"question": "Hardly ______ (arrive) they at the station when the train departed.", "answer": "had they arrived", "explanation": "Hardly + had + подлежащее + V3."},
+            {"question": "Scarcely ______ (start) he his new job when he got a promotion.", "answer": "had he started", "explanation": "Scarcely + had + подлежащее + V3."},
+            {"question": "Not only ______ (be) she a doctor, but she is also a researcher.", "answer": "is she", "explanation": "Not only + is + подлежащее."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
+          "subtasks": [
+            {"question": "Not only does she write novels, but she also writes poetry.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "No sooner had we left the house than it started snowing.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Hardly had he finished his speech when the audience started cheering.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Not only was the movie good, but it also had an amazing soundtrack.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "No sooner I had turned on the TV than the power went out.", "answer": "No sooner had I turned on the TV than the power went out.", "explanation": "Инверсия: had I turned."},
+            {"question": "Hardly they had arrived at the station when the train departed.", "answer": "Hardly had they arrived at the station when the train departed.", "explanation": "Инверсия: had they arrived."},
+            {"question": "Scarcely had he started his new job when he got a promotion.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Not only she is a doctor, but she is also a researcher.", "answer": "Not only is she a doctor, but she is also a researcher.", "explanation": "Инверсия: is she."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "4. Rewrite the sentences using inversion (with the word given in brackets). Type the whole sentence.",
+          "subtasks": [
+            {"question": "She writes novels and poetry. (Not only) → Not only does she write novels, but she also writes poetry.", "answer": "Not only does she write novels, but she also writes poetry.", "explanation": "Not only + does."},
+            {"question": "We left the house and it started snowing. (No sooner) → No sooner had we left the house than it started snowing.", "answer": "No sooner had we left the house than it started snowing.", "explanation": "No sooner + had."},
+            {"question": "He finished his speech and the audience started cheering. (Hardly) → Hardly had he finished his speech when the audience started cheering.", "answer": "Hardly had he finished his speech when the audience started cheering.", "explanation": "Hardly + had."},
+            {"question": "The movie was good and had an amazing soundtrack. (Not only) → Not only was the movie good, but it also had an amazing soundtrack.", "answer": "Not only was the movie good, but it also had an amazing soundtrack.", "explanation": "Not only + was."},
+            {"question": "I turned on the TV and the power went out. (No sooner) → No sooner had I turned on the TV than the power went out.", "answer": "No sooner had I turned on the TV than the power went out.", "explanation": "No sooner + had."},
+            {"question": "They arrived at the station and the train departed. (Hardly) → Hardly had they arrived at the station when the train departed.", "answer": "Hardly had they arrived at the station when the train departed.", "explanation": "Hardly + had."},
+            {"question": "He started his new job and got a promotion. (Scarcely) → Scarcely had he started his new job when he got a promotion.", "answer": "Scarcely had he started his new job when he got a promotion.", "explanation": "Scarcely + had."},
+            {"question": "She is a doctor and a researcher. (Not only) → Not only is she a doctor, but she is also a researcher.", "answer": "Not only is she a doctor, but she is also a researcher.", "explanation": "Not only + is."}
+          ]
+        }
+      ],
+      # =====================================================
+      # ВАРИАНТ 5 (перевод)
+      # =====================================================
+      [
+        {
+          "type": "complex",
+          "text": "1. Choose the correct inverted form (a, b, or c) to complete the sentence. Type the letter of your answer.",
+          "subtasks": [
+            {"question": "Not only ______ he fail the test, but he also lost his confidence.", "answer": "did", "explanation": "Not only + did + подлежащее."},
+            {"question": "No sooner ______ I sat down than the phone rang.", "answer": "had", "explanation": "No sooner + had + подлежащее + V3."},
+            {"question": "Hardly ______ the concert started when it began to rain.", "answer": "had", "explanation": "Hardly + had + подлежащее + V3."},
+            {"question": "Not only ______ the food delicious, but it was also beautifully presented.", "answer": "was", "explanation": "Not only + was + подлежащее."},
+            {"question": "No sooner ______ she arrived at the station than the bus left.", "answer": "had", "explanation": "No sooner + had + подлежащее + V3."},
+            {"question": "Hardly ______ we entered the room when we heard a strange noise.", "answer": "had", "explanation": "Hardly + had + подлежащее + V3."},
+            {"question": "Scarcely ______ they started the meeting when the fire alarm went off.", "answer": "had", "explanation": "Scarcely + had + подлежащее + V3."},
+            {"question": "Not only ______ he handsome, but he is also very kind.", "answer": "is", "explanation": "Not only + is + подлежащее."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "2. Fill in the gaps with the correct form of the verb in brackets. Type the missing word(s) in the box.",
+          "subtasks": [
+            {"question": "Not only ______ (fail) he the test, but he also lost his confidence.", "answer": "did he fail", "explanation": "Not only + did + подлежащее + V."},
+            {"question": "No sooner ______ (sit) I down than the phone rang.", "answer": "had I sat", "explanation": "No sooner + had + подлежащее + V3."},
+            {"question": "Hardly ______ (start) the concert when it began to rain.", "answer": "had the concert started", "explanation": "Hardly + had + подлежащее + V3."},
+            {"question": "Not only ______ (be) the food delicious, but it was also beautifully presented.", "answer": "was the food", "explanation": "Not only + was + подлежащее."},
+            {"question": "No sooner ______ (arrive) she at the station than the bus left.", "answer": "had she arrived", "explanation": "No sooner + had + подлежащее + V3."},
+            {"question": "Hardly ______ (enter) we the room when we heard a strange noise.", "answer": "had we entered", "explanation": "Hardly + had + подлежащее + V3."},
+            {"question": "Scarcely ______ (start) they the meeting when the fire alarm went off.", "answer": "had they started", "explanation": "Scarcely + had + подлежащее + V3."},
+            {"question": "Not only ______ (be) he handsome, but he is also very kind.", "answer": "is he", "explanation": "Not only + is + подлежащее."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
+          "subtasks": [
+            {"question": "Not only did he fail the test, but he also lost his confidence.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "No sooner had I sat down than the phone rang.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Hardly had the concert started when it began to rain.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Not only was the food delicious, but it was also beautifully presented.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "No sooner she had arrived at the station than the bus left.", "answer": "No sooner had she arrived at the station than the bus left.", "explanation": "Инверсия: had she arrived."},
+            {"question": "Hardly we had entered the room when we heard a strange noise.", "answer": "Hardly had we entered the room when we heard a strange noise.", "explanation": "Инверсия: had we entered."},
+            {"question": "Scarcely had they started the meeting when the fire alarm went off.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Not only he is handsome, but he is also very kind.", "answer": "Not only is he handsome, but he is also very kind.", "explanation": "Инверсия: is he."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "4. Translate the sentences into English using inversion. Type your translation (one sentence) in the box.",
+          "subtasks": [
+            {"question": "Он не только провалил тест, но и потерял уверенность.", "answer": "Not only did he fail the test, but he also lost his confidence.", "explanation": ""},
+            {"question": "Не успел я сесть, как зазвонил телефон.", "answer": "No sooner had I sat down than the phone rang.", "explanation": ""},
+            {"question": "Едва концерт начался, как пошёл дождь.", "answer": "Hardly had the concert started when it began to rain.", "explanation": ""},
+            {"question": "Еда была не только вкусной, но и красиво оформленной.", "answer": "Not only was the food delicious, but it was also beautifully presented.", "explanation": ""},
+            {"question": "Не успела она прийти на станцию, как автобус уехал.", "answer": "No sooner had she arrived at the station than the bus left.", "explanation": ""},
+            {"question": "Едва мы вошли в комнату, как услышали странный звук.", "answer": "Hardly had we entered the room when we heard a strange noise.", "explanation": ""},
+            {"question": "Едва они начали встречу, как сработала пожарная сигнализация.", "answer": "Scarcely had they started the meeting when the fire alarm went off.", "explanation": ""},
+            {"question": "Он не только красив, но и очень добр.", "answer": "Not only is he handsome, but he is also very kind.", "explanation": ""}
+          ]
+        }
+      ],
+      # =====================================================
+      # ВАРИАНТ 6 (перефразирование)
+      # =====================================================
+      [
+        {
+          "type": "complex",
+          "text": "1. Choose the correct inverted form (a, b, or c) to complete the sentence. Type the letter of your answer.",
+          "subtasks": [
+            {"question": "Not only ______ he speak three languages, but he also writes poetry.", "answer": "does", "explanation": "Not only + does + подлежащее."},
+            {"question": "No sooner ______ I opened the window than the cat jumped in.", "answer": "had", "explanation": "No sooner + had + подлежащее + V3."},
+            {"question": "Hardly ______ we started our journey when the car broke down.", "answer": "had", "explanation": "Hardly + had + подлежащее + V3."},
+            {"question": "Not only ______ the hotel luxurious, but it also had a great view.", "answer": "was", "explanation": "Not only + was + подлежащее."},
+            {"question": "No sooner ______ he arrived home than he realized he had lost his wallet.", "answer": "had", "explanation": "No sooner + had + подлежащее + V3."},
+            {"question": "Hardly ______ she finished her presentation when the audience started applauding.", "answer": "had", "explanation": "Hardly + had + подлежащее + V3."},
+            {"question": "Scarcely ______ the plane landed when the passengers stood up.", "answer": "had", "explanation": "Scarcely + had + подлежащее + V3."},
+            {"question": "Not only ______ they talented, but they are also hardworking.", "answer": "are", "explanation": "Not only + are + подлежащее."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "2. Fill in the gaps with the correct form of the verb in brackets. Type the missing word(s) in the box.",
+          "subtasks": [
+            {"question": "Not only ______ (speak) he three languages, but he also writes poetry.", "answer": "does he speak", "explanation": "Not only + does + подлежащее + V."},
+            {"question": "No sooner ______ (open) I the window than the cat jumped in.", "answer": "had I opened", "explanation": "No sooner + had + подлежащее + V3."},
+            {"question": "Hardly ______ (start) we our journey when the car broke down.", "answer": "had we started", "explanation": "Hardly + had + подлежащее + V3."},
+            {"question": "Not only ______ (be) the hotel luxurious, but it also had a great view.", "answer": "was the hotel", "explanation": "Not only + was + подлежащее."},
+            {"question": "No sooner ______ (arrive) he home than he realized he had lost his wallet.", "answer": "had he arrived", "explanation": "No sooner + had + подлежащее + V3."},
+            {"question": "Hardly ______ (finish) she her presentation when the audience started applauding.", "answer": "had she finished", "explanation": "Hardly + had + подлежащее + V3."},
+            {"question": "Scarcely ______ (land) the plane when the passengers stood up.", "answer": "had the plane landed", "explanation": "Scarcely + had + подлежащее + V3."},
+            {"question": "Not only ______ (be) they talented, but they are also hardworking.", "answer": "are they", "explanation": "Not only + are + подлежащее."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
+          "subtasks": [
+            {"question": "Not only does he speak three languages, but he also writes poetry.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "No sooner had I opened the window than the cat jumped in.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Hardly had we started our journey when the car broke down.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Not only was the hotel luxurious, but it also had a great view.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "No sooner he had arrived home than he realized he had lost his wallet.", "answer": "No sooner had he arrived home than he realized he had lost his wallet.", "explanation": "Инверсия: had he arrived."},
+            {"question": "Hardly she had finished her presentation when the audience started applauding.", "answer": "Hardly had she finished her presentation when the audience started applauding.", "explanation": "Инверсия: had she finished."},
+            {"question": "Scarcely had the plane landed when the passengers stood up.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Not only they are talented, but they are also hardworking.", "answer": "Not only are they talented, but they are also hardworking.", "explanation": "Инверсия: are they."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "4. Rewrite the sentences using inversion (with the word given in brackets). Type the whole sentence.",
+          "subtasks": [
+            {"question": "He speaks three languages and writes poetry. (Not only) → Not only does he speak three languages, but he also writes poetry.", "answer": "Not only does he speak three languages, but he also writes poetry.", "explanation": "Not only + does."},
+            {"question": "I opened the window and the cat jumped in. (No sooner) → No sooner had I opened the window than the cat jumped in.", "answer": "No sooner had I opened the window than the cat jumped in.", "explanation": "No sooner + had."},
+            {"question": "We started our journey and the car broke down. (Hardly) → Hardly had we started our journey when the car broke down.", "answer": "Hardly had we started our journey when the car broke down.", "explanation": "Hardly + had."},
+            {"question": "The hotel was luxurious and had a great view. (Not only) → Not only was the hotel luxurious, but it also had a great view.", "answer": "Not only was the hotel luxurious, but it also had a great view.", "explanation": "Not only + was."},
+            {"question": "He arrived home and realized he had lost his wallet. (No sooner) → No sooner had he arrived home than he realized he had lost his wallet.", "answer": "No sooner had he arrived home than he realized he had lost his wallet.", "explanation": "No sooner + had."},
+            {"question": "She finished her presentation and the audience started applauding. (Hardly) → Hardly had she finished her presentation when the audience started applauding.", "answer": "Hardly had she finished her presentation when the audience started applauding.", "explanation": "Hardly + had."},
+            {"question": "The plane landed and the passengers stood up. (Scarcely) → Scarcely had the plane landed when the passengers stood up.", "answer": "Scarcely had the plane landed when the passengers stood up.", "explanation": "Scarcely + had."},
+            {"question": "They are talented and hardworking. (Not only) → Not only are they talented, but they are also hardworking.", "answer": "Not only are they talented, but they are also hardworking.", "explanation": "Not only + are."}
+          ]
+        }
+      ],
+      # =====================================================
+      # ВАРИАНТ 7 (перевод)
+      # =====================================================
+      [
+        {
+          "type": "complex",
+          "text": "1. Choose the correct inverted form (a, b, or c) to complete the sentence. Type the letter of your answer.",
+          "subtasks": [
+            {"question": "Not only ______ she play the violin, but she also composes music.", "answer": "does", "explanation": "Not only + does + подлежащее."},
+            {"question": "No sooner ______ I stepped outside than it started to hail.", "answer": "had", "explanation": "No sooner + had + подлежащее + V3."},
+            {"question": "Hardly ______ the teacher left the room when the students started talking.", "answer": "had", "explanation": "Hardly + had + подлежащее + V3."},
+            {"question": "Not only ______ the book interesting, but it was also very educational.", "answer": "was", "explanation": "Not only + was + подлежащее."},
+            {"question": "No sooner ______ the phone stopped ringing than it started again.", "answer": "had", "explanation": "No sooner + had + подлежащее + V3."},
+            {"question": "Hardly ______ we sat down to eat when the doorbell rang.", "answer": "had", "explanation": "Hardly + had + подлежащее + V3."},
+            {"question": "Scarcely ______ I finished my coffee when the train arrived.", "answer": "had", "explanation": "Scarcely + had + подлежащее + V3."},
+            {"question": "Not only ______ the weather perfect, but it was also warm.", "answer": "was", "explanation": "Not only + was + подлежащее."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "2. Fill in the gaps with the correct form of the verb in brackets. Type the missing word(s) in the box.",
+          "subtasks": [
+            {"question": "Not only ______ (play) she the violin, but she also composes music.", "answer": "does she play", "explanation": "Not only + does + подлежащее + V."},
+            {"question": "No sooner ______ (step) I outside than it started to hail.", "answer": "had I stepped", "explanation": "No sooner + had + подлежащее + V3."},
+            {"question": "Hardly ______ (leave) the teacher the room when the students started talking.", "answer": "had the teacher left", "explanation": "Hardly + had + подлежащее + V3."},
+            {"question": "Not only ______ (be) the book interesting, but it was also very educational.", "answer": "was the book", "explanation": "Not only + was + подлежащее."},
+            {"question": "No sooner ______ (stop) the phone ringing than it started again.", "answer": "had the phone stopped", "explanation": "No sooner + had + подлежащее + V3."},
+            {"question": "Hardly ______ (sit) we down to eat when the doorbell rang.", "answer": "had we sat", "explanation": "Hardly + had + подлежащее + V3."},
+            {"question": "Scarcely ______ (finish) I my coffee when the train arrived.", "answer": "had I finished", "explanation": "Scarcely + had + подлежащее + V3."},
+            {"question": "Not only ______ (be) the weather perfect, but it was also warm.", "answer": "was the weather", "explanation": "Not only + was + подлежащее."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
+          "subtasks": [
+            {"question": "Not only does she play the violin, but she also composes music.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "No sooner had I stepped outside than it started to hail.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Hardly had the teacher left the room when the students started talking.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Not only was the book interesting, but it was also very educational.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "No sooner the phone had stopped ringing than it started again.", "answer": "No sooner had the phone stopped ringing than it started again.", "explanation": "Инверсия: had the phone stopped."},
+            {"question": "Hardly we had sat down to eat when the doorbell rang.", "answer": "Hardly had we sat down to eat when the doorbell rang.", "explanation": "Инверсия: had we sat."},
+            {"question": "Scarcely had I finished my coffee when the train arrived.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Not only the weather was perfect, but it was also warm.", "answer": "Not only was the weather perfect, but it was also warm.", "explanation": "Инверсия: was the weather."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "4. Translate the sentences into English using inversion. Type your translation (one sentence) in the box.",
+          "subtasks": [
+            {"question": "Она не только играет на скрипке, но и сочиняет музыку.", "answer": "Not only does she play the violin, but she also composes music.", "explanation": ""},
+            {"question": "Не успел я выйти на улицу, как начался град.", "answer": "No sooner had I stepped outside than it started to hail.", "explanation": ""},
+            {"question": "Едва учитель вышел из комнаты, как ученики начали разговаривать.", "answer": "Hardly had the teacher left the room when the students started talking.", "explanation": ""},
+            {"question": "Книга была не только интересной, но и очень познавательной.", "answer": "Not only was the book interesting, but it was also very educational.", "explanation": ""},
+            {"question": "Не успел телефон перестать звонить, как он снова зазвонил.", "answer": "No sooner had the phone stopped ringing than it started again.", "explanation": ""},
+            {"question": "Едва мы сели обедать, как раздался звонок в дверь.", "answer": "Hardly had we sat down to eat when the doorbell rang.", "explanation": ""},
+            {"question": "Едва я допил кофе, как пришёл поезд.", "answer": "Scarcely had I finished my coffee when the train arrived.", "explanation": ""},
+            {"question": "Погода была не только идеальной, но и тёплой.", "answer": "Not only was the weather perfect, but it was also warm.", "explanation": ""}
+          ]
+        }
+      ],
+      # =====================================================
+      # ВАРИАНТ 8 (перефразирование)
+      # =====================================================
+      [
+        {
+          "type": "complex",
+          "text": "1. Choose the correct inverted form (a, b, or c) to complete the sentence. Type the letter of your answer.",
+          "subtasks": [
+            {"question": "Not only ______ he write bestsellers, but he also helps young writers.", "answer": "does", "explanation": "Not only + does + подлежащее."},
+            {"question": "No sooner ______ I closed the door than the phone rang.", "answer": "had", "explanation": "No sooner + had + подлежащее + V3."},
+            {"question": "Hardly ______ the game started when it began to rain.", "answer": "had", "explanation": "Hardly + had + подлежащее + V3."},
+            {"question": "Not only ______ the restaurant famous, but it also had excellent service.", "answer": "was", "explanation": "Not only + was + подлежащее."},
+            {"question": "No sooner ______ I finished my homework than my friend called.", "answer": "had", "explanation": "No sooner + had + подлежащее + V3."},
+            {"question": "Hardly ______ we arrived at the beach when the weather turned bad.", "answer": "had", "explanation": "Hardly + had + подлежащее + V3."},
+            {"question": "Scarcely ______ she opened the email when she realized it was spam.", "answer": "had", "explanation": "Scarcely + had + подлежащее + V3."},
+            {"question": "Not only ______ the city beautiful, but it also had a rich history.", "answer": "was", "explanation": "Not only + was + подлежащее."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "2. Fill in the gaps with the correct form of the verb in brackets. Type the missing word(s) in the box.",
+          "subtasks": [
+            {"question": "Not only ______ (write) he bestsellers, but he also helps young writers.", "answer": "does he write", "explanation": "Not only + does + подлежащее + V."},
+            {"question": "No sooner ______ (close) I the door than the phone rang.", "answer": "had I closed", "explanation": "No sooner + had + подлежащее + V3."},
+            {"question": "Hardly ______ (start) the game when it began to rain.", "answer": "had the game started", "explanation": "Hardly + had + подлежащее + V3."},
+            {"question": "Not only ______ (be) the restaurant famous, but it also had excellent service.", "answer": "was the restaurant", "explanation": "Not only + was + подлежащее."},
+            {"question": "No sooner ______ (finish) I my homework than my friend called.", "answer": "had I finished", "explanation": "No sooner + had + подлежащее + V3."},
+            {"question": "Hardly ______ (arrive) we at the beach when the weather turned bad.", "answer": "had we arrived", "explanation": "Hardly + had + подлежащее + V3."},
+            {"question": "Scarcely ______ (open) she the email when she realized it was spam.", "answer": "had she opened", "explanation": "Scarcely + had + подлежащее + V3."},
+            {"question": "Not only ______ (be) the city beautiful, but it also had a rich history.", "answer": "was the city", "explanation": "Not only + was + подлежащее."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
+          "subtasks": [
+            {"question": "Not only does he write bestsellers, but he also helps young writers.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "No sooner had I closed the door than the phone rang.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Hardly had the game started when it began to rain.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Not only was the restaurant famous, but it also had excellent service.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "No sooner I had finished my homework than my friend called.", "answer": "No sooner had I finished my homework than my friend called.", "explanation": "Инверсия: had I finished."},
+            {"question": "Hardly we had arrived at the beach when the weather turned bad.", "answer": "Hardly had we arrived at the beach when the weather turned bad.", "explanation": "Инверсия: had we arrived."},
+            {"question": "Scarcely had she opened the email when she realized it was spam.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Not only the city was beautiful, but it also had a rich history.", "answer": "Not only was the city beautiful, but it also had a rich history.", "explanation": "Инверсия: was the city."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "4. Rewrite the sentences using inversion (with the word given in brackets). Type the whole sentence.",
+          "subtasks": [
+            {"question": "He writes bestsellers and helps young writers. (Not only) → Not only does he write bestsellers, but he also helps young writers.", "answer": "Not only does he write bestsellers, but he also helps young writers.", "explanation": "Not only + does."},
+            {"question": "I closed the door and the phone rang. (No sooner) → No sooner had I closed the door than the phone rang.", "answer": "No sooner had I closed the door than the phone rang.", "explanation": "No sooner + had."},
+            {"question": "The game started and it began to rain. (Hardly) → Hardly had the game started when it began to rain.", "answer": "Hardly had the game started when it began to rain.", "explanation": "Hardly + had."},
+            {"question": "The restaurant was famous and had excellent service. (Not only) → Not only was the restaurant famous, but it also had excellent service.", "answer": "Not only was the restaurant famous, but it also had excellent service.", "explanation": "Not only + was."},
+            {"question": "I finished my homework and my friend called. (No sooner) → No sooner had I finished my homework than my friend called.", "answer": "No sooner had I finished my homework than my friend called.", "explanation": "No sooner + had."},
+            {"question": "We arrived at the beach and the weather turned bad. (Hardly) → Hardly had we arrived at the beach when the weather turned bad.", "answer": "Hardly had we arrived at the beach when the weather turned bad.", "explanation": "Hardly + had."},
+            {"question": "She opened the email and realized it was spam. (Scarcely) → Scarcely had she opened the email when she realized it was spam.", "answer": "Scarcely had she opened the email when she realized it was spam.", "explanation": "Scarcely + had."},
+            {"question": "The city was beautiful and had a rich history. (Not only) → Not only was the city beautiful, but it also had a rich history.", "answer": "Not only was the city beautiful, but it also had a rich history.", "explanation": "Not only + was."}
+          ]
+        }
+      ],
+      # =====================================================
+      # ВАРИАНТ 9 (перевод)
+      # =====================================================
+      [
+        {
+          "type": "complex",
+          "text": "1. Choose the correct inverted form (a, b, or c) to complete the sentence. Type the letter of your answer.",
+          "subtasks": [
+            {"question": "Not only ______ he paint beautifully, but he also sculpts.", "answer": "does", "explanation": "Not only + does + подлежащее."},
+            {"question": "No sooner ______ I parked the car than I realized it was a no-parking zone.", "answer": "had", "explanation": "No sooner + had + подлежащее + V3."},
+            {"question": "Hardly ______ the children fallen asleep when the baby woke up.", "answer": "had", "explanation": "Hardly + had + подлежащее + V3."},
+            {"question": "Not only ______ the hotel clean, but it was also very comfortable.", "answer": "was", "explanation": "Not only + was + подлежащее."},
+            {"question": "No sooner ______ I submitted the report than I found a mistake.", "answer": "had", "explanation": "No sooner + had + подлежащее + V3."},
+            {"question": "Hardly ______ we started the meeting when the fire alarm went off.", "answer": "had", "explanation": "Hardly + had + подлежащее + V3."},
+            {"question": "Scarcely ______ he finished his meal when he asked for the bill.", "answer": "had", "explanation": "Scarcely + had + подлежащее + V3."},
+            {"question": "Not only ______ the party fun, but it also had great music.", "answer": "was", "explanation": "Not only + was + подлежащее."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "2. Fill in the gaps with the correct form of the verb in brackets. Type the missing word(s) in the box.",
+          "subtasks": [
+            {"question": "Not only ______ (paint) he beautifully, but he also sculpts.", "answer": "does he paint", "explanation": "Not only + does + подлежащее + V."},
+            {"question": "No sooner ______ (park) I the car than I realized it was a no-parking zone.", "answer": "had I parked", "explanation": "No sooner + had + подлежащее + V3."},
+            {"question": "Hardly ______ (fall) the children asleep when the baby woke up.", "answer": "had the children fallen", "explanation": "Hardly + had + подлежащее + V3."},
+            {"question": "Not only ______ (be) the hotel clean, but it was also very comfortable.", "answer": "was the hotel", "explanation": "Not only + was + подлежащее."},
+            {"question": "No sooner ______ (submit) I the report than I found a mistake.", "answer": "had I submitted", "explanation": "No sooner + had + подлежащее + V3."},
+            {"question": "Hardly ______ (start) we the meeting when the fire alarm went off.", "answer": "had we started", "explanation": "Hardly + had + подлежащее + V3."},
+            {"question": "Scarcely ______ (finish) he his meal when he asked for the bill.", "answer": "had he finished", "explanation": "Scarcely + had + подлежащее + V3."},
+            {"question": "Not only ______ (be) the party fun, but it also had great music.", "answer": "was the party", "explanation": "Not only + was + подлежащее."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
+          "subtasks": [
+            {"question": "Not only does he paint beautifully, but he also sculpts.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "No sooner had I parked the car than I realized it was a no-parking zone.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Hardly had the children fallen asleep when the baby woke up.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Not only was the hotel clean, but it was also very comfortable.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "No sooner I had submitted the report than I found a mistake.", "answer": "No sooner had I submitted the report than I found a mistake.", "explanation": "Инверсия: had I submitted."},
+            {"question": "Hardly we had started the meeting when the fire alarm went off.", "answer": "Hardly had we started the meeting when the fire alarm went off.", "explanation": "Инверсия: had we started."},
+            {"question": "Scarcely had he finished his meal when he asked for the bill.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Not only the party was fun, but it also had great music.", "answer": "Not only was the party fun, but it also had great music.", "explanation": "Инверсия: was the party."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "4. Translate the sentences into English using inversion. Type your translation (one sentence) in the box.",
+          "subtasks": [
+            {"question": "Он не только красиво рисует, но и лепит.", "answer": "Not only does he paint beautifully, but he also sculpts.", "explanation": ""},
+            {"question": "Не успел я припарковать машину, как понял, что это зона запрета парковки.", "answer": "No sooner had I parked the car than I realized it was a no-parking zone.", "explanation": ""},
+            {"question": "Едва дети уснули, как проснулся младенец.", "answer": "Hardly had the children fallen asleep when the baby woke up.", "explanation": ""},
+            {"question": "Отель был не только чистым, но и очень уютным.", "answer": "Not only was the hotel clean, but it was also very comfortable.", "explanation": ""},
+            {"question": "Не успел я отправить отчёт, как нашёл ошибку.", "answer": "No sooner had I submitted the report than I found a mistake.", "explanation": ""},
+            {"question": "Едва мы начали встречу, как сработала пожарная сигнализация.", "answer": "Hardly had we started the meeting when the fire alarm went off.", "explanation": ""},
+            {"question": "Едва он закончил есть, как попросил счёт.", "answer": "Scarcely had he finished his meal when he asked for the bill.", "explanation": ""},
+            {"question": "Вечеринка была не только весёлой, но и с отличной музыкой.", "answer": "Not only was the party fun, but it also had great music.", "explanation": ""}
+          ]
+        }
+      ],
+      # =====================================================
+      # ВАРИАНТ 10 (перефразирование)
+      # =====================================================
+      [
+        {
+          "type": "complex",
+          "text": "1. Choose the correct inverted form (a, b, or c) to complete the sentence. Type the letter of your answer.",
+          "subtasks": [
+            {"question": "Not only ______ she cook well, but she also bakes.", "answer": "does", "explanation": "Not only + does + подлежащее."},
+            {"question": "No sooner ______ I unpacked my bags than I remembered I had left my passport.", "answer": "had", "explanation": "No sooner + had + подлежащее + V3."},
+            {"question": "Hardly ______ the film started when there was a technical problem.", "answer": "had", "explanation": "Hardly + had + подлежащее + V3."},
+            {"question": "Not only ______ the scenery beautiful, but it was also peaceful.", "answer": "was", "explanation": "Not only + was + подлежащее."},
+            {"question": "No sooner ______ I hung up the phone than it rang again.", "answer": "had", "explanation": "No sooner + had + подлежащее + V3."},
+            {"question": "Hardly ______ we gone ten miles when the car broke down.", "answer": "had", "explanation": "Hardly + had + подлежащее + V3."},
+            {"question": "Scarcely ______ he started reading when he fell asleep.", "answer": "had", "explanation": "Scarcely + had + подлежащее + V3."},
+            {"question": "Not only ______ the exam difficult, but it was also very long.", "answer": "was", "explanation": "Not only + was + подлежащее."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "2. Fill in the gaps with the correct form of the verb in brackets. Type the missing word(s) in the box.",
+          "subtasks": [
+            {"question": "Not only ______ (cook) she well, but she also bakes.", "answer": "does she cook", "explanation": "Not only + does + подлежащее + V."},
+            {"question": "No sooner ______ (unpack) I my bags than I remembered I had left my passport.", "answer": "had I unpacked", "explanation": "No sooner + had + подлежащее + V3."},
+            {"question": "Hardly ______ (start) the film when there was a technical problem.", "answer": "had the film started", "explanation": "Hardly + had + подлежащее + V3."},
+            {"question": "Not only ______ (be) the scenery beautiful, but it was also peaceful.", "answer": "was the scenery", "explanation": "Not only + was + подлежащее."},
+            {"question": "No sooner ______ (hang) I up the phone than it rang again.", "answer": "had I hung", "explanation": "No sooner + had + подлежащее + V3."},
+            {"question": "Hardly ______ (go) we ten miles when the car broke down.", "answer": "had we gone", "explanation": "Hardly + had + подлежащее + V3."},
+            {"question": "Scarcely ______ (start) he reading when he fell asleep.", "answer": "had he started", "explanation": "Scarcely + had + подлежащее + V3."},
+            {"question": "Not only ______ (be) the exam difficult, but it was also very long.", "answer": "was the exam", "explanation": "Not only + was + подлежащее."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
+          "subtasks": [
+            {"question": "Not only does she cook well, but she also bakes.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "No sooner had I unpacked my bags than I remembered I had left my passport.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Hardly had the film started when there was a technical problem.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Not only was the scenery beautiful, but it was also peaceful.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "No sooner I had hung up the phone than it rang again.", "answer": "No sooner had I hung up the phone than it rang again.", "explanation": "Инверсия: had I hung."},
+            {"question": "Hardly we had gone ten miles when the car broke down.", "answer": "Hardly had we gone ten miles when the car broke down.", "explanation": "Инверсия: had we gone."},
+            {"question": "Scarcely had he started reading when he fell asleep.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Not only the exam was difficult, but it was also very long.", "answer": "Not only was the exam difficult, but it was also very long.", "explanation": "Инверсия: was the exam."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "4. Rewrite the sentences using inversion (with the word given in brackets). Type the whole sentence.",
+          "subtasks": [
+            {"question": "She cooks well and bakes. (Not only) → Not only does she cook well, but she also bakes.", "answer": "Not only does she cook well, but she also bakes.", "explanation": "Not only + does."},
+            {"question": "I unpacked my bags and remembered I had left my passport. (No sooner) → No sooner had I unpacked my bags than I remembered I had left my passport.", "answer": "No sooner had I unpacked my bags than I remembered I had left my passport.", "explanation": "No sooner + had."},
+            {"question": "The film started and there was a technical problem. (Hardly) → Hardly had the film started when there was a technical problem.", "answer": "Hardly had the film started when there was a technical problem.", "explanation": "Hardly + had."},
+            {"question": "The scenery was beautiful and peaceful. (Not only) → Not only was the scenery beautiful, but it was also peaceful.", "answer": "Not only was the scenery beautiful, but it was also peaceful.", "explanation": "Not only + was."},
+            {"question": "I hung up the phone and it rang again. (No sooner) → No sooner had I hung up the phone than it rang again.", "answer": "No sooner had I hung up the phone than it rang again.", "explanation": "No sooner + had."},
+            {"question": "We went ten miles and the car broke down. (Hardly) → Hardly had we gone ten miles when the car broke down.", "answer": "Hardly had we gone ten miles when the car broke down.", "explanation": "Hardly + had."},
+            {"question": "He started reading and fell asleep. (Scarcely) → Scarcely had he started reading when he fell asleep.", "answer": "Scarcely had he started reading when he fell asleep.", "explanation": "Scarcely + had."},
+            {"question": "The exam was difficult and long. (Not only) → Not only was the exam difficult, but it was also very long.", "answer": "Not only was the exam difficult, but it was also very long.", "explanation": "Not only + was."}
+          ]
+        }
+      ],
+      # =====================================================
+      # ВАРИАНТ 11 (перевод)
+      # =====================================================
+      [
+        {
+          "type": "complex",
+          "text": "1. Choose the correct inverted form (a, b, or c) to complete the sentence. Type the letter of your answer.",
+          "subtasks": [
+            {"question": "Not only ______ he run fast, but he also swims well.", "answer": "does", "explanation": "Not only + does + подлежащее."},
+            {"question": "No sooner ______ I finished eating than the waiter brought the bill.", "answer": "had", "explanation": "No sooner + had + подлежащее + V3."},
+            {"question": "Hardly ______ the summer started when the weather turned cold.", "answer": "had", "explanation": "Hardly + had + подлежащее + V3."},
+            {"question": "Not only ______ the film exciting, but it also had a great story.", "answer": "was", "explanation": "Not only + was + подлежащее."},
+            {"question": "No sooner ______ I turned off the lights than I heard a noise.", "answer": "had", "explanation": "No sooner + had + подлежащее + V3."},
+            {"question": "Hardly ______ the plane taken off when it started to shake.", "answer": "had", "explanation": "Hardly + had + подлежащее + V3."},
+            {"question": "Scarcely ______ I sat down when the bus started moving.", "answer": "had", "explanation": "Scarcely + had + подлежащее + V3."},
+            {"question": "Not only ______ the book long, but it was also very boring.", "answer": "was", "explanation": "Not only + was + подлежащее."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "2. Fill in the gaps with the correct form of the verb in brackets. Type the missing word(s) in the box.",
+          "subtasks": [
+            {"question": "Not only ______ (run) he fast, but he also swims well.", "answer": "does he run", "explanation": "Not only + does + подлежащее + V."},
+            {"question": "No sooner ______ (finish) I eating than the waiter brought the bill.", "answer": "had I finished", "explanation": "No sooner + had + подлежащее + V3."},
+            {"question": "Hardly ______ (start) the summer when the weather turned cold.", "answer": "had the summer started", "explanation": "Hardly + had + подлежащее + V3."},
+            {"question": "Not only ______ (be) the film exciting, but it also had a great story.", "answer": "was the film", "explanation": "Not only + was + подлежащее."},
+            {"question": "No sooner ______ (turn) I off the lights than I heard a noise.", "answer": "had I turned", "explanation": "No sooner + had + подлежащее + V3."},
+            {"question": "Hardly ______ (take) the plane off when it started to shake.", "answer": "had the plane taken", "explanation": "Hardly + had + подлежащее + V3."},
+            {"question": "Scarcely ______ (sit) I down when the bus started moving.", "answer": "had I sat", "explanation": "Scarcely + had + подлежащее + V3."},
+            {"question": "Not only ______ (be) the book long, but it was also very boring.", "answer": "was the book", "explanation": "Not only + was + подлежащее."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
+          "subtasks": [
+            {"question": "Not only does he run fast, but he also swims well.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "No sooner had I finished eating than the waiter brought the bill.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Hardly had the summer started when the weather turned cold.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Not only was the film exciting, but it also had a great story.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "No sooner I had turned off the lights than I heard a noise.", "answer": "No sooner had I turned off the lights than I heard a noise.", "explanation": "Инверсия: had I turned."},
+            {"question": "Hardly the plane had taken off when it started to shake.", "answer": "Hardly had the plane taken off when it started to shake.", "explanation": "Инверсия: had the plane taken."},
+            {"question": "Scarcely had I sat down when the bus started moving.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Not only the book was long, but it was also very boring.", "answer": "Not only was the book long, but it was also very boring.", "explanation": "Инверсия: was the book."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "4. Translate the sentences into English using inversion. Type your translation (one sentence) in the box.",
+          "subtasks": [
+            {"question": "Он не только быстро бегает, но и хорошо плавает.", "answer": "Not only does he run fast, but he also swims well.", "explanation": ""},
+            {"question": "Не успел я закончить есть, как официант принёс счёт.", "answer": "No sooner had I finished eating than the waiter brought the bill.", "explanation": ""},
+            {"question": "Едва началось лето, как погода стала холодной.", "answer": "Hardly had the summer started when the weather turned cold.", "explanation": ""},
+            {"question": "Фильм был не только захватывающим, но и с отличным сюжетом.", "answer": "Not only was the film exciting, but it also had a great story.", "explanation": ""},
+            {"question": "Не успел я выключить свет, как услышал шум.", "answer": "No sooner had I turned off the lights than I heard a noise.", "explanation": ""},
+            {"question": "Едва самолёт взлетел, как он начал трястись.", "answer": "Hardly had the plane taken off when it started to shake.", "explanation": ""},
+            {"question": "Едва я сел, как автобус тронулся.", "answer": "Scarcely had I sat down when the bus started moving.", "explanation": ""},
+            {"question": "Книга была не только длинной, но и очень скучной.", "answer": "Not only was the book long, but it was also very boring.", "explanation": ""}
+          ]
+        }
+      ],
+      # =====================================================
+      # ВАРИАНТ 12 (перефразирование)
+      # =====================================================
+      [
+        {
+          "type": "complex",
+          "text": "1. Choose the correct inverted form (a, b, or c) to complete the sentence. Type the letter of your answer.",
+          "subtasks": [
+            {"question": "Not only ______ they dance well, but they also sing beautifully.", "answer": "do", "explanation": "Not only + do + подлежащее."},
+            {"question": "No sooner ______ I entered the room than I felt something strange.", "answer": "had", "explanation": "No sooner + had + подлежащее + V3."},
+            {"question": "Hardly ______ the sun set when the stars appeared.", "answer": "had", "explanation": "Hardly + had + подлежащее + V3."},
+            {"question": "Not only ______ the town small, but it was also very quiet.", "answer": "was", "explanation": "Not only + was + подлежащее."},
+            {"question": "No sooner ______ the rain stopped than the sun came out.", "answer": "had", "explanation": "No sooner + had + подлежащее + V3."},
+            {"question": "Hardly ______ we said goodbye when we realized we had forgotten the gift.", "answer": "had", "explanation": "Hardly + had + подлежащее + V3."},
+            {"question": "Scarcely ______ she started the car when the engine died.", "answer": "had", "explanation": "Scarcely + had + подлежащее + V3."},
+            {"question": "Not only ______ the lecture informative, but it was also interesting.", "answer": "was", "explanation": "Not only + was + подлежащее."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "2. Fill in the gaps with the correct form of the verb in brackets. Type the missing word(s) in the box.",
+          "subtasks": [
+            {"question": "Not only ______ (dance) they well, but they also sing beautifully.", "answer": "do they dance", "explanation": "Not only + do + подлежащее + V."},
+            {"question": "No sooner ______ (enter) I the room than I felt something strange.", "answer": "had I entered", "explanation": "No sooner + had + подлежащее + V3."},
+            {"question": "Hardly ______ (set) the sun when the stars appeared.", "answer": "had the sun set", "explanation": "Hardly + had + подлежащее + V3."},
+            {"question": "Not only ______ (be) the town small, but it was also very quiet.", "answer": "was the town", "explanation": "Not only + was + подлежащее."},
+            {"question": "No sooner ______ (stop) the rain than the sun came out.", "answer": "had the rain stopped", "explanation": "No sooner + had + подлежащее + V3."},
+            {"question": "Hardly ______ (say) we goodbye when we realized we had forgotten the gift.", "answer": "had we said", "explanation": "Hardly + had + подлежащее + V3."},
+            {"question": "Scarcely ______ (start) she the car when the engine died.", "answer": "had she started", "explanation": "Scarcely + had + подлежащее + V3."},
+            {"question": "Not only ______ (be) the lecture informative, but it was also interesting.", "answer": "was the lecture", "explanation": "Not only + was + подлежащее."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
+          "subtasks": [
+            {"question": "Not only do they dance well, but they also sing beautifully.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "No sooner had I entered the room than I felt something strange.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Hardly had the sun set when the stars appeared.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Not only was the town small, but it was also very quiet.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "No sooner the rain had stopped than the sun came out.", "answer": "No sooner had the rain stopped than the sun came out.", "explanation": "Инверсия: had the rain stopped."},
+            {"question": "Hardly we had said goodbye when we realized we had forgotten the gift.", "answer": "Hardly had we said goodbye when we realized we had forgotten the gift.", "explanation": "Инверсия: had we said."},
+            {"question": "Scarcely had she started the car when the engine died.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "Not only the lecture was informative, but it was also interesting.", "answer": "Not only was the lecture informative, but it was also interesting.", "explanation": "Инверсия: was the lecture."}
+          ]
+        },
+        {
+          "type": "complex",
+          "text": "4. Rewrite the sentences using inversion (with the word given in brackets). Type the whole sentence.",
+          "subtasks": [
+            {"question": "They dance well and sing beautifully. (Not only) → Not only do they dance well, but they also sing beautifully.", "answer": "Not only do they dance well, but they also sing beautifully.", "explanation": "Not only + do."},
+            {"question": "I entered the room and felt something strange. (No sooner) → No sooner had I entered the room than I felt something strange.", "answer": "No sooner had I entered the room than I felt something strange.", "explanation": "No sooner + had."},
+            {"question": "The sun set and the stars appeared. (Hardly) → Hardly had the sun set when the stars appeared.", "answer": "Hardly had the sun set when the stars appeared.", "explanation": "Hardly + had."},
+            {"question": "The town was small and quiet. (Not only) → Not only was the town small, but it was also very quiet.", "answer": "Not only was the town small, but it was also very quiet.", "explanation": "Not only + was."},
+            {"question": "The rain stopped and the sun came out. (No sooner) → No sooner had the rain stopped than the sun came out.", "answer": "No sooner had the rain stopped than the sun came out.", "explanation": "No sooner + had."},
+            {"question": "We said goodbye and realized we had forgotten the gift. (Hardly) → Hardly had we said goodbye when we realized we had forgotten the gift.", "answer": "Hardly had we said goodbye when we realized we had forgotten the gift.", "explanation": "Hardly + had."},
+            {"question": "She started the car and the engine died. (Scarcely) → Scarcely had she started the car when the engine died.", "answer": "Scarcely had she started the car when the engine died.", "explanation": "Scarcely + had."},
+            {"question": "The lecture was informative and interesting. (Not only) → Not only was the lecture informative, but it was also interesting.", "answer": "Not only was the lecture informative, but it was also interesting.", "explanation": "Not only + was."}
+          ]
+        }
+      ]
     ]
-]
   },
   "inversion_emphatic": {
     "title": "Инверсия для эмфазы (Only after, Only then, Little did he know)",
@@ -24384,7 +24395,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
         "answer": "Только если only стоит в начале предложения и относится ко всему предложению (не к подлежащему). Only John can help (инверсии нет)."
       }
     ],
-"practice_bank": [
+    "practice_bank": []   # пустой, вы можете заполнить позже
     # =====================================================
     # ВАРИАНТ 1 (перевод)
     # =====================================================
