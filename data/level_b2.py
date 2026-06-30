@@ -22074,7 +22074,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
     ]
 ]
   },
-  "relative_clauses_reduced": {
+"relative_clauses_reduced": {
     "title": "Сокращённые определительные придаточные (the man sitting there; the book written by...)",
     "pages": [
       {
@@ -22104,742 +22104,741 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
         "answer": "Нет, только если глагол в придаточной части передаёт длительное или повторяющееся действие (или пассив)."
       }
     ],
-"practice_bank": [
-    # =====================================================
-    # ВАРИАНТ 1 (перевод)
-    # =====================================================
-    [
+    "practice_bank": [
+      # =====================================================
+      # ВАРИАНТ 1 (перевод)
+      # =====================================================
+      [
         {
-            "type": "complex",
-            "text": "1. Choose the correct reduced form (a, b, or c) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "The man ______ there is my uncle.", "answer": "sitting", "explanation": "Активный залог: who is sitting → sitting."},
-                {"question": "The girl ______ in the cafe is friendly.", "answer": "working", "explanation": "Активный залог: who works → working."},
-                {"question": "The book ______ by Tolkien is famous.", "answer": "written", "explanation": "Пассивный залог: which was written → written."},
-                {"question": "The car ______ outside has been stolen.", "answer": "parked", "explanation": "Пассивный залог: which was parked → parked."},
-                {"question": "The students ______ hard will pass.", "answer": "studying", "explanation": "Активный залог: who study → studying."},
-                {"question": "I saw a bird ______ over the house.", "answer": "flying", "explanation": "Активный залог: which was flying → flying."},
-                {"question": "The letters ______ yesterday have arrived.", "answer": "sent", "explanation": "Пассивный залог: which were sent → sent."},
-                {"question": "The chair I am ______ on is broken.", "answer": "sitting", "explanation": "С предлогом: which I am sitting on → I am sitting on."}
-            ]
+          "type": "complex",
+          "text": "1. Choose the correct reduced form (a, b, or c) to complete the sentence. Type the letter of your answer.",
+          "subtasks": [
+            {"question": "The man ______ there is my uncle.", "answer": "sitting", "explanation": "Активный залог: who is sitting → sitting."},
+            {"question": "The girl ______ in the cafe is friendly.", "answer": "working", "explanation": "Активный залог: who works → working."},
+            {"question": "The book ______ by Tolkien is famous.", "answer": "written", "explanation": "Пассивный залог: which was written → written."},
+            {"question": "The car ______ outside has been stolen.", "answer": "parked", "explanation": "Пассивный залог: which was parked → parked."},
+            {"question": "The students ______ hard will pass.", "answer": "studying", "explanation": "Активный залог: who study → studying."},
+            {"question": "I saw a bird ______ over the house.", "answer": "flying", "explanation": "Активный залог: which was flying → flying."},
+            {"question": "The letters ______ yesterday have arrived.", "answer": "sent", "explanation": "Пассивный залог: which were sent → sent."},
+            {"question": "The chair I am ______ on is broken.", "answer": "sitting", "explanation": "С предлогом: which I am sitting on → I am sitting on."}
+          ]
         },
         {
-            "type": "complex",
-            "text": "2. Fill in the gaps with the correct reduced form of the verb in brackets. Type the missing word(s) in the box.",
-            "subtasks": [
-                {"question": "The man ______ (sit) there is my uncle.", "answer": "sitting", "explanation": "Активный залог: who is sitting → sitting."},
-                {"question": "The girl ______ (work) in the cafe is friendly.", "answer": "working", "explanation": "Активный залог: who works → working."},
-                {"question": "The book ______ (write) by Tolkien is famous.", "answer": "written", "explanation": "Пассив: which was written → written."},
-                {"question": "The car ______ (park) outside has been stolen.", "answer": "parked", "explanation": "Пассив: which was parked → parked."},
-                {"question": "The students ______ (study) hard will pass.", "answer": "studying", "explanation": "Активный: who study → studying."},
-                {"question": "I saw a bird ______ (fly) over the house.", "answer": "flying", "explanation": "Активный: which was flying → flying."},
-                {"question": "The letters ______ (send) yesterday have arrived.", "answer": "sent", "explanation": "Пассив: which were sent → sent."},
-                {"question": "The chair I am ______ (sit) on is broken.", "answer": "sitting", "explanation": "С предлогом: which I am sitting on → sitting."}
-            ]
+          "type": "complex",
+          "text": "2. Fill in the gaps with the correct reduced form of the verb in brackets. Type the missing word(s) in the box.",
+          "subtasks": [
+            {"question": "The man ______ (sit) there is my uncle.", "answer": "sitting", "explanation": "Активный залог: who is sitting → sitting."},
+            {"question": "The girl ______ (work) in the cafe is friendly.", "answer": "working", "explanation": "Активный залог: who works → working."},
+            {"question": "The book ______ (write) by Tolkien is famous.", "answer": "written", "explanation": "Пассив: which was written → written."},
+            {"question": "The car ______ (park) outside has been stolen.", "answer": "parked", "explanation": "Пассив: which was parked → parked."},
+            {"question": "The students ______ (study) hard will pass.", "answer": "studying", "explanation": "Активный: who study → studying."},
+            {"question": "I saw a bird ______ (fly) over the house.", "answer": "flying", "explanation": "Активный: which was flying → flying."},
+            {"question": "The letters ______ (send) yesterday have arrived.", "answer": "sent", "explanation": "Пассив: which were sent → sent."},
+            {"question": "The chair I am ______ (sit) on is broken.", "answer": "sitting", "explanation": "С предлогом: which I am sitting on → sitting."}
+          ]
         },
         {
-            "type": "complex",
-            "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
-            "subtasks": [
-                {"question": "The man sat there is my uncle.", "answer": "The man sitting there is my uncle.", "explanation": "Активный залог требует V‑ing, не V3."},
-                {"question": "The girl working in the cafe is friendly.", "answer": "Correct", "explanation": "Активный залог: working – верно."},
-                {"question": "The book written by Tolkien is famous.", "answer": "Correct", "explanation": "Пассив: written – верно."},
-                {"question": "The car parked outside has been stolen.", "answer": "Correct", "explanation": "Пассив: parked – верно."},
-                {"question": "The students studying hard will pass.", "answer": "Correct", "explanation": "Активный: studying – верно."},
-                {"question": "I saw a bird flew over the house.", "answer": "I saw a bird flying over the house.", "explanation": "Активный залог требует V‑ing, не V2."},
-                {"question": "The letters sent yesterday have arrived.", "answer": "Correct", "explanation": "Пассив: sent – верно."},
-                {"question": "The chair I am sit on is broken.", "answer": "The chair I am sitting on is broken.", "explanation": "Нужен V‑ing (sitting)."}
-            ]
+          "type": "complex",
+          "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
+          "subtasks": [
+            {"question": "The man sat there is my uncle.", "answer": "The man sitting there is my uncle.", "explanation": "Активный залог требует V‑ing, не V3."},
+            {"question": "The girl working in the cafe is friendly.", "answer": "Correct", "explanation": "Активный залог: working – верно."},
+            {"question": "The book written by Tolkien is famous.", "answer": "Correct", "explanation": "Пассив: written – верно."},
+            {"question": "The car parked outside has been stolen.", "answer": "Correct", "explanation": "Пассив: parked – верно."},
+            {"question": "The students studying hard will pass.", "answer": "Correct", "explanation": "Активный: studying – верно."},
+            {"question": "I saw a bird flew over the house.", "answer": "I saw a bird flying over the house.", "explanation": "Активный залог требует V‑ing, не V2."},
+            {"question": "The letters sent yesterday have arrived.", "answer": "Correct", "explanation": "Пассив: sent – верно."},
+            {"question": "The chair I am sit on is broken.", "answer": "The chair I am sitting on is broken.", "explanation": "Нужен V‑ing (sitting)."}
+          ]
         },
         {
-            "type": "complex",
-            "text": "4. Translate the sentences into English using reduced relative clauses. Type your translation (one sentence) in the box.",
-            "subtasks": [
-                {"question": "Человек, сидящий там, – мой дядя.", "answer": "The man sitting there is my uncle.", "explanation": ""},
-                {"question": "Девушка, работающая в кафе, дружелюбная.", "answer": "The girl working in the cafe is friendly.", "explanation": ""},
-                {"question": "Книга, написанная Толкином, знаменита.", "answer": "The book written by Tolkien is famous.", "explanation": ""},
-                {"question": "Машина, припаркованная снаружи, была украдена.", "answer": "The car parked outside has been stolen.", "explanation": ""},
-                {"question": "Студенты, усердно занимающиеся, сдадут.", "answer": "The students studying hard will pass.", "explanation": ""},
-                {"question": "Я видел птицу, летящую над домом.", "answer": "I saw a bird flying over the house.", "explanation": ""},
-                {"question": "Письма, отправленные вчера, пришли.", "answer": "The letters sent yesterday have arrived.", "explanation": ""},
-                {"question": "Стул, на котором я сижу, сломан.", "answer": "The chair I am sitting on is broken.", "explanation": ""}
-            ]
+          "type": "complex",
+          "text": "4. Translate the sentences into English using reduced relative clauses. Type your translation (one sentence) in the box.",
+          "subtasks": [
+            {"question": "Человек, сидящий там, – мой дядя.", "answer": "The man sitting there is my uncle.", "explanation": ""},
+            {"question": "Девушка, работающая в кафе, дружелюбная.", "answer": "The girl working in the cafe is friendly.", "explanation": ""},
+            {"question": "Книга, написанная Толкином, знаменита.", "answer": "The book written by Tolkien is famous.", "explanation": ""},
+            {"question": "Машина, припаркованная снаружи, была украдена.", "answer": "The car parked outside has been stolen.", "explanation": ""},
+            {"question": "Студенты, усердно занимающиеся, сдадут.", "answer": "The students studying hard will pass.", "explanation": ""},
+            {"question": "Я видел птицу, летящую над домом.", "answer": "I saw a bird flying over the house.", "explanation": ""},
+            {"question": "Письма, отправленные вчера, пришли.", "answer": "The letters sent yesterday have arrived.", "explanation": ""},
+            {"question": "Стул, на котором я сижу, сломан.", "answer": "The chair I am sitting on is broken.", "explanation": ""}
+          ]
         }
-    ],
-    # =====================================================
-    # ВАРИАНТ 2 (перефразирование)
-    # =====================================================
-    [
+      ],
+      # =====================================================
+      # ВАРИАНТ 2 (перефразирование)
+      # =====================================================
+      [
         {
-            "type": "complex",
-            "text": "1. Choose the correct reduced form (a, b, or c) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "The woman ______ the piano is my aunt.", "answer": "playing", "explanation": "Активный: who is playing → playing."},
-                {"question": "The children ______ in the garden are happy.", "answer": "playing", "explanation": "Активный: who are playing → playing."},
-                {"question": "The house ______ by the river is beautiful.", "answer": "located", "explanation": "Пассив: which is located → located."},
-                {"question": "The cake ______ by my grandmother was delicious.", "answer": "made", "explanation": "Пассив: which was made → made."},
-                {"question": "The people ______ in the queue are waiting for tickets.", "answer": "standing", "explanation": "Активный: who are standing → standing."},
-                {"question": "The flowers ______ in the garden smell lovely.", "answer": "growing", "explanation": "Активный: which are growing → growing."},
-                {"question": "The documents ______ on the desk are important.", "answer": "left", "explanation": "Пассив: which were left → left."},
-                {"question": "The teacher ______ by all the students is very strict.", "answer": "feared", "explanation": "Пассив: who is feared → feared."}
-            ]
+          "type": "complex",
+          "text": "1. Choose the correct reduced form (a, b, or c) to complete the sentence. Type the letter of your answer.",
+          "subtasks": [
+            {"question": "The woman ______ the piano is my aunt.", "answer": "playing", "explanation": "Активный: who is playing → playing."},
+            {"question": "The children ______ in the garden are happy.", "answer": "playing", "explanation": "Активный: who are playing → playing."},
+            {"question": "The house ______ by the river is beautiful.", "answer": "located", "explanation": "Пассив: which is located → located."},
+            {"question": "The cake ______ by my grandmother was delicious.", "answer": "made", "explanation": "Пассив: which was made → made."},
+            {"question": "The people ______ in the queue are waiting for tickets.", "answer": "standing", "explanation": "Активный: who are standing → standing."},
+            {"question": "The flowers ______ in the garden smell lovely.", "answer": "growing", "explanation": "Активный: which are growing → growing."},
+            {"question": "The documents ______ on the desk are important.", "answer": "left", "explanation": "Пассив: which were left → left."},
+            {"question": "The teacher ______ by all the students is very strict.", "answer": "feared", "explanation": "Пассив: who is feared → feared."}
+          ]
         },
         {
-            "type": "complex",
-            "text": "2. Fill in the gaps with the correct reduced form of the verb in brackets. Type the missing word(s) in the box.",
-            "subtasks": [
-                {"question": "The woman ______ (play) the piano is my aunt.", "answer": "playing", "explanation": "Активный."},
-                {"question": "The children ______ (play) in the garden are happy.", "answer": "playing", "explanation": "Активный."},
-                {"question": "The house ______ (locate) by the river is beautiful.", "answer": "located", "explanation": "Пассив."},
-                {"question": "The cake ______ (make) by my grandmother was delicious.", "answer": "made", "explanation": "Пассив."},
-                {"question": "The people ______ (stand) in the queue are waiting for tickets.", "answer": "standing", "explanation": "Активный."},
-                {"question": "The flowers ______ (grow) in the garden smell lovely.", "answer": "growing", "explanation": "Активный."},
-                {"question": "The documents ______ (leave) on the desk are important.", "answer": "left", "explanation": "Пассив."},
-                {"question": "The teacher ______ (fear) by all the students is very strict.", "answer": "feared", "explanation": "Пассив."}
-            ]
+          "type": "complex",
+          "text": "2. Fill in the gaps with the correct reduced form of the verb in brackets. Type the missing word(s) in the box.",
+          "subtasks": [
+            {"question": "The woman ______ (play) the piano is my aunt.", "answer": "playing", "explanation": "Активный."},
+            {"question": "The children ______ (play) in the garden are happy.", "answer": "playing", "explanation": "Активный."},
+            {"question": "The house ______ (locate) by the river is beautiful.", "answer": "located", "explanation": "Пассив."},
+            {"question": "The cake ______ (make) by my grandmother was delicious.", "answer": "made", "explanation": "Пассив."},
+            {"question": "The people ______ (stand) in the queue are waiting for tickets.", "answer": "standing", "explanation": "Активный."},
+            {"question": "The flowers ______ (grow) in the garden smell lovely.", "answer": "growing", "explanation": "Активный."},
+            {"question": "The documents ______ (leave) on the desk are important.", "answer": "left", "explanation": "Пассив."},
+            {"question": "The teacher ______ (fear) by all the students is very strict.", "answer": "feared", "explanation": "Пассив."}
+          ]
         },
         {
-            "type": "complex",
-            "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
-            "subtasks": [
-                {"question": "The woman played the piano is my aunt.", "answer": "The woman playing the piano is my aunt.", "explanation": "Активный: V‑ing."},
-                {"question": "The children playing in the garden are happy.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "The house located by the river is beautiful.", "answer": "Correct", "explanation": "Пассив: located – верно."},
-                {"question": "The cake made by my grandmother was delicious.", "answer": "Correct", "explanation": "Пассив: made – верно."},
-                {"question": "The people standing in the queue are waiting for tickets.", "answer": "Correct", "explanation": "Активный: standing – верно."},
-                {"question": "The flowers growing in the garden smell lovely.", "answer": "Correct", "explanation": "Активный: growing – верно."},
-                {"question": "The documents left on the desk are important.", "answer": "Correct", "explanation": "Пассив: left – верно."},
-                {"question": "The teacher fear by all the students is very strict.", "answer": "The teacher feared by all the students is very strict.", "explanation": "Пассив: V3 (feared)."}
-            ]
+          "type": "complex",
+          "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
+          "subtasks": [
+            {"question": "The woman played the piano is my aunt.", "answer": "The woman playing the piano is my aunt.", "explanation": "Активный: V‑ing."},
+            {"question": "The children playing in the garden are happy.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "The house located by the river is beautiful.", "answer": "Correct", "explanation": "Пассив: located – верно."},
+            {"question": "The cake made by my grandmother was delicious.", "answer": "Correct", "explanation": "Пассив: made – верно."},
+            {"question": "The people standing in the queue are waiting for tickets.", "answer": "Correct", "explanation": "Активный: standing – верно."},
+            {"question": "The flowers growing in the garden smell lovely.", "answer": "Correct", "explanation": "Активный: growing – верно."},
+            {"question": "The documents left on the desk are important.", "answer": "Correct", "explanation": "Пассив: left – верно."},
+            {"question": "The teacher fear by all the students is very strict.", "answer": "The teacher feared by all the students is very strict.", "explanation": "Пассив: V3 (feared)."}
+          ]
         },
         {
-            "type": "complex",
-            "text": "4. Rewrite the sentences using reduced relative clauses. Type the whole sentence.",
-            "subtasks": [
-                {"question": "The woman who is playing the piano is my aunt. → The woman playing the piano is my aunt.", "answer": "The woman playing the piano is my aunt.", "explanation": "Активный: who is playing → playing."},
-                {"question": "The children who are playing in the garden are happy. → The children playing in the garden are happy.", "answer": "The children playing in the garden are happy.", "explanation": "Активный."},
-                {"question": "The house which is located by the river is beautiful. → The house located by the river is beautiful.", "answer": "The house located by the river is beautiful.", "explanation": "Пассив."},
-                {"question": "The cake which was made by my grandmother was delicious. → The cake made by my grandmother was delicious.", "answer": "The cake made by my grandmother was delicious.", "explanation": "Пассив."},
-                {"question": "The people who are standing in the queue are waiting for tickets. → The people standing in the queue are waiting for tickets.", "answer": "The people standing in the queue are waiting for tickets.", "explanation": "Активный."},
-                {"question": "The flowers which are growing in the garden smell lovely. → The flowers growing in the garden smell lovely.", "answer": "The flowers growing in the garden smell lovely.", "explanation": "Активный."},
-                {"question": "The documents which were left on the desk are important. → The documents left on the desk are important.", "answer": "The documents left on the desk are important.", "explanation": "Пассив."},
-                {"question": "The teacher who is feared by all the students is very strict. → The teacher feared by all the students is very strict.", "answer": "The teacher feared by all the students is very strict.", "explanation": "Пассив."}
-            ]
+          "type": "complex",
+          "text": "4. Rewrite the sentences using reduced relative clauses. Type the whole sentence.",
+          "subtasks": [
+            {"question": "The woman who is playing the piano is my aunt. → The woman playing the piano is my aunt.", "answer": "The woman playing the piano is my aunt.", "explanation": "Активный: who is playing → playing."},
+            {"question": "The children who are playing in the garden are happy. → The children playing in the garden are happy.", "answer": "The children playing in the garden are happy.", "explanation": "Активный."},
+            {"question": "The house which is located by the river is beautiful. → The house located by the river is beautiful.", "answer": "The house located by the river is beautiful.", "explanation": "Пассив."},
+            {"question": "The cake which was made by my grandmother was delicious. → The cake made by my grandmother was delicious.", "answer": "The cake made by my grandmother was delicious.", "explanation": "Пассив."},
+            {"question": "The people who are standing in the queue are waiting for tickets. → The people standing in the queue are waiting for tickets.", "answer": "The people standing in the queue are waiting for tickets.", "explanation": "Активный."},
+            {"question": "The flowers which are growing in the garden smell lovely. → The flowers growing in the garden smell lovely.", "answer": "The flowers growing in the garden smell lovely.", "explanation": "Активный."},
+            {"question": "The documents which were left on the desk are important. → The documents left on the desk are important.", "answer": "The documents left on the desk are important.", "explanation": "Пассив."},
+            {"question": "The teacher who is feared by all the students is very strict. → The teacher feared by all the students is very strict.", "answer": "The teacher feared by all the students is very strict.", "explanation": "Пассив."}
+          ]
         }
-    ],
-    # =====================================================
-    # ВАРИАНТ 3 (перевод)
-    # =====================================================
-    [
+      ],
+      # =====================================================
+      # ВАРИАНТ 3 (перевод)
+      # =====================================================
+      [
         {
-            "type": "complex",
-            "text": "1. Choose the correct reduced form (a, b, or c) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "The boy ______ in the corner is my brother.", "answer": "sitting", "explanation": "Активный: who is sitting → sitting."},
-                {"question": "The police officer ______ the traffic is very strict.", "answer": "directing", "explanation": "Активный: who is directing → directing."},
-                {"question": "The buildings ______ in the city are very modern.", "answer": "built", "explanation": "Пассив: which were built → built."},
-                {"question": "The song ______ on the radio is very popular.", "answer": "playing", "explanation": "Активный: which is playing → playing."},
-                {"question": "The workers ______ the bridge are on strike.", "answer": "building", "explanation": "Активный: who are building → building."},
-                {"question": "The food ______ on the table looks delicious.", "answer": "laid", "explanation": "Пассив: which was laid → laid."},
-                {"question": "The dog ______ across the street is mine.", "answer": "running", "explanation": "Активный: which is running → running."},
-                {"question": "The children ______ by the teacher are very clever.", "answer": "taught", "explanation": "Пассив: who are taught → taught."}
-            ]
+          "type": "complex",
+          "text": "1. Choose the correct reduced form (a, b, or c) to complete the sentence. Type the letter of your answer.",
+          "subtasks": [
+            {"question": "The boy ______ in the corner is my brother.", "answer": "sitting", "explanation": "Активный: who is sitting → sitting."},
+            {"question": "The police officer ______ the traffic is very strict.", "answer": "directing", "explanation": "Активный: who is directing → directing."},
+            {"question": "The buildings ______ in the city are very modern.", "answer": "built", "explanation": "Пассив: which were built → built."},
+            {"question": "The song ______ on the radio is very popular.", "answer": "playing", "explanation": "Активный: which is playing → playing."},
+            {"question": "The workers ______ the bridge are on strike.", "answer": "building", "explanation": "Активный: who are building → building."},
+            {"question": "The food ______ on the table looks delicious.", "answer": "laid", "explanation": "Пассив: which was laid → laid."},
+            {"question": "The dog ______ across the street is mine.", "answer": "running", "explanation": "Активный: which is running → running."},
+            {"question": "The children ______ by the teacher are very clever.", "answer": "taught", "explanation": "Пассив: who are taught → taught."}
+          ]
         },
         {
-            "type": "complex",
-            "text": "2. Fill in the gaps with the correct reduced form of the verb in brackets. Type the missing word(s) in the box.",
-            "subtasks": [
-                {"question": "The boy ______ (sit) in the corner is my brother.", "answer": "sitting", "explanation": "Активный."},
-                {"question": "The police officer ______ (direct) the traffic is very strict.", "answer": "directing", "explanation": "Активный."},
-                {"question": "The buildings ______ (build) in the city are very modern.", "answer": "built", "explanation": "Пассив."},
-                {"question": "The song ______ (play) on the radio is very popular.", "answer": "playing", "explanation": "Активный."},
-                {"question": "The workers ______ (build) the bridge are on strike.", "answer": "building", "explanation": "Активный."},
-                {"question": "The food ______ (lay) on the table looks delicious.", "answer": "laid", "explanation": "Пассив."},
-                {"question": "The dog ______ (run) across the street is mine.", "answer": "running", "explanation": "Активный."},
-                {"question": "The children ______ (teach) by the teacher are very clever.", "answer": "taught", "explanation": "Пассив."}
-            ]
+          "type": "complex",
+          "text": "2. Fill in the gaps with the correct reduced form of the verb in brackets. Type the missing word(s) in the box.",
+          "subtasks": [
+            {"question": "The boy ______ (sit) in the corner is my brother.", "answer": "sitting", "explanation": "Активный."},
+            {"question": "The police officer ______ (direct) the traffic is very strict.", "answer": "directing", "explanation": "Активный."},
+            {"question": "The buildings ______ (build) in the city are very modern.", "answer": "built", "explanation": "Пассив."},
+            {"question": "The song ______ (play) on the radio is very popular.", "answer": "playing", "explanation": "Активный."},
+            {"question": "The workers ______ (build) the bridge are on strike.", "answer": "building", "explanation": "Активный."},
+            {"question": "The food ______ (lay) on the table looks delicious.", "answer": "laid", "explanation": "Пассив."},
+            {"question": "The dog ______ (run) across the street is mine.", "answer": "running", "explanation": "Активный."},
+            {"question": "The children ______ (teach) by the teacher are very clever.", "answer": "taught", "explanation": "Пассив."}
+          ]
         },
         {
-            "type": "complex",
-            "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
-            "subtasks": [
-                {"question": "The boy sat in the corner is my brother.", "answer": "The boy sitting in the corner is my brother.", "explanation": "Активный: V‑ing."},
-                {"question": "The police officer directing the traffic is very strict.", "answer": "Correct", "explanation": "Верно."},
-                {"question": "The buildings built in the city are very modern.", "answer": "Correct", "explanation": "Пассив: built – верно."},
-                {"question": "The song playing on the radio is very popular.", "answer": "Correct", "explanation": "Активный: playing – верно."},
-                {"question": "The workers building the bridge are on strike.", "answer": "Correct", "explanation": "Активный: building – верно."},
-                {"question": "The food laying on the table looks delicious.", "answer": "The food laid on the table looks delicious.", "explanation": "Пассив: laid (V3), не laying."},
-                {"question": "The dog running across the street is mine.", "answer": "Correct", "explanation": "Активный: running – верно."},
-                {"question": "The children taught by the teacher are very clever.", "answer": "Correct", "explanation": "Пассив: taught – верно."}
-            ]
+          "type": "complex",
+          "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
+          "subtasks": [
+            {"question": "The boy sat in the corner is my brother.", "answer": "The boy sitting in the corner is my brother.", "explanation": "Активный: V‑ing."},
+            {"question": "The police officer directing the traffic is very strict.", "answer": "Correct", "explanation": "Верно."},
+            {"question": "The buildings built in the city are very modern.", "answer": "Correct", "explanation": "Пассив: built – верно."},
+            {"question": "The song playing on the radio is very popular.", "answer": "Correct", "explanation": "Активный: playing – верно."},
+            {"question": "The workers building the bridge are on strike.", "answer": "Correct", "explanation": "Активный: building – верно."},
+            {"question": "The food laying on the table looks delicious.", "answer": "The food laid on the table looks delicious.", "explanation": "Пассив: laid (V3), не laying."},
+            {"question": "The dog running across the street is mine.", "answer": "Correct", "explanation": "Активный: running – верно."},
+            {"question": "The children taught by the teacher are very clever.", "answer": "Correct", "explanation": "Пассив: taught – верно."}
+          ]
         },
         {
-            "type": "complex",
-            "text": "4. Translate the sentences into English using reduced relative clauses. Type your translation (one sentence) in the box.",
-            "subtasks": [
-                {"question": "Мальчик, сидящий в углу, – мой брат.", "answer": "The boy sitting in the corner is my brother.", "explanation": ""},
-                {"question": "Полицейский, регулирующий движение, очень строгий.", "answer": "The police officer directing the traffic is very strict.", "explanation": ""},
-                {"question": "Здания, построенные в городе, очень современные.", "answer": "The buildings built in the city are very modern.", "explanation": ""},
-                {"question": "Песня, играющая по радио, очень популярна.", "answer": "The song playing on the radio is very popular.", "explanation": ""},
-                {"question": "Рабочие, строящие мост, бастуют.", "answer": "The workers building the bridge are on strike.", "explanation": ""},
-                {"question": "Еда, лежащая на столе, выглядит вкусно.", "answer": "The food laid on the table looks delicious.", "explanation": ""},
-                {"question": "Собака, бегущая через улицу, – моя.", "answer": "The dog running across the street is mine.", "explanation": ""},
-                {"question": "Дети, которых учит учитель, очень умные.", "answer": "The children taught by the teacher are very clever.", "explanation": ""}
-            ]
+          "type": "complex",
+          "text": "4. Translate the sentences into English using reduced relative clauses. Type your translation (one sentence) in the box.",
+          "subtasks": [
+            {"question": "Мальчик, сидящий в углу, – мой брат.", "answer": "The boy sitting in the corner is my brother.", "explanation": ""},
+            {"question": "Полицейский, регулирующий движение, очень строгий.", "answer": "The police officer directing the traffic is very strict.", "explanation": ""},
+            {"question": "Здания, построенные в городе, очень современные.", "answer": "The buildings built in the city are very modern.", "explanation": ""},
+            {"question": "Песня, играющая по радио, очень популярна.", "answer": "The song playing on the radio is very popular.", "explanation": ""},
+            {"question": "Рабочие, строящие мост, бастуют.", "answer": "The workers building the bridge are on strike.", "explanation": ""},
+            {"question": "Еда, лежащая на столе, выглядит вкусно.", "answer": "The food laid on the table looks delicious.", "explanation": ""},
+            {"question": "Собака, бегущая через улицу, – моя.", "answer": "The dog running across the street is mine.", "explanation": ""},
+            {"question": "Дети, которых учит учитель, очень умные.", "answer": "The children taught by the teacher are very clever.", "explanation": ""}
+          ]
         }
-    ],
-    # =====================================================
-    # ВАРИАНТ 4 (перефразирование)
-    # =====================================================
-    [
+      ],
+      # =====================================================
+      # ВАРИАНТ 4 (перефразирование)
+      # =====================================================
+      [
         {
-            "type": "complex",
-            "text": "1. Choose the correct reduced form (a, b, or c) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "The team ______ the match is very strong.", "answer": "winning", "explanation": "Активный: which is winning → winning."},
-                {"question": "The painting ______ in the gallery is priceless.", "answer": "hanging", "explanation": "Активный: which is hanging → hanging."},
-                {"question": "The tree ______ by lightning fell down.", "answer": "struck", "explanation": "Пассив: which was struck → struck."},
-                {"question": "The actress ______ in the film is very talented.", "answer": "starring", "explanation": "Активный: who is starring → starring."},
-                {"question": "The letters ______ on the table need to be signed.", "answer": "lying", "explanation": "Активный: which are lying → lying."},
-                {"question": "The car ______ in the accident was completely destroyed.", "answer": "damaged", "explanation": "Пассив: which was damaged → damaged."},
-                {"question": "The girl ______ in the competition is my sister.", "answer": "competing", "explanation": "Активный: who is competing → competing."},
-                {"question": "The building ______ in the 1920s is very old.", "answer": "constructed", "explanation": "Пассив: which was constructed → constructed."}
-            ]
+          "type": "complex",
+          "text": "1. Choose the correct reduced form (a, b, or c) to complete the sentence. Type the letter of your answer.",
+          "subtasks": [
+            {"question": "The team ______ the match is very strong.", "answer": "winning", "explanation": "Активный: which is winning → winning."},
+            {"question": "The painting ______ in the gallery is priceless.", "answer": "hanging", "explanation": "Активный: which is hanging → hanging."},
+            {"question": "The tree ______ by lightning fell down.", "answer": "struck", "explanation": "Пассив: which was struck → struck."},
+            {"question": "The actress ______ in the film is very talented.", "answer": "starring", "explanation": "Активный: who is starring → starring."},
+            {"question": "The letters ______ on the table need to be signed.", "answer": "lying", "explanation": "Активный: which are lying → lying."},
+            {"question": "The car ______ in the accident was completely destroyed.", "answer": "damaged", "explanation": "Пассив: which was damaged → damaged."},
+            {"question": "The girl ______ in the competition is my sister.", "answer": "competing", "explanation": "Активный: who is competing → competing."},
+            {"question": "The building ______ in the 1920s is very old.", "answer": "constructed", "explanation": "Пассив: which was constructed → constructed."}
+          ]
         },
         {
-            "type": "complex",
-            "text": "2. Fill in the gaps with the correct reduced form of the verb in brackets. Type the missing word(s) in the box.",
-            "subtasks": [
-                {"question": "The team ______ (win) the match is very strong.", "answer": "winning", "explanation": "Активный."},
-                {"question": "The painting ______ (hang) in the gallery is priceless.", "answer": "hanging", "explanation": "Активный."},
-                {"question": "The tree ______ (strike) by lightning fell down.", "answer": "struck", "explanation": "Пассив."},
-                {"question": "The actress ______ (star) in the film is very talented.", "answer": "starring", "explanation": "Активный."},
-                {"question": "The letters ______ (lie) on the table need to be signed.", "answer": "lying", "explanation": "Активный."},
-                {"question": "The car ______ (damage) in the accident was completely destroyed.", "answer": "damaged", "explanation": "Пассив."},
-                {"question": "The girl ______ (compete) in the competition is my sister.", "answer": "competing", "explanation": "Активный."},
-                {"question": "The building ______ (construct) in the 1920s is very old.", "answer": "constructed", "explanation": "Пассив."}
-            ]
+          "type": "complex",
+          "text": "2. Fill in the gaps with the correct reduced form of the verb in brackets. Type the missing word(s) in the box.",
+          "subtasks": [
+            {"question": "The team ______ (win) the match is very strong.", "answer": "winning", "explanation": "Активный."},
+            {"question": "The painting ______ (hang) in the gallery is priceless.", "answer": "hanging", "explanation": "Активный."},
+            {"question": "The tree ______ (strike) by lightning fell down.", "answer": "struck", "explanation": "Пассив."},
+            {"question": "The actress ______ (star) in the film is very talented.", "answer": "starring", "explanation": "Активный."},
+            {"question": "The letters ______ (lie) on the table need to be signed.", "answer": "lying", "explanation": "Активный."},
+            {"question": "The car ______ (damage) in the accident was completely destroyed.", "answer": "damaged", "explanation": "Пассив."},
+            {"question": "The girl ______ (compete) in the competition is my sister.", "answer": "competing", "explanation": "Активный."},
+            {"question": "The building ______ (construct) in the 1920s is very old.", "answer": "constructed", "explanation": "Пассив."}
+          ]
         },
         {
-            "type": "complex",
-            "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
-            "subtasks": [
-                {"question": "The team winning the match is very strong.", "answer": "Correct", "explanation": "Активный: winning – верно."},
-                {"question": "The painting hanging in the gallery is priceless.", "answer": "Correct", "explanation": "Активный: hanging – верно."},
-                {"question": "The tree struck by lightning fell down.", "answer": "Correct", "explanation": "Пассив: struck – верно."},
-                {"question": "The actress starring in the film is very talented.", "answer": "Correct", "explanation": "Активный: starring – верно."},
-                {"question": "The letters laying on the table need to be signed.", "answer": "The letters lying on the table need to be signed.", "explanation": "Активный: lying, не laying (lay – класть, lie – лежать)."},
-                {"question": "The car damaged in the accident was completely destroyed.", "answer": "Correct", "explanation": "Пассив: damaged – верно."},
-                {"question": "The girl competing in the competition is my sister.", "answer": "Correct", "explanation": "Активный: competing – верно."},
-                {"question": "The building constructed in the 1920s is very old.", "answer": "Correct", "explanation": "Пассив: constructed – верно."}
-            ]
+          "type": "complex",
+          "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
+          "subtasks": [
+            {"question": "The team winning the match is very strong.", "answer": "Correct", "explanation": "Активный: winning – верно."},
+            {"question": "The painting hanging in the gallery is priceless.", "answer": "Correct", "explanation": "Активный: hanging – верно."},
+            {"question": "The tree struck by lightning fell down.", "answer": "Correct", "explanation": "Пассив: struck – верно."},
+            {"question": "The actress starring in the film is very talented.", "answer": "Correct", "explanation": "Активный: starring – верно."},
+            {"question": "The letters laying on the table need to be signed.", "answer": "The letters lying on the table need to be signed.", "explanation": "Активный: lying, не laying (lay – класть, lie – лежать)."},
+            {"question": "The car damaged in the accident was completely destroyed.", "answer": "Correct", "explanation": "Пассив: damaged – верно."},
+            {"question": "The girl competing in the competition is my sister.", "answer": "Correct", "explanation": "Активный: competing – верно."},
+            {"question": "The building constructed in the 1920s is very old.", "answer": "Correct", "explanation": "Пассив: constructed – верно."}
+          ]
         },
         {
-            "type": "complex",
-            "text": "4. Rewrite the sentences using reduced relative clauses. Type the whole sentence.",
-            "subtasks": [
-                {"question": "The team which is winning the match is very strong. → The team winning the match is very strong.", "answer": "The team winning the match is very strong.", "explanation": "Активный."},
-                {"question": "The painting which is hanging in the gallery is priceless. → The painting hanging in the gallery is priceless.", "answer": "The painting hanging in the gallery is priceless.", "explanation": "Активный."},
-                {"question": "The tree which was struck by lightning fell down. → The tree struck by lightning fell down.", "answer": "The tree struck by lightning fell down.", "explanation": "Пассив."},
-                {"question": "The actress who is starring in the film is very talented. → The actress starring in the film is very talented.", "answer": "The actress starring in the film is very talented.", "explanation": "Активный."},
-                {"question": "The letters which are lying on the table need to be signed. → The letters lying on the table need to be signed.", "answer": "The letters lying on the table need to be signed.", "explanation": "Активный."},
-                {"question": "The car which was damaged in the accident was completely destroyed. → The car damaged in the accident was completely destroyed.", "answer": "The car damaged in the accident was completely destroyed.", "explanation": "Пассив."},
-                {"question": "The girl who is competing in the competition is my sister. → The girl competing in the competition is my sister.", "answer": "The girl competing in the competition is my sister.", "explanation": "Активный."},
-                {"question": "The building which was constructed in the 1920s is very old. → The building constructed in the 1920s is very old.", "answer": "The building constructed in the 1920s is very old.", "explanation": "Пассив."}
-            ]
+          "type": "complex",
+          "text": "4. Rewrite the sentences using reduced relative clauses. Type the whole sentence.",
+          "subtasks": [
+            {"question": "The team which is winning the match is very strong. → The team winning the match is very strong.", "answer": "The team winning the match is very strong.", "explanation": "Активный."},
+            {"question": "The painting which is hanging in the gallery is priceless. → The painting hanging in the gallery is priceless.", "answer": "The painting hanging in the gallery is priceless.", "explanation": "Активный."},
+            {"question": "The tree which was struck by lightning fell down. → The tree struck by lightning fell down.", "answer": "The tree struck by lightning fell down.", "explanation": "Пассив."},
+            {"question": "The actress who is starring in the film is very talented. → The actress starring in the film is very talented.", "answer": "The actress starring in the film is very talented.", "explanation": "Активный."},
+            {"question": "The letters which are lying on the table need to be signed. → The letters lying on the table need to be signed.", "answer": "The letters lying on the table need to be signed.", "explanation": "Активный."},
+            {"question": "The car which was damaged in the accident was completely destroyed. → The car damaged in the accident was completely destroyed.", "answer": "The car damaged in the accident was completely destroyed.", "explanation": "Пассив."},
+            {"question": "The girl who is competing in the competition is my sister. → The girl competing in the competition is my sister.", "answer": "The girl competing in the competition is my sister.", "explanation": "Активный."},
+            {"question": "The building which was constructed in the 1920s is very old. → The building constructed in the 1920s is very old.", "answer": "The building constructed in the 1920s is very old.", "explanation": "Пассив."}
+          ]
         }
-    ],
-    # =====================================================
-    # ВАРИАНТ 5 (перевод)
-    # =====================================================
-    [
+      ],
+      # =====================================================
+      # ВАРИАНТ 5 (перевод)
+      # =====================================================
+      [
         {
-            "type": "complex",
-            "text": "1. Choose the correct reduced form (a, b, or c) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "The tourists ______ the city are from Japan.", "answer": "visiting", "explanation": "Активный: who are visiting → visiting."},
-                {"question": "The child ______ in the pool is my son.", "answer": "swimming", "explanation": "Активный: who is swimming → swimming."},
-                {"question": "The homework ______ by the students is on the table.", "answer": "done", "explanation": "Пассив: which was done → done."},
-                {"question": "The flag ______ over the building is red and white.", "answer": "flying", "explanation": "Активный: which is flying → flying."},
-                {"question": "The conference ______ in the hotel was a success.", "answer": "held", "explanation": "Пассив: which was held → held."},
-                {"question": "The singer ______ the song is very famous.", "answer": "performing", "explanation": "Активный: who is performing → performing."},
-                {"question": "The keys ______ on the table are mine.", "answer": "lying", "explanation": "Активный: which are lying → lying."},
-                {"question": "The movie ______ by Spielberg is a classic.", "answer": "directed", "explanation": "Пассив: which was directed → directed."}
-            ]
+          "type": "complex",
+          "text": "1. Choose the correct reduced form (a, b, or c) to complete the sentence. Type the letter of your answer.",
+          "subtasks": [
+            {"question": "The tourists ______ the city are from Japan.", "answer": "visiting", "explanation": "Активный: who are visiting → visiting."},
+            {"question": "The child ______ in the pool is my son.", "answer": "swimming", "explanation": "Активный: who is swimming → swimming."},
+            {"question": "The homework ______ by the students is on the table.", "answer": "done", "explanation": "Пассив: which was done → done."},
+            {"question": "The flag ______ over the building is red and white.", "answer": "flying", "explanation": "Активный: which is flying → flying."},
+            {"question": "The conference ______ in the hotel was a success.", "answer": "held", "explanation": "Пассив: which was held → held."},
+            {"question": "The singer ______ the song is very famous.", "answer": "performing", "explanation": "Активный: who is performing → performing."},
+            {"question": "The keys ______ on the table are mine.", "answer": "lying", "explanation": "Активный: which are lying → lying."},
+            {"question": "The movie ______ by Spielberg is a classic.", "answer": "directed", "explanation": "Пассив: which was directed → directed."}
+          ]
         },
         {
-            "type": "complex",
-            "text": "2. Fill in the gaps with the correct reduced form of the verb in brackets. Type the missing word(s) in the box.",
-            "subtasks": [
-                {"question": "The tourists ______ (visit) the city are from Japan.", "answer": "visiting", "explanation": "Активный."},
-                {"question": "The child ______ (swim) in the pool is my son.", "answer": "swimming", "explanation": "Активный."},
-                {"question": "The homework ______ (do) by the students is on the table.", "answer": "done", "explanation": "Пассив."},
-                {"question": "The flag ______ (fly) over the building is red and white.", "answer": "flying", "explanation": "Активный."},
-                {"question": "The conference ______ (hold) in the hotel was a success.", "answer": "held", "explanation": "Пассив."},
-                {"question": "The singer ______ (perform) the song is very famous.", "answer": "performing", "explanation": "Активный."},
-                {"question": "The keys ______ (lie) on the table are mine.", "answer": "lying", "explanation": "Активный."},
-                {"question": "The movie ______ (direct) by Spielberg is a classic.", "answer": "directed", "explanation": "Пассив."}
-            ]
+          "type": "complex",
+          "text": "2. Fill in the gaps with the correct reduced form of the verb in brackets. Type the missing word(s) in the box.",
+          "subtasks": [
+            {"question": "The tourists ______ (visit) the city are from Japan.", "answer": "visiting", "explanation": "Активный."},
+            {"question": "The child ______ (swim) in the pool is my son.", "answer": "swimming", "explanation": "Активный."},
+            {"question": "The homework ______ (do) by the students is on the table.", "answer": "done", "explanation": "Пассив."},
+            {"question": "The flag ______ (fly) over the building is red and white.", "answer": "flying", "explanation": "Активный."},
+            {"question": "The conference ______ (hold) in the hotel was a success.", "answer": "held", "explanation": "Пассив."},
+            {"question": "The singer ______ (perform) the song is very famous.", "answer": "performing", "explanation": "Активный."},
+            {"question": "The keys ______ (lie) on the table are mine.", "answer": "lying", "explanation": "Активный."},
+            {"question": "The movie ______ (direct) by Spielberg is a classic.", "answer": "directed", "explanation": "Пассив."}
+          ]
         },
         {
-            "type": "complex",
-            "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
-            "subtasks": [
-                {"question": "The tourists visiting the city are from Japan.", "answer": "Correct", "explanation": "Активный: visiting – верно."},
-                {"question": "The child swimming in the pool is my son.", "answer": "Correct", "explanation": "Активный: swimming – верно."},
-                {"question": "The homework done by the students is on the table.", "answer": "Correct", "explanation": "Пассив: done – верно."},
-                {"question": "The flag flying over the building is red and white.", "answer": "Correct", "explanation": "Активный: flying – верно."},
-                {"question": "The conference held in the hotel was a success.", "answer": "Correct", "explanation": "Пассив: held – верно."},
-                {"question": "The singer performing the song is very famous.", "answer": "Correct", "explanation": "Активный: performing – верно."},
-                {"question": "The keys laying on the table are mine.", "answer": "The keys lying on the table are mine.", "explanation": "Активный: lying (лежать), не laying."},
-                {"question": "The movie directed by Spielberg is a classic.", "answer": "Correct", "explanation": "Пассив: directed – верно."}
-            ]
+          "type": "complex",
+          "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
+          "subtasks": [
+            {"question": "The tourists visiting the city are from Japan.", "answer": "Correct", "explanation": "Активный: visiting – верно."},
+            {"question": "The child swimming in the pool is my son.", "answer": "Correct", "explanation": "Активный: swimming – верно."},
+            {"question": "The homework done by the students is on the table.", "answer": "Correct", "explanation": "Пассив: done – верно."},
+            {"question": "The flag flying over the building is red and white.", "answer": "Correct", "explanation": "Активный: flying – верно."},
+            {"question": "The conference held in the hotel was a success.", "answer": "Correct", "explanation": "Пассив: held – верно."},
+            {"question": "The singer performing the song is very famous.", "answer": "Correct", "explanation": "Активный: performing – верно."},
+            {"question": "The keys laying on the table are mine.", "answer": "The keys lying on the table are mine.", "explanation": "Активный: lying (лежать), не laying."},
+            {"question": "The movie directed by Spielberg is a classic.", "answer": "Correct", "explanation": "Пассив: directed – верно."}
+          ]
         },
         {
-            "type": "complex",
-            "text": "4. Translate the sentences into English using reduced relative clauses. Type your translation (one sentence) in the box.",
-            "subtasks": [
-                {"question": "Туристы, посещающие город, из Японии.", "answer": "The tourists visiting the city are from Japan.", "explanation": ""},
-                {"question": "Ребёнок, плавающий в бассейне, – мой сын.", "answer": "The child swimming in the pool is my son.", "explanation": ""},
-                {"question": "Домашняя работа, сделанная учениками, на столе.", "answer": "The homework done by the students is on the table.", "explanation": ""},
-                {"question": "Флаг, развевающийся над зданием, красный и белый.", "answer": "The flag flying over the building is red and white.", "explanation": ""},
-                {"question": "Конференция, проведённая в отеле, была успешной.", "answer": "The conference held in the hotel was a success.", "explanation": ""},
-                {"question": "Певец, исполняющий песню, очень известен.", "answer": "The singer performing the song is very famous.", "explanation": ""},
-                {"question": "Ключи, лежащие на столе, мои.", "answer": "The keys lying on the table are mine.", "explanation": ""},
-                {"question": "Фильм, снятый Спилбергом, – классика.", "answer": "The movie directed by Spielberg is a classic.", "explanation": ""}
-            ]
+          "type": "complex",
+          "text": "4. Translate the sentences into English using reduced relative clauses. Type your translation (one sentence) in the box.",
+          "subtasks": [
+            {"question": "Туристы, посещающие город, из Японии.", "answer": "The tourists visiting the city are from Japan.", "explanation": ""},
+            {"question": "Ребёнок, плавающий в бассейне, – мой сын.", "answer": "The child swimming in the pool is my son.", "explanation": ""},
+            {"question": "Домашняя работа, сделанная учениками, на столе.", "answer": "The homework done by the students is on the table.", "explanation": ""},
+            {"question": "Флаг, развевающийся над зданием, красный и белый.", "answer": "The flag flying over the building is red and white.", "explanation": ""},
+            {"question": "Конференция, проведённая в отеле, была успешной.", "answer": "The conference held in the hotel was a success.", "explanation": ""},
+            {"question": "Певец, исполняющий песню, очень известен.", "answer": "The singer performing the song is very famous.", "explanation": ""},
+            {"question": "Ключи, лежащие на столе, мои.", "answer": "The keys lying on the table are mine.", "explanation": ""},
+            {"question": "Фильм, снятый Спилбергом, – классика.", "answer": "The movie directed by Spielberg is a classic.", "explanation": ""}
+          ]
         }
-    ],
-    # =====================================================
-    # ВАРИАНТ 6 (перефразирование)
-    # =====================================================
-    [
+      ],
+      # =====================================================
+      # ВАРИАНТ 6 (перефразирование)
+      # =====================================================
+      [
         {
-            "type": "complex",
-            "text": "1. Choose the correct reduced form (a, b, or c) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "The students ______ the exam are very nervous.", "answer": "taking", "explanation": "Активный: who are taking → taking."},
-                {"question": "The bird ______ in the tree is singing beautifully.", "answer": "sitting", "explanation": "Активный: which is sitting → sitting."},
-                {"question": "The window ______ by the children was broken.", "answer": "smashed", "explanation": "Пассив: which was smashed → smashed."},
-                {"question": "The man ______ a car is my neighbour.", "answer": "washing", "explanation": "Активный: who is washing → washing."},
-                {"question": "The article ______ in the newspaper is very interesting.", "answer": "published", "explanation": "Пассив: which was published → published."},
-                {"question": "The girls ______ in the choir are my friends.", "answer": "singing", "explanation": "Активный: who are singing → singing."},
-                {"question": "The phone ______ on the table is mine.", "answer": "lying", "explanation": "Активный: which is lying → lying."},
-                {"question": "The new bridge ______ last year is very modern.", "answer": "opened", "explanation": "Пассив: which was opened → opened."}
-            ]
+          "type": "complex",
+          "text": "1. Choose the correct reduced form (a, b, or c) to complete the sentence. Type the letter of your answer.",
+          "subtasks": [
+            {"question": "The students ______ the exam are very nervous.", "answer": "taking", "explanation": "Активный: who are taking → taking."},
+            {"question": "The bird ______ in the tree is singing beautifully.", "answer": "sitting", "explanation": "Активный: which is sitting → sitting."},
+            {"question": "The window ______ by the children was broken.", "answer": "smashed", "explanation": "Пассив: which was smashed → smashed."},
+            {"question": "The man ______ a car is my neighbour.", "answer": "washing", "explanation": "Активный: who is washing → washing."},
+            {"question": "The article ______ in the newspaper is very interesting.", "answer": "published", "explanation": "Пассив: which was published → published."},
+            {"question": "The girls ______ in the choir are my friends.", "answer": "singing", "explanation": "Активный: who are singing → singing."},
+            {"question": "The phone ______ on the table is mine.", "answer": "lying", "explanation": "Активный: which is lying → lying."},
+            {"question": "The new bridge ______ last year is very modern.", "answer": "opened", "explanation": "Пассив: which was opened → opened."}
+          ]
         },
         {
-            "type": "complex",
-            "text": "2. Fill in the gaps with the correct reduced form of the verb in brackets. Type the missing word(s) in the box.",
-            "subtasks": [
-                {"question": "The students ______ (take) the exam are very nervous.", "answer": "taking", "explanation": "Активный."},
-                {"question": "The bird ______ (sit) in the tree is singing beautifully.", "answer": "sitting", "explanation": "Активный."},
-                {"question": "The window ______ (smash) by the children was broken.", "answer": "smashed", "explanation": "Пассив."},
-                {"question": "The man ______ (wash) a car is my neighbour.", "answer": "washing", "explanation": "Активный."},
-                {"question": "The article ______ (publish) in the newspaper is very interesting.", "answer": "published", "explanation": "Пассив."},
-                {"question": "The girls ______ (sing) in the choir are my friends.", "answer": "singing", "explanation": "Активный."},
-                {"question": "The phone ______ (lie) on the table is mine.", "answer": "lying", "explanation": "Активный."},
-                {"question": "The new bridge ______ (open) last year is very modern.", "answer": "opened", "explanation": "Пассив."}
-            ]
+          "type": "complex",
+          "text": "2. Fill in the gaps with the correct reduced form of the verb in brackets. Type the missing word(s) in the box.",
+          "subtasks": [
+            {"question": "The students ______ (take) the exam are very nervous.", "answer": "taking", "explanation": "Активный."},
+            {"question": "The bird ______ (sit) in the tree is singing beautifully.", "answer": "sitting", "explanation": "Активный."},
+            {"question": "The window ______ (smash) by the children was broken.", "answer": "smashed", "explanation": "Пассив."},
+            {"question": "The man ______ (wash) a car is my neighbour.", "answer": "washing", "explanation": "Активный."},
+            {"question": "The article ______ (publish) in the newspaper is very interesting.", "answer": "published", "explanation": "Пассив."},
+            {"question": "The girls ______ (sing) in the choir are my friends.", "answer": "singing", "explanation": "Активный."},
+            {"question": "The phone ______ (lie) on the table is mine.", "answer": "lying", "explanation": "Активный."},
+            {"question": "The new bridge ______ (open) last year is very modern.", "answer": "opened", "explanation": "Пассив."}
+          ]
         },
         {
-            "type": "complex",
-            "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
-            "subtasks": [
-                {"question": "The students taking the exam are very nervous.", "answer": "Correct", "explanation": "Активный: taking – верно."},
-                {"question": "The bird sitting in the tree is singing beautifully.", "answer": "Correct", "explanation": "Активный: sitting – верно."},
-                {"question": "The window smashed by the children was broken.", "answer": "Correct", "explanation": "Пассив: smashed – верно."},
-                {"question": "The man washing a car is my neighbour.", "answer": "Correct", "explanation": "Активный: washing – верно."},
-                {"question": "The article published in the newspaper is very interesting.", "answer": "Correct", "explanation": "Пассив: published – верно."},
-                {"question": "The girls singing in the choir are my friends.", "answer": "Correct", "explanation": "Активный: singing – верно."},
-                {"question": "The phone laying on the table is mine.", "answer": "The phone lying on the table is mine.", "explanation": "Активный: lying (лежать), не laying."},
-                {"question": "The new bridge opened last year is very modern.", "answer": "Correct", "explanation": "Пассив: opened – верно."}
-            ]
+          "type": "complex",
+          "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
+          "subtasks": [
+            {"question": "The students taking the exam are very nervous.", "answer": "Correct", "explanation": "Активный: taking – верно."},
+            {"question": "The bird sitting in the tree is singing beautifully.", "answer": "Correct", "explanation": "Активный: sitting – верно."},
+            {"question": "The window smashed by the children was broken.", "answer": "Correct", "explanation": "Пассив: smashed – верно."},
+            {"question": "The man washing a car is my neighbour.", "answer": "Correct", "explanation": "Активный: washing – верно."},
+            {"question": "The article published in the newspaper is very interesting.", "answer": "Correct", "explanation": "Пассив: published – верно."},
+            {"question": "The girls singing in the choir are my friends.", "answer": "Correct", "explanation": "Активный: singing – верно."},
+            {"question": "The phone laying on the table is mine.", "answer": "The phone lying on the table is mine.", "explanation": "Активный: lying (лежать), не laying."},
+            {"question": "The new bridge opened last year is very modern.", "answer": "Correct", "explanation": "Пассив: opened – верно."}
+          ]
         },
         {
-            "type": "complex",
-            "text": "4. Rewrite the sentences using reduced relative clauses. Type the whole sentence.",
-            "subtasks": [
-                {"question": "The students who are taking the exam are very nervous. → The students taking the exam are very nervous.", "answer": "The students taking the exam are very nervous.", "explanation": "Активный."},
-                {"question": "The bird which is sitting in the tree is singing beautifully. → The bird sitting in the tree is singing beautifully.", "answer": "The bird sitting in the tree is singing beautifully.", "explanation": "Активный."},
-                {"question": "The window which was smashed by the children was broken. → The window smashed by the children was broken.", "answer": "The window smashed by the children was broken.", "explanation": "Пассив."},
-                {"question": "The man who is washing a car is my neighbour. → The man washing a car is my neighbour.", "answer": "The man washing a car is my neighbour.", "explanation": "Активный."},
-                {"question": "The article which was published in the newspaper is very interesting. → The article published in the newspaper is very interesting.", "answer": "The article published in the newspaper is very interesting.", "explanation": "Пассив."},
-                {"question": "The girls who are singing in the choir are my friends. → The girls singing in the choir are my friends.", "answer": "The girls singing in the choir are my friends.", "explanation": "Активный."},
-                {"question": "The phone which is lying on the table is mine. → The phone lying on the table is mine.", "answer": "The phone lying on the table is mine.", "explanation": "Активный."},
-                {"question": "The new bridge which was opened last year is very modern. → The new bridge opened last year is very modern.", "answer": "The new bridge opened last year is very modern.", "explanation": "Пассив."}
-            ]
+          "type": "complex",
+          "text": "4. Rewrite the sentences using reduced relative clauses. Type the whole sentence.",
+          "subtasks": [
+            {"question": "The students who are taking the exam are very nervous. → The students taking the exam are very nervous.", "answer": "The students taking the exam are very nervous.", "explanation": "Активный."},
+            {"question": "The bird which is sitting in the tree is singing beautifully. → The bird sitting in the tree is singing beautifully.", "answer": "The bird sitting in the tree is singing beautifully.", "explanation": "Активный."},
+            {"question": "The window which was smashed by the children was broken. → The window smashed by the children was broken.", "answer": "The window smashed by the children was broken.", "explanation": "Пассив."},
+            {"question": "The man who is washing a car is my neighbour. → The man washing a car is my neighbour.", "answer": "The man washing a car is my neighbour.", "explanation": "Активный."},
+            {"question": "The article which was published in the newspaper is very interesting. → The article published in the newspaper is very interesting.", "answer": "The article published in the newspaper is very interesting.", "explanation": "Пассив."},
+            {"question": "The girls who are singing in the choir are my friends. → The girls singing in the choir are my friends.", "answer": "The girls singing in the choir are my friends.", "explanation": "Активный."},
+            {"question": "The phone which is lying on the table is mine. → The phone lying on the table is mine.", "answer": "The phone lying on the table is mine.", "explanation": "Активный."},
+            {"question": "The new bridge which was opened last year is very modern. → The new bridge opened last year is very modern.", "answer": "The new bridge opened last year is very modern.", "explanation": "Пассив."}
+          ]
         }
-    ],
-    # =====================================================
-    # ВАРИАНТ 7 (перевод)
-    # =====================================================
-    [
+      ],
+      # =====================================================
+      # ВАРИАНТ 7 (перевод)
+      # =====================================================
+      [
         {
-            "type": "complex",
-            "text": "1. Choose the correct reduced form (a, b, or c) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "The passengers ______ for the train are very tired.", "answer": "waiting", "explanation": "Активный: who are waiting → waiting."},
-                {"question": "The chef ______ in the kitchen is very famous.", "answer": "working", "explanation": "Активный: who is working → working."},
-                {"question": "The poem ______ by the poet is very beautiful.", "answer": "written", "explanation": "Пассив: which was written → written."},
-                {"question": "The cars ______ in the showroom are very expensive.", "answer": "displayed", "explanation": "Пассив: which are displayed → displayed."},
-                {"question": "The students ______ about the project are very excited.", "answer": "talking", "explanation": "Активный: who are talking → talking."},
-                {"question": "The house ______ at the end of the street is for sale.", "answer": "located", "explanation": "Пассив: which is located → located."},
-                {"question": "The runner ______ the marathon is very fast.", "answer": "winning", "explanation": "Активный: who is winning → winning."},
-                {"question": "The files ______ on the computer are very important.", "answer": "stored", "explanation": "Пассив: which are stored → stored."}
-            ]
+          "type": "complex",
+          "text": "1. Choose the correct reduced form (a, b, or c) to complete the sentence. Type the letter of your answer.",
+          "subtasks": [
+            {"question": "The passengers ______ for the train are very tired.", "answer": "waiting", "explanation": "Активный: who are waiting → waiting."},
+            {"question": "The chef ______ in the kitchen is very famous.", "answer": "working", "explanation": "Активный: who is working → working."},
+            {"question": "The poem ______ by the poet is very beautiful.", "answer": "written", "explanation": "Пассив: which was written → written."},
+            {"question": "The cars ______ in the showroom are very expensive.", "answer": "displayed", "explanation": "Пассив: which are displayed → displayed."},
+            {"question": "The students ______ about the project are very excited.", "answer": "talking", "explanation": "Активный: who are talking → talking."},
+            {"question": "The house ______ at the end of the street is for sale.", "answer": "located", "explanation": "Пассив: which is located → located."},
+            {"question": "The runner ______ the marathon is very fast.", "answer": "winning", "explanation": "Активный: who is winning → winning."},
+            {"question": "The files ______ on the computer are very important.", "answer": "stored", "explanation": "Пассив: which are stored → stored."}
+          ]
         },
         {
-            "type": "complex",
-            "text": "2. Fill in the gaps with the correct reduced form of the verb in brackets. Type the missing word(s) in the box.",
-            "subtasks": [
-                {"question": "The passengers ______ (wait) for the train are very tired.", "answer": "waiting", "explanation": "Активный."},
-                {"question": "The chef ______ (work) in the kitchen is very famous.", "answer": "working", "explanation": "Активный."},
-                {"question": "The poem ______ (write) by the poet is very beautiful.", "answer": "written", "explanation": "Пассив."},
-                {"question": "The cars ______ (display) in the showroom are very expensive.", "answer": "displayed", "explanation": "Пассив."},
-                {"question": "The students ______ (talk) about the project are very excited.", "answer": "talking", "explanation": "Активный."},
-                {"question": "The house ______ (locate) at the end of the street is for sale.", "answer": "located", "explanation": "Пассив."},
-                {"question": "The runner ______ (win) the marathon is very fast.", "answer": "winning", "explanation": "Активный."},
-                {"question": "The files ______ (store) on the computer are very important.", "answer": "stored", "explanation": "Пассив."}
-            ]
+          "type": "complex",
+          "text": "2. Fill in the gaps with the correct reduced form of the verb in brackets. Type the missing word(s) in the box.",
+          "subtasks": [
+            {"question": "The passengers ______ (wait) for the train are very tired.", "answer": "waiting", "explanation": "Активный."},
+            {"question": "The chef ______ (work) in the kitchen is very famous.", "answer": "working", "explanation": "Активный."},
+            {"question": "The poem ______ (write) by the poet is very beautiful.", "answer": "written", "explanation": "Пассив."},
+            {"question": "The cars ______ (display) in the showroom are very expensive.", "answer": "displayed", "explanation": "Пассив."},
+            {"question": "The students ______ (talk) about the project are very excited.", "answer": "talking", "explanation": "Активный."},
+            {"question": "The house ______ (locate) at the end of the street is for sale.", "answer": "located", "explanation": "Пассив."},
+            {"question": "The runner ______ (win) the marathon is very fast.", "answer": "winning", "explanation": "Активный."},
+            {"question": "The files ______ (store) on the computer are very important.", "answer": "stored", "explanation": "Пассив."}
+          ]
         },
         {
-            "type": "complex",
-            "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
-            "subtasks": [
-                {"question": "The passengers waiting for the train are very tired.", "answer": "Correct", "explanation": "Активный: waiting – верно."},
-                {"question": "The chef working in the kitchen is very famous.", "answer": "Correct", "explanation": "Активный: working – верно."},
-                {"question": "The poem written by the poet is very beautiful.", "answer": "Correct", "explanation": "Пассив: written – верно."},
-                {"question": "The cars displayed in the showroom are very expensive.", "answer": "Correct", "explanation": "Пассив: displayed – верно."},
-                {"question": "The students talking about the project are very excited.", "answer": "Correct", "explanation": "Активный: talking – верно."},
-                {"question": "The house located at the end of the street is for sale.", "answer": "Correct", "explanation": "Пассив: located – верно."},
-                {"question": "The runner winning the marathon is very fast.", "answer": "Correct", "explanation": "Активный: winning – верно."},
-                {"question": "The files stored on the computer are very important.", "answer": "Correct", "explanation": "Пассив: stored – верно."}
-            ]
+          "type": "complex",
+          "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
+          "subtasks": [
+            {"question": "The passengers waiting for the train are very tired.", "answer": "Correct", "explanation": "Активный: waiting – верно."},
+            {"question": "The chef working in the kitchen is very famous.", "answer": "Correct", "explanation": "Активный: working – верно."},
+            {"question": "The poem written by the poet is very beautiful.", "answer": "Correct", "explanation": "Пассив: written – верно."},
+            {"question": "The cars displayed in the showroom are very expensive.", "answer": "Correct", "explanation": "Пассив: displayed – верно."},
+            {"question": "The students talking about the project are very excited.", "answer": "Correct", "explanation": "Активный: talking – верно."},
+            {"question": "The house located at the end of the street is for sale.", "answer": "Correct", "explanation": "Пассив: located – верно."},
+            {"question": "The runner winning the marathon is very fast.", "answer": "Correct", "explanation": "Активный: winning – верно."},
+            {"question": "The files stored on the computer are very important.", "answer": "Correct", "explanation": "Пассив: stored – верно."}
+          ]
         },
         {
-            "type": "complex",
-            "text": "4. Translate the sentences into English using reduced relative clauses. Type your translation (one sentence) in the box.",
-            "subtasks": [
-                {"question": "Пассажиры, ожидающие поезд, очень устали.", "answer": "The passengers waiting for the train are very tired.", "explanation": ""},
-                {"question": "Шеф-повар, работающий на кухне, очень известен.", "answer": "The chef working in the kitchen is very famous.", "explanation": ""},
-                {"question": "Стихотворение, написанное поэтом, очень красивое.", "answer": "The poem written by the poet is very beautiful.", "explanation": ""},
-                {"question": "Машины, выставленные в автосалоне, очень дорогие.", "answer": "The cars displayed in the showroom are very expensive.", "explanation": ""},
-                {"question": "Студенты, говорящие о проекте, очень взволнованы.", "answer": "The students talking about the project are very excited.", "explanation": ""},
-                {"question": "Дом, расположенный в конце улицы, продаётся.", "answer": "The house located at the end of the street is for sale.", "explanation": ""},
-                {"question": "Бегун, выигрывающий марафон, очень быстрый.", "answer": "The runner winning the marathon is very fast.", "explanation": ""},
-                {"question": "Файлы, хранящиеся на компьютере, очень важны.", "answer": "The files stored on the computer are very important.", "explanation": ""}
-            ]
+          "type": "complex",
+          "text": "4. Translate the sentences into English using reduced relative clauses. Type your translation (one sentence) in the box.",
+          "subtasks": [
+            {"question": "Пассажиры, ожидающие поезд, очень устали.", "answer": "The passengers waiting for the train are very tired.", "explanation": ""},
+            {"question": "Шеф-повар, работающий на кухне, очень известен.", "answer": "The chef working in the kitchen is very famous.", "explanation": ""},
+            {"question": "Стихотворение, написанное поэтом, очень красивое.", "answer": "The poem written by the poet is very beautiful.", "explanation": ""},
+            {"question": "Машины, выставленные в автосалоне, очень дорогие.", "answer": "The cars displayed in the showroom are very expensive.", "explanation": ""},
+            {"question": "Студенты, говорящие о проекте, очень взволнованы.", "answer": "The students talking about the project are very excited.", "explanation": ""},
+            {"question": "Дом, расположенный в конце улицы, продаётся.", "answer": "The house located at the end of the street is for sale.", "explanation": ""},
+            {"question": "Бегун, выигрывающий марафон, очень быстрый.", "answer": "The runner winning the marathon is very fast.", "explanation": ""},
+            {"question": "Файлы, хранящиеся на компьютере, очень важны.", "answer": "The files stored on the computer are very important.", "explanation": ""}
+          ]
         }
-    ],
-    # =====================================================
-    # ВАРИАНТ 8 (перефразирование)
-    # =====================================================
-    [
+      ],
+      # =====================================================
+      # ВАРИАНТ 8 (перефразирование)
+      # =====================================================
+      [
         {
-            "type": "complex",
-            "text": "1. Choose the correct reduced form (a, b, or c) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "The man ______ a hat is my uncle.", "answer": "wearing", "explanation": "Активный: who is wearing → wearing."},
-                {"question": "The dog ______ loudly is very annoying.", "answer": "barking", "explanation": "Активный: which is barking → barking."},
-                {"question": "The letter ______ by the manager was very polite.", "answer": "written", "explanation": "Пассив: which was written → written."},
-                {"question": "The players ______ on the field are very tired.", "answer": "running", "explanation": "Активный: who are running → running."},
-                {"question": "The song ______ by the singer is very popular.", "answer": "performed", "explanation": "Пассив: which was performed → performed."},
-                {"question": "The girl ______ a red dress is my sister.", "answer": "wearing", "explanation": "Активный: who is wearing → wearing."},
-                {"question": "The tickets ______ online are cheaper.", "answer": "bought", "explanation": "Пассив: which are bought → bought."},
-                {"question": "The river ______ through the city is very clean.", "answer": "flowing", "explanation": "Активный: which is flowing → flowing."}
-            ]
+          "type": "complex",
+          "text": "1. Choose the correct reduced form (a, b, or c) to complete the sentence. Type the letter of your answer.",
+          "subtasks": [
+            {"question": "The man ______ a hat is my uncle.", "answer": "wearing", "explanation": "Активный: who is wearing → wearing."},
+            {"question": "The dog ______ loudly is very annoying.", "answer": "barking", "explanation": "Активный: which is barking → barking."},
+            {"question": "The letter ______ by the manager was very polite.", "answer": "written", "explanation": "Пассив: which was written → written."},
+            {"question": "The players ______ on the field are very tired.", "answer": "running", "explanation": "Активный: who are running → running."},
+            {"question": "The song ______ by the singer is very popular.", "answer": "performed", "explanation": "Пассив: which was performed → performed."},
+            {"question": "The girl ______ a red dress is my sister.", "answer": "wearing", "explanation": "Активный: who is wearing → wearing."},
+            {"question": "The tickets ______ online are cheaper.", "answer": "bought", "explanation": "Пассив: which are bought → bought."},
+            {"question": "The river ______ through the city is very clean.", "answer": "flowing", "explanation": "Активный: which is flowing → flowing."}
+          ]
         },
         {
-            "type": "complex",
-            "text": "2. Fill in the gaps with the correct reduced form of the verb in brackets. Type the missing word(s) in the box.",
-            "subtasks": [
-                {"question": "The man ______ (wear) a hat is my uncle.", "answer": "wearing", "explanation": "Активный."},
-                {"question": "The dog ______ (bark) loudly is very annoying.", "answer": "barking", "explanation": "Активный."},
-                {"question": "The letter ______ (write) by the manager was very polite.", "answer": "written", "explanation": "Пассив."},
-                {"question": "The players ______ (run) on the field are very tired.", "answer": "running", "explanation": "Активный."},
-                {"question": "The song ______ (perform) by the singer is very popular.", "answer": "performed", "explanation": "Пассив."},
-                {"question": "The girl ______ (wear) a red dress is my sister.", "answer": "wearing", "explanation": "Активный."},
-                {"question": "The tickets ______ (buy) online are cheaper.", "answer": "bought", "explanation": "Пассив."},
-                {"question": "The river ______ (flow) through the city is very clean.", "answer": "flowing", "explanation": "Активный."}
-            ]
+          "type": "complex",
+          "text": "2. Fill in the gaps with the correct reduced form of the verb in brackets. Type the missing word(s) in the box.",
+          "subtasks": [
+            {"question": "The man ______ (wear) a hat is my uncle.", "answer": "wearing", "explanation": "Активный."},
+            {"question": "The dog ______ (bark) loudly is very annoying.", "answer": "barking", "explanation": "Активный."},
+            {"question": "The letter ______ (write) by the manager was very polite.", "answer": "written", "explanation": "Пассив."},
+            {"question": "The players ______ (run) on the field are very tired.", "answer": "running", "explanation": "Активный."},
+            {"question": "The song ______ (perform) by the singer is very popular.", "answer": "performed", "explanation": "Пассив."},
+            {"question": "The girl ______ (wear) a red dress is my sister.", "answer": "wearing", "explanation": "Активный."},
+            {"question": "The tickets ______ (buy) online are cheaper.", "answer": "bought", "explanation": "Пассив."},
+            {"question": "The river ______ (flow) through the city is very clean.", "answer": "flowing", "explanation": "Активный."}
+          ]
         },
         {
-            "type": "complex",
-            "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
-            "subtasks": [
-                {"question": "The man wearing a hat is my uncle.", "answer": "Correct", "explanation": "Активный: wearing – верно."},
-                {"question": "The dog barking loudly is very annoying.", "answer": "Correct", "explanation": "Активный: barking – верно."},
-                {"question": "The letter written by the manager was very polite.", "answer": "Correct", "explanation": "Пассив: written – верно."},
-                {"question": "The players running on the field are very tired.", "answer": "Correct", "explanation": "Активный: running – верно."},
-                {"question": "The song performed by the singer is very popular.", "answer": "Correct", "explanation": "Пассив: performed – верно."},
-                {"question": "The girl wearing a red dress is my sister.", "answer": "Correct", "explanation": "Активный: wearing – верно."},
-                {"question": "The tickets bought online are cheaper.", "answer": "Correct", "explanation": "Пассив: bought – верно."},
-                {"question": "The river flowing through the city is very clean.", "answer": "Correct", "explanation": "Активный: flowing – верно."}
-            ]
+          "type": "complex",
+          "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
+          "subtasks": [
+            {"question": "The man wearing a hat is my uncle.", "answer": "Correct", "explanation": "Активный: wearing – верно."},
+            {"question": "The dog barking loudly is very annoying.", "answer": "Correct", "explanation": "Активный: barking – верно."},
+            {"question": "The letter written by the manager was very polite.", "answer": "Correct", "explanation": "Пассив: written – верно."},
+            {"question": "The players running on the field are very tired.", "answer": "Correct", "explanation": "Активный: running – верно."},
+            {"question": "The song performed by the singer is very popular.", "answer": "Correct", "explanation": "Пассив: performed – верно."},
+            {"question": "The girl wearing a red dress is my sister.", "answer": "Correct", "explanation": "Активный: wearing – верно."},
+            {"question": "The tickets bought online are cheaper.", "answer": "Correct", "explanation": "Пассив: bought – верно."},
+            {"question": "The river flowing through the city is very clean.", "answer": "Correct", "explanation": "Активный: flowing – верно."}
+          ]
         },
         {
-            "type": "complex",
-            "text": "4. Rewrite the sentences using reduced relative clauses. Type the whole sentence.",
-            "subtasks": [
-                {"question": "The man who is wearing a hat is my uncle. → The man wearing a hat is my uncle.", "answer": "The man wearing a hat is my uncle.", "explanation": "Активный."},
-                {"question": "The dog which is barking loudly is very annoying. → The dog barking loudly is very annoying.", "answer": "The dog barking loudly is very annoying.", "explanation": "Активный."},
-                {"question": "The letter which was written by the manager was very polite. → The letter written by the manager was very polite.", "answer": "The letter written by the manager was very polite.", "explanation": "Пассив."},
-                {"question": "The players who are running on the field are very tired. → The players running on the field are very tired.", "answer": "The players running on the field are very tired.", "explanation": "Активный."},
-                {"question": "The song which was performed by the singer is very popular. → The song performed by the singer is very popular.", "answer": "The song performed by the singer is very popular.", "explanation": "Пассив."},
-                {"question": "The girl who is wearing a red dress is my sister. → The girl wearing a red dress is my sister.", "answer": "The girl wearing a red dress is my sister.", "explanation": "Активный."},
-                {"question": "The tickets which are bought online are cheaper. → The tickets bought online are cheaper.", "answer": "The tickets bought online are cheaper.", "explanation": "Пассив."},
-                {"question": "The river which is flowing through the city is very clean. → The river flowing through the city is very clean.", "answer": "The river flowing through the city is very clean.", "explanation": "Активный."}
-            ]
+          "type": "complex",
+          "text": "4. Rewrite the sentences using reduced relative clauses. Type the whole sentence.",
+          "subtasks": [
+            {"question": "The man who is wearing a hat is my uncle. → The man wearing a hat is my uncle.", "answer": "The man wearing a hat is my uncle.", "explanation": "Активный."},
+            {"question": "The dog which is barking loudly is very annoying. → The dog barking loudly is very annoying.", "answer": "The dog barking loudly is very annoying.", "explanation": "Активный."},
+            {"question": "The letter which was written by the manager was very polite. → The letter written by the manager was very polite.", "answer": "The letter written by the manager was very polite.", "explanation": "Пассив."},
+            {"question": "The players who are running on the field are very tired. → The players running on the field are very tired.", "answer": "The players running on the field are very tired.", "explanation": "Активный."},
+            {"question": "The song which was performed by the singer is very popular. → The song performed by the singer is very popular.", "answer": "The song performed by the singer is very popular.", "explanation": "Пассив."},
+            {"question": "The girl who is wearing a red dress is my sister. → The girl wearing a red dress is my sister.", "answer": "The girl wearing a red dress is my sister.", "explanation": "Активный."},
+            {"question": "The tickets which are bought online are cheaper. → The tickets bought online are cheaper.", "answer": "The tickets bought online are cheaper.", "explanation": "Пассив."},
+            {"question": "The river which is flowing through the city is very clean. → The river flowing through the city is very clean.", "answer": "The river flowing through the city is very clean.", "explanation": "Активный."}
+          ]
         }
-    ],
-    # =====================================================
-    # ВАРИАНТ 9 (перевод)
-    # =====================================================
-    [
+      ],
+      # =====================================================
+      # ВАРИАНТ 9 (перевод)
+      # =====================================================
+      [
         {
-            "type": "complex",
-            "text": "1. Choose the correct reduced form (a, b, or c) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "The man ______ next to me is very tall.", "answer": "standing", "explanation": "Активный: who is standing → standing."},
-                {"question": "The scientist ______ the experiment is very famous.", "answer": "conducting", "explanation": "Активный: who is conducting → conducting."},
-                {"question": "The cake ______ by the baker was delicious.", "answer": "baked", "explanation": "Пассив: which was baked → baked."},
-                {"question": "The children ______ in the park are having fun.", "answer": "playing", "explanation": "Активный: who are playing → playing."},
-                {"question": "The email ______ by the secretary was very polite.", "answer": "sent", "explanation": "Пассив: which was sent → sent."},
-                {"question": "The woman ______ a blue dress is my aunt.", "answer": "wearing", "explanation": "Активный: who is wearing → wearing."},
-                {"question": "The products ______ in China are cheaper.", "answer": "made", "explanation": "Пассив: which are made → made."},
-                {"question": "The cloud ______ over the mountain looks like an elephant.", "answer": "floating", "explanation": "Активный: which is floating → floating."}
-            ]
+          "type": "complex",
+          "text": "1. Choose the correct reduced form (a, b, or c) to complete the sentence. Type the letter of your answer.",
+          "subtasks": [
+            {"question": "The man ______ next to me is very tall.", "answer": "standing", "explanation": "Активный: who is standing → standing."},
+            {"question": "The scientist ______ the experiment is very famous.", "answer": "conducting", "explanation": "Активный: who is conducting → conducting."},
+            {"question": "The cake ______ by the baker was delicious.", "answer": "baked", "explanation": "Пассив: which was baked → baked."},
+            {"question": "The children ______ in the park are having fun.", "answer": "playing", "explanation": "Активный: who are playing → playing."},
+            {"question": "The email ______ by the secretary was very polite.", "answer": "sent", "explanation": "Пассив: which was sent → sent."},
+            {"question": "The woman ______ a blue dress is my aunt.", "answer": "wearing", "explanation": "Активный: who is wearing → wearing."},
+            {"question": "The products ______ in China are cheaper.", "answer": "made", "explanation": "Пассив: which are made → made."},
+            {"question": "The cloud ______ over the mountain looks like an elephant.", "answer": "floating", "explanation": "Активный: which is floating → floating."}
+          ]
         },
         {
-            "type": "complex",
-            "text": "2. Fill in the gaps with the correct reduced form of the verb in brackets. Type the missing word(s) in the box.",
-            "subtasks": [
-                {"question": "The man ______ (stand) next to me is very tall.", "answer": "standing", "explanation": "Активный."},
-                {"question": "The scientist ______ (conduct) the experiment is very famous.", "answer": "conducting", "explanation": "Активный."},
-                {"question": "The cake ______ (bake) by the baker was delicious.", "answer": "baked", "explanation": "Пассив."},
-                {"question": "The children ______ (play) in the park are having fun.", "answer": "playing", "explanation": "Активный."},
-                {"question": "The email ______ (send) by the secretary was very polite.", "answer": "sent", "explanation": "Пассив."},
-                {"question": "The woman ______ (wear) a blue dress is my aunt.", "answer": "wearing", "explanation": "Активный."},
-                {"question": "The products ______ (make) in China are cheaper.", "answer": "made", "explanation": "Пассив."},
-                {"question": "The cloud ______ (float) over the mountain looks like an elephant.", "answer": "floating", "explanation": "Активный."}
-            ]
+          "type": "complex",
+          "text": "2. Fill in the gaps with the correct reduced form of the verb in brackets. Type the missing word(s) in the box.",
+          "subtasks": [
+            {"question": "The man ______ (stand) next to me is very tall.", "answer": "standing", "explanation": "Активный."},
+            {"question": "The scientist ______ (conduct) the experiment is very famous.", "answer": "conducting", "explanation": "Активный."},
+            {"question": "The cake ______ (bake) by the baker was delicious.", "answer": "baked", "explanation": "Пассив."},
+            {"question": "The children ______ (play) in the park are having fun.", "answer": "playing", "explanation": "Активный."},
+            {"question": "The email ______ (send) by the secretary was very polite.", "answer": "sent", "explanation": "Пассив."},
+            {"question": "The woman ______ (wear) a blue dress is my aunt.", "answer": "wearing", "explanation": "Активный."},
+            {"question": "The products ______ (make) in China are cheaper.", "answer": "made", "explanation": "Пассив."},
+            {"question": "The cloud ______ (float) over the mountain looks like an elephant.", "answer": "floating", "explanation": "Активный."}
+          ]
         },
         {
-            "type": "complex",
-            "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
-            "subtasks": [
-                {"question": "The man standing next to me is very tall.", "answer": "Correct", "explanation": "Активный: standing – верно."},
-                {"question": "The scientist conducting the experiment is very famous.", "answer": "Correct", "explanation": "Активный: conducting – верно."},
-                {"question": "The cake baked by the baker was delicious.", "answer": "Correct", "explanation": "Пассив: baked – верно."},
-                {"question": "The children playing in the park are having fun.", "answer": "Correct", "explanation": "Активный: playing – верно."},
-                {"question": "The email sent by the secretary was very polite.", "answer": "Correct", "explanation": "Пассив: sent – верно."},
-                {"question": "The woman wearing a blue dress is my aunt.", "answer": "Correct", "explanation": "Активный: wearing – верно."},
-                {"question": "The products made in China are cheaper.", "answer": "Correct", "explanation": "Пассив: made – верно."},
-                {"question": "The cloud floating over the mountain looks like an elephant.", "answer": "Correct", "explanation": "Активный: floating – верно."}
-            ]
+          "type": "complex",
+          "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
+          "subtasks": [
+            {"question": "The man standing next to me is very tall.", "answer": "Correct", "explanation": "Активный: standing – верно."},
+            {"question": "The scientist conducting the experiment is very famous.", "answer": "Correct", "explanation": "Активный: conducting – верно."},
+            {"question": "The cake baked by the baker was delicious.", "answer": "Correct", "explanation": "Пассив: baked – верно."},
+            {"question": "The children playing in the park are having fun.", "answer": "Correct", "explanation": "Активный: playing – верно."},
+            {"question": "The email sent by the secretary was very polite.", "answer": "Correct", "explanation": "Пассив: sent – верно."},
+            {"question": "The woman wearing a blue dress is my aunt.", "answer": "Correct", "explanation": "Активный: wearing – верно."},
+            {"question": "The products made in China are cheaper.", "answer": "Correct", "explanation": "Пассив: made – верно."},
+            {"question": "The cloud floating over the mountain looks like an elephant.", "answer": "Correct", "explanation": "Активный: floating – верно."}
+          ]
         },
         {
-            "type": "complex",
-            "text": "4. Translate the sentences into English using reduced relative clauses. Type your translation (one sentence) in the box.",
-            "subtasks": [
-                {"question": "Человек, стоящий рядом со мной, очень высокий.", "answer": "The man standing next to me is very tall.", "explanation": ""},
-                {"question": "Учёный, проводящий эксперимент, очень известен.", "answer": "The scientist conducting the experiment is very famous.", "explanation": ""},
-                {"question": "Торт, испечённый пекарем, был вкусным.", "answer": "The cake baked by the baker was delicious.", "explanation": ""},
-                {"question": "Дети, играющие в парке, веселятся.", "answer": "The children playing in the park are having fun.", "explanation": ""},
-                {"question": "Письмо, отправленное секретарём, было очень вежливым.", "answer": "The email sent by the secretary was very polite.", "explanation": ""},
-                {"question": "Женщина в синем платье – моя тётя.", "answer": "The woman wearing a blue dress is my aunt.", "explanation": ""},
-                {"question": "Товары, сделанные в Китае, дешевле.", "answer": "The products made in China are cheaper.", "explanation": ""},
-                {"question": "Облако, плывущее над горой, похоже на слона.", "answer": "The cloud floating over the mountain looks like an elephant.", "explanation": ""}
-            ]
+          "type": "complex",
+          "text": "4. Translate the sentences into English using reduced relative clauses. Type your translation (one sentence) in the box.",
+          "subtasks": [
+            {"question": "Человек, стоящий рядом со мной, очень высокий.", "answer": "The man standing next to me is very tall.", "explanation": ""},
+            {"question": "Учёный, проводящий эксперимент, очень известен.", "answer": "The scientist conducting the experiment is very famous.", "explanation": ""},
+            {"question": "Торт, испечённый пекарем, был вкусным.", "answer": "The cake baked by the baker was delicious.", "explanation": ""},
+            {"question": "Дети, играющие в парке, веселятся.", "answer": "The children playing in the park are having fun.", "explanation": ""},
+            {"question": "Письмо, отправленное секретарём, было очень вежливым.", "answer": "The email sent by the secretary was very polite.", "explanation": ""},
+            {"question": "Женщина в синем платье – моя тётя.", "answer": "The woman wearing a blue dress is my aunt.", "explanation": ""},
+            {"question": "Товары, сделанные в Китае, дешевле.", "answer": "The products made in China are cheaper.", "explanation": ""},
+            {"question": "Облако, плывущее над горой, похоже на слона.", "answer": "The cloud floating over the mountain looks like an elephant.", "explanation": ""}
+          ]
         }
-    ],
-    # =====================================================
-    # ВАРИАНТ 10 (перефразирование)
-    # =====================================================
-    [
+      ],
+      # =====================================================
+      # ВАРИАНТ 10 (перефразирование)
+      # =====================================================
+      [
         {
-            "type": "complex",
-            "text": "1. Choose the correct reduced form (a, b, or c) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "The teacher ______ in the classroom is very experienced.", "answer": "standing", "explanation": "Активный: who is standing → standing."},
-                {"question": "The musician ______ the guitar is very talented.", "answer": "playing", "explanation": "Активный: who is playing → playing."},
-                {"question": "The house ______ by the famous architect was beautiful.", "answer": "designed", "explanation": "Пассив: which was designed → designed."},
-                {"question": "The people ______ in the queue are waiting for the shop to open.", "answer": "standing", "explanation": "Активный: who are standing → standing."},
-                {"question": "The book ______ by my father is on the shelf.", "answer": "read", "explanation": "Пассив: which was read → read."},
-                {"question": "The athlete ______ the race is from Kenya.", "answer": "winning", "explanation": "Активный: who is winning → winning."},
-                {"question": "The flowers ______ in the vase are very beautiful.", "answer": "placed", "explanation": "Пассив: which were placed → placed."},
-                {"question": "The star ______ in the sky is very bright.", "answer": "shining", "explanation": "Активный: which is shining → shining."}
-            ]
+          "type": "complex",
+          "text": "1. Choose the correct reduced form (a, b, or c) to complete the sentence. Type the letter of your answer.",
+          "subtasks": [
+            {"question": "The teacher ______ in the classroom is very experienced.", "answer": "standing", "explanation": "Активный: who is standing → standing."},
+            {"question": "The musician ______ the guitar is very talented.", "answer": "playing", "explanation": "Активный: who is playing → playing."},
+            {"question": "The house ______ by the famous architect was beautiful.", "answer": "designed", "explanation": "Пассив: which was designed → designed."},
+            {"question": "The people ______ in the queue are waiting for the shop to open.", "answer": "standing", "explanation": "Активный: who are standing → standing."},
+            {"question": "The book ______ by my father is on the shelf.", "answer": "read", "explanation": "Пассив: which was read → read."},
+            {"question": "The athlete ______ the race is from Kenya.", "answer": "winning", "explanation": "Активный: who is winning → winning."},
+            {"question": "The flowers ______ in the vase are very beautiful.", "answer": "placed", "explanation": "Пассив: which were placed → placed."},
+            {"question": "The star ______ in the sky is very bright.", "answer": "shining", "explanation": "Активный: which is shining → shining."}
+          ]
         },
         {
-            "type": "complex",
-            "text": "2. Fill in the gaps with the correct reduced form of the verb in brackets. Type the missing word(s) in the box.",
-            "subtasks": [
-                {"question": "The teacher ______ (stand) in the classroom is very experienced.", "answer": "standing", "explanation": "Активный."},
-                {"question": "The musician ______ (play) the guitar is very talented.", "answer": "playing", "explanation": "Активный."},
-                {"question": "The house ______ (design) by the famous architect was beautiful.", "answer": "designed", "explanation": "Пассив."},
-                {"question": "The people ______ (stand) in the queue are waiting for the shop to open.", "answer": "standing", "explanation": "Активный."},
-                {"question": "The book ______ (read) by my father is on the shelf.", "answer": "read", "explanation": "Пассив."},
-                {"question": "The athlete ______ (win) the race is from Kenya.", "answer": "winning", "explanation": "Активный."},
-                {"question": "The flowers ______ (place) in the vase are very beautiful.", "answer": "placed", "explanation": "Пассив."},
-                {"question": "The star ______ (shine) in the sky is very bright.", "answer": "shining", "explanation": "Активный."}
-            ]
+          "type": "complex",
+          "text": "2. Fill in the gaps with the correct reduced form of the verb in brackets. Type the missing word(s) in the box.",
+          "subtasks": [
+            {"question": "The teacher ______ (stand) in the classroom is very experienced.", "answer": "standing", "explanation": "Активный."},
+            {"question": "The musician ______ (play) the guitar is very talented.", "answer": "playing", "explanation": "Активный."},
+            {"question": "The house ______ (design) by the famous architect was beautiful.", "answer": "designed", "explanation": "Пассив."},
+            {"question": "The people ______ (stand) in the queue are waiting for the shop to open.", "answer": "standing", "explanation": "Активный."},
+            {"question": "The book ______ (read) by my father is on the shelf.", "answer": "read", "explanation": "Пассив."},
+            {"question": "The athlete ______ (win) the race is from Kenya.", "answer": "winning", "explanation": "Активный."},
+            {"question": "The flowers ______ (place) in the vase are very beautiful.", "answer": "placed", "explanation": "Пассив."},
+            {"question": "The star ______ (shine) in the sky is very bright.", "answer": "shining", "explanation": "Активный."}
+          ]
         },
         {
-            "type": "complex",
-            "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
-            "subtasks": [
-                {"question": "The teacher standing in the classroom is very experienced.", "answer": "Correct", "explanation": "Активный: standing – верно."},
-                {"question": "The musician playing the guitar is very talented.", "answer": "Correct", "explanation": "Активный: playing – верно."},
-                {"question": "The house designed by the famous architect was beautiful.", "answer": "Correct", "explanation": "Пассив: designed – верно."},
-                {"question": "The people standing in the queue are waiting for the shop to open.", "answer": "Correct", "explanation": "Активный: standing – верно."},
-                {"question": "The book read by my father is on the shelf.", "answer": "Correct", "explanation": "Пассив: read – верно."},
-                {"question": "The athlete winning the race is from Kenya.", "answer": "Correct", "explanation": "Активный: winning – верно."},
-                {"question": "The flowers placed in the vase are very beautiful.", "answer": "Correct", "explanation": "Пассив: placed – верно."},
-                {"question": "The star shining in the sky is very bright.", "answer": "Correct", "explanation": "Активный: shining – верно."}
-            ]
+          "type": "complex",
+          "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
+          "subtasks": [
+            {"question": "The teacher standing in the classroom is very experienced.", "answer": "Correct", "explanation": "Активный: standing – верно."},
+            {"question": "The musician playing the guitar is very talented.", "answer": "Correct", "explanation": "Активный: playing – верно."},
+            {"question": "The house designed by the famous architect was beautiful.", "answer": "Correct", "explanation": "Пассив: designed – верно."},
+            {"question": "The people standing in the queue are waiting for the shop to open.", "answer": "Correct", "explanation": "Активный: standing – верно."},
+            {"question": "The book read by my father is on the shelf.", "answer": "Correct", "explanation": "Пассив: read – верно."},
+            {"question": "The athlete winning the race is from Kenya.", "answer": "Correct", "explanation": "Активный: winning – верно."},
+            {"question": "The flowers placed in the vase are very beautiful.", "answer": "Correct", "explanation": "Пассив: placed – верно."},
+            {"question": "The star shining in the sky is very bright.", "answer": "Correct", "explanation": "Активный: shining – верно."}
+          ]
         },
         {
-            "type": "complex",
-            "text": "4. Rewrite the sentences using reduced relative clauses. Type the whole sentence.",
-            "subtasks": [
-                {"question": "The teacher who is standing in the classroom is very experienced. → The teacher standing in the classroom is very experienced.", "answer": "The teacher standing in the classroom is very experienced.", "explanation": "Активный."},
-                {"question": "The musician who is playing the guitar is very talented. → The musician playing the guitar is very talented.", "answer": "The musician playing the guitar is very talented.", "explanation": "Активный."},
-                {"question": "The house which was designed by the famous architect was beautiful. → The house designed by the famous architect was beautiful.", "answer": "The house designed by the famous architect was beautiful.", "explanation": "Пассив."},
-                {"question": "The people who are standing in the queue are waiting for the shop to open. → The people standing in the queue are waiting for the shop to open.", "answer": "The people standing in the queue are waiting for the shop to open.", "explanation": "Активный."},
-                {"question": "The book which was read by my father is on the shelf. → The book read by my father is on the shelf.", "answer": "The book read by my father is on the shelf.", "explanation": "Пассив."},
-                {"question": "The athlete who is winning the race is from Kenya. → The athlete winning the race is from Kenya.", "answer": "The athlete winning the race is from Kenya.", "explanation": "Активный."},
-                {"question": "The flowers which were placed in the vase are very beautiful. → The flowers placed in the vase are very beautiful.", "answer": "The flowers placed in the vase are very beautiful.", "explanation": "Пассив."},
-                {"question": "The star which is shining in the sky is very bright. → The star shining in the sky is very bright.", "answer": "The star shining in the sky is very bright.", "explanation": "Активный."}
-            ]
+          "type": "complex",
+          "text": "4. Rewrite the sentences using reduced relative clauses. Type the whole sentence.",
+          "subtasks": [
+            {"question": "The teacher who is standing in the classroom is very experienced. → The teacher standing in the classroom is very experienced.", "answer": "The teacher standing in the classroom is very experienced.", "explanation": "Активный."},
+            {"question": "The musician who is playing the guitar is very talented. → The musician playing the guitar is very talented.", "answer": "The musician playing the guitar is very talented.", "explanation": "Активный."},
+            {"question": "The house which was designed by the famous architect was beautiful. → The house designed by the famous architect was beautiful.", "answer": "The house designed by the famous architect was beautiful.", "explanation": "Пассив."},
+            {"question": "The people who are standing in the queue are waiting for the shop to open. → The people standing in the queue are waiting for the shop to open.", "answer": "The people standing in the queue are waiting for the shop to open.", "explanation": "Активный."},
+            {"question": "The book which was read by my father is on the shelf. → The book read by my father is on the shelf.", "answer": "The book read by my father is on the shelf.", "explanation": "Пассив."},
+            {"question": "The athlete who is winning the race is from Kenya. → The athlete winning the race is from Kenya.", "answer": "The athlete winning the race is from Kenya.", "explanation": "Активный."},
+            {"question": "The flowers which were placed in the vase are very beautiful. → The flowers placed in the vase are very beautiful.", "answer": "The flowers placed in the vase are very beautiful.", "explanation": "Пассив."},
+            {"question": "The star which is shining in the sky is very bright. → The star shining in the sky is very bright.", "answer": "The star shining in the sky is very bright.", "explanation": "Активный."}
+          ]
         }
-    ],
-    # =====================================================
-    # ВАРИАНТ 11 (перевод)
-    # =====================================================
-    [
+      ],
+      # =====================================================
+      # ВАРИАНТ 11 (перевод)
+      # =====================================================
+      [
         {
-            "type": "complex",
-            "text": "1. Choose the correct reduced form (a, b, or c) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "The cat ______ on the sofa is my pet.", "answer": "sleeping", "explanation": "Активный: which is sleeping → sleeping."},
-                {"question": "The engineer ______ the bridge is very skilled.", "answer": "designing", "explanation": "Активный: who is designing → designing."},
-                {"question": "The treasure ______ by pirates was never found.", "answer": "hidden", "explanation": "Пассив: which was hidden → hidden."},
-                {"question": "The tourists ______ in the hotel are very happy.", "answer": "staying", "explanation": "Активный: who are staying → staying."},
-                {"question": "The article ______ by the journalist was very well-written.", "answer": "written", "explanation": "Пассив: which was written → written."},
-                {"question": "The teacher ______ the class is very strict.", "answer": "teaching", "explanation": "Активный: who is teaching → teaching."},
-                {"question": "The trees ______ in the park are very old.", "answer": "planted", "explanation": "Пассив: which were planted → planted."},
-                {"question": "The river ______ into the sea is very wide.", "answer": "flowing", "explanation": "Активный: which is flowing → flowing."}
-            ]
+          "type": "complex",
+          "text": "1. Choose the correct reduced form (a, b, or c) to complete the sentence. Type the letter of your answer.",
+          "subtasks": [
+            {"question": "The cat ______ on the sofa is my pet.", "answer": "sleeping", "explanation": "Активный: which is sleeping → sleeping."},
+            {"question": "The engineer ______ the bridge is very skilled.", "answer": "designing", "explanation": "Активный: who is designing → designing."},
+            {"question": "The treasure ______ by pirates was never found.", "answer": "hidden", "explanation": "Пассив: which was hidden → hidden."},
+            {"question": "The tourists ______ in the hotel are very happy.", "answer": "staying", "explanation": "Активный: who are staying → staying."},
+            {"question": "The article ______ by the journalist was very well-written.", "answer": "written", "explanation": "Пассив: which was written → written."},
+            {"question": "The teacher ______ the class is very strict.", "answer": "teaching", "explanation": "Активный: who is teaching → teaching."},
+            {"question": "The trees ______ in the park are very old.", "answer": "planted", "explanation": "Пассив: which were planted → planted."},
+            {"question": "The river ______ into the sea is very wide.", "answer": "flowing", "explanation": "Активный: which is flowing → flowing."}
+          ]
         },
         {
-            "type": "complex",
-            "text": "2. Fill in the gaps with the correct reduced form of the verb in brackets. Type the missing word(s) in the box.",
-            "subtasks": [
-                {"question": "The cat ______ (sleep) on the sofa is my pet.", "answer": "sleeping", "explanation": "Активный."},
-                {"question": "The engineer ______ (design) the bridge is very skilled.", "answer": "designing", "explanation": "Активный."},
-                {"question": "The treasure ______ (hide) by pirates was never found.", "answer": "hidden", "explanation": "Пассив."},
-                {"question": "The tourists ______ (stay) in the hotel are very happy.", "answer": "staying", "explanation": "Активный."},
-                {"question": "The article ______ (write) by the journalist was very well-written.", "answer": "written", "explanation": "Пассив."},
-                {"question": "The teacher ______ (teach) the class is very strict.", "answer": "teaching", "explanation": "Активный."},
-                {"question": "The trees ______ (plant) in the park are very old.", "answer": "planted", "explanation": "Пассив."},
-                {"question": "The river ______ (flow) into the sea is very wide.", "answer": "flowing", "explanation": "Активный."}
-            ]
+          "type": "complex",
+          "text": "2. Fill in the gaps with the correct reduced form of the verb in brackets. Type the missing word(s) in the box.",
+          "subtasks": [
+            {"question": "The cat ______ (sleep) on the sofa is my pet.", "answer": "sleeping", "explanation": "Активный."},
+            {"question": "The engineer ______ (design) the bridge is very skilled.", "answer": "designing", "explanation": "Активный."},
+            {"question": "The treasure ______ (hide) by pirates was never found.", "answer": "hidden", "explanation": "Пассив."},
+            {"question": "The tourists ______ (stay) in the hotel are very happy.", "answer": "staying", "explanation": "Активный."},
+            {"question": "The article ______ (write) by the journalist was very well-written.", "answer": "written", "explanation": "Пассив."},
+            {"question": "The teacher ______ (teach) the class is very strict.", "answer": "teaching", "explanation": "Активный."},
+            {"question": "The trees ______ (plant) in the park are very old.", "answer": "planted", "explanation": "Пассив."},
+            {"question": "The river ______ (flow) into the sea is very wide.", "answer": "flowing", "explanation": "Активный."}
+          ]
         },
         {
-            "type": "complex",
-            "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
-            "subtasks": [
-                {"question": "The cat sleeping on the sofa is my pet.", "answer": "Correct", "explanation": "Активный: sleeping – верно."},
-                {"question": "The engineer designing the bridge is very skilled.", "answer": "Correct", "explanation": "Активный: designing – верно."},
-                {"question": "The treasure hidden by pirates was never found.", "answer": "Correct", "explanation": "Пассив: hidden – верно."},
-                {"question": "The tourists staying in the hotel are very happy.", "answer": "Correct", "explanation": "Активный: staying – верно."},
-                {"question": "The article written by the journalist was very well-written.", "answer": "Correct", "explanation": "Пассив: written – верно."},
-                {"question": "The teacher teaching the class is very strict.", "answer": "Correct", "explanation": "Активный: teaching – верно."},
-                {"question": "The trees planted in the park are very old.", "answer": "Correct", "explanation": "Пассив: planted – верно."},
-                {"question": "The river flowing into the sea is very wide.", "answer": "Correct", "explanation": "Активный: flowing – верно."}
-            ]
+          "type": "complex",
+          "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
+          "subtasks": [
+            {"question": "The cat sleeping on the sofa is my pet.", "answer": "Correct", "explanation": "Активный: sleeping – верно."},
+            {"question": "The engineer designing the bridge is very skilled.", "answer": "Correct", "explanation": "Активный: designing – верно."},
+            {"question": "The treasure hidden by pirates was never found.", "answer": "Correct", "explanation": "Пассив: hidden – верно."},
+            {"question": "The tourists staying in the hotel are very happy.", "answer": "Correct", "explanation": "Активный: staying – верно."},
+            {"question": "The article written by the journalist was very well-written.", "answer": "Correct", "explanation": "Пассив: written – верно."},
+            {"question": "The teacher teaching the class is very strict.", "answer": "Correct", "explanation": "Активный: teaching – верно."},
+            {"question": "The trees planted in the park are very old.", "answer": "Correct", "explanation": "Пассив: planted – верно."},
+            {"question": "The river flowing into the sea is very wide.", "answer": "Correct", "explanation": "Активный: flowing – верно."}
+          ]
         },
         {
-            "type": "complex",
-            "text": "4. Translate the sentences into English using reduced relative clauses. Type your translation (one sentence) in the box.",
-            "subtasks": [
-                {"question": "Кот, спящий на диване, – мой питомец.", "answer": "The cat sleeping on the sofa is my pet.", "explanation": ""},
-                {"question": "Инженер, проектирующий мост, очень умелый.", "answer": "The engineer designing the bridge is very skilled.", "explanation": ""},
-                {"question": "Сокровище, спрятанное пиратами, так и не нашли.", "answer": "The treasure hidden by pirates was never found.", "explanation": ""},
-                {"question": "Туристы, остановившиеся в отеле, очень довольны.", "answer": "The tourists staying in the hotel are very happy.", "explanation": ""},
-                {"question": "Статья, написанная журналистом, была очень хорошо написана.", "answer": "The article written by the journalist was very well-written.", "explanation": ""},
-                {"question": "Учитель, ведущий урок, очень строгий.", "answer": "The teacher teaching the class is very strict.", "explanation": ""},
-                {"question": "Деревья, посаженные в парке, очень старые.", "answer": "The trees planted in the park are very old.", "explanation": ""},
-                {"question": "Река, впадающая в море, очень широкая.", "answer": "The river flowing into the sea is very wide.", "explanation": ""}
-            ]
+          "type": "complex",
+          "text": "4. Translate the sentences into English using reduced relative clauses. Type your translation (one sentence) in the box.",
+          "subtasks": [
+            {"question": "Кот, спящий на диване, – мой питомец.", "answer": "The cat sleeping on the sofa is my pet.", "explanation": ""},
+            {"question": "Инженер, проектирующий мост, очень умелый.", "answer": "The engineer designing the bridge is very skilled.", "explanation": ""},
+            {"question": "Сокровище, спрятанное пиратами, так и не нашли.", "answer": "The treasure hidden by pirates was never found.", "explanation": ""},
+            {"question": "Туристы, остановившиеся в отеле, очень довольны.", "answer": "The tourists staying in the hotel are very happy.", "explanation": ""},
+            {"question": "Статья, написанная журналистом, была очень хорошо написана.", "answer": "The article written by the journalist was very well-written.", "explanation": ""},
+            {"question": "Учитель, ведущий урок, очень строгий.", "answer": "The teacher teaching the class is very strict.", "explanation": ""},
+            {"question": "Деревья, посаженные в парке, очень старые.", "answer": "The trees planted in the park are very old.", "explanation": ""},
+            {"question": "Река, впадающая в море, очень широкая.", "answer": "The river flowing into the sea is very wide.", "explanation": ""}
+          ]
         }
-    ],
-    # =====================================================
-    # ВАРИАНТ 12 (перефразирование)
-    # =====================================================
-    [
+      ],
+      # =====================================================
+      # ВАРИАНТ 12 (перефразирование)
+      # =====================================================
+      [
         {
-            "type": "complex",
-            "text": "1. Choose the correct reduced form (a, b, or c) to complete the sentence. Type the letter of your answer.",
-            "subtasks": [
-                {"question": "The bird ______ in the cage is very colourful.", "answer": "sitting", "explanation": "Активный: which is sitting → sitting."},
-                {"question": "The doctor ______ the patient is very kind.", "answer": "examining", "explanation": "Активный: who is examining → examining."},
-                {"question": "The pie ______ by my mother was delicious.", "answer": "made", "explanation": "Пассив: which was made → made."},
-                {"question": "The guests ______ at the party are having a good time.", "answer": "dancing", "explanation": "Активный: who are dancing → dancing."},
-                {"question": "The message ______ by the teacher was very clear.", "answer": "sent", "explanation": "Пассив: which was sent → sent."},
-                {"question": "The man ______ a suit is my boss.", "answer": "wearing", "explanation": "Активный: who is wearing → wearing."},
-                {"question": "The paintings ______ in the museum are very valuable.", "answer": "displayed", "explanation": "Пассив: which are displayed → displayed."},
-                {"question": "The wind ______ through the trees is very strong.", "answer": "blowing", "explanation": "Активный: which is blowing → blowing."}
-            ]
+          "type": "complex",
+          "text": "1. Choose the correct reduced form (a, b, or c) to complete the sentence. Type the letter of your answer.",
+          "subtasks": [
+            {"question": "The bird ______ in the cage is very colourful.", "answer": "sitting", "explanation": "Активный: which is sitting → sitting."},
+            {"question": "The doctor ______ the patient is very kind.", "answer": "examining", "explanation": "Активный: who is examining → examining."},
+            {"question": "The pie ______ by my mother was delicious.", "answer": "made", "explanation": "Пассив: which was made → made."},
+            {"question": "The guests ______ at the party are having a good time.", "answer": "dancing", "explanation": "Активный: who are dancing → dancing."},
+            {"question": "The message ______ by the teacher was very clear.", "answer": "sent", "explanation": "Пассив: which was sent → sent."},
+            {"question": "The man ______ a suit is my boss.", "answer": "wearing", "explanation": "Активный: who is wearing → wearing."},
+            {"question": "The paintings ______ in the museum are very valuable.", "answer": "displayed", "explanation": "Пассив: which are displayed → displayed."},
+            {"question": "The wind ______ through the trees is very strong.", "answer": "blowing", "explanation": "Активный: which is blowing → blowing."}
+          ]
         },
         {
-            "type": "complex",
-            "text": "2. Fill in the gaps with the correct reduced form of the verb in brackets. Type the missing word(s) in the box.",
-            "subtasks": [
-                {"question": "The bird ______ (sit) in the cage is very colourful.", "answer": "sitting", "explanation": "Активный."},
-                {"question": "The doctor ______ (examine) the patient is very kind.", "answer": "examining", "explanation": "Активный."},
-                {"question": "The pie ______ (make) by my mother was delicious.", "answer": "made", "explanation": "Пассив."},
-                {"question": "The guests ______ (dance) at the party are having a good time.", "answer": "dancing", "explanation": "Активный."},
-                {"question": "The message ______ (send) by the teacher was very clear.", "answer": "sent", "explanation": "Пассив."},
-                {"question": "The man ______ (wear) a suit is my boss.", "answer": "wearing", "explanation": "Активный."},
-                {"question": "The paintings ______ (display) in the museum are very valuable.", "answer": "displayed", "explanation": "Пассив."},
-                {"question": "The wind ______ (blow) through the trees is very strong.", "answer": "blowing", "explanation": "Активный."}
-            ]
+          "type": "complex",
+          "text": "2. Fill in the gaps with the correct reduced form of the verb in brackets. Type the missing word(s) in the box.",
+          "subtasks": [
+            {"question": "The bird ______ (sit) in the cage is very colourful.", "answer": "sitting", "explanation": "Активный."},
+            {"question": "The doctor ______ (examine) the patient is very kind.", "answer": "examining", "explanation": "Активный."},
+            {"question": "The pie ______ (make) by my mother was delicious.", "answer": "made", "explanation": "Пассив."},
+            {"question": "The guests ______ (dance) at the party are having a good time.", "answer": "dancing", "explanation": "Активный."},
+            {"question": "The message ______ (send) by the teacher was very clear.", "answer": "sent", "explanation": "Пассив."},
+            {"question": "The man ______ (wear) a suit is my boss.", "answer": "wearing", "explanation": "Активный."},
+            {"question": "The paintings ______ (display) in the museum are very valuable.", "answer": "displayed", "explanation": "Пассив."},
+            {"question": "The wind ______ (blow) through the trees is very strong.", "answer": "blowing", "explanation": "Активный."}
+          ]
         },
         {
-            "type": "complex",
-            "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
-            "subtasks": [
-                {"question": "The bird sitting in the cage is very colourful.", "answer": "Correct", "explanation": "Активный: sitting – верно."},
-                {"question": "The doctor examining the patient is very kind.", "answer": "Correct", "explanation": "Активный: examining – верно."},
-                {"question": "The pie made by my mother was delicious.", "answer": "Correct", "explanation": "Пассив: made – верно."},
-                {"question": "The guests dancing at the party are having a good time.", "answer": "Correct", "explanation": "Активный: dancing – верно."},
-                {"question": "The message sent by the teacher was very clear.", "answer": "Correct", "explanation": "Пассив: sent – верно."},
-                {"question": "The man wearing a suit is my boss.", "answer": "Correct", "explanation": "Активный: wearing – верно."},
-                {"question": "The paintings displayed in the museum are very valuable.", "answer": "Correct", "explanation": "Пассив: displayed – верно."},
-                {"question": "The wind blowing through the trees is very strong.", "answer": "Correct", "explanation": "Активный: blowing – верно."}
-            ]
+          "type": "complex",
+          "text": "3. Correct the mistakes in the sentences. Type the corrected sentence. If the sentence is correct, type 'Correct'.",
+          "subtasks": [
+            {"question": "The bird sitting in the cage is very colourful.", "answer": "Correct", "explanation": "Активный: sitting – верно."},
+            {"question": "The doctor examining the patient is very kind.", "answer": "Correct", "explanation": "Активный: examining – верно."},
+            {"question": "The pie made by my mother was delicious.", "answer": "Correct", "explanation": "Пассив: made – верно."},
+            {"question": "The guests dancing at the party are having a good time.", "answer": "Correct", "explanation": "Активный: dancing – верно."},
+            {"question": "The message sent by the teacher was very clear.", "answer": "Correct", "explanation": "Пассив: sent – верно."},
+            {"question": "The man wearing a suit is my boss.", "answer": "Correct", "explanation": "Активный: wearing – верно."},
+            {"question": "The paintings displayed in the museum are very valuable.", "answer": "Correct", "explanation": "Пассив: displayed – верно."},
+            {"question": "The wind blowing through the trees is very strong.", "answer": "Correct", "explanation": "Активный: blowing – верно."}
+          ]
         },
         {
-            "type": "complex",
-            "text": "4. Rewrite the sentences using reduced relative clauses. Type the whole sentence.",
-            "subtasks": [
-                {"question": "The bird which is sitting in the cage is very colourful. → The bird sitting in the cage is very colourful.", "answer": "The bird sitting in the cage is very colourful.", "explanation": "Активный."},
-                {"question": "The doctor who is examining the patient is very kind. → The doctor examining the patient is very kind.", "answer": "The doctor examining the patient is very kind.", "explanation": "Активный."},
-                {"question": "The pie which was made by my mother was delicious. → The pie made by my mother was delicious.", "answer": "The pie made by my mother was delicious.", "explanation": "Пассив."},
-                {"question": "The guests who are dancing at the party are having a good time. → The guests dancing at the party are having a good time.", "answer": "The guests dancing at the party are having a good time.", "explanation": "Активный."},
-                {"question": "The message which was sent by the teacher was very clear. → The message sent by the teacher was very clear.", "answer": "The message sent by the teacher was very clear.", "explanation": "Пассив."},
-                {"question": "The man who is wearing a suit is my boss. → The man wearing a suit is my boss.", "answer": "The man wearing a suit is my boss.", "explanation": "Активный."},
-                {"question": "The paintings which are displayed in the museum are very valuable. → The paintings displayed in the museum are very valuable.", "answer": "The paintings displayed in the museum are very valuable.", "explanation": "Пассив."},
-                {"question": "The wind which is blowing through the trees is very strong. → The wind blowing through the trees is very strong.", "answer": "The wind blowing through the trees is very strong.", "explanation": "Активный."}
-            ]
+          "type": "complex",
+          "text": "4. Rewrite the sentences using reduced relative clauses. Type the whole sentence.",
+          "subtasks": [
+            {"question": "The bird which is sitting in the cage is very colourful. → The bird sitting in the cage is very colourful.", "answer": "The bird sitting in the cage is very colourful.", "explanation": "Активный."},
+            {"question": "The doctor who is examining the patient is very kind. → The doctor examining the patient is very kind.", "answer": "The doctor examining the patient is very kind.", "explanation": "Активный."},
+            {"question": "The pie which was made by my mother was delicious. → The pie made by my mother was delicious.", "answer": "The pie made by my mother was delicious.", "explanation": "Пассив."},
+            {"question": "The guests who are dancing at the party are having a good time. → The guests dancing at the party are having a good time.", "answer": "The guests dancing at the party are having a good time.", "explanation": "Активный."},
+            {"question": "The message which was sent by the teacher was very clear. → The message sent by the teacher was very clear.", "answer": "The message sent by the teacher was very clear.", "explanation": "Пассив."},
+            {"question": "The man who is wearing a suit is my boss. → The man wearing a suit is my boss.", "answer": "The man wearing a suit is my boss.", "explanation": "Активный."},
+            {"question": "The paintings which are displayed in the museum are very valuable. → The paintings displayed in the museum are very valuable.", "answer": "The paintings displayed in the museum are very valuable.", "explanation": "Пассив."},
+            {"question": "The wind which is blowing through the trees is very strong. → The wind blowing through the trees is very strong.", "answer": "The wind blowing through the trees is very strong.", "explanation": "Активный."}
+          ]
         }
+      ]
     ]
-   }
-]
-  },
+  },  
   "cleft_sentences": {
     "title": "Расщеплённые предложения (It was... that..., What... is...)",
     "pages": [
