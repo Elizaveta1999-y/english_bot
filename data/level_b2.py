@@ -23775,8 +23775,7 @@ LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
                 {"question": "Всё, что они хотели, – это горячая еда.", "answer": "All they wanted was a warm meal.", "explanation": ""},
                 {"question": "Именно моя сестра нарисовала эту картину.", "answer": "It was my sister who painted this picture.", "explanation": ""}
             ]
-        }
-    ],
+        },
     # =====================================================
     # ВАРИАНТ 10 (перефразирование)
     # =====================================================
