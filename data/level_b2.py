@@ -1,4 +1,4 @@
-LEVEL_B2_CONTENT = LEVEL_B2_CONTENT = {
+LEVEL_B2_CONTENT = {
   "narrative_tenses": {
     "title": "Narrative Tenses (Past Simple, Continuous, Perfect, Perfect Continuous)",
     "pages": [
