@@ -1,15 +1,12 @@
 import os
 import json
 import logging
-import tempfile
-import subprocess
 import random
 from aiogram import Router, F, types
-from aiogram.types import Message, CallbackQuery, InlineKeyboardMarkup, InlineKeyboardButton, BufferedInputFile
+from aiogram.types import Message, CallbackQuery, InlineKeyboardMarkup, InlineKeyboardButton
 from aiogram.filters import Command
 from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import State, StatesGroup
-from speaking.services.tts import text_to_voice
 import redis.asyncio as redis
 
 router = Router()
@@ -17,6 +14,9 @@ logger = logging.getLogger(__name__)
 
 TASKS_FILE = "data/listening_tasks.json"
 REDIS_URL = os.getenv("REDIS_URL", "redis://localhost:6379")
+
+# Публичный URL вашего R2 бакета (замените на свой)
+R2_PUBLIC_URL = os.getenv("R2_PUBLIC_URL", "https://pub-c634646ded324b52b180b35da5c15a13.r2.dev")
 
 with open(TASKS_FILE, "r", encoding="utf-8") as f:
     ALL_TASKS = json.load(f)
@@ -51,18 +51,11 @@ class ListeningState(StatesGroup):
     choosing_level = State()
     answering_task = State()
 
-def convert_to_opus(mp3_path: str) -> str:
-    ogg_path = tempfile.mktemp(suffix=".ogg")
-    cmd = ["ffmpeg", "-i", mp3_path, "-c:a", "libopus", "-ar", "16000", "-ac", "1", "-b:a", "16k", ogg_path, "-y"]
-    subprocess.run(cmd, check=True, capture_output=True)
-    return ogg_path
-
 # ---------- Клавиатуры ----------
 def get_types_keyboard():
     buttons = []
     for key, label in TASK_TYPES.items():
         buttons.append([InlineKeyboardButton(text=label, callback_data=f"listening_type_{key}")])
-    # Кнопка "Назад" теперь со смайликом
     buttons.append([InlineKeyboardButton(text="🔙 Назад", callback_data="back_to_main")])
     return InlineKeyboardMarkup(inline_keyboard=buttons)
 
@@ -70,7 +63,6 @@ def get_levels_keyboard(task_type):
     buttons = []
     for level, label in LEVELS.items():
         buttons.append([InlineKeyboardButton(text=label, callback_data=f"listening_level_{task_type}_{level}")])
-    # Кнопка "Назад" тоже со смайликом
     buttons.append([InlineKeyboardButton(text="🔙 Назад", callback_data="back_to_types")])
     return InlineKeyboardMarkup(inline_keyboard=buttons)
 
@@ -184,25 +176,24 @@ async def send_task(message: Message, state: FSMContext):
         task = tasks[index]
         await state.update_data({"task": task, "task_index": index, "answered": False})
 
-    # Генерация аудио (здесь можно добавить проверку на наличие предварительно сохранённого файла)
-    status_msg = await message.answer("⏳ Генерирую аудио...")
-    audio_path = await text_to_voice(task["audio_text"], voice_id="yM93hbw8Qtvdma2wCnJG")
-    if audio_path and os.path.exists(audio_path):
-        try:
-            ogg_path = convert_to_opus(audio_path)
-            with open(ogg_path, 'rb') as f:
-                audio_bytes = f.read()
-            audio_file = BufferedInputFile(audio_bytes, filename="audio.ogg")
-            await message.answer_voice(audio_file)
-            os.unlink(audio_path)
-            os.unlink(ogg_path)
-        except Exception as e:
-            logger.error(f"Ошибка отправки аудио: {e}")
-            await message.answer(f"Текст для прослушивания:\n\n{task['audio_text']}")
-    else:
-        await message.answer(f"Текст для прослушивания:\n\n{task['audio_text']}")
-    await status_msg.delete()
+    # === ОТПРАВКА АУДИО ИЗ R2 (БЕЗ ГЕНЕРАЦИИ) ===
+    level = task["level"]
+    task_type = task["type"]
+    task_id = task["id"]
 
+    # Имя файла в R2 (формат: beginner_choice_1001.mp3)
+    filename = f"{level}_{task_type}_{task_id}.mp3"
+    audio_url = R2_PUBLIC_URL + filename
+
+    # Отправляем аудио по ссылке (Telegram поддерживает URL)
+    try:
+        await message.answer_voice(audio_url)
+    except Exception as e:
+        logger.error(f"Ошибка отправки аудио: {e}")
+        # Если не удалось отправить аудио, показываем текст
+        await message.answer(f"Текст для прослушивания:\n\n{task['audio_text']}")
+
+    # Показываем вопрос
     await show_question(message, state)
 
 async def show_question(message: Message, state: FSMContext):
@@ -340,7 +331,7 @@ async def listening_start(event, state: FSMContext):
 async def type_selected(callback: CallbackQuery, state: FSMContext):
     task_type = callback.data.split("_")[-1]
     await state.update_data({"task_type": task_type})
-    text = f"Выберите уровень сложности:"
+    text = "Выберите уровень сложности:"
     await callback.message.edit_text(text, reply_markup=get_levels_keyboard(task_type))
     await callback.answer()
 
