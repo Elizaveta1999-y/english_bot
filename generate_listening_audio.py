@@ -1,28 +1,36 @@
 import os
+from dotenv import load_dotenv
+load_dotenv()
+
+# Убеждаемся, что переменные окружения видны всем модулям
+os.environ["ELEVENLABS_API_KEY"] = os.getenv("ELEVENLABS_API_KEY", "")
+os.environ["R2_ACCESS_KEY"] = os.getenv("R2_ACCESS_KEY", "")
+os.environ["R2_SECRET_KEY"] = os.getenv("R2_SECRET_KEY", "")
+os.environ["R2_ENDPOINT"] = os.getenv("R2_ENDPOINT", "")
+os.environ["R2_BUCKET"] = os.getenv("R2_BUCKET", "listening-audio")
+
 import json
 import random
 import asyncio
 import boto3
 from botocore.client import Config
-from speaking.services.tts import text_to_voice  # ваша асинхронная функция
-from dotenv import load_dotenv
-load_dotenv()
+from speaking.services.tts import text_to_voice
 
-# ===== НАСТРОЙКИ =====
+# === НАСТРОЙКИ ===
 TASKS_FILE = "data/listening_tasks.json"
 OUTPUT_DIR = "audio_temp"
 
-# ElevenLabs голоса
-VOICE_MALE = "uYXf8XasLslADfZ2MB4u"
-VOICE_FEMALE = "nucVFUFVgPmKHjgXNbJ7"
+# Голоса ElevenLabs (можно задать в .env или прямо здесь)
+VOICE_MALE = os.getenv("VOICE_MALE", "uYXf8XasLslADfZ2MB4u")
+VOICE_FEMALE = os.getenv("VOICE_FEMALE", "nucVFUFVgPmKHjgXNbJ7")
 
-# Cloudflare R2
+# R2
 R2_ACCESS_KEY = os.getenv("R2_ACCESS_KEY")
 R2_SECRET_KEY = os.getenv("R2_SECRET_KEY")
-R2_ENDPOINT = "https://688baf9f3b63b6f8fe6e2e9d627633c9.r2.cloudflarestorage.com"
-R2_BUCKET = "listening-audio"
+R2_ENDPOINT = os.getenv("R2_ENDPOINT")
+R2_BUCKET = os.getenv("R2_BUCKET", "listening-audio")
 
-# Инициализация R2 клиента (синхронный, но используем в асинхронной функции)
+# === ИНИЦИАЛИЗАЦИЯ R2 ===
 s3 = boto3.client(
     's3',
     endpoint_url=R2_ENDPOINT,
@@ -53,10 +61,10 @@ async def main():
         except:
             print(f"🔊 Генерирую: {audio_key}")
 
-        # Выбор голоса (можно усложнить, анализируя текст)
+        # Выбираем голос (можно добавить логику по тексту)
         voice = random.choice([VOICE_MALE, VOICE_FEMALE])
 
-        # Генерируем аудио (асинхронно)
+        # Генерируем аудио
         mp3_path = await text_to_voice(audio_text, voice_id=voice)
         if not mp3_path or not os.path.exists(mp3_path):
             print(f"❌ Ошибка генерации для {task_id}")
@@ -72,7 +80,7 @@ async def main():
                     ContentType="audio/mpeg"
                 )
             print(f"✅ Загружено: {audio_key}")
-            os.unlink(mp3_path)  # удаляем временный файл
+            os.unlink(mp3_path)
         except Exception as e:
             print(f"❌ Ошибка загрузки: {e}")
 
