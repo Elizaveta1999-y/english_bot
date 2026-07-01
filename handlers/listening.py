@@ -16,7 +16,7 @@ TASKS_FILE = "data/listening_tasks.json"
 REDIS_URL = os.getenv("REDIS_URL", "redis://localhost:6379")
 
 # Публичный URL вашего R2 бакета (замените на свой)
-R2_PUBLIC_URL = os.getenv("R2_PUBLIC_URL", "https://pub-c634646ded324b52b180b35da5c15a13.r2.dev")
+R2_PUBLIC_URL = os.getenv("R2_PUBLIC_URL", "https://pub-c634646ded324b52b180b35da5c15a13.r2.dev/")
 
 with open(TASKS_FILE, "r", encoding="utf-8") as f:
     ALL_TASKS = json.load(f)
