@@ -1,130 +1,132 @@
-{
-  "id": 1001,
-  "type": "choice",
-  "level": "beginner",
-  "audio_text": "My name is Anna. I am twenty-five years old. I live in London. I work as a teacher. I love my job.",
-  "question": "How old is Anna?",
-  "options": ["22", "25", "30"],
-  "correct": 1
-},
-{
-  "id": 1002,
-  "type": "truefalse",
-  "level": "beginner",
-  "audio_text": "Tom and Jerry are friends. They play football together. They live in New York. They like movies. They are very close.",
-  "statement": "Tom and Jerry are friends.",
-  "correct": "true"
-},
-{
-  "id": 1003,
-  "type": "fill_one",
-  "level": "beginner",
-  "audio_text": "I have a pet cat. Her name is Lily. She is black and white. She sleeps on the sofa. She is very friendly.",
-  "question": "I have a pet ____.",
-  "correct": "cat"
-},
-{
-  "id": 1004,
-  "type": "fill_multiple",
-  "level": "beginner",
-  "audio_text": "My name is Anna Smith. I am twenty-five years old. I live in London. I work as a teacher. I enjoy my work.",
-  "question": "My name is ____. I am ____ years old.",
-  "answers": ["Anna", "25"]
-},
-{
-  "id": 1005,
-  "type": "speaker",
-  "level": "beginner",
-  "audio_text": "I enjoy reading books. I read every evening. My favorite genre is adventure. I borrow books from the library. Reading helps me relax.",
-  "question": "What does the speaker like to do?",
-  "options": ["Read books", "Write stories", "Sing songs"],
-  "correct": 0
-},
-{
-  "id": 2001,
-  "type": "choice",
-  "level": "intermediate",
-  "audio_text": "Last summer, my family and I visited the Grand Canyon. We flew to Arizona. Then we drove for several hours. The canyon was absolutely breathtaking. The rocks were red and orange. We walked along the edge. We took many photographs.",
-  "question": "Where did the speaker travel to?",
-  "options": ["The Grand Canyon", "Yellowstone", "Rocky Mountains"],
-  "correct": 0
-},
-{
-  "id": 2002,
-  "type": "truefalse",
-  "level": "intermediate",
-  "audio_text": "The Amazon rainforest is often called the lungs of the planet. It produces a large amount of oxygen. It is home to millions of species. Deforestation is a major threat. Many organizations are working to protect it. However, illegal logging continues. The future of the rainforest is uncertain.",
-  "statement": "The Amazon produces a large amount of oxygen.",
-  "correct": "true"
-},
-{
-  "id": 2003,
-  "type": "fill_one",
-  "level": "intermediate",
-  "audio_text": "Regular exercise is essential for good health. Experts recommend at least thirty minutes of exercise each day. This can improve your mood. It also boosts your energy. Physical activity helps you sleep better. It reduces the risk of disease. Many people find it hard to be active.",
-  "question": "Experts recommend at least ____ minutes of exercise daily.",
-  "correct": "thirty"
-},
-{
-  "id": 2004,
-  "type": "fill_multiple",
-  "level": "intermediate",
-  "audio_text": "Online education has become increasingly popular. Many universities offer virtual courses. This flexibility is beneficial for people with full-time jobs. However, online learning requires self-discipline. It also needs good time management skills. It lacks face-to-face interaction. Despite these challenges, it is likely to grow more.",
-  "question": "Online education requires ____ and good ____. It lacks ____ interaction. Despite challenges, it will ____ more.",
-  "answers": ["self-discipline", "time management", "face-to-face", "grow"]
-},
-{
-  "id": 2005,
-  "type": "speaker",
-  "level": "intermediate",
-  "audio_text": "My sister has been working as a software engineer for five years. She develops applications for mobile phones. She loves her job because it is creative. However, she often has tight deadlines. Recently, she received a promotion. She is now leading a small team. I am very proud of her.",
-  "question": "What is the speaker's sister's profession?",
-  "options": ["Software engineer", "Web designer", "Project manager"],
-  "correct": 0
-},
-{
-  "id": 3001,
-  "type": "choice",
-  "level": "expert",
-  "audio_text": "The phenomenon of global warming has been debated for decades. There is overwhelming evidence that human activities are contributing to rising temperatures. The burning of fossil fuels is a major cause. Recent studies show that Arctic ice melt has accelerated. This raises concerns about sea-level rise. However, some scientists argue that natural variability may also play a role. The rate of warming varies across regions. Policymakers are under pressure to take action. The future of our planet depends on our decisions today.",
-  "question": "What is one of the main causes of global warming mentioned?",
-  "options": ["Burning of fossil fuels", "Natural climate variability", "Deforestation"],
-  "correct": 0
-},
-{
-  "id": 3002,
-  "type": "truefalse",
-  "level": "expert",
-  "audio_text": "Artificial intelligence has transformed many industries. It is used in healthcare and finance. However, ethical concerns remain. Privacy and job displacement are major issues. AI can process data faster than humans. But it lacks emotional intelligence. It also struggles with context. Some experts believe AI will never replace human moral judgment. The debate about AI's role continues.",
-  "statement": "AI will completely replace human decision-making in all areas.",
-  "correct": "false"
-},
-{
-  "id": 3003,
-  "type": "fill_one",
-  "level": "expert",
-  "audio_text": "Sustainable development aims to meet present needs without harming future generations. It includes economic growth, social inclusion, and environmental protection. Achieving sustainability requires a shift in production and consumption patterns. Governments must implement policies that encourage renewable energy. Individuals also have a role to play. Reducing waste and conserving resources are essential. Education is key to raising awareness. Many countries have adopted sustainable goals. However, progress is still slow.",
-  "question": "Sustainable development requires a shift in how we ____ resources.",
-  "correct": "consume"
-},
-{
-  "id": 3004,
-  "type": "fill_multiple",
-  "level": "expert",
-  "audio_text": "Modern technology has revolutionized communication. Smartphones and social media allow instant global connection. However, this constant connectivity leads to information overload. It can also reduce attention spans. People find it hard to disconnect. Mental health is affected by excessive screen time. Finding a balance is crucial. We need to limit our use of devices. Mindfulness and offline activities are recommended.",
-  "question": "Smartphones and social media allow ____ connection across the ____. However, they can cause ____ overload and reduce ____ spans. It is important to find a ____ and limit ____ use.",
-  "answers": ["instant", "globe", "information", "attention", "balance", "device"]
-},
-{
-  "id": 3005,
-  "type": "speaker",
-  "level": "expert",
-  "audio_text": "Throughout history, women's roles have changed dramatically. They were once confined to domestic duties. Now, women work in almost every profession. However, gender inequality still exists. Pay gaps and leadership underrepresentation are common. To achieve true equality, both men and women must work together. Breaking stereotypes is essential. Creating inclusive environments is a shared responsibility. Progress is slow but steady.",
-  "question": "Which statement best reflects the speaker's message?",
-  "options": [
-    "Women have always had equal opportunities.",
-    "Gender inequality still exists despite progress.",
-    "Men are responsible for gender discrimination."
-  ],
-  "correct": 1
-}
+[
+  {
+    "id": 1001,
+    "type": "choice",
+    "level": "beginner",
+    "audio_text": "My name is Anna. I am twenty-five years old. I live in London. I work as a teacher. I love my job.",
+    "question": "How old is Anna?",
+    "options": ["22", "25", "30"],
+    "correct": 1
+  },
+  {
+    "id": 1002,
+    "type": "truefalse",
+    "level": "beginner",
+    "audio_text": "Tom and Jerry are friends. They play football together. They live in New York. They like movies. They are very close.",
+    "statement": "Tom and Jerry are friends.",
+    "correct": "true"
+  },
+  {
+    "id": 1003,
+    "type": "fill_one",
+    "level": "beginner",
+    "audio_text": "I have a pet cat. Her name is Lily. She is black and white. She sleeps on the sofa. She is very friendly.",
+    "question": "I have a pet ____.",
+    "correct": "cat"
+  },
+  {
+    "id": 1004,
+    "type": "fill_multiple",
+    "level": "beginner",
+    "audio_text": "My name is Anna Smith. I am twenty-five years old. I live in London. I work as a teacher. I enjoy my work.",
+    "question": "My name is ____. I am ____ years old.",
+    "answers": ["Anna", "25"]
+  },
+  {
+    "id": 1005,
+    "type": "speaker",
+    "level": "beginner",
+    "audio_text": "I enjoy reading books. I read every evening. My favorite genre is adventure. I borrow books from the library. Reading helps me relax.",
+    "question": "What does the speaker like to do?",
+    "options": ["Read books", "Write stories", "Sing songs"],
+    "correct": 0
+  },
+  {
+    "id": 2001,
+    "type": "choice",
+    "level": "intermediate",
+    "audio_text": "Last summer, my family and I visited the Grand Canyon. We flew to Arizona. Then we drove for several hours. The canyon was absolutely breathtaking. The rocks were red and orange. We walked along the edge. We took many photographs.",
+    "question": "Where did the speaker travel to?",
+    "options": ["The Grand Canyon", "Yellowstone", "Rocky Mountains"],
+    "correct": 0
+  },
+  {
+    "id": 2002,
+    "type": "truefalse",
+    "level": "intermediate",
+    "audio_text": "The Amazon rainforest is often called the lungs of the planet. It produces a large amount of oxygen. It is home to millions of species. Deforestation is a major threat. Many organizations are working to protect it. However, illegal logging continues. The future of the rainforest is uncertain.",
+    "statement": "The Amazon produces a large amount of oxygen.",
+    "correct": "true"
+  },
+  {
+    "id": 2003,
+    "type": "fill_one",
+    "level": "intermediate",
+    "audio_text": "Regular exercise is essential for good health. Experts recommend at least thirty minutes of exercise each day. This can improve your mood. It also boosts your energy. Physical activity helps you sleep better. It reduces the risk of disease. Many people find it hard to be active.",
+    "question": "Experts recommend at least ____ minutes of exercise daily.",
+    "correct": "thirty"
+  },
+  {
+    "id": 2004,
+    "type": "fill_multiple",
+    "level": "intermediate",
+    "audio_text": "Online education has become increasingly popular. Many universities offer virtual courses. This flexibility is beneficial for people with full-time jobs. However, online learning requires self-discipline. It also needs good time management skills. It lacks face-to-face interaction. Despite these challenges, it is likely to grow more.",
+    "question": "Online education requires ____ and good ____. It lacks ____ interaction. Despite challenges, it will ____ more.",
+    "answers": ["self-discipline", "time management", "face-to-face", "grow"]
+  },
+  {
+    "id": 2005,
+    "type": "speaker",
+    "level": "intermediate",
+    "audio_text": "My sister has been working as a software engineer for five years. She develops applications for mobile phones. She loves her job because it is creative. However, she often has tight deadlines. Recently, she received a promotion. She is now leading a small team. I am very proud of her.",
+    "question": "What is the speaker's sister's profession?",
+    "options": ["Software engineer", "Web designer", "Project manager"],
+    "correct": 0
+  },
+  {
+    "id": 3001,
+    "type": "choice",
+    "level": "expert",
+    "audio_text": "The phenomenon of global warming has been debated for decades. There is overwhelming evidence that human activities are contributing to rising temperatures. The burning of fossil fuels is a major cause. Recent studies show that Arctic ice melt has accelerated. This raises concerns about sea-level rise. However, some scientists argue that natural variability may also play a role. The rate of warming varies across regions. Policymakers are under pressure to take action. The future of our planet depends on our decisions today.",
+    "question": "What is one of the main causes of global warming mentioned?",
+    "options": ["Burning of fossil fuels", "Natural climate variability", "Deforestation"],
+    "correct": 0
+  },
+  {
+    "id": 3002,
+    "type": "truefalse",
+    "level": "expert",
+    "audio_text": "Artificial intelligence has transformed many industries. It is used in healthcare and finance. However, ethical concerns remain. Privacy and job displacement are major issues. AI can process data faster than humans. But it lacks emotional intelligence. It also struggles with context. Some experts believe AI will never replace human moral judgment. The debate about AI's role continues.",
+    "statement": "AI will completely replace human decision-making in all areas.",
+    "correct": "false"
+  },
+  {
+    "id": 3003,
+    "type": "fill_one",
+    "level": "expert",
+    "audio_text": "Sustainable development aims to meet present needs without harming future generations. It includes economic growth, social inclusion, and environmental protection. Achieving sustainability requires a shift in production and consumption patterns. Governments must implement policies that encourage renewable energy. Individuals also have a role to play. Reducing waste and conserving resources are essential. Education is key to raising awareness. Many countries have adopted sustainable goals. However, progress is still slow.",
+    "question": "Sustainable development requires a shift in how we ____ resources.",
+    "correct": "consume"
+  },
+  {
+    "id": 3004,
+    "type": "fill_multiple",
+    "level": "expert",
+    "audio_text": "Modern technology has revolutionized communication. Smartphones and social media allow instant global connection. However, this constant connectivity leads to information overload. It can also reduce attention spans. People find it hard to disconnect. Mental health is affected by excessive screen time. Finding a balance is crucial. We need to limit our use of devices. Mindfulness and offline activities are recommended.",
+    "question": "Smartphones and social media allow ____ connection across the ____. However, they can cause ____ overload and reduce ____ spans. It is important to find a ____ and limit ____ use.",
+    "answers": ["instant", "globe", "information", "attention", "balance", "device"]
+  },
+  {
+    "id": 3005,
+    "type": "speaker",
+    "level": "expert",
+    "audio_text": "Throughout history, women's roles have changed dramatically. They were once confined to domestic duties. Now, women work in almost every profession. However, gender inequality still exists. Pay gaps and leadership underrepresentation are common. To achieve true equality, both men and women must work together. Breaking stereotypes is essential. Creating inclusive environments is a shared responsibility. Progress is slow but steady.",
+    "question": "Which statement best reflects the speaker's message?",
+    "options": [
+      "Women have always had equal opportunities.",
+      "Gender inequality still exists despite progress.",
+      "Men are responsible for gender discrimination."
+    ],
+    "correct": 1
+  }
+]
