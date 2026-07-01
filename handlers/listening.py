@@ -21,7 +21,7 @@ R2_PUBLIC_URL = os.getenv("R2_PUBLIC_URL", "https://pub-c634646ded324b52b180b35d
 with open(TASKS_FILE, "r", encoding="utf-8") as f:
     ALL_TASKS = json.load(f)
 
-# ===== Добавлены смайлики для типов заданий =====
+# ===== Типы заданий со смайликами =====
 TASK_TYPES = {
     "choice": "📝 Выбор варианта",
     "truefalse": "⚖️ True/False/Not stated",
@@ -31,7 +31,7 @@ TASK_TYPES = {
     "random": "🎲 Случайный тип"
 }
 
-# ===== Добавлены смайлики для уровней сложности =====
+# ===== Уровни сложности со смайликами =====
 LEVELS = {
     "beginner": "🌱 Новичок",
     "intermediate": "📚 Любитель",
@@ -77,10 +77,11 @@ def get_choice_keyboard(options, task_id):
     return InlineKeyboardMarkup(inline_keyboard=buttons)
 
 def get_truefalse_keyboard(task_id):
+    # === ИСПРАВЛЕНО: английские кнопки ===
     buttons = [
-        [InlineKeyboardButton(text="Верно", callback_data=f"listening_answer_{task_id}_true")],
-        [InlineKeyboardButton(text="Неверно", callback_data=f"listening_answer_{task_id}_false")],
-        [InlineKeyboardButton(text="Не сказано", callback_data=f"listening_answer_{task_id}_notstated")]
+        [InlineKeyboardButton(text="True", callback_data=f"listening_answer_{task_id}_true")],
+        [InlineKeyboardButton(text="False", callback_data=f"listening_answer_{task_id}_false")],
+        [InlineKeyboardButton(text="Not stated", callback_data=f"listening_answer_{task_id}_notstated")]
     ]
     buttons.append([
         InlineKeyboardButton(text="Показать ответ", callback_data=f"listening_show_answer_{task_id}"),
@@ -176,24 +177,16 @@ async def send_task(message: Message, state: FSMContext):
         task = tasks[index]
         await state.update_data({"task": task, "task_index": index, "answered": False})
 
-    # === ОТПРАВКА АУДИО ИЗ R2 (БЕЗ ГЕНЕРАЦИИ) ===
-    level = task["level"]
-    task_type = task["type"]
-    task_id = task["id"]
-
-    # Имя файла в R2 (формат: beginner_choice_1001.mp3)
-    filename = f"{level}_{task_type}_{task_id}.mp3"
+    # === ОТПРАВКА АУДИО ИЗ R2 ===
+    filename = f"{task['level']}_{task['type']}_{task['id']}.mp3"
     audio_url = R2_PUBLIC_URL + filename
 
-    # Отправляем аудио по ссылке (Telegram поддерживает URL)
     try:
         await message.answer_voice(audio_url)
     except Exception as e:
         logger.error(f"Ошибка отправки аудио: {e}")
-        # Если не удалось отправить аудио, показываем текст
         await message.answer(f"Текст для прослушивания:\n\n{task['audio_text']}")
 
-    # Показываем вопрос
     await show_question(message, state)
 
 async def show_question(message: Message, state: FSMContext):
@@ -368,7 +361,8 @@ async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
 
     if task["type"] in ["choice", "speaker"]:
         selected_index = int(answer_part)
-        correct_index = task["correct"]
+        # === ИСПРАВЛЕНО: приводим correct к int ===
+        correct_index = int(task["correct"])
         is_correct = (selected_index == correct_index)
         if is_correct:
             result_text = "Правильно!"
@@ -381,7 +375,8 @@ async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
         if is_correct:
             result_text = "Правильно!"
         else:
-            correct_label = {"true": "Верно", "false": "Неверно", "notstated": "Не сказано"}.get(correct, correct)
+            # Отображаем правильный ответ на русском (для удобства)
+            correct_label = {"true": "True", "false": "False", "notstated": "Not stated"}.get(correct, correct)
             result_text = f"Неправильно. Правильный ответ: {correct_label}"
 
     if is_correct:
@@ -406,10 +401,12 @@ async def show_answer(callback: CallbackQuery, state: FSMContext):
         return
 
     if task["type"] in ["choice", "speaker"]:
-        answer_text = task["options"][task["correct"]]
+        # === ИСПРАВЛЕНО: приводим correct к int ===
+        correct_index = int(task["correct"])
+        answer_text = task["options"][correct_index]
     elif task["type"] == "truefalse":
         correct = task["correct"]
-        answer_text = {"true": "Верно", "false": "Неверно", "notstated": "Не сказано"}.get(correct, correct)
+        answer_text = {"true": "True", "false": "False", "notstated": "Not stated"}.get(correct, correct)
     elif task["type"] == "fill_one":
         answer_text = task["correct"]
     elif task["type"] == "fill_multiple":
