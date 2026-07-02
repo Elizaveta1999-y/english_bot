@@ -2,6 +2,7 @@ import os
 import json
 import logging
 import random
+import time  # добавлен для кеш-бастинга
 from aiogram import Router, F, types
 from aiogram.types import Message, CallbackQuery, InlineKeyboardMarkup, InlineKeyboardButton
 from aiogram.filters import Command
@@ -177,10 +178,9 @@ async def send_task(message: Message, state: FSMContext):
         task = tasks[index]
         await state.update_data({"task": task, "task_index": index, "answered": False})
 
-# === ОТПРАВКА АУДИО ИЗ R2 С ПАРАМЕТРОМ ДЛЯ ОБНОВЛЕНИЯ КЕША ===
-import time
-filename = f"{task['level']}_{task['type']}_{task['id']}.mp3"
-audio_url = R2_PUBLIC_URL + filename + f"?v={int(time.time())}"
+    # === ОТПРАВКА АУДИО ИЗ R2 С ПАРАМЕТРОМ ДЛЯ ОБНОВЛЕНИЯ КЕША ===
+    filename = f"{task['level']}_{task['type']}_{task['id']}.mp3"
+    audio_url = R2_PUBLIC_URL + filename + f"?v={int(time.time())}"
 
     try:
         await message.answer_voice(audio_url)
@@ -362,7 +362,6 @@ async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
 
     if task["type"] in ["choice", "speaker"]:
         selected_index = int(answer_part)
-        # === ИСПРАВЛЕНО: приводим correct к int ===
         correct_index = int(task["correct"])
         is_correct = (selected_index == correct_index)
         if is_correct:
@@ -376,7 +375,6 @@ async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
         if is_correct:
             result_text = "Правильно!"
         else:
-            # Отображаем правильный ответ на русском (для удобства)
             correct_label = {"true": "True", "false": "False", "notstated": "Not stated"}.get(correct, correct)
             result_text = f"Неправильно. Правильный ответ: {correct_label}"
 
@@ -402,7 +400,6 @@ async def show_answer(callback: CallbackQuery, state: FSMContext):
         return
 
     if task["type"] in ["choice", "speaker"]:
-        # === ИСПРАВЛЕНО: приводим correct к int ===
         correct_index = int(task["correct"])
         answer_text = task["options"][correct_index]
     elif task["type"] == "truefalse":
