@@ -177,9 +177,10 @@ async def send_task(message: Message, state: FSMContext):
         task = tasks[index]
         await state.update_data({"task": task, "task_index": index, "answered": False})
 
-    # === ОТПРАВКА АУДИО ИЗ R2 ===
-    filename = f"{task['level']}_{task['type']}_{task['id']}.mp3"
-    audio_url = R2_PUBLIC_URL + filename
+# === ОТПРАВКА АУДИО ИЗ R2 С ПАРАМЕТРОМ ДЛЯ ОБНОВЛЕНИЯ КЕША ===
+import time
+filename = f"{task['level']}_{task['type']}_{task['id']}.mp3"
+audio_url = R2_PUBLIC_URL + filename + f"?v={int(time.time())}"
 
     try:
         await message.answer_voice(audio_url)
