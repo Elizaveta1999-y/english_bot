@@ -352,10 +352,12 @@ async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
         return
 
     parts = callback.data.split("_")
-    if len(parts) < 3:
+    if len(parts) < 4:
         await callback.answer("Ошибка.", show_alert=True)
         return
-    answer_part = parts[2]
+
+    # Исправлено: теперь берём индекс варианта (последняя часть)
+    answer_part = parts[3]  # или parts[-1]
 
     is_correct = False
     result_text = ""
@@ -418,7 +420,6 @@ async def show_answer(callback: CallbackQuery, state: FSMContext):
     await state.update_data(data)
     await callback.answer()
     await go_to_next_task(callback.message, state)
-
 @router.callback_query(F.data == "listening_finish")
 async def finish_session(callback: CallbackQuery, state: FSMContext):
     data = await state.get_data()
