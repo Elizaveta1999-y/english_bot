@@ -37,10 +37,14 @@
     "type": "speaker",
     "level": "beginner",
     "audio_text": "I enjoy reading books. I read every evening. My favorite genre is adventure. I borrow books from the library. Reading helps me relax.",
-    "question": "What does the speaker like to do?",
-    "options": ["Sing songs", "Write stories", "Read books"],
+    "options": [
+      "The speaker likes to sing songs.",
+      "The speaker likes to write stories.",
+      "The speaker likes to read books."
+    ],
     "correct": 2
   },
+
   {
     "id": 2001,
     "type": "choice",
@@ -79,8 +83,11 @@
     "type": "speaker",
     "level": "intermediate",
     "audio_text": "My sister has been working as a software engineer for five years. She develops applications for mobile phones. She loves her job because it is creative. However, she often has tight deadlines. Recently, she received a promotion. She is now leading a small team. I am very proud of her.",
-    "question": "What is the speaker's sister's profession?",
-    "options": ["Web designer", "Software engineer", "Project manager"],
+    "options": [
+      "The speaker's sister is a web designer.",
+      "The speaker's sister is a software engineer.",
+      "The speaker's sister is a project manager."
+    ],
     "correct": 1
   },
   {
@@ -121,11 +128,10 @@
     "type": "speaker",
     "level": "expert",
     "audio_text": "Throughout history, women's roles have changed dramatically. They were once confined to domestic duties. Now, women work in almost every profession. However, gender inequality still exists. Pay gaps and leadership underrepresentation are common. To achieve true equality, both men and women must work together. Breaking stereotypes is essential. Creating inclusive environments is a shared responsibility. Progress is slow but steady.",
-    "question": "Which statement best reflects the speaker's message?",
     "options": [
-      "Women always had equal opportunities",
-      "Inequality still exists despite progress",
-      "Men are responsible for discrimination"
+      "Women always had equal opportunities.",
+      "Inequality still exists despite progress.",
+      "Men are responsible for discrimination."
     ],
     "correct": 1
   },
@@ -1239,8 +1245,11 @@
     "type": "speaker",
     "level": "beginner",
     "audio_text": "I get up at 6 am. I brush my teeth. I have breakfast. I leave home at 7. I go to work by bus.",
-    "question": "What time does the speaker get up?",
-    "options": ["7 am", "6 am", "8 am"],
+    "options": [
+      "The speaker gets up at 7 am.",
+      "The speaker gets up at 6 am.",
+      "The speaker gets up at 8 am."
+    ],
     "correct": 1
   },
   {
@@ -1248,8 +1257,11 @@
     "type": "speaker",
     "level": "beginner",
     "audio_text": "I like to read books. I read every evening. I like adventure stories. I borrow books from the library. Reading is my hobby.",
-    "question": "What does the speaker like to do?",
-    "options": ["Play sports", "Watch TV", "Read books"],
+    "options": [
+      "The speaker likes to play sports.",
+      "The speaker likes to watch TV.",
+      "The speaker likes to read books."
+    ],
     "correct": 2
   },
   {
@@ -1257,8 +1269,11 @@
     "type": "speaker",
     "level": "beginner",
     "audio_text": "My mother is a nurse. She works at a hospital. She helps sick people. She is very kind. She loves her job.",
-    "question": "What is the mother's profession?",
-    "options": ["Nurse", "Teacher", "Doctor"],
+    "options": [
+      "The speaker's mother is a nurse.",
+      "The speaker's mother is a teacher.",
+      "The speaker's mother is a doctor."
+    ],
     "correct": 0
   },
   {
@@ -1266,8 +1281,11 @@
     "type": "speaker",
     "level": "beginner",
     "audio_text": "I have a dog. His name is Max. He is black and white. He likes to run in the park. I walk him every day.",
-    "question": "What is the dog's name?",
-    "options": ["Max", "Tom", "Rex"],
+    "options": [
+      "The dog's name is Max.",
+      "The dog's name is Tom.",
+      "The dog's name is Rex."
+    ],
     "correct": 0
   },
   {
@@ -1275,8 +1293,11 @@
     "type": "speaker",
     "level": "beginner",
     "audio_text": "I like to eat pizza. I eat it every Friday. I like it with cheese and tomatoes. My sister prefers pasta. We eat together.",
-    "question": "What is the speaker's favorite food?",
-    "options": ["Pasta", "Pizza", "Salad"],
+    "options": [
+      "The speaker likes pasta.",
+      "The speaker likes pizza.",
+      "The speaker likes salad."
+    ],
     "correct": 1
   },
   {
@@ -1284,8 +1305,11 @@
     "type": "speaker",
     "level": "beginner",
     "audio_text": "I live in London. It is a big city. I work as a teacher. I teach English. I like my job.",
-    "question": "Where does the speaker live?",
-    "options": ["London", "New York", "Paris"],
+    "options": [
+      "The speaker lives in London.",
+      "The speaker lives in New York.",
+      "The speaker lives in Paris."
+    ],
     "correct": 0
   },
   {
@@ -1293,8 +1317,11 @@
     "type": "speaker",
     "level": "beginner",
     "audio_text": "I have a sister. She is a doctor. She works in a hospital. She helps sick children. She is very caring.",
-    "question": "What is the sister's profession?",
-    "options": ["Teacher", "Nurse", "Doctor"],
+    "options": [
+      "The speaker's sister is a teacher.",
+      "The speaker's sister is a nurse.",
+      "The speaker's sister is a doctor."
+    ],
     "correct": 2
   },
   {
@@ -1302,8 +1329,11 @@
     "type": "speaker",
     "level": "beginner",
     "audio_text": "I like summer. The weather is hot. I go to the beach. I swim in the sea. I enjoy the sun.",
-    "question": "What season does the speaker like?",
-    "options": ["Winter", "Summer", "Spring"],
+    "options": [
+      "The speaker likes winter.",
+      "The speaker likes summer.",
+      "The speaker likes spring."
+    ],
     "correct": 1
   },
   {
@@ -1311,8 +1341,11 @@
     "type": "speaker",
     "level": "beginner",
     "audio_text": "My father is a cook. He works in a restaurant. He makes delicious food. I help him sometimes. I love his cooking.",
-    "question": "What is the father's profession?",
-    "options": ["Cook", "Driver", "Teacher"],
+    "options": [
+      "The speaker's father is a cook.",
+      "The speaker's father is a driver.",
+      "The speaker's father is a teacher."
+    ],
     "correct": 0
   },
   {
@@ -1320,8 +1353,11 @@
     "type": "speaker",
     "level": "beginner",
     "audio_text": "I have a car. It is red. I drive it to work every day. It is fast. I like my car.",
-    "question": "What color is the car?",
-    "options": ["Red", "Blue", "Green"],
+    "options": [
+      "The car is red.",
+      "The car is blue.",
+      "The car is green."
+    ],
     "correct": 0
   },
   {
@@ -1329,8 +1365,11 @@
     "type": "speaker",
     "level": "beginner",
     "audio_text": "I go to the gym on Mondays and Wednesdays. I do cardio. I also lift weights. I want to be fit. I enjoy exercising.",
-    "question": "How often does the speaker go to the gym?",
-    "options": ["Mondays and Wednesdays", "Every day", "Once a week"],
+    "options": [
+      "The speaker goes to the gym on Mondays and Wednesdays.",
+      "The speaker goes to the gym every day.",
+      "The speaker goes to the gym once a week."
+    ],
     "correct": 0
   },
   {
@@ -1338,8 +1377,11 @@
     "type": "speaker",
     "level": "beginner",
     "audio_text": "My grandmother is seventy years old. She lives in a village. She has a garden. She grows flowers. I visit her often.",
-    "question": "How old is the grandmother?",
-    "options": ["60", "80", "70"],
+    "options": [
+      "The grandmother is 60 years old.",
+      "The grandmother is 80 years old.",
+      "The grandmother is 70 years old."
+    ],
     "correct": 2
   },
   {
@@ -1347,8 +1389,11 @@
     "type": "speaker",
     "level": "beginner",
     "audio_text": "I drink coffee every morning. I also eat toast. Breakfast is my favorite meal. I never skip it. It gives me energy.",
-    "question": "What does the speaker drink in the morning?",
-    "options": ["Juice", "Tea", "Coffee"],
+    "options": [
+      "The speaker drinks juice in the morning.",
+      "The speaker drinks tea in the morning.",
+      "The speaker drinks coffee in the morning."
+    ],
     "correct": 2
   },
   {
@@ -1356,8 +1401,11 @@
     "type": "speaker",
     "level": "beginner",
     "audio_text": "My brother is a musician. He plays the guitar. He practices every day. He also sings. He is very talented.",
-    "question": "What instrument does the brother play?",
-    "options": ["Piano", "Guitar", "Violin"],
+    "options": [
+      "The brother plays the piano.",
+      "The brother plays the guitar.",
+      "The brother plays the violin."
+    ],
     "correct": 1
   },
   {
@@ -1365,8 +1413,11 @@
     "type": "speaker",
     "level": "beginner",
     "audio_text": "I like to travel. I went to Italy last year. I visited Rome and Florence. I loved the food. I want to go again.",
-    "question": "Where did the speaker go last year?",
-    "options": ["Italy", "France", "Spain"],
+    "options": [
+      "The speaker went to Italy.",
+      "The speaker went to France.",
+      "The speaker went to Spain."
+    ],
     "correct": 0
   },
   {
@@ -1374,8 +1425,11 @@
     "type": "speaker",
     "level": "beginner",
     "audio_text": "I have a friend named Tom. He lives next door. He has a cat. I often play with him. We are good friends.",
-    "question": "What is the friend's name?",
-    "options": ["Peter", "John", "Tom"],
+    "options": [
+      "The friend's name is Peter.",
+      "The friend's name is John.",
+      "The friend's name is Tom."
+    ],
     "correct": 2
   },
   {
@@ -1383,8 +1437,11 @@
     "type": "speaker",
     "level": "beginner",
     "audio_text": "I eat fruit every day. I like apples and bananas. I eat them as a snack. They are healthy. I also drink water.",
-    "question": "What fruit does the speaker like?",
-    "options": ["Apples and bananas", "Oranges and grapes", "Pears and peaches"],
+    "options": [
+      "The speaker likes apples and bananas.",
+      "The speaker likes oranges and grapes.",
+      "The speaker likes pears and peaches."
+    ],
     "correct": 0
   },
   {
@@ -1392,8 +1449,11 @@
     "type": "speaker",
     "level": "beginner",
     "audio_text": "My mother is a teacher. She teaches English. She works at a primary school. She likes children. She is patient.",
-    "question": "What does the mother teach?",
-    "options": ["Maths", "English", "Science"],
+    "options": [
+      "The mother teaches maths.",
+      "The mother teaches English.",
+      "The mother teaches science."
+    ],
     "correct": 1
   },
   {
@@ -1401,8 +1461,11 @@
     "type": "speaker",
     "level": "beginner",
     "audio_text": "I like winter. I like to ski. I go to the mountains with my family. We have fun together. I enjoy the snow.",
-    "question": "What sport does the speaker like?",
-    "options": ["Cycling", "Swimming", "Skiing"],
+    "options": [
+      "The speaker likes cycling.",
+      "The speaker likes swimming.",
+      "The speaker likes skiing."
+    ],
     "correct": 2
   },
   {
@@ -1410,8 +1473,11 @@
     "type": "speaker",
     "level": "beginner",
     "audio_text": "I read books every evening. I like mystery stories. I borrow books from the library. Reading helps me relax. I love it.",
-    "question": "What type of stories does the speaker like?",
-    "options": ["Mystery", "Adventure", "Comedy"],
+    "options": [
+      "The speaker likes mystery stories.",
+      "The speaker likes adventure stories.",
+      "The speaker likes comedy stories."
+    ],
     "correct": 0
   },
   {
@@ -1419,8 +1485,11 @@
     "type": "speaker",
     "level": "beginner",
     "audio_text": "I have a big family. I have two brothers and one sister. We often have dinner together. We talk and laugh. I love my family.",
-    "question": "How many brothers does the speaker have?",
-    "options": ["Two", "One", "Three"],
+    "options": [
+      "The speaker has two brothers.",
+      "The speaker has one brother.",
+      "The speaker has three brothers."
+    ],
     "correct": 0
   },
   {
@@ -1428,8 +1497,11 @@
     "type": "speaker",
     "level": "beginner",
     "audio_text": "I like to watch TV in the evening. I watch news and documentaries. I also watch cartoons. I like to learn new things.",
-    "question": "What does the speaker watch on TV?",
-    "options": ["Movies", "News and documentaries", "Sports"],
+    "options": [
+      "The speaker watches movies.",
+      "The speaker watches news and documentaries.",
+      "The speaker watches sports."
+    ],
     "correct": 1
   },
   {
@@ -1437,8 +1509,11 @@
     "type": "speaker",
     "level": "beginner",
     "audio_text": "My uncle is a pilot. He flies airplanes. He travels to many countries. He sends me gifts. I want to be a pilot too.",
-    "question": "What is the uncle's profession?",
-    "options": ["Driver", "Pilot", "Captain"],
+    "options": [
+      "The uncle is a driver.",
+      "The uncle is a pilot.",
+      "The uncle is a captain."
+    ],
     "correct": 1
   },
   {
@@ -1446,8 +1521,11 @@
     "type": "speaker",
     "level": "beginner",
     "audio_text": "I go to school by bus. The bus is yellow. I sit by the window. I read books on the way. School starts at 8:30.",
-    "question": "How does the speaker go to school?",
-    "options": ["On foot", "By car", "By bus"],
+    "options": [
+      "The speaker goes to school on foot.",
+      "The speaker goes to school by car.",
+      "The speaker goes to school by bus."
+    ],
     "correct": 2
   },
   {
@@ -1455,8 +1533,11 @@
     "type": "speaker",
     "level": "beginner",
     "audio_text": "I like spring. The flowers bloom. The weather is warm. I walk in the park. I enjoy the fresh air.",
-    "question": "What season does the speaker like?",
-    "options": ["Spring", "Summer", "Autumn"],
+    "options": [
+      "The speaker likes spring.",
+      "The speaker likes summer.",
+      "The speaker likes autumn."
+    ],
     "correct": 0
   },
   {
@@ -1464,8 +1545,11 @@
     "type": "speaker",
     "level": "beginner",
     "audio_text": "My father is a teacher. He teaches history. He works at a high school. He is very kind. I like his stories.",
-    "question": "What does the father teach?",
-    "options": ["Science", "Maths", "History"],
+    "options": [
+      "The father teaches science.",
+      "The father teaches maths.",
+      "The father teaches history."
+    ],
     "correct": 2
   },
   {
@@ -1473,8 +1557,11 @@
     "type": "speaker",
     "level": "beginner",
     "audio_text": "I have a pet rabbit. Its name is Snowy. It is white and fluffy. It eats carrots. I love my rabbit.",
-    "question": "What is the pet's name?",
-    "options": ["Snowy", "Fluffy", "Carrot"],
+    "options": [
+      "The pet's name is Snowy.",
+      "The pet's name is Fluffy.",
+      "The pet's name is Carrot."
+    ],
     "correct": 0
   },
   {
@@ -1482,8 +1569,11 @@
     "type": "speaker",
     "level": "beginner",
     "audio_text": "I play basketball on weekends. I play with my friends. We play at the court near school. I score many points.",
-    "question": "What sport does the speaker play?",
-    "options": ["Basketball", "Football", "Tennis"],
+    "options": [
+      "The speaker plays basketball.",
+      "The speaker plays football.",
+      "The speaker plays tennis."
+    ],
     "correct": 0
   },
   {
@@ -1491,8 +1581,11 @@
     "type": "speaker",
     "level": "beginner",
     "audio_text": "I drink tea every afternoon. I like it with sugar. I also eat biscuits. Tea makes me feel calm.",
-    "question": "What does the speaker drink in the afternoon?",
-    "options": ["Coffee", "Tea", "Juice"],
+    "options": [
+      "The speaker drinks coffee in the afternoon.",
+      "The speaker drinks tea in the afternoon.",
+      "The speaker drinks juice in the afternoon."
+    ],
     "correct": 1
   },
   {
@@ -1500,8 +1593,11 @@
     "type": "speaker",
     "level": "beginner",
     "audio_text": "My sister is a nurse. She works at a clinic. She helps patients. She is very caring. I admire her.",
-    "question": "What is the sister's profession?",
-    "options": ["Nurse", "Teacher", "Doctor"],
+    "options": [
+      "The sister is a nurse.",
+      "The sister is a teacher.",
+      "The sister is a doctor."
+    ],
     "correct": 0
   },
   {
@@ -1509,8 +1605,11 @@
     "type": "speaker",
     "level": "beginner",
     "audio_text": "I like to eat apples. I eat them as a snack. They are healthy and sweet. I also like bananas. I eat fruit every day.",
-    "question": "What fruit does the speaker like?",
-    "options": ["Peach", "Apples and bananas", "Oranges"],
+    "options": [
+      "The speaker likes peaches.",
+      "The speaker likes apples and bananas.",
+      "The speaker likes oranges."
+    ],
     "correct": 1
   },
   {
@@ -1518,8 +1617,11 @@
     "type": "speaker",
     "level": "beginner",
     "audio_text": "I live in a flat. It is on the third floor. There is a balcony. I grow flowers there. I enjoy the view.",
-    "question": "What floor does the speaker live on?",
-    "options": ["Third", "First", "Fifth"],
+    "options": [
+      "The speaker lives on the third floor.",
+      "The speaker lives on the first floor.",
+      "The speaker lives on the fifth floor."
+    ],
     "correct": 0
   },
   {
@@ -1527,8 +1629,11 @@
     "type": "speaker",
     "level": "beginner",
     "audio_text": "I have a bicycle. It is white. I ride it to the park. I like cycling. It is good exercise.",
-    "question": "What color is the bicycle?",
-    "options": ["Red", "Blue", "White"],
+    "options": [
+      "The bicycle is red.",
+      "The bicycle is blue.",
+      "The bicycle is white."
+    ],
     "correct": 2
   },
   {
@@ -1536,8 +1641,11 @@
     "type": "speaker",
     "level": "beginner",
     "audio_text": "My mother is a doctor. She works at a hospital. She helps sick people. She works long hours. I am proud of her.",
-    "question": "What is the mother's profession?",
-    "options": ["Nurse", "Doctor", "Dentist"],
+    "options": [
+      "The mother is a nurse.",
+      "The mother is a doctor.",
+      "The mother is a dentist."
+    ],
     "correct": 1
   },
   {
@@ -1545,8 +1653,11 @@
     "type": "speaker",
     "level": "beginner",
     "audio_text": "I like to play chess. I play with my grandfather. He is very good. I learn from him. I enjoy the game.",
-    "question": "What game does the speaker play?",
-    "options": ["Chess", "Checkers", "Cards"],
+    "options": [
+      "The speaker likes to play chess.",
+      "The speaker likes to play checkers.",
+      "The speaker likes to play cards."
+    ],
     "correct": 0
   },
   {
@@ -1554,8 +1665,11 @@
     "type": "speaker",
     "level": "beginner",
     "audio_text": "I wake up early every day. I go for a run. I run in the park. I feel energetic. I like mornings.",
-    "question": "What does the speaker do in the morning?",
-    "options": ["Go for a run", "Sleep", "Read"],
+    "options": [
+      "The speaker goes for a run in the morning.",
+      "The speaker sleeps in the morning.",
+      "The speaker reads in the morning."
+    ],
     "correct": 0
   },
   {
@@ -1563,8 +1677,11 @@
     "type": "speaker",
     "level": "beginner",
     "audio_text": "My brother is a student. He studies medicine. He wants to be a doctor. He studies hard. I support him.",
-    "question": "What does the brother study?",
-    "options": ["Law", "Medicine", "Engineering"],
+    "options": [
+      "The brother studies law.",
+      "The brother studies medicine.",
+      "The brother studies engineering."
+    ],
     "correct": 1
   },
   {
@@ -1572,8 +1689,11 @@
     "type": "speaker",
     "level": "beginner",
     "audio_text": "I like to dance. I take dance lessons. I learn salsa. I dance with my friends. It is fun.",
-    "question": "What dance does the speaker learn?",
-    "options": ["Ballet", "Salsa", "Hip-hop"],
+    "options": [
+      "The speaker learns ballet.",
+      "The speaker learns salsa.",
+      "The speaker learns hip-hop."
+    ],
     "correct": 1
   },
   {
@@ -1581,8 +1701,11 @@
     "type": "speaker",
     "level": "beginner",
     "audio_text": "I have a garden. I grow tomatoes and cucumbers. I water them daily. I eat fresh vegetables. I love gardening.",
-    "question": "What does the speaker grow?",
-    "options": ["Herbs", "Flowers", "Tomatoes and cucumbers"],
+    "options": [
+      "The speaker grows herbs.",
+      "The speaker grows flowers.",
+      "The speaker grows tomatoes and cucumbers."
+    ],
     "correct": 2
   },
   {
@@ -1590,8 +1713,11 @@
     "type": "speaker",
     "level": "beginner",
     "audio_text": "I like to listen to music. My favorite singer is Taylor Swift. I listen to her songs every day. Music makes me happy.",
-    "question": "Who is the speaker's favorite singer?",
-    "options": ["Taylor Swift", "Adele", "Beyonce"],
+    "options": [
+      "The speaker's favorite singer is Taylor Swift.",
+      "The speaker's favorite singer is Adele.",
+      "The speaker's favorite singer is Beyonce."
+    ],
     "correct": 0
   },
   {
@@ -2919,8 +3045,11 @@
     "type": "speaker",
     "level": "intermediate",
     "audio_text": "I have been working as a teacher for seven years. I teach English to high school students. I love my job because I enjoy helping young people. I also learn a lot from my students. I think teaching is one of the most rewarding professions. I hope to continue doing this for many years. Every day is different in the classroom.",
-    "question": "What is the speaker's profession?",
-    "options": ["Librarian", "English teacher", "Writer"],
+    "options": [
+      "The speaker is a librarian.",
+      "The speaker is an English teacher.",
+      "The speaker is a writer."
+    ],
     "correct": 1
   },
   {
@@ -2928,8 +3057,11 @@
     "type": "speaker",
     "level": "intermediate",
     "audio_text": "I recently moved to a new city for work. I am still getting used to it. I like the energy of the city but I miss my old friends. I have joined a few clubs to meet people. I am also exploring the city on weekends. I think I will enjoy it here eventually. It takes time to adapt to a new place.",
-    "question": "Why did the speaker move to a new city?",
-    "options": ["For family", "For study", "For work"],
+    "options": [
+      "The speaker moved for family.",
+      "The speaker moved for study.",
+      "The speaker moved for work."
+    ],
     "correct": 2
   },
   {
@@ -2937,8 +3069,11 @@
     "type": "speaker",
     "level": "intermediate",
     "audio_text": "I am planning to travel to South America next year. I want to visit Peru and Brazil. I am interested in the culture and nature. I have been saving money for this trip. I also learn some Spanish. I think it will be an amazing experience. I cannot wait to go.",
-    "question": "Which country does the speaker want to visit?",
-    "options": ["Mexico", "Peru", "Spain"],
+    "options": [
+      "The speaker wants to visit Mexico.",
+      "The speaker wants to visit Peru.",
+      "The speaker wants to visit Spain."
+    ],
     "correct": 1
   },
   {
@@ -2946,8 +3081,11 @@
     "type": "speaker",
     "level": "intermediate",
     "audio_text": "I have a hobby of baking cakes. I bake a cake every weekend. My favorite is chocolate cake with cream. I often give cakes to my friends. They always enjoy them. I would like to open a small bakery in the future. I think baking is a form of art.",
-    "question": "What does the speaker bake every weekend?",
-    "options": ["Cakes", "Bread", "Pizza"],
+    "options": [
+      "The speaker bakes cakes every weekend.",
+      "The speaker bakes bread every weekend.",
+      "The speaker bakes pizza every weekend."
+    ],
     "correct": 0
   },
   {
@@ -2955,8 +3093,11 @@
     "type": "speaker",
     "level": "intermediate",
     "audio_text": "I have a big dream to become a writer. I write short stories in my free time. I also keep a journal. I read many books to improve my writing. I hope to publish a novel one day. I think writing is a powerful way to express ideas. I am determined to succeed.",
-    "question": "What is the speaker's dream?",
-    "options": ["To become a painter", "To become a teacher", "To become a writer"],
+    "options": [
+      "The speaker dreams of becoming a painter.",
+      "The speaker dreams of becoming a teacher.",
+      "The speaker dreams of becoming a writer."
+    ],
     "correct": 2
   },
   {
@@ -2964,8 +3105,11 @@
     "type": "speaker",
     "level": "intermediate",
     "audio_text": "My sister is a lawyer. She works in a big firm. She often works long hours. She is very dedicated to her job. I admire her for her hard work. She has helped many people with legal issues. I am very proud of her.",
-    "question": "What is the sister's profession?",
-    "options": ["Lawyer", "Doctor", "Teacher"],
+    "options": [
+      "The speaker's sister is a lawyer.",
+      "The speaker's sister is a doctor.",
+      "The speaker's sister is a teacher."
+    ],
     "correct": 0
   },
   {
@@ -2973,8 +3117,11 @@
     "type": "speaker",
     "level": "intermediate",
     "audio_text": "I love hiking in the mountains. I go hiking every summer with my friends. I enjoy the fresh air and amazing views. It helps me escape from daily stress. I also take a lot of photos during my hikes. I think nature is very healing.",
-    "question": "When does the speaker go hiking?",
-    "options": ["In summer", "In winter", "In spring"],
+    "options": [
+      "The speaker goes hiking in summer.",
+      "The speaker goes hiking in winter.",
+      "The speaker goes hiking in spring."
+    ],
     "correct": 0
   },
   {
@@ -2982,8 +3129,11 @@
     "type": "speaker",
     "level": "intermediate",
     "audio_text": "I am currently learning to code. I take online courses. I practice every day. I want to become a software developer. I find coding challenging but rewarding. I have already built a simple app. I am very proud of my progress.",
-    "question": "What does the speaker want to become?",
-    "options": ["Data analyst", "Web designer", "Software developer"],
+    "options": [
+      "The speaker wants to become a data analyst.",
+      "The speaker wants to become a web designer.",
+      "The speaker wants to become a software developer."
+    ],
     "correct": 2
   },
   {
@@ -2991,8 +3141,11 @@
     "type": "speaker",
     "level": "intermediate",
     "audio_text": "My mother is a very generous person. She always helps others. She volunteers at a local charity. She also helps our neighbors. I have learned a lot from her kindness. I try to be as helpful as she is. She is my role model.",
-    "question": "What does the mother do at a local charity?",
-    "options": ["Volunteers", "Works", "Donates"],
+    "options": [
+      "The mother volunteers at a local charity.",
+      "The mother works at a local charity.",
+      "The mother donates to a local charity."
+    ],
     "correct": 0
   },
   {
@@ -3000,8 +3153,11 @@
     "type": "speaker",
     "level": "intermediate",
     "audio_text": "I have a passion for dancing. I have been dancing since I was a child. I take ballet classes twice a week. I also perform in local shows. Dancing makes me feel alive. I think it is a beautiful art form. I want to continue dancing for life.",
-    "question": "What type of dance does the speaker take classes in?",
-    "options": ["Hip-hop", "Ballet", "Salsa"],
+    "options": [
+      "The speaker takes hip-hop classes.",
+      "The speaker takes ballet classes.",
+      "The speaker takes salsa classes."
+    ],
     "correct": 1
   },
   {
@@ -3009,8 +3165,11 @@
     "type": "speaker",
     "level": "intermediate",
     "audio_text": "I work as a nurse at a hospital. I help patients recover from illnesses. I work long shifts but I love my job. I find it very meaningful to care for people. I also work with a great team of doctors and nurses. I am proud of what I do. I think nursing is a noble profession.",
-    "question": "What does the speaker do?",
-    "options": ["Doctor", "Nurse", "Technician"],
+    "options": [
+      "The speaker works as a doctor.",
+      "The speaker works as a nurse.",
+      "The speaker works as a technician."
+    ],
     "correct": 1
   },
   {
@@ -3018,8 +3177,11 @@
     "type": "speaker",
     "level": "intermediate",
     "audio_text": "I am a big fan of reading. I read at least one book a week. I like various genres, but mystery is my favorite. I love trying to solve the puzzle before the end. I also write book reviews for my blog. I think reading broadens the mind. I cannot imagine life without books.",
-    "question": "What is the speaker's favorite genre?",
-    "options": ["Mystery", "Romance", "Science fiction"],
+    "options": [
+      "The speaker's favorite genre is mystery.",
+      "The speaker's favorite genre is romance.",
+      "The speaker's favorite genre is science fiction."
+    ],
     "correct": 0
   },
   {
@@ -3027,8 +3189,11 @@
     "type": "speaker",
     "level": "intermediate",
     "audio_text": "I have a strong interest in environmental protection. I try to live a sustainable life. I use reusable bags and bottles. I also plant trees and recycle. I think every little action helps the planet. I want to encourage others to do the same. I believe we all need to take responsibility.",
-    "question": "What does the speaker do to help the environment?",
-    "options": ["Recycles and uses reusable items", "Drives less", "Eats less meat"],
+    "options": [
+      "The speaker recycles and uses reusable items.",
+      "The speaker drives less to help the environment.",
+      "The speaker eats less meat to help the environment."
+    ],
     "correct": 0
   },
   {
@@ -3036,8 +3201,11 @@
     "type": "speaker",
     "level": "intermediate",
     "audio_text": "I am a musician and play the piano. I have been playing for ten years. I enjoy playing classical pieces. I also compose my own music. I perform at small concerts sometimes. Music is a big part of my life. I hope to make a career out of it.",
-    "question": "What instrument does the speaker play?",
-    "options": ["Piano", "Guitar", "Violin"],
+    "options": [
+      "The speaker plays the piano.",
+      "The speaker plays the guitar.",
+      "The speaker plays the violin."
+    ],
     "correct": 0
   },
   {
@@ -3045,8 +3213,11 @@
     "type": "speaker",
     "level": "intermediate",
     "audio_text": "I spend a lot of time in my garden. I grow vegetables and flowers. I find gardening very relaxing. I enjoy watching things grow. I also like to eat fresh vegetables from my garden. I think it is a healthy and rewarding hobby. I would recommend it to everyone.",
-    "question": "What does the speaker grow in the garden?",
-    "options": ["Trees", "Fruits", "Vegetables and flowers"],
+    "options": [
+      "The speaker grows trees in the garden.",
+      "The speaker grows fruits in the garden.",
+      "The speaker grows vegetables and flowers."
+    ],
     "correct": 2
   },
   {
@@ -3054,8 +3225,11 @@
     "type": "speaker",
     "level": "intermediate",
     "audio_text": "My uncle is a pilot. He flies for an international airline. He visits many countries. He always brings back souvenirs for me. I think his job is exciting and adventurous. I would like to travel like him one day. He inspires me to explore the world.",
-    "question": "What is the uncle's job?",
-    "options": ["Flight attendant", "Pilot", "Engineer"],
+    "options": [
+      "The uncle is a flight attendant.",
+      "The uncle is a pilot.",
+      "The uncle is an engineer."
+    ],
     "correct": 1
   },
   {
@@ -3063,8 +3237,11 @@
     "type": "speaker",
     "level": "intermediate",
     "audio_text": "I have recently taken up photography. I love capturing moments and beautiful scenes. I carry my camera everywhere. I enjoy editing photos and sharing them on social media. I think photography helps me see the world differently. I want to improve my skills and maybe take a course.",
-    "question": "What hobby has the speaker recently taken up?",
-    "options": ["Sculpting", "Painting", "Photography"],
+    "options": [
+      "The speaker has taken up sculpting.",
+      "The speaker has taken up painting.",
+      "The speaker has taken up photography."
+    ],
     "correct": 2
   },
   {
@@ -3072,8 +3249,11 @@
     "type": "speaker",
     "level": "intermediate",
     "audio_text": "I have a passion for traveling. I have visited over twenty countries. I love experiencing different cultures and trying local food. I usually travel alone, which gives me freedom. I have made many friends along the way. Traveling is my greatest joy. I plan to visit Asia next.",
-    "question": "How many countries has the speaker visited?",
-    "options": ["Over 20", "Over 10", "Over 30"],
+    "options": [
+      "The speaker has visited over 20 countries.",
+      "The speaker has visited over 10 countries.",
+      "The speaker has visited over 30 countries."
+    ],
     "correct": 0
   },
   {
@@ -3081,8 +3261,11 @@
     "type": "speaker",
     "level": "intermediate",
     "audio_text": "I enjoy cooking new recipes. I often try dishes from different countries. I like to experiment with spices and ingredients. My family and friends are usually my taste testers. I find cooking very creative and relaxing. I hope to take a cooking class someday. I want to become a better cook.",
-    "question": "What does the speaker enjoy cooking?",
-    "options": ["Traditional food", "Only desserts", "New recipes"],
+    "options": [
+      "The speaker enjoys cooking traditional food.",
+      "The speaker enjoys cooking only desserts.",
+      "The speaker enjoys cooking new recipes."
+    ],
     "correct": 2
   },
   {
@@ -3090,8 +3273,11 @@
     "type": "speaker",
     "level": "intermediate",
     "audio_text": "My brother is a very successful businessman. He started his own company five years ago. He works hard and is very determined. He has many employees now. I admire his ambition and leadership. He is a great inspiration to me. I hope to be as successful as him one day.",
-    "question": "What is the brother's achievement?",
-    "options": ["Started his own company", "Won an award", "Published a book"],
+    "options": [
+      "The brother started his own company.",
+      "The brother won an award.",
+      "The brother published a book."
+    ],
     "correct": 0
   },
   {
@@ -3099,8 +3285,11 @@
     "type": "speaker",
     "level": "intermediate",
     "audio_text": "I am very interested in artificial intelligence. I think it will change the world. I read articles and watch videos about AI. I also take online courses on machine learning. I want to work in this field in the future. I find it fascinating how computers can learn. I believe AI has enormous potential.",
-    "question": "What is the speaker interested in?",
-    "options": ["Artificial intelligence", "Biology", "Engineering"],
+    "options": [
+      "The speaker is interested in artificial intelligence.",
+      "The speaker is interested in biology.",
+      "The speaker is interested in engineering."
+    ],
     "correct": 0
   },
   {
@@ -3108,8 +3297,11 @@
     "type": "speaker",
     "level": "intermediate",
     "audio_text": "My sister is a talented painter. She works mostly with oil paints. She paints landscapes and portraits. She has exhibited her work in several galleries. She has been painting since she was a child. I love her art very much. I am very proud of her achievements.",
-    "question": "What does the sister paint?",
-    "options": ["Landscapes and portraits", "Abstract art", "Sculptures"],
+    "options": [
+      "The sister paints landscapes and portraits.",
+      "The sister paints abstract art.",
+      "The sister paints sculptures."
+    ],
     "correct": 0
   },
   {
@@ -3117,8 +3309,11 @@
     "type": "speaker",
     "level": "intermediate",
     "audio_text": "I am learning to play the guitar. I take lessons once a week. I practice for at least an hour every day. I can now play some popular songs. My teacher says I am improving quickly. I hope to join a band one day. Music is a big passion of mine.",
-    "question": "How often does the speaker practice the guitar?",
-    "options": ["Once a week", "Every day", "Twice a week"],
+    "options": [
+      "The speaker practices the guitar once a week.",
+      "The speaker practices the guitar every day.",
+      "The speaker practices the guitar twice a week."
+    ],
     "correct": 1
   },
   {
@@ -3126,8 +3321,11 @@
     "type": "speaker",
     "level": "intermediate",
     "audio_text": "I have a job as a graphic designer. I work from home most days. I create logos and websites for clients. I enjoy the creative freedom. Sometimes I have tight deadlines but I manage. I love seeing my work published online. It gives me a sense of achievement.",
-    "question": "What is the speaker's job?",
-    "options": ["Illustrator", "Web developer", "Graphic designer"],
+    "options": [
+      "The speaker is an illustrator.",
+      "The speaker is a web developer.",
+      "The speaker is a graphic designer."
+    ],
     "correct": 2
   },
   {
@@ -3135,8 +3333,11 @@
     "type": "speaker",
     "level": "intermediate",
     "audio_text": "I live in a busy city, but I love it. There is always something to do. I enjoy going to concerts and museums. I also like to try new restaurants. The city has a vibrant energy. I could not imagine living in a quiet place. I love the hustle and bustle.",
-    "question": "What does the speaker like about the city?",
-    "options": ["It is chea", "It is quiet", "There is always something to dop"],
+    "options": [
+      "The city is cheap.",
+      "The city is quiet.",
+      "There is always something to do in the city."
+    ],
     "correct": 2
   },
   {
@@ -3144,8 +3345,11 @@
     "type": "speaker",
     "level": "intermediate",
     "audio_text": "I have been volunteering at a local food bank. I help distribute food to those in need. It is a humbling experience. I have met many kind people there. I believe it is important to give back to the community. I plan to continue volunteering. It makes me feel useful.",
-    "question": "What does the speaker do at the food bank?",
-    "options": ["Distribute food", "Cook food", "Organize events"],
+    "options": [
+      "The speaker distributes food at the food bank.",
+      "The speaker cooks food at the food bank.",
+      "The speaker organizes events at the food bank."
+    ],
     "correct": 0
   },
   {
@@ -3153,8 +3357,11 @@
     "type": "speaker",
     "level": "intermediate",
     "audio_text": "I have a great love for animals. I have two dogs and three cats. I also help at an animal shelter. I think animals are wonderful companions. They bring so much joy to our lives. I try to adopt animals in need. I want to build a sanctuary one day.",
-    "question": "How many dogs does the speaker have?",
-    "options": ["Two", "Three", "One"],
+    "options": [
+      "The speaker has two dogs.",
+      "The speaker has three dogs.",
+      "The speaker has one dog."
+    ],
     "correct": 0
   },
   {
@@ -3162,8 +3369,11 @@
     "type": "speaker",
     "level": "intermediate",
     "audio_text": "My father is a very wise person. He gives me great advice. He always knows what to say. He is calm and patient. I respect him very much. I often turn to him for help. He is my role model.",
-    "question": "What is the speaker's father like?",
-    "options": ["Funny and relaxed", "Strict and serious", "Wise and patient"],
+    "options": [
+      "The father is funny and relaxed.",
+      "The father is strict and serious.",
+      "The father is wise and patient."
+    ],
     "correct": 2
   },
   {
@@ -3171,8 +3381,11 @@
     "type": "speaker",
     "level": "intermediate",
     "audio_text": "I have a passion for history. I love visiting historical sites. I have been to many castles and ruins. I also like to read historical novels. I find the past very fascinating. I think history teaches us important lessons. I want to travel to Egypt one day.",
-    "question": "What does the speaker like to visit?",
-    "options": ["Museums", "Historical sites", "Libraries"],
+    "options": [
+      "The speaker likes to visit museums.",
+      "The speaker likes to visit historical sites.",
+      "The speaker likes to visit libraries."
+    ],
     "correct": 1
   },
   {
@@ -3180,8 +3393,11 @@
     "type": "speaker",
     "level": "intermediate",
     "audio_text": "I am training for a marathon. I run five times a week. I have been training for three months. I can now run 20 kilometers without stopping. My goal is to finish the race. I am feeling strong and determined. I hope to inspire others to be active too.",
-    "question": "How far can the speaker run now?",
-    "options": ["20 kilometers", "10 kilometers", "30 kilometers"],
+    "options": [
+      "The speaker can run 20 kilometers.",
+      "The speaker can run 10 kilometers.",
+      "The speaker can run 30 kilometers."
+    ],
     "correct": 0
   },
   {
@@ -3189,8 +3405,11 @@
     "type": "speaker",
     "level": "intermediate",
     "audio_text": "I love to bake cakes and cookies. I learned to bake from my grandmother. I often bake for my friends' birthdays. They always say my cakes are delicious. I find baking very relaxing and creative. I have even started selling my cakes to friends. I hope to open a bakery one day.",
-    "question": "What does the speaker like to bake?",
-    "options": ["Bread", "Cakes and cookies", "Pies"],
+    "options": [
+      "The speaker likes to bake bread.",
+      "The speaker likes to bake cakes and cookies.",
+      "The speaker likes to bake pies."
+    ],
     "correct": 1
   },
   {
@@ -3198,8 +3417,11 @@
     "type": "speaker",
     "level": "intermediate",
     "audio_text": "My mother is a very determined woman. She always achieves her goals. She started her own business at 50. She is now very successful. I admire her courage and persistence. She inspires me to never give up. I hope to be as strong as she is.",
-    "question": "What did the mother do at 50?",
-    "options": ["Traveled the world", "Retired", "Started her own business"],
+    "options": [
+      "The mother traveled the world at 50.",
+      "The mother retired at 50.",
+      "The mother started her own business at 50."
+    ],
     "correct": 2
   },
   {
@@ -3207,8 +3429,11 @@
     "type": "speaker",
     "level": "intermediate",
     "audio_text": "I have a friend who is a very talented photographer. She takes amazing portraits. She has a great eye for light and composition. She often exhibits her work. I love her style and creativity. She has inspired me to take up photography too. I think she will be famous one day.",
-    "question": "What does the friend take photos of?",
-    "options": ["Portraits", "Landscapes", "Animals"],
+    "options": [
+      "The friend takes portraits.",
+      "The friend takes landscapes.",
+      "The friend takes pictures of animals."
+    ],
     "correct": 0
   },
   {
@@ -3216,8 +3441,11 @@
     "type": "speaker",
     "level": "intermediate",
     "audio_text": "I have started learning a new language, Japanese. I find it challenging but exciting. I practice writing characters every day. I also watch Japanese movies without subtitles. I plan to visit Japan next year. I want to speak fluently by then. I am very motivated.",
-    "question": "What language is the speaker learning?",
-    "options": ["Japanese", "Chinese", "Korean"],
+    "options": [
+      "The speaker is learning Japanese.",
+      "The speaker is learning Chinese.",
+      "The speaker is learning Korean."
+    ],
     "correct": 0
   },
   {
@@ -3225,8 +3453,11 @@
     "type": "speaker",
     "level": "intermediate",
     "audio_text": "I am a big fan of the outdoors. I go hiking every weekend. I also enjoy camping and fishing. I love being in nature, away from the city noise. It helps me clear my mind. I think everyone should spend more time outside. It is good for both body and soul.",
-    "question": "What does the speaker enjoy doing on weekends?",
-    "options": ["Working", "Reading", "Hiking"],
+    "options": [
+      "The speaker works on weekends.",
+      "The speaker reads on weekends.",
+      "The speaker goes hiking on weekends."
+    ],
     "correct": 2
   },
   {
@@ -3234,8 +3465,11 @@
     "type": "speaker",
     "level": "intermediate",
     "audio_text": "I have been a vegan for three years. I decided to adopt this lifestyle for health and ethical reasons. I eat a variety of fruits, vegetables, and grains. I also take vitamins to stay healthy. My family has been supportive. I feel more energetic and healthy now. I would recommend it to everyone.",
-    "question": "How long has the speaker been vegan?",
-    "options": ["3 years", "5 years", "1 year"],
+    "options": [
+      "The speaker has been vegan for 3 years.",
+      "The speaker has been vegan for 5 years.",
+      "The speaker has been vegan for 1 year."
+    ],
     "correct": 0
   },
   {
@@ -3243,8 +3477,11 @@
     "type": "speaker",
     "level": "intermediate",
     "audio_text": "My grandfather was an engineer. He built bridges and roads. He worked on many big projects. He was very proud of his work. He taught me the importance of hard work and precision. I miss him very much. He is my biggest inspiration.",
-    "question": "What did the grandfather build?",
-    "options": ["Houses", "Bridges and roads", "Cars"],
+    "options": [
+      "The grandfather built houses.",
+      "The grandfather built bridges and roads.",
+      "The grandfather built cars."
+    ],
     "correct": 1
   },
   {
@@ -3252,8 +3489,11 @@
     "type": "speaker",
     "level": "intermediate",
     "audio_text": "I am a very social person. I love meeting new people. I attend many events and gatherings. I enjoy learning about different cultures. I have friends from many countries. I think diversity is beautiful. I try to be friendly to everyone I meet.",
-    "question": "What kind of person is the speaker?",
-    "options": ["Serious", "Shy", "Social"],
+    "options": [
+      "The speaker is serious.",
+      "The speaker is shy.",
+      "The speaker is social."
+    ],
     "correct": 2
   },
   {
@@ -3261,8 +3501,11 @@
     "type": "speaker",
     "level": "intermediate",
     "audio_text": "I have recently started doing yoga. I go to class three times a week. It helps me feel more relaxed and flexible. I have noticed a big improvement in my posture. I also sleep better at night. I think yoga is great for both body and mind. I plan to continue for a long time.",
-    "question": "How often does the speaker do yoga?",
-    "options": ["Three times a week", "Every day", "Once a week"],
+    "options": [
+      "The speaker does yoga three times a week.",
+      "The speaker does yoga every day.",
+      "The speaker does yoga once a week."
+    ],
     "correct": 0
   },
   {
@@ -3270,8 +3513,11 @@
     "type": "speaker",
     "level": "intermediate",
     "audio_text": "I have always wanted to write a book. I have started writing my own novel. It is about a young girl's adventure in a magical world. I write a little bit every day. I hope to finish it next year. I find writing very creative and fulfilling. I am excited to see it completed.",
-    "question": "What is the speaker writing about?",
-    "options": ["A magical adventure", "History", "Science"],
+    "options": [
+      "The speaker is writing about a magical adventure.",
+      "The speaker is writing about history.",
+      "The speaker is writing about science."
+    ],
     "correct": 0
   },
   {
@@ -4599,8 +4845,11 @@
     "type": "speaker",
     "level": "expert",
     "audio_text": "The phenomenon of climate change is considered the most pressing issue of our time. It is driven primarily by the burning of fossil fuels, which releases huge amounts of carbon dioxide into the atmosphere. Deforestation further exacerbates the problem by reducing the planet's capacity to absorb carbon emissions. The consequences include rising sea levels, extreme weather events, and loss of biodiversity. Governments worldwide have committed to reducing emissions under the Paris Agreement. However, many critics argue that the current commitments are insufficient to prevent catastrophic warming. There is an urgent need for innovation in clean energy and carbon capture technologies. Individuals can also contribute by adopting sustainable lifestyles and reducing their ecological footprint. Without decisive action, future generations will inherit a severely damaged planet.",
-    "question": "What is the main driver of climate change?",
-    "options": ["Burning of fossil fuels", "Industrial waste", "Overpopulation"],
+    "options": [
+      "The main driver of climate change is burning fossil fuels.",
+      "The main driver of climate change is industrial waste.",
+      "The main driver of climate change is overpopulation."
+    ],
     "correct": 0
   },
   {
@@ -4608,8 +4857,11 @@
     "type": "speaker",
     "level": "expert",
     "audio_text": "The concept of globalization has had both positive and negative impacts on the world. On the one hand, it has facilitated international trade, economic growth, and cultural exchange. On the other hand, it has contributed to inequality and the homogenization of cultures. Critics argue that globalization primarily benefits multinational corporations, often at the expense of local communities and workers. The rise of populism in many countries has been partly attributed to the perceived negative effects of globalization. Despite these challenges, globalization is unlikely to reverse completely, as the world is increasingly interconnected. Some experts advocate for a more inclusive and sustainable form of globalization that addresses the concerns of all stakeholders. The future of globalization will largely depend on the policies adopted by major economies.",
-    "question": "What is one criticism of globalization?",
-    "options": ["Reduces inequality", "Increases local employment", "Benefits corporations at workers"],
+    "options": [
+      "Globalization reduces inequality.",
+      "Globalization increases local employment.",
+      "Globalization benefits corporations at workers' expense."
+    ],
     "correct": 2
   },
   {
@@ -4617,8 +4869,11 @@
     "type": "speaker",
     "level": "expert",
     "audio_text": "The role of artificial intelligence in modern society is expanding rapidly. AI systems are now used in various sectors including healthcare, finance, transportation, and education. They can process huge amounts of data and automate complex tasks. However, there are growing concerns about the ethical implications of AI, such as bias and privacy issues. Some experts fear that AI could lead to significant job displacement, while others argue it will create new opportunities. Effective regulation and oversight are necessary to ensure that AI is developed and deployed responsibly. Interdisciplinary collaboration between technologists, ethicists, and policymakers is essential.",
-    "question": "What is one concern about AI?",
-    "options": ["Bias and privacy issues", "Insufficient processing power", "High cost of implementation"],
+    "options": [
+      "Concerns about AI include bias and privacy issues.",
+      "Concerns about AI include insufficient processing power.",
+      "Concerns about AI include high implementation costs."
+    ],
     "correct": 0
   },
   {
@@ -4626,8 +4881,11 @@
     "type": "speaker",
     "level": "expert",
     "audio_text": "Sustainable development is a framework that aims to balance economic progress, social well-being, and environmental protection. It has been adopted by governments and international organizations as a guiding principle for policy-making. The United Nations Sustainable Development Goals (SDGs) provide a comprehensive roadmap for achieving this balance. However, implementing these goals requires significant financial resources and political will. There is often a tension between short-term economic interests and long-term sustainability objectives. The private sector also plays a crucial role in advancing sustainable development. Ultimately, the success of this framework depends on the collective commitment of all stakeholders.",
-    "question": "What is sustainable development?",
-    "options": ["Balancing economy, society, environment", "Maximizing GDP growth", "Removing all environmental regulations"],
+    "options": [
+      "Sustainable development balances economy, society, and environment.",
+      "Sustainable development maximizes GDP growth.",
+      "Sustainable development removes all environmental regulations."
+    ],
     "correct": 0
   },
   {
@@ -4635,8 +4893,11 @@
     "type": "speaker",
     "level": "expert",
     "audio_text": "The issue of income inequality has become a central political topic in many countries. The gap between the wealthy and the poor has widened significantly in recent decades. This inequality can lead to social tension and reduced economic mobility. Some economists argue that inequality is an inevitable consequence of market forces, while others believe it can be mitigated through taxation and welfare policies. The debate often focuses on whether redistribution of wealth is appropriate. There is also concern about the impact of inequality on democratic institutions. Addressing inequality requires a comprehensive approach that includes education, healthcare, and labor market reforms.",
-    "question": "What is one consequence of income inequality?",
-    "options": ["Higher economic growth", "Social tension and reduced mobility", "Improved social cohesion"],
+    "options": [
+      "Income inequality leads to higher economic growth.",
+      "Income inequality leads to social tension and reduced mobility.",
+      "Income inequality improves social cohesion."
+    ],
     "correct": 1
   },
   {
@@ -4644,8 +4905,11 @@
     "type": "speaker",
     "level": "expert",
     "audio_text": "The protection of biodiversity is essential for sustaining life on Earth. Biodiversity provides essential ecosystem services such as pollination, water purification, and climate regulation. However, many species are facing extinction due to habitat loss and climate change. This loss threatens the stability of ecosystems and human well-being. Conservation efforts such as protected areas and species recovery programs are crucial. Public awareness and engagement are also important for supporting biodiversity protection. Governments and international organizations need to collaborate on conservation initiatives. The preservation of biodiversity is a shared responsibility.",
-    "question": "What is one service provided by biodiversity?",
-    "options": ["Water storage", "Energy production", "Pollination"],
+    "options": [
+      "Biodiversity provides water storage.",
+      "Biodiversity provides energy production.",
+      "Biodiversity provides pollination."
+    ],
     "correct": 2
   },
   {
@@ -4653,8 +4917,11 @@
     "type": "speaker",
     "level": "expert",
     "audio_text": "The concept of circular economy offers an alternative to the traditional linear model of production and consumption. It emphasizes the importance of designing out waste and keeping materials in use. This approach can reduce environmental impact and create economic value. Many companies are starting to adopt circular principles, such as product redesign and remanufacturing. However, transitioning to a circular economy requires changes in business models and consumer habits. Government policies can support this transition through incentives and regulations. The success of the circular economy depends on collaboration between various sectors.",
-    "question": "What is a key feature of the circular economy?",
-    "options": ["Maximizing waste", "Keeping materials in use", "Single-use products"],
+    "options": [
+      "The circular economy maximizes waste.",
+      "The circular economy keeps materials in use.",
+      "The circular economy promotes single-use products."
+    ],
     "correct": 1
   },
   {
@@ -4662,8 +4929,11 @@
     "type": "speaker",
     "level": "expert",
     "audio_text": "The digital divide refers to the gap between those who have access to modern information and communication technology and those who do not. This divide affects education, employment, and social participation. It is particularly severe in developing countries and rural areas. Bridging the digital divide is essential for achieving inclusive growth. Governments are implementing policies to expand internet access and digital literacy. However, progress has been uneven. The COVID-19 pandemic underscored the importance of digital connectivity for remote work and education. Addressing the digital divide is a priority for sustainable development.",
-    "question": "What does the digital divide refer to?",
-    "options": ["Gap in technology access", "Gap in income", "Gap in education"],
+    "options": [
+      "The digital divide is a gap in technology access.",
+      "The digital divide is a gap in income.",
+      "The digital divide is a gap in education."
+    ],
     "correct": 0
   },
   {
@@ -4671,8 +4941,11 @@
     "type": "speaker",
     "level": "expert",
     "audio_text": "The issue of healthcare affordability is a major concern in many countries. Rising costs of medical care and pharmaceuticals can make treatment inaccessible. This can lead to worse health outcomes and financial hardship. Various strategies have been proposed to address this, including price regulation and government subsidies. The debate often centers on the appropriate role of government in healthcare. Some advocate for a single-payer system, while others support market-based solutions. The future of healthcare depends on finding sustainable ways to balance cost, access, and quality.",
-    "question": "What is one strategy to address healthcare affordability?",
-    "options": ["Privatization", "Reducing coverage", "Price regulation"],
+    "options": [
+      "Privatization is a strategy for healthcare affordability.",
+      "Reducing coverage is a strategy for healthcare affordability.",
+      "Price regulation is a strategy for healthcare affordability."
+    ],
     "correct": 2
   },
   {
@@ -4680,8 +4953,11 @@
     "type": "speaker",
     "level": "expert",
     "audio_text": "The concept of renewable energy has gained momentum as a clean alternative to fossil fuels. Solar, wind, and hydroelectric power are among the most promising sources. They produce little to no greenhouse gas emissions, making them essential for climate change mitigation. However, the intermittency of these sources remains a technical challenge. Energy storage solutions, such as batteries and pumped hydro, are improving rapidly. The cost of renewable energy has also fallen dramatically, making it more competitive. Policy support, such as subsidies and renewable targets, continues to drive adoption.",
-    "question": "What is a challenge of renewable energy?",
-    "options": ["Limited availability", "High cost", "Intermittency"],
+    "options": [
+      "Renewable energy has limited availability.",
+      "Renewable energy has high cost.",
+      "Renewable energy has intermittency as a challenge."
+    ],
     "correct": 2
   },
   {
@@ -4689,8 +4965,11 @@
     "type": "speaker",
     "level": "expert",
     "audio_text": "The issue of gender parity in politics has received increasing attention. Women are underrepresented in political institutions worldwide. This is often due to structural barriers and cultural norms. Increasing women's political participation can lead to more inclusive and equitable policies. Many countries have adopted quotas to promote gender balance. However, the effectiveness of quotas is debated. Cultural change is also necessary to address underlying biases. The future of democracy depends on equal representation.",
-    "question": "Why is women's political participation important?",
-    "options": ["For reducing economic inequality", "For more inclusive and equitable policies", "For increasing political stability"],
+    "options": [
+      "Women's political participation is important for reducing economic inequality.",
+      "Women's political participation is important for more inclusive policies.",
+      "Women's political participation is important for political stability."
+    ],
     "correct": 1
   },
   {
@@ -4698,8 +4977,11 @@
     "type": "speaker",
     "level": "expert",
     "audio_text": "The issue of food waste is a major concern worldwide. It is estimated that about one-third of all food produced is wasted. This has significant economic and environmental consequences. Reducing food waste is an effective way to improve food security and reduce greenhouse gas emissions. Consumers can play a key role by planning meals and storing food properly. Businesses and governments also have responsibilities. Policies such as tax incentives for food donations can help. Addressing food waste is a shared challenge.",
-    "question": "What is one benefit of reducing food waste?",
-    "options": ["Improves food security and cuts emissions", "Increases food production", "Reduces food prices"],
+    "options": [
+      "Reducing food waste improves food security and cuts emissions.",
+      "Reducing food waste increases food production.",
+      "Reducing food waste reduces food prices."
+    ],
     "correct": 0
   },
   {
@@ -4707,8 +4989,11 @@
     "type": "speaker",
     "level": "expert",
     "audio_text": "The concept of human capital is fundamental to economic development. It refers to the skills and knowledge that workers possess. Investing in education and training improves human capital and boosts productivity. This leads to higher economic growth and innovation. However, underinvestment in education can hinder development. Governments and businesses have a shared interest in fostering human capital. Lifelong learning and adaptability are becoming increasingly important in a rapidly changing world.",
-    "question": "What does human capital refer to?",
-    "options": ["Natural resources of a country", "Financial resources of firms", "Skills and knowledge of workers"],
+    "options": [
+      "Human capital refers to natural resources.",
+      "Human capital refers to financial resources.",
+      "Human capital refers to skills and knowledge of workers."
+    ],
     "correct": 2
   },
   {
@@ -4716,8 +5001,11 @@
     "type": "speaker",
     "level": "expert",
     "audio_text": "The issue of social media regulation has become a major policy debate. Platforms like Facebook and Twitter have significant influence over public discourse. Concerns about misinformation, hate speech, and data privacy have led to calls for regulation. However, there are concerns about the impact on freedom of speech. Finding a balance is challenging. Some propose self-regulation by the industry, while others advocate for government oversight. The future of online communication will depend on how these issues are resolved.",
-    "question": "What is one concern about social media?",
-    "options": ["Misinformation and hate speech", "High cost", "Lack of users"],
+    "options": [
+      "Concerns about social media include misinformation and hate speech.",
+      "Concerns about social media include high cost.",
+      "Concerns about social media include lack of users."
+    ],
     "correct": 0
   },
   {
@@ -4725,8 +5013,11 @@
     "type": "speaker",
     "level": "expert",
     "audio_text": "The concept of sustainable transportation is essential for reducing urban pollution and congestion. It includes options like cycling, walking, and electric vehicles. Many cities are investing in public transport infrastructure to encourage sustainable mobility. Policies such as congestion pricing and low-emission zones are also being adopted. The transition to sustainable transportation requires investment and behavioral change. The benefits include cleaner air and healthier lifestyles. The future of urban mobility will be shaped by these efforts.",
-    "question": "What is one sustainable transportation option?",
-    "options": ["Cycling", "Private cars", "Air travel"],
+    "options": [
+      "Cycling is a sustainable transportation option.",
+      "Private cars are a sustainable transportation option.",
+      "Air travel is a sustainable transportation option."
+    ],
     "correct": 0
   },
   {
@@ -4734,8 +5025,11 @@
     "type": "speaker",
     "level": "expert",
     "audio_text": "The issue of nuclear proliferation has been a persistent international security concern. The spread of nuclear weapons increases the risk of conflict. Non-proliferation treaties and diplomacy are key tools to address this. However, enforcement and compliance remain challenging. Countries with nuclear capabilities are often involved in complex negotiations. The international community continues to seek ways to reduce nuclear arsenals. The goal of a nuclear-free world remains a vision for the future.",
-    "question": "What is one tool to address nuclear proliferation?",
-    "options": ["Non-proliferation treaties", "Economic sanctions", "Military intervention"],
+    "options": [
+      "Non-proliferation treaties are a tool to address nuclear proliferation.",
+      "Economic sanctions are a tool to address nuclear proliferation.",
+      "Military intervention is a tool to address nuclear proliferation."
+    ],
     "correct": 0
   },
   {
@@ -4743,8 +5037,11 @@
     "type": "speaker",
     "level": "expert",
     "audio_text": "The concept of remote work has gained popularity following the pandemic. Many companies have adopted flexible work arrangements. Remote work offers benefits like reduced commuting time and increased autonomy. However, it also presents challenges such as social isolation and blurred work-life boundaries. The effectiveness of remote work varies across industries and individuals. It is likely that hybrid models will become the norm. The future of work will be more flexible and technology-dependent.",
-    "question": "What is a benefit of remote work?",
-    "options": ["Higher pay", "Reduced commuting time", "More vacation days"],
+    "options": [
+      "A benefit of remote work is higher pay.",
+      "A benefit of remote work is reduced commuting time.",
+      "A benefit of remote work is more vacation days."
+    ],
     "correct": 1
   },
   {
@@ -4752,8 +5049,11 @@
     "type": "speaker",
     "level": "expert",
     "audio_text": "The issue of poverty is deeply connected to educational attainment. Lack of education often limits employment opportunities. This perpetuates the cycle of poverty across generations. Investing in education is one of the most effective ways to break this cycle. Quality education equips individuals with skills and knowledge needed for better jobs. Governments must ensure equitable access to education. International organizations also support education programs in developing countries. Education is a key driver of social mobility.",
-    "question": "What is one way to break the cycle of poverty?",
-    "options": ["Investing in education", "Increasing taxes", "Reducing wages"],
+    "options": [
+      "Investing in education breaks the cycle of poverty.",
+      "Increasing taxes breaks the cycle of poverty.",
+      "Reducing wages breaks the cycle of poverty."
+    ],
     "correct": 0
   },
   {
@@ -4761,8 +5061,11 @@
     "type": "speaker",
     "level": "expert",
     "audio_text": "The concept of green infrastructure is gaining recognition in urban planning. It includes features like green roofs, parks, and permeable pavements. These elements help manage stormwater and reduce urban heat island effects. They also improve biodiversity and aesthetic appeal. Green infrastructure can contribute to climate adaptation. Many cities are incorporating it into their development plans. It represents a sustainable approach to urban growth.",
-    "question": "What is one function of green infrastructure?",
-    "options": ["Generating energy", "Increasing traffic", "Managing stormwater"],
+    "options": [
+      "Green infrastructure generates energy.",
+      "Green infrastructure increases traffic.",
+      "Green infrastructure manages stormwater."
+    ],
     "correct": 2
   },
   {
@@ -4770,8 +5073,11 @@
     "type": "speaker",
     "level": "expert",
     "audio_text": "The issue of intellectual property rights is important for innovation. Patents and copyrights protect the creations of inventors and artists. This encourages investment in research and development. However, there is debate about the appropriate scope and duration of protection. Some argue that strong IP rights can stifle competition and access. The balance between protection and access is crucial. The future of creativity and innovation depends on this balance.",
-    "question": "What is one purpose of intellectual property rights?",
-    "options": ["Reduce competition", "Encourage investment in R&D", "Limit access to knowledge"],
+    "options": [
+      "Intellectual property rights reduce competition.",
+      "Intellectual property rights encourage investment in R&D.",
+      "Intellectual property rights limit access to knowledge."
+    ],
     "correct": 1
   },
   {
@@ -4779,8 +5085,11 @@
     "type": "speaker",
     "level": "expert",
     "audio_text": "The concept of sustainable agriculture is crucial for feeding a growing population. It involves practices that protect the environment, public health, and animal welfare. Crop rotation, organic farming, and integrated pest management are examples of such practices. These methods reduce soil erosion and chemical runoff into waterways. They also enhance biodiversity and soil fertility. However, sustainable agriculture often requires more labor and knowledge. Farmers may face economic challenges in transitioning to these methods. Government subsidies and technical support can facilitate the transition. The future of food production depends on the widespread adoption of sustainable practices.",
-    "question": "What is one benefit of sustainable agriculture?",
-    "options": ["Reduces crop yields", "Increases use of pesticides", "Reduces soil erosion and chemical runoff"],
+    "options": [
+      "Sustainable agriculture reduces crop yields.",
+      "Sustainable agriculture increases pesticide use.",
+      "Sustainable agriculture reduces soil erosion and runoff."
+    ],
     "correct": 2
   },
   {
@@ -4788,8 +5097,11 @@
     "type": "speaker",
     "level": "expert",
     "audio_text": "The issue of ocean pollution is a serious environmental threat. Plastics, chemicals, and oil spills contaminate marine ecosystems. This pollution harms marine life and can enter the human food chain. Microplastics have been found in seafood and even in drinking water. Addressing ocean pollution requires international cooperation and stricter regulations. Reducing single-use plastics and improving waste management are key steps. Public awareness campaigns can also drive change. The health of our oceans is vital for planetary health. We must take urgent action to protect them.",
-    "question": "What is one source of ocean pollution?",
-    "options": ["Plastics", "Carbon dioxide", "Solar radiation"],
+    "options": [
+      "Plastics are a source of ocean pollution.",
+      "Carbon dioxide is a source of ocean pollution.",
+      "Solar radiation is a source of ocean pollution."
+    ],
     "correct": 0
   },
   {
@@ -4797,8 +5109,11 @@
     "type": "speaker",
     "level": "expert",
     "audio_text": "The concept of smart homes is becoming increasingly popular with advancements in technology. These homes use sensors and automation to improve comfort, security, and energy efficiency. Smart thermostats, lighting, and security systems can be controlled remotely. They can also learn user preferences and adjust settings automatically. However, concerns about data privacy and hacking persist. Consumers must be aware of the potential risks. The benefits of smart homes include energy savings and convenience. The market for smart home devices is growing rapidly. The future of living spaces will likely be more intelligent and connected.",
-    "question": "What is one benefit of smart homes?",
-    "options": ["Energy savings", "Higher cost", "Less security"],
+    "options": [
+      "A benefit of smart homes is energy savings.",
+      "A benefit of smart homes is higher cost.",
+      "A benefit of smart homes is less security."
+    ],
     "correct": 0
   },
   {
@@ -4806,8 +5121,11 @@
     "type": "speaker",
     "level": "expert",
     "audio_text": "The issue of child labor remains a significant problem in many parts of the world. Millions of children are forced to work in hazardous conditions, often in agriculture, mining, and manufacturing. This deprives them of education and proper development. International conventions have been established to prohibit child labor, but enforcement is weak in many countries. Poverty is a major driver of child labor. Efforts to combat it must address the root causes, such as poverty and lack of access to education. Corporate responsibility and consumer awareness can also play a role. We must continue to fight for the rights of children worldwide.",
-    "question": "What is one driver of child labor?",
-    "options": ["High wages", "Poverty", "Strong education systems"],
+    "options": [
+      "High wages are a driver of child labor.",
+      "Poverty is a driver of child labor.",
+      "Strong education systems are a driver of child labor."
+    ],
     "correct": 1
   },
   {
@@ -4815,8 +5133,11 @@
     "type": "speaker",
     "level": "expert",
     "audio_text": "The concept of democracy is not static; it requires continuous effort to maintain and strengthen. Citizens must participate in the political process through voting and civic engagement. Education about rights and responsibilities is essential for a healthy democracy. Democratic institutions must be transparent and accountable. Corruption and disinformation pose serious threats to democracy. Independent media and civil society play a watchdog role. International cooperation can support democratic movements. The future of democracy depends on the commitment of citizens and leaders. It is a system that thrives on active participation and respect for the rule of law.",
-    "question": "What is one threat to democracy mentioned?",
-    "options": ["Corruption and disinformation", "High voter turnout", "Strong civil society"],
+    "options": [
+      "Corruption and disinformation are threats to democracy.",
+      "High voter turnout is a threat to democracy.",
+      "Strong civil society is a threat to democracy."
+    ],
     "correct": 0
   },
   {
@@ -4824,8 +5145,11 @@
     "type": "speaker",
     "level": "expert",
     "audio_text": "The issue of public transportation funding is a challenge for many cities. Adequate funding is essential for maintaining and expanding transit systems. Underfunding can lead to deterioration of service and infrastructure. Public transport is crucial for reducing traffic congestion and emissions. Many cities are seeking innovative financing solutions, such as public-private partnerships. Government subsidies and dedicated taxes can also support transit. The economic benefits of efficient public transport are significant. Investment in transit creates jobs and improves mobility. The future of urban mobility depends on sustained investment.",
-    "question": "What is one benefit of public transportation?",
-    "options": ["Raises emissions", "Increases traffic", "Reduces traffic congestion"],
+    "options": [
+      "Public transportation raises emissions.",
+      "Public transportation increases traffic.",
+      "Public transportation reduces traffic congestion."
+    ],
     "correct": 2
   },
   {
@@ -4833,8 +5157,11 @@
     "type": "speaker",
     "level": "expert",
     "audio_text": "The concept of renewable energy storage is critical for grid stability. Since solar and wind power are intermittent, effective storage solutions are needed. Batteries, pumped hydro, and thermal storage are among the technologies being developed. Advances in battery technology are reducing costs and improving efficiency. Grid-scale storage can help balance supply and demand. This enables higher penetration of renewables. Investment in storage infrastructure is increasing. The future of energy systems will rely heavily on storage. It is an essential component of the energy transition.",
-    "question": "What is one technology for renewable energy storage?",
-    "options": ["Batteries", "Coal plants", "Gas turbines"],
+    "options": [
+      "Batteries are a technology for renewable energy storage.",
+      "Coal plants are a technology for renewable energy storage.",
+      "Gas turbines are a technology for renewable energy storage."
+    ],
     "correct": 0
   },
   {
@@ -4842,8 +5169,11 @@
     "type": "speaker",
     "level": "expert",
     "audio_text": "The issue of income tax evasion is a major concern for governments globally. It involves individuals and businesses hiding income to avoid paying taxes. This leads to significant revenue losses for governments. Tax evasion undermines the fairness of the tax system. It is often facilitated by offshore accounts and complex financial structures. Governments are increasing enforcement and information sharing. International cooperation is essential to combat tax evasion. The future of tax compliance depends on transparency and technology. Efforts to address this issue are ongoing.",
-    "question": "What is one consequence of tax evasion?",
-    "options": ["Higher tax rates", "Increased public services", "Revenue loss for governments"],
+    "options": [
+      "Tax evasion leads to higher tax rates.",
+      "Tax evasion leads to increased public services.",
+      "Tax evasion leads to revenue loss for governments."
+    ],
     "correct": 2
   },
   {
@@ -4851,8 +5181,11 @@
     "type": "speaker",
     "level": "expert",
     "audio_text": "The concept of lifelong learning is becoming increasingly important in today's fast-changing world. Technological advancements require workers to continuously update their skills. Lifelong learning can take many forms, such as online courses, workshops, and self-study. It enhances employability and personal growth. Employers also benefit from a skilled workforce. Governments can support lifelong learning through funding and policies. However, access to learning opportunities is not equal. Addressing this gap is crucial for social equity. Lifelong learning is essential for adapting to change.",
-    "question": "What is one benefit of lifelong learning?",
-    "options": ["Reduces need for education", "Enhances employability", "Increases social inequality"],
+    "options": [
+      "Lifelong learning reduces the need for education.",
+      "Lifelong learning enhances employability.",
+      "Lifelong learning increases social inequality."
+    ],
     "correct": 1
   },
   {
@@ -4860,8 +5193,11 @@
     "type": "speaker",
     "level": "expert",
     "audio_text": "The issue of water quality is essential for public health and ecosystems. Contaminated water can cause diseases and harm aquatic life. Protecting water sources from pollution is critical. Treatment and infrastructure are needed to ensure safe water. Many communities face water quality challenges due to industrial and agricultural runoff. Government regulations and monitoring are important. Public awareness can also help protect water resources. The future of water security depends on sustainable management. It is a global responsibility.",
-    "question": "What is one threat to water quality?",
-    "options": ["Sunlight", "Rainfall", "Industrial runoff"],
+    "options": [
+      "Sunlight is a threat to water quality.",
+      "Rainfall is a threat to water quality.",
+      "Industrial runoff is a threat to water quality."
+    ],
     "correct": 2
   },
   {
@@ -4869,8 +5205,11 @@
     "type": "speaker",
     "level": "expert",
     "audio_text": "The concept of urban resilience is key to withstanding shocks and stresses. Cities are vulnerable to natural disasters, economic crises, and social unrest. Building resilience involves infrastructure, planning, and community engagement. Green spaces and flood defenses can mitigate climate risks. Social safety nets support vulnerable populations. Resilient cities can adapt and recover quickly. The COVID-19 pandemic highlighted the importance of resilience. Investment in resilience is essential for sustainable urban development. The future of cities depends on their ability to adapt.",
-    "question": "What is one component of urban resilience?",
-    "options": ["Green spaces and flood defenses", "Reducing public transport", "Increasing car dependency"],
+    "options": [
+      "Green spaces and flood defenses are components of urban resilience.",
+      "Reducing public transport is a component of urban resilience.",
+      "Increasing car dependency is a component of urban resilience."
+    ],
     "correct": 0
   },
   {
@@ -4878,8 +5217,11 @@
     "type": "speaker",
     "level": "expert",
     "audio_text": "The issue of political polarization has intensified in many countries. It is characterized by deep divisions between ideological groups. This polarization can lead to gridlock and social tension. Media and social networks often exacerbate these divisions. Promoting dialogue and understanding is essential. Education that fosters critical thinking can help. Electoral reforms might also reduce polarization. The future of democracy depends on bridging these divides. It is a challenge that requires collective effort.",
-    "question": "What is one factor that exacerbates polarization?",
-    "options": ["Economic growth", "Higher education", "Media and social networks"],
+    "options": [
+      "Economic growth exacerbates polarization.",
+      "Higher education exacerbates polarization.",
+      "Media and social networks exacerbate polarization."
+    ],
     "correct": 2
   },
   {
@@ -4887,8 +5229,11 @@
     "type": "speaker",
     "level": "expert",
     "audio_text": "The concept of social justice is central to creating a fair society. It involves ensuring equal rights and opportunities for all. Discrimination based on race, gender, or background undermines social justice. Legal frameworks and policies can promote equity. Education and awareness are also important. Advocacy and activism play a role in advancing social justice. The future of social progress depends on continued efforts. It is a fundamental value for sustainable development. Everyone deserves to be treated with dignity.",
-    "question": "What is central to creating a fair society?",
-    "options": ["Social justice", "Economic growth", "Technological innovation"],
+    "options": [
+      "Social justice is central to creating a fair society.",
+      "Economic growth is central to creating a fair society.",
+      "Technological innovation is central to creating a fair society."
+    ],
     "correct": 0
   },
   {
@@ -4896,8 +5241,11 @@
     "type": "speaker",
     "level": "expert",
     "audio_text": "The issue of cybersecurity is a growing concern for individuals and organizations. Cyberattacks can compromise sensitive data and disrupt operations. Protecting against cyber threats requires robust security measures. This includes firewalls, encryption, and regular updates. Phishing and social engineering are common threats. Education and training are essential for users. Governments and businesses must collaborate on cybersecurity. The future of digital safety depends on proactive measures. It is a shared responsibility.",
-    "question": "What is one common cyber threat?",
-    "options": ["Phishing", "Hardware failure", "Power outage"],
+    "options": [
+      "Phishing is a common cyber threat.",
+      "Hardware failure is a common cyber threat.",
+      "Power outage is a common cyber threat."
+    ],
     "correct": 0
   },
   {
@@ -4905,8 +5253,11 @@
     "type": "speaker",
     "level": "expert",
     "audio_text": "The concept of green building design is important for reducing environmental impact. It involves using sustainable materials and energy-efficient systems. Green buildings minimize waste and carbon emissions. They also provide healthier indoor environments. Certification systems like LEED promote green building standards. The demand for green buildings is increasing. They can reduce operating costs over time. The future of construction will be greener. It is a key strategy for climate change mitigation.",
-    "question": "What is one benefit of green building design?",
-    "options": ["Increases energy use", "Reduces carbon emissions", "Generates more waste"],
+    "options": [
+      "Green building design increases energy use.",
+      "Green building design reduces carbon emissions.",
+      "Green building design generates more waste."
+    ],
     "correct": 1
   },
   {
@@ -4914,8 +5265,11 @@
     "type": "speaker",
     "level": "expert",
     "audio_text": "The issue of child poverty is a serious social problem. It affects millions of children worldwide. Poverty limits access to education, nutrition, and healthcare. Breaking the cycle of poverty requires comprehensive strategies. These include family support, early childhood education, and community development. Government programs can provide assistance. International organizations also play a role. The future of children depends on investment in their well-being. It is a moral obligation to protect children.",
-    "question": "What is one consequence of child poverty?",
-    "options": ["Limited access to education", "Better health outcomes", "Higher income"],
+    "options": [
+      "Child poverty leads to limited access to education.",
+      "Child poverty leads to better health outcomes.",
+      "Child poverty leads to higher income."
+    ],
     "correct": 0
   },
   {
@@ -4923,8 +5277,11 @@
     "type": "speaker",
     "level": "expert",
     "audio_text": "The concept of telemedicine has gained traction, especially during the pandemic. It allows patients to consult healthcare professionals remotely. This improves access to care, particularly in rural areas. Telemedicine can reduce costs and wait times. However, it also poses challenges, such as data privacy and the digital divide. Regulatory frameworks need to evolve to support telemedicine. The future of healthcare will likely include more virtual care. It is a promising tool for improving health outcomes.",
-    "question": "What is one benefit of telemedicine?",
-    "options": ["Improves access to care", "Reduces need for doctors", "Increases physical visits"],
+    "options": [
+      "Telemedicine improves access to care.",
+      "Telemedicine reduces the need for doctors.",
+      "Telemedicine increases physical visits."
+    ],
     "correct": 0
   },
   {
@@ -4932,8 +5289,11 @@
     "type": "speaker",
     "level": "expert",
     "audio_text": "The issue of species extinction is accelerating due to human activities. Habitat destruction, climate change, and poaching are major drivers. The loss of species affects ecosystem stability and resilience. Conservation efforts are essential to protect endangered species. Protected areas and captive breeding programs can help. International agreements like CITES regulate trade in wildlife. Public support is also crucial for conservation. The future of biodiversity depends on urgent action. We must act now to preserve our natural heritage.",
-    "question": "What is one driver of species extinction?",
-    "options": ["Conservation efforts", "Increased biodiversity", "Habitat destruction"],
+    "options": [
+      "Conservation efforts are a driver of extinction.",
+      "Increased biodiversity is a driver of extinction.",
+      "Habitat destruction is a driver of extinction."
+    ],
     "correct": 2
   },
   {
@@ -4941,8 +5301,11 @@
     "type": "speaker",
     "level": "expert",
     "audio_text": "The concept of corporate social responsibility (CSR) has become important for businesses. It involves companies taking responsibility for their social and environmental impact. CSR can enhance reputation and customer loyalty. It also contributes to sustainable development. Many companies report on CSR activities. Stakeholders increasingly demand transparency. The future of business will likely be more responsible. CSR is not just an ethical choice but also a strategic one. It can lead to long-term success.",
-    "question": "What is one benefit of CSR?",
-    "options": ["Reduces customer base", "Enhances reputation", "Increases pollution"],
+    "options": [
+      "CSR reduces the customer base.",
+      "CSR enhances reputation.",
+      "CSR increases pollution."
+    ],
     "correct": 1
   },
   {
@@ -4950,8 +5313,11 @@
     "type": "speaker",
     "level": "expert",
     "audio_text": "The issue of waste-to-energy technology is a topic of debate. It converts waste materials into energy through combustion or other processes. This can reduce landfill use and generate electricity. However, concerns about emissions and pollution remain. Modern facilities have advanced filters to reduce pollutants. The economics of waste-to-energy depend on energy prices and waste volumes. It is one component of a comprehensive waste management strategy. The future of waste management will likely include more sustainable solutions.",
-    "question": "What is one advantage of waste-to-energy technology?",
-    "options": ["Increases pollution", "Reduces landfill use", "Requires no investment"],
+    "options": [
+      "Waste-to-energy technology increases pollution.",
+      "Waste-to-energy technology reduces landfill use.",
+      "Waste-to-energy technology requires no investment."
+    ],
     "correct": 1
   }
 ]
