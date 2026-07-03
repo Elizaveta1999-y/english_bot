@@ -209,8 +209,9 @@ async def show_question(message: Message, state: FSMContext):
         text = f"{task['question']}\n\nВведите все пропущенные слова в формате: ___; ___; ___;"
         keyboard = get_fill_keyboard(task_id)
     elif task_type == "speaker":
-        text = f"{task['question']}\n\nВыберите правильный вариант:"
-        keyboard = get_choice_keyboard(task["options"], task_id)
+    text = f"{task['question']}\n\nВыберите верное утверждение:"
+    keyboard = get_choice_keyboard(task["options"], task_id)
+
     else:
         return
 
