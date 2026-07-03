@@ -1249,7 +1249,7 @@
     "level": "beginner",
     "audio_text": "I like to read books. I read every evening. I like adventure stories. I borrow books from the library. Reading is my hobby.",
     "question": "What does the speaker like to do?",
-    "options": ["Play sports", "Watch TV", Read books"],
+    "options": ["Play sports", "Watch TV", "Read books"],
     "correct": 2
   },
   {
