@@ -689,11 +689,18 @@ async def listening_text_middleware(call: types.Message, event: types.Message, d
     state: FSMContext = data.get('state')
     if state:
         current_state = await state.get_state()
-        if current_state == ListeningState.answering_task:
+        if current_state and current_state.startswith("ListeningState"):
+            # Если это команда — пропускаем, чтобы она обработалась в хендлерах команд
             if event.text and event.text.startswith("/"):
                 return await call(event, data)
-            await handle_answer(event, state)
+            # Если мы в состоянии answering_task — обрабатываем как ответ
+            if current_state == ListeningState.answering_task:
+                await handle_answer(event, state)
+                return
+            # Для любых других состояний ListeningState (choosing_type, choosing_level, revision_mode)
+            # просто игнорируем текст, чтобы он не попадал в другие обработчики (roleplay, common и т.д.)
             return
+    # Если мы не в ListeningState — передаём управление дальше
     return await call(event, data)
 
 async def handle_answer(message: Message, state: FSMContext):
