@@ -270,8 +270,6 @@ async def send_task(message: Message, state: FSMContext, is_revision=False):
     # Показываем вопрос
     await show_question(message, state)
 
-    # Обновляем прогресс-сообщение (если есть)
-    await update_progress_message(message, state)
 
 async def show_question(message: Message, state: FSMContext):
     data = await state.get_data()
@@ -311,11 +309,11 @@ async def update_progress_message(message: Message, state: FSMContext):
 
     if progress_msg_id:
         text = (
-            f"🎯 Режим: {TASK_TYPES[task_type]}\n\n"
+            f"Режим: {TASK_TYPES[task_type]}\n\n"
             f"Внимательно прослушайте аудио и {TASK_TYPE_DESCRIPTIONS[task_type]}.\n\n"
-            f"📊 Ваш прогресс:\n"
-            f"✅ Правильно: {correct}\n"
-            f"❌ Ошибок: {wrong}\n\n"
+            f"Ваш прогресс:\n"
+            f"✔️ Правильно: {correct}\n"
+            f"✖️ Ошибок: {wrong}\n\n"
             f"/revision_mode — работа над ошибками\n"
             f"/reset_progress — сбросить прогресс\n\n"
             f"Начинаем?"
