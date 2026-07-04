@@ -211,6 +211,13 @@ async def set_task_index(user_id: int, task_type: str, level: str, index: int):
     r = await get_redis()
     await r.set(f"listening_progress:{user_id}:{task_type}:{level}", str(index))
 
+if task_type == "random":
+    tasks = [t for t in ALL_TASKS if t.get("level") == level]
+    print(f"DEBUG random: found {len(tasks)} tasks for level {level}")
+    if not tasks:
+        await message.answer(f"Нет заданий для уровня {level}.")
+        return
+
 async def get_random_order(user_id: int, level: str) -> list:
     r = await get_redis()
     key = f"listening_random_order:{user_id}:{level}"
