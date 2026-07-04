@@ -19,6 +19,22 @@ WELCOME_MESSAGES = [
     "<b>🎧 Аудирование</b>\n\nПонимание речи на слух — навык, который развивается только практикой. Чем чаще вы слушаете, тем легче становится.\n\nПопробуйте начать с коротких заданий — даже 5 минут в день дают результат."
 ]
 
+async def get_welcome_message():
+    r = await get_redis()
+    today = datetime.now().date().isoformat()
+    saved_date = await r.get("listening_welcome_date")
+    saved_index = await r.get("listening_welcome_index")
+    
+    if saved_date == today and saved_index is not None:
+        index = int(saved_index)
+    else:
+        current_index = int(saved_index) if saved_index is not None else -1
+        index = (current_index + 1) % len(WELCOME_MESSAGES)
+        await r.set("listening_welcome_date", today)
+        await r.set("listening_welcome_index", str(index))
+    
+    return WELCOME_MESSAGES[index]
+
 router = Router()
 logger = logging.getLogger(__name__)
 
