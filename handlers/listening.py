@@ -834,6 +834,15 @@ async def debug_tasks(message: Message):
     fill_multiple = sum(1 for t in ALL_TASKS if t.get("type") == "fill_multiple")
     await message.answer(f"Total: {total}\nfill_one: {fill_one}\nfill_multiple: {fill_multiple}")
 
+@router.message(Command("debug_fill"))
+async def debug_fill(message: Message):
+    result = []
+    for level in ["beginner", "intermediate", "expert"]:
+        for t in ["fill_one", "fill_multiple"]:
+            count = sum(1 for task in ALL_TASKS if task.get("type") == t and task.get("level") == level)
+            result.append(f"{level} {t}: {count}")
+    await message.answer("\n".join(result))
+
 @router.message(Command("reset_progress"))
 async def reset_progress_command(message: Message, state: FSMContext):
     callback = types.CallbackQuery(
