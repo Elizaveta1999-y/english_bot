@@ -448,8 +448,17 @@ async def reset_errors(callback: CallbackQuery, state: FSMContext):
 
 @router.callback_query(F.data == "listening_back_to_mode")
 async def back_to_mode(callback: CallbackQuery, state: FSMContext):
-    await state.set_state(ListeningState.choosing_level)
     data = await state.get_data()
+    msg_ids = data.get("message_ids", [])
+    chat_id = callback.message.chat.id
+
+    for mid in msg_ids:
+        try:
+            await callback.bot.edit_message_reply_markup(chat_id=chat_id, message_id=mid, reply_markup=None)
+        except Exception:
+            pass
+
+    await state.set_state(ListeningState.choosing_level)
     task_type = data.get("task_type")
     level = data.get("level")
     if task_type and level:
@@ -464,9 +473,8 @@ async def back_to_mode(callback: CallbackQuery, state: FSMContext):
             f"Начинаем?"
         )
         msg = await callback.message.answer(text, reply_markup=get_progress_keyboard())
-        msg_ids = data.get("message_ids", [])
-        msg_ids.append(msg.message_id)
-        await state.update_data({"message_ids": msg_ids, "progress_message_id": msg.message_id})
+        new_msg_ids = [msg.message_id]
+        await state.update_data({"message_ids": new_msg_ids, "progress_message_id": msg.message_id})
         await callback.message.delete()
         await send_task(callback.message, state)
     else:
@@ -657,11 +665,18 @@ async def finish_session(callback: CallbackQuery, state: FSMContext):
     correct = data.get("correct", 0)
     wrong = data.get("wrong", 0)
     total = correct + wrong
-    stats = f"Правильно: {correct}\nОшибок: {wrong}\nТочность: {correct/total*100:.1f}%" if total else "Вы не ответили ни на одно задание."
-    msg = await callback.message.answer(f"Сессия завершена!\n\n{stats}", reply_markup=get_finish_keyboard())
     msg_ids = data.get("message_ids", [])
-    msg_ids.append(msg.message_id)
-    await state.update_data({"message_ids": msg_ids})
+    chat_id = callback.message.chat.id
+
+    # Убираем клавиатуры у всех предыдущих сообщений
+    for mid in msg_ids:
+        try:
+            await callback.bot.edit_message_reply_markup(chat_id=chat_id, message_id=mid, reply_markup=None)
+        except Exception:
+            pass
+
+    stats = f"Правильно: {correct}\nОшибок: {wrong}\nТочность: {correct/total*100:.1f}%" if total else "Вы не ответили ни на одно задание."
+    await callback.message.answer(f"Сессия завершена!\n\n{stats}", reply_markup=get_finish_keyboard())
     await state.clear()
     await callback.answer()
 
@@ -673,6 +688,16 @@ async def next_task(callback: CallbackQuery, state: FSMContext):
 
 @router.callback_query(F.data == "listening_finish_session")
 async def finish_session_from_block(callback: CallbackQuery, state: FSMContext):
+    data = await state.get_data()
+    msg_ids = data.get("message_ids", [])
+    chat_id = callback.message.chat.id
+
+    for mid in msg_ids:
+        try:
+            await callback.bot.edit_message_reply_markup(chat_id=chat_id, message_id=mid, reply_markup=None)
+        except Exception:
+            pass
+
     await state.clear()
     await callback.message.edit_text("Сессия завершена. Возвращаемся в главное меню.")
     from .start import show_main_menu
