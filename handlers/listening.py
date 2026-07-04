@@ -580,6 +580,51 @@ async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
     await callback.answer()
     await go_to_next_task(callback.message, state)
 
+@router.callback_query(F.data.startswith("listening_show_answer_"))
+async def show_answer(callback: CallbackQuery, state: FSMContext):
+    try:
+        task_id = int(callback.data.split("_")[-1])
+        data = await state.get_data()
+        task = data.get("task")
+        if not task or task["id"] != task_id:
+            await callback.answer("Это не текущее задание.", show_alert=True)
+            return
+
+        if task["type"] in ["choice", "speaker"]:
+            correct_index = int(task["correct"])
+            answer_text = task["options"][correct_index]
+        elif task["type"] == "truefalse":
+            correct = task["correct"]
+            answer_text = {"true": "True", "false": "False", "notstated": "Not stated"}.get(correct, correct)
+        elif task["type"] == "fill_one":
+            answer_text = task["correct"]
+        elif task["type"] == "fill_multiple":
+            answer_text = "; ".join(task["answers"])
+        else:
+            answer_text = ""
+
+        # Убираем клавиатуру с текущего сообщения
+        await callback.message.edit_reply_markup(reply_markup=None)
+
+        # Отправляем ответ
+        msg = await callback.message.answer(f"✅ Правильный ответ: {answer_text}")
+
+        # Сохраняем ID сообщения с ответом
+        data = await state.get_data()
+        msg_ids = data.get("message_ids", [])
+        msg_ids.append(msg.message_id)
+        await state.update_data({"message_ids": msg_ids})
+
+        data["answered"] = True
+        await state.update_data(data)
+        await callback.answer()
+
+        # Переходим к следующему заданию
+        await go_to_next_task(callback.message, state)
+    except Exception as e:
+        logger.error(f"Ошибка в show_answer: {e}")
+        await callback.answer("Произошла ошибка при показе ответа.", show_alert=True)
+
 @router.message.outer_middleware()
 async def listening_text_middleware(call: types.Message, event: types.Message, data: dict):
     state: FSMContext = data.get('state')
