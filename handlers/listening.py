@@ -626,6 +626,9 @@ async def listening_text_middleware(call: types.Message, event: types.Message, d
     if state:
         current_state = await state.get_state()
         if current_state == ListeningState.answering_task:
+            # Если это команда — не перехватываем, пусть идёт в обычный обработчик
+            if event.text and event.text.startswith("/"):
+                return await call(event, data)
             await handle_answer(event, state)
             return
     return await call(event, data)
