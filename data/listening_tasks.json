@@ -4859,8 +4859,8 @@
     "audio_text": "The concept of globalization has had both positive and negative impacts on the world. On the one hand, it has facilitated international trade, economic growth, and cultural exchange. On the other hand, it has contributed to inequality and the homogenization of cultures. Critics argue that globalization primarily benefits multinational corporations, often at the expense of local communities and workers. The rise of populism in many countries has been partly attributed to the perceived negative effects of globalization. Despite these challenges, globalization is unlikely to reverse completely, as the world is increasingly interconnected. Some experts advocate for a more inclusive and sustainable form of globalization that addresses the concerns of all stakeholders. The future of globalization will largely depend on the policies adopted by major economies.",
     "options": [
       "Globalization reduces inequality.",
-      "Globalization increases local employment.",
-      "Globalization benefits corporations at workers' expense."
+      "Globalization increases local jobs.",
+      "Globalization benefits corporations, not workers."
     ],
     "correct": 2
   },
@@ -4894,7 +4894,7 @@
     "level": "expert",
     "audio_text": "The issue of income inequality has become a central political topic in many countries. The gap between the wealthy and the poor has widened significantly in recent decades. This inequality can lead to social tension and reduced economic mobility. Some economists argue that inequality is an inevitable consequence of market forces, while others believe it can be mitigated through taxation and welfare policies. The debate often focuses on whether redistribution of wealth is appropriate. There is also concern about the impact of inequality on democratic institutions. Addressing inequality requires a comprehensive approach that includes education, healthcare, and labor market reforms.",
     "options": [
-      "Inequality leads to higher economic growth.",
+      "Inequality boosts economic growth.",
       "Inequality causes social tension and reduced mobility.",
       "Inequality improves social cohesion."
     ],
@@ -4918,9 +4918,9 @@
     "level": "expert",
     "audio_text": "The concept of circular economy offers an alternative to the traditional linear model of production and consumption. It emphasizes the importance of designing out waste and keeping materials in use. This approach can reduce environmental impact and create economic value. Many companies are starting to adopt circular principles, such as product redesign and remanufacturing. However, transitioning to a circular economy requires changes in business models and consumer habits. Government policies can support this transition through incentives and regulations. The success of the circular economy depends on collaboration between various sectors.",
     "options": [
-      "The circular economy maximizes waste.",
-      "The circular economy keeps materials in use.",
-      "The circular economy promotes single-use products."
+      "Circular economy maximizes waste.",
+      "Circular economy keeps materials in use.",
+      "Circular economy promotes single-use products."
     ],
     "correct": 1
   },
@@ -4930,9 +4930,9 @@
     "level": "expert",
     "audio_text": "The digital divide refers to the gap between those who have access to modern information and communication technology and those who do not. This divide affects education, employment, and social participation. It is particularly severe in developing countries and rural areas. Bridging the digital divide is essential for achieving inclusive growth. Governments are implementing policies to expand internet access and digital literacy. However, progress has been uneven. The COVID-19 pandemic underscored the importance of digital connectivity for remote work and education. Addressing the digital divide is a priority for sustainable development.",
     "options": [
-      "The digital divide is a gap in technology access.",
-      "The digital divide is a gap in income.",
-      "The digital divide is a gap in education."
+      "Digital divide: gap in tech access.",
+      "Digital divide: gap in income.",
+      "Digital divide: gap in education."
     ],
     "correct": 0
   },
@@ -4942,9 +4942,9 @@
     "level": "expert",
     "audio_text": "The issue of healthcare affordability is a major concern in many countries. Rising costs of medical care and pharmaceuticals can make treatment inaccessible. This can lead to worse health outcomes and financial hardship. Various strategies have been proposed to address this, including price regulation and government subsidies. The debate often centers on the appropriate role of government in healthcare. Some advocate for a single-payer system, while others support market-based solutions. The future of healthcare depends on finding sustainable ways to balance cost, access, and quality.",
     "options": [
-      "Privatization helps healthcare affordability.",
-      "Reducing coverage helps healthcare affordability.",
-      "Price regulation helps healthcare affordability."
+      "Privatization helps healthcare costs.",
+      "Reducing coverage helps healthcare costs.",
+      "Price regulation helps healthcare costs."
     ],
     "correct": 2
   },
@@ -4966,9 +4966,9 @@
     "level": "expert",
     "audio_text": "The issue of gender parity in politics has received increasing attention. Women are underrepresented in political institutions worldwide. This is often due to structural barriers and cultural norms. Increasing women's political participation can lead to more inclusive and equitable policies. Many countries have adopted quotas to promote gender balance. However, the effectiveness of quotas is debated. Cultural change is also necessary to address underlying biases. The future of democracy depends on equal representation.",
     "options": [
-      "Women's participation reduces economic inequality.",
+      "Women's participation reduces inequality.",
       "Women's participation leads to inclusive policies.",
-      "Women's participation ensures political stability."
+      "Women's participation ensures stability."
     ],
     "correct": 1
   },
@@ -4978,9 +4978,9 @@
     "level": "expert",
     "audio_text": "The issue of food waste is a major concern worldwide. It is estimated that about one-third of all food produced is wasted. This has significant economic and environmental consequences. Reducing food waste is an effective way to improve food security and reduce greenhouse gas emissions. Consumers can play a key role by planning meals and storing food properly. Businesses and governments also have responsibilities. Policies such as tax incentives for food donations can help. Addressing food waste is a shared challenge.",
     "options": [
-      "Reducing waste improves food security and cuts emissions.",
+      "Reducing waste improves food security.",
       "Reducing waste increases food production.",
-      "Reducing waste reduces food prices."
+      "Reducing waste lowers food prices."
    ],
     "correct": 0
   },
@@ -5002,9 +5002,9 @@
     "level": "expert",
     "audio_text": "The issue of social media regulation has become a major policy debate. Platforms like Facebook and Twitter have significant influence over public discourse. Concerns about misinformation, hate speech, and data privacy have led to calls for regulation. However, there are concerns about the impact on freedom of speech. Finding a balance is challenging. Some propose self-regulation by the industry, while others advocate for government oversight. The future of online communication will depend on how these issues are resolved.",
     "options": [
-      "Social media concerns: misinformation and hate speech.",
-      "Social media concerns: high cost.",
-      "Social media concerns: lack of users."
+      "Social media: misinformation and hate speech.",
+      "Social media: high cost.",
+      "Social media: lack of users."
     ],
     "correct": 0
   },
@@ -5014,9 +5014,9 @@
     "level": "expert",
     "audio_text": "The concept of sustainable transportation is essential for reducing urban pollution and congestion. It includes options like cycling, walking, and electric vehicles. Many cities are investing in public transport infrastructure to encourage sustainable mobility. Policies such as congestion pricing and low-emission zones are also being adopted. The transition to sustainable transportation requires investment and behavioral change. The benefits include cleaner air and healthier lifestyles. The future of urban mobility will be shaped by these efforts.",
     "options": [
-      "Cycling is a sustainable transportation option.",
-      "Private cars are a sustainable transportation option.",
-      "Air travel is a sustainable transportation option."
+      "Cycling is sustainable transport.",
+      "Private cars are sustainable transport.",
+      "Air travel is sustainable transport."
     ],
     "correct": 0
   },
@@ -5026,9 +5026,9 @@
     "level": "expert",
     "audio_text": "The issue of nuclear proliferation has been a persistent international security concern. The spread of nuclear weapons increases the risk of conflict. Non-proliferation treaties and diplomacy are key tools to address this. However, enforcement and compliance remain challenging. Countries with nuclear capabilities are often involved in complex negotiations. The international community continues to seek ways to reduce nuclear arsenals. The goal of a nuclear-free world remains a vision for the future.",
     "options": [
-      "Non-proliferation treaties address nuclear proliferation.",
-      "Economic sanctions address nuclear proliferation.",
-      "Military intervention addresses nuclear proliferation."
+      "Non-proliferation treaties address nuclear threat.",
+      "Economic sanctions address nuclear threat.",
+      "Military intervention addresses nuclear threat."
     ],
     "correct": 0
   },
@@ -5038,9 +5038,9 @@
     "level": "expert",
     "audio_text": "The concept of remote work has gained popularity following the pandemic. Many companies have adopted flexible work arrangements. Remote work offers benefits like reduced commuting time and increased autonomy. However, it also presents challenges such as social isolation and blurred work-life boundaries. The effectiveness of remote work varies across industries and individuals. It is likely that hybrid models will become the norm. The future of work will be more flexible and technology-dependent.",
     "options": [
-      "A benefit of remote work is higher pay.",
-      "A benefit of remote work is reduced commuting time.",
-      "A benefit of remote work is more vacation days."
+      "Remote work benefit: higher pay.",
+      "Remote work benefit: less commuting.",
+      "Remote work benefit: more vacation."
     ],
     "correct": 1
   },
@@ -5050,9 +5050,9 @@
     "level": "expert",
     "audio_text": "The issue of poverty is deeply connected to educational attainment. Lack of education often limits employment opportunities. This perpetuates the cycle of poverty across generations. Investing in education is one of the most effective ways to break this cycle. Quality education equips individuals with skills and knowledge needed for better jobs. Governments must ensure equitable access to education. International organizations also support education programs in developing countries. Education is a key driver of social mobility.",
     "options": [
-      "Investing in education breaks the cycle of poverty.",
-      "Increasing taxes breaks the cycle of poverty.",
-      "Reducing wages breaks the cycle of poverty."
+      "Investing in education breaks poverty cycle.",
+      "Raising taxes breaks poverty cycle.",
+      "Cutting wages breaks poverty cycle."
     ],
     "correct": 0
   },
@@ -5074,9 +5074,9 @@
     "level": "expert",
     "audio_text": "The issue of intellectual property rights is important for innovation. Patents and copyrights protect the creations of inventors and artists. This encourages investment in research and development. However, there is debate about the appropriate scope and duration of protection. Some argue that strong IP rights can stifle competition and access. The balance between protection and access is crucial. The future of creativity and innovation depends on this balance.",
     "options": [
-      "Intellectual property rights reduce competition.",
-      "Intellectual property rights encourage investment in R&D.",
-      "Intellectual property rights limit access to knowledge."
+      "IP rights reduce competition.",
+      "IP rights encourage R&D investment.",
+      "IP rights limit access to knowledge."
     ],
     "correct": 1
   },
@@ -5086,9 +5086,9 @@
     "level": "expert",
     "audio_text": "The concept of sustainable agriculture is crucial for feeding a growing population. It involves practices that protect the environment, public health, and animal welfare. Crop rotation, organic farming, and integrated pest management are examples of such practices. These methods reduce soil erosion and chemical runoff into waterways. They also enhance biodiversity and soil fertility. However, sustainable agriculture often requires more labor and knowledge. Farmers may face economic challenges in transitioning to these methods. Government subsidies and technical support can facilitate the transition. The future of food production depends on the widespread adoption of sustainable practices.",
     "options": [
-      "Sustainable agriculture reduces crop yields.",
-      "Sustainable agriculture increases pesticide use.",
-      "Sustainable agriculture cuts soil erosion and runoff."
+      "Sustainable farming lowers yields.",
+      "Sustainable farming uses more pesticides.",
+      "Sustainable farming cuts soil erosion."
     ],
     "correct": 2
   },
@@ -5122,9 +5122,9 @@
     "level": "expert",
     "audio_text": "The issue of child labor remains a significant problem in many parts of the world. Millions of children are forced to work in hazardous conditions, often in agriculture, mining, and manufacturing. This deprives them of education and proper development. International conventions have been established to prohibit child labor, but enforcement is weak in many countries. Poverty is a major driver of child labor. Efforts to combat it must address the root causes, such as poverty and lack of access to education. Corporate responsibility and consumer awareness can also play a role. We must continue to fight for the rights of children worldwide.",
     "options": [
-      "High wages are a driver of child labor.",
-      "Poverty is a driver of child labor.",
-      "Strong education systems are a driver of child labor."
+      "High wages drive child labor.",
+      "Poverty drives child labor.",
+      "Good schools drive child labor."
     ],
     "correct": 1
   },
@@ -5146,9 +5146,9 @@
     "level": "expert",
     "audio_text": "The issue of public transportation funding is a challenge for many cities. Adequate funding is essential for maintaining and expanding transit systems. Underfunding can lead to deterioration of service and infrastructure. Public transport is crucial for reducing traffic congestion and emissions. Many cities are seeking innovative financing solutions, such as public-private partnerships. Government subsidies and dedicated taxes can also support transit. The economic benefits of efficient public transport are significant. Investment in transit creates jobs and improves mobility. The future of urban mobility depends on sustained investment.",
     "options": [
-      "Public transportation raises emissions.",
-      "Public transportation increases traffic.",
-      "Public transportation reduces traffic congestion."
+      "Public transport raises emissions.",
+      "Public transport increases traffic.",
+      "Public transport cuts congestion."
     ],
     "correct": 2
   },
@@ -5170,9 +5170,9 @@
     "level": "expert",
     "audio_text": "The issue of income tax evasion is a major concern for governments globally. It involves individuals and businesses hiding income to avoid paying taxes. This leads to significant revenue losses for governments. Tax evasion undermines the fairness of the tax system. It is often facilitated by offshore accounts and complex financial structures. Governments are increasing enforcement and information sharing. International cooperation is essential to combat tax evasion. The future of tax compliance depends on transparency and technology. Efforts to address this issue are ongoing.",
     "options": [
-      "Tax evasion leads to higher tax rates.",
-      "Tax evasion leads to increased public services.",
-      "Tax evasion leads to revenue loss for governments."
+      "Tax evasion raises tax rates.",
+      "Tax evasion cuts public services.",
+      "Tax evasion costs governments revenue."
     ],
     "correct": 2
   },
@@ -5182,9 +5182,9 @@
     "level": "expert",
     "audio_text": "The concept of lifelong learning is becoming increasingly important in today's fast-changing world. Technological advancements require workers to continuously update their skills. Lifelong learning can take many forms, such as online courses, workshops, and self-study. It enhances employability and personal growth. Employers also benefit from a skilled workforce. Governments can support lifelong learning through funding and policies. However, access to learning opportunities is not equal. Addressing this gap is crucial for social equity. Lifelong learning is essential for adapting to change.",
     "options": [
-      "Lifelong learning reduces the need for education.",
-      "Lifelong learning enhances employability.",
-      "Lifelong learning increases social inequality."
+      "Lifelong learning replaces education.",
+      "Lifelong learning boosts employability.",
+      "Lifelong learning increases inequality."
     ],
     "correct": 1
   },
@@ -5206,9 +5206,9 @@
     "level": "expert",
     "audio_text": "The concept of urban resilience is key to withstanding shocks and stresses. Cities are vulnerable to natural disasters, economic crises, and social unrest. Building resilience involves infrastructure, planning, and community engagement. Green spaces and flood defenses can mitigate climate risks. Social safety nets support vulnerable populations. Resilient cities can adapt and recover quickly. The COVID-19 pandemic highlighted the importance of resilience. Investment in resilience is essential for sustainable urban development. The future of cities depends on their ability to adapt.",
     "options": [
-      "Green spaces and flood defenses build urban resilience.",
-      "Reducing public transport builds urban resilience.",
-      "Increasing car dependency builds urban resilience."
+      "Green spaces and flood defenses build resilience.",
+      "Reducing public transport builds resilience.",
+      "More cars build resilience."
     ],
     "correct": 0
   },
@@ -5218,9 +5218,9 @@
     "level": "expert",
     "audio_text": "The issue of political polarization has intensified in many countries. It is characterized by deep divisions between ideological groups. This polarization can lead to gridlock and social tension. Media and social networks often exacerbate these divisions. Promoting dialogue and understanding is essential. Education that fosters critical thinking can help. Electoral reforms might also reduce polarization. The future of democracy depends on bridging these divides. It is a challenge that requires collective effort.",
     "options": [
-      "Economic growth exacerbates polarization.",
-      "Higher education exacerbates polarization.",
-      "Media and social networks exacerbate polarization."
+      "Economic growth fuels polarization.",
+      "Higher education fuels polarization.",
+      "Media and social networks fuel polarization."
     ],
     "correct": 2
   },
@@ -5254,9 +5254,9 @@
     "level": "expert",
     "audio_text": "The concept of green building design is important for reducing environmental impact. It involves using sustainable materials and energy-efficient systems. Green buildings minimize waste and carbon emissions. They also provide healthier indoor environments. Certification systems like LEED promote green building standards. The demand for green buildings is increasing. They can reduce operating costs over time. The future of construction will be greener. It is a key strategy for climate change mitigation.",
     "options": [
-      "Green building design increases energy use.",
-      "Green building design reduces carbon emissions.",
-      "Green building design generates more waste."
+      "Green buildings use more energy.",
+      "Green buildings cut carbon emissions.",
+      "Green buildings create more waste."
     ],
     "correct": 1
   },
@@ -5290,9 +5290,9 @@
     "level": "expert",
     "audio_text": "The issue of species extinction is accelerating due to human activities. Habitat destruction, climate change, and poaching are major drivers. The loss of species affects ecosystem stability and resilience. Conservation efforts are essential to protect endangered species. Protected areas and captive breeding programs can help. International agreements like CITES regulate trade in wildlife. Public support is also crucial for conservation. The future of biodiversity depends on urgent action. We must act now to preserve our natural heritage.",
     "options": [
-      "Conservation efforts are a driver of extinction.",
-      "Increased biodiversity is a driver of extinction.",
-      "Habitat destruction is a driver of extinction."
+      "Conservation drives extinction.",
+      "More biodiversity drives extinction.",
+      "Habitat loss drives extinction."
     ],
     "correct": 2
   },
@@ -5314,9 +5314,9 @@
     "level": "expert",
     "audio_text": "The issue of waste-to-energy technology is a topic of debate. It converts waste materials into energy through combustion or other processes. This can reduce landfill use and generate electricity. However, concerns about emissions and pollution remain. Modern facilities have advanced filters to reduce pollutants. The economics of waste-to-energy depend on energy prices and waste volumes. It is one component of a comprehensive waste management strategy. The future of waste management will likely include more sustainable solutions.",
     "options": [
-      "Waste-to-energy technology increases pollution.",
-      "Waste-to-energy technology reduces landfill use.",
-      "Waste-to-energy technology requires no investment."
+      "Waste-to-energy increases pollution.",
+      "Waste-to-energy cuts landfill use.",
+      "Waste-to-energy needs no investment."
     ],
     "correct": 1
   }
