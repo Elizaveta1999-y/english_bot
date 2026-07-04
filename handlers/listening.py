@@ -217,11 +217,20 @@ async def get_random_order(user_id: int, level: str) -> list:
     order = await r.get(key)
     if order is None:
         tasks = [t for t in ALL_TASKS if t.get("level") == level]
+        if not tasks:
+            return []
         random.shuffle(tasks)
         order = [t["id"] for t in tasks]
         await r.set(key, json.dumps(order))
     else:
         order = json.loads(order)
+        if not order:
+            tasks = [t for t in ALL_TASKS if t.get("level") == level]
+            if not tasks:
+                return []
+            random.shuffle(tasks)
+            order = [t["id"] for t in tasks]
+            await r.set(key, json.dumps(order))
     return order
 
 async def set_random_index(user_id: int, level: str, index: int):
@@ -264,6 +273,7 @@ async def send_task(message: Message, state: FSMContext, is_revision=False):
     else:
         if task_type == "random":
             tasks_for_level = [t for t in ALL_TASKS if t.get("level") == level]
+            print(f"DEBUG random: found {len(tasks_for_level)} tasks for level {level}")
             if not tasks_for_level:
                 await message.answer(f"Нет заданий для уровня {level}.")
                 return
@@ -297,7 +307,6 @@ async def send_task(message: Message, state: FSMContext, is_revision=False):
             task = tasks[index]
             await state.update_data({"task": task, "task_index": index, "answered": False, "is_revision": False})
 
-    # Отправка аудио
     filename = f"{task['level']}_{task['type']}_{task['id']}.mp3"
     audio_url = R2_PUBLIC_URL + filename + f"?v={int(time.time())}"
     try:
@@ -384,7 +393,7 @@ async def listening_start(event, state: FSMContext):
 
 @router.callback_query(F.data.startswith("listening_type_"))
 async def type_selected(callback: CallbackQuery, state: FSMContext):
-    task_type = callback.data.split("_")[-1]
+    task_type = callback.data[len("listening_type_"):]
     if task_type == "one":
         task_type = "fill_one"
     elif task_type == "multiple":
@@ -409,7 +418,13 @@ async def level_selected(callback: CallbackQuery, state: FSMContext):
         task_type = "fill_multiple"
     user_id = callback.from_user.id
 
-    tasks = get_tasks_by_type_and_level(task_type, level)
+    # === ГЛАВНОЕ ИСПРАВЛЕНИЕ ДЛЯ RANDOM ===
+    if task_type == "random":
+        tasks = [t for t in ALL_TASKS if t.get("level") == level]
+    else:
+        tasks = get_tasks_by_type_and_level(task_type, level)
+
+    print(f"DEBUG: level_selected task_type={task_type}, level={level}, tasks={len(tasks)}")
     if not tasks:
         await callback.answer("Нет заданий для этого типа и уровня.", show_alert=True)
         return
