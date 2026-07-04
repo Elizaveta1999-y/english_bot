@@ -56,7 +56,7 @@ async def start_handler(message: Message):
 
 # Обработчик для кнопок, которые ещё не реализованы (включая новые)
 @router.callback_query(F.data.in_([
-    "start_reading", "start_writing", "start_govorenie",
+    "start_writing", "start_govorenie",
     "start_lessons", "start_grammar"
 ]))
 async def under_construction(callback: CallbackQuery):
