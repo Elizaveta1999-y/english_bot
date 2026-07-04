@@ -803,14 +803,31 @@ async def back_to_main(callback: CallbackQuery, state: FSMContext):
 # ---------- Обработчики команд ----------
 @router.message(Command("revision_mode"))
 async def revision_mode_command(message: Message, state: FSMContext):
-    callback = types.CallbackQuery(
-        id="fake",
-        from_user=message.from_user,
-        message=message,
-        data="listening_revision",
-        chat_instance="fake",
+    data = await state.get_data()
+    task_type = data.get("task_type")
+    level = data.get("level")
+    user_id = message.from_user.id
+
+    if not task_type or not level:
+        await message.answer("Сначала выберите тип и уровень в режиме аудирования.")
+        return
+
+    error_ids = await get_errors(user_id, task_type, level)
+    count = len(error_ids)
+
+    text = (
+        f"📘 Работа над ошибками\n"
+        f"Режим: {TASK_TYPES[task_type]}\n\n"
+        f"Заданий на исправление: {count}"
     )
-    await revision_mode(callback, state)
+    await message.answer(text, reply_markup=get_revision_keyboard())
+    await state.set_state(ListeningState.revision_mode)
+
+    if count == 0:
+        await message.answer("🎉 Ошибок нет! Отличная работа.")
+    else:
+        await send_task(message, state, is_revision=True)
+
 
 @router.message(Command("debug_tasks"))
 async def debug_tasks(message: Message):
@@ -818,6 +835,7 @@ async def debug_tasks(message: Message):
     fill_one = sum(1 for t in ALL_TASKS if t.get("type") == "fill_one")
     fill_multiple = sum(1 for t in ALL_TASKS if t.get("type") == "fill_multiple")
     await message.answer(f"Total: {total}\nfill_one: {fill_one}\nfill_multiple: {fill_multiple}")
+
 
 @router.message(Command("debug_fill"))
 async def debug_fill(message: Message):
@@ -828,16 +846,23 @@ async def debug_fill(message: Message):
             result.append(f"{level} {t}: {count}")
     await message.answer("\n".join(result))
 
+
 @router.message(Command("reset_progress"))
 async def reset_progress_command(message: Message, state: FSMContext):
-    callback = types.CallbackQuery(
-        id="fake",
-        from_user=message.from_user,
-        message=message,
-        data="listening_reset_progress",
-        chat_instance="fake",
-    )
-    await reset_progress(callback, state)
+    data = await state.get_data()
+    task_type = data.get("task_type")
+    level = data.get("level")
+    user_id = message.from_user.id
+
+    if not task_type or not level:
+        await message.answer("Ошибка: не удалось определить режим. Выберите тип и уровень заново.")
+        return
+
+    await set_task_index(user_id, task_type, level, 0)
+    await state.update_data({"correct": 0, "wrong": 0, "index": 0, "message_ids": []})
+    await message.answer("Прогресс сброшен. Начинаем с первого задания.")
+    await send_task(message, state)
+
 
 @router.message(Command("debug_get"))
 async def debug_get(message: Message):
@@ -847,4 +872,3 @@ async def debug_get(message: Message):
             tasks = get_tasks_by_type_and_level(t, level)
             result.append(f"{level} {t}: {len(tasks)}")
     await message.answer("\n".join(result))
-
