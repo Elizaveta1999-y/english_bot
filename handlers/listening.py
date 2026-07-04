@@ -355,9 +355,12 @@ async def listening_start(event, state: FSMContext):
 @router.callback_query(F.data.startswith("listening_type_"))
 async def type_selected(callback: CallbackQuery, state: FSMContext):
     task_type = callback.data.split("_")[-1]
-    # Исправление старого ключа
-    if task_type == "multiple":
+    # === ПЕРЕНАПРАВЛЕНИЕ СТАРЫХ КЛЮЧЕЙ ===
+    if task_type == "one":
+        task_type = "fill_one"
+    elif task_type == "multiple":
         task_type = "fill_multiple"
+    # =====================================
     print(f"DEBUG: type_selected task_type={task_type}")
     await state.update_data({"task_type": task_type})
     text = "Выберите уровень сложности:"
@@ -369,16 +372,19 @@ async def level_selected(callback: CallbackQuery, state: FSMContext):
     parts = callback.data.split("_")
     task_type = parts[2]
     level = parts[3]
-    # Исправление старого ключа
-    if task_type == "multiple":
+    # === ПЕРЕНАПРАВЛЕНИЕ СТАРЫХ КЛЮЧЕЙ ===
+    if task_type == "one":
+        task_type = "fill_one"
+    elif task_type == "multiple":
         task_type = "fill_multiple"
+    # =====================================
     user_id = callback.from_user.id
     tasks = get_tasks_by_type_and_level(task_type, level)
     print(f"DEBUG: level_selected task_type={task_type}, level={level}, tasks={len(tasks)}")
     if not tasks:
         await callback.answer("Нет заданий для этого типа и уровня.", show_alert=True)
         return
-    # ... остальной код
+    # ... дальше ваш код    # ... остальной код
 
     await state.update_data({
         "task_type": task_type,
