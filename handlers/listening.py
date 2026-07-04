@@ -269,13 +269,19 @@ async def send_task(message: Message, state: FSMContext, is_revision=False):
             return
         await state.update_data({"task": task, "answered": False, "is_revision": True})
     else:
-        if task_type == "random":
-            order = await get_random_order(user_id, level)
-            if not order:
-                msg = await message.answer("Нет заданий для этого уровня.")
-                msg_ids.append(msg.message_id)
-                await state.update_data({"message_ids": msg_ids})
-                return
+if task_type == "random":
+    tasks_for_level = [t for t in ALL_TASKS if t.get("level") == level]
+    print(f"DEBUG random: found {len(tasks_for_level)} tasks for level {level}")
+    if not tasks_for_level:
+        await message.answer(f"Нет заданий для уровня {level}.")
+        return
+    order = await get_random_order(user_id, level)
+    if not order:
+        msg = await message.answer("Нет заданий для этого уровня.")
+        msg_ids.append(msg.message_id)
+        await state.update_data({"message_ids": msg_ids})
+        return
+
             index = await get_random_index(user_id, level)
             if index >= len(order):
                 index = 0
