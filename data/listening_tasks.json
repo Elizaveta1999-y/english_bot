@@ -4846,9 +4846,9 @@
     "level": "expert",
     "audio_text": "The phenomenon of climate change is considered the most pressing issue of our time. It is driven primarily by the burning of fossil fuels, which releases huge amounts of carbon dioxide into the atmosphere. Deforestation further exacerbates the problem by reducing the planet's capacity to absorb carbon emissions. The consequences include rising sea levels, extreme weather events, and loss of biodiversity. Governments worldwide have committed to reducing emissions under the Paris Agreement. However, many critics argue that the current commitments are insufficient to prevent catastrophic warming. There is an urgent need for innovation in clean energy and carbon capture technologies. Individuals can also contribute by adopting sustainable lifestyles and reducing their ecological footprint. Without decisive action, future generations will inherit a severely damaged planet.",
     "options": [
-      "The main driver of climate change is burning fossil fuels.",
-      "The main driver of climate change is industrial waste.",
-      "The main driver of climate change is overpopulation."
+      "Burning fossil fuels drives climate change.",
+      "Industrial waste drives climate change.",
+      "Overpopulation drives climate change."
     ],
     "correct": 0
   },
@@ -4870,9 +4870,9 @@
     "level": "expert",
     "audio_text": "The role of artificial intelligence in modern society is expanding rapidly. AI systems are now used in various sectors including healthcare, finance, transportation, and education. They can process huge amounts of data and automate complex tasks. However, there are growing concerns about the ethical implications of AI, such as bias and privacy issues. Some experts fear that AI could lead to significant job displacement, while others argue it will create new opportunities. Effective regulation and oversight are necessary to ensure that AI is developed and deployed responsibly. Interdisciplinary collaboration between technologists, ethicists, and policymakers is essential.",
     "options": [
-      "Concerns about AI include bias and privacy issues.",
-      "Concerns about AI include insufficient processing power.",
-      "Concerns about AI include high implementation costs."
+      "AI concerns include bias and privacy.",
+      "AI has insufficient processing power.",
+      "AI has high implementation costs."
     ],
     "correct": 0
   },
@@ -4882,9 +4882,9 @@
     "level": "expert",
     "audio_text": "Sustainable development is a framework that aims to balance economic progress, social well-being, and environmental protection. It has been adopted by governments and international organizations as a guiding principle for policy-making. The United Nations Sustainable Development Goals (SDGs) provide a comprehensive roadmap for achieving this balance. However, implementing these goals requires significant financial resources and political will. There is often a tension between short-term economic interests and long-term sustainability objectives. The private sector also plays a crucial role in advancing sustainable development. Ultimately, the success of this framework depends on the collective commitment of all stakeholders.",
     "options": [
-      "Sustainable development balances economy, society, and environment.",
-      "Sustainable development maximizes GDP growth.",
-      "Sustainable development removes all environmental regulations."
+      "Balancing economy, society, environment.",
+      "Maximizing GDP growth.",
+      "Removing environmental regulations."
     ],
     "correct": 0
   },
@@ -4894,9 +4894,9 @@
     "level": "expert",
     "audio_text": "The issue of income inequality has become a central political topic in many countries. The gap between the wealthy and the poor has widened significantly in recent decades. This inequality can lead to social tension and reduced economic mobility. Some economists argue that inequality is an inevitable consequence of market forces, while others believe it can be mitigated through taxation and welfare policies. The debate often focuses on whether redistribution of wealth is appropriate. There is also concern about the impact of inequality on democratic institutions. Addressing inequality requires a comprehensive approach that includes education, healthcare, and labor market reforms.",
     "options": [
-      "Income inequality leads to higher economic growth.",
-      "Income inequality leads to social tension and reduced mobility.",
-      "Income inequality improves social cohesion."
+      "Inequality leads to higher economic growth.",
+      "Inequality causes social tension and reduced mobility.",
+      "Inequality improves social cohesion."
     ],
     "correct": 1
   },
@@ -4942,9 +4942,9 @@
     "level": "expert",
     "audio_text": "The issue of healthcare affordability is a major concern in many countries. Rising costs of medical care and pharmaceuticals can make treatment inaccessible. This can lead to worse health outcomes and financial hardship. Various strategies have been proposed to address this, including price regulation and government subsidies. The debate often centers on the appropriate role of government in healthcare. Some advocate for a single-payer system, while others support market-based solutions. The future of healthcare depends on finding sustainable ways to balance cost, access, and quality.",
     "options": [
-      "Privatization is a strategy for healthcare affordability.",
-      "Reducing coverage is a strategy for healthcare affordability.",
-      "Price regulation is a strategy for healthcare affordability."
+      "Privatization helps healthcare affordability.",
+      "Reducing coverage helps healthcare affordability.",
+      "Price regulation helps healthcare affordability."
     ],
     "correct": 2
   },
@@ -4956,7 +4956,7 @@
     "options": [
       "Renewable energy has limited availability.",
       "Renewable energy has high cost.",
-      "Renewable energy has intermittency as a challenge."
+      "Intermittency is a challenge for renewables."
     ],
     "correct": 2
   },
@@ -4966,9 +4966,9 @@
     "level": "expert",
     "audio_text": "The issue of gender parity in politics has received increasing attention. Women are underrepresented in political institutions worldwide. This is often due to structural barriers and cultural norms. Increasing women's political participation can lead to more inclusive and equitable policies. Many countries have adopted quotas to promote gender balance. However, the effectiveness of quotas is debated. Cultural change is also necessary to address underlying biases. The future of democracy depends on equal representation.",
     "options": [
-      "Women's political participation is important for reducing economic inequality.",
-      "Women's political participation is important for more inclusive policies.",
-      "Women's political participation is important for political stability."
+      "Women's participation reduces economic inequality.",
+      "Women's participation leads to inclusive policies.",
+      "Women's participation ensures political stability."
     ],
     "correct": 1
   },
@@ -4978,10 +4978,10 @@
     "level": "expert",
     "audio_text": "The issue of food waste is a major concern worldwide. It is estimated that about one-third of all food produced is wasted. This has significant economic and environmental consequences. Reducing food waste is an effective way to improve food security and reduce greenhouse gas emissions. Consumers can play a key role by planning meals and storing food properly. Businesses and governments also have responsibilities. Policies such as tax incentives for food donations can help. Addressing food waste is a shared challenge.",
     "options": [
-      "Reducing food waste improves food security and cuts emissions.",
-      "Reducing food waste increases food production.",
-      "Reducing food waste reduces food prices."
-    ],
+      "Reducing waste improves food security and cuts emissions.",
+      "Reducing waste increases food production.",
+      "Reducing waste reduces food prices."
+   ],
     "correct": 0
   },
   {
@@ -4990,9 +4990,9 @@
     "level": "expert",
     "audio_text": "The concept of human capital is fundamental to economic development. It refers to the skills and knowledge that workers possess. Investing in education and training improves human capital and boosts productivity. This leads to higher economic growth and innovation. However, underinvestment in education can hinder development. Governments and businesses have a shared interest in fostering human capital. Lifelong learning and adaptability are becoming increasingly important in a rapidly changing world.",
     "options": [
-      "Human capital refers to natural resources.",
-      "Human capital refers to financial resources.",
-      "Human capital refers to skills and knowledge of workers."
+      "Human capital is natural resources.",
+      "Human capital is financial resources.",
+      "Human capital is workers' skills and knowledge."
     ],
     "correct": 2
   },
@@ -5002,9 +5002,9 @@
     "level": "expert",
     "audio_text": "The issue of social media regulation has become a major policy debate. Platforms like Facebook and Twitter have significant influence over public discourse. Concerns about misinformation, hate speech, and data privacy have led to calls for regulation. However, there are concerns about the impact on freedom of speech. Finding a balance is challenging. Some propose self-regulation by the industry, while others advocate for government oversight. The future of online communication will depend on how these issues are resolved.",
     "options": [
-      "Concerns about social media include misinformation and hate speech.",
-      "Concerns about social media include high cost.",
-      "Concerns about social media include lack of users."
+      "Social media concerns: misinformation and hate speech.",
+      "Social media concerns: high cost.",
+      "Social media concerns: lack of users."
     ],
     "correct": 0
   },
@@ -5026,9 +5026,9 @@
     "level": "expert",
     "audio_text": "The issue of nuclear proliferation has been a persistent international security concern. The spread of nuclear weapons increases the risk of conflict. Non-proliferation treaties and diplomacy are key tools to address this. However, enforcement and compliance remain challenging. Countries with nuclear capabilities are often involved in complex negotiations. The international community continues to seek ways to reduce nuclear arsenals. The goal of a nuclear-free world remains a vision for the future.",
     "options": [
-      "Non-proliferation treaties are a tool to address nuclear proliferation.",
-      "Economic sanctions are a tool to address nuclear proliferation.",
-      "Military intervention is a tool to address nuclear proliferation."
+      "Non-proliferation treaties address nuclear proliferation.",
+      "Economic sanctions address nuclear proliferation.",
+      "Military intervention addresses nuclear proliferation."
     ],
     "correct": 0
   },
@@ -5088,7 +5088,7 @@
     "options": [
       "Sustainable agriculture reduces crop yields.",
       "Sustainable agriculture increases pesticide use.",
-      "Sustainable agriculture reduces soil erosion and runoff."
+      "Sustainable agriculture cuts soil erosion and runoff."
     ],
     "correct": 2
   },
@@ -5134,9 +5134,9 @@
     "level": "expert",
     "audio_text": "The concept of democracy is not static; it requires continuous effort to maintain and strengthen. Citizens must participate in the political process through voting and civic engagement. Education about rights and responsibilities is essential for a healthy democracy. Democratic institutions must be transparent and accountable. Corruption and disinformation pose serious threats to democracy. Independent media and civil society play a watchdog role. International cooperation can support democratic movements. The future of democracy depends on the commitment of citizens and leaders. It is a system that thrives on active participation and respect for the rule of law.",
     "options": [
-      "Corruption and disinformation are threats to democracy.",
-      "High voter turnout is a threat to democracy.",
-      "Strong civil society is a threat to democracy."
+      "Corruption and disinformation threaten democracy.",
+      "High voter turnout threatens democracy.",
+      "Strong civil society threatens democracy."
     ],
     "correct": 0
   },
@@ -5158,9 +5158,9 @@
     "level": "expert",
     "audio_text": "The concept of renewable energy storage is critical for grid stability. Since solar and wind power are intermittent, effective storage solutions are needed. Batteries, pumped hydro, and thermal storage are among the technologies being developed. Advances in battery technology are reducing costs and improving efficiency. Grid-scale storage can help balance supply and demand. This enables higher penetration of renewables. Investment in storage infrastructure is increasing. The future of energy systems will rely heavily on storage. It is an essential component of the energy transition.",
     "options": [
-      "Batteries are a technology for renewable energy storage.",
-      "Coal plants are a technology for renewable energy storage.",
-      "Gas turbines are a technology for renewable energy storage."
+      "Batteries store renewable energy.",
+      "Coal plants store renewable energy.",
+      "Gas turbines store renewable energy."
     ],
     "correct": 0
   },
@@ -5206,9 +5206,9 @@
     "level": "expert",
     "audio_text": "The concept of urban resilience is key to withstanding shocks and stresses. Cities are vulnerable to natural disasters, economic crises, and social unrest. Building resilience involves infrastructure, planning, and community engagement. Green spaces and flood defenses can mitigate climate risks. Social safety nets support vulnerable populations. Resilient cities can adapt and recover quickly. The COVID-19 pandemic highlighted the importance of resilience. Investment in resilience is essential for sustainable urban development. The future of cities depends on their ability to adapt.",
     "options": [
-      "Green spaces and flood defenses are components of urban resilience.",
-      "Reducing public transport is a component of urban resilience.",
-      "Increasing car dependency is a component of urban resilience."
+      "Green spaces and flood defenses build urban resilience.",
+      "Reducing public transport builds urban resilience.",
+      "Increasing car dependency builds urban resilience."
     ],
     "correct": 0
   },
@@ -5230,9 +5230,9 @@
     "level": "expert",
     "audio_text": "The concept of social justice is central to creating a fair society. It involves ensuring equal rights and opportunities for all. Discrimination based on race, gender, or background undermines social justice. Legal frameworks and policies can promote equity. Education and awareness are also important. Advocacy and activism play a role in advancing social justice. The future of social progress depends on continued efforts. It is a fundamental value for sustainable development. Everyone deserves to be treated with dignity.",
     "options": [
-      "Social justice is central to creating a fair society.",
-      "Economic growth is central to creating a fair society.",
-      "Technological innovation is central to creating a fair society."
+      "Social justice is key to a fair society.",
+      "Economic growth is key to a fair society.",
+      "Technology is key to a fair society."
     ],
     "correct": 0
   },
@@ -5266,8 +5266,8 @@
     "level": "expert",
     "audio_text": "The issue of child poverty is a serious social problem. It affects millions of children worldwide. Poverty limits access to education, nutrition, and healthcare. Breaking the cycle of poverty requires comprehensive strategies. These include family support, early childhood education, and community development. Government programs can provide assistance. International organizations also play a role. The future of children depends on investment in their well-being. It is a moral obligation to protect children.",
     "options": [
-      "Child poverty leads to limited access to education.",
-      "Child poverty leads to better health outcomes.",
+      "Child poverty limits education access.",
+      "Child poverty leads to better health.",
       "Child poverty leads to higher income."
     ],
     "correct": 0
