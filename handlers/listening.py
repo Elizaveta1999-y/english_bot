@@ -373,11 +373,11 @@ async def level_selected(callback: CallbackQuery, state: FSMContext):
 
     # Отправляем прогресс-сообщение
     text = (
-        f"🎯 Режим: {TASK_TYPES[task_type]}\n\n"
+        f"Режим: {TASK_TYPES[task_type]}\n\n"
         f"Внимательно прослушайте аудио и {TASK_TYPE_DESCRIPTIONS[task_type]}.\n\n"
-        f"📊 Ваш прогресс:\n"
-        f"✅ Правильно: 0\n"
-        f"❌ Ошибок: 0\n\n"
+        f"Ваш прогресс:\n"
+        f"✔️ Правильно: 0\n"
+        f"✖️ Ошибок: 0\n\n"
         f"/revision_mode — работа над ошибками\n"
         f"/reset_progress — сбросить прогресс\n\n"
         f"Начинаем?"
@@ -396,7 +396,9 @@ async def revision_mode(callback: CallbackQuery, state: FSMContext):
     user_id = callback.from_user.id
 
     if not task_type or not level:
-        await callback.answer("Сначала выберите режим и уровень.", show_alert=True)
+        # Попытка восстановить из Redis (если вдруг потерялись)
+        # Или просто просим выбрать заново
+        await callback.answer("Сначала выберите тип и уровень в режиме аудирования.", show_alert=True)
         return
 
     error_ids = await get_errors(user_id, task_type, level)
@@ -441,9 +443,9 @@ async def back_to_mode(callback: CallbackQuery, state: FSMContext):
     level = data.get("level")
     if task_type and level:
         text = (
-            f"🎯 Режим: {TASK_TYPES[task_type]}\n\n"
+            f"Режим: {TASK_TYPES[task_type]}\n\n"
             f"Внимательно прослушайте аудио и {TASK_TYPE_DESCRIPTIONS[task_type]}.\n\n"
-            f"📊 Ваш прогресс:\n"
+            f"Ваш прогресс:\n"
             f"✔️ Правильно: {data.get('correct', 0)}\n"
             f"✖️ Ошибок: {data.get('wrong', 0)}\n\n"
             f"/revision_mode — работа над ошибками\n"
@@ -465,14 +467,15 @@ async def reset_progress(callback: CallbackQuery, state: FSMContext):
     level = data.get("level")
     user_id = callback.from_user.id
 
-    if task_type and level:
-        await set_task_index(user_id, task_type, level, 0)
-        await state.update_data({"correct": 0, "wrong": 0, "index": 0})
-        await callback.answer("Прогресс сброшен.")
-        await send_task(callback.message, state)
-        await update_progress_message(callback.message, state)
-    else:
-        await callback.answer("Ошибка: не удалось сбросить.")
+    if not task_type or not level:
+        await callback.answer("Ошибка: не удалось определить режим. Выберите тип и уровень заново.", show_alert=True)
+        return
+
+    await set_task_index(user_id, task_type, level, 0)
+    await state.update_data({"correct": 0, "wrong": 0, "index": 0})
+    await callback.answer("Прогресс сброшен.")
+    await send_task(callback.message, state)
+    await update_progress_message(callback.message, state)
 
 # ---------- Обработка ответов ----------
 @router.callback_query(F.data.startswith("listening_answer_"))
