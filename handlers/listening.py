@@ -25,12 +25,11 @@ with open(TASKS_FILE, "r", encoding="utf-8") as f:
         count = sum(1 for task in ALL_TASKS if task.get("type") == t)
         print(f"DEBUG: type '{t}' count = {count}")
 
-# ===== ПЕРЕИМЕНОВАННЫЕ КЛЮЧИ =====
 TASK_TYPES = {
     "choice": "📝 Выбор варианта",
     "truefalse": "⚖️ True/False/Not stated",
     "fill_one": "📁 Вставка пропуска",
-    "fill_multiple": "📄 Вставка пропусков",   # ключ теперь fill_multiple
+    "fill_multiple": "📄 Вставка пропусков",
     "speaker": "☑️ Выбор утверждения",
     "random": "🎲 Случайный тип"
 }
@@ -173,6 +172,34 @@ async def clear_errors(user_id: int, task_type: str, level: str):
     key = f"listening_errors:{user_id}:{task_type}:{level}"
     await r.delete(key)
 
+# ---------- Работа с прогрессом (Redis) ----------
+async def get_correct(user_id: int, task_type: str, level: str) -> int:
+    r = await get_redis()
+    key = f"listening_correct:{user_id}:{task_type}:{level}"
+    val = await r.get(key)
+    return int(val) if val else 0
+
+async def set_correct(user_id: int, task_type: str, level: str, count: int):
+    r = await get_redis()
+    key = f"listening_correct:{user_id}:{task_type}:{level}"
+    await r.set(key, str(count))
+
+async def get_wrong(user_id: int, task_type: str, level: str) -> int:
+    r = await get_redis()
+    key = f"listening_wrong:{user_id}:{task_type}:{level}"
+    val = await r.get(key)
+    return int(val) if val else 0
+
+async def set_wrong(user_id: int, task_type: str, level: str, count: int):
+    r = await get_redis()
+    key = f"listening_wrong:{user_id}:{task_type}:{level}"
+    await r.set(key, str(count))
+
+async def clear_progress(user_id: int, task_type: str, level: str):
+    r = await get_redis()
+    await r.delete(f"listening_correct:{user_id}:{task_type}:{level}")
+    await r.delete(f"listening_wrong:{user_id}:{task_type}:{level}")
+
 # ---------- Основные функции ----------
 async def get_task_index(user_id: int, task_type: str, level: str) -> int:
     r = await get_redis()
@@ -279,7 +306,6 @@ async def send_task(message: Message, state: FSMContext, is_revision=False):
         msg_ids.append(msg.message_id)
         await state.update_data({"message_ids": msg_ids})
 
-    # Показываем вопрос
     await show_question(message, state)
 
 async def show_question(message: Message, state: FSMContext):
@@ -354,7 +380,11 @@ async def listening_start(event, state: FSMContext):
 
 @router.callback_query(F.data.startswith("listening_type_"))
 async def type_selected(callback: CallbackQuery, state: FSMContext):
-    task_type = callback.data[len("listening_type_"):]  # берём всё после префикса
+    task_type = callback.data.split("_")[-1]
+    if task_type == "one":
+        task_type = "fill_one"
+    elif task_type == "multiple":
+        task_type = "fill_multiple"
     print(f"DEBUG: type_selected task_type={task_type}")
     await state.update_data({"task_type": task_type})
     text = "Выберите уровень сложности:"
@@ -363,12 +393,16 @@ async def type_selected(callback: CallbackQuery, state: FSMContext):
 
 @router.callback_query(F.data.startswith("listening_level_"))
 async def level_selected(callback: CallbackQuery, state: FSMContext):
-    rest = callback.data[len("listening_level_"):]  # убираем префикс
-    parts = rest.rsplit("_", 1)  # разделяем по последнему подчёркиванию
+    rest = callback.data[len("listening_level_"):]
+    parts = rest.rsplit("_", 1)
     if len(parts) != 2:
         await callback.answer("Ошибка в данных.", show_alert=True)
         return
     task_type, level = parts[0], parts[1]
+    if task_type == "one":
+        task_type = "fill_one"
+    elif task_type == "multiple":
+        task_type = "fill_multiple"
     user_id = callback.from_user.id
 
     tasks = get_tasks_by_type_and_level(task_type, level)
@@ -377,12 +411,15 @@ async def level_selected(callback: CallbackQuery, state: FSMContext):
         await callback.answer("Нет заданий для этого типа и уровня.", show_alert=True)
         return
 
-    # ... остальной код (инициализация state, отправка прогресс-сообщения, send_task)
+    # Загружаем прогресс из Redis
+    correct = await get_correct(user_id, task_type, level)
+    wrong = await get_wrong(user_id, task_type, level)
+
     await state.update_data({
         "task_type": task_type,
         "level": level,
-        "correct": 0,
-        "wrong": 0,
+        "correct": correct,
+        "wrong": wrong,
         "total": len(tasks),
         "index": 0,
         "message_ids": []
@@ -392,8 +429,8 @@ async def level_selected(callback: CallbackQuery, state: FSMContext):
         f"Режим: {TASK_TYPES[task_type]}\n\n"
         f"Внимательно прослушайте аудио и {TASK_TYPE_DESCRIPTIONS[task_type]}.\n\n"
         f"Ваш прогресс:\n"
-        f"✔️ Правильно: 0\n"
-        f"✖️ Ошибок: 0\n\n"
+        f"✔️ Правильно: {correct}\n"
+        f"✖️ Ошибок: {wrong}\n\n"
         f"/revision_mode — работа над ошибками\n"
         f"/reset_progress — сбросить прогресс\n\n"
         f"Начинаем?"
@@ -471,12 +508,14 @@ async def back_to_mode(callback: CallbackQuery, state: FSMContext):
     task_type = data.get("task_type")
     level = data.get("level")
     if task_type and level:
+        correct = data.get("correct", 0)
+        wrong = data.get("wrong", 0)
         text = (
             f"Режим: {TASK_TYPES[task_type]}\n\n"
             f"Внимательно прослушайте аудио и {TASK_TYPE_DESCRIPTIONS[task_type]}.\n\n"
             f"Ваш прогресс:\n"
-            f"✔️ Правильно: {data.get('correct', 0)}\n"
-            f"✖️ Ошибок: {data.get('wrong', 0)}\n\n"
+            f"✔️ Правильно: {correct}\n"
+            f"✖️ Ошибок: {wrong}\n\n"
             f"/revision_mode — работа над ошибками\n"
             f"/reset_progress — сбросить прогресс\n\n"
             f"Начинаем?"
@@ -510,6 +549,7 @@ async def reset_progress(callback: CallbackQuery, state: FSMContext):
             pass
 
     await set_task_index(user_id, task_type, level, 0)
+    await clear_progress(user_id, task_type, level)
     await state.update_data({
         "correct": 0,
         "wrong": 0,
@@ -563,12 +603,15 @@ async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
     else:
         return
 
+    # Обновляем счётчики и ошибки
     if is_correct:
         data["correct"] = data.get("correct", 0) + 1
+        await set_correct(callback.from_user.id, data["task_type"], data["level"], data["correct"])
         if data.get("is_revision", False):
             await remove_error(callback.from_user.id, data["task_type"], data["level"], task["id"])
     else:
         data["wrong"] = data.get("wrong", 0) + 1
+        await set_wrong(callback.from_user.id, data["task_type"], data["level"], data["wrong"])
         if not data.get("is_revision", False):
             await add_error(callback.from_user.id, data["task_type"], data["level"], task["id"])
 
@@ -626,7 +669,6 @@ async def listening_text_middleware(call: types.Message, event: types.Message, d
     if state:
         current_state = await state.get_state()
         if current_state == ListeningState.answering_task:
-            # Если это команда — не перехватываем, пусть идёт в обычный обработчик
             if event.text and event.text.startswith("/"):
                 return await call(event, data)
             await handle_answer(event, state)
@@ -678,10 +720,12 @@ async def handle_answer(message: Message, state: FSMContext):
 
     if is_correct:
         data["correct"] = data.get("correct", 0) + 1
+        await set_correct(message.from_user.id, data["task_type"], data["level"], data["correct"])
         if data.get("is_revision", False):
             await remove_error(message.from_user.id, data["task_type"], data["level"], task["id"])
     else:
         data["wrong"] = data.get("wrong", 0) + 1
+        await set_wrong(message.from_user.id, data["task_type"], data["level"], data["wrong"])
         if not data.get("is_revision", False):
             await add_error(message.from_user.id, data["task_type"], data["level"], task["id"])
 
@@ -859,6 +903,7 @@ async def reset_progress_command(message: Message, state: FSMContext):
         return
 
     await set_task_index(user_id, task_type, level, 0)
+    await clear_progress(user_id, task_type, level)
     await state.update_data({"correct": 0, "wrong": 0, "index": 0, "message_ids": []})
     await message.answer("Прогресс сброшен. Начинаем с первого задания.")
     await send_task(message, state)
