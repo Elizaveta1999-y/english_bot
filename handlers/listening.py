@@ -25,11 +25,12 @@ with open(TASKS_FILE, "r", encoding="utf-8") as f:
         count = sum(1 for task in ALL_TASKS if task.get("type") == t)
         print(f"DEBUG: type '{t}' count = {count}")
 
+# ===== ПЕРЕИМЕНОВАННЫЕ КЛЮЧИ =====
 TASK_TYPES = {
     "choice": "📝 Выбор варианта",
     "truefalse": "⚖️ True/False/Not stated",
     "fill_one": "📁 Вставка пропуска",
-    "fill_multiple": "📄 Вставка пропусков",
+    "fill_multiple": "📄 Вставка пропусков",   # ключ теперь fill_multiple
     "speaker": "☑️ Выбор утверждения",
     "random": "🎲 Случайный тип"
 }
@@ -354,7 +355,7 @@ async def listening_start(event, state: FSMContext):
 @router.callback_query(F.data.startswith("listening_type_"))
 async def type_selected(callback: CallbackQuery, state: FSMContext):
     task_type = callback.data.split("_")[-1]
-    print(f"DEBUG: type_selected task_type={task_type}") 
+    print(f"DEBUG: type_selected task_type={task_type}")
     await state.update_data({"task_type": task_type})
     text = "Выберите уровень сложности:"
     await callback.message.edit_text(text, reply_markup=get_levels_keyboard(task_type))
@@ -373,7 +374,6 @@ async def level_selected(callback: CallbackQuery, state: FSMContext):
         await callback.answer("Нет заданий для этого типа и уровня.", show_alert=True)
         return
 
-    # Инициализация с пустым списком message_ids
     await state.update_data({
         "task_type": task_type,
         "level": level,
@@ -384,7 +384,6 @@ async def level_selected(callback: CallbackQuery, state: FSMContext):
         "message_ids": []
     })
 
-    # Отправляем прогресс-сообщение
     text = (
         f"Режим: {TASK_TYPES[task_type]}\n\n"
         f"Внимательно прослушайте аудио и {TASK_TYPE_DESCRIPTIONS[task_type]}.\n\n"
@@ -498,7 +497,6 @@ async def reset_progress(callback: CallbackQuery, state: FSMContext):
         await callback.answer("Ошибка: не удалось определить режим. Выберите тип и уровень заново.", show_alert=True)
         return
 
-    # 1. Удаляем клавиатуры у всех старых сообщений
     msg_ids = data.get("message_ids", [])
     chat_id = callback.message.chat.id
     for mid in msg_ids:
@@ -507,10 +505,7 @@ async def reset_progress(callback: CallbackQuery, state: FSMContext):
         except Exception:
             pass
 
-    # 2. Сбрасываем прогресс в Redis
     await set_task_index(user_id, task_type, level, 0)
-
-    # 3. Обнуляем счётчики и список сообщений
     await state.update_data({
         "correct": 0,
         "wrong": 0,
@@ -518,10 +513,7 @@ async def reset_progress(callback: CallbackQuery, state: FSMContext):
         "message_ids": []
     })
 
-    # 4. Обновляем прогресс-сообщение
     await update_progress_message(callback.message, state)
-
-    # 5. Отправляем первое задание
     await callback.answer("Прогресс сброшен. Начинаем с первого задания.")
     await send_task(callback.message, state)
 
@@ -567,7 +559,6 @@ async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
     else:
         return
 
-    # Обновляем счётчики и ошибки
     if is_correct:
         data["correct"] = data.get("correct", 0) + 1
         if data.get("is_revision", False):
@@ -609,13 +600,9 @@ async def show_answer(callback: CallbackQuery, state: FSMContext):
         else:
             answer_text = ""
 
-        # Убираем клавиатуру с текущего сообщения
         await callback.message.edit_reply_markup(reply_markup=None)
-
-        # Отправляем ответ
         msg = await callback.message.answer(f"✅ Правильный ответ: {answer_text}")
 
-        # Сохраняем ID сообщения с ответом
         data = await state.get_data()
         msg_ids = data.get("message_ids", [])
         msg_ids.append(msg.message_id)
@@ -624,8 +611,6 @@ async def show_answer(callback: CallbackQuery, state: FSMContext):
         data["answered"] = True
         await state.update_data(data)
         await callback.answer()
-
-        # Переходим к следующему заданию
         await go_to_next_task(callback.message, state)
     except Exception as e:
         logger.error(f"Ошибка в show_answer: {e}")
@@ -740,7 +725,6 @@ async def finish_session(callback: CallbackQuery, state: FSMContext):
     msg_ids = data.get("message_ids", [])
     chat_id = callback.message.chat.id
 
-    # Убираем клавиатуры у всех предыдущих сообщений
     for mid in msg_ids:
         try:
             await callback.bot.edit_message_reply_markup(chat_id=chat_id, message_id=mid, reply_markup=None)
@@ -784,11 +768,7 @@ async def back_to_types(callback: CallbackQuery, state: FSMContext):
 
     for mid in msg_ids:
         try:
-            await callback.bot.edit_message_reply_markup(
-                chat_id=chat_id,
-                message_id=mid,
-                reply_markup=None
-            )
+            await callback.bot.edit_message_reply_markup(chat_id=chat_id, message_id=mid, reply_markup=None)
         except Exception:
             pass
 
@@ -804,11 +784,7 @@ async def back_to_main(callback: CallbackQuery, state: FSMContext):
 
     for mid in msg_ids:
         try:
-            await callback.bot.edit_message_reply_markup(
-                chat_id=chat_id,
-                message_id=mid,
-                reply_markup=None
-            )
+            await callback.bot.edit_message_reply_markup(chat_id=chat_id, message_id=mid, reply_markup=None)
         except Exception:
             pass
 
@@ -864,3 +840,4 @@ async def debug_get(message: Message):
             tasks = get_tasks_by_type_and_level(t, level)
             result.append(f"{level} {t}: {len(tasks)}")
     await message.answer("\n".join(result))
+
