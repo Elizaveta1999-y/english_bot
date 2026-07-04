@@ -827,6 +827,13 @@ async def revision_mode_command(message: Message, state: FSMContext):
     )
     await revision_mode(callback, state)
 
+@router.message(Command("debug_tasks"))
+async def debug_tasks(message: Message):
+    total = len(ALL_TASKS)
+    fill_one = sum(1 for t in ALL_TASKS if t.get("type") == "fill_one")
+    fill_multiple = sum(1 for t in ALL_TASKS if t.get("type") == "fill_multiple")
+    await message.answer(f"Total: {total}\nfill_one: {fill_one}\nfill_multiple: {fill_multiple}")
+
 @router.message(Command("reset_progress"))
 async def reset_progress_command(message: Message, state: FSMContext):
     callback = types.CallbackQuery(
