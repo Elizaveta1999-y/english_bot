@@ -853,3 +853,12 @@ async def reset_progress_command(message: Message, state: FSMContext):
         chat_instance="fake",
     )
     await reset_progress(callback, state)
+
+@router.message(Command("debug_get"))
+async def debug_get(message: Message):
+    result = []
+    for level in ["beginner", "intermediate", "expert"]:
+        for t in ["fill_one", "fill_multiple"]:
+            tasks = get_tasks_by_type_and_level(t, level)
+            result.append(f"{level} {t}: {len(tasks)}")
+    await message.answer("\n".join(result))
