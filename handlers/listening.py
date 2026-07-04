@@ -249,12 +249,16 @@ def normalize_text_answer(answer: str) -> str:
     return ' '.join(answer.strip().lower().split())
 
 # ---------- Отправка задания ----------
-async def send_task(message: Message, state: FSMContext, is_revision=False):
+async def send_task(message: Message, state: FSMContext, is_revision=False, task_type=None, level=None):
     data = await state.get_data()
-    task_type = data["task_type"]
-    level = data["level"]
+    # Если task_type и level переданы явно — используем их, иначе берем из data
+    if task_type is None:
+        task_type = data["task_type"]
+    if level is None:
+        level = data["level"]
     user_id = message.from_user.id
     msg_ids = data.get("message_ids", [])
+    # ... остальной код
 
     if is_revision:
         error_ids = await get_errors(user_id, task_type, level)
@@ -490,7 +494,8 @@ async def revision_mode(callback: CallbackQuery, state: FSMContext):
         msg_ids.append(msg.message_id)
         await state.update_data({"message_ids": msg_ids})
     else:
-        await send_task(callback.message, state, is_revision=True)
+        # Передаём task_type и level явно
+        await send_task(callback.message, state, is_revision=True, task_type=task_type, level=level)
     await callback.answer()
 
 @router.callback_query(F.data == "listening_reset_errors")
