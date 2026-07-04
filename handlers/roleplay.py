@@ -264,13 +264,20 @@ async def universal_text_handler(message: Message):
     user_id = message.from_user.id
     user_state = get_user_state(user_id)
 
-    # Если активен Speaking и пришёл текст (не кнопка)
-    if user_state.get("mode") == "speaking_active":
-        if message.text not in ["📊 Я всё! Фидбек", "🏠 Главное меню"]:
-            await message.answer(
-                "🎙️ Давайте пообщаемся голосом!\nНажмите на значок микрофона и отправьте голосовое сообщение."
-            )
-            return
+# Проверяем, действительно ли пользователь в режиме Speaking (через FSM)
+from handlers.speaking import SpeakingState  # импортируем состояние
+from aiogram.fsm.storage.base import StorageKey
+
+storage = router.bot.storage  # или ваш storage
+key = StorageKey(bot_id=message.bot.id, chat_id=message.chat.id, user_id=message.from_user.id)
+current_state = await storage.get_state(key)
+
+if current_state and current_state.startswith("SpeakingState"):
+    if message.text not in ["📊 Я всё! Фидбек", "🏠 Главное меню"]:
+        await message.answer(
+            "🎙️ Давайте пообщаемся голосом!\nНажмите на значок микрофона и отправьте голосовое сообщение."
+        )
+        return
 
     print(f"[DEBUG] universal_text_handler: text={message.text}, lesson_qa_active={user_state.get('lesson_qa', {}).get('active')}")
 
