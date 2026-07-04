@@ -20,6 +20,11 @@ R2_PUBLIC_URL = os.getenv("R2_PUBLIC_URL", "https://pub-c634646ded324b52b180b35d
 
 with open(TASKS_FILE, "r", encoding="utf-8") as f:
     ALL_TASKS = json.load(f)
+    # === ОТЛАДКА ===
+    logger.info(f"Loaded {len(ALL_TASKS)} tasks total")
+    for t in ["fill_one", "fill_multiple"]:
+        count = sum(1 for task in ALL_TASKS if task.get("type") == t)
+        logger.info(f"Tasks with type '{t}': {count}")
 
 TASK_TYPES = {
     "choice": "📝 Выбор варианта",
