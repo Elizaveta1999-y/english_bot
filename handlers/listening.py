@@ -492,11 +492,32 @@ async def reset_progress(callback: CallbackQuery, state: FSMContext):
         await callback.answer("Ошибка: не удалось определить режим. Выберите тип и уровень заново.", show_alert=True)
         return
 
+    # 1. Удаляем клавиатуры у всех старых сообщений
+    msg_ids = data.get("message_ids", [])
+    chat_id = callback.message.chat.id
+    for mid in msg_ids:
+        try:
+            await callback.bot.edit_message_reply_markup(chat_id=chat_id, message_id=mid, reply_markup=None)
+        except Exception:
+            pass
+
+    # 2. Сбрасываем прогресс в Redis
     await set_task_index(user_id, task_type, level, 0)
-    await state.update_data({"correct": 0, "wrong": 0, "index": 0})
-    await callback.answer("Прогресс сброшен.")
-    await send_task(callback.message, state)
+
+    # 3. Обнуляем счётчики и список сообщений
+    await state.update_data({
+        "correct": 0,
+        "wrong": 0,
+        "index": 0,
+        "message_ids": []
+    })
+
+    # 4. Обновляем прогресс-сообщение
     await update_progress_message(callback.message, state)
+
+    # 5. Отправляем первое задание
+    await callback.answer("Прогресс сброшен. Начинаем с первого задания.")
+    await send_task(callback.message, state)
 
 # ---------- Обработка ответов ----------
 @router.callback_query(F.data.startswith("listening_answer_"))
