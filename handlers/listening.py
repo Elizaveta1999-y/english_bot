@@ -2,52 +2,25 @@ import os
 import json
 import logging
 import random
-import time  # добавлен для кеш-бастинга
+import time
+from datetime import datetime
 from aiogram import Router, F, types
 from aiogram.types import Message, CallbackQuery, InlineKeyboardMarkup, InlineKeyboardButton
 from aiogram.filters import Command
 from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import State, StatesGroup
 import redis.asyncio as redis
-from datetime import datetime
-
-WELCOME_MESSAGES = [
-    "<b>🎧 Аудирование</b>\n\n<i>Умение понимать английскую речь на слух — ключевой навык для общения. Регулярная практика поможет привыкнуть к темпу, акцентам и живой интонации.</i>\n\nВыберите тип задания и уровень — и тренируйтесь в удобном темпе.",
-    "<b>🎧 Аудирование</b>\n\n<i>Исследования показывают: 30 минут практики в день заметно улучшают понимание речи на слух уже через месяц. Ваш мозг привыкает быстрее, чем вы думаете.</i>\n\nГотовы начать?",
-    "<b>🎧 Аудирование</b>\n\n<i>Тренируйте восприятие речи на слух. Выбирайте тип задания и уровень, отвечайте на вопросы — и следите за прогрессом.</i>\n\nПриступим?",
-    "<b>🎧 Аудирование</b>\n\n<i>Говорят, что понять английскую речь сложно, только пока не привыкнешь. А привыкнуть можно только практикой.</i>\n\nВыбирайте задание, слушайте, отвечайте — и скоро начнете понимать больше обычного.",
-    "<b>🎧 Аудирование</b>\n\n<i>Понимание речи на слух — навык, который развивается только практикой. Чем чаще вы слушаете, тем легче становится.</i>\n\nПопробуйте начать с коротких заданий — даже 5 минут в день дают результат."
-]
-
-async def get_welcome_message():
-    r = await get_redis()
-    today = datetime.now().date().isoformat()
-    saved_date = await r.get("listening_welcome_date")
-    saved_index = await r.get("listening_welcome_index")
-    
-    if saved_date == today and saved_index is not None:
-        index = int(saved_index)
-    else:
-        current_index = int(saved_index) if saved_index is not None else -1
-        index = (current_index + 1) % len(WELCOME_MESSAGES)
-        await r.set("listening_welcome_date", today)
-        await r.set("listening_welcome_index", str(index))
-    
-    return WELCOME_MESSAGES[index]
 
 router = Router()
 logger = logging.getLogger(__name__)
 
 TASKS_FILE = "data/listening_tasks.json"
 REDIS_URL = os.getenv("REDIS_URL", "redis://localhost:6379")
-
-# Публичный URL вашего R2 бакета (замените на свой)
 R2_PUBLIC_URL = os.getenv("R2_PUBLIC_URL", "https://pub-c634646ded324b52b180b35da5c15a13.r2.dev/")
 
 with open(TASKS_FILE, "r", encoding="utf-8") as f:
     ALL_TASKS = json.load(f)
 
-# ===== Типы заданий со смайликами =====
 TASK_TYPES = {
     "choice": "📝 Выбор варианта",
     "truefalse": "⚖️ True/False/Not stated",
@@ -57,12 +30,29 @@ TASK_TYPES = {
     "random": "🎲 Случайный тип"
 }
 
-# ===== Уровни сложности со смайликами =====
+TASK_TYPE_DESCRIPTIONS = {
+    "choice": "выберите верный ответ на вопрос",
+    "truefalse": "выберите верное утверждение",
+    "fill_one": "введите пропущенное слово",
+    "fill_multiple": "введите все пропущенные слова",
+    "speaker": "выберите верное утверждение",
+    "random": "выполните задание"
+}
+
 LEVELS = {
     "beginner": "🌱 Новичок",
     "intermediate": "📚 Любитель",
     "expert": "🎓 Эксперт"
 }
+
+# Приветственные сообщения для режима аудирования
+WELCOME_MESSAGES = [
+    "<b>🎧 Аудирование</b>\n\n<i>Умение понимать английскую речь на слух — ключевой навык для общения. Регулярная практика поможет привыкнуть к темпу, акцентам и живой интонации.</i>\n\nВыберите тип задания и уровень — и тренируйтесь в удобном темпе.",
+    "<b>🎧 Аудирование</b>\n\n<i>Исследования показывают: 30 минут практики в день заметно улучшают понимание речи на слух уже через месяц. Ваш мозг привыкает быстрее, чем вы думаете.</i>\n\nГотовы начать?",
+    "<b>🎧 Аудирование</b>\n\n<i>Тренируйте восприятие речи на слух. Выбирайте тип задания и уровень, отвечайте на вопросы — и следите за прогрессом.</i>\n\nПриступим?",
+    "<b>🎧 Аудирование</b>\n\n<i>Говорят, что понять английскую речь сложно, только пока не привыкнешь. А привыкнуть можно только практикой.</i>\n\nВыбирайте задание, слушайте, отвечайте — и скоро начнете понимать больше обычного.",
+    "<b>🎧 Аудирование</b>\n\n<i>Понимание речи на слух — навык, который развивается только практикой. Чем чаще вы слушаете, тем легче становится.</i>\n\nПопробуйте начать с коротких заданий — даже 5 минут в день дают результат."
+]
 
 redis_client = None
 
@@ -72,10 +62,25 @@ async def get_redis():
         redis_client = await redis.from_url(REDIS_URL, decode_responses=True)
     return redis_client
 
+async def get_welcome_message():
+    r = await get_redis()
+    today = datetime.now().date().isoformat()
+    saved_date = await r.get("listening_welcome_date")
+    saved_index = await r.get("listening_welcome_index")
+    if saved_date == today and saved_index is not None:
+        index = int(saved_index)
+    else:
+        current_index = int(saved_index) if saved_index is not None else -1
+        index = (current_index + 1) % len(WELCOME_MESSAGES)
+        await r.set("listening_welcome_date", today)
+        await r.set("listening_welcome_index", str(index))
+    return WELCOME_MESSAGES[index]
+
 class ListeningState(StatesGroup):
     choosing_type = State()
     choosing_level = State()
     answering_task = State()
+    revision_mode = State()
 
 # ---------- Клавиатуры ----------
 def get_types_keyboard():
@@ -103,7 +108,6 @@ def get_choice_keyboard(options, task_id):
     return InlineKeyboardMarkup(inline_keyboard=buttons)
 
 def get_truefalse_keyboard(task_id):
-    # === ИСПРАВЛЕНО: английские кнопки ===
     buttons = [
         [InlineKeyboardButton(text="True", callback_data=f"listening_answer_{task_id}_true")],
         [InlineKeyboardButton(text="False", callback_data=f"listening_answer_{task_id}_false")],
@@ -131,7 +135,41 @@ def get_finish_keyboard():
         ]
     ])
 
-# ---------- Вспомогательные ----------
+def get_progress_keyboard():
+    return InlineKeyboardMarkup(inline_keyboard=[
+        [InlineKeyboardButton(text="📘 Работа над ошибками", callback_data="listening_revision")],
+        [InlineKeyboardButton(text="🗑️ Сбросить прогресс", callback_data="listening_reset_progress")]
+    ])
+
+def get_revision_keyboard():
+    return InlineKeyboardMarkup(inline_keyboard=[
+        [InlineKeyboardButton(text="🔙 Обратно к режиму", callback_data="listening_back_to_mode")],
+        [InlineKeyboardButton(text="🗑️ Сбросить ошибки", callback_data="listening_reset_errors")]
+    ])
+
+# ---------- Работа с ошибками (Redis) ----------
+async def add_error(user_id: int, task_type: str, level: str, task_id: int):
+    r = await get_redis()
+    key = f"listening_errors:{user_id}:{task_type}:{level}"
+    await r.sadd(key, str(task_id))
+
+async def remove_error(user_id: int, task_type: str, level: str, task_id: int):
+    r = await get_redis()
+    key = f"listening_errors:{user_id}:{task_type}:{level}"
+    await r.srem(key, str(task_id))
+
+async def get_errors(user_id: int, task_type: str, level: str) -> list:
+    r = await get_redis()
+    key = f"listening_errors:{user_id}:{task_type}:{level}"
+    members = await r.smembers(key)
+    return [int(m) for m in members]
+
+async def clear_errors(user_id: int, task_type: str, level: str):
+    r = await get_redis()
+    key = f"listening_errors:{user_id}:{task_type}:{level}"
+    await r.delete(key)
+
+# ---------- Основные функции ----------
 async def get_task_index(user_id: int, task_type: str, level: str) -> int:
     r = await get_redis()
     key = f"listening_progress:{user_id}:{task_type}:{level}"
@@ -171,49 +209,69 @@ def normalize_text_answer(answer: str) -> str:
     return ' '.join(answer.strip().lower().split())
 
 # ---------- Отправка задания ----------
-async def send_task(message: Message, state: FSMContext):
+async def send_task(message: Message, state: FSMContext, is_revision=False):
     data = await state.get_data()
     task_type = data["task_type"]
     level = data["level"]
     user_id = message.from_user.id
 
-    if task_type == "random":
-        order = await get_random_order(user_id, level)
-        if not order:
-            await message.answer("Нет заданий для этого уровня.")
+    if is_revision:
+        # Режим работы над ошибками
+        error_ids = await get_errors(user_id, task_type, level)
+        if not error_ids:
+            await message.answer("🎉 Ошибок нет! Вы всё исправили.")
+            await state.set_state(ListeningState.choosing_type)
             return
-        index = await get_random_index(user_id, level)
-        if index >= len(order):
-            index = 0
-            await set_random_index(user_id, level, 0)
-        task_id = order[index]
+        # Берём первое задание из списка ошибок
+        task_id = error_ids[0]
         task = next((t for t in ALL_TASKS if t["id"] == task_id), None)
         if not task:
             await message.answer("Ошибка: задание не найдено.")
             return
-        await state.update_data({"task": task, "task_index": index, "answered": False})
+        await state.update_data({"task": task, "answered": False, "is_revision": True})
     else:
-        tasks = get_tasks_by_type_and_level(task_type, level)
-        if not tasks:
-            await message.answer("Заданий этого типа и уровня пока нет.")
-            return
-        index = await get_task_index(user_id, task_type, level)
-        if index >= len(tasks):
-            index = 0
-        task = tasks[index]
-        await state.update_data({"task": task, "task_index": index, "answered": False})
+        # Обычный режим
+        if task_type == "random":
+            order = await get_random_order(user_id, level)
+            if not order:
+                await message.answer("Нет заданий для этого уровня.")
+                return
+            index = await get_random_index(user_id, level)
+            if index >= len(order):
+                index = 0
+                await set_random_index(user_id, level, 0)
+            task_id = order[index]
+            task = next((t for t in ALL_TASKS if t["id"] == task_id), None)
+            if not task:
+                await message.answer("Ошибка: задание не найдено.")
+                return
+            await state.update_data({"task": task, "task_index": index, "answered": False, "is_revision": False})
+        else:
+            tasks = get_tasks_by_type_and_level(task_type, level)
+            if not tasks:
+                await message.answer("Заданий этого типа и уровня пока нет.")
+                return
+            index = await get_task_index(user_id, task_type, level)
+            if index >= len(tasks):
+                index = 0
+                await set_task_index(user_id, task_type, level, 0)
+            task = tasks[index]
+            await state.update_data({"task": task, "task_index": index, "answered": False, "is_revision": False})
 
-    # === ОТПРАВКА АУДИО ИЗ R2 С ПАРАМЕТРОМ ДЛЯ ОБНОВЛЕНИЯ КЕША ===
+    # Отправка аудио
     filename = f"{task['level']}_{task['type']}_{task['id']}.mp3"
     audio_url = R2_PUBLIC_URL + filename + f"?v={int(time.time())}"
-
     try:
         await message.answer_voice(audio_url)
     except Exception as e:
         logger.error(f"Ошибка отправки аудио: {e}")
         await message.answer(f"Текст для прослушивания:\n\n{task['audio_text']}")
 
+    # Показываем вопрос
     await show_question(message, state)
+
+    # Обновляем прогресс-сообщение (если есть)
+    await update_progress_message(message, state)
 
 async def show_question(message: Message, state: FSMContext):
     data = await state.get_data()
@@ -234,7 +292,7 @@ async def show_question(message: Message, state: FSMContext):
         text = f"{task['question']}\n\nВведите все пропущенные слова в формате: ___; ___; ___;"
         keyboard = get_fill_keyboard(task_id)
     elif task_type == "speaker":
-        text = f"{task['question']}\n\nВыберите верное утверждение:"
+        text = f"Выберите верное утверждение:"
         keyboard = get_choice_keyboard(task["options"], task_id)
     else:
         return
@@ -242,7 +300,251 @@ async def show_question(message: Message, state: FSMContext):
     await message.answer(text, reply_markup=keyboard)
     await state.set_state(ListeningState.answering_task)
 
-# ---------- Проверка ответов ----------
+async def update_progress_message(message: Message, state: FSMContext):
+    data = await state.get_data()
+    task_type = data["task_type"]
+    level = data["level"]
+    user_id = message.from_user.id
+    correct = data.get("correct", 0)
+    wrong = data.get("wrong", 0)
+    progress_msg_id = data.get("progress_message_id")
+
+    if progress_msg_id:
+        text = (
+            f"🎯 Режим: {TASK_TYPES[task_type]}\n\n"
+            f"Внимательно прослушайте аудио и {TASK_TYPE_DESCRIPTIONS[task_type]}.\n\n"
+            f"📊 Ваш прогресс:\n"
+            f"✅ Правильно: {correct}\n"
+            f"❌ Ошибок: {wrong}\n\n"
+            f"/revision_mode — работа над ошибками\n"
+            f"/reset_progress — сбросить прогресс\n\n"
+            f"Начинаем?"
+        )
+        try:
+            await message.bot.edit_message_text(
+                chat_id=message.chat.id,
+                message_id=progress_msg_id,
+                text=text,
+                reply_markup=get_progress_keyboard()
+            )
+        except Exception as e:
+            logger.warning(f"Не удалось обновить прогресс: {e}")
+
+# ---------- Обработчики команд и кнопок ----------
+@router.callback_query(F.data == "start_listening")
+@router.message(Command("listening"))
+async def listening_start(event, state: FSMContext):
+    await state.clear()
+    text = await get_welcome_message()
+    if isinstance(event, Message):
+        await event.answer(text, reply_markup=get_types_keyboard(), parse_mode="HTML")
+    else:
+        await event.message.edit_text(text, reply_markup=get_types_keyboard(), parse_mode="HTML")
+        await event.answer()
+
+@router.callback_query(F.data.startswith("listening_type_"))
+async def type_selected(callback: CallbackQuery, state: FSMContext):
+    task_type = callback.data.split("_")[-1]
+    await state.update_data({"task_type": task_type})
+    text = "Выберите уровень сложности:"
+    await callback.message.edit_text(text, reply_markup=get_levels_keyboard(task_type))
+    await callback.answer()
+
+@router.callback_query(F.data.startswith("listening_level_"))
+async def level_selected(callback: CallbackQuery, state: FSMContext):
+    parts = callback.data.split("_")
+    task_type = parts[2]
+    level = parts[3]
+    user_id = callback.from_user.id
+
+    tasks = get_tasks_by_type_and_level(task_type, level)
+    if not tasks:
+        await callback.answer("Нет заданий для этого типа и уровня.", show_alert=True)
+        return
+
+    await state.update_data({
+        "task_type": task_type,
+        "level": level,
+        "correct": 0,
+        "wrong": 0,
+        "total": len(tasks),
+        "index": 0
+    })
+
+    # Отправляем прогресс-сообщение
+    text = (
+        f"🎯 Режим: {TASK_TYPES[task_type]}\n\n"
+        f"Внимательно прослушайте аудио и {TASK_TYPE_DESCRIPTIONS[task_type]}.\n\n"
+        f"📊 Ваш прогресс:\n"
+        f"✅ Правильно: 0\n"
+        f"❌ Ошибок: 0\n\n"
+        f"/revision_mode — работа над ошибками\n"
+        f"/reset_progress — сбросить прогресс\n\n"
+        f"Начинаем?"
+    )
+    msg = await callback.message.answer(text, reply_markup=get_progress_keyboard())
+    await state.update_data({"progress_message_id": msg.message_id})
+    await callback.message.delete()
+    await send_task(callback.message, state)
+    await callback.answer()
+
+@router.callback_query(F.data == "listening_revision")
+async def revision_mode(callback: CallbackQuery, state: FSMContext):
+    data = await state.get_data()
+    task_type = data.get("task_type")
+    level = data.get("level")
+    user_id = callback.from_user.id
+
+    if not task_type or not level:
+        await callback.answer("Сначала выберите режим и уровень.", show_alert=True)
+        return
+
+    error_ids = await get_errors(user_id, task_type, level)
+    count = len(error_ids)
+
+    text = (
+        f"📘 Работа над ошибками\n"
+        f"Режим: {TASK_TYPES[task_type]}\n\n"
+        f"Заданий на исправление: {count}"
+    )
+    await callback.message.edit_text(text, reply_markup=get_revision_keyboard())
+    await state.set_state(ListeningState.revision_mode)
+
+    if count == 0:
+        await callback.message.answer("🎉 Ошибок нет! Отличная работа.")
+    else:
+        await send_task(callback.message, state, is_revision=True)
+    await callback.answer()
+
+@router.callback_query(F.data == "listening_reset_errors")
+async def reset_errors(callback: CallbackQuery, state: FSMContext):
+    data = await state.get_data()
+    task_type = data.get("task_type")
+    level = data.get("level")
+    user_id = callback.from_user.id
+
+    if task_type and level:
+        await clear_errors(user_id, task_type, level)
+        await callback.answer("Все ошибки сброшены.")
+        # Возвращаем в режим
+        await callback.message.edit_text(
+            f"📘 Работа над ошибками\nРежим: {TASK_TYPES[task_type]}\n\nЗаданий на исправление: 0"
+        )
+    else:
+        await callback.answer("Ошибка: не удалось сбросить.")
+
+@router.callback_query(F.data == "listening_back_to_mode")
+async def back_to_mode(callback: CallbackQuery, state: FSMContext):
+    await state.set_state(ListeningState.choosing_level)
+    data = await state.get_data()
+    task_type = data.get("task_type")
+    level = data.get("level")
+    if task_type and level:
+        text = (
+            f"🎯 Режим: {TASK_TYPES[task_type]}\n\n"
+            f"Внимательно прослушайте аудио и {TASK_TYPE_DESCRIPTIONS[task_type]}.\n\n"
+            f"📊 Ваш прогресс:\n"
+            f"✔️ Правильно: {data.get('correct', 0)}\n"
+            f"✖️ Ошибок: {data.get('wrong', 0)}\n\n"
+            f"/revision_mode — работа над ошибками\n"
+            f"/reset_progress — сбросить прогресс\n\n"
+            f"Начинаем?"
+        )
+        msg = await callback.message.answer(text, reply_markup=get_progress_keyboard())
+        await state.update_data({"progress_message_id": msg.message_id})
+        await send_task(callback.message, state)
+        await callback.message.delete()
+    else:
+        await callback.answer("Ошибка: режим не найден.")
+    await callback.answer()
+
+@router.callback_query(F.data == "listening_reset_progress")
+async def reset_progress(callback: CallbackQuery, state: FSMContext):
+    data = await state.get_data()
+    task_type = data.get("task_type")
+    level = data.get("level")
+    user_id = callback.from_user.id
+
+    if task_type and level:
+        await set_task_index(user_id, task_type, level, 0)
+        await state.update_data({"correct": 0, "wrong": 0, "index": 0})
+        await callback.answer("Прогресс сброшен.")
+        await send_task(callback.message, state)
+        await update_progress_message(callback.message, state)
+    else:
+        await callback.answer("Ошибка: не удалось сбросить.")
+
+# ---------- Обработка ответов ----------
+@router.callback_query(F.data.startswith("listening_answer_"))
+async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
+    data = await state.get_data()
+    if data.get("answered", False):
+        await callback.answer("Вы уже ответили на это задание.", show_alert=True)
+        return
+
+    task = data.get("task")
+    if not task:
+        await callback.answer("Ошибка.", show_alert=True)
+        return
+
+    parts = callback.data.split("_")
+    if len(parts) < 4:
+        await callback.answer("Ошибка.", show_alert=True)
+        return
+    answer_part = parts[3]
+
+    is_correct = False
+    result_text = ""
+
+    if task["type"] in ["choice", "speaker"]:
+        selected_index = int(answer_part)
+        correct_index = int(task["correct"])
+        is_correct = (selected_index == correct_index)
+        if is_correct:
+            result_text = "Правильно!"
+        else:
+            result_text = f"Неправильно. Правильный ответ: {task['options'][correct_index]}"
+    elif task["type"] == "truefalse":
+        user_answer = answer_part
+        correct = task["correct"]
+        is_correct = (user_answer == correct)
+        if is_correct:
+            result_text = "Правильно!"
+        else:
+            correct_label = {"true": "True", "false": "False", "notstated": "Not stated"}.get(correct, correct)
+            result_text = f"Неправильно. Правильный ответ: {correct_label}"
+    else:
+        return
+
+    # Обновляем счётчики и ошибки
+    if is_correct:
+        data["correct"] = data.get("correct", 0) + 1
+        # Если это было задание из ошибок — удаляем из ошибок
+        if data.get("is_revision", False):
+            await remove_error(callback.from_user.id, data["task_type"], data["level"], task["id"])
+    else:
+        data["wrong"] = data.get("wrong", 0) + 1
+        # Добавляем в ошибки (если не уже есть)
+        if not data.get("is_revision", False):
+            await add_error(callback.from_user.id, data["task_type"], data["level"], task["id"])
+
+    await callback.message.edit_text(callback.message.text, reply_markup=None)
+    await callback.message.answer(result_text)
+    data["answered"] = True
+    await state.update_data(data)
+    await callback.answer()
+    await go_to_next_task(callback.message, state)
+
+@router.message.outer_middleware()
+async def listening_text_middleware(call: types.Message, event: types.Message, data: dict):
+    state: FSMContext = data.get('state')
+    if state:
+        current_state = await state.get_state()
+        if current_state == ListeningState.answering_task:
+            await handle_answer(event, state)
+            return
+    return await call(event, data)
+
 async def handle_answer(message: Message, state: FSMContext):
     data = await state.get_data()
     if data.get("answered", False):
@@ -284,13 +586,16 @@ async def handle_answer(message: Message, state: FSMContext):
             else:
                 result_text = f"Неправильно. Правильные ответы: {'; '.join(task['answers'])}"
     else:
-        # Для кнопочных типов этот обработчик не вызывается
         return
 
     if is_correct:
         data["correct"] = data.get("correct", 0) + 1
+        if data.get("is_revision", False):
+            await remove_error(message.from_user.id, data["task_type"], data["level"], task["id"])
     else:
         data["wrong"] = data.get("wrong", 0) + 1
+        if not data.get("is_revision", False):
+            await add_error(message.from_user.id, data["task_type"], data["level"], task["id"])
 
     await message.answer(result_text)
     data["answered"] = True
@@ -302,6 +607,11 @@ async def go_to_next_task(message: Message, state: FSMContext):
     task_type = data["task_type"]
     level = data["level"]
     user_id = message.from_user.id
+
+    if data.get("is_revision", False):
+        # В режиме ошибок — просто берём следующее из списка ошибок
+        await send_task(message, state, is_revision=True)
+        return
 
     if task_type == "random":
         order = await get_random_order(user_id, level)
@@ -323,129 +633,7 @@ async def go_to_next_task(message: Message, state: FSMContext):
 
     await send_task(message, state)
 
-# ---------- Middleware ----------
-@router.message.outer_middleware()
-async def listening_text_middleware(call: types.Message, event: types.Message, data: dict):
-    state: FSMContext = data.get('state')
-    if state:
-        current_state = await state.get_state()
-        if current_state == ListeningState.answering_task:
-            await handle_answer(event, state)
-            return
-    return await call(event, data)
-
-# ---------- Хендлеры кнопок ----------
-
-@router.callback_query(F.data == "start_listening")
-@router.message(Command("listening"))
-async def listening_start(event, state: FSMContext):
-    await state.clear()
-    text = await get_welcome_message()
-    if isinstance(event, Message):
-        await event.answer(text, reply_markup=get_types_keyboard(), parse_mode="HTML")  # <-- здесь
-    else:
-        await event.message.edit_text(text, reply_markup=get_types_keyboard(), parse_mode="HTML")  # <-- и здесь
-        await event.answer()
-
-@router.callback_query(F.data.startswith("listening_type_"))
-async def type_selected(callback: CallbackQuery, state: FSMContext):
-    task_type = callback.data.split("_")[-1]
-    await state.update_data({"task_type": task_type})
-    text = "Выберите уровень сложности:"
-    await callback.message.edit_text(text, reply_markup=get_levels_keyboard(task_type))
-    await callback.answer()
-
-@router.callback_query(F.data.startswith("listening_level_"))
-async def level_selected(callback: CallbackQuery, state: FSMContext):
-    parts = callback.data.split("_")
-    task_type = parts[2]
-    level = parts[3]
-    await state.update_data({"level": level, "correct": 0, "wrong": 0})
-    await callback.message.delete()
-    await send_task(callback.message, state)
-    await callback.answer()
-
-@router.callback_query(F.data.startswith("listening_answer_"))
-async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
-    data = await state.get_data()
-    if data.get("answered", False):
-        await callback.answer("Вы уже ответили на это задание.", show_alert=True)
-        return
-
-    task = data.get("task")
-    if not task:
-        await callback.answer("Ошибка.", show_alert=True)
-        return
-
-    parts = callback.data.split("_")
-    if len(parts) < 4:
-        await callback.answer("Ошибка.", show_alert=True)
-        return
-
-    # Исправлено: теперь берём индекс варианта (последняя часть)
-    answer_part = parts[3]  # или parts[-1]
-
-    is_correct = False
-    result_text = ""
-
-    if task["type"] in ["choice", "speaker"]:
-        selected_index = int(answer_part)
-        correct_index = int(task["correct"])
-        is_correct = (selected_index == correct_index)
-        if is_correct:
-            result_text = "Правильно!"
-        else:
-            result_text = f"Неправильно. Правильный ответ: {task['options'][correct_index]}"
-    elif task["type"] == "truefalse":
-        user_answer = answer_part
-        correct = task["correct"]
-        is_correct = (user_answer == correct)
-        if is_correct:
-            result_text = "Правильно!"
-        else:
-            correct_label = {"true": "True", "false": "False", "notstated": "Not stated"}.get(correct, correct)
-            result_text = f"Неправильно. Правильный ответ: {correct_label}"
-
-    if is_correct:
-        data["correct"] = data.get("correct", 0) + 1
-    else:
-        data["wrong"] = data.get("wrong", 0) + 1
-
-    await callback.message.edit_text(callback.message.text, reply_markup=None)
-    await callback.message.answer(result_text)
-    data["answered"] = True
-    await state.update_data(data)
-    await callback.answer()
-    await go_to_next_task(callback.message, state)
-
-@router.callback_query(F.data.startswith("listening_show_answer_"))
-async def show_answer(callback: CallbackQuery, state: FSMContext):
-    task_id = int(callback.data.split("_")[-1])
-    data = await state.get_data()
-    task = data.get("task")
-    if not task or task["id"] != task_id:
-        await callback.answer("Это не текущее задание.", show_alert=True)
-        return
-
-    if task["type"] in ["choice", "speaker"]:
-        correct_index = int(task["correct"])
-        answer_text = task["options"][correct_index]
-    elif task["type"] == "truefalse":
-        correct = task["correct"]
-        answer_text = {"true": "True", "false": "False", "notstated": "Not stated"}.get(correct, correct)
-    elif task["type"] == "fill_one":
-        answer_text = task["correct"]
-    elif task["type"] == "fill_multiple":
-        answer_text = "; ".join(task["answers"])
-    else:
-        answer_text = ""
-
-    await callback.message.edit_text(callback.message.text, reply_markup=None)
-    await callback.message.answer(f"Правильный ответ: {answer_text}")
-    data["answered"] = True
-    await state.update_data(data)
-    await callback.answer()
-    await go_to_next_task(callback.message, state)
+# ---------- Прочие обработчики ----------
 @router.callback_query(F.data == "listening_finish")
 async def finish_session(callback: CallbackQuery, state: FSMContext):
     data = await state.get_data()
@@ -483,3 +671,28 @@ async def back_to_main(callback: CallbackQuery, state: FSMContext):
     from .start import show_main_menu
     await show_main_menu(callback.message, edit=True)
     await callback.answer()
+
+# ---------- Обработчики команд ----------
+@router.message(Command("revision_mode"))
+async def revision_mode_command(message: Message, state: FSMContext):
+    # Можно вызвать тот же обработчик, что и кнопка
+    # Создаём искусственный callback
+    callback = types.CallbackQuery(
+        id="fake",
+        from_user=message.from_user,
+        message=message,
+        data="listening_revision",
+        chat_instance="fake",
+    )
+    await revision_mode(callback, state)
+
+@router.message(Command("reset_progress"))
+async def reset_progress_command(message: Message, state: FSMContext):
+    callback = types.CallbackQuery(
+        id="fake",
+        from_user=message.from_user,
+        message=message,
+        data="listening_reset_progress",
+        chat_instance="fake",
+    )
+    await reset_progress(callback, state)
