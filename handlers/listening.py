@@ -211,13 +211,6 @@ async def set_task_index(user_id: int, task_type: str, level: str, index: int):
     r = await get_redis()
     await r.set(f"listening_progress:{user_id}:{task_type}:{level}", str(index))
 
-if task_type == "random":
-    tasks = [t for t in ALL_TASKS if t.get("level") == level]
-    print(f"DEBUG random: found {len(tasks)} tasks for level {level}")
-    if not tasks:
-        await message.answer(f"Нет заданий для уровня {level}.")
-        return
-
 async def get_random_order(user_id: int, level: str) -> list:
     r = await get_redis()
     key = f"listening_random_order:{user_id}:{level}"
@@ -317,8 +310,65 @@ async def send_task(message: Message, state: FSMContext, is_revision=False):
         msg_ids.append(msg.message_id)
         await state.update_data({"message_ids": msg_ids})
 
-    # Показываем вопрос
     await show_question(message, state)
+
+async def show_question(message: Message, state: FSMContext):
+    data = await state.get_data()
+    task = data["task"]
+    task_type = task["type"]
+    task_id = task["id"]
+    msg_ids = data.get("message_ids", [])
+
+    if task_type == "choice":
+        text = f"{task['question']}\n\nВыберите правильный вариант:"
+        keyboard = get_choice_keyboard(task["options"], task_id)
+    elif task_type == "truefalse":
+        text = f"{task['statement']}\n\nВыберите верное утверждение:"
+        keyboard = get_truefalse_keyboard(task_id)
+    elif task_type == "fill_one":
+        text = f"{task['question']}\n\nВведите пропущенное слово:"
+        keyboard = get_fill_keyboard(task_id)
+    elif task_type == "fill_multiple":
+        text = f"{task['question']}\n\nВведите все пропущенные слова в формате: ___; ___; ___;"
+        keyboard = get_fill_keyboard(task_id)
+    elif task_type == "speaker":
+        text = f"Выберите верное утверждение:"
+        keyboard = get_choice_keyboard(task["options"], task_id)
+    else:
+        return
+
+    msg = await message.answer(text, reply_markup=keyboard)
+    msg_ids.append(msg.message_id)
+    await state.update_data({"message_ids": msg_ids})
+    await state.set_state(ListeningState.answering_task)
+
+async def update_progress_message(message: Message, state: FSMContext):
+    data = await state.get_data()
+    task_type = data["task_type"]
+    correct = data.get("correct", 0)
+    wrong = data.get("wrong", 0)
+    progress_msg_id = data.get("progress_message_id")
+
+    if progress_msg_id:
+        text = (
+            f"Режим: {TASK_TYPES[task_type]}\n\n"
+            f"Внимательно прослушайте аудио и {TASK_TYPE_DESCRIPTIONS[task_type]}.\n\n"
+            f"Ваш прогресс:\n"
+            f"✔️ Правильно: {correct}\n"
+            f"✖️ Ошибок: {wrong}\n\n"
+            f"/revision_mode — работа над ошибками\n"
+            f"/reset_progress — сбросить прогресс\n\n"
+            f"Начинаем?"
+        )
+        try:
+            await message.bot.edit_message_text(
+                chat_id=message.chat.id,
+                message_id=progress_msg_id,
+                text=text,
+                reply_markup=get_progress_keyboard()
+            )
+        except Exception as e:
+            logger.warning(f"Не удалось обновить прогресс: {e}")
 
 # ---------- Обработчики команд и кнопок ----------
 @router.callback_query(F.data == "start_listening")
@@ -360,12 +410,10 @@ async def level_selected(callback: CallbackQuery, state: FSMContext):
     user_id = callback.from_user.id
 
     tasks = get_tasks_by_type_and_level(task_type, level)
-    print(f"DEBUG: level_selected task_type={task_type}, level={level}, tasks={len(tasks)}")
     if not tasks:
         await callback.answer("Нет заданий для этого типа и уровня.", show_alert=True)
         return
 
-    # Загружаем прогресс из Redis
     correct = await get_correct(user_id, task_type, level)
     wrong = await get_wrong(user_id, task_type, level)
 
@@ -557,7 +605,6 @@ async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
     else:
         return
 
-    # Обновляем счётчики и ошибки
     if is_correct:
         data["correct"] = data.get("correct", 0) + 1
         await set_correct(callback.from_user.id, data["task_type"], data["level"], data["correct"])
