@@ -3130,9 +3130,9 @@
     "level": "intermediate",
     "audio_text": "I am currently learning to code. I take online courses. I practice every day. I want to become a software developer. I find coding challenging but rewarding. I have already built a simple app. I am very proud of my progress.",
     "options": [
-      "The speaker wants to become a data analyst.",
-      "The speaker wants to become a web designer.",
-      "The speaker wants to become a software developer."
+      "Wants to be a data analyst.",
+      "Wants to be a web designer.",
+      "Wants to be a software developer."
     ],
     "correct": 2
   },
@@ -3178,9 +3178,9 @@
     "level": "intermediate",
     "audio_text": "I am a big fan of reading. I read at least one book a week. I like various genres, but mystery is my favorite. I love trying to solve the puzzle before the end. I also write book reviews for my blog. I think reading broadens the mind. I cannot imagine life without books.",
     "options": [
-      "The speaker's favorite genre is mystery.",
-      "The speaker's favorite genre is romance.",
-      "The speaker's favorite genre is science fiction."
+      "Favorite genre: mystery.",
+      "Favorite genre: romance.",
+      "Favorite genre: science fiction."
     ],
     "correct": 0
   },
@@ -3190,9 +3190,9 @@
     "level": "intermediate",
     "audio_text": "I have a strong interest in environmental protection. I try to live a sustainable life. I use reusable bags and bottles. I also plant trees and recycle. I think every little action helps the planet. I want to encourage others to do the same. I believe we all need to take responsibility.",
     "options": [
-      "The speaker recycles and uses reusable items.",
-      "The speaker drives less to help the environment.",
-      "The speaker eats less meat to help the environment."
+      "Recycles and uses reusable items.",
+      "Drives less to help environment.",
+      "Eats less meat to help environment."
     ],
     "correct": 0
   },
@@ -3286,9 +3286,9 @@
     "level": "intermediate",
     "audio_text": "I am very interested in artificial intelligence. I think it will change the world. I read articles and watch videos about AI. I also take online courses on machine learning. I want to work in this field in the future. I find it fascinating how computers can learn. I believe AI has enormous potential.",
     "options": [
-      "The speaker is interested in artificial intelligence.",
-      "The speaker is interested in biology.",
-      "The speaker is interested in engineering."
+      "Interested in AI.",
+      "Interested in biology.",
+      "Interested in engineering."
     ],
     "correct": 0
   },
@@ -3310,9 +3310,9 @@
     "level": "intermediate",
     "audio_text": "I am learning to play the guitar. I take lessons once a week. I practice for at least an hour every day. I can now play some popular songs. My teacher says I am improving quickly. I hope to join a band one day. Music is a big passion of mine.",
     "options": [
-      "The speaker practices the guitar once a week.",
-      "The speaker practices the guitar every day.",
-      "The speaker practices the guitar twice a week."
+      "Practices guitar once a week.",
+      "Practices guitar every day.",
+      "Practices guitar twice a week."
     ],
     "correct": 1
   },
@@ -3346,9 +3346,9 @@
     "level": "intermediate",
     "audio_text": "I have been volunteering at a local food bank. I help distribute food to those in need. It is a humbling experience. I have met many kind people there. I believe it is important to give back to the community. I plan to continue volunteering. It makes me feel useful.",
     "options": [
-      "The speaker distributes food at the food bank.",
-      "The speaker cooks food at the food bank.",
-      "The speaker organizes events at the food bank."
+      "Distributes food at food bank.",
+      "Cooks food at food bank.",
+      "Organizes events at food bank."
     ],
     "correct": 0
   },
@@ -3514,9 +3514,9 @@
     "level": "intermediate",
     "audio_text": "I have always wanted to write a book. I have started writing my own novel. It is about a young girl's adventure in a magical world. I write a little bit every day. I hope to finish it next year. I find writing very creative and fulfilling. I am excited to see it completed.",
     "options": [
-      "The speaker is writing about a magical adventure.",
-      "The speaker is writing about history.",
-      "The speaker is writing about science."
+      "Writing a magical adventure.",
+      "Writing about history.",
+      "Writing about science."
     ],
     "correct": 0
   },
