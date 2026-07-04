@@ -264,6 +264,11 @@ async def universal_text_handler(message: Message):
     user_id = message.from_user.id
     user_state = get_user_state(user_id)
 
+    # === НОВАЯ ПРОВЕРКА ===
+    if user_state.get("listening_active", False):
+        return
+    # =====================
+
     # Проверяем, что мы в режиме Speaking, и текст не является служебной кнопкой
     if user_state.get("mode") == "speaking_active":
         if message.text not in ["📊 Я всё! Фидбек", "🏠 Главное меню"]:
