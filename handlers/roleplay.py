@@ -264,24 +264,17 @@ async def universal_text_handler(message: Message):
     user_id = message.from_user.id
     user_state = get_user_state(user_id)
 
-# Проверяем, действительно ли пользователь в режиме Speaking (через FSM)
-from handlers.speaking import SpeakingState  # импортируем состояние
-from aiogram.fsm.storage.base import StorageKey
-
-storage = router.bot.storage  # или ваш storage
-key = StorageKey(bot_id=message.bot.id, chat_id=message.chat.id, user_id=message.from_user.id)
-current_state = await storage.get_state(key)
-
-if current_state and current_state.startswith("SpeakingState"):
-    if message.text not in ["📊 Я всё! Фидбек", "🏠 Главное меню"]:
-        await message.answer(
-            "🎙️ Давайте пообщаемся голосом!\nНажмите на значок микрофона и отправьте голосовое сообщение."
-        )
-        return
+    # Проверяем, что мы в режиме Speaking, и текст не является служебной кнопкой
+    if user_state.get("mode") == "speaking_active":
+        if message.text not in ["📊 Я всё! Фидбек", "🏠 Главное меню"]:
+            await message.answer(
+                "🎙️ Давайте пообщаемся голосом!\nНажмите на значок микрофона и отправьте голосовое сообщение."
+            )
+            return
 
     print(f"[DEBUG] universal_text_handler: text={message.text}, lesson_qa_active={user_state.get('lesson_qa', {}).get('active')}")
 
-        # 0. Обработка ответов в режиме практики (текст)
+    # 0. Обработка ответов в режиме практики (текст)
     if user_state.get("practice_lesson_key"):
         from handlers.lessons import show_practice_task, parse_user_answers
         lesson_key = user_state["practice_lesson_key"]
@@ -292,7 +285,6 @@ if current_state and current_state.startswith("SpeakingState"):
         task_idx = practice.get("session_index", 0)
         tasks = practice.get("tasks", [])
         if task_idx >= len(tasks):
-            # Все задания пройдены – завершаем
             await show_practice_task(message, user_id, edit=False)
             return
 
@@ -302,9 +294,7 @@ if current_state and current_state.startswith("SpeakingState"):
             await message.answer("Ошибка: нет подзаданий")
             return
 
-        # Парсим введённые ответы
         user_answers = parse_user_answers(message.text.strip(), len(subtasks))
-        # Дополняем до нужной длины пустыми строками
         while len(user_answers) < len(subtasks):
             user_answers.append("")
 
@@ -322,14 +312,10 @@ if current_state and current_state.startswith("SpeakingState"):
                     "correct": correct
                 })
 
-        # Обновляем прогресс
         practice["session_correct"] += correct_count
         practice["session_index"] += 1
-
-        # **Важно: сохраняем всё состояние пользователя, а не только practice**
         set_user_state(user_id, user_state)
 
-        # Отправляем результат
         if not wrong_list:
             await message.answer(f"✅ Отлично! Все {len(subtasks)} ответов верны!")
         else:
@@ -338,9 +324,9 @@ if current_state and current_state.startswith("SpeakingState"):
                 summary += f"• {w['question']}\n   Ваш ответ: {w['your']} → правильно: {w['correct']}\n\n"
             await message.answer(summary)
 
-        # Показываем следующее задание (или завершение, если все пройдены)
         await show_practice_task(message, user_id, edit=False)
         return
+
     # 1. Обработка кастомного сценария
     if user_state.get("awaiting_custom_scenario"):
         user_state["awaiting_custom_scenario"] = False
