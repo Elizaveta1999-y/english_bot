@@ -354,6 +354,7 @@ async def listening_start(event, state: FSMContext):
 @router.callback_query(F.data.startswith("listening_type_"))
 async def type_selected(callback: CallbackQuery, state: FSMContext):
     task_type = callback.data.split("_")[-1]
+    print(f"DEBUG: type_selected task_type={task_type}") 
     await state.update_data({"task_type": task_type})
     text = "Выберите уровень сложности:"
     await callback.message.edit_text(text, reply_markup=get_levels_keyboard(task_type))
