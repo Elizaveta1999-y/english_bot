@@ -365,16 +365,16 @@
     "type": "truefalse",
     "level": "beginner",
     "audio_text": "My name is John. I am a student. I study at the university. I like my studies. My favorite subject is history.",
-    "statement": "John is a teacher.",
-    "correct": "false"
+    "statement": "John lives in a big city.",
+    "correct": "notstated"
   },
   {
     "id": 1042,
     "type": "truefalse",
     "level": "beginner",
     "audio_text": "I have a cat named Lucy. She is white and fluffy. She sleeps on my bed. She likes to play with balls.",
-    "statement": "The cat's name is Lucy.",
-    "correct": "true"
+    "statement": "The cat likes to eat fish.",
+    "correct": "notstated"
   },
   {
     "id": 1043,
@@ -405,8 +405,8 @@
     "type": "truefalse",
     "level": "beginner",
     "audio_text": "My father is a chef. He cooks in a restaurant. He makes delicious pasta. He works every evening.",
-    "statement": "The father is a chef.",
-    "correct": "true"
+    "statement": "The father works in a hotel.",
+    "correct": "notstated"
   },
   {
     "id": 1047,
@@ -437,8 +437,8 @@
     "type": "truefalse",
     "level": "beginner",
     "audio_text": "My favorite food is chocolate. I eat it every day. I also like ice cream. I have a sweet tooth.",
-    "statement": "The speaker likes chocolate.",
-    "correct": "true"
+    "statement": "The speaker likes candy.",
+    "correct": "notstated"
   },
   {
     "id": 1051,
@@ -461,8 +461,8 @@
     "type": "truefalse",
     "level": "beginner",
     "audio_text": "I have a dog named Rex. He is very big. He likes to play in the garden. He sleeps in the kitchen.",
-    "statement": "The dog's name is Rex.",
-    "correct": "true"
+    "statement": "The dog likes to swim.",
+    "correct": "notstated"
   },
   {
     "id": 1054,
@@ -501,8 +501,8 @@
     "type": "truefalse",
     "level": "beginner",
     "audio_text": "I have a car. It is red. I drive it to work every day. It is very reliable.",
-    "statement": "The car is red.",
-    "correct": "true"
+    "statement": "The car is fast.",
+    "correct": "notstated"
   },
   {
     "id": 1059,
@@ -2085,16 +2085,16 @@
     "type": "truefalse",
     "level": "intermediate",
     "audio_text": "I started learning English when I was ten years old. I took classes at school and watched English movies. I still make some mistakes but I can communicate well. I practice every day with my friends. English is now very useful for my career. I want to improve my writing skills.",
-    "statement": "The speaker started learning English at age ten.",
-    "correct": "true"
+    "statement": "The speaker practices English every day with colleagues.",
+    "correct": "notstated"
   },
   {
     "id": 2047,
     "type": "truefalse",
     "level": "intermediate",
     "audio_text": "I have been to Paris several times. I love the city and its culture. The museums are world-class. I have visited the Louvre twice. I also enjoy the food. I think Paris is the most romantic city in the world. I want to live there one day.",
-    "statement": "The speaker has never been to Paris.",
-    "correct": "false"
+    "statement": "The speaker visited the Eiffel Tower.",
+    "correct": "notstated"
   },
   {
     "id": 2048,
@@ -2117,8 +2117,8 @@
     "type": "truefalse",
     "level": "intermediate",
     "audio_text": "I have always been interested in art. I paint in my free time. My favorite style is impressionism. I have taken several painting classes. I have sold some of my paintings. I dream of having my own exhibition.",
-    "statement": "The speaker's favorite style is impressionism.",
-    "correct": "true"
+    "statement": "The speaker has sold all of their paintings.",
+    "correct": "notstated"
   },
   {
     "id": 2051,
@@ -2149,8 +2149,8 @@
     "type": "truefalse",
     "level": "intermediate",
     "audio_text": "I am studying physics at university. I find it challenging but interesting. I want to become a researcher. I have conducted several experiments. I am particularly interested in quantum mechanics. I plan to continue my studies abroad.",
-    "statement": "The speaker is interested in quantum mechanics.",
-    "correct": "true"
+    "statement": "The speaker has already studied abroad.",
+    "correct": "notstated"
   },
   {
     "id": 2055,
@@ -2173,8 +2173,8 @@
     "type": "truefalse",
     "level": "intermediate",
     "audio_text": "I have a passion for photography. I take my camera everywhere I go. I love capturing moments and emotions. I have won a few photography competitions. I would like to publish a photo book someday.",
-    "statement": "The speaker has won photography competitions.",
-    "correct": "true"
+    "statement": "The speaker wants to publish a novel.",
+    "correct": "notstated"
   },
   {
     "id": 2058,
@@ -2229,8 +2229,8 @@
     "type": "truefalse",
     "level": "intermediate",
     "audio_text": "My cousin is a professional dancer. She performs in a ballet company. She started dancing when she was five. She practices every day. She has performed in many famous theatres.",
-    "statement": "The cousin started dancing at age five.",
-    "correct": "true"
+    "statement": "The cousin has performed in many countries.",
+    "correct": "notstated"
   },
   {
     "id": 2065,
@@ -2269,8 +2269,8 @@
     "type": "truefalse",
     "level": "intermediate",
     "audio_text": "I live in a small apartment in the city center. It is very convenient. I can walk to work and to the shops. There is a park nearby where I like to go for walks. I love the city life.",
-    "statement": "The apartment is in the city center.",
-    "correct": "true"
+    "statement": "The apartment has a garden.",
+    "correct": "notstated"
   },
   {
     "id": 2070,
@@ -2317,8 +2317,8 @@
     "type": "truefalse",
     "level": "intermediate",
     "audio_text": "I have been to Japan twice. I love the culture and the food. I have visited Tokyo and Kyoto. I want to go back again. I also want to learn Japanese.",
-    "statement": "The speaker has been to Japan twice.",
-    "correct": "true"
+    "statement": "The speaker visited Osaka.",
+    "correct": "notstated"
   },
   {
     "id": 2076,
@@ -2365,8 +2365,8 @@
     "type": "truefalse",
     "level": "intermediate",
     "audio_text": "I have a very close relationship with my sister. We talk almost every day. We share secrets and advice. She is my best friend. I can always count on her. She is very supportive and kind. I am lucky to have her.",
-    "statement": "The speaker has a close relationship with her sister.",
-    "correct": "true"
+    "statement": "The speaker's sister lives in another city.",
+    "correct": "notstated"
   },
   {
     "id": 2082,
@@ -2381,8 +2381,8 @@
     "type": "truefalse",
     "level": "intermediate",
     "audio_text": "I am a huge fan of science fiction. I love reading and watching sci-fi. My favorite movie is Star Wars. I have seen it many times. I also like to read sci-fi novels. I find the futuristic ideas fascinating.",
-    "statement": "The speaker's favorite movie is Star Wars.",
-    "correct": "true"
+    "statement": "The speaker also likes to watch superhero movies.",
+    "correct": "notstated"
   },
   {
     "id": 2084,
@@ -3885,39 +3885,39 @@
     "type": "truefalse",
     "level": "expert",
     "audio_text": "The concept of sustainable development is widely promoted as a way to balance economic and environmental goals. It emphasizes meeting present needs without harming future generations. However, critics argue that it is too vague and lacks enforcement mechanisms. There is also debate about whether economic growth and sustainability can be truly compatible. Many countries have adopted sustainable development strategies at the national level. The success of these strategies often depends on political commitment and public support. International cooperation is also essential for addressing global challenges. Yet, progress has been slow in many areas. The future of sustainable development remains uncertain.",
-    "statement": "Sustainable development is universally agreed upon.",
-    "correct": "false"
+    "statement": "Sustainable development strategies have been adopted by many countries.",
+    "correct": "true"
   },
   {
     "id": 3047,
     "type": "truefalse",
     "level": "expert",
     "audio_text": "Artificial intelligence has made significant advancements in various fields over the past decade. It is now used in healthcare for diagnosis and treatment planning. AI also improves efficiency in manufacturing and logistics operations. However, ethical concerns and job displacement are major issues that need attention. Some experts believe AI will lead to mass unemployment in the near future. Others argue that new jobs will be created to replace those lost. The debate on AI's overall impact is ongoing and heated. There is no consensus on how to regulate AI effectively. The future of work will be shaped by these discussions.",
-    "statement": "AI has only positive impacts.",
-    "correct": "false"
+    "statement": "AI is only used in the technology sector.",
+    "correct": "notstated"
   },
   {
     "id": 3048,
     "type": "truefalse",
     "level": "expert",
     "audio_text": "The Great Barrier Reef is one of the most biodiverse ecosystems on the planet. It faces serious threats from climate change and pollution. Coral bleaching is a visible sign of the stress on the reef system. Scientists are working on various restoration projects to help the reef recover. However, the scale of the damage is immense and growing. International cooperation is needed to protect the reef effectively. Many countries have pledged to reduce emissions, but action is slow. The future of the reef is uncertain and depends on global efforts. Without significant change, the reef may not survive.",
-    "statement": "The Great Barrier Reef is not threatened.",
-    "correct": "false"
+    "statement": "Scientists have successfully restored the Great Barrier Reef.",
+    "correct": "notstated"
   },
   {
     "id": 3049,
     "type": "truefalse",
     "level": "expert",
     "audio_text": "Renewable energy sources like solar and wind are becoming more competitive with fossil fuels. They now often cost less than coal and gas in many regions. Many countries are investing heavily in renewable energy infrastructure. However, the transition to a renewable grid requires effective storage solutions. Intermittency remains a significant challenge for wind and solar power. Advances in battery technology are helping to address this issue slowly. Government policies and incentives are also crucial for accelerating adoption. The future of energy is likely to be increasingly renewable. Still, the pace of change varies widely across the globe.",
-    "statement": "Renewable energy is not competitive with fossil fuels.",
-    "correct": "false"
+    "statement": "Solar and wind energy are cheaper than fossil fuels in some regions.",
+    "correct": "true"
   },
   {
     "id": 3050,
     "type": "truefalse",
     "level": "expert",
     "audio_text": "The global economy is highly interconnected through trade and financial flows. This interdependence can be a source of strength and prosperity. However, it also creates vulnerabilities to external shocks and crises. The COVID-19 pandemic highlighted the fragility of global supply chains. There is a growing trend towards protectionism and reshoring in many countries. Some argue that this is necessary for national security. Others believe it will harm economic growth and cooperation. The future of globalization remains uncertain and contested. It is a key issue in international politics.",
-    "statement": "Globalization has no disadvantages.",
+    "statement": "Globalization has only positive effects on the economy.",
     "correct": "false"
   },
   {
@@ -3925,23 +3925,23 @@
     "type": "truefalse",
     "level": "expert",
     "audio_text": "Mental health disorders are a significant public health concern worldwide. They affect people of all ages, genders, and backgrounds. Effective treatments are available for many conditions. However, a large proportion of those affected do not receive adequate care. Stigma and lack of resources are major barriers to accessing treatment. There is increasing awareness of the importance of mental health in society. Governments are allocating more funding to mental health services. But the funding is often insufficient to meet the demand. More investment is urgently needed.",
-    "statement": "Mental health is not a major concern.",
-    "correct": "false"
+    "statement": "Stigma prevents some people from seeking mental health treatment.",
+    "correct": "true"
   },
   {
     "id": 3052,
     "type": "truefalse",
     "level": "expert",
     "audio_text": "Income inequality has been rising in many developed and developing countries. This trend is driven by various factors, including globalization and technological change. The gap between the rich and poor can lead to social unrest and instability. Policies like progressive taxation are often proposed to address this issue. However, political resistance to such measures is strong. There is also debate about the effectiveness of different approaches. Some argue that economic growth will eventually reduce inequality. Others point to the need for direct redistribution. The issue remains highly contentious.",
-    "statement": "Income inequality is decreasing.",
-    "correct": "false"
+    "statement": "Income inequality is a problem only in developing countries.",
+    "correct": "notstated"
   },
   {
     "id": 3053,
     "type": "truefalse",
     "level": "expert",
     "audio_text": "Biodiversity loss is a pressing environmental issue with far-reaching consequences. Species are disappearing at an alarming rate due to human activities. Habitat destruction and climate change are the main drivers of this loss. Protected areas and conservation programs are important tools for preserving biodiversity. However, these efforts are often underfunded and poorly enforced. The loss of biodiversity has serious implications for ecosystem services. It affects food security, water purification, and climate regulation. There is growing recognition of the need to act. But the response so far has been insufficient.",
-    "statement": "Biodiversity is protected and not at risk.",
+    "statement": "Biodiversity loss only affects animals, not humans.",
     "correct": "false"
   },
   {
@@ -3949,55 +3949,55 @@
     "type": "truefalse",
     "level": "expert",
     "audio_text": "Online education has grown significantly in recent years, especially after the pandemic. It offers flexibility and access to a wide range of courses for students worldwide. However, it also poses challenges, such as the lack of social interaction and hands-on experience. Many institutions are now adopting hybrid models that combine online and in-person learning. This approach aims to leverage the benefits of both formats. But ensuring quality and engagement in online courses remains difficult. There are also concerns about the digital divide and equity. The future of education will likely be a blend of different methods. It is clear that online education is here to stay.",
-    "statement": "Online education is without challenges.",
-    "correct": "false"
+    "statement": "Online education is completely replacing traditional education.",
+    "correct": "notstated"
   },
   {
     "id": 3055,
     "type": "truefalse",
     "level": "expert",
     "audio_text": "The circular economy is an alternative to the traditional linear model of production and consumption. It focuses on designing out waste and keeping resources in use for as long as possible. This approach can create economic and environmental benefits simultaneously. However, transitioning to a circular economy requires a systemic shift in business models and consumer behavior. It is not a quick fix but a long-term strategy. Many companies are starting to embrace circular principles. Governments can encourage this transition through regulations and incentives. The potential of the circular economy is significant. But it will take time and effort to realize.",
-    "statement": "The circular economy is easy to implement.",
-    "correct": "false"
+    "statement": "The circular economy is difficult to implement quickly.",
+    "correct": "true"
   },
   {
     "id": 3056,
     "type": "truefalse",
     "level": "expert",
     "audio_text": "The rise of populism in many countries has been a notable political trend in recent years. Populist leaders often appeal to the common people and criticize the elite. They tend to promote nationalist and anti-immigration policies in their campaigns. This can lead to a polarization of society and political institutions. The reasons for the rise of populism are complex and multifaceted. Economic inequality and cultural anxiety are among the key drivers. Some argue that populism is a reaction to globalization and rapid change. It poses a challenge to traditional political parties and their strategies. The long-term impact on democracy remains to be seen.",
-    "statement": "Populism has no impact on democracy.",
-    "correct": "false"
+    "statement": "Populism is caused by economic inequality only.",
+    "correct": "notstated"
   },
   {
     "id": 3057,
     "type": "truefalse",
     "level": "expert",
     "audio_text": "The use of renewable energy sources is essential for reducing carbon emissions globally. Solar, wind, and hydroelectric power are clean and sustainable alternatives to fossil fuels. However, these sources are also intermittent and require effective storage solutions. Advances in battery technology are making energy storage more viable and affordable. Many countries are setting ambitious targets for renewable energy adoption. The transition to a low-carbon economy is a major challenge for all nations. It requires substantial investment and strong policy support from governments. The benefits include cleaner air, energy independence, and job creation. The future energy mix will likely be diverse and complex.",
-    "statement": "Renewable energy has no challenges.",
-    "correct": "false"
+    "statement": "Renewable energy requires effective storage solutions.",
+    "correct": "true"
   },
   {
     "id": 3058,
     "type": "truefalse",
     "level": "expert",
     "audio_text": "The field of robotics has advanced rapidly in recent years. Robots are now used in manufacturing, healthcare, and even warfare. They can perform tasks that are dangerous, repetitive, or impossible for humans to do. However, there are concerns about job displacement and the ethics of autonomous systems. The development of artificial intelligence has further enhanced the capabilities of robots. Some experts predict that robots will soon be integrated into all aspects of daily life. It is important to develop regulations to ensure safe and ethical use. The potential benefits of robotics are enormous, but we must proceed with caution. The future of robotics will be shaped by both technology and policy.",
-    "statement": "Robots have only positive effects.",
-    "correct": "false"
+    "statement": "Robots are currently used in healthcare and manufacturing.",
+    "correct": "true"
   },
   {
     "id": 3059,
     "type": "truefalse",
     "level": "expert",
     "audio_text": "The concept of lifelong learning is becoming increasingly important in today's fast-paced world. Technological advancements and changing job markets require individuals to continuously update their skills. This means that education does not end with formal schooling at all. Lifelong learning can take many forms, including online courses and workshops. It is essential for personal and professional development in modern society. Employers are also recognizing the value of a learning culture within organizations. Governments can support lifelong learning through funding and policies. However, not everyone has equal access to learning opportunities. Addressing this gap is crucial for social equity.",
-    "statement": "Lifelong learning is not important.",
-    "correct": "false"
+    "statement": "Lifelong learning is only important for young people.",
+    "correct": "notstated"
   },
   {
     "id": 3060,
     "type": "truefalse",
     "level": "expert",
     "audio_text": "The issue of food security is a global concern that affects millions of people. With a growing population, it is challenging to produce enough food for everyone worldwide. Climate change and water scarcity further complicate the situation significantly. Innovations in agricultural technology, such as precision farming and genetically modified crops, offer potential solutions to this problem. However, there are debates about the safety and ethics of GMO usage. Reducing food waste is also a critical strategy to improve food security. Consumers can play a role by making sustainable choices in their diets. Governments need to invest in agricultural research and infrastructure development. Achieving food security requires a comprehensive and coordinated approach.",
-    "statement": "Food security is not a global issue.",
+    "statement": "Food security is not affected by climate change.",
     "correct": "false"
   },
   {
@@ -4005,55 +4005,55 @@
     "type": "truefalse",
     "level": "expert",
     "audio_text": "The use of plastic has become a major environmental concern in modern society. Plastic pollution is widespread in oceans, rivers, and even the air we breathe daily. It takes hundreds of years for plastic to decompose naturally in the environment. This pollution harms marine life and ecosystems in many ways. Many countries are introducing bans on single-use plastics to combat this issue. However, alternative materials such as biodegradable plastics are not always effective. Recycling rates remain low due to contamination and lack of infrastructure. Consumers can help by reducing plastic use and supporting sustainable products. The problem of plastic pollution requires a global solution",
-    "statement": "Plastic pollution is not a serious problem.",
-    "correct": "false"
+    "statement": "Single-use plastics have been banned in many countries.",
+    "correct": "true"
   },
   {
     "id": 3062,
     "type": "truefalse",
     "level": "expert",
     "audio_text": "The concept of green finance is gaining importance in the investment world today. It involves directing capital towards sustainable projects and businesses. Green bonds and ESG investing are becoming more popular among investors. Investors are increasingly considering the environmental impact of their investments. This trend is driven by both regulatory pressure and consumer demand. However, there is a need for clear standards to prevent greenwashing practices. Green finance can contribute to climate goals and social progress simultaneously. It also offers competitive returns for investors in the long run. The financial sector has a key role to play in this transition.",
-    "statement": "Green finance is not gaining importance.",
-    "correct": "false"
+    "statement": "Green finance guarantees high returns for investors.",
+    "correct": "notstated"
   },
   {
     "id": 3063,
     "type": "truefalse",
     "level": "expert",
     "audio_text": "The world is experiencing a rapid aging of its population in many countries. This demographic shift has serious implications for healthcare, pensions, and economic growth. Many developed countries are seeing a decline in birth rates and an increase in life expectancy. This means a smaller workforce will have to support a larger retired population. Governments are exploring various policies to address this demographic challenge. Raising the retirement age and encouraging immigration are among the options considered. Technology can also help by increasing productivity and efficiency. There is also a growing market for elderly care services. The aging population is both a challenge and an opportunity.",
-    "statement": "Aging populations have no implications.",
-    "correct": "false"
+    "statement": "Aging populations are a challenge only in developing countries.",
+    "correct": "notstated"
   },
   {
     "id": 3064,
     "type": "truefalse",
     "level": "expert",
     "audio_text": "The issue of data privacy has become a major concern in the digital age. Companies collect vast amounts of personal data for advertising and other commercial purposes. Consumers are often unaware of how their data is being used by these companies. There are growing calls for stronger data protection laws around the world. The GDPR in Europe is an example of such comprehensive legislation. It gives individuals more control over their personal data. However, enforcement of these laws remains a significant challenge. Data breaches can lead to identity theft and financial loss for individuals. The balance between innovation and privacy is a delicate one.",
-    "statement": "Data privacy is not a concern.",
-    "correct": "false"
+    "statement": "Data privacy is a concern for both individuals and companies.",
+    "correct": "notstated"
   },
   {
     "id": 3065,
     "type": "truefalse",
     "level": "expert",
     "audio_text": "The use of drones has expanded beyond military applications to civilian uses. They are now used for delivery, photography, agriculture, and surveillance. Drones can access areas that are difficult or dangerous for humans. However, there are privacy and safety concerns associated with their use. Regulations are being developed to manage drone flights safely. The technology is becoming more affordable and accessible to the public. The future of drones is likely to include autonomous fleets and smart city integration. It is an exciting field with many possibilities ahead. But we must ensure that drones are used ethically and responsibly.",
-    "statement": "Drones have no privacy concerns.",
-    "correct": "false"
+    "statement": "Drones can be dangerous and invade privacy.",
+    "correct": "true"
   },
   {
     "id": 3066,
     "type": "truefalse",
     "level": "expert",
     "audio_text": "The concept of universal basic income (UBI) has been debated as a solution to job displacement by automation. Under UBI, every citizen receives a regular, unconditional sum of money. Proponents argue that it reduces poverty and provides financial security for all. Critics say it is too expensive and could discourage people from working. Several pilot programs have been conducted with mixed results around the world. UBI is often discussed in the context of technological unemployment. It could be one way to distribute the benefits of AI and robotics. However, there are many questions about its implementation. It remains a controversial but intriguing idea.",
-    "statement": "UBI has no disadvantages.",
-    "correct": "false"
+    "statement": "UBI has been proven to work in all pilot programs.",
+    "correct": "notstated"
   },
   {
     "id": 3067,
     "type": "truefalse",
     "level": "expert",
     "audio_text": "The field of epigenetics is revealing how environment and lifestyle can affect gene expression. Epigenetic changes can be passed on to future generations in some cases. This has important implications for health and disease prevention. Factors such as diet, stress, and toxins can alter epigenetic marks. This research is opening up new possibilities for personalized medicine. It also raises ethical questions about inheritance and responsibility. The study of epigenetics is still in its early stages of development. However, it has the potential to revolutionize medicine significantly. Understanding epigenetic mechanisms could lead to better health strategies.",
-    "statement": "Epigenetics does not affect health.",
+    "statement": "Epigenetics has no connection to health and disease.",
     "correct": "false"
   },
   {
@@ -4061,23 +4061,23 @@
     "type": "truefalse",
     "level": "expert",
     "audio_text": "The importance of critical thinking is increasingly recognized in modern education systems. It involves analyzing information objectively and making reasoned judgments. In the age of misinformation, critical thinking is essential for navigating the digital world. Schools are incorporating it into their curricula at all levels. It helps students evaluate evidence and understand different perspectives on issues. Employers also value critical thinking skills in their employees. However, it is not always easy to teach effectively. It requires practice and an open mind to develop fully. Promoting critical thinking is key to creating informed citizens.",
-    "statement": "Critical thinking is not important.",
-    "correct": "false"
+    "statement": "Critical thinking is only useful in academic settings.",
+    "correct": "notstated"
   },
   {
     "id": 3069,
     "type": "truefalse",
     "level": "expert",
     "audio_text": "The issue of antibiotic resistance is a growing threat to public health globally. Overuse of antibiotics in humans and animals has led to resistant bacteria. This makes infections harder to treat and increases mortality rates significantly. Global action is needed to address this urgent problem effectively. This includes reducing the use of antibiotics in agriculture and promoting stewardship in healthcare. Research into new antibiotics is also critical for future health. However, there is a lack of investment in this area of medicine. The problem of antibiotic resistance requires a coordinated response. It is a silent pandemic that we must not ignore.",
-    "statement": "Antibiotic resistance is not a threat.",
-    "correct": "false"
+    "statement": "Antibiotic resistance is a serious global health threat.",
+    "correct": "true"
   },
   {
     "id": 3070,
     "type": "truefalse",
     "level": "expert",
     "audio_text": "The concept of smart cities is becoming a reality with the integration of IoT and AI technologies. Smart cities use technology to improve infrastructure and public services. This includes smart lighting, traffic management, and waste collection systems. Data is collected and analyzed to optimize efficiency and resource use. However, there are concerns about privacy and security in smart cities. The success of smart cities depends on citizen engagement and trust. They can also help reduce environmental impact significantly. The development of smart cities is an ongoing process. It represents a vision of a more connected and sustainable urban life.",
-    "statement": "Smart cities have no challenges.",
+    "statement": "Smart cities have no privacy concerns.",
     "correct": "false"
   },
   {
@@ -4085,7 +4085,7 @@
     "type": "truefalse",
     "level": "expert",
     "audio_text": "The role of women in leadership has been a topic of increasing discussion worldwide. Despite progress, women are still underrepresented in senior positions. This is often due to unconscious bias and structural barriers in organizations. Companies are recognizing the value of diversity in decision-making processes. Many are implementing policies to promote gender balance and inclusion. Mentorship and sponsorship programs can help women advance in their careers. However, cultural change is also needed to achieve true equality. The benefits of gender diversity are well-documented in research. It is not just a matter of fairness, but also of performance.",
-    "statement": "Women are fully represented in leadership.",
+    "statement": "Women have achieved full equality in the workplace.",
     "correct": "false"
   },
   {
@@ -4093,79 +4093,79 @@
     "type": "truefalse",
     "level": "expert",
     "audio_text": "The issue of water scarcity is becoming more acute in many regions around the world. Climate change and population growth are putting pressure on water resources. Agriculture is the largest consumer of water globally. There is a need for more efficient irrigation and farming practices. Desalination is an option, but it is expensive and energy-intensive. Recycling and rainwater harvesting are also important solutions. Governments need to invest in water infrastructure and management. Conservation efforts can make a significant difference in water use. Access to clean water is a basic human right that must be protected.",
-    "statement": "Water scarcity is not a problem.",
-    "correct": "false"
+    "statement": "Agriculture is the biggest user of water worldwide.",
+    "correct": "true"
   },
   {
     "id": 3073,
     "type": "truefalse",
     "level": "expert",
     "audio_text": "The concept of social entrepreneurship is gaining popularity as a way to solve social problems. Social entrepreneurs aim to solve social issues through business models. They combine profit with purpose in their ventures. This approach can be more sustainable than traditional charity models. Social enterprises operate in various sectors, including education and healthcare. They often use innovative approaches to address challenges. However, they face difficulties in scaling and financing their operations. Impact investing is supporting this movement financially. The potential of social entrepreneurship is significant for social change.",
-    "statement": "Social entrepreneurship is not effective.",
-    "correct": "false"
+    "statement": "Social entrepreneurship is only about making profit.",
+    "correct": "notstated"
   },
   {
     "id": 3074,
     "type": "truefalse",
     "level": "expert",
     "audio_text": "The development of vaccines has been one of the greatest achievements in modern medicine. Vaccines have eradicated diseases like smallpox and polio. They have dramatically reduced child mortality worldwide. However, vaccine hesitancy remains a significant challenge in many communities. Misinformation and distrust are major obstacles to vaccination efforts. Public health campaigns are needed to build trust in vaccines. Scientific research continues to improve vaccine effectiveness and safety. The COVID-19 pandemic showed the importance of rapid vaccine development. Global cooperation is key to ensuring equitable vaccine access.",
-    "statement": "Vaccines have no challenges.",
-    "correct": "false"
+    "statement": "Vaccines have completely eliminated all diseases.",
+    "correct": "notstated"
   },
   {
     "id": 3075,
     "type": "truefalse",
     "level": "expert",
     "audio_text": "The role of the media in a democratic society is crucial for informed citizenship. It informs citizens and holds power accountable through investigation. However, the media landscape is changing rapidly in the digital age. Social media and online platforms have disrupted traditional media models. This has led to a rise in misinformation and fake news. Media literacy is essential for consumers of news today. Journalism must maintain high ethical standards and integrity. The financial sustainability of quality journalism is a concern. The future of democracy depends on a robust and free press.",
-    "statement": "Media has no role in democracy.",
-    "correct": "false"
+    "statement": "The media plays a crucial role in democracy.",
+    "correct": "true"
   },
   {
     "id": 3076,
     "type": "truefalse",
     "level": "expert",
     "audio_text": "The issue of affordable housing is a growing concern in many cities around the world. Rapid urbanization and rising property prices make housing unaffordable for many people. This can lead to homelessness and social exclusion in communities. Governments are exploring various solutions, including rent control and housing subsidies. Community land trusts and cooperative housing are also alternatives worth considering. Investment in public housing is needed to address the crisis. However, political will is often lacking for these measures. The housing crisis affects not only the poor but also the middle class. It is a complex problem that requires long-term planning and commitment.",
-    "statement": "Affordable housing is not a problem.",
-    "correct": "false"
+    "statement": "The housing crisis only affects poor people.",
+    "correct": "notstated"
   },
   {
     "id": 3077,
     "type": "truefalse",
     "level": "expert",
     "audio_text": "The concept of emotional intelligence (EQ) has become important in the workplace. It includes self-awareness, empathy, and social skills. Research shows that EQ is a better predictor of success than IQ in many cases. Leaders with high EQ can inspire and motivate their teams effectively. Organizations are incorporating EQ into their training programs for employees. Developing EQ takes time and self-reflection. It also helps in personal relationships and communication. Emotional intelligence is a skill that can be learned and improved. It is a key component of effective collaboration and leadership.",
-    "statement": "Emotional intelligence is not useful.",
-    "correct": "false"
+    "statement": "Emotional intelligence is more important than IQ for success.",
+    "correct": "true"
   },
   {
     "id": 3078,
     "type": "truefalse",
     "level": "expert",
     "audio_text": "The importance of early childhood education is widely recognized by educators and policymakers. The early years are critical for brain development and learning. Quality education can have a lasting impact on children's lives and future success. It can reduce inequality and improve social mobility for disadvantaged groups. However, access to quality early education is not universal. There are disparities based on income and location in many countries. Investment in early childhood programs is essential for long-term benefits. This includes training teachers and supporting families with resources. The benefits of early education extend to society as a whole.",
-    "statement": "Early childhood education is not important.",
-    "correct": "false"
+    "statement": "Early childhood education is only important for children from wealthy families.",
+    "correct": "notstated"
   },
   {
     "id": 3079,
     "type": "truefalse",
     "level": "expert",
     "audio_text": "The issue of nuclear proliferation remains a serious international security concern. The spread of nuclear weapons increases the risk of conflict and instability. International treaties like the NPT aim to limit proliferation and promote disarmament. However, enforcement of these treaties is challenging in practice. Diplomacy and sanctions are tools used to address violations by states. There is also a need for global cooperation on disarmament efforts. The consequences of nuclear war would be catastrophic for humanity. It is crucial to work towards a world without nuclear weapons. Public awareness and advocacy can support these diplomatic efforts.",
-    "statement": "Nuclear proliferation is not a concern.",
-    "correct": "false"
+    "statement": "Nuclear weapons increase the risk of international conflict.",
+    "correct": "true"
   },
   {
     "id": 3080,
     "type": "truefalse",
     "level": "expert",
     "audio_text": "The role of art in society is often underestimated and undervalued. Art can challenge perspectives and inspire social change. It reflects and shapes culture in meaningful ways. Art can also promote empathy and understanding among different groups. However, funding for the arts is often cut during economic downturns. The value of art is not always recognized in economic terms. Art education is important for fostering creativity and innovation. Artists contribute to a vibrant and healthy society. We need to support and celebrate the arts as a necessity.",
-    "statement": "Art is not important for society.",
-    "correct": "false"
+    "statement": "Art is only about entertainment.",
+    "correct": "notstated"
   },
   {
     "id": 3081,
     "type": "truefalse",
     "level": "expert",
     "audio_text": "The concept of the sharing economy has transformed various industries in recent years. Companies like Uber and Airbnb are examples of this model. It allows people to share resources and services efficiently. However, there are concerns about regulation and workers' rights in this sector. The sharing economy can reduce costs and increase convenience for consumers. But it also disrupts traditional industries and jobs. There is ongoing debate about how to regulate these platforms fairly. The future of the sharing economy depends on finding a balance. It is a significant shift in how we consume goods and services.",
-    "statement": "The sharing economy has no challenges.",
+    "statement": "The sharing economy has no negative effects.",
     "correct": "false"
   },
   {
@@ -4173,7 +4173,7 @@
     "type": "truefalse",
     "level": "expert",
     "audio_text": "The issue of gender equality in the workplace has gained attention in recent decades. Women have made significant strides in many professions. However, the gender pay gap persists in many industries. Women are also underrepresented in leadership roles. Companies are implementing diversity and inclusion programs to address this. Mentorship and sponsorship can help women advance in their careers. Cultural change is also needed to eliminate bias and stereotypes. The benefits of gender diversity are well-documented in research. Achieving true equality requires sustained effort and commitment.",
-    "statement": "Gender equality has been fully achieved.",
+    "statement": "Gender pay gap no longer exists in any industry.",
     "correct": "false"
   },
   {
@@ -4181,24 +4181,24 @@
     "type": "truefalse",
     "level": "expert",
     "audio_text": "The use of renewable energy has increased significantly in the last decade. Solar and wind power are now cheaper than fossil fuels in many places. Many countries have set ambitious renewable energy targets. However, there are still challenges, such as grid integration and storage. The transition to a renewable energy system requires investment and innovation. Governments and businesses are working together to accelerate this transition. The benefits include cleaner air and reduced greenhouse gas emissions. The future of energy is likely to be dominated by renewables. Still, the pace of change varies across regions.",
-    "statement": "Renewable energy is not growing.",
-    "correct": "false"
+    "statement": "Renewable energy has become cheaper than fossil fuels in some regions.",
+    "correct": "true"
   },
   {
     "id": 3084,
     "type": "truefalse",
     "level": "expert",
     "audio_text": "The concept of sustainable agriculture is gaining traction as a response to environmental concerns. It focuses on farming practices that are environmentally friendly and socially responsible. Sustainable agriculture can reduce the environmental impact of food production. It also supports biodiversity and soil health. However, transitioning to sustainable methods can be challenging for farmers. There is a need for education and financial support for this transition. Consumers can also contribute by choosing sustainably produced food. The future of food production depends on adopting sustainable practices. It is a necessary shift for the health of the planet.",
-    "statement": "Sustainable agriculture is not important.",
-    "correct": "false"
+    "statement": "Sustainable agriculture is only about reducing costs.",
+    "correct": "notstated"
   },
   {
     "id": 3085,
     "type": "truefalse",
     "level": "expert",
     "audio_text": "The issue of digital divide refers to the gap between those who have access to technology and those who do not. This divide affects education, employment, and social participation. It is particularly pronounced in developing countries and rural areas. Bridging the digital divide is essential for inclusive growth. Governments and organizations are working to expand internet access and digital literacy. However, progress has been slow in some regions. The COVID-19 pandemic highlighted the importance of digital access for remote work and education. Addressing the digital divide is a matter of equity and opportunity. It is a key priority for sustainable development.",
-    "statement": "The digital divide is not a problem.",
-    "correct": "false"
+    "statement": "The digital divide is more severe in rural and developing areas.",
+    "correct": "true"
   },
   {
     "id": 3086,
