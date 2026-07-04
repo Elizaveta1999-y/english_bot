@@ -9,6 +9,15 @@ from aiogram.filters import Command
 from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import State, StatesGroup
 import redis.asyncio as redis
+from datetime import datetime
+
+WELCOME_MESSAGES = [
+    "<b>🎧 Аудирование</b>\n\nУмение понимать английскую речь на слух — ключевой навык для общения. Регулярная практика поможет привыкнуть к темпу, акцентам и живой интонации.\n\nВыберите тип задания и уровень — и тренируйтесь в удобном темпе.",
+    "<b>🎧 Аудирование</b>\n\nИсследования показывают: 30 минут практики в день заметно улучшают понимание речи на слух уже через месяц.\n\nВаш мозг привыкает быстрее, чем вы думаете.\n\nГотовы начать?",
+    "<b>🎧 Аудирование</b>\n\nТренируйте восприятие речи на слух. Выбирайте тип задания и уровень, отвечайте на вопросы — и следите за прогрессом.\n\nПриступим?",
+    "<b>🎧 Аудирование</b>\n\nГоворят, что понять английскую речь сложно, только пока не привыкнешь. А привыкнуть можно только практикой.\n\nВыбирайте задание, слушайте, отвечайте — и скоро начнете понимать больше обычного.",
+    "<b>🎧 Аудирование</b>\n\nПонимание речи на слух — навык, который развивается только практикой. Чем чаще вы слушаете, тем легче становится.\n\nПопробуйте начать с коротких заданий — даже 5 минут в день дают результат."
+]
 
 router = Router()
 logger = logging.getLogger(__name__)
@@ -310,15 +319,16 @@ async def listening_text_middleware(call: types.Message, event: types.Message, d
     return await call(event, data)
 
 # ---------- Хендлеры кнопок ----------
+
 @router.callback_query(F.data == "start_listening")
 @router.message(Command("listening"))
 async def listening_start(event, state: FSMContext):
     await state.clear()
-    text = "🎧 Аудирование\nВыберите тип задания:"
+    text = await get_welcome_message()  # <-- вот здесь
     if isinstance(event, Message):
-        await event.answer(text, reply_markup=get_types_keyboard())
+        await event.answer(text, reply_markup=get_types_keyboard(), parse_mode="Markdown")
     else:
-        await event.message.edit_text(text, reply_markup=get_types_keyboard())
+        await event.message.edit_text(text, reply_markup=get_types_keyboard(), parse_mode="Markdown")
         await event.answer()
 
 @router.callback_query(F.data.startswith("listening_type_"))
