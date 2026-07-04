@@ -367,6 +367,7 @@ async def level_selected(callback: CallbackQuery, state: FSMContext):
     user_id = callback.from_user.id
 
     tasks = get_tasks_by_type_and_level(task_type, level)
+    print(f"DEBUG: level_selected task_type={task_type}, level={level}, tasks={len(tasks)}")
     if not tasks:
         await callback.answer("Нет заданий для этого типа и уровня.", show_alert=True)
         return
