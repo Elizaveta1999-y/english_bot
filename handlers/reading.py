@@ -53,7 +53,7 @@ TYPE_MAP = {
 LEVEL_MAP = {
     "beginner": "Новичок",
     "intermediate": "Любитель",
-    "expert": "Эсперт"
+    "expert": "Эксперт"   # исправлено (было "Эсперт")
 }
 
 # -------------------- Клавиатуры --------------------
@@ -136,7 +136,7 @@ def build_task_message(task, type_key: str, level_key: str, index: int, paragrap
 @router.callback_query(F.data == "start_reading")
 async def start_reading(callback: CallbackQuery):
     """Показывает приветственное сообщение и список типов."""
-    global_idx = await get_global_welcome_index()  # синхронная функция, без await
+    global_idx = await get_global_welcome_index()  # добавлен await
     welcome_text = READING_WELCOME_MESSAGES[global_idx]
     await callback.message.edit_text(welcome_text, reply_markup=get_type_choice_keyboard(), parse_mode="HTML")
     await callback.answer()
@@ -154,7 +154,6 @@ async def choose_type(callback: CallbackQuery):
     if type_key == "random":
         all_types = ["podbor", "truefalse", "choice", "fill", "match", "order"]
         type_key = random.choice(all_types)
-    # Сохраняем тип в состоянии? Пока просто показываем уровни.
     await callback.message.edit_text(
         f"Выбран тип: {TYPE_KEYS.get(type_key, type_key)}\nВыберите уровень:",
         reply_markup=get_level_keyboard(type_key),
@@ -182,14 +181,14 @@ async def choose_level(callback: CallbackQuery, state: FSMContext):
     type_json = TYPE_MAP.get(type_key, type_key)
     level_json = LEVEL_MAP.get(level_short, level_short)
 
-    # Получаем индекс прогресса
-    index = get_user_progress(user_id, type_json, level_json)
+    # Получаем индекс прогресса (асинхронно)
+    index = await get_user_progress(user_id, type_json, level_json)
     task = get_task(type_json, level_json, index)
 
     # Если заданий нет — сбрасываем на 0 и пробуем ещё раз
     if not task:
         index = 0
-        set_user_progress(user_id, type_json, level_json, index)
+        await set_user_progress(user_id, type_json, level_json, index)
         task = get_task(type_json, level_json, index)
         if not task:
             await callback.message.edit_text(
@@ -273,7 +272,7 @@ async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
         return
 
     correct = (chosen_idx == task["correct"])
-    update_user_stats(user_id, type_key, level_key, correct)  # синхронная
+    await update_user_stats(user_id, type_key, level_key, correct)  # добавлен await
 
     if correct:
         await callback.answer("✅ Правильно!", show_alert=False)
@@ -295,7 +294,7 @@ async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
             )
             return
 
-    set_user_progress(user_id, type_key, level_key, next_index)
+    await set_user_progress(user_id, type_key, level_key, next_index)  # добавлен await
     await state.update_data(index=next_index, paragraph_idx=0)
 
     text, keyboard = build_task_message(next_task, type_key, level_key, next_index, paragraph_idx=0)
@@ -340,7 +339,7 @@ async def handle_text_answer(message: Message, state: FSMContext):
         correct = (user_clean == correct_clean)
 
     user_id = message.from_user.id
-    update_user_stats(user_id, type_key, level_key, correct)  # синхронная
+    await update_user_stats(user_id, type_key, level_key, correct)  # добавлен await
 
     if correct:
         await message.answer("✅ Правильно!")
@@ -358,7 +357,7 @@ async def handle_text_answer(message: Message, state: FSMContext):
             await state.clear()
             return
 
-    set_user_progress(user_id, type_key, level_key, next_index)
+    await set_user_progress(user_id, type_key, level_key, next_index)  # добавлен await
     await state.update_data(index=next_index, paragraph_idx=0)
 
     text, keyboard = build_task_message(next_task, type_key, level_key, next_index, paragraph_idx=0)
@@ -394,7 +393,7 @@ async def finish_session(callback: CallbackQuery, state: FSMContext):
     level_key = data.get("level_key")
 
     if type_key and level_key:
-        correct, wrong = get_user_stats(callback.from_user.id, type_key, level_key)
+        correct, wrong = await get_user_stats(callback.from_user.id, type_key, level_key)  # добавлен await
         total = correct + wrong
         if total == 0:
             text = "Сессия завершена!\nВы не ответили ни на одно задание."
