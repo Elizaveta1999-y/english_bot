@@ -1,64 +1,49 @@
 import os
-import redis
+import json
+import redis.asyncio as redis
 
-# Переменные окружения (должны быть заданы на Render)
-REDIS_HOST = os.getenv("REDIS_HOST", "localhost")
-REDIS_PORT = int(os.getenv("REDIS_PORT", 6379))
-REDIS_PASSWORD = os.getenv("REDIS_PASSWORD", None)
-REDIS_DB = int(os.getenv("REDIS_DB", 0))
+REDIS_URL = os.getenv("REDIS_URL", "redis://localhost:6379")
 
-# Создаём подключение с параметрами
-r = redis.Redis(
-    host=REDIS_HOST,
-    port=REDIS_PORT,
-    password=REDIS_PASSWORD,
-    db=REDIS_DB,
-    decode_responses=True,
-    socket_connect_timeout=5,   # таймаут, чтобы не висеть
-    socket_timeout=5
-)
+async def get_redis():
+    return redis.from_url(REDIS_URL, decode_responses=True)
 
-# --- Ваши существующие функции (без изменений) ---
+# ---------- Приветственные сообщения (глобальный индекс) ----------
+async def get_global_welcome_index() -> int:
+    r = await get_redis()
+    val = await r.get("reading_welcome_global_index")
+    return int(val) if val else 0
 
-def get_global_welcome_index():
-    idx = r.get("reading_welcome_global_index")
-    if idx is None:
-        idx = 0
-        r.set("reading_welcome_global_index", idx)
-    return int(idx)
+async def increment_global_welcome_index():
+    r = await get_redis()
+    await r.incr("reading_welcome_global_index")
 
-def increment_global_welcome_index():
-    idx = get_global_welcome_index()
-    idx = (idx + 1) % 5
-    r.set("reading_welcome_global_index", idx)
-    return idx
-
-def get_user_progress(user_id: int, type_key: str, level_key: str):
+# ---------- Прогресс пользователя ----------
+async def get_user_progress(user_id: int, type_key: str, level_key: str) -> int:
+    r = await get_redis()
     key = f"reading_progress:{user_id}:{type_key}:{level_key}"
-    val = r.get(key)
-    if val is None:
-        return 0
-    return int(val)
+    val = await r.get(key)
+    return int(val) if val else 0
 
-def set_user_progress(user_id: int, type_key: str, level_key: str, index: int):
+async def set_user_progress(user_id: int, type_key: str, level_key: str, index: int):
+    r = await get_redis()
     key = f"reading_progress:{user_id}:{type_key}:{level_key}"
-    r.set(key, index)
+    await r.set(key, str(index))
 
-def get_user_stats(user_id: int, type_key: str, level_key: str):
-    correct_key = f"reading_correct:{user_id}:{type_key}:{level_key}"
-    wrong_key = f"reading_wrong:{user_id}:{type_key}:{level_key}"
-    correct = int(r.get(correct_key) or 0)
-    wrong = int(r.get(wrong_key) or 0)
-    return correct, wrong
+async def reset_user_progress(user_id: int, type_key: str, level_key: str):
+    r = await get_redis()
+    key = f"reading_progress:{user_id}:{type_key}:{level_key}"
+    await r.delete(key)
 
-def update_user_stats(user_id: int, type_key: str, level_key: str, correct: bool):
-    if correct:
-        key = f"reading_correct:{user_id}:{type_key}:{level_key}"
-    else:
-        key = f"reading_wrong:{user_id}:{type_key}:{level_key}"
-    r.incr(key)
+# ---------- Статистика пользователя (правильные/неправильные ответы) ----------
+async def get_user_stats(user_id: int, type_key: str, level_key: str) -> tuple:
+    r = await get_redis()
+    key_correct = f"reading_stats:{user_id}:{type_key}:{level_key}:correct"
+    key_wrong = f"reading_stats:{user_id}:{type_key}:{level_key}:wrong"
+    correct = await r.get(key_correct)
+    wrong = await r.get(key_wrong)
+    return int(correct) if correct else 0, int(wrong) if wrong else 0
 
-def reset_user_progress(user_id: int, type_key: str, level_key: str):
-    r.delete(f"reading_progress:{user_id}:{type_key}:{level_key}")
-    r.delete(f"reading_correct:{user_id}:{type_key}:{level_key}")
-    r.delete(f"reading_wrong:{user_id}:{type_key}:{level_key}")
+async def update_user_stats(user_id: int, type_key: str, level_key: str, correct: bool):
+    r = await get_redis()
+    key = f"reading_stats:{user_id}:{type_key}:{level_key}:{'correct' if correct else 'wrong'}"
+    await r.incr(key)
