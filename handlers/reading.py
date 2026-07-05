@@ -9,24 +9,24 @@ from utils.redis_utils import (
     get_user_progress,
     set_user_progress,
     get_user_stats,
-    update_user_stats
+    update_user_stats,
+    reset_user_progress
 )
 from states.reading_states import ReadingStates
 
 logger = logging.getLogger(__name__)
 router = Router()
 
-# -------------------- Приветственные сообщения --------------------
+# -------------------- Приветственные сообщения (с 📖) --------------------
 READING_WELCOME_MESSAGES = [
-    "<b>Чтение</b>\n\n<i>Чтение — это ключ к расширению словарного запаса и пониманию структур языка. Регулярно читайте тексты разного уровня и учитесь выделять главное.</i>\n\nВыберите тип задания и уровень — и тренируйтесь в удобном темпе.",
-    "<b>Чтение</b>\n\n<i>Умение быстро читать и понимать текст пригодится в любом контексте: от экзаменов до работы. Начните с коротких текстов и постепенно увеличивайте сложность.</i>\n\nГотовы попробовать?",
-    "<b>Чтение</b>\n\n<i>Чтение на английском — это не только полезно, но и увлекательно. Выбирайте задания, которые вам интересны, и прокачивайте навык.</i>\n\nКакой тип выберете сегодня?",
-    "<b>Чтение</b>\n\n<i>Навык чтения включает в себя понимание деталей, поиск информации и интерпретацию текста. Тренируйте все аспекты с нашими заданиями.</i>\n\nПриступим?",
-    "<b>Чтение</b>\n\n<i>Читайте, анализируйте, отвечайте на вопросы — и вы заметите, как тексты становятся понятнее с каждым разом.</i>\n\nВыберите задание и уровень."
+    "<b>📖 Чтение</b>\n\n<i>Чтение — это ключ к расширению словарного запаса и пониманию структур языка. Регулярно читайте тексты разного уровня и учитесь выделять главное.</i>\n\nВыберите тип задания и уровень — и тренируйтесь в удобном темпе.",
+    "<b>📖 Чтение</b>\n\n<i>Умение быстро читать и понимать текст пригодится в любом контексте: от экзаменов до работы. Начните с коротких текстов и постепенно увеличивайте сложность.</i>\n\nГотовы попробовать?",
+    "<b>📖 Чтение</b>\n\n<i>Чтение на английском — это не только полезно, но и увлекательно. Выбирайте задания, которые вам интересны, и прокачивайте навык.</i>\n\nКакой тип выберете сегодня?",
+    "<b>📖 Чтение</b>\n\n<i>Навык чтения включает в себя понимание деталей, поиск информации и интерпретацию текста. Тренируйте все аспекты с нашими заданиями.</i>\n\nПриступим?",
+    "<b>📖 Чтение</b>\n\n<i>Читайте, анализируйте, отвечайте на вопросы — и вы заметите, как тексты становятся понятнее с каждым разом.</i>\n\nВыберите задание и уровень."
 ]
 
 # -------------------- Маппинг типов и уровней --------------------
-# Короткий ключ -> отображаемое имя (для кнопок)
 TYPE_DISPLAY = {
     "podbor": "🥈 Подбор заголовка",
     "truefalse": "⚖️ True/False/Not stated",
@@ -37,7 +37,6 @@ TYPE_DISPLAY = {
     "random": "🎲 Случайный тип"
 }
 
-# Короткий -> полный русский ключ для JSON
 TYPE_MAP = {
     "podbor": "Подбор_заголовка",
     "truefalse": "True_False_Not_stated",
@@ -47,21 +46,10 @@ TYPE_MAP = {
     "order": "Восстановление_порядка_абзацев"
 }
 
-# Короткий -> полный русский уровень для JSON
 LEVEL_MAP = {
     "beginner": "Новичок",
     "intermediate": "Любитель",
     "expert": "Эксперт"
-}
-
-# Для отображения в прогресс-сообщении (можно взять из TYPE_DISPLAY)
-DISPLAY_NAMES = {
-    "Подбор_заголовка": "🥈 Подбор заголовка",
-    "True_False_Not_stated": "⚖️ True/False/Not stated",
-    "Вопросы_с_выбором_ответа": "☑️ Вопросы с выбором ответа",
-    "Заполнение_пропусков": "🔄 Заполнение пропусков",
-    "Соотношение_слова_с_определением": "🟰 Соотношение слова с определением",
-    "Восстановление_порядка_абзацев": "📄 Восстановление порядка абзацев"
 }
 
 # -------------------- Клавиатуры --------------------
@@ -73,11 +61,11 @@ def get_type_choice_keyboard():
     return InlineKeyboardMarkup(inline_keyboard=buttons)
 
 def get_level_keyboard(short_type: str):
-    # Смайлики как на скриншоте: 🌱 Новичок, 🔥 Любитель, ⚡ Эксперт
+    # Без смайликов, только текст (как на скриншоте)
     buttons = [
-        [InlineKeyboardButton(text="🌱 Новичок", callback_data=f"reading_level:{short_type}:beginner")],
-        [InlineKeyboardButton(text="🔥 Любитель", callback_data=f"reading_level:{short_type}:intermediate")],
-        [InlineKeyboardButton(text="⚡ Эксперт", callback_data=f"reading_level:{short_type}:expert")],
+        [InlineKeyboardButton(text="Новичок", callback_data=f"reading_level:{short_type}:beginner")],
+        [InlineKeyboardButton(text="Любитель", callback_data=f"reading_level:{short_type}:intermediate")],
+        [InlineKeyboardButton(text="Эксперт", callback_data=f"reading_level:{short_type}:expert")],
         [InlineKeyboardButton(text="🔙 Назад", callback_data="reading_back_to_types")]
     ]
     return InlineKeyboardMarkup(inline_keyboard=buttons)
@@ -92,13 +80,19 @@ def get_action_keyboard(short_type: str, short_level: str, index: int):
     ]
     return InlineKeyboardMarkup(inline_keyboard=buttons)
 
-# -------------------- Формирование сообщения с заданием --------------------
+def get_progress_keyboard():
+    """Клавиатура для сообщения с прогрессом: две кнопки в столбик."""
+    buttons = [
+        [InlineKeyboardButton(text="Работа над ошибками", callback_data="reading_revision")],
+        [InlineKeyboardButton(text="Сбросить прогресс", callback_data="reading_reset")]
+    ]
+    return InlineKeyboardMarkup(inline_keyboard=buttons)
+
+# -------------------- Формирование сообщения с заданием (карточка) --------------------
 async def render_task_message(user_id: int, short_type: str, short_level: str, index: int, paragraph_idx: int = 0):
     """
-    Возвращает (текст, клавиатура) для полного сообщения.
-    Все callback_data используют короткие ключи (short_type, short_level).
+    Возвращает (текст, клавиатура) для карточки задания (без прогресса).
     """
-    # Получаем полные русские ключи для JSON
     type_json = TYPE_MAP.get(short_type, short_type)
     level_json = LEVEL_MAP.get(short_level, short_level)
 
@@ -106,25 +100,15 @@ async def render_task_message(user_id: int, short_type: str, short_level: str, i
     if not task:
         return None, None
 
-    # Статистика
-    correct, wrong = await get_user_stats(user_id, type_json, level_json)
-
-    # Заголовок и прогресс
-    display_name = TYPE_DISPLAY.get(short_type, short_type)
-    text = f"<b>Режим: {display_name}</b>\n\n"
-    text += "Внимательно прочитайте текст и выполните задание.\n\n"
-    text += f"Ваш прогресс:\n"
-    text += f"✔️ Правильно: {correct}\n"
-    text += f"✖️ Ошибок: {wrong}\n\n"
-    text += "/revision_mode — работа над ошибками\n"
-    text += "/reset_progress — сбросить прогресс\n\n"
-
     # Тело задания (абзацы, вопрос)
     paragraphs = task.get("paragraphs", [])
     if not paragraphs or paragraph_idx >= len(paragraphs):
         paragraph_idx = 0
     current_paragraph = paragraphs[paragraph_idx]
 
+    # Отображаемое имя типа
+    display_name = TYPE_DISPLAY.get(short_type, short_type)
+    text = f"<b>Режим: {display_name}</b>\n\n"
     text += f"<i>{current_paragraph}</i>\n\n"
     text += f"<b>{task.get('question', '')}</b>\n\n"
 
@@ -158,6 +142,29 @@ async def render_task_message(user_id: int, short_type: str, short_level: str, i
         keyboard = InlineKeyboardMarkup(inline_keyboard=new_kb)
 
     return text, keyboard
+
+# -------------------- Сообщение с прогрессом (отдельно) --------------------
+async def send_progress_message(callback: CallbackQuery, short_type: str, short_level: str):
+    """
+    Отправляет отдельное сообщение с прогрессом и кнопками.
+    """
+    user_id = callback.from_user.id
+    type_json = TYPE_MAP.get(short_type, short_type)
+    level_json = LEVEL_MAP.get(short_level, short_level)
+
+    correct, wrong = await get_user_stats(user_id, type_json, level_json)
+    display_name = TYPE_DISPLAY.get(short_type, short_type)
+
+    text = f"<b>Режим: {display_name}</b>\n\n"
+    text += "Внимательно прочитайте текст и выполните задание.\n\n"
+    text += f"Ваш прогресс:\n"
+    text += f"☑ Правильно: {correct}\n"
+    text += f"✖ Ошибок: {wrong}\n\n"
+    text += "/revision_mode — работа над ошибками\n"
+    text += "/reset_progress — сбросить прогресс"
+
+    # Отправляем новое сообщение (не редактируем текущее, чтобы сохранить меню выбора уровня)
+    await callback.message.answer(text, reply_markup=get_progress_keyboard(), parse_mode="HTML")
 
 # -------------------- Обработчики --------------------
 @router.callback_query(F.data == "start_reading")
@@ -200,7 +207,6 @@ async def choose_level(callback: CallbackQuery, state: FSMContext):
     _, short_type, short_level = callback.data.split(":")
     user_id = callback.from_user.id
 
-    # Получаем полные русские ключи
     type_json = TYPE_MAP.get(short_type, short_type)
     level_json = LEVEL_MAP.get(short_level, short_level)
 
@@ -216,7 +222,7 @@ async def choose_level(callback: CallbackQuery, state: FSMContext):
             await callback.answer()
             return
 
-    # Сохраняем в FSM короткие ключи (для callback_data) и полные для задания
+    # Сохраняем в FSM короткие ключи
     await state.update_data(
         short_type=short_type,
         short_level=short_level,
@@ -226,10 +232,13 @@ async def choose_level(callback: CallbackQuery, state: FSMContext):
         paragraph_idx=0
     )
 
-    # Генерируем полное сообщение
+    # 1. Отправляем сообщение с прогрессом (отдельное)
+    await send_progress_message(callback, short_type, short_level)
+
+    # 2. Отправляем карточку с заданием (отдельное сообщение)
     text, keyboard = await render_task_message(user_id, short_type, short_level, index, paragraph_idx=0)
     if text is None:
-        await callback.message.edit_text("Ошибка загрузки задания.")
+        await callback.message.answer("Ошибка загрузки задания.")
         await callback.answer()
         return
 
@@ -239,7 +248,7 @@ async def choose_level(callback: CallbackQuery, state: FSMContext):
     else:
         await state.set_state(None)
 
-    await callback.message.edit_text(text, reply_markup=keyboard, parse_mode="HTML")
+    await callback.message.answer(text, reply_markup=keyboard, parse_mode="HTML")
     await callback.answer()
 
 @router.callback_query(F.data.startswith("reading_next_para:"))
@@ -249,7 +258,6 @@ async def next_paragraph(callback: CallbackQuery, state: FSMContext):
     curr_para = int(curr_para_str)
     user_id = callback.from_user.id
 
-    # Получаем полные ключи из состояния
     data = await state.get_data()
     type_json = data.get("type_json")
     level_json = data.get("level_json")
@@ -411,7 +419,6 @@ async def handle_text_answer(message: Message, state: FSMContext):
 async def show_answer(callback: CallbackQuery):
     _, short_type, short_level, index_str = callback.data.split(":")
     index = int(index_str)
-    # Получаем полные ключи из состояния
     data = await callback.state.get_data()
     type_json = data.get("type_json")
     level_json = data.get("level_json")
@@ -448,31 +455,9 @@ async def finish_session(callback: CallbackQuery, state: FSMContext):
     else:
         text = "Сессия завершена!"
 
-    # Сразу показываем главное меню
-    from .start import show_main_menu
-    await show_main_menu(callback.message, edit=True)
-    # Можно также отправить отдельное сообщение со статистикой, но лучше заменить текущее
-    # Но мы уже заменили на меню, поэтому статистика потеряется.
-    # По вашему требованию: при нажатии "Завершить" выводится статистика и сразу главное меню.
-    # Значит, сначала показываем статистику, потом через секунду меню? Или сразу меню + статистика в одном?
-    # У вас сказано: "при нажатии завершить выводится статистика и НИКАКОЙ КНОПКИ В МЕНЮ А СРАЗУ ВЫВОДИТСЯ ГЛАВНОЕ МЕНЮ".
-    # Это можно сделать так: отправить новое сообщение со статистикой, а затем вызвать show_main_menu для редактирования предыдущего?
-    # Но мы редактируем текущее сообщение. Лучше показать статистику в этом же сообщении, а затем показать меню.
-    # Так как мы редактируем, можно сначала отредактировать на статистику, а затем через 1-2 сек показать меню – но это неудобно.
-    # Вариант: показываем статистику, а под ней кнопку "В меню" (которую вы не хотите). Но вы сказали "без кнопки, сразу главное меню".
-    # Значит, после статистики мы должны перейти на главное меню. Можно сделать так: отредактировать сообщение на статистику, а затем сразу же вызвать show_main_menu для этого же сообщения (заменить текст и клавиатуру на меню).
-    # В итоге пользователь увидит статистику, но она мгновенно сменится меню – это не очень хорошо.
-    # Лучше показать статистику, а под ней кнопку "В меню", но вы сказали без кнопки.
-    # Тогда можно отправить новое сообщение со статистикой, а предыдущее отредактировать на меню.
-    # Но это сложно. Я предлагаю: при завершении сессии отправляем новое сообщение со статистикой, а предыдущее (с заданием) удаляем или редактируем на меню.
-    # Однако проще: отредактировать текущее сообщение на статистику, и добавить кнопку "В меню" (это стандартно). Но вы настаиваете на "сразу главное меню".
-    # Ок, тогда сделаем так: после получения статистики, мы вызываем show_main_menu для этого же сообщения (т.е. заменяем на главное меню). Статистика при этом будет потеряна.
-    # Чтобы пользователь увидел статистику, можем отправить всплывающее уведомление (callback.answer) с краткой статистикой, а сообщение заменить на меню.
-    # Так и сделаем.
-
-    # Отправим всплывающее уведомление со статистикой
+    # Показываем статистику во всплывающем уведомлении и сразу переходим в главное меню
     await callback.answer(text, show_alert=True)
-    # Затем показываем главное меню
+    from .start import show_main_menu
     await show_main_menu(callback.message, edit=True)
     await state.clear()
     await callback.answer()
@@ -480,3 +465,23 @@ async def finish_session(callback: CallbackQuery, state: FSMContext):
 @router.callback_query(F.data == "ignore")
 async def ignore_callback(callback: CallbackQuery):
     await callback.answer()
+
+# -------------------- Заглушки для кнопок "Работа над ошибками" и "Сбросить прогресс" --------------------
+@router.callback_query(F.data == "reading_revision")
+async def reading_revision(callback: CallbackQuery):
+    await callback.answer("Функция в разработке", show_alert=True)
+
+@router.callback_query(F.data == "reading_reset")
+async def reading_reset(callback: CallbackQuery, state: FSMContext):
+    # Сброс прогресса для текущего типа/уровня
+    data = await state.get_data()
+    type_json = data.get("type_json")
+    level_json = data.get("level_json")
+    user_id = callback.from_user.id
+    if type_json and level_json:
+        await reset_user_progress(user_id, type_json, level_json)
+        await callback.answer("Прогресс сброшен!", show_alert=True)
+        # Обновляем сообщение с прогрессом (можно переотправить)
+        await send_progress_message(callback, data.get("short_type"), data.get("short_level"))
+    else:
+        await callback.answer("Не удалось сбросить прогресс", show_alert=True)
