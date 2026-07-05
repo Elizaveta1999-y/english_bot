@@ -9,6 +9,7 @@ from utils.redis_utils import (
 )
 from states.reading_states import ReadingStates
 import re
+import random
 
 router = Router()
 
@@ -21,25 +22,33 @@ READING_WELCOME_MESSAGES = [
     "<b>📖 Чтение</b>\n\n<i>Читайте, анализируйте, отвечайте на вопросы — и вы заметите, как тексты становятся понятнее с каждым разом.</i>\n\nВыберите задание и уровень."
 ]
 
+# -------------------- Словарь соответствий для callback_data --------------------
+TYPE_KEYS = {
+    "podbor": "Подбор заголовка",
+    "truefalse": "True/False/Not stated",
+    "choice": "Вопросы с выбором ответа",
+    "fill": "Заполнение пропусков",
+    "match": "Соотношение слова с определением",
+    "order": "Восстановление порядка абзацев",
+    "random": "Случайный тип"
+}
+
+# Обратное соответствие (для отображения)
+TYPE_NAMES = {v: k for k, v in TYPE_KEYS.items()}
+
 # -------------------- Вспомогательные функции --------------------
 def get_type_choice_keyboard():
-    buttons = [
-        [InlineKeyboardButton(text="🥈 Подбор заголовка", callback_data="reading_type:Подбор_заголовка")],
-        [InlineKeyboardButton(text="⚖️ True/False/Not stated", callback_data="reading_type:True_False_Not_stated")],
-        [InlineKeyboardButton(text="☑️ Вопросы с выбором ответа", callback_data="reading_type:Вопросы_с_выбором_ответа")],
-        [InlineKeyboardButton(text="🔄 Заполнение пропусков", callback_data="reading_type:Заполнение_пропусков")],
-        [InlineKeyboardButton(text="🟰 Соотношение слова с определением", callback_data="reading_type:Соотношение_слова_с_определением")],
-        [InlineKeyboardButton(text="📄 Восстановление порядка абзацев", callback_data="reading_type:Восстановление_порядка_абзацев")],
-        [InlineKeyboardButton(text="🎲 Случайный тип", callback_data="reading_type:Случайный_тип")],
-        [InlineKeyboardButton(text="🔙 Назад", callback_data="reading_back_to_main")]
-    ]
+    buttons = []
+    for key, label in TYPE_KEYS.items():
+        buttons.append([InlineKeyboardButton(text=label, callback_data=f"reading_type:{key}")])
+    buttons.append([InlineKeyboardButton(text="🔙 Назад", callback_data="reading_back_to_main")])
     return InlineKeyboardMarkup(inline_keyboard=buttons)
 
 def get_level_keyboard(type_key: str):
     buttons = [
-        [InlineKeyboardButton(text="🌱 Новичок", callback_data=f"reading_level:{type_key}:Новичок")],
-        [InlineKeyboardButton(text="🔥 Любитель", callback_data=f"reading_level:{type_key}:Любитель")],
-        [InlineKeyboardButton(text="⚡ Эксперт", callback_data=f"reading_level:{type_key}:Эксперт")],
+        [InlineKeyboardButton(text="🌱 Новичок", callback_data=f"reading_level:{type_key}:beginner")],
+        [InlineKeyboardButton(text="🔥 Любитель", callback_data=f"reading_level:{type_key}:intermediate")],
+        [InlineKeyboardButton(text="⚡ Эксперт", callback_data=f"reading_level:{type_key}:expert")],
         [InlineKeyboardButton(text="🔙 Назад", callback_data="reading_back_to_types")]
     ]
     return InlineKeyboardMarkup(inline_keyboard=buttons)
@@ -68,7 +77,8 @@ def build_task_message(task, type_key: str, level_key: str, index: int, paragrap
         paragraph_idx = 0
     current_paragraph = paragraphs[paragraph_idx]
     
-    text = f"<b>Режим: {type_key}</b>\n\n"
+    type_display = TYPE_KEYS.get(type_key, type_key)
+    text = f"<b>Режим: {type_display}</b>\n\n"
     text += f"<i>{current_paragraph}</i>\n\n"
     text += f"<b>{task.get('question', '')}</b>\n\n"
     
@@ -102,7 +112,6 @@ def build_task_message(task, type_key: str, level_key: str, index: int, paragrap
 # -------------------- Обработчики --------------------
 @router.callback_query(F.data == "start_reading")
 async def start_reading(callback: CallbackQuery):
-    # ИСПРАВЛЕНО: добавлен await
     global_idx = await get_global_welcome_index()
     welcome_text = READING_WELCOME_MESSAGES[global_idx]
     await callback.message.edit_text(welcome_text, reply_markup=get_type_choice_keyboard(), parse_mode="HTML")
@@ -117,12 +126,10 @@ async def back_to_main(callback: CallbackQuery):
 @router.callback_query(F.data.startswith("reading_type:"))
 async def choose_type(callback: CallbackQuery):
     type_key = callback.data.split(":", 1)[1]
-    if type_key == "Случайный_тип":
-        import random
-        all_types = ["Подбор_заголовка", "True_False_Not_stated", "Вопросы_с_выбором_ответа", 
-                     "Заполнение_пропусков", "Соотношение_слова_с_определением", "Восстановление_порядка_абзацев"]
+    if type_key == "random":
+        all_types = ["podbor", "truefalse", "choice", "fill", "match", "order"]
         type_key = random.choice(all_types)
-    await callback.message.edit_text(f"Выбран тип: {type_key}\nВыберите уровень:", reply_markup=get_level_keyboard(type_key), parse_mode="HTML")
+    await callback.message.edit_text(f"Выбран тип: {TYPE_KEYS.get(type_key, type_key)}\nВыберите уровень:", reply_markup=get_level_keyboard(type_key), parse_mode="HTML")
     await callback.answer()
 
 @router.callback_query(F.data == "reading_back_to_types")
@@ -134,7 +141,6 @@ async def back_to_types(callback: CallbackQuery):
 async def choose_level(callback: CallbackQuery, state: FSMContext):
     _, type_key, level_key = callback.data.split(":")
     user_id = callback.from_user.id
-    # ИСПРАВЛЕНО: добавлен await
     index = await get_user_progress(user_id, type_key, level_key)
     task = get_task(type_key, level_key, index)
     if not task:
