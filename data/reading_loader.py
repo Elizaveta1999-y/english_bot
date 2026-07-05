@@ -23,3 +23,9 @@ def get_task(type_key: str, level_key: str, index: int):
     if index < 0 or index >= len(level_data):
         return None
     return level_data[index]
+
+def load_tasks():
+    with open(TASKS_FILE, "r", encoding="utf-8") as f:
+        data = json.load(f)
+        print("DEBUG: loaded reading_tasks.json, keys:", list(data.keys()))
+        return data
