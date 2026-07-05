@@ -487,7 +487,6 @@ async def revision_mode(callback: CallbackQuery, state: FSMContext):
         await callback.answer("Сначала выберите тип и уровень в режиме аудирования.", show_alert=True)
         return
 
-    # Устанавливаем флаг
     user_state = get_user_state(user_id)
     user_state["listening_active"] = True
     set_user_state(user_id, user_state)
@@ -509,12 +508,12 @@ async def revision_mode(callback: CallbackQuery, state: FSMContext):
         msg_ids = data.get("message_ids", [])
         msg_ids.append(msg.message_id)
         await state.update_data({"message_ids": msg_ids})
-        # Сбрасываем флаг, так как ошибок нет, выходим из режима
         user_state = get_user_state(user_id)
         user_state["listening_active"] = False
         set_user_state(user_id, user_state)
     else:
-await send_task(callback.message, state, is_revision=True, task_type=task_type, level=level, error_ids=error_ids)
+        # ВАЖНО: эта строка должна иметь отступ (4 пробела) относительно else
+        await send_task(callback.message, state, is_revision=True, task_type=task_type, level=level, error_ids=error_ids)
     await callback.answer()
 
 @router.callback_query(F.data == "listening_reset_errors")
