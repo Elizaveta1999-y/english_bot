@@ -4,79 +4,29 @@
       {
         "id": 0,
         "paragraphs": [
-          "Многие люди любят путешествовать. Они посещают новые страны, знакомятся с культурой и пробуют местную еду.",
-          "Путешествия расширяют кругозор и помогают лучше понять мир. Это отличный способ отдохнуть от работы."
+          "My family is small. There are four people: my mother, father, brother and me. We live in a nice house near the park.",
+          "My mother is a teacher. She works at a primary school. My father is an engineer. He works at a big factory.",
+          "My brother is a student at the university. He studies history. I am a school student. I am 12 years old.",
+          "In the evening we like to have dinner together. We talk about our day and share news."
         ],
-        "question": "Какой заголовок лучше всего подходит к тексту?",
-        "options": ["Польза путешествий", "Вред путешествий", "Как выбрать отель", "Еда в путешествиях"],
+        "question": "What is the best title for this text?",
+        "options": ["My Family", "My City", "My School", "My Hobbies"],
         "correct": 0,
-        "explanation": "Текст говорит о преимуществах путешествий, поэтому заголовок «Польза путешествий» самый подходящий.",
+        "explanation": "The text describes the family members, their jobs and daily life together. The best title is 'My Family'.",
         "input_type": "buttons"
       },
       {
         "id": 1,
         "paragraphs": [
-          "Здоровое питание важно для каждого человека. Оно даёт энергию и помогает чувствовать себя лучше.",
-          "Фрукты и овощи должны быть в рационе каждый день."
+          "I have many hobbies. I like reading books and drawing pictures. Adventure stories are my favourite.",
+          "Drawing is my second hobby. I draw landscapes and portraits. My friends say I am good at it.",
+          "At weekends my family and I go to the park or cinema. Sometimes I play football with my friends.",
+          "Sport is also important for me. I believe it helps to stay healthy and strong."
         ],
-        "question": "Выберите подходящий заголовок:",
-        "options": ["Как похудеть", "Польза здоровой еды", "Любимые блюда", "Витамины в аптеке"],
-        "correct": 1,
-        "explanation": "В тексте говорится о важности здорового питания, значит «Польза здоровой еды» — правильный ответ.",
-        "input_type": "buttons"
-      }
-    ],
-    "Любитель": [
-      {
-        "id": 0,
-        "paragraphs": [
-          "Современные технологии меняют способ общения. Социальные сети позволяют нам оставаться на связи с друзьями по всему миру.",
-          "Однако они также могут вызывать зависимость и снижать качество реального общения. Важно находить баланс."
-        ],
-        "question": "Выберите заголовок, отражающий главную мысль:",
-        "options": ["Влияние соцсетей", "История интернета", "Технологии будущего", "Общение без границ"],
+        "question": "What is the best title for this text?",
+        "options": ["My Hobbies and Free Time", "My Family", "My Books", "My Friends"],
         "correct": 0,
-        "explanation": "Текст обсуждает плюсы и минусы соцсетей, значит «Влияние соцсетей» — точный заголовок.",
-        "input_type": "buttons"
-      },
-      {
-        "id": 1,
-        "paragraphs": [
-          "Чтение книг развивает воображение и расширяет словарный запас. Это один из лучших способов учить иностранный язык.",
-          "Современные люди всё меньше читают, предпочитая видео и аудио. Но книга даёт глубокое погружение в материал."
-        ],
-        "question": "Какой заголовок подходит к тексту?",
-        "options": ["Почему книги важны", "Современные медиа", "Как учить языки", "Книги или видео"],
-        "correct": 0,
-        "explanation": "Текст подчёркивает ценность чтения, поэтому «Почему книги важны» — верный заголовок.",
-        "input_type": "buttons"
-      }
-    ],
-    "Эксперт": [
-      {
-        "id": 0,
-        "paragraphs": [
-          "Искусственный интеллект проникает во все сферы жизни. В медицине он помогает ставить диагнозы, в образовании — адаптировать обучение под ученика.",
-          "Однако этические вопросы остаются открытыми: как гарантировать безопасность и приватность данных?",
-          "Общество должно активно участвовать в обсуждении этих проблем, чтобы ИИ работал на благо человечества."
-        ],
-        "question": "Какое заглавие наиболее точно отражает содержание текста?",
-        "options": ["Этика ИИ", "Будущее медицины", "Образование и технологии", "Проблемы автоматизации"],
-        "correct": 0,
-        "explanation": "Текст поднимает этические вопросы внедрения ИИ, поэтому «Этика ИИ» — правильный выбор.",
-        "input_type": "buttons"
-      },
-      {
-        "id": 1,
-        "paragraphs": [
-          "Глобальное потепление — одна из главных угроз современности. Учёные предупреждают о необратимых изменениях климата.",
-          "Основные причины — выбросы парниковых газов и вырубка лесов. Снижение углеродного следа требует совместных усилий всех стран.",
-          "Переход на возобновляемые источники энергии и озеленение городов могут замедлить этот процесс."
-        ],
-        "question": "Выберите наиболее точный заголовок:",
-        "options": ["Причины и решения глобального потепления", "Будущее планеты", "Влияние человека на климат", "Экологические катастрофы"],
-        "correct": 0,
-        "explanation": "Текст описывает причины и возможные решения, поэтому первый вариант — лучший.",
+        "explanation": "The text talks about hobbies (reading, drawing), weekends and sports. The best title is 'My Hobbies and Free Time'.",
         "input_type": "buttons"
       }
     ]
@@ -87,75 +37,27 @@
       {
         "id": 0,
         "paragraphs": [
-          "Собаки — лучшие друзья человека. Они верны и преданны. Многие люди держат собак как домашних питомцев."
+          "London is the capital of the United Kingdom. It is a very big and old city. Many tourists visit London every year.",
+          "The River Thames flows through the city. The weather in London is often rainy. People use the underground trains.",
+          "Big Ben is a famous clock tower in London. It is one of the symbols of the city."
         ],
-        "question": "Утверждение: «Собаки живут дольше кошек».",
+        "question": "Statement: 'The weather in London is always sunny.'",
+        "options": ["True", "False", "Not stated"],
+        "correct": 1,
+        "explanation": "The text says 'The weather in London is often rainy.' So the statement is False.",
+        "input_type": "buttons"
+      },
+      {
+        "id": 1,
+        "paragraphs": [
+          "Cats and dogs are the most popular pets in the world. Many people keep them at home.",
+          "Cats are usually independent animals. Dogs are very loyal and friendly. Both animals need care and love.",
+          "Dogs need regular walks. Cats like to stay indoors. They are very clean animals."
+        ],
+        "question": "Statement: 'Dogs and cats can live together peacefully.'",
         "options": ["True", "False", "Not stated"],
         "correct": 2,
-        "explanation": "В тексте не говорится о продолжительности жизни собак и кошек, поэтому «Not stated».",
-        "input_type": "buttons"
-      },
-      {
-        "id": 1,
-        "paragraphs": [
-          "В Лондоне часто идёт дождь. Летом температура обычно не поднимается выше 25 градусов. Зимой бывает снег."
-        ],
-        "question": "Утверждение: «Летом в Лондоне жарко».",
-        "options": ["True", "False", "Not stated"],
-        "correct": 1,
-        "explanation": "В тексте сказано, что температура летом не поднимается выше 25°, поэтому «жарко» — это False.",
-        "input_type": "buttons"
-      }
-    ],
-    "Любитель": [
-      {
-        "id": 0,
-        "paragraphs": [
-          "Кофе содержит кофеин, который бодрит. Однако чрезмерное употребление может вызвать бессонницу и учащённое сердцебиение.",
-          "Умеренное потребление (2–3 чашки в день) считается безопасным для большинства людей."
-        ],
-        "question": "Утверждение: «Кофе всегда полезен для здоровья».",
-        "options": ["True", "False", "Not stated"],
-        "correct": 1,
-        "explanation": "В тексте указано, что чрезмерное употребление вредно, поэтому утверждение неверно (False).",
-        "input_type": "buttons"
-      },
-      {
-        "id": 1,
-        "paragraphs": [
-          "Великая китайская стена была построена для защиты от набегов кочевников. Её длина превышает 20 000 километров.",
-          "Сегодня это одна из самых популярных достопримечательностей Китая."
-        ],
-        "question": "Утверждение: «Великая китайская стена видна из космоса».",
-        "options": ["True", "False", "Not stated"],
-        "correct": 2,
-        "explanation": "В тексте нет информации о том, видна ли стена из космоса, поэтому «Not stated».",
-        "input_type": "buttons"
-      }
-    ],
-    "Эксперт": [
-      {
-        "id": 0,
-        "paragraphs": [
-          "Исследования показывают, что медитация снижает уровень стресса и улучшает концентрацию. Регулярная практика изменяет структуру мозга.",
-          "Однако эффект заметен только при систематическом подходе. Единичные сеансы мало влияют на психоэмоциональное состояние."
-        ],
-        "question": "Утверждение: «Однократная медитация сразу улучшает память».",
-        "options": ["True", "False", "Not stated"],
-        "correct": 1,
-        "explanation": "В тексте сказано, что эффект заметен только при регулярной практике, поэтому утверждение False.",
-        "input_type": "buttons"
-      },
-      {
-        "id": 1,
-        "paragraphs": [
-          "Экономика развитых стран зависит от сферы услуг. В США, например, более 70% ВВП приходится на услуги.",
-          "Промышленность и сельское хозяйство занимают меньшую долю, но остаются важными для экономической стабильности."
-        ],
-        "question": "Утверждение: «В США промышленность приносит больше ВВП, чем услуги».",
-        "options": ["True", "False", "Not stated"],
-        "correct": 1,
-        "explanation": "В тексте сказано, что 70% ВВП — это услуги, значит промышленность даёт меньше, утверждение False.",
+        "explanation": "The text does not mention whether dogs and cats can live together. So the answer is 'Not stated'.",
         "input_type": "buttons"
       }
     ]
@@ -166,75 +68,28 @@
       {
         "id": 0,
         "paragraphs": [
-          "Анна учится в университете. Она изучает биологию и хочет стать врачом. В свободное время она играет в теннис."
+          "Anna is a student. She studies biology at the university. She wants to become a doctor.",
+          "In her free time Anna plays tennis. She also likes to read books about nature.",
+          "Anna lives near the university. She walks to her classes every day."
         ],
-        "question": "Кем хочет стать Анна?",
-        "options": ["Инженером", "Врачом", "Учителем", "Программистом"],
-        "correct": 1,
-        "explanation": "В тексте сказано: «она хочет стать врачом».",
-        "input_type": "buttons"
-      },
-      {
-        "id": 1,
-        "paragraphs": [
-          "Мой брат живёт в Лондоне. Он работает в IT-компании. Каждое утро он ездит на работу на велосипеде."
-        ],
-        "question": "Как брат добирается до работы?",
-        "options": ["На автобусе", "На машине", "На велосипеде", "Пешком"],
+        "question": "What does Anna want to become?",
+        "options": ["An engineer", "A teacher", "A doctor", "A scientist"],
         "correct": 2,
-        "explanation": "В тексте прямо сказано: «ездит на работу на велосипеде».",
-        "input_type": "buttons"
-      }
-    ],
-    "Любитель": [
-      {
-        "id": 0,
-        "paragraphs": [
-          "Солнечные панели преобразуют солнечный свет в электричество. Это экологически чистый источник энергии.",
-          "Однако их эффективность зависит от погоды и времени суток. В пасмурную погоду выработка снижается."
-        ],
-        "question": "Почему эффективность солнечных панелей может снижаться?",
-        "options": ["Из-за ветра", "Из-за облачности", "Из-за загрязнения воздуха", "Из-за недостатка места"],
-        "correct": 1,
-        "explanation": "В тексте указано, что эффективность зависит от погоды и в пасмурную погоду снижается.",
+        "explanation": "The text says: 'She wants to become a doctor.'",
         "input_type": "buttons"
       },
       {
         "id": 1,
         "paragraphs": [
-          "Интернет-магазины становятся всё популярнее. Покупатели ценят удобство заказа и доставку на дом.",
-          "Но многие предпочитают традиционные магазины, чтобы видеть товар перед покупкой."
+          "Tom lives in a small town. He works in a local supermarket. Every day he helps customers.",
+          "Tom gets up at 6 o'clock in the morning. He has breakfast and goes to work by bus.",
+          "In the evening Tom reads books or watches TV. He goes to bed at 10 o'clock.",
+          "Tom likes his job. He says it is interesting and fun."
         ],
-        "question": "Что покупатели ценят в интернет-магазинах?",
-        "options": ["Цены", "Удобство и доставку", "Широкий ассортимент", "Качество товара"],
+        "question": "How does Tom go to work?",
+        "options": ["By car", "By bus", "On foot", "By train"],
         "correct": 1,
-        "explanation": "В тексте сказано: «ценят удобство заказа и доставку на дом».",
-        "input_type": "buttons"
-      }
-    ],
-    "Эксперт": [
-      {
-        "id": 0,
-        "paragraphs": [
-          "Глобализация экономики привела к интеграции рынков. Транснациональные корпорации имеют филиалы во многих странах.",
-          "Это усиливает конкуренцию, но также создаёт риски финансовой нестабильности в отдельных регионах."
-        ],
-        "question": "Что, согласно тексту, является следствием глобализации?",
-        "options": ["Рост протекционизма", "Усиление конкуренции", "Уменьшение инвестиций", "Снижение международной торговли"],
-        "correct": 1,
-        "explanation": "В тексте сказано: «это усиливает конкуренцию».",
-        "input_type": "buttons"
-      },
-      {
-        "id": 1,
-        "paragraphs": [
-          "Современные алгоритмы машинного обучения требуют больших объёмов данных. Качество модели напрямую зависит от репрезентативности выборки.",
-          "Недостаток данных или их перекос ведут к снижению точности предсказаний."
-        ],
-        "question": "Что влияет на качество модели машинного обучения?",
-        "options": ["Скорость процессора", "Репрезентативность выборки", "Язык программирования", "Количество разработчиков"],
-        "correct": 1,
-        "explanation": "В тексте сказано: «качество модели напрямую зависит от репрезентативности выборки».",
+        "explanation": "The text says: 'He has breakfast and goes to work by bus.'",
         "input_type": "buttons"
       }
     ]
@@ -246,67 +101,22 @@
         "id": 0,
         "paragraphs": [
           "My name is ___. I am a student. I like to read ___.",
-          "This is my hobby."
+          "This is my hobby. I also like to play ___ games."
         ],
-        "question": "Введите все пропущенные слова в формате: слово1; слово2",
-        "correct": ["Anna", "books"],
-        "explanation": "Правильные слова: Anna, books.",
+        "question": "Enter all missing words in the format: word1; word2; word3",
+        "correct": ["Anna", "books", "computer"],
+        "explanation": "The correct words are: Anna, books, computer.",
         "input_type": "text"
       },
       {
         "id": 1,
         "paragraphs": [
-          "I have a ___ cat. It likes to sleep ___ the sofa."
+          "I have a ___ cat. It likes to sleep ___ the sofa.",
+          "It also likes to drink ___."
         ],
-        "question": "Введите все пропущенные слова в формате: слово1; слово2",
-        "correct": ["black", "on"],
-        "explanation": "Правильные слова: black, on.",
-        "input_type": "text"
-      }
-    ],
-    "Любитель": [
-      {
-        "id": 0,
-        "paragraphs": [
-          "She ___ to the store yesterday and ___ some milk."
-        ],
-        "question": "Введите все пропущенные слова в формате: слово1; слово2",
-        "correct": ["went", "bought"],
-        "explanation": "Правильные глаголы в Past Simple: went, bought.",
-        "input_type": "text"
-      },
-      {
-        "id": 1,
-        "paragraphs": [
-          "If I ___ you, I ___ apply for this job."
-        ],
-        "question": "Введите все пропущенные слова в формате: слово1; слово2",
-        "correct": ["were", "would"],
-        "explanation": "Правильные слова для сослагательного наклонения: were, would.",
-        "input_type": "text"
-      }
-    ],
-    "Эксперт": [
-      {
-        "id": 0,
-        "paragraphs": [
-          "The government has decided to ___ taxes on small businesses to stimulate the economy.",
-          "Many entrepreneurs believe this measure will help them ___ their operations."
-        ],
-        "question": "Введите все пропущенные слова в формате: слово1; слово2",
-        "correct": ["reduce", "expand"],
-        "explanation": "Правильные слова: reduce (снизить), expand (расширить).",
-        "input_type": "text"
-      },
-      {
-        "id": 1,
-        "paragraphs": [
-          "Climate change is ___ the frequency of extreme weather events, such as floods and droughts.",
-          "Scientists urge immediate ___ to mitigate the consequences."
-        ],
-        "question": "Введите все пропущенные слова в формате: слово1; слово2",
-        "correct": ["increasing", "action"],
-        "explanation": "Правильные слова: increasing (увеличивая), action (действия).",
+        "question": "Enter all missing words in the format: word1; word2; word3",
+        "correct": ["black", "on", "milk"],
+        "explanation": "The correct words are: black, on, milk.",
         "input_type": "text"
       }
     ]
@@ -317,71 +127,25 @@
       {
         "id": 0,
         "paragraphs": [
-          "The weather today is cold and windy. People wear warm clothes."
+          "The weather today is cold and windy. People are wearing warm clothes.",
+          "They also take umbrellas because it may rain soon."
         ],
-        "question": "Какое определение соответствует слову 'cold'?",
+        "question": "Which definition matches the word 'cold'?",
         "options": ["hot", "not warm", "rainy", "sunny"],
         "correct": 1,
-        "explanation": "Cold означает «холодный», т.е. «not warm».",
+        "explanation": "'Cold' means 'not warm'.",
         "input_type": "buttons"
       },
       {
         "id": 1,
         "paragraphs": [
-          "She is a very happy person. She always smiles."
+          "She is a very happy girl. She always smiles and laughs.",
+          "Everyone likes to talk to her because she is so friendly."
         ],
-        "question": "Какое определение соответствует слову 'happy'?",
+        "question": "Which definition matches the word 'happy'?",
         "options": ["sad", "angry", "pleased", "tired"],
         "correct": 2,
-        "explanation": "Happy — «счастливый», синоним — pleased.",
-        "input_type": "buttons"
-      }
-    ],
-    "Любитель": [
-      {
-        "id": 0,
-        "paragraphs": [
-          "The ancient city was destroyed by an earthquake. Many buildings collapsed."
-        ],
-        "question": "Какое определение соответствует слову 'ancient'?",
-        "options": ["modern", "very old", "ruined", "large"],
-        "correct": 1,
-        "explanation": "Ancient — «древний», т.е. very old.",
-        "input_type": "buttons"
-      },
-      {
-        "id": 1,
-        "paragraphs": [
-          "He is an ambitious person who always sets high goals."
-        ],
-        "question": "Какое определение соответствует слову 'ambitious'?",
-        "options": ["lazy", "determined", "funny", "quiet"],
-        "correct": 1,
-        "explanation": "Ambitious — «целеустремлённый», т.е. determined.",
-        "input_type": "buttons"
-      }
-    ],
-    "Эксперт": [
-      {
-        "id": 0,
-        "paragraphs": [
-          "The scientist made a groundbreaking discovery in the field of genetics."
-        ],
-        "question": "Какое определение соответствует слову 'groundbreaking'?",
-        "options": ["minor", "revolutionary", "expected", "controversial"],
-        "correct": 1,
-        "explanation": "Groundbreaking — «прорывной, революционный», т.е. revolutionary.",
-        "input_type": "buttons"
-      },
-      {
-        "id": 1,
-        "paragraphs": [
-          "The negotiations between the two countries were conducted in a cordial atmosphere."
-        ],
-        "question": "Какое определение соответствует слову 'cordial'?",
-        "options": ["hostile", "warm", "formal", "tense"],
-        "correct": 1,
-        "explanation": "Cordial — «дружелюбный, тёплый» (warm).",
+        "explanation": "'Happy' means 'pleased' or joyful.",
         "input_type": "buttons"
       }
     ]
@@ -392,77 +156,25 @@
       {
         "id": 0,
         "paragraphs": [
-          "(Абзац 1) He went to the park.",
-          "(Абзац 2) First, he took a bus.",
-          "(Абзац 3) Then he walked home."
+          "(Paragraph 1) He went to the park.",
+          "(Paragraph 2) First, he took a bus.",
+          "(Paragraph 3) Then he walked home."
         ],
-        "question": "Введите правильный порядок абзацев (номера через точку с запятой, например: 2;1;3)",
+        "question": "Enter the correct order of paragraphs (numbers separated by semicolon, e.g. 2;1;3):",
         "correct": "2;1;3",
-        "explanation": "Правильный порядок: 2 (сначала автобус), 1 (пошёл в парк), 3 (затем домой).",
+        "explanation": "Correct order: 2 (first took a bus), 1 (went to the park), 3 (then walked home).",
         "input_type": "text"
       },
       {
         "id": 1,
         "paragraphs": [
-          "(Абзац 1) She opened the book.",
-          "(Абзац 2) She went to the library.",
-          "(Абзац 3) She started reading."
+          "(Paragraph 1) She opened the book.",
+          "(Paragraph 2) She went to the library.",
+          "(Paragraph 3) She started reading."
         ],
-        "question": "Введите правильный порядок абзацев (номера через точку с запятой):",
+        "question": "Enter the correct order of paragraphs (numbers separated by semicolon):",
         "correct": "2;1;3",
-        "explanation": "Сначала она пошла в библиотеку (2), затем открыла книгу (1), потом начала читать (3).",
-        "input_type": "text"
-      }
-    ],
-    "Любитель": [
-      {
-        "id": 0,
-        "paragraphs": [
-          "(Абзац 1) Finally, they reached the summit and celebrated.",
-          "(Абзац 2) They started their climb early in the morning.",
-          "(Абзац 3) The weather was perfect for hiking."
-        ],
-        "question": "Введите правильный порядок абзацев (номера через точку с запятой):",
-        "correct": "3;2;1",
-        "explanation": "Сначала описание погоды (3), затем начало восхождения (2), затем финал (1).",
-        "input_type": "text"
-      },
-      {
-        "id": 1,
-        "paragraphs": [
-          "(Абзац 1) As a result, the team decided to postpone the project.",
-          "(Абзац 2) The budget was cut unexpectedly.",
-          "(Абзац 3) They needed more time to find new funding."
-        ],
-        "question": "Введите правильный порядок абзацев (номера через точку с запятой):",
-        "correct": "2;1;3",
-        "explanation": "Сначала бюджет был сокращён (2), затем как результат — перенос проекта (1), и потом нужда в новом финансировании (3).",
-        "input_type": "text"
-      }
-    ],
-    "Эксперт": [
-      {
-        "id": 0,
-        "paragraphs": [
-          "(Абзац 1) Consequently, the new policy was implemented across all departments.",
-          "(Абзац 2) The board of directors approved the proposal after extensive debate.",
-          "(Абзац 3) It aimed to improve transparency and efficiency."
-        ],
-        "question": "Введите правильный порядок абзацев (номера через точку с запятой):",
-        "correct": "2;3;1",
-        "explanation": "Сначала совет утвердил предложение (2), затем цель (3), затем результат внедрения (1).",
-        "input_type": "text"
-      },
-      {
-        "id": 1,
-        "paragraphs": [
-          "(Абзац 1) This led to a significant increase in productivity.",
-          "(Абзац 2) The company introduced flexible working hours.",
-          "(Абзац 3) Employees were able to manage their time more effectively."
-        ],
-        "question": "Введите правильный порядок абзацев (номера через точку с запятой):",
-        "correct": "2;3;1",
-        "explanation": "Сначала компания ввела гибкий график (2), затем сотрудники смогли эффективнее управлять временем (3), что привело к росту продуктивности (1).",
+        "explanation": "Correct order: 2 (went to the library), 1 (opened the book), 3 (started reading).",
         "input_type": "text"
       }
     ]
