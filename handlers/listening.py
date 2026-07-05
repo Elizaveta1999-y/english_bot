@@ -260,15 +260,13 @@ async def send_task(message: Message, state: FSMContext, is_revision=False, task
     msg_ids = data.get("message_ids", [])
 
     if is_revision:
-if is_revision:
-    if error_ids is None:
-        error_ids = await get_errors(user_id, task_type, level)
-    if not error_ids:
-        msg = await message.answer("🎉 Ошибок нет! Вы всё исправили.")
+        if error_ids is None:
+            error_ids = await get_errors(user_id, task_type, level)
+        if not error_ids:
+            msg = await message.answer("🎉 Ошибок нет! Вы всё исправили.")
             msg_ids.append(msg.message_id)
             await state.update_data({"message_ids": msg_ids})
             await state.set_state(ListeningState.choosing_type)
-            # Сбрасываем флаг, так как выходим из режима исправления
             user_state = get_user_state(user_id)
             user_state["listening_active"] = False
             set_user_state(user_id, user_state)
