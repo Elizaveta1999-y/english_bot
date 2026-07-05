@@ -250,7 +250,7 @@ def normalize_text_answer(answer: str) -> str:
     return ' '.join(answer.strip().lower().split())
 
 # ---------- Отправка задания ----------
-async def send_task(message: Message, state: FSMContext, is_revision=False, task_type=None, level=None):
+async def send_task(message: Message, state: FSMContext, is_revision=False, task_type=None, level=None, error_ids=None):
     data = await state.get_data()
     if task_type is None:
         task_type = data["task_type"]
@@ -260,9 +260,11 @@ async def send_task(message: Message, state: FSMContext, is_revision=False, task
     msg_ids = data.get("message_ids", [])
 
     if is_revision:
+if is_revision:
+    if error_ids is None:
         error_ids = await get_errors(user_id, task_type, level)
-        if not error_ids:
-            msg = await message.answer("🎉 Ошибок нет! Вы всё исправили.")
+    if not error_ids:
+        msg = await message.answer("🎉 Ошибок нет! Вы всё исправили.")
             msg_ids.append(msg.message_id)
             await state.update_data({"message_ids": msg_ids})
             await state.set_state(ListeningState.choosing_type)
@@ -514,7 +516,7 @@ async def revision_mode(callback: CallbackQuery, state: FSMContext):
         user_state["listening_active"] = False
         set_user_state(user_id, user_state)
     else:
-        await send_task(callback.message, state, is_revision=True, task_type=task_type, level=level)
+await send_task(callback.message, state, is_revision=True, task_type=task_type, level=level, error_ids=error_ids)
     await callback.answer()
 
 @router.callback_query(F.data == "listening_reset_errors")
