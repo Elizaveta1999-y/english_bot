@@ -24,13 +24,13 @@ READING_WELCOME_MESSAGES = [
 
 # -------------------- Словарь соответствий для callback_data --------------------
 TYPE_KEYS = {
-    "podbor": "Подбор заголовка",
-    "truefalse": "True/False/Not stated",
-    "choice": "Вопросы с выбором ответа",
-    "fill": "Заполнение пропусков",
-    "match": "Соотношение слова с определением",
-    "order": "Восстановление порядка абзацев",
-    "random": "Случайный тип"
+    "podbor": "🥈 Подбор заголовка",
+    "truefalse": "⚖️ True/False/Not stated",
+    "choice": "Во☑️ просы с выбором ответа",
+    "fill": "🔄 Заполнение пропусков",
+    "match": "🟰 Соотношение слова с определением",
+    "order": "📄 Восстановление порядка абзацев",
+    "random": "🎲Случайный тип"
 }
 
 # Обратное соответствие (для отображения)
@@ -47,24 +47,24 @@ def get_type_choice_keyboard():
 def get_level_keyboard(type_key: str):
     buttons = [
         [InlineKeyboardButton(text="🌱 Новичок", callback_data=f"reading_level:{type_key}:beginner")],
-        [InlineKeyboardButton(text="🔥 Любитель", callback_data=f"reading_level:{type_key}:intermediate")],
-        [InlineKeyboardButton(text="⚡ Эксперт", callback_data=f"reading_level:{type_key}:expert")],
+        [InlineKeyboardButton(text="📚 Любитель", callback_data=f"reading_level:{type_key}:intermediate")],
+        [InlineKeyboardButton(text="🎓 Эксперт", callback_data=f"reading_level:{type_key}:expert")],
         [InlineKeyboardButton(text="🔙 Назад", callback_data="reading_back_to_types")]
     ]
     return InlineKeyboardMarkup(inline_keyboard=buttons)
 
 def get_task_keyboard(type_key: str, level_key: str, index: int, total: int):
     buttons = [
-        [InlineKeyboardButton(text="📖 Показать ответ", callback_data=f"reading_show_answer:{type_key}:{level_key}:{index}")],
-        [InlineKeyboardButton(text="❌ Завершить", callback_data="reading_finish_session")],
+        [InlineKeyboardButton(text="Показать ответ", callback_data=f"reading_show_answer:{type_key}:{level_key}:{index}")],
+        [InlineKeyboardButton(text="Завершить", callback_data="reading_finish_session")],
         [InlineKeyboardButton(text="🔙 Выйти", callback_data="reading_back_to_types")]
     ]
     return InlineKeyboardMarkup(inline_keyboard=buttons)
 
 def get_text_input_keyboard(type_key: str, level_key: str, index: int):
     buttons = [
-        [InlineKeyboardButton(text="📖 Показать ответ", callback_data=f"reading_show_answer:{type_key}:{level_key}:{index}")],
-        [InlineKeyboardButton(text="❌ Завершить", callback_data="reading_finish_session")],
+        [InlineKeyboardButton(text="Показать ответ", callback_data=f"reading_show_answer:{type_key}:{level_key}:{index}")],
+        [InlineKeyboardButton(text="Завершить", callback_data="reading_finish_session")],
         [InlineKeyboardButton(text="🔙 Выйти", callback_data="reading_back_to_types")]
     ]
     return InlineKeyboardMarkup(inline_keyboard=buttons)
