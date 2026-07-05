@@ -801,7 +801,7 @@ async def go_to_next_task(message: Message, state: FSMContext):
     user_id = message.from_user.id
 
     if data.get("is_revision", False):
-        await send_task(message, state, is_revision=True, task_type=task_type, level=level)
+        await send_task(message, state, is_revision=True, task_type=task_type, level=level, error_ids=error_ids)
         return
 
     if task_type == "random":
@@ -957,7 +957,7 @@ async def revision_mode_command(message: Message, state: FSMContext):
         user_state["listening_active"] = False
         set_user_state(user_id, user_state)
     else:
-        await send_task(message, state, is_revision=True, task_type=task_type, level=level)
+        await send_task(message, state, is_revision=True, task_type=task_type, level=level, error_ids=error_ids)
 
 
 @router.message(Command("debug_tasks"))
