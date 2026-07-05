@@ -136,7 +136,7 @@ def build_task_message(task, type_key: str, level_key: str, index: int, paragrap
 @router.callback_query(F.data == "start_reading")
 async def start_reading(callback: CallbackQuery):
     """Показывает приветственное сообщение и список типов."""
-    global_idx = get_global_welcome_index()  # синхронная функция, без await
+    global_idx = await get_global_welcome_index()  # синхронная функция, без await
     welcome_text = READING_WELCOME_MESSAGES[global_idx]
     await callback.message.edit_text(welcome_text, reply_markup=get_type_choice_keyboard(), parse_mode="HTML")
     await callback.answer()
