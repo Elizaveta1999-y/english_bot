@@ -17,7 +17,7 @@ from states.reading_states import ReadingStates
 logger = logging.getLogger(__name__)
 router = Router()
 
-# -------------------- Приветственные сообщения (только 📖 в заголовке) --------------------
+# -------------------- Приветственные сообщения --------------------
 READING_WELCOME_MESSAGES = [
     "<b>📖 Чтение</b>\n\n<i>Чтение — это ключ к расширению словарного запаса и пониманию структур языка. Регулярно читайте тексты разного уровня и учитесь выделять главное.</i>\n\nВыберите тип задания и уровень — и тренируйтесь в удобном темпе.",
     "<b>📖 Чтение</b>\n\n<i>Умение быстро читать и понимать текст пригодится в любом контексте: от экзаменов до работы. Начните с коротких текстов и постепенно увеличивайте сложность.</i>\n\nГотовы попробовать?",
@@ -61,7 +61,6 @@ def get_type_choice_keyboard():
     return InlineKeyboardMarkup(inline_keyboard=buttons)
 
 def get_level_keyboard(short_type: str):
-    # Смайлики как на скриншоте: 🌱, 🔥, ⚡
     buttons = [
         [InlineKeyboardButton(text="🌱 Новичок", callback_data=f"reading_level:{short_type}:beginner")],
         [InlineKeyboardButton(text="🔥 Любитель", callback_data=f"reading_level:{short_type}:intermediate")],
@@ -71,7 +70,6 @@ def get_level_keyboard(short_type: str):
     return InlineKeyboardMarkup(inline_keyboard=buttons)
 
 def get_action_keyboard(short_type: str, short_level: str, index: int):
-    # Кнопки без смайликов, в одной строке
     buttons = [
         [
             InlineKeyboardButton(text="Показать ответ", callback_data=f"reading_show_answer:{short_type}:{short_level}:{index}"),
@@ -81,19 +79,14 @@ def get_action_keyboard(short_type: str, short_level: str, index: int):
     return InlineKeyboardMarkup(inline_keyboard=buttons)
 
 def get_progress_keyboard():
-    # Кнопки под прогрессом – без смайликов
     buttons = [
         [InlineKeyboardButton(text="Работа над ошибками", callback_data="reading_revision")],
         [InlineKeyboardButton(text="Сбросить прогресс", callback_data="reading_reset")]
     ]
     return InlineKeyboardMarkup(inline_keyboard=buttons)
 
-# -------------------- Формирование карточки задания (без "Режим: ...") --------------------
+# -------------------- Формирование карточки задания (без навигации) --------------------
 async def render_task_message(user_id: int, short_type: str, short_level: str, index: int, paragraph_idx: int = 0):
-    """
-    Возвращает (текст, клавиатура) для карточки задания.
-    В тексте нет строки "Режим: ...".
-    """
     type_json = TYPE_MAP.get(short_type, short_type)
     level_json = LEVEL_MAP.get(short_level, short_level)
 
@@ -101,19 +94,25 @@ async def render_task_message(user_id: int, short_type: str, short_level: str, i
     if not task:
         return None, None
 
+    # Приводим paragraphs к списку, если это строка
     paragraphs = task.get("paragraphs", [])
-    if not paragraphs or paragraph_idx >= len(paragraphs):
+    if isinstance(paragraphs, str):
+        paragraphs = [paragraphs]
+    if not paragraphs:
+        paragraphs = ["(текст отсутствует)"]
+
+    if paragraph_idx >= len(paragraphs):
         paragraph_idx = 0
     current_paragraph = paragraphs[paragraph_idx]
 
-    # Только текст и вопрос (без заголовка режима)
+    # Формируем текст: сначала абзац, затем вопрос
     text = f"{current_paragraph}\n\n"
     text += f"<b>{task.get('question', '')}</b>\n\n"
 
     if task.get("input_type") == "text":
         text += "Введите ответ в чат.\n"
 
-    # Клавиатура
+    # Клавиатура без навигации
     if task.get("input_type") == "text":
         keyboard = get_action_keyboard(short_type, short_level, index)
     else:
@@ -127,24 +126,10 @@ async def render_task_message(user_id: int, short_type: str, short_level: str, i
         ])
         keyboard = InlineKeyboardMarkup(inline_keyboard=kb_buttons)
 
-    # Навигация по абзацам (если больше одного)
-    if len(paragraphs) > 1:
-        nav_buttons = []
-        if paragraph_idx > 0:
-            nav_buttons.append(InlineKeyboardButton(text="◀", callback_data=f"reading_prev_para:{short_type}:{short_level}:{index}:{paragraph_idx}"))
-        nav_buttons.append(InlineKeyboardButton(text=f"{paragraph_idx+1}/{len(paragraphs)}", callback_data="ignore"))
-        if paragraph_idx < len(paragraphs) - 1:
-            nav_buttons.append(InlineKeyboardButton(text="▶", callback_data=f"reading_next_para:{short_type}:{short_level}:{index}:{paragraph_idx}"))
-        new_kb = [nav_buttons] + keyboard.inline_keyboard
-        keyboard = InlineKeyboardMarkup(inline_keyboard=new_kb)
-
     return text, keyboard
 
 # -------------------- Сообщение с прогрессом (отдельное) --------------------
 async def send_progress_message(callback: CallbackQuery, short_type: str, short_level: str):
-    """
-    Отправляет отдельное сообщение с прогрессом (☑ и ✖).
-    """
     user_id = callback.from_user.id
     type_json = TYPE_MAP.get(short_type, short_type)
     level_json = LEVEL_MAP.get(short_level, short_level)
@@ -226,10 +211,8 @@ async def choose_level(callback: CallbackQuery, state: FSMContext):
         paragraph_idx=0
     )
 
-    # 1. Отправляем сообщение с прогрессом
     await send_progress_message(callback, short_type, short_level)
 
-    # 2. Отправляем карточку задания
     text, keyboard = await render_task_message(user_id, short_type, short_level, index, paragraph_idx=0)
     if text is None:
         await callback.message.answer("Ошибка загрузки задания.")
@@ -242,58 +225,6 @@ async def choose_level(callback: CallbackQuery, state: FSMContext):
         await state.set_state(None)
 
     await callback.message.answer(text, reply_markup=keyboard, parse_mode="HTML")
-    await callback.answer()
-
-# -------------------- Навигация по абзацам (работает с карточками) --------------------
-@router.callback_query(F.data.startswith("reading_next_para:"))
-async def next_paragraph(callback: CallbackQuery, state: FSMContext):
-    _, short_type, short_level, index_str, curr_para_str = callback.data.split(":")
-    index = int(index_str)
-    curr_para = int(curr_para_str)
-    user_id = callback.from_user.id
-
-    data = await state.get_data()
-    type_json = data.get("type_json")
-    level_json = data.get("level_json")
-    if not type_json or not level_json:
-        await callback.answer("Ошибка состояния")
-        return
-
-    task = get_task(type_json, level_json, index)
-    if not task:
-        await callback.answer("Ошибка задания")
-        return
-
-    paragraphs = task.get("paragraphs", [])
-    if curr_para + 1 < len(paragraphs):
-        new_para = curr_para + 1
-        await state.update_data(paragraph_idx=new_para)
-        text, keyboard = await render_task_message(user_id, short_type, short_level, index, new_para)
-        if text:
-            # Редактируем текущее сообщение (карточка)
-            await callback.message.edit_text(text, reply_markup=keyboard, parse_mode="HTML")
-    await callback.answer()
-
-@router.callback_query(F.data.startswith("reading_prev_para:"))
-async def prev_paragraph(callback: CallbackQuery, state: FSMContext):
-    _, short_type, short_level, index_str, curr_para_str = callback.data.split(":")
-    index = int(index_str)
-    curr_para = int(curr_para_str)
-    user_id = callback.from_user.id
-
-    data = await state.get_data()
-    type_json = data.get("type_json")
-    level_json = data.get("level_json")
-    if not type_json or not level_json:
-        await callback.answer("Ошибка состояния")
-        return
-
-    if curr_para > 0:
-        new_para = curr_para - 1
-        await state.update_data(paragraph_idx=new_para)
-        text, keyboard = await render_task_message(user_id, short_type, short_level, index, new_para)
-        if text:
-            await callback.message.edit_text(text, reply_markup=keyboard, parse_mode="HTML")
     await callback.answer()
 
 # -------------------- Ответ на кнопки (выбор варианта) --------------------
@@ -319,13 +250,11 @@ async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
     correct = (chosen_idx == task["correct"])
     await update_user_stats(user_id, type_json, level_json, correct)
 
-    # Вывод результата обычным текстовым сообщением (без смайликов)
     if correct:
         await callback.message.answer("Правильно!")
     else:
         await callback.message.answer(f"Неправильно. Правильный ответ: {task['options'][task['correct']]}")
 
-    # Переход к следующему заданию
     next_index = index + 1
     next_task = get_task(type_json, level_json, next_index)
     if not next_task:
@@ -344,7 +273,6 @@ async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
             await state.set_state(ReadingStates.waiting_for_text)
         else:
             await state.set_state(None)
-        # Отправляем новую карточку (не редактируем старую)
         await callback.message.answer(text, reply_markup=keyboard, parse_mode="HTML")
     await callback.answer()
 
@@ -389,7 +317,6 @@ async def handle_text_answer(message: Message, state: FSMContext):
     else:
         await message.answer(f"Неправильно. Правильный ответ: {correct_answer}")
 
-    # Переход к следующему заданию
     next_index = index + 1
     next_task = get_task(type_json, level_json, next_index)
     if not next_task:
@@ -429,7 +356,6 @@ async def show_answer(callback: CallbackQuery):
 
     correct = task.get("correct")
     explanation = task.get("explanation", "")
-    # Показываем ответ во всплывающем уведомлении (так делали в аудировании)
     await callback.answer(f"Правильный ответ: {correct}\n{explanation}", show_alert=True)
 
 # -------------------- Завершить сессию --------------------
@@ -451,9 +377,7 @@ async def finish_session(callback: CallbackQuery, state: FSMContext):
     else:
         text = "Сессия завершена!"
 
-    # Показываем статистику во всплывающем уведомлении (без смайликов)
     await callback.answer(text, show_alert=True)
-    # Сразу переходим в главное меню
     from .start import show_main_menu
     await show_main_menu(callback.message, edit=True)
     await state.clear()
@@ -477,7 +401,6 @@ async def reading_reset(callback: CallbackQuery, state: FSMContext):
     if type_json and level_json:
         await reset_user_progress(user_id, type_json, level_json)
         await callback.answer("Прогресс сброшен!", show_alert=True)
-        # Обновляем сообщение с прогрессом
         await send_progress_message(callback, data.get("short_type"), data.get("short_level"))
     else:
         await callback.answer("Не удалось сбросить прогресс", show_alert=True)
