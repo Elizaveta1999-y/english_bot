@@ -1,7 +1,7 @@
 import json
 import os
 import logging
-import traceback  # добавлен для печати стека
+import traceback
 
 logger = logging.getLogger(__name__)
 
@@ -14,7 +14,6 @@ def load_tasks():
             data = json.load(f)
             logger.info("reading_tasks.json loaded successfully")
             logger.info(f"Keys: {list(data.keys())}")
-            # Проверим количество заданий в каждом типе/уровне
             for type_key, levels in data.items():
                 for level_key, tasks in levels.items():
                     logger.info(f"Type '{type_key}', level '{level_key}' has {len(tasks)} tasks")
@@ -24,11 +23,15 @@ def load_tasks():
         return {}
     except json.JSONDecodeError as e:
         logger.error(f"JSON decode error: {e}")
-        traceback.print_exc()  # печатает стек с номером строки
+        # Подробный вывод с номером строки и позицией
+        error_msg = traceback.format_exc()
+        logger.error(f"Full traceback:\n{error_msg}")
+        # Также выводим информацию из объекта ошибки
+        logger.error(f"Error at line {e.lineno}, column {e.colno} (char {e.pos})")
         return {}
     except Exception as e:
         logger.error(f"Unexpected error loading tasks: {e}")
-        traceback.print_exc()
+        logger.error(traceback.format_exc())
         return {}
 
 TASKS = load_tasks()
