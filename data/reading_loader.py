@@ -18,16 +18,14 @@ def load_tasks():
                 for level_key, tasks in levels.items():
                     logger.info(f"Type '{type_key}', level '{level_key}' has {len(tasks)} tasks")
             return data
-    except FileNotFoundError:
+    except FileNotFoundError as e:
         logger.error(f"File not found: {TASKS_FILE}")
+        logger.error(traceback.format_exc())
         return {}
     except json.JSONDecodeError as e:
         logger.error(f"JSON decode error: {e}")
-        # Подробный вывод с номером строки и позицией
-        error_msg = traceback.format_exc()
-        logger.error(f"Full traceback:\n{error_msg}")
-        # Также выводим информацию из объекта ошибки
         logger.error(f"Error at line {e.lineno}, column {e.colno} (char {e.pos})")
+        logger.error(traceback.format_exc())  # теперь через логгер
         return {}
     except Exception as e:
         logger.error(f"Unexpected error loading tasks: {e}")
