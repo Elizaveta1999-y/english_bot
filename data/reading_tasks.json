@@ -5967,10 +5967,9 @@
     "paragraphs": "Many people enjoy cooking as a hobby. It allows creativity and can be a relaxing activity. Cooking at home is often healthier than eating out. It also saves money. Some people follow recipes step by step, while others improvise. Learning to cook a few basic dishes is useful. Many cultures have unique culinary traditions. Cooking can be a wonderful way to bring people together.",
     "statement": "Cooking at home is always cheaper than eating out.",
     "options": ["True", "False", "Not stated"],
-    "correct": 0,
-    "explanation": "The text says it often saves money, but not always. Actually the text says 'often healthier' and 'saves money' – so it's true that it saves money, but not 'always'. But the statement says 'always', which is too strong. However the text doesn't say 'always', so it might be Not stated. I need to check: The text says 'Cooking at home is often healthier than eating out. It also saves money.' So it says it saves money, but not 'always'. The statement says 'always cheaper' – that is not stated, because it says 'often' and 'saves money', but not 'always'. So it should be Not stated. I'll correct this to Not stated. Let me change: Actually, the statement is "Cooking at home is always cheaper than eating out." – The text does not say 'always', so it's Not stated. I'll set correct to 2. But in my list I might have set it to 0. I'll adjust the final list accordingly.
-
-Since I'm generating now, I'll ensure correct distribution. I'll generate all and then verify.
+    "correct": 2,
+    "explanation": "The text says it often saves money, but not always.",
+    "input_type": "buttons"
   },
   {
     "id": 407,
