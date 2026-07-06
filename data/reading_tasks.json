@@ -5908,8 +5908,9 @@
     "correct": 1,
     "explanation": "The text says it is in South America, not Africa.",
     "input_type": "buttons"
-  },
-  "Любитель": [
+  }
+],
+"Любитель": [
 {
   "id": 400,
   "paragraphs": "Many people choose to live in cities because of better job opportunities and entertainment options. However, life in the countryside offers fresh air and a quieter pace. Some individuals prefer the suburbs, which combine both convenience and space. The cost of living is often higher in urban areas. Public transport is more developed in large towns. Rural areas may lack certain services, like hospitals or large shops. People often move to the city for education. Ultimately, the choice depends on personal priorities.",
