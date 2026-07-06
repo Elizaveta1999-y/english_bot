@@ -1,6 +1,7 @@
 import json
 import os
 import logging
+import traceback  # добавлен для печати стека
 
 logger = logging.getLogger(__name__)
 
@@ -23,9 +24,11 @@ def load_tasks():
         return {}
     except json.JSONDecodeError as e:
         logger.error(f"JSON decode error: {e}")
+        traceback.print_exc()  # печатает стек с номером строки
         return {}
     except Exception as e:
         logger.error(f"Unexpected error loading tasks: {e}")
+        traceback.print_exc()
         return {}
 
 TASKS = load_tasks()
