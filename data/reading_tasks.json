@@ -4,278 +4,1100 @@
       {
         "id": 0,
         "paragraphs": [
-          "My family is small but happy. There are four of us: my parents, my sister and me. We live in a flat near the park. My mother is a teacher at school. My father works in an office. My sister is a student like me. We have dinner together every evening. We often watch TV after dinner. On Sundays we go for a walk. I love my family very much."
+          "I like to watch the sky at night. The sky is dark and full of stars. I see many small lights. Some stars are very bright. I also see the Moon. The Moon changes shape every night. It is round and white sometimes. Other times it is a thin curve. I like to find the North Star. It is always in the same place. The stars make me feel calm. I think space is very big."
         ],
         "question": "Выберите подходящий заголовок:",
-        "options": ["My Family", "My School", "My City", "My Hobbies"],
-        "correct": 1,
-        "explanation": "The text is about the family members and their life together.",
+        "options": ["Stars in the Sky", "My Night Walk", "The Moon", "Clouds"],
+        "correct": 0,
+        "explanation": "The text is about looking at stars and the sky at night.",
         "input_type": "buttons"
       },
       {
         "id": 1,
         "paragraphs": [
-          "I like to read books in my free time. I read adventure stories and fairy tales. My favourite book is about a boy and his dog. I also like to read about space. I go to the library every week. I borrow three books at a time. Reading helps me learn new words. It is very interesting. I often read before sleeping. I want to read many books."
+          "I go to school every day from Monday to Friday. I get up at seven o'clock. I eat breakfast and brush my teeth. I take my schoolbag and go to the bus stop. The bus takes me to school. I have lessons in maths, English and science. I like English most. We have a break at eleven. I play with my friends. After school I go home and do my homework. I go to bed at nine."
         ],
         "question": "Выберите подходящий заголовок:",
-        "options": ["My Hobbies", "My Family", "My School", "My City"],
-        "correct": 0,
-        "explanation": "The text describes reading as a hobby.",
+        "options": ["My Teachers", "My Favourite Subject", "The School Bus", "My School Day""],
+        "correct": 3,
+        "explanation": "The text describes the daily routine of going to school.",
         "input_type": "buttons"
       },
       {
         "id": 2,
         "paragraphs": [
-          "My school is big and modern. It has three floors and a large playground. I study English, math and science. My favourite subject is English. The teachers are very kind. We have breaks and play football. After school I do my homework. I also have art lessons. I enjoy going to school. I have many friends there."
+          "I live in a flat with my parents. Our flat is on the third floor. It has a living room, a kitchen and two bedrooms. My room is small but nice. I have a bed and a desk. I do my homework there. The kitchen is bright and clean. My mother cooks dinner there. We eat together in the living room. The flat is warm and comfortable. I like living there."
         ],
         "question": "Выберите подходящий заголовок:",
-        "options": ["My School", "My Hobbies", "My Family", "My Friends"],
-        "correct": 2,
-        "explanation": "The text describes the school and daily routine.",
+        "options": ["Our Flat", "My Bedroom", "A New Home", "The Kitchen"],
+        "correct": 0,
+        "explanation": "The text describes the flat and its rooms.",
         "input_type": "buttons"
       },
       {
         "id": 3,
         "paragraphs": [
-          "My best friend is Anna. She lives near my house. We walk to school together every morning. She is very kind and funny. We like to play board games after school. We also help each other with homework. On weekends we go to the cinema. She likes comedies. I can always talk to her. She is a true friend."
+          "I like to eat different kinds of food. I like rice and chicken. I also like pasta with tomato sauce. Vegetables are good for me. I eat carrots, peas and beans. I like fruit too. I eat apples and bananas every day. My mother says fruit is healthy. I also like ice cream and cake. But I eat them only sometimes. Food gives me energy to play and study."
         ],
         "question": "Выберите подходящий заголовок:",
-        "options": ["My Friend", "My Family", "My School", "My Hobbies"],
-        "correct": 3,
-        "explanation": "The text describes a friend and the friendship.",
+        "options": ["Healthy Eating", "My Favourite Food", "Fruit", "Dinner Time"],
+        "correct": 1,
+        "explanation": "The text is about different kinds of food that the speaker likes.",
         "input_type": "buttons"
       },
       {
         "id": 4,
         "paragraphs": [
-          "Our city is not very large but it is beautiful. There are many trees and flowers. The streets are clean. We have a nice park with a pond. There is also a museum and a cinema. I like to walk in the centre. The shops are always busy. In summer there are festivals. I like my city very much."
+          "I like to play football in the park. My friends come with me. We have a small ball. We make two teams. I run fast and kick the ball. Sometimes I score a goal. Everyone cheers. Playing football is fun. It makes me happy and healthy. I also like to watch football on TV. My favourite team plays well. I hope to play better every day."
         ],
         "question": "Выберите подходящий заголовок:",
-        "options": ["My City", "My Village", "My Country", "My School"],
+        "options": ["Sports", "Playing Football", "My Team", "A Game"],
         "correct": 1,
-        "explanation": "The text describes the city.",
+        "explanation": "The text is about playing football with friends.",
         "input_type": "buttons"
       },
       {
         "id": 5,
         "paragraphs": [
-          "I have a pet cat. Her name is Mila. She is white and very fluffy. She is two years old. She likes to sleep on the sofa. She also likes to play with a ball. She drinks milk every day. She is very playful. I feed her in the morning. She is my good friend."
+          "I live near a river. The river is wide and long. The water is clean and blue. I like to walk along the river. I can see fish swimming. Sometimes I feed the ducks. They come close to me. In summer I put my feet in the water. The water is cool. The trees near the river are green. I sit on the grass and relax. The river is a peaceful place."
         ],
         "question": "Выберите подходящий заголовок:",
-        "options": ["My Pet", "My Family", "My Home", "My Hobbies"],
-        "correct": 2,
-        "explanation": "The text is about the cat as a pet.",
+        "options": ["The River", "A Walk", "Summer Day", "Water Birds"],
+        "correct": 0,
+        "explanation": "The text describes the river and activities around it.",
         "input_type": "buttons"
       },
       {
         "id": 6,
         "paragraphs": [
-          "My house is in a quiet street. It has a garden with roses. There is a garage for the car. Inside there is a living room, a kitchen and three bedrooms. My room is on the first floor. I have a desk and a computer. I like my room. In summer we eat outside. The house is very comfortable."
+          "My mother is a good cook. She makes soup and meat for us. She also bakes cakes and bread. The food always tastes nice. I help her in the kitchen. I wash the vegetables. I also set the table. My father likes her cooking too. He always says thank you. We eat together in the evening. I love her meals. She cooks with love."
         ],
         "question": "Выберите подходящий заголовок:",
-        "options": ["My House", "My Garden", "My Room", "My City"],
-        "correct": 3,
-        "explanation": "The text describes the house.",
+        "options": ["My Mother's Cooking", "Kitchen Help", "Family Dinner", "Tasty Food"],
+        "correct": 0,
+        "explanation": "The text is about mother's cooking and family meals.",
         "input_type": "buttons"
       },
       {
         "id": 7,
         "paragraphs": [
-          "Every weekend I go to the market with my mother. We buy fresh fruit and vegetables. The market is very colourful. There are many stalls with food and clothes. I like to taste free samples. After shopping we go to a café. We have tea and cake. It is a nice tradition. I enjoy these trips."
+          "I have a pet cat. His name is Snowy. He is white and soft. He likes to sleep on the sofa. He also likes to play with a ball. He runs after it. He is very clever. He knows when it is food time. He meows loudly. I give him fish and milk. Snowy is my good friend. I love to stroke him. He purrs when I do that."
         ],
         "question": "Выберите подходящий заголовок:",
-        "options": ["Market Day", "My Family", "My Hobbies", "My City"],
-        "correct": 1,
-        "explanation": "The text describes going to the market.",
+        "options": ["White Cat", "A Pet", "Animal Friend", "My Cat Snowy"],
+        "correct": 3,
+        "explanation": "The text is about the speaker's pet cat named Snowy.",
         "input_type": "buttons"
       },
       {
         "id": 8,
         "paragraphs": [
-          "I enjoy drawing pictures. I use pencils and paints. I draw flowers and animals. Sometimes I draw my friends. My art teacher says I am talented. I draw every day after school. Drawing helps me relax. I want to be an artist. I practice a lot. I like to draw landscapes."
+          "I go to the cinema with my friends. We see a new film. The screen is big. The sound is loud. I like to eat popcorn during the film. The cinema is dark inside. We sit in comfortable seats. The film tells a story. Sometimes I laugh. Sometimes I feel scared. After the film we talk about it. I like to go to the cinema. It is a good place to have fun."
         ],
         "question": "Выберите подходящий заголовок:",
-        "options": ["My Art", "My Hobbies", "My School", "My Family"],
+        "options": ["Going to the Cinema", "Movies", "My Favourite Film", "Weekend Plan"],
         "correct": 0,
-        "explanation": "The text is about drawing and being an artist.",
+        "explanation": "The text describes going to the cinema.",
         "input_type": "buttons"
       },
       {
         "id": 9,
         "paragraphs": [
-          "I love summer holidays. I go to the beach with my family. The sea is warm and blue. I swim and play in the sand. I also build sandcastles. We have a picnic under an umbrella. I collect shells. In the evening we walk along the shore. The sunset is beautiful. I love summer."
+          "I wear different clothes in different seasons. In summer I wear shorts and a t-shirt. I also wear sandals. In winter I wear a warm coat and boots. I also wear a hat and gloves. Spring is not too hot or cold. I wear a jacket and jeans. Autumn is cool and windy. I wear a sweater and trousers. I choose clothes that are comfortable."
         ],
         "question": "Выберите подходящий заголовок:",
-        "options": ["Summer Holidays", "The Beach", "My Family", "My Hobbies"],
+        "options": ["My Wardrobe", "Summer and Winter", "Clothes for Seasons", "Dressing Up"],
         "correct": 2,
-        "explanation": "The text describes summer holidays at the beach.",
+        "explanation": "The text is about clothes for different seasons.",
         "input_type": "buttons"
       },
       {
         "id": 10,
         "paragraphs": [
-          "My grandfather is seventy years old. He is retired. He likes to tell stories about his youth. He worked as a sailor. He visited many countries. Now he stays at home. He reads newspapers and works in the garden. He grows tomatoes. He is very wise. I like to listen to him."
+          "I like to visit the zoo. I see many animals there. Lions are big and strong. Tigers are very beautiful. Monkeys are funny. They jump and play. I also like elephants. They are very big. I watch the penguins swim. The birds have bright feathers. I learn about the animals. The zookeepers look after them. I enjoy the zoo."
         ],
         "question": "Выберите подходящий заголовок:",
-        "options": ["My Grandfather", "My Family", "My Garden", "My Hobbies"],
-        "correct": 3,
-        "explanation": "The text describes the grandfather.",
+        "options": ["At the Zoo", "Animals", "A Day Out", "Wildlife"],
+        "correct": 0,
+        "explanation": "The text is about visiting the zoo and seeing animals.",
         "input_type": "buttons"
       },
       {
         "id": 11,
         "paragraphs": [
-          "I have a sister. She is older than me. Her name is Kate. She has long hair and blue eyes. She studies at university. She likes to read and listen to music. Sometimes we watch films together. She helps me with my homework. She is very clever. I am happy to have her."
+          "I like to read books. I read books about space and animals. I also read stories about magic. I go to the library to borrow books. The library is a quiet place. I sit and read for an hour. I learn new words. I also enjoy picture books. Reading helps me relax. I read before I go to sleep. I have many books at home."
         ],
         "question": "Выберите подходящий заголовок:",
-        "options": ["My Sister", "My Family", "My Friend", "My Hobbies"],
-        "correct": 0,
-        "explanation": "The text describes the sister.",
+        "options": ["Story Time", "The Library", "My Hobby", "Reading Books"],
+        "correct": 3,
+        "explanation": "The text is about reading books.",
         "input_type": "buttons"
       },
       {
         "id": 12,
         "paragraphs": [
-          "I like to play computer games. My favourite is a racing game. I play with my friends online. We also play chess on the computer. Sometimes I play educational games. They help me learn. I spend one hour a day on games. My parents limit my time. I enjoy it a lot."
+          "My father is a taxi driver. He drives a yellow car. He works all day. He picks up people from the street. He takes them to their destination. He knows all the roads. Sometimes he works at night. He comes home late. He is tired but happy. He likes his job. He meets new people every day. I am proud of him."
         ],
         "question": "Выберите подходящий заголовок:",
-        "options": ["My Computer Games", "My Hobbies", "My School", "My Friends"],
+        "options": ["A Taxi Driver", "My Father's Job", "Work", "My Dad"],
         "correct": 1,
-        "explanation": "The text is about computer games.",
+        "explanation": "The text is about the father's job as a taxi driver.",
         "input_type": "buttons"
       },
       {
         "id": 13,
         "paragraphs": [
-          "I go to the cinema once a month. I watch new films. I like comedies and action films. My friends come with me. We buy popcorn and drinks. The cinema is very big with a large screen. I enjoy the atmosphere. After the film we talk about it. It is a fun activity."
+          "I have many toys. I have a train and cars. I also have blocks and puzzles. My favourite toy is a robot. It can move and make sounds. I play with my toys after school. My friends come to play too. We build houses with blocks. We have a good time. I keep my toys in a big box. I take care of them."
         ],
         "question": "Выберите подходящий заголовок:",
-        "options": ["My Cinema", "My Hobbies", "My Family", "My City"],
-        "correct": 2,
-        "explanation": "The text describes going to the cinema.",
+        "options": ["My Toys", "Playing", "Robot", "Fun Time"],
+        "correct": 0,
+        "explanation": "The text is about the speaker's toys.",
         "input_type": "buttons"
       },
       {
         "id": 14,
         "paragraphs": [
-          "My favourite season is winter. It is cold and snowy. I like to make snowmen. I also go skiing with my family. We have snowball fights. I wear warm clothes. The world becomes white and quiet. I like hot chocolate after playing. Winter is magical. I love it."
+          "I live in a small town. The town has a church and a market. There are shops and a school. The streets are clean and quiet. People are friendly. There is a park in the centre. I go there to play. The town is surrounded by fields and trees. I like living here. It is safe and nice. I know many people here."
         ],
         "question": "Выберите подходящий заголовок:",
-        "options": ["My Winter", "The Seasons", "My Hobbies", "My Family"],
+        "options": ["A Small Place", "My Town", "The Park", "Neighbours"],
         "correct": 1,
-        "explanation": "The text describes winter and activities.",
+        "explanation": "The text describes the town.",
         "input_type": "buttons"
       },
       {
         "id": 15,
         "paragraphs": [
-          "I like to eat pizza. My mother makes it at home. We put cheese, tomato and mushrooms. Sometimes we add olives and peppers. It is very tasty. On Fridays we order pizza from a restaurant. I also like pasta and burgers. But pizza is my favourite. I can eat it every day."
+          "We have a garden behind our house. My mother grows flowers. My father grows vegetables. I water the plants every day. In summer the garden is full of colour. There are red roses and yellow sunflowers. I also see butterflies and bees. We sit in the garden in the evening. The air is fresh and sweet. I love to be in the garden. It is a happy place."
         ],
         "question": "Выберите подходящий заголовок:",
-        "options": ["My Favourite Food", "My Family", "My Hobbies", "My City"],
-        "correct": 0,
-        "explanation": "The text is about pizza as favourite food.",
+        "options": ["Flowers", "Our Garden", "Summer Evenings", "Nature"],
+        "correct": 1,
+        "explanation": "The text is about the garden.",
         "input_type": "buttons"
       },
       {
         "id": 16,
         "paragraphs": [
-          "I have a bicycle. It is red and black. I ride it to school every day. The ride takes 20 minutes. I also ride in the park on weekends. I like to ride fast. I wear a helmet for safety. My bike is old but good. I keep it clean. I enjoy cycling."
+          "My grandmother lives in a village. I visit her every holiday. She has a small house with a big kitchen. She makes pies and cookies. They are very tasty. I help her collect eggs from the chickens. She also has a cat and a dog. The village is quiet and beautiful. I like to walk in the fields. I always have a good time there."
         ],
         "question": "Выберите подходящий заголовок:",
-        "options": ["My Bicycle", "My School", "My Hobbies", "My City"],
-        "correct": 3,
-        "explanation": "The text describes the bicycle and cycling.",
+        "options": ["Holiday Fun", "The Village", "Visiting Grandmother", "Family"],
+        "correct": 2,
+        "explanation": "The text is about visiting grandmother in the village.",
         "input_type": "buttons"
       },
       {
         "id": 17,
         "paragraphs": [
-          "I like to play football. I play with my friends at school. We have a team. We practice twice a week. Sometimes we play against other teams. I am a goalkeeper. I like the game very much. It helps me stay fit. I watch football on TV too. Football is my passion."
+          "I like to listen to music. I have a phone and I play songs. I like pop and rock music. My favourite singer is from the USA. I also like traditional music. I listen to music when I am happy or sad. Music makes me feel better. I often sing along. I also like to dance to the music. Music is a big part of my life."
         ],
         "question": "Выберите подходящий заголовок:",
-        "options": ["My Sport", "My Hobbies", "My School", "My Friends"],
-        "correct": 2,
-        "explanation": "The text is about playing football.",
+        "options": ["Music", "My Favourite Songs", "Dancing", "Singing"],
+        "correct": 0,
+        "explanation": "The text is about liking and listening to music.",
         "input_type": "buttons"
       },
       {
         "id": 18,
         "paragraphs": [
-          "I like to listen to music. I listen on my phone. I like pop and rock music. My favourite singer is from the UK. I also like classical music. It is relaxing. I often listen while doing homework. Music helps me focus. I also sing. I enjoy music very much."
+          "We have a school sports day every year. I run in the races. I also jump and throw. I like to compete. My friends cheer for me. I won a medal last year. This year I want to win again. Everyone has fun. There are many activities. The day is full of excitement. I love sports day."
         ],
         "question": "Выберите подходящий заголовок:",
-        "options": ["My Music", "My Hobbies", "My Phone", "My School"],
+        "options": ["Running", "School Fun", "Competition", "Sports Day"],
         "correct": 3,
-        "explanation": "The text describes listening to music.",
+        "explanation": "The text is about school sports day.",
         "input_type": "buttons"
       },
       {
         "id": 19,
         "paragraphs": [
-          "My mother is a great cook. She makes delicious meals. She often cooks soup and chicken. On Sundays she bakes a cake. I help her in the kitchen. I wash vegetables. My father sets the table. After dinner we talk. We have a good time. I love her food."
+          "I have a bike. I ride it to school. It takes me fifteen minutes. I like to ride fast. I wear a helmet to stay safe. My bike is red and black. I keep it clean. Sometimes I ride in the park. I like to go with my friends. We race each other. Riding is good exercise. I feel strong after."
         ],
         "question": "Выберите подходящий заголовок:",
-        "options": ["My Mother", "Cooking Together", "My Family", "My Hobbies"],
-        "correct": 1,
-        "explanation": "The text describes cooking and family meals.",
+        "options": ["My Bicycle", "Riding", "Exercise", "A Red Bike"],
+        "correct": 0,
+        "explanation": "The text is about the bicycle and riding it.",
         "input_type": "buttons"
       },
       {
         "id": 20,
         "paragraphs": [
-          "I have a good friend. His name is John. He is very tall and has brown hair. We play video games together. He is good at math and helps me. We often go to the park. He likes to draw too. We share secrets. He is loyal. I trust him."
+          "My school has a library. It has many books and computers. I go there at break time. I look at the picture books. I also read stories. The librarian is kind. She helps me find books. I can borrow two books at a time. I like to read during lunch. The library is quiet and nice. It is one of my favourite places."
         ],
         "question": "Выберите подходящий заголовок:",
-        "options": ["My Friend John", "My Hobbies", "My School", "My Family"],
-        "correct": 2,
-        "explanation": "The text describes a friend named John.",
+        "options": ["School Library", "Books", "Break Time", "Quiet Place"],
+        "correct": 0,
+        "explanation": "The text is about the school library.",
         "input_type": "buttons"
       },
       {
         "id": 21,
         "paragraphs": [
-          "Our garden is full of flowers. My mother plants roses and tulips. My father grows vegetables. I water the plants every day. In summer the garden is very colourful. We have a bench there. I like to sit and read. Birds come to our garden. It is very peaceful."
+          "I like to go to the beach. The sand is warm and soft. I run into the water. The sea is cool and salty. I swim and splash. I build castles in the sand. I collect shells and stones. My parents watch me from the shore. We eat ice cream and fruit. The sun shines bright. I feel happy and free."
         ],
         "question": "Выберите подходящий заголовок:",
-        "options": ["My Garden", "My House", "My City", "My Hobbies"],
-        "correct": 1,
-        "explanation": "The text describes the garden.",
+        "options": ["Sand Castles", "Sea Water", "Summer Fun", "Beach Time"],
+        "correct": 3,
+        "explanation": "The text is about visiting the beach.",
         "input_type": "buttons"
       },
       {
         "id": 22,
         "paragraphs": [
-          "I like to visit my grandma. She lives in a small village. She is 80 years old. She makes delicious pies. We play cards together. She tells me stories about her childhood. I always enjoy talking to her. She gives me good advice. I love her very much."
+          "I often go to the playground after school. I play on the swings and slide. I also climb the bars. My friends are there. We play hide and seek. The playground is big. There are trees around. Sometimes I bring a ball. We kick it around. We laugh and shout. I have a great time. The playground is a fun place."
         ],
         "question": "Выберите подходящий заголовок:",
-        "options": ["My Grandma", "My Family", "My Hobbies", "My City"],
-        "correct": 3,
-        "explanation": "The text describes visits to grandma.",
+        "options": ["Games", "After School", "The Playground", "Friends"],
+        "correct": 2,
+        "explanation": "The text is about the playground and playing there.",
         "input_type": "buttons"
       },
       {
         "id": 23,
         "paragraphs": [
-          "I like to watch films on TV. I watch comedies and cartoons. Sometimes I watch documentaries. I often watch with my family. We eat popcorn. I like animated films. They are funny and colourful. Films help me relax. I enjoy them a lot."
+          "My family has a car. It is blue and old. We drive it to the countryside. We visit my aunt and uncle. The road goes through green fields. I see cows and sheep. We stop for a picnic. We sit on the grass and eat. The car is also used for shopping. Sometimes I help wash it. The car is useful for us."
         ],
         "question": "Выберите подходящий заголовок:",
-        "options": ["My Films", "My TV", "My Hobbies", "My Family"],
+        "options": ["Our Car", "Countryside Visit", "Picnic", "Travelling"],
         "correct": 0,
-        "explanation": "The text describes watching films.",
+        "explanation": "The text is about the family car and trips.",
         "input_type": "buttons"
       },
       {
         "id": 24,
         "paragraphs": [
-          "There is a park near my house. It has a pond with fish. I like to walk there. I feed the ducks and swans. There is also a playground. I play with my friends on the swings. In summer we have picnics. The park is green and beautiful. I go there every day."
+          "I like winter because it snows. I wear warm clothes and boots. I go outside to play. I make a snowman with a carrot nose. I have snowball fights with my brother. We also make snow angels. The snow is soft and white. I feel cold but happy. I come inside and drink hot chocolate. Winter is a magical time."
         ],
         "question": "Выберите подходящий заголовок:",
-        "options": ["My Park", "My City", "My Hobbies", "My Family"],
-        "correct": 2,
-        "explanation": "The text describes the park.",
+        "options": ["Snow", "Winter Fun", "Cold Days", "Snowman"],
+        "correct": 1,
+        "explanation": "The text is about winter activities.",
         "input_type": "buttons"
-      }
-    ]
-  }
-}
+      },
+      {
+        "id": 25,
+        "paragraphs": [
+          "I like to fly a kite. The kite is colourful. It has a long tail. I go to the park. I wait for the wind. I run and let go of the string. The kite goes up high. It dances in the sky. I pull the string to make it go up and down. Sometimes I fly it with friends. It is exciting to watch. I love flying kites."
+        ],
+        "question": "Выберите подходящий заголовок:",
+        "options": ["Flying a Kite", "Outdoor Fun", "The Wind", "Colourful Sky"],
+        "correct": 0,
+        "explanation": "The text is about flying a kite.",
+        "input_type": "buttons"
+      },
+      {
+        "id": 26,
+        "paragraphs": [
+          "I have a school bag. It is blue and has a pocket. I put my books and pencils in it. I also put my lunch box. The bag is heavy sometimes. I carry it on my back. It has a handle too. I take it to school every day. I like the colour. It is comfortable to carry. I keep it clean."
+        ],
+        "question": "Выберите подходящий заголовок:",
+        "options": ["Lunch", "Backpack", "School Supplies", "My School Bag"],
+        "correct": 3,
+        "explanation": "The text is about the school bag.",
+        "input_type": "buttons"
+      },
+      {
+        "id": 27,
+        "paragraphs": [
+          "I like to play on the computer. I play games and draw pictures. I also use it for homework. The computer has a keyboard and screen. I type letters and numbers. I click the mouse. The internet is useful. I can find information. My parents tell me not to spend too long on it. I use it with care. It is a useful tool."
+        ],
+        "question": "Выберите подходящий заголовок:",
+        "options": ["Games", "Using a Computer", "Homework", "Internet"],
+        "correct": 1,
+        "explanation": "The text is about using a computer.",
+        "input_type": "buttons"
+      },
+      {
+        "id": 28,
+        "paragraphs": [
+          "I like to go to the market with my mother. We buy fruits and vegetables. The market is noisy and colourful. People sell different things. I see fish, meat and bread. My mother talks to the sellers. She chooses the best produce. I help to carry the bags. We also buy flowers sometimes. I enjoy watching the people. The market is interesting."
+        ],
+        "question": "Выберите подходящий заголовок:",
+        "options": ["Fruit and Vegetables", "Shopping", "At the Market", "A Busy Place"],
+        "correct": 2,
+        "explanation": "The text is about going to the market.",
+        "input_type": "buttons"
+      },
+      {
+        "id": 29,
+        "paragraphs": [
+          "I have a friend named Jack. He is in my class. He has brown hair and blue eyes. He is good at maths. He helps me with sums. We play together after school. We like to play football. He is always kind. I can share secrets with him. He is honest and funny. I am happy to have him as a friend."
+        ],
+        "question": "Выберите подходящий заголовок:",
+        "options": ["My Friend Jack", "Classmate", "Good Friend", "Playtime"],
+        "correct": 0,
+        "explanation": "The text is about a friend named Jack.",
+        "input_type": "buttons"
+      },
+      {
+        "id": 30,
+        "paragraphs": [
+          "In summer I go to the swimming pool. The water is warm. I jump in and swim. I do different strokes. I swim for an hour. I feel fresh and cool. After swimming, I sit by the side. I drink juice. I often go with my father. He teaches me new things. I want to swim fast. Swimming is a good sport."
+        ],
+        "question": "Выберите подходящий заголовок:",
+        "options": ["Swimming", "Pool", "Summer Sport", "Exercise"],
+        "correct": 0,
+        "explanation": "The text is about swimming in the summer.",
+        "input_type": "buttons"
+      },
+      {
+        "id": 31,
+        "paragraphs": [
+          "I like to draw and paint. I use crayons and brushes. I draw houses, people and animals. I like to mix colours. The pictures look bright. I give them to my parents. They keep them on the wall. I also draw in my notebook. Art is fun and creative. I like to make pictures. It helps me show how I feel."
+        ],
+        "question": "Выберите подходящий заголовок:",
+        "options": ["Colours", "Art","Drawing and Painting", "Creative Time"],
+        "correct": 2,
+        "explanation": "The text is about drawing and painting.",
+        "input_type": "buttons"
+      },
+      {
+        "id": 32,
+        "paragraphs": [
+          "There is a park near my home. It has trees and a pond. I go there after school. I play with my friends. We run around and climb. The pond has ducks and fish. I like to feed them bread. There are also flowers. The park is quiet. I sit on a bench and read. I am happy there. It is a special place."
+        ],
+        "question": "Выберите подходящий заголовок:",
+        "options": ["After School", "Ducks and Fish", "The Park Near Home", "A Special Place"],
+        "correct": 2,
+        "explanation": "The text is about the park near home.",
+        "input_type": "buttons"
+      },
+      {
+        "id": 33,
+        "paragraphs": [
+          "I help my mother with housework. I clean my room. I put my toys away. I also help wash the dishes. I dry them with a cloth. I sweep the floor. My mother is happy when I help. She thanks me. I feel good. I help on weekends too. It is good to help at home."
+        ],
+        "question": "Выберите подходящий заголовок:",
+        "options": ["Helping at Home", "Housework", "Cleaning", "Being Helpful"],
+        "correct": 0,
+        "explanation": "The text is about helping at home.",
+        "input_type": "buttons"
+      },
+      {
+        "id": 34,
+        "paragraphs": [
+          "I like to go to the mountains. The air is clean and cold. I see tall trees and rocks. I walk along the paths. The view is beautiful. I can see far away. I take photos. Sometimes I see a deer. I go with my family. We have a picnic. I feel relaxed. The mountains are a good place to visit."
+        ],
+        "question": "Выберите подходящий заголовок:",
+        "options": ["Nature Walk", "Mountains", "A Day Out", "Fresh Air"],
+        "correct": 1,
+        "explanation": "The text is about visiting the mountains.",
+        "input_type": "buttons"
+      },
+      {
+        "id": 35,
+        "paragraphs": [
+          "I like to make things with paper. I make animals and boats. I also make cards for my friends. I fold the paper carefully. I use scissors and glue. It is fun to create. I like origami. It is an art. I follow the instructions. Sometimes I make mistakes. But I try again. I enjoy crafting."
+        ],
+        "question": "Выберите подходящий заголовок:",
+        "options": ["Paper Crafts", "Origami", "Creative Arts", "Making Things"],
+        "correct": 0,
+        "explanation": "The text is about paper crafts.",
+        "input_type": "buttons"
+      },
+      {
+        "id": 36,
+        "paragraphs": [
+          "I have a watch. It is black and digital. It tells the time. I wear it on my wrist. I use it to be on time for school. I also check the date. It is waterproof. I can wear it when I swim. I got it for my birthday. I like it a lot. It is a nice gift."
+        ],
+        "question": "Выберите подходящий заголовок:",
+        "options": ["My Watch", "Telling Time", "A Gift", "Wristwatch"],
+        "correct": 0,
+        "explanation": "The text is about the watch.",
+        "input_type": "buttons"
+      },
+      {
+        "id": 37,
+        "paragraphs": [
+          "I like to visit the museum. I see old things. I see pots and swords. I also see clothes from the past. The museum is big. I learn about history. There are pictures on the walls. I read about the exhibits. Sometimes I go with my school. The guide tells us stories. Museums are interesting. I like to learn."
+        ],
+        "question": "Выберите подходящий заголовок:",
+        "options": ["The Museum", "History", "Old Things", "Learning"],
+        "correct": 0,
+        "explanation": "The text is about visiting the museum.",
+        "input_type": "buttons"
+      },
+      {
+        "id": 38,
+        "paragraphs": [
+          "I like to ride a horse. I go to a farm. I put a saddle on the horse. I climb up and hold the reins. The horse walks and trots. I feel the wind. It is great fun. I also brush the horse's coat. Horses are beautiful and big. I am not scared. I like horse riding."
+        ],
+        "question": "Выберите подходящий заголовок:",
+        "options": ["Outdoor Fun", "Farm", "Animal Lover", "Horse Riding"],
+        "correct": 3,
+        "explanation": "The text is about horse riding.",
+        "input_type": "buttons"
+      },
+      {
+        "id": 39,
+        "paragraphs": [
+          "I help in the kitchen. I chop vegetables. I mix the salad. I also set the table. My mother does the cooking. I like to help. I learn new things. Sometimes I make a sandwich. I enjoy making food. The kitchen is a busy place. I feel useful."
+        ],
+        "question": "Выберите подходящий заголовок:",
+        "options": ["Helping Mother", "In the Kitchen", "Cooking", "Preparing Food"],
+        "correct": 1,
+        "explanation": "The text is about helping in the kitchen.",
+        "input_type": "buttons"
+      },
+      {
+        "id": 40,
+        "paragraphs": [
+          "I have a big family. I have grandparents, parents and a sister. We live in a big house. We eat together every day. We celebrate birthdays together. My sister helps me with homework. My grandparents tell stories. Everyone is kind. I feel loved. I am lucky to have them."
+        ],
+        "question": "Выберите подходящий заголовок:",
+        "options": ["Living Together", "Loved Ones", "Family Time", "My Big Family"],
+        "correct": 3,
+        "explanation": "The text is about the big family.",
+        "input_type": "buttons"
+      },
+      {
+        "id": 41,
+        "paragraphs": [
+          "I like to collect stamps. I have stamps from many countries. I put them in a book. I also get stamps from letters. I look at the pictures on them. Some stamps are old. They show famous people and buildings. I trade stamps with friends. It is a fun hobby. I learn about other countries."
+        ],
+        "question": "Выберите подходящий заголовок:",
+        "options": ["Postage Stamps", "Hobby", "Collecting Stamps", "Learning"],
+        "correct": 2,
+        "explanation": "The text is about collecting stamps.",
+        "input_type": "buttons"
+      },
+      {
+        "id": 42,
+        "paragraphs": [
+          "I like to walk in the rain. I take my umbrella. I hear the raindrops. The streets are wet. Everything smells fresh. I see puddles. I sometimes jump in them. The rain is cool. I like the sound. It makes me feel calm. I like rainy days."
+        ],
+        "question": "Выберите подходящий заголовок:",
+        "options": ["Rainy Day", "Walking in the Rain", "Weather", "Umbrella"],
+        "correct": 0,
+        "explanation": "The text is about walking in the rain.",
+        "input_type": "buttons"
+      },
+      {
+        "id": 43,
+        "paragraphs": [
+          "I like to go to the library. I borrow books. I sit and read. I like the quiet. I also use the computer. I do research for school. The librarian is nice. She helps me. I go after school. I always return books on time. The library is a useful place."
+        ],
+        "question": "Выберите подходящий заголовок:",
+        "options": ["The Library", "Reading", "Learning", "Quiet Time"],
+        "correct": 0,
+        "explanation": "The text is about the library.",
+        "input_type": "buttons"
+      },
+      {
+        "id": 44,
+        "paragraphs": [
+          "I like to play chess with my dad. I think about my moves. I try to beat him. Sometimes I win. Sometimes I lose. I learn from each game. Chess helps me think. It is a quiet game. We play in the evening. I enjoy our time together."
+        ],
+        "question": "Выберите подходящий заголовок:",
+        "options": ["My Father", "Playing Chess", "Board Game", "Strategy"],
+        "correct": 1,
+        "explanation": "The text is about playing chess.",
+        "input_type": "buttons"
+      },
+      {
+        "id": 45,
+        "paragraphs": [
+          "I like to swim in the sea. The water is salty. I swim with my friends. We dive under the waves. We swim far from the shore. We feel free. I also like to snorkel. I see fish under the water. The sea is full of life. I always feel happy at the sea."
+        ],
+        "question": "Выберите подходящий заголовок:",
+        "options": ["Water Sports", "Underwater", "Friends", "Swimming in the Sea"],
+        "correct": 3,
+        "explanation": "The text is about swimming in the sea.",
+        "input_type": "buttons"
+      },
+      {
+        "id": 46,
+        "paragraphs": [
+          "I like to eat apples. They are red and green. They are sweet and crunchy. I eat them with the skin. I also make apple juice. Apples are healthy. My mother gives me one for school. I like them best of all. They are also good in pies."
+        ],
+        "question": "Выберите подходящий заголовок:",
+        "options": ["Apples", "Fruit", "Healthy Snack", "Tasty"],
+        "correct": 0,
+        "explanation": "The text is about apples.",
+        "input_type": "buttons"
+      },
+      {
+        "id": 47,
+        "paragraphs": [
+          "I like to go to the school gym. I do exercises. I also climb ropes. I like to jump over the boxes. The gym teacher is kind. He makes us stretch. We do push-ups. I feel strong. The gym is a big room. I like to go there."
+        ],
+        "question": "Выберите подходящий заголовок:",
+        "options": ["School Gym", "Exercises", "Staying Fit", "PE"],
+        "correct": 0,
+        "explanation": "The text is about the school gym.",
+        "input_type": "buttons"
+      },
+      {
+        "id": 48,
+        "paragraphs": [
+          "I like to watch birds. They are in the garden. I see sparrows and blackbirds. They sing in the morning. I like to listen to them. They eat seeds from the feeder. Sometimes I see a woodpecker. It pecks the tree. Birds are beautiful. I like to watch them."
+        ],
+        "question": "Выберите подходящий заголовок:",
+        "options": ["Nature", "Garden", "Bird Watching", "Singing"],
+        "correct": 2,
+        "explanation": "The text is about watching birds.",
+        "input_type": "buttons"
+      },
+      {
+        "id": 49,
+        "paragraphs": [
+          "I like to have breakfast in the morning. I eat cereal with milk. I also have a banana. I drink orange juice. Breakfast gives me energy. I feel ready for school. Sometimes I have toast. I eat quickly. Then I brush my teeth. Breakfast is important."
+        ],
+        "question": "Выберите подходящий заголовок:",
+        "options": ["Breakfast", "Morning", "Eating", "Start of the Day"],
+        "correct": 0,
+        "explanation": "The text is about breakfast.",
+        "input_type": "buttons"
+      },
+  {
+    "id": 50,
+    "paragraphs": [
+      "I live in a house with a big garden. There are many trees and flowers. I like to play in the garden. My mother grows vegetables there. We eat fresh tomatoes and cucumbers. In summer we have barbecues. My father cooks meat outside. We sit at a table in the garden. The birds sing in the trees. I like to read there. It is my favourite place. I go there every day."
+    ],
+    "question": "Выберите подходящий заголовок:",
+    "options": ["Playing Outside", "Summer Food", "Our House", "The Garden"],
+    "correct": 3,
+    "explanation": "The text describes the garden and activities there.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 51,
+    "paragraphs": [
+      "I like to go fishing with my uncle. We go to the river. The river is clean and wide. We sit on the bank. We put worms on the hook. I throw the line into the water. We wait for a fish to bite. Sometimes I catch a small fish. I put it back in the water. My uncle catches big fish. He takes them home. We cook them for dinner. Fish tastes good."
+    ],
+    "question": "Выберите подходящий заголовок:",
+    "options": ["The River", "Fishing with Uncle", "Catching Fish", "Dinner"],
+    "correct": 1,
+    "explanation": "The text is about going fishing with an uncle.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 52,
+    "paragraphs": [
+      "I go to the supermarket with my mother. We buy food for the week. I push the trolley. We go to the fruit section. We buy apples and bananas. We also buy bread and milk. We choose cheese and ham. I like to look at the sweets. My mother says no. We pay at the checkout. I help carry the bags. We go home. I put the food away."
+    ],
+    "question": "Выберите подходящий заголовок:",
+    "options": ["At the Supermarket", "Shopping", "Food for the Week", "The Trolley"],
+    "correct": 0,
+    "explanation": "The text describes a supermarket shopping trip.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 53,
+    "paragraphs": [
+      "I have a new pair of shoes. They are white and blue. I wear them for sport. I also wear them to school. They are very comfortable. They are good for running. I like the style. My mother bought them for me. She chose the right size. I take care of them. I clean them with a cloth. They look nice."
+    ],
+    "question": "Выберите подходящий заголовок:",
+    "options": ["Sport Shoes", "Comfortable Feet", "My New Shoes", "Shopping"],
+    "correct": 2,
+    "explanation": "The text is about new shoes.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 54,
+    "paragraphs": [
+      "I like to go to the playground. There are swings and a slide. I play on the swings. I go high and feel the wind. I also climb on the bars. I can do a somersault. My friends join me. We play catch. We run around laughing. The playground is fun. I go there after school. I stay for an hour. I always come home happy."
+    ],
+    "question": "Выберите подходящий заголовок:",
+    "options": ["Fun at the Playground", "Swings", "After School", "My Friends"],
+    "correct": 0,
+    "explanation": "The text is about playing at the playground.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 55,
+    "paragraphs": [
+      "I like to watch films on TV. I like comedies and cartoons. I often watch with my sister. We eat popcorn together. The films make us laugh. I also like adventure films. They are exciting. I see new places. I like the music too. On Saturday we watch a film at night. I snuggle under a blanket. I enjoy those evenings."
+    ],
+    "question": "Выберите подходящий заголовок:",
+    "options": ["Comedies", "TV Time", "Weekend Night", "Watching Films"],
+    "correct": 3,
+    "explanation": "The text is about watching films on TV.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 56,
+    "paragraphs": [
+      "I have a telescope. I look at the Moon with it. I can see the craters. I also see the stars. I like to find constellations. My father helps me. We look at the sky together. The night sky is full of lights. I want to see planets. I saw Venus once. It was bright. I love space."
+    ],
+    "question": "Выберите подходящий заголовок:",
+    "options": ["Stargazing", "Space", "The Moon", "Night Sky"],
+    "correct": 0,
+    "explanation": "The text is about using a telescope to look at the sky.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 57,
+    "paragraphs": [
+      "I like to help my grandmother. She lives in a village. I help her in the garden. I pull weeds and water plants. She also has chickens. I collect the eggs. We bake bread together. I mix the flour and water. She shows me how. The bread is warm and tasty. I eat it with butter. I enjoy helping her."
+    ],
+    "question": "Выберите подходящий заголовок:",
+    "options": ["Helping Grandmother", "Village Life", "Baking Bread", "Garden Work"],
+    "correct": 0,
+    "explanation": "The text is about helping grandmother in the village.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 58,
+    "paragraphs": [
+      "I go to the beach on holidays. The sand is yellow and hot. I run into the sea. The water is cold and clear. I swim with my brother. We dive under waves. I see small fish. I try to catch them with my hands. We build castles in the sand. We decorate them with shells. I collect pretty stones. The beach is a happy place."
+    ],
+    "question": "Выберите подходящий заголовок:",
+    "options": ["Sand Castles", "Sea Swimming", "Holiday at the Beach", "Shells"],
+    "correct": 2,
+    "explanation": "The text describes a beach holiday.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 59,
+    "paragraphs": [
+      "I like to draw animals. I use pencils and paper. I draw dogs, cats and horses. I also draw birds. I try to copy pictures from books. Sometimes I draw from my imagination. My art teacher says I improve. I show my drawings to my parents. They put them on the fridge. I am proud of them. I draw every day. It is my hobby."
+    ],
+    "question": "Выберите подходящий заголовок:",
+    "options": ["My Hobby", "Art", "Drawing Animals", "Pencil Drawings"],
+    "correct": 2,
+    "explanation": "The text is about drawing animals as a hobby.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 60,
+    "paragraphs": [
+      "I like to eat pasta. My mother cooks it with sauce. She adds cheese and meat. It is delicious. I also eat spaghetti. I twirl it with a fork. I eat slowly. Pasta makes me full. I like it better than rice. I eat pasta every Friday. It is a tradition. I always look forward to it."
+    ],
+    "question": "Выберите подходящий заголовок:",
+    "options": ["My Favourite Pasta", "Food", "Dinner", "Italian Food"],
+    "correct": 0,
+    "explanation": "The text is about pasta as a favourite food.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 61,
+    "paragraphs": [
+      "I have a camera. I take pictures of nature. I photograph flowers and trees. I also take pictures of my family. I like to capture moments. I take photos at parties and trips. I edit them on the computer. I share them with friends. They like my photos. I want a better camera. Photography is a great hobby."
+    ],
+    "question": "Выберите подходящий заголовок:",
+    "options": ["Memories", "Taking Pictures", "My Camera", "Photography"],
+    "correct": 3,
+    "explanation": "The text is about photography.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 62,
+    "paragraphs": [
+      "I like to go to the park with my dog. He runs and fetches. I throw a stick. He brings it back. He wags his tail. He is happy. I also let him off the lead. He runs around. I call him back. He obeys. The park is a good place for him. We go there every afternoon."
+    ],
+    "question": "Выберите подходящий заголовок:",
+    "options": ["Park with My Dog", "Playing Fetch", "Walking", "Pet Time"],
+    "correct": 0,
+    "explanation": "The text is about walking the dog in the park.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 63,
+    "paragraphs": [
+      "I like to play board games. I play with my family. We play Monopoly and Scrabble. We sit around the table. We roll the dice. Sometimes I win. Sometimes I lose. We laugh a lot. The games are fun. They help us spend time together. We play on rainy days. I like board games."
+    ],
+    "question": "Выберите подходящий заголовок:",
+    "options": ["Board Games", "Family Time", "Rainy Days", "Monopoly"],
+    "correct": 0,
+    "explanation": "The text is about playing board games.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 64,
+    "paragraphs": [
+      "I like to travel by train. I watch the countryside pass by. I see green fields and villages. I also see rivers and bridges. The train is fast. I sit near the window. I listen to music. I sometimes read a book. The journey is relaxing. I travel to see my grandparents. I like train journeys."
+    ],
+    "question": "Выберите подходящий заголовок:",
+    "options": ["Countryside", "Train Travel", "Journey", "Relaxing"],
+    "correct": 1,
+    "explanation": "The text is about train travel.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 65,
+    "paragraphs": [
+      "My mother works in a hospital. She is a nurse. She helps sick people. She wears a white uniform. She works hard. Sometimes she works at night. She comes home tired. She still makes food for us. I love her very much. I want to be like her. She is a good person."
+    ],
+    "question": "Выберите подходящий заголовок:",
+    "options": ["Caring", "Her Job", "My mother is nurse", "Inspiration"],
+    "correct": 2,
+    "explanation": "The text is about the mother's job as a nurse.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 66,
+    "paragraphs": [
+      "I like to look at clouds. They change shape. Sometimes they look like animals. I see a dog or a dragon. The clouds move slowly. They are white and fluffy. On stormy days they are grey. I like sunny days best. I lie on the grass and watch them. The sky is big. I can imagine many things."
+    ],
+    "question": "Выберите подходящий заголовок:",
+    "options": ["Cloud Watching", "Sky", "Imagination", "Nice Weather"],
+    "correct": 0,
+    "explanation": "The text is about watching clouds.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 67,
+    "paragraphs": [
+      "I like to drink fruit juice. I like orange and apple juice. I drink it at breakfast. I also drink it after sports. It is cold and sweet. It gives me energy. My mother makes fresh juice. She squeezes the fruit. I help her. We drink it together. Juice is healthy. I like it."
+    ],
+    "question": "Выберите подходящий заголовок:",
+    "options": ["Energy", "Healthy Drinks", "Breakfast", "Fruit Juice"],
+    "correct": 3,
+    "explanation": "The text is about fruit juice.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 68,
+    "paragraphs": [
+      "I like to go to school by bus. The bus comes at 7.30. I sit with my friends. We talk about school. Sometimes I do homework on the bus. The bus stops at different places. I look out of the window. I see shops and houses. The ride is short. I get off at the school gate. I like the bus."
+    ],
+    "question": "Выберите подходящий заголовок:",
+    "options": ["Morning", "School Bus", "Friends", "Journey"],
+    "correct": 1,
+    "explanation": "The text is about going to school by bus.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 69,
+    "paragraphs": [
+      "I like to play badminton. I play with my father. We have a net in the garden. I hit the shuttlecock. It flies fast. I try to keep it in the air. My father hits it back. We play for an hour. I get tired but happy. I like the game. It helps my reflexes. I want to play better."
+    ],
+    "question": "Выберите подходящий заголовок:",
+    "options": ["Playing Badminton", "Sport", "With My Father", "Garden Game"],
+    "correct": 0,
+    "explanation": "The text is about playing badminton.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 70,
+    "paragraphs": [
+      "I live in a city. There are tall buildings and cars. The streets are busy. I see many people. There are also parks and shops. I like the city life. I go to the cinema and museums. I can find anything easily. The city is exciting. I like to walk in the centre. There is always something new."
+    ],
+    "question": "Выберите подходящий заголовок:",
+    "options": ["City Life", "The City", "Busy Streets", "Excitement"],
+    "correct": 0,
+    "explanation": "The text describes life in a city.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 71,
+    "paragraphs": [
+      "I like to help my father in the garage. He fixes the car. I hold the tools. I also clean the car with him. He teaches me about engines. I learn a lot. It is fun to work with him. He is good at his job. I want to be like him. I enjoy the smell of oil and petrol."
+    ],
+    "question": "Выберите подходящий заголовок:",
+    "options": ["Helping Father in the Garage", "Cars", "Learning", "Father and Son"],
+    "correct": 0,
+    "explanation": "The text is about helping father in the garage.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 72,
+    "paragraphs": [
+      "I like to eat cake. I like chocolate cake best. My mother bakes it for my birthday. She puts icing on top. I help to decorate with sweets. The cake is soft and sweet. I eat a big slice. I share with my friends. Cake makes me happy. I also like to bake cookies."
+    ],
+    "question": "Выберите подходящий заголовок:",
+    "options": ["Baking", "Birthday", "Cake", "Sweets"],
+    "correct": 2,
+    "explanation": "The text is about cake.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 73,
+    "paragraphs": [
+      "I like to go camping. We sleep in a tent. I take a sleeping bag. We cook on a fire. We eat sausages and bread. At night we sit around the fire. We sing songs. I see stars in the sky. I hear animals in the forest. The air is fresh. I love camping."
+    ],
+    "question": "Выберите подходящий заголовок:",
+    "options": ["Outdoors", "Camping", "Tent", "Forest"],
+    "correct": 1,
+    "explanation": "The text is about camping.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 74,
+    "paragraphs": [
+      "I like to read the newspaper. I read the children's section. I also read comics. I like to know the news. Sometimes I read the sports pages. My father reads the paper every morning. I often join him. We talk about the news. I learn about the world. I enjoy reading the newspaper."
+    ],
+    "question": "Выберите подходящий заголовок:",
+    "options": ["Father", "News", "Morning", "Reading the Newspaper"],
+    "correct": 3,
+    "explanation": "The text is about reading the newspaper.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 75,
+    "paragraphs": [
+      "I like to fly in an aeroplane. I look down at the clouds. The houses look small. I can see rivers and fields. The plane is fast. I feel excited. I usually go to visit my aunt. The journey is long but fun. I eat a snack on the plane. I like to see the world from above."
+    ],
+    "question": "Выберите подходящий заголовок:",
+    "options": ["Flying", "Aeroplane Travel", "Holiday", "View from the Sky"],
+    "correct": 1,
+    "explanation": "The text is about flying in an aeroplane.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 76,
+    "paragraphs": [
+      "I like to do puzzles. I do jigsaw puzzles. I sort the pieces by colour. I look at the box picture. I put the edge pieces first. Then I fill in the middle. It takes time but it is fun. I feel good when I finish. I also do word puzzles. Puzzles make me think."
+    ],
+    "question": "Выберите подходящий заголовок:",
+    "options": ["Puzzles", "Jigsaw", "Brain Games", "Thinking"],
+    "correct": 0,
+    "explanation": "The text is about doing puzzles.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 77,
+    "paragraphs": [
+      "I like to walk in the forest. The trees are tall and green. I hear the birds. The path is soft with pine needles. I see squirrels and rabbits. I smell fresh air. I take photos. I go there with my father. He knows the trails. We walk for an hour. I feel free."
+    ],
+    "question": "Выберите подходящий заголовок:",
+    "options": ["With Father", "Nature", "Forest Walk", "Trees"],
+    "correct": 2,
+    "explanation": "The text is about walking in the forest.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 78,
+    "paragraphs": [
+      "I like to go to the swimming pool. I dive into the water. I swim under water. I can see the blue tiles. I hold my breath. I swim from one end to the other. I come up for air. I also play in the shallow end. I splash my friends. Swimming is good exercise."
+    ],
+    "question": "Выберите подходящий заголовок:",
+    "options": ["Swimming Pool", "Water", "Diving", "Exercise"],
+    "correct": 0,
+    "explanation": "The text is about going to the swimming pool.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 79,
+    "paragraphs": [
+      "I like to eat sandwiches. I make them myself. I put ham and cheese between bread. I add lettuce and tomato. I press them together. I cut them in half. I wrap them in foil. I take them to school for lunch. They are easy to make. I like to vary the filling. Sandwiches are tasty."
+    ],
+    "question": "Выберите подходящий заголовок:",
+    "options": ["Easy Food", "Lunch", "Making Sandwiches", "Bread"],
+    "correct": 2,
+    "explanation": "The text is about making sandwiches.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 80,
+    "paragraphs": [
+      "I like to play in the snow. I wear my boots and gloves. I make a snowman with a hat. I give him a stick for arms. I also slide down hills on a sledge. The snow is cold but I enjoy it. I throw snowballs at my brother. He throws back. We laugh and run. I love snowy days."
+    ],
+    "question": "Выберите подходящий заголовок:",
+    "options": ["Snowy Days", "Winter Fun", "Snowman", "Sledge"],
+    "correct": 0,
+    "explanation": "The text is about playing in the snow.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 81,
+    "paragraphs": [
+      "I like to visit the aquarium. I see colourful fish. I see sharks and stingrays. I watch the jellyfish float. They are beautiful. I also see sea horses. They are very small. The aquarium is dark. The water is blue. I like to read about the fish. It is an interesting place. I want to go again."
+    ],
+    "question": "Выберите подходящий заголовок:",
+    "options": ["Underwater", "Sea Creatures", "Fish", "Aquarium"],
+    "correct": 3,
+    "explanation": "The text is about visiting the aquarium.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 82,
+    "paragraphs": [
+      "I like to have a picnic in the park. I take a blanket and food. I take sandwiches, fruit and juice. I sit on the grass. The sun is warm. I eat with my family. We talk and laugh. I play with a ball. The park is green. I enjoy being outside. Picnics are fun."
+    ],
+    "question": "Выберите подходящий заголовок:",
+    "options": ["Family Time", "Outdoor Meal", "Picnic in the Park", "Sunny Day"],
+    "correct": 2,
+    "explanation": "The text is about having a picnic.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 83,
+    "paragraphs": [
+      "I like to write letters to my cousin. She lives in another country. I tell her about my school. I also tell her about my friends. I ask her questions. I draw pictures on the envelope. I put a stamp on it. I post it in the mailbox. She writes back. I get excited. I like to get letters."
+    ],
+    "question": "Выберите подходящий заголовок:",
+    "options": ["Writing Letters", "Cousin", "Post", "Friendship"],
+    "correct": 0,
+    "explanation": "The text is about writing letters.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 84,
+    "paragraphs": [
+      "I like to climb trees. I find a big tree with strong branches. I hold the branches and pull myself up. I go high up. I look down at the ground. I feel like a bird. I can see far away. I stay in the tree for a while. Then I climb down carefully. It is a good exercise. I like climbing."
+    ],
+    "question": "Выберите подходящий заголовок:",
+    "options": ["Up High", "Climbing Trees", "Adventure", "Nature"],
+    "correct": 1,
+    "explanation": "The text is about climbing trees.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 85,
+    "paragraphs": [
+      "I like to listen to stories on the radio. I listen before I sleep. The stories are about animals and adventures. I can imagine the characters. The voice is calm and nice. I feel relaxed. I listen every night. Sometimes I fall asleep. The stories are entertaining. I like story time."
+    ],
+    "question": "Выберите подходящий заголовок:",
+    "options": ["Bedtime", "Radio Stories", "Listening", "Imagination"],
+    "correct": 0,
+    "explanation": "The text is about listening to stories on the radio.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 86,
+    "paragraphs": [
+      "I like to go to the farm. I see cows and sheep. I can feed the chickens. I also see pigs. The farmer shows us around. I see the tractor. The animals are friendly. I like the fresh air. I learn about farming. I also see the crops. The farm is a good place to visit."
+    ],
+    "question": "Выберите подходящий заголовок:",
+    "options": ["Farm Visit", "Animals", "Countryside", "Learning"],
+    "correct": 0,
+    "explanation": "The text is about visiting a farm.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 87,
+    "paragraphs": [
+      "I like to dance. I dance in my room. I move to the music. I like pop music. I also like to dance with my friends. We make up moves. We laugh and have fun. Sometimes we perform for our families. They clap for us. Dancing is a good way to be active. I love to dance."
+    ],
+    "question": "Выберите подходящий заголовок:",
+    "options": ["Performance", "Music", "Fun with Friends", "Dancing"],
+    "correct": 3,
+    "explanation": "The text is about dancing.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 88,
+    "paragraphs": [
+      "I like to read fairy tales. I read about princesses and dragons. I also read about magic. I love the happy endings. I borrow fairy tales from the library. I read them at night. My mother used to read them to me. Now I read them myself. I like the pictures too. Fairy tales are wonderful."
+    ],
+    "question": "Выберите подходящий заголовок:",
+    "options": ["Fairy Tales", "Magic Stories", "Reading", "Library"],
+    "correct": 0,
+    "explanation": "The text is about fairy tales.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 89,
+    "paragraphs": [
+      "I like to play with my little sister. She is three years old. We play with dolls. We also play with blocks. She likes to build towers. I help her. She is very cute. She makes me laugh. I take care of her. I read her stories. She likes to listen. I love my sister."
+    ],
+    "question": "Выберите подходящий заголовок:",
+    "options": ["Playing with Sister", "My Little Sister", "Family", "Caring"],
+    "correct": 1,
+    "explanation": "The text is about playing with a little sister.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 90,
+    "paragraphs": [
+      "I like to go to the science museum. I see exhibits about space and light. I also see dinosaurs. There are interactive things to touch. I press buttons and see what happens. I learn about how things work. I go with my class. We have a guide. I enjoy science. I want to be a scientist."
+    ],
+    "question": "Выберите подходящий заголовок:",
+    "options": ["Science Museum", "Learning", "Interactive", "School Trip"],
+    "correct": 0,
+    "explanation": "The text is about visiting a science museum.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 91,
+    "paragraphs": [
+      "I like to eat breakfast outside. I sit on the terrace. The sun is warm. I eat cereal and fruit. I drink tea. The birds sing. The garden is green. I feel calm. I look at the sky. It is a good way to start the day. I do this in summer. I love it."
+    ],
+    "question": "Выберите подходящий заголовок:",
+    "options": ["Morning", "Breakfast Outside", "Garden", "Calm"],
+    "correct": 1,
+    "explanation": "The text is about having breakfast outside.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 92,
+    "paragraphs": [
+      "I like to play with Lego. I build houses and castles. I use different blocks. I also make cars. I follow the instructions. Sometimes I build my own designs. I like to create things. I play for hours. My friends join me. We have competitions. Lego is fun."
+    ],
+    "question": "Выберите подходящий заголовок:",
+    "options": ["Construction", "Creative Play", "Blocks", "Lego Building"],
+    "correct": 3,
+    "explanation": "The text is about playing with Lego.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 93,
+    "paragraphs": [
+      "I like to go to the river. The water is cool. I sit on the bank. I watch the boats. There are ducks too. I throw stones into the water. I see ripples. The river is long. I walk along the path. I see dragonflies. The river is a nice place to relax. I go there often."
+    ],
+    "question": "Выберите подходящий заголовок:",
+    "options": ["Nature", "Water", "By the River", "Relaxing"],
+    "correct": 2,
+    "explanation": "The text is about spending time by the river.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 94,
+    "paragraphs": [
+      "I like to play hide and seek. I hide behind trees and walls. My friends seek me. I try not to laugh. I stay still. Sometimes I find a good spot. They take a long time to find me. Then I run to the base. I win. It is a fun game. We play it every weekend."
+    ],
+    "question": "Выберите подходящий заголовок:",
+    "options": ["Hide and Seek", "Game", "Fun", "Weekend"],
+    "correct": 0,
+    "explanation": "The text is about the game hide and seek.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 95,
+    "paragraphs": [
+      "I like to go to the market with my father. He buys fish and meat. I help him carry the bags. The market is crowded. There is a lot of noise. People bargain. I like to watch them. We buy vegetables too. We have a list. My father is quick. We finish in thirty minutes."
+    ],
+    "question": "Выберите подходящий заголовок:",
+    "options": ["Shopping", "At the Market with Father", "Busy Place", "Fish"],
+    "correct": 1,
+    "explanation": "The text is about going to the market with father.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 96,
+    "paragraphs": [
+      "I like to wear a hat. It protects me from the sun. I wear it when I go out. I have a red hat. I also have a blue cap. I like the blue one best. It fits well. I wear it to school. I also wear it to the beach. It is comfortable. Hats are useful."
+    ],
+    "question": "Выберите подходящий заголовок:",
+    "options": ["Sun Protection", "Clothes", "My Hats", "Fashion"],
+    "correct": 2,
+    "explanation": "The text is about wearing hats.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 97,
+    "paragraphs": [
+      "I like to cook scrambled eggs. I crack two eggs in a bowl. I whisk them with a fork. I add a little milk and salt. I heat the pan with butter. I pour the eggs in. I stir them until they are soft. I cook them for two minutes. I eat them with toast. They are tasty and quick to make."
+    ],
+    "question": "Выберите подходящий заголовок:",
+    "options": ["Scrambled Eggs", "Cooking", "Breakfast", "Easy Recipe"],
+    "correct": 0,
+    "explanation": "The text is about making scrambled eggs.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 98,
+    "paragraphs": [
+      "I like to go to the mall. I walk around and look at the shops. I sometimes buy new clothes. I also eat at the food court. I like pizza and ice cream. The mall is big and bright. I go with my friends. We enjoy window shopping. We also play games at the arcade. I always have fun."
+    ],
+    "question": "Выберите подходящий заголовок:",
+    "options": ["Fun", "Shopping", "Friends", "At the Mall"],
+    "correct": 3,
+    "explanation": "The text is about going to the mall.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 99,
+    "paragraphs": [
+      "I like to study the stars. I read about constellations. I look at maps of the sky. I go outside at night. I try to find the patterns. I use a torch. I also use a compass. It is a fun hobby. I learn about the universe. I feel small but amazed. Stars are beautiful."
+    ],
+    "question": "Выберите подходящий заголовок:",
+    "options": ["Night Sky", "Astronomy", "Studying Stars", "Hobby"],
+    "correct": 2,
+    "explanation": "The text is about studying stars.",
+    "input_type": "buttons"
+  },
