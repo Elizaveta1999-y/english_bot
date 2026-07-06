@@ -1101,6 +1101,3910 @@
     "explanation": "The text is about studying stars.",
     "input_type": "buttons"
       }
-    ]
+],
+    "Любитель": [
+  {
+    "id": 100,
+    "paragraphs": [
+      "The ancient city of Petra, carved into rose-red cliffs, was once a busy trading centre. It was built by the Nabateans over two thousand years ago. The city had a clever water system that allowed it to grow in the desert. Today, Petra is a UNESCO World Heritage site and one of the New Seven Wonders. Visitors walk through a narrow canyon to reach the famous Treasury. The Treasury, with its beautiful stone carvings, is just the start. There are also hundreds of tombs, temples, and a large theatre. Exploring Petra is like travelling back in time."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "Ancient Civilisations",
+      "The Nabatean Water System",
+      "The Treasury of Petra",
+      "UNESCO World Heritage Sites",
+      "The Lost City of Petra",
+      "The New Seven Wonders"
+    ],
+    "correct": 4,
+    "explanation": "The text describes Petra's history, features, and importance, so the best title is 'The Lost City of Petra'.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 101,
+    "paragraphs": [
+      "Artificial intelligence is changing the way doctors work. Computers can now help to identify diseases from X-rays and scans. This can lead to faster treatment and better outcomes for patients. However, many people worry about privacy and the risk of mistakes. Most experts agree that AI should support doctors, not replace them. The technology is still developing and needs careful oversight. In the future, AI could make healthcare more efficient and accessible. But we must ensure it is used responsibly."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "The Role of Computers",
+      "AI in Healthcare",
+      "Privacy in Medicine",
+      "The Future of Doctors",
+      "Ethical Issues in Technology",
+      "Replacing Human Workers"
+    ],
+    "correct": 1,
+    "explanation": "The text is about AI's role in healthcare, so 'AI in Healthcare' is the most suitable title.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 102,
+    "paragraphs": [
+      "The Great Barrier Reef is the largest coral reef system in the world, stretching along the coast of Australia. It is home to thousands of sea creatures, including fish, turtles, and sharks. Millions of tourists visit the reef every year to enjoy its beauty. However, climate change and warmer waters are causing the coral to die. This is known as coral bleaching. Scientists are working on ways to restore the reef. They are also trying to reduce pollution and protect marine life. The future of the reef depends on global efforts to fight climate change."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "The Great Barrier Reef",
+      "Coral Bleaching Crisis",
+      "Marine Life in Australia",
+      "Tourism and Nature",
+      "Conservation Projects",
+      "Climate Change Effects"
+    ],
+    "correct": 0,
+    "explanation": "The text gives an overview of the Great Barrier Reef, so the best title is 'The Great Barrier Reef'.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 103,
+    "paragraphs": [
+      "The Renaissance was a period of great change in Europe, starting in Italy in the 14th century. It brought new ideas in art, science, and philosophy. Artists like Leonardo da Vinci and Michelangelo created famous paintings and sculptures. The invention of the printing press helped spread knowledge widely. People began to question old beliefs and explore new ways of thinking. This era also valued human achievement and individual talent. The Renaissance influenced many aspects of modern life. It is often called the 'rebirth' of classical culture."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "Humanism in Europe",
+      "Leonardo da Vinci",
+      "The Printing Press",
+      "The Renaissance",
+      "Classical Learning",
+      "Modern Science"
+    ],
+    "correct": 3,
+    "explanation": "The text describes the Renaissance, so the best title is 'The Renaissance'.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 104,
+    "paragraphs": [
+      "Mindfulness meditation is becoming popular as a way to reduce stress. By focusing on the present moment, people can learn to control their thoughts. Studies show that regular meditation can lower anxiety and improve mood. It can also help with concentration and emotional balance. Many companies now offer meditation classes to their workers. Simple exercises, like deep breathing, can be done anywhere. The benefits grow with practice and can change the brain over time. It is a simple method to find inner peace."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "Mindfulness Meditation",
+      "Stress Reduction",
+      "The Science of Relaxation",
+      "Workplace Wellness",
+      "Breathing Exercises",
+      "Mental Health"
+    ],
+    "correct": 0,
+    "explanation": "The text focuses on mindfulness meditation, so 'Mindfulness Meditation' is the most appropriate.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 105,
+    "paragraphs": [
+      "The internet has revolutionised the way we communicate. People can now connect instantly with anyone around the world. Social media platforms allow us to share our lives and ideas. However, this also raises concerns about privacy and the spread of false information. Many people spend too much time online, which can affect their real-life relationships. It is important to use the internet wisely and critically. Despite its drawbacks, the internet remains a powerful tool. It has opened up new opportunities for learning and collaboration."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "Online Communication",
+      "Social Media and Privacy",
+      "The Impact of the Internet",
+      "The Dangers of the Internet",
+      "Digital Age",
+      "Technology and Society"
+    ],
+    "correct": 2,
+    "explanation": "The text discusses the internet's effects, so 'The Impact of the Internet' is the best title.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 106,
+    "paragraphs": [
+      "The Amazon rainforest is often called the 'lungs of the Earth' because it produces a large part of the world's oxygen. It is home to millions of species of plants and animals. Many indigenous people also live there, depending on the forest for their survival. However, deforestation is destroying large areas of the Amazon every year. This is mainly caused by farming, logging, and mining. The loss of the rainforest affects the global climate. Conservation groups are working to protect the forest and its inhabitants. The future of the Amazon is critical for the planet."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "Deforestation Crisis",
+      "The Amazon Rainforest",
+      "Indigenous People",
+      "Climate Change",
+      "Conservation Efforts",
+      "Biodiversity"
+    ],
+    "correct": 1,
+    "explanation": "The text provides an overview of the Amazon, so the best title is 'The Amazon Rainforest'.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 107,
+    "paragraphs": [
+      "Space exploration has always fascinated humanity. From the first Moon landing to the recent Mars rovers, we have made huge progress. Scientists study other planets to understand the origins of our solar system. They also search for signs of life beyond Earth. Space missions require advanced technology and international cooperation. The International Space Station is a symbol of what we can achieve together. However, space travel is expensive and risky. Despite these challenges, many believe it is essential for the future of our species."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "Future of Humanity",
+      "The Moon Landing",
+      "Mars Rovers",
+      "International Space Station",
+      "The Search for Life",
+      "Space Exploration"
+    ],
+    "correct": 5,
+    "explanation": "The text is about space exploration in general, so 'Space Exploration' is the best title.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 108,
+    "paragraphs": [
+      "The food we eat has a big impact on our health and the environment. Many people now choose to eat more plant-based meals to reduce their carbon footprint. This means eating less meat and more vegetables, fruits, and grains. Studies show that a plant-based diet can lower the risk of heart disease and diabetes. It also requires fewer natural resources to produce. However, it is important to ensure a balanced diet with all necessary nutrients. Some people find it hard to change their eating habits. But small steps can make a big difference."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "Balanced Nutrition",
+      "Healthy Eating",
+      "Environmental Impact of Food",
+      "Reducing Meat Consumption",
+      "Plant-Based Diets",
+      "Climate Change and Food"
+    ],
+    "correct": 4,
+    "explanation": "The text focuses on plant-based diets and their benefits, so 'Plant-Based Diets' is the most suitable.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 109,
+    "paragraphs": [
+      "The ancient pyramids of Egypt are among the most famous structures in the world. They were built as tombs for pharaohs over 4,500 years ago. The largest, the Great Pyramid of Giza, was the tallest man-made structure for centuries. It is believed that thousands of workers spent years constructing them. The pyramids are aligned with the stars, showing the advanced knowledge of the ancient Egyptians. Today, they are a major tourist attraction and a symbol of Egypt's rich history. Archaeologists continue to discover new secrets about their construction. The pyramids still inspire wonder and admiration."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "The Egyptian Pyramids",
+      "The Great Pyramid of Giza",
+      "Pharaohs and Tombs",
+      "Ancient Architecture",
+      "Egyptian Astronomy",
+      "Tourism in Egypt"
+    ],
+    "correct": 0,
+    "explanation": "The text describes the Egyptian pyramids, so the best title is 'The Egyptian Pyramids'.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 110,
+    "paragraphs": [
+      "Globalisation has made the world more connected than ever before. Goods, services, and ideas move across borders easily. This has led to economic growth and cultural exchange. However, it has also caused challenges, such as job losses in some industries and environmental damage. Many people worry about losing their local traditions and languages. On the other hand, globalisation has lifted millions out of poverty. It has also made it easier to share knowledge and technology. Balancing the benefits and drawbacks is a key issue for governments."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "Cultural Exchange",
+      "Economic Growth",
+      "The Effects of Globalisation",
+      "Job Losses",
+      "Technology Transfer",
+      "Traditional Values"
+    ],
+    "correct": 2,
+    "explanation": "The text discusses globalisation's pros and cons, so 'The Effects of Globalisation' is the best title.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 111,
+    "paragraphs": [
+      "The Great Wall of China is one of the most impressive constructions in history. It was built over many centuries to protect China from invaders. The wall stretches thousands of kilometres across mountains and deserts. It is made of stone, brick, and other materials. Building it required a huge amount of labour and resources. Today, the Great Wall is a popular tourist destination. It is also a symbol of China's strength and determination. Many sections are well-preserved and offer stunning views."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "Tourism in China",
+      "Chinese History",
+      "Ancient Construction",
+      "The Great Wall of China",
+      "Defence Structures",
+      "World Heritage Sites"
+    ],
+    "correct": 3,
+    "explanation": "The text is about the Great Wall, so the best title is 'The Great Wall of China'.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 112,
+    "paragraphs": [
+      "Electric cars are becoming more common on our roads. They produce no exhaust emissions, which helps reduce air pollution. Many governments offer incentives to encourage people to buy them. Electric cars are cheaper to run than petrol cars because electricity costs less. They also require less maintenance. However, they can be expensive to buy initially. The range of electric cars is improving, and charging stations are becoming more widespread. As technology advances, electric cars are likely to become the norm."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "Air Pollution",
+      "Eco-Friendly Transport",
+      "Government Incentives",
+      "The Cost of Cars",
+      "Future of Driving",
+      "Electric Cars"
+    ],
+    "correct": 5,
+    "explanation": "The text focuses on electric cars, so the best title is 'Electric Cars'.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 113,
+    "paragraphs": [
+      "The human brain is an amazing organ. It controls everything we do, from thinking to moving. It is made up of billions of nerve cells called neurons. The brain is divided into different regions, each responsible for specific functions. For example, the frontal lobe handles decision-making and planning. The brain is also capable of learning and adapting throughout life. This ability is called neuroplasticity. Scientists continue to study the brain to understand how it works and to treat brain disorders."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "The Human Brain",
+      "Neurons and the Brain",
+      "Brain Regions",
+      "Learning and Adaptation",
+      "Neuroplasticity",
+      "Brain Disorders"
+    ],
+    "correct": 0,
+    "explanation": "The text gives an overview of the brain, so 'The Human Brain' is the best title.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 114,
+    "paragraphs": [
+      "The fashion industry is one of the largest in the world, but it also has a significant environmental impact. Fast fashion produces huge amounts of waste and pollution. Many clothes are made from synthetic materials that do not biodegrade. The production of textiles uses a lot of water and chemicals. There is a growing movement towards sustainable fashion, which focuses on eco-friendly materials and ethical labour practices. Consumers are becoming more aware of the issues and are choosing to buy second-hand or higher-quality items. Making conscious choices can help reduce the industry's footprint."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "Sustainable Fashion",
+      "The Impact of Fast Fashion",
+      "Eco-Friendly Clothing",
+      "Textile Production",
+      "Consumer Choices",
+      "Ethical Labour"
+    ],
+    "correct": 0,
+    "explanation": "The text discusses sustainable fashion as a response to environmental concerns, so the best title is 'Sustainable Fashion'.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 115,
+    "paragraphs": [
+      "The city of Venice is famous for its canals and beautiful architecture. It is built on a group of islands in the Adriatic Sea. The canals serve as streets, and people travel by boat. Venice is a popular tourist destination, known for its art, history, and romantic atmosphere. However, the city is facing challenges from rising sea levels and frequent flooding. Many buildings are at risk of damage. Efforts are being made to protect Venice, such as installing flood barriers. The city's unique character makes it a place worth preserving."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "The Canals of Venice",
+      "Venice and Its Challenges",
+      "Tourism in Italy",
+      "Rising Sea Levels",
+      "Historic Architecture",
+      "Protecting Cities"
+    ],
+    "correct": 1,
+    "explanation": "The text describes Venice and the threats it faces, so the best title is 'Venice and Its Challenges'.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 116,
+    "paragraphs": [
+      "Photography is a powerful medium for capturing moments and telling stories. With the rise of smartphones, almost everyone has a camera in their pocket. However, professional photography requires skill and understanding of light, composition, and timing. Photographers can specialise in various fields, such as portraits, landscapes, or journalism. A good photograph can evoke emotions and raise awareness about important issues. In the digital age, photos are shared instantly across the world. This has changed the way we consume visual information. Learning the basics of photography can be a rewarding hobby."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "Digital Sharing",
+      "Smartphone Photography",
+      "Professional Skills",
+      "Visual Storytelling",
+      "The Art of Photography",
+      "Learning Photography"
+    ],
+    "correct": 4,
+    "explanation": "The text discusses photography in general, so 'The Art of Photography' is the best title.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 117,
+    "paragraphs": [
+      "The concept of renewable energy is gaining momentum as the world seeks to reduce carbon emissions. Sources like solar, wind, and hydroelectric power are clean and abundant. They do not produce greenhouse gases, unlike fossil fuels. Many countries are investing in renewable energy infrastructure. Solar panels and wind turbines are becoming more efficient and affordable. However, renewable energy still faces challenges, such as storage and reliability. Nevertheless, the transition to clean energy is essential for combating climate change. It also creates new job opportunities."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "Climate Change Solutions",
+      "Solar Power",
+      "Clean Energy Infrastructure",
+      "Renewable Energy",
+      "Fossil Fuels vs. Renewables",
+      "Green Jobs"
+    ],
+    "correct": 3,
+    "explanation": "The text provides an overview of renewable energy, so the best title is 'Renewable Energy'.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 118,
+    "paragraphs": [
+      "The history of chocolate is fascinating. It began in ancient Mesoamerica, where the Aztecs and Mayans used cacao beans for religious ceremonies and as currency. The Spanish brought chocolate to Europe in the 16th century, where it became a luxury drink. It was later developed into the solid chocolate we know today. The Industrial Revolution made chocolate production cheaper and more widely available. Today, chocolate is enjoyed all over the world in many forms. However, the industry faces issues like child labour and deforestation. Fair trade chocolate aims to address these problems."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "The History of Chocolate",
+      "Aztec and Mayan Culture",
+      "Chocolate Production",
+      "The Industrial Revolution",
+      "Fair Trade",
+      "Global Consumption"
+    ],
+    "correct": 0,
+    "explanation": "The text traces the history of chocolate, so 'The History of Chocolate' is the best title.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 119,
+    "paragraphs": [
+      "The internet has changed the way we access information. In the past, people relied on books and encyclopedias. Now, we can find anything with a few clicks. Search engines are powerful tools, but they also present challenges. The quality and accuracy of information can vary. It is important to evaluate sources critically. Teachers often remind students to check facts from multiple sources. Despite these challenges, the internet offers vast opportunities for learning and discovery. It has made knowledge more accessible to everyone."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "Digital Literacy",
+      "Search Engines",
+      "Internet and Information",
+      "Learning Tools",
+      "Critical Thinking",
+      "Access to Knowledge"
+    ],
+    "correct": 2,
+    "explanation": "The text discusses the internet's role in accessing information, so 'Internet and Information' is the best title.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 120,
+    "paragraphs": [
+      "The city of Dubai is known for its impressive skyscrapers and modern architecture. It has grown rapidly from a small fishing village to a global business hub. The Burj Khalifa, the tallest building in the world, is a symbol of its ambition. Dubai also attracts tourists with luxury shopping, desert safaris, and artificial islands. However, the city faces challenges related to its climate and reliance on expatriate workers. Despite this, Dubai continues to innovate and expand. It is a remarkable example of development and transformation."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "The Burj Khalifa",
+      "Dubai's Rise",
+      "Tourism in Dubai",
+      "Modern Architecture",
+      "Business Hub",
+      "Development Challenges"
+    ],
+    "correct": 1,
+    "explanation": "The text describes Dubai's growth, so 'Dubai's Rise' is the best title.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 121,
+    "paragraphs": [
+      "The ancient Greeks made many contributions to Western civilisation. They developed democracy, philosophy, and theatre. Famous philosophers like Socrates, Plato, and Aristotle laid the foundations for Western thought. Greek architecture, with its columns and temples, has influenced building styles for centuries. The Olympic Games also originated in ancient Greece. These contributions have had a lasting impact on the world. Studying ancient Greece helps us understand the roots of our modern society."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "Greek Architecture",
+      "Greek Philosophy",
+      "The Olympic Games",
+      "Western Civilisation",
+      "Ancient Greek Influence",
+      "Democracy"
+    ],
+    "correct": 4,
+    "explanation": "The text highlights ancient Greek contributions, so the best title is 'Ancient Greek Influence'.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 122,
+    "paragraphs": [
+      "Biodiversity is the variety of life on Earth. It includes all species of plants, animals, and microorganisms. Healthy ecosystems depend on biodiversity to function properly. However, human activities like deforestation, pollution, and climate change are reducing biodiversity. This loss can have serious consequences for food security and disease control. Conservation efforts aim to protect endangered species and their habitats. Individuals can help by reducing their ecological footprint. Preserving biodiversity is crucial for the future of our planet."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "Endangered Species",
+      "Biodiversity and Its Importance",
+      "Ecosystems",
+      "Human Impact on Nature",
+      "Conservation",
+      "Ecological Footprint"
+    ],
+    "correct": 1,
+    "explanation": "The text explains biodiversity and its importance, so the best title is 'Biodiversity and Its Importance'.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 123,
+    "paragraphs": [
+      "The concept of zero waste is gaining popularity as a way to reduce rubbish. The idea is to produce no waste by reusing, recycling, and composting. Many people are adopting this lifestyle to minimise their environmental impact. They buy products with less packaging and choose reusable items. Zero waste also encourages repairing things instead of throwing them away. While it can be challenging, even small changes can make a big difference. This approach helps to conserve resources and protect the planet. It is a practical response to the growing waste problem."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "Environmental Impact",
+      "Recycling",
+      "Reducing Waste",
+      "Zero Waste Lifestyle",
+      "Sustainable Living",
+      "Composting"
+    ],
+    "correct": 3,
+    "explanation": "The text focuses on zero waste, so 'Zero Waste Lifestyle' is the best title.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 124,
+    "paragraphs": [
+      "The Silk Road was a network of trade routes that connected Asia and Europe. It was used to exchange goods like silk, spices, and precious metals. Ideas, technologies, and religions also travelled along the road. The Silk Road reached its peak during the Mongol Empire in the 13th century. It declined with the rise of sea routes. Today, the Silk Road is a symbol of cultural exchange and globalisation. Its history is fascinating and highlights the importance of connectivity. Many heritage sites along the route attract visitors."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "The Silk Road",
+      "Trade Routes",
+      "Cultural Exchange",
+      "The Mongol Empire",
+      "Ancient Globalisation",
+      "Heritage Sites"
+    ],
+    "correct": 0,
+    "explanation": "The text describes the Silk Road, so the best title is 'The Silk Road'.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 125,
+    "paragraphs": [
+      "The concept of happiness has been studied by philosophers and scientists for centuries. Research shows that happiness is not just about wealth or success. Relationships, health, and a sense of purpose are more important. Positive psychology focuses on what makes life fulfilling. Practices like gratitude, kindness, and mindfulness can increase well-being. Happiness also depends on how we perceive events. People who cultivate a positive outlook tend to be happier. Understanding happiness can help us lead more satisfying lives."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "Mindfulness",
+      "Positive Psychology",
+      "Gratitude and Well-being",
+      "Wealth and Happiness",
+      "Life Satisfaction",
+      "The Science of Happiness"
+    ],
+    "correct": 5,
+    "explanation": "The text discusses happiness research and factors, so 'The Science of Happiness' is the best title.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 126,
+    "paragraphs": [
+      "The history of the universe is studied through astronomy and cosmology. Scientists use powerful telescopes to observe galaxies and stars. The Big Bang theory explains the origin of the universe about 13.8 billion years ago. Since then, the universe has been expanding. Stars are born, live, and die, creating new elements. Our solar system formed about 4.6 billion years ago. Understanding the universe helps us appreciate our place in it. It also drives technological innovation."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "The Universe",
+      "The Big Bang",
+      "Astronomy",
+      "Galaxies and Stars",
+      "Solar System",
+      "Space Exploration"
+    ],
+    "correct": 0,
+    "explanation": "The text gives an overview of the universe, so the best title is 'The Universe'.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 127,
+    "paragraphs": [
+      "The process of photosynthesis is essential for life on Earth. Plants use sunlight, water, and carbon dioxide to produce food. They release oxygen as a byproduct, which we breathe. This process forms the basis of the food chain. Without photosynthesis, there would be no plants, and animals could not survive. It also helps regulate the climate by absorbing carbon dioxide. Understanding photosynthesis is important for agriculture and environmental science. It is a remarkable natural process."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "Plant Life",
+      "Photosynthesis",
+      "The Food Chain",
+      "Climate Regulation",
+      "Agriculture and Science",
+      "Oxygen Production"
+    ],
+    "correct": 1,
+    "explanation": "The text is about photosynthesis, so the best title is 'Photosynthesis'.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 128,
+    "paragraphs": [
+      "The city of Paris is known as the 'City of Light'. It is famous for its art, fashion, and cuisine. The Eiffel Tower is one of the most recognised landmarks in the world. Paris is also home to world-class museums like the Louvre, which houses the Mona Lisa. The city has a rich history and has been a centre of culture for centuries. Visitors enjoy walking along the Seine River and exploring charming neighbourhoods. However, Paris also faces challenges like overcrowding and high living costs. Despite this, it remains a top destination for millions."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "Tourism Challenges",
+      "The Eiffel Tower",
+      "Art and Culture",
+      "The Louvre Museum",
+      "Parisian Life",
+      "The City of Paris"
+    ],
+    "correct": 5,
+    "explanation": "The text gives an overview of Paris, so 'The City of Paris' is the best title.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 129,
+    "paragraphs": [
+      "The history of the telephone shows how communication has evolved. Alexander Graham Bell invented the first practical telephone in 1876. It allowed people to speak to each other across distances. Over time, phones became wireless and mobile. Today, smartphones are like small computers. They can not only make calls but also send messages, take photos, and access the internet. The telephone has changed the way we connect with others. It has made the world smaller and more accessible."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "Smartphones",
+      "Alexander Graham Bell",
+      "Wireless Communication",
+      "The History of the Telephone",
+      "Mobile Technology",
+      "Global Connectivity"
+    ],
+    "correct": 3,
+    "explanation": "The text describes the telephone's development, so the best title is 'The History of the Telephone'.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 130,
+    "paragraphs": [
+      "Climate change is one of the most urgent issues of our time. The Earth's average temperature is rising due to human activities like burning fossil fuels. This causes more extreme weather events, such as hurricanes and droughts. The ice caps are melting, leading to rising sea levels. Many species are at risk of extinction because their habitats are changing. Governments and individuals are taking action to reduce emissions. Transitioning to renewable energy and planting trees can help. Everyone can contribute by making small changes in their daily lives."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "Fossil Fuels",
+      "Extreme Weather",
+      "Climate Change",
+      "Renewable Energy",
+      "Species Extinction",
+      "Individual Action"
+    ],
+    "correct": 2,
+    "explanation": "The text discusses climate change, so 'Climate Change' is the best title.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 131,
+    "paragraphs": [
+      "Artificial reefs are man-made structures placed in the ocean to promote marine life. They can be made from old ships, concrete, or other materials. These structures create new habitats for fish and other sea creatures. They also help to restore damaged coral reefs and increase biodiversity. Artificial reefs can also benefit local fishing industries by attracting more fish. Some are designed for divers to explore. They are an innovative way to support ocean ecosystems. Protecting our oceans is essential for the planet's health."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "Marine Conservation",
+      "Artificial Reefs",
+      "Ocean Habitats",
+      "Biodiversity",
+      "Fishing Industry",
+      "Diving Destinations"
+    ],
+    "correct": 1,
+    "explanation": "The text is about artificial reefs, so the best title is 'Artificial Reefs'.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 132,
+    "paragraphs": [
+      "The human body has an incredible ability to heal itself. When we get a cut, the skin repairs itself. The immune system fights off infections. The liver can regrow damaged tissue. However, this ability decreases with age and poor health. A healthy lifestyle supports the body's natural healing processes. Eating well, exercising, and getting enough sleep are important. Stress can slow down recovery. Modern medicine also helps when the body needs extra support. Understanding our bodies helps us stay healthy."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "The Body's Healing Power",
+      "Immune System",
+      "Healthy Lifestyle",
+      "Recovery",
+      "Modern Medicine",
+      "Aging and Health"
+    ],
+    "correct": 0,
+    "explanation": "The text focuses on the body's self-healing abilities, so the best title is 'The Body's Healing Power'.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 133,
+    "paragraphs": [
+      "The history of the cinema is full of innovation. The first films were short and silent. The addition of sound and colour transformed the industry. Today, films are made with advanced special effects and computer-generated imagery. Cinema is a powerful art form that tells stories and reflects culture. It can entertain, educate, and inspire. The global film industry is a major economic force. Many people enjoy going to the cinema to escape into another world."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "Cultural Reflection",
+      "Film Technology",
+      "Silent Films",
+      "Special Effects",
+      "The History of Cinema",
+      "Global Film Industry"
+    ],
+    "correct": 4,
+    "explanation": "The text traces the history of cinema, so 'The History of Cinema' is the best title.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 134,
+    "paragraphs": [
+      "The concept of equality is central to many modern societies. It means that everyone should have the same opportunities, regardless of their background. However, discrimination still exists in many forms. Gender, race, and economic status can affect people's chances. Laws are in place to protect against discrimination, but attitudes need to change. Education plays a key role in promoting understanding. Celebrating diversity and inclusion can help build a fairer world. Equality is an ongoing struggle, but progress is being made."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "Human Rights",
+      "Discrimination",
+      "Equality and Society",
+      "Education and Equality",
+      "Diversity",
+      "Social Progress"
+    ],
+    "correct": 2,
+    "explanation": "The text discusses equality, so the best title is 'Equality and Society'.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 135,
+    "paragraphs": [
+      "The idea of a circular economy is gaining attention as a solution to waste. Unlike the traditional linear economy, which produces waste, a circular economy keeps resources in use. Products are designed to be reused, repaired, or recycled. This reduces the need for new raw materials and lowers environmental impact. It also creates economic opportunities in recycling and remanufacturing. Many companies are adopting circular principles. Governments are also encouraging this shift. It offers a sustainable path for the future."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "Environmental Policy",
+      "Waste Reduction",
+      "Resource Efficiency",
+      "Sustainable Business",
+      "Recycling",
+      "The Circular Economy"
+    ],
+    "correct": 5,
+    "explanation": "The text explains the circular economy, so the best title is 'The Circular Economy'.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 136,
+    "paragraphs": [
+      "Yoga is an ancient practice that originated in India. It involves physical postures, breathing exercises, and meditation. Many people practise yoga to improve flexibility and reduce stress. It is also known to lower blood pressure and improve sleep. Yoga can be adapted for all fitness levels. It encourages mindfulness and body awareness. Classes are available in gyms and studios, and there are many online resources. Practising yoga regularly can benefit both the mind and body."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "Meditation",
+      "Physical Fitness",
+      "Stress Reduction",
+      "Yoga and Its Benefits",
+      "Mindfulness",
+      "Health Practices"
+    ],
+    "correct": 3,
+    "explanation": "The text describes yoga and its benefits, so 'Yoga and Its Benefits' is the best title.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 137,
+    "paragraphs": [
+      "The concept of time management is essential for productivity. It involves planning and organising how to use your time effectively. Good time management helps you achieve more in less time. It also reduces stress and improves work-life balance. Simple techniques include making to-do lists, prioritising tasks, and avoiding distractions. Setting goals and breaking them into smaller steps can also help. Developing these skills takes practice but pays off in the long run. Efficient time management leads to a more fulfilling life."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "Time Management",
+      "Productivity",
+      "Work-Life Balance",
+      "Goal Setting",
+      "Avoiding Distractions",
+      "Planning"
+    ],
+    "correct": 0,
+    "explanation": "The text is about time management, so 'Time Management' is the best title.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 138,
+    "paragraphs": [
+      "The concept of lifelong learning is becoming more important in a changing world. As technology advances, new skills are needed. People are encouraged to continue learning throughout their lives. This can be through formal education, online courses, or self-study. Lifelong learning keeps the mind active and can lead to personal and professional growth. It also helps adapt to new situations and challenges. Many employers value employees who are willing to learn. Embracing lifelong learning opens up many possibilities."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "Education",
+      "Technology and Skills",
+      "Lifelong Learning",
+      "Personal Growth",
+      "Career Development",
+      "Adaptability"
+    ],
+    "correct": 2,
+    "explanation": "The text discusses lifelong learning, so 'Lifelong Learning' is the best title.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 139,
+    "paragraphs": [
+      "The ocean covers more than 70% of the Earth's surface. It plays a vital role in regulating the climate and producing oxygen. The ocean is home to a huge variety of marine life. However, it is threatened by pollution, overfishing, and climate change. Plastic waste is a major problem, harming animals and ecosystems. Marine protected areas are established to conserve biodiversity. Reducing plastic use and supporting sustainable fishing can help. The health of the ocean is essential for the planet's future."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "Climate Regulation",
+      "Marine Life",
+      "Ocean Pollution",
+      "The Ocean and Its Importance",
+      "Conservation",
+      "Sustainable Fishing"
+    ],
+    "correct": 3,
+    "explanation": "The text highlights the ocean's importance and threats, so the best title is 'The Ocean and Its Importance'.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 140,
+    "paragraphs": [
+      "The history of the book is a story of change. Early books were written on clay tablets and scrolls. The invention of paper made them more portable. The printing press revolutionised access to knowledge. Books became cheaper and more common. Today, e-books and audiobooks are becoming popular. However, physical books remain loved by many. They are a source of information, entertainment, and inspiration."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "Cultural Heritage",
+      "Paper and Printing",
+      "E-books",
+      "Reading",
+      "The History of Books",
+      "Knowledge Sharing"
+    ],
+    "correct": 4,
+    "explanation": "The text traces the history of books, so 'The History of Books' is the best title.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 141,
+    "paragraphs": [
+      "The concept of emotional intelligence has become popular in psychology. It refers to the ability to recognise and manage our own emotions and those of others. People with high emotional intelligence are often better communicators and leaders. They can handle stress and conflict more effectively. Developing emotional intelligence involves self-awareness, empathy, and social skills. It can be improved with practice. Emotional intelligence is valuable in both personal and professional life."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "Self-Awareness",
+      "Psychology",
+      "Communication Skills",
+      "Empathy",
+      "Leadership",
+      "Emotional Intelligence"
+    ],
+    "correct": 5,
+    "explanation": "The text explains emotional intelligence, so the best title is 'Emotional Intelligence'.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 142,
+    "paragraphs": [
+      "The concept of smart cities is changing urban living. These cities use technology to improve efficiency and quality of life. Sensors and data are used to manage traffic, energy, and waste. This can reduce pollution and make cities more sustainable. Smart cities also aim to improve public services and safety. However, there are concerns about privacy and the cost of implementation. Despite these challenges, many cities are investing in smart technologies. The future may see more cities adopting these innovations."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "Public Services",
+      "Urban Technology",
+      "Sustainability",
+      "Privacy Concerns",
+      "Smart Cities",
+      "Innovation"
+    ],
+    "correct": 4,
+    "explanation": "The text discusses smart cities, so 'Smart Cities' is the best title.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 143,
+    "paragraphs": [
+      "The concept of minimalism is about living with less. It encourages people to focus on what is essential and eliminate excess. Minimalism can reduce stress and save money. It also has environmental benefits because it reduces consumption. Many people find that having fewer possessions leads to more freedom. Minimalism is not about deprivation but about intentionality. It is a lifestyle choice that values experiences over things. More people are adopting minimalism in different aspects of their lives."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "Minimalism",
+      "Simple Living",
+      "Consumption",
+      "Environmental Benefits",
+      "Intentionality",
+      "Lifestyle Choices"
+    ],
+    "correct": 0,
+    "explanation": "The text is about minimalism, so the best title is 'Minimalism'.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 144,
+    "paragraphs": [
+      "The history of the bicycle shows how transport has evolved. The first bicycles had pedals on the front wheel. They were called penny-farthings. Later, the modern bicycle with a chain was developed. Bicycles became a popular way to travel, especially in cities. They are environmentally friendly and promote health. Today, electric bicycles are also gaining popularity. Cycling is a convenient and sustainable form of transport. It is an activity enjoyed by many people of all ages."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "Penny-Farthing",
+      "The History of the Bicycle",
+      "Modern Bicycles",
+      "Cycling",
+      "Electric Bicycles",
+      "Sustainable Transport"
+    ],
+    "correct": 1,
+    "explanation": "The text traces the history of the bicycle, so the best title is 'The History of the Bicycle'.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 145,
+    "paragraphs": [
+      "The concept of social media influencers has changed marketing. Influencers have large followings online and can affect people's opinions. They promote products, services, and lifestyles. Many people trust influencers more than traditional advertising. However, there is also concern about the authenticity of their content. Influencers often have a responsibility to be honest with their followers. This new form of marketing is powerful but also raises ethical questions. It is a significant part of modern communication."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "Online Trust",
+      "Marketing",
+      "Advertising",
+      "Social Media Influencers",
+      "Ethical Issues",
+      "Modern Communication"
+    ],
+    "correct": 3,
+    "explanation": "The text is about social media influencers, so the best title is 'Social Media Influencers'.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 146,
+    "paragraphs": [
+      "The concept of global citizenship is about belonging to a wider community. It encourages people to think beyond national borders. Global citizens care about issues like human rights, social justice, and sustainability. They take action to make a positive difference in the world. This can involve volunteering, reducing their environmental impact, or advocating for change. Global citizenship promotes understanding and cooperation. It is an ideal for creating a more peaceful and equitable world."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "Social Justice",
+      "Human Rights",
+      "Global Citizenship",
+      "Sustainability",
+      "Volunteering",
+      "International Cooperation"
+    ],
+    "correct": 2,
+    "explanation": "The text explains global citizenship, so 'Global Citizenship' is the best title.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 147,
+    "paragraphs": [
+      "The history of the computer is a story of rapid progress. The first computers were huge machines that filled rooms. They could only perform basic calculations. The invention of the microprocessor made computers smaller and more powerful. Personal computers became common in the 1980s. Today, we carry powerful computers in our pockets. Computers have revolutionised almost every aspect of our lives. They are essential for work, education, and entertainment."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "The History of Computers",
+      "Microprocessor",
+      "Personal Computers",
+      "Smartphones",
+      "Technology Evolution",
+      "Digital Age"
+    ],
+    "correct": 0,
+    "explanation": "The text traces the history of computers, so the best title is 'The History of Computers'.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 148,
+    "paragraphs": [
+      "The concept of renewable resources is crucial for sustainability. Renewable resources can be replenished naturally, like sunlight and wind. Unlike fossil fuels, they are infinite and environmentally friendly. Using them reduces greenhouse gas emissions. However, the transition to renewables requires investment and infrastructure. Many countries are setting targets to increase renewable energy use. Individuals can also adopt renewable technologies at home. Embracing renewables is key to combating climate change."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "Sustainability",
+      "Renewable Resources",
+      "Solar and Wind Energy",
+      "Fossil Fuels",
+      "Green Technology",
+      "Climate Action"
+    ],
+    "correct": 1,
+    "explanation": "The text discusses renewable resources, so the best title is 'Renewable Resources'.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 149,
+    "paragraphs": [
+      "The concept of cultural heritage includes traditions, monuments, and languages. It is a source of identity and pride for communities. Preserving cultural heritage is important for future generations. It can be threatened by war, natural disasters, and neglect. UNESCO designates World Heritage sites to protect them. Local communities also play a role in safeguarding their heritage. Education and awareness are vital for preservation. Cultural heritage connects us to our past and teaches us about others."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "Traditions",
+      "UNESCO",
+      "Preservation",
+      "Identity",
+      "Cultural Heritage",
+      "World Heritage Sites"
+    ],
+    "correct": 4,
+    "explanation": "The text is about cultural heritage, so the best title is 'Cultural Heritage'.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 150,
+    "paragraphs": [
+      "The Amazon River is the second longest river in the world. It flows through several countries in South America. The river is home to many unique species of fish and plants. Some areas of the rainforest are still unexplored. Scientists believe there are many undiscovered species there. The river also plays a crucial role in the local climate. Deforestation is threatening the river's ecosystem. Protecting the Amazon is vital for global biodiversity."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "Deforestation",
+      "Rainforest Animals",
+      "South American Countries",
+      "Climate Change",
+      "Biodiversity",
+      "The Amazon River"
+    ],
+    "correct": 5,
+    "explanation": "The text focuses on the Amazon River and its importance, so the best title is 'The Amazon River'.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 151,
+    "paragraphs": [
+      "The human voice is a powerful tool for communication. It can express emotions, convey information, and inspire action. Public speaking is a valuable skill that can be learned. Many people fear speaking in front of an audience. However, with practice, confidence grows. Good speakers use clear language and maintain eye contact. They also engage with the audience through questions. Effective communication can open many doors."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "Communication Skills",
+      "Public Speaking",
+      "The Power of Voice",
+      "Overcoming Fear",
+      "Audience Engagement",
+      "Language Learning"
+    ],
+    "correct": 2,
+    "explanation": "The text discusses the power and importance of voice, so the best title is 'The Power of Voice'.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 152,
+    "paragraphs": [
+      "The concept of volunteering is about giving time to help others. It can involve working with children, animals, or the environment. Volunteers often gain new skills and make friends. Many people find volunteering rewarding. It also benefits the community. Some volunteer abroad to experience different cultures. Even a few hours a month can make a difference. Volunteering is a great way to contribute positively to society."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "Cultural Exchange",
+      "Community Work",
+      "Helping Others",
+      "Skill Building",
+      "Volunteering",
+      "Social Responsibility"
+    ],
+    "correct": 4,
+    "explanation": "The text is about volunteering, so the best title is 'Volunteering'.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 153,
+    "paragraphs": [
+      "The history of aviation is full of remarkable achievements. The Wright brothers made the first powered flight in 1903. Since then, planes have become faster and safer. The introduction of commercial aviation changed the world. People can now travel long distances in hours. However, aviation also impacts the environment through carbon emissions. The industry is working on more sustainable fuels. The future of flight promises further innovation."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "The History of Aviation",
+      "The Wright Brothers",
+      "Commercial Flying",
+      "Environmental Impact",
+      "Sustainable Aviation",
+      "Future Travel"
+    ],
+    "correct": 0,
+    "explanation": "The text describes the development of aviation, so the best title is 'The History of Aviation'.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 154,
+    "paragraphs": [
+      "The concept of personal finance is important for everyone. It involves managing income, expenses, and savings. Creating a budget can help track spending. People should also plan for emergencies and retirement. Investing is another way to grow money. Understanding financial basics reduces stress. Many schools now include financial education. Developing good habits early leads to financial security."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "Personal Finance",
+      "Budgeting",
+      "Saving Money",
+      "Investing",
+      "Financial Education",
+      "Money Management"
+    ],
+    "correct": 0,
+    "explanation": "The text is about personal finance and its importance, so the best title is 'Personal Finance'.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 155,
+    "paragraphs": [
+      "The city of Singapore is a model of urban development. It is known for its cleanliness and efficient public transport. The city-state has strict environmental policies. Green spaces are integrated throughout the city. Singapore also has a diverse food culture. The economy is highly advanced and stable. Many multinational companies have offices there. Its success offers lessons for other cities."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "Public Transport",
+      "Urban Development",
+      "Green Cities",
+      "Singapore",
+      "Food Culture",
+      "Economic Success"
+    ],
+    "correct": 3,
+    "explanation": "The text describes Singapore's features and achievements, so the best title is 'Singapore'.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 156,
+    "paragraphs": [
+      "The concept of slow travel encourages taking time to experience a destination. It is the opposite of mass tourism. Slow travellers prefer local experiences and authentic encounters. They stay in smaller hotels or homestays. They also use public transport and eat at local restaurants. This type of travel is more sustainable. It allows deeper connections with people and culture. Slow travel can make trips more meaningful."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "Sustainable Tourism",
+      "Slow Travel",
+      "Authentic Experiences",
+      "Local Culture",
+      "Meaningful Travel",
+      "Budget Travel"
+    ],
+    "correct": 1,
+    "explanation": "The text explains slow travel, so the best title is 'Slow Travel'.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 157,
+    "paragraphs": [
+      "The history of the internet is a story of collaboration. It began as a military project in the US. Later, universities and research institutions joined. In the 1990s, the World Wide Web made it accessible to the public. Today, billions of people use it daily. The internet has democratised information. It has also created new industries and jobs. However, issues like privacy and misinformation remain challenges."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "The History of the Internet",
+      "The World Wide Web",
+      "Digital Collaboration",
+      "Online Privacy",
+      "Internet Challenges",
+      "Modern Communication"
+    ],
+    "correct": 0,
+    "explanation": "The text traces the internet's history, so the best title is 'The History of the Internet'.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 158,
+    "paragraphs": [
+      "The art of negotiation is useful in both personal and professional life. It involves discussing terms to reach an agreement. Good negotiators listen carefully and ask questions. They also understand the needs of the other party. Preparation is key to success. It is important to remain calm and polite. Finding a win-win solution is often the goal. Negotiation skills can be developed with practice."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "Personal Development",
+      "Communication Skills",
+      "Conflict Resolution",
+      "Business Strategy",
+      "Persuasion",
+      "The Art of Negotiation"
+    ],
+    "correct": 5,
+    "explanation": "The text focuses on negotiation, so the best title is 'The Art of Negotiation'.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 159,
+    "paragraphs": [
+      "The concept of digital detox is gaining popularity. It means taking a break from screens and devices. Many people feel overwhelmed by constant notifications. A digital detox can improve sleep and reduce stress. It also allows time for offline activities. Simple steps include turning off notifications and setting screen limits. Spending time in nature is a common activity during a detox. It helps to reconnect with the real world."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "Nature Connection",
+      "Screen Time",
+      "Stress Management",
+      "Offline Life",
+      "Digital Detox",
+      "Health Technology"
+    ],
+    "correct": 4,
+    "explanation": "The text is about digital detox, so the best title is 'Digital Detox'.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 160,
+    "paragraphs": [
+      "The city of Istanbul is unique because it spans two continents: Europe and Asia. Its history dates back thousands of years. The city was once known as Constantinople. It was the capital of the Byzantine and Ottoman Empires. Today, Istanbul is a vibrant city with a rich cultural mix. It is famous for its mosques, markets, and cuisine. The Bosphorus Strait divides the city. It is a bridge between East and West."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "A City of Two Continents",
+      "Istanbul",
+      "Constantinople",
+      "Ottoman Empire",
+      "Cultural Fusion",
+      "The Bosphorus"
+    ],
+    "correct": 1,
+    "explanation": "The text describes Istanbul, so the best title is 'Istanbul'.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 161,
+    "paragraphs": [
+      "The history of medicine has saved countless lives. The discovery of penicillin revolutionised treatment of infections. Vaccines have eradicated deadly diseases like smallpox. Modern technology has improved diagnostics and surgery. However, access to healthcare is still unequal. Many people lack basic medical care. Efforts are underway to improve global health. The future promises more personalised medicine."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "Global Health",
+      "Penicillin",
+      "Vaccines",
+      "Medical Advances",
+      "Healthcare Access",
+      "Future Medicine"
+    ],
+    "correct": 3,
+    "explanation": "The text discusses progress in medicine, so the best title is 'Medical Advances'.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 162,
+    "paragraphs": [
+      "The concept of team sports teaches more than just physical skills. It promotes teamwork, communication, and leadership. Players learn to support each other. They also handle both victory and defeat. Coaches provide guidance and motivation. Team sports can build friendships that last a lifetime. They also encourage a healthy lifestyle. Many children benefit from participating in team sports."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "Physical Fitness",
+      "Sportsmanship",
+      "Team Sports",
+      "Leadership",
+      "Friendship",
+      "Healthy Living"
+    ],
+    "correct": 2,
+    "explanation": "The text is about team sports, so the best title is 'Team Sports'.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 163,
+    "paragraphs": [
+      "The history of the guitar is long and varied. Its ancestors include the lute and the vihuela. The modern guitar took shape in the 19th century. It became central to many music genres, including classical, folk, and rock. Famous guitarists have shaped popular culture. Guitars can be acoustic or electric. They are versatile instruments used in many musical styles. Learning to play the guitar is a rewarding experience."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "Musical Instruments",
+      "The Guitar",
+      "Music History",
+      "Rock Music",
+      "Acoustic and Electric",
+      "Learning Guitar"
+    ],
+    "correct": 1,
+    "explanation": "The text describes the guitar and its history, so the best title is 'The Guitar'.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 164,
+    "paragraphs": [
+      "The concept of cultural appropriation has become a topic of discussion. It refers to taking elements from a minority culture without understanding or respect. This can be seen in fashion, music, and language. Some view it as flattery, while others see it as exploitation. Cultural exchange is different because it involves mutual respect. Awareness of cultural appropriation helps promote fairness. It encourages people to learn about the origins of cultural practices."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "Cultural Appropriation",
+      "Cultural Exchange",
+      "Respect for Cultures",
+      "Fashion Trends",
+      "Music and Culture",
+      "Minority Rights"
+    ],
+    "correct": 0,
+    "explanation": "The text discusses cultural appropriation, so the best title is 'Cultural Appropriation'.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 165,
+    "paragraphs": [
+      "The history of the Olympic Games spans over two thousand years. They began in ancient Greece as a religious festival. The modern Olympics were revived in 1896. Athletes from around the world compete in many sports. The Olympics promote peace and international unity. Host cities invest heavily in infrastructure. The Games also bring economic benefits. However, they also face challenges like doping and high costs."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "Sports Challenges",
+      "Ancient Greece",
+      "Modern Sports",
+      "International Unity",
+      "Host Cities",
+      "The Olympic Games"
+    ],
+    "correct": 5,
+    "explanation": "The text gives an overview of the Olympics, so the best title is 'The Olympic Games'.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 166,
+    "paragraphs": [
+      "The concept of remote work has grown significantly. Technology allows people to work from anywhere. It offers flexibility and saves commuting time. Many companies have adopted remote work policies. Employees often report higher job satisfaction. However, remote work can lead to isolation and blurring of work-life boundaries. Companies provide tools for communication and collaboration. The future of work may be a hybrid model."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "Future of Work",
+      "Technology",
+      "Work-Life Balance",
+      "Company PoliciesRemote Work",
+      "Remote Work",
+      "Communication Tools"
+    ],
+    "correct": 4,
+    "explanation": "The text is about remote work, so the best title is 'Remote Work'.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 167,
+    "paragraphs": [
+      "The history of the steam engine was a turning point in industry. It powered factories, trains, and ships. The invention led to the Industrial Revolution. Steam engines made transportation faster and cheaper. This changed trade and travel. The technology evolved over time with improvements in efficiency. Today, steam power is largely replaced by electricity. However, its impact on history is undeniable."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "Industrial Revolution",
+      "The Steam Engine",
+      "Transportation",
+      "Trade",
+      "Efficiency",
+      "History of Technology"
+    ],
+    "correct": 1,
+    "explanation": "The text is about the steam engine, so the best title is 'The Steam Engine'.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 168,
+    "paragraphs": [
+      "The concept of sleep hygiene refers to habits that promote good sleep. It includes having a regular sleep schedule. Avoiding screens before bedtime is also recommended. A comfortable sleep environment is important. Reducing caffeine intake in the afternoon helps. Regular exercise also improves sleep quality. Good sleep is essential for health and concentration. Following sleep hygiene can lead to more restful nights."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "Sleep Hygiene",
+      "Good Habits",
+      "Sleep Schedule",
+      "Healthy Lifestyle",
+      "Mental Health",
+      "Restful Nights"
+    ],
+    "correct": 0,
+    "explanation": "The text explains sleep hygiene, so the best title is 'Sleep Hygiene'.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 169,
+    "paragraphs": [
+      "The history of the camera is a story of innovation. Early cameras used film to capture images. Digital cameras revolutionised photography. Now, smartphones have built-in cameras. Photography has become accessible to everyone. It is used in art, journalism, and everyday life. Advances in technology continue to improve image quality. Cameras are now also integrated into security systems."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "Digital Technology",
+      "Photography",
+      "The Camera",
+      "Smartphones",
+      "Art and Journalism",
+      "Security"
+    ],
+    "correct": 2,
+    "explanation": "The text traces the history of cameras, so the best title is 'The Camera'.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 170,
+    "paragraphs": [
+      "The concept of emotional resilience is important for mental health. It is the ability to cope with challenges and stress. Resilient people stay optimistic during difficult times. They seek support when needed. Resilience can be developed through practice and self-care. Building positive relationships also helps. Learning from failures strengthens resilience. It is a key skill for navigating life's ups and downs."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "Support Systems",
+      "Mental Health",
+      "Coping Skills",
+      "Optimism",
+      "Self-Care",
+      "Emotional Resilience"
+    ],
+    "correct": 5,
+    "explanation": "The text explains emotional resilience, so the best title is 'Emotional Resilience'.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 171,
+    "paragraphs": [
+      "The city of Tokyo is a blend of tradition and modernity. It has ancient temples and futuristic skyscrapers. The city is known for its efficient public transport. Japanese culture values respect and politeness. Tokyo is also a food lover's paradise. From sushi to ramen, the cuisine is diverse. The city's crowded streets are full of energy. It is one of the most dynamic cities in the world."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "Food Culture",
+      "Tradition and Modernity",
+      "Japanese Culture",
+      "Public Transport",
+      "Tokyo",
+      "Urban Life"
+    ],
+    "correct": 4,
+    "explanation": "The text describes Tokyo, so the best title is 'Tokyo'.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 172,
+    "paragraphs": [
+      "The history of the moon landing was a milestone for humanity. Neil Armstrong and Buzz Aldrin walked on the moon in 1969. The Apollo 11 mission was a result of years of research. It demonstrated human ingenuity and courage. The event was watched by millions around the world. It inspired a generation of scientists and engineers. The moon landing remains a symbol of what can be achieved."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "Neil Armstrong",
+      "Apollo 11",
+      "The Moon Landing",
+      "Space Exploration",
+      "Human Achievement",
+      "Inspiration"
+    ],
+    "correct": 2,
+    "explanation": "The text is about the moon landing, so the best title is 'The Moon Landing'.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 173,
+    "paragraphs": [
+      "The concept of responsible tourism promotes sustainable travel. It encourages travellers to respect local cultures and environments. Responsible tourists avoid activities that harm nature. They support local businesses and use resources wisely. This type of tourism benefits both visitors and locals. It helps preserve cultural heritage. Responsible tourism also raises awareness about environmental issues. It is a growing trend in the travel industry."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "Responsible Tourism",
+      "Sustainable Travel",
+      "Cultural Respect",
+      "Local Support",
+      "Environmental Awareness",
+      "Tourism Industry"
+    ],
+    "correct": 0,
+    "explanation": "The text is about responsible tourism, so the best title is 'Responsible Tourism'.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 174,
+    "paragraphs": [
+      "The history of the violin is rich and varied. It emerged in Italy in the 16th century. It became a key instrument in orchestras and chamber music. Many famous composers wrote for the violin. Its sound is known for its expressiveness. Today, it is used in various music genres, including classical and folk. Learning the violin requires patience and practice. It is a rewarding instrument to play."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "Famous Composers",
+      "String Instruments",
+      "Classical Music",
+      "The Violin",
+      "Music Genres",
+      "Learning Music"
+    ],
+    "correct": 3,
+    "explanation": "The text describes the violin, so the best title is 'The Violin'.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 175,
+    "paragraphs": [
+      "The concept of green buildings is gaining popularity. These buildings are designed to be energy-efficient. They use sustainable materials and incorporate natural light. Green buildings often have green roofs and rainwater harvesting systems. They reduce carbon emissions and operating costs. Many countries have building regulations that encourage green design. Living or working in a green building can improve well-being."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "Well-being",
+      "Energy Efficiency",
+      "Sustainable Design",
+      "Environmental Impact",
+      "Building Regulations",
+      "Green Buildings"
+    ],
+    "correct": 5,
+    "explanation": "The text is about green buildings, so the best title is 'Green Buildings'.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 176,
+    "paragraphs": [
+      "The history of the bicycle shows the evolution of personal transport. From wooden frames to lightweight carbon fibre, the bicycle has changed. It became popular in the 19th century as a means of mobility. Today, it is used for recreation, sport, and commuting. The bicycle is an eco-friendly mode of transport. Cities are building more bike lanes to encourage cycling. It is also a great form of exercise. The bicycle remains a symbol of freedom."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "Eco-Friendly Travel",
+      "Personal Transport",
+      "The Bicycle",
+      "Cycling",
+      "Sports",
+      "Urban Planning"
+    ],
+    "correct": 2,
+    "explanation": "The text describes the bicycle's development, so the best title is 'The Bicycle'.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 177,
+    "paragraphs": [
+      "The concept of mindful eating encourages paying attention to food. It involves eating slowly and savouring flavours. Mindful eaters notice hunger and fullness cues. This practice can lead to better digestion and weight management. It also reduces overeating. Mindful eating promotes a healthier relationship with food. It can be practised at every meal. Small changes in eating habits can have long-term benefits."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "Digestion",
+      "Healthy Eating",
+      "Weight Management",
+      "Mindful Eating",
+      "Food Awareness",
+      "Lifestyle Habits"
+    ],
+    "correct": 3,
+    "explanation": "The text explains mindful eating, so the best title is 'Mindful Eating'.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 178,
+    "paragraphs": [
+      "The history of the computer mouse is a lesser-known story. It was invented by Douglas Engelbart in the 1960s. The first mouse was made of wood. It became popular with the rise of graphical user interfaces. Today, the mouse is an essential input device. It has evolved from mechanical to optical. Wireless mice are now common. The mouse has made computing more intuitive and accessible."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "Graphical Interfaces",
+      "Input Devices",
+      "Technology History",
+      "Douglas Engelbart",
+      "The Computer Mouse",
+      "Computing"
+    ],
+    "correct": 4,
+    "explanation": "The text is about the computer mouse, so the best title is 'The Computer Mouse'.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 179,
+    "paragraphs": [
+      "The concept of active listening is crucial for effective communication. It involves fully concentrating on the speaker. Active listeners avoid interrupting and provide feedback. They also ask clarifying questions. This builds trust and understanding. Active listening is important in both personal and professional relationships. It can improve teamwork and conflict resolution. Developing this skill takes conscious effort."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "Active Listening",
+      "Communication Skills",
+      "Trust",
+      "Feedback",
+      "Conflict Resolution",
+      "Personal Development"
+    ],
+    "correct": 0,
+    "explanation": "The text is about active listening, so the best title is 'Active Listening'.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 180,
+    "paragraphs": [
+      "The city of Rome is a living museum of history. It was the centre of the Roman Empire. The Colosseum and Roman Forum are major attractions. Rome is also famous for its art and architecture. The Vatican City, located within Rome, is home to the Pope. The city is known for its delicious pasta and pizza. Rome's streets are full of ancient ruins. It attracts millions of tourists every year."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "Rome",
+      "Roman Empire",
+      "The Colosseum",
+      "Vatican City",
+      "Italian Cuisine",
+      "Historical City"
+    ],
+    "correct": 0,
+    "explanation": "The text describes Rome, so the best title is 'Rome'.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 181,
+    "paragraphs": [
+      "The history of the radio has connected the world. It was first developed in the late 19th century. Radio became a primary source of news and entertainment. It was used to broadcast music, dramas, and news during wars. Today, radio is still popular, especially in cars. It has evolved to include digital and satellite radio. Radio remains a versatile and accessible medium."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "Entertainment",
+      "Broadcasting",
+      "History of Media",
+      "The Radio",
+      "Digital Technology",
+      "Communication"
+    ],
+    "correct": 3,
+    "explanation": "The text is about the radio, so the best title is 'The Radio'.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 182,
+    "paragraphs": [
+      "The concept of social entrepreneurship is gaining traction. It combines business skills with social impact. Social entrepreneurs aim to solve societal problems. They create products or services that address issues like poverty or education. Their organisations often reinvest profits to further their mission. This approach is sustainable and innovative. Many young people are drawn to social entrepreneurship. It offers a meaningful career path."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "Social Entrepreneurship",
+      "Business and Society",
+      "Problem Solving",
+      "Sustainability",
+      "Career Path",
+      "Innovation"
+    ],
+    "correct": 0,
+    "explanation": "The text explains social entrepreneurship, so the best title is 'Social Entrepreneurship'.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 183,
+    "paragraphs": [
+      "The history of the microscope has expanded human knowledge. It was invented in the 17th century. It allowed scientists to see cells and microorganisms. This led to discoveries in biology and medicine. Microscopes have become more powerful over time. Electron microscopes can even see atoms. The microscope is essential in research and diagnostics. It has transformed our understanding of life."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "Biology",
+      "The Microscope",
+      "Medical Research",
+      "Scientific Instruments",
+      "Cell Discovery",
+      "Technology"
+    ],
+    "correct": 1,
+    "explanation": "The text is about the microscope, so the best title is 'The Microscope'.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 184,
+    "paragraphs": [
+      "The concept of urban farming is growing in cities. It involves growing food on rooftops and vacant lots. This provides fresh produce locally. It also reduces transport emissions. Urban farms can improve community engagement and education. They create green spaces in concrete landscapes. Many cities support urban farming initiatives. It promotes sustainable and resilient food systems."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "City Planning",
+      "Sustainable Food",
+      "Green Spaces",
+      "Community Engagement",
+      "Urban Farming",
+      "Resilience"
+    ],
+    "correct": 4,
+    "explanation": "The text is about urban farming, so the best title is 'Urban Farming'.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 185,
+    "paragraphs": [
+      "The history of the clock is a journey of precision. Early clocks used sundials and water. Mechanical clocks appeared in the 14th century. The pendulum improved accuracy. The invention of the quartz clock made timekeeping even more reliable. Today, atomic clocks are incredibly precise. Clocks are everywhere: on phones, computers, and walls. They help us organise our daily lives."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "Invention",
+      "Timekeeping",
+      "Measurement",
+      "Technology",
+      "Daily Life",
+      "The Clock"
+    ],
+    "correct": 5,
+    "explanation": "The text traces the history of clocks, so the best title is 'The Clock'.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 186,
+    "paragraphs": [
+      "The concept of peer support is valuable in mental health. People with similar experiences offer encouragement and advice. Support groups and mentoring programmes provide this. Peer support reduces isolation and stigma. It builds confidence and coping skills. Many find it easier to talk to someone who understands. Peer support is often used alongside professional help. It is a practical and empowering resource."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "Peer Support",
+      "Mental Health",
+      "Support Groups",
+      "Empowerment",
+      "Coping Skills",
+      "Well-being"
+    ],
+    "correct": 0,
+    "explanation": "The text explains peer support, so the best title is 'Peer Support'.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 187,
+    "paragraphs": [
+      "The city of Barcelona is renowned for its architecture. Antoni Gaudí designed many of its iconic buildings. The Sagrada Familia and Park Güell are famous landmarks. Barcelona also has a vibrant cultural scene. The city has beautiful beaches and a mild climate. It is a popular tourist destination. Barcelona also hosts important events and conferences. Its unique character attracts people from all over the world."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "Architecture",
+      "Antoni Gaudí",
+      "Barcelona",
+      "Tourism",
+      "Events",
+      "Coastal City"
+    ],
+    "correct": 2,
+    "explanation": "The text describes Barcelona, so the best title is 'Barcelona'.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 188,
+    "paragraphs": [
+      "The history of the printing press is a story of knowledge sharing. Johannes Gutenberg invented it in the 15th century. It allowed for mass production of books. This increased literacy and spread ideas. The printing press played a key role in the Renaissance and Reformation. Today, digital publishing continues the tradition. Despite new technologies, printed books remain valued. The printing press changed the world."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "The Printing Press",
+      "Gutenberg",
+      "Mass Production",
+      "Literacy",
+      "The Renaissance",
+      "Digital Publishing"
+    ],
+    "correct": 0,
+    "explanation": "The text is about the printing press, so the best title is 'The Printing Press'.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 189,
+    "paragraphs": [
+      "The concept of environmental justice is about fairness. It ensures that all communities have a clean and safe environment. Often, poorer areas face more pollution and risks. Environmental justice advocates for vulnerable groups. It addresses issues like waste disposal and air quality. Community involvement is key to solutions. This concept promotes health and equity. It is integral to sustainable development."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "",
+      "Community",
+      "Health",
+      "Environmental Justice",
+      "Equity",
+      "Sustainable Development"
+    ],
+    "correct": 2,
+    "explanation": "The text explains environmental justice, so the best title is 'Environmental Justice'.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 190,
+    "paragraphs": [
+      "The history of the telescope has revealed the universe. Galileo Galilei used it to study the stars. It showed the moons of Jupiter and sunspots. Telescopes have advanced greatly since then. The Hubble Space Telescope captures images from deep space. Telescopes help us understand the cosmos. They are essential tools for astronomy. They inspire wonder about the night sky."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "Astronomy",
+      "Galileo",
+      "Space Observation",
+      "The Telescope",
+      "Hubble",
+      "Cosmos"
+    ],
+    "correct": 3,
+    "explanation": "The text is about telescopes, so the best title is 'The Telescope'.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 191,
+    "paragraphs": [
+      "The concept of lifelong sports encourages physical activity at every age. It promotes health and well-being throughout life. People can choose sports that suit their interests and abilities. It helps prevent chronic diseases like heart disease and diabetes. Lifelong sports also boost mental health. Social interaction is an added benefit. It fosters friendships and community. Starting early helps build lasting habits."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "Community",
+      "Physical Activity",
+      "Health Benefits",
+      "Chronic Disease",
+      "Well-being",
+      "Lifelong Sports"
+    ],
+    "correct": 5,
+    "explanation": "The text explains lifelong sports, so the best title is 'Lifelong Sports'.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 192,
+    "paragraphs": [
+      "The city of Vienna is famous for its music and culture. It was home to composers like Mozart and Beethoven. The city has grand palaces and museums. The Vienna State Opera is world-renowned. Vienna also has a café culture that is a UNESCO heritage. The city is consistently ranked as one of the most liveable cities. It blends history with modern life. Vienna is a charming European capital."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "Opera",
+      "Mozart and Beethoven",
+      "Cultural Heritage",
+      "Vienna",
+      "Café Culture",
+      "Liveable City"
+    ],
+    "correct": 3,
+    "explanation": "The text describes Vienna, so the best title is 'Vienna'.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 193,
+    "paragraphs": [
+      "The history of the battery has powered innovation. The first battery was invented in 1800 by Alessandro Volta. Batteries store chemical energy and convert it to electricity. They are used in everything from phones to cars. Rechargeable batteries have become common. Research continues to improve battery life and safety. Batteries are critical for renewable energy storage. They are essential in our daily lives."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "Volta",
+      "Electricity",
+      "The Battery",
+      "Renewable Energy",
+      "Technology",
+      "Storage"
+    ],
+    "correct": 2,
+    "explanation": "The text is about the battery, so the best title is 'The Battery'.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 194,
+    "paragraphs": [
+      "The concept of human rights is universally recognised. It includes the right to life, liberty, and equality. The Universal Declaration of Human Rights was adopted in 1948. Governments are responsible for protecting these rights. However, violations still occur worldwide. Human rights organizations work to hold abusers accountable. Education about rights empowers citizens. Ensuring human rights is an ongoing struggle."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "Accountability",
+      "Universal Declaration",
+      "Equality",
+      "Government Responsibility",
+      "Human Rights",
+      "Empowerment"
+    ],
+    "correct": 4,
+    "explanation": "The text discusses human rights, so the best title is 'Human Rights'.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 195,
+    "paragraphs": [
+      "The history of the refrigerator has transformed food storage. Before its invention, people used ice and cellars. The first electric refrigerator was introduced in the early 20th century. It prevents food from spoiling. Refrigerators are now a common household appliance. They have different compartments for different items. Modern refrigerators are energy-efficient and smart. They have made life much more convenient."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "The Refrigerator",
+      "Food Storage",
+      "Appliance",
+      "Energy Efficiency",
+      "Modern Kitchen",
+      "Convenience"
+    ],
+    "correct": 0,
+    "explanation": "The text is about the refrigerator, so the best title is 'The Refrigerator'.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 196,
+    "paragraphs": [
+      "The concept of green commuting promotes eco-friendly transport. It includes walking, cycling, and using public transport. This reduces carbon emissions and traffic congestion. Green commuting also improves personal health. Many companies encourage employees to use sustainable modes. Cities are investing in bike lanes and pedestrian zones. Green commuting saves money and reduces stress. It is a key part of sustainable urban planning."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "Sustainable Transport",
+      "Green Commuting",
+      "Health",
+      "Urban Planning",
+      "Reducing Emissions",
+      "Cost Savings"
+    ],
+    "correct": 1,
+    "explanation": "The text explains green commuting, so the best title is 'Green Commuting'.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 197,
+    "paragraphs": [
+      "The history of the umbrella is fascinating. It has been used for thousands of years for shade and rain protection. Ancient Egyptians and Greeks used them. The modern folding umbrella was invented later. Umbrellas are now available in many designs and sizes. They are a practical accessory worldwide. Umbrellas also feature in art and literature. They are both functional and symbolic."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "The Umbrella",
+      "Rain Protection",
+      "Ancient Origins",
+      "Design",
+      "Symbolism",
+      "Accessories"
+    ],
+    "correct": 0,
+    "explanation": "The text is about umbrellas, so the best title is 'The Umbrella'.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 198,
+    "paragraphs": [
+      "The concept of financial literacy is essential for independence. It involves understanding budgeting, saving, and investing. Many people lack basic financial knowledge. This can lead to debt and poverty. Financial education should start early. Schools are increasingly teaching it. Simple habits like tracking expenses make a big difference. Financial literacy empowers individuals to secure their future."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "Empowerment",
+      "Independence",
+      "Budgeting",
+      "Education",
+      "Debt Prevention",
+      "Financial Literacy"
+    ],
+    "correct": 5,
+    "explanation": "The text explains financial literacy, so the best title is 'Financial Literacy'.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 199,
+    "paragraphs": [
+      "The history of the helicopter is a story of vertical flight. Leonardo da Vinci sketched an early design. The first successful helicopter was built in the 20th century. Helicopters can take off and land vertically. They are used for rescue, transport, and military. They can reach places that planes cannot. Helicopters have improved with advanced technology. They remain an essential part of modern aviation."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "Leonardo da Vinci",
+      "Vertical Flight",
+      "The Helicopter",
+      "Rescue",
+      "Aviation",
+      "Transport"
+    ],
+    "correct": 2,
+    "explanation": "The text describes helicopters, so the best title is 'The Helicopter'.",
+    "input_type": "buttons"
   }
+],
+"Эксперт": [
+  {
+    "id": 200,
+    "paragraphs": [
+      "The Library of Alexandria, established in the 3rd century BCE, was not merely a repository of scrolls but a pioneering institution of higher learning that attracted scholars from across the Mediterranean. Its destruction, whether gradual or sudden, represented an immeasurable loss of ancient wisdom, though recent scholarship suggests that many works had already been copied and distributed elsewhere. The library's legacy persists as a powerful symbol of humanity's enduring quest to collect, preserve, and share knowledge, and its influence shaped European and Islamic thought for centuries."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "Preservation of Texts",
+      "Ancient Centres of Learning",
+      "The Destruction of Libraries",
+      "Greek Scholarship",
+      "Knowledge Transmission",
+      "Cultural Loss",
+      "Hellenistic Culture",
+      "The Legacy of the Library of Alexandria"
+    ],
+    "correct": 7,
+    "explanation": "The text discusses the Library of Alexandria's significance, destruction, and enduring legacy.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 201,
+    "paragraphs": [
+      "Monarch butterflies undertake one of the most extraordinary migrations in the insect world, travelling thousands of kilometres from North America to central Mexico, where they cluster in fir forests, creating a spectacular display of orange and black. This journey is not completed by a single generation but is spread across three or four, with each playing a specific role in the overall cycle. Conservationists have expressed growing concern, however, as habitat destruction and climate change have led to a dramatic decline in their numbers over the past two decades."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "Mexican Forests",
+      "Insect Navigation",
+      "Conservation of Species",
+      "Climate Change Effects",
+      "Animal Behaviour",
+      "Monarch Butterfly Migration",
+      "Milkweed Planting",
+      "Biodiversity Decline"
+    ],
+    "correct": 5,
+    "explanation": "The text describes the monarch butterfly's migration, its mechanics, and conservation concerns.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 202,
+    "paragraphs": [
+      "The phenomenon of 'false memories' has been a subject of intense psychological research, revealing how human recollection is far more malleable and unreliable than most people assume, with studies demonstrating that individuals can be led to remember events that never occurred through suggestive questioning. The implications are profound, particularly in legal contexts where eyewitness testimony has historically been given substantial weight, often to devastating effect. Psychologists like Elizabeth Loftus have argued convincingly that memory is reconstructed rather than retrieved, prompting significant changes in how police interviews and courtroom procedures are conducted."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "Memory Reconstruction",
+      "Eyewitness Testimony",
+      "False Memories",
+      "Legal Psychology",
+      "Cognitive Biases",
+      "Suggestibility",
+      "Loftus Research",
+      "Recollection Errors"
+    ],
+    "correct": 2,
+    "explanation": "The text discusses false memories and their implications, particularly in legal contexts.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 203,
+    "paragraphs": [
+      "The invention of the shipping container in the 1950s by American entrepreneur Malcolm McLean fundamentally reshaped global trade, replacing the labour-intensive process of loading goods with a standardised, efficient system that slashed transport costs by over 90%. Prior to this innovation, goods often spent weeks in transit due to manual handling, but the container, which could be easily transferred between lorries, trains, and ships, dramatically reduced the cost of moving products. The impact of containerisation on the global economy is so significant that some economists have compared it to the steam engine in its transformative power."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "Malcolm McLean",
+      "Global Trade",
+      "Logistics Innovations",
+      "The Shipping Container Revolution",
+      "Economic Transformation",
+      "Shipping Industry",
+      "Containerisation",
+      "Manufacturing Growth"
+    ],
+    "correct": 3,
+    "explanation": "The text describes how shipping containers revolutionised global trade.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 204,
+    "paragraphs": [
+      "Vincent van Gogh, whose post-impressionist paintings now command astronomical sums at auction, sold only a single work during his lifetime, a testament to the tragic disconnect between artistic genius and commercial success. The Dutch artist's mental health struggles, well-documented in his letters, have been the subject of extensive speculation, yet despite these challenges, he produced over 2,000 works in just over a decade, driven by an almost manic creative energy. His distinctive style, initially dismissed, later became one of the most influential movements in modern art, cementing his status as an artistic icon."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "Vincent van Gogh's Life and Art",
+      "Post-Impressionism",
+      "Artistic Genius",
+      "Mental Health in Art",
+      "The Van Gogh Family",
+      "Artistic Struggle",
+      "Dutch Art",
+      "Famous Painters"
+    ],
+    "correct": 0,
+    "explanation": "The text covers van Gogh's life, art, and the disconnect between his genius and lack of recognition.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 205,
+    "paragraphs": [
+      "The Great Fire of London in 1666, which raged for five days and destroyed more than 13,000 houses, was a disaster that paradoxically enabled the city's transformation into a modern metropolis, eradicating medieval street patterns and insanitary conditions that had plagued London for centuries. In the aftermath, the city was rebuilt with wider streets, brick and stone houses, and improved water supplies, setting new architectural and urban standards. The fire also prompted a shift in attitudes towards risk management and urban planning, influencing other European cities and becoming a catalyst for progress rather than merely a catastrophe."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "London Reconstruction",
+      "The Great Fire of London",
+      "Urban Planning",
+      "Medieval London",
+      "Architectural Change",
+      "Disasters and Progress",
+      "17th-Century History",
+      "St Paul's Cathedral"
+    ],
+    "correct": 1,
+    "explanation": "The text describes the Great Fire and its role as a catalyst for urban change.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 206,
+    "paragraphs": [
+      "The human microbiome, the vast ecosystem of bacteria, fungi, and viruses living in and on our bodies, is increasingly recognised as a critical component of overall health, influencing everything from digestion to mood to immune response. This microscopic community outnumbers our own human cells by a factor of roughly 1.3 to 1, and its composition has been linked to conditions like obesity, diabetes, depression, and even neurodegenerative diseases. The implications of this research are profound, offering new avenues for therapeutic intervention through probiotics, personalised nutrition, and faecal transplants."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "Probiotics",
+      "Bacterial Ecosystems",
+      "Gut Health",
+      "Microbial Imbalance",
+      "The Human Microbiome",
+      "Health and Disease",
+      "Immune Function",
+      "Medical Research"
+    ],
+    "correct": 4,
+    "explanation": "The text discusses the human microbiome and its impact on health.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 207,
+    "paragraphs": [
+      "The Trans-Siberian Railway, spanning nearly 9,300 kilometres from Moscow to Vladivostok, stands as a monumental achievement of engineering and ambition, connecting the vast expanse of Russia across eight time zones. Construction began in 1891 under Tsar Alexander III and continued for over a quarter of a century, with thousands of workers labouring in harsh conditions through the Siberian wilderness. The railway not only facilitated the movement of goods and troops but also opened up economic frontiers, and today it remains an iconic route for travellers seeking to experience the sheer scale of the Russian landscape."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "Railway History",
+      "Russian Infrastructure",
+      "The Trans-Siberian Railway",
+      "Siberian Expansion",
+      "Long-distance Travel",
+      "Engineering Feats",
+      "Cultural Connection",
+      "Economic Integration"
+    ],
+    "correct": 2,
+    "explanation": "The text describes the Trans-Siberian Railway and its historical significance.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 208,
+    "paragraphs": [
+      "The 'Lost Generation' refers to the group of American writers, including Hemingway, Fitzgerald, and Stein, who came of age during the First World War and later settled in Paris in the 1920s, disillusioned by the materialistic values of their homeland. Their work, characterised by moral emptiness and existential uncertainty, reflected the trauma of war and social upheaval, while also exploring themes of identity and alienation. Hemingway's terse prose style and the movement's challenge to conventional norms shaped modern literature and influenced generations of later writers."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "American Identity",
+      "Hemingway and Fitzgerald",
+      "Modern Literature",
+      "Paris in the 1920s",
+      "Writers and War",
+      "Cultural Transformation",
+      "The Lost Generation",
+      "Existentialism"
+    ],
+    "correct": 6,
+    "explanation": "The text explains the Lost Generation and its impact on American literature.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 209,
+    "paragraphs": [
+      "Octopuses, with their extraordinary intelligence, three hearts, and blue blood, are among the most fascinating and enigmatic creatures in the ocean, possessing abilities that challenge our understanding of animal cognition. These cephalopods can solve complex puzzles, escape from enclosures, and even use tools, behaviours once thought to be exclusively mammalian, enabled partly by two-thirds of their neurons located in their arms, allowing for independent, coordinated movement. The study of octopuses offers profound insights into the evolution of intelligence, suggesting that sophisticated cognition can arise through entirely different neural architectures."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "Ocean Life",
+      "Marine Biology",
+      "Animal Cognition",
+      "Cephalopod Abilities",
+      "Evolution of Intelligence",
+      "Neural Architecture",
+      "Camouflage",
+      "Octopus Intelligence"
+    ],
+    "correct": 7,
+    "explanation": "The text discusses octopus intelligence and unique abilities.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 210,
+    "paragraphs": [
+      "The history of silk production, which began in China at least 5,000 years ago, is a narrative of secrecy, trade, and cultural exchange, with the craft remaining a closely guarded Chinese state secret for millennia, with the punishment for revealing it being death. The demand for silk spurred the development of the extensive trade networks known as the Silk Road, along which ideas, religions, and technologies also travelled. Even today, silk remains synonymous with luxury and is integral to both fashion and cultural identity in many parts of the world."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "Chinese Inventions",
+      "Silk Production",
+      "The Silk Road",
+      "The History of Silk",
+      "Trade and Culture",
+      "Textile History",
+      "Luxury Goods",
+      "Ancient Crafts"
+    ],
+    "correct": 3,
+    "explanation": "The text traces the history of silk production and its influence on trade and culture.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 211,
+    "paragraphs": [
+      "The Northern Lights, or Aurora Borealis, occur when charged particles from the Sun collide with the Earth's atmosphere, producing luminous displays of green, red, and purple across the night sky, exciting atoms of oxygen and nitrogen that release photons of light. The intensity and frequency of auroras are closely linked to solar activity, with the greatest displays occurring during periods of heightened solar wind. Today, scientists have a clear understanding of the underlying physics, yet the aurora continues to captivate observers with its haunting beauty and unpredictable motion."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "The Northern Lights",
+      "Aurora Borealis",
+      "Solar Activity",
+      "Atmospheric Phenomena",
+      "Polar Regions",
+      "Arctic Myths",
+      "Light Displays",
+      "Scientific Discovery"
+    ],
+    "correct": 0,
+    "explanation": "The text describes the Northern Lights and their scientific basis.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 212,
+    "paragraphs": [
+      "The introduction of coffee to Europe in the 17th century catalysed a social and cultural revolution, giving rise to the coffeehouse, a new public space that became a hub for intellectual discourse, business, and political debate, earning the nickname 'penny universities'. This caffeinated culture also played a role in the development of financial institutions, such as Lloyd's of London, which originated in a coffeehouse frequented by merchants. The coffeehouse's influence on Western culture and capitalism is undeniable, with echoes of that 17th-century social scene still visible in modern-day cafés."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "The Coffeehouse Revolution",
+      "Coffee and Western Culture",
+      "History of Coffee",
+      "Social Change",
+      "Intellectual Culture",
+      "European Commerce",
+      "Beverages and Society",
+      "Cultural Transformation"
+    ],
+    "correct": 1,
+    "explanation": "The text discusses the cultural and social impact of coffee in Europe.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 213,
+    "paragraphs": [
+      "The Rosetta Stone, discovered by French soldiers in 1799, proved to be the linguistic key that unlocked the secrets of ancient Egyptian hieroglyphs, featuring a decree inscribed in three scripts: Greek, Demotic, and hieroglyphic, enabling scholars like Jean-François Champollion to compare the known Greek text with the unknown symbols. The breakthrough came in 1822 when Champollion recognised that hieroglyphs could represent phonetic sounds, revolutionising the study of ancient Egypt. The Stone is now one of the most famous objects in the British Museum, drawing millions of visitors drawn to its historical significance."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "Archaeological Discoveries",
+      "Deciphering Hieroglyphs",
+      "Champollion",
+      "Ancient Egypt",
+      "The Rosetta Stone",
+      "Historical Linguistics",
+      "British Museum",
+      "Translation"
+    ],
+    "correct": 4,
+    "explanation": "The text describes the Rosetta Stone and its role in deciphering hieroglyphs.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 214,
+    "paragraphs": [
+      "The evolutionary origins of human laughter, a behaviour deeply embedded in social interaction, suggest that it may have developed as a form of social bonding and communication among our early ancestors, involving a complex vocalisation that is often contagious and activates the brain's reward centres. Neuro-imaging studies reveal that laughter releases endorphins and reduces stress, explaining its universality across all cultures. The adaptive value of laughter is evident in its role in play, courtship, and everyday conversation, highlighting its fundamental importance to human psychology."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "Cultural Universals",
+      "Human Communication",
+      "Social Bonding",
+      "Neurobiology of Emotion",
+      "Evolution of Behaviour",
+      "Psychology",
+      "Vocalisations",
+      "The Science of Laughter"
+    ],
+    "correct": 7,
+    "explanation": "The text discusses the evolutionary and social significance of laughter.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 215,
+    "paragraphs": [
+      "The Forbidden City in Beijing, constructed during the Ming Dynasty in the 15th century, was the political and ceremonial centre of Chinese imperial rule for nearly 500 years, its name reflecting the fact that commoners were forbidden from entering its sacred precincts. Covering over 720,000 square metres, it features 980 surviving buildings, designed according to strict principles of feng shui and traditional Chinese cosmology. Today, as the Palace Museum, it is one of the most visited tourist sites in the world, offering a glimpse into the opulent lifestyle of the emperors and the rigid social hierarchy that sustained their rule."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "Ming Dynasty",
+      "Imperial China",
+      "The Forbidden City",
+      "Palace Architecture",
+      "Chinese History",
+      "Museum",
+      "Cultural Heritage",
+      "Emperors"
+    ],
+    "correct": 2,
+    "explanation": "The text describes the Forbidden City and its historical significance.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 216,
+    "paragraphs": [
+      "The banana, one of the most widely consumed fruits globally, faces a serious existential threat from a fungal disease known as Panama disease, which is rapidly spreading and causing significant damage to plantations across Asia, Africa, and the Americas. The current predominant variety, the Cavendish, is particularly vulnerable because it is a clone with no genetic variation, meaning a single disease can potentially decimate the entire global crop. Efforts to develop a resistant variety are ongoing, involving genetic research and the identification of wild banana strains that carry immunity genes, highlighting the risks of agricultural monoculture."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "The Banana Crisis",
+      "Panama Disease",
+      "Agricultural Monoculture",
+      "Global Crop Threats",
+      "Food Security",
+      "Genetics",
+      "Fruit Production",
+      "Environmental Risks"
+    ],
+    "correct": 0,
+    "explanation": "The text discusses the threats to the global banana industry and the risks of monoculture.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 217,
+    "paragraphs": [
+      "The history of ballet, which originated in the Italian Renaissance courts, evolved dramatically when introduced to France by Catherine de Medici, where it was refined into a formal art form combining dance, music, and elaborate staging under the patronage of Louis XIV. Over the centuries, the technical demands increased with the development of the five basic positions, en pointe dancing, and iconic works like Swan Lake and The Nutcracker. Today, ballet is a global phenomenon, with major companies worldwide and its influence seen in contemporary dance, musical theatre, and even film."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "Performing Arts",
+      "Louis XIV",
+      "Renaissance Art",
+      "Dance Evolution",
+      "Classical Music",
+      "French Culture",
+      "The History of Ballet",
+      "International Dance"
+    ],
+    "correct": 6,
+    "explanation": "The text traces the history and evolution of ballet.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 218,
+    "paragraphs": [
+      "The baobab tree, native to Africa, is an icon of the savannah and a testament to nature's resilience, with some living specimens estimated to be over 2,000 years old and capable of storing up to 120,000 litres of water in their enormous trunks to survive drought. Its distinctive appearance has given rise to numerous myths, and its fruit, leaves, and bark are used in traditional medicines, food, and materials. Today, the baobab is celebrated as a superfood, with its fruit powder gaining international attention as a health supplement, though such commercial exploitation raises concerns about sustainability."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "African Flora",
+      "The Baobab Tree",
+      "Survival and Resilience",
+      "Traditional Medicine",
+      "Superfoods",
+      "Ecology",
+      "Cultural Heritage",
+      "Ancient Trees"
+    ],
+    "correct": 1,
+    "explanation": "The text describes the baobab tree and its ecological and cultural significance.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 219,
+    "paragraphs": [
+      "The Great Migration of the wildebeest across East Africa, involving over 1.5 million animals, is one of the most spectacular wildlife events, a dramatic annual cycle of movement driven by the search for fresh grazing and water, with the herds crossing crocodile-infested rivers where many are lost to predation and drowning. This migration sustains a complex ecosystem of predators, including lions, cheetahs, and hyenas, and has become a major draw for tourism, underpinning the economies of Kenya and Tanzania. The annual drama of the wildebeest migration offers a powerful reminder of the interconnectedness of life in the natural world."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "Serengeti",
+      "East African Ecosystem",
+      "Wildlife Spectacles",
+      "Predator and Prey",
+      "The Wildebeest Migration",
+      "Climate Change",
+      "Tourism",
+      "Nature's Cycles"
+    ],
+    "correct": 4,
+    "explanation": "The text describes the wildebeest migration and its ecological and economic importance.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 220,
+    "paragraphs": [
+      "The history of cartography reveals the changing ways in which humanity has understood and visualised the world, from ancient Babylonian clay tablets to the sophisticated satellite imagery of the modern digital age, with early maps often being as much cultural as practical tools. The Age of Exploration spurred rapid advancements, as explorers returned with new information that required constant revision of existing charts. Today, Geographic Information Systems (GIS) allow for the integration of vast amounts of spatial data, revolutionising fields from urban planning to environmental management and public health."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "Navigation",
+      "Mapmaking",
+      "Exploration",
+      "The History of Cartography",
+      "Geographic Information Systems",
+      "Visualising the World",
+      "Discovery",
+      "Technology"
+    ],
+    "correct": 3,
+    "explanation": "The text traces the history and evolution of mapmaking.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 221,
+    "paragraphs": [
+      "The concept of 'hygge', a Danish word roughly translating to cosy contentment, has become a global cultural phenomenon, representing a lifestyle approach that emphasises warmth, companionship, and simple pleasures as a defence against the harsh Scandinavian winter. Hygge is not merely about comfortable furnishings; it is a deliberate practice of creating and appreciating cosy, intimate atmospheres through shared meals, quiet reading, or celebrating ordinary moments. Its appeal has spread beyond Denmark, as people seek to counterbalance the speed of modern life with intentional slowness and connection."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "Happiness",
+      "Danish Culture",
+      "Hygge",
+      "Lifestyle Trends",
+      "Cosiness",
+      "Psychological Well-being",
+      "Scandinavian Traditions",
+      "Slow Living"
+    ],
+    "correct": 2,
+    "explanation": "The text describes hygge and its cultural and psychological significance.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 222,
+    "paragraphs": [
+      "The dodo bird, a flightless species native to Mauritius, has become a powerful symbol of extinction and human-induced environmental change, having disappeared within a century of its discovery by European sailors in the 16th century due to hunting and the introduction of invasive species. Its rapid extinction occurred before any comprehensive scientific description could be made, leaving behind only a few skeletal remains and a legacy of curiosity. The dodo's story underscores the vulnerability of isolated island species and the profound consequences of human expansion into fragile ecosystems."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "The Dodo Bird",
+      "Extinction",
+      "Mauritius",
+      "Environmental Change",
+      "Conservation",
+      "Invasive Species",
+      "Cultural Symbol",
+      "Island Ecosystems"
+    ],
+    "correct": 0,
+    "explanation": "The text discusses the dodo's extinction and its symbolic significance.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 223,
+    "paragraphs": [
+      "The history of tea, which originated in China over 3,000 years ago, is a narrative of imperial tradition, cultural exchange, and political conflict, with the beverage becoming central to both Eastern and Western societies in distinct ways. Its introduction to Europe in the 17th century sparked a demand that reshaped global trade, leading to the rise of the British East India Company and the Opium Wars. In modern times, tea remains the second most consumed beverage in the world, with diverse traditions ranging from Japanese chanoyu to British afternoon tea."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "Cultural Exchange",
+      "Tea and Trade",
+      "Chinese Culture",
+      "Global Beverages",
+      "British Empire",
+      "The History of Tea",
+      "Tea Ceremonies",
+      "Opium Wars"
+    ],
+    "correct": 5,
+    "explanation": "The text traces the history of tea and its global impact.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 224,
+    "paragraphs": [
+      "The human sense of smell, often underestimated, is a remarkably sophisticated sense intimately linked to memory and emotion, more so than any other of our senses, with odours travelling directly to the amygdala and hippocampus, areas involved in emotional processing and memory formation. This explains why a particular scent can instantly evoke vivid recollections of a person or place, and the olfactory system is capable of regenerating its neurons, giving it unique plasticity. The exploration of the sense of smell has applications in diagnosing neurological disorders and developing more immersive virtual reality experiences."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "Psychology",
+      "Olfactory System",
+      "Memory and Emotion",
+      "Sensory Perception",
+      "Brain Science",
+      "Neurobiology",
+      "The Human Sense of Smell",
+      "Virtual Reality"
+    ],
+    "correct": 6,
+    "explanation": "The text discusses the human sense of smell and its connection to memory and emotion.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 225,
+    "paragraphs": [
+      "The history of animation is a remarkable journey from simple flip-books to complex digital worlds, with key innovations including the persistence of vision principle, which creates the illusion of motion by presenting rapidly changing static images, and early pioneers like Émile Cohl and Winsor McCay pushing the boundaries of the medium. The rise of Disney in the 1930s established animation as a major cinematic form, and the digital revolution of the 1990s, led by Pixar's 'Toy Story', transformed the industry once again. Today, animation encompasses a wide range of styles, techniques, and genres, serving both entertainment and educational purposes while influencing popular culture across generations."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "The History of Animation",
+      "Disney",
+      "Pixar",
+      "Cartoon Evolution",
+      "Digital Art",
+      "Cinema",
+      "Creative Innovation",
+      "Cultural Impact"
+    ],
+    "correct": 0,
+    "explanation": "The text traces the history of animation from its beginnings to the present day.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 226,
+    "paragraphs": [
+      "The Maya civilisation, which flourished in Mesoamerica from roughly 2000 BCE to the 16th century, is renowned for its extraordinary achievements in mathematics, astronomy, and writing, developing one of the world's only true writing systems and an accurate calendar that rivals modern computational models. The reasons for the classic Maya collapse, around 800–900 CE, remain a subject of intense scholarly debate, with theories ranging from severe drought to environmental degradation and political unrest. The enduring fascination with the Maya underscores the rich complexity of pre-Columbian civilisations and the vital importance of archaeological research in reconstructing the past."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "Mesoamerican Culture",
+      "The Maya Civilisation",
+      "Ancient Astronomy",
+      "Archaeology",
+      "Colonial History",
+      "Indigenous Peoples",
+      "Tikal and Palenque",
+      "Classical Collapse"
+    ],
+    "correct": 1,
+    "explanation": "The text describes the Maya civilisation and its enduring legacy.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 227,
+    "paragraphs": [
+      "The phenomenon of animal camouflage has fascinated biologists for centuries, revealing the incredible adaptations that species have evolved either to avoid detection by predators or to ambush prey, with examples ranging from the subtle colouration of the Arctic hare to the complex mimicry of the leaf insect. These adaptations are often fine-tuned to specific environments, with changes occurring over generations through natural selection, and in some cases, camouflage is dynamic, as seen in cuttlefish which can alter their skin texture and colour in milliseconds. The study of camouflage deepens our understanding of evolutionary biology and offers practical applications in fields ranging from military stealth to urban design."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "Animal Camouflage",
+      "Evolution",
+      "Adaptation",
+      "Predator-Prey",
+      "Biology",
+      "Cuttlefish",
+      "Survival",
+      "Mimicry"
+    ],
+    "correct": 0,
+    "explanation": "The text discusses animal camouflage and its evolutionary significance.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 228,
+    "paragraphs": [
+      "The introduction of the potato to Europe from the Americas in the 16th century transformed agriculture and demographics by providing a reliable, nutritious food source that could be cultivated on marginal land, leading to a significant population increase, particularly in Ireland. The potato's dependence also created vulnerability, as demonstrated by the Irish Potato Famine of the 1840s, which highlighted the risks of agricultural monoculture. The potato's impact on European diet and economy was profound, facilitating the Industrial Revolution by providing a stable food supply for the growing urban working class."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "The Irish Famine",
+      "Agricultural Change",
+      "The Potato's Impact on Europe",
+      "Food Security",
+      "Crop Introduction",
+      "European History",
+      "Nutrition",
+      "Economic Change"
+    ],
+    "correct": 2,
+    "explanation": "The text discusses the potato's introduction and its transformative effects on European society.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 229,
+    "paragraphs": [
+      "The history of sunglasses is a story of both utility and style, evolving from a practical tool for protecting the eyes from glare to a symbol of status and a fashion accessory that reflects cultural changes, with the earliest known sunglasses made by Inuit peoples from flattened walrus ivory. In Europe, the adoption of sunglasses was slow, but by the 20th century, they became increasingly popular with the rise of Hollywood cinema, where celebrities associated them with mystery and sophistication. Today, sunglasses are a ubiquitous fashion statement and a multi-billion-dollar industry, showcasing the interplay between technology, culture, and aesthetics."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "Optics",
+      "Fashion Accessories",
+      "Eye Protection",
+      "Technology",
+      "Hollywood",
+      "Cultural Trends",
+      "Inuit Innovations",
+      "The History of Sunglasses"
+    ],
+    "correct": 7,
+    "explanation": "The text traces the history of sunglasses from practical tools to fashion items.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 230,
+    "paragraphs": [
+      "The concept of the gut-brain axis has captured scientific attention as emerging research suggests that the trillions of bacteria in our digestive tract can directly influence our mood, behaviour, and neurological health through a complex network of neural, hormonal, and immune signals. An imbalance in the gut flora, caused by factors like stress, poor diet, or antibiotics, has been linked to conditions from anxiety to neurodegenerative diseases. Research into the gut-brain axis is advancing rapidly, offering potential for novel therapies, including customised probiotics, that could revolutionise mental health treatment."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "Mental Health",
+      "Microbiome Health",
+      "Neurobiology",
+      "Nutrition and Psychology",
+      "The Gut-Brain Axis",
+      "Bacteria and Mood",
+      "Therapeutic Potential",
+      "Medical Research"
+    ],
+    "correct": 4,
+    "explanation": "The text discusses the gut-brain axis and its implications for mental health.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 231,
+    "paragraphs": [
+      "The history of time zones, which emerged in the late 19th century in response to the expansion of railway networks and global trade, represents a human invention designed to impose order on the natural rhythms of day and night, with the adoption of the Greenwich Meridian as the prime meridian in 1884 establishing a global standardisation. While the system of 24 time zones is largely functional, it inevitably fails to reflect local geographical realities, as seen in China which operates on a single time zone despite spanning vast distances. The divisions we take for granted are a powerful reminder of the extent to which time is a cultural and political construct."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "Railway Expansion",
+      "Global Standardisation",
+      "The History of Time Zones",
+      "Greenwich Meridian",
+      "Time Measurement",
+      "Cultural Constructs",
+      "International Commerce",
+      "Politics"
+    ],
+    "correct": 2,
+    "explanation": "The text explains the establishment of time zones and their impact on global activity.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 232,
+    "paragraphs": [
+      "The history of graffiti is a contentious but undeniably influential art form, evolving from clandestine tags on New York City subways in the 1970s to a globally recognised movement that now commands auctions and museum exhibitions, with artists developing distinct styles that transformed urban landscapes. While initially associated with vandalism, graffiti gradually gained acceptance as a legitimate artistic expression, with figures like Jean-Michel Basquiat bridging the gap between street and gallery. Its cultural significance continues to grow, reflecting the evolving relationship between creativity, identity, and public space in contemporary cities."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "Urban Expression",
+      "Street Art",
+      "Cultural Change",
+      "Subcultures",
+      "Art Movements",
+      "The History of Graffiti",
+      "Graffiti Art",
+      "Public Art"
+    ],
+    "correct": 5,
+    "explanation": "The text traces the history of graffiti from subculture to recognised art form.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 233,
+    "paragraphs": [
+      "The giant panda, with its distinctive black-and-white coat, has long been a symbol of wildlife conservation and a flagship species for environmental organisations, representing the urgent need to protect endangered habitats, with its diet consisting almost exclusively of bamboo, making it highly dependent on specific forest ecosystems. Despite being biologically carnivorous, the panda has adapted to a herbivorous diet, consuming up to 40 kilograms of bamboo daily. Conservation efforts, including captive breeding and protected reserves, have led to a modest recovery in wild panda populations, though they remain vulnerable to climate change and habitat loss."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "The Giant Panda",
+      "Wildlife Conservation",
+      "Endangered Species",
+      "Bamboo Diet",
+      "China",
+      "Habitat Protection",
+      "Captive Breeding",
+      "Symbolism"
+    ],
+    "correct": 0,
+    "explanation": "The text describes the giant panda and its significance for conservation.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 234,
+    "paragraphs": [
+      "The history of perfume is an ancient art, with origins in Mesopotamia, Egypt, and the Indus Valley, where fragrant oils and resins were used for religious rituals and burial ceremonies, reflecting a belief in the power of scent, with the word deriving from the Latin 'per fumum', meaning 'through smoke'. The development of distillation techniques in the Islamic world revolutionised perfume-making, allowing for the extraction of essential oils, paving the way for the modern fragrance industry. In Europe, perfume became a symbol of status and luxury, and today it is a multi-billion-dollar industry and a form of personal expression."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "Islamic Science",
+      "Fragrance Industry",
+      "Cultural Practices",
+      "The History of Perfume",
+      "Essential Oils",
+      "Louis XV",
+      "Trade and Luxury",
+      "Personal Expression"
+    ],
+    "correct": 3,
+    "explanation": "The text traces the history of perfume and its cultural significance.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 235,
+    "paragraphs": [
+      "The prehistoric cave paintings found in sites like Lascaux in France and Altamira in Spain represent some of the earliest known forms of human artistic expression, created by our Stone Age ancestors between 20,000 and 40,000 years ago, depicting large animals with sophisticated understanding of perspective and anatomy. The purpose of these paintings remains debated; some interpret them as ritualistic or shamanistic, while others see them as educational or early storytelling. Their preservation in deep caves has allowed them to survive millennia, providing a direct window into the cognitive and cultural capabilities of early humans."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "Prehistoric Cave Paintings",
+      "Early Human Art",
+      "Stone Age",
+      "Lascaux",
+      "Ritual and Art",
+      "Anthropology",
+      "Symbolism",
+      "Human Creativity"
+    ],
+    "correct": 0,
+    "explanation": "The text discusses prehistoric cave paintings and their significance.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 236,
+    "paragraphs": [
+      "The human appendix, a small organ attached to the large intestine, has long been regarded as a vestigial structure with little function, but recent research suggests it may play a role in gut health by serving as a reservoir for beneficial bacteria, helping to restore the microbiome after intestinal infections. This function, while minor, offers an evolutionary advantage, explaining why the appendix has not been completely eliminated by natural selection. Despite this, appendicitis remains a common condition requiring surgical removal, yet the study of the appendix offers insight into evolutionary trade-offs."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "Surgery",
+      "Evolution",
+      "Gut Health",
+      "Microbiome",
+      "The Human Appendix",
+      "Biology",
+      "Anatomy",
+      "Medical Research"
+    ],
+    "correct": 4,
+    "explanation": "The text discusses the appendix's function and evolutionary significance.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 237,
+    "paragraphs": [
+      "The history of postage stamps is a quiet revolution in communication, with the introduction of the Penny Black in the United Kingdom in 1840, the world's first adhesive stamp, which fundamentally transformed the postal system from a cumbersome service to an efficient, affordable means of sending letters. This innovation led to the development of a global network of stamps and postal services, which facilitated personal and commercial correspondence across borders. Today, stamps are not only used for postage but have also become collector's items, reflecting cultural heritage and historical events."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "Innovation",
+      "The Penny Black",
+      "Postal Systems",
+      "Communication",
+      "Collecting",
+      "Cultural Heritage",
+      "Global Networks",
+      "The History of Postage Stamps"
+    ],
+    "correct": 7,
+    "explanation": "The text discusses the history and impact of postage stamps.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 238,
+    "paragraphs": [
+      "The concept of 'survival of the fittest' is often misunderstood, as it refers not to the strongest or fastest, but to those best adapted to their environment, a key idea in Darwinian evolution, shaping our understanding of natural selection. This principle explains the diversity of life, showing how species evolve over generations to meet environmental challenges. However, human intervention and rapid climate change are now testing the adaptability of species at an unprecedented rate, raising concerns for biodiversity."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "Adaptation",
+      "Evolution",
+      "Natural Selection",
+      "Survival of the Fittest",
+      "Biodiversity",
+      "Climate Change",
+      "Darwin",
+      "Species Evolution"
+    ],
+    "correct": 3,
+    "explanation": "The text explains the concept of survival of the fittest and its implications.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 239,
+    "paragraphs": [
+      "The history of the umbrella is a fascinating journey from ancient sunshades to modern rain protection, with early examples found in Egypt, Greece, and China, where they were symbols of status and used in ceremonies. The umbrella's design evolved over centuries, with the folding mechanism and waterproof materials appearing in the 19th century. Today, umbrellas are a universal accessory, found in art and literature, and remain both functional and symbolic."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "Symbolism",
+      "Rain Protection",
+      "Ancient Origins",
+      "Design",
+      "The History of the Umbrella",
+      "Accessories",
+      "Cultural Items",
+      "Everyday Objects"
+    ],
+    "correct": 4,
+    "explanation": "The text traces the history and cultural significance of umbrellas.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 240,
+    "paragraphs": [
+      "The concept of financial literacy is essential for independence, involving understanding budgeting, saving, and investing, yet many people lack basic financial knowledge, which can lead to debt and poverty. Financial education should start early, and simple habits like tracking expenses can make a big difference. Empowering individuals with financial literacy helps secure their future and reduce inequality."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "Budgeting",
+      "Independence",
+      "Financial Literacy",
+      "Education",
+      "Debt Prevention",
+      "Empowerment",
+      "Personal Finance",
+      "Economic Equality"
+    ],
+    "correct": 2,
+    "explanation": "The text explains the importance of financial literacy.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 241,
+    "paragraphs": [
+      "The history of the helicopter is a story of vertical flight, with Leonardo da Vinci sketching an early design, but the first successful helicopter was built in the 20th century, enabling take-off and landing vertically. Helicopters are used for rescue, transport, and military purposes, reaching places that planes cannot. They remain an essential part of modern aviation, with advanced technology continuously improving their capabilities."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "Transport",
+      "Vertical Flight",
+      "Leonardo da Vinci",
+      "Rescue",
+      "Aviation",
+      "The Helicopter",
+      "Technology",
+      "Military"
+    ],
+    "correct": 5,
+    "explanation": "The text describes helicopters and their significance.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 242,
+    "paragraphs": [
+      "The phenomenon of the 'butterfly effect' in chaos theory illustrates how small changes in initial conditions can lead to vastly different outcomes in complex systems, such as weather, ecosystems, and economics. This sensitivity to initial conditions is a hallmark of nonlinear dynamics, making long-term prediction difficult. The concept has become a metaphor for the interconnectedness of the world, emphasizing the potential for small actions to have large consequences."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "The Butterfly Effect",
+      "Chaos Theory",
+      "Complex Systems",
+      "Unpredictability",
+      "Nonlinear Dynamics",
+      "Weather Prediction",
+      "Ecosystems",
+      "Interconnectedness"
+    ],
+    "correct": 0,
+    "explanation": "The text introduces the butterfly effect and its implications.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 243,
+    "paragraphs": [
+      "The concept of 'cognitive load' refers to the amount of mental effort used in working memory, and understanding it can help design better learning materials and teaching methods to avoid overwhelming students. High cognitive load can hinder learning, so strategies like chunking information and using visuals can reduce it. This principle is widely applied in educational psychology and user experience design."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "Education",
+      "Learning Theory",
+      "Psychology",
+      "Cognitive Load",
+      "Memory",
+      "Instructional Design",
+      "User Experience",
+      "Teaching Strategies"
+    ],
+    "correct": 3,
+    "explanation": "The text explains cognitive load and its applications.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 244,
+    "paragraphs": [
+      "The history of the compass is a story of navigation and exploration, with the magnetic compass first developed in China during the Han Dynasty, later spreading to Europe and revolutionizing sea travel by enabling mariners to determine direction regardless of weather. The compass reduced reliance on landmarks and celestial navigation, opening up new trade routes. Even in the age of GPS, the compass remains a fundamental tool for navigation."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "Chinese Inventions",
+      "Navigation",
+      "The Compass",
+      "Sea Travel",
+      "Exploration",
+      "Trade Routes",
+      "Technology",
+      "History"
+    ],
+    "correct": 2,
+    "explanation": "The text traces the history of the compass and its impact on navigation.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 245,
+    "paragraphs": [
+      "The phenomenon of 'sleep paralysis' is a temporary inability to move or speak while falling asleep or waking up, often accompanied by hallucinations, and it occurs when the brain's sleep-wake transition is disrupted. This condition can be frightening, but it is usually harmless and may be triggered by sleep deprivation or stress. Understanding sleep paralysis can help demystify the experience and reduce anxiety."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "Stress",
+      "Sleep Disorders",
+      "Hallucinations",
+      "Brain Science",
+      "Health",
+      "Psychology",
+      "Sleep Paralysis",
+      "Sleep"
+    ],
+    "correct": 6,
+    "explanation": "The text explains sleep paralysis and its causes.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 246,
+    "paragraphs": [
+      "The history of the wheel is one of the most important inventions in human history, with evidence of its use dating back to around 3500 BCE in Mesopotamia, where it was initially used for pottery before being adapted for transport. The wheel revolutionised industry and travel, enabling the movement of heavy goods and people over long distances. Its basic design has remained unchanged for millennia, a testament to its efficiency."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "Technology",
+      "Inventions",
+      "Transport",
+      "Mesopotamia",
+      "The Wheel",
+      "Industry",
+      "History",
+      "Efficiency"
+    ],
+    "correct": 4,
+    "explanation": "The text discusses the history and impact of the wheel.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 247,
+    "paragraphs": [
+      "The concept of 'emotional labour' refers to the process of managing feelings and expressions to fulfil the emotional requirements of a job, such as a flight attendant or a waitress, who must remain pleasant and calm despite stress. This work is often undervalued and can lead to burnout, especially when emotions are suppressed rather than expressed authentically. Awareness of emotional labour highlights the need for better work conditions and support."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "Emotional Labour",
+      "Workplace Psychology",
+      "Stress",
+      "Job Satisfaction",
+      "Emotions",
+      "Service Jobs",
+      "Burnout",
+      "Management"
+    ],
+    "correct": 0,
+    "explanation": "The text explains emotional labour and its implications.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 248,
+    "paragraphs": [
+      "The history of the hot air balloon began with the Montgolfier brothers in France in 1783, who successfully launched a manned flight, marking the first time humans achieved air travel. This invention captured public imagination and paved the way for aeronautics, even though it was soon superseded by other forms of aviation. Today, hot air balloons are used for recreation and tourism, offering breathtaking views of landscapes."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "Adventure",
+      "Aviation History",
+      "The Montgolfier Brothers",
+      "Air Travel",
+      "Recreation",
+      "Tourism",
+      "Human Flight",
+      "The Hot Air Balloon"
+    ],
+    "correct": 7,
+    "explanation": "The text describes the history of the hot air balloon.",
+    "input_type": "buttons"
+  },
+  {
+    "id": 249,
+    "paragraphs": [
+      "The concept of 'mass production' was pioneered by Henry Ford in the early 20th century with his assembly line, which drastically reduced the time and cost of manufacturing automobiles, making them affordable for the average consumer. This innovation transformed industries beyond automotive, influencing everything from electronics to food. Mass production shaped modern consumer society, though it also raised concerns about worker alienation and environmental impact."
+    ],
+    "question": "Choose the best title for this text:",
+    "options": [
+      "Economics",
+      "Fordism",
+      "Industrial Revolution",
+      "Manufacturing",
+      "Consumer Society",
+      "Assembly Line",
+      "Mass Production",
+      "History of Technology"
+    ],
+    "correct": 6,
+    "explanation": "The text explains mass production and its impact.",
+    "input_type": "buttons"
+  },
+{
+  "id": 250,
+  "paragraphs": [
+    "The concept of neuroplasticity has revolutionized our understanding of the human brain, revealing that it can reorganize itself throughout life by forming new neural connections in response to learning, experience, and even injury.",
+    "This remarkable capacity means that skills like language, music, and motor coordination can be developed at any age, challenging the old belief that the brain's structure is fixed after childhood.",
+    "Neuroplasticity also has profound implications for rehabilitation, offering hope for recovery from strokes, traumatic brain injuries, and neurodegenerative conditions."
+  ],
+  "question": "Choose the best title for this text:",
+  "options": [
+    "Neuroplasticity and Brain Adaptation",
+    "Childhood Brain Development",
+    "Neurological Disorders",
+    "Learning and Memory",
+    "Stroke Recovery",
+    "Brain Injuries",
+    "Cognitive Decline",
+    "Physical Therapy"
+  ],
+  "correct": 0,
+  "explanation": "The text explains neuroplasticity and its implications for lifelong learning and recovery.",
+  "input_type": "buttons"
+},
+{
+  "id": 251,
+  "paragraphs": [
+    "The migration of the Arctic tern is one of the most remarkable journeys in the animal kingdom, covering over 70,000 kilometres annually from the Arctic to the Antarctic and back, a round trip that exposes it to two summers each year.",
+    "This tiny bird, weighing less than 200 grams, navigates with extraordinary precision using the Earth's magnetic field, the sun's position, and even the stars, making it one of nature's most impressive navigators.",
+    "The Arctic tern's epic journey highlights the incredible endurance and adaptability of migratory species, but also underscores their vulnerability to climate change and habitat destruction."
+  ],
+  "question": "Choose the best title for this text:",
+  "options": [
+    "Animal Navigation",
+    "Arctic Tern Migration",
+    "Endangered Species",
+    "Bird Watching",
+    "Climate Change Effects",
+    "Marine Life",
+    "Polar Regions",
+    "Seasonal Travel"
+  ],
+  "correct": 1,
+  "explanation": "The text describes the Arctic tern's migration and its significance.",
+  "input_type": "buttons"
+},
+{
+  "id": 252,
+  "paragraphs": [
+    "The invention of the printing press by Johannes Gutenberg in the mid-15th century was a watershed moment in human history, democratizing knowledge and sparking a cultural revolution across Europe.",
+    "It enabled the mass production of books, making them affordable and accessible to a wider audience, which in turn fueled literacy, scientific inquiry, and religious reform.",
+    "Gutenberg's legacy extends far beyond printing technology, representing a fundamental shift in how knowledge is created, shared, and preserved."
+  ],
+  "question": "Choose the best title for this text:",
+  "options": [
+    "Knowledge Sharing",
+    "The Printing Press",
+    "Technological Revolutions",
+    "Gutenberg's Legacy",
+    "The Renaissance",
+    "Mass Media",
+    "Communication",
+    "European History"
+  ],
+  "correct": 3,
+  "explanation": "The text discusses Gutenberg's printing press and its cultural impact.",
+  "input_type": "buttons"
+},
+{
+  "id": 253,
+  "paragraphs": [
+    "The phenomenon of 'impostor syndrome' describes the persistent feeling of being a fraud despite evident success and competence, affecting high-achieving individuals across various professions and often leading to chronic self-doubt and anxiety.",
+    "It is particularly common among women and minority groups, who may internalize societal stereotypes and attribute their accomplishments to luck rather than ability.",
+    "Addressing impostor syndrome involves developing self-compassion, reframing negative thought patterns, and recognizing that these feelings are a shared human experience."
+  ],
+  "question": "Choose the best title for this text:",
+  "options": [
+    "Stereotypes",
+    "Self-Doubt",
+    "Success and Competence",
+    "Anxiety",
+    "Mental Health",
+    "Impostor Syndrome",
+    "Personal Growth",
+    "Workplace Psychology"
+  ],
+  "correct": 5,
+  "explanation": "The text explains impostor syndrome and its psychological impact.",
+  "input_type": "buttons"
+},
+{
+  "id": 254,
+  "paragraphs": [
+    "The history of the telescope is a testament to humanity's desire to explore the universe, beginning with simple optical instruments in the 17th century and evolving into the space-based observatories like the Hubble and James Webb telescopes of today.",
+    "Galileo's early observations of Jupiter's moons and the phases of Venus challenged the geocentric model, fundamentally reshaping our understanding of the cosmos.",
+    "Modern telescopes have expanded our view to the very edges of the observable universe, capturing images of galaxies billions of light-years away and revealing the existence of exoplanets."
+  ],
+  "question": "Choose the best title for this text:",
+  "options": [
+    "James Webb",
+    "Space Exploration",
+    "The Evolution of Telescopes",
+    "Astronomy",
+    "Hubble",
+    "Exoplanets",
+    "Cosmic Discovery",
+    "Optics"
+  ],
+  "correct": 2,
+  "explanation": "The text describes the evolution of telescopes and their impact on astronomy.",
+  "input_type": "buttons"
+},
+{
+  "id": 255,
+  "paragraphs": [
+    "The phenomenon of 'learned helplessness' describes a state where individuals become passive and resigned after repeated exposure to negative, uncontrollable events, failing to take action even when escape is possible.",
+    "This psychological condition can lead to depression, chronic stress, and a diminished sense of agency, affecting both personal and professional life.",
+    "Overcoming learned helplessness involves rebuilding a sense of control through small, achievable goals and reframing setbacks as learning opportunities."
+  ],
+  "question": "Choose the best title for this text:",
+  "options": [
+    "Learned Helplessness",
+    "Personal Agency",
+    "Mental Health",
+    "Resilience",
+    "Depression",
+    "Stress Management",
+    "Behavioural Psychology",
+    "Self-Efficacy"
+  ],
+  "correct": 0,
+  "explanation": "The text explains learned helplessness and its effects.",
+  "input_type": "buttons"
+},
+{
+  "id": 256,
+  "paragraphs": [
+    "The history of the subway is a story of urban innovation, with the first underground railway opening in London in 1863, revolutionizing city transport and easing congestion in the rapidly growing metropolis.",
+    "Subway systems spread across the world in the following decades, connecting distant neighbourhoods and enabling the expansion of cities.",
+    "Today, subways are integral to urban infrastructure, moving millions of passengers daily and shaping the economic and social fabric of modern cities."
+  ],
+  "question": "Choose the best title for this text:",
+  "options": [
+    "Urban Transport",
+    "The Subway Revolution",
+    "London History",
+    "Mass Transit",
+    "Urban Planning",
+    "City Expansion",
+    "Infrastructure",
+    "Travel"
+  ],
+  "correct": 1,
+  "explanation": "The text traces the history and impact of the subway.",
+  "input_type": "buttons"
+},
+{
+  "id": 257,
+  "paragraphs": [
+    "The concept of 'emotional intelligence', which gained prominence through the work of Daniel Goleman, refers to the ability to perceive, understand, manage, and use emotions effectively in oneself and others.",
+    "This skill set has been linked to better leadership, stronger relationships, and higher life satisfaction, often outweighing cognitive intelligence in predicting success.",
+    "Developing emotional intelligence involves practicing self-awareness, empathy, and social skills, which can be cultivated through mindful reflection and communication."
+  ],
+  "question": "Choose the best title for this text:",
+  "options": [
+    "Communication",
+    "Leadership",
+    "Success Factors",
+    "Emotional Intelligence",
+    "Empathy",
+    "Self-Awareness",
+    "Social Skills",
+    "Psychology"
+  ],
+  "correct": 3,
+  "explanation": "The text explains emotional intelligence and its importance.",
+  "input_type": "buttons"
+},
+{
+  "id": 258,
+  "paragraphs": [
+    "The history of the zipper is a tale of incremental innovation, with early designs in the 19th century eventually leading to the modern zipper patented by Gideon Sundback in 1917, which revolutionized clothing design and manufacturing.",
+    "The zipper made fastening garments quicker and more reliable than buttons or laces, and its versatility made it a key component in luggage, shoes, and outdoor gear.",
+    "Today, the zipper is taken for granted, yet its development exemplifies how small innovations can have a lasting impact on everyday life and industry."
+  ],
+  "question": "Choose the best title for this text:",
+  "options": [
+    "Sundback",
+    "Innovation",
+    "Clothing Design",
+    "Manufacturing",
+    "Fastening Technologies",
+    "Everyday Objects",
+    "The Zipper's Invention",
+    "Fashion"
+  ],
+  "correct": 6,
+  "explanation": "The text traces the history and impact of the zipper.",
+  "input_type": "buttons"
+},
+{
+  "id": 259,
+  "paragraphs": [
+    "The phenomenon of 'confirmation bias' refers to the human tendency to search for, interpret, and remember information that confirms pre-existing beliefs, often ignoring or downplaying contradictory evidence.",
+    "This cognitive bias can lead to poor decision-making in fields ranging from finance and politics to medicine, reinforcing stereotypes and inhibiting personal growth.",
+    "Mitigating confirmation bias requires deliberate effort to seek out diverse perspectives, engage in active questioning, and cultivate intellectual humility."
+  ],
+  "question": "Choose the best title for this text:",
+  "options": [
+    "Perspective",
+    "Decision-Making",
+    "Cognitive Biases",
+    "Critical Thinking",
+    "Stereotypes",
+    "Personal Growth",
+    "Intellectual Humility",
+    "Confirmation Bias"
+  ],
+  "correct": 7,
+  "explanation": "The text explains confirmation bias and its consequences.",
+  "input_type": "buttons"
+},
+{
+  "id": 260,
+  "paragraphs": [
+    "The history of the piano is a journey of musical evolution, from its early predecessors like the harpsichord to the modern grand piano developed in the 19th century, capable of producing a wide range of dynamics and tonal expression.",
+    "Composers like Bach, Mozart, and Beethoven exploited the piano's capabilities, creating masterworks that remain central to Western classical music.",
+    "The piano's versatility has made it a popular instrument in jazz, pop, and folk music, and it continues to inspire musicians and audiences alike."
+  ],
+  "question": "Choose the best title for this text:",
+  "options": [
+    "The Piano's Evolution",
+    "Musical Instruments",
+    "Classical Composers",
+    "Jazz and Pop",
+    "Music History",
+    "Sound",
+    "Creativity",
+    "Culture"
+  ],
+  "correct": 0,
+  "explanation": "The text traces the history and cultural significance of the piano.",
+  "input_type": "buttons"
+},
+{
+  "id": 261,
+  "paragraphs": [
+    "The concept of 'sustainable development', first formally defined by the Brundtland Report in 1987, emphasizes the need to meet present needs without compromising the ability of future generations to meet their own.",
+    "This framework integrates economic growth, social inclusion, and environmental protection, recognizing that these three pillars are interconnected.",
+    "Achieving sustainable development requires significant changes in policy, business practices, and individual behaviour, as well as international cooperation on a global scale."
+  ],
+  "question": "Choose the best title for this text:",
+  "options": [
+    "Social Inclusion",
+    "Brundtland Report",
+    "Environmental Protection",
+    "Economic Growth",
+    "Sustainable Development",
+    "Global Cooperation",
+    "Policy Changes",
+    "Future Generations"
+  ],
+  "correct": 4,
+  "explanation": "The text explains sustainable development and its principles.",
+  "input_type": "buttons"
+},
+{
+  "id": 262,
+  "paragraphs": [
+    "The history of the postcard is a narrative of social connection and communication, beginning in the mid-19th century as a convenient way to send brief messages, often featuring images of landmarks and scenic views.",
+    "Postcards gained popularity with the rise of tourism and became a cultural artifact, reflecting the aesthetic and social values of their time.",
+    "In the digital era, physical postcards have become less common, but they remain a cherished souvenir and a tangible link to personal and historical memory."
+  ],
+  "question": "Choose the best title for this text:",
+  "options": [
+    "Cultural Memory",
+    "Communication",
+    "Travel",
+    "Postcard History",
+    "Nostalgia",
+    "Collecting",
+    "Correspondence",
+    "Tourism"
+  ],
+  "correct": 3,
+  "explanation": "The text describes the history and cultural role of postcards.",
+  "input_type": "buttons"
+},
+{
+  "id": 263,
+  "paragraphs": [
+    "The phenomenon of 'social proof' describes the psychological tendency to conform to the actions of others, particularly in ambiguous situations, because we assume that those around us have more accurate information.",
+    "This behaviour is widely exploited in marketing, where testimonials and popularity statistics are used to persuade consumers to buy products.",
+    "Social proof can be a powerful force for good, such as promoting charitable giving, but it can also lead to herd behaviour and the spread of misinformation."
+  ],
+  "question": "Choose the best title for this text:",
+  "options": [
+    "Marketing",
+    "Conformity",
+    "Social Proof",
+    "Consumer Behaviour",
+    "Psychology",
+    "Decision-Making",
+    "Social Influence",
+    "Misinformation"
+  ],
+  "correct": 2,
+  "explanation": "The text explains social proof and its applications.",
+  "input_type": "buttons"
+},
+{
+  "id": 264,
+  "paragraphs": [
+    "The history of the skyscraper is a testament to architectural ambition and engineering prowess, with the first modern skyscrapers rising in Chicago in the late 19th century, using steel frames and elevators to reach unprecedented heights.",
+    "The race for the tallest building intensified in the 20th and 21st centuries, with iconic structures like the Empire State Building and the Burj Khalifa pushing the boundaries of design and construction.",
+    "Skyscrapers have become symbols of economic power and urban identity, but they also pose challenges related to energy efficiency, safety, and their impact on city life."
+  ],
+  "question": "Choose the best title for this text:",
+  "options": [
+    "Skyscraper Evolution",
+    "Architectural Innovation",
+    "Urban Planning",
+    "City Life",
+    "Construction",
+    "Engineering",
+    "Economic Power",
+    "Iconic Buildings"
+  ],
+  "correct": 0,
+  "explanation": "The text traces the history and significance of skyscrapers.",
+  "input_type": "buttons"
+},
+{
+  "id": 265,
+  "paragraphs": [
+    "The concept of 'cognitive dissonance', first developed by Leon Festinger, describes the discomfort experienced when one's actions conflict with their beliefs, prompting psychological changes to reduce the tension.",
+    "This phenomenon has been influential in understanding hypocrisy, attitude change, and the way people rationalize their decisions.",
+    "Examples of cognitive dissonance include justifying a difficult choice by overvaluing the chosen option or minimizing its downsides."
+  ],
+  "question": "Choose the best title for this text:",
+  "options": [
+    "Cognitive Dissonance",
+    "Hypocrisy",
+    "Attitude Change",
+    "Beliefs and Actions",
+    "Psychology",
+    "Rationalization",
+    "Decision-Making",
+    "Social Science"
+  ],
+  "correct": 0,
+  "explanation": "The text explains cognitive dissonance and its psychological effects.",
+  "input_type": "buttons"
+},
+{
+  "id": 266,
+  "paragraphs": [
+    "The history of the elevator is a story of vertical mobility, with early, unsafe designs eventually replaced by the safety elevator pioneered by Elisha Otis in 1854, which revolutionized the way we occupy and imagine urban space.",
+    "The elevator enabled the construction of skyscrapers and the dense development of cities, making it possible for hundreds of people to work and live in a single building.",
+    "Today, innovations like smart elevators that reduce wait times are making vertical transport even more efficient, as cities continue to grow upward."
+  ],
+  "question": "Choose the best title for this text:",
+  "options": [
+    "Urban Development",
+    "Elevator Innovation",
+    "Safety",
+    "Skyscrapers",
+    "Vertical Transport",
+    "Technology",
+    "City Growth",
+    "Elisha Otis"
+  ],
+  "correct": 1,
+  "explanation": "The text describes the history and impact of the elevator.",
+  "input_type": "buttons"
+},
+{
+  "id": 267,
+  "paragraphs": [
+    "The phenomenon of 'sunlight deprivation' or Seasonal Affective Disorder (SAD) affects many people in winter months, leading to low mood, lethargy, and sleep disturbances, which are linked to reduced exposure to natural light.",
+    "Symptoms can be alleviated with light therapy, increased outdoor time, and vitamin D supplements, proving that the environment plays a direct role in mental health.",
+    "Awareness of SAD has grown, prompting many workplaces and homes to incorporate design features that maximize natural light."
+  ],
+  "question": "Choose the best title for this text:",
+  "options": [
+    "Winter Blues",
+    "Seasonal Affective Disorder",
+    "Light Therapy",
+    "Sunlight and Mental Health",
+    "Environmental Health",
+    "Sleep Disorders",
+    "Vitamin D",
+    "Workplace Design"
+  ],
+  "correct": 3,
+  "explanation": "The text discusses SAD and the role of sunlight in well-being.",
+  "input_type": "buttons"
+},
+{
+  "id": 268,
+  "paragraphs": [
+    "The history of the sewing machine is a narrative of industrial innovation, with the first practical machine patented by Elias Howe in 1846 and refined by Isaac Singer, leading to a revolution in clothing production and home sewing.",
+    "The sewing machine drastically reduced the time needed to make garments, making them more affordable and accessible to a wider population.",
+    "This invention paved the way for mass production in the fashion industry and remains an important household appliance for many people today."
+  ],
+  "question": "Choose the best title for this text:",
+  "options": [
+    "Inventions",
+    "Fashion Industry",
+    "Industrial Revolution",
+    "Mass Production",
+    "Innovation",
+    "Sewing Machine History",
+    "Home Appliances",
+    "Textiles"
+  ],
+  "correct": 5,
+  "explanation": "The text traces the history and impact of the sewing machine.",
+  "input_type": "buttons"
+},
+{
+  "id": 269,
+  "paragraphs": [
+    "The concept of 'affective forecasting' refers to the human tendency to predict our emotional reactions to future events, often overestimating the intensity and duration of both positive and negative feelings.",
+    "This cognitive error, known as the impact bias, can lead to poor life decisions, as we may overestimate the happiness that a career change or a purchase will bring.",
+    "Awareness of affective forecasting can help us make more balanced decisions and appreciate the present moment."
+  ],
+  "question": "Choose the best title for this text:",
+  "options": [
+    "Decision-Making",
+    "Emotional Prediction",
+    "Affective Forecasting",
+    "Cognitive Biases",
+    "Happiness",
+    "Psychology",
+    "Life Choices",
+    "Impact Bias"
+  ],
+  "correct": 2,
+  "explanation": "The text explains affective forecasting and the impact bias.",
+  "input_type": "buttons"
+},
+{
+  "id": 270,
+  "paragraphs": [
+    "The history of the asphalt road is a story of infrastructure development, with modern asphalt paving originating in the 19th century, making travel faster and more reliable for vehicles and pedestrians.",
+    "Asphalt roads have become indispensable for transportation, facilitating the movement of goods and people and connecting cities and regions.",
+    "However, the production and maintenance of asphalt roads have environmental costs, leading to ongoing research into more sustainable alternatives."
+  ],
+  "question": "Choose the best title for this text:",
+  "options": [
+    "City Planning",
+    "Infrastructure",
+    "Sustainable Design",
+    "Transportation",
+    "Asphalt Roads",
+    "Innovation",
+    "History of Roads",
+    "Environmental Impact"
+  ],
+  "correct": 4,
+  "explanation": "The text discusses asphalt roads and their role in modern infrastructure.",
+  "input_type": "buttons"
+},
+{
+  "id": 271,
+  "paragraphs": [
+    "The phenomenon of 'hindsight bias', known as the 'knew-it-all-along effect', describes the tendency to see past events as more predictable than they were, leading to an overestimation of our forecasting abilities.",
+    "This bias influences memory, risk assessment, and political judgement, often causing us to be overly confident in our conclusions.",
+    "Developing awareness of hindsight bias can encourage more critical and humble thinking when analyzing historical and current events."
+  ],
+  "question": "Choose the best title for this text:",
+  "options": [
+    "Hindsight Bias",
+    "Memory Distortion",
+    "Confidence",
+    "Critical Thinking",
+    "Risk Assessment",
+    "Psychology",
+    "Predicting Events",
+    "Self-Awareness"
+  ],
+  "correct": 0,
+  "explanation": "The text explains hindsight bias and its implications.",
+  "input_type": "buttons"
+},
+{
+  "id": 272,
+  "paragraphs": [
+    "The history of the microscope is a story of expanding vision and scientific discovery, with early compound microscopes in the 17th century revealing a hidden world of cells and microorganisms to pioneers like Antonie van Leeuwenhoek.",
+    "Subsequent advances, including electron and fluorescence microscopes, have allowed scientists to observe structures at the molecular level, fundamentally changing biology and medicine.",
+    "Today, the microscope remains an essential tool in the life sciences, enabling breakthroughs in genetics, cancer research, and drug discovery."
+  ],
+  "question": "Choose the best title for this text:",
+  "options": [
+    "Research",
+    "Cell Biology",
+    "Scientific Discovery",
+    "Life Sciences",
+    "Innovation",
+    "Medicine",
+    "Genetics",
+    "Microscope Evolution"
+  ],
+  "correct": 7,
+  "explanation": "The text traces the history and impact of the microscope.",
+  "input_type": "buttons"
+},
+{
+  "id": 273,
+  "paragraphs": [
+    "The concept of 'emotional intelligence' describes the ability to perceive, understand, manage, and use emotions effectively in oneself and others, proving essential for interpersonal relationships, leadership, and well-being.",
+    "This skill set includes empathy, self-awareness, and social skills, and can be developed through practice and reflection.",
+    "Emotional intelligence is increasingly valued in the workplace, often outweighing cognitive intelligence in predicting success and job satisfaction."
+  ],
+  "question": "Choose the best title for this text:",
+  "options": [
+    "Emotional Intelligence",
+    "Empathy",
+    "Self-Awareness",
+    "Leadership",
+    "Workplace Success",
+    "Interpersonal Skills",
+    "Psychology",
+    "Well-being"
+  ],
+  "correct": 0,
+  "explanation": "The text explains emotional intelligence and its importance.",
+  "input_type": "buttons"
+},
+{
+  "id": 274,
+  "paragraphs": [
+    "The history of the refrigerator is a narrative of food preservation and convenience, with early iceboxes evolving into electric refrigerators in the early 20th century, transforming kitchens and dietary habits.",
+    "Refrigeration drastically reduced food waste, enabled the storage of perishable items, and expanded the range of available foods for consumers.",
+    "It also has had significant implications for the economy, agriculture, and the environment, by shaping how food is produced, transported, and consumed."
+  ],
+  "question": "Choose the best title for this text:",
+  "options": [
+    "Economy",
+    "Food Preservation",
+    "Kitchen Appliances",
+    "Dietary Change",
+    "Agriculture",
+    "The Refrigerator",
+    "Technology",
+    "Household Life"
+  ],
+  "correct": 5,
+  "explanation": "The text discusses the refrigerator and its historical and social impact.",
+  "input_type": "buttons"
+},
+{
+  "id": 275,
+  "paragraphs": [
+    "The phenomenon of 'the bystander effect' describes the tendency for individuals to be less likely to help in an emergency when others are present, as they assume someone else will intervene.",
+    "This diffusion of responsibility was famously studied after the murder of Kitty Genovese in 1964, leading to insights into social psychology and group dynamics.",
+    "Understanding the bystander effect encourages us to take personal responsibility and act in emergencies, even when others are watching."
+  ],
+  "question": "Choose the best title for this text:",
+  "options": [
+    "Group Dynamics",
+    "Social Psychology",
+    "Helping Behaviour",
+    "The Bystander Effect",
+    "Responsibility",
+    "Emergency Response",
+    "Genovese",
+    "Intervention"
+  ],
+  "correct": 3,
+  "explanation": "The text explains the bystander effect and its social implications.",
+  "input_type": "buttons"
+},
+{
+  "id": 276,
+  "paragraphs": [
+    "The history of the light bulb is a testament to persistence and innovation, with Thomas Edison's incandescent lamp in 1879 being a landmark in the journey to bring artificial light to homes and streets worldwide.",
+    "The light bulb transformed daily life, extending working hours and making cities more vibrant and productive at night.",
+    "Today, energy-efficient technologies like LEDs are replacing older bulbs, but the light bulb's cultural and symbolic significance as a metaphor for new ideas endures."
+  ],
+  "question": "Choose the best title for this text:",
+  "options": [
+    "Artificial Light",
+    "Light Bulb",
+    "Innovation",
+    "Energy Efficiency",
+    "Urban Life",
+    "Symbolism",
+    "Edison",
+    "Technology"
+  ],
+  "correct": 1,
+  "explanation": "The text discusses the light bulb's history and cultural significance.",
+  "input_type": "buttons"
+},
+{
+  "id": 277,
+  "paragraphs": [
+    "The concept of 'shared intentionality' refers to the capacity to share goals and plans with others, a fundamental psychological ability that distinguishes humans from other primates and underpins collaboration, language, and culture.",
+    "This ability enables complex cooperative activities, such as hunting, teaching, and building, and is a driving force behind human cognitive evolution.",
+    "Studying shared intentionality provides insight into the origins of human sociality and the development of collective intelligence."
+  ],
+  "question": "Choose the best title for this text:",
+  "options": [
+    "Sociality",
+    "Human Collaboration",
+    "Cognitive Evolution",
+    "Culture",
+    "Language",
+    "Shared Intentionality",
+    "Collective Intelligence",
+    "Psychology"
+  ],
+  "correct": 5,
+  "explanation": "The text explains shared intentionality and its role in human development.",
+  "input_type": "buttons"
+},
+{
+  "id": 278,
+  "paragraphs": [
+    "The history of the thermometer is a story of measurement and medicine, with early thermoscopes evolving into the sealed thermometers we use today, allowing for accurate readings of body and air temperature.",
+    "The thermometer has become an essential tool in medicine, enabling the diagnosis of fevers and monitoring of health, as well as in meteorology, physics, and manufacturing.",
+    "Innovations in thermometry have also contributed to the development of climate science, food safety, and industrial quality control."
+  ],
+  "question": "Choose the best title for this text:",
+  "options": [
+    "Quality Control",
+    "Measurement",
+    "Medicine",
+    "Climate Science",
+    "Innovation",
+    "Health",
+    "Meteorology",
+    "Thermometer"
+  ],
+  "correct": 7,
+  "explanation": "The text discusses the thermometer and its applications.",
+  "input_type": "buttons"
+},
+{
+  "id": 279,
+  "paragraphs": [
+    "The phenomenon of 'impostor syndrome' continues to affect high-achieving individuals, causing persistent self-doubt despite clear evidence of success and competence.",
+    "This psychological condition is often triggered by perfectionism and the internalisation of stereotypes, especially among women and minorities.",
+    "Addressing impostor syndrome involves building self-compassion, reframing failure, and recognizing that these feelings are common and not indicative of a lack of ability."
+  ],
+  "question": "Choose the best title for this text:",
+  "options": [
+    "Stereotypes",
+    "Self-Doubt",
+    "Success",
+    "Perfectionism",
+    "Impostor Syndrome",
+    "Psychology",
+    "Mental Health",
+    "Growth"
+  ],
+  "correct": 4,
+  "explanation": "The text explains impostor syndrome and its effects.",
+  "input_type": "buttons"
+},
+{
+  "id": 280,
+  "paragraphs": [
+    "The history of the camera is a story of capturing moments, from the camera obscura in the 16th century to the digital and smartphone cameras we use today.",
+    "This evolution has democratized photography, turning it into a global language of personal expression, journalism, and historical documentation.",
+    "The camera has profoundly influenced art, science, and our collective memory, enabling us to freeze time and share experiences across boundaries."
+  ],
+  "question": "Choose the best title for this text:",
+  "options": [
+    "Camera",
+    "Photography",
+    "Digital Imaging",
+    "Memory",
+    "Art",
+    "Journalism",
+    "Technology",
+    "Expression"
+  ],
+  "correct": 0,
+  "explanation": "The text discusses the evolution and cultural impact of the camera.",
+  "input_type": "buttons"
+},
+{
+  "id": 281,
+  "paragraphs": [
+    "The concept of 'servant leadership' flips traditional leadership models, positioning the leader as a servant first, prioritizing the needs of the team, organization, and community above their own interests.",
+    "This approach fosters trust, empowerment, and collaboration, leading to higher engagement and ethical decision-making.",
+    "Servant leadership is increasingly adopted in non-profits, education, and forward-thinking businesses, as it aligns with a growing desire for purpose-driven work."
+  ],
+  "question": "Choose the best title for this text:",
+  "options": [
+    "Ethical Leadership",
+    "Empowerment",
+    "Servant Leadership",
+    "Teamwork",
+    "Collaboration",
+    "Purpose-Driven Work",
+    "Non-Profit",
+    "Organisational Culture"
+  ],
+  "correct": 2,
+  "explanation": "The text explains servant leadership and its principles.",
+  "input_type": "buttons"
+},
+{
+  "id": 282,
+  "paragraphs": [
+    "The history of the skateboard is a narrative of youth culture and innovation, evolving from simple wooden boards with wheels in the 1950s to high-tech models used in extreme sports today.",
+    "Skateboarding has influenced fashion, music, and language, becoming a global symbol of rebellion and creativity.",
+    "Despite its association with counterculture, skateboarding has also become a recognized sport in the Olympics, reflecting its enduring appeal and growing mainstream acceptance."
+  ],
+  "question": "Choose the best title for this text:",
+  "options": [
+    "Sports",
+    "Youth Culture",
+    "Extreme Sports",
+    "Rebellion",
+    "Creativity",
+    "Fashion",
+    "Skateboarding",
+    "Innovation"
+  ],
+  "correct": 6,
+  "explanation": "The text describes the history and cultural significance of skateboarding.",
+  "input_type": "buttons"
+},
+{
+  "id": 283,
+  "paragraphs": [
+    "The phenomenon of 'stereotype threat' describes the risk of confirming negative stereotypes about one's social group, which can impair performance and undermine confidence in academic and professional settings.",
+    "This psychological threat is particularly salient for minorities and women in fields like science and technology, where stereotypes about ability persist.",
+    "Addressing stereotype threat involves creating inclusive environments and reframing challenges as opportunities rather than threats."
+  ],
+  "question": "Choose the best title for this text:",
+  "options": [
+    "Education",
+    "Performance Anxiety",
+    "Inclusion",
+    "Diversity",
+    "Stereotype Threat",
+    "Psychology",
+    "Equity",
+    "Social Science"
+  ],
+  "correct": 4,
+  "explanation": "The text explains stereotype threat and its effects.",
+  "input_type": "buttons"
+},
+{
+  "id": 284,
+  "paragraphs": [
+    "The history of the fountain pen is a story of writing technology, with early examples dating back to the 17th century, but it was in the 19th century that self-feeding pens became practical, enabling smooth and portable writing.",
+    "Fountain pens soon became status symbols and tools of creativity, prized for their elegance and expressive lines.",
+    "Despite the rise of digital writing, fountain pens have a dedicated following among enthusiasts who appreciate the craft and connection to tradition."
+  ],
+  "question": "Choose the best title for this text:",
+  "options": [
+    "Fountain Pen",
+    "Writing Technology",
+    "Creativity",
+    "Status Symbol",
+    "Tradition",
+    "Craftsmanship",
+    "Stationery",
+    "History"
+  ],
+  "correct": 0,
+  "explanation": "The text traces the history and cultural role of the fountain pen.",
+  "input_type": "buttons"
+},
+{
+  "id": 285,
+  "paragraphs": [
+    "The concept of 'emotional contagion' refers to the spontaneous spread of emotions from one person to another, through conscious or unconscious behaviour, and is crucial for understanding group dynamics and social bonding.",
+    "This phenomenon explains why moods can ripple through teams, families, and crowds, influencing collective moods and actions.",
+    "Recognizing emotional contagion can help leaders, teachers, and individuals build more supportive and empathetic social environments."
+  ],
+  "question": "Choose the best title for this text:",
+  "options": [
+    "Social Dynamics",
+    "Emotional Contagion",
+    "Group Behaviour",
+    "Empathy",
+    "Leadership",
+    "Psychology",
+    "Moods",
+    "Influence"
+  ],
+  "correct": 1,
+  "explanation": "The text explains emotional contagion and its social implications.",
+  "input_type": "buttons"
+},
+{
+  "id": 286,
+  "paragraphs": [
+    "The history of the refrigerator is a narrative of food preservation and convenience, with early iceboxes evolving into electric refrigerators in the early 20th century, transforming kitchens and dietary habits.",
+    "Refrigeration drastically reduced food waste, enabled the storage of perishable items, and expanded the range of available foods for consumers.",
+    "It also has had significant implications for the economy, agriculture, and the environment, by shaping how food is produced, transported, and consumed."
+  ],
+  "question": "Choose the best title for this text:",
+  "options": [
+    "Refrigerator Revolution",
+    "Food Storage",
+    "Dietary Change",
+    "Agriculture",
+    "Economy",
+    "Technology",
+    "Household Life",
+    "Innovation"
+  ],
+  "correct": 0,
+  "explanation": "The text discusses the refrigerator's history and its impact on society.",
+  "input_type": "buttons"
+},
+{
+  "id": 287,
+  "paragraphs": [
+    "The phenomenon of 'the halo effect' describes the cognitive bias where positive impressions of a person in one area (e.g., appearance, status) influence evaluations of their character and abilities in unrelated areas.",
+    "This bias can affect hiring, teaching, and social interactions, leading to unfair judgments and missed opportunities.",
+    "Awareness of the halo effect can help us make more objective evaluations and reduce unconscious bias."
+  ],
+  "question": "Choose the best title for this text:",
+  "options": [
+    "Perception",
+    "Cognitive Bias",
+    "Judgment",
+    "Hiring",
+    "Unconscious Bias",
+    "Halo Effect",
+    "Psychology",
+    "Evaluation"
+  ],
+  "correct": 5,
+  "explanation": "The text explains the halo effect and its consequences.",
+  "input_type": "buttons"
+},
+{
+  "id": 288,
+  "paragraphs": [
+    "The history of the bicycle is a story of personal mobility, with early designs in the 19th century evolving into the mass-produced, lightweight bicycles of today.",
+    "The bicycle gave many people their first taste of independence, enabling travel and recreation, and remains one of the most energy-efficient modes of transport.",
+    "In cities, bicycles are celebrated for reducing traffic and pollution, and their popularity continues to grow, alongside innovations in electric bikes."
+  ],
+  "question": "Choose the best title for this text:",
+  "options": [
+    "Recreation",
+    "Personal Mobility",
+    "Eco-Friendly Transport",
+    "The Bicycle",
+    "Health",
+    "Innovation",
+    "Urban Life",
+    "History"
+  ],
+  "correct": 3,
+  "explanation": "The text describes the history and impact of the bicycle.",
+  "input_type": "buttons"
+},
+{
+  "id": 289,
+  "paragraphs": [
+    "The concept of 'learned optimism' suggests that optimism is a skill that can be cultivated by challenging negative thought patterns and explaining setbacks as temporary, specific, and external.",
+    "People who practice learned optimism tend to achieve more, enjoy better health, and navigate stress more effectively.",
+    "It offers a powerful counterpoint to pessimism, empowering individuals to take control of their emotional well-being."
+  ],
+  "question": "Choose the best title for this text:",
+  "options": [
+    "Emotional Control",
+    "Positive Thinking",
+    "Mental Health",
+    "Psychology",
+    "Resilience",
+    "Stress Management",
+    "Well-being",
+    "Learned Optimism"
+  ],
+  "correct": 7,
+  "explanation": "The text explains learned optimism and its benefits.",
+  "input_type": "buttons"
+},
+{
+  "id": 290,
+  "paragraphs": [
+    "The history of the telephone is a narrative of connectedness, from Alexander Graham Bell's first device in 1876 to the smartphones that keep billions of people in constant touch today.",
+    "The telephone has transformed commerce, relationships, and the speed of information exchange, becoming one of the most important inventions of the modern era.",
+    "Its evolution continues with the integration of artificial intelligence and augmented reality, promising to reshape communication in the future."
+  ],
+  "question": "Choose the best title for this text:",
+  "options": [
+    "Communication",
+    "Telephone",
+    "Connectedness",
+    "Information Exchange",
+    "Innovation",
+    "Technology",
+    "AI",
+    "Smartphones"
+  ],
+  "correct": 1,
+  "explanation": "The text discusses the history and evolution of the telephone.",
+  "input_type": "buttons"
+},
+{
+  "id": 291,
+  "paragraphs": [
+    "The phenomenon of 'the spotlight effect' is the tendency to overestimate the extent to which our actions and appearance are noticed by others, leading to social anxiety and self-consciousness.",
+    "This cognitive bias stems from our egocentric perspective, making us believe that we are the centre of attention more than we really are.",
+    "Recognizing the spotlight effect can help people feel more comfortable in social situations and reduce the fear of judgment."
+  ],
+  "question": "Choose the best title for this text:",
+  "options": [
+    "Spotlight Effect",
+    "Social Anxiety",
+    "Self-Consciousness",
+    "Perception",
+    "Psychology",
+    "Judgment",
+    "Comfort",
+    "Perspective"
+  ],
+  "correct": 0,
+  "explanation": "The text explains the spotlight effect and its psychological impact.",
+  "input_type": "buttons"
+},
+{
+  "id": 292,
+  "paragraphs": [
+    "The history of the sail is a narrative of exploration and trade, with sails propelling human migration and the exchange of goods for thousands of years, from Polynesian outriggers to European clippers.",
+    "The sail's dominance waned with the advent of steam engines, but sailing survives as a sport, a symbol of freedom, and a testament to human ingenuity.",
+    "Today, modern sail technology is being revisited in the search for sustainable shipping, demonstrating that old ideas can inspire new solutions."
+  ],
+  "question": "Choose the best title for this text:",
+  "options": [
+    "Sustainability",
+    "Exploration",
+    "Trade",
+    "Navigation",
+    "The Sail",
+    "Innovation",
+    "History",
+    "Adventure"
+  ],
+  "correct": 4,
+  "explanation": "The text describes the history and enduring significance of sails.",
+  "input_type": "buttons"
+},
+{
+  "id": 293,
+  "paragraphs": [
+    "The concept of 'the prisoner's dilemma' illustrates how rational individuals might not cooperate, even if it would be in their best interest to do so, due to the lack of trust and the fear of being betrayed.",
+    "This model has been influential in fields from economics to political science and ethics, exploring the tension between personal gain and collective good.",
+    "It has led to insights into cooperation, competition, and the evolution of trust."
+  ],
+  "question": "Choose the best title for this text:",
+  "options": [
+    "Trust",
+    "Cooperation",
+    "Prisoner's Dilemma",
+    "Game Theory",
+    "Ethics",
+    "Economics",
+    "Political Science",
+    "Decision-Making"
+  ],
+  "correct": 2,
+  "explanation": "The text explains the prisoner's dilemma and its implications.",
+  "input_type": "buttons"
+},
+{
+  "id": 294,
+  "paragraphs": [
+    "The history of the typewriter is a story of written communication and workplace change, with the first commercially successful typewriter appearing in the 1870s, revolutionizing office work and making writing more accessible.",
+    "The typewriter helped to define the modern office, enabling faster and more legible documents, and even influencing gender roles by creating new job opportunities for women as typists.",
+    "Although the typewriter has been largely replaced by computers, its impact on literacy, language, and business remains significant."
+  ],
+  "question": "Choose the best title for this text:",
+  "options": [
+    "Office Technology",
+    "Workplace Change",
+    "Communication",
+    "Literacy",
+    "Gender Roles",
+    "Typewriter",
+    "History",
+    "Innovation"
+  ],
+  "correct": 5,
+  "explanation": "The text traces the history and impact of the typewriter.",
+  "input_type": "buttons"
+},
+{
+  "id": 295,
+  "paragraphs": [
+    "The concept of 'social entrepreneurship' describes the use of business principles to address social and environmental challenges, aiming to create lasting change rather than just profit.",
+    "Social entrepreneurs tackle issues like poverty, education, and health with innovative, sustainable solutions, often filling gaps left by governments and charities.",
+    "This hybrid approach is gaining momentum, attracting a new generation of changemakers who want to use their skills for good."
+  ],
+  "question": "Choose the best title for this text:",
+  "options": [
+    "Education",
+    "Business for Good",
+    "Innovation",
+    "Sustainability",
+    "Change-Makers",
+    "Social Impact",
+    "Social Entrepreneurship",
+    "Charity"
+  ],
+  "correct": 6,
+  "explanation": "The text explains social entrepreneurship and its significance.",
+  "input_type": "buttons"
+},
+{
+  "id": 296,
+  "paragraphs": [
+    "The history of the umbrella is a narrative of protection and status, with early examples found in Egypt and China, where umbrellas were used as sunshades and symbols of rank.",
+    "The umbrella evolved into a waterproof tool for rainy climates in the 18th century, and its basic design has barely changed since.",
+    "Today, umbrellas are both functional accessories and cultural icons, appearing in art and literature as symbols of preparedness and shelter."
+  ],
+  "question": "Choose the best title for this text:",
+  "options": [
+    "Accessories",
+    "Protection",
+    "Symbolism",
+    "Umbrella",
+    "History",
+    "Design",
+    "Culture",
+    "Shelter"
+  ],
+  "correct": 3,
+  "explanation": "The text discusses the umbrella's history and cultural significance.",
+  "input_type": "buttons"
+},
+{
+  "id": 297,
+  "paragraphs": [
+    "The phenomenon of 'the other-race effect' describes the tendency for people to better recognize faces from their own racial group, a bias that can have real-world consequences in eyewitness testimony and social interactions.",
+    "This effect is thought to be driven by limited interracial exposure and the distinct processing of facial features.",
+    "Understanding this bias can help in legal reform and promote a more equitable society."
+  ],
+  "question": "Choose the best title for this text:",
+  "options": [
+    "Other-Race Effect",
+    "Facial Recognition",
+    "Eyewitness Testimony",
+    "Social Bias",
+    "Psychology",
+    "Equity",
+    "Law",
+    "Perception"
+  ],
+  "correct": 0,
+  "explanation": "The text explains the other-race effect and its consequences.",
+  "input_type": "buttons"
+},
+{
+  "id": 298,
+  "paragraphs": [
+    "The history of the windmill is a story of harnessing nature's power, with windmills used for grinding grain and pumping water in medieval Europe and the Middle East.",
+    "The windmill's design evolved over centuries, but its basic principle remained unchanged until the invention of the wind turbine, which is now used to generate clean electricity.",
+    "Today, wind turbines stand as symbols of renewable energy, demonstrating how ancient ideas can be adapted to meet modern challenges."
+  ],
+  "question": "Choose the best title for this text:",
+  "options": [
+    "Nature",
+    "Renewable Energy",
+    "Clean Electricity",
+    "Innovation",
+    "Sustainability",
+    "History",
+    "Technology",
+    "Windmills and Wind Power"
+  ],
+  "correct": 7,
+  "explanation": "The text discusses windmills and their evolution into wind turbines.",
+  "input_type": "buttons"
+},
+{
+  "id": 299,
+  "paragraphs": [
+    "The concept of 'mindset', popularised by Carol Dweck, distinguishes between fixed and growth mindsets, where a growth mindset embraces challenges and persists in the face of setbacks, leading to greater achievement.",
+    "This idea has transformed education and business, encouraging a focus on effort and learning rather than innate talent.",
+    "Adopting a growth mindset can empower people to realise their potential and continuously improve."
+  ],
+  "question": "Choose the best title for this text:",
+  "options": [
+    "Growth Mindset",
+    "Mindset",
+    "Learning",
+    "Education",
+    "Achievement",
+    "Psychology",
+    "Potential",
+    "Success"
+  ],
+  "correct": 1,
+  "explanation": "The text explains mindset and the importance of a growth mindset.",
+  "input_type": "buttons"
+}
+  ]
+}
 }
