@@ -18,7 +18,7 @@
           "I go to school every day from Monday to Friday. I get up at seven o'clock. I eat breakfast and brush my teeth. I take my schoolbag and go to the bus stop. The bus takes me to school. I have lessons in maths, English and science. I like English most. We have a break at eleven. I play with my friends. After school I go home and do my homework. I go to bed at nine."
         ],
         "question": "Выберите подходящий заголовок:",
-        "options": ["My Teachers", "My Favourite Subject", "The School Bus", "My School Day""],
+        "options": ["My Teachers", "My Favourite Subject", "The School Bus", "My School Day"],
         "correct": 3,
         "explanation": "The text describes the daily routine of going to school.",
         "input_type": "buttons"
@@ -1100,4 +1100,5 @@
     "correct": 2,
     "explanation": "The text is about studying stars.",
     "input_type": "buttons"
-  },
+  }
+]
