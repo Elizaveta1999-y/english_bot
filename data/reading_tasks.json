@@ -5003,7 +5003,9 @@
   ],
   "correct": 1,
   "explanation": "The text explains mindset and the importance of a growth mindset.",
-  "input_type": "buttons"
+    "input_type": "buttons"
+  }
+]
 },
 "True_False_Not_stated": {
   "Новичок": [
