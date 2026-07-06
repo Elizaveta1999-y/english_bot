@@ -6810,7 +6810,8 @@
     "correct": 1,
     "explanation": "The text says individual needs vary.",
     "input_type": "buttons"
-  },
+  }
+],
   "Эксперт": [
   {
     "id": 500,
