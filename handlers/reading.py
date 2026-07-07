@@ -106,7 +106,12 @@ async def render_task_message(user_id: int, short_type: str, short_level: str, i
 
     # Текст без жирного шрифта
     text = f"{current_paragraph}\n\n"
-    text += f"{task.get('question', '')}\n"
+    
+    # Для Вставка отрывков – фиксированный короткий вопрос
+    if short_type == "fill":
+        text += "Вставьте подходящий отрывок.\n"
+    else:
+        text += f"{task.get('question', '')}\n"
 
     if task.get("input_type") == "text":
         text += "Введите ответ в чат.\n"
