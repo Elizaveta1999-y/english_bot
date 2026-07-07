@@ -12520,7 +12520,9 @@
     "correct": 2,
     "explanation": "The text says it helps process emotions and track progress.",
     "input_type": "choice_text"
-    },
+    }
+  ]
+},
 "Вставка_отрывков": {
   "Новичок": [
     {
