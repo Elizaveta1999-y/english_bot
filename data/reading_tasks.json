@@ -12528,14 +12528,14 @@
     {
       "id": 950,
       "paragraphs": [
-        "A) He finally arrived at school and went to his first lesson.",
-        "B) He had breakfast and packed his schoolbag.",
-        "C) He woke up, got dressed, and brushed his teeth.",
-        "D) He walked to the bus stop and waited for the bus."
+        "A) He woke up, got dressed, and brushed his teeth. He went to the kitchen and had a glass of water. Then he packed his schoolbag with books and notebooks.",
+        "B) He walked to the bus stop and waited for the bus. The bus arrived on time and he got on. He found a seat near the window.",
+        "C) The bus ride was short and soon he arrived at school. He got off the bus and walked to the main entrance. He saw his friends waiting for him in the hallway.",
+        "D) He entered the classroom and said hello to his teacher. He sat down at his desk and opened his notebook. The first lesson of the day was about to begin."
       ],
       "question": "Запишите буквы абзацев в правильном порядке (1 → 2 → 3 → 4). Ответ запишите в формате: ___; ___; ___; ___",
-      "correct": "C; B; D; A",
-      "explanation": "Правильный порядок: сначала он проснулся и оделся (C), затем позавтракал и собрал рюкзак (B), потом пошёл на автобусную остановку (D), и наконец приехал в школу (A).",
+      "correct": "A; B; C; D",
+      "explanation": "Правильный порядок: сначала он проснулся и собрался (A), затем пошёл на остановку и сел на автобус (B), потом приехал в школу (C), и наконец зашёл в класс (D).",
       "input_type": "text"
     }
   ],
@@ -12543,14 +12543,14 @@
     {
       "id": 951,
       "paragraphs": [
-        "A) The cake was then placed in the oven and baked for thirty minutes.",
-        "B) First, she gathered all the ingredients: flour, sugar, eggs, and butter.",
-        "C) After it cooled, she decorated it with chocolate icing and sprinkles.",
-        "D) She mixed the ingredients together to form a smooth batter."
+        "A) She gathered all the ingredients: flour, sugar, eggs, and butter. She measured each one carefully and placed them in separate bowls. She also prepared the baking tin by greasing it with butter. Finally, she preheated the oven to 180 degrees.",
+        "B) She mixed the ingredients together in a large bowl, using an electric mixer. She beat the butter and sugar until they were light and fluffy. Then she added the eggs one by one, mixing well after each addition. She folded in the flour gently to keep the batter airy.",
+        "C) She poured the batter into the prepared tin and smoothed the top. She placed the tin in the oven and set the timer for thirty minutes. While the cake was baking, she cleaned the kitchen and prepared the icing.",
+        "D) After the cake had cooled completely, she spread the chocolate icing over the top. She added colourful sprinkles and fresh berries. She placed the cake on a beautiful plate and took a photo. She was proud of her creation."
       ],
       "question": "Запишите буквы абзацев в правильном порядке (1 → 2 → 3 → 4). Ответ запишите в формате: ___; ___; ___; ___",
-      "correct": "B; D; A; C",
-      "explanation": "Правильный порядок: сначала сбор ингредиентов (B), затем смешивание теста (D), потом выпечка (A), и наконец украшение (C).",
+      "correct": "A; B; C; D",
+      "explanation": "Правильный порядок: сначала подготовка ингредиентов (A), затем смешивание теста (B), потом выпечка (C), и наконец украшение (D).",
       "input_type": "text"
     }
   ],
@@ -12558,14 +12558,14 @@
     {
       "id": 952,
       "paragraphs": [
-        "A) Consequently, the ecosystem began to recover, and biodiversity increased significantly.",
-        "B) Initially, the area was heavily polluted due to industrial waste, which destroyed the natural habitat.",
-        "C) The government introduced strict environmental regulations and launched a cleanup programme.",
-        "D) Over time, local communities and conservation groups joined the effort to restore the river."
+        "A) The river had once been a vibrant habitat, teeming with fish and water plants, but decades of industrial pollution had turned it into a toxic wasteland. Factories along its banks had discharged chemicals without treatment, killing almost all aquatic life. The water turned murky and foul-smelling, and local residents stopped using it for fishing or recreation.",
+        "B) In response, the government launched a comprehensive cleanup programme, investing millions in water treatment facilities and stricter regulations on waste disposal. They also imposed heavy fines on companies that continued to pollute. Local environmental agencies began monitoring water quality on a weekly basis.",
+        "C) Community groups and volunteers soon joined the effort, organising regular cleanups along the riverbanks. They removed trash and planted native trees and shrubs to prevent erosion. Schools also participated, educating students about the importance of clean water and sustainable practices.",
+        "D) Over the next decade, the river gradually recovered. Fish returned, and birds once again nested along the banks. The water became clear, and people started using the river for boating and fishing. The ecosystem was restored, and biodiversity flourished."
       ],
       "question": "Запишите буквы абзацев в правильном порядке (1 → 2 → 3 → 4). Ответ запишите в формате: ___; ___; ___; ___",
-      "correct": "B; C; D; A",
-      "explanation": "Правильный порядок: сначала описание проблемы (B), затем принятие мер (C), потом участие сообщества (D), и наконец результат – восстановление экосистемы (A).",
+      "correct": "A; B; C; D",
+      "explanation": "Правильный порядок: сначала описание проблемы (A), затем принятие мер правительством (B), потом участие сообщества (C), и наконец восстановление экосистемы (D).",
       "input_type": "text"
     }
   ]
