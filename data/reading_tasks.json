@@ -12523,24 +12523,51 @@
     }
   ]
   },
-  "Вставка_отрывков": {
-    "Новичок": [
-      {
-        "id": 900,
-        "paragraphs": [
-          "My dog Max is a very energetic animal. He wakes me up every morning at six o'clock. He loves to go outside and play with his ball. He is always happy when I take him to the park. He ______ for hours without getting tired. He also likes to chase squirrels and birds. After a long walk, he comes home and drinks a lot of water. He then lies down on his bed and rests for a while. In the evening, he eats his dinner and plays with his toys. He is a very loyal and friendly dog. He always waits for me at the door when I come back from school. I am very lucky to have him."
-        ],
-        "question": "He ______ for hours without getting tired.",
-        "options": [
-          "runs in the park",
-          "sleeps all day",
-          "eats bones",
-          "barks loudly"
-        ],
-        "correct": 0,
-        "explanation": "Правильный ответ — 'runs in the park', так как в тексте говорится, что собака энергичная и любит играть на улице, а не спать, есть или просто лаять.",
-        "input_type": "buttons"
-      }
-    ]
-  }
+"Восстановление_порядка_абзацев": {
+  "Новичок": [
+    {
+      "id": 950,
+      "paragraphs": [
+        "A) He finally arrived at school and went to his first lesson.",
+        "B) He had breakfast and packed his schoolbag.",
+        "C) He woke up, got dressed, and brushed his teeth.",
+        "D) He walked to the bus stop and waited for the bus."
+      ],
+      "question": "Запишите буквы абзацев в правильном порядке (1 → 2 → 3 → 4). Ответ запишите в формате: ___; ___; ___; ___",
+      "correct": "C; B; D; A",
+      "explanation": "Правильный порядок: сначала он проснулся и оделся (C), затем позавтракал и собрал рюкзак (B), потом пошёл на автобусную остановку (D), и наконец приехал в школу (A).",
+      "input_type": "text"
+    }
+  ],
+  "Любитель": [
+    {
+      "id": 951,
+      "paragraphs": [
+        "A) The cake was then placed in the oven and baked for thirty minutes.",
+        "B) First, she gathered all the ingredients: flour, sugar, eggs, and butter.",
+        "C) After it cooled, she decorated it with chocolate icing and sprinkles.",
+        "D) She mixed the ingredients together to form a smooth batter."
+      ],
+      "question": "Запишите буквы абзацев в правильном порядке (1 → 2 → 3 → 4). Ответ запишите в формате: ___; ___; ___; ___",
+      "correct": "B; D; A; C",
+      "explanation": "Правильный порядок: сначала сбор ингредиентов (B), затем смешивание теста (D), потом выпечка (A), и наконец украшение (C).",
+      "input_type": "text"
+    }
+  ],
+  "Эксперт": [
+    {
+      "id": 952,
+      "paragraphs": [
+        "A) Consequently, the ecosystem began to recover, and biodiversity increased significantly.",
+        "B) Initially, the area was heavily polluted due to industrial waste, which destroyed the natural habitat.",
+        "C) The government introduced strict environmental regulations and launched a cleanup programme.",
+        "D) Over time, local communities and conservation groups joined the effort to restore the river."
+      ],
+      "question": "Запишите буквы абзацев в правильном порядке (1 → 2 → 3 → 4). Ответ запишите в формате: ___; ___; ___; ___",
+      "correct": "B; C; D; A",
+      "explanation": "Правильный порядок: сначала описание проблемы (B), затем принятие мер (C), потом участие сообщества (D), и наконец результат – восстановление экосистемы (A).",
+      "input_type": "text"
+    }
+  ]
+}
 }
