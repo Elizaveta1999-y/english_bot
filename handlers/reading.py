@@ -106,8 +106,8 @@ async def render_task_message(user_id: int, short_type: str, short_level: str, i
     current_paragraph = paragraphs[paragraph_idx]
 
     # Формируем текст: сначала абзац, затем вопрос
-    text = f"{current_paragraph}\n\n"
-    text += f"<b>{task.get('question', '')}</b>\n\n"
+text = f"{current_paragraph}\n\n"
+text += f"{task.get('question', '')}\n\n"
 
     if task.get("input_type") == "text":
         text += "Введите ответ в чат.\n"
