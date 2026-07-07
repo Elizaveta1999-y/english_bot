@@ -104,12 +104,12 @@ async def render_task_message(user_id: int, short_type: str, short_level: str, i
         paragraph_idx = 0
     current_paragraph = paragraphs[paragraph_idx]
 
-    # Текст без жирного шрифта
+    # Формируем текст
     text = f"{current_paragraph}\n\n"
     
-    # Для Вставка отрывков – фиксированный короткий вопрос
     if short_type == "fill":
         text += "Вставьте подходящий отрывок.\n"
+        text += f"{task.get('question', '')}\n"
     else:
         text += f"{task.get('question', '')}\n"
 
@@ -120,7 +120,6 @@ async def render_task_message(user_id: int, short_type: str, short_level: str, i
     if task.get("input_type") == "text":
         keyboard = get_action_keyboard(short_type, short_level, index)
     elif short_type == "fill":
-        # Вставка отрывков – варианты в тексте, кнопки только с буквами
         options = task.get("options", [])
         for i, opt in enumerate(options):
             text += f"\n{chr(65+i)}) {opt}"
@@ -135,7 +134,6 @@ async def render_task_message(user_id: int, short_type: str, short_level: str, i
         ])
         keyboard = InlineKeyboardMarkup(inline_keyboard=kb_buttons)
     else:
-        # Обычные кнопки с полными вариантами для других типов
         options = task.get("options", [])
         kb_buttons = []
         for i, opt in enumerate(options):
@@ -167,7 +165,7 @@ async def send_progress_message(callback: CallbackQuery, short_type: str, short_
 
     await callback.message.answer(text, reply_markup=get_progress_keyboard(), parse_mode="HTML")
 
-# -------------------- Обработчики --------------------
+# -------------------- Обработчики (без изменений) --------------------
 @router.callback_query(F.data == "start_reading")
 async def start_reading(callback: CallbackQuery):
     global_idx = await get_global_welcome_index()
@@ -247,7 +245,7 @@ async def choose_level(callback: CallbackQuery, state: FSMContext):
     await callback.message.answer(text, reply_markup=keyboard, parse_mode="HTML")
     await callback.answer()
 
-# -------------------- Ответ на кнопки (выбор варианта) --------------------
+# -------------------- Ответ на кнопки --------------------
 @router.callback_query(F.data.startswith("reading_answer:"))
 async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
     _, short_type, short_level, index_str, chosen_idx_str = callback.data.split(":")
