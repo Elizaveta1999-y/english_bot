@@ -85,7 +85,7 @@ def get_progress_keyboard():
     ]
     return InlineKeyboardMarkup(inline_keyboard=buttons)
 
-# -------------------- Формирование карточки задания (без навигации) --------------------
+# -------------------- Формирование карточки задания --------------------
 async def render_task_message(user_id: int, short_type: str, short_level: str, index: int, paragraph_idx: int = 0):
     type_json = TYPE_MAP.get(short_type, short_type)
     level_json = LEVEL_MAP.get(short_level, short_level)
@@ -104,9 +104,9 @@ async def render_task_message(user_id: int, short_type: str, short_level: str, i
         paragraph_idx = 0
     current_paragraph = paragraphs[paragraph_idx]
 
-    # Формируем текст: сначала абзац, затем вопрос (без жирного шрифта)
+    # Текст без жирного шрифта
     text = f"{current_paragraph}\n\n"
-    text += f"{task.get('question', '')}\n\n"
+    text += f"{task.get('question', '')}\n"
 
     if task.get("input_type") == "text":
         text += "Введите ответ в чат.\n"
@@ -115,13 +115,10 @@ async def render_task_message(user_id: int, short_type: str, short_level: str, i
     if task.get("input_type") == "text":
         keyboard = get_action_keyboard(short_type, short_level, index)
     elif short_type == "fill":
-        # Специальная обработка для Вставка отрывков
+        # Вставка отрывков – варианты в тексте, кнопки только с буквами
         options = task.get("options", [])
-        if options:
-            text += "\n\nВыберите правильный вариант:\n"
-            for i, opt in enumerate(options):
-                text += f"{chr(65+i)}) {opt}\n"
-        # Кнопки с буквами A, B, C, D
+        for i, opt in enumerate(options):
+            text += f"\n{chr(65+i)}) {opt}"
         kb_buttons = []
         row = []
         for i in range(len(options)):
@@ -133,7 +130,7 @@ async def render_task_message(user_id: int, short_type: str, short_level: str, i
         ])
         keyboard = InlineKeyboardMarkup(inline_keyboard=kb_buttons)
     else:
-        # Обычные кнопки с полными вариантами (для других типов)
+        # Обычные кнопки с полными вариантами для других типов
         options = task.get("options", [])
         kb_buttons = []
         for i, opt in enumerate(options):
