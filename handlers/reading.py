@@ -94,7 +94,6 @@ async def render_task_message(user_id: int, short_type: str, short_level: str, i
     if not task:
         return None, None
 
-    # Приводим paragraphs к списку, если это строка
     paragraphs = task.get("paragraphs", [])
     if isinstance(paragraphs, str):
         paragraphs = [paragraphs]
@@ -105,44 +104,45 @@ async def render_task_message(user_id: int, short_type: str, short_level: str, i
         paragraph_idx = 0
     current_paragraph = paragraphs[paragraph_idx]
 
-    # Формируем текст: сначала абзац, затем вопрос
-text = f"{current_paragraph}\n\n"
-text += f"{task.get('question', '')}\n\n"
+    # Формируем текст: сначала абзац, затем вопрос (без жирного шрифта)
+    text = f"{current_paragraph}\n\n"
+    text += f"{task.get('question', '')}\n\n"
 
     if task.get("input_type") == "text":
         text += "Введите ответ в чат.\n"
 
-    # Клавиатура без навигации
-if task.get("input_type") == "text":
-    keyboard = get_action_keyboard(short_type, short_level, index)
-elif short_type == "fill":  # специальная обработка для Вставка отрывков
-    options = task.get("options", [])
-    # Добавляем варианты в текст
-    text += "\n\nВыберите правильный вариант:\n"
-    for i, opt in enumerate(options):
-        text += f"{chr(65+i)}) {opt}\n"
-    # Создаём кнопки с буквами (A, B, C, D)
-    kb_buttons = []
-    row = []
-    for i in range(len(options)):
-        row.append(InlineKeyboardButton(text=chr(65+i), callback_data=f"reading_answer:{short_type}:{short_level}:{index}:{i}"))
-    kb_buttons.append(row)
-    kb_buttons.append([
-        InlineKeyboardButton(text="Показать ответ", callback_data=f"reading_show_answer:{short_type}:{short_level}:{index}"),
-        InlineKeyboardButton(text="Завершить", callback_data="reading_finish_session")
-    ])
-    keyboard = InlineKeyboardMarkup(inline_keyboard=kb_buttons)
-else:
-    # Обычные кнопки с полными вариантами (для других типов)
-    options = task.get("options", [])
-    kb_buttons = []
-    for i, opt in enumerate(options):
-        kb_buttons.append([InlineKeyboardButton(text=opt, callback_data=f"reading_answer:{short_type}:{short_level}:{index}:{i}")])
-    kb_buttons.append([
-        InlineKeyboardButton(text="Показать ответ", callback_data=f"reading_show_answer:{short_type}:{short_level}:{index}"),
-        InlineKeyboardButton(text="Завершить", callback_data="reading_finish_session")
-    ])
-    keyboard = InlineKeyboardMarkup(inline_keyboard=kb_buttons)
+    # Клавиатура
+    if task.get("input_type") == "text":
+        keyboard = get_action_keyboard(short_type, short_level, index)
+    elif short_type == "fill":
+        # Специальная обработка для Вставка отрывков
+        options = task.get("options", [])
+        if options:
+            text += "\n\nВыберите правильный вариант:\n"
+            for i, opt in enumerate(options):
+                text += f"{chr(65+i)}) {opt}\n"
+        # Кнопки с буквами A, B, C, D
+        kb_buttons = []
+        row = []
+        for i in range(len(options)):
+            row.append(InlineKeyboardButton(text=chr(65+i), callback_data=f"reading_answer:{short_type}:{short_level}:{index}:{i}"))
+        kb_buttons.append(row)
+        kb_buttons.append([
+            InlineKeyboardButton(text="Показать ответ", callback_data=f"reading_show_answer:{short_type}:{short_level}:{index}"),
+            InlineKeyboardButton(text="Завершить", callback_data="reading_finish_session")
+        ])
+        keyboard = InlineKeyboardMarkup(inline_keyboard=kb_buttons)
+    else:
+        # Обычные кнопки с полными вариантами (для других типов)
+        options = task.get("options", [])
+        kb_buttons = []
+        for i, opt in enumerate(options):
+            kb_buttons.append([InlineKeyboardButton(text=opt, callback_data=f"reading_answer:{short_type}:{short_level}:{index}:{i}")])
+        kb_buttons.append([
+            InlineKeyboardButton(text="Показать ответ", callback_data=f"reading_show_answer:{short_type}:{short_level}:{index}"),
+            InlineKeyboardButton(text="Завершить", callback_data="reading_finish_session")
+        ])
+        keyboard = InlineKeyboardMarkup(inline_keyboard=kb_buttons)
 
     return text, keyboard
 
