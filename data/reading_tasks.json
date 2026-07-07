@@ -12521,6 +12521,24 @@
     "explanation": "The text says it helps process emotions and track progress.",
     "input_type": "choice_text"
     }
+  ],
+"Вставка_отрывков": {
+  "Новичок": [
+    {
+      "id": 1000,
+      "paragraphs": [
+        "My dog Max is a very energetic animal. He wakes me up every morning at six o'clock. He loves to go outside and play with his ball. He is always happy when I take him to the park. He ______ for hours without getting tired. He also likes to chase squirrels and birds. After a long walk, he comes home and drinks a lot of water. He then lies down on his bed and rests for a while. In the evening, he eats his dinner and plays with his toys. He is a very loyal and friendly dog. He always waits for me at the door when I come back from school. I am very lucky to have him."
+      ],
+      "question": "Вставьте подходящий отрывок в пропуск (______) в предложении: 'He ______ for hours without getting tired.'",
+      "options": [
+        "runs in the park",
+        "sleeps all day",
+        "eats bones",
+        "barks loudly"
+      ],
+      "correct": 0,
+      "explanation": "Правильный ответ — 'runs in the park', так как в тексте говорится, что собака энергичная и любит играть на улице, а не спать, есть или просто лаять.",
+      "input_type": "buttons"
+    }
   ]
-}
 }
