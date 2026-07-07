@@ -12523,14 +12523,15 @@
     }
   ]
 },
+{
 "Вставка_отрывков": {
   "Новичок": [
     {
-      "id": 1000,
+      "id": 900,
       "paragraphs": [
         "My dog Max is a very energetic animal. He wakes me up every morning at six o'clock. He loves to go outside and play with his ball. He is always happy when I take him to the park. He ______ for hours without getting tired. He also likes to chase squirrels and birds. After a long walk, he comes home and drinks a lot of water. He then lies down on his bed and rests for a while. In the evening, he eats his dinner and plays with his toys. He is a very loyal and friendly dog. He always waits for me at the door when I come back from school. I am very lucky to have him."
       ],
-      "question": "Вставьте подходящий отрывок в пропуск (______) в предложении: 'He ______ for hours without getting tired.'",
+      "question": "He ______ for hours without getting tired.",
       "options": [
         "runs in the park",
         "sleeps all day",
