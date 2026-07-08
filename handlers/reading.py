@@ -100,11 +100,26 @@ async def render_task_message(user_id: int, short_type: str, short_level: str, i
     if not paragraphs:
         paragraphs = ["(текст отсутствует)"]
 
+    # --- СПЕЦИАЛЬНАЯ ОБРАБОТКА ДЛЯ "Восстановление порядка абзацев" ---
+    if short_type == "order":
+        # Выводим все абзацы с буквами
+        text = ""
+        for i, para in enumerate(paragraphs):
+            # Если абзац уже начинается с буквы (A), (B) и т.д., оставляем как есть
+            if not para.startswith(chr(65+i) + ")"):
+                text += f"{chr(65+i)}) {para}\n\n"
+            else:
+                text += f"{para}\n\n"
+        text += f"{task.get('question', '')}"
+        # Для этого типа используем клавиатуру для текстового ввода (без вариантов)
+        keyboard = get_action_keyboard(short_type, short_level, index)
+        return text, keyboard
+
+    # --- ОБЫЧНАЯ ЛОГИКА ДЛЯ ОСТАЛЬНЫХ ТИПОВ ---
     if paragraph_idx >= len(paragraphs):
         paragraph_idx = 0
     current_paragraph = paragraphs[paragraph_idx]
 
-    # Формируем текст
     text = f"{current_paragraph}\n\n"
     
     if short_type == "fill":
