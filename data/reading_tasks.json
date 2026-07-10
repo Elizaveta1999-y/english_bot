@@ -16176,18 +16176,18 @@
     "correct": "C; D; A; B",
     "explanation": "Проблема → план → результат → вывод."
   },
-  {
+{
     "id": 1199,
     "paragraphs": [
-      "A) Over the following decades, the river's water quality improved dramatically. Fish populations recovered, and birds returned to nest along the banks. Local residents began using the river for recreation again.",
-      "B) The project demonstrated that environmental restoration is possible when communities, scientists, and policymakers collaborate. It became a model for similar initiatives across the country.",
-      "C) In the 1960s, the river was so polluted that swimming and fishing were banned. Industrial waste had turned the water into a toxic soup, killing almost all aquatic life. The city government faced increasing pressure to act.",
-      "D) A comprehensive cleanup plan was launched, involving stricter regulations on factories, the construction of modern wastewater treatment plants, and regular monitoring of water quality. Thousands of volunteers also helped remove debris from the riverbanks."
+        "A) Over the following decades, the river's water quality improved dramatically. Fish populations recovered, and birds returned to nest along the banks. Local residents began using the river for recreation again.",
+        "B) The project demonstrated that environmental restoration is possible when communities, scientists, and policymakers collaborate. It became a model for similar initiatives across the country.",
+        "C) In the 1960s, the river was so polluted that swimming and fishing were banned. Industrial waste had turned the water into a toxic soup, killing almost all aquatic life. The city government faced increasing pressure to act.",
+        "D) A comprehensive cleanup plan was launched, involving stricter regulations on factories, the construction of modern wastewater treatment plants, and regular monitoring of water quality. Thousands of volunteers also helped remove debris from the riverbanks."
     ],
     "question": "Put the paragraphs in the correct order (1→2→3→4). Enter letters as __; __; __; __",
     "correct": "C; D; A; B",
     "explanation": "Проблема (загрязнение реки) → решение (план очистки) → результат (улучшение) → вывод (значение проекта)."
-  }
+}
 ]
 }
 }
