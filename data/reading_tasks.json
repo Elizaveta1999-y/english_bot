@@ -9638,7 +9638,7 @@
   "correct": 1,
   "explanation": "The text says some argue that processed plant-based foods may not be healthier.",
   "input_type": "choice_text"
-},
+}, 
 {
   "id": 720,
   "paragraphs": [
