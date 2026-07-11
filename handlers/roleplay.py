@@ -1,13 +1,13 @@
 import re
 from aiogram import Router, F
 from aiogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery, ReplyKeyboardMarkup, KeyboardButton, ReplyKeyboardRemove
+from aiogram.fsm.context import FSMContext
 from data.users import get_user_state, set_user_state
 from services.deepseek import chat
 from speaking.services.ai import is_safe_message, process_roleplay_message, process_voice_message
 from handlers.lesson_utils import check_answer
-def some_function():
-    from handlers.lessons import show_practice_task
-    # используйте show_practice_task
+from states.reading_states import ReadingStates
+
 router = Router()
 
 CATEGORIES = [
@@ -260,17 +260,30 @@ async def exit_to_menu(callback: CallbackQuery):
 
 # ========== УНИВЕРСАЛЬНЫЙ ОБРАБОТЧИК ТЕКСТА ==========
 @router.message(F.text)
-async def universal_text_handler(message: Message):
+async def universal_text_handler(message: Message, state: FSMContext):
     user_id = message.from_user.id
     user_state = get_user_state(user_id)
 
-    # === НОВАЯ ПРОВЕРКА ===
+    # 1. Игнорируем, если активен режим аудирования
     if user_state.get("listening_active", False):
         return
-    # =====================
+
+    # 2. Игнорируем, если активны другие FSM-состояния (чтение, аудирование)
+    current_state = await state.get_state()
+    if current_state in [
+        "ReadingStates:waiting_for_text",
+        "ListeningState:answering_task",
+        # можно добавить другие, если нужно
+    ]:
+        return
+
+    # 3. Проверяем, что режим либо speaking, либо roleplay
+    mode = user_state.get("mode")
+    if mode not in ["speaking_active", "roleplay_active"]:
+        return
 
     # Проверяем, что мы в режиме Speaking, и текст не является служебной кнопкой
-    if user_state.get("mode") == "speaking_active":
+    if mode == "speaking_active":
         if message.text not in ["📊 Я всё! Фидбек", "🏠 Главное меню"]:
             await message.answer(
                 "🎙️ Давайте пообщаемся голосом!\nНажмите на значок микрофона и отправьте голосовое сообщение."
