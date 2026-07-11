@@ -3,7 +3,7 @@ import random
 from aiogram import Router, F
 from aiogram.types import Message, CallbackQuery, InlineKeyboardMarkup, InlineKeyboardButton
 from aiogram.fsm.context import FSMContext
-from data.reading_loader import get_task, TASKS  # <-- импортируем TASKS
+from data.reading_loader import get_task, TASKS
 from utils.redis_utils import (
     get_global_welcome_index,
     get_user_progress,
@@ -196,7 +196,6 @@ async def choose_type(callback: CallbackQuery):
     short_type = callback.data.split(":", 1)[1]
     if short_type == "random":
         # Получаем доступные типы из загруженных данных
-        from data.reading_loader import TASKS
         available_short = []
         for short, json_key in TYPE_MAP.items():
             if json_key in TASKS:
@@ -389,12 +388,12 @@ async def handle_text_answer(message: Message, state: FSMContext):
             await state.set_state(None)
         await message.answer(text, reply_markup=keyboard, parse_mode="HTML")
 
-# -------------------- Показать ответ --------------------
+# -------------------- Показать ответ (ИСПРАВЛЕНО) --------------------
 @router.callback_query(F.data.startswith("reading_show_answer:"))
-async def show_answer(callback: CallbackQuery):
+async def show_answer(callback: CallbackQuery, state: FSMContext):  # добавили state
     _, short_type, short_level, index_str = callback.data.split(":")
     index = int(index_str)
-    data = await callback.state.get_data()
+    data = await state.get_data()  # используем state
     type_json = data.get("type_json")
     level_json = data.get("level_json")
     if not type_json or not level_json:
