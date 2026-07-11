@@ -4,9 +4,8 @@ from aiogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, C
 from aiogram.fsm.context import FSMContext
 from data.users import get_user_state, set_user_state
 from services.deepseek import chat
-from speaking.services.ai import is_safe_message, process_roleplay_message, process_voice_message
+from speaking.services.ai import is_safe_message, process_roleplay_message
 from handlers.lesson_utils import check_answer
-from states.reading_states import ReadingStates
 
 router = Router()
 
@@ -258,70 +257,36 @@ async def exit_to_menu(callback: CallbackQuery):
     await callback.message.answer("Режим завершён. Нажмите /start для выбора режима.", reply_markup=ReplyKeyboardRemove())
     await callback.answer()
 
-# ========== УНИВЕРСАЛЬНЫЙ ОБРАБОТЧИК ТЕКСТА ==========
+# ========== ОБРАБОТЧИК ТЕКСТА ДЛЯ РОЛЕВОЙ ИГРЫ ==========
 @router.message(F.text)
-async def universal_text_handler(message: Message, state: FSMContext):
+async def roleplay_text_handler(message: Message, state: FSMContext):
     user_id = message.from_user.id
     user_state = get_user_state(user_id)
-
-    # 1. Игнорируем, если активен режим аудирования
-    if user_state.get("listening_active", False):
+    
+    # Проверяем, что режим активен
+    if user_state.get("mode") != "roleplay_active":
         return
-
-    # 2. Игнорируем, если активны другие FSM-состояния (чтение, аудирование)
-    current_state = await state.get_state()
-    if current_state in [
-        "ReadingStates:waiting_for_text",
-        "ListeningState:answering_task",
-    ]:
+    
+    # Пропускаем служебные кнопки
+    if message.text in ["💡 Что ответить?", "📊 Завершить диалог", "🏠 Главное меню"]:
         return
-
-    # 3. Проверяем, что режим либо speaking, либо roleplay
-    mode = user_state.get("mode")
-    if mode not in ["speaking_active", "roleplay_active"]:
-        return
-
-    # 4. Если режим Speaking – обрабатываем текст через process_voice_message
-    if mode == "speaking_active":
-        # Пропускаем служебные кнопки (они обрабатываются в других обработчиках)
-        if message.text in ["📊 Я всё! Фидбек", "🏠 Главное меню"]:
-            return
-        # Обрабатываем текст
-        await message.bot.send_chat_action(chat_id=message.chat.id, action="typing")
-        ai_response = await process_voice_message(user_id, message.text)
-        keyboard = InlineKeyboardMarkup(inline_keyboard=[
-            [InlineKeyboardButton(text="🌐 Перевести", callback_data=f"translate_text_{user_id}")]
-        ])
-        sent = await message.answer(ai_response, reply_markup=keyboard)
-        from handlers.voice import last_text_response as global_last_text_response
-        global_last_text_response[user_id] = {"text": ai_response, "translation": None, "message_id": sent.message_id}
-        history = user_state.get("history", [])
-        history.append({"role": "user", "text": message.text})
-        history.append({"role": "assistant", "text": ai_response})
-        if len(history) > 20:
-            history = history[-20:]
-        user_state["history"] = history
-        set_user_state(user_id, user_state)
-        return
-
-    # 5. Режим RolePlay – обрабатываем через process_roleplay_message
-    if mode == "roleplay_active":
-        # Пропускаем служебные кнопки (они обрабатываются в других обработчиках)
-        if message.text in ["💡 Что ответить?", "📊 Завершить диалог", "📊 Я всё! Фидбек", "🏠 Главное меню"]:
-            return
-        await message.bot.send_chat_action(chat_id=message.chat.id, action="typing")
-        ai_response = await process_roleplay_message(user_id, message.text)
-        keyboard = InlineKeyboardMarkup(inline_keyboard=[
-            [InlineKeyboardButton(text="🌐 Перевести", callback_data=f"translate_text_{user_id}")]
-        ])
-        sent = await message.answer(ai_response, reply_markup=keyboard)
-        from handlers.voice import last_text_response as global_last_text_response
-        global_last_text_response[user_id] = {"text": ai_response, "translation": None, "message_id": sent.message_id}
-        history = user_state.get("history", [])
-        history.append({"role": "user", "text": message.text})
-        history.append({"role": "assistant", "text": ai_response})
-        if len(history) > 20:
-            history = history[-20:]
-        user_state["history"] = history
-        set_user_state(user_id, user_state)
-        return
+    
+    # Обрабатываем текст через ИИ для ролевой игры
+    await message.bot.send_chat_action(chat_id=message.chat.id, action="typing")
+    ai_response = await process_roleplay_message(user_id, message.text)
+    
+    keyboard = InlineKeyboardMarkup(inline_keyboard=[
+        [InlineKeyboardButton(text="🌐 Перевести", callback_data=f"translate_text_{user_id}")]
+    ])
+    sent = await message.answer(ai_response, reply_markup=keyboard)
+    
+    from handlers.voice import last_text_response as global_last_text_response
+    global_last_text_response[user_id] = {"text": ai_response, "translation": None, "message_id": sent.message_id}
+    
+    history = user_state.get("history", [])
+    history.append({"role": "user", "text": message.text})
+    history.append({"role": "assistant", "text": ai_response})
+    if len(history) > 20:
+        history = history[-20:]
+    user_state["history"] = history
+    set_user_state(user_id, user_state)

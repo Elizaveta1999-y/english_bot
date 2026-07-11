@@ -4,6 +4,7 @@ from aiogram.fsm.context import FSMContext
 from data.users import set_user_state, get_user_state
 from services.deepseek import chat
 from states.speaking_states import SpeakingStates
+from speaking.services.ai import process_voice_message
 
 router = Router()
 
@@ -88,11 +89,46 @@ async def exit_to_main_menu(message: Message, state: FSMContext):
     from handlers.start import show_main_menu
     await show_main_menu(message, edit=False)
 
-@router.message(SpeakingStates.waiting_for_voice, F.voice)
-async def handle_voice(message: Message, state: FSMContext):
+# ========== НОВЫЙ ОБРАБОТЧИК ТЕКСТА В РЕЖИМЕ SPEAKING ==========
+@router.message(SpeakingStates.waiting_for_voice, F.text)
+async def handle_speaking_text(message: Message, state: FSMContext):
     user_id = message.from_user.id
     user_state = get_user_state(user_id)
+    
+    # Проверяем, что мы действительно в режиме Speaking
     if user_state.get("mode") != "speaking_active":
-        await message.answer("Сейчас не режим Speaking.")
         return
-    # Твоя логика обработки голосового сообщения...
+
+    # Если текст - служебная кнопка, пропускаем (они обработаны выше)
+    if message.text in ["📊 Я всё! Фидбек", "🏠 Главное меню"]:
+        return
+
+    # Обрабатываем текст через ИИ
+    await message.bot.send_chat_action(chat_id=message.chat.id, action="typing")
+    ai_response = await process_voice_message(user_id, message.text)
+    
+    keyboard = InlineKeyboardMarkup(inline_keyboard=[
+        [InlineKeyboardButton(text="🌐 Перевести", callback_data=f"translate_text_{user_id}")]
+    ])
+    sent = await message.answer(ai_response, reply_markup=keyboard)
+    
+    # Сохраняем историю
+    from handlers.voice import last_text_response as global_last_text_response
+    global_last_text_response[user_id] = {"text": ai_response, "translation": None, "message_id": sent.message_id}
+    
+    history = user_state.get("history", [])
+    history.append({"role": "user", "text": message.text})
+    history.append({"role": "assistant", "text": ai_response})
+    if len(history) > 20:
+        history = history[-20:]
+    user_state["history"] = history
+    set_user_state(user_id, user_state)
+
+# Обработчик голосовых сообщений (уже есть в voice.py, но оставим здесь на всякий случай)
+@router.message(SpeakingStates.waiting_for_voice, F.voice)
+async def handle_voice_in_speaking(message: Message, state: FSMContext):
+    # Здесь можно оставить пустой, если голос обрабатывается в voice.py
+    # Но чтобы не дублировать, просто вызовем обработчик из voice.py
+    # Импортируем и вызываем
+    from handlers.voice import handle_voice
+    await handle_voice(message)
