@@ -10,7 +10,7 @@ from aiogram.filters import Command
 from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import State, StatesGroup
 import redis.asyncio as redis
-from data.users import get_user_state, set_user_state  # <-- ДОБАВЛЕН ИМПОРТ
+from data.users import get_user_state, set_user_state
 
 router = Router()
 logger = logging.getLogger(__name__)
@@ -269,6 +269,7 @@ async def send_task(message: Message, state: FSMContext, is_revision=False, task
             await state.set_state(ListeningState.choosing_type)
             user_state = get_user_state(user_id)
             user_state["listening_active"] = False
+            user_state["mode"] = None
             set_user_state(user_id, user_state)
             return
         task_id = error_ids[0]
@@ -425,9 +426,10 @@ async def level_selected(callback: CallbackQuery, state: FSMContext):
         task_type = "fill_multiple"
     user_id = callback.from_user.id
 
-    # === УСТАНАВЛИВАЕМ ФЛАГ, ЧТО МЫ В РЕЖИМЕ АУДИРОВАНИЯ ===
+    # === УСТАНАВЛИВАЕМ ФЛАГ, ЧТО МЫ В РЕЖИМЕ АУДИРОВАНИЯ, И СБРАСЫВАЕМ mode ===
     user_state = get_user_state(user_id)
     user_state["listening_active"] = True
+    user_state["mode"] = None        # <-- СБРАСЫВАЕМ mode, чтобы не мешал speaking
     set_user_state(user_id, user_state)
 
     if task_type == "random":
@@ -440,6 +442,7 @@ async def level_selected(callback: CallbackQuery, state: FSMContext):
         # Если нет заданий, сбрасываем флаг
         user_state = get_user_state(user_id)
         user_state["listening_active"] = False
+        user_state["mode"] = None
         set_user_state(user_id, user_state)
         await callback.answer("Нет заданий для этого типа и уровня.", show_alert=True)
         return
@@ -489,6 +492,7 @@ async def revision_mode(callback: CallbackQuery, state: FSMContext):
 
     user_state = get_user_state(user_id)
     user_state["listening_active"] = True
+    user_state["mode"] = None
     set_user_state(user_id, user_state)
 
     error_ids = await get_errors(user_id, task_type, level)
@@ -510,9 +514,9 @@ async def revision_mode(callback: CallbackQuery, state: FSMContext):
         await state.update_data({"message_ids": msg_ids})
         user_state = get_user_state(user_id)
         user_state["listening_active"] = False
+        user_state["mode"] = None
         set_user_state(user_id, user_state)
     else:
-        # ВАЖНО: эта строка должна иметь отступ (4 пробела) относительно else
         await send_task(callback.message, state, is_revision=True, task_type=task_type, level=level, error_ids=error_ids)
     await callback.answer()
 
@@ -529,9 +533,9 @@ async def reset_errors(callback: CallbackQuery, state: FSMContext):
         await callback.message.edit_text(
             f"📘 Работа над ошибками\nРежим: {TASK_TYPES[task_type]}\n\nЗаданий на исправление: 0"
         )
-        # Сбрасываем флаг, выходим из режима
         user_state = get_user_state(user_id)
         user_state["listening_active"] = False
+        user_state["mode"] = None
         set_user_state(user_id, user_state)
     else:
         await callback.answer("Ошибка: не удалось сбросить.")
@@ -568,14 +572,13 @@ async def back_to_mode(callback: CallbackQuery, state: FSMContext):
         new_msg_ids = [msg.message_id]
         await state.update_data({"message_ids": new_msg_ids, "progress_message_id": msg.message_id})
         await callback.message.delete()
-        # Флаг уже установлен, не сбрасываем
         await send_task(callback.message, state)
     else:
         await callback.answer("Ошибка: режим не найден.")
-        # Сбрасываем флаг, так как выходим
         user_id = callback.from_user.id
         user_state = get_user_state(user_id)
         user_state["listening_active"] = False
+        user_state["mode"] = None
         set_user_state(user_id, user_state)
     await callback.answer()
 
@@ -609,7 +612,6 @@ async def reset_progress(callback: CallbackQuery, state: FSMContext):
 
     await update_progress_message(callback.message, state)
     await callback.answer("Прогресс сброшен. Начинаем с первого задания.")
-    # Флаг уже установлен, не сбрасываем
     await send_task(callback.message, state)
 
 # ---------- Обработка ответов ----------
@@ -798,6 +800,7 @@ async def go_to_next_task(message: Message, state: FSMContext):
     user_id = message.from_user.id
 
     if data.get("is_revision", False):
+        error_ids = await get_errors(user_id, task_type, level)
         await send_task(message, state, is_revision=True, task_type=task_type, level=level, error_ids=error_ids)
         return
 
@@ -839,10 +842,10 @@ async def finish_session(callback: CallbackQuery, state: FSMContext):
 
     stats = f"Правильно: {correct}\nОшибок: {wrong}\nТочность: {correct/total*100:.1f}%" if total else "Вы не ответили ни на одно задание."
     await callback.message.answer(f"Сессия завершена!\n\n{stats}", reply_markup=get_finish_keyboard())
-    # Сбрасываем флаг
     user_id = callback.from_user.id
     user_state = get_user_state(user_id)
     user_state["listening_active"] = False
+    user_state["mode"] = None
     set_user_state(user_id, user_state)
     await state.clear()
     await callback.answer()
@@ -866,10 +869,10 @@ async def finish_session_from_block(callback: CallbackQuery, state: FSMContext):
             pass
 
     await state.clear()
-    # Сбрасываем флаг
     user_id = callback.from_user.id
     user_state = get_user_state(user_id)
     user_state["listening_active"] = False
+    user_state["mode"] = None
     set_user_state(user_id, user_state)
     await callback.message.edit_text("Сессия завершена. Возвращаемся в главное меню.")
     from .start import show_main_menu
@@ -889,10 +892,10 @@ async def back_to_types(callback: CallbackQuery, state: FSMContext):
             pass
 
     await state.clear()
-    # Сбрасываем флаг
     user_id = callback.from_user.id
     user_state = get_user_state(user_id)
     user_state["listening_active"] = False
+    user_state["mode"] = None
     set_user_state(user_id, user_state)
     await callback.message.edit_text("🎧 Аудирование\nВыберите тип задания:", reply_markup=get_types_keyboard())
     await callback.answer()
@@ -910,10 +913,10 @@ async def back_to_main(callback: CallbackQuery, state: FSMContext):
             pass
 
     await state.clear()
-    # Сбрасываем флаг
     user_id = callback.from_user.id
     user_state = get_user_state(user_id)
     user_state["listening_active"] = False
+    user_state["mode"] = None
     set_user_state(user_id, user_state)
     from .start import show_main_menu
     await show_main_menu(callback.message, edit=True)
@@ -931,9 +934,9 @@ async def revision_mode_command(message: Message, state: FSMContext):
         await message.answer("Сначала выберите тип и уровень в режиме аудирования.")
         return
 
-    # Устанавливаем флаг
     user_state = get_user_state(user_id)
     user_state["listening_active"] = True
+    user_state["mode"] = None
     set_user_state(user_id, user_state)
 
     error_ids = await get_errors(user_id, task_type, level)
@@ -949,13 +952,12 @@ async def revision_mode_command(message: Message, state: FSMContext):
 
     if count == 0:
         await message.answer("🎉 Ошибок нет! Отличная работа.")
-        # Сбрасываем флаг, так как ошибок нет
         user_state = get_user_state(user_id)
         user_state["listening_active"] = False
+        user_state["mode"] = None
         set_user_state(user_id, user_state)
     else:
         await send_task(message, state, is_revision=True, task_type=task_type, level=level, error_ids=error_ids)
-
 
 @router.message(Command("debug_tasks"))
 async def debug_tasks(message: Message):
@@ -963,7 +965,6 @@ async def debug_tasks(message: Message):
     fill_one = sum(1 for t in ALL_TASKS if t.get("type") == "fill_one")
     fill_multiple = sum(1 for t in ALL_TASKS if t.get("type") == "fill_multiple")
     await message.answer(f"Total: {total}\nfill_one: {fill_one}\nfill_multiple: {fill_multiple}")
-
 
 @router.message(Command("debug_fill"))
 async def debug_fill(message: Message):
@@ -973,7 +974,6 @@ async def debug_fill(message: Message):
             count = sum(1 for task in ALL_TASKS if task.get("type") == t and task.get("level") == level)
             result.append(f"{level} {t}: {count}")
     await message.answer("\n".join(result))
-
 
 @router.message(Command("reset_progress"))
 async def reset_progress_command(message: Message, state: FSMContext):
@@ -991,7 +991,6 @@ async def reset_progress_command(message: Message, state: FSMContext):
     await state.update_data({"correct": 0, "wrong": 0, "index": 0, "message_ids": []})
     await message.answer("Прогресс сброшен. Начинаем с первого задания.")
     await send_task(message, state)
-
 
 @router.message(Command("debug_get"))
 async def debug_get(message: Message):

@@ -13,6 +13,7 @@ from utils.redis_utils import (
     reset_user_progress
 )
 from states.reading_states import ReadingStates
+from data.users import get_user_state, set_user_state
 
 logger = logging.getLogger(__name__)
 router = Router()
@@ -102,26 +103,22 @@ async def render_task_message(user_id: int, short_type: str, short_level: str, i
 
     # --- СПЕЦИАЛЬНАЯ ОБРАБОТКА ДЛЯ "Восстановление порядка абзацев" ---
     if short_type == "order":
-        # Выводим все абзацы с буквами
         text = ""
         for i, para in enumerate(paragraphs):
-            # Если абзац уже начинается с буквы (A), (B) и т.д., оставляем как есть
             if not para.startswith(chr(65+i) + ")"):
                 text += f"{chr(65+i)}) {para}\n\n"
             else:
                 text += f"{para}\n\n"
         text += f"{task.get('question', '')}"
-        # Для этого типа используем клавиатуру для текстового ввода (без вариантов)
         keyboard = get_action_keyboard(short_type, short_level, index)
         return text, keyboard
 
-    # --- ОБЫЧНАЯ ЛОГИКА ДЛЯ ОСТАЛЬНЫХ ТИПОВ ---
+    # --- ОБЫЧНАЯ ЛОГИКА ---
     if paragraph_idx >= len(paragraphs):
         paragraph_idx = 0
     current_paragraph = paragraphs[paragraph_idx]
 
     text = f"{current_paragraph}\n\n"
-    
     if short_type == "fill":
         text += "Вставьте подходящий отрывок.\n"
         text += f"{task.get('question', '')}\n"
@@ -161,7 +158,7 @@ async def render_task_message(user_id: int, short_type: str, short_level: str, i
 
     return text, keyboard
 
-# -------------------- Сообщение с прогрессом (отдельное) --------------------
+# -------------------- Сообщение с прогрессом --------------------
 async def send_progress_message(callback: CallbackQuery, short_type: str, short_level: str):
     user_id = callback.from_user.id
     type_json = TYPE_MAP.get(short_type, short_type)
@@ -180,7 +177,7 @@ async def send_progress_message(callback: CallbackQuery, short_type: str, short_
 
     await callback.message.answer(text, reply_markup=get_progress_keyboard(), parse_mode="HTML")
 
-# -------------------- Обработчики (без изменений) --------------------
+# -------------------- Обработчики --------------------
 @router.callback_query(F.data == "start_reading")
 async def start_reading(callback: CallbackQuery):
     global_idx = await get_global_welcome_index()
@@ -220,6 +217,11 @@ async def back_to_types(callback: CallbackQuery):
 async def choose_level(callback: CallbackQuery, state: FSMContext):
     _, short_type, short_level = callback.data.split(":")
     user_id = callback.from_user.id
+
+    # СБРАСЫВАЕМ mode, чтобы universal_text_handler из roleplay не срабатывал
+    user_state = get_user_state(user_id)
+    user_state["mode"] = None
+    set_user_state(user_id, user_state)
 
     type_json = TYPE_MAP.get(short_type, short_type)
     level_json = LEVEL_MAP.get(short_level, short_level)
@@ -397,7 +399,6 @@ async def show_answer(callback: CallbackQuery):
 
     correct = task.get("correct")
     explanation = task.get("explanation", "")
-    # Отправляем в чат, а не в alert
     await callback.message.answer(f"Правильный ответ: {correct}")
     if explanation:
         await callback.message.answer(explanation)
@@ -432,7 +433,6 @@ async def finish_session(callback: CallbackQuery, state: FSMContext):
 async def ignore_callback(callback: CallbackQuery):
     await callback.answer()
 
-# -------------------- Кнопки "Работа над ошибками" и "Сбросить прогресс" --------------------
 @router.callback_query(F.data == "reading_revision")
 async def reading_revision(callback: CallbackQuery):
     await callback.answer("Функция в разработке", show_alert=True)
