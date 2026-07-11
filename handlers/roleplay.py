@@ -273,7 +273,6 @@ async def universal_text_handler(message: Message, state: FSMContext):
     if current_state in [
         "ReadingStates:waiting_for_text",
         "ListeningState:answering_task",
-        # можно добавить другие, если нужно
     ]:
         return
 
@@ -282,146 +281,12 @@ async def universal_text_handler(message: Message, state: FSMContext):
     if mode not in ["speaking_active", "roleplay_active"]:
         return
 
-    # Проверяем, что мы в режиме Speaking, и текст не является служебной кнопкой
+    # 4. Если режим Speaking – обрабатываем текст через process_voice_message
     if mode == "speaking_active":
-        if message.text not in ["📊 Я всё! Фидбек", "🏠 Главное меню"]:
-            await message.answer(
-                "🎙️ Давайте пообщаемся голосом!\nНажмите на значок микрофона и отправьте голосовое сообщение."
-            )
+        # Пропускаем служебные кнопки (они обрабатываются в других обработчиках)
+        if message.text in ["📊 Я всё! Фидбек", "🏠 Главное меню"]:
             return
-
-    print(f"[DEBUG] universal_text_handler: text={message.text}, lesson_qa_active={user_state.get('lesson_qa', {}).get('active')}")
-
-    # 0. Обработка ответов в режиме практики (текст)
-    if user_state.get("practice_lesson_key"):
-        from handlers.lessons import show_practice_task, parse_user_answers
-        lesson_key = user_state["practice_lesson_key"]
-        practice = user_state.get("practice", {}).get(lesson_key)
-        if not practice:
-            return
-
-        task_idx = practice.get("session_index", 0)
-        tasks = practice.get("tasks", [])
-        if task_idx >= len(tasks):
-            await show_practice_task(message, user_id, edit=False)
-            return
-
-        task = tasks[task_idx]
-        subtasks = task.get("subtasks", [])
-        if not subtasks:
-            await message.answer("Ошибка: нет подзаданий")
-            return
-
-        user_answers = parse_user_answers(message.text.strip(), len(subtasks))
-        while len(user_answers) < len(subtasks):
-            user_answers.append("")
-
-        correct_count = 0
-        wrong_list = []
-        for i, subtask in enumerate(subtasks):
-            user_ans = user_answers[i].strip() if i < len(user_answers) else ""
-            correct = subtask.get("answer", "").strip()
-            if user_ans.lower() == correct.lower():
-                correct_count += 1
-            else:
-                wrong_list.append({
-                    "question": subtask.get("question", ""),
-                    "your": user_ans if user_ans else "(пусто)",
-                    "correct": correct
-                })
-
-        practice["session_correct"] += correct_count
-        practice["session_index"] += 1
-        set_user_state(user_id, user_state)
-
-        if not wrong_list:
-            await message.answer(f"✅ Отлично! Все {len(subtasks)} ответов верны!")
-        else:
-            summary = f"❌ Правильно: {correct_count} из {len(subtasks)}\n\n"
-            for w in wrong_list:
-                summary += f"• {w['question']}\n   Ваш ответ: {w['your']} → правильно: {w['correct']}\n\n"
-            await message.answer(summary)
-
-        await show_practice_task(message, user_id, edit=False)
-        return
-
-    # 1. Обработка кастомного сценария
-    if user_state.get("awaiting_custom_scenario"):
-        user_state["awaiting_custom_scenario"] = False
-        scenario_text = message.text.strip()
-        if len(scenario_text.split()) < 3:
-            await message.answer("❌ <b>Сценарий слишком короткий</b>. Опишите подробнее (минимум 3 слова).", parse_mode="HTML")
-            user_state["awaiting_custom_scenario"] = True
-            set_user_state(user_id, user_state)
-            return
-        if not await is_safe_message(scenario_text):
-            keyboard = InlineKeyboardMarkup(inline_keyboard=[
-                [InlineKeyboardButton(text="🔄 Попробовать снова", callback_data="retry_custom_scenario")],
-                [InlineKeyboardButton(text="🔙 Назад в меню", callback_data="back_to_categories_from_scenario")]
-            ])
-            await message.answer(
-                "❌ <b>Ваш сценарий содержит неприемлемые темы</b> (секс, насилие, суицид и т.п.).\n\n"
-                "Пожалуйста, придумайте другой сценарий для ролевой игры.",
-                reply_markup=keyboard, parse_mode="HTML"
-            )
-            set_user_state(user_id, user_state)
-            return
-        topic = scenario_text[:50] + ("..." if len(scenario_text) > 50 else "")
-        set_user_state(user_id, {
-            "mode": "roleplay_active",
-            "history": [],
-            "roleplay_topic": topic,
-            "roleplay_category": "custom",
-            "custom_scenario": scenario_text
-        })
-        keyboard = ReplyKeyboardMarkup(
-            keyboard=[
-                [KeyboardButton(text="💡 Что ответить?"), KeyboardButton(text="🏠 Главное меню")],
-                [KeyboardButton(text="📊 Завершить диалог")]
-            ],
-            resize_keyboard=True
-        )
-        await message.answer(
-            f"🎭 <b>Ролевая игра: {topic}</b>\n\n"
-            f"<b>Ваш сценарий:</b> {scenario_text}\n\n"
-            f"🗣️ <b>Говорите голосом или пишите текстом.</b>\n"
-            f"💡 Если нужна подсказка, нажмите «💡 Что ответить?».\n"
-            f"Когда закончите, нажмите «📊 Завершить диалог» для анализа.",
-            reply_markup=keyboard, parse_mode="HTML"
-        )
-        await message.answer("🎬 <b>Можете начинать!</b>", parse_mode="HTML")
-        return
-
-    # 2. Пропускаем служебные кнопки
-    if message.text in ["💡 Что ответить?", "📊 Завершить диалог", "📊 Я всё! Фидбек"]:
-        return
-
-    # 3. ОБРАБОТКА ВОПРОСОВ ПО УРОКАМ
-    if user_state.get("lesson_qa", {}).get("active"):
-        from handlers.lessons import process_lesson_question
-        await process_lesson_question(user_id, message.text, message.bot, message.chat.id)
-        return
-
-    # 4. Режим урока (тематический урок) – заглушка
-    if user_state.get("lesson_mode") == "thematic" and user_state.get("lesson_step") == "awaiting_answer":
-        task = user_state.get("lesson_task")
-        if not task:
-            await message.answer("Ошибка: задание не найдено. Начните урок заново.")
-            return
-        feedback = await check_answer(message.text, task)
-        keyboard = InlineKeyboardMarkup(inline_keyboard=[
-            [InlineKeyboardButton(text="🔄 Попробовать ещё раз", callback_data="retry_lesson")],
-            [InlineKeyboardButton(text="📝 Следующее задание", callback_data="next_task")],
-            [InlineKeyboardButton(text="❌ Завершить", callback_data="exit_lesson")]
-        ])
-        await message.answer(f"📊 Результат:\n\n{feedback}", reply_markup=keyboard)
-        user_state["lesson_step"] = "feedback_shown"
-        set_user_state(user_id, user_state)
-        return
-
-    # 5. Режим Speaking
-    mode = user_state.get("mode")
-    if mode == "speaking_active":
+        # Обрабатываем текст
         await message.bot.send_chat_action(chat_id=message.chat.id, action="typing")
         ai_response = await process_voice_message(user_id, message.text)
         keyboard = InlineKeyboardMarkup(inline_keyboard=[
@@ -439,8 +304,11 @@ async def universal_text_handler(message: Message, state: FSMContext):
         set_user_state(user_id, user_state)
         return
 
-    # 6. Режим RolePlay
+    # 5. Режим RolePlay – обрабатываем через process_roleplay_message
     if mode == "roleplay_active":
+        # Пропускаем служебные кнопки (они обрабатываются в других обработчиках)
+        if message.text in ["💡 Что ответить?", "📊 Завершить диалог", "📊 Я всё! Фидбек", "🏠 Главное меню"]:
+            return
         await message.bot.send_chat_action(chat_id=message.chat.id, action="typing")
         ai_response = await process_roleplay_message(user_id, message.text)
         keyboard = InlineKeyboardMarkup(inline_keyboard=[
