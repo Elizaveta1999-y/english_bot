@@ -9,6 +9,7 @@ logger = logging.getLogger(__name__)
 TASKS_FILE = os.path.join(os.path.dirname(__file__), "reading_tasks.json")
 logger.info(f"Loading reading tasks from: {TASKS_FILE}")
 
+
 def load_tasks() -> Dict[str, Dict[str, List[Dict[str, Any]]]]:
     """
     Загружает JSON и возвращает структуру:
@@ -27,7 +28,7 @@ def load_tasks() -> Dict[str, Dict[str, List[Dict[str, Any]]]]:
             data = json.load(f)
             logger.info("reading_tasks.json loaded successfully")
             logger.info(f"Top-level keys: {list(data.keys())}")
-            
+
             # Проверяем структуру: каждый тип должен быть словарём с уровнями
             for type_key, type_value in data.items():
                 if not isinstance(type_value, dict):
@@ -53,7 +54,9 @@ def load_tasks() -> Dict[str, Dict[str, List[Dict[str, Any]]]]:
         logger.error(traceback.format_exc())
         return {}
 
+
 TASKS = load_tasks()
+
 
 def get_task(type_key: str, level_key: str, index: int) -> Optional[Dict[str, Any]]:
     """
@@ -79,6 +82,7 @@ def get_task(type_key: str, level_key: str, index: int) -> Optional[Dict[str, An
         return None
     return level_data[index]
 
+
 def get_task_count(type_key: str, level_key: str) -> int:
     """
     Возвращает количество заданий для данного типа и уровня.
@@ -93,6 +97,7 @@ def get_task_count(type_key: str, level_key: str) -> int:
         return 0
     return len(level_data)
 
+
 def get_levels(type_key: str) -> List[str]:
     """
     Возвращает список доступных уровней для данного типа.
@@ -103,6 +108,7 @@ def get_levels(type_key: str) -> List[str]:
     if not isinstance(type_data, dict):
         return []
     return list(type_data.keys())
+
 
 def get_all_tasks(type_key: str, level_key: str) -> Optional[List[Dict[str, Any]]]:
     """

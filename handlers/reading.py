@@ -283,10 +283,14 @@ async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
     correct = (chosen_idx == task["correct"])
     await update_user_stats(user_id, type_json, level_json, correct)
 
+    explanation = task.get("explanation", "")
     if correct:
         await callback.message.answer("Правильно!")
     else:
         await callback.message.answer(f"Неправильно. Правильный ответ: {task['options'][task['correct']]}")
+
+    if explanation:
+        await callback.message.answer(explanation)
 
     next_index = index + 1
     next_task = get_task(type_json, level_json, next_index)
@@ -345,10 +349,14 @@ async def handle_text_answer(message: Message, state: FSMContext):
 
     await update_user_stats(user_id, type_json, level_json, correct)
 
+    explanation = task.get("explanation", "")
     if correct:
         await message.answer("Правильно!")
     else:
         await message.answer(f"Неправильно. Правильный ответ: {correct_answer}")
+
+    if explanation:
+        await message.answer(explanation)
 
     next_index = index + 1
     next_task = get_task(type_json, level_json, next_index)
@@ -389,7 +397,11 @@ async def show_answer(callback: CallbackQuery):
 
     correct = task.get("correct")
     explanation = task.get("explanation", "")
-    await callback.answer(f"Правильный ответ: {correct}\n{explanation}", show_alert=True)
+    # Отправляем в чат, а не в alert
+    await callback.message.answer(f"Правильный ответ: {correct}")
+    if explanation:
+        await callback.message.answer(explanation)
+    await callback.answer()
 
 # -------------------- Завершить сессию --------------------
 @router.callback_query(F.data == "reading_finish_session")
