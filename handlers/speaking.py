@@ -36,13 +36,10 @@ async def select_voice(callback: CallbackQuery, state: FSMContext):
         user_state["history"] = []
     set_user_state(user_id, user_state)
 
-    # Устанавливаем состояние FSM
     await state.set_state(SpeakingStates.waiting_for_voice)
 
-    # Удаляем сообщение с выбором голоса
     await callback.message.delete()
     
-    # Клавиатура для режима
     keyboard = ReplyKeyboardMarkup(
         keyboard=[
             [KeyboardButton(text="📊 Я всё! Фидбек")],
@@ -57,7 +54,6 @@ async def select_voice(callback: CallbackQuery, state: FSMContext):
     )
     await callback.answer()
 
-# --- ВАЖНО: Добавляем проверку состояния в обработчик фидбека ---
 @router.message(SpeakingStates.waiting_for_voice, F.text == "📊 Я всё! Фидбек")
 async def feedback_button(message: Message, state: FSMContext):
     user_id = message.from_user.id
@@ -82,10 +78,21 @@ async def feedback_button(message: Message, state: FSMContext):
         feedback = feedback[:1000] + "..."
     await message.answer(f"📊 <b>Ваш фидбек</b>:\n\n{feedback}", parse_mode="HTML")
 
-# --- Обработчик для кнопки "Главное меню" (тоже с проверкой состояния) ---
 @router.message(SpeakingStates.waiting_for_voice, F.text == "🏠 Главное меню")
 async def exit_to_main_menu(message: Message, state: FSMContext):
+    user_id = message.from_user.id
+    user_state = get_user_state(user_id)
+    user_state["mode"] = None
+    set_user_state(user_id, user_state)
     await state.clear()
-    # Здесь вызов функции показа главного меню (например, из start.py)
     from handlers.start import show_main_menu
     await show_main_menu(message, edit=False)
+
+@router.message(SpeakingStates.waiting_for_voice, F.voice)
+async def handle_voice(message: Message, state: FSMContext):
+    user_id = message.from_user.id
+    user_state = get_user_state(user_id)
+    if user_state.get("mode") != "speaking_active":
+        await message.answer("Сейчас не режим Speaking.")
+        return
+    # Твоя логика обработки голосового сообщения...
