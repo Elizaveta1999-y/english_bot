@@ -1,7 +1,9 @@
 from aiogram import Router, F
 from aiogram.types import Message, ReplyKeyboardMarkup, KeyboardButton, CallbackQuery, InlineKeyboardMarkup, InlineKeyboardButton
+from aiogram.fsm.context import FSMContext
 from data.users import set_user_state, get_user_state
 from services.deepseek import chat
+from states.speaking_states import SpeakingStates
 
 router = Router()
 
@@ -15,7 +17,7 @@ SPEAKING_INTRO_TEXT = (
 )
 
 @router.callback_query(lambda c: c.data == "start_speaking")
-async def start_speaking(callback: CallbackQuery):
+async def start_speaking(callback: CallbackQuery, state: FSMContext):
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(text="👩 Woman Voice", callback_data="speaking_voice_woman"),
          InlineKeyboardButton(text="👨 Man Voice", callback_data="speaking_voice_man")]
@@ -24,7 +26,7 @@ async def start_speaking(callback: CallbackQuery):
     await callback.answer()
 
 @router.callback_query(lambda c: c.data.startswith("speaking_voice_"))
-async def select_voice(callback: CallbackQuery):
+async def select_voice(callback: CallbackQuery, state: FSMContext):
     user_id = callback.from_user.id
     voice = callback.data.split("_")[2]  # "woman" или "man"
     user_state = get_user_state(user_id)
@@ -33,6 +35,9 @@ async def select_voice(callback: CallbackQuery):
     if "history" not in user_state:
         user_state["history"] = []
     set_user_state(user_id, user_state)
+
+    # Устанавливаем состояние FSM
+    await state.set_state(SpeakingStates.waiting_for_voice)
 
     # Удаляем сообщение с выбором голоса
     await callback.message.delete()
@@ -52,8 +57,9 @@ async def select_voice(callback: CallbackQuery):
     )
     await callback.answer()
 
-@router.message(F.text == "📊 Я всё! Фидбек")
-async def feedback_button(message: Message):
+# --- ВАЖНО: Добавляем проверку состояния в обработчик фидбека ---
+@router.message(SpeakingStates.waiting_for_voice, F.text == "📊 Я всё! Фидбек")
+async def feedback_button(message: Message, state: FSMContext):
     user_id = message.from_user.id
     user_state = get_user_state(user_id)
     if user_state.get("mode") != "speaking_active":
@@ -75,3 +81,11 @@ async def feedback_button(message: Message):
     if len(feedback) > 1000:
         feedback = feedback[:1000] + "..."
     await message.answer(f"📊 <b>Ваш фидбек</b>:\n\n{feedback}", parse_mode="HTML")
+
+# --- Обработчик для кнопки "Главное меню" (тоже с проверкой состояния) ---
+@router.message(SpeakingStates.waiting_for_voice, F.text == "🏠 Главное меню")
+async def exit_to_main_menu(message: Message, state: FSMContext):
+    await state.clear()
+    # Здесь вызов функции показа главного меню (например, из start.py)
+    from handlers.start import show_main_menu
+    await show_main_menu(message, edit=False)
