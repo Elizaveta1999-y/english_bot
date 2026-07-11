@@ -3,7 +3,7 @@ import random
 from aiogram import Router, F
 from aiogram.types import Message, CallbackQuery, InlineKeyboardMarkup, InlineKeyboardButton
 from aiogram.fsm.context import FSMContext
-from data.reading_loader import get_task
+from data.reading_loader import get_task, TASKS  # <-- импортируем TASKS
 from utils.redis_utils import (
     get_global_welcome_index,
     get_user_progress,
@@ -195,8 +195,16 @@ async def back_to_main(callback: CallbackQuery):
 async def choose_type(callback: CallbackQuery):
     short_type = callback.data.split(":", 1)[1]
     if short_type == "random":
-        all_types = ["podbor", "truefalse", "choice", "fill", "match", "order"]
-        short_type = random.choice(all_types)
+        # Получаем доступные типы из загруженных данных
+        from data.reading_loader import TASKS
+        available_short = []
+        for short, json_key in TYPE_MAP.items():
+            if json_key in TASKS:
+                available_short.append(short)
+        if not available_short:
+            # fallback на точно существующие
+            available_short = ["podbor", "truefalse", "choice", "order"]
+        short_type = random.choice(available_short)
     await callback.message.edit_text(
         f"Выбран тип: {TYPE_DISPLAY.get(short_type, short_type)}\nВыберите уровень:",
         reply_markup=get_level_keyboard(short_type),
@@ -218,7 +226,7 @@ async def choose_level(callback: CallbackQuery, state: FSMContext):
     _, short_type, short_level = callback.data.split(":")
     user_id = callback.from_user.id
 
-    # СБРАСЫВАЕМ mode, чтобы universal_text_handler из roleplay не срабатывал
+    # Сбрасываем mode, чтобы не мешать другим режимам
     user_state = get_user_state(user_id)
     user_state["mode"] = None
     set_user_state(user_id, user_state)
