@@ -257,7 +257,7 @@ async def exit_to_menu(callback: CallbackQuery):
     await callback.message.answer("Режим завершён. Нажмите /start для выбора режима.", reply_markup=ReplyKeyboardRemove())
     await callback.answer()
 
-# ========== ОБРАБОТЧИК ТЕКСТА ДЛЯ РОЛЕВОЙ ИГРЫ ==========
+# ========== ЕДИНСТВЕННЫЙ ОБРАБОТЧИК ТЕКСТА ДЛЯ РОЛЕВОЙ ИГРЫ ==========
 @router.message(F.text)
 async def roleplay_text_handler(message: Message, state: FSMContext):
     user_id = message.from_user.id
