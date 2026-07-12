@@ -16,7 +16,7 @@ def load_tasks():
 
 ALL_TASKS = load_tasks()
 
-print("=== WRITING TASKS LOADED (FINAL) ===")
+print("=== WRITING TASKS LOADED (NO CATCHALL) ===")
 print(f"Keys: {list(ALL_TASKS.keys())}")
 
 # ---------- Состояния FSM ----------
@@ -62,10 +62,17 @@ def get_action_keyboard(short_type: str, level: str, index: int):
         ]
     ])
 
+# ---------- ВХОД В РЕЖИМ (ПРЯМОЙ ОБРАБОТЧИК) ----------
+@router.callback_query(F.data == "start_writing")
+async def start_writing_mode(callback: CallbackQuery):
+    print("!!! start_writing_mode CALLED")
+    await callback.answer()
+    await show_task_types(callback.message, edit=True)
+
 # ---------- Показать типы ----------
 async def show_task_types(message: Message, edit: bool = False):
     text = (
-        "✍️ *Режим Письмо (FINAL)*\n\n"
+        "✍️ *Режим Письмо*\n\n"
         "Выберите тип задания:\n"
         "📧 *Email*\n"
         "📝 *Эссе*\n"
@@ -79,9 +86,10 @@ async def show_task_types(message: Message, edit: bool = False):
     else:
         await message.answer(text, reply_markup=keyboard, parse_mode="Markdown")
 
-# ---------- Обработчики ----------
+# ---------- Обработчики выбора типа и уровня ----------
 @router.callback_query(F.data.startswith("type_"))
 async def type_chosen(callback: CallbackQuery, state: FSMContext):
+    print(f"!!! type_chosen: {callback.data}")
     await callback.answer()
     task_type = callback.data.split("_")[1]
     await state.update_data(task_type=task_type)
@@ -91,18 +99,23 @@ async def type_chosen(callback: CallbackQuery, state: FSMContext):
 
 @router.callback_query(F.data.startswith("level_"))
 async def level_chosen(callback: CallbackQuery, state: FSMContext):
-    print(f"!!! LEVEL CHOSEN CALLBACK: {callback.data}")
+    print(f"!!! level_chosen: {callback.data}")
     await callback.answer()
     level = callback.data.split("_")[1]
-    await callback.message.edit_text(f"✅ Вы выбрали уровень: {level}. Это тестовое сообщение. Если вы это видите, обработчик работает!")
+    data = await state.get_data()
+    task_type = data.get("task_type")
+    tasks = ALL_TASKS.get(task_type, {}).get(level, [])
+    if not tasks:
+        await callback.message.edit_text(f"Заданий для {task_type} уровня {level} пока нет.")
+        return
+    task = tasks[0]  # пока первое
+    await callback.message.edit_text(
+        f"📝 *Задание*\n\n{task['task_text']}\n\n"
+        f"🔑 Ключевые слова: {', '.join(task['keywords'])}\n"
+        f"📏 Объём: {task['expected_length']}"
+    )
 
-# ---------- УНИВЕРСАЛЬНЫЙ ЛОГГЕР ВСЕХ CALLBACK ----------
-@router.callback_query()
-async def catch_all_callbacks(callback: CallbackQuery):
-    print(f"CATCH ALL: {callback.data}")
-    await callback.answer()
-
-# ---------- Остальные обработчики ----------
+# ---------- Прочие обработчики ----------
 @router.callback_query(F.data == "cancel_writing")
 async def cancel_writing(callback: CallbackQuery, state: FSMContext):
     await callback.answer()
