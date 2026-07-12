@@ -48,9 +48,25 @@ async def start_handler(message: Message):
         set_user_state(user_id, {})
     await show_main_menu(message, edit=False)
 
+# ... ваш существующий код ...
+
+# 1. ПРАВКА: Убираем "start_writing" из этого списка!
 @router.callback_query(F.data.in_([
-    "start_writing", "start_govorenie",
-    "start_lessons", "start_grammar"
+    "start_govorenie",  # Говорение пока в разработке
+    "start_lessons",    # Уроки пока в разработке
+    "start_grammar"     # Грамматика пока в разработке
 ]))
 async def under_construction(callback: CallbackQuery):
     await callback.answer("Этот режим в разработке. Скоро появится! 🚧", show_alert=True)
+
+# 2. НОВЫЙ ОБРАБОТЧИК для кнопки "📝 Письмо"
+@router.callback_query(F.data == "start_writing")
+async def start_writing_mode(callback: CallbackQuery):
+    await callback.answer()  # Закрываем "часики" на кнопке
+    
+    # Импортируем функцию показа меню выбора типа из нового файла
+    # (мы создадим его в следующем шаге)
+    from handlers.writing import show_task_types
+    
+    # Вызываем функцию показа первого меню (выбор типа задания)
+    await show_task_types(callback.message, edit=True)

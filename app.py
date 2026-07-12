@@ -5,7 +5,7 @@ from aiohttp import web
 from aiogram import Bot, Dispatcher
 from aiogram.types import BotCommand
 from aiogram.webhook.aiohttp_server import SimpleRequestHandler, setup_application
-from handlers import start, speaking, roleplay, common, voice, lessons, words, profile, skills, support, listening, reading
+from handlers import start, speaking, roleplay, common, voice, lessons, words, profile, skills, support, listening, reading, writing  
 from handlers.subscription import router as subscription_router   # <-- добавляем
 from handlers import listening
 from handlers.reading import router as reading_router
@@ -38,6 +38,7 @@ dp.include_router(lessons.router)
 dp.include_router(speaking.router)
 dp.include_router(profile.router)
 dp.include_router(skills.router)
+dp.include_router(writing.router) 
 
 async def set_commands(bot: Bot):
     commands = [
