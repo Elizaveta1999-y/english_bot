@@ -25,8 +25,8 @@ WEBHOOK_SECRET = "my-secret-key"
 bot = Bot(token=BOT_TOKEN)
 dp = Dispatcher()
 
-dp.include_router(writing.router)
 dp.include_router(start.router)
+dp.include_router(writing.router)
 dp.include_router(reading.router)   # <-- ПЕРВЫМ после start
 dp.include_router(listening.router)
 dp.include_router(support.router)
