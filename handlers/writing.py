@@ -4,6 +4,7 @@ from aiogram import Router, F
 from aiogram.types import Message, CallbackQuery, InlineKeyboardMarkup, InlineKeyboardButton
 from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import State, StatesGroup
+from services.deepseek_writing import check_writing
 
 router = Router()
 
@@ -16,7 +17,7 @@ def load_tasks():
 
 ALL_TASKS = load_tasks()
 
-print("=== WRITING TASKS LOADED (NO CATCHALL) ===")
+print("=== WRITING TASKS LOADED ===")
 print(f"Keys: {list(ALL_TASKS.keys())}")
 
 # ---------- Состояния FSM ----------
@@ -62,10 +63,9 @@ def get_action_keyboard(short_type: str, level: str, index: int):
         ]
     ])
 
-# ---------- ВХОД В РЕЖИМ (ПРЯМОЙ ОБРАБОТЧИК) ----------
+# ---------- ВХОД В РЕЖИМ ----------
 @router.callback_query(F.data == "start_writing")
 async def start_writing_mode(callback: CallbackQuery):
-    print("!!! start_writing_mode CALLED")
     await callback.answer()
     await show_task_types(callback.message, edit=True)
 
@@ -86,10 +86,9 @@ async def show_task_types(message: Message, edit: bool = False):
     else:
         await message.answer(text, reply_markup=keyboard, parse_mode="Markdown")
 
-# ---------- Обработчики выбора типа и уровня ----------
+# ---------- Обработчики выбора типа ----------
 @router.callback_query(F.data.startswith("type_"))
 async def type_chosen(callback: CallbackQuery, state: FSMContext):
-    print(f"!!! type_chosen: {callback.data}")
     await callback.answer()
     task_type = callback.data.split("_")[1]
     await state.update_data(task_type=task_type)
@@ -97,9 +96,9 @@ async def type_chosen(callback: CallbackQuery, state: FSMContext):
     text = f"Вы выбрали тип: *{task_type.upper()}*.\nТеперь выберите уровень:"
     await callback.message.edit_text(text, reply_markup=get_levels_keyboard(), parse_mode="Markdown")
 
+# ---------- Обработчик выбора уровня (выдаёт задание без смайликов) ----------
 @router.callback_query(F.data.startswith("level_"))
 async def level_chosen(callback: CallbackQuery, state: FSMContext):
-    print(f"!!! level_chosen: {callback.data}")
     await callback.answer()
     level = callback.data.split("_")[1]
     data = await state.get_data()
@@ -108,14 +107,120 @@ async def level_chosen(callback: CallbackQuery, state: FSMContext):
     if not tasks:
         await callback.message.edit_text(f"Заданий для {task_type} уровня {level} пока нет.")
         return
-    task = tasks[0]  # пока первое
-    await callback.message.edit_text(
-        f"📝 *Задание*\n\n{task['task_text']}\n\n"
-        f"🔑 Ключевые слова: {', '.join(task['keywords'])}\n"
-        f"📏 Объём: {task['expected_length']}"
+
+    # Пока берём первое задание (позже добавим прогресс)
+    task = tasks[0]
+    await state.update_data(
+        task_type=task_type,
+        level=level,
+        tasks=tasks,
+        current_task=task,
+        index=0
     )
 
-# ---------- Прочие обработчики ----------
+    # Формируем текст задания БЕЗ СМАЙЛИКОВ
+    task_text = (
+        f"{task['task_text']}\n\n"
+        f"Ключевые слова: {', '.join(task['keywords'])}\n"
+        f"Объём: {task['expected_length']}"
+    )
+
+    keyboard = get_action_keyboard(task_type, level, 0)
+    await callback.message.edit_text(task_text, reply_markup=keyboard, parse_mode="Markdown")
+    await state.set_state(WritingStates.waiting_answer)
+
+# ---------- Получение ответа и проверка через DeepSeek ----------
+@router.message(WritingStates.waiting_answer, F.text)
+async def handle_user_answer(message: Message, state: FSMContext):
+    user_text = message.text
+    data = await state.get_data()
+    task = data.get("current_task")
+    task_type = data.get("task_type")
+    level = data.get("level")
+    index = data.get("index", 0)
+    tasks = data.get("tasks", [])
+    user_id = message.from_user.id
+
+    if not task:
+        await message.answer("Ошибка: задание не найдено. Начните заново.")
+        await state.clear()
+        return
+
+    # 1. Проверка длины
+    word_count = len(user_text.split())
+    if word_count < 10:
+        await message.answer("❌ Слишком коротко! Напишите не менее 10 слов.")
+        return
+    if word_count > 150:
+        await message.answer("⚠️ Слишком длинно! Сократите до 150 слов.")
+        return
+
+    # 2. Проверка наличия ключевых слов (грубая, но не блокирующая)
+    keywords = task.get("keywords", [])
+    has_keyword = any(kw in user_text.lower() for kw in keywords)
+    if not has_keyword:
+        # Предупреждаем, но не блокируем – ИИ всё равно оценит
+        await message.answer(
+            f"⚠️ Вы не использовали ключевые слова: *{', '.join(keywords)}*.\n"
+            f"ИИ всё равно проверит ваш ответ, но учтите это.",
+            parse_mode="Markdown"
+        )
+
+    # 3. Отправляем в DeepSeek для проверки
+    await message.bot.send_chat_action(chat_id=message.chat.id, action="typing")
+
+    try:
+        feedback = check_writing(
+            task_text=task['task_text'],
+            user_answer=user_text,
+            level=level,
+            keywords=keywords
+        )
+    except Exception as e:
+        await message.answer("❌ Ошибка при обращении к ИИ. Попробуйте позже.")
+        return
+
+    # Отправляем фидбек
+    await message.answer(f"📊 *Результат проверки:*\n\n{feedback}", parse_mode="Markdown")
+
+    # 4. Переход к следующему заданию (если есть)
+    next_index = index + 1
+    if next_index >= len(tasks):
+        await message.answer("🎉 Вы прошли все задания! Начните заново или выберите другой уровень.")
+        await state.clear()
+        return
+
+    next_task = tasks[next_index]
+    await state.update_data(
+        current_task=next_task,
+        index=next_index
+    )
+
+    # Показываем следующее задание (без смайликов)
+    task_text = (
+        f"{next_task['task_text']}\n\n"
+        f"Ключевые слова: {', '.join(next_task['keywords'])}\n"
+        f"Объём: {next_task['expected_length']}"
+    )
+    keyboard = get_action_keyboard(task_type, level, next_index)
+    await message.answer(task_text, reply_markup=keyboard, parse_mode="Markdown")
+
+# ---------- Показать пример ----------
+@router.callback_query(F.data.startswith("writing_show_sample:"))
+async def show_sample(callback: CallbackQuery, state: FSMContext):
+    _, short_type, level, index_str = callback.data.split(":")
+    index = int(index_str)
+    data = await state.get_data()
+    tasks = data.get("tasks", [])
+    if not tasks or index >= len(tasks):
+        await callback.answer("Пример не найден", show_alert=True)
+        return
+    task = tasks[index]
+    sample = task.get("sample_answer", "Пример отсутствует")
+    await callback.message.answer(f"📝 *Пример ответа:*\n\n{sample}", parse_mode="Markdown")
+    await callback.answer()
+
+# ---------- Отмена и навигация ----------
 @router.callback_query(F.data == "cancel_writing")
 async def cancel_writing(callback: CallbackQuery, state: FSMContext):
     await callback.answer()
