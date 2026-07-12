@@ -123,6 +123,9 @@ async def level_chosen(callback: CallbackQuery, state: FSMContext):
     
     # ЛОГ ДЛЯ ОТЛАДКИ — показывает, сколько заданий загрузилось
     print(f"DEBUG: task_type={task_type}, level={level}, tasks count={len(tasks)}")
+    print(f"DEBUG: ALL_TASKS keys={list(ALL_TASKS.keys())}")
+    if task_type in ALL_TASKS:
+        print(f"DEBUG: levels for {task_type}: {list(ALL_TASKS[task_type].keys())}")
 
     if not tasks:
         await callback.message.edit_text(
