@@ -1,0 +1,203 @@
+{
+  "email": {
+    "beginner": [
+  {
+    "id": 1,
+    "task_text": "Напишите письмо другу, в котором расскажите, как прошли ваши выходные. Упомяните, что вы делали, с кем были и что вам понравилось больше всего.",
+    "keywords": ["weekend", "friend", "walk", "park", "fun"],
+    "expected_length": "30–40 слов",
+    "sample_answer": "Hi! My weekend was great. I went to the park with my friend. We walked and played football. I liked it very much."
+  },
+  {
+    "id": 2,
+    "task_text": "Напишите письмо другу, в котором расскажите о своих планах на ближайшие выходные. Что вы хотите делать и с кем.",
+    "keywords": ["weekend", "plan", "go", "meet", "do"],
+    "expected_length": "30–40 слов",
+    "sample_answer": "Hi! This weekend I plan to go to the cinema. I will meet my friends there. We will watch a new film. I'm excited!"
+  },
+  {
+    "id": 3,
+    "task_text": "Напишите письмо другу, в котором попросите его/её помочь вам с выбором подарка для общего знакомого. Опишите, что вы ищете.",
+    "keywords": ["gift", "help", "choose", "friend", "idea"],
+    "expected_length": "30–40 слов",
+    "sample_answer": "Hi! I need help choosing a gift for our friend Tom. He likes books and music. Do you have any ideas? Let me know. Thanks!"
+  },
+  {
+    "id": 4,
+    "task_text": "Напишите письмо другу, в котором расскажите о книге, которую вы недавно прочитали. Напишите, о чём она и понравилась ли она вам.",
+    "keywords": ["book", "read", "story", "like", "recommend"],
+    "expected_length": "30–40 слов",
+    "sample_answer": "Hi! I just read a great book. It's about a detective. The story is exciting. I really liked it. You should read it too!"
+  },
+  {
+    "id": 5,
+    "task_text": "Напишите письмо другу, в котором пригласите его/её на день рождения. Сообщите дату, время и место проведения.",
+    "keywords": ["birthday", "invite", "party", "date", "place"],
+    "expected_length": "30–40 слов",
+    "sample_answer": "Hi! I'm having a birthday party on Saturday, July 20, at 6 PM. It will be at my place. Please come! It will be fun."
+  },
+  {
+    "id": 6,
+    "task_text": "Напишите письмо другу, в котором расскажите, чем вы любите заниматься в свободное время. Опишите своё хобби.",
+    "keywords": ["hobby", "free time", "like", "do", "relax"],
+    "expected_length": "30–40 слов",
+    "sample_answer": "Hi! In my free time I like drawing. It helps me relax. I also enjoy listening to music. What about you?"
+  },
+  {
+    "id": 7,
+    "task_text": "Напишите письмо другу, в котором расскажите о недавнем путешествии или поездке. Где вы были, что видели и что понравилось.",
+    "keywords": ["trip", "travel", "visit", "see", "like"],
+    "expected_length": "30–40 слов",
+    "sample_answer": "Hi! I went to the mountains last week. The views were amazing. I walked a lot and took photos. I really enjoyed it."
+  },
+  {
+    "id": 8,
+    "task_text": "Напишите письмо другу, в котором спросите, как у него/неё дела, и поделитесь своими новостями.",
+    "keywords": ["news", "how are you", "share", "tell", "update"],
+    "expected_length": "30–40 слов",
+    "sample_answer": "Hi! How are you? I hope you're doing well. I've started learning Spanish. It's interesting but difficult. Tell me your news!"
+  },
+  {
+    "id": 9,
+    "task_text": "Напишите письмо другу, в котором расскажите о фильме, который вы недавно посмотрели, и порекомендуйте его.",
+    "keywords": ["film", "watch", "recommend", "like", "story"],
+    "expected_length": "30–40 слов",
+    "sample_answer": "Hi! I saw a great film yesterday. It's a comedy. The story is funny and the actors are good. I recommend it!"
+  },
+  {
+    "id": 10,
+    "task_text": "Напишите письмо другу, в котором договоритесь о встрече в кафе. Предложите время и место.",
+    "keywords": ["cafe", "meet", "time", "place", "suggest"],
+    "expected_length": "30–40 слов",
+    "sample_answer": "Hi! Let's meet at the cafe on Main Street. How about Saturday at 3 PM? Does that work for you? Let me know."
+  },
+  {
+    "id": 11,
+    "task_text": "Напишите письмо другу, в котором расскажите о своём новом увлечении (спорт, искусство, кулинария и т.д.).",
+    "keywords": ["new", "hobby", "learn", "enjoy", "try"],
+    "expected_length": "30–40 слов",
+    "sample_answer": "Hi! I've started learning to cook. It's really fun. Yesterday I made pasta. It was delicious! Do you like cooking?"
+  },
+  {
+    "id": 12,
+    "task_text": "Напишите письмо другу, в котором поблагодарите его/её за помощь или подарок.",
+    "keywords": ["thank you", "help", "gift", "appreciate", "kind"],
+    "expected_length": "30–40 слов",
+    "sample_answer": "Hi! Thank you so much for the beautiful scarf. It's very warm and I love the colour. You are very kind. See you soon!"
+  },
+  {
+    "id": 13,
+    "task_text": "Напишите письмо другу, в котором расскажите о планах на лето. Куда бы вы хотели поехать и что делать.",
+    "keywords": ["summer", "holiday", "plan", "go", "beach"],
+    "expected_length": "30–40 слов",
+    "sample_answer": "Hi! I'm planning to go to the beach this summer. I want to swim and relax. Maybe I'll also visit a new city. What are your plans?"
+  },
+  {
+    "id": 14,
+    "task_text": "Напишите письмо другу, в котором расскажите о своей семье или близких людях.",
+    "keywords": ["family", "parents", "sister", "brother", "love"],
+    "expected_length": "30–40 слов",
+    "sample_answer": "Hi! My family is small. I have a sister and two parents. We often have dinner together. I love them very much."
+  },
+  {
+    "id": 15,
+    "task_text": "Напишите письмо другу, в котором расскажите о своём любимом времени года и почему вы его любите.",
+    "keywords": ["season", "autumn", "winter", "spring", "summer", "like"],
+    "expected_length": "30–40 слов",
+    "sample_answer": "Hi! I like autumn because the weather is cool and the leaves are beautiful. I enjoy walking in the park. What's your favourite season?"
+  },
+  {
+    "id": 16,
+    "task_text": "Напишите письмо другу, в котором поделитесь рецептом простого блюда, которое вы недавно приготовили.",
+    "keywords": ["recipe", "cook", "dish", "easy", "try"],
+    "expected_length": "30–40 слов",
+    "sample_answer": "Hi! I made a simple salad yesterday. Just tomatoes, cucumber, and olive oil. It's very tasty and healthy. You should try it!"
+  },
+  {
+    "id": 17,
+    "task_text": "Напишите письмо другу, в котором расскажите о том, как вы проводите вечера после работы/учёбы.",
+    "keywords": ["evening", "after work", "relax", "read", "watch"],
+    "expected_length": "30–40 слов",
+    "sample_answer": "Hi! In the evenings I usually read a book or watch a series. Sometimes I go for a walk. It helps me relax. How about you?"
+  },
+  {
+    "id": 18,
+    "task_text": "Напишите письмо другу, в котором предложите вместе заняться спортом или активностью (бег, йога, плавание и т.д.).",
+    "keywords": ["sport", "together", "run", "swim", "join"],
+    "expected_length": "30–40 слов",
+    "sample_answer": "Hi! I want to start running in the mornings. Would you like to join me? It would be more fun together. Let me know!"
+  },
+  {
+    "id": 19,
+    "task_text": "Напишите письмо другу, в котором расскажите о своём любимом месте в городе и почему оно вам нравится.",
+    "keywords": ["place", "city", "like", "visit", "often"],
+    "expected_length": "30–40 слов",
+    "sample_answer": "Hi! My favourite place is the old library. It's quiet and peaceful. I like to go there to read. You should visit it too."
+  },
+  {
+    "id": 20,
+    "task_text": "Напишите письмо другу, в котором расскажите о событии, которое вас порадовало (праздник, встреча, достижение).",
+    "keywords": ["happy", "event", "celebrate", "achievement", "enjoy"],
+    "expected_length": "30–40 слов",
+    "sample_answer": "Hi! I passed my driving test! I'm so happy. I celebrated with my family. We had a nice dinner. Let's meet soon!"
+  },
+  {
+    "id": 21,
+    "task_text": "Напишите письмо другу, в котором спросите совета по поводу выбора подарка для вашего общего друга.",
+    "keywords": ["advice", "gift", "choose", "friend", "suggest"],
+    "expected_length": "30–40 слов",
+    "sample_answer": "Hi! I need your advice. I want to buy a birthday gift for Anna. What do you think she would like? She loves music and books. Thanks!"
+  },
+  {
+    "id": 22,
+    "task_text": "Напишите письмо другу, в котором расскажите о своём увлечении музыкой (или другим искусством) и порекомендуйте что-то.",
+    "keywords": ["music", "listen", "song", "recommend", "enjoy"],
+    "expected_length": "30–40 слов",
+    "sample_answer": "Hi! I've been listening to a new band. They play folk music. Their songs are very melodic. I think you might like them. Give them a try!"
+  },
+  {
+    "id": 23,
+    "task_text": "Напишите письмо другу, в котором пригласите его/её на совместный ужин или пикник на выходных.",
+    "keywords": ["dinner", "picnic", "invite", "weekend", "join"],
+    "expected_length": "30–40 слов",
+    "sample_answer": "Hi! Would you like to have a picnic with me on Saturday? The weather is going to be nice. I'll prepare some food. Let me know if you're free."
+  },
+  {
+    "id": 24,
+    "task_text": "Напишите письмо другу, в котором расскажите о том, как вы проводите время в плохую погоду (дождь, снег).",
+    "keywords": ["rain", "weather", "stay", "home", "read"],
+    "expected_length": "30–40 слов",
+    "sample_answer": "Hi! When it rains, I like to stay home. I read a book or watch a movie. Sometimes I bake cookies. It's cozy. How do you spend rainy days?"
+  },
+  {
+    "id": 25,
+    "task_text": "Напишите письмо другу, в котором расскажите о том, что вы недавно узнали что-то новое (интересный факт, навык, место).",
+    "keywords": ["learn", "new", "fact", "interesting", "share"],
+    "expected_length": "30–40 слов",
+    "sample_answer": "Hi! I just learned that octopuses have three hearts! Isn't that amazing? I love discovering new things. Do you have any interesting facts to share?"
+  }
+    ],
+    "intermediate": [],
+    "expert": []
+  },
+  "essay": {
+    "beginner": [],
+    "intermediate": [],
+    "expert": []
+  },
+  "post": {
+    "beginner": [],
+    "intermediate": [],
+    "expert": []
+  },
+  "dialogue": {
+    "beginner": [],
+    "intermediate": [],
+    "expert": []
+  },
+  "story": {
+    "beginner": [],
+    "intermediate": [],
+    "expert": []
+  }
+}
