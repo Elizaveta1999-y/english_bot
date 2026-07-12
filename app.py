@@ -25,6 +25,7 @@ WEBHOOK_SECRET = "my-secret-key"
 bot = Bot(token=BOT_TOKEN)
 dp = Dispatcher()
 
+dp.include_router(writing.router)
 dp.include_router(start.router)
 dp.include_router(reading.router)   # <-- ПЕРВЫМ после start
 dp.include_router(listening.router)
@@ -37,8 +38,7 @@ dp.include_router(common.router)
 dp.include_router(lessons.router)
 dp.include_router(speaking.router)
 dp.include_router(profile.router)
-dp.include_router(skills.router)
-dp.include_router(writing.router) 
+dp.include_router(skills.router) 
 
 async def set_commands(bot: Bot):
     commands = [
