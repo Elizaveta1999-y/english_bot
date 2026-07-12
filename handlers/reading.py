@@ -261,7 +261,8 @@ async def choose_level(callback: CallbackQuery, state: FSMContext):
         await callback.answer()
         return
 
-    if task.get("input_type") == "text":
+    # Устанавливаем состояние для текстового ввода
+    if task.get("input_type") == "text" or short_type == "order":  # для order всегда текстовый ввод
         await state.set_state(ReadingStates.waiting_for_text)
     else:
         await state.set_state(None)
@@ -294,13 +295,17 @@ async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
 
     explanation = task.get("explanation", "")
     if correct:
-        await callback.message.answer("Правильно!")
+        result_text = "✅ Правильно!"
     else:
-        await callback.message.answer(f"Неправильно. Правильный ответ: {task['options'][task['correct']]}")
+        result_text = f"❌ Неправильно. Правильный ответ: {task['options'][task['correct']]}"
 
+    # Отправляем одно сообщение с результатом и пояснением
+    full_text = result_text
     if explanation:
-        await callback.message.answer(explanation)
+        full_text += f"\n\n{explanation}"
+    await callback.message.answer(full_text)
 
+    # Переход к следующему заданию
     next_index = index + 1
     next_task = get_task(type_json, level_json, next_index)
     if not next_task:
@@ -315,7 +320,7 @@ async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
 
     text, keyboard = await render_task_message(user_id, short_type, short_level, next_index, paragraph_idx=0)
     if text:
-        if next_task.get("input_type") == "text":
+        if next_task.get("input_type") == "text" or short_type == "order":
             await state.set_state(ReadingStates.waiting_for_text)
         else:
             await state.set_state(None)
@@ -347,11 +352,13 @@ async def handle_text_answer(message: Message, state: FSMContext):
     correct_answer = task.get("correct")
     user_input = message.text.strip()
 
+    # Сравнение ответов (поддержка списка для fill_multiple, но для order строка)
     if isinstance(correct_answer, list):
         user_parts = [p.strip().lower() for p in user_input.split(";") if p.strip()]
         correct_parts = [p.strip().lower() for p in correct_answer]
         correct = (user_parts == correct_parts)
     else:
+        # Очистка от лишних пробелов и приведение к нижнему регистру
         user_clean = "".join(user_input.split()).lower()
         correct_clean = "".join(str(correct_answer).split()).lower()
         correct = (user_clean == correct_clean)
@@ -360,13 +367,16 @@ async def handle_text_answer(message: Message, state: FSMContext):
 
     explanation = task.get("explanation", "")
     if correct:
-        await message.answer("Правильно!")
+        result_text = "✅ Правильно!"
     else:
-        await message.answer(f"Неправильно. Правильный ответ: {correct_answer}")
+        result_text = f"❌ Неправильно. Правильный ответ: {correct_answer}"
 
+    full_text = result_text
     if explanation:
-        await message.answer(explanation)
+        full_text += f"\n\n{explanation}"
+    await message.answer(full_text)
 
+    # Переход к следующему заданию
     next_index = index + 1
     next_task = get_task(type_json, level_json, next_index)
     if not next_task:
@@ -382,18 +392,18 @@ async def handle_text_answer(message: Message, state: FSMContext):
 
     text, keyboard = await render_task_message(user_id, short_type, short_level, next_index, paragraph_idx=0)
     if text:
-        if next_task.get("input_type") == "text":
+        if next_task.get("input_type") == "text" or short_type == "order":
             await state.set_state(ReadingStates.waiting_for_text)
         else:
             await state.set_state(None)
         await message.answer(text, reply_markup=keyboard, parse_mode="HTML")
 
-# -------------------- Показать ответ (ИСПРАВЛЕНО) --------------------
+# -------------------- Показать ответ --------------------
 @router.callback_query(F.data.startswith("reading_show_answer:"))
-async def show_answer(callback: CallbackQuery, state: FSMContext):  # добавили state
+async def show_answer(callback: CallbackQuery, state: FSMContext):
     _, short_type, short_level, index_str = callback.data.split(":")
     index = int(index_str)
-    data = await state.get_data()  # используем state
+    data = await state.get_data()
     type_json = data.get("type_json")
     level_json = data.get("level_json")
     if not type_json or not level_json:
@@ -406,9 +416,11 @@ async def show_answer(callback: CallbackQuery, state: FSMContext):  # добав
 
     correct = task.get("correct")
     explanation = task.get("explanation", "")
-    await callback.message.answer(f"Правильный ответ: {correct}")
+    # Отправляем одно сообщение с ответом и пояснением
+    text = f"✅ Правильный ответ: {correct}"
     if explanation:
-        await callback.message.answer(explanation)
+        text += f"\n\n{explanation}"
+    await callback.message.answer(text)
     await callback.answer()
 
 # -------------------- Завершить сессию --------------------
