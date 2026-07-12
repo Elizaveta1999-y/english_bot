@@ -17,7 +17,15 @@ def load_tasks():
     with open(TASKS_FILE, "r", encoding="utf-8") as f:
         return json.load(f)
 
-ALL_TASKS = load_tasks()  # {'email': {'beginner': [...], ...}, ...}
+ALL_TASKS = load_tasks()
+
+# ЛОГ ПРИ ЗАГРУЗКЕ
+print("=== WRITING TASKS LOADED ===")
+print(f"Keys: {list(ALL_TASKS.keys())}")
+for k in ALL_TASKS:
+    print(f"  {k}: {list(ALL_TASKS[k].keys())}")
+    for level in ALL_TASKS[k]:
+        print(f"    {level}: {len(ALL_TASKS[k][level])} tasks")
 
 # ---------- Redis для прогресса ----------
 REDIS_URL = os.getenv("REDIS_URL", "redis://localhost:6379")
@@ -118,14 +126,15 @@ async def level_chosen(callback: CallbackQuery, state: FSMContext):
     data = await state.get_data()
     task_type = data.get("task_type")
 
+    # ЛОГИ
+    print(f"!!! level_chosen CALLED: task_type={task_type}, level={level}")
+
     # Получаем список заданий для этого типа и уровня
     tasks = ALL_TASKS.get(task_type, {}).get(level, [])
-    
-    # ЛОГ ДЛЯ ОТЛАДКИ — показывает, сколько заданий загрузилось
-    print(f"DEBUG: task_type={task_type}, level={level}, tasks count={len(tasks)}")
-    print(f"DEBUG: ALL_TASKS keys={list(ALL_TASKS.keys())}")
+    print(f"!!! tasks count = {len(tasks)}")
+    print(f"!!! ALL_TASKS keys: {list(ALL_TASKS.keys())}")
     if task_type in ALL_TASKS:
-        print(f"DEBUG: levels for {task_type}: {list(ALL_TASKS[task_type].keys())}")
+        print(f"!!! levels for {task_type}: {list(ALL_TASKS[task_type].keys())}")
 
     if not tasks:
         await callback.message.edit_text(
