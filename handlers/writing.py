@@ -146,7 +146,7 @@ async def handle_user_answer(message: Message, state: FSMContext):
         await state.clear()
         return
 
-    # 1. Проверка длины
+    # 1. Проверка длины (оставляем)
     word_count = len(user_text.split())
     if word_count < 10:
         await message.answer("❌ Слишком коротко! Напишите не менее 10 слов.")
@@ -155,18 +155,7 @@ async def handle_user_answer(message: Message, state: FSMContext):
         await message.answer("⚠️ Слишком длинно! Сократите до 150 слов.")
         return
 
-    # 2. Проверка наличия ключевых слов (грубая, но не блокирующая)
-    keywords = task.get("keywords", [])
-    has_keyword = any(kw in user_text.lower() for kw in keywords)
-    if not has_keyword:
-        # Предупреждаем, но не блокируем – ИИ всё равно оценит
-        await message.answer(
-            f"⚠️ Вы не использовали ключевые слова: *{', '.join(keywords)}*.\n"
-            f"ИИ всё равно проверит ваш ответ, но учтите это.",
-            parse_mode="Markdown"
-        )
-
-    # 3. Отправляем в DeepSeek для проверки
+    # 2. Отправляем в DeepSeek для проверки (без предварительной проверки ключевых слов)
     await message.bot.send_chat_action(chat_id=message.chat.id, action="typing")
 
     try:
@@ -174,7 +163,7 @@ async def handle_user_answer(message: Message, state: FSMContext):
             task_text=task['task_text'],
             user_answer=user_text,
             level=level,
-            keywords=keywords
+            keywords=task.get('keywords', [])
         )
     except Exception as e:
         await message.answer("❌ Ошибка при обращении к ИИ. Попробуйте позже.")
@@ -183,6 +172,7 @@ async def handle_user_answer(message: Message, state: FSMContext):
     # Отправляем фидбек
     await message.answer(f"📊 *Результат проверки:*\n\n{feedback}", parse_mode="Markdown")
 
+    # ... остальной код без изменений
     # 4. Переход к следующему заданию (если есть)
     next_index = index + 1
     if next_index >= len(tasks):
@@ -197,11 +187,11 @@ async def handle_user_answer(message: Message, state: FSMContext):
     )
 
     # Показываем следующее задание (без смайликов)
-    task_text = (
-        f"{next_task['task_text']}\n\n"
-        f"Ключевые слова: {', '.join(next_task['keywords'])}\n"
-        f"Объём: {next_task['expected_length']}"
-    )
+task_text = (
+    f"{task['task_text']}\n\n"
+    f"Ключевые слова (по желанию): {', '.join(task['keywords'])}\n"
+    f"Объём: {task['expected_length']}"
+)
     keyboard = get_action_keyboard(task_type, level, next_index)
     await message.answer(task_text, reply_markup=keyboard, parse_mode="Markdown")
 
