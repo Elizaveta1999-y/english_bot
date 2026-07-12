@@ -262,7 +262,7 @@ async def choose_level(callback: CallbackQuery, state: FSMContext):
         return
 
     # Устанавливаем состояние для текстового ввода
-    if task.get("input_type") == "text" or short_type == "order":  # для order всегда текстовый ввод
+    if task.get("input_type") == "text" or short_type == "order":
         await state.set_state(ReadingStates.waiting_for_text)
     else:
         await state.set_state(None)
@@ -295,15 +295,16 @@ async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
 
     explanation = task.get("explanation", "")
     if correct:
-        result_text = "✅ Правильно!"
+        # Правильный ответ: только "Правильно!" без пояснения
+        result_text = "Правильно!"
     else:
-        result_text = f"❌ Неправильно. Правильный ответ: {task['options'][task['correct']]}"
+        # Неправильный ответ: "Неправильно. Правильный ответ: ..." и далее пояснение (без слова "Пояснение")
+        result_text = f"Неправильно. Правильный ответ: {task['options'][task['correct']]}"
+        if explanation:
+            result_text += f"\n{explanation}"
 
-    # Отправляем одно сообщение с результатом и пояснением
-    full_text = result_text
-    if explanation:
-        full_text += f"\n\n{explanation}"
-    await callback.message.answer(full_text)
+    # Отправляем результат в одном сообщении
+    await callback.message.answer(result_text)
 
     # Переход к следующему заданию
     next_index = index + 1
@@ -352,7 +353,7 @@ async def handle_text_answer(message: Message, state: FSMContext):
     correct_answer = task.get("correct")
     user_input = message.text.strip()
 
-    # Сравнение ответов (поддержка списка для fill_multiple, но для order строка)
+    # Сравнение ответов (для order ответ – строка, для других типов может быть список)
     if isinstance(correct_answer, list):
         user_parts = [p.strip().lower() for p in user_input.split(";") if p.strip()]
         correct_parts = [p.strip().lower() for p in correct_answer]
@@ -367,14 +368,13 @@ async def handle_text_answer(message: Message, state: FSMContext):
 
     explanation = task.get("explanation", "")
     if correct:
-        result_text = "✅ Правильно!"
+        result_text = "Правильно!"
     else:
-        result_text = f"❌ Неправильно. Правильный ответ: {correct_answer}"
+        result_text = f"Неправильно. Правильный ответ: {correct_answer}"
+        if explanation:
+            result_text += f"\n{explanation}"
 
-    full_text = result_text
-    if explanation:
-        full_text += f"\n\n{explanation}"
-    await message.answer(full_text)
+    await message.answer(result_text)
 
     # Переход к следующему заданию
     next_index = index + 1
@@ -416,10 +416,10 @@ async def show_answer(callback: CallbackQuery, state: FSMContext):
 
     correct = task.get("correct")
     explanation = task.get("explanation", "")
-    # Отправляем одно сообщение с ответом и пояснением
-    text = f"✅ Правильный ответ: {correct}"
+    # Кнопка "Показать ответ" – выводим правильный ответ и пояснение (если есть)
+    text = f"Правильный ответ: {correct}"
     if explanation:
-        text += f"\n\n{explanation}"
+        text += f"\n{explanation}"
     await callback.message.answer(text)
     await callback.answer()
 
