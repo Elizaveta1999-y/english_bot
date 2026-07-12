@@ -4,7 +4,6 @@ from aiogram.fsm.context import FSMContext
 from data.users import set_user_state, get_user_state
 from services.deepseek import chat
 from states.speaking_states import SpeakingStates
-from speaking.services.ai import process_voice_message
 
 router = Router()
 
@@ -54,79 +53,3 @@ async def select_voice(callback: CallbackQuery, state: FSMContext):
         parse_mode="HTML"
     )
     await callback.answer()
-
-@router.message(SpeakingStates.waiting_for_voice, F.text == "📊 Я всё! Фидбек")
-async def feedback_button(message: Message, state: FSMContext):
-    user_id = message.from_user.id
-    user_state = get_user_state(user_id)
-    if user_state.get("mode") != "speaking_active":
-        await message.answer("Фидбек доступен только в режиме Speaking.")
-        return
-    history = user_state.get("history", [])
-    if len(history) < 2:
-        await message.answer("Вы ещё не общались. Отправьте несколько голосовых сообщений.")
-        return
-    conversation = "\n".join([f"{'Student' if h['role']=='user' else 'Teacher'}: {h['text']}" for h in history[-10:]])
-    prompt = (
-        "Ты учитель английского. Дай короткий фидбек (до 5 предложений) на русском языке. "
-        "Сначала похвали, потом перечисли основные ошибки (с исправлениями), дай совет. "
-        "Используй HTML-теги <b> и <i>. Добавь смайлики.\n\n"
-        f"Диалог:\n{conversation}"
-    )
-    await message.bot.send_chat_action(chat_id=message.chat.id, action="typing")
-    feedback = chat(prompt, max_tokens=500, temperature=0.5)
-    if len(feedback) > 1000:
-        feedback = feedback[:1000] + "..."
-    await message.answer(f"📊 <b>Ваш фидбек</b>:\n\n{feedback}", parse_mode="HTML")
-
-@router.message(SpeakingStates.waiting_for_voice, F.text == "🏠 Главное меню")
-async def exit_to_main_menu(message: Message, state: FSMContext):
-    user_id = message.from_user.id
-    user_state = get_user_state(user_id)
-    user_state["mode"] = None
-    set_user_state(user_id, user_state)
-    await state.clear()
-    from handlers.start import show_main_menu
-    await show_main_menu(message, edit=False)
-
-# ========== ОБРАБОТЧИК ТЕКСТА В РЕЖИМЕ SPEAKING ==========
-@router.message(SpeakingStates.waiting_for_voice, F.text)
-async def handle_speaking_text(message: Message, state: FSMContext):
-    user_id = message.from_user.id
-    user_state = get_user_state(user_id)
-
-    # Если активен любой режим чтения – пропускаем (чтобы не мешать)
-    current_state = await state.get_state()
-    if current_state and current_state.startswith("ReadingStates"):
-        return
-
-    if user_state.get("mode") != "speaking_active":
-        return
-
-    if message.text in ["📊 Я всё! Фидбек", "🏠 Главное меню"]:
-        return
-
-    await message.bot.send_chat_action(chat_id=message.chat.id, action="typing")
-    ai_response = await process_voice_message(user_id, message.text)
-    
-    keyboard = InlineKeyboardMarkup(inline_keyboard=[
-        [InlineKeyboardButton(text="🌐 Перевести", callback_data=f"translate_text_{user_id}")]
-    ])
-    sent = await message.answer(ai_response, reply_markup=keyboard)
-    
-    from handlers.voice import last_text_response as global_last_text_response
-    global_last_text_response[user_id] = {"text": ai_response, "translation": None, "message_id": sent.message_id}
-    
-    history = user_state.get("history", [])
-    history.append({"role": "user", "text": message.text})
-    history.append({"role": "assistant", "text": ai_response})
-    if len(history) > 20:
-        history = history[-20:]
-    user_state["history"] = history
-    set_user_state(user_id, user_state)
-
-# Обработчик голосовых сообщений (уже есть в voice.py, но оставим здесь на всякий случай)
-@router.message(SpeakingStates.waiting_for_voice, F.voice)
-async def handle_voice_in_speaking(message: Message, state: FSMContext):
-    from handlers.voice import handle_voice
-    await handle_voice(message)

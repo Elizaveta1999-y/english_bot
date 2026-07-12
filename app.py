@@ -26,7 +26,8 @@ bot = Bot(token=BOT_TOKEN)
 dp = Dispatcher()
 
 dp.include_router(start.router)
-dp.include_router(listening.router)   # <-- сразу после start
+dp.include_router(reading.router)   # <-- ПЕРВЫМ после start
+dp.include_router(listening.router)
 dp.include_router(support.router)
 dp.include_router(subscription_router)
 dp.include_router(words.router)
@@ -37,9 +38,6 @@ dp.include_router(lessons.router)
 dp.include_router(speaking.router)
 dp.include_router(profile.router)
 dp.include_router(skills.router)
-dp.include_router(reading_router)
-dp.message.middleware(AccessMiddleware())
-dp.callback_query.middleware(AccessMiddleware())
 
 async def set_commands(bot: Bot):
     commands = [

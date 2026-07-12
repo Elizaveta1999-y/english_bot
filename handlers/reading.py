@@ -18,7 +18,6 @@ from data.users import get_user_state, set_user_state
 logger = logging.getLogger(__name__)
 router = Router()
 
-# -------------------- Приветственные сообщения --------------------
 READING_WELCOME_MESSAGES = [
     "<b>📖 Чтение</b>\n\n<i>Чтение — это ключ к расширению словарного запаса и пониманию структур языка. Регулярно читайте тексты разного уровня и учитесь выделять главное.</i>\n\nВыберите тип задания и уровень — и тренируйтесь в удобном темпе.",
     "<b>📖 Чтение</b>\n\n<i>Умение быстро читать и понимать текст пригодится в любом контексте: от экзаменов до работы. Начните с коротких текстов и постепенно увеличивайте сложность.</i>\n\nГотовы попробовать?",
@@ -27,7 +26,6 @@ READING_WELCOME_MESSAGES = [
     "<b>📖 Чтение</b>\n\n<i>Читайте, анализируйте, отвечайте на вопросы — и вы заметите, как тексты становятся понятнее с каждым разом.</i>\n\nВыберите задание и уровень."
 ]
 
-# -------------------- Маппинг типов и уровней --------------------
 TYPE_DISPLAY = {
     "podbor": "🥈 Подбор заголовка",
     "truefalse": "⚖️ True/False/Not stated",
@@ -53,7 +51,6 @@ LEVEL_MAP = {
     "expert": "Эксперт"
 }
 
-# -------------------- Клавиатуры --------------------
 def get_type_choice_keyboard():
     buttons = []
     for key, label in TYPE_DISPLAY.items():
@@ -86,11 +83,9 @@ def get_progress_keyboard():
     ]
     return InlineKeyboardMarkup(inline_keyboard=buttons)
 
-# -------------------- Формирование карточки задания --------------------
 async def render_task_message(user_id: int, short_type: str, short_level: str, index: int, paragraph_idx: int = 0):
     type_json = TYPE_MAP.get(short_type, short_type)
     level_json = LEVEL_MAP.get(short_level, short_level)
-
     task = get_task(type_json, level_json, index)
     if not task:
         return None, None
@@ -101,7 +96,6 @@ async def render_task_message(user_id: int, short_type: str, short_level: str, i
     if not paragraphs:
         paragraphs = ["(текст отсутствует)"]
 
-    # --- СПЕЦИАЛЬНАЯ ОБРАБОТКА ДЛЯ "Восстановление порядка абзацев" ---
     if short_type == "order":
         text = ""
         for i, para in enumerate(paragraphs):
@@ -113,7 +107,6 @@ async def render_task_message(user_id: int, short_type: str, short_level: str, i
         keyboard = get_action_keyboard(short_type, short_level, index)
         return text, keyboard
 
-    # --- ОБЫЧНАЯ ЛОГИКА ---
     if paragraph_idx >= len(paragraphs):
         paragraph_idx = 0
     current_paragraph = paragraphs[paragraph_idx]
@@ -128,7 +121,6 @@ async def render_task_message(user_id: int, short_type: str, short_level: str, i
     if task.get("input_type") == "text":
         text += "Введите ответ в чат.\n"
 
-    # Клавиатура
     if task.get("input_type") == "text":
         keyboard = get_action_keyboard(short_type, short_level, index)
     elif short_type == "fill":
@@ -158,15 +150,12 @@ async def render_task_message(user_id: int, short_type: str, short_level: str, i
 
     return text, keyboard
 
-# -------------------- Сообщение с прогрессом --------------------
 async def send_progress_message(callback: CallbackQuery, short_type: str, short_level: str):
     user_id = callback.from_user.id
     type_json = TYPE_MAP.get(short_type, short_type)
     level_json = LEVEL_MAP.get(short_level, short_level)
-
     correct, wrong = await get_user_stats(user_id, type_json, level_json)
     display_name = TYPE_DISPLAY.get(short_type, short_type)
-
     text = f"<b>Режим: {display_name}</b>\n\n"
     text += "Внимательно прочитайте текст и выполните задание.\n\n"
     text += f"Ваш прогресс:\n"
@@ -174,7 +163,6 @@ async def send_progress_message(callback: CallbackQuery, short_type: str, short_
     text += f"✖ Ошибок: {wrong}\n\n"
     text += "/revision_mode — работа над ошибками\n"
     text += "/reset_progress — сбросить прогресс"
-
     await callback.message.answer(text, reply_markup=get_progress_keyboard(), parse_mode="HTML")
 
 # -------------------- Обработчики --------------------
@@ -258,13 +246,10 @@ async def choose_level(callback: CallbackQuery, state: FSMContext):
         await callback.answer()
         return
 
-    # === ВСЕГДА УСТАНАВЛИВАЕМ СОСТОЯНИЕ ДЛЯ ТЕКСТОВОГО ВВОДА ===
     await state.set_state(ReadingStates.waiting_for_text)
-
     await callback.message.answer(text, reply_markup=keyboard, parse_mode="HTML")
     await callback.answer()
 
-# -------------------- Ответ на кнопки --------------------
 @router.callback_query(F.data.startswith("reading_answer:"))
 async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
     _, short_type, short_level, index_str, chosen_idx_str = callback.data.split(":")
@@ -297,7 +282,6 @@ async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
 
     await callback.message.answer(result_text)
 
-    # Переход к следующему заданию
     next_index = index + 1
     next_task = get_task(type_json, level_json, next_index)
     if not next_task:
@@ -312,13 +296,12 @@ async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
 
     text, keyboard = await render_task_message(user_id, short_type, short_level, next_index, paragraph_idx=0)
     if text:
-        # ВСЕГДА УСТАНАВЛИВАЕМ СОСТОЯНИЕ
         await state.set_state(ReadingStates.waiting_for_text)
         await callback.message.answer(text, reply_markup=keyboard, parse_mode="HTML")
     await callback.answer()
 
-# -------------------- Текстовый ввод --------------------
-@router.message(ReadingStates.waiting_for_text)
+# -------------------- Текстовый ввод (только в состоянии чтения) --------------------
+@router.message(ReadingStates.waiting_for_text, F.text)
 async def handle_text_answer(message: Message, state: FSMContext):
     data = await state.get_data()
     short_type = data.get("short_type")
@@ -378,11 +361,9 @@ async def handle_text_answer(message: Message, state: FSMContext):
 
     text, keyboard = await render_task_message(user_id, short_type, short_level, next_index, paragraph_idx=0)
     if text:
-        # ВСЕГДА УСТАНАВЛИВАЕМ СОСТОЯНИЕ
         await state.set_state(ReadingStates.waiting_for_text)
         await message.answer(text, reply_markup=keyboard, parse_mode="HTML")
 
-# -------------------- Показать ответ --------------------
 @router.callback_query(F.data.startswith("reading_show_answer:"))
 async def show_answer(callback: CallbackQuery, state: FSMContext):
     _, short_type, short_level, index_str = callback.data.split(":")
@@ -406,7 +387,6 @@ async def show_answer(callback: CallbackQuery, state: FSMContext):
     await callback.message.answer(text)
     await callback.answer()
 
-# -------------------- Завершить сессию --------------------
 @router.callback_query(F.data == "reading_finish_session")
 async def finish_session(callback: CallbackQuery, state: FSMContext):
     data = await state.get_data()
