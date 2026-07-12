@@ -5,7 +5,6 @@ from data.users import set_user_state, get_user_state
 from services.deepseek import chat
 from states.speaking_states import SpeakingStates
 from speaking.services.ai import process_voice_message
-from states.reading_states import ReadingStates
 
 router = Router()
 
@@ -96,20 +95,17 @@ async def handle_speaking_text(message: Message, state: FSMContext):
     user_id = message.from_user.id
     user_state = get_user_state(user_id)
 
-    # Если активен режим чтения – пропускаем (чтобы не мешать)
+    # Если активен любой режим чтения – пропускаем (чтобы не мешать)
     current_state = await state.get_state()
-    if current_state == "ReadingStates:waiting_for_text":
+    if current_state and current_state.startswith("ReadingStates"):
         return
 
-    # Проверяем, что мы действительно в режиме Speaking
     if user_state.get("mode") != "speaking_active":
         return
 
-    # Если текст - служебная кнопка, пропускаем (они обработаны выше)
     if message.text in ["📊 Я всё! Фидбек", "🏠 Главное меню"]:
         return
 
-    # Обрабатываем текст через ИИ
     await message.bot.send_chat_action(chat_id=message.chat.id, action="typing")
     ai_response = await process_voice_message(user_id, message.text)
     
@@ -118,7 +114,6 @@ async def handle_speaking_text(message: Message, state: FSMContext):
     ])
     sent = await message.answer(ai_response, reply_markup=keyboard)
     
-    # Сохраняем историю
     from handlers.voice import last_text_response as global_last_text_response
     global_last_text_response[user_id] = {"text": ai_response, "translation": None, "message_id": sent.message_id}
     
@@ -133,8 +128,5 @@ async def handle_speaking_text(message: Message, state: FSMContext):
 # Обработчик голосовых сообщений (уже есть в voice.py, но оставим здесь на всякий случай)
 @router.message(SpeakingStates.waiting_for_voice, F.voice)
 async def handle_voice_in_speaking(message: Message, state: FSMContext):
-    # Здесь можно оставить пустой, если голос обрабатывается в voice.py
-    # Но чтобы не дублировать, просто вызовем обработчик из voice.py
-    # Импортируем и вызываем
     from handlers.voice import handle_voice
     await handle_voice(message)
