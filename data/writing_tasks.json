@@ -181,7 +181,183 @@
     "expert": []
   },
   "essay": {
-    "beginner": [],
+    "beginner": [
+  {
+    "id": 101,
+    "task_text": "Напишите короткое эссе (3–4 предложения) о том, почему важно заниматься спортом. Приведите 2 причины.",
+    "keywords": ["sport", "health", "energy", "important", "exercise"],
+    "expected_length": "30–40 слов",
+    "sample_answer": "Sport is important for health. It gives us energy and makes us strong. I exercise every day to feel better."
+  },
+  {
+    "id": 102,
+    "task_text": "Какое время года вам нравится больше всего и почему? Напишите 3–4 предложения.",
+    "keywords": ["season", "like", "weather", "enjoy", "reason"],
+    "expected_length": "30–40 слов",
+    "sample_answer": "I like summer most because the weather is warm. I can swim and go outside. Summer makes me happy."
+  },
+  {
+    "id": 103,
+    "task_text": "Что для вас важнее: хорошая работа или свободное время? Объясните свою точку зрения.",
+    "keywords": ["job", "free time", "important", "think", "balance"],
+    "expected_length": "30–40 слов",
+    "sample_answer": "I think free time is more important than work. We need rest to be happy and healthy. A good job is also nice, but balance is key."
+  },
+  {
+    "id": 104,
+    "task_text": "Напишите, почему полезно читать книги. Приведите 2–3 аргумента.",
+    "keywords": ["read", "books", "useful", "knowledge", "relax"],
+    "expected_length": "30–40 слов",
+    "sample_answer": "Reading books is useful. It gives us new knowledge and helps us relax. I read every day to learn something new."
+  },
+  {
+    "id": 105,
+    "task_text": "Что лучше: жить в городе или в деревне? Напишите своё мнение и один аргумент.",
+    "keywords": ["city", "village", "live", "prefer", "reason"],
+    "expected_length": "30–40 слов",
+    "sample_answer": "I prefer living in the city because there are more opportunities. You can find good jobs and entertainment. City life is more exciting."
+  },
+  {
+    "id": 106,
+    "task_text": "Как вы думаете, почему важно учить иностранные языки? Приведите 2 причины.",
+    "keywords": ["language", "learn", "important", "travel", "communicate"],
+    "expected_length": "30–40 слов",
+    "sample_answer": "Learning languages is important. It helps us travel and talk to people from other countries. It also opens many doors in life."
+  },
+  {
+    "id": 107,
+    "task_text": "Напишите, что вы думаете о здоровом питании. Почему это важно?",
+    "keywords": ["healthy", "food", "important", "eat", "well"],
+    "expected_length": "30–40 слов",
+    "sample_answer": "Healthy food is very important. It gives us energy and keeps us strong. I try to eat fruits and vegetables every day."
+  },
+  {
+    "id": 108,
+    "task_text": "Что вы предпочитаете: активный отдых или спокойный? Объясните почему.",
+    "keywords": ["active", "relax", "prefer", "rest", "enjoy"],
+    "expected_length": "30–40 слов",
+    "sample_answer": "I prefer active rest. I like to walk and play sports. It makes me feel happy and healthy. Sometimes I also enjoy quiet time."
+  },
+  {
+    "id": 109,
+    "task_text": "Почему важно помогать другим людям? Напишите 2–3 предложения.",
+    "keywords": ["help", "others", "important", "kind", "feel"],
+    "expected_length": "30–40 слов",
+    "sample_answer": "Helping others is important because it makes them happy. It also makes us feel good. Kindness makes the world better."
+  },
+  {
+    "id": 110,
+    "task_text": "Как вы думаете, что делает человека счастливым? Напишите своё мнение.",
+    "keywords": ["happy", "think", "family", "friends", "love"],
+    "expected_length": "30–40 слов",
+    "sample_answer": "I think family and friends make us happy. Love and support are important. I feel happy when I spend time with people I care about."
+  },
+  {
+    "id": 111,
+    "task_text": "Что вы думаете о путешествиях? Почему они полезны?",
+    "keywords": ["travel", "useful", "new places", "learn", "enjoy"],
+    "expected_length": "30–40 слов",
+    "sample_answer": "Travel is very useful. We see new places and meet new people. It helps us learn about different cultures. I love traveling."
+  },
+  {
+    "id": 112,
+    "task_text": "Напишите, почему важно иметь хобби. Приведите один пример.",
+    "keywords": ["hobby", "important", "free time", "relax", "enjoy"],
+    "expected_length": "30–40 слов",
+    "sample_answer": "Having a hobby is important. It helps us relax and enjoy our free time. My hobby is reading. It makes me happy."
+  },
+  {
+    "id": 113,
+    "task_text": "Как вы считаете, лучше иметь много друзей или несколько близких? Объясните.",
+    "keywords": ["friends", "close", "many", "trust", "important"],
+    "expected_length": "30–40 слов",
+    "sample_answer": "I think it's better to have a few close friends. They trust you and support you. Quality is more important than quantity."
+  },
+  {
+    "id": 114,
+    "task_text": "Почему важно быть вежливым? Напишите 2–3 предложения.",
+    "keywords": ["polite", "important", "respect", "kind", "people"],
+    "expected_length": "30–40 слов",
+    "sample_answer": "Being polite is important. It shows respect for others. Polite people make the world nicer. Everyone likes kind people."
+  },
+  {
+    "id": 115,
+    "task_text": "Что вы думаете о технологиях? Они делают жизнь лучше или хуже?",
+    "keywords": ["technology", "life", "better", "worse", "think"],
+    "expected_length": "30–40 слов",
+    "sample_answer": "Technology makes life better. It helps us communicate and learn. But we should not use it too much. Balance is important."
+  },
+  {
+    "id": 116,
+    "task_text": "Напишите, почему важно сохранять природу. Приведите один пример.",
+    "keywords": ["nature", "protect", "important", "environment", "future"],
+    "expected_length": "30–40 слов",
+    "sample_answer": "Protecting nature is important for our future. We need clean air and water. Planting trees is one way to help."
+  },
+  {
+    "id": 117,
+    "task_text": "Как вы считаете, что лучше: получать подарки или дарить? Объясните.",
+    "keywords": ["gifts", "give", "receive", "prefer", "happy"],
+    "expected_length": "30–40 слов",
+    "sample_answer": "I prefer giving gifts. It makes me happy to see others smile. Giving is more joyful than receiving."
+  },
+  {
+    "id": 118,
+    "task_text": "Напишите, почему важно учиться всю жизнь. Приведите 2 аргумента.",
+    "keywords": ["learn", "life", "important", "new things", "grow"],
+    "expected_length": "30–40 слов",
+    "sample_answer": "Learning is important all our life. It helps us grow and adapt to new things. We should never stop learning."
+  },
+  {
+    "id": 119,
+    "task_text": "Что вы думаете о чтении новостей? Почему это полезно?",
+    "keywords": ["news", "read", "useful", "information", "know"],
+    "expected_length": "30–40 слов",
+    "sample_answer": "Reading news is useful. It keeps us informed about the world. I read news every morning to know what is happening."
+  },
+  {
+    "id": 120,
+    "task_text": "Напишите, почему важно быть ответственным. Приведите пример.",
+    "keywords": ["responsible", "important", "duty", "trust", "example"],
+    "expected_length": "30–40 слов",
+    "sample_answer": "Being responsible is important. People trust you when you are reliable. For example, I always do my homework on time."
+  },
+  {
+    "id": 121,
+    "task_text": "Как вы считаете, что делает место хорошим для жизни? Напишите 2–3 фактора.",
+    "keywords": ["place", "live", "good", "factors", "important"],
+    "expected_length": "30–40 слов",
+    "sample_answer": "A good place to live has clean air, safety, and friendly people. Good schools and parks are also important."
+  },
+  {
+    "id": 122,
+    "task_text": "Напишите, почему важно знать историю. Приведите одну причину.",
+    "keywords": ["history", "important", "past", "learn", "understand"],
+    "expected_length": "30–40 слов",
+    "sample_answer": "Knowing history is important because it helps us understand the present. We can learn from past mistakes."
+  },
+  {
+    "id": 123,
+    "task_text": "Что вы думаете о музыке? Почему она важна в жизни людей?",
+    "keywords": ["music", "important", "life", "enjoy", "emotions"],
+    "expected_length": "30–40 слов",
+    "sample_answer": "Music is very important in life. It helps us express emotions and relax. Everyone enjoys music in their own way."
+  },
+  {
+    "id": 124,
+    "task_text": "Напишите, почему важно уметь работать в команде. Приведите 2 причины.",
+    "keywords": ["team", "work", "important", "together", "collaborate"],
+    "expected_length": "30–40 слов",
+    "sample_answer": "Working in a team is important because we can achieve more together. We share ideas and help each other. Teamwork makes tasks easier."
+  },
+  {
+    "id": 125,
+    "task_text": "Как вы считаете, что делает человека успешным? Напишите своё мнение.",
+    "keywords": ["success", "person", "qualities", "think", "achieve"],
+    "expected_length": "30–40 слов",
+    "sample_answer": "I think hard work and dedication make a person successful. Also, being kind and honest helps. Success comes from effort."
+  }
+],
     "intermediate": [],
     "expert": []
   },
