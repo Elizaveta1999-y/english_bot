@@ -7,7 +7,7 @@ from aiogram.fsm.state import State, StatesGroup
 
 router = Router()
 
-# ---------- Загрузка заданий (для проверки) ----------
+# ---------- Загрузка заданий ----------
 TASKS_FILE = os.path.join(os.path.dirname(__file__), "../data/writing_tasks.json")
 
 def load_tasks():
@@ -16,7 +16,7 @@ def load_tasks():
 
 ALL_TASKS = load_tasks()
 
-print("=== WRITING TASKS LOADED (TEST) ===")
+print("=== WRITING TASKS LOADED (FINAL) ===")
 print(f"Keys: {list(ALL_TASKS.keys())}")
 
 # ---------- Состояния FSM ----------
@@ -65,7 +65,7 @@ def get_action_keyboard(short_type: str, level: str, index: int):
 # ---------- Показать типы ----------
 async def show_task_types(message: Message, edit: bool = False):
     text = (
-        "✍️ *Режим Письмо (ТЕСТ)*\n\n"
+        "✍️ *Режим Письмо (FINAL)*\n\n"
         "Выберите тип задания:\n"
         "📧 *Email*\n"
         "📝 *Эссе*\n"
@@ -89,15 +89,20 @@ async def type_chosen(callback: CallbackQuery, state: FSMContext):
     text = f"Вы выбрали тип: *{task_type.upper()}*.\nТеперь выберите уровень:"
     await callback.message.edit_text(text, reply_markup=get_levels_keyboard(), parse_mode="Markdown")
 
-# ===== МИНИМАЛЬНЫЙ ОБРАБОТЧИК УРОВНЯ (ТОЛЬКО ТЕСТ) =====
 @router.callback_query(F.data.startswith("level_"))
 async def level_chosen(callback: CallbackQuery, state: FSMContext):
+    print(f"!!! LEVEL CHOSEN CALLBACK: {callback.data}")
     await callback.answer()
     level = callback.data.split("_")[1]
-    print(f"!!! LEVEL CHOSEN: level={level}")
     await callback.message.edit_text(f"✅ Вы выбрали уровень: {level}. Это тестовое сообщение. Если вы это видите, обработчик работает!")
 
-# ---------- Остальные обработчики (заглушки) ----------
+# ---------- УНИВЕРСАЛЬНЫЙ ЛОГГЕР ВСЕХ CALLBACK ----------
+@router.callback_query()
+async def catch_all_callbacks(callback: CallbackQuery):
+    print(f"CATCH ALL: {callback.data}")
+    await callback.answer()
+
+# ---------- Остальные обработчики ----------
 @router.callback_query(F.data == "cancel_writing")
 async def cancel_writing(callback: CallbackQuery, state: FSMContext):
     await callback.answer()
