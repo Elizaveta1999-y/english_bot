@@ -9,6 +9,7 @@ from handlers.lesson_utils import check_answer
 
 router = Router()
 
+# -------------------- CATEGORIES и TOPICS (как у тебя) --------------------
 CATEGORIES = [
     ("🏢 Работа и бизнес", "work"),
     ("✈️ Путешествия", "travel"),
@@ -73,6 +74,7 @@ TOPICS = {
     ]
 }
 
+# -------------------- Обработчики --------------------
 @router.callback_query(lambda c: c.data == "start_roleplay")
 async def start_roleplay(callback: CallbackQuery):
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
@@ -194,6 +196,7 @@ async def topic_chosen(callback: CallbackQuery):
     await callback.message.edit_text(roleplay_info, parse_mode="HTML")
     await callback.message.answer("🎬 <b>Можете начинать!</b>", reply_markup=keyboard, parse_mode="HTML")
 
+# --- Обработчики точных команд (БЕЗ общего обработчика текста) ---
 @router.message(F.text == "💡 Что ответить?")
 async def hint_button(message: Message):
     user_id = message.from_user.id
@@ -257,38 +260,6 @@ async def exit_to_menu(callback: CallbackQuery):
     await callback.message.answer("Режим завершён. Нажмите /start для выбора режима.", reply_markup=ReplyKeyboardRemove())
     await callback.answer()
 
-# ========== ЕДИНСТВЕННЫЙ ОБРАБОТЧИК ТЕКСТА ДЛЯ РОЛЕВОЙ ИГРЫ ==========
-@router.message(F.text)
-async def roleplay_text_handler(message: Message, state: FSMContext):
-    user_id = message.from_user.id
-    user_state = get_user_state(user_id)
-    
-    # Если активен любой режим чтения – пропускаем (чтобы не мешать)
-    current_state = await state.get_state()
-    if current_state and current_state.startswith("ReadingStates"):
-        return
-
-    if user_state.get("mode") != "roleplay_active":
-        return
-    
-    if message.text in ["💡 Что ответить?", "📊 Завершить диалог", "🏠 Главное меню"]:
-        return
-    
-    await message.bot.send_chat_action(chat_id=message.chat.id, action="typing")
-    ai_response = await process_roleplay_message(user_id, message.text)
-    
-    keyboard = InlineKeyboardMarkup(inline_keyboard=[
-        [InlineKeyboardButton(text="🌐 Перевести", callback_data=f"translate_text_{user_id}")]
-    ])
-    sent = await message.answer(ai_response, reply_markup=keyboard)
-    
-    from handlers.voice import last_text_response as global_last_text_response
-    global_last_text_response[user_id] = {"text": ai_response, "translation": None, "message_id": sent.message_id}
-    
-    history = user_state.get("history", [])
-    history.append({"role": "user", "text": message.text})
-    history.append({"role": "assistant", "text": ai_response})
-    if len(history) > 20:
-        history = history[-20:]
-    user_state["history"] = history
-    set_user_state(user_id, user_state)
+# ===================== ВАЖНО =====================
+# НЕТ ОБРАБОТЧИКА @router.message(F.text) !!!
+# Все текстовые сообщения, кроме точных команд, игнорируются этим модулем.
