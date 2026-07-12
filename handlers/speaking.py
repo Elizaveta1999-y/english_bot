@@ -5,6 +5,7 @@ from data.users import set_user_state, get_user_state
 from services.deepseek import chat
 from states.speaking_states import SpeakingStates
 from speaking.services.ai import process_voice_message
+from states.reading_states import ReadingStates
 
 router = Router()
 
@@ -89,12 +90,17 @@ async def exit_to_main_menu(message: Message, state: FSMContext):
     from handlers.start import show_main_menu
     await show_main_menu(message, edit=False)
 
-# ========== НОВЫЙ ОБРАБОТЧИК ТЕКСТА В РЕЖИМЕ SPEAKING ==========
+# ========== ОБРАБОТЧИК ТЕКСТА В РЕЖИМЕ SPEAKING ==========
 @router.message(SpeakingStates.waiting_for_voice, F.text)
 async def handle_speaking_text(message: Message, state: FSMContext):
     user_id = message.from_user.id
     user_state = get_user_state(user_id)
-    
+
+    # Если активен режим чтения – пропускаем (чтобы не мешать)
+    current_state = await state.get_state()
+    if current_state == "ReadingStates:waiting_for_text":
+        return
+
     # Проверяем, что мы действительно в режиме Speaking
     if user_state.get("mode") != "speaking_active":
         return

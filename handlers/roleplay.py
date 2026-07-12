@@ -6,6 +6,7 @@ from data.users import get_user_state, set_user_state
 from services.deepseek import chat
 from speaking.services.ai import is_safe_message, process_roleplay_message
 from handlers.lesson_utils import check_answer
+from states.reading_states import ReadingStates
 
 router = Router()
 
@@ -263,6 +264,11 @@ async def roleplay_text_handler(message: Message, state: FSMContext):
     user_id = message.from_user.id
     user_state = get_user_state(user_id)
     
+    # Если активен режим чтения – пропускаем (чтобы не мешать)
+    current_state = await state.get_state()
+    if current_state == "ReadingStates:waiting_for_text":
+        return
+
     # Проверяем, что режим активен
     if user_state.get("mode") != "roleplay_active":
         return
