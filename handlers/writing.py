@@ -120,8 +120,16 @@ async def level_chosen(callback: CallbackQuery, state: FSMContext):
 
     # Получаем список заданий для этого типа и уровня
     tasks = ALL_TASKS.get(task_type, {}).get(level, [])
+    
+    # ЛОГ ДЛЯ ОТЛАДКИ — показывает, сколько заданий загрузилось
+    print(f"DEBUG: task_type={task_type}, level={level}, tasks count={len(tasks)}")
+
     if not tasks:
-        await callback.message.edit_text(f"Заданий для {task_type} уровня {level} пока нет. Выберите другой уровень или тип.")
+        await callback.message.edit_text(
+            f"😕 Заданий для типа *{task_type}* уровня *{level}* пока нет.\n"
+            f"Пожалуйста, выберите другой уровень или тип задания.",
+            parse_mode="Markdown"
+        )
         return
 
     # Получаем текущий индекс
