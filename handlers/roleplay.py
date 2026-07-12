@@ -9,7 +9,6 @@ from handlers.lesson_utils import check_answer
 
 router = Router()
 
-# -------------------- CATEGORIES и TOPICS (как у тебя) --------------------
 CATEGORIES = [
     ("🏢 Работа и бизнес", "work"),
     ("✈️ Путешествия", "travel"),
@@ -74,7 +73,6 @@ TOPICS = {
     ]
 }
 
-# -------------------- Обработчики --------------------
 @router.callback_query(lambda c: c.data == "start_roleplay")
 async def start_roleplay(callback: CallbackQuery):
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
@@ -196,7 +194,6 @@ async def topic_chosen(callback: CallbackQuery):
     await callback.message.edit_text(roleplay_info, parse_mode="HTML")
     await callback.message.answer("🎬 <b>Можете начинать!</b>", reply_markup=keyboard, parse_mode="HTML")
 
-# --- Обработчики точных команд (БЕЗ общего обработчика текста) ---
 @router.message(F.text == "💡 Что ответить?")
 async def hint_button(message: Message):
     user_id = message.from_user.id
@@ -260,6 +257,6 @@ async def exit_to_menu(callback: CallbackQuery):
     await callback.message.answer("Режим завершён. Нажмите /start для выбора режима.", reply_markup=ReplyKeyboardRemove())
     await callback.answer()
 
-# ===================== ВАЖНО =====================
-# НЕТ ОБРАБОТЧИКА @router.message(F.text) !!!
-# Все текстовые сообщения, кроме точных команд, игнорируются этим модулем.
+# ========== ТЕКСТОВЫЙ ОБРАБОТЧИК УДАЛЁН ==========
+# ВСЕ ТЕКСТОВЫЕ СООБЩЕНИЯ ТЕПЕРЬ БУДУТ ПЕРЕХВАТЫВАТЬСЯ ТОЛЬКО В reading.py (если активно состояние чтения)
+# ИЛИ В speaking.py (если активно состояние speaking)
