@@ -8,7 +8,7 @@ from aiogram.types import Message, CallbackQuery, InlineKeyboardMarkup, InlineKe
 from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import State, StatesGroup
 import redis.asyncio as redis
-from services.speaking_check import check_speaking
+from services.deepseek_govorenie import check_govorenie   # ← импорт из единого файла
 from services.whisper_utils import speech_to_text
 
 router = Router()
@@ -43,7 +43,6 @@ async def set_speaking_index(user_id: int, task_type: str, level: str, index: in
     key = f"govorenie_progress:{user_id}:{task_type}:{level}"
     await r.set(key, str(index))
 
-# Для хранения результатов сессии (фидбеков)
 async def add_session_result(user_id: int, task_type: str, level: str, feedback: str):
     r = await get_redis()
     key = f"govorenie_session:{user_id}:{task_type}:{level}"
@@ -124,7 +123,7 @@ async def show_task_types(message: Message, edit: bool = False):
 @router.callback_query(F.data.startswith("g_type_"))
 async def type_chosen(callback: CallbackQuery, state: FSMContext):
     await callback.answer()
-    task_type = callback.data.split("_")[2]  # g_type_reading -> reading
+    task_type = callback.data.split("_")[2]
     await state.update_data(task_type=task_type)
     await state.set_state(GovorenieStates.choosing_level)
     text = f"Вы выбрали тип: *{task_type.upper()}*.\nТеперь выберите уровень сложности:"
@@ -134,7 +133,7 @@ async def type_chosen(callback: CallbackQuery, state: FSMContext):
 @router.callback_query(F.data.startswith("g_level_"))
 async def level_chosen(callback: CallbackQuery, state: FSMContext):
     await callback.answer()
-    level = callback.data.split("_")[2]  # g_level_beginner -> beginner
+    level = callback.data.split("_")[2]
     user_id = callback.from_user.id
     data = await state.get_data()
     task_type = data.get("task_type")
@@ -149,10 +148,8 @@ async def level_chosen(callback: CallbackQuery, state: FSMContext):
         await callback.message.edit_text(f"Заданий для {task_type} уровня {level} пока нет.")
         return
 
-    # Очищаем предыдущие результаты сессии
     await clear_session_results(user_id, task_type, level)
 
-    # Начинаем с первого задания
     index = 0
     await set_speaking_index(user_id, task_type, level, index)
 
@@ -229,7 +226,6 @@ async def handle_voice_message(message: Message, state: FSMContext):
     voice: Voice = message.voice
     duration = voice.duration
 
-    # Проверки длительности
     if duration < 2:
         await message.answer("Слишком коротко! Скажите что-то внятное (минимум 2 секунды).")
         return
@@ -240,7 +236,6 @@ async def handle_voice_message(message: Message, state: FSMContext):
         await message.answer("Слишком длинное сообщение (максимум 3 минуты). Сократите ответ.")
         return
 
-    # Скачиваем файл
     file_id = voice.file_id
     file = await message.bot.get_file(file_id)
     file_path = file.file_path
@@ -248,7 +243,6 @@ async def handle_voice_message(message: Message, state: FSMContext):
         await message.bot.download_file(file_path, tmp.name)
         tmp_path = tmp.name
 
-    # Распознаём через Whisper
     await message.bot.send_chat_action(chat_id=message.chat.id, action="typing")
     try:
         user_text = await speech_to_text(tmp_path)
@@ -263,7 +257,7 @@ async def handle_voice_message(message: Message, state: FSMContext):
         await message.answer("Не удалось разобрать речь. Попробуйте говорить ближе к микрофону.")
         return
 
-    # Фильтр стоп-слов (паразитов)
+    # Фильтр стоп-слов
     stop_words_ru = ["ааа", "эээ", "м-м", "ну", "типа", "блин", "как бы", "это самое"]
     words = user_text.lower().split()
     if words:
@@ -284,23 +278,20 @@ async def handle_voice_message(message: Message, state: FSMContext):
     # Отправляем в ИИ для проверки
     await message.bot.send_chat_action(chat_id=message.chat.id, action="typing")
     try:
-        feedback = await check_speaking(
+        feedback = await check_govorenie(
             task=task,
             task_type=task_type,
             user_text=user_text,
             level=level,
             duration=duration
         )
-    except Exception:
+    except Exception as e:
         await message.answer("Ошибка при обращении к ИИ. Попробуйте позже.")
         return
 
-    # Сохраняем фидбек в сессию
     await add_session_result(user_id, task_type, level, feedback)
-
     await message.answer(f"Результат проверки:\n\n{feedback}", parse_mode="Markdown")
 
-    # Переходим к следующему заданию
     await go_to_next_task(message, state, user_id, task_type, level, index, tasks)
 
 # ---------- Переход к следующему ----------
@@ -317,7 +308,7 @@ async def go_to_next_task(message: Message, state: FSMContext, user_id: int, tas
     )
     await show_task(message, state, edit=False)
 
-# ---------- Кнопка "Следующее задание" ----------
+# ---------- Кнопка "Следующее" ----------
 @router.callback_query(F.data == "g_next_task")
 async def next_task_button(callback: CallbackQuery, state: FSMContext):
     await callback.answer()
@@ -344,7 +335,7 @@ async def next_task_button(callback: CallbackQuery, state: FSMContext):
     )
     await show_task(callback.message, state, edit=True)
 
-# ---------- Кнопка "Показать пример" ----------
+# ---------- Кнопка "Пример" ----------
 @router.callback_query(F.data == "g_show_sample")
 async def show_sample_button(callback: CallbackQuery, state: FSMContext):
     await callback.answer()
@@ -373,13 +364,11 @@ async def finish_govorenie(callback: CallbackQuery, state: FSMContext):
         summary = "Вы не выполнили ни одного задания."
     else:
         summary = f"✅ Вы выполнили {count} заданий.\n\n"
-        # Показываем последние 3 фидбека
         last_feedbacks = results[-3:] if len(results) > 3 else results
         for i, fb in enumerate(last_feedbacks, start=max(1, count-2)):
             summary += f"--- Задание {i} ---\n{fb}\n\n"
         summary += "Отличная работа! Продолжайте практиковаться."
 
-    # Очищаем сессию
     await clear_session_results(user_id, task_type, level)
     await state.clear()
 
