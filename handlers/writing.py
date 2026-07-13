@@ -12,18 +12,15 @@ router = Router()
 # ---------- Загрузка заданий ----------
 TASKS_FILE = os.path.join(os.path.dirname(__file__), "../data/writing_tasks.json")
 
-# Маппинг уровней (кнопка -> ключ в JSON)
 LEVEL_MAP = {
     "beginner": "beginner",
     "intermediate": "intermediate",
-    "advanced": "expert"   # если в JSON используется "expert", а в кнопке "advanced"
-    # Если в JSON используется "advanced", замените на "advanced"
+    "advanced": "expert"   # или "advanced", смотря что в JSON
 }
 
 def load_tasks():
     with open(TASKS_FILE, "r", encoding="utf-8") as f:
         data = json.load(f)
-    # Логируем структуру для отладки
     print("=== WRITING TASKS LOADED ===")
     print(f"Keys: {list(data.keys())}")
     for task_type, levels in data.items():
@@ -32,7 +29,7 @@ def load_tasks():
 
 ALL_TASKS = load_tasks()
 
-# ---------- Redis для прогресса ----------
+# ---------- Redis ----------
 REDIS_URL = os.getenv("REDIS_URL", "redis://localhost:6379")
 redis_client = None
 
@@ -53,7 +50,7 @@ async def set_writing_index(user_id: int, task_type: str, level: str, index: int
     key = f"writing_progress:{user_id}:{task_type}:{level}"
     await r.set(key, str(index))
 
-# ---------- Состояния FSM ----------
+# ---------- States ----------
 class WritingStates(StatesGroup):
     choosing_type = State()
     choosing_level = State()
@@ -89,7 +86,6 @@ def get_levels_keyboard():
     ])
 
 def get_action_keyboard():
-    """Клавиатура с кнопками: Показать ответ, Следующее задание, Завершить (без смайликов)"""
     return InlineKeyboardMarkup(inline_keyboard=[
         [
             InlineKeyboardButton(text="Показать ответ", callback_data="writing_show_answer"),
@@ -100,13 +96,12 @@ def get_action_keyboard():
         ]
     ])
 
-# ---------- ВХОД В РЕЖИМ ----------
+# ---------- Entry ----------
 @router.callback_query(F.data == "start_writing")
 async def start_writing_mode(callback: CallbackQuery):
     await callback.answer()
     await show_task_types(callback.message, edit=True)
 
-# ---------- Показать типы ----------
 async def show_task_types(message: Message, edit: bool = False):
     text = (
         "✍️ *Режим Письмо*\n\n"
@@ -123,7 +118,6 @@ async def show_task_types(message: Message, edit: bool = False):
     else:
         await message.answer(text, reply_markup=keyboard, parse_mode="Markdown")
 
-# ---------- Обработчики выбора типа ----------
 @router.callback_query(F.data.startswith("type_"))
 async def type_chosen(callback: CallbackQuery, state: FSMContext):
     await callback.answer()
@@ -133,31 +127,27 @@ async def type_chosen(callback: CallbackQuery, state: FSMContext):
     text = f"Вы выбрали тип: *{task_type.upper()}*.\nТеперь выберите уровень:"
     await callback.message.edit_text(text, reply_markup=get_levels_keyboard(), parse_mode="Markdown")
 
-# ---------- Выбор уровня и выдача задания с прогрессом ----------
 @router.callback_query(F.data.startswith("level_"))
 async def level_chosen(callback: CallbackQuery, state: FSMContext):
     await callback.answer()
-    level = callback.data.split("_")[1]  # "beginner", "intermediate", "advanced"
+    level = callback.data.split("_")[1]
     user_id = callback.from_user.id
     data = await state.get_data()
     task_type = data.get("task_type")
 
-    # Преобразуем уровень из кнопки в реальный ключ в JSON
-    level_key = LEVEL_MAP.get(level, level)  # если нет в маппинге, оставляем как есть
-
-    # Для отладки — печатаем, что ищем
+    level_key = LEVEL_MAP.get(level, level)
     print(f"DEBUG: task_type={task_type}, level={level}, level_key={level_key}")
     print(f"Available levels for {task_type}: {list(ALL_TASKS.get(task_type, {}).keys())}")
 
     tasks = ALL_TASKS.get(task_type, {}).get(level_key, [])
     if not tasks:
+        available = ', '.join(ALL_TASKS.get(task_type, {}).keys())
         await callback.message.edit_text(
             f"Заданий для {task_type} уровня {level_key} пока нет.\n"
-            f"Доступные уровни: {', '.join(ALL_TASKS.get(task_type, {}).keys())}"
+            f"Доступные уровни: {available if available else 'нет'}"
         )
         return
 
-    # Получаем текущий индекс
     index = await get_writing_index(user_id, task_type, level_key)
     if index >= len(tasks):
         index = 0
@@ -166,44 +156,41 @@ async def level_chosen(callback: CallbackQuery, state: FSMContext):
     task = tasks[index]
     await state.update_data(
         task_type=task_type,
-        level=level_key,  # сохраняем реальный ключ
+        level=level_key,
         tasks=tasks,
         current_task=task,
         index=index
     )
-
-    # Показываем задание
     await show_task(callback.message, state, edit=True)
 
-# ---------- Функция показа задания ----------
 async def show_task(message: Message, state: FSMContext, edit: bool = False):
     data = await state.get_data()
     task = data.get("current_task")
-    task_type = data.get("task_type")
-    level = data.get("level")
-    index = data.get("index", 0)
-    tasks = data.get("tasks", [])
     if not task:
         await message.answer("Ошибка: задание не найдено.")
         return
-
+    index = data.get("index", 0)
+    tasks = data.get("tasks", [])
     total = len(tasks)
-    # Формируем текст задания (без смайликов)
-    task_text = (
-        f"Задание {index+1} из {total}\n\n"
-        f"{task['task_text']}\n\n"
-        f"Рекомендуемые слова (по желанию): {', '.join(task['keywords'])}\n"
-        f"Объём: {task['expected_length']}"
-    )
 
+    # Безопасное получение всех полей
+    task_text = task.get('task_text', 'Текст задания отсутствует')
+    keywords = task.get('keywords', [])
+    expected_length = task.get('expected_length', 'не указан')
+
+    text = (
+        f"Задание {index+1} из {total}\n\n"
+        f"{task_text}\n\n"
+        f"Рекомендуемые слова (по желанию): {', '.join(keywords)}\n"
+        f"Объём: {expected_length}"
+    )
     keyboard = get_action_keyboard()
     if edit:
-        await message.edit_text(task_text, reply_markup=keyboard, parse_mode="Markdown")
+        await message.edit_text(text, reply_markup=keyboard, parse_mode="Markdown")
     else:
-        await message.answer(task_text, reply_markup=keyboard, parse_mode="Markdown")
+        await message.answer(text, reply_markup=keyboard, parse_mode="Markdown")
     await state.set_state(WritingStates.waiting_answer)
 
-# ---------- Получение ответа пользователя ----------
 @router.message(WritingStates.waiting_answer, F.text)
 async def handle_user_answer(message: Message, state: FSMContext):
     user_text = message.text
@@ -220,7 +207,6 @@ async def handle_user_answer(message: Message, state: FSMContext):
         await state.clear()
         return
 
-    # Проверка длины (без смайликов в сообщениях)
     word_count = len(user_text.split())
     if word_count < 10:
         await message.answer("Слишком коротко! Напишите не менее 10 слов.")
@@ -229,11 +215,10 @@ async def handle_user_answer(message: Message, state: FSMContext):
         await message.answer("Слишком длинно! Сократите до 150 слов.")
         return
 
-    # Отправляем в DeepSeek для проверки
     await message.bot.send_chat_action(chat_id=message.chat.id, action="typing")
     try:
         feedback = check_writing(
-            task_text=task['task_text'],
+            task_text=task.get('task_text', ''),
             user_answer=user_text,
             level=level,
             keywords=task.get('keywords', [])
@@ -242,19 +227,14 @@ async def handle_user_answer(message: Message, state: FSMContext):
         await message.answer("Ошибка при обращении к ИИ. Попробуйте позже.")
         return
 
-    # Отправляем фидбек
     await message.answer(f"Результат проверки:\n\n{feedback}", parse_mode="Markdown")
-
-    # Автоматически переходим к следующему заданию
     await go_to_next_task(message, state, user_id, task_type, level, index, tasks)
 
-# ---------- Переход к следующему заданию ----------
 async def go_to_next_task(message: Message, state: FSMContext, user_id: int, task_type: str, level: str, current_index: int, tasks: list):
     next_index = current_index + 1
     if next_index >= len(tasks):
         next_index = 0
         await message.answer("Вы прошли все задания! Начинаем заново.")
-
     await set_writing_index(user_id, task_type, level, next_index)
     await state.update_data(
         index=next_index,
@@ -262,7 +242,6 @@ async def go_to_next_task(message: Message, state: FSMContext, user_id: int, tas
     )
     await show_task(message, state, edit=False)
 
-# ---------- Обработчик кнопки "Следующее задание" ----------
 @router.callback_query(F.data == "writing_next_task")
 async def next_task_button(callback: CallbackQuery, state: FSMContext):
     await callback.answer()
@@ -289,7 +268,6 @@ async def next_task_button(callback: CallbackQuery, state: FSMContext):
     )
     await show_task(callback.message, state, edit=True)
 
-# ---------- Обработчик кнопки "Показать ответ" ----------
 @router.callback_query(F.data == "writing_show_answer")
 async def show_answer_button(callback: CallbackQuery, state: FSMContext):
     await callback.answer()
@@ -308,7 +286,6 @@ async def show_answer_button(callback: CallbackQuery, state: FSMContext):
     sample = task.get("sample_answer", "Пример ответа отсутствует.")
     await callback.message.answer(f"Пример ответа:\n\n{sample}")
 
-    # Переходим к следующему заданию
     next_index = index + 1
     if next_index >= len(tasks):
         next_index = 0
@@ -321,7 +298,6 @@ async def show_answer_button(callback: CallbackQuery, state: FSMContext):
     )
     await show_task(callback.message, state, edit=True)
 
-# ---------- Отмена и навигация ----------
 @router.callback_query(F.data == "cancel_writing")
 async def cancel_writing(callback: CallbackQuery, state: FSMContext):
     await callback.answer()
