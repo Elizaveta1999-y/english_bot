@@ -48,10 +48,14 @@ async def start_handler(message: Message):
         set_user_state(user_id, {})
     await show_main_menu(message, edit=False)
 
-# ---- Режимы в разработке (заглушки) ----
+# ---- Заглушки (режимы в разработке) ----
 @router.callback_query(F.data.in_([
     "start_lessons",
-    "start_grammar"
+    "start_listening",
+    "start_reading",
+    "start_words",
+    "start_speaking",
+    "start_roleplay"
 ]))
 async def under_construction(callback: CallbackQuery):
     await callback.answer("Этот режим в разработке. Скоро появится! 🚧", show_alert=True)
@@ -63,12 +67,16 @@ async def start_writing_mode(callback: CallbackQuery):
     from handlers.writing import show_task_types
     await show_task_types(callback.message, edit=True)
 
-# ---- Режим "Говорение" (НОВЫЙ) ----
+# ---- Режим "Говорение" ----
 @router.callback_query(F.data == "start_govorenie")
 async def start_govorenie_mode(callback: CallbackQuery):
     await callback.answer()
-    from handlers.govorenie import show_task_types   # ← импорт из нового файла
+    from handlers.govorenie import show_task_types
     await show_task_types(callback.message, edit=True)
 
-# ---- Другие режимы (если есть готовые) ----
-# Например, для listening, reading и т.д. – добавьте аналогично
+# ---- Режим "Грамматика" ----
+@router.callback_query(F.data == "start_grammar")
+async def start_grammar_mode(callback: CallbackQuery):
+    await callback.answer()
+    from handlers.grammar import enter_grammar_mode
+    await enter_grammar_mode(callback.message, callback.from_user.id, edit=True)

@@ -10,6 +10,7 @@ from handlers.subscription import router as subscription_router   # <-- доба
 from handlers import listening
 from handlers.reading import router as reading_router
 from middleware.access import AccessMiddleware
+from handlers.grammar import router as grammar_router
 
 
 logging.basicConfig(level=logging.INFO)
@@ -29,6 +30,7 @@ dp.include_router(start.router)
 dp.include_router(writing.router)
 dp.include_router(reading.router)   # <-- ПЕРВЫМ после start
 dp.include_router(listening.router)
+dr.include_router(grammar_router)
 dp.include_router(support.router)
 dp.include_router(subscription_router)
 dp.include_router(words.router)

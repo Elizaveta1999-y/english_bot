@@ -9,7 +9,7 @@ from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import State, StatesGroup
 import redis.asyncio as redis
 from services.deepseek_govorenie import check_govorenie
-from services.whisper_utils import speech_to_text
+from services.speech_recognition import speech_to_text
 
 router = Router()
 
