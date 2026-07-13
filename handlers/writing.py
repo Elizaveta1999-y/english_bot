@@ -12,14 +12,25 @@ router = Router()
 # ---------- Загрузка заданий ----------
 TASKS_FILE = os.path.join(os.path.dirname(__file__), "../data/writing_tasks.json")
 
+# Маппинг уровней (кнопка -> ключ в JSON)
+LEVEL_MAP = {
+    "beginner": "beginner",
+    "intermediate": "intermediate",
+    "advanced": "expert"   # если в JSON используется "expert", а в кнопке "advanced"
+    # Если в JSON используется "advanced", замените на "advanced"
+}
+
 def load_tasks():
     with open(TASKS_FILE, "r", encoding="utf-8") as f:
-        return json.load(f)
+        data = json.load(f)
+    # Логируем структуру для отладки
+    print("=== WRITING TASKS LOADED ===")
+    print(f"Keys: {list(data.keys())}")
+    for task_type, levels in data.items():
+        print(f"  {task_type}: {list(levels.keys())}")
+    return data
 
 ALL_TASKS = load_tasks()
-
-print("=== WRITING TASKS LOADED ===")
-print(f"Keys: {list(ALL_TASKS.keys())}")
 
 # ---------- Redis для прогресса ----------
 REDIS_URL = os.getenv("REDIS_URL", "redis://localhost:6379")
@@ -126,25 +137,36 @@ async def type_chosen(callback: CallbackQuery, state: FSMContext):
 @router.callback_query(F.data.startswith("level_"))
 async def level_chosen(callback: CallbackQuery, state: FSMContext):
     await callback.answer()
-    level = callback.data.split("_")[1]
+    level = callback.data.split("_")[1]  # "beginner", "intermediate", "advanced"
     user_id = callback.from_user.id
     data = await state.get_data()
     task_type = data.get("task_type")
-    tasks = ALL_TASKS.get(task_type, {}).get(level, [])
+
+    # Преобразуем уровень из кнопки в реальный ключ в JSON
+    level_key = LEVEL_MAP.get(level, level)  # если нет в маппинге, оставляем как есть
+
+    # Для отладки — печатаем, что ищем
+    print(f"DEBUG: task_type={task_type}, level={level}, level_key={level_key}")
+    print(f"Available levels for {task_type}: {list(ALL_TASKS.get(task_type, {}).keys())}")
+
+    tasks = ALL_TASKS.get(task_type, {}).get(level_key, [])
     if not tasks:
-        await callback.message.edit_text(f"Заданий для {task_type} уровня {level} пока нет.")
+        await callback.message.edit_text(
+            f"Заданий для {task_type} уровня {level_key} пока нет.\n"
+            f"Доступные уровни: {', '.join(ALL_TASKS.get(task_type, {}).keys())}"
+        )
         return
 
     # Получаем текущий индекс
-    index = await get_writing_index(user_id, task_type, level)
+    index = await get_writing_index(user_id, task_type, level_key)
     if index >= len(tasks):
         index = 0
-        await set_writing_index(user_id, task_type, level, index)
+        await set_writing_index(user_id, task_type, level_key, index)
 
     task = tasks[index]
     await state.update_data(
         task_type=task_type,
-        level=level,
+        level=level_key,  # сохраняем реальный ключ
         tasks=tasks,
         current_task=task,
         index=index
@@ -220,7 +242,7 @@ async def handle_user_answer(message: Message, state: FSMContext):
         await message.answer("Ошибка при обращении к ИИ. Попробуйте позже.")
         return
 
-    # Отправляем фидбек (без смайликов в тексте фидбека, они могут быть только в самом фидбеке от ИИ)
+    # Отправляем фидбек
     await message.answer(f"Результат проверки:\n\n{feedback}", parse_mode="Markdown")
 
     # Автоматически переходим к следующему заданию
