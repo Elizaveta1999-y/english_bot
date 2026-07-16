@@ -32,13 +32,13 @@ READING_WELCOME_MESSAGES = [
 ]
 
 TYPE_DISPLAY = {
-    "podbor": "Подбор заголовка",
-    "truefalse": "True/False/Not stated",
-    "choice": "Вопросы с выбором ответа",
-    "fill": "Вставка отрывков",
-    "match": "Соотношение слова с определением",
-    "order": "Восстановление порядка абзацев",
-    "random": "Случайный тип"
+    "podbor": "🥈 Подбор заголовка",
+    "truefalse": "⚖️ True/False/Not stated",
+    "choice": "☑️ Вопросы с выбором ответа",
+    "fill": "🔄 Вставка отрывков",
+    "match": "🟰 Соотношение слова с определением",
+    "order": "📄 Восстановление порядка абзацев",
+    "random": "🎲 Случайный тип"
 }
 
 TYPE_MAP = {
@@ -60,15 +60,15 @@ def get_type_choice_keyboard():
     buttons = []
     for key, label in TYPE_DISPLAY.items():
         buttons.append([InlineKeyboardButton(text=label, callback_data=f"reading_type:{key}")])
-    buttons.append([InlineKeyboardButton(text="Назад", callback_data="reading_back_to_main")])
+    buttons.append([InlineKeyboardButton(text="🔙 Назад", callback_data="reading_back_to_main")])
     return InlineKeyboardMarkup(inline_keyboard=buttons)
 
 def get_level_keyboard(short_type: str):
     buttons = [
-        [InlineKeyboardButton(text="Новичок", callback_data=f"reading_level:{short_type}:beginner")],
-        [InlineKeyboardButton(text="Любитель", callback_data=f"reading_level:{short_type}:intermediate")],
-        [InlineKeyboardButton(text="Эксперт", callback_data=f"reading_level:{short_type}:expert")],
-        [InlineKeyboardButton(text="Назад", callback_data="reading_back_to_types")]
+        [InlineKeyboardButton(text="🌱 Новичок", callback_data=f"reading_level:{short_type}:beginner")],
+        [InlineKeyboardButton(text="🔥 Любитель", callback_data=f"reading_level:{short_type}:intermediate")],
+        [InlineKeyboardButton(text="⚡ Эксперт", callback_data=f"reading_level:{short_type}:expert")],
+        [InlineKeyboardButton(text="🔙 Назад", callback_data="reading_back_to_types")]
     ]
     return InlineKeyboardMarkup(inline_keyboard=buttons)
 
@@ -90,6 +90,7 @@ def get_progress_keyboard():
     return InlineKeyboardMarkup(inline_keyboard=buttons)
 
 def get_reset_confirmation_keyboard():
+    # Кнопки без смайликов (только текст)
     buttons = [
         [InlineKeyboardButton(text="Да, сбросить", callback_data="reading_confirm_reset")],
         [InlineKeyboardButton(text="Назад", callback_data="reading_cancel_reset")]
@@ -172,8 +173,8 @@ async def send_progress_message(callback: CallbackQuery, short_type: str, short_
     text = f"<b>Режим: {display_name}</b>\n\n"
     text += "Внимательно прочитайте текст и выполните задание.\n\n"
     text += f"Ваш прогресс:\n"
-    text += f"Правильно: {correct}\n"
-    text += f"Ошибок: {wrong}\n\n"
+    text += f"✔️ Правильно: {correct}\n"
+    text += f"✖️ Ошибок: {wrong}\n\n"
     text += "/revision_mode — работа над ошибками\n"
     text += "/reset_progress — сбросить прогресс"
     await callback.message.answer(text, reply_markup=get_progress_keyboard(), parse_mode="HTML")
@@ -319,7 +320,7 @@ async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
     if is_revision:
         error_ids = await get_reading_errors(user_id, type_json, level_json)
         if not error_ids:
-            await callback.message.answer("Все ошибки исправлены! Возвращаемся в обычный режим.")
+            await callback.message.answer("🎉 Все ошибки исправлены! Возвращаемся в обычный режим.")
             await state.update_data(is_revision=False, error_list=[], error_index=0)
             await show_next_task(callback.message, state, is_revision=False)
             await callback.answer()
@@ -409,7 +410,7 @@ async def handle_text_answer(message: Message, state: FSMContext):
     if is_revision:
         error_ids = await get_reading_errors(user_id, type_json, level_json)
         if not error_ids:
-            await message.answer("Все ошибки исправлены! Возвращаемся в обычный режим.")
+            await message.answer("🎉 Все ошибки исправлены! Возвращаемся в обычный режим.")
             await state.update_data(is_revision=False, error_list=[], error_index=0)
             await show_next_task(message, state, is_revision=False)
             return
@@ -525,7 +526,7 @@ async def reading_revision(event, state: FSMContext):
 
     error_ids = await get_reading_errors(user_id, type_json, level_json)
     if not error_ids:
-        text = "Ошибок нет! Отличная работа."
+        text = "🎉 Ошибок нет! Отличная работа."
         if answer_func:
             await answer_func(text, show_alert=True)
         else:
@@ -580,8 +581,8 @@ async def confirm_reset(callback: CallbackQuery, state: FSMContext):
     text = f"<b>Режим: {display_name}</b>\n\n"
     text += "Внимательно прочитайте текст и выполните задание.\n\n"
     text += f"Ваш прогресс:\n"
-    text += f"Правильно: {correct}\n"
-    text += f"Ошибок: {wrong}\n\n"
+    text += f"✔️ Правильно: {correct}\n"
+    text += f"✖️ Ошибок: {wrong}\n\n"
     text += "/revision_mode — работа над ошибками\n"
     text += "/reset_progress — сбросить прогресс"
     await callback.message.answer(text, reply_markup=get_progress_keyboard(), parse_mode="HTML")
