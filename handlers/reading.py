@@ -112,9 +112,7 @@ async def get_all_tasks_for_random(level: str):
     return all_tasks
 
 async def render_task_message(message: Message, state: FSMContext, user_id: int, short_type: str, short_level: str, index: int, paragraph_idx: int = 0, is_revision: bool = False):
-    # Убираем старую клавиатуру и сбрасываем флаг ошибки для нового задания
     await clear_keyboard(message, state)
-    await state.update_data(was_wrong=False)
 
     if short_type == "random":
         all_tasks = await get_all_tasks_for_random(short_level)
@@ -292,8 +290,7 @@ async def choose_level(callback: CallbackQuery, state: FSMContext):
         is_revision=False,
         error_list=[],
         error_index=0,
-        last_task_msg_id=None,
-        was_wrong=False
+        last_task_msg_id=None
     )
 
     await send_progress_message(callback, short_type, short_level)
@@ -343,11 +340,9 @@ async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
     else:
         if correct:
             await update_user_stats(user_id, type_json, level_json, True)
-            await state.update_data(was_wrong=False)
         else:
             await update_user_stats(user_id, type_json, level_json, False)
             await add_reading_error(user_id, type_json, level_json, index)
-            await state.update_data(was_wrong=True)
 
     await callback.message.edit_reply_markup(reply_markup=None)
 
@@ -355,7 +350,15 @@ async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
         result_text = "Правильно!"
     else:
         correct_text = task['options'][task['correct']]
-        result_text = f"Неправильно. Правильный ответ: {correct_text}"
+        # Для типа order добавляем пояснение
+        if short_type == "order" or actual_type == "order":
+            explanation = task.get("explanation", "")
+            if explanation:
+                result_text = f"Неправильно. Правильный ответ: {correct_text}\n\n{explanation}"
+            else:
+                result_text = f"Неправильно. Правильный ответ: {correct_text}"
+        else:
+            result_text = f"Неправильно. Правильный ответ: {correct_text}"
     await callback.message.answer(result_text)
 
     if is_revision:
@@ -448,11 +451,9 @@ async def handle_text_answer(message: Message, state: FSMContext):
     else:
         if correct:
             await update_user_stats(user_id, type_json, level_json, True)
-            await state.update_data(was_wrong=False)
         else:
             await update_user_stats(user_id, type_json, level_json, False)
             await add_reading_error(user_id, type_json, level_json, index)
-            await state.update_data(was_wrong=True)
 
     await clear_keyboard(message, state)
 
@@ -463,7 +464,15 @@ async def handle_text_answer(message: Message, state: FSMContext):
             correct_text = '; '.join(correct_answer)
         else:
             correct_text = str(correct_answer)
-        result_text = f"Неправильно. Правильный ответ: {correct_text}"
+        # Для типа order добавляем пояснение
+        if short_type == "order" or actual_type == "order":
+            explanation = task.get("explanation", "")
+            if explanation:
+                result_text = f"Неправильно. Правильный ответ: {correct_text}\n\n{explanation}"
+            else:
+                result_text = f"Неправильно. Правильный ответ: {correct_text}"
+        else:
+            result_text = f"Неправильно. Правильный ответ: {correct_text}"
     await message.answer(result_text)
 
     if is_revision:
@@ -587,7 +596,6 @@ async def show_answer(callback: CallbackQuery, state: FSMContext):
     await callback.message.edit_reply_markup(reply_markup=None)
 
     correct = task.get("correct")
-    was_wrong = data.get("was_wrong", False)
 
     # Формируем правильный ответ
     if short_type == "order" or actual_type == "order":
@@ -600,13 +608,9 @@ async def show_answer(callback: CallbackQuery, state: FSMContext):
             correct_text = ' -> '.join(str(c+1) for c in correct)
         else:
             correct_text = str(correct)
-        # Если была ошибка и есть пояснение — показываем его
-        if was_wrong:
-            explanation = task.get("explanation", "")
-            if explanation:
-                await callback.message.answer(f"Правильный ответ: {correct_text}\n\nОбъяснение: {explanation}")
-            else:
-                await callback.message.answer(f"Правильный ответ: {correct_text}")
+        explanation = task.get("explanation", "")
+        if explanation:
+            await callback.message.answer(f"Правильный ответ: {correct_text}\n\n{explanation}")
         else:
             await callback.message.answer(f"Правильный ответ: {correct_text}")
     else:
@@ -616,7 +620,6 @@ async def show_answer(callback: CallbackQuery, state: FSMContext):
             correct_text = str(correct)
         await callback.message.answer(f"Правильный ответ: {correct_text}")
 
-    # Переход к следующему заданию
     if is_revision:
         if short_type == "random":
             error_ids = []
@@ -691,7 +694,6 @@ async def reading_revision(event, state: FSMContext):
             await message.answer(text)
         return
 
-    # Всегда вычисляем type_json и level_json из short_type и short_level
     type_json = TYPE_MAP.get(short_type, short_type)
     level_json = LEVEL_MAP.get(short_level, short_level)
 
@@ -704,6 +706,9 @@ async def reading_revision(event, state: FSMContext):
         error_ids = list(set(error_ids))
     else:
         error_ids = await get_reading_errors(user_id, type_json, level_json)
+
+    # Диагностическое сообщение (можно потом убрать)
+    await message.answer(f"🔍 Найдено ошибок: {len(error_ids)} для типа {short_type}, уровня {short_level}")
 
     if not error_ids:
         text = "🎉 Ошибок нет! Отличная работа."
