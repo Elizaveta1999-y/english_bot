@@ -31,7 +31,6 @@ READING_WELCOME_MESSAGES = [
     "<b>📖 Чтение</b>\n\n<i>Читайте, анализируйте, отвечайте на вопросы — и вы заметите, как тексты становятся понятнее с каждым разом.</i>\n\nВыберите задание и уровень."
 ]
 
-# Убрали тип "fill" (Вставка отрывков)
 TYPE_DISPLAY = {
     "podbor": "🥈 Подбор заголовка",
     "truefalse": "⚖️ True/False/Not stated",
@@ -105,16 +104,17 @@ async def clear_keyboard(message: Message, state: FSMContext):
 
 async def get_all_tasks_for_random(level: str):
     all_tasks = []
-    level_json = LEVEL_MAP.get(level, level)  # "Новичок", "Любитель", "Эксперт"
+    level_json = LEVEL_MAP.get(level, level)
     for type_key in TYPE_MAP.keys():
         type_json = TYPE_MAP[type_key]
-        # TASKS имеет структуру: {type_json: {level_json: [tasks]}}
         tasks = TASKS.get(type_json, {}).get(level_json, [])
         all_tasks.extend(tasks)
     return all_tasks
 
 async def render_task_message(message: Message, state: FSMContext, user_id: int, short_type: str, short_level: str, index: int, paragraph_idx: int = 0, is_revision: bool = False):
+    # Убираем старую клавиатуру и сбрасываем флаг ошибки для нового задания
     await clear_keyboard(message, state)
+    await state.update_data(was_wrong=False)
 
     if short_type == "random":
         all_tasks = await get_all_tasks_for_random(short_level)
@@ -529,7 +529,6 @@ async def show_revision_task(message: Message, state: FSMContext, error_ids: lis
         found_type = None
         for t in TYPE_MAP.keys():
             t_json = TYPE_MAP[t]
-            # ищем задание по id в TASKS
             tasks_for_type = TASKS.get(t_json, {})
             for level, tasks in tasks_for_type.items():
                 for task in tasks:
@@ -683,8 +682,6 @@ async def reading_revision(event, state: FSMContext):
     data = await state.get_data()
     short_type = data.get("short_type")
     short_level = data.get("short_level")
-    type_json = data.get("type_json")
-    level_json = data.get("level_json")
 
     if not short_type or not short_level:
         text = "Сначала выберите тип и уровень в режиме чтения."
@@ -694,6 +691,10 @@ async def reading_revision(event, state: FSMContext):
             await message.answer(text)
         return
 
+    # Всегда вычисляем type_json и level_json из short_type и short_level
+    type_json = TYPE_MAP.get(short_type, short_type)
+    level_json = LEVEL_MAP.get(short_level, short_level)
+
     if short_type == "random":
         error_ids = []
         for t in TYPE_MAP.keys():
@@ -702,8 +703,6 @@ async def reading_revision(event, state: FSMContext):
             error_ids.extend(errors)
         error_ids = list(set(error_ids))
     else:
-        if not type_json:
-            type_json = TYPE_MAP.get(short_type, short_type)
         error_ids = await get_reading_errors(user_id, type_json, level_json)
 
     if not error_ids:
@@ -744,12 +743,13 @@ async def confirm_reset(callback: CallbackQuery, state: FSMContext):
     data = await state.get_data()
     short_type = data.get("short_type")
     short_level = data.get("short_level")
-    type_json = data.get("type_json")
-    level_json = data.get("level_json")
 
     if not short_type or not short_level:
         await callback.answer("Не удалось определить режим.", show_alert=True)
         return
+
+    type_json = TYPE_MAP.get(short_type, short_type)
+    level_json = LEVEL_MAP.get(short_level, short_level)
 
     if short_type == "random":
         for t in TYPE_MAP.keys():
@@ -758,8 +758,6 @@ async def confirm_reset(callback: CallbackQuery, state: FSMContext):
             await clear_reading_errors(user_id, t_json, level_json)
         await reset_user_progress(user_id, "random", short_level)
     else:
-        if not type_json:
-            type_json = TYPE_MAP.get(short_type, short_type)
         await reset_user_progress(user_id, type_json, level_json)
         await clear_reading_errors(user_id, type_json, level_json)
 
@@ -796,17 +794,16 @@ async def finish_session(callback: CallbackQuery, state: FSMContext):
     data = await state.get_data()
     short_type = data.get("short_type")
     short_level = data.get("short_level")
-    type_json = data.get("type_json")
-    level_json = data.get("level_json")
     user_id = callback.from_user.id
 
     await clear_keyboard(callback.message, state)
 
+    type_json = TYPE_MAP.get(short_type, short_type)
+    level_json = LEVEL_MAP.get(short_level, short_level)
+
     if short_type == "random":
         correct, wrong = await get_total_stats(user_id, short_level)
     else:
-        if not type_json:
-            type_json = TYPE_MAP.get(short_type, short_type)
         correct, wrong = await get_user_stats(user_id, type_json, level_json)
 
     total = correct + wrong
