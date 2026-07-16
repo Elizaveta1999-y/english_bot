@@ -19,16 +19,16 @@ def get_main_menu_keyboard():
             InlineKeyboardButton(text="🎬 Ролевые игры", callback_data="start_roleplay")
         ],
         [
+            InlineKeyboardButton(text="🔀 Грамматика", callback_data="start_grammar"),
+            InlineKeyboardButton(text="🥇 Лексика", callback_data="start_words")
+        ],
+        [
             InlineKeyboardButton(text="🔉 Аудирование", callback_data="start_listening"),
             InlineKeyboardButton(text="📝 Письмо", callback_data="start_writing")
         ],
         [
             InlineKeyboardButton(text="📖 Чтение", callback_data="start_reading"),
             InlineKeyboardButton(text="🗣️ Говорение", callback_data="start_govorenie")
-        ],
-        [
-            InlineKeyboardButton(text="🔀 Грамматика", callback_data="start_grammar"),
-            InlineKeyboardButton(text="🥇 Лексика", callback_data="start_words")
         ],
         [InlineKeyboardButton(text="📊 Моя статистика", callback_data="profile_menu")]
     ])
@@ -74,5 +74,6 @@ async def start_grammar_mode(callback: CallbackQuery):
     from handlers.grammar import enter_grammar_mode
     await enter_grammar_mode(callback.message, callback.from_user.id, edit=True)
 
-# ---- Обработчики для "Общение с AI" и "Ролевые игры" (если они есть в других файлах, они будут вызваны автоматически) ----
-# Если обработчики отсутствуют, бот выдаст ошибку. Вы можете добавить их позже.
+# ---- Остальные режимы (лексика, общение, ролевые игры) ----
+# Если их обработчики есть в других файлах, они сработают автоматически.
+# Если нет – бот выдаст ошибку, поэтому убедитесь, что они реализованы.
