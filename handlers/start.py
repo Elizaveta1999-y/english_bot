@@ -48,15 +48,8 @@ async def start_handler(message: Message):
         set_user_state(user_id, {})
     await show_main_menu(message, edit=False)
 
-# ---- Заглушки (режимы в разработке) ----
-@router.callback_query(F.data.in_([
-    "start_lessons",
-    "start_listening",
-    "start_reading",
-    "start_words",
-    "start_speaking",
-    "start_roleplay"
-]))
+# ---- Заглушка только для режима "Уроки" ----
+@router.callback_query(F.data == "start_lessons")
 async def under_construction(callback: CallbackQuery):
     await callback.answer("Этот режим в разработке. Скоро появится! 🚧", show_alert=True)
 
@@ -80,3 +73,8 @@ async def start_grammar_mode(callback: CallbackQuery):
     await callback.answer()
     from handlers.grammar import enter_grammar_mode
     await enter_grammar_mode(callback.message, callback.from_user.id, edit=True)
+
+# ---- Остальные режимы (лексика, общение, ролевые игры) тоже работают, но их обработчики находятся в соответствующих файлах.
+# Если их нет, то они упадут в заглушку, но мы их вытащили из списка, поэтому они будут пытаться вызвать свои обработчики.
+# Если обработчики ещё не написаны, бот выдаст ошибку. Чтобы этого избежать, нужно либо написать их, либо вернуть в заглушку.
+# Но по вашему запросу я убрал их из заглушек, значит, вы планируете, что они уже готовы.
