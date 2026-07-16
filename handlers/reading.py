@@ -348,12 +348,9 @@ async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
             await callback.message.answer(text, reply_markup=keyboard, parse_mode="HTML")
     await callback.answer()
 
-@router.message(ReadingStates.waiting_for_text, F.text)
+# ---------- Изменённый обработчик текстовых ответов: не перехватывает команды ----------
+@router.message(ReadingStates.waiting_for_text, F.text, ~F.text.startswith('/'))
 async def handle_text_answer(message: Message, state: FSMContext):
-    # Если сообщение является командой, пропускаем (не обрабатываем как ответ)
-    if message.text.startswith('/'):
-        return
-
     data = await state.get_data()
     short_type = data.get("short_type")
     short_level = data.get("short_level")
@@ -552,7 +549,6 @@ async def reading_reset(event, state: FSMContext):
         message = event
         answer_func = None
 
-    # Показываем сообщение с подтверждением
     confirm_text = (
         "⚠️ Вы уверены, что хотите сбросить прогресс?\n"
         "Все правильные ответы, ошибки и список заданий для исправления будут удалены.\n\n"
@@ -575,14 +571,12 @@ async def confirm_reset(callback: CallbackQuery, state: FSMContext):
         await callback.answer("Не удалось определить режим.", show_alert=True)
         return
 
-    # Сбрасываем прогресс и ошибки
     await reset_user_progress(user_id, type_json, level_json)
     await clear_reading_errors(user_id, type_json, level_json)
     await state.update_data(index=0, paragraph_idx=0, is_revision=False, error_list=[], error_index=0)
 
     await callback.message.edit_text("✅ Прогресс сброшен. Начинаем с первого задания.")
 
-    # Показываем сообщение с прогрессом заново
     correct, wrong = await get_user_stats(user_id, type_json, level_json)
     display_name = TYPE_DISPLAY.get(short_type, short_type)
     text = f"<b>Режим: {display_name}</b>\n\n"
@@ -594,7 +588,6 @@ async def confirm_reset(callback: CallbackQuery, state: FSMContext):
     text += "/reset_progress — сбросить прогресс"
     await callback.message.answer(text, reply_markup=get_progress_keyboard(), parse_mode="HTML")
 
-    # Показываем первое задание
     await show_next_task(callback.message, state, is_revision=False)
     await callback.answer()
 
