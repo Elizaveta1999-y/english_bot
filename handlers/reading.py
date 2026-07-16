@@ -105,8 +105,11 @@ async def clear_keyboard(message: Message, state: FSMContext):
 
 async def get_all_tasks_for_random(level: str):
     all_tasks = []
+    level_json = LEVEL_MAP.get(level, level)  # "Новичок", "Любитель", "Эксперт"
     for type_key in TYPE_MAP.keys():
-        tasks = [t for t in TASKS.get(TYPE_MAP[type_key], []) if t.get("level") == level]
+        type_json = TYPE_MAP[type_key]
+        # TASKS имеет структуру: {type_json: {level_json: [tasks]}}
+        tasks = TASKS.get(type_json, {}).get(level_json, [])
         all_tasks.extend(tasks)
     return all_tasks
 
@@ -186,9 +189,9 @@ async def render_task_message(message: Message, state: FSMContext, user_id: int,
 async def get_total_stats(user_id: int, short_level: str):
     total_correct = 0
     total_wrong = 0
+    level_json = LEVEL_MAP.get(short_level, short_level)
     for type_key in TYPE_MAP.keys():
         type_json = TYPE_MAP[type_key]
-        level_json = LEVEL_MAP.get(short_level, short_level)
         correct, wrong = await get_user_stats(user_id, type_json, level_json)
         total_correct += correct
         total_wrong += wrong
@@ -526,9 +529,14 @@ async def show_revision_task(message: Message, state: FSMContext, error_ids: lis
         found_type = None
         for t in TYPE_MAP.keys():
             t_json = TYPE_MAP[t]
-            for task in TASKS.get(t_json, []):
-                if task.get("id") == task_id:
-                    found_type = t
+            # ищем задание по id в TASKS
+            tasks_for_type = TASKS.get(t_json, {})
+            for level, tasks in tasks_for_type.items():
+                for task in tasks:
+                    if task.get("id") == task_id:
+                        found_type = t
+                        break
+                if found_type:
                     break
             if found_type:
                 break
@@ -580,6 +588,9 @@ async def show_answer(callback: CallbackQuery, state: FSMContext):
     await callback.message.edit_reply_markup(reply_markup=None)
 
     correct = task.get("correct")
+    was_wrong = data.get("was_wrong", False)
+
+    # Формируем правильный ответ
     if short_type == "order" or actual_type == "order":
         if isinstance(correct, int):
             if "options" in task and correct < len(task["options"]):
@@ -590,7 +601,7 @@ async def show_answer(callback: CallbackQuery, state: FSMContext):
             correct_text = ' -> '.join(str(c+1) for c in correct)
         else:
             correct_text = str(correct)
-        was_wrong = data.get("was_wrong", False)
+        # Если была ошибка и есть пояснение — показываем его
         if was_wrong:
             explanation = task.get("explanation", "")
             if explanation:
@@ -606,6 +617,7 @@ async def show_answer(callback: CallbackQuery, state: FSMContext):
             correct_text = str(correct)
         await callback.message.answer(f"Правильный ответ: {correct_text}")
 
+    # Переход к следующему заданию
     if is_revision:
         if short_type == "random":
             error_ids = []
