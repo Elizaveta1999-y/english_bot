@@ -31,11 +31,11 @@ READING_WELCOME_MESSAGES = [
     "<b>📖 Чтение</b>\n\n<i>Читайте, анализируйте, отвечайте на вопросы — и вы заметите, как тексты становятся понятнее с каждым разом.</i>\n\nВыберите задание и уровень."
 ]
 
+# Убрали тип "fill" (Вставка отрывков)
 TYPE_DISPLAY = {
     "podbor": "🥈 Подбор заголовка",
     "truefalse": "⚖️ True/False/Not stated",
     "choice": "☑️ Вопросы с выбором ответа",
-    "fill": "🔄 Вставка отрывков",
     "order": "📄 Восстановление порядка абзацев",
     "random": "🎲 Случайный тип"
 }
@@ -44,7 +44,6 @@ TYPE_MAP = {
     "podbor": "Подбор_заголовка",
     "truefalse": "True_False_Not_stated",
     "choice": "Вопросы_с_выбором_ответа",
-    "fill": "Вставка_отрывков",
     "order": "Восстановление_порядка_абзацев"
 }
 
@@ -62,10 +61,11 @@ def get_type_choice_keyboard():
     return InlineKeyboardMarkup(inline_keyboard=buttons)
 
 def get_level_keyboard(short_type: str):
+    # Смайлики уровней: любитель 📚, эксперт 🎓
     buttons = [
         [InlineKeyboardButton(text="🌱 Новичок", callback_data=f"reading_level:{short_type}:beginner")],
-        [InlineKeyboardButton(text="🔥 Любитель", callback_data=f"reading_level:{short_type}:intermediate")],
-        [InlineKeyboardButton(text="⚡ Эксперт", callback_data=f"reading_level:{short_type}:expert")],
+        [InlineKeyboardButton(text="📚 Любитель", callback_data=f"reading_level:{short_type}:intermediate")],
+        [InlineKeyboardButton(text="🎓 Эксперт", callback_data=f"reading_level:{short_type}:expert")],
         [InlineKeyboardButton(text="🔙 Назад", callback_data="reading_back_to_types")]
     ]
     return InlineKeyboardMarkup(inline_keyboard=buttons)
@@ -105,15 +105,49 @@ async def clear_keyboard(message: Message, state: FSMContext):
             pass
     await state.update_data(last_task_msg_id=None)
 
+async def get_all_tasks_for_random(level: str):
+    """Возвращает список всех заданий для уровня (кроме fill)."""
+    all_tasks = []
+    for type_key in TYPE_MAP.keys():  # только типы из TYPE_MAP
+        tasks = [t for t in TASKS.get(TYPE_MAP[type_key], []) if t.get("level") == level]
+        all_tasks.extend(tasks)
+    return all_tasks
+
 async def render_task_message(message: Message, state: FSMContext, user_id: int, short_type: str, short_level: str, index: int, paragraph_idx: int = 0, is_revision: bool = False):
     # Сначала убираем старую клавиатуру
     await clear_keyboard(message, state)
 
-    type_json = TYPE_MAP.get(short_type, short_type)
-    level_json = LEVEL_MAP.get(short_level, short_level)
-    task = get_task(type_json, level_json, index)
-    if not task:
-        return None, None
+    # Если тип random, выбираем случайное задание из всех типов
+    if short_type == "random":
+        all_tasks = await get_all_tasks_for_random(short_level)
+        if not all_tasks:
+            await message.answer("Нет заданий для этого уровня.")
+            return None, None
+        # Выбираем задание по индексу (зацикливаем)
+        if index >= len(all_tasks):
+            index = 0
+        task = all_tasks[index]
+        # Определяем фактический тип задания
+        actual_type_key = None
+        for key, json_key in TYPE_MAP.items():
+            if json_key in task.get("type", ""):
+                actual_type_key = key
+                break
+        if not actual_type_key:
+            actual_type_key = "choice"  # fallback
+        # Сохраняем фактический тип и задание
+        await state.update_data(actual_type=actual_type_key, actual_task=task, random_index=index)
+    else:
+        type_json = TYPE_MAP.get(short_type, short_type)
+        level_json = LEVEL_MAP.get(short_level, short_level)
+        task = get_task(type_json, level_json, index)
+        if not task:
+            return None, None
+        await state.update_data(actual_type=short_type, actual_task=task)
+
+    # Теперь у нас есть task и actual_type
+    task = await state.get_data()["actual_task"]
+    actual_type = await state.get_data()["actual_type"]
 
     paragraphs = task.get("paragraphs", [])
     if isinstance(paragraphs, str):
@@ -121,7 +155,7 @@ async def render_task_message(message: Message, state: FSMContext, user_id: int,
     if not paragraphs:
         paragraphs = ["(текст отсутствует)"]
 
-    if short_type == "order":
+    if actual_type == "order":
         text = ""
         for i, para in enumerate(paragraphs):
             if not para.startswith(chr(65+i) + ")"):
@@ -139,31 +173,13 @@ async def render_task_message(message: Message, state: FSMContext, user_id: int,
     current_paragraph = paragraphs[paragraph_idx]
 
     text = f"{current_paragraph}\n\n"
-    if short_type == "fill":
-        text += "Вставьте подходящий отрывок.\n"
-        text += f"{task.get('question', '')}\n"
-    else:
-        text += f"{task.get('question', '')}\n"
+    text += f"{task.get('question', '')}\n"
 
     if task.get("input_type") == "text":
         text += "Введите ответ в чат.\n"
 
     if task.get("input_type") == "text":
         keyboard = get_action_keyboard(short_type, short_level, index, is_revision)
-    elif short_type == "fill":
-        options = task.get("options", [])
-        for i, opt in enumerate(options):
-            text += f"\n{chr(65+i)}) {opt}"
-        kb_buttons = []
-        row = []
-        for i in range(len(options)):
-            row.append(InlineKeyboardButton(text=chr(65+i), callback_data=f"reading_answer:{short_type}:{short_level}:{index}:{i}:{'rev' if is_revision else 'norm'}"))
-        kb_buttons.append(row)
-        kb_buttons.append([
-            InlineKeyboardButton(text="Показать ответ", callback_data=f"reading_show_answer:{short_type}:{short_level}:{index}:{'rev' if is_revision else 'norm'}"),
-            InlineKeyboardButton(text="Завершить", callback_data="reading_finish_session")
-        ])
-        keyboard = InlineKeyboardMarkup(inline_keyboard=kb_buttons)
     else:
         options = task.get("options", [])
         kb_buttons = []
@@ -179,12 +195,28 @@ async def render_task_message(message: Message, state: FSMContext, user_id: int,
     await state.update_data(last_task_msg_id=sent_msg.message_id)
     return text, keyboard
 
+async def get_total_stats(user_id: int, short_level: str):
+    """Суммирует статистику по всем типам для данного уровня."""
+    total_correct = 0
+    total_wrong = 0
+    for type_key in TYPE_MAP.keys():
+        type_json = TYPE_MAP[type_key]
+        level_json = LEVEL_MAP.get(short_level, short_level)
+        correct, wrong = await get_user_stats(user_id, type_json, level_json)
+        total_correct += correct
+        total_wrong += wrong
+    return total_correct, total_wrong
+
 async def send_progress_message(callback: CallbackQuery, short_type: str, short_level: str):
     user_id = callback.from_user.id
-    type_json = TYPE_MAP.get(short_type, short_type)
-    level_json = LEVEL_MAP.get(short_level, short_level)
-    correct, wrong = await get_user_stats(user_id, type_json, level_json)
-    display_name = TYPE_DISPLAY.get(short_type, short_type)
+    if short_type == "random":
+        correct, wrong = await get_total_stats(user_id, short_level)
+        display_name = "🎲 Случайный тип"
+    else:
+        type_json = TYPE_MAP.get(short_type, short_type)
+        level_json = LEVEL_MAP.get(short_level, short_level)
+        correct, wrong = await get_user_stats(user_id, type_json, level_json)
+        display_name = TYPE_DISPLAY.get(short_type, short_type)
     text = f"<b>Режим: {display_name}</b>\n\n"
     text += "Внимательно прочитайте текст и выполните задание.\n\n"
     text += f"Ваш прогресс:\n"
@@ -197,7 +229,6 @@ async def send_progress_message(callback: CallbackQuery, short_type: str, short_
 # -------------------- Обработчики --------------------
 @router.callback_query(F.data == "start_reading")
 async def start_reading(callback: CallbackQuery, state: FSMContext):
-    # Убираем возможные старые кнопки
     await clear_keyboard(callback.message, state)
     global_idx = await get_global_welcome_index()
     welcome_text = READING_WELCOME_MESSAGES[global_idx]
@@ -215,15 +246,11 @@ async def back_to_main(callback: CallbackQuery, state: FSMContext):
 async def choose_type(callback: CallbackQuery):
     short_type = callback.data.split(":", 1)[1]
     if short_type == "random":
-        available_short = []
-        for short, json_key in TYPE_MAP.items():
-            if json_key in TASKS:
-                available_short.append(short)
-        if not available_short:
-            available_short = ["podbor", "truefalse", "choice", "order"]
-        short_type = random.choice(available_short)
+        # Для random сразу переходим к выбору уровня без дополнительных сообщений
+        pass
+    # Изменяем текст на "Выберите уровень сложности:"
     await callback.message.edit_text(
-        f"Выбран тип: {TYPE_DISPLAY.get(short_type, short_type)}\nВыберите уровень:",
+        "Выберите уровень сложности:",
         reply_markup=get_level_keyboard(short_type),
         parse_mode="HTML"
     )
@@ -247,31 +274,43 @@ async def choose_level(callback: CallbackQuery, state: FSMContext):
     user_state["mode"] = None
     set_user_state(user_id, user_state)
 
-    type_json = TYPE_MAP.get(short_type, short_type)
-    level_json = LEVEL_MAP.get(short_level, short_level)
-
-    index = await get_user_progress(user_id, type_json, level_json)
-    task = get_task(type_json, level_json, index)
-    if not task:
-        index = 0
-        await set_user_progress(user_id, type_json, level_json, index)
-        task = get_task(type_json, level_json, index)
-        if not task:
+    # Для random используем отдельную логику индекса
+    if short_type == "random":
+        # Индекс храним отдельно для random
+        index = await get_user_progress(user_id, "random", short_level)
+        # Но нам нужен индекс в общем списке заданий
+        all_tasks = await get_all_tasks_for_random(short_level)
+        if not all_tasks:
             await callback.message.edit_text("Задания для этого уровня пока отсутствуют. Попробуйте другой уровень.")
             await callback.answer()
             return
+        if index >= len(all_tasks):
+            index = 0
+            await set_user_progress(user_id, "random", short_level, index)
+    else:
+        type_json = TYPE_MAP.get(short_type, short_type)
+        level_json = LEVEL_MAP.get(short_level, short_level)
+        index = await get_user_progress(user_id, type_json, level_json)
+        task = get_task(type_json, level_json, index)
+        if not task:
+            index = 0
+            await set_user_progress(user_id, type_json, level_json, index)
+            task = get_task(type_json, level_json, index)
+            if not task:
+                await callback.message.edit_text("Задания для этого уровня пока отсутствуют. Попробуйте другой уровень.")
+                await callback.answer()
+                return
 
     await state.update_data(
         short_type=short_type,
         short_level=short_level,
-        type_json=type_json,
-        level_json=level_json,
         index=index,
         paragraph_idx=0,
         is_revision=False,
         error_list=[],
         error_index=0,
-        last_task_msg_id=None
+        last_task_msg_id=None,
+        was_wrong=False  # для хранения факта ошибки для текущего задания
     )
 
     await send_progress_message(callback, short_type, short_level)
@@ -293,16 +332,25 @@ async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
     user_id = callback.from_user.id
 
     data = await state.get_data()
-    type_json = data.get("type_json")
-    level_json = data.get("level_json")
-    if not type_json or not level_json:
-        await callback.answer("Ошибка состояния")
-        return
-
-    task = get_task(type_json, level_json, index)
-    if not task:
-        await callback.answer("Задание не найдено")
-        return
+    # Для random используем фактический тип из состояния
+    if short_type == "random":
+        actual_type = data.get("actual_type")
+        if not actual_type:
+            await callback.answer("Ошибка: не удалось определить тип задания")
+            return
+        type_json = TYPE_MAP.get(actual_type, actual_type)
+        level_json = LEVEL_MAP.get(short_level, short_level)
+        task = data.get("actual_task")
+        if not task:
+            await callback.answer("Задание не найдено")
+            return
+    else:
+        type_json = TYPE_MAP.get(short_type, short_type)
+        level_json = LEVEL_MAP.get(short_level, short_level)
+        task = get_task(type_json, level_json, index)
+        if not task:
+            await callback.answer("Задание не найдено")
+            return
 
     correct = (chosen_idx == task["correct"])
 
@@ -315,9 +363,11 @@ async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
     else:
         if correct:
             await update_user_stats(user_id, type_json, level_json, True)
+            await state.update_data(was_wrong=False)
         else:
             await update_user_stats(user_id, type_json, level_json, False)
             await add_reading_error(user_id, type_json, level_json, index)
+            await state.update_data(was_wrong=True)  # запоминаем, что была ошибка
 
     # Убираем клавиатуру у текущего сообщения
     await callback.message.edit_reply_markup(reply_markup=None)
@@ -331,7 +381,17 @@ async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
 
     # Переход к следующему заданию
     if is_revision:
-        error_ids = await get_reading_errors(user_id, type_json, level_json)
+        # Для revision в random собираем ошибки из всех типов
+        if short_type == "random":
+            error_ids = []
+            for t in TYPE_MAP.keys():
+                t_json = TYPE_MAP[t]
+                errors = await get_reading_errors(user_id, t_json, level_json)
+                error_ids.extend(errors)
+            # убираем дубли
+            error_ids = list(set(error_ids))
+        else:
+            error_ids = await get_reading_errors(user_id, type_json, level_json)
         if not error_ids:
             await callback.message.answer("🎉 Все ошибки исправлены! Возвращаемся в обычный режим.")
             await state.update_data(is_revision=False, error_list=[], error_index=0)
@@ -343,37 +403,57 @@ async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
             await callback.answer()
             return
     else:
-        next_index = index + 1
-        next_task = get_task(type_json, level_json, next_index)
-        if not next_task:
-            next_index = 0
-        await set_user_progress(user_id, type_json, level_json, next_index)
-        await state.update_data(index=next_index, paragraph_idx=0)
+        # Обычный режим
+        if short_type == "random":
+            all_tasks = await get_all_tasks_for_random(short_level)
+            if not all_tasks:
+                await callback.message.answer("Нет заданий для этого уровня.")
+                await callback.answer()
+                return
+            next_index = index + 1
+            if next_index >= len(all_tasks):
+                next_index = 0
+            await set_user_progress(user_id, "random", short_level, next_index)
+            await state.update_data(index=next_index, paragraph_idx=0)
+        else:
+            next_index = index + 1
+            next_task = get_task(type_json, level_json, next_index)
+            if not next_task:
+                next_index = 0
+            await set_user_progress(user_id, type_json, level_json, next_index)
+            await state.update_data(index=next_index, paragraph_idx=0)
         await render_task_message(callback.message, state, user_id, short_type, short_level, next_index, paragraph_idx=0, is_revision=False)
         await callback.answer()
 
-# ---------- Обработка текстовых ответов (fill и т.п.) ----------
+# ---------- Обработка текстовых ответов ----------
 @router.message(ReadingStates.waiting_for_text, F.text, ~F.text.startswith('/'))
 async def handle_text_answer(message: Message, state: FSMContext):
     data = await state.get_data()
     short_type = data.get("short_type")
     short_level = data.get("short_level")
-    type_json = data.get("type_json")
-    level_json = data.get("level_json")
     index = data.get("index")
     is_revision = data.get("is_revision", False)
     user_id = message.from_user.id
 
-    if not all([type_json, level_json, index is not None]):
-        await message.answer("Что-то пошло не так. Начните заново.")
-        await state.clear()
-        return
-
-    task = get_task(type_json, level_json, index)
-    if not task:
-        await message.answer("Задание не найдено.")
-        await state.clear()
-        return
+    # Определяем задание
+    if short_type == "random":
+        actual_type = data.get("actual_type")
+        if not actual_type:
+            await message.answer("Ошибка: не удалось определить тип задания")
+            return
+        type_json = TYPE_MAP.get(actual_type, actual_type)
+        level_json = LEVEL_MAP.get(short_level, short_level)
+        task = data.get("actual_task")
+        if not task:
+            await message.answer("Задание не найдено")
+            return
+    else:
+        type_json = TYPE_MAP.get(short_type, short_type)
+        level_json = LEVEL_MAP.get(short_level, short_level)
+        task = get_task(type_json, level_json, index)
+        if not task:
+            await message.answer("Задание не найдено.")
+            return
 
     correct_answer = task.get("correct")
     user_input = message.text.strip()
@@ -394,11 +474,13 @@ async def handle_text_answer(message: Message, state: FSMContext):
     else:
         if correct:
             await update_user_stats(user_id, type_json, level_json, True)
+            await state.update_data(was_wrong=False)
         else:
             await update_user_stats(user_id, type_json, level_json, False)
             await add_reading_error(user_id, type_json, level_json, index)
+            await state.update_data(was_wrong=True)
 
-    # Убираем клавиатуру у последнего сообщения с заданием
+    # Убираем клавиатуру
     await clear_keyboard(message, state)
 
     if correct:
@@ -411,8 +493,17 @@ async def handle_text_answer(message: Message, state: FSMContext):
         result_text = f"Неправильно. Правильный ответ: {correct_text}"
     await message.answer(result_text)
 
+    # Переход к следующему
     if is_revision:
-        error_ids = await get_reading_errors(user_id, type_json, level_json)
+        if short_type == "random":
+            error_ids = []
+            for t in TYPE_MAP.keys():
+                t_json = TYPE_MAP[t]
+                errors = await get_reading_errors(user_id, t_json, level_json)
+                error_ids.extend(errors)
+            error_ids = list(set(error_ids))
+        else:
+            error_ids = await get_reading_errors(user_id, type_json, level_json)
         if not error_ids:
             await message.answer("🎉 Все ошибки исправлены! Возвращаемся в обычный режим.")
             await state.update_data(is_revision=False, error_list=[], error_index=0)
@@ -422,20 +513,29 @@ async def handle_text_answer(message: Message, state: FSMContext):
             await show_revision_task(message, state, error_ids)
             return
     else:
-        next_index = index + 1
-        next_task = get_task(type_json, level_json, next_index)
-        if not next_task:
-            next_index = 0
-        await set_user_progress(user_id, type_json, level_json, next_index)
-        await state.update_data(index=next_index, paragraph_idx=0)
+        if short_type == "random":
+            all_tasks = await get_all_tasks_for_random(short_level)
+            if not all_tasks:
+                await message.answer("Нет заданий для этого уровня.")
+                return
+            next_index = index + 1
+            if next_index >= len(all_tasks):
+                next_index = 0
+            await set_user_progress(user_id, "random", short_level, next_index)
+            await state.update_data(index=next_index, paragraph_idx=0)
+        else:
+            next_index = index + 1
+            next_task = get_task(type_json, level_json, next_index)
+            if not next_task:
+                next_index = 0
+            await set_user_progress(user_id, type_json, level_json, next_index)
+            await state.update_data(index=next_index, paragraph_idx=0)
         await render_task_message(message, state, user_id, short_type, short_level, next_index, paragraph_idx=0, is_revision=False)
 
 async def show_next_task(message: Message, state: FSMContext, is_revision: bool):
     data = await state.get_data()
     short_type = data.get("short_type")
     short_level = data.get("short_level")
-    type_json = data.get("type_json")
-    level_json = data.get("level_json")
     index = data.get("index", 0)
     user_id = message.from_user.id
 
@@ -448,16 +548,42 @@ async def show_revision_task(message: Message, state: FSMContext, error_ids: lis
     data = await state.get_data()
     short_type = data.get("short_type")
     short_level = data.get("short_level")
-    type_json = data.get("type_json")
-    level_json = data.get("level_json")
     user_id = message.from_user.id
 
-    # Убираем старую клавиатуру
-    await clear_keyboard(message, state)
+    if not error_ids:
+        await message.answer("Нет заданий для исправления.")
+        return
 
-    task_index = error_ids[0]
-    await render_task_message(message, state, user_id, short_type, short_level, task_index, paragraph_idx=0, is_revision=True)
-    await state.update_data(index=task_index, paragraph_idx=0, is_revision=True, error_list=error_ids, error_index=0)
+    # Для random мы уже передали список ошибок из всех типов, но нам нужно определить тип для первого задания
+    if short_type == "random":
+        # Ищем первое задание по id
+        task_id = error_ids[0]
+        # Находим тип задания по id
+        found_type = None
+        for t in TYPE_MAP.keys():
+            t_json = TYPE_MAP[t]
+            tasks = get_task(t_json, LEVEL_MAP.get(short_level, short_level), 0)  # не работает
+            # Проще: перебрать все задания
+            for task in TASKS.get(t_json, []):
+                if task.get("id") == task_id:
+                    found_type = t
+                    break
+            if found_type:
+                break
+        if not found_type:
+            await message.answer("Не удалось определить тип задания для исправления.")
+            return
+        # Сохраняем фактический тип
+        await state.update_data(actual_type=found_type)
+        # Теперь вызываем render_task_message с этим типом
+        await render_task_message(message, state, user_id, found_type, short_level, task_id, paragraph_idx=0, is_revision=True)
+        await state.update_data(index=task_id, paragraph_idx=0, is_revision=True, error_list=error_ids, error_index=0)
+    else:
+        type_json = TYPE_MAP.get(short_type, short_type)
+        level_json = LEVEL_MAP.get(short_level, short_level)
+        task_id = error_ids[0]
+        await render_task_message(message, state, user_id, short_type, short_level, task_id, paragraph_idx=0, is_revision=True)
+        await state.update_data(index=task_id, paragraph_idx=0, is_revision=True, error_list=error_ids, error_index=0)
 
 # ---------- Показать ответ ----------
 @router.callback_query(F.data.startswith("reading_show_answer:"))
@@ -469,48 +595,73 @@ async def show_answer(callback: CallbackQuery, state: FSMContext):
     short_type, short_level, index_str, mode = parts[1], parts[2], parts[3], parts[4]
     index = int(index_str)
     data = await state.get_data()
-    type_json = data.get("type_json")
-    level_json = data.get("level_json")
-    if not type_json or not level_json:
-        await callback.answer("Ошибка состояния")
-        return
-    task = get_task(type_json, level_json, index)
-    if not task:
-        await callback.answer("Задание не найдено")
-        return
+    is_revision = (mode == "rev")
+    user_id = callback.from_user.id
+
+    # Определяем задание
+    if short_type == "random":
+        actual_type = data.get("actual_type")
+        if not actual_type:
+            await callback.answer("Ошибка: не удалось определить тип задания")
+            return
+        type_json = TYPE_MAP.get(actual_type, actual_type)
+        level_json = LEVEL_MAP.get(short_level, short_level)
+        task = data.get("actual_task")
+        if not task:
+            await callback.answer("Задание не найдено")
+            return
+    else:
+        type_json = TYPE_MAP.get(short_type, short_type)
+        level_json = LEVEL_MAP.get(short_level, short_level)
+        task = get_task(type_json, level_json, index)
+        if not task:
+            await callback.answer("Задание не найдено")
+            return
 
     # Убираем клавиатуру у текущего сообщения
     await callback.message.edit_reply_markup(reply_markup=None)
 
-    # Получаем правильный ответ текстом
+    # Получаем правильный ответ
     correct = task.get("correct")
-    if short_type == "order":
-        # Для order correct может быть числом (индекс правильного порядка) или массивом
+    if short_type == "order" or actual_type == "order":
+        # Для order выводим правильный порядок
         if isinstance(correct, int):
-            # Если correct число, значит это индекс правильного варианта в options
             if "options" in task and correct < len(task["options"]):
                 correct_text = task["options"][correct]
             else:
-                # Иначе просто выводим число
-                correct_text = str(correct + 1)  # +1 для читаемости
+                correct_text = str(correct + 1)
         elif isinstance(correct, list):
-            correct_text = ' -> '.join(str(c+1) for c in correct)  # если массив индексов
+            correct_text = ' -> '.join(str(c+1) for c in correct)
         else:
             correct_text = str(correct)
+        # Проверяем, была ли ошибка
+        was_wrong = data.get("was_wrong", False)
+        if was_wrong:
+            explanation = task.get("explanation", "")
+            if explanation:
+                await callback.message.answer(f"Правильный ответ: {correct_text}\n\nОбъяснение: {explanation}")
+            else:
+                await callback.message.answer(f"Правильный ответ: {correct_text}")
+        else:
+            await callback.message.answer(f"Правильный ответ: {correct_text}")
     else:
-        # Для остальных типов берём из options
         if "options" in task and correct < len(task["options"]):
             correct_text = task["options"][correct]
         else:
             correct_text = str(correct)
+        await callback.message.answer(f"Правильный ответ: {correct_text}")
 
-    await callback.message.answer(f"Правильный ответ: {correct_text}")
-
-    is_revision = (mode == "rev")
-    user_id = callback.from_user.id
-
+    # Переход к следующему заданию
     if is_revision:
-        error_ids = await get_reading_errors(user_id, type_json, level_json)
+        if short_type == "random":
+            error_ids = []
+            for t in TYPE_MAP.keys():
+                t_json = TYPE_MAP[t]
+                errors = await get_reading_errors(user_id, t_json, level_json)
+                error_ids.extend(errors)
+            error_ids = list(set(error_ids))
+        else:
+            error_ids = await get_reading_errors(user_id, type_json, level_json)
         if not error_ids:
             await callback.message.answer("🎉 Все ошибки исправлены! Возвращаемся в обычный режим.")
             await state.update_data(is_revision=False, error_list=[], error_index=0)
@@ -529,12 +680,24 @@ async def show_answer(callback: CallbackQuery, state: FSMContext):
                 await state.update_data(is_revision=False, error_list=[], error_index=0)
                 await show_next_task(callback.message, state, is_revision=False)
     else:
-        next_index = index + 1
-        next_task = get_task(type_json, level_json, next_index)
-        if not next_task:
-            next_index = 0
-        await set_user_progress(user_id, type_json, level_json, next_index)
-        await state.update_data(index=next_index, paragraph_idx=0)
+        if short_type == "random":
+            all_tasks = await get_all_tasks_for_random(short_level)
+            if not all_tasks:
+                await callback.message.answer("Нет заданий для этого уровня.")
+                await callback.answer()
+                return
+            next_index = index + 1
+            if next_index >= len(all_tasks):
+                next_index = 0
+            await set_user_progress(user_id, "random", short_level, next_index)
+            await state.update_data(index=next_index, paragraph_idx=0)
+        else:
+            next_index = index + 1
+            next_task = get_task(type_json, level_json, next_index)
+            if not next_task:
+                next_index = 0
+            await set_user_progress(user_id, type_json, level_json, next_index)
+            await state.update_data(index=next_index, paragraph_idx=0)
         await render_task_message(callback.message, state, user_id, short_type, short_level, next_index, paragraph_idx=0, is_revision=False)
 
     await callback.answer()
@@ -547,18 +710,18 @@ async def reading_revision(event, state: FSMContext):
         user_id = event.from_user.id
         message = event.message
         answer_func = event.answer
-    else:  # Message
+    else:
         user_id = event.from_user.id
         message = event
         answer_func = None
 
     data = await state.get_data()
-    type_json = data.get("type_json")
-    level_json = data.get("level_json")
     short_type = data.get("short_type")
     short_level = data.get("short_level")
+    type_json = data.get("type_json")
+    level_json = data.get("level_json")
 
-    if not type_json or not level_json:
+    if not short_type or not short_level:
         text = "Сначала выберите тип и уровень в режиме чтения."
         if answer_func:
             await answer_func(text, show_alert=True)
@@ -566,7 +729,18 @@ async def reading_revision(event, state: FSMContext):
             await message.answer(text)
         return
 
-    error_ids = await get_reading_errors(user_id, type_json, level_json)
+    if short_type == "random":
+        error_ids = []
+        for t in TYPE_MAP.keys():
+            t_json = TYPE_MAP[t]
+            errors = await get_reading_errors(user_id, t_json, level_json)
+            error_ids.extend(errors)
+        error_ids = list(set(error_ids))
+    else:
+        if not type_json:
+            type_json = TYPE_MAP.get(short_type, short_type)
+        error_ids = await get_reading_errors(user_id, type_json, level_json)
+
     if not error_ids:
         text = "🎉 Ошибок нет! Отличная работа."
         if answer_func:
@@ -580,7 +754,7 @@ async def reading_revision(event, state: FSMContext):
     if answer_func:
         await answer_func()
 
-# ---------- Сброс прогресса с подтверждением ----------
+# ---------- Сброс прогресса ----------
 @router.callback_query(F.data == "reading_reset")
 @router.message(Command("reset_progress"))
 async def reading_reset(event, state: FSMContext):
@@ -603,23 +777,34 @@ async def reading_reset(event, state: FSMContext):
 async def confirm_reset(callback: CallbackQuery, state: FSMContext):
     user_id = callback.from_user.id
     data = await state.get_data()
-    type_json = data.get("type_json")
-    level_json = data.get("level_json")
     short_type = data.get("short_type")
     short_level = data.get("short_level")
+    type_json = data.get("type_json")
+    level_json = data.get("level_json")
 
-    if not type_json or not level_json:
+    if not short_type or not short_level:
         await callback.answer("Не удалось определить режим.", show_alert=True)
         return
 
-    await reset_user_progress(user_id, type_json, level_json)
-    await clear_reading_errors(user_id, type_json, level_json)
+    if short_type == "random":
+        # Сбрасываем прогресс для всех типов
+        for t in TYPE_MAP.keys():
+            t_json = TYPE_MAP[t]
+            await reset_user_progress(user_id, t_json, level_json)
+            await clear_reading_errors(user_id, t_json, level_json)
+        await reset_user_progress(user_id, "random", short_level)
+    else:
+        if not type_json:
+            type_json = TYPE_MAP.get(short_type, short_type)
+        await reset_user_progress(user_id, type_json, level_json)
+        await clear_reading_errors(user_id, type_json, level_json)
+
     await state.update_data(index=0, paragraph_idx=0, is_revision=False, error_list=[], error_index=0)
 
     await callback.message.edit_text("Прогресс сброшен. Все упражнения будут даны с самого начала.")
 
-    correct, wrong = await get_user_stats(user_id, type_json, level_json)
-    display_name = TYPE_DISPLAY.get(short_type, short_type)
+    correct, wrong = await get_user_stats(user_id, type_json, level_json) if short_type != "random" else await get_total_stats(user_id, short_level)
+    display_name = TYPE_DISPLAY.get(short_type, short_type) if short_type != "random" else "🎲 Случайный тип"
     text = f"<b>Режим: {display_name}</b>\n\n"
     text += "Внимательно прочитайте текст и выполните задание.\n\n"
     text += f"Ваш прогресс:\n"
@@ -641,23 +826,28 @@ async def cancel_reset(callback: CallbackQuery):
 @router.callback_query(F.data == "reading_finish_session")
 async def finish_session(callback: CallbackQuery, state: FSMContext):
     data = await state.get_data()
+    short_type = data.get("short_type")
+    short_level = data.get("short_level")
     type_json = data.get("type_json")
     level_json = data.get("level_json")
     user_id = callback.from_user.id
 
-    # Убираем клавиатуру у последнего сообщения с заданием
+    # Убираем клавиатуру
     await clear_keyboard(callback.message, state)
 
-    if type_json and level_json:
-        correct, wrong = await get_user_stats(user_id, type_json, level_json)
-        total = correct + wrong
-        if total == 0:
-            text = "Сессия завершена! Вы не ответили ни на одно задание."
-        else:
-            accuracy = (correct / total * 100)
-            text = f"Сессия завершена!\nПравильно: {correct}\nОшибок: {wrong}\nТочность: {accuracy:.1f}%"
+    if short_type == "random":
+        correct, wrong = await get_total_stats(user_id, short_level)
     else:
-        text = "Сессия завершена!"
+        if not type_json:
+            type_json = TYPE_MAP.get(short_type, short_type)
+        correct, wrong = await get_user_stats(user_id, type_json, level_json)
+
+    total = correct + wrong
+    if total == 0:
+        text = "Сессия завершена! Вы не ответили ни на одно задание. 🙌🏻"
+    else:
+        accuracy = (correct / total * 100)
+        text = f"Сессия завершена! 🙌🏻\nПравильно: {correct}\nОшибок: {wrong}\nТочность: {accuracy:.1f}%"
 
     await callback.message.answer(text)
 
