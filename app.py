@@ -30,7 +30,7 @@ dp.include_router(start.router)
 dp.include_router(writing.router)
 dp.include_router(reading.router)   # <-- ПЕРВЫМ после start
 dp.include_router(listening.router)
-dr.include_router(grammar_router)
+dp.include_router(grammar_router) 
 dp.include_router(support.router)
 dp.include_router(subscription_router)
 dp.include_router(words.router)
