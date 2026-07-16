@@ -350,7 +350,6 @@ async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
         result_text = "Правильно!"
     else:
         correct_text = task['options'][task['correct']]
-        # Для типа order добавляем пояснение
         if short_type == "order" or actual_type == "order":
             explanation = task.get("explanation", "")
             if explanation:
@@ -464,7 +463,6 @@ async def handle_text_answer(message: Message, state: FSMContext):
             correct_text = '; '.join(correct_answer)
         else:
             correct_text = str(correct_answer)
-        # Для типа order добавляем пояснение
         if short_type == "order" or actual_type == "order":
             explanation = task.get("explanation", "")
             if explanation:
@@ -592,6 +590,7 @@ async def show_answer(callback: CallbackQuery, state: FSMContext):
         if not task:
             await callback.answer("Задание не найдено")
             return
+        actual_type = short_type  # <-- исправлено
 
     await callback.message.edit_reply_markup(reply_markup=None)
 
