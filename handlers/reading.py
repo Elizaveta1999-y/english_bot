@@ -91,8 +91,8 @@ def get_progress_keyboard():
 
 def get_reset_confirmation_keyboard():
     buttons = [
-        [InlineKeyboardButton(text="✅ Да, сбросить", callback_data="reading_confirm_reset")],
-        [InlineKeyboardButton(text="❌ Назад", callback_data="reading_cancel_reset")]
+        [InlineKeyboardButton(text="Да, сбросить", callback_data="reading_confirm_reset")],
+        [InlineKeyboardButton(text="Назад", callback_data="reading_cancel_reset")]
     ]
     return InlineKeyboardMarkup(inline_keyboard=buttons)
 
@@ -348,7 +348,6 @@ async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
             await callback.message.answer(text, reply_markup=keyboard, parse_mode="HTML")
     await callback.answer()
 
-# ---------- Изменённый обработчик текстовых ответов: не перехватывает команды ----------
 @router.message(ReadingStates.waiting_for_text, F.text, ~F.text.startswith('/'))
 async def handle_text_answer(message: Message, state: FSMContext):
     data = await state.get_data()
@@ -575,7 +574,7 @@ async def confirm_reset(callback: CallbackQuery, state: FSMContext):
     await clear_reading_errors(user_id, type_json, level_json)
     await state.update_data(index=0, paragraph_idx=0, is_revision=False, error_list=[], error_index=0)
 
-    await callback.message.edit_text("✅ Прогресс сброшен. Начинаем с первого задания.")
+    await callback.message.edit_text("Прогресс сброшен. Все упражнения будут даны с самого начала.")
 
     correct, wrong = await get_user_stats(user_id, type_json, level_json)
     display_name = TYPE_DISPLAY.get(short_type, short_type)
@@ -593,7 +592,7 @@ async def confirm_reset(callback: CallbackQuery, state: FSMContext):
 
 @router.callback_query(F.data == "reading_cancel_reset")
 async def cancel_reset(callback: CallbackQuery):
-    await callback.message.edit_text("❌ Сброс отменён. Продолжайте тренировку.")
+    await callback.message.edit_text("Сброс отменён. Продолжайте тренировку.")
     await callback.answer()
 
 # ---------- Завершение сессии ----------
