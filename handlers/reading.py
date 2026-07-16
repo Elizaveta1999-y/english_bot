@@ -118,6 +118,8 @@ async def render_task_message(message: Message, state: FSMContext, user_id: int,
                 text += f"{para}\n\n"
         text += f"{task.get('question', '')}"
         keyboard = get_action_keyboard(short_type, short_level, index, is_revision)
+        sent_msg = await message.answer(text, reply_markup=keyboard, parse_mode="HTML")
+        await state.update_data(last_task_msg_id=sent_msg.message_id)
         return text, keyboard
 
     if paragraph_idx >= len(paragraphs):
@@ -161,9 +163,7 @@ async def render_task_message(message: Message, state: FSMContext, user_id: int,
         ])
         keyboard = InlineKeyboardMarkup(inline_keyboard=kb_buttons)
 
-    # Отправляем сообщение с заданием
     sent_msg = await message.answer(text, reply_markup=keyboard, parse_mode="HTML")
-    # Сохраняем ID этого сообщения, чтобы позже убрать кнопки
     await state.update_data(last_task_msg_id=sent_msg.message_id)
     return text, keyboard
 
@@ -260,8 +260,6 @@ async def choose_level(callback: CallbackQuery, state: FSMContext):
     )
 
     await send_progress_message(callback, short_type, short_level)
-
-    # Отправляем первое задание
     await render_task_message(callback.message, state, user_id, short_type, short_level, index, paragraph_idx=0, is_revision=False)
     await state.set_state(ReadingStates.waiting_for_text)
     await callback.answer()
@@ -292,7 +290,6 @@ async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
         return
 
     correct = (chosen_idx == task["correct"])
-    # explanation не используем
 
     if is_revision:
         if correct:
@@ -310,7 +307,6 @@ async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
     # Убираем клавиатуру у текущего сообщения
     await callback.message.edit_reply_markup(reply_markup=None)
 
-    # Отправляем результат (без пояснения)
     if correct:
         result_text = "Правильно!"
     else:
@@ -335,14 +331,8 @@ async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
         next_index = index + 1
         next_task = get_task(type_json, level_json, next_index)
         if not next_task:
-            next_index = 0
-            next_task = get_task(type_json, level_json, next_index)
-            if not next_task:
-                await callback.message.answer("Все задания пройдены! Начните заново или выберите другой уровень.")
-                await state.clear()
-                await callback.answer()
-                return
-
+            next_index = 0  # Бесконечный цикл
+        # Обновляем прогресс
         await set_user_progress(user_id, type_json, level_json, next_index)
         await state.update_data(index=next_index, paragraph_idx=0)
         await render_task_message(callback.message, state, user_id, short_type, short_level, next_index, paragraph_idx=0, is_revision=False)
@@ -383,7 +373,6 @@ async def handle_text_answer(message: Message, state: FSMContext):
         correct_clean = "".join(str(correct_answer).split()).lower()
         correct = (user_clean == correct_clean)
 
-    # Обновляем статистику и ошибки
     if is_revision:
         if correct:
             await remove_reading_error(user_id, type_json, level_json, index)
@@ -403,15 +392,16 @@ async def handle_text_answer(message: Message, state: FSMContext):
         except Exception:
             pass
 
-    # Результат
     if correct:
         result_text = "Правильно!"
     else:
-        correct_text = correct_answer if isinstance(correct_answer, str) else '; '.join(correct_answer)
+        if isinstance(correct_answer, list):
+            correct_text = '; '.join(correct_answer)
+        else:
+            correct_text = str(correct_answer)
         result_text = f"Неправильно. Правильный ответ: {correct_text}"
     await message.answer(result_text)
 
-    # Переход к следующему
     if is_revision:
         error_ids = await get_reading_errors(user_id, type_json, level_json)
         if not error_ids:
@@ -426,13 +416,7 @@ async def handle_text_answer(message: Message, state: FSMContext):
         next_index = index + 1
         next_task = get_task(type_json, level_json, next_index)
         if not next_task:
-            next_index = 0
-            next_task = get_task(type_json, level_json, next_index)
-            if not next_task:
-                await message.answer("Все задания пройдены! Начните заново или выберите другой уровень.")
-                await state.clear()
-                return
-
+            next_index = 0  # Бесконечный цикл
         await set_user_progress(user_id, type_json, level_json, next_index)
         await state.update_data(index=next_index, paragraph_idx=0)
         await render_task_message(message, state, user_id, short_type, short_level, next_index, paragraph_idx=0, is_revision=False)
@@ -463,7 +447,7 @@ async def show_revision_task(message: Message, state: FSMContext, error_ids: lis
     await render_task_message(message, state, user_id, short_type, short_level, task_index, paragraph_idx=0, is_revision=True)
     await state.update_data(index=task_index, paragraph_idx=0, is_revision=True, error_list=error_ids, error_index=0)
 
-# ---------- Показать ответ (по кнопке) ----------
+# ---------- Показать ответ ----------
 @router.callback_query(F.data.startswith("reading_show_answer:"))
 async def show_answer(callback: CallbackQuery, state: FSMContext):
     parts = callback.data.split(":")
@@ -483,11 +467,45 @@ async def show_answer(callback: CallbackQuery, state: FSMContext):
         await callback.answer("Задание не найдено")
         return
 
+    # Убираем клавиатуру у текущего сообщения
+    await callback.message.edit_reply_markup(reply_markup=None)
+
     correct_index = task.get("correct")
-    correct_text = task['options'][correct_index]  # текст, а не индекс
-    text = f"Правильный ответ: {correct_text}"
-    # пояснение не выводим
-    await callback.message.answer(text)
+    correct_text = task['options'][correct_index]
+    await callback.message.answer(f"Правильный ответ: {correct_text}")
+
+    is_revision = (mode == "rev")
+    user_id = callback.from_user.id
+
+    if is_revision:
+        error_ids = await get_reading_errors(user_id, type_json, level_json)
+        if not error_ids:
+            await callback.message.answer("🎉 Все ошибки исправлены! Возвращаемся в обычный режим.")
+            await state.update_data(is_revision=False, error_list=[], error_index=0)
+            await show_next_task(callback.message, state, is_revision=False)
+        else:
+            # Находим текущее задание в списке ошибок
+            try:
+                cur_pos = error_ids.index(index)
+            except ValueError:
+                cur_pos = -1
+            if cur_pos != -1 and cur_pos + 1 < len(error_ids):
+                next_error_id = error_ids[cur_pos + 1]
+                await show_revision_task(callback.message, state, [next_error_id])
+            else:
+                # Если это последнее задание в списке ошибок, завершаем revision
+                await callback.message.answer("🎉 Все ошибки просмотрены! Возвращаемся в обычный режим.")
+                await state.update_data(is_revision=False, error_list=[], error_index=0)
+                await show_next_task(callback.message, state, is_revision=False)
+    else:
+        next_index = index + 1
+        next_task = get_task(type_json, level_json, next_index)
+        if not next_task:
+            next_index = 0  # Бесконечный цикл
+        await set_user_progress(user_id, type_json, level_json, next_index)
+        await state.update_data(index=next_index, paragraph_idx=0)
+        await render_task_message(callback.message, state, user_id, short_type, short_level, next_index, paragraph_idx=0, is_revision=False)
+
     await callback.answer()
 
 # ---------- Работа над ошибками (кнопка и команда) ----------
@@ -615,9 +633,18 @@ async def finish_session(callback: CallbackQuery, state: FSMContext):
     else:
         text = "Сессия завершена!"
 
-    await callback.answer(text, show_alert=True)
+    # Отправляем статистику текстовым сообщением
+    await callback.message.answer(text)
+
+    # Убираем клавиатуру у текущего сообщения (если есть)
+    try:
+        await callback.message.edit_reply_markup(reply_markup=None)
+    except Exception:
+        pass
+
     from .start import show_main_menu
-    await show_main_menu(callback.message, edit=True)
+    await show_main_menu(callback.message, edit=False)
+
     await state.clear()
     await callback.answer()
 
