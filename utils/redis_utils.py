@@ -47,3 +47,29 @@ async def update_user_stats(user_id: int, type_key: str, level_key: str, correct
     r = await get_redis()
     key = f"reading_stats:{user_id}:{type_key}:{level_key}:{'correct' if correct else 'wrong'}"
     await r.incr(key)
+
+# ---------- Работа с ошибками для режима Чтение ----------
+async def add_reading_error(user_id: int, type_json: str, level_json: str, task_index: int):
+    """Сохраняет задание как ошибочное для режима чтения."""
+    r = await get_redis()
+    key = f"reading_errors:{user_id}:{type_json}:{level_json}"
+    await r.sadd(key, str(task_index))
+
+async def remove_reading_error(user_id: int, type_json: str, level_json: str, task_index: int):
+    """Удаляет задание из списка ошибок (после правильного ответа в revision)."""
+    r = await get_redis()
+    key = f"reading_errors:{user_id}:{type_json}:{level_json}"
+    await r.srem(key, str(task_index))
+
+async def get_reading_errors(user_id: int, type_json: str, level_json: str) -> list:
+    """Возвращает список ID заданий, на которые пользователь ошибся."""
+    r = await get_redis()
+    key = f"reading_errors:{user_id}:{type_json}:{level_json}"
+    members = await r.smembers(key)
+    return [int(m) for m in members]
+
+async def clear_reading_errors(user_id: int, type_json: str, level_json: str):
+    """Полностью очищает список ошибок для данного типа и уровня."""
+    r = await get_redis()
+    key = f"reading_errors:{user_id}:{type_json}:{level_json}"
+    await r.delete(key)
