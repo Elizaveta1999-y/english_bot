@@ -13,7 +13,7 @@ WELCOME_TEXT = (
 
 def get_main_menu_keyboard():
     return InlineKeyboardMarkup(inline_keyboard=[
-        [InlineKeyboardButton(text="📚 Уроки", callback_data="start_lessons")],
+        # [InlineKeyboardButton(text="📚 Уроки", callback_data="start_lessons")],  # временно закомментировано
         [
             InlineKeyboardButton(text="🔉 Аудирование", callback_data="start_listening"),
             InlineKeyboardButton(text="📝 Письмо", callback_data="start_writing")
