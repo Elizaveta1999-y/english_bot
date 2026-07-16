@@ -36,7 +36,6 @@ TYPE_DISPLAY = {
     "truefalse": "⚖️ True/False/Not stated",
     "choice": "☑️ Вопросы с выбором ответа",
     "fill": "🔄 Вставка отрывков",
-    "match": "🟰 Соотношение слова с определением",
     "order": "📄 Восстановление порядка абзацев",
     "random": "🎲 Случайный тип"
 }
@@ -46,7 +45,6 @@ TYPE_MAP = {
     "truefalse": "True_False_Not_stated",
     "choice": "Вопросы_с_выбором_ответа",
     "fill": "Вставка_отрывков",
-    "match": "Соотношение_слова_с_определением",
     "order": "Восстановление_порядка_абзацев"
 }
 
@@ -96,7 +94,21 @@ def get_reset_confirmation_keyboard():
     ]
     return InlineKeyboardMarkup(inline_keyboard=buttons)
 
+async def clear_keyboard(message: Message, state: FSMContext):
+    """Убирает клавиатуру у последнего сообщения с заданием."""
+    data = await state.get_data()
+    last_id = data.get("last_task_msg_id")
+    if last_id:
+        try:
+            await message.bot.edit_message_reply_markup(chat_id=message.chat.id, message_id=last_id, reply_markup=None)
+        except Exception:
+            pass
+    await state.update_data(last_task_msg_id=None)
+
 async def render_task_message(message: Message, state: FSMContext, user_id: int, short_type: str, short_level: str, index: int, paragraph_idx: int = 0, is_revision: bool = False):
+    # Сначала убираем старую клавиатуру
+    await clear_keyboard(message, state)
+
     type_json = TYPE_MAP.get(short_type, short_type)
     level_json = LEVEL_MAP.get(short_level, short_level)
     task = get_task(type_json, level_json, index)
@@ -184,14 +196,17 @@ async def send_progress_message(callback: CallbackQuery, short_type: str, short_
 
 # -------------------- Обработчики --------------------
 @router.callback_query(F.data == "start_reading")
-async def start_reading(callback: CallbackQuery):
+async def start_reading(callback: CallbackQuery, state: FSMContext):
+    # Убираем возможные старые кнопки
+    await clear_keyboard(callback.message, state)
     global_idx = await get_global_welcome_index()
     welcome_text = READING_WELCOME_MESSAGES[global_idx]
     await callback.message.edit_text(welcome_text, reply_markup=get_type_choice_keyboard(), parse_mode="HTML")
     await callback.answer()
 
 @router.callback_query(F.data == "reading_back_to_main")
-async def back_to_main(callback: CallbackQuery):
+async def back_to_main(callback: CallbackQuery, state: FSMContext):
+    await clear_keyboard(callback.message, state)
     from .start import show_main_menu
     await show_main_menu(callback.message, edit=True)
     await callback.answer()
@@ -331,8 +346,7 @@ async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
         next_index = index + 1
         next_task = get_task(type_json, level_json, next_index)
         if not next_task:
-            next_index = 0  # Бесконечный цикл
-        # Обновляем прогресс
+            next_index = 0
         await set_user_progress(user_id, type_json, level_json, next_index)
         await state.update_data(index=next_index, paragraph_idx=0)
         await render_task_message(callback.message, state, user_id, short_type, short_level, next_index, paragraph_idx=0, is_revision=False)
@@ -385,12 +399,7 @@ async def handle_text_answer(message: Message, state: FSMContext):
             await add_reading_error(user_id, type_json, level_json, index)
 
     # Убираем клавиатуру у последнего сообщения с заданием
-    last_id = data.get("last_task_msg_id")
-    if last_id:
-        try:
-            await message.bot.edit_message_reply_markup(chat_id=message.chat.id, message_id=last_id, reply_markup=None)
-        except Exception:
-            pass
+    await clear_keyboard(message, state)
 
     if correct:
         result_text = "Правильно!"
@@ -416,7 +425,7 @@ async def handle_text_answer(message: Message, state: FSMContext):
         next_index = index + 1
         next_task = get_task(type_json, level_json, next_index)
         if not next_task:
-            next_index = 0  # Бесконечный цикл
+            next_index = 0
         await set_user_progress(user_id, type_json, level_json, next_index)
         await state.update_data(index=next_index, paragraph_idx=0)
         await render_task_message(message, state, user_id, short_type, short_level, next_index, paragraph_idx=0, is_revision=False)
@@ -442,6 +451,9 @@ async def show_revision_task(message: Message, state: FSMContext, error_ids: lis
     type_json = data.get("type_json")
     level_json = data.get("level_json")
     user_id = message.from_user.id
+
+    # Убираем старую клавиатуру
+    await clear_keyboard(message, state)
 
     task_index = error_ids[0]
     await render_task_message(message, state, user_id, short_type, short_level, task_index, paragraph_idx=0, is_revision=True)
@@ -470,8 +482,28 @@ async def show_answer(callback: CallbackQuery, state: FSMContext):
     # Убираем клавиатуру у текущего сообщения
     await callback.message.edit_reply_markup(reply_markup=None)
 
-    correct_index = task.get("correct")
-    correct_text = task['options'][correct_index]
+    # Получаем правильный ответ текстом
+    correct = task.get("correct")
+    if short_type == "order":
+        # Для order correct может быть числом (индекс правильного порядка) или массивом
+        if isinstance(correct, int):
+            # Если correct число, значит это индекс правильного варианта в options
+            if "options" in task and correct < len(task["options"]):
+                correct_text = task["options"][correct]
+            else:
+                # Иначе просто выводим число
+                correct_text = str(correct + 1)  # +1 для читаемости
+        elif isinstance(correct, list):
+            correct_text = ' -> '.join(str(c+1) for c in correct)  # если массив индексов
+        else:
+            correct_text = str(correct)
+    else:
+        # Для остальных типов берём из options
+        if "options" in task and correct < len(task["options"]):
+            correct_text = task["options"][correct]
+        else:
+            correct_text = str(correct)
+
     await callback.message.answer(f"Правильный ответ: {correct_text}")
 
     is_revision = (mode == "rev")
@@ -493,7 +525,6 @@ async def show_answer(callback: CallbackQuery, state: FSMContext):
                 next_error_id = error_ids[cur_pos + 1]
                 await show_revision_task(callback.message, state, [next_error_id])
             else:
-                # Если это последнее задание в списке ошибок, завершаем revision
                 await callback.message.answer("🎉 Все ошибки просмотрены! Возвращаемся в обычный режим.")
                 await state.update_data(is_revision=False, error_list=[], error_index=0)
                 await show_next_task(callback.message, state, is_revision=False)
@@ -501,7 +532,7 @@ async def show_answer(callback: CallbackQuery, state: FSMContext):
         next_index = index + 1
         next_task = get_task(type_json, level_json, next_index)
         if not next_task:
-            next_index = 0  # Бесконечный цикл
+            next_index = 0
         await set_user_progress(user_id, type_json, level_json, next_index)
         await state.update_data(index=next_index, paragraph_idx=0)
         await render_task_message(callback.message, state, user_id, short_type, short_level, next_index, paragraph_idx=0, is_revision=False)
@@ -615,12 +646,7 @@ async def finish_session(callback: CallbackQuery, state: FSMContext):
     user_id = callback.from_user.id
 
     # Убираем клавиатуру у последнего сообщения с заданием
-    last_id = data.get("last_task_msg_id")
-    if last_id:
-        try:
-            await callback.bot.edit_message_reply_markup(chat_id=callback.message.chat.id, message_id=last_id, reply_markup=None)
-        except Exception:
-            pass
+    await clear_keyboard(callback.message, state)
 
     if type_json and level_json:
         correct, wrong = await get_user_stats(user_id, type_json, level_json)
@@ -633,7 +659,6 @@ async def finish_session(callback: CallbackQuery, state: FSMContext):
     else:
         text = "Сессия завершена!"
 
-    # Отправляем статистику текстовым сообщением
     await callback.message.answer(text)
 
     # Убираем клавиатуру у текущего сообщения (если есть)
