@@ -15,6 +15,10 @@ def get_main_menu_keyboard():
     return InlineKeyboardMarkup(inline_keyboard=[
         # [InlineKeyboardButton(text="📚 Уроки", callback_data="start_lessons")],  # временно закомментировано
         [
+            InlineKeyboardButton(text="🎙️ Общение с AI", callback_data="start_speaking"),
+            InlineKeyboardButton(text="🎬 Ролевые игры", callback_data="start_roleplay")
+        ],
+        [
             InlineKeyboardButton(text="🔉 Аудирование", callback_data="start_listening"),
             InlineKeyboardButton(text="📝 Письмо", callback_data="start_writing")
         ],
@@ -25,10 +29,6 @@ def get_main_menu_keyboard():
         [
             InlineKeyboardButton(text="🔀 Грамматика", callback_data="start_grammar"),
             InlineKeyboardButton(text="🥇 Лексика", callback_data="start_words")
-        ],
-        [
-            InlineKeyboardButton(text="🎙️ Общение с AI", callback_data="start_speaking"),
-            InlineKeyboardButton(text="🎬 Ролевые игры", callback_data="start_roleplay")
         ],
         [InlineKeyboardButton(text="📊 Моя статистика", callback_data="profile_menu")]
     ])
@@ -74,7 +74,5 @@ async def start_grammar_mode(callback: CallbackQuery):
     from handlers.grammar import enter_grammar_mode
     await enter_grammar_mode(callback.message, callback.from_user.id, edit=True)
 
-# ---- Остальные режимы (лексика, общение, ролевые игры) тоже работают, но их обработчики находятся в соответствующих файлах.
-# Если их нет, то они упадут в заглушку, но мы их вытащили из списка, поэтому они будут пытаться вызвать свои обработчики.
-# Если обработчики ещё не написаны, бот выдаст ошибку. Чтобы этого избежать, нужно либо написать их, либо вернуть в заглушку.
-# Но по вашему запросу я убрал их из заглушек, значит, вы планируете, что они уже готовы.
+# ---- Обработчики для "Общение с AI" и "Ролевые игры" (если они есть в других файлах, они будут вызваны автоматически) ----
+# Если обработчики отсутствуют, бот выдаст ошибку. Вы можете добавить их позже.
