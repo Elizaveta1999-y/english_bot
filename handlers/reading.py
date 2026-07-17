@@ -212,7 +212,7 @@ async def get_total_stats(user_id: int, short_level: str):
         total_wrong += wrong
     return total_correct, total_wrong
 
-# ================== ЛОГИКА ПРОГРЕССА (УДАЛЕНИЕ + ОТПРАВКА) ==================
+# ================== ЕДИНСТВЕННОЕ СООБЩЕНИЕ ПРОГРЕССА (РЕДАКТИРОВАНИЕ) ==================
 async def get_progress_text(user_id: int, short_type: str, short_level: str) -> str:
     if short_type == "random":
         correct, wrong = await get_total_stats(user_id, short_level)
@@ -237,25 +237,32 @@ async def get_progress_text(user_id: int, short_type: str, short_level: str) -> 
     text += f"✖️ Ошибок: {wrong}"
     return text
 
-async def delete_old_progress(message: Message, state: FSMContext):
-    """Удаляет предыдущее сообщение с прогрессом, если оно есть."""
+async def update_or_create_progress(message: Message, user_id: int, state: FSMContext, short_type: str, short_level: str):
+    """Обновляет существующее сообщение с прогрессом, если его нет — создаёт новое."""
     data = await state.get_data()
     progress_msg_id = data.get("progress_msg_id")
+    text = await get_progress_text(user_id, short_type, short_level)
+
     if progress_msg_id:
         try:
-            await message.bot.delete_message(chat_id=message.chat.id, message_id=progress_msg_id)
-            logger.info(f"🗑️ Удалено старое сообщение прогресса (ID {progress_msg_id})")
+            await message.bot.edit_text(
+                chat_id=message.chat.id,
+                message_id=progress_msg_id,
+                text=text,
+                reply_markup=get_progress_keyboard(),
+                parse_mode="HTML"
+            )
+            logger.info(f"🔄 Прогресс обновлён (ID {progress_msg_id})")
+            return
         except Exception as e:
-            logger.warning(f"Не удалось удалить прогресс (ID {progress_msg_id}): {e}")
-        await state.update_data(progress_msg_id=None)
+            logger.warning(f"Не удалось отредактировать прогресс (ID {progress_msg_id}): {e}")
+            # Если редактирование не удалось, удаляем старый ID и создадим новое
+            await state.update_data(progress_msg_id=None)
 
-async def send_new_progress(message: Message, user_id: int, state: FSMContext, short_type: str, short_level: str):
-    """Удаляет старый прогресс и отправляет новый."""
-    await delete_old_progress(message, state)
-    text = await get_progress_text(user_id, short_type, short_level)
+    # Если нет ID или редактирование не удалось, создаём новое сообщение
     sent_msg = await message.answer(text, reply_markup=get_progress_keyboard(), parse_mode="HTML")
     await state.update_data(progress_msg_id=sent_msg.message_id)
-    logger.info(f"✅ Отправлено новое сообщение прогресса (ID {sent_msg.message_id})")
+    logger.info(f"✅ Создано новое сообщение прогресса (ID {sent_msg.message_id})")
 
 # -------------------- Обработчики --------------------
 @router.callback_query(F.data == "start_reading")
@@ -339,8 +346,8 @@ async def choose_level(callback: CallbackQuery, state: FSMContext):
         progress_msg_id=None
     )
 
-    # Отправляем прогресс (удаляем старое, если есть, и отправляем новое)
-    await send_new_progress(callback.message, user_id, state, short_type, short_level)
+    # Создаём первое сообщение с прогрессом
+    await update_or_create_progress(callback.message, user_id, state, short_type, short_level)
     # Отправляем задание
     await render_task_message(callback.message, state, user_id, short_type, short_level, index, paragraph_idx=0, is_revision=False)
     await state.set_state(ReadingStates.waiting_for_text)
@@ -400,8 +407,8 @@ async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
             await add_reading_error(user_id, type_json, level_json, index)
             logger.info(f"❌ Wrong: user={user_id}, type={type_json}, level={level_json}")
 
-    # Обновляем прогресс (удаляем старый, отправляем новый)
-    await send_new_progress(callback.message, user_id, state, short_type, short_level)
+    # Обновляем прогресс (редактируем существующее сообщение)
+    await update_or_create_progress(callback.message, user_id, state, short_type, short_level)
 
     await callback.message.edit_reply_markup(reply_markup=None)
 
@@ -542,7 +549,7 @@ async def handle_text_answer(message: Message, state: FSMContext):
             await add_reading_error(user_id, type_json, level_json, index)
 
     # Обновляем прогресс
-    await send_new_progress(message, user_id, state, short_type, short_level)
+    await update_or_create_progress(message, user_id, state, short_type, short_level)
 
     await clear_keyboard(message, state)
 
@@ -956,8 +963,8 @@ async def confirm_reset(callback: CallbackQuery, state: FSMContext):
 
     await callback.message.edit_text("Прогресс сброшен. Все упражнения будут даны с самого начала.")
 
-    # Отправляем обновлённый прогресс (0/0)
-    await send_new_progress(callback.message, user_id, state, short_type, short_level)
+    # Обновляем прогресс (0/0)
+    await update_or_create_progress(callback.message, user_id, state, short_type, short_level)
 
     await show_next_task(callback.message, state, is_revision=False)
     await callback.answer()
