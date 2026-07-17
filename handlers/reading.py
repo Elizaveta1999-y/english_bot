@@ -53,12 +53,14 @@ LEVEL_MAP = {
     "expert": "Эксперт"
 }
 
-# Отображение для интерфейса (со смайликами)
-LEVEL_DISPLAY = {
-    "beginner": "🌱 Новичок",
-    "intermediate": "📚 Любитель",
-    "expert": "🎓 Эксперт"
-}
+def get_level_display(level_key: str) -> str:
+    """Возвращает отображаемое название уровня с эмодзи."""
+    emojis = {
+        "beginner": "🌱",
+        "intermediate": "📚",
+        "expert": "🎓"
+    }
+    return f"{emojis.get(level_key, '')} {LEVEL_MAP.get(level_key, level_key)}".strip()
 
 TYPE_DESCRIPTION = {
     "podbor": "подберите заголовок к тексту",
@@ -77,9 +79,9 @@ def get_type_choice_keyboard():
 
 def get_level_keyboard(short_type: str):
     buttons = [
-        [InlineKeyboardButton(text=LEVEL_DISPLAY["beginner"], callback_data=f"reading_level:{short_type}:beginner")],
-        [InlineKeyboardButton(text=LEVEL_DISPLAY["intermediate"], callback_data=f"reading_level:{short_type}:intermediate")],
-        [InlineKeyboardButton(text=LEVEL_DISPLAY["expert"], callback_data=f"reading_level:{short_type}:expert")],
+        [InlineKeyboardButton(text=get_level_display("beginner"), callback_data=f"reading_level:{short_type}:beginner")],
+        [InlineKeyboardButton(text=get_level_display("intermediate"), callback_data=f"reading_level:{short_type}:intermediate")],
+        [InlineKeyboardButton(text=get_level_display("expert"), callback_data=f"reading_level:{short_type}:expert")],
         [InlineKeyboardButton(text="🔙 Назад", callback_data="reading_back_to_types")]
     ]
     return InlineKeyboardMarkup(inline_keyboard=buttons)
@@ -215,14 +217,14 @@ async def get_progress_text(user_id: int, short_type: str, short_level: str) -> 
     if short_type == "random":
         correct, wrong = await get_total_stats(user_id, short_level)
         display_name = "🎲 Случайный тип"
-        level_display = LEVEL_DISPLAY.get(short_level, short_level)
+        level_display = get_level_display(short_level)
         description = TYPE_DESCRIPTION.get("random", "выполните задание")
     else:
         type_json = TYPE_MAP.get(short_type, short_type)
         level_json = LEVEL_MAP.get(short_level, short_level)
         correct, wrong = await get_user_stats(user_id, type_json, level_json)
         display_name = TYPE_DISPLAY.get(short_type, short_type)
-        level_display = LEVEL_DISPLAY.get(short_level, short_level)
+        level_display = get_level_display(short_level)
         description = TYPE_DESCRIPTION.get(short_type, "выполните задание")
 
     text = f"<b>Режим:</b> {display_name}\n"
@@ -936,7 +938,7 @@ async def confirm_reset(callback: CallbackQuery, state: FSMContext):
         correct, wrong = await get_user_stats(user_id, type_json, level_json)
         display_name = TYPE_DISPLAY.get(short_type, short_type)
     text = f"<b>Режим:</b> {display_name}\n"
-    text += f"<b>Уровень:</b> {LEVEL_DISPLAY.get(short_level, short_level)}\n\n"
+    text += f"<b>Уровень:</b> {get_level_display(short_level)}\n\n"
     text += f"Внимательно прочитайте текст и {TYPE_DESCRIPTION.get(short_type, 'выполните задание')}.\n\n"
     text += f"Ваш прогресс:\n"
     text += f"✔️ Правильно: {correct}\n"
