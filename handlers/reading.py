@@ -46,7 +46,6 @@ TYPE_MAP = {
     "order": "Восстановление_порядка_абзацев"
 }
 
-# Внутренние ключи уровней (без смайликов)
 LEVEL_MAP = {
     "beginner": "Новичок",
     "intermediate": "Любитель",
@@ -54,7 +53,6 @@ LEVEL_MAP = {
 }
 
 def get_level_display(level_key: str) -> str:
-    """Возвращает отображаемое название уровня с эмодзи."""
     emojis = {
         "beginner": "🌱",
         "intermediate": "📚",
@@ -235,15 +233,35 @@ async def get_progress_text(user_id: int, short_type: str, short_level: str) -> 
     text += f"✖️ Ошибок: {wrong}"
     return text
 
-async def send_progress_message_edit(message: Message, short_type: str, short_level: str):
+async def send_progress_message_edit(message: Message, short_type: str, short_level: str, state: FSMContext):
     user_id = message.from_user.id
     text = await get_progress_text(user_id, short_type, short_level)
-    await message.edit_text(text, reply_markup=get_progress_keyboard(), parse_mode="HTML")
+    sent_msg = await message.edit_text(text, reply_markup=get_progress_keyboard(), parse_mode="HTML")
+    # Сохраняем ID сообщения с прогрессом, чтобы обновлять его позже
+    await state.update_data(progress_msg_id=sent_msg.message_id)
+    return sent_msg
 
-async def send_progress_message(callback: CallbackQuery, short_type: str, short_level: str):
-    user_id = callback.from_user.id
+async def update_progress_message(message: Message, state: FSMContext, short_type: str, short_level: str):
+    """Обновляет существующее сообщение с прогрессом."""
+    data = await state.get_data()
+    progress_msg_id = data.get("progress_msg_id")
+    if not progress_msg_id:
+        return
+    user_id = message.from_user.id
     text = await get_progress_text(user_id, short_type, short_level)
-    await callback.message.answer(text, reply_markup=get_progress_keyboard(), parse_mode="HTML")
+    try:
+        await message.bot.edit_text(
+            chat_id=message.chat.id,
+            message_id=progress_msg_id,
+            text=text,
+            reply_markup=get_progress_keyboard(),
+            parse_mode="HTML"
+        )
+    except Exception as e:
+        # Если не удалось отредактировать (сообщение удалено), создадим новое
+        logger.warning(f"Не удалось обновить прогресс: {e}")
+        new_msg = await message.answer(text, reply_markup=get_progress_keyboard(), parse_mode="HTML")
+        await state.update_data(progress_msg_id=new_msg.message_id)
 
 # -------------------- Обработчики --------------------
 @router.callback_query(F.data == "start_reading")
@@ -323,10 +341,13 @@ async def choose_level(callback: CallbackQuery, state: FSMContext):
         error_index=0,
         last_task_msg_id=None,
         revision_correct=0,
-        revision_wrong=0
+        revision_wrong=0,
+        progress_msg_id=None
     )
 
-    await send_progress_message_edit(callback.message, short_type, short_level)
+    # Отправляем сообщение с прогрессом (редактируем текущее)
+    await send_progress_message_edit(callback.message, short_type, short_level, state)
+    # Отправляем задание
     await render_task_message(callback.message, state, user_id, short_type, short_level, index, paragraph_idx=0, is_revision=False)
     await state.set_state(ReadingStates.waiting_for_text)
     await callback.answer()
@@ -382,6 +403,9 @@ async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
         else:
             await update_user_stats(user_id, type_json, level_json, False)
             await add_reading_error(user_id, type_json, level_json, index)
+
+    # Обновляем сообщение с прогрессом
+    await update_progress_message(callback.message, state, short_type, short_level)
 
     await callback.message.edit_reply_markup(reply_markup=None)
 
@@ -520,6 +544,9 @@ async def handle_text_answer(message: Message, state: FSMContext):
         else:
             await update_user_stats(user_id, type_json, level_json, False)
             await add_reading_error(user_id, type_json, level_json, index)
+
+    # Обновляем сообщение с прогрессом
+    await update_progress_message(message, state, short_type, short_level)
 
     await clear_keyboard(message, state)
 
