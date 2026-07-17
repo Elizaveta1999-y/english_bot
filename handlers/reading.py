@@ -12,6 +12,7 @@ from utils.redis_utils import (
     get_user_stats,
     update_user_stats,
     reset_user_progress,
+    reset_user_stats,          # <-- добавлено
     add_reading_error,
     remove_reading_error,
     get_reading_errors,
@@ -237,7 +238,6 @@ async def send_progress_message_edit(message: Message, short_type: str, short_le
     user_id = message.from_user.id
     text = await get_progress_text(user_id, short_type, short_level)
     sent_msg = await message.edit_text(text, reply_markup=get_progress_keyboard(), parse_mode="HTML")
-    # Сохраняем ID сообщения с прогрессом, чтобы обновлять его позже
     await state.update_data(progress_msg_id=sent_msg.message_id)
     return sent_msg
 
@@ -258,7 +258,6 @@ async def update_progress_message(message: Message, state: FSMContext, short_typ
             parse_mode="HTML"
         )
     except Exception as e:
-        # Если не удалось отредактировать (сообщение удалено), создадим новое
         logger.warning(f"Не удалось обновить прогресс: {e}")
         new_msg = await message.answer(text, reply_markup=get_progress_keyboard(), parse_mode="HTML")
         await state.update_data(progress_msg_id=new_msg.message_id)
@@ -345,9 +344,7 @@ async def choose_level(callback: CallbackQuery, state: FSMContext):
         progress_msg_id=None
     )
 
-    # Отправляем сообщение с прогрессом (редактируем текущее)
     await send_progress_message_edit(callback.message, short_type, short_level, state)
-    # Отправляем задание
     await render_task_message(callback.message, state, user_id, short_type, short_level, index, paragraph_idx=0, is_revision=False)
     await state.set_state(ReadingStates.waiting_for_text)
     await callback.answer()
@@ -949,21 +946,25 @@ async def confirm_reset(callback: CallbackQuery, state: FSMContext):
             t_json = TYPE_MAP[t]
             await reset_user_progress(user_id, t_json, level_json)
             await clear_reading_errors(user_id, t_json, level_json)
-        await reset_user_progress(user_id, "random", short_level)
+            await reset_user_stats(user_id, t_json, level_json)   # <-- сброс статистики
+        await reset_user_progress(user_id, "random", short_level)  # отдельный ключ для random
     else:
         await reset_user_progress(user_id, type_json, level_json)
         await clear_reading_errors(user_id, type_json, level_json)
+        await reset_user_stats(user_id, type_json, level_json)     # <-- сброс статистики
 
     await state.update_data(index=0, paragraph_idx=0, is_revision=False, error_list=[], error_index=0, revision_correct=0, revision_wrong=0)
 
     await callback.message.edit_text("Прогресс сброшен. Все упражнения будут даны с самого начала.")
 
+    # Обновляем статистику (теперь должна быть 0)
     if short_type == "random":
         correct, wrong = await get_total_stats(user_id, short_level)
         display_name = "🎲 Случайный тип"
     else:
         correct, wrong = await get_user_stats(user_id, type_json, level_json)
         display_name = TYPE_DISPLAY.get(short_type, short_type)
+
     text = f"<b>Режим:</b> {display_name}\n"
     text += f"<b>Уровень:</b> {get_level_display(short_level)}\n\n"
     text += f"Внимательно прочитайте текст и {TYPE_DESCRIPTION.get(short_type, 'выполните задание')}.\n\n"
