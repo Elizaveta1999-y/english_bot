@@ -212,10 +212,9 @@ async def get_total_stats(user_id: int, short_level: str):
         total_wrong += wrong
     return total_correct, total_wrong
 
-# ================== ПРОСТАЯ ЛОГИКА ПРОГРЕССА ==================
-async def show_progress(message: Message, state: FSMContext, short_type: str, short_level: str):
+# ================== ПРОГРЕСС (с явной передачей user_id) ==================
+async def show_progress(message: Message, user_id: int, state: FSMContext, short_type: str, short_level: str):
     """Отправляет новое сообщение с прогрессом."""
-    user_id = message.from_user.id
     if short_type == "random":
         correct, wrong = await get_total_stats(user_id, short_level)
         display_name = "🎲 Случайный тип"
@@ -228,7 +227,6 @@ async def show_progress(message: Message, state: FSMContext, short_type: str, sh
         display_name = TYPE_DISPLAY.get(short_type, short_type)
         level_display = get_level_display(short_level)
         description = TYPE_DESCRIPTION.get(short_type, "выполните задание")
-        # Лог для диагностики
         logger.info(f"📊 ПРОГРЕСС: user={user_id}, type={type_json}, level={level_json}, correct={correct}, wrong={wrong}")
 
     text = f"<b>Режим:</b> {display_name}\n"
@@ -320,8 +318,8 @@ async def choose_level(callback: CallbackQuery, state: FSMContext):
         revision_wrong=0
     )
 
-    # Показываем прогресс
-    await show_progress(callback.message, state, short_type, short_level)
+    # Показываем прогресс с user_id из callback
+    await show_progress(callback.message, user_id, state, short_type, short_level)
     # Показываем задание
     await render_task_message(callback.message, state, user_id, short_type, short_level, index, paragraph_idx=0, is_revision=False)
     await state.set_state(ReadingStates.waiting_for_text)
@@ -381,8 +379,8 @@ async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
             await add_reading_error(user_id, type_json, level_json, index)
             logger.info(f"❌ Wrong: user={user_id}, type={type_json}, level={level_json}")
 
-    # Показываем обновлённый прогресс
-    await show_progress(callback.message, state, short_type, short_level)
+    # Показываем обновлённый прогресс с правильным user_id
+    await show_progress(callback.message, user_id, state, short_type, short_level)
 
     await callback.message.edit_reply_markup(reply_markup=None)
 
@@ -522,8 +520,8 @@ async def handle_text_answer(message: Message, state: FSMContext):
             await update_user_stats(user_id, type_json, level_json, False)
             await add_reading_error(user_id, type_json, level_json, index)
 
-    # Показываем прогресс
-    await show_progress(message, state, short_type, short_level)
+    # Показываем прогресс с user_id
+    await show_progress(message, user_id, state, short_type, short_level)
 
     await clear_keyboard(message, state)
 
@@ -938,7 +936,7 @@ async def confirm_reset(callback: CallbackQuery, state: FSMContext):
     await callback.message.edit_text("Прогресс сброшен. Все упражнения будут даны с самого начала.")
 
     # Показываем обновлённый прогресс (должен быть 0/0)
-    await show_progress(callback.message, state, short_type, short_level)
+    await show_progress(callback.message, user_id, state, short_type, short_level)
 
     await show_next_task(callback.message, state, is_revision=False)
     await callback.answer()
