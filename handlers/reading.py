@@ -46,8 +46,15 @@ TYPE_MAP = {
     "order": "Восстановление_порядка_абзацев"
 }
 
-# Добавлены смайлики к уровням
+# Внутренние ключи уровней (без смайликов)
 LEVEL_MAP = {
+    "beginner": "Новичок",
+    "intermediate": "Любитель",
+    "expert": "Эксперт"
+}
+
+# Отображение для интерфейса (со смайликами)
+LEVEL_DISPLAY = {
     "beginner": "🌱 Новичок",
     "intermediate": "📚 Любитель",
     "expert": "🎓 Эксперт"
@@ -69,11 +76,10 @@ def get_type_choice_keyboard():
     return InlineKeyboardMarkup(inline_keyboard=buttons)
 
 def get_level_keyboard(short_type: str):
-    # Уровни уже содержат смайлики, берём из LEVEL_MAP
     buttons = [
-        [InlineKeyboardButton(text=LEVEL_MAP["beginner"], callback_data=f"reading_level:{short_type}:beginner")],
-        [InlineKeyboardButton(text=LEVEL_MAP["intermediate"], callback_data=f"reading_level:{short_type}:intermediate")],
-        [InlineKeyboardButton(text=LEVEL_MAP["expert"], callback_data=f"reading_level:{short_type}:expert")],
+        [InlineKeyboardButton(text=LEVEL_DISPLAY["beginner"], callback_data=f"reading_level:{short_type}:beginner")],
+        [InlineKeyboardButton(text=LEVEL_DISPLAY["intermediate"], callback_data=f"reading_level:{short_type}:intermediate")],
+        [InlineKeyboardButton(text=LEVEL_DISPLAY["expert"], callback_data=f"reading_level:{short_type}:expert")],
         [InlineKeyboardButton(text="🔙 Назад", callback_data="reading_back_to_types")]
     ]
     return InlineKeyboardMarkup(inline_keyboard=buttons)
@@ -209,14 +215,14 @@ async def get_progress_text(user_id: int, short_type: str, short_level: str) -> 
     if short_type == "random":
         correct, wrong = await get_total_stats(user_id, short_level)
         display_name = "🎲 Случайный тип"
-        level_display = LEVEL_MAP.get(short_level, short_level)
+        level_display = LEVEL_DISPLAY.get(short_level, short_level)
         description = TYPE_DESCRIPTION.get("random", "выполните задание")
     else:
         type_json = TYPE_MAP.get(short_type, short_type)
         level_json = LEVEL_MAP.get(short_level, short_level)
         correct, wrong = await get_user_stats(user_id, type_json, level_json)
         display_name = TYPE_DISPLAY.get(short_type, short_type)
-        level_display = LEVEL_MAP.get(short_level, short_level)
+        level_display = LEVEL_DISPLAY.get(short_level, short_level)
         description = TYPE_DESCRIPTION.get(short_type, "выполните задание")
 
     text = f"<b>Режим:</b> {display_name}\n"
@@ -240,7 +246,6 @@ async def send_progress_message(callback: CallbackQuery, short_type: str, short_
 # -------------------- Обработчики --------------------
 @router.callback_query(F.data == "start_reading")
 async def start_reading(callback: CallbackQuery, state: FSMContext):
-    # Убираем клавиатуру у текущего сообщения (на всякий случай)
     await clear_keyboard(callback.message, state)
     global_idx = await get_global_welcome_index()
     welcome_text = READING_WELCOME_MESSAGES[global_idx]
@@ -251,7 +256,6 @@ async def start_reading(callback: CallbackQuery, state: FSMContext):
 async def back_to_main(callback: CallbackQuery, state: FSMContext):
     await clear_keyboard(callback.message, state)
     from .start import show_main_menu
-    # show_main_menu с edit=True заменит текущее сообщение, что уберёт кнопки
     await show_main_menu(callback.message, edit=True)
     await callback.answer()
 
@@ -365,11 +369,9 @@ async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
         if correct:
             await remove_reading_error(user_id, type_json, level_json, index)
             await update_user_stats(user_id, type_json, level_json, True)
-            # Увеличиваем счетчик исправленных
             new_correct = data.get("revision_correct", 0) + 1
             await state.update_data(revision_correct=new_correct)
         else:
-            # Увеличиваем счетчик неправильных в revision
             new_wrong = data.get("revision_wrong", 0) + 1
             await state.update_data(revision_wrong=new_wrong)
     else:
@@ -407,7 +409,6 @@ async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
         else:
             error_ids = await get_reading_errors(user_id, type_json, level_json)
         if not error_ids:
-            # Все ошибки обработаны
             rev_correct = data.get("revision_correct", 0)
             rev_wrong = data.get("revision_wrong", 0)
             if rev_correct > 0 and rev_wrong == 0:
@@ -418,7 +419,6 @@ async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
                 msg = "Все задания с ошибками просмотрены."
             await callback.message.answer(msg)
             await state.update_data(is_revision=False, error_list=[], error_index=0, revision_correct=0, revision_wrong=0)
-            # Обновляем индекс (продолжаем с того же места в обычном режиме)
             if short_type == "random":
                 all_tasks = await get_all_tasks_for_random(short_level)
                 if all_tasks:
@@ -436,12 +436,10 @@ async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
             await callback.answer()
             return
         else:
-            # Показываем следующую ошибку
             await show_revision_task(callback.message, state, error_ids)
             await callback.answer()
             return
     else:
-        # Обычный режим
         if short_type == "random":
             all_tasks = await get_all_tasks_for_random(short_level)
             if not all_tasks:
@@ -580,7 +578,6 @@ async def handle_text_answer(message: Message, state: FSMContext):
             await show_revision_task(message, state, error_ids)
             return
     else:
-        # Обычный режим
         if short_type == "random":
             all_tasks = await get_all_tasks_for_random(short_level)
             if not all_tasks:
@@ -718,7 +715,6 @@ async def show_answer(callback: CallbackQuery, state: FSMContext):
         else:
             error_ids = await get_reading_errors(user_id, type_json, level_json)
         if not error_ids:
-            # Все ошибки обработаны
             rev_correct = data.get("revision_correct", 0)
             rev_wrong = data.get("revision_wrong", 0)
             if rev_correct > 0 and rev_wrong == 0:
@@ -752,7 +748,6 @@ async def show_answer(callback: CallbackQuery, state: FSMContext):
                 next_error_id = error_ids[cur_pos + 1]
                 await show_revision_task(callback.message, state, [next_error_id])
             else:
-                # Все ошибки просмотрены, но остались неисправленные
                 rev_correct = data.get("revision_correct", 0)
                 rev_wrong = data.get("revision_wrong", 0)
                 msg = f"Исправлено: {rev_correct}, Неправильно: {rev_wrong}.\nПродолжайте тренировку!"
@@ -795,7 +790,7 @@ async def show_answer(callback: CallbackQuery, state: FSMContext):
 
     await callback.answer()
 
-# ---------- Работа над ошибками (кнопка и команда) ----------
+# ---------- Работа над ошибками ----------
 @router.callback_query(F.data == "reading_revision")
 @router.message(Command("revision_mode"))
 async def reading_revision(event, state: FSMContext):
@@ -833,9 +828,6 @@ async def reading_revision(event, state: FSMContext):
     else:
         error_ids = await get_reading_errors(user_id, type_json, level_json)
 
-    # Убрано диагностическое сообщение
-    # await message.answer(f"🔍 Поиск ошибок для типа {short_type} (→ {type_json}), уровень {short_level}. Найдено: {len(error_ids)}")
-
     if not error_ids:
         text = "🎉 Ошибок нет! Отличная работа."
         if answer_func:
@@ -844,7 +836,6 @@ async def reading_revision(event, state: FSMContext):
             await message.answer(text)
         return
 
-    # Сбрасываем счетчики revision при входе в режим
     await state.update_data(is_revision=True, error_list=error_ids, error_index=0, revision_correct=0, revision_wrong=0)
 
     text = f"<b>Режим - Работа над ошибками.</b>\n\nКол-во ошибок: {len(error_ids)}"
@@ -945,7 +936,7 @@ async def confirm_reset(callback: CallbackQuery, state: FSMContext):
         correct, wrong = await get_user_stats(user_id, type_json, level_json)
         display_name = TYPE_DISPLAY.get(short_type, short_type)
     text = f"<b>Режим:</b> {display_name}\n"
-    text += f"<b>Уровень:</b> {LEVEL_MAP.get(short_level, short_level)}\n\n"
+    text += f"<b>Уровень:</b> {LEVEL_DISPLAY.get(short_level, short_level)}\n\n"
     text += f"Внимательно прочитайте текст и {TYPE_DESCRIPTION.get(short_type, 'выполните задание')}.\n\n"
     text += f"Ваш прогресс:\n"
     text += f"✔️ Правильно: {correct}\n"
@@ -968,7 +959,6 @@ async def finish_session(callback: CallbackQuery, state: FSMContext):
     short_level = data.get("short_level")
     user_id = callback.from_user.id
 
-    # Убираем клавиатуру у текущего сообщения и последнего задания
     await clear_keyboard(callback.message, state)
 
     type_json = TYPE_MAP.get(short_type, short_type)
@@ -988,14 +978,12 @@ async def finish_session(callback: CallbackQuery, state: FSMContext):
 
     await callback.message.answer(text)
 
-    # Убираем клавиатуру у текущего сообщения (на всякий случай)
     try:
         await callback.message.edit_reply_markup(reply_markup=None)
     except Exception:
         pass
 
     from .start import show_main_menu
-    # Показываем главное меню новым сообщением, но сначала убираем клавиатуру у предыдущего
     await show_main_menu(callback.message, edit=False)
 
     await state.clear()
