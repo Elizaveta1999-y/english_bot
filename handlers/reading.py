@@ -5,7 +5,7 @@ from aiogram.types import Message, CallbackQuery, InlineKeyboardMarkup, InlineKe
 from aiogram.fsm.context import FSMContext
 from aiogram.filters import Command
 from data.reading_loader import get_task, TASKS
-from utils.db import (
+from utils.db import (   # <-- используем PostgreSQL
     get_user_stats_db as get_user_stats,
     update_user_stats_db as update_user_stats,
     reset_user_stats_db as reset_user_stats,
@@ -14,7 +14,7 @@ from utils.db import (
     get_reading_errors_db as get_reading_errors,
     clear_reading_errors_db as clear_reading_errors
 )
-from utils.redis_utils import (
+from utils.redis_utils import (   # <-- только для временных индексов
     get_global_welcome_index,
     get_user_progress,
     set_user_progress,
@@ -111,9 +111,7 @@ def get_reset_confirmation_keyboard():
     ]
     return InlineKeyboardMarkup(inline_keyboard=buttons)
 
-# ========== ВОССТАНОВЛЕННАЯ ФУНКЦИЯ clear_keyboard ==========
 async def clear_keyboard(message: Message, state: FSMContext):
-    """Убирает клавиатуру у последнего сообщения с заданием."""
     data = await state.get_data()
     last_id = data.get("last_task_msg_id")
     if last_id:
@@ -259,7 +257,7 @@ async def send_progress_once(message: Message, user_id: int, short_type: str, sh
     text += f"✖️ Ошибок: {error_count}"
     await message.answer(text, reply_markup=get_progress_keyboard(), parse_mode="HTML")
 
-# -------------------- Обработчики --------------------
+# ---------- Обработчики ----------
 @router.callback_query(F.data == "start_reading")
 async def start_reading(callback: CallbackQuery, state: FSMContext):
     await clear_keyboard(callback.message, state)
@@ -347,7 +345,6 @@ async def choose_level(callback: CallbackQuery, state: FSMContext):
     await state.set_state(ReadingStates.waiting_for_text)
     await callback.answer()
 
-# ---------- Обработка ответов (кнопки) ----------
 @router.callback_query(F.data.startswith("reading_answer:"))
 async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
     parts = callback.data.split(":")
@@ -490,7 +487,6 @@ async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
         await render_task_message(callback.message, state, user_id, short_type, short_level, next_index, paragraph_idx=0, is_revision=False)
         await callback.answer()
 
-# ---------- Текстовые ответы ----------
 @router.message(ReadingStates.waiting_for_text, F.text, ~F.text.startswith('/'))
 async def handle_text_answer(message: Message, state: FSMContext):
     data = await state.get_data()
@@ -831,7 +827,6 @@ async def show_answer(callback: CallbackQuery, state: FSMContext):
 
     await callback.answer()
 
-# ---------- Работа над ошибками ----------
 @router.callback_query(F.data == "reading_revision")
 @router.message(Command("revision_mode"))
 async def reading_revision(event, state: FSMContext):
@@ -931,7 +926,6 @@ async def back_to_learning_mode(callback: CallbackQuery, state: FSMContext):
     await show_next_task(callback.message, state, is_revision=False)
     await callback.answer()
 
-# ---------- Сброс прогресса ----------
 @router.callback_query(F.data == "reading_reset")
 @router.message(Command("reset_progress"))
 async def reading_reset(event, state: FSMContext):
@@ -988,7 +982,6 @@ async def cancel_reset(callback: CallbackQuery):
     await callback.message.edit_text("Сброс отменён. Продолжайте тренировку.")
     await callback.answer()
 
-# ---------- Завершение сессии ----------
 @router.callback_query(F.data == "reading_finish_session")
 async def finish_session(callback: CallbackQuery, state: FSMContext):
     data = await state.get_data()
