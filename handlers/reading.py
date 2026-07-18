@@ -336,7 +336,8 @@ async def choose_level(callback: CallbackQuery, state: FSMContext):
         revision_correct=0,
         revision_wrong=0,
         session_correct=0,
-        session_wrong=0
+        session_wrong=0,
+        initial_error_count=0
     )
 
     await send_progress_once(callback.message, user_id, short_type, short_level)
@@ -385,6 +386,7 @@ async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
             await update_user_stats(user_id, type_json, level_json, True)
             new_correct = data.get("revision_correct", 0) + 1
             await state.update_data(revision_correct=new_correct)
+            # Обновляем сессионные счётчики
             session_correct = data.get("session_correct", 0) + 1
             await state.update_data(session_correct=session_correct)
         else:
@@ -432,8 +434,10 @@ async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
         else:
             error_ids = await get_reading_errors(user_id, type_json, level_json)
         if not error_ids:
+            # Проверяем, были ли исправлены ошибки
             rev_correct = data.get("revision_correct", 0)
             rev_wrong = data.get("revision_wrong", 0)
+            # Если было исправлено хотя бы одно задание и нет новых ошибок
             if rev_correct > 0 and rev_wrong == 0:
                 msg = "🎉 Вы исправили все ошибки! Возвращаемся в учебный режим."
             elif rev_correct > 0 and rev_wrong > 0:
@@ -873,6 +877,7 @@ async def reading_revision(event, state: FSMContext):
             await message.answer(text)
         return
 
+    # Сбрасываем сессионные счётчики для revision
     await state.update_data(
         is_revision=True,
         error_list=error_ids,
