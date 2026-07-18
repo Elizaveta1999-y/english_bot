@@ -1,4 +1,3 @@
-# app.py
 import os
 import logging
 from aiohttp import web
@@ -6,13 +5,12 @@ from aiogram import Bot, Dispatcher
 from aiogram.types import BotCommand
 from aiogram.webhook.aiohttp_server import SimpleRequestHandler, setup_application
 from handlers import start, speaking, roleplay, common, voice, lessons, words, profile, skills, support, listening, reading, writing  
-from handlers.subscription import router as subscription_router   # <-- добавляем
+from handlers.subscription import router as subscription_router
 from handlers import listening
 from handlers.reading import router as reading_router
 from middleware.access import AccessMiddleware
 from handlers.grammar import router as grammar_router
-from utils.db import init_db
-init_db()
+from utils.db import init_db  # импорт, но не вызываем здесь
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -29,7 +27,7 @@ dp = Dispatcher()
 
 dp.include_router(start.router)
 dp.include_router(writing.router)
-dp.include_router(reading.router)   # <-- ПЕРВЫМ после start
+dp.include_router(reading.router)
 dp.include_router(listening.router)
 dp.include_router(grammar_router) 
 dp.include_router(support.router)
@@ -47,12 +45,16 @@ async def set_commands(bot: Bot):
     commands = [
         BotCommand(command="start", description="Главное меню"),
         BotCommand(command="support", description="Обратная связь"),
-        BotCommand(command="subscription", description="Моя подписка"),   # <-- добавляем
+        BotCommand(command="subscription", description="Моя подписка"),
     ]
     await bot.set_my_commands(commands)
     logger.info("Commands set")
 
 async def on_startup():
+    # Инициализация базы данных (таблицы создадутся при первом запуске)
+    await init_db()
+    logger.info("Database initialized")
+    
     external_url = os.environ.get('RENDER_EXTERNAL_URL')
     if not external_url:
         external_url = "https://english-bot-of29.onrender.com"
@@ -78,4 +80,3 @@ if __name__ == "__main__":
     port = int(os.environ.get('PORT', 10000))
     logger.info(f"Starting server on port {port}")
     web.run_app(app, host='0.0.0.0', port=port)
-
