@@ -119,14 +119,32 @@ async def clear_keyboard(message: Message, state: FSMContext):
             pass
     await state.update_data(last_task_msg_id=None)
 
+# ========== ИСПРАВЛЕННАЯ ФУНКЦИЯ ДЛЯ СЛУЧАЙНОГО ТИПА ==========
 async def get_all_tasks_for_random(level: str):
+    """Возвращает все задания для уровня из всех типов."""
     all_tasks = []
     level_json = LEVEL_MAP.get(level, level)
     for type_key in TYPE_MAP.keys():
         type_json = TYPE_MAP[type_key]
-        tasks = TASKS.get(type_json, {}).get(level_json, [])
-        all_tasks.extend(tasks)
+        # Проверяем структуру TASKS: может быть TASKS[type_json][level_json] или TASKS[type_json]
+        if type_json in TASKS:
+            if isinstance(TASKS[type_json], dict):
+                tasks = TASKS[type_json].get(level_json, [])
+                all_tasks.extend(tasks)
+            elif isinstance(TASKS[type_json], list):
+                # Если это список, фильтруем по уровню
+                tasks = [t for t in TASKS[type_json] if t.get("level") == level_json]
+                all_tasks.extend(tasks)
     return all_tasks
+
+# ========== НОРМАЛИЗАЦИЯ ОТВЕТОВ ==========
+def normalize_answer(text: str) -> str:
+    """Приводит ответ к нижнему регистру, убирает пробелы и знаки препинания в конце."""
+    text = text.strip().lower()
+    # Убираем знаки препинания в конце (точка, запятая, !, ?, ;, : и т.д.)
+    while text and text[-1] in ".,!?;:":
+        text = text[:-1]
+    return text.strip()
 
 async def render_task_message(message: Message, state: FSMContext, user_id: int, short_type: str, short_level: str, index: int, paragraph_idx: int = 0, is_revision: bool = False):
     await clear_keyboard(message, state)
@@ -216,7 +234,7 @@ async def get_total_stats(user_id: int, short_level: str):
 async def send_progress_once(message: Message, user_id: int, short_type: str, short_level: str):
     """Отправляет сообщение с прогрессом (только один раз)."""
     if short_type == "random":
-        correct, _ = await get_total_stats(user_id, short_level)  # только правильные
+        correct, _ = await get_total_stats(user_id, short_level)
         error_count = 0
         for t in TYPE_MAP.keys():
             t_json = TYPE_MAP[t]
@@ -230,7 +248,7 @@ async def send_progress_once(message: Message, user_id: int, short_type: str, sh
     else:
         type_json = TYPE_MAP.get(short_type, short_type)
         level_json = LEVEL_MAP.get(short_level, short_level)
-        correct, _ = await get_user_stats(user_id, type_json, level_json)  # только правильные
+        correct, _ = await get_user_stats(user_id, type_json, level_json)
         errors = await get_reading_errors(user_id, type_json, level_json)
         error_count = len(errors)
         display_name = TYPE_DISPLAY.get(short_type, short_type)
@@ -387,7 +405,6 @@ async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
             await update_user_stats(user_id, type_json, level_json, False)
             await add_reading_error(user_id, type_json, level_json, index)
             logger.info(f"❌ Wrong: user={user_id}, type={type_json}, level={level_json} -> добавлена ошибка")
-            logger.info(f"➕ add_reading_error: user={user_id}, type_json={type_json}, level_json={level_json}, task={index}")
 
     # НЕ ОБНОВЛЯЕМ ПРОГРЕСС! Оставляем первое сообщение без изменений.
 
@@ -504,13 +521,14 @@ async def handle_text_answer(message: Message, state: FSMContext):
     correct_answer = task.get("correct")
     user_input = message.text.strip()
 
+    # НОРМАЛИЗАЦИЯ ОТВЕТА
     if isinstance(correct_answer, list):
-        user_parts = [p.strip().lower() for p in user_input.split(";") if p.strip()]
-        correct_parts = [p.strip().lower() for p in correct_answer]
+        user_parts = [normalize_answer(p) for p in user_input.split(";") if p.strip()]
+        correct_parts = [normalize_answer(p) for p in correct_answer]
         correct = (user_parts == correct_parts)
     else:
-        user_clean = "".join(user_input.split()).lower()
-        correct_clean = "".join(str(correct_answer).split()).lower()
+        user_clean = normalize_answer(user_input)
+        correct_clean = normalize_answer(str(correct_answer))
         correct = (user_clean == correct_clean)
 
     if is_revision:
@@ -528,7 +546,6 @@ async def handle_text_answer(message: Message, state: FSMContext):
         else:
             await update_user_stats(user_id, type_json, level_json, False)
             await add_reading_error(user_id, type_json, level_json, index)
-            logger.info(f"➕ add_reading_error (text): user={user_id}, type_json={type_json}, level_json={level_json}, task={index}")
 
     # НЕ ОБНОВЛЯЕМ ПРОГРЕСС!
 
