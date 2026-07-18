@@ -1,18 +1,19 @@
 import sqlite3
 import os
+import asyncio
 from typing import Tuple, List, Optional
 
 DB_PATH = os.getenv("DATABASE_PATH", "bot_database.db")
 
-def get_connection():
-    """Возвращает соединение с БД и включает режим Row."""
+def _get_connection():
+    """Синхронная функция для получения соединения."""
     conn = sqlite3.connect(DB_PATH)
     conn.row_factory = sqlite3.Row
     return conn
 
-def init_db():
-    """Создаёт таблицы, если их нет. Вызвать один раз при запуске бота."""
-    conn = get_connection()
+def _init_db_sync():
+    """Синхронная инициализация таблиц."""
+    conn = _get_connection()
     cursor = conn.cursor()
     cursor.execute("""
         CREATE TABLE IF NOT EXISTS users (
@@ -47,9 +48,13 @@ def init_db():
     conn.commit()
     conn.close()
 
+async def init_db():
+    """Асинхронная инициализация БД."""
+    await asyncio.to_thread(_init_db_sync)
+
 # ---------- Пользователи ----------
-def get_or_create_user(user_id: int, username: str = None, first_name: str = None, last_name: str = None):
-    conn = get_connection()
+def _get_or_create_user_sync(user_id: int, username: str = None, first_name: str = None, last_name: str = None):
+    conn = _get_connection()
     cursor = conn.cursor()
     cursor.execute(
         "INSERT OR IGNORE INTO users (user_id, username, first_name, last_name) VALUES (?, ?, ?, ?)",
@@ -65,9 +70,12 @@ def get_or_create_user(user_id: int, username: str = None, first_name: str = Non
     conn.close()
     return dict(row) if row else None
 
+async def get_or_create_user(user_id: int, username: str = None, first_name: str = None, last_name: str = None):
+    return await asyncio.to_thread(_get_or_create_user_sync, user_id, username, first_name, last_name)
+
 # ---------- Прогресс ----------
-def get_user_stats_db(user_id: int, type_key: str, level_key: str) -> Tuple[int, int]:
-    conn = get_connection()
+def _get_user_stats_sync(user_id: int, type_key: str, level_key: str) -> Tuple[int, int]:
+    conn = _get_connection()
     cursor = conn.cursor()
     cursor.execute(
         "SELECT correct, wrong FROM progress WHERE user_id = ? AND type_key = ? AND level_key = ?",
@@ -79,8 +87,11 @@ def get_user_stats_db(user_id: int, type_key: str, level_key: str) -> Tuple[int,
         return row["correct"], row["wrong"]
     return 0, 0
 
-def update_user_stats_db(user_id: int, type_key: str, level_key: str, correct: bool):
-    conn = get_connection()
+async def get_user_stats_db(user_id: int, type_key: str, level_key: str) -> Tuple[int, int]:
+    return await asyncio.to_thread(_get_user_stats_sync, user_id, type_key, level_key)
+
+def _update_user_stats_sync(user_id: int, type_key: str, level_key: str, correct: bool):
+    conn = _get_connection()
     cursor = conn.cursor()
     cursor.execute(
         "INSERT INTO progress (user_id, type_key, level_key, correct, wrong) VALUES (?, ?, ?, 0, 0) "
@@ -91,8 +102,11 @@ def update_user_stats_db(user_id: int, type_key: str, level_key: str, correct: b
     conn.commit()
     conn.close()
 
-def reset_user_stats_db(user_id: int, type_key: str, level_key: str):
-    conn = get_connection()
+async def update_user_stats_db(user_id: int, type_key: str, level_key: str, correct: bool):
+    await asyncio.to_thread(_update_user_stats_sync, user_id, type_key, level_key, correct)
+
+def _reset_user_stats_sync(user_id: int, type_key: str, level_key: str):
+    conn = _get_connection()
     cursor = conn.cursor()
     cursor.execute(
         "DELETE FROM progress WHERE user_id = ? AND type_key = ? AND level_key = ?",
@@ -101,9 +115,12 @@ def reset_user_stats_db(user_id: int, type_key: str, level_key: str):
     conn.commit()
     conn.close()
 
+async def reset_user_stats_db(user_id: int, type_key: str, level_key: str):
+    await asyncio.to_thread(_reset_user_stats_sync, user_id, type_key, level_key)
+
 # ---------- Ошибки ----------
-def add_reading_error_db(user_id: int, type_key: str, level_key: str, task_index: int):
-    conn = get_connection()
+def _add_reading_error_sync(user_id: int, type_key: str, level_key: str, task_index: int):
+    conn = _get_connection()
     cursor = conn.cursor()
     cursor.execute(
         "INSERT OR IGNORE INTO errors (user_id, type_key, level_key, task_index) VALUES (?, ?, ?, ?)",
@@ -112,8 +129,11 @@ def add_reading_error_db(user_id: int, type_key: str, level_key: str, task_index
     conn.commit()
     conn.close()
 
-def remove_reading_error_db(user_id: int, type_key: str, level_key: str, task_index: int):
-    conn = get_connection()
+async def add_reading_error_db(user_id: int, type_key: str, level_key: str, task_index: int):
+    await asyncio.to_thread(_add_reading_error_sync, user_id, type_key, level_key, task_index)
+
+def _remove_reading_error_sync(user_id: int, type_key: str, level_key: str, task_index: int):
+    conn = _get_connection()
     cursor = conn.cursor()
     cursor.execute(
         "DELETE FROM errors WHERE user_id = ? AND type_key = ? AND level_key = ? AND task_index = ?",
@@ -122,8 +142,11 @@ def remove_reading_error_db(user_id: int, type_key: str, level_key: str, task_in
     conn.commit()
     conn.close()
 
-def get_reading_errors_db(user_id: int, type_key: str, level_key: str) -> List[int]:
-    conn = get_connection()
+async def remove_reading_error_db(user_id: int, type_key: str, level_key: str, task_index: int):
+    await asyncio.to_thread(_remove_reading_error_sync, user_id, type_key, level_key, task_index)
+
+def _get_reading_errors_sync(user_id: int, type_key: str, level_key: str) -> List[int]:
+    conn = _get_connection()
     cursor = conn.cursor()
     cursor.execute(
         "SELECT task_index FROM errors WHERE user_id = ? AND type_key = ? AND level_key = ?",
@@ -133,8 +156,11 @@ def get_reading_errors_db(user_id: int, type_key: str, level_key: str) -> List[i
     conn.close()
     return [row["task_index"] for row in rows]
 
-def clear_reading_errors_db(user_id: int, type_key: str, level_key: str):
-    conn = get_connection()
+async def get_reading_errors_db(user_id: int, type_key: str, level_key: str) -> List[int]:
+    return await asyncio.to_thread(_get_reading_errors_sync, user_id, type_key, level_key)
+
+def _clear_reading_errors_sync(user_id: int, type_key: str, level_key: str):
+    conn = _get_connection()
     cursor = conn.cursor()
     cursor.execute(
         "DELETE FROM errors WHERE user_id = ? AND type_key = ? AND level_key = ?",
@@ -143,11 +169,17 @@ def clear_reading_errors_db(user_id: int, type_key: str, level_key: str):
     conn.commit()
     conn.close()
 
-# ---------- Дополнительно: сброс всего прогресса пользователя ----------
-def reset_all_user_progress(user_id: int):
-    conn = get_connection()
+async def clear_reading_errors_db(user_id: int, type_key: str, level_key: str):
+    await asyncio.to_thread(_clear_reading_errors_sync, user_id, type_key, level_key)
+
+# ---------- Сброс всего прогресса пользователя ----------
+def _reset_all_user_progress_sync(user_id: int):
+    conn = _get_connection()
     cursor = conn.cursor()
     cursor.execute("DELETE FROM progress WHERE user_id = ?", (user_id,))
     cursor.execute("DELETE FROM errors WHERE user_id = ?", (user_id,))
     conn.commit()
     conn.close()
+
+async def reset_all_user_progress(user_id: int):
+    await asyncio.to_thread(_reset_all_user_progress_sync, user_id)
