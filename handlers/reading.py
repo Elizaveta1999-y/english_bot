@@ -336,8 +336,7 @@ async def choose_level(callback: CallbackQuery, state: FSMContext):
         revision_correct=0,
         revision_wrong=0,
         session_correct=0,
-        session_wrong=0,
-        initial_error_count=0
+        session_wrong=0
     )
 
     await send_progress_once(callback.message, user_id, short_type, short_level)
@@ -382,14 +381,15 @@ async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
 
     if is_revision:
         if correct:
+            # Удаляем ошибку, обновляем статистику
             await remove_reading_error(user_id, type_json, level_json, index)
             await update_user_stats(user_id, type_json, level_json, True)
             new_correct = data.get("revision_correct", 0) + 1
             await state.update_data(revision_correct=new_correct)
-            # Обновляем сессионные счётчики
             session_correct = data.get("session_correct", 0) + 1
             await state.update_data(session_correct=session_correct)
         else:
+            # Неправильно: не удаляем ошибку, но увеличиваем счётчики
             new_wrong = data.get("revision_wrong", 0) + 1
             await state.update_data(revision_wrong=new_wrong)
             session_wrong = data.get("session_wrong", 0) + 1
@@ -407,8 +407,10 @@ async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
             await state.update_data(session_wrong=session_wrong)
             logger.info(f"❌ Wrong: user={user_id}, type={type_json}, level={level_json} -> добавлена ошибка")
 
+    # Убираем клавиатуру у текущего сообщения
     await callback.message.edit_reply_markup(reply_markup=None)
 
+    # Отправляем результат
     if correct:
         result_text = "Правильно!"
     else:
@@ -423,7 +425,9 @@ async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
             result_text = f"Неправильно. Правильный ответ: {correct_text}"
     await callback.message.answer(result_text)
 
+    # Переход к следующему заданию
     if is_revision:
+        # Получаем обновлённый список ошибок
         if short_type == "random":
             error_ids = []
             for t in TYPE_MAP.keys():
@@ -433,11 +437,11 @@ async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
             error_ids = list(set(error_ids))
         else:
             error_ids = await get_reading_errors(user_id, type_json, level_json)
+
         if not error_ids:
-            # Проверяем, были ли исправлены ошибки
+            # Все ошибки исправлены
             rev_correct = data.get("revision_correct", 0)
             rev_wrong = data.get("revision_wrong", 0)
-            # Если было исправлено хотя бы одно задание и нет новых ошибок
             if rev_correct > 0 and rev_wrong == 0:
                 msg = "🎉 Вы исправили все ошибки! Возвращаемся в учебный режим."
             elif rev_correct > 0 and rev_wrong > 0:
@@ -446,6 +450,7 @@ async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
                 msg = "Все задания с ошибками просмотрены."
             await callback.message.answer(msg)
             await state.update_data(is_revision=False, error_list=[], error_index=0, revision_correct=0, revision_wrong=0)
+            # Переходим к следующему заданию в обычном режиме
             if short_type == "random":
                 all_tasks = await get_all_tasks_for_random(short_level)
                 if all_tasks:
@@ -463,10 +468,14 @@ async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
             await callback.answer()
             return
         else:
+            # Есть ещё ошибки – переходим к следующей (берём первую в списке)
+            # Если мы только что ответили правильно, то удаление уже произошло, и error_ids уже без этого задания.
+            # Если ответили неправильно – задание осталось, но мы всё равно переходим к следующему (берём первое).
             await show_revision_task(callback.message, state, error_ids)
             await callback.answer()
             return
     else:
+        # Обычный режим
         if short_type == "random":
             all_tasks = await get_all_tasks_for_random(short_level)
             if not all_tasks:
@@ -877,7 +886,6 @@ async def reading_revision(event, state: FSMContext):
             await message.answer(text)
         return
 
-    # Сбрасываем сессионные счётчики для revision
     await state.update_data(
         is_revision=True,
         error_list=error_ids,
