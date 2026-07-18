@@ -377,7 +377,8 @@ async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
         else:
             await update_user_stats(user_id, type_json, level_json, False)
             await add_reading_error(user_id, type_json, level_json, index)
-            logger.info(f"❌ Wrong: user={user_id}, type={type_json}, level={level_json}")
+            logger.info(f"❌ Wrong: user={user_id}, type={type_json}, level={level_json} -> добавлена ошибка")
+            logger.info(f"➕ add_reading_error: user={user_id}, type_json={type_json}, level_json={level_json}, task={index}")
 
     # НЕ ОБНОВЛЯЕМ ПРОГРЕСС! Оставляем первое сообщение без изменений.
 
@@ -518,6 +519,7 @@ async def handle_text_answer(message: Message, state: FSMContext):
         else:
             await update_user_stats(user_id, type_json, level_json, False)
             await add_reading_error(user_id, type_json, level_json, index)
+            logger.info(f"➕ add_reading_error (text): user={user_id}, type_json={type_json}, level_json={level_json}, task={index}")
 
     # НЕ ОБНОВЛЯЕМ ПРОГРЕСС!
 
@@ -820,6 +822,8 @@ async def reading_revision(event, state: FSMContext):
     type_json = TYPE_MAP.get(short_type, short_type)
     level_json = LEVEL_MAP.get(short_level, short_level)
 
+    logger.info(f"🔍 reading_revision: user={user_id}, short_type={short_type}, short_level={short_level}, type_json={type_json}, level_json={level_json}")
+
     if short_type == "random":
         error_ids = []
         for t in TYPE_MAP.keys():
@@ -829,6 +833,8 @@ async def reading_revision(event, state: FSMContext):
         error_ids = list(set(error_ids))
     else:
         error_ids = await get_reading_errors(user_id, type_json, level_json)
+
+    logger.info(f"🔍 Найдено ошибок: {len(error_ids)}")
 
     if not error_ids:
         text = "🎉 Ошибок нет! Отличная работа."
@@ -934,7 +940,6 @@ async def confirm_reset(callback: CallbackQuery, state: FSMContext):
     await callback.message.edit_text("Прогресс сброшен. Все упражнения будут даны с самого начала.")
 
     # После сброса отправляем новое сообщение с прогрессом (0/0)
-    # Это единственный случай, когда мы отправляем прогресс повторно (потому что сессия перезапускается)
     await send_progress_once(callback.message, user_id, short_type, short_level)
 
     await show_next_task(callback.message, state, is_revision=False)
