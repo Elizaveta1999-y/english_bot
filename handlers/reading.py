@@ -385,7 +385,6 @@ async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
             await update_user_stats(user_id, type_json, level_json, True)
             new_correct = data.get("revision_correct", 0) + 1
             await state.update_data(revision_correct=new_correct)
-            # Обновляем сессионные счётчики
             session_correct = data.get("session_correct", 0) + 1
             await state.update_data(session_correct=session_correct)
         else:
@@ -436,7 +435,7 @@ async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
             rev_correct = data.get("revision_correct", 0)
             rev_wrong = data.get("revision_wrong", 0)
             if rev_correct > 0 and rev_wrong == 0:
-                msg = "🎉 Все ошибки исправлены! Отличная работа!"
+                msg = "🎉 Вы исправили все ошибки! Возвращаемся в учебный режим."
             elif rev_correct > 0 and rev_wrong > 0:
                 msg = f"Исправлено: {rev_correct}, Неправильно: {rev_wrong}.\nПродолжайте тренировку!"
             else:
@@ -583,7 +582,7 @@ async def handle_text_answer(message: Message, state: FSMContext):
             rev_correct = data.get("revision_correct", 0)
             rev_wrong = data.get("revision_wrong", 0)
             if rev_correct > 0 and rev_wrong == 0:
-                msg = "🎉 Все ошибки исправлены! Отличная работа!"
+                msg = "🎉 Вы исправили все ошибки! Возвращаемся в учебный режим."
             elif rev_correct > 0 and rev_wrong > 0:
                 msg = f"Исправлено: {rev_correct}, Неправильно: {rev_wrong}.\nПродолжайте тренировку!"
             else:
@@ -748,7 +747,7 @@ async def show_answer(callback: CallbackQuery, state: FSMContext):
             rev_correct = data.get("revision_correct", 0)
             rev_wrong = data.get("revision_wrong", 0)
             if rev_correct > 0 and rev_wrong == 0:
-                msg = "🎉 Все ошибки исправлены! Отличная работа!"
+                msg = "🎉 Вы исправили все ошибки! Возвращаемся в учебный режим."
             elif rev_correct > 0 and rev_wrong > 0:
                 msg = f"Исправлено: {rev_correct}, Неправильно: {rev_wrong}.\nПродолжайте тренировку!"
             else:
@@ -780,7 +779,12 @@ async def show_answer(callback: CallbackQuery, state: FSMContext):
             else:
                 rev_correct = data.get("revision_correct", 0)
                 rev_wrong = data.get("revision_wrong", 0)
-                msg = f"Исправлено: {rev_correct}, Неправильно: {rev_wrong}.\nПродолжайте тренировку!"
+                if rev_correct > 0 and rev_wrong == 0:
+                    msg = "🎉 Вы исправили все ошибки! Возвращаемся в учебный режим."
+                elif rev_correct > 0 and rev_wrong > 0:
+                    msg = f"Исправлено: {rev_correct}, Неправильно: {rev_wrong}.\nПродолжайте тренировку!"
+                else:
+                    msg = "Все задания с ошибками просмотрены."
                 await callback.message.answer(msg)
                 await state.update_data(is_revision=False, error_list=[], error_index=0, revision_correct=0, revision_wrong=0)
                 if short_type == "random":
@@ -869,7 +873,6 @@ async def reading_revision(event, state: FSMContext):
             await message.answer(text)
         return
 
-    # Сбрасываем сессионные счётчики для revision
     await state.update_data(
         is_revision=True,
         error_list=error_ids,
