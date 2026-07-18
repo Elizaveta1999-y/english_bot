@@ -11,7 +11,8 @@ from handlers import listening
 from handlers.reading import router as reading_router
 from middleware.access import AccessMiddleware
 from handlers.grammar import router as grammar_router
-
+from utils.db import init_db
+init_db()
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
