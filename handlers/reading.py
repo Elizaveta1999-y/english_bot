@@ -5,7 +5,6 @@ from aiogram.types import Message, CallbackQuery, InlineKeyboardMarkup, InlineKe
 from aiogram.fsm.context import FSMContext
 from aiogram.filters import Command
 from data.reading_loader import get_task, TASKS
-# Импорт из db.py (постоянное хранилище)
 from utils.db import (
     get_user_stats_db as get_user_stats,
     update_user_stats_db as update_user_stats,
@@ -15,7 +14,6 @@ from utils.db import (
     get_reading_errors_db as get_reading_errors,
     clear_reading_errors_db as clear_reading_errors
 )
-# Импорт из redis_utils (временное хранилище)
 from utils.redis_utils import (
     get_global_welcome_index,
     get_user_progress,
@@ -123,9 +121,7 @@ async def clear_keyboard(message: Message, state: FSMContext):
             pass
     await state.update_data(last_task_msg_id=None)
 
-# ========== ФУНКЦИЯ ДЛЯ СЛУЧАЙНОГО ТИПА ==========
 async def get_all_tasks_for_random(level: str):
-    """Возвращает все задания для уровня из всех типов."""
     all_tasks = []
     level_json = LEVEL_MAP.get(level, level)
     for type_key in TYPE_MAP.keys():
@@ -139,9 +135,7 @@ async def get_all_tasks_for_random(level: str):
                 all_tasks.extend(tasks)
     return all_tasks
 
-# ========== НОРМАЛИЗАЦИЯ ОТВЕТОВ ==========
 def normalize_answer(text: str) -> str:
-    """Приводит ответ к нижнему регистру, убирает пробелы и знаки препинания в конце."""
     text = text.strip().lower()
     while text and text[-1] in ".,!?;:":
         text = text[:-1]
@@ -231,9 +225,7 @@ async def get_total_stats(user_id: int, short_level: str):
         total_wrong += wrong
     return total_correct, total_wrong
 
-# ---------- ТОЛЬКО ОДНО СООБЩЕНИЕ ПРОГРЕССА (без обновлений) ----------
 async def send_progress_once(message: Message, user_id: int, short_type: str, short_level: str):
-    """Отправляет сообщение с прогрессом (только один раз)."""
     if short_type == "random":
         correct, _ = await get_total_stats(user_id, short_level)
         error_count = 0
@@ -265,7 +257,6 @@ async def send_progress_once(message: Message, user_id: int, short_type: str, sh
     text += f"✖️ Ошибок: {error_count}"
     await message.answer(text, reply_markup=get_progress_keyboard(), parse_mode="HTML")
 
-# -------------------- Обработчики --------------------
 @router.callback_query(F.data == "start_reading")
 async def start_reading(callback: CallbackQuery, state: FSMContext):
     await clear_keyboard(callback.message, state)
@@ -348,14 +339,11 @@ async def choose_level(callback: CallbackQuery, state: FSMContext):
         session_wrong=0
     )
 
-    # Отправляем прогресс ТОЛЬКО ОДИН РАЗ (перед первой карточкой)
     await send_progress_once(callback.message, user_id, short_type, short_level)
-    # Отправляем задание
     await render_task_message(callback.message, state, user_id, short_type, short_level, index, paragraph_idx=0, is_revision=False)
     await state.set_state(ReadingStates.waiting_for_text)
     await callback.answer()
 
-# ---------- Обработка ответов (кнопки) ----------
 @router.callback_query(F.data.startswith("reading_answer:"))
 async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
     parts = callback.data.split(":")
@@ -397,13 +385,17 @@ async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
             await update_user_stats(user_id, type_json, level_json, True)
             new_correct = data.get("revision_correct", 0) + 1
             await state.update_data(revision_correct=new_correct)
+            # Обновляем сессионные счётчики
+            session_correct = data.get("session_correct", 0) + 1
+            await state.update_data(session_correct=session_correct)
         else:
             new_wrong = data.get("revision_wrong", 0) + 1
             await state.update_data(revision_wrong=new_wrong)
+            session_wrong = data.get("session_wrong", 0) + 1
+            await state.update_data(session_wrong=session_wrong)
     else:
         if correct:
             await update_user_stats(user_id, type_json, level_json, True)
-            # Обновляем сессионные счётчики
             session_correct = data.get("session_correct", 0) + 1
             await state.update_data(session_correct=session_correct)
             logger.info(f"✅ Correct: user={user_id}, type={type_json}, level={level_json}")
@@ -413,8 +405,6 @@ async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
             session_wrong = data.get("session_wrong", 0) + 1
             await state.update_data(session_wrong=session_wrong)
             logger.info(f"❌ Wrong: user={user_id}, type={type_json}, level={level_json} -> добавлена ошибка")
-
-    # НЕ ОБНОВЛЯЕМ ПРОГРЕСС! Оставляем первое сообщение без изменений.
 
     await callback.message.edit_reply_markup(reply_markup=None)
 
@@ -432,7 +422,6 @@ async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
             result_text = f"Неправильно. Правильный ответ: {correct_text}"
     await callback.message.answer(result_text)
 
-    # Переход к следующему заданию
     if is_revision:
         if short_type == "random":
             error_ids = []
@@ -496,7 +485,6 @@ async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
         await render_task_message(callback.message, state, user_id, short_type, short_level, next_index, paragraph_idx=0, is_revision=False)
         await callback.answer()
 
-# ---------- Обработка текстовых ответов ----------
 @router.message(ReadingStates.waiting_for_text, F.text, ~F.text.startswith('/'))
 async def handle_text_answer(message: Message, state: FSMContext):
     data = await state.get_data()
@@ -529,7 +517,6 @@ async def handle_text_answer(message: Message, state: FSMContext):
     correct_answer = task.get("correct")
     user_input = message.text.strip()
 
-    # НОРМАЛИЗАЦИЯ ОТВЕТА
     if isinstance(correct_answer, list):
         user_parts = [normalize_answer(p) for p in user_input.split(";") if p.strip()]
         correct_parts = [normalize_answer(p) for p in correct_answer]
@@ -545,9 +532,13 @@ async def handle_text_answer(message: Message, state: FSMContext):
             await update_user_stats(user_id, type_json, level_json, True)
             new_correct = data.get("revision_correct", 0) + 1
             await state.update_data(revision_correct=new_correct)
+            session_correct = data.get("session_correct", 0) + 1
+            await state.update_data(session_correct=session_correct)
         else:
             new_wrong = data.get("revision_wrong", 0) + 1
             await state.update_data(revision_wrong=new_wrong)
+            session_wrong = data.get("session_wrong", 0) + 1
+            await state.update_data(session_wrong=session_wrong)
     else:
         if correct:
             await update_user_stats(user_id, type_json, level_json, True)
@@ -558,8 +549,6 @@ async def handle_text_answer(message: Message, state: FSMContext):
             await add_reading_error(user_id, type_json, level_json, index)
             session_wrong = data.get("session_wrong", 0) + 1
             await state.update_data(session_wrong=session_wrong)
-
-    # НЕ ОБНОВЛЯЕМ ПРОГРЕСС!
 
     await clear_keyboard(message, state)
 
@@ -687,7 +676,6 @@ async def show_revision_task(message: Message, state: FSMContext, error_ids: lis
         await render_task_message(message, state, user_id, short_type, short_level, task_id, paragraph_idx=0, is_revision=True)
         await state.update_data(index=task_id, paragraph_idx=0, is_revision=True, error_list=error_ids, error_index=0)
 
-# ---------- Показать ответ ----------
 @router.callback_query(F.data.startswith("reading_show_answer:"))
 async def show_answer(callback: CallbackQuery, state: FSMContext):
     parts = callback.data.split(":")
@@ -832,7 +820,6 @@ async def show_answer(callback: CallbackQuery, state: FSMContext):
 
     await callback.answer()
 
-# ---------- Работа над ошибками ----------
 @router.callback_query(F.data == "reading_revision")
 @router.message(Command("revision_mode"))
 async def reading_revision(event, state: FSMContext):
@@ -882,7 +869,16 @@ async def reading_revision(event, state: FSMContext):
             await message.answer(text)
         return
 
-    await state.update_data(is_revision=True, error_list=error_ids, error_index=0, revision_correct=0, revision_wrong=0)
+    # Сбрасываем сессионные счётчики для revision
+    await state.update_data(
+        is_revision=True,
+        error_list=error_ids,
+        error_index=0,
+        revision_correct=0,
+        revision_wrong=0,
+        session_correct=0,
+        session_wrong=0
+    )
 
     text = f"<b>Режим - Работа над ошибками.</b>\n\nКол-во ошибок: {len(error_ids)}"
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
@@ -917,18 +913,17 @@ async def clear_errors(callback: CallbackQuery, state: FSMContext):
         await clear_reading_errors(user_id, type_json, level_json)
 
     await callback.message.edit_text("Список ошибок очищен. Возвращаемся в учебный режим.")
-    await state.update_data(is_revision=False, error_list=[], error_index=0, revision_correct=0, revision_wrong=0)
+    await state.update_data(is_revision=False, error_list=[], error_index=0, revision_correct=0, revision_wrong=0, session_correct=0, session_wrong=0)
     await show_next_task(callback.message, state, is_revision=False)
     await callback.answer()
 
 @router.callback_query(F.data == "reading_back_to_mode")
 async def back_to_learning_mode(callback: CallbackQuery, state: FSMContext):
     await callback.message.edit_text("Возвращаемся в учебный режим.")
-    await state.update_data(is_revision=False, error_list=[], error_index=0, revision_correct=0, revision_wrong=0)
+    await state.update_data(is_revision=False, error_list=[], error_index=0, revision_correct=0, revision_wrong=0, session_correct=0, session_wrong=0)
     await show_next_task(callback.message, state, is_revision=False)
     await callback.answer()
 
-# ---------- Сброс прогресса ----------
 @router.callback_query(F.data == "reading_reset")
 @router.message(Command("reset_progress"))
 async def reading_reset(event, state: FSMContext):
@@ -976,10 +971,7 @@ async def confirm_reset(callback: CallbackQuery, state: FSMContext):
     await state.update_data(index=0, paragraph_idx=0, is_revision=False, error_list=[], error_index=0, revision_correct=0, revision_wrong=0, session_correct=0, session_wrong=0)
 
     await callback.message.edit_text("Прогресс сброшен. Все упражнения будут даны с самого начала.")
-
-    # После сброса отправляем новое сообщение с прогрессом (0/0)
     await send_progress_once(callback.message, user_id, short_type, short_level)
-
     await show_next_task(callback.message, state, is_revision=False)
     await callback.answer()
 
@@ -988,7 +980,6 @@ async def cancel_reset(callback: CallbackQuery):
     await callback.message.edit_text("Сброс отменён. Продолжайте тренировку.")
     await callback.answer()
 
-# ---------- Завершение сессии ----------
 @router.callback_query(F.data == "reading_finish_session")
 async def finish_session(callback: CallbackQuery, state: FSMContext):
     data = await state.get_data()
@@ -998,7 +989,6 @@ async def finish_session(callback: CallbackQuery, state: FSMContext):
 
     await clear_keyboard(callback.message, state)
 
-    # Собираем статистику сессии (только за текущее занятие)
     session_correct = data.get("session_correct", 0)
     session_wrong = data.get("session_wrong", 0)
     total_session = session_correct + session_wrong
@@ -1022,7 +1012,6 @@ async def finish_session(callback: CallbackQuery, state: FSMContext):
     await state.clear()
     await callback.answer()
 
-# ---------- Игнорирование ----------
 @router.callback_query(F.data == "ignore")
 async def ignore_callback(callback: CallbackQuery):
     await callback.answer()
