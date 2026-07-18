@@ -216,25 +216,34 @@ async def get_total_stats(user_id: int, short_level: str):
 async def send_progress_once(message: Message, user_id: int, short_type: str, short_level: str):
     """Отправляет сообщение с прогрессом (только один раз)."""
     if short_type == "random":
-        correct, wrong = await get_total_stats(user_id, short_level)
+        correct, _ = await get_total_stats(user_id, short_level)  # только правильные
+        error_count = 0
+        for t in TYPE_MAP.keys():
+            t_json = TYPE_MAP[t]
+            level_json = LEVEL_MAP.get(short_level, short_level)
+            errors = await get_reading_errors(user_id, t_json, level_json)
+            error_count += len(errors)
         display_name = "🎲 Случайный тип"
         level_display = get_level_display(short_level)
         description = TYPE_DESCRIPTION.get("random", "выполните задание")
+        logger.info(f"📊 RANDOM: user={user_id}, correct={correct}, wrong_uniq={error_count}")
     else:
         type_json = TYPE_MAP.get(short_type, short_type)
         level_json = LEVEL_MAP.get(short_level, short_level)
-        correct, wrong = await get_user_stats(user_id, type_json, level_json)
+        correct, _ = await get_user_stats(user_id, type_json, level_json)  # только правильные
+        errors = await get_reading_errors(user_id, type_json, level_json)
+        error_count = len(errors)
         display_name = TYPE_DISPLAY.get(short_type, short_type)
         level_display = get_level_display(short_level)
         description = TYPE_DESCRIPTION.get(short_type, "выполните задание")
-        logger.info(f"📊 Прогресс (первое сообщение): user={user_id}, type={type_json}, level={level_json}, correct={correct}, wrong={wrong}")
+        logger.info(f"📊 Прогресс (первое сообщение): user={user_id}, type={type_json}, level={level_json}, correct={correct}, wrong_uniq={error_count}")
 
     text = f"<b>Режим:</b> {display_name}\n"
     text += f"<b>Уровень:</b> {level_display}\n\n"
     text += f"Внимательно прочитайте текст и {description}.\n\n"
     text += f"Ваш прогресс:\n"
     text += f"✔️ Правильно: {correct}\n"
-    text += f"✖️ Ошибок: {wrong}"
+    text += f"✖️ Ошибок: {error_count}"
     await message.answer(text, reply_markup=get_progress_keyboard(), parse_mode="HTML")
 
 # -------------------- Обработчики --------------------
