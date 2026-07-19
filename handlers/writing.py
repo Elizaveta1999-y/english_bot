@@ -344,3 +344,4 @@ async def back_to_main_from_writing(callback: CallbackQuery, state: FSMContext):
     await callback.message.edit_reply_markup(reply_markup=None)
     await callback.message.answer("Вы вышли в главное меню. Используйте /start для возврата.")
     await state.clear()
+
