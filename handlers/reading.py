@@ -126,7 +126,6 @@ async def clear_task_keyboard(message: Message, state: FSMContext):
 async def clear_all_keyboards(message: Message, state: FSMContext):
     """Убирает клавиатуру у задания и у прогресса."""
     data = await state.get_data()
-    # Убираем кнопки задания
     last_id = data.get("last_task_msg_id")
     if last_id:
         try:
@@ -134,7 +133,6 @@ async def clear_all_keyboards(message: Message, state: FSMContext):
         except Exception:
             pass
         await state.update_data(last_task_msg_id=None)
-    # Убираем кнопки прогресса
     progress_id = data.get("progress_msg_id")
     if progress_id:
         try:
@@ -171,7 +169,6 @@ def normalize_answer(text: str) -> str:
     return text.strip()
 
 async def render_task_message(message: Message, state: FSMContext, user_id: int, short_type: str, short_level: str, index: int, paragraph_idx: int = 0, is_revision: bool = False):
-    # Убираем клавиатуру у предыдущего задания (но не прогресса)
     await clear_task_keyboard(message, state)
 
     if short_type == "random":
@@ -256,7 +253,6 @@ async def get_total_stats(user_id: int, short_level: str):
     return total_correct, total_wrong
 
 async def send_progress_message_edit(message: Message, user_id: int, short_type: str, short_level: str, state: FSMContext):
-    """Редактирует текущее сообщение (выбор уровня) в сообщение с прогрессом."""
     if short_type == "random":
         correct, _ = await get_total_stats(user_id, short_level)
         error_count = 0
@@ -377,7 +373,6 @@ async def choose_level(callback: CallbackQuery, state: FSMContext):
     await state.set_state(ReadingStates.waiting_for_text)
     await callback.answer()
 
-# ---------- Обработка ответов (кнопки) ----------
 @router.callback_query(F.data.startswith("reading_answer:"))
 async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
     parts = callback.data.split(":")
@@ -421,11 +416,13 @@ async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
             await state.update_data(revision_correct=new_correct)
             session_correct = data.get("session_correct", 0) + 1
             await state.update_data(session_correct=session_correct)
+            logger.info(f"✅ Исправлена ошибка: user={user_id}, type={type_json}, level={level_json}, task={index}")
         else:
             new_wrong = data.get("revision_wrong", 0) + 1
             await state.update_data(revision_wrong=new_wrong)
             session_wrong = data.get("session_wrong", 0) + 1
             await state.update_data(session_wrong=session_wrong)
+            logger.info(f"❌ Неправильно в revision: user={user_id}, type={type_json}, level={level_json}, task={index}")
     else:
         if correct:
             await update_user_stats(user_id, type_json, level_json, True)
@@ -478,7 +475,6 @@ async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
                 msg = "Все задания с ошибками просмотрены. Возвращаемся к учебному режиму."
             await callback.message.answer(msg)
             await state.update_data(is_revision=False, error_list=[], error_index=0, revision_correct=0, revision_wrong=0)
-            # Переходим к следующему заданию в обычном режиме
             if short_type == "random":
                 all_tasks = await get_all_tasks_for_random(short_level)
                 if all_tasks:
@@ -1023,17 +1019,38 @@ async def finish_session(callback: CallbackQuery, state: FSMContext):
     short_level = data.get("short_level")
     user_id = callback.from_user.id
 
+    # Убираем кнопки
     await clear_all_keyboards(callback.message, state)
 
+    # Сессионная статистика (исправлено/неправильно в этой сессии revision)
     session_correct = data.get("session_correct", 0)
     session_wrong = data.get("session_wrong", 0)
-    total_session = session_correct + session_wrong
 
-    if total_session == 0:
+    # Получаем оставшиеся ошибки из БД
+    if short_type == "random":
+        remaining_errors = 0
+        for t in TYPE_MAP.keys():
+            t_json = TYPE_MAP[t]
+            level_json = LEVEL_MAP.get(short_level, short_level)
+            errors = await get_reading_errors(user_id, t_json, level_json)
+            remaining_errors += len(errors)
+    else:
+        type_json = TYPE_MAP.get(short_type, short_type)
+        level_json = LEVEL_MAP.get(short_level, short_level)
+        errors = await get_reading_errors(user_id, type_json, level_json)
+        remaining_errors = len(errors)
+
+    # Формируем сообщение
+    if session_correct == 0 and session_wrong == 0 and remaining_errors == 0:
         text = "Сессия завершена! Вы не ответили ни на одно задание. 🙌🏻"
     else:
-        accuracy = (session_correct / total_session * 100)
-        text = f"Сессия завершена! 🙌🏻\nПравильно: {session_correct}\nОшибок: {session_wrong}\nТочность: {accuracy:.1f}%"
+        text = "Сессия завершена! 🙌🏻\n"
+        if session_correct > 0:
+            text += f"Исправлено: {session_correct}\n"
+        if remaining_errors > 0:
+            text += f"Осталось ошибок: {remaining_errors}\n"
+        else:
+            text += "Все ошибки исправлены! 🎉\n"
 
     await callback.message.answer(text)
 
