@@ -47,32 +47,31 @@ user_sessions = {}
 
 # ---------- Клавиатуры ----------
 def get_categories_keyboard():
-    # Желаемый порядок (ключи из AVAILABLE_CATEGORIES)
-    order = ["nouns", "verbs", "prepositions", "adverbs", "adjectives", "conjunctions", "false_friends", "phrasal_verbs"]
+    # Желаемый порядок: сначала три уровня, потом остальные категории
+    top_order = ["gold_3000", "expert", "beginner"]
+    # Остальные в том же порядке, что и раньше (без дублирования)
+    rest_order = ["nouns", "verbs", "prepositions", "adverbs", "adjectives", 
+                  "conjunctions", "false_friends", "phrasal_verbs", "irregular_verbs"]
     
-    # Собираем элементы для клавиатуры
+    # Собираем все ключи в нужном порядке
+    order = top_order + rest_order
+    
     items = []
     for key in order:
         if key in AVAILABLE_CATEGORIES:
             label = AVAILABLE_CATEGORIES[key]["label"]
-            items.append(("〰️" + label, f"word_cat_{key}"))
+            # Для новых кнопок эмодзи уже есть в label, поэтому просто берём label
+            items.append((label, f"word_cat_{key}"))
     
-    # Добавляем кнопку "Назад" (без префикса) перед неправильными глаголами
+    # Добавляем кнопку "Назад" (она всегда в конце)
     items.append(("🔙 Назад", "back_to_main"))
-    
-    # Добавляем неправильные глаголы (последняя категория)
-    if "irregular_verbs" in AVAILABLE_CATEGORIES:
-        label = AVAILABLE_CATEGORIES["irregular_verbs"]["label"]
-        items.append(("〰️" + label, "word_cat_irregular_verbs"))
     
     # Группируем по два
     keyboard = []
     for i in range(0, len(items), 2):
         row = []
-        # Первый элемент
         text1, callback1 = items[i]
         row.append(InlineKeyboardButton(text=text1, callback_data=callback1))
-        # Второй, если есть
         if i + 1 < len(items):
             text2, callback2 = items[i + 1]
             row.append(InlineKeyboardButton(text=text2, callback_data=callback2))

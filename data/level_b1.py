@@ -26,807 +26,472 @@ LEVEL_B1_CONTENT = {
       }
     ],
   "practice_bank": [
-   #  ==================== ВАРИАНТ 1 ====================
-    [
-      {
-        "type": "complex",
-        "text": "1. Choose the correct present tense (Simple, Continuous or Perfect).",
-        "subtasks": [
-          {"question": "I ______ (read) this book for two hours already.", "answer": "have been reading", "explanation": "действие началось в прошлом и продолжается до сих пор — Present Perfect Continuous (но в списке времён только Simple, Continuous, Perfect; для B1 можно Present Perfect Continuous тоже, но в теме заявлены Simple, Continuous, Perfect, поэтому здесь лучше Present Perfect: have read — если результат, но 'for two hours' указывает на продолжительность, поэтому нужно Present Perfect Continuous. Однако в уроке не было Perfect Continuous, так что я заменю на 'have read' с объяснением, что 'for two hours' указывает на результат? Лучше оставлю 'have been reading' и добавлю пояснение, что это расширение. Ладно, чтобы не выходить за рамки, я заменю: I ______ (read) this book for two hours already. — Present Perfect: have read, потому что он прочитал её за два часа? Неправильно. Лучше убрать 'for two hours' и использовать уже изученные времена. Я переделаю задание, чтобы не было Present Perfect Continuous. Заменю: I ______ (read) this book already. — уже прочитал, Present Perfect."},
-          {"question": "She ______ (work) at the moment, so she can't come to the phone.", "answer": "is working", "explanation": "действие происходит сейчас (at the moment) — Present Continuous"},
-          {"question": "He ______ (live) in London for five years now.", "answer": "has lived", "explanation": "результат, продолжительность до настоящего момента — Present Perfect"},
-          {"question": "They ______ (play) tennis every Saturday.", "answer": "play", "explanation": "регулярное действие — Present Simple"},
-          {"question": "I ______ (never / be) to Japan.", "answer": "have never been", "explanation": "опыт в жизни — Present Perfect"},
-          {"question": "Look! The children ______ (run) in the garden.", "answer": "are running", "explanation": "действие прямо сейчас, обращают внимание — Present Continuous"},
-          {"question": "We ______ (know) each other since childhood.", "answer": "have known", "explanation": "состояние, начавшееся в прошлом и продолжающееся — Present Perfect (глагол состояния know не используется в Continuous)"},
-          {"question": "The train ______ (leave) at 8 pm every night.", "answer": "leaves", "explanation": "расписание — Present Simple"},
-          {"question": "She ______ (already / finish) her homework.", "answer": "has already finished", "explanation": "already указывает на завершённое действие с результатом сейчас — Present Perfect"},
-          {"question": "I ______ (think) about changing my job recently.", "answer": "have been thinking", "explanation": "здесь нужно Present Perfect Continuous, но в задании даны только Simple, Continuous, Perfect. Можно заменить на Present Continuous? I am thinking — сейчас думаю, но recently указывает на недавний период. В B1 уже изучают Present Perfect Continuous, но в уроке его нет. Я заменю это предложение на: I ______ (think) that this is a good idea. — Present Simple (глагол состояния). Лучше переделать. Уберу это подзадание и добавлю другое. Сделаю 10 подзаданий, но чтобы не было сложностей, буду использовать только три времени."}
-        ]
-      },
-      {
-        "type": "complex",
-        "text": "2. Correct the mistakes (if any).",
-        "subtasks": [
-          {"question": "I am knowing the answer.", "answer": "I know the answer.", "explanation": "know — глагол состояния, не используется в Continuous"},
-          {"question": "She has seen him yesterday.", "answer": "She saw him yesterday.", "explanation": "yesterday указывает на конкретное прошлое → Past Simple, не Present Perfect"},
-          {"question": "He is wanting to leave now.", "answer": "He wants to leave now.", "explanation": "want — глагол состояния, не Continuous"},
-          {"question": "They have been married since ten years.", "answer": "They have been married for ten years.", "explanation": "since + точка во времени, for + период. ten years — период → for"},
-          {"question": "I am living here since 2010.", "answer": "I have lived here since 2010.", "explanation": "since + точка → Present Perfect, не Present Continuous"},
-          {"question": "Look! The sun is rising.", "answer": "Look! The sun is rising.", "explanation": "верно (действие сейчас)"},
-          {"question": "She doesn't like coffee.", "answer": "She doesn't like coffee.", "explanation": "верно (глагол состояния)"},
-          {"question": "We have visited the museum last week.", "answer": "We visited the museum last week.", "explanation": "last week — конкретное прошлое → Past Simple"},
-          {"question": "He already finished his work.", "answer": "He has already finished his work.", "explanation": "already — Present Perfect, нужно has finished"},
-          {"question": "I always am taking the bus to work.", "answer": "I always take the bus to work.", "explanation": "always — регулярность → Present Simple, порядок: always + Present Simple (I always take)"}
-        ]
-      },
-      {
-        "type": "complex",
-        "text": "3. Complete the sentences with the correct present tense (Simple, Continuous, or Perfect).",
-        "subtasks": [
-          {"question": "He ______ (not / finish) his homework yet.", "answer": "hasn't finished", "explanation": "yet → Present Perfect, отрицание"},
-          {"question": "She ______ (work) on a new project this week.", "answer": "is working", "explanation": "this week — временная ситуация → Present Continuous"},
-          {"question": "My father ______ (drive) to work every day.", "answer": "drives", "explanation": "every day — регулярность → Present Simple"},
-          {"question": "I ______ (never / eat) sushi.", "answer": "have never eaten", "explanation": "never — опыт → Present Perfect"},
-          {"question": "Be quiet! The baby ______ (sleep).", "answer": "is sleeping", "explanation": "сейчас, прямо сейчас → Present Continuous"},
-          {"question": "We ______ (know) each other for 10 years.", "answer": "have known", "explanation": "for 10 years — продолжительность до сейчас → Present Perfect (know — глагол состояния)"},
-          {"question": "They ______ (build) a new school in our town.", "answer": "are building", "explanation": "временная ситуация → Present Continuous (можно и Present Simple, но здесь процесс)"},
-          {"question": "The train ______ (arrive) at 6 pm every evening.", "answer": "arrives", "explanation": "расписание → Present Simple"},
-          {"question": "I ______ (already / see) this film.", "answer": "have already seen", "explanation": "already → Present Perfect"},
-          {"question": "She ______ (not / like) spicy food.", "answer": "doesn't like", "explanation": "общий факт, состояние → Present Simple"}
-        ]
-      },
-      {
-        "type": "complex",
-        "text": "4. Translate the sentences into English.",
-        "subtasks": [
-          {"question": "Я живу здесь с 2010 года.", "answer": "I have lived here since 2010.", "explanation": ""},
-          {"question": "Она сейчас читает книгу.", "answer": "She is reading a book now.", "explanation": ""},
-          {"question": "Мы никогда не были в Париже.", "answer": "We have never been to Paris.", "explanation": ""},
-          {"question": "Поезд отправляется в 8 часов вечера.", "answer": "The train leaves at 8 pm.", "explanation": ""},
-          {"question": "Я уже сделал домашнее задание.", "answer": "I have already done my homework.", "explanation": ""},
-          {"question": "Они сейчас играют в футбол.", "answer": "They are playing football now.", "explanation": ""},
-          {"question": "Она всегда ходит на работу пешком.", "answer": "She always walks to work.", "explanation": ""},
-          {"question": "Мы знаем друг друга с детства.", "answer": "We have known each other since childhood.", "explanation": ""},
-          {"question": "Я не люблю кофе.", "answer": "I don't like coffee.", "explanation": ""},
-          {"question": "Он ещё не пришёл.", "answer": "He hasn't arrived yet.", "explanation": ""}
-        ]
-      }
-    ],
-    # ==================== ВАРИАНТ 2 ====================
-    [
-      {
-        "type": "complex",
-        "text": "1. Choose the correct present tense (Simple, Continuous or Perfect).",
-        "subtasks": [
-          {"question": "I ______ (read) this book already.", "answer": "have read", "explanation": "already — Present Perfect"},
-          {"question": "She ______ (work) in the garden at the moment.", "answer": "is working", "explanation": "at the moment — Present Continuous"},
-          {"question": "He ______ (live) in this city for five years.", "answer": "has lived", "explanation": "for five years — Present Perfect (продолжительность до сейчас)"},
-          {"question": "They ______ (play) tennis every Monday.", "answer": "play", "explanation": "every Monday — регулярность → Present Simple"},
-          {"question": "I ______ (never / eat) sushi.", "answer": "have never eaten", "explanation": "never — опыт → Present Perfect"},
-          {"question": "Listen! The birds ______ (sing).", "answer": "are singing", "explanation": "Listen! — действие сейчас → Present Continuous"},
-          {"question": "We ______ (know) each other since primary school.", "answer": "have known", "explanation": "since — Present Perfect (состояние)"},
-          {"question": "The train ______ (leave) at 9 am.", "answer": "leaves", "explanation": "расписание → Present Simple"},
-          {"question": "She ______ (already / do) her homework.", "answer": "has already done", "explanation": "already → Present Perfect"},
-          {"question": "I ______ (think) you are right.", "answer": "think", "explanation": "глагол состояния, мнение → Present Simple"}
-        ]
-      },
-      {
-        "type": "complex",
-        "text": "2. Correct the mistakes (if any).",
-        "subtasks": [
-          {"question": "I am understanding the problem now.", "answer": "I understand the problem now.", "explanation": "understand — глагол состояния, не Continuous"},
-          {"question": "She has seen him last Friday.", "answer": "She saw him last Friday.", "explanation": "last Friday — конкретное прошлое → Past Simple"},
-          {"question": "He is wanting to go home.", "answer": "He wants to go home.", "explanation": "want — глагол состояния"},
-          {"question": "They have been married for twenty years.", "answer": "They have been married for twenty years.", "explanation": "верно (for + период)"},
-          {"question": "I am knowing the answer.", "answer": "I know the answer.", "explanation": "know — состояние"},
-          {"question": "Look! The children are playing in the yard.", "answer": "Look! The children are playing in the yard.", "explanation": "верно"},
-          {"question": "She doesn't like swimming.", "answer": "She doesn't like swimming.", "explanation": "верно"},
-          {"question": "We have visited the museum last year.", "answer": "We visited the museum last year.", "explanation": "last year — Past Simple"},
-          {"question": "He already finished his project.", "answer": "He has already finished his project.", "explanation": "already — Present Perfect"},
-          {"question": "I always am taking the bus.", "answer": "I always take the bus.", "explanation": "always + Present Simple, порядок слов"}
-        ]
-      },
-      {
-        "type": "complex",
-        "text": "3. Complete the sentences with the correct present tense (Simple, Continuous, or Perfect).",
-        "subtasks": [
-          {"question": "He ______ (not / finish) his homework yet.", "answer": "hasn't finished", "explanation": "yet → Present Perfect"},
-          {"question": "She ______ (work) on a new project this week.", "answer": "is working", "explanation": "this week — временная ситуация → Continuous"},
-          {"question": "My father ______ (drive) to work every day.", "answer": "drives", "explanation": "every day → Simple"},
-          {"question": "I ______ (never / eat) sushi.", "answer": "have never eaten", "explanation": "never → Perfect"},
-          {"question": "Be quiet! The baby ______ (sleep).", "answer": "is sleeping", "explanation": "сейчас → Continuous"},
-          {"question": "We ______ (know) each other for 10 years.", "answer": "have known", "explanation": "for 10 years → Perfect (состояние)"},
-          {"question": "They ______ (build) a new school in our town.", "answer": "are building", "explanation": "временный процесс → Continuous"},
-          {"question": "The train ______ (arrive) at 6 pm.", "answer": "arrives", "explanation": "расписание → Simple"},
-          {"question": "I ______ (already / see) this film.", "answer": "have already seen", "explanation": "already → Perfect"},
-          {"question": "She ______ (not / like) spicy food.", "answer": "doesn't like", "explanation": "состояние → Simple"}
-        ]
-      },
-      {
-        "type": "complex",
-        "text": "4. Translate the sentences into English.",
-        "subtasks": [
-          {"question": "Я уже прочитал эту книгу.", "answer": "I have already read this book.", "explanation": ""},
-          {"question": "Она сейчас работает в саду.", "answer": "She is working in the garden now.", "explanation": ""},
-          {"question": "Он живёт здесь пять лет.", "answer": "He has lived here for five years.", "explanation": ""},
-          {"question": "Они играют в теннис каждый понедельник.", "answer": "They play tennis every Monday.", "explanation": ""},
-          {"question": "Я никогда не пробовал суши.", "answer": "I have never tried sushi.", "explanation": ""},
-          {"question": "Послушай! Птицы поют.", "answer": "Listen! The birds are singing.", "explanation": ""},
-          {"question": "Мы знаем друг друга с начальной школы.", "answer": "We have known each other since primary school.", "explanation": ""},
-          {"question": "Поезд отправляется в 9 утра.", "answer": "The train leaves at 9 am.", "explanation": ""},
-          {"question": "Она уже сделала домашнее задание.", "answer": "She has already done her homework.", "explanation": ""},
-          {"question": "Я думаю, ты прав.", "answer": "I think you are right.", "explanation": ""}
-        ]
-      }
-    ],
-    # ==================== ВАРИАНТ 3 ====================
-    [
-      {
-        "type": "complex",
-        "text": "1. Choose the correct present tense (Simple, Continuous or Perfect).",
-        "subtasks": [
-          {"question": "I ______ (read) this book for two hours already.", "answer": "have been reading", "explanation": "для B1 допустим Present Perfect Continuous, но в задании только три времени? Я заменю на Present Perfect: have read, если имеется в виду результат за два часа. Но лучше переделать: I ______ (read) this book already. — have read."},
-          {"question": "She ______ (work) in the office at the moment.", "answer": "is working", "explanation": "at the moment — Continuous"},
-          {"question": "He ______ (live) in London since 2015.", "answer": "has lived", "explanation": "since — Perfect"},
-          {"question": "They ______ (play) chess every Saturday.", "answer": "play", "explanation": "every Saturday — Simple"},
-          {"question": "I ______ (never / see) such a beautiful sunset.", "answer": "have never seen", "explanation": "never — Perfect"},
-          {"question": "Listen! Someone ______ (knock) at the door.", "answer": "is knocking", "explanation": "Listen! — сейчас → Continuous"},
-          {"question": "We ______ (be) friends for many years.", "answer": "have been", "explanation": "for many years — Perfect (состояние)"},
-          {"question": "The train ______ (arrive) at platform 2.", "answer": "arrives", "explanation": "расписание — Simple"},
-          {"question": "She ______ (already / buy) tickets for the concert.", "answer": "has already bought", "explanation": "already — Perfect"},
-          {"question": "I ______ (believe) in ghosts.", "answer": "don't believe", "explanation": "глагол состояния, мнение — Simple"}
-        ]
-      },
-      {
-        "type": "complex",
-        "text": "2. Correct the mistakes (if any).",
-        "subtasks": [
-          {"question": "I am not understanding this question.", "answer": "I don't understand this question.", "explanation": "understand — состояние, не Continuous"},
-          {"question": "She has met him yesterday.", "answer": "She met him yesterday.", "explanation": "yesterday — Past Simple"},
-          {"question": "He is preferring tea to coffee.", "answer": "He prefers tea to coffee.", "explanation": "prefer — состояние"},
-          {"question": "They have been married since 2018.", "answer": "They have been married since 2018.", "explanation": "верно (since + точка)"},
-          {"question": "I am having a car.", "answer": "I have a car.", "explanation": "have в значении 'обладать' — состояние"},
-          {"question": "She is looking for a new job this month.", "answer": "She is looking for a new job this month.", "explanation": "верно (временная ситуация)"},
-          {"question": "We don't like this film.", "answer": "We don't like this film.", "explanation": "верно"},
-          {"question": "They have visited the museum last week.", "answer": "They visited the museum last week.", "explanation": "last week — Past Simple"},
-          {"question": "He already has done his homework.", "answer": "He has already done his homework.", "explanation": "порядок: has already done"},
-          {"question": "I am always getting up early.", "answer": "I always get up early.", "explanation": "always + Present Simple, не Continuous"}
-        ]
-      },
-      {
-        "type": "complex",
-        "text": "3. Complete the sentences with the correct present tense (Simple, Continuous, or Perfect).",
-        "subtasks": [
-          {"question": "He ______ (not / call) me yet.", "answer": "hasn't called", "explanation": "yet — Perfect"},
-          {"question": "She ______ (stay) with her parents this week.", "answer": "is staying", "explanation": "this week — временная ситуация → Continuous"},
-          {"question": "My brother ______ (go) to the gym every day.", "answer": "goes", "explanation": "every day → Simple"},
-          {"question": "I ______ (never / ride) a horse.", "answer": "have never ridden", "explanation": "never — Perfect"},
-          {"question": "Hurry up! Everybody ______ (wait) for you.", "answer": "is waiting", "explanation": "сейчас → Continuous"},
-          {"question": "We ______ (own) this house for ten years.", "answer": "have owned", "explanation": "for ten years → Perfect (состояние)"},
-          {"question": "They ______ (renovate) their kitchen at the moment.", "answer": "are renovating", "explanation": "at the moment → Continuous"},
-          {"question": "The plane ______ (take off) at 10 am.", "answer": "takes off", "explanation": "расписание → Simple"},
-          {"question": "I ______ (just / finish) my project.", "answer": "have just finished", "explanation": "just — Perfect"},
-          {"question": "She ______ (not / enjoy) horror films.", "answer": "doesn't enjoy", "explanation": "общее предпочтение → Simple"}
-        ]
-      },
-      {
-        "type": "complex",
-        "text": "4. Translate the sentences into English.",
-        "subtasks": [
-          {"question": "Я читаю эту книгу уже два часа.", "answer": "I have been reading this book for two hours.", "explanation": ""},
-          {"question": "Она сейчас работает в офисе.", "answer": "She is working in the office at the moment.", "explanation": ""},
-          {"question": "Он живёт в Лондоне с 2015 года.", "answer": "He has lived in London since 2015.", "explanation": ""},
-          {"question": "Они играют в шахматы каждую субботу.", "answer": "They play chess every Saturday.", "explanation": ""},
-          {"question": "Я никогда не видел такого красивого заката.", "answer": "I have never seen such a beautiful sunset.", "explanation": ""},
-          {"question": "Слушай! Кто-то стучит в дверь.", "answer": "Listen! Someone is knocking at the door.", "explanation": ""},
-          {"question": "Мы дружим много лет.", "answer": "We have been friends for many years.", "explanation": ""},
-          {"question": "Поезд прибывает на платформу 2.", "answer": "The train arrives at platform 2.", "explanation": ""},
-          {"question": "Она уже купила билеты на концерт.", "answer": "She has already bought tickets for the concert.", "explanation": ""},
-          {"question": "Я не верю в привидения.", "answer": "I don't believe in ghosts.", "explanation": ""}
-        ]
-      }
-    ],
-    # ==================== ВАРИАНТ 4 ====================
-    [
-      {
-        "type": "complex",
-        "text": "1. Choose the correct present tense (Simple, Continuous or Perfect).",
-        "subtasks": [
-          {"question": "I ______ (read) this book yet.", "answer": "haven't read", "explanation": "yet — Present Perfect, отрицание"},
-          {"question": "She ______ (work) on a new project at the moment.", "answer": "is working", "explanation": "at the moment — Continuous"},
-          {"question": "He ______ (live) here since 2010.", "answer": "has lived", "explanation": "since — Perfect"},
-          {"question": "They ______ (go) to the cinema every Friday.", "answer": "go", "explanation": "every Friday — Simple"},
-          {"question": "I ______ (never / be) to Australia.", "answer": "have never been", "explanation": "never — Perfect"},
-          {"question": "Look! The dog ______ (chase) a cat.", "answer": "is chasing", "explanation": "Look! — сейчас → Continuous"},
-          {"question": "We ______ (have) this car for three years.", "answer": "have had", "explanation": "for three years — Perfect"},
-          {"question": "The museum ______ (open) at 10 am.", "answer": "opens", "explanation": "расписание — Simple"},
-          {"question": "She ______ (already / pack) her suitcase.", "answer": "has already packed", "explanation": "already — Perfect"},
-          {"question": "I ______ (think) he is a good teacher.", "answer": "think", "explanation": "мнение, состояние — Simple"}
-        ]
-      },
-      {
-        "type": "complex",
-        "text": "2. Correct the mistakes (if any).",
-        "subtasks": [
-          {"question": "I am knowing the answer now.", "answer": "I know the answer now.", "explanation": "know — состояние"},
-          {"question": "She has seen him on Monday.", "answer": "She saw him on Monday.", "explanation": "on Monday — конкретное прошлое → Past Simple"},
-          {"question": "He is owning a big house.", "answer": "He owns a big house.", "explanation": "own — состояние"},
-          {"question": "They have been friends for a long time.", "answer": "They have been friends for a long time.", "explanation": "верно (for + период)"},
-          {"question": "I am believing you.", "answer": "I believe you.", "explanation": "believe — состояние"},
-          {"question": "She is looking for her keys right now.", "answer": "She is looking for her keys right now.", "explanation": "верно (действие сейчас)"},
-          {"question": "We don't understand this rule.", "answer": "We don't understand this rule.", "explanation": "верно"},
-          {"question": "They have visited the museum yesterday.", "answer": "They visited the museum yesterday.", "explanation": "yesterday — Past Simple"},
-          {"question": "He already has eaten breakfast.", "answer": "He has already eaten breakfast.", "explanation": "порядок: has already eaten"},
-          {"question": "I am usually getting up at 7 am.", "answer": "I usually get up at 7 am.", "explanation": "usually + Present Simple"}
-        ]
-      },
-      {
-        "type": "complex",
-        "text": "3. Complete the sentences with the correct present tense (Simple, Continuous, or Perfect).",
-        "subtasks": [
-          {"question": "He ______ (not / write) the letter yet.", "answer": "hasn't written", "explanation": "yet — Perfect"},
-          {"question": "She ______ (study) French this semester.", "answer": "is studying", "explanation": "this semester — временная ситуация → Continuous"},
-          {"question": "My mum ______ (cook) dinner every evening.", "answer": "cooks", "explanation": "every evening — Simple"},
-          {"question": "I ______ (never / drive) a sports car.", "answer": "have never driven", "explanation": "never — Perfect"},
-          {"question": "Be careful! The floor ______ (be) wet.", "answer": "is", "explanation": "состояние, факт сейчас — Simple (но можно и Continuous? Нет, be — состояние, не Continuous)"},
-          {"question": "We ______ (know) each other since we were children.", "answer": "have known", "explanation": "since — Perfect"},
-          {"question": "They ______ (build) a new hospital in our area.", "answer": "are building", "explanation": "временный процесс — Continuous"},
-          {"question": "The bus ______ (stop) here every hour.", "answer": "stops", "explanation": "расписание/регулярность — Simple"},
-          {"question": "I ______ (just / meet) your sister.", "answer": "have just met", "explanation": "just — Perfect"},
-          {"question": "She ______ (not / eat) meat.", "answer": "doesn't eat", "explanation": "факт, привычка — Simple"}
-        ]
-      },
-      {
-        "type": "complex",
-        "text": "4. Translate the sentences into English.",
-        "subtasks": [
-          {"question": "Я ещё не прочитал эту книгу.", "answer": "I haven't read this book yet.", "explanation": ""},
-          {"question": "Она сейчас работает над новым проектом.", "answer": "She is working on a new project at the moment.", "explanation": ""},
-          {"question": "Он живёт здесь с 2010 года.", "answer": "He has lived here since 2010.", "explanation": ""},
-          {"question": "Они ходят в кино каждую пятницу.", "answer": "They go to the cinema every Friday.", "explanation": ""},
-          {"question": "Я никогда не был в Австралии.", "answer": "I have never been to Australia.", "explanation": ""},
-          {"question": "Смотри! Собака гонится за кошкой.", "answer": "Look! The dog is chasing a cat.", "explanation": ""},
-          {"question": "У нас эта машина уже три года.", "answer": "We have had this car for three years.", "explanation": ""},
-          {"question": "Музей открывается в 10 утра.", "answer": "The museum opens at 10 am.", "explanation": ""},
-          {"question": "Она уже упаковала чемодан.", "answer": "She has already packed her suitcase.", "explanation": ""},
-          {"question": "Я думаю, он хороший учитель.", "answer": "I think he is a good teacher.", "explanation": ""}
-        ]
-      }
-    ],
-    # ==================== ВАРИАНТ 5 ====================
-    [
-      {
-        "type": "complex",
-        "text": "1. Choose the correct present tense (Simple, Continuous or Perfect).",
-        "subtasks": [
-          {"question": "I ______ (read) this book for a week now.", "answer": "have been reading", "explanation": "в B1 уже допустим Present Perfect Continuous, но если ограничиться тремя, то лучше have read, но 'for a week' требует Perfect. Я заменю: I ______ (read) this book already. — have read. Но чтобы не ломать, я переделаю все задания с учётом только трёх времён. Просто уберу for a week. Сделаю: I ______ (read) this book already."},
-          {"question": "She ______ (work) here for five years.", "answer": "has worked", "explanation": "for five years — Present Perfect"},
-          {"question": "He ______ (play) the guitar very well.", "answer": "plays", "explanation": "способность/факт — Simple"},
-          {"question": "They ______ (have) a party at the moment.", "answer": "are having", "explanation": "at the moment — Continuous (have как действие)"},
-          {"question": "I ______ (never / eat) snails.", "answer": "have never eaten", "explanation": "never — Perfect"},
-          {"question": "Listen! She ______ (sing) beautifully.", "answer": "is singing", "explanation": "Listen! — сейчас → Continuous"},
-          {"question": "We ______ (be) friends since school.", "answer": "have been", "explanation": "since — Perfect"},
-          {"question": "The shop ______ (close) at 9 pm.", "answer": "closes", "explanation": "расписание — Simple"},
-          {"question": "She ______ (already / buy) a present.", "answer": "has already bought", "explanation": "already — Perfect"},
-          {"question": "I ______ (think) about moving to London.", "answer": "am thinking", "explanation": "здесь думаю как процесс, не состояние — можно Continuous, но обычно think в значении 'обдумывать' может быть Continuous. Однако в учебниках B1 это допускается. Я оставлю am thinking и объясню, что это процесс."}
-        ]
-      },
-      {
-        "type": "complex",
-        "text": "2. Correct the mistakes (if any).",
-        "subtasks": [
-          {"question": "I am not knowing the answer.", "answer": "I don't know the answer.", "explanation": "know — состояние"},
-          {"question": "She has bought a car yesterday.", "answer": "She bought a car yesterday.", "explanation": "yesterday — Past Simple"},
-          {"question": "He is loving this film.", "answer": "He loves this film.", "explanation": "love — состояние"},
-          {"question": "They have been married since 2010.", "answer": "They have been married since 2010.", "explanation": "верно"},
-          {"question": "I am needing your help.", "answer": "I need your help.", "explanation": "need — состояние"},
-          {"question": "She is looking for a new job now.", "answer": "She is looking for a new job now.", "explanation": "верно (действие сейчас)"},
-          {"question": "We don't like this music.", "answer": "We don't like this music.", "explanation": "верно"},
-          {"question": "They have visited the museum last month.", "answer": "They visited the museum last month.", "explanation": "last month — Past Simple"},
-          {"question": "He already has phoned his mother.", "answer": "He has already phoned his mother.", "explanation": "порядок слов: has already phoned"},
-          {"question": "I am usually walking to work.", "answer": "I usually walk to work.", "explanation": "usually + Simple"}
-        ]
-      },
-      {
-        "type": "complex",
-        "text": "3. Complete the sentences with the correct present tense (Simple, Continuous, or Perfect).",
-        "subtasks": [
-          {"question": "He ______ (not / do) his homework yet.", "answer": "hasn't done", "explanation": "yet — Perfect"},
-          {"question": "She ______ (take) a shower at the moment.", "answer": "is taking", "explanation": "at the moment — Continuous"},
-          {"question": "My parents ______ (work) in a hospital.", "answer": "work", "explanation": "факт — Simple"},
-          {"question": "I ______ (never / fly) in a plane.", "answer": "have never flown", "explanation": "never — Perfect"},
-          {"question": "Be quiet! The teacher ______ (explain) the rule.", "answer": "is explaining", "explanation": "сейчас — Continuous"},
-          {"question": "We ______ (live) in this town for a long time.", "answer": "have lived", "explanation": "for a long time — Perfect"},
-          {"question": "They ______ (paint) the house this week.", "answer": "are painting", "explanation": "this week — временная ситуация → Continuous"},
-          {"question": "The bus ______ (come) every 15 minutes.", "answer": "comes", "explanation": "регулярность — Simple"},
-          {"question": "I ______ (just / meet) your brother.", "answer": "have just met", "explanation": "just — Perfect"},
-          {"question": "She ______ (not / eat) meat because she is vegetarian.", "answer": "doesn't eat", "explanation": "факт — Simple"}
-        ]
-      },
-      {
-        "type": "complex",
-        "text": "4. Translate the sentences into English.",
-        "subtasks": [
-          {"question": "Я уже прочитал эту книгу.", "answer": "I have already read this book.", "explanation": ""},
-          {"question": "Она работает здесь пять лет.", "answer": "She has worked here for five years.", "explanation": ""},
-          {"question": "Он очень хорошо играет на гитаре.", "answer": "He plays the guitar very well.", "explanation": ""},
-          {"question": "Сейчас у них вечеринка.", "answer": "They are having a party at the moment.", "explanation": ""},
-          {"question": "Я никогда не ел улиток.", "answer": "I have never eaten snails.", "explanation": ""},
-          {"question": "Слушай! Она красиво поёт.", "answer": "Listen! She is singing beautifully.", "explanation": ""},
-          {"question": "Мы дружим со школы.", "answer": "We have been friends since school.", "explanation": ""},
-          {"question": "Магазин закрывается в 9 вечера.", "answer": "The shop closes at 9 pm.", "explanation": ""},
-          {"question": "Она уже купила подарок.", "answer": "She has already bought a present.", "explanation": ""},
-          {"question": "Я думаю о переезде в Лондон.", "answer": "I am thinking about moving to London.", "explanation": ""}
-        ]
-      }
-    ],
-    # ==================== ВАРИАНТ 6 ====================
-    [
-      {
-        "type": "complex",
-        "text": "1. Choose the correct present tense (Simple, Continuous or Perfect).",
-        "subtasks": [
-          {"question": "I ______ (read) this book already.", "answer": "have read", "explanation": "already — Perfect"},
-          {"question": "She ______ (work) on her computer right now.", "answer": "is working", "explanation": "right now — Continuous"},
-          {"question": "He ______ (live) in Berlin since 2012.", "answer": "has lived", "explanation": "since — Perfect"},
-          {"question": "They ______ (play) football every weekend.", "answer": "play", "explanation": "every weekend — Simple"},
-          {"question": "I ______ (never / see) such a big whale.", "answer": "have never seen", "explanation": "never — Perfect"},
-          {"question": "Look! The children ______ (swim) in the river.", "answer": "are swimming", "explanation": "Look! — сейчас → Continuous"},
-          {"question": "We ______ (be) neighbours for two years.", "answer": "have been", "explanation": "for two years — Perfect"},
-          {"question": "The film ______ (start) at 8 pm.", "answer": "starts", "explanation": "расписание — Simple"},
-          {"question": "She ______ (already / send) the email.", "answer": "has already sent", "explanation": "already — Perfect"},
-          {"question": "I ______ (believe) you are right.", "answer": "believe", "explanation": "мнение — Simple"}
-        ]
-      },
-      {
-        "type": "complex",
-        "text": "2. Correct the mistakes (if any).",
-        "subtasks": [
-          {"question": "I am not understanding this exercise.", "answer": "I don't understand this exercise.", "explanation": "understand — состояние"},
-          {"question": "She has met him last week.", "answer": "She met him last week.", "explanation": "last week — Past Simple"},
-          {"question": "He is wanting a new computer.", "answer": "He wants a new computer.", "explanation": "want — состояние"},
-          {"question": "They have been friends since primary school.", "answer": "They have been friends since primary school.", "explanation": "верно"},
-          {"question": "I am having a headache.", "answer": "I have a headache.", "explanation": "have в значении 'болеть' — состояние"},
-          {"question": "She is studying for her exam this week.", "answer": "She is studying for her exam this week.", "explanation": "верно (временная ситуация)"},
-          {"question": "We don't enjoy this game.", "answer": "We don't enjoy this game.", "explanation": "верно"},
-          {"question": "They have visited the museum last year.", "answer": "They visited the museum last year.", "explanation": "last year — Past Simple"},
-          {"question": "He already has done his homework.", "answer": "He has already done his homework.", "explanation": "порядок слов: has already done"},
-          {"question": "I am often going to the gym.", "answer": "I often go to the gym.", "explanation": "often + Simple"}
-        ]
-      },
-      {
-        "type": "complex",
-        "text": "3. Complete the sentences with the correct present tense (Simple, Continuous, or Perfect).",
-        "subtasks": [
-          {"question": "He ______ (not / call) me since Monday.", "answer": "hasn't called", "explanation": "since Monday — Perfect"},
-          {"question": "She ______ (stay) with her aunt this month.", "answer": "is staying", "explanation": "this month — временная ситуация → Continuous"},
-          {"question": "My father ______ (work) as a teacher.", "answer": "works", "explanation": "факт — Simple"},
-          {"question": "I ______ (never / eat) Thai food.", "answer": "have never eaten", "explanation": "never — Perfect"},
-          {"question": "Hurry up! The taxi ______ (wait) for us.", "answer": "is waiting", "explanation": "сейчас — Continuous"},
-          {"question": "We ______ (know) this song for years.", "answer": "have known", "explanation": "for years — Perfect (состояние)"},
-          {"question": "They ______ (build) a new bridge at the moment.", "answer": "are building", "explanation": "at the moment — Continuous"},
-          {"question": "The store ______ (open) at 9 am.", "answer": "opens", "explanation": "расписание — Simple"},
-          {"question": "I ______ (just / finish) my report.", "answer": "have just finished", "explanation": "just — Perfect"},
-          {"question": "She ______ (not / like) getting up early.", "answer": "doesn't like", "explanation": "общее предпочтение — Simple"}
-        ]
-      },
-      {
-        "type": "complex",
-        "text": "4. Translate the sentences into English.",
-        "subtasks": [
-          {"question": "Я уже прочитал эту книгу.", "answer": "I have already read this book.", "explanation": ""},
-          {"question": "Она сейчас работает за компьютером.", "answer": "She is working on her computer right now.", "explanation": ""},
-          {"question": "Он живёт в Берлине с 2012 года.", "answer": "He has lived in Berlin since 2012.", "explanation": ""},
-          {"question": "Они играют в футбол каждые выходные.", "answer": "They play football every weekend.", "explanation": ""},
-          {"question": "Я никогда не видел такого большого кита.", "answer": "I have never seen such a big whale.", "explanation": ""},
-          {"question": "Смотри! Дети плавают в реке.", "answer": "Look! The children are swimming in the river.", "explanation": ""},
-          {"question": "Мы соседи уже два года.", "answer": "We have been neighbours for two years.", "explanation": ""},
-          {"question": "Фильм начинается в 8 вечера.", "answer": "The film starts at 8 pm.", "explanation": ""},
-          {"question": "Она уже отправила письмо.", "answer": "She has already sent the email.", "explanation": ""},
-          {"question": "Я верю, что ты прав.", "answer": "I believe you are right.", "explanation": ""}
-        ]
-      }
-    ],
-    # ==================== ВАРИАНТ 7 ====================
-    [
-      {
-        "type": "complex",
-        "text": "1. Choose the correct present tense (Simple, Continuous or Perfect).",
-        "subtasks": [
-          {"question": "I ______ (read) this book for an hour.", "answer": "have been reading", "explanation": "для B1 оставлю Present Perfect Continuous, но если мы ограничены, то лучше убрать. Сделаю I ______ (read) this book already."},
-          {"question": "She ______ (cook) dinner at the moment.", "answer": "is cooking", "explanation": "at the moment — Continuous"},
-          {"question": "He ______ (live) in this house all his life.", "answer": "has lived", "explanation": "all his life — Perfect"},
-          {"question": "They ______ (watch) TV every evening.", "answer": "watch", "explanation": "every evening — Simple"},
-          {"question": "I ______ (never / try) skiing.", "answer": "have never tried", "explanation": "never — Perfect"},
-          {"question": "Listen! Someone ______ (play) the piano.", "answer": "is playing", "explanation": "Listen! — сейчас → Continuous"},
-          {"question": "We ______ (know) each other since 2018.", "answer": "have known", "explanation": "since — Perfect"},
-          {"question": "The bus ______ (leave) at 8 am.", "answer": "leaves", "explanation": "расписание — Simple"},
-          {"question": "She ______ (already / book) the tickets.", "answer": "has already booked", "explanation": "already — Perfect"},
-          {"question": "I ______ (think) she is coming.", "answer": "think", "explanation": "мнение — Simple"}
-        ]
-      },
-      {
-        "type": "complex",
-        "text": "2. Correct the mistakes (if any).",
-        "subtasks": [
-          {"question": "I am not knowing her name.", "answer": "I don't know her name.", "explanation": "know — состояние"},
-          {"question": "She has called me yesterday.", "answer": "She called me yesterday.", "explanation": "yesterday — Past Simple"},
-          {"question": "He is feeling well today.", "answer": "He feels well today.", "explanation": "feel — состояние, но в некоторых случаях Continuous допустимо, но здесь лучше Simple"},
-          {"question": "They have been married since 2015.", "answer": "They have been married since 2015.", "explanation": "верно"},
-          {"question": "I am owning a bicycle.", "answer": "I own a bicycle.", "explanation": "own — состояние"},
-          {"question": "She is looking at the picture.", "answer": "She is looking at the picture.", "explanation": "верно (действие)"},
-          {"question": "We don't like this idea.", "answer": "We don't like this idea.", "explanation": "верно"},
-          {"question": "They have visited the museum last month.", "answer": "They visited the museum last month.", "explanation": "last month — Past Simple"},
-          {"question": "He already has bought a ticket.", "answer": "He has already bought a ticket.", "explanation": "порядок: has already bought"},
-          {"question": "I am always forgetting my keys.", "answer": "I always forget my keys.", "explanation": "always + Simple, но Continuous может выражать раздражение (You are always forgetting...), но здесь лучше Simple"}
-        ]
-      },
-      {
-        "type": "complex",
-        "text": "3. Complete the sentences with the correct present tense (Simple, Continuous, or Perfect).",
-        "subtasks": [
-          {"question": "He ______ (not / see) the film yet.", "answer": "hasn't seen", "explanation": "yet — Perfect"},
-          {"question": "She ______ (learn) to drive this year.", "answer": "is learning", "explanation": "this year — временная ситуация → Continuous"},
-          {"question": "My brother ______ (play) basketball well.", "answer": "plays", "explanation": "факт — Simple"},
-          {"question": "I ______ (never / go) to the USA.", "answer": "have never gone", "explanation": "never — Perfect"},
-          {"question": "Be quiet! The baby ______ (fall) asleep.", "answer": "is falling", "explanation": "сейчас — Continuous"},
-          {"question": "We ______ (have) this dog for two years.", "answer": "have had", "explanation": "for two years — Perfect"},
-          {"question": "They ______ (repair) the road this week.", "answer": "are repairing", "explanation": "this week — Continuous"},
-          {"question": "The train ______ (arrive) at 6 pm.", "answer": "arrives", "explanation": "расписание — Simple"},
-          {"question": "I ______ (just / speak) to the manager.", "answer": "have just spoken", "explanation": "just — Perfect"},
-          {"question": "She ______ (not / eat) breakfast in the morning.", "answer": "doesn't eat", "explanation": "привычка — Simple"}
-        ]
-      },
-      {
-        "type": "complex",
-        "text": "4. Translate the sentences into English.",
-        "subtasks": [
-          {"question": "Я уже прочитал эту книгу.", "answer": "I have already read this book.", "explanation": ""},
-          {"question": "Она сейчас готовит ужин.", "answer": "She is cooking dinner at the moment.", "explanation": ""},
-          {"question": "Он прожил в этом доме всю жизнь.", "answer": "He has lived in this house all his life.", "explanation": ""},
-          {"question": "Они смотрят телевизор каждый вечер.", "answer": "They watch TV every evening.", "explanation": ""},
-          {"question": "Я никогда не пробовал кататься на лыжах.", "answer": "I have never tried skiing.", "explanation": ""},
-          {"question": "Слушай! Кто-то играет на пианино.", "answer": "Listen! Someone is playing the piano.", "explanation": ""},
-          {"question": "Мы знаем друг друга с 2018 года.", "answer": "We have known each other since 2018.", "explanation": ""},
-          {"question": "Автобус отправляется в 8 утра.", "answer": "The bus leaves at 8 am.", "explanation": ""},
-          {"question": "Она уже забронировала билеты.", "answer": "She has already booked the tickets.", "explanation": ""},
-          {"question": "Я думаю, она идёт.", "answer": "I think she is coming.", "explanation": ""}
-        ]
-      }
-    ],
-    # ==================== ВАРИАНТ 8 ====================
-    [
-      {
-        "type": "complex",
-        "text": "1. Choose the correct present tense (Simple, Continuous or Perfect).",
-        "subtasks": [
-          {"question": "I ______ (read) this book yet.", "answer": "haven't read", "explanation": "yet — Perfect, отрицание"},
-          {"question": "She ______ (write) an email at the moment.", "answer": "is writing", "explanation": "at the moment — Continuous"},
-          {"question": "He ______ (work) for this company since 2015.", "answer": "has worked", "explanation": "since — Perfect"},
-          {"question": "They ______ (ride) bicycles to school.", "answer": "ride", "explanation": "регулярность — Simple"},
-          {"question": "I ______ (never / see) a ghost.", "answer": "have never seen", "explanation": "never — Perfect"},
-          {"question": "Look! The sun ______ (shine).", "answer": "is shining", "explanation": "Look! — сейчас → Continuous"},
-          {"question": "We ______ (be) married for ten years.", "answer": "have been", "explanation": "for ten years — Perfect"},
-          {"question": "The film ______ (start) at 7 pm.", "answer": "starts", "explanation": "расписание — Simple"},
-          {"question": "She ______ (already / decide) what to wear.", "answer": "has already decided", "explanation": "already — Perfect"},
-          {"question": "I ______ (guess) you are right.", "answer": "guess", "explanation": "мнение — Simple"}
-        ]
-      },
-      {
-        "type": "complex",
-        "text": "2. Correct the mistakes (if any).",
-        "subtasks": [
-          {"question": "I am not understanding the instructions.", "answer": "I don't understand the instructions.", "explanation": "understand — состояние"},
-          {"question": "She has seen him last night.", "answer": "She saw him last night.", "explanation": "last night — Past Simple"},
-          {"question": "He is preferring tea.", "answer": "He prefers tea.", "explanation": "prefer — состояние"},
-          {"question": "They have been friends since 2012.", "answer": "They have been friends since 2012.", "explanation": "верно"},
-          {"question": "I am having a problem.", "answer": "I have a problem.", "explanation": "have в значении 'иметь' — состояние"},
-          {"question": "She is washing her car at the moment.", "answer": "She is washing her car at the moment.", "explanation": "верно"},
-          {"question": "We don't like this weather.", "answer": "We don't like this weather.", "explanation": "верно"},
-          {"question": "They have visited the museum on Monday.", "answer": "They visited the museum on Monday.", "explanation": "on Monday — Past Simple"},
-          {"question": "He already has replied to the email.", "answer": "He has already replied to the email.", "explanation": "порядок: has already replied"},
-          {"question": "I am rarely eating fast food.", "answer": "I rarely eat fast food.", "explanation": "rarely + Simple"}
-        ]
-      },
-      {
-        "type": "complex",
-        "text": "3. Complete the sentences with the correct present tense (Simple, Continuous, or Perfect).",
-        "subtasks": [
-          {"question": "He ______ (not / finish) his project yet.", "answer": "hasn't finished", "explanation": "yet — Perfect"},
-          {"question": "She ______ (take) a course in photography.", "answer": "is taking", "explanation": "this month/this year — Continuous (временная ситуация)"},
-          {"question": "My sister ______ (teach) English.", "answer": "teaches", "explanation": "факт — Simple"},
-          {"question": "I ______ (never / ride) a motorbike.", "answer": "have never ridden", "explanation": "never — Perfect"},
-          {"question": "Hurry up! The bus ______ (leave).", "answer": "is leaving", "explanation": "сейчас — Continuous (можно и Simple, но здесь процесс)"},
-          {"question": "We ______ (live) in this country for a long time.", "answer": "have lived", "explanation": "for a long time — Perfect"},
-          {"question": "They ______ (build) a new house in our street.", "answer": "are building", "explanation": "временный процесс — Continuous"},
-          {"question": "The plane ______ (depart) at 10 am.", "answer": "departs", "explanation": "расписание — Simple"},
-          {"question": "I ______ (just / receive) your message.", "answer": "have just received", "explanation": "just — Perfect"},
-          {"question": "She ______ (not / drink) coffee.", "answer": "doesn't drink", "explanation": "привычка — Simple"}
-        ]
-      },
-      {
-        "type": "complex",
-        "text": "4. Translate the sentences into English.",
-        "subtasks": [
-          {"question": "Я ещё не прочитал эту книгу.", "answer": "I haven't read this book yet.", "explanation": ""},
-          {"question": "Она сейчас пишет письмо.", "answer": "She is writing an email at the moment.", "explanation": ""},
-          {"question": "Он работает в этой компании с 2015 года.", "answer": "He has worked for this company since 2015.", "explanation": ""},
-          {"question": "Они ездят в школу на велосипедах.", "answer": "They ride bicycles to school.", "explanation": ""},
-          {"question": "Я никогда не видел привидение.", "answer": "I have never seen a ghost.", "explanation": ""},
-          {"question": "Смотри! Солнце светит.", "answer": "Look! The sun is shining.", "explanation": ""},
-          {"question": "Мы женаты десять лет.", "answer": "We have been married for ten years.", "explanation": ""},
-          {"question": "Фильм начинается в 7 вечера.", "answer": "The film starts at 7 pm.", "explanation": ""},
-          {"question": "Она уже решила, что надеть.", "answer": "She has already decided what to wear.", "explanation": ""},
-          {"question": "Я думаю, ты прав.", "answer": "I guess you are right.", "explanation": ""}
-        ]
-      }
-    ],
-    # ==================== ВАРИАНТ 9 ====================
-    [
-      {
-        "type": "complex",
-        "text": "1. Choose the correct present tense (Simple, Continuous or Perfect).",
-        "subtasks": [
-          {"question": "I ______ (read) this book before.", "answer": "have read", "explanation": "опыт — Perfect"},
-          {"question": "She ______ (work) on a new painting at the moment.", "answer": "is working", "explanation": "at the moment — Continuous"},
-          {"question": "He ______ (live) in Italy for three years.", "answer": "has lived", "explanation": "for three years — Perfect"},
-          {"question": "They ______ (visit) their grandparents every Sunday.", "answer": "visit", "explanation": "every Sunday — Simple"},
-          {"question": "I ______ (never / be) to New York.", "answer": "have never been", "explanation": "never — Perfect"},
-          {"question": "Listen! The phone ______ (ring).", "answer": "is ringing", "explanation": "Listen! — сейчас → Continuous"},
-          {"question": "We ______ (know) each other since we were kids.", "answer": "have known", "explanation": "since — Perfect"},
-          {"question": "The train ______ (leave) at 5 pm.", "answer": "leaves", "explanation": "расписание — Simple"},
-          {"question": "She ______ (already / buy) the tickets.", "answer": "has already bought", "explanation": "already — Perfect"},
-          {"question": "I ______ (think) you should go.", "answer": "think", "explanation": "мнение — Simple"}
-        ]
-      },
-      {
-        "type": "complex",
-        "text": "2. Correct the mistakes (if any).",
-        "subtasks": [
-          {"question": "I am not knowing the way.", "answer": "I don't know the way.", "explanation": "know — состояние"},
-          {"question": "She has written a letter yesterday.", "answer": "She wrote a letter yesterday.", "explanation": "yesterday — Past Simple"},
-          {"question": "He is understanding the problem now.", "answer": "He understands the problem now.", "explanation": "understand — состояние"},
-          {"question": "They have been married for 20 years.", "answer": "They have been married for 20 years.", "explanation": "верно"},
-          {"question": "I am feeling hungry.", "answer": "I feel hungry.", "explanation": "feel — состояние (но в разговорной речи допустимо и Continuous, но для B1 лучше Simple)"},
-          {"question": "She is reading a book now.", "answer": "She is reading a book now.", "explanation": "верно"},
-          {"question": "We don't enjoy this party.", "answer": "We don't enjoy this party.", "explanation": "верно"},
-          {"question": "They have visited the museum last Sunday.", "answer": "They visited the museum last Sunday.", "explanation": "last Sunday — Past Simple"},
-          {"question": "He already has done the shopping.", "answer": "He has already done the shopping.", "explanation": "порядок: has already done"},
-          {"question": "I am often taking the bus.", "answer": "I often take the bus.", "explanation": "often + Simple"}
-        ]
-      },
-      {
-        "type": "complex",
-        "text": "3. Complete the sentences with the correct present tense (Simple, Continuous, or Perfect).",
-        "subtasks": [
-          {"question": "He ______ (not / send) the email yet.", "answer": "hasn't sent", "explanation": "yet — Perfect"},
-          {"question": "She ______ (learn) Spanish this semester.", "answer": "is learning", "explanation": "this semester — Continuous"},
-          {"question": "My father ______ (drive) to work.", "answer": "drives", "explanation": "факт — Simple"},
-          {"question": "I ______ (never / taste) such a delicious cake.", "answer": "have never tasted", "explanation": "never — Perfect"},
-          {"question": "Be careful! The floor ______ (be) slippery.", "answer": "is", "explanation": "состояние — Simple"},
-          {"question": "We ______ (own) this car for five years.", "answer": "have owned", "explanation": "for five years — Perfect"},
-          {"question": "They ______ (install) new software this week.", "answer": "are installing", "explanation": "this week — Continuous"},
-          {"question": "The shop ______ (close) at 10 pm.", "answer": "closes", "explanation": "расписание — Simple"},
-          {"question": "I ______ (just / hear) the news.", "answer": "have just heard", "explanation": "just — Perfect"},
-          {"question": "She ______ (not / eat) meat because she is vegetarian.", "answer": "doesn't eat", "explanation": "факт — Simple"}
-        ]
-      },
-      {
-        "type": "complex",
-        "text": "4. Translate the sentences into English.",
-        "subtasks": [
-          {"question": "Я раньше читал эту книгу.", "answer": "I have read this book before.", "explanation": ""},
-          {"question": "Она сейчас работает над новой картиной.", "answer": "She is working on a new painting at the moment.", "explanation": ""},
-          {"question": "Он живёт в Италии три года.", "answer": "He has lived in Italy for three years.", "explanation": ""},
-          {"question": "Они навещают бабушку каждое воскресенье.", "answer": "They visit their grandmother every Sunday.", "explanation": ""},
-          {"question": "Я никогда не был в Нью-Йорке.", "answer": "I have never been to New York.", "explanation": ""},
-          {"question": "Слушай! Телефон звонит.", "answer": "Listen! The phone is ringing.", "explanation": ""},
-          {"question": "Мы знаем друг друга с детства.", "answer": "We have known each other since we were kids.", "explanation": ""},
-          {"question": "Поезд отправляется в 5 вечера.", "answer": "The train leaves at 5 pm.", "explanation": ""},
-          {"question": "Она уже купила билеты.", "answer": "She has already bought the tickets.", "explanation": ""},
-          {"question": "Я думаю, тебе следует идти.", "answer": "I think you should go.", "explanation": ""}
-        ]
-      }
-    ],
-    # ==================== ВАРИАНТ 10 ====================
-    [
-      {
-        "type": "complex",
-        "text": "1. Choose the correct present tense (Simple, Continuous or Perfect).",
-        "subtasks": [
-          {"question": "I ______ (read) this book for a few days.", "answer": "have been reading", "explanation": "здесь лучше Present Perfect Continuous, но я заменю: have read, если результат. Но оставлю для B1."},
-          {"question": "She ______ (type) a report right now.", "answer": "is typing", "explanation": "right now — Continuous"},
-          {"question": "He ______ (work) as a doctor since 2008.", "answer": "has worked", "explanation": "since — Perfect"},
-          {"question": "They ______ (play) tennis every Tuesday.", "answer": "play", "explanation": "every Tuesday — Simple"},
-          {"question": "I ______ (never / fly) in a helicopter.", "answer": "have never flown", "explanation": "never — Perfect"},
-          {"question": "Look! The cat ______ (climb) the tree.", "answer": "is climbing", "explanation": "Look! — сейчас → Continuous"},
-          {"question": "We ______ (live) next door for years.", "answer": "have lived", "explanation": "for years — Perfect"},
-          {"question": "The bank ______ (open) at 9 am.", "answer": "opens", "explanation": "расписание — Simple"},
-          {"question": "She ______ (already / find) her keys.", "answer": "has already found", "explanation": "already — Perfect"},
-          {"question": "I ______ (suppose) you are busy.", "answer": "suppose", "explanation": "мнение — Simple"}
-        ]
-      },
-      {
-        "type": "complex",
-        "text": "2. Correct the mistakes (if any).",
-        "subtasks": [
-          {"question": "I am not remembering the address.", "answer": "I don't remember the address.", "explanation": "remember — состояние"},
-          {"question": "She has arrived yesterday.", "answer": "She arrived yesterday.", "explanation": "yesterday — Past Simple"},
-          {"question": "He is needing some rest.", "answer": "He needs some rest.", "explanation": "need — состояние"},
-          {"question": "They have been friends since 2010.", "answer": "They have been friends since 2010.", "explanation": "верно"},
-          {"question": "I am having a cold.", "answer": "I have a cold.", "explanation": "have в значении 'болеть' — состояние"},
-          {"question": "She is reading a newspaper now.", "answer": "She is reading a newspaper now.", "explanation": "верно"},
-          {"question": "We don't like this song.", "answer": "We don't like this song.", "explanation": "верно"},
-          {"question": "They have visited the museum last month.", "answer": "They visited the museum last month.", "explanation": "last month — Past Simple"},
-          {"question": "He already has booked the room.", "answer": "He has already booked the room.", "explanation": "порядок: has already booked"},
-          {"question": "I am always forgetting things.", "answer": "I always forget things.", "explanation": "always + Simple, но Continuous для раздражения тоже возможно, но здесь лучше Simple"}
-        ]
-      },
-      {
-        "type": "complex",
-        "text": "3. Complete the sentences with the correct present tense (Simple, Continuous, or Perfect).",
-        "subtasks": [
-          {"question": "He ______ (not / reply) to my message yet.", "answer": "hasn't replied", "explanation": "yet — Perfect"},
-          {"question": "She ______ (prepare) for the exam this week.", "answer": "is preparing", "explanation": "this week — Continuous"},
-          {"question": "My mother ______ (work) in a supermarket.", "answer": "works", "explanation": "факт — Simple"},
-          {"question": "I ______ (never / drive) a truck.", "answer": "have never driven", "explanation": "never — Perfect"},
-          {"question": "Listen! They ______ (argue) again.", "answer": "are arguing", "explanation": "Listen! — сейчас → Continuous"},
-          {"question": "We ______ (be) in this city for two years.", "answer": "have been", "explanation": "for two years — Perfect"},
-          {"question": "They ______ (organise) a conference at the moment.", "answer": "are organising", "explanation": "at the moment — Continuous"},
-          {"question": "The train ______ (depart) from platform 3.", "answer": "departs", "explanation": "расписание — Simple"},
-          {"question": "I ______ (just / buy) a new phone.", "answer": "have just bought", "explanation": "just — Perfect"},
-          {"question": "She ______ (not / eat) fish.", "answer": "doesn't eat", "explanation": "привычка — Simple"}
-        ]
-      },
-      {
-        "type": "complex",
-        "text": "4. Translate the sentences into English.",
-        "subtasks": [
-          {"question": "Я читал эту книгу несколько дней.", "answer": "I have been reading this book for a few days.", "explanation": ""},
-          {"question": "Она сейчас печатает отчёт.", "answer": "She is typing a report right now.", "explanation": ""},
-          {"question": "Он работает врачом с 2008 года.", "answer": "He has worked as a doctor since 2008.", "explanation": ""},
-          {"question": "Они играют в теннис каждый вторник.", "answer": "They play tennis every Tuesday.", "explanation": ""},
-          {"question": "Я никогда не летал на вертолёте.", "answer": "I have never flown in a helicopter.", "explanation": ""},
-          {"question": "Смотри! Кошка залезает на дерево.", "answer": "Look! The cat is climbing the tree.", "explanation": ""},
-          {"question": "Мы живём по соседству много лет.", "answer": "We have lived next door for years.", "explanation": ""},
-          {"question": "Банк открывается в 9 утра.", "answer": "The bank opens at 9 am.", "explanation": ""},
-          {"question": "Она уже нашла свои ключи.", "answer": "She has already found her keys.", "explanation": ""},
-          {"question": "Я полагаю, ты занят.", "answer": "I suppose you are busy.", "explanation": ""}
-        ]
-      }
-    ],
-    # ==================== ВАРИАНТ 11 ====================
-    [
-      {
-        "type": "complex",
-        "text": "1. Choose the correct present tense (Simple, Continuous or Perfect).",
-        "subtasks": [
-          {"question": "I ______ (read) this book already.", "answer": "have read", "explanation": "already — Perfect"},
-          {"question": "She ______ (write) a letter now.", "answer": "is writing", "explanation": "now — Continuous"},
-          {"question": "He ______ (live) here since 2010.", "answer": "has lived", "explanation": "since — Perfect"},
-          {"question": "They ______ (play) chess every day.", "answer": "play", "explanation": "every day — Simple"},
-          {"question": "I ______ (never / see) such a beautiful place.", "answer": "have never seen", "explanation": "never — Perfect"},
-          {"question": "Listen! The birds ______ (sing) outside.", "answer": "are singing", "explanation": "Listen! — сейчас → Continuous"},
-          {"question": "We ______ (be) friends for ages.", "answer": "have been", "explanation": "for ages — Perfect"},
-          {"question": "The bus ______ (come) at 8 am.", "answer": "comes", "explanation": "расписание — Simple"},
-          {"question": "She ______ (already / finish) her homework.", "answer": "has already finished", "explanation": "already — Perfect"},
-          {"question": "I ______ (believe) you.", "answer": "believe", "explanation": "мнение — Simple"}
-        ]
-      },
-      {
-        "type": "complex",
-        "text": "2. Correct the mistakes (if any).",
-        "subtasks": [
-          {"question": "I am not knowing the time.", "answer": "I don't know the time.", "explanation": "know — состояние"},
-          {"question": "She has seen him yesterday.", "answer": "She saw him yesterday.", "explanation": "yesterday — Past Simple"},
-          {"question": "He is wanting to leave now.", "answer": "He wants to leave now.", "explanation": "want — состояние"},
-          {"question": "They have been married since 2012.", "answer": "They have been married since 2012.", "explanation": "верно"},
-          {"question": "I am having a car.", "answer": "I have a car.", "explanation": "have — обладание, состояние"},
-          {"question": "She is looking at the sky.", "answer": "She is looking at the sky.", "explanation": "верно (действие)"},
-          {"question": "We don't like this book.", "answer": "We don't like this book.", "explanation": "верно"},
-          {"question": "They have visited the museum last week.", "answer": "They visited the museum last week.", "explanation": "last week — Past Simple"},
-          {"question": "He already has cooked dinner.", "answer": "He has already cooked dinner.", "explanation": "порядок: has already cooked"},
-          {"question": "I am usually waking up at 7 am.", "answer": "I usually wake up at 7 am.", "explanation": "usually + Simple"}
-        ]
-      },
-      {
-        "type": "complex",
-        "text": "3. Complete the sentences with the correct present tense (Simple, Continuous, or Perfect).",
-        "subtasks": [
-          {"question": "He ______ (not / bring) the book yet.", "answer": "hasn't brought", "explanation": "yet — Perfect"},
-          {"question": "She ______ (study) at the library this afternoon.", "answer": "is studying", "explanation": "this afternoon — временная ситуация → Continuous"},
-          {"question": "My brother ______ (play) the guitar.", "answer": "plays", "explanation": "факт — Simple"},
-          {"question": "I ______ (never / eat) octopus.", "answer": "have never eaten", "explanation": "never — Perfect"},
-          {"question": "Be quiet! The teacher ______ (talk).", "answer": "is talking", "explanation": "сейчас — Continuous"},
-          {"question": "We ______ (have) this TV for three years.", "answer": "have had", "explanation": "for three years — Perfect"},
-          {"question": "They ______ (renovate) their bathroom at the moment.", "answer": "are renovating", "explanation": "at the moment — Continuous"},
-          {"question": "The museum ______ (open) at 10 am.", "answer": "opens", "explanation": "расписание — Simple"},
-          {"question": "I ______ (just / see) your sister.", "answer": "have just seen", "explanation": "just — Perfect"},
-          {"question": "She ______ (not / smoke) cigarettes.", "answer": "doesn't smoke", "explanation": "привычка — Simple"}
-        ]
-      },
-      {
-        "type": "complex",
-        "text": "4. Translate the sentences into English.",
-        "subtasks": [
-          {"question": "Я уже прочитал эту книгу.", "answer": "I have already read this book.", "explanation": ""},
-          {"question": "Она сейчас пишет письмо.", "answer": "She is writing a letter now.", "explanation": ""},
-          {"question": "Он живёт здесь с 2010 года.", "answer": "He has lived here since 2010.", "explanation": ""},
-          {"question": "Они играют в шахматы каждый день.", "answer": "They play chess every day.", "explanation": ""},
-          {"question": "Я никогда не видел такого красивого места.", "answer": "I have never seen such a beautiful place.", "explanation": ""},
-          {"question": "Слушай! Птицы поют на улице.", "answer": "Listen! The birds are singing outside.", "explanation": ""},
-          {"question": "Мы дружим целую вечность.", "answer": "We have been friends for ages.", "explanation": ""},
-          {"question": "Автобус приходит в 8 утра.", "answer": "The bus comes at 8 am.", "explanation": ""},
-          {"question": "Она уже закончила домашнее задание.", "answer": "She has already finished her homework.", "explanation": ""},
-          {"question": "Я тебе верю.", "answer": "I believe you.", "explanation": ""}
-        ]
-      }
-    ],
-    # ==================== ВАРИАНТ 12 ====================
-    [
-      {
-        "type": "complex",
-        "text": "1. Choose the correct present tense (Simple, Continuous or Perfect).",
-        "subtasks": [
-          {"question": "I ______ (read) this book before.", "answer": "have read", "explanation": "опыт — Perfect"},
-          {"question": "She ______ (work) in the garden at the moment.", "answer": "is working", "explanation": "at the moment — Continuous"},
-          {"question": "He ______ (live) in Prague for five years.", "answer": "has lived", "explanation": "for five years — Perfect"},
-          {"question": "They ______ (go) to the gym every Friday.", "answer": "go", "explanation": "every Friday — Simple"},
-          {"question": "I ______ (never / taste) such a spicy dish.", "answer": "have never tasted", "explanation": "never — Perfect"},
-          {"question": "Look! The kids ______ (run) in the park.", "answer": "are running", "explanation": "Look! — сейчас → Continuous"},
-          {"question": "We ______ (know) each other for a decade.", "answer": "have known", "explanation": "for a decade — Perfect"},
-          {"question": "The train ______ (arrive) at 7 pm.", "answer": "arrives", "explanation": "расписание — Simple"},
-          {"question": "She ______ (already / buy) a new dress.", "answer": "has already bought", "explanation": "already — Perfect"},
-          {"question": "I ______ (think) you should rest.", "answer": "think", "explanation": "мнение — Simple"}
-        ]
-      },
-      {
-        "type": "complex",
-        "text": "2. Correct the mistakes (if any).",
-        "subtasks": [
-          {"question": "I am not understanding this text.", "answer": "I don't understand this text.", "explanation": "understand — состояние"},
-          {"question": "She has called me yesterday.", "answer": "She called me yesterday.", "explanation": "yesterday — Past Simple"},
-          {"question": "He is loving this chocolate.", "answer": "He loves this chocolate.", "explanation": "love — состояние"},
-          {"question": "They have been married since 2005.", "answer": "They have been married since 2005.", "explanation": "верно"},
-          {"question": "I am needing your advice.", "answer": "I need your advice.", "explanation": "need — состояние"},
-          {"question": "She is painting the room now.", "answer": "She is painting the room now.", "explanation": "верно"},
-          {"question": "We don't like this coffee.", "answer": "We don't like this coffee.", "explanation": "верно"},
-          {"question": "They have visited the museum last year.", "answer": "They visited the museum last year.", "explanation": "last year — Past Simple"},
-          {"question": "He already has repaired the car.", "answer": "He has already repaired the car.", "explanation": "порядок: has already repaired"},
-          {"question": "I am sometimes going to the cinema.", "answer": "I sometimes go to the cinema.", "explanation": "sometimes + Simple"}
-        ]
-      },
-      {
-        "type": "complex",
-        "text": "3. Complete the sentences with the correct present tense (Simple, Continuous, or Perfect).",
-        "subtasks": [
-          {"question": "He ______ (not / write) the report yet.", "answer": "hasn't written", "explanation": "yet — Perfect"},
-          {"question": "She ______ (read) a novel this week.", "answer": "is reading", "explanation": "this week — временная ситуация → Continuous"},
-          {"question": "My dad ______ (drive) a truck.", "answer": "drives", "explanation": "факт — Simple"},
-          {"question": "I ______ (never / speak) to a celebrity.", "answer": "have never spoken", "explanation": "never — Perfect"},
-          {"question": "Hurry up! The film ______ (start) in five minutes.", "answer": "is starting", "explanation": "можно и Simple (расписание), но здесь ближайшее будущее — часто используется Continuous для планов. Я оставлю is starting."},
-          {"question": "We ______ (be) married for five years.", "answer": "have been", "explanation": "for five years — Perfect"},
-          {"question": "They ______ (install) new windows in their house.", "answer": "are installing", "explanation": "временный процесс — Continuous"},
-          {"question": "The plane ______ (land) at 6 pm.", "answer": "lands", "explanation": "расписание — Simple"},
-          {"question": "I ______ (just / eat) lunch.", "answer": "have just eaten", "explanation": "just — Perfect"},
-          {"question": "She ______ (not / eat) junk food.", "answer": "doesn't eat", "explanation": "привычка — Simple"}
-        ]
-      },
-      {
-        "type": "complex",
-        "text": "4. Translate the sentences into English.",
-        "subtasks": [
-          {"question": "Я раньше читал эту книгу.", "answer": "I have read this book before.", "explanation": ""},
-          {"question": "Она сейчас работает в саду.", "answer": "She is working in the garden at the moment.", "explanation": ""},
-          {"question": "Он живёт в Праге пять лет.", "answer": "He has lived in Prague for five years.", "explanation": ""},
-          {"question": "Они ходят в спортзал каждую пятницу.", "answer": "They go to the gym every Friday.", "explanation": ""},
-          {"question": "Я никогда не пробовал такое острое блюдо.", "answer": "I have never tasted such a spicy dish.", "explanation": ""},
-          {"question": "Смотри! Дети бегают в парке.", "answer": "Look! The kids are running in the park.", "explanation": ""},
-          {"question": "Мы знаем друг друга уже десять лет.", "answer": "We have known each other for a decade.", "explanation": ""},
-          {"question": "Поезд прибывает в 7 вечера.", "answer": "The train arrives at 7 pm.", "explanation": ""},
-          {"question": "Она уже купила новое платье.", "answer": "She has already bought a new dress.", "explanation": ""},
-          {"question": "Я думаю, тебе нужно отдохнуть.", "answer": "I think you should rest.", "explanation": ""}
+# ==================== ВАРИАНТ 1 ====================
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct present tense (Simple, Continuous or Perfect).\n\n1. I ______ (read) this book already.\n2. She ______ (work) at the moment, so she can't come to the phone.\n3. He ______ (live) in London for five years now.\n4. They ______ (play) tennis every Saturday.\n5. I ______ (never / be) to Japan.\n6. Look! The children ______ (run) in the garden.\n7. We ______ (know) each other since childhood.\n8. The train ______ (leave) at 8 pm every night.\n9. She ______ (already / finish) her homework.\n10. I ______ (think) this is a good idea.",
+    "subtasks": [
+      {"question": "1. I ______ (read) this book already.", "answer": "have read", "explanation": "already — Present Perfect"},
+      {"question": "2. She ______ (work) at the moment, so she can't come to the phone.", "answer": "is working", "explanation": "at the moment — Present Continuous"},
+      {"question": "3. He ______ (live) in London for five years now.", "answer": "has lived", "explanation": "for five years — Present Perfect"},
+      {"question": "4. They ______ (play) tennis every Saturday.", "answer": "play", "explanation": "every Saturday — Present Simple"},
+      {"question": "5. I ______ (never / be) to Japan.", "answer": "have never been", "explanation": "never — Present Perfect"},
+      {"question": "6. Look! The children ______ (run) in the garden.", "answer": "are running", "explanation": "Look! — сейчас → Present Continuous"},
+      {"question": "7. We ______ (know) each other since childhood.", "answer": "have known", "explanation": "since — Present Perfect (состояние)"},
+      {"question": "8. The train ______ (leave) at 8 pm every night.", "answer": "leaves", "explanation": "расписание — Present Simple"},
+      {"question": "9. She ______ (already / finish) her homework.", "answer": "has already finished", "explanation": "already — Present Perfect"},
+      {"question": "10. I ______ (think) this is a good idea.", "answer": "think", "explanation": "мнение — Present Simple"}
+    ]
+  },
+  {
+    "type": "complex",
+    "text": "2. Write down all 10 sentences in full, correcting any errors you find.",
+    "subtasks": [
+      {"question": "I am knowing the answer.", "answer": "I know the answer.", "explanation": "know — состояние"},
+      {"question": "She has seen him yesterday.", "answer": "She saw him yesterday.", "explanation": "yesterday — Past Simple"},
+      {"question": "He is wanting to leave now.", "answer": "He wants to leave now.", "explanation": "want — состояние"},
+      {"question": "They have been married since ten years.", "answer": "They have been married for ten years.", "explanation": "for + период, since + точка"},
+      {"question": "I am living here since 2010.", "answer": "I have lived here since 2010.", "explanation": "since — Present Perfect"},
+      {"question": "Look! The sun is rising.", "answer": "Look! The sun is rising.", "explanation": "верно"},
+      {"question": "She doesn't like coffee.", "answer": "She doesn't like coffee.", "explanation": "верно"},
+      {"question": "We have visited the museum last week.", "answer": "We visited the museum last week.", "explanation": "last week — Past Simple"},
+      {"question": "He already finished his work.", "answer": "He has already finished his work.", "explanation": "already — Present Perfect"},
+      {"question": "I always am taking the bus to work.", "answer": "I always take the bus to work.", "explanation": "always + Present Simple"}
+    ]
+  },
+  {
+    "type": "complex",
+    "text": "3. Complete the sentences with the correct present tense (Simple, Continuous, or Perfect).\n\n1. He ______ (not / finish) his homework yet.\n2. She ______ (work) on a new project this week.\n3. My father ______ (drive) to work every day.\n4. I ______ (never / eat) sushi.\n5. Be quiet! The baby ______ (sleep).\n6. We ______ (know) each other for 10 years.\n7. They ______ (build) a new school in our town.\n8. The train ______ (arrive) at 6 pm every evening.\n9. I ______ (already / see) this film.\n10. She ______ (not / like) spicy food.",
+    "subtasks": [
+      {"question": "1. He ______ (not / finish) his homework yet.", "answer": "hasn't finished", "explanation": "yet — Present Perfect"},
+      {"question": "2. She ______ (work) on a new project this week.", "answer": "is working", "explanation": "this week — временная ситуация → Present Continuous"},
+      {"question": "3. My father ______ (drive) to work every day.", "answer": "drives", "explanation": "every day — Present Simple"},
+      {"question": "4. I ______ (never / eat) sushi.", "answer": "have never eaten", "explanation": "never — Present Perfect"},
+      {"question": "5. Be quiet! The baby ______ (sleep).", "answer": "is sleeping", "explanation": "сейчас — Present Continuous"},
+      {"question": "6. We ______ (know) each other for 10 years.", "answer": "have known", "explanation": "for 10 years — Present Perfect"},
+      {"question": "7. They ______ (build) a new school in our town.", "answer": "are building", "explanation": "временный процесс — Present Continuous"},
+      {"question": "8. The train ______ (arrive) at 6 pm every evening.", "answer": "arrives", "explanation": "расписание — Present Simple"},
+      {"question": "9. I ______ (already / see) this film.", "answer": "have already seen", "explanation": "already — Present Perfect"},
+      {"question": "10. She ______ (not / like) spicy food.", "answer": "doesn't like", "explanation": "факт, состояние — Present Simple"}
+    ]
+  },
+  {
+    "type": "complex",
+    "text": "4. Translate the sentences into English.\n\n1. Я живу здесь с 2010 года.\n2. Она сейчас читает книгу.\n3. Мы никогда не были в Париже.\n4. Поезд отправляется в 8 часов вечера.\n5. Я уже сделал домашнее задание.\n6. Они сейчас играют в футбол.\n7. Она всегда ходит на работу пешком.\n8. Мы знаем друг друга с детства.\n9. Я не люблю кофе.\n10. Он ещё не пришёл.",
+    "subtasks": [
+      {"question": "1. Я живу здесь с 2010 года.", "answer": "I have lived here since 2010.", "explanation": ""},
+      {"question": "2. Она сейчас читает книгу.", "answer": "She is reading a book now.", "explanation": ""},
+      {"question": "3. Мы никогда не были в Париже.", "answer": "We have never been to Paris.", "explanation": ""},
+      {"question": "4. Поезд отправляется в 8 часов вечера.", "answer": "The train leaves at 8 pm.", "explanation": ""},
+      {"question": "5. Я уже сделал домашнее задание.", "answer": "I have already done my homework.", "explanation": ""},
+      {"question": "6. Они сейчас играют в футбол.", "answer": "They are playing football now.", "explanation": ""},
+      {"question": "7. Она всегда ходит на работу пешком.", "answer": "She always walks to work.", "explanation": ""},
+      {"question": "8. Мы знаем друг друга с детства.", "answer": "We have known each other since childhood.", "explanation": ""},
+      {"question": "9. Я не люблю кофе.", "answer": "I don't like coffee.", "explanation": ""},
+      {"question": "10. Он ещё не пришёл.", "answer": "He hasn't arrived yet.", "explanation": ""}
+    ]
+  }
+],
+# ==================== ВАРИАНТ 2 ====================
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct present tense (Simple, Continuous or Perfect).\n\n1. I ______ (read) this book already.\n2. She ______ (work) in the garden at the moment.\n3. He ______ (live) in this city for five years.\n4. They ______ (play) tennis every Monday.\n5. I ______ (never / eat) sushi.\n6. Listen! The birds ______ (sing).\n7. We ______ (know) each other since primary school.\n8. The train ______ (leave) at 9 am.\n9. She ______ (already / do) her homework.\n10. I ______ (think) you are right.",
+    "subtasks": [
+      {"question": "1. I ______ (read) this book already.", "answer": "have read", "explanation": "already — Present Perfect"},
+      {"question": "2. She ______ (work) in the garden at the moment.", "answer": "is working", "explanation": "at the moment — Present Continuous"},
+      {"question": "3. He ______ (live) in this city for five years.", "answer": "has lived", "explanation": "for five years — Present Perfect"},
+      {"question": "4. They ______ (play) tennis every Monday.", "answer": "play", "explanation": "every Monday — Present Simple"},
+      {"question": "5. I ______ (never / eat) sushi.", "answer": "have never eaten", "explanation": "never — Present Perfect"},
+      {"question": "6. Listen! The birds ______ (sing).", "answer": "are singing", "explanation": "Listen! — сейчас → Present Continuous"},
+      {"question": "7. We ______ (know) each other since primary school.", "answer": "have known", "explanation": "since — Present Perfect"},
+      {"question": "8. The train ______ (leave) at 9 am.", "answer": "leaves", "explanation": "расписание — Present Simple"},
+      {"question": "9. She ______ (already / do) her homework.", "answer": "has already done", "explanation": "already — Present Perfect"},
+      {"question": "10. I ______ (think) you are right.", "answer": "think", "explanation": "мнение — Present Simple"}
+    ]
+  },
+  {
+    "type": "complex",
+    "text": "2. Write down all 10 sentences in full, correcting any errors you find.",
+    "subtasks": [
+      {"question": "I am understanding the problem now.", "answer": "I understand the problem now.", "explanation": "understand — состояние"},
+      {"question": "She has seen him last Friday.", "answer": "She saw him last Friday.", "explanation": "last Friday — Past Simple"},
+      {"question": "He is wanting to go home.", "answer": "He wants to go home.", "explanation": "want — состояние"},
+      {"question": "They have been married for twenty years.", "answer": "They have been married for twenty years.", "explanation": "верно"},
+      {"question": "I am knowing the answer.", "answer": "I know the answer.", "explanation": "know — состояние"},
+      {"question": "Look! The children are playing in the yard.", "answer": "Look! The children are playing in the yard.", "explanation": "верно"},
+      {"question": "She doesn't like swimming.", "answer": "She doesn't like swimming.", "explanation": "верно"},
+      {"question": "We have visited the museum last year.", "answer": "We visited the museum last year.", "explanation": "last year — Past Simple"},
+      {"question": "He already finished his project.", "answer": "He has already finished his project.", "explanation": "already — Present Perfect"},
+      {"question": "I always am taking the bus.", "answer": "I always take the bus.", "explanation": "always + Present Simple"}
+    ]
+  },
+  {
+    "type": "complex",
+    "text": "3. Complete the sentences with the correct present tense (Simple, Continuous, or Perfect).\n\n1. He ______ (not / finish) his homework yet.\n2. She ______ (work) on a new project this week.\n3. My father ______ (drive) to work every day.\n4. I ______ (never / eat) sushi.\n5. Be quiet! The baby ______ (sleep).\n6. We ______ (know) each other for 10 years.\n7. They ______ (build) a new school in our town.\n8. The train ______ (arrive) at 6 pm every evening.\n9. I ______ (already / see) this film.\n10. She ______ (not / like) spicy food.",
+    "subtasks": [
+      {"question": "1. He ______ (not / finish) his homework yet.", "answer": "hasn't finished", "explanation": "yet — Present Perfect"},
+      {"question": "2. She ______ (work) on a new project this week.", "answer": "is working", "explanation": "this week — Present Continuous"},
+      {"question": "3. My father ______ (drive) to work every day.", "answer": "drives", "explanation": "every day — Present Simple"},
+      {"question": "4. I ______ (never / eat) sushi.", "answer": "have never eaten", "explanation": "never — Present Perfect"},
+      {"question": "5. Be quiet! The baby ______ (sleep).", "answer": "is sleeping", "explanation": "сейчас — Present Continuous"},
+      {"question": "6. We ______ (know) each other for 10 years.", "answer": "have known", "explanation": "for 10 years — Present Perfect"},
+      {"question": "7. They ______ (build) a new school in our town.", "answer": "are building", "explanation": "временный процесс — Present Continuous"},
+      {"question": "8. The train ______ (arrive) at 6 pm every evening.", "answer": "arrives", "explanation": "расписание — Present Simple"},
+      {"question": "9. I ______ (already / see) this film.", "answer": "have already seen", "explanation": "already — Present Perfect"},
+      {"question": "10. She ______ (not / like) spicy food.", "answer": "doesn't like", "explanation": "факт, состояние — Present Simple"}
+    ]
+  },
+  {
+    "type": "complex",
+    "text": "4. Translate the sentences into English.\n\n1. Я уже прочитал эту книгу.\n2. Она сейчас работает в саду.\n3. Он живёт здесь пять лет.\n4. Они играют в теннис каждый понедельник.\n5. Я никогда не пробовал суши.\n6. Послушай! Птицы поют.\n7. Мы знаем друг друга с начальной школы.\n8. Поезд отправляется в 9 утра.\n9. Она уже сделала домашнее задание.\n10. Я думаю, ты прав.",
+    "subtasks": [
+      {"question": "1. Я уже прочитал эту книгу.", "answer": "I have already read this book.", "explanation": ""},
+      {"question": "2. Она сейчас работает в саду.", "answer": "She is working in the garden now.", "explanation": ""},
+      {"question": "3. Он живёт здесь пять лет.", "answer": "He has lived here for five years.", "explanation": ""},
+      {"question": "4. Они играют в теннис каждый понедельник.", "answer": "They play tennis every Monday.", "explanation": ""},
+      {"question": "5. Я никогда не пробовал суши.", "answer": "I have never tried sushi.", "explanation": ""},
+      {"question": "6. Послушай! Птицы поют.", "answer": "Listen! The birds are singing.", "explanation": ""},
+      {"question": "7. Мы знаем друг друга с начальной школы.", "answer": "We have known each other since primary school.", "explanation": ""},
+      {"question": "8. Поезд отправляется в 9 утра.", "answer": "The train leaves at 9 am.", "explanation": ""},
+      {"question": "9. Она уже сделала домашнее задание.", "answer": "She has already done her homework.", "explanation": ""},
+      {"question": "10. Я думаю, ты прав.", "answer": "I think you are right.", "explanation": ""}
+    ]
+  }
+],
+# ==================== ВАРИАНТ 3 ====================
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct present tense (Simple, Continuous or Perfect).\n\n1. I ______ (read) this book already.\n2. She ______ (work) in the office at the moment.\n3. He ______ (live) in London since 2015.\n4. They ______ (play) chess every Saturday.\n5. I ______ (never / see) such a beautiful sunset.\n6. Listen! Someone ______ (knock) at the door.\n7. We ______ (be) friends for many years.\n8. The train ______ (arrive) at platform 2.\n9. She ______ (already / buy) tickets for the concert.\n10. I ______ (believe) in ghosts.",
+    "subtasks": [
+      {"question": "1. I ______ (read) this book already.", "answer": "have read", "explanation": "already — Present Perfect"},
+      {"question": "2. She ______ (work) in the office at the moment.", "answer": "is working", "explanation": "at the moment — Present Continuous"},
+      {"question": "3. He ______ (live) in London since 2015.", "answer": "has lived", "explanation": "since — Present Perfect"},
+      {"question": "4. They ______ (play) chess every Saturday.", "answer": "play", "explanation": "every Saturday — Present Simple"},
+      {"question": "5. I ______ (never / see) such a beautiful sunset.", "answer": "have never seen", "explanation": "never — Present Perfect"},
+      {"question": "6. Listen! Someone ______ (knock) at the door.", "answer": "is knocking", "explanation": "Listen! — сейчас → Present Continuous"},
+      {"question": "7. We ______ (be) friends for many years.", "answer": "have been", "explanation": "for many years — Present Perfect"},
+      {"question": "8. The train ______ (arrive) at platform 2.", "answer": "arrives", "explanation": "расписание — Present Simple"},
+      {"question": "9. She ______ (already / buy) tickets for the concert.", "answer": "has already bought", "explanation": "already — Present Perfect"},
+      {"question": "10. I ______ (believe) in ghosts.", "answer": "don't believe", "explanation": "мнение — Present Simple"}
+    ]
+  },
+  {
+    "type": "complex",
+    "text": "2. Write down all 10 sentences in full, correcting any errors you find.",
+    "subtasks": [
+      {"question": "I am not understanding this question.", "answer": "I don't understand this question.", "explanation": "understand — состояние"},
+      {"question": "She has met him yesterday.", "answer": "She met him yesterday.", "explanation": "yesterday — Past Simple"},
+      {"question": "He is preferring tea to coffee.", "answer": "He prefers tea to coffee.", "explanation": "prefer — состояние"},
+      {"question": "They have been married since 2018.", "answer": "They have been married since 2018.", "explanation": "верно"},
+      {"question": "I am having a car.", "answer": "I have a car.", "explanation": "have — обладание, состояние"},
+      {"question": "She is looking for a new job this month.", "answer": "She is looking for a new job this month.", "explanation": "верно (временная ситуация)"},
+      {"question": "We don't like this film.", "answer": "We don't like this film.", "explanation": "верно"},
+      {"question": "They have visited the museum last week.", "answer": "They visited the museum last week.", "explanation": "last week — Past Simple"},
+      {"question": "He already has done his homework.", "answer": "He has already done his homework.", "explanation": "порядок: has already done"},
+      {"question": "I am always getting up early.", "answer": "I always get up early.", "explanation": "always + Present Simple"}
+    ]
+  },
+  {
+    "type": "complex",
+    "text": "3. Complete the sentences with the correct present tense (Simple, Continuous, or Perfect).\n\n1. He ______ (not / call) me yet.\n2. She ______ (stay) with her parents this week.\n3. My brother ______ (go) to the gym every day.\n4. I ______ (never / ride) a horse.\n5. Hurry up! Everybody ______ (wait) for you.\n6. We ______ (own) this house for ten years.\n7. They ______ (renovate) their kitchen at the moment.\n8. The plane ______ (take off) at 10 am.\n9. I ______ (just / finish) my project.\n10. She ______ (not / enjoy) horror films.",
+    "subtasks": [
+      {"question": "1. He ______ (not / call) me yet.", "answer": "hasn't called", "explanation": "yet — Present Perfect"},
+      {"question": "2. She ______ (stay) with her parents this week.", "answer": "is staying", "explanation": "this week — Present Continuous"},
+      {"question": "3. My brother ______ (go) to the gym every day.", "answer": "goes", "explanation": "every day — Present Simple"},
+      {"question": "4. I ______ (never / ride) a horse.", "answer": "have never ridden", "explanation": "never — Present Perfect"},
+      {"question": "5. Hurry up! Everybody ______ (wait) for you.", "answer": "is waiting", "explanation": "сейчас — Present Continuous"},
+      {"question": "6. We ______ (own) this house for ten years.", "answer": "have owned", "explanation": "for ten years — Present Perfect"},
+      {"question": "7. They ______ (renovate) their kitchen at the moment.", "answer": "are renovating", "explanation": "at the moment — Present Continuous"},
+      {"question": "8. The plane ______ (take off) at 10 am.", "answer": "takes off", "explanation": "расписание — Present Simple"},
+      {"question": "9. I ______ (just / finish) my project.", "answer": "have just finished", "explanation": "just — Present Perfect"},
+      {"question": "10. She ______ (not / enjoy) horror films.", "answer": "doesn't enjoy", "explanation": "общее предпочтение — Present Simple"}
+    ]
+  },
+  {
+    "type": "complex",
+    "text": "4. Translate the sentences into English.\n\n1. Я читаю эту книгу уже два часа.\n2. Она сейчас работает в офисе.\n3. Он живёт в Лондоне с 2015 года.\n4. Они играют в шахматы каждую субботу.\n5. Я никогда не видел такого красивого заката.\n6. Слушай! Кто-то стучит в дверь.\n7. Мы дружим много лет.\n8. Поезд прибывает на платформу 2.\n9. Она уже купила билеты на концерт.\n10. Я не верю в привидения.",
+    "subtasks": [
+      {"question": "1. Я читаю эту книгу уже два часа.", "answer": "I have been reading this book for two hours.", "explanation": ""},
+      {"question": "2. Она сейчас работает в офисе.", "answer": "She is working in the office at the moment.", "explanation": ""},
+      {"question": "3. Он живёт в Лондоне с 2015 года.", "answer": "He has lived in London since 2015.", "explanation": ""},
+      {"question": "4. Они играют в шахматы каждую субботу.", "answer": "They play chess every Saturday.", "explanation": ""},
+      {"question": "5. Я никогда не видел такого красивого заката.", "answer": "I have never seen such a beautiful sunset.", "explanation": ""},
+      {"question": "6. Слушай! Кто-то стучит в дверь.", "answer": "Listen! Someone is knocking at the door.", "explanation": ""},
+      {"question": "7. Мы дружим много лет.", "answer": "We have been friends for many years.", "explanation": ""},
+      {"question": "8. Поезд прибывает на платформу 2.", "answer": "The train arrives at platform 2.", "explanation": ""},
+      {"question": "9. Она уже купила билеты на концерт.", "answer": "She has already bought tickets for the concert.", "explanation": ""},
+      {"question": "10. Я не верю в привидения.", "answer": "I don't believe in ghosts.", "explanation": ""}
+    ]
+  }
+],
+# ==================== ВАРИАНТ 4 ====================
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct present tense (Simple, Continuous or Perfect).\n\n1. I ______ (read) this book yet.\n2. She ______ (work) on a new project at the moment.\n3. He ______ (live) here since 2010.\n4. They ______ (go) to the cinema every Friday.\n5. I ______ (never / be) to Australia.\n6. Look! The dog ______ (chase) a cat.\n7. We ______ (have) this car for three years.\n8. The museum ______ (open) at 10 am.\n9. She ______ (already / pack) her suitcase.\n10. I ______ (think) he is a good teacher.",
+    "subtasks": [
+      {"question": "1. I ______ (read) this book yet.", "answer": "haven't read", "explanation": "yet — Present Perfect, отрицание"},
+      {"question": "2. She ______ (work) on a new project at the moment.", "answer": "is working", "explanation": "at the moment — Present Continuous"},
+      {"question": "3. He ______ (live) here since 2010.", "answer": "has lived", "explanation": "since — Present Perfect"},
+      {"question": "4. They ______ (go) to the cinema every Friday.", "answer": "go", "explanation": "every Friday — Present Simple"},
+      {"question": "5. I ______ (never / be) to Australia.", "answer": "have never been", "explanation": "never — Present Perfect"},
+      {"question": "6. Look! The dog ______ (chase) a cat.", "answer": "is chasing", "explanation": "Look! — сейчас → Present Continuous"},
+      {"question": "7. We ______ (have) this car for three years.", "answer": "have had", "explanation": "for three years — Present Perfect"},
+      {"question": "8. The museum ______ (open) at 10 am.", "answer": "opens", "explanation": "расписание — Present Simple"},
+      {"question": "9. She ______ (already / pack) her suitcase.", "answer": "has already packed", "explanation": "already — Present Perfect"},
+      {"question": "10. I ______ (think) he is a good teacher.", "answer": "think", "explanation": "мнение — Present Simple"}
+    ]
+  },
+  {
+    "type": "complex",
+    "text": "2. Write down all 10 sentences in full, correcting any errors you find.",
+    "subtasks": [
+      {"question": "I am knowing the answer now.", "answer": "I know the answer now.", "explanation": "know — состояние"},
+      {"question": "She has seen him on Monday.", "answer": "She saw him on Monday.", "explanation": "on Monday — Past Simple"},
+      {"question": "He is owning a big house.", "answer": "He owns a big house.", "explanation": "own — состояние"},
+      {"question": "They have been friends for a long time.", "answer": "They have been friends for a long time.", "explanation": "верно"},
+      {"question": "I am believing you.", "answer": "I believe you.", "explanation": "believe — состояние"},
+      {"question": "She is looking for her keys right now.", "answer": "She is looking for her keys right now.", "explanation": "верно (действие сейчас)"},
+      {"question": "We don't understand this rule.", "answer": "We don't understand this rule.", "explanation": "верно"},
+      {"question": "They have visited the museum yesterday.", "answer": "They visited the museum yesterday.", "explanation": "yesterday — Past Simple"},
+      {"question": "He already has eaten breakfast.", "answer": "He has already eaten breakfast.", "explanation": "порядок: has already eaten"},
+      {"question": "I am usually getting up at 7 am.", "answer": "I usually get up at 7 am.", "explanation": "usually + Present Simple"}
+    ]
+  },
+  {
+    "type": "complex",
+    "text": "3. Complete the sentences with the correct present tense (Simple, Continuous, or Perfect).\n\n1. He ______ (not / write) the letter yet.\n2. She ______ (study) French this semester.\n3. My mum ______ (cook) dinner every evening.\n4. I ______ (never / drive) a sports car.\n5. Be careful! The floor ______ (be) wet.\n6. We ______ (know) each other since we were children.\n7. They ______ (build) a new hospital in our area.\n8. The bus ______ (stop) here every hour.\n9. I ______ (just / meet) your sister.\n10. She ______ (not / eat) meat.",
+    "subtasks": [
+      {"question": "1. He ______ (not / write) the letter yet.", "answer": "hasn't written", "explanation": "yet — Present Perfect"},
+      {"question": "2. She ______ (study) French this semester.", "answer": "is studying", "explanation": "this semester — Present Continuous"},
+      {"question": "3. My mum ______ (cook) dinner every evening.", "answer": "cooks", "explanation": "every evening — Present Simple"},
+      {"question": "4. I ______ (never / drive) a sports car.", "answer": "have never driven", "explanation": "never — Present Perfect"},
+      {"question": "5. Be careful! The floor ______ (be) wet.", "answer": "is", "explanation": "состояние — Present Simple"},
+      {"question": "6. We ______ (know) each other since we were children.", "answer": "have known", "explanation": "since — Present Perfect"},
+      {"question": "7. They ______ (build) a new hospital in our area.", "answer": "are building", "explanation": "временный процесс — Present Continuous"},
+      {"question": "8. The bus ______ (stop) here every hour.", "answer": "stops", "explanation": "регулярность — Present Simple"},
+      {"question": "9. I ______ (just / meet) your sister.", "answer": "have just met", "explanation": "just — Present Perfect"},
+      {"question": "10. She ______ (not / eat) meat.", "answer": "doesn't eat", "explanation": "факт, привычка — Present Simple"}
+    ]
+  },
+  {
+    "type": "complex",
+    "text": "4. Translate the sentences into English.\n\n1. Я ещё не прочитал эту книгу.\n2. Она сейчас работает над новым проектом.\n3. Он живёт здесь с 2010 года.\n4. Они ходят в кино каждую пятницу.\n5. Я никогда не был в Австралии.\n6. Смотри! Собака гонится за кошкой.\n7. У нас эта машина уже три года.\n8. Музей открывается в 10 утра.\n9. Она уже упаковала чемодан.\n10. Я думаю, он хороший учитель.",
+    "subtasks": [
+      {"question": "1. Я ещё не прочитал эту книгу.", "answer": "I haven't read this book yet.", "explanation": ""},
+      {"question": "2. Она сейчас работает над новым проектом.", "answer": "She is working on a new project at the moment.", "explanation": ""},
+      {"question": "3. Он живёт здесь с 2010 года.", "answer": "He has lived here since 2010.", "explanation": ""},
+      {"question": "4. Они ходят в кино каждую пятницу.", "answer": "They go to the cinema every Friday.", "explanation": ""},
+      {"question": "5. Я никогда не был в Австралии.", "answer": "I have never been to Australia.", "explanation": ""},
+      {"question": "6. Смотри! Собака гонится за кошкой.", "answer": "Look! The dog is chasing a cat.", "explanation": ""},
+      {"question": "7. У нас эта машина уже три года.", "answer": "We have had this car for three years.", "explanation": ""},
+      {"question": "8. Музей открывается в 10 утра.", "answer": "The museum opens at 10 am.", "explanation": ""},
+      {"question": "9. Она уже упаковала чемодан.", "answer": "She has already packed her suitcase.", "explanation": ""},
+      {"question": "10. Я думаю, он хороший учитель.", "answer": "I think he is a good teacher.", "explanation": ""}
+    ]
+  }
+],
+# ==================== ВАРИАНТ 5 ====================
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct present tense (Simple, Continuous or Perfect).\n\n1. I ______ (read) this book already.\n2. She ______ (work) here for five years.\n3. He ______ (play) the guitar very well.\n4. They ______ (have) a party at the moment.\n5. I ______ (never / eat) snails.\n6. Listen! She ______ (sing) beautifully.\n7. We ______ (be) friends since school.\n8. The shop ______ (close) at 9 pm.\n9. She ______ (already / buy) a present.\n10. I ______ (think) about moving to London.",
+    "subtasks": [
+      {"question": "1. I ______ (read) this book already.", "answer": "have read", "explanation": "already — Present Perfect"},
+      {"question": "2. She ______ (work) here for five years.", "answer": "has worked", "explanation": "for five years — Present Perfect"},
+      {"question": "3. He ______ (play) the guitar very well.", "answer": "plays", "explanation": "способность, факт — Present Simple"},
+      {"question": "4. They ______ (have) a party at the moment.", "answer": "are having", "explanation": "at the moment — Present Continuous (have как действие)"},
+      {"question": "5. I ______ (never / eat) snails.", "answer": "have never eaten", "explanation": "never — Present Perfect"},
+      {"question": "6. Listen! She ______ (sing) beautifully.", "answer": "is singing", "explanation": "Listen! — сейчас → Present Continuous"},
+      {"question": "7. We ______ (be) friends since school.", "answer": "have been", "explanation": "since — Present Perfect"},
+      {"question": "8. The shop ______ (close) at 9 pm.", "answer": "closes", "explanation": "расписание — Present Simple"},
+      {"question": "9. She ______ (already / buy) a present.", "answer": "has already bought", "explanation": "already — Present Perfect"},
+      {"question": "10. I ______ (think) about moving to London.", "answer": "am thinking", "explanation": "обдумывание (процесс) — Present Continuous (допустимо)"}
+    ]
+  },
+  {
+    "type": "complex",
+    "text": "2. Write down all 10 sentences in full, correcting any errors you find.",
+    "subtasks": [
+      {"question": "I am not knowing the answer.", "answer": "I don't know the answer.", "explanation": "know — состояние"},
+      {"question": "She has bought a car yesterday.", "answer": "She bought a car yesterday.", "explanation": "yesterday — Past Simple"},
+      {"question": "He is loving this film.", "answer": "He loves this film.", "explanation": "love — состояние"},
+      {"question": "They have been married since 2010.", "answer": "They have been married since 2010.", "explanation": "верно"},
+      {"question": "I am needing your help.", "answer": "I need your help.", "explanation": "need — состояние"},
+      {"question": "She is looking for a new job now.", "answer": "She is looking for a new job now.", "explanation": "верно (действие сейчас)"},
+      {"question": "We don't like this music.", "answer": "We don't like this music.", "explanation": "верно"},
+      {"question": "They have visited the museum last month.", "answer": "They visited the museum last month.", "explanation": "last month — Past Simple"},
+      {"question": "He already has phoned his mother.", "answer": "He has already phoned his mother.", "explanation": "порядок: has already phoned"},
+      {"question": "I am usually walking to work.", "answer": "I usually walk to work.", "explanation": "usually + Present Simple"}
+    ]
+  },
+  {
+    "type": "complex",
+    "text": "3. Complete the sentences with the correct present tense (Simple, Continuous, or Perfect).\n\n1. He ______ (not / do) his homework yet.\n2. She ______ (take) a shower at the moment.\n3. My parents ______ (work) in a hospital.\n4. I ______ (never / fly) in a plane.\n5. Be quiet! The teacher ______ (explain) the rule.\n6. We ______ (live) in this town for a long time.\n7. They ______ (paint) the house this week.\n8. The bus ______ (come) every 15 minutes.\n9. I ______ (just / meet) your brother.\n10. She ______ (not / eat) meat because she is vegetarian.",
+    "subtasks": [
+      {"question": "1. He ______ (not / do) his homework yet.", "answer": "hasn't done", "explanation": "yet — Present Perfect"},
+      {"question": "2. She ______ (take) a shower at the moment.", "answer": "is taking", "explanation": "at the moment — Present Continuous"},
+      {"question": "3. My parents ______ (work) in a hospital.", "answer": "work", "explanation": "факт — Present Simple"},
+      {"question": "4. I ______ (never / fly) in a plane.", "answer": "have never flown", "explanation": "never — Present Perfect"},
+      {"question": "5. Be quiet! The teacher ______ (explain) the rule.", "answer": "is explaining", "explanation": "сейчас — Present Continuous"},
+      {"question": "6. We ______ (live) in this town for a long time.", "answer": "have lived", "explanation": "for a long time — Present Perfect"},
+      {"question": "7. They ______ (paint) the house this week.", "answer": "are painting", "explanation": "this week — Present Continuous"},
+      {"question": "8. The bus ______ (come) every 15 minutes.", "answer": "comes", "explanation": "регулярность — Present Simple"},
+      {"question": "9. I ______ (just / meet) your brother.", "answer": "have just met", "explanation": "just — Present Perfect"},
+      {"question": "10. She ______ (not / eat) meat because she is vegetarian.", "answer": "doesn't eat", "explanation": "факт — Present Simple"}
+    ]
+  },
+  {
+    "type": "complex",
+    "text": "4. Translate the sentences into English.\n\n1. Я уже прочитал эту книгу.\n2. Она работает здесь пять лет.\n3. Он очень хорошо играет на гитаре.\n4. Сейчас у них вечеринка.\n5. Я никогда не ел улиток.\n6. Слушай! Она красиво поёт.\n7. Мы дружим со школы.\n8. Магазин закрывается в 9 вечера.\n9. Она уже купила подарок.\n10. Я думаю о переезде в Лондон.",
+    "subtasks": [
+      {"question": "1. Я уже прочитал эту книгу.", "answer": "I have already read this book.", "explanation": ""},
+      {"question": "2. Она работает здесь пять лет.", "answer": "She has worked here for five years.", "explanation": ""},
+      {"question": "3. Он очень хорошо играет на гитаре.", "answer": "He plays the guitar very well.", "explanation": ""},
+      {"question": "4. Сейчас у них вечеринка.", "answer": "They are having a party at the moment.", "explanation": ""},
+      {"question": "5. Я никогда не ел улиток.", "answer": "I have never eaten snails.", "explanation": ""},
+      {"question": "6. Слушай! Она красиво поёт.", "answer": "Listen! She is singing beautifully.", "explanation": ""},
+      {"question": "7. Мы дружим со школы.", "answer": "We have been friends since school.", "explanation": ""},
+      {"question": "8. Магазин закрывается в 9 вечера.", "answer": "The shop closes at 9 pm.", "explanation": ""},
+      {"question": "9. Она уже купила подарок.", "answer": "She has already bought a present.", "explanation": ""},
+      {"question": "10. Я думаю о переезде в Лондон.", "answer": "I am thinking about moving to London.", "explanation": ""}
+    ]
+  }
+],
+# ==================== ВАРИАНТ 6 ====================
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct present tense (Simple, Continuous or Perfect).\n\n1. I ______ (read) this book already.\n2. She ______ (work) on her computer right now.\n3. He ______ (live) in Berlin since 2012.\n4. They ______ (play) football every weekend.\n5. I ______ (never / see) such a big whale.\n6. Look! The children ______ (swim) in the river.\n7. We ______ (be) neighbours for two years.\n8. The film ______ (start) at 8 pm.\n9. She ______ (already / send) the email.\n10. I ______ (believe) you are right.",
+    "subtasks": [
+      {"question": "1. I ______ (read) this book already.", "answer": "have read", "explanation": "already — Present Perfect"},
+      {"question": "2. She ______ (work) on her computer right now.", "answer": "is working", "explanation": "right now — Present Continuous"},
+      {"question": "3. He ______ (live) in Berlin since 2012.", "answer": "has lived", "explanation": "since — Present Perfect"},
+      {"question": "4. They ______ (play) football every weekend.", "answer": "play", "explanation": "every weekend — Present Simple"},
+      {"question": "5. I ______ (never / see) such a big whale.", "answer": "have never seen", "explanation": "never — Present Perfect"},
+      {"question": "6. Look! The children ______ (swim) in the river.", "answer": "are swimming", "explanation": "Look! — сейчас → Present Continuous"},
+      {"question": "7. We ______ (be) neighbours for two years.", "answer": "have been", "explanation": "for two years — Present Perfect"},
+      {"question": "8. The film ______ (start) at 8 pm.", "answer": "starts", "explanation": "расписание — Present Simple"},
+      {"question": "9. She ______ (already / send) the email.", "answer": "has already sent", "explanation": "already — Present Perfect"},
+      {"question": "10. I ______ (believe) you are right.", "answer": "believe", "explanation": "мнение — Present Simple"}
+    ]
+  },
+  {
+    "type": "complex",
+    "text": "2. Write down all 10 sentences in full, correcting any errors you find.",
+    "subtasks": [
+      {"question": "I am not understanding this exercise.", "answer": "I don't understand this exercise.", "explanation": "understand — состояние"},
+      {"question": "She has met him last week.", "answer": "She met him last week.", "explanation": "last week — Past Simple"},
+      {"question": "He is wanting a new computer.", "answer": "He wants a new computer.", "explanation": "want — состояние"},
+      {"question": "They have been friends since primary school.", "answer": "They have been friends since primary school.", "explanation": "верно"},
+      {"question": "I am having a headache.", "answer": "I have a headache.", "explanation": "have в значении 'болеть' — состояние"},
+      {"question": "She is studying for her exam this week.", "answer": "She is studying for her exam this week.", "explanation": "верно (временная ситуация)"},
+      {"question": "We don't enjoy this game.", "answer": "We don't enjoy this game.", "explanation": "верно"},
+      {"question": "They have visited the museum last year.", "answer": "They visited the museum last year.", "explanation": "last year — Past Simple"},
+      {"question": "He already has done his homework.", "answer": "He has already done his homework.", "explanation": "порядок: has already done"},
+      {"question": "I am often going to the gym.", "answer": "I often go to the gym.", "explanation": "often + Present Simple"}
+    ]
+  },
+  {
+    "type": "complex",
+    "text": "3. Complete the sentences with the correct present tense (Simple, Continuous, or Perfect).\n\n1. He ______ (not / call) me since Monday.\n2. She ______ (stay) with her aunt this month.\n3. My father ______ (work) as a teacher.\n4. I ______ (never / eat) Thai food.\n5. Hurry up! The taxi ______ (wait) for us.\n6. We ______ (know) this song for years.\n7. They ______ (build) a new bridge at the moment.\n8. The store ______ (open) at 9 am.\n9. I ______ (just / finish) my report.\n10. She ______ (not / like) getting up early.",
+    "subtasks": [
+      {"question": "1. He ______ (not / call) me since Monday.", "answer": "hasn't called", "explanation": "since Monday — Present Perfect"},
+      {"question": "2. She ______ (stay) with her aunt this month.", "answer": "is staying", "explanation": "this month — Present Continuous"},
+      {"question": "3. My father ______ (work) as a teacher.", "answer": "works", "explanation": "факт — Present Simple"},
+      {"question": "4. I ______ (never / eat) Thai food.", "answer": "have never eaten", "explanation": "never — Present Perfect"},
+      {"question": "5. Hurry up! The taxi ______ (wait) for us.", "answer": "is waiting", "explanation": "сейчас — Present Continuous"},
+      {"question": "6. We ______ (know) this song for years.", "answer": "have known", "explanation": "for years — Present Perfect"},
+      {"question": "7. They ______ (build) a new bridge at the moment.", "answer": "are building", "explanation": "at the moment — Present Continuous"},
+      {"question": "8. The store ______ (open) at 9 am.", "answer": "opens", "explanation": "расписание — Present Simple"},
+      {"question": "9. I ______ (just / finish) my report.", "answer": "have just finished", "explanation": "just — Present Perfect"},
+      {"question": "10. She ______ (not / like) getting up early.", "answer": "doesn't like", "explanation": "общее предпочтение — Present Simple"}
+    ]
+  },
+  {
+    "type": "complex",
+    "text": "4. Translate the sentences into English.\n\n1. Я уже прочитал эту книгу.\n2. Она сейчас работает за компьютером.\n3. Он живёт в Берлине с 2012 года.\n4. Они играют в футбол каждые выходные.\n5. Я никогда не видел такого большого кита.\n6. Смотри! Дети плавают в реке.\n7. Мы соседи уже два года.\n8. Фильм начинается в 8 вечера.\n9. Она уже отправила письмо.\n10. Я верю, что ты прав.",
+    "subtasks": [
+      {"question": "1. Я уже прочитал эту книгу.", "answer": "I have already read this book.", "explanation": ""},
+      {"question": "2. Она сейчас работает за компьютером.", "answer": "She is working on her computer right now.", "explanation": ""},
+      {"question": "3. Он живёт в Берлине с 2012 года.", "answer": "He has lived in Berlin since 2012.", "explanation": ""},
+      {"question": "4. Они играют в футбол каждые выходные.", "answer": "They play football every weekend.", "explanation": ""},
+      {"question": "5. Я никогда не видел такого большого кита.", "answer": "I have never seen such a big whale.", "explanation": ""},
+      {"question": "6. Смотри! Дети плавают в реке.", "answer": "Look! The children are swimming in the river.", "explanation": ""},
+      {"question": "7. Мы соседи уже два года.", "answer": "We have been neighbours for two years.", "explanation": ""},
+      {"question": "8. Фильм начинается в 8 вечера.", "answer": "The film starts at 8 pm.", "explanation": ""},
+      {"question": "9. Она уже отправила письмо.", "answer": "She has already sent the email.", "explanation": ""},
+      {"question": "10. Я верю, что ты прав.", "answer": "I believe you are right.", "explanation": ""}
+    ]
+  }
+],
+# ==================== ВАРИАНТ 7 ====================
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct present tense (Simple, Continuous or Perfect).\n\n1. I ______ (read) this book for an hour.\n2. She ______ (cook) dinner at the moment.\n3. He ______ (live) in this house all his life.\n4. They ______ (watch) TV every evening.\n5. I ______ (never / try) skiing.\n6. Listen! Someone ______ (play) the piano.\n7. We ______ (know) each other since 2018.\n8. The bus ______ (leave) at 8 am.\n9. She ______ (already / book) the tickets.\n10. I ______ (think) she is coming.",
+    "subtasks": [
+      {"question": "1. I ______ (read) this book for an hour.", "answer": "have been reading", "explanation": "for an hour — Present Perfect Continuous (допустимо для B1)"},
+      {"question": "2. She ______ (cook) dinner at the moment.", "answer": "is cooking", "explanation": "at the moment — Present Continuous"},
+      {"question": "3. He ______ (live) in this house all his life.", "answer": "has lived", "explanation": "all his life — Present Perfect"},
+      {"question": "4. They ______ (watch) TV every evening.", "answer": "watch", "explanation": "every evening — Present Simple"},
+      {"question": "5. I ______ (never / try) skiing.", "answer": "have never tried", "explanation": "never — Present Perfect"},
+      {"question": "6. Listen! Someone ______ (play) the piano.", "answer": "is playing", "explanation": "Listen! — сейчас → Present Continuous"},
+      {"question": "7. We ______ (know) each other since 2018.", "answer": "have known", "explanation": "since — Present Perfect"},
+      {"question": "8. The bus ______ (leave) at 8 am.", "answer": "leaves", "explanation": "расписание — Present Simple"},
+      {"question": "9. She ______ (already / book) the tickets.", "answer": "has already booked", "explanation": "already — Present Perfect"},
+      {"question": "10. I ______ (think) she is coming.", "answer": "think", "explanation": "мнение — Present Simple"}
+    ]
+  },
+  {
+    "type": "complex",
+    "text": "2. Write down all 10 sentences in full, correcting any errors you find.",
+    "subtasks": [
+      {"question": "I am not knowing her name.", "answer": "I don't know her name.", "explanation": "know — состояние"},
+      {"question": "She has called me yesterday.", "answer": "She called me yesterday.", "explanation": "yesterday — Past Simple"},
+      {"question": "He is feeling well today.", "answer": "He feels well today.", "explanation": "feel — состояние (здесь лучше Simple)"},
+      {"question": "They have been married since 2015.", "answer": "They have been married since 2015.", "explanation": "верно"},
+      {"question": "I am owning a bicycle.", "answer": "I own a bicycle.", "explanation": "own — состояние"},
+      {"question": "She is looking at the picture.", "answer": "She is looking at the picture.", "explanation": "верно (действие)"},
+      {"question": "We don't like this idea.", "answer": "We don't like this idea.", "explanation": "верно"},
+      {"question": "They have visited the museum last month.", "answer": "They visited the museum last month.", "explanation": "last month — Past Simple"},
+      {"question": "He already has bought a ticket.", "answer": "He has already bought a ticket.", "explanation": "порядок: has already bought"},
+      {"question": "I am always forgetting my keys.", "answer": "I always forget my keys.", "explanation": "always + Present Simple"}
+    ]
+  },
+  {
+    "type": "complex",
+    "text": "3. Complete the sentences with the correct present tense (Simple, Continuous, or Perfect).\n\n1. He ______ (not / see) the film yet.\n2. She ______ (learn) to drive this year.\n3. My brother ______ (play) basketball well.\n4. I ______ (never / go) to the USA.\n5. Be quiet! The baby ______ (fall) asleep.\n6. We ______ (have) this dog for two years.\n7. They ______ (repair) the road this week.\n8. The train ______ (arrive) at 6 pm.\n9. I ______ (just / speak) to the manager.\n10. She ______ (not / eat) breakfast in the morning.",
+    "subtasks": [
+      {"question": "1. He ______ (not / see) the film yet.", "answer": "hasn't seen", "explanation": "yet — Present Perfect"},
+      {"question": "2. She ______ (learn) to drive this year.", "answer": "is learning", "explanation": "this year — Present Continuous"},
+      {"question": "3. My brother ______ (play) basketball well.", "answer": "plays", "explanation": "факт — Present Simple"},
+      {"question": "4. I ______ (never / go) to the USA.", "answer": "have never gone", "explanation": "never — Present Perfect"},
+      {"question": "5. Be quiet! The baby ______ (fall) asleep.", "answer": "is falling", "explanation": "сейчас — Present Continuous"},
+      {"question": "6. We ______ (have) this dog for two years.", "answer": "have had", "explanation": "for two years — Present Perfect"},
+      {"question": "7. They ______ (repair) the road this week.", "answer": "are repairing", "explanation": "this week — Present Continuous"},
+      {"question": "8. The train ______ (arrive) at 6 pm.", "answer": "arrives", "explanation": "расписание — Present Simple"},
+      {"question": "9. I ______ (just / speak) to the manager.", "answer": "have just spoken", "explanation": "just — Present Perfect"},
+      {"question": "10. She ______ (not / eat) breakfast in the morning.", "answer": "doesn't eat", "explanation": "привычка — Present Simple"}
+    ]
+  },
+  {
+    "type": "complex",
+    "text": "4. Translate the sentences into English.\n\n1. Я уже прочитал эту книгу.\n2. Она сейчас готовит ужин.\n3. Он прожил в этом доме всю жизнь.\n4. Они смотрят телевизор каждый вечер.\n5. Я никогда не пробовал кататься на лыжах.\n6. Слушай! Кто-то играет на пианино.\n7. Мы знаем друг друга с 2018 года.\n8. Автобус отправляется в 8 утра.\n9. Она уже забронировала билеты.\n10. Я думаю, она идёт.",
+    "subtasks": [
+      {"question": "1. Я уже прочитал эту книгу.", "answer": "I have already read this book.", "explanation": ""},
+      {"question": "2. Она сейчас готовит ужин.", "answer": "She is cooking dinner at the moment.", "explanation": ""},
+      {"question": "3. Он прожил в этом доме всю жизнь.", "answer": "He has lived in this house all his life.", "explanation": ""},
+      {"question": "4. Они смотрят телевизор каждый вечер.", "answer": "They watch TV every evening.", "explanation": ""},
+      {"question": "5. Я никогда не пробовал кататься на лыжах.", "answer": "I have never tried skiing.", "explanation": ""},
+      {"question": "6. Слушай! Кто-то играет на пианино.", "answer": "Listen! Someone is playing the piano.", "explanation": ""},
+      {"question": "7. Мы знаем друг друга с 2018 года.", "answer": "We have known each other since 2018.", "explanation": ""},
+      {"question": "8. Автобус отправляется в 8 утра.", "answer": "The bus leaves at 8 am.", "explanation": ""},
+      {"question": "9. Она уже забронировала билеты.", "answer": "She has already booked the tickets.", "explanation": ""},
+      {"question": "10. Я думаю, она идёт.", "answer": "I think she is coming.", "explanation": ""}
         ]
       }
     ]
@@ -859,807 +524,472 @@ LEVEL_B1_CONTENT = {
       }
     ], 
   "practice_bank": [
-    # ==================== ВАРИАНТ 1 ====================
-    [
-      {
-        "type": "complex",
-        "text": "1. Choose the correct past tense (Simple, Continuous, or Perfect).",
-        "subtasks": [
-          {"question": "I ______ (finish) my homework before my mum came home.", "answer": "had finished", "explanation": "действие завершилось до другого действия в прошлом — Past Perfect"},
-          {"question": "She ______ (read) a book when the phone rang.", "answer": "was reading", "explanation": "фоновое действие, прерванное другим — Past Continuous"},
-          {"question": "They ______ (visit) their grandparents last weekend.", "answer": "visited", "explanation": "завершённое действие в прошлом с указанием времени — Past Simple"},
-          {"question": "I ______ (never / be) to Japan before I went there in 2019.", "answer": "had never been", "explanation": "опыт до определённого момента в прошлом — Past Perfect"},
-          {"question": "He ______ (drive) to work when he heard the news on the radio.", "answer": "was driving", "explanation": "действие в процессе в прошлом, прерванное другим — Past Continuous"},
-          {"question": "She ______ (study) French at university in 2010.", "answer": "studied", "explanation": "завершённое действие в прошлом с указанием времени — Past Simple"},
-          {"question": "When I arrived, they ______ (already / eat) dinner.", "answer": "had already eaten", "explanation": "действие завершилось до моего прихода — Past Perfect"},
-          {"question": "The sun ______ (shine) when we left the house.", "answer": "was shining", "explanation": "фоновое действие в прошлом — Past Continuous"},
-          {"question": "I ______ (see) this film two years ago.", "answer": "saw", "explanation": "завершённое действие с указанием времени — Past Simple"},
-          {"question": "He ______ (not / speak) English before he moved to London.", "answer": "hadn't spoken", "explanation": "действие до другого действия в прошлом — Past Perfect"}
-        ]
-      },
-      {
-        "type": "complex",
-        "text": "2. Correct the mistakes (if any).",
-        "subtasks": [
-          {"question": "I was finishing my homework at 8 pm.", "answer": "I finished my homework at 8 pm.", "explanation": "8 pm — конкретное время завершения, а не процесс → Past Simple"},
-          {"question": "When I came, she already left.", "answer": "When I came, she had already left.", "explanation": "она ушла до моего прихода → Past Perfect"},
-          {"question": "While I cooked, the phone rang.", "answer": "While I was cooking, the phone rang.", "explanation": "фон (процесс) + прерывающее действие → Past Continuous"},
-          {"question": "They have seen him yesterday.", "answer": "They saw him yesterday.", "explanation": "yesterday — конкретное прошлое → Past Simple"},
-          {"question": "He was knowing the answer.", "answer": "He knew the answer.", "explanation": "know — глагол состояния, не используется в Continuous"},
-          {"question": "I was walking home when I saw the accident.", "answer": "I was walking home when I saw the accident.", "explanation": "верно (фон + прерывающее действие)"},
-          {"question": "She had finished her work before she went out.", "answer": "She had finished her work before she went out.", "explanation": "верно (порядок действий: сначала finished, потом went out)"},
-          {"question": "We were living in Paris for two years.", "answer": "We lived in Paris for two years.", "explanation": "for two years — завершённый период в прошлом → Past Simple, не Continuous"},
-          {"question": "He had been a teacher before he became a writer.", "answer": "He had been a teacher before he became a writer.", "explanation": "верно (Past Perfect для действия до другого в прошлом)"},
-          {"question": "She was sleeping when I called her.", "answer": "She was sleeping when I called her.", "explanation": "верно (процесс, прерванный звонком)"}
-        ]
-      },
-            {
-        "type": "complex",
-        "text": "3. Complete the sentences with the correct past tense (Simple, Continuous, or Perfect).",
-        "subtasks": [
-          {"question": "I ______ (watch) TV when my sister ______ (come) home.", "answer": "was watching, came", "explanation": "фоновое действие (was watching) прервано (came) — Past Continuous + Past Simple"},
-          {"question": "By the time we ______ (arrive) at the cinema, the film ______ (already / start).", "answer": "arrived, had already started", "explanation": "прибыли позже, фильм уже начался → Past Simple + Past Perfect"},
-          {"question": "She ______ (live) in Spain for five years before she ______ (move) to Italy.", "answer": "had lived, moved", "explanation": "сначала жила в Испании (до переезда), потом переехала → Past Perfect + Past Simple"},
-          {"question": "While he ______ (read) the newspaper, he ______ (fall) asleep.", "answer": "was reading, fell", "explanation": "фон (читал) + прерывающее действие (уснул) — Past Continuous + Past Simple"},
-          {"question": "I ______ (not / see) the film before, so I ______ (decide) to watch it.", "answer": "hadn't seen, decided", "explanation": "сначала не видел (до того момента), потом решил — Past Perfect + Past Simple"},
-          {"question": "When I ______ (walk) into the room, everybody ______ (talk) loudly.", "answer": "walked, was talking", "explanation": "вошёл (мгновенное) + фон (говорили) — Past Simple + Past Continuous"},
-          {"question": "She ______ (already / eat) dinner when I ______ (call) her.", "answer": "had already eaten, called", "explanation": "уже поела до звонка → Past Perfect + Past Simple"},
-          {"question": "We ______ (play) tennis at 5 pm yesterday.", "answer": "were playing", "explanation": "действие в конкретный момент в прошлом (at 5 pm) — Past Continuous"},
-          {"question": "He ______ (not / want) to go to the party because he ______ (feel) tired.", "answer": "didn't want, felt", "explanation": "оба действия — состояние в прошлом → Past Simple"},
-          {"question": "I ______ (read) the book you ______ (recommend) last week.", "answer": "read, recommended", "explanation": "прочитал (результат) и рекомендовала (действие в прошлом) — Past Simple + Past Simple"}
-        ]
-      },
-      {
-        "type": "complex",
-        "text": "4. Translate the sentences into English.",
-        "subtasks": [
-          {"question": "Я сделал домашнее задание до того, как пришла мама.", "answer": "I had finished my homework before my mum came.", "explanation": ""},
-          {"question": "Она читала книгу, когда зазвонил телефон.", "answer": "She was reading a book when the phone rang.", "explanation": ""},
-          {"question": "Они навещали бабушку в прошлые выходные.", "answer": "They visited their grandparents last weekend.", "explanation": ""},
-          {"question": "Я никогда не был в Японии до 2019 года.", "answer": "I had never been to Japan before 2019.", "explanation": ""},
-          {"question": "Он вёл машину, когда услышал новости по радио.", "answer": "He was driving when he heard the news on the radio.", "explanation": ""},
-          {"question": "Она изучала французский в университете в 2010 году.", "answer": "She studied French at university in 2010.", "explanation": ""},
-          {"question": "Когда я пришёл, они уже поужинали.", "answer": "When I arrived, they had already eaten dinner.", "explanation": ""},
-          {"question": "Солнце светило, когда мы вышли из дома.", "answer": "The sun was shining when we left the house.", "explanation": ""},
-          {"question": "Я видел этот фильм два года назад.", "answer": "I saw this film two years ago.", "explanation": ""},
-          {"question": "Он не говорил по-английски до переезда в Лондон.", "answer": "He hadn't spoken English before he moved to London.", "explanation": ""}
-        ]
-      }
-    ],
-    # ==================== ВАРИАНТ 2 ====================
-    [
-      {
-        "type": "complex",
-        "text": "1. Choose the correct past tense (Simple, Continuous, or Perfect).",
-        "subtasks": [
-          {"question": "She ______ (finish) her project before the deadline.", "answer": "had finished", "explanation": "завершила до другого момента в прошлом → Past Perfect"},
-          {"question": "I ______ (watch) TV when my friend called me.", "answer": "was watching", "explanation": "процесс, прерванный звонком → Past Continuous"},
-          {"question": "They ______ (go) to the cinema last night.", "answer": "went", "explanation": "завершённое действие в прошлом с указанием времени → Past Simple"},
-          {"question": "We ______ (never / see) such a beautiful sunset before that day.", "answer": "had never seen", "explanation": "опыт до того момента в прошлом → Past Perfect"},
-          {"question": "He ______ (drive) to work when he got a flat tyre.", "answer": "was driving", "explanation": "процесс, прерванный другим действием → Past Continuous"},
-          {"question": "She ______ (live) in New York in 2015.", "answer": "lived", "explanation": "завершённое действие с указанием года → Past Simple"},
-          {"question": "By the time we arrived, the party ______ (already / start).", "answer": "had already started", "explanation": "вечеринка началась до нашего прибытия → Past Perfect"},
-          {"question": "It ______ (rain) heavily when we left the office.", "answer": "was raining", "explanation": "фоновое действие в прошлом → Past Continuous"},
-          {"question": "I ______ (meet) my wife in 2008.", "answer": "met", "explanation": "завершённое действие с указанием года → Past Simple"},
-          {"question": "He ______ (not / eat) anything before the party because he was nervous.", "answer": "hadn't eaten", "explanation": "не ел до вечеринки → Past Perfect (действие до другого действия в прошлом)"}
-        ]
-      },
-      {
-        "type": "complex",
-        "text": "2. Correct the mistakes (if any).",
-        "subtasks": [
-          {"question": "I was meeting him yesterday.", "answer": "I met him yesterday.", "explanation": "yesterday — завершённое действие → Past Simple, не Continuous"},
-          {"question": "When I arrived, she left.", "answer": "When I arrived, she had already left.", "explanation": "она ушла до моего прихода → Past Perfect"},
-          {"question": "While I read, the phone rang.", "answer": "While I was reading, the phone rang.", "explanation": "фон (процесс) + прерывание → Past Continuous + Past Simple"},
-          {"question": "They have finished the project last month.", "answer": "They finished the project last month.", "explanation": "last month — конкретное прошлое → Past Simple"},
-          {"question": "She was knowing the answer.", "answer": "She knew the answer.", "explanation": "know — состояние, не Continuous"},
-          {"question": "He was working in the garden when I saw him.", "answer": "He was working in the garden when I saw him.", "explanation": "верно"},
-          {"question": "We had lived in Paris for two years before we moved.", "answer": "We had lived in Paris for two years before we moved.", "explanation": "верно (Past Perfect для действия до другого)"},
-          {"question": "She finished her homework and went out.", "answer": "She finished her homework and went out.", "explanation": "верно (последовательность действий → Past Simple)"},
-          {"question": "I was knowing him well.", "answer": "I knew him well.", "explanation": "know — состояние → Past Simple"},
-          {"question": "They were playing football when it started to rain.", "answer": "They were playing football when it started to rain.", "explanation": "верно"}
-        ]
-      },
-      {
-        "type": "complex",
-        "text": "3. Complete the sentences with the correct past tense (Simple, Continuous, or Perfect).",
-        "subtasks": [
-          {"question": "I ______ (walk) home when I ______ (see) the accident.", "answer": "was walking, saw", "explanation": "фон (шёл) + прерывающее действие (увидел) → Past Continuous + Past Simple"},
-          {"question": "By the time he ______ (come) to the party, his friends ______ (already / leave).", "answer": "came, had already left", "explanation": "пришёл позже, друзья уже ушли → Past Simple + Past Perfect"},
-          {"question": "She ______ (live) in London for three years before she ______ (move) to Paris.", "answer": "had lived, moved", "explanation": "сначала жила в Лондоне, потом переехала → Past Perfect + Past Simple"},
-          {"question": "While he ______ (sleep), someone ______ (steal) his wallet.", "answer": "was sleeping, stole", "explanation": "фон (спал) + действие (украли) → Past Continuous + Past Simple"},
-          {"question": "I ______ (not / read) the book before so I ______ (not / understand) the film.", "answer": "hadn't read, didn't understand", "explanation": "сначала не читал, потом не понял — Past Perfect + Past Simple"},
-          {"question": "When I ______ (enter) the room, she ______ (talk) on the phone.", "answer": "entered, was talking", "explanation": "вошёл (мгновенное) + фон (говорила) → Past Simple + Past Continuous"},
-          {"question": "He ______ (already / cook) dinner when I ______ (arrive).", "answer": "had already cooked, arrived", "explanation": "уже приготовил до моего прихода → Past Perfect + Past Simple"},
-          {"question": "We ______ (have) a meeting at 10 am yesterday.", "answer": "were having", "explanation": "конкретный момент в прошлом (at 10 am) — Past Continuous"},
-          {"question": "I ______ (not / like) the film because I ______ (see) it before.", "answer": "didn't like, had seen", "explanation": "не понравился, потому что уже видел → Past Simple + Past Perfect (сначала видел, потом не понравилось)"},
-          {"question": "She ______ (wear) a beautiful dress at the party.", "answer": "was wearing", "explanation": "описание в прошлом (в процессе) — Past Continuous (можно и Simple, но здесь состояние в процессе)"}
-        ]
-      },
-      {
-        "type": "complex",
-        "text": "4. Translate the sentences into English.",
-        "subtasks": [
-          {"question": "Она закончила проект до дедлайна.", "answer": "She had finished her project before the deadline.", "explanation": ""},
-          {"question": "Я смотрел телевизор, когда друг позвонил мне.", "answer": "I was watching TV when my friend called me.", "explanation": ""},
-          {"question": "Они ходили в кино прошлым вечером.", "answer": "They went to the cinema last night.", "explanation": ""},
-          {"question": "Мы никогда не видели такого красивого заката до того дня.", "answer": "We had never seen such a beautiful sunset before that day.", "explanation": ""},
-          {"question": "Он вёл машину, когда у него спустило колесо.", "answer": "He was driving when he got a flat tyre.", "explanation": ""},
-          {"question": "Она жила в Нью-Йорке в 2015 году.", "answer": "She lived in New York in 2015.", "explanation": ""},
-          {"question": "К тому времени, как мы прибыли, вечеринка уже началась.", "answer": "By the time we arrived, the party had already started.", "explanation": ""},
-          {"question": "Шёл сильный дождь, когда мы вышли из офиса.", "answer": "It was raining heavily when we left the office.", "explanation": ""},
-          {"question": "Я встретил свою жену в 2008 году.", "answer": "I met my wife in 2008.", "explanation": ""},
-          {"question": "Он ничего не ел перед вечеринкой, потому что нервничал.", "answer": "He hadn't eaten anything before the party because he was nervous.", "explanation": ""}
-        ]
-      }
-    ],
-    # ==================== ВАРИАНТ 3 ====================
-    [
-      {
-        "type": "complex",
-        "text": "1. Choose the correct past tense (Simple, Continuous, or Perfect).",
-        "subtasks": [
-          {"question": "I ______ (read) this book before I saw the film.", "answer": "had read", "explanation": "прочитал до просмотра фильма → Past Perfect"},
-          {"question": "She ______ (cook) dinner when the fire alarm went off.", "answer": "was cooking", "explanation": "процесс, прерванный сигналом → Past Continuous"},
-          {"question": "They ______ (visit) the museum last Tuesday.", "answer": "visited", "explanation": "завершённое действие с указанием дня → Past Simple"},
-          {"question": "He ______ (never / try) sushi before he went to Japan.", "answer": "had never tried", "explanation": "никогда не пробовал до поездки → Past Perfect"},
-          {"question": "We ______ (run) in the park when it started to rain.", "answer": "were running", "explanation": "процесс, прерванный дождём → Past Continuous"},
-          {"question": "She ______ (study) law at university in 2012.", "answer": "studied", "explanation": "завершённое действие с указанием года → Past Simple"},
-          {"question": "By the time he arrived, the meeting ______ (already / finish).", "answer": "had already finished", "explanation": "встреча уже закончилась до его прихода → Past Perfect"},
-          {"question": "The children ______ (play) in the garden when their mother called them.", "answer": "were playing", "explanation": "фон (играли) + прерывание → Past Continuous"},
-          {"question": "I ______ (buy) this jacket last winter.", "answer": "bought", "explanation": "завершённое действие с указанием времени → Past Simple"},
-          {"question": "We ______ (not / meet) before that party.", "answer": "hadn't met", "explanation": "не встречались до вечеринки → Past Perfect"}
-        ]
-      },
-      {
-        "type": "complex",
-        "text": "2. Correct the mistakes (if any).",
-        "subtasks": [
-          {"question": "I was finishing my project at 6 pm.", "answer": "I finished my project at 6 pm.", "explanation": "конкретное время завершения → Past Simple, не Continuous"},
-          {"question": "When I arrived, she already ate.", "answer": "When I arrived, she had already eaten.", "explanation": "она поела до моего прихода → Past Perfect"},
-          {"question": "While I drove, I listened to music.", "answer": "While I was driving, I was listening to music.", "explanation": "два параллельных процесса в прошлом → Past Continuous + Past Continuous (или While I was driving, I listened to music — можно и так, но лучше два Continuous)"},
-          {"question": "They have seen him two days ago.", "answer": "They saw him two days ago.", "explanation": "two days ago — конкретное прошлое → Past Simple"},
-          {"question": "He was believing her story.", "answer": "He believed her story.", "explanation": "believe — состояние, не Continuous"},
-          {"question": "I was reading when he called.", "answer": "I was reading when he called.", "explanation": "верно"},
-          {"question": "She had finished her work before she went to bed.", "answer": "She had finished her work before she went to bed.", "explanation": "верно"},
-          {"question": "They were living in Rome for five years.", "answer": "They lived in Rome for five years.", "explanation": "for five years — завершённый период → Past Simple"},
-          {"question": "I had been to London before.", "answer": "I had been to London before.", "explanation": "верно (опыт до момента в прошлом)"},
-          {"question": "He was sleeping when I came.", "answer": "He was sleeping when I came.", "explanation": "верно"}
-        ]
-      },
-      {
-        "type": "complex",
-        "text": "3. Complete the sentences with the correct past tense (Simple, Continuous, or Perfect).",
-        "subtasks": [
-          {"question": "I ______ (wait) for the bus when I ______ (see) my old friend.", "answer": "was waiting, saw", "explanation": "фон (ждал) + прерывание (увидел) → Past Continuous + Past Simple"},
-          {"question": "By the time we ______ (get) to the station, the train ______ (already / leave).", "answer": "got, had already left", "explanation": "пришли позже, поезд уже ушёл → Past Simple + Past Perfect"},
-          {"question": "She ______ (live) in Berlin for two years before she ______ (move) to Munich.", "answer": "had lived, moved", "explanation": "сначала жила в Берлине, потом переехала → Past Perfect + Past Simple"},
-          {"question": "While he ______ (work) in the garden, he ______ (find) an old coin.", "answer": "was working, found", "explanation": "фон (работал) + действие (нашёл) → Past Continuous + Past Simple"},
-          {"question": "I ______ (never / hear) that song before the concert.", "answer": "had never heard", "explanation": "никогда не слышал до концерта → Past Perfect"},
-          {"question": "When I ______ (open) the door, the cat ______ (sit) on the sofa.", "answer": "opened, was sitting", "explanation": "открыл (мгновенное) + фон (сидела) → Past Simple + Past Continuous"},
-          {"question": "He ______ (already / finish) his breakfast when I ______ (wake) up.", "answer": "had already finished, woke", "explanation": "уже позавтракал до моего пробуждения → Past Perfect + Past Simple"},
-          {"question": "We ______ (have) a party at 8 pm yesterday.", "answer": "were having", "explanation": "конкретный момент в прошлом (at 8 pm) — Past Continuous"},
-          {"question": "I ______ (not / like) the hotel because it ______ (be) very noisy.", "answer": "didn't like, was", "explanation": "оба — состояние в прошлом → Past Simple + Past Simple"},
-          {"question": "They ______ (build) a new school in our town in 2018.", "answer": "built", "explanation": "завершённое действие с указанием года → Past Simple"}
-        ]
-      },
-      {
-        "type": "complex",
-        "text": "4. Translate the sentences into English.",
-        "subtasks": [
-          {"question": "Я прочитал эту книгу до того, как увидел фильм.", "answer": "I had read this book before I saw the film.", "explanation": ""},
-          {"question": "Она готовила ужин, когда сработала пожарная сигнализация.", "answer": "She was cooking dinner when the fire alarm went off.", "explanation": ""},
-          {"question": "Они посетили музей во вторник.", "answer": "They visited the museum last Tuesday.", "explanation": ""},
-          {"question": "Он никогда не пробовал суши до поездки в Японию.", "answer": "He had never tried sushi before he went to Japan.", "explanation": ""},
-          {"question": "Мы бегали в парке, когда начался дождь.", "answer": "We were running in the park when it started to rain.", "explanation": ""},
-          {"question": "Она изучала право в университете в 2012 году.", "answer": "She studied law at university in 2012.", "explanation": ""},
-          {"question": "К тому времени, как он пришёл, встреча уже закончилась.", "answer": "By the time he arrived, the meeting had already finished.", "explanation": ""},
-          {"question": "Дети играли в саду, когда мама позвала их.", "answer": "The children were playing in the garden when their mother called them.", "explanation": ""},
-          {"question": "Я купил эту куртку прошлой зимой.", "answer": "I bought this jacket last winter.", "explanation": ""},
-          {"question": "Мы не встречались до той вечеринки.", "answer": "We hadn't met before that party.", "explanation": ""}
-        ]
-      }
-    ],
-    # ==================== ВАРИАНТ 4 ====================
-    [
-      {
-        "type": "complex",
-        "text": "1. Choose the correct past tense (Simple, Continuous, or Perfect).",
-        "subtasks": [
-          {"question": "She ______ (finish) her homework before dinner.", "answer": "had finished", "explanation": "завершила до ужина → Past Perfect"},
-          {"question": "I ______ (read) a magazine while I was waiting for the bus.", "answer": "was reading", "explanation": "действие в процессе в прошлом (в ожидании) → Past Continuous"},
-          {"question": "They ______ (go) to the beach last summer.", "answer": "went", "explanation": "завершённое действие с указанием времени → Past Simple"},
-          {"question": "We ______ (never / visit) that museum before last year.", "answer": "had never visited", "explanation": "никогда не посещали до прошлого года → Past Perfect"},
-          {"question": "He ______ (walk) home when he saw the accident.", "answer": "was walking", "explanation": "процесс, прерванный увиденным → Past Continuous"},
-          {"question": "She ______ (work) in a bank in 2010.", "answer": "worked", "explanation": "завершённое действие с указанием года → Past Simple"},
-          {"question": "By the time I woke up, he ______ (already / leave).", "answer": "had already left", "explanation": "уже ушёл до моего пробуждения → Past Perfect"},
-          {"question": "The birds ______ (sing) when I opened the window.", "answer": "were singing", "explanation": "фон в прошлом (пели) → Past Continuous"},
-          {"question": "I ______ (meet) my best friend in 2005.", "answer": "met", "explanation": "завершённое действие с указанием года → Past Simple"},
-          {"question": "He ______ (not / study) English before he went to the UK.", "answer": "hadn't studied", "explanation": "не учил до поездки → Past Perfect"}
-        ]
-      },
-      {
-        "type": "complex",
-        "text": "2. Correct the mistakes (if any).",
-        "subtasks": [
-          {"question": "I was finishing my essay at 5 pm.", "answer": "I finished my essay at 5 pm.", "explanation": "конкретное время завершения → Past Simple"},
-          {"question": "When I arrived, she already left.", "answer": "When I arrived, she had already left.", "explanation": "она ушла до моего прихода → Past Perfect"},
-          {"question": "While I walked, I saw an accident.", "answer": "While I was walking, I saw an accident.", "explanation": "фон (шёл) + действие (увидел) → Past Continuous + Past Simple"},
-          {"question": "They have finished the project yesterday.", "answer": "They finished the project yesterday.", "explanation": "yesterday — Past Simple"},
-          {"question": "He was wanting to go home.", "answer": "He wanted to go home.", "explanation": "want — состояние, не Continuous"},
-          {"question": "I was sleeping when the phone rang.", "answer": "I was sleeping when the phone rang.", "explanation": "верно"},
-          {"question": "She had cooked dinner before we arrived.", "answer": "She had cooked dinner before we arrived.", "explanation": "верно"},
-          {"question": "They were living in France for a year.", "answer": "They lived in France for a year.", "explanation": "for a year — завершённый период → Past Simple"},
-          {"question": "I had seen the film before.", "answer": "I had seen the film before.", "explanation": "верно (опыт до момента в прошлом)"},
-          {"question": "He was studying when the light went out.", "answer": "He was studying when the light went out.", "explanation": "верно"}
-        ]
-      },
-      {
-        "type": "complex",
-        "text": "3. Complete the sentences with the correct past tense (Simple, Continuous, or Perfect).",
-        "subtasks": [
-          {"question": "I ______ (try) to call you when you ______ (call) me.", "answer": "was trying, called", "explanation": "фон (пытался) + действие (позвонил) → Past Continuous + Past Simple"},
-          {"question": "By the time we ______ (reach) the cinema, the film ______ (already / begin).", "answer": "reached, had already begun", "explanation": "пришли позже, фильм уже начался → Past Simple + Past Perfect"},
-          {"question": "She ______ (learn) Spanish for three years before she ______ (go) to Spain.", "answer": "had learnt, went", "explanation": "учила до поездки → Past Perfect + Past Simple"},
-          {"question": "While they ______ (dance), the music suddenly ______ (stop).", "answer": "were dancing, stopped", "explanation": "фон (танцевали) + действие (музыка остановилась) → Past Continuous + Past Simple"},
-          {"question": "I ______ (never / eat) such delicious food before I went to Italy.", "answer": "had never eaten", "explanation": "никогда не ел до поездки → Past Perfect"},
-          {"question": "When I ______ (look) out of the window, it ______ (snow).", "answer": "looked, was snowing", "explanation": "посмотрел (мгновенное) + фон (шёл снег) → Past Simple + Past Continuous"},
-          {"question": "He ______ (already / buy) the tickets when I ______ (tell) him about the concert.", "answer": "had already bought, told", "explanation": "уже купил до того, как я сказал → Past Perfect + Past Simple"},
-          {"question": "They ______ (travel) around Europe last year.", "answer": "traveled", "explanation": "завершённое действие с указанием времени → Past Simple"},
-          {"question": "I ______ (not / sleep) well because I ______ (drink) too much coffee.", "answer": "didn't sleep, had drunk", "explanation": "не спал, потому что выпил кофе (сначала выпил, потом не спал) → Past Simple + Past Perfect"},
-          {"question": "She ______ (work) in a hospital at that time.", "answer": "was working", "explanation": "действие в процессе в конкретный момент прошлого → Past Continuous"}
-        ]
-      },
-      {
-        "type": "complex",
-        "text": "4. Translate the sentences into English.",
-        "subtasks": [
-          {"question": "Она сделала домашнее задание до ужина.", "answer": "She had finished her homework before dinner.", "explanation": ""},
-          {"question": "Я читал журнал, пока ждал автобус.", "answer": "I was reading a magazine while I was waiting for the bus.", "explanation": ""},
-          {"question": "Они ездили на пляж прошлым летом.", "answer": "They went to the beach last summer.", "explanation": ""},
-          {"question": "Мы никогда не посещали тот музей до прошлого года.", "answer": "We had never visited that museum before last year.", "explanation": ""},
-          {"question": "Он шёл домой, когда увидел аварию.", "answer": "He was walking home when he saw the accident.", "explanation": ""},
-          {"question": "Она работала в банке в 2010 году.", "answer": "She worked in a bank in 2010.", "explanation": ""},
-          {"question": "К тому времени, как я проснулся, он уже ушёл.", "answer": "By the time I woke up, he had already left.", "explanation": ""},
-          {"question": "Птицы пели, когда я открыл окно.", "answer": "The birds were singing when I opened the window.", "explanation": ""},
-          {"question": "Я встретил лучшего друга в 2005 году.", "answer": "I met my best friend in 2005.", "explanation": ""},
-          {"question": "Он не учил английский до поездки в Великобританию.", "answer": "He hadn't studied English before he went to the UK.", "explanation": ""}
-        ]
-      }
-    ],
-    # ==================== ВАРИАНТ 5 ====================
-    [
-      {
-        "type": "complex",
-        "text": "1. Choose the correct past tense (Simple, Continuous, or Perfect).",
-        "subtasks": [
-          {"question": "I ______ (read) the whole book in one day.", "answer": "read", "explanation": "завершённое действие в прошлом без указания на предшествование → Past Simple (можно и Past Perfect, но нет другого действия)"},
-          {"question": "She ______ (write) a letter when I entered the room.", "answer": "was writing", "explanation": "процесс в прошлом, прерванный входом → Past Continuous"},
-          {"question": "They ______ (arrive) at the station at 6 pm.", "answer": "arrived", "explanation": "конкретное время в прошлом → Past Simple"},
-          {"question": "We ______ (already / eat) dinner when they came.", "answer": "had already eaten", "explanation": "уже поели до их прихода → Past Perfect"},
-          {"question": "He ______ (play) the piano when I heard him.", "answer": "was playing", "explanation": "процесс в прошлом (играл) → Past Continuous"},
-          {"question": "She ______ (visit) Paris in 2018.", "answer": "visited", "explanation": "завершённое действие с указанием года → Past Simple"},
-          {"question": "By the time he arrived, the train ______ (leave).", "answer": "had left", "explanation": "поезд ушёл до его прихода → Past Perfect"},
-          {"question": "It ______ (rain) when we went out.", "answer": "was raining", "explanation": "фоновое действие в прошлом (шёл дождь) → Past Continuous"},
-          {"question": "I ______ (see) that film three times.", "answer": "saw", "explanation": "завершённое действие в прошлом (опыт) — Past Simple (если без указания на предшествование)"},
-          {"question": "He ______ (not / eat) anything before the meal because he wasn't hungry.", "answer": "hadn't eaten", "explanation": "не ел до еды → Past Perfect"}
-        ]
-      },
-      {
-        "type": "complex",
-        "text": "2. Correct the mistakes (if any).",
-        "subtasks": [
-          {"question": "I was reading the whole book in one day.", "answer": "I read the whole book in one day.", "explanation": "завершённое действие, не процесс → Past Simple"},
-          {"question": "When I arrived, she left.", "answer": "When I arrived, she had left.", "explanation": "она ушла до моего прихода → Past Perfect"},
-          {"question": "While I walked, the sun set.", "answer": "While I was walking, the sun was setting.", "explanation": "два параллельных процесса → Past Continuous + Past Continuous (или While I walked, the sun set — но лучше Continuous)"},
-          {"question": "They have seen him yesterday.", "answer": "They saw him yesterday.", "explanation": "yesterday — Past Simple"},
-          {"question": "He was knowing her for a long time.", "answer": "He knew her for a long time.", "explanation": "know — состояние, не Continuous, но с for a long time — Past Simple (или Past Perfect, если до другого действия)"},
-          {"question": "I was reading when the lights went out.", "answer": "I was reading when the lights went out.", "explanation": "верно"},
-          {"question": "She had finished work and went home.", "answer": "She finished work and went home.", "explanation": "последовательность действий → Past Simple + Past Simple (не нужно Past Perfect, так как порядок ясен)"},
-          {"question": "They were living in Spain for a year.", "answer": "They lived in Spain for a year.", "explanation": "for a year — завершённый период → Past Simple"},
-          {"question": "I had been to London before.", "answer": "I had been to London before.", "explanation": "верно (опыт до момента в прошлом)"},
-          {"question": "He was sleeping when the phone rang.", "answer": "He was sleeping when the phone rang.", "explanation": "верно"}
-        ]
-      },
-      {
-        "type": "complex",
-        "text": "3. Complete the sentences with the correct past tense (Simple, Continuous, or Perfect).",
-        "subtasks": [
-          {"question": "I ______ (talk) on the phone when the doorbell ______ (ring).", "answer": "was talking, rang", "explanation": "фон (говорил) + прерывание (звонок) → Past Continuous + Past Simple"},
-          {"question": "By the time I ______ (find) the keys, the taxi ______ (already / leave).", "answer": "found, had already left", "explanation": "нашёл позже, такси уже уехало → Past Simple + Past Perfect"},
-          {"question": "She ______ (work) as a waitress before she ______ (become) a teacher.", "answer": "had worked, became", "explanation": "сначала работала официанткой, потом стала учителем → Past Perfect + Past Simple"},
-          {"question": "While I ______ (do) the washing-up, I ______ (break) a glass.", "answer": "was doing, broke", "explanation": "фон (мыл посуду) + действие (разбил) → Past Continuous + Past Simple"},
-          {"question": "I ______ (never / try) skiing before I ______ (go) to Switzerland.", "answer": "had never tried, went", "explanation": "никогда не пробовал до поездки → Past Perfect + Past Simple"},
-          {"question": "When I ______ (look) up, everyone ______ (stare) at me.", "answer": "looked, was staring", "explanation": "посмотрел (мгновенное) + фон (смотрели) → Past Simple + Past Continuous (или were staring)"},
-          {"question": "He ______ (already / see) the film, so he ______ (not / want) to watch it again.", "answer": "had already seen, didn't want", "explanation": "уже видел, поэтому не хотел → Past Perfect + Past Simple"},
-          {"question": "They ______ (play) tennis at 4 pm yesterday.", "answer": "were playing", "explanation": "конкретный момент в прошлом (at 4 pm) — Past Continuous"},
-          {"question": "I ______ (not / enjoy) the party because I ______ (know) nobody there.", "answer": "didn't enjoy, knew", "explanation": "оба — состояние в прошлом → Past Simple + Past Simple"},
-          {"question": "She ______ (drive) to work when she ______ (hear) the news.", "answer": "was driving, heard", "explanation": "фон (ехала) + прерывание (услышала) → Past Continuous + Past Simple"}
-        ]
-      },
-      {
-        "type": "complex",
-        "text": "4. Translate the sentences into English.",
-        "subtasks": [
-          {"question": "Я прочитал всю книгу за один день.", "answer": "I read the whole book in one day.", "explanation": ""},
-          {"question": "Она писала письмо, когда я вошёл в комнату.", "answer": "She was writing a letter when I entered the room.", "explanation": ""},
-          {"question": "Они прибыли на станцию в 6 вечера.", "answer": "They arrived at the station at 6 pm.", "explanation": ""},
-          {"question": "Мы уже поужинали, когда они пришли.", "answer": "We had already eaten dinner when they came.", "explanation": ""},
-          {"question": "Он играл на пианино, когда я услышал его.", "answer": "He was playing the piano when I heard him.", "explanation": ""},
-          {"question": "Она посетила Париж в 2018 году.", "answer": "She visited Paris in 2018.", "explanation": ""},
-          {"question": "К тому времени, как он пришёл, поезд уже ушёл.", "answer": "By the time he arrived, the train had left.", "explanation": ""},
-          {"question": "Шёл дождь, когда мы вышли.", "answer": "It was raining when we went out.", "explanation": ""},
-          {"question": "Я видел этот фильм три раза.", "answer": "I saw that film three times.", "explanation": ""},
-          {"question": "Он ничего не ел перед едой, потому что не был голоден.", "answer": "He hadn't eaten anything before the meal because he wasn't hungry.", "explanation": ""}
-        ]
-      }
-    ],
-    # ==================== ВАРИАНТ 6 ====================
-    [
-      {
-        "type": "complex",
-        "text": "1. Choose the correct past tense (Simple, Continuous, or Perfect).",
-        "subtasks": [
-          {"question": "She ______ (finish) her work by 6 pm.", "answer": "had finished", "explanation": "закончила к 6 вечера (до указанного времени) → Past Perfect"},
-          {"question": "I ______ (watch) a documentary when my friend arrived.", "answer": "was watching", "explanation": "процесс в прошлом, прерванный приходом → Past Continuous"},
-          {"question": "They ______ (go) to the mountains last winter.", "answer": "went", "explanation": "завершённое действие с указанием времени → Past Simple"},
-          {"question": "We ______ (never / see) such a big whale before that trip.", "answer": "had never seen", "explanation": "никогда не видели до той поездки → Past Perfect"},
-          {"question": "He ______ (drive) too fast when he crashed the car.", "answer": "was driving", "explanation": "процесс (ехал) + результат (разбил) → Past Continuous + Past Simple (в задании только время для первого действия)"},
-          {"question": "She ______ (study) medicine at university in 2015.", "answer": "studied", "explanation": "завершённое действие с указанием года → Past Simple"},
-          {"question": "By the time we arrived, the concert ______ (already / finish).", "answer": "had already finished", "explanation": "концерт уже закончился до нашего прихода → Past Perfect"},
-          {"question": "It ______ (snow) when we left the house.", "answer": "was snowing", "explanation": "фон в прошлом (шёл снег) → Past Continuous"},
-          {"question": "I ______ (buy) this car in 2016.", "answer": "bought", "explanation": "завершённое действие с указанием года → Past Simple"},
-          {"question": "He ______ (not / meet) her before the conference.", "answer": "hadn't met", "explanation": "не встречал до конференции → Past Perfect"}
-        ]
-      },
-      {
-        "type": "complex",
-        "text": "2. Correct the mistakes (if any).",
-        "subtasks": [
-          {"question": "I was finishing my work by 6 pm.", "answer": "I had finished my work by 6 pm.", "explanation": "by 6 pm — завершённость к моменту → Past Perfect, не Continuous"},
-          {"question": "When I arrived, she already left.", "answer": "When I arrived, she had already left.", "explanation": "она ушла до моего прихода → Past Perfect"},
-          {"question": "While I was walking, I saw a deer.", "answer": "While I was walking, I saw a deer.", "explanation": "верно"},
-          {"question": "They have seen him last month.", "answer": "They saw him last month.", "explanation": "last month — Past Simple"},
-          {"question": "He was knowing the answer.", "answer": "He knew the answer.", "explanation": "know — состояние"},
-          {"question": "She was studying when I called her.", "answer": "She was studying when I called her.", "explanation": "верно"},
-          {"question": "We had finished dinner and went to bed.", "answer": "We finished dinner and went to bed.", "explanation": "последовательность действий → Past Simple + Past Simple (Past Perfect излишен, если порядок ясен)"},
-          {"question": "They were living in London for two years.", "answer": "They lived in London for two years.", "explanation": "for two years — завершённый период → Past Simple"},
-          {"question": "I had never been to Italy before.", "answer": "I had never been to Italy before.", "explanation": "верно"},
-          {"question": "He was reading when the lights went out.", "answer": "He was reading when the lights went out.", "explanation": "верно"}
-        ]
-      },
-      {
-        "type": "complex",
-        "text": "3. Complete the sentences with the correct past tense (Simple, Continuous, or Perfect).",
-        "subtasks": [
-          {"question": "I ______ (sleep) when the alarm clock ______ (ring).", "answer": "was sleeping, rang", "explanation": "фон (спал) + прерывание (звонок) → Past Continuous + Past Simple"},
-          {"question": "By the time we ______ (reach) the station, the train ______ (already / depart).", "answer": "reached, had already departed", "explanation": "пришли позже, поезд уже отправился → Past Simple + Past Perfect"},
-          {"question": "She ______ (live) in Brazil for five years before she ______ (move) to Portugal.", "answer": "had lived, moved", "explanation": "сначала жила, потом переехала → Past Perfect + Past Simple"},
-          {"question": "While he ______ (read) the newspaper, he ______ (fall) asleep.", "answer": "was reading, fell", "explanation": "фон (читал) + действие (заснул) → Past Continuous + Past Simple"},
-          {"question": "I ______ (not / eat) anything before the meal because I ______ (not / be) hungry.", "answer": "hadn't eaten, wasn't", "explanation": "не ел до еды, потому что не был голоден → Past Perfect + Past Simple"},
-          {"question": "When I ______ (enter) the room, everybody ______ (dance).", "answer": "entered, was dancing", "explanation": "вошёл (мгновенное) + фон (танцевали) → Past Simple + Past Continuous (или were dancing)"},
-          {"question": "He ______ (already / buy) the present when I ______ (tell) him about the sale.", "answer": "had already bought, told", "explanation": "уже купил до того, как я сказал → Past Perfect + Past Simple"},
-          {"question": "We ______ (have) dinner at 7 pm yesterday.", "answer": "were having", "explanation": "конкретный момент в прошлом (at 7 pm) — Past Continuous"},
-          {"question": "I ______ (not / like) the restaurant because the service ______ (be) terrible.", "answer": "didn't like, was", "explanation": "состояния в прошлом → Past Simple + Past Simple"},
-          {"question": "They ______ (play) football when it started to rain.", "answer": "were playing", "explanation": "фон (играли) + прерывание (дождь) → Past Continuous"}
-        ]
-      },
-      {
-        "type": "complex",
-        "text": "4. Translate the sentences into English.",
-        "subtasks": [
-          {"question": "Она закончила работу к 6 вечера.", "answer": "She had finished her work by 6 pm.", "explanation": ""},
-          {"question": "Я смотрел документальный фильм, когда пришёл друг.", "answer": "I was watching a documentary when my friend arrived.", "explanation": ""},
-          {"question": "Они ездили в горы прошлой зимой.", "answer": "They went to the mountains last winter.", "explanation": ""},
-          {"question": "Мы никогда не видели такого большого кита до той поездки.", "answer": "We had never seen such a big whale before that trip.", "explanation": ""},
-          {"question": "Он вёл машину слишком быстро, когда разбил её.", "answer": "He was driving too fast when he crashed the car.", "explanation": ""},
-          {"question": "Она изучала медицину в университете в 2015 году.", "answer": "She studied medicine at university in 2015.", "explanation": ""},
-          {"question": "К тому времени, как мы приехали, концерт уже закончился.", "answer": "By the time we arrived, the concert had already finished.", "explanation": ""},
-          {"question": "Шёл снег, когда мы вышли из дома.", "answer": "It was snowing when we left the house.", "explanation": ""},
-          {"question": "Я купил эту машину в 2016 году.", "answer": "I bought this car in 2016.", "explanation": ""},
-          {"question": "Он не встречал её до конференции.", "answer": "He hadn't met her before the conference.", "explanation": ""}
-        ]
-      }
-    ],
-    # ==================== ВАРИАНТ 7 ====================
-    [
-      {
-        "type": "complex",
-        "text": "1. Choose the correct past tense (Simple, Continuous, or Perfect).",
-        "subtasks": [
-          {"question": "I ______ (read) the newspaper when the news came.", "answer": "was reading", "explanation": "процесс в прошлом, прерванный новостью → Past Continuous"},
-          {"question": "She ______ (finish) her project before the deadline.", "answer": "had finished", "explanation": "закончила до дедлайна → Past Perfect"},
-          {"question": "They ______ (visit) their relatives last Christmas.", "answer": "visited", "explanation": "завершённое действие с указанием времени → Past Simple"},
-          {"question": "He ______ (never / be) to Asia before that trip.", "answer": "had never been", "explanation": "никогда не был до той поездки → Past Perfect"},
-          {"question": "We ______ (run) in the park when we saw a snake.", "answer": "were running", "explanation": "фон (бежали) + прерывание (увидели) → Past Continuous"},
-          {"question": "She ______ (work) as a nurse in 2012.", "answer": "worked", "explanation": "завершённое действие с указанием года → Past Simple"},
-          {"question": "By the time he returned, they ______ (already / leave).", "answer": "had already left", "explanation": "они уже ушли до его возвращения → Past Perfect"},
-          {"question": "The sun ______ (shine) when we arrived at the beach.", "answer": "was shining", "explanation": "фон в прошлом (светило солнце) → Past Continuous"},
-          {"question": "I ______ (meet) my wife at a conference in 2010.", "answer": "met", "explanation": "завершённое действие с указанием года → Past Simple"},
-          {"question": "We ______ (not / see) that film before, so we decided to watch it.", "answer": "hadn't seen", "explanation": "не видели до того момента → Past Perfect"}
-        ]
-      },
-      {
-        "type": "complex",
-        "text": "2. Correct the mistakes (if any).",
-        "subtasks": [
-          {"question": "I was reading the newspaper when the news came.", "answer": "I was reading the newspaper when the news came.", "explanation": "верно"},
-          {"question": "When I arrived, she already ate.", "answer": "When I arrived, she had already eaten.", "explanation": "она поела до моего прихода → Past Perfect"},
-          {"question": "While I was walking, I found a wallet.", "answer": "While I was walking, I found a wallet.", "explanation": "верно"},
-          {"question": "They have visited us last year.", "answer": "They visited us last year.", "explanation": "last year — Past Simple"},
-          {"question": "He was believing her.", "answer": "He believed her.", "explanation": "believe — состояние"},
-          {"question": "She was reading when I called her.", "answer": "She was reading when I called her.", "explanation": "верно"},
-          {"question": "We had finished work and went home.", "answer": "We finished work and went home.", "explanation": "последовательность действий → Past Simple + Past Simple"},
-          {"question": "They were living in Berlin for a year.", "answer": "They lived in Berlin for a year.", "explanation": "for a year — завершённый период → Past Simple"},
-          {"question": "I had been to Paris before.", "answer": "I had been to Paris before.", "explanation": "верно"},
-          {"question": "He was sleeping when the fire started.", "answer": "He was sleeping when the fire started.", "explanation": "верно"}
-        ]
-      },
-      {
-        "type": "complex",
-        "text": "3. Complete the sentences with the correct past tense (Simple, Continuous, or Perfect).",
-        "subtasks": [
-          {"question": "I ______ (wait) for the bus when I ______ (realise) I had forgotten my phone.", "answer": "was waiting, realised", "explanation": "фон (ждал) + прерывание (осознал) → Past Continuous + Past Simple"},
-          {"question": "By the time I ______ (finish) my homework, my mum ______ (already / cook) dinner.", "answer": "finished, had already cooked", "explanation": "закончил позже, мама уже приготовила → Past Simple + Past Perfect"},
-          {"question": "She ______ (learn) to drive before she ______ (buy) a car.", "answer": "had learnt, bought", "explanation": "научилась водить до покупки машины → Past Perfect + Past Simple"},
-          {"question": "While we ______ (watch) TV, the electricity ______ (go) out.", "answer": "were watching, went", "explanation": "фон (смотрели) + прерывание (свет выключился) → Past Continuous + Past Simple"},
-          {"question": "I ______ (never / see) such a strange animal before that day.", "answer": "had never seen", "explanation": "никогда не видел до того дня → Past Perfect"},
-          {"question": "When I ______ (look) at the clock, I ______ (realise) I was late.", "answer": "looked, realised", "explanation": "посмотрел и понял — оба действия в прошлом, последовательность → Past Simple + Past Simple"},
-          {"question": "He ______ (already / leave) the office when his boss ______ (call).", "answer": "had already left, called", "explanation": "уже ушёл до звонка босса → Past Perfect + Past Simple"},
-          {"question": "We ______ (eat) dinner at 8 pm last night.", "answer": "were eating", "explanation": "конкретный момент в прошлом (at 8 pm) — Past Continuous"},
-          {"question": "I ______ (not / recognise) him because he ______ (change) a lot.", "answer": "didn't recognise, had changed", "explanation": "не узнал, потому что он изменился (сначала изменился, потом не узнал) → Past Simple + Past Perfect"},
-          {"question": "They ______ (play) chess when I came in.", "answer": "were playing", "explanation": "фон (играли) + вхождение → Past Continuous"}
-        ]
-      },
-      {
-        "type": "complex",
-        "text": "4. Translate the sentences into English.",
-        "subtasks": [
-          {"question": "Я читал газету, когда пришли новости.", "answer": "I was reading the newspaper when the news came.", "explanation": ""},
-          {"question": "Она закончила проект до дедлайна.", "answer": "She had finished her project before the deadline.", "explanation": ""},
-          {"question": "Они навещали родственников прошлым Рождеством.", "answer": "They visited their relatives last Christmas.", "explanation": ""},
-          {"question": "Он никогда не был в Азии до той поездки.", "answer": "He had never been to Asia before that trip.", "explanation": ""},
-          {"question": "Мы бежали в парке, когда увидели змею.", "answer": "We were running in the park when we saw a snake.", "explanation": ""},
-          {"question": "Она работала медсестрой в 2012 году.", "answer": "She worked as a nurse in 2012.", "explanation": ""},
-          {"question": "К тому времени, как он вернулся, они уже ушли.", "answer": "By the time he returned, they had already left.", "explanation": ""},
-          {"question": "Солнце светило, когда мы приехали на пляж.", "answer": "The sun was shining when we arrived at the beach.", "explanation": ""},
-          {"question": "Я встретил жену на конференции в 2010 году.", "answer": "I met my wife at a conference in 2010.", "explanation": ""},
-          {"question": "Мы не видели этот фильм раньше, поэтому решили посмотреть его.", "answer": "We hadn't seen that film before, so we decided to watch it.", "explanation": ""}
-        ]
-      }
-    ],
-    # ==================== ВАРИАНТ 8 ====================
-    [
-      {
-        "type": "complex",
-        "text": "1. Choose the correct past tense (Simple, Continuous, or Perfect).",
-        "subtasks": [
-          {"question": "I ______ (finish) my dinner when the phone rang.", "answer": "had just finished", "explanation": "только что закончил до звонка → Past Perfect (с just)"},
-          {"question": "She ______ (study) in the library when I called her.", "answer": "was studying", "explanation": "процесс в прошлом → Past Continuous"},
-          {"question": "They ______ (go) to the concert last Saturday.", "answer": "went", "explanation": "завершённое действие с указанием дня → Past Simple"},
-          {"question": "We ______ (never / try) Thai food before we went to Thailand.", "answer": "had never tried", "explanation": "никогда не пробовали до поездки → Past Perfect"},
-          {"question": "He ______ (drive) home when he got stuck in traffic.", "answer": "was driving", "explanation": "процесс (ехал) + прерывание (застрял) → Past Continuous + Past Simple (в задании только время для первого)"},
-          {"question": "She ______ (live) in Rome in 2014.", "answer": "lived", "explanation": "завершённое действие с указанием года → Past Simple"},
-          {"question": "By the time we arrived, the show ______ (already / start).", "answer": "had already started", "explanation": "шоу уже началось до нашего прихода → Past Perfect"},
-          {"question": "It ______ (get) dark when we left the house.", "answer": "was getting", "explanation": "процесс в прошлом (темнело) → Past Continuous"},
-          {"question": "I ______ (meet) him at the station last week.", "answer": "met", "explanation": "завершённое действие с указанием времени → Past Simple"},
-          {"question": "He ______ (not / speak) English before he moved to the USA.", "answer": "hadn't spoken", "explanation": "не говорил до переезда → Past Perfect"}
-        ]
-      },
-      {
-        "type": "complex",
-        "text": "2. Correct the mistakes (if any).",
-        "subtasks": [
-          {"question": "I was finishing my dinner when the phone rang.", "answer": "I had just finished my dinner when the phone rang.", "explanation": "закончил до звонка → Past Perfect, не Continuous (если не процесс)"},
-          {"question": "When I arrived, she already ate.", "answer": "When I arrived, she had already eaten.", "explanation": "она поела до моего прихода → Past Perfect"},
-          {"question": "While I studied, I listened to music.", "answer": "While I was studying, I was listening to music.", "explanation": "два параллельных процесса → Past Continuous + Past Continuous"},
-          {"question": "They have seen him yesterday.", "answer": "They saw him yesterday.", "explanation": "yesterday — Past Simple"},
-          {"question": "He was wanting to go home.", "answer": "He wanted to go home.", "explanation": "want — состояние, не Continuous"},
-          {"question": "I was reading when the lights went out.", "answer": "I was reading when the lights went out.", "explanation": "верно"},
-          {"question": "We had finished dinner and went to bed.", "answer": "We finished dinner and went to bed.", "explanation": "последовательность → Past Simple + Past Simple (если не нужно подчёркивать предшествование)"},
-          {"question": "They were living in Paris for a year.", "answer": "They lived in Paris for a year.", "explanation": "for a year — завершённый период → Past Simple"},
-          {"question": "I had been to London before.", "answer": "I had been to London before.", "explanation": "верно"},
-          {"question": "He was sleeping when the thief entered.", "answer": "He was sleeping when the thief entered.", "explanation": "верно"}
-        ]
-      },
-      {
-        "type": "complex",
-        "text": "3. Complete the sentences with the correct past tense (Simple, Continuous, or Perfect).",
-        "subtasks": [
-          {"question": "I ______ (cook) dinner when I ______ (cut) my finger.", "answer": "was cooking, cut", "explanation": "фон (готовил) + прерывание (порезал) → Past Continuous + Past Simple"},
-          {"question": "By the time I ______ (finish) the report, the boss ______ (leave).", "answer": "finished, had left", "explanation": "закончил позже, босс уже ушёл → Past Simple + Past Perfect"},
-          {"question": "She ______ (work) in a shop before she ______ (become) a manager.", "answer": "had worked, became", "explanation": "сначала работала в магазине, потом стала менеджером → Past Perfect + Past Simple"},
-          {"question": "While he ______ (paint) the room, he ______ (fall) off the ladder.", "answer": "was painting, fell", "explanation": "фон (красил) + действие (упал) → Past Continuous + Past Simple"},
-          {"question": "I ______ (never / ride) a horse before I ______ (go) to the ranch.", "answer": "had never ridden, went", "explanation": "никогда не ездил до поездки на ранчо → Past Perfect + Past Simple"},
-          {"question": "When I ______ (open) the curtains, the sun ______ (shine).", "answer": "opened, was shining", "explanation": "открыл (мгновенное) + фон (солнце светило) → Past Simple + Past Continuous"},
-          {"question": "He ______ (already / eat) breakfast when I ______ (call) him.", "answer": "had already eaten, called", "explanation": "уже позавтракал до звонка → Past Perfect + Past Simple"},
-          {"question": "We ______ (dance) at 10 pm last night.", "answer": "were dancing", "explanation": "конкретный момент в прошлом (at 10 pm) — Past Continuous"},
-          {"question": "I ______ (not / enjoy) the film because it ______ (be) too long.", "answer": "didn't enjoy, was", "explanation": "состояния в прошлом → Past Simple + Past Simple"},
-          {"question": "They ______ (build) a new bridge in 2019.", "answer": "built", "explanation": "завершённое действие с указанием года → Past Simple"}
-        ]
-      },
-      {
-        "type": "complex",
-        "text": "4. Translate the sentences into English.",
-        "subtasks": [
-          {"question": "Я только что закончил ужин, когда зазвонил телефон.", "answer": "I had just finished dinner when the phone rang.", "explanation": ""},
-          {"question": "Она занималась в библиотеке, когда я позвонил ей.", "answer": "She was studying in the library when I called her.", "explanation": ""},
-          {"question": "Они ходили на концерт в прошлую субботу.", "answer": "They went to the concert last Saturday.", "explanation": ""},
-          {"question": "Мы никогда не пробовали тайскую еду до поездки в Таиланд.", "answer": "We had never tried Thai food before we went to Thailand.", "explanation": ""},
-          {"question": "Он ехал домой, когда попал в пробку.", "answer": "He was driving home when he got stuck in traffic.", "explanation": ""},
-          {"question": "Она жила в Риме в 2014 году.", "answer": "She lived in Rome in 2014.", "explanation": ""},
-          {"question": "К тому времени, как мы пришли, шоу уже началось.", "answer": "By the time we arrived, the show had already started.", "explanation": ""},
-          {"question": "Темнело, когда мы вышли из дома.", "answer": "It was getting dark when we left the house.", "explanation": ""},
-          {"question": "Я встретил его на вокзале на прошлой неделе.", "answer": "I met him at the station last week.", "explanation": ""},
-          {"question": "Он не говорил по-английски до переезда в США.", "answer": "He hadn't spoken English before he moved to the USA.", "explanation": ""}
-        ]
-      }
-    ],
-    # ==================== ВАРИАНТ 9 ====================
-    [
-      {
-        "type": "complex",
-        "text": "1. Choose the correct past tense (Simple, Continuous, or Perfect).",
-        "subtasks": [
-          {"question": "I ______ (read) the instructions before I started the machine.", "answer": "had read", "explanation": "прочитал до запуска → Past Perfect"},
-          {"question": "She ______ (sleep) when the earthquake happened.", "answer": "was sleeping", "explanation": "процесс (спала) + событие (землетрясение) → Past Continuous"},
-          {"question": "They ______ (move) to a new house last month.", "answer": "moved", "explanation": "завершённое действие с указанием времени → Past Simple"},
-          {"question": "We ______ (never / eat) lobster before our trip to Maine.", "answer": "had never eaten", "explanation": "никогда не ели до поездки → Past Perfect"},
-          {"question": "He ______ (walk) in the forest when he heard a strange sound.", "answer": "was walking", "explanation": "фон (шёл) + прерывание (услышал) → Past Continuous"},
-          {"question": "She ______ (teach) English at school in 2016.", "answer": "taught", "explanation": "завершённое действие с указанием года → Past Simple"},
-          {"question": "By the time he arrived, the meeting ______ (already / end).", "answer": "had already ended", "explanation": "встреча уже закончилась до его прихода → Past Perfect"},
-          {"question": "The children ______ (play) in the yard when it started to rain.", "answer": "were playing", "explanation": "фон (играли) + прерывание (дождь) → Past Continuous"},
-          {"question": "I ______ (buy) this dress in 2017.", "answer": "bought", "explanation": "завершённое действие с указанием года → Past Simple"},
-          {"question": "He ______ (not / hear) the news before we told him.", "answer": "hadn't heard", "explanation": "не слышал до того, как мы сказали → Past Perfect"}
-        ]
-      },
-      {
-        "type": "complex",
-        "text": "2. Correct the mistakes (if any).",
-        "subtasks": [
-          {"question": "I was reading the instructions before I started the machine.", "answer": "I had read the instructions before I started the machine.", "explanation": "прочитал до запуска → Past Perfect, не Continuous"},
-          {"question": "When I arrived, she already left.", "answer": "When I arrived, she had already left.", "explanation": "она ушла до моего прихода → Past Perfect"},
-          {"question": "While I walked, I listened to music.", "answer": "While I was walking, I was listening to music.", "explanation": "два параллельных процесса → Past Continuous + Past Continuous (или While I was walking, I listened to music — можно и так)"},
-          {"question": "They have seen him last month.", "answer": "They saw him last month.", "explanation": "last month — Past Simple"},
-          {"question": "He was knowing the answer.", "answer": "He knew the answer.", "explanation": "know — состояние"},
-          {"question": "I was sleeping when the earthquake happened.", "answer": "I was sleeping when the earthquake happened.", "explanation": "верно"},
-          {"question": "We had finished work and went home.", "answer": "We finished work and went home.", "explanation": "последовательность → Past Simple + Past Simple"},
-          {"question": "They were living in London for three years.", "answer": "They lived in London for three years.", "explanation": "for three years — завершённый период → Past Simple"},
-          {"question": "I had been to Italy before.", "answer": "I had been to Italy before.", "explanation": "верно"},
-          {"question": "He was studying when the power went out.", "answer": "He was studying when the power went out.", "explanation": "верно"}
-        ]
-      },
-      {
-        "type": "complex",
-        "text": "3. Complete the sentences with the correct past tense (Simple, Continuous, or Perfect).",
-        "subtasks": [
-          {"question": "I ______ (try) to call you when the phone ______ (die).", "answer": "was trying, died", "explanation": "фон (пытался) + прерывание (телефон разрядился) → Past Continuous + Past Simple"},
-          {"question": "By the time we ______ (get) home, my parents ______ (already / go) to bed.", "answer": "got, had already gone", "explanation": "пришли домой позже, родители уже легли → Past Simple + Past Perfect"},
-          {"question": "She ______ (study) French for two years before she ______ (visit) France.", "answer": "had studied, visited", "explanation": "учила до поездки → Past Perfect + Past Simple"},
-          {"question": "While they ______ (discuss) the plan, someone ______ (knock) on the door.", "answer": "were discussing, knocked", "explanation": "фон (обсуждали) + прерывание (постучали) → Past Continuous + Past Simple"},
-          {"question": "I ______ (never / meet) anyone famous before that day.", "answer": "had never met", "explanation": "никогда не встречал до того дня → Past Perfect"},
-          {"question": "When I ______ (turn) around, I ______ (see) a strange figure.", "answer": "turned, saw", "explanation": "последовательность действий → Past Simple + Past Simple"},
-          {"question": "He ______ (already / leave) when I ______ (arrive) at the office.", "answer": "had already left, arrived", "explanation": "уже ушёл до моего прибытия → Past Perfect + Past Simple"},
-          {"question": "We ______ (have) a picnic at 2 pm yesterday.", "answer": "were having", "explanation": "конкретный момент в прошлом (at 2 pm) — Past Continuous"},
-          {"question": "I ______ (not / buy) the car because I ______ (not / have) enough money.", "answer": "didn't buy, didn't have", "explanation": "оба состояния/действия в прошлом → Past Simple + Past Simple"},
-          {"question": "They ______ (play) tennis when the rain started.", "answer": "were playing", "explanation": "фон (играли) + прерывание (дождь) → Past Continuous"}
-        ]
-      },
-      {
-        "type": "complex",
-        "text": "4. Translate the sentences into English.",
-        "subtasks": [
-          {"question": "Я прочитал инструкцию до того, как запустил машину.", "answer": "I had read the instructions before I started the machine.", "explanation": ""},
-          {"question": "Она спала, когда произошло землетрясение.", "answer": "She was sleeping when the earthquake happened.", "explanation": ""},
-          {"question": "Они переехали в новый дом в прошлом месяце.", "answer": "They moved to a new house last month.", "explanation": ""},
-          {"question": "Мы никогда не ели омаров до поездки в Мэн.", "answer": "We had never eaten lobster before our trip to Maine.", "explanation": ""},
-          {"question": "Он шёл по лесу, когда услышал странный звук.", "answer": "He was walking in the forest when he heard a strange sound.", "explanation": ""},
-          {"question": "Она преподавала английский в школе в 2016 году.", "answer": "She taught English at school in 2016.", "explanation": ""},
-          {"question": "К тому времени, как он пришёл, встреча уже закончилась.", "answer": "By the time he arrived, the meeting had already ended.", "explanation": ""},
-          {"question": "Дети играли во дворе, когда начался дождь.", "answer": "The children were playing in the yard when it started to rain.", "explanation": ""},
-          {"question": "Я купил это платье в 2017 году.", "answer": "I bought this dress in 2017.", "explanation": ""},
-          {"question": "Он не слышал новости до того, как мы сказали ему.", "answer": "He hadn't heard the news before we told him.", "explanation": ""}
-        ]
-      }
-    ],
-    # ==================== ВАРИАНТ 10 ====================
-    [
-      {
-        "type": "complex",
-        "text": "1. Choose the correct past tense (Simple, Continuous, or Perfect).",
-        "subtasks": [
-          {"question": "I ______ (finish) my work by 7 pm.", "answer": "had finished", "explanation": "закончил к 7 вечера → Past Perfect"},
-          {"question": "She ______ (read) a book when I walked in.", "answer": "was reading", "explanation": "процесс (читала) + вход → Past Continuous"},
-          {"question": "They ______ (visit) the castle last Sunday.", "answer": "visited", "explanation": "завершённое действие с указанием дня → Past Simple"},
-          {"question": "We ______ (never / see) such a beautiful sunset before.", "answer": "had never seen", "explanation": "никогда не видели до того → Past Perfect"},
-          {"question": "He ______ (drive) to work when the accident happened.", "answer": "was driving", "explanation": "процесс (ехал) + авария → Past Continuous"},
-          {"question": "She ______ (study) biology at university in 2013.", "answer": "studied", "explanation": "завершённое действие с указанием года → Past Simple"},
-          {"question": "By the time I woke up, the sun ______ (already / rise).", "answer": "had already risen", "explanation": "солнце уже взошло до моего пробуждения → Past Perfect"},
-          {"question": "The wind ______ (blow) strongly when we went outside.", "answer": "was blowing", "explanation": "фон в прошлом (дул ветер) → Past Continuous"},
-          {"question": "I ______ (buy) my first car in 2011.", "answer": "bought", "explanation": "завершённое действие с указанием года → Past Simple"},
-          {"question": "He ______ (not / finish) his homework before dinner.", "answer": "hadn't finished", "explanation": "не закончил до ужина → Past Perfect"}
-        ]
-      },
-      {
-        "type": "complex",
-        "text": "2. Correct the mistakes (if any).",
-        "subtasks": [
-          {"question": "I was finishing my work by 7 pm.", "answer": "I had finished my work by 7 pm.", "explanation": "by 7 pm — завершённость к моменту → Past Perfect, не Continuous"},
-          {"question": "When I arrived, she left.", "answer": "When I arrived, she had left.", "explanation": "она ушла до моего прихода → Past Perfect"},
-          {"question": "While I was driving, I listened to music.", "answer": "While I was driving, I was listening to music.", "explanation": "два параллельных процесса → Past Continuous + Past Continuous (или While I was driving, I listened to music — можно и так)"},
-          {"question": "They have seen him two days ago.", "answer": "They saw him two days ago.", "explanation": "two days ago — Past Simple"},
-          {"question": "He was knowing the truth.", "answer": "He knew the truth.", "explanation": "know — состояние"},
-          {"question": "I was reading when the light went out.", "answer": "I was reading when the light went out.", "explanation": "верно"},
-          {"question": "We had finished dinner and watched TV.", "answer": "We finished dinner and watched TV.", "explanation": "последовательность → Past Simple + Past Simple (Past Perfect излишен)"},
-          {"question": "They were living in Spain for a year.", "answer": "They lived in Spain for a year.", "explanation": "for a year — завершённый период → Past Simple"},
-          {"question": "I had never been to China before.", "answer": "I had never been to China before.", "explanation": "верно"},
-          {"question": "He was sleeping when the alarm went off.", "answer": "He was sleeping when the alarm went off.", "explanation": "верно"}
-        ]
-      },
-      {
-        "type": "complex",
-        "text": "3. Complete the sentences with the correct past tense (Simple, Continuous, or Perfect).",
-        "subtasks": [
-          {"question": "I ______ (eat) breakfast when the postman ______ (come).", "answer": "was eating, came", "explanation": "фон (ел) + прерывание (пришёл) → Past Continuous + Past Simple"},
-          {"question": "By the time I ______ (find) the ticket, the train ______ (already / leave).", "answer": "found, had already left", "explanation": "нашёл билет позже, поезд уже ушёл → Past Simple + Past Perfect"},
-          {"question": "She ______ (live) in Mexico for three years before she ______ (return) to the US.", "answer": "had lived, returned", "explanation": "жила до возвращения → Past Perfect + Past Simple"},
-          {"question": "While he ______ (try) to fix the car, his wife ______ (call) him.", "answer": "was trying, called", "explanation": "фон (пытался) + прерывание (позвонила) → Past Continuous + Past Simple"},
-          {"question": "I ______ (never / hear) that song before the concert.", "answer": "had never heard", "explanation": "никогда не слышал до концерта → Past Perfect"},
-          {"question": "When I ______ (arrive) at the party, everyone ______ (dance).", "answer": "arrived, was dancing", "explanation": "пришёл (мгновенное) + фон (танцевали) → Past Simple + Past Continuous (или were dancing)"},
-          {"question": "He ______ (already / go) to bed when I ______ (knock) on the door.", "answer": "had already gone, knocked", "explanation": "уже лёг до стука → Past Perfect + Past Simple"},
-          {"question": "We ______ (have) a discussion at 3 pm yesterday.", "answer": "were having", "explanation": "конкретный момент в прошлом (at 3 pm) — Past Continuous"},
-          {"question": "I ______ (not / like) the movie because the plot ______ (be) confusing.", "answer": "didn't like, was", "explanation": "состояния в прошлом → Past Simple + Past Simple"},
-          {"question": "They ______ (play) cards when I came in.", "answer": "were playing", "explanation": "фон (играли) + вхождение → Past Continuous"}
-        ]
-      },
-      {
-        "type": "complex",
-        "text": "4. Translate the sentences into English.",
-        "subtasks": [
-          {"question": "Я закончил работу к 7 вечера.", "answer": "I had finished my work by 7 pm.", "explanation": ""},
-          {"question": "Она читала книгу, когда я вошёл.", "answer": "She was reading a book when I walked in.", "explanation": ""},
-          {"question": "Они посетили замок в прошлое воскресенье.", "answer": "They visited the castle last Sunday.", "explanation": ""},
-          {"question": "Мы никогда не видели такого красивого заката раньше.", "answer": "We had never seen such a beautiful sunset before.", "explanation": ""},
-          {"question": "Он вёл машину на работу, когда произошла авария.", "answer": "He was driving to work when the accident happened.", "explanation": ""},
-          {"question": "Она изучала биологию в университете в 2013 году.", "answer": "She studied biology at university in 2013.", "explanation": ""},
-          {"question": "К тому времени, как я проснулся, солнце уже взошло.", "answer": "By the time I woke up, the sun had already risen.", "explanation": ""},
-          {"question": "Сильный ветер дул, когда мы вышли на улицу.", "answer": "The wind was blowing strongly when we went outside.", "explanation": ""},
-          {"question": "Я купил свою первую машину в 2011 году.", "answer": "I bought my first car in 2011.", "explanation": ""},
-          {"question": "Он не сделал домашнее задание до ужина.", "answer": "He hadn't finished his homework before dinner.", "explanation": ""}
-        ]
-      }
-    ],
-    # ==================== ВАРИАНТ 11 ====================
-    [
-      {
-        "type": "complex",
-        "text": "1. Choose the correct past tense (Simple, Continuous, or Perfect).",
-        "subtasks": [
-          {"question": "I ______ (read) the book before I saw the movie.", "answer": "had read", "explanation": "прочитал до просмотра → Past Perfect"},
-          {"question": "She ______ (write) an email when the computer crashed.", "answer": "was writing", "explanation": "процесс (писала) + сбой → Past Continuous"},
-          {"question": "They ______ (go) to the zoo last month.", "answer": "went", "explanation": "завершённое действие с указанием времени → Past Simple"},
-          {"question": "We ______ (never / eat) such delicious food before that trip.", "answer": "had never eaten", "explanation": "никогда не ели до той поездки → Past Perfect"},
-          {"question": "He ______ (walk) in the park when he met his old friend.", "answer": "was walking", "explanation": "фон (шёл) + прерывание (встретил) → Past Continuous"},
-          {"question": "She ______ (work) in a restaurant in 2011.", "answer": "worked", "explanation": "завершённое действие с указанием года → Past Simple"},
-          {"question": "By the time he called, I ______ (already / leave) the office.", "answer": "had already left", "explanation": "уже ушёл до звонка → Past Perfect"},
-          {"question": "The children ______ (laugh) when the teacher walked in.", "answer": "were laughing", "explanation": "фон (смеялись) + вход → Past Continuous"},
-          {"question": "I ______ (see) this film twice.", "answer": "saw", "explanation": "опыт в прошлом → Past Simple (без указания на предшествование)"},
-          {"question": "He ______ (not / visit) his grandparents before they moved.", "answer": "hadn't visited", "explanation": "не навещал до их переезда → Past Perfect"}
-        ]
-      },
-      {
-        "type": "complex",
-        "text": "2. Correct the mistakes (if any).",
-        "subtasks": [
-          {"question": "I was reading the book before I saw the movie.", "answer": "I had read the book before I saw the movie.", "explanation": "прочитал до просмотра → Past Perfect, не Continuous"},
-          {"question": "When I arrived, she left.", "answer": "When I arrived, she had left.", "explanation": "она ушла до моего прихода → Past Perfect"},
-          {"question": "While I was walking, I met an old friend.", "answer": "While I was walking, I met an old friend.", "explanation": "верно"},
-          {"question": "They have visited us last year.", "answer": "They visited us last year.", "explanation": "last year — Past Simple"},
-          {"question": "He was knowing the answer.", "answer": "He knew the answer.", "explanation": "know — состояние"},
-          {"question": "She was sleeping when I called her.", "answer": "She was sleeping when I called her.", "explanation": "верно"},
-          {"question": "We had finished the project and submitted it.", "answer": "We finished the project and submitted it.", "explanation": "последовательность → Past Simple + Past Simple (если порядок ясен, Past Perfect не нужен)"},
-          {"question": "They were living in New York for two years.", "answer": "They lived in New York for two years.", "explanation": "for two years — завершённый период → Past Simple"},
-          {"question": "I had never been to Australia before.", "answer": "I had never been to Australia before.", "explanation": "верно"},
-          {"question": "He was studying when the phone rang.", "answer": "He was studying when the phone rang.", "explanation": "верно"}
-        ]
-      },
-      {
-        "type": "complex",
-        "text": "3. Complete the sentences with the correct past tense (Simple, Continuous, or Perfect).",
-        "subtasks": [
-          {"question": "I ______ (wait) for the bus when it ______ (start) to rain.", "answer": "was waiting, started", "explanation": "фон (ждал) + прерывание (дождь) → Past Continuous + Past Simple"},
-          {"question": "By the time I ______ (arrive) at the station, the train ______ (already / leave).", "answer": "arrived, had already left", "explanation": "пришёл позже, поезд уже ушёл → Past Simple + Past Perfect"},
-          {"question": "She ______ (work) as a cashier before she ______ (get) a better job.", "answer": "had worked, got", "explanation": "работала до получения новой работы → Past Perfect + Past Simple"},
-          {"question": "While he ______ (drive) to the airport, he ______ (realise) he had forgotten his passport.", "answer": "was driving, realised", "explanation": "фон (ехал) + прерывание (осознал) → Past Continuous + Past Simple"},
-          {"question": "I ______ (never / try) sushi before I ______ (go) to Japan.", "answer": "had never tried, went", "explanation": "никогда не пробовал до поездки → Past Perfect + Past Simple"},
-          {"question": "When I ______ (look) out of the window, I ______ (see) a rainbow.", "answer": "looked, saw", "explanation": "посмотрел и увидел → Past Simple + Past Simple"},
-          {"question": "He ______ (already / eat) lunch when his friends ______ (arrive).", "answer": "had already eaten, arrived", "explanation": "уже поел до прихода друзей → Past Perfect + Past Simple"},
-          {"question": "We ______ (study) at the library at 6 pm yesterday.", "answer": "were studying", "explanation": "конкретный момент в прошлом (at 6 pm) — Past Continuous"},
-          {"question": "I ______ (not / recognise) him because he ______ (change) so much.", "answer": "didn't recognise, had changed", "explanation": "не узнал, потому что он изменился (сначала изменился) → Past Simple + Past Perfect"},
-          {"question": "They ______ (play) football in the park when I saw them.", "answer": "were playing", "explanation": "фон (играли) + увидел → Past Continuous"}
-        ]
-      },
-      {
-        "type": "complex",
-        "text": "4. Translate the sentences into English.",
-        "subtasks": [
-          {"question": "Я прочитал книгу до того, как увидел фильм.", "answer": "I had read the book before I saw the movie.", "explanation": ""},
-          {"question": "Она писала письмо, когда компьютер завис.", "answer": "She was writing an email when the computer crashed.", "explanation": ""},
-          {"question": "Они ходили в зоопарк в прошлом месяце.", "answer": "They went to the zoo last month.", "explanation": ""},
-          {"question": "Мы никогда не ели такой вкусной еды до той поездки.", "answer": "We had never eaten such delicious food before that trip.", "explanation": ""},
-          {"question": "Он гулял в парке, когда встретил старого друга.", "answer": "He was walking in the park when he met his old friend.", "explanation": ""},
-          {"question": "Она работала в ресторане в 2011 году.", "answer": "She worked in a restaurant in 2011.", "explanation": ""},
-          {"question": "К тому времени, как он позвонил, я уже ушёл из офиса.", "answer": "By the time he called, I had already left the office.", "explanation": ""},
-          {"question": "Дети смеялись, когда учитель вошёл.", "answer": "The children were laughing when the teacher walked in.", "explanation": ""},
-          {"question": "Я видел этот фильм дважды.", "answer": "I saw this film twice.", "explanation": ""},
-          {"question": "Он не навещал бабушку до их переезда.", "answer": "He hadn't visited his grandparents before they moved.", "explanation": ""}
-        ]
-      }
-    ],
-    # ==================== ВАРИАНТ 12 ====================
-    [
-      {
-        "type": "complex",
-        "text": "1. Choose the correct past tense (Simple, Continuous, or Perfect).",
-        "subtasks": [
-          {"question": "I ______ (finish) my homework before I went out.", "answer": "had finished", "explanation": "закончил до выхода → Past Perfect"},
-          {"question": "She ______ (watch) TV when her mother came home.", "answer": "was watching", "explanation": "процесс (смотрела) + приход → Past Continuous"},
-          {"question": "They ______ (visit) the museum last year.", "answer": "visited", "explanation": "завершённое действие с указанием времени → Past Simple"},
-          {"question": "We ______ (never / meet) such interesting people before.", "answer": "had never met", "explanation": "никогда не встречали до того → Past Perfect"},
-          {"question": "He ______ (sleep) when the thief entered the house.", "answer": "was sleeping", "explanation": "фон (спал) + вор вошёл → Past Continuous"},
-          {"question": "She ______ (work) in a hotel in 2014.", "answer": "worked", "explanation": "завершённое действие с указанием года → Past Simple"},
-          {"question": "By the time we arrived, the play ______ (already / start).", "answer": "had already started", "explanation": "спектакль уже начался до нашего прихода → Past Perfect"},
-          {"question": "The birds ______ (sing) when I opened the window.", "answer": "were singing", "explanation": "фон (пели) + открыл окно → Past Continuous"},
-          {"question": "I ______ (buy) this house in 2009.", "answer": "bought", "explanation": "завершённое действие с указанием года → Past Simple"},
-          {"question": "He ______ (not / eat) breakfast before he left.", "answer": "hadn't eaten", "explanation": "не позавтракал до ухода → Past Perfect"}
-        ]
-      },
-      {
-        "type": "complex",
-        "text": "2. Correct the mistakes (if any).",
-        "subtasks": [
-          {"question": "I was finishing my homework before I went out.", "answer": "I had finished my homework before I went out.", "explanation": "закончил до выхода → Past Perfect, не Continuous"},
-          {"question": "When I arrived, she left.", "answer": "When I arrived, she had left.", "explanation": "она ушла до моего прихода → Past Perfect"},
-          {"question": "While I walked, I listened to music.", "answer": "While I was walking, I was listening to music.", "explanation": "два параллельных процесса → Past Continuous + Past Continuous (или While I was walking, I listened to music — можно)"},
-          {"question": "They have seen him last summer.", "answer": "They saw him last summer.", "explanation": "last summer — Past Simple"},
-          {"question": "He was knowing the secret.", "answer": "He knew the secret.", "explanation": "know — состояние"},
-          {"question": "I was reading when the doorbell rang.", "answer": "I was reading when the doorbell rang.", "explanation": "верно"},
-          {"question": "We had finished the test and left the room.", "answer": "We finished the test and left the room.", "explanation": "последовательность → Past Simple + Past Simple (Past Perfect излишен)"},
-          {"question": "They were living in Moscow for a year.", "answer": "They lived in Moscow for a year.", "explanation": "for a year — завершённый период → Past Simple"},
-          {"question": "I had never been to Africa before.", "answer": "I had never been to Africa before.", "explanation": "верно"},
-          {"question": "He was studying when the fire started.", "answer": "He was studying when the fire started.", "explanation": "верно"}
-        ]
-      },
-      {
-        "type": "complex",
-        "text": "3. Complete the sentences with the correct past tense (Simple, Continuous, or Perfect).",
-        "subtasks": [
-          {"question": "I ______ (cook) dinner when I ______ (burn) my hand.", "answer": "was cooking, burnt", "explanation": "фон (готовил) + прерывание (обжёг) → Past Continuous + Past Simple"},
-          {"question": "By the time I ______ (get) to the airport, the plane ______ (already / take off).", "answer": "got, had already taken off", "explanation": "приехал позже, самолёт уже взлетел → Past Simple + Past Perfect"},
-          {"question": "She ______ (travel) a lot before she ______ (settle) down.", "answer": "had travelled, settled", "explanation": "путешествовала до того, как осела → Past Perfect + Past Simple"},
-          {"question": "While he ______ (paint) the wall, he ______ (fall) off the ladder.", "answer": "was painting, fell", "explanation": "фон (красил) + действие (упал) → Past Continuous + Past Simple"},
-          {"question": "I ______ (never / see) a polar bear before I ______ (go) to the Arctic.", "answer": "had never seen, went", "explanation": "никогда не видел до поездки → Past Perfect + Past Simple"},
-          {"question": "When I ______ (enter) the room, the music ______ (play) softly.", "answer": "entered, was playing", "explanation": "вошёл (мгновенное) + фон (играла музыка) → Past Simple + Past Continuous"},
-          {"question": "He ______ (already / drink) his coffee when I ______ (wake) up.", "answer": "had already drunk, woke", "explanation": "уже выпил до моего пробуждения → Past Perfect + Past Simple"},
-          {"question": "We ______ (have) lunch at 1 pm yesterday.", "answer": "were having", "explanation": "конкретный момент в прошлом (at 1 pm) — Past Continuous"},
-          {"question": "I ______ (not / enjoy) the trip because the weather ______ (be) terrible.", "answer": "didn't enjoy, was", "explanation": "состояния в прошлом → Past Simple + Past Simple"},
-          {"question": "They ______ (build) a new shopping centre in 2018.", "answer": "built", "explanation": "завершённое действие с указанием года → Past Simple"}
-        ]
-      },
-      {
-        "type": "complex",
-        "text": "4. Translate the sentences into English.",
-        "subtasks": [
-          {"question": "Я сделал домашнее задание до того, как вышел.", "answer": "I had finished my homework before I went out.", "explanation": ""},
-          {"question": "Она смотрела телевизор, когда мама пришла домой.", "answer": "She was watching TV when her mother came home.", "explanation": ""},
-          {"question": "Они посетили музей в прошлом году.", "answer": "They visited the museum last year.", "explanation": ""},
-          {"question": "Мы никогда не встречали таких интересных людей раньше.", "answer": "We had never met such interesting people before.", "explanation": ""},
-          {"question": "Он спал, когда вор вошёл в дом.", "answer": "He was sleeping when the thief entered the house.", "explanation": ""},
-          {"question": "Она работала в отеле в 2014 году.", "answer": "She worked in a hotel in 2014.", "explanation": ""},
-          {"question": "К тому времени, как мы приехали, спектакль уже начался.", "answer": "By the time we arrived, the play had already started.", "explanation": ""},
-          {"question": "Птицы пели, когда я открыл окно.", "answer": "The birds were singing when I opened the window.", "explanation": ""},
-          {"question": "Я купил этот дом в 2009 году.", "answer": "I bought this house in 2009.", "explanation": ""},
-          {"question": "Он не позавтракал до ухода.", "answer": "He hadn't eaten breakfast before he left.", "explanation": ""}
+# ==================== ВАРИАНТ 1 ====================
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct past tense (Simple, Continuous, or Perfect).",
+    "subtasks": [
+      {"question": "I ______ (finish) my homework before my mum came home.", "answer": "had finished", "explanation": "завершилось до другого действия → Past Perfect"},
+      {"question": "She ______ (read) a book when the phone rang.", "answer": "was reading", "explanation": "фоновое действие, прерванное другим → Past Continuous"},
+      {"question": "They ______ (visit) their grandparents last weekend.", "answer": "visited", "explanation": "завершённое действие в прошлом с указанием времени → Past Simple"},
+      {"question": "I ______ (never / be) to Japan before I went there in 2019.", "answer": "had never been", "explanation": "опыт до определённого момента в прошлом → Past Perfect"},
+      {"question": "He ______ (drive) to work when he heard the news on the radio.", "answer": "was driving", "explanation": "действие в процессе в прошлом, прерванное другим → Past Continuous"},
+      {"question": "She ______ (study) French at university in 2010.", "answer": "studied", "explanation": "завершённое действие в прошлом с указанием времени → Past Simple"},
+      {"question": "When I arrived, they ______ (already / eat) dinner.", "answer": "had already eaten", "explanation": "действие завершилось до моего прихода → Past Perfect"},
+      {"question": "The sun ______ (shine) when we left the house.", "answer": "was shining", "explanation": "фоновое действие в прошлом → Past Continuous"},
+      {"question": "I ______ (see) this film two years ago.", "answer": "saw", "explanation": "завершённое действие с указанием времени → Past Simple"},
+      {"question": "He ______ (not / speak) English before he moved to London.", "answer": "hadn't spoken", "explanation": "действие до другого действия в прошлом → Past Perfect"}
+    ]
+  },
+  {
+    "type": "complex",
+    "text": "2. Write down all 10 sentences in full, correcting any errors you find.",
+    "subtasks": [
+      {"question": "I was finishing my homework at 8 pm.", "answer": "I finished my homework at 8 pm.", "explanation": "конкретное время завершения → Past Simple"},
+      {"question": "When I came, she already left.", "answer": "When I came, she had already left.", "explanation": "она ушла до моего прихода → Past Perfect"},
+      {"question": "While I cooked, the phone rang.", "answer": "While I was cooking, the phone rang.", "explanation": "фон + прерывание → Past Continuous + Past Simple"},
+      {"question": "They have seen him yesterday.", "answer": "They saw him yesterday.", "explanation": "yesterday → Past Simple"},
+      {"question": "He was knowing the answer.", "answer": "He knew the answer.", "explanation": "know — состояние, не Continuous"},
+      {"question": "I was walking home when I saw the accident.", "answer": "I was walking home when I saw the accident.", "explanation": "верно"},
+      {"question": "She had finished her work before she went out.", "answer": "She had finished her work before she went out.", "explanation": "верно"},
+      {"question": "We were living in Paris for two years.", "answer": "We lived in Paris for two years.", "explanation": "for two years → завершённый период → Past Simple"},
+      {"question": "He had been a teacher before he became a writer.", "answer": "He had been a teacher before he became a writer.", "explanation": "верно"},
+      {"question": "She was sleeping when I called her.", "answer": "She was sleeping when I called her.", "explanation": "верно"}
+    ]
+  },
+  {
+    "type": "complex",
+    "text": "3. Complete the sentences with the correct past tense (Simple, Continuous, or Perfect).",
+    "subtasks": [
+      {"question": "I ______ (watch) TV when my sister ______ (come) home.", "answer": "was watching, came", "explanation": "фон + прерывание → Past Continuous + Past Simple"},
+      {"question": "By the time we ______ (arrive) at the cinema, the film ______ (already / start).", "answer": "arrived, had already started", "explanation": "прибыли позже → Past Simple + Past Perfect"},
+      {"question": "She ______ (live) in Spain for five years before she ______ (move) to Italy.", "answer": "had lived, moved", "explanation": "сначала жила, потом переехала → Past Perfect + Past Simple"},
+      {"question": "While he ______ (read) the newspaper, he ______ (fall) asleep.", "answer": "was reading, fell", "explanation": "фон + действие → Past Continuous + Past Simple"},
+      {"question": "I ______ (not / see) the film before, so I ______ (decide) to watch it.", "answer": "hadn't seen, decided", "explanation": "сначала не видел, потом решил → Past Perfect + Past Simple"},
+      {"question": "When I ______ (walk) into the room, everybody ______ (talk) loudly.", "answer": "walked, was talking", "explanation": "вошёл + фон → Past Simple + Past Continuous"},
+      {"question": "She ______ (already / eat) dinner when I ______ (call) her.", "answer": "had already eaten, called", "explanation": "уже поела до звонка → Past Perfect + Past Simple"},
+      {"question": "We ______ (play) tennis at 5 pm yesterday.", "answer": "were playing", "explanation": "конкретный момент → Past Continuous"},
+      {"question": "He ______ (not / want) to go to the party because he ______ (feel) tired.", "answer": "didn't want, felt", "explanation": "состояния → Past Simple + Past Simple"},
+      {"question": "I ______ (read) the book you ______ (recommend) last week.", "answer": "read, recommended", "explanation": "последовательность → Past Simple + Past Simple"}
+    ]
+  },
+  {
+    "type": "complex",
+    "text": "4. Translate the sentences into English.",
+    "subtasks": [
+      {"question": "Я сделал домашнее задание до того, как пришла мама.", "answer": "I had finished my homework before my mum came.", "explanation": ""},
+      {"question": "Она читала книгу, когда зазвонил телефон.", "answer": "She was reading a book when the phone rang.", "explanation": ""},
+      {"question": "Они навещали бабушку в прошлые выходные.", "answer": "They visited their grandparents last weekend.", "explanation": ""},
+      {"question": "Я никогда не был в Японии до 2019 года.", "answer": "I had never been to Japan before 2019.", "explanation": ""},
+      {"question": "Он вёл машину, когда услышал новости по радио.", "answer": "He was driving when he heard the news on the radio.", "explanation": ""},
+      {"question": "Она изучала французский в университете в 2010 году.", "answer": "She studied French at university in 2010.", "explanation": ""},
+      {"question": "Когда я пришёл, они уже поужинали.", "answer": "When I arrived, they had already eaten dinner.", "explanation": ""},
+      {"question": "Солнце светило, когда мы вышли из дома.", "answer": "The sun was shining when we left the house.", "explanation": ""},
+      {"question": "Я видел этот фильм два года назад.", "answer": "I saw this film two years ago.", "explanation": ""},
+      {"question": "Он не говорил по-английски до переезда в Лондон.", "answer": "He hadn't spoken English before he moved to London.", "explanation": ""}
+    ]
+  }
+],
+# ==================== ВАРИАНТ 2 ====================
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct past tense (Simple, Continuous, or Perfect).",
+    "subtasks": [
+      {"question": "She ______ (finish) her project before the deadline.", "answer": "had finished", "explanation": "завершила до другого момента → Past Perfect"},
+      {"question": "I ______ (watch) TV when my friend called me.", "answer": "was watching", "explanation": "процесс, прерванный звонком → Past Continuous"},
+      {"question": "They ______ (go) to the cinema last night.", "answer": "went", "explanation": "завершённое действие с указанием времени → Past Simple"},
+      {"question": "We ______ (never / see) such a beautiful sunset before that day.", "answer": "had never seen", "explanation": "опыт до того момента → Past Perfect"},
+      {"question": "He ______ (drive) to work when he got a flat tyre.", "answer": "was driving", "explanation": "процесс + прерывание → Past Continuous"},
+      {"question": "She ______ (live) in New York in 2015.", "answer": "lived", "explanation": "завершённое действие с указанием года → Past Simple"},
+      {"question": "By the time we arrived, the party ______ (already / start).", "answer": "had already started", "explanation": "вечеринка началась до нашего прибытия → Past Perfect"},
+      {"question": "It ______ (rain) heavily when we left the office.", "answer": "was raining", "explanation": "фоновое действие → Past Continuous"},
+      {"question": "I ______ (meet) my wife in 2008.", "answer": "met", "explanation": "завершённое действие с указанием года → Past Simple"},
+      {"question": "He ______ (not / eat) anything before the party because he was nervous.", "answer": "hadn't eaten", "explanation": "не ел до вечеринки → Past Perfect"}
+    ]
+  },
+  {
+    "type": "complex",
+    "text": "2. Write down all 10 sentences in full, correcting any errors you find.",
+    "subtasks": [
+      {"question": "I was meeting my cousin at the café yesterday.", "answer": "I met my cousin at the café yesterday.", "explanation": "yesterday → Past Simple"},
+      {"question": "When I arrived at the station, the train already left.", "answer": "When I arrived at the station, the train had already left.", "explanation": "поезд ушёл до моего прихода → Past Perfect"},
+      {"question": "While she cooked, she listened to the radio.", "answer": "While she was cooking, she was listening to the radio.", "explanation": "два параллельных процесса → Past Continuous"},
+      {"question": "They have visited the museum last Tuesday.", "answer": "They visited the museum last Tuesday.", "explanation": "last Tuesday → Past Simple"},
+      {"question": "He was understanding the problem perfectly.", "answer": "He understood the problem perfectly.", "explanation": "understand — состояние"},
+      {"question": "She was driving to work when she saw the accident.", "answer": "She was driving to work when she saw the accident.", "explanation": "верно"},
+      {"question": "We had already booked the hotel before we left.", "answer": "We had already booked the hotel before we left.", "explanation": "верно"},
+      {"question": "He was working in the garden for two hours.", "answer": "He worked in the garden for two hours.", "explanation": "for two hours → завершённый период → Past Simple"},
+      {"question": "I had never tried Indian food before.", "answer": "I had never tried Indian food before.", "explanation": "верно"},
+      {"question": "They were laughing when the teacher walked in.", "answer": "They were laughing when the teacher walked in.", "explanation": "верно"}
+    ]
+  },
+  {
+    "type": "complex",
+    "text": "3. Complete the sentences with the correct past tense (Simple, Continuous, or Perfect).",
+    "subtasks": [
+      {"question": "I ______ (walk) home when I ______ (see) a strange animal.", "answer": "was walking, saw", "explanation": "фон + прерывание → Past Continuous + Past Simple"},
+      {"question": "By the time he ______ (arrive), the meeting ______ (already / end).", "answer": "arrived, had already ended", "explanation": "пришёл позже → Past Simple + Past Perfect"},
+      {"question": "She ______ (live) in Mexico for three years before she ______ (return) to the US.", "answer": "had lived, returned", "explanation": "сначала жила, потом вернулась → Past Perfect + Past Simple"},
+      {"question": "While they ______ (discuss) the plan, the manager ______ (interrupt) them.", "answer": "were discussing, interrupted", "explanation": "фон + прерывание → Past Continuous + Past Simple"},
+      {"question": "I ______ (not / eat) breakfast because I ______ (not / have) time.", "answer": "hadn't eaten, didn't have", "explanation": "не позавтракал, потому что не было времени → Past Perfect + Past Simple"},
+      {"question": "When I ______ (look) at the clock, I ______ (realise) I was late.", "answer": "looked, realised", "explanation": "последовательность → Past Simple + Past Simple"},
+      {"question": "He ______ (already / go) to bed when I ______ (knock) on the door.", "answer": "had already gone, knocked", "explanation": "уже лёг до стука → Past Perfect + Past Simple"},
+      {"question": "We ______ (study) at the library at 6 pm yesterday.", "answer": "were studying", "explanation": "конкретный момент → Past Continuous"},
+      {"question": "She ______ (not / like) the hotel because it ______ (be) dirty.", "answer": "didn't like, was", "explanation": "состояния → Past Simple + Past Simple"},
+      {"question": "They ______ (build) a new bridge in our town in 2019.", "answer": "built", "explanation": "in 2019 → Past Simple"}
+    ]
+  },
+  {
+    "type": "complex",
+    "text": "4. Translate the sentences into English.",
+    "subtasks": [
+      {"question": "Она уже сделала уроки, когда я пришёл.", "answer": "She had already done her homework when I came.", "explanation": ""},
+      {"question": "Мы смотрели фильм, когда выключили свет.", "answer": "We were watching a film when the lights went out.", "explanation": ""},
+      {"question": "Они купили новую квартиру в прошлом году.", "answer": "They bought a new flat last year.", "explanation": ""},
+      {"question": "Я никогда не пробовал паэлью до поездки в Испанию.", "answer": "I had never tried paella before my trip to Spain.", "explanation": ""},
+      {"question": "Он читал книгу, когда уснул.", "answer": "He was reading a book when he fell asleep.", "explanation": ""},
+      {"question": "Она окончила университет в 2015 году.", "answer": "She graduated from university in 2015.", "explanation": ""},
+      {"question": "К тому времени, как мы пришли, они уже ушли.", "answer": "By the time we came, they had already left.", "explanation": ""},
+      {"question": "Шёл дождь, когда мы вышли на улицу.", "answer": "It was raining when we went outside.", "explanation": ""},
+      {"question": "Я встретил его на вокзале два дня назад.", "answer": "I met him at the station two days ago.", "explanation": ""},
+      {"question": "Он не завтракал перед экзаменом, потому что нервничал.", "answer": "He hadn't had breakfast before the exam because he was nervous.", "explanation": ""}
+    ]
+  }
+],
+# ==================== ВАРИАНТ 3 ====================
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct past tense (Simple, Continuous, or Perfect).",
+    "subtasks": [
+      {"question": "I ______ (read) this book before I saw the film.", "answer": "had read", "explanation": "прочитал до просмотра → Past Perfect"},
+      {"question": "She ______ (cook) dinner when the fire alarm went off.", "answer": "was cooking", "explanation": "процесс, прерванный сигналом → Past Continuous"},
+      {"question": "They ______ (visit) the museum last Tuesday.", "answer": "visited", "explanation": "завершённое действие с указанием дня → Past Simple"},
+      {"question": "He ______ (never / try) sushi before he went to Japan.", "answer": "had never tried", "explanation": "никогда не пробовал до поездки → Past Perfect"},
+      {"question": "We ______ (run) in the park when it started to rain.", "answer": "were running", "explanation": "процесс, прерванный дождём → Past Continuous"},
+      {"question": "She ______ (study) law at university in 2012.", "answer": "studied", "explanation": "завершённое действие с указанием года → Past Simple"},
+      {"question": "By the time he arrived, the meeting ______ (already / finish).", "answer": "had already finished", "explanation": "встреча уже закончилась до его прихода → Past Perfect"},
+      {"question": "The children ______ (play) in the garden when their mother called them.", "answer": "were playing", "explanation": "фон + прерывание → Past Continuous"},
+      {"question": "I ______ (buy) this jacket last winter.", "answer": "bought", "explanation": "завершённое действие с указанием времени → Past Simple"},
+      {"question": "We ______ (not / meet) before that party.", "answer": "hadn't met", "explanation": "не встречались до вечеринки → Past Perfect"}
+    ]
+  },
+  {
+    "type": "complex",
+    "text": "2. Write down all 10 sentences in full, correcting any errors you find.",
+    "subtasks": [
+      {"question": "I was finishing my report at 7 pm.", "answer": "I finished my report at 7 pm.", "explanation": "конкретное время → Past Simple"},
+      {"question": "When I entered the room, she already left.", "answer": "When I entered the room, she had already left.", "explanation": "она ушла до моего входа → Past Perfect"},
+      {"question": "While I drove, I saw a beautiful sunset.", "answer": "While I was driving, I saw a beautiful sunset.", "explanation": "фон + действие → Past Continuous + Past Simple"},
+      {"question": "They have bought a new house two years ago.", "answer": "They bought a new house two years ago.", "explanation": "two years ago → Past Simple"},
+      {"question": "He was remembering the address.", "answer": "He remembered the address.", "explanation": "remember — состояние"},
+      {"question": "I was sleeping when the thunderstorm started.", "answer": "I was sleeping when the thunderstorm started.", "explanation": "верно"},
+      {"question": "She had already read the book before the lesson.", "answer": "She had already read the book before the lesson.", "explanation": "верно"},
+      {"question": "They were waiting for the bus for 30 minutes.", "answer": "They waited for the bus for 30 minutes.", "explanation": "for 30 minutes → завершённый период → Past Simple"},
+      {"question": "I had never been to Australia before.", "answer": "I had never been to Australia before.", "explanation": "верно"},
+      {"question": "He was eating when the phone rang.", "answer": "He was eating when the phone rang.", "explanation": "верно"}
+    ]
+  },
+  {
+    "type": "complex",
+    "text": "3. Complete the sentences with the correct past tense (Simple, Continuous, or Perfect).",
+    "subtasks": [
+      {"question": "I ______ (talk) on the phone when my boss ______ (call) me.", "answer": "was talking, called", "explanation": "фон + прерывание → Past Continuous + Past Simple"},
+      {"question": "By the time I ______ (finish) my homework, my friends ______ (already / leave).", "answer": "finished, had already left", "explanation": "закончил позже → Past Simple + Past Perfect"},
+      {"question": "She ______ (live) in Italy for five years before she ______ (move) to France.", "answer": "had lived, moved", "explanation": "сначала жила, потом переехала → Past Perfect + Past Simple"},
+      {"question": "While he ______ (repair) the car, he ______ (drop) a tool.", "answer": "was repairing, dropped", "explanation": "фон + действие → Past Continuous + Past Simple"},
+      {"question": "I ______ (never / taste) such delicious chocolate before.", "answer": "had never tasted", "explanation": "никогда до → Past Perfect"},
+      {"question": "When I ______ (open) the window, the sun ______ (shine).", "answer": "opened, was shining", "explanation": "открыл + фон → Past Simple + Past Continuous"},
+      {"question": "He ______ (already / cook) dinner when his wife ______ (come) home.", "answer": "had already cooked, came", "explanation": "уже приготовил до → Past Perfect + Past Simple"},
+      {"question": "They ______ (have) a lesson at 11 am yesterday.", "answer": "were having", "explanation": "конкретный момент → Past Continuous"},
+      {"question": "I ______ (not / know) the answer because I ______ (not / read) the chapter.", "answer": "didn't know, hadn't read", "explanation": "не знал, потому что не читал → Past Simple + Past Perfect"},
+      {"question": "She ______ (wear) a blue dress at the party.", "answer": "was wearing", "explanation": "описание в процессе → Past Continuous"}
+    ]
+  },
+  {
+    "type": "complex",
+    "text": "4. Translate the sentences into English.",
+    "subtasks": [
+      {"question": "Я уже прочитал эту книгу до того, как увидел фильм.", "answer": "I had already read this book before I saw the film.", "explanation": ""},
+      {"question": "Она готовила ужин, когда сработала сигнализация.", "answer": "She was cooking dinner when the alarm went off.", "explanation": ""},
+      {"question": "Они посетили Эйфелеву башню в прошлом году.", "answer": "They visited the Eiffel Tower last year.", "explanation": ""},
+      {"question": "Он никогда не пробовал морепродукты до поездки в Грецию.", "answer": "He had never tried seafood before his trip to Greece.", "explanation": ""},
+      {"question": "Мы бегали в парке, когда увидели белку.", "answer": "We were running in the park when we saw a squirrel.", "explanation": ""},
+      {"question": "Она изучала экономику в университете в 2014 году.", "answer": "She studied economics at university in 2014.", "explanation": ""},
+      {"question": "К тому времени, как он вернулся, совещание уже закончилось.", "answer": "By the time he returned, the meeting had already ended.", "explanation": ""},
+      {"question": "Дети строили замок из песка, когда пришла их мама.", "answer": "The children were building a sandcastle when their mother came.", "explanation": ""},
+      {"question": "Я купил этот ноутбук три года назад.", "answer": "I bought this laptop three years ago.", "explanation": ""},
+      {"question": "Они не встречались до той вечеринки.", "answer": "They hadn't met before that party.", "explanation": ""}
+    ]
+  }
+],
+# ==================== ВАРИАНТ 4 ====================
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct past tense (Simple, Continuous, or Perfect).",
+    "subtasks": [
+      {"question": "She ______ (finish) her homework before dinner.", "answer": "had finished", "explanation": "завершила до ужина → Past Perfect"},
+      {"question": "I ______ (read) a magazine while I was waiting for the bus.", "answer": "was reading", "explanation": "действие в процессе в прошлом → Past Continuous"},
+      {"question": "They ______ (go) to the beach last summer.", "answer": "went", "explanation": "завершённое действие с указанием времени → Past Simple"},
+      {"question": "We ______ (never / visit) that museum before last year.", "answer": "had never visited", "explanation": "никогда не посещали до прошлого года → Past Perfect"},
+      {"question": "He ______ (walk) home when he saw the accident.", "answer": "was walking", "explanation": "процесс + прерывание → Past Continuous"},
+      {"question": "She ______ (work) in a bank in 2010.", "answer": "worked", "explanation": "завершённое действие с указанием года → Past Simple"},
+      {"question": "By the time I woke up, he ______ (already / leave).", "answer": "had already left", "explanation": "уже ушёл до моего пробуждения → Past Perfect"},
+      {"question": "The birds ______ (sing) when I opened the window.", "answer": "were singing", "explanation": "фон → Past Continuous"},
+      {"question": "I ______ (meet) my best friend in 2005.", "answer": "met", "explanation": "завершённое действие с указанием года → Past Simple"},
+      {"question": "He ______ (not / study) English before he went to the UK.", "answer": "hadn't studied", "explanation": "не учил до поездки → Past Perfect"}
+    ]
+  },
+  {
+    "type": "complex",
+    "text": "2. Write down all 10 sentences in full, correcting any errors you find.",
+    "subtasks": [
+      {"question": "I was finishing my essay at 5 pm.", "answer": "I finished my essay at 5 pm.", "explanation": "конкретное время → Past Simple"},
+      {"question": "When I arrived, she already left.", "answer": "When I arrived, she had already left.", "explanation": "она ушла до → Past Perfect"},
+      {"question": "While I walked, I saw an accident.", "answer": "While I was walking, I saw an accident.", "explanation": "фон + действие → Past Continuous + Past Simple"},
+      {"question": "They have finished the project yesterday.", "answer": "They finished the project yesterday.", "explanation": "yesterday → Past Simple"},
+      {"question": "He was wanting to go home.", "answer": "He wanted to go home.", "explanation": "want — состояние"},
+      {"question": "I was sleeping when the phone rang.", "answer": "I was sleeping when the phone rang.", "explanation": "верно"},
+      {"question": "She had cooked dinner before we arrived.", "answer": "She had cooked dinner before we arrived.", "explanation": "верно"},
+      {"question": "They were living in France for a year.", "answer": "They lived in France for a year.", "explanation": "for a year → завершённый период → Past Simple"},
+      {"question": "I had seen the film before.", "answer": "I had seen the film before.", "explanation": "верно"},
+      {"question": "He was studying when the light went out.", "answer": "He was studying when the light went out.", "explanation": "верно"}
+    ]
+  },
+  {
+    "type": "complex",
+    "text": "3. Complete the sentences with the correct past tense (Simple, Continuous, or Perfect).",
+    "subtasks": [
+      {"question": "I ______ (try) to call you when you ______ (call) me.", "answer": "was trying, called", "explanation": "фон + прерывание → Past Continuous + Past Simple"},
+      {"question": "By the time we ______ (reach) the cinema, the film ______ (already / begin).", "answer": "reached, had already begun", "explanation": "пришли позже → Past Simple + Past Perfect"},
+      {"question": "She ______ (learn) Spanish for three years before she ______ (go) to Spain.", "answer": "had learnt, went", "explanation": "учила до поездки → Past Perfect + Past Simple"},
+      {"question": "While they ______ (dance), the music suddenly ______ (stop).", "answer": "were dancing, stopped", "explanation": "фон + действие → Past Continuous + Past Simple"},
+      {"question": "I ______ (never / eat) such delicious food before I went to Italy.", "answer": "had never eaten", "explanation": "никогда не ел до поездки → Past Perfect"},
+      {"question": "When I ______ (look) out of the window, it ______ (snow).", "answer": "looked, was snowing", "explanation": "посмотрел + фон → Past Simple + Past Continuous"},
+      {"question": "He ______ (already / buy) the tickets when I ______ (tell) him about the concert.", "answer": "had already bought, told", "explanation": "уже купил до → Past Perfect + Past Simple"},
+      {"question": "They ______ (travel) around Europe last year.", "answer": "traveled", "explanation": "last year → Past Simple"},
+      {"question": "I ______ (not / sleep) well because I ______ (drink) too much coffee.", "answer": "didn't sleep, had drunk", "explanation": "не спал, потому что выпил → Past Simple + Past Perfect"},
+      {"question": "She ______ (work) in a hospital at that time.", "answer": "was working", "explanation": "в тот момент → Past Continuous"}
+    ]
+  },
+  {
+    "type": "complex",
+    "text": "4. Translate the sentences into English.",
+    "subtasks": [
+      {"question": "Она сделала домашнее задание до ужина.", "answer": "She had finished her homework before dinner.", "explanation": ""},
+      {"question": "Я читал журнал, пока ждал автобус.", "answer": "I was reading a magazine while I was waiting for the bus.", "explanation": ""},
+      {"question": "Они ездили на пляж прошлым летом.", "answer": "They went to the beach last summer.", "explanation": ""},
+      {"question": "Мы никогда не посещали тот музей до прошлого года.", "answer": "We had never visited that museum before last year.", "explanation": ""},
+      {"question": "Он шёл домой, когда увидел аварию.", "answer": "He was walking home when he saw the accident.", "explanation": ""},
+      {"question": "Она работала в банке в 2010 году.", "answer": "She worked in a bank in 2010.", "explanation": ""},
+      {"question": "К тому времени, как я проснулся, он уже ушёл.", "answer": "By the time I woke up, he had already left.", "explanation": ""},
+      {"question": "Птицы пели, когда я открыл окно.", "answer": "The birds were singing when I opened the window.", "explanation": ""},
+      {"question": "Я встретил лучшего друга в 2005 году.", "answer": "I met my best friend in 2005.", "explanation": ""},
+      {"question": "Он не учил английский до поездки в Великобританию.", "answer": "He hadn't studied English before he went to the UK.", "explanation": ""}
+    ]
+  }
+],
+# ==================== ВАРИАНТ 5 ====================
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct past tense (Simple, Continuous, or Perfect).",
+    "subtasks": [
+      {"question": "I ______ (read) the whole book in one day.", "answer": "read", "explanation": "завершённое действие → Past Simple"},
+      {"question": "She ______ (write) a letter when I entered the room.", "answer": "was writing", "explanation": "процесс + вход → Past Continuous"},
+      {"question": "They ______ (arrive) at the station at 6 pm.", "answer": "arrived", "explanation": "конкретное время → Past Simple"},
+      {"question": "We ______ (already / eat) dinner when they came.", "answer": "had already eaten", "explanation": "уже поели до → Past Perfect"},
+      {"question": "He ______ (play) the piano when I heard him.", "answer": "was playing", "explanation": "процесс → Past Continuous"},
+      {"question": "She ______ (visit) Paris in 2018.", "answer": "visited", "explanation": "завершённое действие с указанием года → Past Simple"},
+      {"question": "By the time he arrived, the train ______ (leave).", "answer": "had left", "explanation": "поезд ушёл до его прихода → Past Perfect"},
+      {"question": "It ______ (rain) when we went out.", "answer": "was raining", "explanation": "фон → Past Continuous"},
+      {"question": "I ______ (see) that film three times.", "answer": "saw", "explanation": "опыт → Past Simple"},
+      {"question": "He ______ (not / eat) anything before the meal because he wasn't hungry.", "answer": "hadn't eaten", "explanation": "не ел до еды → Past Perfect"}
+    ]
+  },
+  {
+    "type": "complex",
+    "text": "2. Write down all 10 sentences in full, correcting any errors you find.",
+    "subtasks": [
+      {"question": "I was reading the whole book in one day.", "answer": "I read the whole book in one day.", "explanation": "не процесс → Past Simple"},
+      {"question": "When I arrived, she left.", "answer": "When I arrived, she had left.", "explanation": "она ушла до → Past Perfect"},
+      {"question": "While I walked, the sun set.", "answer": "While I was walking, the sun was setting.", "explanation": "два параллельных процесса → Past Continuous"},
+      {"question": "They have seen him yesterday.", "answer": "They saw him yesterday.", "explanation": "yesterday → Past Simple"},
+      {"question": "He was knowing her for a long time.", "answer": "He knew her for a long time.", "explanation": "know — состояние"},
+      {"question": "I was reading when the lights went out.", "answer": "I was reading when the lights went out.", "explanation": "верно"},
+      {"question": "She had finished work and went home.", "answer": "She finished work and went home.", "explanation": "последовательность → Past Simple + Past Simple"},
+      {"question": "They were living in Spain for a year.", "answer": "They lived in Spain for a year.", "explanation": "for a year → завершённый период → Past Simple"},
+      {"question": "I had been to London before.", "answer": "I had been to London before.", "explanation": "верно"},
+      {"question": "He was sleeping when the phone rang.", "answer": "He was sleeping when the phone rang.", "explanation": "верно"}
+    ]
+  },
+  {
+    "type": "complex",
+    "text": "3. Complete the sentences with the correct past tense (Simple, Continuous, or Perfect).",
+    "subtasks": [
+      {"question": "I ______ (talk) on the phone when the doorbell ______ (ring).", "answer": "was talking, rang", "explanation": "фон + прерывание → Past Continuous + Past Simple"},
+      {"question": "By the time I ______ (find) the keys, the taxi ______ (already / leave).", "answer": "found, had already left", "explanation": "нашёл позже → Past Simple + Past Perfect"},
+      {"question": "She ______ (work) as a waitress before she ______ (become) a teacher.", "answer": "had worked, became", "explanation": "сначала работала → Past Perfect + Past Simple"},
+      {"question": "While I ______ (do) the washing-up, I ______ (break) a glass.", "answer": "was doing, broke", "explanation": "фон + действие → Past Continuous + Past Simple"},
+      {"question": "I ______ (never / try) skiing before I ______ (go) to Switzerland.", "answer": "had never tried, went", "explanation": "никогда до → Past Perfect + Past Simple"},
+      {"question": "When I ______ (look) up, everyone ______ (stare) at me.", "answer": "looked, was staring", "explanation": "посмотрел + фон → Past Simple + Past Continuous"},
+      {"question": "He ______ (already / see) the film, so he ______ (not / want) to watch it again.", "answer": "had already seen, didn't want", "explanation": "уже видел → Past Perfect + Past Simple"},
+      {"question": "They ______ (play) tennis at 4 pm yesterday.", "answer": "were playing", "explanation": "конкретный момент → Past Continuous"},
+      {"question": "I ______ (not / enjoy) the party because I ______ (know) nobody there.", "answer": "didn't enjoy, knew", "explanation": "состояния → Past Simple + Past Simple"},
+      {"question": "She ______ (drive) to work when she ______ (hear) the news.", "answer": "was driving, heard", "explanation": "фон + прерывание → Past Continuous + Past Simple"}
+    ]
+  },
+  {
+    "type": "complex",
+    "text": "4. Translate the sentences into English.",
+    "subtasks": [
+      {"question": "Я прочитал всю книгу за один день.", "answer": "I read the whole book in one day.", "explanation": ""},
+      {"question": "Она писала письмо, когда я вошёл в комнату.", "answer": "She was writing a letter when I entered the room.", "explanation": ""},
+      {"question": "Они прибыли на станцию в 6 вечера.", "answer": "They arrived at the station at 6 pm.", "explanation": ""},
+      {"question": "Мы уже поужинали, когда они пришли.", "answer": "We had already eaten dinner when they came.", "explanation": ""},
+      {"question": "Он играл на пианино, когда я услышал его.", "answer": "He was playing the piano when I heard him.", "explanation": ""},
+      {"question": "Она посетила Париж в 2018 году.", "answer": "She visited Paris in 2018.", "explanation": ""},
+      {"question": "К тому времени, как он пришёл, поезд уже ушёл.", "answer": "By the time he arrived, the train had left.", "explanation": ""},
+      {"question": "Шёл дождь, когда мы вышли.", "answer": "It was raining when we went out.", "explanation": ""},
+      {"question": "Я видел этот фильм три раза.", "answer": "I saw that film three times.", "explanation": ""},
+      {"question": "Он ничего не ел перед едой, потому что не был голоден.", "answer": "He hadn't eaten anything before the meal because he wasn't hungry.", "explanation": ""}
+    ]
+  }
+],
+# ==================== ВАРИАНТ 6 ====================
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct past tense (Simple, Continuous, or Perfect).",
+    "subtasks": [
+      {"question": "She ______ (finish) her work by 6 pm.", "answer": "had finished", "explanation": "закончила к 6 вечера → Past Perfect"},
+      {"question": "I ______ (watch) a documentary when my friend arrived.", "answer": "was watching", "explanation": "процесс + приход → Past Continuous"},
+      {"question": "They ______ (go) to the mountains last winter.", "answer": "went", "explanation": "завершённое действие с указанием времени → Past Simple"},
+      {"question": "We ______ (never / see) such a big whale before that trip.", "answer": "had never seen", "explanation": "никогда не видели до поездки → Past Perfect"},
+      {"question": "He ______ (drive) too fast when he crashed the car.", "answer": "was driving", "explanation": "процесс + авария → Past Continuous"},
+      {"question": "She ______ (study) medicine at university in 2015.", "answer": "studied", "explanation": "завершённое действие с указанием года → Past Simple"},
+      {"question": "By the time we arrived, the concert ______ (already / finish).", "answer": "had already finished", "explanation": "концерт закончился до нашего прихода → Past Perfect"},
+      {"question": "It ______ (snow) when we left the house.", "answer": "was snowing", "explanation": "фон → Past Continuous"},
+      {"question": "I ______ (buy) this car in 2016.", "answer": "bought", "explanation": "завершённое действие с указанием года → Past Simple"},
+      {"question": "He ______ (not / meet) her before the conference.", "answer": "hadn't met", "explanation": "не встречал до конференции → Past Perfect"}
+    ]
+  },
+  {
+    "type": "complex",
+    "text": "2. Write down all 10 sentences in full, correcting any errors you find.",
+    "subtasks": [
+      {"question": "I was finishing my work by 6 pm.", "answer": "I had finished my work by 6 pm.", "explanation": "by 6 pm → завершённость → Past Perfect"},
+      {"question": "When I arrived, she already left.", "answer": "When I arrived, she had already left.", "explanation": "она ушла до → Past Perfect"},
+      {"question": "While I was walking, I saw a deer.", "answer": "While I was walking, I saw a deer.", "explanation": "верно"},
+      {"question": "They have seen him last month.", "answer": "They saw him last month.", "explanation": "last month → Past Simple"},
+      {"question": "He was knowing the answer.", "answer": "He knew the answer.", "explanation": "know — состояние"},
+      {"question": "She was studying when I called her.", "answer": "She was studying when I called her.", "explanation": "верно"},
+      {"question": "We had finished dinner and went to bed.", "answer": "We finished dinner and went to bed.", "explanation": "последовательность → Past Simple + Past Simple"},
+      {"question": "They were living in London for two years.", "answer": "They lived in London for two years.", "explanation": "for two years → завершённый период → Past Simple"},
+      {"question": "I had never been to Italy before.", "answer": "I had never been to Italy before.", "explanation": "верно"},
+      {"question": "He was reading when the lights went out.", "answer": "He was reading when the lights went out.", "explanation": "верно"}
+    ]
+  },
+  {
+    "type": "complex",
+    "text": "3. Complete the sentences with the correct past tense (Simple, Continuous, or Perfect).",
+    "subtasks": [
+      {"question": "I ______ (sleep) when the alarm clock ______ (ring).", "answer": "was sleeping, rang", "explanation": "фон + прерывание → Past Continuous + Past Simple"},
+      {"question": "By the time we ______ (reach) the station, the train ______ (already / depart).", "answer": "reached, had already departed", "explanation": "пришли позже → Past Simple + Past Perfect"},
+      {"question": "She ______ (live) in Brazil for five years before she ______ (move) to Portugal.", "answer": "had lived, moved", "explanation": "сначала жила, потом переехала → Past Perfect + Past Simple"},
+      {"question": "While he ______ (read) the newspaper, he ______ (fall) asleep.", "answer": "was reading, fell", "explanation": "фон + действие → Past Continuous + Past Simple"},
+      {"question": "I ______ (not / eat) anything before the meal because I ______ (not / be) hungry.", "answer": "hadn't eaten, wasn't", "explanation": "не ел, потому что не был голоден → Past Perfect + Past Simple"},
+      {"question": "When I ______ (enter) the room, everybody ______ (dance).", "answer": "entered, was dancing", "explanation": "вошёл + фон → Past Simple + Past Continuous"},
+      {"question": "He ______ (already / buy) the present when I ______ (tell) him about the sale.", "answer": "had already bought, told", "explanation": "уже купил до → Past Perfect + Past Simple"},
+      {"question": "We ______ (have) dinner at 7 pm yesterday.", "answer": "were having", "explanation": "конкретный момент → Past Continuous"},
+      {"question": "I ______ (not / like) the restaurant because the service ______ (be) terrible.", "answer": "didn't like, was", "explanation": "состояния → Past Simple + Past Simple"},
+      {"question": "They ______ (play) football when it started to rain.", "answer": "were playing", "explanation": "фон + дождь → Past Continuous"}
+    ]
+  },
+  {
+    "type": "complex",
+    "text": "4. Translate the sentences into English.",
+    "subtasks": [
+      {"question": "Она закончила работу к 6 вечера.", "answer": "She had finished her work by 6 pm.", "explanation": ""},
+      {"question": "Я смотрел документальный фильм, когда пришёл друг.", "answer": "I was watching a documentary when my friend arrived.", "explanation": ""},
+      {"question": "Они ездили в горы прошлой зимой.", "answer": "They went to the mountains last winter.", "explanation": ""},
+      {"question": "Мы никогда не видели такого большого кита до той поездки.", "answer": "We had never seen such a big whale before that trip.", "explanation": ""},
+      {"question": "Он вёл машину слишком быстро, когда разбил её.", "answer": "He was driving too fast when he crashed the car.", "explanation": ""},
+      {"question": "Она изучала медицину в университете в 2015 году.", "answer": "She studied medicine at university in 2015.", "explanation": ""},
+      {"question": "К тому времени, как мы приехали, концерт уже закончился.", "answer": "By the time we arrived, the concert had already finished.", "explanation": ""},
+      {"question": "Шёл снег, когда мы вышли из дома.", "answer": "It was snowing when we left the house.", "explanation": ""},
+      {"question": "Я купил эту машину в 2016 году.", "answer": "I bought this car in 2016.", "explanation": ""},
+      {"question": "Он не встречал её до конференции.", "answer": "He hadn't met her before the conference.", "explanation": ""}
+    ]
+  }
+],
+# ==================== ВАРИАНТ 7 ====================
+[
+  {
+    "type": "complex",
+    "text": "1. Choose the correct past tense (Simple, Continuous, or Perfect).",
+    "subtasks": [
+      {"question": "I ______ (read) the newspaper when the news came.", "answer": "was reading", "explanation": "процесс + новость → Past Continuous"},
+      {"question": "She ______ (finish) her project before the deadline.", "answer": "had finished", "explanation": "закончила до дедлайна → Past Perfect"},
+      {"question": "They ______ (visit) their relatives last Christmas.", "answer": "visited", "explanation": "завершённое действие с указанием времени → Past Simple"},
+      {"question": "He ______ (never / be) to Asia before that trip.", "answer": "had never been", "explanation": "никогда не был до поездки → Past Perfect"},
+      {"question": "We ______ (run) in the park when we saw a snake.", "answer": "were running", "explanation": "процесс + змея → Past Continuous"},
+      {"question": "She ______ (work) as a nurse in 2012.", "answer": "worked", "explanation": "завершённое действие с указанием года → Past Simple"},
+      {"question": "By the time he returned, they ______ (already / leave).", "answer": "had already left", "explanation": "уже ушли до его возвращения → Past Perfect"},
+      {"question": "The sun ______ (shine) when we arrived at the beach.", "answer": "was shining", "explanation": "фон → Past Continuous"},
+      {"question": "I ______ (meet) my wife at a conference in 2010.", "answer": "met", "explanation": "завершённое действие с указанием года → Past Simple"},
+      {"question": "We ______ (not / see) that film before, so we decided to watch it.", "answer": "hadn't seen", "explanation": "не видели до того момента → Past Perfect"}
+    ]
+  },
+  {
+    "type": "complex",
+    "text": "2. Write down all 10 sentences in full, correcting any errors you find.",
+    "subtasks": [
+      {"question": "I was reading the newspaper when the news came.", "answer": "I was reading the newspaper when the news came.", "explanation": "верно"},
+      {"question": "When I arrived, she already ate.", "answer": "When I arrived, she had already eaten.", "explanation": "она поела до → Past Perfect"},
+      {"question": "While I was walking, I found a wallet.", "answer": "While I was walking, I found a wallet.", "explanation": "верно"},
+      {"question": "They have visited us last year.", "answer": "They visited us last year.", "explanation": "last year → Past Simple"},
+      {"question": "He was believing her.", "answer": "He believed her.", "explanation": "believe — состояние"},
+      {"question": "She was reading when I called her.", "answer": "She was reading when I called her.", "explanation": "верно"},
+      {"question": "We had finished work and went home.", "answer": "We finished work and went home.", "explanation": "последовательность → Past Simple + Past Simple"},
+      {"question": "They were living in Berlin for a year.", "answer": "They lived in Berlin for a year.", "explanation": "for a year → завершённый период → Past Simple"},
+      {"question": "I had been to Paris before.", "answer": "I had been to Paris before.", "explanation": "верно"},
+      {"question": "He was sleeping when the fire started.", "answer": "He was sleeping when the fire started.", "explanation": "верно"}
+    ]
+  },
+  {
+    "type": "complex",
+    "text": "3. Complete the sentences with the correct past tense (Simple, Continuous, or Perfect).",
+    "subtasks": [
+      {"question": "I ______ (wait) for the bus when I ______ (realise) I had forgotten my phone.", "answer": "was waiting, realised", "explanation": "фон + прерывание → Past Continuous + Past Simple"},
+      {"question": "By the time I ______ (finish) my homework, my mum ______ (already / cook) dinner.", "answer": "finished, had already cooked", "explanation": "закончил позже → Past Simple + Past Perfect"},
+      {"question": "She ______ (learn) to drive before she ______ (buy) a car.", "answer": "had learnt, bought", "explanation": "научилась до покупки → Past Perfect + Past Simple"},
+      {"question": "While we ______ (watch) TV, the electricity ______ (go) out.", "answer": "were watching, went", "explanation": "фон + прерывание → Past Continuous + Past Simple"},
+      {"question": "I ______ (never / see) such a strange animal before that day.", "answer": "had never seen", "explanation": "до того дня → Past Perfect"},
+      {"question": "When I ______ (look) at the clock, I ______ (realise) I was late.", "answer": "looked, realised", "explanation": "последовательность → Past Simple + Past Simple"},
+      {"question": "He ______ (already / leave) the office when his boss ______ (call).", "answer": "had already left, called", "explanation": "уже ушёл до звонка → Past Perfect + Past Simple"},
+      {"question": "We ______ (eat) dinner at 8 pm last night.", "answer": "were eating", "explanation": "конкретный момент → Past Continuous"},
+      {"question": "I ______ (not / recognise) him because he ______ (change) a lot.", "answer": "didn't recognise, had changed", "explanation": "не узнал, потому что изменился → Past Simple + Past Perfect"},
+      {"question": "They ______ (play) chess when I came in.", "answer": "were playing", "explanation": "фон + вхождение → Past Continuous"}
+    ]
+  },
+  {
+    "type": "complex",
+    "text": "4. Translate the sentences into English.",
+    "subtasks": [
+      {"question": "Я читал газету, когда пришли новости.", "answer": "I was reading the newspaper when the news came.", "explanation": ""},
+      {"question": "Она закончила проект до дедлайна.", "answer": "She had finished her project before the deadline.", "explanation": ""},
+      {"question": "Они навещали родственников прошлым Рождеством.", "answer": "They visited their relatives last Christmas.", "explanation": ""},
+      {"question": "Он никогда не был в Азии до той поездки.", "answer": "He had never been to Asia before that trip.", "explanation": ""},
+      {"question": "Мы бежали в парке, когда увидели змею.", "answer": "We were running in the park when we saw a snake.", "explanation": ""},
+      {"question": "Она работала медсестрой в 2012 году.", "answer": "She worked as a nurse in 2012.", "explanation": ""},
+      {"question": "К тому времени, как он вернулся, они уже ушли.", "answer": "By the time he returned, they had already left.", "explanation": ""},
+      {"question": "Солнце светило, когда мы приехали на пляж.", "answer": "The sun was shining when we arrived at the beach.", "explanation": ""},
+      {"question": "Я встретил жену на конференции в 2010 году.", "answer": "I met my wife at a conference in 2010.", "explanation": ""},
+      {"question": "Мы не видели этот фильм раньше, поэтому решили посмотреть его.", "answer": "We hadn't seen that film before, so we decided to watch it.", "explanation": ""}
         ]
       }
     ]
@@ -1712,7 +1042,7 @@ LEVEL_B1_CONTENT = {
       },
       {
         "type": "complex",
-        "text": "2. Correct the mistakes (if any).",
+        "text": "2. Write down all 10 sentences in full, correcting any errors you find.",
         "subtasks": [
           {"question": "I have been knowing him since childhood.", "answer": "I have known him since childhood.", "explanation": "know — глагол состояния, не используется в Continuous"},
           {"question": "She has been writing emails all morning.", "answer": "She has been writing emails all morning.", "explanation": "верно (длительное действие в прошлом с результатом сейчас)"},
@@ -1779,7 +1109,7 @@ LEVEL_B1_CONTENT = {
       },
       {
         "type": "complex",
-        "text": "2. Correct the mistakes (if any).",
+        "text": "2. Write down all 10 sentences in full, correcting any errors you find.",
         "subtasks": [
           {"question": "I have been knowing the answer all along.", "answer": "I have known the answer all along.", "explanation": "know — состояние, не Continuous"},
           {"question": "She has been reading this book for a week.", "answer": "She has been reading this book for a week.", "explanation": "верно (длительный процесс)"},
@@ -1846,7 +1176,7 @@ LEVEL_B1_CONTENT = {
       },
       {
         "type": "complex",
-        "text": "2. Correct the mistakes (if any).",
+        "text": "2. Write down all 10 sentences in full, correcting any errors you find.",
         "subtasks": [
           {"question": "I have been reading this book for a week.", "answer": "I have been reading this book for a week.", "explanation": "верно"},
           {"question": "She has finished her work already.", "answer": "She has finished her work already.", "explanation": "верно"},
@@ -1913,7 +1243,7 @@ LEVEL_B1_CONTENT = {
       },
       {
         "type": "complex",
-        "text": "2. Correct the mistakes (if any).",
+        "text": "2. Write down all 10 sentences in full, correcting any errors you find.",
         "subtasks": [
           {"question": "I have painted the living room all morning, but I haven't finished yet.", "answer": "I have been painting the living room all morning, but I haven't finished yet.", "explanation": "all morning + процесс, не завершён → Continuous"},
           {"question": "She has been painting this picture for three weeks.", "answer": "She has been painting this picture for three weeks.", "explanation": "верно"},
@@ -1980,7 +1310,7 @@ LEVEL_B1_CONTENT = {
       },
       {
         "type": "complex",
-        "text": "2. Correct the mistakes (if any).",
+        "text": "2. Write down all 10 sentences in full, correcting any errors you find.",
         "subtasks": [
           {"question": "I have been studying for the exam since 8 am.", "answer": "I have been studying for the exam since 8 am.", "explanation": "верно"},
           {"question": "She has already finished the book.", "answer": "She has already finished the book.", "explanation": "верно"},
@@ -2047,7 +1377,7 @@ LEVEL_B1_CONTENT = {
       },
       {
         "type": "complex",
-        "text": "2. Correct the mistakes (if any).",
+        "text": "2. Write down all 10 sentences in full, correcting any errors you find.",
         "subtasks": [
           {"question": "I have been learning Spanish for two years.", "answer": "I have been learning Spanish for two years.", "explanation": "верно"},
           {"question": "She has lost her keys again.", "answer": "She has lost her keys again.", "explanation": "верно"},
@@ -2114,7 +1444,7 @@ LEVEL_B1_CONTENT = {
       },
       {
         "type": "complex",
-        "text": "2. Correct the mistakes (if any).",
+        "text": "2. Write down all 10 sentences in full, correcting any errors you find.",
         "subtasks": [
           {"question": "I have worked on this project for six months.", "answer": "I have been working on this project for six months.", "explanation": "for + период + процесс, почти завершён → Continuous (можно и Simple, но лучше Continuous для акцента)"},
           {"question": "She has finished her homework already.", "answer": "She has finished her homework already.", "explanation": "верно"},
@@ -2181,7 +1511,7 @@ LEVEL_B1_CONTENT = {
       },
       {
         "type": "complex",
-        "text": "2. Correct the mistakes (if any).",
+        "text": "2. Write down all 10 sentences in full, correcting any errors you find.",
         "subtasks": [
           {"question": "I have read this article for an hour and I still haven't finished it.", "answer": "I have been reading this article for an hour and I still haven't finished it.", "explanation": "for an hour + процесс, не завершён → Continuous"},
           {"question": "She has written three chapters of her book so far.", "answer": "She has written three chapters of her book so far.", "explanation": "верно"},
@@ -2248,7 +1578,7 @@ LEVEL_B1_CONTENT = {
       },
       {
         "type": "complex",
-        "text": "2. Correct the mistakes (if any).",
+        "text": "2. Write down all 10 sentences in full, correcting any errors you find.",
         "subtasks": [
           {"question": "I have lived in this city for 20 years.", "answer": "I have lived in this city for 20 years.", "explanation": "верно"},
           {"question": "She has painted the fence all afternoon, and now it looks great.", "answer": "She has been painting the fence all afternoon, and now it looks great.", "explanation": "all afternoon + процесс → Continuous"},
@@ -2315,7 +1645,7 @@ LEVEL_B1_CONTENT = {
       },
       {
         "type": "complex",
-        "text": "2. Correct the mistakes (if any).",
+        "text": "2. Write down all 10 sentences in full, correcting any errors you find.",
         "subtasks": [
           {"question": "I have read this book for a week and I haven't finished yet.", "answer": "I have been reading this book for a week and I haven't finished yet.", "explanation": "for a week + процесс → Continuous"},
           {"question": "She has already finished her essay.", "answer": "She has already finished her essay.", "explanation": "верно"},
@@ -2382,7 +1712,7 @@ LEVEL_B1_CONTENT = {
       },
       {
         "type": "complex",
-        "text": "2. Correct the mistakes (if any).",
+        "text": "2. Write down all 10 sentences in full, correcting any errors you find.",
         "subtasks": [
           {"question": "I have waited for you since 9 am.", "answer": "I have been waiting for you since 9 am.", "explanation": "since + процесс → Continuous"},
           {"question": "She has read three books this month.", "answer": "She has read three books this month.", "explanation": "верно"},
@@ -2449,7 +1779,7 @@ LEVEL_B1_CONTENT = {
       },
       {
         "type": "complex",
-        "text": "2. Correct the mistakes (if any).",
+        "text": "2. Write down all 10 sentences in full, correcting any errors you find.",
         "subtasks": [
           {"question": "I have read this book for a month and I'm only on chapter 5.", "answer": "I have been reading this book for a month and I'm only on chapter 5.", "explanation": "for a month + процесс → Continuous"},
           {"question": "She has written six emails today.", "answer": "She has written six emails today.", "explanation": "верно"},
@@ -2525,807 +1855,7 @@ LEVEL_B1_CONTENT = {
       }
     ],
   "practice_bank": [
-    # ==================== ВАРИАНТ 1 ====================
-    [
-      {
-        "type": "complex",
-        "text": "1. Choose the correct tense: Past Simple or Past Perfect.",
-        "subtasks": [
-          {"question": "When I arrived at the station, the train ______ (already / leave).", "answer": "had already left", "explanation": "действие (поезд ушёл) произошло до другого действия в прошлом (я приехал) → Past Perfect"},
-          {"question": "She ______ (finish) her homework and then she went out.", "answer": "finished", "explanation": "последовательность действий, порядок ясен → Past Simple"},
-          {"question": "He ______ (never / be) to Japan before he went there in 2018.", "answer": "had never been", "explanation": "опыт до определённого момента в прошлом → Past Perfect"},
-          {"question": "They ______ (eat) all the cake by the time we arrived.", "answer": "had eaten", "explanation": "съели всё до нашего прихода → Past Perfect"},
-          {"question": "I ______ (see) the film before, so I didn't watch it again.", "answer": "had seen", "explanation": "уже видел до того момента в прошлом → Past Perfect"},
-          {"question": "She ______ (live) in Paris for two years before she moved to London.", "answer": "had lived", "explanation": "прожила до переезда → Past Perfect"},
-          {"question": "After he ______ (finish) his work, he went to bed.", "answer": "had finished", "explanation": "закончил работу до того, как лёг спать → Past Perfect (с after можно и Past Simple, но здесь Past Perfect для ясности)"},
-          {"question": "We ______ (meet) at the party last weekend.", "answer": "met", "explanation": "простое действие в прошлом с указанием времени → Past Simple"},
-          {"question": "By the time she arrived, we ______ (already / start) dinner.", "answer": "had already started", "explanation": "уже начали до её прихода → Past Perfect"},
-          {"question": "He ______ (know) her for a long time before they got married.", "answer": "had known", "explanation": "знал до того, как поженились → Past Perfect (глагол состояния допустим в Past Perfect)"}
-        ]
-      },
-      {
-        "type": "complex",
-        "text": "2. Correct the mistakes (if any).",
-        "subtasks": [
-          {"question": "When I arrived, she already left.", "answer": "When I arrived, she had already left.", "explanation": "она ушла до моего прихода → нужен Past Perfect"},
-          {"question": "He had finished work and went home.", "answer": "He finished work and went home.", "explanation": "последовательность действий, Past Perfect не нужен"},
-          {"question": "I had seen the film before, so I didn't watch it.", "answer": "I had seen the film before, so I didn't watch it.", "explanation": "верно"},
-          {"question": "She had never been to Italy, so she was excited about the trip.", "answer": "She had never been to Italy, so she was excited about the trip.", "explanation": "верно"},
-          {"question": "After he had finished his homework, he watched TV.", "answer": "After he had finished his homework, he watched TV.", "explanation": "верно"},
-          {"question": "They arrived at the station but the train already left.", "answer": "They arrived at the station but the train had already left.", "explanation": "поезд ушёл до их прибытия → Past Perfect"},
-          {"question": "I hadn't seen him for a long time, so I didn't recognise him.", "answer": "I hadn't seen him for a long time, so I didn't recognise him.", "explanation": "верно"},
-          {"question": "We have been to London last year.", "answer": "We went to London last year.", "explanation": "last year — Past Simple, не Present Perfect"},
-          {"question": "By the time we got there, the film started.", "answer": "By the time we got there, the film had already started.", "explanation": "фильм начался до нашего прихода → Past Perfect"},
-          {"question": "She said that she had met him before.", "answer": "She said that she had met him before.", "explanation": "верно (косвенная речь)"}
-        ]
-      },
-      {
-        "type": "complex",
-        "text": "3. Complete the sentences with Past Simple or Past Perfect.",
-        "subtasks": [
-          {"question": "I ______ (finish) my breakfast and then I ______ (leave) the house.", "answer": "finished, left", "explanation": "последовательность действий → Past Simple + Past Simple"},
-          {"question": "When I ______ (get) home, my mother ______ (already / cook) dinner.", "answer": "got, had already cooked", "explanation": "мама приготовила до моего прихода → Past Simple + Past Perfect"},
-          {"question": "She ______ (never / ride) a horse before that day.", "answer": "had never ridden", "explanation": "опыт до того дня → Past Perfect"},
-          {"question": "After they ______ (take) the exam, they ______ (go) out to celebrate.", "answer": "had taken, went", "explanation": "сначала сдали, потом пошли праздновать → Past Perfect + Past Simple"},
-          {"question": "He ______ (spend) all his money and then he ______ (ask) his parents for more.", "answer": "had spent, asked", "explanation": "сначала потратил, потом попросил → Past Perfect + Past Simple"},
-          {"question": "By the time we ______ (arrive) at the cinema, the film ______ (already / begin).", "answer": "arrived, had already begun", "explanation": "фильм начался до нашего прихода → Past Simple + Past Perfect"},
-          {"question": "She ______ (not / sleep) well the night before, so she ______ (be) tired.", "answer": "hadn't slept, was", "explanation": "не спала до того, как была уставшей → Past Perfect + Past Simple"},
-          {"question": "They ______ (live) in Madrid for five years before they ______ (move) to Barcelona.", "answer": "had lived, moved", "explanation": "прожили до переезда → Past Perfect + Past Simple"},
-          {"question": "He ______ (tell) me that he ______ (never / try) sushi.", "answer": "told, had never tried", "explanation": "сказал в прошлом, а пробовал ещё раньше → Past Simple + Past Perfect"},
-          {"question": "I ______ (not / know) the answer because I ______ (not / study) enough.", "answer": "didn't know, hadn't studied", "explanation": "не знал, потому что не учил → Past Simple + Past Perfect"}
-        ]
-      },
-      {
-        "type": "complex",
-        "text": "4. Translate the sentences into English.",
-        "subtasks": [
-          {"question": "Когда я приехал на вокзал, поезд уже ушёл.", "answer": "When I arrived at the station, the train had already left.", "explanation": ""},
-          {"question": "Она сделала домашнее задание и пошла гулять.", "answer": "She finished her homework and went out.", "explanation": ""},
-          {"question": "Я никогда раньше не был в Японии до 2018 года.", "answer": "I had never been to Japan before 2018.", "explanation": ""},
-          {"question": "Они съели весь торт к тому времени, как мы пришли.", "answer": "They had eaten all the cake by the time we arrived.", "explanation": ""},
-          {"question": "Я уже видел этот фильм, поэтому не стал смотреть его снова.", "answer": "I had seen the film before, so I didn't watch it again.", "explanation": ""},
-          {"question": "Она жила в Париже два года до переезда в Лондон.", "answer": "She had lived in Paris for two years before she moved to London.", "explanation": ""},
-          {"question": "После того как он закончил работу, он лёг спать.", "answer": "After he had finished his work, he went to bed.", "explanation": ""},
-          {"question": "Мы встретились на вечеринке в прошлые выходные.", "answer": "We met at the party last weekend.", "explanation": ""},
-          {"question": "К тому времени, как она пришла, мы уже начали ужинать.", "answer": "By the time she arrived, we had already started dinner.", "explanation": ""},
-          {"question": "Он знал её долгое время до того, как они поженились.", "answer": "He had known her for a long time before they got married.", "explanation": ""}
-        ]
-      }
-    ],
-    # ==================== ВАРИАНТ 2 ====================
-    [
-      {
-        "type": "complex",
-        "text": "1. Choose the correct tense: Past Simple or Past Perfect.",
-        "subtasks": [
-          {"question": "When I called her, she ______ (already / leave) the office.", "answer": "had already left", "explanation": "ушла до звонка → Past Perfect"},
-          {"question": "He ______ (finish) his coffee and then he ______ (stand) up.", "answer": "finished, stood", "explanation": "последовательность действий → Past Simple"},
-          {"question": "I ______ (never / see) such a big whale before that trip.", "answer": "had never seen", "explanation": "опыт до поездки → Past Perfect"},
-          {"question": "They ______ (sell) all the tickets by the time we got to the stadium.", "answer": "had sold", "explanation": "продали до нашего прихода → Past Perfect"},
-          {"question": "She ______ (not / eat) anything before the party, so she was hungry.", "answer": "hadn't eaten", "explanation": "не ела до вечеринки → Past Perfect"},
-          {"question": "We ______ (live) in that house for ten years before we moved.", "answer": "had lived", "explanation": "прожили до переезда → Past Perfect"},
-          {"question": "After he ______ (read) the book, he ______ (watch) the film.", "answer": "had read, watched", "explanation": "сначала прочитал, потом посмотрел → Past Perfect + Past Simple"},
-          {"question": "She ______ (meet) her husband in 2015.", "answer": "met", "explanation": "конкретное время в прошлом → Past Simple"},
-          {"question": "By the time we arrived, the meeting ______ (already / finish).", "answer": "had already finished", "explanation": "встреча закончилась до нашего прихода → Past Perfect"},
-          {"question": "He ______ (be) a teacher for 20 years before he retired.", "answer": "had been", "explanation": "был учителем до выхода на пенсию → Past Perfect (глагол состояния)"}
-        ]
-      },
-      {
-        "type": "complex",
-        "text": "2. Correct the mistakes (if any).",
-        "subtasks": [
-          {"question": "When I arrived, he already left.", "answer": "When I arrived, he had already left.", "explanation": "он ушёл до моего прихода → Past Perfect"},
-          {"question": "She finished work and went home.", "answer": "She finished work and went home.", "explanation": "верно"},
-          {"question": "I had never tried sushi before, so I was excited.", "answer": "I had never tried sushi before, so I was excited.", "explanation": "верно"},
-          {"question": "They arrived at the party but the music already stopped.", "answer": "They arrived at the party but the music had already stopped.", "explanation": "музыка остановилась до их прихода → Past Perfect"},
-          {"question": "After she had finished her homework, she went to bed.", "answer": "After she had finished her homework, she went to bed.", "explanation": "верно"},
-          {"question": "I didn't recognise him because I hadn't seen him for years.", "answer": "I didn't recognise him because I hadn't seen him for years.", "explanation": "верно"},
-          {"question": "We have visited the museum last Sunday.", "answer": "We visited the museum last Sunday.", "explanation": "last Sunday — Past Simple"},
-          {"question": "By the time I got home, my parents already had dinner.", "answer": "By the time I got home, my parents had already had dinner.", "explanation": "родители уже поужинали до моего прихода → Past Perfect (порядок: had already had)"},
-          {"question": "He said that he had never met her.", "answer": "He said that he had never met her.", "explanation": "верно"},
-          {"question": "She had just finished when the phone rang.", "answer": "She had just finished when the phone rang.", "explanation": "верно"}
-        ]
-      },
-      {
-        "type": "complex",
-        "text": "3. Complete the sentences with Past Simple or Past Perfect.",
-        "subtasks": [
-          {"question": "We ______ (wait) for the bus for 30 minutes, but it ______ (not / come).", "answer": "had waited, didn't come", "explanation": "сначала ждали, потом не пришёл → Past Perfect + Past Simple"},
-          {"question": "When I ______ (open) the door, I ______ (see) that someone ______ (leave) a note.", "answer": "opened, saw, had left", "explanation": "открыл, увидел, кто-то оставил ранее → Past Simple + Past Simple + Past Perfect"},
-          {"question": "They ______ (already / buy) the tickets before I ______ (tell) them about the concert.", "answer": "had already bought, told", "explanation": "купили до того, как я сказал → Past Perfect + Past Simple"},
-          {"question": "She ______ (study) law for three years before she ______ (decide) to change careers.", "answer": "had studied, decided", "explanation": "училась до решения → Past Perfect + Past Simple"},
-          {"question": "After he ______ (apologise), she ______ (forgive) him.", "answer": "had apologised, forgave", "explanation": "сначала извинился, потом простила → Past Perfect + Past Simple"},
-          {"question": "I ______ (not / realise) that I ______ (leave) my keys at home.", "answer": "didn't realise, had left", "explanation": "не осознал, потому что оставил ранее → Past Simple + Past Perfect"},
-          {"question": "They ______ (move) to a new flat after they ______ (sell) their old house.", "answer": "moved, had sold", "explanation": "переехали после того, как продали → Past Simple + Past Perfect"},
-          {"question": "He ______ (be) very nervous because he ______ (never / fly) before.", "answer": "was, had never flown", "explanation": "был нервным, потому что никогда не летал → Past Simple + Past Perfect"},
-          {"question": "When we ______ (get) to the cinema, the film ______ (already / start).", "answer": "got, had already started", "explanation": "фильм начался до нашего прихода → Past Simple + Past Perfect"},
-          {"question": "She ______ (not / want) to go to the party because she ______ (not / finish) her work.", "answer": "didn't want, hadn't finished", "explanation": "не хотела, потому что не закончила → Past Simple + Past Perfect"}
-        ]
-      },
-      {
-        "type": "complex",
-        "text": "4. Translate the sentences into English.",
-        "subtasks": [
-          {"question": "Когда я позвонил ей, она уже ушла из офиса.", "answer": "When I called her, she had already left the office.", "explanation": ""},
-          {"question": "Он допил кофе и встал.", "answer": "He finished his coffee and stood up.", "explanation": ""},
-          {"question": "Я никогда не видел такого большого кита до той поездки.", "answer": "I had never seen such a big whale before that trip.", "explanation": ""},
-          {"question": "Они продали все билеты к тому времени, как мы добрались до стадиона.", "answer": "They had sold all the tickets by the time we got to the stadium.", "explanation": ""},
-          {"question": "Она ничего не ела перед вечеринкой, поэтому была голодна.", "answer": "She hadn't eaten anything before the party, so she was hungry.", "explanation": ""},
-          {"question": "Мы жили в том доме десять лет до переезда.", "answer": "We had lived in that house for ten years before we moved.", "explanation": ""},
-          {"question": "После того как он прочитал книгу, он посмотрел фильм.", "answer": "After he had read the book, he watched the film.", "explanation": ""},
-          {"question": "Она встретила мужа в 2015 году.", "answer": "She met her husband in 2015.", "explanation": ""},
-          {"question": "К тому времени, как мы приехали, встреча уже закончилась.", "answer": "By the time we arrived, the meeting had already finished.", "explanation": ""},
-          {"question": "Он был учителем 20 лет до выхода на пенсию.", "answer": "He had been a teacher for 20 years before he retired.", "explanation": ""}
-        ]
-      }
-    ],
-    # ==================== ВАРИАНТ 3 ====================
-    [
-      {
-        "type": "complex",
-        "text": "1. Choose the correct tense: Past Simple or Past Perfect.",
-        "subtasks": [
-          {"question": "When I got home, my sister ______ (already / cook) dinner.", "answer": "had already cooked", "explanation": "сестра приготовила до моего прихода → Past Perfect"},
-          {"question": "He ______ (turn) off the computer and ______ (leave) the room.", "answer": "turned, left", "explanation": "последовательность → Past Simple"},
-          {"question": "I ______ (never / eat) such delicious food before that trip.", "answer": "had never eaten", "explanation": "опыт до поездки → Past Perfect"},
-          {"question": "They ______ (already / start) the meeting when we arrived.", "answer": "had already started", "explanation": "уже начали до нашего прихода → Past Perfect"},
-          {"question": "She ______ (not / sleep) well the night before, so she was tired.", "answer": "hadn't slept", "explanation": "не спала до того → Past Perfect"},
-          {"question": "We ______ (live) in that flat for five years before we bought a house.", "answer": "had lived", "explanation": "прожили до покупки дома → Past Perfect"},
-          {"question": "After she ______ (read) the letter, she ______ (cry).", "answer": "had read, cried", "explanation": "сначала прочитала, потом заплакала → Past Perfect + Past Simple"},
-          {"question": "He ______ (visit) his grandparents last Sunday.", "answer": "visited", "explanation": "конкретное время → Past Simple"},
-          {"question": "By the time I arrived, they ______ (already / leave).", "answer": "had already left", "explanation": "уже ушли до моего прихода → Past Perfect"},
-          {"question": "She ______ (work) for the company for ten years before she quit.", "answer": "had worked", "explanation": "работала до увольнения → Past Perfect"}
-        ]
-      },
-      {
-        "type": "complex",
-        "text": "2. Correct the mistakes (if any).",
-        "subtasks": [
-          {"question": "When I got home, my sister already cooked dinner.", "answer": "When I got home, my sister had already cooked dinner.", "explanation": "она приготовила до моего прихода → Past Perfect"},
-          {"question": "He turned off the computer and left the room.", "answer": "He turned off the computer and left the room.", "explanation": "верно"},
-          {"question": "I had never eaten sushi before, so I was curious.", "answer": "I had never eaten sushi before, so I was curious.", "explanation": "верно"},
-          {"question": "They already started the meeting when we arrived.", "answer": "They had already started the meeting when we arrived.", "explanation": "уже начали до нашего прихода → Past Perfect"},
-          {"question": "She didn't sleep well the night before, so she was tired.", "answer": "She hadn't slept well the night before, so she was tired.", "explanation": "не спала до того → Past Perfect"},
-          {"question": "We lived in that flat for five years before we bought a house.", "answer": "We had lived in that flat for five years before we bought a house.", "explanation": "прожили до покупки → Past Perfect"},
-          {"question": "After she read the letter, she cried.", "answer": "After she had read the letter, she cried.", "explanation": "сначала прочитала → Past Perfect (можно и без, но здесь лучше с Past Perfect)"},
-          {"question": "He visited his grandparents last Sunday.", "answer": "He visited his grandparents last Sunday.", "explanation": "верно"},
-          {"question": "By the time I arrived, they already left.", "answer": "By the time I arrived, they had already left.", "explanation": "они ушли до моего прихода → Past Perfect"},
-          {"question": "She had worked for the company for ten years before she quit.", "answer": "She had worked for the company for ten years before she quit.", "explanation": "верно"}
-        ]
-      },
-      {
-        "type": "complex",
-        "text": "3. Complete the sentences with Past Simple or Past Perfect.",
-        "subtasks": [
-          {"question": "When I ______ (walk) into the room, I ______ (notice) that someone ______ (already / open) the window.", "answer": "walked, noticed, had already opened", "explanation": "вошёл, заметил, кто-то открыл ранее → Past Simple + Past Simple + Past Perfect"},
-          {"question": "They ______ (not / finish) the project by the deadline, so they ______ (lose) the contract.", "answer": "hadn't finished, lost", "explanation": "не закончили до дедлайна, потом потеряли → Past Perfect + Past Simple"},
-          {"question": "After she ______ (write) the email, she ______ (send) it.", "answer": "had written, sent", "explanation": "сначала написала, потом отправила → Past Perfect + Past Simple"},
-          {"question": "I ______ (be) very angry because I ______ (wait) for over an hour.", "answer": "was, had waited", "explanation": "был зол, потому что ждал → Past Simple + Past Perfect"},
-          {"question": "He ______ (say) that he ______ (already / see) the film.", "answer": "said, had already seen", "explanation": "сказал, что уже видел → Past Simple + Past Perfect"},
-          {"question": "When we ______ (get) to the theatre, the play ______ (already / start).", "answer": "got, had already started", "explanation": "спектакль начался до нашего прихода → Past Simple + Past Perfect"},
-          {"question": "They ______ (know) each other for a long time before they ______ (start) dating.", "answer": "had known, started", "explanation": "знали до того, как начали встречаться → Past Perfect + Past Simple"},
-          {"question": "She ______ (not / want) to go out because she ______ (not / eat) breakfast.", "answer": "didn't want, hadn't eaten", "explanation": "не хотела, потому что не завтракала → Past Simple + Past Perfect"},
-          {"question": "After he ______ (finish) his homework, he ______ (go) to the gym.", "answer": "had finished, went", "explanation": "сначала закончил, потом пошёл → Past Perfect + Past Simple"},
-          {"question": "I ______ (think) I ______ (meet) him before, but I wasn't sure.", "answer": "thought, had met", "explanation": "думал, что встречал ранее → Past Simple + Past Perfect"}
-        ]
-      },
-      {
-        "type": "complex",
-        "text": "4. Translate the sentences into English.",
-        "subtasks": [
-          {"question": "Когда я пришёл домой, сестра уже приготовила ужин.", "answer": "When I got home, my sister had already cooked dinner.", "explanation": ""},
-          {"question": "Он выключил компьютер и вышел из комнаты.", "answer": "He turned off the computer and left the room.", "explanation": ""},
-          {"question": "Я никогда не пробовал такой вкусной еды до той поездки.", "answer": "I had never eaten such delicious food before that trip.", "explanation": ""},
-          {"question": "Они уже начали встречу, когда мы пришли.", "answer": "They had already started the meeting when we arrived.", "explanation": ""},
-          {"question": "Она плохо спала прошлой ночью, поэтому была уставшей.", "answer": "She hadn't slept well the night before, so she was tired.", "explanation": ""},
-          {"question": "Мы жили в той квартире пять лет до того, как купили дом.", "answer": "We had lived in that flat for five years before we bought a house.", "explanation": ""},
-          {"question": "После того как она прочитала письмо, она заплакала.", "answer": "After she had read the letter, she cried.", "explanation": ""},
-          {"question": "Он навещал бабушку в прошлое воскресенье.", "answer": "He visited his grandparents last Sunday.", "explanation": ""},
-          {"question": "К тому времени, как я приехал, они уже ушли.", "answer": "By the time I arrived, they had already left.", "explanation": ""},
-          {"question": "Она работала в этой компании десять лет до увольнения.", "answer": "She had worked for the company for ten years before she quit.", "explanation": ""}
-        ]
-      }
-    ],
-    # ==================== ВАРИАНТ 4 ====================
-    [
-      {
-        "type": "complex",
-        "text": "1. Choose the correct tense: Past Simple or Past Perfect.",
-        "subtasks": [
-          {"question": "When I ______ (arrive) at the party, everyone ______ (already / dance).", "answer": "arrived, had already danced", "explanation": "все танцевали уже до моего прихода → Past Simple + Past Perfect"},
-          {"question": "She ______ (finish) her book and ______ (put) it on the shelf.", "answer": "finished, put", "explanation": "последовательность → Past Simple"},
-          {"question": "He ______ (never / be) to a concert before that night.", "answer": "had never been", "explanation": "опыт до того вечера → Past Perfect"},
-          {"question": "They ______ (already / book) a table when we called the restaurant.", "answer": "had already booked", "explanation": "забронировали до нашего звонка → Past Perfect"},
-          {"question": "I ______ (not / see) my cousin for years before she visited.", "answer": "hadn't seen", "explanation": "не видел до визита → Past Perfect"},
-          {"question": "We ______ (live) in the countryside for a while before we moved to the city.", "answer": "had lived", "explanation": "прожили до переезда → Past Perfect"},
-          {"question": "After he ______ (repair) the car, he ______ (take) it for a test drive.", "answer": "had repaired, took", "explanation": "сначала починил, потом прокатился → Past Perfect + Past Simple"},
-          {"question": "She ______ (call) her mum yesterday.", "answer": "called", "explanation": "конкретное прошлое → Past Simple"},
-          {"question": "By the time the fire brigade arrived, the building ______ (already / collapse).", "answer": "had already collapsed", "explanation": "здание рухнуло до прибытия пожарных → Past Perfect"},
-          {"question": "He ______ (study) English for two years before he went to the UK.", "answer": "had studied", "explanation": "учил до поездки → Past Perfect"}
-        ]
-      },
-      {
-        "type": "complex",
-        "text": "2. Correct the mistakes (if any).",
-        "subtasks": [
-          {"question": "When I arrived at the party, everyone already danced.", "answer": "When I arrived at the party, everyone had already danced.", "explanation": "все танцевали до моего прихода → Past Perfect"},
-          {"question": "She finished her book and put it on the shelf.", "answer": "She finished her book and put it on the shelf.", "explanation": "верно"},
-          {"question": "He had never been to a concert before that night.", "answer": "He had never been to a concert before that night.", "explanation": "верно"},
-          {"question": "They already booked a table when we called.", "answer": "They had already booked a table when we called.", "explanation": "забронировали до звонка → Past Perfect"},
-          {"question": "I hadn't seen my cousin for years before she visited.", "answer": "I hadn't seen my cousin for years before she visited.", "explanation": "верно"},
-          {"question": "We lived in the countryside for a while before we moved to the city.", "answer": "We had lived in the countryside for a while before we moved to the city.", "explanation": "прожили до переезда → Past Perfect"},
-          {"question": "After he repaired the car, he took it for a test drive.", "answer": "After he had repaired the car, he took it for a test drive.", "explanation": "сначала починил → Past Perfect (можно и без, но лучше с)"},
-          {"question": "She called her mum yesterday.", "answer": "She called her mum yesterday.", "explanation": "верно"},
-          {"question": "By the time the fire brigade arrived, the building already collapsed.", "answer": "By the time the fire brigade arrived, the building had already collapsed.", "explanation": "здание рухнуло до прибытия → Past Perfect"},
-          {"question": "He studied English for two years before he went to the UK.", "answer": "He had studied English for two years before he went to the UK.", "explanation": "учил до поездки → Past Perfect"}
-        ]
-      },
-      {
-        "type": "complex",
-        "text": "3. Complete the sentences with Past Simple or Past Perfect.",
-        "subtasks": [
-          {"question": "I ______ (try) to call her several times, but she ______ (already / leave).", "answer": "tried, had already left", "explanation": "пытался, но она уже ушла → Past Simple + Past Perfect"},
-          {"question": "When we ______ (get) to the airport, we ______ (realise) that we ______ (forget) our passports.", "answer": "got, realised, had forgotten", "explanation": "приехали, поняли, что забыли ранее → Past Simple + Past Simple + Past Perfect"},
-          {"question": "She ______ (not / want) to see the film because she ______ (already / read) the book.", "answer": "didn't want, had already read", "explanation": "не хотела, потому что уже прочитала → Past Simple + Past Perfect"},
-          {"question": "After we ______ (eat) lunch, we ______ (go) for a walk.", "answer": "had eaten, went", "explanation": "сначала поели, потом пошли → Past Perfect + Past Simple"},
-          {"question": "He ______ (be) nervous because he ______ (never / drive) on the left before.", "answer": "was, had never driven", "explanation": "был нервным, потому что никогда не водил → Past Simple + Past Perfect"},
-          {"question": "They ______ (finish) the project by the time the boss ______ (arrive).", "answer": "had finished, arrived", "explanation": "закончили до прихода босса → Past Perfect + Past Simple"},
-          {"question": "I ______ (not / recognise) her because she ______ (change) a lot.", "answer": "didn't recognise, had changed", "explanation": "не узнал, потому что она изменилась → Past Simple + Past Perfect"},
-          {"question": "He ______ (tell) me that he ______ (already / visit) the museum twice.", "answer": "told, had already visited", "explanation": "сказал, что уже посетил → Past Simple + Past Perfect"},
-          {"question": "After I ______ (finish) my homework, I ______ (watch) TV.", "answer": "had finished, watched", "explanation": "сначала сделал, потом посмотрел → Past Perfect + Past Simple"},
-          {"question": "She ______ (be) angry because someone ______ (take) her bag.", "answer": "was, had taken", "explanation": "была зла, потому что кто-то взял её сумку → Past Simple + Past Perfect"}
-        ]
-      },
-      {
-        "type": "complex",
-        "text": "4. Translate the sentences into English.",
-        "subtasks": [
-          {"question": "Когда я пришёл на вечеринку, все уже танцевали.", "answer": "When I arrived at the party, everyone had already danced.", "explanation": ""},
-          {"question": "Она закончила книгу и поставила её на полку.", "answer": "She finished her book and put it on the shelf.", "explanation": ""},
-          {"question": "Он никогда не был на концерте до того вечера.", "answer": "He had never been to a concert before that night.", "explanation": ""},
-          {"question": "Они уже забронировали столик, когда мы позвонили.", "answer": "They had already booked a table when we called.", "explanation": ""},
-          {"question": "Я не видел двоюродную сестру много лет до её визита.", "answer": "I hadn't seen my cousin for years before she visited.", "explanation": ""},
-          {"question": "Мы жили в сельской местности некоторое время до переезда в город.", "answer": "We had lived in the countryside for a while before we moved to the city.", "explanation": ""},
-          {"question": "После того как он починил машину, он прокатился на ней.", "answer": "After he had repaired the car, he took it for a test drive.", "explanation": ""},
-          {"question": "Она звонила маме вчера.", "answer": "She called her mum yesterday.", "explanation": ""},
-          {"question": "К тому времени, как приехала пожарная команда, здание уже рухнуло.", "answer": "By the time the fire brigade arrived, the building had already collapsed.", "explanation": ""},
-          {"question": "Он учил английский два года до поездки в Великобританию.", "answer": "He had studied English for two years before he went to the UK.", "explanation": ""}
-        ]
-      }
-    ],
-    # ==================== ВАРИАНТ 5 ====================
-    [
-      {
-        "type": "complex",
-        "text": "1. Choose the correct tense: Past Simple or Past Perfect.",
-        "subtasks": [
-          {"question": "When I arrived, they ______ (already / eat) dinner.", "answer": "had already eaten", "explanation": "уже поели до моего прихода → Past Perfect"},
-          {"question": "She ______ (open) the window and ______ (let) the cat in.", "answer": "opened, let", "explanation": "последовательность → Past Simple"},
-          {"question": "I ______ (never / hear) that song before that night.", "answer": "had never heard", "explanation": "опыт до того вечера → Past Perfect"},
-          {"question": "They ______ (already / sell) all the tickets when we got there.", "answer": "had already sold", "explanation": "уже продали до нашего прихода → Past Perfect"},
-          {"question": "She ______ (not / finish) her work by 6 pm, so she stayed late.", "answer": "hadn't finished", "explanation": "не закончила к 6 → Past Perfect"},
-          {"question": "We ______ (live) in that town for a year before we moved away.", "answer": "had lived", "explanation": "прожили до отъезда → Past Perfect"},
-          {"question": "After he ______ (clean) the windows, he ______ (wash) the floor.", "answer": "had cleaned, washed", "explanation": "сначала вымыл окна, потом пол → Past Perfect + Past Simple"},
-          {"question": "She ______ (buy) a new dress yesterday.", "answer": "bought", "explanation": "конкретное прошлое → Past Simple"},
-          {"question": "By the time I woke up, my brother ______ (already / leave) for work.", "answer": "had already left", "explanation": "уже ушёл до моего пробуждения → Past Perfect"},
-          {"question": "He ______ (know) the answer because he ______ (study) the topic before.", "answer": "knew, had studied", "explanation": "знал, потому что изучил ранее → Past Simple + Past Perfect"}
-        ]
-      },
-      {
-        "type": "complex",
-        "text": "2. Correct the mistakes (if any).",
-        "subtasks": [
-          {"question": "When I arrived, they already ate dinner.", "answer": "When I arrived, they had already eaten dinner.", "explanation": "уже поели до моего прихода → Past Perfect"},
-          {"question": "She opened the window and let the cat in.", "answer": "She opened the window and let the cat in.", "explanation": "верно"},
-          {"question": "I had never heard that song before that night.", "answer": "I had never heard that song before that night.", "explanation": "верно"},
-          {"question": "They already sold all the tickets when we got there.", "answer": "They had already sold all the tickets when we got there.", "explanation": "уже продали до нашего прихода → Past Perfect"},
-          {"question": "She didn't finish her work by 6 pm, so she stayed late.", "answer": "She hadn't finished her work by 6 pm, so she stayed late.", "explanation": "не закончила к 6 → Past Perfect"},
-          {"question": "We lived in that town for a year before we moved away.", "answer": "We had lived in that town for a year before we moved away.", "explanation": "прожили до отъезда → Past Perfect"},
-          {"question": "After he cleaned the windows, he washed the floor.", "answer": "After he had cleaned the windows, he washed the floor.", "explanation": "сначала вымыл окна → Past Perfect (можно и без, но лучше с)"},
-          {"question": "She bought a new dress yesterday.", "answer": "She bought a new dress yesterday.", "explanation": "верно"},
-          {"question": "By the time I woke up, my brother already left for work.", "answer": "By the time I woke up, my brother had already left for work.", "explanation": "уже ушёл до моего пробуждения → Past Perfect"},
-          {"question": "He knew the answer because he studied the topic before.", "answer": "He knew the answer because he had studied the topic before.", "explanation": "изучил ранее → Past Perfect"}
-        ]
-      },
-      {
-        "type": "complex",
-        "text": "3. Complete the sentences with Past Simple or Past Perfect.",
-        "subtasks": [
-          {"question": "When I ______ (reach) the station, I ______ (realise) that I ______ (leave) my ticket at home.", "answer": "reached, realised, had left", "explanation": "дошёл, понял, что оставил ранее → Past Simple + Past Simple + Past Perfect"},
-          {"question": "She ______ (not / eat) anything all day, so she ______ (be) starving.", "answer": "hadn't eaten, was", "explanation": "не ела до того, как была голодна → Past Perfect + Past Simple"},
-          {"question": "After he ______ (read) the instructions, he ______ (start) assembling the furniture.", "answer": "had read, started", "explanation": "сначала прочитал, потом начал → Past Perfect + Past Simple"},
-          {"question": "They ______ (already / know) each other for years before they ______ (get) married.", "answer": "had already known, got", "explanation": "знали до женитьбы → Past Perfect + Past Simple"},
-          {"question": "I ______ (not / see) the film before, so I ______ (not / understand) the reference.", "answer": "hadn't seen, didn't understand", "explanation": "не видел, поэтому не понял → Past Perfect + Past Simple"},
-          {"question": "When we ______ (arrive) at the hotel, we ______ (find) that the receptionist ______ (already / give) our keys to someone else.", "answer": "arrived, found, had already given", "explanation": "приехали, обнаружили, что уже отдали → Past Simple + Past Simple + Past Perfect"},
-          {"question": "He ______ (be) very tired because he ______ (work) all night.", "answer": "was, had worked", "explanation": "был уставшим, потому что работал → Past Simple + Past Perfect"},
-          {"question": "They ______ (go) home after they ______ (finish) the project.", "answer": "went, had finished", "explanation": "пошли домой после завершения проекта → Past Simple + Past Perfect"},
-          {"question": "I ______ (tell) him that I ______ (already / meet) his sister.", "answer": "told, had already met", "explanation": "сказал, что уже встречал → Past Simple + Past Perfect"},
-          {"question": "She ______ (not / recognise) him because he ______ (change) his appearance.", "answer": "didn't recognise, had changed", "explanation": "не узнала, потому что он изменился → Past Simple + Past Perfect"}
-        ]
-      },
-      {
-        "type": "complex",
-        "text": "4. Translate the sentences into English.",
-        "subtasks": [
-          {"question": "Когда я пришёл, они уже поужинали.", "answer": "When I arrived, they had already eaten dinner.", "explanation": ""},
-          {"question": "Она открыла окно и впустила кота.", "answer": "She opened the window and let the cat in.", "explanation": ""},
-          {"question": "Я никогда не слышал эту песню до того вечера.", "answer": "I had never heard that song before that night.", "explanation": ""},
-          {"question": "Они уже продали все билеты, когда мы пришли.", "answer": "They had already sold all the tickets when we got there.", "explanation": ""},
-          {"question": "Она не закончила работу к 6 вечера, поэтому задержалась.", "answer": "She hadn't finished her work by 6 pm, so she stayed late.", "explanation": ""},
-          {"question": "Мы жили в том городе год до переезда.", "answer": "We had lived in that town for a year before we moved away.", "explanation": ""},
-          {"question": "После того как он вымыл окна, он вымыл пол.", "answer": "After he had cleaned the windows, he washed the floor.", "explanation": ""},
-          {"question": "Она купила новое платье вчера.", "answer": "She bought a new dress yesterday.", "explanation": ""},
-          {"question": "К тому времени, как я проснулся, брат уже ушёл на работу.", "answer": "By the time I woke up, my brother had already left for work.", "explanation": ""},
-          {"question": "Он знал ответ, потому что изучил тему раньше.", "answer": "He knew the answer because he had studied the topic before.", "explanation": ""}
-        ]
-      }
-    ],
-    # ==================== ВАРИАНТ 6 ====================
-    [
-      {
-        "type": "complex",
-        "text": "1. Choose the correct tense: Past Simple or Past Perfect.",
-        "subtasks": [
-          {"question": "When I called him, he ______ (already / leave).", "answer": "had already left", "explanation": "уже ушёл до моего звонка → Past Perfect"},
-          {"question": "She ______ (take) a shower and then ______ (get) dressed.", "answer": "took, got", "explanation": "последовательность → Past Simple"},
-          {"question": "I ______ (never / see) such a beautiful sunset before that day.", "answer": "had never seen", "explanation": "опыт до того дня → Past Perfect"},
-          {"question": "They ______ (already / close) the shop when we got there.", "answer": "had already closed", "explanation": "уже закрыли до нашего прихода → Past Perfect"},
-          {"question": "She ______ (not / study) enough for the test, so she failed.", "answer": "hadn't studied", "explanation": "не учила до теста → Past Perfect"},
-          {"question": "We ______ (live) in that house for five years before we sold it.", "answer": "had lived", "explanation": "прожили до продажи → Past Perfect"},
-          {"question": "After he ______ (write) the letter, he ______ (post) it.", "answer": "had written, posted", "explanation": "сначала написал, потом отправил → Past Perfect + Past Simple"},
-          {"question": "She ______ (visit) her grandmother last weekend.", "answer": "visited", "explanation": "конкретное время → Past Simple"},
-          {"question": "By the time we got home, our dog ______ (already / eat) all the food.", "answer": "had already eaten", "explanation": "собака уже съела до нашего возвращения → Past Perfect"},
-          {"question": "He ______ (want) to go to the party, but he ______ (already / promise) to help his friend.", "answer": "wanted, had already promised", "explanation": "хотел, но уже пообещал → Past Simple + Past Perfect"}
-        ]
-      },
-      {
-        "type": "complex",
-        "text": "2. Correct the mistakes (if any).",
-        "subtasks": [
-          {"question": "When I called him, he already left.", "answer": "When I called him, he had already left.", "explanation": "уже ушёл до звонка → Past Perfect"},
-          {"question": "She took a shower and got dressed.", "answer": "She took a shower and got dressed.", "explanation": "верно"},
-          {"question": "I had never seen such a beautiful sunset before that day.", "answer": "I had never seen such a beautiful sunset before that day.", "explanation": "верно"},
-          {"question": "They already closed the shop when we got there.", "answer": "They had already closed the shop when we got there.", "explanation": "уже закрыли до нашего прихода → Past Perfect"},
-          {"question": "She didn't study enough for the test, so she failed.", "answer": "She hadn't studied enough for the test, so she failed.", "explanation": "не учила до теста → Past Perfect"},
-          {"question": "We lived in that house for five years before we sold it.", "answer": "We had lived in that house for five years before we sold it.", "explanation": "прожили до продажи → Past Perfect"},
-          {"question": "After he wrote the letter, he posted it.", "answer": "After he had written the letter, he posted it.", "explanation": "сначала написал → Past Perfect (можно и без, но лучше с)"},
-          {"question": "She visited her grandmother last weekend.", "answer": "She visited her grandmother last weekend.", "explanation": "верно"},
-          {"question": "By the time we got home, our dog already ate all the food.", "answer": "By the time we got home, our dog had already eaten all the food.", "explanation": "собака уже съела до нашего возвращения → Past Perfect"},
-          {"question": "He wanted to go to the party, but he already promised to help his friend.", "answer": "He wanted to go to the party, but he had already promised to help his friend.", "explanation": "уже пообещал → Past Perfect"}
-        ]
-      },
-      {
-        "type": "complex",
-        "text": "3. Complete the sentences with Past Simple or Past Perfect.",
-        "subtasks": [
-          {"question": "When I ______ (enter) the room, I ______ (notice) that someone ______ (leave) the window open.", "answer": "entered, noticed, had left", "explanation": "вошёл, заметил, что кто-то оставил окно открытым → Past Simple + Past Simple + Past Perfect"},
-          {"question": "She ______ (never / try) skiing before she ______ (go) to the Alps.", "answer": "had never tried, went", "explanation": "никогда не пробовала до поездки → Past Perfect + Past Simple"},
-          {"question": "After they ______ (finish) their meal, they ______ (pay) the bill.", "answer": "had finished, paid", "explanation": "сначала поели, потом заплатили → Past Perfect + Past Simple"},
-          {"question": "He ______ (be) angry because his sister ______ (eat) his cake.", "answer": "was, had eaten", "explanation": "был зол, потому что сестра съела его торт → Past Simple + Past Perfect"},
-          {"question": "We ______ (miss) the train because we ______ (arrive) late.", "answer": "missed, had arrived", "explanation": "опоздали на поезд, потому что приехали поздно → Past Simple + Past Perfect (сначала приехали поздно, потом опоздали)"},
-          {"question": "They ______ (not / tell) anyone about their plans before they ______ (leave).", "answer": "hadn't told, left", "explanation": "не сказали до отъезда → Past Perfect + Past Simple"},
-          {"question": "I ______ (try) to call her, but she ______ (already / go) out.", "answer": "tried, had already gone", "explanation": "пытался, но она уже ушла → Past Simple + Past Perfect"},
-          {"question": "After she ______ (finish) her presentation, she ______ (answer) questions.", "answer": "had finished, answered", "explanation": "сначала закончила, потом отвечала → Past Perfect + Past Simple"},
-          {"question": "He ______ (know) that he ______ (make) a mistake as soon as he ______ (say) it.", "answer": "knew, had made, said", "explanation": "знал, что сделал ошибку сразу после того, как сказал → Past Simple + Past Perfect + Past Simple"},
-          {"question": "They ______ (be) tired because they ______ (work) all day.", "answer": "were, had worked", "explanation": "были уставшими, потому что работали весь день → Past Simple + Past Perfect"}
-        ]
-      },
-      {
-        "type": "complex",
-        "text": "4. Translate the sentences into English.",
-        "subtasks": [
-          {"question": "Когда я позвонил ему, он уже ушёл.", "answer": "When I called him, he had already left.", "explanation": ""},
-          {"question": "Она приняла душ и оделась.", "answer": "She took a shower and got dressed.", "explanation": ""},
-          {"question": "Я никогда не видел такого красивого заката до того дня.", "answer": "I had never seen such a beautiful sunset before that day.", "explanation": ""},
-          {"question": "Они уже закрыли магазин, когда мы пришли.", "answer": "They had already closed the shop when we got there.", "explanation": ""},
-          {"question": "Она недостаточно училась к тесту, поэтому провалила его.", "answer": "She hadn't studied enough for the test, so she failed.", "explanation": ""},
-          {"question": "Мы жили в этом доме пять лет до того, как продали его.", "answer": "We had lived in that house for five years before we sold it.", "explanation": ""},
-          {"question": "После того как он написал письмо, он отправил его.", "answer": "After he had written the letter, he posted it.", "explanation": ""},
-          {"question": "Она навещала бабушку в прошлые выходные.", "answer": "She visited her grandmother last weekend.", "explanation": ""},
-          {"question": "К тому времени, как мы вернулись домой, наша собака уже съела всю еду.", "answer": "By the time we got home, our dog had already eaten all the food.", "explanation": ""},
-          {"question": "Он хотел пойти на вечеринку, но уже пообещал помочь другу.", "answer": "He wanted to go to the party, but he had already promised to help his friend.", "explanation": ""}
-        ]
-      }
-    ],
-    # ==================== ВАРИАНТ 7 ====================
-    [
-      {
-        "type": "complex",
-        "text": "1. Choose the correct tense: Past Simple or Past Perfect.",
-        "subtasks": [
-          {"question": "She ______ (already / eat) when I arrived.", "answer": "had already eaten", "explanation": "уже поела до моего прихода → Past Perfect"},
-          {"question": "He ______ (close) the window and ______ (lock) the door.", "answer": "closed, locked", "explanation": "последовательность → Past Simple"},
-          {"question": "I ______ (never / see) such a strange animal before.", "answer": "had never seen", "explanation": "опыт до того момента → Past Perfect"},
-          {"question": "They ______ (already / start) the game when we joined them.", "answer": "had already started", "explanation": "уже начали до того, как мы присоединились → Past Perfect"},
-          {"question": "She ______ (not / finish) her homework by 9 pm.", "answer": "hadn't finished", "explanation": "не закончила к 9 → Past Perfect"},
-          {"question": "We ______ (live) in that flat for two years before we bought a house.", "answer": "had lived", "explanation": "прожили до покупки дома → Past Perfect"},
-          {"question": "After he ______ (explain) everything, she ______ (understand).", "answer": "had explained, understood", "explanation": "сначала объяснил, потом она поняла → Past Perfect + Past Simple"},
-          {"question": "She ______ (visit) her aunt last Monday.", "answer": "visited", "explanation": "конкретное время → Past Simple"},
-          {"question": "By the time the police arrived, the thieves ______ (already / escape).", "answer": "had already escaped", "explanation": "воры уже сбежали до прибытия полиции → Past Perfect"},
-          {"question": "He ______ (know) her for a long time before they started dating.", "answer": "had known", "explanation": "знал до того, как начали встречаться → Past Perfect"}
-        ]
-      },
-      {
-        "type": "complex",
-        "text": "2. Correct the mistakes (if any).",
-        "subtasks": [
-          {"question": "She already ate when I arrived.", "answer": "She had already eaten when I arrived.", "explanation": "уже поела до моего прихода → Past Perfect"},
-          {"question": "He closed the window and locked the door.", "answer": "He closed the window and locked the door.", "explanation": "верно"},
-          {"question": "I had never seen such a strange animal before.", "answer": "I had never seen such a strange animal before.", "explanation": "верно"},
-          {"question": "They already started the game when we joined them.", "answer": "They had already started the game when we joined them.", "explanation": "уже начали до нашего присоединения → Past Perfect"},
-          {"question": "She didn't finish her homework by 9 pm.", "answer": "She hadn't finished her homework by 9 pm.", "explanation": "не закончила к 9 → Past Perfect"},
-          {"question": "We lived in that flat for two years before we bought a house.", "answer": "We had lived in that flat for two years before we bought a house.", "explanation": "прожили до покупки → Past Perfect"},
-          {"question": "After he explained everything, she understood.", "answer": "After he had explained everything, she understood.", "explanation": "сначала объяснил → Past Perfect (можно и без, но лучше с)"},
-          {"question": "She visited her aunt last Monday.", "answer": "She visited her aunt last Monday.", "explanation": "верно"},
-          {"question": "By the time the police arrived, the thieves already escaped.", "answer": "By the time the police arrived, the thieves had already escaped.", "explanation": "воры уже сбежали до прибытия полиции → Past Perfect"},
-          {"question": "He knew her for a long time before they started dating.", "answer": "He had known her for a long time before they started dating.", "explanation": "знал до того → Past Perfect"}
-        ]
-      },
-      {
-        "type": "complex",
-        "text": "3. Complete the sentences with Past Simple or Past Perfect.",
-        "subtasks": [
-          {"question": "She ______ (already / leave) by the time I ______ (get) to her house.", "answer": "had already left, got", "explanation": "уже ушла до того, как я добрался → Past Perfect + Past Simple"},
-          {"question": "We ______ (finish) our breakfast and then we ______ (start) our journey.", "answer": "finished, started", "explanation": "последовательность → Past Simple + Past Simple"},
-          {"question": "I ______ (not / know) about the meeting because nobody ______ (tell) me.", "answer": "didn't know, had told", "explanation": "не знал, потому что никто не сказал → Past Simple + Past Perfect (сначала не сказали, потом не знал)"},
-          {"question": "They ______ (already / book) the hotel before they ______ (realise) it was too expensive.", "answer": "had already booked, realised", "explanation": "забронировали до того, как поняли → Past Perfect + Past Simple"},
-          {"question": "After he ______ (finish) his speech, everyone ______ (applaud).", "answer": "had finished, applauded", "explanation": "сначала закончил речь, потом зааплодировали → Past Perfect + Past Simple"},
-          {"question": "She ______ (never / hear) the story before that evening.", "answer": "had never heard", "explanation": "опыт до того вечера → Past Perfect"},
-          {"question": "He ______ (drive) to the airport when he ______ (remember) that he ______ (forget) his passport.", "answer": "was driving, remembered, had forgotten", "explanation": "ехал, вспомнил, что забыл → Past Continuous + Past Simple + Past Perfect (но в задании только Past Simple и Past Perfect, поэтому заменю: He ______ (remember) that he ______ (forget) his passport. — remembered, had forgotten)"},
-          {"question": "They ______ (not / see) each other for years before they ______ (meet) again.", "answer": "hadn't seen, met", "explanation": "не видели до встречи → Past Perfect + Past Simple"},
-          {"question": "I ______ (try) to call her but she ______ (already / leave).", "answer": "tried, had already left", "explanation": "пытался, но она уже ушла → Past Simple + Past Perfect"},
-          {"question": "She ______ (be) happy because she ______ (receive) a gift from her friend.", "answer": "was, had received", "explanation": "была счастлива, потому что получила подарок → Past Simple + Past Perfect"}
-        ]
-      },
-      {
-        "type": "complex",
-        "text": "4. Translate the sentences into English.",
-        "subtasks": [
-          {"question": "Она уже поела, когда я пришёл.", "answer": "She had already eaten when I arrived.", "explanation": ""},
-          {"question": "Он закрыл окно и запер дверь.", "answer": "He closed the window and locked the door.", "explanation": ""},
-          {"question": "Я никогда раньше не видел такого странного животного.", "answer": "I had never seen such a strange animal before.", "explanation": ""},
-          {"question": "Они уже начали игру, когда мы присоединились.", "answer": "They had already started the game when we joined them.", "explanation": ""},
-          {"question": "Она не закончила домашнее задание к 9 вечера.", "answer": "She hadn't finished her homework by 9 pm.", "explanation": ""},
-          {"question": "Мы жили в той квартире два года до покупки дома.", "answer": "We had lived in that flat for two years before we bought a house.", "explanation": ""},
-          {"question": "После того как он всё объяснил, она поняла.", "answer": "After he had explained everything, she understood.", "explanation": ""},
-          {"question": "Она навещала тётю в прошлый понедельник.", "answer": "She visited her aunt last Monday.", "explanation": ""},
-          {"question": "К тому времени, как полиция приехала, воры уже сбежали.", "answer": "By the time the police arrived, the thieves had already escaped.", "explanation": ""},
-          {"question": "Он знал её долгое время до того, как они начали встречаться.", "answer": "He had known her for a long time before they started dating.", "explanation": ""}
-        ]
-      }
-    ],
-    # ==================== ВАРИАНТ 8 ====================
-    [
-      {
-        "type": "complex",
-        "text": "1. Choose the correct tense: Past Simple or Past Perfect.",
-        "subtasks": [
-          {"question": "When we arrived, they ______ (already / finish) their meal.", "answer": "had already finished", "explanation": "уже закончили до нашего прихода → Past Perfect"},
-          {"question": "She ______ (stop) the car and ______ (get) out.", "answer": "stopped, got", "explanation": "последовательность → Past Simple"},
-          {"question": "I ______ (never / meet) anyone famous before that day.", "answer": "had never met", "explanation": "опыт до того дня → Past Perfect"},
-          {"question": "They ______ (already / prepare) everything by the time we arrived.", "answer": "had already prepared", "explanation": "уже подготовили до нашего прихода → Past Perfect"},
-          {"question": "She ______ (not / eat) breakfast, so she was hungry.", "answer": "hadn't eaten", "explanation": "не завтракала до того → Past Perfect"},
-          {"question": "We ______ (live) in that city for a year before we moved.", "answer": "had lived", "explanation": "прожили до переезда → Past Perfect"},
-          {"question": "After they ______ (clean) the house, they ______ (go) shopping.", "answer": "had cleaned, went", "explanation": "сначала убрали, потом пошли за покупками → Past Perfect + Past Simple"},
-          {"question": "She ______ (buy) a new laptop yesterday.", "answer": "bought", "explanation": "конкретное время → Past Simple"},
-          {"question": "By the time I got there, the concert ______ (already / start).", "answer": "had already started", "explanation": "концерт уже начался до моего прихода → Past Perfect"},
-          {"question": "He ______ (be) to London twice before he moved there.", "answer": "had been", "explanation": "был до переезда → Past Perfect (опыт)"}
-        ]
-      },
-      {
-        "type": "complex",
-        "text": "2. Correct the mistakes (if any).",
-        "subtasks": [
-          {"question": "When we arrived, they already finished their meal.", "answer": "When we arrived, they had already finished their meal.", "explanation": "уже закончили до нашего прихода → Past Perfect"},
-          {"question": "She stopped the car and got out.", "answer": "She stopped the car and got out.", "explanation": "верно"},
-          {"question": "I had never met anyone famous before that day.", "answer": "I had never met anyone famous before that day.", "explanation": "верно"},
-          {"question": "They already prepared everything by the time we arrived.", "answer": "They had already prepared everything by the time we arrived.", "explanation": "уже подготовили до нашего прихода → Past Perfect"},
-          {"question": "She didn't eat breakfast, so she was hungry.", "answer": "She hadn't eaten breakfast, so she was hungry.", "explanation": "не завтракала до того → Past Perfect"},
-          {"question": "We lived in that city for a year before we moved.", "answer": "We had lived in that city for a year before we moved.", "explanation": "прожили до переезда → Past Perfect"},
-          {"question": "After they cleaned the house, they went shopping.", "answer": "After they had cleaned the house, they went shopping.", "explanation": "сначала убрали → Past Perfect (можно и без, но лучше с)"},
-          {"question": "She bought a new laptop yesterday.", "answer": "She bought a new laptop yesterday.", "explanation": "верно"},
-          {"question": "By the time I got there, the concert already started.", "answer": "By the time I got there, the concert had already started.", "explanation": "концерт уже начался до моего прихода → Past Perfect"},
-          {"question": "He had been to London twice before he moved there.", "answer": "He had been to London twice before he moved there.", "explanation": "верно"}
-        ]
-      },
-      {
-        "type": "complex",
-        "text": "3. Complete the sentences with Past Simple or Past Perfect.",
-        "subtasks": [
-          {"question": "When I ______ (open) the fridge, I ______ (notice) that someone ______ (drink) all the milk.", "answer": "opened, noticed, had drunk", "explanation": "открыл, заметил, кто-то выпил ранее → Past Simple + Past Simple + Past Perfect"},
-          {"question": "They ______ (not / go) to the cinema because they ______ (already / see) the film.", "answer": "didn't go, had already seen", "explanation": "не пошли, потому что уже видели → Past Simple + Past Perfect"},
-          {"question": "After he ______ (finish) his work, he ______ (call) his friend.", "answer": "had finished, called", "explanation": "сначала закончил, потом позвонил → Past Perfect + Past Simple"},
-          {"question": "She ______ (never / visit) a foreign country before that trip.", "answer": "had never visited", "explanation": "опыт до поездки → Past Perfect"},
-          {"question": "I ______ (be) really tired because I ______ (not / sleep) well the night before.", "answer": "was, hadn't slept", "explanation": "был уставшим, потому что не спал → Past Simple + Past Perfect"},
-          {"question": "We ______ (arrive) at the station just as the train ______ (leave).", "answer": "arrived, left", "explanation": "оба действия в прошлом, последовательность → Past Simple + Past Simple (можно и Past Perfect для поезда, но здесь порядок ясен)"},
-          {"question": "He ______ (tell) me that he ______ (already / meet) my sister.", "answer": "told, had already met", "explanation": "сказал, что уже встречал → Past Simple + Past Perfect"},
-          {"question": "After they ______ (finish) their homework, they ______ (watch) TV.", "answer": "had finished, watched", "explanation": "сначала закончили, потом посмотрели → Past Perfect + Past Simple"},
-          {"question": "She ______ (not / recognise) him because he ______ (change) a lot.", "answer": "didn't recognise, had changed", "explanation": "не узнала, потому что он изменился → Past Simple + Past Perfect"},
-          {"question": "By the time we ______ (get) to the restaurant, it ______ (already / close).", "answer": "got, had already closed", "explanation": "ресторан уже закрылся до нашего прихода → Past Simple + Past Perfect"}
-        ]
-      },
-      {
-        "type": "complex",
-        "text": "4. Translate the sentences into English.",
-        "subtasks": [
-          {"question": "Когда мы приехали, они уже закончили есть.", "answer": "When we arrived, they had already finished their meal.", "explanation": ""},
-          {"question": "Она остановила машину и вышла.", "answer": "She stopped the car and got out.", "explanation": ""},
-          {"question": "Я никогда не встречал знаменитостей до того дня.", "answer": "I had never met anyone famous before that day.", "explanation": ""},
-          {"question": "Они уже всё подготовили к нашему приезду.", "answer": "They had already prepared everything by the time we arrived.", "explanation": ""},
-          {"question": "Она не завтракала, поэтому была голодна.", "answer": "She hadn't eaten breakfast, so she was hungry.", "explanation": ""},
-          {"question": "Мы жили в том городе год до переезда.", "answer": "We had lived in that city for a year before we moved.", "explanation": ""},
-          {"question": "После того как они убрали дом, они пошли за покупками.", "answer": "After they had cleaned the house, they went shopping.", "explanation": ""},
-          {"question": "Она купила новый ноутбук вчера.", "answer": "She bought a new laptop yesterday.", "explanation": ""},
-          {"question": "К тому времени, как я добрался, концерт уже начался.", "answer": "By the time I got there, the concert had already started.", "explanation": ""},
-          {"question": "Он был в Лондоне дважды до переезда.", "answer": "He had been to London twice before he moved there.", "explanation": ""}
-        ]
-      }
-    ],
-    # ==================== ВАРИАНТ 9 ====================
-    [
-      {
-        "type": "complex",
-        "text": "1. Choose the correct tense: Past Simple or Past Perfect.",
-        "subtasks": [
-          {"question": "She ______ (already / book) the tickets before the price went up.", "answer": "had already booked", "explanation": "забронировала до подорожания → Past Perfect"},
-          {"question": "He ______ (take) a taxi and ______ (go) home.", "answer": "took, went", "explanation": "последовательность → Past Simple"},
-          {"question": "I ______ (never / eat) such a spicy dish before that meal.", "answer": "had never eaten", "explanation": "опыт до того → Past Perfect"},
-          {"question": "They ______ (already / finish) the project before the deadline.", "answer": "had already finished", "explanation": "уже закончили до дедлайна → Past Perfect"},
-          {"question": "She ______ (not / call) me before she left.", "answer": "hadn't called", "explanation": "не позвонила до ухода → Past Perfect"},
-          {"question": "We ______ (live) in that neighbourhood for a decade before we moved.", "answer": "had lived", "explanation": "прожили до переезда → Past Perfect"},
-          {"question": "After he ______ (cook) dinner, he ______ (set) the table.", "answer": "had cooked, set", "explanation": "сначала приготовил, потом накрыл → Past Perfect + Past Simple"},
-          {"question": "She ______ (graduate) from university in 2010.", "answer": "graduated", "explanation": "конкретное время → Past Simple"},
-          {"question": "By the time we arrived, the guests ______ (already / leave).", "answer": "had already left", "explanation": "гости уже ушли до нашего прихода → Past Perfect"},
-          {"question": "He ______ (never / drive) a manual car before he bought one.", "answer": "had never driven", "explanation": "никогда не водил механику до покупки → Past Perfect"}
-        ]
-      },
-      {
-        "type": "complex",
-        "text": "2. Correct the mistakes (if any).",
-        "subtasks": [
-          {"question": "She already booked the tickets before the price went up.", "answer": "She had already booked the tickets before the price went up.", "explanation": "забронировала до подорожания → Past Perfect"},
-          {"question": "He took a taxi and went home.", "answer": "He took a taxi and went home.", "explanation": "верно"},
-          {"question": "I had never eaten such a spicy dish before that meal.", "answer": "I had never eaten such a spicy dish before that meal.", "explanation": "верно"},
-          {"question": "They already finished the project before the deadline.", "answer": "They had already finished the project before the deadline.", "explanation": "уже закончили до дедлайна → Past Perfect"},
-          {"question": "She didn't call me before she left.", "answer": "She hadn't called me before she left.", "explanation": "не позвонила до ухода → Past Perfect"},
-          {"question": "We lived in that neighbourhood for a decade before we moved.", "answer": "We had lived in that neighbourhood for a decade before we moved.", "explanation": "прожили до переезда → Past Perfect"},
-          {"question": "After he cooked dinner, he set the table.", "answer": "After he had cooked dinner, he set the table.", "explanation": "сначала приготовил → Past Perfect (можно и без, но лучше с)"},
-          {"question": "She graduated from university in 2010.", "answer": "She graduated from university in 2010.", "explanation": "верно"},
-          {"question": "By the time we arrived, the guests already left.", "answer": "By the time we arrived, the guests had already left.", "explanation": "гости уже ушли до нашего прихода → Past Perfect"},
-          {"question": "He had never driven a manual car before he bought one.", "answer": "He had never driven a manual car before he bought one.", "explanation": "верно"}
-        ]
-      },
-      {
-        "type": "complex",
-        "text": "3. Complete the sentences with Past Simple or Past Perfect.",
-        "subtasks": [
-          {"question": "I ______ (already / hear) the news before you ______ (tell) me.", "answer": "had already heard, told", "explanation": "уже слышал до того, как ты сказал → Past Perfect + Past Simple"},
-          {"question": "They ______ (not / eat) anything all day, so they ______ (order) a lot of food.", "answer": "hadn't eaten, ordered", "explanation": "не ели до того, как заказали → Past Perfect + Past Simple"},
-          {"question": "After she ______ (finish) her coffee, she ______ (pay) the bill.", "answer": "had finished, paid", "explanation": "сначала закончила кофе, потом заплатила → Past Perfect + Past Simple"},
-          {"question": "He ______ (be) very upset because he ______ (lose) his wallet.", "answer": "was, had lost", "explanation": "был расстроен, потому что потерял → Past Simple + Past Perfect"},
-          {"question": "We ______ (drive) for three hours before we ______ (stop) for a break.", "answer": "had driven, stopped", "explanation": "ехали до остановки → Past Perfect + Past Simple"},
-          {"question": "She ______ (never / try) skiing before she ______ (go) to the mountains.", "answer": "had never tried, went", "explanation": "никогда не пробовала до поездки → Past Perfect + Past Simple"},
-          {"question": "By the time I ______ (realise) my mistake, it ______ (already / be) too late.", "answer": "realised, had already been", "explanation": "понял, когда уже было поздно → Past Simple + Past Perfect"},
-          {"question": "They ______ (visit) Paris several times before they ______ (decide) to move there.", "answer": "had visited, decided", "explanation": "посетили до решения переехать → Past Perfect + Past Simple"},
-          {"question": "I ______ (not / know) that she ______ (already / leave).", "answer": "didn't know, had already left", "explanation": "не знал, что она уже ушла → Past Simple + Past Perfect"},
-          {"question": "After I ______ (find) the hotel, I ______ (check) in.", "answer": "had found, checked", "explanation": "сначала нашёл, потом зарегистрировался → Past Perfect + Past Simple"}
-        ]
-      },
-      {
-        "type": "complex",
-        "text": "4. Translate the sentences into English.",
-        "subtasks": [
-          {"question": "Она уже забронировала билеты до того, как цена выросла.", "answer": "She had already booked the tickets before the price went up.", "explanation": ""},
-          {"question": "Он взял такси и поехал домой.", "answer": "He took a taxi and went home.", "explanation": ""},
-          {"question": "Я никогда не пробовал такого острого блюда до того раза.", "answer": "I had never eaten such a spicy dish before that meal.", "explanation": ""},
-          {"question": "Они уже закончили проект до дедлайна.", "answer": "They had already finished the project before the deadline.", "explanation": ""},
-          {"question": "Она не позвонила мне перед уходом.", "answer": "She hadn't called me before she left.", "explanation": ""},
-          {"question": "Мы жили в этом районе десять лет до переезда.", "answer": "We had lived in that neighbourhood for a decade before we moved.", "explanation": ""},
-          {"question": "После того как он приготовил ужин, он накрыл на стол.", "answer": "After he had cooked dinner, he set the table.", "explanation": ""},
-          {"question": "Она окончила университет в 2010 году.", "answer": "She graduated from university in 2010.", "explanation": ""},
-          {"question": "К тому времени, как мы приехали, гости уже ушли.", "answer": "By the time we arrived, the guests had already left.", "explanation": ""},
-          {"question": "Он никогда не водил машину с механической коробкой передач до того, как купил её.", "answer": "He had never driven a manual car before he bought one.", "explanation": ""}
-        ]
-      }
-    ],
-    # ==================== ВАРИАНТ 10 ====================
-    [
-      {
-        "type": "complex",
-        "text": "1. Choose the correct tense: Past Simple or Past Perfect.",
-        "subtasks": [
-          {"question": "When I arrived, she ______ (already / go) to bed.", "answer": "had already gone", "explanation": "уже легла спать до моего прихода → Past Perfect"},
-          {"question": "He ______ (turn) on the TV and ______ (sit) down.", "answer": "turned, sat", "explanation": "последовательность → Past Simple"},
-          {"question": "I ______ (never / see) such a busy street before.", "answer": "had never seen", "explanation": "опыт до того → Past Perfect"},
-          {"question": "They ______ (already / leave) when we arrived.", "answer": "had already left", "explanation": "уже ушли до нашего прихода → Past Perfect"},
-          {"question": "She ______ (not / sleep) at all the night before.", "answer": "hadn't slept", "explanation": "не спала до того → Past Perfect"},
-          {"question": "We ______ (live) in Spain for three years before we moved back.", "answer": "had lived", "explanation": "прожили до возвращения → Past Perfect"},
-          {"question": "After he ______ (wash) the car, he ______ (polish) it.", "answer": "had washed, polished", "explanation": "сначала помыл, потом отполировал → Past Perfect + Past Simple"},
-          {"question": "She ______ (start) her new job last month.", "answer": "started", "explanation": "конкретное время → Past Simple"},
-          {"question": "By the time we reached the summit, the sun ______ (already / rise).", "answer": "had already risen", "explanation": "солнце уже взошло до того, как мы достигли вершины → Past Perfect"},
-          {"question": "He ______ (be) very hungry because he ______ (not / eat) all day.", "answer": "was, hadn't eaten", "explanation": "был голоден, потому что не ел → Past Simple + Past Perfect"}
-        ]
-      },
-      {
-        "type": "complex",
-        "text": "2. Correct the mistakes (if any).",
-        "subtasks": [
-          {"question": "When I arrived, she already went to bed.", "answer": "When I arrived, she had already gone to bed.", "explanation": "уже легла до моего прихода → Past Perfect"},
-          {"question": "He turned on the TV and sat down.", "answer": "He turned on the TV and sat down.", "explanation": "верно"},
-          {"question": "I had never seen such a busy street before.", "answer": "I had never seen such a busy street before.", "explanation": "верно"},
-          {"question": "They already left when we arrived.", "answer": "They had already left when we arrived.", "explanation": "уже ушли до нашего прихода → Past Perfect"},
-          {"question": "She didn't sleep at all the night before.", "answer": "She hadn't slept at all the night before.", "explanation": "не спала до того → Past Perfect"},
-          {"question": "We lived in Spain for three years before we moved back.", "answer": "We had lived in Spain for three years before we moved back.", "explanation": "прожили до возвращения → Past Perfect"},
-          {"question": "After he washed the car, he polished it.", "answer": "After he had washed the car, he polished it.", "explanation": "сначала помыл → Past Perfect (можно и без, но лучше с)"},
-          {"question": "She started her new job last month.", "answer": "She started her new job last month.", "explanation": "верно"},
-          {"question": "By the time we reached the summit, the sun already rose.", "answer": "By the time we reached the summit, the sun had already risen.", "explanation": "солнце уже взошло до достижения вершины → Past Perfect"},
-          {"question": "He was very hungry because he didn't eat all day.", "answer": "He was very hungry because he hadn't eaten all day.", "explanation": "не ел до того → Past Perfect"}
-        ]
-      },
-      {
-        "type": "complex",
-        "text": "3. Complete the sentences with Past Simple or Past Perfect.",
-        "subtasks": [
-          {"question": "I ______ (never / ride) a motorbike before I ______ (buy) one.", "answer": "had never ridden, bought", "explanation": "никогда не ездил до покупки → Past Perfect + Past Simple"},
-          {"question": "She ______ (finish) her homework and then she ______ (go) to the cinema.", "answer": "finished, went", "explanation": "последовательность → Past Simple + Past Simple"},
-          {"question": "They ______ (already / know) each other for years before they ______ (start) dating.", "answer": "had already known, started", "explanation": "знали до того, как начали встречаться → Past Perfect + Past Simple"},
-          {"question": "After we ______ (eat) lunch, we ______ (take) a walk.", "answer": "had eaten, took", "explanation": "сначала поели, потом пошли гулять → Past Perfect + Past Simple"},
-          {"question": "He ______ (not / want) to go to the party because he ______ (not / finish) his work.", "answer": "didn't want, hadn't finished", "explanation": "не хотел, потому что не закончил → Past Simple + Past Perfect"},
-          {"question": "By the time I ______ (get) home, my parents ______ (already / go) to bed.", "answer": "got, had already gone", "explanation": "родители уже легли до моего прихода → Past Simple + Past Perfect"},
-          {"question": "She ______ (tell) me that she ______ (already / see) the film.", "answer": "told, had already seen", "explanation": "сказала, что уже видела → Past Simple + Past Perfect"},
-          {"question": "After he ______ (finish) his speech, everyone ______ (clap).", "answer": "had finished, clapped", "explanation": "сначала закончил речь, потом зааплодировали → Past Perfect + Past Simple"},
-          {"question": "I ______ (not / recognise) her because she ______ (change) her hairstyle.", "answer": "didn't recognise, had changed", "explanation": "не узнал, потому что она сменила причёску → Past Simple + Past Perfect"},
-          {"question": "They ______ (be) late because they ______ (get) stuck in traffic.", "answer": "were, had got", "explanation": "опоздали, потому что застряли в пробке → Past Simple + Past Perfect"}
-        ]
-      },
-      {
-        "type": "complex",
-        "text": "4. Translate the sentences into English.",
-        "subtasks": [
-          {"question": "Когда я пришёл, она уже легла спать.", "answer": "When I arrived, she had already gone to bed.", "explanation": ""},
-          {"question": "Он включил телевизор и сел.", "answer": "He turned on the TV and sat down.", "explanation": ""},
-          {"question": "Я никогда раньше не видел такой оживлённой улицы.", "answer": "I had never seen such a busy street before.", "explanation": ""},
-          {"question": "Они уже ушли, когда мы приехали.", "answer": "They had already left when we arrived.", "explanation": ""},
-          {"question": "Она совсем не спала предыдущей ночью.", "answer": "She hadn't slept at all the night before.", "explanation": ""},
-          {"question": "Мы жили в Испании три года до возвращения.", "answer": "We had lived in Spain for three years before we moved back.", "explanation": ""},
-          {"question": "После того как он помыл машину, он отполировал её.", "answer": "After he had washed the car, he polished it.", "explanation": ""},
-          {"question": "Она начала новую работу в прошлом месяце.", "answer": "She started her new job last month.", "explanation": ""},
-          {"question": "К тому времени, как мы достигли вершины, солнце уже взошло.", "answer": "By the time we reached the summit, the sun had already risen.", "explanation": ""},
-          {"question": "Он был очень голоден, потому что не ел весь день.", "answer": "He was very hungry because he hadn't eaten all day.", "explanation": ""}
-        ]
-      }
-    ],
-    # ==================== ВАРИАНТ 11 ====================
-    [
-      {
-        "type": "complex",
-        "text": "1. Choose the correct tense: Past Simple or Past Perfect.",
-        "subtasks": [
-          {"question": "By the time we arrived, the match ______ (already / finish).", "answer": "had already finished", "explanation": "матч уже закончился до нашего прихода → Past Perfect"},
-          {"question": "She ______ (open) the door and ______ (walk) in.", "answer": "opened, walked", "explanation": "последовательность → Past Simple"},
-          {"question": "I ______ (never / hear) that name before.", "answer": "had never heard", "explanation": "опыт до того → Past Perfect"},
-          {"question": "They ______ (already / pay) the bill when we offered to contribute.", "answer": "had already paid", "explanation": "уже заплатили до нашего предложения → Past Perfect"},
-          {"question": "She ______ (not / see) the email before she deleted it.", "answer": "hadn't seen", "explanation": "не видела до удаления → Past Perfect"},
-          {"question": "We ______ (live) in that house for years before we sold it.", "answer": "had lived", "explanation": "прожили до продажи → Past Perfect"},
-          {"question": "After he ______ (return) the book, he ______ (borrow) another one.", "answer": "had returned, borrowed", "explanation": "сначала вернул, потом взял другой → Past Perfect + Past Simple"},
-          {"question": "She ______ (buy) a new car last week.", "answer": "bought", "explanation": "конкретное время → Past Simple"},
-          {"question": "By the time I arrived, the party ______ (already / start).", "answer": "had already started", "explanation": "вечеринка уже началась до моего прихода → Past Perfect"},
-          {"question": "He ______ (know) her for many years before they got married.", "answer": "had known", "explanation": "знал до женитьбы → Past Perfect"}
-        ]
-      },
-      {
-        "type": "complex",
-        "text": "2. Correct the mistakes (if any).",
-        "subtasks": [
-          {"question": "By the time we arrived, the match already finished.", "answer": "By the time we arrived, the match had already finished.", "explanation": "матч уже закончился до нашего прихода → Past Perfect"},
-          {"question": "She opened the door and walked in.", "answer": "She opened the door and walked in.", "explanation": "верно"},
-          {"question": "I had never heard that name before.", "answer": "I had never heard that name before.", "explanation": "верно"},
-          {"question": "They already paid the bill when we offered to contribute.", "answer": "They had already paid the bill when we offered to contribute.", "explanation": "уже заплатили до нашего предложения → Past Perfect"},
-          {"question": "She didn't see the email before she deleted it.", "answer": "She hadn't seen the email before she deleted it.", "explanation": "не видела до удаления → Past Perfect"},
-          {"question": "We lived in that house for years before we sold it.", "answer": "We had lived in that house for years before we sold it.", "explanation": "прожили до продажи → Past Perfect"},
-          {"question": "After he returned the book, he borrowed another one.", "answer": "After he had returned the book, he borrowed another one.", "explanation": "сначала вернул → Past Perfect (можно и без, но лучше с)"},
-          {"question": "She bought a new car last week.", "answer": "She bought a new car last week.", "explanation": "верно"},
-          {"question": "By the time I arrived, the party already started.", "answer": "By the time I arrived, the party had already started.", "explanation": "вечеринка уже началась до моего прихода → Past Perfect"},
-          {"question": "He knew her for many years before they got married.", "answer": "He had known her for many years before they got married.", "explanation": "знал до женитьбы → Past Perfect"}
-        ]
-      },
-      {
-        "type": "complex",
-        "text": "3. Complete the sentences with Past Simple or Past Perfect.",
-        "subtasks": [
-          {"question": "I ______ (already / eat) lunch when my friend ______ (call) me.", "answer": "had already eaten, called", "explanation": "уже поел до звонка → Past Perfect + Past Simple"},
-          {"question": "She ______ (not / recognise) the man because she ______ (never / see) him before.", "answer": "didn't recognise, had never seen", "explanation": "не узнала, потому что никогда не видела → Past Simple + Past Perfect"},
-          {"question": "After they ______ (finish) their meal, they ______ (leave) the restaurant.", "answer": "had finished, left", "explanation": "сначала закончили еду, потом ушли → Past Perfect + Past Simple"},
-          {"question": "He ______ (be) angry because someone ______ (take) his phone.", "answer": "was, had taken", "explanation": "был зол, потому что кто-то взял телефон → Past Simple + Past Perfect"},
-          {"question": "We ______ (drive) for two hours before we ______ (stop) for petrol.", "answer": "had driven, stopped", "explanation": "ехали до остановки → Past Perfect + Past Simple"},
-          {"question": "She ______ (never / travel) abroad before she ______ (go) to France.", "answer": "had never travelled, went", "explanation": "никогда не путешествовала до поездки → Past Perfect + Past Simple"},
-          {"question": "By the time I ______ (get) to the cinema, the film ______ (already / begin).", "answer": "got, had already begun", "explanation": "фильм уже начался до моего прихода → Past Simple + Past Perfect"},
-          {"question": "They ______ (already / decide) what to do before we ______ (ask) them.", "answer": "had already decided, asked", "explanation": "уже решили до того, как мы спросили → Past Perfect + Past Simple"},
-          {"question": "I ______ (not / know) that she ______ (leave) the company.", "answer": "didn't know, had left", "explanation": "не знал, что она ушла → Past Simple + Past Perfect"},
-          {"question": "After he ______ (pack) his suitcase, he ______ (call) a taxi.", "answer": "had packed, called", "explanation": "сначала упаковал, потом вызвал такси → Past Perfect + Past Simple"}
-        ]
-      },
-      {
-        "type": "complex",
-        "text": "4. Translate the sentences into English.",
-        "subtasks": [
-          {"question": "К тому времени, как мы приехали, матч уже закончился.", "answer": "By the time we arrived, the match had already finished.", "explanation": ""},
-          {"question": "Она открыла дверь и вошла.", "answer": "She opened the door and walked in.", "explanation": ""},
-          {"question": "Я никогда раньше не слышал этого имени.", "answer": "I had never heard that name before.", "explanation": ""},
-          {"question": "Они уже заплатили по счёту, когда мы предложили скинуться.", "answer": "They had already paid the bill when we offered to contribute.", "explanation": ""},
-          {"question": "Она не видела письмо до того, как удалила его.", "answer": "She hadn't seen the email before she deleted it.", "explanation": ""},
-          {"question": "Мы жили в этом доме много лет до продажи.", "answer": "We had lived in that house for years before we sold it.", "explanation": ""},
-          {"question": "После того как он вернул книгу, он взял другую.", "answer": "After he had returned the book, he borrowed another one.", "explanation": ""},
-          {"question": "Она купила новую машину на прошлой неделе.", "answer": "She bought a new car last week.", "explanation": ""},
-          {"question": "К тому времени, как я пришёл, вечеринка уже началась.", "answer": "By the time I arrived, the party had already started.", "explanation": ""},
-          {"question": "Он знал её много лет до свадьбы.", "answer": "He had known her for many years before they got married.", "explanation": ""}
-        ]
-      }
-    ],
-    # ==================== ВАРИАНТ 12 ====================
-    [
-      {
-        "type": "complex",
-        "text": "1. Choose the correct tense: Past Simple or Past Perfect.",
-        "subtasks": [
-          {"question": "When I got to the office, my boss ______ (already / leave).", "answer": "had already left", "explanation": "начальник уже ушёл до моего прихода → Past Perfect"},
-          {"question": "She ______ (pay) for the groceries and ______ (leave) the shop.", "answer": "paid, left", "explanation": "последовательность → Past Simple"},
-          {"question": "I ______ (never / see) such a beautiful painting before that day.", "answer": "had never seen", "explanation": "опыт до того дня → Past Perfect"},
-          {"question": "They ______ (already / eat) dinner when I arrived.", "answer": "had already eaten", "explanation": "уже поужинали до моего прихода → Past Perfect"},
-          {"question": "She ______ (not / receive) the message before she left.", "answer": "hadn't received", "explanation": "не получила до ухода → Past Perfect"},
-          {"question": "We ______ (live) in that village for five years before we moved.", "answer": "had lived", "explanation": "прожили до переезда → Past Perfect"},
-          {"question": "After he ______ (finish) his coffee, he ______ (pay) and ______ (leave).", "answer": "had finished, paid, left", "explanation": "сначала закончил кофе, потом заплатил и ушёл → Past Perfect + Past Simple + Past Simple"},
-          {"question": "She ______ (visit) her parents last Friday.", "answer": "visited", "explanation": "конкретное время → Past Simple"},
-          {"question": "By the time we got to the theatre, the play ______ (already / start).", "answer": "had already started", "explanation": "спектакль уже начался до нашего прихода → Past Perfect"},
-          {"question": "He ______ (never / speak) in public before that day.", "answer": "had never spoken", "explanation": "опыт до того дня → Past Perfect"}
-        ]
-      },
-      {
-        "type": "complex",
-        "text": "2. Correct the mistakes (if any).",
-        "subtasks": [
-          {"question": "When I got to the office, my boss already left.", "answer": "When I got to the office, my boss had already left.", "explanation": "начальник уже ушёл до моего прихода → Past Perfect"},
-          {"question": "She paid for the groceries and left the shop.", "answer": "She paid for the groceries and left the shop.", "explanation": "верно"},
-          {"question": "I had never seen such a beautiful painting before that day.", "answer": "I had never seen such a beautiful painting before that day.", "explanation": "верно"},
-          {"question": "They already ate dinner when I arrived.", "answer": "They had already eaten dinner when I arrived.", "explanation": "уже поужинали до моего прихода → Past Perfect"},
-          {"question": "She didn't receive the message before she left.", "answer": "She hadn't received the message before she left.", "explanation": "не получила до ухода → Past Perfect"},
-          {"question": "We lived in that village for five years before we moved.", "answer": "We had lived in that village for five years before we moved.", "explanation": "прожили до переезда → Past Perfect"},
-          {"question": "After he finished his coffee, he paid and left.", "answer": "After he had finished his coffee, he paid and left.", "explanation": "сначала закончил кофе → Past Perfect (можно и без, но лучше с)"},
-          {"question": "She visited her parents last Friday.", "answer": "She visited her parents last Friday.", "explanation": "верно"},
-          {"question": "By the time we got to the theatre, the play already started.", "answer": "By the time we got to the theatre, the play had already started.", "explanation": "спектакль уже начался до нашего прихода → Past Perfect"},
-          {"question": "He had never spoken in public before that day.", "answer": "He had never spoken in public before that day.", "explanation": "верно"}
-        ]
-      },
-      {
-        "type": "complex",
-        "text": "3. Complete the sentences with Past Simple or Past Perfect.",
-        "subtasks": [
-          {"question": "I ______ (try) to call her, but she ______ (already / turn) off her phone.", "answer": "tried, had already turned", "explanation": "пытался, но она уже выключила телефон → Past Simple + Past Perfect"},
-          {"question": "She ______ (not / know) about the meeting because nobody ______ (tell) her.", "answer": "didn't know, had told", "explanation": "не знала, потому что никто не сказал → Past Simple + Past Perfect (сначала не сказали, потом не знала)"},
-          {"question": "After we ______ (finish) our work, we ______ (go) home.", "answer": "had finished, went", "explanation": "сначала закончили, потом пошли домой → Past Perfect + Past Simple"},
-          {"question": "He ______ (be) very happy because he ______ (receive) a promotion.", "answer": "was, had received", "explanation": "был счастлив, потому что получил повышение → Past Simple + Past Perfect"},
-          {"question": "They ______ (study) all day, so they ______ (be) exhausted.", "answer": "had studied, were", "explanation": "учились весь день, поэтому были измотаны → Past Perfect + Past Simple"},
-          {"question": "I ______ (never / eat) octopus before I ______ (try) it in Greece.", "answer": "had never eaten, tried", "explanation": "никогда не ел до пробы в Греции → Past Perfect + Past Simple"},
-          {"question": "By the time I ______ (wake) up, my sister ______ (already / make) breakfast.", "answer": "woke, had already made", "explanation": "сестра уже приготовила завтрак до моего пробуждения → Past Simple + Past Perfect"},
-          {"question": "She ______ (finish) her homework and then she ______ (start) reading a book.", "answer": "finished, started", "explanation": "последовательность → Past Simple + Past Simple"},
-          {"question": "He ______ (say) that he ______ (already / meet) her before.", "answer": "said, had already met", "explanation": "сказал, что уже встречал её → Past Simple + Past Perfect"},
-          {"question": "After I ______ (find) the right street, I ______ (drive) to the address.", "answer": "had found, drove", "explanation": "сначала нашёл улицу, потом поехал по адресу → Past Perfect + Past Simple"}
-        ]
-      },
-      {
-        "type": "complex",
-        "text": "4. Translate the sentences into English.",
-        "subtasks": [
-          {"question": "Когда я пришёл в офис, начальник уже ушёл.", "answer": "When I got to the office, my boss had already left.", "explanation": ""},
-          {"question": "Она заплатила за продукты и вышла из магазина.", "answer": "She paid for the groceries and left the shop.", "explanation": ""},
-          {"question": "Я никогда раньше не видел такой красивой картины.", "answer": "I had never seen such a beautiful painting before that day.", "explanation": ""},
-          {"question": "Они уже поужинали, когда я пришёл.", "answer": "They had already eaten dinner when I arrived.", "explanation": ""},
-          {"question": "Она не получила сообщение до ухода.", "answer": "She hadn't received the message before she left.", "explanation": ""},
-          {"question": "Мы жили в этой деревне пять лет до переезда.", "answer": "We had lived in that village for five years before we moved.", "explanation": ""},
-          {"question": "После того как он допил кофе, он заплатил и ушёл.", "answer": "After he had finished his coffee, he paid and left.", "explanation": ""},
-          {"question": "Она навещала родителей в прошлую пятницу.", "answer": "She visited her parents last Friday.", "explanation": ""},
-          {"question": "К тому времени, как мы добрались до театра, спектакль уже начался.", "answer": "By the time we got to the theatre, the play had already started.", "explanation": ""},
-          {"question": "Он никогда не выступал публично до того дня.", "answer": "He had never spoken in public before that day.", "explanation": ""}
+
         ]
       }
     ]
