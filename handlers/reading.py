@@ -177,13 +177,14 @@ async def render_task_message(message: Message, state: FSMContext, user_id: int,
         if index >= len(all_tasks):
             index = 0
         task = all_tasks[index]
-        actual_type_key = None
-        for key, json_key in TYPE_MAP.items():
-            if json_key in task.get("type", ""):
-                actual_type_key = key
-                break
-        if not actual_type_key:
-            actual_type_key = "choice"
+actual_type_key = None
+for key, json_key in TYPE_MAP.items():
+    # Сравниваем не по вхождению, а по точному совпадению
+    if task.get("type") == json_key:
+        actual_type_key = key
+        break
+if not actual_type_key:
+    actual_type_key = "choice"
         await state.update_data(actual_type=actual_type_key, actual_task=task, random_index=index)
         actual_type = actual_type_key
     else:
