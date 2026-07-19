@@ -202,8 +202,14 @@ async def render_task_message(message: Message, state: FSMContext, user_id: int,
         paragraphs = ["(текст отсутствует)"]
 
     # Формируем текст
-    if actual_type == "order":
+    # Для случайного типа добавляем явное указание типа
+    if short_type == "random":
+        type_label = TYPE_DISPLAY.get(actual_type, actual_type)
+        text = f"<b>Тип задания:</b> {type_label}\n\n"
+    else:
         text = ""
+
+    if actual_type == "order":
         for i, para in enumerate(paragraphs):
             if not para.startswith(chr(65+i) + ")"):
                 text += f"{chr(65+i)}) {para}\n\n"
@@ -212,10 +218,10 @@ async def render_task_message(message: Message, state: FSMContext, user_id: int,
         text += f"{task.get('question', '')}"
     else:
         if actual_type == "truefalse":
-            text = f"{paragraphs[0]}\n\n"
+            text += f"{paragraphs[0]}\n\n"
             text += f"{task.get('statement', '')}\n\nВыберите верное утверждение:"
         else:
-            text = f"{paragraphs[0]}\n\n"
+            text += f"{paragraphs[0]}\n\n"
             text += f"{task.get('question', '')}\n"
 
     # Клавиатура
