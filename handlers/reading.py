@@ -2,7 +2,7 @@ import logging
 import random
 import json
 from aiogram import Router, F
-from aiogram.types import Message, CallbackQuery, InlineKeyboardMarkup, InlineKeyboardButton
+from aiogram.types import Message, CallbackQuery, InlineKeyboardMarkup, InlineKeyboardButton, Voice
 from aiogram.fsm.context import FSMContext
 from aiogram.filters import Command
 from data.reading_loader import get_task, TASKS
@@ -238,9 +238,12 @@ async def render_task_message(message: Message, state: FSMContext, user_id: int,
             text += f"{paragraphs[0]}\n\n"
             text += f"{task.get('question', '')}\n"
 
+    # Определяем, нужно ли ожидать текстовый ответ
+    is_text_input = task.get("input_type") == "text"
+
     if actual_type == "order":
         keyboard = get_action_keyboard(short_type, short_level, index, is_revision)
-    elif task.get("input_type") == "text":
+    elif is_text_input:
         text += "\nВведите ответ в чат."
         keyboard = get_action_keyboard(short_type, short_level, index, is_revision)
     else:
@@ -256,6 +259,16 @@ async def render_task_message(message: Message, state: FSMContext, user_id: int,
 
     sent_msg = await message.answer(text, reply_markup=keyboard, parse_mode="HTML")
     await state.update_data(last_task_msg_id=sent_msg.message_id)
+
+    # Устанавливаем состояние ожидания текста только если задание требует текстового ввода
+    if is_text_input:
+        await state.set_state(ReadingStates.waiting_for_text)
+    else:
+        # Для кнопочных заданий состояние не нужно (они обрабатываются через callback)
+        # Просто оставляем текущее состояние (если оно было) – но лучше сбросить?
+        # Можно оставить, но главное – не перехватывать текстовые сообщения.
+        pass
+
     return text, keyboard
 
 async def get_total_stats(user_id: int, short_level: str):
@@ -388,7 +401,7 @@ async def choose_level(callback: CallbackQuery, state: FSMContext):
 
     await send_progress_message_edit(callback.message, user_id, short_type, short_level, state)
     await render_task_message(callback.message, state, user_id, short_type, short_level, index, paragraph_idx=0, is_revision=False)
-    await state.set_state(ReadingStates.waiting_for_text)
+    # Состояние waiting_for_text установится внутри render_task_message только если нужно
     await callback.answer()
 
 @router.callback_query(F.data.startswith("reading_answer:"))
@@ -522,6 +535,7 @@ async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
         await render_task_message(callback.message, state, user_id, short_type, short_level, next_index, paragraph_idx=0, is_revision=False)
         await callback.answer()
 
+# ---------- Обработчик только для текстовых ответов (когда ожидается текст) ----------
 @router.message(ReadingStates.waiting_for_text, F.text, ~F.text.startswith('/'))
 async def handle_text_answer(message: Message, state: FSMContext):
     data = await state.get_data()
@@ -655,6 +669,14 @@ async def handle_text_answer(message: Message, state: FSMContext):
     else:
         await render_task_message(message, state, user_id, short_type, short_level, next_index, paragraph_idx=0, is_revision=False)
 
+# ---------- Игнорирование голосовых сообщений ----------
+@router.message(F.voice)
+async def ignore_voice(message: Message):
+    # Проверяем, находимся ли в режиме чтения (по состоянию или по данным пользователя)
+    # Можно просто игнорировать с сообщением
+    await message.answer("Голосовые сообщения не поддерживаются в этом режиме. Пожалуйста, используйте кнопки или текстовый ввод.")
+
+# ---------- Вспомогательные функции ----------
 async def show_next_task(message: Message, state: FSMContext, is_revision: bool):
     data = await state.get_data()
     short_type = data.get("short_type")
@@ -677,21 +699,11 @@ async def show_revision_task(message: Message, state: FSMContext, error_ids: lis
 
     if short_type == "random":
         random.shuffle(error_ids)
-        order = await get_random_order(user_id, short_level)
-        # Берем первый ID из списка ошибок
         task_id = error_ids[0]
         task, actual_type = await get_task_by_id(user_id, short_level, task_id)
         if not task:
-            # Если не найдено по ID в случайном порядке, ищем по всем заданиям
-            all_items = await get_all_tasks_for_random(short_level)
-            for item in all_items:
-                if item["task"]["id"] == task_id:
-                    task = item["task"]
-                    actual_type = item["type_key"]
-                    break
-            if not task:
-                await message.answer("Не удалось найти задание для исправления.")
-                return
+            await message.answer("Не удалось найти задание для исправления.")
+            return
         await state.update_data(actual_type=actual_type, actual_task=task)
         await render_task_message(message, state, user_id, actual_type, short_level, task_id, paragraph_idx=0, is_revision=True)
         await state.update_data(index=task_id, paragraph_idx=0, is_revision=True, error_list=error_ids, error_index=0)
@@ -988,7 +1000,6 @@ async def confirm_reset(callback: CallbackQuery, state: FSMContext):
             await clear_reading_errors(user_id, t_json, level_json)
             await reset_user_stats(user_id, t_json, level_json)
         await reset_user_progress(user_id, "random", short_level)
-        # Удаляем случайный порядок
         r = await get_redis()
         await r.delete(f"random_order:{user_id}:{short_level}")
     else:
