@@ -5,7 +5,7 @@ from aiogram.types import Message, CallbackQuery, InlineKeyboardMarkup, InlineKe
 from aiogram.fsm.context import FSMContext
 from aiogram.filters import Command
 from data.reading_loader import get_task, TASKS
-from utils.db import (   # <-- ПОДКЛЮЧАЕМ ПОСТГРЕС
+from utils.db import (
     get_user_stats_db as get_user_stats,
     update_user_stats_db as update_user_stats,
     reset_user_stats_db as reset_user_stats,
@@ -112,6 +112,7 @@ def get_reset_confirmation_keyboard():
     return InlineKeyboardMarkup(inline_keyboard=buttons)
 
 async def clear_keyboard(message: Message, state: FSMContext):
+    """Убирает клавиатуру у последнего сообщения с заданием и у прогресса."""
     data = await state.get_data()
     last_id = data.get("last_task_msg_id")
     if last_id:
@@ -119,7 +120,15 @@ async def clear_keyboard(message: Message, state: FSMContext):
             await message.bot.edit_message_reply_markup(chat_id=message.chat.id, message_id=last_id, reply_markup=None)
         except Exception:
             pass
-    await state.update_data(last_task_msg_id=None)
+        await state.update_data(last_task_msg_id=None)
+    # Убираем кнопки у прогресса
+    progress_id = data.get("progress_msg_id")
+    if progress_id:
+        try:
+            await message.bot.edit_message_reply_markup(chat_id=message.chat.id, message_id=progress_id, reply_markup=None)
+        except Exception:
+            pass
+        await state.update_data(progress_msg_id=None)
 
 async def get_all_tasks_for_random(level: str):
     all_tasks = []
@@ -133,6 +142,7 @@ async def get_all_tasks_for_random(level: str):
             elif isinstance(TASKS[type_json], list):
                 tasks = [t for t in TASKS[type_json] if t.get("level") == level_json]
                 all_tasks.extend(tasks)
+    logger.info(f"📊 Случайный тип: найдено заданий {len(all_tasks)} для уровня {level}")
     return all_tasks
 
 def normalize_answer(text: str) -> str:
@@ -176,6 +186,7 @@ async def render_task_message(message: Message, state: FSMContext, user_id: int,
     if not paragraphs:
         paragraphs = ["(текст отсутствует)"]
 
+    # Формируем текст
     if actual_type == "order":
         text = ""
         for i, para in enumerate(paragraphs):
@@ -184,20 +195,20 @@ async def render_task_message(message: Message, state: FSMContext, user_id: int,
             else:
                 text += f"{para}\n\n"
         text += f"{task.get('question', '')}"
+    else:
+        if actual_type == "truefalse":
+            # Для truefalse выводим текст и утверждение (statement)
+            text = f"{paragraphs[0]}\n\n"
+            text += f"{task.get('statement', '')}\n\nВыберите верное утверждение:"
+        else:
+            text = f"{paragraphs[0]}\n\n"
+            text += f"{task.get('question', '')}\n"
+
+    # Клавиатура
+    if actual_type == "order":
         keyboard = get_action_keyboard(short_type, short_level, index, is_revision)
-        sent_msg = await message.answer(text, reply_markup=keyboard, parse_mode="HTML")
-        await state.update_data(last_task_msg_id=sent_msg.message_id)
-        return text, keyboard
-
-    if paragraph_idx >= len(paragraphs):
-        paragraph_idx = 0
-    current_paragraph = paragraphs[paragraph_idx]
-
-    text = f"{current_paragraph}\n\n"
-    text += f"{task.get('question', '')}\n"
-
-    if task.get("input_type") == "text":
-        text += "Введите ответ в чат.\n"
+    elif task.get("input_type") == "text":
+        text += "\nВведите ответ в чат."
         keyboard = get_action_keyboard(short_type, short_level, index, is_revision)
     else:
         options = task.get("options", [])
@@ -225,7 +236,8 @@ async def get_total_stats(user_id: int, short_level: str):
         total_wrong += wrong
     return total_correct, total_wrong
 
-async def send_progress_once(message: Message, user_id: int, short_type: str, short_level: str):
+async def send_progress_message_edit(message: Message, user_id: int, short_type: str, short_level: str, state: FSMContext):
+    """Редактирует текущее сообщение (выбор уровня) в сообщение с прогрессом."""
     if short_type == "random":
         correct, _ = await get_total_stats(user_id, short_level)
         error_count = 0
@@ -237,7 +249,6 @@ async def send_progress_once(message: Message, user_id: int, short_type: str, sh
         display_name = "🎲 Случайный тип"
         level_display = get_level_display(short_level)
         description = TYPE_DESCRIPTION.get("random", "выполните задание")
-        logger.info(f"📊 RANDOM: user={user_id}, correct={correct}, wrong_uniq={error_count}")
     else:
         type_json = TYPE_MAP.get(short_type, short_type)
         level_json = LEVEL_MAP.get(short_level, short_level)
@@ -247,7 +258,6 @@ async def send_progress_once(message: Message, user_id: int, short_type: str, sh
         display_name = TYPE_DISPLAY.get(short_type, short_type)
         level_display = get_level_display(short_level)
         description = TYPE_DESCRIPTION.get(short_type, "выполните задание")
-        logger.info(f"📊 Прогресс (первое сообщение): user={user_id}, type={type_json}, level={level_json}, correct={correct}, wrong_uniq={error_count}")
 
     text = f"<b>Режим:</b> {display_name}\n"
     text += f"<b>Уровень:</b> {level_display}\n\n"
@@ -255,7 +265,9 @@ async def send_progress_once(message: Message, user_id: int, short_type: str, sh
     text += f"Ваш прогресс:\n"
     text += f"✔️ Правильно: {correct}\n"
     text += f"✖️ Ошибок: {error_count}"
-    await message.answer(text, reply_markup=get_progress_keyboard(), parse_mode="HTML")
+    sent_msg = await message.edit_text(text, reply_markup=get_progress_keyboard(), parse_mode="HTML")
+    await state.update_data(progress_msg_id=sent_msg.message_id)
+    return sent_msg
 
 # ---------- Обработчики ----------
 @router.callback_query(F.data == "start_reading")
@@ -337,10 +349,13 @@ async def choose_level(callback: CallbackQuery, state: FSMContext):
         revision_correct=0,
         revision_wrong=0,
         session_correct=0,
-        session_wrong=0
+        session_wrong=0,
+        progress_msg_id=None
     )
 
-    await send_progress_once(callback.message, user_id, short_type, short_level)
+    # Редактируем текущее сообщение в прогресс
+    await send_progress_message_edit(callback.message, user_id, short_type, short_level, state)
+    # Отправляем задание
     await render_task_message(callback.message, state, user_id, short_type, short_level, index, paragraph_idx=0, is_revision=False)
     await state.set_state(ReadingStates.waiting_for_text)
     await callback.answer()
@@ -442,7 +457,7 @@ async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
             elif rev_correct > 0 and rev_wrong > 0:
                 msg = f"Исправлено: {rev_correct}, Неправильно: {rev_wrong}.\nПродолжайте тренировку!"
             else:
-                msg = "Все задания с ошибками просмотрены."
+                msg = "Все задания с ошибками просмотрены. Возвращаемся к учебному режиму."
             await callback.message.answer(msg)
             await state.update_data(is_revision=False, error_list=[], error_index=0, revision_correct=0, revision_wrong=0)
             if short_type == "random":
@@ -589,7 +604,7 @@ async def handle_text_answer(message: Message, state: FSMContext):
             elif rev_correct > 0 and rev_wrong > 0:
                 msg = f"Исправлено: {rev_correct}, Неправильно: {rev_wrong}.\nПродолжайте тренировку!"
             else:
-                msg = "Все задания с ошибками просмотрены."
+                msg = "Все задания с ошибками просмотрены. Возвращаемся к учебному режиму."
             await message.answer(msg)
             await state.update_data(is_revision=False, error_list=[], error_index=0, revision_correct=0, revision_wrong=0)
             if short_type == "random":
@@ -754,7 +769,7 @@ async def show_answer(callback: CallbackQuery, state: FSMContext):
             elif rev_correct > 0 and rev_wrong > 0:
                 msg = f"Исправлено: {rev_correct}, Неправильно: {rev_wrong}.\nПродолжайте тренировку!"
             else:
-                msg = "Все задания с ошибками просмотрены."
+                msg = "Все задания с ошибками просмотрены. Возвращаемся к учебному режиму."
             await callback.message.answer(msg)
             await state.update_data(is_revision=False, error_list=[], error_index=0, revision_correct=0, revision_wrong=0)
             if short_type == "random":
@@ -787,7 +802,7 @@ async def show_answer(callback: CallbackQuery, state: FSMContext):
                 elif rev_correct > 0 and rev_wrong > 0:
                     msg = f"Исправлено: {rev_correct}, Неправильно: {rev_wrong}.\nПродолжайте тренировку!"
                 else:
-                    msg = "Все задания с ошибками просмотрены."
+                    msg = "Все задания с ошибками просмотрены. Возвращаемся к учебному режиму."
                 await callback.message.answer(msg)
                 await state.update_data(is_revision=False, error_list=[], error_index=0, revision_correct=0, revision_wrong=0)
                 if short_type == "random":
@@ -973,7 +988,8 @@ async def confirm_reset(callback: CallbackQuery, state: FSMContext):
     await state.update_data(index=0, paragraph_idx=0, is_revision=False, error_list=[], error_index=0, revision_correct=0, revision_wrong=0, session_correct=0, session_wrong=0)
 
     await callback.message.edit_text("Прогресс сброшен. Все упражнения будут даны с самого начала.")
-    await send_progress_once(callback.message, user_id, short_type, short_level)
+    # Заново показываем прогресс (редактируем текущее)
+    await send_progress_message_edit(callback.message, user_id, short_type, short_level, state)
     await show_next_task(callback.message, state, is_revision=False)
     await callback.answer()
 
@@ -989,6 +1005,7 @@ async def finish_session(callback: CallbackQuery, state: FSMContext):
     short_level = data.get("short_level")
     user_id = callback.from_user.id
 
+    # Убираем кнопки у задания и у прогресса
     await clear_keyboard(callback.message, state)
 
     session_correct = data.get("session_correct", 0)
@@ -1002,11 +1019,6 @@ async def finish_session(callback: CallbackQuery, state: FSMContext):
         text = f"Сессия завершена! 🙌🏻\nПравильно: {session_correct}\nОшибок: {session_wrong}\nТочность: {accuracy:.1f}%"
 
     await callback.message.answer(text)
-
-    try:
-        await callback.message.edit_reply_markup(reply_markup=None)
-    except Exception:
-        pass
 
     from .start import show_main_menu
     await show_main_menu(callback.message, edit=False)
