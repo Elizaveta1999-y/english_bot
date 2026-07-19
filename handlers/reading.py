@@ -5,7 +5,7 @@ from aiogram.types import Message, CallbackQuery, InlineKeyboardMarkup, InlineKe
 from aiogram.fsm.context import FSMContext
 from aiogram.filters import Command
 from data.reading_loader import get_task, TASKS
-from utils.db import (   # <-- используем PostgreSQL
+from utils.db import (   # <-- ПОДКЛЮЧАЕМ ПОСТГРЕС
     get_user_stats_db as get_user_stats,
     update_user_stats_db as update_user_stats,
     reset_user_stats_db as reset_user_stats,
@@ -14,7 +14,7 @@ from utils.db import (   # <-- используем PostgreSQL
     get_reading_errors_db as get_reading_errors,
     clear_reading_errors_db as clear_reading_errors
 )
-from utils.redis_utils import (   # <-- только для временных индексов
+from utils.redis_utils import (
     get_global_welcome_index,
     get_user_progress,
     set_user_progress,
