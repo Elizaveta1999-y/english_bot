@@ -111,8 +111,9 @@ def get_reset_confirmation_keyboard():
     ]
     return InlineKeyboardMarkup(inline_keyboard=buttons)
 
-async def clear_keyboard(message: Message, state: FSMContext):
-    """Убирает клавиатуру у последнего сообщения с заданием и у прогресса."""
+# ========== Удаление кнопок только у задания (не у прогресса) ==========
+async def clear_task_keyboard(message: Message, state: FSMContext):
+    """Убирает клавиатуру у последнего сообщения с заданием (не трогает прогресс)."""
     data = await state.get_data()
     last_id = data.get("last_task_msg_id")
     if last_id:
@@ -121,7 +122,20 @@ async def clear_keyboard(message: Message, state: FSMContext):
         except Exception:
             pass
         await state.update_data(last_task_msg_id=None)
-    # Убираем кнопки у прогресса
+
+# ========== Полная очистка (задание + прогресс) ==========
+async def clear_all_keyboards(message: Message, state: FSMContext):
+    """Убирает клавиатуру у последнего задания и у прогресса."""
+    data = await state.get_data()
+    # Убираем кнопки задания
+    last_id = data.get("last_task_msg_id")
+    if last_id:
+        try:
+            await message.bot.edit_message_reply_markup(chat_id=message.chat.id, message_id=last_id, reply_markup=None)
+        except Exception:
+            pass
+        await state.update_data(last_task_msg_id=None)
+    # Убираем кнопки прогресса
     progress_id = data.get("progress_msg_id")
     if progress_id:
         try:
@@ -152,7 +166,8 @@ def normalize_answer(text: str) -> str:
     return text.strip()
 
 async def render_task_message(message: Message, state: FSMContext, user_id: int, short_type: str, short_level: str, index: int, paragraph_idx: int = 0, is_revision: bool = False):
-    await clear_keyboard(message, state)
+    # Убираем клавиатуру у предыдущего задания (но не прогресса)
+    await clear_task_keyboard(message, state)
 
     if short_type == "random":
         all_tasks = await get_all_tasks_for_random(short_level)
@@ -197,7 +212,6 @@ async def render_task_message(message: Message, state: FSMContext, user_id: int,
         text += f"{task.get('question', '')}"
     else:
         if actual_type == "truefalse":
-            # Для truefalse выводим текст и утверждение (statement)
             text = f"{paragraphs[0]}\n\n"
             text += f"{task.get('statement', '')}\n\nВыберите верное утверждение:"
         else:
@@ -272,7 +286,8 @@ async def send_progress_message_edit(message: Message, user_id: int, short_type:
 # ---------- Обработчики ----------
 @router.callback_query(F.data == "start_reading")
 async def start_reading(callback: CallbackQuery, state: FSMContext):
-    await clear_keyboard(callback.message, state)
+    # Убираем все кнопки (и задание, и прогресс) при переходе в главное меню чтения
+    await clear_all_keyboards(callback.message, state)
     global_idx = await get_global_welcome_index()
     welcome_text = READING_WELCOME_MESSAGES[global_idx]
     await callback.message.edit_text(welcome_text, reply_markup=get_type_choice_keyboard(), parse_mode="HTML")
@@ -280,7 +295,8 @@ async def start_reading(callback: CallbackQuery, state: FSMContext):
 
 @router.callback_query(F.data == "reading_back_to_main")
 async def back_to_main(callback: CallbackQuery, state: FSMContext):
-    await clear_keyboard(callback.message, state)
+    # Возврат в главное меню бота — убираем все кнопки
+    await clear_all_keyboards(callback.message, state)
     from .start import show_main_menu
     await show_main_menu(callback.message, edit=True)
     await callback.answer()
@@ -353,7 +369,7 @@ async def choose_level(callback: CallbackQuery, state: FSMContext):
         progress_msg_id=None
     )
 
-    # Редактируем текущее сообщение в прогресс
+    # Редактируем текущее сообщение в прогресс с кнопками
     await send_progress_message_edit(callback.message, user_id, short_type, short_level, state)
     # Отправляем задание
     await render_task_message(callback.message, state, user_id, short_type, short_level, index, paragraph_idx=0, is_revision=False)
@@ -421,6 +437,7 @@ async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
             await state.update_data(session_wrong=session_wrong)
             logger.info(f"❌ Wrong: user={user_id}, type={type_json}, level={level_json} -> добавлена ошибка")
 
+    # Убираем кнопки у текущего сообщения с заданием (но не трогаем прогресс)
     await callback.message.edit_reply_markup(reply_markup=None)
 
     if correct:
@@ -567,7 +584,8 @@ async def handle_text_answer(message: Message, state: FSMContext):
             session_wrong = data.get("session_wrong", 0) + 1
             await state.update_data(session_wrong=session_wrong)
 
-    await clear_keyboard(message, state)
+    # Убираем клавиатуру у последнего задания (но не прогресса)
+    await clear_task_keyboard(message, state)
 
     if correct:
         result_text = "Правильно!"
@@ -725,6 +743,7 @@ async def show_answer(callback: CallbackQuery, state: FSMContext):
             await callback.answer("Задание не найдено")
             return
 
+    # Убираем кнопки у текущего задания
     await callback.message.edit_reply_markup(reply_markup=None)
 
     correct = task.get("correct")
@@ -988,7 +1007,7 @@ async def confirm_reset(callback: CallbackQuery, state: FSMContext):
     await state.update_data(index=0, paragraph_idx=0, is_revision=False, error_list=[], error_index=0, revision_correct=0, revision_wrong=0, session_correct=0, session_wrong=0)
 
     await callback.message.edit_text("Прогресс сброшен. Все упражнения будут даны с самого начала.")
-    # Заново показываем прогресс (редактируем текущее)
+    # Показываем прогресс снова (с кнопками)
     await send_progress_message_edit(callback.message, user_id, short_type, short_level, state)
     await show_next_task(callback.message, state, is_revision=False)
     await callback.answer()
@@ -1005,8 +1024,8 @@ async def finish_session(callback: CallbackQuery, state: FSMContext):
     short_level = data.get("short_level")
     user_id = callback.from_user.id
 
-    # Убираем кнопки у задания и у прогресса
-    await clear_keyboard(callback.message, state)
+    # Убираем все кнопки (задание + прогресс)
+    await clear_all_keyboards(callback.message, state)
 
     session_correct = data.get("session_correct", 0)
     session_wrong = data.get("session_wrong", 0)
