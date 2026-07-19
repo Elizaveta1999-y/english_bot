@@ -163,7 +163,6 @@ async def get_all_tasks_for_random(level: str):
                 tasks = [t for t in TASKS[type_json] if t.get("level") == level_json]
                 for t in tasks:
                     all_items.append({"task": t, "type_key": type_key})
-    logger.info(f"📊 get_all_tasks_for_random: найдено {len(all_items)} заданий")
     return all_items
 
 async def get_random_order(user_id: int, level: str):
@@ -176,15 +175,14 @@ async def get_random_order(user_id: int, level: str):
     if not all_items:
         return []
     random.shuffle(all_items)
-    order_ids = [item["task"]["id"] for item in all_items]
+    order_ids = [item["task"].get("id", i) for i, item in enumerate(all_items)]  # если id нет, используем индекс
     await r.set(key, json.dumps(order_ids))
-    logger.info(f"🔄 Создан новый порядок для случайного типа: {len(order_ids)} заданий")
     return order_ids
 
 async def get_task_by_id(user_id: int, level: str, task_id: int):
     all_items = await get_all_tasks_for_random(level)
     for item in all_items:
-        if item["task"]["id"] == task_id:
+        if item["task"].get("id", -1) == task_id:
             return item["task"], item["type_key"]
     return None, None
 
@@ -202,10 +200,11 @@ def get_task_by_id_for_type(type_json: str, level_json: str, task_id: int):
         elif isinstance(tasks, list):
             tasks = [t for t in tasks if t.get("level") == level_json]
         for t in tasks:
-            if t.get("id") == task_id:
+            if t.get("id", -1) == task_id:
                 return t
     return None
 
+# ---------- Отправка задания ----------
 async def render_task_message(message: Message, state: FSMContext, user_id: int, short_type: str, short_level: str, index: int = 0, task_id: int = None, paragraph_idx: int = 0, is_revision: bool = False):
     await clear_task_keyboard(message, state)
 
@@ -467,26 +466,27 @@ async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
 
     correct = (chosen_idx == task["correct"])
 
+    # Получаем ID задания (если нет, используем индекс как запасной вариант)
+    task_id = task.get("id", index)
+
     if is_revision:
         if correct:
-            logger.info(f"🗑️ Удаление ошибки: user={user_id}, type={type_json}, level={level_json}, task_id={task['id']}")
-            await remove_reading_error(user_id, type_json, level_json, task["id"])
+            logger.info(f"🗑️ Удаление ошибки: user={user_id}, type={type_json}, level={level_json}, task_id={task_id}")
+            await remove_reading_error(user_id, type_json, level_json, task_id)
             await update_user_stats(user_id, type_json, level_json, True)
             new_correct = data.get("revision_correct", 0) + 1
             await state.update_data(revision_correct=new_correct)
             session_correct = data.get("session_correct", 0) + 1
             await state.update_data(session_correct=session_correct)
-            # Обновляем индекс для случайного типа, чтобы не зацикливаться
+            # Обновляем индекс для случайного типа
             if short_type == "random":
                 order = await get_random_order(user_id, short_level)
                 if order:
-                    # Ищем позицию текущего задания в order
                     try:
-                        pos = order.index(task["id"])
+                        pos = order.index(task_id)
                         next_index = (pos + 1) % len(order)
                         await set_user_progress(user_id, "random", short_level, next_index)
                         await state.update_data(index=next_index, paragraph_idx=0)
-                        logger.info(f"🔄 Обновлён индекс случайного типа: {next_index}")
                     except ValueError:
                         pass
         else:
@@ -502,10 +502,10 @@ async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
             logger.info(f"✅ Correct: user={user_id}, type={type_json}, level={level_json}")
         else:
             await update_user_stats(user_id, type_json, level_json, False)
-            await add_reading_error(user_id, type_json, level_json, task["id"])
+            await add_reading_error(user_id, type_json, level_json, task_id)
             session_wrong = data.get("session_wrong", 0) + 1
             await state.update_data(session_wrong=session_wrong)
-            logger.info(f"❌ Wrong: user={user_id}, type={type_json}, level={level_json} -> добавлена ошибка (task_id={task['id']})")
+            logger.info(f"❌ Wrong: user={user_id}, type={type_json}, level={level_json} -> добавлена ошибка (task_id={task_id})")
 
     await callback.message.edit_reply_markup(reply_markup=None)
 
@@ -568,7 +568,6 @@ async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
                 msg = "Все задания с ошибками просмотрены. Возвращаемся к учебному режиму."
             await callback.message.answer(msg)
             await state.update_data(is_revision=False, error_list=[], error_index=0, revision_correct=0, revision_wrong=0)
-            # После завершения revision возвращаемся в обычный режим с текущим индексом
             await show_next_task(callback.message, state, is_revision=False)
             await callback.answer()
             return
@@ -622,9 +621,11 @@ async def handle_text_answer(message: Message, state: FSMContext):
         correct_clean = normalize_answer(str(correct_answer))
         correct = (user_clean == correct_clean)
 
+    task_id = task.get("id", index)
+
     if is_revision:
         if correct:
-            await remove_reading_error(user_id, type_json, level_json, task["id"])
+            await remove_reading_error(user_id, type_json, level_json, task_id)
             await update_user_stats(user_id, type_json, level_json, True)
             new_correct = data.get("revision_correct", 0) + 1
             await state.update_data(revision_correct=new_correct)
@@ -634,7 +635,7 @@ async def handle_text_answer(message: Message, state: FSMContext):
                 order = await get_random_order(user_id, short_level)
                 if order:
                     try:
-                        pos = order.index(task["id"])
+                        pos = order.index(task_id)
                         next_index = (pos + 1) % len(order)
                         await set_user_progress(user_id, "random", short_level, next_index)
                         await state.update_data(index=next_index, paragraph_idx=0)
@@ -652,7 +653,7 @@ async def handle_text_answer(message: Message, state: FSMContext):
             await state.update_data(session_correct=session_correct)
         else:
             await update_user_stats(user_id, type_json, level_json, False)
-            await add_reading_error(user_id, type_json, level_json, task["id"])
+            await add_reading_error(user_id, type_json, level_json, task_id)
             session_wrong = data.get("session_wrong", 0) + 1
             await state.update_data(session_wrong=session_wrong)
 
