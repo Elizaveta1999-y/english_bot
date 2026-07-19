@@ -1,7 +1,9 @@
 from aiogram import Router, F
 from aiogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
 from aiogram.filters import Command
+from aiogram.fsm.context import FSMContext
 from data.users import get_user_state, set_user_state
+from handlers.reading import clear_all_keyboards  # <-- импорт функции
 
 router = Router()
 
@@ -13,7 +15,7 @@ WELCOME_TEXT = (
 
 def get_main_menu_keyboard():
     return InlineKeyboardMarkup(inline_keyboard=[
-        # [InlineKeyboardButton(text="📚 Уроки", callback_data="start_lessons")],  # временно закомментировано
+        # [InlineKeyboardButton(text="📚 Уроки", callback_data="start_lessons")],
         [
             InlineKeyboardButton(text="🎙️ Общение с AI", callback_data="start_speaking"),
             InlineKeyboardButton(text="🎬 Ролевые игры", callback_data="start_roleplay")
@@ -41,10 +43,12 @@ async def show_main_menu(message: Message, edit: bool = False):
         await message.answer(WELCOME_TEXT, reply_markup=keyboard, parse_mode="HTML")
 
 @router.message(Command("start"))
-async def start_handler(message: Message):
+async def start_handler(message: Message, state: FSMContext):
+    # Убираем все кнопки из режима чтения
+    await clear_all_keyboards(message, state)
     user_id = message.from_user.id
-    state = get_user_state(user_id)
-    if not state:
+    user_state = get_user_state(user_id)
+    if not user_state:
         set_user_state(user_id, {})
     await show_main_menu(message, edit=False)
 
@@ -52,6 +56,13 @@ async def start_handler(message: Message):
 @router.callback_query(F.data == "start_lessons")
 async def under_construction(callback: CallbackQuery):
     await callback.answer("Этот режим в разработке. Скоро появится! 🚧", show_alert=True)
+
+# ---- Режим "Чтение" ----
+@router.callback_query(F.data == "start_reading")
+async def start_reading_mode(callback: CallbackQuery, state: FSMContext):
+    await callback.answer()
+    from handlers.reading import start_reading
+    await start_reading(callback, state)
 
 # ---- Режим "Письмо" ----
 @router.callback_query(F.data == "start_writing")
@@ -73,7 +84,3 @@ async def start_grammar_mode(callback: CallbackQuery):
     await callback.answer()
     from handlers.grammar import enter_grammar_mode
     await enter_grammar_mode(callback.message, callback.from_user.id, edit=True)
-
-# ---- Остальные режимы (лексика, общение, ролевые игры) ----
-# Если их обработчики есть в других файлах, они сработают автоматически.
-# Если нет – бот выдаст ошибку, поэтому убедитесь, что они реализованы.
