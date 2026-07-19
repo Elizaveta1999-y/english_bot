@@ -113,7 +113,6 @@ def get_reset_confirmation_keyboard():
 
 # ========== Очистка клавиатур ==========
 async def clear_task_keyboard(message: Message, state: FSMContext):
-    """Убирает клавиатуру у последнего сообщения с заданием."""
     data = await state.get_data()
     last_id = data.get("last_task_msg_id")
     if last_id:
@@ -124,7 +123,6 @@ async def clear_task_keyboard(message: Message, state: FSMContext):
         await state.update_data(last_task_msg_id=None)
 
 async def clear_all_keyboards(message: Message, state: FSMContext):
-    """Убирает клавиатуру у задания и у прогресса."""
     data = await state.get_data()
     last_id = data.get("last_task_msg_id")
     if last_id:
@@ -680,6 +678,10 @@ async def show_revision_task(message: Message, state: FSMContext, error_ids: lis
         await message.answer("Нет заданий для исправления.")
         return
 
+    # Для случайного типа перемешиваем список ошибок
+    if short_type == "random":
+        random.shuffle(error_ids)
+
     if short_type == "random":
         task_id = error_ids[0]
         found_type = None
@@ -1019,10 +1021,8 @@ async def finish_session(callback: CallbackQuery, state: FSMContext):
     short_level = data.get("short_level")
     user_id = callback.from_user.id
 
-    # Убираем кнопки
     await clear_all_keyboards(callback.message, state)
 
-    # Сессионная статистика (исправлено/неправильно в этой сессии revision)
     session_correct = data.get("session_correct", 0)
     session_wrong = data.get("session_wrong", 0)
 
@@ -1040,7 +1040,6 @@ async def finish_session(callback: CallbackQuery, state: FSMContext):
         errors = await get_reading_errors(user_id, type_json, level_json)
         remaining_errors = len(errors)
 
-    # Формируем сообщение
     if session_correct == 0 and session_wrong == 0 and remaining_errors == 0:
         text = "Сессия завершена! Вы не ответили ни на одно задание. 🙌🏻"
     else:
