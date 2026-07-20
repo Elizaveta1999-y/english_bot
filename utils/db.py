@@ -23,7 +23,7 @@ async def init_db():
             last_active BIGINT DEFAULT EXTRACT(EPOCH FROM NOW())::BIGINT
         )
     """)
-    # Таблица прогресса для других режимов (чтение/грамматика и т.п.)
+    # Таблица прогресса для других режимов
     await conn.execute("""
         CREATE TABLE IF NOT EXISTS progress (
             user_id BIGINT NOT NULL,
@@ -34,7 +34,7 @@ async def init_db():
             PRIMARY KEY (user_id, type_key, level_key)
         )
     """)
-    # Таблица ошибок (для чтения)
+    # Таблица ошибок
     await conn.execute("""
         CREATE TABLE IF NOT EXISTS errors (
             user_id BIGINT NOT NULL,
@@ -44,20 +44,40 @@ async def init_db():
             PRIMARY KEY (user_id, type_key, level_key, task_index)
         )
     """)
-    # Таблица для прогресса письма (с расширенной статистикой)
+    # Таблица для прогресса письма (базовая)
     await conn.execute("""
         CREATE TABLE IF NOT EXISTS writing_progress (
             user_id BIGINT NOT NULL,
             type_key TEXT NOT NULL,
             level_key TEXT NOT NULL,
             current_index INTEGER DEFAULT 0,
-            total_answered INTEGER DEFAULT 0,
-            total_score INTEGER DEFAULT 0,
-            session_answered INTEGER DEFAULT 0,
-            session_score INTEGER DEFAULT 0,
             PRIMARY KEY (user_id, type_key, level_key)
         )
     """)
+    
+    # ДОБАВЛЯЕМ НЕДОСТАЮЩИЕ КОЛОНКИ
+    await conn.execute("""
+        DO $$
+        BEGIN
+            IF NOT EXISTS (SELECT 1 FROM information_schema.columns 
+                           WHERE table_name='writing_progress' AND column_name='total_answered') THEN
+                ALTER TABLE writing_progress ADD COLUMN total_answered INTEGER DEFAULT 0;
+            END IF;
+            IF NOT EXISTS (SELECT 1 FROM information_schema.columns 
+                           WHERE table_name='writing_progress' AND column_name='total_score') THEN
+                ALTER TABLE writing_progress ADD COLUMN total_score INTEGER DEFAULT 0;
+            END IF;
+            IF NOT EXISTS (SELECT 1 FROM information_schema.columns 
+                           WHERE table_name='writing_progress' AND column_name='session_answered') THEN
+                ALTER TABLE writing_progress ADD COLUMN session_answered INTEGER DEFAULT 0;
+            END IF;
+            IF NOT EXISTS (SELECT 1 FROM information_schema.columns 
+                           WHERE table_name='writing_progress' AND column_name='session_score') THEN
+                ALTER TABLE writing_progress ADD COLUMN session_score INTEGER DEFAULT 0;
+            END IF;
+        END $$;
+    """)
+
     # Таблица для прогресса грамматики
     await conn.execute("""
         CREATE TABLE IF NOT EXISTS grammar_progress (
@@ -78,7 +98,7 @@ async def get_or_create_user(user_id: int, username: str = None, first_name: str
     await conn.close()
     return dict(row) if row else None
 
-# ---------- Прогресс (для других режимов, например чтение) ----------
+# ---------- Прогресс (для других режимов) ----------
 async def get_user_stats_db(user_id: int, type_key: str, level_key: str) -> Tuple[int, int]:
     conn = await get_connection()
     row = await conn.fetchrow(
@@ -165,7 +185,6 @@ async def get_writing_progress(user_id: int, type_key: str, level_key: str):
     return None
 
 async def init_writing_session(user_id: int, type_key: str, level_key: str):
-    """Создаёт запись, если нет, и обнуляет session_answered, session_score"""
     conn = await get_connection()
     await conn.execute("""
         INSERT INTO writing_progress (user_id, type_key, level_key, current_index, total_answered, total_score, session_answered, session_score)
@@ -193,14 +212,12 @@ async def set_writing_index(user_id: int, type_key: str, level_key: str, index: 
     await conn.close()
 
 async def get_writing_stats(user_id: int, type_key: str, level_key: str):
-    """Возвращает (total_answered, total_score, session_answered, session_score)"""
     row = await get_writing_progress(user_id, type_key, level_key)
     if row:
         return row['total_answered'], row['total_score'], row['session_answered'], row['session_score']
     return 0, 0, 0, 0
 
 async def update_writing_stats(user_id: int, type_key: str, level_key: str, score: int):
-    """Увеличивает все счётчики на 1 и добавляет score"""
     conn = await get_connection()
     await conn.execute("""
         INSERT INTO writing_progress (user_id, type_key, level_key, current_index, total_answered, total_score, session_answered, session_score)
@@ -215,7 +232,6 @@ async def update_writing_stats(user_id: int, type_key: str, level_key: str, scor
     await conn.close()
 
 async def reset_writing_progress(user_id: int, type_key: str, level_key: str):
-    """Полный сброс: обнуляем всё (индекс, статистику, сессию)"""
     conn = await get_connection()
     await conn.execute("""
         UPDATE writing_progress
