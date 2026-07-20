@@ -3,7 +3,7 @@ from aiogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, C
 from aiogram.filters import Command
 from aiogram.fsm.context import FSMContext
 from data.users import get_user_state, set_user_state
-from handlers.reading import clear_all_keyboards  # <-- импорт функции
+from handlers.reading import clear_all_keyboards
 
 router = Router()
 
@@ -44,7 +44,6 @@ async def show_main_menu(message: Message, edit: bool = False):
 
 @router.message(Command("start"))
 async def start_handler(message: Message, state: FSMContext):
-    # Убираем все кнопки из режима чтения
     await clear_all_keyboards(message, state)
     user_id = message.from_user.id
     user_state = get_user_state(user_id)
@@ -52,7 +51,7 @@ async def start_handler(message: Message, state: FSMContext):
         set_user_state(user_id, {})
     await show_main_menu(message, edit=False)
 
-# ---- Заглушка только для режима "Уроки" ----
+# ---- Заглушка для режима "Уроки" ----
 @router.callback_query(F.data == "start_lessons")
 async def under_construction(callback: CallbackQuery):
     await callback.answer("Этот режим в разработке. Скоро появится! 🚧", show_alert=True)
@@ -78,9 +77,9 @@ async def start_govorenie_mode(callback: CallbackQuery):
     from handlers.govorenie import show_task_types
     await show_task_types(callback.message, edit=True)
 
-# ---- Режим "Грамматика" ----
+# ---- Режим "Грамматика" - ИСПРАВЛЕНО! ----
 @router.callback_query(F.data == "start_grammar")
-async def start_grammar_mode(callback: CallbackQuery):
+async def start_grammar_mode(callback: CallbackQuery, state: FSMContext):   # добавили state
     await callback.answer()
     from handlers.grammar import enter_grammar_mode
-    await enter_grammar_mode(callback.message, callback.from_user.id, edit=True)
+    await enter_grammar_mode(callback.message, callback.from_user.id, state=state, edit=True)   # передаём state
