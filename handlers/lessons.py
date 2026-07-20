@@ -96,12 +96,12 @@ async def process_lesson_question(user_id: int, user_question: str, bot, chat_id
     return answer
 
 LESSON_CONTENT = {}
-LESSON_CONTENT.update(LEVEL_A1_CONTENT)
-LESSON_CONTENT.update(LEVEL_A2_CONTENT)
-LESSON_CONTENT.update(LEVEL_B1_CONTENT)
-LESSON_CONTENT.update(LEVEL_B2_CONTENT)
-LESSON_CONTENT.update(LEVEL_C1_CONTENT)
-LESSON_CONTENT.update(LEVEL_C2_CONTENT)
+# LESSON_CONTENT.update(LEVEL_A1_CONTENT)
+# LESSON_CONTENT.update(LEVEL_A2_CONTENT)
+# LESSON_CONTENT.update(LEVEL_B1_CONTENT)
+# LESSON_CONTENT.update(LEVEL_B2_CONTENT)
+# LESSON_CONTENT.update(LEVEL_C1_CONTENT)
+# LESSON_CONTENT.update(LEVEL_C2_CONTENT)
 THEMATIC_TOPICS = [
     "Inversion after negative adverbs",
     "Inversion for emphasis",
