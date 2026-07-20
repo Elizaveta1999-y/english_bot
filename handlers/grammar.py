@@ -8,11 +8,10 @@ from utils.db import get_grammar_index, set_grammar_index
 
 router = Router()
 
-# ---------- Состояние ----------
 class GrammarStates(StatesGroup):
     active = State()
 
-# ---------- Загрузка из JSON ----------
+# ---------- Загрузка заданий из JSON ----------
 TASKS_FILE = os.path.join(os.path.dirname(__file__), "../data/grammar_tasks.json")
 
 def load_all_tasks():
@@ -32,7 +31,7 @@ def get_task_keyboard():
         [InlineKeyboardButton(text="Завершить", callback_data="grammar_finish")]
     ])
 
-# ---------- Показ задания ----------
+# ---------- Отображение задания ----------
 async def show_grammar_task(message: Message, user_id: int, state: FSMContext, edit: bool = False):
     index = await get_grammar_index(user_id)
     if index >= len(ALL_TASKS):
@@ -47,7 +46,6 @@ async def show_grammar_task(message: Message, user_id: int, state: FSMContext, e
         await message.answer(text, reply_markup=keyboard, parse_mode="HTML")
     await state.set_state(GrammarStates.active)
 
-# ---------- Вход в режим ----------
 async def enter_grammar_mode(message: Message, user_id: int, state: FSMContext, edit: bool = False):
     await state.set_state(GrammarStates.active)
     await show_grammar_task(message, user_id, state, edit)

@@ -44,7 +44,7 @@ async def init_db():
             PRIMARY KEY (user_id, type_key, level_key, task_index)
         )
     """)
-    # Новая таблица для прогресса письма (письменные задания)
+    # Таблица для прогресса письма
     await conn.execute("""
         CREATE TABLE IF NOT EXISTS writing_progress (
             user_id BIGINT NOT NULL,
@@ -52,6 +52,13 @@ async def init_db():
             level_key TEXT NOT NULL,
             current_index INTEGER DEFAULT 0,
             PRIMARY KEY (user_id, type_key, level_key)
+        )
+    """)
+    # Новая таблица для прогресса грамматики
+    await conn.execute("""
+        CREATE TABLE IF NOT EXISTS grammar_progress (
+            user_id BIGINT PRIMARY KEY,
+            current_index INTEGER DEFAULT 0
         )
     """)
     await conn.close()
@@ -139,9 +146,8 @@ async def reset_all_user_progress(user_id: int):
     await conn.execute("DELETE FROM errors WHERE user_id = $1", user_id)
     await conn.close()
 
-# ---------- НОВЫЕ ФУНКЦИИ ДЛЯ ПИСЬМА ----------
+# ---------- Функции для письма ----------
 async def get_writing_index(user_id: int, type_key: str, level_key: str) -> int:
-    """Получить номер текущего задания для пользователя, типа и уровня."""
     conn = await get_connection()
     row = await conn.fetchrow(
         "SELECT current_index FROM writing_progress WHERE user_id = $1 AND type_key = $2 AND level_key = $3",
@@ -150,12 +156,10 @@ async def get_writing_index(user_id: int, type_key: str, level_key: str) -> int:
     await conn.close()
     if row:
         return row["current_index"]
-    # Если записи нет – создаём со значением 0
     await set_writing_index(user_id, type_key, level_key, 0)
     return 0
 
 async def set_writing_index(user_id: int, type_key: str, level_key: str, index: int):
-    """Сохранить номер текущего задания в БД."""
     conn = await get_connection()
     await conn.execute("""
         INSERT INTO writing_progress (user_id, type_key, level_key, current_index)
@@ -166,5 +170,27 @@ async def set_writing_index(user_id: int, type_key: str, level_key: str, index: 
     await conn.close()
 
 async def reset_writing_progress(user_id: int, type_key: str, level_key: str):
-    """Сбросить прогресс письма (обнулить индекс) для пользователя."""
     await set_writing_index(user_id, type_key, level_key, 0)
+
+# ---------- Функции для грамматики ----------
+async def get_grammar_index(user_id: int) -> int:
+    conn = await get_connection()
+    row = await conn.fetchrow(
+        "SELECT current_index FROM grammar_progress WHERE user_id = $1",
+        user_id
+    )
+    await conn.close()
+    if row:
+        return row["current_index"]
+    await set_grammar_index(user_id, 0)
+    return 0
+
+async def set_grammar_index(user_id: int, index: int):
+    conn = await get_connection()
+    await conn.execute("""
+        INSERT INTO grammar_progress (user_id, current_index)
+        VALUES ($1, $2)
+        ON CONFLICT (user_id)
+        DO UPDATE SET current_index = $2
+    """, user_id, index)
+    await conn.close()
