@@ -44,17 +44,21 @@ async def init_db():
             PRIMARY KEY (user_id, type_key, level_key, task_index)
         )
     """)
-    # Таблица для прогресса письма
+    # Таблица для прогресса письма (с расширенной статистикой)
     await conn.execute("""
         CREATE TABLE IF NOT EXISTS writing_progress (
             user_id BIGINT NOT NULL,
             type_key TEXT NOT NULL,
             level_key TEXT NOT NULL,
             current_index INTEGER DEFAULT 0,
+            total_answered INTEGER DEFAULT 0,
+            total_score INTEGER DEFAULT 0,
+            session_answered INTEGER DEFAULT 0,
+            session_score INTEGER DEFAULT 0,
             PRIMARY KEY (user_id, type_key, level_key)
         )
     """)
-    # Новая таблица для прогресса грамматики
+    # Таблица для прогресса грамматики
     await conn.execute("""
         CREATE TABLE IF NOT EXISTS grammar_progress (
             user_id BIGINT PRIMARY KEY,
@@ -74,7 +78,7 @@ async def get_or_create_user(user_id: int, username: str = None, first_name: str
     await conn.close()
     return dict(row) if row else None
 
-# ---------- Прогресс (для других режимов) ----------
+# ---------- Прогресс (для других режимов, например чтение) ----------
 async def get_user_stats_db(user_id: int, type_key: str, level_key: str) -> Tuple[int, int]:
     conn = await get_connection()
     row = await conn.fetchrow(
@@ -147,30 +151,82 @@ async def reset_all_user_progress(user_id: int):
     await conn.close()
 
 # ---------- Функции для письма ----------
-async def get_writing_index(user_id: int, type_key: str, level_key: str) -> int:
+async def get_writing_progress(user_id: int, type_key: str, level_key: str):
     conn = await get_connection()
     row = await conn.fetchrow(
-        "SELECT current_index FROM writing_progress WHERE user_id = $1 AND type_key = $2 AND level_key = $3",
+        """SELECT current_index, total_answered, total_score, session_answered, session_score
+           FROM writing_progress
+           WHERE user_id = $1 AND type_key = $2 AND level_key = $3""",
         user_id, type_key, level_key
     )
     await conn.close()
     if row:
-        return row["current_index"]
-    await set_writing_index(user_id, type_key, level_key, 0)
+        return dict(row)
+    return None
+
+async def init_writing_session(user_id: int, type_key: str, level_key: str):
+    """Создаёт запись, если нет, и обнуляет session_answered, session_score"""
+    conn = await get_connection()
+    await conn.execute("""
+        INSERT INTO writing_progress (user_id, type_key, level_key, current_index, total_answered, total_score, session_answered, session_score)
+        VALUES ($1, $2, $3, 0, 0, 0, 0, 0)
+        ON CONFLICT (user_id, type_key, level_key)
+        DO UPDATE SET session_answered = 0, session_score = 0
+    """, user_id, type_key, level_key)
+    await conn.close()
+
+async def get_writing_index(user_id: int, type_key: str, level_key: str) -> int:
+    row = await get_writing_progress(user_id, type_key, level_key)
+    if row:
+        return row['current_index']
+    await init_writing_session(user_id, type_key, level_key)
     return 0
 
 async def set_writing_index(user_id: int, type_key: str, level_key: str, index: int):
     conn = await get_connection()
     await conn.execute("""
-        INSERT INTO writing_progress (user_id, type_key, level_key, current_index)
-        VALUES ($1, $2, $3, $4)
+        INSERT INTO writing_progress (user_id, type_key, level_key, current_index, total_answered, total_score, session_answered, session_score)
+        VALUES ($1, $2, $3, $4, 0, 0, 0, 0)
         ON CONFLICT (user_id, type_key, level_key)
         DO UPDATE SET current_index = $4
     """, user_id, type_key, level_key, index)
     await conn.close()
 
+async def get_writing_stats(user_id: int, type_key: str, level_key: str):
+    """Возвращает (total_answered, total_score, session_answered, session_score)"""
+    row = await get_writing_progress(user_id, type_key, level_key)
+    if row:
+        return row['total_answered'], row['total_score'], row['session_answered'], row['session_score']
+    return 0, 0, 0, 0
+
+async def update_writing_stats(user_id: int, type_key: str, level_key: str, score: int):
+    """Увеличивает все счётчики на 1 и добавляет score"""
+    conn = await get_connection()
+    await conn.execute("""
+        INSERT INTO writing_progress (user_id, type_key, level_key, current_index, total_answered, total_score, session_answered, session_score)
+        VALUES ($1, $2, $3, 0, 1, $4, 1, $4)
+        ON CONFLICT (user_id, type_key, level_key)
+        DO UPDATE SET
+            total_answered = writing_progress.total_answered + 1,
+            total_score = writing_progress.total_score + $4,
+            session_answered = writing_progress.session_answered + 1,
+            session_score = writing_progress.session_score + $4
+    """, user_id, type_key, level_key, score)
+    await conn.close()
+
 async def reset_writing_progress(user_id: int, type_key: str, level_key: str):
-    await set_writing_index(user_id, type_key, level_key, 0)
+    """Полный сброс: обнуляем всё (индекс, статистику, сессию)"""
+    conn = await get_connection()
+    await conn.execute("""
+        UPDATE writing_progress
+        SET current_index = 0,
+            total_answered = 0,
+            total_score = 0,
+            session_answered = 0,
+            session_score = 0
+        WHERE user_id = $1 AND type_key = $2 AND level_key = $3
+    """, user_id, type_key, level_key)
+    await conn.close()
 
 # ---------- Функции для грамматики ----------
 async def get_grammar_index(user_id: int) -> int:
