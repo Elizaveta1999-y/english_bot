@@ -109,3 +109,4 @@ async def handle_grammar_answer(message: Message, state: FSMContext):
 @router.message(F.text, F.state != GrammarStates.active)
 async def not_in_grammar_mode(message: Message):
     await message.answer("Вы не в режиме грамматики. Используйте кнопки в главном меню.")
+
