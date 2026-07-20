@@ -105,6 +105,7 @@ async def handle_grammar_answer(message: Message, state: FSMContext):
     await set_grammar_index(user_id, new_index)
     await show_grammar_task(message, user_id, state, edit=False)
 
-@router.message(F.text, ~GrammarStates.active)
+# Хендлер для сообщений вне режима грамматики
+@router.message(F.text, F.state != GrammarStates.active)
 async def not_in_grammar_mode(message: Message):
     await message.answer("Вы не в режиме грамматики. Используйте кнопки в главном меню.")
