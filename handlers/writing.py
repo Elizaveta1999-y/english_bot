@@ -39,7 +39,7 @@ class WritingStates(StatesGroup):
     choosing_level = State()
     waiting_answer = State()
     showing_progress = State()
-    confirm_reset = State()   # для подтверждения сброса
+    confirm_reset = State()
 
 # ---------- Клавиатуры ----------
 def get_types_keyboard():
@@ -102,7 +102,6 @@ async def type_chosen(callback: CallbackQuery, state: FSMContext):
     task_type = callback.data.split("_")[1]
     await state.update_data(task_type=task_type)
     await state.set_state(WritingStates.choosing_level)
-    # Только текст без дублирования типа
     text = "Выберите уровень сложности:"
     await callback.message.edit_text(text, reply_markup=get_levels_keyboard(), parse_mode="Markdown")
 
@@ -114,8 +113,19 @@ async def level_chosen(callback: CallbackQuery, state: FSMContext):
     data = await state.get_data()
     task_type = data.get("task_type")
 
+    # Проверка: если тип не выбран – возвращаем к выбору типа
+    if not task_type:
+        await callback.message.edit_text(
+            "⚠️ Тип задания не выбран. Пожалуйста, выберите тип заново:",
+            reply_markup=get_types_keyboard(),
+            parse_mode="Markdown"
+        )
+        await state.set_state(WritingStates.choosing_type)
+        return
+
     level_key = LEVEL_MAP.get(level, level)
     tasks = ALL_TASKS.get(task_type, {}).get(level_key, [])
+
     if not tasks:
         available = ', '.join(ALL_TASKS.get(task_type, {}).keys())
         await callback.message.edit_text(
@@ -278,7 +288,6 @@ async def handle_user_answer(message: Message, state: FSMContext):
 
     await message.bot.send_chat_action(chat_id=message.chat.id, action="typing")
     try:
-        # Предполагаем, что check_writing теперь возвращает (feedback, score)
         feedback, score = await check_writing(
             task_text=task.get('task_text', ''),
             user_answer=user_text,
