@@ -4,11 +4,11 @@ from aiogram import Router, F
 from aiogram.types import CallbackQuery, InlineKeyboardMarkup, InlineKeyboardButton, FSInputFile, Message
 from data.users import get_user_state, set_user_state
 # from data.level_a1 import LEVEL_A1_CONTENT
-from data.level_a2 import LEVEL_A2_CONTENT
-from data.level_b1 import LEVEL_B1_CONTENT
-from data.level_b2 import LEVEL_B2_CONTENT
-from data.level_c1 import LEVEL_C1_CONTENT
-from data.level_c2 import LEVEL_C2_CONTENT
+# from data.level_a2 import LEVEL_A2_CONTENT
+# from data.level_b1 import LEVEL_B1_CONTENT
+# from data.level_b2 import LEVEL_B2_CONTENT
+# from data.level_c1 import LEVEL_C1_CONTENT
+# from data.level_c2 import LEVEL_C2_CONTENT
 # from data.thematic_new import THEMATIC_NEW_CONTENT
 from services.deepseek import chat
 from speaking.services.tts import text_to_voice
