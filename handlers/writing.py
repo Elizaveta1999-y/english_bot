@@ -5,7 +5,7 @@ from aiogram.types import Message, CallbackQuery, InlineKeyboardMarkup, InlineKe
 from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import State, StatesGroup
 from services.deepseek_writing import check_writing
-from database.db import get_writing_index, set_writing_index, reset_writing_progress
+from utils.db import get_writing_index, set_writing_index, reset_writing_progress  # ПРАВИЛЬНЫЙ ИМПОРТ
 
 router = Router()
 
@@ -284,8 +284,7 @@ async def next_task_button(callback: CallbackQuery, state: FSMContext):
 
     next_index = index + 1
     if next_index >= len(tasks):
-        next_index = 0  # бесшовный переход
-
+        next_index = 0
     await set_writing_index(user_id, task_type, level, next_index)
     await state.update_data(
         index=next_index,
@@ -314,8 +313,7 @@ async def show_answer_button(callback: CallbackQuery, state: FSMContext):
 
     next_index = index + 1
     if next_index >= len(tasks):
-        next_index = 0  # бесшовный переход
-
+        next_index = 0
     await set_writing_index(user_id, task_type, level, next_index)
     await state.update_data(
         index=next_index,
@@ -344,4 +342,3 @@ async def back_to_main_from_writing(callback: CallbackQuery, state: FSMContext):
     await callback.message.edit_reply_markup(reply_markup=None)
     await callback.message.answer("Вы вышли в главное меню. Используйте /start для возврата.")
     await state.clear()
-
