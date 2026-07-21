@@ -198,13 +198,18 @@ async def select_type(callback: CallbackQuery):
 @router.callback_query(F.data.startswith("grammar_level_"))
 async def select_level(callback: CallbackQuery):
     await callback.answer()
-    parts = callback.data.split("_")  # grammar_level_{task_type}_{level}
-    task_type = parts[2]
-    level = parts[3]
+    # Убираем префикс "grammar_level_"
+    data = callback.data[len("grammar_level_"):]
+    # Разделяем по последнему подчёркиванию, чтобы сохранить тип с подчёркиваниями
+    parts = data.rsplit("_", 1)
+    if len(parts) != 2:
+        await callback.message.answer("Ошибка в данных. Попробуйте ещё раз.")
+        return
+    task_type = parts[0]
+    level = parts[1]
     user_id = callback.from_user.id
     tasks = get_tasks(task_type, level)
     if not tasks:
-        # Отправляем новое сообщение, чтобы избежать ошибки "message not modified"
         await callback.message.answer(
             "Заданий для этого типа и уровня пока нет. Выберите другой уровень.",
             reply_markup=get_level_keyboard(task_type)
