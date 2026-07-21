@@ -233,7 +233,8 @@ async def back_to_types(callback: CallbackQuery):
 async def select_type(callback: CallbackQuery):
     await callback.answer()
     task_type = callback.data.replace("grammar_type_", "")
-    text = f"Выберите уровень сложности для типа: {task_type}"
+    # Исправлен текст на "Выберите уровень сложности:"
+    text = "Выберите уровень сложности:"
     keyboard = get_level_keyboard(task_type)
     await callback.message.edit_text(text, reply_markup=keyboard)
 
@@ -495,7 +496,6 @@ async def show_answer(callback: CallbackQuery, state: FSMContext):
                 current_index = 0
             await render_task_message(callback.message, state, user_id, short_type, short_level, current_index, is_revision=False)
         else:
-            # Показываем следующую ошибку
             next_error_id = errors[0]
             await render_task_message(callback.message, state, user_id, short_type, short_level, task_id=next_error_id, is_revision=True)
     else:

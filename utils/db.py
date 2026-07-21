@@ -23,7 +23,7 @@ async def init_db():
             last_active BIGINT DEFAULT EXTRACT(EPOCH FROM NOW())::BIGINT
         )
     """)
-    # Таблица прогресса для других режимов (чтение, лексика и т.д.)
+    # Таблица прогресса для других режимов
     await conn.execute("""
         CREATE TABLE IF NOT EXISTS progress (
             user_id BIGINT NOT NULL,
@@ -34,7 +34,7 @@ async def init_db():
             PRIMARY KEY (user_id, type_key, level_key)
         )
     """)
-    # Таблица ошибок (используется и для чтения, и для грамматики)
+    # Таблица ошибок
     await conn.execute("""
         CREATE TABLE IF NOT EXISTS errors (
             user_id BIGINT NOT NULL,
@@ -44,7 +44,7 @@ async def init_db():
             PRIMARY KEY (user_id, type_key, level_key, task_index)
         )
     """)
-    # Таблица для прогресса письма (базовая)
+    # Таблица для прогресса письма
     await conn.execute("""
         CREATE TABLE IF NOT EXISTS writing_progress (
             user_id BIGINT NOT NULL,
@@ -58,9 +58,11 @@ async def init_db():
             PRIMARY KEY (user_id, type_key, level_key)
         )
     """)
-    # Таблица для прогресса грамматики (индекс, но статистика и ошибки хранятся в progress и errors)
+    # Таблица для прогресса грамматики (с правильными колонками)
+    # Удаляем старую, если есть, и создаём заново
+    await conn.execute("DROP TABLE IF EXISTS grammar_progress;")
     await conn.execute("""
-        CREATE TABLE IF NOT EXISTS grammar_progress (
+        CREATE TABLE grammar_progress (
             user_id BIGINT NOT NULL,
             type_key TEXT NOT NULL,
             level_key TEXT NOT NULL,
@@ -81,7 +83,7 @@ async def get_or_create_user(user_id: int, username: str = None, first_name: str
     await conn.close()
     return dict(row) if row else None
 
-# ---------- Прогресс (для чтения, лексики и др.) ----------
+# ---------- Прогресс (для других режимов) ----------
 async def get_user_stats_db(user_id: int, type_key: str, level_key: str) -> Tuple[int, int]:
     conn = await get_connection()
     row = await conn.fetchrow(
@@ -112,7 +114,7 @@ async def reset_user_stats_db(user_id: int, type_key: str, level_key: str):
     )
     await conn.close()
 
-# ---------- Ошибки (для чтения и грамматики) ----------
+# ---------- Ошибки ----------
 async def add_reading_error_db(user_id: int, type_key: str, level_key: str, task_index: int):
     conn = await get_connection()
     await conn.execute("""
