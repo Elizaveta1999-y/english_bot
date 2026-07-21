@@ -102,12 +102,11 @@ def get_type_keyboard() -> InlineKeyboardMarkup:
     return InlineKeyboardMarkup(inline_keyboard=buttons)
 
 def get_level_keyboard(task_type: str) -> InlineKeyboardMarkup:
+    # Кнопки уровней — каждая на отдельной строке
     buttons = []
-    row = []
     for level in LEVELS:
         emoji = LEVEL_EMOJIS.get(level, "")
-        row.append(InlineKeyboardButton(text=f"{emoji} {level}", callback_data=f"grammar_level_{task_type}_{level}"))
-    buttons.append(row)
+        buttons.append([InlineKeyboardButton(text=f"{emoji} {level}", callback_data=f"grammar_level_{task_type}_{level}")])
     buttons.append([InlineKeyboardButton(text="🔙 Назад", callback_data="grammar_back_to_types")])
     return InlineKeyboardMarkup(inline_keyboard=buttons)
 
@@ -205,7 +204,11 @@ async def select_level(callback: CallbackQuery):
     user_id = callback.from_user.id
     tasks = get_tasks(task_type, level)
     if not tasks:
-        await callback.message.edit_text("Заданий для этого типа и уровня пока нет. Выберите другой уровень.", reply_markup=get_level_keyboard(task_type))
+        # Отправляем новое сообщение, чтобы избежать ошибки "message not modified"
+        await callback.message.answer(
+            "Заданий для этого типа и уровня пока нет. Выберите другой уровень.",
+            reply_markup=get_level_keyboard(task_type)
+        )
         return
     state = get_user_state(user_id) or {}
     state["grammar_current_type"] = task_type
