@@ -3,7 +3,7 @@ from aiogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, C
 from aiogram.fsm.context import FSMContext
 from aiogram.filters import Command
 from data.users import get_user_state, set_user_state
-from data.db import (
+from utils.db import (
     get_grammar_index, set_grammar_index, reset_grammar_index,
     get_grammar_stats, update_grammar_stats, reset_grammar_stats,
     add_grammar_error, remove_grammar_error, get_grammar_errors, clear_grammar_errors,
