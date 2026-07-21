@@ -23,7 +23,7 @@ async def init_db():
             last_active BIGINT DEFAULT EXTRACT(EPOCH FROM NOW())::BIGINT
         )
     """)
-    # Таблица прогресса для других режимов
+    # Таблица прогресса для других режимов (чтение, лексика и т.д.)
     await conn.execute("""
         CREATE TABLE IF NOT EXISTS progress (
             user_id BIGINT NOT NULL,
@@ -34,7 +34,7 @@ async def init_db():
             PRIMARY KEY (user_id, type_key, level_key)
         )
     """)
-    # Таблица ошибок
+    # Таблица ошибок (используется и для чтения, и для грамматики)
     await conn.execute("""
         CREATE TABLE IF NOT EXISTS errors (
             user_id BIGINT NOT NULL,
@@ -51,38 +51,21 @@ async def init_db():
             type_key TEXT NOT NULL,
             level_key TEXT NOT NULL,
             current_index INTEGER DEFAULT 0,
+            total_answered INTEGER DEFAULT 0,
+            total_score INTEGER DEFAULT 0,
+            session_answered INTEGER DEFAULT 0,
+            session_score INTEGER DEFAULT 0,
             PRIMARY KEY (user_id, type_key, level_key)
         )
     """)
-    
-    # ДОБАВЛЯЕМ НЕДОСТАЮЩИЕ КОЛОНКИ
-    await conn.execute("""
-        DO $$
-        BEGIN
-            IF NOT EXISTS (SELECT 1 FROM information_schema.columns 
-                           WHERE table_name='writing_progress' AND column_name='total_answered') THEN
-                ALTER TABLE writing_progress ADD COLUMN total_answered INTEGER DEFAULT 0;
-            END IF;
-            IF NOT EXISTS (SELECT 1 FROM information_schema.columns 
-                           WHERE table_name='writing_progress' AND column_name='total_score') THEN
-                ALTER TABLE writing_progress ADD COLUMN total_score INTEGER DEFAULT 0;
-            END IF;
-            IF NOT EXISTS (SELECT 1 FROM information_schema.columns 
-                           WHERE table_name='writing_progress' AND column_name='session_answered') THEN
-                ALTER TABLE writing_progress ADD COLUMN session_answered INTEGER DEFAULT 0;
-            END IF;
-            IF NOT EXISTS (SELECT 1 FROM information_schema.columns 
-                           WHERE table_name='writing_progress' AND column_name='session_score') THEN
-                ALTER TABLE writing_progress ADD COLUMN session_score INTEGER DEFAULT 0;
-            END IF;
-        END $$;
-    """)
-
-    # Таблица для прогресса грамматики
+    # Таблица для прогресса грамматики (индекс, но статистика и ошибки хранятся в progress и errors)
     await conn.execute("""
         CREATE TABLE IF NOT EXISTS grammar_progress (
-            user_id BIGINT PRIMARY KEY,
-            current_index INTEGER DEFAULT 0
+            user_id BIGINT NOT NULL,
+            type_key TEXT NOT NULL,
+            level_key TEXT NOT NULL,
+            current_index INTEGER DEFAULT 0,
+            PRIMARY KEY (user_id, type_key, level_key)
         )
     """)
     await conn.close()
@@ -98,7 +81,7 @@ async def get_or_create_user(user_id: int, username: str = None, first_name: str
     await conn.close()
     return dict(row) if row else None
 
-# ---------- Прогресс (для других режимов) ----------
+# ---------- Прогресс (для чтения, лексики и др.) ----------
 async def get_user_stats_db(user_id: int, type_key: str, level_key: str) -> Tuple[int, int]:
     conn = await get_connection()
     row = await conn.fetchrow(
@@ -129,7 +112,7 @@ async def reset_user_stats_db(user_id: int, type_key: str, level_key: str):
     )
     await conn.close()
 
-# ---------- Ошибки (для чтения) ----------
+# ---------- Ошибки (для чтения и грамматики) ----------
 async def add_reading_error_db(user_id: int, type_key: str, level_key: str, task_index: int):
     conn = await get_connection()
     await conn.execute("""
@@ -168,6 +151,7 @@ async def reset_all_user_progress(user_id: int):
     conn = await get_connection()
     await conn.execute("DELETE FROM progress WHERE user_id = $1", user_id)
     await conn.execute("DELETE FROM errors WHERE user_id = $1", user_id)
+    await conn.execute("DELETE FROM grammar_progress WHERE user_id = $1", user_id)
     await conn.close()
 
 # ---------- Функции для письма ----------
@@ -245,24 +229,53 @@ async def reset_writing_progress(user_id: int, type_key: str, level_key: str):
     await conn.close()
 
 # ---------- Функции для грамматики ----------
-async def get_grammar_index(user_id: int) -> int:
+async def get_grammar_index(user_id: int, type_key: str, level_key: str) -> int:
     conn = await get_connection()
     row = await conn.fetchrow(
-        "SELECT current_index FROM grammar_progress WHERE user_id = $1",
-        user_id
+        "SELECT current_index FROM grammar_progress WHERE user_id = $1 AND type_key = $2 AND level_key = $3",
+        user_id, type_key, level_key
     )
     await conn.close()
     if row:
         return row["current_index"]
-    await set_grammar_index(user_id, 0)
+    await set_grammar_index(user_id, type_key, level_key, 0)
     return 0
 
-async def set_grammar_index(user_id: int, index: int):
+async def set_grammar_index(user_id: int, type_key: str, level_key: str, index: int):
     conn = await get_connection()
     await conn.execute("""
-        INSERT INTO grammar_progress (user_id, current_index)
-        VALUES ($1, $2)
-        ON CONFLICT (user_id)
-        DO UPDATE SET current_index = $2
-    """, user_id, index)
+        INSERT INTO grammar_progress (user_id, type_key, level_key, current_index)
+        VALUES ($1, $2, $3, $4)
+        ON CONFLICT (user_id, type_key, level_key)
+        DO UPDATE SET current_index = $4
+    """, user_id, type_key, level_key, index)
     await conn.close()
+
+async def reset_grammar_index(user_id: int, type_key: str, level_key: str):
+    await set_grammar_index(user_id, type_key, level_key, 0)
+
+async def get_grammar_stats(user_id: int, type_key: str, level_key: str) -> Tuple[int, int]:
+    return await get_user_stats_db(user_id, type_key, level_key)
+
+async def update_grammar_stats(user_id: int, type_key: str, level_key: str, correct: bool):
+    await update_user_stats_db(user_id, type_key, level_key, correct)
+
+async def reset_grammar_stats(user_id: int, type_key: str, level_key: str):
+    await reset_user_stats_db(user_id, type_key, level_key)
+
+async def add_grammar_error(user_id: int, type_key: str, level_key: str, task_index: int):
+    await add_reading_error_db(user_id, type_key, level_key, task_index)
+
+async def remove_grammar_error(user_id: int, type_key: str, level_key: str, task_index: int):
+    await remove_reading_error_db(user_id, type_key, level_key, task_index)
+
+async def get_grammar_errors(user_id: int, type_key: str, level_key: str) -> List[int]:
+    return await get_reading_errors_db(user_id, type_key, level_key)
+
+async def clear_grammar_errors(user_id: int, type_key: str, level_key: str):
+    await clear_reading_errors_db(user_id, type_key, level_key)
+
+async def reset_grammar_progress(user_id: int, type_key: str, level_key: str):
+    await reset_grammar_index(user_id, type_key, level_key)
+    await reset_grammar_stats(user_id, type_key, level_key)
+    await clear_grammar_errors(user_id, type_key, level_key)

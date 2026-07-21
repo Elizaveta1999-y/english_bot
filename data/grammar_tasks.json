@@ -5772,13 +5772,13 @@
       "explanation": "Множественное (tickets) в Past Simple Passive → were sold out.",
       "input_type": "text"
     },
-    {
-      "id": 824,
-      "question": "Вставьте правильную форму глагола to be (has/have been).\nThe committee ___ discussing the proposal for several hours.",
-      "correct": "has been",
-      "explanation": "Committee как единое целое, Present Perfect Continuous → has been discussing (здесь to be — вспомогательный, но ответ — has been). Можно считать, что нужно вставить has been.",
-      "input_type": "text"
-    },
+{
+  "id": 824,
+  "question": "Вставьте правильную форму глагола to be (has/have been).\nThe committee ___ discussing the proposal for several hours.",
+  "correct": "have been",
+  "explanation": "Committee в британском английском часто употребляется с глаголом во множественном числе (have been), так как подразумеваются члены комитета.",
+  "input_type": "text"
+},
     {
       "id": 825,
       "question": "Вставьте правильную форму глагола to be (am/is/are).\nThe information you provided ___ very helpful to us.",
