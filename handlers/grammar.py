@@ -25,7 +25,6 @@ def split_into_levels(task_list: List[Dict]) -> Dict[str, List[Dict]]:
         return {"Новичок": [], "Любитель": [], "Эксперт": []}
     third = total // 3
     if third == 0:
-        # если заданий меньше 3, все отдаём новичку
         return {"Новичок": task_list, "Любитель": [], "Эксперт": []}
     return {
         "Новичок": task_list[:third],
@@ -71,7 +70,7 @@ def get_progress(user_id: int, task_type: str, level: str) -> Dict[str, Any]:
         "index": 0,
         "correct": 0,
         "wrong": 0,
-        "wrong_ids": []  # список id ошибочных заданий (для работы над ошибками)
+        "wrong_ids": []
     })
 
 def save_progress(user_id: int, task_type: str, level: str, progress: Dict):
@@ -139,20 +138,13 @@ async def show_task_card(message: Message, user_id: int, task_type: str, level: 
     progress = get_progress(user_id, task_type, level)
     index = progress["index"]
     if index >= len(tasks):
-        # Все задания пройдены – обнуляем прогресс
         reset_progress(user_id, task_type, level)
         progress = get_progress(user_id, task_type, level)
         index = 0
 
     task = tasks[index]
-    # Проверяем, не является ли задание ошибочным (если мы в режиме ошибок)
-    # Для простоты мы не храним отдельный флаг режима ошибок, а просто используем отдельный прогресс для ошибок
-    # Можно в прогресс добавить флаг is_error_mode, но пока упростим: будем показывать все задания подряд.
-    # Режим "Работа над ошибками" будет использовать отдельный список wrong_ids.
-    # Пока оставим как есть.
 
-    # Формируем текст
-    type_display = task_type  # можно красивое название
+    type_display = task_type
     level_display = level
     text = f"<b>Режим:</b> {TYPE_EMOJIS.get(task_type, '')} {type_display}\n"
     text += f"<b>Уровень:</b> {LEVEL_EMOJIS.get(level, '')} {level_display}\n\n"
@@ -169,7 +161,8 @@ async def show_task_card(message: Message, user_id: int, task_type: str, level: 
 
 # ---- Вход в режим ----
 
-async def enter_grammar_mode(message: Message, user_id: int, edit: bool = False):
+async def enter_grammar_mode(message: Message, user_id: int, edit: bool = False, state=None):
+    """Вход в режим грамматики (меню выбора типа)."""
     text = "🔀 Грамматика\n\nВыберите тип задания:"
     keyboard = get_type_keyboard()
     if edit:
@@ -210,18 +203,14 @@ async def select_level(callback: CallbackQuery):
     task_type = parts[2]
     level = parts[3]
     user_id = callback.from_user.id
-    # Проверяем, есть ли задания
     tasks = get_tasks(task_type, level)
     if not tasks:
         await callback.message.edit_text("Заданий для этого типа и уровня пока нет. Выберите другой уровень.", reply_markup=get_level_keyboard(task_type))
         return
-    # Сохраняем текущие тип и уровень в состоянии (чтобы знать, где мы)
-    # Можно хранить в состоянии пользователя
     state = get_user_state(user_id) or {}
     state["grammar_current_type"] = task_type
     state["grammar_current_level"] = level
     set_user_state(user_id, state)
-    # Показываем первое задание
     await show_task_card(callback.message, user_id, task_type, level, edit=True)
 
 # ---- Обработчики кнопок на карточке ----
@@ -245,19 +234,15 @@ async def show_answer(callback: CallbackQuery):
         index = 0
     task = tasks[index]
     correct = task["correct"]
-    # Если correct - массив, показываем через /
     if isinstance(correct, list):
         answer_text = " / ".join(correct)
     else:
         answer_text = correct
     await callback.message.answer(f"Правильный ответ: {answer_text}")
-    # Переходим к следующему заданию (увеличиваем индекс)
     progress["index"] += 1
     if progress["index"] >= len(tasks):
-        # Все задания пройдены – обнуляем прогресс
         reset_progress(user_id, task_type, level)
         await callback.message.answer("Поздравляем! Вы прошли все задания этого уровня. Прогресс сброшен.")
-        # Показываем меню выбора типа
         await enter_grammar_mode(callback.message, user_id, edit=True)
         return
     save_progress(user_id, task_type, level, progress)
@@ -266,7 +251,6 @@ async def show_answer(callback: CallbackQuery):
 @router.callback_query(F.data == "grammar_finish")
 async def finish_grammar(callback: CallbackQuery):
     await callback.answer()
-    # Возвращаемся в главное меню
     from handlers.main import show_main_menu
     await show_main_menu(callback.message, edit=True)
 
@@ -299,17 +283,14 @@ async def work_on_errors(callback: CallbackQuery):
     if not wrong_ids:
         await callback.message.answer("У вас нет ошибок в этом уровне. Отличная работа!")
         return
-    # Находим задания по id из wrong_ids
     all_tasks = get_tasks(task_type, level)
     error_tasks = [t for t in all_tasks if t.get("id") in wrong_ids]
     if not error_tasks:
         await callback.message.answer("Задания с ошибками не найдены. Возможно, они были удалены.")
         return
-    # Временно сохраняем список ошибок в состоянии, чтобы показывать их
     state["grammar_error_tasks"] = error_tasks
     state["grammar_error_index"] = 0
     set_user_state(user_id, state)
-    # Показываем первое ошибочное задание (с пометкой, что это работа над ошибками)
     await show_error_task(callback.message, user_id, edit=True)
 
 async def show_error_task(message: Message, user_id: int, edit: bool = False):
@@ -317,9 +298,7 @@ async def show_error_task(message: Message, user_id: int, edit: bool = False):
     error_tasks = state.get("grammar_error_tasks", [])
     error_index = state.get("grammar_error_index", 0)
     if error_index >= len(error_tasks):
-        # Все ошибки исправлены
         await message.answer("Все ошибки исправлены! Отличная работа.")
-        # Возвращаемся к обычному режиму
         task_type = state.get("grammar_current_type")
         level = state.get("grammar_current_level")
         if task_type and level:
@@ -357,7 +336,6 @@ async def show_error_answer(callback: CallbackQuery):
     else:
         answer_text = correct
     await callback.message.answer(f"Правильный ответ: {answer_text}")
-    # Переходим к следующему ошибочному заданию
     state["grammar_error_index"] = error_index + 1
     set_user_state(user_id, state)
     await show_error_task(callback.message, user_id, edit=True)
@@ -367,7 +345,6 @@ async def finish_error_mode(callback: CallbackQuery):
     await callback.answer()
     user_id = callback.from_user.id
     state = get_user_state(user_id) or {}
-    # Очищаем временные данные об ошибках
     state.pop("grammar_error_tasks", None)
     state.pop("grammar_error_index", None)
     set_user_state(user_id, state)
@@ -393,7 +370,6 @@ async def handle_grammar_answer(message: Message):
     progress = get_progress(user_id, task_type, level)
     index = progress.get("index", 0)
     if index >= len(tasks):
-        # Все задания пройдены – обнуляем прогресс
         reset_progress(user_id, task_type, level)
         await message.answer("Поздравляем! Вы прошли все задания этого уровня. Прогресс сброшен.")
         await enter_grammar_mode(message, user_id, edit=False)
@@ -401,7 +377,6 @@ async def handle_grammar_answer(message: Message):
     task = tasks[index]
     correct = task["correct"]
     user_answer = message.text.strip().lower()
-    # Нормализуем правильные ответы
     if isinstance(correct, str):
         correct_variants = [correct.strip().lower()]
     else:
@@ -410,24 +385,19 @@ async def handle_grammar_answer(message: Message):
     if user_answer in correct_variants:
         await message.answer("Правильно!")
         progress["correct"] += 1
-        # Если задание было в списке ошибок, удаляем его оттуда
         if task.get("id") in progress.get("wrong_ids", []):
             progress["wrong_ids"].remove(task["id"])
     else:
-        # Показываем правильный ответ
         if isinstance(correct, list):
             display_answer = " / ".join(correct)
         else:
             display_answer = correct
         await message.answer(f"Неправильно. Правильный ответ: {display_answer}")
         progress["wrong"] += 1
-        # Добавляем id задания в список ошибок (если ещё не там)
         if task.get("id") not in progress.get("wrong_ids", []):
             progress.setdefault("wrong_ids", []).append(task["id"])
-    # Переходим к следующему заданию
     progress["index"] += 1
     if progress["index"] >= len(tasks):
-        # Все задания пройдены – обнуляем прогресс (или можно оставить для статистики)
         reset_progress(user_id, task_type, level)
         await message.answer("Поздравляем! Вы прошли все задания этого уровня. Прогресс сброшен.")
         await enter_grammar_mode(message, user_id, edit=False)
