@@ -1,6 +1,7 @@
 import os
 import logging
-from openai import OpenAI
+import re
+from openai import AsyncOpenAI
 
 logger = logging.getLogger(__name__)
 
@@ -9,7 +10,7 @@ if not DEEPSEEK_API_KEY:
     logger.error("DEEPSEEK_API_KEY not set in environment variables")
     raise ValueError("DEEPSEEK_API_KEY is required. Please set it in your environment.")
 
-client = OpenAI(
+client = AsyncOpenAI(
     api_key=DEEPSEEK_API_KEY,
     base_url="https://api.deepseek.com/v1"
 )
@@ -48,7 +49,6 @@ async def check_writing(task_text: str, user_answer: str, level: str, keywords: 
         feedback = response.choices[0].message.content
 
         # Попытка извлечь оценку из текста (если есть "Оценка: 4/5" или подобное)
-        import re
         score_match = re.search(r'Оценка:\s*(\d+)\s*[/]?\s*5', feedback)
         if score_match:
             score = int(score_match.group(1))
@@ -57,12 +57,10 @@ async def check_writing(task_text: str, user_answer: str, level: str, keywords: 
             elif score > 5:
                 score = 5
         else:
-            # Если оценка не найдена, ставим по умолчанию 3
             score = 3
 
         return feedback, score
 
     except Exception as e:
         logger.error(f"DeepSeek API error in check_writing: {e}")
-        # Пробрасываем исключение дальше, чтобы writing.py обработал
         raise
