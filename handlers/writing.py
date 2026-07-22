@@ -83,20 +83,29 @@ def get_progress_keyboard():
         [InlineKeyboardButton(text="🔄 Сбросить прогресс", callback_data="reset_progress")]
     ])
 
-# ---------- Проверка осмысленности текста ----------
+# ---------- Проверка осмысленности ----------
 def is_meaningful_english(text: str) -> bool:
-    """
-    Проверяет, содержит ли текст хотя бы минимальное количество английских слов.
-    Возвращает True, если текст осмысленный.
-    """
-    # Убираем мусорные символы, оставляем только буквы и пробелы
     cleaned = re.sub(r'[^a-zA-Z\s]', '', text)
     words = cleaned.split()
     if len(words) < 3:
         return False
-    # Проверяем, что хотя бы половина слов имеет длину > 2
     meaningful = sum(1 for w in words if len(w) > 2)
     return meaningful >= len(words) * 0.5
+
+# ---------- Проверка безопасности (запрещённые темы) ----------
+FORBIDDEN_WORDS = [
+    "насилие", "убить", "смерть", "кровь", "оружие", "война", "терроризм",
+    "секс", "порно", "наркотики", "экстремизм", "политика", "правительство",
+    "революция", "бунт", "мятеж", "расизм", "фашизм", "нацизм"
+]
+
+def is_safe_topic(text: str) -> bool:
+    """Проверяет, содержит ли текст запрещённые слова."""
+    text_lower = text.lower()
+    for word in FORBIDDEN_WORDS:
+        if word in text_lower:
+            return False
+    return True
 
 # ---------- Entry ----------
 @router.callback_query(F.data == "start_writing")
@@ -212,7 +221,7 @@ async def show_progress_card(message: Message, state: FSMContext, edit: bool = F
 
     await state.set_state(WritingStates.showing_progress)
 
-# ---------- Показ задания (без номера) ----------
+# ---------- Показ задания ----------
 async def show_task(message: Message, state: FSMContext, edit: bool = False):
     data = await state.get_data()
     task = data.get("current_task")
@@ -236,7 +245,7 @@ async def show_task(message: Message, state: FSMContext, edit: bool = False):
         await message.answer(text, reply_markup=keyboard, parse_mode="Markdown")
     await state.set_state(WritingStates.waiting_answer)
 
-# ---------- Сброс прогресса (подтверждение) ----------
+# ---------- Сброс прогресса ----------
 @router.callback_query(F.data == "reset_progress", WritingStates.showing_progress)
 async def reset_progress_request(callback: CallbackQuery, state: FSMContext):
     await callback.answer()
@@ -270,16 +279,23 @@ async def reset_progress_no(callback: CallbackQuery, state: FSMContext):
     await callback.answer()
     await show_progress_card(callback.message, state, edit=True)
 
-# ---------- Обработка ответа пользователя с проверкой осмысленности ----------
+# ---------- Обработка ответа ----------
 @router.message(WritingStates.waiting_answer, F.text)
 async def handle_user_answer(message: Message, state: FSMContext):
     user_text = message.text
 
-    # Проверка на осмысленность (чтобы не тратить токены на бессмыслицу)
+    # 1. Проверка на осмысленность
     if not is_meaningful_english(user_text):
         await message.answer(
             "⚠️ Ваш ответ не содержит осмысленного текста на английском.\n"
             "Пожалуйста, напишите связный ответ, используя английский язык."
+        )
+        return
+
+    # 2. Проверка безопасности (запрещённые темы)
+    if not is_safe_topic(user_text):
+        await message.answer(
+            "Извините, я не могу обрабатывать сообщения на такие темы. Пожалуйста, напишите что-то другое."
         )
         return
 
@@ -318,7 +334,8 @@ async def handle_user_answer(message: Message, state: FSMContext):
 
     await update_writing_stats(user_id, task_type, level, score)
 
-    await message.answer(f"Результат проверки:\n\n{feedback}\n\nОценка: {score}/5")
+    # Отправляем фидбек без parse_mode
+    await message.answer(feedback)
 
     await go_to_next_task(message, state, user_id, task_type, level, index, tasks)
 
@@ -333,7 +350,7 @@ async def go_to_next_task(message: Message, state: FSMContext, user_id: int, tas
     )
     await show_task(message, state, edit=True)
 
-# ---------- Кнопки управления ----------
+# ---------- Кнопки ----------
 @router.callback_query(F.data == "writing_next_task")
 async def next_task_button(callback: CallbackQuery, state: FSMContext):
     await callback.answer()
@@ -386,7 +403,7 @@ async def show_answer_button(callback: CallbackQuery, state: FSMContext):
     )
     await show_task(callback.message, state, edit=True)
 
-# ---------- Завершение сессии ----------
+# ---------- Завершение ----------
 @router.callback_query(F.data == "cancel_writing")
 async def cancel_writing(callback: CallbackQuery, state: FSMContext):
     await callback.answer()
