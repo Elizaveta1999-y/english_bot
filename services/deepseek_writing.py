@@ -1,7 +1,7 @@
 import os
 import logging
 import re
-from openai import OpenAI
+from openai import AsyncOpenAI
 
 logger = logging.getLogger(__name__)
 
@@ -10,7 +10,7 @@ if not DEEPSEEK_API_KEY:
     logger.error("DEEPSEEK_API_KEY not set in environment variables")
     raise ValueError("DEEPSEEK_API_KEY is required. Please set it in your environment.")
 
-client = OpenAI(
+client = AsyncOpenAI(
     api_key=DEEPSEEK_API_KEY,
     base_url="https://api.deepseek.com/v1"
 )
@@ -39,8 +39,7 @@ async def check_writing(task_text: str, user_answer: str, level: str, keywords: 
         )
         feedback = response.choices[0].message.content
 
-        # Извлекаем оценку из конца текста
-        score = 3  # по умолчанию
+        score = 3
         match = re.search(r'Оценка:\s*(\d+)\s*[/]?\s*5', feedback)
         if match:
             score = int(match.group(1))
@@ -48,7 +47,6 @@ async def check_writing(task_text: str, user_answer: str, level: str, keywords: 
                 score = 1
             elif score > 5:
                 score = 5
-            # Удаляем строку с оценкой из фидбека, чтобы не дублировать
             feedback = re.sub(r'Оценка:\s*\d+\s*[/]?\s*5', '', feedback).strip()
 
         return feedback, score
