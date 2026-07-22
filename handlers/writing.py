@@ -52,11 +52,11 @@ class WritingStates(StatesGroup):
 
 # ---------- Клавиатуры ----------
 def get_types_keyboard():
+    # Убрали кнопку "Диалог", так как заданий для него нет
     return InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(text="📧 Email", callback_data="type_email")],
         [InlineKeyboardButton(text="📝 Эссе", callback_data="type_essay")],
         [InlineKeyboardButton(text="📱 Пост в соцсети", callback_data="type_post")],
-        [InlineKeyboardButton(text="💬 Диалог", callback_data="type_dialogue")],
         [InlineKeyboardButton(text="📖 История", callback_data="type_story")],
         [InlineKeyboardButton(text="🔙 Назад", callback_data="back_to_main")]
     ])
@@ -191,7 +191,6 @@ async def show_progress_card(message: Message, state: FSMContext, edit: bool = F
         "email": "📧 Email",
         "essay": "📝 Эссе",
         "post": "📱 Пост",
-        "dialogue": "💬 Диалог",
         "story": "📖 История"
     }
     level_names = {
@@ -211,8 +210,8 @@ async def show_progress_card(message: Message, state: FSMContext, edit: bool = F
     card_text = (
         f"*Режим:* {mode_text}\n"
         f"*Уровень:* {level_text}\n\n"
-        f"✍️ Напишите {task_type} согласно заданию.\n\n"
-        f"Ваш средний балл: {avg_score}/5 за все сессии."
+        f"Напишите {task_type} согласно заданию.\n\n"
+        f"Ваш прогресс: средний балл {avg_score} за все сессии."
     )
 
     keyboard = get_progress_keyboard()
@@ -231,10 +230,22 @@ async def show_task(message: Message, state: FSMContext, edit: bool = False):
         await message.answer("Ошибка: задание не найдено.")
         return
 
+    # Удаляем клавиатуру у предыдущего сообщения с заданием, если оно есть
+    last_msg_id = data.get("last_task_msg_id")
+    if last_msg_id:
+        try:
+            await message.bot.edit_message_reply_markup(
+                chat_id=message.chat.id,
+                message_id=last_msg_id,
+                reply_markup=None
+            )
+        except Exception:
+            pass
+        await state.update_data(last_task_msg_id=None)
+
     task_text = task.get('task_text', 'Текст задания отсутствует')
     keywords = task.get('keywords', [])
 
-    # Убираем строку "Объём: ..."
     text = (
         f"{task_text}\n\n"
         f"Рекомендуемые слова (по желанию): {', '.join(keywords)}"
@@ -242,12 +253,9 @@ async def show_task(message: Message, state: FSMContext, edit: bool = False):
     keyboard = get_action_keyboard()
     
     if edit:
-        # Редактируем предыдущее сообщение с заданием
         await message.edit_text(text, reply_markup=keyboard, parse_mode="Markdown")
     else:
-        # Отправляем новое сообщение
         sent_msg = await message.answer(text, reply_markup=keyboard, parse_mode="Markdown")
-        # Сохраняем ID сообщения, чтобы потом удалить клавиатуру
         await state.update_data(last_task_msg_id=sent_msg.message_id)
     
     await state.set_state(WritingStates.waiting_answer)
@@ -276,11 +284,13 @@ async def reset_progress_yes(callback: CallbackQuery, state: FSMContext):
         return
 
     await reset_writing_progress(user_id, task_type, level)
-    await state.update_data(index=0, current_task=tasks[0])
+    await state.update_data(index=0, current_task=tasks[0], last_task_msg_id=None)
 
-    # Сначала показываем карточку прогресса (редактируем текущее сообщение)
-    await show_progress_card(callback.message, state, edit=True)
-    # Затем отправляем новое сообщение с заданием
+    # Убираем клавиатуру у текущего сообщения
+    await callback.message.edit_reply_markup(reply_markup=None)
+    # Отправляем новую карточку прогресса (не редактируем текущее)
+    await show_progress_card(callback.message, state, edit=False)
+    # Отправляем новое задание
     await show_task(callback.message, state, edit=False)
 
 @router.callback_query(F.data == "confirm_reset_no", WritingStates.confirm_reset)
@@ -293,11 +303,11 @@ async def reset_progress_no(callback: CallbackQuery, state: FSMContext):
 async def handle_user_answer(message: Message, state: FSMContext):
     user_text = message.text
 
-    # Проверка на осмысленность (без смайлика)
+    # Проверка на осмысленность
     if not is_meaningful_english(user_text):
         await message.answer(
             "Ваш ответ не содержит осмысленного текста.\n"
-            "Пожалуйста, напишите связный ответ, используя английский язык."
+            "Пожалуйста, перепишите."
         )
         return
 
@@ -354,6 +364,7 @@ async def handle_user_answer(message: Message, state: FSMContext):
             )
         except Exception:
             pass
+        await state.update_data(last_task_msg_id=None)
 
     # Отправляем фидбек (без Markdown)
     await message.answer(f"{feedback}\n\nОценка: {score}/5")
@@ -445,8 +456,19 @@ async def cancel_writing(callback: CallbackQuery, state: FSMContext):
 
     total_answered, total_score, session_answered, session_score = await get_writing_stats(user_id, task_type, level)
 
-    # Убираем клавиатуру из текущего сообщения (задание)
+    # Убираем клавиатуру у текущего сообщения (задание)
     await callback.message.edit_reply_markup(reply_markup=None)
+    # Убираем клавиатуру у предыдущего сообщения с заданием, если есть
+    last_msg_id = data.get("last_task_msg_id")
+    if last_msg_id:
+        try:
+            await callback.bot.edit_message_reply_markup(
+                chat_id=callback.message.chat.id,
+                message_id=last_msg_id,
+                reply_markup=None
+            )
+        except Exception:
+            pass
 
     if session_answered > 0:
         avg_session = round(session_score / session_answered, 1)
@@ -471,7 +493,19 @@ async def back_to_types(callback: CallbackQuery, state: FSMContext):
 @router.callback_query(F.data == "back_to_main")
 async def back_to_main_from_writing(callback: CallbackQuery, state: FSMContext):
     await callback.answer()
-    # Убираем клавиатуру из текущего сообщения
+    # Убираем клавиатуру у текущего сообщения
     await callback.message.edit_reply_markup(reply_markup=None)
+    # Убираем клавиатуру у предыдущего сообщения с заданием, если есть
+    data = await state.get_data()
+    last_msg_id = data.get("last_task_msg_id")
+    if last_msg_id:
+        try:
+            await callback.bot.edit_message_reply_markup(
+                chat_id=callback.message.chat.id,
+                message_id=last_msg_id,
+                reply_markup=None
+            )
+        except Exception:
+            pass
     await callback.message.answer("Вы вышли в главное меню. Используйте /start для возврата.")
     await state.clear()
