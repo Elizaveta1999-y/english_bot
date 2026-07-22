@@ -318,7 +318,7 @@ async def handle_user_answer(message: Message, state: FSMContext):
 
     await update_writing_stats(user_id, task_type, level, score)
 
-    await message.answer(f"Результат проверки:\n\n{feedback}\n\nОценка: {score}/5", parse_mode="Markdown")
+    await message.answer(f"Результат проверки:\n\n{feedback}\n\nОценка: {score}/5")
 
     await go_to_next_task(message, state, user_id, task_type, level, index, tasks)
 
