@@ -1,5 +1,6 @@
 import json
 import os
+import re
 from aiogram import Router, F
 from aiogram.types import Message, CallbackQuery, InlineKeyboardMarkup, InlineKeyboardButton
 from aiogram.fsm.context import FSMContext
@@ -82,6 +83,21 @@ def get_progress_keyboard():
         [InlineKeyboardButton(text="🔄 Сбросить прогресс", callback_data="reset_progress")]
     ])
 
+# ---------- Проверка осмысленности текста ----------
+def is_meaningful_english(text: str) -> bool:
+    """
+    Проверяет, содержит ли текст хотя бы минимальное количество английских слов.
+    Возвращает True, если текст осмысленный.
+    """
+    # Убираем мусорные символы, оставляем только буквы и пробелы
+    cleaned = re.sub(r'[^a-zA-Z\s]', '', text)
+    words = cleaned.split()
+    if len(words) < 3:
+        return False
+    # Проверяем, что хотя бы половина слов имеет длину > 2
+    meaningful = sum(1 for w in words if len(w) > 2)
+    return meaningful >= len(words) * 0.5
+
 # ---------- Entry ----------
 @router.callback_query(F.data == "start_writing")
 async def start_writing_mode(callback: CallbackQuery):
@@ -113,7 +129,6 @@ async def level_chosen(callback: CallbackQuery, state: FSMContext):
     data = await state.get_data()
     task_type = data.get("task_type")
 
-    # Проверка: если тип не выбран – возвращаем к выбору типа
     if not task_type:
         await callback.message.edit_text(
             "⚠️ Тип задания не выбран. Пожалуйста, выберите тип заново:",
@@ -134,7 +149,6 @@ async def level_chosen(callback: CallbackQuery, state: FSMContext):
         )
         return
 
-    # Инициализация сессии (обнуляем session_answered, session_score)
     await init_writing_session(user_id, task_type, level_key)
 
     index = await get_writing_index(user_id, task_type, level_key)
@@ -150,9 +164,7 @@ async def level_chosen(callback: CallbackQuery, state: FSMContext):
         index=index
     )
 
-    # Показываем карточку прогресса (редактируем текущее сообщение)
     await show_progress_card(callback.message, state, edit=True)
-    # Отправляем новое сообщение с заданием
     await show_task(callback.message, state, edit=False)
 
 # ---------- Карточка прогресса ----------
@@ -180,7 +192,6 @@ async def show_progress_card(message: Message, state: FSMContext, edit: bool = F
     mode_text = type_names.get(task_type, task_type)
     level_text = level_names.get(level, level)
 
-    # Средний балл за все сессии
     if total_answered > 0:
         avg_score = round(total_score / total_answered, 1)
     else:
@@ -189,7 +200,7 @@ async def show_progress_card(message: Message, state: FSMContext, edit: bool = F
     card_text = (
         f"*Режим:* {mode_text}\n"
         f"*Уровень:* {level_text}\n\n"
-        f"Напишите {task_type} согласно заданию.\n\n"
+        f"✍️ Напишите {task_type} согласно заданию.\n\n"
         f"Ваш прогресс: средний балл {avg_score} за все сессии."
     )
 
@@ -229,7 +240,7 @@ async def show_task(message: Message, state: FSMContext, edit: bool = False):
 @router.callback_query(F.data == "reset_progress", WritingStates.showing_progress)
 async def reset_progress_request(callback: CallbackQuery, state: FSMContext):
     await callback.answer()
-    text = "Вы уверены? Все упражнения будут даны с самого начала."
+    text = "⚠️ Вы уверены? Все упражнения будут даны с самого начала."
     keyboard = get_reset_confirmation_keyboard()
     await callback.message.edit_text(text, reply_markup=keyboard, parse_mode="Markdown")
     await state.set_state(WritingStates.confirm_reset)
@@ -251,20 +262,27 @@ async def reset_progress_yes(callback: CallbackQuery, state: FSMContext):
     await reset_writing_progress(user_id, task_type, level)
     await state.update_data(index=0, current_task=tasks[0])
 
-    # Возвращаем карточку прогресса и задание
     await show_progress_card(callback.message, state, edit=True)
     await show_task(callback.message, state, edit=False)
 
 @router.callback_query(F.data == "confirm_reset_no", WritingStates.confirm_reset)
 async def reset_progress_no(callback: CallbackQuery, state: FSMContext):
     await callback.answer()
-    # Возвращаемся к карточке прогресса
     await show_progress_card(callback.message, state, edit=True)
 
-# ---------- Обработка ответа пользователя ----------
+# ---------- Обработка ответа пользователя с проверкой осмысленности ----------
 @router.message(WritingStates.waiting_answer, F.text)
 async def handle_user_answer(message: Message, state: FSMContext):
     user_text = message.text
+
+    # Проверка на осмысленность (чтобы не тратить токены на бессмыслицу)
+    if not is_meaningful_english(user_text):
+        await message.answer(
+            "⚠️ Ваш ответ не содержит осмысленного текста на английском.\n"
+            "Пожалуйста, напишите связный ответ, используя английский язык."
+        )
+        return
+
     data = await state.get_data()
     task = data.get("current_task")
     task_type = data.get("task_type")
@@ -298,12 +316,10 @@ async def handle_user_answer(message: Message, state: FSMContext):
         await message.answer("Ошибка при обращении к ИИ. Попробуйте позже.")
         return
 
-    # Обновляем статистику
     await update_writing_stats(user_id, task_type, level, score)
 
     await message.answer(f"Результат проверки:\n\n{feedback}\n\nОценка: {score}/5", parse_mode="Markdown")
 
-    # Переход к следующему заданию
     await go_to_next_task(message, state, user_id, task_type, level, index, tasks)
 
 async def go_to_next_task(message: Message, state: FSMContext, user_id: int, task_type: str, level: str, current_index: int, tasks: list):
@@ -315,7 +331,6 @@ async def go_to_next_task(message: Message, state: FSMContext, user_id: int, tas
         index=next_index,
         current_task=tasks[next_index]
     )
-    # Редактируем сообщение с заданием (оно было последним)
     await show_task(message, state, edit=True)
 
 # ---------- Кнопки управления ----------
@@ -361,7 +376,6 @@ async def show_answer_button(callback: CallbackQuery, state: FSMContext):
     sample = task.get("sample_answer", "Пример ответа отсутствует.")
     await callback.message.answer(f"Правильный ответ:\n\n{sample}")
 
-    # Переход к следующему заданию
     next_index = index + 1
     if next_index >= len(tasks):
         next_index = 0
@@ -383,7 +397,6 @@ async def cancel_writing(callback: CallbackQuery, state: FSMContext):
 
     total_answered, total_score, session_answered, session_score = await get_writing_stats(user_id, task_type, level)
 
-    # Убираем клавиатуру из текущего сообщения (задание)
     await callback.message.edit_reply_markup(reply_markup=None)
 
     if session_answered > 0:
@@ -409,7 +422,6 @@ async def back_to_types(callback: CallbackQuery, state: FSMContext):
 @router.callback_query(F.data == "back_to_main")
 async def back_to_main_from_writing(callback: CallbackQuery, state: FSMContext):
     await callback.answer()
-    # Убираем клавиатуру из текущего сообщения
     await callback.message.edit_reply_markup(reply_markup=None)
     await callback.message.answer("Вы вышли в главное меню. Используйте /start для возврата.")
     await state.clear()
