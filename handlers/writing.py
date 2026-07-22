@@ -1,6 +1,7 @@
 import json
 import os
 import re
+import logging
 from aiogram import Router, F
 from aiogram.types import Message, CallbackQuery, InlineKeyboardMarkup, InlineKeyboardButton
 from aiogram.fsm.context import FSMContext
@@ -12,6 +13,7 @@ from utils.db import (
     reset_writing_progress, init_writing_session
 )
 
+logger = logging.getLogger(__name__)
 router = Router()
 
 # ---------- Загрузка заданий ----------
@@ -26,10 +28,10 @@ LEVEL_MAP = {
 def load_tasks():
     with open(TASKS_FILE, "r", encoding="utf-8") as f:
         data = json.load(f)
-    print("=== WRITING TASKS LOADED ===")
-    print(f"Keys: {list(data.keys())}")
+    logger.info("=== WRITING TASKS LOADED ===")
+    logger.info(f"Keys: {list(data.keys())}")
     for task_type, levels in data.items():
-        print(f"  {task_type}: {list(levels.keys())}")
+        logger.info(f"  {task_type}: {list(levels.keys())}")
     return data
 
 ALL_TASKS = load_tasks()
@@ -52,7 +54,6 @@ class WritingStates(StatesGroup):
 
 # ---------- Клавиатуры ----------
 def get_types_keyboard():
-    # Убрали кнопку "Диалог", так как заданий для него нет
     return InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(text="📧 Email", callback_data="type_email")],
         [InlineKeyboardButton(text="📝 Эссе", callback_data="type_essay")],
@@ -286,8 +287,12 @@ async def reset_progress_yes(callback: CallbackQuery, state: FSMContext):
     await reset_writing_progress(user_id, task_type, level)
     await state.update_data(index=0, current_task=tasks[0], last_task_msg_id=None)
 
-    # Убираем клавиатуру у текущего сообщения
-    await callback.message.edit_reply_markup(reply_markup=None)
+    # Убираем клавиатуру у сообщения с подтверждением
+    try:
+        await callback.message.edit_reply_markup(reply_markup=None)
+    except Exception:
+        pass
+
     # Отправляем новую карточку прогресса (не редактируем текущее)
     await show_progress_card(callback.message, state, edit=False)
     # Отправляем новое задание
@@ -351,6 +356,7 @@ async def handle_user_answer(message: Message, state: FSMContext):
         await message.answer("Ошибка при обращении к ИИ. Попробуйте позже.")
         return
 
+    # Обновляем статистику
     await update_writing_stats(user_id, task_type, level, score)
 
     # Убираем клавиатуру у предыдущего сообщения с заданием
@@ -381,7 +387,6 @@ async def go_to_next_task(message: Message, state: FSMContext, user_id: int, tas
         index=next_index,
         current_task=tasks[next_index]
     )
-    # Отправляем новое сообщение с заданием (edit=False)
     await show_task(message, state, edit=False)
 
 # ---------- Кнопки управления ----------
@@ -410,7 +415,6 @@ async def next_task_button(callback: CallbackQuery, state: FSMContext):
         index=next_index,
         current_task=tasks[next_index]
     )
-    # Отправляем новое сообщение с заданием
     await show_task(callback.message, state, edit=False)
 
 @router.callback_query(F.data == "writing_show_answer")
@@ -442,7 +446,6 @@ async def show_answer_button(callback: CallbackQuery, state: FSMContext):
         index=next_index,
         current_task=tasks[next_index]
     )
-    # Отправляем новое сообщение с заданием
     await show_task(callback.message, state, edit=False)
 
 # ---------- Завершение сессии ----------
@@ -507,5 +510,7 @@ async def back_to_main_from_writing(callback: CallbackQuery, state: FSMContext):
             )
         except Exception:
             pass
-    await callback.message.answer("Вы вышли в главное меню. Используйте /start для возврата.")
     await state.clear()
+    # Показываем главное меню
+    from handlers.start import show_main_menu
+    await show_main_menu(callback.message, edit=False)
