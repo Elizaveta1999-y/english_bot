@@ -31,10 +31,33 @@ def load_tasks():
     logger.info("=== WRITING TASKS LOADED ===")
     logger.info(f"Keys: {list(data.keys())}")
     for task_type, levels in data.items():
-        logger.info(f"  {task_type}: {list(levels.keys())}")
+        logger.info(f"  {task_type}: {list(levels.keys()) if isinstance(levels, dict) else 'list'}")
     return data
 
 ALL_TASKS = load_tasks()
+
+def get_tasks_for_type_level(task_type: str, level_key: str):
+    """Гибко получает список заданий для типа и уровня."""
+    type_data = ALL_TASKS.get(task_type)
+    if not type_data:
+        return []
+    # Если type_data - словарь с уровнями
+    if isinstance(type_data, dict):
+        tasks = type_data.get(level_key, [])
+        if tasks:
+            return tasks
+        # Если нет заданий для уровня, возможно, задания лежат на верхнем уровне
+        # Попробуем взять первый доступный список
+        for key, value in type_data.items():
+            if isinstance(value, list) and value:
+                logger.warning(f"Заданий для уровня {level_key} нет, используем задания из ключа '{key}'")
+                return value
+        return []
+    # Если type_data - просто список
+    elif isinstance(type_data, list):
+        logger.warning(f"Тип {task_type} содержит список напрямую, возвращаем его")
+        return type_data
+    return []
 
 # ---------- Стоп-слова для фильтрации ----------
 FORBIDDEN_WORDS = [
@@ -150,10 +173,12 @@ async def level_chosen(callback: CallbackQuery, state: FSMContext):
         return
 
     level_key = LEVEL_MAP.get(level, level)
-    tasks = ALL_TASKS.get(task_type, {}).get(level_key, [])
+    tasks = get_tasks_for_type_level(task_type, level_key)
 
     if not tasks:
-        available = ', '.join(ALL_TASKS.get(task_type, {}).keys())
+        # Если заданий нет, попробуем показать доступные типы/уровни в логах
+        logger.warning(f"Нет заданий для {task_type} уровня {level_key}")
+        available = ', '.join(ALL_TASKS.get(task_type, {}).keys()) if isinstance(ALL_TASKS.get(task_type), dict) else 'список'
         await callback.message.edit_text(
             f"Заданий для {task_type} уровня {level_key} пока нет.\n"
             f"Доступные уровни: {available if available else 'нет'}"
@@ -357,6 +382,7 @@ async def handle_user_answer(message: Message, state: FSMContext):
         return
 
     # Обновляем статистику
+    logger.info(f"Updating stats for user {user_id}, type {task_type}, level {level}, score {score}")
     await update_writing_stats(user_id, task_type, level, score)
 
     # Убираем клавиатуру у предыдущего сообщения с заданием
@@ -511,6 +537,5 @@ async def back_to_main_from_writing(callback: CallbackQuery, state: FSMContext):
         except Exception:
             pass
     await state.clear()
-    # Показываем главное меню
     from handlers.start import show_main_menu
     await show_main_menu(callback.message, edit=False)
