@@ -243,7 +243,7 @@ async def show_progress_card(message: Message, state: FSMContext, edit: bool = F
         f"*Режим:* {mode_text}\n"
         f"*Уровень:* {level_text}\n\n"
         f"Напишите {task_type} согласно заданию.\n\n"
-        f"Ваш прогресс: средний балл {avg_score} за все сессии."
+        f"Ваш средний балл: {avg_score}/5 за все сессии."
     )
 
     keyboard = get_progress_keyboard()
@@ -288,7 +288,8 @@ async def show_task(message: Message, state: FSMContext, edit: bool = False):
     task_type = data.get("task_type")
 
     text = f"{task_text}\n\n"
-    if task_type == "email" and expected_length != 'не указан':
+    # Объём показываем ТОЛЬКО для email и post
+    if task_type in ["email", "post"] and expected_length != 'не указан':
         text += f"Объём: {expected_length}\n\n"
     text += f"Рекомендуемые слова (по желанию): {', '.join(keywords)}"
 
