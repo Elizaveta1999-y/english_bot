@@ -10,7 +10,7 @@ from handlers import listening
 from handlers.reading import router as reading_router
 from middleware.access import AccessMiddleware
 from handlers.grammar import router as grammar_router
-from utils.db import init_db  # импорт, но не вызываем здесь
+from utils.db import init_db
 from middleware.isolation import ModeIsolationMiddleware
 from handlers.govorenie import router as govorenie_router
 
@@ -27,6 +27,13 @@ WEBHOOK_SECRET = "my-secret-key"
 bot = Bot(token=BOT_TOKEN)
 dp = Dispatcher()
 
+# --------------------- Логирование всех обновлений ---------------------
+@dp.update.middleware()
+async def log_update(handler, event, data):
+    logger.info(f"📨 Received update: {event}")
+    return await handler(event, data)
+
+# --------------------- Подключение роутеров ---------------------
 dp.include_router(start.router)
 dp.include_router(writing.router)
 dp.include_router(reading.router)
@@ -42,9 +49,9 @@ dp.include_router(lessons.router)
 dp.include_router(speaking.router)
 dp.include_router(profile.router)
 dp.include_router(skills.router) 
-dp.message.middleware(ModeIsolationMiddleware())
 dp.include_router(govorenie_router)
 
+dp.message.middleware(ModeIsolationMiddleware())
 
 async def set_commands(bot: Bot):
     commands = [
@@ -56,7 +63,6 @@ async def set_commands(bot: Bot):
     logger.info("Commands set")
 
 async def on_startup():
-    # Инициализация базы данных (таблицы создадутся при первом запуске)
     await init_db()
     logger.info("Database initialized")
     
@@ -66,6 +72,11 @@ async def on_startup():
     webhook_url = f"{external_url}{WEBHOOK_PATH}"
     await bot.set_webhook(webhook_url, secret_token=WEBHOOK_SECRET)
     logger.info(f"Webhook set to {webhook_url}")
+    
+    # Проверяем настройки webhook
+    webhook_info = await bot.get_webhook_info()
+    logger.info(f"Webhook info: {webhook_info}")
+    
     await set_commands(bot)
 
 dp.startup.register(on_startup)
