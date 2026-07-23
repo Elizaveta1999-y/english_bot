@@ -395,8 +395,8 @@ async def back_to_main_from_govorenie(callback: CallbackQuery, state: FSMContext
     from handlers.start import show_main_menu
     await show_main_menu(callback.message, edit=True)
 
-# ---------- ОТЛАДОЧНЫЙ ХЕНДЛЕР (перехватывает все непойманные callback) ----------
-@router.callback_query(F.data)
-async def debug_all_callbacks(callback: CallbackQuery):
-    logger.warning(f"🔍 ПЕРЕХВАТЧЕН НЕОБРАБОТАННЫЙ КОЛБЭК: {callback.data} от пользователя {callback.from_user.id}")
-    await callback.answer()
+# ---------- ОТЛАДОЧНЫЙ ХЕНДЛЕР (перехватывает ВСЕ callback, которые не были обработаны выше) ----------
+@router.callback_query()
+async def catch_all_callbacks(callback: CallbackQuery):
+    logger.warning(f"🔍 CATCH_ALL: callback_data={callback.data}, user={callback.from_user.id}")
+    await callback.answer("Произошла ошибка, попробуйте снова.", show_alert=True)
