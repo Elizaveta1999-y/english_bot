@@ -555,3 +555,9 @@ async def back_to_main_from_govorenie(callback: CallbackQuery, state: FSMContext
     await state.clear()
     from handlers.start import show_main_menu
     await show_main_menu(callback.message, edit=False)
+
+# ---------- ОТЛАДОЧНЫЙ ХЕНДЛЕР ДЛЯ ВСЕХ ГОЛОСОВЫХ ----------
+@router.message(F.voice)
+async def catch_all_voice(message: Message, state: FSMContext):
+    logger.warning(f"🔊 Поймано голосовое сообщение от {message.from_user.id}, состояние: {await state.get_state()}")
+    await message.answer("Голосовое сообщение получено, но режим не активен. Начните заново.")
