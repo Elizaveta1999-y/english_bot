@@ -93,16 +93,15 @@ def get_action_keyboard():
         ]
     ])
 
-# ---------- ВХОД В РЕЖИМ ----------
+# ---------- ВХОД В РЕЖИМ (вызывается из start.py) ----------
+@router.callback_query(F.data == "start_govorenie")
+async def start_govorenie_mode(callback: CallbackQuery, state: FSMContext):
+    await callback.answer()
+    await state.set_state(GovorenieStates.choosing_type)
+    await show_task_types(callback.message, edit=True)
+
 async def show_task_types(message: Message, edit: bool = False):
-    text = (
-        "🎤 *Режим Говорение*\n\n"
-        "Выберите тип задания:\n"
-        "📖 *Чтение вслух* – прочитайте текст чётко\n"
-        "⏱ *Беглость* – говорите без остановок 60 секунд\n"
-        "🎤 *Интервью* – ответьте на все вопросы одним сообщением\n"
-        "🎲 *Случайный* – бот выберет сам"
-    )
+    text = "🎤 Говорение\n\nВыберите тип задания:"
     keyboard = get_types_keyboard()
     if edit:
         await message.edit_text(text, reply_markup=keyboard, parse_mode="Markdown")
@@ -113,7 +112,7 @@ async def show_task_types(message: Message, edit: bool = False):
 @router.callback_query(F.data.startswith("g_type_"))
 async def type_chosen(callback: CallbackQuery, state: FSMContext):
     await callback.answer()
-    task_type = callback.data.split("_")[2]
+    task_type = callback.data.split("_")[2]  # g_type_reading → reading
     await state.update_data(task_type=task_type)
     await state.set_state(GovorenieStates.choosing_level)
     text = f"Вы выбрали тип: *{task_type.upper()}*.\nТеперь выберите уровень сложности:"
