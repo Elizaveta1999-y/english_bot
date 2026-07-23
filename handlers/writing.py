@@ -122,7 +122,7 @@ def get_progress_keyboard():
 
 # ---------- Проверки ----------
 def is_meaningful_english(text: str) -> bool:
-    # Если нет латинских букв – считаем бессмысленным
+    # Проверяем, есть ли латинские буквы
     if not re.search(r'[a-zA-Z]', text):
         return False
     cleaned = re.sub(r'[^a-zA-Z\s]', '', text)
@@ -375,13 +375,21 @@ async def reset_progress_no(callback: CallbackQuery, state: FSMContext):
 async def handle_user_answer(message: Message, state: FSMContext):
     user_text = message.text
 
+    # Проверка на осмысленность
     if not is_meaningful_english(user_text):
-        await message.answer(
-            "Ваш ответ не содержит осмысленного текста.\n"
-            "Пожалуйста, перепишите."
-        )
+        # Если текст содержит кириллицу и не содержит латиницу – считаем, что ответ на русском
+        if re.search(r'[а-яА-Я]', user_text) and not re.search(r'[a-zA-Z]', user_text):
+            await message.answer(
+                "Ваш ответ должен быть на английском языке. Пожалуйста, перепишите."
+            )
+        else:
+            await message.answer(
+                "Ваш ответ не содержит осмысленного текста.\n"
+                "Пожалуйста, перепишите."
+            )
         return
 
+    # Проверка на запрещённые темы
     if contains_forbidden(user_text):
         await message.answer(
             "Текст содержит неподходящие для изучения темы. Пожалуйста, напишите что-то другое."
@@ -410,7 +418,7 @@ async def handle_user_answer(message: Message, state: FSMContext):
 
     word_count = len(user_text.split())
     if word_count < 10:
-        await message.answer("Слишком коротко! Напишите не менее 10 слов.")
+        await message.answer("Слишком коротко. Напишите не менее 10 слов.")  # восклицательный знак заменён на точку
         return
     if word_count > 150:
         await message.answer("Слишком длинно! Сократите до 150 слов.")
@@ -451,7 +459,6 @@ async def handle_user_answer(message: Message, state: FSMContext):
     progress_msg_id = data.get("progress_msg_id")
     if progress_msg_id:
         try:
-            # Перерисовываем карточку прогресса с новыми данными
             await show_progress_card(message, state, edit=True)
         except Exception as e:
             logger.error(f"Failed to update progress card: {e}")
