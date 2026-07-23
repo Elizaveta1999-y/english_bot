@@ -12,6 +12,7 @@ from middleware.access import AccessMiddleware
 from handlers.grammar import router as grammar_router
 from utils.db import init_db  # импорт, но не вызываем здесь
 from middleware.isolation import ModeIsolationMiddleware
+from handlers.govorenie import router as govorenie_router
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -42,6 +43,7 @@ dp.include_router(speaking.router)
 dp.include_router(profile.router)
 dp.include_router(skills.router) 
 dp.message.middleware(ModeIsolationMiddleware())
+dp.include_router(govorenie_router)
 
 
 async def set_commands(bot: Bot):
