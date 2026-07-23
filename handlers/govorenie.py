@@ -66,7 +66,7 @@ class GovorenieStates(StatesGroup):
     choosing_level = State()
     waiting_voice = State()
 
-# ---------- Клавиатуры (каждая кнопка в отдельной строке) ----------
+# ---------- Клавиатуры ----------
 def get_types_keyboard():
     logger.info("Генерация клавиатуры выбора типа")
     return InlineKeyboardMarkup(inline_keyboard=[
@@ -97,16 +97,16 @@ def get_action_keyboard():
         ]
     ])
 
-# ---------- ВХОД В РЕЖИМ (вызывается из start.py) ----------
+# ---------- ВХОД ----------
 @router.callback_query(F.data == "start_govorenie")
 async def start_govorenie_mode(callback: CallbackQuery, state: FSMContext):
-    logger.info(f"✅ start_govorenie вызван, user_id={callback.from_user.id}")
+    logger.info(f"✅ start_govorenie вызван, user={callback.from_user.id}")
     await callback.answer()
     await state.set_state(GovorenieStates.choosing_type)
     await show_task_types(callback.message, edit=True)
 
 async def show_task_types(message: Message, edit: bool = False):
-    logger.info(f"✅ show_task_types вызван, edit={edit}, chat_id={message.chat.id}")
+    logger.info(f"✅ show_task_types, edit={edit}, chat={message.chat.id}")
     text = "🎤 Говорение\n\nВыберите тип задания:"
     keyboard = get_types_keyboard()
     if edit:
@@ -117,7 +117,7 @@ async def show_task_types(message: Message, edit: bool = False):
 # ---------- Выбор типа ----------
 @router.callback_query(F.data.startswith("g_type_"))
 async def type_chosen(callback: CallbackQuery, state: FSMContext):
-    logger.info(f"✅ type_chosen вызван, data={callback.data}, user={callback.from_user.id}")
+    logger.info(f"✅ type_chosen: {callback.data}, user={callback.from_user.id}")
     await callback.answer()
     task_type = callback.data.split("_")[2]
     logger.info(f"   → task_type={task_type}")
@@ -126,10 +126,10 @@ async def type_chosen(callback: CallbackQuery, state: FSMContext):
     text = f"Вы выбрали тип: *{task_type.upper()}*.\nТеперь выберите уровень сложности:"
     await callback.message.edit_text(text, reply_markup=get_levels_keyboard(), parse_mode="Markdown")
 
-# ---------- Выбор уровня и выдача первого задания ----------
+# ---------- Выбор уровня ----------
 @router.callback_query(F.data.startswith("g_level_"))
 async def level_chosen(callback: CallbackQuery, state: FSMContext):
-    logger.info(f"✅ level_chosen вызван, data={callback.data}, user={callback.from_user.id}")
+    logger.info(f"✅ level_chosen: {callback.data}, user={callback.from_user.id}")
     await callback.answer()
     level = callback.data.split("_")[2]
     user_id = callback.from_user.id
@@ -150,7 +150,6 @@ async def level_chosen(callback: CallbackQuery, state: FSMContext):
         return
 
     await clear_session_results(user_id, task_type, level)
-
     current_id = await get_current_task_id(user_id, task_type, level)
     current_task = next((t for t in tasks if t.get("id") == current_id), None)
     if current_task is None:
@@ -311,7 +310,7 @@ async def go_to_next_task(message: Message, state: FSMContext, user_id: int, tas
     )
     await show_task(message, state, edit=False)
 
-# ---------- Кнопка "Следующее задание" ----------
+# ---------- Кнопки управления ----------
 @router.callback_query(F.data == "g_next_task")
 async def next_task_button(callback: CallbackQuery, state: FSMContext):
     logger.info(f"✅ g_next_task, user={callback.from_user.id}")
@@ -339,7 +338,6 @@ async def next_task_button(callback: CallbackQuery, state: FSMContext):
     )
     await show_task(callback.message, state, edit=True)
 
-# ---------- Кнопка "Пример" ----------
 @router.callback_query(F.data == "g_show_sample")
 async def show_sample_button(callback: CallbackQuery, state: FSMContext):
     logger.info(f"✅ g_show_sample, user={callback.from_user.id}")
@@ -353,7 +351,6 @@ async def show_sample_button(callback: CallbackQuery, state: FSMContext):
     sample = task.get("sample", "Пример отсутствует.")
     await callback.message.answer(f"Пример ответа:\n\n{sample}")
 
-# ---------- Кнопка "Завершить" ----------
 @router.callback_query(F.data == "g_finish")
 async def finish_govorenie(callback: CallbackQuery, state: FSMContext):
     logger.info(f"✅ g_finish, user={callback.from_user.id}")
@@ -398,8 +395,8 @@ async def back_to_main_from_govorenie(callback: CallbackQuery, state: FSMContext
     from handlers.start import show_main_menu
     await show_main_menu(callback.message, edit=True)
 
-# ---------- Универсальный логгер для всех остальных callback (отладка) ----------
-@router.callback_query()
-async def catch_all_callbacks(callback: CallbackQuery):
-    logger.warning(f"⚠️ Необработанный callback: data={callback.data}, user={callback.from_user.id}")
-    await callback.answer("Произошла ошибка, попробуйте снова.", show_alert=True)
+# ---------- ОТЛАДОЧНЫЙ ХЕНДЛЕР (перехватывает все непойманные callback) ----------
+@router.callback_query(F.data)
+async def debug_all_callbacks(callback: CallbackQuery):
+    logger.warning(f"🔍 ПЕРЕХВАТЧЕН НЕОБРАБОТАННЫЙ КОЛБЭК: {callback.data} от пользователя {callback.from_user.id}")
+    await callback.answer()
