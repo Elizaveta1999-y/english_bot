@@ -82,12 +82,10 @@ def text_similarity(original: str, recognized: str, threshold: float = 0.5) -> b
     Проверяет, достаточно ли слов из оригинального текста присутствует в распознанном.
     Возвращает True, если процент совпадения >= threshold.
     """
-    # Удаляем пунктуацию и приводим к нижнему регистру
     clean_orig = re.sub(r'[^\w\s]', '', original).lower().split()
     clean_recog = re.sub(r'[^\w\s]', '', recognized).lower().split()
     if not clean_orig:
         return False
-    # Считаем количество совпадающих слов (лемматизация не требуется для простоты)
     common = set(clean_orig) & set(clean_recog)
     similarity = len(common) / len(clean_orig)
     logger.info(f"Схожесть текстов: {similarity:.2f}")
@@ -389,9 +387,9 @@ async def handle_voice_message(message: Message, state: FSMContext):
 
     if not re.search(r'[a-zA-Z]', user_text):
         if re.search(r'[а-яА-Я]', user_text):
-            await message.answer("Ваш ответ должен быть на английском языке. Пожалуйста, перепишите.")
+            await message.answer("Ваше голосовое сообщение содержит русский текст. Пожалуйста, произнесите ответ на английском языке чётко и повторите попытку.")
         else:
-            await message.answer("Ваш ответ не содержит осмысленного текста.\nПожалуйста, перепишите.")
+            await message.answer("Не удалось распознать английскую речь. Пожалуйста, произнесите текст на английском языке чётко.")
         return
 
     stop_words_ru = ["ааа", "эээ", "м-м", "ну", "типа", "блин", "как бы", "это самое"]
@@ -604,6 +602,11 @@ async def back_to_main_from_govorenie(callback: CallbackQuery, state: FSMContext
     await state.clear()
     from handlers.start import show_main_menu
     await show_main_menu(callback.message, edit=False)
+
+# ---------- Обработка текстовых сообщений в режиме говорения ----------
+@router.message(GovorenieStates.waiting_voice, F.text)
+async def handle_text_in_govorenie(message: Message, state: FSMContext):
+    await message.answer("В режиме говорения можно отвечать только голосовым сообщением. Пожалуйста, запишите голосовой ответ и отправьте его.")
 
 # ---------- ОТЛАДОЧНЫЙ ХЕНДЛЕР ----------
 @router.message(F.voice)
