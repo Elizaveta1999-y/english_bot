@@ -139,8 +139,21 @@ async def level_chosen(callback: CallbackQuery, state: FSMContext):
         progress_msg_id=None
     )
 
-    await show_progress_card(callback.message, state, edit=True)
-    await show_task(callback.message, state, edit=False)
+    try:
+        await show_progress_card(callback.message, state, edit=True)
+        logger.info("✅ Карточка прогресса показана")
+    except Exception as e:
+        logger.error(f"❌ Ошибка в show_progress_card: {e}")
+        await callback.message.answer("Произошла ошибка при показе прогресса. Попробуйте заново.")
+        return
+
+    try:
+        await show_task(callback.message, state, edit=False)
+        logger.info("✅ Задание показано, состояние переключено на waiting_voice")
+    except Exception as e:
+        logger.error(f"❌ Ошибка в show_task: {e}")
+        await callback.message.answer("Произошла ошибка при показе задания. Попробуйте заново.")
+        return
 
 # ---------- Карточка прогресса ----------
 async def show_progress_card(message: Message, state: FSMContext, edit: bool = False):
@@ -193,10 +206,26 @@ async def show_progress_card(message: Message, state: FSMContext, edit: bool = F
 async def show_task(message: Message, state: FSMContext, edit: bool = False):
     data = await state.get_data()
     task = data.get("current_task")
+    task_type = data.get("task_type")
     if not task:
         await message.answer("Ошибка: задание не найдено.")
         return
 
+    # Проверка наличия обязательных полей
+    if task_type == "reading" and "text" not in task:
+        logger.error(f"Задание чтения без поля 'text': {task}")
+        await message.answer("Ошибка в структуре задания (чтение).")
+        return
+    if task_type == "fluency" and "topic" not in task:
+        logger.error(f"Задание беглости без поля 'topic': {task}")
+        await message.answer("Ошибка в структуре задания (беглость).")
+        return
+    if task_type == "interview" and "questions" not in task:
+        logger.error(f"Задание интервью без поля 'questions': {task}")
+        await message.answer("Ошибка в структуре задания (интервью).")
+        return
+
+    # Удаляем клавиатуру у предыдущего сообщения с заданием
     last_msg_id = data.get("last_task_msg_id")
     if last_msg_id:
         try:
@@ -209,7 +238,6 @@ async def show_task(message: Message, state: FSMContext, edit: bool = False):
             pass
         await state.update_data(last_task_msg_id=None)
 
-    task_type = data.get("task_type")
     if task_type == "reading":
         text = f"{task.get('instruction', '')}\n\n_{task['text']}_"
     elif task_type == "fluency":
@@ -228,6 +256,7 @@ async def show_task(message: Message, state: FSMContext, edit: bool = False):
         await state.update_data(last_task_msg_id=sent_msg.message_id)
 
     await state.set_state(GovorenieStates.waiting_voice)
+    logger.info(f"Состояние установлено: {await state.get_state()}")
 
 # ---------- Сброс прогресса ----------
 @router.callback_query(F.data == "g_reset_progress")
@@ -556,8 +585,9 @@ async def back_to_main_from_govorenie(callback: CallbackQuery, state: FSMContext
     from handlers.start import show_main_menu
     await show_main_menu(callback.message, edit=False)
 
-# ---------- ОТЛАДОЧНЫЙ ХЕНДЛЕР ДЛЯ ВСЕХ ГОЛОСОВЫХ ----------
+# ---------- ОТЛАДОЧНЫЙ ХЕНДЛЕР ДЛЯ ВСЕХ ГОЛОСОВЫХ (ЛОВИТ ВСЁ, ЧТО НЕ ПОПАЛО В ОСНОВНОЙ) ----------
 @router.message(F.voice)
 async def catch_all_voice(message: Message, state: FSMContext):
-    logger.warning(f"🔊 Поймано голосовое сообщение от {message.from_user.id}, состояние: {await state.get_state()}")
-    await message.answer("Голосовое сообщение получено, но режим не активен. Начните заново.")
+    current_state = await state.get_state()
+    logger.warning(f"🔊 Поймано голосовое от {message.from_user.id}, состояние: {current_state}")
+    await message.answer(f"Голосовое сообщение получено, но режим не активен (состояние: {current_state}). Начните заново.")
