@@ -76,6 +76,23 @@ def get_reset_confirmation_keyboard():
         [InlineKeyboardButton(text="Назад", callback_data="g_confirm_reset_no")]
     ])
 
+# ---------- Вспомогательная функция для проверки схожести текстов ----------
+def text_similarity(original: str, recognized: str, threshold: float = 0.5) -> bool:
+    """
+    Проверяет, достаточно ли слов из оригинального текста присутствует в распознанном.
+    Возвращает True, если процент совпадения >= threshold.
+    """
+    # Удаляем пунктуацию и приводим к нижнему регистру
+    clean_orig = re.sub(r'[^\w\s]', '', original).lower().split()
+    clean_recog = re.sub(r'[^\w\s]', '', recognized).lower().split()
+    if not clean_orig:
+        return False
+    # Считаем количество совпадающих слов (лемматизация не требуется для простоты)
+    common = set(clean_orig) & set(clean_recog)
+    similarity = len(common) / len(clean_orig)
+    logger.info(f"Схожесть текстов: {similarity:.2f}")
+    return similarity >= threshold
+
 # ---------- ВХОД ----------
 @router.callback_query(F.data == "start_govorenie")
 async def start_govorenie_mode(callback: CallbackQuery, state: FSMContext):
@@ -385,10 +402,16 @@ async def handle_voice_message(message: Message, state: FSMContext):
             await message.answer("Ваша речь содержит слишком много слов-паразитов. Постарайтесь говорить без них.")
             return
 
-    # УДАЛЯЕМ ПРОВЕРКУ НА "НЕ ТОТ ТЕКСТ"
-    # if task_type == "reading":
-    #     ... (этот блок удалён)
+    # ---- ЗАЩИТА ДЛЯ ЧТЕНИЯ ВСЛУХ: проверяем, что текст соответствует заданию ----
+    if task_type == "reading":
+        original = task.get('text', '')
+        if original and not text_similarity(original, user_text, threshold=0.5):
+            await message.answer(
+                "Похоже, вы читаете не тот текст. Пожалуйста, внимательно прочитайте задание и попробуйте ещё раз."
+            )
+            return
 
+    # ---- ВЫЗОВ ИИ ----
     logger.info("Вызов check_govorenie...")
     try:
         feedback, score = await check_govorenie(
