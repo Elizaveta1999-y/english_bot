@@ -202,7 +202,7 @@ async def show_progress_card(message: Message, state: FSMContext, edit: bool = F
     await state.update_data(progress_msg_id=sent.message_id)
     await state.set_state(GovorenieStates.showing_progress)
 
-# ---------- Показ задания (без номера) ----------
+# ---------- Показ задания ----------
 async def show_task(message: Message, state: FSMContext, edit: bool = False):
     data = await state.get_data()
     task = data.get("current_task")
@@ -211,7 +211,6 @@ async def show_task(message: Message, state: FSMContext, edit: bool = False):
         await message.answer("Ошибка: задание не найдено.")
         return
 
-    # Проверка наличия обязательных полей
     if task_type == "reading" and "text" not in task:
         logger.error(f"Задание чтения без поля 'text': {task}")
         await message.answer("Ошибка в структуре задания (чтение).")
@@ -225,7 +224,6 @@ async def show_task(message: Message, state: FSMContext, edit: bool = False):
         await message.answer("Ошибка в структуре задания (интервью).")
         return
 
-    # Удаляем клавиатуру у предыдущего сообщения с заданием
     last_msg_id = data.get("last_task_msg_id")
     if last_msg_id:
         try:
@@ -313,7 +311,7 @@ async def reset_progress_no(callback: CallbackQuery, state: FSMContext):
     await show_progress_card(callback.message, state, edit=False)
     await show_task(callback.message, state, edit=False)
 
-# ---------- Обработка голосового ответа ----------
+# ---------- Обработка голосового ответа (исправлена) ----------
 @router.message(GovorenieStates.waiting_voice, F.voice)
 async def handle_voice_message(message: Message, state: FSMContext):
     logger.info(f"✅ handle_voice_message начат, user={message.from_user.id}")
@@ -348,22 +346,25 @@ async def handle_voice_message(message: Message, state: FSMContext):
     file_id = voice.file_id
     file = await message.bot.get_file(file_id)
     file_path = file.file_path
-    with tempfile.NamedTemporaryFile(delete=False, suffix=".ogg") as tmp:
-        await message.bot.download_file(file_path, tmp.name)
-        tmp_path = tmp.name
-    logger.info(f"Файл скачан: {tmp_path}")
-
-    await message.bot.send_chat_action(chat_id=message.chat.id, action="typing")
+    tmp_path = None
     try:
+        with tempfile.NamedTemporaryFile(delete=False, suffix=".ogg") as tmp:
+            await message.bot.download_file(file_path, tmp.name)
+            tmp_path = tmp.name
+        logger.info(f"Файл скачан: {tmp_path}")
+
+        await message.bot.send_chat_action(chat_id=message.chat.id, action="typing")
         user_text = await speech_to_text(tmp_path)
         logger.info(f"Распознанный текст: {user_text[:100]}...")
     except Exception as e:
         logger.error(f"Ошибка распознавания: {e}")
         await message.answer("Не удалось распознать голос. Попробуйте говорить чётче.")
-        os.unlink(tmp_path)
+        if tmp_path and os.path.exists(tmp_path):
+            os.unlink(tmp_path)
         return
     finally:
-        os.unlink(tmp_path)
+        if tmp_path and os.path.exists(tmp_path):
+            os.unlink(tmp_path)
 
     if not user_text or len(user_text.strip()) < 3:
         await message.answer("Не удалось разобрать речь. Попробуйте говорить ближе к микрофону.")
@@ -585,7 +586,7 @@ async def back_to_main_from_govorenie(callback: CallbackQuery, state: FSMContext
     from handlers.start import show_main_menu
     await show_main_menu(callback.message, edit=False)
 
-# ---------- ОТЛАДОЧНЫЙ ХЕНДЛЕР ДЛЯ ВСЕХ ГОЛОСОВЫХ (ЛОВИТ ВСЁ, ЧТО НЕ ПОПАЛО В ОСНОВНОЙ) ----------
+# ---------- ОТЛАДОЧНЫЙ ХЕНДЛЕР ----------
 @router.message(F.voice)
 async def catch_all_voice(message: Message, state: FSMContext):
     current_state = await state.get_state()

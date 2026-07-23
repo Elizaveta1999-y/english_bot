@@ -1,4 +1,3 @@
-# services/speech_recognition.py
 import os
 import aiohttp
 import aiofiles
@@ -6,7 +5,7 @@ import aiofiles
 ELEVENLABS_API_KEY = os.getenv("ELEVENLABS_API_KEY")
 ELEVENLABS_STT_URL = "https://api.elevenlabs.io/v1/speech-to-text"
 
-async def speech_to_text(file_path: str) -> str:
+async def speech_to_text(file_path: str, model_id: str = "eleven_monolingual_v1") -> str:
     """
     Отправляет аудиофайл в ElevenLabs для распознавания.
     Возвращает распознанный текст.
@@ -23,6 +22,7 @@ async def speech_to_text(file_path: str) -> str:
 
     data = aiohttp.FormData()
     data.add_field("file", audio_data, filename=file_path, content_type="audio/ogg")
+    data.add_field("model_id", model_id)  # <--- добавляем обязательное поле
 
     async with aiohttp.ClientSession() as session:
         async with session.post(ELEVENLABS_STT_URL, headers=headers, data=data) as resp:
