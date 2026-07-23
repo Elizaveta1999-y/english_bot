@@ -311,7 +311,7 @@ async def reset_progress_no(callback: CallbackQuery, state: FSMContext):
     await show_progress_card(callback.message, state, edit=False)
     await show_task(callback.message, state, edit=False)
 
-# ---------- Обработка голосового ответа (исправлена) ----------
+# ---------- Обработка голосового ответа ----------
 @router.message(GovorenieStates.waiting_voice, F.voice)
 async def handle_voice_message(message: Message, state: FSMContext):
     logger.info(f"✅ handle_voice_message начат, user={message.from_user.id}")
@@ -385,13 +385,9 @@ async def handle_voice_message(message: Message, state: FSMContext):
             await message.answer("Ваша речь содержит слишком много слов-паразитов. Постарайтесь говорить без них.")
             return
 
-    if task_type == "reading":
-        clean_expected = re.sub(r'[^\w\s]', '', task['text']).lower().split()
-        clean_user = re.sub(r'[^\w\s]', '', user_text).lower().split()
-        common = set(clean_expected) & set(clean_user)
-        if len(common) < max(3, len(clean_expected) * 0.3):
-            await message.answer("Похоже, вы читаете не тот текст. Проверьте задание и попробуйте ещё раз.")
-            return
+    # УДАЛЯЕМ ПРОВЕРКУ НА "НЕ ТОТ ТЕКСТ"
+    # if task_type == "reading":
+    #     ... (этот блок удалён)
 
     logger.info("Вызов check_govorenie...")
     try:
