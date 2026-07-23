@@ -3,6 +3,7 @@ import os
 import tempfile
 import re
 import random
+import logging
 from aiogram import Router, F
 from aiogram.types import Message, CallbackQuery, InlineKeyboardMarkup, InlineKeyboardButton, Voice
 from aiogram.fsm.context import FSMContext
@@ -11,6 +12,7 @@ import redis.asyncio as redis
 from services.deepseek_govorenie import check_govorenie
 from services.speech_recognition import speech_to_text
 
+logger = logging.getLogger(__name__)
 router = Router()
 
 # ---------- Загрузка заданий ----------
@@ -66,6 +68,7 @@ class GovorenieStates(StatesGroup):
 
 # ---------- Клавиатуры (каждая кнопка в отдельной строке) ----------
 def get_types_keyboard():
+    logger.info("Генерация клавиатуры выбора типа")
     return InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(text="📖 Чтение вслух", callback_data="g_type_reading")],
         [InlineKeyboardButton(text="⏱ Беглость (1 мин)", callback_data="g_type_fluency")],
@@ -75,6 +78,7 @@ def get_types_keyboard():
     ])
 
 def get_levels_keyboard():
+    logger.info("Генерация клавиатуры выбора уровня")
     return InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(text="🌱 Новичок", callback_data="g_level_beginner")],
         [InlineKeyboardButton(text="📚 Любитель", callback_data="g_level_intermediate")],
@@ -96,11 +100,13 @@ def get_action_keyboard():
 # ---------- ВХОД В РЕЖИМ (вызывается из start.py) ----------
 @router.callback_query(F.data == "start_govorenie")
 async def start_govorenie_mode(callback: CallbackQuery, state: FSMContext):
+    logger.info(f"✅ start_govorenie вызван, user_id={callback.from_user.id}")
     await callback.answer()
     await state.set_state(GovorenieStates.choosing_type)
     await show_task_types(callback.message, edit=True)
 
 async def show_task_types(message: Message, edit: bool = False):
+    logger.info(f"✅ show_task_types вызван, edit={edit}, chat_id={message.chat.id}")
     text = "🎤 Говорение\n\nВыберите тип задания:"
     keyboard = get_types_keyboard()
     if edit:
@@ -111,8 +117,10 @@ async def show_task_types(message: Message, edit: bool = False):
 # ---------- Выбор типа ----------
 @router.callback_query(F.data.startswith("g_type_"))
 async def type_chosen(callback: CallbackQuery, state: FSMContext):
+    logger.info(f"✅ type_chosen вызван, data={callback.data}, user={callback.from_user.id}")
     await callback.answer()
-    task_type = callback.data.split("_")[2]  # g_type_reading → reading
+    task_type = callback.data.split("_")[2]
+    logger.info(f"   → task_type={task_type}")
     await state.update_data(task_type=task_type)
     await state.set_state(GovorenieStates.choosing_level)
     text = f"Вы выбрали тип: *{task_type.upper()}*.\nТеперь выберите уровень сложности:"
@@ -121,19 +129,23 @@ async def type_chosen(callback: CallbackQuery, state: FSMContext):
 # ---------- Выбор уровня и выдача первого задания ----------
 @router.callback_query(F.data.startswith("g_level_"))
 async def level_chosen(callback: CallbackQuery, state: FSMContext):
+    logger.info(f"✅ level_chosen вызван, data={callback.data}, user={callback.from_user.id}")
     await callback.answer()
     level = callback.data.split("_")[2]
     user_id = callback.from_user.id
     data = await state.get_data()
     task_type = data.get("task_type")
+    logger.info(f"   → level={level}, task_type={task_type}")
 
     if task_type == "random":
         possible_types = ["reading", "fluency", "interview"]
         task_type = random.choice(possible_types)
         await state.update_data(task_type=task_type)
+        logger.info(f"   → случайный выбор: {task_type}")
 
     tasks = ALL_TASKS.get(task_type, {}).get(level, [])
     if not tasks:
+        logger.warning(f"Нет заданий для {task_type} уровня {level}")
         await callback.message.edit_text(f"Заданий для {task_type} уровня {level} пока нет.")
         return
 
@@ -202,6 +214,7 @@ async def show_task(message: Message, state: FSMContext, edit: bool = False):
 # ---------- Обработка голосового сообщения ----------
 @router.message(GovorenieStates.waiting_voice, F.voice)
 async def handle_voice_message(message: Message, state: FSMContext):
+    logger.info(f"✅ handle_voice_message, user={message.from_user.id}")
     user_id = message.from_user.id
     data = await state.get_data()
     task = data.get("current_task")
@@ -238,7 +251,8 @@ async def handle_voice_message(message: Message, state: FSMContext):
     await message.bot.send_chat_action(chat_id=message.chat.id, action="typing")
     try:
         user_text = await speech_to_text(tmp_path)
-    except Exception:
+    except Exception as e:
+        logger.error(f"Ошибка распознавания: {e}")
         await message.answer("Не удалось распознать голос. Попробуйте говорить чётче.")
         os.unlink(tmp_path)
         return
@@ -274,7 +288,8 @@ async def handle_voice_message(message: Message, state: FSMContext):
             level=level,
             duration=duration
         )
-    except Exception:
+    except Exception as e:
+        logger.error(f"Ошибка ИИ: {e}")
         await message.answer("Ошибка при обращении к ИИ. Попробуйте позже.")
         return
 
@@ -299,6 +314,7 @@ async def go_to_next_task(message: Message, state: FSMContext, user_id: int, tas
 # ---------- Кнопка "Следующее задание" ----------
 @router.callback_query(F.data == "g_next_task")
 async def next_task_button(callback: CallbackQuery, state: FSMContext):
+    logger.info(f"✅ g_next_task, user={callback.from_user.id}")
     await callback.answer()
     data = await state.get_data()
     task_type = data.get("task_type")
@@ -326,6 +342,7 @@ async def next_task_button(callback: CallbackQuery, state: FSMContext):
 # ---------- Кнопка "Пример" ----------
 @router.callback_query(F.data == "g_show_sample")
 async def show_sample_button(callback: CallbackQuery, state: FSMContext):
+    logger.info(f"✅ g_show_sample, user={callback.from_user.id}")
     await callback.answer()
     data = await state.get_data()
     task = data.get("current_task")
@@ -339,6 +356,7 @@ async def show_sample_button(callback: CallbackQuery, state: FSMContext):
 # ---------- Кнопка "Завершить" ----------
 @router.callback_query(F.data == "g_finish")
 async def finish_govorenie(callback: CallbackQuery, state: FSMContext):
+    logger.info(f"✅ g_finish, user={callback.from_user.id}")
     await callback.answer()
     user_id = callback.from_user.id
     data = await state.get_data()
@@ -367,13 +385,21 @@ async def finish_govorenie(callback: CallbackQuery, state: FSMContext):
 # ---------- Навигация ----------
 @router.callback_query(F.data == "back_to_types")
 async def back_to_types(callback: CallbackQuery, state: FSMContext):
+    logger.info(f"✅ back_to_types, user={callback.from_user.id}")
     await callback.answer()
     await state.set_state(GovorenieStates.choosing_type)
     await show_task_types(callback.message, edit=True)
 
 @router.callback_query(F.data == "back_to_main")
 async def back_to_main_from_govorenie(callback: CallbackQuery, state: FSMContext):
+    logger.info(f"✅ back_to_main_from_govorenie, user={callback.from_user.id}")
     await callback.answer()
     await state.clear()
     from handlers.start import show_main_menu
     await show_main_menu(callback.message, edit=True)
+
+# ---------- Универсальный логгер для всех остальных callback (отладка) ----------
+@router.callback_query()
+async def catch_all_callbacks(callback: CallbackQuery):
+    logger.warning(f"⚠️ Необработанный callback: data={callback.data}, user={callback.from_user.id}")
+    await callback.answer("Произошла ошибка, попробуйте снова.", show_alert=True)
