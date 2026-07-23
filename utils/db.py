@@ -23,7 +23,7 @@ async def init_db():
             last_active BIGINT DEFAULT EXTRACT(EPOCH FROM NOW())::BIGINT
         )
     """)
-    # Таблица прогресса для других режимов
+    # Таблица прогресса для других режимов (чтение/грамматика)
     await conn.execute("""
         CREATE TABLE IF NOT EXISTS progress (
             user_id BIGINT NOT NULL,
@@ -34,7 +34,7 @@ async def init_db():
             PRIMARY KEY (user_id, type_key, level_key)
         )
     """)
-    # Таблица ошибок
+    # Таблица ошибок (для чтения)
     await conn.execute("""
         CREATE TABLE IF NOT EXISTS errors (
             user_id BIGINT NOT NULL,
@@ -58,16 +58,28 @@ async def init_db():
             PRIMARY KEY (user_id, type_key, level_key)
         )
     """)
-    # Таблица для прогресса грамматики (с правильными колонками)
-    # Удаляем старую, если есть, и создаём заново
-    await conn.execute("DROP TABLE IF EXISTS grammar_progress;")
+    # Таблица для прогресса грамматики
     await conn.execute("""
-        CREATE TABLE grammar_progress (
+        CREATE TABLE IF NOT EXISTS grammar_progress (
             user_id BIGINT NOT NULL,
             type_key TEXT NOT NULL,
             level_key TEXT NOT NULL,
             current_index INTEGER DEFAULT 0,
             PRIMARY KEY (user_id, type_key, level_key)
+        )
+    """)
+    # Таблица для прогресса говорения
+    await conn.execute("""
+        CREATE TABLE IF NOT EXISTS govorenie_progress (
+            user_id BIGINT NOT NULL,
+            task_type TEXT NOT NULL,
+            level TEXT NOT NULL,
+            current_task_id INTEGER DEFAULT 0,
+            total_answered INTEGER DEFAULT 0,
+            total_score INTEGER DEFAULT 0,
+            session_answered INTEGER DEFAULT 0,
+            session_score INTEGER DEFAULT 0,
+            PRIMARY KEY (user_id, task_type, level)
         )
     """)
     await conn.close()
@@ -281,3 +293,77 @@ async def reset_grammar_progress(user_id: int, type_key: str, level_key: str):
     await reset_grammar_index(user_id, type_key, level_key)
     await reset_grammar_stats(user_id, type_key, level_key)
     await clear_grammar_errors(user_id, type_key, level_key)
+
+# ---------- Функции для говорения ----------
+async def get_govorenie_progress(user_id: int, task_type: str, level: str):
+    conn = await get_connection()
+    row = await conn.fetchrow(
+        """SELECT current_task_id, total_answered, total_score, session_answered, session_score
+           FROM govorenie_progress
+           WHERE user_id = $1 AND task_type = $2 AND level = $3""",
+        user_id, task_type, level
+    )
+    await conn.close()
+    if row:
+        return dict(row)
+    return None
+
+async def init_govorenie_session(user_id: int, task_type: str, level: str):
+    conn = await get_connection()
+    await conn.execute("""
+        INSERT INTO govorenie_progress (user_id, task_type, level, current_task_id, total_answered, total_score, session_answered, session_score)
+        VALUES ($1, $2, $3, 0, 0, 0, 0, 0)
+        ON CONFLICT (user_id, task_type, level)
+        DO UPDATE SET session_answered = 0, session_score = 0
+    """, user_id, task_type, level)
+    await conn.close()
+
+async def get_govorenie_task_id(user_id: int, task_type: str, level: str) -> int:
+    row = await get_govorenie_progress(user_id, task_type, level)
+    if row:
+        return row['current_task_id']
+    await init_govorenie_session(user_id, task_type, level)
+    return 0
+
+async def set_govorenie_task_id(user_id: int, task_type: str, level: str, task_id: int):
+    conn = await get_connection()
+    await conn.execute("""
+        INSERT INTO govorenie_progress (user_id, task_type, level, current_task_id, total_answered, total_score, session_answered, session_score)
+        VALUES ($1, $2, $3, $4, 0, 0, 0, 0)
+        ON CONFLICT (user_id, task_type, level)
+        DO UPDATE SET current_task_id = $4
+    """, user_id, task_type, level, task_id)
+    await conn.close()
+
+async def get_govorenie_stats(user_id: int, task_type: str, level: str):
+    row = await get_govorenie_progress(user_id, task_type, level)
+    if row:
+        return row['total_answered'], row['total_score'], row['session_answered'], row['session_score']
+    return 0, 0, 0, 0
+
+async def update_govorenie_stats(user_id: int, task_type: str, level: str, score: int):
+    conn = await get_connection()
+    await conn.execute("""
+        INSERT INTO govorenie_progress (user_id, task_type, level, current_task_id, total_answered, total_score, session_answered, session_score)
+        VALUES ($1, $2, $3, 0, 1, $4, 1, $4)
+        ON CONFLICT (user_id, task_type, level)
+        DO UPDATE SET
+            total_answered = govorenie_progress.total_answered + 1,
+            total_score = govorenie_progress.total_score + $4,
+            session_answered = govorenie_progress.session_answered + 1,
+            session_score = govorenie_progress.session_score + $4
+    """, user_id, task_type, level, score)
+    await conn.close()
+
+async def reset_govorenie_progress(user_id: int, task_type: str, level: str):
+    conn = await get_connection()
+    await conn.execute("""
+        UPDATE govorenie_progress
+        SET current_task_id = 0,
+            total_answered = 0,
+            total_score = 0,
+            session_answered = 0,
+            session_score = 0
+        WHERE user_id = $1 AND task_type = $2 AND level = $3
+    """, user_id, task_type, level)
+    await conn.close()

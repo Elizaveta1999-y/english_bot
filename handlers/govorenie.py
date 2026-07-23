@@ -8,9 +8,13 @@ from aiogram import Router, F
 from aiogram.types import Message, CallbackQuery, InlineKeyboardMarkup, InlineKeyboardButton, Voice
 from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import State, StatesGroup
-import redis.asyncio as redis
 from services.deepseek_govorenie import check_govorenie
 from services.speech_recognition import speech_to_text
+from utils.db import (
+    get_govorenie_task_id, set_govorenie_task_id,
+    get_govorenie_stats, update_govorenie_stats,
+    reset_govorenie_progress, init_govorenie_session
+)
 
 logger = logging.getLogger(__name__)
 router = Router()
@@ -24,51 +28,16 @@ def load_tasks():
 
 ALL_TASKS = load_tasks()
 
-# ---------- Redis ----------
-REDIS_URL = os.getenv("REDIS_URL", "redis://localhost:6379")
-redis_client = None
-
-async def get_redis():
-    global redis_client
-    if redis_client is None:
-        redis_client = await redis.from_url(REDIS_URL, decode_responses=True)
-    return redis_client
-
-async def get_current_task_id(user_id: int, task_type: str, level: str) -> int:
-    r = await get_redis()
-    key = f"govorenie_progress:{user_id}:{task_type}:{level}"
-    val = await r.get(key)
-    return int(val) if val else 0
-
-async def set_current_task_id(user_id: int, task_type: str, level: str, task_id: int):
-    r = await get_redis()
-    key = f"govorenie_progress:{user_id}:{task_type}:{level}"
-    await r.set(key, str(task_id))
-
-async def add_session_result(user_id: int, task_type: str, level: str, feedback: str):
-    r = await get_redis()
-    key = f"govorenie_session:{user_id}:{task_type}:{level}"
-    await r.rpush(key, feedback)
-
-async def get_session_results(user_id: int, task_type: str, level: str):
-    r = await get_redis()
-    key = f"govorenie_session:{user_id}:{task_type}:{level}"
-    return await r.lrange(key, 0, -1)
-
-async def clear_session_results(user_id: int, task_type: str, level: str):
-    r = await get_redis()
-    key = f"govorenie_session:{user_id}:{task_type}:{level}"
-    await r.delete(key)
-
 # ---------- Состояния FSM ----------
 class GovorenieStates(StatesGroup):
     choosing_type = State()
     choosing_level = State()
     waiting_voice = State()
+    showing_progress = State()
+    confirm_reset = State()
 
 # ---------- Клавиатуры ----------
 def get_types_keyboard():
-    logger.info("Генерация клавиатуры выбора типа")
     return InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(text="📖 Чтение вслух", callback_data="g_type_reading")],
         [InlineKeyboardButton(text="⏱ Беглость (1 мин)", callback_data="g_type_fluency")],
@@ -78,7 +47,6 @@ def get_types_keyboard():
     ])
 
 def get_levels_keyboard():
-    logger.info("Генерация клавиатуры выбора уровня")
     return InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(text="🌱 Новичок", callback_data="g_level_beginner")],
         [InlineKeyboardButton(text="📚 Любитель", callback_data="g_level_intermediate")],
@@ -89,24 +57,33 @@ def get_levels_keyboard():
 def get_action_keyboard():
     return InlineKeyboardMarkup(inline_keyboard=[
         [
-            InlineKeyboardButton(text="📝 Пример", callback_data="g_show_sample"),
-            InlineKeyboardButton(text="➡️ Следующее", callback_data="g_next_task")
+            InlineKeyboardButton(text="Показать ответ", callback_data="g_show_sample"),
+            InlineKeyboardButton(text="Следующее задание", callback_data="g_next_task")
         ],
         [
-            InlineKeyboardButton(text="❌ Завершить", callback_data="g_finish")
+            InlineKeyboardButton(text="Завершить", callback_data="g_finish")
         ]
+    ])
+
+def get_progress_keyboard():
+    return InlineKeyboardMarkup(inline_keyboard=[
+        [InlineKeyboardButton(text="🔄 Сбросить прогресс", callback_data="g_reset_progress")]
+    ])
+
+def get_reset_confirmation_keyboard():
+    return InlineKeyboardMarkup(inline_keyboard=[
+        [InlineKeyboardButton(text="Да, сбросить", callback_data="g_confirm_reset_yes")],
+        [InlineKeyboardButton(text="Назад", callback_data="g_confirm_reset_no")]
     ])
 
 # ---------- ВХОД ----------
 @router.callback_query(F.data == "start_govorenie")
 async def start_govorenie_mode(callback: CallbackQuery, state: FSMContext):
-    logger.info(f"✅ start_govorenie вызван, user={callback.from_user.id}")
     await callback.answer()
     await state.set_state(GovorenieStates.choosing_type)
     await show_task_types(callback.message, edit=True)
 
 async def show_task_types(message: Message, edit: bool = False):
-    logger.info(f"✅ show_task_types, edit={edit}, chat={message.chat.id}")
     text = "🎤 Говорение\n\nВыберите тип задания:"
     keyboard = get_types_keyboard()
     if edit:
@@ -117,10 +94,8 @@ async def show_task_types(message: Message, edit: bool = False):
 # ---------- Выбор типа ----------
 @router.callback_query(F.data.startswith("g_type_"))
 async def type_chosen(callback: CallbackQuery, state: FSMContext):
-    logger.info(f"✅ type_chosen: {callback.data}, user={callback.from_user.id}")
     await callback.answer()
     task_type = callback.data.split("_")[2]
-    logger.info(f"   → task_type={task_type}")
     await state.update_data(task_type=task_type)
     await state.set_state(GovorenieStates.choosing_level)
     text = f"Вы выбрали тип: *{task_type.upper()}*.\nТеперь выберите уровень сложности:"
@@ -129,91 +104,194 @@ async def type_chosen(callback: CallbackQuery, state: FSMContext):
 # ---------- Выбор уровня ----------
 @router.callback_query(F.data.startswith("g_level_"))
 async def level_chosen(callback: CallbackQuery, state: FSMContext):
-    logger.info(f"✅ level_chosen: {callback.data}, user={callback.from_user.id}")
     await callback.answer()
     level = callback.data.split("_")[2]
     user_id = callback.from_user.id
     data = await state.get_data()
     task_type = data.get("task_type")
-    logger.info(f"   → level={level}, task_type={task_type}")
 
     if task_type == "random":
         possible_types = ["reading", "fluency", "interview"]
         task_type = random.choice(possible_types)
         await state.update_data(task_type=task_type)
-        logger.info(f"   → случайный выбор: {task_type}")
 
     tasks = ALL_TASKS.get(task_type, {}).get(level, [])
     if not tasks:
-        logger.warning(f"Нет заданий для {task_type} уровня {level}")
         await callback.message.edit_text(f"Заданий для {task_type} уровня {level} пока нет.")
         return
 
-    await clear_session_results(user_id, task_type, level)
-    current_id = await get_current_task_id(user_id, task_type, level)
+    # Инициализация сессии (обнуляем session_answered, session_score)
+    await init_govorenie_session(user_id, task_type, level)
+
+    current_id = await get_govorenie_task_id(user_id, task_type, level)
     current_task = next((t for t in tasks if t.get("id") == current_id), None)
     if current_task is None:
         current_task = tasks[0]
         current_id = current_task["id"]
 
     await state.update_data(
+        user_id=user_id,
         task_type=task_type,
         level=level,
         tasks=tasks,
         current_task=current_task,
-        current_id=current_id
+        current_id=current_id,
+        last_task_msg_id=None,
+        progress_msg_id=None
     )
 
-    await show_task(callback.message, state, edit=True)
+    # Показываем карточку прогресса (редактируем текущее сообщение)
+    await show_progress_card(callback.message, state, edit=True)
+    # Отправляем новое сообщение с заданием
+    await show_task(callback.message, state, edit=False)
 
-# ---------- Показать задание ----------
+# ---------- Карточка прогресса ----------
+async def show_progress_card(message: Message, state: FSMContext, edit: bool = False):
+    data = await state.get_data()
+    user_id = data.get("user_id")
+    if not user_id:
+        logger.error("user_id not found in state")
+        return
+    task_type = data.get("task_type")
+    level = data.get("level")
+
+    total_answered, total_score, session_answered, session_score = await get_govorenie_stats(user_id, task_type, level)
+
+    type_names = {
+        "reading": "📖 Чтение вслух",
+        "fluency": "⏱ Беглость",
+        "interview": "🎤 Интервью"
+    }
+    level_names = {
+        "beginner": "🌱 Новичок",
+        "intermediate": "📚 Любитель",
+        "advanced": "🎓 Эксперт"
+    }
+
+    mode_text = type_names.get(task_type, task_type)
+    level_text = level_names.get(level, level)
+
+    if total_answered > 0:
+        avg_score = round(total_score / total_answered, 1)
+    else:
+        avg_score = 0
+
+    card_text = (
+        f"*Режим:* {mode_text}\n"
+        f"*Уровень:* {level_text}\n\n"
+        f"Напишите voice согласно заданию.\n\n"
+        f"Ваш средний балл: {avg_score}/5"
+    )
+
+    keyboard = get_progress_keyboard()
+    if edit:
+        sent = await message.edit_text(card_text, reply_markup=keyboard, parse_mode="Markdown")
+    else:
+        sent = await message.answer(card_text, reply_markup=keyboard, parse_mode="Markdown")
+
+    await state.update_data(progress_msg_id=sent.message_id)
+    await state.set_state(GovorenieStates.showing_progress)
+
+# ---------- Показ задания (без номера) ----------
 async def show_task(message: Message, state: FSMContext, edit: bool = False):
     data = await state.get_data()
     task = data.get("current_task")
-    task_type = data.get("task_type")
-    tasks = data.get("tasks", [])
     if not task:
         await message.answer("Ошибка: задание не найдено.")
         return
 
-    task_id = task.get("id", 0)
-    total = len(tasks)
-    task_number = task_id + 1
+    # Удаляем клавиатуру у предыдущего сообщения с заданием
+    last_msg_id = data.get("last_task_msg_id")
+    if last_msg_id:
+        try:
+            await message.bot.edit_message_reply_markup(
+                chat_id=message.chat.id,
+                message_id=last_msg_id,
+                reply_markup=None
+            )
+        except Exception:
+            pass
+        await state.update_data(last_task_msg_id=None)
 
+    task_type = data.get("task_type")
     if task_type == "reading":
-        task_text = (
-            f"Задание {task_number} из {total} (Чтение вслух)\n\n"
-            f"{task.get('instruction', '')}\n\n"
-            f"_{task['text']}_"
-        )
+        text = f"{task.get('instruction', '')}\n\n_{task['text']}_"
     elif task_type == "fluency":
-        task_text = (
-            f"Задание {task_number} из {total} (Беглость)\n\n"
-            f"{task.get('instruction', '')}\n\n"
-            f"**{task['topic']}**"
-        )
+        text = f"{task.get('instruction', '')}\n\n**{task['topic']}**"
     elif task_type == "interview":
         questions = "\n".join([f"{i+1}. {q}" for i, q in enumerate(task['questions'])])
-        task_text = (
-            f"Задание {task_number} из {total} (Интервью)\n\n"
-            f"{task.get('instruction', '')}\n\n"
-            f"{questions}"
-        )
+        text = f"{task.get('instruction', '')}\n\n{questions}"
     else:
-        task_text = "Неизвестный тип задания."
+        text = "Неизвестный тип задания."
 
     keyboard = get_action_keyboard()
     if edit:
-        await message.edit_text(task_text, reply_markup=keyboard, parse_mode="Markdown")
+        await message.edit_text(text, reply_markup=keyboard, parse_mode="Markdown")
     else:
-        await message.answer(task_text, reply_markup=keyboard, parse_mode="Markdown")
+        sent_msg = await message.answer(text, reply_markup=keyboard, parse_mode="Markdown")
+        await state.update_data(last_task_msg_id=sent_msg.message_id)
 
     await state.set_state(GovorenieStates.waiting_voice)
 
-# ---------- Обработка голосового сообщения ----------
+# ---------- Сброс прогресса ----------
+@router.callback_query(F.data == "g_reset_progress")
+async def reset_progress_request(callback: CallbackQuery, state: FSMContext):
+    await callback.answer()
+    data = await state.get_data()
+    task_type = data.get("task_type")
+    if not task_type:
+        await callback.message.answer("Ошибка: тип задания не найден. Начните заново.")
+        return
+
+    # Убираем клавиатуру у карточки прогресса
+    progress_msg_id = data.get("progress_msg_id")
+    if progress_msg_id:
+        try:
+            await callback.bot.edit_message_reply_markup(
+                chat_id=callback.message.chat.id,
+                message_id=progress_msg_id,
+                reply_markup=None
+            )
+        except Exception:
+            pass
+
+    text = "Вы уверены? Средний балл будет обнулен. Все задания будут даны с самого начала."
+    keyboard = get_reset_confirmation_keyboard()
+    await callback.message.answer(text, reply_markup=keyboard, parse_mode="Markdown")
+    await state.set_state(GovorenieStates.confirm_reset)
+
+@router.callback_query(F.data == "g_confirm_reset_yes", GovorenieStates.confirm_reset)
+async def reset_progress_yes(callback: CallbackQuery, state: FSMContext):
+    await callback.answer()
+    user_id = callback.from_user.id
+    data = await state.get_data()
+    task_type = data.get("task_type")
+    level = data.get("level")
+    tasks = data.get("tasks", [])
+
+    if not tasks:
+        await callback.message.answer("Нет заданий для сброса.")
+        await state.clear()
+        return
+
+    await reset_govorenie_progress(user_id, task_type, level)
+    await state.update_data(current_id=0, current_task=tasks[0], last_task_msg_id=None, progress_msg_id=None)
+
+    await callback.message.edit_text("Прогресс обнулился. Задания даны с начала.", reply_markup=None)
+
+    await show_progress_card(callback.message, state, edit=False)
+    await show_task(callback.message, state, edit=False)
+
+@router.callback_query(F.data == "g_confirm_reset_no", GovorenieStates.confirm_reset)
+async def reset_progress_no(callback: CallbackQuery, state: FSMContext):
+    await callback.answer()
+    await callback.message.delete()
+    await show_progress_card(callback.message, state, edit=False)
+    await show_task(callback.message, state, edit=False)
+
+# ---------- Обработка голосового ответа ----------
 @router.message(GovorenieStates.waiting_voice, F.voice)
 async def handle_voice_message(message: Message, state: FSMContext):
-    logger.info(f"✅ handle_voice_message, user={message.from_user.id}")
     user_id = message.from_user.id
     data = await state.get_data()
     task = data.get("current_task")
@@ -262,6 +340,14 @@ async def handle_voice_message(message: Message, state: FSMContext):
         await message.answer("Не удалось разобрать речь. Попробуйте говорить ближе к микрофону.")
         return
 
+    # Проверка на осмысленность (как в письме)
+    if not re.search(r'[a-zA-Z]', user_text):
+        if re.search(r'[а-яА-Я]', user_text):
+            await message.answer("Ваш ответ должен быть на английском языке. Пожалуйста, перепишите.")
+        else:
+            await message.answer("Ваш ответ не содержит осмысленного текста.\nПожалуйста, перепишите.")
+        return
+
     stop_words_ru = ["ааа", "эээ", "м-м", "ну", "типа", "блин", "как бы", "это самое"]
     words = user_text.lower().split()
     if words:
@@ -280,7 +366,7 @@ async def handle_voice_message(message: Message, state: FSMContext):
 
     await message.bot.send_chat_action(chat_id=message.chat.id, action="typing")
     try:
-        feedback = await check_govorenie(
+        feedback, score = await check_govorenie(
             task=task,
             task_type=task_type,
             user_text=user_text,
@@ -292,18 +378,41 @@ async def handle_voice_message(message: Message, state: FSMContext):
         await message.answer("Ошибка при обращении к ИИ. Попробуйте позже.")
         return
 
-    await add_session_result(user_id, task_type, level, feedback)
-    await message.answer(f"Результат проверки:\n\n{feedback}", parse_mode="Markdown")
+    # Обновляем статистику
+    await update_govorenie_stats(user_id, task_type, level, score)
 
+    # Убираем клавиатуру у предыдущего сообщения с заданием
+    last_msg_id = data.get("last_task_msg_id")
+    if last_msg_id:
+        try:
+            await message.bot.edit_message_reply_markup(
+                chat_id=message.chat.id,
+                message_id=last_msg_id,
+                reply_markup=None
+            )
+        except Exception:
+            pass
+        await state.update_data(last_task_msg_id=None)
+
+    # Отправляем фидбек с оценкой
+    await message.answer(f"{feedback}\n\nОценка: {score}/5")
+
+    # Обновляем карточку прогресса
+    progress_msg_id = data.get("progress_msg_id")
+    if progress_msg_id:
+        try:
+            await show_progress_card(message, state, edit=True)
+        except Exception as e:
+            logger.error(f"Не удалось обновить карточку: {e}")
+
+    # Переход к следующему заданию
     await go_to_next_task(message, state, user_id, task_type, level, current_id, tasks)
 
 async def go_to_next_task(message: Message, state: FSMContext, user_id: int, task_type: str, level: str, current_id: int, tasks: list):
     next_task = next((t for t in tasks if t.get("id") == current_id + 1), None)
     if next_task is None:
         next_task = tasks[0]
-        await message.answer("Поздравляем! Вы прошли все задания этого типа. Начинаем заново.")
-
-    await set_current_task_id(user_id, task_type, level, next_task["id"])
+    await set_govorenie_task_id(user_id, task_type, level, next_task["id"])
     await state.update_data(
         current_task=next_task,
         current_id=next_task["id"]
@@ -313,7 +422,6 @@ async def go_to_next_task(message: Message, state: FSMContext, user_id: int, tas
 # ---------- Кнопки управления ----------
 @router.callback_query(F.data == "g_next_task")
 async def next_task_button(callback: CallbackQuery, state: FSMContext):
-    logger.info(f"✅ g_next_task, user={callback.from_user.id}")
     await callback.answer()
     data = await state.get_data()
     task_type = data.get("task_type")
@@ -326,21 +434,20 @@ async def next_task_button(callback: CallbackQuery, state: FSMContext):
         await callback.message.answer("Нет заданий.")
         return
 
+    await callback.message.edit_reply_markup(reply_markup=None)
+
     next_task = next((t for t in tasks if t.get("id") == current_id + 1), None)
     if next_task is None:
         next_task = tasks[0]
-        await callback.message.answer("Вы прошли все задания! Начинаем заново.")
-
-    await set_current_task_id(user_id, task_type, level, next_task["id"])
+    await set_govorenie_task_id(user_id, task_type, level, next_task["id"])
     await state.update_data(
         current_task=next_task,
         current_id=next_task["id"]
     )
-    await show_task(callback.message, state, edit=True)
+    await show_task(callback.message, state, edit=False)
 
 @router.callback_query(F.data == "g_show_sample")
 async def show_sample_button(callback: CallbackQuery, state: FSMContext):
-    logger.info(f"✅ g_show_sample, user={callback.from_user.id}")
     await callback.answer()
     data = await state.get_data()
     task = data.get("current_task")
@@ -348,55 +455,108 @@ async def show_sample_button(callback: CallbackQuery, state: FSMContext):
         await callback.message.answer("Задание не найдено.")
         return
 
-    sample = task.get("sample", "Пример отсутствует.")
+    sample = task.get("sample", "Пример ответа отсутствует.")
     await callback.message.answer(f"Пример ответа:\n\n{sample}")
 
+    await callback.message.edit_reply_markup(reply_markup=None)
+
+    task_type = data.get("task_type")
+    level = data.get("level")
+    tasks = data.get("tasks", [])
+    current_id = data.get("current_id", 0)
+    user_id = callback.from_user.id
+
+    next_task = next((t for t in tasks if t.get("id") == current_id + 1), None)
+    if next_task is None:
+        next_task = tasks[0]
+    await set_govorenie_task_id(user_id, task_type, level, next_task["id"])
+    await state.update_data(
+        current_task=next_task,
+        current_id=next_task["id"]
+    )
+    await show_task(callback.message, state, edit=False)
+
+# ---------- Завершение ----------
 @router.callback_query(F.data == "g_finish")
 async def finish_govorenie(callback: CallbackQuery, state: FSMContext):
-    logger.info(f"✅ g_finish, user={callback.from_user.id}")
     await callback.answer()
     user_id = callback.from_user.id
     data = await state.get_data()
     task_type = data.get("task_type")
     level = data.get("level")
 
-    results = await get_session_results(user_id, task_type, level)
-    count = len(results)
+    total_answered, total_score, session_answered, session_score = await get_govorenie_stats(user_id, task_type, level)
 
-    if count == 0:
-        summary = "Вы не выполнили ни одного задания."
+    # Убираем все клавиатуры
+    await callback.message.edit_reply_markup(reply_markup=None)
+    last_msg_id = data.get("last_task_msg_id")
+    if last_msg_id:
+        try:
+            await callback.bot.edit_message_reply_markup(
+                chat_id=callback.message.chat.id,
+                message_id=last_msg_id,
+                reply_markup=None
+            )
+        except Exception:
+            pass
+    progress_msg_id = data.get("progress_msg_id")
+    if progress_msg_id:
+        try:
+            await callback.bot.edit_message_reply_markup(
+                chat_id=callback.message.chat.id,
+                message_id=progress_msg_id,
+                reply_markup=None
+            )
+        except Exception:
+            pass
+
+    if session_answered > 0:
+        avg_session = round(session_score / session_answered, 1)
+        await callback.message.answer(
+            f"Сессия завершена! Вы выполнили {session_answered} заданий. "
+            f"Средний балл за сессию: {avg_session}. Отличная работа! 💪"
+        )
     else:
-        summary = f"✅ Вы выполнили {count} заданий.\n\n"
-        last_feedbacks = results[-3:] if len(results) > 3 else results
-        for i, fb in enumerate(last_feedbacks, start=max(1, count-2)):
-            summary += f"--- Задание {i} ---\n{fb}\n\n"
-        summary += "Отличная работа! Продолжайте практиковаться."
+        await callback.message.answer(
+            "Сессия завершена! Вы не ответили ни на одно задание. 🙌🏻"
+        )
 
-    await clear_session_results(user_id, task_type, level)
     await state.clear()
-
-    await callback.message.answer(f"🏁 Режим говорения завершён.\n\n{summary}")
     from handlers.start import show_main_menu
     await show_main_menu(callback.message, edit=False)
 
 # ---------- Навигация ----------
 @router.callback_query(F.data == "back_to_types")
 async def back_to_types(callback: CallbackQuery, state: FSMContext):
-    logger.info(f"✅ back_to_types, user={callback.from_user.id}")
     await callback.answer()
     await state.set_state(GovorenieStates.choosing_type)
     await show_task_types(callback.message, edit=True)
 
 @router.callback_query(F.data == "back_to_main")
 async def back_to_main_from_govorenie(callback: CallbackQuery, state: FSMContext):
-    logger.info(f"✅ back_to_main_from_govorenie, user={callback.from_user.id}")
     await callback.answer()
+    await callback.message.edit_reply_markup(reply_markup=None)
+    data = await state.get_data()
+    last_msg_id = data.get("last_task_msg_id")
+    if last_msg_id:
+        try:
+            await callback.bot.edit_message_reply_markup(
+                chat_id=callback.message.chat.id,
+                message_id=last_msg_id,
+                reply_markup=None
+            )
+        except Exception:
+            pass
+    progress_msg_id = data.get("progress_msg_id")
+    if progress_msg_id:
+        try:
+            await callback.bot.edit_message_reply_markup(
+                chat_id=callback.message.chat.id,
+                message_id=progress_msg_id,
+                reply_markup=None
+            )
+        except Exception:
+            pass
     await state.clear()
     from handlers.start import show_main_menu
-    await show_main_menu(callback.message, edit=True)
-
-# ---------- ОТЛАДОЧНЫЙ ХЕНДЛЕР (перехватывает ВСЕ callback, которые не были обработаны выше) ----------
-@router.callback_query()
-async def catch_all_callbacks(callback: CallbackQuery):
-    logger.warning(f"🔍 CATCH_ALL: callback_data={callback.data}, user={callback.from_user.id}")
-    await callback.answer("Произошла ошибка, попробуйте снова.", show_alert=True)
+    await show_main_menu(callback.message, edit=False)
