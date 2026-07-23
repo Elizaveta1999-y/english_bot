@@ -76,7 +76,9 @@ def get_reset_confirmation_keyboard():
         [InlineKeyboardButton(text="Назад", callback_data="g_confirm_reset_no")]
     ])
 
-# ---------- Вспомогательная функция для проверки схожести текстов ----------
+# ============================================================
+# 🔥 НОВАЯ ФУНКЦИЯ – проверка схожести текстов
+# ============================================================
 def text_similarity(original: str, recognized: str, threshold: float = 0.5) -> bool:
     """
     Проверяет, достаточно ли слов из оригинального текста присутствует в распознанном.
@@ -400,7 +402,9 @@ async def handle_voice_message(message: Message, state: FSMContext):
             await message.answer("Ваша речь содержит слишком много слов-паразитов. Постарайтесь говорить без них.")
             return
 
-    # ---- ЗАЩИТА ДЛЯ ЧТЕНИЯ ВСЛУХ: проверяем, что текст соответствует заданию ----
+    # ============================================================
+    # 🔥 НОВАЯ ЗАЩИТА ДЛЯ ЧТЕНИЯ ВСЛУХ
+    # ============================================================
     if task_type == "reading":
         original = task.get('text', '')
         if original and not text_similarity(original, user_text, threshold=0.5):
@@ -603,7 +607,9 @@ async def back_to_main_from_govorenie(callback: CallbackQuery, state: FSMContext
     from handlers.start import show_main_menu
     await show_main_menu(callback.message, edit=False)
 
-# ---------- Обработка текстовых сообщений в режиме говорения ----------
+# ============================================================
+# 🔥 НОВЫЙ ОБРАБОТЧИК – отклоняем текстовые сообщения
+# ============================================================
 @router.message(GovorenieStates.waiting_voice, F.text)
 async def handle_text_in_govorenie(message: Message, state: FSMContext):
     await message.answer("В режиме говорения можно отвечать только голосовым сообщением. Пожалуйста, запишите голосовой ответ и отправьте его.")
