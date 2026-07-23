@@ -77,7 +77,17 @@ def get_reset_confirmation_keyboard():
     ])
 
 # ============================================================
-# 🔥 НОВАЯ ФУНКЦИЯ – проверка схожести текстов
+# 🔥 НОВЫЙ СЛОВАРЬ – минимальная длительность для беглости по уровням
+# ============================================================
+MIN_DURATION_BY_LEVEL = {
+    "beginner": 30,
+    "intermediate": 45,
+    "expert": 60,
+    "advanced": 60
+}
+
+# ============================================================
+# 🔥 ФУНКЦИЯ – проверка схожести текстов
 # ============================================================
 def text_similarity(original: str, recognized: str, threshold: float = 0.5) -> bool:
     """
@@ -350,12 +360,17 @@ async def handle_voice_message(message: Message, state: FSMContext):
     duration = voice.duration
     logger.info(f"Длительность: {duration} сек")
 
+    # ---------- Проверка минимальной длины ----------
     if duration < 2:
         await message.answer("Слишком коротко! Скажите что-то внятное (минимум 2 секунды).")
         return
-    if task_type == "fluency" and duration < 60:
-        await message.answer(f"Вы говорили только {duration} секунд. Нужно не менее 60 секунд. Попробуйте ещё раз.")
-        return
+
+    if task_type == "fluency":
+        min_duration = MIN_DURATION_BY_LEVEL.get(level, 60)
+        if duration < min_duration:
+            await message.answer(f"Вы говорили только {duration} секунд. Нужно не менее {min_duration} секунд. Попробуйте ещё раз.")
+            return
+
     if duration > 180:
         await message.answer("Слишком длинное сообщение (максимум 3 минуты). Сократите ответ.")
         return
@@ -402,9 +417,7 @@ async def handle_voice_message(message: Message, state: FSMContext):
             await message.answer("Ваша речь содержит слишком много слов-паразитов. Постарайтесь говорить без них.")
             return
 
-    # ============================================================
-    # 🔥 НОВАЯ ЗАЩИТА ДЛЯ ЧТЕНИЯ ВСЛУХ
-    # ============================================================
+    # ---------- ЗАЩИТА ДЛЯ ЧТЕНИЯ ВСЛУХ ----------
     if task_type == "reading":
         original = task.get('text', '')
         if original and not text_similarity(original, user_text, threshold=0.5):
@@ -607,9 +620,7 @@ async def back_to_main_from_govorenie(callback: CallbackQuery, state: FSMContext
     from handlers.start import show_main_menu
     await show_main_menu(callback.message, edit=False)
 
-# ============================================================
-# 🔥 НОВЫЙ ОБРАБОТЧИК – отклоняем текстовые сообщения
-# ============================================================
+# ---------- Обработка текстовых сообщений в режиме говорения ----------
 @router.message(GovorenieStates.waiting_voice, F.text)
 async def handle_text_in_govorenie(message: Message, state: FSMContext):
     await message.answer("В режиме говорения можно отвечать только голосовым сообщением. Пожалуйста, запишите голосовой ответ и отправьте его.")
