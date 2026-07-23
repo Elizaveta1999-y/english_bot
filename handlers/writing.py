@@ -122,6 +122,9 @@ def get_progress_keyboard():
 
 # ---------- Проверки ----------
 def is_meaningful_english(text: str) -> bool:
+    # Если нет латинских букв – считаем бессмысленным
+    if not re.search(r'[a-zA-Z]', text):
+        return False
     cleaned = re.sub(r'[^a-zA-Z\s]', '', text)
     words = cleaned.split()
     if len(words) < 3:
@@ -196,6 +199,7 @@ async def level_chosen(callback: CallbackQuery, state: FSMContext):
         await set_writing_index(user_id, task_type, level_key, index)
 
     await state.update_data(
+        user_id=user_id,
         task_type=task_type,
         level=level_key,
         tasks=tasks,
@@ -211,9 +215,13 @@ async def level_chosen(callback: CallbackQuery, state: FSMContext):
 # ---------- Карточка прогресса ----------
 async def show_progress_card(message: Message, state: FSMContext, edit: bool = False):
     data = await state.get_data()
+    user_id = data.get("user_id")
+    if not user_id:
+        logger.error("user_id not found in state")
+        return
+
     task_type = data.get("task_type")
     level = data.get("level")
-    user_id = message.from_user.id if message.from_user else 0
 
     total_answered, total_score, session_answered, session_score = await get_writing_stats(user_id, task_type, level)
     logger.info(f"Progress for user {user_id}: total_answered={total_answered}, total_score={total_score}")
@@ -282,17 +290,14 @@ async def show_task(message: Message, state: FSMContext, edit: bool = False):
         await state.update_data(last_task_msg_id=None)
 
     task_text = task.get('task_text', 'Текст задания отсутствует')
-    keywords = task.get('keywords', [])
     expected_length = task.get('expected_length', 'не указан')
     task_type = data.get("task_type")
 
     text = f"{task_text}\n\n"
     # Объём показываем ТОЛЬКО для email и post
     if task_type in ["email", "post"] and expected_length != 'не указан':
-        text += f"Объём: {expected_length}\n\n"
-    # Рекомендуемые слова ТОЛЬКО для story
-    if task_type == "story" and keywords:
-        text += f"Рекомендуемые слова (по желанию): {', '.join(keywords)}"
+        text += f"Объём: {expected_length}\n"
+    # Рекомендуемые слова УБРАНЫ ВЕЗДЕ
 
     keyboard = get_action_keyboard()
     
@@ -348,7 +353,7 @@ async def reset_progress_yes(callback: CallbackQuery, state: FSMContext):
     await reset_writing_progress(user_id, task_type, level)
     await state.update_data(index=0, current_task=tasks[0], last_task_msg_id=None, progress_msg_id=None)
 
-    # Редактируем текущее сообщение с подтверждением
+    # Редактируем текущее сообщение с подтверждением (убираем клавиатуру)
     await callback.message.edit_text("Прогресс обнулился. Задания даны с начала.", reply_markup=None)
 
     # Отправляем НОВУЮ карточку прогресса
@@ -384,6 +389,12 @@ async def handle_user_answer(message: Message, state: FSMContext):
         return
 
     data = await state.get_data()
+    user_id = data.get("user_id")
+    if not user_id:
+        await message.answer("Ошибка: пользователь не найден. Начните заново.")
+        await state.clear()
+        return
+
     task = data.get("current_task")
     if isinstance(task, list):
         task = task[0] if task else None
@@ -396,7 +407,6 @@ async def handle_user_answer(message: Message, state: FSMContext):
     level = data.get("level")
     index = data.get("index", 0)
     tasks = data.get("tasks", [])
-    user_id = message.from_user.id
 
     word_count = len(user_text.split())
     if word_count < 10:
@@ -437,14 +447,14 @@ async def handle_user_answer(message: Message, state: FSMContext):
     # Отправляем фидбек
     await message.answer(f"{feedback}\n\nОценка: {score}/5")
 
-    # Обновляем карточку прогресса, чтобы отобразить новый средний балл
+    # Обновляем карточку прогресса (редактируем существующую)
     progress_msg_id = data.get("progress_msg_id")
     if progress_msg_id:
         try:
             # Перерисовываем карточку прогресса с новыми данными
-            await show_progress_card(message, state, edit=True)  # Используем edit=True для редактирования существующего сообщения
-        except Exception:
-            pass
+            await show_progress_card(message, state, edit=True)
+        except Exception as e:
+            logger.error(f"Failed to update progress card: {e}")
 
     # Переход к следующему заданию
     await go_to_next_task(message, state, user_id, task_type, level, index, tasks)
