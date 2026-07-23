@@ -32,12 +32,11 @@ async def get_redis():
         redis_client = await redis.from_url(REDIS_URL, decode_responses=True)
     return redis_client
 
-# Храним текущий id задания (не индекс)
 async def get_current_task_id(user_id: int, task_type: str, level: str) -> int:
     r = await get_redis()
     key = f"govorenie_progress:{user_id}:{task_type}:{level}"
     val = await r.get(key)
-    return int(val) if val else 0  # по умолчанию 0
+    return int(val) if val else 0
 
 async def set_current_task_id(user_id: int, task_type: str, level: str, task_id: int):
     r = await get_redis()
@@ -65,32 +64,22 @@ class GovorenieStates(StatesGroup):
     choosing_level = State()
     waiting_voice = State()
 
-# ---------- Клавиатуры ----------
+# ---------- Клавиатуры (каждая кнопка в отдельной строке) ----------
 def get_types_keyboard():
     return InlineKeyboardMarkup(inline_keyboard=[
-        [
-            InlineKeyboardButton(text="📖 Чтение вслух", callback_data="g_type_reading"),
-            InlineKeyboardButton(text="⏱ Беглость (1 мин)", callback_data="g_type_fluency")
-        ],
-        [
-            InlineKeyboardButton(text="🎤 Интервью", callback_data="g_type_interview"),
-            InlineKeyboardButton(text="🎲 Случайный", callback_data="g_type_random")
-        ],
-        [
-            InlineKeyboardButton(text="🔙 Назад", callback_data="back_to_main")
-        ]
+        [InlineKeyboardButton(text="📖 Чтение вслух", callback_data="g_type_reading")],
+        [InlineKeyboardButton(text="⏱ Беглость (1 мин)", callback_data="g_type_fluency")],
+        [InlineKeyboardButton(text="🎤 Интервью", callback_data="g_type_interview")],
+        [InlineKeyboardButton(text="🎲 Случайный", callback_data="g_type_random")],
+        [InlineKeyboardButton(text="🔙 Назад", callback_data="back_to_main")]
     ])
 
 def get_levels_keyboard():
     return InlineKeyboardMarkup(inline_keyboard=[
-        [
-            InlineKeyboardButton(text="🌱 Новичок", callback_data="g_level_beginner"),
-            InlineKeyboardButton(text="🔥 Любитель", callback_data="g_level_intermediate")
-        ],
-        [
-            InlineKeyboardButton(text="🧠 Эксперт", callback_data="g_level_advanced"),
-            InlineKeyboardButton(text="🔙 Назад к типам", callback_data="back_to_types")
-        ]
+        [InlineKeyboardButton(text="🌱 Новичок", callback_data="g_level_beginner")],
+        [InlineKeyboardButton(text="📚 Любитель", callback_data="g_level_intermediate")],
+        [InlineKeyboardButton(text="🎓 Эксперт", callback_data="g_level_advanced")],
+        [InlineKeyboardButton(text="🔙 Назад к типам", callback_data="back_to_types")]
     ])
 
 def get_action_keyboard():
@@ -149,13 +138,9 @@ async def level_chosen(callback: CallbackQuery, state: FSMContext):
         await callback.message.edit_text(f"Заданий для {task_type} уровня {level} пока нет.")
         return
 
-    # Очищаем предыдущие результаты сессии
     await clear_session_results(user_id, task_type, level)
 
-    # Получаем сохранённый id задания (или 0)
     current_id = await get_current_task_id(user_id, task_type, level)
-
-    # Ищем задание с этим id, если не находим – берём первое (id=0)
     current_task = next((t for t in tasks if t.get("id") == current_id), None)
     if current_task is None:
         current_task = tasks[0]
@@ -183,7 +168,6 @@ async def show_task(message: Message, state: FSMContext, edit: bool = False):
 
     task_id = task.get("id", 0)
     total = len(tasks)
-    # Номер задания = id+1 (так как id начинается с 0)
     task_number = task_id + 1
 
     if task_type == "reading":
@@ -235,7 +219,6 @@ async def handle_voice_message(message: Message, state: FSMContext):
     voice: Voice = message.voice
     duration = voice.duration
 
-    # Проверки длительности
     if duration < 2:
         await message.answer("Слишком коротко! Скажите что-то внятное (минимум 2 секунды).")
         return
@@ -246,7 +229,6 @@ async def handle_voice_message(message: Message, state: FSMContext):
         await message.answer("Слишком длинное сообщение (максимум 3 минуты). Сократите ответ.")
         return
 
-    # Скачиваем файл
     file_id = voice.file_id
     file = await message.bot.get_file(file_id)
     file_path = file.file_path
@@ -254,7 +236,6 @@ async def handle_voice_message(message: Message, state: FSMContext):
         await message.bot.download_file(file_path, tmp.name)
         tmp_path = tmp.name
 
-    # Распознаём через Whisper
     await message.bot.send_chat_action(chat_id=message.chat.id, action="typing")
     try:
         user_text = await speech_to_text(tmp_path)
@@ -269,7 +250,6 @@ async def handle_voice_message(message: Message, state: FSMContext):
         await message.answer("Не удалось разобрать речь. Попробуйте говорить ближе к микрофону.")
         return
 
-    # Фильтр стоп-слов
     stop_words_ru = ["ааа", "эээ", "м-м", "ну", "типа", "блин", "как бы", "это самое"]
     words = user_text.lower().split()
     if words:
@@ -278,7 +258,6 @@ async def handle_voice_message(message: Message, state: FSMContext):
             await message.answer("Ваша речь содержит слишком много слов-паразитов. Постарайтесь говорить без них.")
             return
 
-    # Для чтения вслух – проверяем соответствие тексту
     if task_type == "reading":
         clean_expected = re.sub(r'[^\w\s]', '', task['text']).lower().split()
         clean_user = re.sub(r'[^\w\s]', '', user_text).lower().split()
@@ -287,7 +266,6 @@ async def handle_voice_message(message: Message, state: FSMContext):
             await message.answer("Похоже, вы читаете не тот текст. Проверьте задание и попробуйте ещё раз.")
             return
 
-    # Отправляем в ИИ для проверки
     await message.bot.send_chat_action(chat_id=message.chat.id, action="typing")
     try:
         feedback = await check_govorenie(
@@ -301,26 +279,18 @@ async def handle_voice_message(message: Message, state: FSMContext):
         await message.answer("Ошибка при обращении к ИИ. Попробуйте позже.")
         return
 
-    # Сохраняем фидбек в сессию
     await add_session_result(user_id, task_type, level, feedback)
-
     await message.answer(f"Результат проверки:\n\n{feedback}", parse_mode="Markdown")
 
-    # Переходим к следующему заданию
     await go_to_next_task(message, state, user_id, task_type, level, current_id, tasks)
 
-# ---------- Переход к следующему заданию (по id) ----------
 async def go_to_next_task(message: Message, state: FSMContext, user_id: int, task_type: str, level: str, current_id: int, tasks: list):
-    # Ищем следующее задание с id = current_id + 1
     next_task = next((t for t in tasks if t.get("id") == current_id + 1), None)
     if next_task is None:
-        # Если не нашли – начинаем с первого (id=0)
         next_task = tasks[0]
         await message.answer("Поздравляем! Вы прошли все задания этого типа. Начинаем заново.")
 
-    # Сохраняем новый id в Redis
     await set_current_task_id(user_id, task_type, level, next_task["id"])
-
     await state.update_data(
         current_task=next_task,
         current_id=next_task["id"]
@@ -342,7 +312,6 @@ async def next_task_button(callback: CallbackQuery, state: FSMContext):
         await callback.message.answer("Нет заданий.")
         return
 
-    # Переходим к следующему
     next_task = next((t for t in tasks if t.get("id") == current_id + 1), None)
     if next_task is None:
         next_task = tasks[0]
