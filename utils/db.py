@@ -23,7 +23,7 @@ async def init_db():
             last_active BIGINT DEFAULT EXTRACT(EPOCH FROM NOW())::BIGINT
         )
     """)
-    # Таблица прогресса для других режимов (чтение/грамматика)
+    # Таблица прогресса для других режимов
     await conn.execute("""
         CREATE TABLE IF NOT EXISTS progress (
             user_id BIGINT NOT NULL,
@@ -34,7 +34,7 @@ async def init_db():
             PRIMARY KEY (user_id, type_key, level_key)
         )
     """)
-    # Таблица ошибок (для чтения)
+    # Таблица ошибок
     await conn.execute("""
         CREATE TABLE IF NOT EXISTS errors (
             user_id BIGINT NOT NULL,

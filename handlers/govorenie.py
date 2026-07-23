@@ -120,7 +120,6 @@ async def level_chosen(callback: CallbackQuery, state: FSMContext):
         await callback.message.edit_text(f"Заданий для {task_type} уровня {level} пока нет.")
         return
 
-    # Инициализация сессии (обнуляем session_answered, session_score)
     await init_govorenie_session(user_id, task_type, level)
 
     current_id = await get_govorenie_task_id(user_id, task_type, level)
@@ -140,9 +139,7 @@ async def level_chosen(callback: CallbackQuery, state: FSMContext):
         progress_msg_id=None
     )
 
-    # Показываем карточку прогресса (редактируем текущее сообщение)
     await show_progress_card(callback.message, state, edit=True)
-    # Отправляем новое сообщение с заданием
     await show_task(callback.message, state, edit=False)
 
 # ---------- Карточка прогресса ----------
@@ -200,7 +197,6 @@ async def show_task(message: Message, state: FSMContext, edit: bool = False):
         await message.answer("Ошибка: задание не найдено.")
         return
 
-    # Удаляем клавиатуру у предыдущего сообщения с заданием
     last_msg_id = data.get("last_task_msg_id")
     if last_msg_id:
         try:
@@ -243,7 +239,6 @@ async def reset_progress_request(callback: CallbackQuery, state: FSMContext):
         await callback.message.answer("Ошибка: тип задания не найден. Начните заново.")
         return
 
-    # Убираем клавиатуру у карточки прогресса
     progress_msg_id = data.get("progress_msg_id")
     if progress_msg_id:
         try:
@@ -292,6 +287,7 @@ async def reset_progress_no(callback: CallbackQuery, state: FSMContext):
 # ---------- Обработка голосового ответа ----------
 @router.message(GovorenieStates.waiting_voice, F.voice)
 async def handle_voice_message(message: Message, state: FSMContext):
+    logger.info(f"✅ handle_voice_message начат, user={message.from_user.id}")
     user_id = message.from_user.id
     data = await state.get_data()
     task = data.get("current_task")
@@ -301,12 +297,14 @@ async def handle_voice_message(message: Message, state: FSMContext):
     current_id = data.get("current_id", 0)
 
     if not task:
+        logger.error("Задание не найдено в состоянии")
         await message.answer("Ошибка: задание не найдено. Начните заново.")
         await state.clear()
         return
 
     voice: Voice = message.voice
     duration = voice.duration
+    logger.info(f"Длительность: {duration} сек")
 
     if duration < 2:
         await message.answer("Слишком коротко! Скажите что-то внятное (минимум 2 секунды).")
@@ -324,10 +322,12 @@ async def handle_voice_message(message: Message, state: FSMContext):
     with tempfile.NamedTemporaryFile(delete=False, suffix=".ogg") as tmp:
         await message.bot.download_file(file_path, tmp.name)
         tmp_path = tmp.name
+    logger.info(f"Файл скачан: {tmp_path}")
 
     await message.bot.send_chat_action(chat_id=message.chat.id, action="typing")
     try:
         user_text = await speech_to_text(tmp_path)
+        logger.info(f"Распознанный текст: {user_text[:100]}...")
     except Exception as e:
         logger.error(f"Ошибка распознавания: {e}")
         await message.answer("Не удалось распознать голос. Попробуйте говорить чётче.")
@@ -340,7 +340,6 @@ async def handle_voice_message(message: Message, state: FSMContext):
         await message.answer("Не удалось разобрать речь. Попробуйте говорить ближе к микрофону.")
         return
 
-    # Проверка на осмысленность (как в письме)
     if not re.search(r'[a-zA-Z]', user_text):
         if re.search(r'[а-яА-Я]', user_text):
             await message.answer("Ваш ответ должен быть на английском языке. Пожалуйста, перепишите.")
@@ -364,7 +363,7 @@ async def handle_voice_message(message: Message, state: FSMContext):
             await message.answer("Похоже, вы читаете не тот текст. Проверьте задание и попробуйте ещё раз.")
             return
 
-    await message.bot.send_chat_action(chat_id=message.chat.id, action="typing")
+    logger.info("Вызов check_govorenie...")
     try:
         feedback, score = await check_govorenie(
             task=task,
@@ -373,15 +372,14 @@ async def handle_voice_message(message: Message, state: FSMContext):
             level=level,
             duration=duration
         )
+        logger.info(f"Ответ получен: оценка={score}, фидбек={feedback[:50]}...")
     except Exception as e:
         logger.error(f"Ошибка ИИ: {e}")
         await message.answer("Ошибка при обращении к ИИ. Попробуйте позже.")
         return
 
-    # Обновляем статистику
     await update_govorenie_stats(user_id, task_type, level, score)
 
-    # Убираем клавиатуру у предыдущего сообщения с заданием
     last_msg_id = data.get("last_task_msg_id")
     if last_msg_id:
         try:
@@ -394,10 +392,9 @@ async def handle_voice_message(message: Message, state: FSMContext):
             pass
         await state.update_data(last_task_msg_id=None)
 
-    # Отправляем фидбек с оценкой
     await message.answer(f"{feedback}\n\nОценка: {score}/5")
+    logger.info("Фидбек отправлен")
 
-    # Обновляем карточку прогресса
     progress_msg_id = data.get("progress_msg_id")
     if progress_msg_id:
         try:
@@ -405,7 +402,6 @@ async def handle_voice_message(message: Message, state: FSMContext):
         except Exception as e:
             logger.error(f"Не удалось обновить карточку: {e}")
 
-    # Переход к следующему заданию
     await go_to_next_task(message, state, user_id, task_type, level, current_id, tasks)
 
 async def go_to_next_task(message: Message, state: FSMContext, user_id: int, task_type: str, level: str, current_id: int, tasks: list):
@@ -487,7 +483,6 @@ async def finish_govorenie(callback: CallbackQuery, state: FSMContext):
 
     total_answered, total_score, session_answered, session_score = await get_govorenie_stats(user_id, task_type, level)
 
-    # Убираем все клавиатуры
     await callback.message.edit_reply_markup(reply_markup=None)
     last_msg_id = data.get("last_task_msg_id")
     if last_msg_id:
