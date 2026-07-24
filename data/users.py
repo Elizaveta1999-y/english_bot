@@ -1,31 +1,49 @@
-# data/users.py
 import os
 import json
-import redis
+import asyncio
+from utils.db import get_connection
 
-# Подключение к Redis
-REDIS_URL = os.getenv("REDIS_URL")
-if not REDIS_URL:
-    raise ValueError("REDIS_URL not set in environment variables")
+# ---------- Вспомогательная функция для создания таблицы ----------
+def _ensure_table():
+    """Создаёт таблицу user_states, если её нет."""
+    async def _create():
+        conn = await get_connection()
+        await conn.execute("""
+            CREATE TABLE IF NOT EXISTS user_states (
+                user_id BIGINT PRIMARY KEY,
+                state JSONB NOT NULL DEFAULT '{}'::jsonb
+            )
+        """)
+        await conn.close()
+    asyncio.run(_create())
 
-r = redis.from_url(REDIS_URL, decode_responses=True)
-
-# Префикс для ключей, чтобы не конфликтовать с другими приложениями
-PREFIX = "user_state:"
-
+# ---------- Основные функции ----------
 def get_user_state(user_id: int) -> dict:
-    """Возвращает состояние пользователя из Redis."""
-    key = f"{PREFIX}{user_id}"
-    data = r.get(key)
-    if data:
-        return json.loads(data)
-    return {}
+    """Возвращает состояние пользователя из PostgreSQL."""
+    _ensure_table()
+    async def _get():
+        conn = await get_connection()
+        row = await conn.fetchrow("SELECT state FROM user_states WHERE user_id = $1", user_id)
+        await conn.close()
+        if row:
+            return row["state"]
+        return {}
+    return asyncio.run(_get())
 
 def set_user_state(user_id: int, data: dict):
-    """Сохраняет состояние пользователя в Redis."""
-    key = f"{PREFIX}{user_id}"
-    r.set(key, json.dumps(data))
+    """Сохраняет состояние пользователя в PostgreSQL."""
+    _ensure_table()
+    async def _set():
+        conn = await get_connection()
+        await conn.execute("""
+            INSERT INTO user_states (user_id, state)
+            VALUES ($1, $2::jsonb)
+            ON CONFLICT (user_id) DO UPDATE SET state = $2::jsonb
+        """, user_id, json.dumps(data))
+        await conn.close()
+    asyncio.run(_set())
 
+# ---------- Дополнительные удобные функции ----------
 def set_user_name(user_id: int, name: str):
     state = get_user_state(user_id)
     state["name"] = name

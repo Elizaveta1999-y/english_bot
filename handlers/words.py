@@ -7,10 +7,10 @@ from aiogram.types import Message, CallbackQuery, InlineKeyboardMarkup, InlineKe
 from aiogram.filters import Command
 from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import State, StatesGroup
-import redis.asyncio as redis
 from utils.db import (
     get_user_stats_db, update_user_stats_db, reset_user_stats_db,
-    add_reading_error_db, remove_reading_error_db, get_reading_errors_db, clear_reading_errors_db
+    add_reading_error_db, remove_reading_error_db, get_reading_errors_db, clear_reading_errors_db,
+    get_progress_index, set_progress_index, reset_progress_index,
 )
 
 logger = logging.getLogger(__name__)
@@ -19,7 +19,6 @@ router = Router()
 # ---------- Конфигурация ----------
 WORDS_DIR = "data/words/"
 META_FILE = "data/categories_meta.json"
-REDIS_URL = os.getenv("REDIS_URL", "redis://localhost:6379")
 
 os.makedirs(WORDS_DIR, exist_ok=True)
 
@@ -43,13 +42,6 @@ for filename in os.listdir(WORDS_DIR):
             }
 
 logger.info(f"Доступные категории: {list(AVAILABLE_CATEGORIES.keys())}")
-
-redis_client = None
-async def get_redis():
-    global redis_client
-    if redis_client is None:
-        redis_client = await redis.from_url(REDIS_URL, decode_responses=True)
-    return redis_client
 
 # ---------- FSM ----------
 class WordsState(StatesGroup):
@@ -124,26 +116,6 @@ def load_words(category_key: str):
     with open(file_path, "r", encoding="utf-8") as f:
         return json.load(f)
 
-async def get_user_index(user_id: int, category_key: str) -> int:
-    r = await get_redis()
-    val = await r.get(f"word_progress:{user_id}:{category_key}")
-    return int(val) if val else 0
-
-async def set_user_index(user_id: int, category_key: str, index: int):
-    r = await get_redis()
-    await r.set(f"word_progress:{user_id}:{category_key}", str(index))
-
-async def reset_user_index(user_id: int, category_key: str):
-    await set_user_index(user_id, category_key, 0)
-
-def is_correct(user_answer: str, correct_answer: str) -> bool:
-    user_answer = normalize_text(user_answer)
-    variants = re.split(r'\s*[,/]\s*', correct_answer.lower())
-    if not variants:
-        variants = [correct_answer.lower()]
-    return user_answer in variants
-
-# ---------- Функции для работы с БД (лексика) ----------
 def make_type_key(category_key: str) -> str:
     return f"words_{category_key}"
 
@@ -176,7 +148,8 @@ async def clear_word_errors(user_id: int, category_key: str):
     await clear_reading_errors_db(user_id, type_key, "beginner")
 
 async def reset_word_progress(user_id: int, category_key: str):
-    await reset_user_index(user_id, category_key)
+    type_key = make_type_key(category_key)
+    await reset_progress_index(user_id, type_key, "beginner")
     await reset_word_stats(user_id, category_key)
     await clear_word_errors(user_id, category_key)
 
@@ -231,7 +204,8 @@ async def send_or_update_word_card(
     if index >= len(words):
         index = 0
         session["index"] = 0
-        await set_user_index(user_id, category_key, 0)
+        type_key = make_type_key(category_key)
+        await set_progress_index(user_id, type_key, "beginner", 0)
     word = words[index]
     session["current_word"] = word
     text = f"{word['word']}: _____"
@@ -287,10 +261,11 @@ async def category_selected(callback: CallbackQuery, state: FSMContext):
         await callback.answer("В этой категории пока нет слов.", show_alert=True)
         return
 
-    start_index = await get_user_index(user_id, category_key)
+    type_key = make_type_key(category_key)
+    start_index = await get_progress_index(user_id, type_key, "beginner")
     if start_index >= len(words):
         start_index = 0
-        await set_user_index(user_id, category_key, 0)
+        await set_progress_index(user_id, type_key, "beginner", 0)
 
     session = {
         "words": words,
@@ -345,16 +320,14 @@ async def category_selected(callback: CallbackQuery, state: FSMContext):
     logger.info(f"Состояние установлено для пользователя {user_id}: {await state.get_state()}")
     await callback.answer()
 
-# ---------- Обработка ответов (без фильтра, с проверкой состояния) ----------
+# ---------- Обработка ответов ----------
 @router.message(F.text)
 async def handle_answer(message: Message, state: FSMContext):
     user_id = message.from_user.id
     current_state = await state.get_state()
     logger.info(f"handle_answer вызван для {user_id}, состояние: {current_state}")
 
-    # Проверяем, что мы в режиме лексики
     if current_state != WordsState.category_chosen.state:
-        # Если не в режиме лексики, просто выходим, чтобы другие хендлеры обработали текст
         logger.debug(f"Игнорируем сообщение, так как состояние не WordsState.category_chosen")
         return
 
@@ -368,7 +341,8 @@ async def handle_answer(message: Message, state: FSMContext):
     index = session.get("index", 0)
     if index >= len(words):
         index = 0
-        await set_user_index(user_id, category_key, 0)
+        type_key = make_type_key(category_key)
+        await set_progress_index(user_id, type_key, "beginner", 0)
         session["index"] = 0
     current_word = words[index]
     session["current_word"] = current_word
@@ -396,7 +370,8 @@ async def handle_answer(message: Message, state: FSMContext):
     await message.answer(result_text, parse_mode="HTML")
 
     session["index"] = (index + 1) % len(words)
-    await set_user_index(user_id, category_key, session["index"])
+    type_key = make_type_key(category_key)
+    await set_progress_index(user_id, type_key, "beginner", session["index"])
 
     try:
         progress_msg_id = session.get("progress_msg_id")
@@ -442,8 +417,9 @@ async def show_answer(callback: CallbackQuery, state: FSMContext):
     index = session.get("index", 0)
     if index >= len(words):
         index = 0
+        type_key = make_type_key(category_key)
+        await set_progress_index(user_id, type_key, "beginner", 0)
         session["index"] = 0
-        await set_user_index(user_id, category_key, 0)
     current_word = words[index]
     session["current_word"] = current_word
 
@@ -455,7 +431,8 @@ async def show_answer(callback: CallbackQuery, state: FSMContext):
     await callback.message.answer(text, parse_mode="HTML")
 
     session["index"] = (index + 1) % len(words)
-    await set_user_index(user_id, category_key, session["index"])
+    type_key = make_type_key(category_key)
+    await set_progress_index(user_id, type_key, "beginner", session["index"])
 
     try:
         progress_msg_id = session.get("progress_msg_id")
@@ -680,7 +657,8 @@ async def word_confirm_reset(callback: CallbackQuery, state: FSMContext):
     session["index"] = 0
     session["correct"] = 0
     session["wrong"] = 0
-    await set_user_index(user_id, category_key, 0)
+    type_key = make_type_key(category_key)
+    await set_progress_index(user_id, type_key, "beginner", 0)
     await callback.message.edit_text("Прогресс сброшен. Начинаем с первого слова.")
     try:
         await send_or_update_progress(

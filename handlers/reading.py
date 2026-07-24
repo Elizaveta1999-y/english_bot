@@ -13,14 +13,12 @@ from utils.db import (
     add_reading_error_db as add_reading_error,
     remove_reading_error_db as remove_reading_error,
     get_reading_errors_db as get_reading_errors,
-    clear_reading_errors_db as clear_reading_errors
-)
-from utils.redis_utils import (
-    get_global_welcome_index,
-    get_user_progress,
-    set_user_progress,
-    reset_user_progress,
-    get_redis
+    clear_reading_errors_db as clear_reading_errors,
+    get_progress_index,
+    set_progress_index,
+    reset_progress_index,
+    get_random_order,
+    set_random_order,
 )
 from states.reading_states import ReadingStates
 from data.users import get_user_state, set_user_state
@@ -28,6 +26,7 @@ from data.users import get_user_state, set_user_state
 logger = logging.getLogger(__name__)
 router = Router()
 
+# ---------- Приветственные сообщения (ротация через память) ----------
 READING_WELCOME_MESSAGES = [
     "<b>📖 Чтение</b>\n\n<i>Чтение — это ключ к расширению словарного запаса и пониманию структур языка. Регулярно читайте тексты разного уровня и учитесь выделять главное.</i>\n\nВыберите тип задания и уровень — и тренируйтесь в удобном темпе.",
     "<b>📖 Чтение</b>\n\n<i>Умение быстро читать и понимать текст пригодится в любом контексте: от экзаменов до работы. Начните с коротких текстов и постепенно увеличивайте сложность.</i>\n\nГотовы попробовать?",
@@ -36,6 +35,16 @@ READING_WELCOME_MESSAGES = [
     "<b>📖 Чтение</b>\n\n<i>Читайте, анализируйте, отвечайте на вопросы — и вы заметите, как тексты становятся понятнее с каждым разом.</i>\n\nВыберите задание и уровень."
 ]
 
+# Простой счётчик для ротации (сбрасывается при перезапуске)
+_welcome_index = 0
+
+async def get_global_welcome_index():
+    global _welcome_index
+    idx = _welcome_index
+    _welcome_index = (_welcome_index + 1) % len(READING_WELCOME_MESSAGES)
+    return idx
+
+# ---------- Константы ----------
 TYPE_DISPLAY = {
     "podbor": "🥈 Подбор заголовка",
     "truefalse": "⚖️ True/False/Not stated",
@@ -73,6 +82,7 @@ TYPE_DESCRIPTION = {
     "random": "выполните задание"
 }
 
+# ---------- Клавиатуры ----------
 def get_type_choice_keyboard():
     buttons = []
     for key, label in TYPE_DISPLAY.items():
@@ -165,21 +175,19 @@ async def get_all_tasks_for_random(level: str):
                     all_items.append({"task": t, "type_key": type_key})
     return all_items
 
-async def get_random_order(user_id: int, level: str):
-    r = await get_redis()
-    key = f"random_order:{user_id}:{level}"
-    order_data = await r.get(key)
-    if order_data:
-        return json.loads(order_data)
+async def get_random_order_for_reading(user_id: int, level: str):
+    order = await get_random_order(user_id, f"reading_random_{level}")
+    if order is not None:
+        return order
     all_items = await get_all_tasks_for_random(level)
     if not all_items:
         return []
     random.shuffle(all_items)
     order_ids = [item["task"].get("id", i) for i, item in enumerate(all_items)]
-    await r.set(key, json.dumps(order_ids))
+    await set_random_order(user_id, f"reading_random_{level}", order_ids)
     return order_ids
 
-async def get_task_by_id(user_id: int, level: str, task_id: int):
+async def get_task_by_id_for_random(user_id: int, level: str, task_id: int):
     all_items = await get_all_tasks_for_random(level)
     for item in all_items:
         if item["task"].get("id", -1) == task_id:
@@ -209,7 +217,7 @@ async def render_task_message(message: Message, state: FSMContext, user_id: int,
     await clear_task_keyboard(message, state)
 
     if short_type == "random":
-        order = await get_random_order(user_id, short_level)
+        order = await get_random_order_for_reading(user_id, short_level)
         if not order:
             await message.answer("Нет заданий для этого уровня.")
             return None, None
@@ -219,7 +227,7 @@ async def render_task_message(message: Message, state: FSMContext, user_id: int,
             if index >= len(order):
                 index = 0
             tid = order[index]
-        task, actual_type = await get_task_by_id(user_id, short_level, tid)
+        task, actual_type = await get_task_by_id_for_random(user_id, short_level, tid)
         if not task:
             await message.answer("Задание не найдено.")
             return None, None
@@ -389,19 +397,19 @@ async def choose_level(callback: CallbackQuery, state: FSMContext):
             await callback.message.edit_text("Задания для этого уровня пока отсутствуют. Попробуйте другой уровень.")
             await callback.answer()
             return
-        order = await get_random_order(user_id, short_level)
-        index = await get_user_progress(user_id, "random", short_level)
+        order = await get_random_order_for_reading(user_id, short_level)
+        index = await get_progress_index(user_id, f"reading_random_{short_level}", "progress")
         if index >= len(order):
             index = 0
-            await set_user_progress(user_id, "random", short_level, index)
+            await set_progress_index(user_id, f"reading_random_{short_level}", "progress", index)
     else:
         type_json = TYPE_MAP.get(short_type, short_type)
         level_json = LEVEL_MAP.get(short_level, short_level)
-        index = await get_user_progress(user_id, type_json, level_json)
+        index = await get_progress_index(user_id, type_json, level_json)
         task = get_task(type_json, level_json, index)
         if not task:
             index = 0
-            await set_user_progress(user_id, type_json, level_json, index)
+            await set_progress_index(user_id, type_json, level_json, index)
             task = get_task(type_json, level_json, index)
             if not task:
                 await callback.message.edit_text("Задания для этого уровня пока отсутствуют. Попробуйте другой уровень.")
@@ -465,7 +473,7 @@ async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
             return
 
     correct = (chosen_idx == task["correct"])
-    task_identifier = index  # <-- ИСПОЛЬЗУЕМ ИНДЕКС КАК ИДЕНТИФИКАТОР
+    task_identifier = index
 
     if is_revision:
         if correct:
@@ -476,12 +484,12 @@ async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
             session_correct = data.get("session_correct", 0) + 1
             await state.update_data(session_correct=session_correct)
             if short_type == "random":
-                order = await get_random_order(user_id, short_level)
+                order = await get_random_order_for_reading(user_id, short_level)
                 if order:
                     try:
                         pos = order.index(task_identifier)
                         next_index = (pos + 1) % len(order)
-                        await set_user_progress(user_id, "random", short_level, next_index)
+                        await set_progress_index(user_id, f"reading_random_{short_level}", "progress", next_index)
                         await state.update_data(index=next_index, paragraph_idx=0)
                     except ValueError:
                         pass
@@ -495,6 +503,7 @@ async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
             await update_user_stats(user_id, type_json, level_json, True)
             session_correct = data.get("session_correct", 0) + 1
             await state.update_data(session_correct=session_correct)
+            await remove_reading_error(user_id, type_json, level_json, task_identifier)
         else:
             await update_user_stats(user_id, type_json, level_json, False)
             await add_reading_error(user_id, type_json, level_json, task_identifier)
@@ -519,12 +528,12 @@ async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
 
     if not is_revision:
         if short_type == "random":
-            order = await get_random_order(user_id, short_level)
+            order = await get_random_order_for_reading(user_id, short_level)
             if order:
                 next_index = index + 1
                 if next_index >= len(order):
                     next_index = 0
-                await set_user_progress(user_id, "random", short_level, next_index)
+                await set_progress_index(user_id, f"reading_random_{short_level}", "progress", next_index)
                 await state.update_data(index=next_index, paragraph_idx=0)
             else:
                 await callback.message.answer("Нет заданий для этого уровня.")
@@ -535,7 +544,7 @@ async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
             next_task = get_task(type_json, level_json, next_index)
             if not next_task:
                 next_index = 0
-            await set_user_progress(user_id, type_json, level_json, next_index)
+            await set_progress_index(user_id, type_json, level_json, next_index)
             await state.update_data(index=next_index, paragraph_idx=0)
 
     if is_revision:
@@ -624,12 +633,12 @@ async def handle_text_answer(message: Message, state: FSMContext):
             session_correct = data.get("session_correct", 0) + 1
             await state.update_data(session_correct=session_correct)
             if short_type == "random":
-                order = await get_random_order(user_id, short_level)
+                order = await get_random_order_for_reading(user_id, short_level)
                 if order:
                     try:
                         pos = order.index(task_identifier)
                         next_index = (pos + 1) % len(order)
-                        await set_user_progress(user_id, "random", short_level, next_index)
+                        await set_progress_index(user_id, f"reading_random_{short_level}", "progress", next_index)
                         await state.update_data(index=next_index, paragraph_idx=0)
                     except ValueError:
                         pass
@@ -643,6 +652,7 @@ async def handle_text_answer(message: Message, state: FSMContext):
             await update_user_stats(user_id, type_json, level_json, True)
             session_correct = data.get("session_correct", 0) + 1
             await state.update_data(session_correct=session_correct)
+            await remove_reading_error(user_id, type_json, level_json, task_identifier)
         else:
             await update_user_stats(user_id, type_json, level_json, False)
             await add_reading_error(user_id, type_json, level_json, task_identifier)
@@ -672,12 +682,12 @@ async def handle_text_answer(message: Message, state: FSMContext):
 
     if not is_revision:
         if short_type == "random":
-            order = await get_random_order(user_id, short_level)
+            order = await get_random_order_for_reading(user_id, short_level)
             if order:
                 next_index = index + 1
                 if next_index >= len(order):
                     next_index = 0
-                await set_user_progress(user_id, "random", short_level, next_index)
+                await set_progress_index(user_id, f"reading_random_{short_level}", "progress", next_index)
                 await state.update_data(index=next_index, paragraph_idx=0)
             else:
                 await message.answer("Нет заданий для этого уровня.")
@@ -687,7 +697,7 @@ async def handle_text_answer(message: Message, state: FSMContext):
             next_task = get_task(type_json, level_json, next_index)
             if not next_task:
                 next_index = 0
-            await set_user_progress(user_id, type_json, level_json, next_index)
+            await set_progress_index(user_id, type_json, level_json, next_index)
             await state.update_data(index=next_index, paragraph_idx=0)
 
     if is_revision:
@@ -750,7 +760,7 @@ async def show_revision_task(message: Message, state: FSMContext, error_ids: lis
     if short_type == "random":
         random.shuffle(error_ids)
         task_id = error_ids[0]
-        task, actual_type = await get_task_by_id(user_id, short_level, task_id)
+        task, actual_type = await get_task_by_id_for_random(user_id, short_level, task_id)
         if not task:
             await message.answer("Не удалось найти задание для исправления.")
             return
@@ -849,17 +859,17 @@ async def show_answer(callback: CallbackQuery, state: FSMContext):
             await callback.message.answer(msg)
             await state.update_data(is_revision=False, error_list=[], error_index=0, revision_correct=0, revision_wrong=0)
             if short_type == "random":
-                order = await get_random_order(user_id, short_level)
+                order = await get_random_order_for_reading(user_id, short_level)
                 if order:
                     next_index = (index + 1) % len(order)
-                    await set_user_progress(user_id, "random", short_level, next_index)
+                    await set_progress_index(user_id, f"reading_random_{short_level}", "progress", next_index)
                     await state.update_data(index=next_index, paragraph_idx=0)
             else:
                 next_index = index + 1
                 next_task = get_task(type_json, level_json, next_index)
                 if not next_task:
                     next_index = 0
-                await set_user_progress(user_id, type_json, level_json, next_index)
+                await set_progress_index(user_id, type_json, level_json, next_index)
                 await state.update_data(index=next_index, paragraph_idx=0)
             await show_next_task(callback.message, state, is_revision=False)
         else:
@@ -882,25 +892,25 @@ async def show_answer(callback: CallbackQuery, state: FSMContext):
                 await callback.message.answer(msg)
                 await state.update_data(is_revision=False, error_list=[], error_index=0, revision_correct=0, revision_wrong=0)
                 if short_type == "random":
-                    order = await get_random_order(user_id, short_level)
+                    order = await get_random_order_for_reading(user_id, short_level)
                     if order:
                         next_index = (index + 1) % len(order)
-                        await set_user_progress(user_id, "random", short_level, next_index)
+                        await set_progress_index(user_id, f"reading_random_{short_level}", "progress", next_index)
                         await state.update_data(index=next_index, paragraph_idx=0)
                 else:
                     next_index = index + 1
                     next_task = get_task(type_json, level_json, next_index)
                     if not next_task:
                         next_index = 0
-                    await set_user_progress(user_id, type_json, level_json, next_index)
+                    await set_progress_index(user_id, type_json, level_json, next_index)
                     await state.update_data(index=next_index, paragraph_idx=0)
                 await show_next_task(callback.message, state, is_revision=False)
     else:
         if short_type == "random":
-            order = await get_random_order(user_id, short_level)
+            order = await get_random_order_for_reading(user_id, short_level)
             if order:
                 next_index = (index + 1) % len(order)
-                await set_user_progress(user_id, "random", short_level, next_index)
+                await set_progress_index(user_id, f"reading_random_{short_level}", "progress", next_index)
                 await state.update_data(index=next_index, paragraph_idx=0)
             else:
                 await callback.message.answer("Нет заданий для этого уровня.")
@@ -911,7 +921,7 @@ async def show_answer(callback: CallbackQuery, state: FSMContext):
             next_task = get_task(type_json, level_json, next_index)
             if not next_task:
                 next_index = 0
-            await set_user_progress(user_id, type_json, level_json, next_index)
+            await set_progress_index(user_id, type_json, level_json, next_index)
             await state.update_data(index=next_index, paragraph_idx=0)
         await render_task_message(callback.message, state, user_id, short_type, short_level, next_index, paragraph_idx=0, is_revision=False)
 
@@ -1095,16 +1105,13 @@ async def confirm_reset(callback: CallbackQuery, state: FSMContext):
     if short_type == "random":
         for t in TYPE_MAP.keys():
             t_json = TYPE_MAP[t]
-            await reset_user_progress(user_id, t_json, level_json)
-            await clear_reading_errors(user_id, t_json, level_json)
             await reset_user_stats(user_id, t_json, level_json)
-        await reset_user_progress(user_id, "random", short_level)
-        r = await get_redis()
-        await r.delete(f"random_order:{user_id}:{short_level}")
+            await clear_reading_errors(user_id, t_json, level_json)
+        await reset_progress_index(user_id, f"reading_random_{short_level}", "progress")
     else:
-        await reset_user_progress(user_id, type_json, level_json)
-        await clear_reading_errors(user_id, type_json, level_json)
         await reset_user_stats(user_id, type_json, level_json)
+        await clear_reading_errors(user_id, type_json, level_json)
+        await reset_progress_index(user_id, type_json, level_json)
 
     await state.update_data(index=0, paragraph_idx=0, is_revision=False, error_list=[], error_index=0, revision_correct=0, revision_wrong=0, session_correct=0, session_wrong=0)
 
