@@ -3,7 +3,6 @@ from aiogram.types import CallbackQuery, Message, InlineKeyboardMarkup, InlineKe
 from datetime import datetime
 import asyncio
 
-# Правильный импорт из utils/db.py
 from utils.db import (
     get_connection,
     get_user_stats_db,
@@ -25,7 +24,6 @@ router = Router()
 # ---------- Таблица глобальной статистики ----------
 
 async def ensure_stats_table():
-    """Создаёт таблицу user_stats, если её нет"""
     conn = await get_connection()
     await conn.execute("""
         CREATE TABLE IF NOT EXISTS user_stats (
@@ -48,7 +46,6 @@ async def _update_stats_after_lesson(user_id: int):
         ON CONFLICT (user_id) DO UPDATE SET lessons_completed = user_stats.lessons_completed + 1
     """, user_id)
     await conn.close()
-    # обновляем last_active
     conn = await get_connection()
     await conn.execute(
         "UPDATE users SET last_active = EXTRACT(EPOCH FROM NOW())::BIGINT WHERE user_id = $1",
@@ -68,7 +65,6 @@ async def _update_stats_after_practice(user_id: int, correct: int, wrong: int):
             wrong_answers = user_stats.wrong_answers + $3
     """, user_id, correct, wrong)
     await conn.close()
-    # обновляем last_active
     conn = await get_connection()
     await conn.execute(
         "UPDATE users SET last_active = EXTRACT(EPOCH FROM NOW())::BIGINT WHERE user_id = $1",
@@ -76,27 +72,23 @@ async def _update_stats_after_practice(user_id: int, correct: int, wrong: int):
     )
     await conn.close()
 
-# ---------- Синхронные обёртки для обратной совместимости ----------
+# ---------- Синхронные обёртки ----------
 
 def update_stats_after_lesson(user_id: int):
-    """Синхронная обёртка для вызова из синхронного кода"""
     asyncio.run(_update_stats_after_lesson(user_id))
 
 def update_stats_after_practice(user_id: int, correct: int, wrong: int):
-    """Синхронная обёртка для вызова из синхронного кода"""
     asyncio.run(_update_stats_after_practice(user_id, correct, wrong))
 
-# ---------- Вспомогательные функции для профиля (были ранее) ----------
+# ---------- Вспомогательные функции ----------
 
 async def get_user_profile(user_id: int):
-    """Возвращает запись пользователя из таблицы users"""
     conn = await get_connection()
     row = await conn.fetchrow("SELECT * FROM users WHERE user_id = $1", user_id)
     await conn.close()
     return dict(row) if row else None
 
 async def update_last_active(user_id: int):
-    """Обновляет время последней активности"""
     conn = await get_connection()
     await conn.execute(
         "UPDATE users SET last_active = EXTRACT(EPOCH FROM NOW())::BIGINT WHERE user_id = $1",
@@ -105,7 +97,6 @@ async def update_last_active(user_id: int):
     await conn.close()
 
 async def calculate_streak(user_id: int) -> int:
-    """Упрощённый подсчёт серии (только проверка активности сегодня)"""
     profile = await get_user_profile(user_id)
     if not profile:
         return 0
@@ -118,12 +109,11 @@ async def calculate_streak(user_id: int) -> int:
     if delta == 0:
         return 1
     elif delta == 1:
-        return 1   # можно увеличивать, если хранить историю, но пока так
+        return 1
     else:
         return 0
 
 async def get_progress_summary(user_id: int, type_key: str) -> dict:
-    """Суммирует correct и wrong по всем уровням для заданного type_key"""
     conn = await get_connection()
     row = await conn.fetchrow(
         "SELECT SUM(correct) as correct, SUM(wrong) as wrong FROM progress WHERE user_id = $1 AND type_key = $2",
@@ -137,7 +127,6 @@ async def get_progress_summary(user_id: int, type_key: str) -> dict:
     return {"correct": correct, "wrong": wrong, "total": total, "percent": percent}
 
 async def get_writing_summary(user_id: int) -> dict:
-    """Суммирует данные из writing_progress"""
     conn = await get_connection()
     row = await conn.fetchrow(
         "SELECT SUM(total_answered) as answered, SUM(total_score) as score_sum FROM writing_progress WHERE user_id = $1",
@@ -150,7 +139,6 @@ async def get_writing_summary(user_id: int) -> dict:
     return {"answered": answered, "score_sum": score_sum, "avg": avg}
 
 async def get_speaking_summary(user_id: int) -> dict:
-    """Суммирует данные из govorenie_progress"""
     conn = await get_connection()
     row = await conn.fetchrow(
         "SELECT SUM(total_answered) as answered, SUM(total_score) as score_sum FROM govorenie_progress WHERE user_id = $1",
@@ -163,7 +151,6 @@ async def get_speaking_summary(user_id: int) -> dict:
     return {"answered": answered, "score_sum": score_sum, "avg": avg}
 
 async def count_user_errors(user_id: int) -> dict:
-    """Считает ошибки из таблицы errors"""
     conn = await get_connection()
     rows = await conn.fetch(
         "SELECT type_key, COUNT(*) as cnt FROM errors WHERE user_id = $1 GROUP BY type_key",
@@ -178,15 +165,12 @@ async def count_user_errors(user_id: int) -> dict:
     return {"total": total, "by_mode": by_mode}
 
 async def reset_full_progress(user_id: int):
-    """Полный сброс (удаляет всё, кроме users и user_stats?)"""
     conn = await get_connection()
     await conn.execute("DELETE FROM progress WHERE user_id = $1", user_id)
     await conn.execute("DELETE FROM errors WHERE user_id = $1", user_id)
     await conn.execute("DELETE FROM grammar_progress WHERE user_id = $1", user_id)
     await conn.execute("DELETE FROM writing_progress WHERE user_id = $1", user_id)
     await conn.execute("DELETE FROM govorenie_progress WHERE user_id = $1", user_id)
-    # Можно также сбросить user_stats, но по желанию
-    # await conn.execute("DELETE FROM user_stats WHERE user_id = $1", user_id)
     await conn.close()
 
 # ---------- Клавиатуры ----------
@@ -218,6 +202,18 @@ def get_subscription_keyboard():
 @router.callback_query(lambda c: c.data == "profile_menu")
 async def profile_menu(callback: CallbackQuery):
     user_id = callback.from_user.id
+
+    # Создаём пользователя, если его нет
+    user = await get_or_create_user(
+        user_id,
+        callback.from_user.username,
+        callback.from_user.first_name,
+        callback.from_user.last_name
+    )
+    if not user:
+        await callback.answer("Ошибка создания профиля", show_alert=True)
+        return
+
     await update_last_active(user_id)
 
     profile = await get_user_profile(user_id)
@@ -350,7 +346,6 @@ async def fix_mode_callback(callback: CallbackQuery):
 
 @router.callback_query(lambda c: c.data == "profile_settings")
 async def profile_settings(callback: CallbackQuery):
-    # Заглушка – позже добавим таблицу настроек
     keyboard = get_settings_keyboard(True, "10:00")
     await callback.message.edit_text("⚙️ <b>Настройки</b>\n\nУправляйте уведомлениями и временем.", reply_markup=keyboard, parse_mode="HTML")
     await callback.answer()
@@ -406,7 +401,6 @@ async def profile_reset_handle(message: Message):
         await reset_full_progress(user_id)
         await message.answer("✅ Прогресс успешно сброшен. Вы начинаете с чистого листа.")
         await show_main_menu(message, edit=False)
-    # иначе игнорируем
 
 @router.callback_query(lambda c: c.data == "profile_back")
 async def profile_back(callback: CallbackQuery):
