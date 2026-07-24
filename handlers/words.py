@@ -4,7 +4,7 @@ import re
 import logging
 from aiogram import Router, F, Bot
 from aiogram.types import Message, CallbackQuery, InlineKeyboardMarkup, InlineKeyboardButton
-from aiogram.filters import Command
+from aiogram.filters import Command, StateFilter
 from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import State, StatesGroup
 import redis.asyncio as redis
@@ -345,23 +345,13 @@ async def category_selected(callback: CallbackQuery, state: FSMContext):
     logger.info(f"Состояние установлено для пользователя {user_id}: {await state.get_state()}")
     await callback.answer()
 
-# ---------- Обработка ответов (без фильтра состояния) ----------
-@router.message(F.text)
+# ---------- Обработка ответов (с фильтром состояния) ----------
+@router.message(StateFilter(WordsState.category_chosen), F.text)
 async def handle_answer(message: Message, state: FSMContext):
+    logger.info(f"handle_answer вызван с состоянием {await state.get_state()}")
     user_id = message.from_user.id
-    current_state = await state.get_state()
-    logger.info(f"handle_answer вызван для {user_id}, состояние: {current_state}")
-
-    # Проверяем, что мы в нужном состоянии
-    if current_state != WordsState.category_chosen.state:
-        logger.warning(f"Неверное состояние: {current_state}, игнорируем")
-        # Если пользователь не в режиме лексики, можно проигнорировать или ответить подсказкой
-        # Но чтобы не мешать другим режимам, просто выходим
-        return
-
     session = user_sessions.get(user_id)
     if not session:
-        logger.warning(f"Сессия не найдена для {user_id}")
         await message.answer("Пожалуйста, сначала выберите категорию через кнопку 'Words'.")
         return
 
@@ -426,14 +416,9 @@ async def handle_answer(message: Message, state: FSMContext):
         logger.error(f"Ошибка обновления сообщений: {e}")
 
 # ---------- Показать ответ ----------
-@router.callback_query(F.data == "word_show_answer")
+@router.callback_query(StateFilter(WordsState.category_chosen), F.data == "word_show_answer")
 async def show_answer(callback: CallbackQuery, state: FSMContext):
     user_id = callback.from_user.id
-    current_state = await state.get_state()
-    if current_state != WordsState.category_chosen.state:
-        await callback.answer("Сначала выберите категорию.", show_alert=True)
-        return
-
     session = user_sessions.get(user_id)
     if not session:
         await callback.answer("Сессия не найдена. Выберите категорию заново.", show_alert=True)
@@ -486,14 +471,9 @@ async def show_answer(callback: CallbackQuery, state: FSMContext):
     await callback.answer()
 
 # ---------- Завершение сессии ----------
-@router.callback_query(F.data == "word_finish")
+@router.callback_query(StateFilter(WordsState.category_chosen), F.data == "word_finish")
 async def finish_session(callback: CallbackQuery, state: FSMContext):
     user_id = callback.from_user.id
-    current_state = await state.get_state()
-    if current_state != WordsState.category_chosen.state:
-        await callback.answer("Сначала выберите категорию.", show_alert=True)
-        return
-
     session = user_sessions.pop(user_id, None)
     if not session:
         await callback.answer("Сессия уже завершена.", show_alert=True)
