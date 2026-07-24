@@ -1,6 +1,7 @@
 import os
 import json
 import re
+import logging
 from aiogram import Router, F, Bot
 from aiogram.types import Message, CallbackQuery, InlineKeyboardMarkup, InlineKeyboardButton
 from aiogram.filters import Command
@@ -9,12 +10,10 @@ from aiogram.fsm.state import State, StatesGroup
 import redis.asyncio as redis
 from utils.db import (
     get_user_stats_db, update_user_stats_db, reset_user_stats_db,
-    add_reading_error_db, remove_reading_error_db, get_reading_errors_db, clear_reading_errors_db,
-    get_writing_index, set_writing_index, reset_writing_progress  # переиспользуем для лексики
+    add_reading_error_db, remove_reading_error_db, get_reading_errors_db, clear_reading_errors_db
 )
-# Для лексики используем те же таблицы: progress и errors.
-# Индекс будем хранить в отдельном ключе в Redis (или можно в БД, но оставим Redis для простоты)
 
+logger = logging.getLogger(__name__)
 router = Router()
 
 # ---------- Конфигурация ----------
@@ -22,9 +21,18 @@ WORDS_DIR = "data/words/"
 META_FILE = "data/categories_meta.json"
 REDIS_URL = os.getenv("REDIS_URL", "redis://localhost:6379")
 
-with open(META_FILE, "r", encoding="utf-8") as f:
-    CATEGORIES_META = json.load(f)
+# Создаём папку, если её нет
+os.makedirs(WORDS_DIR, exist_ok=True)
 
+# Загружаем мета-информацию
+try:
+    with open(META_FILE, "r", encoding="utf-8") as f:
+        CATEGORIES_META = json.load(f)
+except FileNotFoundError:
+    CATEGORIES_META = {}
+    logger.warning("Файл categories_meta.json не найден, создаём пустой.")
+
+# Формируем доступные категории из файлов и мета
 AVAILABLE_CATEGORIES = {}
 for filename in os.listdir(WORDS_DIR):
     if filename.endswith(".json"):
@@ -37,8 +45,23 @@ for filename in os.listdir(WORDS_DIR):
                 "instruction": "Переведите слово."
             }
 
-redis_client = None
+logger.info(f"Доступные категории: {list(AVAILABLE_CATEGORIES.keys())}")
 
+# Если категорий нет, создаём тестовую
+if not AVAILABLE_CATEGORIES:
+    test_file = os.path.join(WORDS_DIR, "expert.json")
+    if not os.path.exists(test_file):
+        with open(test_file, "w", encoding="utf-8") as f:
+            json.dump([
+                {"word": "abandon", "answer": "покидать"},
+                {"word": "brilliant", "answer": "блестящий"}
+            ], f, ensure_ascii=False, indent=2)
+        CATEGORIES_META["expert"] = {"label": "👑 Эксперт (C1-C2)", "instruction": "Переведите слово."}
+        with open(META_FILE, "w", encoding="utf-8") as f:
+            json.dump(CATEGORIES_META, f, ensure_ascii=False, indent=2)
+        AVAILABLE_CATEGORIES["expert"] = CATEGORIES_META["expert"]
+
+redis_client = None
 async def get_redis():
     global redis_client
     if redis_client is None:
@@ -50,11 +73,7 @@ class WordsState(StatesGroup):
     category_chosen = State()
     waiting_for_text = State()  # для текстового ввода (у нас всегда текстовый)
 
-# ---------- Сессии в памяти (временные данные) ----------
-# Теперь используем state для хранения данных сессии, чтобы не держать в глобальной переменной.
-# Но для обратной совместимости оставим как есть, но будем использовать state вместо глобального словаря.
-# Однако для простоты я оставлю глобальный словарь, но добавлю туда нужные поля.
-
+# ---------- Сессии в памяти ----------
 user_sessions = {}
 
 # ---------- Клавиатуры ----------
@@ -148,7 +167,7 @@ def make_type_key(category_key: str) -> str:
 
 async def get_word_stats(user_id: int, category_key: str):
     type_key = make_type_key(category_key)
-    return await get_user_stats_db(user_id, type_key, "beginner")  # уровень не используется, передаём заглушку
+    return await get_user_stats_db(user_id, type_key, "beginner")
 
 async def update_word_stats(user_id: int, category_key: str, correct: bool):
     type_key = make_type_key(category_key)
@@ -190,7 +209,6 @@ async def send_or_update_progress(
     msg_id: int = None,
     edit: bool = False
 ) -> int:
-    """Отправляет или обновляет сообщение с прогрессом."""
     label = AVAILABLE_CATEGORIES.get(category_key, {}).get("label", category_key)
     correct, _ = await get_word_stats(user_id, category_key)
     errors = await get_word_errors(user_id, category_key)
@@ -227,7 +245,6 @@ async def send_or_update_word_card(
     msg_id: int = None,
     edit: bool = False
 ) -> int:
-    """Отправляет или обновляет карточку слова."""
     words = session["words"]
     index = session["index"]
     if index >= len(words):
@@ -276,11 +293,18 @@ async def category_selected(callback: CallbackQuery, state: FSMContext):
     user_id = callback.from_user.id
     category_key = callback.data.split("_")[-1]
 
+    # Проверяем наличие файла
     try:
         words = load_words(category_key)
     except FileNotFoundError:
+        logger.error(f"Файл для категории {category_key} не найден.")
         await callback.answer("Файл с этой категорией не найден.", show_alert=True)
         return
+    except Exception as e:
+        logger.error(f"Ошибка загрузки {category_key}: {e}")
+        await callback.answer("Ошибка загрузки слов.", show_alert=True)
+        return
+
     if not words:
         await callback.answer("В этой категории пока нет слов.", show_alert=True)
         return
@@ -304,14 +328,12 @@ async def category_selected(callback: CallbackQuery, state: FSMContext):
     }
     user_sessions[user_id] = session
 
-    # Получаем инструкцию
-    meta = AVAILABLE_CATEGORIES.get(category_key, {})
-    instruction = meta.get("instruction", "Переведите слово.")
-
     # Удаляем предыдущее сообщение с выбором категории
     await callback.message.delete()
 
     # Отправляем прогресс
+    meta = AVAILABLE_CATEGORIES.get(category_key, {})
+    instruction = meta.get("instruction", "Переведите слово.")
     progress_msg_id = await send_or_update_progress(
         callback.bot,
         callback.message.chat.id,
@@ -333,7 +355,9 @@ async def category_selected(callback: CallbackQuery, state: FSMContext):
     )
     session["card_msg_id"] = card_msg_id
 
+    # Устанавливаем состояние
     await state.set_state(WordsState.category_chosen)
+
     await callback.answer()
 
 # ---------- Обработка текстовых ответов ----------
@@ -478,7 +502,6 @@ async def finish_session(callback: CallbackQuery, state: FSMContext):
     wrong = session.get("wrong", 0)
     total = correct + wrong
 
-    # Получаем оставшиеся ошибки из БД
     errors = await get_word_errors(user_id, category_key)
     remaining_errors = len(errors)
 
@@ -518,14 +541,12 @@ async def word_revision(callback: CallbackQuery, state: FSMContext):
         await callback.message.answer("🎉 Ошибок нет! Отличная работа.")
         return
 
-    # Получаем слова, на которые были ошибки
     words = session["words"]
     error_words = [words[i] for i in errors if i < len(words)]
     if not error_words:
         await callback.message.answer("Ошибочные слова не найдены.")
         return
 
-    # Заменяем сессионный список слов на список ошибок (временно)
     session["revision_words"] = error_words
     session["revision_index"] = 0
     session["revision_mode"] = True
@@ -535,18 +556,17 @@ async def show_revision_word(message: Message, user_id: int, session: dict, edit
     error_words = session.get("revision_words", [])
     idx = session.get("revision_index", 0)
     if idx >= len(error_words):
-        # Все ошибки просмотрены
         await message.answer("🎉 Вы просмотрели все ошибочные слова! Возвращаемся в учебный режим.")
         session["revision_mode"] = False
         session.pop("revision_words", None)
         session.pop("revision_index", None)
-        # Возвращаемся к обычному режиму
+        category_key = session["category"]
         await send_or_update_progress(
             message.bot,
             message.chat.id,
             user_id,
-            session["category"],
-            AVAILABLE_CATEGORIES.get(session["category"], {}).get("instruction", "Переведите слово."),
+            category_key,
+            AVAILABLE_CATEGORIES.get(category_key, {}).get("instruction", "Переведите слово."),
             msg_id=session.get("progress_msg_id"),
             edit=True
         )
@@ -555,7 +575,7 @@ async def show_revision_word(message: Message, user_id: int, session: dict, edit
             message.bot,
             message.chat.id,
             user_id,
-            session["category"],
+            category_key,
             session,
             msg_id=card_msg_id,
             edit=True
@@ -595,9 +615,7 @@ async def revision_show_answer(callback: CallbackQuery, state: FSMContext):
     if example:
         text += f"\n\n<i>{example}</i>"
     await callback.message.answer(text, parse_mode="HTML")
-    # Переход к следующему
     session["revision_index"] = idx + 1
-    # Обновляем карточку
     await show_revision_word(callback.message, user_id, session, edit=True)
     await callback.answer()
 
@@ -610,7 +628,6 @@ async def revision_finish(callback: CallbackQuery, state: FSMContext):
         session.pop("revision_words", None)
         session.pop("revision_index", None)
         await callback.message.answer("Возвращаемся в учебный режим.")
-        # Обновляем прогресс и карточку
         category_key = session["category"]
         await send_or_update_progress(
             callback.bot,
@@ -661,7 +678,6 @@ async def word_confirm_reset(callback: CallbackQuery, state: FSMContext):
     session["wrong"] = 0
     await set_user_index(user_id, category_key, 0)
     await callback.message.edit_text("Прогресс сброшен. Начинаем с первого слова.")
-    # Обновляем прогресс и карточку
     await send_or_update_progress(
         callback.bot,
         callback.message.chat.id,
@@ -682,7 +698,6 @@ async def word_confirm_reset(callback: CallbackQuery, state: FSMContext):
         edit=True
     )
     session["card_msg_id"] = new_card_msg_id
-    # Удаляем сообщение с подтверждением
     try:
         await callback.message.delete()
     except Exception:
@@ -694,7 +709,6 @@ async def word_cancel_reset(callback: CallbackQuery, state: FSMContext):
     user_id = callback.from_user.id
     session = user_sessions.get(user_id)
     if session:
-        # Возвращаемся к текущей карточке
         await send_or_update_progress(
             callback.bot,
             callback.message.chat.id,
