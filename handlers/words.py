@@ -4,7 +4,7 @@ import re
 import logging
 from aiogram import Router, F, Bot
 from aiogram.types import Message, CallbackQuery, InlineKeyboardMarkup, InlineKeyboardButton
-from aiogram.filters import Command
+from aiogram.filters import Command, StateFilter
 from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import State, StatesGroup
 import redis.asyncio as redis
@@ -343,16 +343,26 @@ async def category_selected(callback: CallbackQuery, state: FSMContext):
         return
 
     await state.set_state(WordsState.category_chosen)
+    logger.info(f"Состояние установлено для пользователя {user_id}: {await state.get_state()}")
     await callback.answer()
 
 # ---------- Обработка ответов ----------
 @router.message(WordsState.category_chosen, F.text)
 async def handle_answer(message: Message, state: FSMContext):
     user_id = message.from_user.id
+    current_state = await state.get_state()
+    logger.info(f"handle_answer вызван для {user_id}, состояние: {current_state}")
+
     session = user_sessions.get(user_id)
     if not session:
+        logger.warning(f"Сессия не найдена для {user_id}")
         await message.answer("Пожалуйста, сначала выберите категорию через кнопку 'Words'.")
         return
+
+    # Если состояние не совпадает, пробуем восстановить
+    if current_state != WordsState.category_chosen.state:
+        logger.warning(f"Состояние не совпадает: {current_state}, устанавливаем заново")
+        await state.set_state(WordsState.category_chosen)
 
     category_key = session["category"]
     words = session["words"]
