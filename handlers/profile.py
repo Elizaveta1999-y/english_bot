@@ -72,7 +72,7 @@ async def _update_stats_after_practice(user_id: int, correct: int, wrong: int):
     )
     await conn.close()
 
-# ---------- Синхронные обёртки ----------
+# ---------- Синхронные обёртки для обратной совместимости ----------
 
 def update_stats_after_lesson(user_id: int):
     asyncio.run(_update_stats_after_lesson(user_id))
@@ -80,7 +80,7 @@ def update_stats_after_lesson(user_id: int):
 def update_stats_after_practice(user_id: int, correct: int, wrong: int):
     asyncio.run(_update_stats_after_practice(user_id, correct, wrong))
 
-# ---------- Вспомогательные функции ----------
+# ---------- Вспомогательные функции для профиля ----------
 
 async def get_user_profile(user_id: int):
     conn = await get_connection()
@@ -151,6 +151,10 @@ async def get_speaking_summary(user_id: int) -> dict:
     return {"answered": answered, "score_sum": score_sum, "avg": avg}
 
 async def count_user_errors(user_id: int) -> dict:
+    """
+    Возвращает общее количество ошибок и группировку по основному режиму
+    (первая часть до подчёркивания в type_key).
+    """
     conn = await get_connection()
     rows = await conn.fetch(
         "SELECT type_key, COUNT(*) as cnt FROM errors WHERE user_id = $1 GROUP BY type_key",
@@ -160,8 +164,14 @@ async def count_user_errors(user_id: int) -> dict:
     total = 0
     by_mode = {}
     for row in rows:
+        raw_key = row["type_key"]
+        # Извлекаем основной режим (до первого '_')
+        if '_' in raw_key:
+            mode = raw_key.split('_')[0]
+        else:
+            mode = raw_key
+        by_mode[mode] = by_mode.get(mode, 0) + row["cnt"]
         total += row["cnt"]
-        by_mode[row["type_key"]] = row["cnt"]
     return {"total": total, "by_mode": by_mode}
 
 async def reset_full_progress(user_id: int):
@@ -177,7 +187,6 @@ async def reset_full_progress(user_id: int):
 
 def get_profile_keyboard():
     return InlineKeyboardMarkup(inline_keyboard=[
-        [InlineKeyboardButton(text="🔧 Работа над ошибками", callback_data="profile_fix_mistakes")],
         [InlineKeyboardButton(text="⚙️ Настройки", callback_data="profile_settings")],
         [InlineKeyboardButton(text="💳 Подписка", callback_data="profile_subscription")],
         [InlineKeyboardButton(text="🔄 Сбросить прогресс", callback_data="profile_reset_confirm")],
@@ -202,49 +211,66 @@ def get_subscription_keyboard():
 @router.callback_query(lambda c: c.data == "profile_menu")
 async def profile_menu(callback: CallbackQuery):
     user_id = callback.from_user.id
-
-    # Создаём пользователя, если его нет
-    user = await get_or_create_user(
-        user_id,
-        callback.from_user.username,
-        callback.from_user.first_name,
-        callback.from_user.last_name
-    )
-    if not user:
-        await callback.answer("Ошибка создания профиля", show_alert=True)
-        return
-
     await update_last_active(user_id)
 
     profile = await get_user_profile(user_id)
     if not profile:
-        await callback.answer("Профиль не найден", show_alert=True)
-        return
+        # Если профиля нет, создаём его
+        await get_or_create_user(user_id, callback.from_user.username, callback.from_user.first_name, callback.from_user.last_name)
+        profile = await get_user_profile(user_id)
+        if not profile:
+            await callback.answer("Ошибка создания профиля", show_alert=True)
+            return
 
     streak = await calculate_streak(user_id)
 
-    # Уровень (заглушка)
-    level = "A2"
-    next_level = "B1"
-    progress_to_next = 75
+    # Уровень (вычисляем по количеству правильных ответов, например)
+    # Соберём все правильные ответы из тренажёров и письма/говорения
+    total_correct = 0
+    for mode in ["grammar", "listening", "reading", "lexis"]:
+        data = await get_progress_summary(user_id, mode)
+        total_correct += data["correct"]
+    writing = await get_writing_summary(user_id)
+    total_correct += writing.get("score_sum", 0)  # для письма баллы считаем как правильные
+    speaking = await get_speaking_summary(user_id)
+    total_correct += speaking.get("score_sum", 0)
 
-    # Сбор статистики
+    # Условный уровень (пример)
+    if total_correct < 50:
+        level = "A1"
+        next_level = "A2"
+        progress_to_next = round(total_correct / 50 * 100)
+    elif total_correct < 150:
+        level = "A2"
+        next_level = "B1"
+        progress_to_next = round((total_correct - 50) / 100 * 100)
+    elif total_correct < 300:
+        level = "B1"
+        next_level = "B2"
+        progress_to_next = round((total_correct - 150) / 150 * 100)
+    else:
+        level = "B2"
+        next_level = "C1"
+        progress_to_next = round((total_correct - 300) / 200 * 100)
+
+    # Сбор статистики по тренажёрам
     skills = {}
     for mode in ["grammar", "listening", "reading", "lexis"]:
         data = await get_progress_summary(user_id, mode)
-        if data["total"] > 0:
-            skills[mode] = {"percent": data["percent"], "correct": data["correct"], "total": data["total"]}
+        skills[mode] = {"percent": data["percent"], "correct": data["correct"], "total": data["total"]}
 
+    # Продуктивные навыки
     writing = await get_writing_summary(user_id)
     if writing["answered"] > 0:
-        skills["writing"] = {"avg": writing["avg"], "checks": writing["answered"]}
+        skills["writing"] = {"avg": writing["avg"], "checks": writing["answered"], "score_sum": writing["score_sum"]}
 
     speaking = await get_speaking_summary(user_id)
     if speaking["answered"] > 0:
-        skills["speaking"] = {"avg": speaking["avg"], "checks": speaking["answered"]}
+        skills["speaking"] = {"avg": speaking["avg"], "checks": speaking["answered"], "score_sum": speaking["score_sum"]}
 
-    # Активность (AI и ролевые игры – пока нет данных)
+    # Активность (пока нет данных, заглушки)
     ai_messages = 0
+    ai_duration = 0
     role_started = 0
     role_completed = 0
 
@@ -252,13 +278,14 @@ async def profile_menu(callback: CallbackQuery):
     total_mistakes = mistakes["total"]
     by_mode = mistakes["by_mode"]
 
-    # Слабое место
+    # Определяем слабое место (среди тренажёров)
     weak_skill = None
     weak_percent = 100
     for mode, data in skills.items():
-        if "percent" in data and data["percent"] < weak_percent:
+        if "percent" in data and data["total"] > 0 and data["percent"] < weak_percent:
             weak_percent = data["percent"]
             weak_skill = mode
+    # Если нет данных по тренажёрам, смотрим продуктивные
     if weak_skill is None:
         for mode in ["writing", "speaking"]:
             if mode in skills and skills[mode].get("avg", 0) < 3.0:
@@ -267,45 +294,68 @@ async def profile_menu(callback: CallbackQuery):
 
     # Формируем текст
     text = f"🔥 Серия: {streak} дней\n"
-    text += f"📊 Ваш уровень: {level} — прогресс {progress_to_next}% до {next_level}\n\n"
-    text += "📈 Навыки (общий прогресс):\n"
+    text += f"📊 Ваш уровень: {level} — прогресс {min(progress_to_next, 100)}% до {next_level}\n\n"
 
-    for mode, data in skills.items():
-        if "percent" in data:
-            p = data["percent"]
-            bar = "█" * (p // 10) + "░" * (10 - p // 10)
-            emoji = "✅" if p >= 80 else "⚠️" if p < 50 else "📖"
-            label = {"grammar": "Грамматика", "listening": "Аудирование", "reading": "Чтение", "lexis": "Лексика"}.get(mode, mode.capitalize())
-            text += f"{label}: {bar} {p}% {emoji}\n"
+    # Тренажёры (точность ответов)
+    text += "📊 Тренажеры (точность ответов):\n"
+    for mode in ["grammar", "listening", "reading", "lexis"]:
+        data = skills.get(mode, {})
+        percent = data.get("percent", 0)
+        total = data.get("total", 0)
+        bar = "█" * (percent // 10) + "░" * (10 - percent // 10)
+        emoji = "✅" if percent >= 80 else "⚠️" if percent < 50 else "📖"
+        label = {"grammar": "Грамматика", "listening": "Аудирование", "reading": "Чтение", "lexis": "Лексика"}.get(mode, mode.capitalize())
+        # Добавим слабое место, если есть данные и процент низкий
+        weak_info = ""
+        if mode == weak_skill and total > 0:
+            weak_info = " ⚠️ Слабое место!"
+        text += f"{label}: {bar} {percent}% {emoji}{weak_info}\n"
 
+    # Продуктивные навыки (средний балл)
+    text += "\n✍️ Продуктивные навыки (средний балл):\n"
     for mode in ["writing", "speaking"]:
         if mode in skills:
             avg = skills[mode]["avg"]
             checks = skills[mode]["checks"]
             label = "Письмо" if mode == "writing" else "Говорение"
             emoji = "🖊️" if mode == "writing" else "🎤"
-            text += f"{emoji} {label}: {avg} / 5.0  (проверок: {checks})\n"
+            # Вычисляем динамику (заглушка)
+            trend = "↗️" if avg > 3.5 else "↘️" if avg < 3.0 else "➡️"
+            text += f"{emoji} {label}: {avg} / 5.0  (проверок: {checks}) {trend}\n"
+        else:
+            label = "Письмо" if mode == "writing" else "Говорение"
+            emoji = "🖊️" if mode == "writing" else "🎤"
+            text += f"{emoji} {label}: нет данных\n"
 
+    # Активность
     text += "\n💬 Активность:\n"
-    text += f"🗣️ Общение с AI: {ai_messages} сообщений\n"
+    if ai_messages > 0:
+        text += f"🗣️ Общение с AI: {ai_messages} сообщений (≈ {ai_duration} минут диалогов)\n"
+    else:
+        text += "🗣️ Общение с AI: пока нет данных\n"
     if role_started > 0:
         text += f"🎭 Ролевые игры: пройдено {role_completed} из {role_started} сценариев\n"
+    else:
+        text += "🎭 Ролевые игры: пока нет данных\n"
 
+    # Ошибки
     if total_mistakes > 0:
         text += f"\n⚠️ ВАЖНО: У вас {total_mistakes} ошибок ждут исправления!\n"
         if by_mode:
             parts = []
-            for m, cnt in by_mode.items():
-                label = {"grammar": "Грамматика", "listening": "Аудирование", "reading": "Чтение", "lexis": "Лексика", "writing": "Письмо", "speaking": "Говорение"}.get(m, m.capitalize())
+            for mode, cnt in by_mode.items():
+                # Человеческое название режима
+                label = {"grammar": "Грамматика", "listening": "Аудирование", "reading": "Чтение", "lexis": "Лексика", "writing": "Письмо", "speaking": "Говорение"}.get(mode, mode.capitalize())
                 parts.append(f"{label}: {cnt}")
-            text += "   (" + ", ".join(parts) + ")\n"
+            text += "   (" + " | ".join(parts) + ")\n"
     else:
         text += "\n✅ Ошибок для исправления нет! Отлично!\n"
 
+    # Совет
     if weak_skill:
         advice = ""
         if weak_skill in ["grammar", "listening", "reading", "lexis"]:
-            advice = f"Вам нужно подтянуть { {'grammar':'Грамматику','listening':'Аудирование','reading':'Чтение','lexis':'Лексику'}.get(weak_skill, weak_skill)}. Пройдите тренажёр или исправьте ошибки!"
+            advice = f"Вам нужно подтянуть { {'grammar':'Грамматику','listening':'Аудирование','reading':'Чтение','lexis':'Лексику'}.get(weak_skill, weak_skill)}. Пройдите тренажёр!"
         elif weak_skill in ["writing", "speaking"]:
             advice = f"Ваш средний балл по { {'writing':'Письму','speaking':'Говорению'}.get(weak_skill, weak_skill)} низкий. Практикуйтесь больше!"
         if advice:
@@ -321,28 +371,6 @@ async def profile_menu(callback: CallbackQuery):
 
     await callback.message.edit_text(text, reply_markup=get_profile_keyboard(), parse_mode="HTML")
     await callback.answer()
-
-@router.callback_query(lambda c: c.data == "profile_fix_mistakes")
-async def profile_fix_mistakes(callback: CallbackQuery):
-    user_id = callback.from_user.id
-    mistakes = await count_user_errors(user_id)
-    if mistakes["total"] == 0:
-        await callback.answer("У вас нет ошибок для исправления!", show_alert=True)
-        return
-    text = "🔧 <b>Работа над ошибками</b>\n\nВыберите режим:\n"
-    buttons = []
-    for mode, cnt in mistakes["by_mode"].items():
-        label = {"grammar": "Грамматика", "listening": "Аудирование", "reading": "Чтение", "lexis": "Лексика", "writing": "Письмо", "speaking": "Говорение"}.get(mode, mode.capitalize())
-        buttons.append([InlineKeyboardButton(text=f"{label} ({cnt})", callback_data=f"fix_{mode}")])
-    buttons.append([InlineKeyboardButton(text="🔙 Назад", callback_data="profile_back")])
-    keyboard = InlineKeyboardMarkup(inline_keyboard=buttons)
-    await callback.message.edit_text(text, reply_markup=keyboard, parse_mode="HTML")
-    await callback.answer()
-
-@router.callback_query(lambda c: c.data.startswith("fix_"))
-async def fix_mode_callback(callback: CallbackQuery):
-    mode = callback.data.split("_")[1]
-    await callback.answer(f"Исправление ошибок в {mode} (в разработке)", show_alert=True)
 
 @router.callback_query(lambda c: c.data == "profile_settings")
 async def profile_settings(callback: CallbackQuery):
