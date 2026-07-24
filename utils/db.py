@@ -82,6 +82,32 @@ async def init_db():
             PRIMARY KEY (user_id, task_type, level)
         )
     """)
+    # Новая таблица для индекса прогресса (универсальная)
+    await conn.execute("""
+        CREATE TABLE IF NOT EXISTS progress_index (
+            user_id BIGINT NOT NULL,
+            type_key TEXT NOT NULL,
+            level_key TEXT NOT NULL,
+            current_index INTEGER DEFAULT 0,
+            PRIMARY KEY (user_id, type_key, level_key)
+        )
+    """)
+    # Новая таблица для случайного порядка
+    await conn.execute("""
+        CREATE TABLE IF NOT EXISTS random_order (
+            user_id BIGINT NOT NULL,
+            level_key TEXT NOT NULL,
+            order_data JSONB NOT NULL,
+            PRIMARY KEY (user_id, level_key)
+        )
+    """)
+    # Таблица для состояний пользователей (user_states)
+    await conn.execute("""
+        CREATE TABLE IF NOT EXISTS user_states (
+            user_id BIGINT PRIMARY KEY,
+            state JSONB NOT NULL DEFAULT '{}'::jsonb
+        )
+    """)
     await conn.close()
 
 # ---------- Пользователи ----------
@@ -366,4 +392,60 @@ async def reset_govorenie_progress(user_id: int, task_type: str, level: str):
             session_score = 0
         WHERE user_id = $1 AND task_type = $2 AND level = $3
     """, user_id, task_type, level)
+    await conn.close()
+
+# ---------- Функции для индекса прогресса (универсальные) ----------
+async def ensure_progress_index_table():
+    # Таблица создаётся в init_db, но на всякий случай проверяем
+    pass
+
+async def get_progress_index(user_id: int, type_key: str, level_key: str) -> int:
+    conn = await get_connection()
+    row = await conn.fetchrow(
+        "SELECT current_index FROM progress_index WHERE user_id = $1 AND type_key = $2 AND level_key = $3",
+        user_id, type_key, level_key
+    )
+    await conn.close()
+    if row:
+        return row["current_index"]
+    await set_progress_index(user_id, type_key, level_key, 0)
+    return 0
+
+async def set_progress_index(user_id: int, type_key: str, level_key: str, index: int):
+    conn = await get_connection()
+    await conn.execute("""
+        INSERT INTO progress_index (user_id, type_key, level_key, current_index)
+        VALUES ($1, $2, $3, $4)
+        ON CONFLICT (user_id, type_key, level_key)
+        DO UPDATE SET current_index = $4
+    """, user_id, type_key, level_key, index)
+    await conn.close()
+
+async def reset_progress_index(user_id: int, type_key: str, level_key: str):
+    await set_progress_index(user_id, type_key, level_key, 0)
+
+# ---------- Функции для случайного порядка ----------
+async def ensure_random_order_table():
+    # Таблица создаётся в init_db, на всякий случай оставляем пустую функцию
+    pass
+
+async def get_random_order(user_id: int, level_key: str) -> list:
+    conn = await get_connection()
+    row = await conn.fetchrow(
+        "SELECT order_data FROM random_order WHERE user_id = $1 AND level_key = $2",
+        user_id, level_key
+    )
+    await conn.close()
+    if row:
+        return row["order_data"]
+    return None
+
+async def set_random_order(user_id: int, level_key: str, order: list):
+    conn = await get_connection()
+    await conn.execute("""
+        INSERT INTO random_order (user_id, level_key, order_data)
+        VALUES ($1, $2, $3::jsonb)
+        ON CONFLICT (user_id, level_key)
+        DO UPDATE SET order_data = $3::jsonb
+    """, user_id, level_key, order)
     await conn.close()
