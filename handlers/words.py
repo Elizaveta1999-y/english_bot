@@ -21,18 +21,15 @@ WORDS_DIR = "data/words/"
 META_FILE = "data/categories_meta.json"
 REDIS_URL = os.getenv("REDIS_URL", "redis://localhost:6379")
 
-# Создаём папку, если её нет
 os.makedirs(WORDS_DIR, exist_ok=True)
 
-# Загружаем мета-информацию
 try:
     with open(META_FILE, "r", encoding="utf-8") as f:
         CATEGORIES_META = json.load(f)
 except FileNotFoundError:
     CATEGORIES_META = {}
-    logger.warning("Файл categories_meta.json не найден, создаём пустой.")
+    logger.warning("categories_meta.json не найден, создаём пустой.")
 
-# Формируем доступные категории из файлов и мета
 AVAILABLE_CATEGORIES = {}
 for filename in os.listdir(WORDS_DIR):
     if filename.endswith(".json"):
@@ -47,20 +44,6 @@ for filename in os.listdir(WORDS_DIR):
 
 logger.info(f"Доступные категории: {list(AVAILABLE_CATEGORIES.keys())}")
 
-# Если категорий нет, создаём тестовую
-if not AVAILABLE_CATEGORIES:
-    test_file = os.path.join(WORDS_DIR, "expert.json")
-    if not os.path.exists(test_file):
-        with open(test_file, "w", encoding="utf-8") as f:
-            json.dump([
-                {"word": "abandon", "answer": "покидать"},
-                {"word": "brilliant", "answer": "блестящий"}
-            ], f, ensure_ascii=False, indent=2)
-        CATEGORIES_META["expert"] = {"label": "👑 Эксперт (C1-C2)", "instruction": "Переведите слово."}
-        with open(META_FILE, "w", encoding="utf-8") as f:
-            json.dump(CATEGORIES_META, f, ensure_ascii=False, indent=2)
-        AVAILABLE_CATEGORIES["expert"] = CATEGORIES_META["expert"]
-
 redis_client = None
 async def get_redis():
     global redis_client
@@ -71,9 +54,9 @@ async def get_redis():
 # ---------- FSM ----------
 class WordsState(StatesGroup):
     category_chosen = State()
-    waiting_for_text = State()  # для текстового ввода (у нас всегда текстовый)
+    waiting_for_text = State()
 
-# ---------- Сессии в памяти ----------
+# ---------- Сессии ----------
 user_sessions = {}
 
 # ---------- Клавиатуры ----------
@@ -199,7 +182,6 @@ async def reset_word_progress(user_id: int, category_key: str):
     await clear_word_errors(user_id, category_key)
 
 # ---------- Отправка сообщений ----------
-
 async def send_or_update_progress(
     bot: Bot,
     chat_id: int,
@@ -273,8 +255,7 @@ async def send_or_update_word_card(
         )
         return sent.message_id
 
-# ---------- Вход в режим (выбор категории) ----------
-
+# ---------- Вход в режим ----------
 @router.callback_query(F.data == "start_words")
 @router.message(Command("words"))
 async def words_start(event, state: FSMContext):
@@ -286,14 +267,12 @@ async def words_start(event, state: FSMContext):
         await event.message.edit_text(text, reply_markup=get_categories_keyboard())
         await event.answer()
 
-# ---------- Выбор категории (новая логика с двумя сообщениями) ----------
-
+# ---------- Выбор категории ----------
 @router.callback_query(F.data.startswith("word_cat_"))
 async def category_selected(callback: CallbackQuery, state: FSMContext):
     user_id = callback.from_user.id
-    category_key = callback.data.split("_")[-1]
+    category_key = callback.data.replace("word_cat_", "")
 
-    # Проверяем наличие файла
     try:
         words = load_words(category_key)
     except FileNotFoundError:
@@ -309,13 +288,11 @@ async def category_selected(callback: CallbackQuery, state: FSMContext):
         await callback.answer("В этой категории пока нет слов.", show_alert=True)
         return
 
-    # Получаем текущий индекс из Redis
     start_index = await get_user_index(user_id, category_key)
     if start_index >= len(words):
         start_index = 0
         await set_user_index(user_id, category_key, 0)
 
-    # Создаём сессию
     session = {
         "words": words,
         "index": start_index,
@@ -328,40 +305,47 @@ async def category_selected(callback: CallbackQuery, state: FSMContext):
     }
     user_sessions[user_id] = session
 
-    # Удаляем предыдущее сообщение с выбором категории
-    await callback.message.delete()
+    try:
+        await callback.message.delete()
+    except Exception as e:
+        logger.warning(f"Не удалось удалить сообщение: {e}")
 
-    # Отправляем прогресс
     meta = AVAILABLE_CATEGORIES.get(category_key, {})
     instruction = meta.get("instruction", "Переведите слово.")
-    progress_msg_id = await send_or_update_progress(
-        callback.bot,
-        callback.message.chat.id,
-        user_id,
-        category_key,
-        instruction,
-        edit=False
-    )
-    session["progress_msg_id"] = progress_msg_id
+    try:
+        progress_msg_id = await send_or_update_progress(
+            callback.bot,
+            callback.message.chat.id,
+            user_id,
+            category_key,
+            instruction,
+            edit=False
+        )
+        session["progress_msg_id"] = progress_msg_id
+    except Exception as e:
+        logger.error(f"Ошибка отправки прогресса: {e}")
+        await callback.message.answer("Ошибка при запуске режима. Попробуйте позже.")
+        return
 
-    # Отправляем первую карточку слова
-    card_msg_id = await send_or_update_word_card(
-        callback.bot,
-        callback.message.chat.id,
-        user_id,
-        category_key,
-        session,
-        edit=False
-    )
-    session["card_msg_id"] = card_msg_id
+    try:
+        card_msg_id = await send_or_update_word_card(
+            callback.bot,
+            callback.message.chat.id,
+            user_id,
+            category_key,
+            session,
+            edit=False
+        )
+        session["card_msg_id"] = card_msg_id
+    except Exception as e:
+        logger.error(f"Ошибка отправки карточки: {e}")
+        await callback.message.answer("Ошибка при запуске режима. Попробуйте позже.")
+        return
 
-    # Устанавливаем состояние
     await state.set_state(WordsState.category_chosen)
-
     await callback.answer()
 
-# ---------- Обработка текстовых ответов ----------
-
+# ---------- Обработка ответов ----------
 @router.message(WordsState.category_chosen, F.text)
 async def handle_answer(message: Message, state: FSMContext):
     user_id = message.from_user.id
@@ -384,7 +368,6 @@ async def handle_answer(message: Message, state: FSMContext):
     user_answer = message.text
 
     correct = is_correct(user_answer, correct_answer)
-    # Обновляем статистику в БД и ошибки
     if correct:
         session["correct"] += 1
         await update_word_stats(user_id, category_key, True)
@@ -394,7 +377,6 @@ async def handle_answer(message: Message, state: FSMContext):
         await update_word_stats(user_id, category_key, False)
         await add_word_error(user_id, category_key, index)
 
-    # Показываем результат
     example = current_word.get("example")
     if correct:
         result_text = f"Правильно! Правильный ответ: {correct_answer}"
@@ -404,35 +386,35 @@ async def handle_answer(message: Message, state: FSMContext):
         result_text += f"\n\n<i>{example}</i>"
     await message.answer(result_text, parse_mode="HTML")
 
-    # Переход к следующему слову
     session["index"] = (index + 1) % len(words)
     await set_user_index(user_id, category_key, session["index"])
 
-    # Обновляем прогресс и карточку
-    progress_msg_id = session.get("progress_msg_id")
-    await send_or_update_progress(
-        message.bot,
-        message.chat.id,
-        user_id,
-        category_key,
-        AVAILABLE_CATEGORIES.get(category_key, {}).get("instruction", "Переведите слово."),
-        msg_id=progress_msg_id,
-        edit=True
-    )
-    card_msg_id = session.get("card_msg_id")
-    new_card_msg_id = await send_or_update_word_card(
-        message.bot,
-        message.chat.id,
-        user_id,
-        category_key,
-        session,
-        msg_id=card_msg_id,
-        edit=True
-    )
-    session["card_msg_id"] = new_card_msg_id
+    try:
+        progress_msg_id = session.get("progress_msg_id")
+        await send_or_update_progress(
+            message.bot,
+            message.chat.id,
+            user_id,
+            category_key,
+            AVAILABLE_CATEGORIES.get(category_key, {}).get("instruction", "Переведите слово."),
+            msg_id=progress_msg_id,
+            edit=True
+        )
+        card_msg_id = session.get("card_msg_id")
+        new_card_msg_id = await send_or_update_word_card(
+            message.bot,
+            message.chat.id,
+            user_id,
+            category_key,
+            session,
+            msg_id=card_msg_id,
+            edit=True
+        )
+        session["card_msg_id"] = new_card_msg_id
+    except Exception as e:
+        logger.error(f"Ошибка обновления сообщений: {e}")
 
 # ---------- Показать ответ ----------
-
 @router.callback_query(F.data == "word_show_answer", WordsState.category_chosen)
 async def show_answer(callback: CallbackQuery, state: FSMContext):
     user_id = callback.from_user.id
@@ -458,37 +440,36 @@ async def show_answer(callback: CallbackQuery, state: FSMContext):
         text += f"\n\n<i>{example}</i>"
     await callback.message.answer(text, parse_mode="HTML")
 
-    # Переход к следующему слову
     session["index"] = (index + 1) % len(words)
     await set_user_index(user_id, category_key, session["index"])
 
-    # Обновляем прогресс и карточку
-    progress_msg_id = session.get("progress_msg_id")
-    await send_or_update_progress(
-        callback.bot,
-        callback.message.chat.id,
-        user_id,
-        category_key,
-        AVAILABLE_CATEGORIES.get(category_key, {}).get("instruction", "Переведите слово."),
-        msg_id=progress_msg_id,
-        edit=True
-    )
-    card_msg_id = session.get("card_msg_id")
-    new_card_msg_id = await send_or_update_word_card(
-        callback.bot,
-        callback.message.chat.id,
-        user_id,
-        category_key,
-        session,
-        msg_id=card_msg_id,
-        edit=True
-    )
-    session["card_msg_id"] = new_card_msg_id
-
+    try:
+        progress_msg_id = session.get("progress_msg_id")
+        await send_or_update_progress(
+            callback.bot,
+            callback.message.chat.id,
+            user_id,
+            category_key,
+            AVAILABLE_CATEGORIES.get(category_key, {}).get("instruction", "Переведите слово."),
+            msg_id=progress_msg_id,
+            edit=True
+        )
+        card_msg_id = session.get("card_msg_id")
+        new_card_msg_id = await send_or_update_word_card(
+            callback.bot,
+            callback.message.chat.id,
+            user_id,
+            category_key,
+            session,
+            msg_id=card_msg_id,
+            edit=True
+        )
+        session["card_msg_id"] = new_card_msg_id
+    except Exception as e:
+        logger.error(f"Ошибка обновления сообщений: {e}")
     await callback.answer()
 
 # ---------- Завершение сессии ----------
-
 @router.callback_query(F.data == "word_finish", WordsState.category_chosen)
 async def finish_session(callback: CallbackQuery, state: FSMContext):
     user_id = callback.from_user.id
@@ -525,7 +506,6 @@ async def finish_session(callback: CallbackQuery, state: FSMContext):
     await callback.answer()
 
 # ---------- Работа над ошибками ----------
-
 @router.callback_query(F.data == "word_revision")
 async def word_revision(callback: CallbackQuery, state: FSMContext):
     await callback.answer()
@@ -561,26 +541,29 @@ async def show_revision_word(message: Message, user_id: int, session: dict, edit
         session.pop("revision_words", None)
         session.pop("revision_index", None)
         category_key = session["category"]
-        await send_or_update_progress(
-            message.bot,
-            message.chat.id,
-            user_id,
-            category_key,
-            AVAILABLE_CATEGORIES.get(category_key, {}).get("instruction", "Переведите слово."),
-            msg_id=session.get("progress_msg_id"),
-            edit=True
-        )
-        card_msg_id = session.get("card_msg_id")
-        new_card_msg_id = await send_or_update_word_card(
-            message.bot,
-            message.chat.id,
-            user_id,
-            category_key,
-            session,
-            msg_id=card_msg_id,
-            edit=True
-        )
-        session["card_msg_id"] = new_card_msg_id
+        try:
+            await send_or_update_progress(
+                message.bot,
+                message.chat.id,
+                user_id,
+                category_key,
+                AVAILABLE_CATEGORIES.get(category_key, {}).get("instruction", "Переведите слово."),
+                msg_id=session.get("progress_msg_id"),
+                edit=True
+            )
+            card_msg_id = session.get("card_msg_id")
+            new_card_msg_id = await send_or_update_word_card(
+                message.bot,
+                message.chat.id,
+                user_id,
+                category_key,
+                session,
+                msg_id=card_msg_id,
+                edit=True
+            )
+            session["card_msg_id"] = new_card_msg_id
+        except Exception as e:
+            logger.error(f"Ошибка обновления сообщений: {e}")
         return
 
     word = error_words[idx]
@@ -629,30 +612,32 @@ async def revision_finish(callback: CallbackQuery, state: FSMContext):
         session.pop("revision_index", None)
         await callback.message.answer("Возвращаемся в учебный режим.")
         category_key = session["category"]
-        await send_or_update_progress(
-            callback.bot,
-            callback.message.chat.id,
-            user_id,
-            category_key,
-            AVAILABLE_CATEGORIES.get(category_key, {}).get("instruction", "Переведите слово."),
-            msg_id=session.get("progress_msg_id"),
-            edit=True
-        )
-        card_msg_id = session.get("card_msg_id")
-        new_card_msg_id = await send_or_update_word_card(
-            callback.bot,
-            callback.message.chat.id,
-            user_id,
-            category_key,
-            session,
-            msg_id=card_msg_id,
-            edit=True
-        )
-        session["card_msg_id"] = new_card_msg_id
+        try:
+            await send_or_update_progress(
+                callback.bot,
+                callback.message.chat.id,
+                user_id,
+                category_key,
+                AVAILABLE_CATEGORIES.get(category_key, {}).get("instruction", "Переведите слово."),
+                msg_id=session.get("progress_msg_id"),
+                edit=True
+            )
+            card_msg_id = session.get("card_msg_id")
+            new_card_msg_id = await send_or_update_word_card(
+                callback.bot,
+                callback.message.chat.id,
+                user_id,
+                category_key,
+                session,
+                msg_id=card_msg_id,
+                edit=True
+            )
+            session["card_msg_id"] = new_card_msg_id
+        except Exception as e:
+            logger.error(f"Ошибка обновления сообщений: {e}")
     await callback.answer()
 
 # ---------- Сброс прогресса ----------
-
 @router.callback_query(F.data == "word_reset")
 async def word_reset_confirm(callback: CallbackQuery):
     await callback.answer()
@@ -678,26 +663,29 @@ async def word_confirm_reset(callback: CallbackQuery, state: FSMContext):
     session["wrong"] = 0
     await set_user_index(user_id, category_key, 0)
     await callback.message.edit_text("Прогресс сброшен. Начинаем с первого слова.")
-    await send_or_update_progress(
-        callback.bot,
-        callback.message.chat.id,
-        user_id,
-        category_key,
-        AVAILABLE_CATEGORIES.get(category_key, {}).get("instruction", "Переведите слово."),
-        msg_id=session.get("progress_msg_id"),
-        edit=True
-    )
-    card_msg_id = session.get("card_msg_id")
-    new_card_msg_id = await send_or_update_word_card(
-        callback.bot,
-        callback.message.chat.id,
-        user_id,
-        category_key,
-        session,
-        msg_id=card_msg_id,
-        edit=True
-    )
-    session["card_msg_id"] = new_card_msg_id
+    try:
+        await send_or_update_progress(
+            callback.bot,
+            callback.message.chat.id,
+            user_id,
+            category_key,
+            AVAILABLE_CATEGORIES.get(category_key, {}).get("instruction", "Переведите слово."),
+            msg_id=session.get("progress_msg_id"),
+            edit=True
+        )
+        card_msg_id = session.get("card_msg_id")
+        new_card_msg_id = await send_or_update_word_card(
+            callback.bot,
+            callback.message.chat.id,
+            user_id,
+            category_key,
+            session,
+            msg_id=card_msg_id,
+            edit=True
+        )
+        session["card_msg_id"] = new_card_msg_id
+    except Exception as e:
+        logger.error(f"Ошибка обновления сообщений: {e}")
     try:
         await callback.message.delete()
     except Exception:
@@ -709,26 +697,29 @@ async def word_cancel_reset(callback: CallbackQuery, state: FSMContext):
     user_id = callback.from_user.id
     session = user_sessions.get(user_id)
     if session:
-        await send_or_update_progress(
-            callback.bot,
-            callback.message.chat.id,
-            user_id,
-            session["category"],
-            AVAILABLE_CATEGORIES.get(session["category"], {}).get("instruction", "Переведите слово."),
-            msg_id=session.get("progress_msg_id"),
-            edit=True
-        )
-        card_msg_id = session.get("card_msg_id")
-        new_card_msg_id = await send_or_update_word_card(
-            callback.bot,
-            callback.message.chat.id,
-            user_id,
-            session["category"],
-            session,
-            msg_id=card_msg_id,
-            edit=True
-        )
-        session["card_msg_id"] = new_card_msg_id
+        try:
+            await send_or_update_progress(
+                callback.bot,
+                callback.message.chat.id,
+                user_id,
+                session["category"],
+                AVAILABLE_CATEGORIES.get(session["category"], {}).get("instruction", "Переведите слово."),
+                msg_id=session.get("progress_msg_id"),
+                edit=True
+            )
+            card_msg_id = session.get("card_msg_id")
+            new_card_msg_id = await send_or_update_word_card(
+                callback.bot,
+                callback.message.chat.id,
+                user_id,
+                session["category"],
+                session,
+                msg_id=card_msg_id,
+                edit=True
+            )
+            session["card_msg_id"] = new_card_msg_id
+        except Exception as e:
+            logger.error(f"Ошибка обновления сообщений: {e}")
         try:
             await callback.message.delete()
         except Exception:
@@ -736,8 +727,7 @@ async def word_cancel_reset(callback: CallbackQuery, state: FSMContext):
     else:
         await callback.message.edit_text("Выберите категорию:", reply_markup=get_categories_keyboard())
 
-# ---------- Кнопка "К категориям" ----------
-
+# ---------- К категориям ----------
 @router.callback_query(F.data == "back_to_categories")
 async def back_to_categories(callback: CallbackQuery, state: FSMContext):
     await state.clear()
