@@ -1,6 +1,7 @@
 from aiogram import Router, F
 from aiogram.types import CallbackQuery, Message, InlineKeyboardMarkup, InlineKeyboardButton
 from datetime import datetime
+import asyncio
 
 # Правильный импорт из utils/db.py
 from utils.db import (
@@ -21,7 +22,71 @@ from handlers.start import show_main_menu
 
 router = Router()
 
-# ---------- Вспомогательные функции для работы с БД (отсутствуют в db.py) ----------
+# ---------- Таблица глобальной статистики ----------
+
+async def ensure_stats_table():
+    """Создаёт таблицу user_stats, если её нет"""
+    conn = await get_connection()
+    await conn.execute("""
+        CREATE TABLE IF NOT EXISTS user_stats (
+            user_id BIGINT PRIMARY KEY,
+            lessons_completed INTEGER DEFAULT 0,
+            practices_completed INTEGER DEFAULT 0,
+            correct_answers INTEGER DEFAULT 0,
+            wrong_answers INTEGER DEFAULT 0
+        )
+    """)
+    await conn.close()
+
+# ---------- Асинхронные функции обновления ----------
+
+async def _update_stats_after_lesson(user_id: int):
+    await ensure_stats_table()
+    conn = await get_connection()
+    await conn.execute("""
+        INSERT INTO user_stats (user_id, lessons_completed) VALUES ($1, 1)
+        ON CONFLICT (user_id) DO UPDATE SET lessons_completed = user_stats.lessons_completed + 1
+    """, user_id)
+    await conn.close()
+    # обновляем last_active
+    conn = await get_connection()
+    await conn.execute(
+        "UPDATE users SET last_active = EXTRACT(EPOCH FROM NOW())::BIGINT WHERE user_id = $1",
+        user_id
+    )
+    await conn.close()
+
+async def _update_stats_after_practice(user_id: int, correct: int, wrong: int):
+    await ensure_stats_table()
+    conn = await get_connection()
+    await conn.execute("""
+        INSERT INTO user_stats (user_id, practices_completed, correct_answers, wrong_answers)
+        VALUES ($1, 1, $2, $3)
+        ON CONFLICT (user_id) DO UPDATE SET
+            practices_completed = user_stats.practices_completed + 1,
+            correct_answers = user_stats.correct_answers + $2,
+            wrong_answers = user_stats.wrong_answers + $3
+    """, user_id, correct, wrong)
+    await conn.close()
+    # обновляем last_active
+    conn = await get_connection()
+    await conn.execute(
+        "UPDATE users SET last_active = EXTRACT(EPOCH FROM NOW())::BIGINT WHERE user_id = $1",
+        user_id
+    )
+    await conn.close()
+
+# ---------- Синхронные обёртки для обратной совместимости ----------
+
+def update_stats_after_lesson(user_id: int):
+    """Синхронная обёртка для вызова из синхронного кода"""
+    asyncio.run(_update_stats_after_lesson(user_id))
+
+def update_stats_after_practice(user_id: int, correct: int, wrong: int):
+    """Синхронная обёртка для вызова из синхронного кода"""
+    asyncio.run(_update_stats_after_practice(user_id, correct, wrong))
+
+# ---------- Вспомогательные функции для профиля (были ранее) ----------
 
 async def get_user_profile(user_id: int):
     """Возвращает запись пользователя из таблицы users"""
@@ -113,13 +178,15 @@ async def count_user_errors(user_id: int) -> dict:
     return {"total": total, "by_mode": by_mode}
 
 async def reset_full_progress(user_id: int):
-    """Полный сброс (удаляет всё, кроме users)"""
+    """Полный сброс (удаляет всё, кроме users и user_stats?)"""
     conn = await get_connection()
     await conn.execute("DELETE FROM progress WHERE user_id = $1", user_id)
     await conn.execute("DELETE FROM errors WHERE user_id = $1", user_id)
     await conn.execute("DELETE FROM grammar_progress WHERE user_id = $1", user_id)
     await conn.execute("DELETE FROM writing_progress WHERE user_id = $1", user_id)
     await conn.execute("DELETE FROM govorenie_progress WHERE user_id = $1", user_id)
+    # Можно также сбросить user_stats, но по желанию
+    # await conn.execute("DELETE FROM user_stats WHERE user_id = $1", user_id)
     await conn.close()
 
 # ---------- Клавиатуры ----------
