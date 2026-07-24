@@ -54,7 +54,6 @@ async def get_redis():
 # ---------- FSM ----------
 class WordsState(StatesGroup):
     category_chosen = State()
-    waiting_for_text = State()
 
 # ---------- Сессии ----------
 user_sessions = {}
@@ -347,22 +346,22 @@ async def category_selected(callback: CallbackQuery, state: FSMContext):
     await callback.answer()
 
 # ---------- Обработка ответов ----------
-@router.message(WordsState.category_chosen, F.text)
+@router.message(StateFilter(WordsState.category_chosen), F.text)
 async def handle_answer(message: Message, state: FSMContext):
     user_id = message.from_user.id
     current_state = await state.get_state()
     logger.info(f"handle_answer вызван для {user_id}, состояние: {current_state}")
+
+    # Если состояние не совпадает, принудительно устанавливаем
+    if current_state != WordsState.category_chosen.state:
+        logger.warning(f"Состояние не совпадает: {current_state}, устанавливаем заново")
+        await state.set_state(WordsState.category_chosen)
 
     session = user_sessions.get(user_id)
     if not session:
         logger.warning(f"Сессия не найдена для {user_id}")
         await message.answer("Пожалуйста, сначала выберите категорию через кнопку 'Words'.")
         return
-
-    # Если состояние не совпадает, пробуем восстановить
-    if current_state != WordsState.category_chosen.state:
-        logger.warning(f"Состояние не совпадает: {current_state}, устанавливаем заново")
-        await state.set_state(WordsState.category_chosen)
 
     category_key = session["category"]
     words = session["words"]
@@ -425,7 +424,7 @@ async def handle_answer(message: Message, state: FSMContext):
         logger.error(f"Ошибка обновления сообщений: {e}")
 
 # ---------- Показать ответ ----------
-@router.callback_query(F.data == "word_show_answer", WordsState.category_chosen)
+@router.callback_query(F.data == "word_show_answer", StateFilter(WordsState.category_chosen))
 async def show_answer(callback: CallbackQuery, state: FSMContext):
     user_id = callback.from_user.id
     session = user_sessions.get(user_id)
@@ -480,7 +479,7 @@ async def show_answer(callback: CallbackQuery, state: FSMContext):
     await callback.answer()
 
 # ---------- Завершение сессии ----------
-@router.callback_query(F.data == "word_finish", WordsState.category_chosen)
+@router.callback_query(F.data == "word_finish", StateFilter(WordsState.category_chosen))
 async def finish_session(callback: CallbackQuery, state: FSMContext):
     user_id = callback.from_user.id
     session = user_sessions.pop(user_id, None)
