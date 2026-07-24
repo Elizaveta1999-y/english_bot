@@ -1,12 +1,19 @@
 import os
 import json
 import re
-from aiogram import Router, F
+from aiogram import Router, F, Bot
 from aiogram.types import Message, CallbackQuery, InlineKeyboardMarkup, InlineKeyboardButton
 from aiogram.filters import Command
 from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import State, StatesGroup
 import redis.asyncio as redis
+from utils.db import (
+    get_user_stats_db, update_user_stats_db, reset_user_stats_db,
+    add_reading_error_db, remove_reading_error_db, get_reading_errors_db, clear_reading_errors_db,
+    get_writing_index, set_writing_index, reset_writing_progress  # переиспользуем для лексики
+)
+# Для лексики используем те же таблицы: progress и errors.
+# Индекс будем хранить в отдельном ключе в Redis (или можно в БД, но оставим Redis для простоты)
 
 router = Router()
 
@@ -41,32 +48,27 @@ async def get_redis():
 # ---------- FSM ----------
 class WordsState(StatesGroup):
     category_chosen = State()
+    waiting_for_text = State()  # для текстового ввода (у нас всегда текстовый)
 
-# ---------- Сессии в памяти ----------
+# ---------- Сессии в памяти (временные данные) ----------
+# Теперь используем state для хранения данных сессии, чтобы не держать в глобальной переменной.
+# Но для обратной совместимости оставим как есть, но будем использовать state вместо глобального словаря.
+# Однако для простоты я оставлю глобальный словарь, но добавлю туда нужные поля.
+
 user_sessions = {}
 
 # ---------- Клавиатуры ----------
 def get_categories_keyboard():
-    # Желаемый порядок: сначала три уровня, потом остальные категории
     top_order = ["gold_3000", "expert", "beginner"]
-    # Остальные в том же порядке, что и раньше (без дублирования)
     rest_order = ["nouns", "verbs", "prepositions", "adverbs", "adjectives", 
                   "conjunctions", "false_friends", "phrasal_verbs", "irregular_verbs"]
-    
-    # Собираем все ключи в нужном порядке
     order = top_order + rest_order
-    
     items = []
     for key in order:
         if key in AVAILABLE_CATEGORIES:
             label = AVAILABLE_CATEGORIES[key]["label"]
-            # Для новых кнопок эмодзи уже есть в label, поэтому просто берём label
             items.append((label, f"word_cat_{key}"))
-    
-    # Добавляем кнопку "Назад" (она всегда в конце)
     items.append(("🔙 Назад", "back_to_main"))
-    
-    # Группируем по два
     keyboard = []
     for i in range(0, len(items), 2):
         row = []
@@ -76,16 +78,36 @@ def get_categories_keyboard():
             text2, callback2 = items[i + 1]
             row.append(InlineKeyboardButton(text=text2, callback_data=callback2))
         keyboard.append(row)
-    
     return InlineKeyboardMarkup(inline_keyboard=keyboard)
 
-def get_word_card_keyboard():
+def get_progress_keyboard() -> InlineKeyboardMarkup:
+    buttons = [
+        [InlineKeyboardButton(text="Работа над ошибками", callback_data="word_revision")],
+        [InlineKeyboardButton(text="Сбросить прогресс", callback_data="word_reset")]
+    ]
+    return InlineKeyboardMarkup(inline_keyboard=buttons)
+
+def get_task_keyboard() -> InlineKeyboardMarkup:
     return InlineKeyboardMarkup(inline_keyboard=[
         [
             InlineKeyboardButton(text="Показать ответ", callback_data="word_show_answer"),
             InlineKeyboardButton(text="Завершить", callback_data="word_finish")
         ]
     ])
+
+def get_reset_confirmation_keyboard() -> InlineKeyboardMarkup:
+    buttons = [
+        [InlineKeyboardButton(text="Да, сбросить", callback_data="word_confirm_reset")],
+        [InlineKeyboardButton(text="Назад", callback_data="word_cancel_reset")]
+    ]
+    return InlineKeyboardMarkup(inline_keyboard=buttons)
+
+def get_clear_errors_confirmation_keyboard() -> InlineKeyboardMarkup:
+    buttons = [
+        [InlineKeyboardButton(text="Да, сбросить ошибки", callback_data="word_confirm_clear_errors")],
+        [InlineKeyboardButton(text="Назад", callback_data="word_cancel_clear_errors")]
+    ]
+    return InlineKeyboardMarkup(inline_keyboard=buttons)
 
 def get_finish_keyboard():
     return InlineKeyboardMarkup(inline_keyboard=[
@@ -110,6 +132,9 @@ async def set_user_index(user_id: int, category_key: str, index: int):
     r = await get_redis()
     await r.set(f"word_progress:{user_id}:{category_key}", str(index))
 
+async def reset_user_index(user_id: int, category_key: str):
+    await set_user_index(user_id, category_key, 0)
+
 def is_correct(user_answer: str, correct_answer: str) -> bool:
     user_answer = normalize_text(user_answer)
     variants = re.split(r'\s*[,/]\s*', correct_answer.lower())
@@ -117,76 +142,122 @@ def is_correct(user_answer: str, correct_answer: str) -> bool:
         variants = [correct_answer.lower()]
     return user_answer in variants
 
-async def show_answer_with_example(message, word_data, is_correct: bool = False):
-    answer = word_data["answer"]
-    example = word_data.get("example")
-    if is_correct:
-        text = f"Верно! Правильный ответ: {answer}"
-    else:
-        text = f"Правильный ответ: {answer}"
-    if example:
-        text += f"\n\n<i>{example}</i>"
-    await message.answer(text, parse_mode="HTML")
+# ---------- Функции для работы с БД (лексика) ----------
+def make_type_key(category_key: str) -> str:
+    return f"words_{category_key}"
 
-async def show_word(message_or_callback, user_id: int, session: dict, edit: bool = False):
-    """Показывает карточку слова и сохраняет ID сообщения"""
+async def get_word_stats(user_id: int, category_key: str):
+    type_key = make_type_key(category_key)
+    return await get_user_stats_db(user_id, type_key, "beginner")  # уровень не используется, передаём заглушку
+
+async def update_word_stats(user_id: int, category_key: str, correct: bool):
+    type_key = make_type_key(category_key)
+    await update_user_stats_db(user_id, type_key, "beginner", correct)
+
+async def reset_word_stats(user_id: int, category_key: str):
+    type_key = make_type_key(category_key)
+    await reset_user_stats_db(user_id, type_key, "beginner")
+
+async def add_word_error(user_id: int, category_key: str, word_index: int):
+    type_key = make_type_key(category_key)
+    await add_reading_error_db(user_id, type_key, "beginner", word_index)
+
+async def remove_word_error(user_id: int, category_key: str, word_index: int):
+    type_key = make_type_key(category_key)
+    await remove_reading_error_db(user_id, type_key, "beginner", word_index)
+
+async def get_word_errors(user_id: int, category_key: str):
+    type_key = make_type_key(category_key)
+    return await get_reading_errors_db(user_id, type_key, "beginner")
+
+async def clear_word_errors(user_id: int, category_key: str):
+    type_key = make_type_key(category_key)
+    await clear_reading_errors_db(user_id, type_key, "beginner")
+
+async def reset_word_progress(user_id: int, category_key: str):
+    await reset_user_index(user_id, category_key)
+    await reset_word_stats(user_id, category_key)
+    await clear_word_errors(user_id, category_key)
+
+# ---------- Отправка сообщений ----------
+
+async def send_or_update_progress(
+    bot: Bot,
+    chat_id: int,
+    user_id: int,
+    category_key: str,
+    instruction: str,
+    msg_id: int = None,
+    edit: bool = False
+) -> int:
+    """Отправляет или обновляет сообщение с прогрессом."""
+    label = AVAILABLE_CATEGORIES.get(category_key, {}).get("label", category_key)
+    correct, _ = await get_word_stats(user_id, category_key)
+    errors = await get_word_errors(user_id, category_key)
+    text = f"<b>Режим:</b> {label}\n\n"
+    text += f"{instruction}\n\n"
+    text += f"<b>Ваш прогресс:</b>\n"
+    text += f"✔️ Правильно: {correct}\n"
+    text += f"✖️ Ошибок: {len(errors)}"
+    keyboard = get_progress_keyboard()
+    if edit and msg_id:
+        await bot.edit_message_text(
+            chat_id=chat_id,
+            message_id=msg_id,
+            text=text,
+            reply_markup=keyboard,
+            parse_mode="HTML"
+        )
+        return msg_id
+    else:
+        sent = await bot.send_message(
+            chat_id=chat_id,
+            text=text,
+            reply_markup=keyboard,
+            parse_mode="HTML"
+        )
+        return sent.message_id
+
+async def send_or_update_word_card(
+    bot: Bot,
+    chat_id: int,
+    user_id: int,
+    category_key: str,
+    session: dict,
+    msg_id: int = None,
+    edit: bool = False
+) -> int:
+    """Отправляет или обновляет карточку слова."""
     words = session["words"]
     index = session["index"]
-    total = len(words)
-    if total == 0:
-        await message_or_callback.edit_text("В этой категории нет слов.", reply_markup=get_categories_keyboard())
-        return
-    if index >= total:
+    if index >= len(words):
         index = 0
         session["index"] = 0
-        await set_user_index(user_id, session["category"], 0)
-
+        await set_user_index(user_id, category_key, 0)
     word = words[index]
     session["current_word"] = word
-
     text = f"{word['word']}: _____"
-    keyboard = get_word_card_keyboard()
-    if edit:
-        await message_or_callback.edit_text(text, reply_markup=keyboard, parse_mode="HTML")
+    keyboard = get_task_keyboard()
+    if edit and msg_id:
+        await bot.edit_message_text(
+            chat_id=chat_id,
+            message_id=msg_id,
+            text=text,
+            reply_markup=keyboard,
+            parse_mode="HTML"
+        )
+        return msg_id
     else:
-        sent_msg = await message_or_callback.answer(text, reply_markup=keyboard, parse_mode="HTML")
-        session["card_message_id"] = sent_msg.message_id
+        sent = await bot.send_message(
+            chat_id=chat_id,
+            text=text,
+            reply_markup=keyboard,
+            parse_mode="HTML"
+        )
+        return sent.message_id
 
-async def remove_buttons_and_send_next(chat_id, user_id, session, bot, edit_message=None):
-    """Убирает кнопки у карточки и отправляет новое слово"""
-    # 1. Убираем кнопки
-    if edit_message:
-        # Редактируем переданное сообщение (колбэк)
-        await edit_message.edit_text(edit_message.text, reply_markup=None, parse_mode="HTML")
-    else:
-        # Редактируем по сохранённому ID
-        card_msg_id = session.get("card_message_id")
-        if card_msg_id:
-            try:
-                current_word = session.get("current_word", {})
-                word_text = current_word.get("word", "")
-                await bot.edit_message_text(
-                    chat_id=chat_id,
-                    message_id=card_msg_id,
-                    text=f"{word_text}: _____",
-                    reply_markup=None,
-                    parse_mode="HTML"
-                )
-            except Exception:
-                pass
+# ---------- Вход в режим (выбор категории) ----------
 
-    # 2. Отправляем новую карточку (через фейк-объект)
-    class FakeMessage:
-        def __init__(self, chat_id, bot):
-            self.chat = type('obj', (object,), {'id': chat_id})()
-            self.bot = bot
-        async def answer(self, text, reply_markup=None, parse_mode=None):
-            return await self.bot.send_message(chat_id=self.chat.id, text=text, reply_markup=reply_markup, parse_mode=parse_mode)
-
-    fake_msg = FakeMessage(chat_id, bot)
-    await show_word(fake_msg, user_id, session, edit=False)
-
-# ---------- Хендлеры ----------
 @router.callback_query(F.data == "start_words")
 @router.message(Command("words"))
 async def words_start(event, state: FSMContext):
@@ -197,6 +268,8 @@ async def words_start(event, state: FSMContext):
     elif isinstance(event, CallbackQuery):
         await event.message.edit_text(text, reply_markup=get_categories_keyboard())
         await event.answer()
+
+# ---------- Выбор категории (новая логика с двумя сообщениями) ----------
 
 @router.callback_query(F.data.startswith("word_cat_"))
 async def category_selected(callback: CallbackQuery, state: FSMContext):
@@ -212,29 +285,58 @@ async def category_selected(callback: CallbackQuery, state: FSMContext):
         await callback.answer("В этой категории пока нет слов.", show_alert=True)
         return
 
+    # Получаем текущий индекс из Redis
     start_index = await get_user_index(user_id, category_key)
+    if start_index >= len(words):
+        start_index = 0
+        await set_user_index(user_id, category_key, 0)
 
-    user_sessions[user_id] = {
+    # Создаём сессию
+    session = {
         "words": words,
         "index": start_index,
         "correct": 0,
         "wrong": 0,
         "category": category_key,
         "current_word": None,
-        "card_message_id": None
+        "progress_msg_id": None,
+        "card_msg_id": None
     }
+    user_sessions[user_id] = session
 
-    # Приветствие
+    # Получаем инструкцию
     meta = AVAILABLE_CATEGORIES.get(category_key, {})
     instruction = meta.get("instruction", "Переведите слово.")
-    welcome_text = f"<b>Режим: «{meta.get('label', category_key)}»</b>\n{instruction}"
-    await callback.message.edit_text(welcome_text, parse_mode="HTML")
 
-    # Первая карточка
-    await show_word(callback.message, user_id, user_sessions[user_id], edit=False)
+    # Удаляем предыдущее сообщение с выбором категории
+    await callback.message.delete()
+
+    # Отправляем прогресс
+    progress_msg_id = await send_or_update_progress(
+        callback.bot,
+        callback.message.chat.id,
+        user_id,
+        category_key,
+        instruction,
+        edit=False
+    )
+    session["progress_msg_id"] = progress_msg_id
+
+    # Отправляем первую карточку слова
+    card_msg_id = await send_or_update_word_card(
+        callback.bot,
+        callback.message.chat.id,
+        user_id,
+        category_key,
+        session,
+        edit=False
+    )
+    session["card_msg_id"] = card_msg_id
 
     await state.set_state(WordsState.category_chosen)
     await callback.answer()
+
+# ---------- Обработка текстовых ответов ----------
 
 @router.message(WordsState.category_chosen, F.text)
 async def handle_answer(message: Message, state: FSMContext):
@@ -244,25 +346,68 @@ async def handle_answer(message: Message, state: FSMContext):
         await message.answer("Пожалуйста, сначала выберите категорию через кнопку 'Words'.")
         return
 
-    current_word = session.get("current_word")
-    if not current_word:
-        await show_word(message, user_id, session, edit=False)
-        return
+    category_key = session["category"]
+    words = session["words"]
+    index = session.get("index", 0)
+    if index >= len(words):
+        index = 0
+        await set_user_index(user_id, category_key, 0)
+        session["index"] = 0
+    current_word = words[index]
+    session["current_word"] = current_word
 
     correct_answer = current_word["answer"]
     user_answer = message.text
 
-    if is_correct(user_answer, correct_answer):
+    correct = is_correct(user_answer, correct_answer)
+    # Обновляем статистику в БД и ошибки
+    if correct:
         session["correct"] += 1
-        await show_answer_with_example(message, current_word, is_correct=True)
-        session["index"] += 1
-        if session["index"] >= len(session["words"]):
-            session["index"] = 0
-        await set_user_index(user_id, session["category"], session["index"])
-        await remove_buttons_and_send_next(message.chat.id, user_id, session, message.bot)
+        await update_word_stats(user_id, category_key, True)
+        await remove_word_error(user_id, category_key, index)
     else:
         session["wrong"] += 1
-        await message.answer("Неверно, попробуйте ещё раз.")
+        await update_word_stats(user_id, category_key, False)
+        await add_word_error(user_id, category_key, index)
+
+    # Показываем результат
+    example = current_word.get("example")
+    if correct:
+        result_text = f"Правильно! Правильный ответ: {correct_answer}"
+    else:
+        result_text = f"Неправильно. Правильный ответ: {correct_answer}"
+    if example:
+        result_text += f"\n\n<i>{example}</i>"
+    await message.answer(result_text, parse_mode="HTML")
+
+    # Переход к следующему слову
+    session["index"] = (index + 1) % len(words)
+    await set_user_index(user_id, category_key, session["index"])
+
+    # Обновляем прогресс и карточку
+    progress_msg_id = session.get("progress_msg_id")
+    await send_or_update_progress(
+        message.bot,
+        message.chat.id,
+        user_id,
+        category_key,
+        AVAILABLE_CATEGORIES.get(category_key, {}).get("instruction", "Переведите слово."),
+        msg_id=progress_msg_id,
+        edit=True
+    )
+    card_msg_id = session.get("card_msg_id")
+    new_card_msg_id = await send_or_update_word_card(
+        message.bot,
+        message.chat.id,
+        user_id,
+        category_key,
+        session,
+        msg_id=card_msg_id,
+        edit=True
+    )
+    session["card_msg_id"] = new_card_msg_id
+
+# ---------- Показать ответ ----------
 
 @router.callback_query(F.data == "word_show_answer", WordsState.category_chosen)
 async def show_answer(callback: CallbackQuery, state: FSMContext):
@@ -272,18 +417,53 @@ async def show_answer(callback: CallbackQuery, state: FSMContext):
         await callback.answer("Сессия не найдена. Выберите категорию заново.", show_alert=True)
         return
 
-    current_word = session.get("current_word")
-    if not current_word:
-        await callback.answer("Ошибка. Попробуйте заново.", show_alert=True)
-        return
-
-    await show_answer_with_example(callback.message, current_word, is_correct=False)
-    session["index"] += 1
-    if session["index"] >= len(session["words"]):
+    category_key = session["category"]
+    words = session["words"]
+    index = session.get("index", 0)
+    if index >= len(words):
+        index = 0
         session["index"] = 0
-    await set_user_index(user_id, session["category"], session["index"])
-    await remove_buttons_and_send_next(callback.message.chat.id, user_id, session, callback.bot, edit_message=callback.message)
+        await set_user_index(user_id, category_key, 0)
+    current_word = words[index]
+    session["current_word"] = current_word
+
+    correct_answer = current_word["answer"]
+    example = current_word.get("example")
+    text = f"Правильный ответ: {correct_answer}"
+    if example:
+        text += f"\n\n<i>{example}</i>"
+    await callback.message.answer(text, parse_mode="HTML")
+
+    # Переход к следующему слову
+    session["index"] = (index + 1) % len(words)
+    await set_user_index(user_id, category_key, session["index"])
+
+    # Обновляем прогресс и карточку
+    progress_msg_id = session.get("progress_msg_id")
+    await send_or_update_progress(
+        callback.bot,
+        callback.message.chat.id,
+        user_id,
+        category_key,
+        AVAILABLE_CATEGORIES.get(category_key, {}).get("instruction", "Переведите слово."),
+        msg_id=progress_msg_id,
+        edit=True
+    )
+    card_msg_id = session.get("card_msg_id")
+    new_card_msg_id = await send_or_update_word_card(
+        callback.bot,
+        callback.message.chat.id,
+        user_id,
+        category_key,
+        session,
+        msg_id=card_msg_id,
+        edit=True
+    )
+    session["card_msg_id"] = new_card_msg_id
+
     await callback.answer()
+
+# ---------- Завершение сессии ----------
 
 @router.callback_query(F.data == "word_finish", WordsState.category_chosen)
 async def finish_session(callback: CallbackQuery, state: FSMContext):
@@ -293,14 +473,25 @@ async def finish_session(callback: CallbackQuery, state: FSMContext):
         await callback.answer("Сессия уже завершена.", show_alert=True)
         return
 
+    category_key = session["category"]
     correct = session.get("correct", 0)
     wrong = session.get("wrong", 0)
     total = correct + wrong
 
-    if total == 0:
+    # Получаем оставшиеся ошибки из БД
+    errors = await get_word_errors(user_id, category_key)
+    remaining_errors = len(errors)
+
+    if total == 0 and remaining_errors == 0:
         stats_text = "Вы не дали ни одного ответа."
     else:
-        stats_text = f"Правильно: {correct}\nОшибок: {wrong}\nТочность: {correct/total*100:.1f}%"
+        stats_text = f"✔️ Правильно: {correct}\n✖️ Ошибок: {wrong}\n"
+        if total > 0:
+            stats_text += f"Точность: {correct/total*100:.1f}%\n"
+        if remaining_errors > 0:
+            stats_text += f"Осталось ошибок: {remaining_errors}\n"
+        else:
+            stats_text += "Все ошибки исправлены! 🎉"
 
     await callback.message.edit_text(
         f"Сессия завершена!\n\n{stats_text}",
@@ -309,6 +500,229 @@ async def finish_session(callback: CallbackQuery, state: FSMContext):
     )
     await state.clear()
     await callback.answer()
+
+# ---------- Работа над ошибками ----------
+
+@router.callback_query(F.data == "word_revision")
+async def word_revision(callback: CallbackQuery, state: FSMContext):
+    await callback.answer()
+    user_id = callback.from_user.id
+    session = user_sessions.get(user_id)
+    if not session:
+        await callback.message.answer("Сначала выберите категорию.")
+        return
+
+    category_key = session["category"]
+    errors = await get_word_errors(user_id, category_key)
+    if not errors:
+        await callback.message.answer("🎉 Ошибок нет! Отличная работа.")
+        return
+
+    # Получаем слова, на которые были ошибки
+    words = session["words"]
+    error_words = [words[i] for i in errors if i < len(words)]
+    if not error_words:
+        await callback.message.answer("Ошибочные слова не найдены.")
+        return
+
+    # Заменяем сессионный список слов на список ошибок (временно)
+    session["revision_words"] = error_words
+    session["revision_index"] = 0
+    session["revision_mode"] = True
+    await show_revision_word(callback.message, user_id, session, edit=False)
+
+async def show_revision_word(message: Message, user_id: int, session: dict, edit: bool = False):
+    error_words = session.get("revision_words", [])
+    idx = session.get("revision_index", 0)
+    if idx >= len(error_words):
+        # Все ошибки просмотрены
+        await message.answer("🎉 Вы просмотрели все ошибочные слова! Возвращаемся в учебный режим.")
+        session["revision_mode"] = False
+        session.pop("revision_words", None)
+        session.pop("revision_index", None)
+        # Возвращаемся к обычному режиму
+        await send_or_update_progress(
+            message.bot,
+            message.chat.id,
+            user_id,
+            session["category"],
+            AVAILABLE_CATEGORIES.get(session["category"], {}).get("instruction", "Переведите слово."),
+            msg_id=session.get("progress_msg_id"),
+            edit=True
+        )
+        card_msg_id = session.get("card_msg_id")
+        new_card_msg_id = await send_or_update_word_card(
+            message.bot,
+            message.chat.id,
+            user_id,
+            session["category"],
+            session,
+            msg_id=card_msg_id,
+            edit=True
+        )
+        session["card_msg_id"] = new_card_msg_id
+        return
+
+    word = error_words[idx]
+    session["current_word"] = word
+    text = f"🔴 Работа над ошибками\n\n{word['word']}: _____"
+    keyboard = InlineKeyboardMarkup(inline_keyboard=[
+        [InlineKeyboardButton(text="Показать ответ", callback_data="word_revision_show_answer")],
+        [InlineKeyboardButton(text="Завершить работу над ошибками", callback_data="word_revision_finish")]
+    ])
+    if edit:
+        await message.edit_text(text, reply_markup=keyboard, parse_mode="HTML")
+    else:
+        sent = await message.answer(text, reply_markup=keyboard, parse_mode="HTML")
+        session["revision_msg_id"] = sent.message_id
+
+@router.callback_query(F.data == "word_revision_show_answer")
+async def revision_show_answer(callback: CallbackQuery, state: FSMContext):
+    user_id = callback.from_user.id
+    session = user_sessions.get(user_id)
+    if not session or not session.get("revision_mode"):
+        await callback.answer("Режим работы над ошибками не активен.")
+        return
+    error_words = session.get("revision_words", [])
+    idx = session.get("revision_index", 0)
+    if idx >= len(error_words):
+        await callback.answer("Нет слов для показа.")
+        return
+    word = error_words[idx]
+    correct_answer = word["answer"]
+    example = word.get("example")
+    text = f"Правильный ответ: {correct_answer}"
+    if example:
+        text += f"\n\n<i>{example}</i>"
+    await callback.message.answer(text, parse_mode="HTML")
+    # Переход к следующему
+    session["revision_index"] = idx + 1
+    # Обновляем карточку
+    await show_revision_word(callback.message, user_id, session, edit=True)
+    await callback.answer()
+
+@router.callback_query(F.data == "word_revision_finish")
+async def revision_finish(callback: CallbackQuery, state: FSMContext):
+    user_id = callback.from_user.id
+    session = user_sessions.get(user_id)
+    if session:
+        session["revision_mode"] = False
+        session.pop("revision_words", None)
+        session.pop("revision_index", None)
+        await callback.message.answer("Возвращаемся в учебный режим.")
+        # Обновляем прогресс и карточку
+        category_key = session["category"]
+        await send_or_update_progress(
+            callback.bot,
+            callback.message.chat.id,
+            user_id,
+            category_key,
+            AVAILABLE_CATEGORIES.get(category_key, {}).get("instruction", "Переведите слово."),
+            msg_id=session.get("progress_msg_id"),
+            edit=True
+        )
+        card_msg_id = session.get("card_msg_id")
+        new_card_msg_id = await send_or_update_word_card(
+            callback.bot,
+            callback.message.chat.id,
+            user_id,
+            category_key,
+            session,
+            msg_id=card_msg_id,
+            edit=True
+        )
+        session["card_msg_id"] = new_card_msg_id
+    await callback.answer()
+
+# ---------- Сброс прогресса ----------
+
+@router.callback_query(F.data == "word_reset")
+async def word_reset_confirm(callback: CallbackQuery):
+    await callback.answer()
+    confirm_text = (
+        "Вы уверены, что хотите сбросить весь прогресс для этой категории?\n"
+        "Статистика, ошибки и текущее слово будут обнулены.\n\n"
+        "Это действие нельзя отменить."
+    )
+    await callback.message.edit_text(confirm_text, reply_markup=get_reset_confirmation_keyboard(), parse_mode="HTML")
+
+@router.callback_query(F.data == "word_confirm_reset")
+async def word_confirm_reset(callback: CallbackQuery, state: FSMContext):
+    await callback.answer()
+    user_id = callback.from_user.id
+    session = user_sessions.get(user_id)
+    if not session:
+        await callback.message.answer("Сессия не найдена.")
+        return
+    category_key = session["category"]
+    await reset_word_progress(user_id, category_key)
+    session["index"] = 0
+    session["correct"] = 0
+    session["wrong"] = 0
+    await set_user_index(user_id, category_key, 0)
+    await callback.message.edit_text("Прогресс сброшен. Начинаем с первого слова.")
+    # Обновляем прогресс и карточку
+    await send_or_update_progress(
+        callback.bot,
+        callback.message.chat.id,
+        user_id,
+        category_key,
+        AVAILABLE_CATEGORIES.get(category_key, {}).get("instruction", "Переведите слово."),
+        msg_id=session.get("progress_msg_id"),
+        edit=True
+    )
+    card_msg_id = session.get("card_msg_id")
+    new_card_msg_id = await send_or_update_word_card(
+        callback.bot,
+        callback.message.chat.id,
+        user_id,
+        category_key,
+        session,
+        msg_id=card_msg_id,
+        edit=True
+    )
+    session["card_msg_id"] = new_card_msg_id
+    # Удаляем сообщение с подтверждением
+    try:
+        await callback.message.delete()
+    except Exception:
+        pass
+
+@router.callback_query(F.data == "word_cancel_reset")
+async def word_cancel_reset(callback: CallbackQuery, state: FSMContext):
+    await callback.answer()
+    user_id = callback.from_user.id
+    session = user_sessions.get(user_id)
+    if session:
+        # Возвращаемся к текущей карточке
+        await send_or_update_progress(
+            callback.bot,
+            callback.message.chat.id,
+            user_id,
+            session["category"],
+            AVAILABLE_CATEGORIES.get(session["category"], {}).get("instruction", "Переведите слово."),
+            msg_id=session.get("progress_msg_id"),
+            edit=True
+        )
+        card_msg_id = session.get("card_msg_id")
+        new_card_msg_id = await send_or_update_word_card(
+            callback.bot,
+            callback.message.chat.id,
+            user_id,
+            session["category"],
+            session,
+            msg_id=card_msg_id,
+            edit=True
+        )
+        session["card_msg_id"] = new_card_msg_id
+        try:
+            await callback.message.delete()
+        except Exception:
+            pass
+    else:
+        await callback.message.edit_text("Выберите категорию:", reply_markup=get_categories_keyboard())
+
+# ---------- Кнопка "К категориям" ----------
 
 @router.callback_query(F.data == "back_to_categories")
 async def back_to_categories(callback: CallbackQuery, state: FSMContext):
