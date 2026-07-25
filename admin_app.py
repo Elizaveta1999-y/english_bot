@@ -1,8 +1,9 @@
 import os
 from datetime import datetime, timedelta
-from fastapi import FastAPI, Request, Form, HTTPException
+from fastapi import FastAPI, Request, Form, HTTPException, Response
 from fastapi.responses import HTMLResponse, RedirectResponse
 from fastapi.templating import Jinja2Templates
+from fastapi.middleware.httpsredirect import HTTPSRedirectMiddleware
 import asyncpg
 import httpx
 from dotenv import load_dotenv
@@ -10,6 +11,8 @@ from dotenv import load_dotenv
 load_dotenv()
 
 app = FastAPI()
+app.add_middleware(HTTPSRedirectMiddleware)  # принудительно переводит на HTTPS
+
 templates = Jinja2Templates(directory="templates")
 
 DATABASE_URL = os.getenv("DATABASE_URL")
@@ -25,7 +28,6 @@ if not BOT_TOKEN:
 async def get_db():
     return await asyncpg.connect(DATABASE_URL)
 
-# --- Автоматическое добавление колонок при запуске ---
 async def ensure_columns():
     conn = await get_db()
     try:
@@ -47,6 +49,36 @@ async def ensure_columns():
 async def startup():
     await ensure_columns()
 
+# ---- Страница входа ----
+@app.get("/login", response_class=HTMLResponse)
+async def login_page(request: Request):
+    return templates.TemplateResponse("login.html", {"request": request})
+
+@app.post("/login")
+async def login(request: Request, password: str = Form(...)):
+    if password == ADMIN_PASSWORD:
+        response = RedirectResponse(url="/", status_code=303)
+        response.set_cookie(key="admin_auth", value="true", httponly=True, max_age=86400)  # живёт 24 часа
+        return response
+    return templates.TemplateResponse("login.html", {"request": request, "error": "Неверный пароль"})
+
+# ---- Проверка аутентификации ----
+def is_authenticated(request: Request) -> bool:
+    return request.cookies.get("admin_auth") == "true"
+
+# ---- Защита всех страниц ----
+@app.middleware("http")
+async def auth_middleware(request: Request, call_next):
+    # Пропускаем /login и статику
+    if request.url.path in ["/login", "/favicon.ico"]:
+        return await call_next(request)
+    if not is_authenticated(request):
+        return RedirectResponse(url="/login", status_code=303)
+    return await call_next(request)
+
+# ---- Остальные эндпоинты (без проверки password) ----
+# Теперь все они защищены middleware, пароль в параметрах не нужен
+
 async def set_webhook(enable: bool):
     if enable:
         if not WEBHOOK_URL:
@@ -58,11 +90,8 @@ async def set_webhook(enable: bool):
         resp = await client.get(url)
         return resp.json()
 
-# ---- Главная страница ----
 @app.get("/", response_class=HTMLResponse)
-async def index(request: Request, password: str = None):
-    if password != ADMIN_PASSWORD:
-        return HTMLResponse("<h1>Доступ запрещён</h1><p>Используйте ?password=ваш_пароль</p>", status_code=401)
+async def index(request: Request):
     conn = await get_db()
     total_users = await conn.fetchval("SELECT COUNT(*) FROM users")
     week_ago = int((datetime.now() - timedelta(days=7)).timestamp())
@@ -79,13 +108,10 @@ async def index(request: Request, password: str = None):
         "trial_active": trial_active,
         "total_voice_minutes": round(total_voice / 60, 1)
     }
-    return templates.TemplateResponse("index.html", {"request": request, "stats": stats, "password": password})
+    return templates.TemplateResponse("index.html", {"request": request, "stats": stats})
 
-# ---- Список пользователей ----
 @app.get("/users", response_class=HTMLResponse)
-async def users_list(request: Request, password: str = None):
-    if password != ADMIN_PASSWORD:
-        return HTMLResponse("<h1>Доступ запрещён</h1>", status_code=401)
+async def users_list(request: Request):
     conn = await get_db()
     rows = await conn.fetch("""
         SELECT user_id, username, first_name, last_name,
@@ -110,13 +136,10 @@ async def users_list(request: Request, password: str = None):
             "is_subscribed": row["subscription_until"] > now_ts if row["subscription_until"] else False,
             "is_trial": row["trial_until"] > now_ts if row["trial_until"] else False,
         })
-    return templates.TemplateResponse("users.html", {"request": request, "users": users, "password": password})
+    return templates.TemplateResponse("users.html", {"request": request, "users": users})
 
-# ---- Детальная страница пользователя ----
 @app.get("/user/{user_id}", response_class=HTMLResponse)
-async def user_detail(request: Request, user_id: int, password: str = None):
-    if password != ADMIN_PASSWORD:
-        return HTMLResponse("<h1>Доступ запрещён</h1>", status_code=401)
+async def user_detail(request: Request, user_id: int):
     conn = await get_db()
     user_row = await conn.fetchrow("SELECT * FROM users WHERE user_id = $1", user_id)
     if not user_row:
@@ -149,15 +172,11 @@ async def user_detail(request: Request, user_id: int, password: str = None):
         "progress": progress_summary,
         "writing": writing_summary,
         "govorenie": govorenie_summary,
-        "errors": errors_summary,
-        "password": password
+        "errors": errors_summary
     })
 
-# ---- Продлить подписку ----
 @app.post("/user/{user_id}/extend")
-async def extend_subscription(user_id: int, days: int = Form(...), password: str = Form(...)):
-    if password != ADMIN_PASSWORD:
-        raise HTTPException(401, "Неверный пароль")
+async def extend_subscription(user_id: int, days: int = Form(...)):
     conn = await get_db()
     now = int(datetime.now().timestamp())
     row = await conn.fetchrow("SELECT subscription_until FROM users WHERE user_id = $1", user_id)
@@ -165,46 +184,40 @@ async def extend_subscription(user_id: int, days: int = Form(...), password: str
     new_until = max(current, now) + days * 86400
     await conn.execute("UPDATE users SET subscription_until = $1 WHERE user_id = $2", new_until, user_id)
     await conn.close()
-    return RedirectResponse(url=f"/user/{user_id}?password={password}", status_code=303)
+    return RedirectResponse(url=f"/user/{user_id}", status_code=303)
 
-# ---- Отменить подписку ----
 @app.post("/user/{user_id}/cancel")
-async def cancel_subscription(user_id: int, password: str = Form(...)):
-    if password != ADMIN_PASSWORD:
-        raise HTTPException(401, "Неверный пароль")
+async def cancel_subscription(user_id: int):
     conn = await get_db()
     await conn.execute("UPDATE users SET subscription_until = 0 WHERE user_id = $1", user_id)
     await conn.close()
-    return RedirectResponse(url=f"/user/{user_id}?password={password}", status_code=303)
+    return RedirectResponse(url=f"/user/{user_id}", status_code=303)
 
-# ---- Управление ботом: включить ----
 @app.post("/bot/enable")
-async def enable_bot(password: str = Form(...)):
-    if password != ADMIN_PASSWORD:
-        raise HTTPException(401, "Неверный пароль")
+async def enable_bot():
     try:
         result = await set_webhook(True)
         return {"status": "ok", "message": "Бот включён", "result": result}
     except Exception as e:
         return {"status": "error", "message": str(e)}
 
-# ---- Управление ботом: выключить ----
 @app.post("/bot/disable")
-async def disable_bot(password: str = Form(...)):
-    if password != ADMIN_PASSWORD:
-        raise HTTPException(401, "Неверный пароль")
+async def disable_bot():
     try:
         result = await set_webhook(False)
         return {"status": "ok", "message": "Бот выключен", "result": result}
     except Exception as e:
         return {"status": "error", "message": str(e)}
 
-# ---- Страница управления ботом ----
 @app.get("/bot", response_class=HTMLResponse)
-async def bot_control(request: Request, password: str = None):
-    if password != ADMIN_PASSWORD:
-        return HTMLResponse("<h1>Доступ запрещён</h1>", status_code=401)
-    return templates.TemplateResponse("bot_control.html", {"request": request, "password": password})
+async def bot_control(request: Request):
+    return templates.TemplateResponse("bot_control.html", {"request": request})
+
+@app.get("/logout")
+async def logout():
+    response = RedirectResponse(url="/login", status_code=303)
+    response.delete_cookie("admin_auth")
+    return response
 
 if __name__ == "__main__":
     import uvicorn
