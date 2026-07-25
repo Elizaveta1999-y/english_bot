@@ -5,9 +5,8 @@ from fastapi.responses import HTMLResponse, RedirectResponse
 from fastapi.templating import Jinja2Templates
 import asyncpg
 import httpx
-
-# Загрузка переменных окружения (для локальной разработки)
 from dotenv import load_dotenv
+
 load_dotenv()
 
 app = FastAPI()
@@ -16,7 +15,7 @@ templates = Jinja2Templates(directory="templates")
 DATABASE_URL = os.getenv("DATABASE_URL")
 BOT_TOKEN = os.getenv("BOT_TOKEN")
 ADMIN_PASSWORD = os.getenv("ADMIN_PASSWORD", "admin123")
-WEBHOOK_URL = os.getenv("WEBHOOK_URL")  # например, https://your-bot.onrender.com/webhook
+WEBHOOK_URL = os.getenv("WEBHOOK_URL")
 
 if not DATABASE_URL:
     raise ValueError("DATABASE_URL is not set")
@@ -26,9 +25,29 @@ if not BOT_TOKEN:
 async def get_db():
     return await asyncpg.connect(DATABASE_URL)
 
-# ---- Вспомогательная функция для работы с вебхуком ----
+# --- Автоматическое добавление колонок при запуске ---
+async def ensure_columns():
+    conn = await get_db()
+    try:
+        await conn.execute("""
+            ALTER TABLE users
+            ADD COLUMN IF NOT EXISTS subscription_until BIGINT DEFAULT 0,
+            ADD COLUMN IF NOT EXISTS trial_started BIGINT DEFAULT 0,
+            ADD COLUMN IF NOT EXISTS trial_until BIGINT DEFAULT 0,
+            ADD COLUMN IF NOT EXISTS total_voice_seconds_month BIGINT DEFAULT 0,
+            ADD COLUMN IF NOT EXISTS voice_reset_month INTEGER DEFAULT 0
+        """)
+        print("✅ Колонки проверены и добавлены (если отсутствовали)")
+    except Exception as e:
+        print(f"⚠️ Ошибка при добавлении колонок: {e}")
+    finally:
+        await conn.close()
+
+@app.on_event("startup")
+async def startup():
+    await ensure_columns()
+
 async def set_webhook(enable: bool):
-    """Установить или удалить вебхук Telegram."""
     if enable:
         if not WEBHOOK_URL:
             raise ValueError("WEBHOOK_URL не задан")
@@ -180,14 +199,13 @@ async def disable_bot(password: str = Form(...)):
     except Exception as e:
         return {"status": "error", "message": str(e)}
 
-# ---- Страница управления ботом (дополнительно) ----
+# ---- Страница управления ботом ----
 @app.get("/bot", response_class=HTMLResponse)
 async def bot_control(request: Request, password: str = None):
     if password != ADMIN_PASSWORD:
         return HTMLResponse("<h1>Доступ запрещён</h1>", status_code=401)
     return templates.TemplateResponse("bot_control.html", {"request": request, "password": password})
 
-# ---- Запуск (для локальной разработки) ----
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run("admin_app:app", host="0.0.0.0", port=8000, reload=True)
