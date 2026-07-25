@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>🤖 Управление ботом</h2>
+<div class="mt-4">
+    <form method="post" action="/bot/enable?password={{ password }}" class="d-inline">
+        <input type="hidden" name="password" value="{{ password }}">
+        <button class="btn btn-success btn-lg" type="submit">🟢 Включить бота</button>
+    </form>
+    <form method="post" action="/bot/disable?password={{ password }}" class="d-inline ms-3">
+        <input type="hidden" name="password" value="{{ password }}">
+        <button class="btn btn-danger btn-lg" type="submit">🔴 Выключить бота</button>
+    </form>
+</div>
+<p class="mt-3"><a href="/?password={{ password }}">← На главную</a></p>
+{% endblock %}

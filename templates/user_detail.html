@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>👤 Пользователь {{ user.user_id }}</h2>
+<div class="card mt-3">
+    <div class="card-body">
+        <p><strong>Имя:</strong> {{ user.first_name }} {{ user.last_name or '' }}</p>
+        <p><strong>Username:</strong> {{ user.username or '—' }}</p>
+        <p><strong>Дата регистрации:</strong> {{ user.registered_at | datetimeformat }}</p>
+        <p><strong>Последняя активность:</strong> {{ user.last_active | datetimeformat }}</p>
+        <p><strong>Подписка до:</strong> {{ user.subscription_until | datetimeformat }}</p>
+        <p><strong>Пробный до:</strong> {{ user.trial_until | datetimeformat }}</p>
+        <p><strong>Использовано голоса (месяц):</strong> {{ (user.total_voice_seconds_month / 60) | round(1) }} мин</p>
+    </div>
+</div>
+
+<h4 class="mt-4">📈 Прогресс по тренажёрам</h4>
+<div class="table-responsive">
+    <table class="table table-sm">
+        <thead><tr><th>Тип</th><th>Правильно</th><th>Неправильно</th><th>Точность</th></tr></thead>
+        <tbody>
+        {% for key, data in progress.items() %}
+            <tr>
+                <td>{{ key }}</td>
+                <td>{{ data.correct }}</td>
+                <td>{{ data.wrong }}</td>
+                <td>{% if data.correct + data.wrong > 0 %}{{ (data.correct / (data.correct + data.wrong) * 100) | round(1) }}%{% else %}—{% endif %}</td>
+            </tr>
+        {% else %}
+            <tr><td colspan="4">Нет данных</td></tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<h4>✍️ Письмо</h4>
+<div class="table-responsive">
+    <table class="table table-sm">
+        <thead><tr><th>Тип</th><th>Проверок</th><th>Сумма баллов</th><th>Средний</th></tr></thead>
+        <tbody>
+        {% for key, data in writing.items() %}
+            <tr>
+                <td>{{ key }}</td>
+                <td>{{ data.answered }}</td>
+                <td>{{ data.score }}</td>
+                <td>{% if data.answered > 0 %}{{ (data.score / data.answered) | round(1) }}{% else %}—{% endif %}</td>
+            </tr>
+        {% else %}
+            <tr><td colspan="4">Нет данных</td></tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<h4>🗣️ Говорение</h4>
+<div class="table-responsive">
+    <table class="table table-sm">
+        <thead><tr><th>Тип</th><th>Проверок</th><th>Сумма баллов</th><th>Средний</th></tr></thead>
+        <tbody>
+        {% for key, data in govorenie.items() %}
+            <tr>
+                <td>{{ key }}</td>
+                <td>{{ data.answered }}</td>
+                <td>{{ data.score }}</td>
+                <td>{% if data.answered > 0 %}{{ (data.score / data.answered) | round(1) }}{% else %}—{% endif %}</td>
+            </tr>
+        {% else %}
+            <tr><td colspan="4">Нет данных</td></tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<h4>❌ Ошибки</h4>
+<div class="table-responsive">
+    <table class="table table-sm">
+        <thead><tr><th>Тип</th><th>Количество</th></tr></thead>
+        <tbody>
+        {% for key, cnt in errors.items() %}
+            <tr><td>{{ key }}</td><td>{{ cnt }}</td></tr>
+        {% else %}
+            <tr><td colspan="2">Нет ошибок</td></tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<h4>🛠️ Управление подпиской</h4>
+<form method="post" action="/user/{{ user.user_id }}/extend?password={{ request.query_params.get('password') }}" class="d-inline">
+    <input type="hidden" name="password" value="{{ request.query_params.get('password') }}">
+    <div class="input-group mb-2" style="max-width: 300px;">
+        <input type="number" name="days" class="form-control" placeholder="Дней" value="30" min="1">
+        <button class="btn btn-success" type="submit">➕ Продлить</button>
+    </div>
+</form>
+<form method="post" action="/user/{{ user.user_id }}/cancel?password={{ request.query_params.get('password') }}" class="d-inline">
+    <input type="hidden" name="password" value="{{ request.query_params.get('password') }}">
+    <button class="btn btn-danger" type="submit">❌ Отменить подписку</button>
+</form>
+<a href="/users?password={{ request.query_params.get('password') }}" class="btn btn-secondary">🔙 Назад</a>
+{% endblock %}

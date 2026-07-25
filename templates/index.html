@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>📊 Общая статистика</h2>
+<div class="row mt-4">
+    <div class="col-md-3 col-sm-6 mb-3">
+        <div class="card text-white bg-primary">
+            <div class="card-body">
+                <h5 class="card-title">👥 Всего пользователей</h5>
+                <p class="card-text display-6">{{ stats.total_users }}</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 col-sm-6 mb-3">
+        <div class="card text-white bg-success">
+            <div class="card-body">
+                <h5 class="card-title">🟢 Активны за неделю</h5>
+                <p class="card-text display-6">{{ stats.active_week }}</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 col-sm-6 mb-3">
+        <div class="card text-white bg-warning">
+            <div class="card-body">
+                <h5 class="card-title">💳 Активных подписок</h5>
+                <p class="card-text display-6">{{ stats.subscriptions }}</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 col-sm-6 mb-3">
+        <div class="card text-white bg-info">
+            <div class="card-body">
+                <h5 class="card-title">🧪 Пробный период</h5>
+                <p class="card-text display-6">{{ stats.trial_active }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">🎤 Использовано голосовых минут (всего)</h5>
+                <p class="card-text display-6">{{ stats.total_voice_minutes }} мин</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="mt-4">
+    <a href="/bot?password={{ request.query_params.get('password') }}" class="btn btn-secondary btn-lg">🤖 Управление ботом</a>
+</div>
+{% endblock %}
