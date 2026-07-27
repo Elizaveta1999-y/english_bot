@@ -108,6 +108,31 @@ async def init_db():
             state JSONB NOT NULL DEFAULT '{}'::jsonb
         )
     """)
+    # ---- ДОБАВЛЕННЫЕ ТАБЛИЦЫ ДЛЯ АДМИНКИ И БОНУСОВ ----
+    # Таблица настроек бота (для технических работ)
+    await conn.execute("""
+        CREATE TABLE IF NOT EXISTS bot_settings (
+            key TEXT PRIMARY KEY,
+            value TEXT
+        )
+    """)
+    # Таблица заблокированных пользователей
+    await conn.execute("""
+        CREATE TABLE IF NOT EXISTS blocked_users (
+            user_id BIGINT PRIMARY KEY
+        )
+    """)
+    # Добавляем колонки для подписки, пробного периода и бонусов
+    await conn.execute("""
+        ALTER TABLE users
+        ADD COLUMN IF NOT EXISTS subscription_until BIGINT DEFAULT 0,
+        ADD COLUMN IF NOT EXISTS trial_started BIGINT DEFAULT 0,
+        ADD COLUMN IF NOT EXISTS trial_until BIGINT DEFAULT 0,
+        ADD COLUMN IF NOT EXISTS total_voice_seconds_month BIGINT DEFAULT 0,
+        ADD COLUMN IF NOT EXISTS voice_reset_month INTEGER DEFAULT 0,
+        ADD COLUMN IF NOT EXISTS bonus_notification BOOLEAN DEFAULT FALSE,
+        ADD COLUMN IF NOT EXISTS bonus_reason TEXT DEFAULT ''
+    """)
     await conn.close()
 
 # ---------- Пользователи ----------
@@ -448,4 +473,80 @@ async def set_random_order(user_id: int, level_key: str, order: list):
         ON CONFLICT (user_id, level_key)
         DO UPDATE SET order_data = $3::jsonb
     """, user_id, level_key, order)
+    await conn.close()
+
+# ==============================================
+# ---------- НОВЫЕ ФУНКЦИИ ДЛЯ БОНУСНЫХ УВЕДОМЛЕНИЙ ----------
+# ==============================================
+
+async def ensure_bonus_columns():
+    """Проверяет наличие колонок для бонусов и добавляет их, если отсутствуют."""
+    conn = await get_connection()
+    await conn.execute("""
+        ALTER TABLE users
+        ADD COLUMN IF NOT EXISTS bonus_notification BOOLEAN DEFAULT FALSE,
+        ADD COLUMN IF NOT EXISTS bonus_reason TEXT DEFAULT ''
+    """)
+    await conn.close()
+
+async def set_bonus_notification(user_id: int, reason: str = ""):
+    """Устанавливает флаг уведомления о бонусе для пользователя."""
+    conn = await get_connection()
+    await conn.execute("""
+        UPDATE users
+        SET bonus_notification = TRUE, bonus_reason = $1
+        WHERE user_id = $2
+    """, reason, user_id)
+    await conn.close()
+
+async def clear_bonus_notification(user_id: int):
+    """Сбрасывает флаг уведомления после показа."""
+    conn = await get_connection()
+    await conn.execute("""
+        UPDATE users
+        SET bonus_notification = FALSE, bonus_reason = ''
+        WHERE user_id = $1
+    """, user_id)
+    await conn.close()
+
+async def get_bonus_notification(user_id: int):
+    """Возвращает (bonus_notification, bonus_reason) для пользователя."""
+    conn = await get_connection()
+    row = await conn.fetchrow("SELECT bonus_notification, bonus_reason FROM users WHERE user_id = $1", user_id)
+    await conn.close()
+    if row:
+        return row["bonus_notification"], row["bonus_reason"] or ""
+    return False, ""
+
+# ---------- ДОПОЛНИТЕЛЬНЫЕ ФУНКЦИИ ДЛЯ АДМИНКИ ----------
+async def get_bot_active() -> bool:
+    """Возвращает статус активности бота (из bot_settings)."""
+    conn = await get_connection()
+    val = await conn.fetchval("SELECT value FROM bot_settings WHERE key = 'is_active'")
+    await conn.close()
+    return val == 'true'
+
+async def set_bot_active(active: bool):
+    """Устанавливает статус активности бота."""
+    conn = await get_connection()
+    await conn.execute("UPDATE bot_settings SET value = $1 WHERE key = 'is_active'", 'true' if active else 'false')
+    await conn.close()
+
+async def is_user_blocked(user_id: int) -> bool:
+    """Проверяет, заблокирован ли пользователь."""
+    conn = await get_connection()
+    row = await conn.fetchrow("SELECT 1 FROM blocked_users WHERE user_id = $1", user_id)
+    await conn.close()
+    return row is not None
+
+async def block_user(user_id: int):
+    """Блокирует пользователя."""
+    conn = await get_connection()
+    await conn.execute("INSERT INTO blocked_users (user_id) VALUES ($1) ON CONFLICT DO NOTHING", user_id)
+    await conn.close()
+
+async def unblock_user(user_id: int):
+    """Разблокирует пользователя."""
+    conn = await get_connection()
+    await conn.execute("DELETE FROM blocked_users WHERE user_id = $1", user_id)
     await conn.close()

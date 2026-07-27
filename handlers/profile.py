@@ -16,6 +16,8 @@ from utils.db import (
     reset_grammar_progress,
     reset_all_user_progress,
     get_or_create_user,
+    clear_bonus_notification,
+    get_bonus_notification,
 )
 
 from handlers.start import show_main_menu
@@ -23,7 +25,7 @@ from handlers.start import show_main_menu
 logger = logging.getLogger(__name__)
 router = Router()
 
-# ---------- Константы для ключей чтения (из TYPE_MAP в reading.py) ----------
+# ---------- Константы для ключей чтения ----------
 READING_TYPE_KEYS = [
     "Подбор_заголовка",
     "True_False_Not_stated",
@@ -31,10 +33,8 @@ READING_TYPE_KEYS = [
     "Восстановление_порядка_абзацев"
 ]
 
-# ---------- Функции для сбора статистики из PostgreSQL ----------
-
+# ---------- Функции для сбора статистики ----------
 async def get_progress_summary_for_keys(user_id: int, type_keys: list) -> dict:
-    """Суммирует correct и wrong по всем переданным type_key."""
     if not type_keys:
         return {"correct": 0, "wrong": 0, "total": 0, "percent": 0}
     conn = await get_connection()
@@ -53,7 +53,6 @@ async def get_progress_summary_for_keys(user_id: int, type_keys: list) -> dict:
     return {"correct": correct, "wrong": wrong, "total": total, "percent": percent}
 
 async def get_grammar_summary(user_id: int) -> dict:
-    """Суммирует все ключи, начинающиеся с 'grammar_'."""
     conn = await get_connection()
     row = await conn.fetchrow(
         "SELECT COALESCE(SUM(correct), 0) as correct, COALESCE(SUM(wrong), 0) as wrong FROM progress WHERE user_id = $1 AND type_key LIKE 'grammar_%'",
@@ -67,11 +66,9 @@ async def get_grammar_summary(user_id: int) -> dict:
     return {"correct": correct, "wrong": wrong, "total": total, "percent": percent}
 
 async def get_reading_summary(user_id: int) -> dict:
-    """Суммирует ключи из READING_TYPE_KEYS."""
     return await get_progress_summary_for_keys(user_id, READING_TYPE_KEYS)
 
 async def get_lexis_summary(user_id: int) -> dict:
-    """Суммирует все ключи, начинающиеся с 'words_'."""
     conn = await get_connection()
     row = await conn.fetchrow(
         "SELECT COALESCE(SUM(correct), 0) as correct, COALESCE(SUM(wrong), 0) as wrong FROM progress WHERE user_id = $1 AND type_key LIKE 'words_%'",
@@ -85,7 +82,6 @@ async def get_lexis_summary(user_id: int) -> dict:
     return {"correct": correct, "wrong": wrong, "total": total, "percent": percent}
 
 async def get_writing_summary(user_id: int) -> dict:
-    """Суммирует данные из writing_progress."""
     conn = await get_connection()
     row = await conn.fetchrow(
         "SELECT COALESCE(SUM(total_answered), 0) as answered, COALESCE(SUM(total_score), 0) as score_sum FROM writing_progress WHERE user_id = $1",
@@ -98,7 +94,6 @@ async def get_writing_summary(user_id: int) -> dict:
     return {"answered": answered, "score_sum": score_sum, "avg": avg}
 
 async def get_speaking_summary(user_id: int) -> dict:
-    """Суммирует данные из govorenie_progress."""
     conn = await get_connection()
     row = await conn.fetchrow(
         "SELECT COALESCE(SUM(total_answered), 0) as answered, COALESCE(SUM(total_score), 0) as score_sum FROM govorenie_progress WHERE user_id = $1",
@@ -111,7 +106,6 @@ async def get_speaking_summary(user_id: int) -> dict:
     return {"answered": answered, "score_sum": score_sum, "avg": avg}
 
 async def count_user_errors(user_id: int) -> dict:
-    """Считает ошибки из таблицы errors, группируя по основному режиму (до первого '_')."""
     conn = await get_connection()
     rows = await conn.fetch(
         "SELECT type_key, COUNT(*) as cnt FROM errors WHERE user_id = $1 GROUP BY type_key",
@@ -129,8 +123,6 @@ async def count_user_errors(user_id: int) -> dict:
         by_mode[mode] = by_mode.get(mode, 0) + row["cnt"]
         total += row["cnt"]
     return {"total": total, "by_mode": by_mode}
-
-# ---------- Вспомогательные функции для профиля ----------
 
 async def get_user_profile(user_id: int):
     conn = await get_connection()
@@ -172,14 +164,11 @@ async def reset_full_progress(user_id: int):
     await conn.execute("DELETE FROM govorenie_progress WHERE user_id = $1", user_id)
     await conn.close()
 
-# ---------- Функции для обновления статистики (для совместимости с other handlers) ----------
-
+# ---------- Функции для обновления статистики (для совместимости) ----------
 async def _update_stats_after_lesson(user_id: int):
-    # Пока заглушка, т.к. неясно, что считать "уроком"
     pass
 
 async def _update_stats_after_practice(user_id: int, correct: int, wrong: int):
-    # Пока заглушка
     pass
 
 def update_stats_after_lesson(user_id: int):
@@ -189,7 +178,6 @@ def update_stats_after_practice(user_id: int, correct: int, wrong: int):
     asyncio.run(_update_stats_after_practice(user_id, correct, wrong))
 
 # ---------- Клавиатуры ----------
-
 def get_profile_keyboard():
     return InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(text="⚙️ Настройки", callback_data="profile_settings")],
@@ -211,20 +199,12 @@ def get_subscription_keyboard():
         [InlineKeyboardButton(text="🔙 Назад", callback_data="profile_back")]
     ])
 
-def get_confirm_reset_keyboard():
-    return InlineKeyboardMarkup(inline_keyboard=[
-        [InlineKeyboardButton(text="✅ Да, сбросить", callback_data="profile_reset_do")],
-        [InlineKeyboardButton(text="❌ Отмена", callback_data="profile_back")]
-    ])
-
 # ---------- Обработчик главного меню статистики ----------
-
 @router.callback_query(lambda c: c.data == "profile_menu")
 async def profile_menu(callback: CallbackQuery):
     user_id = callback.from_user.id
     await update_last_active(user_id)
 
-    # Убедимся, что пользователь есть в БД
     profile = await get_user_profile(user_id)
     if not profile:
         await get_or_create_user(user_id, callback.from_user.username, callback.from_user.first_name, callback.from_user.last_name)
@@ -235,60 +215,66 @@ async def profile_menu(callback: CallbackQuery):
 
     streak = await calculate_streak(user_id)
 
+    # ---- Проверка бонусного уведомления ----
+    show_bonus, bonus_reason = await get_bonus_notification(user_id)
+    bonus_message = ""
+    if show_bonus:
+        sub_end = profile.get("subscription_until", 0)
+        if sub_end:
+            expires = datetime.fromtimestamp(sub_end).strftime("%d.%m.%Y")
+            bonus_message = (
+                f"🎉 Тебе начислены бонусные дни!\n"
+                f"Твоя подписка продлена до {expires}.\n"
+                f"{bonus_reason}\n\n"
+            )
+        else:
+            bonus_message = (
+                f"🎉 Тебе начислены бонусные дни!\n"
+                f"{bonus_reason}\n\n"
+            )
+        await clear_bonus_notification(user_id)
+
     # Сбор статистики
     skills = {}
     any_data = False
 
-    # Грамматика
     grammar_data = await get_grammar_summary(user_id)
     if grammar_data["total"] > 0:
         any_data = True
         skills["grammar"] = {"percent": grammar_data["percent"], "correct": grammar_data["correct"], "total": grammar_data["total"]}
 
-    # Аудирование - пока нет данных из PostgreSQL (используется Redis)
-    # Пока оставляем заглушку "нет данных"
-    # В будущем можно будет добавить сбор из Redis
-
-    # Чтение
     reading_data = await get_reading_summary(user_id)
     if reading_data["total"] > 0:
         any_data = True
         skills["reading"] = {"percent": reading_data["percent"], "correct": reading_data["correct"], "total": reading_data["total"]}
 
-    # Лексика
     lexis_data = await get_lexis_summary(user_id)
     if lexis_data["total"] > 0:
         any_data = True
         skills["lexis"] = {"percent": lexis_data["percent"], "correct": lexis_data["correct"], "total": lexis_data["total"]}
 
-    # Письмо
     writing = await get_writing_summary(user_id)
     if writing["answered"] > 0:
         any_data = True
         skills["writing"] = {"avg": writing["avg"], "checks": writing["answered"]}
 
-    # Говорение
     speaking = await get_speaking_summary(user_id)
     if speaking["answered"] > 0:
         any_data = True
         skills["speaking"] = {"avg": speaking["avg"], "checks": speaking["answered"]}
 
-    # Ошибки
     mistakes = await count_user_errors(user_id)
     total_mistakes = mistakes["total"]
     by_mode = mistakes["by_mode"]
 
-    # Определяем самый слабый навык
     weak_skill = None
     weak_value = 100
-    # Проверяем тренажёры
     for mode in ["grammar", "reading", "lexis"]:
         if mode in skills and skills[mode].get("total", 0) > 0:
             pct = skills[mode].get("percent", 0)
             if pct < weak_value:
                 weak_value = pct
                 weak_skill = mode
-    # Проверяем продуктивные
     for mode in ["writing", "speaking"]:
         if mode in skills and skills[mode].get("checks", 0) > 0:
             avg = skills[mode].get("avg", 5)
@@ -296,11 +282,11 @@ async def profile_menu(callback: CallbackQuery):
                 weak_value = avg
                 weak_skill = mode
 
-    # ---------- Формирование текста (первый вариант) ----------
-    text = f"🔥 Серия: {streak} день" + ("ей" if streak > 1 else "")
+    # Формируем текст
+    text = bonus_message
+    text += f"🔥 Серия: {streak} день" + ("ей" if streak > 1 else "")
     text += f"\n⏱️ Время занятий: 0 мин\n\n"
 
-    # Тренажёры
     text += "▸ Тренажёры (точность ответов):\n"
     for mode, label in [("grammar", "Грамматика"), ("reading", "Чтение"), ("lexis", "Лексика")]:
         data = skills.get(mode, {})
@@ -312,10 +298,8 @@ async def profile_menu(callback: CallbackQuery):
             text += f"  {label}   {bar} {percent}%{emoji}\n"
         else:
             text += f"  {label}   нет данных\n"
-    # Аудирование пока нет данных
     text += "  Аудирование   нет данных\n"
 
-    # Продуктивные навыки
     text += "\n▸ Продуктивные навыки (средний балл):\n"
     for mode, label in [("writing", "Письмо"), ("speaking", "Говорение")]:
         if mode in skills and skills[mode].get("checks", 0) > 0:
@@ -325,12 +309,10 @@ async def profile_menu(callback: CallbackQuery):
         else:
             text += f"  {label}   нет данных\n"
 
-    # Активность (заглушки)
     text += "\n▸ Активность:\n"
     text += "  Общение с AI: пока нет данных\n"
     text += "  Ролевые игры: пока нет данных\n"
 
-    # Ошибки
     if total_mistakes > 0:
         text += f"\n⚠️ Ошибки: {total_mistakes}"
         if by_mode:
@@ -343,7 +325,6 @@ async def profile_menu(callback: CallbackQuery):
     else:
         text += "\n✅ Ошибок нет\n"
 
-    # Совет
     if not any_data:
         advice = "Начните с любого тренажёра."
     elif weak_skill is None:
@@ -365,8 +346,7 @@ async def profile_menu(callback: CallbackQuery):
 
     text += f"\n💡 Совет: {advice}\n"
 
-    # Подписка
-    sub_end = profile.get("subscription_end", 0)
+    sub_end = profile.get("subscription_until", 0)
     if sub_end and sub_end > int(datetime.now().timestamp()):
         expires = datetime.fromtimestamp(sub_end).strftime("%d.%m.%Y")
         text += f"\n💳 Подписка: активна до {expires}"
@@ -376,8 +356,7 @@ async def profile_menu(callback: CallbackQuery):
     await callback.message.edit_text(text, reply_markup=get_profile_keyboard(), parse_mode="HTML")
     await callback.answer()
 
-# ---------- Остальные обработчики (Настройки, Подписка, Сброс, Назад) ----------
-
+# ---------- Остальные обработчики ----------
 @router.callback_query(lambda c: c.data == "profile_settings")
 async def profile_settings(callback: CallbackQuery):
     keyboard = get_settings_keyboard(True, "10:00")
@@ -398,7 +377,7 @@ async def profile_notif_time(callback: CallbackQuery):
 async def profile_subscription(callback: CallbackQuery):
     user_id = callback.from_user.id
     profile = await get_user_profile(user_id)
-    sub_end = profile.get("subscription_end", 0) if profile else 0
+    sub_end = profile.get("subscription_until", 0) if profile else 0
     if sub_end and sub_end > int(datetime.now().timestamp()):
         expires = datetime.fromtimestamp(sub_end).strftime("%d.%m.%Y")
         text = f"💳 <b>Подписка активна</b>\n\nДата окончания: {expires}"
