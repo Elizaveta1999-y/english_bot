@@ -25,11 +25,9 @@ if not BOT_TOKEN:
 async def get_db():
     return await asyncpg.connect(DATABASE_URL)
 
-# --- Автоматическое добавление колонок и таблиц ---
 async def ensure_db_structure():
     conn = await get_db()
     try:
-        # Добавляем все колонки для users (включая бонусные)
         await conn.execute("""
             ALTER TABLE users
             ADD COLUMN IF NOT EXISTS subscription_until BIGINT DEFAULT 0,
@@ -40,7 +38,6 @@ async def ensure_db_structure():
             ADD COLUMN IF NOT EXISTS bonus_notification BOOLEAN DEFAULT FALSE,
             ADD COLUMN IF NOT EXISTS bonus_reason TEXT DEFAULT ''
         """)
-        # Таблица настроек бота
         await conn.execute("""
             CREATE TABLE IF NOT EXISTS bot_settings (
                 key TEXT PRIMARY KEY,
@@ -51,7 +48,6 @@ async def ensure_db_structure():
             INSERT INTO bot_settings (key, value) VALUES ('is_active', 'true')
             ON CONFLICT (key) DO NOTHING
         """)
-        # Таблица заблокированных пользователей
         await conn.execute("""
             CREATE TABLE IF NOT EXISTS blocked_users (
                 user_id BIGINT PRIMARY KEY
@@ -67,7 +63,6 @@ async def ensure_db_structure():
 async def startup():
     await ensure_db_structure()
 
-# ---- Проверка аутентификации через cookie ----
 def is_authenticated(request: Request) -> bool:
     return request.cookies.get("admin_auth") == "true"
 
@@ -79,7 +74,6 @@ async def auth_middleware(request: Request, call_next):
         return RedirectResponse(url="/login", status_code=303)
     return await call_next(request)
 
-# ---- Страница входа ----
 @app.get("/login", response_class=HTMLResponse)
 async def login_page(request: Request):
     return templates.TemplateResponse("login.html", {"request": request})
@@ -98,7 +92,6 @@ async def logout():
     response.delete_cookie("admin_auth")
     return response
 
-# ---- Функции для работы с настройками бота ----
 async def get_bot_active() -> bool:
     conn = await get_db()
     val = await conn.fetchval("SELECT value FROM bot_settings WHERE key = 'is_active'")
@@ -126,13 +119,11 @@ async def unblock_user(user_id: int):
     await conn.execute("DELETE FROM blocked_users WHERE user_id = $1", user_id)
     await conn.close()
 
-# ---- Вспомогательная функция для установки бонусного уведомления ----
 async def set_bonus_notification(user_id: int, reason: str):
     conn = await get_db()
     await conn.execute("UPDATE users SET bonus_notification = TRUE, bonus_reason = $1 WHERE user_id = $2", reason, user_id)
     await conn.close()
 
-# ---- Главная страница ----
 @app.get("/", response_class=HTMLResponse)
 async def index(request: Request):
     conn = await get_db()
@@ -157,7 +148,6 @@ async def index(request: Request):
     }
     return templates.TemplateResponse("index.html", {"request": request, "stats": stats})
 
-# ---- Список пользователей с поиском ----
 @app.get("/users", response_class=HTMLResponse)
 async def users_list(request: Request, search: str = ""):
     conn = await get_db()
@@ -191,7 +181,6 @@ async def users_list(request: Request, search: str = ""):
         })
     return templates.TemplateResponse("users.html", {"request": request, "users": users, "search": search})
 
-# ---- Детальная страница пользователя ----
 @app.get("/user/{user_id}", response_class=HTMLResponse)
 async def user_detail(request: Request, user_id: int):
     conn = await get_db()
@@ -231,7 +220,6 @@ async def user_detail(request: Request, user_id: int):
         "blocked": blocked
     })
 
-# ---- Продлить подписку конкретному пользователю (с причиной) ----
 @app.post("/user/{user_id}/extend")
 async def extend_subscription(user_id: int, days: int = Form(...), reason: str = Form("")):
     conn = await get_db()
@@ -245,7 +233,6 @@ async def extend_subscription(user_id: int, days: int = Form(...), reason: str =
     await conn.close()
     return RedirectResponse(url=f"/user/{user_id}", status_code=303)
 
-# ---- Отменить подписку конкретному пользователю ----
 @app.post("/user/{user_id}/cancel")
 async def cancel_subscription(user_id: int):
     conn = await get_db()
@@ -253,7 +240,6 @@ async def cancel_subscription(user_id: int):
     await conn.close()
     return RedirectResponse(url=f"/user/{user_id}", status_code=303)
 
-# ---- Сброс прогресса конкретного пользователя ----
 @app.post("/user/{user_id}/reset_progress")
 async def reset_user_progress(user_id: int):
     conn = await get_db()
@@ -268,7 +254,6 @@ async def reset_user_progress(user_id: int):
     await conn.close()
     return RedirectResponse(url=f"/user/{user_id}", status_code=303)
 
-# ---- Блокировка/разблокировка пользователя ----
 @app.post("/user/{user_id}/block")
 async def block_user_route(user_id: int):
     await block_user(user_id)
@@ -279,18 +264,15 @@ async def unblock_user_route(user_id: int):
     await unblock_user(user_id)
     return RedirectResponse(url=f"/user/{user_id}", status_code=303)
 
-# ---- Продление подписки ВСЕМ пользователям (с причиной) ----
 @app.post("/extend_all")
 async def extend_all_subscriptions(days: int = Form(...), reason: str = Form("")):
     conn = await get_db()
     now = int(datetime.now().timestamp())
-    # Обновляем подписку для всех, у кого она активна (subscription_until > 0)
     await conn.execute("""
         UPDATE users
         SET subscription_until = GREATEST(subscription_until, $1) + $2 * 86400
         WHERE subscription_until > 0
     """, now, days)
-    # Устанавливаем уведомление для всех обновлённых пользователей
     if reason.strip():
         await conn.execute("""
             UPDATE users
@@ -300,19 +282,16 @@ async def extend_all_subscriptions(days: int = Form(...), reason: str = Form("")
     await conn.close()
     return RedirectResponse(url="/", status_code=303)
 
-# ---- Управление состоянием бота (технические работы) ----
 @app.post("/bot/toggle")
 async def toggle_bot(active: bool = Form(...)):
     await set_bot_active(active)
     return RedirectResponse(url="/bot", status_code=303)
 
-# ---- Страница управления ботом ----
 @app.get("/bot", response_class=HTMLResponse)
 async def bot_control(request: Request):
     is_active = await get_bot_active()
     return templates.TemplateResponse("bot_control.html", {"request": request, "is_active": is_active})
 
-# ---- Webhook управление (экстренное) ----
 async def set_webhook(enable: bool):
     if enable:
         if not WEBHOOK_URL:

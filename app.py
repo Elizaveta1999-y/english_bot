@@ -2,7 +2,7 @@ import os
 import logging
 from aiohttp import web
 from aiogram import Bot, Dispatcher
-from aiogram.types import BotCommand
+from aiogram.types import BotCommand, Update
 from aiogram.webhook.aiohttp_server import SimpleRequestHandler, setup_application
 from handlers import start, speaking, roleplay, common, voice, lessons, words, profile, skills, support, listening, reading, writing  
 from handlers.subscription import router as subscription_router
@@ -10,9 +10,10 @@ from handlers import listening
 from handlers.reading import router as reading_router
 from middleware.access import AccessMiddleware
 from handlers.grammar import router as grammar_router
-from utils.db import init_db
+from utils.db import init_db, get_bot_active, is_user_blocked
 from middleware.isolation import ModeIsolationMiddleware
 from handlers.govorenie import router as govorenie_router
+import traceback
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -20,6 +21,8 @@ logger = logging.getLogger(__name__)
 BOT_TOKEN = os.getenv("BOT_TOKEN")
 if not BOT_TOKEN:
     raise ValueError("BOT_TOKEN is not set")
+
+ADMIN_ID = int(os.getenv("ADMIN_ID", 0))  # ваш Telegram ID для уведомлений об ошибках
 
 WEBHOOK_PATH = "/webhook"
 WEBHOOK_SECRET = "my-secret-key"
@@ -33,9 +36,25 @@ async def log_update(handler, event, data):
     logger.info(f"📨 Received update: {event}")
     return await handler(event, data)
 
+# --------------------- Глобальный обработчик ошибок ---------------------
+@dp.errors()
+async def handle_errors(update: Update, exception: Exception):
+    error_text = ''.join(traceback.format_exception(None, exception, exception.__traceback__))
+    user_id = None
+    if update.message:
+        user_id = update.message.from_user.id
+    elif update.callback_query:
+        user_id = update.callback_query.from_user.id
+    logger.error(f"❌ Ошибка у пользователя {user_id}: {error_text}")
+    if ADMIN_ID:
+        try:
+            await bot.send_message(ADMIN_ID, f"⚠️ Ошибка в боте!\nПользователь: {user_id}\n\n{error_text[:500]}")
+        except Exception as e:
+            logger.error(f"Не удалось отправить уведомление админу: {e}")
+
 # --------------------- Подключение роутеров ---------------------
 dp.include_router(start.router)
-dp.include_router(words.router)          # <--- ПЕРЕНЕСЛИ СЮДА
+dp.include_router(words.router)
 dp.include_router(govorenie_router)
 dp.include_router(writing.router)
 dp.include_router(reading.router)
@@ -45,7 +64,7 @@ dp.include_router(support.router)
 dp.include_router(subscription_router)
 dp.include_router(roleplay.router)
 dp.include_router(voice.router)
-dp.include_router(common.router)         # Если здесь есть общий хендлер, он будет позже
+dp.include_router(common.router)
 dp.include_router(lessons.router)
 dp.include_router(speaking.router)
 dp.include_router(profile.router)
@@ -53,6 +72,30 @@ dp.include_router(skills.router)
 
 dp.message.middleware(ModeIsolationMiddleware())
 
+# --------------------- Middleware для проверки статуса бота и блокировок ---------------------
+@dp.message.middleware()
+@dp.callback_query.middleware()
+async def check_bot_status(handler, event, data):
+    user_id = None
+    if hasattr(event, 'from_user'):
+        user_id = event.from_user.id
+    elif hasattr(event, 'message') and event.message:
+        user_id = event.message.from_user.id
+    elif hasattr(event, 'callback_query') and event.callback_query:
+        user_id = event.callback_query.from_user.id
+    
+    if user_id:
+        # Проверяем, активен ли бот
+        if not await get_bot_active():
+            await event.answer("🤖 Друзья! Бот решил немного передохнуть и отправился на техническое обслуживание.\nСкоро все наладим и вернём бота в строй так быстро, как только сможем.\nРекомендуем самостоятельно проверять статус через некоторое время.", show_alert=True if hasattr(event, 'answer') else False)
+            return
+        # Проверяем, не заблокирован ли пользователь
+        if await is_user_blocked(user_id):
+            await event.answer("Ваш доступ ограничен.", show_alert=True if hasattr(event, 'answer') else False)
+            return
+    return await handler(event, data)
+
+# --------------------- Команды и запуск ---------------------
 async def set_commands(bot: Bot):
     commands = [
         BotCommand(command="start", description="Главное меню"),
@@ -73,7 +116,6 @@ async def on_startup():
     await bot.set_webhook(webhook_url, secret_token=WEBHOOK_SECRET)
     logger.info(f"Webhook set to {webhook_url}")
     
-    # Проверяем настройки webhook
     webhook_info = await bot.get_webhook_info()
     logger.info(f"Webhook info: {webhook_info}")
     

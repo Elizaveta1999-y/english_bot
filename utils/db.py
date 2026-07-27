@@ -108,21 +108,8 @@ async def init_db():
             state JSONB NOT NULL DEFAULT '{}'::jsonb
         )
     """)
-    # ---- ДОБАВЛЕННЫЕ ТАБЛИЦЫ ДЛЯ АДМИНКИ И БОНУСОВ ----
-    # Таблица настроек бота (для технических работ)
-    await conn.execute("""
-        CREATE TABLE IF NOT EXISTS bot_settings (
-            key TEXT PRIMARY KEY,
-            value TEXT
-        )
-    """)
-    # Таблица заблокированных пользователей
-    await conn.execute("""
-        CREATE TABLE IF NOT EXISTS blocked_users (
-            user_id BIGINT PRIMARY KEY
-        )
-    """)
-    # Добавляем колонки для подписки, пробного периода и бонусов
+    # ---- НОВЫЕ ТАБЛИЦЫ И КОЛОНКИ ДЛЯ АДМИНКИ И БОНУСОВ ----
+    # Добавляем колонки для подписки, пробного периода, голоса и бонусов
     await conn.execute("""
         ALTER TABLE users
         ADD COLUMN IF NOT EXISTS subscription_until BIGINT DEFAULT 0,
@@ -132,6 +119,24 @@ async def init_db():
         ADD COLUMN IF NOT EXISTS voice_reset_month INTEGER DEFAULT 0,
         ADD COLUMN IF NOT EXISTS bonus_notification BOOLEAN DEFAULT FALSE,
         ADD COLUMN IF NOT EXISTS bonus_reason TEXT DEFAULT ''
+    """)
+    # Таблица настроек бота (для технических работ)
+    await conn.execute("""
+        CREATE TABLE IF NOT EXISTS bot_settings (
+            key TEXT PRIMARY KEY,
+            value TEXT
+        )
+    """)
+    # Вставляем начальную настройку активности бота
+    await conn.execute("""
+        INSERT INTO bot_settings (key, value) VALUES ('is_active', 'true')
+        ON CONFLICT (key) DO NOTHING
+    """)
+    # Таблица заблокированных пользователей
+    await conn.execute("""
+        CREATE TABLE IF NOT EXISTS blocked_users (
+            user_id BIGINT PRIMARY KEY
+        )
     """)
     await conn.close()
 
@@ -420,10 +425,6 @@ async def reset_govorenie_progress(user_id: int, task_type: str, level: str):
     await conn.close()
 
 # ---------- Функции для индекса прогресса (универсальные) ----------
-async def ensure_progress_index_table():
-    # Таблица создаётся в init_db, но на всякий случай проверяем
-    pass
-
 async def get_progress_index(user_id: int, type_key: str, level_key: str) -> int:
     conn = await get_connection()
     row = await conn.fetchrow(
@@ -450,10 +451,6 @@ async def reset_progress_index(user_id: int, type_key: str, level_key: str):
     await set_progress_index(user_id, type_key, level_key, 0)
 
 # ---------- Функции для случайного порядка ----------
-async def ensure_random_order_table():
-    # Таблица создаётся в init_db, на всякий случай оставляем пустую функцию
-    pass
-
 async def get_random_order(user_id: int, level_key: str) -> list:
     conn = await get_connection()
     row = await conn.fetchrow(
@@ -518,7 +515,7 @@ async def get_bonus_notification(user_id: int):
         return row["bonus_notification"], row["bonus_reason"] or ""
     return False, ""
 
-# ---------- ДОПОЛНИТЕЛЬНЫЕ ФУНКЦИИ ДЛЯ АДМИНКИ ----------
+# ---------- ФУНКЦИИ ДЛЯ УПРАВЛЕНИЯ БОТОМ (ТЕХНИЧЕСКИЕ РАБОТЫ) ----------
 async def get_bot_active() -> bool:
     """Возвращает статус активности бота (из bot_settings)."""
     conn = await get_connection()
@@ -532,6 +529,7 @@ async def set_bot_active(active: bool):
     await conn.execute("UPDATE bot_settings SET value = $1 WHERE key = 'is_active'", 'true' if active else 'false')
     await conn.close()
 
+# ---------- ФУНКЦИИ ДЛЯ БЛОКИРОВКИ ПОЛЬЗОВАТЕЛЕЙ ----------
 async def is_user_blocked(user_id: int) -> bool:
     """Проверяет, заблокирован ли пользователь."""
     conn = await get_connection()

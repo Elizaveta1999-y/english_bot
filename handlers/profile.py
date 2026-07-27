@@ -25,7 +25,6 @@ from handlers.start import show_main_menu
 logger = logging.getLogger(__name__)
 router = Router()
 
-# ---------- Константы для ключей чтения ----------
 READING_TYPE_KEYS = [
     "Подбор_заголовка",
     "True_False_Not_stated",
@@ -33,7 +32,6 @@ READING_TYPE_KEYS = [
     "Восстановление_порядка_абзацев"
 ]
 
-# ---------- Функции для сбора статистики ----------
 async def get_progress_summary_for_keys(user_id: int, type_keys: list) -> dict:
     if not type_keys:
         return {"correct": 0, "wrong": 0, "total": 0, "percent": 0}
@@ -164,7 +162,6 @@ async def reset_full_progress(user_id: int):
     await conn.execute("DELETE FROM govorenie_progress WHERE user_id = $1", user_id)
     await conn.close()
 
-# ---------- Функции для обновления статистики (для совместимости) ----------
 async def _update_stats_after_lesson(user_id: int):
     pass
 
@@ -177,7 +174,6 @@ def update_stats_after_lesson(user_id: int):
 def update_stats_after_practice(user_id: int, correct: int, wrong: int):
     asyncio.run(_update_stats_after_practice(user_id, correct, wrong))
 
-# ---------- Клавиатуры ----------
 def get_profile_keyboard():
     return InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(text="⚙️ Настройки", callback_data="profile_settings")],
@@ -199,7 +195,6 @@ def get_subscription_keyboard():
         [InlineKeyboardButton(text="🔙 Назад", callback_data="profile_back")]
     ])
 
-# ---------- Обработчик главного меню статистики ----------
 @router.callback_query(lambda c: c.data == "profile_menu")
 async def profile_menu(callback: CallbackQuery):
     user_id = callback.from_user.id
@@ -215,7 +210,6 @@ async def profile_menu(callback: CallbackQuery):
 
     streak = await calculate_streak(user_id)
 
-    # ---- Проверка бонусного уведомления ----
     show_bonus, bonus_reason = await get_bonus_notification(user_id)
     bonus_message = ""
     if show_bonus:
@@ -234,7 +228,6 @@ async def profile_menu(callback: CallbackQuery):
             )
         await clear_bonus_notification(user_id)
 
-    # Сбор статистики
     skills = {}
     any_data = False
 
@@ -282,7 +275,6 @@ async def profile_menu(callback: CallbackQuery):
                 weak_value = avg
                 weak_skill = mode
 
-    # Формируем текст
     text = bonus_message
     text += f"🔥 Серия: {streak} день" + ("ей" if streak > 1 else "")
     text += f"\n⏱️ Время занятий: 0 мин\n\n"
@@ -356,7 +348,6 @@ async def profile_menu(callback: CallbackQuery):
     await callback.message.edit_text(text, reply_markup=get_profile_keyboard(), parse_mode="HTML")
     await callback.answer()
 
-# ---------- Остальные обработчики ----------
 @router.callback_query(lambda c: c.data == "profile_settings")
 async def profile_settings(callback: CallbackQuery):
     keyboard = get_settings_keyboard(True, "10:00")
