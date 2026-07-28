@@ -1,20 +1,20 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h2>🤖 Управление ботом</h2>
+<h2>Управление ботом</h2>
 <div class="card mt-3">
     <div class="card-body">
         <p><strong>Текущий статус:</strong> 
             {% if is_active %}
-                <span class="badge bg-success">🟢 Бот активен</span>
+                <span class="badge bg-success">Бот активен</span>
             {% else %}
-                <span class="badge bg-danger">🔴 Режим технических работ</span>
+                <span class="badge bg-danger">Режим технических работ</span>
             {% endif %}
         </p>
         <form method="post" action="/bot/toggle">
             <input type="hidden" name="active" value="{% if is_active %}false{% else %}true{% endif %}">
             <button class="btn {% if is_active %}btn-danger{% else %}btn-success{% endif %}" type="submit">
-                {% if is_active %}🔴 Выключить бота (техработы){% else %}🟢 Включить бота{% endif %}
+                {% if is_active %}Выключить бота (техработы){% else %}Включить бота{% endif %}
             </button>
         </form>
         <p class="mt-2 text-muted">
@@ -28,15 +28,15 @@
 </div>
 <div class="card mt-3">
     <div class="card-body">
-        <h5>🔧 Экстренное управление вебхуком</h5>
+        <h5>Экстренное управление вебхуком</h5>
         <p class="text-muted">Используйте только если бот падает из-за ошибок в коде. При удалении вебхука Telegram перестанет отправлять запросы.</p>
         <form method="post" action="/webhook/enable" class="d-inline">
-            <button class="btn btn-outline-success btn-sm" type="submit">📡 Установить вебхук</button>
+            <button class="btn btn-outline-success btn-sm" type="submit">Установить вебхук</button>
         </form>
         <form method="post" action="/webhook/disable" class="d-inline">
-            <button class="btn btn-outline-danger btn-sm" type="submit">❌ Удалить вебхук</button>
+            <button class="btn btn-outline-danger btn-sm" type="submit">Удалить вебхук</button>
         </form>
     </div>
 </div>
-<a href="/" class="btn btn-secondary mt-3">← На главную</a>
+<a href="/" class="btn btn-secondary mt-3">На главную</a>
 {% endblock %}

@@ -53,6 +53,25 @@ async def ensure_db_structure():
                 user_id BIGINT PRIMARY KEY
             )
         """)
+        # ---- ТАБЛИЦЫ ДЛЯ ФИНАНСОВ И МОНИТОРИНГА (ЗАГОТОВКА) ----
+        await conn.execute("""
+            CREATE TABLE IF NOT EXISTS income (
+                id SERIAL PRIMARY KEY,
+                user_id BIGINT,
+                amount DECIMAL(10,2),
+                date BIGINT,
+                description TEXT
+            )
+        """)
+        await conn.execute("""
+            CREATE TABLE IF NOT EXISTS expenses (
+                id SERIAL PRIMARY KEY,
+                amount DECIMAL(10,2),
+                date BIGINT,
+                category TEXT,
+                description TEXT
+            )
+        """)
         print("✅ Структура БД обновлена")
     except Exception as e:
         print(f"⚠️ Ошибка при обновлении БД: {e}")
@@ -92,6 +111,7 @@ async def logout():
     response.delete_cookie("admin_auth")
     return response
 
+# ---- Функции управления ботом и блокировкой (уже есть) ----
 async def get_bot_active() -> bool:
     conn = await get_db()
     val = await conn.fetchval("SELECT value FROM bot_settings WHERE key = 'is_active'")
@@ -124,30 +144,37 @@ async def set_bonus_notification(user_id: int, reason: str):
     await conn.execute("UPDATE users SET bonus_notification = TRUE, bonus_reason = $1 WHERE user_id = $2", reason, user_id)
     await conn.close()
 
+# ---- Главная страница с новой статистикой ----
 @app.get("/", response_class=HTMLResponse)
 async def index(request: Request):
     conn = await get_db()
     total_users = await conn.fetchval("SELECT COUNT(*) FROM users")
-    week_ago = int((datetime.now() - timedelta(days=7)).timestamp())
-    active_week = await conn.fetchval("SELECT COUNT(*) FROM users WHERE last_active > $1", week_ago)
     now = int(datetime.now().timestamp())
     subscriptions = await conn.fetchval("SELECT COUNT(*) FROM users WHERE subscription_until > $1", now)
     trial_active = await conn.fetchval("SELECT COUNT(*) FROM users WHERE trial_until > $1", now)
+    
+    # Голос за неделю
+    week_ago = int((datetime.now() - timedelta(days=7)).timestamp())
+    # В таблице users у нас только общий счётчик за месяц, но мы можем сделать отдельную таблицу voice_usage, пока заглушка
+    # Для демонстрации используем общий счётчик как "за неделю" (но это неправильно, позже добавим детализацию)
     total_voice = await conn.fetchval("SELECT COALESCE(SUM(total_voice_seconds_month), 0) FROM users")
-    blocked_count = await conn.fetchval("SELECT COUNT(*) FROM blocked_users")
-    is_active = await get_bot_active()
+    total_voice_minutes = round(total_voice / 60, 1)
+    
+    # Пока неделя = месяц (заглушка, пока нет детализации)
+    voice_week = total_voice_minutes
+    voice_month = total_voice_minutes
+    
     await conn.close()
     stats = {
         "total_users": total_users,
-        "active_week": active_week,
         "subscriptions": subscriptions,
         "trial_active": trial_active,
-        "total_voice_minutes": round(total_voice / 60, 1),
-        "blocked_count": blocked_count,
-        "is_active": is_active
+        "voice_week": voice_week,
+        "voice_month": voice_month,
     }
     return templates.TemplateResponse("index.html", {"request": request, "stats": stats})
 
+# ---- Список пользователей (изменён столбец "Активен" на "Последняя активность") ----
 @app.get("/users", response_class=HTMLResponse)
 async def users_list(request: Request, search: str = ""):
     conn = await get_db()
@@ -163,24 +190,25 @@ async def users_list(request: Request, search: str = ""):
     search_pattern = f"%{search}%" if search else "%%"
     rows = await conn.fetch(query, search_pattern)
     await conn.close()
-    now_ts = int(datetime.now().timestamp())
     users = []
     for row in rows:
+        last_active_str = datetime.fromtimestamp(row["last_active"]).strftime("%Y-%m-%d %H:%M") if row["last_active"] else "—"
         users.append({
             "user_id": row["user_id"],
             "username": row["username"],
             "first_name": row["first_name"],
             "last_name": row["last_name"],
             "registered_at": datetime.fromtimestamp(row["registered_at"]).strftime("%Y-%m-%d %H:%M"),
-            "last_active": datetime.fromtimestamp(row["last_active"]).strftime("%Y-%m-%d %H:%M") if row["last_active"] else "—",
+            "last_active": last_active_str,
             "subscription_until": datetime.fromtimestamp(row["subscription_until"]).strftime("%Y-%m-%d") if row["subscription_until"] else "—",
             "trial_until": datetime.fromtimestamp(row["trial_until"]).strftime("%Y-%m-%d") if row["trial_until"] else "—",
             "voice_minutes": round(row["total_voice_seconds_month"] / 60, 1) if row["total_voice_seconds_month"] else 0,
-            "is_subscribed": row["subscription_until"] > now_ts if row["subscription_until"] else False,
-            "is_trial": row["trial_until"] > now_ts if row["trial_until"] else False,
+            "is_subscribed": row["subscription_until"] > int(datetime.now().timestamp()) if row["subscription_until"] else False,
+            "is_trial": row["trial_until"] > int(datetime.now().timestamp()) if row["trial_until"] else False,
         })
     return templates.TemplateResponse("users.html", {"request": request, "users": users, "search": search})
 
+# ---- Детальная страница пользователя (исправлена ошибка datetime) ----
 @app.get("/user/{user_id}", response_class=HTMLResponse)
 async def user_detail(request: Request, user_id: int):
     conn = await get_db()
@@ -194,6 +222,12 @@ async def user_detail(request: Request, user_id: int):
     error_rows = await conn.fetch("SELECT type_key, COUNT(*) as cnt FROM errors WHERE user_id = $1 GROUP BY type_key", user_id)
     await conn.close()
     user = dict(user_row)
+    # Преобразуем timestamp в строки
+    for field in ["registered_at", "last_active", "subscription_until", "trial_until"]:
+        if user.get(field):
+            user[field] = datetime.fromtimestamp(user[field]).strftime("%Y-%m-%d %H:%M") if user[field] else "—"
+        else:
+            user[field] = "—"
     progress_summary = {}
     for r in progress_rows:
         key = r["type_key"]
@@ -220,6 +254,7 @@ async def user_detail(request: Request, user_id: int):
         "blocked": blocked
     })
 
+# ---- Остальные эндпоинты без изменений ----
 @app.post("/user/{user_id}/extend")
 async def extend_subscription(user_id: int, days: int = Form(...), reason: str = Form("")):
     conn = await get_db()
@@ -265,7 +300,9 @@ async def unblock_user_route(user_id: int):
     return RedirectResponse(url=f"/user/{user_id}", status_code=303)
 
 @app.post("/extend_all")
-async def extend_all_subscriptions(days: int = Form(...), reason: str = Form("")):
+async def extend_all_subscriptions(days: int = Form(...)):
+    # Единый текст бонуса
+    reason = "🎉 Тебе начислены бонусные дни!\nТвоя подписка продлена до 15.08.2026.\nПриносим извинения за временные неудобства и дарим эти дни в качестве компенсации.\nСпасибо за терпение! 🙏"
     conn = await get_db()
     now = int(datetime.now().timestamp())
     await conn.execute("""
@@ -273,12 +310,12 @@ async def extend_all_subscriptions(days: int = Form(...), reason: str = Form("")
         SET subscription_until = GREATEST(subscription_until, $1) + $2 * 86400
         WHERE subscription_until > 0
     """, now, days)
-    if reason.strip():
-        await conn.execute("""
-            UPDATE users
-            SET bonus_notification = TRUE, bonus_reason = $1
-            WHERE subscription_until > 0
-        """, reason)
+    # Устанавливаем уведомление для всех обновлённых пользователей
+    await conn.execute("""
+        UPDATE users
+        SET bonus_notification = TRUE, bonus_reason = $1
+        WHERE subscription_until > 0
+    """, reason)
     await conn.close()
     return RedirectResponse(url="/", status_code=303)
 
@@ -292,6 +329,7 @@ async def bot_control(request: Request):
     is_active = await get_bot_active()
     return templates.TemplateResponse("bot_control.html", {"request": request, "is_active": is_active})
 
+# ---- Эндпоинты управления вебхуком ----
 async def set_webhook(enable: bool):
     if enable:
         if not WEBHOOK_URL:

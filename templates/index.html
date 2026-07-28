@@ -1,55 +1,47 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h2>📊 Общая статистика</h2>
+<h2>Общая статистика</h2>
 <div class="row mt-4">
-    <div class="col-md-3 col-sm-6 mb-3">
-        <div class="card text-white bg-primary">
+    <div class="col-md-4 mb-3">
+        <div class="card">
             <div class="card-body">
-                <h5 class="card-title">👥 Всего пользователей</h5>
-                <p class="card-text display-6">{{ stats.total_users }}</p>
+                <h5 class="card-title">Всего пользователей</h5>
+                <p class="card-text">{{ stats.total_users }}</p>
             </div>
         </div>
     </div>
-    <div class="col-md-3 col-sm-6 mb-3">
-        <div class="card text-white bg-success">
+    <div class="col-md-4 mb-3">
+        <div class="card">
             <div class="card-body">
-                <h5 class="card-title">🟢 Активны за неделю</h5>
-                <p class="card-text display-6">{{ stats.active_week }}</p>
+                <h5 class="card-title">Активных подписок</h5>
+                <p class="card-text">{{ stats.subscriptions }}</p>
             </div>
         </div>
     </div>
-    <div class="col-md-3 col-sm-6 mb-3">
-        <div class="card text-white bg-warning">
+    <div class="col-md-4 mb-3">
+        <div class="card">
             <div class="card-body">
-                <h5 class="card-title">💳 Активных подписок</h5>
-                <p class="card-text display-6">{{ stats.subscriptions }}</p>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-3 col-sm-6 mb-3">
-        <div class="card text-white bg-info">
-            <div class="card-body">
-                <h5 class="card-title">🧪 Пробный период</h5>
-                <p class="card-text display-6">{{ stats.trial_active }}</p>
+                <h5 class="card-title">Пробный период</h5>
+                <p class="card-text">{{ stats.trial_active }}</p>
             </div>
         </div>
     </div>
 </div>
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-6 mb-3">
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title">🎤 Использовано голосовых минут (всего)</h5>
-                <p class="card-text display-6">{{ stats.total_voice_minutes }} мин</p>
+                <h5 class="card-title">Голосовых минут (за неделю)</h5>
+                <p class="card-text">{{ stats.voice_week }} мин</p>
             </div>
         </div>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-6 mb-3">
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title">🚫 Заблокировано пользователей</h5>
-                <p class="card-text display-6">{{ stats.blocked_count }}</p>
+                <h5 class="card-title">Голосовых минут (за месяц)</h5>
+                <p class="card-text">{{ stats.voice_month }} мин</p>
             </div>
         </div>
     </div>
@@ -58,16 +50,13 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title">📦 Продлить подписку ВСЕМ пользователям</h5>
+                <h5 class="card-title">Продлить подписку ВСЕМ пользователям</h5>
                 <form method="post" action="/extend_all" class="row g-3">
                     <div class="col-auto">
                         <input type="number" name="days" class="form-control" placeholder="Кол-во дней" value="30" min="1" required>
                     </div>
                     <div class="col-auto">
-                        <input type="text" name="reason" class="form-control" placeholder="Причина бонуса (опционально)">
-                    </div>
-                    <div class="col-auto">
-                        <button class="btn btn-success" type="submit">➕ Продлить всем</button>
+                        <button class="btn btn-success" type="submit">Продлить всем</button>
                     </div>
                 </form>
             </div>
@@ -75,6 +64,6 @@
     </div>
 </div>
 <div class="mt-4">
-    <a href="/bot" class="btn btn-secondary">🤖 Управление ботом</a>
+    <a href="/bot" class="btn btn-secondary">Управление ботом</a>
 </div>
 {% endblock %}

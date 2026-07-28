@@ -1,13 +1,13 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h2>👥 Пользователи</h2>
+<h2>Пользователи</h2>
 <form method="get" class="row g-3 mb-3">
     <div class="col-auto">
         <input type="text" name="search" class="form-control" placeholder="Поиск по ID, имени, username" value="{{ search }}">
     </div>
     <div class="col-auto">
-        <button class="btn btn-primary" type="submit">🔍 Найти</button>
+        <button class="btn btn-primary" type="submit">Найти</button>
     </div>
     <div class="col-auto">
         <a href="/users" class="btn btn-secondary">Сбросить</a>
@@ -21,7 +21,7 @@
                 <th>Имя</th>
                 <th>Username</th>
                 <th>Регистрация</th>
-                <th>Активен</th>
+                <th>Последняя активность</th>
                 <th>Подписка</th>
                 <th>Голос (мин)</th>
                 <th>Детали</th>
@@ -35,7 +35,7 @@
                 <td>{{ user.username or '—' }}</td>
                 <td>{{ user.registered_at }}</td>
                 <td>{{ user.last_active }}</td>
-                <td>{% if user.is_subscribed %}✅{% else %}❌{% endif %}</td>
+                <td>{% if user.is_subscribed %}Активна{% else %}Нет{% endif %}</td>
                 <td>{{ user.voice_minutes }}</td>
                 <td><a href="/user/{{ user.user_id }}" class="btn btn-sm btn-primary">Просмотр</a></td>
             </tr>
