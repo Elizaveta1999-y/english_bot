@@ -24,7 +24,7 @@
             <h5>DeepSeek</h5>
             <p><span class="label">Баланс:</span> <span class="value">{{ deepseek.balance }}</span> CNY</p>
             <p><span class="label">Порог:</span> {{ deepseek.threshold }} CNY</p>
-            <p><span class="label">Обновлено:</span> <span class="updated">{{ deepseek.last_updated }}</span></p>
+            <p><span class="label">Обновлено:</span> <span class="updated">{{ deepseek.last_updated | datetimeformat }}</span></p>
             <p><span class="label">Статус:</span> 
                 {% if deepseek.balance_float > 0 %}
                     {% if deepseek.balance_float < deepseek.threshold_float %}
@@ -48,7 +48,7 @@
             <h5>ElevenLabs</h5>
             <p><span class="label">Остаток символов:</span> <span class="value">{{ elevenlabs.balance }}</span></p>
             <p><span class="label">Порог:</span> {{ elevenlabs.threshold }} символов</p>
-            <p><span class="label">Обновлено:</span> <span class="updated">{{ elevenlabs.last_updated }}</span></p>
+            <p><span class="label">Обновлено:</span> <span class="updated">{{ elevenlabs.last_updated | datetimeformat }}</span></p>
             <p><span class="label">Статус:</span> 
                 {% if elevenlabs.balance_int > 0 %}
                     {% if elevenlabs.balance_int < elevenlabs.threshold_int %}
