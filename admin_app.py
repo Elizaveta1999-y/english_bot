@@ -448,34 +448,18 @@ async def get_deepseek_balance():
             )
             if resp.status_code == 200:
                 data = resp.json()
-                return str(data.get("total_balance", 0))
+                logger.info(f"DeepSeek API ответ: {data}")
+                # Проверяем несколько полей
+                balance = data.get("total_balance", 0)
+                if balance == 0:
+                    # Если total_balance = 0, пробуем другие поля
+                    balance = data.get("topped_up_balance", 0) or data.get("granted_balance", 0) or 0
+                return str(balance)
             else:
-                logger.warning(f"DeepSeek API вернул {resp.status_code}")
+                logger.warning(f"DeepSeek API вернул {resp.status_code}: {resp.text}")
                 return "ошибка"
     except Exception as e:
         logger.error(f"Ошибка получения баланса DeepSeek: {e}")
-        return "ошибка"
-
-async def get_elevenlabs_balance():
-    if not ELEVENLABS_API_KEY:
-        return "неизвестно"
-    try:
-        async with httpx.AsyncClient() as client:
-            resp = await client.get(
-                "https://api.elevenlabs.io/v1/user/subscription",
-                headers={"xi-api-key": ELEVENLABS_API_KEY}
-            )
-            if resp.status_code == 200:
-                data = resp.json()
-                limit = data.get("character_limit", 0)
-                used = data.get("character_count", 0)
-                remaining = max(0, limit - used) if limit else 0
-                return str(remaining)
-            else:
-                logger.warning(f"ElevenLabs API вернул {resp.status_code}")
-                return "ошибка"
-    except Exception as e:
-        logger.error(f"Ошибка получения баланса ElevenLabs: {e}")
         return "ошибка"
 
 async def send_telegram_alert(message: str):
