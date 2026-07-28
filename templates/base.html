@@ -6,65 +6,14 @@
     <title>Admin Panel</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        body {
-            background-color: #f8f9fa;
-            color: #212529;
-        }
-        .card {
-            border: 1px solid #dee2e6;
-            border-radius: 0.5rem;
-            box-shadow: 0 0.125rem 0.25rem rgba(0,0,0,0.075);
-            background-color: #ffffff;
-        }
-        .card-title {
-            font-weight: 500;
-            font-size: 1rem;
-            color: #495057;
-        }
-        .card-text {
-            font-size: 1.75rem;
-            font-weight: 400;
-            color: #212529;
-        }
-        .navbar {
-            background-color: #343a40 !important;
-        }
-        .table th {
-            font-weight: 500;
-            background-color: #e9ecef;
-        }
-        .btn-primary {
-            background-color: #0d6efd;
-            border-color: #0d6efd;
-        }
-        .btn-success {
-            background-color: #198754;
-            border-color: #198754;
-        }
-        .btn-danger {
-            background-color: #dc3545;
-            border-color: #dc3545;
-        }
-        .btn-secondary {
-            background-color: #6c757d;
-            border-color: #6c757d;
-        }
-        .btn-outline-danger {
-            color: #dc3545;
-            border-color: #dc3545;
-        }
-        .btn-outline-danger:hover {
-            background-color: #dc3545;
-            color: #fff;
-        }
-        .btn-outline-success {
-            color: #198754;
-            border-color: #198754;
-        }
-        .btn-outline-success:hover {
-            background-color: #198754;
-            color: #fff;
-        }
+        body { background: #f8f9fa; }
+        .navbar { background: #343a40 !important; }
+        .navbar-brand, .navbar .btn { color: #fff !important; }
+        .navbar .btn-outline-light { border-color: #6c757d; color: #fff; }
+        .navbar .btn-outline-light:hover { background: #495057; border-color: #6c757d; }
+        .container { max-width: 1200px; }
+        .card { border: 1px solid #e0e0e0; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+        .card-body { padding: 20px; }
     </style>
 </head>
 <body>
@@ -73,8 +22,9 @@
             <a class="navbar-brand" href="/">Админка</a>
             <div class="d-flex">
                 <a href="/users" class="btn btn-outline-light btn-sm me-2">Пользователи</a>
+                <a href="/monitoring" class="btn btn-outline-light btn-sm me-2">Мониторинг</a>
                 <a href="/bot" class="btn btn-outline-light btn-sm me-2">Бот</a>
-                <a href="/logout" class="btn btn-outline-danger btn-sm">Выйти</a>
+                <a href="/logout" class="btn btn-outline-light btn-sm">Выйти</a>
             </div>
         </div>
     </nav>

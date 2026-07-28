@@ -1,6 +1,7 @@
 import os
 import asyncpg
 from typing import Tuple, List, Optional
+from datetime import datetime, timedelta
 
 DATABASE_URL = os.getenv("DATABASE_URL")
 if not DATABASE_URL:
@@ -547,4 +548,91 @@ async def unblock_user(user_id: int):
     """Разблокирует пользователя."""
     conn = await get_connection()
     await conn.execute("DELETE FROM blocked_users WHERE user_id = $1", user_id)
+    await conn.close()
+
+# ========== НОВЫЕ ТАБЛИЦЫ ДЛЯ МОНИТОРИНГА И ФИНАНСОВ ==========
+
+async def ensure_monitoring_tables():
+    """Создаёт таблицы для мониторинга балансов и финансов, если их нет."""
+    conn = await get_connection()
+    # Таблица для хранения балансов API
+    await conn.execute("""
+        CREATE TABLE IF NOT EXISTS api_balances (
+            service TEXT PRIMARY KEY,
+            balance TEXT,
+            last_updated BIGINT DEFAULT 0,
+            threshold TEXT,
+            link TEXT
+        )
+    """)
+    # Вставляем начальные записи для DeepSeek и ElevenLabs
+    await conn.execute("""
+        INSERT INTO api_balances (service, balance, threshold, link)
+        VALUES ('deepseek', 'неизвестно', '30', 'https://platform.deepseek.com/api_keys'),
+               ('elevenlabs', 'неизвестно', '10000', 'https://elevenlabs.io/app/settings/billing')
+        ON CONFLICT (service) DO NOTHING
+    """)
+    # Таблица для напоминаний о плате за Render
+    await conn.execute("""
+        CREATE TABLE IF NOT EXISTS render_payment (
+            id INTEGER PRIMARY KEY CHECK (id = 1),
+            next_payment_date BIGINT DEFAULT 0,
+            amount TEXT DEFAULT '7',
+            notified BOOLEAN DEFAULT FALSE
+        )
+    """)
+    # Вставляем начальную запись, если её нет
+    await conn.execute("""
+        INSERT INTO render_payment (id, next_payment_date, amount, notified)
+        VALUES (1, 0, '7', FALSE)
+        ON CONFLICT (id) DO NOTHING
+    """)
+    await conn.close()
+
+# ---------- Функции для работы с балансами ----------
+async def get_api_balance(service: str) -> dict:
+    conn = await get_connection()
+    row = await conn.fetchrow("SELECT balance, last_updated, threshold, link FROM api_balances WHERE service = $1", service)
+    await conn.close()
+    if row:
+        return {
+            "balance": row["balance"],
+            "last_updated": row["last_updated"],
+            "threshold": row["threshold"],
+            "link": row["link"]
+        }
+    return None
+
+async def update_api_balance(service: str, balance: str, threshold: str = None):
+    conn = await get_connection()
+    now = int(datetime.now().timestamp())
+    if threshold is not None:
+        await conn.execute("UPDATE api_balances SET balance = $1, last_updated = $2, threshold = $3 WHERE service = $4",
+                           balance, now, threshold, service)
+    else:
+        await conn.execute("UPDATE api_balances SET balance = $1, last_updated = $2 WHERE service = $3",
+                           balance, now, service)
+    await conn.close()
+
+async def get_render_payment() -> dict:
+    conn = await get_connection()
+    row = await conn.fetchrow("SELECT next_payment_date, amount, notified FROM render_payment WHERE id = 1")
+    await conn.close()
+    if row:
+        return {
+            "next_payment_date": row["next_payment_date"],
+            "amount": row["amount"],
+            "notified": row["notified"]
+        }
+    return {"next_payment_date": 0, "amount": "7", "notified": False}
+
+async def set_render_payment(date_ts: int, amount: str):
+    conn = await get_connection()
+    await conn.execute("UPDATE render_payment SET next_payment_date = $1, amount = $2, notified = FALSE WHERE id = 1",
+                       date_ts, amount)
+    await conn.close()
+
+async def set_render_notified(notified: bool):
+    conn = await get_connection()
+    await conn.execute("UPDATE render_payment SET notified = $1 WHERE id = 1", notified)
     await conn.close()

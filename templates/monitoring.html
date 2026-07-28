@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+
+{% block content %}
+<style>
+    .monitoring-card {
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        padding: 20px;
+        margin-bottom: 20px;
+        background: #fff;
+    }
+    .monitoring-card .label { font-weight: 400; color: #555; }
+    .monitoring-card .value { font-size: 1.5rem; color: #333; }
+    .monitoring-card .updated { color: #999; font-size: 0.85rem; }
+    .critical { color: #d9534f; }
+    .safe { color: #28a745; }
+</style>
+
+<h2>Мониторинг балансов</h2>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="monitoring-card">
+            <h5>DeepSeek</h5>
+            <p><span class="label">Баланс:</span> <span class="value">{{ deepseek.balance }}</span> CNY</p>
+            <p><span class="label">Порог:</span> {{ deepseek.threshold }} CNY</p>
+            <p><span class="label">Обновлено:</span> <span class="updated">{{ deepseek.last_updated }}</span></p>
+            <p><span class="label">Статус:</span> 
+                {% if deepseek.balance | float < deepseek.threshold | float %}
+                    <span class="critical">⚠️ Критически низкий баланс</span>
+                {% else %}
+                    <span class="safe">✅ В норме</span>
+                {% endif %}
+            </p>
+            <a href="{{ deepseek.link }}" target="_blank" class="btn btn-secondary btn-sm">Пополнить</a>
+            <form method="post" action="/monitoring/update/deepseek" class="d-inline">
+                <button class="btn btn-outline-secondary btn-sm" type="submit">Обновить сейчас</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="monitoring-card">
+            <h5>ElevenLabs</h5>
+            <p><span class="label">Остаток символов:</span> <span class="value">{{ elevenlabs.balance }}</span></p>
+            <p><span class="label">Порог:</span> {{ elevenlabs.threshold }} символов</p>
+            <p><span class="label">Обновлено:</span> <span class="updated">{{ elevenlabs.last_updated }}</span></p>
+            <p><span class="label">Статус:</span> 
+                {% if elevenlabs.balance | int < elevenlabs.threshold | int %}
+                    <span class="critical">⚠️ Критически низкий остаток</span>
+                {% else %}
+                    <span class="safe">✅ В норме</span>
+                {% endif %}
+            </p>
+            <a href="{{ elevenlabs.link }}" target="_blank" class="btn btn-secondary btn-sm">Пополнить</a>
+            <form method="post" action="/monitoring/update/elevenlabs" class="d-inline">
+                <button class="btn btn-outline-secondary btn-sm" type="submit">Обновить сейчас</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="monitoring-card mt-3">
+    <h5>Render (плановый платёж)</h5>
+    <p><span class="label">Следующее списание:</span> {{ render.next_date }}</p>
+    <p><span class="label">Сумма:</span> ${{ render.amount }}</p>
+    {% if render.days_left is defined %}
+        <p><span class="label">Дней до списания:</span> {{ render.days_left }}</p>
+        {% if render.days_left <= 3 %}
+            <p class="critical">⚠️ Осталось менее 3 дней!</p>
+        {% endif %}
+    {% endif %}
+    <form method="post" action="/monitoring/render" class="row g-3">
+        <div class="col-auto">
+            <input type="date" name="date" class="form-control" value="{{ render.next_date_input }}" required>
+        </div>
+        <div class="col-auto">
+            <input type="number" name="amount" class="form-control" placeholder="Сумма $" value="{{ render.amount }}" step="0.01">
+        </div>
+        <div class="col-auto">
+            <button class="btn btn-secondary" type="submit">Сохранить дату и сумму</button>
+        </div>
+    </form>
+    <a href="https://dashboard.render.com/billing" target="_blank" class="btn btn-secondary btn-sm mt-2">Перейти к оплате Render</a>
+</div>
+
+<div class="mt-3">
+    <a href="/" class="btn btn-secondary">На главную</a>
+</div>
+{% endblock %}
