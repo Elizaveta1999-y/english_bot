@@ -448,12 +448,20 @@ async def get_deepseek_balance():
             )
             if resp.status_code == 200:
                 data = resp.json()
-                logger.info(f"DeepSeek API ответ: {data}")
-                # Проверяем несколько полей
-                balance = data.get("total_balance", 0)
-                if balance == 0:
-                    # Если total_balance = 0, пробуем другие поля
-                    balance = data.get("topped_up_balance", 0) or data.get("granted_balance", 0) or 0
+                # Логируем полный ответ
+                logger.info(f"DeepSeek API raw response: {data}")
+                
+                # Пробуем все возможные поля
+                balance = data.get("total_balance")
+                if balance is None:
+                    balance = data.get("topped_up_balance")
+                if balance is None:
+                    balance = data.get("granted_balance")
+                if balance is None:
+                    balance = data.get("balance")
+                if balance is None:
+                    # Если ничего не нашлось, возвращаем "неизвестно"
+                    return "неизвестно"
                 return str(balance)
             else:
                 logger.warning(f"DeepSeek API вернул {resp.status_code}: {resp.text}")
