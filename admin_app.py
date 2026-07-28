@@ -1,5 +1,6 @@
 import os
 import asyncio
+import logging
 from datetime import datetime, timedelta
 from fastapi import FastAPI, Request, Form, HTTPException, Response
 from fastapi.responses import HTMLResponse, RedirectResponse
@@ -8,6 +9,10 @@ import asyncpg
 import httpx
 from dotenv import load_dotenv
 import apscheduler.schedulers.background
+
+# Настройка логирования
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 load_dotenv()
 
@@ -59,7 +64,7 @@ async def ensure_db_structure():
                 user_id BIGINT PRIMARY KEY
             )
         """)
-        # Таблицы для финансов (уже есть в вашем коде)
+        # Таблицы для финансов
         await conn.execute("""
             CREATE TABLE IF NOT EXISTS income (
                 id SERIAL PRIMARY KEY,
@@ -107,20 +112,20 @@ async def ensure_db_structure():
             VALUES (1, 0, '7', FALSE)
             ON CONFLICT (id) DO NOTHING
         """)
-        print("✅ Структура БД обновлена")
+        logger.info("✅ Структура БД обновлена")
     except Exception as e:
-        print(f"⚠️ Ошибка при обновлении БД: {e}")
+        logger.error(f"⚠️ Ошибка при обновлении БД: {e}")
     finally:
         await conn.close()
 
 @app.on_event("startup")
 async def startup():
     await ensure_db_structure()
-    # Запуск фоновой задачи для мониторинга
+    # Запуск фоновой задачи
     scheduler = apscheduler.schedulers.background.BackgroundScheduler()
     scheduler.add_job(lambda: asyncio.run(check_balances_and_notify()), 'interval', hours=6, id='monitor_balances')
     scheduler.start()
-    print("✅ Фоновый мониторинг запущен (каждые 6 часов)")
+    logger.info("✅ Фоновый мониторинг запущен (каждые 6 часов)")
 
 # ---- Авторизация ----
 def is_authenticated(request: Request) -> bool:
@@ -193,10 +198,10 @@ async def index(request: Request):
     now = int(datetime.now().timestamp())
     subscriptions = await conn.fetchval("SELECT COUNT(*) FROM users WHERE subscription_until > $1", now)
     trial_active = await conn.fetchval("SELECT COUNT(*) FROM users WHERE trial_until > $1", now)
-    # Голос за неделю и месяц (пока заглушка, т.к. нет детализации)
     total_voice = await conn.fetchval("SELECT COALESCE(SUM(total_voice_seconds_month), 0) FROM users")
     total_voice_minutes = round(total_voice / 60, 1)
-    voice_week = total_voice_minutes  # пока общий
+    # Пока без разбивки по неделе/месяцу, используем общий
+    voice_week = total_voice_minutes
     voice_month = total_voice_minutes
     await conn.close()
     stats = {
@@ -350,7 +355,6 @@ async def extend_all_subscriptions(days: int = Form(...)):
     await conn.close()
     return RedirectResponse(url="/", status_code=303)
 
-# ---- Управление ботом ----
 @app.post("/bot/toggle")
 async def toggle_bot(active: bool = Form(...)):
     await set_bot_active(active)
@@ -379,6 +383,7 @@ async def enable_webhook():
         result = await set_webhook(True)
         return {"status": "ok", "message": "Вебхук установлен", "result": result}
     except Exception as e:
+        logger.error(f"Ошибка установки вебхука: {e}")
         return {"status": "error", "message": str(e)}
 
 @app.post("/webhook/disable")
@@ -387,6 +392,7 @@ async def disable_webhook():
         result = await set_webhook(False)
         return {"status": "ok", "message": "Вебхук удалён", "result": result}
     except Exception as e:
+        logger.error(f"Ошибка удаления вебхука: {e}")
         return {"status": "error", "message": str(e)}
 
 # ========== МОНИТОРИНГ БАЛАНСОВ ==========
@@ -451,8 +457,10 @@ async def get_deepseek_balance():
                 data = resp.json()
                 return str(data.get("total_balance", 0))
             else:
+                logger.warning(f"DeepSeek API вернул {resp.status_code}")
                 return "ошибка"
-    except:
+    except Exception as e:
+        logger.error(f"Ошибка получения баланса DeepSeek: {e}")
         return "ошибка"
 
 async def get_elevenlabs_balance():
@@ -471,115 +479,148 @@ async def get_elevenlabs_balance():
                 remaining = max(0, limit - used) if limit else 0
                 return str(remaining)
             else:
+                logger.warning(f"ElevenLabs API вернул {resp.status_code}")
                 return "ошибка"
-    except:
+    except Exception as e:
+        logger.error(f"Ошибка получения баланса ElevenLabs: {e}")
         return "ошибка"
 
 async def send_telegram_alert(message: str):
     admin_id = os.getenv("ADMIN_ID")
     bot_token = os.getenv("BOT_TOKEN")
     if not admin_id or not bot_token:
+        logger.warning("ADMIN_ID или BOT_TOKEN не заданы, уведомление не отправлено")
         return
     url = f"https://api.telegram.org/bot{bot_token}/sendMessage"
     try:
         async with httpx.AsyncClient() as client:
             await client.post(url, json={"chat_id": admin_id, "text": message})
-    except:
-        pass
+        logger.info(f"Уведомление отправлено админу: {message[:50]}...")
+    except Exception as e:
+        logger.error(f"Не удалось отправить уведомление: {e}")
 
 async def check_balances_and_notify():
     """Фоновая задача: проверяет балансы и отправляет уведомления."""
-    deepseek_data = await get_api_balance("deepseek")
-    elevenlabs_data = await get_api_balance("elevenlabs")
-    if not deepseek_data or not elevenlabs_data:
-        return
-
-    deepseek_balance = await get_deepseek_balance()
-    elevenlabs_balance = await get_elevenlabs_balance()
-
-    await update_api_balance("deepseek", deepseek_balance)
-    await update_api_balance("elevenlabs", elevenlabs_balance)
-
+    logger.info("Запущена проверка балансов")
     try:
-        deep_threshold = float(deepseek_data.get("threshold", 30))
-        deep_val = float(deepseek_balance) if deepseek_balance.replace('.', '').isdigit() else 999999
-        if deep_val < deep_threshold:
-            await send_telegram_alert(
-                f"⚠️ Баланс DeepSeek: {deepseek_balance} CNY (порог {deep_threshold} CNY)\nПополните: https://platform.deepseek.com/api_keys"
-            )
-    except:
-        pass
+        deepseek_data = await get_api_balance("deepseek")
+        elevenlabs_data = await get_api_balance("elevenlabs")
+        
+        if not deepseek_data or not elevenlabs_data:
+            logger.warning("Нет данных о балансах в БД")
+            return
 
-    try:
-        elev_threshold = int(elevenlabs_data.get("threshold", 10000))
-        elev_val = int(elevenlabs_balance) if elevenlabs_balance.isdigit() else 999999
-        if elev_val < elev_threshold:
-            await send_telegram_alert(
-                f"⚠️ Остаток символов ElevenLabs: {elevenlabs_balance} (порог {elev_threshold})\nПополните: https://elevenlabs.io/app/settings/billing"
-            )
-    except:
-        pass
+        deepseek_balance = await get_deepseek_balance()
+        elevenlabs_balance = await get_elevenlabs_balance()
 
-    # Проверка даты оплаты Render
-    render_data = await get_render_payment()
-    if render_data and render_data["next_payment_date"] > 0:
-        now = int(datetime.now().timestamp())
-        days_left = (render_data["next_payment_date"] - now) // 86400
-        if days_left <= 3 and days_left >= 0 and not render_data["notified"]:
-            await send_telegram_alert(
-                f"⏰ Через {days_left} дней списание ${render_data['amount']} за Render.\nПроверьте баланс: https://dashboard.render.com/billing"
-            )
-            await set_render_notified(True)
+        await update_api_balance("deepseek", deepseek_balance)
+        await update_api_balance("elevenlabs", elevenlabs_balance)
 
-# ---- Страница мониторинга ----
+        try:
+            deep_threshold = float(deepseek_data.get("threshold", 30))
+            deep_val = float(deepseek_balance) if deepseek_balance.replace('.', '').isdigit() else 999999
+            if deep_val < deep_threshold:
+                await send_telegram_alert(
+                    f"⚠️ Баланс DeepSeek: {deepseek_balance} CNY (порог {deep_threshold} CNY)\nПополните: https://platform.deepseek.com/api_keys"
+                )
+        except Exception as e:
+            logger.error(f"Ошибка проверки DeepSeek: {e}")
+
+        try:
+            elev_threshold = int(elevenlabs_data.get("threshold", 10000))
+            elev_val = int(elevenlabs_balance) if elevenlabs_balance.isdigit() else 999999
+            if elev_val < elev_threshold:
+                await send_telegram_alert(
+                    f"⚠️ Остаток символов ElevenLabs: {elevenlabs_balance} (порог {elev_threshold})\nПополните: https://elevenlabs.io/app/settings/billing"
+                )
+        except Exception as e:
+            logger.error(f"Ошибка проверки ElevenLabs: {e}")
+
+        # Проверка даты оплаты Render
+        render_data = await get_render_payment()
+        if render_data and render_data["next_payment_date"] > 0:
+            now = int(datetime.now().timestamp())
+            days_left = (render_data["next_payment_date"] - now) // 86400
+            if days_left <= 3 and days_left >= 0 and not render_data["notified"]:
+                await send_telegram_alert(
+                    f"⏰ Через {days_left} дней списание ${render_data['amount']} за Render.\nПроверьте баланс: https://dashboard.render.com/billing"
+                )
+                await set_render_notified(True)
+        logger.info("Проверка балансов завершена")
+    except Exception as e:
+        logger.error(f"Ошибка в check_balances_and_notify: {e}")
+
+# ---- Страница мониторинга с защитой от None ----
 @app.get("/monitoring", response_class=HTMLResponse)
 async def monitoring_page(request: Request):
-    deepseek = await get_api_balance("deepseek")
-    elevenlabs = await get_api_balance("elevenlabs")
-    render = await get_render_payment()
+    try:
+        deepseek = await get_api_balance("deepseek")
+        elevenlabs = await get_api_balance("elevenlabs")
+        render = await get_render_payment()
 
-    deepseek_last = datetime.fromtimestamp(deepseek["last_updated"]).strftime("%Y-%m-%d %H:%M") if deepseek and deepseek["last_updated"] else "—"
-    elevenlabs_last = datetime.fromtimestamp(elevenlabs["last_updated"]).strftime("%Y-%m-%d %H:%M") if elevenlabs and elevenlabs["last_updated"] else "—"
+        # Если записи отсутствуют, создаём их принудительно
+        if not deepseek:
+            await update_api_balance("deepseek", "неизвестно", "30")
+            deepseek = await get_api_balance("deepseek")
+        if not elevenlabs:
+            await update_api_balance("elevenlabs", "неизвестно", "10000")
+            elevenlabs = await get_api_balance("elevenlabs")
+        if not render:
+            await set_render_payment(0, "7")
+            render = await get_render_payment()
 
-    render_next_date = datetime.fromtimestamp(render["next_payment_date"]).strftime("%Y-%m-%d") if render["next_payment_date"] else "—"
-    render_date_input = datetime.fromtimestamp(render["next_payment_date"]).strftime("%Y-%m-%d") if render["next_payment_date"] else ""
-    days_left = None
-    if render["next_payment_date"]:
-        now = int(datetime.now().timestamp())
-        days_left = (render["next_payment_date"] - now) // 86400
+        # Форматируем даты с проверкой
+        deepseek_last = datetime.fromtimestamp(deepseek["last_updated"]).strftime("%Y-%m-%d %H:%M") if deepseek and deepseek.get("last_updated") else "—"
+        elevenlabs_last = datetime.fromtimestamp(elevenlabs["last_updated"]).strftime("%Y-%m-%d %H:%M") if elevenlabs and elevenlabs.get("last_updated") else "—"
 
-    return templates.TemplateResponse("monitoring.html", {
-        "request": request,
-        "deepseek": {
-            "balance": deepseek["balance"] if deepseek else "неизвестно",
-            "threshold": deepseek["threshold"] if deepseek else "30",
-            "last_updated": deepseek_last,
-            "link": deepseek["link"] if deepseek else "#"
-        },
-        "elevenlabs": {
-            "balance": elevenlabs["balance"] if elevenlabs else "неизвестно",
-            "threshold": elevenlabs["threshold"] if elevenlabs else "10000",
-            "last_updated": elevenlabs_last,
-            "link": elevenlabs["link"] if elevenlabs else "#"
-        },
-        "render": {
-            "next_date": render_next_date,
-            "next_date_input": render_date_input,
-            "amount": render["amount"],
-            "days_left": days_left
-        }
-    })
+        render_next_date = datetime.fromtimestamp(render["next_payment_date"]).strftime("%Y-%m-%d") if render.get("next_payment_date") else "—"
+        render_date_input = datetime.fromtimestamp(render["next_payment_date"]).strftime("%Y-%m-%d") if render.get("next_payment_date") else ""
+        days_left = None
+        if render.get("next_payment_date"):
+            now = int(datetime.now().timestamp())
+            days_left = (render["next_payment_date"] - now) // 86400
+
+        return templates.TemplateResponse("monitoring.html", {
+            "request": request,
+            "deepseek": {
+                "balance": deepseek["balance"] if deepseek else "неизвестно",
+                "threshold": deepseek["threshold"] if deepseek else "30",
+                "last_updated": deepseek_last,
+                "link": deepseek["link"] if deepseek else "#"
+            },
+            "elevenlabs": {
+                "balance": elevenlabs["balance"] if elevenlabs else "неизвестно",
+                "threshold": elevenlabs["threshold"] if elevenlabs else "10000",
+                "last_updated": elevenlabs_last,
+                "link": elevenlabs["link"] if elevenlabs else "#"
+            },
+            "render": {
+                "next_date": render_next_date,
+                "next_date_input": render_date_input,
+                "amount": render["amount"],
+                "days_left": days_left
+            }
+        })
+    except Exception as e:
+        logger.error(f"Ошибка на странице мониторинга: {e}")
+        return HTMLResponse(f"<h1>Ошибка</h1><pre>{e}</pre>", status_code=500)
 
 @app.post("/monitoring/update/deepseek")
 async def update_deepseek_now():
-    bal = await get_deepseek_balance()
-    await update_api_balance("deepseek", bal)
+    try:
+        bal = await get_deepseek_balance()
+        await update_api_balance("deepseek", bal)
+    except Exception as e:
+        logger.error(f"Ошибка обновления DeepSeek: {e}")
     return RedirectResponse(url="/monitoring", status_code=303)
 
 @app.post("/monitoring/update/elevenlabs")
 async def update_elevenlabs_now():
-    bal = await get_elevenlabs_balance()
-    await update_api_balance("elevenlabs", bal)
+    try:
+        bal = await get_elevenlabs_balance()
+        await update_api_balance("elevenlabs", bal)
+    except Exception as e:
+        logger.error(f"Ошибка обновления ElevenLabs: {e}")
     return RedirectResponse(url="/monitoring", status_code=303)
 
 @app.post("/monitoring/render")
@@ -591,6 +632,18 @@ async def set_render_date(request: Request, date: str = Form(...), amount: str =
         ts = 0
     await set_render_payment(ts, amount)
     return RedirectResponse(url="/monitoring", status_code=303)
+
+# ---- Отладка (можно убрать позже) ----
+@app.get("/debug-db")
+async def debug_db():
+    conn = await get_db()
+    rows1 = await conn.fetch("SELECT * FROM api_balances")
+    rows2 = await conn.fetch("SELECT * FROM render_payment")
+    await conn.close()
+    return {
+        "api_balances": [dict(r) for r in rows1],
+        "render_payment": [dict(r) for r in rows2]
+    }
 
 if __name__ == "__main__":
     import uvicorn
