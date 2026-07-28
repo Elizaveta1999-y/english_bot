@@ -9,6 +9,7 @@ import asyncpg
 import httpx
 from dotenv import load_dotenv
 import apscheduler.schedulers.background
+from pydantic import BaseModel
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -37,6 +38,7 @@ async def get_db():
 async def ensure_db_structure():
     conn = await get_db()
     try:
+        # Основные таблицы
         await conn.execute("""
             ALTER TABLE users
             ADD COLUMN IF NOT EXISTS subscription_until BIGINT DEFAULT 0,
@@ -62,24 +64,7 @@ async def ensure_db_structure():
                 user_id BIGINT PRIMARY KEY
             )
         """)
-        await conn.execute("""
-            CREATE TABLE IF NOT EXISTS income (
-                id SERIAL PRIMARY KEY,
-                user_id BIGINT,
-                amount DECIMAL(10,2),
-                date BIGINT,
-                description TEXT
-            )
-        """)
-        await conn.execute("""
-            CREATE TABLE IF NOT EXISTS expenses (
-                id SERIAL PRIMARY KEY,
-                amount DECIMAL(10,2),
-                date BIGINT,
-                category TEXT,
-                description TEXT
-            )
-        """)
+        # Таблицы для мониторинга
         await conn.execute("""
             CREATE TABLE IF NOT EXISTS api_balances (
                 service TEXT PRIMARY KEY,
@@ -108,49 +93,142 @@ async def ensure_db_structure():
             VALUES (1, 0, '7', FALSE)
             ON CONFLICT (id) DO NOTHING
         """)
+        # Финансовые таблицы
+        await conn.execute("""
+            CREATE TABLE IF NOT EXISTS income (
+                id SERIAL PRIMARY KEY,
+                user_id BIGINT,
+                amount DECIMAL(10,2) NOT NULL,
+                date BIGINT NOT NULL,
+                description TEXT,
+                payment_system TEXT,
+                payment_id TEXT
+            )
+        """)
+        await conn.execute("""
+            CREATE TABLE IF NOT EXISTS expenses (
+                id SERIAL PRIMARY KEY,
+                amount DECIMAL(10,2) NOT NULL,
+                date BIGINT NOT NULL,
+                category TEXT NOT NULL,
+                description TEXT
+            )
+        """)
         logger.info("✅ Структура БД обновлена")
     except Exception as e:
         logger.error(f"⚠️ Ошибка при обновлении БД: {e}")
     finally:
         await conn.close()
 
-@app.on_event("startup")
-async def startup():
-    await ensure_db_structure()
-    scheduler = apscheduler.schedulers.background.BackgroundScheduler()
-    scheduler.add_job(lambda: asyncio.run(check_balances_and_notify()), 'interval', hours=6, id='monitor_balances')
-    scheduler.start()
-    logger.info("✅ Фоновый мониторинг запущен (каждые 6 часов)")
+# ---------- ФИНАНСОВЫЕ ФУНКЦИИ ----------
+async def add_income(user_id: int, amount: float, description: str = "", payment_system: str = "", payment_id: str = ""):
+    conn = await get_db()
+    now = int(datetime.now().timestamp())
+    await conn.execute("""
+        INSERT INTO income (user_id, amount, date, description, payment_system, payment_id)
+        VALUES ($1, $2, $3, $4, $5, $6)
+    """, user_id, amount, now, description, payment_system, payment_id)
+    await conn.close()
 
-def is_authenticated(request: Request) -> bool:
-    return request.cookies.get("admin_auth") == "true"
+async def add_expense(amount: float, category: str, description: str = ""):
+    conn = await get_db()
+    now = int(datetime.now().timestamp())
+    await conn.execute("""
+        INSERT INTO expenses (amount, date, category, description)
+        VALUES ($1, $2, $3, $4)
+    """, amount, now, category, description)
+    await conn.close()
 
-@app.middleware("http")
-async def auth_middleware(request: Request, call_next):
-    if request.url.path in ["/login", "/favicon.ico"]:
-        return await call_next(request)
-    if not is_authenticated(request):
-        return RedirectResponse(url="/login", status_code=303)
-    return await call_next(request)
+async def get_finance_summary(start_ts: int, end_ts: int) -> dict:
+    conn = await get_db()
+    income = await conn.fetchval("SELECT COALESCE(SUM(amount), 0) FROM income WHERE date >= $1 AND date <= $2", start_ts, end_ts)
+    expenses = await conn.fetchval("SELECT COALESCE(SUM(amount), 0) FROM expenses WHERE date >= $1 AND date <= $2", start_ts, end_ts)
+    await conn.close()
+    return {"income": float(income), "expenses": float(expenses)}
 
-@app.get("/login", response_class=HTMLResponse)
-async def login_page(request: Request):
-    return templates.TemplateResponse("login.html", {"request": request})
+async def get_income_list(start_ts: int, end_ts: int, limit: int = 50):
+    conn = await get_db()
+    rows = await conn.fetch(
+        "SELECT id, user_id, amount, date, description, payment_system FROM income WHERE date >= $1 AND date <= $2 ORDER BY date DESC LIMIT $3",
+        start_ts, end_ts, limit
+    )
+    await conn.close()
+    return [dict(r) for r in rows]
 
-@app.post("/login")
-async def login(request: Request, password: str = Form(...)):
-    if password == ADMIN_PASSWORD:
-        response = RedirectResponse(url="/", status_code=303)
-        response.set_cookie(key="admin_auth", value="true", httponly=True, max_age=86400)
-        return response
-    return templates.TemplateResponse("login.html", {"request": request, "error": "Неверный пароль"})
+async def get_expenses_list(start_ts: int, end_ts: int, limit: int = 50):
+    conn = await get_db()
+    rows = await conn.fetch(
+        "SELECT id, amount, date, category, description FROM expenses WHERE date >= $1 AND date <= $2 ORDER BY date DESC LIMIT $3",
+        start_ts, end_ts, limit
+    )
+    await conn.close()
+    return [dict(r) for r in rows]
 
-@app.get("/logout")
-async def logout():
-    response = RedirectResponse(url="/login", status_code=303)
-    response.delete_cookie("admin_auth")
-    return response
+# ---------- WEBHOOK ДЛЯ ДОХОДОВ ----------
+class PaymentWebhook(BaseModel):
+    user_id: int
+    amount: float
+    description: str = ""
+    payment_system: str = ""
+    payment_id: str = ""
 
+@app.post("/webhook/payment")
+async def payment_webhook(data: PaymentWebhook):
+    try:
+        await add_income(
+            user_id=data.user_id,
+            amount=data.amount,
+            description=data.description,
+            payment_system=data.payment_system,
+            payment_id=data.payment_id
+        )
+        logger.info(f"✅ Доход записан: {data.amount} от пользователя {data.user_id}")
+        return {"status": "ok", "message": "Income recorded"}
+    except Exception as e:
+        logger.error(f"Ошибка записи дохода: {e}")
+        return {"status": "error", "message": str(e)}, 500
+
+# ---------- СТРАНИЦА ФИНАНСОВ ----------
+@app.get("/finance", response_class=HTMLResponse)
+async def finance_page(request: Request, period: str = "month"):
+    now = datetime.now()
+    if period == "week":
+        start = int((now - timedelta(days=7)).timestamp())
+        end = int(now.timestamp())
+        label = "за неделю"
+    elif period == "month":
+        start = int(now.replace(day=1, hour=0, minute=0, second=0, microsecond=0).timestamp())
+        end = int(now.timestamp())
+        label = "за месяц"
+    else:  # all
+        start = 0
+        end = int(now.timestamp())
+        label = "за всё время"
+
+    summary = await get_finance_summary(start, end)
+    income_list = await get_income_list(start, end)
+    expenses_list = await get_expenses_list(start, end)
+
+    for item in income_list:
+        item["date_str"] = datetime.fromtimestamp(item["date"]).strftime("%Y-%m-%d %H:%M")
+    for item in expenses_list:
+        item["date_str"] = datetime.fromtimestamp(item["date"]).strftime("%Y-%m-%d %H:%M")
+
+    return templates.TemplateResponse("finance.html", {
+        "request": request,
+        "summary": summary,
+        "income": income_list,
+        "expenses": expenses_list,
+        "period": period,
+        "label": label
+    })
+
+@app.post("/finance/expense")
+async def add_expense_route(amount: float = Form(...), category: str = Form(...), description: str = Form("")):
+    await add_expense(amount, category, description)
+    return RedirectResponse(url="/finance", status_code=303)
+
+# ---------- ОСТАЛЬНЫЕ ЭНДПОИНТЫ (УПРАВЛЕНИЕ БОТОМ, ПОЛЬЗОВАТЕЛИ, МОНИТОРИНГ) ----------
 async def get_bot_active() -> bool:
     conn = await get_db()
     val = await conn.fetchval("SELECT value FROM bot_settings WHERE key = 'is_active'")
@@ -183,6 +261,37 @@ async def set_bonus_notification(user_id: int, reason: str):
     await conn.execute("UPDATE users SET bonus_notification = TRUE, bonus_reason = $1 WHERE user_id = $2", reason, user_id)
     await conn.close()
 
+# ---- Авторизация ----
+def is_authenticated(request: Request) -> bool:
+    return request.cookies.get("admin_auth") == "true"
+
+@app.middleware("http")
+async def auth_middleware(request: Request, call_next):
+    if request.url.path in ["/login", "/favicon.ico"]:
+        return await call_next(request)
+    if not is_authenticated(request):
+        return RedirectResponse(url="/login", status_code=303)
+    return await call_next(request)
+
+@app.get("/login", response_class=HTMLResponse)
+async def login_page(request: Request):
+    return templates.TemplateResponse("login.html", {"request": request})
+
+@app.post("/login")
+async def login(request: Request, password: str = Form(...)):
+    if password == ADMIN_PASSWORD:
+        response = RedirectResponse(url="/", status_code=303)
+        response.set_cookie(key="admin_auth", value="true", httponly=True, max_age=86400)
+        return response
+    return templates.TemplateResponse("login.html", {"request": request, "error": "Неверный пароль"})
+
+@app.get("/logout")
+async def logout():
+    response = RedirectResponse(url="/login", status_code=303)
+    response.delete_cookie("admin_auth")
+    return response
+
+# ---- Главная страница ----
 @app.get("/", response_class=HTMLResponse)
 async def index(request: Request):
     conn = await get_db()
@@ -204,6 +313,7 @@ async def index(request: Request):
     }
     return templates.TemplateResponse("index.html", {"request": request, "stats": stats})
 
+# ---- Пользователи ----
 @app.get("/users", response_class=HTMLResponse)
 async def users_list(request: Request, search: str = ""):
     conn = await get_db()
@@ -237,6 +347,7 @@ async def users_list(request: Request, search: str = ""):
         })
     return templates.TemplateResponse("users.html", {"request": request, "users": users, "search": search})
 
+# ---- Детали пользователя ----
 @app.get("/user/{user_id}", response_class=HTMLResponse)
 async def user_detail(request: Request, user_id: int):
     conn = await get_db()
@@ -281,6 +392,7 @@ async def user_detail(request: Request, user_id: int):
         "blocked": blocked
     })
 
+# ---- Управление подписками ----
 @app.post("/user/{user_id}/extend")
 async def extend_subscription(user_id: int, days: int = Form(...), reason: str = Form("")):
     conn = await get_db()
@@ -343,6 +455,7 @@ async def extend_all_subscriptions(days: int = Form(...)):
     await conn.close()
     return RedirectResponse(url="/", status_code=303)
 
+# ---- Управление ботом ----
 @app.post("/bot/toggle")
 async def toggle_bot(active: bool = Form(...)):
     await set_bot_active(active)
@@ -382,8 +495,7 @@ async def disable_webhook():
         logger.error(f"Ошибка удаления вебхука: {e}")
         return {"status": "error", "message": str(e)}
 
-# ========== МОНИТОРИНГ ==========
-
+# ---------- МОНИТОРИНГ ----------
 async def get_api_balance(service: str) -> dict:
     conn = await get_db()
     row = await conn.fetchrow("SELECT balance, last_updated, threshold, link FROM api_balances WHERE service = $1", service)
@@ -449,19 +561,44 @@ async def get_deepseek_balance():
             if resp.status_code == 200:
                 data = resp.json()
                 logger.info(f"DeepSeek API raw response: {data}")
-                # Парсим balance_infos
-                balance_infos = data.get("balance_infos", [])
-                if balance_infos:
-                    # Берём первый элемент (обычно там USD)
-                    balance = balance_infos[0].get("total_balance")
-                    if balance is not None:
-                        return str(balance)
-                return "неизвестно"
+                # Проверяем все возможные поля
+                balance = data.get("total_balance")
+                if balance is None:
+                    balance = data.get("topped_up_balance")
+                if balance is None:
+                    balance = data.get("granted_balance")
+                if balance is None:
+                    balance = data.get("balance")
+                if balance is None:
+                    return "неизвестно"
+                return str(balance)
             else:
                 logger.warning(f"DeepSeek API вернул {resp.status_code}: {resp.text}")
                 return "ошибка"
     except Exception as e:
         logger.error(f"Ошибка получения баланса DeepSeek: {e}")
+        return "ошибка"
+
+async def get_elevenlabs_balance():
+    if not ELEVENLABS_API_KEY:
+        return "неизвестно"
+    try:
+        async with httpx.AsyncClient() as client:
+            resp = await client.get(
+                "https://api.elevenlabs.io/v1/user/subscription",
+                headers={"xi-api-key": ELEVENLABS_API_KEY}
+            )
+            if resp.status_code == 200:
+                data = resp.json()
+                limit = data.get("character_limit", 0)
+                used = data.get("character_count", 0)
+                remaining = max(0, limit - used) if limit else 0
+                return str(remaining)
+            else:
+                logger.warning(f"ElevenLabs API вернул {resp.status_code}")
+                return "ошибка"
+    except Exception as e:
+        logger.error(f"Ошибка получения баланса ElevenLabs: {e}")
         return "ошибка"
 
 async def send_telegram_alert(message: str):
@@ -545,7 +682,6 @@ async def monitoring_page(request: Request):
         elevenlabs = await get_api_balance("elevenlabs")
         render = await get_render_payment()
 
-        # Если записи отсутствуют, создаём их принудительно
         if not deepseek or deepseek.get("balance") == "неизвестно":
             await update_api_balance("deepseek", "неизвестно", "30")
             deepseek = await get_api_balance("deepseek")
@@ -556,7 +692,6 @@ async def monitoring_page(request: Request):
             await set_render_payment(0, "7")
             render = await get_render_payment()
 
-        # Безопасное преобразование в числа (всегда возвращаем int/float, никогда None)
         def safe_float(val):
             try:
                 return float(val) if val is not None and str(val).replace('.', '').isdigit() else 0.0
@@ -641,6 +776,14 @@ async def set_render_date(request: Request, date: str = Form(...), amount: str =
         ts = 0
     await set_render_payment(ts, amount)
     return RedirectResponse(url="/monitoring", status_code=303)
+
+@app.on_event("startup")
+async def startup():
+    await ensure_db_structure()
+    scheduler = apscheduler.schedulers.background.BackgroundScheduler()
+    scheduler.add_job(lambda: asyncio.run(check_balances_and_notify()), 'interval', hours=6, id='monitor_balances')
+    scheduler.start()
+    logger.info("✅ Фоновый мониторинг запущен (каждые 6 часов)")
 
 if __name__ == "__main__":
     import uvicorn
