@@ -26,10 +26,14 @@
             <p><span class="label">Порог:</span> {{ deepseek.threshold }} CNY</p>
             <p><span class="label">Обновлено:</span> <span class="updated">{{ deepseek.last_updated }}</span></p>
             <p><span class="label">Статус:</span> 
-                {% if deepseek.balance | float < deepseek.threshold | float %}
-                    <span class="critical">⚠️ Критически низкий баланс</span>
+                {% if deepseek.balance_float > 0 %}
+                    {% if deepseek.balance_float < deepseek.threshold_float %}
+                        <span class="critical">⚠️ Критически низкий баланс</span>
+                    {% else %}
+                        <span class="safe">✅ В норме</span>
+                    {% endif %}
                 {% else %}
-                    <span class="safe">✅ В норме</span>
+                    <span style="color: #999;">—</span>
                 {% endif %}
             </p>
             <a href="{{ deepseek.link }}" target="_blank" class="btn btn-secondary btn-sm">Пополнить</a>
@@ -46,10 +50,14 @@
             <p><span class="label">Порог:</span> {{ elevenlabs.threshold }} символов</p>
             <p><span class="label">Обновлено:</span> <span class="updated">{{ elevenlabs.last_updated }}</span></p>
             <p><span class="label">Статус:</span> 
-                {% if elevenlabs.balance | int < elevenlabs.threshold | int %}
-                    <span class="critical">⚠️ Критически низкий остаток</span>
+                {% if elevenlabs.balance_int > 0 %}
+                    {% if elevenlabs.balance_int < elevenlabs.threshold_int %}
+                        <span class="critical">⚠️ Критически низкий остаток</span>
+                    {% else %}
+                        <span class="safe">✅ В норме</span>
+                    {% endif %}
                 {% else %}
-                    <span class="safe">✅ В норме</span>
+                    <span style="color: #999;">—</span>
                 {% endif %}
             </p>
             <a href="{{ elevenlabs.link }}" target="_blank" class="btn btn-secondary btn-sm">Пополнить</a>
@@ -64,7 +72,7 @@
     <h5>Render (плановый платёж)</h5>
     <p><span class="label">Следующее списание:</span> {{ render.next_date }}</p>
     <p><span class="label">Сумма:</span> ${{ render.amount }}</p>
-    {% if render.days_left is defined %}
+    {% if render.days_left is not none %}
         <p><span class="label">Дней до списания:</span> {{ render.days_left }}</p>
         {% if render.days_left <= 3 %}
             <p class="critical">⚠️ Осталось менее 3 дней!</p>
