@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>📊 Графики</h2>
+<p class="text-muted">Данные за последние 30 дней</p>
+
+<div class="row mt-4">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h5>Новые пользователи</h5>
+                <canvas id="newUsersChart" style="max-height: 300px;"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h5>Активность пользователей</h5>
+                <canvas id="activityChart" style="max-height: 300px;"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    async function loadCharts() {
+        const res = await fetch('/api/charts-data?days=30');
+        const data = await res.json();
+        
+        const newUsers = data.new_users;
+        const activity = data.activity;
+        
+        const labels = newUsers.map(d => d.date);
+        const newUsersCounts = newUsers.map(d => d.count);
+        const activityCounts = activity.map(d => d.count);
+        
+        new Chart(document.getElementById('newUsersChart'), {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Новых пользователей',
+                    data: newUsersCounts,
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                    fill: true,
+                    tension: 0.1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    legend: { display: false }
+                },
+                scales: {
+                    y: { beginAtZero: true }
+                }
+            }
+        });
+        
+        new Chart(document.getElementById('activityChart'), {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Действий',
+                    data: activityCounts,
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                    fill: true,
+                    tension: 0.1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    legend: { display: false }
+                },
+                scales: {
+                    y: { beginAtZero: true }
+                }
+            }
+        });
+    }
+    
+    document.addEventListener('DOMContentLoaded', loadCharts);
+</script>
+
+<div class="mt-3">
+    <a href="/" class="btn btn-secondary">На главную</a>
+</div>
+{% endblock %}

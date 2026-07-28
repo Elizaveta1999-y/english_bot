@@ -3,7 +3,7 @@ import asyncio
 import logging
 from datetime import datetime, timedelta
 from fastapi import FastAPI, Request, Form, HTTPException, Response
-from fastapi.responses import HTMLResponse, RedirectResponse
+from fastapi.responses import HTMLResponse, RedirectResponse, JSONResponse
 from fastapi.templating import Jinja2Templates
 import asyncpg
 import httpx
@@ -104,6 +104,11 @@ async def ensure_db_structure():
             )
         """)
         await conn.execute("""
+            ALTER TABLE income
+            ADD COLUMN IF NOT EXISTS payment_system TEXT,
+            ADD COLUMN IF NOT EXISTS payment_id TEXT
+        """)
+        await conn.execute("""
             CREATE TABLE IF NOT EXISTS expenses (
                 id SERIAL PRIMARY KEY,
                 amount DECIMAL(10,2) NOT NULL,
@@ -112,11 +117,14 @@ async def ensure_db_structure():
                 description TEXT
             )
         """)
-        # Добавляем недостающие колонки в income (если таблица уже существовала)
+        # Дополнительная таблица для логов активности (для графиков)
         await conn.execute("""
-            ALTER TABLE income
-            ADD COLUMN IF NOT EXISTS payment_system TEXT,
-            ADD COLUMN IF NOT EXISTS payment_id TEXT
+            CREATE TABLE IF NOT EXISTS activity_log (
+                id SERIAL PRIMARY KEY,
+                user_id BIGINT NOT NULL,
+                action TEXT,
+                date BIGINT NOT NULL
+            )
         """)
         logger.info("✅ Структура БД обновлена")
     except Exception as e:
@@ -168,6 +176,64 @@ async def get_expenses_list(start_ts: int, end_ts: int, limit: int = 50):
     await conn.close()
     return [dict(r) for r in rows]
 
+# ---------- ГРАФИКИ ----------
+async def get_new_users_data(days: int = 30):
+    """Возвращает массив с количеством новых пользователей по дням за последние N дней."""
+    conn = await get_db()
+    now = int(datetime.now().timestamp())
+    start_ts = int((datetime.now() - timedelta(days=days)).timestamp())
+    rows = await conn.fetch(
+        "SELECT date_trunc('day', to_timestamp(registered_at)) as day, COUNT(*) as count FROM users WHERE registered_at >= $1 GROUP BY day ORDER BY day",
+        start_ts
+    )
+    await conn.close()
+    # Заполняем пропуски нулями
+    result = []
+    current = datetime.fromtimestamp(start_ts)
+    end = datetime.fromtimestamp(now)
+    data_map = {row["day"].date(): row["count"] for row in rows}
+    while current <= end:
+        day_date = current.date()
+        result.append({
+            "date": day_date.isoformat(),
+            "count": data_map.get(day_date, 0)
+        })
+        current += timedelta(days=1)
+    return result
+
+async def get_activity_data(days: int = 30):
+    """Возвращает массив с количеством действий по дням за последние N дней."""
+    conn = await get_db()
+    now = int(datetime.now().timestamp())
+    start_ts = int((datetime.now() - timedelta(days=days)).timestamp())
+    # Проверяем, есть ли данные в activity_log
+    rows = await conn.fetch(
+        "SELECT date_trunc('day', to_timestamp(date)) as day, COUNT(*) as count FROM activity_log WHERE date >= $1 GROUP BY day ORDER BY day",
+        start_ts
+    )
+    await conn.close()
+    # Если activity_log пуст, используем last_active из users как приближение
+    if not rows:
+        conn = await get_db()
+        rows = await conn.fetch(
+            "SELECT date_trunc('day', to_timestamp(last_active)) as day, COUNT(*) as count FROM users WHERE last_active >= $1 GROUP BY day ORDER BY day",
+            start_ts
+        )
+        await conn.close()
+    # Заполняем пропуски нулями
+    result = []
+    current = datetime.fromtimestamp(start_ts)
+    end = datetime.fromtimestamp(now)
+    data_map = {row["day"].date(): row["count"] for row in rows}
+    while current <= end:
+        day_date = current.date()
+        result.append({
+            "date": day_date.isoformat(),
+            "count": data_map.get(day_date, 0)
+        })
+        current += timedelta(days=1)
+    return result
+
 # ---------- WEBHOOK ДЛЯ ДОХОДОВ ----------
 class PaymentWebhook(BaseModel):
     user_id: int
@@ -191,6 +257,18 @@ async def payment_webhook(data: PaymentWebhook):
     except Exception as e:
         logger.error(f"Ошибка записи дохода: {e}")
         return {"status": "error", "message": str(e)}, 500
+
+# ---------- API ДЛЯ ГРАФИКОВ ----------
+@app.get("/api/charts-data")
+async def charts_data(days: int = 30):
+    new_users = await get_new_users_data(days)
+    activity = await get_activity_data(days)
+    return JSONResponse({"new_users": new_users, "activity": activity})
+
+# ---------- СТРАНИЦА ГРАФИКОВ ----------
+@app.get("/charts", response_class=HTMLResponse)
+async def charts_page(request: Request):
+    return templates.TemplateResponse("charts.html", {"request": request})
 
 # ---------- СТРАНИЦА ФИНАНСОВ ----------
 @app.get("/finance", response_class=HTMLResponse)
