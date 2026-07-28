@@ -100,9 +100,7 @@ async def ensure_db_structure():
                 user_id BIGINT,
                 amount DECIMAL(10,2) NOT NULL,
                 date BIGINT NOT NULL,
-                description TEXT,
-                payment_system TEXT,
-                payment_id TEXT
+                description TEXT
             )
         """)
         await conn.execute("""
@@ -113,6 +111,12 @@ async def ensure_db_structure():
                 category TEXT NOT NULL,
                 description TEXT
             )
+        """)
+        # Добавляем недостающие колонки в income (если таблица уже существовала)
+        await conn.execute("""
+            ALTER TABLE income
+            ADD COLUMN IF NOT EXISTS payment_system TEXT,
+            ADD COLUMN IF NOT EXISTS payment_id TEXT
         """)
         logger.info("✅ Структура БД обновлена")
     except Exception as e:
@@ -561,7 +565,6 @@ async def get_deepseek_balance():
             if resp.status_code == 200:
                 data = resp.json()
                 logger.info(f"DeepSeek API raw response: {data}")
-                # Проверяем все возможные поля
                 balance = data.get("total_balance")
                 if balance is None:
                     balance = data.get("topped_up_balance")
