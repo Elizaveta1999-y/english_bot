@@ -466,7 +466,7 @@ async def users_list(request: Request, search: str = ""):
         })
     return templates.TemplateResponse("users.html", {"request": request, "users": users, "search": search})
 
-# ---- ДЕТАЛИ ПОЛЬЗОВАТЕЛЯ (ВСЕ ПОДТИПЫ + ОБЩЕНИЕ + РОЛЕВЫЕ) ----
+# ---- ДЕТАЛИ ПОЛЬЗОВАТЕЛЯ ----
 @app.get("/user/{user_id}", response_class=HTMLResponse)
 async def user_detail(request: Request, user_id: int):
     conn = await get_db()
@@ -475,7 +475,6 @@ async def user_detail(request: Request, user_id: int):
         raise HTTPException(404, "Пользователь не найден")
     blocked = await is_user_blocked(user_id)
     
-    # Прогресс из таблицы progress
     progress_rows = await conn.fetch("SELECT type_key, level_key, correct, wrong FROM progress WHERE user_id = $1", user_id)
     writing_rows = await conn.fetch("SELECT type_key, level_key, total_answered, total_score FROM writing_progress WHERE user_id = $1", user_id)
     govorenie_rows = await conn.fetch("SELECT task_type, level, total_answered, total_score FROM govorenie_progress WHERE user_id = $1", user_id)
@@ -489,7 +488,7 @@ async def user_detail(request: Request, user_id: int):
         else:
             user[field] = "—"
     
-    # ---- 1. Агрегация прогресса по подтипам ----
+    # Агрегация прогресса
     progress_data = {}
     for r in progress_rows:
         key = r["type_key"]
@@ -500,7 +499,6 @@ async def user_detail(request: Request, user_id: int):
         progress_data[key]["correct"] += correct
         progress_data[key]["wrong"] += wrong
     
-    # ---- 2. Формируем полный список подтипов для каждого режима ----
     progress_by_mode = {}
     
     # Грамматика
@@ -575,7 +573,7 @@ async def user_detail(request: Request, user_id: int):
         })
     progress_by_mode["Аудирование"] = listening_items
     
-    # Другие (если есть)
+    # Другое
     other_items = []
     for key, data in progress_data.items():
         if (not key.startswith("grammar_") and not key.startswith("words_") and 
@@ -594,7 +592,7 @@ async def user_detail(request: Request, user_id: int):
     if other_items:
         progress_by_mode["Другое"] = other_items
     
-    # ---- 3. Ошибки с красивыми названиями ----
+    # Ошибки
     errors_summary = {}
     for row in error_rows:
         key = row["type_key"]
@@ -614,7 +612,6 @@ async def user_detail(request: Request, user_id: int):
             display = key
         errors_summary[display] = cnt
     
-    # ---- 4. Письмо и говорение ----
     writing_summary = {}
     for r in writing_rows:
         key = r["type_key"]
@@ -625,7 +622,6 @@ async def user_detail(request: Request, user_id: int):
         key = r["task_type"]
         govorenie_summary[key] = {"answered": r["total_answered"], "score": r["total_score"]}
     
-    # ---- 5. Общение с AI и Ролевые игры (из полей пользователя) ----
     speaking_minutes = round(user.get("speaking_seconds_month", 0) / 60, 1)
     roleplay_minutes = round(user.get("roleplay_seconds_month", 0) / 60, 1)
     
@@ -639,6 +635,30 @@ async def user_detail(request: Request, user_id: int):
         "blocked": blocked,
         "speaking_minutes": speaking_minutes,
         "roleplay_minutes": roleplay_minutes
+    })
+
+# ---- СЫРЫЕ ДАННЫЕ ----
+@app.get("/raw-data/{user_id}", response_class=HTMLResponse)
+async def raw_data_page(request: Request, user_id: int):
+    conn = await get_db()
+    progress_rows = await conn.fetch("SELECT type_key, level_key, correct, wrong FROM progress WHERE user_id = $1 ORDER BY type_key", user_id)
+    progress_data = [dict(r) for r in progress_rows]
+    writing_rows = await conn.fetch("SELECT type_key, level_key, total_answered, total_score FROM writing_progress WHERE user_id = $1 ORDER BY type_key", user_id)
+    writing_data = [dict(r) for r in writing_rows]
+    govorenie_rows = await conn.fetch("SELECT task_type, level, total_answered, total_score FROM govorenie_progress WHERE user_id = $1 ORDER BY task_type", user_id)
+    govorenie_data = [dict(r) for r in govorenie_rows]
+    await conn.close()
+    
+    user_row = await conn.fetchrow("SELECT first_name, username FROM users WHERE user_id = $1", user_id)
+    user_name = f"{user_row['first_name']} (@{user_row['username']})" if user_row else str(user_id)
+    
+    return templates.TemplateResponse("raw_data.html", {
+        "request": request,
+        "user_id": user_id,
+        "user_name": user_name,
+        "progress": progress_data,
+        "writing": writing_data,
+        "govorenie": govorenie_data
     })
 
 # ---- УПРАВЛЕНИЕ ПОДПИСКАМИ ----
@@ -724,7 +744,7 @@ async def extend_all_subscriptions(days: int = Form(...)):
     await conn.close()
     return RedirectResponse(url="/", status_code=303)
 
-# ---- УПРАВЛЕНИЕ БОТОМ (ВКЛ/ВЫКЛ, ВЕБХУК) ----
+# ---- УПРАВЛЕНИЕ БОТОМ ----
 @app.post("/bot/toggle")
 async def toggle_bot(active: bool = Form(...)):
     await set_bot_active(active)

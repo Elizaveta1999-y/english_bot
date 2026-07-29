@@ -41,7 +41,12 @@
     {% endif %}
 </div>
 
-<!-- Прогресс по тренажёрам (все подтипы) -->
+<!-- Ссылка на сырые данные -->
+<div class="mt-3">
+    <a href="/raw-data/{{ user.user_id }}" class="btn btn-outline-secondary btn-sm">📋 Сырые данные из БД</a>
+</div>
+
+<!-- Прогресс по тренажёрам -->
 <h4 class="section-title">📈 Прогресс по тренажёрам</h4>
 {% for mode, items in progress_by_mode.items() %}
     <h5>{{ mode }}</h5>

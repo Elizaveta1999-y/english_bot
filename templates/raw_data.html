@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>📋 Сырые данные для пользователя {{ user_id }} ({{ user_name }})</h2>
+
+<h4 class="mt-4">Таблица `progress`</h4>
+<div class="table-responsive">
+    <table class="table table-sm table-striped">
+        <thead>
+            <tr>
+                <th>type_key</th>
+                <th>level_key</th>
+                <th>correct</th>
+                <th>wrong</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for row in progress %}
+            <tr>
+                <td>{{ row.type_key }}</td>
+                <td>{{ row.level_key }}</td>
+                <td>{{ row.correct }}</td>
+                <td>{{ row.wrong }}</td>
+            </tr>
+        {% else %}
+            <tr><td colspan="4">Нет данных</td></tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<h4 class="mt-4">Таблица `writing_progress`</h4>
+<div class="table-responsive">
+    <table class="table table-sm table-striped">
+        <thead>
+            <tr>
+                <th>type_key</th>
+                <th>level_key</th>
+                <th>total_answered</th>
+                <th>total_score</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for row in writing %}
+            <tr>
+                <td>{{ row.type_key }}</td>
+                <td>{{ row.level_key }}</td>
+                <td>{{ row.total_answered }}</td>
+                <td>{{ row.total_score }}</td>
+            </tr>
+        {% else %}
+            <tr><td colspan="4">Нет данных</td></tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<h4 class="mt-4">Таблица `govorenie_progress`</h4>
+<div class="table-responsive">
+    <table class="table table-sm table-striped">
+        <thead>
+            <tr>
+                <th>task_type</th>
+                <th>level</th>
+                <th>total_answered</th>
+                <th>total_score</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for row in govorenie %}
+            <tr>
+                <td>{{ row.task_type }}</td>
+                <td>{{ row.level }}</td>
+                <td>{{ row.total_answered }}</td>
+                <td>{{ row.total_score }}</td>
+            </tr>
+        {% else %}
+            <tr><td colspan="4">Нет данных</td></tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<a href="/users" class="btn btn-secondary mt-3">← Назад к списку пользователей</a>
+{% endblock %}
