@@ -46,7 +46,7 @@
     <a href="/raw-data/{{ user.user_id }}" class="btn btn-outline-secondary btn-sm">📋 Сырые данные из БД</a>
 </div>
 
-<!-- Прогресс по тренажёрам -->
+<!-- Прогресс по тренажёрам с уровнями -->
 <h4 class="section-title">📈 Прогресс по тренажёрам</h4>
 {% for mode, items in progress_by_mode.items() %}
     <h5>{{ mode }}</h5>
@@ -55,6 +55,7 @@
             <thead>
                 <tr>
                     <th>Подтип</th>
+                    <th>Уровень</th>
                     <th>Правильно</th>
                     <th>Неправильно</th>
                     <th>Точность, %</th>
@@ -64,6 +65,7 @@
             {% for item in items %}
                 <tr>
                     <td>{{ item.subtype }}</td>
+                    <td>{{ item.level }}</td>
                     <td>{{ item.correct }}</td>
                     <td>{{ item.wrong }}</td>
                     <td>{{ item.percent }}</td>
@@ -79,17 +81,18 @@
 <h4 class="section-title">✍️ Письмо</h4>
 <div class="table-responsive">
     <table class="table table-sm table-striped">
-        <thead><tr><th>Тип</th><th>Проверок</th><th>Сумма баллов</th><th>Средний</th></tr></thead>
+        <thead><tr><th>Тип</th><th>Уровень</th><th>Проверок</th><th>Сумма баллов</th><th>Средний</th></tr></thead>
         <tbody>
-        {% for key, data in writing.items() %}
+        {% for item in writing %}
             <tr>
-                <td>{{ key }}</td>
-                <td>{{ data.answered }}</td>
-                <td>{{ data.score }}</td>
-                <td>{% if data.answered > 0 %}{{ (data.score / data.answered) | round(1) }}{% else %}—{% endif %}</td>
+                <td>{{ item.subtype }}</td>
+                <td>{{ item.level }}</td>
+                <td>{{ item.answered }}</td>
+                <td>{{ item.score }}</td>
+                <td>{{ item.avg }}</td>
             </tr>
         {% else %}
-            <tr><td colspan="4">Нет данных</td></tr>
+            <tr><td colspan="5">Нет данных</td></tr>
         {% endfor %}
         </tbody>
     </table>
@@ -98,17 +101,18 @@
 <h4 class="section-title">🗣️ Говорение</h4>
 <div class="table-responsive">
     <table class="table table-sm table-striped">
-        <thead><tr><th>Тип</th><th>Проверок</th><th>Сумма баллов</th><th>Средний</th></tr></thead>
+        <thead><tr><th>Тип</th><th>Уровень</th><th>Проверок</th><th>Сумма баллов</th><th>Средний</th></tr></thead>
         <tbody>
-        {% for key, data in govorenie.items() %}
+        {% for item in govorenie %}
             <tr>
-                <td>{{ key }}</td>
-                <td>{{ data.answered }}</td>
-                <td>{{ data.score }}</td>
-                <td>{% if data.answered > 0 %}{{ (data.score / data.answered) | round(1) }}{% else %}—{% endif %}</td>
+                <td>{{ item.subtype }}</td>
+                <td>{{ item.level }}</td>
+                <td>{{ item.answered }}</td>
+                <td>{{ item.score }}</td>
+                <td>{{ item.avg }}</td>
             </tr>
         {% else %}
-            <tr><td colspan="4">Нет данных</td></tr>
+            <tr><td colspan="5">Нет данных</td></tr>
         {% endfor %}
         </tbody>
     </table>
