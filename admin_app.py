@@ -32,6 +32,50 @@ if not DATABASE_URL:
 if not BOT_TOKEN:
     raise ValueError("BOT_TOKEN is not set")
 
+# ---------- СЛОВАРИ ДЛЯ ОТОБРАЖЕНИЯ КРАСИВЫХ НАЗВАНИЙ ----------
+GRAMMAR_TYPES = {
+    "раскрытие_скобок": "раскрытие скобок",
+    "вставка_пропусков": "вставка пропусков",
+    "to_be_выбор": "to be выбор",
+    "to_be_скобки": "to be скобки",
+    "добавьте_s": "добавьте s",
+    "множественное_число": "множественное число",
+    "единственное_число": "единственное число",
+    "отрицание": "отрицание"
+}
+
+LEXIS_TYPES = {
+    "adjectives": "adjectives",
+    "adverbs": "adverbs",
+    "verbs": "verbs",
+    "nouns": "nouns",
+    "conjunctions": "conjunctions",
+    "prepositions": "prepositions",
+    "phrasal_verbs": "phrasal verbs",
+    "irregular_verbs": "irregular verbs",
+    "false_friends": "false friends",
+    "gold_3000": "gold 3000",
+    "expert": "expert",
+    "beginner": "beginner"
+}
+
+LISTENING_TYPES = {
+    "choice": "choice",
+    "truefalse": "truefalse",
+    "fill_one": "fill one",
+    "fill_multiple": "fill multiple",
+    "speaker": "speaker",
+    "random": "random"
+}
+
+READING_TYPES = {
+    "Подбор_заголовка": "Подбор заголовка",
+    "True_False_Not_stated": "True/False/Not stated",
+    "Вопросы_с_выбором_ответа": "Вопросы с выбором ответа",
+    "Восстановление_порядка_абзацев": "Восстановление порядка абзацев"
+}
+
+# ---------- БАЗА ДАННЫХ ----------
 async def get_db():
     return await asyncpg.connect(DATABASE_URL)
 
@@ -49,7 +93,9 @@ async def ensure_db_structure():
             ADD COLUMN IF NOT EXISTS bonus_notification BOOLEAN DEFAULT FALSE,
             ADD COLUMN IF NOT EXISTS bonus_reason TEXT DEFAULT '',
             ADD COLUMN IF NOT EXISTS subscription_started BIGINT DEFAULT 0,
-            ADD COLUMN IF NOT EXISTS subscription_count INTEGER DEFAULT 0
+            ADD COLUMN IF NOT EXISTS subscription_count INTEGER DEFAULT 0,
+            ADD COLUMN IF NOT EXISTS speaking_seconds_month BIGINT DEFAULT 0,
+            ADD COLUMN IF NOT EXISTS roleplay_seconds_month BIGINT DEFAULT 0
         """)
         await conn.execute("""
             CREATE TABLE IF NOT EXISTS bot_settings (
@@ -66,7 +112,6 @@ async def ensure_db_structure():
                 user_id BIGINT PRIMARY KEY
             )
         """)
-        # Таблицы для мониторинга
         await conn.execute("""
             CREATE TABLE IF NOT EXISTS api_balances (
                 service TEXT PRIMARY KEY,
@@ -95,7 +140,6 @@ async def ensure_db_structure():
             VALUES (1, 0, '7', FALSE)
             ON CONFLICT (id) DO NOTHING
         """)
-        # Финансовые таблицы
         await conn.execute("""
             CREATE TABLE IF NOT EXISTS income (
                 id SERIAL PRIMARY KEY,
@@ -119,7 +163,6 @@ async def ensure_db_structure():
                 description TEXT
             )
         """)
-        # Таблица для логов активности (для графиков)
         await conn.execute("""
             CREATE TABLE IF NOT EXISTS activity_log (
                 id SERIAL PRIMARY KEY,
@@ -230,7 +273,7 @@ async def get_activity_data(days: int = 30):
         current += timedelta(days=1)
     return result
 
-# ---------- WEBHOOK ДЛЯ ДОХОДОВ ----------
+# ---------- WEBHOOK ----------
 class PaymentWebhook(BaseModel):
     user_id: int
     amount: float
@@ -261,12 +304,11 @@ async def charts_data(days: int = 30):
     activity = await get_activity_data(days)
     return JSONResponse({"new_users": new_users, "activity": activity})
 
-# ---------- СТРАНИЦА ГРАФИКОВ ----------
+# ---------- СТРАНИЦЫ ----------
 @app.get("/charts", response_class=HTMLResponse)
 async def charts_page(request: Request):
     return templates.TemplateResponse("charts.html", {"request": request})
 
-# ---------- СТРАНИЦА ФИНАНСОВ ----------
 @app.get("/finance", response_class=HTMLResponse)
 async def finance_page(request: Request, period: str = "month"):
     now = datetime.now()
@@ -306,7 +348,7 @@ async def add_expense_route(amount: float = Form(...), category: str = Form(...)
     await add_expense(amount, category, description)
     return RedirectResponse(url="/finance", status_code=303)
 
-# ---------- ОСТАЛЬНЫЕ ЭНДПОИНТЫ ----------
+# ---------- УПРАВЛЕНИЕ БОТОМ ----------
 async def get_bot_active() -> bool:
     conn = await get_db()
     val = await conn.fetchval("SELECT value FROM bot_settings WHERE key = 'is_active'")
@@ -339,7 +381,7 @@ async def set_bonus_notification(user_id: int, reason: str):
     await conn.execute("UPDATE users SET bonus_notification = TRUE, bonus_reason = $1 WHERE user_id = $2", reason, user_id)
     await conn.close()
 
-# ---- Авторизация ----
+# ---- АВТОРИЗАЦИЯ ----
 def is_authenticated(request: Request) -> bool:
     return request.cookies.get("admin_auth") == "true"
 
@@ -369,7 +411,7 @@ async def logout():
     response.delete_cookie("admin_auth")
     return response
 
-# ---- Главная страница ----
+# ---- ГЛАВНАЯ ----
 @app.get("/", response_class=HTMLResponse)
 async def index(request: Request):
     conn = await get_db()
@@ -391,7 +433,7 @@ async def index(request: Request):
     }
     return templates.TemplateResponse("index.html", {"request": request, "stats": stats})
 
-# ---- Пользователи ----
+# ---- ПОЛЬЗОВАТЕЛИ ----
 @app.get("/users", response_class=HTMLResponse)
 async def users_list(request: Request, search: str = ""):
     conn = await get_db()
@@ -425,7 +467,7 @@ async def users_list(request: Request, search: str = ""):
         })
     return templates.TemplateResponse("users.html", {"request": request, "users": users, "search": search})
 
-# ---- Детальная страница пользователя (ОБНОВЛЕНА) ----
+# ---- ДЕТАЛИ ПОЛЬЗОВАТЕЛЯ (ОБНОВЛЕНА) ----
 @app.get("/user/{user_id}", response_class=HTMLResponse)
 async def user_detail(request: Request, user_id: int):
     conn = await get_db()
@@ -441,17 +483,14 @@ async def user_detail(request: Request, user_id: int):
     await conn.close()
     
     user = dict(user_row)
-    # Преобразуем даты
     for field in ["registered_at", "last_active", "subscription_until", "subscription_started", "trial_until", "trial_started"]:
         if user.get(field):
             user[field] = datetime.fromtimestamp(user[field]).strftime("%Y-%m-%d %H:%M") if user[field] else "—"
         else:
             user[field] = "—"
     
-    # Группировка прогресса по режимам
+    # Группировка прогресса
     progress_by_mode = {}
-    READING_KEYS = ["Подбор_заголовка", "True_False_Not_stated", "Вопросы_с_выбором_ответа", "Восстановление_порядка_абзацев"]
-    
     for r in progress_rows:
         key = r["type_key"]
         correct = r["correct"]
@@ -461,16 +500,19 @@ async def user_detail(request: Request, user_id: int):
         
         if key.startswith("grammar_"):
             mode = "Грамматика"
-            subtype = key[8:]
+            raw_subtype = key[8:]
+            subtype = GRAMMAR_TYPES.get(raw_subtype, raw_subtype)
         elif key.startswith("words_"):
             mode = "Лексика"
-            subtype = key[6:]
-        elif key in READING_KEYS:
+            raw_subtype = key[6:]
+            subtype = LEXIS_TYPES.get(raw_subtype, raw_subtype)
+        elif key in READING_TYPES:
             mode = "Чтение"
-            subtype = key
+            subtype = READING_TYPES.get(key, key)
         elif key.startswith("listening_"):
             mode = "Аудирование"
-            subtype = key[10:]
+            raw_subtype = key[10:] if key[10:] else "random"
+            subtype = LISTENING_TYPES.get(raw_subtype, raw_subtype)
         else:
             mode = "Другое"
             subtype = key
@@ -485,11 +527,31 @@ async def user_detail(request: Request, user_id: int):
             "percent": percent
         })
     
-    errors_summary = {r["type_key"]: r["cnt"] for r in error_rows}
+    # Ошибки с красивыми названиями
+    errors_summary = {}
+    for row in error_rows:
+        key = row["type_key"]
+        cnt = row["cnt"]
+        if key.startswith("grammar_"):
+            raw = key[8:]
+            display = GRAMMAR_TYPES.get(raw, raw)
+        elif key.startswith("words_"):
+            raw = key[6:]
+            display = LEXIS_TYPES.get(raw, raw)
+        elif key in READING_TYPES:
+            display = READING_TYPES.get(key, key)
+        elif key.startswith("listening_"):
+            raw = key[10:] if key[10:] else "random"
+            display = LISTENING_TYPES.get(raw, raw)
+        else:
+            display = key
+        errors_summary[display] = cnt
+    
     writing_summary = {}
     for r in writing_rows:
         key = r["type_key"]
         writing_summary[key] = {"answered": r["total_answered"], "score": r["total_score"]}
+    
     govorenie_summary = {}
     for r in govorenie_rows:
         key = r["task_type"]
@@ -505,7 +567,7 @@ async def user_detail(request: Request, user_id: int):
         "blocked": blocked
     })
 
-# ---- Управление подписками (обновлено) ----
+# ---- УПРАВЛЕНИЕ ПОДПИСКАМИ ----
 @app.post("/user/{user_id}/extend")
 async def extend_subscription(user_id: int, days: int = Form(...), reason: str = Form("")):
     conn = await get_db()
@@ -542,7 +604,6 @@ async def reset_user_progress(user_id: int):
     await conn.close()
     return RedirectResponse(url=f"/user/{user_id}", status_code=303)
 
-# ---- НОВЫЙ ЭНДПОИНТ: Очистить все данные пользователя ----
 @app.post("/user/{user_id}/clear_all_data")
 async def clear_all_user_data(user_id: int):
     conn = await get_db()
@@ -589,7 +650,7 @@ async def extend_all_subscriptions(days: int = Form(...)):
     await conn.close()
     return RedirectResponse(url="/", status_code=303)
 
-# ---- Управление ботом ----
+# ---- УПРАВЛЕНИЕ БОТОМ (ВКЛ/ВЫКЛ, ВЕБХУК) ----
 @app.post("/bot/toggle")
 async def toggle_bot(active: bool = Form(...)):
     await set_bot_active(active)
@@ -763,7 +824,6 @@ async def check_balances_and_notify():
         await update_api_balance("deepseek", deepseek_balance or "неизвестно")
         await update_api_balance("elevenlabs", elevenlabs_balance or "неизвестно")
 
-        # DeepSeek
         try:
             threshold_str = deepseek_data.get("threshold") or "30"
             deep_threshold = float(threshold_str)
@@ -778,7 +838,6 @@ async def check_balances_and_notify():
         except Exception as e:
             logger.error(f"Ошибка проверки DeepSeek: {e}")
 
-        # ElevenLabs
         try:
             threshold_str = elevenlabs_data.get("threshold") or "10000"
             elev_threshold = int(threshold_str)
@@ -793,7 +852,6 @@ async def check_balances_and_notify():
         except Exception as e:
             logger.error(f"Ошибка проверки ElevenLabs: {e}")
 
-        # Render
         render_data = await get_render_payment()
         if render_data and render_data.get("next_payment_date"):
             now = int(datetime.now().timestamp())
@@ -807,7 +865,7 @@ async def check_balances_and_notify():
     except Exception as e:
         logger.error(f"Ошибка в check_balances_and_notify: {e}")
 
-# ---- Страница мониторинга ----
+# ---- СТРАНИЦА МОНИТОРИНГА ----
 @app.get("/monitoring", response_class=HTMLResponse)
 async def monitoring_page(request: Request):
     try:
@@ -910,6 +968,7 @@ async def set_render_date(request: Request, date: str = Form(...), amount: str =
     await set_render_payment(ts, amount)
     return RedirectResponse(url="/monitoring", status_code=303)
 
+# ---------- ЗАПУСК ----------
 @app.on_event("startup")
 async def startup():
     await ensure_db_structure()

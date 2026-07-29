@@ -22,6 +22,8 @@
         <p><span class="detail-label">Пробный период (начало):</span> <span class="detail-value">{{ user.trial_started }}</span></p>
         <p><span class="detail-label">Пробный период (окончание):</span> <span class="detail-value">{{ user.trial_until }}</span></p>
         <p><span class="detail-label">Использовано голоса (месяц):</span> <span class="detail-value">{{ (user.total_voice_seconds_month / 60) | round(1) }} мин</span></p>
+        <p><span class="detail-label">Общение с AI (голос, месяц):</span> <span class="detail-value">{{ (user.speaking_seconds_month / 60) | round(1) }} мин</span></p>
+        <p><span class="detail-label">Ролевые игры (голос, месяц):</span> <span class="detail-value">{{ (user.roleplay_seconds_month / 60) | round(1) }} мин</span></p>
         <p><span class="detail-label">Статус:</span> <span class="detail-value">{% if blocked %}🔴 Заблокирован{% else %}🟢 Активен{% endif %}</span></p>
     </div>
 </div>
