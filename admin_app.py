@@ -637,7 +637,7 @@ async def user_detail(request: Request, user_id: int):
         "roleplay_minutes": roleplay_minutes
     })
 
-# ---- СЫРЫЕ ДАННЫЕ ----
+# ---- СЫРЫЕ ДАННЫЕ (ИСПРАВЛЕНО) ----
 @app.get("/raw-data/{user_id}", response_class=HTMLResponse)
 async def raw_data_page(request: Request, user_id: int):
     conn = await get_db()
@@ -647,10 +647,11 @@ async def raw_data_page(request: Request, user_id: int):
     writing_data = [dict(r) for r in writing_rows]
     govorenie_rows = await conn.fetch("SELECT task_type, level, total_answered, total_score FROM govorenie_progress WHERE user_id = $1 ORDER BY task_type", user_id)
     govorenie_data = [dict(r) for r in govorenie_rows]
-    await conn.close()
     
+    # Получаем имя пользователя
     user_row = await conn.fetchrow("SELECT first_name, username FROM users WHERE user_id = $1", user_id)
     user_name = f"{user_row['first_name']} (@{user_row['username']})" if user_row else str(user_id)
+    await conn.close()
     
     return templates.TemplateResponse("raw_data.html", {
         "request": request,
