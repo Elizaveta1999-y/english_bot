@@ -47,7 +47,9 @@ async def ensure_db_structure():
             ADD COLUMN IF NOT EXISTS total_voice_seconds_month BIGINT DEFAULT 0,
             ADD COLUMN IF NOT EXISTS voice_reset_month INTEGER DEFAULT 0,
             ADD COLUMN IF NOT EXISTS bonus_notification BOOLEAN DEFAULT FALSE,
-            ADD COLUMN IF NOT EXISTS bonus_reason TEXT DEFAULT ''
+            ADD COLUMN IF NOT EXISTS bonus_reason TEXT DEFAULT '',
+            ADD COLUMN IF NOT EXISTS subscription_started BIGINT DEFAULT 0,
+            ADD COLUMN IF NOT EXISTS subscription_count INTEGER DEFAULT 0
         """)
         await conn.execute("""
             CREATE TABLE IF NOT EXISTS bot_settings (
@@ -117,7 +119,7 @@ async def ensure_db_structure():
                 description TEXT
             )
         """)
-        # Дополнительная таблица для логов активности (для графиков)
+        # Таблица для логов активности (для графиков)
         await conn.execute("""
             CREATE TABLE IF NOT EXISTS activity_log (
                 id SERIAL PRIMARY KEY,
@@ -178,7 +180,6 @@ async def get_expenses_list(start_ts: int, end_ts: int, limit: int = 50):
 
 # ---------- ГРАФИКИ ----------
 async def get_new_users_data(days: int = 30):
-    """Возвращает массив с количеством новых пользователей по дням за последние N дней."""
     conn = await get_db()
     now = int(datetime.now().timestamp())
     start_ts = int((datetime.now() - timedelta(days=days)).timestamp())
@@ -187,7 +188,6 @@ async def get_new_users_data(days: int = 30):
         start_ts
     )
     await conn.close()
-    # Заполняем пропуски нулями
     result = []
     current = datetime.fromtimestamp(start_ts)
     end = datetime.fromtimestamp(now)
@@ -202,17 +202,14 @@ async def get_new_users_data(days: int = 30):
     return result
 
 async def get_activity_data(days: int = 30):
-    """Возвращает массив с количеством действий по дням за последние N дней."""
     conn = await get_db()
     now = int(datetime.now().timestamp())
     start_ts = int((datetime.now() - timedelta(days=days)).timestamp())
-    # Проверяем, есть ли данные в activity_log
     rows = await conn.fetch(
         "SELECT date_trunc('day', to_timestamp(date)) as day, COUNT(*) as count FROM activity_log WHERE date >= $1 GROUP BY day ORDER BY day",
         start_ts
     )
     await conn.close()
-    # Если activity_log пуст, используем last_active из users как приближение
     if not rows:
         conn = await get_db()
         rows = await conn.fetch(
@@ -220,7 +217,6 @@ async def get_activity_data(days: int = 30):
             start_ts
         )
         await conn.close()
-    # Заполняем пропуски нулями
     result = []
     current = datetime.fromtimestamp(start_ts)
     end = datetime.fromtimestamp(now)
@@ -282,7 +278,7 @@ async def finance_page(request: Request, period: str = "month"):
         start = int(now.replace(day=1, hour=0, minute=0, second=0, microsecond=0).timestamp())
         end = int(now.timestamp())
         label = "за месяц"
-    else:  # all
+    else:
         start = 0
         end = int(now.timestamp())
         label = "за всё время"
@@ -310,7 +306,7 @@ async def add_expense_route(amount: float = Form(...), category: str = Form(...)
     await add_expense(amount, category, description)
     return RedirectResponse(url="/finance", status_code=303)
 
-# ---------- ОСТАЛЬНЫЕ ЭНДПОИНТЫ (УПРАВЛЕНИЕ БОТОМ, ПОЛЬЗОВАТЕЛИ, МОНИТОРИНГ) ----------
+# ---------- ОСТАЛЬНЫЕ ЭНДПОИНТЫ ----------
 async def get_bot_active() -> bool:
     conn = await get_db()
     val = await conn.fetchval("SELECT value FROM bot_settings WHERE key = 'is_active'")
@@ -429,7 +425,7 @@ async def users_list(request: Request, search: str = ""):
         })
     return templates.TemplateResponse("users.html", {"request": request, "users": users, "search": search})
 
-# ---- Детали пользователя ----
+# ---- Детальная страница пользователя (ОБНОВЛЕНА) ----
 @app.get("/user/{user_id}", response_class=HTMLResponse)
 async def user_detail(request: Request, user_id: int):
     conn = await get_db()
@@ -437,24 +433,59 @@ async def user_detail(request: Request, user_id: int):
     if not user_row:
         raise HTTPException(404, "Пользователь не найден")
     blocked = await is_user_blocked(user_id)
+    
     progress_rows = await conn.fetch("SELECT type_key, level_key, correct, wrong FROM progress WHERE user_id = $1", user_id)
     writing_rows = await conn.fetch("SELECT type_key, level_key, total_answered, total_score FROM writing_progress WHERE user_id = $1", user_id)
     govorenie_rows = await conn.fetch("SELECT task_type, level, total_answered, total_score FROM govorenie_progress WHERE user_id = $1", user_id)
     error_rows = await conn.fetch("SELECT type_key, COUNT(*) as cnt FROM errors WHERE user_id = $1 GROUP BY type_key", user_id)
     await conn.close()
+    
     user = dict(user_row)
-    for field in ["registered_at", "last_active", "subscription_until", "trial_until"]:
+    # Преобразуем даты
+    for field in ["registered_at", "last_active", "subscription_until", "subscription_started", "trial_until", "trial_started"]:
         if user.get(field):
             user[field] = datetime.fromtimestamp(user[field]).strftime("%Y-%m-%d %H:%M") if user[field] else "—"
         else:
             user[field] = "—"
-    progress_summary = {}
+    
+    # Группировка прогресса по режимам
+    progress_by_mode = {}
+    READING_KEYS = ["Подбор_заголовка", "True_False_Not_stated", "Вопросы_с_выбором_ответа", "Восстановление_порядка_абзацев"]
+    
     for r in progress_rows:
         key = r["type_key"]
-        if key not in progress_summary:
-            progress_summary[key] = {"correct": 0, "wrong": 0}
-        progress_summary[key]["correct"] += r["correct"]
-        progress_summary[key]["wrong"] += r["wrong"]
+        correct = r["correct"]
+        wrong = r["wrong"]
+        total = correct + wrong
+        percent = round((correct / total * 100), 1) if total else 0
+        
+        if key.startswith("grammar_"):
+            mode = "Грамматика"
+            subtype = key[8:]
+        elif key.startswith("words_"):
+            mode = "Лексика"
+            subtype = key[6:]
+        elif key in READING_KEYS:
+            mode = "Чтение"
+            subtype = key
+        elif key.startswith("listening_"):
+            mode = "Аудирование"
+            subtype = key[10:]
+        else:
+            mode = "Другое"
+            subtype = key
+        
+        if mode not in progress_by_mode:
+            progress_by_mode[mode] = []
+        progress_by_mode[mode].append({
+            "subtype": subtype,
+            "correct": correct,
+            "wrong": wrong,
+            "total": total,
+            "percent": percent
+        })
+    
+    errors_summary = {r["type_key"]: r["cnt"] for r in error_rows}
     writing_summary = {}
     for r in writing_rows:
         key = r["type_key"]
@@ -463,26 +494,28 @@ async def user_detail(request: Request, user_id: int):
     for r in govorenie_rows:
         key = r["task_type"]
         govorenie_summary[key] = {"answered": r["total_answered"], "score": r["total_score"]}
-    errors_summary = {r["type_key"]: r["cnt"] for r in error_rows}
+    
     return templates.TemplateResponse("user_detail.html", {
         "request": request,
         "user": user,
-        "progress": progress_summary,
+        "progress_by_mode": progress_by_mode,
         "writing": writing_summary,
         "govorenie": govorenie_summary,
         "errors": errors_summary,
         "blocked": blocked
     })
 
-# ---- Управление подписками ----
+# ---- Управление подписками (обновлено) ----
 @app.post("/user/{user_id}/extend")
 async def extend_subscription(user_id: int, days: int = Form(...), reason: str = Form("")):
     conn = await get_db()
     now = int(datetime.now().timestamp())
-    row = await conn.fetchrow("SELECT subscription_until FROM users WHERE user_id = $1", user_id)
+    row = await conn.fetchrow("SELECT subscription_until, subscription_count FROM users WHERE user_id = $1", user_id)
     current = row["subscription_until"] if row and row["subscription_until"] else now
     new_until = max(current, now) + days * 86400
-    await conn.execute("UPDATE users SET subscription_until = $1 WHERE user_id = $2", new_until, user_id)
+    if current <= now:
+        await conn.execute("UPDATE users SET subscription_started = $1 WHERE user_id = $2", now, user_id)
+    await conn.execute("UPDATE users SET subscription_until = $1, subscription_count = subscription_count + 1 WHERE user_id = $2", new_until, user_id)
     if reason.strip():
         await set_bonus_notification(user_id, reason)
     await conn.close()
@@ -509,6 +542,23 @@ async def reset_user_progress(user_id: int):
     await conn.close()
     return RedirectResponse(url=f"/user/{user_id}", status_code=303)
 
+# ---- НОВЫЙ ЭНДПОИНТ: Очистить все данные пользователя ----
+@app.post("/user/{user_id}/clear_all_data")
+async def clear_all_user_data(user_id: int):
+    conn = await get_db()
+    await conn.execute("DELETE FROM progress WHERE user_id = $1", user_id)
+    await conn.execute("DELETE FROM errors WHERE user_id = $1", user_id)
+    await conn.execute("DELETE FROM grammar_progress WHERE user_id = $1", user_id)
+    await conn.execute("DELETE FROM writing_progress WHERE user_id = $1", user_id)
+    await conn.execute("DELETE FROM govorenie_progress WHERE user_id = $1", user_id)
+    await conn.execute("DELETE FROM progress_index WHERE user_id = $1", user_id)
+    await conn.execute("DELETE FROM random_order WHERE user_id = $1", user_id)
+    await conn.execute("DELETE FROM user_states WHERE user_id = $1", user_id)
+    await conn.execute("UPDATE users SET subscription_until = 0, subscription_started = 0, subscription_count = 0, trial_until = 0, trial_started = 0 WHERE user_id = $1", user_id)
+    await conn.execute("DELETE FROM income WHERE user_id = $1", user_id)
+    await conn.close()
+    return RedirectResponse(url=f"/user/{user_id}", status_code=303)
+
 @app.post("/user/{user_id}/block")
 async def block_user_route(user_id: int):
     await block_user(user_id)
@@ -526,7 +576,9 @@ async def extend_all_subscriptions(days: int = Form(...)):
     now = int(datetime.now().timestamp())
     await conn.execute("""
         UPDATE users
-        SET subscription_until = GREATEST(subscription_until, $1) + $2 * 86400
+        SET subscription_until = GREATEST(subscription_until, $1) + $2 * 86400,
+            subscription_count = subscription_count + 1,
+            subscription_started = CASE WHEN subscription_until <= $1 THEN $1 ELSE subscription_started END
         WHERE subscription_until > 0
     """, now, days)
     await conn.execute("""

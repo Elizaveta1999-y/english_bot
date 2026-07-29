@@ -1,54 +1,79 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h2>Пользователь {{ user.user_id }}</h2>
+<style>
+    .detail-label { font-weight: 400; color: #555; }
+    .detail-value { color: #333; }
+    .btn-outline-danger { border-color: #ccc; color: #333; }
+    .btn-outline-danger:hover { background: #f5f5f5; border-color: #aaa; }
+    .section-title { margin-top: 25px; margin-bottom: 10px; font-weight: 400; border-bottom: 1px solid #eee; padding-bottom: 5px; }
+</style>
+
+<h2>👤 Пользователь {{ user.user_id }}</h2>
 <div class="card mt-3">
     <div class="card-body">
-        <p><strong>Имя:</strong> {{ user.first_name }} {{ user.last_name or '' }}</p>
-        <p><strong>Username:</strong> {{ user.username or '—' }}</p>
-        <p><strong>Дата регистрации:</strong> {{ user.registered_at }}</p>
-        <p><strong>Последняя активность:</strong> {{ user.last_active }}</p>
-        <p><strong>Подписка до:</strong> {{ user.subscription_until }}</p>
-        <p><strong>Пробный до:</strong> {{ user.trial_until }}</p>
-        <p><strong>Использовано голоса (месяц):</strong> {{ (user.total_voice_seconds_month / 60) | round(1) }} мин</p>
-        <p><strong>Статус:</strong> {% if blocked %}Заблокирован{% else %}Активен{% endif %}</p>
+        <p><span class="detail-label">Имя:</span> <span class="detail-value">{{ user.first_name }} {{ user.last_name or '' }}</span></p>
+        <p><span class="detail-label">Username:</span> <span class="detail-value">{{ user.username or '—' }}</span></p>
+        <p><span class="detail-label">Дата регистрации:</span> <span class="detail-value">{{ user.registered_at }}</span></p>
+        <p><span class="detail-label">Последняя активность:</span> <span class="detail-value">{{ user.last_active }}</span></p>
+        <p><span class="detail-label">Подписка (начало):</span> <span class="detail-value">{{ user.subscription_started }}</span></p>
+        <p><span class="detail-label">Подписка (окончание):</span> <span class="detail-value">{{ user.subscription_until }}</span></p>
+        <p><span class="detail-label">Количество подписок:</span> <span class="detail-value">{{ user.subscription_count }}</span></p>
+        <p><span class="detail-label">Пробный период (начало):</span> <span class="detail-value">{{ user.trial_started }}</span></p>
+        <p><span class="detail-label">Пробный период (окончание):</span> <span class="detail-value">{{ user.trial_until }}</span></p>
+        <p><span class="detail-label">Использовано голоса (месяц):</span> <span class="detail-value">{{ (user.total_voice_seconds_month / 60) | round(1) }} мин</span></p>
+        <p><span class="detail-label">Статус:</span> <span class="detail-value">{% if blocked %}🔴 Заблокирован{% else %}🟢 Активен{% endif %}</span></p>
     </div>
 </div>
 
+<!-- Кнопки блокировки с подтверждением -->
 <div class="mt-3">
     {% if blocked %}
-    <form method="post" action="/user/{{ user.user_id }}/unblock" class="d-inline">
-        <button class="btn btn-success" type="submit">Разблокировать</button>
+    <form method="post" action="/user/{{ user.user_id }}/unblock" onsubmit="return confirm('Разблокировать пользователя {{ user.user_id }}?')" class="d-inline">
+        <button class="btn btn-secondary" type="submit">🔓 Разблокировать</button>
     </form>
     {% else %}
-    <form method="post" action="/user/{{ user.user_id }}/block" class="d-inline">
-        <button class="btn btn-danger" type="submit">Заблокировать</button>
+    <form method="post" action="/user/{{ user.user_id }}/block" onsubmit="return confirm('Заблокировать пользователя {{ user.user_id }}?')" class="d-inline">
+        <button class="btn btn-secondary" type="submit">🔒 Заблокировать</button>
     </form>
     {% endif %}
 </div>
 
-<h4 class="mt-4">Прогресс по тренажёрам</h4>
-<div class="table-responsive">
-    <table class="table table-sm">
-        <thead><tr><th>Тип</th><th>Правильно</th><th>Неправильно</th><th>Точность</th></tr></thead>
-        <tbody>
-        {% for key, data in progress.items() %}
-            <tr>
-                <td>{{ key }}</td>
-                <td>{{ data.correct }}</td>
-                <td>{{ data.wrong }}</td>
-                <td>{% if data.correct + data.wrong > 0 %}{{ (data.correct / (data.correct + data.wrong) * 100) | round(1) }}%{% else %}—{% endif %}</td>
-            </tr>
-        {% else %}
-            <tr><td colspan="4">Нет данных</td></tr>
-        {% endfor %}
-        </tbody>
-    </table>
-</div>
+<!-- Прогресс по тренажёрам (группировка по режимам) -->
+<h4 class="section-title">📈 Прогресс по тренажёрам</h4>
+{% for mode, items in progress_by_mode.items() %}
+    <h5>{{ mode }}</h5>
+    <div class="table-responsive">
+        <table class="table table-sm table-striped">
+            <thead>
+                <tr>
+                    <th>Подтип</th>
+                    <th>Правильно</th>
+                    <th>Неправильно</th>
+                    <th>Точность, %</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for item in items %}
+                <tr>
+                    <td>{{ item.subtype }}</td>
+                    <td>{{ item.correct }}</td>
+                    <td>{{ item.wrong }}</td>
+                    <td>{{ item.percent }}</td>
+                </tr>
+            {% else %}
+                <tr><td colspan="4">Нет данных</td></tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% else %}
+    <p>Нет данных по тренажёрам</p>
+{% endfor %}
 
-<h4>Письмо</h4>
+<h4 class="section-title">✍️ Письмо</h4>
 <div class="table-responsive">
-    <table class="table table-sm">
+    <table class="table table-sm table-striped">
         <thead><tr><th>Тип</th><th>Проверок</th><th>Сумма баллов</th><th>Средний</th></tr></thead>
         <tbody>
         {% for key, data in writing.items() %}
@@ -65,9 +90,9 @@
     </table>
 </div>
 
-<h4>Говорение</h4>
+<h4 class="section-title">🗣️ Говорение</h4>
 <div class="table-responsive">
-    <table class="table table-sm">
+    <table class="table table-sm table-striped">
         <thead><tr><th>Тип</th><th>Проверок</th><th>Сумма баллов</th><th>Средний</th></tr></thead>
         <tbody>
         {% for key, data in govorenie.items() %}
@@ -84,9 +109,9 @@
     </table>
 </div>
 
-<h4>Ошибки</h4>
+<h4 class="section-title">❌ Ошибки</h4>
 <div class="table-responsive">
-    <table class="table table-sm">
+    <table class="table table-sm table-striped">
         <thead><tr><th>Тип</th><th>Количество</th></tr></thead>
         <tbody>
         {% for key, cnt in errors.items() %}
@@ -98,7 +123,7 @@
     </table>
 </div>
 
-<h4>Управление подпиской</h4>
+<h4 class="section-title">🛠️ Управление подпиской</h4>
 <form method="post" action="/user/{{ user.user_id }}/extend" class="row g-3 mb-3">
     <div class="col-auto">
         <input type="number" name="days" class="form-control" placeholder="Дней" value="30" min="1" required>
@@ -107,17 +132,20 @@
         <input type="text" name="reason" class="form-control" placeholder="Причина бонуса (опционально)">
     </div>
     <div class="col-auto">
-        <button class="btn btn-success" type="submit">Продлить</button>
+        <button class="btn btn-secondary" type="submit">Продлить</button>
     </div>
 </form>
-<form method="post" action="/user/{{ user.user_id }}/cancel" class="d-inline">
-    <button class="btn btn-danger" type="submit">Отменить подписку</button>
+<form method="post" action="/user/{{ user.user_id }}/cancel" onsubmit="return confirm('Отменить подписку пользователя {{ user.user_id }}?')" class="d-inline">
+    <button class="btn btn-danger" type="submit">❌ Отменить подписку</button>
 </form>
 
-<h4 class="mt-4">Опасные действия</h4>
+<h4 class="section-title">⚠️ Опасные действия</h4>
 <form method="post" action="/user/{{ user.user_id }}/reset_progress" onsubmit="return confirm('Удалить ВСЕ данные прогресса этого пользователя? Это необратимо.')" class="d-inline">
-    <button class="btn btn-outline-danger" type="submit">Сбросить прогресс</button>
+    <button class="btn btn-outline-danger" type="submit">🗑️ Сбросить прогресс</button>
+</form>
+<form method="post" action="/user/{{ user.user_id }}/clear_all_data" onsubmit="return confirm('Удалить ВСЕ данные пользователя (включая подписки, историю, прогресс)? Это необратимо.')" class="d-inline">
+    <button class="btn btn-outline-danger" type="submit">🧹 Очистить все данные</button>
 </form>
 
-<a href="/users" class="btn btn-secondary mt-3">Назад к списку</a>
+<a href="/users" class="btn btn-secondary mt-3">🔙 Назад к списку</a>
 {% endblock %}
