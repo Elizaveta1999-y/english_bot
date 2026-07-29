@@ -82,7 +82,6 @@ async def get_db():
 async def ensure_db_structure():
     conn = await get_db()
     try:
-        # Основные таблицы
         await conn.execute("""
             ALTER TABLE users
             ADD COLUMN IF NOT EXISTS subscription_until BIGINT DEFAULT 0,
@@ -177,7 +176,7 @@ async def ensure_db_structure():
     finally:
         await conn.close()
 
-# ---------- ФИНАНСОВЫЕ ФУНКЦИИ ----------
+# ---------- ФИНАНСЫ ----------
 async def add_income(user_id: int, amount: float, description: str = "", payment_system: str = "", payment_id: str = ""):
     conn = await get_db()
     now = int(datetime.now().timestamp())
@@ -467,7 +466,7 @@ async def users_list(request: Request, search: str = ""):
         })
     return templates.TemplateResponse("users.html", {"request": request, "users": users, "search": search})
 
-# ---- ДЕТАЛИ ПОЛЬЗОВАТЕЛЯ (ОБНОВЛЕНА) ----
+# ---- ДЕТАЛИ ПОЛЬЗОВАТЕЛЯ (АГРЕГАЦИЯ) ----
 @app.get("/user/{user_id}", response_class=HTMLResponse)
 async def user_detail(request: Request, user_id: int):
     conn = await get_db()
@@ -489,14 +488,15 @@ async def user_detail(request: Request, user_id: int):
         else:
             user[field] = "—"
     
-    # Группировка прогресса
-    progress_by_mode = {}
+    # Агрегация прогресса по подтипам
+    progress_agg = {}
     for r in progress_rows:
         key = r["type_key"]
         correct = r["correct"]
         wrong = r["wrong"]
         total = correct + wrong
-        percent = round((correct / total * 100), 1) if total else 0
+        if total == 0:
+            continue
         
         if key.startswith("grammar_"):
             mode = "Грамматика"
@@ -517,17 +517,31 @@ async def user_detail(request: Request, user_id: int):
             mode = "Другое"
             subtype = key
         
-        if mode not in progress_by_mode:
-            progress_by_mode[mode] = []
-        progress_by_mode[mode].append({
-            "subtype": subtype,
-            "correct": correct,
-            "wrong": wrong,
-            "total": total,
-            "percent": percent
-        })
+        if mode not in progress_agg:
+            progress_agg[mode] = {}
+        if subtype not in progress_agg[mode]:
+            progress_agg[mode][subtype] = {"correct": 0, "wrong": 0}
+        progress_agg[mode][subtype]["correct"] += correct
+        progress_agg[mode][subtype]["wrong"] += wrong
     
-    # Ошибки с красивыми названиями
+    progress_by_mode = {}
+    for mode, subtypes in progress_agg.items():
+        items = []
+        for subtype, data in subtypes.items():
+            correct = data["correct"]
+            wrong = data["wrong"]
+            total = correct + wrong
+            percent = round((correct / total * 100), 1) if total else 0
+            items.append({
+                "subtype": subtype,
+                "correct": correct,
+                "wrong": wrong,
+                "total": total,
+                "percent": percent
+            })
+        items.sort(key=lambda x: x["subtype"])
+        progress_by_mode[mode] = items
+    
     errors_summary = {}
     for row in error_rows:
         key = row["type_key"]
@@ -650,7 +664,7 @@ async def extend_all_subscriptions(days: int = Form(...)):
     await conn.close()
     return RedirectResponse(url="/", status_code=303)
 
-# ---- УПРАВЛЕНИЕ БОТОМ (ВКЛ/ВЫКЛ, ВЕБХУК) ----
+# ---- УПРАВЛЕНИЕ БОТОМ ----
 @app.post("/bot/toggle")
 async def toggle_bot(active: bool = Form(...)):
     await set_bot_active(active)
