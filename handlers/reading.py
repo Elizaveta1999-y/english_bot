@@ -439,7 +439,8 @@ async def choose_level(callback: CallbackQuery, state: FSMContext):
     await callback.answer()
 
 # ---------- Обработка ответов (кнопки) ----------
-@router.callback_query(F.data.startswith("reading_answer:"))
+@router.callback_query(ReadingStates.in_progress, F.data.startswith("reading_answer:"))
+@router.callback_query(ReadingStates.waiting_for_text, F.data.startswith("reading_answer:"))
 async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
     parts = callback.data.split(":")
     if len(parts) < 6:
@@ -729,12 +730,13 @@ async def handle_text_answer(message: Message, state: FSMContext):
     else:
         await render_task_message(message, state, user_id, short_type, short_level, next_index, paragraph_idx=0, is_revision=False)
 
-# ---------- Игнорирование голосовых ----------
+# ---------- Игнорирование голосовых (только если мы в режиме чтения) ----------
 @router.message(F.voice)
 async def ignore_voice(message: Message, state: FSMContext):
     current_state = await state.get_state()
-    if current_state and current_state.startswith("ReadingStates"):
+    if current_state and current_state in (ReadingStates.in_progress.state, ReadingStates.waiting_for_text.state):
         await message.answer("Голосовые сообщения не поддерживаются в этом режиме. Пожалуйста, используйте кнопки или текстовый ввод.")
+    # Если состояние другое – пропускаем (перехват будет в других хендлерах)
 
 # ---------- Вспомогательные функции ----------
 async def show_next_task(message: Message, state: FSMContext, is_revision: bool):
@@ -779,7 +781,8 @@ async def show_revision_task(message: Message, state: FSMContext, error_ids: lis
         await render_task_message(message, state, user_id, short_type, short_level, task_id=task_id, paragraph_idx=0, is_revision=True)
         await state.update_data(index=task_id, paragraph_idx=0, is_revision=True, error_list=error_ids, error_index=0)
 
-@router.callback_query(F.data.startswith("reading_show_answer:"))
+@router.callback_query(ReadingStates.in_progress, F.data.startswith("reading_show_answer:"))
+@router.callback_query(ReadingStates.waiting_for_text, F.data.startswith("reading_show_answer:"))
 async def show_answer(callback: CallbackQuery, state: FSMContext):
     parts = callback.data.split(":")
     if len(parts) < 5:
@@ -927,17 +930,28 @@ async def show_answer(callback: CallbackQuery, state: FSMContext):
 
     await callback.answer()
 
-@router.callback_query(F.data == "reading_revision")
+@router.callback_query(ReadingStates.in_progress, F.data == "reading_revision")
+@router.callback_query(ReadingStates.waiting_for_text, F.data == "reading_revision")
 @router.message(Command("revision_mode"))
 async def reading_revision(event, state: FSMContext):
     if isinstance(event, CallbackQuery):
         user_id = event.from_user.id
         message = event.message
         answer_func = event.answer
+        current_state = await state.get_state()
+        if current_state not in (ReadingStates.in_progress.state, ReadingStates.waiting_for_text.state):
+            if answer_func:
+                await answer_func("Сначала выберите тип и уровень в режиме чтения.", show_alert=True)
+            return
     else:
         user_id = event.from_user.id
         message = event
         answer_func = None
+        # Для команды проверяем состояние внутри
+        current_state = await state.get_state()
+        if current_state not in (ReadingStates.in_progress.state, ReadingStates.waiting_for_text.state):
+            await message.answer("Сначала выберите тип и уровень в режиме чтения.")
+            return
 
     data = await state.get_data()
     short_type = data.get("short_type")
@@ -994,7 +1008,8 @@ async def reading_revision(event, state: FSMContext):
         await answer_func()
 
 # ---------- Подтверждение сброса ошибок ----------
-@router.callback_query(F.data == "reading_clear_errors")
+@router.callback_query(ReadingStates.in_progress, F.data == "reading_clear_errors")
+@router.callback_query(ReadingStates.waiting_for_text, F.data == "reading_clear_errors")
 async def clear_errors_confirm(callback: CallbackQuery, state: FSMContext):
     confirm_text = (
         "Вы уверены, что хотите сбросить все ошибки?\n"
@@ -1008,7 +1023,8 @@ async def clear_errors_confirm(callback: CallbackQuery, state: FSMContext):
     )
     await callback.answer()
 
-@router.callback_query(F.data == "reading_confirm_clear_errors")
+@router.callback_query(ReadingStates.in_progress, F.data == "reading_confirm_clear_errors")
+@router.callback_query(ReadingStates.waiting_for_text, F.data == "reading_confirm_clear_errors")
 async def confirm_clear_errors(callback: CallbackQuery, state: FSMContext):
     data = await state.get_data()
     short_type = data.get("short_type")
@@ -1034,7 +1050,8 @@ async def confirm_clear_errors(callback: CallbackQuery, state: FSMContext):
     await show_next_task(callback.message, state, is_revision=False)
     await callback.answer()
 
-@router.callback_query(F.data == "reading_cancel_clear_errors")
+@router.callback_query(ReadingStates.in_progress, F.data == "reading_cancel_clear_errors")
+@router.callback_query(ReadingStates.waiting_for_text, F.data == "reading_cancel_clear_errors")
 async def cancel_clear_errors(callback: CallbackQuery, state: FSMContext):
     data = await state.get_data()
     short_type = data.get("short_type")
@@ -1063,22 +1080,34 @@ async def cancel_clear_errors(callback: CallbackQuery, state: FSMContext):
     await callback.answer()
 
 # ---------- Остальные обработчики ----------
-@router.callback_query(F.data == "reading_back_to_mode")
+@router.callback_query(ReadingStates.in_progress, F.data == "reading_back_to_mode")
+@router.callback_query(ReadingStates.waiting_for_text, F.data == "reading_back_to_mode")
 async def back_to_learning_mode(callback: CallbackQuery, state: FSMContext):
     await callback.message.edit_text("Возвращаемся в учебный режим.")
     await state.update_data(is_revision=False, error_list=[], error_index=0, revision_correct=0, revision_wrong=0, session_correct=0, session_wrong=0)
     await show_next_task(callback.message, state, is_revision=False)
     await callback.answer()
 
-@router.callback_query(F.data == "reading_reset")
+@router.callback_query(ReadingStates.in_progress, F.data == "reading_reset")
+@router.callback_query(ReadingStates.waiting_for_text, F.data == "reading_reset")
 @router.message(Command("reset_progress"))
 async def reading_reset(event, state: FSMContext):
     if isinstance(event, CallbackQuery):
         message = event.message
         answer_func = event.answer
+        # Проверяем состояние, если не в чтении, выходим
+        current_state = await state.get_state()
+        if current_state not in (ReadingStates.in_progress.state, ReadingStates.waiting_for_text.state):
+            await answer_func("Сначала выберите тип и уровень в режиме чтения.", show_alert=True)
+            return
     else:
         message = event
         answer_func = None
+        # Для команды проверяем состояние
+        current_state = await state.get_state()
+        if current_state not in (ReadingStates.in_progress.state, ReadingStates.waiting_for_text.state):
+            await message.answer("Сначала выберите тип и уровень в режиме чтения.")
+            return
 
     confirm_text = (
         "Вы уверены? Ошибки и правильные задания будут обнулены.\n"
@@ -1088,7 +1117,8 @@ async def reading_reset(event, state: FSMContext):
     if answer_func:
         await answer_func()
 
-@router.callback_query(F.data == "reading_confirm_reset")
+@router.callback_query(ReadingStates.in_progress, F.data == "reading_confirm_reset")
+@router.callback_query(ReadingStates.waiting_for_text, F.data == "reading_confirm_reset")
 async def confirm_reset(callback: CallbackQuery, state: FSMContext):
     user_id = callback.from_user.id
     data = await state.get_data()
@@ -1120,12 +1150,14 @@ async def confirm_reset(callback: CallbackQuery, state: FSMContext):
     await show_next_task(callback.message, state, is_revision=False)
     await callback.answer()
 
-@router.callback_query(F.data == "reading_cancel_reset")
+@router.callback_query(ReadingStates.in_progress, F.data == "reading_cancel_reset")
+@router.callback_query(ReadingStates.waiting_for_text, F.data == "reading_cancel_reset")
 async def cancel_reset(callback: CallbackQuery):
     await callback.message.edit_text("Сброс отменён. Продолжайте тренировку.")
     await callback.answer()
 
-@router.callback_query(F.data == "reading_finish_session")
+@router.callback_query(ReadingStates.in_progress, F.data == "reading_finish_session")
+@router.callback_query(ReadingStates.waiting_for_text, F.data == "reading_finish_session")
 async def finish_session(callback: CallbackQuery, state: FSMContext):
     data = await state.get_data()
     short_type = data.get("short_type")

@@ -1,6 +1,7 @@
 from aiogram import Router, F, Bot
 from aiogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
 from aiogram.fsm.context import FSMContext
+from aiogram.fsm.state import State, StatesGroup
 from data.users import get_user_state, set_user_state
 from utils.db import (
     get_grammar_index, set_grammar_index, reset_grammar_index,
@@ -11,9 +12,15 @@ from utils.db import (
 import json
 import re
 from typing import List, Dict, Any
-from states.grammar_states import GrammarStates
 
 router = Router()
+
+# ---------- Состояния ----------
+class GrammarStates(StatesGroup):
+    choosing_type = State()
+    choosing_level = State()
+    waiting_for_text = State()
+    in_progress = State()
 
 # Путь к файлу с заданиями
 TASKS_FILE = "data/grammar_tasks.json"
@@ -90,7 +97,6 @@ def get_tasks(task_type: str, level: str) -> List[Dict]:
     return TASKS_BY_TYPE_LEVEL.get(task_type, {}).get(level, [])
 
 # ----- Клавиатуры -----
-
 def get_type_keyboard() -> InlineKeyboardMarkup:
     buttons = []
     for t in TASK_TYPES:
@@ -142,7 +148,6 @@ def get_clear_errors_confirmation_keyboard() -> InlineKeyboardMarkup:
     return InlineKeyboardMarkup(inline_keyboard=buttons)
 
 # ----- Вспомогательные функции -----
-
 def extract_instruction_and_task(question: str) -> tuple:
     """Разделяет вопрос на инструкцию и собственно задание."""
     lines = question.split('\n', 1)
@@ -160,7 +165,6 @@ def extract_instruction_and_task(question: str) -> tuple:
     return instruction, task_text
 
 # ----- Отправка сообщений -----
-
 async def send_or_update_progress(
     bot: Bot,
     chat_id: int,
@@ -282,8 +286,9 @@ async def send_or_update_task(
         return sent.message_id
 
 # ----- Вход в режим -----
-
-async def enter_grammar_mode(message: Message, user_id: int, edit: bool = False, state=None):
+async def enter_grammar_mode(message: Message, user_id: int, edit: bool = False, state: FSMContext = None):
+    if state:
+        await state.set_state(GrammarStates.choosing_type)
     text = "🔀 Грамматика\n\nВыберите тип задания:"
     keyboard = get_type_keyboard()
     if edit:
@@ -292,36 +297,37 @@ async def enter_grammar_mode(message: Message, user_id: int, edit: bool = False,
         await message.answer(text, reply_markup=keyboard)
 
 # ----- Обработчики -----
-
 @router.callback_query(F.data == "start_grammar")
 async def start_grammar(callback: CallbackQuery, state: FSMContext):
     await callback.answer()
-    await enter_grammar_mode(callback.message, callback.from_user.id, edit=True)
+    await enter_grammar_mode(callback.message, callback.from_user.id, edit=True, state=state)
 
 @router.callback_query(F.data == "grammar_back_to_menu")
-async def back_to_main_menu(callback: CallbackQuery):
+async def back_to_main_menu(callback: CallbackQuery, state: FSMContext):
     await callback.answer()
+    await state.clear()
     from handlers.main import show_main_menu
     await show_main_menu(callback.message, edit=True)
 
-@router.callback_query(F.data == "grammar_back_to_types")
-async def back_to_types(callback: CallbackQuery):
+@router.callback_query(GrammarStates.choosing_type, F.data == "grammar_back_to_types")
+async def back_to_types(callback: CallbackQuery, state: FSMContext):
     await callback.answer()
-    await enter_grammar_mode(callback.message, callback.from_user.id, edit=True)
+    await enter_grammar_mode(callback.message, callback.from_user.id, edit=True, state=state)
 
-@router.callback_query(F.data.startswith("grammar_type_"))
-async def select_type(callback: CallbackQuery):
+@router.callback_query(GrammarStates.choosing_type, F.data.startswith("grammar_type_"))
+async def select_type(callback: CallbackQuery, state: FSMContext):
     await callback.answer()
     short_code = callback.data.replace("grammar_type_", "")
     task_type = LONG_TYPE.get(short_code)
     if not task_type:
         await callback.message.answer("Ошибка: неизвестный тип.")
         return
+    await state.set_state(GrammarStates.choosing_level)
     text = "Выберите уровень сложности:"
     keyboard = get_level_keyboard(task_type)
     await callback.message.edit_text(text, reply_markup=keyboard)
 
-@router.callback_query(F.data.startswith("grammar_level_"))
+@router.callback_query(GrammarStates.choosing_level, F.data.startswith("grammar_level_"))
 async def choose_level(callback: CallbackQuery, state: FSMContext):
     await callback.answer()
     data = callback.data[len("grammar_level_"):]
@@ -355,7 +361,7 @@ async def choose_level(callback: CallbackQuery, state: FSMContext):
     await state.update_data(
         short_type=short_type,
         short_level=short_level,
-        index=index,
+        current_index=index,
         is_revision=False,
         session_correct=0,
         session_wrong=0,
@@ -380,8 +386,8 @@ async def choose_level(callback: CallbackQuery, state: FSMContext):
     await callback.message.delete()
 
 # ----- Обработка ответов (кнопки) -----
-
-@router.callback_query(F.data.startswith("grammar_answer:"))
+@router.callback_query(GrammarStates.in_progress, F.data.startswith("grammar_answer:"))
+@router.callback_query(GrammarStates.waiting_for_text, F.data.startswith("grammar_answer:"))
 async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
     parts = callback.data.split(":")
     if len(parts) < 6:
@@ -551,17 +557,9 @@ async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
 
     await callback.answer()
 
-# ----- Обработка текстовых ответов (аналогично, с короткими кодами) -----
-# Этот блок остаётся без изменений, но использует короткие коды из state.
-# В state мы храним полные short_type и short_level, а в callback_data используем короткие коды.
-# Но в текстовом ответе мы не используем callback_data, поэтому там всё работает.
-
-@router.message(F.text & ~F.command)
+# ----- Обработка текстовых ответов -----
+@router.message(GrammarStates.waiting_for_text, F.text)
 async def handle_text_answer(message: Message, state: FSMContext):
-    current_state = await state.get_state()
-    if current_state != "GrammarStates:waiting_for_text":
-        return
-
     data = await state.get_data()
     short_type = data.get("short_type")
     short_level = data.get("short_level")
@@ -725,8 +723,8 @@ async def handle_text_answer(message: Message, state: FSMContext):
             await state.update_data(task_msg_id=new_task_msg_id)
 
 # ----- Показать ответ -----
-
-@router.callback_query(F.data.startswith("grammar_show_answer:"))
+@router.callback_query(GrammarStates.in_progress, F.data.startswith("grammar_show_answer:"))
+@router.callback_query(GrammarStates.waiting_for_text, F.data.startswith("grammar_show_answer:"))
 async def show_answer(callback: CallbackQuery, state: FSMContext):
     parts = callback.data.split(":")
     if len(parts) < 5:
@@ -866,10 +864,9 @@ async def show_answer(callback: CallbackQuery, state: FSMContext):
 
     await callback.answer()
 
-
 # ----- Работа над ошибками -----
-
-@router.callback_query(F.data == "grammar_revision")
+@router.callback_query(GrammarStates.in_progress, F.data == "grammar_revision")
+@router.callback_query(GrammarStates.waiting_for_text, F.data == "grammar_revision")
 async def grammar_revision(callback: CallbackQuery, state: FSMContext):
     await callback.answer()
     user_id = callback.from_user.id
@@ -922,11 +919,10 @@ async def grammar_revision(callback: CallbackQuery, state: FSMContext):
     )
     await state.update_data(task_msg_id=new_task_msg_id)
 
-
 # ----- Сброс прогресса -----
-
-@router.callback_query(F.data == "grammar_reset")
-async def grammar_reset_confirm(callback: CallbackQuery):
+@router.callback_query(GrammarStates.in_progress, F.data == "grammar_reset")
+@router.callback_query(GrammarStates.waiting_for_text, F.data == "grammar_reset")
+async def grammar_reset_confirm(callback: CallbackQuery, state: FSMContext):
     await callback.answer()
     confirm_text = (
         "Вы уверены, что хотите сбросить весь прогресс для текущего типа и уровня?\n"
@@ -934,7 +930,6 @@ async def grammar_reset_confirm(callback: CallbackQuery):
         "Это действие нельзя отменить."
     )
     await callback.message.edit_text(confirm_text, reply_markup=get_reset_confirmation_keyboard(), parse_mode="HTML")
-
 
 @router.callback_query(F.data == "grammar_confirm_reset")
 async def grammar_confirm_reset(callback: CallbackQuery, state: FSMContext):
@@ -991,7 +986,6 @@ async def grammar_confirm_reset(callback: CallbackQuery, state: FSMContext):
     except Exception:
         pass
 
-
 @router.callback_query(F.data == "grammar_cancel_reset")
 async def grammar_cancel_reset(callback: CallbackQuery, state: FSMContext):
     await callback.answer()
@@ -1034,12 +1028,11 @@ async def grammar_cancel_reset(callback: CallbackQuery, state: FSMContext):
         except Exception:
             pass
     else:
-        await enter_grammar_mode(callback.message, callback.from_user.id, edit=True)
-
+        await enter_grammar_mode(callback.message, callback.from_user.id, edit=True, state=state)
 
 # ----- Завершение сессии -----
-
-@router.callback_query(F.data == "grammar_finish_session")
+@router.callback_query(GrammarStates.in_progress, F.data == "grammar_finish_session")
+@router.callback_query(GrammarStates.waiting_for_text, F.data == "grammar_finish_session")
 async def grammar_finish_session(callback: CallbackQuery, state: FSMContext):
     await callback.answer()
     user_id = callback.from_user.id
@@ -1078,20 +1071,17 @@ async def grammar_finish_session(callback: CallbackQuery, state: FSMContext):
     await state.clear()
     await callback.answer()
 
-
 # ----- Игнорирование голосовых -----
-
 @router.message(F.voice)
 async def ignore_voice(message: Message, state: FSMContext):
     current_state = await state.get_state()
     if current_state and current_state.startswith("GrammarStates"):
         await message.answer("Голосовые сообщения не поддерживаются в этом режиме. Пожалуйста, используйте кнопки или текстовый ввод.")
 
-
-# ----- Сброс ошибок (дополнительно) -----
-
-@router.callback_query(F.data == "grammar_clear_errors")
-async def grammar_clear_errors_confirm(callback: CallbackQuery):
+# ----- Сброс ошибок -----
+@router.callback_query(GrammarStates.in_progress, F.data == "grammar_clear_errors")
+@router.callback_query(GrammarStates.waiting_for_text, F.data == "grammar_clear_errors")
+async def grammar_clear_errors_confirm(callback: CallbackQuery, state: FSMContext):
     await callback.answer()
     confirm_text = (
         "Вы уверены, что хотите сбросить все ошибки?\n"
@@ -1099,7 +1089,6 @@ async def grammar_clear_errors_confirm(callback: CallbackQuery):
         "Это действие нельзя отменить."
     )
     await callback.message.edit_text(confirm_text, reply_markup=get_clear_errors_confirmation_keyboard(), parse_mode="HTML")
-
 
 @router.callback_query(F.data == "grammar_confirm_clear_errors")
 async def grammar_confirm_clear_errors(callback: CallbackQuery, state: FSMContext):
@@ -1150,7 +1139,6 @@ async def grammar_confirm_clear_errors(callback: CallbackQuery, state: FSMContex
     await state.update_data(task_msg_id=new_task_msg_id)
     await callback.answer()
 
-
 @router.callback_query(F.data == "grammar_cancel_clear_errors")
 async def grammar_cancel_clear_errors(callback: CallbackQuery, state: FSMContext):
     await callback.answer()
@@ -1192,4 +1180,4 @@ async def grammar_cancel_clear_errors(callback: CallbackQuery, state: FSMContext
         except Exception:
             pass
     else:
-        await enter_grammar_mode(callback.message, callback.from_user.id, edit=True)
+        await enter_grammar_mode(callback.message, callback.from_user.id, edit=True, state=state)

@@ -4,12 +4,14 @@ import subprocess
 import logging
 from aiogram import Router, F
 from aiogram.types import Message, BufferedInputFile, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
+from aiogram.fsm.context import FSMContext
 from speaking.services.stt import voice_to_text
 from speaking.services.ai import process_voice_message, process_roleplay_message
 from speaking.services.tts import text_to_voice
 from data.users import get_user_state, set_user_state, set_user_mode
 from services.deepseek import chat
 from handlers.lessons import show_practice_task, parse_user_answers
+from states.govorenie_states import GovorenieStates  # импорт состояния говорения
 
 logger = logging.getLogger(__name__)
 router = Router()
@@ -23,8 +25,15 @@ def convert_to_opus(mp3_path: str) -> str:
     return ogg_path
 
 @router.message(F.voice)
-async def handle_voice(message: Message):
+async def handle_voice(message: Message, state: FSMContext):
     user_id = message.from_user.id
+
+    # ====== ПРОВЕРКА: если активен режим "Говорение" – не обрабатываем ======
+    current_state = await state.get_state()
+    if current_state == GovorenieStates.waiting_voice.state:
+        logger.info(f"Голосовое сообщение от {user_id} пропущено (режим говорения)")
+        return
+
     user_state = get_user_state(user_id)
 
     file = await message.bot.get_file(message.voice.file_id)
@@ -35,7 +44,6 @@ async def handle_voice(message: Message):
         return
 
     # ========== РЕЖИМ ПРАКТИКИ (ГОЛОС) ==========
-        # 0. Обработка ответов в режиме практики (голос)
     if user_state.get("practice_lesson_key"):
         from handlers.lessons import show_practice_task, parse_user_answers
         lesson_key = user_state["practice_lesson_key"]
@@ -44,7 +52,6 @@ async def handle_voice(message: Message):
             task_idx = practice.get("session_index", 0)
             tasks = practice.get("tasks", [])
             if task_idx >= len(tasks):
-                # Все задания пройдены — завершаем
                 await show_practice_task(message, user_id, edit=False)
                 return
 
@@ -54,7 +61,6 @@ async def handle_voice(message: Message):
                 await message.answer("Ошибка: нет подзаданий")
                 return
 
-            # Парсим ответы из голосового текста
             user_answers = parse_user_answers(user_text.strip(), len(subtasks))
             while len(user_answers) < len(subtasks):
                 user_answers.append("")
@@ -75,10 +81,8 @@ async def handle_voice(message: Message):
 
             practice["session_correct"] += correct_count
             practice["session_index"] += 1
-            # Сохраняем всё состояние, а не только practice
             set_user_state(user_id, user_state)
 
-            # Отправляем результат кратко
             if not wrong_list:
                 await message.answer(f"✅ Отлично! Все {len(subtasks)} ответов верны!")
             else:
@@ -87,7 +91,6 @@ async def handle_voice(message: Message):
                     summary += f"• {w['question']}\n   Ваш ответ: {w['your']} → правильно: {w['correct']}\n\n"
                 await message.answer(summary)
 
-            # Если все задания выполнены — показываем фидбек, иначе — следующее задание
             if practice["session_index"] >= len(tasks):
                 await show_practice_task(message, user_id, edit=False)
             else:
@@ -133,9 +136,7 @@ async def handle_voice(message: Message):
     set_user_state(user_id, user_state)
 
     await message.bot.send_chat_action(chat_id=message.chat.id, action="record_voice")
-        # Получаем предпочтение голоса из user_state
     voice_pref = user_state.get("speaking_voice", "woman")
-    # Замените 'YOUR_WOMAN_VOICE_ID' и 'YOUR_MAN_VOICE_ID' на реальные ID из ElevenLabs
     if voice_pref == "woman":
         voice_id = "yM93hbw8Qtvdma2wCnJG"
     else:
@@ -164,7 +165,7 @@ async def handle_voice(message: Message):
     sent = await message.answer(ai_response, reply_markup=keyboard)
     last_text_response[user_id] = {"text": ai_response, "translation": None, "message_id": sent.message_id}
 
-# ---------- Обработчики кнопок для аудиосообщений (показать текст, перевод, скрыть) ----------
+# ---------- Обработчики кнопок (без изменений) ----------
 @router.callback_query(lambda c: c.data.startswith("show_text_"))
 async def show_text(callback: CallbackQuery):
     user_id = int(callback.data.split("_")[2])

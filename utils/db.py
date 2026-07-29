@@ -636,3 +636,78 @@ async def set_render_notified(notified: bool):
     conn = await get_connection()
     await conn.execute("UPDATE render_payment SET notified = $1 WHERE id = 1", notified)
     await conn.close()
+
+# ========== ФИНАНСЫ ==========
+
+async def ensure_finance_tables():
+    """Создаёт таблицы для финансов, если их нет."""
+    conn = await get_connection()
+    # Доходы
+    await conn.execute("""
+        CREATE TABLE IF NOT EXISTS income (
+            id SERIAL PRIMARY KEY,
+            user_id BIGINT,
+            amount DECIMAL(10,2) NOT NULL,
+            date BIGINT NOT NULL,
+            description TEXT,
+            payment_system TEXT,
+            payment_id TEXT
+        )
+    """)
+    # Расходы
+    await conn.execute("""
+        CREATE TABLE IF NOT EXISTS expenses (
+            id SERIAL PRIMARY KEY,
+            amount DECIMAL(10,2) NOT NULL,
+            date BIGINT NOT NULL,
+            category TEXT NOT NULL,
+            description TEXT
+        )
+    """)
+    await conn.close()
+
+async def add_income(user_id: int, amount: float, description: str = "", payment_system: str = "", payment_id: str = ""):
+    """Добавляет запись о доходе."""
+    conn = await get_connection()
+    now = int(datetime.now().timestamp())
+    await conn.execute("""
+        INSERT INTO income (user_id, amount, date, description, payment_system, payment_id)
+        VALUES ($1, $2, $3, $4, $5, $6)
+    """, user_id, amount, now, description, payment_system, payment_id)
+    await conn.close()
+
+async def add_expense(amount: float, category: str, description: str = ""):
+    """Добавляет запись о расходе."""
+    conn = await get_connection()
+    now = int(datetime.now().timestamp())
+    await conn.execute("""
+        INSERT INTO expenses (amount, date, category, description)
+        VALUES ($1, $2, $3, $4)
+    """, amount, now, category, description)
+    await conn.close()
+
+async def get_finance_summary(start_ts: int, end_ts: int) -> dict:
+    """Возвращает сумму доходов и расходов за период."""
+    conn = await get_connection()
+    income = await conn.fetchval("SELECT COALESCE(SUM(amount), 0) FROM income WHERE date >= $1 AND date <= $2", start_ts, end_ts)
+    expenses = await conn.fetchval("SELECT COALESCE(SUM(amount), 0) FROM expenses WHERE date >= $1 AND date <= $2", start_ts, end_ts)
+    await conn.close()
+    return {"income": float(income), "expenses": float(expenses)}
+
+async def get_income_list(start_ts: int, end_ts: int, limit: int = 50):
+    conn = await get_connection()
+    rows = await conn.fetch(
+        "SELECT id, user_id, amount, date, description, payment_system FROM income WHERE date >= $1 AND date <= $2 ORDER BY date DESC LIMIT $3",
+        start_ts, end_ts, limit
+    )
+    await conn.close()
+    return [dict(r) for r in rows]
+
+async def get_expenses_list(start_ts: int, end_ts: int, limit: int = 50):
+    conn = await get_connection()
+    rows = await conn.fetch(
+        "SELECT id, amount, date, category, description FROM expenses WHERE date >= $1 AND date <= $2 ORDER BY date DESC LIMIT $3",
+        start_ts, end_ts, limit
+    )
+    await conn.close()
+    return [dict(r) for r in rows]

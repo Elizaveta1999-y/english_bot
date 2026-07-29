@@ -111,6 +111,11 @@ def get_finish_keyboard():
 def normalize_text(text: str) -> str:
     return re.sub(r'\s+', ' ', text.strip().lower())
 
+def is_correct(user_answer: str, correct_answer) -> bool:
+    if isinstance(correct_answer, list):
+        return normalize_text(user_answer) in [normalize_text(str(a)) for a in correct_answer]
+    return normalize_text(user_answer) == normalize_text(str(correct_answer))
+
 def load_words(category_key: str):
     file_path = os.path.join(WORDS_DIR, f"{category_key}.json")
     with open(file_path, "r", encoding="utf-8") as f:
@@ -320,17 +325,10 @@ async def category_selected(callback: CallbackQuery, state: FSMContext):
     logger.info(f"Состояние установлено для пользователя {user_id}: {await state.get_state()}")
     await callback.answer()
 
-# ---------- Обработка ответов ----------
-@router.message(F.text)
+# ---------- Обработка ответов (только в состоянии category_chosen) ----------
+@router.message(WordsState.category_chosen, F.text)
 async def handle_answer(message: Message, state: FSMContext):
     user_id = message.from_user.id
-    current_state = await state.get_state()
-    logger.info(f"handle_answer вызван для {user_id}, состояние: {current_state}")
-
-    if current_state != WordsState.category_chosen.state:
-        logger.debug(f"Игнорируем сообщение, так как состояние не WordsState.category_chosen")
-        return
-
     session = user_sessions.get(user_id)
     if not session:
         await message.answer("Пожалуйста, сначала выберите категорию через кнопку 'Words'.")
@@ -398,15 +396,10 @@ async def handle_answer(message: Message, state: FSMContext):
     except Exception as e:
         logger.error(f"Ошибка обновления сообщений: {e}")
 
-# ---------- Показать ответ ----------
-@router.callback_query(F.data == "word_show_answer")
+# ---------- Показать ответ (только в состоянии) ----------
+@router.callback_query(WordsState.category_chosen, F.data == "word_show_answer")
 async def show_answer(callback: CallbackQuery, state: FSMContext):
     user_id = callback.from_user.id
-    current_state = await state.get_state()
-    if current_state != WordsState.category_chosen.state:
-        await callback.answer("Сначала выберите категорию.", show_alert=True)
-        return
-
     session = user_sessions.get(user_id)
     if not session:
         await callback.answer("Сессия не найдена. Выберите категорию заново.", show_alert=True)
@@ -460,15 +453,10 @@ async def show_answer(callback: CallbackQuery, state: FSMContext):
         logger.error(f"Ошибка обновления сообщений: {e}")
     await callback.answer()
 
-# ---------- Завершение сессии ----------
-@router.callback_query(F.data == "word_finish")
+# ---------- Завершение сессии (только в состоянии) ----------
+@router.callback_query(WordsState.category_chosen, F.data == "word_finish")
 async def finish_session(callback: CallbackQuery, state: FSMContext):
     user_id = callback.from_user.id
-    current_state = await state.get_state()
-    if current_state != WordsState.category_chosen.state:
-        await callback.answer("Сначала выберите категорию.", show_alert=True)
-        return
-
     session = user_sessions.pop(user_id, None)
     if not session:
         await callback.answer("Сессия уже завершена.", show_alert=True)
@@ -502,7 +490,7 @@ async def finish_session(callback: CallbackQuery, state: FSMContext):
     await callback.answer()
 
 # ---------- Работа над ошибками ----------
-@router.callback_query(F.data == "word_revision")
+@router.callback_query(WordsState.category_chosen, F.data == "word_revision")
 async def word_revision(callback: CallbackQuery, state: FSMContext):
     await callback.answer()
     user_id = callback.from_user.id
@@ -575,7 +563,7 @@ async def show_revision_word(message: Message, user_id: int, session: dict, edit
         sent = await message.answer(text, reply_markup=keyboard, parse_mode="HTML")
         session["revision_msg_id"] = sent.message_id
 
-@router.callback_query(F.data == "word_revision_show_answer")
+@router.callback_query(WordsState.category_chosen, F.data == "word_revision_show_answer")
 async def revision_show_answer(callback: CallbackQuery, state: FSMContext):
     user_id = callback.from_user.id
     session = user_sessions.get(user_id)
@@ -598,7 +586,7 @@ async def revision_show_answer(callback: CallbackQuery, state: FSMContext):
     await show_revision_word(callback.message, user_id, session, edit=True)
     await callback.answer()
 
-@router.callback_query(F.data == "word_revision_finish")
+@router.callback_query(WordsState.category_chosen, F.data == "word_revision_finish")
 async def revision_finish(callback: CallbackQuery, state: FSMContext):
     user_id = callback.from_user.id
     session = user_sessions.get(user_id)
@@ -634,7 +622,7 @@ async def revision_finish(callback: CallbackQuery, state: FSMContext):
     await callback.answer()
 
 # ---------- Сброс прогресса ----------
-@router.callback_query(F.data == "word_reset")
+@router.callback_query(WordsState.category_chosen, F.data == "word_reset")
 async def word_reset_confirm(callback: CallbackQuery):
     await callback.answer()
     confirm_text = (
@@ -688,7 +676,7 @@ async def word_confirm_reset(callback: CallbackQuery, state: FSMContext):
     except Exception:
         pass
 
-@router.callback_query(F.data == "word_cancel_reset")
+@router.callback_query(WordsState.category_chosen, F.data == "word_cancel_reset")
 async def word_cancel_reset(callback: CallbackQuery, state: FSMContext):
     await callback.answer()
     user_id = callback.from_user.id

@@ -282,19 +282,19 @@ async def update_progress_message(message: Message, state: FSMContext):
         except Exception as e:
             logger.warning(f"Не удалось обновить прогресс: {e}")
 
-# ---------- Обработчики ----------
+# ---------- Обработчики (с фильтрами состояний) ----------
 @router.callback_query(F.data == "start_listening")
 @router.message(Command("listening"))
 async def listening_start(event, state: FSMContext):
     await state.clear()
-    text = WELCOME_MESSAGES[0]  # можно сделать ротацию, но оставим для простоты
+    text = WELCOME_MESSAGES[0]
     if isinstance(event, Message):
         await event.answer(text, reply_markup=get_types_keyboard(), parse_mode="HTML")
     else:
         await event.message.edit_text(text, reply_markup=get_types_keyboard(), parse_mode="HTML")
         await event.answer()
 
-@router.callback_query(F.data.startswith("listening_type_"))
+@router.callback_query(ListeningState.choosing_type, F.data.startswith("listening_type_"))
 async def type_selected(callback: CallbackQuery, state: FSMContext):
     task_type = callback.data[len("listening_type_"):]
     if task_type == "one":
@@ -302,11 +302,12 @@ async def type_selected(callback: CallbackQuery, state: FSMContext):
     elif task_type == "multiple":
         task_type = "fill_multiple"
     await state.update_data({"task_type": task_type})
+    await state.set_state(ListeningState.choosing_level)
     text = "Выберите уровень сложности:"
     await callback.message.edit_text(text, reply_markup=get_levels_keyboard(task_type))
     await callback.answer()
 
-@router.callback_query(F.data.startswith("listening_level_"))
+@router.callback_query(ListeningState.choosing_level, F.data.startswith("listening_level_"))
 async def level_selected(callback: CallbackQuery, state: FSMContext):
     rest = callback.data[len("listening_level_"):]
     parts = rest.rsplit("_", 1)
@@ -366,10 +367,12 @@ async def level_selected(callback: CallbackQuery, state: FSMContext):
     msg_ids.append(msg.message_id)
     await state.update_data({"message_ids": msg_ids, "progress_message_id": msg.message_id})
     await callback.message.delete()
+    await state.set_state(ListeningState.answering_task)
     await send_task(callback.message, state)
     await callback.answer()
 
-@router.callback_query(F.data == "listening_revision")
+@router.callback_query(ListeningState.answering_task, F.data == "listening_revision")
+@router.callback_query(ListeningState.revision_mode, F.data == "listening_revision")
 async def revision_mode(callback: CallbackQuery, state: FSMContext):
     data = await state.get_data()
     task_type = data.get("task_type")
@@ -410,7 +413,7 @@ async def revision_mode(callback: CallbackQuery, state: FSMContext):
         await send_task(callback.message, state, is_revision=True, task_type=task_type, level=level, error_ids=error_ids)
     await callback.answer()
 
-@router.callback_query(F.data == "listening_reset_errors")
+@router.callback_query(ListeningState.revision_mode, F.data == "listening_reset_errors")
 async def reset_errors(callback: CallbackQuery, state: FSMContext):
     data = await state.get_data()
     task_type = data.get("task_type")
@@ -430,7 +433,7 @@ async def reset_errors(callback: CallbackQuery, state: FSMContext):
     else:
         await callback.answer("Ошибка: не удалось сбросить.")
 
-@router.callback_query(F.data == "listening_back_to_mode")
+@router.callback_query(ListeningState.revision_mode, F.data == "listening_back_to_mode")
 async def back_to_mode(callback: CallbackQuery, state: FSMContext):
     data = await state.get_data()
     msg_ids = data.get("message_ids", [])
@@ -442,7 +445,7 @@ async def back_to_mode(callback: CallbackQuery, state: FSMContext):
         except Exception:
             pass
 
-    await state.set_state(ListeningState.choosing_level)
+    await state.set_state(ListeningState.answering_task)
     task_type = data.get("task_type")
     level = data.get("level")
     if task_type and level:
@@ -472,7 +475,8 @@ async def back_to_mode(callback: CallbackQuery, state: FSMContext):
         set_user_state(user_id, user_state)
     await callback.answer()
 
-@router.callback_query(F.data == "listening_reset_progress")
+@router.callback_query(ListeningState.answering_task, F.data == "listening_reset_progress")
+@router.callback_query(ListeningState.revision_mode, F.data == "listening_reset_progress")
 async def reset_progress(callback: CallbackQuery, state: FSMContext):
     data = await state.get_data()
     task_type = data.get("task_type")
@@ -507,7 +511,8 @@ async def reset_progress(callback: CallbackQuery, state: FSMContext):
     await send_task(callback.message, state)
 
 # ---------- Обработка ответов (кнопки) ----------
-@router.callback_query(F.data.startswith("listening_answer_"))
+@router.callback_query(ListeningState.answering_task, F.data.startswith("listening_answer_"))
+@router.callback_query(ListeningState.revision_mode, F.data.startswith("listening_answer_"))
 async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
     data = await state.get_data()
     if data.get("answered", False):
@@ -568,7 +573,8 @@ async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
     await callback.answer()
     await go_to_next_task(callback.message, state)
 
-@router.callback_query(F.data.startswith("listening_show_answer_"))
+@router.callback_query(ListeningState.answering_task, F.data.startswith("listening_show_answer_"))
+@router.callback_query(ListeningState.revision_mode, F.data.startswith("listening_show_answer_"))
 async def show_answer(callback: CallbackQuery, state: FSMContext):
     try:
         task_id = int(callback.data.split("_")[-1])
@@ -616,10 +622,11 @@ async def listening_text_middleware(call: types.Message, event: types.Message, d
         if current_state and current_state.startswith("ListeningState"):
             if event.text and event.text.startswith("/"):
                 return await call(event, data)
-            if current_state == ListeningState.answering_task:
+            if current_state in (ListeningState.answering_task.state, ListeningState.revision_mode.state):
                 await handle_answer(event, state)
                 return
-            # Для всех других состояний ListeningState блокируем текст
+            # Для других состояний (choosing_type, choosing_level) просто блокируем текст
+            await event.answer("Пожалуйста, используйте кнопки для навигации.")
             return
     return await call(event, data)
 
@@ -716,7 +723,8 @@ async def go_to_next_task(message: Message, state: FSMContext):
     await send_task(message, state)
 
 # ---------- Прочие обработчики ----------
-@router.callback_query(F.data == "listening_finish")
+@router.callback_query(ListeningState.answering_task, F.data == "listening_finish")
+@router.callback_query(ListeningState.revision_mode, F.data == "listening_finish")
 async def finish_session(callback: CallbackQuery, state: FSMContext):
     data = await state.get_data()
     correct = data.get("correct", 0)
@@ -741,13 +749,15 @@ async def finish_session(callback: CallbackQuery, state: FSMContext):
     await state.clear()
     await callback.answer()
 
-@router.callback_query(F.data == "listening_next_task")
+@router.callback_query(ListeningState.answering_task, F.data == "listening_next_task")
+@router.callback_query(ListeningState.revision_mode, F.data == "listening_next_task")
 async def next_task(callback: CallbackQuery, state: FSMContext):
     await callback.message.delete()
     await send_task(callback.message, state)
     await callback.answer()
 
-@router.callback_query(F.data == "listening_finish_session")
+@router.callback_query(ListeningState.answering_task, F.data == "listening_finish_session")
+@router.callback_query(ListeningState.revision_mode, F.data == "listening_finish_session")
 async def finish_session_from_block(callback: CallbackQuery, state: FSMContext):
     data = await state.get_data()
     msg_ids = data.get("message_ids", [])
@@ -770,7 +780,7 @@ async def finish_session_from_block(callback: CallbackQuery, state: FSMContext):
     await show_main_menu(callback.message, edit=True)
     await callback.answer()
 
-@router.callback_query(F.data == "back_to_types")
+@router.callback_query(ListeningState.choosing_level, F.data == "back_to_types")
 async def back_to_types(callback: CallbackQuery, state: FSMContext):
     data = await state.get_data()
     msg_ids = data.get("message_ids", [])
