@@ -11,7 +11,7 @@ from speaking.services.tts import text_to_voice
 from data.users import get_user_state, set_user_state, set_user_mode
 from services.deepseek import chat
 from handlers.lessons import show_practice_task, parse_user_answers
-from states.govorenie_states import GovorenieStates  # импорт состояния говорения
+from handlers.govorenie import GovorenieStates  # импорт состояния говорения
 
 logger = logging.getLogger(__name__)
 router = Router()
