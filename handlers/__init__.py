@@ -10,4 +10,3 @@ from . import common
 from . import lessons
 from . import speaking
 from . import profile
-from . import skills
