@@ -466,7 +466,7 @@ async def users_list(request: Request, search: str = ""):
         })
     return templates.TemplateResponse("users.html", {"request": request, "users": users, "search": search})
 
-# ---- ДЕТАЛИ ПОЛЬЗОВАТЕЛЯ (АГРЕГАЦИЯ) ----
+# ---- ДЕТАЛИ ПОЛЬЗОВАТЕЛЯ (ВСЕ ПОДТИПЫ + ОБЩЕНИЕ + РОЛЕВЫЕ) ----
 @app.get("/user/{user_id}", response_class=HTMLResponse)
 async def user_detail(request: Request, user_id: int):
     conn = await get_db()
@@ -475,6 +475,7 @@ async def user_detail(request: Request, user_id: int):
         raise HTTPException(404, "Пользователь не найден")
     blocked = await is_user_blocked(user_id)
     
+    # Прогресс из таблицы progress
     progress_rows = await conn.fetch("SELECT type_key, level_key, correct, wrong FROM progress WHERE user_id = $1", user_id)
     writing_rows = await conn.fetch("SELECT type_key, level_key, total_answered, total_score FROM writing_progress WHERE user_id = $1", user_id)
     govorenie_rows = await conn.fetch("SELECT task_type, level, total_answered, total_score FROM govorenie_progress WHERE user_id = $1", user_id)
@@ -488,60 +489,112 @@ async def user_detail(request: Request, user_id: int):
         else:
             user[field] = "—"
     
-    # Агрегация прогресса по подтипам
-    progress_agg = {}
+    # ---- 1. Агрегация прогресса по подтипам ----
+    progress_data = {}
     for r in progress_rows:
         key = r["type_key"]
         correct = r["correct"]
         wrong = r["wrong"]
-        total = correct + wrong
-        if total == 0:
-            continue
-        
-        if key.startswith("grammar_"):
-            mode = "Грамматика"
-            raw_subtype = key[8:]
-            subtype = GRAMMAR_TYPES.get(raw_subtype, raw_subtype)
-        elif key.startswith("words_"):
-            mode = "Лексика"
-            raw_subtype = key[6:]
-            subtype = LEXIS_TYPES.get(raw_subtype, raw_subtype)
-        elif key in READING_TYPES:
-            mode = "Чтение"
-            subtype = READING_TYPES.get(key, key)
-        elif key.startswith("listening_"):
-            mode = "Аудирование"
-            raw_subtype = key[10:] if key[10:] else "random"
-            subtype = LISTENING_TYPES.get(raw_subtype, raw_subtype)
-        else:
-            mode = "Другое"
-            subtype = key
-        
-        if mode not in progress_agg:
-            progress_agg[mode] = {}
-        if subtype not in progress_agg[mode]:
-            progress_agg[mode][subtype] = {"correct": 0, "wrong": 0}
-        progress_agg[mode][subtype]["correct"] += correct
-        progress_agg[mode][subtype]["wrong"] += wrong
+        if key not in progress_data:
+            progress_data[key] = {"correct": 0, "wrong": 0}
+        progress_data[key]["correct"] += correct
+        progress_data[key]["wrong"] += wrong
     
+    # ---- 2. Формируем полный список подтипов для каждого режима ----
     progress_by_mode = {}
-    for mode, subtypes in progress_agg.items():
-        items = []
-        for subtype, data in subtypes.items():
+    
+    # Грамматика
+    grammar_items = []
+    for raw_key, display_name in GRAMMAR_TYPES.items():
+        db_key = f"grammar_{raw_key}"
+        data = progress_data.get(db_key, {"correct": 0, "wrong": 0})
+        correct = data["correct"]
+        wrong = data["wrong"]
+        total = correct + wrong
+        percent = round((correct / total * 100), 1) if total else 0
+        grammar_items.append({
+            "subtype": display_name,
+            "correct": correct,
+            "wrong": wrong,
+            "total": total,
+            "percent": percent
+        })
+    progress_by_mode["Грамматика"] = grammar_items
+    
+    # Лексика
+    lexis_items = []
+    for raw_key, display_name in LEXIS_TYPES.items():
+        db_key = f"words_{raw_key}"
+        data = progress_data.get(db_key, {"correct": 0, "wrong": 0})
+        correct = data["correct"]
+        wrong = data["wrong"]
+        total = correct + wrong
+        percent = round((correct / total * 100), 1) if total else 0
+        lexis_items.append({
+            "subtype": display_name,
+            "correct": correct,
+            "wrong": wrong,
+            "total": total,
+            "percent": percent
+        })
+    progress_by_mode["Лексика"] = lexis_items
+    
+    # Чтение
+    reading_items = []
+    for raw_key, display_name in READING_TYPES.items():
+        db_key = raw_key
+        data = progress_data.get(db_key, {"correct": 0, "wrong": 0})
+        correct = data["correct"]
+        wrong = data["wrong"]
+        total = correct + wrong
+        percent = round((correct / total * 100), 1) if total else 0
+        reading_items.append({
+            "subtype": display_name,
+            "correct": correct,
+            "wrong": wrong,
+            "total": total,
+            "percent": percent
+        })
+    progress_by_mode["Чтение"] = reading_items
+    
+    # Аудирование
+    listening_items = []
+    for raw_key, display_name in LISTENING_TYPES.items():
+        db_key = f"listening_{raw_key}"
+        data = progress_data.get(db_key, {"correct": 0, "wrong": 0})
+        correct = data["correct"]
+        wrong = data["wrong"]
+        total = correct + wrong
+        percent = round((correct / total * 100), 1) if total else 0
+        listening_items.append({
+            "subtype": display_name,
+            "correct": correct,
+            "wrong": wrong,
+            "total": total,
+            "percent": percent
+        })
+    progress_by_mode["Аудирование"] = listening_items
+    
+    # Другие (если есть)
+    other_items = []
+    for key, data in progress_data.items():
+        if (not key.startswith("grammar_") and not key.startswith("words_") and 
+            key not in READING_TYPES and not key.startswith("listening_")):
             correct = data["correct"]
             wrong = data["wrong"]
             total = correct + wrong
             percent = round((correct / total * 100), 1) if total else 0
-            items.append({
-                "subtype": subtype,
+            other_items.append({
+                "subtype": key,
                 "correct": correct,
                 "wrong": wrong,
                 "total": total,
                 "percent": percent
             })
-        items.sort(key=lambda x: x["subtype"])
-        progress_by_mode[mode] = items
+    if other_items:
+        progress_by_mode["Другое"] = other_items
     
+    # ---- 3. Ошибки с красивыми названиями ----
     errors_summary = {}
     for row in error_rows:
         key = row["type_key"]
@@ -561,6 +614,7 @@ async def user_detail(request: Request, user_id: int):
             display = key
         errors_summary[display] = cnt
     
+    # ---- 4. Письмо и говорение ----
     writing_summary = {}
     for r in writing_rows:
         key = r["type_key"]
@@ -571,6 +625,10 @@ async def user_detail(request: Request, user_id: int):
         key = r["task_type"]
         govorenie_summary[key] = {"answered": r["total_answered"], "score": r["total_score"]}
     
+    # ---- 5. Общение с AI и Ролевые игры (из полей пользователя) ----
+    speaking_minutes = round(user.get("speaking_seconds_month", 0) / 60, 1)
+    roleplay_minutes = round(user.get("roleplay_seconds_month", 0) / 60, 1)
+    
     return templates.TemplateResponse("user_detail.html", {
         "request": request,
         "user": user,
@@ -578,7 +636,9 @@ async def user_detail(request: Request, user_id: int):
         "writing": writing_summary,
         "govorenie": govorenie_summary,
         "errors": errors_summary,
-        "blocked": blocked
+        "blocked": blocked,
+        "speaking_minutes": speaking_minutes,
+        "roleplay_minutes": roleplay_minutes
     })
 
 # ---- УПРАВЛЕНИЕ ПОДПИСКАМИ ----
@@ -664,7 +724,7 @@ async def extend_all_subscriptions(days: int = Form(...)):
     await conn.close()
     return RedirectResponse(url="/", status_code=303)
 
-# ---- УПРАВЛЕНИЕ БОТОМ ----
+# ---- УПРАВЛЕНИЕ БОТОМ (ВКЛ/ВЫКЛ, ВЕБХУК) ----
 @app.post("/bot/toggle")
 async def toggle_bot(active: bool = Form(...)):
     await set_bot_active(active)
