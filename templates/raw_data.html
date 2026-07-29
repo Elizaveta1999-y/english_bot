@@ -1,26 +1,56 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h2>📋 Сырые данные для пользователя {{ user_id }} ({{ user_name }})</h2>
+<h2>📋 Полная структура прогресса для пользователя {{ user_id }} ({{ user_name }})</h2>
+<p class="text-muted">Здесь отображаются все возможные подтипы и уровни. Значения из БД или 0, если данных нет.</p>
 
-<h4 class="mt-4">Таблица `progress`</h4>
+<!-- Тренажёры -->
+<h4 class="mt-4">📈 Прогресс по тренажёрам</h4>
+{% for mode, items in raw_structure.items() %}
+    <h5>{{ mode }}</h5>
+    <div class="table-responsive">
+        <table class="table table-sm table-striped">
+            <thead>
+                <tr>
+                    <th>Подтип</th>
+                    <th>Уровень</th>
+                    <th>Правильно</th>
+                    <th>Неправильно</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for item in items %}
+                <tr>
+                    <td>{{ item.subtype }}</td>
+                    <td>{{ item.level }}</td>
+                    <td>{{ item.correct }}</td>
+                    <td>{{ item.wrong }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endfor %}
+
+<!-- Письмо -->
+<h4 class="mt-4">✍️ Письмо</h4>
 <div class="table-responsive">
     <table class="table table-sm table-striped">
         <thead>
             <tr>
-                <th>type_key</th>
-                <th>level_key</th>
-                <th>correct</th>
-                <th>wrong</th>
+                <th>Тип</th>
+                <th>Уровень</th>
+                <th>Проверок</th>
+                <th>Сумма баллов</th>
             </tr>
         </thead>
         <tbody>
-        {% for row in progress %}
+        {% for item in writing %}
             <tr>
-                <td>{{ row.type_key }}</td>
-                <td>{{ row.level_key }}</td>
-                <td>{{ row.correct }}</td>
-                <td>{{ row.wrong }}</td>
+                <td>{{ item.subtype }}</td>
+                <td>{{ item.level }}</td>
+                <td>{{ item.answered }}</td>
+                <td>{{ item.score }}</td>
             </tr>
         {% else %}
             <tr><td colspan="4">Нет данных</td></tr>
@@ -29,50 +59,25 @@
     </table>
 </div>
 
-<h4 class="mt-4">Таблица `writing_progress`</h4>
+<!-- Говорение -->
+<h4 class="mt-4">🗣️ Говорение</h4>
 <div class="table-responsive">
     <table class="table table-sm table-striped">
         <thead>
             <tr>
-                <th>type_key</th>
-                <th>level_key</th>
-                <th>total_answered</th>
-                <th>total_score</th>
+                <th>Тип</th>
+                <th>Уровень</th>
+                <th>Проверок</th>
+                <th>Сумма баллов</th>
             </tr>
         </thead>
         <tbody>
-        {% for row in writing %}
+        {% for item in govorenie %}
             <tr>
-                <td>{{ row.type_key }}</td>
-                <td>{{ row.level_key }}</td>
-                <td>{{ row.total_answered }}</td>
-                <td>{{ row.total_score }}</td>
-            </tr>
-        {% else %}
-            <tr><td colspan="4">Нет данных</td></tr>
-        {% endfor %}
-        </tbody>
-    </table>
-</div>
-
-<h4 class="mt-4">Таблица `govorenie_progress`</h4>
-<div class="table-responsive">
-    <table class="table table-sm table-striped">
-        <thead>
-            <tr>
-                <th>task_type</th>
-                <th>level</th>
-                <th>total_answered</th>
-                <th>total_score</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for row in govorenie %}
-            <tr>
-                <td>{{ row.task_type }}</td>
-                <td>{{ row.level }}</td>
-                <td>{{ row.total_answered }}</td>
-                <td>{{ row.total_score }}</td>
+                <td>{{ item.subtype }}</td>
+                <td>{{ item.level }}</td>
+                <td>{{ item.answered }}</td>
+                <td>{{ item.score }}</td>
             </tr>
         {% else %}
             <tr><td colspan="4">Нет данных</td></tr>
