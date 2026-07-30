@@ -74,7 +74,7 @@ class ListeningState(StatesGroup):
     answering_task = State()
     revision_mode = State()
 
-# ---------- Клавиатуры ----------
+# ---------- КЛАВИАТУРЫ (без изменений) ----------
 def get_types_keyboard():
     buttons = []
     for key, label in TASK_TYPES.items():
@@ -139,14 +139,19 @@ def get_revision_keyboard():
         [InlineKeyboardButton(text="🗑️ Сбросить ошибки", callback_data="listening_reset_errors")]
     ])
 
-# ---------- Вспомогательные функции ----------
+# ---------- ВСПОМОГАТЕЛЬНАЯ ФУНКЦИЯ ДЛЯ КЛЮЧЕЙ ----------
+def make_listening_type_key(task_type: str) -> str:
+    """Добавляет префикс listening_ к типу задания."""
+    return f"listening_{task_type}"
+
+# ---------- ОСТАЛЬНЫЕ ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ ----------
 def get_tasks_by_type_and_level(task_type, level):
     return [t for t in ALL_TASKS if t.get("type") == task_type and t.get("level") == level]
 
 def normalize_text_answer(answer: str) -> str:
     return ' '.join(answer.strip().lower().split())
 
-# ---------- Отправка задания ----------
+# ---------- ОТПРАВКА ЗАДАНИЯ ----------
 async def send_task(message: Message, state: FSMContext, is_revision=False, task_type=None, level=None, error_ids=None):
     data = await state.get_data()
     if task_type is None:
@@ -158,7 +163,7 @@ async def send_task(message: Message, state: FSMContext, is_revision=False, task
 
     if is_revision:
         if error_ids is None:
-            error_ids = await get_reading_errors_db(user_id, task_type, level)
+            error_ids = await get_reading_errors_db(user_id, make_listening_type_key(task_type), level)
         if not error_ids:
             msg = await message.answer("🎉 Ошибок нет! Вы всё исправили.")
             msg_ids.append(msg.message_id)
@@ -186,10 +191,10 @@ async def send_task(message: Message, state: FSMContext, is_revision=False, task
                 random.shuffle(tasks_for_level)
                 order = [t["id"] for t in tasks_for_level]
                 await set_random_order(user_id, level, order)
-            index = await get_progress_index(user_id, "random", level)
+            index = await get_progress_index(user_id, make_listening_type_key("random"), level)
             if index >= len(order):
                 index = 0
-                await set_progress_index(user_id, "random", level, 0)
+                await set_progress_index(user_id, make_listening_type_key("random"), level, 0)
             task_id = order[index]
             task = next((t for t in ALL_TASKS if t["id"] == task_id), None)
             if not task:
@@ -203,10 +208,10 @@ async def send_task(message: Message, state: FSMContext, is_revision=False, task
                 msg_ids.append(msg.message_id)
                 await state.update_data({"message_ids": msg_ids})
                 return
-            index = await get_progress_index(user_id, task_type, level)
+            index = await get_progress_index(user_id, make_listening_type_key(task_type), level)
             if index >= len(tasks):
                 index = 0
-                await set_progress_index(user_id, task_type, level, 0)
+                await set_progress_index(user_id, make_listening_type_key(task_type), level, 0)
             task = tasks[index]
             await state.update_data({"task": task, "task_index": index, "answered": False, "is_revision": False})
 
@@ -282,7 +287,7 @@ async def update_progress_message(message: Message, state: FSMContext):
         except Exception as e:
             logger.warning(f"Не удалось обновить прогресс: {e}")
 
-# ---------- Обработчики ----------
+# ---------- ОБРАБОТЧИКИ ----------
 @router.callback_query(F.data == "start_listening")
 @router.message(Command("listening"))
 async def listening_start(event, state: FSMContext):
@@ -340,7 +345,8 @@ async def level_selected(callback: CallbackQuery, state: FSMContext):
         await callback.answer("Нет заданий для этого типа и уровня.", show_alert=True)
         return
 
-    correct, wrong = await get_user_stats_db(user_id, task_type, level)
+    # Используем префикс для получения статистики
+    correct, wrong = await get_user_stats_db(user_id, make_listening_type_key(task_type), level)
 
     await state.update_data({
         "task_type": task_type,
@@ -389,7 +395,7 @@ async def revision_mode(callback: CallbackQuery, state: FSMContext):
     user_state["mode"] = None
     set_user_state(user_id, user_state)
 
-    error_ids = await get_reading_errors_db(user_id, task_type, level)
+    error_ids = await get_reading_errors_db(user_id, make_listening_type_key(task_type), level)
     count = len(error_ids)
 
     text = (
@@ -422,7 +428,7 @@ async def reset_errors(callback: CallbackQuery, state: FSMContext):
     user_id = callback.from_user.id
 
     if task_type and level:
-        await clear_reading_errors_db(user_id, task_type, level)
+        await clear_reading_errors_db(user_id, make_listening_type_key(task_type), level)
         await callback.answer("Все ошибки сброшены.")
         await callback.message.edit_text(
             f"📘 Работа над ошибками\nРежим: {TASK_TYPES[task_type]}\n\nЗаданий на исправление: 0"
@@ -496,9 +502,9 @@ async def reset_progress(callback: CallbackQuery, state: FSMContext):
         except Exception:
             pass
 
-    await reset_progress_index(user_id, task_type, level)
-    await reset_user_stats_db(user_id, task_type, level)
-    await clear_reading_errors_db(user_id, task_type, level)
+    await reset_progress_index(user_id, make_listening_type_key(task_type), level)
+    await reset_user_stats_db(user_id, make_listening_type_key(task_type), level)
+    await clear_reading_errors_db(user_id, make_listening_type_key(task_type), level)
 
     await state.update_data({
         "correct": 0,
@@ -511,7 +517,7 @@ async def reset_progress(callback: CallbackQuery, state: FSMContext):
     await callback.answer("Прогресс сброшен. Начинаем с первого задания.")
     await send_task(callback.message, state)
 
-# ---------- Обработка ответов (кнопки) ----------
+# ---------- ОБРАБОТКА ОТВЕТОВ (КНОПКИ) ----------
 @router.callback_query(ListeningState.answering_task, F.data.startswith("listening_answer_"))
 @router.callback_query(ListeningState.revision_mode, F.data.startswith("listening_answer_"))
 async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
@@ -557,13 +563,13 @@ async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
     type_key = data["task_type"]
     level_key = data["level"]
     if is_correct:
-        await update_user_stats_db(callback.from_user.id, type_key, level_key, True)
+        await update_user_stats_db(callback.from_user.id, make_listening_type_key(type_key), level_key, True)
         if data.get("is_revision", False):
-            await remove_reading_error_db(callback.from_user.id, type_key, level_key, task["id"])
+            await remove_reading_error_db(callback.from_user.id, make_listening_type_key(type_key), level_key, task["id"])
     else:
-        await update_user_stats_db(callback.from_user.id, type_key, level_key, False)
+        await update_user_stats_db(callback.from_user.id, make_listening_type_key(type_key), level_key, False)
         if not data.get("is_revision", False):
-            await add_reading_error_db(callback.from_user.id, type_key, level_key, task["id"])
+            await add_reading_error_db(callback.from_user.id, make_listening_type_key(type_key), level_key, task["id"])
 
     await callback.message.edit_text(callback.message.text, reply_markup=None)
     msg = await callback.message.answer(result_text)
@@ -614,7 +620,7 @@ async def show_answer(callback: CallbackQuery, state: FSMContext):
         logger.error(f"Ошибка в show_answer: {e}")
         await callback.answer("Произошла ошибка при показе ответа.", show_alert=True)
 
-# ---------- Обработка текстовых ответов (для fill) ----------
+# ---------- ОБРАБОТКА ТЕКСТОВЫХ ОТВЕТОВ (для fill) ----------
 @router.message.outer_middleware()
 async def listening_text_middleware(call: types.Message, event: types.Message, data: dict):
     state: FSMContext = data.get('state')
@@ -626,7 +632,6 @@ async def listening_text_middleware(call: types.Message, event: types.Message, d
             if current_state in (ListeningState.answering_task.state, ListeningState.revision_mode.state):
                 await handle_answer(event, state)
                 return
-            # Для других состояний (choosing_type, choosing_level) просто блокируем текст
             await event.answer("Пожалуйста, используйте кнопки для навигации.")
             return
     return await call(event, data)
@@ -677,13 +682,13 @@ async def handle_answer(message: Message, state: FSMContext):
     type_key = data["task_type"]
     level_key = data["level"]
     if is_correct:
-        await update_user_stats_db(message.from_user.id, type_key, level_key, True)
+        await update_user_stats_db(message.from_user.id, make_listening_type_key(type_key), level_key, True)
         if data.get("is_revision", False):
-            await remove_reading_error_db(message.from_user.id, type_key, level_key, task["id"])
+            await remove_reading_error_db(message.from_user.id, make_listening_type_key(type_key), level_key, task["id"])
     else:
-        await update_user_stats_db(message.from_user.id, type_key, level_key, False)
+        await update_user_stats_db(message.from_user.id, make_listening_type_key(type_key), level_key, False)
         if not data.get("is_revision", False):
-            await add_reading_error_db(message.from_user.id, type_key, level_key, task["id"])
+            await add_reading_error_db(message.from_user.id, make_listening_type_key(type_key), level_key, task["id"])
 
     msg = await message.answer(result_text)
     msg_ids = data.get("message_ids", [])
@@ -699,7 +704,7 @@ async def go_to_next_task(message: Message, state: FSMContext):
     user_id = message.from_user.id
 
     if data.get("is_revision", False):
-        error_ids = await get_reading_errors_db(user_id, task_type, level)
+        error_ids = await get_reading_errors_db(user_id, make_listening_type_key(task_type), level)
         await send_task(message, state, is_revision=True, task_type=task_type, level=level, error_ids=error_ids)
         return
 
@@ -711,19 +716,19 @@ async def go_to_next_task(message: Message, state: FSMContext):
         new_index = data.get("task_index", 0) + 1
         if new_index >= len(order):
             new_index = 0
-        await set_progress_index(user_id, "random", level, new_index)
+        await set_progress_index(user_id, make_listening_type_key("random"), level, new_index)
         await state.update_data({"task_index": new_index, "answered": False})
     else:
         tasks = get_tasks_by_type_and_level(task_type, level)
         new_index = data.get("task_index", 0) + 1
         if new_index >= len(tasks):
             new_index = 0
-        await set_progress_index(user_id, task_type, level, new_index)
+        await set_progress_index(user_id, make_listening_type_key(task_type), level, new_index)
         await state.update_data({"task_index": new_index, "answered": False})
 
     await send_task(message, state)
 
-# ---------- Прочие обработчики ----------
+# ---------- ПРОЧИЕ ОБРАБОТЧИКИ ----------
 @router.callback_query(ListeningState.answering_task, F.data == "listening_finish")
 @router.callback_query(ListeningState.revision_mode, F.data == "listening_finish")
 async def finish_session(callback: CallbackQuery, state: FSMContext):
