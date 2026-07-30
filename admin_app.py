@@ -475,7 +475,7 @@ async def users_list(request: Request, search: str = ""):
         })
     return templates.TemplateResponse("users.html", {"request": request, "users": users, "search": search})
 
-# ---- ДЕТАЛИ ПОЛЬЗОВАТЕЛЯ (ОБНОВЛЕНА) ----
+# ---- ДЕТАЛИ ПОЛЬЗОВАТЕЛЯ (ИСПРАВЛЕНА) ----
 @app.get("/user/{user_id}", response_class=HTMLResponse)
 async def user_detail(request: Request, user_id: int):
     conn = await get_db()
@@ -483,33 +483,34 @@ async def user_detail(request: Request, user_id: int):
     if not user_row:
         raise HTTPException(404, "Пользователь не найден")
     blocked = await is_user_blocked(user_id)
-    
+
     progress_rows = await conn.fetch("SELECT type_key, level_key, correct, wrong FROM progress WHERE user_id = $1", user_id)
     writing_rows = await conn.fetch("SELECT type_key, level_key, total_answered, total_score FROM writing_progress WHERE user_id = $1", user_id)
     govorenie_rows = await conn.fetch("SELECT task_type, level, total_answered, total_score FROM govorenie_progress WHERE user_id = $1", user_id)
     await conn.close()
-    
+
     user = dict(user_row)
     for field in ["registered_at", "last_active", "subscription_until", "subscription_started", "trial_until", "trial_started"]:
         if user.get(field):
             user[field] = datetime.fromtimestamp(user[field]).strftime("%Y-%m-%d %H:%M") if user[field] else "—"
         else:
             user[field] = "—"
-    
-    # Подготавливаем данные прогресса
+
+    # Подготавливаем данные прогресса, преобразуя уровни через LEVEL_DISPLAY
     progress_data = {}
     for r in progress_rows:
         key = r["type_key"]
         level = r["level_key"]
+        display_level = LEVEL_DISPLAY.get(level, level)  # преобразуем в русское название
         correct = r["correct"]
         wrong = r["wrong"]
         if key not in progress_data:
             progress_data[key] = {}
-        if level not in progress_data[key]:
-            progress_data[key][level] = {"correct": 0, "wrong": 0}
-        progress_data[key][level]["correct"] += correct
-        progress_data[key][level]["wrong"] += wrong
-    
+        if display_level not in progress_data[key]:
+            progress_data[key][display_level] = {"correct": 0, "wrong": 0}
+        progress_data[key][display_level]["correct"] += correct
+        progress_data[key][display_level]["wrong"] += wrong
+
     # ---- ГРАММАТИКА (8 подтипов × 3 уровня) ----
     grammar_items = []
     for raw_key, display_name in GRAMMAR_TYPES.items():
@@ -529,7 +530,7 @@ async def user_detail(request: Request, user_id: int):
                 "total": total,
                 "percent": percent
             })
-    
+
     # ---- ЛЕКСИКА (без уровней, суммируем все уровни) ----
     lexis_items = []
     for raw_key, display_name in LEXIS_TYPES.items():
@@ -549,7 +550,7 @@ async def user_detail(request: Request, user_id: int):
             "total": total,
             "percent": percent
         })
-    
+
     # ---- ЧТЕНИЕ (4 подтипа × 3 уровня) ----
     reading_items = []
     for raw_key, display_name in READING_TYPES.items():
@@ -569,14 +570,13 @@ async def user_detail(request: Request, user_id: int):
                 "total": total,
                 "percent": percent
             })
-    
+
     # ---- АУДИРОВАНИЕ (6 подтипов × 3 уровня) ----
     listening_items = []
     for raw_key, display_name in LISTENING_TYPES.items():
         db_key = f"listening_{raw_key}"
         levels_data = progress_data.get(db_key, {})
-        for level in ["beginner", "intermediate", "expert"]:
-            level_display = LEVEL_DISPLAY.get(level, level)
+        for level in ["Новичок", "Любитель", "Эксперт"]:
             data = levels_data.get(level, {"correct": 0, "wrong": 0})
             correct = data["correct"]
             wrong = data["wrong"]
@@ -584,13 +584,13 @@ async def user_detail(request: Request, user_id: int):
             percent = round((correct / total * 100), 1) if total else 0
             listening_items.append({
                 "subtype": display_name,
-                "level": level_display,
+                "level": level,
                 "correct": correct,
                 "wrong": wrong,
                 "total": total,
                 "percent": percent
             })
-    
+
     # ---- ПИСЬМО (с уровнями) ----
     writing_items = []
     for r in writing_rows:
@@ -606,7 +606,7 @@ async def user_detail(request: Request, user_id: int):
             "avg": avg
         })
     writing_items.sort(key=lambda x: (x["subtype"], x["level"]))
-    
+
     # ---- ГОВОРЕНИЕ (с уровнями, включая "Эксперт") ----
     govorenie_items = []
     for r in govorenie_rows:
@@ -622,11 +622,11 @@ async def user_detail(request: Request, user_id: int):
             "avg": avg
         })
     govorenie_items.sort(key=lambda x: (x["subtype"], x["level"]))
-    
+
     # ---- ОБЩЕНИЕ С AI И РОЛЕВЫЕ ИГРЫ ----
     speaking_minutes = round(user.get("speaking_seconds_month", 0) / 60, 1)
     roleplay_minutes = round(user.get("roleplay_seconds_month", 0) / 60, 1)
-    
+
     return templates.TemplateResponse("user_detail.html", {
         "request": request,
         "user": user,
@@ -640,6 +640,14 @@ async def user_detail(request: Request, user_id: int):
         "speaking_minutes": speaking_minutes,
         "roleplay_minutes": roleplay_minutes
     })
+
+# ---- ОТЛАДОЧНЫЙ ЭНДПОИНТ ДЛЯ ПРОСМОТРА ДАННЫХ ИЗ progress ----
+@app.get("/debug-progress/{user_id}")
+async def debug_progress(user_id: int):
+    conn = await get_db()
+    rows = await conn.fetch("SELECT type_key, level_key, correct, wrong FROM progress WHERE user_id = $1 ORDER BY type_key", user_id)
+    await conn.close()
+    return {"user_id": user_id, "progress": [dict(r) for r in rows]}
 
 # ---- УПРАВЛЕНИЕ ПОДПИСКАМИ ----
 @app.post("/user/{user_id}/extend")
