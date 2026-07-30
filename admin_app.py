@@ -45,27 +45,27 @@ GRAMMAR_TYPES = {
 }
 
 LEXIS_TYPES = {
-    "adjectives": "adjectives",
-    "adverbs": "adverbs",
-    "verbs": "verbs",
-    "nouns": "nouns",
-    "conjunctions": "conjunctions",
-    "prepositions": "prepositions",
-    "phrasal_verbs": "phrasal verbs",
-    "irregular_verbs": "irregular verbs",
-    "false_friends": "false friends",
-    "gold_3000": "gold 3000",
-    "expert": "expert",
-    "beginner": "beginner"
+    "adjectives": "Прилагательные",
+    "adverbs": "Наречия",
+    "verbs": "Глаголы",
+    "nouns": "Существительные",
+    "conjunctions": "Союзы",
+    "prepositions": "Предлоги",
+    "phrasal_verbs": "Фразовые глаголы",
+    "irregular_verbs": "Неправильные глаголы",
+    "false_friends": "Ложные друзья",
+    "gold_3000": "Gold 3000",
+    "expert": "Эксперт",
+    "beginner": "Новичок"
 }
 
 LISTENING_TYPES = {
-    "choice": "choice",
-    "truefalse": "truefalse",
-    "fill_one": "fill one",
-    "fill_multiple": "fill multiple",
-    "speaker": "speaker",
-    "random": "random"
+    "choice": "Выбор варианта",
+    "truefalse": "True/False/Not stated",
+    "fill_one": "Вставка пропуска",
+    "fill_multiple": "Вставка пропусков",
+    "speaker": "Выбор утверждения",
+    "random": "Случайный тип"
 }
 
 READING_TYPES = {
@@ -475,7 +475,7 @@ async def users_list(request: Request, search: str = ""):
         })
     return templates.TemplateResponse("users.html", {"request": request, "users": users, "search": search})
 
-# ---- ДЕТАЛИ ПОЛЬЗОВАТЕЛЯ (С УРОВНЯМИ) ----
+# ---- ДЕТАЛИ ПОЛЬЗОВАТЕЛЯ (ОБНОВЛЕНА) ----
 @app.get("/user/{user_id}", response_class=HTMLResponse)
 async def user_detail(request: Request, user_id: int):
     conn = await get_db()
@@ -487,7 +487,6 @@ async def user_detail(request: Request, user_id: int):
     progress_rows = await conn.fetch("SELECT type_key, level_key, correct, wrong FROM progress WHERE user_id = $1", user_id)
     writing_rows = await conn.fetch("SELECT type_key, level_key, total_answered, total_score FROM writing_progress WHERE user_id = $1", user_id)
     govorenie_rows = await conn.fetch("SELECT task_type, level, total_answered, total_score FROM govorenie_progress WHERE user_id = $1", user_id)
-    error_rows = await conn.fetch("SELECT type_key, COUNT(*) as cnt FROM errors WHERE user_id = $1 GROUP BY type_key", user_id)
     await conn.close()
     
     user = dict(user_row)
@@ -497,7 +496,7 @@ async def user_detail(request: Request, user_id: int):
         else:
             user[field] = "—"
     
-    # Агрегация прогресса
+    # Подготавливаем данные прогресса
     progress_data = {}
     for r in progress_rows:
         key = r["type_key"]
@@ -511,7 +510,7 @@ async def user_detail(request: Request, user_id: int):
         progress_data[key][level]["correct"] += correct
         progress_data[key][level]["wrong"] += wrong
     
-    # Грамматика
+    # ---- ГРАММАТИКА (8 подтипов × 3 уровня) ----
     grammar_items = []
     for raw_key, display_name in GRAMMAR_TYPES.items():
         db_key = f"grammar_{raw_key}"
@@ -530,31 +529,28 @@ async def user_detail(request: Request, user_id: int):
                 "total": total,
                 "percent": percent
             })
-    progress_by_mode = {"Грамматика": grammar_items}
     
-    # Лексика
+    # ---- ЛЕКСИКА (без уровней, суммируем все уровни) ----
     lexis_items = []
     for raw_key, display_name in LEXIS_TYPES.items():
         db_key = f"words_{raw_key}"
         levels_data = progress_data.get(db_key, {})
-        for level in ["beginner", "intermediate", "expert"]:
-            level_display = LEVEL_DISPLAY.get(level, level)
-            data = levels_data.get(level, {"correct": 0, "wrong": 0})
-            correct = data["correct"]
-            wrong = data["wrong"]
-            total = correct + wrong
-            percent = round((correct / total * 100), 1) if total else 0
-            lexis_items.append({
-                "subtype": display_name,
-                "level": level_display,
-                "correct": correct,
-                "wrong": wrong,
-                "total": total,
-                "percent": percent
-            })
-    progress_by_mode["Лексика"] = lexis_items
+        total_correct = 0
+        total_wrong = 0
+        for level_data in levels_data.values():
+            total_correct += level_data["correct"]
+            total_wrong += level_data["wrong"]
+        total = total_correct + total_wrong
+        percent = round((total_correct / total * 100), 1) if total else 0
+        lexis_items.append({
+            "subtype": display_name,
+            "correct": total_correct,
+            "wrong": total_wrong,
+            "total": total,
+            "percent": percent
+        })
     
-    # Чтение
+    # ---- ЧТЕНИЕ (4 подтипа × 3 уровня) ----
     reading_items = []
     for raw_key, display_name in READING_TYPES.items():
         db_key = raw_key
@@ -573,9 +569,8 @@ async def user_detail(request: Request, user_id: int):
                 "total": total,
                 "percent": percent
             })
-    progress_by_mode["Чтение"] = reading_items
     
-    # Аудирование
+    # ---- АУДИРОВАНИЕ (6 подтипов × 3 уровня) ----
     listening_items = []
     for raw_key, display_name in LISTENING_TYPES.items():
         db_key = f"listening_{raw_key}"
@@ -595,9 +590,8 @@ async def user_detail(request: Request, user_id: int):
                 "total": total,
                 "percent": percent
             })
-    progress_by_mode["Аудирование"] = listening_items
     
-    # Письмо
+    # ---- ПИСЬМО (с уровнями) ----
     writing_items = []
     for r in writing_rows:
         level_display = LEVEL_DISPLAY.get(r["level_key"], r["level_key"])
@@ -613,7 +607,7 @@ async def user_detail(request: Request, user_id: int):
         })
     writing_items.sort(key=lambda x: (x["subtype"], x["level"]))
     
-    # Говорение
+    # ---- ГОВОРЕНИЕ (с уровнями, включая "Эксперт") ----
     govorenie_items = []
     for r in govorenie_rows:
         level_display = LEVEL_DISPLAY.get(r["level"], r["level"])
@@ -629,164 +623,22 @@ async def user_detail(request: Request, user_id: int):
         })
     govorenie_items.sort(key=lambda x: (x["subtype"], x["level"]))
     
-    # Ошибки
-    errors_summary = {}
-    for row in error_rows:
-        key = row["type_key"]
-        cnt = row["cnt"]
-        if key.startswith("grammar_"):
-            raw = key[8:]
-            display = GRAMMAR_TYPES.get(raw, raw)
-        elif key.startswith("words_"):
-            raw = key[6:]
-            display = LEXIS_TYPES.get(raw, raw)
-        elif key in READING_TYPES:
-            display = READING_TYPES.get(key, key)
-        elif key.startswith("listening_"):
-            raw = key[10:] if key[10:] else "random"
-            display = LISTENING_TYPES.get(raw, raw)
-        else:
-            display = key
-        errors_summary[display] = cnt
-    
+    # ---- ОБЩЕНИЕ С AI И РОЛЕВЫЕ ИГРЫ ----
     speaking_minutes = round(user.get("speaking_seconds_month", 0) / 60, 1)
     roleplay_minutes = round(user.get("roleplay_seconds_month", 0) / 60, 1)
     
     return templates.TemplateResponse("user_detail.html", {
         "request": request,
         "user": user,
-        "progress_by_mode": progress_by_mode,
-        "writing": writing_items,
-        "govorenie": govorenie_items,
-        "errors": errors_summary,
+        "grammar_items": grammar_items,
+        "lexis_items": lexis_items,
+        "reading_items": reading_items,
+        "listening_items": listening_items,
+        "writing_items": writing_items,
+        "govorenie_items": govorenie_items,
         "blocked": blocked,
         "speaking_minutes": speaking_minutes,
         "roleplay_minutes": roleplay_minutes
-    })
-
-# ---- СЫРЫЕ ДАННЫЕ (ПОЛНАЯ СТРУКТУРА) ----
-@app.get("/raw-data/{user_id}", response_class=HTMLResponse)
-async def raw_data_page(request: Request, user_id: int):
-    conn = await get_db()
-    
-    progress_rows = await conn.fetch("SELECT type_key, level_key, correct, wrong FROM progress WHERE user_id = $1", user_id)
-    writing_rows = await conn.fetch("SELECT type_key, level_key, total_answered, total_score FROM writing_progress WHERE user_id = $1", user_id)
-    govorenie_rows = await conn.fetch("SELECT task_type, level, total_answered, total_score FROM govorenie_progress WHERE user_id = $1", user_id)
-    user_row = await conn.fetchrow("SELECT first_name, username FROM users WHERE user_id = $1", user_id)
-    await conn.close()
-    
-    user_name = f"{user_row['first_name']} (@{user_row['username']})" if user_row else str(user_id)
-    
-    # Собираем данные из БД в словарь
-    progress_data = {}
-    for r in progress_rows:
-        key = r["type_key"]
-        level = r["level_key"]
-        correct = r["correct"]
-        wrong = r["wrong"]
-        if key not in progress_data:
-            progress_data[key] = {}
-        if level not in progress_data[key]:
-            progress_data[key][level] = {"correct": 0, "wrong": 0}
-        progress_data[key][level]["correct"] += correct
-        progress_data[key][level]["wrong"] += wrong
-    
-    # Грамматика
-    grammar_items = []
-    for raw_key, display_name in GRAMMAR_TYPES.items():
-        db_key = f"grammar_{raw_key}"
-        levels_data = progress_data.get(db_key, {})
-        for level in ["Новичок", "Любитель", "Эксперт"]:
-            data = levels_data.get(level, {"correct": 0, "wrong": 0})
-            grammar_items.append({
-                "subtype": display_name,
-                "level": level,
-                "correct": data["correct"],
-                "wrong": data["wrong"]
-            })
-    
-    # Лексика
-    lexis_items = []
-    for raw_key, display_name in LEXIS_TYPES.items():
-        db_key = f"words_{raw_key}"
-        levels_data = progress_data.get(db_key, {})
-        for level in ["beginner", "intermediate", "expert"]:
-            level_display = LEVEL_DISPLAY.get(level, level)
-            data = levels_data.get(level, {"correct": 0, "wrong": 0})
-            lexis_items.append({
-                "subtype": display_name,
-                "level": level_display,
-                "correct": data["correct"],
-                "wrong": data["wrong"]
-            })
-    
-    # Чтение
-    reading_items = []
-    for raw_key, display_name in READING_TYPES.items():
-        db_key = raw_key
-        levels_data = progress_data.get(db_key, {})
-        for level in ["Новичок", "Любитель", "Эксперт"]:
-            data = levels_data.get(level, {"correct": 0, "wrong": 0})
-            reading_items.append({
-                "subtype": display_name,
-                "level": level,
-                "correct": data["correct"],
-                "wrong": data["wrong"]
-            })
-    
-    # Аудирование
-    listening_items = []
-    for raw_key, display_name in LISTENING_TYPES.items():
-        db_key = f"listening_{raw_key}"
-        levels_data = progress_data.get(db_key, {})
-        for level in ["beginner", "intermediate", "expert"]:
-            level_display = LEVEL_DISPLAY.get(level, level)
-            data = levels_data.get(level, {"correct": 0, "wrong": 0})
-            listening_items.append({
-                "subtype": display_name,
-                "level": level_display,
-                "correct": data["correct"],
-                "wrong": data["wrong"]
-            })
-    
-    raw_structure = {
-        "Грамматика": grammar_items,
-        "Лексика": lexis_items,
-        "Чтение": reading_items,
-        "Аудирование": listening_items
-    }
-    
-    # Письмо
-    writing_list = []
-    for r in writing_rows:
-        level_display = LEVEL_DISPLAY.get(r["level_key"], r["level_key"])
-        writing_list.append({
-            "subtype": r["type_key"],
-            "level": level_display,
-            "answered": r["total_answered"],
-            "score": r["total_score"]
-        })
-    writing_list.sort(key=lambda x: (x["subtype"], x["level"]))
-    
-    # Говорение
-    govorenie_list = []
-    for r in govorenie_rows:
-        level_display = LEVEL_DISPLAY.get(r["level"], r["level"])
-        govorenie_list.append({
-            "subtype": r["task_type"],
-            "level": level_display,
-            "answered": r["total_answered"],
-            "score": r["total_score"]
-        })
-    govorenie_list.sort(key=lambda x: (x["subtype"], x["level"]))
-    
-    return templates.TemplateResponse("raw_data.html", {
-        "request": request,
-        "user_id": user_id,
-        "user_name": user_name,
-        "raw_structure": raw_structure,
-        "writing": writing_list,
-        "govorenie": govorenie_list
     })
 
 # ---- УПРАВЛЕНИЕ ПОДПИСКАМИ ----
