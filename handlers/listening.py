@@ -282,11 +282,12 @@ async def update_progress_message(message: Message, state: FSMContext):
         except Exception as e:
             logger.warning(f"Не удалось обновить прогресс: {e}")
 
-# ---------- Обработчики (с фильтрами состояний) ----------
+# ---------- Обработчики ----------
 @router.callback_query(F.data == "start_listening")
 @router.message(Command("listening"))
 async def listening_start(event, state: FSMContext):
     await state.clear()
+    await state.set_state(ListeningState.choosing_type)
     text = WELCOME_MESSAGES[0]
     if isinstance(event, Message):
         await event.answer(text, reply_markup=get_types_keyboard(), parse_mode="HTML")
@@ -793,6 +794,7 @@ async def back_to_types(callback: CallbackQuery, state: FSMContext):
             pass
 
     await state.clear()
+    await state.set_state(ListeningState.choosing_type)
     user_id = callback.from_user.id
     user_state = get_user_state(user_id)
     user_state["listening_active"] = False
