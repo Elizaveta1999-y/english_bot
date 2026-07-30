@@ -154,15 +154,10 @@ async def show_task_types(message: Message, edit: bool = False):
     else:
         await message.answer(text, reply_markup=keyboard, parse_mode="Markdown")
 
-# ---------- Выбор типа (с проверкой состояния внутри) ----------
+# ---------- Выбор типа (БЕЗ проверки состояния) ----------
 @router.callback_query(F.data.startswith("type_"))
 async def type_chosen(callback: CallbackQuery, state: FSMContext):
-    current_state = await state.get_state()
-    if current_state != WritingStates.choosing_type.state:
-        logger.warning(f"type_chosen вызван, но состояние {current_state} не равно choosing_type. Игнорируем.")
-        await callback.answer("Пожалуйста, сначала выберите тип через меню.")
-        return
-    logger.info(f"✅ type_chosen вызван, состояние: {current_state}, data={callback.data}")
+    logger.info(f"✅ type_chosen вызван, data={callback.data}, состояние: {await state.get_state()}")
     await callback.answer()
     task_type = callback.data.split("_")[1]
     await state.update_data(task_type=task_type)
@@ -170,15 +165,10 @@ async def type_chosen(callback: CallbackQuery, state: FSMContext):
     text = "Выберите уровень сложности:"
     await callback.message.edit_text(text, reply_markup=get_levels_keyboard(), parse_mode="Markdown")
 
-# ---------- Выбор уровня (с проверкой состояния внутри) ----------
+# ---------- Выбор уровня (БЕЗ проверки состояния) ----------
 @router.callback_query(F.data.startswith("level_"))
 async def level_chosen(callback: CallbackQuery, state: FSMContext):
-    current_state = await state.get_state()
-    if current_state != WritingStates.choosing_level.state:
-        logger.warning(f"level_chosen вызван, но состояние {current_state} не равно choosing_level. Игнорируем.")
-        await callback.answer("Пожалуйста, сначала выберите уровень через меню.")
-        return
-    logger.info(f"✅ level_chosen вызван, состояние: {current_state}, data={callback.data}")
+    logger.info(f"✅ level_chosen вызван, data={callback.data}, состояние: {await state.get_state()}")
     await callback.answer()
     level = callback.data.split("_")[1]
     user_id = callback.from_user.id
