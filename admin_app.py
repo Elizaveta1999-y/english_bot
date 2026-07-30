@@ -475,7 +475,7 @@ async def users_list(request: Request, search: str = ""):
         })
     return templates.TemplateResponse("users.html", {"request": request, "users": users, "search": search})
 
-# ---- ДЕТАЛИ ПОЛЬЗОВАТЕЛЯ (ИСПРАВЛЕНА) ----
+# ---- ДЕТАЛИ ПОЛЬЗОВАТЕЛЯ (С ЛОГИРОВАНИЕМ) ----
 @app.get("/user/{user_id}", response_class=HTMLResponse)
 async def user_detail(request: Request, user_id: int):
     conn = await get_db()
@@ -501,7 +501,7 @@ async def user_detail(request: Request, user_id: int):
     for r in progress_rows:
         key = r["type_key"]
         level = r["level_key"]
-        display_level = LEVEL_DISPLAY.get(level, level)  # преобразуем в русское название
+        display_level = LEVEL_DISPLAY.get(level, level)
         correct = r["correct"]
         wrong = r["wrong"]
         if key not in progress_data:
@@ -626,6 +626,10 @@ async def user_detail(request: Request, user_id: int):
     # ---- ОБЩЕНИЕ С AI И РОЛЕВЫЕ ИГРЫ ----
     speaking_minutes = round(user.get("speaking_seconds_month", 0) / 60, 1)
     roleplay_minutes = round(user.get("roleplay_seconds_month", 0) / 60, 1)
+
+    # ---- ЛОГИРОВАНИЕ ДЛЯ ОТЛАДКИ ----
+    logger.info(f"DEBUG: progress_data keys: {list(progress_data.keys())}")
+    logger.info(f"DEBUG: listening_items (first 3): {listening_items[:3] if listening_items else 'empty'}")
 
     return templates.TemplateResponse("user_detail.html", {
         "request": request,
