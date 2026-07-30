@@ -74,7 +74,7 @@ class ListeningState(StatesGroup):
     answering_task = State()
     revision_mode = State()
 
-# ---------- КЛАВИАТУРЫ (без изменений) ----------
+# ---------- КЛАВИАТУРЫ ----------
 def get_types_keyboard():
     buttons = []
     for key, label in TASK_TYPES.items():
@@ -345,7 +345,6 @@ async def level_selected(callback: CallbackQuery, state: FSMContext):
         await callback.answer("Нет заданий для этого типа и уровня.", show_alert=True)
         return
 
-    # Используем префикс для получения статистики
     correct, wrong = await get_user_stats_db(user_id, make_listening_type_key(task_type), level)
 
     await state.update_data({
@@ -562,14 +561,17 @@ async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
 
     type_key = data["task_type"]
     level_key = data["level"]
+    prefixed_key = make_listening_type_key(type_key)
     if is_correct:
-        await update_user_stats_db(callback.from_user.id, make_listening_type_key(type_key), level_key, True)
+        logger.info(f"Обновление статистики: user={callback.from_user.id}, key={prefixed_key}, level={level_key}, correct=True")
+        await update_user_stats_db(callback.from_user.id, prefixed_key, level_key, True)
         if data.get("is_revision", False):
-            await remove_reading_error_db(callback.from_user.id, make_listening_type_key(type_key), level_key, task["id"])
+            await remove_reading_error_db(callback.from_user.id, prefixed_key, level_key, task["id"])
     else:
-        await update_user_stats_db(callback.from_user.id, make_listening_type_key(type_key), level_key, False)
+        logger.info(f"Обновление статистики: user={callback.from_user.id}, key={prefixed_key}, level={level_key}, correct=False")
+        await update_user_stats_db(callback.from_user.id, prefixed_key, level_key, False)
         if not data.get("is_revision", False):
-            await add_reading_error_db(callback.from_user.id, make_listening_type_key(type_key), level_key, task["id"])
+            await add_reading_error_db(callback.from_user.id, prefixed_key, level_key, task["id"])
 
     await callback.message.edit_text(callback.message.text, reply_markup=None)
     msg = await callback.message.answer(result_text)
@@ -681,14 +683,17 @@ async def handle_answer(message: Message, state: FSMContext):
 
     type_key = data["task_type"]
     level_key = data["level"]
+    prefixed_key = make_listening_type_key(type_key)
     if is_correct:
-        await update_user_stats_db(message.from_user.id, make_listening_type_key(type_key), level_key, True)
+        logger.info(f"Обновление статистики (текст): user={message.from_user.id}, key={prefixed_key}, level={level_key}, correct=True")
+        await update_user_stats_db(message.from_user.id, prefixed_key, level_key, True)
         if data.get("is_revision", False):
-            await remove_reading_error_db(message.from_user.id, make_listening_type_key(type_key), level_key, task["id"])
+            await remove_reading_error_db(message.from_user.id, prefixed_key, level_key, task["id"])
     else:
-        await update_user_stats_db(message.from_user.id, make_listening_type_key(type_key), level_key, False)
+        logger.info(f"Обновление статистики (текст): user={message.from_user.id}, key={prefixed_key}, level={level_key}, correct=False")
+        await update_user_stats_db(message.from_user.id, prefixed_key, level_key, False)
         if not data.get("is_revision", False):
-            await add_reading_error_db(message.from_user.id, make_listening_type_key(type_key), level_key, task["id"])
+            await add_reading_error_db(message.from_user.id, prefixed_key, level_key, task["id"])
 
     msg = await message.answer(result_text)
     msg_ids = data.get("message_ids", [])
