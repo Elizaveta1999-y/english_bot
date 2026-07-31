@@ -32,7 +32,7 @@ if not DATABASE_URL:
 if not BOT_TOKEN:
     raise ValueError("BOT_TOKEN is not set")
 
-# ---------- СЛОВАРИ ДЛЯ ОТОБРАЖЕНИЯ КРАСИВЫХ НАЗВАНИЙ ----------
+# ---------- СЛОВАРИ ----------
 GRAMMAR_TYPES = {
     "раскрытие_скобок": "раскрытие скобок",
     "вставка_пропусков": "вставка пропусков",
@@ -119,7 +119,7 @@ async def ensure_db_structure():
             CREATE TABLE IF NOT EXISTS blocked_users (
                 user_id BIGINT PRIMARY KEY
             )
-        """)
+        """)  # оставляем, но не используем
         await conn.execute("""
             CREATE TABLE IF NOT EXISTS api_balances (
                 service TEXT PRIMARY KEY,
@@ -368,22 +368,6 @@ async def set_bot_active(active: bool):
     await conn.execute("UPDATE bot_settings SET value = $1 WHERE key = 'is_active'", 'true' if active else 'false')
     await conn.close()
 
-async def is_user_blocked(user_id: int) -> bool:
-    conn = await get_db()
-    row = await conn.fetchrow("SELECT 1 FROM blocked_users WHERE user_id = $1", user_id)
-    await conn.close()
-    return row is not None
-
-async def block_user(user_id: int):
-    conn = await get_db()
-    await conn.execute("INSERT INTO blocked_users (user_id) VALUES ($1) ON CONFLICT DO NOTHING", user_id)
-    await conn.close()
-
-async def unblock_user(user_id: int):
-    conn = await get_db()
-    await conn.execute("DELETE FROM blocked_users WHERE user_id = $1", user_id)
-    await conn.close()
-
 async def set_bonus_notification(user_id: int, reason: str):
     conn = await get_db()
     await conn.execute("UPDATE users SET bonus_notification = TRUE, bonus_reason = $1 WHERE user_id = $2", reason, user_id)
@@ -475,14 +459,13 @@ async def users_list(request: Request, search: str = ""):
         })
     return templates.TemplateResponse("users.html", {"request": request, "users": users, "search": search})
 
-# ---- ДЕТАЛИ ПОЛЬЗОВАТЕЛЯ (С ЛОГИРОВАНИЕМ) ----
+# ---- ДЕТАЛИ ПОЛЬЗОВАТЕЛЯ (БЕЗ БЛОКИРОВКИ) ----
 @app.get("/user/{user_id}", response_class=HTMLResponse)
 async def user_detail(request: Request, user_id: int):
     conn = await get_db()
     user_row = await conn.fetchrow("SELECT * FROM users WHERE user_id = $1", user_id)
     if not user_row:
         raise HTTPException(404, "Пользователь не найден")
-    blocked = await is_user_blocked(user_id)
 
     progress_rows = await conn.fetch("SELECT type_key, level_key, correct, wrong FROM progress WHERE user_id = $1", user_id)
     writing_rows = await conn.fetch("SELECT type_key, level_key, total_answered, total_score FROM writing_progress WHERE user_id = $1", user_id)
@@ -531,7 +514,7 @@ async def user_detail(request: Request, user_id: int):
                 "percent": percent
             })
 
-    # ---- ЛЕКСИКА (без уровней, суммируем все уровни) ----
+    # ---- ЛЕКСИКА (без уровней) ----
     lexis_items = []
     for raw_key, display_name in LEXIS_TYPES.items():
         db_key = f"words_{raw_key}"
@@ -591,7 +574,7 @@ async def user_detail(request: Request, user_id: int):
                 "percent": percent
             })
 
-    # ---- ПИСЬМО (с уровнями) ----
+    # ---- ПИСЬМО ----
     writing_items = []
     for r in writing_rows:
         level_display = LEVEL_DISPLAY.get(r["level_key"], r["level_key"])
@@ -607,7 +590,7 @@ async def user_detail(request: Request, user_id: int):
         })
     writing_items.sort(key=lambda x: (x["subtype"], x["level"]))
 
-    # ---- ГОВОРЕНИЕ (с уровнями, включая "Эксперт") ----
+    # ---- ГОВОРЕНИЕ ----
     govorenie_items = []
     for r in govorenie_rows:
         level_display = LEVEL_DISPLAY.get(r["level"], r["level"])
@@ -623,13 +606,8 @@ async def user_detail(request: Request, user_id: int):
         })
     govorenie_items.sort(key=lambda x: (x["subtype"], x["level"]))
 
-    # ---- ОБЩЕНИЕ С AI И РОЛЕВЫЕ ИГРЫ ----
     speaking_minutes = round(user.get("speaking_seconds_month", 0) / 60, 1)
     roleplay_minutes = round(user.get("roleplay_seconds_month", 0) / 60, 1)
-
-    # ---- ЛОГИРОВАНИЕ ДЛЯ ОТЛАДКИ ----
-    logger.info(f"DEBUG: progress_data keys: {list(progress_data.keys())}")
-    logger.info(f"DEBUG: listening_items (first 3): {listening_items[:3] if listening_items else 'empty'}")
 
     return templates.TemplateResponse("user_detail.html", {
         "request": request,
@@ -640,12 +618,11 @@ async def user_detail(request: Request, user_id: int):
         "listening_items": listening_items,
         "writing_items": writing_items,
         "govorenie_items": govorenie_items,
-        "blocked": blocked,
         "speaking_minutes": speaking_minutes,
         "roleplay_minutes": roleplay_minutes
     })
 
-# ---- ОТЛАДОЧНЫЙ ЭНДПОИНТ ДЛЯ ПРОСМОТРА ДАННЫХ ИЗ progress ----
+# ---- ОТЛАДОЧНЫЙ ЭНДПОИНТ ----
 @app.get("/debug-progress/{user_id}")
 async def debug_progress(user_id: int):
     conn = await get_db()
@@ -706,15 +683,7 @@ async def clear_all_user_data(user_id: int):
     await conn.close()
     return RedirectResponse(url=f"/user/{user_id}", status_code=303)
 
-@app.post("/user/{user_id}/block")
-async def block_user_route(user_id: int):
-    await block_user(user_id)
-    return RedirectResponse(url=f"/user/{user_id}", status_code=303)
-
-@app.post("/user/{user_id}/unblock")
-async def unblock_user_route(user_id: int):
-    await unblock_user(user_id)
-    return RedirectResponse(url=f"/user/{user_id}", status_code=303)
+# ---- КНОПКИ БЛОКИРОВКИ УДАЛЕНЫ ----
 
 @app.post("/extend_all")
 async def extend_all_subscriptions(days: int = Form(...)):

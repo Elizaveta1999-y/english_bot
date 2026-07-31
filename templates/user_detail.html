@@ -24,142 +24,48 @@
         <p><span class="detail-label">Использовано голоса (месяц):</span> <span class="detail-value">{{ (user.total_voice_seconds_month / 60) | round(1) }} мин</span></p>
         <p><span class="detail-label">Общение с AI (голос, месяц):</span> <span class="detail-value">{{ speaking_minutes }} мин</span></p>
         <p><span class="detail-label">Ролевые игры (голос, месяц):</span> <span class="detail-value">{{ roleplay_minutes }} мин</span></p>
-        <p><span class="detail-label">Статус:</span> <span class="detail-value">{% if blocked %}🔴 Заблокирован{% else %}🟢 Активен{% endif %}</span></p>
     </div>
 </div>
 
-<!-- Кнопки блокировки с подтверждением -->
-<div class="mt-3">
-    {% if blocked %}
-    <form method="post" action="/user/{{ user.user_id }}/unblock" onsubmit="return confirm('Разблокировать пользователя {{ user.user_id }}?')" class="d-inline">
-        <button class="btn btn-secondary" type="submit">🔓 Разблокировать</button>
-    </form>
-    {% else %}
-    <form method="post" action="/user/{{ user.user_id }}/block" onsubmit="return confirm('Заблокировать пользователя {{ user.user_id }}?')" class="d-inline">
-        <button class="btn btn-secondary" type="submit">🔒 Заблокировать</button>
-    </form>
-    {% endif %}
-</div>
-
-<!-- Грамматика -->
-<h4 class="section-title">📘 Грамматика</h4>
-<div class="table-responsive">
-    <table class="table table-sm table-striped">
-        <thead>
-            <tr>
-                <th>Подтип</th>
-                <th>Уровень</th>
-                <th>Правильно</th>
-                <th>Неправильно</th>
-                <th>Точность, %</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for item in grammar_items %}
-            <tr>
-                <td>{{ item.subtype }}</td>
-                <td>{{ item.level }}</td>
-                <td>{{ item.correct }}</td>
-                <td>{{ item.wrong }}</td>
-                <td>{{ item.percent }}</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-</div>
-
-<!-- Лексика (без уровней) -->
-<h4 class="section-title">📝 Лексика</h4>
-<div class="table-responsive">
-    <table class="table table-sm table-striped">
-        <thead>
-            <tr>
-                <th>Подтип</th>
-                <th>Правильно</th>
-                <th>Неправильно</th>
-                <th>Точность, %</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for item in lexis_items %}
-            <tr>
-                <td>{{ item.subtype }}</td>
-                <td>{{ item.correct }}</td>
-                <td>{{ item.wrong }}</td>
-                <td>{{ item.percent }}</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-</div>
-
-<!-- Чтение -->
-<h4 class="section-title">📖 Чтение</h4>
-<div class="table-responsive">
-    <table class="table table-sm table-striped">
-        <thead>
-            <tr>
-                <th>Подтип</th>
-                <th>Уровень</th>
-                <th>Правильно</th>
-                <th>Неправильно</th>
-                <th>Точность, %</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for item in reading_items %}
-            <tr>
-                <td>{{ item.subtype }}</td>
-                <td>{{ item.level }}</td>
-                <td>{{ item.correct }}</td>
-                <td>{{ item.wrong }}</td>
-                <td>{{ item.percent }}</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-</div>
-
-<!-- Аудирование -->
-<h4 class="section-title">🎧 Аудирование</h4>
-<div class="table-responsive">
-    <table class="table table-sm table-striped">
-        <thead>
-            <tr>
-                <th>Подтип</th>
-                <th>Уровень</th>
-                <th>Правильно</th>
-                <th>Неправильно</th>
-                <th>Точность, %</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for item in listening_items %}
-            <tr>
-                <td>{{ item.subtype }}</td>
-                <td>{{ item.level }}</td>
-                <td>{{ item.correct }}</td>
-                <td>{{ item.wrong }}</td>
-                <td>{{ item.percent }}</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-</div>
+<!-- Прогресс по тренажёрам -->
+<h4 class="section-title">📈 Прогресс по тренажёрам</h4>
+{% for mode, items in progress_by_mode.items() %}
+    <h5>{{ mode }}</h5>
+    <div class="table-responsive">
+        <table class="table table-sm table-striped">
+            <thead>
+                <tr>
+                    <th>Подтип</th>
+                    <th>Уровень</th>
+                    <th>Правильно</th>
+                    <th>Неправильно</th>
+                    <th>Точность, %</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for item in items %}
+                <tr>
+                    <td>{{ item.subtype }}</td>
+                    <td>{{ item.level }}</td>
+                    <td>{{ item.correct }}</td>
+                    <td>{{ item.wrong }}</td>
+                    <td>{{ item.percent }}</td>
+                </tr>
+            {% else %}
+                <tr><td colspan="5">Нет данных</td></tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% else %}
+    <p>Нет данных по тренажёрам</p>
+{% endfor %}
 
 <!-- Письмо -->
 <h4 class="section-title">✍️ Письмо</h4>
 <div class="table-responsive">
     <table class="table table-sm table-striped">
-        <thead>
-            <tr>
-                <th>Тип</th>
-                <th>Уровень</th>
-                <th>Проверок</th>
-                <th>Сумма баллов</th>
-                <th>Средний</th>
-            </tr>
-        </thead>
+        <thead><tr><th>Тип</th><th>Уровень</th><th>Проверок</th><th>Сумма баллов</th><th>Средний</th></tr></thead>
         <tbody>
         {% for item in writing_items %}
             <tr>
@@ -169,6 +75,8 @@
                 <td>{{ item.score }}</td>
                 <td>{{ item.avg }}</td>
             </tr>
+        {% else %}
+            <tr><td colspan="5">Нет данных</td></tr>
         {% endfor %}
         </tbody>
     </table>
@@ -178,15 +86,7 @@
 <h4 class="section-title">🗣️ Говорение</h4>
 <div class="table-responsive">
     <table class="table table-sm table-striped">
-        <thead>
-            <tr>
-                <th>Тип</th>
-                <th>Уровень</th>
-                <th>Проверок</th>
-                <th>Сумма баллов</th>
-                <th>Средний</th>
-            </tr>
-        </thead>
+        <thead><tr><th>Тип</th><th>Уровень</th><th>Проверок</th><th>Сумма баллов</th><th>Средний</th></tr></thead>
         <tbody>
         {% for item in govorenie_items %}
             <tr>
@@ -196,6 +96,8 @@
                 <td>{{ item.score }}</td>
                 <td>{{ item.avg }}</td>
             </tr>
+        {% else %}
+            <tr><td colspan="5">Нет данных</td></tr>
         {% endfor %}
         </tbody>
     </table>

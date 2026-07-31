@@ -4,7 +4,7 @@ from aiohttp import web
 from aiogram import Bot, Dispatcher
 from aiogram.types import BotCommand, Update
 from aiogram.webhook.aiohttp_server import SimpleRequestHandler, setup_application
-from handlers import start, speaking, roleplay, common, voice, lessons, words, profile, support, listening, reading, writing  
+from handlers import start, speaking, roleplay, common, voice, lessons, words, profile, skills, support, listening, reading, writing  
 from handlers.subscription import router as subscription_router
 from handlers import listening
 from handlers.reading import router as reading_router
@@ -22,7 +22,7 @@ BOT_TOKEN = os.getenv("BOT_TOKEN")
 if not BOT_TOKEN:
     raise ValueError("BOT_TOKEN is not set")
 
-ADMIN_ID = int(os.getenv("ADMIN_ID", 0))  # ваш Telegram ID для уведомлений об ошибках
+ADMIN_ID = int(os.getenv("ADMIN_ID", 0))
 
 WEBHOOK_PATH = "/webhook"
 WEBHOOK_SECRET = "my-secret-key"
@@ -30,10 +30,20 @@ WEBHOOK_SECRET = "my-secret-key"
 bot = Bot(token=BOT_TOKEN)
 dp = Dispatcher()
 
-# --------------------- Логирование всех обновлений ---------------------
+# --------------------- Логирование обновлений (ТОЛЬКО ОСНОВНЫЕ ПОЛЯ) ---------------------
 @dp.update.middleware()
 async def log_update(handler, event, data):
-    logger.info(f"📨 Received update: {event}")
+    # Логируем только ID пользователя и тип обновления
+    if event.message:
+        user_id = event.message.from_user.id
+        text = event.message.text or "Нет текста"
+        logger.info(f"📩 Сообщение от {user_id}: {text}")
+    elif event.callback_query:
+        user_id = event.callback_query.from_user.id
+        data = event.callback_query.data
+        logger.info(f"📩 Callback от {user_id}: {data}")
+    else:
+        logger.info(f"📩 Обновление другого типа: {event.update_id}")
     return await handler(event, data)
 
 # --------------------- Глобальный обработчик ошибок ---------------------
@@ -68,6 +78,7 @@ dp.include_router(common.router)
 dp.include_router(lessons.router)
 dp.include_router(speaking.router)
 dp.include_router(profile.router)
+dp.include_router(skills.router)
 
 dp.message.middleware(ModeIsolationMiddleware())
 
@@ -84,14 +95,13 @@ async def check_bot_status(handler, event, data):
         user_id = event.callback_query.from_user.id
     
     if user_id:
-        # Проверяем, активен ли бот
         if not await get_bot_active():
             await event.answer("🤖 Друзья! Бот решил немного передохнуть и отправился на техническое обслуживание.\nСкоро все наладим и вернём бота в строй так быстро, как только сможем.\nРекомендуем самостоятельно проверять статус через некоторое время.", show_alert=True if hasattr(event, 'answer') else False)
             return
-        # Проверяем, не заблокирован ли пользователь
-        if await is_user_blocked(user_id):
-            await event.answer("Ваш доступ ограничен.", show_alert=True if hasattr(event, 'answer') else False)
-            return
+        # Блокировка пользователей отключена — не проверяем
+        # if await is_user_blocked(user_id):
+        #     await event.answer("Ваш доступ ограничен.", show_alert=True if hasattr(event, 'answer') else False)
+        #     return
     return await handler(event, data)
 
 # --------------------- Команды и запуск ---------------------
