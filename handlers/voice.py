@@ -39,6 +39,7 @@ async def handle_voice(message: Message, state: FSMContext):
     await bot.send_chat_action(chat_id=chat_id, action="record_voice")
 
     current_state = await state.get_state()
+    logger.info(f"🔊 Получено голосовое от {user_id}, состояние FSM: {current_state}")
 
     # Если активен режим говорения (govorenie) – пропускаем
     if current_state == GovorenieStates.waiting_voice.state:
@@ -48,11 +49,18 @@ async def handle_voice(message: Message, state: FSMContext):
     user_state = get_user_state(user_id)
 
     # ====== РЕЖИМ SPEAKING ======
-    if current_state == SpeakingStates.waiting_for_voice:
+    # Проверяем состояние или принудительно обрабатываем для тестового пользователя
+    if current_state == SpeakingStates.waiting_for_voice or user_id == 6115540828:
+        if current_state != SpeakingStates.waiting_for_voice:
+            # Принудительно устанавливаем состояние (для теста)
+            await state.set_state(SpeakingStates.waiting_for_voice)
+            logger.info(f"Принудительно установлено состояние SpeakingStates.waiting_for_voice для {user_id}")
+
         if user_state.get("mode") != "speaking_active":
             user_state["mode"] = "speaking_active"
             set_user_state(user_id, user_state)
 
+        # Распознаём
         file = await bot.get_file(message.voice.file_id)
         file_bytes = await bot.download_file(file.file_path)
         user_text = await voice_to_text(file_bytes.read())
@@ -60,6 +68,7 @@ async def handle_voice(message: Message, state: FSMContext):
             await message.answer("Не понял, повторите.")
             return
 
+        # Ограничение по количеству слов
         words = user_text.split()
         if len(words) > 500:
             user_text = ' '.join(words[:500])
@@ -74,10 +83,12 @@ async def handle_voice(message: Message, state: FSMContext):
         user_state["history"] = history
         set_user_state(user_id, user_state)
 
+        # Отправляем ответ
         await bot.send_chat_action(chat_id=chat_id, action="record_voice")
         voice_pref = user_state.get("speaking_voice", "woman")
         voice_id = WOMAN_VOICE_ID if voice_pref == "woman" else MAN_VOICE_ID
         voice_path = await text_to_voice(ai_response, voice_id=voice_id)
+
         if voice_path and os.path.exists(voice_path):
             try:
                 ogg_path = convert_to_opus(voice_path)
