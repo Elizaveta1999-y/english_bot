@@ -5,8 +5,9 @@ from services.deepseek import chat
 async def process_voice_message(user_id: int, user_text: str) -> str:
     """
     Обработка голосового сообщения в режиме Speaking.
-    - Исправляет ошибки с кратким объяснением.
-    - Если пользователь говорит по-русски, перефразирует его сообщение на английский и отвечает на английском.
+    - Если ошибки есть → исправляет с кратким пояснением.
+    - Если ошибок нет → просто продолжает диалог.
+    - Русский → даёт английский эквивалент без цитирования русского.
     """
     state = get_user_state(user_id)
     history = state.get("history", [])
@@ -14,12 +15,13 @@ async def process_voice_message(user_id: int, user_text: str) -> str:
     context = "\n".join([f"{'Student' if h['role']=='user' else 'Teacher'}: {h['text']}" for h in history[-5:]])
     
     system_prompt = (
-        "You are a friendly English tutor. Speak naturally, like a real person. "
+        "You are a friendly English tutor. Respond naturally, like a real person. "
         "Always respond in English. "
-        "If the student speaks Russian, rephrase their message in English (show them how to say it) and then respond in English. "
-        "Gently encourage them to use English, but don't be pushy. "
-        "If the student makes a mistake, correct it and give a brief explanation (one sentence) why it's correct. "
-        "Keep your answers short (1-3 sentences) and end with a question. "
+        "If the student makes a grammatical or vocabulary mistake, correct it briefly and give a short reason. "
+        "If there are no mistakes, just continue the conversation naturally. "
+        "If the student speaks Russian, do not repeat their Russian sentence. "
+        "Instead, say: 'You could say: [English translation]' and then continue the conversation in English. "
+        "Keep replies short (1-3 sentences) and end with a question. "
         "Do not use filler phrases like 'I processed your message', 'Let's continue', or 'Now back to English'. "
         "Just respond naturally and ask a follow-up question."
     )
@@ -50,14 +52,16 @@ async def process_roleplay_message(user_id: int, user_text: str) -> str:
         system_message = (
             f"You are in a role play: {custom_scenario}. "
             "Respond in English as your character. Keep replies short and natural. "
-            "If the user speaks Russian, rephrase their message in English and respond in English. "
+            "If the user speaks Russian, say: 'You could say: [English translation]' and continue in English. "
+            "Do not repeat their Russian sentence. "
             "Don't correct the user unless they ask. End with a question."
         )
     else:
         system_message = (
             f"You are in a role play: {topic}. "
             "Respond in English as your character. Keep replies short and natural. "
-            "If the user speaks Russian, rephrase their message in English and respond in English. "
+            "If the user speaks Russian, say: 'You could say: [English translation]' and continue in English. "
+            "Do not repeat their Russian sentence. "
             "Don't correct the user unless they ask. End with a question."
         )
     
@@ -71,9 +75,6 @@ async def process_roleplay_message(user_id: int, user_text: str) -> str:
     return response
 
 async def is_safe_message(text: str) -> bool:
-    """
-    Простая проверка на недопустимое содержание.
-    """
     low = text.lower()
     
     unsafe_phrases = [

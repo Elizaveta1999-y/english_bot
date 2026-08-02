@@ -32,6 +32,15 @@ GREETINGS = [
 
 used_greetings = {}
 
+# Клавиатура с кнопками для режима Speaking
+SPEAKING_KEYBOARD = ReplyKeyboardMarkup(
+    keyboard=[
+        [KeyboardButton(text="📊 Я всё! Фидбек")],
+        [KeyboardButton(text="🏠 Главное меню")]
+    ],
+    resize_keyboard=True
+)
+
 @router.callback_query(F.data == "start_speaking")
 async def start_speaking(callback: CallbackQuery, state: FSMContext):
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
@@ -59,14 +68,6 @@ async def select_voice(callback: CallbackQuery, state: FSMContext):
 
     await callback.message.delete()
     
-    keyboard = ReplyKeyboardMarkup(
-        keyboard=[
-            [KeyboardButton(text="📊 Я всё! Фидбек")],
-            [KeyboardButton(text="🏠 Главное меню")]
-        ],
-        resize_keyboard=True
-    )
-    
     # Выбираем приветствие
     if user_id not in used_greetings:
         used_greetings[user_id] = []
@@ -90,6 +91,7 @@ async def select_voice(callback: CallbackQuery, state: FSMContext):
             inline_kb = InlineKeyboardMarkup(inline_keyboard=[
                 [InlineKeyboardButton(text="Текст", callback_data=f"show_text_{user_id}")]
             ])
+            # Отправляем голосовое с кнопкой "Текст"
             sent = await callback.message.answer_voice(
                 BufferedInputFile(audio_bytes, filename="voice.ogg"),
                 caption="",
@@ -106,18 +108,26 @@ async def select_voice(callback: CallbackQuery, state: FSMContext):
             os.unlink(voice_path)
             os.unlink(ogg_path)
         else:
+            # Если TTS не сработал — отправляем текст и показываем клавиатуру
             await callback.message.answer(
-                "🎙️",
-                reply_markup=keyboard,
+                "🎙️ Скажи что-нибудь.",
+                reply_markup=SPEAKING_KEYBOARD,
                 parse_mode="HTML"
             )
     except Exception as e:
         logger.error(f"TTS error: {e}")
         await callback.message.answer(
-            "🎙️",
-            reply_markup=keyboard,
+            "🎙️ Скажи что-нибудь.",
+            reply_markup=SPEAKING_KEYBOARD,
             parse_mode="HTML"
         )
+    
+    # ВАЖНО: отправляем клавиатуру в любом случае после всего
+    await callback.message.answer(
+        "🗣️ Говори развёрнуто – так эффективнее для изучения!",
+        reply_markup=SPEAKING_KEYBOARD,
+        parse_mode="HTML"
+    )
 
 # ---------- Запрет текстовых сообщений в Speaking ----------
 @router.message(SpeakingStates.waiting_for_voice, F.text)
@@ -201,15 +211,8 @@ async def continue_speaking(callback: CallbackQuery, state: FSMContext):
     set_user_state(user_id, user_state)
     await state.set_state(SpeakingStates.waiting_for_voice)
 
-    keyboard = ReplyKeyboardMarkup(
-        keyboard=[
-            [KeyboardButton(text="📊 Я всё! Фидбек")],
-            [KeyboardButton(text="🏠 Главное меню")]
-        ],
-        resize_keyboard=True
-    )
     await callback.message.answer(
         "🗣️ <b>Продолжаем разговор. Говорите!</b>",
-        reply_markup=keyboard,
+        reply_markup=SPEAKING_KEYBOARD,
         parse_mode="HTML"
     )
