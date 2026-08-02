@@ -29,6 +29,15 @@ def convert_to_opus(mp3_path: str) -> str:
     subprocess.run(cmd, check=True, capture_output=True)
     return ogg_path
 
+async def process_voice_only(user_id: int, user_text: str) -> str:
+    """
+    Для режимов, не требующих исправлений (практика, уроки, roleplay).
+    Возвращает только основной ответ (без кортежа).
+    """
+    from speaking.services.ai import process_voice_message
+    reply, _ = await process_voice_message(user_id, user_text)
+    return reply
+
 @router.message(F.voice)
 async def handle_voice(message: Message, state: FSMContext):
     user_id = message.from_user.id
@@ -39,7 +48,6 @@ async def handle_voice(message: Message, state: FSMContext):
     await bot.send_chat_action(chat_id=chat_id, action="record_voice")
 
     current_state = await state.get_state()
-    logger.info(f"🔊 Получено голосовое от {user_id}, состояние FSM: {current_state}")
 
     # Если активен режим говорения (govorenie) – пропускаем
     if current_state == GovorenieStates.waiting_voice.state:
@@ -49,18 +57,12 @@ async def handle_voice(message: Message, state: FSMContext):
     user_state = get_user_state(user_id)
 
     # ====== РЕЖИМ SPEAKING ======
-    # Проверяем состояние или принудительно обрабатываем для тестового пользователя
-    if current_state == SpeakingStates.waiting_for_voice or user_id == 6115540828:
-        if current_state != SpeakingStates.waiting_for_voice:
-            # Принудительно устанавливаем состояние (для теста)
-            await state.set_state(SpeakingStates.waiting_for_voice)
-            logger.info(f"Принудительно установлено состояние SpeakingStates.waiting_for_voice для {user_id}")
-
+    if current_state == SpeakingStates.waiting_for_voice:
         if user_state.get("mode") != "speaking_active":
             user_state["mode"] = "speaking_active"
             set_user_state(user_id, user_state)
 
-        # Распознаём
+        # Распознавание
         file = await bot.get_file(message.voice.file_id)
         file_bytes = await bot.download_file(file.file_path)
         user_text = await voice_to_text(file_bytes.read())
@@ -73,22 +75,27 @@ async def handle_voice(message: Message, state: FSMContext):
         if len(words) > 500:
             user_text = ' '.join(words[:500])
 
-        ai_response = await process_voice_message(user_id, user_text)
+        # Получаем основной ответ и исправления/перевод
+        reply_text, correction_text = await process_voice_message(user_id, user_text)
 
+        # Сохраняем историю с основным ответом (без исправлений)
         history = user_state.get("history", [])
         history.append({"role": "user", "text": user_text})
-        history.append({"role": "assistant", "text": ai_response})
+        history.append({"role": "assistant", "text": reply_text})
         if len(history) > 20:
             history = history[-20:]
         user_state["history"] = history
         set_user_state(user_id, user_state)
 
-        # Отправляем ответ
+        # Отправляем исправления/перевод текстом (если есть)
+        if correction_text:
+            await message.answer(correction_text, parse_mode="HTML")
+
+        # Отправляем голосовой ответ (только развитие беседы)
         await bot.send_chat_action(chat_id=chat_id, action="record_voice")
         voice_pref = user_state.get("speaking_voice", "woman")
         voice_id = WOMAN_VOICE_ID if voice_pref == "woman" else MAN_VOICE_ID
-        voice_path = await text_to_voice(ai_response, voice_id=voice_id)
-
+        voice_path = await text_to_voice(reply_text, voice_id=voice_id)
         if voice_path and os.path.exists(voice_path):
             try:
                 ogg_path = convert_to_opus(voice_path)
@@ -102,21 +109,26 @@ async def handle_voice(message: Message, state: FSMContext):
                     caption="",
                     reply_markup=keyboard
                 )
-                last_bot_response[user_id] = {"text": ai_response, "translation": None, "audio_message_id": sent.message_id}
+                last_bot_response[user_id] = {
+                    "text": reply_text,
+                    "translation": None,
+                    "audio_message_id": sent.message_id
+                }
                 os.unlink(voice_path)
                 os.unlink(ogg_path)
                 return
             except Exception as e:
                 logger.error(f"Audio error: {e}")
-        # Если TTS упал — отправляем текстом
+        # Если TTS упал — отправляем текстом основной ответ
         keyboard = InlineKeyboardMarkup(inline_keyboard=[
             [InlineKeyboardButton(text="Перевести", callback_data=f"translate_text_{user_id}")]
         ])
-        sent = await message.answer(ai_response, reply_markup=keyboard)
-        last_text_response[user_id] = {"text": ai_response, "translation": None, "message_id": sent.message_id}
+        sent = await message.answer(reply_text, reply_markup=keyboard)
+        last_text_response[user_id] = {"text": reply_text, "translation": None, "message_id": sent.message_id}
         return
 
     # ====== ОСТАЛЬНАЯ ЛОГИКА (практика, уроки, roleplay) ======
+    # Для этих режимов мы используем process_voice_only (без исправлений и перевода)
     file = await bot.get_file(message.voice.file_id)
     file_bytes = await bot.download_file(file.file_path)
     user_text = await voice_to_text(file_bytes.read())
@@ -210,7 +222,8 @@ async def handle_voice(message: Message, state: FSMContext):
     else:
         if mode != "speaking_active":
             set_user_mode(user_id, "speaking_active")
-        ai_response = await process_voice_message(user_id, user_text)
+        # Для обычного режима (не Speaking) используем только основной ответ
+        ai_response = await process_voice_only(user_id, user_text)
 
     history = user_state.get("history", [])
     history.append({"role": "user", "text": user_text})
@@ -220,6 +233,7 @@ async def handle_voice(message: Message, state: FSMContext):
     user_state["history"] = history
     set_user_state(user_id, user_state)
 
+    # Отправляем голосовой ответ
     await bot.send_chat_action(chat_id=chat_id, action="record_voice")
     voice_pref = user_state.get("speaking_voice", "woman")
     voice_id = WOMAN_VOICE_ID if voice_pref == "woman" else MAN_VOICE_ID
