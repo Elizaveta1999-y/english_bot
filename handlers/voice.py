@@ -70,7 +70,7 @@ async def handle_voice(message: Message, state: FSMContext):
         user_text = await voice_to_text(file_bytes.read())
         if not user_text:
             await message.answer("Не понял, повторите.")
-            await message.answer("🎙️", reply_markup=SPEAKING_KEYBOARD)
+            await message.answer("Отправьте голосовое сообщение", reply_markup=SPEAKING_KEYBOARD)
             return
 
         words = user_text.split()
@@ -120,7 +120,7 @@ async def handle_voice(message: Message, state: FSMContext):
                 }
                 os.unlink(voice_path)
                 os.unlink(ogg_path)
-                await message.answer("🎙️", reply_markup=SPEAKING_KEYBOARD)
+                await message.answer("Отправьте голосовое сообщение", reply_markup=SPEAKING_KEYBOARD)
                 return
             except Exception as e:
                 logger.error(f"Audio error: {e}")
@@ -129,7 +129,7 @@ async def handle_voice(message: Message, state: FSMContext):
         ])
         sent = await message.answer(reply_text, reply_markup=keyboard)
         last_text_response[user_id] = {"text": reply_text, "translation": None, "message_id": sent.message_id}
-        await message.answer("🎙️", reply_markup=SPEAKING_KEYBOARD)
+        await message.answer("Отправьте голосовое сообщение", reply_markup=SPEAKING_KEYBOARD)
         return
 
     # ====== ОСТАЛЬНАЯ ЛОГИКА ======
@@ -253,7 +253,7 @@ async def handle_voice(message: Message, state: FSMContext):
             os.unlink(voice_path)
             os.unlink(ogg_path)
             if user_state.get("mode") == "speaking_active":
-                await message.answer("🎙️", reply_markup=SPEAKING_KEYBOARD)
+                await message.answer("Отправьте голосовое сообщение", reply_markup=SPEAKING_KEYBOARD)
             return
         except Exception as e:
             logger.error(f"Audio error: {e}")
@@ -265,9 +265,9 @@ async def handle_voice(message: Message, state: FSMContext):
     sent = await message.answer(ai_response, reply_markup=keyboard)
     last_text_response[user_id] = {"text": ai_response, "translation": None, "message_id": sent.message_id}
     if user_state.get("mode") == "speaking_active":
-        await message.answer("🎙️", reply_markup=SPEAKING_KEYBOARD)
+        await message.answer("Отправьте голосовое сообщение", reply_markup=SPEAKING_KEYBOARD)
 
-# ---------- ОБРАБОТЧИКИ КНОПОК ----------
+# ---------- ОБРАБОТЧИКИ КНОПОК ДЛЯ ТЕКСТА/ПЕРЕВОДА (без изменений) ----------
 @router.callback_query(lambda c: c.data.startswith("show_text_"))
 async def show_text(callback: CallbackQuery):
     user_id = int(callback.data.split("_")[2])
@@ -422,150 +422,3 @@ async def original_text_callback(callback: CallbackQuery):
     data["translation"] = None
     last_text_response[user_id] = data
     await callback.answer()
-
-# ===== ОБРАБОТЧИКИ ВЫБОРА ГОЛОСА (с первым ответом ИИ) =====
-@router.callback_query(F.data == "speaking_voice_woman")
-async def set_woman_voice(callback: CallbackQuery, state: FSMContext):
-    user_id = callback.from_user.id
-    user_state = get_user_state(user_id)
-    user_state["speaking_voice"] = "woman"
-    user_state["mode"] = "speaking_active"
-    set_user_state(user_id, user_state)
-    await state.set_state(SpeakingStates.waiting_for_voice)
-
-    # Удаляем сообщение с выбором голоса
-    await callback.message.delete()
-
-    # Первый ответ от ИИ (приветствие)
-    first_text = "Hello! Let's practice English. Send me a voice message, and I'll reply."
-    # Добавляем в историю
-    history = user_state.get("history", [])
-    history.append({"role": "assistant", "text": first_text})
-    if len(history) > 20:
-        history = history[-20:]
-    user_state["history"] = history
-    set_user_state(user_id, user_state)
-
-    # Отправляем голосовое
-    voice_pref = user_state.get("speaking_voice", "woman")
-    voice_id = WOMAN_VOICE_ID if voice_pref == "woman" else MAN_VOICE_ID
-    voice_path = await text_to_voice(first_text, voice_id=voice_id)
-    if voice_path and os.path.exists(voice_path):
-        try:
-            ogg_path = convert_to_opus(voice_path)
-            with open(ogg_path, 'rb') as f:
-                audio_bytes = f.read()
-            keyboard = InlineKeyboardMarkup(inline_keyboard=[
-                [InlineKeyboardButton(text="Текст", callback_data=f"show_text_{user_id}")]
-            ])
-            sent = await callback.message.answer_audio(
-                BufferedInputFile(audio_bytes, filename="voice.ogg"),
-                caption="",
-                reply_markup=keyboard
-            )
-            last_bot_response[user_id] = {
-                "text": first_text,
-                "translation": None,
-                "audio_message_id": sent.message_id
-            }
-            os.unlink(voice_path)
-            os.unlink(ogg_path)
-        except Exception as e:
-            logger.error(f"Audio error: {e}")
-            # если не удалось отправить аудио, отправляем текстом
-            keyboard = InlineKeyboardMarkup(inline_keyboard=[
-                [InlineKeyboardButton(text="Перевести", callback_data=f"translate_text_{user_id}")]
-            ])
-            sent = await callback.message.answer(first_text, reply_markup=keyboard)
-            last_text_response[user_id] = {"text": first_text, "translation": None, "message_id": sent.message_id}
-    else:
-        # TTS не сработал – текст
-        keyboard = InlineKeyboardMarkup(inline_keyboard=[
-            [InlineKeyboardButton(text="Перевести", callback_data=f"translate_text_{user_id}")]
-        ])
-        sent = await callback.message.answer(first_text, reply_markup=keyboard)
-        last_text_response[user_id] = {"text": first_text, "translation": None, "message_id": sent.message_id}
-
-    # Отправляем клавиатуру (без микрофона, просто кнопки)
-    await callback.message.answer("Выберите действие:", reply_markup=SPEAKING_KEYBOARD)
-    await callback.answer()
-
-@router.callback_query(F.data == "speaking_voice_man")
-async def set_man_voice(callback: CallbackQuery, state: FSMContext):
-    user_id = callback.from_user.id
-    user_state = get_user_state(user_id)
-    user_state["speaking_voice"] = "man"
-    user_state["mode"] = "speaking_active"
-    set_user_state(user_id, user_state)
-    await state.set_state(SpeakingStates.waiting_for_voice)
-
-    await callback.message.delete()
-
-    first_text = "Hello! Let's practice English. Send me a voice message, and I'll reply."
-    history = user_state.get("history", [])
-    history.append({"role": "assistant", "text": first_text})
-    if len(history) > 20:
-        history = history[-20:]
-    user_state["history"] = history
-    set_user_state(user_id, user_state)
-
-    voice_pref = user_state.get("speaking_voice", "woman")
-    voice_id = WOMAN_VOICE_ID if voice_pref == "woman" else MAN_VOICE_ID
-    voice_path = await text_to_voice(first_text, voice_id=voice_id)
-    if voice_path and os.path.exists(voice_path):
-        try:
-            ogg_path = convert_to_opus(voice_path)
-            with open(ogg_path, 'rb') as f:
-                audio_bytes = f.read()
-            keyboard = InlineKeyboardMarkup(inline_keyboard=[
-                [InlineKeyboardButton(text="Текст", callback_data=f"show_text_{user_id}")]
-            ])
-            sent = await callback.message.answer_audio(
-                BufferedInputFile(audio_bytes, filename="voice.ogg"),
-                caption="",
-                reply_markup=keyboard
-            )
-            last_bot_response[user_id] = {
-                "text": first_text,
-                "translation": None,
-                "audio_message_id": sent.message_id
-            }
-            os.unlink(voice_path)
-            os.unlink(ogg_path)
-        except Exception as e:
-            logger.error(f"Audio error: {e}")
-            keyboard = InlineKeyboardMarkup(inline_keyboard=[
-                [InlineKeyboardButton(text="Перевести", callback_data=f"translate_text_{user_id}")]
-            ])
-            sent = await callback.message.answer(first_text, reply_markup=keyboard)
-            last_text_response[user_id] = {"text": first_text, "translation": None, "message_id": sent.message_id}
-    else:
-        keyboard = InlineKeyboardMarkup(inline_keyboard=[
-            [InlineKeyboardButton(text="Перевести", callback_data=f"translate_text_{user_id}")]
-        ])
-        sent = await callback.message.answer(first_text, reply_markup=keyboard)
-        last_text_response[user_id] = {"text": first_text, "translation": None, "message_id": sent.message_id}
-
-    await callback.message.answer("Выберите действие:", reply_markup=SPEAKING_KEYBOARD)
-    await callback.answer()
-
-# ---------- ОБРАБОТЧИКИ КНОПОК КЛАВИАТУРЫ SPEAKING ----------
-@router.message(F.text == "📊 Я всё! Фидбек")
-async def feedback_button(message: Message, state: FSMContext):
-    user_id = message.from_user.id
-    await state.set_state(None)
-    user_state = get_user_state(user_id)
-    if user_state.get("mode") == "speaking_active":
-        user_state["mode"] = "default"
-        set_user_state(user_id, user_state)
-    await message.answer("📊 Фидбек: вы завершили Speaking-сессию. Ваши ответы сохранены.", reply_markup=ReplyKeyboardRemove())
-
-@router.message(F.text == "🏠 Главное меню")
-async def main_menu_button(message: Message, state: FSMContext):
-    user_id = message.from_user.id
-    await state.set_state(None)
-    user_state = get_user_state(user_id)
-    if user_state.get("mode") == "speaking_active":
-        user_state["mode"] = "default"
-        set_user_state(user_id, user_state)
-    await message.answer("🏠 Главное меню", reply_markup=ReplyKeyboardRemove())

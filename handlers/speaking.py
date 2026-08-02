@@ -105,25 +105,16 @@ async def select_voice(callback: CallbackQuery, state: FSMContext):
             os.unlink(voice_path)
             os.unlink(ogg_path)
         else:
-            await callback.message.answer(
-                "🎙️",
-                reply_markup=SPEAKING_KEYBOARD,
-                parse_mode="HTML"
-            )
+            # Если TTS не сработал, отправляем текст
+            await callback.message.answer(first_message, reply_markup=SPEAKING_KEYBOARD)
+            return
     except Exception as e:
         logger.error(f"TTS error: {e}")
-        await callback.message.answer(
-            "🎙️",
-            reply_markup=SPEAKING_KEYBOARD,
-            parse_mode="HTML"
-        )
-    
-    if voice_path and os.path.exists(voice_path):
-        await callback.message.answer(
-            "🎙️",
-            reply_markup=SPEAKING_KEYBOARD,
-            parse_mode="HTML"
-        )
+        await callback.message.answer(first_message, reply_markup=SPEAKING_KEYBOARD)
+        return
+
+    # После успешной отправки аудио отправляем клавиатуру (без смайлика)
+    await callback.message.answer("Отправьте голосовое сообщение", reply_markup=SPEAKING_KEYBOARD)
 
 # ---------- Запрет текстовых сообщений в Speaking ----------
 @router.message(SpeakingStates.waiting_for_voice, F.text)
@@ -133,7 +124,7 @@ async def handle_speaking_text(message: Message, state: FSMContext):
     if user_state.get("mode") != "speaking_active":
         return
     
-    await message.answer("Нажмите на значок микрофона и отправьте голосовое сообщение.")
+    await message.answer("Отправьте голосовое сообщение (нажмите на значок микрофона).")
     return
 
 # ---------- Кнопки ----------
@@ -145,7 +136,7 @@ async def show_feedback(message: Message, state: FSMContext):
     user_state = get_user_state(user_id)
     history = user_state.get("history", [])
     if not history:
-        await message.answer("Вы пока ничего не сказали. Начните разговор!", reply_markup=None)
+        await message.answer("Вы пока ничего не сказали. Начните разговор!", reply_markup=ReplyKeyboardRemove())
         return
 
     # Индикатор "печатает"
@@ -164,12 +155,15 @@ async def show_feedback(message: Message, state: FSMContext):
         feedback = await chat(prompt, max_tokens=400, temperature=0.5)
     except Exception as e:
         logger.error(f"Ошибка фидбека: {e}")
-        await message.answer("Не удалось получить фидбек. Попробуйте позже.")
+        await message.answer("Не удалось получить фидбек. Попробуйте позже.", reply_markup=ReplyKeyboardRemove())
         return
 
     user_state["history"] = []
     set_user_state(user_id, user_state)
 
+    # Убираем ReplyKeyboard, показываем инлайн-кнопки
+    await message.answer("Фидбек готов:", reply_markup=ReplyKeyboardRemove())
+    
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(text="🗣️ Продолжить разговор", callback_data="continue_speaking")],
         [InlineKeyboardButton(text="🏠 Главное меню", callback_data="back_to_main")]
@@ -213,8 +207,6 @@ async def continue_speaking(callback: CallbackQuery, state: FSMContext):
     set_user_state(user_id, user_state)
     await state.set_state(SpeakingStates.waiting_for_voice)
 
-    await callback.message.answer(
-        "🗣️",
-        reply_markup=SPEAKING_KEYBOARD,
-        parse_mode="HTML"
-    )
+    # Убираем предыдущее сообщение с инлайн-кнопками, отправляем клавиатуру без смайлика
+    await callback.message.delete()
+    await callback.message.answer("Отправьте голосовое сообщение", reply_markup=SPEAKING_KEYBOARD)
