@@ -3,7 +3,7 @@ import tempfile
 import subprocess
 import logging
 from aiogram import Router, F
-from aiogram.types import Message, BufferedInputFile, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery, ReactionTypeEmoji
+from aiogram.types import Message, BufferedInputFile, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery, ReactionTypeEmoji, ReplyKeyboardMarkup, KeyboardButton
 from aiogram.fsm.context import FSMContext
 from speaking.services.stt import voice_to_text
 from speaking.services.ai import process_voice_message, process_roleplay_message
@@ -23,6 +23,15 @@ last_text_response = {}
 WOMAN_VOICE_ID = "8quEMRkSpwEaWBzHvTLv"
 MAN_VOICE_ID = "3TStB8f3X3To0Uj5R7RK"
 
+# Клавиатура для режима Speaking
+SPEAKING_KEYBOARD = ReplyKeyboardMarkup(
+    keyboard=[
+        [KeyboardButton(text="📊 Я всё! Фидбек")],
+        [KeyboardButton(text="🏠 Главное меню")]
+    ],
+    resize_keyboard=True
+)
+
 def convert_to_opus(mp3_path: str) -> str:
     ogg_path = tempfile.mktemp(suffix=".ogg")
     cmd = ["ffmpeg", "-i", mp3_path, "-c:a", "libopus", "-ar", "16000", "-ac", "1", "-b:a", "16k", ogg_path, "-y"]
@@ -30,7 +39,6 @@ def convert_to_opus(mp3_path: str) -> str:
     return ogg_path
 
 async def process_voice_only(user_id: int, user_text: str) -> str:
-    """Для режимов, не требующих исправлений (практика, уроки, roleplay)."""
     from speaking.services.ai import process_voice_message
     reply, _, _ = await process_voice_message(user_id, user_text)
     return reply
@@ -62,6 +70,8 @@ async def handle_voice(message: Message, state: FSMContext):
         user_text = await voice_to_text(file_bytes.read())
         if not user_text:
             await message.answer("Не понял, повторите.")
+            # Отправляем клавиатуру даже при ошибке
+            await message.answer("🎙️", reply_markup=SPEAKING_KEYBOARD)
             return
 
         words = user_text.split()
@@ -114,14 +124,19 @@ async def handle_voice(message: Message, state: FSMContext):
                 }
                 os.unlink(voice_path)
                 os.unlink(ogg_path)
+                # ОТПРАВЛЯЕМ КЛАВИАТУРУ ПОСЛЕ ОТВЕТА
+                await message.answer("🎙️", reply_markup=SPEAKING_KEYBOARD)
                 return
             except Exception as e:
                 logger.error(f"Audio error: {e}")
+        # Если TTS упал — отправляем текстом
         keyboard = InlineKeyboardMarkup(inline_keyboard=[
             [InlineKeyboardButton(text="Перевести", callback_data=f"translate_text_{user_id}")]
         ])
         sent = await message.answer(reply_text, reply_markup=keyboard)
         last_text_response[user_id] = {"text": reply_text, "translation": None, "message_id": sent.message_id}
+        # ОТПРАВЛЯЕМ КЛАВИАТУРУ ПОСЛЕ ОТВЕТА
+        await message.answer("🎙️", reply_markup=SPEAKING_KEYBOARD)
         return
 
     # ====== ОСТАЛЬНАЯ ЛОГИКА (практика, уроки, roleplay) ======
