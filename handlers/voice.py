@@ -3,7 +3,7 @@ import tempfile
 import subprocess
 import logging
 from aiogram import Router, F
-from aiogram.types import Message, BufferedInputFile, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
+from aiogram.types import Message, BufferedInputFile, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery, ReactionTypeEmoji
 from aiogram.fsm.context import FSMContext
 from speaking.services.stt import voice_to_text
 from speaking.services.ai import process_voice_message, process_roleplay_message
@@ -30,12 +30,9 @@ def convert_to_opus(mp3_path: str) -> str:
     return ogg_path
 
 async def process_voice_only(user_id: int, user_text: str) -> str:
-    """
-    Для режимов, не требующих исправлений (практика, уроки, roleplay).
-    Возвращает только основной ответ (без кортежа).
-    """
+    """Для режимов, не требующих исправлений (практика, уроки, roleplay)."""
     from speaking.services.ai import process_voice_message
-    reply, _ = await process_voice_message(user_id, user_text)
+    reply, _, _ = await process_voice_message(user_id, user_text)
     return reply
 
 @router.message(F.voice)
@@ -44,12 +41,10 @@ async def handle_voice(message: Message, state: FSMContext):
     chat_id = message.chat.id
     bot = message.bot
 
-    # Индикатор "записывает голосовое"
     await bot.send_chat_action(chat_id=chat_id, action="record_voice")
 
     current_state = await state.get_state()
 
-    # Если активен режим говорения (govorenie) – пропускаем
     if current_state == GovorenieStates.waiting_voice.state:
         logger.info(f"Голосовое от {user_id} пропущено (говорение)")
         return
@@ -62,7 +57,6 @@ async def handle_voice(message: Message, state: FSMContext):
             user_state["mode"] = "speaking_active"
             set_user_state(user_id, user_state)
 
-        # Распознавание
         file = await bot.get_file(message.voice.file_id)
         file_bytes = await bot.download_file(file.file_path)
         user_text = await voice_to_text(file_bytes.read())
@@ -70,15 +64,12 @@ async def handle_voice(message: Message, state: FSMContext):
             await message.answer("Не понял, повторите.")
             return
 
-        # Ограничение по количеству слов
         words = user_text.split()
         if len(words) > 500:
             user_text = ' '.join(words[:500])
 
-        # Получаем основной ответ и исправления/перевод
-        reply_text, correction_text = await process_voice_message(user_id, user_text)
+        reply_text, correction_text, is_perfect = await process_voice_message(user_id, user_text)
 
-        # Сохраняем историю с основным ответом (без исправлений)
         history = user_state.get("history", [])
         history.append({"role": "user", "text": user_text})
         history.append({"role": "assistant", "text": reply_text})
@@ -87,11 +78,18 @@ async def handle_voice(message: Message, state: FSMContext):
         user_state["history"] = history
         set_user_state(user_id, user_state)
 
-        # Отправляем исправления/перевод текстом (если есть)
+        # Если всё идеально — ставим реакцию ❤️
+        if is_perfect:
+            try:
+                await message.react([ReactionTypeEmoji(emoji="❤️")])
+            except Exception as e:
+                logger.warning(f"Не удалось поставить реакцию: {e}")
+
+        # Отправляем исправления/перевод (если есть)
         if correction_text:
             await message.answer(correction_text, parse_mode="HTML")
 
-        # Отправляем голосовой ответ (только развитие беседы)
+        # Отправляем голосовой ответ
         await bot.send_chat_action(chat_id=chat_id, action="record_voice")
         voice_pref = user_state.get("speaking_voice", "woman")
         voice_id = WOMAN_VOICE_ID if voice_pref == "woman" else MAN_VOICE_ID
@@ -119,7 +117,6 @@ async def handle_voice(message: Message, state: FSMContext):
                 return
             except Exception as e:
                 logger.error(f"Audio error: {e}")
-        # Если TTS упал — отправляем текстом основной ответ
         keyboard = InlineKeyboardMarkup(inline_keyboard=[
             [InlineKeyboardButton(text="Перевести", callback_data=f"translate_text_{user_id}")]
         ])
@@ -128,7 +125,6 @@ async def handle_voice(message: Message, state: FSMContext):
         return
 
     # ====== ОСТАЛЬНАЯ ЛОГИКА (практика, уроки, roleplay) ======
-    # Для этих режимов мы используем process_voice_only (без исправлений и перевода)
     file = await bot.get_file(message.voice.file_id)
     file_bytes = await bot.download_file(file.file_path)
     user_text = await voice_to_text(file_bytes.read())
@@ -140,7 +136,6 @@ async def handle_voice(message: Message, state: FSMContext):
     if len(words) > 500:
         user_text = ' '.join(words[:500])
 
-    # ---------- Режим практики (уроки) ----------
     if user_state.get("practice_lesson_key"):
         lesson_key = user_state["practice_lesson_key"]
         practice = user_state.get("practice", {}).get(lesson_key)
@@ -193,13 +188,11 @@ async def handle_voice(message: Message, state: FSMContext):
                 await show_practice_task(message, user_id, edit=False)
             return
 
-    # ---------- Вопросы по уроку ----------
     if user_state.get("lesson_qa", {}).get("active"):
         from handlers.lessons import process_lesson_question
         await process_lesson_question(user_id, user_text, message.bot, message.chat.id)
         return
 
-    # ---------- Урок (thematic) ----------
     if user_state.get("lesson_mode") == "thematic" and user_state.get("lesson_step") == "awaiting_answer":
         from handlers.lesson_utils import check_answer
         task = user_state.get("lesson_task")
@@ -215,14 +208,12 @@ async def handle_voice(message: Message, state: FSMContext):
             set_user_state(user_id, user_state)
             return
 
-    # ---------- Roleplay или обычный режим ----------
     mode = user_state.get("mode")
     if mode == "roleplay_active":
         ai_response = await process_roleplay_message(user_id, user_text)
     else:
         if mode != "speaking_active":
             set_user_mode(user_id, "speaking_active")
-        # Для обычного режима (не Speaking) используем только основной ответ
         ai_response = await process_voice_only(user_id, user_text)
 
     history = user_state.get("history", [])
@@ -233,7 +224,6 @@ async def handle_voice(message: Message, state: FSMContext):
     user_state["history"] = history
     set_user_state(user_id, user_state)
 
-    # Отправляем голосовой ответ
     await bot.send_chat_action(chat_id=chat_id, action="record_voice")
     voice_pref = user_state.get("speaking_voice", "woman")
     voice_id = WOMAN_VOICE_ID if voice_pref == "woman" else MAN_VOICE_ID
