@@ -730,13 +730,10 @@ async def handle_text_answer(message: Message, state: FSMContext):
     else:
         await render_task_message(message, state, user_id, short_type, short_level, next_index, paragraph_idx=0, is_revision=False)
 
-# ---------- Игнорирование голосовых (только если мы в режиме чтения) ----------
-@router.message(F.voice)
-async def ignore_voice(message: Message, state: FSMContext):
-    current_state = await state.get_state()
-    if current_state and current_state in (ReadingStates.in_progress.state, ReadingStates.waiting_for_text.state):
-        await message.answer("Голосовые сообщения не поддерживаются в этом режиме. Пожалуйста, используйте кнопки или текстовый ввод.")
-    # Если состояние другое – пропускаем (перехват будет в других хендлерах)
+@router.message(F.voice, ReadingStates.in_progress)
+@router.message(F.voice, ReadingStates.waiting_for_text)
+async def ignore_voice_in_reading(message: Message, state: FSMContext):
+    await message.answer("Голосовые сообщения не поддерживаются в этом режиме. Пожалуйста, используйте кнопки или текстовый ввод.")
 
 # ---------- Вспомогательные функции ----------
 async def show_next_task(message: Message, state: FSMContext, is_revision: bool):

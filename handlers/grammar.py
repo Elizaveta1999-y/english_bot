@@ -1071,12 +1071,10 @@ async def grammar_finish_session(callback: CallbackQuery, state: FSMContext):
     await state.clear()
     await callback.answer()
 
-# ----- Игнорирование голосовых -----
-@router.message(F.voice)
-async def ignore_voice(message: Message, state: FSMContext):
-    current_state = await state.get_state()
-    if current_state and current_state.startswith("GrammarStates"):
-        await message.answer("Голосовые сообщения не поддерживаются в этом режиме. Пожалуйста, используйте кнопки или текстовый ввод.")
+@router.message(GrammarStates.waiting_for_text, F.voice)
+@router.message(GrammarStates.in_progress, F.voice)
+async def ignore_voice_in_grammar(message: Message, state: FSMContext):
+    await message.answer("Голосовые сообщения не поддерживаются в этом режиме. Пожалуйста, используйте кнопки или текстовый ввод.")
 
 # ----- Сброс ошибок -----
 @router.callback_query(GrammarStates.in_progress, F.data == "grammar_clear_errors")
