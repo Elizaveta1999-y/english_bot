@@ -5,7 +5,8 @@ from services.deepseek import chat
 async def process_voice_message(user_id: int, user_text: str) -> str:
     """
     Обработка голосового сообщения в режиме Speaking.
-    Отвечает кратко, на английском, как живой собеседник.
+    - Исправляет ошибки с кратким объяснением.
+    - Если пользователь говорит по-русски, перефразирует его сообщение на английский и отвечает на английском.
     """
     state = get_user_state(user_id)
     history = state.get("history", [])
@@ -14,12 +15,11 @@ async def process_voice_message(user_id: int, user_text: str) -> str:
     
     system_prompt = (
         "You are a friendly English tutor. Speak naturally, like a real person. "
-        "Always respond in English. If the student speaks Russian, respond in English and gently remind: "
-        "\"Try to say that in English next time.\" "
-        "Only if the student explicitly asks for a Russian explanation (e.g., 'explain in Russian', 'what does it mean in Russian'), "
-        "give a brief Russian explanation and immediately return to English. "
-        "Keep your answers short (1-2 sentences) and end with a question. "
-        "Correct mistakes gently in your response. "
+        "Always respond in English. "
+        "If the student speaks Russian, rephrase their message in English (show them how to say it) and then respond in English. "
+        "Gently encourage them to use English, but don't be pushy. "
+        "If the student makes a mistake, correct it and give a brief explanation (one sentence) why it's correct. "
+        "Keep your answers short (1-3 sentences) and end with a question. "
         "Do not use filler phrases like 'I processed your message', 'Let's continue', or 'Now back to English'. "
         "Just respond naturally and ask a follow-up question."
     )
@@ -30,7 +30,7 @@ async def process_voice_message(user_id: int, user_text: str) -> str:
         f"Your reply (natural, short, end with a question):"
     )
     
-    response = chat(user_prompt, system_message=system_prompt, max_tokens=150, temperature=0.7)
+    response = chat(user_prompt, system_message=system_prompt, max_tokens=200, temperature=0.7)
     response = response.strip()
     
     if not response.endswith('?'):
@@ -50,19 +50,19 @@ async def process_roleplay_message(user_id: int, user_text: str) -> str:
         system_message = (
             f"You are in a role play: {custom_scenario}. "
             "Respond in English as your character. Keep replies short and natural. "
-            "If the user explicitly asks for a Russian explanation, give a brief one in Russian, then return to English. "
+            "If the user speaks Russian, rephrase their message in English and respond in English. "
             "Don't correct the user unless they ask. End with a question."
         )
     else:
         system_message = (
             f"You are in a role play: {topic}. "
             "Respond in English as your character. Keep replies short and natural. "
-            "If the user explicitly asks for a Russian explanation, give a brief one in Russian, then return to English. "
+            "If the user speaks Russian, rephrase their message in English and respond in English. "
             "Don't correct the user unless they ask. End with a question."
         )
     
     user_prompt = f"Context:\n{context}\n\nUser: {user_text}\nYour reply (short, in character, end with a question):"
-    response = chat(user_prompt, system_message=system_message, max_tokens=150, temperature=0.7)
+    response = chat(user_prompt, system_message=system_message, max_tokens=200, temperature=0.7)
     response = response.strip()
     
     if not response.endswith('?'):
