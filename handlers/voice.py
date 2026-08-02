@@ -432,29 +432,48 @@ async def original_text_callback(callback: CallbackQuery):
     last_text_response[user_id] = data
     await callback.answer()
 
+# ===== ДОБАВЛЕННЫЕ ОБРАБОТЧИКИ ВЫБОРА ГОЛОСА =====
+@router.callback_query(F.data == "speaking_voice_woman")
+async def set_woman_voice(callback: CallbackQuery, state: FSMContext):
+    user_id = callback.from_user.id
+    user_state = get_user_state(user_id)
+    user_state["speaking_voice"] = "woman"
+    user_state["mode"] = "speaking_active"
+    set_user_state(user_id, user_state)
+    await state.set_state(SpeakingStates.waiting_for_voice)
+    await callback.message.edit_text("👩 Выбран женский голос. Теперь присылай голосовые сообщения, я буду отвечать голосом! 🎙️")
+    await callback.message.answer("🎙️", reply_markup=SPEAKING_KEYBOARD)
+    await callback.answer()
+
+@router.callback_query(F.data == "speaking_voice_man")
+async def set_man_voice(callback: CallbackQuery, state: FSMContext):
+    user_id = callback.from_user.id
+    user_state = get_user_state(user_id)
+    user_state["speaking_voice"] = "man"
+    user_state["mode"] = "speaking_active"
+    set_user_state(user_id, user_state)
+    await state.set_state(SpeakingStates.waiting_for_voice)
+    await callback.message.edit_text("👨 Выбран мужской голос. Теперь присылай голосовые сообщения, я буду отвечать голосом! 🎙️")
+    await callback.message.answer("🎙️", reply_markup=SPEAKING_KEYBOARD)
+    await callback.answer()
+
 # ---------- ОБРАБОТЧИКИ КНОПОК КЛАВИАТУРЫ SPEAKING ----------
 @router.message(F.text == "📊 Я всё! Фидбек")
 async def feedback_button(message: Message, state: FSMContext):
     user_id = message.from_user.id
-    # Завершаем режим Speaking
-    await state.set_state(None)  # сбрасываем состояние FSM
-    user_state = get_user_state(user_id)
-    if user_state.get("mode") == "speaking_active":
-        user_state["mode"] = "default"  # или любой другой режим по умолчанию
-        set_user_state(user_id, user_state)
-    # Показываем фидбек (заглушка, можно заменить на реальную логику)
-    await message.answer("📊 Фидбек: вы завершили Speaking-сессию. Ваши ответы сохранены.", reply_markup=ReplyKeyboardRemove())
-    # Здесь можно добавить отправку статистики и т.д.
-
-@router.message(F.text == "🏠 Главное меню")
-async def main_menu_button(message: Message, state: FSMContext):
-    user_id = message.from_user.id
-    # Завершаем режим Speaking
     await state.set_state(None)
     user_state = get_user_state(user_id)
     if user_state.get("mode") == "speaking_active":
         user_state["mode"] = "default"
         set_user_state(user_id, user_state)
-    # Убираем клавиатуру и отправляем в главное меню
+    await message.answer("📊 Фидбек: вы завершили Speaking-сессию. Ваши ответы сохранены.", reply_markup=ReplyKeyboardRemove())
+
+@router.message(F.text == "🏠 Главное меню")
+async def main_menu_button(message: Message, state: FSMContext):
+    user_id = message.from_user.id
+    await state.set_state(None)
+    user_state = get_user_state(user_id)
+    if user_state.get("mode") == "speaking_active":
+        user_state["mode"] = "default"
+        set_user_state(user_id, user_state)
     await message.answer("🏠 Главное меню", reply_markup=ReplyKeyboardRemove())
-    # Здесь можно вызвать команду /start или показать главное меню.
