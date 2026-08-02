@@ -3,9 +3,6 @@ from data.users import get_user_state
 from services.deepseek import chat
 
 async def process_voice_message(user_id: int, user_text: str) -> tuple:
-    """
-    Возвращает (reply_text, correction_text, is_perfect).
-    """
     state = get_user_state(user_id)
     history = state.get("history", [])
     
@@ -32,9 +29,7 @@ async def process_voice_message(user_id: int, user_text: str) -> tuple:
     correction_text = ""
     is_perfect = False
     
-    # Проверяем, есть ли русский язык
     if re.search(r'[а-яА-Я]', user_text):
-        # Пользователь говорил по-русски – переводим и зачёркиваем оригинал
         translation_prompt = (
             f"The student said in Russian: {user_text}\n"
             f"Provide only the correct English translation, without any extra words. "
@@ -43,21 +38,23 @@ async def process_voice_message(user_id: int, user_text: str) -> tuple:
         translation = chat(translation_prompt, system_message="You are a translator.", max_tokens=100, temperature=0.3)
         correction_text = f"<s>{user_text}</s>\n{translation}"
     else:
-        # Проверяем, есть ли грамматические ошибки
         check_prompt = (
             f"The student wrote: {user_text}\n"
             f"Check for grammar, spelling, and word order errors. "
             f"If there are errors, provide:\n"
-            f"1. The original sentence with the error(s) marked\n"
-            f"2. The corrected version\n"
-            f"3. A brief explanation (one sentence, without labels)\n"
+            f"1. The corrected version\n"
+            f"2. A brief explanation (one sentence)\n"
+            f"Do not use any labels like 'Explanation:', 'Correction:', 'Fixed:', etc. "
+            f"Just give the corrected version and the explanation in plain text.\n"
             f"If there are NO errors, reply ONLY with 'NO_ERRORS'."
         )
         check_result = chat(check_prompt, system_message="You are a strict English teacher.", max_tokens=150, temperature=0.3)
         if check_result.strip() == "NO_ERRORS":
             is_perfect = True
         else:
-            correction_text = f"<s>{user_text}</s>\n{check_result}"
+            # Удаляем возможные маркеры из ответа (на случай, если ИИ их добавит)
+            cleaned = re.sub(r'(?i)^(explanation|correction|fixed|corrected)\s*[:.]?\s*', '', check_result)
+            correction_text = f"<s>{user_text}</s>\n{cleaned}"
     
     return reply_text, correction_text, is_perfect
 

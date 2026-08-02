@@ -118,7 +118,6 @@ async def select_voice(callback: CallbackQuery, state: FSMContext):
             parse_mode="HTML"
         )
     
-    # Отправляем клавиатуру отдельно, если TTS сработал
     if voice_path and os.path.exists(voice_path):
         await callback.message.answer(
             "🎙️",
@@ -140,12 +139,17 @@ async def handle_speaking_text(message: Message, state: FSMContext):
 # ---------- Кнопки ----------
 @router.message(SpeakingStates.waiting_for_voice, F.text == "📊 Я всё! Фидбек")
 async def show_feedback(message: Message, state: FSMContext):
+    logger.info(f"📊 Фидбек нажат, user={message.from_user.id}, state={await state.get_state()}")
+    
     user_id = message.from_user.id
     user_state = get_user_state(user_id)
     history = user_state.get("history", [])
     if not history:
         await message.answer("Вы пока ничего не сказали. Начните разговор!", reply_markup=None)
         return
+
+    # Индикатор "печатает"
+    await message.bot.send_chat_action(chat_id=message.chat.id, action="typing")
 
     history_text = "\n".join([f"{msg['role']}: {msg['text']}" for msg in history if msg['role'] in ['user', 'assistant']])
     prompt = (
@@ -174,6 +178,7 @@ async def show_feedback(message: Message, state: FSMContext):
 
 @router.message(SpeakingStates.waiting_for_voice, F.text == "🏠 Главное меню")
 async def exit_speaking(message: Message, state: FSMContext):
+    logger.info(f"🏠 Главное меню нажато, user={message.from_user.id}, state={await state.get_state()}")
     user_id = message.from_user.id
     user_state = get_user_state(user_id)
     user_state["mode"] = ""
