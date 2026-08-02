@@ -4,7 +4,7 @@ from aiohttp import web
 from aiogram import Bot, Dispatcher
 from aiogram.types import BotCommand, Update
 from aiogram.webhook.aiohttp_server import SimpleRequestHandler, setup_application
-from handlers import start, speaking, roleplay, common, voice, lessons, words, profile, skills, support, listening, reading, writing  
+from handlers import start, speaking, roleplay, common, voice, lessons, words, profile, support, listening, reading, writing
 from handlers.subscription import router as subscription_router
 from handlers import listening
 from handlers.reading import router as reading_router
