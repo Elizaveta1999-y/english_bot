@@ -19,7 +19,6 @@ from utils.db import (
 logger = logging.getLogger(__name__)
 router = Router()
 
-# ---------- Загрузка заданий ----------
 TASKS_FILE = os.path.join(os.path.dirname(__file__), "../data/govorenie_tasks.json")
 
 def load_tasks():
@@ -28,7 +27,6 @@ def load_tasks():
 
 ALL_TASKS = load_tasks()
 
-# ---------- Состояния FSM ----------
 class GovorenieStates(StatesGroup):
     choosing_type = State()
     choosing_level = State()
@@ -36,7 +34,6 @@ class GovorenieStates(StatesGroup):
     showing_progress = State()
     confirm_reset = State()
 
-# ---------- Клавиатуры ----------
 def get_types_keyboard():
     return InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(text="📖 Чтение вслух", callback_data="g_type_reading")],
@@ -76,9 +73,6 @@ def get_reset_confirmation_keyboard():
         [InlineKeyboardButton(text="Назад", callback_data="g_confirm_reset_no")]
     ])
 
-# ============================================================
-# 🔥 НОВЫЙ СЛОВАРЬ – минимальная длительность для беглости по уровням
-# ============================================================
 MIN_DURATION_BY_LEVEL = {
     "beginner": 30,
     "intermediate": 45,
@@ -86,14 +80,7 @@ MIN_DURATION_BY_LEVEL = {
     "advanced": 60
 }
 
-# ============================================================
-# 🔥 ФУНКЦИЯ – проверка схожести текстов
-# ============================================================
 def text_similarity(original: str, recognized: str, threshold: float = 0.5) -> bool:
-    """
-    Проверяет, достаточно ли слов из оригинального текста присутствует в распознанном.
-    Возвращает True, если процент совпадения >= threshold.
-    """
     clean_orig = re.sub(r'[^\w\s]', '', original).lower().split()
     clean_recog = re.sub(r'[^\w\s]', '', recognized).lower().split()
     if not clean_orig:
@@ -103,7 +90,6 @@ def text_similarity(original: str, recognized: str, threshold: float = 0.5) -> b
     logger.info(f"Схожесть текстов: {similarity:.2f}")
     return similarity >= threshold
 
-# ---------- ВХОД ----------
 @router.callback_query(F.data == "start_govorenie")
 async def start_govorenie_mode(callback: CallbackQuery, state: FSMContext):
     await callback.answer()
@@ -118,7 +104,6 @@ async def show_task_types(message: Message, edit: bool = False):
     else:
         await message.answer(text, reply_markup=keyboard, parse_mode="Markdown")
 
-# ---------- Выбор типа ----------
 @router.callback_query(F.data.startswith("g_type_"))
 async def type_chosen(callback: CallbackQuery, state: FSMContext):
     await callback.answer()
@@ -128,7 +113,6 @@ async def type_chosen(callback: CallbackQuery, state: FSMContext):
     text = f"Вы выбрали тип: *{task_type.upper()}*.\nТеперь выберите уровень сложности:"
     await callback.message.edit_text(text, reply_markup=get_levels_keyboard(), parse_mode="Markdown")
 
-# ---------- Выбор уровня ----------
 @router.callback_query(F.data.startswith("g_level_"))
 async def level_chosen(callback: CallbackQuery, state: FSMContext):
     await callback.answer()
@@ -168,21 +152,18 @@ async def level_chosen(callback: CallbackQuery, state: FSMContext):
 
     try:
         await show_progress_card(callback.message, state, edit=True)
-        logger.info("✅ Карточка прогресса показана")
     except Exception as e:
-        logger.error(f"❌ Ошибка в show_progress_card: {e}")
+        logger.error(f"Ошибка в show_progress_card: {e}")
         await callback.message.answer("Произошла ошибка при показе прогресса. Попробуйте заново.")
         return
 
     try:
         await show_task(callback.message, state, edit=False)
-        logger.info("✅ Задание показано, состояние переключено на waiting_voice")
     except Exception as e:
-        logger.error(f"❌ Ошибка в show_task: {e}")
+        logger.error(f"Ошибка в show_task: {e}")
         await callback.message.answer("Произошла ошибка при показе задания. Попробуйте заново.")
         return
 
-# ---------- Карточка прогресса ----------
 async def show_progress_card(message: Message, state: FSMContext, edit: bool = False):
     data = await state.get_data()
     user_id = data.get("user_id")
@@ -229,7 +210,6 @@ async def show_progress_card(message: Message, state: FSMContext, edit: bool = F
     await state.update_data(progress_msg_id=sent.message_id)
     await state.set_state(GovorenieStates.showing_progress)
 
-# ---------- Показ задания ----------
 async def show_task(message: Message, state: FSMContext, edit: bool = False):
     data = await state.get_data()
     task = data.get("current_task")
@@ -283,7 +263,6 @@ async def show_task(message: Message, state: FSMContext, edit: bool = False):
     await state.set_state(GovorenieStates.waiting_voice)
     logger.info(f"Состояние установлено: {await state.get_state()}")
 
-# ---------- Сброс прогресса ----------
 @router.callback_query(F.data == "g_reset_progress")
 async def reset_progress_request(callback: CallbackQuery, state: FSMContext):
     await callback.answer()
@@ -338,10 +317,9 @@ async def reset_progress_no(callback: CallbackQuery, state: FSMContext):
     await show_progress_card(callback.message, state, edit=False)
     await show_task(callback.message, state, edit=False)
 
-# ---------- Обработка голосового ответа ----------
 @router.message(GovorenieStates.waiting_voice, F.voice)
 async def handle_voice_message(message: Message, state: FSMContext):
-    logger.info(f"✅ handle_voice_message начат, user={message.from_user.id}")
+    logger.info(f"handle_voice_message начат, user={message.from_user.id}")
     user_id = message.from_user.id
     data = await state.get_data()
     task = data.get("current_task")
@@ -360,7 +338,6 @@ async def handle_voice_message(message: Message, state: FSMContext):
     duration = voice.duration
     logger.info(f"Длительность: {duration} сек")
 
-    # ---------- Проверка минимальной длины ----------
     if duration < 2:
         await message.answer("Слишком коротко! Скажите что-то внятное (минимум 2 секунды).")
         return
@@ -417,7 +394,6 @@ async def handle_voice_message(message: Message, state: FSMContext):
             await message.answer("Ваша речь содержит слишком много слов-паразитов. Постарайтесь говорить без них.")
             return
 
-    # ---------- ЗАЩИТА ДЛЯ ЧТЕНИЯ ВСЛУХ ----------
     if task_type == "reading":
         original = task.get('text', '')
         if original and not text_similarity(original, user_text, threshold=0.5):
@@ -426,7 +402,6 @@ async def handle_voice_message(message: Message, state: FSMContext):
             )
             return
 
-    # ---- ВЫЗОВ ИИ ----
     logger.info("Вызов check_govorenie...")
     try:
         feedback, score = await check_govorenie(
@@ -479,7 +454,6 @@ async def go_to_next_task(message: Message, state: FSMContext, user_id: int, tas
     )
     await show_task(message, state, edit=False)
 
-# ---------- Кнопки управления ----------
 @router.callback_query(F.data == "g_next_task")
 async def next_task_button(callback: CallbackQuery, state: FSMContext):
     await callback.answer()
@@ -536,7 +510,6 @@ async def show_sample_button(callback: CallbackQuery, state: FSMContext):
     )
     await show_task(callback.message, state, edit=False)
 
-# ---------- Завершение ----------
 @router.callback_query(F.data == "g_finish")
 async def finish_govorenie(callback: CallbackQuery, state: FSMContext):
     await callback.answer()
@@ -584,7 +557,6 @@ async def finish_govorenie(callback: CallbackQuery, state: FSMContext):
     from handlers.start import show_main_menu
     await show_main_menu(callback.message, edit=False)
 
-# ---------- Навигация ----------
 @router.callback_query(F.data == "back_to_types")
 async def back_to_types(callback: CallbackQuery, state: FSMContext):
     await callback.answer()
@@ -620,14 +592,6 @@ async def back_to_main_from_govorenie(callback: CallbackQuery, state: FSMContext
     from handlers.start import show_main_menu
     await show_main_menu(callback.message, edit=False)
 
-# ---------- Обработка текстовых сообщений в режиме говорения ----------
 @router.message(GovorenieStates.waiting_voice, F.text)
 async def handle_text_in_govorenie(message: Message, state: FSMContext):
     await message.answer("В режиме говорения можно отвечать только голосовым сообщением. Пожалуйста, запишите голосовой ответ и отправьте его.")
-
-# ---------- ОТЛАДОЧНЫЙ ХЕНДЛЕР ----------
-@router.message(F.voice)
-async def catch_all_voice(message: Message, state: FSMContext):
-    current_state = await state.get_state()
-    logger.warning(f"🔊 Поймано голосовое от {message.from_user.id}, состояние: {current_state}")
-    await message.answer(f"Голосовое сообщение получено, но режим не активен (состояние: {current_state}). Начните заново.")

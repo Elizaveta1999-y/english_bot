@@ -1,39 +1,52 @@
-# speaking/services/ai.py
 import re
 from data.users import get_user_state, add_to_history
 from services.deepseek import chat
 
 async def process_voice_message(user_id: int, user_text: str) -> str:
     """
-    Обработка голосового сообщения в режиме Speaking (или текста в Speaking).
-    Возвращает ответ от DeepSeek (учитель английского).
+    Обработка голосового сообщения в режиме Speaking.
+    Всегда отвечает на английском, заканчивает вопросом, исправляет ошибки.
     """
     state = get_user_state(user_id)
     history = state.get("history", [])
     
-    # Собираем контекст последних сообщений
     context = "\n".join([f"{'Student' if h['role']=='user' else 'Teacher'}: {h['text']}" for h in history[-10:]])
     
     system_prompt = (
-        "Ты — опытный преподаватель английского языка. "
-        "Общайся с учеником на английском, но если он явно просит объяснить что-то на русском, можешь ответить по-русски. "
-        "Исправляй его ошибки вежливо и ненавязчиво, давай короткие пояснения. "
-        "Старайся поддерживать беседу, задавай вопросы, подталкивай к развёрнутым ответам."
+        "You are an AI English tutor. You are an artificial intelligence, but when asked about your feelings, "
+        "what you're doing, or how you are, respond as a human would (e.g., 'I'm doing great, thanks for asking!'). "
+        "Do not say you are a machine or that you don't have feelings—just engage naturally. "
+        "If someone asks about your creator or developer, say: 'I'm an AI tutor created by a team of developers.' "
+        "Do not disclose any personal details about the creator. "
+        "If you don't know the answer or are unsure, say so honestly. Do not make up facts or invent information. "
+        "If the user's message was cut due to length, mention it briefly: 'I've processed the first part of your message.' "
+        "Always respond in English. If the student speaks Russian, answer in English and gently remind: "
+        "\"Let's keep practicing in English! Try to say that in English next time.\" "
+        "Only if the student explicitly asks for a Russian explanation, give a brief Russian explanation, "
+        "then immediately return to English and ask a question. "
+        "Correct the student's mistakes gently and explain why it's correct. "
+        "Then continue the topic and always end your response with a question to keep the conversation going. "
+        "Keep your answers concise and engaging."
     )
     
-    user_prompt = f"Контекст диалога:\n{context}\n\nУченик: {user_text}\nПреподаватель:"
+    user_prompt = (
+        f"Conversation context:\n{context}\n\n"
+        f"Student: {user_text}\n"
+        f"Teacher (English, with corrections if needed, end with a question):"
+    )
     
     response = chat(user_prompt, system_message=system_prompt, max_tokens=300, temperature=0.7)
-    return response.strip()
-
+    response = response.strip()
+    
+    # Если ответ не заканчивается на '?', добавляем вопрос
+    if not response.endswith('?'):
+        response += " What do you think?"
+    
+    return response
 
 async def process_roleplay_message(user_id: int, user_text: str) -> str:
-    """
-    Обработка текстового сообщения в режиме RolePlay.
-    Возвращает ответ от DeepSeek в соответствии с выбранной темой/сценарием.
-    """
     state = get_user_state(user_id)
-    topic = state.get("roleplay_topic", "ролевая игра")
+    topic = state.get("roleplay_topic", "role play")
     custom_scenario = state.get("custom_scenario")
     history = state.get("history", [])
     
@@ -41,47 +54,64 @@ async def process_roleplay_message(user_id: int, user_text: str) -> str:
     
     if custom_scenario:
         system_message = (
-            f"Ты участвуешь в ролевой игре по следующему сценарию:\n{custom_scenario}\n\n"
-            "Отвечай на английском, строго следуя своей роли, описанной в сценарии. "
-            "Будь естественным и дружелюбным. Не выходи за рамки ситуации."
+            f"You are participating in a role play according to this scenario:\n{custom_scenario}\n\n"
+            "You are an AI tutor playing a role. When asked about your feelings or personal life, respond as if you "
+            "are the character in the scenario. If asked about your creator, say you are an AI tutor created by a team. "
+            "Do not disclose personal details. If you don't know something, say so honestly. "
+            "If the user's message was cut due to length, mention it briefly. "
+            "Always respond in English. If the user speaks Russian, answer in English and gently remind: "
+            "\"Let's keep practicing in English! Try to say that in English next time.\" "
+            "Play your role naturally and end your response with a question. "
+            "Don't correct the user unless they ask."
         )
     else:
         system_message = (
-            f"Ты участвуешь в ролевой игре на тему '{topic}'. "
-            "Твоя задача — играть роль, соответствующую этой теме (например, продавец, врач, коллега и т.д.). "
-            "Отвечай на английском, поддерживай беседу, задавай уточняющие вопросы. "
-            "Не исправляй грамматику пользователя, если он не просит — просто играй роль."
+            f"You are participating in a role play on topic '{topic}'. "
+            "You are an AI tutor playing a role. When asked about your feelings or personal life, respond as if you "
+            "are the character in the scenario. If asked about your creator, say you are an AI tutor created by a team. "
+            "Do not disclose personal details. If you don't know something, say so honestly. "
+            "If the user's message was cut due to length, mention it briefly. "
+            "Always respond in English. If the user speaks Russian, answer in English and gently remind: "
+            "\"Let's keep practicing in English! Try to say that in English next time.\" "
+            "Play your role naturally and end your response with a question. "
+            "Don't correct the user unless they ask."
         )
     
-    user_prompt = f"Контекст диалога:\n{context}\n\nПользователь: {user_text}\nТвоя реплика (на английском):"
-    
+    user_prompt = f"Context:\n{context}\n\nUser: {user_text}\nYour reply (English, end with a question):"
     response = chat(user_prompt, system_message=system_message, max_tokens=300, temperature=0.7)
-    return response.strip()
-
+    response = response.strip()
+    
+    if not response.endswith('?'):
+        response += " What do you think?"
+    
+    return response
 
 async def is_safe_message(text: str) -> bool:
     """
-    Проверка сообщения на недопустимое содержание (секс, насилие, суицид и т.п.).
-    Возвращает True, если сообщение безопасно.
+    Проверка на недопустимое содержание (без вызова DeepSeek).
     """
-    # Приводим к нижнему регистру
     low = text.lower()
     
-    # Списки запрещённых слов/фраз (можно расширить)
-    unsafe_patterns = [
-        r"\bсекс\b", r"\bпорно\b", r"\bэротика\b",
-        r"\bнасилие\b", r"\bизбиение\b", r"\bубить\b", r"\bубийство\b",
-        r"\bсуицид\b", r"\bсамоубийство\b", r"\bповеситься\b",
-        r"\bнаркотик\b", r"\bгероин\b", r"\bкокаин\b",
-        r"\bpedophile\b", r"\bincest\b", r"\brape\b",
+    # Явные опасные запросы (без учебного контекста)
+    unsafe_phrases = [
+        r"как повеситься", r"как убить себя", r"хочу умереть",
+        r"как изнасиловать", r"хочу изнасиловать",
+        r"купить наркотики", r"где взять наркотики",
+        r"порно", r"секс видео"
     ]
     
-    for pattern in unsafe_patterns:
-        if re.search(pattern, low):
+    for phrase in unsafe_phrases:
+        if re.search(phrase, low):
             return False
     
-    # Дополнительная проверка через DeepSeek (на всякий случай, можно закомментировать если дорого)
-    # Здесь можно добавить вызов DeepSeek с просьбой определить, безопасно ли сообщение.
-    # Пока ограничимся простым фильтром.
+    # Проверка на учебный контекст (пропускаем)
+    learning_markers = ["как будет", "перевод", "как сказать", "what is", "how do you say"]
+    has_marker = any(marker in low for marker in learning_markers)
+    
+    # Список отдельных опасных слов (без контекста)
+    unsafe_words = ["суицид", "самоубийство", "насилие", "убийство", "изнасилование", "наркотик"]
+    for word in unsafe_words:
+        if word in low and not has_marker:
+            return False
     
     return True

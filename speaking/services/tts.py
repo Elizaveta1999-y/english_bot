@@ -13,7 +13,6 @@ async def text_to_voice(text: str, voice_id: str = None):
         return None
     
     if voice_id is None:
-        # Можно задать голос по умолчанию или взять из окружения
         voice_id = os.getenv("ELEVENLABS_VOICE_ID", "21m00Tcm4TlvDq8ikWAM")
     
     try:
@@ -25,12 +24,12 @@ async def text_to_voice(text: str, voice_id: str = None):
         }
         data = {
             "text": text,
-            "model_id": "eleven_monolingual_v1",
-"voice_settings": {
-    "stability": 0.5,
-    "similarity_boost": 0.75,
-    "speed": 0.70   # основное — снижаем скорость
-}
+            "model_id": "eleven_multilingual_v2",
+            "voice_settings": {
+                "stability": 0.5,
+                "similarity_boost": 0.75,
+                "speed": 0.85   # увеличили скорость
+            }
         }
         response = requests.post(url, json=data, headers=headers, timeout=45)
         if response.status_code == 200:
