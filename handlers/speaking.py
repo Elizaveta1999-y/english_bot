@@ -42,7 +42,8 @@ SPEAKING_KEYBOARD = ReplyKeyboardMarkup(
 
 @router.callback_query(F.data == "start_speaking")
 async def start_speaking(callback: CallbackQuery, state: FSMContext):
-    await callback.message.answer("", reply_markup=ReplyKeyboardRemove())
+    # Убираем старую клавиатуру через сообщение с пробелом
+    await callback.message.answer(" ", reply_markup=ReplyKeyboardRemove())
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(text="👩 Woman Voice", callback_data="speaking_voice_woman"),
          InlineKeyboardButton(text="👨 Man Voice", callback_data="speaking_voice_man")]
@@ -148,7 +149,7 @@ async def show_feedback(message: Message, state: FSMContext):
     user_state["history"] = []
     set_user_state(user_id, user_state)
 
-    await message.answer("", reply_markup=ReplyKeyboardRemove())
+    await message.answer(" ", reply_markup=ReplyKeyboardRemove())
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(text="🗣️ Продолжить разговор", callback_data="continue_speaking")],
         [InlineKeyboardButton(text="🏠 Главное меню", callback_data="back_to_main")]
