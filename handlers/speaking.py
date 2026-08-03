@@ -151,8 +151,8 @@ async def select_voice(callback: CallbackQuery, state: FSMContext):
             os.unlink(voice_path)
             os.unlink(ogg_path)
             
-            # ОТДЕЛЬНО ОТПРАВЛЯЕМ РЕПЛАЙ-КЛАВИАТУРУ С ЭМОДЗИ
-            await callback.message.answer("🎙️", reply_markup=SPEAKING_KEYBOARD)
+            # Отправляем клавиатуру без эмодзи (пробел – технически необходим)
+            await callback.message.answer(" ", reply_markup=SPEAKING_KEYBOARD)
         else:
             await callback.message.answer(first_message, reply_markup=SPEAKING_KEYBOARD)
     except Exception as e:
@@ -287,8 +287,8 @@ async def continue_speaking(callback: CallbackQuery, state: FSMContext):
             set_user_state(user_id, user_state)
             os.unlink(voice_path)
             os.unlink(ogg_path)
-            # ОТДЕЛЬНО ОТПРАВЛЯЕМ РЕПЛАЙ-КЛАВИАТУРУ С ЭМОДЗИ
-            await callback.message.answer("🎙️", reply_markup=SPEAKING_KEYBOARD)
+            # Отправляем клавиатуру без эмодзи (пробел)
+            await callback.message.answer(" ", reply_markup=SPEAKING_KEYBOARD)
         else:
             await callback.message.answer(first_message, reply_markup=SPEAKING_KEYBOARD)
     except Exception as e:
