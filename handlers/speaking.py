@@ -42,8 +42,7 @@ SPEAKING_KEYBOARD = ReplyKeyboardMarkup(
 
 @router.callback_query(F.data == "start_speaking")
 async def start_speaking(callback: CallbackQuery, state: FSMContext):
-    # Убираем старую клавиатуру
-    await callback.message.answer(" ", reply_markup=ReplyKeyboardRemove())
+    await callback.message.answer("", reply_markup=ReplyKeyboardRemove())
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(text="👩 Woman Voice", callback_data="speaking_voice_woman"),
          InlineKeyboardButton(text="👨 Man Voice", callback_data="speaking_voice_man")]
@@ -54,10 +53,10 @@ async def start_speaking(callback: CallbackQuery, state: FSMContext):
 @router.callback_query(F.data.startswith("speaking_voice_"))
 async def select_voice(callback: CallbackQuery, state: FSMContext):
     await callback.answer()
-    
+
     user_id = callback.from_user.id
     voice = callback.data.split("_")[2]
-    
+
     user_state = get_user_state(user_id)
     user_state["speaking_voice"] = voice
     user_state["mode"] = "speaking_active"
@@ -68,18 +67,18 @@ async def select_voice(callback: CallbackQuery, state: FSMContext):
     await state.set_state(SpeakingStates.waiting_for_voice)
 
     await callback.message.delete()
-    
+
     if user_id not in used_greetings:
         used_greetings[user_id] = []
-    
+
     available = [g for g in GREETINGS if g not in used_greetings[user_id]]
     if not available:
         used_greetings[user_id] = []
         available = GREETINGS
-    
+
     first_message = random.choice(available)
     used_greetings[user_id].append(first_message)
-    
+
     voice_id = WOMAN_VOICE_ID if voice == "woman" else MAN_VOICE_ID
     try:
         voice_path = await text_to_voice(first_message, voice_id=voice_id)
@@ -87,14 +86,14 @@ async def select_voice(callback: CallbackQuery, state: FSMContext):
             ogg_path = convert_to_opus(voice_path)
             with open(ogg_path, 'rb') as f:
                 audio_bytes = f.read()
-            
+
             inline_kb = InlineKeyboardMarkup(inline_keyboard=[
                 [InlineKeyboardButton(text="Текст", callback_data=f"show_text_{user_id}")]
             ])
             sent = await callback.message.answer_voice(
                 BufferedInputFile(audio_bytes, filename="voice.ogg"),
                 caption="",
-                reply_markup=SPEAKING_KEYBOARD   # Клавиатура прикреплена к голосовому
+                reply_markup=SPEAKING_KEYBOARD
             )
             last_bot_response[user_id] = {
                 "text": first_message,
@@ -103,18 +102,15 @@ async def select_voice(callback: CallbackQuery, state: FSMContext):
             }
             user_state["history"].append({"role": "assistant", "text": first_message})
             set_user_state(user_id, user_state)
-            
+
             os.unlink(voice_path)
             os.unlink(ogg_path)
         else:
             await callback.message.answer(first_message, reply_markup=SPEAKING_KEYBOARD)
-            return
     except Exception as e:
         logger.error(f"TTS error: {e}")
         await callback.message.answer(first_message, reply_markup=SPEAKING_KEYBOARD)
-        return
 
-# ---------- Запрет текстовых сообщений ----------
 @router.message(SpeakingStates.waiting_for_voice, F.text)
 async def handle_speaking_text(message: Message, state: FSMContext):
     user_id = message.from_user.id
@@ -123,7 +119,6 @@ async def handle_speaking_text(message: Message, state: FSMContext):
         return
     await message.answer("Только голосовые сообщения.")
 
-# ---------- Кнопки ----------
 @router.message(SpeakingStates.waiting_for_voice, F.text == "📊 Я всё! Фидбек")
 async def show_feedback(message: Message, state: FSMContext):
     user_id = message.from_user.id
@@ -153,8 +148,7 @@ async def show_feedback(message: Message, state: FSMContext):
     user_state["history"] = []
     set_user_state(user_id, user_state)
 
-    # Убираем клавиатуру перед фидбеком
-    await message.answer(" ", reply_markup=ReplyKeyboardRemove())
+    await message.answer("", reply_markup=ReplyKeyboardRemove())
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(text="🗣️ Продолжить разговор", callback_data="continue_speaking")],
         [InlineKeyboardButton(text="🏠 Главное меню", callback_data="back_to_main")]
@@ -192,6 +186,36 @@ async def continue_speaking(callback: CallbackQuery, state: FSMContext):
     user_state["mode"] = "speaking_active"
     set_user_state(user_id, user_state)
     await state.set_state(SpeakingStates.waiting_for_voice)
+
     await callback.message.delete()
-    # Клавиатура уже есть, она осталась активной
-    # Ничего не отправляем
+
+    first_message = "Let's continue!"
+    voice_id = WOMAN_VOICE_ID if user_state.get("speaking_voice", "woman") == "woman" else MAN_VOICE_ID
+    try:
+        voice_path = await text_to_voice(first_message, voice_id=voice_id)
+        if voice_path and os.path.exists(voice_path):
+            ogg_path = convert_to_opus(voice_path)
+            with open(ogg_path, 'rb') as f:
+                audio_bytes = f.read()
+            inline_kb = InlineKeyboardMarkup(inline_keyboard=[
+                [InlineKeyboardButton(text="Текст", callback_data=f"show_text_{user_id}")]
+            ])
+            sent = await callback.message.answer_voice(
+                BufferedInputFile(audio_bytes, filename="voice.ogg"),
+                caption="",
+                reply_markup=SPEAKING_KEYBOARD
+            )
+            last_bot_response[user_id] = {
+                "text": first_message,
+                "translation": None,
+                "audio_message_id": sent.message_id
+            }
+            user_state["history"].append({"role": "assistant", "text": first_message})
+            set_user_state(user_id, user_state)
+            os.unlink(voice_path)
+            os.unlink(ogg_path)
+        else:
+            await callback.message.answer(first_message, reply_markup=SPEAKING_KEYBOARD)
+    except Exception as e:
+        logger.error(f"TTS error: {e}")
+        await callback.message.answer(first_message, reply_markup=SPEAKING_KEYBOARD)
