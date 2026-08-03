@@ -168,11 +168,17 @@ async def exit_speaking(message: Message, state: FSMContext):
     logger.info(f"🏠 Главное меню нажато, user={message.from_user.id}, state={await state.get_state()}")
     user_id = message.from_user.id
     user_state = get_user_state(user_id)
+    
+    # Проверка, что режим активен
+    if user_state.get("mode") != "speaking_active":
+        logger.info("Режим не активен, выход не выполняется")
+        return
+    
     user_state["mode"] = ""
     set_user_state(user_id, user_state)
     await state.clear()
     
-    # ОТПРАВЛЯЕМ СООБЩЕНИЕ
+    logger.info("Выход из режима Speaking, отправляем сообщение")
     await message.answer("Диалог с тьютором закрыт.", reply_markup=ReplyKeyboardRemove())
     
     from handlers.start import show_main_menu
@@ -183,11 +189,16 @@ async def back_to_main_from_feedback(callback: CallbackQuery, state: FSMContext)
     await callback.answer()
     user_id = callback.from_user.id
     user_state = get_user_state(user_id)
+    
+    if user_state.get("mode") != "speaking_active":
+        logger.info("Режим не активен, выход не выполняется")
+        return
+    
     user_state["mode"] = ""
     set_user_state(user_id, user_state)
     await state.clear()
     
-    # ОТПРАВЛЯЕМ СООБЩЕНИЕ
+    logger.info("Возврат в главное меню из фидбека, отправляем сообщение")
     await callback.message.answer("Диалог с тьютором закрыт.", reply_markup=ReplyKeyboardRemove())
     
     from handlers.start import show_main_menu
@@ -234,3 +245,19 @@ async def continue_speaking(callback: CallbackQuery, state: FSMContext):
     except Exception as e:
         logger.error(f"TTS error: {e}")
         await callback.message.answer(first_message, reply_markup=SPEAKING_KEYBOARD)
+
+# ---------- Обработчик /start для закрытия режима ----------
+@router.message(F.text == "/start")
+async def start_command_handler(message: Message, state: FSMContext):
+    user_id = message.from_user.id
+    user_state = get_user_state(user_id)
+    if user_state.get("mode") == "speaking_active":
+        user_state["mode"] = ""
+        set_user_state(user_id, user_state)
+        await state.clear()
+        logger.info("Закрытие режима Speaking через /start")
+        await message.answer("Диалог с тьютором закрыт.", reply_markup=ReplyKeyboardRemove())
+    # После этого передаём управление дальше, чтобы /start отработал как обычно
+    # Но т.к. мы не вызываем следующий хендлер, нужно самим показать главное меню
+    from handlers.start import show_main_menu
+    await show_main_menu(message, edit=False)
