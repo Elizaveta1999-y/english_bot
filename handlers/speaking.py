@@ -154,7 +154,7 @@ async def show_feedback(message: Message, state: FSMContext):
     user_state["history"] = []
     set_user_state(user_id, user_state)
 
-    # Убираем ReplyKeyboard, показываем инлайн-кнопки
+    # Убираем ReplyKeyboard
     await message.answer("", reply_markup=ReplyKeyboardRemove())
 
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
@@ -172,7 +172,7 @@ async def exit_speaking(message: Message, state: FSMContext):
     set_user_state(user_id, user_state)
     await state.clear()
     
-    # ОТПРАВЛЯЕМ СООБЩЕНИЕ И УБИРАЕМ КЛАВИАТУРУ
+    # ОТПРАВЛЯЕМ СООБЩЕНИЕ
     await message.answer("Диалог с тьютором закрыт.", reply_markup=ReplyKeyboardRemove())
     
     from handlers.start import show_main_menu
@@ -187,7 +187,7 @@ async def back_to_main_from_feedback(callback: CallbackQuery, state: FSMContext)
     set_user_state(user_id, user_state)
     await state.clear()
     
-    # ОТПРАВЛЯЕМ СООБЩЕНИЕ И УБИРАЕМ КЛАВИАТУРУ
+    # ОТПРАВЛЯЕМ СООБЩЕНИЕ
     await callback.message.answer("Диалог с тьютором закрыт.", reply_markup=ReplyKeyboardRemove())
     
     from handlers.start import show_main_menu
