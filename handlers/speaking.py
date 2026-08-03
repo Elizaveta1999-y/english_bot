@@ -42,8 +42,6 @@ SPEAKING_KEYBOARD = ReplyKeyboardMarkup(
 
 @router.callback_query(F.data == "start_speaking")
 async def start_speaking(callback: CallbackQuery, state: FSMContext):
-    # Убираем старую клавиатуру через точку (минимально)
-    await callback.message.answer(".", reply_markup=ReplyKeyboardRemove())
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(text="👩 Woman Voice", callback_data="speaking_voice_woman"),
          InlineKeyboardButton(text="👨 Man Voice", callback_data="speaking_voice_man")]
@@ -120,7 +118,7 @@ async def handle_speaking_text(message: Message, state: FSMContext):
     if user_state.get("mode") != "speaking_active":
         return
     
-    await message.answer("Только голосовые сообщения.")
+    await message.answer("Нажмите на значок микрофона и отправьте голосовое сообщение.")
     return
 
 # ---------- Кнопки ----------
@@ -132,8 +130,7 @@ async def show_feedback(message: Message, state: FSMContext):
     user_state = get_user_state(user_id)
     history = user_state.get("history", [])
     if not history:
-        await message.answer(".", reply_markup=ReplyKeyboardRemove())
-        await message.answer("Вы пока ничего не сказали.")
+        await message.answer("Вы пока ничего не сказали. Начните разговор!", reply_markup=None)
         return
 
     await message.bot.send_chat_action(chat_id=message.chat.id, action="typing")
@@ -151,15 +148,14 @@ async def show_feedback(message: Message, state: FSMContext):
         feedback = await chat(prompt, max_tokens=400, temperature=0.5)
     except Exception as e:
         logger.error(f"Ошибка фидбека: {e}")
-        await message.answer(".", reply_markup=ReplyKeyboardRemove())
-        await message.answer("Не удалось получить фидбек.")
+        await message.answer("Не удалось получить фидбек. Попробуйте позже.")
         return
 
     user_state["history"] = []
     set_user_state(user_id, user_state)
 
-    # Убираем ReplyKeyboard (точка – минимально)
-    await message.answer(".", reply_markup=ReplyKeyboardRemove())
+    # Убираем ReplyKeyboard, показываем инлайн-кнопки
+    await message.answer("", reply_markup=ReplyKeyboardRemove())
 
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(text="🗣️ Продолжить разговор", callback_data="continue_speaking")],
@@ -176,7 +172,7 @@ async def exit_speaking(message: Message, state: FSMContext):
     set_user_state(user_id, user_state)
     await state.clear()
     
-    # Отправляем сообщение о закрытии диалога и убираем клавиатуру
+    # ОТПРАВЛЯЕМ СООБЩЕНИЕ И УБИРАЕМ КЛАВИАТУРУ
     await message.answer("Диалог с тьютором закрыт.", reply_markup=ReplyKeyboardRemove())
     
     from handlers.start import show_main_menu
@@ -191,7 +187,7 @@ async def back_to_main_from_feedback(callback: CallbackQuery, state: FSMContext)
     set_user_state(user_id, user_state)
     await state.clear()
     
-    # Отправляем сообщение о закрытии диалога и убираем клавиатуру
+    # ОТПРАВЛЯЕМ СООБЩЕНИЕ И УБИРАЕМ КЛАВИАТУРУ
     await callback.message.answer("Диалог с тьютором закрыт.", reply_markup=ReplyKeyboardRemove())
     
     from handlers.start import show_main_menu
