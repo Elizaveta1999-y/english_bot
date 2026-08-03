@@ -251,7 +251,7 @@ async def handle_voice(message: Message, state: FSMContext):
     sent = await message.answer(ai_response, reply_markup=keyboard)
     last_text_response[user_id] = {"text": ai_response, "translation": None, "message_id": sent.message_id}
 
-# ---------- ОБРАБОТЧИКИ КНОПОК ----------
+# ---------- ОБРАБОТЧИКИ КНОПОК (текст/перевод) ----------
 @router.callback_query(lambda c: c.data.startswith("show_text_"))
 async def show_text(callback: CallbackQuery):
     user_id = int(callback.data.split("_")[2])

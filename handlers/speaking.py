@@ -42,8 +42,6 @@ SPEAKING_KEYBOARD = ReplyKeyboardMarkup(
 
 @router.callback_query(F.data == "start_speaking")
 async def start_speaking(callback: CallbackQuery, state: FSMContext):
-    # Убираем старую клавиатуру
-    await callback.message.answer("", reply_markup=ReplyKeyboardRemove())
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(text="👩 Woman Voice", callback_data="speaking_voice_woman"),
          InlineKeyboardButton(text="👨 Man Voice", callback_data="speaking_voice_man")]
@@ -94,7 +92,7 @@ async def select_voice(callback: CallbackQuery, state: FSMContext):
             sent = await callback.message.answer_voice(
                 BufferedInputFile(audio_bytes, filename="voice.ogg"),
                 caption="",
-                reply_markup=SPEAKING_KEYBOARD
+                reply_markup=SPEAKING_KEYBOARD   # клавиатура прикреплена к голосовому
             )
             last_bot_response[user_id] = {
                 "text": first_message,
@@ -120,7 +118,7 @@ async def handle_speaking_text(message: Message, state: FSMContext):
     if user_state.get("mode") != "speaking_active":
         return
     
-    await message.answer("Только голосовые сообщения.")
+    await message.answer("Нажмите на значок микрофона и отправьте голосовое сообщение.")
     return
 
 # ---------- Кнопки ----------
@@ -132,7 +130,7 @@ async def show_feedback(message: Message, state: FSMContext):
     user_state = get_user_state(user_id)
     history = user_state.get("history", [])
     if not history:
-        await message.answer("Вы пока ничего не сказали.", reply_markup=ReplyKeyboardRemove())
+        await message.answer("Вы пока ничего не сказали. Начните разговор!", reply_markup=ReplyKeyboardRemove())
         return
 
     await message.bot.send_chat_action(chat_id=message.chat.id, action="typing")
@@ -150,13 +148,13 @@ async def show_feedback(message: Message, state: FSMContext):
         feedback = await chat(prompt, max_tokens=400, temperature=0.5)
     except Exception as e:
         logger.error(f"Ошибка фидбека: {e}")
-        await message.answer("Не удалось получить фидбек.", reply_markup=ReplyKeyboardRemove())
+        await message.answer("Не удалось получить фидбек. Попробуйте позже.", reply_markup=ReplyKeyboardRemove())
         return
 
     user_state["history"] = []
     set_user_state(user_id, user_state)
 
-    # Убираем клавиатуру
+    # Убираем клавиатуру перед фидбеком
     await message.answer("", reply_markup=ReplyKeyboardRemove())
 
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
@@ -202,8 +200,9 @@ async def continue_speaking(callback: CallbackQuery, state: FSMContext):
     set_user_state(user_id, user_state)
     await state.set_state(SpeakingStates.waiting_for_voice)
 
+    # Убираем инлайн-клавиатуру, отправляем новое голосовое с клавиатурой
     await callback.message.delete()
-
+    
     first_message = "Let's continue!"
     voice_id = WOMAN_VOICE_ID if user_state.get("speaking_voice", "woman") == "woman" else MAN_VOICE_ID
     try:
