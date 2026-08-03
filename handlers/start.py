@@ -45,47 +45,39 @@ async def show_main_menu(message: Message, edit: bool = False):
 async def start_handler(message: Message, state: FSMContext):
     user_id = message.from_user.id
     user_state = get_user_state(user_id)
-    
     # Если активен режим Speaking – закрываем его БЕЗ СООБЩЕНИЯ
     if user_state and user_state.get("mode") == "speaking_active":
         user_state["mode"] = ""
         set_user_state(user_id, user_state)
         await state.clear()
-        # НЕ отправляем сообщение
-    
-    # Далее стандартная логика
+        # НЕ ОТПРАВЛЯЕМ СООБЩЕНИЕ
     await clear_all_keyboards(message, state)
     if not user_state:
         set_user_state(user_id, {})
     await show_main_menu(message, edit=False)
 
-# ---- Заглушка для режима "Уроки" ----
 @router.callback_query(F.data == "start_lessons")
 async def under_construction(callback: CallbackQuery):
     await callback.answer("Этот режим в разработке. Скоро появится! 🚧", show_alert=True)
 
-# ---- Режим "Чтение" ----
 @router.callback_query(F.data == "start_reading")
 async def start_reading_mode(callback: CallbackQuery, state: FSMContext):
     await callback.answer()
     from handlers.reading import start_reading
     await start_reading(callback, state)
 
-# ---- Режим "Письмо" ----
 @router.callback_query(F.data == "start_writing")
 async def start_writing_mode(callback: CallbackQuery):
     await callback.answer()
     from handlers.writing import show_task_types
     await show_task_types(callback.message, edit=True)
 
-# ---- Режим "Говорение" ----
 @router.callback_query(F.data == "start_govorenie")
 async def start_govorenie_mode(callback: CallbackQuery):
     await callback.answer()
     from handlers.govorenie import show_task_types
     await show_task_types(callback.message, edit=True)
 
-# ---- Режим "Грамматика" ----
 @router.callback_query(F.data == "start_grammar")
 async def start_grammar_mode(callback: CallbackQuery, state: FSMContext):
     await callback.answer()

@@ -50,7 +50,6 @@ async def handle_voice(message: Message, state: FSMContext):
 
     user_state = get_user_state(user_id)
 
-    # ====== РЕЖИМ SPEAKING ======
     if current_state == SpeakingStates.waiting_for_voice:
         if user_state.get("mode") != "speaking_active":
             user_state["mode"] = "speaking_active"
@@ -95,13 +94,12 @@ async def handle_voice(message: Message, state: FSMContext):
                 ogg_path = convert_to_opus(voice_path)
                 with open(ogg_path, 'rb') as f:
                     audio_bytes = f.read()
-                # Кнопка "Текст" есть, но caption всегда пустой
                 keyboard = InlineKeyboardMarkup(inline_keyboard=[
                     [InlineKeyboardButton(text="Текст", callback_data=f"show_text_{user_id}")]
                 ])
                 sent = await message.answer_audio(
                     BufferedInputFile(audio_bytes, filename="voice.ogg"),
-                    caption="",  # всегда пусто
+                    caption="",  # ВСЕГДА ПУСТОЙ
                     reply_markup=keyboard
                 )
                 last_bot_response[user_id] = {
@@ -118,7 +116,7 @@ async def handle_voice(message: Message, state: FSMContext):
         await message.answer(reply_text)
         return
 
-    # ====== ОСТАЛЬНАЯ ЛОГИКА (практика, уроки, roleplay) ======
+    # Остальная логика (без изменений)
     file = await bot.get_file(message.voice.file_id)
     file_bytes = await bot.download_file(file.file_path)
     user_text = await voice_to_text(file_bytes.read())
@@ -244,7 +242,6 @@ async def handle_voice(message: Message, state: FSMContext):
         logger.warning("TTS returned None, sending text")
     await message.answer(ai_response)
 
-# ---------- КНОПКА "ТЕКСТ" – ТОЛЬКО ТОГГЛ, НО НИЧЕГО НЕ ПОКАЗЫВАЕТ ----------
 @router.callback_query(lambda c: c.data.startswith("show_text_"))
 async def show_text(callback: CallbackQuery):
     user_id = int(callback.data.split("_")[2])
@@ -252,17 +249,5 @@ async def show_text(callback: CallbackQuery):
     if not data or not data.get("text"):
         await callback.answer("Нет текста.", show_alert=True)
         return
-    
-    # Если вдруг по ошибке caption не пустой – очищаем
-    if callback.message.caption:
-        await callback.bot.edit_message_caption(
-            chat_id=callback.message.chat.id,
-            message_id=data["audio_message_id"],
-            caption="",
-            reply_markup=InlineKeyboardMarkup(inline_keyboard=[
-                [InlineKeyboardButton(text="Текст", callback_data=f"show_text_{user_id}")]
-            ])
-        )
-    else:
-        await callback.answer("Текст скрыт.", show_alert=False)
-    await callback.answer()
+    # Ничего не показываем, просто дергаем
+    await callback.answer("Текст скрыт.", show_alert=False)
