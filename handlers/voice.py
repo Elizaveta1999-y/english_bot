@@ -68,6 +68,7 @@ async def handle_voice(message: Message, state: FSMContext):
         user_text = await voice_to_text(file_bytes.read())
         if not user_text:
             await message.answer("Не понял, повторите.")
+            await message.answer(".", reply_markup=SPEAKING_KEYBOARD)
             return
 
         words = user_text.split()
@@ -117,13 +118,16 @@ async def handle_voice(message: Message, state: FSMContext):
                 }
                 os.unlink(voice_path)
                 os.unlink(ogg_path)
+                await message.answer(".", reply_markup=SPEAKING_KEYBOARD)
                 return
             except Exception as e:
                 logger.error(f"Audio error: {e}")
         keyboard = InlineKeyboardMarkup(inline_keyboard=[
             [InlineKeyboardButton(text="Перевести", callback_data=f"translate_text_{user_id}")]
         ])
-        await message.answer(reply_text, reply_markup=keyboard)
+        sent = await message.answer(reply_text, reply_markup=keyboard)
+        last_text_response[user_id] = {"text": reply_text, "translation": None, "message_id": sent.message_id}
+        await message.answer(".", reply_markup=SPEAKING_KEYBOARD)
         return
 
     file = await bot.get_file(message.voice.file_id)
@@ -245,6 +249,8 @@ async def handle_voice(message: Message, state: FSMContext):
             last_bot_response[user_id] = {"text": ai_response, "translation": None, "audio_message_id": sent.message_id}
             os.unlink(voice_path)
             os.unlink(ogg_path)
+            if user_state.get("mode") == "speaking_active":
+                await message.answer(".", reply_markup=SPEAKING_KEYBOARD)
             return
         except Exception as e:
             logger.error(f"Audio error: {e}")
@@ -253,7 +259,10 @@ async def handle_voice(message: Message, state: FSMContext):
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(text="Перевести", callback_data=f"translate_text_{user_id}")]
     ])
-    await message.answer(ai_response, reply_markup=keyboard)
+    sent = await message.answer(ai_response, reply_markup=keyboard)
+    last_text_response[user_id] = {"text": ai_response, "translation": None, "message_id": sent.message_id}
+    if user_state.get("mode") == "speaking_active":
+        await message.answer(".", reply_markup=SPEAKING_KEYBOARD)
 
 # ---------- ОБРАБОТЧИКИ КНОПОК ----------
 @router.callback_query(lambda c: c.data.startswith("show_text_"))
