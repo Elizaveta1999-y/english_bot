@@ -51,7 +51,7 @@ async def start_handler(message: Message, state: FSMContext):
         user_state["mode"] = ""
         set_user_state(user_id, user_state)
         await state.clear()
-        await message.answer("Диалог с тьютором закрыт.", reply_markup=ReplyKeyboardRemove())
+        await message.answer("Диалог завершен..🏁", reply_markup=ReplyKeyboardRemove())
     
     # Далее стандартная логика
     await clear_all_keyboards(message, state)
