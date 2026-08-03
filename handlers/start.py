@@ -1,5 +1,5 @@
 from aiogram import Router, F
-from aiogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
+from aiogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery, ReplyKeyboardRemove
 from aiogram.filters import Command
 from aiogram.fsm.context import FSMContext
 from data.users import get_user_state, set_user_state
@@ -15,7 +15,6 @@ WELCOME_TEXT = (
 
 def get_main_menu_keyboard():
     return InlineKeyboardMarkup(inline_keyboard=[
-        # [InlineKeyboardButton(text="📚 Уроки", callback_data="start_lessons")],
         [
             InlineKeyboardButton(text="🎙️ Общение с AI", callback_data="start_speaking"),
             InlineKeyboardButton(text="🎬 Ролевые игры", callback_data="start_roleplay")
@@ -44,9 +43,18 @@ async def show_main_menu(message: Message, edit: bool = False):
 
 @router.message(Command("start"))
 async def start_handler(message: Message, state: FSMContext):
-    await clear_all_keyboards(message, state)
     user_id = message.from_user.id
     user_state = get_user_state(user_id)
+    
+    # Если активен режим Speaking – закрываем его
+    if user_state and user_state.get("mode") == "speaking_active":
+        user_state["mode"] = ""
+        set_user_state(user_id, user_state)
+        await state.clear()
+        await message.answer("Диалог с тьютором закрыт.", reply_markup=ReplyKeyboardRemove())
+    
+    # Далее стандартная логика
+    await clear_all_keyboards(message, state)
     if not user_state:
         set_user_state(user_id, {})
     await show_main_menu(message, edit=False)
@@ -77,9 +85,9 @@ async def start_govorenie_mode(callback: CallbackQuery):
     from handlers.govorenie import show_task_types
     await show_task_types(callback.message, edit=True)
 
-# ---- Режим "Грамматика" - ИСПРАВЛЕНО! ----
+# ---- Режим "Грамматика" ----
 @router.callback_query(F.data == "start_grammar")
-async def start_grammar_mode(callback: CallbackQuery, state: FSMContext):   # добавили state
+async def start_grammar_mode(callback: CallbackQuery, state: FSMContext):
     await callback.answer()
     from handlers.grammar import enter_grammar_mode
-    await enter_grammar_mode(callback.message, callback.from_user.id, state=state, edit=True)   # передаём state
+    await enter_grammar_mode(callback.message, callback.from_user.id, state=state, edit=True)
