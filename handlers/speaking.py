@@ -42,6 +42,8 @@ SPEAKING_KEYBOARD = ReplyKeyboardMarkup(
 
 @router.callback_query(F.data == "start_speaking")
 async def start_speaking(callback: CallbackQuery, state: FSMContext):
+    # Убираем старую клавиатуру (пробел невидим)
+    await callback.message.answer(" ", reply_markup=ReplyKeyboardRemove())
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(text="👩 Woman Voice", callback_data="speaking_voice_woman"),
          InlineKeyboardButton(text="👨 Man Voice", callback_data="speaking_voice_man")]
@@ -92,7 +94,7 @@ async def select_voice(callback: CallbackQuery, state: FSMContext):
             sent = await callback.message.answer_voice(
                 BufferedInputFile(audio_bytes, filename="voice.ogg"),
                 caption="",
-                reply_markup=inline_kb
+                reply_markup=SPEAKING_KEYBOARD
             )
             last_bot_response[user_id] = {
                 "text": first_message,
@@ -104,9 +106,6 @@ async def select_voice(callback: CallbackQuery, state: FSMContext):
 
             os.unlink(voice_path)
             os.unlink(ogg_path)
-            
-            # Отправляем ReplyKeyboard отдельно
-            await callback.message.answer(".", reply_markup=SPEAKING_KEYBOARD)
         else:
             await callback.message.answer(first_message, reply_markup=SPEAKING_KEYBOARD)
     except Exception as e:
@@ -150,7 +149,7 @@ async def show_feedback(message: Message, state: FSMContext):
     user_state["history"] = []
     set_user_state(user_id, user_state)
 
-    await message.answer(".", reply_markup=ReplyKeyboardRemove())
+    await message.answer(" ", reply_markup=ReplyKeyboardRemove())
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(text="🗣️ Продолжить разговор", callback_data="continue_speaking")],
         [InlineKeyboardButton(text="🏠 Главное меню", callback_data="back_to_main")]
@@ -205,7 +204,7 @@ async def continue_speaking(callback: CallbackQuery, state: FSMContext):
             sent = await callback.message.answer_voice(
                 BufferedInputFile(audio_bytes, filename="voice.ogg"),
                 caption="",
-                reply_markup=inline_kb
+                reply_markup=SPEAKING_KEYBOARD
             )
             last_bot_response[user_id] = {
                 "text": first_message,
@@ -216,7 +215,6 @@ async def continue_speaking(callback: CallbackQuery, state: FSMContext):
             set_user_state(user_id, user_state)
             os.unlink(voice_path)
             os.unlink(ogg_path)
-            await callback.message.answer(".", reply_markup=SPEAKING_KEYBOARD)
         else:
             await callback.message.answer(first_message, reply_markup=SPEAKING_KEYBOARD)
     except Exception as e:
