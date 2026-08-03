@@ -46,12 +46,12 @@ async def start_handler(message: Message, state: FSMContext):
     user_id = message.from_user.id
     user_state = get_user_state(user_id)
     
-    # Если активен режим Speaking – закрываем его
+    # Если активен режим Speaking – закрываем его БЕЗ СООБЩЕНИЯ
     if user_state and user_state.get("mode") == "speaking_active":
         user_state["mode"] = ""
         set_user_state(user_id, user_state)
         await state.clear()
-        await message.answer("Диалог завершен..🏁", reply_markup=ReplyKeyboardRemove())
+        # НЕ отправляем сообщение
     
     # Далее стандартная логика
     await clear_all_keyboards(message, state)
