@@ -40,6 +40,66 @@ SPEAKING_KEYBOARD = ReplyKeyboardMarkup(
     resize_keyboard=True
 )
 
+# ---------- Middleware для закрытия Speaking при выходе в другие разделы ----------
+@router.message.middleware()
+@router.callback_query.middleware()
+async def close_speaking_on_exit(handler, event, data):
+    """
+    Если пользователь в режиме Speaking и пытается перейти в другой раздел
+    (не связанный с Speaking), закрываем режим с сообщением.
+    """
+    user_id = None
+    if hasattr(event, 'from_user'):
+        user_id = event.from_user.id
+    elif hasattr(event, 'message') and event.message:
+        user_id = event.message.from_user.id
+    elif hasattr(event, 'callback_query') and event.callback_query:
+        user_id = event.callback_query.from_user.id
+
+    if not user_id:
+        return await handler(event, data)
+
+    user_state = get_user_state(user_id)
+    if user_state.get("mode") != "speaking_active":
+        return await handler(event, data)
+
+    # Проверяем, является ли событие внутренним для Speaking
+    is_speaking_related = False
+
+    # Для callback_query
+    if hasattr(event, 'data') and isinstance(event.data, str):
+        if event.data.startswith("speaking_") or event.data in ("continue_speaking", "back_to_main"):
+            is_speaking_related = True
+    # Для текстовых сообщений
+    if hasattr(event, 'text') and isinstance(event.text, str):
+        if event.text in ("📊 Я всё! Фидбек", "🏠 Главное меню"):
+            is_speaking_related = True
+
+    if is_speaking_related:
+        return await handler(event, data)
+
+    # Если пользователь уходит в другой раздел – закрываем Speaking
+    user_state["mode"] = ""
+    set_user_state(user_id, user_state)
+    if 'state' in data:
+        await data['state'].clear()
+
+    # Отправляем сообщение и убираем клавиатуру
+    if hasattr(event, 'answer') and callable(event.answer):
+        # Для callback_query – отвечаем и отправляем сообщение
+        await event.answer()
+        await event.message.answer("Диалог завершен..🏁", reply_markup=ReplyKeyboardRemove())
+    elif hasattr(event, 'reply') and callable(event.reply):
+        # Для message – просто отвечаем
+        await event.reply("Диалог завершен..🏁", reply_markup=ReplyKeyboardRemove())
+    else:
+        # fallback
+        await event.answer("Диалог завершен..🏁", reply_markup=ReplyKeyboardRemove())
+
+    # Пропускаем обработку дальше (чтобы пользователь попал в нужный раздел)
+    return await handler(event, data)
+
+
 @router.callback_query(F.data == "start_speaking")
 async def start_speaking(callback: CallbackQuery, state: FSMContext):
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
@@ -86,14 +146,17 @@ async def select_voice(callback: CallbackQuery, state: FSMContext):
             with open(ogg_path, 'rb') as f:
                 audio_bytes = f.read()
             
+            # Инлайн-кнопка "Текст"
             inline_kb = InlineKeyboardMarkup(inline_keyboard=[
                 [InlineKeyboardButton(text="Текст", callback_data=f"show_text_{user_id}")]
             ])
+            # Отправляем голосовое с инлайн-кнопкой
             sent = await callback.message.answer_voice(
                 BufferedInputFile(audio_bytes, filename="voice.ogg"),
                 caption="",
-                reply_markup=SPEAKING_KEYBOARD
+                reply_markup=inline_kb
             )
+            # Сохраняем в last_bot_response
             last_bot_response[user_id] = {
                 "text": first_message,
                 "translation": None,
@@ -104,7 +167,11 @@ async def select_voice(callback: CallbackQuery, state: FSMContext):
             
             os.unlink(voice_path)
             os.unlink(ogg_path)
+            
+            # Отправляем ReplyKeyboard отдельным сообщением (без текста)
+            await callback.message.answer(" ", reply_markup=SPEAKING_KEYBOARD)
         else:
+            # Если TTS не сработал – отправляем текст с клавиатурой
             await callback.message.answer(first_message, reply_markup=SPEAKING_KEYBOARD)
     except Exception as e:
         logger.error(f"TTS error: {e}")
@@ -130,7 +197,9 @@ async def show_feedback(message: Message, state: FSMContext):
     user_state = get_user_state(user_id)
     history = user_state.get("history", [])
     if not history:
-        await message.answer("Вы пока ничего не сказали. Начните разговор!", reply_markup=None)
+        # Убираем клавиатуру через пробел
+        await message.answer(" ", reply_markup=ReplyKeyboardRemove())
+        await message.answer("Вы пока ничего не сказали.")
         return
 
     await message.bot.send_chat_action(chat_id=message.chat.id, action="typing")
@@ -148,14 +217,15 @@ async def show_feedback(message: Message, state: FSMContext):
         feedback = await chat(prompt, max_tokens=400, temperature=0.5)
     except Exception as e:
         logger.error(f"Ошибка фидбека: {e}")
-        await message.answer("Не удалось получить фидбек. Попробуйте позже.")
+        await message.answer(" ", reply_markup=ReplyKeyboardRemove())
+        await message.answer("Не удалось получить фидбек.")
         return
 
     user_state["history"] = []
     set_user_state(user_id, user_state)
 
-    # Убираем ReplyKeyboard
-    await message.answer("", reply_markup=ReplyKeyboardRemove())
+    # Убираем ReplyKeyboard через пробел
+    await message.answer(" ", reply_markup=ReplyKeyboardRemove())
 
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(text="🗣️ Продолжить разговор", callback_data="continue_speaking")],
@@ -169,7 +239,6 @@ async def exit_speaking(message: Message, state: FSMContext):
     user_id = message.from_user.id
     user_state = get_user_state(user_id)
     
-    # Проверка, что режим активен
     if user_state.get("mode") != "speaking_active":
         logger.info("Режим не активен, выход не выполняется")
         return
@@ -179,7 +248,7 @@ async def exit_speaking(message: Message, state: FSMContext):
     await state.clear()
     
     logger.info("Выход из режима Speaking, отправляем сообщение")
-    await message.answer("Диалог с тьютором закрыт.", reply_markup=ReplyKeyboardRemove())
+    await message.answer("Диалог завершен..🏁", reply_markup=ReplyKeyboardRemove())
     
     from handlers.start import show_main_menu
     await show_main_menu(message, edit=False)
@@ -199,7 +268,7 @@ async def back_to_main_from_feedback(callback: CallbackQuery, state: FSMContext)
     await state.clear()
     
     logger.info("Возврат в главное меню из фидбека, отправляем сообщение")
-    await callback.message.answer("Диалог с тьютором закрыт.", reply_markup=ReplyKeyboardRemove())
+    await callback.message.answer("Диалог завершен..🏁", reply_markup=ReplyKeyboardRemove())
     
     from handlers.start import show_main_menu
     await show_main_menu(callback.message, edit=True)
@@ -229,7 +298,7 @@ async def continue_speaking(callback: CallbackQuery, state: FSMContext):
             sent = await callback.message.answer_voice(
                 BufferedInputFile(audio_bytes, filename="voice.ogg"),
                 caption="",
-                reply_markup=SPEAKING_KEYBOARD
+                reply_markup=inline_kb
             )
             last_bot_response[user_id] = {
                 "text": first_message,
@@ -240,24 +309,10 @@ async def continue_speaking(callback: CallbackQuery, state: FSMContext):
             set_user_state(user_id, user_state)
             os.unlink(voice_path)
             os.unlink(ogg_path)
+            # Отправляем ReplyKeyboard отдельно
+            await callback.message.answer(" ", reply_markup=SPEAKING_KEYBOARD)
         else:
             await callback.message.answer(first_message, reply_markup=SPEAKING_KEYBOARD)
     except Exception as e:
         logger.error(f"TTS error: {e}")
         await callback.message.answer(first_message, reply_markup=SPEAKING_KEYBOARD)
-
-# ---------- Обработчик /start для закрытия режима ----------
-@router.message(F.text == "/start")
-async def start_command_handler(message: Message, state: FSMContext):
-    user_id = message.from_user.id
-    user_state = get_user_state(user_id)
-    if user_state.get("mode") == "speaking_active":
-        user_state["mode"] = ""
-        set_user_state(user_id, user_state)
-        await state.clear()
-        logger.info("Закрытие режима Speaking через /start")
-        await message.answer("Диалог с тьютором закрыт.", reply_markup=ReplyKeyboardRemove())
-    # После этого передаём управление дальше, чтобы /start отработал как обычно
-    # Но т.к. мы не вызываем следующий хендлер, нужно самим показать главное меню
-    from handlers.start import show_main_menu
-    await show_main_menu(message, edit=False)
