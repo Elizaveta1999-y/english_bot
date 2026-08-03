@@ -36,17 +36,40 @@ async def log_update(handler, event, data):
     logger.info(f"📨 Received update: {event}")
     return await handler(event, data)
 
-# --------------------- Глобальный обработчик ошибок (ИСПРАВЛЕН) ---------------------
+# --------------------- Глобальный обработчик ошибок (УНИВЕРСАЛЬНЫЙ) ---------------------
 @dp.errors()
-async def handle_errors(event: Update, data: dict, exception: Exception):  # <-- добавлен data
-    error_text = ''.join(traceback.format_exception(None, exception, exception.__traceback__))
+async def handle_errors(*args, **kwargs):
+    # Извлекаем event и exception из args или kwargs
+    event = None
+    exception = None
+    if args:
+        if len(args) >= 1:
+            event = args[0]
+        if len(args) >= 2:
+            exception = args[1]
+        # если больше, то третий аргумент может быть data
+    if 'event' in kwargs:
+        event = kwargs['event']
+    if 'exception' in kwargs:
+        exception = kwargs['exception']
+    
+    # Если ничего не нашли – пробуем по позиции
+    if not event and args:
+        event = args[0]
+    if not exception and len(args) > 1:
+        exception = args[1]
+    
+    error_text = ''.join(traceback.format_exception(None, exception, exception.__traceback__)) if exception else "Неизвестная ошибка"
     user_id = None
-    if event.message:
-        user_id = event.message.from_user.id
-    elif event.callback_query:
-        user_id = event.callback_query.from_user.id
+    if event:
+        if hasattr(event, 'message') and event.message:
+            user_id = event.message.from_user.id
+        elif hasattr(event, 'callback_query') and event.callback_query:
+            user_id = event.callback_query.from_user.id
+        elif hasattr(event, 'from_user'):
+            user_id = event.from_user.id
     logger.error(f"❌ Ошибка у пользователя {user_id}: {error_text}")
-    if ADMIN_ID:
+    if ADMIN_ID and exception:
         try:
             await bot.send_message(ADMIN_ID, f"⚠️ Ошибка в боте!\nПользователь: {user_id}\n\n{error_text[:500]}")
         except Exception as e:
