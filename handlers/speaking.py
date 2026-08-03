@@ -42,7 +42,8 @@ SPEAKING_KEYBOARD = ReplyKeyboardMarkup(
 
 @router.callback_query(F.data == "start_speaking")
 async def start_speaking(callback: CallbackQuery, state: FSMContext):
-    await callback.message.answer("", reply_markup=ReplyKeyboardRemove())
+    # Убираем старую клавиатуру
+    await callback.message.answer(" ", reply_markup=ReplyKeyboardRemove())
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(text="👩 Woman Voice", callback_data="speaking_voice_woman"),
          InlineKeyboardButton(text="👨 Man Voice", callback_data="speaking_voice_man")]
@@ -93,7 +94,7 @@ async def select_voice(callback: CallbackQuery, state: FSMContext):
             sent = await callback.message.answer_voice(
                 BufferedInputFile(audio_bytes, filename="voice.ogg"),
                 caption="",
-                reply_markup=SPEAKING_KEYBOARD   # клавиатура прикреплена к голосовому
+                reply_markup=SPEAKING_KEYBOARD   # Клавиатура прикреплена к голосовому
             )
             last_bot_response[user_id] = {
                 "text": first_message,
@@ -152,7 +153,8 @@ async def show_feedback(message: Message, state: FSMContext):
     user_state["history"] = []
     set_user_state(user_id, user_state)
 
-    await message.answer("", reply_markup=ReplyKeyboardRemove())
+    # Убираем клавиатуру перед фидбеком
+    await message.answer(" ", reply_markup=ReplyKeyboardRemove())
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(text="🗣️ Продолжить разговор", callback_data="continue_speaking")],
         [InlineKeyboardButton(text="🏠 Главное меню", callback_data="back_to_main")]
@@ -191,4 +193,5 @@ async def continue_speaking(callback: CallbackQuery, state: FSMContext):
     set_user_state(user_id, user_state)
     await state.set_state(SpeakingStates.waiting_for_voice)
     await callback.message.delete()
-    # Клавиатура уже есть, дополнительно не отправляем
+    # Клавиатура уже есть, она осталась активной
+    # Ничего не отправляем
