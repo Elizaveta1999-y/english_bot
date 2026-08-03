@@ -59,30 +59,49 @@ async def close_speaking_on_exit(handler, event, data):
     if user_state.get("mode") != "speaking_active":
         return await handler(event, data)
 
+    # Проверяем, относится ли событие к Speaking
     is_speaking_related = False
+
+    # Для callback_query
     if hasattr(event, 'data') and isinstance(event.data, str):
         if event.data.startswith("speaking_") or event.data in ("continue_speaking", "back_to_main"):
             is_speaking_related = True
-    if hasattr(event, 'text') and isinstance(event.text, str):
-        if event.text in ("📊 Я всё! Фидбек", "🏠 Главное меню"):
-            is_speaking_related = True
 
-    if is_speaking_related:
+    # Для текстовых сообщений (включая команды)
+    if hasattr(event, 'text') and isinstance(event.text, str):
+        # Если это команда (начинается с '/') – не считаем связанным с Speaking
+        if event.text.startswith('/'):
+            is_speaking_related = False
+        elif event.text in ("📊 Я всё! Фидбек", "🏠 Главное меню"):
+            is_speaking_related = True
+        else:
+            # Любой другой текст (например, "моя статистика" – но это callback) – не связан
+            is_speaking_related = False
+
+    # Для callback'ов, которые не начинаются на speaking_ и не являются continue_speaking/back_to_main
+    if hasattr(event, 'data') and isinstance(event.data, str):
+        if not event.data.startswith("speaking_") and event.data not in ("continue_speaking", "back_to_main"):
+            is_speaking_related = False
+
+    # Если событие не связано с Speaking – закрываем режим
+    if not is_speaking_related:
+        user_state["mode"] = ""
+        set_user_state(user_id, user_state)
+        if 'state' in data:
+            await data['state'].clear()
+
+        if hasattr(event, 'answer') and callable(event.answer):
+            await event.answer()
+            await event.message.answer("Диалог завершен..🏁", reply_markup=ReplyKeyboardRemove())
+        elif hasattr(event, 'reply') and callable(event.reply):
+            await event.reply("Диалог завершен..🏁", reply_markup=ReplyKeyboardRemove())
+        else:
+            await event.answer("Диалог завершен..🏁", reply_markup=ReplyKeyboardRemove())
+
+        # После закрытия режима не пропускаем событие дальше? Нет, нужно пропустить, чтобы пользователь попал в нужный раздел
         return await handler(event, data)
 
-    user_state["mode"] = ""
-    set_user_state(user_id, user_state)
-    if 'state' in data:
-        await data['state'].clear()
-
-    if hasattr(event, 'answer') and callable(event.answer):
-        await event.answer()
-        await event.message.answer("Диалог завершен..🏁", reply_markup=ReplyKeyboardRemove())
-    elif hasattr(event, 'reply') and callable(event.reply):
-        await event.reply("Диалог завершен..🏁", reply_markup=ReplyKeyboardRemove())
-    else:
-        await event.answer("Диалог завершен..🏁", reply_markup=ReplyKeyboardRemove())
-
+    # Если связано – просто передаём дальше
     return await handler(event, data)
 
 
