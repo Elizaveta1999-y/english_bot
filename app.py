@@ -36,15 +36,15 @@ async def log_update(handler, event, data):
     logger.info(f"📨 Received update: {event}")
     return await handler(event, data)
 
-# --------------------- Глобальный обработчик ошибок ---------------------
+# --------------------- Глобальный обработчик ошибок (ИСПРАВЛЕН) ---------------------
 @dp.errors()
-async def handle_errors(update: Update, exception: Exception):
+async def handle_errors(event: Update, data: dict, exception: Exception):  # <-- добавлен data
     error_text = ''.join(traceback.format_exception(None, exception, exception.__traceback__))
     user_id = None
-    if update.message:
-        user_id = update.message.from_user.id
-    elif update.callback_query:
-        user_id = update.callback_query.from_user.id
+    if event.message:
+        user_id = event.message.from_user.id
+    elif event.callback_query:
+        user_id = event.callback_query.from_user.id
     logger.error(f"❌ Ошибка у пользователя {user_id}: {error_text}")
     if ADMIN_ID:
         try:
