@@ -23,7 +23,6 @@ last_text_response = {}
 WOMAN_VOICE_ID = "8quEMRkSpwEaWBzHvTLv"
 MAN_VOICE_ID = "3TStB8f3X3To0Uj5R7RK"
 
-# Клавиатура для режима Speaking
 SPEAKING_KEYBOARD = ReplyKeyboardMarkup(
     keyboard=[
         [KeyboardButton(text="📊 Я всё! Фидбек")],
@@ -59,7 +58,6 @@ async def handle_voice(message: Message, state: FSMContext):
 
     user_state = get_user_state(user_id)
 
-    # ====== РЕЖИМ SPEAKING ======
     if current_state == SpeakingStates.waiting_for_voice:
         if user_state.get("mode") != "speaking_active":
             user_state["mode"] = "speaking_active"
@@ -70,7 +68,7 @@ async def handle_voice(message: Message, state: FSMContext):
         user_text = await voice_to_text(file_bytes.read())
         if not user_text:
             await message.answer("Не понял, повторите.")
-            await message.answer("\u200b", reply_markup=SPEAKING_KEYBOARD)
+            await message.answer(" ", reply_markup=SPEAKING_KEYBOARD)
             return
 
         words = user_text.split()
@@ -120,7 +118,7 @@ async def handle_voice(message: Message, state: FSMContext):
                 }
                 os.unlink(voice_path)
                 os.unlink(ogg_path)
-                await message.answer("\u200b", reply_markup=SPEAKING_KEYBOARD)
+                await message.answer(" ", reply_markup=SPEAKING_KEYBOARD)
                 return
             except Exception as e:
                 logger.error(f"Audio error: {e}")
@@ -129,10 +127,9 @@ async def handle_voice(message: Message, state: FSMContext):
         ])
         sent = await message.answer(reply_text, reply_markup=keyboard)
         last_text_response[user_id] = {"text": reply_text, "translation": None, "message_id": sent.message_id}
-        await message.answer("\u200b", reply_markup=SPEAKING_KEYBOARD)
+        await message.answer(" ", reply_markup=SPEAKING_KEYBOARD)
         return
 
-    # ====== ОСТАЛЬНАЯ ЛОГИКА ======
     file = await bot.get_file(message.voice.file_id)
     file_bytes = await bot.download_file(file.file_path)
     user_text = await voice_to_text(file_bytes.read())
@@ -253,7 +250,7 @@ async def handle_voice(message: Message, state: FSMContext):
             os.unlink(voice_path)
             os.unlink(ogg_path)
             if user_state.get("mode") == "speaking_active":
-                await message.answer("\u200b", reply_markup=SPEAKING_KEYBOARD)
+                await message.answer(" ", reply_markup=SPEAKING_KEYBOARD)
             return
         except Exception as e:
             logger.error(f"Audio error: {e}")
@@ -265,7 +262,7 @@ async def handle_voice(message: Message, state: FSMContext):
     sent = await message.answer(ai_response, reply_markup=keyboard)
     last_text_response[user_id] = {"text": ai_response, "translation": None, "message_id": sent.message_id}
     if user_state.get("mode") == "speaking_active":
-        await message.answer("\u200b", reply_markup=SPEAKING_KEYBOARD)
+        await message.answer(" ", reply_markup=SPEAKING_KEYBOARD)
 
 # ---------- ОБРАБОТЧИКИ КНОПОК (текст/перевод) ----------
 @router.callback_query(lambda c: c.data.startswith("show_text_"))

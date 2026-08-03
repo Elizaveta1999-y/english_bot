@@ -42,8 +42,8 @@ SPEAKING_KEYBOARD = ReplyKeyboardMarkup(
 
 @router.callback_query(F.data == "start_speaking")
 async def start_speaking(callback: CallbackQuery, state: FSMContext):
-    # Убираем предыдущую ReplyKeyboard
-    await callback.message.answer("\u200b", reply_markup=ReplyKeyboardRemove())
+    # Убираем клавиатуру
+    await callback.message.answer(" ", reply_markup=ReplyKeyboardRemove())
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(text="👩 Woman Voice", callback_data="speaking_voice_woman"),
          InlineKeyboardButton(text="👨 Man Voice", callback_data="speaking_voice_man")]
@@ -107,7 +107,6 @@ async def select_voice(callback: CallbackQuery, state: FSMContext):
             os.unlink(voice_path)
             os.unlink(ogg_path)
         else:
-            # Если TTS не сработал, отправляем текст
             await callback.message.answer(first_message, reply_markup=SPEAKING_KEYBOARD)
             return
     except Exception as e:
@@ -115,8 +114,8 @@ async def select_voice(callback: CallbackQuery, state: FSMContext):
         await callback.message.answer(first_message, reply_markup=SPEAKING_KEYBOARD)
         return
 
-    # После успешной отправки аудио отправляем только клавиатуру (без текста)
-    await callback.message.answer("\u200b", reply_markup=SPEAKING_KEYBOARD)
+    # После успешной отправки аудио отправляем только клавиатуру
+    await callback.message.answer(" ", reply_markup=SPEAKING_KEYBOARD)
 
 # ---------- Запрет текстовых сообщений в Speaking ----------
 @router.message(SpeakingStates.waiting_for_voice, F.text)
@@ -162,7 +161,7 @@ async def show_feedback(message: Message, state: FSMContext):
     set_user_state(user_id, user_state)
 
     # Убираем ReplyKeyboard
-    await message.answer("\u200b", reply_markup=ReplyKeyboardRemove())
+    await message.answer(" ", reply_markup=ReplyKeyboardRemove())
     
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(text="🗣️ Продолжить разговор", callback_data="continue_speaking")],
@@ -207,6 +206,5 @@ async def continue_speaking(callback: CallbackQuery, state: FSMContext):
     set_user_state(user_id, user_state)
     await state.set_state(SpeakingStates.waiting_for_voice)
 
-    # Убираем предыдущее сообщение с инлайн-кнопками и отправляем только клавиатуру
     await callback.message.delete()
-    await callback.message.answer("\u200b", reply_markup=SPEAKING_KEYBOARD)
+    await callback.message.answer(" ", reply_markup=SPEAKING_KEYBOARD)
