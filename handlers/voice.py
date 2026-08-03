@@ -3,7 +3,7 @@ import tempfile
 import subprocess
 import logging
 from aiogram import Router, F
-from aiogram.types import Message, BufferedInputFile, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery, ReactionTypeEmoji, ReplyKeyboardMarkup, KeyboardButton
+from aiogram.types import Message, BufferedInputFile, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery, ReactionTypeEmoji
 from aiogram.fsm.context import FSMContext
 from speaking.services.stt import voice_to_text
 from speaking.services.ai import process_voice_message, process_roleplay_message
@@ -22,15 +22,6 @@ last_text_response = {}
 
 WOMAN_VOICE_ID = "8quEMRkSpwEaWBzHvTLv"
 MAN_VOICE_ID = "3TStB8f3X3To0Uj5R7RK"
-
-# Клавиатура для режима Speaking
-SPEAKING_KEYBOARD = ReplyKeyboardMarkup(
-    keyboard=[
-        [KeyboardButton(text="📊 Я всё! Фидбек")],
-        [KeyboardButton(text="🏠 Главное меню")]
-    ],
-    resize_keyboard=True
-)
 
 def convert_to_opus(mp3_path: str) -> str:
     ogg_path = tempfile.mktemp(suffix=".ogg")
@@ -70,9 +61,6 @@ async def handle_voice(message: Message, state: FSMContext):
         user_text = await voice_to_text(file_bytes.read())
         if not user_text:
             await message.answer("Не понял, повторите.")
-            # Отправляем клавиатуру ТОЛЬКО если режим активен
-            if user_state.get("mode") == "speaking_active":
-                await message.answer("🎙️", reply_markup=SPEAKING_KEYBOARD)
             return
 
         words = user_text.split()
@@ -89,18 +77,15 @@ async def handle_voice(message: Message, state: FSMContext):
         user_state["history"] = history
         set_user_state(user_id, user_state)
 
-        # Если всё идеально — ставим реакцию ❤️
         if is_perfect:
             try:
                 await message.react([ReactionTypeEmoji(emoji="❤️")])
             except Exception as e:
                 logger.warning(f"Не удалось поставить реакцию: {e}")
 
-        # Отправляем исправления/перевод (если есть)
         if correction_text:
             await message.answer(correction_text, parse_mode="HTML")
 
-        # Отправляем голосовой ответ
         await bot.send_chat_action(chat_id=chat_id, action="record_voice")
         voice_pref = user_state.get("speaking_voice", "woman")
         voice_id = WOMAN_VOICE_ID if voice_pref == "woman" else MAN_VOICE_ID
@@ -125,21 +110,14 @@ async def handle_voice(message: Message, state: FSMContext):
                 }
                 os.unlink(voice_path)
                 os.unlink(ogg_path)
-                # Отправляем клавиатуру ТОЛЬКО если режим активен
-                if user_state.get("mode") == "speaking_active":
-                    await message.answer("🎙️", reply_markup=SPEAKING_KEYBOARD)
                 return
             except Exception as e:
                 logger.error(f"Audio error: {e}")
-        # Если TTS упал — отправляем текстом
         keyboard = InlineKeyboardMarkup(inline_keyboard=[
             [InlineKeyboardButton(text="Перевести", callback_data=f"translate_text_{user_id}")]
         ])
         sent = await message.answer(reply_text, reply_markup=keyboard)
         last_text_response[user_id] = {"text": reply_text, "translation": None, "message_id": sent.message_id}
-        # Отправляем клавиатуру ТОЛЬКО если режим активен
-        if user_state.get("mode") == "speaking_active":
-            await message.answer("🎙️", reply_markup=SPEAKING_KEYBOARD)
         return
 
     # ====== ОСТАЛЬНАЯ ЛОГИКА (практика, уроки, roleplay) ======
@@ -262,7 +240,6 @@ async def handle_voice(message: Message, state: FSMContext):
             last_bot_response[user_id] = {"text": ai_response, "translation": None, "audio_message_id": sent.message_id}
             os.unlink(voice_path)
             os.unlink(ogg_path)
-            # Здесь не отправляем клавиатуру, так как это не режим Speaking
             return
         except Exception as e:
             logger.error(f"Audio error: {e}")
@@ -273,7 +250,6 @@ async def handle_voice(message: Message, state: FSMContext):
     ])
     sent = await message.answer(ai_response, reply_markup=keyboard)
     last_text_response[user_id] = {"text": ai_response, "translation": None, "message_id": sent.message_id}
-    # Здесь не отправляем клавиатуру
 
 # ---------- ОБРАБОТЧИКИ КНОПОК ----------
 @router.callback_query(lambda c: c.data.startswith("show_text_"))
