@@ -62,18 +62,15 @@ async def close_speaking_on_exit(handler, event, data):
 
     is_speaking_related = False
     
-    # Проверяем команды (начинаются с '/')
     if hasattr(event, 'text') and isinstance(event.text, str) and event.text.startswith('/'):
         is_speaking_related = False
         logger.info(f"🔍 Команда {event.text} -> не связана со Speaking, закрываем")
-    # Проверяем callback_data
     elif hasattr(event, 'data') and isinstance(event.data, str):
         if event.data.startswith("speaking_") or event.data in ("continue_speaking", "back_to_main", "start_speaking"):
             is_speaking_related = True
         else:
             is_speaking_related = False
             logger.info(f"🔍 Колбэк {event.data} -> не связан со Speaking, закрываем")
-    # Проверяем текстовые сообщения (кнопки Speaking)
     elif hasattr(event, 'text') and isinstance(event.text, str):
         if event.text in ("📊 Я всё! Фидбек", "🏠 Главное меню"):
             is_speaking_related = True
@@ -84,7 +81,6 @@ async def close_speaking_on_exit(handler, event, data):
         is_speaking_related = False
         logger.info(f"🔍 Событие другого типа -> не связано со Speaking, закрываем")
 
-    # Если событие НЕ связано со Speaking - закрываем режим
     if not is_speaking_related:
         logger.info(f"🔍 Закрываем Speaking для пользователя {user_id}")
         user_state["mode"] = ""
@@ -92,7 +88,10 @@ async def close_speaking_on_exit(handler, event, data):
         if 'state' in data:
             await data['state'].clear()
 
-        # Сначала отправляем сообщение с удалением клавиатуры
+        # Вызываем хендлер команды
+        result = await handler(event, data)
+
+        # Отправляем удаление клавиатуры ПОСЛЕ обработки команды
         try:
             if hasattr(event, 'message') and event.message:
                 await event.message.answer("Диалог завершен..🏁", reply_markup=ReplyKeyboardRemove())
@@ -103,11 +102,8 @@ async def close_speaking_on_exit(handler, event, data):
         except Exception as e:
             logger.error(f"Ошибка при отправке удаления клавиатуры: {e}")
 
-        # Затем вызываем хендлер команды
-        result = await handler(event, data)
         return result
 
-    # Если связано со Speaking - просто пропускаем
     return await handler(event, data)
 
 # ============ ХЕНДЛЕРЫ ============
