@@ -15,8 +15,8 @@ from middleware.isolation import ModeIsolationMiddleware
 from handlers.govorenie import router as govorenie_router
 import traceback
 
-# Импортируем функцию для закрытия Speaking (глобальный middleware)
-from speaking.speaking import close_speaking_on_exit
+# ИСПРАВЛЕННЫЙ ИМПОРТ
+from handlers.speaking import close_speaking_on_exit
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -92,7 +92,7 @@ dp.include_router(lessons.router)
 dp.include_router(speaking.router)
 dp.include_router(profile.router)
 
-# --------------------- Глобальный middleware для закрытия Speaking при любой команде или колбэке ---------------------
+# --------------------- Глобальный middleware для закрытия Speaking ---------------------
 dp.message.middleware(close_speaking_on_exit)
 dp.callback_query.middleware(close_speaking_on_exit)
 
