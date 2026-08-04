@@ -236,7 +236,8 @@ async def back_to_main_from_feedback(callback: CallbackQuery, state: FSMContext)
     await state.clear()
     await callback.message.answer("Диалог завершен..🏁", reply_markup=ReplyKeyboardRemove())
     from handlers.start import show_main_menu
-    await show_main_menu(callback.message, edit=True)
+    # ИЗМЕНЕНИЕ: edit=True → edit=False
+    await show_main_menu(callback.message, edit=False)
 
 @router.callback_query(F.data == "continue_speaking")
 async def continue_speaking(callback: CallbackQuery, state: FSMContext):
