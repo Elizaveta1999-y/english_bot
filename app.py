@@ -15,7 +15,7 @@ from middleware.isolation import ModeIsolationMiddleware
 from handlers.govorenie import router as govorenie_router
 import traceback
 
-# ИСПРАВЛЕННЫЙ ИМПОРТ
+# Импорт глобального middleware из handlers.speaking
 from handlers.speaking import close_speaking_on_exit
 
 logging.basicConfig(level=logging.INFO)
@@ -82,7 +82,7 @@ dp.include_router(govorenie_router)
 dp.include_router(writing.router)
 dp.include_router(reading.router)
 dp.include_router(listening.router)
-dp.include_router(grammar.router)
+dp.include_router(grammar_router)          # <-- ИСПРАВЛЕНО: было grammar.router
 dp.include_router(support.router)
 dp.include_router(subscription_router)
 dp.include_router(roleplay.router)
