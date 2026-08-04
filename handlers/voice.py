@@ -82,7 +82,7 @@ async def handle_voice(message: Message, state: FSMContext):
             except Exception as e:
                 logger.warning(f"Не удалось поставить реакцию: {e}")
 
-        # Убрано отправление correction_text (красное сообщение)
+        # ====== УБИРАЕМ ЛИШНЕЕ СООБЩЕНИЕ (correction_text) ======
         # if correction_text:
         #     await message.answer(correction_text, parse_mode="HTML")
 
@@ -118,7 +118,7 @@ async def handle_voice(message: Message, state: FSMContext):
         await state.set_state(SpeakingStates.waiting_for_voice)
         return
 
-    # Остальная логика (для других режимов – не Speaking)
+    # ===== ОСТАЛЬНЫЕ РЕЖИМЫ (не Speaking) =====
     file = await bot.get_file(message.voice.file_id)
     file_bytes = await bot.download_file(file.file_path)
     user_text = await voice_to_text(file_bytes.read())
