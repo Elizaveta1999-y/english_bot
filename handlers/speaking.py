@@ -92,21 +92,19 @@ async def close_speaking_on_exit(handler, event, data):
         if 'state' in data:
             await data['state'].clear()
 
-        # Сначала вызываем хендлер команды (он может отправить сообщение с клавиатурой)
-        result = await handler(event, data)
-
-        # Теперь отправляем удаление клавиатуры – это будет последним сообщением
+        # Сначала отправляем сообщение с удалением клавиатуры
         try:
             if hasattr(event, 'message') and event.message:
                 await event.message.answer("Диалог завершен..🏁", reply_markup=ReplyKeyboardRemove())
             elif hasattr(event, 'callback_query') and event.callback_query and event.callback_query.message:
                 await event.callback_query.message.answer("Диалог завершен..🏁", reply_markup=ReplyKeyboardRemove())
             else:
-                # fallback для других типов событий
                 await event.answer("Диалог завершен..🏁", reply_markup=ReplyKeyboardRemove())
         except Exception as e:
             logger.error(f"Ошибка при отправке удаления клавиатуры: {e}")
 
+        # Затем вызываем хендлер команды
+        result = await handler(event, data)
         return result
 
     # Если связано со Speaking - просто пропускаем
@@ -117,7 +115,7 @@ async def close_speaking_on_exit(handler, event, data):
 async def start_speaking(callback: CallbackQuery, state: FSMContext):
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(text="👩 Woman Voice", callback_data="speaking_voice_woman"),
-         InlineKeyboardButton(text="👨 Man Voice", callback_data="speaking_voice_man")]
+         [InlineKeyboardButton(text="👨 Man Voice", callback_data="speaking_voice_man")]]
     ])
     await callback.message.edit_text("Выбери голос тьютора:", reply_markup=keyboard, parse_mode="HTML")
     await callback.answer()
