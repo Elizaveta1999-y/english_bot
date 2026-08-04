@@ -68,7 +68,7 @@ async def close_speaking_on_exit(handler, event, data):
         logger.info(f"🔍 Команда {event.text} -> не связана со Speaking, закрываем")
     # Проверяем callback_data
     elif hasattr(event, 'data') and isinstance(event.data, str):
-        if event.data.startswith("speaking_") or event.data in ("continue_speaking", "back_to_main"):
+        if event.data.startswith("speaking_") or event.data in ("continue_speaking", "back_to_main", "start_speaking"):
             is_speaking_related = True
         else:
             is_speaking_related = False
@@ -115,7 +115,7 @@ async def close_speaking_on_exit(handler, event, data):
 async def start_speaking(callback: CallbackQuery, state: FSMContext):
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(text="👩 Woman Voice", callback_data="speaking_voice_woman"),
-         [InlineKeyboardButton(text="👨 Man Voice", callback_data="speaking_voice_man")]]
+         InlineKeyboardButton(text="👨 Man Voice", callback_data="speaking_voice_man")]
     ])
     await callback.message.edit_text("Выбери голос тьютора:", reply_markup=keyboard, parse_mode="HTML")
     await callback.answer()
