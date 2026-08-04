@@ -40,8 +40,11 @@ SPEAKING_KEYBOARD = ReplyKeyboardMarkup(
     resize_keyboard=True
 )
 
-# Эту функцию мы будем использовать как глобальный middleware
+# ============ ГЛОБАЛЬНЫЙ MIDDLEWARE ============
 async def close_speaking_on_exit(handler, event, data):
+    """Закрывает режим Speaking при любой команде или колбэке, не относящемся к Speaking"""
+    logger.info(f"🔍 close_speaking_on_exit вызван для события: {event}")
+    
     user_id = None
     if hasattr(event, 'from_user'):
         user_id = event.from_user.id
@@ -58,38 +61,55 @@ async def close_speaking_on_exit(handler, event, data):
         return await handler(event, data)
 
     is_speaking_related = False
+    
+    # Проверяем команды (начинаются с '/')
     if hasattr(event, 'text') and isinstance(event.text, str) and event.text.startswith('/'):
         is_speaking_related = False
+        logger.info(f"🔍 Команда {event.text} -> не связана со Speaking, закрываем")
+    # Проверяем callback_data
     elif hasattr(event, 'data') and isinstance(event.data, str):
         if event.data.startswith("speaking_") or event.data in ("continue_speaking", "back_to_main"):
             is_speaking_related = True
         else:
             is_speaking_related = False
+            logger.info(f"🔍 Колбэк {event.data} -> не связан со Speaking, закрываем")
+    # Проверяем текстовые сообщения (кнопки Speaking)
     elif hasattr(event, 'text') and isinstance(event.text, str):
         if event.text in ("📊 Я всё! Фидбек", "🏠 Главное меню"):
             is_speaking_related = True
         else:
             is_speaking_related = False
+            logger.info(f"🔍 Текст {event.text} -> не связан со Speaking, закрываем")
     else:
         is_speaking_related = False
+        logger.info(f"🔍 Событие другого типа -> не связано со Speaking, закрываем")
 
+    # Если событие НЕ связано со Speaking - закрываем режим
     if not is_speaking_related:
+        logger.info(f"🔍 Закрываем Speaking для пользователя {user_id}")
         user_state["mode"] = ""
         set_user_state(user_id, user_state)
+        
         if 'state' in data:
             await data['state'].clear()
 
-        if hasattr(event, 'answer') and callable(event.answer):
-            await event.answer()
+        # Отправляем сообщение с удалением клавиатуры
+        if hasattr(event, 'message') and event.message:
             await event.message.answer("Диалог завершен..🏁", reply_markup=ReplyKeyboardRemove())
+        elif hasattr(event, 'answer') and callable(event.answer):
+            await event.answer()
+            if hasattr(event, 'message') and event.message:
+                await event.message.answer("Диалог завершен..🏁", reply_markup=ReplyKeyboardRemove())
         elif hasattr(event, 'reply') and callable(event.reply):
             await event.reply("Диалог завершен..🏁", reply_markup=ReplyKeyboardRemove())
-        else:
-            await event.answer("Диалог завершен..🏁", reply_markup=ReplyKeyboardRemove())
+        
+        # Пропускаем дальше, чтобы обработалась команда/колбэк
         return await handler(event, data)
 
+    # Если связано со Speaking - просто пропускаем
     return await handler(event, data)
 
+# ============ ОСТАЛЬНЫЕ ХЕНДЛЕРЫ ============
 @router.callback_query(F.data == "start_speaking")
 async def start_speaking(callback: CallbackQuery, state: FSMContext):
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
