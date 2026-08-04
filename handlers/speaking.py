@@ -62,18 +62,23 @@ async def close_speaking_on_exit(handler, event, data):
 
     is_speaking_related = False
     
+    # Проверяем команды (начинаются с '/')
     if hasattr(event, 'text') and isinstance(event.text, str) and event.text.startswith('/'):
         is_speaking_related = False
         logger.info(f"🔍 Команда {event.text} -> не связана со Speaking, закрываем")
+    # Проверяем callback_data
     elif hasattr(event, 'data') and isinstance(event.data, str):
-        if event.data.startswith("speaking_") or event.data in ("continue_speaking", "back_to_main", "start_speaking"):
+        if event.data.startswith("speaking_") or event.data in ("continue_speaking", "start_speaking"):
             is_speaking_related = True
         else:
             is_speaking_related = False
             logger.info(f"🔍 Колбэк {event.data} -> не связан со Speaking, закрываем")
+    # Проверяем текстовые сообщения
     elif hasattr(event, 'text') and isinstance(event.text, str):
+        # Кнопки "Главное меню" и "Фидбек" НЕ считаются связанными
         if event.text in ("📊 Я всё! Фидбек", "🏠 Главное меню"):
-            is_speaking_related = True
+            is_speaking_related = False
+            logger.info(f"🔍 Кнопка {event.text} -> НЕ связана со Speaking, закрываем")
         else:
             is_speaking_related = False
             logger.info(f"🔍 Текст {event.text} -> не связан со Speaking, закрываем")
@@ -81,6 +86,7 @@ async def close_speaking_on_exit(handler, event, data):
         is_speaking_related = False
         logger.info(f"🔍 Событие другого типа -> не связано со Speaking, закрываем")
 
+    # Если событие НЕ связано со Speaking - закрываем режим
     if not is_speaking_related:
         logger.info(f"🔍 Закрываем Speaking для пользователя {user_id}")
         user_state["mode"] = ""
@@ -88,10 +94,10 @@ async def close_speaking_on_exit(handler, event, data):
         if 'state' in data:
             await data['state'].clear()
 
-        # Вызываем хендлер команды
+        # Сначала вызываем хендлер (он отправит главное меню или фидбек)
         result = await handler(event, data)
 
-        # Отправляем удаление клавиатуры ПОСЛЕ обработки команды
+        # Затем отправляем "Диалог завершен" с удалением клавиатуры
         try:
             if hasattr(event, 'message') and event.message:
                 await event.message.answer("Диалог завершен..🏁", reply_markup=ReplyKeyboardRemove())
@@ -104,6 +110,7 @@ async def close_speaking_on_exit(handler, event, data):
 
         return result
 
+    # Если связано со Speaking - просто пропускаем
     return await handler(event, data)
 
 # ============ ХЕНДЛЕРЫ ============
@@ -179,7 +186,7 @@ async def select_voice(callback: CallbackQuery, state: FSMContext):
         logger.error(f"TTS error: {e}")
         await callback.message.answer(first_message, reply_markup=SPEAKING_KEYBOARD)
 
-# ----- КОНКРЕТНЫЕ ОБРАБОТЧИКИ КНОПОК (должны быть ПЕРЕД общим F.text) -----
+# ----- КОНКРЕТНЫЕ ОБРАБОТЧИКИ КНОПОК -----
 @router.message(SpeakingStates.waiting_for_voice, F.text == "📊 Я всё! Фидбек")
 async def show_feedback(message: Message, state: FSMContext):
     logger.info(f"📊 Фидбек нажат, user={message.from_user.id}")
@@ -187,7 +194,7 @@ async def show_feedback(message: Message, state: FSMContext):
     user_state = get_user_state(user_id)
     history = user_state.get("history", [])
     if not history:
-        await message.answer("Вы пока ничего не сказали.", reply_markup=ReplyKeyboardRemove())
+        await message.answer("Вы пока ничего не сказали.")
         return
     await message.bot.send_chat_action(chat_id=message.chat.id, action="typing")
     history_text = "\n".join([f"{msg['role']}: {msg['text']}" for msg in history if msg['role'] in ['user', 'assistant']])
@@ -203,13 +210,12 @@ async def show_feedback(message: Message, state: FSMContext):
         feedback = await chat(prompt, max_tokens=400, temperature=0.5)
     except Exception as e:
         logger.error(f"Ошибка фидбека: {e}")
-        await message.answer("Не удалось получить фидбек.", reply_markup=ReplyKeyboardRemove())
+        await message.answer("Не удалось получить фидбек.")
         return
 
     user_state["history"] = []
     set_user_state(user_id, user_state)
 
-    await message.answer("", reply_markup=ReplyKeyboardRemove())
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(text="🗣️ Продолжить разговор", callback_data="continue_speaking")],
         [InlineKeyboardButton(text="🏠 Главное меню", callback_data="back_to_main")]
@@ -225,7 +231,6 @@ async def exit_speaking(message: Message, state: FSMContext):
     user_state["mode"] = ""
     set_user_state(user_id, user_state)
     await state.clear()
-    await message.answer("Диалог завершен..🏁", reply_markup=ReplyKeyboardRemove())
     from handlers.start import show_main_menu
     await show_main_menu(message, edit=False)
 
@@ -249,7 +254,6 @@ async def back_to_main_from_feedback(callback: CallbackQuery, state: FSMContext)
     user_state["mode"] = ""
     set_user_state(user_id, user_state)
     await state.clear()
-    await callback.message.answer("Диалог завершен..🏁", reply_markup=ReplyKeyboardRemove())
     from handlers.start import show_main_menu
     await show_main_menu(callback.message, edit=False)
 

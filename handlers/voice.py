@@ -110,14 +110,11 @@ async def handle_voice(message: Message, state: FSMContext):
                 }
                 os.unlink(voice_path)
                 os.unlink(ogg_path)
-                # Восстанавливаем состояние, чтобы кнопки работали
                 await state.set_state(SpeakingStates.waiting_for_voice)
                 return
             except Exception as e:
                 logger.error(f"Audio error: {e}")
-        # Если TTS упал – отправляем короткое уведомление
         await message.answer("Не удалось озвучить ответ, попробуйте позже.")
-        # Восстанавливаем состояние
         await state.set_state(SpeakingStates.waiting_for_voice)
         return
 
