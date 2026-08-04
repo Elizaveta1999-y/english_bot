@@ -15,6 +15,9 @@ from middleware.isolation import ModeIsolationMiddleware
 from handlers.govorenie import router as govorenie_router
 import traceback
 
+# Импортируем функцию для закрытия Speaking (глобальный middleware)
+from speaking.speaking import close_speaking_on_exit
+
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
@@ -39,7 +42,6 @@ async def log_update(handler, event, data):
 # --------------------- Глобальный обработчик ошибок (УНИВЕРСАЛЬНЫЙ) ---------------------
 @dp.errors()
 async def handle_errors(*args, **kwargs):
-    # Извлекаем event и exception из args или kwargs
     event = None
     exception = None
     if args:
@@ -47,13 +49,11 @@ async def handle_errors(*args, **kwargs):
             event = args[0]
         if len(args) >= 2:
             exception = args[1]
-        # если больше, то третий аргумент может быть data
     if 'event' in kwargs:
         event = kwargs['event']
     if 'exception' in kwargs:
         exception = kwargs['exception']
     
-    # Если ничего не нашли – пробуем по позиции
     if not event and args:
         event = args[0]
     if not exception and len(args) > 1:
@@ -82,7 +82,7 @@ dp.include_router(govorenie_router)
 dp.include_router(writing.router)
 dp.include_router(reading.router)
 dp.include_router(listening.router)
-dp.include_router(grammar_router)
+dp.include_router(grammar.router)
 dp.include_router(support.router)
 dp.include_router(subscription_router)
 dp.include_router(roleplay.router)
@@ -92,6 +92,11 @@ dp.include_router(lessons.router)
 dp.include_router(speaking.router)
 dp.include_router(profile.router)
 
+# --------------------- Глобальный middleware для закрытия Speaking при любой команде или колбэке ---------------------
+dp.message.middleware(close_speaking_on_exit)
+dp.callback_query.middleware(close_speaking_on_exit)
+
+# --------------------- Middleware изоляции режимов ---------------------
 dp.message.middleware(ModeIsolationMiddleware())
 
 # --------------------- Middleware для проверки статуса бота и блокировок ---------------------

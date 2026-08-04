@@ -82,6 +82,7 @@ async def handle_voice(message: Message, state: FSMContext):
             except Exception as e:
                 logger.warning(f"Не удалось поставить реакцию: {e}")
 
+        # Оставляем correction_text (это полезно для обучения)
         if correction_text:
             await message.answer(correction_text, parse_mode="HTML")
 
@@ -99,7 +100,7 @@ async def handle_voice(message: Message, state: FSMContext):
                 ])
                 sent = await message.answer_audio(
                     BufferedInputFile(audio_bytes, filename="voice.ogg"),
-                    caption="",  # ВСЕГДА ПУСТОЙ
+                    caption="",
                     reply_markup=keyboard
                 )
                 last_bot_response[user_id] = {
@@ -112,11 +113,11 @@ async def handle_voice(message: Message, state: FSMContext):
                 return
             except Exception as e:
                 logger.error(f"Audio error: {e}")
-        # Если TTS упал – отправляем просто текст
-        await message.answer(reply_text)
+        # Если TTS упал – отправляем только короткое уведомление, без текста ответа
+        await message.answer("Не удалось озвучить ответ, попробуйте позже.")
         return
 
-    # Остальная логика (без изменений)
+    # Остальная логика (для других режимов – не Speaking)
     file = await bot.get_file(message.voice.file_id)
     file_bytes = await bot.download_file(file.file_path)
     user_text = await voice_to_text(file_bytes.read())
@@ -238,9 +239,8 @@ async def handle_voice(message: Message, state: FSMContext):
             return
         except Exception as e:
             logger.error(f"Audio error: {e}")
-    else:
-        logger.warning("TTS returned None, sending text")
-    await message.answer(ai_response)
+    # fallback – короткое уведомление
+    await message.answer("Не удалось озвучить ответ, попробуйте позже.")
 
 @router.callback_query(lambda c: c.data.startswith("show_text_"))
 async def show_text(callback: CallbackQuery):
@@ -249,5 +249,4 @@ async def show_text(callback: CallbackQuery):
     if not data or not data.get("text"):
         await callback.answer("Нет текста.", show_alert=True)
         return
-    # Ничего не показываем, просто дергаем
     await callback.answer("Текст скрыт.", show_alert=False)

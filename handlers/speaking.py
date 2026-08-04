@@ -40,8 +40,7 @@ SPEAKING_KEYBOARD = ReplyKeyboardMarkup(
     resize_keyboard=True
 )
 
-@router.message.middleware()
-@router.callback_query.middleware()
+# Эту функцию мы будем использовать как глобальный middleware
 async def close_speaking_on_exit(handler, event, data):
     user_id = None
     if hasattr(event, 'from_user'):
@@ -59,16 +58,13 @@ async def close_speaking_on_exit(handler, event, data):
         return await handler(event, data)
 
     is_speaking_related = False
-    # Если это команда (начинается с '/') – не считаем связанной
     if hasattr(event, 'text') and isinstance(event.text, str) and event.text.startswith('/'):
         is_speaking_related = False
-    # Если это данные callback
     elif hasattr(event, 'data') and isinstance(event.data, str):
         if event.data.startswith("speaking_") or event.data in ("continue_speaking", "back_to_main"):
             is_speaking_related = True
         else:
             is_speaking_related = False
-    # Текстовые сообщения (не команды)
     elif hasattr(event, 'text') and isinstance(event.text, str):
         if event.text in ("📊 Я всё! Фидбек", "🏠 Главное меню"):
             is_speaking_related = True
@@ -90,7 +86,6 @@ async def close_speaking_on_exit(handler, event, data):
             await event.reply("Диалог завершен..🏁", reply_markup=ReplyKeyboardRemove())
         else:
             await event.answer("Диалог завершен..🏁", reply_markup=ReplyKeyboardRemove())
-        # Пропускаем дальше, чтобы обработчик раздела сработал
         return await handler(event, data)
 
     return await handler(event, data)
@@ -236,7 +231,6 @@ async def back_to_main_from_feedback(callback: CallbackQuery, state: FSMContext)
     await state.clear()
     await callback.message.answer("Диалог завершен..🏁", reply_markup=ReplyKeyboardRemove())
     from handlers.start import show_main_menu
-    # ИЗМЕНЕНИЕ: edit=True → edit=False
     await show_main_menu(callback.message, edit=False)
 
 @router.callback_query(F.data == "continue_speaking")
