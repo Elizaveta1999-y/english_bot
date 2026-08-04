@@ -89,22 +89,25 @@ async def close_speaking_on_exit(handler, event, data):
         logger.info(f"🔍 Закрываем Speaking для пользователя {user_id}")
         user_state["mode"] = ""
         set_user_state(user_id, user_state)
-        
         if 'state' in data:
             await data['state'].clear()
 
-        # Отправляем сообщение с удалением клавиатуры
-        if hasattr(event, 'message') and event.message:
-            await event.message.answer("Диалог завершен..🏁", reply_markup=ReplyKeyboardRemove())
-        elif hasattr(event, 'answer') and callable(event.answer):
-            await event.answer()
+        # Сначала вызываем хендлер команды (он может отправить сообщение с клавиатурой)
+        result = await handler(event, data)
+
+        # Теперь отправляем удаление клавиатуры – это будет последним сообщением
+        try:
             if hasattr(event, 'message') and event.message:
                 await event.message.answer("Диалог завершен..🏁", reply_markup=ReplyKeyboardRemove())
-        elif hasattr(event, 'reply') and callable(event.reply):
-            await event.reply("Диалог завершен..🏁", reply_markup=ReplyKeyboardRemove())
-        
-        # Пропускаем дальше, чтобы обработалась команда/колбэк
-        return await handler(event, data)
+            elif hasattr(event, 'callback_query') and event.callback_query and event.callback_query.message:
+                await event.callback_query.message.answer("Диалог завершен..🏁", reply_markup=ReplyKeyboardRemove())
+            else:
+                # fallback для других типов событий
+                await event.answer("Диалог завершен..🏁", reply_markup=ReplyKeyboardRemove())
+        except Exception as e:
+            logger.error(f"Ошибка при отправке удаления клавиатуры: {e}")
+
+        return result
 
     # Если связано со Speaking - просто пропускаем
     return await handler(event, data)
