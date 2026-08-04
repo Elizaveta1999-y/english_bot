@@ -82,9 +82,9 @@ async def handle_voice(message: Message, state: FSMContext):
             except Exception as e:
                 logger.warning(f"Не удалось поставить реакцию: {e}")
 
-        # Оставляем correction_text (это полезно для обучения)
-        if correction_text:
-            await message.answer(correction_text, parse_mode="HTML")
+        # Убрано отправление correction_text (красное сообщение)
+        # if correction_text:
+        #     await message.answer(correction_text, parse_mode="HTML")
 
         await bot.send_chat_action(chat_id=chat_id, action="record_voice")
         voice_pref = user_state.get("speaking_voice", "woman")
@@ -113,7 +113,7 @@ async def handle_voice(message: Message, state: FSMContext):
                 return
             except Exception as e:
                 logger.error(f"Audio error: {e}")
-        # Если TTS упал – отправляем только короткое уведомление, без текста ответа
+        # Если TTS упал – отправляем короткое уведомление
         await message.answer("Не удалось озвучить ответ, попробуйте позже.")
         return
 

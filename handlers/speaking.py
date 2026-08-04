@@ -110,7 +110,7 @@ async def close_speaking_on_exit(handler, event, data):
     # Если связано со Speaking - просто пропускаем
     return await handler(event, data)
 
-# ============ ОСТАЛЬНЫЕ ХЕНДЛЕРЫ ============
+# ============ ХЕНДЛЕРЫ ============
 @router.callback_query(F.data == "start_speaking")
 async def start_speaking(callback: CallbackQuery, state: FSMContext):
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
@@ -183,14 +183,7 @@ async def select_voice(callback: CallbackQuery, state: FSMContext):
         logger.error(f"TTS error: {e}")
         await callback.message.answer(first_message, reply_markup=SPEAKING_KEYBOARD)
 
-@router.message(SpeakingStates.waiting_for_voice, F.text)
-async def handle_speaking_text(message: Message, state: FSMContext):
-    user_id = message.from_user.id
-    user_state = get_user_state(user_id)
-    if user_state.get("mode") != "speaking_active":
-        return
-    await message.answer("Нажмите на значок микрофона и отправьте голосовое сообщение.")
-
+# ----- КОНКРЕТНЫЕ ОБРАБОТЧИКИ КНОПОК (должны быть ПЕРЕД общим F.text) -----
 @router.message(SpeakingStates.waiting_for_voice, F.text == "📊 Я всё! Фидбек")
 async def show_feedback(message: Message, state: FSMContext):
     logger.info(f"📊 Фидбек нажат, user={message.from_user.id}")
@@ -240,6 +233,16 @@ async def exit_speaking(message: Message, state: FSMContext):
     from handlers.start import show_main_menu
     await show_main_menu(message, edit=False)
 
+# ----- ОБЩИЙ ОБРАБОТЧИК ВСЕХ ОСТАЛЬНЫХ ТЕКСТОВЫХ СООБЩЕНИЙ -----
+@router.message(SpeakingStates.waiting_for_voice, F.text)
+async def handle_speaking_text(message: Message, state: FSMContext):
+    user_id = message.from_user.id
+    user_state = get_user_state(user_id)
+    if user_state.get("mode") != "speaking_active":
+        return
+    await message.answer("Нажмите на значок микрофона и отправьте голосовое сообщение.")
+
+# ----- ОСТАЛЬНЫЕ ХЕНДЛЕРЫ (колбэки) -----
 @router.callback_query(F.data == "back_to_main")
 async def back_to_main_from_feedback(callback: CallbackQuery, state: FSMContext):
     await callback.answer()
