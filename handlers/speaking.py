@@ -302,3 +302,4 @@ async def continue_speaking(callback: CallbackQuery, state: FSMContext):
     except Exception as e:
         logger.error(f"TTS error: {e}")
         await callback.message.answer(first_message, reply_markup=SPEAKING_KEYBOARD)
+
