@@ -2,7 +2,7 @@ import logging
 import os
 import random
 from aiogram import Router, F
-from aiogram.types import Message, ReplyKeyboardMarkup, KeyboardButton, CallbackQuery, InlineKeyboardMarkup, InlineKeyboardButton, BufferedInputFile, ReplyKeyboardRemove, ContentType
+from aiogram.types import Message, ReplyKeyboardMarkup, KeyboardButton, CallbackQuery, InlineKeyboardMarkup, InlineKeyboardButton, BufferedInputFile, ReplyKeyboardRemove
 from aiogram.fsm.context import FSMContext
 from data.users import set_user_state, get_user_state
 from services.deepseek import chat
@@ -127,6 +127,9 @@ async def select_voice(callback: CallbackQuery, state: FSMContext):
         used_greetings[user_id] = []
         available = GREETINGS
     first_message = random.choice(available)
+    # защита от пустой строки
+    if not first_message or first_message.strip() == "":
+        first_message = "Let's start!"
     used_greetings[user_id].append(first_message)
     voice_id = WOMAN_VOICE_ID if voice == "woman" else MAN_VOICE_ID
     try:
@@ -223,10 +226,7 @@ async def exit_speaking(message: Message, state: FSMContext, data: dict):
     user_state["mode"] = ""
     set_user_state(user_id, user_state)
     await state.clear()
-    # Не отправляем "Диалог завершен" – это сделает middleware, если не установить флаг
-    # Но мы хотим, чтобы было "Диалог завершен" и сразу главное меню
-    # Поэтому мы не ставим skip, и middleware отправит "Диалог завершен" после вызова хендлера
-    # А сам хендлер вызовет show_main_menu
+    # Не ставим skip, чтобы middleware отправил "Диалог завершен"
     from handlers.start import show_main_menu
     await show_main_menu(message, edit=False)
 
