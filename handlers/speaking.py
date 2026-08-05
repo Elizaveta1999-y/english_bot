@@ -75,20 +75,24 @@ async def close_speaking_on_exit(handler, event, data):
         is_speaking_related = False
 
     if not is_speaking_related:
+        # Вызываем хендлер
         result = await handler(event, data)
-        user_state["mode"] = ""
-        set_user_state(user_id, user_state)
-        if 'state' in data:
-            await data['state'].clear()
-        try:
-            if hasattr(event, 'message') and event.message:
-                await event.message.answer("Диалог завершен..🏁", reply_markup=ReplyKeyboardRemove())
-            elif hasattr(event, 'callback_query') and event.callback_query and event.callback_query.message:
-                await event.callback_query.message.answer("Диалог завершен..🏁", reply_markup=ReplyKeyboardRemove())
-            else:
-                await event.answer("Диалог завершен..🏁", reply_markup=ReplyKeyboardRemove())
-        except Exception as e:
-            logger.error(f"Ошибка при удалении клавиатуры: {e}")
+        
+        # Если хендлер не запросил пропуск завершающего сообщения
+        if not data.get("skip_exit_message"):
+            user_state["mode"] = ""
+            set_user_state(user_id, user_state)
+            if 'state' in data:
+                await data['state'].clear()
+            try:
+                if hasattr(event, 'message') and event.message:
+                    await event.message.answer("Диалог завершен..🏁", reply_markup=ReplyKeyboardRemove())
+                elif hasattr(event, 'callback_query') and event.callback_query and event.callback_query.message:
+                    await event.callback_query.message.answer("Диалог завершен..🏁", reply_markup=ReplyKeyboardRemove())
+                else:
+                    await event.answer("Диалог завершен..🏁", reply_markup=ReplyKeyboardRemove())
+            except Exception as e:
+                logger.error(f"Ошибка при удалении клавиатуры: {e}")
         return result
 
     return await handler(event, data)
@@ -155,79 +159,89 @@ async def select_voice(callback: CallbackQuery, state: FSMContext):
         logger.error(f"TTS error: {e}")
         await callback.message.answer(first_message, reply_markup=SPEAKING_KEYBOARD)
 
-# ----- КНОПКА ФИДБЕК (с проверкой количества сообщений) -----
+# ----- КНОПКА ФИДБЕК -----
 @router.message(F.text == "📊 Я всё! Фидбек")
-async def show_feedback(message: Message, state: FSMContext):
+async def show_feedback(message: Message, state: FSMContext, data: dict):
     logger.info(f"📊 Фидбек нажат, user={message.from_user.id}")
     user_id = message.from_user.id
     user_state = get_user_state(user_id)
     history = user_state.get("history", [])
     
-    # Проверяем количество сообщений пользователя (не ассистента)
-    user_messages = [msg for msg in history if msg.get('role') == 'user']
-    if len(user_messages) < 3:
-        await message.answer("Вы ещё не общались, запишите несколько голосовых сообщений для получения фидбека.")
+    # Если нет истории или только одно сообщение (только приветствие ассистента)
+    if len(history) < 2:  # нужно хотя бы одно сообщение пользователя и ответ ассистента
+        await message.answer("Вы еще не общались, запишите несколько голосовых сообщений.", reply_markup=ReplyKeyboardRemove())
+        # Устанавливаем флаг, чтобы middleware не отправлял "Диалог завершен"
+        data["skip_exit_message"] = True
+        # Закрываем режим и состояние
+        user_state["mode"] = ""
+        set_user_state(user_id, user_state)
+        await state.clear()
         return
 
     await message.bot.send_chat_action(chat_id=message.chat.id, action="typing")
-    
-    # Формируем историю диалога для промпта
     history_text = "\n".join([f"{msg['role']}: {msg['text']}" for msg in history if msg['role'] in ['user', 'assistant']])
-    
-    # Промпт без вступлений, только конкретный фидбек
     prompt = (
-        "Ты – языковой тренер. Дай краткий фидбек по диалогу пользователя с ИИ в трёх пунктах:\n"
-        "1. Грамматика – укажи 2-3 ошибки с исправлениями, если есть.\n"
-        "2. Лексика – есть ли повторения, предложи синонимы.\n"
-        "3. Общее впечатление – беглость, разнообразие, рекомендации.\n"
-        "Не пиши вступлений, приветствий, не используй звёздочки и Markdown. Пиши просто текст.\n"
+        "Ты – языковой тренер. Проанализируй диалог пользователя с ИИ и дай краткий фидбек по:\n"
+        "- грамматике (укажи 2-3 ошибки и правильные варианты)\n"
+        "- лексике (есть ли повторения, предложи синонимы)\n"
+        "- общему впечатлению (беглость, разнообразие)\n"
+        "Будь конструктивным, обращайся на 'ты'.\n"
+        "ОТВЕТ ДОЛЖЕН БЫТЬ КРАТКИМ (не более 5 предложений). НЕ ИСПОЛЬЗУЙ ЗВЁЗДОЧКИ (*). НЕ ПИШИ ВСТУПЛЕНИЙ (привет, спасибо и т.п.). Сразу переходи к сути.\n"
         f"Диалог:\n{history_text}"
     )
-    
     try:
-        # Обратите внимание: chat – синхронная функция, не используем await
-        feedback = chat(prompt, max_tokens=300, temperature=0.5)
+        feedback = chat(prompt, max_tokens=250, temperature=0.5)
+        # Убираем возможные звёздочки
+        feedback = feedback.replace('*', '').strip()
     except Exception as e:
         logger.error(f"Ошибка фидбека: {e}")
-        await message.answer("Не удалось получить фидбек.")
+        await message.answer("Не удалось получить фидбек.", reply_markup=ReplyKeyboardRemove())
+        data["skip_exit_message"] = True
+        user_state["mode"] = ""
+        set_user_state(user_id, user_state)
+        await state.clear()
         return
 
-    user_state["history"] = []  # очищаем историю после фидбека
+    user_state["history"] = []
     set_user_state(user_id, user_state)
+    await state.clear()
 
-    # Убираем клавиатуру и показываем только кнопку "Главное меню"
-    await message.answer("", reply_markup=ReplyKeyboardRemove())
+    # Кнопка только "Главное меню"
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(text="🏠 Главное меню", callback_data="back_to_main")]
     ])
-    await message.answer(f"📊 Фидбек по вашему диалогу:\n\n{feedback}", reply_markup=keyboard, parse_mode="HTML")
+    await message.answer(f"📊 <b>Фидбек по вашему диалогу:</b>\n\n{feedback}", reply_markup=keyboard, parse_mode="HTML")
+    # Устанавливаем флаг, чтобы middleware не отправлял "Диалог завершен" (мы уже завершили сами)
+    data["skip_exit_message"] = True
 
 # ----- КНОПКА ГЛАВНОЕ МЕНЮ -----
 @router.message(F.text == "🏠 Главное меню")
-async def exit_speaking(message: Message, state: FSMContext):
+async def exit_speaking(message: Message, state: FSMContext, data: dict):
     logger.info(f"🏠 Главное меню нажато, user={message.from_user.id}")
     user_id = message.from_user.id
     user_state = get_user_state(user_id)
     user_state["mode"] = ""
     set_user_state(user_id, user_state)
     await state.clear()
+    # Не отправляем "Диалог завершен" – это сделает middleware, если не установить флаг
+    # Но мы хотим, чтобы было "Диалог завершен" и сразу главное меню
+    # Поэтому мы не ставим skip, и middleware отправит "Диалог завершен" после вызова хендлера
+    # А сам хендлер вызовет show_main_menu
     from handlers.start import show_main_menu
     await show_main_menu(message, edit=False)
 
-# ----- ОБРАБОТКА ТЕКСТА (не кнопки) в режиме Speaking -----
+# ----- ОБРАБОТКА НЕ-ГОЛОСОВЫХ СООБЩЕНИЙ В РЕЖИМЕ SPEAKING -----
 @router.message(SpeakingStates.waiting_for_voice, F.text)
 async def handle_speaking_text(message: Message, state: FSMContext):
-    # Если это не наши кнопки (они уже отловлены выше), то говорим о голосовых
     await message.answer("Запишите и отправьте голосовое сообщение.")
 
-# ----- ОБРАБОТКА ФОТО, ВИДЕО, КРУЖКОВ и других медиа в режиме Speaking -----
-@router.message(SpeakingStates.waiting_for_voice, F.photo | F.video | F.video_note | F.animation | F.document | F.sticker)
-async def handle_media_in_speaking(message: Message, state: FSMContext):
+@router.message(SpeakingStates.waiting_for_voice, F.photo | F.video | F.document | F.video_note)
+async def handle_speaking_media(message: Message, state: FSMContext):
     await message.answer("Запишите и отправьте голосовое сообщение.")
 
-# ----- КОЛБЭК -----
+# ----- КОЛБЭКИ -----
 @router.callback_query(F.data == "back_to_main")
-async def back_to_main_from_feedback(callback: CallbackQuery, state: FSMContext):
+async def back_to_main_from_feedback(callback: CallbackQuery, state: FSMContext, data: dict):
     await callback.answer()
     user_id = callback.from_user.id
     user_state = get_user_state(user_id)
@@ -236,6 +250,8 @@ async def back_to_main_from_feedback(callback: CallbackQuery, state: FSMContext)
     await state.clear()
     from handlers.start import show_main_menu
     await show_main_menu(callback.message, edit=False)
+    # Устанавливаем флаг, чтобы middleware не отправлял "Диалог завершен" (мы уже сами завершили)
+    data["skip_exit_message"] = True
 
 @router.callback_query(F.data == "continue_speaking")
 async def continue_speaking(callback: CallbackQuery, state: FSMContext):
