@@ -10,7 +10,7 @@ from speaking.services.ai import process_voice_message
 from speaking.services.tts import text_to_voice
 from states.speaking_states import SpeakingStates
 from handlers.voice import convert_to_opus, last_bot_response
-from handlers.start import show_main_menu
+from handlers.start import show_main_menu  # добавлен импорт
 
 logger = logging.getLogger(__name__)
 router = Router()
@@ -125,10 +125,6 @@ async def select_voice(callback: CallbackQuery, state: FSMContext):
         used_greetings[user_id] = []
         available = GREETINGS
     first_message = random.choice(available)
-    # Минимальная защита: если строка пустая, подставляем запасную
-    if not first_message or not first_message.strip():
-        first_message = "Let's start!"
-        logger.warning("Пустое приветствие заменено на 'Let's start!'")
     used_greetings[user_id].append(first_message)
     voice_id = WOMAN_VOICE_ID if voice == "woman" else MAN_VOICE_ID
     try:
@@ -161,7 +157,7 @@ async def select_voice(callback: CallbackQuery, state: FSMContext):
         logger.error(f"TTS error: {e}")
         await callback.message.answer(first_message, reply_markup=SPEAKING_KEYBOARD)
 
-# ----- КНОПКА ФИДБЕК -----
+# ----- КНОПКА ФИДБЕК (с проверкой количества сообщений) -----
 @router.message(F.text == "📊 Я всё! Фидбек")
 async def show_feedback(message: Message, state: FSMContext, data: dict):
     logger.info(f"📊 Фидбек нажат, user={message.from_user.id}")
@@ -169,6 +165,7 @@ async def show_feedback(message: Message, state: FSMContext, data: dict):
     user_state = get_user_state(user_id)
     history = user_state.get("history", [])
     
+    # Проверяем количество сообщений пользователя (не ассистента)
     user_messages = [msg for msg in history if msg.get('role') == 'user']
     if len(user_messages) < 3:
         await message.answer("Для получения фидбека, запишите несколько голосовых сообщений.", reply_markup=ReplyKeyboardRemove())
@@ -179,7 +176,11 @@ async def show_feedback(message: Message, state: FSMContext, data: dict):
         return
 
     await message.bot.send_chat_action(chat_id=message.chat.id, action="typing")
+    
+    # Формируем историю диалога для промпта
     history_text = "\n".join([f"{msg['role']}: {msg['text']}" for msg in history if msg['role'] in ['user', 'assistant']])
+    
+    # Промпт без вступлений, только конкретный фидбек
     prompt = (
         "Ты – языковой тренер. Дай краткий фидбек по диалогу пользователя с ИИ в трёх пунктах:\n"
         "1. Грамматика – укажи 2-3 ошибки с исправлениями, если есть.\n"
@@ -188,7 +189,9 @@ async def show_feedback(message: Message, state: FSMContext, data: dict):
         "Не пиши вступлений, приветствий, не используй звёздочки и Markdown. Пиши просто текст.\n"
         f"Диалог:\n{history_text}"
     )
+    
     try:
+        # Обратите внимание: chat – синхронная функция, не используем await
         feedback = chat(prompt, max_tokens=300, temperature=0.5)
     except Exception as e:
         logger.error(f"Ошибка фидбека: {e}")
@@ -199,10 +202,11 @@ async def show_feedback(message: Message, state: FSMContext, data: dict):
         await state.clear()
         return
 
-    user_state["history"] = []
+    user_state["history"] = []  # очищаем историю после фидбека
     set_user_state(user_id, user_state)
     await state.clear()
 
+    # Убираем клавиатуру и показываем только кнопку "Главное меню"
     await message.answer("", reply_markup=ReplyKeyboardRemove())
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(text="🏠 Главное меню", callback_data="back_to_main")]
@@ -217,16 +221,22 @@ async def exit_speaking(message: Message, state: FSMContext, data: dict):
     user_id = message.from_user.id
     user_state = get_user_state(user_id)
     
+    # Сначала отправляем "Диалог завершен" с удалением клавиатуры
     await message.answer("Диалог завершен..🏁", reply_markup=ReplyKeyboardRemove())
+    
+    # Затем показываем главное меню
     user_state["mode"] = ""
     set_user_state(user_id, user_state)
     await state.clear()
     await show_main_menu(message, edit=False)
+    
+    # Устанавливаем флаг, чтобы middleware не дублировал "Диалог завершен"
     data["skip_exit_message"] = True
 
 # ----- ОБРАБОТКА ТЕКСТА (не кнопки) в режиме Speaking -----
 @router.message(SpeakingStates.waiting_for_voice, F.text)
 async def handle_speaking_text(message: Message, state: FSMContext):
+    # Если это не наши кнопки (они уже отловлены выше), то говорим о голосовых
     await message.answer("Запишите и отправьте голосовое сообщение.")
 
 # ----- ОБРАБОТКА ФОТО, ВИДЕО, КРУЖКОВ и других медиа в режиме Speaking -----
@@ -241,11 +251,15 @@ async def back_to_main_from_feedback(callback: CallbackQuery, state: FSMContext,
     user_id = callback.from_user.id
     user_state = get_user_state(user_id)
     
+    # Сначала отправляем "Диалог завершен" с удалением клавиатуры
     await callback.message.answer("Диалог завершен..🏁", reply_markup=ReplyKeyboardRemove())
+    
+    # Затем показываем главное меню
     user_state["mode"] = ""
     set_user_state(user_id, user_state)
     await state.clear()
     await show_main_menu(callback.message, edit=False)
+    
     data["skip_exit_message"] = True
 
 @router.callback_query(F.data == "continue_speaking")
