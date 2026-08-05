@@ -10,7 +10,7 @@ from speaking.services.ai import process_voice_message
 from speaking.services.tts import text_to_voice
 from states.speaking_states import SpeakingStates
 from handlers.voice import convert_to_opus, last_bot_response
-from handlers.start import show_main_menu
+from handlers.start import show_main_menu  # <-- ДОБАВЛЕН ИМПОРТ
 
 logger = logging.getLogger(__name__)
 router = Router()
@@ -125,11 +125,11 @@ async def select_voice(callback: CallbackQuery, state: FSMContext):
         used_greetings[user_id] = []
         available = GREETINGS
     first_message = random.choice(available)
-    # ======= ДОБАВЛЕНА ЗАЩИТА ОТ ПУСТОЙ СТРОКИ =======
+    # ============ ЗАЩИТА ОТ ПУСТОЙ СТРОКИ ============
     if not first_message or not first_message.strip():
         first_message = "Let's start!"
         logger.warning(f"Пустое приветствие заменено на 'Let's start!' для user {user_id}")
-    # =================================================
+    # ================================================
     used_greetings[user_id].append(first_message)
     voice_id = WOMAN_VOICE_ID if voice == "woman" else MAN_VOICE_ID
     try:
@@ -162,7 +162,7 @@ async def select_voice(callback: CallbackQuery, state: FSMContext):
         logger.error(f"TTS error: {e}")
         await callback.message.answer(first_message, reply_markup=SPEAKING_KEYBOARD)
 
-# ----- КНОПКА ФИДБЕК (с проверкой количества сообщений) -----
+# ----- КНОПКА ФИДБЕК -----
 @router.message(F.text == "📊 Я всё! Фидбек")
 async def show_feedback(message: Message, state: FSMContext, data: dict):
     logger.info(f"📊 Фидбек нажат, user={message.from_user.id}")
@@ -182,10 +182,7 @@ async def show_feedback(message: Message, state: FSMContext, data: dict):
 
     await message.bot.send_chat_action(chat_id=message.chat.id, action="typing")
     
-    # Формируем историю диалога для промпта
     history_text = "\n".join([f"{msg['role']}: {msg['text']}" for msg in history if msg['role'] in ['user', 'assistant']])
-    
-    # Промпт без вступлений, только конкретный фидбек
     prompt = (
         "Ты – языковой тренер. Дай краткий фидбек по диалогу пользователя с ИИ в трёх пунктах:\n"
         "1. Грамматика – укажи 2-3 ошибки с исправлениями, если есть.\n"
@@ -210,9 +207,8 @@ async def show_feedback(message: Message, state: FSMContext, data: dict):
     set_user_state(user_id, user_state)
     await state.clear()
 
-    # Отправляем фидбек без reply-клавиатуры
+    # Отправляем фидбек без клавиатуры и сразу показываем главное меню
     await message.answer(f"📊 Фидбек по вашему диалогу:\n\n{feedback}", reply_markup=ReplyKeyboardRemove(), parse_mode="HTML")
-    # Сразу показываем главное меню
     await show_main_menu(message, edit=False)
     data["skip_exit_message"] = True
 
