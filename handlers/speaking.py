@@ -10,7 +10,7 @@ from speaking.services.ai import process_voice_message
 from speaking.services.tts import text_to_voice
 from states.speaking_states import SpeakingStates
 from handlers.voice import convert_to_opus, last_bot_response
-from handlers.start import show_main_menu  # добавлен импорт
+from handlers.start import show_main_menu
 
 logger = logging.getLogger(__name__)
 router = Router()
@@ -125,6 +125,10 @@ async def select_voice(callback: CallbackQuery, state: FSMContext):
         used_greetings[user_id] = []
         available = GREETINGS
     first_message = random.choice(available)
+    # Гарантируем непустую строку (единственное минимальное изменение)
+    if not first_message or not first_message.strip():
+        first_message = "Let's start!"
+        logger.warning(f"Пустое приветствие заменено на 'Let's start!' для user {user_id}")
     used_greetings[user_id].append(first_message)
     voice_id = WOMAN_VOICE_ID if voice == "woman" else MAN_VOICE_ID
     try:
@@ -302,4 +306,3 @@ async def continue_speaking(callback: CallbackQuery, state: FSMContext):
     except Exception as e:
         logger.error(f"TTS error: {e}")
         await callback.message.answer(first_message, reply_markup=SPEAKING_KEYBOARD)
-
