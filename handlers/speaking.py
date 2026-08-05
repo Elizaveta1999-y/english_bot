@@ -18,6 +18,7 @@ router = Router()
 WOMAN_VOICE_ID = "8quEMRkSpwEaWBzHvTLv"
 MAN_VOICE_ID = "3TStB8f3X3To0Uj5R7RK"
 
+# Простой список приветствий (все непустые)
 GREETINGS = [
     "Hey! Ready to practice?",
     "Hi there! Let's start.",
@@ -30,8 +31,6 @@ GREETINGS = [
     "Hello! I'm your English tutor.",
     "Let's have a chat. Start whenever you're ready."
 ]
-
-used_greetings = {}
 
 SPEAKING_KEYBOARD = ReplyKeyboardMarkup(
     keyboard=[
@@ -76,10 +75,7 @@ async def close_speaking_on_exit(handler, event, data):
         is_speaking_related = False
 
     if not is_speaking_related:
-        # Вызываем хендлер
         result = await handler(event, data)
-        
-        # Если хендлер не установил флаг пропуска, отправляем завершающее сообщение
         if not data.get("skip_exit_message"):
             user_state["mode"] = ""
             set_user_state(user_id, user_state)
@@ -122,32 +118,19 @@ async def select_voice(callback: CallbackQuery, state: FSMContext):
     await state.set_state(SpeakingStates.waiting_for_voice)
     await callback.message.delete()
     
-    if user_id not in used_greetings:
-        used_greetings[user_id] = []
-    
-    # Фильтруем пустые строки
-    available = [g for g in GREETINGS if g and g.strip() and g not in used_greetings[user_id]]
-    if not available:
-        used_greetings[user_id] = []
-        available = [g for g in GREETINGS if g and g.strip()]
-    # Если всё равно пусто – запасной вариант
-    if not available:
-        available = ["Let's start!"]
-    
-    first_message = random.choice(available)
-    # Дополнительная проверка
+    # Просто берём случайное приветствие, без сложной логики
+    first_message = random.choice(GREETINGS)
+    # Жёсткая проверка на пустоту
     if not first_message or not first_message.strip():
         first_message = "Let's start!"
         logger.warning(f"Пустое приветствие заменено на 'Let's start!' для user {user_id}")
     
-    used_greetings[user_id].append(first_message)
-    
     voice_id = WOMAN_VOICE_ID if voice == "woman" else MAN_VOICE_ID
     try:
-        # Явно проверяем, что текст не пустой перед TTS
+        # Ещё раз проверим перед TTS
         if not first_message or not first_message.strip():
-            logger.error(f"first_message пустой перед TTS для user {user_id}, используем 'Let's start!'")
             first_message = "Let's start!"
+            logger.error(f"Перед TTS first_message пустой, установлено 'Let's start!'")
         
         voice_path = await text_to_voice(first_message, voice_id=voice_id)
         if voice_path and os.path.exists(voice_path):
@@ -186,7 +169,6 @@ async def show_feedback(message: Message, state: FSMContext, data: dict):
     user_state = get_user_state(user_id)
     history = user_state.get("history", [])
     
-    # Считаем количество голосовых сообщений пользователя
     user_messages = [msg for msg in history if msg.get('role') == 'user']
     if len(user_messages) < 3:
         await message.answer("Для получения фидбека, запишите несколько голосовых сообщений.", reply_markup=ReplyKeyboardRemove())
@@ -223,11 +205,8 @@ async def show_feedback(message: Message, state: FSMContext, data: dict):
     set_user_state(user_id, user_state)
     await state.clear()
 
-    # Отправляем фидбек с удалением reply-клавиатуры
     await message.answer(f"📊 <b>Фидбек по вашему диалогу:</b>\n\n{feedback}", reply_markup=ReplyKeyboardRemove(), parse_mode="HTML")
-    # Сразу отправляем главное меню
     await show_main_menu(message, edit=False)
-    
     data["skip_exit_message"] = True
 
 # ----- КНОПКА ГЛАВНОЕ МЕНЮ -----
