@@ -127,7 +127,7 @@ async def select_voice(callback: CallbackQuery, state: FSMContext):
         used_greetings[user_id] = []
         available = GREETINGS
     first_message = random.choice(available)
-    # защита от пустой строки
+    # ЗАЩИТА ОТ ПУСТОЙ СТРОКИ
     if not first_message or first_message.strip() == "":
         first_message = "Let's start!"
     used_greetings[user_id].append(first_message)
