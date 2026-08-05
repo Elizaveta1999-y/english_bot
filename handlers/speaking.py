@@ -18,7 +18,6 @@ router = Router()
 WOMAN_VOICE_ID = "8quEMRkSpwEaWBzHvTLv"
 MAN_VOICE_ID = "3TStB8f3X3To0Uj5R7RK"
 
-# Убедимся, что все строки непустые
 GREETINGS = [
     "Hey! Ready to practice?",
     "Hi there! Let's start.",
@@ -126,17 +125,17 @@ async def select_voice(callback: CallbackQuery, state: FSMContext):
     if user_id not in used_greetings:
         used_greetings[user_id] = []
     
-    # Фильтруем пустые строки и уже использованные
+    # Фильтруем пустые строки
     available = [g for g in GREETINGS if g and g.strip() and g not in used_greetings[user_id]]
     if not available:
         used_greetings[user_id] = []
         available = [g for g in GREETINGS if g and g.strip()]
-    # Если всё равно пусто (маловероятно) – добавим запасную фразу
+    # Если всё равно пусто – запасной вариант
     if not available:
         available = ["Let's start!"]
     
     first_message = random.choice(available)
-    # Дополнительная проверка на всякий случай
+    # Дополнительная проверка
     if not first_message or not first_message.strip():
         first_message = "Let's start!"
         logger.warning(f"Пустое приветствие заменено на 'Let's start!' для user {user_id}")
@@ -145,6 +144,11 @@ async def select_voice(callback: CallbackQuery, state: FSMContext):
     
     voice_id = WOMAN_VOICE_ID if voice == "woman" else MAN_VOICE_ID
     try:
+        # Явно проверяем, что текст не пустой перед TTS
+        if not first_message or not first_message.strip():
+            logger.error(f"first_message пустой перед TTS для user {user_id}, используем 'Let's start!'")
+            first_message = "Let's start!"
+        
         voice_path = await text_to_voice(first_message, voice_id=voice_id)
         if voice_path and os.path.exists(voice_path):
             ogg_path = convert_to_opus(voice_path)
@@ -235,7 +239,6 @@ async def exit_speaking(message: Message, state: FSMContext, data: dict):
     user_state["mode"] = ""
     set_user_state(user_id, user_state)
     await state.clear()
-    # Не ставим skip, чтобы middleware отправил "Диалог завершен"
     await show_main_menu(message, edit=False)
 
 # ----- ОБРАБОТКА НЕ-ГОЛОСОВЫХ СООБЩЕНИЙ В РЕЖИМЕ SPEAKING -----
