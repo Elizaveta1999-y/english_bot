@@ -61,35 +61,25 @@ async def close_speaking_on_exit(handler, event, data):
     
     if hasattr(event, 'text') and isinstance(event.text, str) and event.text.startswith('/'):
         is_speaking_related = False
-        logger.info(f"Команда {event.text} -> закрываем Speaking")
     elif hasattr(event, 'data') and isinstance(event.data, str):
         if event.data.startswith("speaking_") or event.data in ("continue_speaking", "start_speaking"):
             is_speaking_related = True
         else:
             is_speaking_related = False
-            logger.info(f"Колбэк {event.data} -> закрываем Speaking")
     elif hasattr(event, 'text') and isinstance(event.text, str):
-        # Кнопки "Главное меню" и "Фидбек" НЕ считаются связанными
         if event.text in ("📊 Я всё! Фидбек", "🏠 Главное меню"):
             is_speaking_related = False
-            logger.info(f"Кнопка {event.text} -> закрываем Speaking")
         else:
             is_speaking_related = False
-            logger.info(f"Текст {event.text} -> закрываем Speaking")
     else:
         is_speaking_related = False
 
     if not is_speaking_related:
-        # Сначала вызываем хендлер (он отправит главное меню или фидбек)
         result = await handler(event, data)
-        
-        # Затем очищаем состояние и режим
         user_state["mode"] = ""
         set_user_state(user_id, user_state)
         if 'state' in data:
             await data['state'].clear()
-
-        # Отправляем "Диалог завершен" с удалением клавиатуры
         try:
             if hasattr(event, 'message') and event.message:
                 await event.message.answer("Диалог завершен..🏁", reply_markup=ReplyKeyboardRemove())
@@ -99,7 +89,6 @@ async def close_speaking_on_exit(handler, event, data):
                 await event.answer("Диалог завершен..🏁", reply_markup=ReplyKeyboardRemove())
         except Exception as e:
             logger.error(f"Ошибка при удалении клавиатуры: {e}")
-
         return result
 
     return await handler(event, data)
@@ -117,32 +106,24 @@ async def start_speaking(callback: CallbackQuery, state: FSMContext):
 @router.callback_query(F.data.startswith("speaking_voice_"))
 async def select_voice(callback: CallbackQuery, state: FSMContext):
     await callback.answer()
-    
     user_id = callback.from_user.id
     voice = callback.data.split("_")[2]
-    
     user_state = get_user_state(user_id)
     user_state["speaking_voice"] = voice
     user_state["mode"] = "speaking_active"
     if "history" not in user_state:
         user_state["history"] = []
     set_user_state(user_id, user_state)
-
     await state.set_state(SpeakingStates.waiting_for_voice)
-
     await callback.message.delete()
-    
     if user_id not in used_greetings:
         used_greetings[user_id] = []
-    
     available = [g for g in GREETINGS if g not in used_greetings[user_id]]
     if not available:
         used_greetings[user_id] = []
         available = GREETINGS
-    
     first_message = random.choice(available)
     used_greetings[user_id].append(first_message)
-    
     voice_id = WOMAN_VOICE_ID if voice == "woman" else MAN_VOICE_ID
     try:
         voice_path = await text_to_voice(first_message, voice_id=voice_id)
@@ -150,7 +131,6 @@ async def select_voice(callback: CallbackQuery, state: FSMContext):
             ogg_path = convert_to_opus(voice_path)
             with open(ogg_path, 'rb') as f:
                 audio_bytes = f.read()
-            
             inline_kb = InlineKeyboardMarkup(inline_keyboard=[
                 [InlineKeyboardButton(text="Текст", callback_data=f"show_text_{user_id}")]
             ])
@@ -166,10 +146,8 @@ async def select_voice(callback: CallbackQuery, state: FSMContext):
             }
             user_state["history"].append({"role": "assistant", "text": first_message})
             set_user_state(user_id, user_state)
-            
             os.unlink(voice_path)
             os.unlink(ogg_path)
-            
             await callback.message.answer(" ", reply_markup=SPEAKING_KEYBOARD)
         else:
             await callback.message.answer(first_message, reply_markup=SPEAKING_KEYBOARD)
@@ -177,7 +155,7 @@ async def select_voice(callback: CallbackQuery, state: FSMContext):
         logger.error(f"TTS error: {e}")
         await callback.message.answer(first_message, reply_markup=SPEAKING_KEYBOARD)
 
-# ----- КНОПКИ (без проверки состояния) -----
+# ----- КНОПКИ -----
 @router.message(F.text == "📊 Я всё! Фидбек")
 async def show_feedback(message: Message, state: FSMContext):
     logger.info(f"📊 Фидбек нажат, user={message.from_user.id}")
@@ -198,7 +176,8 @@ async def show_feedback(message: Message, state: FSMContext):
         f"Диалог:\n{history_text}"
     )
     try:
-        feedback = await chat(prompt, max_tokens=400, temperature=0.5)
+        # ИСПРАВЛЕНО: убрали await
+        feedback = chat(prompt, max_tokens=400, temperature=0.5)
     except Exception as e:
         logger.error(f"Ошибка фидбека: {e}")
         await message.answer("Не удалось получить фидбек.")
@@ -218,14 +197,13 @@ async def exit_speaking(message: Message, state: FSMContext):
     logger.info(f"🏠 Главное меню нажато, user={message.from_user.id}")
     user_id = message.from_user.id
     user_state = get_user_state(user_id)
-    # Режим уже будет закрыт в middleware, но на всякий случай
     user_state["mode"] = ""
     set_user_state(user_id, user_state)
     await state.clear()
     from handlers.start import show_main_menu
     await show_main_menu(message, edit=False)
 
-# ----- ОБЩИЙ ОБРАБОТЧИК (если пользователь пишет текст в режиме Speaking) -----
+# ----- ОБЩИЙ ОБРАБОТЧИК -----
 @router.message(SpeakingStates.waiting_for_voice, F.text)
 async def handle_speaking_text(message: Message, state: FSMContext):
     await message.answer("Нажмите на значок микрофона и отправьте голосовое сообщение.")
@@ -250,7 +228,6 @@ async def continue_speaking(callback: CallbackQuery, state: FSMContext):
     user_state["mode"] = "speaking_active"
     set_user_state(user_id, user_state)
     await state.set_state(SpeakingStates.waiting_for_voice)
-
     await callback.message.delete()
     first_message = "Let's continue!"
     voice_id = WOMAN_VOICE_ID if user_state.get("speaking_voice", "woman") == "woman" else MAN_VOICE_ID
