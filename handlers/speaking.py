@@ -18,6 +18,7 @@ router = Router()
 WOMAN_VOICE_ID = "8quEMRkSpwEaWBzHvTLv"
 MAN_VOICE_ID = "3TStB8f3X3To0Uj5R7RK"
 
+# Убедимся, что ни одна строка не пустая
 GREETINGS = [
     "Hey! Ready to practice?",
     "Hi there! Let's start.",
@@ -128,10 +129,13 @@ async def select_voice(callback: CallbackQuery, state: FSMContext):
     if not available:
         used_greetings[user_id] = []
         available = GREETINGS
-    first_message = random.choice(available)
+    first_message = random.choice(available) if available else "Let's start!"
+    
+    # КРИТИЧЕСКАЯ ПРОВЕРКА: если строка пустая или None, подставляем запасной текст
     if not first_message or first_message.strip() == "":
         first_message = "Let's start!"
         logger.warning(f"Пустое приветствие заменено на 'Let's start!' для user {user_id}")
+    
     used_greetings[user_id].append(first_message)
     
     voice_id = WOMAN_VOICE_ID if voice == "woman" else MAN_VOICE_ID
@@ -160,9 +164,11 @@ async def select_voice(callback: CallbackQuery, state: FSMContext):
             os.unlink(ogg_path)
             await callback.message.answer(" ", reply_markup=SPEAKING_KEYBOARD)
         else:
+            # Если TTS не сгенерировал файл, отправляем текст
             await callback.message.answer(first_message, reply_markup=SPEAKING_KEYBOARD)
     except Exception as e:
         logger.error(f"TTS error: {e}")
+        # При ошибке TTS отправляем только текст
         await callback.message.answer(first_message, reply_markup=SPEAKING_KEYBOARD)
 
 # ----- КНОПКА ФИДБЕК -----
