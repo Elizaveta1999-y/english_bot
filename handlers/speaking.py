@@ -10,7 +10,7 @@ from speaking.services.ai import process_voice_message
 from speaking.services.tts import text_to_voice
 from states.speaking_states import SpeakingStates
 from handlers.voice import convert_to_opus, last_bot_response
-from handlers.start import show_main_menu  # <-- ДОБАВЛЕН ИМПОРТ
+from handlers.start import show_main_menu
 
 logger = logging.getLogger(__name__)
 router = Router()
@@ -77,9 +77,7 @@ async def close_speaking_on_exit(handler, event, data):
 
     if not is_speaking_related:
         result = await handler(event, data)
-        
-        # ЕСЛИ ХЕНДЛЕР НЕ ПОПРОСИЛ ПРОПУСТИТЬ "ДИАЛОГ ЗАВЕРШЕН" – ОТПРАВЛЯЕМ
-        if not data.get("skip_exit_message"):   # <-- ДОБАВЛЕНА ПРОВЕРКА
+        if not data.get("skip_exit_message"):
             user_state["mode"] = ""
             set_user_state(user_id, user_state)
             if 'state' in data:
@@ -127,6 +125,11 @@ async def select_voice(callback: CallbackQuery, state: FSMContext):
         used_greetings[user_id] = []
         available = GREETINGS
     first_message = random.choice(available)
+    # ======= ДОБАВЛЕНА ЗАЩИТА ОТ ПУСТОЙ СТРОКИ =======
+    if not first_message or not first_message.strip():
+        first_message = "Let's start!"
+        logger.warning(f"Пустое приветствие заменено на 'Let's start!' для user {user_id}")
+    # =================================================
     used_greetings[user_id].append(first_message)
     voice_id = WOMAN_VOICE_ID if voice == "woman" else MAN_VOICE_ID
     try:
@@ -161,7 +164,7 @@ async def select_voice(callback: CallbackQuery, state: FSMContext):
 
 # ----- КНОПКА ФИДБЕК (с проверкой количества сообщений) -----
 @router.message(F.text == "📊 Я всё! Фидбек")
-async def show_feedback(message: Message, state: FSMContext, data: dict):   # <-- ДОБАВЛЕН data
+async def show_feedback(message: Message, state: FSMContext, data: dict):
     logger.info(f"📊 Фидбек нажат, user={message.from_user.id}")
     user_id = message.from_user.id
     user_state = get_user_state(user_id)
@@ -171,7 +174,7 @@ async def show_feedback(message: Message, state: FSMContext, data: dict):   # <-
     user_messages = [msg for msg in history if msg.get('role') == 'user']
     if len(user_messages) < 3:
         await message.answer("Для получения фидбека, запишите несколько голосовых сообщений.", reply_markup=ReplyKeyboardRemove())
-        data["skip_exit_message"] = True   # <-- НЕ ОТПРАВЛЯТЬ "ДИАЛОГ ЗАВЕРШЕН"
+        data["skip_exit_message"] = True
         user_state["mode"] = ""
         set_user_state(user_id, user_state)
         await state.clear()
@@ -193,7 +196,6 @@ async def show_feedback(message: Message, state: FSMContext, data: dict):   # <-
     )
     
     try:
-        # Обратите внимание: chat – синхронная функция, не используем await
         feedback = chat(prompt, max_tokens=300, temperature=0.5)
     except Exception as e:
         logger.error(f"Ошибка фидбека: {e}")
@@ -204,17 +206,15 @@ async def show_feedback(message: Message, state: FSMContext, data: dict):   # <-
         await state.clear()
         return
 
-    user_state["history"] = []  # очищаем историю после фидбека
+    user_state["history"] = []
     set_user_state(user_id, user_state)
     await state.clear()
 
     # Отправляем фидбек без reply-клавиатуры
     await message.answer(f"📊 Фидбек по вашему диалогу:\n\n{feedback}", reply_markup=ReplyKeyboardRemove(), parse_mode="HTML")
-    
     # Сразу показываем главное меню
     await show_main_menu(message, edit=False)
-    
-    data["skip_exit_message"] = True   # <-- НЕ ОТПРАВЛЯТЬ "ДИАЛОГ ЗАВЕРШЕН"
+    data["skip_exit_message"] = True
 
 # ----- КНОПКА ГЛАВНОЕ МЕНЮ -----
 @router.message(F.text == "🏠 Главное меню")
@@ -225,7 +225,6 @@ async def exit_speaking(message: Message, state: FSMContext):
     user_state["mode"] = ""
     set_user_state(user_id, user_state)
     await state.clear()
-    # Здесь не ставим skip, чтобы middleware отправил "Диалог завершен"
     from handlers.start import show_main_menu
     await show_main_menu(message, edit=False)
 
