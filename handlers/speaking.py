@@ -193,14 +193,10 @@ async def show_feedback(message: Message, state: FSMContext, data: dict):
     user_state["history"] = []
     set_user_state(user_id, user_state)
 
-    # Убираем reply-клавиатуру
     await message.answer("", reply_markup=ReplyKeyboardRemove())
-    # Отправляем фидбек
     await message.answer(f"📊 Фидбек по вашему диалогу:\n\n{feedback}", parse_mode="HTML")
-    # Сразу показываем главное меню
     from handlers.start import show_main_menu
     await show_main_menu(message, edit=False)
-    # Закрываем режим
     user_state["mode"] = ""
     set_user_state(user_id, user_state)
     await state.clear()
@@ -286,7 +282,7 @@ async def continue_speaking(callback: CallbackQuery, state: FSMContext):
 
 # === Обработчики для кнопки "Текст", "Перевести", "Скрыть" ===
 @router.callback_query(lambda c: c.data.startswith("show_text_"))
-async def show_text(callback: CallbackQuery):
+async def show_text(callback: CallbackQuery, data: dict):
     user_id = int(callback.data.split("_")[2])
     bot_response = last_bot_response.get(user_id)
     if not bot_response or not bot_response.get("text"):
@@ -297,7 +293,6 @@ async def show_text(callback: CallbackQuery):
         [InlineKeyboardButton(text="Перевести", callback_data=f"translate_text_{user_id}"),
          InlineKeyboardButton(text="Скрыть", callback_data=f"hide_text_{user_id}")]
     ])
-    # Редактируем подпись голосового сообщения
     await callback.bot.edit_message_caption(
         chat_id=callback.message.chat.id,
         message_id=callback.message.message_id,
@@ -305,9 +300,11 @@ async def show_text(callback: CallbackQuery):
         reply_markup=keyboard
     )
     await callback.answer()
+    # Предотвращаем закрытие диалога
+    data["skip_exit_message"] = True
 
 @router.callback_query(lambda c: c.data.startswith("translate_text_"))
-async def translate_text(callback: CallbackQuery):
+async def translate_text(callback: CallbackQuery, data: dict):
     user_id = int(callback.data.split("_")[2])
     bot_response = last_bot_response.get(user_id)
     if not bot_response or not bot_response.get("text"):
@@ -315,11 +312,19 @@ async def translate_text(callback: CallbackQuery):
         return
     # Простой перевод (заглушка, можно заменить на реальный сервис)
     translation = f"Перевод: {bot_response['text']}"
-    keyboard = InlineKeyboardMarkup(inline_keyboard=[
-        [InlineKeyboardButton(text="Скрыть", callback_data=f"hide_text_{user_id}")]
-    ])
     current_caption = callback.message.caption or ""
+    # Проверяем, есть ли уже перевод, чтобы не дублировать
+    if "Перевод:" in current_caption:
+        # Если уже есть, можно ничего не делать или обновить
+        # Для простоты просто ничего не делаем
+        await callback.answer("Перевод уже показан.", show_alert=True)
+        return
     new_caption = current_caption + "\n\n" + translation if current_caption else translation
+    # Оставляем те же кнопки (Перевести и Скрыть)
+    keyboard = InlineKeyboardMarkup(inline_keyboard=[
+        [InlineKeyboardButton(text="Перевести", callback_data=f"translate_text_{user_id}"),
+         InlineKeyboardButton(text="Скрыть", callback_data=f"hide_text_{user_id}")]
+    ])
     await callback.bot.edit_message_caption(
         chat_id=callback.message.chat.id,
         message_id=callback.message.message_id,
@@ -327,9 +332,10 @@ async def translate_text(callback: CallbackQuery):
         reply_markup=keyboard
     )
     await callback.answer()
+    data["skip_exit_message"] = True
 
 @router.callback_query(lambda c: c.data.startswith("hide_text_"))
-async def hide_text(callback: CallbackQuery):
+async def hide_text(callback: CallbackQuery, data: dict):
     user_id = int(callback.data.split("_")[2])
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(text="Текст", callback_data=f"show_text_{user_id}")]
@@ -341,3 +347,4 @@ async def hide_text(callback: CallbackQuery):
         reply_markup=keyboard
     )
     await callback.answer()
+    data["skip_exit_message"] = True
