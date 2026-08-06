@@ -82,9 +82,10 @@ async def handle_voice(message: Message, state: FSMContext):
             except Exception as e:
                 logger.warning(f"Не удалось поставить реакцию: {e}")
 
-        # ====== УБИРАЕМ ЛИШНЕЕ СООБЩЕНИЕ (correction_text) ======
-        # if correction_text:
-        #     await message.answer(correction_text, parse_mode="HTML")
+        # ============ ВОССТАНОВЛЕНА ОТПРАВКА CORRECTION_TEXT ============
+        if correction_text:
+            await message.answer(correction_text, parse_mode="HTML")
+        # ===============================================================
 
         await bot.send_chat_action(chat_id=chat_id, action="record_voice")
         voice_pref = user_state.get("speaking_voice", "woman")
@@ -114,11 +115,12 @@ async def handle_voice(message: Message, state: FSMContext):
                 return
             except Exception as e:
                 logger.error(f"Audio error: {e}")
-        await message.answer("Не удалось озвучить ответ, попробуйте позже.")
+        # Если TTS упал – отправляем только текст, но коррекция уже отправлена
+        await message.answer(reply_text)
         await state.set_state(SpeakingStates.waiting_for_voice)
         return
 
-    # ===== ОСТАЛЬНЫЕ РЕЖИМЫ (не Speaking) =====
+    # Остальная логика (для других режимов – не Speaking)
     file = await bot.get_file(message.voice.file_id)
     file_bytes = await bot.download_file(file.file_path)
     user_text = await voice_to_text(file_bytes.read())
@@ -240,13 +242,10 @@ async def handle_voice(message: Message, state: FSMContext):
             return
         except Exception as e:
             logger.error(f"Audio error: {e}")
-    await message.answer("Не удалось озвучить ответ, попробуйте позже.")
+    await message.answer(ai_response)
 
 @router.callback_query(lambda c: c.data.startswith("show_text_"))
 async def show_text(callback: CallbackQuery):
-    user_id = int(callback.data.split("_")[2])
-    data = last_bot_response.get(user_id)
-    if not data or not data.get("text"):
-        await callback.answer("Нет текста.", show_alert=True)
-        return
-    await callback.answer("Текст скрыт.", show_alert=False)
+    # Этот обработчик оставлен для совместимости, но в speaking.py есть более полная версия.
+    # Он может быть переопределён в speaking.py, поэтому здесь он не используется.
+    pass
