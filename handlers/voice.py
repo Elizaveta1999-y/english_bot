@@ -82,10 +82,8 @@ async def handle_voice(message: Message, state: FSMContext):
             except Exception as e:
                 logger.warning(f"Не удалось поставить реакцию: {e}")
 
-        # ============ ОТПРАВКА CORRECTION_TEXT ============
         if correction_text:
             await message.answer(correction_text, parse_mode="HTML")
-        # =================================================
 
         await bot.send_chat_action(chat_id=chat_id, action="record_voice")
         voice_pref = user_state.get("speaking_voice", "woman")
@@ -107,7 +105,9 @@ async def handle_voice(message: Message, state: FSMContext):
                 last_bot_response[user_id] = {
                     "text": reply_text,
                     "translation": None,
-                    "audio_message_id": sent.message_id
+                    "audio_message_id": sent.message_id,
+                    "chat_id": chat_id,
+                    "message_id": sent.message_id
                 }
                 os.unlink(voice_path)
                 os.unlink(ogg_path)
@@ -115,12 +115,12 @@ async def handle_voice(message: Message, state: FSMContext):
                 return
             except Exception as e:
                 logger.error(f"Audio error: {e}")
-        # Если TTS упал – отправляем текст как запасной вариант
+        # fallback – если TTS не сработал, отправляем текст
         await message.answer(reply_text)
         await state.set_state(SpeakingStates.waiting_for_voice)
         return
 
-    # Остальная логика (для других режимов – не Speaking)
+    # ----- ЛОГИКА ДЛЯ ДРУГИХ РЕЖИМОВ (не Speaking) -----
     file = await bot.get_file(message.voice.file_id)
     file_bytes = await bot.download_file(file.file_path)
     user_text = await voice_to_text(file_bytes.read())
