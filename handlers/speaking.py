@@ -39,6 +39,9 @@ SPEAKING_KEYBOARD = ReplyKeyboardMarkup(
     resize_keyboard=True
 )
 
+# Текст, который будет отправляться с клавиатурой вместо пробела
+ENCOURAGE_TEXT = "Говори развернуто, так эффективнее для изучения 🗣️"
+
 async def close_speaking_on_exit(handler, event, data):
     user_id = None
     if hasattr(event, 'from_user'):
@@ -145,15 +148,15 @@ async def select_voice(callback: CallbackQuery, state: FSMContext):
             set_user_state(user_id, user_state)
             os.unlink(voice_path)
             os.unlink(ogg_path)
-            # Только клавиатура, без текста
-            await callback.message.answer(" ", reply_markup=SPEAKING_KEYBOARD)
+            # Отправляем подсказку с клавиатурой
+            await callback.message.answer(ENCOURAGE_TEXT, reply_markup=SPEAKING_KEYBOARD)
         else:
-            # Только клавиатура, без текста (убрано дублирование)
-            await callback.message.answer(" ", reply_markup=SPEAKING_KEYBOARD)
+            # Если TTS не сработал, отправляем подсказку с клавиатурой
+            await callback.message.answer(ENCOURAGE_TEXT, reply_markup=SPEAKING_KEYBOARD)
     except Exception as e:
         logger.error(f"TTS error: {e}")
-        # Только клавиатура, без текста (убрано дублирование)
-        await callback.message.answer(" ", reply_markup=SPEAKING_KEYBOARD)
+        # При ошибке TTS – тоже подсказка с клавиатурой
+        await callback.message.answer(ENCOURAGE_TEXT, reply_markup=SPEAKING_KEYBOARD)
 
 @router.message(F.text == "📊 Я всё! Фидбек")
 async def show_feedback(message: Message, state: FSMContext):
@@ -257,15 +260,14 @@ async def continue_speaking(callback: CallbackQuery, state: FSMContext):
             set_user_state(user_id, user_state)
             os.unlink(voice_path)
             os.unlink(ogg_path)
-            # Только клавиатура, без текста
-            await callback.message.answer(" ", reply_markup=SPEAKING_KEYBOARD)
+            # Отправляем подсказку с клавиатурой
+            await callback.message.answer(ENCOURAGE_TEXT, reply_markup=SPEAKING_KEYBOARD)
         else:
-            # Только клавиатура, без текста
-            await callback.message.answer(" ", reply_markup=SPEAKING_KEYBOARD)
+            # Если TTS не сработал, отправляем подсказку с клавиатурой
+            await callback.message.answer(ENCOURAGE_TEXT, reply_markup=SPEAKING_KEYBOARD)
     except Exception as e:
         logger.error(f"TTS error: {e}")
-        # Только клавиатура, без текста
-        await callback.message.answer(" ", reply_markup=SPEAKING_KEYBOARD)
+        await callback.message.answer(ENCOURAGE_TEXT, reply_markup=SPEAKING_KEYBOARD)
 
 @router.callback_query(lambda c: c.data.startswith("show_text_"))
 async def show_text(callback: CallbackQuery):
