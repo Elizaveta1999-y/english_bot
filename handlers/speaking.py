@@ -151,14 +151,14 @@ async def select_voice(callback: CallbackQuery, state: FSMContext):
             set_user_state(user_id, user_state)
             os.unlink(voice_path)
             os.unlink(ogg_path)
-            # Отправляем только клавиатуру, без текста
+            # ТОЛЬКО КЛАВИАТУРА, БЕЗ ТЕКСТА
             await callback.message.answer(" ", reply_markup=SPEAKING_KEYBOARD)
         else:
-            # Если TTS не сработал, отправляем только клавиатуру
+            # ТОЛЬКО КЛАВИАТУРА
             await callback.message.answer(" ", reply_markup=SPEAKING_KEYBOARD)
     except Exception as e:
         logger.error(f"TTS error: {e}")
-        # При ошибке TTS – только клавиатура
+        # ТОЛЬКО КЛАВИАТУРА
         await callback.message.answer(" ", reply_markup=SPEAKING_KEYBOARD)
 
 # ----- КНОПКА ФИДБЕК -----
@@ -171,6 +171,7 @@ async def show_feedback(message: Message, state: FSMContext):
     
     user_messages = [msg for msg in history if msg.get('role') == 'user']
     if len(user_messages) < 3:
+        # БЕЗ "Диалог завершен"
         await message.answer("Для получения фидбека, запишите несколько голосовых сообщений.")
         return
 
@@ -270,7 +271,6 @@ async def continue_speaking(callback: CallbackQuery, state: FSMContext):
             os.unlink(ogg_path)
             await callback.message.answer(" ", reply_markup=SPEAKING_KEYBOARD)
         else:
-            # Если TTS не сработал, только клавиатура
             await callback.message.answer(" ", reply_markup=SPEAKING_KEYBOARD)
     except Exception as e:
         logger.error(f"TTS error: {e}")
