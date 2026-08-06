@@ -10,7 +10,6 @@ from speaking.services.ai import process_voice_message
 from speaking.services.tts import text_to_voice
 from states.speaking_states import SpeakingStates
 from handlers.voice import convert_to_opus, last_bot_response
-from handlers.start import show_main_menu
 
 logger = logging.getLogger(__name__)
 router = Router()
@@ -63,7 +62,6 @@ async def close_speaking_on_exit(handler, event, data):
     if hasattr(event, 'text') and isinstance(event.text, str) and event.text.startswith('/'):
         is_speaking_related = False
     elif hasattr(event, 'data') and isinstance(event.data, str):
-        # Разрешаем все speaking_*, continue_speaking, start_speaking, show_text
         if event.data.startswith("speaking_") or event.data in ("continue_speaking", "start_speaking", "show_text"):
             is_speaking_related = True
         else:
@@ -126,10 +124,6 @@ async def select_voice(callback: CallbackQuery, state: FSMContext):
         used_greetings[user_id] = []
         available = GREETINGS
     first_message = random.choice(available)
-    # Минимальная проверка на пустую строку (чтобы избежать ошибки TTS)
-    if not first_message or not first_message.strip():
-        first_message = "Let's start!"
-        logger.warning(f"Пустое приветствие заменено на 'Let's start!' для user {user_id}")
     used_greetings[user_id].append(first_message)
     voice_id = WOMAN_VOICE_ID if voice == "woman" else MAN_VOICE_ID
     try:
@@ -222,6 +216,7 @@ async def exit_speaking(message: Message, state: FSMContext, data: dict):
     user_state["mode"] = ""
     set_user_state(user_id, user_state)
     await state.clear()
+    from handlers.start import show_main_menu
     await show_main_menu(message, edit=False)
     data["skip_exit_message"] = True
 
@@ -246,6 +241,7 @@ async def back_to_main_from_feedback(callback: CallbackQuery, state: FSMContext,
     user_state["mode"] = ""
     set_user_state(user_id, user_state)
     await state.clear()
+    from handlers.start import show_main_menu
     await show_main_menu(callback.message, edit=False)
     data["skip_exit_message"] = True
 
@@ -290,7 +286,7 @@ async def continue_speaking(callback: CallbackQuery, state: FSMContext):
         logger.error(f"TTS error: {e}")
         await callback.message.answer(first_message, reply_markup=SPEAKING_KEYBOARD)
 
-# ----- ОБРАБОТЧИК ДЛЯ КНОПКИ "Текст" (чтобы не закрывался диалог) -----
+# ----- ОБРАБОТЧИК ДЛЯ КНОПКИ "Текст" -----
 @router.callback_query(lambda c: c.data.startswith("show_text_"))
 async def show_text(callback: CallbackQuery, data: dict):
     user_id = int(callback.data.split("_")[2])
@@ -298,7 +294,5 @@ async def show_text(callback: CallbackQuery, data: dict):
     if not bot_response or not bot_response.get("text"):
         await callback.answer("Нет текста.", show_alert=True)
         return
-    # Показываем текст, но не закрываем диалог
     await callback.answer(bot_response["text"], show_alert=True)
-    # Устанавливаем флаг, чтобы middleware не закрывал диалог
     data["skip_exit_message"] = True
