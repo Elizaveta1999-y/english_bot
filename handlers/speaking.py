@@ -148,7 +148,7 @@ async def select_voice(callback: CallbackQuery, state: FSMContext):
             set_user_state(user_id, user_state)
             os.unlink(voice_path)
             os.unlink(ogg_path)
-            # Замена пробела на ENCOURAGE_TEXT
+            # ЗАМЕНА: пробел на ENCOURAGE_TEXT
             await callback.message.answer(ENCOURAGE_TEXT, reply_markup=SPEAKING_KEYBOARD)
         else:
             await callback.message.answer(first_message, reply_markup=SPEAKING_KEYBOARD)
@@ -215,12 +215,12 @@ async def exit_speaking(message: Message, state: FSMContext, data: dict):
 @router.message(SpeakingStates.waiting_for_voice, F.text)
 async def handle_speaking_text(message: Message, state: FSMContext, data: dict):
     await message.answer("Запишите и отправьте голосовое сообщение.")
-    data["skip_exit_message"] = True
+    data["skip_exit_message"] = True  # <-- ДОБАВЛЕНО
 
 @router.message(SpeakingStates.waiting_for_voice, F.photo | F.video | F.video_note | F.animation | F.document | F.sticker)
 async def handle_media_in_speaking(message: Message, state: FSMContext, data: dict):
     await message.answer("Запишите и отправьте голосовое сообщение.")
-    data["skip_exit_message"] = True
+    data["skip_exit_message"] = True  # <-- ДОБАВЛЕНО
 
 @router.callback_query(F.data == "back_to_main")
 async def back_to_main_from_feedback(callback: CallbackQuery, state: FSMContext, data: dict):
@@ -269,7 +269,7 @@ async def continue_speaking(callback: CallbackQuery, state: FSMContext):
             set_user_state(user_id, user_state)
             os.unlink(voice_path)
             os.unlink(ogg_path)
-            # Замена пробела на ENCOURAGE_TEXT
+            # ЗАМЕНА: пробел на ENCOURAGE_TEXT
             await callback.message.answer(ENCOURAGE_TEXT, reply_markup=SPEAKING_KEYBOARD)
         else:
             await callback.message.answer(first_message, reply_markup=SPEAKING_KEYBOARD)
