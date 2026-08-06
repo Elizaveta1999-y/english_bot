@@ -82,10 +82,10 @@ async def handle_voice(message: Message, state: FSMContext):
             except Exception as e:
                 logger.warning(f"Не удалось поставить реакцию: {e}")
 
-        # ============ ВОССТАНОВЛЕНА ОТПРАВКА CORRECTION_TEXT ============
+        # ============ ОТПРАВКА CORRECTION_TEXT ============
         if correction_text:
             await message.answer(correction_text, parse_mode="HTML")
-        # ===============================================================
+        # =================================================
 
         await bot.send_chat_action(chat_id=chat_id, action="record_voice")
         voice_pref = user_state.get("speaking_voice", "woman")
@@ -115,7 +115,7 @@ async def handle_voice(message: Message, state: FSMContext):
                 return
             except Exception as e:
                 logger.error(f"Audio error: {e}")
-        # Если TTS упал – отправляем только текст, но коррекция уже отправлена
+        # Если TTS упал – отправляем текст как запасной вариант
         await message.answer(reply_text)
         await state.set_state(SpeakingStates.waiting_for_voice)
         return
@@ -243,9 +243,3 @@ async def handle_voice(message: Message, state: FSMContext):
         except Exception as e:
             logger.error(f"Audio error: {e}")
     await message.answer(ai_response)
-
-@router.callback_query(lambda c: c.data.startswith("show_text_"))
-async def show_text(callback: CallbackQuery):
-    # Этот обработчик оставлен для совместимости, но в speaking.py есть более полная версия.
-    # Он может быть переопределён в speaking.py, поэтому здесь он не используется.
-    pass
