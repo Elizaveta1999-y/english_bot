@@ -115,12 +115,11 @@ async def handle_voice(message: Message, state: FSMContext):
                 return
             except Exception as e:
                 logger.error(f"Audio error: {e}")
-        # fallback – если TTS не сработал, отправляем текст
         await message.answer(reply_text)
         await state.set_state(SpeakingStates.waiting_for_voice)
         return
 
-    # Остальная логика (для других режимов – не Speaking)
+    # --- Другие режимы ---
     file = await bot.get_file(message.voice.file_id)
     file_bytes = await bot.download_file(file.file_path)
     user_text = await voice_to_text(file_bytes.read())
