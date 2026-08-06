@@ -67,12 +67,13 @@ async def close_speaking_on_exit(handler, event, data):
         else:
             is_speaking_related = False
     elif hasattr(event, 'text') and isinstance(event.text, str):
-        if event.text in ("📊 Я всё! Фидбек", "🏠 Главное меню"):
-            is_speaking_related = False if event.text == "🏠 Главное меню" else True
-        else:
+        if event.text == "🏠 Главное меню":
             is_speaking_related = False
+        else:
+            # Все остальные тексты (включая "Фидбек" и сообщения пользователя) НЕ закрывают диалог
+            is_speaking_related = True
     else:
-        is_speaking_related = False
+        is_speaking_related = True
 
     if not is_speaking_related:
         result = await handler(event, data)
@@ -156,7 +157,7 @@ async def select_voice(callback: CallbackQuery, state: FSMContext):
         await callback.message.answer(first_message, reply_markup=SPEAKING_KEYBOARD)
 
 @router.message(F.text == "📊 Я всё! Фидбек")
-async def show_feedback(message: Message, state: FSMContext, data: dict):
+async def show_feedback(message: Message, state: FSMContext):
     logger.info(f"📊 Фидбек нажат, user={message.from_user.id}")
     user_id = message.from_user.id
     user_state = get_user_state(user_id)
@@ -164,7 +165,6 @@ async def show_feedback(message: Message, state: FSMContext, data: dict):
     
     user_messages = [msg for msg in history if msg.get('role') == 'user']
     if len(user_messages) < 3:
-        data["skip_exit_message"] = True
         await message.answer("Для получения фидбека, запишите несколько голосовых сообщений.")
         return
 
@@ -193,13 +193,9 @@ async def show_feedback(message: Message, state: FSMContext, data: dict):
         [InlineKeyboardButton(text="🏠 Главное меню", callback_data="back_to_main")]
     ])
     await message.answer(f"📊 Фидбек по вашему диалогу:\n\n{feedback}", reply_markup=keyboard, parse_mode="HTML")
-    data["skip_exit_message"] = True
-    user_state["mode"] = ""
-    set_user_state(user_id, user_state)
-    await state.clear()
 
 @router.message(F.text == "🏠 Главное меню")
-async def exit_speaking(message: Message, state: FSMContext, data: dict):
+async def exit_speaking(message: Message, state: FSMContext):
     logger.info(f"🏠 Главное меню нажато, user={message.from_user.id}")
     user_id = message.from_user.id
     user_state = get_user_state(user_id)
@@ -207,22 +203,19 @@ async def exit_speaking(message: Message, state: FSMContext, data: dict):
     set_user_state(user_id, user_state)
     await state.clear()
     await message.answer("Диалог завершен..🏁", reply_markup=ReplyKeyboardRemove())
-    data["skip_exit_message"] = True
     from handlers.start import show_main_menu
     await show_main_menu(message, edit=False)
 
 @router.message(SpeakingStates.waiting_for_voice, F.text)
-async def handle_speaking_text(message: Message, state: FSMContext, data: dict):
+async def handle_speaking_text(message: Message, state: FSMContext):
     await message.answer("Запишите и отправьте голосовое сообщение.")
-    data["skip_exit_message"] = True
 
 @router.message(SpeakingStates.waiting_for_voice, F.photo | F.video | F.video_note | F.animation | F.document | F.sticker)
-async def handle_media_in_speaking(message: Message, state: FSMContext, data: dict):
+async def handle_media_in_speaking(message: Message, state: FSMContext):
     await message.answer("Запишите и отправьте голосовое сообщение.")
-    data["skip_exit_message"] = True
 
 @router.callback_query(F.data == "back_to_main")
-async def back_to_main_from_feedback(callback: CallbackQuery, state: FSMContext, data: dict):
+async def back_to_main_from_feedback(callback: CallbackQuery, state: FSMContext):
     await callback.answer()
     user_id = callback.from_user.id
     user_state = get_user_state(user_id)
@@ -230,7 +223,6 @@ async def back_to_main_from_feedback(callback: CallbackQuery, state: FSMContext,
     set_user_state(user_id, user_state)
     await state.clear()
     await callback.message.answer("Диалог завершен..🏁", reply_markup=ReplyKeyboardRemove())
-    data["skip_exit_message"] = True
     from handlers.start import show_main_menu
     await show_main_menu(callback.message, edit=False)
 
