@@ -67,8 +67,10 @@ async def close_speaking_on_exit(handler, event, data):
             is_speaking_related = False
     elif hasattr(event, 'text') and isinstance(event.text, str):
         if event.text == "📊 Я всё! Фидбек":
+            # Фидбек НЕ закрывает диалог
             is_speaking_related = True
         elif event.text == "🏠 Главное меню":
+            # Главное меню закрывает диалог
             is_speaking_related = False
         else:
             is_speaking_related = False
@@ -149,14 +151,14 @@ async def select_voice(callback: CallbackQuery, state: FSMContext):
             set_user_state(user_id, user_state)
             os.unlink(voice_path)
             os.unlink(ogg_path)
-            # Отправляем только клавиатуру (без текста)
+            # Отправляем только клавиатуру, без текста
             await callback.message.answer(" ", reply_markup=SPEAKING_KEYBOARD)
         else:
-            # Если TTS не сработал – не отправляем текст приветствия, только клавиатуру
+            # Если TTS не сработал, отправляем только клавиатуру
             await callback.message.answer(" ", reply_markup=SPEAKING_KEYBOARD)
     except Exception as e:
         logger.error(f"TTS error: {e}")
-        # При ошибке TTS – только клавиатура, без текста
+        # При ошибке TTS – только клавиатура
         await callback.message.answer(" ", reply_markup=SPEAKING_KEYBOARD)
 
 # ----- КНОПКА ФИДБЕК -----
@@ -268,7 +270,7 @@ async def continue_speaking(callback: CallbackQuery, state: FSMContext):
             os.unlink(ogg_path)
             await callback.message.answer(" ", reply_markup=SPEAKING_KEYBOARD)
         else:
-            # Не отправляем текст приветствия
+            # Если TTS не сработал, только клавиатура
             await callback.message.answer(" ", reply_markup=SPEAKING_KEYBOARD)
     except Exception as e:
         logger.error(f"TTS error: {e}")
