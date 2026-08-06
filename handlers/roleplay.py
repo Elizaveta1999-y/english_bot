@@ -11,23 +11,23 @@ from speaking.services.ai import process_roleplay_message
 logger = logging.getLogger(__name__)
 router = Router()
 
-# ---------- Состояния для ролевой игры ----------
 class RoleplayStates(StatesGroup):
     active = State()
 
-# ---------- НОВЫЕ КАТЕГОРИИ (ключи на английском, отображение на русском) ----------
+# ---------- КАТЕГОРИИ (только названия на английском) ----------
 CATEGORIES = [
-    ("💼 Работа и бизнес", "work"),
-    ("✈️ Путешествия", "travel"),
-    ("🏠 Бытовые дела", "daily"),
-    ("💪 Здоровье и фитнес", "health"),
-    ("👨‍👩‍👧 Семья и дом", "family"),
-    ("📱 Технологии", "tech"),
-    ("💅 Бьюти‑рутина", "beauty"),
-    ("🛍️ Покупки и рестораны", "shopping")
+    ("💼 Work & Business", "work"),
+    ("✈️ Travel", "travel"),
+    ("🏠 Daily Life", "daily"),
+    ("💪 Health & Fitness", "health"),
+    ("👨‍👩‍👧 Family & Home", "family"),
+    ("📱 Technology", "tech"),
+    ("💅 Beauty Routine", "beauty"),
+    ("🛍️ Shopping & Dining", "shopping"),
+    ("🗣️ Small Talk", "small_talk")
 ]
 
-# ---------- ТЕМЫ ДЛЯ КАЖДОЙ КАТЕГОРИИ (с целями пользователя) ----------
+# ---------- ТЕМЫ (всё на русском) ----------
 TOPICS = {
     "work": [
         {
@@ -289,34 +289,57 @@ TOPICS = {
             "description": "Вы в ресторане, просите сомелье подобрать вино к мясному блюду.",
             "goals": ["Опишите своё блюдо", "Спросите рекомендации", "Выберите подходящее вино"]
         }
+    ],
+    "small_talk": [
+        {
+            "name": "Small Talk с коллегой у кулера",
+            "description": "Вы встречаете коллегу в комнате отдыха и непринуждённо болтаете о выходных или погоде.",
+            "goals": ["Начните лёгкий разговор", "Спросите о планах на выходные", "Расскажите что-то о себе"]
+        },
+        {
+            "name": "Разговор с другим родителем на детской площадке",
+            "description": "Вы начинаете беседу с незнакомым родителем, пока дети играют.",
+            "goals": ["Представьтесь", "Поговорите о детях", "Обсудите район или предстоящие события"]
+        },
+        {
+            "name": "Неформальная беседа перед собеседованием",
+            "description": "Вы пришли на собеседование, и рекрутер предлагает кофе и заводит лёгкий разговор.",
+            "goals": ["Вежливо ответьте о дороге", "Прокомментируйте погоду или офис", "Произведите хорошее первое впечатление"]
+        },
+        {
+            "name": "Разговор с соседом в лифте",
+            "description": "Вы встречаете соседа в лифте и обмениваетесь парой слов о доме или новостях.",
+            "goals": ["Тепло поприветствуйте", "Скажите что-то нейтральное (ремонт, погода)", "Завершите разговор естественно"]
+        },
+        {
+            "name": "На вечеринке – знакомство с новыми людьми",
+            "description": "Вы на вечеринке и хотите начать разговор с незнакомым человеком.",
+            "goals": ["Представьтесь", "Спросите, как они связаны с хозяином", "Найдите общие интересы"]
+        }
     ]
 }
 
-# ---------- УДАЛЯЕМ ВСЁ, СВЯЗАННОЕ С "ПРИДУМАТЬ СВОЙ СЦЕНАРИЙ" ----------
-
+# ---------- ВХОД В РОЛЕВУЮ ИГРУ ----------
 @router.callback_query(F.data == "start_roleplay")
 async def start_roleplay(callback: CallbackQuery):
-    # Убрали кнопку "Придумать свой сценарий"
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(text=cat[0], callback_data=f"cat_{cat[1]}")] for cat in CATEGORIES
     ])
     await callback.message.answer(
-        "🎭 <b>Выберите категорию</b> для ролевой игры.\n\nБот будет играть роль по сценарию. Вы можете говорить голосом или писать текстом.",
-        reply_markup=keyboard, parse_mode="HTML"
+        "🎭 Выберите категорию для ролевой игры:",
+        reply_markup=keyboard
     )
     await callback.answer()
 
-# ---------- ПАГИНАЦИЯ ДЛЯ ТЕМ (счетчик и стрелки) ----------
-# Для хранения текущей страницы можно использовать callback_data с номером страницы.
+# ---------- ПОКАЗ ТЕМ С ПАГИНАЦИЕЙ ----------
 @router.callback_query(F.data.startswith("cat_"))
 async def show_topics(callback: CallbackQuery, page: int = 0):
-    cat_id = callback.data[4:]  # убираем "cat_"
+    cat_id = callback.data[4:]
     topics_list = TOPICS.get(cat_id, [])
     if not topics_list:
-        await callback.answer("Нет тем в этой категории", show_alert=True)
+        await callback.answer("В этой категории нет тем", show_alert=True)
         return
 
-    # Настройки пагинации
     ITEMS_PER_PAGE = 4
     total = len(topics_list)
     total_pages = (total + ITEMS_PER_PAGE - 1) // ITEMS_PER_PAGE
@@ -329,16 +352,13 @@ async def show_topics(callback: CallbackQuery, page: int = 0):
     end = min(start + ITEMS_PER_PAGE, total)
     page_topics = topics_list[start:end]
 
-    # Кнопки тем
     buttons = []
     for idx, topic_info in enumerate(page_topics, start=start):
-        # callback_data будет содержать cat_id, индекс темы и номер страницы (чтобы вернуться)
         buttons.append([InlineKeyboardButton(
             text=topic_info["name"],
             callback_data=f"topic_{cat_id}_{idx}_{page}"
         )])
 
-    # Кнопки навигации
     nav_buttons = []
     if page > 0:
         nav_buttons.append(InlineKeyboardButton(text="◀️", callback_data=f"cat_page_{cat_id}_{page-1}"))
@@ -351,8 +371,7 @@ async def show_topics(callback: CallbackQuery, page: int = 0):
         nav_buttons.append(InlineKeyboardButton(text=" ", callback_data="noop"))
     buttons.append(nav_buttons)
 
-    # Кнопка "Назад"
-    buttons.append([InlineKeyboardButton(text="🔙 Назад к категориям", callback_data="back_to_categories")])
+    buttons.append([InlineKeyboardButton(text="🔙 Назад к категориям", callback_data="back_to_rp_categories")])
 
     topics_keyboard = InlineKeyboardMarkup(inline_keyboard=buttons)
     cat_display = next((c[0] for c in CATEGORIES if c[1] == cat_id), cat_id)
@@ -363,7 +382,6 @@ async def show_topics(callback: CallbackQuery, page: int = 0):
     )
     await callback.answer()
 
-# Обработчик нажатия на стрелки (переключение страниц)
 @router.callback_query(F.data.startswith("cat_page_"))
 async def change_topic_page(callback: CallbackQuery):
     parts = callback.data.split("_")
@@ -374,7 +392,6 @@ async def change_topic_page(callback: CallbackQuery):
     page = int(parts[3])
     await show_topics(callback, page=page)
 
-# Заглушка для неактивных кнопок (счетчик, пустые стрелки)
 @router.callback_query(F.data == "noop")
 async def noop(callback: CallbackQuery):
     await callback.answer("")
@@ -382,14 +399,12 @@ async def noop(callback: CallbackQuery):
 # ---------- ВЫБОР КОНКРЕТНОЙ ТЕМЫ ----------
 @router.callback_query(F.data.startswith("topic_"))
 async def topic_chosen(callback: CallbackQuery, state: FSMContext):
-    # формат: topic_{cat_id}_{idx}_{page}
     parts = callback.data.split("_")
     if len(parts) < 3:
         await callback.answer("Ошибка", show_alert=True)
         return
     cat_id = parts[1]
     idx = int(parts[2])
-    # page не используем, но он есть
 
     topics_list = TOPICS.get(cat_id, [])
     if idx >= len(topics_list):
@@ -402,7 +417,6 @@ async def topic_chosen(callback: CallbackQuery, state: FSMContext):
 
     user_id = callback.from_user.id
 
-    # Сохраняем состояние
     set_user_state(user_id, {
         "mode": "roleplay_active",
         "history": [],
@@ -434,19 +448,28 @@ async def topic_chosen(callback: CallbackQuery, state: FSMContext):
     await callback.message.edit_text(roleplay_info, parse_mode="HTML")
     await callback.message.answer("🎬 <b>Можете начинать!</b>", reply_markup=keyboard, parse_mode="HTML")
 
-# ---------- Обработчик текстовых сообщений в активной ролевой игре ----------
+# ---------- ВОЗВРАТ К КАТЕГОРИЯМ ----------
+@router.callback_query(F.data == "back_to_rp_categories")
+async def back_to_rp_categories(callback: CallbackQuery, state: FSMContext):
+    await state.clear()
+    keyboard = InlineKeyboardMarkup(inline_keyboard=[
+        [InlineKeyboardButton(text=cat[0], callback_data=f"cat_{cat[1]}")] for cat in CATEGORIES
+    ])
+    await callback.message.edit_text(
+        "🎭 Выберите категорию для ролевой игры:",
+        reply_markup=keyboard
+    )
+    await callback.answer()
+
+# ---------- ОБРАБОТЧИК ТЕКСТОВЫХ СООБЩЕНИЙ В АКТИВНОЙ ИГРЕ ----------
 @router.message(RoleplayStates.active, F.text)
 async def handle_roleplay_text(message: Message, state: FSMContext):
     user_id = message.from_user.id
     user_state = get_user_state(user_id)
-
-    # Если мы в режиме ожидания кастомного сценария — такого больше нет, удалили.
-    # Проверяем, что режим активен
     if user_state.get("mode") != "roleplay_active":
         return
 
     user_text = message.text
-
     try:
         ai_response = await process_roleplay_message(user_id, user_text)
     except Exception as e:
@@ -454,7 +477,6 @@ async def handle_roleplay_text(message: Message, state: FSMContext):
         await message.answer("Произошла ошибка. Попробуйте ещё раз.")
         return
 
-    # Сохраняем историю
     history = user_state.get("history", [])
     history.append({"role": "user", "text": user_text})
     history.append({"role": "assistant", "text": ai_response})
@@ -465,7 +487,7 @@ async def handle_roleplay_text(message: Message, state: FSMContext):
 
     await message.answer(ai_response)
 
-# ---------- Кнопка "💡 Что ответить?" ----------
+# ---------- КНОПКА "💡 Что ответить?" ----------
 @router.message(RoleplayStates.active, F.text == "💡 Что ответить?")
 async def give_hint(message: Message, state: FSMContext):
     user_id = message.from_user.id
@@ -489,7 +511,7 @@ async def give_hint(message: Message, state: FSMContext):
         return
     await message.answer(f"💡 <b>Идеи для ответа:</b>\n\n{hint}", parse_mode="HTML")
 
-# ---------- Кнопка "🏠 Главное меню" ----------
+# ---------- КНОПКА "🏠 Главное меню" ----------
 @router.message(RoleplayStates.active, F.text == "🏠 Главное меню")
 async def exit_to_main_menu(message: Message, state: FSMContext):
     user_id = message.from_user.id
@@ -501,7 +523,7 @@ async def exit_to_main_menu(message: Message, state: FSMContext):
     from handlers.start import show_main_menu
     await show_main_menu(message, edit=False)
 
-# ---------- Кнопка "📊 Завершить диалог" ----------
+# ---------- КНОПКА "📊 Завершить диалог" ----------
 @router.message(RoleplayStates.active, F.text == "📊 Завершить диалог")
 async def finish_roleplay(message: Message, state: FSMContext):
     user_id = message.from_user.id
@@ -539,28 +561,3 @@ async def finish_roleplay(message: Message, state: FSMContext):
     ])
     await message.answer(f"📊 <b>Фидбек по диалогу:</b>\n\n{feedback}", reply_markup=keyboard, parse_mode="HTML")
     await message.answer("Ролевая игра завершена.", reply_markup=ReplyKeyboardRemove())
-
-# ---------- Кнопка "Назад к категориям" (из меню тем) ----------
-@router.callback_query(F.data == "back_to_categories")
-async def back_to_categories(callback: CallbackQuery, state: FSMContext):
-    await state.clear()
-    keyboard = InlineKeyboardMarkup(inline_keyboard=[
-        [InlineKeyboardButton(text=cat[0], callback_data=f"cat_{cat[1]}")] for cat in CATEGORIES
-    ])
-    await callback.message.edit_text(
-        "🎭 <b>Выберите категорию</b> для ролевой игры.\n\nБот будет играть роль по сценарию.",
-        reply_markup=keyboard,
-        parse_mode="HTML"
-    )
-    await callback.answer()
-
-# ---------- Вспомогательная функция для клавиатуры (не используется, но оставляем) ----------
-async def show_roleplay_keyboard(message: Message):
-    keyboard = ReplyKeyboardMarkup(
-        keyboard=[
-            [KeyboardButton(text="💡 Что ответить?"), KeyboardButton(text="🏠 Главное меню")],
-            [KeyboardButton(text="📊 Завершить диалог")]
-        ],
-        resize_keyboard=True
-    )
-    await message.answer("Доступные действия:", reply_markup=keyboard)
