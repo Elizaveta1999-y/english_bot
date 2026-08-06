@@ -120,7 +120,7 @@ async def handle_voice(message: Message, state: FSMContext):
         await state.set_state(SpeakingStates.waiting_for_voice)
         return
 
-    # ----- ЛОГИКА ДЛЯ ДРУГИХ РЕЖИМОВ (не Speaking) -----
+    # Остальная логика (для других режимов – не Speaking)
     file = await bot.get_file(message.voice.file_id)
     file_bytes = await bot.download_file(file.file_path)
     user_text = await voice_to_text(file_bytes.read())
