@@ -17,7 +17,6 @@ router = Router()
 WOMAN_VOICE_ID = "8quEMRkSpwEaWBzHvTLv"
 MAN_VOICE_ID = "3TStB8f3X3To0Uj5R7RK"
 
-# УДАЛЕНА СТРОКА "Hello! I'm your English tutor."
 GREETINGS = [
     "Hey! Ready to practice?",
     "Hi there! Let's start.",
@@ -40,7 +39,6 @@ SPEAKING_KEYBOARD = ReplyKeyboardMarkup(
     resize_keyboard=True
 )
 
-# ============ ГЛОБАЛЬНЫЙ MIDDLEWARE (изменено условие для кнопки "Фидбек") ============
 async def close_speaking_on_exit(handler, event, data):
     user_id = None
     if hasattr(event, 'from_user'):
@@ -67,7 +65,6 @@ async def close_speaking_on_exit(handler, event, data):
         else:
             is_speaking_related = False
     elif hasattr(event, 'text') and isinstance(event.text, str):
-        # Кнопка "Фидбек" теперь считается связанной со Speaking, чтобы не закрывать диалог автоматически
         if event.text in ("📊 Я всё! Фидбек", "🏠 Главное меню"):
             is_speaking_related = False if event.text == "🏠 Главное меню" else True
         else:
@@ -94,7 +91,6 @@ async def close_speaking_on_exit(handler, event, data):
 
     return await handler(event, data)
 
-# ============ ХЕНДЛЕРЫ ============
 @router.callback_query(F.data == "start_speaking")
 async def start_speaking(callback: CallbackQuery, state: FSMContext):
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
@@ -149,14 +145,16 @@ async def select_voice(callback: CallbackQuery, state: FSMContext):
             set_user_state(user_id, user_state)
             os.unlink(voice_path)
             os.unlink(ogg_path)
+            # Только клавиатура, без текста
             await callback.message.answer(" ", reply_markup=SPEAKING_KEYBOARD)
         else:
-            await callback.message.answer(first_message, reply_markup=SPEAKING_KEYBOARD)
+            # Только клавиатура, без текста (убрано дублирование)
+            await callback.message.answer(" ", reply_markup=SPEAKING_KEYBOARD)
     except Exception as e:
         logger.error(f"TTS error: {e}")
-        await callback.message.answer(first_message, reply_markup=SPEAKING_KEYBOARD)
+        # Только клавиатура, без текста (убрано дублирование)
+        await callback.message.answer(" ", reply_markup=SPEAKING_KEYBOARD)
 
-# ----- КНОПКА ФИДБЕК (без автоматического закрытия диалога) -----
 @router.message(F.text == "📊 Я всё! Фидбек")
 async def show_feedback(message: Message, state: FSMContext):
     logger.info(f"📊 Фидбек нажат, user={message.from_user.id}")
@@ -166,7 +164,6 @@ async def show_feedback(message: Message, state: FSMContext):
     
     user_messages = [msg for msg in history if msg.get('role') == 'user']
     if len(user_messages) < 3:
-        # Просто отправляем сообщение, не закрывая режим
         await message.answer("Для получения фидбека, запишите несколько голосовых сообщений.")
         return
 
@@ -196,7 +193,6 @@ async def show_feedback(message: Message, state: FSMContext):
     ])
     await message.answer(f"📊 Фидбек по вашему диалогу:\n\n{feedback}", reply_markup=keyboard, parse_mode="HTML")
 
-# ----- КНОПКА ГЛАВНОЕ МЕНЮ -----
 @router.message(F.text == "🏠 Главное меню")
 async def exit_speaking(message: Message, state: FSMContext):
     logger.info(f"🏠 Главное меню нажато, user={message.from_user.id}")
@@ -208,17 +204,14 @@ async def exit_speaking(message: Message, state: FSMContext):
     from handlers.start import show_main_menu
     await show_main_menu(message, edit=False)
 
-# ----- ОБРАБОТКА ТЕКСТА (не кнопки) в режиме Speaking -----
 @router.message(SpeakingStates.waiting_for_voice, F.text)
 async def handle_speaking_text(message: Message, state: FSMContext):
     await message.answer("Запишите и отправьте голосовое сообщение.")
 
-# ----- ОБРАБОТКА ФОТО, ВИДЕО, КРУЖКОВ и других медиа в режиме Speaking -----
 @router.message(SpeakingStates.waiting_for_voice, F.photo | F.video | F.video_note | F.animation | F.document | F.sticker)
 async def handle_media_in_speaking(message: Message, state: FSMContext):
     await message.answer("Запишите и отправьте голосовое сообщение.")
 
-# ----- КОЛБЭКИ -----
 @router.callback_query(F.data == "back_to_main")
 async def back_to_main_from_feedback(callback: CallbackQuery, state: FSMContext):
     await callback.answer()
@@ -264,14 +257,16 @@ async def continue_speaking(callback: CallbackQuery, state: FSMContext):
             set_user_state(user_id, user_state)
             os.unlink(voice_path)
             os.unlink(ogg_path)
+            # Только клавиатура, без текста
             await callback.message.answer(" ", reply_markup=SPEAKING_KEYBOARD)
         else:
-            await callback.message.answer(first_message, reply_markup=SPEAKING_KEYBOARD)
+            # Только клавиатура, без текста
+            await callback.message.answer(" ", reply_markup=SPEAKING_KEYBOARD)
     except Exception as e:
         logger.error(f"TTS error: {e}")
-        await callback.message.answer(first_message, reply_markup=SPEAKING_KEYBOARD)
+        # Только клавиатура, без текста
+        await callback.message.answer(" ", reply_markup=SPEAKING_KEYBOARD)
 
-# ----- ОБРАБОТЧИК ДЛЯ КНОПКИ "Текст" -----
 @router.callback_query(lambda c: c.data.startswith("show_text_"))
 async def show_text(callback: CallbackQuery):
     user_id = int(callback.data.split("_")[2])
