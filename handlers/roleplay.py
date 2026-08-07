@@ -1795,13 +1795,13 @@ async def finish_roleplay(message: Message, state: FSMContext):
     # Проверяем, достигнуты ли цели
     if goals:
         # ИСПРАВЛЕННАЯ СТРОКА (внешние кавычки одинарные)
-        check_prompt = (
-            "Analyze the dialogue and determine if the user has achieved all the goals. "
-            "Answer only 'Yes' or 'No'.\n\n"
-            f"User's goals:\n{chr(10).join(goals)}\n\n"
-            chr(10).join([f'{m["role"]}: {m["text"]}' for m in history])
-            "Has the user achieved all goals? Answer only 'Yes' or 'No'."
-        )
+check_prompt = (
+    "Analyze the dialogue and determine if the user has achieved all the goals. "
+    "Answer only 'Yes' or 'No'.\n\n"
+    f"User's goals:\n{chr(10).join(goals)}\n\n"
+    "Dialogue:\n" + chr(10).join([f'{m["role"]}: {m["text"]}' for m in history]) + "\n\n"
+    "Has the user achieved all goals? Answer only 'Yes' or 'No'."
+)
         try:
             check_response = await chat([{"role": "user", "content": check_prompt}], max_tokens=10, temperature=0)
             goals_achieved = "yes" in check_response.lower()
