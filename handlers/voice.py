@@ -122,7 +122,7 @@ async def handle_voice(message: Message, state: FSMContext):
                 return
             except Exception as e:
                 logger.error(f"Audio error: {e}")
-        # fallback
+        # fallback: отправляем текст отдельно (но last_bot_response уже сохранён)
         await message.answer(reply_text)
         await state.set_state(SpeakingStates.waiting_for_voice)
         return
@@ -290,7 +290,4 @@ async def handle_voice(message: Message, state: FSMContext):
             logger.error(f"Audio error: {e}")
     await message.answer(ai_response)
 
-# ============ УДАЛЁН ПУСТОЙ ОБРАБОТЧИК show_text ============
-# Раньше здесь был @router.callback_query(lambda c: c.data.startswith("show_text_")) с pass,
-# который перехватывал callback и не давал отработать обработчику в speaking.py.
-# Теперь он удалён.
+# ============ В voice.py НЕТ обработчика show_text – он будет в speaking.py ============
