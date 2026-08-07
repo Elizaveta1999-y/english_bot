@@ -69,7 +69,7 @@ async def handle_voice(message: Message, state: FSMContext):
         speaking_history = user_state.get("speaking_history", [])
         reply_text, correction_text, is_perfect = await process_voice_message(user_id, user_text, speaking_history)
 
-        # Сохраняем текст ДО TTS, чтобы кнопка "Текст" могла его использовать
+        # ===== ГАРАНТИРОВАННОЕ СОХРАНЕНИЕ ТЕКСТА ДЛЯ КНОПКИ "Текст" =====
         last_bot_response[user_id] = {
             "text": reply_text,
             "translation": None,
@@ -77,6 +77,7 @@ async def handle_voice(message: Message, state: FSMContext):
             "chat_id": chat_id,
             "message_id": None
         }
+        logger.info(f"📝 Сохранён текст для user {user_id}: {reply_text[:50]}...")
 
         # Обновляем историю
         speaking_history.append({"role": "user", "text": user_text})
@@ -127,7 +128,7 @@ async def handle_voice(message: Message, state: FSMContext):
         await state.set_state(SpeakingStates.waiting_for_voice)
         return
 
-    # ========== ОСТАЛЬНЫЕ РЕЖИМЫ ==========
+    # ========== ОСТАЛЬНЫЕ РЕЖИМЫ (без изменений) ==========
     file = await bot.get_file(message.voice.file_id)
     file_bytes = await bot.download_file(file.file_path)
     user_text = await voice_to_text(file_bytes.read())
