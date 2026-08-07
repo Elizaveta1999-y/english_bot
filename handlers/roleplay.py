@@ -1,12 +1,12 @@
 import re
 import logging
 from aiogram import Router, F
-from aiogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery, ReplyKeyboardMarkup, KeyboardButton, ReplyKeyboardRemove
+from aiogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery, ReplyKeyboardMarkup, KeyboardButton, ReplyKeyboardRemove, Voice, Audio
 from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import State, StatesGroup
 from data.users import get_user_state, set_user_state
 from services.deepseek import chat
-from speaking.services.ai import process_roleplay_message
+from speaking.services.ai import process_roleplay_message, transcribe_audio
 
 logger = logging.getLogger(__name__)
 router = Router()
@@ -14,7 +14,7 @@ router = Router()
 class RoleplayStates(StatesGroup):
     active = State()
 
-# ---------- КАТЕГОРИИ (переименованы и исправлены смайлики) ----------
+# ---------- КАТЕГОРИИ (переименованы) ----------
 CATEGORIES = [
     ("💼 Work & Business", "work"),
     ("✈️ Travel", "travel"),
@@ -25,20 +25,20 @@ CATEGORIES = [
     ("💅 Beauty Routine", "beauty"),
     ("🛍️ Shopping & Dining", "shopping"),
     ("🗣️ Small Talk", "small_talk"),
-    ("🎓 Education", "education"),                       # было Education & Learning
+    ("🎓 Education", "education"),
     ("💰 Finance & Banking", "finance"),
     ("🚗 Cars & Transport", "cars"),
-    ("🏡 Real Estate", "realestate"),                   # было Real Estate & Moving
-    ("🎬 Culture", "entertainment"),                    # было Entertainment & Culture
+    ("🏡 Real Estate", "realestate"),
+    ("🎬 Culture", "entertainment"),
     ("🌿 Nature & Outdoors", "nature"),
-    ("🧠 Psychology", "psychology"),                    # было Psychology & Self-Development
-    ("🆘 Emergency", "emergency"),                      # было Emergency & Safety
+    ("🧠 Psychology", "psychology"),
+    ("🆘 Emergency", "emergency"),
     ("🍳 Cooking & Recipes", "cooking"),
-    ("💅🏽 Fashion & Style", "fashion"),                # смайлик заменён
-    ("📰 News & Current Events", "news")
+    ("💅🏽 Fashion & Style", "fashion"),
+    ("📰 News", "news")
 ]
 
-# ---------- ТЕМЫ (пустые списки – вставьте свои сценарии) ----------
+# ---------- ВСЕ ТЕМЫ (полный список, 20 категорий × 15 тем) ----------
 TOPICS = {
     "work": [
         {
@@ -62,12 +62,12 @@ TOPICS = {
             "goals": ["Изложите свою просьбу", "Приведите доводы в пользу удалёнки", "Предложите пробный период"]
         },
         {
-            "name": "Ежедневное совещание (stand-up)",
+            "name": "Ежедневное совещание",
             "description": "Утреннее собрание команды: вы отчитываетесь о сделанном и планируете задачи на день.",
             "goals": ["Расскажите, что сделали вчера", "Объявите планы на сегодня", "Назовите проблемы, которые мешают работе"]
         },
         {
-            "name": "Годовой обзор эффективности (Performance Review)",
+            "name": "Годовой обзор эффективности",
             "description": "Ваш руководитель подводит итоги года. Вы обсуждаете ваши достижения и зоны роста.",
             "goals": ["Перечислите свои ключевые успехи", "Честно назовите слабые стороны", "Согласуйте цели на следующий год"]
         },
@@ -77,7 +77,7 @@ TOPICS = {
             "goals": ["Изложите своё видение", "Выслушайте аргументы коллеги", "Найдите компромисс"]
         },
         {
-            "name": "Звонок клиенту с предложением нового сервиса",
+            "name": "Звонок клиенту с предложением сервиса",
             "description": "Вы обзваниваете существующих клиентов, чтобы предложить им дополнительный сервис.",
             "goals": ["Представьтесь и напомните о компании", "Опишите преимущества нового сервиса", "Назначьте встречу для обсуждения"]
         },
@@ -1450,7 +1450,7 @@ TOPICS = {
             "goals": ["Спросите о проектах", "Обсудите личный вклад", "Предложите участие"]
         },
         {
-            "name": "Реакция на скандальную новость (разговор)",
+            "name": "Реакция на скандальную новость",
             "description": "Вы обсуждаете с друзьями скандал, который попал в топ новостей.",
             "goals": ["Выразите своё отношение", "Выслушайте других", "Завершите обсуждение"]
         },
@@ -1465,12 +1465,12 @@ TOPICS = {
             "goals": ["Расскажите о последствиях", "Выразите сочувствие", "Обсудите меры безопасности"]
         },
         {
-            "name": "Обсуждение культурных событий (выставка, концерт)",
+            "name": "Обсуждение культурных событий",
             "description": "Вы обсуждаете с друзьями предстоящую выставку или концерт.",
             "goals": ["Расскажите о событии", "Обсудите, стоит ли идти", "Спланируйте поход"]
         },
         {
-            "name": "Разговор о новом законе (гражданские права)",
+            "name": "Разговор о новом законе",
             "description": "Вы обсуждаете с соседом новый закон о тишине.",
             "goals": ["Выскажите мнение", "Узнайте, как это повлияет", "Согласуйте действия"]
         },
@@ -1485,7 +1485,7 @@ TOPICS = {
             "goals": ["Расскажите суть", "Обсудите перспективы", "Поделитесь ссылкой"]
         },
         {
-            "name": "Обсуждение новостей о здоровье (эпидемия)",
+            "name": "Обсуждение новостей о здоровье",
             "description": "Вы обсуждаете с семьёй новости о распространении вируса.",
             "goals": ["Расскажите о мерах", "Обсудите профилактику", "Примите решение о вакцинации"]
         },
@@ -1496,10 +1496,9 @@ TOPICS = {
         }
     ]
 }
-# ---------- СТАРТ РОЛЕВОЙ ИГРЫ (РЕДАКТИРУЕТ ТЕКУЩЕЕ СООБЩЕНИЕ) ----------
-@router.callback_query(F.data == "start_roleplay")
-async def start_roleplay(callback: CallbackQuery):
-    # Формируем кнопки категорий по 2 в ряд
+
+# ---------- ВСПОМОГАТЕЛЬНАЯ ФУНКЦИЯ ДЛЯ КЛАВИАТУРЫ КАТЕГОРИЙ ----------
+def get_categories_keyboard():
     buttons = []
     for i in range(0, len(CATEGORIES), 2):
         row = []
@@ -1510,18 +1509,23 @@ async def start_roleplay(callback: CallbackQuery):
             row.append(InlineKeyboardButton(text=cat2[0], callback_data=f"cat_{cat2[1]}"))
         buttons.append(row)
     buttons.append([InlineKeyboardButton(text="🔙 Назад в главное меню", callback_data="back_to_main_menu")])
-    keyboard = InlineKeyboardMarkup(inline_keyboard=buttons)
+    return InlineKeyboardMarkup(inline_keyboard=buttons)
 
-    # Редактируем текущее сообщение (вместо отправки нового)
-    await callback.message.edit_text("🎭 Выберите категорию для ролевой игры:", reply_markup=keyboard)
+# ---------- СТАРТ РОЛЕВОЙ ИГРЫ (УДАЛЯЕТ СТАРУЮ КЛАВИАТУРУ) ----------
+@router.callback_query(F.data == "start_roleplay")
+async def start_roleplay(callback: CallbackQuery):
+    await callback.message.delete()
+    await callback.message.answer(
+        "🎭 Выберите категорию для ролевой игры:",
+        reply_markup=get_categories_keyboard()
+    )
     await callback.answer()
 
-# ---------- ПОКАЗ ТЕМ С ПАГИНАЦИЕЙ (ИСПРАВЛЕНА ПЕРЕДАЧА cat_id) ----------
+# ---------- ПОКАЗ ТЕМ С ПАГИНАЦИЕЙ ----------
 @router.callback_query(F.data.startswith("cat_"))
 async def show_topics(callback: CallbackQuery, cat_id: str = None, page: int = 0):
-    # Если cat_id не передан, извлекаем из callback.data
     if cat_id is None:
-        cat_id = callback.data[4:]  # убираем "cat_"
+        cat_id = callback.data[4:]
     topics_list = TOPICS.get(cat_id, [])
     if not topics_list:
         await callback.answer("В этой категории нет тем", show_alert=True)
@@ -1546,7 +1550,6 @@ async def show_topics(callback: CallbackQuery, cat_id: str = None, page: int = 0
             callback_data=f"topic_{cat_id}_{idx}_{page}"
         )])
 
-    # Навигация
     nav_buttons = []
     if page > 0:
         nav_buttons.append(InlineKeyboardButton(text="◀️", callback_data=f"cat_page_{cat_id}_{page-1}"))
@@ -1563,7 +1566,6 @@ async def show_topics(callback: CallbackQuery, cat_id: str = None, page: int = 0
 
     topics_keyboard = InlineKeyboardMarkup(inline_keyboard=buttons)
     cat_display = next((c[0] for c in CATEGORIES if c[1] == cat_id), cat_id)
-    # Убрали 🎭 и фразу со страницей – оставили только название категории
     await callback.message.edit_text(
         f"<b>{cat_display}</b>",
         reply_markup=topics_keyboard,
@@ -1571,7 +1573,6 @@ async def show_topics(callback: CallbackQuery, cat_id: str = None, page: int = 0
     )
     await callback.answer()
 
-# ---------- ОБРАБОТЧИК СТРЕЛОК (ПЕРЕДАЁТ cat_id ЯВНО) ----------
 @router.callback_query(F.data.startswith("cat_page_"))
 async def change_topic_page(callback: CallbackQuery):
     parts = callback.data.split("_")
@@ -1580,7 +1581,6 @@ async def change_topic_page(callback: CallbackQuery):
         return
     cat_id = parts[2]
     page = int(parts[3])
-    # Явно передаём cat_id и page в show_topics
     await show_topics(callback, cat_id=cat_id, page=page)
 
 @router.callback_query(F.data == "noop")
@@ -1632,9 +1632,7 @@ async def topic_chosen(callback: CallbackQuery, state: FSMContext):
         f"🎭 <b>Ролевая игра: {topic}</b>\n\n"
         f"📖 Ситуация: {description}\n\n"
         f"🎯 Ваши цели:\n{goals_text}\n\n"
-        f"🗣️ <b>Говорите голосом или пишите текстом.</b>\n"
-        f"💡 Если нужна подсказка, нажмите «💡 Что ответить?».\n"
-        f"Когда закончите, нажмите «📊 Завершить диалог» для анализа."
+        f"🗣️ <b>Говорите голосом или пишите текстом.</b>"
     )
     await callback.message.edit_text(roleplay_info, parse_mode="HTML")
     await callback.message.answer("🎬 <b>Можете начинать!</b>", reply_markup=keyboard, parse_mode="HTML")
@@ -1643,18 +1641,10 @@ async def topic_chosen(callback: CallbackQuery, state: FSMContext):
 @router.callback_query(F.data == "back_to_rp_categories")
 async def back_to_rp_categories(callback: CallbackQuery, state: FSMContext):
     await state.clear()
-    buttons = []
-    for i in range(0, len(CATEGORIES), 2):
-        row = []
-        cat1 = CATEGORIES[i]
-        row.append(InlineKeyboardButton(text=cat1[0], callback_data=f"cat_{cat1[1]}"))
-        if i+1 < len(CATEGORIES):
-            cat2 = CATEGORIES[i+1]
-            row.append(InlineKeyboardButton(text=cat2[0], callback_data=f"cat_{cat2[1]}"))
-        buttons.append(row)
-    buttons.append([InlineKeyboardButton(text="🔙 Назад в главное меню", callback_data="back_to_main_menu")])
-    keyboard = InlineKeyboardMarkup(inline_keyboard=buttons)
-    await callback.message.edit_text("🎭 Выберите категорию для ролевой игры:", reply_markup=keyboard)
+    await callback.message.edit_text(
+        "🎭 Выберите категорию для ролевой игры:",
+        reply_markup=get_categories_keyboard()
+    )
     await callback.answer()
 
 # ---------- ВОЗВРАТ В ГЛАВНОЕ МЕНЮ ----------
@@ -1662,11 +1652,10 @@ async def back_to_rp_categories(callback: CallbackQuery, state: FSMContext):
 async def back_to_main_menu(callback: CallbackQuery, state: FSMContext):
     await state.clear()
     from handlers.start import show_main_menu
-    # Редактируем текущее сообщение, показывая главное меню
-    await show_main_menu(callback.message, edit=True)
+    await show_main_menu(callback.message, edit=True, remove_keyboard=True)
     await callback.answer()
 
-# ---------- ОБРАБОТЧИКИ КНОПОК (ДО ОБЩЕГО ОБРАБОТЧИКА ТЕКСТА) ----------
+# ---------- ОБРАБОТЧИКИ КНОПОК (ПЕРЕД ОБЩИМ ОБРАБОТЧИКОМ) ----------
 @router.message(RoleplayStates.active, F.text == "💡 Что ответить?")
 async def give_hint(message: Message, state: FSMContext):
     user_id = message.from_user.id
@@ -1675,9 +1664,12 @@ async def give_hint(message: Message, state: FSMContext):
     last_bot_msg = None
     if history and history[-1].get("role") == "assistant":
         last_bot_msg = history[-1].get("text", "")
+
+    history_str = "\n".join([f"{msg['role']}: {msg['text']}" for msg in history[-5:]]) if history else "Нет истории"
+
     prompt = (
         "Ты – помощник в ролевой игре. Пользователь просит подсказку, что можно ответить дальше.\n"
-        f"Контекст диалога (последние сообщения):\n{history[-5:] if history else 'Нет истории'}\n"
+        f"Контекст диалога (последние сообщения):\n{history_str}\n"
         f"Последнее сообщение бота: {last_bot_msg or 'Нет сообщения'}\n"
         "Предложи 2–3 варианта того, что пользователь может сказать или спросить в этой ситуации.\n"
         "Ответы должны быть на русском, естественные, соответствовать роли и ситуации."
@@ -1699,7 +1691,7 @@ async def exit_to_main_menu(message: Message, state: FSMContext):
     set_user_state(user_id, user_state)
     await state.clear()
     from handlers.start import show_main_menu
-    await show_main_menu(message, edit=False)  # отправляем новое сообщение с главным меню
+    await show_main_menu(message, edit=False, remove_keyboard=True)
 
 @router.message(RoleplayStates.active, F.text == "📊 Завершить диалог")
 async def finish_roleplay(message: Message, state: FSMContext):
@@ -1739,7 +1731,47 @@ async def finish_roleplay(message: Message, state: FSMContext):
     await message.answer(f"📊 <b>Фидбек по диалогу:</b>\n\n{feedback}", reply_markup=keyboard, parse_mode="HTML")
     await message.answer("Ролевая игра завершена.", reply_markup=ReplyKeyboardRemove())
 
-# ---------- ОБЩИЙ ОБРАБОТЧИК ТЕКСТА (ПОСЛЕ СПЕЦИАЛЬНЫХ КНОПОК) ----------
+# ---------- ОБРАБОТЧИК ГОЛОСОВЫХ СООБЩЕНИЙ ----------
+@router.message(RoleplayStates.active, F.voice | F.audio)
+async def handle_voice_message(message: Message, state: FSMContext):
+    user_id = message.from_user.id
+    user_state = get_user_state(user_id)
+    if user_state.get("mode") != "roleplay_active":
+        await message.answer("Вы не в режиме ролевой игры.")
+        return
+
+    try:
+        text = await transcribe_audio(message.voice or message.audio)
+    except AttributeError:
+        await message.answer("Голосовые сообщения пока не поддерживаются. Пожалуйста, напишите текст.")
+        return
+    except Exception as e:
+        logger.error(f"Ошибка распознавания: {e}")
+        await message.answer("Не удалось распознать голосовое сообщение. Попробуйте написать текстом.")
+        return
+
+    if not text:
+        await message.answer("Не удалось распознать речь. Попробуйте сказать чётче или напишите текстом.")
+        return
+
+    try:
+        ai_response = await process_roleplay_message(user_id, text)
+    except Exception as e:
+        logger.error(f"Ошибка в ролевой игре: {e}")
+        await message.answer("Произошла ошибка. Попробуйте ещё раз.")
+        return
+
+    history = user_state.get("history", [])
+    history.append({"role": "user", "text": text})
+    history.append({"role": "assistant", "text": ai_response})
+    if len(history) > 20:
+        history = history[-20:]
+    user_state["history"] = history
+    set_user_state(user_id, user_state)
+
+    await message.answer(ai_response)
+
+# ---------- ОБЩИЙ ОБРАБОТЧИК ТЕКСТА ----------
 @router.message(RoleplayStates.active, F.text)
 async def handle_roleplay_text(message: Message, state: FSMContext):
     user_id = message.from_user.id
