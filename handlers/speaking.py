@@ -42,7 +42,6 @@ SPEAKING_KEYBOARD = ReplyKeyboardMarkup(
 
 ENCOURAGE_TEXT = "Говори развернуто, так эффективнее для изучения 🗣️"
 
-# ============ MIDDLEWARE ============
 async def close_speaking_on_exit(handler, event, data):
     user_id = None
     if hasattr(event, 'from_user'):
@@ -61,17 +60,14 @@ async def close_speaking_on_exit(handler, event, data):
 
     should_close = False
 
-    # Проверяем, нужно ли закрыть диалог
     if hasattr(event, 'text') and isinstance(event.text, str) and event.text.startswith('/'):
         should_close = True
     elif hasattr(event, 'data') and isinstance(event.data, str):
         if event.data == "back_to_main":
             should_close = True
-        # Все остальные callback (show_text, translate_text, hide_text, continue_speaking, start_speaking) – НЕ закрываем
     elif hasattr(event, 'text') and isinstance(event.text, str):
         if event.text == "🏠 Главное меню":
             should_close = True
-        # Кнопка "Фидбек" – не закрываем
 
     if data.get("skip_exit_message"):
         should_close = False
@@ -97,7 +93,6 @@ async def close_speaking_on_exit(handler, event, data):
 
     return await handler(event, data)
 
-# ============ ХЕНДЛЕРЫ ============
 @router.callback_query(F.data == "start_speaking")
 async def start_speaking(callback: CallbackQuery, state: FSMContext):
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
@@ -164,7 +159,6 @@ async def select_voice(callback: CallbackQuery, state: FSMContext):
     except Exception as e:
         logger.error(f"TTS error: {e}")
 
-# ----- КНОПКА ФИДБЕК -----
 @router.message(F.text == "📊 Я всё! Фидбек")
 async def show_feedback(message: Message, state: FSMContext, data: dict):
     logger.info(f"📊 Фидбек нажат, user={message.from_user.id}")
@@ -206,14 +200,12 @@ async def show_feedback(message: Message, state: FSMContext, data: dict):
     await message.answer(f"📊 Фидбек по вашему диалогу:\n\n{feedback}", reply_markup=keyboard, parse_mode="HTML")
     data["skip_exit_message"] = True
 
-# ----- КНОПКА ГЛАВНОЕ МЕНЮ (reply-клавиатура) -----
 @router.message(F.text == "🏠 Главное меню")
 async def exit_speaking(message: Message, state: FSMContext, data: dict):
     logger.info(f"🏠 Главное меню нажато, user={message.from_user.id}")
     data["skip_exit_message"] = True
     await show_main_menu(message, edit=False)
 
-# ----- ОБРАБОТЧИКИ ДЛЯ ТЕКСТА И МЕДИА В РЕЖИМЕ SPEAKING -----
 @router.message(SpeakingStates.waiting_for_voice, F.text)
 async def handle_speaking_text(message: Message, state: FSMContext, data: dict):
     data["skip_exit_message"] = True
@@ -224,7 +216,6 @@ async def handle_media_in_speaking(message: Message, state: FSMContext, data: di
     data["skip_exit_message"] = True
     await message.answer("Запишите и отправьте голосовое сообщение.")
 
-# ----- КОЛБЭКИ -----
 @router.callback_query(F.data == "back_to_main")
 async def back_to_main_from_feedback(callback: CallbackQuery, state: FSMContext, data: dict):
     await callback.answer()
@@ -282,20 +273,22 @@ async def continue_speaking(callback: CallbackQuery, state: FSMContext):
     except Exception as e:
         logger.error(f"TTS error: {e}")
 
-# ============ ОБРАБОТЧИКИ ДЛЯ КНОПКИ "Текст" (ИСПРАВЛЕННЫЕ) ============
+# ============ ГЛАВНЫЙ ОБРАБОТЧИК КНОПКИ "Текст" ============
 @router.callback_query(lambda c: c.data.startswith("show_text_"))
 async def show_text(callback: CallbackQuery, data: dict):
+    logger.info(f"✅ show_text вызван для user {callback.from_user.id}")
     user_id = int(callback.data.split("_")[2])
     bot_response = last_bot_response.get(user_id)
     if not bot_response or not bot_response.get("text"):
+        logger.warning(f"Текст не найден для user {user_id}")
         await callback.answer("Нет текста.", show_alert=True)
         return
     text = bot_response["text"]
+    logger.info(f"Текст для user {user_id}: {text[:50]}...")
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(text="Перевести", callback_data=f"translate_text_{user_id}"),
          InlineKeyboardButton(text="Скрыть", callback_data=f"hide_text_{user_id}")]
     ])
-    # Пытаемся редактировать подпись
     try:
         await callback.bot.edit_message_caption(
             chat_id=callback.message.chat.id,
@@ -303,21 +296,20 @@ async def show_text(callback: CallbackQuery, data: dict):
             caption=text,
             reply_markup=keyboard
         )
-        await callback.answer()
+        await callback.answer("Текст показан")
     except Exception as e:
         logger.error(f"Ошибка редактирования подписи: {e}")
-        # Запасной вариант – отдельное сообщение
         try:
             await callback.message.answer(text, reply_markup=keyboard)
             await callback.answer("Текст показан в отдельном сообщении.")
         except Exception as e2:
             logger.error(f"Ошибка отправки сообщения: {e2}")
             await callback.answer("Не удалось показать текст.", show_alert=True)
-    # НЕ закрываем диалог
     data["skip_exit_message"] = True
 
 @router.callback_query(lambda c: c.data.startswith("translate_text_"))
 async def translate_text(callback: CallbackQuery, data: dict):
+    logger.info(f"✅ translate_text вызван для user {callback.from_user.id}")
     user_id = int(callback.data.split("_")[2])
     bot_response = last_bot_response.get(user_id)
     if not bot_response or not bot_response.get("text"):
@@ -345,21 +337,20 @@ async def translate_text(callback: CallbackQuery, data: dict):
             caption=new_caption,
             reply_markup=keyboard
         )
-        await callback.answer()
+        await callback.answer("Перевод показан")
     except Exception as e:
         logger.error(f"Ошибка редактирования подписи при переводе: {e}")
-        # Запасной вариант
         try:
             await callback.message.answer(translation, reply_markup=keyboard)
             await callback.answer("Перевод показан отдельным сообщением.")
         except Exception as e2:
             logger.error(f"Ошибка отправки перевода: {e2}")
             await callback.answer("Не удалось показать перевод.", show_alert=True)
-    # НЕ закрываем диалог
     data["skip_exit_message"] = True
 
 @router.callback_query(lambda c: c.data.startswith("hide_text_"))
 async def hide_text(callback: CallbackQuery, data: dict):
+    logger.info(f"✅ hide_text вызван для user {callback.from_user.id}")
     user_id = int(callback.data.split("_")[2])
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(text="Текст", callback_data=f"show_text_{user_id}")]
@@ -371,7 +362,7 @@ async def hide_text(callback: CallbackQuery, data: dict):
             caption="",
             reply_markup=keyboard
         )
-        await callback.answer()
+        await callback.answer("Текст скрыт")
     except Exception as e:
         logger.error(f"Ошибка скрытия текста: {e}")
         try:
