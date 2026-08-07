@@ -95,6 +95,7 @@ async def close_speaking_on_exit(handler, event, data):
 
 @router.callback_query(F.data == "start_speaking")
 async def start_speaking(callback: CallbackQuery, state: FSMContext):
+    logger.info(f"🔵 start_speaking вызван для user {callback.from_user.id}")
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(text="👩 Woman Voice", callback_data="speaking_voice_woman"),
          InlineKeyboardButton(text="👨 Man Voice", callback_data="speaking_voice_man")],
@@ -105,6 +106,7 @@ async def start_speaking(callback: CallbackQuery, state: FSMContext):
 
 @router.callback_query(F.data.startswith("speaking_voice_"))
 async def select_voice(callback: CallbackQuery, state: FSMContext):
+    logger.info(f"🔵 select_voice вызван для user {callback.from_user.id}")
     await callback.answer()
     user_id = callback.from_user.id
     voice = callback.data.split("_")[2]
@@ -150,14 +152,17 @@ async def select_voice(callback: CallbackQuery, state: FSMContext):
                 "chat_id": callback.message.chat.id,
                 "message_id": sent.message_id
             }
+            logger.info(f"✅ Сохранён текст в last_bot_response для user {user_id}: {first_message[:30]}...")
             user_state["speaking_history"].append({"role": "assistant", "text": first_message})
             set_user_state(user_id, user_state)
             os.unlink(voice_path)
             os.unlink(ogg_path)
         else:
-            pass
+            logger.warning(f"TTS не сработал для user {user_id}")
+            await callback.message.answer(first_message, reply_markup=SPEAKING_KEYBOARD)
     except Exception as e:
-        logger.error(f"TTS error: {e}")
+        logger.error(f"Ошибка TTS: {e}")
+        await callback.message.answer(first_message, reply_markup=SPEAKING_KEYBOARD)
 
 @router.message(F.text == "📊 Я всё! Фидбек")
 async def show_feedback(message: Message, state: FSMContext, data: dict):
@@ -269,11 +274,12 @@ async def continue_speaking(callback: CallbackQuery, state: FSMContext):
             os.unlink(voice_path)
             os.unlink(ogg_path)
         else:
-            pass
+            await callback.message.answer(first_message, reply_markup=SPEAKING_KEYBOARD)
     except Exception as e:
         logger.error(f"TTS error: {e}")
+        await callback.message.answer(first_message, reply_markup=SPEAKING_KEYBOARD)
 
-# ============ ОБРАБОТЧИКИ ДЛЯ КНОПКИ "Текст" (ГАРАНТИРОВАННО РАБОТАЮТ) ============
+# ============ ОБРАБОТЧИКИ ДЛЯ КНОПКИ "Текст" ============
 @router.callback_query(lambda c: c.data.startswith("show_text_"))
 async def show_text(callback: CallbackQuery, data: dict):
     logger.info(f"✅ show_text вызван для user {callback.from_user.id}")
