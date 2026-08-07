@@ -3,8 +3,6 @@ from data.users import get_user_state
 from services.deepseek import chat
 
 async def process_voice_message(user_id: int, user_text: str, history: list = None) -> tuple:
-    """Обрабатывает голосовое сообщение в режиме Speaking.
-    Если history передана, используется она, иначе берется из состояния по ключу 'history'."""
     state = get_user_state(user_id)
     if history is None:
         history = state.get("history", [])
@@ -45,9 +43,10 @@ async def process_voice_message(user_id: int, user_text: str, history: list = No
             f"The student wrote: {user_text}\n"
             f"Check ONLY for grammar errors (verb forms, tenses, word order, articles, prepositions). "
             f"IGNORE punctuation and capitalization.\n"
-            f"If there are errors, provide exactly in this format:\n"
-            f"First line: corrected version (no numbers or bullets)\n"
-            f"Second line: brief explanation, starting with '> ' (without the word 'explanation' or 'пояснение')\n"
+            f"If there are errors, reply in exactly this format:\n"
+            f"Line 1: corrected version as a single sentence without numbers or bullets\n"
+            f"Line 2: <blockquote>explanation in Russian (пояснение на русском языке)</blockquote>\n"
+            f"The explanation MUST be in Russian, not in English. Do not add any extra words before the <blockquote>.\n"
             f"If there are NO grammar errors, reply ONLY with 'NO_ERRORS'."
         )
         check_result = chat(check_prompt, system_message="You are a strict English teacher.", max_tokens=150, temperature=0.3)
@@ -58,22 +57,24 @@ async def process_voice_message(user_id: int, user_text: str, history: list = No
             corrected = ""
             explanation = ""
             for line in lines:
-                if line.startswith('>'):
-                    explanation += line + "\n"
+                line = line.strip()
+                if '<blockquote>' in line:
+                    explanation = line
                 else:
                     if corrected:
-                        corrected += " " + line.strip()
+                        corrected += " " + line
                     else:
-                        corrected = line.strip()
-            corrected = corrected.strip()
-            explanation = explanation.strip()
+                        corrected = line
+            if not explanation and len(lines) > 1:
+                explanation = f"<blockquote>{lines[1].strip()}</blockquote>"
+            elif not explanation and lines:
+                explanation = f"<blockquote>{lines[0].strip()}</blockquote>"
+            corrected = re.sub(r'^\d+\.?\s*', '', corrected)
             correction_text = f"<s>{user_text}</s>\n{corrected}\n{explanation}"
     
     return reply_text, correction_text, is_perfect
 
 async def process_roleplay_message(user_id: int, user_text: str, history: list = None) -> str:
-    """Обрабатывает сообщение в режиме ролевой игры.
-    Если history передана, используется она, иначе берется из состояния по ключу 'history'."""
     state = get_user_state(user_id)
     if history is None:
         history = state.get("history", [])
