@@ -29,9 +29,8 @@ def convert_to_opus(mp3_path: str) -> str:
     subprocess.run(cmd, check=True, capture_output=True)
     return ogg_path
 
-async def process_voice_only(user_id: int, user_text: str) -> str:
-    from speaking.services.ai import process_voice_message
-    reply, _, _ = await process_voice_message(user_id, user_text)
+async def process_voice_only(user_id: int, user_text: str, history: list = None) -> str:
+    reply, _, _ = await process_voice_message(user_id, user_text, history)
     return reply
 
 @router.message(F.voice)
@@ -67,15 +66,24 @@ async def handle_voice(message: Message, state: FSMContext):
         if len(words) > 500:
             user_text = ' '.join(words[:500])
 
-        reply_text, correction_text, is_perfect = await process_voice_message(user_id, user_text)
+        speaking_history = user_state.get("speaking_history", [])
+        reply_text, correction_text, is_perfect = await process_voice_message(user_id, user_text, speaking_history)
 
-        # Работа с speaking_history
-        if "speaking_history" not in user_state:
-            user_state["speaking_history"] = []
-        user_state["speaking_history"].append({"role": "user", "text": user_text})
-        user_state["speaking_history"].append({"role": "assistant", "text": reply_text})
-        if len(user_state["speaking_history"]) > 20:
-            user_state["speaking_history"] = user_state["speaking_history"][-20:]
+        # Сохраняем текст ДО TTS, чтобы кнопка "Текст" могла его использовать
+        last_bot_response[user_id] = {
+            "text": reply_text,
+            "translation": None,
+            "audio_message_id": None,
+            "chat_id": chat_id,
+            "message_id": None
+        }
+
+        # Обновляем историю
+        speaking_history.append({"role": "user", "text": user_text})
+        speaking_history.append({"role": "assistant", "text": reply_text})
+        if len(speaking_history) > 20:
+            speaking_history = speaking_history[-20:]
+        user_state["speaking_history"] = speaking_history
         set_user_state(user_id, user_state)
 
         if is_perfect:
@@ -99,24 +107,22 @@ async def handle_voice(message: Message, state: FSMContext):
                 keyboard = InlineKeyboardMarkup(inline_keyboard=[
                     [InlineKeyboardButton(text="Текст", callback_data=f"show_text_{user_id}")]
                 ])
-                sent = await message.answer_audio(
+                sent = await message.answer_voice(
                     BufferedInputFile(audio_bytes, filename="voice.ogg"),
                     caption="",
                     reply_markup=keyboard
                 )
-                last_bot_response[user_id] = {
-                    "text": reply_text,
-                    "translation": None,
-                    "audio_message_id": sent.message_id,
-                    "chat_id": chat_id,
-                    "message_id": sent.message_id
-                }
+                # Обновляем ID сообщения
+                if user_id in last_bot_response:
+                    last_bot_response[user_id]["audio_message_id"] = sent.message_id
+                    last_bot_response[user_id]["message_id"] = sent.message_id
                 os.unlink(voice_path)
                 os.unlink(ogg_path)
                 await state.set_state(SpeakingStates.waiting_for_voice)
                 return
             except Exception as e:
                 logger.error(f"Audio error: {e}")
+        # Если TTS не сработал – отправляем текст отдельно, но last_bot_response уже сохранён
         await message.answer(reply_text)
         await state.set_state(SpeakingStates.waiting_for_voice)
         return
@@ -210,32 +216,14 @@ async def handle_voice(message: Message, state: FSMContext):
 
     # ========== РЕЖИМ РОЛЕВЫХ ИГР ==========
     if mode == "roleplay_active":
-        # Подменяем историю на roleplay_history для совместимости с process_roleplay_message
-        old_history = user_state.get("history")
         roleplay_history = user_state.get("roleplay_history", [])
-        user_state["history"] = roleplay_history  # временно
-        set_user_state(user_id, user_state)  # сохраняем, чтобы process_roleplay_message мог прочитать
-
         try:
-            ai_response = await process_roleplay_message(user_id, user_text)
+            ai_response = await process_roleplay_message(user_id, user_text, roleplay_history)
         except Exception as e:
             logger.error(f"Ошибка в ролевой игре: {e}")
             await message.answer("Произошла ошибка. Попробуйте ещё раз.")
-            # Восстанавливаем историю
-            if old_history is not None:
-                user_state["history"] = old_history
-            else:
-                user_state.pop("history", None)
-            set_user_state(user_id, user_state)
             return
 
-        # Восстанавливаем историю
-        if old_history is not None:
-            user_state["history"] = old_history
-        else:
-            user_state.pop("history", None)
-
-        # Добавляем сообщения в roleplay_history
         roleplay_history.append({"role": "user", "text": user_text})
         roleplay_history.append({"role": "assistant", "text": ai_response})
         if len(roleplay_history) > 20:
@@ -243,7 +231,6 @@ async def handle_voice(message: Message, state: FSMContext):
         user_state["roleplay_history"] = roleplay_history
         set_user_state(user_id, user_state)
 
-        # Отправляем ответ (голосовой или текстовый)
         await bot.send_chat_action(chat_id=chat_id, action="record_voice")
         voice_pref = user_state.get("speaking_voice", "woman")
         voice_id = WOMAN_VOICE_ID if voice_pref == "woman" else MAN_VOICE_ID
@@ -256,7 +243,7 @@ async def handle_voice(message: Message, state: FSMContext):
                 keyboard = InlineKeyboardMarkup(inline_keyboard=[
                     [InlineKeyboardButton(text="Текст", callback_data=f"show_text_{user_id}")]
                 ])
-                await message.answer_audio(
+                await message.answer_voice(
                     BufferedInputFile(audio_bytes, filename="voice.ogg"),
                     caption="",
                     reply_markup=keyboard
@@ -270,12 +257,12 @@ async def handle_voice(message: Message, state: FSMContext):
         return
 
     # ========== ОСТАЛЬНЫЕ РЕЖИМЫ (не Speaking и не Roleplay) ==========
-    # Используем общую историю (как fallback для других режимов)
+    # Используем общую историю как fallback
     if mode != "speaking_active":
-        set_user_mode(user_id, "speaking_active")  # временно для совместимости
-    ai_response = await process_voice_only(user_id, user_text)
-
+        set_user_mode(user_id, "speaking_active")
     history = user_state.get("history", [])
+    ai_response = await process_voice_only(user_id, user_text, history)
+
     history.append({"role": "user", "text": user_text})
     history.append({"role": "assistant", "text": ai_response})
     if len(history) > 20:
@@ -295,7 +282,7 @@ async def handle_voice(message: Message, state: FSMContext):
             keyboard = InlineKeyboardMarkup(inline_keyboard=[
                 [InlineKeyboardButton(text="Текст", callback_data=f"show_text_{user_id}")]
             ])
-            await message.answer_audio(
+            await message.answer_voice(
                 BufferedInputFile(audio_bytes, filename="voice.ogg"),
                 caption="",
                 reply_markup=keyboard
