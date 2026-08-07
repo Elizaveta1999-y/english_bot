@@ -50,6 +50,7 @@ async def handle_voice(message: Message, state: FSMContext):
 
     user_state = get_user_state(user_id)
 
+    # ========== БЛОК SPEAKING ==========
     if current_state == SpeakingStates.waiting_for_voice:
         if user_state.get("mode") != "speaking_active":
             user_state["mode"] = "speaking_active"
@@ -68,12 +69,13 @@ async def handle_voice(message: Message, state: FSMContext):
 
         reply_text, correction_text, is_perfect = await process_voice_message(user_id, user_text)
 
-        history = user_state.get("history", [])
-        history.append({"role": "user", "text": user_text})
-        history.append({"role": "assistant", "text": reply_text})
-        if len(history) > 20:
-            history = history[-20:]
-        user_state["history"] = history
+        # Работа с speaking_history
+        if "speaking_history" not in user_state:
+            user_state["speaking_history"] = []
+        user_state["speaking_history"].append({"role": "user", "text": user_text})
+        user_state["speaking_history"].append({"role": "assistant", "text": reply_text})
+        if len(user_state["speaking_history"]) > 20:
+            user_state["speaking_history"] = user_state["speaking_history"][-20:]
         set_user_state(user_id, user_state)
 
         if is_perfect:
@@ -119,7 +121,7 @@ async def handle_voice(message: Message, state: FSMContext):
         await state.set_state(SpeakingStates.waiting_for_voice)
         return
 
-    # --- Другие режимы ---
+    # ========== ОСТАЛЬНЫЕ РЕЖИМЫ ==========
     file = await bot.get_file(message.voice.file_id)
     file_bytes = await bot.download_file(file.file_path)
     user_text = await voice_to_text(file_bytes.read())
@@ -131,6 +133,7 @@ async def handle_voice(message: Message, state: FSMContext):
     if len(words) > 500:
         user_text = ' '.join(words[:500])
 
+    # Проверка практики (уроки)
     if user_state.get("practice_lesson_key"):
         lesson_key = user_state["practice_lesson_key"]
         practice = user_state.get("practice", {}).get(lesson_key)
@@ -204,12 +207,73 @@ async def handle_voice(message: Message, state: FSMContext):
             return
 
     mode = user_state.get("mode")
+
+    # ========== РЕЖИМ РОЛЕВЫХ ИГР ==========
     if mode == "roleplay_active":
-        ai_response = await process_roleplay_message(user_id, user_text)
-    else:
-        if mode != "speaking_active":
-            set_user_mode(user_id, "speaking_active")
-        ai_response = await process_voice_only(user_id, user_text)
+        # Подменяем историю на roleplay_history для совместимости с process_roleplay_message
+        old_history = user_state.get("history")
+        roleplay_history = user_state.get("roleplay_history", [])
+        user_state["history"] = roleplay_history  # временно
+        set_user_state(user_id, user_state)  # сохраняем, чтобы process_roleplay_message мог прочитать
+
+        try:
+            ai_response = await process_roleplay_message(user_id, user_text)
+        except Exception as e:
+            logger.error(f"Ошибка в ролевой игре: {e}")
+            await message.answer("Произошла ошибка. Попробуйте ещё раз.")
+            # Восстанавливаем историю
+            if old_history is not None:
+                user_state["history"] = old_history
+            else:
+                user_state.pop("history", None)
+            set_user_state(user_id, user_state)
+            return
+
+        # Восстанавливаем историю
+        if old_history is not None:
+            user_state["history"] = old_history
+        else:
+            user_state.pop("history", None)
+
+        # Добавляем сообщения в roleplay_history
+        roleplay_history.append({"role": "user", "text": user_text})
+        roleplay_history.append({"role": "assistant", "text": ai_response})
+        if len(roleplay_history) > 20:
+            roleplay_history = roleplay_history[-20:]
+        user_state["roleplay_history"] = roleplay_history
+        set_user_state(user_id, user_state)
+
+        # Отправляем ответ (голосовой или текстовый)
+        await bot.send_chat_action(chat_id=chat_id, action="record_voice")
+        voice_pref = user_state.get("speaking_voice", "woman")
+        voice_id = WOMAN_VOICE_ID if voice_pref == "woman" else MAN_VOICE_ID
+        voice_path = await text_to_voice(ai_response, voice_id=voice_id)
+        if voice_path and os.path.exists(voice_path):
+            try:
+                ogg_path = convert_to_opus(voice_path)
+                with open(ogg_path, 'rb') as f:
+                    audio_bytes = f.read()
+                keyboard = InlineKeyboardMarkup(inline_keyboard=[
+                    [InlineKeyboardButton(text="Текст", callback_data=f"show_text_{user_id}")]
+                ])
+                await message.answer_audio(
+                    BufferedInputFile(audio_bytes, filename="voice.ogg"),
+                    caption="",
+                    reply_markup=keyboard
+                )
+                os.unlink(voice_path)
+                os.unlink(ogg_path)
+                return
+            except Exception as e:
+                logger.error(f"Audio error: {e}")
+        await message.answer(ai_response)
+        return
+
+    # ========== ОСТАЛЬНЫЕ РЕЖИМЫ (не Speaking и не Roleplay) ==========
+    # Используем общую историю (как fallback для других режимов)
+    if mode != "speaking_active":
+        set_user_mode(user_id, "speaking_active")  # временно для совместимости
+    ai_response = await process_voice_only(user_id, user_text)
 
     history = user_state.get("history", [])
     history.append({"role": "user", "text": user_text})

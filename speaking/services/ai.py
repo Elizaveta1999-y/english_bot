@@ -2,9 +2,12 @@ import re
 from data.users import get_user_state
 from services.deepseek import chat
 
-async def process_voice_message(user_id: int, user_text: str) -> tuple:
+async def process_voice_message(user_id: int, user_text: str, history: list = None) -> tuple:
+    """Обрабатывает голосовое сообщение в режиме Speaking.
+    Если history передана, используется она, иначе берется из состояния по ключу 'history'."""
     state = get_user_state(user_id)
-    history = state.get("history", [])
+    if history is None:
+        history = state.get("history", [])
     
     context = "\n".join([f"{'Student' if h['role']=='user' else 'Teacher'}: {h['text']}" for h in history[-5:]])
     
@@ -38,7 +41,6 @@ async def process_voice_message(user_id: int, user_text: str) -> tuple:
         translation = chat(translation_prompt, system_message="You are a translator.", max_tokens=100, temperature=0.3)
         correction_text = f"<s>{user_text}</s>\n{translation}"
     else:
-        # Проверяем только грамматику, игнорируем пунктуацию и заглавные буквы
         check_prompt = (
             f"The student wrote: {user_text}\n"
             f"Check ONLY for grammar errors (verb forms, tenses, word order, articles, prepositions). "
@@ -52,17 +54,20 @@ async def process_voice_message(user_id: int, user_text: str) -> tuple:
         if check_result.strip() == "NO_ERRORS":
             is_perfect = True
         else:
-            # Удаляем возможные маркеры
             cleaned = re.sub(r'(?i)^(explanation|correction|fixed|corrected)\s*[:.]?\s*', '', check_result)
             correction_text = f"<s>{user_text}</s>\n{cleaned}"
     
     return reply_text, correction_text, is_perfect
 
-async def process_roleplay_message(user_id: int, user_text: str) -> str:
+async def process_roleplay_message(user_id: int, user_text: str, history: list = None) -> str:
+    """Обрабатывает сообщение в режиме ролевой игры.
+    Если history передана, используется она, иначе берется из состояния по ключу 'history'."""
     state = get_user_state(user_id)
+    if history is None:
+        history = state.get("history", [])
+    
     topic = state.get("roleplay_topic", "role play")
     custom_scenario = state.get("custom_scenario")
-    history = state.get("history", [])
     
     context = "\n".join([f"{'User' if h['role']=='user' else 'Bot'}: {h['text']}" for h in history[-5:]])
     

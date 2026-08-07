@@ -4,7 +4,7 @@ import random
 from aiogram import Router, F
 from aiogram.types import Message, ReplyKeyboardMarkup, KeyboardButton, CallbackQuery, InlineKeyboardMarkup, InlineKeyboardButton, BufferedInputFile, ReplyKeyboardRemove, ContentType
 from aiogram.fsm.context import FSMContext
-from data.users import set_user_state, get_user_state
+from data.users import set_user_state, get_user_state, get_user_history, clear_user_history
 from services.deepseek import chat
 from speaking.services.ai import process_voice_message
 from speaking.services.tts import text_to_voice
@@ -110,8 +110,9 @@ async def select_voice(callback: CallbackQuery, state: FSMContext):
     user_state = get_user_state(user_id)
     user_state["speaking_voice"] = voice
     user_state["mode"] = "speaking_active"
-    if "history" not in user_state:
-        user_state["history"] = []
+    # Инициализируем историю для speaking, если её нет
+    if "speaking_history" not in user_state:
+        user_state["speaking_history"] = []
     set_user_state(user_id, user_state)
     await state.set_state(SpeakingStates.waiting_for_voice)
     await callback.message.delete()
@@ -149,7 +150,9 @@ async def select_voice(callback: CallbackQuery, state: FSMContext):
                 "chat_id": callback.message.chat.id,
                 "message_id": sent.message_id
             }
-            user_state["history"].append({"role": "assistant", "text": first_message})
+            # Добавляем сообщение ассистента в speaking_history
+            user_state = get_user_state(user_id)  # обновляем состояние
+            user_state["speaking_history"].append({"role": "assistant", "text": first_message})
             set_user_state(user_id, user_state)
             os.unlink(voice_path)
             os.unlink(ogg_path)
@@ -163,7 +166,7 @@ async def show_feedback(message: Message, state: FSMContext, data: dict):
     logger.info(f"📊 Фидбек нажат, user={message.from_user.id}")
     user_id = message.from_user.id
     user_state = get_user_state(user_id)
-    history = user_state.get("history", [])
+    history = user_state.get("speaking_history", [])
     
     user_messages = [msg for msg in history if msg.get('role') == 'user']
     if len(user_messages) < 3:
@@ -189,7 +192,8 @@ async def show_feedback(message: Message, state: FSMContext, data: dict):
         await message.answer("Не удалось получить фидбек.")
         return
 
-    user_state["history"] = []
+    # Очищаем speaking_history
+    user_state["speaking_history"] = []
     set_user_state(user_id, user_state)
 
     await message.answer("", reply_markup=ReplyKeyboardRemove())
@@ -234,6 +238,8 @@ async def continue_speaking(callback: CallbackQuery, state: FSMContext):
     user_id = callback.from_user.id
     user_state = get_user_state(user_id)
     user_state["mode"] = "speaking_active"
+    if "speaking_history" not in user_state:
+        user_state["speaking_history"] = []
     set_user_state(user_id, user_state)
     await state.set_state(SpeakingStates.waiting_for_voice)
     await callback.message.delete()
@@ -263,7 +269,8 @@ async def continue_speaking(callback: CallbackQuery, state: FSMContext):
                 "chat_id": callback.message.chat.id,
                 "message_id": sent.message_id
             }
-            user_state["history"].append({"role": "assistant", "text": first_message})
+            user_state = get_user_state(user_id)
+            user_state["speaking_history"].append({"role": "assistant", "text": first_message})
             set_user_state(user_id, user_state)
             os.unlink(voice_path)
             os.unlink(ogg_path)
@@ -302,13 +309,12 @@ async def translate_text(callback: CallbackQuery, data: dict):
         return
     text = bot_response["text"]
     
-    # ========== ПЕРЕВОД ЧЕРЕЗ DeepSeek ==========
+    # Перевод через DeepSeek
     try:
         translation = chat(f"Переведи на русский: {text}", max_tokens=200, temperature=0.3)
     except Exception as e:
         logger.error(f"Ошибка перевода: {e}")
         translation = f"[Ошибка перевода] {text}"
-    # =============================================
 
     current_caption = callback.message.caption or ""
     if "Перевод:" in current_caption:

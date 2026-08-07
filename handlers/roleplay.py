@@ -14,7 +14,7 @@ router = Router()
 class RoleplayStates(StatesGroup):
     active = State()
 
-# ---------- КАТЕГОРИИ (переименованы) ----------
+# ---------- КАТЕГОРИИ (без изменений) ----------
 CATEGORIES = [
     ("💼 Work & Business", "work"),
     ("✈️ Travel", "travel"),
@@ -38,7 +38,7 @@ CATEGORIES = [
     ("📰 News", "news")
 ]
 
-# ---------- ВСЕ ТЕМЫ (полный список, 20 категорий × 15 тем) ----------
+# ---------- ВСЕ ТЕМЫ (полный список – без изменений) ----------
 TOPICS = {
     "work": [
         {
@@ -1496,7 +1496,6 @@ TOPICS = {
         }
     ]
 }
-
 # ---------- ВСПОМОГАТЕЛЬНАЯ ФУНКЦИЯ ДЛЯ КЛАВИАТУРЫ КАТЕГОРИЙ ----------
 def get_categories_keyboard():
     buttons = []
@@ -1511,7 +1510,7 @@ def get_categories_keyboard():
     buttons.append([InlineKeyboardButton(text="🔙 Назад в главное меню", callback_data="back_to_main_menu")])
     return InlineKeyboardMarkup(inline_keyboard=buttons)
 
-# ---------- СТАРТ РОЛЕВОЙ ИГРЫ (УДАЛЯЕТ СТАРУЮ КЛАВИАТУРУ) ----------
+# ---------- СТАРТ РОЛЕВОЙ ИГРЫ ----------
 @router.callback_query(F.data == "start_roleplay")
 async def start_roleplay(callback: CallbackQuery):
     await callback.message.delete()
@@ -1608,9 +1607,10 @@ async def topic_chosen(callback: CallbackQuery, state: FSMContext):
 
     user_id = callback.from_user.id
 
+    # Инициализируем состояние с roleplay_history
     set_user_state(user_id, {
         "mode": "roleplay_active",
-        "history": [],
+        "roleplay_history": [],          # <-- отдельная история для ролевых игр
         "roleplay_topic": topic,
         "roleplay_category": cat_id,
         "roleplay_custom_scenario": None,
@@ -1655,12 +1655,12 @@ async def back_to_main_menu(callback: CallbackQuery, state: FSMContext):
     await show_main_menu(callback.message, edit=True, remove_keyboard=True)
     await callback.answer()
 
-# ---------- ОБРАБОТЧИКИ КНОПОК (ПЕРЕД ОБЩИМ ОБРАБОТЧИКОМ) ----------
+# ---------- ОБРАБОТЧИКИ КНОПОК ----------
 @router.message(RoleplayStates.active, F.text == "💡 Что ответить?")
 async def give_hint(message: Message, state: FSMContext):
     user_id = message.from_user.id
     user_state = get_user_state(user_id)
-    history = user_state.get("history", [])
+    history = user_state.get("roleplay_history", [])   # <-- берём из roleplay_history
     last_bot_msg = None
     if history and history[-1].get("role") == "assistant":
         last_bot_msg = history[-1].get("text", "")
@@ -1687,7 +1687,7 @@ async def exit_to_main_menu(message: Message, state: FSMContext):
     user_id = message.from_user.id
     user_state = get_user_state(user_id)
     user_state["mode"] = ""
-    user_state["history"] = []
+    user_state["roleplay_history"] = []   # <-- очищаем roleplay_history
     set_user_state(user_id, user_state)
     await state.clear()
     from handlers.start import show_main_menu
@@ -1697,7 +1697,7 @@ async def exit_to_main_menu(message: Message, state: FSMContext):
 async def finish_roleplay(message: Message, state: FSMContext):
     user_id = message.from_user.id
     user_state = get_user_state(user_id)
-    history = user_state.get("history", [])
+    history = user_state.get("roleplay_history", [])   # <-- используем roleplay_history
     if not history:
         await message.answer("Вы пока ничего не сказали. Начните разговор!", reply_markup=ReplyKeyboardRemove())
         await state.clear()
@@ -1720,7 +1720,7 @@ async def finish_roleplay(message: Message, state: FSMContext):
         return
 
     user_state["mode"] = ""
-    user_state["history"] = []
+    user_state["roleplay_history"] = []   # <-- очищаем
     set_user_state(user_id, user_state)
     await state.clear()
 
@@ -1754,19 +1754,37 @@ async def handle_voice_message(message: Message, state: FSMContext):
         await message.answer("Не удалось распознать речь. Попробуйте сказать чётче или напишите текстом.")
         return
 
+    # --- Временная подмена history для совместимости с process_roleplay_message ---
+    old_history = user_state.get("history")  # сохраняем старую общую историю, если есть
+    roleplay_history = user_state.get("roleplay_history", [])
+    user_state["history"] = roleplay_history   # подменяем на историю ролевой игры
+    # -------------------------------------------------------------------------
+
     try:
         ai_response = await process_roleplay_message(user_id, text)
     except Exception as e:
         logger.error(f"Ошибка в ролевой игре: {e}")
         await message.answer("Произошла ошибка. Попробуйте ещё раз.")
+        # Восстанавливаем историю
+        if old_history is not None:
+            user_state["history"] = old_history
+        else:
+            user_state.pop("history", None)
+        set_user_state(user_id, user_state)
         return
 
-    history = user_state.get("history", [])
-    history.append({"role": "user", "text": text})
-    history.append({"role": "assistant", "text": ai_response})
-    if len(history) > 20:
-        history = history[-20:]
-    user_state["history"] = history
+    # Восстанавливаем историю
+    if old_history is not None:
+        user_state["history"] = old_history
+    else:
+        user_state.pop("history", None)
+
+    # Добавляем сообщения в roleplay_history
+    roleplay_history.append({"role": "user", "text": text})
+    roleplay_history.append({"role": "assistant", "text": ai_response})
+    if len(roleplay_history) > 20:
+        roleplay_history = roleplay_history[-20:]
+    user_state["roleplay_history"] = roleplay_history
     set_user_state(user_id, user_state)
 
     await message.answer(ai_response)
@@ -1780,19 +1798,36 @@ async def handle_roleplay_text(message: Message, state: FSMContext):
         return
 
     user_text = message.text
+
+    # --- Временная подмена history ---
+    old_history = user_state.get("history")
+    roleplay_history = user_state.get("roleplay_history", [])
+    user_state["history"] = roleplay_history
+    # --------------------------------
+
     try:
         ai_response = await process_roleplay_message(user_id, user_text)
     except Exception as e:
         logger.error(f"Ошибка в ролевой игре: {e}")
         await message.answer("Произошла ошибка. Попробуйте ещё раз.")
+        if old_history is not None:
+            user_state["history"] = old_history
+        else:
+            user_state.pop("history", None)
+        set_user_state(user_id, user_state)
         return
 
-    history = user_state.get("history", [])
-    history.append({"role": "user", "text": user_text})
-    history.append({"role": "assistant", "text": ai_response})
-    if len(history) > 20:
-        history = history[-20:]
-    user_state["history"] = history
+    # Восстанавливаем историю
+    if old_history is not None:
+        user_state["history"] = old_history
+    else:
+        user_state.pop("history", None)
+
+    roleplay_history.append({"role": "user", "text": user_text})
+    roleplay_history.append({"role": "assistant", "text": ai_response})
+    if len(roleplay_history) > 20:
+        roleplay_history = roleplay_history[-20:]
+    user_state["roleplay_history"] = roleplay_history
     set_user_state(user_id, user_state)
 
     await message.answer(ai_response)
