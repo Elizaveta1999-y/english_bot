@@ -69,7 +69,7 @@ async def handle_voice(message: Message, state: FSMContext):
         speaking_history = user_state.get("speaking_history", [])
         reply_text, correction_text, is_perfect = await process_voice_message(user_id, user_text, speaking_history)
 
-        # ===== ГАРАНТИРОВАННОЕ СОХРАНЕНИЕ ТЕКСТА ДЛЯ КНОПКИ "Текст" =====
+        # Сохраняем текст ДО TTS
         last_bot_response[user_id] = {
             "text": reply_text,
             "translation": None,
@@ -77,7 +77,7 @@ async def handle_voice(message: Message, state: FSMContext):
             "chat_id": chat_id,
             "message_id": None
         }
-        logger.info(f"📝 Сохранён текст для user {user_id}: {reply_text[:50]}...")
+        logger.info(f"Сохранён текст для user {user_id}: {reply_text[:50]}...")
 
         # Обновляем историю
         speaking_history.append({"role": "user", "text": user_text})
@@ -113,7 +113,6 @@ async def handle_voice(message: Message, state: FSMContext):
                     caption="",
                     reply_markup=keyboard
                 )
-                # Обновляем ID сообщения
                 if user_id in last_bot_response:
                     last_bot_response[user_id]["audio_message_id"] = sent.message_id
                     last_bot_response[user_id]["message_id"] = sent.message_id
@@ -123,7 +122,7 @@ async def handle_voice(message: Message, state: FSMContext):
                 return
             except Exception as e:
                 logger.error(f"Audio error: {e}")
-        # Если TTS не сработал – отправляем текст отдельно, но last_bot_response уже сохранён
+        # fallback
         await message.answer(reply_text)
         await state.set_state(SpeakingStates.waiting_for_voice)
         return
@@ -140,7 +139,6 @@ async def handle_voice(message: Message, state: FSMContext):
     if len(words) > 500:
         user_text = ' '.join(words[:500])
 
-    # Проверка практики (уроки)
     if user_state.get("practice_lesson_key"):
         lesson_key = user_state["practice_lesson_key"]
         practice = user_state.get("practice", {}).get(lesson_key)
@@ -215,7 +213,6 @@ async def handle_voice(message: Message, state: FSMContext):
 
     mode = user_state.get("mode")
 
-    # ========== РЕЖИМ РОЛЕВЫХ ИГР ==========
     if mode == "roleplay_active":
         roleplay_history = user_state.get("roleplay_history", [])
         try:
@@ -257,8 +254,6 @@ async def handle_voice(message: Message, state: FSMContext):
         await message.answer(ai_response)
         return
 
-    # ========== ОСТАЛЬНЫЕ РЕЖИМЫ (не Speaking и не Roleplay) ==========
-    # Используем общую историю как fallback
     if mode != "speaking_active":
         set_user_mode(user_id, "speaking_active")
     history = user_state.get("history", [])
@@ -294,3 +289,8 @@ async def handle_voice(message: Message, state: FSMContext):
         except Exception as e:
             logger.error(f"Audio error: {e}")
     await message.answer(ai_response)
+
+# ============ УДАЛЁН ПУСТОЙ ОБРАБОТЧИК show_text ============
+# Раньше здесь был @router.callback_query(lambda c: c.data.startswith("show_text_")) с pass,
+# который перехватывал callback и не давал отработать обработчику в speaking.py.
+# Теперь он удалён.
