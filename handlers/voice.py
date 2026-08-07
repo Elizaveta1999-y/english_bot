@@ -69,7 +69,7 @@ async def handle_voice(message: Message, state: FSMContext):
         speaking_history = user_state.get("speaking_history", [])
         reply_text, correction_text, is_perfect = await process_voice_message(user_id, user_text, speaking_history)
 
-        # Сохраняем текст ДО TTS
+        # ===== ГАРАНТИРОВАННОЕ СОХРАНЕНИЕ ТЕКСТА ДО TTS =====
         last_bot_response[user_id] = {
             "text": reply_text,
             "translation": None,
@@ -77,7 +77,7 @@ async def handle_voice(message: Message, state: FSMContext):
             "chat_id": chat_id,
             "message_id": None
         }
-        logger.info(f"Сохранён текст для user {user_id}: {reply_text[:50]}...")
+        logger.info(f"📝 СОХРАНЁН ТЕКСТ для user {user_id}: {reply_text[:50]}...")
 
         # Обновляем историю
         speaking_history.append({"role": "user", "text": user_text})
@@ -116,21 +116,23 @@ async def handle_voice(message: Message, state: FSMContext):
                 if user_id in last_bot_response:
                     last_bot_response[user_id]["audio_message_id"] = sent.message_id
                     last_bot_response[user_id]["message_id"] = sent.message_id
+                    logger.info(f"✅ ID сообщения сохранён: {sent.message_id}")
                 os.unlink(voice_path)
                 os.unlink(ogg_path)
                 await state.set_state(SpeakingStates.waiting_for_voice)
                 return
             except Exception as e:
                 logger.error(f"Audio error: {e}")
-        # fallback – отправляем текст отдельно, но last_bot_response уже сохранён
+        # fallback – отправляем текст и сохраняем его ID
         sent = await message.answer(reply_text)
         if user_id in last_bot_response:
             last_bot_response[user_id]["audio_message_id"] = sent.message_id
             last_bot_response[user_id]["message_id"] = sent.message_id
+            logger.info(f"✅ FALLBACK: ID сообщения сохранён: {sent.message_id}")
         await state.set_state(SpeakingStates.waiting_for_voice)
         return
 
-    # ========== ОСТАЛЬНЫЕ РЕЖИМЫ ==========
+    # ========== ОСТАЛЬНЫЕ РЕЖИМЫ (без изменений) ==========
     file = await bot.get_file(message.voice.file_id)
     file_bytes = await bot.download_file(file.file_path)
     user_text = await voice_to_text(file_bytes.read())

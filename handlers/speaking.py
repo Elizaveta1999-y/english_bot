@@ -312,23 +312,42 @@ async def continue_speaking(callback: CallbackQuery, state: FSMContext):
             "message_id": sent.message_id
         }
 
-# ============ ОБРАБОТЧИКИ ДЛЯ КНОПКИ "Текст" ============
+# ============ ОБРАБОТЧИКИ ДЛЯ КНОПКИ "Текст" С ПОДРОБНЫМ ЛОГИРОВАНИЕМ ============
 @router.callback_query(lambda c: c.data.startswith("show_text_"))
 async def show_text(callback: CallbackQuery, data: dict):
     try:
-        logger.info(f"✅ show_text вызван для user {callback.from_user.id}")
+        logger.info(f"✅ show_text ВЫЗВАН для user {callback.from_user.id}")
+        logger.info(f"   callback.data: {callback.data}")
+        logger.info(f"   callback.message: {callback.message}")
+
         user_id = int(callback.data.split("_")[2])
+        logger.info(f"   user_id: {user_id}")
+
         bot_response = last_bot_response.get(user_id)
+        logger.info(f"   last_bot_response для user {user_id}: {bot_response}")
+
         if not bot_response or not bot_response.get("text"):
-            logger.warning(f"Текст не найден для user {user_id}")
+            logger.warning(f"❌ Текст НЕ НАЙДЕН для user {user_id}")
             await callback.answer("Нет текста.", show_alert=True)
             return
+
         text = bot_response["text"]
-        logger.info(f"Текст для user {user_id}: {text[:50]}...")
+        logger.info(f"   Текст для user {user_id}: {text[:50]}...")
+
         keyboard = InlineKeyboardMarkup(inline_keyboard=[
             [InlineKeyboardButton(text="Перевести", callback_data=f"translate_text_{user_id}"),
              InlineKeyboardButton(text="Скрыть", callback_data=f"hide_text_{user_id}")]
         ])
+
+        # Проверяем, что сообщение существует
+        if callback.message is None:
+            logger.error("❌ callback.message is None")
+            await callback.answer("Сообщение не найдено.", show_alert=True)
+            return
+
+        logger.info(f"   chat_id: {callback.message.chat.id}, message_id: {callback.message.message_id}")
+
+        # Пытаемся редактировать подпись
         try:
             await callback.bot.edit_message_caption(
                 chat_id=callback.message.chat.id,
@@ -337,19 +356,23 @@ async def show_text(callback: CallbackQuery, data: dict):
                 reply_markup=keyboard
             )
             await callback.answer("Текст показан")
-            logger.info("Подпись успешно изменена")
+            logger.info("✅ Подпись успешно изменена")
         except Exception as e:
-            logger.error(f"Ошибка редактирования подписи: {e}\n{traceback.format_exc()}")
+            logger.error(f"❌ Ошибка редактирования подписи: {e}\n{traceback.format_exc()}")
+            # fallback – отдельное сообщение
             try:
                 await callback.message.answer(text, reply_markup=keyboard)
                 await callback.answer("Текст показан в отдельном сообщении.")
-                logger.info("Текст отправлен отдельным сообщением")
+                logger.info("✅ Текст отправлен отдельным сообщением")
             except Exception as e2:
-                logger.error(f"Ошибка отправки отдельного сообщения: {e2}\n{traceback.format_exc()}")
+                logger.error(f"❌ Ошибка отправки отдельного сообщения: {e2}\n{traceback.format_exc()}")
                 await callback.answer("Не удалось показать текст.", show_alert=True)
+
         data["skip_exit_message"] = True
+        logger.info("✅ data['skip_exit_message'] = True")
+
     except Exception as e:
-        logger.error(f"Критическая ошибка в show_text: {e}\n{traceback.format_exc()}")
+        logger.error(f"❌ КРИТИЧЕСКАЯ ОШИБКА в show_text: {e}\n{traceback.format_exc()}")
         await callback.answer("Произошла ошибка.", show_alert=True)
 
 @router.callback_query(lambda c: c.data.startswith("translate_text_"))
