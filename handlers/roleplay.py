@@ -6,7 +6,6 @@ from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import State, StatesGroup
 from data.users import get_user_state, set_user_state
 from services.deepseek import chat
-from speaking.services.ai import process_roleplay_message
 from speaking.services.stt import voice_to_text
 
 logger = logging.getLogger(__name__)
@@ -14,9 +13,10 @@ router = Router()
 
 class RoleplayStates(StatesGroup):
     active = State()
-    confirming_exit = State()  # для подтверждения выхода при командах
+    confirming_exit = State()
+    confirming_finish = State()
 
-# ---------- КАТЕГОРИИ (без изменений) ----------
+# ---------- КАТЕГОРИИ ----------
 CATEGORIES = [
     ("💼 Work & Business", "work"),
     ("✈️ Travel", "travel"),
@@ -40,7 +40,7 @@ CATEGORIES = [
     ("📰 News", "news")
 ]
 
-# ---------- ВСЕ ТЕМЫ (полный список – без изменений) ----------
+# ---------- ВСЕ ТЕМЫ (ПОЛНЫЙ СПИСОК – ВСТАВЬТЕ ВАШИ ДАННЫЕ) ----------
 TOPICS = {
     "work": [
         {
@@ -1498,7 +1498,7 @@ TOPICS = {
         }
     ]
 }
-# ---------- ВСПОМОГАТЕЛЬНАЯ ФУНКЦИЯ ДЛЯ КЛАВИАТУРЫ КАТЕГОРИЙ ----------
+# ---------- ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ ----------
 def get_categories_keyboard():
     buttons = []
     for i in range(0, len(CATEGORIES), 2):
@@ -1512,12 +1512,71 @@ def get_categories_keyboard():
     buttons.append([InlineKeyboardButton(text="🔙 Назад в главное меню", callback_data="back_to_main_menu")])
     return InlineKeyboardMarkup(inline_keyboard=buttons)
 
+def is_cyrillic(text: str) -> bool:
+    """Проверяет, содержит ли текст русские буквы (кириллицу)."""
+    return bool(re.search('[а-яА-Я]', text))
+
+# ---------- ФИЛЬТР ЗАПРЕЩЁННЫХ ТЕМ ----------
+FORBIDDEN_WORDS = [
+    # Секс и интим
+    "fuck", "bitch", "shit", "cunt", "dick", "pussy", "fucking", "motherfucker", "asshole", "bastard", "damn",
+    "penis", "vagina", "cum", "orgasm", "masturbate", "sperm", "erection", "prostitute", "porn", "xxx",
+    # Суицид и членовредительство
+    "suicide", "kill myself", "cut myself", "self-harm", "die", "death", "hang myself", "overdose",
+    # Насилие
+    "murder", "rape", "torture", "assault", "kill", "terrorist", "bomb", "shoot", "stab",
+    # Политика и экстремизм
+    "nazi", "hitler", "stalin", "terrorism", "dictator", "fascist", "communist", "putin", "zelensky", "trump", "biden",
+    # Религиозные оскорбления
+    "allah", "muhammad", "jesus", "bible", "quran", "prophet", "church", "mosque", "synagogue", "god", "holy", "priest", "imam",
+    # Личные оскорбления (общие)
+    "stupid", "idiot", "moron", "loser", "ugly", "fat", "worthless", "retard", "bastard", "bitch", "whore"
+]
+
+def is_forbidden(text: str) -> bool:
+    lower = text.lower()
+    for word in FORBIDDEN_WORDS:
+        if word in lower:
+            return True
+    return False
+
+# ---------- СИСТЕМНЫЙ ПРОМПТ ДЛЯ РОЛЕВОЙ ИГРЫ (ТОЛЬКО АНГЛИЙСКИЙ) ----------
+def build_system_prompt(topic: str, description: str, goals: list) -> str:
+    goals_text = "\n".join([f"{i+1}. {g}" for i, g in enumerate(goals)])
+    return (
+        f"You are a character in a role-playing game for learning English. "
+        f"Situation: {description}\n"
+        f"Topic: {topic}\n"
+        f"User's goals: {goals_text}\n\n"
+        "Your task is to lead the dialogue within this situation. You must help the user practice English, but stay in character.\n\n"
+        "IMPORTANT RULES:\n"
+        "1. You ALWAYS respond in ENGLISH only. Never switch to Russian, regardless of the user's language.\n"
+        "2. Always bring the user back to the topic if they stray from it. Gently but firmly remind them of the situation.\n"
+        "3. You do not discuss topics unrelated to the role-play. Do not answer questions about yourself, the real world, politics, religion, sex, violence, or suicide.\n"
+        "4. If the user asks about something forbidden, respond with: 'Let's return to our situation' and continue the game.\n"
+        "5. At the end of each of your responses, assess whether the user has achieved all goals. If all goals are achieved and the dialogue has more than 5 exchanges, add this phrase: 'It seems we've reached a logical conclusion to this situation. If you'd like, we can wrap up and get feedback. If you prefer to continue, just keep chatting.'\n"
+        "6. Respond naturally, in character.\n"
+    )
+
+# ---------- ВЫЗОВ ИИ С СИСТЕМНЫМ ПРОМПТОМ ----------
+async def call_ai_with_system(system_prompt: str, user_text: str, history: list) -> str:
+    messages = [{"role": "system", "content": system_prompt}]
+    for msg in history:
+        messages.append({"role": msg["role"], "content": msg["text"]})
+    messages.append({"role": "user", "content": user_text})
+    try:
+        response = await chat(messages, max_tokens=500, temperature=0.7)
+        return response
+    except Exception as e:
+        logger.error(f"Ошибка вызова ИИ: {e}")
+        return "An error occurred. Please try again."
+
 # ---------- СТАРТ РОЛЕВОЙ ИГРЫ ----------
 @router.callback_query(F.data == "start_roleplay")
 async def start_roleplay(callback: CallbackQuery):
     await callback.message.delete()
     await callback.message.answer(
-        "🎭 Выберите категорию для ролевой игры:",
+        "🎭 Choose a category for roleplay:",
         reply_markup=get_categories_keyboard()
     )
     await callback.answer()
@@ -1526,15 +1585,14 @@ async def start_roleplay(callback: CallbackQuery):
 @router.callback_query(F.data.startswith("cat_"))
 async def show_topics(callback: CallbackQuery, cat_id: str = None, page: int = 0):
     if cat_id is None:
-        # Используем split с ограничением 2, чтобы корректно обрабатывать cat_id с подчёркиваниями
         parts = callback.data.split("_", 2)
         if len(parts) < 2:
-            await callback.answer("Ошибка", show_alert=True)
+            await callback.answer("Error", show_alert=True)
             return
         cat_id = parts[1]
     topics_list = TOPICS.get(cat_id, [])
     if not topics_list:
-        await callback.answer("В этой категории нет тем", show_alert=True)
+        await callback.answer("No topics in this category", show_alert=True)
         return
 
     ITEMS_PER_PAGE = 4
@@ -1568,7 +1626,7 @@ async def show_topics(callback: CallbackQuery, cat_id: str = None, page: int = 0
         nav_buttons.append(InlineKeyboardButton(text=" ", callback_data="noop"))
     buttons.append(nav_buttons)
 
-    buttons.append([InlineKeyboardButton(text="🔙 Назад к категориям", callback_data="back_to_rp_categories")])
+    buttons.append([InlineKeyboardButton(text="🔙 Back to categories", callback_data="back_to_rp_categories")])
 
     topics_keyboard = InlineKeyboardMarkup(inline_keyboard=buttons)
     cat_display = next((c[0] for c in CATEGORIES if c[1] == cat_id), cat_id)
@@ -1583,7 +1641,7 @@ async def show_topics(callback: CallbackQuery, cat_id: str = None, page: int = 0
 async def change_topic_page(callback: CallbackQuery):
     parts = callback.data.split("_", 2)
     if len(parts) != 3:
-        await callback.answer("Ошибка")
+        await callback.answer("Error")
         return
     cat_id = parts[1]
     page = int(parts[2])
@@ -1598,14 +1656,14 @@ async def noop(callback: CallbackQuery):
 async def topic_chosen(callback: CallbackQuery, state: FSMContext):
     parts = callback.data.split("_", 2)
     if len(parts) < 3:
-        await callback.answer("Ошибка", show_alert=True)
+        await callback.answer("Error", show_alert=True)
         return
     cat_id = parts[1]
     idx = int(parts[2])
 
     topics_list = TOPICS.get(cat_id, [])
     if idx >= len(topics_list):
-        await callback.answer("Тема не найдена", show_alert=True)
+        await callback.answer("Topic not found", show_alert=True)
         return
     topic_info = topics_list[idx]
     topic = topic_info["name"]
@@ -1614,42 +1672,44 @@ async def topic_chosen(callback: CallbackQuery, state: FSMContext):
 
     user_id = callback.from_user.id
 
-    # Инициализируем состояние с roleplay_history
     set_user_state(user_id, {
         "mode": "roleplay_active",
         "roleplay_history": [],
         "roleplay_topic": topic,
+        "roleplay_description": description,
+        "roleplay_goals": goals,
         "roleplay_category": cat_id,
         "roleplay_custom_scenario": None,
-        "awaiting_custom_scenario": False
+        "awaiting_custom_scenario": False,
+        "russian_counter": 0  # счётчик русских сообщений
     })
 
     await state.set_state(RoleplayStates.active)
-    await callback.answer(f"Выбрана тема: {topic}")
+    await callback.answer(f"Selected topic: {topic}")
 
     keyboard = ReplyKeyboardMarkup(
         keyboard=[
-            [KeyboardButton(text="💡 Что ответить?"), KeyboardButton(text="🏠 Главное меню")],
-            [KeyboardButton(text="📊 Завершить диалог")]
+            [KeyboardButton(text="💡 What to say?"), KeyboardButton(text="🏠 Main menu")],
+            [KeyboardButton(text="📊 Finish dialogue")]
         ],
         resize_keyboard=True
     )
     goals_text = "\n".join([f"{i+1}) {goal}" for i, goal in enumerate(goals)])
     roleplay_info = (
-        f"🎭 <b>Ролевая игра: {topic}</b>\n\n"
-        f"📖 Ситуация: {description}\n\n"
-        f"🎯 Ваши цели:\n{goals_text}\n\n"
-        f"🗣️ <b>Говорите голосом или пишите текстом.</b>"
+        f"🎭 <b>Roleplay: {topic}</b>\n\n"
+        f"📖 Situation: {description}\n\n"
+        f"🎯 Your goals:\n{goals_text}\n\n"
+        f"🗣️ <b>Speak by voice or type.</b>"
     )
     await callback.message.edit_text(roleplay_info, parse_mode="HTML")
-    await callback.message.answer("🎬 <b>Можете начинать!</b>", reply_markup=keyboard, parse_mode="HTML")
+    await callback.message.answer("🎬 <b>You can start now!</b>", reply_markup=keyboard, parse_mode="HTML")
 
 # ---------- ВОЗВРАТ К КАТЕГОРИЯМ ----------
 @router.callback_query(F.data == "back_to_rp_categories")
 async def back_to_rp_categories(callback: CallbackQuery, state: FSMContext):
     await state.clear()
     await callback.message.edit_text(
-        "🎭 Выберите категорию для ролевой игры:",
+        "🎭 Choose a category for roleplay:",
         reply_markup=get_categories_keyboard()
     )
     await callback.answer()
@@ -1662,27 +1722,21 @@ async def back_to_main_menu(callback: CallbackQuery, state: FSMContext):
     await show_main_menu(callback.message, edit=True, remove_keyboard=True)
     await callback.answer()
 
-# ---------- ОБРАБОТЧИКИ КОМАНД /start, /subscription, /support с подтверждением ----------
+# ---------- ОБРАБОТЧИКИ КОМАНД С ПОДТВЕРЖДЕНИЕМ ----------
 @router.message(F.text.in_({"/start", "/subscription", "/support"}))
 async def handle_exit_commands(message: Message, state: FSMContext):
     user_id = message.from_user.id
     user_state = get_user_state(user_id)
     if user_state.get("mode") == "roleplay_active":
-        # Спрашиваем подтверждение
         keyboard = InlineKeyboardMarkup(inline_keyboard=[
-            [InlineKeyboardButton(text="✅ Да", callback_data="confirm_exit_yes"),
-             InlineKeyboardButton(text="❌ Нет", callback_data="confirm_exit_no")]
+            [InlineKeyboardButton(text="✅ Yes", callback_data="confirm_exit_yes"),
+             InlineKeyboardButton(text="❌ No", callback_data="confirm_exit_no")]
         ])
-        await message.answer("Вы уверены, что хотите завершить диалог и выйти из ролевой игры?", reply_markup=keyboard)
+        await message.answer("Are you sure you want to finish the dialogue and exit the roleplay?", reply_markup=keyboard)
         await state.set_state(RoleplayStates.confirming_exit)
-        # Сохраняем команду, чтобы после подтверждения обработать
         await state.update_data(exit_command=message.text)
         return
-    # Если не в игре, обрабатываем как обычно
-    from handlers.start import handle_start_command  # или аналогично для других команд
-    # Здесь нужно вызвать соответствующий обработчик, но чтобы не усложнять, просто передаём дальше
-    # Можно перехватить и вызвать нужную функцию, но проще – передать управление дальше через фильтр.
-    # Однако мы не можем пропустить через фильтр, поэтому просто обрабатываем стандартно:
+    # Если не в игре, обрабатываем стандартно
     if message.text == "/start":
         from handlers.start import cmd_start
         await cmd_start(message, state)
@@ -1701,12 +1755,11 @@ async def confirm_exit_yes(callback: CallbackQuery, state: FSMContext):
     user_state = get_user_state(user_id)
     user_state["mode"] = ""
     user_state["roleplay_history"] = []
+    user_state["russian_counter"] = 0
     set_user_state(user_id, user_state)
     await state.clear()
     await callback.message.delete()
-    # Убираем клавиатуру
-    await callback.message.answer("Ролевая игра завершена.", reply_markup=ReplyKeyboardRemove())
-    # Выполняем команду
+    await callback.message.answer("Roleplay finished.", reply_markup=ReplyKeyboardRemove())
     if exit_command == "/start":
         from handlers.start import cmd_start
         await cmd_start(callback.message, state)
@@ -1722,85 +1775,134 @@ async def confirm_exit_yes(callback: CallbackQuery, state: FSMContext):
 async def confirm_exit_no(callback: CallbackQuery, state: FSMContext):
     await state.clear()
     await callback.message.delete()
-    await callback.message.answer("Продолжаем диалог.", reply_markup=None)
+    await callback.message.answer("Continuing the dialogue.", reply_markup=None)
     await callback.answer()
 
-# ---------- ОБРАБОТЧИКИ КНОПОК ----------
-@router.message(RoleplayStates.active, F.text == "💡 Что ответить?")
-async def give_hint(message: Message, state: FSMContext):
-    user_id = message.from_user.id
-    user_state = get_user_state(user_id)
-    history = user_state.get("roleplay_history", [])
-    if not history:
-        await message.answer("Вы ещё не начали диалог. Начните разговор, чтобы получить подсказку.")
-        return
-
-    last_bot_msg = None
-    if history and history[-1].get("role") == "assistant":
-        last_bot_msg = history[-1].get("text", "")
-
-    history_str = "\n".join([f"{msg['role']}: {msg['text']}" for msg in history[-5:]]) if history else "Нет истории"
-
-    prompt = (
-        "Ты – помощник в ролевой игре. Пользователь просит подсказку, что можно ответить дальше.\n"
-        f"Контекст диалога (последние сообщения):\n{history_str}\n"
-        f"Последнее сообщение бота: {last_bot_msg or 'Нет сообщения'}\n"
-        "Предложи 2–3 варианта того, что пользователь может сказать или спросить в этой ситуации.\n"
-        "Ответы должны быть на русском, естественные, соответствовать роли и ситуации."
-    )
-    try:
-        hint = await chat(prompt, max_tokens=200, temperature=0.7)
-    except Exception as e:
-        logger.error(f"Ошибка получения подсказки: {e}")
-        await message.answer("Не удалось получить подсказку. Попробуйте позже.")
-        return
-    await message.answer(f"💡 <b>Идеи для ответа:</b>\n\n{hint}", parse_mode="HTML")
-
-@router.message(RoleplayStates.active, F.text == "🏠 Главное меню")
-async def exit_to_main_menu(message: Message, state: FSMContext):
-    user_id = message.from_user.id
-    user_state = get_user_state(user_id)
-    user_state["mode"] = ""
-    user_state["roleplay_history"] = []
-    set_user_state(user_id, user_state)
-    await state.clear()
-    from handlers.start import show_main_menu
-    await show_main_menu(message, edit=False, remove_keyboard=True)
-
-@router.message(RoleplayStates.active, F.text == "📊 Завершить диалог")
+# ---------- ОБРАБОТЧИК КНОПКИ "ЗАВЕРШИТЬ ДИАЛОГ" ----------
+@router.message(RoleplayStates.active, F.text == "📊 Finish dialogue")
 async def finish_roleplay(message: Message, state: FSMContext):
     user_id = message.from_user.id
     user_state = get_user_state(user_id)
     history = user_state.get("roleplay_history", [])
+    goals = user_state.get("roleplay_goals", [])
+    topic = user_state.get("roleplay_topic", "")
+
     if not history:
-        await message.answer("Вы пока ничего не сказали. Начните разговор!", reply_markup=ReplyKeyboardRemove())
+        await message.answer("You haven't said anything yet. Start the conversation!", reply_markup=ReplyKeyboardRemove())
         await state.clear()
         return
 
-    history_text = "\n".join([f"{msg['role']}: {msg['text']}" for msg in history if msg['role'] in ['user', 'assistant']])
-    prompt = (
-        "Ты – языковой тренер. Проанализируй диалог пользователя с ИИ в ролевой игре и дай краткий фидбек:\n"
-        "- Грамматика (2-3 основные ошибки с исправлениями)\n"
-        "- Лексика (удачные фразы, что можно улучшить)\n"
-        "- Достижение целей (насколько пользователь справился с задачей)\n"
-        "Будь конструктивным, обращайся на 'ты'.\n\n"
-        f"Диалог:\n{history_text}"
+    # Проверяем, достигнуты ли цели
+    if goals:
+        check_prompt = (
+            "Analyze the dialogue and determine if the user has achieved all the goals. "
+            "Answer only 'Yes' or 'No'.\n\n"
+            f"User's goals:\n{chr(10).join(goals)}\n\n"
+            f"Dialogue:\n{chr(10).join([f'{m["role"]}: {m["text"]}' for m in history])}\n\n"
+            "Has the user achieved all goals? Answer only 'Yes' or 'No'."
+        )
+        try:
+            check_response = await chat([{"role": "user", "content": check_prompt}], max_tokens=10, temperature=0)
+            goals_achieved = "yes" in check_response.lower()
+        except Exception as e:
+            logger.error(f"Ошибка проверки целей: {e}")
+            goals_achieved = False
+
+        if not goals_achieved:
+            keyboard = InlineKeyboardMarkup(inline_keyboard=[
+                [InlineKeyboardButton(text="Continue dialogue", callback_data="continue_dialogue"),
+                 InlineKeyboardButton(text="Finish anyway", callback_data="finish_anyway")]
+            ])
+            await message.answer(
+                "You haven't achieved all the goals in this situation yet. Do you want to continue or finish anyway and get feedback?",
+                reply_markup=keyboard
+            )
+            await state.set_state(RoleplayStates.confirming_finish)
+            return
+
+    # Если цели достигнуты или их нет – сразу фидбек
+    await generate_feedback(message, state, user_id, user_state)
+
+@router.callback_query(F.data == "continue_dialogue", RoleplayStates.confirming_finish)
+async def continue_dialogue(callback: CallbackQuery, state: FSMContext):
+    await state.clear()
+    await callback.message.delete()
+    await callback.message.answer("Continuing the dialogue. Achieve all goals and finish later.", reply_markup=None)
+    await callback.answer()
+
+@router.callback_query(F.data == "finish_anyway", RoleplayStates.confirming_finish)
+async def finish_anyway(callback: CallbackQuery, state: FSMContext):
+    await state.clear()
+    user_id = callback.from_user.id
+    user_state = get_user_state(user_id)
+    await callback.message.delete()
+    await generate_feedback(callback.message, state, user_id, user_state)
+    await callback.answer()
+
+# ---------- ФУНКЦИЯ ГЕНЕРАЦИИ ФИДБЕКА ----------
+async def generate_feedback(message: Message, state: FSMContext, user_id: int, user_state: dict):
+    history = user_state.get("roleplay_history", [])
+    goals = user_state.get("roleplay_goals", [])
+    topic = user_state.get("roleplay_topic", "")
+
+    if not history:
+        await message.answer("No dialogue to analyze.", reply_markup=ReplyKeyboardRemove())
+        return
+
+    # Проверяем, не слишком ли короткий диалог
+    is_short = len(history) < 4
+
+    # Проверяем, не ушёл ли пользователь в сторону
+    theme_check_prompt = (
+        f"Analyze the dialogue. Determine if the user stayed on topic '{topic}'. "
+        "Answer only 'Yes' or 'No'.\n\n"
+        f"Dialogue:\n{chr(10).join([f'{m["role"]}: {m["text"]}' for m in history])}\n\n"
+        "Did the user stay on topic? Answer only 'Yes' or 'No'."
     )
     try:
-        feedback = await chat(prompt, max_tokens=400, temperature=0.5)
+        theme_check = await chat([{"role": "user", "content": theme_check_prompt}], max_tokens=10, temperature=0)
+        off_topic = "no" in theme_check.lower()
+    except Exception:
+        off_topic = False
+
+    # Формируем фидбек на русском
+    feedback_prompt = (
+        "Ты – языковой тренер. Проанализируй диалог пользователя с ИИ в ролевой игре и дай краткий фидбек на русском языке.\n"
+        "Учти следующие моменты:\n"
+        "- Если диалог был коротким (менее 4 сообщений), укажи это и предложи больше практиковаться.\n"
+        "- Если пользователь отходил от темы, мягко укажи на это и напомни тему.\n"
+        "- Выдели 2-3 основные грамматические ошибки с исправлениями.\n"
+        "- Отметь удачные фразы и предложи, что можно улучшить.\n"
+        "- Оцени, насколько пользователь достиг целей.\n"
+        "Будь конструктивным, обращайся на 'ты'.\n\n"
+        f"Тема: {topic}\n"
+        f"Цели пользователя: {chr(10).join(goals) if goals else 'Нет целей'}\n"
+        f"Диалог:\n{chr(10).join([f'{m["role"]}: {m["text"]}' for m in history])}\n\n"
+        "Фидбек:"
+    )
+
+    if is_short:
+        feedback_prompt += "\n\nДиалог был коротким. Упомяни это в фидбеке."
+    if off_topic:
+        feedback_prompt += f"\n\nПользователь отклонялся от темы. Напомни, что нужно было обсуждать '{topic}'."
+
+    try:
+        feedback = await chat([{"role": "user", "content": feedback_prompt}], max_tokens=500, temperature=0.5)
     except Exception as e:
         logger.error(f"Ошибка получения фидбека: {e}")
         await message.answer("Не удалось получить фидбек. Попробуйте позже.")
         return
 
+    # Очищаем состояние игры
     user_state["mode"] = ""
     user_state["roleplay_history"] = []
+    user_state["russian_counter"] = 0
     set_user_state(user_id, user_state)
     await state.clear()
 
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
-        [InlineKeyboardButton(text="🔄 Начать новую игру", callback_data="start_roleplay")],
-        [InlineKeyboardButton(text="🏠 Главное меню", callback_data="back_to_main_menu")]
+        [InlineKeyboardButton(text="🔄 New game", callback_data="start_roleplay")],
+        [InlineKeyboardButton(text="🏠 Main menu", callback_data="back_to_main_menu")]
     ])
     await message.answer(f"📊 <b>Фидбек по диалогу:</b>\n\n{feedback}", reply_markup=keyboard, parse_mode="HTML")
     await message.answer("Ролевая игра завершена.", reply_markup=ReplyKeyboardRemove())
@@ -1811,60 +1913,63 @@ async def handle_voice_message(message: Message, state: FSMContext):
     user_id = message.from_user.id
     user_state = get_user_state(user_id)
     if user_state.get("mode") != "roleplay_active":
-        await message.answer("Вы не в режиме ролевой игры.")
+        await message.answer("You are not in roleplay mode.")
         return
 
     try:
         audio_obj = message.voice or message.audio
         if audio_obj is None:
-            await message.answer("Не удалось найти аудиофайл.")
+            await message.answer("Audio file not found.")
             return
-
         file = await message.bot.get_file(audio_obj.file_id)
         file_bytes = await message.bot.download_file(file.file_path)
         text = await voice_to_text(file_bytes.read())
     except Exception as e:
         logger.error(f"Ошибка распознавания: {e}")
-        await message.answer("Не удалось распознать голосовое сообщение. Попробуйте написать текстом.")
+        await message.answer("Could not recognize the voice message. Please type instead.")
         return
 
     if not text:
-        await message.answer("Не удалось распознать речь. Попробуйте сказать чётче или напишите текстом.")
+        await message.answer("Could not recognize speech. Please try again or type.")
         return
 
-    # Проверка на мат
-    if is_profanity(text):
-        await message.answer("Пожалуйста, не отходите от темы диалога. Давайте продолжим ролевую игру в рамках заданной ситуации.")
+    # Проверка на запрещённые темы
+    if is_forbidden(text):
+        await message.answer("Please stay on topic. Let's continue the roleplay within the given situation.")
         return
 
-    roleplay_history = user_state.get("roleplay_history", [])
-    try:
-        ai_response = await process_roleplay_message(user_id, text, roleplay_history)
-    except Exception as e:
-        logger.error(f"Ошибка в ролевой игре: {e}")
-        await message.answer("Произошла ошибка. Попробуйте ещё раз.")
-        return
+    # Определяем язык: если текст содержит кириллицу, считаем его русским и увеличиваем счётчик
+    if is_cyrillic(text):
+        counter = user_state.get("russian_counter", 0) + 1
+        user_state["russian_counter"] = counter
+        set_user_state(user_id, user_state)
+        show_english_reminder = (counter % 5 == 0)
+    else:
+        show_english_reminder = False
 
-    roleplay_history.append({"role": "user", "text": text})
-    roleplay_history.append({"role": "assistant", "text": ai_response})
-    if len(roleplay_history) > 20:
-        roleplay_history = roleplay_history[-20:]
-    user_state["roleplay_history"] = roleplay_history
+    # Вызываем ИИ
+    topic = user_state.get("roleplay_topic", "")
+    description = user_state.get("roleplay_description", "")
+    goals = user_state.get("roleplay_goals", [])
+    system_prompt = build_system_prompt(topic, description, goals)
+    history = user_state.get("roleplay_history", [])
+    ai_response = await call_ai_with_system(system_prompt, text, history)
+
+    # Добавляем напоминание, если нужно
+    if show_english_reminder:
+        ai_response += "\n\nFeel free to use English!"
+
+    # Сохраняем историю
+    history.append({"role": "user", "text": text})
+    history.append({"role": "assistant", "text": ai_response})
+    if len(history) > 20:
+        history = history[-20:]
+    user_state["roleplay_history"] = history
     set_user_state(user_id, user_state)
 
     await message.answer(ai_response)
 
-# ---------- ОБЩИЙ ОБРАБОТЧИК ТЕКСТА ----------
-# Простая функция проверки мата
-PROFANITY_WORDS = ["fuck", "bitch", "shit", "cunt", "dick", "pussy", "fucking", "motherfucker", "asshole", "bastard", "damn"]
-
-def is_profanity(text: str) -> bool:
-    lower = text.lower()
-    for word in PROFANITY_WORDS:
-        if word in lower:
-            return True
-    return False
-
+# ---------- ОБРАБОТЧИК ТЕКСТОВЫХ СООБЩЕНИЙ ----------
 @router.message(RoleplayStates.active, F.text)
 async def handle_roleplay_text(message: Message, state: FSMContext):
     user_id = message.from_user.id
@@ -1874,40 +1979,82 @@ async def handle_roleplay_text(message: Message, state: FSMContext):
 
     user_text = message.text
 
-    # Проверка на мат
-    if is_profanity(user_text):
-        await message.answer("Пожалуйста, не отходите от темы диалога. Давайте продолжим ролевую игру в рамках заданной ситуации.")
+    # Проверка на запрещённые темы
+    if is_forbidden(user_text):
+        await message.answer("Please stay on topic. Let's continue the roleplay within the given situation.")
         return
 
-    # --- Временная подмена history ---
-    old_history = user_state.get("history")
-    roleplay_history = user_state.get("roleplay_history", [])
-    user_state["history"] = roleplay_history
-    # --------------------------------
-
-    try:
-        ai_response = await process_roleplay_message(user_id, user_text)
-    except Exception as e:
-        logger.error(f"Ошибка в ролевой игре: {e}")
-        await message.answer("Произошла ошибка. Попробуйте ещё раз.")
-        if old_history is not None:
-            user_state["history"] = old_history
-        else:
-            user_state.pop("history", None)
+    # Определяем язык: если текст содержит кириллицу, считаем его русским
+    if is_cyrillic(user_text):
+        counter = user_state.get("russian_counter", 0) + 1
+        user_state["russian_counter"] = counter
         set_user_state(user_id, user_state)
-        return
-
-    # Восстанавливаем историю
-    if old_history is not None:
-        user_state["history"] = old_history
+        show_english_reminder = (counter % 5 == 0)
     else:
-        user_state.pop("history", None)
+        show_english_reminder = False
 
-    roleplay_history.append({"role": "user", "text": user_text})
-    roleplay_history.append({"role": "assistant", "text": ai_response})
-    if len(roleplay_history) > 20:
-        roleplay_history = roleplay_history[-20:]
-    user_state["roleplay_history"] = roleplay_history
+    # Вызываем ИИ
+    topic = user_state.get("roleplay_topic", "")
+    description = user_state.get("roleplay_description", "")
+    goals = user_state.get("roleplay_goals", [])
+    system_prompt = build_system_prompt(topic, description, goals)
+    history = user_state.get("roleplay_history", [])
+    ai_response = await call_ai_with_system(system_prompt, user_text, history)
+
+    # Добавляем напоминание, если нужно
+    if show_english_reminder:
+        ai_response += "\n\nFeel free to use English!"
+
+    # Сохраняем историю
+    history.append({"role": "user", "text": user_text})
+    history.append({"role": "assistant", "text": ai_response})
+    if len(history) > 20:
+        history = history[-20:]
+    user_state["roleplay_history"] = history
     set_user_state(user_id, user_state)
 
     await message.answer(ai_response)
+
+# ---------- КНОПКА "💡 What to say?" ----------
+@router.message(RoleplayStates.active, F.text == "💡 What to say?")
+async def give_hint(message: Message, state: FSMContext):
+    user_id = message.from_user.id
+    user_state = get_user_state(user_id)
+    history = user_state.get("roleplay_history", [])
+    if not history:
+        await message.answer("You haven't started the dialogue yet. Start talking to get a hint.")
+        return
+
+    last_bot_msg = None
+    if history and history[-1].get("role") == "assistant":
+        last_bot_msg = history[-1].get("text", "")
+
+    history_str = "\n".join([f"{msg['role']}: {msg['text']}" for msg in history[-5:]]) if history else "No history"
+
+    prompt = (
+        "You are an assistant in a role-playing game. The user asks for a hint on what to say next.\n"
+        f"Dialogue context (last messages):\n{history_str}\n"
+        f"Last bot message: {last_bot_msg or 'No message'}\n"
+        "Suggest 2–3 options of what the user could say or ask in this situation.\n"
+        "Responses should be in English, natural, and fit the role and situation."
+    )
+    try:
+        hint = await chat([{"role": "user", "content": prompt}], max_tokens=200, temperature=0.7)
+    except Exception as e:
+        logger.error(f"Ошибка получения подсказки: {e}")
+        await message.answer("Could not get a hint. Please try later.")
+        return
+    await message.answer(f"💡 <b>Ideas for your response:</b>\n\n{hint}", parse_mode="HTML")
+
+# ---------- КНОПКА "🏠 Main menu" ----------
+@router.message(RoleplayStates.active, F.text == "🏠 Main menu")
+async def exit_to_main_menu(message: Message, state: FSMContext):
+    user_id = message.from_user.id
+    user_state = get_user_state(user_id)
+    user_state["mode"] = ""
+    user_state["roleplay_history"] = []
+    user_state["russian_counter"] = 0
+    set_user_state(user_id, user_state)
+    await state.clear()
+    from handlers.start import show_main_menu
+    await show_main_menu(message, edit=False, remove_keyboard=True)
