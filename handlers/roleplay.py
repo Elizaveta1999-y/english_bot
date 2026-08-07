@@ -1799,7 +1799,7 @@ async def finish_roleplay(message: Message, state: FSMContext):
             "Analyze the dialogue and determine if the user has achieved all the goals. "
             "Answer only 'Yes' or 'No'.\n\n"
             f"User's goals:\n{chr(10).join(goals)}\n\n"
-            f'Dialogue:\n{chr(10).join([f"{m["role"]}: {m["text"]}" for m in history])}\n\n'
+            chr(10).join([f'{m["role"]}: {m["text"]}' for m in history])
             "Has the user achieved all goals? Answer only 'Yes' or 'No'."
         )
         try:
