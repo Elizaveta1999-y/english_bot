@@ -2060,3 +2060,4 @@ async def exit_to_main_menu(message: Message, state: FSMContext):
     await state.clear()
     from handlers.start import show_main_menu
     await show_main_menu(message, edit=False, remove_keyboard=True)
+
