@@ -44,18 +44,30 @@ async def process_voice_message(user_id: int, user_text: str, history: list = No
         check_prompt = (
             f"The student wrote: {user_text}\n"
             f"Check ONLY for grammar errors (verb forms, tenses, word order, articles, prepositions). "
-            f"IGNORE punctuation (missing periods, commas, question marks) and capitalization. "
-            f"If there are grammar errors, provide:\n"
-            f"1. The corrected version (only change what is wrong)\n"
-            f"2. A brief explanation (one sentence) WITHOUT any labels\n"
+            f"IGNORE punctuation and capitalization.\n"
+            f"If there are errors, provide exactly in this format:\n"
+            f"First line: corrected version (no numbers or bullets)\n"
+            f"Second line: brief explanation, starting with '> ' (without the word 'explanation' or 'пояснение')\n"
             f"If there are NO grammar errors, reply ONLY with 'NO_ERRORS'."
         )
         check_result = chat(check_prompt, system_message="You are a strict English teacher.", max_tokens=150, temperature=0.3)
         if check_result.strip() == "NO_ERRORS":
             is_perfect = True
         else:
-            cleaned = re.sub(r'(?i)^(explanation|correction|fixed|corrected)\s*[:.]?\s*', '', check_result)
-            correction_text = f"<s>{user_text}</s>\n{cleaned}"
+            lines = check_result.strip().split('\n')
+            corrected = ""
+            explanation = ""
+            for line in lines:
+                if line.startswith('>'):
+                    explanation += line + "\n"
+                else:
+                    if corrected:
+                        corrected += " " + line.strip()
+                    else:
+                        corrected = line.strip()
+            corrected = corrected.strip()
+            explanation = explanation.strip()
+            correction_text = f"<s>{user_text}</s>\n{corrected}\n{explanation}"
     
     return reply_text, correction_text, is_perfect
 
