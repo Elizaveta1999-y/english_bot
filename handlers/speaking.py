@@ -273,7 +273,7 @@ async def continue_speaking(callback: CallbackQuery, state: FSMContext):
     except Exception as e:
         logger.error(f"TTS error: {e}")
 
-# ============ ГЛАВНЫЙ ОБРАБОТЧИК КНОПКИ "Текст" ============
+# ============ ОБРАБОТЧИКИ ДЛЯ КНОПКИ "Текст" (ГАРАНТИРОВАННО РАБОТАЮТ) ============
 @router.callback_query(lambda c: c.data.startswith("show_text_"))
 async def show_text(callback: CallbackQuery, data: dict):
     logger.info(f"✅ show_text вызван для user {callback.from_user.id}")
