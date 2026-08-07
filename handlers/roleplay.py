@@ -6,7 +6,8 @@ from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import State, StatesGroup
 from data.users import get_user_state, set_user_state
 from services.deepseek import chat
-from speaking.services.ai import process_roleplay_message, transcribe_audio
+from speaking.services.ai import process_roleplay_message
+from speaking.services.stt import voice_to_text
 
 logger = logging.getLogger(__name__)
 router = Router()
@@ -1740,11 +1741,16 @@ async def handle_voice_message(message: Message, state: FSMContext):
         await message.answer("Вы не в режиме ролевой игры.")
         return
 
+    # --- распознавание голоса через voice_to_text ---
     try:
-        text = await transcribe_audio(message.voice or message.audio)
-    except AttributeError:
-        await message.answer("Голосовые сообщения пока не поддерживаются. Пожалуйста, напишите текст.")
-        return
+        audio_obj = message.voice or message.audio
+        if audio_obj is None:
+            await message.answer("Не удалось найти аудиофайл.")
+            return
+
+        file = await message.bot.get_file(audio_obj.file_id)
+        file_bytes = await message.bot.download_file(file.file_path)
+        text = await voice_to_text(file_bytes.read())
     except Exception as e:
         logger.error(f"Ошибка распознавания: {e}")
         await message.answer("Не удалось распознать голосовое сообщение. Попробуйте написать текстом.")
@@ -1754,32 +1760,15 @@ async def handle_voice_message(message: Message, state: FSMContext):
         await message.answer("Не удалось распознать речь. Попробуйте сказать чётче или напишите текстом.")
         return
 
-    # --- Временная подмена history для совместимости с process_roleplay_message ---
-    old_history = user_state.get("history")  # сохраняем старую общую историю, если есть
+    # --- используем roleplay_history напрямую ---
     roleplay_history = user_state.get("roleplay_history", [])
-    user_state["history"] = roleplay_history   # подменяем на историю ролевой игры
-    # -------------------------------------------------------------------------
-
     try:
-        ai_response = await process_roleplay_message(user_id, text)
+        ai_response = await process_roleplay_message(user_id, text, roleplay_history)
     except Exception as e:
         logger.error(f"Ошибка в ролевой игре: {e}")
         await message.answer("Произошла ошибка. Попробуйте ещё раз.")
-        # Восстанавливаем историю
-        if old_history is not None:
-            user_state["history"] = old_history
-        else:
-            user_state.pop("history", None)
-        set_user_state(user_id, user_state)
         return
 
-    # Восстанавливаем историю
-    if old_history is not None:
-        user_state["history"] = old_history
-    else:
-        user_state.pop("history", None)
-
-    # Добавляем сообщения в roleplay_history
     roleplay_history.append({"role": "user", "text": text})
     roleplay_history.append({"role": "assistant", "text": ai_response})
     if len(roleplay_history) > 20:
