@@ -1513,7 +1513,6 @@ def get_categories_keyboard():
     return InlineKeyboardMarkup(inline_keyboard=buttons)
 
 def is_cyrillic(text: str) -> bool:
-    """Проверяет, содержит ли текст русские буквы (кириллицу)."""
     return bool(re.search('[а-яА-Я]', text))
 
 # ---------- ФИЛЬТР ЗАПРЕЩЁННЫХ ТЕМ ----------
@@ -1534,7 +1533,7 @@ def is_forbidden(text: str) -> bool:
             return True
     return False
 
-# ---------- СИСТЕМНЫЙ ПРОМПТ ДЛЯ РОЛЕВОЙ ИГРЫ (ТОЛЬКО АНГЛИЙСКИЙ) ----------
+# ---------- СИСТЕМНЫЙ ПРОМПТ (ИИ ОТВЕЧАЕТ ТОЛЬКО НА АНГЛИЙСКОМ) ----------
 def build_system_prompt(topic: str, description: str, goals: list) -> str:
     goals_text = "\n".join([f"{i+1}. {g}" for i, g in enumerate(goals)])
     return (
@@ -1552,7 +1551,6 @@ def build_system_prompt(topic: str, description: str, goals: list) -> str:
         "6. Respond naturally, in character.\n"
     )
 
-# ---------- ВЫЗОВ ИИ С СИСТЕМНЫМ ПРОМПТОМ ----------
 async def call_ai_with_system(system_prompt: str, user_text: str, history: list) -> str:
     messages = [{"role": "system", "content": system_prompt}]
     for msg in history:
@@ -1565,7 +1563,7 @@ async def call_ai_with_system(system_prompt: str, user_text: str, history: list)
         logger.error(f"Ошибка вызова ИИ: {e}")
         return "Произошла ошибка. Попробуйте ещё раз."
 
-# ---------- СТАРТ РОЛЕВОЙ ИГРЫ ----------
+# ---------- СТАРТ ----------
 @router.callback_query(F.data == "start_roleplay")
 async def start_roleplay(callback: CallbackQuery):
     await callback.message.delete()
@@ -1645,7 +1643,7 @@ async def change_topic_page(callback: CallbackQuery):
 async def noop(callback: CallbackQuery):
     await callback.answer("")
 
-# ---------- ВЫБОР КОНКРЕТНОЙ ТЕМЫ ----------
+# ---------- ВЫБОР ТЕМЫ ----------
 @router.callback_query(F.data.startswith("topic_"))
 async def topic_chosen(callback: CallbackQuery, state: FSMContext):
     parts = callback.data.split("_", 2)
@@ -1698,7 +1696,7 @@ async def topic_chosen(callback: CallbackQuery, state: FSMContext):
     await callback.message.edit_text(roleplay_info, parse_mode="HTML")
     await callback.message.answer("🎬 <b>Можете начинать!</b>", reply_markup=keyboard, parse_mode="HTML")
 
-# ---------- ВОЗВРАТ К КАТЕГОРИЯМ ----------
+# ---------- НАЗАД К КАТЕГОРИЯМ ----------
 @router.callback_query(F.data == "back_to_rp_categories")
 async def back_to_rp_categories(callback: CallbackQuery, state: FSMContext):
     await state.clear()
@@ -1708,7 +1706,6 @@ async def back_to_rp_categories(callback: CallbackQuery, state: FSMContext):
     )
     await callback.answer()
 
-# ---------- ВОЗВРАТ В ГЛАВНОЕ МЕНЮ ----------
 @router.callback_query(F.data == "back_to_main_menu")
 async def back_to_main_menu(callback: CallbackQuery, state: FSMContext):
     await state.clear()
@@ -1716,7 +1713,7 @@ async def back_to_main_menu(callback: CallbackQuery, state: FSMContext):
     await show_main_menu(callback.message, edit=True, remove_keyboard=True)
     await callback.answer()
 
-# ---------- ОБРАБОТЧИКИ КОМАНД С ПОДТВЕРЖДЕНИЕМ ----------
+# ---------- ПОДТВЕРЖДЕНИЕ ВЫХОДА ПО КОМАНДАМ ----------
 @router.message(F.text.in_({"/start", "/subscription", "/support"}))
 async def handle_exit_commands(message: Message, state: FSMContext):
     user_id = message.from_user.id
@@ -1771,7 +1768,7 @@ async def confirm_exit_no(callback: CallbackQuery, state: FSMContext):
     await callback.message.answer("Продолжаем диалог.", reply_markup=None)
     await callback.answer()
 
-# ---------- ОБРАБОТЧИК КНОПКИ "ЗАВЕРШИТЬ ДИАЛОГ" ----------
+# ---------- ЗАВЕРШИТЬ ДИАЛОГ ----------
 @router.message(RoleplayStates.active, F.text == "📊 Завершить диалог")
 async def finish_roleplay(message: Message, state: FSMContext):
     user_id = message.from_user.id
@@ -1786,10 +1783,11 @@ async def finish_roleplay(message: Message, state: FSMContext):
         return
 
     if goals:
+        # Используем конкатенацию, чтобы избежать вложенных f-строк
         check_prompt = (
             "Analyze the dialogue and determine if the user has achieved all the goals. "
             "Answer only 'Yes' or 'No'.\n\n"
-            f"User's goals:\n{chr(10).join(goals)}\n\n"
+            "User's goals:\n" + chr(10).join(goals) + "\n\n"
             "Dialogue:\n" + chr(10).join([f'{m["role"]}: {m["text"]}' for m in history]) + "\n\n"
             "Has the user achieved all goals? Answer only 'Yes' or 'No'."
         )
@@ -1830,7 +1828,7 @@ async def finish_anyway(callback: CallbackQuery, state: FSMContext):
     await generate_feedback(callback.message, state, user_id, user_state)
     await callback.answer()
 
-# ---------- ФУНКЦИЯ ГЕНЕРАЦИИ ФИДБЕКА ----------
+# ---------- ГЕНЕРАЦИЯ ФИДБЕКА ----------
 async def generate_feedback(message: Message, state: FSMContext, user_id: int, user_state: dict):
     history = user_state.get("roleplay_history", [])
     goals = user_state.get("roleplay_goals", [])
@@ -1842,8 +1840,9 @@ async def generate_feedback(message: Message, state: FSMContext, user_id: int, u
 
     is_short = len(history) < 4
 
+    # Проверка отклонения от темы (без вложенных f-строк)
     theme_check_prompt = (
-        f"Analyze the dialogue. Determine if the user stayed on topic '{topic}'. "
+        "Analyze the dialogue. Determine if the user stayed on topic '" + topic + "'. "
         "Answer only 'Yes' or 'No'.\n\n"
         "Dialogue:\n" + chr(10).join([f'{m["role"]}: {m["text"]}' for m in history]) + "\n\n"
         "Did the user stay on topic? Answer only 'Yes' or 'No'."
@@ -1854,6 +1853,10 @@ async def generate_feedback(message: Message, state: FSMContext, user_id: int, u
     except Exception:
         off_topic = False
 
+    # Формируем фидбек на русском – также без вложенных f-строк
+    dialog_text = chr(10).join([f'{m["role"]}: {m["text"]}' for m in history])
+    goals_text = chr(10).join(goals) if goals else "Нет целей"
+
     feedback_prompt = (
         "Ты – языковой тренер. Проанализируй диалог пользователя с ИИ в ролевой игре и дай краткий фидбек на русском языке.\n"
         "Учти следующие моменты:\n"
@@ -1863,16 +1866,16 @@ async def generate_feedback(message: Message, state: FSMContext, user_id: int, u
         "- Отметь удачные фразы и предложи, что можно улучшить.\n"
         "- Оцени, насколько пользователь достиг целей.\n"
         "Будь конструктивным, обращайся на 'ты'.\n\n"
-        f"Тема: {topic}\n"
-        f"Цели пользователя: {chr(10).join(goals) if goals else 'Нет целей'}\n"
-        f"Диалог:\n{chr(10).join([f'{m["role"]}: {m["text"]}' for m in history])}\n\n"
+        "Тема: " + topic + "\n"
+        "Цели пользователя: " + goals_text + "\n"
+        "Диалог:\n" + dialog_text + "\n\n"
         "Фидбек:"
     )
 
     if is_short:
         feedback_prompt += "\n\nДиалог был коротким. Упомяни это в фидбеке."
     if off_topic:
-        feedback_prompt += f"\n\nПользователь отклонялся от темы. Напомни, что нужно было обсуждать '{topic}'."
+        feedback_prompt += "\n\nПользователь отклонялся от темы. Напомни, что нужно было обсуждать '" + topic + "'."
 
     try:
         feedback = await chat([{"role": "user", "content": feedback_prompt}], max_tokens=500, temperature=0.5)
@@ -1881,6 +1884,7 @@ async def generate_feedback(message: Message, state: FSMContext, user_id: int, u
         await message.answer("Не удалось получить фидбек. Попробуйте позже.")
         return
 
+    # Очистка состояния
     user_state["mode"] = ""
     user_state["roleplay_history"] = []
     user_state["russian_counter"] = 0
@@ -1894,7 +1898,7 @@ async def generate_feedback(message: Message, state: FSMContext, user_id: int, u
     await message.answer(f"📊 <b>Фидбек по диалогу:</b>\n\n{feedback}", reply_markup=keyboard, parse_mode="HTML")
     await message.answer("Ролевая игра завершена.", reply_markup=ReplyKeyboardRemove())
 
-# ---------- ОБРАБОТЧИК ГОЛОСОВЫХ СООБЩЕНИЙ ----------
+# ---------- ГОЛОСОВЫЕ СООБЩЕНИЯ ----------
 @router.message(RoleplayStates.active, F.voice | F.audio)
 async def handle_voice_message(message: Message, state: FSMContext):
     user_id = message.from_user.id
@@ -1924,6 +1928,7 @@ async def handle_voice_message(message: Message, state: FSMContext):
         await message.answer("Пожалуйста, не отходите от темы диалога. Давайте продолжим ролевую игру в рамках заданной ситуации.")
         return
 
+    # Счётчик русских сообщений
     if is_cyrillic(text):
         counter = user_state.get("russian_counter", 0) + 1
         user_state["russian_counter"] = counter
@@ -1951,7 +1956,7 @@ async def handle_voice_message(message: Message, state: FSMContext):
 
     await message.answer(ai_response)
 
-# ---------- ОБРАБОТЧИК ТЕКСТОВЫХ СООБЩЕНИЙ ----------
+# ---------- ТЕКСТОВЫЕ СООБЩЕНИЯ ----------
 @router.message(RoleplayStates.active, F.text)
 async def handle_roleplay_text(message: Message, state: FSMContext):
     user_id = message.from_user.id
@@ -1992,7 +1997,7 @@ async def handle_roleplay_text(message: Message, state: FSMContext):
 
     await message.answer(ai_response)
 
-# ---------- КНОПКА "💡 Что ответить?" ----------
+# ---------- ПОДСКАЗКА ----------
 @router.message(RoleplayStates.active, F.text == "💡 Что ответить?")
 async def give_hint(message: Message, state: FSMContext):
     user_id = message.from_user.id
@@ -2010,8 +2015,8 @@ async def give_hint(message: Message, state: FSMContext):
 
     prompt = (
         "Ты – помощник в ролевой игре. Пользователь просит подсказку, что можно ответить дальше.\n"
-        f"Контекст диалога (последние сообщения):\n{history_str}\n"
-        f"Последнее сообщение бота: {last_bot_msg or 'Нет сообщения'}\n"
+        "Контекст диалога (последние сообщения):\n" + history_str + "\n"
+        "Последнее сообщение бота: " + (last_bot_msg or "Нет сообщения") + "\n"
         "Предложи 2–3 варианта того, что пользователь может сказать или спросить в этой ситуации.\n"
         "Ответы должны быть на русском, естественные, соответствовать роли и ситуации."
     )
@@ -2023,7 +2028,7 @@ async def give_hint(message: Message, state: FSMContext):
         return
     await message.answer(f"💡 <b>Идеи для ответа:</b>\n\n{hint}", parse_mode="HTML")
 
-# ---------- КНОПКА "🏠 Главное меню" ----------
+# ---------- ГЛАВНОЕ МЕНЮ ----------
 @router.message(RoleplayStates.active, F.text == "🏠 Главное меню")
 async def exit_to_main_menu(message: Message, state: FSMContext):
     user_id = message.from_user.id
