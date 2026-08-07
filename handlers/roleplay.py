@@ -1794,11 +1794,12 @@ async def finish_roleplay(message: Message, state: FSMContext):
 
     # Проверяем, достигнуты ли цели
     if goals:
+        # ИСПРАВЛЕННАЯ СТРОКА (внешние кавычки одинарные)
         check_prompt = (
             "Analyze the dialogue and determine if the user has achieved all the goals. "
             "Answer only 'Yes' or 'No'.\n\n"
             f"User's goals:\n{chr(10).join(goals)}\n\n"
-            f"Dialogue:\n{chr(10).join([f'{m["role"]}: {m["text"]}' for m in history])}\n\n"
+            f'Dialogue:\n{chr(10).join([f"{m["role"]}: {m["text"]}" for m in history])}\n\n'
             "Has the user achieved all goals? Answer only 'Yes' or 'No'."
         )
         try:
@@ -1853,10 +1854,11 @@ async def generate_feedback(message: Message, state: FSMContext, user_id: int, u
     is_short = len(history) < 4
 
     # Проверяем, не ушёл ли пользователь в сторону
+    # ИСПРАВЛЕННАЯ СТРОКА (внешние кавычки одинарные)
     theme_check_prompt = (
         f"Analyze the dialogue. Determine if the user stayed on topic '{topic}'. "
         "Answer only 'Yes' or 'No'.\n\n"
-        f"Dialogue:\n{chr(10).join([f'{m["role"]}: {m["text"]}' for m in history])}\n\n"
+        f'Dialogue:\n{chr(10).join([f"{m["role"]}: {m["text"]}" for m in history])}\n\n'
         "Did the user stay on topic? Answer only 'Yes' or 'No'."
     )
     try:
