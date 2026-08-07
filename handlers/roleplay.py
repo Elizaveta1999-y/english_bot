@@ -14,7 +14,7 @@ router = Router()
 class RoleplayStates(StatesGroup):
     active = State()
 
-# ---------- КАТЕГОРИИ (названия на английском) ----------
+# ---------- КАТЕГОРИИ (переименованы и исправлены смайлики) ----------
 CATEGORIES = [
     ("💼 Work & Business", "work"),
     ("✈️ Travel", "travel"),
@@ -25,20 +25,20 @@ CATEGORIES = [
     ("💅 Beauty Routine", "beauty"),
     ("🛍️ Shopping & Dining", "shopping"),
     ("🗣️ Small Talk", "small_talk"),
-    ("🎓 Education & Learning", "education"),
+    ("🎓 Education", "education"),                       # было Education & Learning
     ("💰 Finance & Banking", "finance"),
     ("🚗 Cars & Transport", "cars"),
-    ("🏡 Real Estate & Moving", "realestate"),
-    ("🎬 Entertainment & Culture", "entertainment"),
+    ("🏡 Real Estate", "realestate"),                   # было Real Estate & Moving
+    ("🎬 Culture", "entertainment"),                    # было Entertainment & Culture
     ("🌿 Nature & Outdoors", "nature"),
-    ("🧠 Psychology & Self-Development", "psychology"),
-    ("🆘 Emergency & Safety", "emergency"),
+    ("🧠 Psychology", "psychology"),                    # было Psychology & Self-Development
+    ("🆘 Emergency", "emergency"),                      # было Emergency & Safety
     ("🍳 Cooking & Recipes", "cooking"),
-    ("👗 Fashion & Style", "fashion"),
+    ("💅🏽 Fashion & Style", "fashion"),                # смайлик заменён
     ("📰 News & Current Events", "news")
 ]
 
-# ---------- ТЕМЫ (все сценарии с исправленными формулировками) ----------
+# ---------- ТЕМЫ (пустые списки – вставьте свои сценарии) ----------
 TOPICS = {
     "work": [
         {
@@ -1496,13 +1496,10 @@ TOPICS = {
         }
     ]
 }
-
-# ---------- КЛАВИАТУРЫ И ОБРАБОТЧИКИ ----------
-# (код без изменений, он идентичен предыдущему, поэтому просто копируем)
-
-# ---------- СТАРТ РОЛЕВОЙ ИГРЫ (кнопки категорий по 2 в ряд, + кнопка "Назад") ----------
+# ---------- СТАРТ РОЛЕВОЙ ИГРЫ (РЕДАКТИРУЕТ ТЕКУЩЕЕ СООБЩЕНИЕ) ----------
 @router.callback_query(F.data == "start_roleplay")
 async def start_roleplay(callback: CallbackQuery):
+    # Формируем кнопки категорий по 2 в ряд
     buttons = []
     for i in range(0, len(CATEGORIES), 2):
         row = []
@@ -1514,13 +1511,17 @@ async def start_roleplay(callback: CallbackQuery):
         buttons.append(row)
     buttons.append([InlineKeyboardButton(text="🔙 Назад в главное меню", callback_data="back_to_main_menu")])
     keyboard = InlineKeyboardMarkup(inline_keyboard=buttons)
-    await callback.message.answer("🎭 Выберите категорию для ролевой игры:", reply_markup=keyboard)
+
+    # Редактируем текущее сообщение (вместо отправки нового)
+    await callback.message.edit_text("🎭 Выберите категорию для ролевой игры:", reply_markup=keyboard)
     await callback.answer()
 
-# ---------- ПОКАЗ ТЕМ С ПАГИНАЦИЕЙ ----------
+# ---------- ПОКАЗ ТЕМ С ПАГИНАЦИЕЙ (ИСПРАВЛЕНА ПЕРЕДАЧА cat_id) ----------
 @router.callback_query(F.data.startswith("cat_"))
-async def show_topics(callback: CallbackQuery, page: int = 0):
-    cat_id = callback.data[4:]
+async def show_topics(callback: CallbackQuery, cat_id: str = None, page: int = 0):
+    # Если cat_id не передан, извлекаем из callback.data
+    if cat_id is None:
+        cat_id = callback.data[4:]  # убираем "cat_"
     topics_list = TOPICS.get(cat_id, [])
     if not topics_list:
         await callback.answer("В этой категории нет тем", show_alert=True)
@@ -1545,6 +1546,7 @@ async def show_topics(callback: CallbackQuery, page: int = 0):
             callback_data=f"topic_{cat_id}_{idx}_{page}"
         )])
 
+    # Навигация
     nav_buttons = []
     if page > 0:
         nav_buttons.append(InlineKeyboardButton(text="◀️", callback_data=f"cat_page_{cat_id}_{page-1}"))
@@ -1561,13 +1563,15 @@ async def show_topics(callback: CallbackQuery, page: int = 0):
 
     topics_keyboard = InlineKeyboardMarkup(inline_keyboard=buttons)
     cat_display = next((c[0] for c in CATEGORIES if c[1] == cat_id), cat_id)
+    # Убрали 🎭 и фразу со страницей – оставили только название категории
     await callback.message.edit_text(
-        f"🎭 <b>{cat_display}</b>\n\nВыберите тему (страница {page+1}/{total_pages}):",
+        f"<b>{cat_display}</b>",
         reply_markup=topics_keyboard,
         parse_mode="HTML"
     )
     await callback.answer()
 
+# ---------- ОБРАБОТЧИК СТРЕЛОК (ПЕРЕДАЁТ cat_id ЯВНО) ----------
 @router.callback_query(F.data.startswith("cat_page_"))
 async def change_topic_page(callback: CallbackQuery):
     parts = callback.data.split("_")
@@ -1576,7 +1580,8 @@ async def change_topic_page(callback: CallbackQuery):
         return
     cat_id = parts[2]
     page = int(parts[3])
-    await show_topics(callback, page=page)
+    # Явно передаём cat_id и page в show_topics
+    await show_topics(callback, cat_id=cat_id, page=page)
 
 @router.callback_query(F.data == "noop")
 async def noop(callback: CallbackQuery):
@@ -1657,35 +1662,11 @@ async def back_to_rp_categories(callback: CallbackQuery, state: FSMContext):
 async def back_to_main_menu(callback: CallbackQuery, state: FSMContext):
     await state.clear()
     from handlers.start import show_main_menu
-    await show_main_menu(callback.message, edit=False)
+    # Редактируем текущее сообщение, показывая главное меню
+    await show_main_menu(callback.message, edit=True)
     await callback.answer()
 
-# ---------- ОБРАБОТЧИКИ АКТИВНОЙ ИГРЫ ----------
-@router.message(RoleplayStates.active, F.text)
-async def handle_roleplay_text(message: Message, state: FSMContext):
-    user_id = message.from_user.id
-    user_state = get_user_state(user_id)
-    if user_state.get("mode") != "roleplay_active":
-        return
-
-    user_text = message.text
-    try:
-        ai_response = await process_roleplay_message(user_id, user_text)
-    except Exception as e:
-        logger.error(f"Ошибка в ролевой игре: {e}")
-        await message.answer("Произошла ошибка. Попробуйте ещё раз.")
-        return
-
-    history = user_state.get("history", [])
-    history.append({"role": "user", "text": user_text})
-    history.append({"role": "assistant", "text": ai_response})
-    if len(history) > 20:
-        history = history[-20:]
-    user_state["history"] = history
-    set_user_state(user_id, user_state)
-
-    await message.answer(ai_response)
-
+# ---------- ОБРАБОТЧИКИ КНОПОК (ДО ОБЩЕГО ОБРАБОТЧИКА ТЕКСТА) ----------
 @router.message(RoleplayStates.active, F.text == "💡 Что ответить?")
 async def give_hint(message: Message, state: FSMContext):
     user_id = message.from_user.id
@@ -1718,7 +1699,7 @@ async def exit_to_main_menu(message: Message, state: FSMContext):
     set_user_state(user_id, user_state)
     await state.clear()
     from handlers.start import show_main_menu
-    await show_main_menu(message, edit=False)
+    await show_main_menu(message, edit=False)  # отправляем новое сообщение с главным меню
 
 @router.message(RoleplayStates.active, F.text == "📊 Завершить диалог")
 async def finish_roleplay(message: Message, state: FSMContext):
@@ -1757,3 +1738,29 @@ async def finish_roleplay(message: Message, state: FSMContext):
     ])
     await message.answer(f"📊 <b>Фидбек по диалогу:</b>\n\n{feedback}", reply_markup=keyboard, parse_mode="HTML")
     await message.answer("Ролевая игра завершена.", reply_markup=ReplyKeyboardRemove())
+
+# ---------- ОБЩИЙ ОБРАБОТЧИК ТЕКСТА (ПОСЛЕ СПЕЦИАЛЬНЫХ КНОПОК) ----------
+@router.message(RoleplayStates.active, F.text)
+async def handle_roleplay_text(message: Message, state: FSMContext):
+    user_id = message.from_user.id
+    user_state = get_user_state(user_id)
+    if user_state.get("mode") != "roleplay_active":
+        return
+
+    user_text = message.text
+    try:
+        ai_response = await process_roleplay_message(user_id, user_text)
+    except Exception as e:
+        logger.error(f"Ошибка в ролевой игре: {e}")
+        await message.answer("Произошла ошибка. Попробуйте ещё раз.")
+        return
+
+    history = user_state.get("history", [])
+    history.append({"role": "user", "text": user_text})
+    history.append({"role": "assistant", "text": ai_response})
+    if len(history) > 20:
+        history = history[-20:]
+    user_state["history"] = history
+    set_user_state(user_id, user_state)
+
+    await message.answer(ai_response)
