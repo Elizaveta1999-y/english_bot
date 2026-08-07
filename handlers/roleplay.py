@@ -1,7 +1,7 @@
 import re
 import logging
-from aiogram import Router, F, types
-from aiogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery, ReplyKeyboardMarkup, KeyboardButton, ReplyKeyboardRemove, Voice, Audio
+from aiogram import Router, F
+from aiogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery, ReplyKeyboardMarkup, KeyboardButton, ReplyKeyboardRemove
 from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import State, StatesGroup
 from data.users import get_user_state, set_user_state
@@ -1681,7 +1681,7 @@ async def topic_chosen(callback: CallbackQuery, state: FSMContext):
         "roleplay_category": cat_id,
         "roleplay_custom_scenario": None,
         "awaiting_custom_scenario": False,
-        "russian_counter": 0  # счётчик русских сообщений
+        "russian_counter": 0
     })
 
     await state.set_state(RoleplayStates.active)
@@ -1794,14 +1794,14 @@ async def finish_roleplay(message: Message, state: FSMContext):
 
     # Проверяем, достигнуты ли цели
     if goals:
-        # ИСПРАВЛЕННАЯ СТРОКА (внешние кавычки одинарные)
-check_prompt = (
-    "Analyze the dialogue and determine if the user has achieved all the goals. "
-    "Answer only 'Yes' or 'No'.\n\n"
-    f"User's goals:\n{chr(10).join(goals)}\n\n"
-    "Dialogue:\n" + chr(10).join([f'{m["role"]}: {m["text"]}' for m in history]) + "\n\n"
-    "Has the user achieved all goals? Answer only 'Yes' or 'No'."
-)
+        # Исправленный блок с правильными кавычками и отступами
+        check_prompt = (
+            "Analyze the dialogue and determine if the user has achieved all the goals. "
+            "Answer only 'Yes' or 'No'.\n\n"
+            f"User's goals:\n{chr(10).join(goals)}\n\n"
+            "Dialogue:\n" + chr(10).join([f'{m["role"]}: {m["text"]}' for m in history]) + "\n\n"
+            "Has the user achieved all goals? Answer only 'Yes' or 'No'."
+        )
         try:
             check_response = await chat([{"role": "user", "content": check_prompt}], max_tokens=10, temperature=0)
             goals_achieved = "yes" in check_response.lower()
@@ -1854,11 +1854,10 @@ async def generate_feedback(message: Message, state: FSMContext, user_id: int, u
     is_short = len(history) < 4
 
     # Проверяем, не ушёл ли пользователь в сторону
-    # ИСПРАВЛЕННАЯ СТРОКА (внешние кавычки одинарные)
     theme_check_prompt = (
         f"Analyze the dialogue. Determine if the user stayed on topic '{topic}'. "
         "Answer only 'Yes' or 'No'.\n\n"
-        f'Dialogue:\n{chr(10).join([f"{m["role"]}: {m["text"]}" for m in history])}\n\n'
+        "Dialogue:\n" + chr(10).join([f'{m["role"]}: {m["text"]}' for m in history]) + "\n\n"
         "Did the user stay on topic? Answer only 'Yes' or 'No'."
     )
     try:
@@ -1879,7 +1878,7 @@ async def generate_feedback(message: Message, state: FSMContext, user_id: int, u
         "Будь конструктивным, обращайся на 'ты'.\n\n"
         f"Тема: {topic}\n"
         f"Цели пользователя: {chr(10).join(goals) if goals else 'Нет целей'}\n"
-        f"Диалог:\n{chr(10).join([f'{m["role"]}: {m["text"]}' for m in history])}\n\n"
+        "Диалог:\n" + chr(10).join([f'{m["role"]}: {m["text"]}' for m in history]) + "\n\n"
         "Фидбек:"
     )
 
@@ -2060,4 +2059,3 @@ async def exit_to_main_menu(message: Message, state: FSMContext):
     await state.clear()
     from handlers.start import show_main_menu
     await show_main_menu(message, edit=False, remove_keyboard=True)
-
