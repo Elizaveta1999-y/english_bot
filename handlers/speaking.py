@@ -1,6 +1,7 @@
 import logging
 import os
 import random
+import traceback
 from aiogram import Router, F
 from aiogram.types import Message, ReplyKeyboardMarkup, KeyboardButton, CallbackQuery, InlineKeyboardMarkup, InlineKeyboardButton, BufferedInputFile, ReplyKeyboardRemove, ContentType
 from aiogram.fsm.context import FSMContext
@@ -104,7 +105,7 @@ async def start_speaking(callback: CallbackQuery, state: FSMContext):
     try:
         await callback.message.edit_text("Выбери голос тьютора:", reply_markup=keyboard, parse_mode="HTML")
     except Exception as e:
-        logger.error(f"Ошибка редактирования: {e}")
+        logger.error(f"Ошибка редактирования: {e}\n{traceback.format_exc()}")
         await callback.message.answer("Выбери голос тьютора:", reply_markup=keyboard, parse_mode="HTML")
     await callback.answer()
 
@@ -163,10 +164,24 @@ async def select_voice(callback: CallbackQuery, state: FSMContext):
             os.unlink(ogg_path)
         else:
             logger.warning(f"TTS не сработал для user {user_id}")
-            await callback.message.answer(first_message, reply_markup=SPEAKING_KEYBOARD)
+            sent = await callback.message.answer(first_message, reply_markup=SPEAKING_KEYBOARD)
+            last_bot_response[user_id] = {
+                "text": first_message,
+                "translation": None,
+                "audio_message_id": sent.message_id,
+                "chat_id": callback.message.chat.id,
+                "message_id": sent.message_id
+            }
     except Exception as e:
-        logger.error(f"Ошибка TTS: {e}")
-        await callback.message.answer(first_message, reply_markup=SPEAKING_KEYBOARD)
+        logger.error(f"Ошибка TTS: {e}\n{traceback.format_exc()}")
+        sent = await callback.message.answer(first_message, reply_markup=SPEAKING_KEYBOARD)
+        last_bot_response[user_id] = {
+            "text": first_message,
+            "translation": None,
+            "audio_message_id": sent.message_id,
+            "chat_id": callback.message.chat.id,
+            "message_id": sent.message_id
+        }
 
 @router.message(F.text == "📊 Я всё! Фидбек")
 async def show_feedback(message: Message, state: FSMContext, data: dict):
@@ -194,7 +209,7 @@ async def show_feedback(message: Message, state: FSMContext, data: dict):
     try:
         feedback = chat(prompt, max_tokens=300, temperature=0.5)
     except Exception as e:
-        logger.error(f"Ошибка фидбека: {e}")
+        logger.error(f"Ошибка фидбека: {e}\n{traceback.format_exc()}")
         data["skip_exit_message"] = True
         await message.answer("Не удалось получить фидбек.")
         return
@@ -278,10 +293,24 @@ async def continue_speaking(callback: CallbackQuery, state: FSMContext):
             os.unlink(voice_path)
             os.unlink(ogg_path)
         else:
-            await callback.message.answer(first_message, reply_markup=SPEAKING_KEYBOARD)
+            sent = await callback.message.answer(first_message, reply_markup=SPEAKING_KEYBOARD)
+            last_bot_response[user_id] = {
+                "text": first_message,
+                "translation": None,
+                "audio_message_id": sent.message_id,
+                "chat_id": callback.message.chat.id,
+                "message_id": sent.message_id
+            }
     except Exception as e:
-        logger.error(f"TTS error: {e}")
-        await callback.message.answer(first_message, reply_markup=SPEAKING_KEYBOARD)
+        logger.error(f"TTS error: {e}\n{traceback.format_exc()}")
+        sent = await callback.message.answer(first_message, reply_markup=SPEAKING_KEYBOARD)
+        last_bot_response[user_id] = {
+            "text": first_message,
+            "translation": None,
+            "audio_message_id": sent.message_id,
+            "chat_id": callback.message.chat.id,
+            "message_id": sent.message_id
+        }
 
 # ============ ОБРАБОТЧИКИ ДЛЯ КНОПКИ "Текст" ============
 @router.callback_query(lambda c: c.data.startswith("show_text_"))
@@ -300,7 +329,6 @@ async def show_text(callback: CallbackQuery, data: dict):
             [InlineKeyboardButton(text="Перевести", callback_data=f"translate_text_{user_id}"),
              InlineKeyboardButton(text="Скрыть", callback_data=f"hide_text_{user_id}")]
         ])
-        # Пытаемся редактировать подпись
         try:
             await callback.bot.edit_message_caption(
                 chat_id=callback.message.chat.id,
@@ -309,14 +337,19 @@ async def show_text(callback: CallbackQuery, data: dict):
                 reply_markup=keyboard
             )
             await callback.answer("Текст показан")
+            logger.info("Подпись успешно изменена")
         except Exception as e:
-            logger.error(f"Ошибка редактирования подписи: {e}")
-            # fallback – отдельное сообщение
-            await callback.message.answer(text, reply_markup=keyboard)
-            await callback.answer("Текст показан в отдельном сообщении.")
+            logger.error(f"Ошибка редактирования подписи: {e}\n{traceback.format_exc()}")
+            try:
+                await callback.message.answer(text, reply_markup=keyboard)
+                await callback.answer("Текст показан в отдельном сообщении.")
+                logger.info("Текст отправлен отдельным сообщением")
+            except Exception as e2:
+                logger.error(f"Ошибка отправки отдельного сообщения: {e2}\n{traceback.format_exc()}")
+                await callback.answer("Не удалось показать текст.", show_alert=True)
         data["skip_exit_message"] = True
     except Exception as e:
-        logger.error(f"Критическая ошибка в show_text: {e}")
+        logger.error(f"Критическая ошибка в show_text: {e}\n{traceback.format_exc()}")
         await callback.answer("Произошла ошибка.", show_alert=True)
 
 @router.callback_query(lambda c: c.data.startswith("translate_text_"))
@@ -332,7 +365,7 @@ async def translate_text(callback: CallbackQuery, data: dict):
         try:
             translation = chat(f"Переведи на русский: {text}", max_tokens=200, temperature=0.3)
         except Exception as e:
-            logger.error(f"Ошибка перевода: {e}")
+            logger.error(f"Ошибка перевода: {e}\n{traceback.format_exc()}")
             translation = f"[Ошибка перевода] {text}"
         current_caption = callback.message.caption or ""
         if "Перевод:" in current_caption:
@@ -352,12 +385,16 @@ async def translate_text(callback: CallbackQuery, data: dict):
             )
             await callback.answer("Перевод показан")
         except Exception as e:
-            logger.error(f"Ошибка редактирования подписи при переводе: {e}")
-            await callback.message.answer(translation, reply_markup=keyboard)
-            await callback.answer("Перевод показан отдельным сообщением.")
+            logger.error(f"Ошибка редактирования подписи при переводе: {e}\n{traceback.format_exc()}")
+            try:
+                await callback.message.answer(translation, reply_markup=keyboard)
+                await callback.answer("Перевод показан отдельным сообщением.")
+            except Exception as e2:
+                logger.error(f"Ошибка отправки перевода: {e2}\n{traceback.format_exc()}")
+                await callback.answer("Не удалось показать перевод.", show_alert=True)
         data["skip_exit_message"] = True
     except Exception as e:
-        logger.error(f"Критическая ошибка в translate_text: {e}")
+        logger.error(f"Критическая ошибка в translate_text: {e}\n{traceback.format_exc()}")
         await callback.answer("Произошла ошибка.", show_alert=True)
 
 @router.callback_query(lambda c: c.data.startswith("hide_text_"))
@@ -377,7 +414,7 @@ async def hide_text(callback: CallbackQuery, data: dict):
             )
             await callback.answer("Текст скрыт")
         except Exception as e:
-            logger.error(f"Ошибка скрытия текста: {e}")
+            logger.error(f"Ошибка скрытия текста: {e}\n{traceback.format_exc()}")
             try:
                 await callback.message.delete()
             except:
@@ -385,5 +422,5 @@ async def hide_text(callback: CallbackQuery, data: dict):
             await callback.answer("Текст скрыт.")
         data["skip_exit_message"] = True
     except Exception as e:
-        logger.error(f"Критическая ошибка в hide_text: {e}")
+        logger.error(f"Критическая ошибка в hide_text: {e}\n{traceback.format_exc()}")
         await callback.answer("Произошла ошибка.", show_alert=True)

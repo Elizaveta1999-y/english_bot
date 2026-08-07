@@ -122,12 +122,15 @@ async def handle_voice(message: Message, state: FSMContext):
                 return
             except Exception as e:
                 logger.error(f"Audio error: {e}")
-        # fallback: отправляем текст отдельно (но last_bot_response уже сохранён)
-        await message.answer(reply_text)
+        # fallback – отправляем текст отдельно, но last_bot_response уже сохранён
+        sent = await message.answer(reply_text)
+        if user_id in last_bot_response:
+            last_bot_response[user_id]["audio_message_id"] = sent.message_id
+            last_bot_response[user_id]["message_id"] = sent.message_id
         await state.set_state(SpeakingStates.waiting_for_voice)
         return
 
-    # ========== ОСТАЛЬНЫЕ РЕЖИМЫ (без изменений) ==========
+    # ========== ОСТАЛЬНЫЕ РЕЖИМЫ ==========
     file = await bot.get_file(message.voice.file_id)
     file_bytes = await bot.download_file(file.file_path)
     user_text = await voice_to_text(file_bytes.read())
@@ -289,5 +292,3 @@ async def handle_voice(message: Message, state: FSMContext):
         except Exception as e:
             logger.error(f"Audio error: {e}")
     await message.answer(ai_response)
-
-# ============ В voice.py НЕТ обработчика show_text – он будет в speaking.py ============
