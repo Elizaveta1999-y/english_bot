@@ -225,7 +225,7 @@ async def show_feedback(message: Message, state: FSMContext, data: dict):
             f"Диалог:\n{history_text}"
         )
         logger.info(f"📊 Отправляем запрос к DeepSeek: {prompt[:200]}...")
-        # chat – синхронная функция, не используем await
+        # chat – синхронная функция, убираем await
         feedback = chat(prompt, max_tokens=300, temperature=0.5)
 
         user_state["speaking_history"] = []
@@ -403,6 +403,7 @@ async def translate_text(callback: CallbackQuery, data: dict):
             await callback.answer("Нет текста для перевода.", show_alert=True)
             return
         text = bot_response["text"]
+        # chat – синхронная функция, без await
         translation = chat(f"Переведи на русский: {text}", max_tokens=200, temperature=0.3)
         current_caption = callback.message.caption or ""
         if "Перевод:" in current_caption:
