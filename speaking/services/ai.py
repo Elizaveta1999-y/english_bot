@@ -104,10 +104,12 @@ async def process_voice_message(user_id: int, user_text: str, history: list = No
             f"Do not include the original Russian."
         )
         translation = chat(translation_prompt, system_message="You are a translator.", max_tokens=100, temperature=0.3)
-        correction_text = f"<s>{user_text}</s>\n{translation}"
+        # Формируем correction_text БЕЗ зачёркнутого исходного текста (только перевод и пояснение)
+        correction_text = f"✅ {translation}"
         if is_pure_russian:
             correction_text += "\n\n💡 <i>Try to say that in English next time – it's much better for practice!</i>"
     else:
+        # Проверяем грамматику только для английского
         check_prompt = (
             f"The student wrote: {user_text}\n"
             f"Check ONLY for grammar errors (verb forms, tenses, word order, articles, prepositions). "
@@ -139,7 +141,8 @@ async def process_voice_message(user_id: int, user_text: str, history: list = No
             elif not explanation and lines:
                 explanation = f"<blockquote>{lines[0].strip()}</blockquote>"
             corrected = re.sub(r'^\d+\.?\s*', '', corrected)
-            correction_text = f"<s>{user_text}</s>\n{corrected}\n{explanation}"
+            # Формируем correction_text БЕЗ зачёркнутого исходного текста
+            correction_text = f"✅ {corrected}\n{explanation}"
     
     return reply_text, correction_text, is_perfect
 

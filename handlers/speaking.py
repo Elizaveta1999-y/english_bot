@@ -180,8 +180,10 @@ async def show_feedback(message: Message, state: FSMContext):
         count = len(user_messages)
 
         if count < 3:
-            # НЕ УДАЛЯЕМ КЛАВИАТУРУ, чтобы кнопки остались
-            await message.answer("Запишите несколько голосовых сообщений, чтобы получить фидбек.")
+            keyboard = InlineKeyboardMarkup(inline_keyboard=[
+                [InlineKeyboardButton(text="🏠 Главное меню", callback_data="back_to_main")]
+            ])
+            await message.answer("Запишите несколько голосовых сообщений, чтобы получить фидбек.", reply_markup=keyboard)
             return
 
         await message.bot.send_chat_action(chat_id=message.chat.id, action="typing")
@@ -359,11 +361,7 @@ async def translate_text(callback: CallbackQuery):
             return
         text = bot_response["text"]
         translation = chat(f"Переведи на русский: {text}", max_tokens=200, temperature=0.3)
-        current_caption = callback.message.caption or ""
-        if "Перевод:" in current_caption:
-            await callback.answer("Перевод уже показан.", show_alert=True)
-            return
-        new_caption = current_caption + "\n\n" + translation if current_caption else translation
+        # Заменяем подпись целиком на перевод
         keyboard = InlineKeyboardMarkup(inline_keyboard=[
             [InlineKeyboardButton(text="Перевести", callback_data=f"translate_text_{user_id}"),
              InlineKeyboardButton(text="Скрыть", callback_data=f"hide_text_{user_id}")]
@@ -372,7 +370,7 @@ async def translate_text(callback: CallbackQuery):
             await callback.bot.edit_message_caption(
                 chat_id=callback.message.chat.id,
                 message_id=callback.message.message_id,
-                caption=new_caption,
+                caption=translation,
                 reply_markup=keyboard
             )
             await callback.answer("Перевод показан")
