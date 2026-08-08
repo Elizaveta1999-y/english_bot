@@ -59,8 +59,9 @@ async def close_speaking_on_exit(handler, event, data):
     if user_state.get("mode") != "speaking_active":
         return await handler(event, data)
 
-    is_speaking_related = False
-    
+    # ===== ИЗМЕНЁННАЯ ЛОГИКА =====
+    is_speaking_related = True  # по умолчанию не закрываем диалог
+
     if hasattr(event, 'text') and isinstance(event.text, str) and event.text.startswith('/'):
         is_speaking_related = False
     elif hasattr(event, 'data') and isinstance(event.data, str):
@@ -69,15 +70,11 @@ async def close_speaking_on_exit(handler, event, data):
         else:
             is_speaking_related = False
     elif hasattr(event, 'text') and isinstance(event.text, str):
-        # ИЗМЕНЕНИЕ ТОЛЬКО ЗДЕСЬ
         if event.text == "🏠 Главное меню":
             is_speaking_related = False
-        elif event.text == "📊 Я всё! Фидбек":
-            is_speaking_related = True
         else:
-            is_speaking_related = False
-    else:
-        is_speaking_related = False
+            is_speaking_related = True
+    # Для голосовых, фото, видео, стикеров – is_speaking_related остаётся True
 
     if not is_speaking_related:
         result = await handler(event, data)
@@ -98,7 +95,7 @@ async def close_speaking_on_exit(handler, event, data):
 
     return await handler(event, data)
 
-# ============ ХЕНДЛЕРЫ ============
+# ============ ОСТАЛЬНЫЕ ХЕНДЛЕРЫ (без изменений) ============
 @router.callback_query(F.data == "start_speaking")
 async def start_speaking(callback: CallbackQuery, state: FSMContext):
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
