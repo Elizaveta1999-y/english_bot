@@ -199,7 +199,6 @@ async def select_voice(callback: CallbackQuery, state: FSMContext):
             "message_id": sent.message_id
         }
 
-# ----- ОБРАБОТЧИК КНОПКИ "Фидбек" С ПОЛНЫМ ПЕРЕХВАТОМ ОШИБОК -----
 @router.message(F.text == "📊 Я всё! Фидбек")
 async def show_feedback(message: Message, state: FSMContext, data: dict):
     try:
@@ -226,14 +225,8 @@ async def show_feedback(message: Message, state: FSMContext, data: dict):
             f"Диалог:\n{history_text}"
         )
         logger.info(f"📊 Отправляем запрос к DeepSeek: {prompt[:200]}...")
-        try:
-            # Убедимся, что chat асинхронный и используем await
-            feedback = await chat(prompt, max_tokens=300, temperature=0.5)
-        except Exception as e:
-            logger.error(f"Ошибка при вызове chat: {e}", exc_info=True)
-            data["skip_exit_message"] = True
-            await message.answer("Не удалось получить фидбек от ИИ. Попробуйте позже.")
-            return
+        # chat – синхронная функция, не используем await
+        feedback = chat(prompt, max_tokens=300, temperature=0.5)
 
         user_state["speaking_history"] = []
         set_user_state(user_id, user_state)
@@ -259,7 +252,6 @@ async def exit_speaking(message: Message, state: FSMContext, data: dict):
     data["skip_exit_message"] = True
     await show_main_menu(message, edit=False)
 
-# ----- ОБЩИЙ ОБРАБОТЧИК ТЕКСТА В РЕЖИМЕ SPEAKING (должен быть ПОСЛЕ точных совпадений) -----
 @router.message(SpeakingStates.waiting_for_voice, F.text)
 async def handle_speaking_text(message: Message, state: FSMContext, data: dict):
     data["skip_exit_message"] = True
@@ -342,7 +334,6 @@ async def continue_speaking(callback: CallbackQuery, state: FSMContext):
             "message_id": sent.message_id
         }
 
-# ============ ОБРАБОТЧИКИ ДЛЯ КНОПКИ "Текст" (с логированием) ============
 @router.callback_query(lambda c: c.data.startswith("show_text_"))
 async def show_text(callback: CallbackQuery, data: dict):
     try:
@@ -412,11 +403,7 @@ async def translate_text(callback: CallbackQuery, data: dict):
             await callback.answer("Нет текста для перевода.", show_alert=True)
             return
         text = bot_response["text"]
-        try:
-            translation = await chat(f"Переведи на русский: {text}", max_tokens=200, temperature=0.3)
-        except Exception as e:
-            logger.error(f"Ошибка перевода: {e}\n{traceback.format_exc()}")
-            translation = f"[Ошибка перевода] {text}"
+        translation = chat(f"Переведи на русский: {text}", max_tokens=200, temperature=0.3)
         current_caption = callback.message.caption or ""
         if "Перевод:" in current_caption:
             await callback.answer("Перевод уже показан.", show_alert=True)
