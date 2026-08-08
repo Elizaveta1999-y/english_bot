@@ -42,14 +42,14 @@ async def handle_voice(message: Message, state: FSMContext):
     await bot.send_chat_action(chat_id=chat_id, action="record_voice")
 
     current_state = await state.get_state()
+    user_state = get_user_state(user_id)
 
+    # 1. Если это режим «Говорение» – игнорируем (там свой обработчик)
     if current_state == GovorenieStates.waiting_voice.state:
         logger.info(f"Голосовое от {user_id} пропущено (говорение)")
         return
 
-    user_state = get_user_state(user_id)
-
-    # ========== БЛОК SPEAKING ==========
+    # 2. Если мы в режиме Speaking – обрабатываем
     if current_state == SpeakingStates.waiting_for_voice:
         if user_state.get("mode") != "speaking_active":
             user_state["mode"] = "speaking_active"
@@ -136,11 +136,34 @@ async def handle_voice(message: Message, state: FSMContext):
         await state.set_state(SpeakingStates.waiting_for_voice)
         return
 
-    # ========== ОСТАЛЬНЫЕ РЕЖИМЫ ==========
+    # 3. Проверка на другие активные режимы, которые должны обрабатывать голосовые:
+    #    - practice_lesson_key (уроки с практикой)
+    #    - lesson_qa (вопросы по уроку)
+    #    - lesson_mode == "thematic" (тематические уроки)
+    #    - mode == "roleplay_active" (ролевая игра)
+
+    # Если ни один из этих режимов активен, игнорируем голосовое (не отвечаем)
+    is_lesson_active = (
+        user_state.get("practice_lesson_key") or
+        user_state.get("lesson_qa", {}).get("active") or
+        (user_state.get("lesson_mode") == "thematic" and user_state.get("lesson_step") == "awaiting_answer")
+    )
+    is_roleplay_active = user_state.get("mode") == "roleplay_active"
+
+    if not (is_lesson_active or is_roleplay_active):
+        logger.info(f"Голосовое от {user_id} игнорируется – нет активного режима")
+        return
+
+    # --- Обработка для уроков и ролевой игры (как было раньше) ---
+
+    # Получаем текст голосового
     file = await bot.get_file(message.voice.file_id)
     file_bytes = await bot.download_file(file.file_path)
     user_text = await voice_to_text(file_bytes.read())
     if not user_text:
+        # Если не распозналось, возможно, стоит молча игнорировать или сказать "не понял"?
+        # Но мы решили не отвечать вне Speaking, однако здесь мы уже внутри режима урока или ролевой игры,
+        # поэтому лучше дать обратную связь, что не поняли.
         await message.answer("Не понял, повторите.")
         return
 
@@ -148,6 +171,7 @@ async def handle_voice(message: Message, state: FSMContext):
     if len(words) > 500:
         user_text = ' '.join(words[:500])
 
+    # Обработка уроков
     if user_state.get("practice_lesson_key"):
         lesson_key = user_state["practice_lesson_key"]
         practice = user_state.get("practice", {}).get(lesson_key)
@@ -220,9 +244,8 @@ async def handle_voice(message: Message, state: FSMContext):
             set_user_state(user_id, user_state)
             return
 
-    mode = user_state.get("mode")
-
-    if mode == "roleplay_active":
+    # Ролевая игра
+    if is_roleplay_active:
         roleplay_history = user_state.get("roleplay_history", [])
         try:
             ai_response = await process_roleplay_message(user_id, user_text, roleplay_history)
@@ -267,48 +290,6 @@ async def handle_voice(message: Message, state: FSMContext):
         await message.answer(ai_response)
         return
 
-    if mode != "speaking_active":
-        set_user_mode(user_id, "speaking_active")
-    history = user_state.get("history", [])
-    ai_response = await process_voice_only(user_id, user_text, history)
-
-    if ai_response.startswith("Извините, я не могу обсуждать эту тему"):
-        await message.answer(ai_response)
-        history.append({"role": "user", "text": user_text})
-        history.append({"role": "assistant", "text": ai_response})
-        if len(history) > 20:
-            history = history[-20:]
-        user_state["history"] = history
-        set_user_state(user_id, user_state)
-        return
-
-    history.append({"role": "user", "text": user_text})
-    history.append({"role": "assistant", "text": ai_response})
-    if len(history) > 20:
-        history = history[-20:]
-    user_state["history"] = history
-    set_user_state(user_id, user_state)
-
-    await bot.send_chat_action(chat_id=chat_id, action="record_voice")
-    voice_pref = user_state.get("speaking_voice", "woman")
-    voice_id = WOMAN_VOICE_ID if voice_pref == "woman" else MAN_VOICE_ID
-    voice_path = await text_to_voice(ai_response, voice_id=voice_id)
-    if voice_path and os.path.exists(voice_path):
-        try:
-            ogg_path = convert_to_opus(voice_path)
-            with open(ogg_path, 'rb') as f:
-                audio_bytes = f.read()
-            keyboard = InlineKeyboardMarkup(inline_keyboard=[
-                [InlineKeyboardButton(text="Текст", callback_data=f"show_text_{user_id}")]
-            ])
-            await message.answer_voice(
-                BufferedInputFile(audio_bytes, filename="voice.ogg"),
-                caption="",
-                reply_markup=keyboard
-            )
-            os.unlink(voice_path)
-            os.unlink(ogg_path)
-            return
-        except Exception as e:
-            logger.error(f"Audio error: {e}")
-    await message.answer(ai_response)
+    # Если ни одно из условий не сработало (хотя должно было), просто игнорируем
+    logger.warning(f"Голосовое от {user_id} не обработано – непредвиденный случай")
+    return
