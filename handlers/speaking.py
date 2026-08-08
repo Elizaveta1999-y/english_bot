@@ -58,31 +58,33 @@ async def close_speaking_on_exit(handler, event, data):
     if user_state.get("mode") != "speaking_active":
         return await handler(event, data)
 
-    is_speaking_related = False
-    
+    # ===== ИСПРАВЛЕННАЯ ЛОГИКА =====
+    # По умолчанию диалог НЕ закрываем
+    should_close = False
+
     if hasattr(event, 'text') and isinstance(event.text, str) and event.text.startswith('/'):
-        is_speaking_related = False
+        should_close = True
+        logger.info(f"Команда {event.text} -> закрываем диалог")
     elif hasattr(event, 'data') and isinstance(event.data, str):
-        if event.data.startswith("speaking_") or event.data in ("continue_speaking", "start_speaking"):
-            is_speaking_related = True
+        if event.data == "back_to_main":
+            should_close = True
+            logger.info("back_to_main -> закрываем диалог")
         else:
-            is_speaking_related = False
+            logger.info(f"callback {event.data} -> не закрываем")
     elif hasattr(event, 'text') and isinstance(event.text, str):
         if event.text == "🏠 Главное меню":
-            is_speaking_related = False
-        elif event.text == "📊 Я всё! Фидбек":
-            is_speaking_related = True   # <-- КЛЮЧЕВОЕ ИЗМЕНЕНИЕ: не закрываем диалог
+            should_close = True
+            logger.info("Главное меню -> закрываем диалог")
         else:
-            is_speaking_related = False
-    else:
-        is_speaking_related = False
+            # ВСЕ остальные тексты (включая "Фидбек" и сообщения пользователя) НЕ закрываем
+            logger.info(f"текст '{event.text}' -> не закрываем")
 
-    if not is_speaking_related:
-        result = await handler(event, data)
-        user_state["mode"] = ""
-        set_user_state(user_id, user_state)
-        if 'state' in data:
-            await data['state'].clear()
+    if data.get("skip_exit_message"):
+        should_close = False
+        logger.info("skip_exit_message = True, отменяем закрытие")
+
+    if should_close:
+        logger.info("Закрываем диалог")
         try:
             if hasattr(event, 'message') and event.message:
                 await event.message.answer("Диалог завершен..🏁", reply_markup=ReplyKeyboardRemove())
@@ -92,6 +94,13 @@ async def close_speaking_on_exit(handler, event, data):
                 await event.answer("Диалог завершен..🏁", reply_markup=ReplyKeyboardRemove())
         except Exception as e:
             logger.error(f"Ошибка при удалении клавиатуры: {e}")
+
+        user_state["mode"] = ""
+        set_user_state(user_id, user_state)
+        if 'state' in data:
+            await data['state'].clear()
+
+        result = await handler(event, data)
         return result
 
     return await handler(event, data)
@@ -177,7 +186,7 @@ async def show_feedback(message: Message, state: FSMContext):
         count = len(user_messages)
 
         if count < 3:
-            await message.answer("Вы ещё не общались. Запишите несколько голосовых сообщений (минимум 3), чтобы получить фидбек.")
+            await message.answer("Запишите несколько голосовых сообщений, чтобы получить фидбек.")
             return
 
         await message.bot.send_chat_action(chat_id=message.chat.id, action="typing")
