@@ -52,7 +52,6 @@ EDUCATIONAL_MARKERS = [
 
 def is_unsafe_message(text: str) -> bool:
     text_lower = text.lower()
-    has_educational = any(marker in text_lower for marker in EDUCATIONAL_MARKERS)
     for pattern in UNSAFE_PHRASES:
         if re.search(pattern, text_lower):
             return True
@@ -73,10 +72,8 @@ async def process_voice_message(user_id: int, user_text: str, history: list = No
     if not await is_safe_message(user_text):
         return ("Извините, я не могу обсуждать эту тему. Давайте поговорим о чём-то другом.", "", False)
 
-    # Проверка: есть ли английские буквы и русские буквы
     has_cyrillic = bool(re.search(r'[а-яА-Я]', user_text))
     has_latin = bool(re.search(r'[a-zA-Z]', user_text))
-    # Напоминание только если есть русские, но нет английских (т.е. чисто русский)
     is_pure_russian = has_cyrillic and not has_latin
     
     system_prompt_reply = (
@@ -108,11 +105,9 @@ async def process_voice_message(user_id: int, user_text: str, history: list = No
         )
         translation = chat(translation_prompt, system_message="You are a translator.", max_tokens=100, temperature=0.3)
         correction_text = f"<s>{user_text}</s>\n{translation}"
-        # Добавляем напоминание только если чистый русский
         if is_pure_russian:
             correction_text += "\n\n💡 <i>Try to say that in English next time – it's much better for practice!</i>"
     else:
-        # Проверяем грамматику только для английского
         check_prompt = (
             f"The student wrote: {user_text}\n"
             f"Check ONLY for grammar errors (verb forms, tenses, word order, articles, prepositions). "

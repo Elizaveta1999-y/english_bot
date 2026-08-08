@@ -180,7 +180,7 @@ async def show_feedback(message: Message, state: FSMContext):
         count = len(user_messages)
 
         if count < 3:
-            await message.answer("Запишите несколько голосовых сообщений, чтобы получить фидбек.")
+            await message.answer("Запишите несколько голосовых сообщений, чтобы получить фидбек.", reply_markup=ReplyKeyboardRemove())
             return
 
         await message.bot.send_chat_action(chat_id=message.chat.id, action="typing")
@@ -194,16 +194,12 @@ async def show_feedback(message: Message, state: FSMContext):
             f"Диалог:\n{history_text}"
         )
         logger.info(f"📊 Отправляем запрос к DeepSeek...")
-        # chat – синхронная функция, НЕ используем await
         feedback = chat(prompt, max_tokens=300, temperature=0.5)
         logger.info(f"📊 Получен фидбек: {feedback[:200]}...")
 
         # Сохраняем фидбек в состояние пользователя
         user_state["pending_feedback"] = feedback
         set_user_state(user_id, user_state)
-
-        # Убираем клавиатуру
-        await message.answer("", reply_markup=ReplyKeyboardRemove())
 
         if count < 6:
             # Мало сообщений – предупреждение и две кнопки
@@ -239,7 +235,6 @@ async def confirm_feedback(callback: CallbackQuery, state: FSMContext):
     if not feedback:
         await callback.message.edit_text("Фидбек не найден. Попробуйте запросить заново.")
         return
-    # Очищаем историю и фидбек
     user_state["speaking_history"] = []
     user_state["pending_feedback"] = None
     set_user_state(user_id, user_state)
