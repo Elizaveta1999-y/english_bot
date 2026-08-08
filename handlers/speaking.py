@@ -199,48 +199,59 @@ async def select_voice(callback: CallbackQuery, state: FSMContext):
             "message_id": sent.message_id
         }
 
-# ----- ОБРАБОТЧИКИ КНОПОК (точные совпадения) -----
+# ----- ОБРАБОТЧИК КНОПКИ "Фидбек" С ПОЛНЫМ ПЕРЕХВАТОМ ОШИБОК -----
 @router.message(F.text == "📊 Я всё! Фидбек")
 async def show_feedback(message: Message, state: FSMContext, data: dict):
-    # ДОБАВЛЕНО ЛОГИРОВАНИЕ В САМОМ НАЧАЛЕ
-    logger.info(f"📊 show_feedback ВЫЗВАН для user {message.from_user.id}, текст: {message.text}")
-    user_id = message.from_user.id
-    user_state = get_user_state(user_id)
-    history = user_state.get("speaking_history", [])
-    
-    user_messages = [msg for msg in history if msg.get('role') == 'user']
-    if len(user_messages) < 3:
-        data["skip_exit_message"] = True
-        await message.answer("Для получения фидбека, запишите несколько голосовых сообщений.")
-        return
-
-    await message.bot.send_chat_action(chat_id=message.chat.id, action="typing")
-    history_text = "\n".join([f"{msg['role']}: {msg['text']}" for msg in history if msg['role'] in ['user', 'assistant']])
-    prompt = (
-        "Ты – языковой тренер. Дай краткий фидбек по диалогу пользователя с ИИ в трёх пунктах:\n"
-        "1. Грамматика – укажи 2-3 ошибки с исправлениями, если есть.\n"
-        "2. Лексика – есть ли повторения, предложи синонимы.\n"
-        "3. Общее впечатление – беглость, разнообразие, рекомендации.\n"
-        "Не пиши вступлений, приветствий, не используй звёздочки и Markdown. Пиши просто текст.\n"
-        f"Диалог:\n{history_text}"
-    )
     try:
-        feedback = chat(prompt, max_tokens=300, temperature=0.5)
-    except Exception as e:
-        logger.error(f"Ошибка фидбека: {e}\n{traceback.format_exc()}")
+        logger.info(f"📊 show_feedback ВЫЗВАН для user {message.from_user.id}")
+        user_id = message.from_user.id
+        user_state = get_user_state(user_id)
+        history = user_state.get("speaking_history", [])
+        logger.info(f"📊 История: {history}")
+
+        user_messages = [msg for msg in history if msg.get('role') == 'user']
+        if len(user_messages) < 3:
+            data["skip_exit_message"] = True
+            await message.answer("Для получения фидбека, запишите несколько голосовых сообщений.")
+            return
+
+        await message.bot.send_chat_action(chat_id=message.chat.id, action="typing")
+        history_text = "\n".join([f"{msg['role']}: {msg['text']}" for msg in history if msg['role'] in ['user', 'assistant']])
+        prompt = (
+            "Ты – языковой тренер. Дай краткий фидбек по диалогу пользователя с ИИ в трёх пунктах:\n"
+            "1. Грамматика – укажи 2-3 ошибки с исправлениями, если есть.\n"
+            "2. Лексика – есть ли повторения, предложи синонимы.\n"
+            "3. Общее впечатление – беглость, разнообразие, рекомендации.\n"
+            "Не пиши вступлений, приветствий, не используй звёздочки и Markdown. Пиши просто текст.\n"
+            f"Диалог:\n{history_text}"
+        )
+        logger.info(f"📊 Отправляем запрос к DeepSeek: {prompt[:200]}...")
+        try:
+            # Убедимся, что chat асинхронный и используем await
+            feedback = await chat(prompt, max_tokens=300, temperature=0.5)
+        except Exception as e:
+            logger.error(f"Ошибка при вызове chat: {e}", exc_info=True)
+            data["skip_exit_message"] = True
+            await message.answer("Не удалось получить фидбек от ИИ. Попробуйте позже.")
+            return
+
+        user_state["speaking_history"] = []
+        set_user_state(user_id, user_state)
+
+        await message.answer("", reply_markup=ReplyKeyboardRemove())
+        keyboard = InlineKeyboardMarkup(inline_keyboard=[
+            [InlineKeyboardButton(text="🏠 Главное меню", callback_data="back_to_main")]
+        ])
+        await message.answer(f"📊 Фидбек по вашему диалогу:\n\n{feedback}", reply_markup=keyboard, parse_mode="HTML")
         data["skip_exit_message"] = True
-        await message.answer("Не удалось получить фидбек.")
-        return
 
-    user_state["speaking_history"] = []
-    set_user_state(user_id, user_state)
-
-    await message.answer("", reply_markup=ReplyKeyboardRemove())
-    keyboard = InlineKeyboardMarkup(inline_keyboard=[
-        [InlineKeyboardButton(text="🏠 Главное меню", callback_data="back_to_main")]
-    ])
-    await message.answer(f"📊 Фидбек по вашему диалогу:\n\n{feedback}", reply_markup=keyboard, parse_mode="HTML")
-    data["skip_exit_message"] = True
+    except Exception as e:
+        logger.error(f"❌ КРИТИЧЕСКАЯ ОШИБКА В show_feedback: {e}", exc_info=True)
+        try:
+            await message.answer("Произошла ошибка при получении фидбека. Попробуйте позже.")
+        except:
+            pass
+        data["skip_exit_message"] = True
 
 @router.message(F.text == "🏠 Главное меню")
 async def exit_speaking(message: Message, state: FSMContext, data: dict):
@@ -402,7 +413,7 @@ async def translate_text(callback: CallbackQuery, data: dict):
             return
         text = bot_response["text"]
         try:
-            translation = chat(f"Переведи на русский: {text}", max_tokens=200, temperature=0.3)
+            translation = await chat(f"Переведи на русский: {text}", max_tokens=200, temperature=0.3)
         except Exception as e:
             logger.error(f"Ошибка перевода: {e}\n{traceback.format_exc()}")
             translation = f"[Ошибка перевода] {text}"
