@@ -72,8 +72,6 @@ async def handle_voice(message: Message, state: FSMContext):
         # Если ответ – отказ, отправляем только текст, без голоса
         if reply_text.startswith("Извините, я не могу обсуждать эту тему"):
             await message.answer(reply_text)
-            # Не сохраняем в историю, но можно сохранить, если нужно – оставляем как есть
-            # Возвращаемся в состояние
             await state.set_state(SpeakingStates.waiting_for_voice)
             return
 
@@ -130,7 +128,7 @@ async def handle_voice(message: Message, state: FSMContext):
                 return
             except Exception as e:
                 logger.error(f"Audio error: {e}")
-        # fallback – отправляем текст, но last_bot_response уже сохранён
+        # fallback – отправляем текст
         sent = await message.answer(reply_text)
         if user_id in last_bot_response:
             last_bot_response[user_id]["audio_message_id"] = sent.message_id
@@ -240,7 +238,6 @@ async def handle_voice(message: Message, state: FSMContext):
         user_state["roleplay_history"] = roleplay_history
         set_user_state(user_id, user_state)
 
-        # Проверяем, не является ли ответ отказом
         if ai_response.startswith("Извините, я не могу обсуждать эту тему"):
             await message.answer(ai_response)
             return
@@ -275,10 +272,8 @@ async def handle_voice(message: Message, state: FSMContext):
     history = user_state.get("history", [])
     ai_response = await process_voice_only(user_id, user_text, history)
 
-    # Проверяем, не является ли ответ отказом
     if ai_response.startswith("Извините, я не могу обсуждать эту тему"):
         await message.answer(ai_response)
-        # Можно не сохранять в историю, но для единообразия сохраним
         history.append({"role": "user", "text": user_text})
         history.append({"role": "assistant", "text": ai_response})
         if len(history) > 20:

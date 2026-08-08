@@ -1,6 +1,7 @@
 import logging
 import os
 import random
+import re  # добавлен для проверки наличия английского
 from aiogram import Router, F
 from aiogram.types import Message, ReplyKeyboardMarkup, KeyboardButton, CallbackQuery, InlineKeyboardMarkup, InlineKeyboardButton, BufferedInputFile, ReplyKeyboardRemove, ContentType
 from aiogram.fsm.context import FSMContext
@@ -160,7 +161,7 @@ async def select_voice(callback: CallbackQuery, state: FSMContext):
             set_user_state(user_id, user_state)
             os.unlink(voice_path)
             os.unlink(ogg_path)
-            # Убрано дублирующее сообщение с пробелом
+            # Дублирующее сообщение убрано
         else:
             await callback.message.answer(first_message, reply_markup=SPEAKING_KEYBOARD)
     except Exception as e:
@@ -180,22 +181,52 @@ async def show_feedback(message: Message, state: FSMContext):
         count = len(user_messages)
 
         if count < 3:
-            # Убрана клавиатура с кнопкой "Главное меню" – только текст
             await message.answer("Запишите несколько голосовых сообщений, чтобы получить фидбек.")
             return
 
+        # Проверка: использовал ли пользователь английский
+        has_english = False
+        for msg in user_messages:
+            text = msg.get('text', '')
+            if re.search(r'[a-zA-Z]', text):
+                has_english = True
+                break
+
+        # Если английского нет – короткий ответ без DeepSeek
+        if not has_english:
+            await message.answer(
+                "🗣️ Вы не использовали английский в этом диалоге.\n\n"
+                "Старайтесь отвечать по-английски – это поможет вам быстрее прогрессировать.\n"
+                "Попробуйте ещё раз!"
+            )
+            # Можно очистить историю, чтобы не накапливать пустые диалоги
+            # user_state["speaking_history"] = []
+            # set_user_state(user_id, user_state)
+            return
+
         await message.bot.send_chat_action(chat_id=message.chat.id, action="typing")
-        history_text = "\n".join([f"{msg['role']}: {msg['text']}" for msg in history if msg['role'] in ['user', 'assistant']])
+
+        # Формируем текст диалога ТОЛЬКО из сообщений пользователя
+        user_texts = "\n".join([f"Пользователь: {msg['text']}" for msg in user_messages])
+
         prompt = (
-            "Ты – языковой тренер. Дай краткий фидбек по диалогу пользователя с ИИ в трёх пунктах:\n"
-            "1. Грамматика – укажи 2-3 ошибки с исправлениями, если есть.\n"
-            "2. Лексика – есть ли повторения, предложи синонимы.\n"
-            "3. Общее впечатление – беглость, разнообразие, рекомендации.\n"
-            "Не пиши вступлений, приветствий, не используй звёздочки и Markdown. Пиши просто текст.\n"
-            f"Диалог:\n{history_text}"
+            "Ты – опытный преподаватель английского языка. Проанализируй речь пользователя в этом диалоге.\n\n"
+            "ВАЖНЫЕ ПРАВИЛА:\n"
+            "1. Анализируй ТОЛЬКО сообщения пользователя, игнорируй ответы ИИ.\n"
+            "2. Не анализируй русский язык, даже если пользователь писал по-русски. Фидбек давай только по тому, что сказано на английском.\n"
+            "3. Если пользователь говорил на английском, дай фидбек по трём пунктам:\n"
+            "   - Грамматика (ошибки и правильные варианты, если есть)\n"
+            "   - Лексика (повторы, синонимы, удачные слова)\n"
+            "   - Общее впечатление (беглость, разнообразие, рекомендации)\n"
+            "4. Используй эмодзи естественно, уместно (не больше 2–3 за весь ответ), чтобы сделать фидбек живым, но не перегруженным.\n"
+            "5. Ответ должен быть конкретным, без общих фраз. Приводи примеры из речи пользователя.\n"
+            "6. Не пиши 'Грамматика:' и т.п. как заголовки – просто структурируй текст абзацами, но с использованием эмодзи для выделения.\n\n"
+            f"Сообщения пользователя:\n{user_texts}\n\n"
+            "Твой фидбек:"
         )
+
         logger.info(f"📊 Отправляем запрос к DeepSeek...")
-        feedback = chat(prompt, max_tokens=300, temperature=0.5)
+        feedback = chat(prompt, max_tokens=1000, temperature=0.5)  # увеличено до 1000
         logger.info(f"📊 Получен фидбек: {feedback[:200]}...")
 
         user_state["pending_feedback"] = feedback
@@ -311,7 +342,6 @@ async def continue_speaking(callback: CallbackQuery, state: FSMContext):
             set_user_state(user_id, user_state)
             os.unlink(voice_path)
             os.unlink(ogg_path)
-            # Убрано дублирующее сообщение с пробелом
         else:
             await callback.message.answer(first_message, reply_markup=SPEAKING_KEYBOARD)
     except Exception as e:
