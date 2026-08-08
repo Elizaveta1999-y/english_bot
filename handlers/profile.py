@@ -398,7 +398,8 @@ async def profile_reset_confirm(callback: CallbackQuery):
     await callback.message.edit_text(text, reply_markup=keyboard, parse_mode="HTML")
     await callback.answer()
 
-@router.message(F.text)
+# ========== ИСПРАВЛЕННЫЙ ОБРАБОТЧИК (исключаем кнопки Speaking) ==========
+@router.message(F.text, ~F.text.in_({"📊 Я всё! Фидбек", "🏠 Главное меню"}))
 async def profile_reset_handle(message: Message):
     if message.text.strip().upper() == "СБРОС":
         user_id = message.from_user.id
