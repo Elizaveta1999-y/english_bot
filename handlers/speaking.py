@@ -69,8 +69,11 @@ async def close_speaking_on_exit(handler, event, data):
         else:
             is_speaking_related = False
     elif hasattr(event, 'text') and isinstance(event.text, str):
-        if event.text in ("📊 Я всё! Фидбек", "🏠 Главное меню"):
+        # ИЗМЕНЕНИЕ ТОЛЬКО ЗДЕСЬ
+        if event.text == "🏠 Главное меню":
             is_speaking_related = False
+        elif event.text == "📊 Я всё! Фидбек":
+            is_speaking_related = True
         else:
             is_speaking_related = False
     else:
@@ -188,7 +191,6 @@ async def show_feedback(message: Message, state: FSMContext):
         f"Диалог:\n{history_text}"
     )
     try:
-        # chat – синхронная функция
         feedback = chat(prompt, max_tokens=300, temperature=0.5)
     except Exception as e:
         logger.error(f"Ошибка фидбека: {e}")
