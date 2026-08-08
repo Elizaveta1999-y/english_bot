@@ -211,12 +211,10 @@ async def show_feedback(message: Message, state: FSMContext, data: dict):
         history = user_state.get("speaking_history", [])
         logger.info(f"📊 История: {history}")
 
-        # Считаем количество сообщений пользователя (голосовых/текстовых)
         user_messages = [msg for msg in history if msg.get('role') == 'user']
         count = len(user_messages)
 
         if count < 3:
-            # Мало сообщений – предлагаем записать ещё
             data["skip_exit_message"] = True
             await message.answer(
                 "Вы ещё не общались. Запишите несколько голосовых сообщений (минимум 3), чтобы получить фидбек.",
@@ -237,12 +235,9 @@ async def show_feedback(message: Message, state: FSMContext, data: dict):
         logger.info(f"📊 Отправляем запрос к DeepSeek: {prompt[:200]}...")
         feedback = chat(prompt, max_tokens=300, temperature=0.5)
 
-        # Очищаем историю после фидбека (чтобы не повторять)
-        user_state["speaking_history"] = []
+        # Сохраняем фидбек в состояние пользователя
+        user_state["pending_feedback"] = feedback
         set_user_state(user_id, user_state)
-
-        # Убираем клавиатуру
-        await message.answer("", reply_markup=ReplyKeyboardRemove())
 
         if count < 6:
             # Мало сообщений (3-5) – предупреждение и кнопки
@@ -255,17 +250,18 @@ async def show_feedback(message: Message, state: FSMContext, data: dict):
                 "Вы можете посмотреть его сейчас или продолжить общение.",
                 reply_markup=keyboard
             )
-            # Сохраняем фидбек во временное состояние, чтобы показать при подтверждении
-            data["pending_feedback"] = feedback
             data["skip_exit_message"] = True
             return
-        else:
-            # Полноценный фидбек (6+ сообщений)
-            keyboard = InlineKeyboardMarkup(inline_keyboard=[
-                [InlineKeyboardButton(text="🏠 Главное меню", callback_data="back_to_main")]
-            ])
-            await message.answer(f"📊 Фидбек по вашему диалогу:\n\n{feedback}", reply_markup=keyboard, parse_mode="HTML")
-            data["skip_exit_message"] = True
+
+        # Полноценный фидбек (6+ сообщений)
+        user_state["speaking_history"] = []
+        set_user_state(user_id, user_state)
+        await message.answer("", reply_markup=ReplyKeyboardRemove())
+        keyboard = InlineKeyboardMarkup(inline_keyboard=[
+            [InlineKeyboardButton(text="🏠 Главное меню", callback_data="back_to_main")]
+        ])
+        await message.answer(f"📊 Фидбек по вашему диалогу:\n\n{feedback}", reply_markup=keyboard, parse_mode="HTML")
+        data["skip_exit_message"] = True
 
     except Exception as e:
         logger.error(f"❌ КРИТИЧЕСКАЯ ОШИБКА В show_feedback: {e}", exc_info=True)
@@ -278,21 +274,21 @@ async def show_feedback(message: Message, state: FSMContext, data: dict):
 @router.callback_query(F.data == "show_feedback_confirm")
 async def confirm_feedback(callback: CallbackQuery, state: FSMContext, data: dict):
     await callback.answer()
-    feedback = data.get("pending_feedback")
+    user_id = callback.from_user.id
+    user_state = get_user_state(user_id)
+    feedback = user_state.get("pending_feedback")
     if not feedback:
         await callback.message.edit_text("Фидбек не найден. Попробуйте запросить заново.")
         return
-    # Показываем фидбек и завершаем сессию
+    # Очищаем историю и фидбек
+    user_state["speaking_history"] = []
+    user_state["pending_feedback"] = None
+    set_user_state(user_id, user_state)
+    await state.clear()
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(text="🏠 Главное меню", callback_data="back_to_main")]
     ])
     await callback.message.edit_text(f"📊 Фидбек по вашему диалогу:\n\n{feedback}", reply_markup=keyboard, parse_mode="HTML")
-    # Закрываем режим (очищаем состояние)
-    user_id = callback.from_user.id
-    user_state = get_user_state(user_id)
-    user_state["mode"] = ""
-    set_user_state(user_id, user_state)
-    await state.clear()
     data["skip_exit_message"] = True
 
 @router.message(F.text == "🏠 Главное меню")
