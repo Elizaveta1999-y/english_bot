@@ -180,7 +180,8 @@ async def show_feedback(message: Message, state: FSMContext):
         count = len(user_messages)
 
         if count < 3:
-            await message.answer("Запишите несколько голосовых сообщений, чтобы получить фидбек.", reply_markup=ReplyKeyboardRemove())
+            # НЕ УДАЛЯЕМ КЛАВИАТУРУ, чтобы кнопки остались
+            await message.answer("Запишите несколько голосовых сообщений, чтобы получить фидбек.")
             return
 
         await message.bot.send_chat_action(chat_id=message.chat.id, action="typing")
@@ -197,12 +198,10 @@ async def show_feedback(message: Message, state: FSMContext):
         feedback = chat(prompt, max_tokens=300, temperature=0.5)
         logger.info(f"📊 Получен фидбек: {feedback[:200]}...")
 
-        # Сохраняем фидбек в состояние пользователя
         user_state["pending_feedback"] = feedback
         set_user_state(user_id, user_state)
 
         if count < 6:
-            # Мало сообщений – предупреждение и две кнопки
             keyboard = InlineKeyboardMarkup(inline_keyboard=[
                 [InlineKeyboardButton(text="📊 Показать фидбек", callback_data="show_feedback_confirm"),
                  InlineKeyboardButton(text="🗣️ Продолжить общение", callback_data="continue_speaking")]
@@ -213,7 +212,6 @@ async def show_feedback(message: Message, state: FSMContext):
                 reply_markup=keyboard
             )
         else:
-            # Полноценный фидбек
             user_state["speaking_history"] = []
             user_state["pending_feedback"] = None
             set_user_state(user_id, user_state)

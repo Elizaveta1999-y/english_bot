@@ -93,9 +93,9 @@ async def handle_voice(message: Message, state: FSMContext):
             except Exception as e:
                 logger.warning(f"Не удалось поставить реакцию: {e}")
 
-        # ===== ВОЗВРАЩАЕМ ОТПРАВКУ CORRECTION_TEXT =====
-        if correction_text:
-            await message.answer(correction_text, parse_mode="HTML")
+        # ===== УБИРАЕМ ОТПРАВКУ CORRECTION_TEXT =====
+        # if correction_text:
+        #     await message.answer(correction_text, parse_mode="HTML")
 
         await bot.send_chat_action(chat_id=chat_id, action="record_voice")
         voice_pref = user_state.get("speaking_voice", "woman")
