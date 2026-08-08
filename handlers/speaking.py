@@ -44,6 +44,7 @@ SPEAKING_KEYBOARD = ReplyKeyboardMarkup(
 ENCOURAGE_TEXT = "Говори развернуто, так эффективнее для изучения 🗣️"
 
 async def close_speaking_on_exit(handler, event, data):
+    logger.info(f"🔹 close_speaking_on_exit вызван для события: {event}")
     user_id = None
     if hasattr(event, 'from_user'):
         user_id = event.from_user.id
@@ -53,27 +54,41 @@ async def close_speaking_on_exit(handler, event, data):
         user_id = event.callback_query.from_user.id
 
     if not user_id:
+        logger.info("🔹 user_id не найден, пропускаем")
         return await handler(event, data)
 
     user_state = get_user_state(user_id)
     if user_state.get("mode") != "speaking_active":
+        logger.info(f"🔹 режим не speaking_active (mode={user_state.get('mode')}), пропускаем")
         return await handler(event, data)
 
     should_close = False
+    logger.info(f"🔹 Проверяем событие: {event}")
 
     if hasattr(event, 'text') and isinstance(event.text, str) and event.text.startswith('/'):
         should_close = True
+        logger.info(f"🔹 Команда {event.text} -> закрываем")
     elif hasattr(event, 'data') and isinstance(event.data, str):
         if event.data == "back_to_main":
             should_close = True
+            logger.info(f"🔹 callback back_to_main -> закрываем")
+        else:
+            logger.info(f"🔹 callback {event.data} -> не закрываем")
     elif hasattr(event, 'text') and isinstance(event.text, str):
         if event.text == "🏠 Главное меню":
             should_close = True
+            logger.info(f"🔹 Текст '🏠 Главное меню' -> закрываем")
+        else:
+            logger.info(f"🔹 Текст '{event.text}' -> не закрываем (пропускаем)")
+    else:
+        logger.info(f"🔹 Событие другого типа -> не закрываем")
 
     if data.get("skip_exit_message"):
         should_close = False
+        logger.info("🔹 skip_exit_message = True, отменяем закрытие")
 
     if should_close:
+        logger.info("🔹 Закрываем диалог")
         try:
             if hasattr(event, 'message') and event.message:
                 await event.message.answer("Диалог завершен..🏁", reply_markup=ReplyKeyboardRemove())
@@ -92,6 +107,7 @@ async def close_speaking_on_exit(handler, event, data):
         result = await handler(event, data)
         return result
 
+    logger.info("🔹 Не закрываем диалог, передаём управление хендлеру")
     return await handler(event, data)
 
 @router.callback_query(F.data == "start_speaking")
@@ -183,9 +199,11 @@ async def select_voice(callback: CallbackQuery, state: FSMContext):
             "message_id": sent.message_id
         }
 
+# ----- ОБРАБОТЧИКИ КНОПОК (точные совпадения) -----
 @router.message(F.text == "📊 Я всё! Фидбек")
 async def show_feedback(message: Message, state: FSMContext, data: dict):
-    logger.info(f"📊 Фидбек нажат, user={message.from_user.id}")
+    # ДОБАВЛЕНО ЛОГИРОВАНИЕ В САМОМ НАЧАЛЕ
+    logger.info(f"📊 show_feedback ВЫЗВАН для user {message.from_user.id}, текст: {message.text}")
     user_id = message.from_user.id
     user_state = get_user_state(user_id)
     history = user_state.get("speaking_history", [])
@@ -230,6 +248,7 @@ async def exit_speaking(message: Message, state: FSMContext, data: dict):
     data["skip_exit_message"] = True
     await show_main_menu(message, edit=False)
 
+# ----- ОБЩИЙ ОБРАБОТЧИК ТЕКСТА В РЕЖИМЕ SPEAKING (должен быть ПОСЛЕ точных совпадений) -----
 @router.message(SpeakingStates.waiting_for_voice, F.text)
 async def handle_speaking_text(message: Message, state: FSMContext, data: dict):
     data["skip_exit_message"] = True
@@ -312,7 +331,7 @@ async def continue_speaking(callback: CallbackQuery, state: FSMContext):
             "message_id": sent.message_id
         }
 
-# ============ ОБРАБОТЧИКИ ДЛЯ КНОПКИ "Текст" С ПОДРОБНЫМ ЛОГИРОВАНИЕМ ============
+# ============ ОБРАБОТЧИКИ ДЛЯ КНОПКИ "Текст" (с логированием) ============
 @router.callback_query(lambda c: c.data.startswith("show_text_"))
 async def show_text(callback: CallbackQuery, data: dict):
     try:
@@ -339,7 +358,6 @@ async def show_text(callback: CallbackQuery, data: dict):
              InlineKeyboardButton(text="Скрыть", callback_data=f"hide_text_{user_id}")]
         ])
 
-        # Проверяем, что сообщение существует
         if callback.message is None:
             logger.error("❌ callback.message is None")
             await callback.answer("Сообщение не найдено.", show_alert=True)
@@ -347,7 +365,6 @@ async def show_text(callback: CallbackQuery, data: dict):
 
         logger.info(f"   chat_id: {callback.message.chat.id}, message_id: {callback.message.message_id}")
 
-        # Пытаемся редактировать подпись
         try:
             await callback.bot.edit_message_caption(
                 chat_id=callback.message.chat.id,
@@ -359,7 +376,6 @@ async def show_text(callback: CallbackQuery, data: dict):
             logger.info("✅ Подпись успешно изменена")
         except Exception as e:
             logger.error(f"❌ Ошибка редактирования подписи: {e}\n{traceback.format_exc()}")
-            # fallback – отдельное сообщение
             try:
                 await callback.message.answer(text, reply_markup=keyboard)
                 await callback.answer("Текст показан в отдельном сообщении.")
