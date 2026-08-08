@@ -584,6 +584,10 @@ async def handle_button_answer(callback: CallbackQuery, state: FSMContext):
 # ---------- Обработка текстовых ответов (только когда состояние waiting_for_text) ----------
 @router.message(ReadingStates.waiting_for_text, F.text, ~F.text.startswith('/'))
 async def handle_text_answer(message: Message, state: FSMContext):
+    # Пропускаем кнопки Speaking
+    if message.text in ("📊 Я всё! Фидбек", "🏠 Главное меню"):
+        return
+
     data = await state.get_data()
     short_type = data.get("short_type")
     short_level = data.get("short_level")
