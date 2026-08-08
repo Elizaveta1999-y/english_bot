@@ -1,7 +1,6 @@
 import logging
 import os
 import random
-import traceback
 from aiogram import Router, F
 from aiogram.types import Message, ReplyKeyboardMarkup, KeyboardButton, CallbackQuery, InlineKeyboardMarkup, InlineKeyboardButton, BufferedInputFile, ReplyKeyboardRemove, ContentType
 from aiogram.fsm.context import FSMContext
@@ -43,8 +42,8 @@ SPEAKING_KEYBOARD = ReplyKeyboardMarkup(
 
 ENCOURAGE_TEXT = "Говори развернуто, так эффективнее для изучения 🗣️"
 
+# ============ ГЛОБАЛЬНЫЙ MIDDLEWARE ============
 async def close_speaking_on_exit(handler, event, data):
-    logger.info(f"🔹 close_speaking_on_exit вызван для события: {event}")
     user_id = None
     if hasattr(event, 'from_user'):
         user_id = event.from_user.id
@@ -54,41 +53,35 @@ async def close_speaking_on_exit(handler, event, data):
         user_id = event.callback_query.from_user.id
 
     if not user_id:
-        logger.info("🔹 user_id не найден, пропускаем")
         return await handler(event, data)
 
     user_state = get_user_state(user_id)
     if user_state.get("mode") != "speaking_active":
-        logger.info(f"🔹 режим не speaking_active (mode={user_state.get('mode')}), пропускаем")
         return await handler(event, data)
 
-    should_close = False
-    logger.info(f"🔹 Проверяем событие: {event}")
-
+    is_speaking_related = False
+    
     if hasattr(event, 'text') and isinstance(event.text, str) and event.text.startswith('/'):
-        should_close = True
-        logger.info(f"🔹 Команда {event.text} -> закрываем")
+        is_speaking_related = False
     elif hasattr(event, 'data') and isinstance(event.data, str):
-        if event.data == "back_to_main":
-            should_close = True
-            logger.info(f"🔹 callback back_to_main -> закрываем")
+        if event.data.startswith("speaking_") or event.data in ("continue_speaking", "start_speaking"):
+            is_speaking_related = True
         else:
-            logger.info(f"🔹 callback {event.data} -> не закрываем")
+            is_speaking_related = False
     elif hasattr(event, 'text') and isinstance(event.text, str):
-        if event.text == "🏠 Главное меню":
-            should_close = True
-            logger.info(f"🔹 Текст '🏠 Главное меню' -> закрываем")
+        if event.text in ("📊 Я всё! Фидбек", "🏠 Главное меню"):
+            is_speaking_related = False
         else:
-            logger.info(f"🔹 Текст '{event.text}' -> не закрываем (пропускаем)")
+            is_speaking_related = False
     else:
-        logger.info(f"🔹 Событие другого типа -> не закрываем")
+        is_speaking_related = False
 
-    if data.get("skip_exit_message"):
-        should_close = False
-        logger.info("🔹 skip_exit_message = True, отменяем закрытие")
-
-    if should_close:
-        logger.info("🔹 Закрываем диалог")
+    if not is_speaking_related:
+        result = await handler(event, data)
+        user_state["mode"] = ""
+        set_user_state(user_id, user_state)
+        if 'state' in data:
+            await data['state'].clear()
         try:
             if hasattr(event, 'message') and event.message:
                 await event.message.answer("Диалог завершен..🏁", reply_markup=ReplyKeyboardRemove())
@@ -98,36 +91,23 @@ async def close_speaking_on_exit(handler, event, data):
                 await event.answer("Диалог завершен..🏁", reply_markup=ReplyKeyboardRemove())
         except Exception as e:
             logger.error(f"Ошибка при удалении клавиатуры: {e}")
-
-        user_state["mode"] = ""
-        set_user_state(user_id, user_state)
-        if 'state' in data:
-            await data['state'].clear()
-
-        result = await handler(event, data)
         return result
 
-    logger.info("🔹 Не закрываем диалог, передаём управление хендлеру")
     return await handler(event, data)
 
+# ============ ХЕНДЛЕРЫ ============
 @router.callback_query(F.data == "start_speaking")
 async def start_speaking(callback: CallbackQuery, state: FSMContext):
-    logger.info(f"🔵 start_speaking вызван для user {callback.from_user.id}")
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(text="👩 Woman Voice", callback_data="speaking_voice_woman"),
          InlineKeyboardButton(text="👨 Man Voice", callback_data="speaking_voice_man")],
         [InlineKeyboardButton(text="🔙 Назад", callback_data="back_to_main")]
     ])
-    try:
-        await callback.message.edit_text("Выбери голос тьютора:", reply_markup=keyboard, parse_mode="HTML")
-    except Exception as e:
-        logger.error(f"Ошибка редактирования: {e}\n{traceback.format_exc()}")
-        await callback.message.answer("Выбери голос тьютора:", reply_markup=keyboard, parse_mode="HTML")
+    await callback.message.edit_text("Выбери голос тьютора:", reply_markup=keyboard, parse_mode="HTML")
     await callback.answer()
 
 @router.callback_query(F.data.startswith("speaking_voice_"))
 async def select_voice(callback: CallbackQuery, state: FSMContext):
-    logger.info(f"🔵 select_voice вызван для user {callback.from_user.id}")
     await callback.answer()
     user_id = callback.from_user.id
     voice = callback.data.split("_")[2]
@@ -173,101 +153,84 @@ async def select_voice(callback: CallbackQuery, state: FSMContext):
                 "chat_id": callback.message.chat.id,
                 "message_id": sent.message_id
             }
-            logger.info(f"✅ Сохранён текст в last_bot_response для user {user_id}: {first_message[:30]}...")
             user_state["speaking_history"].append({"role": "assistant", "text": first_message})
             set_user_state(user_id, user_state)
             os.unlink(voice_path)
             os.unlink(ogg_path)
+            await callback.message.answer(" ", reply_markup=SPEAKING_KEYBOARD)
         else:
-            logger.warning(f"TTS не сработал для user {user_id}")
-            sent = await callback.message.answer(first_message, reply_markup=SPEAKING_KEYBOARD)
-            last_bot_response[user_id] = {
-                "text": first_message,
-                "translation": None,
-                "audio_message_id": sent.message_id,
-                "chat_id": callback.message.chat.id,
-                "message_id": sent.message_id
-            }
+            await callback.message.answer(first_message, reply_markup=SPEAKING_KEYBOARD)
     except Exception as e:
-        logger.error(f"Ошибка TTS: {e}\n{traceback.format_exc()}")
-        sent = await callback.message.answer(first_message, reply_markup=SPEAKING_KEYBOARD)
-        last_bot_response[user_id] = {
-            "text": first_message,
-            "translation": None,
-            "audio_message_id": sent.message_id,
-            "chat_id": callback.message.chat.id,
-            "message_id": sent.message_id
-        }
+        logger.error(f"TTS error: {e}")
+        await callback.message.answer(first_message, reply_markup=SPEAKING_KEYBOARD)
 
+# ----- КНОПКА ФИДБЕК -----
 @router.message(F.text == "📊 Я всё! Фидбек")
-async def show_feedback(message: Message, state: FSMContext, data: dict):
+async def show_feedback(message: Message, state: FSMContext):
+    logger.info(f"📊 Фидбек нажат, user={message.from_user.id}")
+    user_id = message.from_user.id
+    user_state = get_user_state(user_id)
+    history = user_state.get("speaking_history", [])
+    
+    user_messages = [msg for msg in history if msg.get('role') == 'user']
+    if len(user_messages) < 3:
+        await message.answer("Вы ещё не общались, запишите несколько голосовых сообщений для получения фидбека.")
+        return
+
+    await message.bot.send_chat_action(chat_id=message.chat.id, action="typing")
+    history_text = "\n".join([f"{msg['role']}: {msg['text']}" for msg in history if msg['role'] in ['user', 'assistant']])
+    prompt = (
+        "Ты – языковой тренер. Дай краткий фидбек по диалогу пользователя с ИИ в трёх пунктах:\n"
+        "1. Грамматика – укажи 2-3 ошибки с исправлениями, если есть.\n"
+        "2. Лексика – есть ли повторения, предложи синонимы.\n"
+        "3. Общее впечатление – беглость, разнообразие, рекомендации.\n"
+        "Не пиши вступлений, приветствий, не используй звёздочки и Markdown. Пиши просто текст.\n"
+        f"Диалог:\n{history_text}"
+    )
     try:
-        logger.info(f"📊 show_feedback ВЫЗВАН для user {message.from_user.id}")
-        user_id = message.from_user.id
-        user_state = get_user_state(user_id)
-        history = user_state.get("speaking_history", [])
-        logger.info(f"📊 История: {history}")
-
-        user_messages = [msg for msg in history if msg.get('role') == 'user']
-        if len(user_messages) < 3:
-            data["skip_exit_message"] = True
-            await message.answer("Для получения фидбека, запишите несколько голосовых сообщений.")
-            return
-
-        await message.bot.send_chat_action(chat_id=message.chat.id, action="typing")
-        history_text = "\n".join([f"{msg['role']}: {msg['text']}" for msg in history if msg['role'] in ['user', 'assistant']])
-        prompt = (
-            "Ты – языковой тренер. Дай краткий фидбек по диалогу пользователя с ИИ в трёх пунктах:\n"
-            "1. Грамматика – укажи 2-3 ошибки с исправлениями, если есть.\n"
-            "2. Лексика – есть ли повторения, предложи синонимы.\n"
-            "3. Общее впечатление – беглость, разнообразие, рекомендации.\n"
-            "Не пиши вступлений, приветствий, не используй звёздочки и Markdown. Пиши просто текст.\n"
-            f"Диалог:\n{history_text}"
-        )
-        logger.info(f"📊 Отправляем запрос к DeepSeek: {prompt[:200]}...")
-        # chat – синхронная функция, убираем await
+        # chat – синхронная функция
         feedback = chat(prompt, max_tokens=300, temperature=0.5)
-
-        user_state["speaking_history"] = []
-        set_user_state(user_id, user_state)
-
-        await message.answer("", reply_markup=ReplyKeyboardRemove())
-        keyboard = InlineKeyboardMarkup(inline_keyboard=[
-            [InlineKeyboardButton(text="🏠 Главное меню", callback_data="back_to_main")]
-        ])
-        await message.answer(f"📊 Фидбек по вашему диалогу:\n\n{feedback}", reply_markup=keyboard, parse_mode="HTML")
-        data["skip_exit_message"] = True
-
     except Exception as e:
-        logger.error(f"❌ КРИТИЧЕСКАЯ ОШИБКА В show_feedback: {e}", exc_info=True)
-        try:
-            await message.answer("Произошла ошибка при получении фидбека. Попробуйте позже.")
-        except:
-            pass
-        data["skip_exit_message"] = True
+        logger.error(f"Ошибка фидбека: {e}")
+        await message.answer("Не удалось получить фидбек.")
+        return
 
+    user_state["speaking_history"] = []
+    set_user_state(user_id, user_state)
+
+    await message.answer("", reply_markup=ReplyKeyboardRemove())
+    keyboard = InlineKeyboardMarkup(inline_keyboard=[
+        [InlineKeyboardButton(text="🏠 Главное меню", callback_data="back_to_main")]
+    ])
+    await message.answer(f"📊 Фидбек по вашему диалогу:\n\n{feedback}", reply_markup=keyboard, parse_mode="HTML")
+
+# ----- КНОПКА ГЛАВНОЕ МЕНЮ -----
 @router.message(F.text == "🏠 Главное меню")
-async def exit_speaking(message: Message, state: FSMContext, data: dict):
+async def exit_speaking(message: Message, state: FSMContext):
     logger.info(f"🏠 Главное меню нажато, user={message.from_user.id}")
-    data["skip_exit_message"] = True
+    user_id = message.from_user.id
+    user_state = get_user_state(user_id)
+    user_state["mode"] = ""
+    set_user_state(user_id, user_state)
+    await state.clear()
     await show_main_menu(message, edit=False)
 
+# ----- ОБРАБОТКА ТЕКСТА (не кнопки) в режиме Speaking -----
 @router.message(SpeakingStates.waiting_for_voice, F.text)
-async def handle_speaking_text(message: Message, state: FSMContext, data: dict):
-    data["skip_exit_message"] = True
+async def handle_speaking_text(message: Message, state: FSMContext):
     await message.answer("Запишите и отправьте голосовое сообщение.")
 
+# ----- ОБРАБОТКА ФОТО, ВИДЕО, КРУЖКОВ и других медиа в режиме Speaking -----
 @router.message(SpeakingStates.waiting_for_voice, F.photo | F.video | F.video_note | F.animation | F.document | F.sticker)
-async def handle_media_in_speaking(message: Message, state: FSMContext, data: dict):
-    data["skip_exit_message"] = True
+async def handle_media_in_speaking(message: Message, state: FSMContext):
     await message.answer("Запишите и отправьте голосовое сообщение.")
 
+# ----- КОЛБЭК -----
 @router.callback_query(F.data == "back_to_main")
-async def back_to_main_from_feedback(callback: CallbackQuery, state: FSMContext, data: dict):
+async def back_to_main_from_feedback(callback: CallbackQuery, state: FSMContext):
     await callback.answer()
     user_id = callback.from_user.id
     user_state = get_user_state(user_id)
-    data["skip_exit_message"] = True
     user_state["mode"] = ""
     set_user_state(user_id, user_state)
     await state.clear()
@@ -279,8 +242,6 @@ async def continue_speaking(callback: CallbackQuery, state: FSMContext):
     user_id = callback.from_user.id
     user_state = get_user_state(user_id)
     user_state["mode"] = "speaking_active"
-    if "speaking_history" not in user_state:
-        user_state["speaking_history"] = []
     set_user_state(user_id, user_state)
     await state.set_state(SpeakingStates.waiting_for_voice)
     await callback.message.delete()
@@ -314,47 +275,26 @@ async def continue_speaking(callback: CallbackQuery, state: FSMContext):
             set_user_state(user_id, user_state)
             os.unlink(voice_path)
             os.unlink(ogg_path)
+            await callback.message.answer(" ", reply_markup=SPEAKING_KEYBOARD)
         else:
-            sent = await callback.message.answer(first_message, reply_markup=SPEAKING_KEYBOARD)
-            last_bot_response[user_id] = {
-                "text": first_message,
-                "translation": None,
-                "audio_message_id": sent.message_id,
-                "chat_id": callback.message.chat.id,
-                "message_id": sent.message_id
-            }
+            await callback.message.answer(first_message, reply_markup=SPEAKING_KEYBOARD)
     except Exception as e:
-        logger.error(f"TTS error: {e}\n{traceback.format_exc()}")
-        sent = await callback.message.answer(first_message, reply_markup=SPEAKING_KEYBOARD)
-        last_bot_response[user_id] = {
-            "text": first_message,
-            "translation": None,
-            "audio_message_id": sent.message_id,
-            "chat_id": callback.message.chat.id,
-            "message_id": sent.message_id
-        }
+        logger.error(f"TTS error: {e}")
+        await callback.message.answer(first_message, reply_markup=SPEAKING_KEYBOARD)
 
+# ============ ОБРАБОТЧИКИ ДЛЯ КНОПКИ "Текст" ============
 @router.callback_query(lambda c: c.data.startswith("show_text_"))
-async def show_text(callback: CallbackQuery, data: dict):
+async def show_text(callback: CallbackQuery):
     try:
         logger.info(f"✅ show_text ВЫЗВАН для user {callback.from_user.id}")
-        logger.info(f"   callback.data: {callback.data}")
-        logger.info(f"   callback.message: {callback.message}")
-
         user_id = int(callback.data.split("_")[2])
-        logger.info(f"   user_id: {user_id}")
-
         bot_response = last_bot_response.get(user_id)
-        logger.info(f"   last_bot_response для user {user_id}: {bot_response}")
-
         if not bot_response or not bot_response.get("text"):
             logger.warning(f"❌ Текст НЕ НАЙДЕН для user {user_id}")
             await callback.answer("Нет текста.", show_alert=True)
             return
 
         text = bot_response["text"]
-        logger.info(f"   Текст для user {user_id}: {text[:50]}...")
-
         keyboard = InlineKeyboardMarkup(inline_keyboard=[
             [InlineKeyboardButton(text="Перевести", callback_data=f"translate_text_{user_id}"),
              InlineKeyboardButton(text="Скрыть", callback_data=f"hide_text_{user_id}")]
@@ -364,8 +304,6 @@ async def show_text(callback: CallbackQuery, data: dict):
             logger.error("❌ callback.message is None")
             await callback.answer("Сообщение не найдено.", show_alert=True)
             return
-
-        logger.info(f"   chat_id: {callback.message.chat.id}, message_id: {callback.message.message_id}")
 
         try:
             await callback.bot.edit_message_caption(
@@ -377,24 +315,20 @@ async def show_text(callback: CallbackQuery, data: dict):
             await callback.answer("Текст показан")
             logger.info("✅ Подпись успешно изменена")
         except Exception as e:
-            logger.error(f"❌ Ошибка редактирования подписи: {e}\n{traceback.format_exc()}")
+            logger.error(f"❌ Ошибка редактирования подписи: {e}")
             try:
                 await callback.message.answer(text, reply_markup=keyboard)
                 await callback.answer("Текст показан в отдельном сообщении.")
                 logger.info("✅ Текст отправлен отдельным сообщением")
             except Exception as e2:
-                logger.error(f"❌ Ошибка отправки отдельного сообщения: {e2}\n{traceback.format_exc()}")
+                logger.error(f"❌ Ошибка отправки отдельного сообщения: {e2}")
                 await callback.answer("Не удалось показать текст.", show_alert=True)
-
-        data["skip_exit_message"] = True
-        logger.info("✅ data['skip_exit_message'] = True")
-
     except Exception as e:
-        logger.error(f"❌ КРИТИЧЕСКАЯ ОШИБКА в show_text: {e}\n{traceback.format_exc()}")
+        logger.error(f"❌ КРИТИЧЕСКАЯ ОШИБКА в show_text: {e}")
         await callback.answer("Произошла ошибка.", show_alert=True)
 
 @router.callback_query(lambda c: c.data.startswith("translate_text_"))
-async def translate_text(callback: CallbackQuery, data: dict):
+async def translate_text(callback: CallbackQuery):
     try:
         logger.info(f"✅ translate_text вызван для user {callback.from_user.id}")
         user_id = int(callback.data.split("_")[2])
@@ -403,7 +337,6 @@ async def translate_text(callback: CallbackQuery, data: dict):
             await callback.answer("Нет текста для перевода.", show_alert=True)
             return
         text = bot_response["text"]
-        # chat – синхронная функция, без await
         translation = chat(f"Переведи на русский: {text}", max_tokens=200, temperature=0.3)
         current_caption = callback.message.caption or ""
         if "Перевод:" in current_caption:
@@ -423,20 +356,19 @@ async def translate_text(callback: CallbackQuery, data: dict):
             )
             await callback.answer("Перевод показан")
         except Exception as e:
-            logger.error(f"Ошибка редактирования подписи при переводе: {e}\n{traceback.format_exc()}")
+            logger.error(f"Ошибка редактирования подписи при переводе: {e}")
             try:
                 await callback.message.answer(translation, reply_markup=keyboard)
                 await callback.answer("Перевод показан отдельным сообщением.")
             except Exception as e2:
-                logger.error(f"Ошибка отправки перевода: {e2}\n{traceback.format_exc()}")
+                logger.error(f"Ошибка отправки перевода: {e2}")
                 await callback.answer("Не удалось показать перевод.", show_alert=True)
-        data["skip_exit_message"] = True
     except Exception as e:
-        logger.error(f"Критическая ошибка в translate_text: {e}\n{traceback.format_exc()}")
+        logger.error(f"Критическая ошибка в translate_text: {e}")
         await callback.answer("Произошла ошибка.", show_alert=True)
 
 @router.callback_query(lambda c: c.data.startswith("hide_text_"))
-async def hide_text(callback: CallbackQuery, data: dict):
+async def hide_text(callback: CallbackQuery):
     try:
         logger.info(f"✅ hide_text вызван для user {callback.from_user.id}")
         user_id = int(callback.data.split("_")[2])
@@ -452,13 +384,12 @@ async def hide_text(callback: CallbackQuery, data: dict):
             )
             await callback.answer("Текст скрыт")
         except Exception as e:
-            logger.error(f"Ошибка скрытия текста: {e}\n{traceback.format_exc()}")
+            logger.error(f"Ошибка скрытия текста: {e}")
             try:
                 await callback.message.delete()
             except:
                 pass
             await callback.answer("Текст скрыт.")
-        data["skip_exit_message"] = True
     except Exception as e:
-        logger.error(f"Критическая ошибка в hide_text: {e}\n{traceback.format_exc()}")
+        logger.error(f"Критическая ошибка в hide_text: {e}")
         await callback.answer("Произошла ошибка.", show_alert=True)
