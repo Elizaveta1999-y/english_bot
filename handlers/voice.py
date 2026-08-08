@@ -39,18 +39,32 @@ async def handle_voice(message: Message, state: FSMContext):
     chat_id = message.chat.id
     bot = message.bot
 
-    await bot.send_chat_action(chat_id=chat_id, action="record_voice")
-
     current_state = await state.get_state()
     user_state = get_user_state(user_id)
 
     # 1. Если это режим «Говорение» – игнорируем (там свой обработчик)
     if current_state == GovorenieStates.waiting_voice.state:
-        logger.info(f"Голосовое от {user_id} пропущено (говорение)")
+        logger.info(f"Голосовое от {user_id} пропущено (режим говорение)")
         return
 
-    # 2. Если мы в режиме Speaking – обрабатываем
+    # 2. Если пользователь НЕ в режиме Speaking, Roleplay или активном уроке – игнорируем
+    mode = user_state.get("mode")
+    is_lesson_active = (
+        user_state.get("practice_lesson_key") or
+        user_state.get("lesson_qa", {}).get("active") or
+        (user_state.get("lesson_mode") == "thematic" and user_state.get("lesson_step") == "awaiting_answer")
+    )
+
+    if mode not in ("speaking_active", "roleplay_active") and not is_lesson_active:
+        logger.info(f"Голосовое от {user_id} игнорируется (не в активном режиме, mode={mode})")
+        # Не отправляем action, не отвечаем
+        return
+
+    # ========== БЛОК SPEAKING ==========
     if current_state == SpeakingStates.waiting_for_voice:
+        # Только здесь отправляем индикатор, т.к. будем обрабатывать
+        await bot.send_chat_action(chat_id=chat_id, action="record_voice")
+
         if user_state.get("mode") != "speaking_active":
             user_state["mode"] = "speaking_active"
             set_user_state(user_id, user_state)
@@ -69,13 +83,11 @@ async def handle_voice(message: Message, state: FSMContext):
         speaking_history = user_state.get("speaking_history", [])
         reply_text, correction_text, is_perfect = await process_voice_message(user_id, user_text, speaking_history)
 
-        # Если ответ – отказ, отправляем только текст, без голоса
         if reply_text.startswith("Извините, я не могу обсуждать эту тему"):
             await message.answer(reply_text)
             await state.set_state(SpeakingStates.waiting_for_voice)
             return
 
-        # Сохраняем текст ДО TTS
         last_bot_response[user_id] = {
             "text": reply_text,
             "translation": None,
@@ -85,7 +97,6 @@ async def handle_voice(message: Message, state: FSMContext):
         }
         logger.info(f"Сохранён текст для user {user_id}: {reply_text[:50]}...")
 
-        # Обновляем историю
         speaking_history.append({"role": "user", "text": user_text})
         speaking_history.append({"role": "assistant", "text": reply_text})
         if len(speaking_history) > 20:
@@ -128,7 +139,6 @@ async def handle_voice(message: Message, state: FSMContext):
                 return
             except Exception as e:
                 logger.error(f"Audio error: {e}")
-        # fallback – отправляем текст
         sent = await message.answer(reply_text)
         if user_id in last_bot_response:
             last_bot_response[user_id]["audio_message_id"] = sent.message_id
@@ -136,34 +146,14 @@ async def handle_voice(message: Message, state: FSMContext):
         await state.set_state(SpeakingStates.waiting_for_voice)
         return
 
-    # 3. Проверка на другие активные режимы, которые должны обрабатывать голосовые:
-    #    - practice_lesson_key (уроки с практикой)
-    #    - lesson_qa (вопросы по уроку)
-    #    - lesson_mode == "thematic" (тематические уроки)
-    #    - mode == "roleplay_active" (ролевая игра)
+    # ========== ОСТАЛЬНЫЕ РЕЖИМЫ (уроки, ролевая игра) ==========
+    # Здесь тоже отправляем индикатор, т.к. будем обрабатывать
+    await bot.send_chat_action(chat_id=chat_id, action="record_voice")
 
-    # Если ни один из этих режимов активен, игнорируем голосовое (не отвечаем)
-    is_lesson_active = (
-        user_state.get("practice_lesson_key") or
-        user_state.get("lesson_qa", {}).get("active") or
-        (user_state.get("lesson_mode") == "thematic" and user_state.get("lesson_step") == "awaiting_answer")
-    )
-    is_roleplay_active = user_state.get("mode") == "roleplay_active"
-
-    if not (is_lesson_active or is_roleplay_active):
-        logger.info(f"Голосовое от {user_id} игнорируется – нет активного режима")
-        return
-
-    # --- Обработка для уроков и ролевой игры (как было раньше) ---
-
-    # Получаем текст голосового
     file = await bot.get_file(message.voice.file_id)
     file_bytes = await bot.download_file(file.file_path)
     user_text = await voice_to_text(file_bytes.read())
     if not user_text:
-        # Если не распозналось, возможно, стоит молча игнорировать или сказать "не понял"?
-        # Но мы решили не отвечать вне Speaking, однако здесь мы уже внутри режима урока или ролевой игры,
-        # поэтому лучше дать обратную связь, что не поняли.
         await message.answer("Не понял, повторите.")
         return
 
@@ -171,7 +161,7 @@ async def handle_voice(message: Message, state: FSMContext):
     if len(words) > 500:
         user_text = ' '.join(words[:500])
 
-    # Обработка уроков
+    # Уроки с практикой
     if user_state.get("practice_lesson_key"):
         lesson_key = user_state["practice_lesson_key"]
         practice = user_state.get("practice", {}).get(lesson_key)
@@ -224,11 +214,13 @@ async def handle_voice(message: Message, state: FSMContext):
                 await show_practice_task(message, user_id, edit=False)
             return
 
+    # Вопросы в уроках
     if user_state.get("lesson_qa", {}).get("active"):
         from handlers.lessons import process_lesson_question
         await process_lesson_question(user_id, user_text, message.bot, message.chat.id)
         return
 
+    # Тематические уроки
     if user_state.get("lesson_mode") == "thematic" and user_state.get("lesson_step") == "awaiting_answer":
         from handlers.lesson_utils import check_answer
         task = user_state.get("lesson_task")
@@ -245,7 +237,7 @@ async def handle_voice(message: Message, state: FSMContext):
             return
 
     # Ролевая игра
-    if is_roleplay_active:
+    if mode == "roleplay_active":
         roleplay_history = user_state.get("roleplay_history", [])
         try:
             ai_response = await process_roleplay_message(user_id, user_text, roleplay_history)
@@ -290,6 +282,5 @@ async def handle_voice(message: Message, state: FSMContext):
         await message.answer(ai_response)
         return
 
-    # Если ни одно из условий не сработало (хотя должно было), просто игнорируем
-    logger.warning(f"Голосовое от {user_id} не обработано – непредвиденный случай")
-    return
+    # Если ничего не подошло – игнорируем (но мы уже отсекли выше, оставляем на всякий случай)
+    logger.info(f"Голосовое от {user_id} не обработано (неизвестный режим)")
