@@ -2,9 +2,7 @@ import re
 from data.users import get_user_state
 from services.deepseek import chat
 
-# Расширенный список запрещённых тем (сексуальное, насилие, экстремизм, наркотики)
 UNSAFE_PHRASES = [
-    # Сексуальное
     r"трахн(уть|у|ешь|ет|ем|ете|ут|ать|аю|аешь|ает|аем|аете|ают)",
     r"выеб(ать|у|ешь|ет|ем|ете|ут|аю|аешь|ает|аем|аете|ают)",
     r"отсос(ать|у|ешь|ет|ем|ете|ут|аю|аешь|ает|аем|аете|ают)",
@@ -19,7 +17,6 @@ UNSAFE_PHRASES = [
     r"порно",
     r"гол(ый|ая|ое|ые)",
     r"обнаженн",
-    # Насилие
     r"уби(ть|й|ваю|ваешь|вает|ваем|ваете|вают)",
     r"смерт",
     r"кровь",
@@ -28,13 +25,11 @@ UNSAFE_PHRASES = [
     r"пытк",
     r"труп",
     r"ножевое",
-    # Экстремизм и терроризм
     r"террорист",
     r"взорв(ать|у|ешь|ет|ем|ете|ут)",
     r"бомб",
     r"оружие",
     r"экстремизм",
-    # Наркотики
     r"наркотик",
     r"героин",
     r"кокаин",
@@ -42,7 +37,6 @@ UNSAFE_PHRASES = [
     r"спайс",
     r"экстази",
     r"амфетамин",
-    # Самоубийство
     r"самоубийств",
     r"суицид",
     r"повеситься",
@@ -50,7 +44,6 @@ UNSAFE_PHRASES = [
     r"отравиться",
 ]
 
-# Слова-маркеры, указывающие на учебные цели (чтобы не блокировать образовательные вопросы)
 EDUCATIONAL_MARKERS = [
     "как будет", "перевод", "как сказать", "как переводится",
     "что значит", "what is", "how do you say", "meaning of",
@@ -58,47 +51,16 @@ EDUCATIONAL_MARKERS = [
 ]
 
 def is_unsafe_message(text: str) -> bool:
-    """
-    Проверяет текст на наличие небезопасного содержимого.
-    Возвращает True, если текст содержит запрещённые темы (кроме образовательных контекстов).
-    """
     text_lower = text.lower()
-    # Проверяем, есть ли образовательные маркеры
     has_educational = any(marker in text_lower for marker in EDUCATIONAL_MARKERS)
     for pattern in UNSAFE_PHRASES:
         if re.search(pattern, text_lower):
-            # Если есть образовательный маркер, блокируем только часть паттернов (оставляем только явную нецензурщину)
-            # Для простоты: если найден паттерн и нет образовательного маркера – блокируем
-            if not has_educational:
-                return True
-            # Если образовательный маркер есть, пропускаем только явную нецензурщину (например, матерные слова)
-            # Здесь можно оставить более строгую проверку, но для простоты мы всё равно блокируем, если нет образовательного маркера.
-            # Но чтобы не блокировать нормальные вопросы, добавим исключения:
-            # Например, если вопрос содержит "как переводится" и "трахнуть" – это может быть вопрос о переводе, но рискованно.
-            # Для безопасности блокируем всегда, если паттерн найден, даже с образовательным маркером (кроме случаев, когда это явно вопрос о значении слова).
-            # Мы сделаем проверку: если паттерн найден и не является явно вопросом о переводе, блокируем.
-            # Я предлагаю блокировать всегда, когда есть сексуальный или насильственный паттерн, даже с образовательным маркером.
-            # Так безопаснее.
             return True
     return False
 
 async def is_safe_message(text: str) -> bool:
-    """Проверяет, безопасно ли сообщение. Использует регулярки и (опционально) DeepSeek."""
-    # 1. Быстрая проверка через регулярки
     if is_unsafe_message(text):
         return False
-    # 2. Дополнительная проверка через DeepSeek (можно включить опционально)
-    # Если вы хотите использовать DeepSeek для модерации, раскомментируйте блок ниже:
-    # try:
-    #     response = await chat(
-    #         f"Проверь, является ли это сообщение безопасным для образовательного чата. Ответь только 'safe' или 'unsafe'. Сообщение: {text}",
-    #         max_tokens=10,
-    #         temperature=0.0
-    #     )
-    #     if "unsafe" in response.lower():
-    #         return False
-    # except Exception:
-    #     pass  # в случае ошибки доверяем регуляркам
     return True
 
 async def process_voice_message(user_id: int, user_text: str, history: list = None) -> tuple:
@@ -108,15 +70,15 @@ async def process_voice_message(user_id: int, user_text: str, history: list = No
     
     context = "\n".join([f"{'Student' if h['role']=='user' else 'Teacher'}: {h['text']}" for h in history[-5:]])
     
-    # Проверка на безопасность
     if not await is_safe_message(user_text):
-        # Возвращаем безопасный ответ и пустое исправление
         return ("Извините, я не могу обсуждать эту тему. Давайте поговорим о чём-то другом.", "", False)
 
-    # Определяем, есть ли русский текст
-    is_russian = bool(re.search(r'[а-яА-Я]', user_text))
+    # Проверка: есть ли английские буквы и русские буквы
+    has_cyrillic = bool(re.search(r'[а-яА-Я]', user_text))
+    has_latin = bool(re.search(r'[a-zA-Z]', user_text))
+    # Напоминание только если есть русские, но нет английских (т.е. чисто русский)
+    is_pure_russian = has_cyrillic and not has_latin
     
-    # Системный промпт для ответа
     system_prompt_reply = (
         "You are a friendly English tutor. Always respond in English. "
         "In your voice reply, ONLY continue the conversation naturally, ask a question, and do not mention corrections or translations. "
@@ -138,19 +100,17 @@ async def process_voice_message(user_id: int, user_text: str, history: list = No
     correction_text = ""
     is_perfect = False
     
-    # Если есть русский текст – даём перевод + напоминание
-    if is_russian:
+    if has_cyrillic:
         translation_prompt = (
             f"The student said in Russian: {user_text}\n"
             f"Provide only the correct English translation, without any extra words. "
             f"Do not include the original Russian."
         )
         translation = chat(translation_prompt, system_message="You are a translator.", max_tokens=100, temperature=0.3)
-        # Добавляем мягкое напоминание об использовании английского
-        reminder = (
-            "\n\n💡 <i>Try to say that in English next time – it's much better for practice!</i>"
-        )
-        correction_text = f"<s>{user_text}</s>\n{translation}{reminder}"
+        correction_text = f"<s>{user_text}</s>\n{translation}"
+        # Добавляем напоминание только если чистый русский
+        if is_pure_russian:
+            correction_text += "\n\n💡 <i>Try to say that in English next time – it's much better for practice!</i>"
     else:
         # Проверяем грамматику только для английского
         check_prompt = (

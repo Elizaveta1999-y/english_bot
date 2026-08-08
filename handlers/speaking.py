@@ -58,33 +58,27 @@ async def close_speaking_on_exit(handler, event, data):
     if user_state.get("mode") != "speaking_active":
         return await handler(event, data)
 
-    # ===== ИСПРАВЛЕННАЯ ЛОГИКА =====
-    # По умолчанию диалог НЕ закрываем
     should_close = False
 
     if hasattr(event, 'text') and isinstance(event.text, str) and event.text.startswith('/'):
         should_close = True
-        logger.info(f"Команда {event.text} -> закрываем диалог")
     elif hasattr(event, 'data') and isinstance(event.data, str):
         if event.data == "back_to_main":
             should_close = True
-            logger.info("back_to_main -> закрываем диалог")
         else:
-            logger.info(f"callback {event.data} -> не закрываем")
+            should_close = False
     elif hasattr(event, 'text') and isinstance(event.text, str):
         if event.text == "🏠 Главное меню":
             should_close = True
-            logger.info("Главное меню -> закрываем диалог")
         else:
-            # ВСЕ остальные тексты (включая "Фидбек" и сообщения пользователя) НЕ закрываем
-            logger.info(f"текст '{event.text}' -> не закрываем")
+            should_close = False
+    else:
+        should_close = False
 
     if data.get("skip_exit_message"):
         should_close = False
-        logger.info("skip_exit_message = True, отменяем закрытие")
 
     if should_close:
-        logger.info("Закрываем диалог")
         try:
             if hasattr(event, 'message') and event.message:
                 await event.message.answer("Диалог завершен..🏁", reply_markup=ReplyKeyboardRemove())
@@ -200,7 +194,9 @@ async def show_feedback(message: Message, state: FSMContext):
             f"Диалог:\n{history_text}"
         )
         logger.info(f"📊 Отправляем запрос к DeepSeek...")
+        # chat – синхронная функция, НЕ используем await
         feedback = chat(prompt, max_tokens=300, temperature=0.5)
+        logger.info(f"📊 Получен фидбек: {feedback[:200]}...")
 
         # Сохраняем фидбек в состояние пользователя
         user_state["pending_feedback"] = feedback
