@@ -160,7 +160,7 @@ async def select_voice(callback: CallbackQuery, state: FSMContext):
             set_user_state(user_id, user_state)
             os.unlink(voice_path)
             os.unlink(ogg_path)
-            await callback.message.answer(" ", reply_markup=SPEAKING_KEYBOARD)
+            # Убрано дублирующее сообщение с пробелом
         else:
             await callback.message.answer(first_message, reply_markup=SPEAKING_KEYBOARD)
     except Exception as e:
@@ -180,10 +180,8 @@ async def show_feedback(message: Message, state: FSMContext):
         count = len(user_messages)
 
         if count < 3:
-            keyboard = InlineKeyboardMarkup(inline_keyboard=[
-                [InlineKeyboardButton(text="🏠 Главное меню", callback_data="back_to_main")]
-            ])
-            await message.answer("Запишите несколько голосовых сообщений, чтобы получить фидбек.", reply_markup=keyboard)
+            # Убрана клавиатура с кнопкой "Главное меню" – только текст
+            await message.answer("Запишите несколько голосовых сообщений, чтобы получить фидбек.")
             return
 
         await message.bot.send_chat_action(chat_id=message.chat.id, action="typing")
@@ -313,7 +311,7 @@ async def continue_speaking(callback: CallbackQuery, state: FSMContext):
             set_user_state(user_id, user_state)
             os.unlink(voice_path)
             os.unlink(ogg_path)
-            await callback.message.answer(" ", reply_markup=SPEAKING_KEYBOARD)
+            # Убрано дублирующее сообщение с пробелом
         else:
             await callback.message.answer(first_message, reply_markup=SPEAKING_KEYBOARD)
     except Exception as e:
@@ -361,7 +359,6 @@ async def translate_text(callback: CallbackQuery):
             return
         text = bot_response["text"]
         translation = chat(f"Переведи на русский: {text}", max_tokens=200, temperature=0.3)
-        # Заменяем подпись целиком на перевод
         keyboard = InlineKeyboardMarkup(inline_keyboard=[
             [InlineKeyboardButton(text="Перевести", callback_data=f"translate_text_{user_id}"),
              InlineKeyboardButton(text="Скрыть", callback_data=f"hide_text_{user_id}")]

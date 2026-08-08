@@ -44,10 +44,20 @@ UNSAFE_PHRASES = [
     r"отравиться",
 ]
 
+# Расширенный список образовательных маркеров (добавлены вопросительные слова)
 EDUCATIONAL_MARKERS = [
     "как будет", "перевод", "как сказать", "как переводится",
     "что значит", "what is", "how do you say", "meaning of",
-    "слово", "фраза", "выражение", "идиома", "грамматика", "правило"
+    "слово", "фраза", "выражение", "идиома", "грамматика", "правило",
+    "зачем", "почему", "что такое", "как работает", "объясни",
+    "расскажи", "why", "how does", "explain"
+]
+
+# Маркеры запроса ответа на русском
+RUSSIAN_REQUEST = [
+    "объясни на русском", "по-русски", "на русском",
+    "скажи по-русски", "напиши по-русски", "ответь по-русски",
+    "на русском языке"
 ]
 
 def is_unsafe_message(text: str) -> bool:
@@ -58,6 +68,12 @@ def is_unsafe_message(text: str) -> bool:
     return False
 
 async def is_safe_message(text: str) -> bool:
+    # Если есть образовательный маркер – всегда безопасно, даже если есть запрещённые слова
+    text_lower = text.lower()
+    for marker in EDUCATIONAL_MARKERS:
+        if marker in text_lower:
+            return True
+    # Иначе проверяем на наличие запрещённых фраз
     if is_unsafe_message(text):
         return False
     return True
@@ -69,19 +85,31 @@ async def process_voice_message(user_id: int, user_text: str, history: list = No
     
     context = "\n".join([f"{'Student' if h['role']=='user' else 'Teacher'}: {h['text']}" for h in history[-5:]])
     
+    # Проверка безопасности с учётом образовательных маркеров
     if not await is_safe_message(user_text):
         return ("Извините, я не могу обсуждать эту тему. Давайте поговорим о чём-то другом.", "", False)
 
     has_cyrillic = bool(re.search(r'[а-яА-Я]', user_text))
     has_latin = bool(re.search(r'[a-zA-Z]', user_text))
     is_pure_russian = has_cyrillic and not has_latin
+
+    # Проверяем, просит ли пользователь ответить на русском
+    russian_requested = any(marker in user_text.lower() for marker in RUSSIAN_REQUEST)
     
-    system_prompt_reply = (
-        "You are a friendly English tutor. Always respond in English. "
-        "In your voice reply, ONLY continue the conversation naturally, ask a question, and do not mention corrections or translations. "
-        "Do not correct mistakes, do not rephrase Russian. Just respond like a native speaker and keep the conversation going. "
-        "Keep your reply short (1-3 sentences) and always end with a question."
-    )
+    if russian_requested:
+        system_prompt_reply = (
+            "You are a friendly English tutor. Respond in Russian, because the student asked for it. "
+            "In your voice reply, ONLY continue the conversation naturally, ask a question, and do not mention corrections or translations. "
+            "Do not correct mistakes, do not rephrase Russian. Just respond like a native speaker and keep the conversation going. "
+            "Keep your reply short (1-3 sentences) and always end with a question."
+        )
+    else:
+        system_prompt_reply = (
+            "You are a friendly English tutor. Always respond in English. "
+            "In your voice reply, ONLY continue the conversation naturally, ask a question, and do not mention corrections or translations. "
+            "Do not correct mistakes, do not rephrase Russian. Just respond like a native speaker and keep the conversation going. "
+            "Keep your reply short (1-3 sentences) and always end with a question."
+        )
     
     user_prompt_reply = (
         f"Context:\n{context}\n\n"
@@ -104,12 +132,10 @@ async def process_voice_message(user_id: int, user_text: str, history: list = No
             f"Do not include the original Russian."
         )
         translation = chat(translation_prompt, system_message="You are a translator.", max_tokens=100, temperature=0.3)
-        # Формируем correction_text БЕЗ зачёркнутого исходного текста (только перевод и пояснение)
         correction_text = f"✅ {translation}"
         if is_pure_russian:
             correction_text += "\n\n💡 <i>Try to say that in English next time – it's much better for practice!</i>"
     else:
-        # Проверяем грамматику только для английского
         check_prompt = (
             f"The student wrote: {user_text}\n"
             f"Check ONLY for grammar errors (verb forms, tenses, word order, articles, prepositions). "
@@ -141,7 +167,6 @@ async def process_voice_message(user_id: int, user_text: str, history: list = No
             elif not explanation and lines:
                 explanation = f"<blockquote>{lines[0].strip()}</blockquote>"
             corrected = re.sub(r'^\d+\.?\s*', '', corrected)
-            # Формируем correction_text БЕЗ зачёркнутого исходного текста
             correction_text = f"✅ {corrected}\n{explanation}"
     
     return reply_text, correction_text, is_perfect

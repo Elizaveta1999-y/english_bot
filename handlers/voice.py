@@ -69,6 +69,14 @@ async def handle_voice(message: Message, state: FSMContext):
         speaking_history = user_state.get("speaking_history", [])
         reply_text, correction_text, is_perfect = await process_voice_message(user_id, user_text, speaking_history)
 
+        # Если ответ – отказ, отправляем только текст, без голоса
+        if reply_text.startswith("Извините, я не могу обсуждать эту тему"):
+            await message.answer(reply_text)
+            # Не сохраняем в историю, но можно сохранить, если нужно – оставляем как есть
+            # Возвращаемся в состояние
+            await state.set_state(SpeakingStates.waiting_for_voice)
+            return
+
         # Сохраняем текст ДО TTS
         last_bot_response[user_id] = {
             "text": reply_text,
@@ -93,9 +101,8 @@ async def handle_voice(message: Message, state: FSMContext):
             except Exception as e:
                 logger.warning(f"Не удалось поставить реакцию: {e}")
 
-        # ===== УБИРАЕМ ОТПРАВКУ CORRECTION_TEXT =====
-        # if correction_text:
-        #     await message.answer(correction_text, parse_mode="HTML")
+        if correction_text:
+            await message.answer(correction_text, parse_mode="HTML")
 
         await bot.send_chat_action(chat_id=chat_id, action="record_voice")
         voice_pref = user_state.get("speaking_voice", "woman")
@@ -233,6 +240,11 @@ async def handle_voice(message: Message, state: FSMContext):
         user_state["roleplay_history"] = roleplay_history
         set_user_state(user_id, user_state)
 
+        # Проверяем, не является ли ответ отказом
+        if ai_response.startswith("Извините, я не могу обсуждать эту тему"):
+            await message.answer(ai_response)
+            return
+
         await bot.send_chat_action(chat_id=chat_id, action="record_voice")
         voice_pref = user_state.get("speaking_voice", "woman")
         voice_id = WOMAN_VOICE_ID if voice_pref == "woman" else MAN_VOICE_ID
@@ -262,6 +274,18 @@ async def handle_voice(message: Message, state: FSMContext):
         set_user_mode(user_id, "speaking_active")
     history = user_state.get("history", [])
     ai_response = await process_voice_only(user_id, user_text, history)
+
+    # Проверяем, не является ли ответ отказом
+    if ai_response.startswith("Извините, я не могу обсуждать эту тему"):
+        await message.answer(ai_response)
+        # Можно не сохранять в историю, но для единообразия сохраним
+        history.append({"role": "user", "text": user_text})
+        history.append({"role": "assistant", "text": ai_response})
+        if len(history) > 20:
+            history = history[-20:]
+        user_state["history"] = history
+        set_user_state(user_id, user_state)
+        return
 
     history.append({"role": "user", "text": user_text})
     history.append({"role": "assistant", "text": ai_response})
