@@ -629,6 +629,9 @@ async def listening_text_middleware(call: types.Message, event: types.Message, d
     if state:
         current_state = await state.get_state()
         if current_state and current_state.startswith("ListeningState"):
+            # Пропускаем кнопки Speaking
+            if event.text in ("📊 Я всё! Фидбек", "🏠 Главное меню"):
+                return await call(event, data)
             if event.text and event.text.startswith("/"):
                 return await call(event, data)
             if current_state in (ListeningState.answering_task.state, ListeningState.revision_mode.state):
