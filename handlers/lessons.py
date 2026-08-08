@@ -924,7 +924,7 @@ def normalize_answer(text: str) -> str:
     # Приводим к нижнему регистру
     return text.lower()
 
-@router.message(F.text)
+@router.message(F.text, ~F.text.in_({"📊 Я всё! Фидбек", "🏠 Главное меню"}))
 async def handle_practice_answer(message: Message):
     user_id = message.from_user.id
     user_state = get_user_state(user_id)
