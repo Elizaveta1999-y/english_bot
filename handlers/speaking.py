@@ -225,10 +225,12 @@ async def show_feedback(message: Message, state: FSMContext):
         set_user_state(user_id, user_state)
 
         if count < 6:
-            keyboard = InlineKeyboardMarkup(inline_keyboard=[
-                [InlineKeyboardButton(text="📊 Показать фидбек", callback_data="show_feedback_confirm"),
-                 [InlineKeyboardButton(text="🗣️ Продолжить", callback_data="continue_speaking")]
-            ])
+keyboard = InlineKeyboardMarkup(inline_keyboard=[
+    [
+        InlineKeyboardButton(text="📊 Показать фидбек", callback_data="show_feedback_confirm"),
+        InlineKeyboardButton(text="🗣️ Продолжить", callback_data="continue_speaking")
+    ]
+])
             await message.answer(
                 "У вас пока мало сообщений, фидбек может быть неполным.",
                 reply_markup=keyboard
