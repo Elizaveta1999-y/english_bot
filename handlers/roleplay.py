@@ -1575,7 +1575,7 @@ async def show_topics(callback: CallbackQuery, cat_id: str = None, page: int = 0
 @router.callback_query(F.data.startswith("cat_page_"))
 async def change_topic_page(callback: CallbackQuery):
     # Формат: cat_page_{cat_id}_{page}
-    # Пример: cat_page_fashion_1 -> cat_id = 'fashion', page = 1
+    # Пример: cat_page_finance_1 -> cat_id = 'finance', page = 1
     logger.info(f"change_topic_page raw data: {callback.data}")
     # Удаляем префикс "cat_page_"
     rest = callback.data[9:]  # длина "cat_page_" = 9
