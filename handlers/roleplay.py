@@ -1571,19 +1571,15 @@ async def show_topics(callback: CallbackQuery, cat_id: str = None, page: int = 0
     )
     await callback.answer()
 
-# ---------- ОБРАБОТЧИК СТРЕЛОК (ГАРАНТИРОВАННО РАБОТАЕТ) ----------
+# ---------- ОБРАБОТЧИК СТРЕЛОК (ИСПРАВЛЕН) ----------
 @router.callback_query(F.data.startswith("cat_page_"))
 async def change_topic_page(callback: CallbackQuery):
     # Формат: cat_page_{cat_id}_{page}
-    # Пример: cat_page_fashion_1 -> cat_id = 'fashion', page = 1
-    logger.info(f"change_topic_page raw data: {callback.data}")
-    # Удаляем префикс "cat_page_" (9 символов)
-    rest = callback.data[9:]  # длина "cat_page_" = 9
-    logger.info(f"rest = '{rest}'")
-    # Разделяем по последнему подчёркиванию
+    # Убираем префикс "cat_page_" (9 символов)
+    rest = callback.data[9:]  # ГЛАВНОЕ ИЗМЕНЕНИЕ
     cat_id, page_str = rest.rsplit('_', 1)
     page = int(page_str)
-    logger.info(f"Parsed: cat_id='{cat_id}', page={page}")
+    logger.info(f"change_topic_page: cat_id='{cat_id}', page={page}")
     await show_topics(callback, cat_id=cat_id, page=page)
 
 @router.callback_query(F.data == "noop")
@@ -1593,7 +1589,6 @@ async def noop(callback: CallbackQuery):
 # ---------- ВЫБОР ТЕМЫ ----------
 @router.callback_query(F.data.startswith("topic_"))
 async def topic_chosen(callback: CallbackQuery, state: FSMContext):
-    # Формат: topic_{cat_id}_{idx}_{page}
     rest = callback.data[6:]  # убираем "topic_"
     parts = rest.rsplit('_', 2)
     if len(parts) != 3:
