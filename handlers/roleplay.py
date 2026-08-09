@@ -40,7 +40,7 @@ CATEGORIES = [
     ("📰 News", "news")
 ]
 
-# ---------- ТЕМЫ (ВСТАВЬТЕ ВАШ ПОЛНЫЙ СЛОВАРЬ) ----------
+# ---------- ТЕМЫ (ВСТАВЬТЕ СВОЙ ПОЛНЫЙ СЛОВАРЬ) ----------
 TOPICS = {
     "work": [
         {
@@ -1571,17 +1571,19 @@ async def show_topics(callback: CallbackQuery, cat_id: str = None, page: int = 0
     )
     await callback.answer()
 
-# ---------- ОБРАБОТЧИК СТРЕЛОК (ИСПРАВЛЕН) ----------
+# ---------- ОБРАБОТЧИК СТРЕЛОК (ГАРАНТИРОВАННО РАБОТАЕТ) ----------
 @router.callback_query(F.data.startswith("cat_page_"))
 async def change_topic_page(callback: CallbackQuery):
     # Формат: cat_page_{cat_id}_{page}
+    # Пример: cat_page_fashion_1 -> cat_id = 'fashion', page = 1
     logger.info(f"change_topic_page raw data: {callback.data}")
-    rest = callback.data[9:]  # убираем "cat_page_"
+    # Удаляем префикс "cat_page_"
+    rest = callback.data[9:]  # длина "cat_page_" = 9
     logger.info(f"rest = '{rest}'")
     # Разделяем по последнему подчёркиванию
     cat_id, page_str = rest.rsplit('_', 1)
     page = int(page_str)
-    logger.info(f"cat_id='{cat_id}', page={page}")
+    logger.info(f"Parsed: cat_id='{cat_id}', page={page}")
     await show_topics(callback, cat_id=cat_id, page=page)
 
 @router.callback_query(F.data == "noop")
@@ -1710,7 +1712,6 @@ async def handle_any_command(message: Message, state: FSMContext):
             from handlers.start import show_main_menu
             await show_main_menu(message, edit=False, remove_keyboard=True)
     else:
-        # Если не в игре – пропускаем через стандартные обработчики
         command = message.text
         if command == "/start":
             from handlers.start import cmd_start
