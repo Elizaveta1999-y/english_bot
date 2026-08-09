@@ -1,5 +1,5 @@
 import re
-from data.users import get_user_state
+from data.users import get_user_state, set_user_state
 from services.deepseek import chat
 
 UNSAFE_PHRASES = [
@@ -127,7 +127,15 @@ async def process_voice_message(user_id: int, user_text: str, history: list = No
         )
         translation = chat(translation_prompt, system_message="You are a translator.", max_tokens=100, temperature=0.3)
         correction_text = f"✔️ {translation}"
-        # Подсказка "Try to say..." полностью убрана
+        
+        # Напоминание – каждый 3-й перевод с русского
+        if "russian_translation_count" not in state:
+            state["russian_translation_count"] = 0
+        state["russian_translation_count"] += 1
+        if state["russian_translation_count"] % 3 == 0:
+            correction_text += "\n\n💡 Try to say that in English next time – it's much better for practice!"
+        set_user_state(user_id, state)
+        
     else:
         check_prompt = (
             f"The student wrote: {user_text}\n"
@@ -137,11 +145,12 @@ async def process_voice_message(user_id: int, user_text: str, history: list = No
             f"Line 1: corrected version as a single sentence without numbers or bullets\n"
             f"Line 2: <blockquote>explanation in Russian (пояснение на русском языке)</blockquote>\n"
             f"The explanation MUST be in Russian, not in English. Do not add any extra words before the <blockquote>.\n"
-            f"If there are NO grammar errors, reply ONLY with 'NO_ERRORS'."
+            f"If there are NO grammar errors, reply ONLY with the word 'NO_ERRORS' and NOTHING ELSE. Do not add explanations."
         )
         check_result = chat(check_prompt, system_message="You are a strict English teacher.", max_tokens=150, temperature=0.3)
         if check_result.strip() == "NO_ERRORS":
             is_perfect = True
+            correction_text = ""
         else:
             lines = check_result.strip().split('\n')
             corrected = ""
