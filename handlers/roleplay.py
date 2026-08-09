@@ -39,7 +39,7 @@ CATEGORIES = [
     ("📰 News", "news")
 ]
 
-# ---------- ВСТАВЬТЕ СВОЙ TOPICS ----------
+# ---------- ВСТАВЬТЕ СВОЙ ПОЛНЫЙ СЛОВАРЬ TOPICS ----------
 TOPICS = {
     "work": [
         {
@@ -1565,12 +1565,12 @@ async def show_topics(callback: CallbackQuery, cat_id: str = None, page: int = 0
     )
     await callback.answer()
 
-# ---------- ИСПРАВЛЕННАЯ ФУНКЦИЯ ----------
+# ================== ИСПРАВЛЕННЫЙ ОБРАБОТЧИК СТРЕЛОК ==================
 @router.callback_query(F.data.startswith("cat_page_"))
 async def change_topic_page(callback: CallbackQuery):
     # Формат: cat_page_{cat_id}_{page}
     # Убираем префикс "cat_page_" (9 символов)
-    rest = callback.data[9:]  # <-- ГЛАВНОЕ ИЗМЕНЕНИЕ
+    rest = callback.data[9:]  # <-- ЭТО ГЛАВНОЕ ИЗМЕНЕНИЕ
     cat_id, page_str = rest.rsplit('_', 1)
     page = int(page_str)
     logger.info(f"change_topic_page: cat_id='{cat_id}', page={page}")
@@ -1738,7 +1738,7 @@ async def finish_roleplay(message: Message, state: FSMContext):
         if not goals_achieved:
             keyboard = InlineKeyboardMarkup(inline_keyboard=[
                 [InlineKeyboardButton(text="Продолжить диалог", callback_data="continue_dialogue"),
-                 InlineKeyboardButton(text="Завершить всё равно", callback_data="finish_anyway")]
+                 [InlineKeyboardButton(text="Завершить всё равно", callback_data="finish_anyway")]
             ])
             await message.answer(
                 "Вы ещё не достигли всех целей в этой ситуации. Хотите продолжить или завершить и получить фидбек?",
