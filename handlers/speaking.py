@@ -301,7 +301,12 @@ async def continue_speaking(callback: CallbackQuery, state: FSMContext):
     await callback.answer()
     user_id = callback.from_user.id
     user_state = get_user_state(user_id)
-    # Не сбрасываем историю, просто убираем предупреждение
+    
+    # Восстанавливаем активный режим
+    user_state["mode"] = "speaking_active"
+    set_user_state(user_id, user_state)
+    
+    # Удаляем предупреждение и возвращаем клавиатуру
     await callback.message.delete()
     await callback.message.answer("Продолжай общение 🗣️", reply_markup=SPEAKING_KEYBOARD)
     await state.set_state(SpeakingStates.waiting_for_voice)
