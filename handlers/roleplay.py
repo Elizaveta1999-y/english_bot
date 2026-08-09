@@ -1523,6 +1523,13 @@ async def show_topics(callback: CallbackQuery, cat_id: str = None, page: int = 0
         await callback.answer("В этой категории нет тем", show_alert=True)
         return
 
+    # Сохраняем текущую категорию и страницу в состоянии пользователя
+    user_id = callback.from_user.id
+    user_state = get_user_state(user_id)
+    user_state["current_category"] = cat_id
+    user_state["page"] = page
+    set_user_state(user_id, user_state)
+
     ITEMS_PER_PAGE = 4
     total = len(topics_list)
     total_pages = (total + ITEMS_PER_PAGE - 1) // ITEMS_PER_PAGE
@@ -1542,14 +1549,15 @@ async def show_topics(callback: CallbackQuery, cat_id: str = None, page: int = 0
             callback_data=f"topic_{cat_id}_{idx}_{page}"
         )])
 
+    # Новая пагинация – по аналогии с твоим рабочим примером
     nav_buttons = []
     if page > 0:
-        nav_buttons.append(InlineKeyboardButton(text="◀️", callback_data=f"cat_page_{cat_id}_{page-1}"))
+        nav_buttons.append(InlineKeyboardButton(text="◀️", callback_data="cat_page_prev"))
     else:
         nav_buttons.append(InlineKeyboardButton(text=" ", callback_data="noop"))
     nav_buttons.append(InlineKeyboardButton(text=f"{page+1}/{total_pages}", callback_data="noop"))
     if page < total_pages - 1:
-        nav_buttons.append(InlineKeyboardButton(text="▶️", callback_data=f"cat_page_{cat_id}_{page+1}"))
+        nav_buttons.append(InlineKeyboardButton(text="▶️", callback_data="cat_page_next"))
     else:
         nav_buttons.append(InlineKeyboardButton(text=" ", callback_data="noop"))
     buttons.append(nav_buttons)
@@ -1565,14 +1573,29 @@ async def show_topics(callback: CallbackQuery, cat_id: str = None, page: int = 0
     )
     await callback.answer()
 
-# ================== ИСПРАВЛЕННЫЙ ОБРАБОТЧИК СТРЕЛОК (РАБОТАЕТ ДЛЯ ЛЮБЫХ CAT_ID) ==================
-@router.callback_query(F.data.startswith("cat_page_"))
-async def change_topic_page(callback: CallbackQuery):
-    # Формат: cat_page_{cat_id}_{page}
-    parts = callback.data.split('_')
-    page = int(parts[-1])
-    cat_id = '_'.join(parts[2:-1])
-    logger.info(f"change_topic_page: cat_id='{cat_id}', page={page}")
+# Обработчики стрелок (новая пагинация)
+@router.callback_query(F.data == "cat_page_next")
+async def cat_page_next(callback: CallbackQuery):
+    user_id = callback.from_user.id
+    user_state = get_user_state(user_id)
+    cat_id = user_state.get("current_category")
+    page = user_state.get("page", 0) + 1
+    if cat_id is None:
+        await callback.answer("Ошибка: категория не выбрана", show_alert=True)
+        return
+    await show_topics(callback, cat_id=cat_id, page=page)
+
+@router.callback_query(F.data == "cat_page_prev")
+async def cat_page_prev(callback: CallbackQuery):
+    user_id = callback.from_user.id
+    user_state = get_user_state(user_id)
+    cat_id = user_state.get("current_category")
+    page = user_state.get("page", 0) - 1
+    if page < 0:
+        page = 0
+    if cat_id is None:
+        await callback.answer("Ошибка: категория не выбрана", show_alert=True)
+        return
     await show_topics(callback, cat_id=cat_id, page=page)
 
 @router.callback_query(F.data == "noop")
@@ -1609,8 +1632,8 @@ async def topic_chosen(callback: CallbackQuery, state: FSMContext):
         "roleplay_description": description,
         "roleplay_goals": goals,
         "roleplay_category": cat_id,
-        "roleplay_custom_scenario": None,
-        "awaiting_custom_scenario": False,
+        "current_category": cat_id,   # сохраняем для пагинации
+        "page": page,                 # сохраняем текущую страницу
         "russian_counter": 0
     })
 
@@ -1641,7 +1664,7 @@ async def topic_chosen(callback: CallbackQuery, state: FSMContext):
 
 @router.callback_query(F.data.startswith("back_to_topics_"))
 async def back_to_topics(callback: CallbackQuery):
-    rest = callback.data[15:]
+    rest = callback.data[15:]  # убираем "back_to_topics_"
     cat_id, page_str = rest.rsplit('_', 1)
     page = int(page_str)
     await show_topics(callback, cat_id=cat_id, page=page)
