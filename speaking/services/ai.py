@@ -74,6 +74,30 @@ async def is_safe_message(text: str) -> bool:
         return False
     return True
 
+def format_explanation(text: str) -> str:
+    """
+    Форматирует пояснение: если есть нумерация вида 1), 2) или 1. 2.,
+    вставляет переносы строк перед каждым пунктом, кроме первого.
+    """
+    # Ищем шаблон: цифра, затем точка или закрывающая скобка, затем пробел или сразу текст
+    pattern = re.compile(r'(\d+[\.\)])\s*')
+    parts = pattern.split(text)
+    # parts будет содержать чередование: текст, номер, текст, номер, ...
+    # Собираем обратно, вставляя перенос перед каждым номером, кроме первого
+    result = []
+    first = True
+    for i, part in enumerate(parts):
+        if pattern.match(part):
+            if not first:
+                result.append('\n')
+            first = False
+            result.append(part)
+        else:
+            # это текст, возможно пустой
+            if part.strip():
+                result.append(part)
+    return ''.join(result)
+
 async def process_voice_message(user_id: int, user_text: str, history: list = None) -> tuple:
     state = get_user_state(user_id)
     if history is None:
@@ -174,6 +198,14 @@ async def process_voice_message(user_id: int, user_text: str, history: list = No
             elif not explanation and lines:
                 explanation = f"<blockquote>{lines[0].strip()}</blockquote>"
             corrected = re.sub(r'^\d+\.?\s*', '', corrected)
+            
+            # Форматируем пояснение: разбиваем нумерацию на строки
+            if explanation:
+                # Удаляем блок <blockquote> и </blockquote> для форматирования, затем оборачиваем обратно
+                inner = re.sub(r'</?blockquote>', '', explanation)
+                formatted_inner = format_explanation(inner)
+                explanation = f"<blockquote>{formatted_inner}</blockquote>"
+            
             correction_text = f"✔️ {corrected}\n{explanation}"
     
     return reply_text, correction_text, is_perfect
@@ -207,4 +239,3 @@ async def process_roleplay_message(user_id: int, user_text: str, history: list =
     if not response.endswith('?'):
         response += " What do you think?"
     return response
-
