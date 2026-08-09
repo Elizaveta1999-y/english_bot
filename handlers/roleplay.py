@@ -1565,12 +1565,13 @@ async def show_topics(callback: CallbackQuery, cat_id: str = None, page: int = 0
     )
     await callback.answer()
 
+# ================== ИСПРАВЛЕННЫЙ ОБРАБОТЧИК СТРЕЛОК (РАБОТАЕТ ДЛЯ ЛЮБЫХ CAT_ID) ==================
 @router.callback_query(F.data.startswith("cat_page_"))
 async def change_topic_page(callback: CallbackQuery):
     # Формат: cat_page_{cat_id}_{page}
-    rest = callback.data[9:]  # убираем "cat_page_"
-    cat_id, page_str = rest.rsplit('_', 1)
-    page = int(page_str)
+    parts = callback.data.split('_')
+    page = int(parts[-1])
+    cat_id = '_'.join(parts[2:-1])
     logger.info(f"change_topic_page: cat_id='{cat_id}', page={page}")
     await show_topics(callback, cat_id=cat_id, page=page)
 
