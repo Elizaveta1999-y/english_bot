@@ -40,7 +40,7 @@ CATEGORIES = [
     ("📰 News", "news")
 ]
 
-# ---------- ТЕМЫ (ВСТАВЬТЕ ВАШ ПОЛНЫЙ СПИСОК) ----------
+# ---------- ТЕМЫ (ВСТАВЬТЕ ВАШ ПОЛНЫЙ СЛОВАРЬ) ----------
 TOPICS = {
     "work": [
         {
@@ -1473,7 +1473,7 @@ def is_forbidden(text: str) -> bool:
             return True
     return False
 
-# ---------- СИСТЕМНЫЙ ПРОМПТ ----------
+# ---------- СИСТЕМНЫЙ ПРОМПТ (ИИ ОТВЕЧАЕТ ТОЛЬКО НА АНГЛИЙСКОМ) ----------
 def build_system_prompt(topic: str, description: str, goals: list) -> str:
     goals_text = "\n".join([f"{i+1}. {g}" for i, g in enumerate(goals)])
     return (
@@ -1570,41 +1570,35 @@ async def show_topics(callback: CallbackQuery, cat_id: str = None, page: int = 0
     )
     await callback.answer()
 
-# ---------- ОБРАБОТЧИК СТРЕЛОК (ИСПРАВЛЕН С ЛОГИРОВАНИЕМ) ----------
+# ---------- ОБРАБОТЧИК СТРЕЛОК (ИСПРАВЛЕН) ----------
 @router.callback_query(F.data.startswith("cat_page_"))
 async def change_topic_page(callback: CallbackQuery):
-    logger.info(f"change_topic_page callback data: {callback.data}")
     # Формат: cat_page_{cat_id}_{page}
-    # Убираем "cat_page_" (9 символов)
-    rest = callback.data[9:]
-    logger.info(f"Rest: {rest}")
-    try:
-        # Разделяем по последнему подчёркиванию
-        cat_id, page_str = rest.rsplit('_', 1)
-        page = int(page_str)
-    except ValueError as e:
-        logger.error(f"Ошибка разбора callback_data: {e}")
-        await callback.answer("Ошибка в данных", show_alert=True)
-        return
-    logger.info(f"Parsed: cat_id={cat_id}, page={page}")
+    parts = callback.data.split('_')
+    # parts = ['cat', 'page', cat_id_parts..., page]
+    page = int(parts[-1])
+    cat_id = '_'.join(parts[2:-1])  # собираем cat_id из частей между 'cat_page' и номером страницы
+    if not cat_id:
+        cat_id = parts[2]  # если одна часть
+    logger.info(f"change_topic_page: cat_id={cat_id}, page={page}")
     await show_topics(callback, cat_id=cat_id, page=page)
 
 @router.callback_query(F.data == "noop")
 async def noop(callback: CallbackQuery):
     await callback.answer("")
 
-# ---------- ВЫБОР ТЕМЫ ----------
+# ---------- ВЫБОР ТЕМЫ (ИСПРАВЛЕН) ----------
 @router.callback_query(F.data.startswith("topic_"))
 async def topic_chosen(callback: CallbackQuery, state: FSMContext):
     # Формат: topic_{cat_id}_{idx}_{page}
-    rest = callback.data[6:]  # убираем "topic_"
-    parts = rest.rsplit('_', 2)
-    if len(parts) != 3:
-        await callback.answer("Ошибка", show_alert=True)
-        return
-    cat_id = parts[0]
-    idx = int(parts[1])
-    page = int(parts[2])
+    parts = callback.data.split('_')
+    # parts = ['topic', cat_id_parts..., idx, page]
+    page = int(parts[-1])
+    idx = int(parts[-2])
+    cat_id = '_'.join(parts[1:-2])
+    if not cat_id:
+        cat_id = parts[1]
+    logger.info(f"topic_chosen: cat_id={cat_id}, idx={idx}, page={page}")
 
     topics_list = TOPICS.get(cat_id, [])
     if idx >= len(topics_list):
@@ -1659,8 +1653,9 @@ async def topic_chosen(callback: CallbackQuery, state: FSMContext):
 @router.callback_query(F.data.startswith("back_to_topics_"))
 async def back_to_topics(callback: CallbackQuery):
     rest = callback.data[15:]  # убираем "back_to_topics_"
-    cat_id, page_str = rest.rsplit('_', 1)
-    page = int(page_str)
+    parts = rest.split('_')
+    page = int(parts[-1])
+    cat_id = '_'.join(parts[:-1]) if len(parts) > 1 else parts[0]
     await show_topics(callback, cat_id=cat_id, page=page)
     await callback.answer()
 
