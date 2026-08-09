@@ -40,7 +40,7 @@ CATEGORIES = [
     ("📰 News", "news")
 ]
 
-# ---------- ВСЕ ТЕМЫ (ПОЛНЫЙ СПИСОК – ВСТАВЬТЕ ВАШИ ДАННЫЕ) ----------
+# ---------- ВСЕ ТЕМЫ (вставьте ваши данные, они уже есть в вашем файле) ----------
 TOPICS = {
     "work": [
         {
@@ -1552,12 +1552,17 @@ def build_system_prompt(topic: str, description: str, goals: list) -> str:
     )
 
 async def call_ai_with_system(system_prompt: str, user_text: str, history: list) -> str:
+    # Формируем полный промпт для отправки в chat (как строку)
     messages = [{"role": "system", "content": system_prompt}]
     for msg in history:
         messages.append({"role": msg["role"], "content": msg["text"]})
     messages.append({"role": "user", "content": user_text})
+    # Преобразуем список сообщений в единый текстовый промпт
+    prompt = ""
+    for m in messages:
+        prompt += f"{m['role']}: {m['content']}\n"
     try:
-        response = await chat(messages, max_tokens=500, temperature=0.7)
+        response = await chat(prompt, max_tokens=500, temperature=0.7)
         return response
     except Exception as e:
         logger.error(f"Ошибка вызова ИИ: {e}")
@@ -1577,11 +1582,8 @@ async def start_roleplay(callback: CallbackQuery):
 @router.callback_query(F.data.startswith("cat_"))
 async def show_topics(callback: CallbackQuery, cat_id: str = None, page: int = 0):
     if cat_id is None:
-        parts = callback.data.split("_", 2)
-        if len(parts) < 2:
-            await callback.answer("Ошибка", show_alert=True)
-            return
-        cat_id = parts[1]
+        # Формат: cat_{cat_id}
+        cat_id = callback.data[4:]  # убираем "cat_"
     topics_list = TOPICS.get(cat_id, [])
     if not topics_list:
         await callback.answer("В этой категории нет тем", show_alert=True)
@@ -1629,29 +1631,45 @@ async def show_topics(callback: CallbackQuery, cat_id: str = None, page: int = 0
     )
     await callback.answer()
 
+# ---------- ОБРАБОТЧИК СТРЕЛОК ПАГИНАЦИИ (ИСПРАВЛЕН) ----------
 @router.callback_query(F.data.startswith("cat_page_"))
 async def change_topic_page(callback: CallbackQuery):
-    parts = callback.data.split("_", 2)
-    if len(parts) != 3:
+    # Формат: cat_page_{cat_id}_{page}
+    # cat_id может содержать подчёркивания, поэтому разделяем по "_" и собираем cat_id из частей между "cat_page" и последним элементом (page)
+    parts = callback.data.split("_")
+    if len(parts) < 3:
         await callback.answer("Ошибка")
         return
-    cat_id = parts[1]
-    page = int(parts[2])
+    # части: ["cat_page", ... , "page"]
+    page = int(parts[-1])
+    cat_id = "_".join(parts[2:-1])  # всё между "cat_page" и номером страницы
+    if not cat_id:
+        cat_id = parts[2]  # если только одна часть
     await show_topics(callback, cat_id=cat_id, page=page)
 
 @router.callback_query(F.data == "noop")
 async def noop(callback: CallbackQuery):
     await callback.answer("")
 
-# ---------- ВЫБОР ТЕМЫ ----------
+# ---------- ВЫБОР ТЕМЫ (ИСПРАВЛЕН) ----------
 @router.callback_query(F.data.startswith("topic_"))
 async def topic_chosen(callback: CallbackQuery, state: FSMContext):
-    parts = callback.data.split("_", 2)
-    if len(parts) < 3:
+    # Формат: topic_{cat_id}_{idx}_{page}
+    parts = callback.data.split("_")
+    if len(parts) < 4:
         await callback.answer("Ошибка", show_alert=True)
         return
-    cat_id = parts[1]
-    idx = int(parts[2])
+    # cat_id может содержать подчёркивания
+    # собираем cat_id из частей между "topic" и idx+page
+    # формат: ["topic", ... , idx, page]
+    # page = int(parts[-1])
+    # idx = int(parts[-2])
+    # cat_id = "_".join(parts[1:-2])
+    page = int(parts[-1])
+    idx = int(parts[-2])
+    cat_id = "_".join(parts[1:-2])
+    if not cat_id:
+        cat_id = parts[1]  # если одна часть
 
     topics_list = TOPICS.get(cat_id, [])
     if idx >= len(topics_list):
@@ -1706,11 +1724,14 @@ async def back_to_rp_categories(callback: CallbackQuery, state: FSMContext):
     )
     await callback.answer()
 
+# ---------- ВОЗВРАТ В ГЛАВНОЕ МЕНЮ (БЕЗ ПОДТВЕРЖДЕНИЯ) ----------
 @router.callback_query(F.data == "back_to_main_menu")
 async def back_to_main_menu(callback: CallbackQuery, state: FSMContext):
     await state.clear()
+    # Отправляем сообщение о завершении и убираем клавиатуру
+    await callback.message.edit_text("Диалог завершен..🏁", reply_markup=None)
     from handlers.start import show_main_menu
-    await show_main_menu(callback.message, edit=True, remove_keyboard=True)
+    await show_main_menu(callback.message, edit=False, remove_keyboard=True)
     await callback.answer()
 
 # ---------- ПОДТВЕРЖДЕНИЕ ВЫХОДА ПО КОМАНДАМ ----------
@@ -1727,6 +1748,7 @@ async def handle_exit_commands(message: Message, state: FSMContext):
         await state.set_state(RoleplayStates.confirming_exit)
         await state.update_data(exit_command=message.text)
         return
+    # Если не в игре, обрабатываем стандартно
     if message.text == "/start":
         from handlers.start import cmd_start
         await cmd_start(message, state)
@@ -1749,7 +1771,8 @@ async def confirm_exit_yes(callback: CallbackQuery, state: FSMContext):
     set_user_state(user_id, user_state)
     await state.clear()
     await callback.message.delete()
-    await callback.message.answer("Ролевая игра завершена.", reply_markup=ReplyKeyboardRemove())
+    # Отправляем сообщение о завершении и убираем клавиатуру
+    await callback.message.answer("Диалог завершен..🏁", reply_markup=ReplyKeyboardRemove())
     if exit_command == "/start":
         from handlers.start import cmd_start
         await cmd_start(callback.message, state)
@@ -1792,7 +1815,7 @@ async def finish_roleplay(message: Message, state: FSMContext):
             "Has the user achieved all goals? Answer only 'Yes' or 'No'."
         )
         try:
-            check_response = await chat([{"role": "user", "content": check_prompt}], max_tokens=10, temperature=0)
+            check_response = await chat(check_prompt, max_tokens=10, temperature=0)
             goals_achieved = "yes" in check_response.lower()
         except Exception as e:
             logger.error(f"Ошибка проверки целей: {e}")
@@ -1848,7 +1871,7 @@ async def generate_feedback(message: Message, state: FSMContext, user_id: int, u
         "Did the user stay on topic? Answer only 'Yes' or 'No'."
     )
     try:
-        theme_check = await chat([{"role": "user", "content": theme_check_prompt}], max_tokens=10, temperature=0)
+        theme_check = await chat(theme_check_prompt, max_tokens=10, temperature=0)
         off_topic = "no" in theme_check.lower()
     except Exception:
         off_topic = False
@@ -1878,7 +1901,7 @@ async def generate_feedback(message: Message, state: FSMContext, user_id: int, u
         feedback_prompt += "\n\nПользователь отклонялся от темы. Напомни, что нужно было обсуждать '" + topic + "'."
 
     try:
-        feedback = await chat([{"role": "user", "content": feedback_prompt}], max_tokens=500, temperature=0.5)
+        feedback = await chat(feedback_prompt, max_tokens=500, temperature=0.5)
     except Exception as e:
         logger.error(f"Ошибка получения фидбека: {e}")
         await message.answer("Не удалось получить фидбек. Попробуйте позже.")
@@ -2021,7 +2044,7 @@ async def give_hint(message: Message, state: FSMContext):
         "Ответы должны быть на русском, естественные, соответствовать роли и ситуации."
     )
     try:
-        hint = await chat([{"role": "user", "content": prompt}], max_tokens=200, temperature=0.7)
+        hint = await chat(prompt, max_tokens=200, temperature=0.7)
     except Exception as e:
         logger.error(f"Ошибка получения подсказки: {e}")
         await message.answer("Не удалось получить подсказку. Попробуйте позже.")
@@ -2038,5 +2061,7 @@ async def exit_to_main_menu(message: Message, state: FSMContext):
     user_state["russian_counter"] = 0
     set_user_state(user_id, user_state)
     await state.clear()
+    # Отправляем сообщение о завершении и убираем клавиатуру
+    await message.answer("Диалог завершен..🏁", reply_markup=ReplyKeyboardRemove())
     from handlers.start import show_main_menu
     await show_main_menu(message, edit=False, remove_keyboard=True)
