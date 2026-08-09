@@ -1512,10 +1512,52 @@ async def start_roleplay(callback: CallbackQuery):
     )
     await callback.answer()
 
+# ===================================================================
+# ВАЖНО: обработчики для стрелок ДО общего cat_ (чтобы они перехватывались первыми)
+# ===================================================================
+
+@router.callback_query(F.data == "cat_page_next")
+async def cat_page_next(callback: CallbackQuery):
+    user_id = callback.from_user.id
+    user_state = get_user_state(user_id)
+    cat_id = user_state.get("current_category")
+    page = user_state.get("page", 0)
+    logger.info(f"=== cat_page_next: user={user_id}, cat_id='{cat_id}', page={page} ===")
+    if cat_id is None:
+        logger.error("=== ОШИБКА: current_category не найдена в состоянии ===")
+        await callback.answer("Ошибка: категория не выбрана", show_alert=True)
+        return
+    page += 1
+    await show_topics(callback, cat_id=cat_id, page=page)
+
+@router.callback_query(F.data == "cat_page_prev")
+async def cat_page_prev(callback: CallbackQuery):
+    user_id = callback.from_user.id
+    user_state = get_user_state(user_id)
+    cat_id = user_state.get("current_category")
+    page = user_state.get("page", 0)
+    logger.info(f"=== cat_page_prev: user={user_id}, cat_id='{cat_id}', page={page} ===")
+    if cat_id is None:
+        logger.error("=== ОШИБКА: current_category не найдена в состоянии ===")
+        await callback.answer("Ошибка: категория не выбрана", show_alert=True)
+        return
+    page -= 1
+    if page < 0:
+        page = 0
+    await show_topics(callback, cat_id=cat_id, page=page)
+
+@router.callback_query(F.data == "noop")
+async def noop(callback: CallbackQuery):
+    await callback.answer("")
+
+# ===================================================================
+# Общий обработчик для категорий – теперь после точных
+# ===================================================================
+
 @router.callback_query(F.data.startswith("cat_"))
 async def show_topics(callback: CallbackQuery, cat_id: str = None, page: int = 0):
     if cat_id is None:
-        cat_id = callback.data[4:]
+        cat_id = callback.data[4:]  # убираем "cat_"
     logger.info(f"=== show_topics: cat_id='{cat_id}', page={page} ===")
     topics_list = TOPICS.get(cat_id, [])
     if not topics_list:
@@ -1523,7 +1565,6 @@ async def show_topics(callback: CallbackQuery, cat_id: str = None, page: int = 0
         await callback.answer("В этой категории нет тем", show_alert=True)
         return
 
-    # Сохраняем текущую категорию и страницу в состоянии пользователя
     user_id = callback.from_user.id
     user_state = get_user_state(user_id)
     user_state["current_category"] = cat_id
@@ -1574,41 +1615,6 @@ async def show_topics(callback: CallbackQuery, cat_id: str = None, page: int = 0
     )
     await callback.answer()
 
-# Обработчики стрелок (новая пагинация) с логами
-@router.callback_query(F.data == "cat_page_next")
-async def cat_page_next(callback: CallbackQuery):
-    user_id = callback.from_user.id
-    user_state = get_user_state(user_id)
-    cat_id = user_state.get("current_category")
-    page = user_state.get("page", 0)
-    logger.info(f"=== cat_page_next: user={user_id}, cat_id='{cat_id}', page={page} ===")
-    if cat_id is None:
-        logger.error("=== ОШИБКА: current_category не найдена в состоянии ===")
-        await callback.answer("Ошибка: категория не выбрана", show_alert=True)
-        return
-    page += 1
-    await show_topics(callback, cat_id=cat_id, page=page)
-
-@router.callback_query(F.data == "cat_page_prev")
-async def cat_page_prev(callback: CallbackQuery):
-    user_id = callback.from_user.id
-    user_state = get_user_state(user_id)
-    cat_id = user_state.get("current_category")
-    page = user_state.get("page", 0)
-    logger.info(f"=== cat_page_prev: user={user_id}, cat_id='{cat_id}', page={page} ===")
-    if cat_id is None:
-        logger.error("=== ОШИБКА: current_category не найдена в состоянии ===")
-        await callback.answer("Ошибка: категория не выбрана", show_alert=True)
-        return
-    page -= 1
-    if page < 0:
-        page = 0
-    await show_topics(callback, cat_id=cat_id, page=page)
-
-@router.callback_query(F.data == "noop")
-async def noop(callback: CallbackQuery):
-    await callback.answer("")
-
 @router.callback_query(F.data.startswith("topic_"))
 async def topic_chosen(callback: CallbackQuery, state: FSMContext):
     rest = callback.data[6:]
@@ -1640,8 +1646,8 @@ async def topic_chosen(callback: CallbackQuery, state: FSMContext):
         "roleplay_description": description,
         "roleplay_goals": goals,
         "roleplay_category": cat_id,
-        "current_category": cat_id,   # сохраняем для пагинации
-        "page": page,                 # сохраняем текущую страницу
+        "current_category": cat_id,
+        "page": page,
         "russian_counter": 0
     })
 
@@ -1672,7 +1678,7 @@ async def topic_chosen(callback: CallbackQuery, state: FSMContext):
 
 @router.callback_query(F.data.startswith("back_to_topics_"))
 async def back_to_topics(callback: CallbackQuery):
-    rest = callback.data[15:]  # убираем "back_to_topics_"
+    rest = callback.data[15:]
     cat_id, page_str = rest.rsplit('_', 1)
     page = int(page_str)
     logger.info(f"=== back_to_topics: cat_id='{cat_id}', page={page} ===")
