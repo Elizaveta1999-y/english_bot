@@ -86,7 +86,6 @@ async def process_voice_message(user_id: int, user_text: str, history: list = No
 
     has_cyrillic = bool(re.search(r'[а-яА-Я]', user_text))
     has_latin = bool(re.search(r'[a-zA-Z]', user_text))
-    is_pure_russian = has_cyrillic and not has_latin
 
     russian_requested = any(marker in user_text.lower() for marker in RUSSIAN_REQUEST)
     

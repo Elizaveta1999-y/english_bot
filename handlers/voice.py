@@ -57,7 +57,9 @@ async def handle_voice(message: Message, state: FSMContext):
 
     if mode not in ("speaking_active", "roleplay_active") and not is_lesson_active:
         logger.info(f"Голосовое от {user_id} игнорируется (не в активном режиме, mode={mode})")
-        # Не отправляем action, не отвечаем
+        # Если пользователь не в режиме, но это после фидбека, можно ответить
+        if mode == "" and user_state.get("pending_feedback"):
+            await message.answer("Вы уже получили фидбек. Начните новый диалог, нажав 'Speaking' в главном меню.")
         return
 
     # ========== БЛОК SPEAKING ==========
@@ -123,11 +125,12 @@ async def handle_voice(message: Message, state: FSMContext):
                 with open(ogg_path, 'rb') as f:
                     audio_bytes = f.read()
                 keyboard = InlineKeyboardMarkup(inline_keyboard=[
-                    [InlineKeyboardButton(text="Текст", callback_data=f"show_text_{user_id}")]
+                    [InlineKeyboardButton(text="RUS", callback_data=f"translate_text_{user_id}"),
+                     InlineKeyboardButton(text="Скрыть", callback_data=f"hide_text_{user_id}")]
                 ])
                 sent = await message.answer_voice(
                     BufferedInputFile(audio_bytes, filename="voice.ogg"),
-                    caption="",
+                    caption=reply_text,
                     reply_markup=keyboard
                 )
                 if user_id in last_bot_response:
@@ -147,7 +150,6 @@ async def handle_voice(message: Message, state: FSMContext):
         return
 
     # ========== ОСТАЛЬНЫЕ РЕЖИМЫ (уроки, ролевая игра) ==========
-    # Здесь тоже отправляем индикатор, т.к. будем обрабатывать
     await bot.send_chat_action(chat_id=chat_id, action="record_voice")
 
     file = await bot.get_file(message.voice.file_id)
@@ -161,7 +163,6 @@ async def handle_voice(message: Message, state: FSMContext):
     if len(words) > 500:
         user_text = ' '.join(words[:500])
 
-    # Уроки с практикой
     if user_state.get("practice_lesson_key"):
         lesson_key = user_state["practice_lesson_key"]
         practice = user_state.get("practice", {}).get(lesson_key)
@@ -214,13 +215,11 @@ async def handle_voice(message: Message, state: FSMContext):
                 await show_practice_task(message, user_id, edit=False)
             return
 
-    # Вопросы в уроках
     if user_state.get("lesson_qa", {}).get("active"):
         from handlers.lessons import process_lesson_question
         await process_lesson_question(user_id, user_text, message.bot, message.chat.id)
         return
 
-    # Тематические уроки
     if user_state.get("lesson_mode") == "thematic" and user_state.get("lesson_step") == "awaiting_answer":
         from handlers.lesson_utils import check_answer
         task = user_state.get("lesson_task")
@@ -236,7 +235,6 @@ async def handle_voice(message: Message, state: FSMContext):
             set_user_state(user_id, user_state)
             return
 
-    # Ролевая игра
     if mode == "roleplay_active":
         roleplay_history = user_state.get("roleplay_history", [])
         try:
@@ -267,11 +265,12 @@ async def handle_voice(message: Message, state: FSMContext):
                 with open(ogg_path, 'rb') as f:
                     audio_bytes = f.read()
                 keyboard = InlineKeyboardMarkup(inline_keyboard=[
-                    [InlineKeyboardButton(text="Текст", callback_data=f"show_text_{user_id}")]
+                    [InlineKeyboardButton(text="RUS", callback_data=f"translate_text_{user_id}"),
+                     InlineKeyboardButton(text="Скрыть", callback_data=f"hide_text_{user_id}")]
                 ])
                 await message.answer_voice(
                     BufferedInputFile(audio_bytes, filename="voice.ogg"),
-                    caption="",
+                    caption=ai_response,
                     reply_markup=keyboard
                 )
                 os.unlink(voice_path)
@@ -281,6 +280,3 @@ async def handle_voice(message: Message, state: FSMContext):
                 logger.error(f"Audio error: {e}")
         await message.answer(ai_response)
         return
-
-    # Если ничего не подошло – игнорируем (но мы уже отсекли выше, оставляем на всякий случай)
-    logger.info(f"Голосовое от {user_id} не обработано (неизвестный режим)")

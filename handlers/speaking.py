@@ -11,7 +11,7 @@ from speaking.services.ai import process_voice_message
 from speaking.services.tts import text_to_voice
 from states.speaking_states import SpeakingStates
 from handlers.voice import convert_to_opus, last_bot_response
-from handlers.start import show_main_menu
+from handlers.start import show_main_menu  # предполагается, что есть функция
 
 logger = logging.getLogger(__name__)
 router = Router()
@@ -30,7 +30,6 @@ GREETINGS = [
     "Hey! Feeling confident today?",
     "Let's have a chat. Start whenever you're ready."
 ]
-
 used_greetings = {}
 
 SPEAKING_KEYBOARD = ReplyKeyboardMarkup(
@@ -43,24 +42,136 @@ SPEAKING_KEYBOARD = ReplyKeyboardMarkup(
 
 ENCOURAGE_TEXT = "Говори развернуто, так эффективнее для изучения 🗣️"
 
+# ---------- Middleware (восстановлен) ----------
 async def close_speaking_on_exit(handler, event, data):
-    # ... (без изменений) ...
-    pass
+    user_id = None
+    if hasattr(event, 'from_user'):
+        user_id = event.from_user.id
+    elif hasattr(event, 'message') and event.message:
+        user_id = event.message.from_user.id
+    elif hasattr(event, 'callback_query') and event.callback_query:
+        user_id = event.callback_query.from_user.id
 
+    if not user_id:
+        return await handler(event, data)
+
+    user_state = get_user_state(user_id)
+    if user_state.get("mode") != "speaking_active":
+        return await handler(event, data)
+
+    should_close = False
+
+    if hasattr(event, 'text') and isinstance(event.text, str) and event.text.startswith('/'):
+        should_close = True
+    elif hasattr(event, 'data') and isinstance(event.data, str):
+        if event.data == "back_to_main":
+            should_close = True
+        else:
+            should_close = False
+    elif hasattr(event, 'text') and isinstance(event.text, str):
+        if event.text == "🏠 Главное меню":
+            should_close = True
+        else:
+            should_close = False
+    else:
+        should_close = False
+
+    if data.get("skip_exit_message"):
+        should_close = False
+
+    if should_close:
+        try:
+            if hasattr(event, 'message') and event.message:
+                await event.message.answer("Диалог завершен..🏁", reply_markup=ReplyKeyboardRemove())
+            elif hasattr(event, 'callback_query') and event.callback_query and event.callback_query.message:
+                await event.callback_query.message.answer("Диалог завершен..🏁", reply_markup=ReplyKeyboardRemove())
+            else:
+                await event.answer("Диалог завершен..🏁", reply_markup=ReplyKeyboardRemove())
+        except Exception as e:
+            logger.error(f"Ошибка при удалении клавиатуры: {e}")
+
+        user_state["mode"] = ""
+        set_user_state(user_id, user_state)
+        if 'state' in data:
+            await data['state'].clear()
+
+        result = await handler(event, data)
+        return result
+
+    return await handler(event, data)
+
+# ---------- Хендлеры ----------
 @router.callback_query(F.data == "start_speaking")
 async def start_speaking(callback: CallbackQuery, state: FSMContext):
-    # ... (без изменений) ...
-    pass
+    keyboard = InlineKeyboardMarkup(inline_keyboard=[
+        [InlineKeyboardButton(text="👩 Woman Voice", callback_data="speaking_voice_woman"),
+         InlineKeyboardButton(text="👨 Man Voice", callback_data="speaking_voice_man")],
+        [InlineKeyboardButton(text="🔙 Назад", callback_data="back_to_main")]
+    ])
+    await callback.message.edit_text("Выбери голос тьютора:", reply_markup=keyboard, parse_mode="HTML")
+    await callback.answer()
 
 @router.callback_query(F.data.startswith("speaking_voice_"))
 async def select_voice(callback: CallbackQuery, state: FSMContext):
-    # ... (без изменений) ...
-    pass
+    await callback.answer()
+    user_id = callback.from_user.id
+    voice = callback.data.split("_")[2]
+    user_state = get_user_state(user_id)
+    user_state["speaking_voice"] = voice
+    user_state["mode"] = "speaking_active"
+    if "speaking_history" not in user_state:
+        user_state["speaking_history"] = []
+    set_user_state(user_id, user_state)
+    await state.set_state(SpeakingStates.waiting_for_voice)
+    await callback.message.delete()
+
+    await callback.message.answer(ENCOURAGE_TEXT, reply_markup=SPEAKING_KEYBOARD)
+
+    if user_id not in used_greetings:
+        used_greetings[user_id] = []
+    available = [g for g in GREETINGS if g not in used_greetings[user_id]]
+    if not available:
+        used_greetings[user_id] = []
+        available = GREETINGS
+    first_message = random.choice(available)
+    used_greetings[user_id].append(first_message)
+
+    voice_id = WOMAN_VOICE_ID if voice == "woman" else MAN_VOICE_ID
+    try:
+        voice_path = await text_to_voice(first_message, voice_id=voice_id)
+        if voice_path and os.path.exists(voice_path):
+            ogg_path = convert_to_opus(voice_path)
+            with open(ogg_path, 'rb') as f:
+                audio_bytes = f.read()
+            inline_kb = InlineKeyboardMarkup(inline_keyboard=[
+                [InlineKeyboardButton(text="RUS", callback_data=f"translate_text_{user_id}"),
+                 InlineKeyboardButton(text="Скрыть", callback_data=f"hide_text_{user_id}")]
+            ])
+            sent = await callback.message.answer_voice(
+                BufferedInputFile(audio_bytes, filename="voice.ogg"),
+                caption=first_message,
+                reply_markup=inline_kb
+            )
+            last_bot_response[user_id] = {
+                "text": first_message,
+                "translation": None,
+                "audio_message_id": sent.message_id,
+                "chat_id": callback.message.chat.id,
+                "message_id": sent.message_id
+            }
+            user_state["speaking_history"].append({"role": "assistant", "text": first_message})
+            set_user_state(user_id, user_state)
+            os.unlink(voice_path)
+            os.unlink(ogg_path)
+        else:
+            await callback.message.answer(first_message, reply_markup=SPEAKING_KEYBOARD)
+    except Exception as e:
+        logger.error(f"TTS error: {e}")
+        await callback.message.answer(first_message, reply_markup=SPEAKING_KEYBOARD)
 
 @router.message(F.text == "📊 Я всё! Фидбек")
 async def show_feedback(message: Message, state: FSMContext):
     try:
-        logger.info(f"📊 Фидбек нажат, user={message.from_user.id}")
         user_id = message.from_user.id
         user_state = get_user_state(user_id)
         history = user_state.get("speaking_history", [])
@@ -129,36 +240,109 @@ async def show_feedback(message: Message, state: FSMContext):
                 [InlineKeyboardButton(text="🏠 Главное меню", callback_data="back_to_main")]
             ])
             await message.answer(f"📊 Фидбек по вашему диалогу:\n\n{feedback}", reply_markup=keyboard, parse_mode="HTML")
+
+            # После фидбека сбрасываем режим, чтобы голосовые не обрабатывались
+            user_state["mode"] = ""
+            set_user_state(user_id, user_state)
     except Exception as e:
-        logger.error(f"❌ Ошибка в show_feedback: {e}", exc_info=True)
+        logger.error(f"Ошибка в show_feedback: {e}", exc_info=True)
         await message.answer("Произошла ошибка при получении фидбека. Попробуйте позже.")
 
-# Остальные хендлеры (показ текста, перевод, скрытие) – исправляем кнопки
+@router.callback_query(F.data == "show_feedback_confirm")
+async def confirm_feedback(callback: CallbackQuery, state: FSMContext):
+    await callback.answer()
+    user_id = callback.from_user.id
+    user_state = get_user_state(user_id)
+    feedback = user_state.get("pending_feedback")
+    if not feedback:
+        await callback.message.edit_text("Фидбек не найден. Попробуйте запросить заново.")
+        return
+    user_state["speaking_history"] = []
+    user_state["pending_feedback"] = None
+    user_state["mode"] = ""  # сбрасываем режим
+    set_user_state(user_id, user_state)
+    await state.clear()
+    keyboard = InlineKeyboardMarkup(inline_keyboard=[
+        [InlineKeyboardButton(text="🏠 Главное меню", callback_data="back_to_main")]
+    ])
+    await callback.message.edit_text(f"📊 Фидбек по вашему диалогу:\n\n{feedback}", reply_markup=keyboard, parse_mode="HTML")
 
-@router.callback_query(lambda c: c.data.startswith("show_text_"))
-async def show_text(callback: CallbackQuery):
+@router.message(F.text == "🏠 Главное меню")
+async def exit_speaking(message: Message, state: FSMContext):
+    user_id = message.from_user.id
+    user_state = get_user_state(user_id)
+    user_state["mode"] = ""
+    set_user_state(user_id, user_state)
+    await state.clear()
+    await show_main_menu(message, edit=False)
+
+@router.message(SpeakingStates.waiting_for_voice, F.text)
+async def handle_speaking_text(message: Message, state: FSMContext):
+    await message.answer("Запишите и отправьте голосовое сообщение.")
+
+@router.message(SpeakingStates.waiting_for_voice, F.photo | F.video | F.video_note | F.animation | F.document | F.sticker)
+async def handle_media_in_speaking(message: Message, state: FSMContext):
+    await message.answer("Запишите и отправьте голосовое сообщение.")
+
+@router.callback_query(F.data == "back_to_main")
+async def back_to_main_from_feedback(callback: CallbackQuery, state: FSMContext):
+    await callback.answer()
+    user_id = callback.from_user.id
+    user_state = get_user_state(user_id)
+    user_state["mode"] = ""
+    set_user_state(user_id, user_state)
+    await state.clear()
+    await show_main_menu(callback.message, edit=False)
+
+@router.callback_query(F.data == "continue_speaking")
+async def continue_speaking(callback: CallbackQuery, state: FSMContext):
+    await callback.answer()
+    user_id = callback.from_user.id
+    user_state = get_user_state(user_id)
+    user_state["mode"] = "speaking_active"
+    if "speaking_history" not in user_state:
+        user_state["speaking_history"] = []
+    set_user_state(user_id, user_state)
+    await state.set_state(SpeakingStates.waiting_for_voice)
+    await callback.message.delete()
+
+    await callback.message.answer(ENCOURAGE_TEXT, reply_markup=SPEAKING_KEYBOARD)
+
+    first_message = "Let's continue!"
+    voice_id = WOMAN_VOICE_ID if user_state.get("speaking_voice", "woman") == "woman" else MAN_VOICE_ID
     try:
-        user_id = int(callback.data.split("_")[2])
-        bot_response = last_bot_response.get(user_id)
-        if not bot_response or not bot_response.get("text"):
-            await callback.answer("Нет текста.", show_alert=True)
-            return
-        text = bot_response["text"]
-        keyboard = InlineKeyboardMarkup(inline_keyboard=[
-            [InlineKeyboardButton(text="RUS", callback_data=f"translate_text_{user_id}"),
-             InlineKeyboardButton(text="Скрыть", callback_data=f"hide_text_{user_id}")]
-        ])
-        await callback.bot.edit_message_caption(
-            chat_id=callback.message.chat.id,
-            message_id=callback.message.message_id,
-            caption=text,
-            reply_markup=keyboard
-        )
-        await callback.answer()
+        voice_path = await text_to_voice(first_message, voice_id=voice_id)
+        if voice_path and os.path.exists(voice_path):
+            ogg_path = convert_to_opus(voice_path)
+            with open(ogg_path, 'rb') as f:
+                audio_bytes = f.read()
+            inline_kb = InlineKeyboardMarkup(inline_keyboard=[
+                [InlineKeyboardButton(text="RUS", callback_data=f"translate_text_{user_id}"),
+                 InlineKeyboardButton(text="Скрыть", callback_data=f"hide_text_{user_id}")]
+            ])
+            sent = await callback.message.answer_voice(
+                BufferedInputFile(audio_bytes, filename="voice.ogg"),
+                caption=first_message,
+                reply_markup=inline_kb
+            )
+            last_bot_response[user_id] = {
+                "text": first_message,
+                "translation": None,
+                "audio_message_id": sent.message_id,
+                "chat_id": callback.message.chat.id,
+                "message_id": sent.message_id
+            }
+            user_state["speaking_history"].append({"role": "assistant", "text": first_message})
+            set_user_state(user_id, user_state)
+            os.unlink(voice_path)
+            os.unlink(ogg_path)
+        else:
+            await callback.message.answer(first_message, reply_markup=SPEAKING_KEYBOARD)
     except Exception as e:
-        logger.error(f"Ошибка в show_text: {e}")
-        await callback.answer("Ошибка.", show_alert=True)
+        logger.error(f"TTS error: {e}")
+        await callback.message.answer(first_message, reply_markup=SPEAKING_KEYBOARD)
 
+# ---------- Кнопки перевода и скрытия ----------
 @router.callback_query(lambda c: c.data.startswith("translate_text_"))
 async def translate_text(callback: CallbackQuery):
     try:
@@ -169,7 +353,6 @@ async def translate_text(callback: CallbackQuery):
             return
         text = bot_response["text"]
         translation = chat(f"Переведи на русский: {text}", max_tokens=200, temperature=0.3)
-        # Показываем перевод, кнопки US и Скрыть
         keyboard = InlineKeyboardMarkup(inline_keyboard=[
             [InlineKeyboardButton(text="US", callback_data=f"show_original_{user_id}"),
              InlineKeyboardButton(text="Скрыть", callback_data=f"hide_text_{user_id}")]
