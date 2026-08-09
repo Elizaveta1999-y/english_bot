@@ -42,7 +42,7 @@ SPEAKING_KEYBOARD = ReplyKeyboardMarkup(
 
 ENCOURAGE_TEXT = "Говори развернуто, так эффективнее для изучения 🗣️"
 
-# ---------- Middleware ----------
+# ---------- Middleware (исправлен порядок) ----------
 async def close_speaking_on_exit(handler, event, data):
     user_id = None
     if hasattr(event, 'from_user'):
@@ -79,6 +79,10 @@ async def close_speaking_on_exit(handler, event, data):
     if data.get("skip_exit_message"):
         should_close = False
 
+    # Сначала вызываем хендлер (чтобы команда отработала)
+    result = await handler(event, data)
+
+    # Затем, если нужно, завершаем режим
     if should_close:
         try:
             if hasattr(event, 'message') and event.message:
@@ -95,10 +99,7 @@ async def close_speaking_on_exit(handler, event, data):
         if 'state' in data:
             await data['state'].clear()
 
-        result = await handler(event, data)
-        return result
-
-    return await handler(event, data)
+    return result
 
 # ---------- Хендлеры ----------
 @router.callback_query(F.data == "start_speaking")
@@ -237,7 +238,6 @@ async def show_feedback(message: Message, state: FSMContext):
                 reply_markup=keyboard
             )
         else:
-            # Удаляем reply-клавиатуру и отправляем фидбек с инлайн-кнопкой
             user_state["speaking_history"] = []
             user_state["pending_feedback"] = None
             set_user_state(user_id, user_state)
@@ -249,9 +249,7 @@ async def show_feedback(message: Message, state: FSMContext):
                 reply_markup=keyboard,
                 parse_mode="HTML"
             )
-            # Убираем reply-клавиатуру
             await message.answer("Диалог завершен. Нажмите «Главное меню», чтобы начать заново.", reply_markup=ReplyKeyboardRemove())
-            # Сбрасываем режим
             user_state["mode"] = ""
             set_user_state(user_id, user_state)
     except Exception as e:
@@ -275,13 +273,11 @@ async def confirm_feedback(callback: CallbackQuery, state: FSMContext):
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(text="🏠 Главное меню", callback_data="back_to_main")]
     ])
-    # Редактируем сообщение с фидбеком
     await callback.message.edit_text(
         f"📊 Фидбек по вашему диалогу:\n\n{feedback}",
         reply_markup=keyboard,
         parse_mode="HTML"
     )
-    # Убираем reply-клавиатуру (отдельным сообщением)
     await callback.message.answer("Диалог завершен. Нажмите «Главное меню», чтобы начать заново.", reply_markup=ReplyKeyboardRemove())
 
 @router.message(F.text == "🏠 Главное меню")
