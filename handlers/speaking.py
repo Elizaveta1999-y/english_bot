@@ -410,3 +410,4 @@ async def hide_text(callback: CallbackQuery):
         logger.error(f"Ошибка в hide_text: {e}")
         await callback.message.delete()
         await callback.answer("Скрыто.")
+
