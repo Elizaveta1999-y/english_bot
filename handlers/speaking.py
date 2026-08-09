@@ -286,9 +286,9 @@ async def exit_speaking(message: Message, state: FSMContext):
     user_state["mode"] = ""
     set_user_state(user_id, user_state)
     await state.clear()
+    # Отправляем новое сообщение с главным меню, так как это отдельное сообщение
     await show_main_menu(message, edit=False)
 
-# Команды игнорируются, чтобы не перехватывать /support и т.д.
 @router.message(SpeakingStates.waiting_for_voice, F.text, ~F.text.startswith('/'))
 async def handle_speaking_text(message: Message, state: FSMContext):
     await message.answer("Запишите и отправьте голосовое сообщение.")
@@ -297,15 +297,46 @@ async def handle_speaking_text(message: Message, state: FSMContext):
 async def handle_media_in_speaking(message: Message, state: FSMContext):
     await message.answer("Запишите и отправьте голосовое сообщение.")
 
+# ---------- ИСПРАВЛЕННЫЕ ХЕНДЛЕРЫ "НАЗАД" и "ГЛАВНОЕ МЕНЮ" ----------
 @router.callback_query(F.data == "back_to_main")
-async def back_to_main_from_feedback(callback: CallbackQuery, state: FSMContext):
+async def back_to_main(callback: CallbackQuery, state: FSMContext):
     await callback.answer()
     user_id = callback.from_user.id
     user_state = get_user_state(user_id)
     user_state["mode"] = ""
     set_user_state(user_id, user_state)
     await state.clear()
-    await show_main_menu(callback.message, edit=False)
+    # Редактируем текущее сообщение, показываем главное меню
+    keyboard = InlineKeyboardMarkup(inline_keyboard=[
+        [InlineKeyboardButton(text="🎤 Speaking", callback_data="start_speaking")],
+        [InlineKeyboardButton(text="📚 Уроки", callback_data="lessons_menu")],
+        [InlineKeyboardButton(text="🗣️ Говорение", callback_data="govorenie_menu")],
+        [InlineKeyboardButton(text="👤 Профиль", callback_data="profile_menu")]
+    ])
+    await callback.message.edit_text(
+        "👋 Добро пожаловать в English Bot!\nВыберите режим:",
+        reply_markup=keyboard
+    )
+
+@router.callback_query(F.data == "back_to_main_from_feedback")  # если используется
+async def back_to_main_from_feedback(callback: CallbackQuery, state: FSMContext):
+    # Аналогично, редактируем сообщение с фидбеком
+    await callback.answer()
+    user_id = callback.from_user.id
+    user_state = get_user_state(user_id)
+    user_state["mode"] = ""
+    set_user_state(user_id, user_state)
+    await state.clear()
+    keyboard = InlineKeyboardMarkup(inline_keyboard=[
+        [InlineKeyboardButton(text="🎤 Speaking", callback_data="start_speaking")],
+        [InlineKeyboardButton(text="📚 Уроки", callback_data="lessons_menu")],
+        [InlineKeyboardButton(text="🗣️ Говорение", callback_data="govorenie_menu")],
+        [InlineKeyboardButton(text="👤 Профиль", callback_data="profile_menu")]
+    ])
+    await callback.message.edit_text(
+        "👋 Добро пожаловать в English Bot!\nВыберите режим:",
+        reply_markup=keyboard
+    )
 
 @router.callback_query(F.data == "continue_speaking")
 async def continue_speaking(callback: CallbackQuery, state: FSMContext):
@@ -410,4 +441,3 @@ async def hide_text(callback: CallbackQuery):
         logger.error(f"Ошибка в hide_text: {e}")
         await callback.message.delete()
         await callback.answer("Скрыто.")
-
