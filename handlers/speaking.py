@@ -42,7 +42,7 @@ SPEAKING_KEYBOARD = ReplyKeyboardMarkup(
 
 ENCOURAGE_TEXT = "Говори развернуто, так эффективнее для изучения 🗣️"
 
-# ---------- Middleware (исправлен порядок) ----------
+# ---------- Middleware (сначала завершение, потом хендлер) ----------
 async def close_speaking_on_exit(handler, event, data):
     user_id = None
     if hasattr(event, 'from_user'):
@@ -79,10 +79,7 @@ async def close_speaking_on_exit(handler, event, data):
     if data.get("skip_exit_message"):
         should_close = False
 
-    # Сначала вызываем хендлер (чтобы команда отработала)
-    result = await handler(event, data)
-
-    # Затем, если нужно, завершаем режим
+    # Сначала завершаем режим, если нужно
     if should_close:
         try:
             if hasattr(event, 'message') and event.message:
@@ -99,6 +96,8 @@ async def close_speaking_on_exit(handler, event, data):
         if 'state' in data:
             await data['state'].clear()
 
+    # Затем вызываем хендлер
+    result = await handler(event, data)
     return result
 
 # ---------- Хендлеры ----------
@@ -289,7 +288,8 @@ async def exit_speaking(message: Message, state: FSMContext):
     await state.clear()
     await show_main_menu(message, edit=False)
 
-@router.message(SpeakingStates.waiting_for_voice, F.text)
+# Команды игнорируются, чтобы не перехватывать /support и т.д.
+@router.message(SpeakingStates.waiting_for_voice, F.text, ~F.text.startswith('/'))
 async def handle_speaking_text(message: Message, state: FSMContext):
     await message.answer("Запишите и отправьте голосовое сообщение.")
 
