@@ -207,13 +207,15 @@ async def show_feedback(message: Message, state: FSMContext):
             "3. НЕ оценивай пунктуацию и заглавные буквы – только грамматику (времена, порядок слов, предлоги, артикли) и лексику (повторы, синонимы).\n"
             "4. Похвала – максимум одна короткая фраза за весь ответ, только если действительно есть за что.\n"
             "5. НЕ предлагай практику, упражнения, дополнительные разборы. Просто дай фидбек по тому, что есть.\n"
-            "6. Формат: три пункта с жирными заголовками через HTML-теги <b>...</b>:\n"
+            "6. Формат: четыре пункта с жирными заголовками через HTML-теги <b>...</b>:\n"
             "   <b>Грамматика</b>\n"
             "   <b>Лексика</b>\n"
             "   <b>Общее впечатление</b> (коротко, 1–2 предложения)\n"
+            "   <b>Рекомендации</b> (коротко, 1 предложение – конкретный совет, что улучшить)\n"
             "7. Между пунктами ставь пустую строку. Используй только HTML, без звёздочек и Markdown.\n"
-            "8. Общее впечатление должно быть самостоятельным – не повторять ошибки, уже указанные в Грамматике и Лексике. Дай общую оценку беглости, разнообразию, уровню и короткий совет.\n"
-            "9. Не пиши в Общем впечатлении фразы типа 'грамматических ошибок нет' – это уже ясно из предыдущих пунктов.\n\n"
+            "8. Общее впечатление должно быть самостоятельным – не повторять ошибки, уже указанные в Грамматике и Лексике. Дай общую оценку беглости, разнообразию, уровню.\n"
+            "9. Рекомендации – чёткий практический совет, что именно стоит улучшить (без общих фраз).\n"
+            "10. Не пиши в Общем впечатлении фразы типа 'грамматических ошибок нет' – это уже ясно из предыдущих пунктов.\n\n"
             f"Сообщения пользователя:\n{user_texts}\n\n"
             "Твой фидбек (строго по правилам):"
         )
@@ -235,15 +237,21 @@ async def show_feedback(message: Message, state: FSMContext):
                 reply_markup=keyboard
             )
         else:
+            # Удаляем reply-клавиатуру и отправляем фидбек с инлайн-кнопкой
             user_state["speaking_history"] = []
             user_state["pending_feedback"] = None
             set_user_state(user_id, user_state)
             keyboard = InlineKeyboardMarkup(inline_keyboard=[
                 [InlineKeyboardButton(text="🏠 Главное меню", callback_data="back_to_main")]
             ])
-            await message.answer(f"📊 Фидбек по вашему диалогу:\n\n{feedback}", reply_markup=keyboard, parse_mode="HTML")
-
-            # После фидбека сбрасываем режим, чтобы голосовые не обрабатывались
+            await message.answer(
+                f"📊 Фидбек по вашему диалогу:\n\n{feedback}",
+                reply_markup=keyboard,
+                parse_mode="HTML"
+            )
+            # Убираем reply-клавиатуру
+            await message.answer("Диалог завершен. Нажмите «Главное меню», чтобы начать заново.", reply_markup=ReplyKeyboardRemove())
+            # Сбрасываем режим
             user_state["mode"] = ""
             set_user_state(user_id, user_state)
     except Exception as e:
@@ -267,7 +275,14 @@ async def confirm_feedback(callback: CallbackQuery, state: FSMContext):
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(text="🏠 Главное меню", callback_data="back_to_main")]
     ])
-    await callback.message.edit_text(f"📊 Фидбек по вашему диалогу:\n\n{feedback}", reply_markup=keyboard, parse_mode="HTML")
+    # Редактируем сообщение с фидбеком
+    await callback.message.edit_text(
+        f"📊 Фидбек по вашему диалогу:\n\n{feedback}",
+        reply_markup=keyboard,
+        parse_mode="HTML"
+    )
+    # Убираем reply-клавиатуру (отдельным сообщением)
+    await callback.message.answer("Диалог завершен. Нажмите «Главное меню», чтобы начать заново.", reply_markup=ReplyKeyboardRemove())
 
 @router.message(F.text == "🏠 Главное меню")
 async def exit_speaking(message: Message, state: FSMContext):
@@ -301,12 +316,8 @@ async def continue_speaking(callback: CallbackQuery, state: FSMContext):
     await callback.answer()
     user_id = callback.from_user.id
     user_state = get_user_state(user_id)
-    
-    # Восстанавливаем активный режим
     user_state["mode"] = "speaking_active"
     set_user_state(user_id, user_state)
-    
-    # Удаляем предупреждение и возвращаем клавиатуру
     await callback.message.delete()
     await callback.message.answer("Продолжай общение 🗣️", reply_markup=SPEAKING_KEYBOARD)
     await state.set_state(SpeakingStates.waiting_for_voice)
