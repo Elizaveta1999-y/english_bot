@@ -1,6 +1,9 @@
 import re
+import logging
 from data.users import get_user_state, set_user_state
 from services.deepseek import chat
+
+logger = logging.getLogger(__name__)
 
 UNSAFE_PHRASES = [
     r"трахн(уть|у|ешь|ет|ем|ете|ут|ать|аю|аешь|ает|аем|аете|ают)",
@@ -42,6 +45,13 @@ UNSAFE_PHRASES = [
     r"повеситься",
     r"выпрыгн(уть|у|ешь|ет|ем|ете|ут)",
     r"отравиться",
+    # Добавленные для сексуальной тематики
+    r"дроч(ить|у|ешь|ет|ем|ете|ут|ать|аю|аешь|ает|аем|аете|ают)",
+    r"оргазм",
+    r"мастурб(ация|ировать|ирую|ируешь|ирует|ируем|ируете|ируют)",
+    r"вибратор",
+    r"секс-игрушк(а|и|у|ой|е)",
+    r"игрушк(а|и|у|ой|е).*секс",
 ]
 
 EDUCATIONAL_MARKERS = [
@@ -66,24 +76,19 @@ def is_unsafe_message(text: str) -> bool:
     return False
 
 async def is_safe_message(text: str) -> bool:
+    # Если есть образовательный маркер – всегда безопасно
     text_lower = text.lower()
     for marker in EDUCATIONAL_MARKERS:
         if marker in text_lower:
             return True
+    # Если нет маркера – проверяем на явные небезопасные слова
     if is_unsafe_message(text):
         return False
     return True
 
 def format_explanation(text: str) -> str:
-    """
-    Форматирует пояснение: если есть нумерация вида 1), 2) или 1. 2.,
-    вставляет переносы строк перед каждым пунктом, кроме первого.
-    """
-    # Ищем шаблон: цифра, затем точка или закрывающая скобка, затем пробел или сразу текст
     pattern = re.compile(r'(\d+[\.\)])\s*')
     parts = pattern.split(text)
-    # parts будет содержать чередование: текст, номер, текст, номер, ...
-    # Собираем обратно, вставляя перенос перед каждым номером, кроме первого
     result = []
     first = True
     for i, part in enumerate(parts):
@@ -93,7 +98,6 @@ def format_explanation(text: str) -> str:
             first = False
             result.append(part)
         else:
-            # это текст, возможно пустой
             if part.strip():
                 result.append(part)
     return ''.join(result)
@@ -105,6 +109,7 @@ async def process_voice_message(user_id: int, user_text: str, history: list = No
     
     context = "\n".join([f"{'Student' if h['role']=='user' else 'Teacher'}: {h['text']}" for h in history[-5:]])
     
+    # Жёсткая проверка на небезопасные слова (без образовательных маркеров)
     if not await is_safe_message(user_text):
         return ("Извините, я не могу обсуждать эту тему. Давайте поговорим о чём-то другом.", "", False)
 
@@ -113,26 +118,21 @@ async def process_voice_message(user_id: int, user_text: str, history: list = No
 
     russian_requested = any(marker in user_text.lower() for marker in RUSSIAN_REQUEST)
     
-    # Динамическая длина ответа: если больше 30 слов – до 4 предложений
     word_count = len(user_text.split())
-    max_sentences = "1-3"
-    if word_count > 30:
-        max_sentences = "3-4"
+    max_sentences = "1-3" if word_count <= 30 else "3-4"
+    
+    # Базовый системный промпт с мягким уклонением для AI
+    base_prompt = (
+        "In your voice reply, ONLY continue the conversation naturally, ask a question, and do not mention corrections or translations. "
+        "Do not correct mistakes, do not rephrase Russian. Just respond like a native speaker and keep the conversation going. "
+        f"Keep your reply short ({max_sentences} sentences) and always end with a question.\n"
+        "IMPORTANT: If the student discusses sexual, violent, drug-related, or other inappropriate topics, politely change the subject to something neutral (like weather, hobbies, daily routine) without explicitly saying you can't discuss it."
+    )
     
     if russian_requested:
-        system_prompt_reply = (
-            "You are a friendly English tutor. Respond in Russian, because the student asked for it. "
-            "In your voice reply, ONLY continue the conversation naturally, ask a question, and do not mention corrections or translations. "
-            "Do not correct mistakes, do not rephrase Russian. Just respond like a native speaker and keep the conversation going. "
-            f"Keep your reply short ({max_sentences} sentences) and always end with a question."
-        )
+        system_prompt_reply = "You are a friendly English tutor. Respond in Russian, because the student asked for it. " + base_prompt
     else:
-        system_prompt_reply = (
-            "You are a friendly English tutor. Always respond in English. "
-            "In your voice reply, ONLY continue the conversation naturally, ask a question, and do not mention corrections or translations. "
-            "Do not correct mistakes, do not rephrase Russian. Just respond like a native speaker and keep the conversation going. "
-            f"Keep your reply short ({max_sentences} sentences) and always end with a question."
-        )
+        system_prompt_reply = "You are a friendly English tutor. Always respond in English. " + base_prompt
     
     user_prompt_reply = (
         f"Context:\n{context}\n\n"
@@ -157,7 +157,7 @@ async def process_voice_message(user_id: int, user_text: str, history: list = No
         translation = chat(translation_prompt, system_message="You are a translator.", max_tokens=100, temperature=0.3)
         correction_text = f"✔️ {translation}"
         
-        # Напоминание – каждый 3-й перевод
+        # Напоминание – каждый 3-й перевод с русского
         if "russian_translation_count" not in state:
             state["russian_translation_count"] = 0
         state["russian_translation_count"] += 1
@@ -166,6 +166,7 @@ async def process_voice_message(user_id: int, user_text: str, history: list = No
         set_user_state(user_id, state)
         
     else:
+        # Проверка грамматики для английского
         check_prompt = (
             f"The student wrote: {user_text}\n"
             f"Check ONLY for grammar errors (verb forms, tenses, word order, articles, prepositions). "
@@ -199,9 +200,7 @@ async def process_voice_message(user_id: int, user_text: str, history: list = No
                 explanation = f"<blockquote>{lines[0].strip()}</blockquote>"
             corrected = re.sub(r'^\d+\.?\s*', '', corrected)
             
-            # Форматируем пояснение: разбиваем нумерацию на строки
             if explanation:
-                # Удаляем блок <blockquote> и </blockquote> для форматирования, затем оборачиваем обратно
                 inner = re.sub(r'</?blockquote>', '', explanation)
                 formatted_inner = format_explanation(inner)
                 explanation = f"<blockquote>{formatted_inner}</blockquote>"
@@ -220,17 +219,20 @@ async def process_roleplay_message(user_id: int, user_text: str, history: list =
     
     context = "\n".join([f"{'User' if h['role']=='user' else 'Bot'}: {h['text']}" for h in history[-5:]])
     
+    # Добавляем мягкое уклонение и в ролевую игру
     if custom_scenario:
         system_message = (
             f"You are in a role play: {custom_scenario}. "
             "Respond in English as your character. Keep replies short and natural. "
-            "Don't correct the user. End with a question."
+            "Don't correct the user. End with a question.\n"
+            "IMPORTANT: If the user brings up inappropriate topics, politely steer the conversation back to the role-play scenario without acknowledging the inappropriate content."
         )
     else:
         system_message = (
             f"You are in a role play: {topic}. "
             "Respond in English as your character. Keep replies short and natural. "
-            "Don't correct the user. End with a question."
+            "Don't correct the user. End with a question.\n"
+            "IMPORTANT: If the user brings up inappropriate topics, politely steer the conversation back to the role-play scenario without acknowledging the inappropriate content."
         )
     
     user_prompt = f"Context:\n{context}\n\nUser: {user_text}\nYour reply (short, in character, end with a question):"
