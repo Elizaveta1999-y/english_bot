@@ -40,7 +40,7 @@ CATEGORIES = [
     ("📰 News", "news")
 ]
 
-# ---------- ТЕМЫ (здесь вставьте свой полный словарь TOPICS) ----------
+# ---------- ТЕМЫ (ВСТАВЬТЕ ВАШ ПОЛНЫЙ СПИСОК) ----------
 TOPICS = {
     "work": [
         {
@@ -1473,7 +1473,7 @@ def is_forbidden(text: str) -> bool:
             return True
     return False
 
-# ---------- СИСТЕМНЫЙ ПРОМПТ (ИИ ОТВЕЧАЕТ ТОЛЬКО НА АНГЛИЙСКОМ) ----------
+# ---------- СИСТЕМНЫЙ ПРОМПТ ----------
 def build_system_prompt(topic: str, description: str, goals: list) -> str:
     goals_text = "\n".join([f"{i+1}. {g}" for i, g in enumerate(goals)])
     return (
@@ -1570,34 +1570,41 @@ async def show_topics(callback: CallbackQuery, cat_id: str = None, page: int = 0
     )
     await callback.answer()
 
-# ---------- ОБРАБОТЧИК СТРЕЛОК (ИСПРАВЛЕН) ----------
+# ---------- ОБРАБОТЧИК СТРЕЛОК (ИСПРАВЛЕН С ЛОГИРОВАНИЕМ) ----------
 @router.callback_query(F.data.startswith("cat_page_"))
 async def change_topic_page(callback: CallbackQuery):
+    logger.info(f"change_topic_page callback data: {callback.data}")
     # Формат: cat_page_{cat_id}_{page}
-    # Используем rsplit для отделения номера страницы
-    rest = callback.data[9:]  # убираем "cat_page_"
-    cat_id, page_str = rest.rsplit('_', 1)
-    page = int(page_str)
-    logger.info(f"Page change: category {cat_id}, page {page}")
+    # Убираем "cat_page_" (9 символов)
+    rest = callback.data[9:]
+    logger.info(f"Rest: {rest}")
+    try:
+        # Разделяем по последнему подчёркиванию
+        cat_id, page_str = rest.rsplit('_', 1)
+        page = int(page_str)
+    except ValueError as e:
+        logger.error(f"Ошибка разбора callback_data: {e}")
+        await callback.answer("Ошибка в данных", show_alert=True)
+        return
+    logger.info(f"Parsed: cat_id={cat_id}, page={page}")
     await show_topics(callback, cat_id=cat_id, page=page)
 
 @router.callback_query(F.data == "noop")
 async def noop(callback: CallbackQuery):
     await callback.answer("")
 
-# ---------- ВЫБОР ТЕМЫ (ИСПРАВЛЕН) ----------
+# ---------- ВЫБОР ТЕМЫ ----------
 @router.callback_query(F.data.startswith("topic_"))
 async def topic_chosen(callback: CallbackQuery, state: FSMContext):
     # Формат: topic_{cat_id}_{idx}_{page}
     rest = callback.data[6:]  # убираем "topic_"
-    # Разделяем на cat_id, idx, page с помощью rsplit
     parts = rest.rsplit('_', 2)
     if len(parts) != 3:
         await callback.answer("Ошибка", show_alert=True)
         return
     cat_id = parts[0]
     idx = int(parts[1])
-    page = int(parts[2])  # page не используется, но сохраняем для возврата
+    page = int(parts[2])
 
     topics_list = TOPICS.get(cat_id, [])
     if idx >= len(topics_list):
@@ -1641,7 +1648,6 @@ async def topic_chosen(callback: CallbackQuery, state: FSMContext):
         f"🗣️ <b>Говорите голосом или пишите текстом.</b>"
     )
 
-    # Кнопка "Назад к темам"
     back_button = InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(text="🔙 Назад к темам", callback_data=f"back_to_topics_{cat_id}_{page}")]
     ])
@@ -1672,7 +1678,6 @@ async def back_to_rp_categories(callback: CallbackQuery, state: FSMContext):
 @router.callback_query(F.data == "back_to_main_menu")
 async def back_to_main_menu(callback: CallbackQuery, state: FSMContext):
     await state.clear()
-    # Завершаем диалог
     user_id = callback.from_user.id
     user_state = get_user_state(user_id)
     user_state["mode"] = ""
@@ -1690,15 +1695,12 @@ async def handle_any_command(message: Message, state: FSMContext):
     user_id = message.from_user.id
     user_state = get_user_state(user_id)
     if user_state.get("mode") == "roleplay_active":
-        # Если пользователь в игре – завершаем диалог
         user_state["mode"] = ""
         user_state["roleplay_history"] = []
         user_state["russian_counter"] = 0
         set_user_state(user_id, user_state)
         await state.clear()
         await message.answer("Диалог завершен..🏁", reply_markup=ReplyKeyboardRemove())
-        # После завершения выполняем команду, если она известна
-        # Для /start, /subscription, /support – обрабатываем отдельно
         command = message.text
         if command == "/start":
             from handlers.start import cmd_start
@@ -1710,15 +1712,9 @@ async def handle_any_command(message: Message, state: FSMContext):
             from handlers.support import cmd_support
             await cmd_support(message, state)
         else:
-            # Для всех остальных команд просто показываем главное меню
             from handlers.start import show_main_menu
             await show_main_menu(message, edit=False, remove_keyboard=True)
     else:
-        # Если не в игре – просто передаём управление дальше
-        # (можно не обрабатывать, но чтобы не блокировать другие команды)
-        # Однако мы уже перехватили, нужно пропустить через стандартные хендлеры
-        # Чтобы не ломать другие модули, передадим сообщение дальше
-        # Для этого можно использовать диспетчер, но проще вызвать соответствующие функции
         command = message.text
         if command == "/start":
             from handlers.start import cmd_start
@@ -1729,7 +1725,6 @@ async def handle_any_command(message: Message, state: FSMContext):
         elif command == "/support":
             from handlers.support import cmd_support
             await cmd_support(message, state)
-        # else: ничего не делаем, пусть другие хендлеры обрабатывают
 
 # ---------- ЗАВЕРШИТЬ ДИАЛОГ (КНОПКА) ----------
 @router.message(RoleplayStates.active, F.text == "📊 Завершить диалог")
@@ -1745,7 +1740,6 @@ async def finish_roleplay(message: Message, state: FSMContext):
         await state.clear()
         return
 
-    # Проверка достижения целей (упрощённо, чтобы не грузить)
     if goals:
         check_prompt = (
             "Analyze the dialogue and determine if the user has achieved all the goals. "
