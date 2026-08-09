@@ -207,3 +207,4 @@ async def process_roleplay_message(user_id: int, user_text: str, history: list =
     if not response.endswith('?'):
         response += " What do you think?"
     return response
+
