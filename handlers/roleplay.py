@@ -1504,7 +1504,7 @@ async def call_ai_with_system(system_prompt: str, user_text: str, history: list)
 
 @router.callback_query(F.data == "start_roleplay")
 async def start_roleplay(callback: CallbackQuery):
-    logger.info(f"User {callback.from_user.id} entered roleplay")
+    logger.info(f"=== start_roleplay: user {callback.from_user.id} ===")
     await callback.message.delete()
     await callback.message.answer(
         "🎭 Выберите категорию для ролевой игры:",
@@ -1516,10 +1516,10 @@ async def start_roleplay(callback: CallbackQuery):
 async def show_topics(callback: CallbackQuery, cat_id: str = None, page: int = 0):
     if cat_id is None:
         cat_id = callback.data[4:]
-    logger.info(f"show_topics called: cat_id='{cat_id}', page={page}")
+    logger.info(f"=== show_topics: cat_id='{cat_id}', page={page} ===")
     topics_list = TOPICS.get(cat_id, [])
     if not topics_list:
-        logger.warning(f"No topics for category '{cat_id}'")
+        logger.warning(f"=== НЕТ ТЕМ для категории '{cat_id}' ===")
         await callback.answer("В этой категории нет тем", show_alert=True)
         return
 
@@ -1529,6 +1529,7 @@ async def show_topics(callback: CallbackQuery, cat_id: str = None, page: int = 0
     user_state["current_category"] = cat_id
     user_state["page"] = page
     set_user_state(user_id, user_state)
+    logger.info(f"=== Сохранили в состояние: current_category='{cat_id}', page={page} ===")
 
     ITEMS_PER_PAGE = 4
     total = len(topics_list)
@@ -1541,6 +1542,7 @@ async def show_topics(callback: CallbackQuery, cat_id: str = None, page: int = 0
     start = page * ITEMS_PER_PAGE
     end = min(start + ITEMS_PER_PAGE, total)
     page_topics = topics_list[start:end]
+    logger.info(f"=== Показываем темы {start}-{end} из {total} ===")
 
     buttons = []
     for idx, topic_info in enumerate(page_topics, start=start):
@@ -1549,7 +1551,6 @@ async def show_topics(callback: CallbackQuery, cat_id: str = None, page: int = 0
             callback_data=f"topic_{cat_id}_{idx}_{page}"
         )])
 
-    # Новая пагинация – по аналогии с твоим рабочим примером
     nav_buttons = []
     if page > 0:
         nav_buttons.append(InlineKeyboardButton(text="◀️", callback_data="cat_page_prev"))
@@ -1573,16 +1574,19 @@ async def show_topics(callback: CallbackQuery, cat_id: str = None, page: int = 0
     )
     await callback.answer()
 
-# Обработчики стрелок (новая пагинация)
+# Обработчики стрелок (новая пагинация) с логами
 @router.callback_query(F.data == "cat_page_next")
 async def cat_page_next(callback: CallbackQuery):
     user_id = callback.from_user.id
     user_state = get_user_state(user_id)
     cat_id = user_state.get("current_category")
-    page = user_state.get("page", 0) + 1
+    page = user_state.get("page", 0)
+    logger.info(f"=== cat_page_next: user={user_id}, cat_id='{cat_id}', page={page} ===")
     if cat_id is None:
+        logger.error("=== ОШИБКА: current_category не найдена в состоянии ===")
         await callback.answer("Ошибка: категория не выбрана", show_alert=True)
         return
+    page += 1
     await show_topics(callback, cat_id=cat_id, page=page)
 
 @router.callback_query(F.data == "cat_page_prev")
@@ -1590,12 +1594,15 @@ async def cat_page_prev(callback: CallbackQuery):
     user_id = callback.from_user.id
     user_state = get_user_state(user_id)
     cat_id = user_state.get("current_category")
-    page = user_state.get("page", 0) - 1
-    if page < 0:
-        page = 0
+    page = user_state.get("page", 0)
+    logger.info(f"=== cat_page_prev: user={user_id}, cat_id='{cat_id}', page={page} ===")
     if cat_id is None:
+        logger.error("=== ОШИБКА: current_category не найдена в состоянии ===")
         await callback.answer("Ошибка: категория не выбрана", show_alert=True)
         return
+    page -= 1
+    if page < 0:
+        page = 0
     await show_topics(callback, cat_id=cat_id, page=page)
 
 @router.callback_query(F.data == "noop")
@@ -1612,6 +1619,7 @@ async def topic_chosen(callback: CallbackQuery, state: FSMContext):
     cat_id = parts[0]
     idx = int(parts[1])
     page = int(parts[2])
+    logger.info(f"=== topic_chosen: cat_id='{cat_id}', idx={idx}, page={page} ===")
 
     topics_list = TOPICS.get(cat_id, [])
     if idx >= len(topics_list):
@@ -1623,7 +1631,7 @@ async def topic_chosen(callback: CallbackQuery, state: FSMContext):
     goals = topic_info["goals"]
 
     user_id = callback.from_user.id
-    logger.info(f"User {user_id} selected topic '{topic}' from category {cat_id}")
+    logger.info(f"=== User {user_id} selected topic '{topic}' from category {cat_id} ===")
 
     set_user_state(user_id, {
         "mode": "roleplay_active",
@@ -1667,11 +1675,13 @@ async def back_to_topics(callback: CallbackQuery):
     rest = callback.data[15:]  # убираем "back_to_topics_"
     cat_id, page_str = rest.rsplit('_', 1)
     page = int(page_str)
+    logger.info(f"=== back_to_topics: cat_id='{cat_id}', page={page} ===")
     await show_topics(callback, cat_id=cat_id, page=page)
     await callback.answer()
 
 @router.callback_query(F.data == "back_to_rp_categories")
 async def back_to_rp_categories(callback: CallbackQuery, state: FSMContext):
+    logger.info(f"=== back_to_rp_categories: user {callback.from_user.id} ===")
     await state.clear()
     await callback.message.edit_text(
         "🎭 Выберите категорию для ролевой игры:",
@@ -1681,6 +1691,7 @@ async def back_to_rp_categories(callback: CallbackQuery, state: FSMContext):
 
 @router.callback_query(F.data == "back_to_main_menu")
 async def back_to_main_menu(callback: CallbackQuery, state: FSMContext):
+    logger.info(f"=== back_to_main_menu: user {callback.from_user.id} ===")
     await state.clear()
     user_id = callback.from_user.id
     user_state = get_user_state(user_id)
