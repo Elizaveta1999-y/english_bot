@@ -42,7 +42,7 @@ SPEAKING_KEYBOARD = ReplyKeyboardMarkup(
 
 ENCOURAGE_TEXT = "Говори развернуто, так эффективнее для изучения 🗣️"
 
-# ---------- Middleware (сначала завершение, потом хендлер) ----------
+# ---------- Middleware ----------
 async def close_speaking_on_exit(handler, event, data):
     user_id = None
     if hasattr(event, 'from_user'):
@@ -79,7 +79,6 @@ async def close_speaking_on_exit(handler, event, data):
     if data.get("skip_exit_message"):
         should_close = False
 
-    # Сначала завершаем режим, если нужно
     if should_close:
         try:
             if hasattr(event, 'message') and event.message:
@@ -96,7 +95,6 @@ async def close_speaking_on_exit(handler, event, data):
         if 'state' in data:
             await data['state'].clear()
 
-    # Затем вызываем хендлер
     result = await handler(event, data)
     return result
 
@@ -286,7 +284,6 @@ async def exit_speaking(message: Message, state: FSMContext):
     user_state["mode"] = ""
     set_user_state(user_id, user_state)
     await state.clear()
-    # Отправляем новое сообщение с главным меню, так как это отдельное сообщение
     await show_main_menu(message, edit=False)
 
 @router.message(SpeakingStates.waiting_for_voice, F.text, ~F.text.startswith('/'))
@@ -306,37 +303,13 @@ async def back_to_main(callback: CallbackQuery, state: FSMContext):
     user_state["mode"] = ""
     set_user_state(user_id, user_state)
     await state.clear()
-    # Редактируем текущее сообщение, показываем главное меню
-    keyboard = InlineKeyboardMarkup(inline_keyboard=[
-        [InlineKeyboardButton(text="🎤 Speaking", callback_data="start_speaking")],
-        [InlineKeyboardButton(text="📚 Уроки", callback_data="lessons_menu")],
-        [InlineKeyboardButton(text="🗣️ Говорение", callback_data="govorenie_menu")],
-        [InlineKeyboardButton(text="👤 Профиль", callback_data="profile_menu")]
-    ])
-    await callback.message.edit_text(
-        "👋 Добро пожаловать в English Bot!\nВыберите режим:",
-        reply_markup=keyboard
-    )
+    # Используем существующую функцию show_main_menu с edit=True
+    await show_main_menu(callback.message, edit=True)
 
-@router.callback_query(F.data == "back_to_main_from_feedback")  # если используется
+@router.callback_query(F.data == "back_to_main_from_feedback")
 async def back_to_main_from_feedback(callback: CallbackQuery, state: FSMContext):
-    # Аналогично, редактируем сообщение с фидбеком
-    await callback.answer()
-    user_id = callback.from_user.id
-    user_state = get_user_state(user_id)
-    user_state["mode"] = ""
-    set_user_state(user_id, user_state)
-    await state.clear()
-    keyboard = InlineKeyboardMarkup(inline_keyboard=[
-        [InlineKeyboardButton(text="🎤 Speaking", callback_data="start_speaking")],
-        [InlineKeyboardButton(text="📚 Уроки", callback_data="lessons_menu")],
-        [InlineKeyboardButton(text="🗣️ Говорение", callback_data="govorenie_menu")],
-        [InlineKeyboardButton(text="👤 Профиль", callback_data="profile_menu")]
-    ])
-    await callback.message.edit_text(
-        "👋 Добро пожаловать в English Bot!\nВыберите режим:",
-        reply_markup=keyboard
-    )
+    # Если такой хендлер вызывается, просто перенаправляем
+    await back_to_main(callback, state)
 
 @router.callback_query(F.data == "continue_speaking")
 async def continue_speaking(callback: CallbackQuery, state: FSMContext):
