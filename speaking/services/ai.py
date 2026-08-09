@@ -89,19 +89,25 @@ async def process_voice_message(user_id: int, user_text: str, history: list = No
 
     russian_requested = any(marker in user_text.lower() for marker in RUSSIAN_REQUEST)
     
+    # Динамическая длина ответа: если больше 30 слов – до 4 предложений
+    word_count = len(user_text.split())
+    max_sentences = "1-3"
+    if word_count > 30:
+        max_sentences = "3-4"
+    
     if russian_requested:
         system_prompt_reply = (
             "You are a friendly English tutor. Respond in Russian, because the student asked for it. "
             "In your voice reply, ONLY continue the conversation naturally, ask a question, and do not mention corrections or translations. "
             "Do not correct mistakes, do not rephrase Russian. Just respond like a native speaker and keep the conversation going. "
-            "Keep your reply short (1-3 sentences) and always end with a question."
+            f"Keep your reply short ({max_sentences} sentences) and always end with a question."
         )
     else:
         system_prompt_reply = (
             "You are a friendly English tutor. Always respond in English. "
             "In your voice reply, ONLY continue the conversation naturally, ask a question, and do not mention corrections or translations. "
             "Do not correct mistakes, do not rephrase Russian. Just respond like a native speaker and keep the conversation going. "
-            "Keep your reply short (1-3 sentences) and always end with a question."
+            f"Keep your reply short ({max_sentences} sentences) and always end with a question."
         )
     
     user_prompt_reply = (
@@ -127,7 +133,7 @@ async def process_voice_message(user_id: int, user_text: str, history: list = No
         translation = chat(translation_prompt, system_message="You are a translator.", max_tokens=100, temperature=0.3)
         correction_text = f"✔️ {translation}"
         
-        # Напоминание – каждый 3-й перевод с русского
+        # Напоминание – каждый 3-й перевод
         if "russian_translation_count" not in state:
             state["russian_translation_count"] = 0
         state["russian_translation_count"] += 1

@@ -10,8 +10,8 @@ from services.deepseek import chat
 from speaking.services.ai import process_voice_message
 from speaking.services.tts import text_to_voice
 from states.speaking_states import SpeakingStates
-from handlers.voice import convert_to_opus, last_bot_response
-from handlers.start import show_main_menu  # предполагается, что есть функция
+from handlers.voice import convert_to_opus, last_bot_response, last_text_message
+from handlers.start import show_main_menu
 
 logger = logging.getLogger(__name__)
 router = Router()
@@ -42,7 +42,7 @@ SPEAKING_KEYBOARD = ReplyKeyboardMarkup(
 
 ENCOURAGE_TEXT = "Говори развернуто, так эффективнее для изучения 🗣️"
 
-# ---------- Middleware (восстановлен) ----------
+# ---------- Middleware ----------
 async def close_speaking_on_exit(handler, event, data):
     user_id = None
     if hasattr(event, 'from_user'):
@@ -143,13 +143,13 @@ async def select_voice(callback: CallbackQuery, state: FSMContext):
             ogg_path = convert_to_opus(voice_path)
             with open(ogg_path, 'rb') as f:
                 audio_bytes = f.read()
+            # Кнопка "Текст" – голосовое без подписи
             inline_kb = InlineKeyboardMarkup(inline_keyboard=[
-                [InlineKeyboardButton(text="RUS", callback_data=f"translate_text_{user_id}"),
-                 InlineKeyboardButton(text="Скрыть", callback_data=f"hide_text_{user_id}")]
+                [InlineKeyboardButton(text="Текст", callback_data=f"show_text_{user_id}")]
             ])
             sent = await callback.message.answer_voice(
                 BufferedInputFile(audio_bytes, filename="voice.ogg"),
-                caption=first_message,
+                caption="",
                 reply_markup=inline_kb
             )
             last_bot_response[user_id] = {
@@ -206,14 +206,15 @@ async def show_feedback(message: Message, state: FSMContext):
             "1. Анализируй ТОЛЬКО сообщения пользователя на английском. Игнорируй русский язык полностью.\n"
             "2. НЕ используй приветствия, обращения (ученик, пользователь, ты и т.п.). Начинай сразу с сути.\n"
             "3. НЕ оценивай пунктуацию и заглавные буквы – только грамматику (времена, порядок слов, предлоги, артикли) и лексику (повторы, синонимы).\n"
-            "4. Похвала – максимум одна короткая фраза за весь ответ, только если действительно есть что похвалить.\n"
+            "4. Похвала – максимум одна короткая фраза за весь ответ, только если действительно есть за что.\n"
             "5. НЕ предлагай практику, упражнения, дополнительные разборы. Просто дай фидбек по тому, что есть.\n"
             "6. Формат: три пункта с жирными заголовками через HTML-теги <b>...</b>:\n"
             "   <b>Грамматика</b>\n"
             "   <b>Лексика</b>\n"
             "   <b>Общее впечатление</b> (коротко, 1–2 предложения)\n"
             "7. Между пунктами ставь пустую строку. Используй только HTML, без звёздочек и Markdown.\n"
-            "8. Общее впечатление должно быть сдержанным, без излишней эмоциональности.\n\n"
+            "8. Общее впечатление должно быть самостоятельным – не повторять ошибки, уже указанные в Грамматике и Лексике. Дай общую оценку беглости, разнообразию, уровню и короткий совет.\n"
+            "9. Не пиши в Общем впечатлении фразы типа 'грамматических ошибок нет' – это уже ясно из предыдущих пунктов.\n\n"
             f"Сообщения пользователя:\n{user_texts}\n\n"
             "Твой фидбек (строго по правилам):"
         )
@@ -226,7 +227,7 @@ async def show_feedback(message: Message, state: FSMContext):
         if count < 6:
             keyboard = InlineKeyboardMarkup(inline_keyboard=[
                 [InlineKeyboardButton(text="📊 Показать фидбек", callback_data="show_feedback_confirm"),
-                 InlineKeyboardButton(text="🗣️ Продолжить", callback_data="continue_speaking")]
+                 [InlineKeyboardButton(text="🗣️ Продолжить", callback_data="continue_speaking")]
             ])
             await message.answer(
                 "У вас пока мало сообщений, фидбек может быть неполным.",
@@ -299,50 +300,36 @@ async def continue_speaking(callback: CallbackQuery, state: FSMContext):
     await callback.answer()
     user_id = callback.from_user.id
     user_state = get_user_state(user_id)
-    user_state["mode"] = "speaking_active"
-    if "speaking_history" not in user_state:
-        user_state["speaking_history"] = []
-    set_user_state(user_id, user_state)
-    await state.set_state(SpeakingStates.waiting_for_voice)
+    # Не сбрасываем историю, просто убираем предупреждение
     await callback.message.delete()
+    await callback.message.answer("Продолжай общение 🗣️", reply_markup=SPEAKING_KEYBOARD)
+    await state.set_state(SpeakingStates.waiting_for_voice)
 
-    await callback.message.answer(ENCOURAGE_TEXT, reply_markup=SPEAKING_KEYBOARD)
-
-    first_message = "Let's continue!"
-    voice_id = WOMAN_VOICE_ID if user_state.get("speaking_voice", "woman") == "woman" else MAN_VOICE_ID
+# ---------- Кнопка "Текст" и цепочка RUS/US/Скрыть ----------
+@router.callback_query(lambda c: c.data.startswith("show_text_"))
+async def show_text(callback: CallbackQuery):
     try:
-        voice_path = await text_to_voice(first_message, voice_id=voice_id)
-        if voice_path and os.path.exists(voice_path):
-            ogg_path = convert_to_opus(voice_path)
-            with open(ogg_path, 'rb') as f:
-                audio_bytes = f.read()
-            inline_kb = InlineKeyboardMarkup(inline_keyboard=[
-                [InlineKeyboardButton(text="RUS", callback_data=f"translate_text_{user_id}"),
-                 InlineKeyboardButton(text="Скрыть", callback_data=f"hide_text_{user_id}")]
-            ])
-            sent = await callback.message.answer_voice(
-                BufferedInputFile(audio_bytes, filename="voice.ogg"),
-                caption=first_message,
-                reply_markup=inline_kb
-            )
-            last_bot_response[user_id] = {
-                "text": first_message,
-                "translation": None,
-                "audio_message_id": sent.message_id,
-                "chat_id": callback.message.chat.id,
-                "message_id": sent.message_id
-            }
-            user_state["speaking_history"].append({"role": "assistant", "text": first_message})
-            set_user_state(user_id, user_state)
-            os.unlink(voice_path)
-            os.unlink(ogg_path)
-        else:
-            await callback.message.answer(first_message, reply_markup=SPEAKING_KEYBOARD)
+        user_id = int(callback.data.split("_")[2])
+        bot_response = last_bot_response.get(user_id)
+        if not bot_response or not bot_response.get("text"):
+            await callback.answer("Нет текста.", show_alert=True)
+            return
+        text = bot_response["text"]
+        keyboard = InlineKeyboardMarkup(inline_keyboard=[
+            [InlineKeyboardButton(text="RUS", callback_data=f"translate_text_{user_id}"),
+             InlineKeyboardButton(text="Скрыть", callback_data=f"hide_text_{user_id}")]
+        ])
+        await callback.bot.edit_message_caption(
+            chat_id=callback.message.chat.id,
+            message_id=callback.message.message_id,
+            caption=text,
+            reply_markup=keyboard
+        )
+        await callback.answer()
     except Exception as e:
-        logger.error(f"TTS error: {e}")
-        await callback.message.answer(first_message, reply_markup=SPEAKING_KEYBOARD)
+        logger.error(f"Ошибка в show_text: {e}")
+        await callback.answer("Ошибка.", show_alert=True)
 
-# ---------- Кнопки перевода и скрытия ----------
 @router.callback_query(lambda c: c.data.startswith("translate_text_"))
 async def translate_text(callback: CallbackQuery):
     try:
