@@ -10,7 +10,7 @@ from services.deepseek import chat
 from speaking.services.ai import process_voice_message
 from speaking.services.tts import text_to_voice
 from states.speaking_states import SpeakingStates
-from handlers.voice import convert_to_opus, last_bot_response, last_text_message
+from handlers.voice import convert_to_opus, last_bot_response
 from handlers.start import show_main_menu
 
 logger = logging.getLogger(__name__)
@@ -143,7 +143,6 @@ async def select_voice(callback: CallbackQuery, state: FSMContext):
             ogg_path = convert_to_opus(voice_path)
             with open(ogg_path, 'rb') as f:
                 audio_bytes = f.read()
-            # Кнопка "Текст" – голосовое без подписи
             inline_kb = InlineKeyboardMarkup(inline_keyboard=[
                 [InlineKeyboardButton(text="Текст", callback_data=f"show_text_{user_id}")]
             ])
@@ -225,12 +224,12 @@ async def show_feedback(message: Message, state: FSMContext):
         set_user_state(user_id, user_state)
 
         if count < 6:
-keyboard = InlineKeyboardMarkup(inline_keyboard=[
-    [
-        InlineKeyboardButton(text="📊 Показать фидбек", callback_data="show_feedback_confirm"),
-        InlineKeyboardButton(text="🗣️ Продолжить", callback_data="continue_speaking")
-    ]
-])
+            keyboard = InlineKeyboardMarkup(inline_keyboard=[
+                [
+                    InlineKeyboardButton(text="📊 Показать фидбек", callback_data="show_feedback_confirm"),
+                    InlineKeyboardButton(text="🗣️ Продолжить", callback_data="continue_speaking")
+                ]
+            ])
             await message.answer(
                 "У вас пока мало сообщений, фидбек может быть неполным.",
                 reply_markup=keyboard
@@ -262,7 +261,7 @@ async def confirm_feedback(callback: CallbackQuery, state: FSMContext):
         return
     user_state["speaking_history"] = []
     user_state["pending_feedback"] = None
-    user_state["mode"] = ""  # сбрасываем режим
+    user_state["mode"] = ""
     set_user_state(user_id, user_state)
     await state.clear()
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
