@@ -40,7 +40,7 @@ CATEGORIES = [
     ("📰 News", "news")
 ]
 
-# ---------- ТЕМЫ (здесь вставьте свой полный словарь TOPICS) ----------
+# ---------- ТЕМЫ (ВСТАВЬТЕ ВАШ ПОЛНЫЙ СЛОВАРЬ) ----------
 TOPICS = {
     "work": [
         {
@@ -1575,33 +1575,31 @@ async def show_topics(callback: CallbackQuery, cat_id: str = None, page: int = 0
 @router.callback_query(F.data.startswith("cat_page_"))
 async def change_topic_page(callback: CallbackQuery):
     # Формат: cat_page_{cat_id}_{page}
-    logger.info(f"change_topic_page called with data: {callback.data}")
-    # Убираем "cat_page_" (9 символов)
-    rest = callback.data[9:]
-    logger.info(f"rest after removing prefix: {rest}")
+    logger.info(f"change_topic_page raw data: {callback.data}")
+    rest = callback.data[9:]  # убираем "cat_page_"
+    logger.info(f"rest = '{rest}'")
     # Разделяем по последнему подчёркиванию
     cat_id, page_str = rest.rsplit('_', 1)
     page = int(page_str)
-    logger.info(f"Parsed: cat_id='{cat_id}', page={page}")
+    logger.info(f"cat_id='{cat_id}', page={page}")
     await show_topics(callback, cat_id=cat_id, page=page)
 
 @router.callback_query(F.data == "noop")
 async def noop(callback: CallbackQuery):
     await callback.answer("")
 
-# ---------- ВЫБОР ТЕМЫ (ИСПРАВЛЕН) ----------
+# ---------- ВЫБОР ТЕМЫ ----------
 @router.callback_query(F.data.startswith("topic_"))
 async def topic_chosen(callback: CallbackQuery, state: FSMContext):
     # Формат: topic_{cat_id}_{idx}_{page}
     rest = callback.data[6:]  # убираем "topic_"
-    # Разделяем на cat_id, idx, page с помощью rsplit
     parts = rest.rsplit('_', 2)
     if len(parts) != 3:
         await callback.answer("Ошибка", show_alert=True)
         return
     cat_id = parts[0]
     idx = int(parts[1])
-    page = int(parts[2])  # page не используется, но сохраняем для возврата
+    page = int(parts[2])
 
     topics_list = TOPICS.get(cat_id, [])
     if idx >= len(topics_list):
@@ -1645,7 +1643,6 @@ async def topic_chosen(callback: CallbackQuery, state: FSMContext):
         f"🗣️ <b>Говорите голосом или пишите текстом.</b>"
     )
 
-    # Кнопка "Назад к темам"
     back_button = InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(text="🔙 Назад к темам", callback_data=f"back_to_topics_{cat_id}_{page}")]
     ])
@@ -1672,7 +1669,7 @@ async def back_to_rp_categories(callback: CallbackQuery, state: FSMContext):
     )
     await callback.answer()
 
-# ---------- ВОЗВРАТ В ГЛАВНОЕ МЕНЮ (БЕЗ ПОДТВЕРЖДЕНИЯ) ----------
+# ---------- ВОЗВРАТ В ГЛАВНОЕ МЕНЮ ----------
 @router.callback_query(F.data == "back_to_main_menu")
 async def back_to_main_menu(callback: CallbackQuery, state: FSMContext):
     await state.clear()
@@ -1713,6 +1710,7 @@ async def handle_any_command(message: Message, state: FSMContext):
             from handlers.start import show_main_menu
             await show_main_menu(message, edit=False, remove_keyboard=True)
     else:
+        # Если не в игре – пропускаем через стандартные обработчики
         command = message.text
         if command == "/start":
             from handlers.start import cmd_start
