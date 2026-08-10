@@ -149,7 +149,6 @@ async def process_voice_message(user_id: int, user_text: str, history: list = No
             f"Provide only the correct English translation, without any extra words. "
             f"Do not include the original Russian."
         )
-        # Увеличил max_tokens до 600
         translation = chat(translation_prompt, system_message="You are a translator.", max_tokens=600, temperature=0.3)
         correction_text = f"✔️ {translation}"
         
@@ -162,23 +161,32 @@ async def process_voice_message(user_id: int, user_text: str, history: list = No
         set_user_state(user_id, state)
         
     else:
+        # ---- ЖЁСТКИЙ ПРОМПТ ДЛЯ ПРОВЕРКИ ГРАММАТИКИ ----
         check_prompt = (
-            f"The student wrote: {user_text}\n"
-            f"Check ONLY for grammar errors (verb forms, tenses, word order, articles, prepositions). "
-            f"IGNORE punctuation and capitalization.\n"
-            f"If there are errors, provide exactly in this format:\n"
-            f"Line 1: corrected version as a single sentence without numbers or bullets\n"
-            f"Line 2: <blockquote>explanation in Russian (пояснение на русском языке)</blockquote>\n"
-            f"The explanation MUST be in Russian, not in English. Do not add any extra words before the <blockquote>.\n"
-            f"If there are NO grammar errors, reply ONLY with the word 'NO_ERRORS' and NOTHING ELSE. Do not add explanations."
+            f"The student wrote:\n{user_text}\n\n"
+            "Your task: find ALL grammar errors in this text. Grammar errors include:\n"
+            "- verb forms (tenses, gerunds, infinitives)\n"
+            "- word order (subject-verb-object)\n"
+            "- articles (a/an/the)\n"
+            "- prepositions (in/on/at etc.)\n"
+            "- subject-verb agreement\n"
+            "- plural/singular forms\n\n"
+            "IGNORE punctuation, capitalization, and spelling mistakes.\n\n"
+            "If you find errors, respond in this EXACT format:\n"
+            "Line 1: the corrected version of the ENTIRE sentence (not just the error)\n"
+            "Line 2: <blockquote>explanation in Russian (пояснение на русском языке)</blockquote>\n"
+            "Do NOT add any extra text before or after.\n\n"
+            "If there are NO grammar errors, respond ONLY with the word 'NO_ERRORS' and NOTHING ELSE."
         )
-        check_result = chat(check_prompt, system_message="You are a strict English teacher.", max_tokens=150, temperature=0.2)
+        check_result = chat(check_prompt, system_message="You are a strict English teacher. Be meticulous.", max_tokens=300, temperature=0.1)
         logger.info(f"Grammar check result: {check_result}")
-        # Исправленное условие — ищем "NO_ERRORS" в ответе
-        if "NO_ERRORS" in check_result.strip():
+        
+        # Проверяем, содержит ли ответ "NO_ERRORS" (только если это единственное слово)
+        if check_result.strip() == "NO_ERRORS":
             is_perfect = True
             correction_text = ""
         else:
+            # Разбираем ответ на исправленный текст и пояснение
             lines = check_result.strip().split('\n')
             corrected = ""
             explanation = ""
@@ -191,10 +199,12 @@ async def process_voice_message(user_id: int, user_text: str, history: list = No
                         corrected += " " + line
                     else:
                         corrected = line
+            # Если нет пояснения — пробуем взять вторую строку как пояснение
             if not explanation and len(lines) > 1:
                 explanation = f"<blockquote>{lines[1].strip()}</blockquote>"
             elif not explanation and lines:
                 explanation = f"<blockquote>{lines[0].strip()}</blockquote>"
+            # Убираем возможные нумерации в начале исправленного текста
             corrected = re.sub(r'^\d+\.?\s*', '', corrected)
             
             if explanation:
