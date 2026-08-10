@@ -173,7 +173,6 @@ async def process_voice_message(user_id: int, user_text: str, history: list = No
         check_result = chat(check_prompt, system_message="You are a strict English teacher.", max_tokens=300, temperature=0.2)
         logger.info(f"Grammar check result: '{check_result}'")
         
-        # Если ответ пустой или только пробелы
         if not check_result.strip():
             correction_text = "⚠️ Не удалось проверить грамматику. Попробуйте ещё раз."
             is_perfect = False
@@ -181,7 +180,6 @@ async def process_voice_message(user_id: int, user_text: str, history: list = No
             is_perfect = True
             correction_text = ""
         else:
-            # Разбираем ответ
             lines = check_result.strip().split('\n')
             corrected = ""
             explanation = ""
