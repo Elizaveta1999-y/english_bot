@@ -1469,7 +1469,6 @@ FORBIDDEN_WORDS = [
     "nazi", "hitler", "stalin", "terrorism", "dictator", "fascist", "communist", "putin", "zelensky", "trump", "biden",
     # Религиозные оскорбления
     "allah", "muhammad", "jesus", "bible", "quran", "prophet", "church", "mosque", "synagogue", "god", "holy", "priest", "imam"
-    # Удалены: stupid, idiot, moron, loser, ugly, fat, worthless, retard, bastard, whore
 ]
 
 def is_forbidden(text: str) -> bool:
@@ -1480,7 +1479,7 @@ def is_forbidden(text: str) -> bool:
     return False
 
 # ============================================================
-# ИСПРАВЛЕННЫЙ СИСТЕМНЫЙ ПРОМПТ – гибкий, разрешает творчество
+# ГИБКИЙ СИСТЕМНЫЙ ПРОМПТ – без требования "начинать первым"
 # ============================================================
 def build_system_prompt(topic: str, description: str, goals: list) -> str:
     goals_text = "\n".join([f"{i+1}. {g}" for i, g in enumerate(goals)])
@@ -1504,7 +1503,7 @@ def build_system_prompt(topic: str, description: str, goals: list) -> str:
         "If all goals are achieved and the dialogue has more than 5 exchanges, add this phrase: "
         "'It seems we've reached a logical conclusion to this situation. If you'd like, we can wrap up and get feedback. "
         "If you prefer to continue, just keep chatting.'\n"
-        "6. Respond naturally, in character.\n"
+        "6. Respond naturally, in character. Continue the dialogue based on the user's messages.\n"
     )
 
 async def call_ai_with_system(system_prompt: str, user_text: str, history: list) -> str:
@@ -1628,6 +1627,10 @@ async def show_topics(callback: CallbackQuery, cat_id: str = None, page: int = 0
     )
     await callback.answer()
 
+# ===================================================================
+# ВЫБОР ТЕМЫ – теперь бот сам начинает диалог
+# ===================================================================
+
 @router.callback_query(F.data.startswith("topic_"))
 async def topic_chosen(callback: CallbackQuery, state: FSMContext):
     rest = callback.data[6:]
@@ -1650,6 +1653,7 @@ async def topic_chosen(callback: CallbackQuery, state: FSMContext):
 
     user_id = callback.from_user.id
 
+    # Сохраняем состояние
     set_user_state(user_id, {
         "mode": "roleplay_active",
         "roleplay_history": [],
@@ -1665,6 +1669,7 @@ async def topic_chosen(callback: CallbackQuery, state: FSMContext):
     await state.set_state(RoleplayStates.active)
     await callback.answer(f"Выбрана тема: {topic}")
 
+    # Клавиатура для диалога
     keyboard = ReplyKeyboardMarkup(
         keyboard=[
             [KeyboardButton(text="💡 Что ответить?"), KeyboardButton(text="🏠 Главное меню")],
@@ -1680,12 +1685,28 @@ async def topic_chosen(callback: CallbackQuery, state: FSMContext):
         f"🗣️ <b>Говорите голосом или пишите текстом.</b>"
     )
 
+    # Кнопка "Назад к темам"
     back_button = InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(text="🔙 Назад к темам", callback_data=f"back_to_topics_{cat_id}_{page}")]
     ])
 
+    # Редактируем сообщение с информацией о ролевой игре
     await callback.message.edit_text(roleplay_info, parse_mode="HTML", reply_markup=back_button)
-    await callback.message.answer("🎬 <b>Можете начинать!</b>", reply_markup=keyboard, parse_mode="HTML")
+
+    # ============================================================
+    # ГЕНЕРИРУЕМ ПЕРВУЮ РЕПЛИКУ ОТ ИИ (всегда текстом)
+    # ============================================================
+    system_prompt = build_system_prompt(topic, description, goals)
+    first_prompt = "You are the character. Start the conversation with a greeting and a question that invites the user to describe the product or situation. Respond naturally in English."
+    first_response = await call_ai_with_system(system_prompt, first_prompt, [])
+
+    # Сохраняем первую реплику в историю (как сообщение от ИИ)
+    user_state = get_user_state(user_id)
+    user_state["roleplay_history"].append({"role": "assistant", "text": first_response})
+    set_user_state(user_id, user_state)
+
+    # Отправляем первую реплику пользователю (текстом)
+    await callback.message.answer(first_response, reply_markup=keyboard)
 
 @router.callback_query(F.data.startswith("back_to_topics_"))
 async def back_to_topics(callback: CallbackQuery):
