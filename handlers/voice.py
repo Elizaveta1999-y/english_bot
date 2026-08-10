@@ -18,7 +18,7 @@ logger = logging.getLogger(__name__)
 
 router = Router()
 
-# Словарь для хранения текстов по message_id
+# Глобальный словарь для хранения текстов по message_id
 bot_texts = {}
 
 WOMAN_VOICE_ID = "8quEMRkSpwEaWBzHvTLv"
@@ -54,7 +54,6 @@ async def handle_voice(message: Message, state: FSMContext):
     current_state = await state.get_state()
     user_state = get_user_state(user_id)
 
-    # Если это режим «Говорение» – игнорируем
     if current_state == GovorenieStates.waiting_voice.state:
         logger.info(f"Голосовое от {user_id} пропущено (режим говорение)")
         return
@@ -101,44 +100,56 @@ async def handle_voice(message: Message, state: FSMContext):
         speaking_history = user_state.get("speaking_history", [])
         reply_text, correction_text, is_perfect = await process_voice_message(user_id, user_text, speaking_history)
 
-        # ===== ВАЖНО: обновляем user_state, чтобы получить актуальный счётчик russian_translation_count =====
-        user_state = get_user_state(user_id)  # <--- добавляем эту строку
-        speaking_history = user_state.get("speaking_history", [])  # обновляем историю тоже
+        # Обновляем user_state, чтобы получить актуальный счётчик напоминания
+        user_state = get_user_state(user_id)
 
         if reply_text.startswith("Извините, я не могу обсуждать эту тему"):
             await message.answer(reply_text)
             await state.set_state(SpeakingStates.waiting_for_voice)
             return
 
-        # Сохраняем текст для этого сообщения
-        tts_text = truncate_for_tts(reply_text)
+        # Сохраняем в историю
+        speaking_history = user_state.get("speaking_history", [])
+        speaking_history.append({"role": "user", "text": user_text})
+        speaking_history.append({"role": "assistant", "text": reply_text})
+        if len(speaking_history) > 20:
+            speaking_history = speaking_history[-20:]
+        user_state["speaking_history"] = speaking_history
+        set_user_state(user_id, user_state)
 
+        if is_perfect:
+            try:
+                await message.react([ReactionTypeEmoji(emoji="❤️")])
+            except Exception as e:
+                logger.warning(f"Не удалось поставить реакцию: {e}")
+
+        if warning:
+            await message.answer(warning.strip())
+
+        if correction_text:
+            await message.answer(correction_text, parse_mode="HTML")
+
+        tts_text = truncate_for_tts(reply_text)
         await bot.send_chat_action(chat_id=chat_id, action="record_voice")
         voice_pref = user_state.get("speaking_voice", "woman")
         voice_id = WOMAN_VOICE_ID if voice_pref == "woman" else MAN_VOICE_ID
 
         voice_path = await text_to_voice(tts_text, voice_id=voice_id)
-
         if voice_path and os.path.exists(voice_path):
             try:
                 ogg_path = convert_to_opus(voice_path)
                 with open(ogg_path, 'rb') as f:
                     audio_bytes = f.read()
-
-                # Отправляем голосовое без кнопки
+                # Отправляем без кнопки
                 sent = await message.answer_voice(
                     BufferedInputFile(audio_bytes, filename="voice.ogg"),
                     caption="",
                     reply_markup=None
                 )
                 msg_id = sent.message_id
-
-                # Сохраняем текст по message_id
                 if user_id not in bot_texts:
                     bot_texts[user_id] = {}
                 bot_texts[user_id][msg_id] = {"text": reply_text, "translation": None}
-
-                # Редактируем сообщение, добавляем кнопку "Текст"
                 keyboard = InlineKeyboardMarkup(inline_keyboard=[
                     [InlineKeyboardButton(text="Текст", callback_data=f"show_text_{user_id}_{msg_id}")]
                 ])
@@ -148,14 +159,13 @@ async def handle_voice(message: Message, state: FSMContext):
                     caption="",
                     reply_markup=keyboard
                 )
-
                 os.unlink(voice_path)
                 os.unlink(ogg_path)
                 await state.set_state(SpeakingStates.waiting_for_voice)
                 return
             except Exception as e:
                 logger.error(f"Audio error: {e}")
-        # fallback – текст
+        # fallback
         sent = await message.answer(reply_text)
         await state.set_state(SpeakingStates.waiting_for_voice)
         return
@@ -174,7 +184,6 @@ async def handle_voice(message: Message, state: FSMContext):
     if len(words) > 500:
         user_text = ' '.join(words[:500])
 
-    # Уроки с практикой
     if user_state.get("practice_lesson_key"):
         lesson_key = user_state["practice_lesson_key"]
         practice = user_state.get("practice", {}).get(lesson_key)
@@ -270,10 +279,8 @@ async def handle_voice(message: Message, state: FSMContext):
         await bot.send_chat_action(chat_id=chat_id, action="record_voice")
         voice_pref = user_state.get("speaking_voice", "woman")
         voice_id = WOMAN_VOICE_ID if voice_pref == "woman" else MAN_VOICE_ID
-
         tts_text = truncate_for_tts(ai_response)
         voice_path = await text_to_voice(tts_text, voice_id=voice_id)
-
         if voice_path and os.path.exists(voice_path):
             try:
                 ogg_path = convert_to_opus(voice_path)
@@ -305,5 +312,4 @@ async def handle_voice(message: Message, state: FSMContext):
         await message.answer(ai_response)
         return
 
-    # Если ничего не подошло – игнорируем
     logger.info(f"Голосовое от {user_id} не обработано (неизвестный режим)")
