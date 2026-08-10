@@ -1,32 +1,50 @@
+import os
+import tempfile
+import subprocess
 import logging
+import re
 from aiogram import Router, F
-from aiogram.types import Message
+from aiogram.types import Message, BufferedInputFile, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
 from aiogram.fsm.context import FSMContext
 from data.users import get_user_state, set_user_state
 from speaking.services.stt import voice_to_text
+from speaking.services.tts import text_to_voice
+from handlers.voice import convert_to_opus, bot_texts
 from services.deepseek import chat
-import re
+from handlers.roleplay import build_system_prompt, call_ai_with_system
 
 logger = logging.getLogger(__name__)
 router = Router()
 
-# ============================================================
-# Этот обработчик будет перехватывать голосовые сообщения
-# только в режиме ролевой игры.
-# Для регистрации: помести его РАНЬШЕ основного voice.router
-# в app.py или handlers/__init__.py
-# ============================================================
+WOMAN_VOICE_ID = "8quEMRkSpwEaWBzHvTLv"
+MAN_VOICE_ID = "3TStB8f3X3To0Uj5R7RK"
+MAX_TTS_LENGTH = 3000
 
+def truncate_for_tts(text: str, max_len: int = MAX_TTS_LENGTH) -> str:
+    if len(text) <= max_len:
+        return text
+    truncated = text[:max_len]
+    last_space = truncated.rfind(' ')
+    if last_space > 0:
+        return truncated[:last_space] + '...'
+    return truncated + '...'
+
+# ============================================================
+# ОБРАБОТЧИК ГОЛОСОВЫХ СООБЩЕНИЙ В РОЛЕВОЙ ИГРЕ
+# ============================================================
 @router.message(F.voice | F.audio)
 async def roleplay_voice_handler(message: Message, state: FSMContext):
     user_id = message.from_user.id
     user_state = get_user_state(user_id)
 
-    # Если не в ролевой игре – просто выходим, ничего не делаем
+    # Если пользователь не в ролевой игре – выходим, пропускаем
     if user_state.get("mode") != "roleplay_active":
         return
 
     logger.info(f"Голосовое в ролевой игре от {user_id}")
+
+    # Индикатор "записывает голосовое"
+    await message.bot.send_chat_action(chat_id=message.chat.id, action="record_voice")
 
     try:
         audio_obj = message.voice or message.audio
@@ -45,83 +63,196 @@ async def roleplay_voice_handler(message: Message, state: FSMContext):
         await message.answer("Не удалось распознать речь. Попробуйте сказать чётче или напишите текстом.")
         return
 
-    # Проверка на запрещённые слова (если нужно)
-    forbidden = ["fuck", "bitch", "shit", "cunt", "dick", "pussy", "fucking", "motherfucker", "asshole", "bastard", "damn",
-                 "penis", "vagina", "cum", "orgasm", "masturbate", "sperm", "erection", "prostitute", "porn", "xxx",
-                 "suicide", "kill myself", "cut myself", "self-harm", "die", "death", "hang myself", "overdose",
-                 "murder", "rape", "torture", "assault", "kill", "terrorist", "bomb", "shoot", "stab",
-                 "nazi", "hitler", "stalin", "terrorism", "dictator", "fascist", "communist", "putin", "zelensky", "trump", "biden",
-                 "allah", "muhammad", "jesus", "bible", "quran", "prophet", "church", "mosque", "synagogue", "god", "holy", "priest", "imam"]
-    lower = text.lower()
-    for word in forbidden:
-        if word in lower:
-            await message.answer("Пожалуйста, не отходите от темы диалога. Давайте продолжим ролевую игру в рамках заданной ситуации.")
-            return
+    # Фильтр запрещённых слов (берём из roleplay, чтобы не дублировать)
+    from handlers.roleplay import is_forbidden
+    if is_forbidden(text):
+        await message.answer("Пожалуйста, не отходите от темы диалога. Давайте продолжим ролевую игру в рамках заданной ситуации.")
+        return
 
-    # Проверка на кириллицу для напоминания про английский
+    # Напоминание про английский (каждое 3-е русское сообщение)
     if re.search('[а-яА-Я]', text):
         counter = user_state.get("russian_counter", 0) + 1
         user_state["russian_counter"] = counter
         set_user_state(user_id, user_state)
-        show_english_reminder = (counter % 5 == 0)
+        show_english_reminder = (counter % 3 == 0)
     else:
         show_english_reminder = False
 
     topic = user_state.get("roleplay_topic", "")
     description = user_state.get("roleplay_description", "")
     goals = user_state.get("roleplay_goals", [])
-
-    goals_text = "\n".join([f"{i+1}. {g}" for i, g in enumerate(goals)])
-    system_prompt = (
-        f"You are a character in a role-playing game for learning English. "
-        f"Situation: {description}\n"
-        f"Topic: {topic}\n"
-        f"User's goals: {goals_text}\n\n"
-        "Your task is to lead the dialogue within this situation. "
-        "You must help the user practice English, but stay in character.\n\n"
-        "IMPORTANT RULES:\n"
-        "1. You ALWAYS respond in ENGLISH only. Never switch to Russian, regardless of the user's language.\n"
-        "2. If the user goes off-topic, gently remind them of the situation. However, allow creative freedom – "
-        "if the user is describing their product, presenting an idea, or developing the situation within the scenario, "
-        "it is NOT considered off-topic. Only warn if the user starts talking about completely unrelated things "
-        "(e.g., their personal life, politics, other topics not related to the role).\n"
-        "3. You do not discuss topics unrelated to the role-play. Do not answer questions about yourself, "
-        "the real world, politics, religion, sex, violence, or suicide.\n"
-        "4. If the user asks about something forbidden, respond with: 'Let's return to our situation' and continue the game.\n"
-        "5. At the end of each of your responses, assess whether the user has achieved all goals. "
-        "If all goals are achieved and the dialogue has more than 5 exchanges, add this phrase: "
-        "'It seems we've reached a logical conclusion to this situation. If you'd like, we can wrap up and get feedback. "
-        "If you prefer to continue, just keep chatting.'\n"
-        "6. Respond naturally, in character. Continue the dialogue based on the user's messages.\n"
-    )
-
+    system_prompt = build_system_prompt(topic, description, goals)
     history = user_state.get("roleplay_history", [])
-
-    # Формируем промпт
-    messages = [{"role": "system", "content": system_prompt}]
-    for msg in history:
-        messages.append({"role": msg["role"], "content": msg["text"]})
-    messages.append({"role": "user", "content": text})
-    prompt = ""
-    for m in messages:
-        prompt += f"{m['role']}: {m['content']}\n"
-
-    try:
-        response = chat(prompt, max_tokens=500, temperature=0.7)
-    except Exception as e:
-        logger.error(f"Ошибка вызова ИИ в roleplay_voice: {e}")
-        await message.answer("Произошла ошибка. Попробуйте ещё раз.")
-        return
+    ai_response = await call_ai_with_system(system_prompt, text, history)
 
     if show_english_reminder:
-        response += "\n\nFeel free to use English!"
+        ai_response += "\n\nFeel free to use English!"
 
     # Сохраняем историю
     history.append({"role": "user", "text": text})
-    history.append({"role": "assistant", "text": response})
+    history.append({"role": "assistant", "text": ai_response})
     if len(history) > 20:
         history = history[-20:]
     user_state["roleplay_history"] = history
     set_user_state(user_id, user_state)
 
-    await message.answer(response)
+    # Генерируем голос и отправляем с кнопкой "Текст"
+    voice_pref = user_state.get("speaking_voice", "woman")
+    voice_id = WOMAN_VOICE_ID if voice_pref == "woman" else MAN_VOICE_ID
+    tts_text = truncate_for_tts(ai_response)
+
+    # Индикатор "записывает голосовое" перед отправкой
+    await message.bot.send_chat_action(chat_id=message.chat.id, action="record_voice")
+
+    voice_path = await text_to_voice(tts_text, voice_id=voice_id)
+    if voice_path and os.path.exists(voice_path):
+        try:
+            ogg_path = convert_to_opus(voice_path)
+            with open(ogg_path, 'rb') as f:
+                audio_bytes = f.read()
+            sent = await message.answer_voice(
+                BufferedInputFile(audio_bytes, filename="voice.ogg"),
+                caption="",
+                reply_markup=None
+            )
+            msg_id = sent.message_id
+            if user_id not in bot_texts:
+                bot_texts[user_id] = {}
+            bot_texts[user_id][msg_id] = {"text": ai_response, "translation": None}
+            # Кнопка "Текст"
+            keyboard = InlineKeyboardMarkup(inline_keyboard=[
+                [InlineKeyboardButton(text="Текст", callback_data=f"roleplay_show_text_{user_id}_{msg_id}")]
+            ])
+            await message.bot.edit_message_caption(
+                chat_id=message.chat.id,
+                message_id=msg_id,
+                caption="",
+                reply_markup=keyboard
+            )
+            os.unlink(voice_path)
+            os.unlink(ogg_path)
+            return
+        except Exception as e:
+            logger.error(f"Audio error in roleplay_voice: {e}")
+    # Если голос не удался, отправляем текстом
+    sent_text = await message.answer(ai_response)
+    msg_id = sent_text.message_id
+    if user_id not in bot_texts:
+        bot_texts[user_id] = {}
+    bot_texts[user_id][msg_id] = {"text": ai_response, "translation": None}
+    keyboard = InlineKeyboardMarkup(inline_keyboard=[
+        [InlineKeyboardButton(text="Перевести", callback_data=f"roleplay_translate_{user_id}_{msg_id}")]
+    ])
+    await message.bot.edit_message_text(
+        ai_response,
+        chat_id=message.chat.id,
+        message_id=msg_id,
+        reply_markup=keyboard
+    )
+
+# ============================================================
+# ОБРАБОТЧИКИ ДЛЯ КНОПОК ГОЛОСОВЫХ СООБЩЕНИЙ (аналогично speaking)
+# ============================================================
+@router.callback_query(lambda c: c.data.startswith("roleplay_show_text_"))
+async def roleplay_show_text(callback: CallbackQuery):
+    try:
+        parts = callback.data.split('_')
+        user_id = int(parts[2])
+        msg_id = int(parts[3])
+        user_texts = bot_texts.get(user_id)
+        if not user_texts or msg_id not in user_texts:
+            await callback.answer("Текст не найден.", show_alert=True)
+            return
+        text = user_texts[msg_id]["text"]
+        keyboard = InlineKeyboardMarkup(inline_keyboard=[
+            [InlineKeyboardButton(text="RUS", callback_data=f"roleplay_translate_voice_{user_id}_{msg_id}"),
+             InlineKeyboardButton(text="Скрыть", callback_data=f"roleplay_hide_voice_{user_id}_{msg_id}")]
+        ])
+        await callback.bot.edit_message_caption(
+            chat_id=callback.message.chat.id,
+            message_id=callback.message.message_id,
+            caption=text,
+            reply_markup=keyboard
+        )
+        await callback.answer()
+    except Exception as e:
+        logger.error(f"Ошибка в roleplay_show_text: {e}")
+        await callback.answer("Ошибка.", show_alert=True)
+
+@router.callback_query(lambda c: c.data.startswith("roleplay_translate_voice_"))
+async def roleplay_translate_voice(callback: CallbackQuery):
+    try:
+        parts = callback.data.split('_')
+        user_id = int(parts[2])
+        msg_id = int(parts[3])
+        user_texts = bot_texts.get(user_id)
+        if not user_texts or msg_id not in user_texts:
+            await callback.answer("Текст не найден.", show_alert=True)
+            return
+        text = user_texts[msg_id]["text"]
+        if user_texts[msg_id]["translation"]:
+            translation = user_texts[msg_id]["translation"]
+        else:
+            translation = chat(f"Переведи на русский: {text}", max_tokens=600, temperature=0.3)
+            user_texts[msg_id]["translation"] = translation
+        keyboard = InlineKeyboardMarkup(inline_keyboard=[
+            [InlineKeyboardButton(text="US", callback_data=f"roleplay_original_voice_{user_id}_{msg_id}"),
+             InlineKeyboardButton(text="Скрыть", callback_data=f"roleplay_hide_voice_{user_id}_{msg_id}")]
+        ])
+        await callback.bot.edit_message_caption(
+            chat_id=callback.message.chat.id,
+            message_id=callback.message.message_id,
+            caption=translation,
+            reply_markup=keyboard
+        )
+        await callback.answer()
+    except Exception as e:
+        logger.error(f"Ошибка в roleplay_translate_voice: {e}")
+        await callback.answer("Ошибка.", show_alert=True)
+
+@router.callback_query(lambda c: c.data.startswith("roleplay_original_voice_"))
+async def roleplay_original_voice(callback: CallbackQuery):
+    try:
+        parts = callback.data.split('_')
+        user_id = int(parts[2])
+        msg_id = int(parts[3])
+        user_texts = bot_texts.get(user_id)
+        if not user_texts or msg_id not in user_texts:
+            await callback.answer("Текст не найден.", show_alert=True)
+            return
+        text = user_texts[msg_id]["text"]
+        keyboard = InlineKeyboardMarkup(inline_keyboard=[
+            [InlineKeyboardButton(text="RUS", callback_data=f"roleplay_translate_voice_{user_id}_{msg_id}"),
+             InlineKeyboardButton(text="Скрыть", callback_data=f"roleplay_hide_voice_{user_id}_{msg_id}")]
+        ])
+        await callback.bot.edit_message_caption(
+            chat_id=callback.message.chat.id,
+            message_id=callback.message.message_id,
+            caption=text,
+            reply_markup=keyboard
+        )
+        await callback.answer()
+    except Exception as e:
+        logger.error(f"Ошибка в roleplay_original_voice: {e}")
+        await callback.answer("Ошибка.", show_alert=True)
+
+@router.callback_query(lambda c: c.data.startswith("roleplay_hide_voice_"))
+async def roleplay_hide_voice(callback: CallbackQuery):
+    try:
+        parts = callback.data.split('_')
+        user_id = int(parts[2])
+        msg_id = int(parts[3])
+        keyboard = InlineKeyboardMarkup(inline_keyboard=[
+            [InlineKeyboardButton(text="Текст", callback_data=f"roleplay_show_text_{user_id}_{msg_id}")]
+        ])
+        await callback.bot.edit_message_caption(
+            chat_id=callback.message.chat.id,
+            message_id=callback.message.message_id,
+            caption="",
+            reply_markup=keyboard
+        )
+        await callback.answer()
+    except Exception as e:
+        logger.error(f"Ошибка в roleplay_hide_voice: {e}")
+        await callback.message.delete()
+        await callback.answer("Скрыто.")
