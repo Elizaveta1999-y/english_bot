@@ -87,6 +87,7 @@ dp.include_router(grammar_router)
 dp.include_router(support.router)
 dp.include_router(subscription_router)
 dp.include_router(roleplay.router)
+dp.include_router(roleplay_voice.router)   # затем голосовые для ролплей
 dp.include_router(voice.router)
 dp.include_router(common.router)         # common теперь позже – не перехватит наши кнопки
 dp.include_router(lessons.router)
