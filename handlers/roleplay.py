@@ -1496,7 +1496,8 @@ async def call_ai_with_system(system_prompt: str, user_text: str, history: list)
     for m in messages:
         prompt += f"{m['role']}: {m['content']}\n"
     try:
-        response = await chat(prompt, max_tokens=500, temperature=0.7)
+        # Убрали await, так как chat — синхронная функция
+        response = chat(prompt, max_tokens=500, temperature=0.7)
         return response
     except Exception as e:
         logger.error(f"Ошибка вызова ИИ: {e}")
@@ -1504,7 +1505,6 @@ async def call_ai_with_system(system_prompt: str, user_text: str, history: list)
 
 @router.callback_query(F.data == "start_roleplay")
 async def start_roleplay(callback: CallbackQuery):
-    logger.info(f"=== start_roleplay: user {callback.from_user.id} ===")
     await callback.message.delete()
     await callback.message.answer(
         "🎭 Выберите категорию для ролевой игры:",
@@ -1513,7 +1513,7 @@ async def start_roleplay(callback: CallbackQuery):
     await callback.answer()
 
 # ===================================================================
-# ВАЖНО: обработчики для стрелок ДО общего cat_ (чтобы они перехватывались первыми)
+# Обработчики для стрелок (пагинация)
 # ===================================================================
 
 @router.callback_query(F.data == "cat_page_next")
@@ -1522,9 +1522,8 @@ async def cat_page_next(callback: CallbackQuery):
     user_state = get_user_state(user_id)
     cat_id = user_state.get("current_category")
     page = user_state.get("page", 0)
-    logger.info(f"=== cat_page_next: user={user_id}, cat_id='{cat_id}', page={page} ===")
     if cat_id is None:
-        logger.error("=== ОШИБКА: current_category не найдена в состоянии ===")
+        logger.error("Ошибка: current_category не найдена в состоянии")
         await callback.answer("Ошибка: категория не выбрана", show_alert=True)
         return
     page += 1
@@ -1536,9 +1535,8 @@ async def cat_page_prev(callback: CallbackQuery):
     user_state = get_user_state(user_id)
     cat_id = user_state.get("current_category")
     page = user_state.get("page", 0)
-    logger.info(f"=== cat_page_prev: user={user_id}, cat_id='{cat_id}', page={page} ===")
     if cat_id is None:
-        logger.error("=== ОШИБКА: current_category не найдена в состоянии ===")
+        logger.error("Ошибка: current_category не найдена в состоянии")
         await callback.answer("Ошибка: категория не выбрана", show_alert=True)
         return
     page -= 1
@@ -1551,17 +1549,15 @@ async def noop(callback: CallbackQuery):
     await callback.answer("")
 
 # ===================================================================
-# Общий обработчик для категорий – теперь после точных
+# Общий обработчик для категорий (выбор категории)
 # ===================================================================
 
 @router.callback_query(F.data.startswith("cat_"))
 async def show_topics(callback: CallbackQuery, cat_id: str = None, page: int = 0):
     if cat_id is None:
         cat_id = callback.data[4:]  # убираем "cat_"
-    logger.info(f"=== show_topics: cat_id='{cat_id}', page={page} ===")
     topics_list = TOPICS.get(cat_id, [])
     if not topics_list:
-        logger.warning(f"=== НЕТ ТЕМ для категории '{cat_id}' ===")
         await callback.answer("В этой категории нет тем", show_alert=True)
         return
 
@@ -1570,7 +1566,6 @@ async def show_topics(callback: CallbackQuery, cat_id: str = None, page: int = 0
     user_state["current_category"] = cat_id
     user_state["page"] = page
     set_user_state(user_id, user_state)
-    logger.info(f"=== Сохранили в состояние: current_category='{cat_id}', page={page} ===")
 
     ITEMS_PER_PAGE = 4
     total = len(topics_list)
@@ -1583,7 +1578,6 @@ async def show_topics(callback: CallbackQuery, cat_id: str = None, page: int = 0
     start = page * ITEMS_PER_PAGE
     end = min(start + ITEMS_PER_PAGE, total)
     page_topics = topics_list[start:end]
-    logger.info(f"=== Показываем темы {start}-{end} из {total} ===")
 
     buttons = []
     for idx, topic_info in enumerate(page_topics, start=start):
@@ -1625,7 +1619,6 @@ async def topic_chosen(callback: CallbackQuery, state: FSMContext):
     cat_id = parts[0]
     idx = int(parts[1])
     page = int(parts[2])
-    logger.info(f"=== topic_chosen: cat_id='{cat_id}', idx={idx}, page={page} ===")
 
     topics_list = TOPICS.get(cat_id, [])
     if idx >= len(topics_list):
@@ -1637,7 +1630,6 @@ async def topic_chosen(callback: CallbackQuery, state: FSMContext):
     goals = topic_info["goals"]
 
     user_id = callback.from_user.id
-    logger.info(f"=== User {user_id} selected topic '{topic}' from category {cat_id} ===")
 
     set_user_state(user_id, {
         "mode": "roleplay_active",
@@ -1681,13 +1673,11 @@ async def back_to_topics(callback: CallbackQuery):
     rest = callback.data[15:]
     cat_id, page_str = rest.rsplit('_', 1)
     page = int(page_str)
-    logger.info(f"=== back_to_topics: cat_id='{cat_id}', page={page} ===")
     await show_topics(callback, cat_id=cat_id, page=page)
     await callback.answer()
 
 @router.callback_query(F.data == "back_to_rp_categories")
 async def back_to_rp_categories(callback: CallbackQuery, state: FSMContext):
-    logger.info(f"=== back_to_rp_categories: user {callback.from_user.id} ===")
     await state.clear()
     await callback.message.edit_text(
         "🎭 Выберите категорию для ролевой игры:",
@@ -1697,7 +1687,6 @@ async def back_to_rp_categories(callback: CallbackQuery, state: FSMContext):
 
 @router.callback_query(F.data == "back_to_main_menu")
 async def back_to_main_menu(callback: CallbackQuery, state: FSMContext):
-    logger.info(f"=== back_to_main_menu: user {callback.from_user.id} ===")
     await state.clear()
     user_id = callback.from_user.id
     user_state = get_user_state(user_id)
@@ -1768,7 +1757,7 @@ async def finish_roleplay(message: Message, state: FSMContext):
             "Has the user achieved all goals? Answer only 'Yes' or 'No'."
         )
         try:
-            check_response = await chat(check_prompt, max_tokens=10, temperature=0)
+            check_response = chat(check_prompt, max_tokens=10, temperature=0)
             goals_achieved = "yes" in check_response.lower()
         except Exception as e:
             logger.error(f"Ошибка проверки целей: {e}")
@@ -1822,7 +1811,7 @@ async def generate_feedback(message: Message, state: FSMContext, user_id: int, u
         "Did the user stay on topic? Answer only 'Yes' or 'No'."
     )
     try:
-        theme_check = await chat(theme_check_prompt, max_tokens=10, temperature=0)
+        theme_check = chat(theme_check_prompt, max_tokens=10, temperature=0)
         off_topic = "no" in theme_check.lower()
     except Exception:
         off_topic = False
@@ -1851,7 +1840,7 @@ async def generate_feedback(message: Message, state: FSMContext, user_id: int, u
         feedback_prompt += "\n\nПользователь отклонялся от темы. Напомни, что нужно было обсуждать '" + topic + "'."
 
     try:
-        feedback = await chat(feedback_prompt, max_tokens=500, temperature=0.5)
+        feedback = chat(feedback_prompt, max_tokens=500, temperature=0.5)
     except Exception as e:
         logger.error(f"Ошибка получения фидбека: {e}")
         await message.answer("Не удалось получить фидбек. Попробуйте позже.")
@@ -1877,8 +1866,6 @@ async def handle_voice_message(message: Message, state: FSMContext):
     if user_state.get("mode") != "roleplay_active":
         await message.answer("Вы не в режиме ролевой игры.")
         return
-
-    logger.info(f"Voice message from user {user_id}")
 
     try:
         audio_obj = message.voice or message.audio
@@ -1936,7 +1923,6 @@ async def handle_roleplay_text(message: Message, state: FSMContext):
         return
 
     user_text = message.text
-    logger.info(f"User {user_id} sent text: {user_text[:30]}...")
 
     if is_forbidden(user_text):
         await message.answer("Пожалуйста, не отходите от темы диалога. Давайте продолжим ролевую игру в рамках заданной ситуации.")
@@ -1992,7 +1978,7 @@ async def give_hint(message: Message, state: FSMContext):
         "Ответы должны быть на русском, естественные, соответствовать роли и ситуации."
     )
     try:
-        hint = await chat(prompt, max_tokens=200, temperature=0.7)
+        hint = chat(prompt, max_tokens=200, temperature=0.7)
     except Exception as e:
         logger.error(f"Ошибка получения подсказки: {e}")
         await message.answer("Не удалось получить подсказку. Попробуйте позже.")
