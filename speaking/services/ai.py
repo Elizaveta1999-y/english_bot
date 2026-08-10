@@ -146,10 +146,16 @@ async def process_voice_message(user_id: int, user_text: str, history: list = No
     reply_text = reply_text.strip()
     if not reply_text:
         logger.warning("⚠️ DeepSeek вернул пустой ответ!")
-        reply_text = "Sorry, I didn't get that. Could you repeat?"
+        if has_cyrillic:
+            reply_text = "Извините, я не понял ваш вопрос. Повторите, пожалуйста."
+        else:
+            reply_text = "Sorry, I didn't get that. Could you repeat?"
     
     if not reply_text.endswith('?'):
-        reply_text += " What do you think?"
+        if has_cyrillic:
+            reply_text += " Что вы имеете в виду?"
+        else:
+            reply_text += " What do you think?"
         logger.info(f"🔍 Добавлен вопрос: reply_text стал '{reply_text}'")
     
     correction_text = ""
