@@ -42,7 +42,6 @@ CATEGORIES = [
     ("📰 News", "news")
 ]
 
-# ---------- ВСТАВЬТЕ СВОЙ ПОЛНЫЙ СЛОВАРЬ TOPICS ----------
 TOPICS = {
     "work": [
         {
@@ -1485,16 +1484,14 @@ def build_system_prompt(topic: str, description: str, goals: list) -> str:
         "1. You ALWAYS respond in ENGLISH only. Never switch to Russian, regardless of the user's language.\n"
         "2. If the user goes off-topic, gently remind them of the situation. However, allow creative freedom – "
         "if the user is describing their product, presenting an idea, or developing the situation within the scenario, "
-        "it is NOT considered off-topic. Only warn if the user starts talking about completely unrelated things "
-        "(e.g., their personal life, politics, other topics not related to the role).\n"
-        "3. You do not discuss topics unrelated to the role-play. Do not answer questions about yourself, "
-        "the real world, politics, religion, sex, violence, or suicide.\n"
-        "4. If the user asks about something forbidden, respond with: 'Let's return to our situation' and continue the game.\n"
-        "5. At the end of each of your responses, assess whether the user has achieved all goals. "
-        "If all goals are achieved and the dialogue has more than 5 exchanges, add this phrase: "
-        "'It seems we've reached a logical conclusion to this situation. If you'd like, we can wrap up and get feedback. "
+        "it is NOT considered off-topic. Only warn if the user starts talking about completely unrelated things.\n"
+        "3. You do not discuss topics unrelated to the role-play.\n"
+        "4. If the user asks about something forbidden, respond with: 'Let's return to our situation' and continue.\n"
+        "5. At the end of each response, assess if the user achieved all goals. If yes and >5 exchanges, add: "
+        "'It seems we've reached a logical conclusion. If you'd like, we can wrap up and get feedback. "
         "If you prefer to continue, just keep chatting.'\n"
-        "6. Respond naturally, in character. Continue the dialogue based on the user's messages.\n"
+        "6. Respond naturally, in character.\n"
+        "7. Keep your responses short: 2-3 sentences, concise and to the point.\n"
     )
 
 async def call_ai_with_system(system_prompt: str, user_text: str, history: list, max_tokens: int = 500) -> str:
@@ -1645,6 +1642,7 @@ async def topic_chosen(callback: CallbackQuery, state: FSMContext):
     await state.set_state(RoleplayStates.active)
     await callback.answer(f"Выбрана тема: {topic}")
 
+    # Клавиатура с тремя кнопками (будет отправлена отдельно)
     keyboard = ReplyKeyboardMarkup(
         keyboard=[
             [KeyboardButton(text="💡 Что ответить?"), KeyboardButton(text="🏠 Главное меню")],
@@ -1652,6 +1650,7 @@ async def topic_chosen(callback: CallbackQuery, state: FSMContext):
         ],
         resize_keyboard=True
     )
+
     goals_text = "\n".join([f"{i+1}) {goal}" for i, goal in enumerate(goals)])
     roleplay_info = (
         f"🎭 <b>Ролевая игра: {topic}</b>\n\n"
@@ -1666,10 +1665,10 @@ async def topic_chosen(callback: CallbackQuery, state: FSMContext):
 
     await callback.message.edit_text(roleplay_info, parse_mode="HTML", reply_markup=back_button)
 
-    # Первая реплика ИИ
+    # Первая реплика ИИ (короткая)
     system_prompt = build_system_prompt(topic, description, goals)
-    first_prompt = "You are the character. Start the conversation with a greeting and a question that invites the user to describe the product or situation. Respond naturally in English."
-    first_response = await call_ai_with_system(system_prompt, first_prompt, [], max_tokens=400)
+    first_prompt = "You are the character. Start the conversation with a greeting and a question that invites the user to describe the product or situation. Respond naturally in English, 2-3 sentences."
+    first_response = await call_ai_with_system(system_prompt, first_prompt, [], max_tokens=300)
 
     user_state = get_user_state(user_id)
     user_state["roleplay_history"].append({"role": "assistant", "text": first_response})
@@ -1690,7 +1689,8 @@ async def topic_chosen(callback: CallbackQuery, state: FSMContext):
         message_id=msg_id,
         reply_markup=keyboard_translate
     )
-    # Отправляем клавиатуру с тремя кнопками
+
+    # Отправляем отдельное сообщение с клавиатурой (три кнопки)
     await callback.message.answer("", reply_markup=keyboard)
 
 @router.callback_query(F.data.startswith("back_to_topics_"))
@@ -1895,7 +1895,6 @@ async def handle_roleplay_text(message: Message, state: FSMContext):
         return
 
     user_text = message.text
-    logger.info(f"handle_roleplay_text: {user_text[:30]}...")
 
     if is_forbidden(user_text):
         await message.answer("Пожалуйста, не отходите от темы диалога. Давайте продолжим ролевую игру в рамках заданной ситуации.")
@@ -1916,9 +1915,8 @@ async def handle_roleplay_text(message: Message, state: FSMContext):
     goals = user_state.get("roleplay_goals", [])
     system_prompt = build_system_prompt(topic, description, goals)
     history = user_state.get("roleplay_history", [])
-    ai_response = await call_ai_with_system(system_prompt, user_text, history, max_tokens=400)
+    ai_response = await call_ai_with_system(system_prompt, user_text, history, max_tokens=300)  # сокращено
 
-    # Сохраняем историю
     history.append({"role": "user", "text": user_text})
     history.append({"role": "assistant", "text": ai_response})
     if len(history) > 20:
@@ -1926,11 +1924,9 @@ async def handle_roleplay_text(message: Message, state: FSMContext):
     user_state["roleplay_history"] = history
     set_user_state(user_id, user_state)
 
-    # Отправляем напоминание отдельно, если нужно
     if show_english_reminder:
         await message.answer("Feel free to use English!")
 
-    # Отправляем основной ответ с кнопкой "Перевести"
     sent_msg = await message.answer(ai_response, reply_markup=None)
     msg_id = sent_msg.message_id
     if user_id not in bot_texts:

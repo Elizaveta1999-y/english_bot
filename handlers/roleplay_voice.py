@@ -75,11 +75,8 @@ async def roleplay_voice_handler(message: Message, state: FSMContext):
     system_prompt = build_system_prompt(topic, description, goals)
     history = user_state.get("roleplay_history", [])
 
-    # Голосовые – короче (max_tokens=300)
-    ai_response = await call_ai_with_system(system_prompt, text, history, max_tokens=300)
-
-    if show_english_reminder and "Feel free to use English!" not in ai_response:
-        ai_response += "\n\nFeel free to use English!"
+    # Голосовые – ещё короче (max_tokens=250)
+    ai_response = await call_ai_with_system(system_prompt, text, history, max_tokens=250)
 
     history.append({"role": "user", "text": text})
     history.append({"role": "assistant", "text": ai_response})
@@ -88,13 +85,17 @@ async def roleplay_voice_handler(message: Message, state: FSMContext):
     user_state["roleplay_history"] = history
     set_user_state(user_id, user_state)
 
+    if show_english_reminder:
+        await message.answer("Feel free to use English!")
+
     # Случайный голос
     voice_id = random.choice([WOMAN_VOICE_ID, MAN_VOICE_ID])
     tts_text = truncate_for_tts(ai_response)
 
     await message.bot.send_chat_action(chat_id=message.chat.id, action="record_voice")
 
-    voice_path = await text_to_voice(tts_text, voice_id=voice_id)
+    # Увеличенная скорость: speed=1.15
+    voice_path = await text_to_voice(tts_text, voice_id=voice_id, speed=1.15)
     if voice_path and os.path.exists(voice_path):
         try:
             ogg_path = convert_to_opus(voice_path)
@@ -141,14 +142,14 @@ async def roleplay_voice_handler(message: Message, state: FSMContext):
     )
 
 # ============================================================
-# ОБРАБОТЧИКИ КНОПОК ДЛЯ ГОЛОСОВЫХ
+# ОБРАБОТЧИКИ КНОПОК ДЛЯ ГОЛОСОВЫХ (исправлены индексы)
 # ============================================================
 @router.callback_query(lambda c: c.data.startswith("roleplay_voice_show_text_"))
 async def roleplay_voice_show_text(callback: CallbackQuery):
     try:
         parts = callback.data.split('_')
-        user_id = int(parts[3])
-        msg_id = int(parts[4])
+        user_id = int(parts[4])
+        msg_id = int(parts[5])
         user_texts = bot_texts.get(user_id)
         if not user_texts or msg_id not in user_texts:
             await callback.answer("Текст не найден.", show_alert=True)
@@ -173,8 +174,8 @@ async def roleplay_voice_show_text(callback: CallbackQuery):
 async def roleplay_voice_translate(callback: CallbackQuery):
     try:
         parts = callback.data.split('_')
-        user_id = int(parts[3])
-        msg_id = int(parts[4])
+        user_id = int(parts[4])
+        msg_id = int(parts[5])
         user_texts = bot_texts.get(user_id)
         if not user_texts or msg_id not in user_texts:
             await callback.answer("Текст не найден.", show_alert=True)
@@ -204,8 +205,8 @@ async def roleplay_voice_translate(callback: CallbackQuery):
 async def roleplay_voice_original(callback: CallbackQuery):
     try:
         parts = callback.data.split('_')
-        user_id = int(parts[3])
-        msg_id = int(parts[4])
+        user_id = int(parts[4])
+        msg_id = int(parts[5])
         user_texts = bot_texts.get(user_id)
         if not user_texts or msg_id not in user_texts:
             await callback.answer("Текст не найден.", show_alert=True)
@@ -230,8 +231,8 @@ async def roleplay_voice_original(callback: CallbackQuery):
 async def roleplay_voice_hide(callback: CallbackQuery):
     try:
         parts = callback.data.split('_')
-        user_id = int(parts[3])
-        msg_id = int(parts[4])
+        user_id = int(parts[4])
+        msg_id = int(parts[5])
         keyboard = InlineKeyboardMarkup(inline_keyboard=[
             [InlineKeyboardButton(text="Текст", callback_data=f"roleplay_voice_show_text_{user_id}_{msg_id}")]
         ])
