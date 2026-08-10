@@ -1607,7 +1607,7 @@ async def show_topics(callback: CallbackQuery, cat_id: str = None, page: int = 0
     await callback.answer()
 
 # ============================================================
-# ВЫБОР ТЕМЫ – клавиатура прикреплена к сообщению с ситуацией
+# ВЫБОР ТЕМЫ
 # ============================================================
 @router.callback_query(F.data.startswith("topic_"))
 async def topic_chosen(callback: CallbackQuery, state: FSMContext):
@@ -1650,11 +1650,11 @@ async def topic_chosen(callback: CallbackQuery, state: FSMContext):
         # Удаляем сообщение со списком тем
         await callback.message.delete()
 
-        # Клавиатура с четырьмя кнопками (теперь с "Назад к темам")
-        keyboard = ReplyKeyboardMarkup(
+        # Reply-клавиатура (три кнопки) – будет прикреплена к первому ответу ИИ
+        reply_keyboard = ReplyKeyboardMarkup(
             keyboard=[
                 [KeyboardButton(text="💡 Что ответить?"), KeyboardButton(text="🏠 Главное меню")],
-                [KeyboardButton(text="📊 Завершить диалог"), KeyboardButton(text="🔙 Назад к темам")]
+                [KeyboardButton(text="📊 Завершить диалог")]
             ],
             resize_keyboard=True
         )
@@ -1667,10 +1667,15 @@ async def topic_chosen(callback: CallbackQuery, state: FSMContext):
             f"🗣️ <b>Говорите голосом или пишите текстом.</b>"
         )
 
-        # Отправляем сообщение с ситуацией и reply-клавиатурой
-        await callback.message.answer(roleplay_info, parse_mode="HTML", reply_markup=keyboard)
+        # Inline-кнопка "Назад к темам" для сообщения с ситуацией
+        back_inline = InlineKeyboardMarkup(inline_keyboard=[
+            [InlineKeyboardButton(text="🔙 Назад к темам", callback_data=f"back_to_topics_{cat_id}_{page}")]
+        ])
 
-        # Первая реплика ИИ
+        # Отправляем сообщение с ситуацией и inline-кнопкой
+        await callback.message.answer(roleplay_info, parse_mode="HTML", reply_markup=back_inline)
+
+        # Генерируем первую реплику ИИ
         system_prompt = build_system_prompt(topic, description, goals)
         first_prompt = "You are the character. Start the conversation with a greeting and a question that invites the user to describe the product or situation. Respond naturally in English, 2-3 sentences."
         first_response = await call_ai_with_system(system_prompt, first_prompt, [], max_tokens=300)
@@ -1679,8 +1684,8 @@ async def topic_chosen(callback: CallbackQuery, state: FSMContext):
         user_state["roleplay_history"].append({"role": "assistant", "text": first_response})
         set_user_state(user_id, user_state)
 
-        # Отправляем первую реплику с inline-кнопкой перевода
-        sent_msg = await callback.message.answer(first_response, reply_markup=None)
+        # Отправляем первую реплику с reply-клавиатурой (три кнопки) и inline-кнопкой "Перевести"
+        sent_msg = await callback.message.answer(first_response, reply_markup=reply_keyboard)
         msg_id = sent_msg.message_id
         if user_id not in bot_texts:
             bot_texts[user_id] = {}
@@ -1693,7 +1698,7 @@ async def topic_chosen(callback: CallbackQuery, state: FSMContext):
             first_response,
             chat_id=callback.message.chat.id,
             message_id=msg_id,
-            reply_markup=keyboard_translate
+            reply_markup=keyboard_translate  # При редактировании reply-клавиатура НЕ сбрасывается
         )
 
     except Exception as e:
@@ -1701,30 +1706,19 @@ async def topic_chosen(callback: CallbackQuery, state: FSMContext):
         await callback.answer("Произошла ошибка. Попробуйте ещё раз.", show_alert=True)
 
 # ============================================================
-# ОБРАБОТЧИК ДЛЯ КНОПКИ "🔙 Назад к темам" (reply-кнопка)
+# ОБРАБОТЧИК INLINE-КНОПКИ "Назад к темам"
 # ============================================================
-@router.message(RoleplayStates.active, F.text == "🔙 Назад к темам")
-async def back_to_topics_from_reply(message: Message, state: FSMContext):
-    user_id = message.from_user.id
-    user_state = get_user_state(user_id)
-    cat_id = user_state.get("current_category")
-    page = user_state.get("page", 0)
-    if cat_id:
-        # Создаём объект, имитирующий CallbackQuery для вызова show_topics
-        class FakeCallback:
-            def __init__(self, user_id, message, cat_id):
-                self.from_user = type('obj', (object,), {'id': user_id})()
-                self.message = message
-                self.data = f"cat_{cat_id}"
-            async def answer(self, *args, **kwargs):
-                pass
-        fake_callback = FakeCallback(user_id, message, cat_id)
-        await show_topics(fake_callback, cat_id=cat_id, page=page)
-        # Удаляем клавиатуру, чтобы не мешала
-        await message.answer("Возврат к темам...", reply_markup=ReplyKeyboardRemove())
-    else:
-        await message.answer("Не удалось найти категорию.", reply_markup=ReplyKeyboardRemove())
+@router.callback_query(F.data.startswith("back_to_topics_"))
+async def back_to_topics(callback: CallbackQuery):
+    rest = callback.data[15:]
+    cat_id, page_str = rest.rsplit('_', 1)
+    page = int(page_str)
+    await show_topics(callback, cat_id=cat_id, page=page)
+    await callback.answer()
 
+# ============================================================
+# ОБРАБОТЧИК ВОЗВРАТА К КАТЕГОРИЯМ (inline)
+# ============================================================
 @router.callback_query(F.data == "back_to_rp_categories")
 async def back_to_rp_categories(callback: CallbackQuery, state: FSMContext):
     await state.clear()
@@ -1909,7 +1903,7 @@ async def generate_feedback(message: Message, state: FSMContext, user_id: int, u
     await message.answer("Ролевая игра завершена.", reply_markup=ReplyKeyboardRemove())
 
 # ============================================================
-# ОСНОВНОЙ ОБРАБОТЧИК ТЕКСТОВЫХ СООБЩЕНИЙ
+# ОСНОВНОЙ ОБРАБОТЧИК ТЕКСТОВЫХ СООБЩЕНИЙ (клавиатура уже есть, не трогаем её)
 # ============================================================
 @router.message(RoleplayStates.active, F.text)
 async def handle_roleplay_text(message: Message, state: FSMContext):
@@ -1952,6 +1946,7 @@ async def handle_roleplay_text(message: Message, state: FSMContext):
     if show_english_reminder:
         await message.answer("Feel free to use English!")
 
+    # Отправляем ответ без изменения клавиатуры (оставляем ту, что была при первом ответе)
     sent_msg = await message.answer(ai_response, reply_markup=None)
     msg_id = sent_msg.message_id
     if user_id not in bot_texts:
