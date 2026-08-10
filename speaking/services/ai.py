@@ -45,7 +45,6 @@ UNSAFE_PHRASES = [
     r"повеситься",
     r"выпрыгн(уть|у|ешь|ет|ем|ете|ут)",
     r"отравиться",
-    # Добавленные для сексуальной тематики
     r"дроч(ить|у|ешь|ет|ем|ете|ут|ать|аю|аешь|ает|аем|аете|ают)",
     r"оргазм",
     r"мастурб(ация|ировать|ирую|ируешь|ирует|ируем|ируете|ируют)",
@@ -76,12 +75,10 @@ def is_unsafe_message(text: str) -> bool:
     return False
 
 async def is_safe_message(text: str) -> bool:
-    # Если есть образовательный маркер – всегда безопасно
     text_lower = text.lower()
     for marker in EDUCATIONAL_MARKERS:
         if marker in text_lower:
             return True
-    # Если нет маркера – проверяем на явные небезопасные слова
     if is_unsafe_message(text):
         return False
     return True
@@ -109,7 +106,6 @@ async def process_voice_message(user_id: int, user_text: str, history: list = No
     
     context = "\n".join([f"{'Student' if h['role']=='user' else 'Teacher'}: {h['text']}" for h in history[-5:]])
     
-    # Жёсткая проверка на небезопасные слова (без образовательных маркеров)
     if not await is_safe_message(user_text):
         return ("Извините, я не могу обсуждать эту тему. Давайте поговорим о чём-то другом.", "", False)
 
@@ -121,7 +117,6 @@ async def process_voice_message(user_id: int, user_text: str, history: list = No
     word_count = len(user_text.split())
     max_sentences = "1-3" if word_count <= 30 else "3-4"
     
-    # Базовый системный промпт с мягким уклонением для AI
     base_prompt = (
         "In your voice reply, ONLY continue the conversation naturally, ask a question, and do not mention corrections or translations. "
         "Do not correct mistakes, do not rephrase Russian. Just respond like a native speaker and keep the conversation going. "
@@ -154,10 +149,11 @@ async def process_voice_message(user_id: int, user_text: str, history: list = No
             f"Provide only the correct English translation, without any extra words. "
             f"Do not include the original Russian."
         )
-        translation = chat(translation_prompt, system_message="You are a translator.", max_tokens=100, temperature=0.3)
+        # Увеличил max_tokens до 600
+        translation = chat(translation_prompt, system_message="You are a translator.", max_tokens=600, temperature=0.3)
         correction_text = f"✔️ {translation}"
         
-        # Напоминание – каждый 3-й перевод с русского
+        # Напоминание – каждый 3-й перевод
         if "russian_translation_count" not in state:
             state["russian_translation_count"] = 0
         state["russian_translation_count"] += 1
@@ -166,7 +162,6 @@ async def process_voice_message(user_id: int, user_text: str, history: list = No
         set_user_state(user_id, state)
         
     else:
-        # Проверка грамматики для английского
         check_prompt = (
             f"The student wrote: {user_text}\n"
             f"Check ONLY for grammar errors (verb forms, tenses, word order, articles, prepositions). "
@@ -178,6 +173,7 @@ async def process_voice_message(user_id: int, user_text: str, history: list = No
             f"If there are NO grammar errors, reply ONLY with the word 'NO_ERRORS' and NOTHING ELSE. Do not add explanations."
         )
         check_result = chat(check_prompt, system_message="You are a strict English teacher.", max_tokens=150, temperature=0.3)
+        logger.info(f"Grammar check result: {check_result}")
         if check_result.strip() == "NO_ERRORS":
             is_perfect = True
             correction_text = ""
@@ -219,7 +215,6 @@ async def process_roleplay_message(user_id: int, user_text: str, history: list =
     
     context = "\n".join([f"{'User' if h['role']=='user' else 'Bot'}: {h['text']}" for h in history[-5:]])
     
-    # Добавляем мягкое уклонение и в ролевую игру
     if custom_scenario:
         system_message = (
             f"You are in a role play: {custom_scenario}. "

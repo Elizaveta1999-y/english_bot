@@ -18,16 +18,29 @@ logger = logging.getLogger(__name__)
 
 router = Router()
 last_bot_response = {}
-last_text_message = {}  # не используется, но оставляем
+last_text_message = {}
 
 WOMAN_VOICE_ID = "8quEMRkSpwEaWBzHvTLv"
 MAN_VOICE_ID = "3TStB8f3X3To0Uj5R7RK"
+
+# Максимальная длина текста для TTS
+MAX_TTS_LENGTH = 3000
 
 def convert_to_opus(mp3_path: str) -> str:
     ogg_path = tempfile.mktemp(suffix=".ogg")
     cmd = ["ffmpeg", "-i", mp3_path, "-c:a", "libopus", "-ar", "16000", "-ac", "1", "-b:a", "16k", ogg_path, "-y"]
     subprocess.run(cmd, check=True, capture_output=True)
     return ogg_path
+
+def truncate_for_tts(text: str, max_len: int = MAX_TTS_LENGTH) -> str:
+    """Обрезает текст до max_len символов, стараясь не обрывать слово."""
+    if len(text) <= max_len:
+        return text
+    truncated = text[:max_len]
+    last_space = truncated.rfind(' ')
+    if last_space > 0:
+        return truncated[:last_space] + '...'
+    return truncated + '...'
 
 async def process_voice_only(user_id: int, user_text: str, history: list = None) -> str:
     reply, _, _ = await process_voice_message(user_id, user_text, history)
@@ -47,7 +60,6 @@ async def handle_voice(message: Message, state: FSMContext):
         logger.info(f"Голосовое от {user_id} пропущено (режим говорение)")
         return
 
-    # Если пользователь не в режиме Speaking, Roleplay или активном уроке – игнорируем
     mode = user_state.get("mode")
     is_lesson_active = (
         user_state.get("practice_lesson_key") or
@@ -71,22 +83,17 @@ async def handle_voice(message: Message, state: FSMContext):
 
         file = await bot.get_file(message.voice.file_id)
         file_bytes = await bot.download_file(file.file_path)
-        duration = message.voice.duration  # длительность в секундах
+        duration = message.voice.duration
 
-        # Распознаём текст
         user_text = await voice_to_text(file_bytes.read())
         if not user_text:
             await message.answer("Не понял, повторите.")
             return
 
-        # Если длительность > 180 сек, добавляем предупреждение
         warning = ""
         if duration > 180:
             warning = "Ваше голосовое сообщение длиннее 3 минут, обработана только первая часть. Пожалуйста, записывайте более короткие сообщения для лучшей обработки.\n\n"
-            # Можно обрезать текст по словам, но оставляем как есть – распознавание уже дало текст, который может быть длинным.
-            # Ограничение по словам уже есть ниже.
 
-        # Ограничение по количеству слов (оставляем как было)
         words = user_text.split()
         if len(words) > 500:
             user_text = ' '.join(words[:500])
@@ -95,13 +102,11 @@ async def handle_voice(message: Message, state: FSMContext):
         speaking_history = user_state.get("speaking_history", [])
         reply_text, correction_text, is_perfect = await process_voice_message(user_id, user_text, speaking_history)
 
-        # Отказ
         if reply_text.startswith("Извините, я не могу обсуждать эту тему"):
             await message.answer(reply_text)
             await state.set_state(SpeakingStates.waiting_for_voice)
             return
 
-        # Сохраняем текст
         last_bot_response[user_id] = {
             "text": reply_text,
             "translation": None,
@@ -109,7 +114,6 @@ async def handle_voice(message: Message, state: FSMContext):
             "chat_id": chat_id,
             "message_id": None
         }
-        logger.info(f"Сохранён текст для user {user_id}: {reply_text[:50]}...")
 
         speaking_history.append({"role": "user", "text": user_text})
         speaking_history.append({"role": "assistant", "text": reply_text})
@@ -130,11 +134,15 @@ async def handle_voice(message: Message, state: FSMContext):
         if correction_text:
             await message.answer(correction_text, parse_mode="HTML")
 
-        # Отправляем голосовой ответ (без подписи)
+        # ----- ОБРЕЗКА ТЕКСТА ДЛЯ TTS -----
+        tts_text = truncate_for_tts(reply_text)
+
         await bot.send_chat_action(chat_id=chat_id, action="record_voice")
         voice_pref = user_state.get("speaking_voice", "woman")
         voice_id = WOMAN_VOICE_ID if voice_pref == "woman" else MAN_VOICE_ID
-        voice_path = await text_to_voice(reply_text, voice_id=voice_id)
+        
+        voice_path = await text_to_voice(tts_text, voice_id=voice_id)
+        
         if voice_path and os.path.exists(voice_path):
             try:
                 ogg_path = convert_to_opus(voice_path)
@@ -275,7 +283,10 @@ async def handle_voice(message: Message, state: FSMContext):
         await bot.send_chat_action(chat_id=chat_id, action="record_voice")
         voice_pref = user_state.get("speaking_voice", "woman")
         voice_id = WOMAN_VOICE_ID if voice_pref == "woman" else MAN_VOICE_ID
-        voice_path = await text_to_voice(ai_response, voice_id=voice_id)
+        
+        tts_text = truncate_for_tts(ai_response)
+        voice_path = await text_to_voice(tts_text, voice_id=voice_id)
+        
         if voice_path and os.path.exists(voice_path):
             try:
                 ogg_path = convert_to_opus(voice_path)
@@ -296,3 +307,6 @@ async def handle_voice(message: Message, state: FSMContext):
                 logger.error(f"Audio error: {e}")
         await message.answer(ai_response)
         return
+
+    # Если ничего не подошло – игнорируем
+    logger.info(f"Голосовое от {user_id} не обработано (неизвестный режим)")
