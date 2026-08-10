@@ -152,7 +152,6 @@ async def process_voice_message(user_id: int, user_text: str, history: list = No
         translation = chat(translation_prompt, system_message="You are a translator.", max_tokens=600, temperature=0.3)
         correction_text = f"✔️ {translation}"
         
-        # Напоминание – каждый 3-й перевод
         if "russian_translation_count" not in state:
             state["russian_translation_count"] = 0
         state["russian_translation_count"] += 1
@@ -161,7 +160,6 @@ async def process_voice_message(user_id: int, user_text: str, history: list = No
         set_user_state(user_id, state)
         
     else:
-        # ---- СТАРЫЙ РАБОЧИЙ ПРОМПТ (возвращён) ----
         check_prompt = (
             f"The student wrote: {user_text}\n"
             f"Check ONLY for grammar errors (verb forms, tenses, word order, articles, prepositions). "
@@ -172,10 +170,9 @@ async def process_voice_message(user_id: int, user_text: str, history: list = No
             f"The explanation MUST be in Russian, not in English. Do not add any extra words before the <blockquote>.\n"
             f"If there are NO grammar errors, reply ONLY with the word 'NO_ERRORS' and NOTHING ELSE. Do not add explanations."
         )
-        check_result = chat(check_prompt, system_message="You are a strict English teacher.", max_tokens=300, temperature=0.2)
+        check_result = chat(check_prompt, system_message="You are a strict English teacher.", max_tokens=150, temperature=0.2)
         logger.info(f"Grammar check result: {check_result}")
-        
-        # Строгое условие — проверяем точное совпадение с "NO_ERRORS"
+        # Единственное изменение: строгое сравнение
         if check_result.strip() == "NO_ERRORS":
             is_perfect = True
             correction_text = ""

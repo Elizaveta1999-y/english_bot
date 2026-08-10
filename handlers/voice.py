@@ -17,13 +17,13 @@ from states.speaking_states import SpeakingStates
 logger = logging.getLogger(__name__)
 
 router = Router()
-last_bot_response = {}
-last_text_message = {}
+
+# Словарь для хранения текстов по message_id
+bot_texts = {}
 
 WOMAN_VOICE_ID = "8quEMRkSpwEaWBzHvTLv"
 MAN_VOICE_ID = "3TStB8f3X3To0Uj5R7RK"
 
-# Максимальная длина текста для TTS
 MAX_TTS_LENGTH = 3000
 
 def convert_to_opus(mp3_path: str) -> str:
@@ -33,7 +33,6 @@ def convert_to_opus(mp3_path: str) -> str:
     return ogg_path
 
 def truncate_for_tts(text: str, max_len: int = MAX_TTS_LENGTH) -> str:
-    """Обрезает текст до max_len символов, стараясь не обрывать слово."""
     if len(text) <= max_len:
         return text
     truncated = text[:max_len]
@@ -102,63 +101,54 @@ async def handle_voice(message: Message, state: FSMContext):
         speaking_history = user_state.get("speaking_history", [])
         reply_text, correction_text, is_perfect = await process_voice_message(user_id, user_text, speaking_history)
 
+        # ===== ВАЖНО: обновляем user_state, чтобы получить актуальный счётчик russian_translation_count =====
+        user_state = get_user_state(user_id)  # <--- добавляем эту строку
+        speaking_history = user_state.get("speaking_history", [])  # обновляем историю тоже
+
         if reply_text.startswith("Извините, я не могу обсуждать эту тему"):
             await message.answer(reply_text)
             await state.set_state(SpeakingStates.waiting_for_voice)
             return
 
-        last_bot_response[user_id] = {
-            "text": reply_text,
-            "translation": None,
-            "audio_message_id": None,
-            "chat_id": chat_id,
-            "message_id": None
-        }
-
-        speaking_history.append({"role": "user", "text": user_text})
-        speaking_history.append({"role": "assistant", "text": reply_text})
-        if len(speaking_history) > 20:
-            speaking_history = speaking_history[-20:]
-        user_state["speaking_history"] = speaking_history
-        set_user_state(user_id, user_state)
-
-        if is_perfect:
-            try:
-                await message.react([ReactionTypeEmoji(emoji="❤️")])
-            except Exception as e:
-                logger.warning(f"Не удалось поставить реакцию: {e}")
-
-        if warning:
-            await message.answer(warning.strip())
-
-        if correction_text:
-            await message.answer(correction_text, parse_mode="HTML")
-
-        # ----- ОБРЕЗКА ТЕКСТА ДЛЯ TTS -----
+        # Сохраняем текст для этого сообщения
         tts_text = truncate_for_tts(reply_text)
 
         await bot.send_chat_action(chat_id=chat_id, action="record_voice")
         voice_pref = user_state.get("speaking_voice", "woman")
         voice_id = WOMAN_VOICE_ID if voice_pref == "woman" else MAN_VOICE_ID
-        
+
         voice_path = await text_to_voice(tts_text, voice_id=voice_id)
-        
+
         if voice_path and os.path.exists(voice_path):
             try:
                 ogg_path = convert_to_opus(voice_path)
                 with open(ogg_path, 'rb') as f:
                     audio_bytes = f.read()
-                keyboard = InlineKeyboardMarkup(inline_keyboard=[
-                    [InlineKeyboardButton(text="Текст", callback_data=f"show_text_{user_id}")]
-                ])
+
+                # Отправляем голосовое без кнопки
                 sent = await message.answer_voice(
                     BufferedInputFile(audio_bytes, filename="voice.ogg"),
                     caption="",
+                    reply_markup=None
+                )
+                msg_id = sent.message_id
+
+                # Сохраняем текст по message_id
+                if user_id not in bot_texts:
+                    bot_texts[user_id] = {}
+                bot_texts[user_id][msg_id] = {"text": reply_text, "translation": None}
+
+                # Редактируем сообщение, добавляем кнопку "Текст"
+                keyboard = InlineKeyboardMarkup(inline_keyboard=[
+                    [InlineKeyboardButton(text="Текст", callback_data=f"show_text_{user_id}_{msg_id}")]
+                ])
+                await bot.edit_message_caption(
+                    chat_id=chat_id,
+                    message_id=msg_id,
+                    caption="",
                     reply_markup=keyboard
                 )
-                if user_id in last_bot_response:
-                    last_bot_response[user_id]["audio_message_id"] = sent.message_id
-                    last_bot_response[user_id]["message_id"] = sent.message_id
+
                 os.unlink(voice_path)
                 os.unlink(ogg_path)
                 await state.set_state(SpeakingStates.waiting_for_voice)
@@ -167,9 +157,6 @@ async def handle_voice(message: Message, state: FSMContext):
                 logger.error(f"Audio error: {e}")
         # fallback – текст
         sent = await message.answer(reply_text)
-        if user_id in last_bot_response:
-            last_bot_response[user_id]["audio_message_id"] = sent.message_id
-            last_bot_response[user_id]["message_id"] = sent.message_id
         await state.set_state(SpeakingStates.waiting_for_voice)
         return
 
@@ -283,20 +270,30 @@ async def handle_voice(message: Message, state: FSMContext):
         await bot.send_chat_action(chat_id=chat_id, action="record_voice")
         voice_pref = user_state.get("speaking_voice", "woman")
         voice_id = WOMAN_VOICE_ID if voice_pref == "woman" else MAN_VOICE_ID
-        
+
         tts_text = truncate_for_tts(ai_response)
         voice_path = await text_to_voice(tts_text, voice_id=voice_id)
-        
+
         if voice_path and os.path.exists(voice_path):
             try:
                 ogg_path = convert_to_opus(voice_path)
                 with open(ogg_path, 'rb') as f:
                     audio_bytes = f.read()
-                keyboard = InlineKeyboardMarkup(inline_keyboard=[
-                    [InlineKeyboardButton(text="Текст", callback_data=f"show_text_{user_id}")]
-                ])
-                await message.answer_voice(
+                sent = await message.answer_voice(
                     BufferedInputFile(audio_bytes, filename="voice.ogg"),
+                    caption="",
+                    reply_markup=None
+                )
+                msg_id = sent.message_id
+                if user_id not in bot_texts:
+                    bot_texts[user_id] = {}
+                bot_texts[user_id][msg_id] = {"text": ai_response, "translation": None}
+                keyboard = InlineKeyboardMarkup(inline_keyboard=[
+                    [InlineKeyboardButton(text="Текст", callback_data=f"show_text_{user_id}_{msg_id}")]
+                ])
+                await bot.edit_message_caption(
+                    chat_id=chat_id,
+                    message_id=msg_id,
                     caption="",
                     reply_markup=keyboard
                 )
