@@ -121,27 +121,39 @@ async def process_voice_message(user_id: int, user_text: str, history: list = No
     word_count = len(user_text.split())
     max_sentences = "1-3" if word_count <= 30 else "3-4"
     
-    # ---- ВОЗВРАЩАЕМ СТАРЫЙ РАБОЧИЙ ПРОМПТ, НО ОСТАВЛЯЕМ ВАЖНУЮ ЧАСТЬ ПРО НЕБЕЗОПАСНЫЕ ТЕМЫ ----
+    # ---- ЕСЛИ ПОЛЬЗОВАТЕЛЬ ПРОСИТ ОТВЕТИТЬ НА РУССКОМ ----
     if russian_requested:
         system_prompt_reply = (
             "You are a friendly English tutor. Respond in Russian, because the student asked for it. "
             "In your voice reply, ONLY continue the conversation naturally, ask a question, and do not mention corrections or translations. "
-            "Do not correct mistakes, do not rephrase Russian. Just respond like a native speaker and keep the conversation going. "
+            "Do not correct mistakes. Just respond like a native speaker and keep the conversation going. "
             f"Keep your reply short ({max_sentences} sentences) and always end with a question.\n"
             "IMPORTANT: If the student discusses sexual, violent, drug-related, or other inappropriate topics, politely change the subject to something neutral (like weather, hobbies, daily routine) without explicitly saying you can't discuss it."
         )
+        user_text_for_prompt = user_text  # оставляем как есть
     else:
+        # ---- ОСНОВНОЙ РЕЖИМ: ВСЕГДА ОТВЕЧАЕМ НА АНГЛИЙСКОМ ----
         system_prompt_reply = (
             "You are a friendly English tutor. Always respond in English. "
             "In your voice reply, ONLY continue the conversation naturally, ask a question, and do not mention corrections or translations. "
-            "Do not correct mistakes, just respond like a native speaker and keep the conversation going. "
+            "Do not correct mistakes. Just respond like a native speaker and keep the conversation going. "
             f"Keep your reply short ({max_sentences} sentences) and always end with a question.\n"
             "IMPORTANT: If the student discusses sexual, violent, drug-related, or other inappropriate topics, politely change the subject to something neutral (like weather, hobbies, daily routine) without explicitly saying you can't discuss it."
         )
+        # Если сообщение на русском, переводим его на английский, чтобы DeepSeek мог ответить
+        if has_cyrillic:
+            logger.info("🔄 Перевод русского текста на английский для запроса")
+            translation_prompt = (
+                f"Translate the following Russian text to English (only the translation, no extra words):\n{user_text}"
+            )
+            user_text_for_prompt = chat(translation_prompt, system_message="You are a translator.", max_tokens=300, temperature=0.3)
+            logger.info(f"🔍 Переведённый текст: {user_text_for_prompt}")
+        else:
+            user_text_for_prompt = user_text
     
     user_prompt_reply = (
         f"Context:\n{context}\n\n"
-        f"Student: {user_text}\n"
+        f"Student: {user_text_for_prompt}\n"
         f"Your voice reply (natural, short, end with a question):"
     )
     
@@ -152,13 +164,13 @@ async def process_voice_message(user_id: int, user_text: str, history: list = No
     reply_text = reply_text.strip()
     if not reply_text:
         logger.warning("⚠️ DeepSeek вернул пустой ответ!")
-        if has_cyrillic:
+        if has_cyrillic and not russian_requested:
+            # fallback на русском, так как пользователь говорил по-русски
             reply_text = "Извините, я не понял ваш вопрос. Повторите, пожалуйста."
         else:
             reply_text = "Sorry, I didn't get that. Could you repeat?"
     
     if not reply_text.endswith('?'):
-        # Добавляем вопрос на том же языке, что и ответ (по умолчанию английский)
         if has_cyrillic and not russian_requested:
             reply_text += " What do you think?"
         elif russian_requested:
@@ -171,7 +183,7 @@ async def process_voice_message(user_id: int, user_text: str, history: list = No
     is_perfect = False
     
     if has_cyrillic:
-        logger.info("🔄 Сообщение на русском, запрос перевода")
+        logger.info("🔄 Сообщение на русском, запрос перевода для коррекции")
         translation_prompt = (
             f"The student said in Russian: {user_text}\n"
             f"Provide only the correct English translation, without any extra words. "
