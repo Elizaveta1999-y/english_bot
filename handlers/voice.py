@@ -17,8 +17,6 @@ from states.speaking_states import SpeakingStates
 logger = logging.getLogger(__name__)
 
 router = Router()
-
-# Глобальный словарь для хранения текстов по message_id
 bot_texts = {}
 
 WOMAN_VOICE_ID = "8quEMRkSpwEaWBzHvTLv"
@@ -100,7 +98,7 @@ async def handle_voice(message: Message, state: FSMContext):
         speaking_history = user_state.get("speaking_history", [])
         reply_text, correction_text, is_perfect = await process_voice_message(user_id, user_text, speaking_history)
 
-        # Обновляем user_state, чтобы получить актуальный счётчик напоминания
+        # Обновляем user_state после process_voice_message (счётчик напоминания)
         user_state = get_user_state(user_id)
 
         if reply_text.startswith("Извините, я не могу обсуждать эту тему"):
@@ -108,7 +106,7 @@ async def handle_voice(message: Message, state: FSMContext):
             await state.set_state(SpeakingStates.waiting_for_voice)
             return
 
-        # Сохраняем в историю
+        # Сохраняем историю
         speaking_history = user_state.get("speaking_history", [])
         speaking_history.append({"role": "user", "text": user_text})
         speaking_history.append({"role": "assistant", "text": reply_text})
@@ -140,7 +138,6 @@ async def handle_voice(message: Message, state: FSMContext):
                 ogg_path = convert_to_opus(voice_path)
                 with open(ogg_path, 'rb') as f:
                     audio_bytes = f.read()
-                # Отправляем без кнопки
                 sent = await message.answer_voice(
                     BufferedInputFile(audio_bytes, filename="voice.ogg"),
                     caption="",

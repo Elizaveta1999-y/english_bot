@@ -170,13 +170,18 @@ async def process_voice_message(user_id: int, user_text: str, history: list = No
             f"The explanation MUST be in Russian, not in English. Do not add any extra words before the <blockquote>.\n"
             f"If there are NO grammar errors, reply ONLY with the word 'NO_ERRORS' and NOTHING ELSE. Do not add explanations."
         )
-        check_result = chat(check_prompt, system_message="You are a strict English teacher.", max_tokens=150, temperature=0.2)
-        logger.info(f"Grammar check result: {check_result}")
-        # Единственное изменение: строгое сравнение
-        if check_result.strip() == "NO_ERRORS":
+        check_result = chat(check_prompt, system_message="You are a strict English teacher.", max_tokens=300, temperature=0.2)
+        logger.info(f"Grammar check result: '{check_result}'")
+        
+        # Если ответ пустой или только пробелы
+        if not check_result.strip():
+            correction_text = "⚠️ Не удалось проверить грамматику. Попробуйте ещё раз."
+            is_perfect = False
+        elif check_result.strip() == "NO_ERRORS":
             is_perfect = True
             correction_text = ""
         else:
+            # Разбираем ответ
             lines = check_result.strip().split('\n')
             corrected = ""
             explanation = ""
