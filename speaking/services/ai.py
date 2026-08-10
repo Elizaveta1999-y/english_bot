@@ -121,17 +121,23 @@ async def process_voice_message(user_id: int, user_text: str, history: list = No
     word_count = len(user_text.split())
     max_sentences = "1-3" if word_count <= 30 else "3-4"
     
-    base_prompt = (
-        "In your voice reply, ONLY continue the conversation naturally, ask a question, and do not mention corrections or translations. "
-        "Do not correct mistakes, do not rephrase Russian. Just respond like a native speaker and keep the conversation going. "
-        f"Keep your reply short ({max_sentences} sentences) and always end with a question.\n"
-        "IMPORTANT: If the student discusses sexual, violent, drug-related, or other inappropriate topics, politely change the subject to something neutral (like weather, hobbies, daily routine) without explicitly saying you can't discuss it."
-    )
-    
+    # ---- ВОЗВРАЩАЕМ СТАРЫЙ РАБОЧИЙ ПРОМПТ, НО ОСТАВЛЯЕМ ВАЖНУЮ ЧАСТЬ ПРО НЕБЕЗОПАСНЫЕ ТЕМЫ ----
     if russian_requested:
-        system_prompt_reply = "You are a friendly English tutor. Respond in Russian, because the student asked for it. " + base_prompt
+        system_prompt_reply = (
+            "You are a friendly English tutor. Respond in Russian, because the student asked for it. "
+            "In your voice reply, ONLY continue the conversation naturally, ask a question, and do not mention corrections or translations. "
+            "Do not correct mistakes, do not rephrase Russian. Just respond like a native speaker and keep the conversation going. "
+            f"Keep your reply short ({max_sentences} sentences) and always end with a question.\n"
+            "IMPORTANT: If the student discusses sexual, violent, drug-related, or other inappropriate topics, politely change the subject to something neutral (like weather, hobbies, daily routine) without explicitly saying you can't discuss it."
+        )
     else:
-        system_prompt_reply = "You are a friendly English tutor. Always respond in English. " + base_prompt
+        system_prompt_reply = (
+            "You are a friendly English tutor. Always respond in English. "
+            "In your voice reply, ONLY continue the conversation naturally, ask a question, and do not mention corrections or translations. "
+            "Do not correct mistakes, just respond like a native speaker and keep the conversation going. "
+            f"Keep your reply short ({max_sentences} sentences) and always end with a question.\n"
+            "IMPORTANT: If the student discusses sexual, violent, drug-related, or other inappropriate topics, politely change the subject to something neutral (like weather, hobbies, daily routine) without explicitly saying you can't discuss it."
+        )
     
     user_prompt_reply = (
         f"Context:\n{context}\n\n"
@@ -152,8 +158,11 @@ async def process_voice_message(user_id: int, user_text: str, history: list = No
             reply_text = "Sorry, I didn't get that. Could you repeat?"
     
     if not reply_text.endswith('?'):
-        if has_cyrillic:
-            reply_text += " Что вы имеете в виду?"
+        # Добавляем вопрос на том же языке, что и ответ (по умолчанию английский)
+        if has_cyrillic and not russian_requested:
+            reply_text += " What do you think?"
+        elif russian_requested:
+            reply_text += " Что вы думаете?"
         else:
             reply_text += " What do you think?"
         logger.info(f"🔍 Добавлен вопрос: reply_text стал '{reply_text}'")
