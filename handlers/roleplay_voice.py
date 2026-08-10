@@ -36,7 +36,6 @@ async def roleplay_voice_handler(message: Message, state: FSMContext):
     user_id = message.from_user.id
     user_state = get_user_state(user_id)
 
-    # Дополнительная проверка на случай, если состояние изменилось
     if user_state.get("mode") != "roleplay_active":
         logger.info(f"Голосовое от {user_id} проигнорировано (mode != roleplay_active)")
         return
@@ -80,7 +79,6 @@ async def roleplay_voice_handler(message: Message, state: FSMContext):
     system_prompt = build_system_prompt(topic, description, goals)
     history = user_state.get("roleplay_history", [])
 
-    # Голосовые – короткие (max_tokens=250)
     ai_response = await call_ai_with_system(system_prompt, text, history, max_tokens=250)
 
     history.append({"role": "user", "text": text})
@@ -99,8 +97,13 @@ async def roleplay_voice_handler(message: Message, state: FSMContext):
 
     await message.bot.send_chat_action(chat_id=message.chat.id, action="record_voice")
 
-    # Увеличенная скорость
-    voice_path = await text_to_voice(tts_text, voice_id=voice_id, speed=1.15)
+    # Попытка синтеза голоса
+    try:
+        voice_path = await text_to_voice(tts_text, voice_id=voice_id)
+    except Exception as e:
+        logger.error(f"TTS error: {e}")
+        voice_path = None
+
     if voice_path and os.path.exists(voice_path):
         try:
             ogg_path = convert_to_opus(voice_path)
@@ -129,8 +132,11 @@ async def roleplay_voice_handler(message: Message, state: FSMContext):
             return
         except Exception as e:
             logger.error(f"Audio error in roleplay_voice: {e}")
+            # Если голос не удался – отправляем текст
+            await message.answer(ai_response)
+            return
 
-    # Fallback – текстом
+    # Если голос не удался, отправляем текстом
     sent_text = await message.answer(ai_response)
     msg_id = sent_text.message_id
     if user_id not in bot_texts:
@@ -147,7 +153,7 @@ async def roleplay_voice_handler(message: Message, state: FSMContext):
     )
 
 # ============================================================
-# ОБРАБОТЧИКИ КНОПОК ДЛЯ ГОЛОСОВЫХ (исправлены индексы)
+# ОБРАБОТЧИКИ КНОПОК ДЛЯ ГОЛОСОВЫХ
 # ============================================================
 @router.callback_query(lambda c: c.data.startswith("roleplay_voice_show_text_"))
 async def roleplay_voice_show_text(callback: CallbackQuery):
@@ -155,6 +161,7 @@ async def roleplay_voice_show_text(callback: CallbackQuery):
         parts = callback.data.split('_')
         user_id = int(parts[4])
         msg_id = int(parts[5])
+        logger.info(f"roleplay_voice_show_text: user_id={user_id}, msg_id={msg_id}")
         user_texts = bot_texts.get(user_id)
         if not user_texts or msg_id not in user_texts:
             await callback.answer("Текст не найден.", show_alert=True)
@@ -172,7 +179,7 @@ async def roleplay_voice_show_text(callback: CallbackQuery):
         )
         await callback.answer()
     except Exception as e:
-        logger.error(f"Ошибка в roleplay_voice_show_text: {e}")
+        logger.error(f"Ошибка в roleplay_voice_show_text: {e}", exc_info=True)
         await callback.answer("Ошибка.", show_alert=True)
 
 @router.callback_query(lambda c: c.data.startswith("roleplay_voice_translate_"))
@@ -181,6 +188,7 @@ async def roleplay_voice_translate(callback: CallbackQuery):
         parts = callback.data.split('_')
         user_id = int(parts[4])
         msg_id = int(parts[5])
+        logger.info(f"roleplay_voice_translate: user_id={user_id}, msg_id={msg_id}")
         user_texts = bot_texts.get(user_id)
         if not user_texts or msg_id not in user_texts:
             await callback.answer("Текст не найден.", show_alert=True)
@@ -203,7 +211,7 @@ async def roleplay_voice_translate(callback: CallbackQuery):
         )
         await callback.answer()
     except Exception as e:
-        logger.error(f"Ошибка в roleplay_voice_translate: {e}")
+        logger.error(f"Ошибка в roleplay_voice_translate: {e}", exc_info=True)
         await callback.answer("Ошибка.", show_alert=True)
 
 @router.callback_query(lambda c: c.data.startswith("roleplay_voice_original_"))
@@ -212,6 +220,7 @@ async def roleplay_voice_original(callback: CallbackQuery):
         parts = callback.data.split('_')
         user_id = int(parts[4])
         msg_id = int(parts[5])
+        logger.info(f"roleplay_voice_original: user_id={user_id}, msg_id={msg_id}")
         user_texts = bot_texts.get(user_id)
         if not user_texts or msg_id not in user_texts:
             await callback.answer("Текст не найден.", show_alert=True)
@@ -229,7 +238,7 @@ async def roleplay_voice_original(callback: CallbackQuery):
         )
         await callback.answer()
     except Exception as e:
-        logger.error(f"Ошибка в roleplay_voice_original: {e}")
+        logger.error(f"Ошибка в roleplay_voice_original: {e}", exc_info=True)
         await callback.answer("Ошибка.", show_alert=True)
 
 @router.callback_query(lambda c: c.data.startswith("roleplay_voice_hide_"))
@@ -238,6 +247,7 @@ async def roleplay_voice_hide(callback: CallbackQuery):
         parts = callback.data.split('_')
         user_id = int(parts[4])
         msg_id = int(parts[5])
+        logger.info(f"roleplay_voice_hide: user_id={user_id}, msg_id={msg_id}")
         keyboard = InlineKeyboardMarkup(inline_keyboard=[
             [InlineKeyboardButton(text="Текст", callback_data=f"roleplay_voice_show_text_{user_id}_{msg_id}")]
         ])
@@ -249,6 +259,6 @@ async def roleplay_voice_hide(callback: CallbackQuery):
         )
         await callback.answer()
     except Exception as e:
-        logger.error(f"Ошибка в roleplay_voice_hide: {e}")
+        logger.error(f"Ошибка в roleplay_voice_hide: {e}", exc_info=True)
         await callback.message.delete()
         await callback.answer("Скрыто.")
