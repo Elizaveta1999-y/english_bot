@@ -6,25 +6,98 @@ from services.deepseek import chat
 logger = logging.getLogger(__name__)
 
 UNSAFE_PHRASES = [
-    # ... (без изменений, опускаю для краткости, но он должен быть полным)
+    r"трахн(уть|у|ешь|ет|ем|ете|ут|ать|аю|аешь|ает|аем|аете|ают)",
+    r"выеб(ать|у|ешь|ет|ем|ете|ут|аю|аешь|ает|аем|аете|ают)",
+    r"отсос(ать|у|ешь|ет|ем|ете|ут|аю|аешь|ает|аем|аете|ают)",
+    r"минет",
+    r"анальн",
+    r"член",
+    r"пенис",
+    r"вагин",
+    r"письк",
+    r"секс",
+    r"эротик",
+    r"порно",
+    r"гол(ый|ая|ое|ые)",
+    r"обнаженн",
+    r"уби(ть|й|ваю|ваешь|вает|ваем|ваете|вают)",
+    r"смерт",
+    r"кровь",
+    r"изнасиловани[ея]",
+    r"насил(ие|овать|уют)",
+    r"пытк",
+    r"труп",
+    r"ножевое",
+    r"террорист",
+    r"взорв(ать|у|ешь|ет|ем|ете|ут)",
+    r"бомб",
+    r"оружие",
+    r"экстремизм",
+    r"наркотик",
+    r"героин",
+    r"кокаин",
+    r"марихуан",
+    r"спайс",
+    r"экстази",
+    r"амфетамин",
+    r"самоубийств",
+    r"суицид",
+    r"повеситься",
+    r"выпрыгн(уть|у|ешь|ет|ем|ете|ут)",
+    r"отравиться",
+    r"дроч(ить|у|ешь|ет|ем|ете|ут|ать|аю|аешь|ает|аем|аете|ают)",
+    r"оргазм",
+    r"мастурб(ация|ировать|ирую|ируешь|ирует|ируем|ируете|ируют)",
+    r"вибратор",
+    r"секс-игрушк(а|и|у|ой|е)",
+    r"игрушк(а|и|у|ой|е).*секс",
 ]
 
 EDUCATIONAL_MARKERS = [
-    # ...
+    "как будет", "перевод", "как сказать", "как переводится",
+    "что значит", "what is", "how do you say", "meaning of",
+    "слово", "фраза", "выражение", "идиома", "грамматика", "правило",
+    "зачем", "почему", "что такое", "как работает", "объясни",
+    "расскажи", "why", "how does", "explain"
 ]
 
 RUSSIAN_REQUEST = [
-    # ...
+    "объясни на русском", "по-русски", "на русском",
+    "скажи по-русски", "напиши по-русски", "ответь по-русски",
+    "на русском языке"
 ]
 
 def is_unsafe_message(text: str) -> bool:
-    # ...
+    text_lower = text.lower()
+    for pattern in UNSAFE_PHRASES:
+        if re.search(pattern, text_lower):
+            return True
+    return False
 
 async def is_safe_message(text: str) -> bool:
-    # ...
+    text_lower = text.lower()
+    for marker in EDUCATIONAL_MARKERS:
+        if marker in text_lower:
+            return True
+    if is_unsafe_message(text):
+        return False
+    return True
 
 def format_explanation(text: str) -> str:
-    # ...
+    pattern = re.compile(r'(\d+[\.\)])\s*')
+    parts = pattern.split(text)
+    result = []
+    first = True
+    for part in parts:
+        if pattern.match(part):
+            if not first:
+                result.append('\n')
+            first = False
+            result.append(part)
+        else:
+            if part.strip():
+                result.append(part)
+    return ''.join(result)
 
 async def process_voice_message(user_id: int, user_text: str, history: list = None) -> tuple:
     state = get_user_state(user_id)
@@ -73,7 +146,7 @@ async def process_voice_message(user_id: int, user_text: str, history: list = No
     reply_text = reply_text.strip()
     if not reply_text:
         logger.warning("⚠️ DeepSeek вернул пустой ответ!")
-        reply_text = "Sorry, I didn't get that. Could you repeat?"  # fallback
+        reply_text = "Sorry, I didn't get that. Could you repeat?"
     
     if not reply_text.endswith('?'):
         reply_text += " What do you think?"
@@ -151,4 +224,33 @@ async def process_voice_message(user_id: int, user_text: str, history: list = No
     return reply_text, correction_text, is_perfect
 
 async def process_roleplay_message(user_id: int, user_text: str, history: list = None) -> str:
-    # ... (без изменений)
+    state = get_user_state(user_id)
+    if history is None:
+        history = state.get("history", [])
+    
+    topic = state.get("roleplay_topic", "role play")
+    custom_scenario = state.get("custom_scenario")
+    
+    context = "\n".join([f"{'User' if h['role']=='user' else 'Bot'}: {h['text']}" for h in history[-5:]])
+    
+    if custom_scenario:
+        system_message = (
+            f"You are in a role play: {custom_scenario}. "
+            "Respond in English as your character. Keep replies short and natural. "
+            "Don't correct the user. End with a question.\n"
+            "IMPORTANT: If the user brings up inappropriate topics, politely steer the conversation back to the role-play scenario without acknowledging the inappropriate content."
+        )
+    else:
+        system_message = (
+            f"You are in a role play: {topic}. "
+            "Respond in English as your character. Keep replies short and natural. "
+            "Don't correct the user. End with a question.\n"
+            "IMPORTANT: If the user brings up inappropriate topics, politely steer the conversation back to the role-play scenario without acknowledging the inappropriate content."
+        )
+    
+    user_prompt = f"Context:\n{context}\n\nUser: {user_text}\nYour reply (short, in character, end with a question):"
+    response = chat(user_prompt, system_message=system_message, max_tokens=150, temperature=0.7)
+    response = response.strip()
+    if not response.endswith('?'):
+        response += " What do you think?"
+    return response
