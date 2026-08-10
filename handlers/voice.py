@@ -6,7 +6,7 @@ from aiogram import Router, F
 from aiogram.types import Message, BufferedInputFile, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery, ReactionTypeEmoji
 from aiogram.fsm.context import FSMContext
 from speaking.services.stt import voice_to_text
-from speaking.services.ai import process_voice_message, process_roleplay_message
+from speaking.services.ai import process_voice_message  # убрали process_roleplay_message
 from speaking.services.tts import text_to_voice
 from data.users import get_user_state, set_user_state, set_user_mode
 from services.deepseek import chat
@@ -63,7 +63,8 @@ async def handle_voice(message: Message, state: FSMContext):
         (user_state.get("lesson_mode") == "thematic" and user_state.get("lesson_step") == "awaiting_answer")
     )
 
-    if mode not in ("speaking_active", "roleplay_active") and not is_lesson_active:
+    # Если не Speaking и не урок – игнорируем
+    if mode != "speaking_active" and not is_lesson_active:
         if mode == "" and user_state.get("pending_feedback"):
             await message.answer("Вы уже получили фидбек. Начните новый диалог, нажав 'Speaking' в главном меню.")
         return
@@ -165,77 +166,6 @@ async def handle_voice(message: Message, state: FSMContext):
         # fallback
         await message.answer(reply_text)
         await state.set_state(SpeakingStates.waiting_for_voice)
-        return
-
-    # ---------- РОЛЕВАЯ ИГРА ----------
-    if mode == "roleplay_active":
-        logger.info(f"Roleplay voice from user {user_id}")
-        await bot.send_chat_action(chat_id=chat_id, action="record_voice")
-
-        file = await bot.get_file(message.voice.file_id)
-        file_bytes = await bot.download_file(file.file_path)
-        user_text = await voice_to_text(file_bytes.read())
-        if not user_text:
-            await message.answer("Не понял, повторите.")
-            return
-
-        words = user_text.split()
-        if len(words) > 500:
-            user_text = ' '.join(words[:500])
-
-        roleplay_history = user_state.get("roleplay_history", [])
-        try:
-            ai_response = await process_roleplay_message(user_id, user_text, roleplay_history)
-        except Exception as e:
-            logger.error(f"Ошибка в ролевой игре: {e}")
-            await message.answer("Произошла ошибка. Попробуйте ещё раз.")
-            return
-
-        roleplay_history.append({"role": "user", "text": user_text})
-        roleplay_history.append({"role": "assistant", "text": ai_response})
-        if len(roleplay_history) > 20:
-            roleplay_history = roleplay_history[-20:]
-        user_state["roleplay_history"] = roleplay_history
-        set_user_state(user_id, user_state)
-
-        if ai_response.startswith("Извините, я не могу обсуждать эту тему"):
-            await message.answer(ai_response)
-            return
-
-        await bot.send_chat_action(chat_id=chat_id, action="record_voice")
-        voice_pref = user_state.get("speaking_voice", "woman")
-        voice_id = WOMAN_VOICE_ID if voice_pref == "woman" else MAN_VOICE_ID
-        tts_text = truncate_for_tts(ai_response)
-        voice_path = await text_to_voice(tts_text, voice_id=voice_id)
-        if voice_path and os.path.exists(voice_path):
-            try:
-                ogg_path = convert_to_opus(voice_path)
-                with open(ogg_path, 'rb') as f:
-                    audio_bytes = f.read()
-                sent = await message.answer_voice(
-                    BufferedInputFile(audio_bytes, filename="voice.ogg"),
-                    caption="",
-                    reply_markup=None
-                )
-                msg_id = sent.message_id
-                if user_id not in bot_texts:
-                    bot_texts[user_id] = {}
-                bot_texts[user_id][msg_id] = {"text": ai_response, "translation": None}
-                keyboard = InlineKeyboardMarkup(inline_keyboard=[
-                    [InlineKeyboardButton(text="Текст", callback_data=f"show_text_{user_id}_{msg_id}")]
-                ])
-                await bot.edit_message_caption(
-                    chat_id=chat_id,
-                    message_id=msg_id,
-                    caption="",
-                    reply_markup=keyboard
-                )
-                os.unlink(voice_path)
-                os.unlink(ogg_path)
-                return
-            except Exception as e:
-                logger.error(f"Ошибка в ролевой игре при отправке голосового: {e}")
-        await message.answer(ai_response)
         return
 
     # ---------- УРОКИ ----------
