@@ -1453,14 +1453,23 @@ def get_categories_keyboard():
 def is_cyrillic(text: str) -> bool:
     return bool(re.search('[а-яА-Я]', text))
 
+# ============================================================
+# ИСПРАВЛЕННЫЙ ФИЛЬТР – удалены оскорбительные слова
+# ============================================================
 FORBIDDEN_WORDS = [
+    # Мат
     "fuck", "bitch", "shit", "cunt", "dick", "pussy", "fucking", "motherfucker", "asshole", "bastard", "damn",
+    # Секс и интим
     "penis", "vagina", "cum", "orgasm", "masturbate", "sperm", "erection", "prostitute", "porn", "xxx",
+    # Суицид
     "suicide", "kill myself", "cut myself", "self-harm", "die", "death", "hang myself", "overdose",
+    # Насилие
     "murder", "rape", "torture", "assault", "kill", "terrorist", "bomb", "shoot", "stab",
+    # Политика и экстремизм
     "nazi", "hitler", "stalin", "terrorism", "dictator", "fascist", "communist", "putin", "zelensky", "trump", "biden",
-    "allah", "muhammad", "jesus", "bible", "quran", "prophet", "church", "mosque", "synagogue", "god", "holy", "priest", "imam",
-    "stupid", "idiot", "moron", "loser", "ugly", "fat", "worthless", "retard", "whore"
+    # Религиозные оскорбления
+    "allah", "muhammad", "jesus", "bible", "quran", "prophet", "church", "mosque", "synagogue", "god", "holy", "priest", "imam"
+    # Удалены: stupid, idiot, moron, loser, ugly, fat, worthless, retard, bastard, whore
 ]
 
 def is_forbidden(text: str) -> bool:
@@ -1470,6 +1479,9 @@ def is_forbidden(text: str) -> bool:
             return True
     return False
 
+# ============================================================
+# ИСПРАВЛЕННЫЙ СИСТЕМНЫЙ ПРОМПТ – гибкий, разрешает творчество
+# ============================================================
 def build_system_prompt(topic: str, description: str, goals: list) -> str:
     goals_text = "\n".join([f"{i+1}. {g}" for i, g in enumerate(goals)])
     return (
@@ -1477,13 +1489,21 @@ def build_system_prompt(topic: str, description: str, goals: list) -> str:
         f"Situation: {description}\n"
         f"Topic: {topic}\n"
         f"User's goals: {goals_text}\n\n"
-        "Your task is to lead the dialogue within this situation. You must help the user practice English, but stay in character.\n\n"
+        "Your task is to lead the dialogue within this situation. "
+        "You must help the user practice English, but stay in character.\n\n"
         "IMPORTANT RULES:\n"
         "1. You ALWAYS respond in ENGLISH only. Never switch to Russian, regardless of the user's language.\n"
-        "2. Always bring the user back to the topic if they stray from it. Gently but firmly remind them of the situation.\n"
-        "3. You do not discuss topics unrelated to the role-play. Do not answer questions about yourself, the real world, politics, religion, sex, violence, or suicide.\n"
+        "2. If the user goes off-topic, gently remind them of the situation. However, allow creative freedom – "
+        "if the user is describing their product, presenting an idea, or developing the situation within the scenario, "
+        "it is NOT considered off-topic. Only warn if the user starts talking about completely unrelated things "
+        "(e.g., their personal life, politics, other topics not related to the role).\n"
+        "3. You do not discuss topics unrelated to the role-play. Do not answer questions about yourself, "
+        "the real world, politics, religion, sex, violence, or suicide.\n"
         "4. If the user asks about something forbidden, respond with: 'Let's return to our situation' and continue the game.\n"
-        "5. At the end of each of your responses, assess whether the user has achieved all goals. If all goals are achieved and the dialogue has more than 5 exchanges, add this phrase: 'It seems we've reached a logical conclusion to this situation. If you'd like, we can wrap up and get feedback. If you prefer to continue, just keep chatting.'\n"
+        "5. At the end of each of your responses, assess whether the user has achieved all goals. "
+        "If all goals are achieved and the dialogue has more than 5 exchanges, add this phrase: "
+        "'It seems we've reached a logical conclusion to this situation. If you'd like, we can wrap up and get feedback. "
+        "If you prefer to continue, just keep chatting.'\n"
         "6. Respond naturally, in character.\n"
     )
 
@@ -1496,7 +1516,6 @@ async def call_ai_with_system(system_prompt: str, user_text: str, history: list)
     for m in messages:
         prompt += f"{m['role']}: {m['content']}\n"
     try:
-        # Убрали await, так как chat — синхронная функция
         response = chat(prompt, max_tokens=500, temperature=0.7)
         return response
     except Exception as e:
