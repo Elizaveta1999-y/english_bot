@@ -1,8 +1,9 @@
 import re
 import logging
 import os
+import random
 from aiogram import Router, F
-from aiogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery, ReplyKeyboardMarkup, KeyboardButton, ReplyKeyboardRemove, BufferedInputFile
+from aiogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery, ReplyKeyboardMarkup, KeyboardButton, ReplyKeyboardRemove
 from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import State, StatesGroup
 from data.users import get_user_state, set_user_state
@@ -41,7 +42,6 @@ CATEGORIES = [
     ("📰 News", "news")
 ]
 
-# ---------- ВСТАВЬТЕ СВОЙ ПОЛНЫЙ СЛОВАРЬ TOPICS ----------
 TOPICS = {
     "work": [
         {
@@ -1527,7 +1527,6 @@ async def cat_page_next(callback: CallbackQuery):
     cat_id = user_state.get("current_category")
     page = user_state.get("page", 0)
     if cat_id is None:
-        logger.error("Ошибка: current_category не найдена в состоянии")
         await callback.answer("Ошибка: категория не выбрана", show_alert=True)
         return
     page += 1
@@ -1540,7 +1539,6 @@ async def cat_page_prev(callback: CallbackQuery):
     cat_id = user_state.get("current_category")
     page = user_state.get("page", 0)
     if cat_id is None:
-        logger.error("Ошибка: current_category не найдена в состоянии")
         await callback.answer("Ошибка: категория не выбрана", show_alert=True)
         return
     page -= 1
@@ -1667,9 +1665,7 @@ async def topic_chosen(callback: CallbackQuery, state: FSMContext):
 
     await callback.message.edit_text(roleplay_info, parse_mode="HTML", reply_markup=back_button)
 
-    # ============================================================
-    # ГЕНЕРИРУЕМ ПЕРВУЮ РЕПЛИКУ ОТ ИИ (всегда текстом)
-    # ============================================================
+    # Первая реплика ИИ
     system_prompt = build_system_prompt(topic, description, goals)
     first_prompt = "You are the character. Start the conversation with a greeting and a question that invites the user to describe the product or situation. Respond naturally in English."
     first_response = await call_ai_with_system(system_prompt, first_prompt, [], max_tokens=400)
@@ -1693,7 +1689,6 @@ async def topic_chosen(callback: CallbackQuery, state: FSMContext):
         message_id=msg_id,
         reply_markup=keyboard_translate
     )
-    # Отправляем клавиатуру для управления диалогом (без лишнего текста)
     await callback.message.answer("", reply_markup=keyboard)
 
 @router.callback_query(F.data.startswith("back_to_topics_"))
@@ -1931,7 +1926,6 @@ async def handle_roleplay_text(message: Message, state: FSMContext):
     user_state["roleplay_history"] = history
     set_user_state(user_id, user_state)
 
-    # Отправляем ответ с кнопкой перевода
     sent_msg = await message.answer(ai_response, reply_markup=None)
     msg_id = sent_msg.message_id
     if user_id not in bot_texts:
@@ -1948,14 +1942,14 @@ async def handle_roleplay_text(message: Message, state: FSMContext):
     )
 
 # ============================================================
-# ОБРАБОТЧИКИ ДЛЯ КНОПОК ТЕКСТОВЫХ СООБЩЕНИЙ
+# ОБРАБОТЧИКИ КНОПОК ДЛЯ ТЕКСТОВЫХ СООБЩЕНИЙ
 # ============================================================
 @router.callback_query(lambda c: c.data.startswith("roleplay_text_translate_"))
 async def roleplay_text_translate(callback: CallbackQuery):
     try:
         parts = callback.data.split('_')
-        user_id = int(parts[2])
-        msg_id = int(parts[3])
+        user_id = int(parts[3])
+        msg_id = int(parts[4])
         user_texts = bot_texts.get(user_id)
         if not user_texts or msg_id not in user_texts:
             await callback.answer("Текст не найден.", show_alert=True)
@@ -1985,8 +1979,8 @@ async def roleplay_text_translate(callback: CallbackQuery):
 async def roleplay_text_original(callback: CallbackQuery):
     try:
         parts = callback.data.split('_')
-        user_id = int(parts[2])
-        msg_id = int(parts[3])
+        user_id = int(parts[3])
+        msg_id = int(parts[4])
         user_texts = bot_texts.get(user_id)
         if not user_texts or msg_id not in user_texts:
             await callback.answer("Текст не найден.", show_alert=True)
@@ -2010,9 +2004,8 @@ async def roleplay_text_original(callback: CallbackQuery):
 async def roleplay_text_hide(callback: CallbackQuery):
     try:
         parts = callback.data.split('_')
-        user_id = int(parts[2])
-        msg_id = int(parts[3])
-        # Скрываем текст – показываем пустое сообщение с кнопкой "Перевести"
+        user_id = int(parts[3])
+        msg_id = int(parts[4])
         keyboard = InlineKeyboardMarkup(inline_keyboard=[
             [InlineKeyboardButton(text="Перевести", callback_data=f"roleplay_text_translate_{user_id}_{msg_id}")]
         ])
