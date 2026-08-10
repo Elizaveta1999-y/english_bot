@@ -52,6 +52,8 @@ async def handle_voice(message: Message, state: FSMContext):
     current_state = await state.get_state()
     user_state = get_user_state(user_id)
 
+    logger.info(f"🔊 handle_voice: user={user_id}, state={current_state}, mode={user_state.get('mode')}")
+
     if current_state == GovorenieStates.waiting_voice.state:
         logger.info(f"Голосовое от {user_id} пропущено (режим говорение)")
         return
@@ -63,6 +65,13 @@ async def handle_voice(message: Message, state: FSMContext):
         (user_state.get("lesson_mode") == "thematic" and user_state.get("lesson_step") == "awaiting_answer")
     )
 
+    # ---------- FIX: если пользователь в speaking_active, но состояние сбилось ----------
+    if mode == "speaking_active" and current_state != SpeakingStates.waiting_for_voice:
+        logger.warning(f"Состояние сбилось: current_state={current_state}, принудительно устанавливаем SpeakingStates.waiting_for_voice")
+        await state.set_state(SpeakingStates.waiting_for_voice)
+        current_state = SpeakingStates.waiting_for_voice
+
+    # ---------- ИГНОРИРУЕМ, ЕСЛИ НЕ В АКТИВНОМ РЕЖИМЕ ----------
     if mode not in ("speaking_active", "roleplay_active") and not is_lesson_active:
         logger.info(f"Голосовое от {user_id} игнорируется (не в активном режиме, mode={mode})")
         if mode == "" and user_state.get("pending_feedback"):
