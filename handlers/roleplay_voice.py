@@ -10,7 +10,7 @@ from speaking.services.stt import voice_to_text
 from speaking.services.tts import text_to_voice
 from handlers.voice import convert_to_opus, bot_texts
 from services.deepseek import chat
-from handlers.roleplay import build_system_prompt, call_ai_with_system, is_forbidden, is_cyrillic
+from handlers.roleplay import build_system_prompt, call_ai_with_system, is_forbidden, is_cyrillic, RoleplayStates
 
 logger = logging.getLogger(__name__)
 router = Router()
@@ -28,12 +28,17 @@ def truncate_for_tts(text: str, max_len: int = MAX_TTS_LENGTH) -> str:
         return truncated[:last_space] + '...'
     return truncated + '...'
 
-@router.message(F.voice | F.audio)
+# ============================================================
+# Обработчик голосовых сообщений только для ролевой игры
+# ============================================================
+@router.message(F.voice | F.audio, RoleplayStates.active)
 async def roleplay_voice_handler(message: Message, state: FSMContext):
     user_id = message.from_user.id
     user_state = get_user_state(user_id)
 
+    # Дополнительная проверка на случай, если состояние изменилось
     if user_state.get("mode") != "roleplay_active":
+        logger.info(f"Голосовое от {user_id} проигнорировано (mode != roleplay_active)")
         return
 
     logger.info(f"Голосовое в ролевой игре от {user_id}")
@@ -75,7 +80,7 @@ async def roleplay_voice_handler(message: Message, state: FSMContext):
     system_prompt = build_system_prompt(topic, description, goals)
     history = user_state.get("roleplay_history", [])
 
-    # Голосовые – ещё короче (max_tokens=250)
+    # Голосовые – короткие (max_tokens=250)
     ai_response = await call_ai_with_system(system_prompt, text, history, max_tokens=250)
 
     history.append({"role": "user", "text": text})
@@ -94,7 +99,7 @@ async def roleplay_voice_handler(message: Message, state: FSMContext):
 
     await message.bot.send_chat_action(chat_id=message.chat.id, action="record_voice")
 
-    # Увеличенная скорость: speed=1.15
+    # Увеличенная скорость
     voice_path = await text_to_voice(tts_text, voice_id=voice_id, speed=1.15)
     if voice_path and os.path.exists(voice_path):
         try:
