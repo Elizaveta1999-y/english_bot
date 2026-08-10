@@ -49,39 +49,42 @@ async def handle_voice(message: Message, state: FSMContext):
     chat_id = message.chat.id
     bot = message.bot
 
-    current_state = await state.get_state()
     user_state = get_user_state(user_id)
+    mode = user_state.get("mode")
 
-    logger.info(f"🔊 handle_voice: user={user_id}, state={current_state}, mode={user_state.get('mode')}")
+    logger.info(f"🔊 handle_voice: user={user_id}, mode={mode}")
 
+    # ---------- ИГНОРИРУЕМ ГОЛОСОВЫЕ В РЕЖИМЕ ГОВОРЕНИЯ ----------
+    current_state = await state.get_state()
     if current_state == GovorenieStates.waiting_voice.state:
         logger.info(f"Голосовое от {user_id} пропущено (режим говорение)")
         return
 
-    mode = user_state.get("mode")
+    # ---------- ЕСЛИ НЕ В SPEAKING И НЕ В РОЛЕВОЙ ИГРЕ И НЕ В УРОКЕ ----------
     is_lesson_active = (
         user_state.get("practice_lesson_key") or
         user_state.get("lesson_qa", {}).get("active") or
         (user_state.get("lesson_mode") == "thematic" and user_state.get("lesson_step") == "awaiting_answer")
     )
 
-    # ---------- FIX: если пользователь в speaking_active, но состояние сбилось ----------
-    if mode == "speaking_active" and current_state != SpeakingStates.waiting_for_voice:
-        logger.warning(f"Состояние сбилось: current_state={current_state}, принудительно устанавливаем SpeakingStates.waiting_for_voice")
-        await state.set_state(SpeakingStates.waiting_for_voice)
-        current_state = SpeakingStates.waiting_for_voice
-
-    # ---------- ИГНОРИРУЕМ, ЕСЛИ НЕ В АКТИВНОМ РЕЖИМЕ ----------
     if mode not in ("speaking_active", "roleplay_active") and not is_lesson_active:
         logger.info(f"Голосовое от {user_id} игнорируется (не в активном режиме, mode={mode})")
         if mode == "" and user_state.get("pending_feedback"):
             await message.answer("Вы уже получили фидбек. Начните новый диалог, нажав 'Speaking' в главном меню.")
         return
 
-    # ---------- БЛОК SPEAKING ----------
-    if current_state == SpeakingStates.waiting_for_voice:
+    # ---------- БЛОК SPEAKING (ОБРАБАТЫВАЕМ ЛЮБОЕ ГОЛОСОВОЕ, ЕСЛИ mode == speaking_active) ----------
+    if mode == "speaking_active":
+        logger.info(f"🔊 Обработка голосового в режиме Speaking для user {user_id}")
+        
+        # Принудительно устанавливаем состояние, если нужно
+        if current_state != SpeakingStates.waiting_for_voice:
+            await state.set_state(SpeakingStates.waiting_for_voice)
+            current_state = SpeakingStates.waiting_for_voice
+
         await bot.send_chat_action(chat_id=chat_id, action="record_voice")
 
+        # Обновляем режим (на всякий случай)
         if user_state.get("mode") != "speaking_active":
             user_state["mode"] = "speaking_active"
             set_user_state(user_id, user_state)
@@ -176,93 +179,22 @@ async def handle_voice(message: Message, state: FSMContext):
         await state.set_state(SpeakingStates.waiting_for_voice)
         return
 
-    # ---------- ОСТАЛЬНЫЕ РЕЖИМЫ ----------
-    await bot.send_chat_action(chat_id=chat_id, action="record_voice")
-
-    file = await bot.get_file(message.voice.file_id)
-    file_bytes = await bot.download_file(file.file_path)
-    user_text = await voice_to_text(file_bytes.read())
-    if not user_text:
-        await message.answer("Не понял, повторите.")
-        return
-
-    words = user_text.split()
-    if len(words) > 500:
-        user_text = ' '.join(words[:500])
-
-    if user_state.get("practice_lesson_key"):
-        lesson_key = user_state["practice_lesson_key"]
-        practice = user_state.get("practice", {}).get(lesson_key)
-        if practice:
-            task_idx = practice.get("session_index", 0)
-            tasks = practice.get("tasks", [])
-            if task_idx >= len(tasks):
-                await show_practice_task(message, user_id, edit=False)
-                return
-
-            task = tasks[task_idx]
-            subtasks = task.get("subtasks", [])
-            if not subtasks:
-                await message.answer("Ошибка: нет подзаданий")
-                return
-
-            user_answers = parse_user_answers(user_text.strip(), len(subtasks))
-            while len(user_answers) < len(subtasks):
-                user_answers.append("")
-
-            correct_count = 0
-            wrong_list = []
-            for i, subtask in enumerate(subtasks):
-                user_ans = user_answers[i].strip() if i < len(user_answers) else ""
-                correct = subtask.get("answer", "").strip()
-                if user_ans.lower() == correct.lower():
-                    correct_count += 1
-                else:
-                    wrong_list.append({
-                        "question": subtask.get("question", ""),
-                        "your": user_ans if user_ans else "(пусто)",
-                        "correct": correct
-                    })
-
-            practice["session_correct"] += correct_count
-            practice["session_index"] += 1
-            set_user_state(user_id, user_state)
-
-            if not wrong_list:
-                await message.answer(f"✅ Отлично! Все {len(subtasks)} ответов верны!")
-            else:
-                summary = f"❌ Правильно: {correct_count} из {len(subtasks)}\n\n"
-                for w in wrong_list:
-                    summary += f"• {w['question']}\n   Ваш ответ: {w['your']} → правильно: {w['correct']}\n\n"
-                await message.answer(summary)
-
-            if practice["session_index"] >= len(tasks):
-                await show_practice_task(message, user_id, edit=False)
-            else:
-                await show_practice_task(message, user_id, edit=False)
-            return
-
-    if user_state.get("lesson_qa", {}).get("active"):
-        from handlers.lessons import process_lesson_question
-        await process_lesson_question(user_id, user_text, message.bot, message.chat.id)
-        return
-
-    if user_state.get("lesson_mode") == "thematic" and user_state.get("lesson_step") == "awaiting_answer":
-        from handlers.lesson_utils import check_answer
-        task = user_state.get("lesson_task")
-        if task:
-            feedback = await check_answer(user_text, task)
-            keyboard = InlineKeyboardMarkup(inline_keyboard=[
-                [InlineKeyboardButton(text="🔄 Попробовать ещё раз", callback_data="retry_lesson")],
-                [InlineKeyboardButton(text="📝 Следующее задание", callback_data="next_task")],
-                [InlineKeyboardButton(text="❌ Завершить", callback_data="exit_lesson")]
-            ])
-            await message.answer(f"📊 Результат:\n\n{feedback}", reply_markup=keyboard)
-            user_state["lesson_step"] = "feedback_shown"
-            set_user_state(user_id, user_state)
-            return
-
+    # ---------- РОЛЕВАЯ ИГРА ----------
     if mode == "roleplay_active":
+        logger.info(f"🔊 Обработка голосового в режиме Roleplay для user {user_id}")
+        await bot.send_chat_action(chat_id=chat_id, action="record_voice")
+
+        file = await bot.get_file(message.voice.file_id)
+        file_bytes = await bot.download_file(file.file_path)
+        user_text = await voice_to_text(file_bytes.read())
+        if not user_text:
+            await message.answer("Не понял, повторите.")
+            return
+
+        words = user_text.split()
+        if len(words) > 500:
+            user_text = ' '.join(words[:500])
+
         roleplay_history = user_state.get("roleplay_history", [])
         try:
             ai_response = await process_roleplay_message(user_id, user_text, roleplay_history)
@@ -318,4 +250,97 @@ async def handle_voice(message: Message, state: FSMContext):
         await message.answer(ai_response)
         return
 
-    logger.info(f"Голосовое от {user_id} не обработано (неизвестный режим)")
+    # ---------- УРОКИ ----------
+    if is_lesson_active:
+        logger.info(f"🔊 Обработка голосового в режиме урока для user {user_id}")
+        await bot.send_chat_action(chat_id=chat_id, action="record_voice")
+
+        file = await bot.get_file(message.voice.file_id)
+        file_bytes = await bot.download_file(file.file_path)
+        user_text = await voice_to_text(file_bytes.read())
+        if not user_text:
+            await message.answer("Не понял, повторите.")
+            return
+
+        words = user_text.split()
+        if len(words) > 500:
+            user_text = ' '.join(words[:500])
+
+        if user_state.get("practice_lesson_key"):
+            lesson_key = user_state["practice_lesson_key"]
+            practice = user_state.get("practice", {}).get(lesson_key)
+            if practice:
+                task_idx = practice.get("session_index", 0)
+                tasks = practice.get("tasks", [])
+                if task_idx >= len(tasks):
+                    await show_practice_task(message, user_id, edit=False)
+                    return
+
+                task = tasks[task_idx]
+                subtasks = task.get("subtasks", [])
+                if not subtasks:
+                    await message.answer("Ошибка: нет подзаданий")
+                    return
+
+                user_answers = parse_user_answers(user_text.strip(), len(subtasks))
+                while len(user_answers) < len(subtasks):
+                    user_answers.append("")
+
+                correct_count = 0
+                wrong_list = []
+                for i, subtask in enumerate(subtasks):
+                    user_ans = user_answers[i].strip() if i < len(user_answers) else ""
+                    correct = subtask.get("answer", "").strip()
+                    if user_ans.lower() == correct.lower():
+                        correct_count += 1
+                    else:
+                        wrong_list.append({
+                            "question": subtask.get("question", ""),
+                            "your": user_ans if user_ans else "(пусто)",
+                            "correct": correct
+                        })
+
+                practice["session_correct"] += correct_count
+                practice["session_index"] += 1
+                set_user_state(user_id, user_state)
+
+                if not wrong_list:
+                    await message.answer(f"✅ Отлично! Все {len(subtasks)} ответов верны!")
+                else:
+                    summary = f"❌ Правильно: {correct_count} из {len(subtasks)}\n\n"
+                    for w in wrong_list:
+                        summary += f"• {w['question']}\n   Ваш ответ: {w['your']} → правильно: {w['correct']}\n\n"
+                    await message.answer(summary)
+
+                if practice["session_index"] >= len(tasks):
+                    await show_practice_task(message, user_id, edit=False)
+                else:
+                    await show_practice_task(message, user_id, edit=False)
+                return
+
+        if user_state.get("lesson_qa", {}).get("active"):
+            from handlers.lessons import process_lesson_question
+            await process_lesson_question(user_id, user_text, message.bot, message.chat.id)
+            return
+
+        if user_state.get("lesson_mode") == "thematic" and user_state.get("lesson_step") == "awaiting_answer":
+            from handlers.lesson_utils import check_answer
+            task = user_state.get("lesson_task")
+            if task:
+                feedback = await check_answer(user_text, task)
+                keyboard = InlineKeyboardMarkup(inline_keyboard=[
+                    [InlineKeyboardButton(text="🔄 Попробовать ещё раз", callback_data="retry_lesson")],
+                    [InlineKeyboardButton(text="📝 Следующее задание", callback_data="next_task")],
+                    [InlineKeyboardButton(text="❌ Завершить", callback_data="exit_lesson")]
+                ])
+                await message.answer(f"📊 Результат:\n\n{feedback}", reply_markup=keyboard)
+                user_state["lesson_step"] = "feedback_shown"
+                set_user_state(user_id, user_state)
+                return
+
+        # Если ничего не подошло из уроков – логируем
+        logger.info(f"Голосовое от {user_id} в режиме урока не обработано (неизвестный тип урока)")
+        return
+
+    # ---------- ЕСЛИ НИЧЕГО НЕ ПОДОШЛО ----------
+    logger.info(f"Голосовое от {user_id} не обработано (неизвестный режим или ошибка)")
