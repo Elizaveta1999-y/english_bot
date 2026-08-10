@@ -294,7 +294,6 @@ async def handle_speaking_text(message: Message, state: FSMContext):
 async def handle_media_in_speaking(message: Message, state: FSMContext):
     await message.answer("Запишите и отправьте голосовое сообщение.")
 
-# ---------- ИСПРАВЛЕННЫЕ ХЕНДЛЕРЫ "НАЗАД" и "ГЛАВНОЕ МЕНЮ" ----------
 @router.callback_query(F.data == "back_to_main")
 async def back_to_main(callback: CallbackQuery, state: FSMContext):
     await callback.answer()
@@ -303,13 +302,7 @@ async def back_to_main(callback: CallbackQuery, state: FSMContext):
     user_state["mode"] = ""
     set_user_state(user_id, user_state)
     await state.clear()
-    # Используем существующую функцию show_main_menu с edit=True
     await show_main_menu(callback.message, edit=True)
-
-@router.callback_query(F.data == "back_to_main_from_feedback")
-async def back_to_main_from_feedback(callback: CallbackQuery, state: FSMContext):
-    # Если такой хендлер вызывается, просто перенаправляем
-    await back_to_main(callback, state)
 
 @router.callback_query(F.data == "continue_speaking")
 async def continue_speaking(callback: CallbackQuery, state: FSMContext):
@@ -356,7 +349,7 @@ async def translate_text(callback: CallbackQuery):
             await callback.answer("Нет текста.", show_alert=True)
             return
         text = bot_response["text"]
-        translation = chat(f"Переведи на русский: {text}", max_tokens=200, temperature=0.3)
+        translation = chat(f"Переведи на русский: {text}", max_tokens=600, temperature=0.3)
         keyboard = InlineKeyboardMarkup(inline_keyboard=[
             [InlineKeyboardButton(text="US", callback_data=f"show_original_{user_id}"),
              InlineKeyboardButton(text="Скрыть", callback_data=f"hide_text_{user_id}")]
