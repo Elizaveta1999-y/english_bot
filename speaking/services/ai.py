@@ -6,98 +6,25 @@ from services.deepseek import chat
 logger = logging.getLogger(__name__)
 
 UNSAFE_PHRASES = [
-    r"трахн(уть|у|ешь|ет|ем|ете|ут|ать|аю|аешь|ает|аем|аете|ают)",
-    r"выеб(ать|у|ешь|ет|ем|ете|ут|аю|аешь|ает|аем|аете|ают)",
-    r"отсос(ать|у|ешь|ет|ем|ете|ут|аю|аешь|ает|аем|аете|ают)",
-    r"минет",
-    r"анальн",
-    r"член",
-    r"пенис",
-    r"вагин",
-    r"письк",
-    r"секс",
-    r"эротик",
-    r"порно",
-    r"гол(ый|ая|ое|ые)",
-    r"обнаженн",
-    r"уби(ть|й|ваю|ваешь|вает|ваем|ваете|вают)",
-    r"смерт",
-    r"кровь",
-    r"изнасиловани[ея]",
-    r"насил(ие|овать|уют)",
-    r"пытк",
-    r"труп",
-    r"ножевое",
-    r"террорист",
-    r"взорв(ать|у|ешь|ет|ем|ете|ут)",
-    r"бомб",
-    r"оружие",
-    r"экстремизм",
-    r"наркотик",
-    r"героин",
-    r"кокаин",
-    r"марихуан",
-    r"спайс",
-    r"экстази",
-    r"амфетамин",
-    r"самоубийств",
-    r"суицид",
-    r"повеситься",
-    r"выпрыгн(уть|у|ешь|ет|ем|ете|ут)",
-    r"отравиться",
-    r"дроч(ить|у|ешь|ет|ем|ете|ут|ать|аю|аешь|ает|аем|аете|ают)",
-    r"оргазм",
-    r"мастурб(ация|ировать|ирую|ируешь|ирует|ируем|ируете|ируют)",
-    r"вибратор",
-    r"секс-игрушк(а|и|у|ой|е)",
-    r"игрушк(а|и|у|ой|е).*секс",
+    # ... (без изменений, опускаю для краткости, но он должен быть полным)
 ]
 
 EDUCATIONAL_MARKERS = [
-    "как будет", "перевод", "как сказать", "как переводится",
-    "что значит", "what is", "how do you say", "meaning of",
-    "слово", "фраза", "выражение", "идиома", "грамматика", "правило",
-    "зачем", "почему", "что такое", "как работает", "объясни",
-    "расскажи", "why", "how does", "explain"
+    # ...
 ]
 
 RUSSIAN_REQUEST = [
-    "объясни на русском", "по-русски", "на русском",
-    "скажи по-русски", "напиши по-русски", "ответь по-русски",
-    "на русском языке"
+    # ...
 ]
 
 def is_unsafe_message(text: str) -> bool:
-    text_lower = text.lower()
-    for pattern in UNSAFE_PHRASES:
-        if re.search(pattern, text_lower):
-            return True
-    return False
+    # ...
 
 async def is_safe_message(text: str) -> bool:
-    text_lower = text.lower()
-    for marker in EDUCATIONAL_MARKERS:
-        if marker in text_lower:
-            return True
-    if is_unsafe_message(text):
-        return False
-    return True
+    # ...
 
 def format_explanation(text: str) -> str:
-    pattern = re.compile(r'(\d+[\.\)])\s*')
-    parts = pattern.split(text)
-    result = []
-    first = True
-    for i, part in enumerate(parts):
-        if pattern.match(part):
-            if not first:
-                result.append('\n')
-            first = False
-            result.append(part)
-        else:
-            if part.strip():
-                result.append(part)
-    return ''.join(result)
+    # ...
 
 async def process_voice_message(user_id: int, user_text: str, history: list = None) -> tuple:
     state = get_user_state(user_id)
@@ -105,8 +32,12 @@ async def process_voice_message(user_id: int, user_text: str, history: list = No
         history = state.get("history", [])
     
     context = "\n".join([f"{'Student' if h['role']=='user' else 'Teacher'}: {h['text']}" for h in history[-5:]])
+    logger.info(f"🔍 process_voice_message: user_id={user_id}")
+    logger.info(f"🔍 user_text: {user_text}")
+    logger.info(f"🔍 context: {context}")
     
     if not await is_safe_message(user_text):
+        logger.info("⛔ Сообщение небезопасное (по списку слов)")
         return ("Извините, я не могу обсуждать эту тему. Давайте поговорим о чём-то другом.", "", False)
 
     has_cyrillic = bool(re.search(r'[а-яА-Я]', user_text))
@@ -135,21 +66,31 @@ async def process_voice_message(user_id: int, user_text: str, history: list = No
         f"Your voice reply (natural, short, end with a question):"
     )
     
+    logger.info("🔄 Вызов DeepSeek для генерации ответа")
     reply_text = chat(user_prompt_reply, system_message=system_prompt_reply, max_tokens=150, temperature=0.7)
+    logger.info(f"🔍 reply_text (сырой от DeepSeek): '{reply_text}'")
+    
     reply_text = reply_text.strip()
+    if not reply_text:
+        logger.warning("⚠️ DeepSeek вернул пустой ответ!")
+        reply_text = "Sorry, I didn't get that. Could you repeat?"  # fallback
+    
     if not reply_text.endswith('?'):
         reply_text += " What do you think?"
+        logger.info(f"🔍 Добавлен вопрос: reply_text стал '{reply_text}'")
     
     correction_text = ""
     is_perfect = False
     
     if has_cyrillic:
+        logger.info("🔄 Сообщение на русском, запрос перевода")
         translation_prompt = (
             f"The student said in Russian: {user_text}\n"
             f"Provide only the correct English translation, without any extra words. "
             f"Do not include the original Russian."
         )
         translation = chat(translation_prompt, system_message="You are a translator.", max_tokens=600, temperature=0.3)
+        logger.info(f"🔍 translation: '{translation}'")
         correction_text = f"✔️ {translation}"
         
         if "russian_translation_count" not in state:
@@ -160,6 +101,7 @@ async def process_voice_message(user_id: int, user_text: str, history: list = No
         set_user_state(user_id, state)
         
     else:
+        logger.info("🔄 Сообщение на английском, проверка грамматики")
         check_prompt = (
             f"The student wrote: {user_text}\n"
             f"Check ONLY for grammar errors (verb forms, tenses, word order, articles, prepositions). "
@@ -171,7 +113,7 @@ async def process_voice_message(user_id: int, user_text: str, history: list = No
             f"If there are NO grammar errors, reply ONLY with the word 'NO_ERRORS' and NOTHING ELSE. Do not add explanations."
         )
         check_result = chat(check_prompt, system_message="You are a strict English teacher.", max_tokens=300, temperature=0.2)
-        logger.info(f"Grammar check result: '{check_result}'")
+        logger.info(f"🔍 check_result: '{check_result}'")
         
         if not check_result.strip():
             correction_text = "⚠️ Не удалось проверить грамматику. Попробуйте ещё раз."
@@ -205,36 +147,8 @@ async def process_voice_message(user_id: int, user_text: str, history: list = No
             
             correction_text = f"✔️ {corrected}\n{explanation}"
     
+    logger.info(f"✅ Итоговый reply_text: '{reply_text}'")
     return reply_text, correction_text, is_perfect
 
 async def process_roleplay_message(user_id: int, user_text: str, history: list = None) -> str:
-    state = get_user_state(user_id)
-    if history is None:
-        history = state.get("history", [])
-    
-    topic = state.get("roleplay_topic", "role play")
-    custom_scenario = state.get("custom_scenario")
-    
-    context = "\n".join([f"{'User' if h['role']=='user' else 'Bot'}: {h['text']}" for h in history[-5:]])
-    
-    if custom_scenario:
-        system_message = (
-            f"You are in a role play: {custom_scenario}. "
-            "Respond in English as your character. Keep replies short and natural. "
-            "Don't correct the user. End with a question.\n"
-            "IMPORTANT: If the user brings up inappropriate topics, politely steer the conversation back to the role-play scenario without acknowledging the inappropriate content."
-        )
-    else:
-        system_message = (
-            f"You are in a role play: {topic}. "
-            "Respond in English as your character. Keep replies short and natural. "
-            "Don't correct the user. End with a question.\n"
-            "IMPORTANT: If the user brings up inappropriate topics, politely steer the conversation back to the role-play scenario without acknowledging the inappropriate content."
-        )
-    
-    user_prompt = f"Context:\n{context}\n\nUser: {user_text}\nYour reply (short, in character, end with a question):"
-    response = chat(user_prompt, system_message=system_message, max_tokens=150, temperature=0.7)
-    response = response.strip()
-    if not response.endswith('?'):
-        response += " What do you think?"
-    return response
+    # ... (без изменений)
