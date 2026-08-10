@@ -16,13 +16,12 @@ def chat(prompt: str, system_message: str = None, max_tokens: int = 800, tempera
         "Content-Type": "application/json"
     }
 
-    payload = {
-        "model": "deepseek-v4-flash",
-        "messages": messages,
-        "max_tokens": max_tokens,
-        "temperature": temperature
-    }
-
+payload = {
+    "model": "deepseek-chat",  # <-- поменяй обратно
+    "messages": messages,
+    "max_tokens": max_tokens,
+    "temperature": temperature
+}
     for attempt in range(retries + 1):
         try:
             response = requests.post(DEEPSEEK_API_URL, headers=headers, json=payload, timeout=30)
