@@ -17,7 +17,7 @@ def chat(prompt: str, system_message: str = None, max_tokens: int = 800, tempera
     }
 
     payload = {
-        "model": "deepseek-chat",
+        "model": "deepseek-v4-flash",
         "messages": messages,
         "max_tokens": max_tokens,
         "temperature": temperature
