@@ -10,7 +10,7 @@ from speaking.services.stt import voice_to_text
 from speaking.services.tts import text_to_voice
 from handlers.voice import convert_to_opus, bot_texts
 from services.deepseek import chat
-from handlers.roleplay import build_system_prompt, call_ai_with_system, is_forbidden, is_cyrillic, RoleplayStates
+from handlers.roleplay import build_system_prompt, call_ai_with_system, is_forbidden, is_cyrillic, RoleplayStates, process_ai_response, send_goal_completion_message
 
 logger = logging.getLogger(__name__)
 router = Router()
@@ -29,7 +29,7 @@ def truncate_for_tts(text: str, max_len: int = MAX_TTS_LENGTH) -> str:
     return truncated + '...'
 
 # ============================================================
-# Обработчик голосовых сообщений только для ролевой игры
+# ОБРАБОТЧИК ГОЛОСОВЫХ СООБЩЕНИЙ
 # ============================================================
 @router.message(F.voice | F.audio, RoleplayStates.active)
 async def roleplay_voice_handler(message: Message, state: FSMContext):
@@ -37,7 +37,6 @@ async def roleplay_voice_handler(message: Message, state: FSMContext):
     user_state = get_user_state(user_id)
 
     if user_state.get("mode") != "roleplay_active":
-        logger.info(f"Голосовое от {user_id} проигнорировано (mode != roleplay_active)")
         return
 
     logger.info(f"Голосовое в ролевой игре от {user_id}")
@@ -81,8 +80,11 @@ async def roleplay_voice_handler(message: Message, state: FSMContext):
 
     ai_response = await call_ai_with_system(system_prompt, text, history, max_tokens=250)
 
+    # Обрабатываем маркер GOALS_ACHIEVED
+    ai_response_clean, goals_achieved = process_ai_response(ai_response)
+
     history.append({"role": "user", "text": text})
-    history.append({"role": "assistant", "text": ai_response})
+    history.append({"role": "assistant", "text": ai_response_clean})
     if len(history) > 20:
         history = history[-20:]
     user_state["roleplay_history"] = history
@@ -93,7 +95,7 @@ async def roleplay_voice_handler(message: Message, state: FSMContext):
 
     # Случайный голос
     voice_id = random.choice([WOMAN_VOICE_ID, MAN_VOICE_ID])
-    tts_text = truncate_for_tts(ai_response)
+    tts_text = truncate_for_tts(ai_response_clean)
 
     await message.bot.send_chat_action(chat_id=message.chat.id, action="record_voice")
 
@@ -117,7 +119,7 @@ async def roleplay_voice_handler(message: Message, state: FSMContext):
             msg_id = sent.message_id
             if user_id not in bot_texts:
                 bot_texts[user_id] = {}
-            bot_texts[user_id][msg_id] = {"text": ai_response, "translation": None}
+            bot_texts[user_id][msg_id] = {"text": ai_response_clean, "translation": None}
             keyboard = InlineKeyboardMarkup(inline_keyboard=[
                 [InlineKeyboardButton(text="Текст", callback_data=f"roleplay_voice_show_text_{user_id}_{msg_id}")]
             ])
@@ -129,28 +131,46 @@ async def roleplay_voice_handler(message: Message, state: FSMContext):
             )
             os.unlink(voice_path)
             os.unlink(ogg_path)
-            return
         except Exception as e:
             logger.error(f"Audio error in roleplay_voice: {e}")
             # Если голос не удался – отправляем текст
-            await message.answer(ai_response)
+            sent_msg = await message.answer(ai_response_clean)
+            msg_id = sent_msg.message_id
+            if user_id not in bot_texts:
+                bot_texts[user_id] = {}
+            bot_texts[user_id][msg_id] = {"text": ai_response_clean, "translation": None}
+            keyboard = InlineKeyboardMarkup(inline_keyboard=[
+                [InlineKeyboardButton(text="Перевести", callback_data=f"roleplay_voice_translate_{user_id}_{msg_id}")]
+            ])
+            await message.bot.edit_message_text(
+                ai_response_clean,
+                chat_id=message.chat.id,
+                message_id=msg_id,
+                reply_markup=keyboard
+            )
             return
+    else:
+        # Если голос не удался, отправляем текстом
+        sent_msg = await message.answer(ai_response_clean)
+        msg_id = sent_msg.message_id
+        if user_id not in bot_texts:
+            bot_texts[user_id] = {}
+        bot_texts[user_id][msg_id] = {"text": ai_response_clean, "translation": None}
+        keyboard = InlineKeyboardMarkup(inline_keyboard=[
+            [InlineKeyboardButton(text="Перевести", callback_data=f"roleplay_voice_translate_{user_id}_{msg_id}")]
+        ])
+        await message.bot.edit_message_text(
+            ai_response_clean,
+            chat_id=message.chat.id,
+            message_id=msg_id,
+            reply_markup=keyboard
+        )
 
-    # Если голос не удался, отправляем текстом
-    sent_text = await message.answer(ai_response)
-    msg_id = sent_text.message_id
-    if user_id not in bot_texts:
-        bot_texts[user_id] = {}
-    bot_texts[user_id][msg_id] = {"text": ai_response, "translation": None}
-    keyboard = InlineKeyboardMarkup(inline_keyboard=[
-        [InlineKeyboardButton(text="Перевести", callback_data=f"roleplay_voice_translate_{user_id}_{msg_id}")]
-    ])
-    await message.bot.edit_message_text(
-        ai_response,
-        chat_id=message.chat.id,
-        message_id=msg_id,
-        reply_markup=keyboard
-    )
+    # Если цели достигнуты и пользователь не игнорировал предложение
+    if goals_achieved and not user_state.get("roleplay_goal_ignored", False):
+        await send_goal_completion_message(message, user_id, user_state, state, message.bot)
+    elif goals_achieved and user_state.get("roleplay_goal_ignored", False):
+        pass  # не напоминаем
 
 # ============================================================
 # ОБРАБОТЧИКИ КНОПОК ДЛЯ ГОЛОСОВЫХ
