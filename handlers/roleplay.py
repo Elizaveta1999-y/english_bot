@@ -10,6 +10,8 @@ from data.users import get_user_state, set_user_state
 from services.deepseek import chat
 from speaking.services.stt import voice_to_text
 from handlers.voice import bot_texts
+# ВАЖНО: импортируем show_main_menu из handlers.start
+from handlers.start import show_main_menu
 
 logger = logging.getLogger(__name__)
 router = Router()
@@ -1473,7 +1475,7 @@ def is_forbidden(text: str) -> bool:
     return False
 
 # ============================================================
-# СИСТЕМНЫЙ ПРОМПТ (исправлен)
+# СИСТЕМНЫЙ ПРОМПТ
 # ============================================================
 def build_system_prompt(topic: str, description: str, goals: list) -> str:
     goals_text = "\n".join([f"{i+1}. {g}" for i, g in enumerate(goals)])
@@ -1559,7 +1561,7 @@ async def goal_continue(callback: CallbackQuery, state: FSMContext):
     user_state["roleplay_goal_ignored"] = True
     set_user_state(user_id, user_state)
     await callback.message.edit_reply_markup(reply_markup=None)
-    await callback.message.answer("Продолжаем диалог. Постарайтесь достичь всех целей!")
+    await callback.message.answer("Продолжаем общение!")
 
 # ============================================================
 # MIDDLEWARE ДЛЯ ВЫХОДА ИЗ РОЛЕВОЙ ИГРЫ ПО КОМАНДАМ
@@ -1582,14 +1584,17 @@ async def close_roleplay_on_exit(handler, event, data):
 
     should_close = False
 
-    # Проверяем только команды (начинающиеся с /) и кнопку "Главное меню" в игре
+    # Проверяем команды и кнопку "Главное меню"
     if hasattr(event, 'text') and isinstance(event.text, str):
         if event.text.startswith('/') or event.text == "🏠 Главное меню":
             should_close = True
     elif hasattr(event, 'data') and isinstance(event.data, str):
-        # Для callback'ов проверяем только те, которые завершают игру (например, back_to_main)
-        if event.data == "back_to_main" or event.data == "back_to_main_menu":
+        if event.data == "back_to_main":  # только для завершения из игры
             should_close = True
+        else:
+            should_close = False
+    else:
+        should_close = False
 
     if data.get("skip_exit_message"):
         should_close = False
@@ -1849,15 +1854,14 @@ async def back_to_rp_categories(callback: CallbackQuery, state: FSMContext):
 # ОБРАБОТЧИК ДЛЯ КНОПКИ "НАЗАД В ГЛАВНОЕ МЕНЮ" ИЗ КАТЕГОРИЙ
 # ============================================================
 @router.callback_query(F.data == "back_to_main_menu_from_categories")
-async def back_to_main_menu_from_categories(callback: CallbackQuery, state: FSMContext):
-    # Удаляем сообщение с категориями и показываем главное меню в этом же сообщении
-    from handlers.start import show_main_menu
-    await callback.message.delete()  # удаляем текущее
+async def back_to_main_menu_from_categories(callback: CallbackQuery):
+    # Удаляем сообщение с категориями и показываем главное меню
+    await callback.message.delete()
     await show_main_menu(callback.message, edit=False, remove_keyboard=True)
     await callback.answer()
 
 # ============================================================
-# ОБРАБОТЧИК КНОПКИ "ЗАВЕРШИТЬ ДИАЛОГ" (с проверкой кол-ва сообщений)
+# ОБРАБОТЧИК КНОПКИ "ЗАВЕРШИТЬ ДИАЛОГ"
 # ============================================================
 @router.message(RoleplayStates.active, F.text == "📊 Завершить диалог")
 async def finish_roleplay(message: Message, state: FSMContext):
@@ -1921,7 +1925,7 @@ async def finish_anyway(callback: CallbackQuery, state: FSMContext):
     await callback.answer()
 
 # ============================================================
-# ГЕНЕРАЦИЯ ФИДБЕКА (с отдельным обработчиком для главного меню)
+# ГЕНЕРАЦИЯ ФИДБЕКА
 # ============================================================
 async def generate_feedback(message: Message, state: FSMContext, user_id: int, user_state: dict):
     history = user_state.get("roleplay_history", [])
@@ -2011,18 +2015,70 @@ async def generate_feedback(message: Message, state: FSMContext, user_id: int, u
     await message.answer("Ролевая игра завершена.", reply_markup=ReplyKeyboardRemove())
 
 # ============================================================
-# ОБРАБОТЧИК ДЛЯ КНОПКИ "ГЛАВНОЕ МЕНЮ" ПОСЛЕ ФИДБЕКА (исправлен)
+# ОБРАБОТЧИК ДЛЯ КНОПКИ "ГЛАВНОЕ МЕНЮ" ПОСЛЕ ФИДБЕКА
 # ============================================================
 @router.callback_query(F.data == "back_to_main_menu_after_feedback")
 async def back_to_main_menu_after_feedback(callback: CallbackQuery):
-    # Показываем главное меню новым сообщением, не трогая фидбек
     await callback.answer()
-    from handlers.start import show_main_menu
     await show_main_menu(callback.message, edit=False, remove_keyboard=True)
-    # Не удаляем сообщение с фидбеком
 
 # ============================================================
-# ОСНОВНОЙ ОБРАБОТЧИК ТЕКСТОВЫХ СООБЩЕНИЙ
+# ОБРАБОТЧИКИ ДЛЯ ТОЧНЫХ КОМАНД (должны быть ПЕРЕД общим обработчиком текста)
+# ============================================================
+@router.message(RoleplayStates.active, F.text == "💡 Что ответить?")
+async def give_hint(message: Message, state: FSMContext):
+    user_id = message.from_user.id
+    user_state = get_user_state(user_id)
+    history = user_state.get("roleplay_history", [])
+    if not history:
+        await message.answer("Вы ещё не начали диалог. Начните разговор, чтобы получить подсказку.")
+        return
+
+    last_bot_msg = None
+    if history and history[-1].get("role") == "assistant":
+        last_bot_msg = history[-1].get("text", "")
+
+    history_str = "\n".join([f"{msg['role']}: {msg['text']}" for msg in history[-5:]]) if history else "Нет истории"
+
+    prompt = (
+        "Ты – помощник в ролевой игре. Пользователь просит подсказку, что можно ответить дальше.\n"
+        "Контекст диалога (последние сообщения):\n" + history_str + "\n"
+        "Последнее сообщение бота: " + (last_bot_msg or "Нет сообщения") + "\n"
+        "Предложи 3 коротких варианта ответа на английском языке, которые пользователь может сказать в этой ситуации.\n"
+        "Формат строго:\n"
+        "Примеры ответов:\n"
+        "1. ...\n"
+        "2. ...\n"
+        "3. ...\n"
+        "Никаких других слов, только эти три варианта."
+    )
+    try:
+        hint = chat(prompt, max_tokens=100, temperature=0.7)
+    except Exception as e:
+        logger.error(f"Ошибка получения подсказки: {e}")
+        await message.answer("Не удалось получить подсказку. Попробуйте позже.")
+        return
+    await message.answer(f"💡 {hint}")
+
+# ============================================================
+# ОБРАБОТЧИК "ГЛАВНОЕ МЕНЮ" В АКТИВНОЙ ИГРЕ
+# ============================================================
+@router.message(RoleplayStates.active, F.text == "🏠 Главное меню")
+async def exit_to_main_menu(message: Message, state: FSMContext):
+    user_id = message.from_user.id
+    user_state = get_user_state(user_id)
+    user_state["mode"] = ""
+    user_state["roleplay_history"] = []
+    user_state["russian_counter"] = 0
+    user_state.pop("roleplay_goal_notified", None)
+    user_state.pop("roleplay_goal_ignored", None)
+    set_user_state(user_id, user_state)
+    await state.clear()
+    await message.answer("Диалог завершен..🏁", reply_markup=ReplyKeyboardRemove())
+    await show_main_menu(message, edit=False, remove_keyboard=True)
+
+# ============================================================
+# ОСНОВНОЙ ОБРАБОТЧИК ТЕКСТОВЫХ СООБЩЕНИЙ (должен быть ПОСЛЕ всех точных совпадений)
 # ============================================================
 @router.message(RoleplayStates.active, F.text)
 async def handle_roleplay_text(message: Message, state: FSMContext):
@@ -2160,63 +2216,7 @@ async def roleplay_text_original(callback: CallbackQuery):
         await callback.answer("Ошибка.", show_alert=True)
 
 # ============================================================
-# ПОДСКАЗКА (исправлено: теперь точно обрабатывается как кнопка)
-# ============================================================
-@router.message(RoleplayStates.active, F.text == "💡 Что ответить?")
-async def give_hint(message: Message, state: FSMContext):
-    user_id = message.from_user.id
-    user_state = get_user_state(user_id)
-    history = user_state.get("roleplay_history", [])
-    if not history:
-        await message.answer("Вы ещё не начали диалог. Начните разговор, чтобы получить подсказку.")
-        return
-
-    last_bot_msg = None
-    if history and history[-1].get("role") == "assistant":
-        last_bot_msg = history[-1].get("text", "")
-
-    history_str = "\n".join([f"{msg['role']}: {msg['text']}" for msg in history[-5:]]) if history else "Нет истории"
-
-    prompt = (
-        "Ты – помощник в ролевой игре. Пользователь просит подсказку, что можно ответить дальше.\n"
-        "Контекст диалога (последние сообщения):\n" + history_str + "\n"
-        "Последнее сообщение бота: " + (last_bot_msg or "Нет сообщения") + "\n"
-        "Предложи 3 коротких варианта ответа на английском языке, которые пользователь может сказать в этой ситуации.\n"
-        "Формат строго:\n"
-        "Примеры ответов:\n"
-        "1. ...\n"
-        "2. ...\n"
-        "3. ...\n"
-        "Никаких других слов, только эти три варианта."
-    )
-    try:
-        hint = chat(prompt, max_tokens=100, temperature=0.7)
-    except Exception as e:
-        logger.error(f"Ошибка получения подсказки: {e}")
-        await message.answer("Не удалось получить подсказку. Попробуйте позже.")
-        return
-    await message.answer(f"💡 {hint}")
-
-# ============================================================
-# ОБРАБОТЧИК "ГЛАВНОЕ МЕНЮ" В АКТИВНОЙ ИГРЕ (исправлен)
-# ============================================================
-@router.message(RoleplayStates.active, F.text == "🏠 Главное меню")
-async def exit_to_main_menu(message: Message, state: FSMContext):
-    user_id = message.from_user.id
-    user_state = get_user_state(user_id)
-    user_state["mode"] = ""
-    user_state["roleplay_history"] = []
-    user_state["russian_counter"] = 0
-    user_state.pop("roleplay_goal_notified", None)
-    user_state.pop("roleplay_goal_ignored", None)
-    set_user_state(user_id, user_state)
-    await state.clear()
-    await message.answer("Диалог завершен..🏁", reply_markup=ReplyKeyboardRemove())
-    from handlers.start import show_main_menu
-    await show_main_menu(message, edit=False, remove_keyboard=True)
-
-# ============================================================
-# ВСПОМОГАТЕЛЬНАЯ ФУНКЦИЯ ДЛЯ ОБРАБОТКИ ОТВЕТА ИИ
+# ВСПОМОГАТЕЛЬНАЯ ФУНКЦИЯ
 # ============================================================
 def process_ai_response(response: str) -> tuple[str, bool]:
     if response.startswith("GOALS_ACHIEVED"):
