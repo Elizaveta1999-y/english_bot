@@ -87,7 +87,7 @@ async def roleplay_voice_handler(message: Message, state: FSMContext):
     set_user_state(user_id, user_state)
 
     if show_english_reminder:
-        await message.answer("Feel free to use English!")
+        await message.answer("✨Feel free to use English!")
 
     voice_id = random.choice([WOMAN_VOICE_ID, MAN_VOICE_ID])
     tts_text = truncate_for_tts(ai_response_clean)

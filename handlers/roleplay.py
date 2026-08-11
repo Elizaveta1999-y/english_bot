@@ -1473,7 +1473,7 @@ def is_forbidden(text: str) -> bool:
     return False
 
 # ============================================================
-# СИСТЕМНЫЙ ПРОМПТ (исправлен: без принуждения для пользователя)
+# СИСТЕМНЫЙ ПРОМПТ (исправлен)
 # ============================================================
 def build_system_prompt(topic: str, description: str, goals: list) -> str:
     goals_text = "\n".join([f"{i+1}. {g}" for i, g in enumerate(goals)])
@@ -1524,7 +1524,6 @@ async def call_ai_with_system(system_prompt: str, user_text: str, history: list,
 # ВСПОМОГАТЕЛЬНАЯ ФУНКЦИЯ ДЛЯ ОТПРАВКИ ПРЕДЛОЖЕНИЯ ЗАВЕРШИТЬ
 # ============================================================
 async def send_goal_completion_message(message: Message, user_id: int, user_state: dict, state: FSMContext, bot):
-    """Отправляет предложение завершить диалог, если цели достигнуты и не отправляли ранее."""
     if user_state.get("roleplay_goal_notified", False):
         return
     user_state["roleplay_goal_notified"] = True
@@ -1560,7 +1559,7 @@ async def goal_continue(callback: CallbackQuery, state: FSMContext):
     user_state["roleplay_goal_ignored"] = True
     set_user_state(user_id, user_state)
     await callback.message.edit_reply_markup(reply_markup=None)
-    await callback.message.answer("Продолжаем общение!")
+    await callback.message.answer("Продолжаем диалог. Постарайтесь достичь всех целей!")
 
 # ============================================================
 # MIDDLEWARE ДЛЯ ВЫХОДА ИЗ РОЛЕВОЙ ИГРЫ ПО КОМАНДАМ
@@ -1583,20 +1582,14 @@ async def close_roleplay_on_exit(handler, event, data):
 
     should_close = False
 
-    if hasattr(event, 'text') and isinstance(event.text, str) and event.text.startswith('/'):
-        should_close = True
+    # Проверяем только команды (начинающиеся с /) и кнопку "Главное меню" в игре
+    if hasattr(event, 'text') and isinstance(event.text, str):
+        if event.text.startswith('/') or event.text == "🏠 Главное меню":
+            should_close = True
     elif hasattr(event, 'data') and isinstance(event.data, str):
-        if event.data == "back_to_main":  # только для команды завершения, не для категорий
+        # Для callback'ов проверяем только те, которые завершают игру (например, back_to_main)
+        if event.data == "back_to_main" or event.data == "back_to_main_menu":
             should_close = True
-        else:
-            should_close = False
-    elif hasattr(event, 'text') and isinstance(event.text, str):
-        if event.text == "🏠 Главное меню":
-            should_close = True
-        else:
-            should_close = False
-    else:
-        should_close = False
 
     if data.get("skip_exit_message"):
         should_close = False
@@ -1857,9 +1850,9 @@ async def back_to_rp_categories(callback: CallbackQuery, state: FSMContext):
 # ============================================================
 @router.callback_query(F.data == "back_to_main_menu_from_categories")
 async def back_to_main_menu_from_categories(callback: CallbackQuery, state: FSMContext):
-    # Просто показываем главное меню, не завершая диалог (потому что его нет)
-    await callback.message.delete()
+    # Удаляем сообщение с категориями и показываем главное меню в этом же сообщении
     from handlers.start import show_main_menu
+    await callback.message.delete()  # удаляем текущее
     await show_main_menu(callback.message, edit=False, remove_keyboard=True)
     await callback.answer()
 
@@ -1874,15 +1867,11 @@ async def finish_roleplay(message: Message, state: FSMContext):
     goals = user_state.get("roleplay_goals", [])
     topic = user_state.get("roleplay_topic", "")
 
-    # Подсчитываем сообщения пользователя
     user_messages = [m for m in history if m["role"] == "user"]
     if len(user_messages) < 3:
-        # Мало сообщений – уведомляем и продолжаем
         await message.answer("Отправьте несколько сообщений, чтобы получить фидбек.", reply_markup=None)
-        # Оставляем состояние активным
         return
 
-    # Далее проверка целей
     if goals:
         check_prompt = (
             "Analyze the dialogue and determine if the user has achieved all the goals. "
@@ -1910,7 +1899,6 @@ async def finish_roleplay(message: Message, state: FSMContext):
             await state.set_state(RoleplayStates.confirming_finish)
             return
 
-    # Если все цели достигнуты или их нет – генерируем фидбек
     await generate_feedback(message, state, user_id, user_state)
 
 # ============================================================
@@ -1920,7 +1908,7 @@ async def finish_roleplay(message: Message, state: FSMContext):
 async def continue_dialogue(callback: CallbackQuery, state: FSMContext):
     await state.set_state(RoleplayStates.active)
     await callback.message.delete()
-    await callback.message.answer("Продолжаем диалог. Достигните всех целей и завершите позже.", reply_markup=None)
+    await callback.message.answer("Продолжаем диалог. Постарайтесь достичь всех целей!", reply_markup=None)
     await callback.answer()
 
 @router.callback_query(F.data == "finish_anyway", RoleplayStates.confirming_finish)
@@ -1933,7 +1921,7 @@ async def finish_anyway(callback: CallbackQuery, state: FSMContext):
     await callback.answer()
 
 # ============================================================
-# ГЕНЕРАЦИЯ ФИДБЕКА (с исправлением для главного меню)
+# ГЕНЕРАЦИЯ ФИДБЕКА (с отдельным обработчиком для главного меню)
 # ============================================================
 async def generate_feedback(message: Message, state: FSMContext, user_id: int, user_state: dict):
     history = user_state.get("roleplay_history", [])
@@ -1944,13 +1932,11 @@ async def generate_feedback(message: Message, state: FSMContext, user_id: int, u
         await message.answer("Нет диалога для анализа.", reply_markup=ReplyKeyboardRemove())
         return
 
-    # Подсчет сообщений пользователя (уже проверено, но на всякий случай)
     user_messages = [m for m in history if m["role"] == "user"]
     if len(user_messages) < 3:
         await message.answer("Отправьте несколько сообщений, чтобы получить фидбек.", reply_markup=ReplyKeyboardRemove())
         return
 
-    # Определяем, использовал ли пользователь английский
     used_english = False
     for m in user_messages:
         if re.search('[a-zA-Z]', m["text"]):
@@ -2025,14 +2011,15 @@ async def generate_feedback(message: Message, state: FSMContext, user_id: int, u
     await message.answer("Ролевая игра завершена.", reply_markup=ReplyKeyboardRemove())
 
 # ============================================================
-# ОБРАБОТЧИК ДЛЯ КНОПКИ "ГЛАВНОЕ МЕНЮ" ПОСЛЕ ФИДБЕКА
+# ОБРАБОТЧИК ДЛЯ КНОПКИ "ГЛАВНОЕ МЕНЮ" ПОСЛЕ ФИДБЕКА (исправлен)
 # ============================================================
 @router.callback_query(F.data == "back_to_main_menu_after_feedback")
 async def back_to_main_menu_after_feedback(callback: CallbackQuery):
-    # Просто показываем главное меню, не трогая сообщение с фидбеком
+    # Показываем главное меню новым сообщением, не трогая фидбек
     await callback.answer()
     from handlers.start import show_main_menu
     await show_main_menu(callback.message, edit=False, remove_keyboard=True)
+    # Не удаляем сообщение с фидбеком
 
 # ============================================================
 # ОСНОВНОЙ ОБРАБОТЧИК ТЕКСТОВЫХ СООБЩЕНИЙ
@@ -2078,7 +2065,7 @@ async def handle_roleplay_text(message: Message, state: FSMContext):
     set_user_state(user_id, user_state)
 
     if show_english_reminder:
-        await message.answer("Feel free to use English!")
+        await message.answer("✨Feel free to use English!")
 
     sent_msg = await message.answer(ai_response_clean, reply_markup=None)
     msg_id = sent_msg.message_id
@@ -2173,7 +2160,7 @@ async def roleplay_text_original(callback: CallbackQuery):
         await callback.answer("Ошибка.", show_alert=True)
 
 # ============================================================
-# ПОДСКАЗКА
+# ПОДСКАЗКА (исправлено: теперь точно обрабатывается как кнопка)
 # ============================================================
 @router.message(RoleplayStates.active, F.text == "💡 Что ответить?")
 async def give_hint(message: Message, state: FSMContext):
@@ -2211,7 +2198,7 @@ async def give_hint(message: Message, state: FSMContext):
     await message.answer(f"💡 {hint}")
 
 # ============================================================
-# ОБРАБОТЧИК "ГЛАВНОЕ МЕНЮ" В АКТИВНОЙ ИГРЕ
+# ОБРАБОТЧИК "ГЛАВНОЕ МЕНЮ" В АКТИВНОЙ ИГРЕ (исправлен)
 # ============================================================
 @router.message(RoleplayStates.active, F.text == "🏠 Главное меню")
 async def exit_to_main_menu(message: Message, state: FSMContext):
