@@ -42,6 +42,7 @@ CATEGORIES = [
     ("📰 News", "news")
 ]
 
+# ===================== ВАШ СПИСОК ТЕМ (вставьте сюда) =====================
 TOPICS = {
     "work": [
         {
@@ -1449,7 +1450,7 @@ def get_categories_keyboard():
             cat2 = CATEGORIES[i+1]
             row.append(InlineKeyboardButton(text=cat2[0], callback_data=f"cat_{cat2[1]}"))
         buttons.append(row)
-    buttons.append([InlineKeyboardButton(text="🔙 Назад в главное меню", callback_data="back_to_main_menu")])
+    buttons.append([InlineKeyboardButton(text="🔙 Назад в главное меню", callback_data="back_to_main_menu_from_categories")])
     return InlineKeyboardMarkup(inline_keyboard=buttons)
 
 def is_cyrillic(text: str) -> bool:
@@ -1472,7 +1473,7 @@ def is_forbidden(text: str) -> bool:
     return False
 
 # ============================================================
-# ИСПРАВЛЕННЫЙ СИСТЕМНЫЙ ПРОМПТ – ДОБАВЛЕНА ЗАПРЕТНАЯ РОЛЬ
+# СИСТЕМНЫЙ ПРОМПТ (исправлен: без принуждения для пользователя)
 # ============================================================
 def build_system_prompt(topic: str, description: str, goals: list) -> str:
     goals_text = "\n".join([f"{i+1}. {g}" for i, g in enumerate(goals)])
@@ -1492,15 +1493,16 @@ def build_system_prompt(topic: str, description: str, goals: list) -> str:
         "Your task is to lead the dialogue within this situation. "
         "You must help the user practice English, but stay in character.\n\n"
         "IMPORTANT RULES:\n"
-        "1. You ALWAYS respond in ENGLISH only. Never switch to Russian, regardless of the user's language.\n"
-        "2. If the user goes off-topic, gently remind them of the situation. However, allow creative freedom – "
+        "1. You ALWAYS respond in ENGLISH. The user may speak in any language, but you reply only in English.\n"
+        "2. Do not repeat initial greetings if you have already greeted the user. Continue the conversation naturally.\n"
+        "3. If the user goes off-topic, gently remind them of the situation. However, allow creative freedom – "
         "if the user is describing their product, presenting an idea, or developing the situation within the scenario, "
         "it is NOT considered off-topic. Only warn if the user starts talking about completely unrelated things.\n"
-        "3. You do not discuss topics unrelated to the role-play.\n"
-        "4. If the user asks about something forbidden, respond with: 'Let's return to our situation' and continue.\n"
-        "5. At the end of each response, assess if the user achieved ALL goals. If yes, respond with exactly the word: GOALS_ACHIEVED. Do not add any other text about completion. If not, respond as usual.\n"
-        "6. Respond naturally, in character.\n"
-        "7. Keep your responses short: 2-3 sentences, concise and to the point.\n"
+        "4. You do not discuss topics unrelated to the role-play.\n"
+        "5. If the user asks about something forbidden, respond with: 'Let's return to our situation' and continue.\n"
+        "6. At the end of each response, assess if the user achieved ALL goals. If yes, respond with exactly the word: GOALS_ACHIEVED. Do not add any other text about completion. If not, respond as usual.\n"
+        "7. Respond naturally, in character.\n"
+        "8. Keep your responses short: 2-3 sentences, concise and to the point.\n"
     )
 
 async def call_ai_with_system(system_prompt: str, user_text: str, history: list, max_tokens: int = 500) -> str:
@@ -1584,7 +1586,7 @@ async def close_roleplay_on_exit(handler, event, data):
     if hasattr(event, 'text') and isinstance(event.text, str) and event.text.startswith('/'):
         should_close = True
     elif hasattr(event, 'data') and isinstance(event.data, str):
-        if event.data == "back_to_main":
+        if event.data == "back_to_main":  # только для команды завершения, не для категорий
             should_close = True
         else:
             should_close = False
@@ -1625,7 +1627,7 @@ router.message.middleware(close_roleplay_on_exit)
 router.callback_query.middleware(close_roleplay_on_exit)
 
 # ============================================================
-# СТАРТ РОЛЕВОЙ ИГРЫ И ПАГИНАЦИЯ (без изменений)
+# СТАРТ РОЛЕВОЙ ИГРЫ И ПАГИНАЦИЯ
 # ============================================================
 @router.callback_query(F.data == "start_roleplay")
 async def start_roleplay(callback: CallbackQuery):
@@ -1724,7 +1726,7 @@ async def show_topics(callback: CallbackQuery, cat_id: str = None, page: int = 0
     await callback.answer()
 
 # ============================================================
-# ВЫБОР ТЕМЫ (без изменений)
+# ВЫБОР ТЕМЫ
 # ============================================================
 @router.callback_query(F.data.startswith("topic_"))
 async def topic_chosen(callback: CallbackQuery, state: FSMContext):
@@ -1850,24 +1852,19 @@ async def back_to_rp_categories(callback: CallbackQuery, state: FSMContext):
     )
     await callback.answer()
 
-@router.callback_query(F.data == "back_to_main_menu")
-async def back_to_main_menu(callback: CallbackQuery, state: FSMContext):
-    await state.clear()
-    user_id = callback.from_user.id
-    user_state = get_user_state(user_id)
-    user_state["mode"] = ""
-    user_state["roleplay_history"] = []
-    user_state["russian_counter"] = 0
-    user_state.pop("roleplay_goal_notified", None)
-    user_state.pop("roleplay_goal_ignored", None)
-    set_user_state(user_id, user_state)
-    await callback.message.edit_text("Диалог завершен..🏁", reply_markup=None)
+# ============================================================
+# ОБРАБОТЧИК ДЛЯ КНОПКИ "НАЗАД В ГЛАВНОЕ МЕНЮ" ИЗ КАТЕГОРИЙ
+# ============================================================
+@router.callback_query(F.data == "back_to_main_menu_from_categories")
+async def back_to_main_menu_from_categories(callback: CallbackQuery, state: FSMContext):
+    # Просто показываем главное меню, не завершая диалог (потому что его нет)
+    await callback.message.delete()
     from handlers.start import show_main_menu
     await show_main_menu(callback.message, edit=False, remove_keyboard=True)
     await callback.answer()
 
 # ============================================================
-# ОБРАБОТЧИК КНОПКИ "ЗАВЕРШИТЬ ДИАЛОГ" (изменены тексты кнопок)
+# ОБРАБОТЧИК КНОПКИ "ЗАВЕРШИТЬ ДИАЛОГ" (с проверкой кол-ва сообщений)
 # ============================================================
 @router.message(RoleplayStates.active, F.text == "📊 Завершить диалог")
 async def finish_roleplay(message: Message, state: FSMContext):
@@ -1877,11 +1874,15 @@ async def finish_roleplay(message: Message, state: FSMContext):
     goals = user_state.get("roleplay_goals", [])
     topic = user_state.get("roleplay_topic", "")
 
-    if not history:
-        await message.answer("Вы пока ничего не сказали. Начните разговор!", reply_markup=ReplyKeyboardRemove())
-        await state.clear()
+    # Подсчитываем сообщения пользователя
+    user_messages = [m for m in history if m["role"] == "user"]
+    if len(user_messages) < 3:
+        # Мало сообщений – уведомляем и продолжаем
+        await message.answer("Отправьте несколько сообщений, чтобы получить фидбек.", reply_markup=None)
+        # Оставляем состояние активным
         return
 
+    # Далее проверка целей
     if goals:
         check_prompt = (
             "Analyze the dialogue and determine if the user has achieved all the goals. "
@@ -1900,7 +1901,7 @@ async def finish_roleplay(message: Message, state: FSMContext):
         if not goals_achieved:
             keyboard = InlineKeyboardMarkup(inline_keyboard=[
                 [InlineKeyboardButton(text="Продолжить диалог", callback_data="continue_dialogue"),
-                 InlineKeyboardButton(text="Завершить", callback_data="finish_anyway")]  # изменено
+                 InlineKeyboardButton(text="Завершить", callback_data="finish_anyway")]
             ])
             await message.answer(
                 "Вы ещё не достигли всех целей в этой ситуации. Хотите продолжить или завершить и получить фидбек?",
@@ -1909,14 +1910,15 @@ async def finish_roleplay(message: Message, state: FSMContext):
             await state.set_state(RoleplayStates.confirming_finish)
             return
 
+    # Если все цели достигнуты или их нет – генерируем фидбек
     await generate_feedback(message, state, user_id, user_state)
 
 # ============================================================
-# ОБРАБОТЧИКИ ПОДТВЕРЖДЕНИЯ (continue_dialogue исправлен)
+# ОБРАБОТЧИКИ ПОДТВЕРЖДЕНИЯ
 # ============================================================
 @router.callback_query(F.data == "continue_dialogue", RoleplayStates.confirming_finish)
 async def continue_dialogue(callback: CallbackQuery, state: FSMContext):
-    await state.set_state(RoleplayStates.active)  # исправлено: не clear, а активное состояние
+    await state.set_state(RoleplayStates.active)
     await callback.message.delete()
     await callback.message.answer("Продолжаем диалог. Достигните всех целей и завершите позже.", reply_markup=None)
     await callback.answer()
@@ -1931,7 +1933,7 @@ async def finish_anyway(callback: CallbackQuery, state: FSMContext):
     await callback.answer()
 
 # ============================================================
-# ГЕНЕРАЦИЯ ФИДБЕКА (ПОЛНОСТЬЮ ПЕРЕРАБОТАНА)
+# ГЕНЕРАЦИЯ ФИДБЕКА (с исправлением для главного меню)
 # ============================================================
 async def generate_feedback(message: Message, state: FSMContext, user_id: int, user_state: dict):
     history = user_state.get("roleplay_history", [])
@@ -1942,32 +1944,22 @@ async def generate_feedback(message: Message, state: FSMContext, user_id: int, u
         await message.answer("Нет диалога для анализа.", reply_markup=ReplyKeyboardRemove())
         return
 
-    # Проверяем количество сообщений пользователя
+    # Подсчет сообщений пользователя (уже проверено, но на всякий случай)
     user_messages = [m for m in history if m["role"] == "user"]
     if len(user_messages) < 3:
-        # Очищаем состояние и завершаем
-        user_state["mode"] = ""
-        user_state["roleplay_history"] = []
-        user_state["russian_counter"] = 0
-        user_state.pop("roleplay_goal_notified", None)
-        user_state.pop("roleplay_goal_ignored", None)
-        set_user_state(user_id, user_state)
-        await state.clear()
         await message.answer("Отправьте несколько сообщений, чтобы получить фидбек.", reply_markup=ReplyKeyboardRemove())
         return
 
-    # Определяем, использовал ли пользователь английский (латиница)
+    # Определяем, использовал ли пользователь английский
     used_english = False
     for m in user_messages:
         if re.search('[a-zA-Z]', m["text"]):
             used_english = True
             break
 
-    # Индикатор печатания
     await message.bot.send_chat_action(chat_id=message.chat.id, action="typing")
 
     if not used_english:
-        # Фидбек только о русском языке
         example_prompt = (
             f"Ты – языковой тренер. Пользователь в ролевой игре '{topic}' общался только на русском языке. "
             "Предложи 3-4 примера фраз на английском, которые пользователь мог бы использовать в этой ситуации. "
@@ -1988,7 +1980,6 @@ async def generate_feedback(message: Message, state: FSMContext, user_id: int, u
             "Вот примеры фраз, которые вы могли бы сказать:\n" + examples
         )
     else:
-        # Обычный фидбек с грамматикой
         dialog_text = "\n".join([f'{m["role"]}: {m["text"]}' for m in history])
         goals_text = "\n".join(goals) if goals else "Нет целей"
         feedback_prompt = (
@@ -2028,10 +2019,20 @@ async def generate_feedback(message: Message, state: FSMContext, user_id: int, u
 
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(text="🔄 Начать новую игру", callback_data="start_roleplay")],
-        [InlineKeyboardButton(text="🏠 Главное меню", callback_data="back_to_main_menu")]
+        [InlineKeyboardButton(text="🏠 Главное меню", callback_data="back_to_main_menu_after_feedback")]
     ])
     await message.answer(f"📊 <b>Фидбек по диалогу:</b>\n\n{feedback_text}", reply_markup=keyboard, parse_mode="HTML")
     await message.answer("Ролевая игра завершена.", reply_markup=ReplyKeyboardRemove())
+
+# ============================================================
+# ОБРАБОТЧИК ДЛЯ КНОПКИ "ГЛАВНОЕ МЕНЮ" ПОСЛЕ ФИДБЕКА
+# ============================================================
+@router.callback_query(F.data == "back_to_main_menu_after_feedback")
+async def back_to_main_menu_after_feedback(callback: CallbackQuery):
+    # Просто показываем главное меню, не трогая сообщение с фидбеком
+    await callback.answer()
+    from handlers.start import show_main_menu
+    await show_main_menu(callback.message, edit=False, remove_keyboard=True)
 
 # ============================================================
 # ОСНОВНОЙ ОБРАБОТЧИК ТЕКСТОВЫХ СООБЩЕНИЙ
@@ -2210,7 +2211,7 @@ async def give_hint(message: Message, state: FSMContext):
     await message.answer(f"💡 {hint}")
 
 # ============================================================
-# ОБРАБОТЧИК "ГЛАВНОЕ МЕНЮ"
+# ОБРАБОТЧИК "ГЛАВНОЕ МЕНЮ" В АКТИВНОЙ ИГРЕ
 # ============================================================
 @router.message(RoleplayStates.active, F.text == "🏠 Главное меню")
 async def exit_to_main_menu(message: Message, state: FSMContext):
