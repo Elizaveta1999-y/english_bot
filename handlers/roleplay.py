@@ -11,12 +11,11 @@ from services.deepseek import chat
 from speaking.services.stt import voice_to_text
 from handlers.voice import bot_texts
 
-# Импортируем show_main_menu, но с защитой от циклического импорта
+# Импортируем show_main_menu (без лишних аргументов)
 try:
     from handlers.start import show_main_menu
 except ImportError:
-    # Если не удаётся импортировать, определим заглушку (но в реальности импорт должен работать)
-    async def show_main_menu(message, edit=False, remove_keyboard=False):
+    async def show_main_menu(message, edit=False):
         await message.answer("Главное меню временно недоступно", reply_markup=ReplyKeyboardRemove())
 
 logger = logging.getLogger(__name__)
@@ -1572,75 +1571,9 @@ async def goal_continue(callback: CallbackQuery, state: FSMContext):
     await callback.message.answer("Продолжаем общение!")
 
 # ============================================================
-# MIDDLEWARE ДЛЯ ВЫХОДА ИЗ РОЛЕВОЙ ИГРЫ ПО КОМАНДАМ
+# MIDDLEWARE ДЛЯ ВЫХОДА ИЗ РОЛЕВОЙ ИГРЫ ПО КОМАНДАМ (НЕ ИСПОЛЬЗУЕТСЯ, ЗАМЕНЁН ХЕНДЛЕРОМ)
 # ============================================================
-async def close_roleplay_on_exit(handler, event, data):
-    user_id = None
-    if hasattr(event, 'from_user'):
-        user_id = event.from_user.id
-    elif hasattr(event, 'message') and event.message:
-        user_id = event.message.from_user.id
-    elif hasattr(event, 'callback_query') and event.callback_query:
-        user_id = event.callback_query.from_user.id
-
-    if not user_id:
-        return await handler(event, data)
-
-    user_state = get_user_state(user_id)
-    if user_state.get("mode") != "roleplay_active":
-        return await handler(event, data)
-
-    should_close = False
-
-    # Проверяем команды и кнопку "Главное меню"
-    if hasattr(event, 'text') and isinstance(event.text, str):
-        if event.text.startswith('/') or event.text == "🏠 Главное меню":
-            should_close = True
-    elif hasattr(event, 'data') and isinstance(event.data, str):
-        if event.data == "back_to_main":  # только для завершения из игры
-            should_close = True
-        else:
-            should_close = False
-    else:
-        should_close = False
-
-    if data.get("skip_exit_message"):
-        should_close = False
-
-    if should_close:
-        logger.info(f"close_roleplay_on_exit: завершаем диалог для user {user_id}")
-        try:
-            if hasattr(event, 'message') and event.message:
-                await event.message.answer("Диалог завершен..🏁", reply_markup=ReplyKeyboardRemove())
-            elif hasattr(event, 'callback_query') and event.callback_query and event.callback_query.message:
-                await event.callback_query.message.answer("Диалог завершен..🏁", reply_markup=ReplyKeyboardRemove())
-            else:
-                await event.answer("Диалог завершен..🏁", reply_markup=ReplyKeyboardRemove())
-        except Exception as e:
-            logger.error(f"Ошибка при удалении клавиатуры: {e}")
-
-        user_state["mode"] = ""
-        user_state["roleplay_history"] = []
-        user_state["russian_counter"] = 0
-        user_state.pop("roleplay_goal_notified", None)
-        user_state.pop("roleplay_goal_ignored", None)
-        set_user_state(user_id, user_state)
-        if 'state' in data:
-            await data['state'].clear()
-        # Показываем главное меню
-        try:
-            from handlers.start import show_main_menu
-            if hasattr(event, 'message') and event.message:
-                await show_main_menu(event.message, edit=False, remove_keyboard=True)
-            elif hasattr(event, 'callback_query') and event.callback_query and event.callback_query.message:
-                await show_main_menu(event.callback_query.message, edit=False, remove_keyboard=True)
-        except Exception as e:
-            logger.error(f"Ошибка при вызове show_main_menu: {e}")
-
-    return await handler(event, data)
-
-router.message.middleware(close_roleplay_on_exit)
-router.callback_query.middleware(close_roleplay_on_exit)
+# Оставляем для совместимости, но основной выход теперь через хендлер команд
 
 # ============================================================
 # СТАРТ РОЛЕВОЙ ИГРЫ И ПАГИНАЦИЯ
@@ -1881,11 +1814,10 @@ async def back_to_rp_categories(callback: CallbackQuery, state: FSMContext):
 @router.callback_query(F.data == "back_to_main_menu_from_categories")
 async def back_to_main_menu_from_categories(callback: CallbackQuery):
     logger.info("back_to_main_menu_from_categories вызван")
-    # Удаляем сообщение с категориями и показываем главное меню
     await callback.message.delete()
     try:
-        from handlers.start import show_main_menu
-        await show_main_menu(callback.message, edit=False, remove_keyboard=True)
+        # remove_keyboard не передаём, т.к. его нет в сигнатуре
+        await show_main_menu(callback.message, edit=False)
     except Exception as e:
         logger.error(f"Ошибка при вызове show_main_menu: {e}")
         await callback.message.answer("Главное меню временно недоступно", reply_markup=ReplyKeyboardRemove())
@@ -2057,8 +1989,7 @@ async def back_to_main_menu_after_feedback(callback: CallbackQuery):
     logger.info("back_to_main_menu_after_feedback вызван")
     await callback.answer()
     try:
-        from handlers.start import show_main_menu
-        await show_main_menu(callback.message, edit=False, remove_keyboard=True)
+        await show_main_menu(callback.message, edit=False)
     except Exception as e:
         logger.error(f"Ошибка при вызове show_main_menu: {e}")
         await callback.message.answer("Главное меню временно недоступно", reply_markup=ReplyKeyboardRemove())
@@ -2119,8 +2050,29 @@ async def exit_to_main_menu(message: Message, state: FSMContext):
     await state.clear()
     await message.answer("Диалог завершен..🏁", reply_markup=ReplyKeyboardRemove())
     try:
-        from handlers.start import show_main_menu
-        await show_main_menu(message, edit=False, remove_keyboard=True)
+        await show_main_menu(message, edit=False)
+    except Exception as e:
+        logger.error(f"Ошибка при вызове show_main_menu: {e}")
+        await message.answer("Главное меню временно недоступно", reply_markup=ReplyKeyboardRemove())
+
+# ============================================================
+# ОБРАБОТЧИК ЛЮБЫХ КОМАНД (завершает диалог и показывает главное меню)
+# ============================================================
+@router.message(RoleplayStates.active, F.text.startswith('/'))
+async def handle_any_command(message: Message, state: FSMContext):
+    logger.info(f"handle_any_command: {message.text}")
+    user_id = message.from_user.id
+    user_state = get_user_state(user_id)
+    user_state["mode"] = ""
+    user_state["roleplay_history"] = []
+    user_state["russian_counter"] = 0
+    user_state.pop("roleplay_goal_notified", None)
+    user_state.pop("roleplay_goal_ignored", None)
+    set_user_state(user_id, user_state)
+    await state.clear()
+    await message.answer("Диалог завершен..🏁", reply_markup=ReplyKeyboardRemove())
+    try:
+        await show_main_menu(message, edit=False)
     except Exception as e:
         logger.error(f"Ошибка при вызове show_main_menu: {e}")
         await message.answer("Главное меню временно недоступно", reply_markup=ReplyKeyboardRemove())
