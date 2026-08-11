@@ -28,9 +28,6 @@ def truncate_for_tts(text: str, max_len: int = MAX_TTS_LENGTH) -> str:
         return truncated[:last_space] + '...'
     return truncated + '...'
 
-# ============================================================
-# ОБРАБОТЧИК ГОЛОСОВЫХ СООБЩЕНИЙ
-# ============================================================
 @router.message(F.voice | F.audio, RoleplayStates.active)
 async def roleplay_voice_handler(message: Message, state: FSMContext):
     user_id = message.from_user.id
@@ -80,7 +77,6 @@ async def roleplay_voice_handler(message: Message, state: FSMContext):
 
     ai_response = await call_ai_with_system(system_prompt, text, history, max_tokens=250)
 
-    # Обрабатываем маркер GOALS_ACHIEVED
     ai_response_clean, goals_achieved = process_ai_response(ai_response)
 
     history.append({"role": "user", "text": text})
@@ -93,13 +89,11 @@ async def roleplay_voice_handler(message: Message, state: FSMContext):
     if show_english_reminder:
         await message.answer("Feel free to use English!")
 
-    # Случайный голос
     voice_id = random.choice([WOMAN_VOICE_ID, MAN_VOICE_ID])
     tts_text = truncate_for_tts(ai_response_clean)
 
     await message.bot.send_chat_action(chat_id=message.chat.id, action="record_voice")
 
-    # Попытка синтеза голоса
     try:
         voice_path = await text_to_voice(tts_text, voice_id=voice_id)
     except Exception as e:
@@ -133,7 +127,6 @@ async def roleplay_voice_handler(message: Message, state: FSMContext):
             os.unlink(ogg_path)
         except Exception as e:
             logger.error(f"Audio error in roleplay_voice: {e}")
-            # Если голос не удался – отправляем текст
             sent_msg = await message.answer(ai_response_clean)
             msg_id = sent_msg.message_id
             if user_id not in bot_texts:
@@ -150,7 +143,6 @@ async def roleplay_voice_handler(message: Message, state: FSMContext):
             )
             return
     else:
-        # Если голос не удался, отправляем текстом
         sent_msg = await message.answer(ai_response_clean)
         msg_id = sent_msg.message_id
         if user_id not in bot_texts:
@@ -166,11 +158,8 @@ async def roleplay_voice_handler(message: Message, state: FSMContext):
             reply_markup=keyboard
         )
 
-    # Если цели достигнуты и пользователь не игнорировал предложение
     if goals_achieved and not user_state.get("roleplay_goal_ignored", False):
         await send_goal_completion_message(message, user_id, user_state, state, message.bot)
-    elif goals_achieved and user_state.get("roleplay_goal_ignored", False):
-        pass  # не напоминаем
 
 # ============================================================
 # ОБРАБОТЧИКИ КНОПОК ДЛЯ ГОЛОСОВЫХ

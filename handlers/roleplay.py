@@ -1472,6 +1472,9 @@ def is_forbidden(text: str) -> bool:
             return True
     return False
 
+# ============================================================
+# ИСПРАВЛЕННЫЙ СИСТЕМНЫЙ ПРОМПТ – ЧЁТКОЕ ОПРЕДЕЛЕНИЕ РОЛИ ИИ
+# ============================================================
 def build_system_prompt(topic: str, description: str, goals: list) -> str:
     goals_text = "\n".join([f"{i+1}. {g}" for i, g in enumerate(goals)])
     return (
@@ -1479,6 +1482,12 @@ def build_system_prompt(topic: str, description: str, goals: list) -> str:
         f"Situation: {description}\n"
         f"Topic: {topic}\n"
         f"User's goals: {goals_text}\n\n"
+        "IMPORTANT: You are the character that the user is interacting with in this situation. "
+        "For example, if the user is explaining something to their grandmother, you are the grandmother. "
+        "If the user is selling a product to a customer, you are the customer. "
+        "If the user is having a job interview, you are the HR manager. "
+        "Always respond as that character, not as the user or the user's assistant. "
+        "Stay in character and speak naturally.\n\n"
         "Your task is to lead the dialogue within this situation. "
         "You must help the user practice English, but stay in character.\n\n"
         "IMPORTANT RULES:\n"
@@ -1526,6 +1535,29 @@ async def send_goal_completion_message(message: Message, user_id: int, user_stat
         "Предлагаю завершить и посмотреть результаты!",
         reply_markup=keyboard
     )
+
+# ============================================================
+# ОБРАБОТЧИКИ ДЛЯ КНОПОК ЗАВЕРШИТЬ/ПРОДОЛЖИТЬ
+# ============================================================
+@router.callback_query(F.data == "roleplay_goal_finish")
+async def goal_finish(callback: CallbackQuery, state: FSMContext):
+    await callback.answer()
+    user_id = callback.from_user.id
+    user_state = get_user_state(user_id)
+    await callback.message.edit_reply_markup(reply_markup=None)
+    fake_message = callback.message
+    await generate_feedback(fake_message, state, user_id, user_state)
+
+@router.callback_query(F.data == "roleplay_goal_continue")
+async def goal_continue(callback: CallbackQuery, state: FSMContext):
+    await callback.answer()
+    user_id = callback.from_user.id
+    user_state = get_user_state(user_id)
+    user_state["roleplay_goal_notified"] = True
+    user_state["roleplay_goal_ignored"] = True
+    set_user_state(user_id, user_state)
+    await callback.message.edit_reply_markup(reply_markup=None)
+    await callback.message.answer("Продолжаем общение!")
 
 # ============================================================
 # MIDDLEWARE ДЛЯ ВЫХОДА ИЗ РОЛЕВОЙ ИГРЫ ПО КОМАНДАМ
@@ -1596,29 +1628,6 @@ async def close_roleplay_on_exit(handler, event, data):
 # Регистрируем middleware
 router.message.middleware(close_roleplay_on_exit)
 router.callback_query.middleware(close_roleplay_on_exit)
-
-# ============================================================
-# ОБРАБОТЧИКИ ДЛЯ КНОПОК ЗАВЕРШИТЬ/ПРОДОЛЖИТЬ (из предложения)
-# ============================================================
-@router.callback_query(F.data == "roleplay_goal_finish")
-async def goal_finish(callback: CallbackQuery, state: FSMContext):
-    await callback.answer()
-    user_id = callback.from_user.id
-    user_state = get_user_state(user_id)
-    await callback.message.edit_reply_markup(reply_markup=None)
-    fake_message = callback.message
-    await generate_feedback(fake_message, state, user_id, user_state)
-
-@router.callback_query(F.data == "roleplay_goal_continue")
-async def goal_continue(callback: CallbackQuery, state: FSMContext):
-    await callback.answer()
-    user_id = callback.from_user.id
-    user_state = get_user_state(user_id)
-    user_state["roleplay_goal_notified"] = True
-    user_state["roleplay_goal_ignored"] = True
-    set_user_state(user_id, user_state)
-    await callback.message.edit_reply_markup(reply_markup=None)
-    await callback.message.answer("Продолжаем общение!")
 
 # ============================================================
 # СТАРТ РОЛЕВОЙ ИГРЫ И ПАГИНАЦИЯ
@@ -2178,6 +2187,9 @@ async def give_hint(message: Message, state: FSMContext):
         return
     await message.answer(f"💡 {hint}")
 
+# ============================================================
+# ОБРАБОТЧИК "ГЛАВНОЕ МЕНЮ" – ГАРАНТИРОВАННО УБИРАЕТ КЛАВИАТУРУ
+# ============================================================
 @router.message(RoleplayStates.active, F.text == "🏠 Главное меню")
 async def exit_to_main_menu(message: Message, state: FSMContext):
     user_id = message.from_user.id
@@ -2189,7 +2201,9 @@ async def exit_to_main_menu(message: Message, state: FSMContext):
     user_state.pop("roleplay_goal_ignored", None)
     set_user_state(user_id, user_state)
     await state.clear()
+    # Сначала отправляем сообщение о завершении с удалением клавиатуры
     await message.answer("Диалог завершен..🏁", reply_markup=ReplyKeyboardRemove())
+    # Затем показываем главное меню (убедитесь, что show_main_menu использует inline-клавиатуру, а не reply)
     from handlers.start import show_main_menu
     await show_main_menu(message, edit=False, remove_keyboard=True)
 
