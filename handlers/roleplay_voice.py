@@ -30,10 +30,12 @@ def truncate_for_tts(text: str, max_len: int = MAX_TTS_LENGTH) -> str:
 
 @router.message(F.voice | F.audio, RoleplayStates.active)
 async def roleplay_voice_handler(message: Message, state: FSMContext):
+    logger.info("roleplay_voice_handler вызван")
     user_id = message.from_user.id
     user_state = get_user_state(user_id)
 
     if user_state.get("mode") != "roleplay_active":
+        logger.info("Голосовое сообщение, но не в активной ролевой игре")
         return
 
     logger.info(f"Голосовое в ролевой игре от {user_id}")
@@ -166,11 +168,11 @@ async def roleplay_voice_handler(message: Message, state: FSMContext):
 # ============================================================
 @router.callback_query(lambda c: c.data.startswith("roleplay_voice_show_text_"))
 async def roleplay_voice_show_text(callback: CallbackQuery):
+    logger.info("roleplay_voice_show_text вызван")
     try:
         parts = callback.data.split('_')
         user_id = int(parts[4])
         msg_id = int(parts[5])
-        logger.info(f"roleplay_voice_show_text: user_id={user_id}, msg_id={msg_id}")
         user_texts = bot_texts.get(user_id)
         if not user_texts or msg_id not in user_texts:
             await callback.answer("Текст не найден.", show_alert=True)
@@ -193,11 +195,11 @@ async def roleplay_voice_show_text(callback: CallbackQuery):
 
 @router.callback_query(lambda c: c.data.startswith("roleplay_voice_translate_"))
 async def roleplay_voice_translate(callback: CallbackQuery):
+    logger.info("roleplay_voice_translate вызван")
     try:
         parts = callback.data.split('_')
         user_id = int(parts[4])
         msg_id = int(parts[5])
-        logger.info(f"roleplay_voice_translate: user_id={user_id}, msg_id={msg_id}")
         user_texts = bot_texts.get(user_id)
         if not user_texts or msg_id not in user_texts:
             await callback.answer("Текст не найден.", show_alert=True)
@@ -225,11 +227,11 @@ async def roleplay_voice_translate(callback: CallbackQuery):
 
 @router.callback_query(lambda c: c.data.startswith("roleplay_voice_original_"))
 async def roleplay_voice_original(callback: CallbackQuery):
+    logger.info("roleplay_voice_original вызван")
     try:
         parts = callback.data.split('_')
         user_id = int(parts[4])
         msg_id = int(parts[5])
-        logger.info(f"roleplay_voice_original: user_id={user_id}, msg_id={msg_id}")
         user_texts = bot_texts.get(user_id)
         if not user_texts or msg_id not in user_texts:
             await callback.answer("Текст не найден.", show_alert=True)
@@ -252,11 +254,11 @@ async def roleplay_voice_original(callback: CallbackQuery):
 
 @router.callback_query(lambda c: c.data.startswith("roleplay_voice_hide_"))
 async def roleplay_voice_hide(callback: CallbackQuery):
+    logger.info("roleplay_voice_hide вызван")
     try:
         parts = callback.data.split('_')
         user_id = int(parts[4])
         msg_id = int(parts[5])
-        logger.info(f"roleplay_voice_hide: user_id={user_id}, msg_id={msg_id}")
         keyboard = InlineKeyboardMarkup(inline_keyboard=[
             [InlineKeyboardButton(text="Текст", callback_data=f"roleplay_voice_show_text_{user_id}_{msg_id}")]
         ])
