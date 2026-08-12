@@ -11,7 +11,7 @@ from services.deepseek import chat
 from speaking.services.stt import voice_to_text
 from handlers.voice import bot_texts
 
-# Импортируем show_main_menu (без лишних аргументов)
+# Импортируем show_main_menu
 try:
     from handlers.start import show_main_menu
 except ImportError:
@@ -1554,7 +1554,7 @@ async def goal_finish(callback: CallbackQuery, state: FSMContext):
     await callback.answer()
     user_id = callback.from_user.id
     user_state = get_user_state(user_id)
-    await callback.message.edit_reply_markup(reply_markup=None)
+    await callback.message.edit_reply_markup(reply_markup=None)  # убираем inline кнопки
     fake_message = callback.message
     await generate_feedback(fake_message, state, user_id, user_state)
 
@@ -1571,9 +1571,9 @@ async def goal_continue(callback: CallbackQuery, state: FSMContext):
     await callback.message.answer("Продолжаем общение!")
 
 # ============================================================
-# MIDDLEWARE ДЛЯ ВЫХОДА ИЗ РОЛЕВОЙ ИГРЫ ПО КОМАНДАМ (НЕ ИСПОЛЬЗУЕТСЯ, ЗАМЕНЁН ХЕНДЛЕРОМ)
+# MIDDLEWARE ДЛЯ ВЫХОДА ИЗ РОЛЕВОЙ ИГРЫ ПО КОМАНДАМ (вспомогательный, но основной выход в хендлерах)
 # ============================================================
-# Оставляем для совместимости, но основной выход теперь через хендлер команд
+# Оставляем для совместимости, но основной выход через хендлеры
 
 # ============================================================
 # СТАРТ РОЛЕВОЙ ИГРЫ И ПАГИНАЦИЯ
@@ -1722,7 +1722,7 @@ async def topic_chosen(callback: CallbackQuery, state: FSMContext):
         await state.set_state(RoleplayStates.active)
         await callback.answer(f"Выбрана тема: {topic}")
 
-        await callback.message.delete()
+        await callback.message.delete()  # удаляем сообщение со списком тем
 
         reply_keyboard = ReplyKeyboardMarkup(
             keyboard=[
@@ -1816,7 +1816,6 @@ async def back_to_main_menu_from_categories(callback: CallbackQuery):
     logger.info("back_to_main_menu_from_categories вызван")
     await callback.message.delete()
     try:
-        # remove_keyboard не передаём, т.к. его нет в сигнатуре
         await show_main_menu(callback.message, edit=False)
     except Exception as e:
         logger.error(f"Ошибка при вызове show_main_menu: {e}")
@@ -2048,7 +2047,9 @@ async def exit_to_main_menu(message: Message, state: FSMContext):
     user_state.pop("roleplay_goal_ignored", None)
     set_user_state(user_id, user_state)
     await state.clear()
+    # Сначала отправляем сообщение о завершении с удалением reply-клавиатуры
     await message.answer("Диалог завершен..🏁", reply_markup=ReplyKeyboardRemove())
+    # Затем показываем главное меню
     try:
         await show_main_menu(message, edit=False)
     except Exception as e:
@@ -2070,7 +2071,9 @@ async def handle_any_command(message: Message, state: FSMContext):
     user_state.pop("roleplay_goal_ignored", None)
     set_user_state(user_id, user_state)
     await state.clear()
+    # Сначала отправляем сообщение о завершении с удалением reply-клавиатуры
     await message.answer("Диалог завершен..🏁", reply_markup=ReplyKeyboardRemove())
+    # Затем показываем главное меню
     try:
         await show_main_menu(message, edit=False)
     except Exception as e:
