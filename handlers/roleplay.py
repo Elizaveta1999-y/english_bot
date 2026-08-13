@@ -2094,9 +2094,24 @@ async def handle_roleplay_text(message: Message, state: FSMContext):
         return
 
     user_text = message.text
-    # команды уже перехвачены выше, но на всякий случай оставляем защиту
+
+    # === ГАРАНТИРОВАННАЯ ОБРАБОТКА КОМАНД ===
     if user_text.startswith('/'):
-        logger.info("handle_roleplay_text: сообщение начинается с '/', пропускаем")
+        logger.info(f"handle_roleplay_text: команда {user_text}, завершаем диалог")
+        user_state["mode"] = ""
+        user_state["roleplay_history"] = []
+        user_state["russian_counter"] = 0
+        user_state.pop("roleplay_goal_notified", None)
+        user_state.pop("roleplay_goal_ignored", None)
+        user_state.pop("voice_id", None)
+        set_user_state(user_id, user_state)
+        await state.clear()
+        await message.answer("Диалог завершен..🏁", reply_markup=ReplyKeyboardRemove())
+        try:
+            await show_main_menu(message, edit=False)
+        except Exception as e:
+            logger.error(f"Ошибка show_main_menu: {e}")
+            await message.answer("Главное меню временно недоступно", reply_markup=ReplyKeyboardRemove())
         return
 
     logger.info(f"handle_roleplay_text: {user_text[:30]}...")
