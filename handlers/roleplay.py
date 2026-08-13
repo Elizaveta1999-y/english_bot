@@ -1977,6 +1977,32 @@ async def back_to_main_menu_after_feedback(callback: CallbackQuery):
         await callback.message.answer("Главное меню временно недоступно", reply_markup=ReplyKeyboardRemove())
 
 # ============================================================
+# ГЛАВНЫЙ ХЕНДЛЕР ДЛЯ КОМАНД – ПЕРВЫЙ СРЕДИ ТЕКСТОВЫХ
+# ============================================================
+@router.message(RoleplayStates.active, F.text.startswith('/'))
+async def handle_commands_in_roleplay(message: Message, state: FSMContext):
+    logger.info(f"=== handle_commands_in_roleplay: {message.text} ===")
+    user_id = message.from_user.id
+    user_state = get_user_state(user_id)
+    if user_state.get("mode") != "roleplay_active":
+        logger.info("handle_commands_in_roleplay: режим не активен, пропускаем")
+        return
+    user_state["mode"] = ""
+    user_state["roleplay_history"] = []
+    user_state["russian_counter"] = 0
+    user_state.pop("roleplay_goal_notified", None)
+    user_state.pop("roleplay_goal_ignored", None)
+    user_state.pop("voice_id", None)
+    set_user_state(user_id, user_state)
+    await state.clear()
+    await message.answer("Диалог завершен..🏁", reply_markup=ReplyKeyboardRemove())
+    try:
+        await show_main_menu(message, edit=False)
+    except Exception as e:
+        logger.error(f"Ошибка show_main_menu: {e}")
+        await message.answer("Главное меню временно недоступно", reply_markup=ReplyKeyboardRemove())
+
+# ============================================================
 # ОБРАБОТЧИКИ ТОЧНЫХ ТЕКСТОВЫХ КОМАНД (подсказка, меню, завершение)
 # ============================================================
 @router.message(RoleplayStates.active, F.text == "💡 Что ответить?")
@@ -2015,14 +2041,33 @@ async def give_hint(message: Message, state: FSMContext):
         return
     await message.answer(f"💡 {hint}")
 
+@router.message(RoleplayStates.active, F.text == "🏠 Главное меню")
+async def exit_to_main_menu(message: Message, state: FSMContext):
+    logger.info("exit_to_main_menu")
+    user_id = message.from_user.id
+    user_state = get_user_state(user_id)
+    user_state["mode"] = ""
+    user_state["roleplay_history"] = []
+    user_state["russian_counter"] = 0
+    user_state.pop("roleplay_goal_notified", None)
+    user_state.pop("roleplay_goal_ignored", None)
+    user_state.pop("voice_id", None)
+    set_user_state(user_id, user_state)
+    await state.clear()
+    await message.answer("Диалог завершен..🏁", reply_markup=ReplyKeyboardRemove())
+    try:
+        await show_main_menu(message, edit=False)
+    except Exception as e:
+        logger.error(f"Ошибка show_main_menu: {e}")
+        await message.answer("Главное меню временно недоступно", reply_markup=ReplyKeyboardRemove())
+
 # ============================================================
-# ОСНОВНОЙ ОБРАБОТЧИК ТЕКСТА (ГАРАНТИРОВАННО ЗАВЕРШАЕТ ДИАЛОГ ПО КОМАНДАМ)
+# ОСНОВНОЙ ОБРАБОТЧИК ТЕКСТА (не команды)
 # ============================================================
 @router.message(RoleplayStates.active, F.text)
 async def handle_roleplay_text(message: Message, state: FSMContext):
-    # ЛОГ В САМОМ НАЧАЛЕ, ЧТОБЫ УВИДЕТЬ, ВЫЗЫВАЕТСЯ ЛИ ХЕНДЛЕР
+    # Лог в начале
     logger.info(f"=== handle_roleplay_text ВЫЗВАН, текст: {message.text[:30]} ===")
-    
     user_id = message.from_user.id
     user_state = get_user_state(user_id)
     if user_state.get("mode") != "roleplay_active":
@@ -2031,26 +2076,11 @@ async def handle_roleplay_text(message: Message, state: FSMContext):
 
     user_text = message.text
 
-    # === ГАРАНТИРОВАННАЯ ОБРАБОТКА ЛЮБЫХ КОМАНД ===
+    # На всякий случай, если команда сюда попала (но хендлер выше должен перехватывать)
     if user_text.startswith('/'):
-        logger.info(f"handle_roleplay_text: команда {user_text}, завершаем диалог")
-        user_state["mode"] = ""
-        user_state["roleplay_history"] = []
-        user_state["russian_counter"] = 0
-        user_state.pop("roleplay_goal_notified", None)
-        user_state.pop("roleplay_goal_ignored", None)
-        user_state.pop("voice_id", None)
-        set_user_state(user_id, user_state)
-        await state.clear()
-        await message.answer("Диалог завершен..🏁", reply_markup=ReplyKeyboardRemove())
-        try:
-            await show_main_menu(message, edit=False)
-        except Exception as e:
-            logger.error(f"Ошибка show_main_menu: {e}")
-            await message.answer("Главное меню временно недоступно", reply_markup=ReplyKeyboardRemove())
+        logger.info("handle_roleplay_text: команда, но мы её уже обработали выше, пропускаем")
         return
 
-    # === ОБЫЧНАЯ ОБРАБОТКА ТЕКСТА (не команда) ===
     logger.info(f"handle_roleplay_text: обрабатываем текст: {user_text[:30]}...")
 
     if is_forbidden(user_text):
