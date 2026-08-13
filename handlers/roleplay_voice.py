@@ -34,8 +34,9 @@ async def roleplay_voice_handler(message: Message, state: FSMContext):
     user_id = message.from_user.id
     user_state = get_user_state(user_id)
     logger.info(f"Голосовое сообщение, user_id={user_id}, mode={user_state.get('mode')}")
+    
     if user_state.get("mode") != "roleplay_active":
-        logger.info("Голосовое сообщение, но mode != roleplay_active, пропускаем")
+        logger.info("Голосовое сообщение, но mode != roleplay_active")
         return
 
     logger.info(f"Голосовое в ролевой игре от {user_id}")
