@@ -1,7 +1,8 @@
 import os
 import logging
 import re
-from openai import AsyncOpenAI
+import aiohttp
+import asyncio
 
 logger = logging.getLogger(__name__)
 
@@ -12,17 +13,9 @@ if not API_KEY:
 
 BASE_URL = os.getenv("DEEPSEEK_BASE_URL", "https://api.deepseek.com/v1")
 
-client = AsyncOpenAI(
-    api_key=API_KEY,
-    base_url=BASE_URL if BASE_URL else None
-)
-
 async def check_govorenie(task, task_type, user_text, level, duration) -> tuple:
     prompt = _get_govorenie_prompt(task_type, task, user_text, level, duration)
 
-    # ============================================================
-    # 🔥 НОВАЯ ИНСТРУКЦИЯ – убираем звёздочки, оценки в середине
-    # ============================================================
     prompt += (
         "\n\nВыдай фидбек в виде обычного текста, без звёздочек, подчёркиваний и других знаков форматирования. "
         "Не используй заголовки типа 'Для чтения вслух:' или 'Ошибки:'. Пиши просто перечислением. "
@@ -30,14 +23,26 @@ async def check_govorenie(task, task_type, user_text, level, duration) -> tuple:
         "В конце поставь общую оценку от 1 до 5 в формате: Оценка: X/5."
     )
 
+    model = "deepseek-chat" if "deepseek" in BASE_URL else "gpt-3.5-turbo"
+    url = f"{BASE_URL}/chat/completions"
+
+    headers = {
+        "Authorization": f"Bearer {API_KEY}",
+        "Content-Type": "application/json"
+    }
+    payload = {
+        "model": model,
+        "messages": [{"role": "user", "content": prompt}],
+        "max_tokens": 400,
+        "temperature": 0.3
+    }
+
     try:
-        response = await client.chat.completions.create(
-            model="deepseek-chat" if "deepseek" in BASE_URL else "gpt-3.5-turbo",
-            messages=[{"role": "user", "content": prompt}],
-            max_tokens=400,
-            temperature=0.3
-        )
-        feedback = response.choices[0].message.content
+        async with aiohttp.ClientSession() as session:
+            async with session.post(url, headers=headers, json=payload, timeout=30) as resp:
+                resp.raise_for_status()
+                data = await resp.json()
+                feedback = data["choices"][0]["message"]["content"]
 
         # Удаляем возможные звёздочки и другие Markdown
         feedback = re.sub(r'\*\*?', '', feedback)
@@ -57,13 +62,16 @@ async def check_govorenie(task, task_type, user_text, level, duration) -> tuple:
 
         return feedback, score
 
+    except asyncio.TimeoutError:
+        logger.error("Timeout while calling DeepSeek API")
+        return "Превышено время ожидания ответа. Попробуйте позже.", 3
+    except aiohttp.ClientError as e:
+        logger.error(f"HTTP error in check_govorenie: {e}")
+        raise
     except Exception as e:
-        logger.error(f"Ошибка при обращении к ИИ в check_govorenie: {e}")
+        logger.error(f"Unexpected error in check_govorenie: {e}")
         raise
 
-# ============================================================
-# 🔥 НОВЫЕ ПРОМПТЫ – отдельные для каждого типа, без оценок в середине
-# ============================================================
 def _get_govorenie_prompt(task_type: str, task: dict, user_text: str, level: str, duration: int) -> str:
     if task_type == "reading":
         return (
