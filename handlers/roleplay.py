@@ -1478,7 +1478,7 @@ def is_forbidden(text: str) -> bool:
     return False
 
 # ============================================================
-# СИСТЕМНЫЙ ПРОМПТ (исправлен: запрет повторных приветствий)
+# СИСТЕМНЫЙ ПРОМПТ
 # ============================================================
 def build_system_prompt(topic: str, description: str, goals: list) -> str:
     goals_text = "\n".join([f"{i+1}. {g}" for i, g in enumerate(goals)])
@@ -2020,6 +2020,9 @@ async def give_hint(message: Message, state: FSMContext):
 # ============================================================
 @router.message(RoleplayStates.active, F.text)
 async def handle_roleplay_text(message: Message, state: FSMContext):
+    # ЛОГ В САМОМ НАЧАЛЕ, ЧТОБЫ УВИДЕТЬ, ВЫЗЫВАЕТСЯ ЛИ ХЕНДЛЕР
+    logger.info(f"=== handle_roleplay_text ВЫЗВАН, текст: {message.text[:30]} ===")
+    
     user_id = message.from_user.id
     user_state = get_user_state(user_id)
     if user_state.get("mode") != "roleplay_active":
@@ -2048,7 +2051,7 @@ async def handle_roleplay_text(message: Message, state: FSMContext):
         return
 
     # === ОБЫЧНАЯ ОБРАБОТКА ТЕКСТА (не команда) ===
-    logger.info(f"handle_roleplay_text: {user_text[:30]}...")
+    logger.info(f"handle_roleplay_text: обрабатываем текст: {user_text[:30]}...")
 
     if is_forbidden(user_text):
         await message.answer("Пожалуйста, не отходите от темы диалога.")
