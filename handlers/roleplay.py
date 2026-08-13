@@ -8,9 +8,6 @@ from data.users import get_user_state, set_user_state
 from services.deepseek import chat
 from handlers.voice import bot_texts
 
-# Импортируем голоса и карту категорий из roleplay_voice
-from handlers.roleplay_voice import WOMAN_VOICE_ID, MAN_VOICE_ID, CATEGORY_VOICE_MAP
-
 try:
     from handlers.start import show_main_menu
 except ImportError:
@@ -49,6 +46,34 @@ CATEGORIES = [
     ("💅🏽 Fashion & Style", "fashion"),
     ("📰 News", "news")
 ]
+
+# ==================== ГОЛОСА ====================
+WOMAN_VOICE_ID = "uYXf8XasLslADfZ2MB4u"   # новый женский
+MAN_VOICE_ID = "nucVFUFVgPmKHjgXNbJ7"     # новый мужской
+
+# ==================== КАРТА КАТЕГОРИЙ -> ГОЛОС (вразброс) ====================
+CATEGORY_VOICE_MAP = {
+    "work": WOMAN_VOICE_ID,
+    "travel": MAN_VOICE_ID,
+    "daily": WOMAN_VOICE_ID,
+    "health": MAN_VOICE_ID,
+    "family": WOMAN_VOICE_ID,
+    "tech": MAN_VOICE_ID,
+    "beauty": WOMAN_VOICE_ID,
+    "shopping": MAN_VOICE_ID,
+    "small_talk": WOMAN_VOICE_ID,
+    "education": MAN_VOICE_ID,
+    "finance": WOMAN_VOICE_ID,
+    "cars": MAN_VOICE_ID,
+    "realestate": WOMAN_VOICE_ID,
+    "entertainment": MAN_VOICE_ID,
+    "nature": WOMAN_VOICE_ID,
+    "psychology": MAN_VOICE_ID,
+    "emergency": WOMAN_VOICE_ID,
+    "cooking": MAN_VOICE_ID,
+    "fashion": WOMAN_VOICE_ID,
+    "news": MAN_VOICE_ID
+}
 
 # ===================== ВАШ СПИСОК ТЕМ =====================
 TOPICS = {
@@ -1979,7 +2004,7 @@ async def back_to_main_menu_after_feedback(callback: CallbackQuery):
         await callback.message.answer("Главное меню временно недоступно", reply_markup=ReplyKeyboardRemove())
 
 # ============================================================
-# ОБРАБОТЧИКИ ТОЧНЫХ ТЕКСТОВЫХ КОМАНД (подсказка, меню, завершение)
+# ОБРАБОТЧИКИ ТОЧНЫХ ТЕКСТОВЫХ КОМАНД
 # ============================================================
 @router.message(RoleplayStates.active, F.text == "💡 Что ответить?")
 async def give_hint(message: Message, state: FSMContext):
@@ -2059,7 +2084,6 @@ async def handle_roleplay_text(message: Message, state: FSMContext):
 
     user_text = message.text
 
-    # команды уже перехвачены выше, но на всякий случай оставляем защиту
     if user_text.startswith('/'):
         logger.info("handle_roleplay_text: сообщение начинается с '/', пропускаем")
         return
@@ -2119,7 +2143,7 @@ async def handle_roleplay_text(message: Message, state: FSMContext):
         await send_goal_completion_message(message, user_id, user_state, state, message.bot)
 
 # ============================================================
-# ОБРАБОТЧИК НЕПОДДЕРЖИВАЕМЫХ ТИПОВ (без голосовых, т.к. они в roleplay_voice)
+# ОБРАБОТЧИК НЕПОДДЕРЖИВАЕМЫХ ТИПОВ (без голосовых)
 # ============================================================
 @router.message(RoleplayStates.active, F.photo | F.video | F.video_note | F.animation | F.document | F.sticker)
 async def handle_unsupported_content(message: Message, state: FSMContext):
