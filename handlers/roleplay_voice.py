@@ -1,6 +1,7 @@
 import os
 import logging
 import re
+import random
 from aiogram import Router, F
 from aiogram.types import Message, BufferedInputFile, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
 from aiogram.fsm.context import FSMContext
@@ -14,10 +15,34 @@ from handlers.roleplay import build_system_prompt, call_ai_with_system, is_forbi
 logger = logging.getLogger(__name__)
 router = Router()
 
-logger.info("=== РОУТЕР ROLEPLAY_VOICE ЗАГРУЖЕН ===")
+# ==================== ГОЛОСА ====================
+WOMAN_VOICE_ID = "uYXf8XasLslADfZ2MB4u"   # новый женский
+MAN_VOICE_ID = "nucVFUFVgPmKHjgXNbJ7"     # новый мужской
 
-WOMAN_VOICE_ID = "8quEMRkSpwEaWBzHvTLv"
-MAN_VOICE_ID = "3TStB8f3X3To0Uj5R7RK"
+# ==================== КАРТА КАТЕГОРИЙ -> ГОЛОС (вразброс) ====================
+CATEGORY_VOICE_MAP = {
+    "work": WOMAN_VOICE_ID,
+    "travel": MAN_VOICE_ID,
+    "daily": WOMAN_VOICE_ID,
+    "health": MAN_VOICE_ID,
+    "family": WOMAN_VOICE_ID,
+    "tech": MAN_VOICE_ID,
+    "beauty": WOMAN_VOICE_ID,
+    "shopping": MAN_VOICE_ID,
+    "small_talk": WOMAN_VOICE_ID,
+    "education": MAN_VOICE_ID,
+    "finance": WOMAN_VOICE_ID,
+    "cars": MAN_VOICE_ID,
+    "realestate": WOMAN_VOICE_ID,
+    "entertainment": MAN_VOICE_ID,
+    "nature": WOMAN_VOICE_ID,
+    "psychology": MAN_VOICE_ID,
+    "emergency": WOMAN_VOICE_ID,
+    "cooking": MAN_VOICE_ID,
+    "fashion": WOMAN_VOICE_ID,
+    "news": MAN_VOICE_ID
+}
+
 MAX_TTS_LENGTH = 3000
 
 def truncate_for_tts(text: str, max_len: int = MAX_TTS_LENGTH) -> str:
@@ -93,9 +118,10 @@ async def roleplay_voice_handler(message: Message, state: FSMContext):
     if show_english_reminder:
         await message.answer("✨Feel free to use English!")
 
-    # Фиксированный голос
+    # Используем заранее сохранённый голос (устанавливается при выборе темы)
     voice_id = user_state.get("voice_id")
     if not voice_id:
+        # если почему-то не задан – берём женский по умолчанию
         voice_id = WOMAN_VOICE_ID
         user_state["voice_id"] = voice_id
         set_user_state(user_id, user_state)
@@ -173,7 +199,7 @@ async def roleplay_voice_handler(message: Message, state: FSMContext):
         await send_goal_completion_message(message, user_id, user_state, state, message.bot)
 
 # ============================================================
-# ОБРАБОТЧИКИ КНОПОК ДЛЯ ГОЛОСОВЫХ (исправлен парсинг через последние части)
+# ОБРАБОТЧИКИ КНОПОК ДЛЯ ГОЛОСОВЫХ
 # ============================================================
 @router.callback_query(lambda c: c.data.startswith("roleplay_voice_show_text_"))
 async def roleplay_voice_show_text(callback: CallbackQuery):
@@ -268,14 +294,14 @@ async def roleplay_voice_hide(callback: CallbackQuery):
         parts = callback.data.split('_')
         user_id = int(parts[-2])
         msg_id = int(parts[-1])
-        # Возвращаем только кнопку "Текст", убираем текст (ставим пустой caption)
+        # Возвращаем кнопку "Текст" и убираем текст
         keyboard = InlineKeyboardMarkup(inline_keyboard=[
             [InlineKeyboardButton(text="Текст", callback_data=f"roleplay_voice_show_text_{user_id}_{msg_id}")]
         ])
         await callback.bot.edit_message_caption(
             chat_id=callback.message.chat.id,
             message_id=callback.message.message_id,
-            caption="",  # Пусто, чтобы не было текста
+            caption="",
             reply_markup=keyboard
         )
         await callback.answer()

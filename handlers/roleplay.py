@@ -8,6 +8,9 @@ from data.users import get_user_state, set_user_state
 from services.deepseek import chat
 from handlers.voice import bot_texts
 
+# Импортируем голоса и карту категорий из roleplay_voice
+from handlers.roleplay_voice import WOMAN_VOICE_ID, MAN_VOICE_ID, CATEGORY_VOICE_MAP
+
 try:
     from handlers.start import show_main_menu
 except ImportError:
@@ -1669,7 +1672,7 @@ async def show_topics(callback: CallbackQuery, cat_id: str = None, page: int = 0
     await callback.answer()
 
 # ============================================================
-# ВЫБОР ТЕМЫ (сохраняем voice_id)
+# ВЫБОР ТЕМЫ (с выбором голоса по категории)
 # ============================================================
 @router.callback_query(F.data.startswith("topic_"))
 async def topic_chosen(callback: CallbackQuery, state: FSMContext):
@@ -1695,9 +1698,8 @@ async def topic_chosen(callback: CallbackQuery, state: FSMContext):
 
         user_id = callback.from_user.id
 
-        # Фиксируем голос (по умолчанию женский)
-        from handlers.roleplay_voice import WOMAN_VOICE_ID
-        voice_id = WOMAN_VOICE_ID
+        # === ВЫБОР ГОЛОСА ПО КАТЕГОРИИ (из карты) ===
+        voice_id = CATEGORY_VOICE_MAP.get(cat_id, WOMAN_VOICE_ID)
 
         set_user_state(user_id, {
             "mode": "roleplay_active",
@@ -1977,32 +1979,6 @@ async def back_to_main_menu_after_feedback(callback: CallbackQuery):
         await callback.message.answer("Главное меню временно недоступно", reply_markup=ReplyKeyboardRemove())
 
 # ============================================================
-# ГЛАВНЫЙ ХЕНДЛЕР ДЛЯ КОМАНД – ПЕРВЫЙ СРЕДИ ТЕКСТОВЫХ
-# ============================================================
-@router.message(RoleplayStates.active, F.text.startswith('/'))
-async def handle_commands_in_roleplay(message: Message, state: FSMContext):
-    logger.info(f"=== handle_commands_in_roleplay: {message.text} ===")
-    user_id = message.from_user.id
-    user_state = get_user_state(user_id)
-    if user_state.get("mode") != "roleplay_active":
-        logger.info("handle_commands_in_roleplay: режим не активен, пропускаем")
-        return
-    user_state["mode"] = ""
-    user_state["roleplay_history"] = []
-    user_state["russian_counter"] = 0
-    user_state.pop("roleplay_goal_notified", None)
-    user_state.pop("roleplay_goal_ignored", None)
-    user_state.pop("voice_id", None)
-    set_user_state(user_id, user_state)
-    await state.clear()
-    await message.answer("Диалог завершен..🏁", reply_markup=ReplyKeyboardRemove())
-    try:
-        await show_main_menu(message, edit=False)
-    except Exception as e:
-        logger.error(f"Ошибка show_main_menu: {e}")
-        await message.answer("Главное меню временно недоступно", reply_markup=ReplyKeyboardRemove())
-
-# ============================================================
 # ОБРАБОТЧИКИ ТОЧНЫХ ТЕКСТОВЫХ КОМАНД (подсказка, меню, завершение)
 # ============================================================
 @router.message(RoleplayStates.active, F.text == "💡 Что ответить?")
@@ -2041,11 +2017,18 @@ async def give_hint(message: Message, state: FSMContext):
         return
     await message.answer(f"💡 {hint}")
 
-@router.message(RoleplayStates.active, F.text == "🏠 Главное меню")
-async def exit_to_main_menu(message: Message, state: FSMContext):
-    logger.info("exit_to_main_menu")
+# ============================================================
+# ГЛАВНЫЙ ХЕНДЛЕР ДЛЯ КОМАНД – ПЕРВЫЙ СРЕДИ ТЕКСТОВЫХ
+# ============================================================
+@router.message(RoleplayStates.active, F.text.startswith('/'))
+async def handle_commands_in_roleplay(message: Message, state: FSMContext):
+    logger.info(f"=== handle_commands_in_roleplay: {message.text} ===")
     user_id = message.from_user.id
     user_state = get_user_state(user_id)
+    if user_state.get("mode") != "roleplay_active":
+        logger.info("handle_commands_in_roleplay: режим не активен, пропускаем")
+        return
+    # Завершаем диалог
     user_state["mode"] = ""
     user_state["roleplay_history"] = []
     user_state["russian_counter"] = 0
@@ -2062,12 +2045,12 @@ async def exit_to_main_menu(message: Message, state: FSMContext):
         await message.answer("Главное меню временно недоступно", reply_markup=ReplyKeyboardRemove())
 
 # ============================================================
-# ОСНОВНОЙ ОБРАБОТЧИК ТЕКСТА (не команды)
+# ОСНОВНОЙ ОБРАБОТЧИК ТЕКСТА (должен быть ПОСЛЕДНИМ среди текстовых)
 # ============================================================
 @router.message(RoleplayStates.active, F.text)
 async def handle_roleplay_text(message: Message, state: FSMContext):
-    # Лог в начале
     logger.info(f"=== handle_roleplay_text ВЫЗВАН, текст: {message.text[:30]} ===")
+
     user_id = message.from_user.id
     user_state = get_user_state(user_id)
     if user_state.get("mode") != "roleplay_active":
@@ -2076,9 +2059,9 @@ async def handle_roleplay_text(message: Message, state: FSMContext):
 
     user_text = message.text
 
-    # На всякий случай, если команда сюда попала (но хендлер выше должен перехватывать)
+    # команды уже перехвачены выше, но на всякий случай оставляем защиту
     if user_text.startswith('/'):
-        logger.info("handle_roleplay_text: команда, но мы её уже обработали выше, пропускаем")
+        logger.info("handle_roleplay_text: сообщение начинается с '/', пропускаем")
         return
 
     logger.info(f"handle_roleplay_text: обрабатываем текст: {user_text[:30]}...")
@@ -2136,7 +2119,7 @@ async def handle_roleplay_text(message: Message, state: FSMContext):
         await send_goal_completion_message(message, user_id, user_state, state, message.bot)
 
 # ============================================================
-# ОБРАБОТЧИК НЕПОДДЕРЖИВАЕМЫХ ТИПОВ (без голосовых)
+# ОБРАБОТЧИК НЕПОДДЕРЖИВАЕМЫХ ТИПОВ (без голосовых, т.к. они в roleplay_voice)
 # ============================================================
 @router.message(RoleplayStates.active, F.photo | F.video | F.video_note | F.animation | F.document | F.sticker)
 async def handle_unsupported_content(message: Message, state: FSMContext):
