@@ -34,12 +34,9 @@ async def roleplay_voice_handler(message: Message, state: FSMContext):
     user_id = message.from_user.id
     user_state = get_user_state(user_id)
     logger.info(f"Голосовое сообщение, user_id={user_id}, mode={user_state.get('mode')}")
-    
     if user_state.get("mode") != "roleplay_active":
         logger.info("Голосовое сообщение, но mode != roleplay_active")
         return
-
-    logger.info(f"Голосовое в ролевой игре от {user_id}")
 
     await message.bot.send_chat_action(chat_id=message.chat.id, action="record_voice")
 
@@ -92,7 +89,13 @@ async def roleplay_voice_handler(message: Message, state: FSMContext):
     if show_english_reminder:
         await message.answer("✨Feel free to use English!")
 
-    voice_id = random.choice([WOMAN_VOICE_ID, MAN_VOICE_ID])
+    # Фиксируем голос на сессию
+    voice_id = user_state.get("voice_id")
+    if not voice_id:
+        voice_id = random.choice([WOMAN_VOICE_ID, MAN_VOICE_ID])
+        user_state["voice_id"] = voice_id
+        set_user_state(user_id, user_state)
+
     tts_text = truncate_for_tts(ai_response_clean)
 
     await message.bot.send_chat_action(chat_id=message.chat.id, action="record_voice")
@@ -263,6 +266,7 @@ async def roleplay_voice_hide(callback: CallbackQuery):
         keyboard = InlineKeyboardMarkup(inline_keyboard=[
             [InlineKeyboardButton(text="Текст", callback_data=f"roleplay_voice_show_text_{user_id}_{msg_id}")]
         ])
+        # Меняем caption на пустой, чтобы скрыть текст
         await callback.bot.edit_message_caption(
             chat_id=callback.message.chat.id,
             message_id=callback.message.message_id,
@@ -272,5 +276,4 @@ async def roleplay_voice_hide(callback: CallbackQuery):
         await callback.answer()
     except Exception as e:
         logger.error(f"Ошибка в roleplay_voice_hide: {e}", exc_info=True)
-        await callback.message.delete()
-        await callback.answer("Скрыто.")
+        await callback.answer("Ошибка.", show_alert=True)
