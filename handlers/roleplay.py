@@ -2016,98 +2016,7 @@ async def give_hint(message: Message, state: FSMContext):
     await message.answer(f"💡 {hint}")
 
 # ============================================================
-# MIDDLEWARE ДЛЯ ЗАВЕРШЕНИЯ РЕЖИМА ПО КОМАНДАМ
-# ============================================================
-async def close_roleplay_on_exit(handler, event, data):
-    user_id = None
-    if hasattr(event, 'from_user'):
-        user_id = event.from_user.id
-    elif hasattr(event, 'message') and event.message:
-        user_id = event.message.from_user.id
-    elif hasattr(event, 'callback_query') and event.callback_query:
-        user_id = event.callback_query.from_user.id
-
-    if not user_id:
-        return await handler(event, data)
-
-    user_state = get_user_state(user_id)
-    if user_state.get("mode") != "roleplay_active":
-        return await handler(event, data)
-
-    should_close = False
-
-    # Проверяем команды и кнопку "Главное меню"
-    if hasattr(event, 'text') and isinstance(event.text, str) and event.text.startswith('/'):
-        should_close = True
-    elif hasattr(event, 'data') and isinstance(event.data, str):
-        if event.data == "back_to_main":
-            should_close = True
-        else:
-            should_close = False
-    elif hasattr(event, 'text') and isinstance(event.text, str):
-        if event.text == "🏠 Главное меню":
-            should_close = True
-        else:
-            should_close = False
-    else:
-        should_close = False
-
-    if data.get("skip_exit_message"):
-        should_close = False
-
-    # Сначала вызываем хендлер
-    result = await handler(event, data)
-
-    # Затем, если нужно, завершаем режим
-    if should_close:
-        try:
-            if hasattr(event, 'message') and event.message:
-                await event.message.answer("Диалог завершен..🏁", reply_markup=ReplyKeyboardRemove())
-            elif hasattr(event, 'callback_query') and event.callback_query and event.callback_query.message:
-                await event.callback_query.message.answer("Диалог завершен..🏁", reply_markup=ReplyKeyboardRemove())
-            else:
-                await event.answer("Диалог завершен..🏁", reply_markup=ReplyKeyboardRemove())
-        except Exception as e:
-            logger.error(f"Ошибка при удалении клавиатуры: {e}")
-
-        user_state["mode"] = ""
-        user_state["roleplay_history"] = []
-        user_state["russian_counter"] = 0
-        user_state.pop("roleplay_goal_notified", None)
-        user_state.pop("roleplay_goal_ignored", None)
-        user_state.pop("voice_id", None)
-        set_user_state(user_id, user_state)
-        if 'state' in data:
-            await data['state'].clear()
-
-        # Показываем главное меню
-        try:
-            if hasattr(event, 'message') and event.message:
-                await show_main_menu(event.message, edit=False)
-            elif hasattr(event, 'callback_query') and event.callback_query and event.callback_query.message:
-                await show_main_menu(event.callback_query.message, edit=False)
-        except Exception as e:
-            logger.error(f"Ошибка при вызове show_main_menu: {e}")
-
-    return result
-
-# Регистрируем middleware
-router.message.middleware(close_roleplay_on_exit)
-router.callback_query.middleware(close_roleplay_on_exit)
-
-# ============================================================
-# ОБРАБОТЧИК НЕПОДДЕРЖИВАЕМЫХ ТИПОВ (без голосовых, т.к. они в roleplay_voice)
-# ============================================================
-@router.message(RoleplayStates.active, F.photo | F.video | F.video_note | F.animation | F.document | F.sticker)
-async def handle_unsupported_content(message: Message, state: FSMContext):
-    user_id = message.from_user.id
-    user_state = get_user_state(user_id)
-    if user_state.get("mode") != "roleplay_active":
-        return
-    await message.answer("Пожалуйста, отправляйте текстовые или голосовые сообщения для продолжения диалога.")
-
-# ============================================================
-# ОСНОВНОЙ ОБРАБОТЧИК ТЕКСТА (должен быть ПОСЛЕДНИМ среди текстовых)
+# ОСНОВНОЙ ОБРАБОТЧИК ТЕКСТА (ГАРАНТИРОВАННО ЗАВЕРШАЕТ ДИАЛОГ ПО КОМАНДАМ)
 # ============================================================
 @router.message(RoleplayStates.active, F.text)
 async def handle_roleplay_text(message: Message, state: FSMContext):
@@ -2119,11 +2028,26 @@ async def handle_roleplay_text(message: Message, state: FSMContext):
 
     user_text = message.text
 
-    # команды уже перехвачены middleware, но на всякий случай оставляем защиту
+    # === ГАРАНТИРОВАННАЯ ОБРАБОТКА ЛЮБЫХ КОМАНД ===
     if user_text.startswith('/'):
-        logger.info("handle_roleplay_text: сообщение начинается с '/', пропускаем")
+        logger.info(f"handle_roleplay_text: команда {user_text}, завершаем диалог")
+        user_state["mode"] = ""
+        user_state["roleplay_history"] = []
+        user_state["russian_counter"] = 0
+        user_state.pop("roleplay_goal_notified", None)
+        user_state.pop("roleplay_goal_ignored", None)
+        user_state.pop("voice_id", None)
+        set_user_state(user_id, user_state)
+        await state.clear()
+        await message.answer("Диалог завершен..🏁", reply_markup=ReplyKeyboardRemove())
+        try:
+            await show_main_menu(message, edit=False)
+        except Exception as e:
+            logger.error(f"Ошибка show_main_menu: {e}")
+            await message.answer("Главное меню временно недоступно", reply_markup=ReplyKeyboardRemove())
         return
 
+    # === ОБЫЧНАЯ ОБРАБОТКА ТЕКСТА (не команда) ===
     logger.info(f"handle_roleplay_text: {user_text[:30]}...")
 
     if is_forbidden(user_text):
@@ -2177,6 +2101,17 @@ async def handle_roleplay_text(message: Message, state: FSMContext):
 
     if goals_achieved and not user_state.get("roleplay_goal_ignored", False):
         await send_goal_completion_message(message, user_id, user_state, state, message.bot)
+
+# ============================================================
+# ОБРАБОТЧИК НЕПОДДЕРЖИВАЕМЫХ ТИПОВ (без голосовых)
+# ============================================================
+@router.message(RoleplayStates.active, F.photo | F.video | F.video_note | F.animation | F.document | F.sticker)
+async def handle_unsupported_content(message: Message, state: FSMContext):
+    user_id = message.from_user.id
+    user_state = get_user_state(user_id)
+    if user_state.get("mode") != "roleplay_active":
+        return
+    await message.answer("Пожалуйста, отправляйте текстовые или голосовые сообщения для продолжения диалога.")
 
 # ============================================================
 # ОБРАБОТЧИКИ ПЕРЕВОДА ТЕКСТА
