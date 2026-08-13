@@ -1,7 +1,8 @@
 import os
 import logging
 import re
-from openai import AsyncOpenAI
+import aiohttp
+import asyncio
 
 logger = logging.getLogger(__name__)
 
@@ -10,10 +11,7 @@ if not DEEPSEEK_API_KEY:
     logger.error("DEEPSEEK_API_KEY not set in environment variables")
     raise ValueError("DEEPSEEK_API_KEY is required. Please set it in your environment.")
 
-client = AsyncOpenAI(
-    api_key=DEEPSEEK_API_KEY,
-    base_url="https://api.deepseek.com/v1"
-)
+BASE_URL = "https://api.deepseek.com/v1"
 
 async def check_writing(task_text: str, user_answer: str, level: str, keywords: list) -> tuple:
     prompt = (
@@ -30,16 +28,26 @@ async def check_writing(task_text: str, user_answer: str, level: str, keywords: 
         f"Ответ пользователя:\n{user_answer}\n"
     )
 
-    try:
-        response = await client.chat.completions.create(
-            model="deepseek-chat",
-            messages=[{"role": "user", "content": prompt}],
-            max_tokens=500,
-            temperature=0.5
-        )
-        feedback = response.choices[0].message.content
+    url = f"{BASE_URL}/chat/completions"
+    headers = {
+        "Authorization": f"Bearer {DEEPSEEK_API_KEY}",
+        "Content-Type": "application/json"
+    }
+    payload = {
+        "model": "deepseek-chat",
+        "messages": [{"role": "user", "content": prompt}],
+        "max_tokens": 500,
+        "temperature": 0.5
+    }
 
-        # Удаляем Markdown-символы на всякий случай
+    try:
+        async with aiohttp.ClientSession() as session:
+            async with session.post(url, headers=headers, json=payload, timeout=30) as resp:
+                resp.raise_for_status()
+                data = await resp.json()
+                feedback = data["choices"][0]["message"]["content"]
+
+        # Удаляем Markdown-символы
         feedback = re.sub(r'\*\*?', '', feedback)
         feedback = re.sub(r'__?', '', feedback)
         feedback = re.sub(r'#{1,6}', '', feedback)
@@ -57,6 +65,12 @@ async def check_writing(task_text: str, user_answer: str, level: str, keywords: 
 
         return feedback, score
 
+    except asyncio.TimeoutError:
+        logger.error("Timeout while calling DeepSeek API in check_writing")
+        return "Превышено время ожидания ответа. Попробуйте позже.", 3
+    except aiohttp.ClientError as e:
+        logger.error(f"HTTP error in check_writing: {e}")
+        raise
     except Exception as e:
-        logger.error(f"DeepSeek API error in check_writing: {e}")
+        logger.error(f"Unexpected error in check_writing: {e}")
         raise
