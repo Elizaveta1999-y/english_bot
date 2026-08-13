@@ -76,23 +76,22 @@ async def handle_errors(*args, **kwargs):
             logger.error(f"Не удалось отправить уведомление админу: {e}")
 
 # --------------------- Подключение роутеров (исправленный порядок) ---------------------
-dp.include_router(start.router)          # 1. start (команды /start, /support, /subscription)
-dp.include_router(speaking.router)       # 2. speaking – теперь сразу после start, чтобы кнопки перехватывались
+dp.include_router(start.router)          # 1. start (команды /start)
+dp.include_router(speaking.router)       # 2. speaking
+dp.include_router(roleplay.router)       # 3. roleplay – теперь ДО support и subscription
+dp.include_router(roleplay_voice.router) # 4. голосовые для ролплей
 dp.include_router(words.router)
 dp.include_router(govorenie_router)
 dp.include_router(writing.router)
 dp.include_router(reading.router)
 dp.include_router(listening.router)
 dp.include_router(grammar_router)
-dp.include_router(support.router)
-dp.include_router(subscription_router)
-dp.include_router(roleplay.router)
-dp.include_router(roleplay_voice.router)   # затем голосовые для ролплей
+dp.include_router(support.router)        # теперь ПОСЛЕ roleplay
+dp.include_router(subscription_router)   # теперь ПОСЛЕ roleplay
 dp.include_router(voice.router)
-dp.include_router(common.router)         # common теперь позже – не перехватит наши кнопки
+dp.include_router(common.router)
 dp.include_router(lessons.router)
 dp.include_router(profile.router)
-
 # --------------------- Глобальный middleware для закрытия Speaking ---------------------
 dp.message.middleware(close_speaking_on_exit)
 dp.callback_query.middleware(close_speaking_on_exit)
