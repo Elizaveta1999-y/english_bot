@@ -1,7 +1,6 @@
 import os
 import logging
 import re
-import random
 from aiogram import Router, F
 from aiogram.types import Message, BufferedInputFile, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
 from aiogram.fsm.context import FSMContext
@@ -14,6 +13,8 @@ from handlers.roleplay import build_system_prompt, call_ai_with_system, is_forbi
 
 logger = logging.getLogger(__name__)
 router = Router()
+
+logger.info("=== РОУТЕР ROLEPLAY_VOICE ЗАГРУЖЕН ===")
 
 WOMAN_VOICE_ID = "8quEMRkSpwEaWBzHvTLv"
 MAN_VOICE_ID = "3TStB8f3X3To0Uj5R7RK"
@@ -33,13 +34,11 @@ async def roleplay_voice_handler(message: Message, state: FSMContext):
     logger.info("=== roleplay_voice_handler ВЫЗВАН ===")
     user_id = message.from_user.id
     user_state = get_user_state(user_id)
-    logger.info(f"Голосовое сообщение, user_id={user_id}, mode={user_state.get('mode')}")
+    logger.info(f"user_id={user_id}, mode={user_state.get('mode')}")
 
     if user_state.get("mode") != "roleplay_active":
-        logger.info("Голосовое сообщение, но mode != roleplay_active, пропускаем")
+        logger.info("mode != roleplay_active, пропускаем")
         return
-
-    logger.info("Начинаем обработку голосового в ролевой игре")
 
     await message.bot.send_chat_action(chat_id=message.chat.id, action="record_voice")
 
@@ -53,7 +52,7 @@ async def roleplay_voice_handler(message: Message, state: FSMContext):
         text = await voice_to_text(file_bytes.read())
         logger.info(f"Распознанный текст: {text[:50]}...")
     except Exception as e:
-        logger.error(f"Ошибка распознавания в roleplay_voice: {e}")
+        logger.error(f"Ошибка распознавания: {e}")
         await message.answer("Не удалось распознать голосовое сообщение. Попробуйте написать текстом.")
         return
 
@@ -79,7 +78,6 @@ async def roleplay_voice_handler(message: Message, state: FSMContext):
     system_prompt = build_system_prompt(topic, description, goals)
     history = user_state.get("roleplay_history", [])
 
-    logger.info("Вызываем ИИ для ответа на голосовое")
     ai_response = await call_ai_with_system(system_prompt, text, history, max_tokens=250)
     logger.info(f"Ответ ИИ: {ai_response[:50]}...")
 
@@ -95,7 +93,7 @@ async def roleplay_voice_handler(message: Message, state: FSMContext):
     if show_english_reminder:
         await message.answer("✨Feel free to use English!")
 
-    # Используем фиксированный голос из user_state
+    # Фиксированный голос
     voice_id = user_state.get("voice_id")
     if not voice_id:
         voice_id = WOMAN_VOICE_ID
@@ -109,7 +107,6 @@ async def roleplay_voice_handler(message: Message, state: FSMContext):
 
     try:
         voice_path = await text_to_voice(tts_text, voice_id=voice_id)
-        logger.info(f"TTS успешно, voice_path={voice_path}")
     except Exception as e:
         logger.error(f"TTS error: {e}")
         voice_path = None
@@ -128,7 +125,6 @@ async def roleplay_voice_handler(message: Message, state: FSMContext):
             if user_id not in bot_texts:
                 bot_texts[user_id] = {}
             bot_texts[user_id][msg_id] = {"text": ai_response_clean, "translation": None}
-            logger.info(f"Отправлено голосовое сообщение, msg_id={msg_id}")
             keyboard = InlineKeyboardMarkup(inline_keyboard=[
                 [InlineKeyboardButton(text="Текст", callback_data=f"roleplay_voice_show_text_{user_id}_{msg_id}")]
             ])
@@ -141,7 +137,7 @@ async def roleplay_voice_handler(message: Message, state: FSMContext):
             os.unlink(voice_path)
             os.unlink(ogg_path)
         except Exception as e:
-            logger.error(f"Audio error in roleplay_voice: {e}")
+            logger.error(f"Audio error: {e}")
             sent_msg = await message.answer(ai_response_clean)
             msg_id = sent_msg.message_id
             if user_id not in bot_texts:
@@ -158,7 +154,6 @@ async def roleplay_voice_handler(message: Message, state: FSMContext):
             )
             return
     else:
-        logger.info("TTS не удался, отправляем текст")
         sent_msg = await message.answer(ai_response_clean)
         msg_id = sent_msg.message_id
         if user_id not in bot_texts:
@@ -178,21 +173,15 @@ async def roleplay_voice_handler(message: Message, state: FSMContext):
         await send_goal_completion_message(message, user_id, user_state, state, message.bot)
 
 # ============================================================
-# ОБРАБОТЧИКИ КНОПОК ДЛЯ ГОЛОСОВЫХ (исправлен парсинг через rsplit)
+# ОБРАБОТЧИКИ КНОПОК ДЛЯ ГОЛОСОВЫХ (исправлен парсинг через последние части)
 # ============================================================
 @router.callback_query(lambda c: c.data.startswith("roleplay_voice_show_text_"))
 async def roleplay_voice_show_text(callback: CallbackQuery):
-    logger.info(f"=== roleplay_voice_show_text ВЫЗВАН, data={callback.data} ===")
+    logger.info(f"=== roleplay_voice_show_text: {callback.data} ===")
     try:
-        # формат: roleplay_voice_show_text_{user_id}_{msg_id}
-        # используем rsplit, чтобы взять последние 2 части
         parts = callback.data.split('_')
-        # parts = ['roleplay', 'voice', 'show', 'text', '6115540828', '10418']
-        # но user_id может быть разной длины, поэтому берём последние 2
         user_id = int(parts[-2])
         msg_id = int(parts[-1])
-        logger.info(f"user_id={user_id}, msg_id={msg_id}")
-        
         user_texts = bot_texts.get(user_id)
         if not user_texts or msg_id not in user_texts:
             await callback.answer("Текст не найден.", show_alert=True)
@@ -215,13 +204,11 @@ async def roleplay_voice_show_text(callback: CallbackQuery):
 
 @router.callback_query(lambda c: c.data.startswith("roleplay_voice_translate_"))
 async def roleplay_voice_translate(callback: CallbackQuery):
-    logger.info(f"=== roleplay_voice_translate ВЫЗВАН, data={callback.data} ===")
+    logger.info(f"=== roleplay_voice_translate: {callback.data} ===")
     try:
         parts = callback.data.split('_')
         user_id = int(parts[-2])
         msg_id = int(parts[-1])
-        logger.info(f"user_id={user_id}, msg_id={msg_id}")
-        
         user_texts = bot_texts.get(user_id)
         if not user_texts or msg_id not in user_texts:
             await callback.answer("Текст не найден.", show_alert=True)
@@ -249,13 +236,11 @@ async def roleplay_voice_translate(callback: CallbackQuery):
 
 @router.callback_query(lambda c: c.data.startswith("roleplay_voice_original_"))
 async def roleplay_voice_original(callback: CallbackQuery):
-    logger.info(f"=== roleplay_voice_original ВЫЗВАН, data={callback.data} ===")
+    logger.info(f"=== roleplay_voice_original: {callback.data} ===")
     try:
         parts = callback.data.split('_')
         user_id = int(parts[-2])
         msg_id = int(parts[-1])
-        logger.info(f"user_id={user_id}, msg_id={msg_id}")
-        
         user_texts = bot_texts.get(user_id)
         if not user_texts or msg_id not in user_texts:
             await callback.answer("Текст не найден.", show_alert=True)
@@ -278,21 +263,19 @@ async def roleplay_voice_original(callback: CallbackQuery):
 
 @router.callback_query(lambda c: c.data.startswith("roleplay_voice_hide_"))
 async def roleplay_voice_hide(callback: CallbackQuery):
-    logger.info(f"=== roleplay_voice_hide ВЫЗВАН, data={callback.data} ===")
+    logger.info(f"=== roleplay_voice_hide: {callback.data} ===")
     try:
         parts = callback.data.split('_')
         user_id = int(parts[-2])
         msg_id = int(parts[-1])
-        logger.info(f"user_id={user_id}, msg_id={msg_id}")
-        
-        # Возвращаем кнопку "Текст" и убираем текст (ставим заглушку)
+        # Возвращаем только кнопку "Текст", убираем текст (ставим пустой caption)
         keyboard = InlineKeyboardMarkup(inline_keyboard=[
             [InlineKeyboardButton(text="Текст", callback_data=f"roleplay_voice_show_text_{user_id}_{msg_id}")]
         ])
         await callback.bot.edit_message_caption(
             chat_id=callback.message.chat.id,
             message_id=callback.message.message_id,
-            caption="🔒",
+            caption="",  # Пусто, чтобы не было текста
             reply_markup=keyboard
         )
         await callback.answer()
