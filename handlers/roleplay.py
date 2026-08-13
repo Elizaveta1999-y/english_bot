@@ -8,13 +8,15 @@ from data.users import get_user_state, set_user_state
 from services.deepseek import chat
 from handlers.voice import bot_texts
 
+logger = logging.getLogger(__name__)
+logger.info("=== РОУТЕР ROLEPLAY ЗАГРУЖЕН ===")
+
 try:
     from handlers.start import show_main_menu
 except ImportError:
     async def show_main_menu(message, edit=False):
         await message.answer("Главное меню", reply_markup=ReplyKeyboardRemove())
 
-logger = logging.getLogger(__name__)
 router = Router()
 
 class RoleplayStates(StatesGroup):
@@ -1475,9 +1477,6 @@ def is_forbidden(text: str) -> bool:
             return True
     return False
 
-# ============================================================
-# СИСТЕМНЫЙ ПРОМПТ (исправлен: запрет повторных приветствий)
-# ============================================================
 def build_system_prompt(topic: str, description: str, goals: list) -> str:
     goals_text = "\n".join([f"{i+1}. {g}" for i, g in enumerate(goals)])
     return (
@@ -1523,9 +1522,6 @@ async def call_ai_with_system(system_prompt: str, user_text: str, history: list,
         logger.error(f"Ошибка вызова ИИ: {e}")
         return "Произошла ошибка. Попробуйте ещё раз."
 
-# ============================================================
-# ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ
-# ============================================================
 async def send_goal_completion_message(message: Message, user_id: int, user_state: dict, state: FSMContext, bot):
     if user_state.get("roleplay_goal_notified", False):
         return
@@ -1543,6 +1539,7 @@ async def send_goal_completion_message(message: Message, user_id: int, user_stat
 
 @router.callback_query(F.data == "roleplay_goal_finish")
 async def goal_finish(callback: CallbackQuery, state: FSMContext):
+    logger.info("goal_finish вызван")
     await callback.answer()
     user_id = callback.from_user.id
     user_state = get_user_state(user_id)
@@ -1552,6 +1549,7 @@ async def goal_finish(callback: CallbackQuery, state: FSMContext):
 
 @router.callback_query(F.data == "roleplay_goal_continue")
 async def goal_continue(callback: CallbackQuery, state: FSMContext):
+    logger.info("goal_continue вызван")
     await callback.answer()
     user_id = callback.from_user.id
     user_state = get_user_state(user_id)
@@ -1561,11 +1559,9 @@ async def goal_continue(callback: CallbackQuery, state: FSMContext):
     await callback.message.edit_reply_markup(reply_markup=None)
     await callback.message.answer("Продолжаем общение!")
 
-# ============================================================
-# СТАРТ РОЛЕВОЙ ИГРЫ И ПАГИНАЦИЯ
-# ============================================================
 @router.callback_query(F.data == "start_roleplay")
 async def start_roleplay(callback: CallbackQuery):
+    logger.info("start_roleplay вызван")
     await callback.message.delete()
     await callback.message.answer(
         "🎭 Выберите категорию для ролевой игры:",
@@ -1575,6 +1571,7 @@ async def start_roleplay(callback: CallbackQuery):
 
 @router.callback_query(F.data == "cat_page_next")
 async def cat_page_next(callback: CallbackQuery):
+    logger.info("cat_page_next вызван")
     user_id = callback.from_user.id
     user_state = get_user_state(user_id)
     cat_id = user_state.get("current_category")
@@ -1587,6 +1584,7 @@ async def cat_page_next(callback: CallbackQuery):
 
 @router.callback_query(F.data == "cat_page_prev")
 async def cat_page_prev(callback: CallbackQuery):
+    logger.info("cat_page_prev вызван")
     user_id = callback.from_user.id
     user_state = get_user_state(user_id)
     cat_id = user_state.get("current_category")
@@ -1605,6 +1603,7 @@ async def noop(callback: CallbackQuery):
 
 @router.callback_query(F.data.startswith("cat_"))
 async def show_topics(callback: CallbackQuery, cat_id: str = None, page: int = 0):
+    logger.info(f"show_topics вызван с cat_id={cat_id}, page={page}")
     if cat_id is None:
         cat_id = callback.data[4:]
     topics_list = TOPICS.get(cat_id, [])
@@ -1660,11 +1659,9 @@ async def show_topics(callback: CallbackQuery, cat_id: str = None, page: int = 0
     )
     await callback.answer()
 
-# ============================================================
-# ВЫБОР ТЕМЫ (сохраняем voice_id)
-# ============================================================
 @router.callback_query(F.data.startswith("topic_"))
 async def topic_chosen(callback: CallbackQuery, state: FSMContext):
+    logger.info("topic_chosen вызван")
     try:
         rest = callback.data[6:]
         parts = rest.rsplit('_', 2)
@@ -1702,7 +1699,7 @@ async def topic_chosen(callback: CallbackQuery, state: FSMContext):
             "russian_counter": 0,
             "roleplay_goal_notified": False,
             "roleplay_goal_ignored": False,
-            "voice_id": voice_id  # фиксируем голос
+            "voice_id": voice_id
         })
 
         await state.set_state(RoleplayStates.active)
@@ -1769,11 +1766,9 @@ async def topic_chosen(callback: CallbackQuery, state: FSMContext):
         logger.error(f"Ошибка в topic_chosen: {e}", exc_info=True)
         await callback.answer("Произошла ошибка. Попробуйте ещё раз.", show_alert=True)
 
-# ============================================================
-# ОБРАБОТЧИКИ НАВИГАЦИИ
-# ============================================================
 @router.callback_query(F.data.startswith("back_to_topics_"))
 async def back_to_topics(callback: CallbackQuery):
+    logger.info("back_to_topics вызван")
     rest = callback.data[15:]
     cat_id, page_str = rest.rsplit('_', 1)
     page = int(page_str)
@@ -1782,6 +1777,7 @@ async def back_to_topics(callback: CallbackQuery):
 
 @router.callback_query(F.data == "back_to_rp_categories")
 async def back_to_rp_categories(callback: CallbackQuery, state: FSMContext):
+    logger.info("back_to_rp_categories вызван")
     await state.clear()
     await callback.message.edit_text(
         "🎭 Выберите категорию для ролевой игры:",
@@ -1791,6 +1787,7 @@ async def back_to_rp_categories(callback: CallbackQuery, state: FSMContext):
 
 @router.callback_query(F.data == "back_to_main_menu_from_categories")
 async def back_to_main_menu_from_categories(callback: CallbackQuery):
+    logger.info("back_to_main_menu_from_categories вызван")
     await callback.message.delete()
     try:
         await show_main_menu(callback.message, edit=False)
@@ -1799,11 +1796,9 @@ async def back_to_main_menu_from_categories(callback: CallbackQuery):
         await callback.message.answer("Главное меню временно недоступно", reply_markup=ReplyKeyboardRemove())
     await callback.answer()
 
-# ============================================================
-# ОБРАБОТЧИК "ЗАВЕРШИТЬ ДИАЛОГ"
-# ============================================================
 @router.message(RoleplayStates.active, F.text == "📊 Завершить диалог")
 async def finish_roleplay(message: Message, state: FSMContext):
+    logger.info("finish_roleplay вызван")
     user_id = message.from_user.id
     user_state = get_user_state(user_id)
     history = user_state.get("roleplay_history", [])
@@ -1846,6 +1841,7 @@ async def finish_roleplay(message: Message, state: FSMContext):
 
 @router.callback_query(F.data == "continue_dialogue", RoleplayStates.confirming_finish)
 async def continue_dialogue(callback: CallbackQuery, state: FSMContext):
+    logger.info("continue_dialogue вызван")
     await state.set_state(RoleplayStates.active)
     await callback.message.delete()
     await callback.message.answer("Продолжаем диалог. Постарайтесь достичь всех целей!", reply_markup=None)
@@ -1853,6 +1849,7 @@ async def continue_dialogue(callback: CallbackQuery, state: FSMContext):
 
 @router.callback_query(F.data == "finish_anyway", RoleplayStates.confirming_finish)
 async def finish_anyway(callback: CallbackQuery, state: FSMContext):
+    logger.info("finish_anyway вызван")
     await state.clear()
     user_id = callback.from_user.id
     user_state = get_user_state(user_id)
@@ -1860,10 +1857,8 @@ async def finish_anyway(callback: CallbackQuery, state: FSMContext):
     await generate_feedback(callback.message, state, user_id, user_state)
     await callback.answer()
 
-# ============================================================
-# ГЕНЕРАЦИЯ ФИДБЕКА (без изменений, но оставляем)
-# ============================================================
 async def generate_feedback(message: Message, state: FSMContext, user_id: int, user_state: dict):
+    logger.info("generate_feedback вызван")
     history = user_state.get("roleplay_history", [])
     goals = user_state.get("roleplay_goals", [])
     topic = user_state.get("roleplay_topic", "")
@@ -1934,7 +1929,6 @@ async def generate_feedback(message: Message, state: FSMContext, user_id: int, u
             return
         feedback_text = feedback
 
-    # Очищаем состояние
     user_state["mode"] = ""
     user_state["roleplay_history"] = []
     user_state["russian_counter"] = 0
@@ -1952,6 +1946,7 @@ async def generate_feedback(message: Message, state: FSMContext, user_id: int, u
 
 @router.callback_query(F.data == "back_to_main_menu_after_feedback")
 async def back_to_main_menu_after_feedback(callback: CallbackQuery):
+    logger.info("back_to_main_menu_after_feedback вызван")
     await callback.answer()
     try:
         await show_main_menu(callback.message, edit=False)
@@ -1959,11 +1954,9 @@ async def back_to_main_menu_after_feedback(callback: CallbackQuery):
         logger.error(f"Ошибка show_main_menu: {e}")
         await callback.message.answer("Главное меню временно недоступно", reply_markup=ReplyKeyboardRemove())
 
-# ============================================================
-# ОБРАБОТЧИК "ЧТО ОТВЕТИТЬ?"
-# ============================================================
 @router.message(RoleplayStates.active, F.text == "💡 Что ответить?")
 async def give_hint(message: Message, state: FSMContext):
+    logger.info("give_hint вызван")
     user_id = message.from_user.id
     user_state = get_user_state(user_id)
     history = user_state.get("roleplay_history", [])
@@ -1997,11 +1990,9 @@ async def give_hint(message: Message, state: FSMContext):
         return
     await message.answer(f"💡 {hint}")
 
-# ============================================================
-# ОБРАБОТЧИК "ГЛАВНОЕ МЕНЮ" В ИГРЕ
-# ============================================================
 @router.message(RoleplayStates.active, F.text == "🏠 Главное меню")
 async def exit_to_main_menu(message: Message, state: FSMContext):
+    logger.info("exit_to_main_menu вызван (из игры)")
     user_id = message.from_user.id
     user_state = get_user_state(user_id)
     user_state["mode"] = ""
@@ -2019,14 +2010,12 @@ async def exit_to_main_menu(message: Message, state: FSMContext):
         logger.error(f"Ошибка show_main_menu: {e}")
         await message.answer("Главное меню временно недоступно", reply_markup=ReplyKeyboardRemove())
 
-# ============================================================
-# ОБРАБОТЧИК КОМАНД (через entities и по тексту)
-# ============================================================
 @router.message(RoleplayStates.active, F.entities)
 async def handle_command_entity(message: Message, state: FSMContext):
+    logger.info(f"=== handle_command_entity ВЫЗВАН, entities={message.entities} ===")
     for entity in message.entities:
         if entity.type == MessageEntity.BOT_COMMAND:
-            logger.info(f"handle_command_entity: команда {message.text}")
+            logger.info(f"=== handle_command_entity: перехвачена команда {message.text} ===")
             user_id = message.from_user.id
             user_state = get_user_state(user_id)
             user_state["mode"] = ""
@@ -2040,16 +2029,16 @@ async def handle_command_entity(message: Message, state: FSMContext):
             await message.answer("Диалог завершен..🏁", reply_markup=ReplyKeyboardRemove())
             try:
                 await show_main_menu(message, edit=False)
+                logger.info("=== Главное меню показано ===")
             except Exception as e:
                 logger.error(f"Ошибка show_main_menu: {e}")
                 await message.answer("Главное меню временно недоступно", reply_markup=ReplyKeyboardRemove())
             return
-    # Если это не команда, но есть другие entities – пропускаем
+    logger.info("=== handle_command_entity: это не команда, пропускаем ===")
 
-# Запасной хендлер для команд, если по какой-то причине не сработал entities
 @router.message(RoleplayStates.active, F.text.startswith('/'))
 async def handle_command_text(message: Message, state: FSMContext):
-    logger.info(f"handle_command_text: {message.text}")
+    logger.info(f"=== handle_command_text ВЫЗВАН, text={message.text} ===")
     user_id = message.from_user.id
     user_state = get_user_state(user_id)
     user_state["mode"] = ""
@@ -2063,13 +2052,11 @@ async def handle_command_text(message: Message, state: FSMContext):
     await message.answer("Диалог завершен..🏁", reply_markup=ReplyKeyboardRemove())
     try:
         await show_main_menu(message, edit=False)
+        logger.info("=== Главное меню показано (запасной хендлер) ===")
     except Exception as e:
         logger.error(f"Ошибка show_main_menu: {e}")
         await message.answer("Главное меню временно недоступно", reply_markup=ReplyKeyboardRemove())
 
-# ============================================================
-# ОСНОВНОЙ ОБРАБОТЧИК ТЕКСТА (только если не команда)
-# ============================================================
 @router.message(RoleplayStates.active, F.text)
 async def handle_roleplay_text(message: Message, state: FSMContext):
     user_id = message.from_user.id
@@ -2079,7 +2066,7 @@ async def handle_roleplay_text(message: Message, state: FSMContext):
 
     user_text = message.text
     if user_text.startswith('/'):
-        return  # уже обработано в других хендлерах
+        return
 
     if is_forbidden(user_text):
         await message.answer("Пожалуйста, не отходите от темы диалога. Давайте продолжим ролевую игру в рамках заданной ситуации.")
@@ -2133,9 +2120,6 @@ async def handle_roleplay_text(message: Message, state: FSMContext):
     if goals_achieved and not user_state.get("roleplay_goal_ignored", False):
         await send_goal_completion_message(message, user_id, user_state, state, message.bot)
 
-# ============================================================
-# НЕПОДДЕРЖИВАЕМЫЕ ТИПЫ (без голосовых, т.к. они в roleplay_voice)
-# ============================================================
 @router.message(RoleplayStates.active, F.photo | F.video | F.video_note | F.animation | F.document | F.sticker)
 async def handle_unsupported_content(message: Message, state: FSMContext):
     user_id = message.from_user.id
@@ -2144,15 +2128,13 @@ async def handle_unsupported_content(message: Message, state: FSMContext):
         return
     await message.answer("Пожалуйста, отправляйте текстовые или голосовые сообщения для продолжения диалога.")
 
-# ============================================================
-# ОБРАБОТЧИКИ ПЕРЕВОДА ТЕКСТА
-# ============================================================
 @router.callback_query(lambda c: c.data.startswith("roleplay_text_translate_"))
 async def roleplay_text_translate(callback: CallbackQuery):
+    logger.info("roleplay_text_translate вызван")
     try:
         parts = callback.data.split('_')
-        user_id = int(parts[3])
-        msg_id = int(parts[4])
+        user_id = int(parts[-2])
+        msg_id = int(parts[-1])
         user_texts = bot_texts.get(user_id)
         if not user_texts or msg_id not in user_texts:
             await callback.answer("Текст не найден.", show_alert=True)
@@ -2179,10 +2161,11 @@ async def roleplay_text_translate(callback: CallbackQuery):
 
 @router.callback_query(lambda c: c.data.startswith("roleplay_text_original_"))
 async def roleplay_text_original(callback: CallbackQuery):
+    logger.info("roleplay_text_original вызван")
     try:
         parts = callback.data.split('_')
-        user_id = int(parts[3])
-        msg_id = int(parts[4])
+        user_id = int(parts[-2])
+        msg_id = int(parts[-1])
         user_texts = bot_texts.get(user_id)
         if not user_texts or msg_id not in user_texts:
             await callback.answer("Текст не найден.", show_alert=True)
@@ -2202,9 +2185,6 @@ async def roleplay_text_original(callback: CallbackQuery):
         logger.error(f"Ошибка в roleplay_text_original: {e}", exc_info=True)
         await callback.answer("Ошибка.", show_alert=True)
 
-# ============================================================
-# ВСПОМОГАТЕЛЬНАЯ ФУНКЦИЯ
-# ============================================================
 def process_ai_response(response: str) -> tuple[str, bool]:
     if response.startswith("GOALS_ACHIEVED"):
         cleaned = response.replace("GOALS_ACHIEVED", "").strip()
