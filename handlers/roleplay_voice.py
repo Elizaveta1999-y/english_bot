@@ -30,12 +30,12 @@ def truncate_for_tts(text: str, max_len: int = MAX_TTS_LENGTH) -> str:
 
 @router.message(F.voice | F.audio, RoleplayStates.active)
 async def roleplay_voice_handler(message: Message, state: FSMContext):
-    logger.info("roleplay_voice_handler вызван")
+    logger.info("=== roleplay_voice_handler ВЫЗВАН ===")
     user_id = message.from_user.id
     user_state = get_user_state(user_id)
-
+    logger.info(f"Голосовое сообщение, user_id={user_id}, mode={user_state.get('mode')}")
     if user_state.get("mode") != "roleplay_active":
-        logger.info("Голосовое сообщение, но не в активной ролевой игре")
+        logger.info("Голосовое сообщение, но mode != roleplay_active, пропускаем")
         return
 
     logger.info(f"Голосовое в ролевой игре от {user_id}")
