@@ -47,7 +47,7 @@ CATEGORIES = [
     ("📰 News", "news")
 ]
 
-# ===================== ВАШ СПИСОК ТЕМ =====================
+# ===================== ВАШ СПИСОК ТЕМ (вставьте свои темы) =====================
 TOPICS = {
     "work": [
         {
@@ -1478,7 +1478,7 @@ def is_forbidden(text: str) -> bool:
     return False
 
 # ============================================================
-# СИСТЕМНЫЙ ПРОМПТ (исправлен: запрет повторных приветствий)
+# СИСТЕМНЫЙ ПРОМПТ
 # ============================================================
 def build_system_prompt(topic: str, description: str, goals: list) -> str:
     goals_text = "\n".join([f"{i+1}. {g}" for i, g in enumerate(goals)])
@@ -1526,7 +1526,7 @@ async def call_ai_with_system(system_prompt: str, user_text: str, history: list,
         return "Произошла ошибка. Попробуйте ещё раз."
 
 # ============================================================
-# ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ
+# ВСПОМОГАТЕЛЬНАЯ ФУНКЦИЯ – ОТПРАВКА ПРЕДЛОЖЕНИЯ ЗАВЕРШИТЬ
 # ============================================================
 async def send_goal_completion_message(message: Message, user_id: int, user_state: dict, state: FSMContext, bot):
     if user_state.get("roleplay_goal_notified", False):
@@ -1977,7 +1977,7 @@ async def back_to_main_menu_after_feedback(callback: CallbackQuery):
         await callback.message.answer("Главное меню временно недоступно", reply_markup=ReplyKeyboardRemove())
 
 # ============================================================
-# ОБРАБОТЧИК "ЧТО ОТВЕТИТЬ?"
+# ОБРАБОТЧИКИ ТОЧНЫХ ТЕКСТОВЫХ КОМАНД (подсказка, меню, завершение)
 # ============================================================
 @router.message(RoleplayStates.active, F.text == "💡 Что ответить?")
 async def give_hint(message: Message, state: FSMContext):
@@ -2015,9 +2015,6 @@ async def give_hint(message: Message, state: FSMContext):
         return
     await message.answer(f"💡 {hint}")
 
-# ============================================================
-# ОБРАБОТЧИК "ГЛАВНОЕ МЕНЮ" В ИГРЕ
-# ============================================================
 @router.message(RoleplayStates.active, F.text == "🏠 Главное меню")
 async def exit_to_main_menu(message: Message, state: FSMContext):
     logger.info("exit_to_main_menu")
@@ -2039,7 +2036,7 @@ async def exit_to_main_menu(message: Message, state: FSMContext):
         await message.answer("Главное меню временно недоступно", reply_markup=ReplyKeyboardRemove())
 
 # ============================================================
-# ОБРАБОТЧИК КОМАНД (через entities и по тексту) - ДОЛЖНЫ БЫТЬ ПЕРЕД ОБЩИМ F.text
+# ОБРАБОТЧИКИ КОМАНД (должны быть ПЕРЕД общим обработчиком текста)
 # ============================================================
 @router.message(RoleplayStates.active, F.entities)
 async def handle_command_entity(message: Message, state: FSMContext):
@@ -2064,9 +2061,7 @@ async def handle_command_entity(message: Message, state: FSMContext):
                 logger.error(f"Ошибка show_main_menu: {e}")
                 await message.answer("Главное меню временно недоступно", reply_markup=ReplyKeyboardRemove())
             return
-    # Если это не команда, но есть другие entities – пропускаем
 
-# Запасной хендлер для команд (на случай, если entities не сработает)
 @router.message(RoleplayStates.active, F.text.startswith('/'))
 async def handle_command_text(message: Message, state: FSMContext):
     logger.info(f"handle_command_text: {message.text}")
@@ -2088,7 +2083,7 @@ async def handle_command_text(message: Message, state: FSMContext):
         await message.answer("Главное меню временно недоступно", reply_markup=ReplyKeyboardRemove())
 
 # ============================================================
-# ОСНОВНОЙ ОБРАБОТЧИК ТЕКСТА (только если не команда)
+# ОСНОВНОЙ ОБРАБОТЧИК ТЕКСТА (должен быть ПОСЛЕДНИМ среди текстовых)
 # ============================================================
 @router.message(RoleplayStates.active, F.text)
 async def handle_roleplay_text(message: Message, state: FSMContext):
@@ -2099,6 +2094,7 @@ async def handle_roleplay_text(message: Message, state: FSMContext):
         return
 
     user_text = message.text
+    # команды уже перехвачены выше, но на всякий случай оставляем защиту
     if user_text.startswith('/'):
         logger.info("handle_roleplay_text: сообщение начинается с '/', пропускаем")
         return
